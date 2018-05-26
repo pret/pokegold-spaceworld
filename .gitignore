@@ -1,0 +1,19 @@
+*.gb
+*.sgb
+*.gbc
+*.sav
+*.sn1
+*.rtc
+
+*.o
+*.2bpp
+*.1bpp
+*.pcm
+*.map
+*.sym
+
+*~
+
+; binaries
+tools/scan_includes
+pret/
