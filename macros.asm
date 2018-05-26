@@ -1,0 +1,1 @@
+INCLUDE "macros/enum.asm"
