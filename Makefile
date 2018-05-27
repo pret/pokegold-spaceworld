@@ -6,7 +6,7 @@
 
 ROMS := pokegold-spaceworld.gb
 BASEROM := baserom.gb
-OBJS := home.o main.o wram.o
+OBJS := home.o main.o wram.o hram.o
 
 # Link objects together to build a rom.
 all: $(ROMS) compare
@@ -27,7 +27,7 @@ $(foreach obj, $(OBJS), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
 endif
 
 $(ROMS): $(OBJS)
-	rgblink -n $(ROMS:.gb=.sym) -m $(ROMS:.gb=.map) -O $(BASEROM) -o $@ $^
+	rgblink -d -n $(ROMS:.gb=.sym) -m $(ROMS:.gb=.map) -O $(BASEROM) -o $@ $^
 	rgbfix -f  -v -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t "POKEMON2GOLD" $@
 
 compare: $(ROMS) $(BASEROM)
