@@ -4,8 +4,6 @@
 00:0401 DisableLCD
 00:0410 DisableLCD.wait
 00:0423 EnableLCD
-00:052F Init
-00:0565 Init.ByteFill
 00:05E6 ClearVRAM
 00:05F1 BlankBGMap
 00:05F1 FillBGMap

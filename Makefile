@@ -6,7 +6,7 @@
 
 ROMS := pokegold-spaceworld.gb
 BASEROM := baserom.gb
-OBJS := main.o wram.o shim.o
+OBJS := home.o main.o wram.o shim.o
 
 # Link objects together to build a rom.
 all: $(ROMS) compare
