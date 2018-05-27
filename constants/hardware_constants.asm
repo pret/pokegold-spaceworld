@@ -124,6 +124,10 @@ rLCDC_SPRITE_SIZE    EQU 2 ; 0=8x8, 1=8x16
 rLCDC_WINDOW_TILEMAP EQU 6 ; 0=9800-9BFF, 1=9C00-9FFF
 rLCDC_ENABLE         EQU 7 ; 0=Off, 1=On
 rSTAT       EQU $ff41 ; LCDC Status (R/W)
+rSTAT_HBLANK         EQU 3 ; 0=Off, 1=On
+rSTAT_VBLANK         EQU 4 ; 0=Off, 1=On
+rSTAT_MODE2          EQU 5 ; 0=Off, 1=On
+rSTAT_LYC            EQU 6 ; 0=Off, 1=On
 rSCY        EQU $ff42 ; Scroll Y (R/W)
 rSCX        EQU $ff43 ; Scroll X (R/W)
 rLY         EQU $ff44 ; LCDC Y-Coordinate (R)
