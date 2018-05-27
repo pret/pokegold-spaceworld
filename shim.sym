@@ -23,6 +23,11 @@
 00:1F9E ClearWindowData
 00:1FCC ClearWindowData.bytefill
 00:2007 Unk_2007
+
+00:20ff RunMapScript
+00:232c LoadMapWarp
+00:23e5 OverworldFadeIn
+
 00:2F97 InexplicablyEmptyFunction
 00:2FA8 FarCall_hl
 00:2FC8 FarCall_hl.return
@@ -102,6 +107,8 @@
 
 14:6D75 PokemonNames
 
+23:4349 OverworldFadeOut
+
 3A:4000 DisableAudio_
 3A:4012 DisableAudio_.initchannel
 3A:4026 DisableAudio_.clearmusicmem
@@ -110,6 +117,7 @@
 3A:4D9D PlayCryHeader_
 3A:4E22 PlaySFX_
 
+3f:64ce MonsterTest
 3f:654e PicTest
 3f:6750 PicTestMenu
 3f:6755 PicTestMenu.loop
@@ -141,6 +149,9 @@
 00:CD4F wPredefID
 00:CD50 wPredefRegs
 00:CD54 wFarCallBCBuffer
+00:cdbe wTargetMapUnk
+00:cdbf wTargetMapGroup
+00:cdc0 wTargetMapId
 00:CE3C wBuffer
 00:CE5F wUnk_CE5F
 00:CE62 wTextBoxFlags
@@ -148,6 +159,9 @@
 01:d165 wTMCounts
 01:d19e wItems
 01:D264 wPlayerBikeSurfState
+01:d656 wMapGroup
+01:d657 wMapId
+01:d66a wMapScriptPtr
 01:D7D2 wPartyMonOT
 01:DA3B wUnk_DA3B ; In final, $DE7D in NamesPointers (6th entry)
 01:DFFF wStackTop
