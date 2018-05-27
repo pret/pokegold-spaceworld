@@ -1,0 +1,167 @@
+; ROM0
+00:0317 DelayFrame
+00:0324 DelayFrames
+00:0401 DisableLCD
+00:0410 DisableLCD.wait
+00:0423 EnableLCD
+00:05E6 ClearVRAM
+00:05F1 BlankBGMap
+00:05F1 FillBGMap
+00:05F6 _FillBGMap
+00:05FA _FillBGMap.loop
+00:0884 UpdateJoypad
+00:0d68 CopyGfx
+00:0E2A ClearTileMap
+00:0E93 PlaceString
+00:0E94 PlaceNextChar
+00:0E9D CheckDict
+00:10A6 PlaceHLTextAtBC
+00:10B7 DoTextUntilTerminator
+00:10C1 DoTextUntilTerminator.continue
+00:10E2 Text_TX
+00:120C TextCommands
+00:1F9E ClearWindowData
+00:1FCC ClearWindowData.bytefill
+00:2007 Unk_2007
+00:2F97 InexplicablyEmptyFunction
+00:2FA8 FarCall_hl
+00:2FC8 FarCall_hl.return
+00:2FDE Predef
+00:2FF6 Predef.return
+00:300C Predef.saveregs
+00:3270 Random
+00:32A7 OpenSRAM
+00:32B7 CloseSRAM
+00:32C2 Bankswitch
+00:32DC ClearSprites
+00:32E2 ClearSprites.loop
+00:32F7 FarCopyBytes
+00:330A CopyBytes
+00:3313 CopyBytes.next
+00:331A CopyBytesSmall
+00:3321 GetFarByte
+00:3339 ByteFill
+00:3342 ByteFill.smallfill
+00:3343 ByteFill.startfilling
+00:3344 ByteFill.loop
+00:3621 WaitBGMap
+00:362B SetPalettes
+00:3634 ClearPalettes
+00:363C GetMemSGBLayout
+00:363E GetSGBLayout
+00:3648 SetHPPal
+00:3655 SetHPPal.done
+00:36C8 NamesPointers
+00:36E0 GetName
+00:3CBF DisableAudio
+00:3CDB UpdateSound
+00:3CF7 LoadMusicByte_
+00:3D07 PlayMusic
+00:3D23 PlayCryHeader
+00:3D63 PlaySFX
+00:3D7F WaitPlaySFX
+00:3D86 WaitSFX
+00:3D87 WaitSFX.wait
+00:3DA5 MaxVolume
+00:3DAB LowVolume
+00:3DB1 VolumeOff
+00:3DB6 UpdateSoundNTimes
+00:3DBE FadeToMapMusic
+00:3DDC FadeToMapMusic.dontfade
+00:3DE1 PlayMapMusic
+00:3E00 PlayMapMusic.dontplay
+00:3E05 SpecialMapMusic
+00:3E14 SpecialMapMusic.state2 ; ?
+00:3E19 SpecialMapMusic.normal
+00:3E1B GetMapMusic
+00:3E2E GetMapMusic.unk_3E2E
+00:3E32 Unk_3E32 ; What the f*** is this???
+(edited)
+01:4153 LoadPushOAM
+01:415A LoadPushOAM.loop
+01:4161 PushOAM
+01:4167 PushOAM.wait
+01:416B PushOAMEnd
+01:5D8C IntroSequence
+01:62B0 GetPredefPointer
+01:62D3 PredefPointers
+01:62A5 GameInit
+01:6FEC ItemNames
+
+02:4856 DecompTownMapTilemap
+02:48da DecompTownMapTilemap.tilemap ; compressed
+02:4c7c DrawMap
+02:4dc2 TownMapGfx
+02:5695 CheckSGB ; ?
+
+04:5677 DoPlayerMovement
+
+0E:4D90 TrainerClassNames
+
+10:52A1 MoveNames
+
+14:6D75 PokemonNames
+
+3A:4000 DisableAudio_
+3A:4012 DisableAudio_.initchannel
+3A:4026 DisableAudio_.clearmusicmem
+3A:4037 UpdateSound_
+3A:4D66 PlayMusic_
+3A:4D9D PlayCryHeader_
+3A:4E22 PlaySFX_
+
+3f:654e PicTest
+3f:6750 PicTestMenu
+3f:6755 PicTestMenu.loop
+
+3C:51CB CryHeaders
+
+;00:BFFF sWindowStackTop
+
+00:C000 Music
+00:C0CB wChannel5Flags
+00:C0FD wChannel6Flags
+00:C12F wChannel7Flags
+00:C161 wChannel8Flags
+00:C199 wVolume
+00:C1AD wMapMusic
+00:C1AE wCryPitch
+00:C1B0 wCryLength
+00:C1BC wMusicEnd ; ? ; either wChannelsEnd or wMusicEnd, unsure
+00:C200 wOAMBuffer
+00:C2A0 wTileMap
+00:c40b wWhichPicTest ; Monster or Trainer test?
+00:CBF2 wWindowData
+00:CBF2 wWindowStackPointer
+00:CC02 wMenuDataHeader
+00:CC12 wMenuData2
+00:CC22 wMenuData3
+00:CC38 wUnk_CC38 ; wceeb in pokegold
+00:CCCF wSGB    
+00:CD4F wPredefID
+00:CD50 wPredefRegs
+00:CD54 wFarCallBCBuffer
+00:CE3C wBuffer
+00:CE5F wUnk_CE5F
+00:CE62 wTextBoxFlags
+
+01:d165 wTMCounts
+01:d19e wItems
+01:D264 wPlayerBikeSurfState
+01:D7D2 wPartyMonOT
+01:DA3B wUnk_DA3B ; In final, $DE7D in NamesPointers (6th entry)
+01:DFFF wStackTop
+
+00:FF80 hPushOAM
+00:FF98 hROMBank
+00:FFA3 hUnk_FFA3
+00:FFA4 hUnk_Joypad ; ?
+00:FFD5 hLinkPlayerNumber
+00:FFD9 hSCX
+00:FFDA hSCY
+00:FFDB hWX
+00:FFDC hWY
+00:FFDE hBGMapMode
+00:FFE0 hBGMapAddress
+00:FFE8 hMapAnims
+
