@@ -9,6 +9,7 @@
 00:05F1 FillBGMap
 00:05F6 _FillBGMap
 00:05FA _FillBGMap.loop
+00:0884 UpdateJoypad
 00:0d68 CopyGfx
 00:0E2A ClearTileMap
 00:0E93 PlaceString
@@ -109,6 +110,10 @@
 3A:4D9D PlayCryHeader_
 3A:4E22 PlaySFX_
 
+3f:654e PicTest
+3f:6750 PicTestMenu
+3f:6755 PicTestMenu.loop
+
 3C:51CB CryHeaders
 
 ;00:BFFF sWindowStackTop
@@ -125,6 +130,7 @@
 00:C1BC wMusicEnd ; ? ; either wChannelsEnd or wMusicEnd, unsure
 00:C200 wOAMBuffer
 00:C2A0 wTileMap
+00:c40b wWhichPicTest ; Monster or Trainer test?
 00:CBF2 wWindowData
 00:CBF2 wWindowStackPointer
 00:CC02 wMenuDataHeader
