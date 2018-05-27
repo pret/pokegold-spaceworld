@@ -11,6 +11,7 @@
 00:05F1 FillBGMap
 00:05F6 _FillBGMap
 00:05FA _FillBGMap.loop
+00:0d68 CopyGfx
 00:0E2A ClearTileMap
 00:0E93 PlaceString
 00:0E94 PlaceNextChar
@@ -88,6 +89,10 @@
 01:62A5 GameInit
 01:6FEC ItemNames
 
+02:4856 DecompTownMapTilemap
+02:48da DecompTownMapTilemap.tilemap ; compressed
+02:4c7c DrawMap
+02:4dc2 TownMapGfx
 02:5695 CheckSGB ; ?
 
 04:5677 DoPlayerMovement
@@ -136,6 +141,8 @@
 00:CE5F wUnk_CE5F
 00:CE62 wTextBoxFlags
 
+01:d165 wTMCounts
+01:d19e wItems
 01:D264 wPlayerBikeSurfState
 01:D7D2 wPartyMonOT
 01:DA3B wUnk_DA3B ; In final, $DE7D in NamesPointers (6th entry)
