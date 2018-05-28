@@ -88,6 +88,8 @@
 01:4167 PushOAM.wait
 01:416B PushOAMEnd
 01:5D8C IntroSequence
+01:5eb8 TitleFlameGfx
+01:5f38 TitleNoteGfx
 01:62B0 GetPredefPointer
 01:62D3 PredefPointers
 01:62A5 GameInit
@@ -95,6 +97,7 @@
 
 02:4856 DecompTownMapTilemap
 02:48da DecompTownMapTilemap.tilemap ; compressed
+02:4f32 PokegearRadioGfx
 02:4c7c DrawMap
 02:4dc2 TownMapGfx
 02:5695 CheckSGB ; ?
@@ -102,7 +105,15 @@
 03:4791 DebugWarp
 03:479f DebugWarp.Destinations
 
+04:47cf CopyrightGfx
+04:495f VersionGfx
+04:49ef PocketMonstersGfx
+04:4adf TitleHoOhGfx
+04:4def LogoGfx
 04:5677 DoPlayerMovement
+04:5bb1 MailIconGfx
+04:7171 ProfileGfx
+04:73b1 ProfileBadgeGfx
 
 0e:4b78 LoadTrainerClassName
 0e:4ba0 LoadTrainerClassName.got_name
@@ -111,9 +122,17 @@
 
 10:52A1 MoveNames
 
+11:40d5 DexGfx
+11:46d5 DexSearchGfx
+
 14:6D75 PokemonNames
 
+21:4000 MoveEffectGfx
+
 23:4349 OverworldFadeOut
+23:60cc MenuMonIconGfx
+
+30:4000 OverworldSpriteGfx
 
 3A:4000 DisableAudio_
 3A:4012 DisableAudio_.initchannel
@@ -122,6 +141,13 @@
 3A:4D66 PlayMusic_
 3A:4D9D PlayCryHeader_
 3A:4E22 PlaySFX_
+
+3e:4162 FontExtraGfx
+3e:4362 FontGfx
+3e:4762 FontBattleExtraGfx
+3e:4962 BorderGfx
+3e:5052 BoldFontGfx
+3e:533a PackIconGfx
 
 3f:64ce MonsterTest
 3f:654e PicTest
