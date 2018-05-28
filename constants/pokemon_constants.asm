@@ -1,6 +1,4 @@
 ; Pokémon IDs
-; indexes for:
-; - TODO
 	const_def
 	const MON_NOTHING     ; 00
 	const MON_FUSHIGIDANE ; 01 BULBASAUR
@@ -124,7 +122,7 @@
 	const MON_AZUMAO      ; 77 SEAKING
 	const MON_HITODEMAN   ; 78 STARYU
 	const MON_STARMIE     ; 79 STARMIE
-	const MON_BARRIERD    ; 7a MR. MIME
+	const MON_BARRIERD    ; 7a MR__MIME
 	const MON_STRIKE      ; 7b SCYTHER
 	const MON_ROUGELA     ; 7c JYNX
 	const MON_ELEBOO      ; 7d ELECTABUZZ
@@ -157,10 +155,10 @@
 PROTO_POKEMON EQU const_value
 	const MON_HAPPA       ; 98 CHIKORITA
 	const MON_HANAMOGURA  ; 99 BAYLEEF
-	const MON_HANARYUU    ; 9a MEGANIUM
+	const MON_HANARYU     ; 9a MEGANIUM
 	const MON_HONOGUMA    ; 9b
 	const MON_VOLBEAR     ; 9c
-	const MON_DAINABEAR   ; 9d
+	const MON_DYNABEAR    ; 9d
 	const MON_KURUSU      ; 9e
 	const MON_AQUA        ; 9f
 	const MON_AQUARIA     ; a0
@@ -169,37 +167,37 @@ PROTO_POKEMON EQU const_value
 	const MON_PACHIMEE    ; a3 MAREEP
 	const MON_MOKOKO      ; a4 FLAAFFY
 	const MON_DENRYU      ; a5 AMPHAROS
-	const MON_MIKON       ; a6
-	const MON_MONJA       ; a7
+	const MON_MIKON       ; a6 (baby VULPIX)
+	const MON_MONJA       ; a7 (baby TANGELA)
 	const MON_JARANRA     ; a8 TANGROWTH
 	const MON_HANEEI      ; a9 MANTINE
 	const MON_PUKU        ; aa QWILFISH
-	const MON_SHIBIREFUGU ; ab
+	const MON_SHIBIREFUGU ; ab (evolved QWILFISH)
 	const MON_PICHU       ; ac PICHU
 	const MON_PY          ; ad CLEFFA
 	const MON_PUPURIN     ; ae IGGLYPUFF
 	const MON_MIZUUO      ; af QUAGSIRE
 	const MON_NATY        ; b0 NATU
 	const MON_NATIO       ; b1 XATU
-	const MON_GYOPIN      ; b2
+	const MON_GYOPIN      ; b2 (baby GOLDEEN)
 	const MON_MARIL       ; b3 MARILL
 	const MON_MANBO1      ; b4
 	const MON_IKARI       ; b5
 	const MON_GROTESS     ; b6
 	const MON_EKSING      ; b7 CROBAT
-	const MON_PARA        ; b8
+	const MON_PARA        ; b8 (baby PARAS)
 	const MON_KOKUMO      ; b9 SPINARAK
 	const MON_TWOHEAD     ; ba ARIADOS
 	const MON_YOROIDORI   ; bb SKARMORY
-	const MON_ANIMON      ; bc
-	const MON_HINAZU      ; bd
+	const MON_ANIMON      ; bc (evolved DITTO)
+	const MON_HINAZU      ; bd (baby DODUO)
 	const MON_SUNNY       ; be SUNFLORA
 	const MON_PAON        ; bf PHANPY
 	const MON_DONPHAN     ; c0 DONPHAN
-	const MON_TWINZ       ; c1
+	const MON_TWINZ       ; c1 (baby GIRAFARIG)
 	const MON_KIRINRIKI   ; c2 GIRAFARIG
 	const MON_PAINTER     ; c3 SMEARGLE
-	const MON_KOUNYA      ; c4
+	const MON_KOUNYA      ; c4 (baby MEOWTH)
 	const MON_RINRIN      ; c5
 	const MON_BERURUN     ; c6
 	const MON_NYOROTONO   ; c7 POLITOED
@@ -207,43 +205,43 @@ PROTO_POKEMON EQU const_value
 	const MON_ANNON       ; c9 UNOWN
 	const MON_REDIBA      ; ca LEDYBA
 	const MON_MITSUBOSHI  ; cb LEDIAN
-	const MON_PUCHICORN   ; cc
+	const MON_PUCHICORN   ; cc (baby PONYTA)
 	const MON_EIFIE       ; cd ESPEON
 	const MON_BLACKY      ; ce UMBREON
 	const MON_TURBAN      ; cf
-	const MON_BETBABY     ; d0
+	const MON_BETBABY     ; d0 (baby GRIMER)
 	const MON_TEPPOUO     ; d1 REMORAID
 	const MON_OKUTANK     ; d2 OCTILLERY
 	const MON_GONGU       ; d3 TYROGUE
 	const MON_KAPOERER    ; d4 HITMONTOP
-	const MON_PUDIE       ; d5
+	const MON_PUDIE       ; d5 (baby GROWLITHE)
 	const MON_HANEKO      ; d6 HOPPIP
 	const MON_POPONEKO    ; d7 SKIPLOOM
 	const MON_WATANEKO    ; d8 JUMPLUFF
 	const MON_BARIRINA    ; d9 MIME_JR
 	const MON_LIP         ; da SMOOCHUM
-	const MON_ELEBABY     ; db ELEKID
+	const MON_ELEBABY     ; db (baby ELEKID)
 	const MON_BOOBY       ; dc MAGBY
 	const MON_KIREIHANA   ; dd BELLOSSOM
-	const MON_TSUBOMITTO  ; de
+	const MON_TSUBOMITTO  ; de (evolved WEEPINBELL)
 	const MON_MILTANK     ; df MILTANK
 	const MON_BOMBSEEKER  ; e0
 	const MON_GIFT        ; e1 DELIBIRD
 	const MON_KOTORA      ; e2
 	const MON_RAITORA     ; e3
-	const MON_MADAME      ; e4
+	const MON_MADAME      ; e4 (evolved FARFETCH_D)
 	const MON_NOROWARA    ; e5
 	const MON_KYONPAN     ; e6
 	const MON_YAMIKARASU  ; e7 MURKROW
 	const MON_HAPPI       ; e8 BLISSEY
 	const MON_SCISSORS    ; e9 SCIZOR
-	const MON_PURAKKUSU   ; ea
+	const MON_PURAKKUSU   ; ea (evolved PINSIR)
 	const MON_DEVIL       ; eb HOUNDOUR
 	const MON_HELGAA      ; ec HOUNDOOM
 	const MON_WOLFMAN     ; ed
 	const MON_WARWOLF     ; ee
 	const MON_PORYGON2    ; ef PORYGON2
-	const MON_NAMEIL      ; f0
+	const MON_NAMEIL      ; f0 LICKILICKY
 	const MON_HAGANEIL    ; f1 STEELIX
 	const MON_KINGDRA     ; f2 KINGDRA
 	const MON_RAI         ; f3 RAIKOU
@@ -261,8 +259,6 @@ NUM_POKEMON EQU const_value + -1
 	const MON_FE          ; fe
 
 ; Annon forms
-; indexes for:
-; - TODO
 	const_def 1
 	const ANNON_A ;  1
 	const ANNON_B ;  2
