@@ -163,6 +163,7 @@
 	const ITEM_BAG              ; a0 *LURE_BALL
 	const ITEM_IMPORTANT_BAG    ; a1 *FAST_BALL
 	const ITEM_POISON_STONE     ; a2 *
+
 	const ITEM_A3               ; a3 *LIGHT_BALL
 	const ITEM_A4               ; a4 *FRIEND_BALL
 	const ITEM_A5               ; a5 *MOON_BALL
@@ -196,6 +197,7 @@
 	const ITEM_C1               ; c1 *TM03
 	const ITEM_C2               ; c2 *TM04
 	const ITEM_C3               ; c3
+
 	const ITEM_TM01             ; c4 *TM05
 	const ITEM_TM02             ; c5 *TM06
 	const ITEM_TM03             ; c6 *TM07
@@ -248,6 +250,8 @@
 	const ITEM_TM48             ; f5 *HM03
 	const ITEM_TM49             ; f6 *HM04
 	const ITEM_TM50             ; f7 *HM05
+NUM_TMS = const_value - ITEM_TM01 - 2 ; discount ITEM_C8 and ITEM_E1
+
 	const ITEM_HM01             ; f8 *HM06
 	const ITEM_HM02             ; f9 *HM07
 	const ITEM_HM03             ; fa *
@@ -255,3 +259,6 @@
 	const ITEM_HM05             ; fc *
 	const ITEM_HM06             ; fd *
 	const ITEM_HM07             ; fe *
+NUM_HMS = const_value - ITEM_HM01
+
+NUM_TMS_HMS = NUM_TMS + NUM_HMS
