@@ -1,6 +1,6 @@
 ; Pokémon IDs
 	const_def
-	const MON_NOTHING     ; 00
+	const MON_NONE        ; 00
 	const MON_FUSHIGIDANE ; 01 BULBASAUR
 	const MON_FUSHIGISOU  ; 02 IVYSAUR
 	const MON_FUSHIGIBANA ; 03 VENUSAUR
