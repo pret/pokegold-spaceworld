@@ -3,6 +3,12 @@ INCLUDE "constants.asm"
 
 SECTION "Evolutions and Attacks", ROMX[$6493],BANK[$10]
 
+; Evolutions for Pokémon available in the demo were removed,
+; and have been left in comments.
+
+; Eevee's evolutions were not properly terminated by a 0,
+; so its data is corrupt. (See EievuiEvosAttacks.)
+
 
 INCLUDE "data/pokemon/evos_attacks_pointers.asm"
 
@@ -216,6 +222,7 @@ SpearEvosAttacks: ; 427ab
 	db 0 ; no more level-up moves
 
 PoppoEvosAttacks: ; 427bf
+	; db EVOLVE_LEVEL, 18, DEX_PIGEON
 	db 0 ; no more evolutions
 	db  1, MOVE_GUST
 	db  6, MOVE_SAND_ATTACK
@@ -253,6 +260,7 @@ PigeotEvosAttacks: ; 427e6
 	db 0 ; no more level-up moves
 
 KorattaEvosAttacks: ; 427f8
+	; db EVOLVE_LEVEL, 20, DEX_RATTA
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
 	db  4, MOVE_TAIL_WHIP
@@ -304,6 +312,7 @@ OnidrillEvosAttacks: ; 42833
 	db 0 ; no more level-up moves
 
 ArboEvosAttacks: ; 42847
+	; db EVOLVE_LEVEL, 22, DEX_ARBOK
 	db 0 ; no more evolutions
 	db  1, MOVE_WRAP
 	db  6, MOVE_LEER
@@ -329,6 +338,7 @@ ArbokEvosAttacks: ; 42859
 	db 0 ; no more level-up moves
 
 PikachuEvosAttacks: ; 4286d
+	; db EVOLVE_STONE, 1, ITEM_THUNDERSTONE, DEX_RAICHU
 	db 0 ; no more evolutions
 	db  1, MOVE_GROWL
 	db  5, MOVE_THUNDERSHOCK
@@ -1997,6 +2007,7 @@ MewEvosAttacks: ; 432d5
 	db 0 ; no more level-up moves
 
 HappaEvosAttacks: ; 432dd
+	; db EVOLVE_LEVEL, 16, DEX_HANAMOGURA
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
 	db  3, MOVE_GROWTH
@@ -2040,6 +2051,7 @@ HanaryuEvosAttacks: ; 4330c
 	db 0 ; no more level-up moves
 
 HonogumaEvosAttacks: ; 43322
+	; db EVOLVE_LEVEL, 16, DEX_VOLBEAR
 	db 0 ; no more evolutions
 	db  1, MOVE_SCRATCH
 	db  5, MOVE_LEER
@@ -2083,6 +2095,7 @@ DynabearEvosAttacks: ; 43351
 	db 0 ; no more level-up moves
 
 KurusuEvosAttacks: ; 43367
+	; db EVOLVE_LEVEL, 16, DEX_AQUA
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
 	db  4, MOVE_GROWL
@@ -2123,6 +2136,7 @@ AquariaEvosAttacks: ; 43392
 	db 0 ; no more level-up moves
 
 HohoEvosAttacks: ; 433a6
+	; db EVOLVE_LEVEL, 20, DEX_BOBO
 	db 0 ; no more evolutions
 	db  1, MOVE_GROWL
 	db  3, MOVE_TACKLE
@@ -2640,6 +2654,7 @@ AnnonEvosAttacks: ; 436ca
 	db 0 ; no more level-up moves
 
 RedibaEvosAttacks: ; 436ce
+	; db EVOLVE_LEVEL, 18, DEX_MITSUBOSHI
 	db 0 ; no more evolutions
 	db  1, MOVE_SCRATCH
 	db  8, MOVE_QUICK_ATTACK
@@ -2783,6 +2798,7 @@ PudieEvosAttacks: ; 43794
 	db 0 ; no more level-up moves
 
 HanekoEvosAttacks: ; 437ab
+	; db EVOLVE_LEVEL, 18, DEX_POPONEKO
 	db 0 ; no more evolutions
 	db  1, MOVE_ABSORB
 	db  4, MOVE_POUND
