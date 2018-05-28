@@ -115,22 +115,9 @@ NUM_HOF_TEAMS = 30
 ; evolution types (used in data/pokemon/evos_attacks.asm)
 	const_def 1
 	const EVOLVE_LEVEL
+	const EVOLVE_STONE
 	const EVOLVE_ITEM
 	const EVOLVE_TRADE
-	const EVOLVE_HAPPINESS
-	const EVOLVE_STAT
-
-; EVOLVE_HAPPINESS triggers
-	const_def 1
-	const TR_ANYTIME
-	const TR_MORNDAY
-	const TR_NITE
-
-; EVOLVE_STAT triggers
-	const_def 1
-	const ATK_GT_DEF
-	const ATK_LT_DEF
-	const ATK_EQ_DEF
 
 
 ; wild data
