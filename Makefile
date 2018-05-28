@@ -27,7 +27,7 @@ $(foreach obj, $(OBJS), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
 endif
 
 shim.asm: shim.sym
-	python3 tools/make_shim.py $^ > $@
+	python3 tools/make_shim.py -w $^ > $@
 
 $(ROMS): $(OBJS)
 	rgblink -d -n $(ROMS:.gb=.sym) -m $(ROMS:.gb=.map) -O $(BASEROM) -o $@ $^
