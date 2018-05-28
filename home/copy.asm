@@ -1,0 +1,68 @@
+SECTION "Copy functions", ROM0[$32F7]
+
+FarCopyBytes:: ; 32f7
+    ld [wBuffer], a
+    ldh a, [hROMBank]
+    push af
+    ld a, [wBuffer]
+    call Bankswitch
+    call CopyBytes
+    pop af
+    jp Bankswitch
+
+CopyBytes:: ; 330a
+    ld a, b
+    and a
+    jr z, CopyBytesSmall
+    ld a, c
+    and a
+    jr z, .next
+    inc b
+.next
+    call CopyBytesSmall
+    dec b
+    jr nz, .next
+    ret
+
+CopyBytesSmall:: ; 331a
+    ld a, [hli]
+    ld [de], a
+    inc de
+    dec c
+    jr nz, CopyBytesSmall
+    ret
+
+
+GetFarByte:: ; 3321
+    ld [wBuffer], a
+    ldh a, [hROMBank]
+    push af
+    ld a, [wBuffer]
+    call Bankswitch
+    ld a, [hl]
+    ld [wBuffer], a
+    pop af
+    call Bankswitch
+    ld a, [wBuffer]
+    ret
+
+
+ByteFill:: ; 3339
+    push af
+    ld a, b
+    and a
+    jr z, .small_fill
+    ld a, c
+    and a
+    jr z, .start_filling
+.small_fill
+    inc b
+.start_filling
+    pop af
+.loop
+    ld [hli], a
+    dec c
+    jr z, .loop
+    dec b
+    jr z, .loop
+    ret

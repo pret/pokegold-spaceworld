@@ -1,0 +1,23 @@
+SECTION "Sprite clearing", ROM0[$32DC]
+
+ClearSprites:: ; 32dc
+    ld hl, wVirtualOAM
+    ld b, wVirtualOAMEnd - wVirtualOAM
+    xor a
+.loop
+    ld [hli], a
+    dec b
+    jr nz, .loop
+    ret
+
+HideSprites:: ; 32e7
+    ld hl, wVirtualOAM
+    ld de, SPRITEOAMSTRUCT_LENGTH
+    ld b, NUM_SPRITE_OAM_STRUCTS
+    ld a, $A0
+.loop
+    ld [hli], a
+    add hl, de
+    dec b
+    jr nz, .loop
+    ret

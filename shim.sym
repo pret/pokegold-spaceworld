@@ -28,7 +28,6 @@
 00:232c LoadMapWarp
 00:23e5 OverworldFadeIn
 
-00:2F97 InexplicablyEmptyFunction
 00:2FA8 FarCall_hl
 00:2FC8 FarCall_hl.return
 00:2FDE Predef
@@ -164,18 +163,3 @@
 01:d66a wMapScriptPtr
 01:D7D2 wPartyMonOT
 01:DA3B wUnk_DA3B ; In final, $DE7D in NamesPointers (6th entry)
-01:DFFF wStackTop
-
-00:FF80 hPushOAM
-00:FF98 hROMBank
-00:FFA3 hUnk_FFA3
-00:FFA4 hUnk_Joypad ; ?
-00:FFD5 hLinkPlayerNumber
-00:FFD9 hSCX
-00:FFDA hSCY
-00:FFDB hWX
-00:FFDC hWY
-00:FFDE hBGMapMode
-00:FFE0 hBGMapAddress
-00:FFE8 hMapAnims
-

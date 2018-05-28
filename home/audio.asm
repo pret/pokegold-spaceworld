@@ -1,0 +1,143 @@
+SECTION "Audio", ROM0[$3CBF]
+
+DisableAudio:: ; 3cbf
+    push hl
+    push de
+    push bc
+    push af
+    ldh a, [hROMBank]
+    push af
+    ld a, BANK(_DisableAudio)
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    call _DisableAudio
+    pop af
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    pop af
+    pop bc
+    pop de
+    pop hl
+    ret
+
+
+UpdateSound:: ; 3cdb
+    push hl
+    push de
+    push bc
+    push af
+    ldh a, [hROMBank]
+    push af
+    ld a, BANK(_UpdateSound)
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    call _UpdateSound
+    pop af
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    pop af
+    pop bc
+    pop de
+    pop hl
+    ret
+
+
+LoadMusicByte:: ; 3cf7
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    ld a, [de]
+    push af
+    ld a, BANK(_UpdateSound)
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    pop af
+    ret
+
+
+PlayMusic:: ; 3d07
+    push hl
+    push de
+    push bc
+    push af
+    ldh a, [hROMBank]
+    push af
+    ld a, BANK(_PlayMusic)
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    call _PlayMusic
+    pop af
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    pop af
+    pop bc
+    pop de
+    pop hl
+    ret
+
+
+PlayCryHeader:: ; 3d23
+    push hl
+    push de
+    push bc
+    push af
+    ldh a, [hROMBank]
+    push af
+
+    ld a, BANK(CryHeaders)
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    ld hl, CryHeaders
+REPT 6
+    add hl, de
+ENDR
+    ld e, [hl]
+    inc hl
+    ld d, [hl]
+    inc hl
+    ld a, [hli]
+    ld [wCryPitch], a
+    ld a, [hli]
+    ld [wCryPitch + 1], a
+    ld a, [hli]
+    ld [wCryLength], a
+    ld a, [hl]
+    ld [wCryLength + 1], a
+
+    ld a, BANK(_PlayCryHeader)
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    call _PlayCryHeader
+    
+    pop af
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    pop af
+    pop bc
+    pop de
+    pop hl
+    ret
+
+
+
+
+PlaySFX:: ; 3d63
+    push hl
+    push de
+    push bc
+    push af
+    ldh a, [hROMBank]
+    push af
+    ld a, BANK(PlaySFX_)
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    call PlaySFX_
+    pop af
+    ld [MBC3RomBank], a ; Unsafe
+    ldh [hROMBank], a
+    pop af
+    pop bc
+    pop de
+    pop hl
+    ret
+
+
