@@ -3,19 +3,30 @@
 ; Control characters (see home/text.asm)
 
 	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"; same as "<PLAYER>" in English
-	charmap "¯",         $1f ; soft linebreak
-	charmap "<LNBRK>",   $22
-	charmap "<POKE>",    $24 ; "<PO><KE>"
-	charmap "%",         $25 ; soft linebreak in landmark names
+	charmap "<JP_18>",   $18 ; "ノ゛"? (ungrammatical)
+	charmap "<NI>",      $1d ; "に　"
+	charmap "<TTE>",     $1e ; "って"
+	charmap "<WO>",      $1f ; "を　"
+
+	charmap "<TA!>",     $22 ; "た！"
+	charmap "<KOUGEKI>", $23 ; "こうげき"
+	charmap "<WA>",      $24 ; "は　"
+	charmap "<NO>",      $25 ; "の　"
+
+	charmap "<ROUTE>",   $35 ; "ばん　どうろ"
+	charmap "<WATASHI>", $36 ; "わたし"
+	charmap "<KOKO_WA>", $37 ; "ここは"
 	charmap "<RED>",     $38 ; wRedsName
 	charmap "<GREEN>",   $39 ; wGreensName
 	charmap "<ENEMY>",   $3f
+
 	charmap "<MOM>",     $49 ; wMomsName
-	charmap "<PKMN>",    $4a ; "<PK><MN>"
+	charmap "<GA>",      $4a ; "が　"
 	charmap "<_CONT>",   $4b ; implements "<CONT>"
 	charmap "<SCROLL>",  $4c
 	charmap "<NEXT>",    $4e
 	charmap "<LINE>",    $4f
+
 	charmap "@",         $50 ; string terminator
 	charmap "<PARA>",    $51
 	charmap "<PLAYER>",  $52 ; wPlayerName
@@ -39,21 +50,6 @@
 	charmap "■",         $60 ; gfx/font/black.2bpp
 	charmap "▲",         $61 ; gfx/font/up_arrow.png
 	charmap "☎",         $62 ; gfx/font/phone_icon.2bpp
-
-; Japanese control characters (see home/text.asm)
-
-	charmap "<JP_18>",   $18 ; "ノ゛"? (ungrammatical)
-	charmap "<NI>",      $1d ; "に　"
-	charmap "<TTE>",     $1e ; "って"
-	charmap "<WO>",      $1f ; "を　"
-	charmap "<TA!>",     $22 ; "た！"
-	charmap "<KOUGEKI>", $23 ; "こうげき"
-	charmap "<WA>",      $24 ; "は　"
-	charmap "<NO>",      $25 ; "の　"
-	charmap "<ROUTE>",   $35 ; "ばん　どうろ"
-	charmap "<WATASHI>", $36 ; "わたし"
-	charmap "<KOKO_WA>", $37 ; "ここは"
-	charmap "<GA>",      $4a ; "が　"
 
 ; Japanese kana
 
@@ -112,10 +108,22 @@
 
 	charmap "「", $70
 	charmap "」", $71
+	charmap "『", $72
 	charmap "』", $73
+	charmap "·", $74
 	charmap "⋯", $75
 
-	charmap "　", $7f
+	charmap "ぁ", $76
+	charmap "ぇ", $77
+	charmap "ぉ", $78
+
+	charmap "┌", $79
+	charmap "─", $7a
+	charmap "┐", $7b
+	charmap "│", $7c
+	charmap "└", $7d
+	charmap "┘", $7e
+	charmap " ", $7f
 
 	charmap "ア", $80
 	charmap "イ", $81
