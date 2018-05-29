@@ -32,5 +32,5 @@ MainMenuStrings: ; 01:5428
 ; 01:5457
 
 SECTION "Annon Pic Ptrs and Pics", ROMX[$4d6a], BANK[$1f]
-INCLUDE "gfx/pics/annon_pic_ptrs.asm"
-INCLUDE "gfx/pics/annon_pics.asm"
+INCLUDE "gfx/pokemon/annon_pic_ptrs.asm"
+INCLUDE "gfx/pokemon/annon_pics.asm"
