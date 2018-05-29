@@ -10,7 +10,7 @@
 	db GENDER_FEMALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw GaruraPicFront, dw GaruraPicBack ; sprites
+	dw GaruraPicFront, GaruraPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

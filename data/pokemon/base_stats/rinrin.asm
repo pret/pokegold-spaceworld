@@ -10,7 +10,7 @@
 	db GENDER_FEMALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw RinrinPicFront, dw RinrinPicBack ; sprites
+	dw RinrinPicFront, RinrinPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

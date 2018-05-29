@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw GardiePicFront, dw GardiePicBack ; sprites
+	dw GardiePicFront, GardiePicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

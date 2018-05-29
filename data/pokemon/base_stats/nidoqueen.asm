@@ -10,7 +10,7 @@
 	db GENDER_FEMALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw NidoqueenPicFront, dw NidoqueenPicBack ; sprites
+	dw NidoqueenPicFront, NidoqueenPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

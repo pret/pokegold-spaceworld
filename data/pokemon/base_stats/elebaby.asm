@@ -10,7 +10,7 @@
 	db GENDER_MALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw ElebabyPicFront, dw ElebabyPicBack ; sprites
+	dw ElebabyPicFront, ElebabyPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

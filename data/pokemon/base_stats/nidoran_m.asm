@@ -10,7 +10,7 @@
 	db GENDER_MALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw Nidoran_MPicFront, dw Nidoran_MPicBack ; sprites
+	dw Nidoran_MPicFront, Nidoran_MPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

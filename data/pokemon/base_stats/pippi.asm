@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw PippiPicFront, dw PippiPicBack ; sprites
+	dw PippiPicFront, PippiPicBack ; sprites
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset

@@ -10,7 +10,7 @@
 	db GENDER_MALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw EbiwalarPicFront, dw EbiwalarPicBack ; sprites
+	dw EbiwalarPicFront, EbiwalarPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

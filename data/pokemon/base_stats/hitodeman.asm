@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw HitodemanPicFront, dw HitodemanPicBack ; sprites
+	dw HitodemanPicFront, HitodemanPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
