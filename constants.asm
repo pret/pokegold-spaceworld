@@ -12,6 +12,7 @@ INCLUDE "constants/pokedex_constants.asm"
 INCLUDE "constants/pokemon_data_constants.asm"
 INCLUDE "constants/move_constants.asm"
 INCLUDE "constants/item_constants.asm"
+INCLUDE "constants/trainer_data_constants.asm"
 INCLUDE "constants/battle_constants.asm"
 
 INCLUDE "constants/serial_constants.asm"

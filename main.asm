@@ -10,7 +10,7 @@ SECTION "Predef pointers", ROMX[$62B0],BANK[$01]
 INCLUDE "engine/predef.asm"
 
 SECTION "Font GFX", ROMX[$4362], BANK[$3e]
-    INCBIN "gfx/font.1bpp"
+	INCBIN "gfx/font.1bpp"
 
 SECTION "Main Menu Definition", ROMX[$5418], BANK[$01]
 MainMenuHeader:
@@ -40,6 +40,8 @@ INCLUDE "data/moves/tmhm_moves.asm"
 
 SECTION "Type Matchups", ROMX[$506D],BANK[$0D]
 INCLUDE "data/types/type_matchups.asm"
+
+INCLUDE "data/trainers/parties.asm"
 
 SECTION "Alphabetical Pokedex Order", ROMX[$4943],BANK[$10]
 INCLUDE "data/pokemon/dex_order_alpha.asm"
