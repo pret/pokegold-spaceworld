@@ -31,6 +31,21 @@ MainMenuStrings: ; 01:5428
     db "じかんセット@"
 ; 01:5457
 
+SECTION "TM/HM Moves", ROMX[$52D1],BANK[$04]
+INCLUDE "data/moves/tmhm_moves.asm"
+
+SECTION "Type Matchups", ROMX[$506D],BANK[$0D]
+INCLUDE "data/types/type_matchups.asm"
+
+SECTION "Alphabetical Pokedex Order", ROMX[$4943],BANK[$10]
+INCLUDE "data/pokemon/dex_order_alpha.asm"
+
+SECTION "Evolutions and Attacks", ROMX[$6493],BANK[$10]
+INCLUDE "data/pokemon/evos_attacks.asm"
+
+;SECTION "Base Data", ROMX[$4F10],BANK[$14]
+;INCLUDE "data/pokemon/base_stats.asm"
+
 SECTION "Annon Pic Ptrs and Pics", ROMX[$4d6a], BANK[$1f]
 INCLUDE "gfx/pokemon/annon_pic_ptrs.asm"
 INCLUDE "gfx/pokemon/annon_pics.asm"

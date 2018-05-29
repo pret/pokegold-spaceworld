@@ -1,5 +1,3 @@
-SECTION "TM/HM Moves", ROMX[$52D1],BANK[4]
-
 ; This is a nearly-sequential table of new moves.
 ; It was probably meant for easy testing, not as
 ; a final set of TM moves.

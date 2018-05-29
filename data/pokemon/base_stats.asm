@@ -1,6 +1,3 @@
-SECTION "Base Data", ROMX[$4F10],BANK[$14]
-
-
 tmhm: MACRO
 ; used in data/pokemon/base_stats/*.asm
 tms1 = 0 ; TM01-TM24 (24)

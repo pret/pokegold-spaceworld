@@ -1,5 +1,3 @@
-SECTION "Alphabetical Pokedex Order", ROMX[$4943],BANK[$10]
-
 ; Every Pokémon sorted alphabetically by name (gojūon order).
 
 AlphabeticalPokedexOrder: ; 0x40943
