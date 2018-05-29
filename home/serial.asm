@@ -39,7 +39,7 @@ Serial::
     jr .done
 .master
     xor a
-    ld [rSC], a
+    ld [rSB], a
 
 .done
     ld a, 1

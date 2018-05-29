@@ -15,8 +15,8 @@ WriteOAMDMACodeToHRAM:: ; 4153
 .OAMDMA ; 4161
     ld a, HIGH(wVirtualOAM)
     ldh [rDMA], a
-.wait
     ld a, $28
+.wait
     dec a
     jr nz, .wait
     ret

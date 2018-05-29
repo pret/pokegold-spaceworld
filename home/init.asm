@@ -31,6 +31,7 @@ Init: ; 052f
     ld [rTAC], a
     ld a, 1 << rLCDC_ENABLE
     ld [rLCDC], a
+    call DisableLCD
 
     ld sp, wStackBottom
     call ClearVRAM
@@ -70,7 +71,7 @@ Init: ; 052f
     ldh [hLinkPlayerNumber], a
     ld h, HIGH($9800)
     call BlankBGMap
-    ld h, HIGH($9800)
+    ld h, HIGH($9C00)
     call BlankBGMap
     ld a, LCDC_DEFAULT
     ld [rLCDC], a
@@ -107,6 +108,7 @@ Init: ; 052f
 ClearVRAM: ; 05e6
     ld hl, VRAM_Begin
     ld bc, VRAM_End - VRAM_Begin
+    xor a
     call ByteFill
     ret
 

@@ -1,4 +1,4 @@
-SECTION "Audio", ROM0[$3CBF]
+SECTION "Audio interface", ROM0[$3CBF]
 
 DisableAudio:: ; 3cbf
     push hl
@@ -42,7 +42,7 @@ UpdateSound:: ; 3cdb
     ret
 
 
-LoadMusicByte:: ; 3cf7
+_LoadMusicByte:: ; 3cf7
     ld [MBC3RomBank], a ; Unsafe
     ldh [hROMBank], a
     ld a, [de]
@@ -127,10 +127,10 @@ PlaySFX:: ; 3d63
     push af
     ldh a, [hROMBank]
     push af
-    ld a, BANK(PlaySFX_)
+    ld a, BANK(_PlaySFX)
     ld [MBC3RomBank], a ; Unsafe
     ldh [hROMBank], a
-    call PlaySFX_
+    call _PlaySFX
     pop af
     ld [MBC3RomBank], a ; Unsafe
     ldh [hROMBank], a
@@ -140,4 +140,4 @@ PlaySFX:: ; 3d63
     pop hl
     ret
 
-
+WaitPlaySFX:: ; 3d7f

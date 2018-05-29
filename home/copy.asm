@@ -62,7 +62,7 @@ ByteFill:: ; 3339
 .loop
     ld [hli], a
     dec c
-    jr z, .loop
+    jr nz, .loop
     dec b
-    jr z, .loop
+    jr nz, .loop
     ret

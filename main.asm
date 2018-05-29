@@ -1,5 +1,9 @@
 INCLUDE "constants.asm"
 
+; bank 1
+INCLUDE "engine/link/place_waiting_text.asm"
+INCLUDE "engine/title.asm"
+INCLUDE "engine/predef.asm"
 ; TODO
 
 SECTION "Font Gfx", ROMX[$4362], BANK[$3e]

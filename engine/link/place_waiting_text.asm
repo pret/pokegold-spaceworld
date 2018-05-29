@@ -7,11 +7,14 @@ PlaceWaitingText:: ; 1:4000
     ld a, [wBattleMode]
     and a
     jr z, .link_textbox
-    call Textbox
+    call DrawTextBox
     jr .textbox_done
 
 .link_textbox
-    predef Predef_LinkTextbox
+    ; TODO
+    ; predef Predef_LinkTextbox
+    ld a, $1C
+    call Predef
 .textbox_done
     hlcoord 4, 11
     ld de, .Waiting
@@ -19,5 +22,5 @@ PlaceWaitingText:: ; 1:4000
     ld c, 50
     jp DelayFrames
 
-.Waiting:
-    db "Waiting...!@"
+.Waiting
+    db "つうしんたいきちゅう！@"

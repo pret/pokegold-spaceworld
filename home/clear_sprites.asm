@@ -16,7 +16,7 @@ HideSprites:: ; 32e7
     ld b, NUM_SPRITE_OAM_STRUCTS
     ld a, $A0
 .loop
-    ld [hli], a
+    ld [hl], a
     add hl, de
     dec b
     jr nz, .loop

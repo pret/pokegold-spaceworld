@@ -30,8 +30,8 @@ _DisableAudio:: ; 3a:4000
     xor a
     ld [hli], a
     dec de
-    ld a, d
-    or e
+    ld a, e
+    or d
     jr nz, .clear
 
     ld a, $77
@@ -124,7 +124,7 @@ SetLRTracks: ; 3a:4d51
     maskbits NUM_MUSIC_CHANS
     ld e, a
     ld d, 0
-    ld hl, 52B3 ; FIXME
+    ld hl, $52B3 ; FIXME
     add hl, de
     ld a, [hl]
     ld hl, wChannel1Tracks - wChannel1
@@ -157,3 +157,8 @@ _PlayMusic:: ; 3a:4d66
     push af
     call LoadChannel
     call StartChannel
+    pop af
+    dec a
+    jr nz, .loop
+    xor a
+    ; TODO

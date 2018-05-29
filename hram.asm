@@ -15,13 +15,7 @@ hVBlank:: ; ff99
     db
 
 
-    ds 8 ; TODO
-
-
-    ds 3 ; 3 joypad constants, TODO: investigate
-
-
-    ds 47 ; TODO
+    ds 54 ; TODO
 
 
 hLCDCPointer:: ; ffd0
@@ -51,6 +45,8 @@ hSCX:: db ; ffd9
 hSCY:: db ; ffda
 hWX:: db ; ffdb
 hWY:: db ; ffdc
+
+    db ; TODO
 
 hBGMapMode:: ; ffde
     db

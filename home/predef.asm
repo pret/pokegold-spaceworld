@@ -11,7 +11,7 @@ Predef:: ; 2fde
     ld hl, .return
     push hl
     push de
-    jr .save_regs
+    jr .get_regs
 
 .return
     ld a, h
@@ -27,17 +27,17 @@ Predef:: ; 2fde
     ld l, a
     ret
 
-.save_regs
-    ld a, h
-    ld [wPredefHL], a
-    ld a, l
-    ld [wPredefHL + 1], a
-    ld a, d
-    ld [wPredefDE], a
-    ld a, e
-    ld [wPredefDE + 1], a
-    ld a, b
-    ld [wPredefBC], a
-    ld a, c
-    ld [wPredefBC + 1], a
+.get_regs
+    ld a, [wPredefHL]
+    ld h, a
+    ld a, [wPredefHL + 1]
+    ld l, a
+    ld a, [wPredefDE]
+    ld d, a
+    ld a, [wPredefDE + 1]
+    ld e, a
+    ld a, [wPredefBC]
+    ld b, a
+    ld a, [wPredefBC + 1]
+    ld c, a
     ret

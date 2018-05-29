@@ -1,14 +1,6 @@
 ; ROM0
 00:0317 DelayFrame
 00:0324 DelayFrames
-00:0401 DisableLCD
-00:0410 DisableLCD.wait
-00:0423 EnableLCD
-00:05E6 ClearVRAM
-00:05F1 BlankBGMap
-00:05F1 FillBGMap
-00:05F6 _FillBGMap
-00:05FA _FillBGMap.loop
 00:0884 UpdateJoypad
 00:0d1a LoadFontExtra
 00:0d0a LoadFont
@@ -27,32 +19,12 @@
 00:1e58 OpenMenu
 00:1F9E ClearWindowData
 00:1FCC ClearWindowData.bytefill
-00:2007 Unk_2007
 
 00:20ff RunMapScript
 00:232c LoadMapWarp
 00:23e5 OverworldFadeIn
 
-00:2FA8 FarCall_hl
-00:2FC8 FarCall_hl.return
-00:2FDE Predef
-00:2FF6 Predef.return
-00:300C Predef.saveregs
 00:3270 Random
-00:32A7 OpenSRAM
-00:32B7 CloseSRAM
-00:32C2 Bankswitch
-00:32DC ClearSprites
-00:32E2 ClearSprites.loop
-00:32F7 FarCopyBytes
-00:330A CopyBytes
-00:3313 CopyBytes.next
-00:331A CopyBytesSmall
-00:3321 GetFarByte
-00:3339 ByteFill
-00:3342 ByteFill.smallfill
-00:3343 ByteFill.startfilling
-00:3344 ByteFill.loop
 00:3429 AddAMulBC
 00:3621 WaitBGMap
 00:362B SetPalettes
@@ -63,13 +35,6 @@
 00:3655 SetHPPal.done
 00:36C8 NamesPointers
 00:36E0 GetName
-00:3CBF DisableAudio
-00:3CDB UpdateSound
-00:3CF7 LoadMusicByte_
-00:3D07 PlayMusic
-00:3D23 PlayCryHeader
-00:3D63 PlaySFX
-00:3D7F WaitPlaySFX
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
 00:3DA5 MaxVolume
@@ -86,19 +51,10 @@
 00:3E1B GetMapMusic
 00:3E2E GetMapMusic.unk_3E2E
 00:3E32 Unk_3E32 ; What the f*** is this???
-; (edited)
-01:4153 LoadPushOAM
-01:415A LoadPushOAM.loop
-01:4161 PushOAM
-01:4167 PushOAM.wait
-01:416B PushOAMEnd
+
 01:53cc MainMenu
-01:5D8C IntroSequence
 01:5eb8 TitleFlameGfx
 01:5f38 TitleNoteGfx
-01:62B0 GetPredefPointer
-01:62D3 PredefPointers
-01:62A5 GameInit
 01:6FEC ItemNames
 
 02:4856 DecompTownMapTilemap
@@ -142,13 +98,11 @@
 
 30:4000 OverworldSpriteGfx
 
-3A:4000 DisableAudio_
-3A:4012 DisableAudio_.initchannel
-3A:4026 DisableAudio_.clearmusicmem
-3A:4037 UpdateSound_
-3A:4D66 PlayMusic_
-3A:4D9D PlayCryHeader_
-3A:4E22 PlaySFX_
+3A:4D9D _PlayCryHeader
+3A:4E22 _PlaySFX
+3A:4F11 LoadChannel
+3A:4F6C LoadMusicByte
+3A:52C7 Music
 
 3e:4162 FontExtraGfx
 3e:4762 FontBattleExtraGfx
@@ -161,23 +115,8 @@
 3f:6750 PicTestMenu
 3f:6755 PicTestMenu.loop
 
-3C:51CB CryHeaders
-
 ;00:BFFF sWindowStackTop
 
-00:C000 Music
-00:C0CB wChannel5Flags
-00:C0FD wChannel6Flags
-00:C12F wChannel7Flags
-00:C161 wChannel8Flags
-00:C199 wVolume
-00:C1AD wMapMusic
-00:C1AE wCryPitch
-00:C1B0 wCryLength
-00:C1BC wMusicEnd ; ? ; either wChannelsEnd or wMusicEnd, unsure
-00:C200 wOAMBuffer
-00:C2A0 wTileMap
-00:c40b wWhichPicTest ; Monster or Trainer test?
 00:c5e8 wMapScriptNumber
 00:ca22 wTrainerClass
 00:cb5b wName
@@ -187,17 +126,9 @@
 00:CC02 wMenuDataHeader
 00:CC12 wMenuData2
 00:CC22 wMenuData3
-00:CC38 wUnk_CC38 ; wceeb in pokegold
-00:cc39 wDebugWarpSelection
-00:CCCF wSGB    
-00:CD4F wPredefID
-00:CD50 wPredefRegs
-00:CD54 wFarCallBCBuffer
 00:cdbe wTargetMapUnk
 00:cdbf wTargetMapGroup
 00:cdc0 wTargetMapId
-00:CE3C wBuffer
-00:CE5F wUnk_CE5F
 00:CE62 wTextBoxFlags
 00:ce67 wPlayerName
 

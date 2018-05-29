@@ -44,11 +44,12 @@ LCD:: ; 03ae
 
 
 ; 0:3e1
-    sine_table 16
+; TODO: can this be done using `sine_table`?
+    db 0, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 3, 3, 2, 2, 1, 0, -1, -2, -2, -3, -3, -4, -4, -4, -4, -4, -3, -3, -2, -2, -1
 
 
 DisableLCD:: ; 0401
-    ld a, [rLY]
+    ld a, [rLCDC]
     bit 7, a
     ret z
     xor a
@@ -59,7 +60,7 @@ DisableLCD:: ; 0401
     ld [rIE], a
 .wait
     ld a, [rLY]
-    cp LY_VBLANK
+    cp LY_VBLANK + 1
     jr nz, .wait
     ld a, [rLCDC]
     and $7F ; Shut LCD down
