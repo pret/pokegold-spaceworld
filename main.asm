@@ -1,27 +1,31 @@
 INCLUDE "constants.asm"
 
-; bank 1
+SECTION "PlaceWaitingText", ROMX[$4000],BANK[$01]
 INCLUDE "engine/link/place_waiting_text.asm"
-INCLUDE "engine/title.asm"
-INCLUDE "engine/predef.asm"
-; TODO
 
-SECTION "Font Gfx", ROMX[$4362], BANK[$3e]
+SECTION "Title screen", ROMX[$5D8C],BANK[$01]
+INCLUDE "engine/title.asm"
+
+SECTION "Predef pointers", ROMX[$62B0],BANK[$01]
+INCLUDE "engine/predef.asm"
+
+SECTION "Font GFX", ROMX[$4362], BANK[$3e]
     INCBIN "gfx/font.1bpp"
 
 SECTION "Main Menu Definition", ROMX[$5418], BANK[$01]
 MainMenuHeader:
-    db $40
-    db 0, 0, 7, 13
-    dw .data
-    db 1 ; default option
-.data
-    db $80
-    db 0 ; number of options
+	db $40
+	db 0, 0, 7, 13
+	dw .data
+	db 1 ; default option
 
-    dw $5461
-    db $8a, $1f
-    dw MainMenuStrings
+.data
+	db $80
+	db 0 ; number of options
+
+	dw $5461
+	db $8a, $1f
+	dw MainMenuStrings
 
 MainMenuStrings: ; 01:5428
     db "つづきから　はじめる@"
@@ -46,6 +50,7 @@ INCLUDE "data/pokemon/evos_attacks.asm"
 SECTION "Base Data", ROMX[$4F10],BANK[$14]
 INCLUDE "data/pokemon/base_stats.asm"
 
+SECTION "PKMN Sprite Bank List", ROMX[$725C], BANK[$14]
 INCLUDE "gfx/pokemon/pkmn_pic_banks.asm"
 
 INCLUDE "gfx/pokemon/pkmn_pics.asm"

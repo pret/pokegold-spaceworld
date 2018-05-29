@@ -1,4 +1,3 @@
-
 SECTION "PKMN Pics RB 0x15", ROMX[$4000], BANK[$15]
 FushigidanePicFront:: INCBIN "gfx/pokemon/fushigidane/front.pic"   ; 0x054000--0x0540bc
 FushigidanePicBack::  INCBIN "gfx/pokemon/fushigidane/back.pic"    ; 0x0540bc--0x0541ca
