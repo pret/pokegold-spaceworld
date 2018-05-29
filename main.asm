@@ -43,8 +43,8 @@ INCLUDE "data/pokemon/dex_order_alpha.asm"
 SECTION "Evolutions and Attacks", ROMX[$6493],BANK[$10]
 INCLUDE "data/pokemon/evos_attacks.asm"
 
-;SECTION "Base Data", ROMX[$4F10],BANK[$14]
-;INCLUDE "data/pokemon/base_stats.asm"
+SECTION "Base Data", ROMX[$4F10],BANK[$14]
+INCLUDE "data/pokemon/base_stats.asm"
 
 SECTION "Annon Pic Ptrs and Pics", ROMX[$4d6a], BANK[$1f]
 INCLUDE "gfx/pokemon/annon_pic_ptrs.asm"
