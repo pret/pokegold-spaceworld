@@ -10,8 +10,11 @@
 00:05F6 _FillBGMap
 00:05FA _FillBGMap.loop
 00:0884 UpdateJoypad
+00:0d1a LoadFontExtra
+00:0d0a LoadFont
 00:0d68 CopyGfx
 00:0E2A ClearTileMap
+00:0e3d DrawTextBox
 00:0E93 PlaceString
 00:0E94 PlaceNextChar
 00:0E9D CheckDict
@@ -20,6 +23,8 @@
 00:10C1 DoTextUntilTerminator.continue
 00:10E2 Text_TX
 00:120C TextCommands
+00:1d49 LoadMenuHeader
+00:1e58 OpenMenu
 00:1F9E ClearWindowData
 00:1FCC ClearWindowData.bytefill
 00:2007 Unk_2007
@@ -87,6 +92,7 @@
 01:4161 PushOAM
 01:4167 PushOAM.wait
 01:416B PushOAMEnd
+01:53cc MainMenu
 01:5D8C IntroSequence
 01:5eb8 TitleFlameGfx
 01:5f38 TitleNoteGfx
