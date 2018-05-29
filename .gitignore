@@ -19,4 +19,5 @@ shim.asm
 
 ; binaries
 tools/scan_includes
+tools/pkmncompress
 pret/
