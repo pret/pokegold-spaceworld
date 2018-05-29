@@ -40,7 +40,7 @@ MainMenu:
 
 MainMenuHeader:
 	db $40
-	menu_coords 0, 0, 13, 7
+	menu_coords 0, 0, 14, 7
 	dw .MenuData
 	db 1 ; default option
 
@@ -52,11 +52,12 @@ MainMenuHeader:
 	dw .Strings
 
 .Strings: ; 01:5428
-	db "つづきから　はじめる@"
-	db "さいしょから　はじめる@"
-	db "せっていを　かえる@"
-	db "#を　あそぶ@"
-	db "じかんセット@"
+	db "CONTINUE@"
+	db "NEW GAME@"
+	db "OPTIONS@"
+	db "PLAY POKéMON@"
+	db "TIME@"
+	db "@@@" 
 
 MainMenuJumptable: ; 01:5457
 	dw $547c
