@@ -5,6 +5,7 @@ MD5 := md5sum -c
 .SUFFIXES:
 .SUFFIXES: .asm .o .gb .png
 .SECONDEXPANSION:
+.PRECIOUS: %.1bpp %.2bpp %.pic
 
 ROMS := pokegold-spaceworld.gb
 BASEROM := baserom.gb
