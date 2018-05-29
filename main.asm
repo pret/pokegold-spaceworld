@@ -1,3 +1,4 @@
+INCLUDE "charmap.asm"
 INCLUDE "constants.asm"
 
 ; bank 1
