@@ -9,7 +9,7 @@ BASEROM := baserom.gb
 OBJS := home.o main.o wram.o hram.o shim.o
 
 # Link objects together to build a rom.
-all: $(ROMS) compare
+all: $(ROMS)
 
 tools:
 	$(MAKE) -C tools/
@@ -31,7 +31,7 @@ shim.asm: tools/make_shim.py shim.sym
 
 $(ROMS): $(OBJS)
 	rgblink -d -n $(ROMS:.gb=.sym) -m $(ROMS:.gb=.map) -O $(BASEROM) -o $@ $^
-	rgbfix -f  -v -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t "POKEMON2GOLD" $@
+	rgbfix -v -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t "POKEMON2GOLD" $@
 
 compare: $(ROMS) $(BASEROM)
 	cmp $^
