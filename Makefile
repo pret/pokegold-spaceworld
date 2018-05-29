@@ -33,7 +33,7 @@ shim.asm: tools/make_shim.py shim.sym
 
 $(ROMS): $(OBJS)
 	rgblink -d -n $(ROMS:.gb=.sym) -m $(ROMS:.gb=.map) -O $(BASEROM) -o $@ $^
-	rgbfix -f  -v -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t "POKEMON2GOLD" $@
+	rgbfix -f lh -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t "POKEMON2GOLD" $@
 
 compare: $(ROMS)
 	@$(MD5) roms.md5
