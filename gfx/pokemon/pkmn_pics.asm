@@ -1,4 +1,5 @@
-SECTION "PKMN Pics RB 0x15", ROMX[$4000], BANK[$15]
+SECTION "PKMN Pics 1", ROMX[$4000], BANK[$15]
+
 FushigidanePicFront:: INCBIN "gfx/pokemon/fushigidane/front.pic"   ; 0x054000--0x0540bc
 FushigidanePicBack::  INCBIN "gfx/pokemon/fushigidane/back.pic"    ; 0x0540bc--0x0541ca
 FushigisouPicFront::  INCBIN "gfx/pokemon/fushigisou/front.pic"    ; 0x0541ca--0x0542e7
@@ -52,7 +53,9 @@ PikachuPicBack::      INCBIN "gfx/pokemon/pikachu/back.pic"        ; 0x057b9d--0
 RaichuPicFront::      INCBIN "gfx/pokemon/raichu/front.pic"        ; 0x057cc3--0x057e7e
 RaichuPicBack::       INCBIN "gfx/pokemon/raichu/back.pic"         ; 0x057e7e--0x057f9f
 
-SECTION "PKMN Pics RB 0x16", ROMX[$4000], BANK[$16]
+
+SECTION "PKMN Pics 2", ROMX[$4000], BANK[$16]
+
 SandPicFront::        INCBIN "gfx/pokemon/sand/front.pic"          ; 0x058000--0x058103
 SandPicBack::         INCBIN "gfx/pokemon/sand/back.pic"           ; 0x058103--0x058238
 SandpanPicFront::     INCBIN "gfx/pokemon/sandpan/front.pic"       ; 0x058238--0x0583d4
@@ -104,7 +107,9 @@ DigdaPicBack::        INCBIN "gfx/pokemon/digda/back.pic"          ; 0x05b8e1--0
 DugtrioPicFront::     INCBIN "gfx/pokemon/dugtrio/front.pic"       ; 0x05b9fc--0x05bc2d
 DugtrioPicBack::      INCBIN "gfx/pokemon/dugtrio/back.pic"        ; 0x05bc2d--0x05bda8
 
-SECTION "PKMN Pics RB 0x17", ROMX[$4000], BANK[$17]
+
+SECTION "PKMN Pics 3", ROMX[$4000], BANK[$17]
+
 NyarthPicFront::      INCBIN "gfx/pokemon/nyarth/front.pic"        ; 0x05c000--0x05c12f
 NyarthPicBack::       INCBIN "gfx/pokemon/nyarth/back.pic"         ; 0x05c12f--0x05c272
 PersianPicFront::     INCBIN "gfx/pokemon/persian/front.pic"       ; 0x05c272--0x05c438
@@ -154,7 +159,9 @@ IsitsubutePicBack::   INCBIN "gfx/pokemon/isitsubute/back.pic"     ; 0x05f821--0
 GolonePicFront::      INCBIN "gfx/pokemon/golone/front.pic"        ; 0x05f919--0x05fa9c
 GolonePicBack::       INCBIN "gfx/pokemon/golone/back.pic"         ; 0x05fa9c--0x05fbee
 
-SECTION "PKMN Pics RB 0x18", ROMX[$4000], BANK[$18]
+
+SECTION "PKMN Pics 4", ROMX[$4000], BANK[$18]
+
 GolonyaPicFront::     INCBIN "gfx/pokemon/golonya/front.pic"       ; 0x060000--0x06017e
 GolonyaPicBack::      INCBIN "gfx/pokemon/golonya/back.pic"        ; 0x06017e--0x060279
 PonytaPicFront::      INCBIN "gfx/pokemon/ponyta/front.pic"        ; 0x060279--0x0603c5
@@ -202,7 +209,9 @@ SleeperPicBack::      INCBIN "gfx/pokemon/sleeper/back.pic"        ; 0x063798--0
 CrabPicFront::        INCBIN "gfx/pokemon/crab/front.pic"          ; 0x0638ae--0x0639e7
 CrabPicBack::         INCBIN "gfx/pokemon/crab/back.pic"           ; 0x0639e7--0x063b57
 
-SECTION "PKMN Pics RB 0x19", ROMX[$4000], BANK[$19]
+
+SECTION "PKMN Pics 5", ROMX[$4000], BANK[$19]
+
 KinglerPicFront::     INCBIN "gfx/pokemon/kingler/front.pic"       ; 0x064000--0x0641f2
 KinglerPicBack::      INCBIN "gfx/pokemon/kingler/back.pic"        ; 0x0641f2--0x06433d
 BiriridamaPicFront::  INCBIN "gfx/pokemon/biriridama/front.pic"    ; 0x06433d--0x0643c6
@@ -250,7 +259,9 @@ HitodemanPicBack::    INCBIN "gfx/pokemon/hitodeman/back.pic"      ; 0x067939--0
 StarmiePicFront::     INCBIN "gfx/pokemon/starmie/front.pic"       ; 0x067a28--0x067bb8
 StarmiePicBack::      INCBIN "gfx/pokemon/starmie/back.pic"        ; 0x067bb8--0x067ca1
 
-SECTION "PKMN Pics RB 0x1A", ROMX[$4000], BANK[$1A]
+
+SECTION "PKMN Pics 6", ROMX[$4000], BANK[$1A]
+
 BarrierdPicFront::    INCBIN "gfx/pokemon/barrierd/front.pic"      ; 0x068000--0x068154
 BarrierdPicBack::     INCBIN "gfx/pokemon/barrierd/back.pic"       ; 0x068154--0x06828f
 StrikePicFront::      INCBIN "gfx/pokemon/strike/front.pic"        ; 0x06828f--0x0684af
@@ -298,7 +309,9 @@ KabigonPicBack::      INCBIN "gfx/pokemon/kabigon/back.pic"        ; 0x06b917--0
 FreezerPicFront::     INCBIN "gfx/pokemon/freezer/front.pic"       ; 0x06b992--0x06bbca
 FreezerPicBack::      INCBIN "gfx/pokemon/freezer/back.pic"        ; 0x06bbca--0x06bce6
 
-SECTION "PKMN Pics RB 0x1B", ROMX[$4000], BANK[$1B]
+
+SECTION "PKMN Pics 7", ROMX[$4000], BANK[$1B]
+
 ThunderPicFront::     INCBIN "gfx/pokemon/thunder/front.pic"       ; 0x06c000--0x06c1e7
 ThunderPicBack::      INCBIN "gfx/pokemon/thunder/back.pic"        ; 0x06c1e7--0x06c305
 FirePicFront::        INCBIN "gfx/pokemon/fire/front.pic"          ; 0x06c305--0x06c55b
@@ -348,7 +361,9 @@ MonjaPicBack::        INCBIN "gfx/pokemon/monja/back.pic"          ; 0x06f8b7--0
 JaranraPicFront::     INCBIN "gfx/pokemon/jaranra/front.pic"       ; 0x06fa05--0x06fc03
 JaranraPicBack::      INCBIN "gfx/pokemon/jaranra/back.pic"        ; 0x06fc03--0x06fd27
 
-SECTION "PKMN Pics RB 0x1C", ROMX[$4000], BANK[$1C]
+
+SECTION "PKMN Pics 8", ROMX[$4000], BANK[$1C]
+
 HaneeiPicFront::      INCBIN "gfx/pokemon/haneei/front.pic"        ; 0x070000--0x070176
 HaneeiPicBack::       INCBIN "gfx/pokemon/haneei/back.pic"         ; 0x070176--0x0702cd
 PukuPicFront::        INCBIN "gfx/pokemon/puku/front.pic"          ; 0x0702cd--0x0703b2
@@ -406,7 +421,9 @@ PainterPicBack::      INCBIN "gfx/pokemon/painter/back.pic"        ; 0x073aaa--0
 KounyaPicFront::      INCBIN "gfx/pokemon/kounya/front.pic"        ; 0x073bdb--0x073ca8
 KounyaPicBack::       INCBIN "gfx/pokemon/kounya/back.pic"         ; 0x073ca8--0x073d7f
 
-SECTION "PKMN Pics RB 0x1D", ROMX[$4000], BANK[$1D]
+
+SECTION "PKMN Pics 9", ROMX[$4000], BANK[$1D]
+
 RinrinPicFront::      INCBIN "gfx/pokemon/rinrin/front.pic"        ; 0x074000--0x074109
 RinrinPicBack::       INCBIN "gfx/pokemon/rinrin/back.pic"         ; 0x074109--0x07421a
 BerurunPicFront::     INCBIN "gfx/pokemon/berurun/front.pic"       ; 0x07421a--0x074346
@@ -462,7 +479,9 @@ MiltankPicBack::      INCBIN "gfx/pokemon/miltank/back.pic"        ; 0x077b5a--0
 BombseekerPicFront::  INCBIN "gfx/pokemon/bombseeker/front.pic"    ; 0x077c81--0x077dac
 BombseekerPicBack::   INCBIN "gfx/pokemon/bombseeker/back.pic"     ; 0x077dac--0x077ecf
 
-SECTION "PKMN Pics RB 0x1E", ROMX[$4000], BANK[$1E]
+
+SECTION "PKMN Pics 10", ROMX[$4000], BANK[$1E]
+
 GiftPicFront::        INCBIN "gfx/pokemon/gift/front.pic"          ; 0x078000--0x078153
 GiftPicBack::         INCBIN "gfx/pokemon/gift/back.pic"           ; 0x078153--0x078281
 KotoraPicFront::      INCBIN "gfx/pokemon/kotora/front.pic"        ; 0x078281--0x0783b2
@@ -500,7 +519,7 @@ HaganeilPicBack::     INCBIN "gfx/pokemon/haganeil/back.pic"       ; 0x07ad76--0
 KingdraPicFront::     INCBIN "gfx/pokemon/kingdra/front.pic"       ; 0x07aecd--0x07b0cf
 KingdraPicBack::      INCBIN "gfx/pokemon/kingdra/back.pic"        ; 0x07b0cf--0x07b1f6
 RaiPicFront::         INCBIN "gfx/pokemon/rai/front.pic"           ; 0x07b1f6--0x07b3da
-db $00                                                             ; how did that get here?
+	db 0 ; how did that get here?
 RaiPicBack::          INCBIN "gfx/pokemon/rai/back.pic"            ; 0x07b3db--0x07b51a
 EnPicFront::          INCBIN "gfx/pokemon/en/front.pic"            ; 0x07b51a--0x07b73d
 EnPicBack::           INCBIN "gfx/pokemon/en/back.pic"             ; 0x07b73d--0x07b824
@@ -509,7 +528,9 @@ SuiPicBack::          INCBIN "gfx/pokemon/sui/back.pic"            ; 0x07ba63--0
 NyulaPicFront::       INCBIN "gfx/pokemon/nyula/front.pic"         ; 0x07bbb4--0x07bccb
 NyulaPicBack::        INCBIN "gfx/pokemon/nyula/back.pic"          ; 0x07bccb--0x07be22
 
-SECTION "PKMN Pics RB 0x1F", ROMX[$4000], BANK[$1F]
+
+SECTION "PKMN Pics 11", ROMX[$4000], BANK[$1F]
+
 HououPicFront::       INCBIN "gfx/pokemon/houou/front.pic"         ; 0x07c000--0x07c2ab
 HououPicBack::        INCBIN "gfx/pokemon/houou/back.pic"          ; 0x07c2ab--0x07c3e7
 TogepyPicFront::      INCBIN "gfx/pokemon/togepy/front.pic"        ; 0x07c3e7--0x07c4ea
