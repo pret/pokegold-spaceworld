@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw $5f0e, $6003 ; sprites
+	dw EievuiPicFront, dw EievuiPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
 	tmhm 6, 8, 9, 10, 20, 31, 32, 33, 34, 39, 40, 44, 50
 	; end
+

@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw $511e, $52f4 ; sprites
+	dw KentaurosPicFront, dw KentaurosPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
 	tmhm 6, 7, 8, 9, 10, 13, 14, 15, 20, 24, 25, 26, 27, 31, 32, 34, 38, 40, 44, 50, 54
 	; end
+

@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw $5e2d, $5f5d ; sprites
+	dw BetbeterPicFront, dw BetbeterPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
 	tmhm 6, 8, 20, 21, 24, 25, 31, 32, 34, 36, 38, 44, 47, 50
 	; end
+

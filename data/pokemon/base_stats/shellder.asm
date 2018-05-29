@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw $63b0, $64ba ; sprites
+	dw ShellderPicFront, dw ShellderPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
 	tmhm 6, 9, 10, 11, 12, 13, 14, 20, 30, 31, 32, 33, 34, 36, 39, 44, 47, 49, 50, 53
 	; end
+

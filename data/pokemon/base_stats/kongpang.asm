@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw $72e7, $7404 ; sprites
+	dw KongpangPicFront, dw KongpangPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
 	tmhm 6, 9, 10, 20, 21, 22, 29, 31, 32, 33, 34, 44, 46, 50
 	; end
+

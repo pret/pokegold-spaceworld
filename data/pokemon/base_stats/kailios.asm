@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw $4de5, $4fb5 ; sprites
+	dw KailiosPicFront, dw KailiosPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
 	tmhm 3, 6, 8, 9, 10, 15, 17, 19, 20, 31, 32, 34, 44, 50, 51, 54
 	; end
+

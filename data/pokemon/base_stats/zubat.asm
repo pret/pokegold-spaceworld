@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw $6397, $649e ; sprites
+	dw ZubatPicFront, dw ZubatPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
 	tmhm 2, 4, 6, 9, 10, 20, 21, 31, 32, 34, 39, 44, 50
 	; end
+
