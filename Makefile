@@ -28,7 +28,7 @@ OBJS += $(BUILD)/shim.o
 .SECONDEXPANSION:
 
 .PHONY: all
-all: $(ROM) $(CORRECTEDROM) compare
+all: $(ROM) $(CORRECTEDROM)
 
 .PHONY: compare
 compare: $(ROM) $(CORRECTEDROM)
