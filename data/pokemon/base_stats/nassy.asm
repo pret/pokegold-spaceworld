@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw $4924, $4ae7 ; sprites
+	dw NassyPicFront, dw NassyPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
 	tmhm 6, 9, 10, 15, 20, 21, 22, 29, 30, 31, 32, 33, 34, 36, 37, 44, 46, 47, 50, 54
 	; end
+

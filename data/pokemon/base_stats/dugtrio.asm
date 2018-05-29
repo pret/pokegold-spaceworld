@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw $79fc, $7c2d ; sprites
+	dw DugtrioPicFront, dw DugtrioPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
 	tmhm 6, 8, 9, 10, 15, 20, 26, 27, 28, 31, 32, 34, 44, 48, 50
 	; end
+

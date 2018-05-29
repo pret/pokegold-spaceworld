@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw $5c0f, $5e09 ; sprites
+	dw MatadogasPicFront, dw MatadogasPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
 	tmhm 6, 15, 20, 24, 25, 31, 32, 34, 36, 38, 44, 47, 50
 	; end
+

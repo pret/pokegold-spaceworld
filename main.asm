@@ -46,6 +46,8 @@ INCLUDE "data/pokemon/evos_attacks.asm"
 SECTION "Base Data", ROMX[$4F10],BANK[$14]
 INCLUDE "data/pokemon/base_stats.asm"
 
+INCLUDE "gfx/pokemon/pkmn_pics.asm"
+
 SECTION "Annon Pic Ptrs and Pics", ROMX[$4d6a], BANK[$1f]
 INCLUDE "gfx/pokemon/annon_pic_ptrs.asm"
 INCLUDE "gfx/pokemon/annon_pics.asm"

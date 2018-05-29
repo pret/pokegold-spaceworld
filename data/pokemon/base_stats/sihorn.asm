@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw $5f88, $618f ; sprites
+	dw SihornPicFront, dw SihornPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
 	tmhm 6, 7, 8, 9, 10, 20, 24, 25, 26, 27, 28, 31, 32, 34, 38, 40, 44, 48, 50, 54
 	; end
+

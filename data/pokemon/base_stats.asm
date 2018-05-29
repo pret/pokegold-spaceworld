@@ -32,7 +32,9 @@ endr
 ENDM
 
 BaseData::
+MonBaseStats::
 INCLUDE "data/pokemon/base_stats/fushigidane.asm"
+MonBaseStatsEnd::
 INCLUDE "data/pokemon/base_stats/fushigisou.asm"
 INCLUDE "data/pokemon/base_stats/fushigibana.asm"
 INCLUDE "data/pokemon/base_stats/hitokage.asm"

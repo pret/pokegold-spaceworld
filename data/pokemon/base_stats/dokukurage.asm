@@ -10,9 +10,10 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw $74ae, $761c ; sprites
+	dw DokukuragePicFront, dw DokukuragePicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
 	tmhm 3, 6, 9, 10, 11, 12, 13, 14, 15, 20, 21, 31, 32, 33, 34, 40, 44, 50, 51, 53
 	; end
+
