@@ -5,6 +5,7 @@ CFLAGS := -O3 -std=c99 -Wall -Wextra
 
 tools := \
 	scan_includes \
+	pkmncompress
 
 all: $(tools)
 	@:

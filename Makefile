@@ -51,3 +51,6 @@ clean:
 
 %.tilemap: %.png
 	rgbgfx -t $@ $<
+
+%.pic:  %.2bpp
+	tools/pkmncompress $< $@
