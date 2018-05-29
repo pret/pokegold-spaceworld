@@ -32,3 +32,6 @@ MainMenuStrings: ; 01:5428
     db "じかんセット@"
 ; 01:5457
 
+SECTION "Annon Pic Ptrs and Pics", ROMX[$4d6a], BANK[$1f]
+INCLUDE "gfx/pics/annon_pic_ptrs.asm"
+INCLUDE "gfx/pics/annon_pics.asm"

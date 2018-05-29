@@ -6,8 +6,10 @@
 *.rtc
 
 *.o
+# converted image data
 *.2bpp
 *.1bpp
+*.pic
 *.pcm
 *.map
 pokegold-spaceworld.sym

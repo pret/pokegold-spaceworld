@@ -96,8 +96,6 @@
 
 14:6D75 PokemonNames
 
-1F:4D6A UnownPicPtrs ; [front ptr (2b)][back ptr (2b)]
-
 21:4000 MoveEffectGfx
 
 23:4349 OverworldFadeOut
