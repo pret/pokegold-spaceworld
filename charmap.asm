@@ -123,7 +123,7 @@
 	charmap "│", $7c
 	charmap "└", $7d
 	charmap "┘", $7e
-	charmap " ", $7f
+	charmap "　", $7f
 
 	charmap "ア", $80
 	charmap "イ", $81
