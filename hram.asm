@@ -25,7 +25,7 @@ hLCDCPointer:: ; ffd0
     ds 3 ; TODO
 
 
-hSerialRecieved:: ; ffd4
+hSerialReceived:: ; ffd4
     db
 
 hLinkPlayerNumber:: ; ffd5
@@ -37,7 +37,7 @@ hLinkPlayerNumber:: ; ffd5
 
 hSerialSend:: ; ffd7
     db
-hSerialRecieve:: ; ffd8
+hSerialReceive:: ; ffd8
     db
 
 

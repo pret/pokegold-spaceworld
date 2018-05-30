@@ -10,7 +10,7 @@ Serial::
     jr z, .init_player_number
 
     ld a, [rSB]
-    ldh [hSerialRecieve], a
+    ldh [hSerialReceive], a
     ldh a, [hSerialSend]
     ld [rSB], a
     ldh a, [hLinkPlayerNumber]
@@ -22,7 +22,7 @@ Serial::
 
 .init_player_number
     ld a, [rSB]
-    ldh [hSerialRecieve], a
+    ldh [hSerialReceive], a
     ldh [hLinkPlayerNumber], a
     cp 2
     jr z, .master
@@ -43,7 +43,7 @@ Serial::
 
 .done
     ld a, 1
-    ldh [hSerialRecieved], a
+    ldh [hSerialReceived], a
     ld a, SERIAL_NO_DATA_BYTE
     ldh [hSerialSend], a
     pop hl
