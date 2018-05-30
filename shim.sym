@@ -109,12 +109,6 @@
 3A:4F6C LoadMusicByte
 3A:52C7 Music
 
-3e:4162 FontExtraGfx
-3e:4762 FontBattleExtraGfx
-3e:4962 BorderGfx
-3e:5052 BoldFontGfx
-3e:533a PackIconGfx
-
 3f:64ce MonsterTest
 3f:654e PicTest
 3f:6750 PicTestMenu
