@@ -65,6 +65,9 @@ SECTION "SGB Border GFX", ROMX[$6B1C], BANK[$02]
 SGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border.2bpp"
 
+SECTION "Tileset Headers", ROMX[$488D], BANK[$03]
+INCLUDE "data/tileset_headers.asm"
+
 SECTION "Title Screen GFX", ROMX[$47CF], BANK[$04]
 TitleScreenGFX::
 INCBIN "gfx/title/title.2bpp"
@@ -86,9 +89,85 @@ SECTION "Unused Leader", ROMX[$7BA3], BANK[$04]
 UnusedLeaderNameGFX::
 INCBIN "gfx/trainer_card/unused_leader_name.2bpp"
 
+SECTION "Bank 6 Tilesets 00", ROMX[$4000], BANK[$06]
+Tileset_00_GFX:
+INCBIN "gfx/tilesets/tileset_00.2bpp"
+
+SECTION "Bank 6 Tilesets 01", ROMX[$5800], BANK[$06]
+Tileset_01_GFX:
+INCBIN "gfx/tilesets/tileset_01.2bpp"
+
+SECTION "Bank 6 Tilesets 02", ROMX[$6600], BANK[$06]
+Tileset_02_GFX:
+INCBIN "gfx/tilesets/tileset_02.2bpp"
+
+SECTION "Bank 6 Tilesets 09", ROMX[$7400], BANK[$06]
+Tileset_09_GFX:
+INCBIN "gfx/tilesets/tileset_09.2bpp"
+
+SECTION "Bank 7 Tilesets 13", ROMX[$4000], BANK[$07]
+Tileset_13_GFX:
+INCBIN "gfx/tilesets/tileset_13.2bpp"
+
+SECTION "Bank 7 Tilesets 0e", ROMX[$4B00], BANK[$07]
+Tileset_0e_GFX:
+INCBIN "gfx/tilesets/tileset_0e.2bpp"
+
+SECTION "Bank 7 Tilesets 06", ROMX[$5600], BANK[$07]
+Tileset_06_GFX:
+INCBIN "gfx/tilesets/tileset_06.2bpp"
+
+SECTION "Bank 7 Tilesets 05", ROMX[$6400], BANK[$07]
+Tileset_05_GFX:
+INCBIN "gfx/tilesets/tileset_05.2bpp"
+
+SECTION "Bank 7 Tilesets 03", ROMX[$7200], BANK[$07]
+Tileset_03_GFX:
+INCBIN "gfx/tilesets/tileset_03.2bpp"
+
+SECTION "Bank 8 Tilesets 04", ROMX[$4000], BANK[$08]
+Tileset_04_GFX:
+INCBIN "gfx/tilesets/tileset_04.2bpp"
+
+SECTION "Bank 8 Tilesets 07", ROMX[$4E00], BANK[$08]
+Tileset_07_GFX:
+INCBIN "gfx/tilesets/tileset_07.2bpp"
+
+SECTION "Bank 8 Tilesets 08", ROMX[$5C00], BANK[$08]
+Tileset_08_GFX:
+INCBIN "gfx/tilesets/tileset_08.2bpp"
+
+SECTION "Bank 8 Tilesets 0f", ROMX[$6A00], BANK[$08]
+Tileset_0f_GFX:
+INCBIN "gfx/tilesets/tileset_0f.2bpp"
+
+SECTION "Bank 8 Tilesets 11", ROMX[$7500], BANK[$08]
+Tileset_11_GFX:
+INCBIN "gfx/tilesets/tileset_11.2bpp"
+
 SECTION "Gameboy GFX", ROMX[$5641], BANK[$0A]
 TradeGameBoyGFX::
 INCBIN "gfx/trade/gameboy.2bpp"
+
+SECTION "Bank C Tilesets 12", ROMX[$4000], BANK[$0C]
+Tileset_12_GFX:
+INCBIN "gfx/tilesets/tileset_12.2bpp"
+
+SECTION "Bank C Tilesets 0b", ROMX[$4B00], BANK[$0C]
+Tileset_0b_GFX:
+INCBIN "gfx/tilesets/tileset_0b.2bpp"
+
+SECTION "Bank C Tilesets 0d", ROMX[$5600], BANK[$0C]
+Tileset_0d_GFX:
+INCBIN "gfx/tilesets/tileset_0d.2bpp"
+
+SECTION "Bank C Tilesets 14", ROMX[$6100], BANK[$0C]
+Tileset_14_GFX:
+INCBIN "gfx/tilesets/tileset_14.2bpp"
+
+SECTION "Bank C Tilesets 0c", ROMX[$7100], BANK[$0C]
+Tileset_0c_GFX:
+INCBIN "gfx/tilesets/tileset_0c.2bpp"
 
 SECTION "Type Matchups", ROMX[$506D],BANK[$0D]
 INCLUDE "data/types/type_matchups.asm"
@@ -113,6 +192,22 @@ PokedexCursorsGFX::
 INCBIN "gfx/pokedex/cursors.2bpp"
 PokedexSearchGFX::
 INCBIN "gfx/pokedex/search.2bpp"
+
+SECTION "Bank 13 Tilesets 0a", ROMX[$4000], BANK[$13]
+Tileset_0a_GFX:
+INCBIN "gfx/tilesets/tileset_0a.2bpp"
+
+SECTION "Bank 13 Tilesets 16", ROMX[$4B00], BANK[$13]
+Tileset_16_GFX:
+INCBIN "gfx/tilesets/tileset_16.2bpp"
+
+SECTION "Bank 13 Tilesets 19", ROMX[$5B00], BANK[$13]
+Tileset_19_GFX:
+INCBIN "gfx/tilesets/tileset_19.2bpp"
+
+SECTION "Bank 13 Tilesets 1a", ROMX[$6900], BANK[$13]
+Tileset_1a_GFX:
+INCBIN "gfx/tilesets/tileset_1a.2bpp"
 
 SECTION "Base Data", ROMX[$4F10],BANK[$14]
 INCLUDE "data/pokemon/base_stats.asm"
@@ -200,6 +295,22 @@ SlotMachineGFX::
 INCBIN "gfx/minigames/slots.2bpp"
 SlotMachine2GFX::
 INCBIN "gfx/minigames/slots_2.2bpp"
+
+SECTION "Bank 37 Tilesets 10", ROMX[$4000], BANK[$37]
+Tileset_10_GFX:
+INCBIN "gfx/tilesets/tileset_10.2bpp"
+
+SECTION "Bank 37 Tilesets 15", ROMX[$4B00], BANK[$37]
+Tileset_15_GFX:
+INCBIN "gfx/tilesets/tileset_15.2bpp"
+
+SECTION "Bank 37 Tilesets 17", ROMX[$5B00], BANK[$37]
+Tileset_17_GFX:
+INCBIN "gfx/tilesets/tileset_17.2bpp"
+
+SECTION "Bank 37 Tilesets 18", ROMX[$6B00], BANK[$37]
+Tileset_18_GFX:
+INCBIN "gfx/tilesets/tileset_18.2bpp"
 
 SECTION "Poker GFX", ROMX[$5403], BANK[$38]
 PokerGFX::
