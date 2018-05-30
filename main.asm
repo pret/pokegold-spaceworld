@@ -127,7 +127,70 @@ SECTION "Attack Animation GFX", ROMX[$4000], BANK[$21]
 INCBIN "gfx/battle_anims/attack_animations.2bpp"
 
 SECTION "Pokemon Party Sprites", ROMX[$60CC], BANK[$23]
-INCBIN "gfx/icons/mon_icons.2bpp"
+NyoromoIcon::
+INCBIN "gfx/icons/nyoromo.2bpp"
+PurinIcon::
+INCBIN "gfx/icons/purin.2bpp"
+DigdaIcon::
+INCBIN "gfx/icons/digda.2bpp"
+PikachuIcon::
+INCBIN "gfx/icons/pikachu.2bpp"
+HitodemanIcon::
+INCBIN "gfx/icons/hitodeman.2bpp"
+KoikingIcon::
+INCBIN "gfx/icons/koiking.2bpp"
+PoppoIcon::
+INCBIN "gfx/icons/poppo.2bpp"
+SidonIcon::
+INCBIN "gfx/icons/sidon.2bpp"
+PippiIcon::
+INCBIN "gfx/icons/pippi.2bpp"
+NazonokusaIcon::
+INCBIN "gfx/icons/nazonokusa.2bpp"
+MushiIcon::
+INCBIN "gfx/icons/mushi.2bpp"
+GangarIcon::
+INCBIN "gfx/icons/gangar.2bpp"
+LaplaceIcon::
+INCBIN "gfx/icons/laplace.2bpp"
+BarrierdIcon::
+INCBIN "gfx/icons/barrierd.2bpp"
+LokonIcon::
+INCBIN "gfx/icons/lokon.2bpp"
+KentaurosIcon::
+INCBIN "gfx/icons/kentauros.2bpp"
+ShellderIcon::
+INCBIN "gfx/icons/shellder.2bpp"
+MetamonIcon::
+INCBIN "gfx/icons/metamon.2bpp"
+IwarkIcon::
+INCBIN "gfx/icons/iwark.2bpp"
+BiriridamaIcon::
+INCBIN "gfx/icons/biriridama.2bpp"
+ZenigameIcon::
+INCBIN "gfx/icons/zenigame.2bpp"
+FushigidaneIcon::
+INCBIN "gfx/icons/fushigidane.2bpp"
+HitokageIcon::
+INCBIN "gfx/icons/hitokage.2bpp"
+BeedleIcon::
+INCBIN "gfx/icons/beedle.2bpp"
+AnnonIcon::
+INCBIN "gfx/icons/annon.2bpp"
+IsitsubuteIcon::
+INCBIN "gfx/icons/isitsubute.2bpp"
+WanrikyIcon::
+INCBIN "gfx/icons/wanriky.2bpp"
+TamagoIcon::
+INCBIN "gfx/icons/tamago.2bpp"
+MenokurageIcon::
+INCBIN "gfx/icons/menokurage.2bpp"
+ButterfreeIcon::
+INCBIN "gfx/icons/butterfree.2bpp"
+ZubatIcon::
+INCBIN "gfx/icons/zubat.2bpp"
+KabigonIcon::
+INCBIN "gfx/icons/kabigon.2bpp"
 
 SECTION "Slot Machine GFX", ROMX[$4FDB], BANK[$24]
 SlotMachineGFX::
