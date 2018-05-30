@@ -1,6 +1,6 @@
 MD5 := md5sum -c
 
-.PHONY: all compare clean text
+.PHONY: all compare clean mostlyclean text
 
 .SUFFIXES:
 .SUFFIXES: .asm .o .gb .png
@@ -43,6 +43,11 @@ compare: $(ROMS)
 clean:
 	rm -rf $(ROMS) $(OBJS) $(ROMS:.gb=.sym) build/* shim.asm
 	find . \( -iname '*.1bpp' -o -iname '*.2bpp' -o -iname '*.pic' -o -iname '*.pcm' \) -exec rm {} +
+
+# Remove files except for graphics.
+mostlyclean:
+	rm -rf $(ROMS) $(OBJS) $(ROMS:.gb=.sym) build/* shim.asm
+	find . \( -iname '*.pcm' \) -exec rm {} +
 
 gfx/sgb/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
 gfx/sgb/sgb_border.2bpp: tools/gfx += --trim-whitespace
