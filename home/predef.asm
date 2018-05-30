@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "Predef", ROM0[$2FDE]
 
 Predef:: ; 2fde

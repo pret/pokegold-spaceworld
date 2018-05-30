@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "OAM DMA", ROMX[$4153],BANK[1]
 
 WriteOAMDMACodeToHRAM:: ; 4153

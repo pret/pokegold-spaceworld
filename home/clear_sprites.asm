@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "Sprite clearing", ROM0[$32DC]
 
 ClearSprites:: ; 32dc

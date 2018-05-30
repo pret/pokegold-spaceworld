@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "Entry point", ROM0[$100]
     nop
     jp Init

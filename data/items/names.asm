@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "ItemNames", ROMX[$6FEC], BANK[$01]
+
 ItemNames::
 	db "マスターボール@"
 	db "ハイパーボール@"

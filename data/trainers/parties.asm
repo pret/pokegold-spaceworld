@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 ; Trainer data structure:
 ; - db "NAME@", TRAINERTYPE_* constant
 ; - 1 to 6 Pokémon:
@@ -9,9 +11,6 @@
 
 
 ; TODO: decode data from the beginning
-
-SECTION "TrainerGroups", ROMX[$5110],BANK[$E]
-INCLUDE "data/trainers/party_pointers.asm"
 
 SECTION "HayatoGroup", ROMX[$518A],BANK[$E]
 HayatoGroup::

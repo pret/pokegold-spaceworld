@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "Farcall", ROM0[$2FA8]
 
 FarCall_hl:: ; 2fa8

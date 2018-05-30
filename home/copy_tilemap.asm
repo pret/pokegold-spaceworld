@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "Tilemap copy/restore funcs", ROM0[$3355]
 
 BackUpTilesToBuffer:: ; 3355

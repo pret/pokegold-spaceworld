@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "LCD functions", ROM0[$3AE]
 
 LCD:: ; 03ae

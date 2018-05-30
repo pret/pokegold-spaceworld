@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "VBlank interrupt vector", ROM0[$040]
     jp VBlank
 

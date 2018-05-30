@@ -1,13 +1,5 @@
 INCLUDE "constants.asm"
 
-
-INCLUDE "home/rst.asm"
-INCLUDE "home/interrupts.asm"
-INCLUDE "home/init.asm"
-INCLUDE "home/vblank.asm"
-INCLUDE "home/lcd.asm"
-INCLUDE "home/serial.asm"
-
 SECTION "Empty function", ROM0[$2F97]
 
 InexplicablyEmptyFunction:: ; 2f97
@@ -15,16 +7,6 @@ REPT 16
     nop
 ENDR
     ret
-
-INCLUDE "home/farcall.asm"
-INCLUDE "home/predef.asm"
-INCLUDE "home/sram.asm"
-INCLUDE "home/bankswitch.asm"
-INCLUDE "home/clear_sprites.asm"
-INCLUDE "home/copy.asm"
-INCLUDE "home/copy_tilemap.asm"
-INCLUDE "home/audio.asm"
-INCLUDE "home/oam_dma.asm"
 
 
 ; TODO:

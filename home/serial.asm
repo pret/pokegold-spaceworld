@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "Serial handler", ROM0[$602]
 
 Serial::

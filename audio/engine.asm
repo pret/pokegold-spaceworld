@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Audio", ROMX[$4000], BANK[$3A]
+
 _DisableAudio:: ; 3a:4000
     push hl
     push de
