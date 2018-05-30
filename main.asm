@@ -227,6 +227,8 @@ SECTION "Annon Pic Ptrs and Pics", ROMX[$4d6a], BANK[$1f]
 INCLUDE "gfx/pokemon/annon_pic_ptrs.asm"
 INCLUDE "gfx/pokemon/annon_pics.asm"
 
+INCLUDE "gfx/pokemon/egg.asm"
+
 SECTION "Attack Animation GFX", ROMX[$4000], BANK[$21]
 INCBIN "gfx/battle_anims/attack_animations.2bpp"
 
