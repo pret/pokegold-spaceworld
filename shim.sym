@@ -77,7 +77,6 @@
 0e:4b78 LoadTrainerClassName
 0e:4ba0 LoadTrainerClassName.got_name
 0e:4ba9 LoadTrainerClass
-0E:4D90 TrainerClassNames
 
 10:52A1 MoveNames
 

@@ -93,6 +93,9 @@ INCBIN "gfx/trade/gameboy.2bpp"
 SECTION "Type Matchups", ROMX[$506D],BANK[$0D]
 INCLUDE "data/types/type_matchups.asm"
 
+SECTION "TrainerClassNames", ROMX[$4D90],BANK[$E]
+INCLUDE "data/trainers/class_names.asm"
+
 INCLUDE "data/trainers/parties.asm"
 
 SECTION "Alphabetical Pokedex Order", ROMX[$4943],BANK[$10]
