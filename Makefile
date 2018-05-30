@@ -42,6 +42,7 @@ tools tools/pkmncompress tools/gfx:
 .PHONY: clean
 clean:
 	rm -rf $(ROMS) $(BUILD) $(ROMS:.gb=.sym) $(ROMS:.gb=.map)
+	make -C tools clean
 
 # Remove files except for graphics.
 .PHONY: mostlyclean

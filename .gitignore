@@ -23,4 +23,4 @@ shim.asm
 tools/scan_includes
 tools/pkmncompress
 tools/gfx
-pret/
+build/
