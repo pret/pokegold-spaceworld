@@ -168,7 +168,7 @@
 	const DEX_DENRYU      ; a5 AMPHAROS
 	const DEX_MIKON       ; a6 (baby VULPIX)
 	const DEX_MONJA       ; a7 (baby TANGELA)
-	const DEX_JARANRA     ; a8 TANGROWTH
+	const DEX_JARANRA     ; a8 TANGROWTH (evolved TANGELA)
 	const DEX_HANEEI      ; a9 MANTINE
 	const DEX_PUKU        ; aa QWILFISH
 	const DEX_SHIBIREFUGU ; ab (evolved QWILFISH)
@@ -217,9 +217,9 @@
 	const DEX_HANEKO      ; d6 HOPPIP
 	const DEX_POPONEKO    ; d7 SKIPLOOM
 	const DEX_WATANEKO    ; d8 JUMPLUFF
-	const DEX_BARIRINA    ; d9 MIME_JR
+	const DEX_BARIRINA    ; d9 MIME_JR (baby MR__MIME)
 	const DEX_LIP         ; da SMOOCHUM
-	const DEX_ELEBABY     ; db (baby ELEKID)
+	const DEX_ELEBABY     ; db ELEKID
 	const DEX_BOOBY       ; dc MAGBY
 	const DEX_KIREIHANA   ; dd BELLOSSOM
 	const DEX_TSUBOMITTO  ; de (evolved WEEPINBELL)
@@ -240,7 +240,7 @@
 	const DEX_WOLFMAN     ; ed
 	const DEX_WARWOLF     ; ee
 	const DEX_PORYGON2    ; ef PORYGON2
-	const DEX_NAMEIL      ; f0 LICKILICKY
+	const DEX_NAMEIL      ; f0 LICKILICKY (evolved LICKITUNG)
 	const DEX_HAGANEIL    ; f1 STEELIX
 	const DEX_KINGDRA     ; f2 KINGDRA
 	const DEX_RAI         ; f3 RAIKOU
@@ -251,7 +251,7 @@
 	const DEX_TOGEPY      ; f8 TOGEPI
 	const DEX_BULU        ; f9 SNUBBULL
 	const DEX_TAIL        ; fa AIPOM
-	const DEX_LEAFY       ; fb LEAFEON
+	const DEX_LEAFY       ; fb LEAFEON (evolved EEVEE)
 NUM_POKEMON EQU const_value + -1
 	const DEX_FC          ; fc
 	const DEX_FD          ; fd
