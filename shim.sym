@@ -60,7 +60,6 @@
 00:3E32 Unk_3E32 ; What the f*** is this???
 
 01:53cc MainMenu
-01:6FEC ItemNames
 
 02:4856 DecompTownMapTilemap
 02:48da DecompTownMapTilemap.tilemap ; compressed
@@ -77,8 +76,6 @@
 0e:4b78 LoadTrainerClassName
 0e:4ba0 LoadTrainerClassName.got_name
 0e:4ba9 LoadTrainerClass
-
-10:52A1 MoveNames
 
 14:6D75 PokemonNames
 

@@ -38,6 +38,9 @@ MainMenuStrings: ; 01:5428
     db "じかんセット@"
 ; 01:5457
 
+SECTION "ItemNames", ROMX[$6FEC],BANK[$01]
+INCLUDE "data/items/names.asm"
+
 SECTION "Mon Nest Icon", ROMX[$4A0F], BANK[$02]
 PokedexNestIconGFX::
 INCBIN "gfx/pokegear/dexmap_nest_icon.1bpp"
@@ -172,13 +175,16 @@ INCBIN "gfx/tilesets/tileset_0c.2bpp"
 SECTION "Type Matchups", ROMX[$506D],BANK[$0D]
 INCLUDE "data/types/type_matchups.asm"
 
-SECTION "TrainerClassNames", ROMX[$4D90],BANK[$E]
+SECTION "TrainerClassNames", ROMX[$4D90],BANK[$0E]
 INCLUDE "data/trainers/class_names.asm"
 
 INCLUDE "data/trainers/parties.asm"
 
 SECTION "Alphabetical Pokedex Order", ROMX[$4943],BANK[$10]
 INCLUDE "data/pokemon/dex_order_alpha.asm"
+
+SECTION "MoveNames", ROMX[$52A1],BANK[$10]
+INCLUDE "data/moves/names.asm"
 
 SECTION "Evolutions and Attacks", ROMX[$6493],BANK[$10]
 INCLUDE "data/pokemon/evos_attacks.asm"
