@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "SRAM functions", ROM0[$32A7]
 
 OpenSRAM:: ; 32a7

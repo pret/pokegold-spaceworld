@@ -1,45 +1,10 @@
 INCLUDE "constants.asm"
 
-SECTION "PlaceWaitingText", ROMX[$4000],BANK[$01]
-INCLUDE "engine/link/place_waiting_text.asm"
-
-SECTION "Title screen", ROMX[$5D8C],BANK[$01]
-INCLUDE "engine/title.asm"
-
 SECTION "Title Screen Sprites", ROMX[$5EB8], BANK[$01]
 TitleFireGFX::
 INCBIN "gfx/title/fire.2bpp"
 TitleNotesGFX::
 INCBIN "gfx/title/notes.2bpp"
-
-SECTION "Predef pointers", ROMX[$62B0],BANK[$01]
-INCLUDE "engine/predef.asm"
-
-SECTION "Main Menu Definition", ROMX[$5418], BANK[$01]
-MainMenuHeader:
-	db $40
-	db 0, 0, 7, 13
-	dw .data
-	db 1 ; default option
-
-.data
-	db $80
-	db 0 ; number of options
-
-	dw $5461
-	db $8a, $1f
-	dw MainMenuStrings
-
-MainMenuStrings: ; 01:5428
-    db "つづきから　はじめる@"
-    db "さいしょから　はじめる@"
-    db "せっていを　かえる@"
-    db "#を　あそぶ@"
-    db "じかんセット@"
-; 01:5457
-
-SECTION "ItemNames", ROMX[$6FEC],BANK[$01]
-INCLUDE "data/items/names.asm"
 
 SECTION "Mon Nest Icon", ROMX[$4A0F], BANK[$02]
 PokedexNestIconGFX::
@@ -68,9 +33,6 @@ SECTION "SGB Border GFX", ROMX[$6B1C], BANK[$02]
 SGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border.2bpp"
 
-SECTION "Tileset Headers", ROMX[$488D], BANK[$03]
-INCLUDE "data/tileset_headers.asm"
-
 SECTION "Title Screen GFX", ROMX[$47CF], BANK[$04]
 TitleScreenGFX::
 INCBIN "gfx/title/title.2bpp"
@@ -78,9 +40,6 @@ INCBIN "gfx/title/title.2bpp"
 SECTION "Mail Icon GFX", ROMX[$5BB1], BANK[$04]
 MailIconGFX::
 INCBIN "gfx/icons/mail.2bpp"
-
-SECTION "TM/HM Moves", ROMX[$52D1],BANK[$04]
-INCLUDE "data/moves/tmhm_moves.asm"
 
 SECTION "Trainer Card GFX", ROMX[$7171], BANK[$04]
 TrainerCardGFX::
@@ -172,23 +131,6 @@ SECTION "Bank C Tilesets 0c", ROMX[$7100], BANK[$0C]
 Tileset_0c_GFX:
 INCBIN "gfx/tilesets/tileset_0c.2bpp"
 
-SECTION "Type Matchups", ROMX[$506D],BANK[$0D]
-INCLUDE "data/types/type_matchups.asm"
-
-SECTION "TrainerClassNames", ROMX[$4D90],BANK[$0E]
-INCLUDE "data/trainers/class_names.asm"
-
-INCLUDE "data/trainers/parties.asm"
-
-SECTION "Alphabetical Pokedex Order", ROMX[$4943],BANK[$10]
-INCLUDE "data/pokemon/dex_order_alpha.asm"
-
-SECTION "MoveNames", ROMX[$52A1],BANK[$10]
-INCLUDE "data/moves/names.asm"
-
-SECTION "Evolutions and Attacks", ROMX[$6493],BANK[$10]
-INCLUDE "data/pokemon/evos_attacks.asm"
-
 SECTION "Pokedex GFX", ROMX[$40D5], BANK[$11]
 PokedexButtonsGFX::
 INCBIN "gfx/pokedex/buttons.2bpp"
@@ -214,9 +156,6 @@ INCBIN "gfx/tilesets/tileset_19.2bpp"
 SECTION "Bank 13 Tilesets 1a", ROMX[$6900], BANK[$13]
 Tileset_1a_GFX:
 INCBIN "gfx/tilesets/tileset_1a.2bpp"
-
-SECTION "Base Data", ROMX[$4F10],BANK[$14]
-INCLUDE "data/pokemon/base_stats.asm"
 
 SECTION "PKMN Sprite Bank List", ROMX[$725C], BANK[$14]
 INCLUDE "gfx/pokemon/pkmn_pic_banks.asm"

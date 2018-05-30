@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "Copy functions", ROM0[$32F7]
 
 FarCopyBytes:: ; 32f7

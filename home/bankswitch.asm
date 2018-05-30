@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "Bankswitch", ROM0[$32C2]
 
 ; Moved to a rst vector in final US releases (not sure about JP)

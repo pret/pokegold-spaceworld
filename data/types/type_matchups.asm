@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Type Matchups", ROMX[$506D], BANK[$0D]
+
 TypeMatchups: ; 3506d
 	;  attacker,  defender,  *=
 	db TYPE_NORMAL,   TYPE_ROCK,     NOT_VERY_EFFECTIVE

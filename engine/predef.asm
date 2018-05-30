@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Predef pointers", ROMX[$62B0], BANK[$01]
+
 GetPredefPointer:: ; 1:62b0
 	ld a, h
 	ld [wPredefHL], a
@@ -25,4 +29,4 @@ GetPredefPointer:: ; 1:62b0
 	ld d, [hl]
 	ret
 
-INCLUDE "data/predef_pointers.asm"
+INCLUDE "data/predef_pointers.inc"

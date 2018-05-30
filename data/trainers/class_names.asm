@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "TrainerClassNames", ROMX[$4D90], BANK[$0E]
+
 TrainerClassNames:: ; 38d90
 	db "ハヤト@"
 	db "アカネ@"

@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Title screen", ROMX[$5D8C], BANK[$01]
+
 IntroSequence:: ; 5d8c
     ; TODO
 

@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Tileset Headers", ROMX[$488D], BANK[$03]
+
 Tileset_00: ; 0xc88d
 	db $06 ; bank
 	dw $4400 ; blocks

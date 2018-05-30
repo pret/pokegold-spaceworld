@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "MoveNames", ROMX[$52A1], BANK[$10]
+
 MoveNames::
 	db "はたく@"
 	db "からてチョップ@"

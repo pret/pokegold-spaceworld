@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "PlaceWaitingText", ROMX[$4000], BANK[$01]
+
 PlaceWaitingText:: ; 1:4000
 	hlcoord 3, 10
 	ld b, 1

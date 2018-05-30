@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "Audio interface", ROM0[$3CBF]
 
 DisableAudio:: ; 3cbf

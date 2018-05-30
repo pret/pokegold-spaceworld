@@ -1,6 +1,5 @@
 .PHONY: all clean
 
-CC := gcc
 CFLAGS := -O3 -std=c99 -Wall -Wextra
 
 tools := \
@@ -9,11 +8,6 @@ tools := \
 	gfx
 
 all: $(tools)
-	@:
 
 clean:
 	rm -f $(tools)
-
-%: %.c
-	$(CC) $(CFLAGS) -o $@ $<
-

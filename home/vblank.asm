@@ -1,3 +1,5 @@
+INCLUDE "constants.asm"
+
 SECTION "VBlank handler", ROM0[$150]
 
 VBlank:: ; 0150

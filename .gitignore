@@ -21,4 +21,5 @@ shim.asm
 *.exe
 tools/scan_includes
 tools/pkmncompress
+tools/gfx
 pret/
