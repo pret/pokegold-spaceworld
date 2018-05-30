@@ -60,8 +60,6 @@
 00:3E32 Unk_3E32 ; What the f*** is this???
 
 01:53cc MainMenu
-01:5eb8 TitleFlameGfx
-01:5f38 TitleNoteGfx
 01:6FEC ItemNames
 
 02:4856 DecompTownMapTilemap
@@ -74,15 +72,7 @@
 03:4791 DebugWarp
 03:479f DebugWarp.Destinations
 
-04:47cf CopyrightGfx
-04:495f VersionGfx
-04:49ef PocketMonstersGfx
-04:4adf TitleHoOhGfx
-04:4def LogoGfx
 04:5677 DoPlayerMovement
-04:5bb1 MailIconGfx
-04:7171 ProfileGfx
-04:73b1 ProfileBadgeGfx
 
 0e:4b78 LoadTrainerClassName
 0e:4ba0 LoadTrainerClassName.got_name
@@ -91,12 +81,7 @@
 
 10:52A1 MoveNames
 
-11:40d5 DexGfx
-11:46d5 DexSearchGfx
-
 14:6D75 PokemonNames
-
-21:4000 MoveEffectGfx
 
 23:4349 OverworldFadeOut
 23:60cc MenuMonIconGfx

@@ -44,11 +44,23 @@ clean:
 	rm -rf $(ROMS) $(OBJS) $(ROMS:.gb=.sym) build/* shim.asm
 	find . \( -iname '*.1bpp' -o -iname '*.2bpp' -o -iname '*.pic' -o -iname '*.pcm' \) -exec rm {} +
 
+gfx/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
+gfx/sgb_border.2bpp: tools/gfx += --trim-whitespace
+gfx/titlescreen.2bpp: tools/gfx += --trim-whitespace
+gfx/leader_faces_names.2bpp: tools/gfx += --trim-whitespace
+gfx/slot_machine.2bpp: tools/gfx += --trim-whitespace
+gfx/poker.2bpp: tools/gfx += --trim-whitespace
+gfx/intro_purin_pika.2bpp: tools/gfx += --trim-whitespace
+
 %.2bpp: %.png
 	rgbgfx -o $@ $<
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -o $@ $@)
 
 %.1bpp: %.png
 	rgbgfx -d1 -o $@ $<
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -d1 -o $@ $@)
 
 %.tilemap: %.png
 	rgbgfx -t $@ $<
