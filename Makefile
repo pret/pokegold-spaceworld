@@ -48,6 +48,7 @@ clean:
 .PHONY: mostlyclean
 mostlyclean:
 	rm -rf $(ROMS) $(OBJS) $(ROMS:.gb=.sym) $(ROMS:.gb=.map)
+	find . \( -iname '*.d' \) -exec rm {} +
 
 $(ROMS): $(OBJS)
 	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -O $(BASEROM) -o $@ $^

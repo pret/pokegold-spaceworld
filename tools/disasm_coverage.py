@@ -77,7 +77,6 @@ if __name__ == "__main__":
             for col in row:
                 
                 if (0 != col):
-                    print('Here')
                 rgb = [255 * x for x in hls_to_rgb(120/360, 1.0 - (col/bpp * (100 - 15))/100, 100/100)]
                 row_png_data += tuple(rgb)
             

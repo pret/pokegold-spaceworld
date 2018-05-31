@@ -26,7 +26,7 @@ PokegearGFX::
 INCBIN "gfx/pokegear/pokegear.2bpp"
 
 SECTION "Super Palettes", ROMX[$5B4C], BANK[$02]
-INCLUDE "data/pokemon_palettes.inc"
+INCLUDE "data/pokemon/palettes.inc"
 INCLUDE "data/super_palettes.inc"
 
 SECTION "Unused SGB Border GFX", ROMX[$62CC], BANK[$02]
