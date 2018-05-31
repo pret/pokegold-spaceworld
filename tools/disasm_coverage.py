@@ -7,6 +7,7 @@ import argparse
 from mapreader import MapReader
 import png
 from colorsys import hls_to_rgb
+import sys
 
 if __name__ == "__main__":
     # argument parser
@@ -49,7 +50,7 @@ if __name__ == "__main__":
                 #print('beg {0} end {1}: {2}/{3} -- {4}/{5}'.format(beg, end, y_beg, x_beg, y_end, x_end))
                 
                 # special case y_beg/x_beg and y_end/x_end
-                if (end - beg + 1 < bpp):
+                if (y_beg == y_end and x_beg == x_end):
                     hit_data[y_beg][x_beg] += end - beg + 1
                     
                 else:
@@ -65,7 +66,6 @@ if __name__ == "__main__":
                     for x in range(x_line_beg, x_line_end + 1):
                         
                         hit_data[y][x] += bpp
-
     
     with open(args.filename, 'wb') as pngfile:
     
@@ -76,7 +76,6 @@ if __name__ == "__main__":
             row_png_data = ()
             for col in row:
                 
-                if (0 != col):
                 rgb = [255 * x for x in hls_to_rgb(120/360, 1.0 - (col/bpp * (100 - 15))/100, 100/100)]
                 row_png_data += tuple(rgb)
             
