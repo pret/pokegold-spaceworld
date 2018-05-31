@@ -1,13 +1,13 @@
 ; ROM0
 00:0317 DelayFrame
 00:0324 DelayFrames
-00:0D2A FarCopyData
-00:0D68 CopyVideoData
 00:0884 UpdateJoypad
 00:095E UncompressSpriteData
 00:0d1a LoadFontExtra
 00:0d0a LoadFont
-00:0d68 CopyGfx
+00:0D2A FarCopyData
+00:0D68 CopyVideoData
+00:0DE4 CopyVideoDataOptimized
 00:0E2A ClearTileMap
 00:0e3d DrawTextBox
 00:0E93 PlaceString
@@ -38,10 +38,7 @@
 00:3655 SetHPPal.done
 00:36C8 NamesPointers
 00:36E0 GetName
-00:3B3F LoadMonFrontSprite
-00:3B4C LoadUncompressedSpriteData
-00:3BA1 ZeroSpriteBuffer
-00:3BC6 InterlaceMergeSpriteBuffers ; added functionality here
+00:3AED UncompressMonSprite
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
 00:3DA5 MaxVolume
@@ -99,8 +96,6 @@
 
 00:c5e8 wMapScriptNumber
 00:ca22 wTrainerClass
-00:cb5b wName
-00:cb5c wNameCategory
 00:CBF2 wWindowData
 00:CBF2 wWindowStackPointer
 00:CC02 wMenuDataHeader

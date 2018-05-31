@@ -81,6 +81,9 @@ SECTION "LY overrides buffer", WRAM0[$C600]
 wLYOverrides:: ; c600
     ds SCREEN_HEIGHT_PX
 
+SECTION "CB56", WRAM0[$CB5B]
+wcb5b:: ds 1
+wNameCategory:: ds 1
 
 SECTION "CC38", WRAM0[$CC38] ; Please merge when more is disassembled
 
@@ -95,6 +98,10 @@ wDebugWarpSelection:: ; cc39
 wSGB:: ; cc40
     db
 
+SECTION "CCB5", WRAM0[$CCB5]
+
+wSpriteFlipped:: ; ccb5
+	db 
 
 SECTION "CD4F", WRAM0[$CD4F]
 
@@ -116,6 +123,70 @@ SECTION "CE00", WRAM0[$CE00]
 wBattleMode:: ; ce00
     db
 
+SECTION "CE07", WRAM0[$CE07]
+
+wMonHeader::
+
+wMonHIndex:: ; ce07
+; In the ROM base stats data structure, this is the dex number, but it is
+; overwritten with the dex number after the header is copied to WRAM.
+	ds 1
+
+wMonHBaseStats:: ; ce08
+wMonHBaseHP:: ; ce08
+	ds 1
+wMonHBaseAttack:: ; ce09
+	ds 1
+wMonHBaseDefense:: ; ce0a
+	ds 1
+wMonHBaseSpeed:: ; ce0b
+	ds 1
+wMonHBaseSpecialAtt:: ; ce0c
+	ds 1
+wMonHBaseSpecialDef:: ; ce0d
+	ds 1
+
+wMonHTypes:: ; ce0e
+wMonHType1:: ; ce0e
+	ds 1
+wMonHType2:: ; ce0f
+	ds 1
+
+wMonHCatchRate:: ; ce10
+	ds 1
+wMonHBaseEXP:: ; ce11
+	ds 1
+
+wMonHItems:: ; ce12
+wMonHItem1:: ; ce12
+	ds 1
+wMonHItem2:: ; ce13
+	ds 1
+
+wMonHGenderRatio:: ; ce14
+	ds 1
+
+wMonHUnk0:: ; ce15
+	ds 1
+wMonHUnk1:: ; ce16
+	ds 1
+wMonHUnk2:: ; ce17
+	ds 1
+
+wMonHSpriteDim:: ; ce18
+	ds 1
+wMonHFrontSprite:: ; ce19
+	ds 2
+wMonHBackSprite:: ; ce1b
+	ds 2
+
+wMonHGrowthRate:: ; ce1d
+	ds 1
+
+wMonHLearnset:: ; ce1e
+; bit field
+	flag_array 50 + 5
+	ds 1
 
 SECTION "CE3C", WRAM0[$CE3C]
 

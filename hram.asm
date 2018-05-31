@@ -15,7 +15,16 @@ hVBlank:: ; ff99
     db
 
 
-    ds 54 ; TODO
+    ds 21 ; TODO
+
+hSpriteWidth:: ; ffaf
+hSpriteInterlaceCounter:: ; ffaf
+    db 
+hSpriteHeight:: ; ffb0
+    db 
+hSpriteOffset:: ; ffb1
+    db
+    ds 30 ; TODO
 
 
 hLCDCPointer:: ; ffd0
