@@ -127,7 +127,3 @@ rept \1
 x = x + DIV(32768, \1) ; a circle has 65536 "degrees"
 endr
 ENDM
-
-RGB: MACRO
-	dw (\3 << 10 | \2 << 5 | \1)
-ENDM
