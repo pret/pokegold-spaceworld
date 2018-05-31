@@ -9,6 +9,9 @@ INCLUDE "constants.asm"
 ;    * for TRAINERTYPE_ITEM_MOVES: db level, species, item, 4 moves
 ; - db -1 ; end
 
+SECTION "Trainer Parties", ROMX[$5110], BANK[$E]
+
+INCLUDE "data/trainers/party_pointers.inc"
 
 ; TODO: decode all data
 

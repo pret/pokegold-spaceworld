@@ -1,4 +1,3 @@
-SECTION "TrainerGroups", ROMX[$5110],BANK[$E]
 
 TrainerGroups: ; 0x039110
 	dw HayatoGroup
