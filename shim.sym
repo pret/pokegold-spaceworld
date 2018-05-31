@@ -75,8 +75,6 @@
 23:4349 OverworldFadeOut
 23:60cc MenuMonIconGfx
 
-30:4000 OverworldSpriteGfx
-
 3A:4D9D _PlayCryHeader
 3A:4E22 _PlaySFX
 3A:4F11 LoadChannel
