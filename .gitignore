@@ -5,6 +5,7 @@
 *.sn1
 *.rtc
 
+*.d
 *.o
 # converted image data
 *.2bpp
