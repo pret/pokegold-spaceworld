@@ -92,7 +92,7 @@ wDebugWarpSelection:: ; cc39
 
     ds 6
 
-wSGB:: ; cccf
+wSGB:: ; cc40
     db
 
 
