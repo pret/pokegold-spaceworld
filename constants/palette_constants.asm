@@ -56,4 +56,4 @@
 	const PAL_POKER_2 ; 36
 	const PAL_POKER_3 ; 37
 	const PAL_POKER_4 ; 38
-	const PAL_39 ; 39
+	const PAL_RADIO ; 39
