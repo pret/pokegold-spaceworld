@@ -3,7 +3,6 @@
 00:095E UncompressSpriteData
 00:0d1a LoadFontExtra
 00:0d0a LoadFont
-00:0DE4 CopyVideoDataOptimized
 00:0E2A ClearTileMap
 00:0e3d DrawTextBox
 00:0E93 PlaceString

@@ -85,14 +85,16 @@ SECTION "CB56", WRAM0[$CB5B]
 wcb5b:: ds 1
 wNameCategory:: ds 1
 
-SECTION "Request2bpp", WRAM0[$CB62]
+SECTION "CB62", WRAM0[$CB62]
 
-wRequested2bpp:: db
-wRequested2bppSource:: dw
-wRequested2bppDest:: dw
+wVBCopySize:: ds 1
+wVBCopySrc:: ds 2
+wVBCopyDst:: ds 2
+wVBCopyDoubleSize:: ds 1
+wVBCopyDoubleSrc:: ds 2
+wVBCopyDoubleDst:: ds 2
 
-
-SECTION "CC38", WRAM0[$CC33] ; Please merge when more is disassembled
+SECTION "CC33", WRAM0[$CC33] ; Please merge when more is disassembled
 
 wVBlankOccurred: db
 
