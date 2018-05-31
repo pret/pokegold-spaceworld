@@ -212,6 +212,19 @@ SECTION "CE5F", WRAM0[$CE5F]
 wce5f:: ; ce5f ; TODO
     db
 
+SECTION "PokeDexFlags", WRAM0[$D81A]
+
+wPokedexOwned::    ; d81a
+	flag_array NUM_POKEMON
+wPokedexOwnedEnd:: ; d839
+
+wPokedexSeen::     ; d83a
+	flag_array NUM_POKEMON
+wPokedexSeenEnd::  ; d859
+
+wAnnonDex:: ds 26  ; d85a
+
+wAnnonID:: ds 1    ; d874
 
 SECTION "Stack bottom", WRAM0[$DFFF]
 
