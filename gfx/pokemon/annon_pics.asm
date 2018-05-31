@@ -1,3 +1,4 @@
+AnnonPics::
 AnnonAPicFront:: INCBIN "gfx/pokemon/annon_a/front.pic"
 AnnonAPicBack::  INCBIN "gfx/pokemon/annon_a/back.pic"
 AnnonBPicFront:: INCBIN "gfx/pokemon/annon_b/front.pic"

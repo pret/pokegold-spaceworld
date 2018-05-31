@@ -82,7 +82,7 @@ wLYOverrides:: ; c600
     ds SCREEN_HEIGHT_PX
 
 SECTION "CB56", WRAM0[$CB5B]
-wcb5b:: ds 1
+wcb5b:: ds 1         ; multipurpose, also wName, wMonDexIndex2
 wNameCategory:: ds 1
 
 SECTION "CB62", WRAM0[$CB62]
@@ -143,6 +143,9 @@ wPredefBC:: ; cd54
 wFarCallBCBuffer:: ; cd54
     dw
 
+SECTION "CD78", WRAM0[$CD78]
+
+wMonDexIndex: ds 1 ; cd78
 
 SECTION "CE00", WRAM0[$CE00]
 

@@ -43,9 +43,64 @@ GetMonHeader:: ; 3a4b (0:3a4b)
 	pop bc
 	ret
 
-SECTION "3B3F", ROM0[$3b3f]
+SECTION "3AED", ROM0[$3aed]
 
+; Uncompresses the front or back sprite of the specified mon
+; assumes the corresponding mon header is already loaded
+; hl contains offset to sprite pointer ($b for front or $d for back)
+UncompressMonSprite:: ; 3aed (0:3aed)
+	ld a, [wMonDexIndex]
+	and a
+	ret z
+	ld bc, wMonHeader
+	add hl, bc
+	cp DEX_ANNON
+	jr z, .uncompress_annon
+	ld a, [hli]
+	ld [wSpriteInputPtr], a
+	ld a, [hl]
+	ld [wSpriteInputPtr + 1], a
+	ld hl, MonSpriteBankList
+	ld a, [wMonDexIndex]
+	ld b, a
+	; get Pokémon picture bank pointer from list
+.loop
+	ld a, BANK(MonSpriteBankList)
+	call GetFarByte
+	inc hl
+	inc hl
+	cp b
+	jr c, .loop
+	dec hl
+	ld a, BANK(MonSpriteBankList)
+	call GetFarByte
+	jp UncompressSpriteData
+.uncompress_annon
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wAnnonID]
+	dec a
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld a, BANK(AnnonPicPtrs)
+	call GetFarByte
+	ld [wSpriteInputPtr], a
+	inc hl
+	ld a, BANK(AnnonPicPtrs)
+	call GetFarByte
+	ld [wSpriteInputPtr + 1], a
+	ld a, BANK(AnnonPics)
+	jp UncompressSpriteData
+
+; Uncompress Pokémon Front Srite for
+; mon currently loaded in wMonHeader
+; to 0x9000
 ; de: destination location
+; returns the sprite dimension in c
 LoadMonFrontSprite:: ; 3b3f
 	push de
 	ld hl, wMonHFrontSprite - wMonHeader
