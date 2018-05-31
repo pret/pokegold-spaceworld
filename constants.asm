@@ -15,5 +15,6 @@ INCLUDE "constants/item_constants.asm"
 INCLUDE "constants/trainer_constants.asm"
 INCLUDE "constants/trainer_data_constants.asm"
 INCLUDE "constants/battle_constants.asm"
+INCLUDE "constants/palette_constants.asm"
 
 INCLUDE "constants/serial_constants.asm"
