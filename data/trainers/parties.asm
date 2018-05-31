@@ -10,221 +10,195 @@ INCLUDE "constants.asm"
 ; - db -1 ; end
 
 
-; TODO: decode data from the beginning
+; TODO: decode all data
 
-SECTION "HayatoGroup", ROMX[$518A],BANK[$E]
-HayatoGroup::
-
-SECTION "AkaneGroup", ROMX[$51BF],BANK[$E]
+SECTION "Trainer Parties 1 TEMPORARY", ROMX[$51BF],BANK[$E]
 AkaneGroup::
-
-SECTION "TsukishiGroup", ROMX[$521A],BANK[$E]
-TsukishiGroup::
-
-SECTION "EnokiGroup", ROMX[$526F],BANK[$E]
-EnokiGroup::
-
-SECTION "OkeraGroup", ROMX[$528F],BANK[$E]
-OkeraGroup::
-
-SECTION "MikanGroup", ROMX[$52B4],BANK[$E]
-MikanGroup::
-
-SECTION "BlueGroup", ROMX[$5320],BANK[$E]
-BlueGroup::
-
-SECTION "GamaGroup", ROMX[$533D],BANK[$E]
-GamaGroup::
-
-SECTION "RivalGroup", ROMX[$5375],BANK[$E]
-RivalGroup::
-
-SECTION "OkidoGroup", ROMX[$53BC],BANK[$E]
-OkidoGroup::
-
-SECTION "SakakiGroup", ROMX[$5404],BANK[$E]
-SakakiGroup::
-
-SECTION "ProtagonistGroup", ROMX[$5427],BANK[$E]
-ProtagonistGroup::
-
-SECTION "SibaGroup", ROMX[$5433],BANK[$E]
-SibaGroup::
-
-SECTION "KasumiGroup", ROMX[$5433],BANK[$E]
-KasumiGroup::
-
-SECTION "KannaGroup", ROMX[$5472],BANK[$E]
-KannaGroup::
-
-SECTION "WataruGroup", ROMX[$54B6],BANK[$E]
-WataruGroup::
-
-SECTION "GerugeMemberMGroup", ROMX[$54DC],BANK[$E]
-GerugeMemberMGroup::
-
-SECTION "Trio1Group", ROMX[$54FA],BANK[$E]
-Trio1Group::
-
-SECTION "Trio2Group", ROMX[$554B],BANK[$E]
-Trio2Group::
-
-SECTION "Trio3Group", ROMX[$555D],BANK[$E]
-Trio3Group::
-
-SECTION "RocketFGroup", ROMX[$5566],BANK[$E]
-RocketFGroup::
-
-SECTION "YoungsterGroup", ROMX[$5587],BANK[$E]
-YoungsterGroup::
-
-SECTION "SchoolboyGroup", ROMX[$597F],BANK[$E]
-SchoolboyGroup::
-	; SCHOOLBOY TETSUYA
-	db "てつや@", TRAINERTYPE_ITEM_MOVES
-	db  9, DEX_YADOKING, ITEM_NONE, MOVE_DISABLE, MOVE_CONFUSION, MOVE_NONE, MOVE_NONE
-	db -1 ; end
-
-SECTION "FledglingGroup", ROMX[$55F4],BANK[$E]
-FledglingGroup::
-
-SECTION "LassGroup", ROMX[$521A],BANK[$E]
-LassGroup::
-
-SECTION "ProdigyGroup", ROMX[$5658],BANK[$E]
-ProdigyGroup::
-
-SECTION "ProfessionalMGroup", ROMX[$567C],BANK[$E]
-ProfessionalMGroup::
-
-SECTION "ProfessionalFGroup", ROMX[$567C],BANK[$E]
-ProfessionalFGroup::
-
-SECTION "BeautyGroup", ROMX[$54FA],BANK[$E]
-BeautyGroup::
-	; BEAUTY MEGUMI
-	db "めぐみ@", TRAINERTYPE_ITEM_MOVES
-	db 10, DEX_NYARTH, ITEM_NONE, MOVE_PAY_DAY, MOVE_GROWL, MOVE_NONE, MOVE_NONE
-	db -1 ; end
-
-SECTION "PokeManiacGroup", ROMX[$56D7],BANK[$E]
-PokeManiacGroup::
-
-SECTION "RocketMGroup", ROMX[$5795],BANK[$E]
-RocketMGroup::
-
-SECTION "GentlemanGroup", ROMX[$57C5],BANK[$E]
-GentlemanGroup::
-
-SECTION "TeacherMGroup", ROMX[$57E9],BANK[$E]
-TeacherMGroup::
-
-SECTION "TeacherFGroup", ROMX[$57F5],BANK[$E]
-TeacherFGroup::
-
-SECTION "ManchildGroup", ROMX[$57FB],BANK[$E]
-ManchildGroup::
-
-SECTION "BugCatcherBoyGroup", ROMX[$51BF],BANK[$E]
 BugCatcherBoyGroup::
-	; BUG CATCHER BOY JUNICHI
+	; BUG_CATCHER_BOY_JUNICHI
 	db "じゅんいち@", TRAINERTYPE_ITEM_MOVES
 	db  7, DEX_PARAS, ITEM_NONE, MOVE_STUN_SPORE, MOVE_LEECH_LIFE, MOVE_NONE, MOVE_NONE
 	db -1 ; end
 
-	; BUG CATCHER BOY SOUSUKE
+	; BUG_CATCHER_BOY_SOUSUKE
 	db "そうすけ@", TRAINERTYPE_ITEM_MOVES
 	db  9, DEX_REDIBA, ITEM_NONE, MOVE_SCRATCH, MOVE_QUICK_ATTACK, MOVE_NONE, MOVE_NONE
 	db -1 ; end
 
-SECTION "FisherGroup", ROMX[$5433],BANK[$E]
-FisherGroup::
+SECTION "Trainer Parties 2 TEMPORARY", ROMX[$52B4],BANK[$E]
+MikanGroup::
 
-SECTION "SwimmerFGroup", ROMX[$5811],BANK[$E]
-SwimmerFGroup::
+SECTION "Trainer Parties 3 TEMPORARY", ROMX[$53BC],BANK[$E]
+OkidoGroup::
 
-SECTION "SwimmerMGroup", ROMX[$581B],BANK[$E]
-SwimmerMGroup::
+SECTION "Trainer Parties 4 TEMPORARY", ROMX[$54B6],BANK[$E]
+WataruGroup::
 
-SECTION "SailorGroup", ROMX[$5820],BANK[$E]
-SailorGroup::
+SECTION "Trainer Parties 5 TEMPORARY", ROMX[$54DC],BANK[$E]
+GerugeMemberMGroup::
 
-SECTION "SuperNerdGroup", ROMX[$582A],BANK[$E]
-SuperNerdGroup::
+SECTION "Trainer Parties 6 TEMPORARY", ROMX[$54FA],BANK[$E]
+Trio1Group::
+BeautyGroup::
+	; BEAUTY_MEGUMI
+	db "めぐみ@", TRAINERTYPE_ITEM_MOVES
+	db 10, DEX_NYARTH, ITEM_NONE, MOVE_PAY_DAY, MOVE_GROWL, MOVE_NONE, MOVE_NONE
+	db -1 ; end
 
-SECTION "EngineerGroup", ROMX[$583C],BANK[$E]
-EngineerGroup::
+SECTION "Trainer Parties 7 TEMPORARY", ROMX[$55F4],BANK[$E]
+FledglingGroup::
 
-SECTION "RockerGroup", ROMX[$58CC],BANK[$E]
+SECTION "Trainer Parties 8 TEMPORARY", ROMX[$56D7],BANK[$E]
+PokeManiacGroup::
+
+SECTION "Trainer Parties 9 TEMPORARY", ROMX[$57C5],BANK[$E]
+GentlemanGroup::
+
+SECTION "Trainer Parties 10 TEMPORARY", ROMX[$57E9],BANK[$E]
+TeacherMGroup::
+
+SECTION "Trainer Parties 11 TEMPORARY", ROMX[$57F5],BANK[$E]
+TeacherFGroup::
+
+SECTION "Trainer Parties 12 TEMPORARY", ROMX[$57FB],BANK[$E]
+ManchildGroup::
+
+SECTION "Trainer Parties 13 TEMPORARY", ROMX[$58CC],BANK[$E]
 RockerGroup::
 
-SECTION "HikerGroup", ROMX[$58FB],BANK[$E]
+SECTION "Trainer Parties 14 TEMPORARY", ROMX[$58FB],BANK[$E]
 HikerGroup::
 
-SECTION "BikerGroup", ROMX[$5907],BANK[$E]
-BikerGroup::
-
-SECTION "RockClimberGroup", ROMX[$5956],BANK[$E]
-RockClimberGroup::
-
-SECTION "BurglarGroup", ROMX[$5962],BANK[$E]
-BurglarGroup::
-
-SECTION "FirebreatherGroup", ROMX[$598C],BANK[$E]
-FirebreatherGroup::
-	; FIREBREATHER AKITO
-	db "あきと@", TRAINERTYPE_ITEM_MOVES
-	db 10, DEX_BOOBY, ITEM_NONE, MOVE_SCRATCH, MOVE_SMOG, MOVE_NONE, MOVE_NONE
-	db -1 ; end
-
-SECTION "JugglerGroup", ROMX[$596E],BANK[$E]
-JugglerGroup::
-
-SECTION "BlackbeltGroup", ROMX[$5972],BANK[$E]
-BlackbeltGroup::
-
-SECTION "SportsmanGroup", ROMX[$5999],BANK[$E]
-SportsmanGroup::
-	; SPORTSMAN SHIGEKI
-	db "しげき@", TRAINERTYPE_ITEM
-	db  8, DEX_DONPHAN, ITEM_NONE
-	db -1 ; end
-
-SECTION "PsychicGroup", ROMX[$5976],BANK[$E]
-PsychicGroup::
-
-SECTION "KungFuMasterGroup", ROMX[$5976],BANK[$E]
-KungFuMasterGroup::
-
-SECTION "FortuneTellerGroup", ROMX[$5976],BANK[$E]
-FortuneTellerGroup::
-
-SECTION "HooliganGroup", ROMX[$5976],BANK[$E]
-HooliganGroup::
-
-SECTION "SageGroup", ROMX[$5976],BANK[$E]
-SageGroup::
-
-SECTION "MediumGroup", ROMX[$5976],BANK[$E]
-MediumGroup::
-
-SECTION "SoldierGroup", ROMX[$5976],BANK[$E]
-SoldierGroup::
-
-SECTION "GerugeMemberFGroup", ROMX[$5976],BANK[$E]
-GerugeMemberFGroup::
-
-SECTION "KimonoGirlGroup", ROMX[$59A2],BANK[$E]
+SECTION "Trainer Parties 15 TEMPORARY", ROMX[$59A2],BANK[$E]
 KimonoGirlGroup::
-	; KIMONO GIRL TAMAO
+	; KIMONO_GIRL_TAMAO
 	db "たまお@", TRAINERTYPE_ITEM_MOVES
 	db 12, DEX_PURIN, ITEM_NONE, MOVE_CHARM, MOVE_ENCORE, MOVE_POUND, MOVE_NONE
 	db -1 ; end
 
-	; KIMONO GIRL KOUME
+	; KIMONO_GIRL_KOUME
 	db "こうめ@", TRAINERTYPE_ITEM_MOVES
 	db 10, DEX_PIPPI, ITEM_NONE, MOVE_CHARM, MOVE_SWEET_KISS, MOVE_POUND, MOVE_NONE
 	db -1 ; end
 
-SECTION "TwinsGroup", ROMX[$597A],BANK[$E]
+SECTION "Trainer Parties 16 TEMPORARY", ROMX[$518A],BANK[$E]
+HayatoGroup::
+
+SECTION "Trainer Parties 17 TEMPORARY", ROMX[$521A],BANK[$E]
+TsukishiGroup::
+LassGroup::
+
+SECTION "Trainer Parties 18 TEMPORARY", ROMX[$526F],BANK[$E]
+EnokiGroup::
+
+SECTION "Trainer Parties 19 TEMPORARY", ROMX[$528F],BANK[$E]
+OkeraGroup::
+
+SECTION "Trainer Parties 20 TEMPORARY", ROMX[$533D],BANK[$E]
+GamaGroup::
+
+SECTION "Trainer Parties 21 TEMPORARY", ROMX[$554B],BANK[$E]
+Trio2Group::
+
+SECTION "Trainer Parties 22 TEMPORARY", ROMX[$555D],BANK[$E]
+Trio3Group::
+
+SECTION "Trainer Parties 23 TEMPORARY", ROMX[$567C],BANK[$E]
+ProfessionalMGroup::
+ProfessionalFGroup::
+
+SECTION "Trainer Parties 24 TEMPORARY", ROMX[$581B],BANK[$E]
+SwimmerMGroup::
+
+SECTION "Trainer Parties 25 TEMPORARY", ROMX[$582A],BANK[$E]
+SuperNerdGroup::
+
+SECTION "Trainer Parties 26 TEMPORARY", ROMX[$583C],BANK[$E]
+EngineerGroup::
+
+SECTION "Trainer Parties 27 TEMPORARY", ROMX[$596E],BANK[$E]
+JugglerGroup::
+
+SECTION "Trainer Parties 28 TEMPORARY", ROMX[$597A],BANK[$E]
 TwinsGroup::
+
+SECTION "Trainer Parties 29 TEMPORARY", ROMX[$597F],BANK[$E]
+SchoolboyGroup::
+	; SCHOOLBOY_TETSUYA
+	db "てつや@", TRAINERTYPE_ITEM_MOVES
+	db  9, DEX_YADOKING, ITEM_NONE, MOVE_DISABLE, MOVE_CONFUSION, MOVE_NONE, MOVE_NONE
+	db -1 ; end
+
+SECTION "Trainer Parties 30 TEMPORARY", ROMX[$598C],BANK[$E]
+FirebreatherGroup::
+	; FIREBREATHER_AKITO
+	db "あきと@", TRAINERTYPE_ITEM_MOVES
+	db 10, DEX_BOOBY, ITEM_NONE, MOVE_SCRATCH, MOVE_SMOG, MOVE_NONE, MOVE_NONE
+	db -1 ; end
+
+SECTION "Trainer Parties 31 TEMPORARY", ROMX[$5320],BANK[$E]
+BlueGroup::
+
+SECTION "Trainer Parties 32 TEMPORARY", ROMX[$5375],BANK[$E]
+RivalGroup::
+
+SECTION "Trainer Parties 33 TEMPORARY", ROMX[$5404],BANK[$E]
+SakakiGroup::
+
+SECTION "Trainer Parties 34 TEMPORARY", ROMX[$5427],BANK[$E]
+ProtagonistGroup::
+
+SECTION "Trainer Parties 35 TEMPORARY", ROMX[$5433],BANK[$E]
+SibaGroup::
+KasumiGroup::
+FisherGroup::
+
+SECTION "Trainer Parties 36 TEMPORARY", ROMX[$5472],BANK[$E]
+KannaGroup::
+
+SECTION "Trainer Parties 37 TEMPORARY", ROMX[$5566],BANK[$E]
+RocketFGroup::
+
+SECTION "Trainer Parties 38 TEMPORARY", ROMX[$5587],BANK[$E]
+YoungsterGroup::
+
+SECTION "Trainer Parties 39 TEMPORARY", ROMX[$5658],BANK[$E]
+ProdigyGroup::
+
+SECTION "Trainer Parties 40 TEMPORARY", ROMX[$5795],BANK[$E]
+RocketMGroup::
+
+SECTION "Trainer Parties 41 TEMPORARY", ROMX[$5811],BANK[$E]
+SwimmerFGroup::
+
+SECTION "Trainer Parties 42 TEMPORARY", ROMX[$5820],BANK[$E]
+SailorGroup::
+
+SECTION "Trainer Parties 43 TEMPORARY", ROMX[$5907],BANK[$E]
+BikerGroup::
+
+SECTION "Trainer Parties 44 TEMPORARY", ROMX[$5956],BANK[$E]
+RockClimberGroup::
+
+SECTION "Trainer Parties 45 TEMPORARY", ROMX[$5962],BANK[$E]
+BurglarGroup::
+
+SECTION "Trainer Parties 46 TEMPORARY", ROMX[$5972],BANK[$E]
+BlackbeltGroup::
+
+SECTION "Trainer Parties 47 TEMPORARY", ROMX[$5976],BANK[$E]
+PsychicGroup::
+KungFuMasterGroup::
+FortuneTellerGroup::
+HooliganGroup::
+SageGroup::
+MediumGroup::
+SoldierGroup::
+GerugeMemberFGroup::
+
+SECTION "Trainer Parties 48 TEMPORARY", ROMX[$5999],BANK[$E]
+SportsmanGroup::
+	; SPORTSMAN_SHIGEKI
+	db "しげき@", TRAINERTYPE_ITEM
+	db  8, DEX_DONPHAN, ITEM_NONE
+	db -1 ; end
