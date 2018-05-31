@@ -23,4 +23,8 @@ shim.asm
 tools/scan_includes
 tools/pkmncompress
 tools/gfx
+tools/*.pyc
 build/
+
+coverage.png
+coverage.stats

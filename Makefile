@@ -28,7 +28,7 @@ GFX := $(patsubst %.png, $(BUILD)/%.2bpp, \
 .SECONDEXPANSION:
 
 .PHONY: all
-all: $(ROMS) compare
+all: $(ROMS) compare coverage
 
 .PHONY: compare
 compare: $(ROMS)
@@ -55,6 +55,10 @@ $(ROMS): $(OBJS)
 
 $(BUILD)/shim.asm: tools/make_shim.py shim.sym | $$(dir $$@)
 	$(PYTHON) tools/make_shim.py -w -- $(filter-out $<, $^) > $@
+
+.PHONY: coverage
+coverage: $(ROMS)
+	$(PYTHON) tools/disasm_coverage.py -m $(ROMS:.gb=.map) -b 0x40
 
 $(BUILD)/gfx.o: | $(GFX)
 $(BUILD)/%.o: $(BUILD)/%.asm | $$(dir $$@)
