@@ -3,258 +3,258 @@ INCLUDE "constants.asm"
 SECTION "ItemNames", ROMX[$6FEC], BANK[$01]
 
 ItemNames::
-	db "マスターボール@"
-	db "ハイパーボール@"
-	db "しようきんし@"
-	db "スーパーボール@"
-	db "モンスターボール@"
-	db "タウンマップ@"
-	db "じてんしゃ@"
-	db "つきのいし@"
-	db "どくけし@"
-	db "やけどなおし@"
-	db "こおりなおし@"
-	db "ねむけざまし@"
-	db "まひなおし@"
-	db "かいふくのくすり@"
-	db "まんたんのくすり@"
-	db "すごいキズぐすり@"
-	db "いいキズぐすり@"
-	db "キズぐすり@"
-	db "あなぬけのヒモ@"
-	db "むしよけスプレー@"
-	db "ピーピーマックス@"
-	db "ほのおのいし@"
-	db "かみなりのいし@"
-	db "みずのいし@"
-	db "しようきんし@"
-	db "マックスアップ@"
-	db "タウりン@"
-	db "ブロムへキシン@"
-	db "インドメタシン@"
-	db "しようきんし@"
-	db "りゾチウム@"
-	db "ふしぎなアメ@"
-	db "ヨクアタール@"
-	db "りーフのいし@"
-	db "しようきんし@"
-	db "きんのたま@"
-	db "ピッピにんぎょう@"
-	db "なんでもなおし@"
-	db "げんきのかけら@"
-	db "げんきのかたまり@"
-	db "エフェクトガード@"
-	db "シルバースプレー@"
-	db "ゴールドスプレー@"
-	db "クりィテカッター@"
-	db "しようきんし@"
-	db "おいしいみず@"
-	db "サイコソーダ@"
-	db "ミックスオレ@"
-	db "プラスパワー@"
-	db "しようきんし@"
-	db "ディフェンダー@"
-	db "スピーダー@"
-	db "スぺシャルアップ@"
-	db "コインケース@"
-	db "ダウジングマシン@"
-	db "ポケモンのふえ@"
-	db "がくしゅうそうち@"
-	db "ボロのつりざお@"
-	db "いいつりざお@"
-	db "しようきんし@"
-	db "すごいつりざお@"
-	db "ポイントアップ@"
-	db "ピーピーエイド@"
-	db "ピーピーりカバー@"
-	db "ピーピーエイダー@"
-	db "しんぴのはなびら@"
-	db "しろいハネ@"
-	db "どさくさのツメ@"
-	db "ちしきのたま@"
-	db "はがねのこうら@"
-	db "アップグレード@"
-	db "ふしぎないと@"
-	db "おっきなはっぱ@"
-	db "せんせいのハり@"
-	db "しようきんし@"
-	db "とがったいし@"
-	db "くろいハネ@"
-	db "とがったまえば@"
-	db "へビのぬけがら@"
-	db "でんきぶくろ@"
-	db "もうどくバり@"
-	db "おうじゃのしるし@"
-	db "ふしぎなちから@"
-	db "いのちのおふだ@"
-	db "どくのキバ@"
-	db "とうちゅうかそう@"
-	db "りゅうのキバ@"
-	db "ぎんのこな@"
-	db "あなほりのツメ@"
-	db "しようきんし@"
-	db "おまもりこばん@"
-	db "ずつうのタネ@"
-	db "はんげきのうでわ@"
-	db "まよけのおふだ@"
-	db "ふしぎなみず@"
-	db "まがったスプーン@"
-	db "こうげきバり@"
-	db "パワーりスト@"
-	db "かたいいし@"
-	db "しようきんし@"
-	db "ぷよぷよふうせん@"
-	db "ほのおのたてがみ@"
-	db "おいしいシッポ@"
-	db "アース@"
-	db "ながねぎ@"
-	db "にげあしのハネ@"
-	db "こおりのキバ@"
-	db "かせきのかけら@"
-	db "きたないゴミ@"
-	db "おっきなしんじゅ@"
-	db "おうじゃのべルト@"
-	db "おふだ@"
-	db "のろいのおふだ@"
-	db "5えんだま@"
-	db "まもりのいと@"
-	db "しげきだま@"
-	db "おちつきのみ@"
-	db "ふといホネ@"
-	db "きあいだま@"
-	db "しようきんし@"
-	db "みきりだま@"
-	db "ながいした@"
-	db "ふくびきけん@"
-	db "かわらずのいし@"
-	db "とがったツノ@"
-	db "しあわせタマゴ@"
-	db "ながいツタ@"
-	db "ははのあい@"
-	db "えんまく@"
-	db "しめったツノ@"
-	db "スケボー@"
-	db "まっかなほうせき@"
-	db "みえないカべ@"
-	db "するどいカマ@"
-	db "しようきんし@"
-	db "こおりのビキニ@"
-	db "いかずちのキバ@"
-	db "ほのおのツメ@"
-	db "2ほんのツノ@"
-	db "ごすんくぎ@"
-	db "きのみ@"
-	db "りンゴ@"
-	db "メタルコート@"
-	db "きれいなシッポ@"
-	db "みずのシッポ@"
-	db "たべのこし@"
-	db "こおりのつばさ@"
-	db "かみなりのつばさ@"
-	db "ほのおのつばさ@"
-	db "しようきんし@"
-	db "りゅうのウロコ@"
-	db "はかいのいでんし@"
-	db "こころのいし@"
-	db "ほのおのシッポ@"
-	db "かみなりのシッポ@"
-	db "せいなるはい@"
-	db "わざマシンホルダ@"
-	db "メール@"
-	db "ボールホルダ@"
-	db "どうぐ@"
-	db "だいじなどうぐ@"
-	db "どくのいし@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "しようきんし@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "しようきんし@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "しようきんし@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "みしよう@"
-	db "わざマシン01@"
-	db "わざマシン02@"
-	db "わざマシン03@"
-	db "わざマシン04@"
-	db "しようきんし@"
-	db "わざマシン05@"
-	db "わざマシン06@"
-	db "わざマシン07@"
-	db "わざマシン08@"
-	db "わざマシン09@"
-	db "わざマシン10@"
-	db "わざマシン11@"
-	db "わざマシン12@"
-	db "わざマシン13@"
-	db "わざマシン14@"
-	db "わざマシン15@"
-	db "わざマシン16@"
-	db "わざマシン17@"
-	db "わざマシン18@"
-	db "わざマシン19@"
-	db "わざマシン20@"
-	db "わざマシン21@"
-	db "わざマシン22@"
-	db "わざマシン23@"
-	db "わざマシン24@"
-	db "わざマシン25@"
-	db "わざマシン26@"
-	db "わざマシン27@"
-	db "わざマシン28@"
-	db "しようきんし@"
-	db "わざマシン29@"
-	db "わざマシン30@"
-	db "わざマシン31@"
-	db "わざマシン32@"
-	db "わざマシン33@"
-	db "わざマシン34@"
-	db "わざマシン35@"
-	db "わざマシン36@"
-	db "わざマシン37@"
-	db "わざマシン38@"
-	db "わざマシン39@"
-	db "わざマシン40@"
-	db "わざマシン41@"
-	db "わざマシン42@"
-	db "わざマシン43@"
-	db "わざマシン44@"
-	db "わざマシン45@"
-	db "わざマシン46@"
-	db "わざマシン47@"
-	db "わざマシン48@"
-	db "わざマシン49@"
-	db "わざマシン50@"
-	db "ひでんマシン01@"
-	db "ひでんマシン02@"
-	db "ひでんマシン03@"
-	db "ひでんマシン04@"
-	db "ひでんマシン05@"
-	db "ひでんマシン06@"
-	db "ひでんマシン07@"
-	db "しようきんし@"
+	db "マスターボール@" ; MASTER_BALL
+	db "ハイパーボール@" ; ULTRA_BALL
+	db "しようきんし@" ; 03
+	db "スーパーボール@" ; GREAT_BALL
+	db "モンスターボール@" ; POKE_BALL
+	db "タウンマップ@" ; TOWN_MAP
+	db "じてんしゃ@" ; BICYCLE
+	db "つきのいし@" ; MOON_STONE
+	db "どくけし@" ; ANTIDOTE
+	db "やけどなおし@" ; BURN_HEAL
+	db "こおりなおし@" ; ICE_HEAL
+	db "ねむけざまし@" ; AWAKENING
+	db "まひなおし@" ; PARLYZ_HEAL
+	db "かいふくのくすり@" ; FULL_RESTORE
+	db "まんたんのくすり@" ; MAX_POTION
+	db "すごいキズぐすり@" ; HYPER_POTION
+	db "いいキズぐすり@" ; SUPER_POTION
+	db "キズぐすり@" ; POTION
+	db "あなぬけのヒモ@" ; ESCAPE_ROPE
+	db "むしよけスプレー@" ; REPEL
+	db "ピーピーマックス@" ; MAX_ELIXER
+	db "ほのおのいし@" ; FIRE_STONE
+	db "かみなりのいし@" ; THUNDERSTONE
+	db "みずのいし@" ; WATER_STONE
+	db "しようきんし@" ; 19
+	db "マックスアップ@" ; HP_UP
+	db "タウりン@" ; PROTEIN
+	db "ブロムへキシン@" ; IRON
+	db "インドメタシン@" ; CARBOS
+	db "しようきんし@" ; 1E
+	db "りゾチウム@" ; CALCIUM
+	db "ふしぎなアメ@" ; RARE_CANDY
+	db "ヨクアタール@" ; X_ACCURACY
+	db "りーフのいし@" ; LEAF_STONE
+	db "しようきんし@" ; 23
+	db "きんのたま@" ; NUGGET
+	db "ピッピにんぎょう@" ; POKE_DOLL
+	db "なんでもなおし@" ; FULL_HEAL
+	db "げんきのかけら@" ; REVIVE
+	db "げんきのかたまり@" ; MAX_REVIVE
+	db "エフェクトガード@" ; GUARD_SPEC
+	db "シルバースプレー@" ; SUPER_REPEL
+	db "ゴールドスプレー@" ; MAX_REPEL
+	db "クりィテカッター@" ; DIRE_HIT
+	db "しようきんし@" ; 2D
+	db "おいしいみず@" ; FRESH_WATER
+	db "サイコソーダ@" ; SODA_POP
+	db "ミックスオレ@" ; LEMONADE
+	db "プラスパワー@" ; X_ATTACK
+	db "しようきんし@" ; 32
+	db "ディフェンダー@" ; X_DEFEND
+	db "スピーダー@" ; X_SPEED
+	db "スぺシャルアップ@" ; X_SPECIAL
+	db "コインケース@" ; COIN_CASE
+	db "ダウジングマシン@" ; ITEMFINDER
+	db "ポケモンのふえ@" ; POKE_FLUTE
+	db "がくしゅうそうち@" ; EXP_SHARE
+	db "ボロのつりざお@" ; OLD_ROD
+	db "いいつりざお@" ; GOOD_ROD
+	db "しようきんし@" ; 3C
+	db "すごいつりざお@" ; SUPER_ROD
+	db "ポイントアップ@" ; PP_UP
+	db "ピーピーエイド@" ; ETHER
+	db "ピーピーりカバー@" ; MAX_ETHER
+	db "ピーピーエイダー@" ; ELIXER
+	db "しんぴのはなびら@" ; MYSTIC_PETAL
+	db "しろいハネ@" ; WHITE_FEATHER
+	db "どさくさのツメ@" ; CONFUSE_CLAW
+	db "ちしきのたま@" ; WISDOM_ORB
+	db "はがねのこうら@" ; STEEL_SHELL
+	db "アップグレード@" ; UP_GRADE
+	db "ふしぎないと@" ; STRANGE_THREAD
+	db "おっきなはっぱ@" ; BIG_LEAF
+	db "せんせいのハり@" ; QUICK_NEEDLE
+	db "しようきんし@" ; 4B
+	db "とがったいし@" ; SHARP_STONE
+	db "くろいハネ@" ; BLACK_FEATHER
+	db "とがったまえば@" ; SHARP_FANG
+	db "へビのぬけがら@" ; SNAKESKIN
+	db "でんきぶくろ@" ; ELECTRIC_POUCH
+	db "もうどくバり@" ; TOXIC_NEEDLE
+	db "おうじゃのしるし@" ; KINGS_ROCK
+	db "ふしぎなちから@" ; STRANGE_POWER
+	db "いのちのおふだ@" ; LIFE_TAG
+	db "どくのキバ@" ; POISON_FANG
+	db "とうちゅうかそう@" ; CORDYCEPS
+	db "りゅうのキバ@" ; DRAGON_FANG
+	db "ぎんのこな@" ; SILVERPOWDER
+	db "あなほりのツメ@" ; DIGGING_CLAW
+	db "しようきんし@" ; 5A
+	db "おまもりこばん@" ; AMULET_COIN
+	db "ずつうのタネ@" ; MIGRAINE_SEED
+	db "はんげきのうでわ@" ; COUNTER_CUFF
+	db "まよけのおふだ@" ; TALISMAN_TAG
+	db "ふしぎなみず@" ; STRANGE_WATER
+	db "まがったスプーン@" ; TWISTEDSPOON
+	db "こうげきバり@" ; ATTACK_NEEDLE
+	db "パワーりスト@" ; POWER_BRACER
+	db "かたいいし@" ; HARD_STONE
+	db "しようきんし@" ; 64
+	db "ぷよぷよふうせん@" ; JIGGLING_BALLOON
+	db "ほのおのたてがみ@" ; FIRE_MANE
+	db "おいしいシッポ@" ; SLOWPOKETAIL
+	db "アース@" ; EARTH
+	db "ながねぎ@" ; STICK
+	db "にげあしのハネ@" ; FLEE_FEATHER
+	db "こおりのキバ@" ; ICE_FANG
+	db "かせきのかけら@" ; FOSSIL_SHARD
+	db "きたないゴミ@" ; GROSS_GARBAGE
+	db "おっきなしんじゅ@" ; BIG_PEARL
+	db "おうじゃのべルト@" ; CHAMPION_BELT
+	db "おふだ@" ; TAG
+	db "のろいのおふだ@" ; SPELL_TAG
+	db "5えんだま@" ; 5_YEN_COIN
+	db "まもりのいと@" ; GUARD_THREAD
+	db "しげきだま@" ; STIMULUS_ORB
+	db "おちつきのみ@" ; CALM_BERRY
+	db "ふといホネ@" ; THICK_CLUB
+	db "きあいだま@" ; FOCUS_ORB
+	db "しようきんし@" ; 78
+	db "みきりだま@" ; DETECT_ORB
+	db "ながいした@" ; LONG_TONGUE
+	db "ふくびきけん@" ; LOTTO_TICKET
+	db "かわらずのいし@" ; EVERSTONE
+	db "とがったツノ@" ; SHARP_HORN
+	db "しあわせタマゴ@" ; LUCKY_EGG
+	db "ながいツタ@" ; LONG_VINE
+	db "ははのあい@" ; MOMS_LOVE
+	db "えんまく@" ; SMOKESCREEN
+	db "しめったツノ@" ; WET_HORN
+	db "スケボー@" ; SKATEBOARD
+	db "まっかなほうせき@" ; CRIMSON_JEWEL
+	db "みえないカべ@" ; INVISIBLE_WALL
+	db "するどいカマ@" ; SHARP_SCYTHE
+	db "しようきんし@" ; 87
+	db "こおりのビキニ@" ; ICE_BIKINI
+	db "いかずちのキバ@" ; THUNDER_FANG
+	db "ほのおのツメ@" ; FIRE_CLAW
+	db "2ほんのツノ@" ; TWIN_HORNS
+	db "ごすんくぎ@" ; SPIKE
+	db "きのみ@" ; BERRY
+	db "りンゴ@" ; APPLE
+	db "メタルコート@" ; METAL_COAT
+	db "きれいなシッポ@" ; PRETTY_TAIL
+	db "みずのシッポ@" ; WATER_TAIL
+	db "たべのこし@" ; LEFTOVERS
+	db "こおりのつばさ@" ; ICE_WING
+	db "かみなりのつばさ@" ; THUNDER_WING
+	db "ほのおのつばさ@" ; FIRE_WING
+	db "しようきんし@" ; 96
+	db "りゅうのウロコ@" ; DRAGON_SCALE
+	db "はかいのいでんし@" ; BERSERK_GENE
+	db "こころのいし@" ; HEART_STONE
+	db "ほのおのシッポ@" ; FIRE_TAIL
+	db "かみなりのシッポ@" ; THUNDER_TAIL
+	db "せいなるはい@" ; SACRED_ASH
+	db "わざマシンホルダ@" ; TM_HOLDER
+	db "メール@" ; MAIL
+	db "ボールホルダ@" ; BALL_HOLDER
+	db "どうぐ@" ; BAG
+	db "だいじなどうぐ@" ; IMPORTANT_BAG
+	db "どくのいし@" ; POISON_STONE
+	db "みしよう@" ; A3
+	db "みしよう@" ; A4
+	db "みしよう@" ; A5
+	db "みしよう@" ; A6
+	db "みしよう@" ; A7
+	db "みしよう@" ; A8
+	db "みしよう@" ; A9
+	db "しようきんし@" ; AA
+	db "みしよう@" ; AB
+	db "みしよう@" ; AC
+	db "みしよう@" ; AD
+	db "みしよう@" ; AE
+	db "みしよう@" ; AF
+	db "みしよう@" ; B0
+	db "みしよう@" ; B1
+	db "みしよう@" ; B2
+	db "みしよう@" ; B3
+	db "しようきんし@" ; B4
+	db "みしよう@" ; B5
+	db "みしよう@" ; B6
+	db "みしよう@" ; B7
+	db "みしよう@" ; B8
+	db "みしよう@" ; B9
+	db "みしよう@" ; BA
+	db "みしよう@" ; BB
+	db "みしよう@" ; BC
+	db "みしよう@" ; BD
+	db "しようきんし@" ; BE
+	db "みしよう@" ; BF
+	db "みしよう@" ; C0
+	db "みしよう@" ; C1
+	db "みしよう@" ; C2
+	db "みしよう@" ; C3
+	db "わざマシン01@" ; TM01
+	db "わざマシン02@" ; TM02
+	db "わざマシン03@" ; TM03
+	db "わざマシン04@" ; TM04
+	db "しようきんし@" ; C8
+	db "わざマシン05@" ; TM05
+	db "わざマシン06@" ; TM06
+	db "わざマシン07@" ; TM07
+	db "わざマシン08@" ; TM08
+	db "わざマシン09@" ; TM09
+	db "わざマシン10@" ; TM10
+	db "わざマシン11@" ; TM11
+	db "わざマシン12@" ; TM12
+	db "わざマシン13@" ; TM13
+	db "わざマシン14@" ; TM14
+	db "わざマシン15@" ; TM15
+	db "わざマシン16@" ; TM16
+	db "わざマシン17@" ; TM17
+	db "わざマシン18@" ; TM18
+	db "わざマシン19@" ; TM19
+	db "わざマシン20@" ; TM20
+	db "わざマシン21@" ; TM21
+	db "わざマシン22@" ; TM22
+	db "わざマシン23@" ; TM23
+	db "わざマシン24@" ; TM24
+	db "わざマシン25@" ; TM25
+	db "わざマシン26@" ; TM26
+	db "わざマシン27@" ; TM27
+	db "わざマシン28@" ; TM28
+	db "しようきんし@" ; E1
+	db "わざマシン29@" ; TM29
+	db "わざマシン30@" ; TM30
+	db "わざマシン31@" ; TM31
+	db "わざマシン32@" ; TM32
+	db "わざマシン33@" ; TM33
+	db "わざマシン34@" ; TM34
+	db "わざマシン35@" ; TM35
+	db "わざマシン36@" ; TM36
+	db "わざマシン37@" ; TM37
+	db "わざマシン38@" ; TM38
+	db "わざマシン39@" ; TM39
+	db "わざマシン40@" ; TM40
+	db "わざマシン41@" ; TM41
+	db "わざマシン42@" ; TM42
+	db "わざマシン43@" ; TM43
+	db "わざマシン44@" ; TM44
+	db "わざマシン45@" ; TM45
+	db "わざマシン46@" ; TM46
+	db "わざマシン47@" ; TM47
+	db "わざマシン48@" ; TM48
+	db "わざマシン49@" ; TM49
+	db "わざマシン50@" ; TM50
+	db "ひでんマシン01@" ; HM01
+	db "ひでんマシン02@" ; HM02
+	db "ひでんマシン03@" ; HM03
+	db "ひでんマシン04@" ; HM04
+	db "ひでんマシン05@" ; HM05
+	db "ひでんマシン06@" ; HM06
+	db "ひでんマシン07@" ; HM07
+	db "しようきんし@" ; FF

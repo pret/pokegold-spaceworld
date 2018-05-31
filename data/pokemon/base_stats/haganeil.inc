@@ -3,7 +3,7 @@
 	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_STEEL, TYPE_GROUND ; type
+	db TYPE_METAL, TYPE_GROUND ; type
 	db 255 ; catch rate
 	db 100 ; base exp
 	db ITEM_APPLE, ITEM_METAL_COAT ; items

@@ -3,7 +3,7 @@
 	db  90, 110,  50, 110,  55,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_WATER, TYPE_STEEL ; type
+	db TYPE_WATER, TYPE_METAL ; type
 	db 255 ; catch rate
 	db 100 ; base exp
 	db ITEM_BERRY, ITEM_WATER_TAIL ; items

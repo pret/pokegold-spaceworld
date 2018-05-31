@@ -3,7 +3,7 @@
 	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_FLYING, TYPE_STEEL ; type
+	db TYPE_FLYING, TYPE_METAL ; type
 	db 255 ; catch rate
 	db 100 ; base exp
 	db ITEM_BERRY, ITEM_BLACK_FEATHER ; items

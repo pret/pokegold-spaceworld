@@ -3,254 +3,254 @@ INCLUDE "constants.asm"
 SECTION "MoveNames", ROMX[$52A1], BANK[$10]
 
 MoveNames::
-	db "はたく@"
-	db "からてチョップ@"
-	db "おうふくビンタ@"
-	db "れんぞくパンチ@"
-	db "メガトンパンチ@"
-	db "ねこにこばん@"
-	db "ほのおのパンチ@"
-	db "れいとうパンチ@"
-	db "かみなりパンチ@"
-	db "ひっかく@"
-	db "はさむ@"
-	db "ハサミギロチン@"
-	db "かまいたち@"
-	db "つるぎのまい@"
-	db "いあいぎり@"
-	db "かぜおこし@"
-	db "つばさでうつ@"
-	db "ふきとばし@"
-	db "そらをとぶ@"
-	db "しめつける@"
-	db "たたきつける@"
-	db "つるのムチ@"
-	db "ふみつけ@"
-	db "にどげり@"
-	db "メガトンキック@"
-	db "とびげり@"
-	db "まわしげり@"
-	db "すなかけ@"
-	db "ずつき@"
-	db "つのでつく@"
-	db "みだれづき@"
-	db "つのドりル@"
-	db "たいあたり@"
-	db "のしかかり@"
-	db "まきつく@"
-	db "とっしん@"
-	db "あばれる@"
-	db "すてみタックル@"
-	db "しっぽをふる@"
-	db "どくばり@"
-	db "ダブルニードル@"
-	db "ミサイルばり@"
-	db "にらみつける@"
-	db "かみつく@"
-	db "なきごえ@"
-	db "ほえる@"
-	db "うたう@"
-	db "ちょうおんぱ@"
-	db "ソニックブーム@"
-	db "かなしばり@"
-	db "ようかいえき@"
-	db "ひのこ@"
-	db "かえんほうしゃ@"
-	db "しろいきり@"
-	db "みずでっぽう@"
-	db "ハイドロポンプ@"
-	db "なみのり@"
-	db "れいとうビーム@"
-	db "ふぶき@"
-	db "サイケこうせん@"
-	db "バブルこうせん@"
-	db "オーロラビーム@"
-	db "はかいこうせん@"
-	db "つつく@"
-	db "ドりルくちばし@"
-	db "じごくぐるま@"
-	db "けたぐり@"
-	db "カウンター@"
-	db "ちきゅうなげ@"
-	db "かいりき@"
-	db "すいとる@"
-	db "メガドレイン@"
-	db "やどりぎのタネ@"
-	db "せいちょう@"
-	db "はっぱカッター@"
-	db "ソーラービーム@"
-	db "どくのこな@"
-	db "しびれごな@"
-	db "ねむりごな@"
-	db "はなびらのまい@"
-	db "いとをはく@"
-	db "りゅうのいかり@"
-	db "ほのおのうず@"
-	db "でんきショック@"
-	db "10まんボルト@"
-	db "でんじは@"
-	db "かみなり@"
-	db "いわおとし@"
-	db "じしん@"
-	db "じわれ@"
-	db "あなをほる@"
-	db "どくどく@"
-	db "ねんりき@"
-	db "サイコキネシス@"
-	db "さいみんじゅつ@"
-	db "ヨガのポーズ@"
-	db "こうそくいどう@"
-	db "でんこうせっか@"
-	db "いかり@"
-	db "テレポート@"
-	db "ナイトへッド@"
-	db "ものまね@"
-	db "いやなおと@"
-	db "かげぶんしん@"
-	db "じこさいせい@"
-	db "かたくなる@"
-	db "ちいさくなる@"
-	db "えんまく@"
-	db "あやしいひかり@"
-	db "からにこもる@"
-	db "まるくなる@"
-	db "バりアー@"
-	db "ひかりのかべ@"
-	db "くろいきり@"
-	db "りフレクター@"
-	db "きあいだめ@"
-	db "がまん@"
-	db "ゆびをふる@"
-	db "オウムがえし@"
-	db "じばく@"
-	db "タマゴばくだん@"
-	db "したでなめる@"
-	db "スモッグ@"
-	db "へドロこうげき@"
-	db "ホネこんぼう@"
-	db "だいもんじ@"
-	db "たきのぼり@"
-	db "からではさむ@"
-	db "スピードスター@"
-	db "ロケットずつき@"
-	db "とげキャノン@"
-	db "からみつく@"
-	db "ドわすれ@"
-	db "スプーンまげ@"
-	db "タマゴうみ@"
-	db "とびひざげり@"
-	db "へびにらみ@"
-	db "ゆめくい@"
-	db "どくガス@"
-	db "たまなげ@"
-	db "きゅうけつ@"
-	db "あくまのキッス@"
-	db "ゴッドバード@"
-	db "へんしん@"
-	db "あわ@"
-	db "ピヨピヨパンチ@"
-	db "キノコのほうし@"
-	db "フラッシュ@"
-	db "サイコウェーブ@"
-	db "はねる@"
-	db "とける@"
-	db "クラブハンマー@"
-	db "だいばくはつ@"
-	db "みだれひっかき@"
-	db "ホネブーメラン@"
-	db "ねむる@"
-	db "いわなだれ@"
-	db "ひっさつまえば@"
-	db "かくばる@"
-	db "テクスチャー@"
-	db "トライアタック@"
-	db "いかりのまえば@"
-	db "きりさく@"
-	db "みがわり@"
-	db "わるあがき@"
-	db "スケッチ@"
-	db "トりプルキック@"
-	db "どろぼう@"
-	db "クモのす@"
-	db "こころのめ@"
-	db "あくむ@"
-	db "かえんぐるま@"
-	db "いびき@"
-	db "クギをうつ@"
-	db "じたばた@"
-	db "テクスチャー2@"
-	db "こばんなげ@"
-	db "わたほうし@"
-	db "きしかいせい@"
-	db "うらみ@"
-	db "こなゆき@"
-	db "まもる@"
-	db "マッハパンチ@"
-	db "こわいかお@"
-	db "だましうち@"
-	db "てんしのキッス@"
-	db "はらだいこ@"
-	db "へドロばくだん@"
-	db "どろかけ@"
-	db "オクタンほう@"
-	db "まきびし@"
-	db "でんじほう@"
-	db "みやぶる@"
-	db "みちづれ@"
-	db "ほろびのうた@"
-	db "シンクロ@"
-	db "みきり@"
-	db "ホネホネロック@"
-	db "ロックオン@"
-	db "げきりん@"
-	db "すなあらし@"
-	db "ギガドレイン@"
-	db "こらえる@"
-	db "あまえる@"
-	db "ころがる@"
-	db "みねうち@"
-	db "いばる@"
-	db "ミルクのみ@"
-	db "スパーク@"
-	db "れんぞくぎり@"
-	db "はがねのつばさ@"
-	db "ストーカー@"
-	db "メロメロ@"
-	db "ねごと@"
-	db "すずのおと@"
-	db "おんがえし@"
-	db "プレゼント@"
-	db "やつあたり@"
-	db "しんぴのまもり@"
-	db "いたみわけ@"
-	db "せいなるほのお@"
-	db "マグニチュード@"
-	db "ばくれつパンチ@"
-	db "メガホーン@"
-	db "りゅうのいぶき@"
-	db "バトンタッチ@"
-	db "アンコール@"
-	db "おいうち@"
-	db "こうそくスピン@"
-	db "えさをまく@"
-	db "アイアンテール@"
-	db "いしあたま@"
-	db "あてみなげ@"
-	db "あさのひざし@"
-	db "こうごうせい@"
-	db "つきのひかり@"
-	db "めざめるパワー@"
-	db "クロスカッター@"
-	db "たつまき@"
-	db "あまごい@"
-	db "にほんばれ@"
-	db "？@"
-	db "？@"
-	db "？@"
-	db "ひっこぬく@"
-	db "かぜにのる@"
-	db "みずあそび@"
-	db "てつわん@"
-	db "ひかりゴケ@"
-	db "うずしお@"
-	db "とびはねる@"
+	db "はたく@" ; POUND
+	db "からてチョップ@" ; KARATE_CHOP
+	db "おうふくビンタ@" ; DOUBLESLAP
+	db "れんぞくパンチ@" ; COMET_PUNCH
+	db "メガトンパンチ@" ; MEGA_PUNCH
+	db "ねこにこばん@" ; PAY_DAY
+	db "ほのおのパンチ@" ; FIRE_PUNCH
+	db "れいとうパンチ@" ; ICE_PUNCH
+	db "かみなりパンチ@" ; THUNDERPUNCH
+	db "ひっかく@" ; SCRATCH
+	db "はさむ@" ; VICEGRIP
+	db "ハサミギロチン@" ; GUILLOTINE
+	db "かまいたち@" ; RAZOR_WIND
+	db "つるぎのまい@" ; SWORDS_DANCE
+	db "いあいぎり@" ; CUT
+	db "かぜおこし@" ; GUST
+	db "つばさでうつ@" ; WING_ATTACK
+	db "ふきとばし@" ; WHIRLWIND
+	db "そらをとぶ@" ; FLY
+	db "しめつける@" ; BIND
+	db "たたきつける@" ; SLAM
+	db "つるのムチ@" ; VINE_WHIP
+	db "ふみつけ@" ; STOMP
+	db "にどげり@" ; DOUBLE_KICK
+	db "メガトンキック@" ; MEGA_KICK
+	db "とびげり@" ; JUMP_KICK
+	db "まわしげり@" ; ROLLING_KICK
+	db "すなかけ@" ; SAND_ATTACK
+	db "ずつき@" ; HEADBUTT
+	db "つのでつく@" ; HORN_ATTACK
+	db "みだれづき@" ; FURY_ATTACK
+	db "つのドりル@" ; HORN_DRILL
+	db "たいあたり@" ; TACKLE
+	db "のしかかり@" ; BODY_SLAM
+	db "まきつく@" ; WRAP
+	db "とっしん@" ; TAKE_DOWN
+	db "あばれる@" ; THRASH
+	db "すてみタックル@" ; DOUBLE_EDGE
+	db "しっぽをふる@" ; TAIL_WHIP
+	db "どくばり@" ; POISON_STING
+	db "ダブルニードル@" ; TWINEEDLE
+	db "ミサイルばり@" ; PIN_MISSILE
+	db "にらみつける@" ; LEER
+	db "かみつく@" ; BITE
+	db "なきごえ@" ; GROWL
+	db "ほえる@" ; ROAR
+	db "うたう@" ; SING
+	db "ちょうおんぱ@" ; SUPERSONIC
+	db "ソニックブーム@" ; SONICBOOM
+	db "かなしばり@" ; DISABLE
+	db "ようかいえき@" ; ACID
+	db "ひのこ@" ; EMBER
+	db "かえんほうしゃ@" ; FLAMETHROWER
+	db "しろいきり@" ; MIST
+	db "みずでっぽう@" ; WATER_GUN
+	db "ハイドロポンプ@" ; HYDRO_PUMP
+	db "なみのり@" ; SURF
+	db "れいとうビーム@" ; ICE_BEAM
+	db "ふぶき@" ; BLIZZARD
+	db "サイケこうせん@" ; PSYBEAM
+	db "バブルこうせん@" ; BUBBLEBEAM
+	db "オーロラビーム@" ; AURORA_BEAM
+	db "はかいこうせん@" ; HYPER_BEAM
+	db "つつく@" ; PECK
+	db "ドりルくちばし@" ; DRILL_PECK
+	db "じごくぐるま@" ; SUBMISSION
+	db "けたぐり@" ; LOW_KICK
+	db "カウンター@" ; COUNTER
+	db "ちきゅうなげ@" ; SEISMIC_TOSS
+	db "かいりき@" ; STRENGTH
+	db "すいとる@" ; ABSORB
+	db "メガドレイン@" ; MEGA_DRAIN
+	db "やどりぎのタネ@" ; LEECH_SEED
+	db "せいちょう@" ; GROWTH
+	db "はっぱカッター@" ; RAZOR_LEAF
+	db "ソーラービーム@" ; SOLARBEAM
+	db "どくのこな@" ; POISONPOWDER
+	db "しびれごな@" ; STUN_SPORE
+	db "ねむりごな@" ; SLEEP_POWDER
+	db "はなびらのまい@" ; PETAL_DANCE
+	db "いとをはく@" ; STRING_SHOT
+	db "りゅうのいかり@" ; DRAGON_RAGE
+	db "ほのおのうず@" ; FIRE_SPIN
+	db "でんきショック@" ; THUNDERSHOCK
+	db "10まんボルト@" ; THUNDERBOLT
+	db "でんじは@" ; THUNDER_WAVE
+	db "かみなり@" ; THUNDER
+	db "いわおとし@" ; ROCK_THROW
+	db "じしん@" ; EARTHQUAKE
+	db "じわれ@" ; FISSURE
+	db "あなをほる@" ; DIG
+	db "どくどく@" ; TOXIC
+	db "ねんりき@" ; CONFUSION
+	db "サイコキネシス@" ; PSYCHIC_M
+	db "さいみんじゅつ@" ; HYPNOSIS
+	db "ヨガのポーズ@" ; MEDITATE
+	db "こうそくいどう@" ; AGILITY
+	db "でんこうせっか@" ; QUICK_ATTACK
+	db "いかり@" ; RAGE
+	db "テレポート@" ; TELEPORT
+	db "ナイトへッド@" ; NIGHT_SHADE
+	db "ものまね@" ; MIMIC
+	db "いやなおと@" ; SCREECH
+	db "かげぶんしん@" ; DOUBLE_TEAM
+	db "じこさいせい@" ; RECOVER
+	db "かたくなる@" ; HARDEN
+	db "ちいさくなる@" ; MINIMIZE
+	db "えんまく@" ; SMOKESCREEN
+	db "あやしいひかり@" ; CONFUSE_RAY
+	db "からにこもる@" ; WITHDRAW
+	db "まるくなる@" ; DEFENSE_CURL
+	db "バりアー@" ; BARRIER
+	db "ひかりのかべ@" ; LIGHT_SCREEN
+	db "くろいきり@" ; HAZE
+	db "りフレクター@" ; REFLECT
+	db "きあいだめ@" ; FOCUS_ENERGY
+	db "がまん@" ; BIDE
+	db "ゆびをふる@" ; METRONOME
+	db "オウムがえし@" ; MIRROR_MOVE
+	db "じばく@" ; SELFDESTRUCT
+	db "タマゴばくだん@" ; EGG_BOMB
+	db "したでなめる@" ; LICK
+	db "スモッグ@" ; SMOG
+	db "へドロこうげき@" ; SLUDGE
+	db "ホネこんぼう@" ; BONE_CLUB
+	db "だいもんじ@" ; FIRE_BLAST
+	db "たきのぼり@" ; WATERFALL
+	db "からではさむ@" ; CLAMP
+	db "スピードスター@" ; SWIFT
+	db "ロケットずつき@" ; SKULL_BASH
+	db "とげキャノン@" ; SPIKE_CANNON
+	db "からみつく@" ; CONSTRICT
+	db "ドわすれ@" ; AMNESIA
+	db "スプーンまげ@" ; KINESIS
+	db "タマゴうみ@" ; SOFTBOILED
+	db "とびひざげり@" ; HI_JUMP_KICK
+	db "へびにらみ@" ; GLARE
+	db "ゆめくい@" ; DREAM_EATER
+	db "どくガス@" ; POISON_GAS
+	db "たまなげ@" ; BARRAGE
+	db "きゅうけつ@" ; LEECH_LIFE
+	db "あくまのキッス@" ; LOVELY_KISS
+	db "ゴッドバード@" ; SKY_ATTACK
+	db "へんしん@" ; TRANSFORM
+	db "あわ@" ; BUBBLE
+	db "ピヨピヨパンチ@" ; DIZZY_PUNCH
+	db "キノコのほうし@" ; SPORE
+	db "フラッシュ@" ; FLASH
+	db "サイコウェーブ@" ; PSYWAVE
+	db "はねる@" ; SPLASH
+	db "とける@" ; ACID_ARMOR
+	db "クラブハンマー@" ; CRABHAMMER
+	db "だいばくはつ@" ; EXPLOSION
+	db "みだれひっかき@" ; FURY_SWIPES
+	db "ホネブーメラン@" ; BONEMERANG
+	db "ねむる@" ; REST
+	db "いわなだれ@" ; ROCK_SLIDE
+	db "ひっさつまえば@" ; HYPER_FANG
+	db "かくばる@" ; SHARPEN
+	db "テクスチャー@" ; CONVERSION
+	db "トライアタック@" ; TRI_ATTACK
+	db "いかりのまえば@" ; SUPER_FANG
+	db "きりさく@" ; SLASH
+	db "みがわり@" ; SUBSTITUTE
+	db "わるあがき@" ; STRUGGLE
+	db "スケッチ@" ; SKETCH
+	db "トりプルキック@" ; TRIPLE_KICK
+	db "どろぼう@" ; THIEF
+	db "クモのす@" ; SPIDER_WEB
+	db "こころのめ@" ; MIND_READER
+	db "あくむ@" ; NIGHTMARE
+	db "かえんぐるま@" ; FLAME_WHEEL
+	db "いびき@" ; SNORE
+	db "クギをうつ@" ; NAIL_DOWN
+	db "じたばた@" ; FLAIL
+	db "テクスチャー2@" ; CONVERSION2
+	db "こばんなげ@" ; COIN_HURL
+	db "わたほうし@" ; COTTON_SPORE
+	db "きしかいせい@" ; REVERSAL
+	db "うらみ@" ; SPITE
+	db "こなゆき@" ; POWDER_SNOW
+	db "まもる@" ; PROTECT
+	db "マッハパンチ@" ; MACH_PUNCH
+	db "こわいかお@" ; SCARY_FACE
+	db "だましうち@" ; FAINT_ATTACK
+	db "てんしのキッス@" ; SWEET_KISS
+	db "はらだいこ@" ; BELLY_DRUM
+	db "へドロばくだん@" ; SLUDGE_BOMB
+	db "どろかけ@" ; MUD_SLAP
+	db "オクタンほう@" ; OCTAZOOKA
+	db "まきびし@" ; SPIKES
+	db "でんじほう@" ; ZAP_CANNON
+	db "みやぶる@" ; FORESIGHT
+	db "みちづれ@" ; DESTINY_BOND
+	db "ほろびのうた@" ; PERISH_SONG
+	db "シンクロ@" ; SYNCHRONIZE
+	db "みきり@" ; DETECT
+	db "ホネホネロック@" ; BONE_LOCK
+	db "ロックオン@" ; LOCK_ON
+	db "げきりん@" ; OUTRAGE
+	db "すなあらし@" ; SANDSTORM
+	db "ギガドレイン@" ; GIGA_DRAIN
+	db "こらえる@" ; ENDURE
+	db "あまえる@" ; CHARM
+	db "ころがる@" ; ROLLOUT
+	db "みねうち@" ; FALSE_SWIPE
+	db "いばる@" ; SWAGGER
+	db "ミルクのみ@" ; MILK_DRINK
+	db "スパーク@" ; SPARK
+	db "れんぞくぎり@" ; FURY_CUTTER
+	db "はがねのつばさ@" ; STEEL_WING
+	db "ストーカー@" ; STALKER
+	db "メロメロ@" ; ATTRACT
+	db "ねごと@" ; SLEEP_TALK
+	db "すずのおと@" ; BELL_CHIME
+	db "おんがえし@" ; RETURN
+	db "プレゼント@" ; PRESENT
+	db "やつあたり@" ; FRUSTRATION
+	db "しんぴのまもり@" ; SAFEGUARD
+	db "いたみわけ@" ; PAIN_SPLIT
+	db "せいなるほのお@" ; SACRED_FIRE
+	db "マグニチュード@" ; MAGNITUDE
+	db "ばくれつパンチ@" ; DYNAMICPUNCH
+	db "メガホーン@" ; MEGAPHONE
+	db "りゅうのいぶき@" ; DRAGONBREATH
+	db "バトンタッチ@" ; BATON_PASS
+	db "アンコール@" ; ENCORE
+	db "おいうち@" ; PURSUIT
+	db "こうそくスピン@" ; RAPID_SPIN
+	db "えさをまく@" ; TEMPT
+	db "アイアンテール@" ; IRON_TAIL
+	db "いしあたま@" ; ROCK_HEAD
+	db "あてみなげ@" ; VITAL_THROW
+	db "あさのひざし@" ; MORNING_SUN
+	db "こうごうせい@" ; SYNTHESIS
+	db "つきのひかり@" ; MOONLIGHT
+	db "めざめるパワー@" ; HIDDEN_POWER
+	db "クロスカッター@" ; CROSS_CUTTER
+	db "たつまき@" ; TWISTER
+	db "あまごい@" ; RAIN_DANCE
+	db "にほんばれ@" ; SUNNY_DAY
+	db "？@" ; F2
+	db "？@" ; F3
+	db "？@" ; F4
+	db "ひっこぬく@" ; UPROOT
+	db "かぜにのる@" ; WIND_RIDE
+	db "みずあそび@" ; WATER_SPORT
+	db "てつわん@" ; STRONG_ARM
+	db "ひかりゴケ@" ; BRIGHT_MOSS
+	db "うずしお@" ; WHIRLPOOL
+	db "とびはねる@" ; BOUNCE

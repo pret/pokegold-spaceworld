@@ -10,7 +10,7 @@ PHYSICAL_TYPES EQU const_value ; 00
 	const TYPE_BIRD     ; 06
 	const TYPE_BUG      ; 07
 	const TYPE_GHOST    ; 08
-	const TYPE_STEEL    ; 09
+	const TYPE_METAL    ; 09 STEEL
 
 UNUSED_TYPES EQU const_value ; 0a
 	const TYPE_0A       ; 0a
@@ -22,7 +22,7 @@ UNUSED_TYPES EQU const_value ; 0a
 	const TYPE_10       ; 10
 	const TYPE_11       ; 11
 	const TYPE_12       ; 12
-	const TYPE_UNKNOWN  ; 13
+	const TYPE_UNKNOWN  ; 13 (used for Metronome, not Curse)
 UNUSED_TYPES_END EQU const_value ; 14
 
 SPECIAL_TYPES EQU const_value ; 14
