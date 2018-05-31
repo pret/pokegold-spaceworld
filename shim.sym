@@ -1,12 +1,8 @@
 ; ROM0
-00:0317 DelayFrame
-00:0324 DelayFrames
 00:0884 UpdateJoypad
 00:095E UncompressSpriteData
 00:0d1a LoadFontExtra
 00:0d0a LoadFont
-00:0D2A FarCopyData
-00:0D68 CopyVideoData
 00:0DE4 CopyVideoDataOptimized
 00:0E2A ClearTileMap
 00:0e3d DrawTextBox

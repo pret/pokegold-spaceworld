@@ -8,7 +8,7 @@ RGBGFX := rgbgfx
 RGBLINK := rgblink
 RGBFIX := rgbfix
 
-RGBASMFLAGS := -E -i $(BUILD)/
+RGBASMFLAGS := -h -E -i $(BUILD)/
 tools/gfx :=
 
 ROMS := pokegold-spaceworld.gb

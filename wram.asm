@@ -85,7 +85,18 @@ SECTION "CB56", WRAM0[$CB5B]
 wcb5b:: ds 1
 wNameCategory:: ds 1
 
-SECTION "CC38", WRAM0[$CC38] ; Please merge when more is disassembled
+SECTION "Request2bpp", WRAM0[$CB62]
+
+wRequested2bpp:: db
+wRequested2bppSource:: dw
+wRequested2bppDest:: dw
+
+
+SECTION "CC38", WRAM0[$CC33] ; Please merge when more is disassembled
+
+wVBlankOccurred: db
+
+    ds 4
 
 wcc38:: ; cc38 ; TODO: wceeb in pokegold, what is this?
     db
