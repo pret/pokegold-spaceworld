@@ -111,10 +111,23 @@ wDebugWarpSelection:: ; cc39
 wSGB:: ; cc40
     db
 
-SECTION "CCB5", WRAM0[$CCB5]
+SECTION "CCAC", WRAM0[$CCAC]
 
-wSpriteFlipped:: ; ccb5
-	db 
+wSpriteCurPosX          : ds 1 ; ccac
+wSpriteCurPosY          : ds 1 ; ccad
+wSpriteWidth            : ds 1 ; ccae
+wSpriteHeight           : ds 1 ; ccaf
+wSpriteInputCurByte     : ds 1 ; ccb0
+wSpriteInputBitCounter  : ds 1 ; ccb1
+wSpriteOutputBitOffset  : ds 1 ; ccb2
+wSpriteLoadFlags        : ds 1 ; ccb3
+wSpriteUnpackMode       : ds 1 ; ccb4
+wSpriteFlipped          : ds 1 ; ccb5
+wSpriteInputPtr         : ds 2 ; ccb6
+wSpriteOutputPtr        : ds 2 ; ccb8
+wSpriteOutputPtrCached  : ds 2 ; ccba
+wSpriteDecodeTable0Ptr  : ds 2 ; ccbc
+wSpriteDecodeTable1Ptr  : ds 2 ; ccbe
 
 SECTION "CD4F", WRAM0[$CD4F]
 

@@ -1,6 +1,5 @@
 ; ROM0
 00:0884 UpdateJoypad
-00:095E UncompressSpriteData
 00:0d1a LoadFontExtra
 00:0d0a LoadFont
 00:0E2A ClearTileMap
