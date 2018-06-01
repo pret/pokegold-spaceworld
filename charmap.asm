@@ -2,8 +2,10 @@
 
 ; Control characters (see home/text.asm)
 
+	charmap "<NULL>",    $00
+
 	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"; same as "<PLAYER>" in English
-	charmap "<JP_18>",   $18 ; "ノ゛"? (ungrammatical)
+
 	charmap "<NI>",      $1d ; "に　"
 	charmap "<TTE>",     $1e ; "って"
 	charmap "<WO>",      $1f ; "を　"
@@ -44,14 +46,46 @@
 	charmap "<ROCKET>",  $5e ; "ROCKET"
 	charmap "<DEXEND>",  $5f
 
-; Actual characters (from other graphics files)
+; Other characters
 
-	; needed for _LoadFontsExtra1 (see engine/load_font.asm)
-	charmap "■",         $60 ; gfx/font/black.2bpp
-	charmap "▲",         $61 ; gfx/font/up_arrow.png
-	charmap "☎",         $62 ; gfx/font/phone_icon.2bpp
+	charmap "■", $60
+	charmap "▲", $61
+	charmap "☎", $62
+
+	charmap "D", $63
+	charmap "E", $64
+	charmap "F", $65
+	charmap "G", $66
+	charmap "H", $67
+	charmap "I", $68
+	charmap "V", $69
+	charmap "S", $6a
+	charmap "L", $6b
+	charmap "M", $6c
+
+	charmap "：", $6d
+
+	charmap "「", $70
+	charmap "」", $71
+	charmap "『", $72
+	charmap "』", $73
+	charmap "・", $74
+	charmap "…", $75
+
+	charmap "┌", $79
+	charmap "─", $7a
+	charmap "┐", $7b
+	charmap "│", $7c
+	charmap "└", $7d
+	charmap "┘", $7e
+	charmap "　", $7f
 
 ; Japanese kana
+
+	charmap "イ゛", $01
+	charmap "ヴ",  $02
+	charmap "エ゛", $03
+	charmap "オ゛", $04
 
 	charmap "ガ", $05
 	charmap "ギ", $06
@@ -69,10 +103,16 @@
 	charmap "デ", $12
 	charmap "ド", $13
 
+	charmap "ネ゛", $17
+	charmap "ノ゛", $18
+
 	charmap "バ", $19
 	charmap "ビ", $1a
 	charmap "ブ", $1b
 	charmap "ボ", $1c
+
+	charmap "ィ゛", $20
+	charmap "あ゛", $21
 
 	charmap "が", $26
 	charmap "ぎ", $27
@@ -106,24 +146,13 @@
 	charmap "ぺ", $47
 	charmap "ぽ", $48
 
-	charmap "「", $70
-	charmap "」", $71
-	charmap "『", $72
-	charmap "』", $73
-	charmap "·", $74
-	charmap "⋯", $75
+	charmap "も゜", $4d
 
+	charmap "ぃ", $6e
+	charmap "ぅ", $6f
 	charmap "ぁ", $76
 	charmap "ぇ", $77
 	charmap "ぉ", $78
-
-	charmap "┌", $79
-	charmap "─", $7a
-	charmap "┐", $7b
-	charmap "│", $7c
-	charmap "└", $7d
-	charmap "┘", $7e
-	charmap "　", $7f
 
 	charmap "ア", $80
 	charmap "イ", $81
