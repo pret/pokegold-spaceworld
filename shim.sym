@@ -47,7 +47,10 @@
 00:3E1B GetMapMusic
 00:3E2E GetMapMusic.unk_3E2E
 00:3E32 Unk_3E32 ; What the f*** is this???
+        ; ^-- it's a static assignment of music
+        ; according to some map metadata
 
+01:6114 TitleScreenInputAndTimeout
 01:53cc MainMenu
 
 02:4856 DecompTownMapTilemap
@@ -72,6 +75,9 @@
 23:4000 AnimateTilesetImpl
 23:4349 OverworldFadeOut
 23:60cc MenuMonIconGfx
+
+24:4000 SetClockDialog
+24:4239 SlotMachineGame
 
 3A:4D9D _PlayCryHeader
 3A:4E22 _PlaySFX
