@@ -1,86 +1,4 @@
-; $00-$16 are TX_* constants (see macros/scripts/text.asm)
-
-; Control characters (see home/text.asm)
-
-	charmap "<NULL>",    $00
-
-	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"; same as "<PLAYER>" in English
-
-	charmap "<NI>",      $1d ; "に　"
-	charmap "<TTE>",     $1e ; "って"
-	charmap "<WO>",      $1f ; "を　"
-
-	charmap "<TA!>",     $22 ; "た！"
-	charmap "<KOUGEKI>", $23 ; "こうげき"
-	charmap "<WA>",      $24 ; "は　"
-	charmap "<NO>",      $25 ; "の　"
-
-	charmap "<ROUTE>",   $35 ; "ばん　どうろ"
-	charmap "<WATASHI>", $36 ; "わたし"
-	charmap "<KOKO_WA>", $37 ; "ここは"
-	charmap "<RED>",     $38 ; wRedsName
-	charmap "<GREEN>",   $39 ; wGreensName
-	charmap "<ENEMY>",   $3f
-
-	charmap "<MOM>",     $49 ; wMomsName
-	charmap "<GA>",      $4a ; "が　"
-	charmap "<_CONT>",   $4b ; implements "<CONT>"
-	charmap "<SCROLL>",  $4c
-	charmap "<NEXT>",    $4e
-	charmap "<LINE>",    $4f
-
-	charmap "@",         $50 ; string terminator
-	charmap "<PARA>",    $51
-	charmap "<PLAYER>",  $52 ; wPlayerName
-	charmap "<RIVAL>",   $53 ; wRivalName
-	charmap "#",         $54 ; "POKé"
-	charmap "<CONT>",    $55
-	charmap "<……>",      $56 ; "……"
-	charmap "<DONE>",    $57
-	charmap "<PROMPT>",  $58
-	charmap "<TARGET>",  $59
-	charmap "<USER>",    $5a
-	charmap "<PC>",      $5b ; "PC"
-	charmap "<TM>",      $5c ; "TM"
-	charmap "<TRAINER>", $5d ; "TRAINER"
-	charmap "<ROCKET>",  $5e ; "ROCKET"
-	charmap "<DEXEND>",  $5f
-
-; Other characters
-
-	charmap "■", $60
-	charmap "▲", $61
-	charmap "☎", $62
-
-	charmap "Ｄ", $63
-	charmap "Ｅ", $64
-	charmap "Ｆ", $65
-	charmap "Ｇ", $66
-	charmap "Ｈ", $67
-	charmap "Ｉ", $68
-	charmap "Ｖ", $69
-	charmap "Ｓ", $6a
-	charmap "Ｌ", $6b
-	charmap "Ｍ", $6c
-
-	charmap "：", $6d
-
-	charmap "「", $70
-	charmap "」", $71
-	charmap "『", $72
-	charmap "』", $73
-	charmap "・", $74
-	charmap "…", $75
-
-	charmap "┌", $79
-	charmap "─", $7a
-	charmap "┐", $7b
-	charmap "│", $7c
-	charmap "└", $7d
-	charmap "┘", $7e
-	charmap "　", $7f
-
-; Japanese kana
+	charmap "<NULL>", $00
 
 	charmap "イ゛", $01
 	charmap "ヴ",  $02
@@ -103,6 +21,11 @@
 	charmap "デ", $12
 	charmap "ド", $13
 
+	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"
+
+	charmap "<15>", $15 ; nothing
+	charmap "<16>", $16 ; nothing
+
 	charmap "ネ゛", $17
 	charmap "ノ゛", $18
 
@@ -111,8 +34,17 @@
 	charmap "ブ", $1b
 	charmap "ボ", $1c
 
+	charmap "<NI>",  $1d ; "に　"
+	charmap "<TTE>", $1e ; "って"
+	charmap "<WO>",  $1f ; "を　"
+
 	charmap "ィ゛", $20
 	charmap "あ゛", $21
+
+	charmap "<TA!>",     $22 ; "た！"
+	charmap "<KOUGEKI>", $23 ; "こうげき"
+	charmap "<WA>",      $24 ; "は　"
+	charmap "<NO>",      $25 ; "の　"
 
 	charmap "が", $26
 	charmap "ぎ", $27
@@ -130,11 +62,19 @@
 	charmap "で", $33
 	charmap "ど", $34
 
+	charmap "<ROUTE>",   $35 ; "ばん　どうろ"
+	charmap "<WATASHI>", $36 ; "わたし"
+	charmap "<KOKO_WA>", $37 ; "ここは"
+	charmap "<RED>",     $38 ; wRedsName
+	charmap "<GREEN>",   $39 ; wGreensName
+
 	charmap "ば", $3a
 	charmap "び", $3b
 	charmap "ぶ", $3c
 	charmap "べ", $3d
 	charmap "ぼ", $3e
+
+	charmap "<ENEMY>", $3f
 
 	charmap "パ", $40
 	charmap "ピ", $41
@@ -146,13 +86,71 @@
 	charmap "ぺ", $47
 	charmap "ぽ", $48
 
+	charmap "<MOM>",    $49 ; wMomsName
+	charmap "<GA>",     $4a ; "が　"
+	charmap "<_CONT>",  $4b ; implements "<CONT>"
+	charmap "<SCROLL>", $4c
+
 	charmap "も゜", $4d
+
+	charmap "<NEXT>",    $4e
+	charmap "<LINE>",    $4f
+	charmap "@",         $50 ; string terminator
+	charmap "<PARA>",    $51
+	charmap "<PLAYER>",  $52 ; wPlayerName
+	charmap "<RIVAL>",   $53 ; wRivalName
+	charmap "#",         $54 ; "POKé"
+	charmap "<CONT>",    $55
+	charmap "<……>",      $56 ; "……"
+	charmap "<DONE>",    $57
+	charmap "<PROMPT>",  $58
+	charmap "<TARGET>",  $59
+	charmap "<USER>",    $5a
+	charmap "<PC>",      $5b ; "PC"
+	charmap "<TM>",      $5c ; "TM"
+	charmap "<TRAINER>", $5d ; "TRAINER"
+	charmap "<ROCKET>",  $5e ; "ROCKET"
+	charmap "<DEXEND>",  $5f
+
+	charmap "■", $60
+	charmap "▲", $61
+	charmap "☎", $62
+
+	charmap "Ｄ", $63
+	charmap "Ｅ", $64
+	charmap "Ｆ", $65
+	charmap "Ｇ", $66
+	charmap "Ｈ", $67
+	charmap "Ｉ", $68
+	charmap "Ｖ", $69
+	charmap "Ｓ", $6a
+	charmap "Ｌ", $6b
+	charmap "Ｍ", $6c
+
+	charmap "：", $6d
 
 	charmap "ぃ", $6e
 	charmap "ぅ", $6f
+
+	charmap "「", $70
+	charmap "」", $71
+	charmap "『", $72
+	charmap "』", $73
+	charmap "・", $74
+	charmap "…", $75
+
 	charmap "ぁ", $76
 	charmap "ぇ", $77
 	charmap "ぉ", $78
+
+	charmap "┌", $79
+	charmap "─", $7a
+	charmap "┐", $7b
+	charmap "│", $7c
+	charmap "└", $7d
+	charmap "┘", $7e
+
+	charmap "　", $7f
 
 	charmap "ア", $80
 	charmap "イ", $81
@@ -198,6 +196,7 @@
 	charmap "ワ", $a9
 	charmap "ヲ", $aa
 	charmap "ン", $ab
+
 	charmap "ッ", $ac
 	charmap "ャ", $ad
 	charmap "ュ", $ae
@@ -250,12 +249,14 @@
 	charmap "わ", $dc
 	charmap "を", $dd
 	charmap "ん", $de
+
 	charmap "っ", $df
 	charmap "ゃ", $e0
 	charmap "ゅ", $e1
 	charmap "ょ", $e2
 
 	charmap "ー", $e3
+
 	charmap "ﾟ", $e4
 	charmap "ﾞ", $e5
 
@@ -266,22 +267,20 @@
 	charmap "ァ", $e9
 	charmap "ゥ", $ea
 	charmap "ェ", $eb
-	
+
 	charmap "▷", $ec
 	charmap "▶", $ed
 	charmap "▲", $ed
 	charmap "▼", $ee
 	charmap "♂", $ef
-
 	charmap "円", $f0
 	charmap "×", $f1
 	charmap ".", $f2
 	charmap "/", $f3
 
 	charmap "ォ", $f4
-	
-	charmap "♀", $f5
 
+	charmap "♀", $f5
 	charmap "０", $f6
 	charmap "１", $f7
 	charmap "２", $f8
