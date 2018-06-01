@@ -74,12 +74,12 @@ ByteFill:: ; 3339
 
 UncompressSpriteFromDE::
 ; Decompress pic at a:de.
-	ld hl, wSpriteInputPtr
-	ld [hl],e
-	inc hl
-	ld [hl],d
-	jp UncompressSpriteData
-	
+    ld hl, wSpriteInputPtr
+    ld [hl], e
+    inc hl
+    ld [hl], d
+    jp UncompressSpriteData
+
 BackUpTilesToBuffer:: ; 3355
     hlcoord 0, 0
     decoord 0, 0, wTileMapBackup
@@ -97,16 +97,16 @@ ReloadTilesFromBuffer:: ; 3361
     ldh [hBGMapMode], a
     ret
 
-; copies a string from [de] to [wStringBuffer]
-CopyStringToBuffer::
-	ld hl, wStringBuffer
-	; fall through
+; copies a string from [de] to [wcd31]
+CopyStringToCD31::
+    ld hl, wcd31
+    ; fall through
 
 ; copies a string from [de] to [hl]
 CopyString::
-	ld a,[de]
-	inc de
-	ld [hli],a
-	cp "@"
-	jr nz, CopyString
-	ret
+    ld a, [de]
+    inc de
+    ld [hli], a
+    cp "@"
+    jr nz, CopyString
+    ret

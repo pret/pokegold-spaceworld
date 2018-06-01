@@ -62,6 +62,7 @@
 
 03:4791 DebugWarp
 03:479f DebugWarp.Destinations
+03:4AA1 AddItemToInventory_
 
 04:5677 DoPlayerMovement
 

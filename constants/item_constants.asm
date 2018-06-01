@@ -192,73 +192,76 @@
 	const ITEM_BC               ; bc *MUSIC_MAIL
 	const ITEM_BD               ; bd *MIRAGE_MAIL
 	const ITEM_BE               ; be
-	const ITEM_BF               ; bf *TM01
-	const ITEM_C0               ; c0 *TM02
-	const ITEM_C1               ; c1 *TM03
-	const ITEM_C2               ; c2 *TM04
+	const ITEM_BF               ; bf
+	const ITEM_C0               ; c0
+	const ITEM_C1               ; c1
+	const ITEM_C2               ; c2
 	const ITEM_C3               ; c3
 
-	const ITEM_TM01             ; c4 *TM05
-	const ITEM_TM02             ; c5 *TM06
-	const ITEM_TM03             ; c6 *TM07
-	const ITEM_TM04             ; c7 *TM08
-	const ITEM_C8               ; c8 *TM09
-	const ITEM_TM05             ; c9 *TM10
-	const ITEM_TM06             ; ca *TM11
-	const ITEM_TM07             ; cb *TM12
-	const ITEM_TM08             ; cc *TM13
-	const ITEM_TM09             ; cd *TM14
-	const ITEM_TM10             ; ce *TM15
-	const ITEM_TM11             ; cf *TM16
-	const ITEM_TM12             ; d0 *TM17
-	const ITEM_TM13             ; d1 *TM18
-	const ITEM_TM14             ; d2 *TM19
-	const ITEM_TM15             ; d3 *TM20
-	const ITEM_TM16             ; d4 *TM21
-	const ITEM_TM17             ; d5 *TM22
-	const ITEM_TM18             ; d6 *TM23
-	const ITEM_TM19             ; d7 *TM24
-	const ITEM_TM20             ; d8 *TM25
-	const ITEM_TM21             ; d9 *TM26
-	const ITEM_TM22             ; da *TM27
-	const ITEM_TM23             ; db *TM28
-	const ITEM_TM24             ; dc *
-	const ITEM_TM25             ; dd *TM29
-	const ITEM_TM26             ; de *TM30
-	const ITEM_TM27             ; df *TM31
-	const ITEM_TM28             ; e0 *TM32
-	const ITEM_E1               ; e1 *TM33
-	const ITEM_TM29             ; e2 *TM34
-	const ITEM_TM30             ; e3 *TM35
-	const ITEM_TM31             ; e4 *TM36
-	const ITEM_TM32             ; e5 *TM37
-	const ITEM_TM33             ; e6 *TM38
-	const ITEM_TM34             ; e7 *TM39
-	const ITEM_TM35             ; e8 *TM40
-	const ITEM_TM36             ; e9 *TM41
-	const ITEM_TM37             ; ea *TM42
-	const ITEM_TM38             ; eb *TM43
-	const ITEM_TM39             ; ec *TM44
-	const ITEM_TM40             ; ed *TM45
-	const ITEM_TM41             ; ee *TM46
-	const ITEM_TM42             ; ef *TM47
-	const ITEM_TM43             ; f0 *TM48
-	const ITEM_TM44             ; f1 *TM49
-	const ITEM_TM45             ; f2 *TM50
-	const ITEM_TM46             ; f3 *HM01
-	const ITEM_TM47             ; f4 *HM02
-	const ITEM_TM48             ; f5 *HM03
-	const ITEM_TM49             ; f6 *HM04
-	const ITEM_TM50             ; f7 *HM05
-NUM_TMS = const_value - ITEM_TM01 - 2 ; discount ITEM_C8 and ITEM_E1
+	const ITEM_HM01             ; c4 *HM01
+	const ITEM_HM02             ; c5 *HM02
+	const ITEM_HM03             ; c6 *HM03
+	const ITEM_HM04             ; c7 *HM04
+	const ITEM_HM05             ; c8 *HM05
 
-	const ITEM_HM01             ; f8 *HM06
-	const ITEM_HM02             ; f9 *HM07
-	const ITEM_HM03             ; fa *
-	const ITEM_HM04             ; fb *
-	const ITEM_HM05             ; fc *
-	const ITEM_HM06             ; fd *
-	const ITEM_HM07             ; fe *
 NUM_HMS = const_value - ITEM_HM01
+	
+	const ITEM_TM01             ; c9 *TM01
+	const ITEM_TM02             ; ca *TM02
+	const ITEM_TM03             ; cb *TM03
+	const ITEM_TM04             ; cc *TM04
+	const ITEM_TM05             ; cd *TM05
+	const ITEM_TM06             ; ce *TM06
+	const ITEM_TM07             ; cf *TM07
+	const ITEM_TM08             ; d0 *TM08
+	const ITEM_TM09             ; d1 *TM09
+	const ITEM_TM10             ; d2 *TM10
+	const ITEM_TM11             ; d3 *TM11
+	const ITEM_TM12             ; d4 *TM12
+	const ITEM_TM13             ; d5 *TM13
+	const ITEM_TM14             ; d6 *TM14
+	const ITEM_TM15             ; d7 *TM15
+	const ITEM_TM16             ; d8 *TM16
+	const ITEM_TM17             ; d9 *TM17
+	const ITEM_TM18             ; da *TM18
+	const ITEM_TM19             ; db *TM19
+	const ITEM_TM20             ; dc *TM20
+	const ITEM_TM21             ; dd *TM21
+	const ITEM_TM22             ; de *TM22
+	const ITEM_TM23             ; df *TM23
+	const ITEM_TM24             ; e0 *TM24
+	const ITEM_TM25             ; e1 *TM25
+	const ITEM_TM26             ; e2 *TM26
+	const ITEM_TM27             ; e3 *TM27
+	const ITEM_TM28             ; e4 *TM28
+	const ITEM_TM29             ; e5 *TM29
+	const ITEM_TM30             ; e6 *TM30
+	const ITEM_TM31             ; e7 *TM31
+	const ITEM_TM32             ; e8 *TM32
+	const ITEM_TM33             ; e9 *TM33
+	const ITEM_TM34             ; ea *TM34
+	const ITEM_TM35             ; eb *TM35
+	const ITEM_TM36             ; ec *TM36
+	const ITEM_TM37             ; ed *TM37
+	const ITEM_TM38             ; ee *TM38
+	const ITEM_TM39             ; ef *TM39
+	const ITEM_TM40             ; f0 *TM40
+	const ITEM_TM41             ; f1 *TM41
+	const ITEM_TM42             ; f2 *TM42
+	const ITEM_TM43             ; f3 *TM43
+	const ITEM_TM44             ; f4 *TM44
+	const ITEM_TM45             ; f5 *TM45
+	const ITEM_TM46             ; f6 *TM46
+	const ITEM_TM47             ; f7 *TM47
+	const ITEM_TM48             ; f8 *TM48
+	const ITEM_TM49             ; f8 *TM49
+	const ITEM_TM50             ; f9 *TM50
+	const ITEM_TM51             ; fa *TM51
+	const ITEM_TM52             ; fb *TM52
+	const ITEM_TM53             ; fc *TM53
+	const ITEM_TM54             ; fd *TM54
+	const ITEM_TM55             ; fe *TM55
+	
+NUM_TMS = const_value - ITEM_TM01
 
 NUM_TMS_HMS = NUM_TMS + NUM_HMS

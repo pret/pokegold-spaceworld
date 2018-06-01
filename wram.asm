@@ -86,7 +86,7 @@ SECTION "CB14", WRAM0[$CB14]
 UNION
 wRedrawRowOrColumnSrcTiles:: ; cb14
 ; the tiles of the row or column to be redrawn by RedrawRowOrColumn
-	ds SCREEN_WIDTH * 2
+    ds SCREEN_WIDTH * 2
 NEXTU
 wRedrawFlashlightDst0:: dw ; cb14
 wRedrawFlashlightSrc0:: dw ; cb16
@@ -173,11 +173,11 @@ wDisableVBlankWYUpdate:: db ; ccce
 SECTION "CD26", WRAM0[$CD26]
 
 wcd26:: ; cd26
-	db
+    db
 
 SECTION "CD31", WRAM0[$CD31]
 
-wStringBuffer:: ; cd31
+wcd31:: ; cd31
     db
 
 SECTION "CD4F", WRAM0[$CD4F]
@@ -193,21 +193,21 @@ wPredefBC:: ; cd54
 
 wFarCallBCBuffer:: ; cd54
     dw
-	
+
 SECTION "CD76", WRAM0[$CD76]
 
 wcd76:: ; cd76
-	db
+    db
 
 wcd77:: ;cd77
-	db
+    db
 
 wMonDexIndex: ds 1 ; cd78
 
 SECTION "CD7D", WRAM0[$CD7D]
 
-wcd7d:: ; cd7d
-	db
+wItemQuantity:: ; cd7d
+    db
 
 SECTION "CE00", WRAM0[$CE00]
 
@@ -278,11 +278,11 @@ wMonHLearnset:: ; ce1e
 ; bit field
     flag_array 50 + 5
     ds 1
-	
+
 SECTION "CE37", WRAM0[$CE37]
 
 wce37:: ; ce37
-	db
+    db
 
 SECTION "CE3B", WRAM0[$CE3B]
 
@@ -337,8 +337,8 @@ wMapTimeOfDay:: db ; d159
 
 SECTION "D19E", WRAM0[$D19E]
 
-wd19e:: ; d19e
-	db
+wNumBagItems:: ; d19e
+    db
 
 SECTION "D4AB", WRAM0[$D4AB]
 

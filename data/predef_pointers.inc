@@ -24,7 +24,7 @@ PredefPointers:: ; 1:62d3
 	dbw 3, $4DF9
 	dbw 3, $4E10
 	dbw 3, $4D33
-	dbw 3, Func_0x366C
+	dbw 3, GiveItem
 	dbw 3, $4E3C
 	dbw 3, $5A28
 	dbw 3, $5886 ; 10
