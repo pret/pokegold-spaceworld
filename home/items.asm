@@ -97,7 +97,7 @@ GetMachineName::
 ; now get the machine number and convert it to text
     ld a, [wce37]
     sub ITEM_TM01_RED - 1
-    ld b, "0"
+    ld b, "０"
 .FirstDigit
     sub 10
     jr c, .SecondDigit
@@ -110,7 +110,7 @@ GetMachineName::
     ld [de], a
     inc de
     pop af
-    ld b, "0"
+    ld b, "０"
     add b
     ld [de], a
     inc de

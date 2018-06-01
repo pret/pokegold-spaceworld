@@ -253,13 +253,13 @@
 	
 	charmap "♀", $f5
 
-	charmap "0", $f6
-	charmap "1", $f7
-	charmap "2", $f8
-	charmap "3", $f9
-	charmap "4", $fa
-	charmap "5", $fb
-	charmap "6", $fc
-	charmap "7", $fd
-	charmap "8", $fe
-	charmap "9", $ff
+	charmap "０", $f6
+	charmap "１", $f7
+	charmap "２", $f8
+	charmap "３", $f9
+	charmap "４", $fa
+	charmap "５", $fb
+	charmap "６", $fc
+	charmap "７", $fd
+	charmap "８", $fe
+	charmap "９", $ff

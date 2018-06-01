@@ -87,7 +87,7 @@ MoveNames::
 	db "りゅうのいかり@" ; DRAGON_RAGE
 	db "ほのおのうず@" ; FIRE_SPIN
 	db "でんきショック@" ; THUNDERSHOCK
-	db "10まんボルト@" ; THUNDERBOLT
+	db "１０まんボルト@" ; THUNDERBOLT
 	db "でんじは@" ; THUNDER_WAVE
 	db "かみなり@" ; THUNDER
 	db "いわおとし@" ; ROCK_THROW
@@ -178,7 +178,7 @@ MoveNames::
 	db "いびき@" ; SNORE
 	db "クギをうつ@" ; NAIL_DOWN
 	db "じたばた@" ; FLAIL
-	db "テクスチャー2@" ; CONVERSION2
+	db "テクスチャー２@" ; CONVERSION2
 	db "こばんなげ@" ; COIN_HURL
 	db "わたほうし@" ; COTTON_SPORE
 	db "きしかいせい@" ; REVERSAL

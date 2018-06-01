@@ -182,7 +182,7 @@ PokemonNames::
 	db "ネイティオ" ; NATIO
 	db "ギョピン@" ; GYOPIN
 	db "マりル@@" ; MARIL
-	db "マンボー1" ; MANBO1
+	db "マンボー１" ; MANBO1
 	db "イカり@@" ; IKARI
 	db "グロテス@" ; GROTESS
 	db "エクシング" ; EKSING
@@ -241,7 +241,7 @@ PokemonNames::
 	db "へルガー@" ; HELGAA
 	db "ウルフマン" ; WOLFMAN
 	db "ワーウルフ" ; WARWOLF
-	db "ポりゴン2" ; PORYGON2
+	db "ポりゴン２" ; PORYGON2
 	db "ナメール@" ; NAMEIL
 	db "ハガネール" ; HAGANEIL
 	db "キングドラ" ; KINGDRA
