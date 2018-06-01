@@ -27,4 +27,4 @@ tools/*.pyc
 build/
 
 coverage.png
-coverage.stats
+coverage.log
