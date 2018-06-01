@@ -9,6 +9,7 @@ INCLUDE "constants/text_constants.asm"
 
 INCLUDE "constants/type_constants.asm"
 INCLUDE "constants/pokedex_constants.asm"
+INCLUDE "constants/pokemon_constants.asm"
 INCLUDE "constants/pokemon_data_constants.asm"
 INCLUDE "constants/move_constants.asm"
 INCLUDE "constants/item_constants.asm"
