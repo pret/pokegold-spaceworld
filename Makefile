@@ -57,7 +57,7 @@ $(ROMS): $(OBJS)
 
 $(CORRECTEDROMS): %-correctheader.gb: %.gb
 	cp $< $@
-	$(RGBFIX) -m 0x10 $@
+	$(RGBFIX) -f h -m 0x10 $@
 
 $(BUILD)/shim.asm: tools/make_shim.py shim.sym | $$(dir $$@)
 	$(PYTHON) tools/make_shim.py -w -- $(filter-out $<, $^) > $@
