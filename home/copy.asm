@@ -71,3 +71,42 @@ ByteFill:: ; 3339
     dec b
     jr nz, .loop
     ret
+
+UncompressSpriteFromDE::
+; Decompress pic at a:de.
+	ld hl, wSpriteInputPtr
+	ld [hl],e
+	inc hl
+	ld [hl],d
+	jp UncompressSpriteData
+	
+BackUpTilesToBuffer:: ; 3355
+    hlcoord 0, 0
+    decoord 0, 0, wTileMapBackup
+    ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+    jp CopyBytes
+
+ReloadTilesFromBuffer:: ; 3361
+    xor a
+    ldh [hBGMapMode], a
+    hlcoord 0, 0, wTileMapBackup
+    decoord 0, 0
+    ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+    call CopyBytes
+    ld a, 1
+    ldh [hBGMapMode], a
+    ret
+
+; copies a string from [de] to [wStringBuffer]
+CopyStringToBuffer::
+	ld hl, wStringBuffer
+	; fall through
+
+; copies a string from [de] to [hl]
+CopyString::
+	ld a,[de]
+	inc de
+	ld [hli],a
+	cp "@"
+	jr nz, CopyString
+	ret

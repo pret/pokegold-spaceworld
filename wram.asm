@@ -170,6 +170,16 @@ SECTION "CCCE", WRAM0[$CCCE]
 
 wDisableVBlankWYUpdate:: db ; ccce
 
+SECTION "CD26", WRAM0[$CD26]
+
+wcd26:: ; cd26
+	db
+
+SECTION "CD31", WRAM0[$CD31]
+
+wStringBuffer:: ; cd31
+    db
+
 SECTION "CD4F", WRAM0[$CD4F]
 
 wPredefID:: ; cd4f
@@ -183,10 +193,21 @@ wPredefBC:: ; cd54
 
 wFarCallBCBuffer:: ; cd54
     dw
+	
+SECTION "CD76", WRAM0[$CD76]
 
-SECTION "CD78", WRAM0[$CD78]
+wcd76:: ; cd76
+	db
+
+wcd77:: ;cd77
+	db
 
 wMonDexIndex: ds 1 ; cd78
+
+SECTION "CD7D", WRAM0[$CD7D]
+
+wcd7d:: ; cd7d
+	db
 
 SECTION "CE00", WRAM0[$CE00]
 
@@ -257,6 +278,11 @@ wMonHLearnset:: ; ce1e
 ; bit field
     flag_array 50 + 5
     ds 1
+	
+SECTION "CE37", WRAM0[$CE37]
+
+wce37:: ; ce37
+	db
 
 SECTION "CE3B", WRAM0[$CE3B]
 
@@ -308,6 +334,11 @@ wMapTimeOfDayPaletteMap:: db ; d158
 ;  \------- Map Palette for TimeOfDay 0x03
 
 wMapTimeOfDay:: db ; d159
+
+SECTION "D19E", WRAM0[$D19E]
+
+wd19e:: ; d19e
+	db
 
 SECTION "D4AB", WRAM0[$D4AB]
 
