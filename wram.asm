@@ -121,7 +121,7 @@ wVBCopyFarSrcBank:: ds 1 ; cb76
 
 SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
 
-wVBlankCounter: db ; cc32
+wVBlankJoyFrameCounter: db ; cc32
 
 wVBlankOccurred: db ; cc33
 
@@ -180,7 +180,11 @@ SECTION "CD31", WRAM0[$CD31]
 wcd31:: ; cd31
     db
 
-SECTION "CD4F", WRAM0[$CD4F]
+SECTION "CD4A", WRAM0[$CD4A]
+
+wTextDest:: ds 2; cd4a
+
+    ds 3 ; TODO
 
 wPredefID:: ; cd4f
     db
@@ -208,6 +212,14 @@ SECTION "CD7D", WRAM0[$CD7D]
 
 wItemQuantity:: ; cd7d
     db
+
+SECTION "CDBD", WRAM0[$CDBD]
+
+wLinkMode:: db ; cdbd
+; 00 - 
+; 01 - 
+; 02 - 
+; 03 -  
 
 SECTION "CE00", WRAM0[$CE00]
 

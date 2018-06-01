@@ -19,3 +19,5 @@ INCLUDE "constants/battle_constants.asm"
 INCLUDE "constants/palette_constants.asm"
 
 INCLUDE "constants/serial_constants.asm"
+
+INCLUDE "constants/misc_constants.asm"

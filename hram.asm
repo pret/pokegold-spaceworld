@@ -39,17 +39,29 @@ hJoypadSum:: db ; ffa0
 hJoyDown:: db ; ffa2
 hJoyState:: db ; ffa3
 hJoySum:: db ; ffa4
-    ds 1; TODO
+
+hJoyDebounceSrc:: db ; ffa5
+; hJoySum will be updated from
+; 00 - hJoyDown
+; <> - hJoyState
+; See GetJoypadDebounced
 
 hJoypadState2:: db ; ffa6
 
     ds 8 ; TODO
 
+UNION
+
+hTextBoxCursorBlinkInterval:: ds 2 ; ffaf
+
+NEXTU
 hSpriteWidth:: ; ffaf
 hSpriteInterlaceCounter:: ; ffaf
     db 
 hSpriteHeight:: ; ffb0
-    db 
+    db
+ENDU
+
 hSpriteOffset:: ; ffb1
     db
 

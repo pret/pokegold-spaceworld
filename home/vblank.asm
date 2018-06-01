@@ -91,11 +91,11 @@ VBlank0:: ; 175 (0:175)
 	call hOAMDMA
 	xor a
 	ld [wVBlankOccurred], a
-	ld a, [wVBlankCounter]
+	ld a, [wVBlankJoyFrameCounter]
 	and a
 	jr z, .skipDec
 	dec a
-	ld [wVBlankCounter], a
+	ld [wVBlankJoyFrameCounter], a
 .skipDec
 	call Joypad
 	xor a
@@ -212,11 +212,11 @@ VBlank2:: ; 241 (0:241)
 	call hOAMDMA
 	xor a
 	ld [wVBlankOccurred], a
-	ld a, [wVBlankCounter]
+	ld a, [wVBlankJoyFrameCounter]
 	and a
 	jr z, .skipDec
 	dec a
-	ld [wVBlankCounter], a
+	ld [wVBlankJoyFrameCounter], a
 .skipDec
 	call UpdateSound
 	ld a, [wVBlankSavedROMBank]
@@ -276,11 +276,11 @@ VBlank3:: ; 2a0 (0:2a0)
 	call hOAMDMA
 	xor a
 	ld [wVBlankOccurred], a
-	ld a, [wVBlankCounter]
+	ld a, [wVBlankJoyFrameCounter]
 	and a
 	jr z, .skipDec
 	dec a
-	ld [wVBlankCounter], a
+	ld [wVBlankJoyFrameCounter], a
 .skipDec
 	xor a
 	ldh [rIF], a
