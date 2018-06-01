@@ -52,16 +52,16 @@
 	charmap "▲", $61
 	charmap "☎", $62
 
-	charmap "D", $63
-	charmap "E", $64
-	charmap "F", $65
-	charmap "G", $66
-	charmap "H", $67
-	charmap "I", $68
-	charmap "V", $69
-	charmap "S", $6a
-	charmap "L", $6b
-	charmap "M", $6c
+	charmap "Ｄ", $63
+	charmap "Ｅ", $64
+	charmap "Ｆ", $65
+	charmap "Ｇ", $66
+	charmap "Ｈ", $67
+	charmap "Ｉ", $68
+	charmap "Ｖ", $69
+	charmap "Ｓ", $6a
+	charmap "Ｌ", $6b
+	charmap "Ｍ", $6c
 
 	charmap "：", $6d
 
