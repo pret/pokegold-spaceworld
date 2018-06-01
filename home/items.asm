@@ -52,7 +52,7 @@ GetItemName:: ; 376F
     push hl
     push bc
     ld a, [wce37]
-    cp ITEM_HM01
+    cp ITEM_HM01_RED
     jr nc, .Machine
 
     ld [wcb5b], a
@@ -78,7 +78,7 @@ GetMachineName::
     push bc
     ld a, [wce37]
     push af
-    cp ITEM_TM01
+    cp ITEM_TM01_RED
     jr nc, .WriteTM
 ; if HM, then write "HM" and add 5 to the item ID, so we can reuse the
 ; TM printing code
@@ -96,7 +96,7 @@ GetMachineName::
     
 ; now get the machine number and convert it to text
     ld a, [wce37]
-    sub ITEM_TM01 - 1
+    sub ITEM_TM01_RED - 1
     ld b, "0"
 .FirstDigit
     sub 10
