@@ -3,23 +3,23 @@ INCLUDE "constants.asm"
 SECTION "Sprite clearing", ROM0[$32DC]
 
 ClearSprites:: ; 32dc
-    ld hl, wVirtualOAM
-    ld b, wVirtualOAMEnd - wVirtualOAM
-    xor a
+	ld hl, wVirtualOAM
+	ld b, wVirtualOAMEnd - wVirtualOAM
+	xor a
 .loop
-    ld [hli], a
-    dec b
-    jr nz, .loop
-    ret
+	ld [hli], a
+	dec b
+	jr nz, .loop
+	ret
 
 HideSprites:: ; 32e7
-    ld hl, wVirtualOAM
-    ld de, SPRITEOAMSTRUCT_LENGTH
-    ld b, NUM_SPRITE_OAM_STRUCTS
-    ld a, $A0
+	ld hl, wVirtualOAM
+	ld de, SPRITEOAMSTRUCT_LENGTH
+	ld b, NUM_SPRITE_OAM_STRUCTS
+	ld a, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
 .loop
-    ld [hl], a
-    add hl, de
-    dec b
-    jr nz, .loop
-    ret
+	ld [hl], a
+	add hl, de
+	dec b
+	jr nz, .loop
+	ret

@@ -3,6 +3,7 @@ INCLUDE "vram.asm"
 
 SECTION "Copy Routines used by VBlank ISR", ROM0[$123a]
 
+RedrawRowOrColumn:: ; 123a (0:123a)
 ; This function redraws a BG row of height 2 or a BG column of width 2.
 ; One of its main uses is redrawing the row or column that will be exposed upon
 ; scrolling the BG when the player takes a step. Redrawing only the exposed
@@ -11,7 +12,6 @@ SECTION "Copy Routines used by VBlank ISR", ROM0[$123a]
 ; when necessary. It is also used in trade animation and elevator code.
 ; This also implements the flashlight drawing distance effect, which takes
 ; multiple frames in either direction to complete
-RedrawRowOrColumn:: ; 123a (0:123a)
 	ldh a, [hRedrawRowOrColumnMode]
 	and a
 	ret z
@@ -63,8 +63,8 @@ RedrawRowOrColumn:: ; 123a (0:123a)
 	ld a, BG_MAP_WIDTH ; width of VRAM background map
 	add e
 	ld e, a
-	; fall through and draw lower half
-	
+	; fallthrough (draw lower half)
+
 .DrawHalf
 	ld c, SCREEN_WIDTH / 2
 .row_loop
@@ -98,6 +98,7 @@ RedrawRowOrColumn:: ; 123a (0:123a)
 	ld h, [hl]
 	ld l, a
 	jp hl
+
 .flashlight_effect_table
 	dw RedrawFlashlightRow0    ; $1310
 	dw RedrawFlashlightRow0    ; $1310
@@ -115,7 +116,7 @@ RedrawRowOrColumn:: ; 123a (0:123a)
 	dw RedrawFlashlightRow3    ; $134E
 	dw RedrawFlashlightColumn3 ; $1301
 	dw RedrawFlashlightColumn3 ; $1301
-	
+
 RedrawFlashlightColumn0:: ; 12c3 (0:12c3)
 	ldh a, [hSCX]
 	and $07
@@ -384,8 +385,8 @@ AutoBgMapTransfer:: ; 13ee (0:13ee)
 .doTransfer
 	ldh [hBGMapTransferPosition], a
 	ld a, $06                 ; 6 rows of SCREEN_WIDTH each
-	; fall through
-	
+	; fallthrough
+
 TransferBgRows:: ; 1430 (0:1430)
 	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH + 1
 .loop
@@ -397,7 +398,7 @@ TransferBgRows:: ; 1430 (0:1430)
 	ld [hl], d
 	inc l
 	endr
-	
+
 	pop de
 	ld [hl], e
 	inc l
@@ -412,6 +413,7 @@ TransferBgRows:: ; 1430 (0:1430)
 	ld sp, hl
 	ret
 
+VBlankCopyDouble:: ; 1470 (0:1470)
 ; Copy [wVBCopyDoubleSize] 1bpp tiles
 ; from wVBCopyDoubleSrc to wVBCopyDoubleDst.
 ; wVBCopyDoubleDst must be aligned to 0x10 bytes.
@@ -419,7 +421,6 @@ TransferBgRows:: ; 1430 (0:1430)
 ; While we're here, convert to 2bpp.
 ; The process is straightforward:
 ; copy each byte twice.
-VBlankCopyDouble:: ; 1470 (0:1470)
 	ld a, [wVBCopyDoubleSize]
 	and a
 	ret z
@@ -439,7 +440,7 @@ VBlankCopyDouble:: ; 1470 (0:1470)
 	ld [wVBCopyDoubleSize], a
 .loop
 
-	rept 16/4 - 1 ; 16 bytes per 2bpp tile at 2 bytes per pop 
+	rept 16/4 - 1 ; 16 bytes per 2bpp tile at 2 bytes per pop
 	pop de        ; copied twice minus last block
 	ld [hl], e
 	inc l
@@ -450,7 +451,7 @@ VBlankCopyDouble:: ; 1470 (0:1470)
 	ld [hl], d
 	inc l
 	endr
-	
+
 	pop de
 	ld [hl], e
 	inc l
@@ -474,13 +475,13 @@ VBlankCopyDouble:: ; 1470 (0:1470)
 	ld sp, hl
 	ret
 
+VBlankCopy:: ; 14c7 (0:14c7)
 ; Copy 16 * [wVBCopySize] bytes
 ; from wVBCopySrc to wVBCopyDst.
 ; wVBCopyDst must be aligned to 0x10 bytes.
 
 ; Source and destination addresses are updated,
 ; so transfer can continue in subsequent calls.
-VBlankCopy:: ; 14c7 (0:14c7)
 	ld a, [wVBCopySize]
 	and a
 	ret z
@@ -561,13 +562,13 @@ Function_1538: ; 1538 (0:1538)
 	ld a, $01
 	jp TransferBgRows
 
+VBlankCopyFar:: ; 1558 (0:1558)
 ; Copy 0x10 * [wVBCopyFarSize] bytes
 ; from wVBCopyFarSrcBank::wVBCopyFarSrc to wVBCopyFarDst.
 ; wVBCopyFarDst must be aligned to 0x10 bytes.
 
 ; Source and destination addresses are updated,
 ; so transfer can continue in subsequent calls.
-VBlankCopyFar:: ; 1558 (0:1558)
 	ld a, [wVBCopyFarSize]
 	and a
 	ret z
@@ -595,7 +596,7 @@ VBlankCopyFar:: ; 1558 (0:1558)
 	ld [hl], d
 	inc l
 	endr
-	
+
 	pop de
 	ld [hl], e
 	inc l
