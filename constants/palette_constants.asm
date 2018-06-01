@@ -1,5 +1,5 @@
 	const_def
-	const PAL_TOWN_00 ; 00
+	const PAL_ROUTE ; 00
 	const PAL_TOWN_01 ; 01
 	const PAL_TOWN_02 ; 02
 	const PAL_TOWN_03 ; 03
@@ -24,19 +24,19 @@
 	const PAL_PINKMON ; 16
 	const PAL_YELLOWMON ; 17
 	const PAL_GREYMON ; 18
-	const PAL_DARKMEWMON ; 19
-	const PAL_DARKBLUEMON ; 1a
-	const PAL_DARKREDMON ; 1b
-	const PAL_DARKCYANMON ; 1c
-	const PAL_DARKPURPLEMON ; 1d
-	const PAL_DARKBROWNMON ; 1e
-	const PAL_TANMON ; 1f
-	const PAL_BLUEPINKMON ; 20
-	const PAL_ORANGEMON ; 21
-	const PAL_DARKGREYMON ; 22
-	const PAL_GREENBAR ; 23
-	const PAL_YELLOWBAR ; 24
-	const PAL_REDBAR ; 25
+	const PAL_SHINY_MEWMON ; 19
+	const PAL_SHINY_BLUEMON ; 1a
+	const PAL_SHINY_REDMON ; 1b
+	const PAL_SHINY_CYANMON ; 1c
+	const PAL_SHINY_PURPLEMON ; 1d
+	const PAL_SHINY_BROWNMON ; 1e
+	const PAL_SHINY_GREENMON ; 1f
+	const PAL_SHINY_PINKMON ; 20
+	const PAL_SHINY_YELLOWMON ; 21
+	const PAL_SHINY_GREYMON ; 22
+	const PAL_GREEN_BAR ; 23
+	const PAL_YELLOW_BAR ; 24
+	const PAL_RED_BAR ; 25
 	const PAL_TOWN_MAP ; 26
 	const PAL_LOGO_1 ; 27
 	const PAL_LOGO_2 ; 28
