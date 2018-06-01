@@ -15,6 +15,7 @@ ROMS := pokegold-spaceworld.gb
 BASEROM := baserom.gb
 DIRS := home engine data audio
 OBJS := $(addprefix $(BUILD)/, gfx.o sram.o wram.o hram.o shim.o)
+CORRECTEDROMS := $(ROMS:%.gb=%-correctheader.gb)
 
 rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
 OBJS += $(patsubst %.asm, $(BUILD)/%.o, $(call rwildcard, $(DIRS), *.asm))
@@ -28,7 +29,7 @@ GFX := $(patsubst %.png, $(BUILD)/%.2bpp, \
 .SECONDEXPANSION:
 
 .PHONY: all
-all: $(ROMS) compare coverage
+all: $(ROMS) $(CORRECTEDROMS) compare coverage
 
 .PHONY: compare
 compare: $(ROMS)
@@ -53,6 +54,10 @@ mostlyclean:
 $(ROMS): $(OBJS)
 	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -O $(BASEROM) -o $@ $^
 	$(RGBFIX) -f lh -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t "POKEMON2GOLD" $@
+
+$(CORRECTEDROMS): %-correctheader.gb: %.gb
+	cp $< $@
+	$(RGBFIX) -m 0x10 $@
 
 $(BUILD)/shim.asm: tools/make_shim.py shim.sym | $$(dir $$@)
 	$(PYTHON) tools/make_shim.py -w -- $(filter-out $<, $^) > $@
