@@ -14,6 +14,18 @@ def parse_string(s):
 	# assumes strings are literal, no STRCAT() etc
 	return s.strip('" ')
 
+def calc_bank(p):
+	return p // 0x4000
+
+def calc_address(p):
+	b = calc_bank(p)
+	o = b * 0x4000
+	return 0x4000 + p - o
+
+def get_sym_loc(p):
+	b, a = calc_bank(p), calc_address(p)
+	return '%02x:%04x' % (b, a)
+
 def strip_comment(s):
 	# assumes ";" is not in the charmap
 	return s.split(';')[0].rstrip()
@@ -84,9 +96,7 @@ def read_data(bank, address, n):
 			data.append(v)
 	return data
 
-#data = read_data(0x0E, 0x4D90, 64) # TrainerClassNames
-#data = read_data(0x01, 0x6FEC, 255) # ItemNames
-#data = read_data(0x10, 0x52A1, 251) # MoveNames
-data = read_data(0x14, 0x6D75, 251) # PokemonNames
-
+p = 0xfcaaf # Landmarks
+print get_sym_loc(p)
+data = read_data(calc_bank(p), calc_address(p), 45)
 dump_strings(data)
