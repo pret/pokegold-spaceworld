@@ -3,6 +3,16 @@ INCLUDE "constants.asm"
 SECTION "Joypad functions", ROM0[$07FE]
 
 Joypad:: ; 7fe (0:7fe)
+; Read the joypad register and translate it to something more
+; workable for use in-game. There are 8 buttons, so we can use
+; one byte to contain all player input.
+
+; Updates:
+
+; hJoypadUp: released this frame (delta)
+; hJoypadDown: pressed this frame (delta)
+; hJoypadState: currently pressed
+; hJoypadSum: pressed so far
 	ld a, [$d4ab]
 	and $d0
 	ret nz
@@ -28,22 +38,22 @@ Joypad:: ; 7fe (0:7fe)
 	ld b, a
 	ld a, (1 << 5 | 1 << 4) ; port reset
 	ldh [rJOYP], a
-	ldh a, [hJoypadDown]
+	ldh a, [hJoypadState]
 	ld e, a
 	xor b
 	ld d, a
 	and e
-	ldh [hJoypadReleased], a
+	ldh [hJoypadUp], a
 	ld a, d
 	and b
-	ldh [hJoypadPressed], a
+	ldh [hJoypadDown], a
 	ld c, a
 	ldh a, [hJoypadSum]
 	or c
 	ldh [hJoypadSum], a
 	ld a, b
-	ldh [hJoypadDown], a
-	ldh [hJoypadDown2], a
+	ldh [hJoypadState], a
+	ldh [hJoypadState2], a
 	and $0f
 	cp $0f
 	jp z, Reset

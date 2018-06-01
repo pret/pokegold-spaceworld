@@ -21,14 +21,27 @@ hVBlank:: ; ff99
 
     ds 3 ; TODO
 
-hJoypadReleased:: db ; ff9d
-hJoypadPressed:: db ; ff9e
-hJoypadDown:: db ; ff9f
+hJoypadUp:: db ; ff9d
+; Raw Joypad Up Event
+; A pressed key was released
+hJoypadDown:: db ; ff9e
+; Raw Joypad Down Event
+; An unpressed key was pressed
+hJoypadState:: db ; ff9f
+; Raw Joypad State
+; State of all keys during current frame
 hJoypadSum:: db ; ffa0
+; Raw Joypad State Sum
+; Sum of all keys that were pressed
+; since hJoypadSum was last cleared
 
-    ds 5; TODO
+    ds 1; TODO
+hJoyDown:: db ; ffa2
+hJoyState:: db ; ffa3
+hJoySum:: db ; ffa4
+    ds 1; TODO
 
-hJoypadDown2:: db ; ffa6
+hJoypadState2:: db ; ffa6
 
     ds 8 ; TODO
 
