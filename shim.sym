@@ -9,10 +9,6 @@
 00:0E93 PlaceString
 00:0E94 PlaceNextChar
 00:0E9D CheckDict
-00:10A6 PlaceHLTextAtBC
-00:10B7 DoTextUntilTerminator
-00:10C1 DoTextUntilTerminator.continue
-00:10E2 Text_TX
 00:1d49 LoadMenuHeader
 00:1e58 OpenMenu
 00:1F9E ClearWindowData
@@ -34,6 +30,7 @@
 00:3655 SetHPPal.done
 00:36C8 NamesPointers
 00:36E0 GetName
+00:39BA PlayCry
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
 00:3DA5 MaxVolume
