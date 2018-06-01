@@ -39,7 +39,15 @@ hSpriteHeight:: ; ffb0
     db 
 hSpriteOffset:: ; ffb1
     db
-    ds 30 ; TODO
+
+    db ; TODO
+
+hPrintNumLeadingDigit:: db ; ffb3 digit one place-value up
+hPrintNumDividend:: ds 3 ; ffb4 big-endian
+hPrintNumDivisor:: ds 3 ; ffb7 big-endian
+hPrintNumTemp:: ds 3 ; ffba big-endian
+
+    ds 19 ; TODO
 
 
 hLCDCPointer:: ; ffd0
