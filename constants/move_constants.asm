@@ -94,7 +94,7 @@
 	const MOVE_DIG          ; 5b
 	const MOVE_TOXIC        ; 5c
 	const MOVE_CONFUSION    ; 5d
-	const MOVE_PSYCHIC_M    ; 5e
+	const MOVE_PSYCHIC      ; 5e
 	const MOVE_HYPNOSIS     ; 5f
 	const MOVE_MEDITATE     ; 60
 	const MOVE_AGILITY      ; 61
