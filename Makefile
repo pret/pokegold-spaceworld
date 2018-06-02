@@ -24,7 +24,8 @@ GFX := $(patsubst %.png, $(BUILD)/%.2bpp, \
        $(patsubst %.1bpp.png, $(BUILD)/%.1bpp, \
        $(patsubst gfx/pokemon/%/front.png, $(BUILD)/gfx/pokemon/%/front.pic, \
        $(patsubst gfx/pokemon/%/back.png, $(BUILD)/gfx/pokemon/%/back.pic, \
-       $(call rwildcard, gfx, *.png)))))
+       $(patsubst gfx/trainer/%.png, $(BUILD)/gfx/trainer/%.pic, \
+       $(call rwildcard, gfx, *.png))))))
 
 .SECONDEXPANSION:
 
