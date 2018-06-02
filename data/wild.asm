@@ -60,13 +60,15 @@ GrassWildMons:: ; f:6a3c
 	db 8, DEX_CATERPIE
 	db 7, DEX_TRANSEL
 	db 10, DEX_POPPO
-	db 7, DEX_CATERPIE	; day
+	db 7, DEX_CATERPIE
+	; day
 	db 8, DEX_CATERPIE
 	db 9, DEX_POPPO
 	db 11, DEX_KORATTA
 	db 9, DEX_KORATTA
 	db 10, DEX_KORATTA
-	db 8, DEX_CATERPIE	; nite
+	db 8, DEX_CATERPIE
+	; nite
 	db 9, DEX_KORATTA
 	db 10, DEX_HOHO
 	db 11, DEX_NAZONOKUSA
@@ -82,13 +84,15 @@ GrassWildMons:: ; f:6a3c
 	db 18, DEX_METAMON
 	db 17, DEX_TRANSEL
 	db 21, DEX_ONIDRILL
-	db 17, DEX_METAMON	; day
+	db 17, DEX_METAMON
+	; day
 	db 17, DEX_ONISUZUME
 	db 18, DEX_ONISUZUME
 	db 21, DEX_DODO
 	db 19, DEX_DODO
 	db 20, DEX_DODO
-	db 18, DEX_METAMON	; nite
+	db 18, DEX_METAMON
+	; nite
 	db 19, DEX_SLEEPE
 	db 20, DEX_SLEEPE
 	db 21, DEX_SLEEPE
@@ -104,13 +108,15 @@ GrassWildMons:: ; f:6a3c
 	db 11, DEX_TAMATAMA
 	db 10, DEX_KONGPANG
 	db 13, DEX_ONISUZUME
-	db 10, DEX_TAMATAMA	; day
+	db 10, DEX_TAMATAMA
+	; day
 	db 11, DEX_ONISUZUME
 	db 12, DEX_ONISUZUME
 	db 14, DEX_ISITSUBUTE
 	db 12, DEX_ISITSUBUTE
 	db 13, DEX_ISITSUBUTE
-	db 11, DEX_TAMATAMA	; nite
+	db 11, DEX_TAMATAMA
+	; nite
 	db 12, DEX_ARBO
 	db 13, DEX_ARBO
 	db 14, DEX_ARBO
@@ -126,13 +132,15 @@ GrassWildMons:: ; f:6a3c
 	db 20, DEX_MENOKURAGE
 	db 15, DEX_MENOKURAGE
 	db 35, DEX_HANEEI
-	db 15, DEX_MENOKURAGE	; day
+	db 15, DEX_MENOKURAGE
+	; day
 	db 20, DEX_MENOKURAGE
 	db 35, DEX_DOKUKURAGE
 	db 35, DEX_MENOKURAGE
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
-	db 30, DEX_MENOKURAGE	; nite
+	db 30, DEX_MENOKURAGE
+	; nite
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
 	db 35, DEX_MENOKURAGE
@@ -148,13 +156,15 @@ GrassWildMons:: ; f:6a3c
 	db 20, DEX_MENOKURAGE
 	db 15, DEX_MENOKURAGE
 	db 35, DEX_HANEEI
-	db 15, DEX_MENOKURAGE	; day
+	db 15, DEX_MENOKURAGE
+	; day
 	db 20, DEX_MENOKURAGE
 	db 35, DEX_DOKUKURAGE
 	db 35, DEX_MENOKURAGE
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
-	db 30, DEX_MENOKURAGE	; nite
+	db 30, DEX_MENOKURAGE
+	; nite
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
 	db 35, DEX_MENOKURAGE
@@ -170,13 +180,15 @@ GrassWildMons:: ; f:6a3c
 	db 20, DEX_MENOKURAGE
 	db 15, DEX_MENOKURAGE
 	db 35, DEX_HANEEI
-	db 15, DEX_MENOKURAGE	; day
+	db 15, DEX_MENOKURAGE
+	; day
 	db 20, DEX_MENOKURAGE
 	db 35, DEX_DOKUKURAGE
 	db 35, DEX_MENOKURAGE
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
-	db 30, DEX_MENOKURAGE	; nite
+	db 30, DEX_MENOKURAGE
+	; nite
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
 	db 35, DEX_MENOKURAGE
@@ -192,13 +204,15 @@ GrassWildMons:: ; f:6a3c
 	db 15, DEX_WANRIKY
 	db 14, DEX_WANRIKY
 	db 17, DEX_ONISUZUME
-	db 14, DEX_WANRIKY	; day
+	db 14, DEX_WANRIKY
+	; day
 	db 15, DEX_ONISUZUME
 	db 16, DEX_ONISUZUME
 	db 18, DEX_KORATTA
 	db 16, DEX_KORATTA
 	db 17, DEX_KORATTA
-	db 15, DEX_ONISUZUME	; nite
+	db 15, DEX_ONISUZUME
+	; nite
 	db 16, DEX_SLEEPE
 	db 17, DEX_SLEEPE
 	db 18, DEX_SLEEPE
@@ -214,13 +228,15 @@ GrassWildMons:: ; f:6a3c
 	db 16, DEX_ONISUZUME
 	db 15, DEX_ONISUZUME
 	db 18, DEX_DODO
-	db 15, DEX_ONISUZUME	; day
+	db 15, DEX_ONISUZUME
+	; day
 	db 16, DEX_DODO
 	db 17, DEX_DONPHAN
 	db 19, DEX_SAND
 	db 17, DEX_SAND
 	db 18, DEX_SAND
-	db 16, DEX_DODO	; nite
+	db 16, DEX_DODO
+	; nite
 	db 17, DEX_DODO
 	db 18, DEX_DODO
 	db 19, DEX_DODO
@@ -236,13 +252,15 @@ GrassWildMons:: ; f:6a3c
 	db 20, DEX_ONIDRILL
 	db 19, DEX_ONIDRILL
 	db 22, DEX_ONIDRILL
-	db 19, DEX_ONISUZUME	; day
+	db 19, DEX_ONISUZUME
+	; day
 	db 20, DEX_DODO
 	db 22, DEX_SANDPAN
 	db 21, DEX_DONPHAN
 	db 21, DEX_SAND
 	db 23, DEX_SAND
-	db 20, DEX_DODO	; nite
+	db 20, DEX_DODO
+	; nite
 	db 21, DEX_DODO
 	db 22, DEX_DODO
 	db 23, DEX_DODO
@@ -258,13 +276,15 @@ GrassWildMons:: ; f:6a3c
 	db 22, DEX_HANEKO
 	db 25, DEX_POPONEKO
 	db 24, DEX_SAND
-	db 21, DEX_HANEKO	; day
+	db 21, DEX_HANEKO
+	; day
 	db 22, DEX_SAND
 	db 23, DEX_SANDPAN
 	db 25, DEX_ROKON
 	db 23, DEX_ROKON
 	db 21, DEX_MIKON
-	db 22, DEX_HANEKO	; nite
+	db 22, DEX_HANEKO
+	; nite
 	db 23, DEX_HOHO
 	db 24, DEX_HOHO
 	db 25, DEX_HOHO
@@ -280,13 +300,15 @@ GrassWildMons:: ; f:6a3c
 	db 23, DEX_HANEKO
 	db 22, DEX_POPONEKO
 	db 25, DEX_POPONEKO
-	db 22, DEX_HANEKO	; day
+	db 22, DEX_HANEKO
+	; day
 	db 23, DEX_POPPO
 	db 24, DEX_PIGEON
 	db 26, DEX_ROKON
 	db 24, DEX_ROKON
 	db 25, DEX_ROKON
-	db 23, DEX_HANEKO	; nite
+	db 23, DEX_HANEKO
+	; nite
 	db 24, DEX_HOHO
 	db 25, DEX_HOHO
 	db 26, DEX_SLEEPE
@@ -302,13 +324,15 @@ GrassWildMons:: ; f:6a3c
 	db 20, DEX_MENOKURAGE
 	db 15, DEX_MENOKURAGE
 	db 35, DEX_IKARI
-	db 15, DEX_MENOKURAGE	; day
+	db 15, DEX_MENOKURAGE
+	; day
 	db 20, DEX_MENOKURAGE
 	db 35, DEX_DOKUKURAGE
 	db 35, DEX_MENOKURAGE
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
-	db 30, DEX_MENOKURAGE	; nite
+	db 30, DEX_MENOKURAGE
+	; nite
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
 	db 35, DEX_MENOKURAGE
@@ -324,13 +348,15 @@ GrassWildMons:: ; f:6a3c
 	db 27, DEX_HANEKO
 	db 27, DEX_POPONEKO
 	db 30, DEX_POPONEKO
-	db 27, DEX_HANEKO	; day
+	db 27, DEX_HANEKO
+	; day
 	db 28, DEX_POPPO
 	db 29, DEX_PIGEON
 	db 31, DEX_ROKON
 	db 29, DEX_ROKON
 	db 30, DEX_ROKON
-	db 28, DEX_HANEKO	; nite
+	db 28, DEX_HANEKO
+	; nite
 	db 29, DEX_HOHO
 	db 31, DEX_HOHO
 	db 32, DEX_SLEEPE
@@ -346,13 +372,15 @@ GrassWildMons:: ; f:6a3c
 	db 27, DEX_REDIBA
 	db 28, DEX_MANKEY
 	db 31, DEX_MANKEY
-	db 28, DEX_POPPO	; day
+	db 28, DEX_POPPO
+	; day
 	db 29, DEX_MANKEY
 	db 30, DEX_PIGEON
 	db 32, DEX_ROKON
 	db 30, DEX_WOLFMAN
 	db 31, DEX_WOLFMAN
-	db 29, DEX_REDIBA	; nite
+	db 29, DEX_REDIBA
+	; nite
 	db 30, DEX_WOLFMAN
 	db 33, DEX_WOLFMAN
 	db 34, DEX_SLEEPE
@@ -368,13 +396,15 @@ GrassWildMons:: ; f:6a3c
 	db 28, DEX_REDIBA
 	db 29, DEX_MILTANK
 	db 32, DEX_MANKEY
-	db 29, DEX_REDIBA	; day
+	db 29, DEX_REDIBA
+	; day
 	db 30, DEX_MANKEY
 	db 31, DEX_OKORIZARU
 	db 33, DEX_NYOROMO
 	db 31, DEX_NYOROZO
 	db 32, DEX_NYOROMO
-	db 30, DEX_REDIBA	; nite
+	db 30, DEX_REDIBA
+	; nite
 	db 31, DEX_WOLFMAN
 	db 34, DEX_WOLFMAN
 	db 35, DEX_WOLFMAN
@@ -390,13 +420,15 @@ GrassWildMons:: ; f:6a3c
 	db 31, DEX_MILTANK
 	db 32, DEX_MILTANK
 	db 35, DEX_OKORIZARU
-	db 32, DEX_REDIBA	; day
+	db 32, DEX_REDIBA
+	; day
 	db 33, DEX_MANKEY
 	db 34, DEX_OKORIZARU
 	db 36, DEX_NYOROMO
 	db 34, DEX_NYOROZO
 	db 35, DEX_NYOROZO
-	db 33, DEX_REDIBA	; nite
+	db 33, DEX_REDIBA
+	; nite
 	db 34, DEX_WOLFMAN
 	db 37, DEX_WOLFMAN
 	db 38, DEX_WOLFMAN
@@ -404,7 +436,7 @@ GrassWildMons:: ; f:6a3c
 	db 40, DEX_WARWOLF
 	db 40, DEX_WARWOLF
 
-	db DEX_CATERPIE, $01 ; map group, map id
+	db $0a, $01 ; map group, map id
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 29, DEX_KARAKARA
@@ -412,13 +444,15 @@ GrassWildMons:: ; f:6a3c
 	db 28, DEX_KARAKARA
 	db 29, DEX_GARAGARA
 	db 32, DEX_SIHORN
-	db 29, DEX_KARAKARA	; day
+	db 29, DEX_KARAKARA
+	; day
 	db 30, DEX_SIHORN
 	db 31, DEX_SIHORN
 	db 33, DEX_YOROIDORI
 	db 31, DEX_YOROIDORI
 	db 32, DEX_YOROIDORI
-	db 30, DEX_KARAKARA	; nite
+	db 30, DEX_KARAKARA
+	; nite
 	db 31, DEX_ARBO
 	db 34, DEX_ARBO
 	db 35, DEX_ARBOK
@@ -426,7 +460,7 @@ GrassWildMons:: ; f:6a3c
 	db 37, DEX_ARBO
 	db 37, DEX_ARBOK
 
-	db DEX_TRANSEL, $01 ; map group, map id
+	db $0b, $01 ; map group, map id
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 28, DEX_PICHU
@@ -434,13 +468,15 @@ GrassWildMons:: ; f:6a3c
 	db 27, DEX_PIKACHU
 	db 28, DEX_NAZONOKUSA
 	db 31, DEX_KUSAIHANA
-	db 28, DEX_PIKACHU	; day
+	db 28, DEX_PIKACHU
+	; day
 	db 29, DEX_NAZONOKUSA
 	db 30, DEX_PAINTER
 	db 32, DEX_NYARTH
 	db 32, DEX_RATTA
 	db 31, DEX_NYARTH
-	db 29, DEX_NAZONOKUSA	; nite
+	db 29, DEX_NAZONOKUSA
+	; nite
 	db 31, DEX_RATTA
 	db 33, DEX_ARBO
 	db 34, DEX_ARBOK
@@ -456,13 +492,15 @@ GrassWildMons:: ; f:6a3c
 	db 28, DEX_PIKACHU
 	db 29, DEX_NAZONOKUSA
 	db 32, DEX_KUSAIHANA
-	db 27, DEX_PIKACHU	; day
+	db 27, DEX_PIKACHU
+	; day
 	db 28, DEX_NAZONOKUSA
 	db 29, DEX_PAINTER
 	db 32, DEX_NYARTH
 	db 32, DEX_RATTA
 	db 30, DEX_NYARTH
-	db 28, DEX_NAZONOKUSA	; nite
+	db 28, DEX_NAZONOKUSA
+	; nite
 	db 30, DEX_RATTA
 	db 32, DEX_HOHO
 	db 33, DEX_ARBO
@@ -478,13 +516,15 @@ GrassWildMons:: ; f:6a3c
 	db 20, DEX_MENOKURAGE
 	db 15, DEX_MENOKURAGE
 	db 35, DEX_HANEEI
-	db 15, DEX_MENOKURAGE	; day
+	db 15, DEX_MENOKURAGE
+	; day
 	db 20, DEX_MENOKURAGE
 	db 35, DEX_DOKUKURAGE
 	db 35, DEX_MENOKURAGE
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
-	db 30, DEX_MENOKURAGE	; nite
+	db 30, DEX_MENOKURAGE
+	; nite
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
 	db 35, DEX_MENOKURAGE
@@ -500,13 +540,15 @@ GrassWildMons:: ; f:6a3c
 	db 20, DEX_MENOKURAGE
 	db 15, DEX_MENOKURAGE
 	db 35, DEX_HANEEI
-	db 15, DEX_MENOKURAGE	; day
+	db 15, DEX_MENOKURAGE
+	; day
 	db 20, DEX_MENOKURAGE
 	db 35, DEX_DOKUKURAGE
 	db 35, DEX_MENOKURAGE
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
-	db 30, DEX_MENOKURAGE	; nite
+	db 30, DEX_MENOKURAGE
+	; nite
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
 	db 35, DEX_MENOKURAGE
@@ -522,13 +564,15 @@ GrassWildMons:: ; f:6a3c
 	db 20, DEX_MENOKURAGE
 	db 15, DEX_MENOKURAGE
 	db 35, DEX_DOKUKURAGE
-	db 15, DEX_MENOKURAGE	; day
+	db 15, DEX_MENOKURAGE
+	; day
 	db 20, DEX_MENOKURAGE
 	db 35, DEX_DOKUKURAGE
 	db 35, DEX_MENOKURAGE
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
-	db 30, DEX_MENOKURAGE	; nite
+	db 30, DEX_MENOKURAGE
+	; nite
 	db 25, DEX_MENOKURAGE
 	db 30, DEX_MENOKURAGE
 	db 35, DEX_MENOKURAGE
@@ -544,13 +588,15 @@ GrassWildMons:: ; f:6a3c
 	db 5, DEX_TRANSEL
 	db 5, DEX_PIKACHU
 	db 7, DEX_POPPO
-	db 5, DEX_POPPO	; day
+	db 5, DEX_POPPO
+	; day
 	db 6, DEX_POPPO
 	db 4, DEX_CATERPIE
 	db 6, DEX_CATERPIE
 	db 6, DEX_HANEKO
 	db 5, DEX_CATERPIE
-	db 8, DEX_REDIBA	; nite
+	db 8, DEX_REDIBA
+	; nite
 	db 4, DEX_TRANSEL
 	db 6, DEX_KORATTA
 	db 6, DEX_CATERPIE
