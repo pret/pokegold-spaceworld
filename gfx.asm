@@ -183,7 +183,7 @@ JugglerPic:: INCBIN "gfx/trainer/juggler.pic"
 BlackbeltPic:: INCBIN "gfx/trainer/blackbelt.pic"
 SportsmanPic:: INCBIN "gfx/trainer/sportsman.pic"
 MediumPic:: INCBIN "gfx/trainer/medium.pic"
-SoldierPic::INCBIN "gfx/trainer/soldier.pic"
+SoldierPic:: INCBIN "gfx/trainer/soldier.pic"
 KimonoGirlPic:: INCBIN "gfx/trainer/kimonogirl.pic"
 TwinsPic:: INCBIN "gfx/trainer/twins.pic"
 
