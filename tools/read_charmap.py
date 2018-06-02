@@ -1,4 +1,20 @@
 import os, io
+from re import compile
+from sys import stderr
+
+charmap_regex = compile('[ \t]*charmap[ \t]+"(.*?)",[ \t]*(\$[0-9A-Fa-f]{2}|%[01]{8}|[0-9]{3})')
+# A charmap line is
+# [ \t]*   - zero or more space chars
+# charmap  - literal charmap
+# [ \t]+   - one or more space chars
+# "(.*?)"  - a lazily-matched text identifier in quotes
+# ,        - literal comma
+# [ \t]*   - zero or more space chars
+# (        - either of
+#   \$[0-9A-Fa-f]{2} - two hexadecimal digits preceeded by literal $
+#   %[01]{8}         - eight dual digits preceeded by literal %
+#   [0-9]{3}         - three decimal digits
+# )
 
 def parse_int(s):
 	# assumes integers are literal; no +-*/, etc
@@ -9,35 +25,18 @@ def parse_int(s):
 		return int(s[1:], 2)
 	return int(s)
 
-def parse_string(s):
-	# assumes strings are literal; no STRCAT() etc
-	return s.strip('" ')
-
-def strip_comment(s):
-	# assumes ";" is not in the charmap
-	return s.split(';')[0].rstrip()
-
-def get_project_dir():
-	script_path = os.path.realpath(__file__)
-	script_dir = os.path.dirname(script_path)
-	project_dir = os.path.join(script_dir, '..')
-	return os.path.normpath(project_dir)
-
-def get_charmap_path():
-	project_dir = get_project_dir()
-	return os.path.join(project_dir, 'charmap.asm')
-
-def read_charmap():
-	charmap_path = get_charmap_path()
+def read_charmap(charmap_path):
 	charmap = {}
 	with io.open(charmap_path, 'r', encoding='utf-8') as f:
 		lines = f.readlines()
 	for line in lines:
-		line = strip_comment(line).lstrip()
-		if not line.startswith('charmap '):
+		m = charmap_regex.match(line)
+		if m is None:
 			continue
-		char, value = line[len('charmap '):].rsplit(',', 1)
-		char = parse_string(char)
-		value = parse_int(value)
+		char = m.group(1)
+		value = parse_int(m.group(2))
+		if value in charmap:
+			print('Value {0:s} already in charmap, dropping it in favor of first charmap entry'.format(m.group(2)))
+			continue
 		charmap[value] = char
 	return charmap

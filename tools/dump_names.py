@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys, os, io
-from read_charmap import get_project_dir, read_charmap
+from read_charmap import read_charmap
 
 def calc_bank(p):
 	return p // 0x4000
@@ -15,6 +15,12 @@ def get_sym_loc(p):
 	b, a = calc_bank(p), calc_address(p)
 	return '%02x:%04x' % (b, a)
 
+def get_project_dir():
+	script_path = os.path.realpath(__file__)
+	script_dir = os.path.dirname(script_path)
+	project_dir = os.path.join(script_dir, '..')
+	return os.path.normpath(project_dir)
+	
 def get_baserom_path():
 	project_dir = get_project_dir()
 	return os.path.join(project_dir, 'baserom.gb')
