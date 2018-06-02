@@ -59,12 +59,22 @@ GentlemanGroup::
 
 SECTION "Trainer Parties 10 TEMPORARY", ROMX[$57E9],BANK[$E]
 TeacherMGroup::
+; Leftover Bruno from Blue
+	db -1, 53, MON_IWARK, 55, MON_EBIWALAR, 55, MON_SAWAMULAR, 56, MON_IWARK, 58, MON_KAIRIKY, 0
 
 SECTION "Trainer Parties 11 TEMPORARY", ROMX[$57F5],BANK[$E]
 TeacherFGroup::
+; Leftover Brock from Blue
+	db -1, 12, MON_ISITSUBUTE, 14, MON_IWARK, 0
 
 SECTION "Trainer Parties 12 TEMPORARY", ROMX[$57FB],BANK[$E]
 ManchildGroup::
+; Leftover Misty from Blue
+	db -1, 18, MON_HITODEMAN, 21, MON_STARMIE, 0
+; Leftover Lt.Surge from Blue
+	db -1, 21, MON_BIRIRIDAMA, 18, MON_PIKACHU, 24, MON_RAICHU, 0
+; Leftover Erika from Blue
+	db -1, 29, MON_UTSUBOT, 24, MON_MONJARA, 29, MON_RUFFRESIA, 0
 
 SECTION "Trainer Parties 13 TEMPORARY", ROMX[$58CC],BANK[$E]
 RockerGroup::
@@ -90,6 +100,11 @@ HayatoGroup::
 SECTION "Trainer Parties 17 TEMPORARY", ROMX[$521A],BANK[$E]
 TsukishiGroup::
 LassGroup::
+	; LASS_ATSUKO
+	db "あつこ@", TRAINERTYPE_ITEM_MOVES
+	db 8, DEX_NAZONOKUSA, ITEM_NONE
+	; No moves?
+	db -1 ; end
 
 SECTION "Trainer Parties 18 TEMPORARY", ROMX[$526F],BANK[$E]
 EnokiGroup::
@@ -112,6 +127,7 @@ ProfessionalFGroup::
 
 SECTION "Trainer Parties 24 TEMPORARY", ROMX[$581B],BANK[$E]
 SwimmerMGroup::
+	db 10, DEX_BARIRINA, DEX_KIRINRIKI, DEX_PUCHICORN, 0
 
 SECTION "Trainer Parties 25 TEMPORARY", ROMX[$582A],BANK[$E]
 SuperNerdGroup::
@@ -121,9 +137,11 @@ EngineerGroup::
 
 SECTION "Trainer Parties 27 TEMPORARY", ROMX[$596E],BANK[$E]
 JugglerGroup::
+	db 6, DEX_MARIL, DEX_GYOPIN, 0
 
 SECTION "Trainer Parties 28 TEMPORARY", ROMX[$597A],BANK[$E]
 TwinsGroup::
+	db 13, DEX_MADAME, DEX_ELEBABY, DEX_MIZUUO, 0
 
 SECTION "Trainer Parties 29 TEMPORARY", ROMX[$597F],BANK[$E]
 SchoolboyGroup::
@@ -158,6 +176,11 @@ SECTION "Trainer Parties 35 TEMPORARY", ROMX[$5433],BANK[$E]
 SibaGroup::
 KasumiGroup::
 FisherGroup::
+	; FISHER_HISASHI
+	db "ひさし@", TRAINERTYPE_ITEM_MOVES
+	db 8, DEX_PUKU, ITEM_NONE
+	; No moves?
+	db -1 ; end
 
 SECTION "Trainer Parties 36 TEMPORARY", ROMX[$5472],BANK[$E]
 KannaGroup::
@@ -176,21 +199,55 @@ RocketMGroup::
 
 SECTION "Trainer Parties 41 TEMPORARY", ROMX[$5811],BANK[$E]
 SwimmerFGroup::
+; Leftover Koga from Blue
+	db -1, 37, MON_DOGARS, 39, MON_BETBETON, 37, MON_DOGARS, 43, MON_MATADOGAS, 0
 
 SECTION "Trainer Parties 42 TEMPORARY", ROMX[$5820],BANK[$E]
 SailorGroup::
+; Leftover Sabrina from Blue
+	db -1, 38, MON_YUNGERER, 37, MON_BARRIERD, 38, MON_MORPHON, 43, MON_FOODIN, 0
 
 SECTION "Trainer Parties 43 TEMPORARY", ROMX[$5907],BANK[$E]
 BikerGroup::
+; Leftover Channelers from Blue
+	db 22, MON_GHOS, 0
+	db 24, MON_GHOS, 0
+	db 23, MON_GHOS, MON_GHOS, 0
+	db 24, MON_GHOS, 0
+	db 23, MON_GHOS, 0
+	db 24, MON_GHOS, 0
+	db 24, MON_GHOST, 0
+	db 22, MON_GHOS, 0
+	db 24, MON_GHOS, 0
+	db 23, MON_GHOS, MON_GHOS, 0
+	db 24, MON_GHOS, 0
+	db 22, MON_GHOS, 0
+	db 24, MON_GHOS, 0
+	db 23, MON_GHOST, 0
+	db 24, MON_GHOS, 0
+	db 22, MON_GHOS, 0
+	db 24, MON_GHOS, 0
+	db 22, MON_GHOST, 0
+	db 22, MON_GHOS, MON_GHOS, MON_GHOS, 0
+	db 24, MON_GHOS, 0
+	db 24, MON_GHOS, 0
+	db 34, MON_GHOS, MON_GHOST, 0
+	db 38, MON_GHOST, 0
+	db 33, MON_GHOS, MON_GHOS, MON_GHOST, 0
 
 SECTION "Trainer Parties 44 TEMPORARY", ROMX[$5956],BANK[$E]
 RockClimberGroup::
+; Leftover Agatha from Blue
+	db -1, 56, MON_GANGAR, 56, MON_GOLBAT, 55, MON_GHOST, 58, MON_ARBOK, 60, MON_GANGAR, 0
 
 SECTION "Trainer Parties 45 TEMPORARY", ROMX[$5962],BANK[$E]
 BurglarGroup::
+; Leftover Lance from Blue
+	db -1, 58, MON_GYARADOS, 56, MON_HAKURYU, 56, MON_HAKURYU, 60, MON_PTERA, 62, MON_KAIRYU, 0
 
 SECTION "Trainer Parties 46 TEMPORARY", ROMX[$5972],BANK[$E]
 BlackbeltGroup::
+	db 6, DEX_PY, DEX_GYOPIN, 0
 
 SECTION "Trainer Parties 47 TEMPORARY", ROMX[$5976],BANK[$E]
 PsychicGroup::
@@ -201,6 +258,7 @@ SageGroup::
 MediumGroup::
 SoldierGroup::
 GerugeMemberFGroup::
+	db 12, DEX_SHIBIREFUGU, DEX_MADAME, 0
 
 SECTION "Trainer Parties 48 TEMPORARY", ROMX[$5999],BANK[$E]
 SportsmanGroup::
