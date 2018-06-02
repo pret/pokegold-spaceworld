@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Song Title", ROMX[$62fe], BANK[$3c]
+
 Song_Title:: ; f22fe (3c:62fe)
 	db 3 << 6 | 0
 	dw Song_Title_Ch0

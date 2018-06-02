@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Song Evolution", ROMX[$5b1c], BANK[$3b]
+
 Song_Evolution:: ; edb1c (3b:5b1c)
 	db 2 << 6 | 0
 	dw Song_Evolution_Ch0

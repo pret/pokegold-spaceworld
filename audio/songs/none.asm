@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Song None", ROMX[$52ee], BANK[$3a]
+
 Song_None:: ; e92ee (3a:52ee)
 	db 3 << 6 | 0
 	dw Song_None_Ch0

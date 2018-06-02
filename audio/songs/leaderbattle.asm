@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Song LeaderBattle", ROMX[$4858], BANK[$3b]
+
 Song_LeaderBattle:: ; ec858 (3b:4858)
 	db 2 << 6 | 0
 	dw Song_LeaderBattle_Ch0

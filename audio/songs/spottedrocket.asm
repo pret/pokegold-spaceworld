@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Song SpottedRocket", ROMX[$5978], BANK[$3b]
+
 Song_SpottedRocket:: ; ed978 (3b:5978)
 	db 2 << 6 | 0
 	dw Song_SpottedRocket_Ch0

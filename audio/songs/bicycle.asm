@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Song Bicycle", ROMX[$563e], BANK[$3b]
+
 Song_Bicycle:: ; ed63e (3b:563e)
 	db 3 << 6 | 0
 	dw Song_Bicycle_Ch0

@@ -1,3 +1,7 @@
+INCLUDE "constants.asm"
+
+SECTION "Song Route1", ROMX[$44c2], BANK[$3b]
+
 Song_Route1:: ; ec4c2 (3b:44c2)
 	db 3 << 6 | 0
 	dw Song_Route1_Ch0
