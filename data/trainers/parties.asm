@@ -144,6 +144,9 @@ BlueGroup::
 
 SECTION "Trainer Parties 32 TEMPORARY", ROMX[$5375],BANK[$E]
 RivalGroup::
+	db 5, DEX_KURUSU, 0
+	db 5, DEX_HAPPA, 0
+	db 5, DEX_HONOGUMA, 0
 
 SECTION "Trainer Parties 33 TEMPORARY", ROMX[$5404],BANK[$E]
 SakakiGroup::
