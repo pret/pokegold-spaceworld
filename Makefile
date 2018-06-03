@@ -19,7 +19,7 @@ sort_sym := tools/sort_symfile.sh
 #sort_sym := $(PYTHON3) tools/sort_sym.py
 
 ROM := poke$(BUILD_NAME)-spaceworld.gb
-ROMS := $(foreach r, gold gold_debug silver silver_debug, poke$(r)-spaceworld.gb)
+ROMS := $(foreach r, gold gold-debug silver silver-debug, poke$(r)-spaceworld.gb)
 # Pokemon Gold Debug
 BASEROM := baserom.gb
 DIRS := home engine data audio
@@ -44,7 +44,7 @@ GFX := $(patsubst %.png, $(BUILD)/%.2bpp, \
 all: $(ROM) $(CORRECTEDROM) compare
 
 .PHONY: compare
-compare: $(ROMS)
+compare: $(ROM)
 	$(MD5) roms.md5
 
 .PHONY: tools
