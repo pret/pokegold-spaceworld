@@ -64,7 +64,7 @@ $(BUILD)/shim.asm: $(SHIM) | $$(dir $$@)
 	tools/make_shim -w $< > $@
 $(CORRECTEDROM): %-correctheader.gb: %.gb
 	cp $< $@
-	$(RGBFIX) -f h -m 0x10 $@
+	$(RGBFIX) -f hg -m 0x10 $@
 
 .PHONY: coverage
 coverage: $(ROM)
