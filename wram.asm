@@ -94,6 +94,11 @@ wVBCopyDoubleSize:: ds 1
 wVBCopyDoubleSrc:: ds 2
 wVBCopyDoubleDst:: ds 2
 
+
+SECTION "CBD2", WRAM0[$CBD2]
+wcbd2:: ; cbd2
+    ds $14
+
 SECTION "CC33", WRAM0[$CC33] ; Please merge when more is disassembled
 
 wVBlankOccurred: db

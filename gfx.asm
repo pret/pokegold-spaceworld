@@ -35,11 +35,19 @@ INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
 SECTION "SGB Border GFX", ROMX[$6B1C], BANK[$02]
 SGBBorderGFX::
-INCBIN "gfx/sgb/sgb_border.2bpp"
+if def(GOLD)
+INCBIN "gfx/sgb/sgb_border_gold.2bpp"
+else
+INCBIN "gfx/sgb/sgb_border_silver.2bpp"
+endc
 
 SECTION "Title Screen GFX", ROMX[$47CF], BANK[$04]
 TitleScreenGFX::
-INCBIN "gfx/title/title.2bpp"
+if def(GOLD)
+INCBIN "gfx/title/title_gold.2bpp"
+else
+INCBIN "gfx/title/title_silver.2bpp"
+endc
 
 SECTION "Mail Icon GFX", ROMX[$5BB1], BANK[$04]
 MailIconGFX::
@@ -51,9 +59,12 @@ INCBIN "gfx/trainer_card/trainer_card.2bpp"
 TrainerCardLeadersGFX::
 INCBIN "gfx/trainer_card/leaders.2bpp"
 
+if DEBUG
+; Not sure how to parse this from the non-debug ROM, so I'll leave this be for now
 SECTION "Unused Leader", ROMX[$7BA3], BANK[$04]
 UnusedLeaderNameGFX::
 INCBIN "gfx/trainer_card/unused_leader_name.2bpp"
+endc
 
 SECTION "Bank 6 Tilesets 00", ROMX[$4000], BANK[$06]
 Tileset_00_GFX:

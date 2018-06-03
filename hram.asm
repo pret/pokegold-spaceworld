@@ -4,7 +4,13 @@ hOAMDMA:: ; ff80
     ds 10
 
 
-    ds 14 ; TODO
+    ds 3 ; TODO
+
+hHours:: db ; ff8d
+hMinutes:: db ; ff8e
+hSeconds:: db ; ff8f
+hDays:: db ; ff90
+    ds 7 ; TODO
 
 
 hROMBank:: ; ff98

@@ -1,6 +1,10 @@
 INCLUDE "constants.asm"
 
+if DEBUG
 SECTION "Tilemap copy/restore funcs", ROM0[$3355]
+else
+SECTION "Tilemap copy/restore funcs", ROM0[$3319]
+endc
 
 BackUpTilesToBuffer:: ; 3355
     hlcoord 0, 0

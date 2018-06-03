@@ -1,6 +1,10 @@
 INCLUDE "constants.asm"
 
+if DEBUG
 SECTION "Farcall", ROM0[$2FA8]
+else
+SECTION "FarCall", ROM0[$2F6C]
+endc
 
 FarCall_hl:: ; 2fa8
     push af

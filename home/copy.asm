@@ -1,6 +1,10 @@
 INCLUDE "constants.asm"
 
+if DEBUG
 SECTION "Copy functions", ROM0[$32F7]
+else
+SECTION "Copy functions", ROM0[$32BB]
+endc
 
 ; Copy bc bytes from a:hl to de.
 FarCopyBytes:: ; 32f7

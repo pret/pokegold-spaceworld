@@ -24,3 +24,4 @@ tools/scan_includes
 tools/pkmncompress
 tools/gfx
 build/
+.idea/
