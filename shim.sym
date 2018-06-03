@@ -103,7 +103,6 @@
 00:cdbe wTargetMapUnk
 00:cdbf wTargetMapGroup
 00:cdc0 wTargetMapId
-00:ce62 wTextBoxFlags
 00:ce67 wPlayerName
 
 01:d165 wTMCounts

@@ -119,6 +119,18 @@ wVBCopyFarSrc:: ds 2 ; cb72
 wVBCopyFarDst:: ds 2 ; cb74
 wVBCopyFarSrcBank:: ds 1 ; cb76
 
+SECTION "CBF7", WRAM0[$CBF7]
+
+wActiveBackpackPocket:: db ; cbf7
+
+SECTION "CC09", WRAM0[$CC09]
+
+wMenuCursorBuffer:: db ; cc09
+
+SECTION "CC2A", WRAM0[$CC2A]
+
+wMenuCursorY:: db ; cc2a
+
 SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
 
 wVBlankJoyFrameCounter: db ; cc32
@@ -180,7 +192,16 @@ SECTION "CD31", WRAM0[$CD31]
 wcd31:: ; cd31
     db
 
-SECTION "CD4A", WRAM0[$CD4A]
+SECTION "CD3E", WRAM0[$CD3D]
+
+wRegularItemsCursor:: db ; cd3d
+wBackpackAndKeyItemsCursor:: db ;cd3e
+wStartmenuCursor:: db ; cd3f
+    ds 4 ; TODO
+wRegularItemsScrollPosition:: db ; cd44
+wBackpackAndKeyItemsScrollPosition:: db ; cd45
+    ds 3 ; TODO
+wMenuScrollPosition:: db ; cd49
 
 wTextDest:: ds 2; cd4a
 
@@ -321,7 +342,7 @@ SECTION "CE61", WRAM0[$CE61]
 
 wActiveFrame:: db ; ce61
 
-     db ; TODO
+wTextBoxFlags::  db ; ce62
 
 wce63:: db ; ce63
 ; 76543210
@@ -355,6 +376,15 @@ SECTION "D19E", WRAM0[$D19E]
 
 wNumBagItems:: ; d19e
     db
+
+SECTION "D1C8", WRAM0[$D1C8]
+
+wNumKeyItems:: db ; d1c8
+
+SECTION "D1DE", WRAM0[$D1DE]
+
+wNumBallItems:: db ; d1de
+
 
 SECTION "D4AB", WRAM0[$D4AB]
 
