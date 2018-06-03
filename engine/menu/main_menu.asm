@@ -42,12 +42,12 @@ MainMenuItems:
 	db OPTION
 	db -1
 	
-	db 2
+	db 2 ; takes priority over the former
 	db PLAY_POKEMON
 	db OPTION
 	db -1
 	
-	db 3
+	db 3 ; takes priority over the former
 	db PLAY_POKEMON
 	db OPTION
 	db SET_TIME
