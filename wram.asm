@@ -205,7 +205,8 @@ wMenuScrollPosition:: db ; cd49
 
 wTextDest:: ds 2; cd4a
 
-    ds 3 ; TODO
+StartmenuCloseAndSelectHookBank:: db ; cd4c
+StartmenuCloseAndSelectHookPtr:: dw ; cd4d
 
 wPredefID:: ; cd4f
     db
