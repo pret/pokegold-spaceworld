@@ -22,6 +22,7 @@ BASEROM := baserom_$(BUILD_NAME).gb
 DIRS := home engine data audio
 OBJS := $(addprefix $(BUILD)/, gfx.o sram.o wram.o hram.o shim.o)
 SHIM := shim_$(BUILD_NAME).sym
+CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
 CORRECTEDROMS := $(ROMS:%.gb=%-correctheader.gb)
 
 rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
@@ -37,7 +38,7 @@ GFX := $(patsubst %.png, $(BUILD)/%.2bpp, \
 .SECONDEXPANSION:
 
 .PHONY: all
-all: $(ROM) $(CORRECTEDROMS) coverage
+all: $(ROM) $(CORRECTEDROM) coverage
 .PHONY: tools
 tools tools/pkmncompress tools/gfx:
 	$(MAKE) -C tools/
@@ -61,12 +62,12 @@ $(ROM): $(OBJS)
 
 $(BUILD)/shim.asm: $(SHIM) | $$(dir $$@)
 	tools/make_shim -w $< > $@
-$(CORRECTEDROMS): %-correctheader.gb: %.gb
+$(CORRECTEDROM): %-correctheader.gb: %.gb
 	cp $< $@
 	$(RGBFIX) -f h -m 0x10 $@
 
 .PHONY: coverage
-coverage: $(ROMS)
+coverage: $(ROM)
 	$(PYTHON) tools/disasm_coverage.py -m $(ROM:.gb=.map) -b 0x40
 
 $(BUILD)/gfx.o: | $(GFX)
