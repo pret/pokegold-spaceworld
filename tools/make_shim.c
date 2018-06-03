@@ -58,14 +58,13 @@ size_t strrcspn(const char *s1, const char *s2) {
     errno = EIO;            \
     perror(errmsg);         \
     if (file) fclose(file); \
-    if (line) free(line);   \
     return 1;               \
 }
 
 int main(int argc, char * argv[]) {
     int ch;
-    size_t lsize = 0;
-    char * line = NULL;
+    char line[16*1024];
+    char *lineptr = NULL;
 
     section_t section_list[] = {
         {0x4000, false, "ROM0", false},
@@ -97,7 +96,7 @@ int main(int argc, char * argv[]) {
         FILE * file = fopen(argv[arg_idx], "r");
         if (file == NULL)
             RIP("file io");
-        while (getline(&line, &lsize, file) > 0) {
+        while ((lineptr = fgets(line, sizeof(line), file)) != NULL) {
             unsigned short bank = 0;
             unsigned short pointer = 0;
             char * symbol = NULL;
@@ -105,28 +104,28 @@ int main(int argc, char * argv[]) {
             char * addr_p;
 
             // line = line.split(";")[0].strip()
-            line += strspn(line, " \t\n");
-            end = strchr(line, ';');
+            lineptr += strspn(lineptr, " \t\n");
+            end = strchr(lineptr, ';');
             if (end) *end = 0;
-            line[strrspn(line, " \t\n")] = 0;
+            lineptr[strrspn(lineptr, " \t\n")] = 0;
             if (!*line)
                 continue;
 
             // Get the bank, address, and symbol
-            end = line + strcspn(line, " \t\n");
+            end = lineptr + strcspn(lineptr, " \t\n");
             symbol = end + strspn(end, " \t\n");
             if (!*symbol)
                 RIP("parse");
             *end = 0;
-            addr_p = strchr(line, ':');
+            addr_p = strchr(lineptr, ':');
             if (!addr_p)
                 RIP("parse");
             *addr_p++ = 0;
             pointer = strtoul(addr_p, &end, 16);
             if (pointer == 0 && end == addr_p)
                 RIP("parse");
-            bank = strtoul(line, &end, 16);
-            if (bank == 0 && end == line)
+            bank = strtoul(lineptr, &end, 16);
+            if (bank == 0 && end == lineptr)
                 RIP("parse");
 
             // Main loop
@@ -158,6 +157,5 @@ int main(int argc, char * argv[]) {
         }
         fclose(file);
     }
-    free(line);
     return 0;
 }
