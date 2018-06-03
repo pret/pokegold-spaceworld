@@ -42,7 +42,7 @@ compare: $(ROM) $(CORRECTEDROM)
 
 .PHONY: tools
 tools tools/pkmncompress tools/gfx:
-	$(MAKE) -C tools/
+	"$(MAKE)" -C tools/
 
 .PHONY: coverage
 coverage: tools/disasm_coverage.py $(ROM)
@@ -52,7 +52,7 @@ coverage: tools/disasm_coverage.py $(ROM)
 .PHONY: clean
 clean:
 	rm -rf $(ROM) $(CORRECTEDROM) $(BUILD) $(ROMS:.gb=.sym) $(ROMS:.gb=.map)
-	make -C tools clean
+	"$(MAKE)" -C tools clean
 
 # Remove files except for graphics.
 .PHONY: mostlyclean
