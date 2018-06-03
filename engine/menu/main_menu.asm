@@ -8,11 +8,11 @@ MainMenuHeader:
 	dw .data
 	db 1 ; default option
 
-.data
+.data ; 01:5420
 	db $80
 	db 0 ; number of options
 
-	dw $5461
+	dw $5461 ; MainMenuItems in retail
 	db $8a, $1f
 	dw MainMenuStrings
 
