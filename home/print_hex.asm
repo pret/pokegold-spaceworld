@@ -7,6 +7,7 @@ SECTION "Print Hexadecimal functions", ROM0[$355B]
 endc
 
 PrintHexBytes: ; 3597 (0:3597)
+; Print c hex bytes located at de to hl
 .loop
 	push bc
 	call PrintHexByte
@@ -16,19 +17,22 @@ PrintHexBytes: ; 3597 (0:3597)
 	ret
 
 PrintHexByte:: ; 35a0 (0:35a0)
+; Print one hex byte located at de to hl
 	ld a, [de]
 	swap a
 	and $0f
-	call PrintHexDigit
+	call GetHexDigit
 	ld [hli], a
 	ld a, [de]
 	and $0f
-	call PrintHexDigit
+	call GetHexDigit
 	ld [hli], a
 	inc de
 	ret
 
-PrintHexDigit: ; 35b2 (0:35b2)
+GetHexDigit: ; 35b2 (0:35b2)
+; Get a hex digit tile number
+; in a.
 	ld bc, .hexDigitTable
 	add c
 	ld c, a

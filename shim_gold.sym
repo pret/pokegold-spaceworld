@@ -169,7 +169,6 @@
 00:CDBE wTargetMapUnk
 00:CDBF wTargetMapGroup
 00:CDC0 wTargetMapId
-00:CE62 wTextBoxFlags
 00:CE67 wPlayerName
 01:D165 wTMCounts
 01:D19E wItems

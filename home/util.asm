@@ -1,9 +1,9 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 if DEBUG
-SECTION "Home Math", ROM0[$341F]
+SECTION "Misc Utility Functions", ROM0[$341F]
 else
-SECTION "Home Math", ROM0[$33E3]
+SECTION "Misc Utility Functions", ROM0[$33E3]
 endc
 
 _341F:: ; 341f
@@ -17,15 +17,15 @@ _341F:: ; 341f
     jr nz, .loop
     ret
 
-AddAMulBC:: ; 3429
-; Returns hl + a * bc
-    and a
-    ret z
-.loop:
-    add hl, bc
-    dec a
-    jr nz, .loop
-    ret
+AddNTimes:: ; 3429 (0:3429)
+	and a
+	ret z
+.asm_342b
+	add hl, bc
+	dec a
+	jr nz, .asm_342b
+	ret
+; 0x3430
 
 memcmp:: ; 3430
 ; Compare c bytes at hl and de

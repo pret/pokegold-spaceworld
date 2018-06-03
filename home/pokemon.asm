@@ -22,7 +22,7 @@ GetMonHeader:: ; 3a4b (0:3a4b)
 	dec a
 	ld bc, MonBaseStatsEnd - MonBaseStats
 	ld hl, MonBaseStats
-	call AddAMulBC
+	call AddNTimes
 	ld de, wMonHeader
 	ld bc, MonBaseStatsEnd - MonBaseStats
 	call CopyBytes

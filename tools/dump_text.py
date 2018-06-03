@@ -163,7 +163,7 @@ control_codes = {
 }
 
 def print_location(data):
-    return '.loc_{0:04X}:\n'.format(data['offset'])
+    return '.loc_{0:04X}:\n'.format(data['offset'] + (bank_size if data['source'] > bank_size else 0))
 
 if __name__ == '__main__':
     # argument parser
@@ -212,7 +212,12 @@ if __name__ == '__main__':
         f.seek(bank_addr)
         bank_data = f.read(bank_size)
    
-    data = {'offset': offset, 'bytes': bank_data, 'len': min(end_offset, len(bank_data)), 'textmode': args.textmode}
+    data = {'offset': offset,
+            'bytes': bank_data,
+            'len': min(end_offset, len(bank_data)),
+            'textmode': args.textmode,
+            'source': bank_addr,
+           }
     
     with open(outfile, 'wb') if outfile != sys.stdout else outfile.buffer as f:
         string = print_location(data)
