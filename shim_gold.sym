@@ -85,7 +85,9 @@
 04:528F Function_1128f
 04:52C1 Function_112c1
 04:5677 DoPlayerMovement
+04:5DBE DisplayStartMenu
 04:640B Function_1240b
+04:6C58 CheckRegisteredItem
 05:43E0 Function_143e0
 05:457A Function_1457a
 05:45B8 Function_145b8

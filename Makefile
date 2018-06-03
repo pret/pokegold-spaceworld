@@ -68,7 +68,7 @@ $(CORRECTEDROM): %-correctheader.gb: %.gb
 
 .PHONY: coverage
 coverage: $(ROM)
-	$(PYTHON) tools/disasm_coverage.py -m $(ROM:.gb=.map) -b 0x40
+	$(PYTHON3) tools/disasm_coverage.py -m $(ROM:.gb=.map) -b 0x40
 
 $(BUILD)/gfx.o: | $(GFX)
 $(BUILD)/%.o: $(BUILD)/%.asm | $$(dir $$@)

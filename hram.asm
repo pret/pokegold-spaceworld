@@ -19,7 +19,11 @@ hROMBank:: ; ff98
 hVBlank:: ; ff99
     db
 
-    ds 3 ; TODO
+    db ; TODO
+
+hStartmenuCloseAndSelectHookEnable:: db ; ff9b
+
+hStartmenuCloseAndSelectHookTemp:: db ; ff9c
 
 hJoypadUp:: db ; ff9d
 ; Raw Joypad Up Event
