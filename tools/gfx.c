@@ -8,7 +8,9 @@
 #include "common.h"
 
 static void usage(void) {
-	fprintf(stderr, "Usage: gfx [--trim-whitespace] [--remove-whitespace] [--interleave] [--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [--png filename] [-d depth] [-h] [-o outfile] infile\n");
+	fprintf(stderr, "Usage: gfx [[--trim-whitespace] | [--trim-trailing]] [--remove-whitespace] [--interleave] "
+	                "[--remove-duplicates [--keep-whitespace]] [--remove-xflip] [--remove-yflip] [--png filename] "
+	                "[-d depth] [-h] [-o outfile] infile\n");
 }
 
 static void error(char *message) {
@@ -18,6 +20,7 @@ static void error(char *message) {
 
 struct Options {
 	int trim_whitespace;
+	int trim_trailing;
 	int remove_whitespace;
 	int help;
 	char *outfile;
@@ -38,6 +41,7 @@ void get_args(int argc, char *argv[]) {
 	struct option long_options[] = {
 		{"remove-whitespace", no_argument, &Options.remove_whitespace, 1},
 		{"trim-whitespace", no_argument, &Options.trim_whitespace, 1},
+		{"trim-trailing", no_argument, &Options.trim_trailing, 1},
 		{"interleave", no_argument, &Options.interleave, 1},
 		{"remove-duplicates", no_argument, &Options.remove_duplicates, 1},
 		{"keep-whitespace", no_argument, &Options.keep_whitespace, 1},
@@ -88,10 +92,46 @@ bool is_whitespace(uint8_t *tile, int tile_size) {
 	return true;
 }
 
+/**
+ * is_solid_color
+ * Check if a tile is solid color, i.e. each
+ * bitplane is filled with the same value.
+ * Different bitplanes can have different values.
+ * 
+ * Returns true if solid color, else false.
+ */
+bool is_solid_color(uint8_t *tile, int depth, int tile_size) {
+	
+	const uint8_t ONES = 0xff;
+	const uint8_t ZEROS = 0x00;
+	
+	for (int i = 0; i < depth; i++) {
+		if (tile[i] != ONES && tile[i] != ZEROS) {
+			return false;
+		}
+	}
+	return !memcmp(&tile[0], &tile[depth], tile_size - depth);
+}
+
 void trim_whitespace(struct Graphic *graphic) {
 	int tile_size = Options.depth * 8;
 	for (int i = graphic->size - tile_size; i > 0; i -= tile_size) {
 		if (is_whitespace(&graphic->data[i], tile_size)) {
+			graphic->size = i;
+		} else {
+			break;
+		}
+	}
+}
+
+void trim_trailing(struct Graphic *graphic) {
+	int tile_size = Options.depth * 8;
+	int last_tile = graphic->size - tile_size;
+	if (!is_solid_color(&graphic->data[last_tile], Options.depth, tile_size)) {
+		return;
+	}
+	for (int i = graphic->size -  2 * tile_size; i > 0; i -= tile_size) {
+		if (!memcmp(&graphic->data[i], &graphic->data[last_tile], tile_size)) {
 			graphic->size = i;
 		} else {
 			break;
@@ -263,6 +303,8 @@ int main(int argc, char *argv[]) {
 	graphic.data = read_u8(infile, &graphic.size);
 	if (Options.trim_whitespace) {
 		trim_whitespace(&graphic);
+	} else if (Options.trim_trailing) {
+		trim_trailing(&graphic);
 	}
 	if (Options.interleave) {
 		if (!Options.png_file) {
