@@ -29,7 +29,7 @@ if __name__ == "__main__":
     rows_per_bank = bank_size // (width * bpp)
     
     r = MapReader()
-    with open(args.mapfile, 'r') as f:
+    with open(args.mapfile, 'r', encoding= "utf-8") as f:
         l = f.readlines()
     r.read_map_data(l)
     
