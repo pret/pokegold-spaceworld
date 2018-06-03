@@ -23,3 +23,32 @@ MainMenuStrings: ; 01:5428
     db "#を　あそぶ@"
     db "じかんセット@"
 ; 01:5457
+
+CONTINUE	EQU 0
+NEW_GAME	EQU 1
+OPTION		EQU 2
+PLAY_POKEMON	EQU 3
+SET_TIME	EQU 4
+
+MainMenuItems:
+	db 2
+	db NEW_GAME
+	db OPTION
+	db -1
+	
+	db 3
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db -1
+	
+	db 2
+	db PLAY_POKEMON
+	db OPTION
+	db -1
+	
+	db 3
+	db PLAY_POKEMON
+	db OPTION
+	db SET_TIME
+	db -1
