@@ -24,6 +24,9 @@ MainMenuStrings: ; 01:5428
     db "じかんセット@"
 ; 01:5457
 
+
+SECTION "Main Menu Items", ROMX[$5461], BANK[$01]
+
 CONTINUE	EQU 0
 NEW_GAME	EQU 1
 OPTION		EQU 2
