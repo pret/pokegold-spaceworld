@@ -15,7 +15,7 @@ PlaceWaitingText:: ; 1:4000
 .link_textbox
 	; TODO
 	; predef Predef_LinkTextbox
-	ld a, $1C
+	ld a, $1c
 	call Predef
 .textbox_done
 	hlcoord 4, 11

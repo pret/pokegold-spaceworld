@@ -7,10 +7,10 @@ SECTION "Empty function", ROM0[$2F5B]
 endc
 
 InexplicablyEmptyFunction:: ; 2f97
-REPT 16
-    nop
-ENDR
-    ret
+rept 16
+	nop
+endr
+	ret
 
 
 ; TODO:
@@ -21,14 +21,14 @@ ENDR
 SECTION "Unknown functions", ROM0[$1FF4]
 
 _1FF4:: ; 1ff4
-    ld a, BANK(s0_a600)
-    call OpenSRAM
-    ld hl, s0_a600 ; TODO: label this.
-    ld bc, 7
-    xor a
-    call ByteFill
-    call CloseSRAM
-    ret
+	ld a, BANK(s0_a600)
+	call OpenSRAM
+	ld hl, s0_a600 ; TODO: label this.
+	ld bc, 7
+	xor a
+	call ByteFill
+	call CloseSRAM
+	ret
 
 _2007:: ; 2007
     ld a, BANK(s0_a600)
@@ -65,13 +65,13 @@ if DEBUG
 ._209e:
 endc
 
-    ld hl, hHours
+    ld hl, hRTCHours
     ld de, wcbd2
     call _20DC
-    ld hl, hMinutes
+    ld hl, hRTCMinutes
     ld de, wcbd2 + 3
     call _20DC
-    ldh a, [hDays]
+    ldh a, [hRTCDays]
     and 7
     add $71 ; Sunday
     ld [wcbd2 + 6], a
@@ -79,7 +79,7 @@ endc
     ld [wcbd2 + 9], a
     inc a ; mobile
     ld [wcbd2 + 11], a
-    ldh a, [hSeconds]
+    ldh a, [hRTCSeconds]
     and 1
     ret z
     ld a, $70 ; :

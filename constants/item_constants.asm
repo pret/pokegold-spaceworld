@@ -262,3 +262,7 @@ NUM_TMS = const_value - ITEM_TM01 - 2 ; discount ITEM_C8 and ITEM_E1
 NUM_HMS = const_value - ITEM_HM01
 
 NUM_TMS_HMS = NUM_TMS + NUM_HMS
+
+; leftovers from pokered
+ITEM_HM01_RED EQU $c4
+ITEM_TM01_RED EQU $c9

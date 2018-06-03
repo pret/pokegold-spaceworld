@@ -166,3 +166,6 @@ _PlayMusic:: ; 3a:4d66
     jr nz, .loop
     xor a
     ; TODO
+
+SECTION "Song Header Pointers", ROMX[$52C7], BANK[$3A]
+INCLUDE "audio/song_header_pointers.inc"

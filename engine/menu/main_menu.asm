@@ -4,7 +4,7 @@ SECTION "Main Menu Definition", ROMX[$5418], BANK[$01]
 
 MainMenuHeader:
 	db $40
-	db 0, 0, 7, 13
+	db $00, $00, $07, $0d
 	dw .data
 	db 1 ; default option
 

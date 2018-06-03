@@ -1,0 +1,35 @@
+.loc_0000:
+	text "ほんとにりセットしますか？"
+	line "@"
+	text_from_ram $ce33
+	text_bcd $ce34, $78
+	text_move $ce35
+	text_box $cc36, $08, $12
+	text_low
+	text_waitbutton
+	text_scroll
+	deciram $cc37, $6, $5
+	text_exit
+	sound_dex_fanfare_50_79
+	text_dots $14
+	link_wait_button
+	sound_dex_fanfare_20_49
+	sound_item
+	sound_caught_mon
+	sound_dex_fanfare_80_109
+	sound_fanfare
+	sound_slot_machine_start
+	cry_nidorina
+	cry_pigeot
+	cry_jugon
+	text_end
+	
+.loc_0035:
+	text "ほんとにりセットしますか？"
+	done
+.loc_0044:
+	start_asm ; text dumper cannot dump asm
+	          ; Try dumping asm from the following offset and
+	          ; then continue dumping text in control mode.
+	
+.loc_0045:

@@ -24,8 +24,8 @@ PredefPointers:: ; 1:62d3
 	add_predef Function_cdf9
 	add_predef Function_ce10_2
 	add_predef Function_cd33
-Function_366cPredef::
-	dbw 3, Function_366c
+GiveItemPredef::
+	dbw 3, GiveItem
 	add_predef Function_ce3c
 	add_predef Function_da28
 	add_predef Function_d886

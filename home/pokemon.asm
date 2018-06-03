@@ -5,10 +5,10 @@ SECTION "3A4B", ROM0[$3A4B]
 else
 SECTION "3A4B", ROM0[$3A0F]
 endc
+GetMonHeader:: ; 3a4b (0:3a4b)
 ; copies the base stat data of a pokemon to wMonHeader
 ; INPUT:
 ; [wcb5b] = pokemon ID in dex order
-GetMonHeader:: ; 3a4b (0:3a4b)
 	push bc
 	push de
 	push hl
@@ -29,7 +29,7 @@ GetMonHeader:: ; 3a4b (0:3a4b)
 	jr .done
 .egg
 	ld de, EggPicFront
-	ld b, $55 ; egg sprite dimension
+	ln b, 5, 5 ; egg sprite dimension
 	ld hl, wMonHSpriteDim
 	ld [hl], b
 	ld hl, wMonHFrontSprite
@@ -53,10 +53,10 @@ else
 SECTION "3AED", ROM0[$3AB1]
 endc
 
+UncompressMonSprite:: ; 3aed (0:3aed)
 ; Uncompresses the front or back sprite of the specified mon
 ; assumes the corresponding mon header is already loaded
 ; hl contains offset to sprite pointer ($b for front or $d for back)
-UncompressMonSprite:: ; 3aed (0:3aed)
 	ld a, [wMonDexIndex]
 	and a
 	ret z
@@ -104,12 +104,12 @@ UncompressMonSprite:: ; 3aed (0:3aed)
 	ld a, BANK(AnnonPics)
 	jp UncompressSpriteData
 
-; Uncompress Pokémon Front Srite for
+LoadMonFrontSprite:: ; 3b3f
+; Uncompress Pokémon Front Sprite for
 ; mon currently loaded in wMonHeader
 ; to 0x9000
 ; de: destination location
 ; returns the sprite dimension in c
-LoadMonFrontSprite:: ; 3b3f
 	push de
 	ld hl, wMonHFrontSprite - wMonHeader
 	call UncompressMonSprite
@@ -117,13 +117,13 @@ LoadMonFrontSprite:: ; 3b3f
 	ld a, [hl]
 	ld c, a
 	pop de
-	; fall through
-	
+	; fallthrough
+
+LoadUncompressedSpriteData:: ; 3b4c (0:3b4c)
 ; postprocesses uncompressed sprite chunks to a 2bpp sprite and loads it into video ram
 ; calculates alignment parameters to place both sprite chunks in the center of the 7*7 tile sprite buffers
 ; de: destination location
 ; a,c:  sprite dimensions (in tiles of 8x8 each)
-LoadUncompressedSpriteData:: ; 3b4c (0:3b4c)
 	push de
 	and $0f
 	ldh [hSpriteWidth], a ; each byte contains 8 pixels (in 1bpp), so tiles=bytes for width
@@ -172,15 +172,15 @@ LoadUncompressedSpriteData:: ; 3b4c (0:3b4c)
 	call InterlaceMergeSpriteBuffers
 	ret
 
-; fills the sprite buffer (pointed to in hl) with zeros
 ZeroSpriteBuffer:: ; 3ba1 (0:3ba1)
+; fills the sprite buffer (pointed to in hl) with zeros
 	ld bc, SPRITEBUFFERSIZE
 	xor a
 	jp ByteFill
 
+AlignSpriteDataCentered:: ; 3ba8 (0:3ba8)
 ; copies and aligns the sprite data properly inside the sprite buffer
 ; sprite buffers are 7*7 tiles in size, the loaded sprite is centered within this area
-AlignSpriteDataCentered:: ; 3ba8 (0:3ba8)
 	ldh a, [hSpriteOffset]
 	ld c, a
 	ld b, $00
@@ -206,28 +206,28 @@ AlignSpriteDataCentered:: ; 3ba8 (0:3ba8)
 	jr nz, .columnLoop
 	ret
 
+InterlaceMergeSpriteBuffers:: ; 3bc6 (0:3bc6)
 ; combines the (7*7 tiles, 1bpp) sprite chunks in buffer 0 and 1 into a 2bpp sprite located in buffer 1 through 2
 ; in the resulting sprite, the rows of the two source sprites are interlaced
 ; de: output address
-InterlaceMergeSpriteBuffers:: ; 3bc6 (0:3bc6)
 	ld a, $00
 	call OpenSRAM
 	push de
 	call _InterlaceMergeSpriteBuffers
 	pop hl
 	ld de, sSpriteBuffer1
-	ld c, (2*SPRITEBUFFERSIZE)/16 ; $31, number of 16 byte chunks to be copied
+	ld c, (2 * SPRITEBUFFERSIZE) / 16 ; $31, number of 16 byte chunks to be copied
 	ldh a, [hROMBank]
 	ld b, a
 	call CopyVideoDataOptimized
 	call CloseSRAM
 	ret
 
+_InterlaceMergeSpriteBuffers:: ; 3bdf (0:3bdf)
 ; actual implementation of InterlaceMergeSpriteBuffers
 ; sprite flipping is now done during interlace merge loop
 ; and not as second loop after regular interlace merge
 ; to save time
-_InterlaceMergeSpriteBuffers:: ; 3bdf (0:3bdf)
 	ld a, [wSpriteFlipped]
 	and a
 	jr nz, .flipped
@@ -271,7 +271,7 @@ _InterlaceMergeSpriteBuffers:: ; 3bdf (0:3bdf)
 	ld hl, sSpriteBuffer2 + (SPRITEBUFFERSIZE - 1) ; destination: end of buffer 2
 	ld de, sSpriteBuffer1 + (SPRITEBUFFERSIZE - 1) ; source 2: end of buffer 1
 	ld bc, sSpriteBuffer0 + (SPRITEBUFFERSIZE - 1) ; source 1: end of buffer 0
-	ld a, SPRITEBUFFERSIZE/2 ; $c4
+	ld a, SPRITEBUFFERSIZE / 2 ; $c4
 	ldh [hSpriteInterlaceCounter], a
 .interlaceLoopFlipped
 	ld a, [de]

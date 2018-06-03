@@ -1,51 +1,29 @@
 #!/usr/bin/env python
 
 import sys, os, io
+from read_charmap import read_charmap
 
-def parse_int(s):
-	s = s.strip()
-	if s.startswith('$'):
-		return int(s[1:], 16)
-	if s.startswith('%'):
-		return int(s[1:], 2)
-	return int(s)
+def calc_bank(p):
+	return p // 0x4000
 
-def parse_string(s):
-	# assumes strings are literal, no STRCAT() etc
-	return s.strip('" ')
+def calc_address(p):
+	b = calc_bank(p)
+	o = b * 0x4000
+	return 0x4000 + p - o
 
-def strip_comment(s):
-	# assumes ";" is not in the charmap
-	return s.split(';')[0].rstrip()
+def get_sym_loc(p):
+	b, a = calc_bank(p), calc_address(p)
+	return '%02x:%04x' % (b, a)
 
 def get_project_dir():
 	script_path = os.path.realpath(__file__)
 	script_dir = os.path.dirname(script_path)
 	project_dir = os.path.join(script_dir, '..')
 	return os.path.normpath(project_dir)
-
-def get_charmap_path():
-	project_dir = get_project_dir()
-	return os.path.join(project_dir, 'charmap.asm')
-
+	
 def get_baserom_path():
 	project_dir = get_project_dir()
 	return os.path.join(project_dir, 'baserom.gb')
-
-def read_charmap():
-	charmap_path = get_charmap_path()
-	charmap = {}
-	with io.open(charmap_path, 'r', encoding='utf-8') as f:
-		lines = f.readlines()
-	for line in lines:
-		line = strip_comment(line).lstrip()
-		if not line.startswith('charmap '):
-			continue
-		char, value = line[len('charmap '):].rsplit(',', 1)
-		char = parse_string(char)
-		value = parse_int(value)
-		charmap[value] = char
-	return charmap
 
 def dump_strings(data):
 	charmap = read_charmap()
@@ -84,9 +62,7 @@ def read_data(bank, address, n):
 			data.append(v)
 	return data
 
-#data = read_data(0x0E, 0x4D90, 64) # TrainerClassNames
-#data = read_data(0x01, 0x6FEC, 255) # ItemNames
-#data = read_data(0x10, 0x52A1, 251) # MoveNames
-data = read_data(0x14, 0x6D75, 251) # PokemonNames
-
+p = 0xfcaaf # Landmarks
+print get_sym_loc(p)
+data = read_data(calc_bank(p), calc_address(p), 45)
 dump_strings(data)

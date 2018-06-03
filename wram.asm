@@ -81,27 +81,53 @@ SECTION "LY overrides buffer", WRAM0[$C600]
 wLYOverrides:: ; c600
     ds SCREEN_HEIGHT_PX
 
+SECTION "CB14", WRAM0[$CB14]
+
+UNION
+wRedrawRowOrColumnSrcTiles:: ; cb14
+; the tiles of the row or column to be redrawn by RedrawRowOrColumn
+    ds SCREEN_WIDTH * 2
+NEXTU
+wRedrawFlashlightDst0:: dw ; cb14
+wRedrawFlashlightSrc0:: dw ; cb16
+wRedrawFlashlightBlackDst0:: dw ; cb18
+wRedrawFlashlightDst1:: dw ; cb1a
+wRedrawFlashlightSrc1:: dw ; cb1c
+wRedrawFlashlightBlackDst1:: dw ; cb1e
+wRedrawFlashlightWidthHeight:: db ; cb20
+; width or height of flashlight redraw region
+; in units of two tiles (people event meta tile)
+ENDU
+
 SECTION "CB56", WRAM0[$CB5B]
 wcb5b:: ds 1         ; multipurpose, also wName, wMonDexIndex2
 wNameCategory:: ds 1
 
 SECTION "CB62", WRAM0[$CB62]
 
-wVBCopySize:: ds 1
-wVBCopySrc:: ds 2
-wVBCopyDst:: ds 2
-wVBCopyDoubleSize:: ds 1
-wVBCopyDoubleSrc:: ds 2
-wVBCopyDoubleDst:: ds 2
+wVBCopySize:: ds 1 ; cb62
+wVBCopySrc:: ds 2 ; cb63
+wVBCopyDst:: ds 2 ; cb65
+wVBCopyDoubleSize:: ds 1 ; cb67
+wVBCopyDoubleSrc:: ds 2 ; cb68
+wVBCopyDoubleDst:: ds 2 ; cb6a
+
+SECTION "CB71", WRAM0[$CB71]
+
+wVBCopyFarSize:: ds 1 ; cb71
+wVBCopyFarSrc:: ds 2 ; cb72
+wVBCopyFarDst:: ds 2 ; cb74
+wVBCopyFarSrcBank:: ds 1 ; cb76
 
 
 SECTION "CBD2", WRAM0[$CBD2]
 wcbd2:: ; cbd2
     ds $14
 
-SECTION "CC33", WRAM0[$CC33] ; Please merge when more is disassembled
+SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
+wVBlankJoyFrameCounter: db ; cc32
 
-wVBlankOccurred: db
+wVBlankOccurred: db ; cc33
 
     ds 4
 
@@ -134,7 +160,35 @@ wSpriteOutputPtrCached  : ds 2 ; ccba
 wSpriteDecodeTable0Ptr  : ds 2 ; ccbc
 wSpriteDecodeTable1Ptr  : ds 2 ; ccbe
 
-SECTION "CD4F", WRAM0[$CD4F]
+SECTION "CCC7", WRAM0[$CCC7]
+
+wDisableVBlankOAMUpdate:: db ; ccc7
+
+SECTION "CCCA", WRAM0[$CCCA]
+
+wBGP:: db ; ccca
+wOBP0:: db ; cccb
+wOBP1:: db ; cccc
+
+SECTION "CCCE", WRAM0[$CCCE]
+
+wDisableVBlankWYUpdate:: db ; ccce
+
+SECTION "CD26", WRAM0[$CD26]
+
+wcd26:: ; cd26
+    db
+
+SECTION "CD31", WRAM0[$CD31]
+
+wcd31:: ; cd31
+    db
+
+SECTION "CD4A", WRAM0[$CD4A]
+
+wTextDest:: ds 2; cd4a
+
+    ds 3 ; TODO
 
 wPredefID:: ; cd4f
     db
@@ -148,9 +202,28 @@ wPredefBC:: ; cd54
 wFarCallBCBuffer:: ; cd54
     dw
 
-SECTION "CD78", WRAM0[$CD78]
+SECTION "CD76", WRAM0[$CD76]
+
+wcd76:: ; cd76
+    db
+
+wcd77:: ;cd77
+    db
 
 wMonDexIndex: ds 1 ; cd78
+
+SECTION "CD7D", WRAM0[$CD7D]
+
+wItemQuantity:: ; cd7d
+    db
+
+SECTION "CDBD", WRAM0[$CDBD]
+
+wLinkMode:: db ; cdbd
+; 00 - 
+; 01 - 
+; 02 - 
+; 03 -  
 
 SECTION "CE00", WRAM0[$CE00]
 
@@ -164,83 +237,144 @@ wMonHeader::
 wMonHIndex:: ; ce07
 ; In the ROM base stats data structure, this is the dex number, but it is
 ; overwritten with the dex number after the header is copied to WRAM.
-	ds 1
+    ds 1
 
 wMonHBaseStats:: ; ce08
 wMonHBaseHP:: ; ce08
-	ds 1
+    ds 1
 wMonHBaseAttack:: ; ce09
-	ds 1
+    ds 1
 wMonHBaseDefense:: ; ce0a
-	ds 1
+    ds 1
 wMonHBaseSpeed:: ; ce0b
-	ds 1
+    ds 1
 wMonHBaseSpecialAtt:: ; ce0c
-	ds 1
+    ds 1
 wMonHBaseSpecialDef:: ; ce0d
-	ds 1
+    ds 1
 
 wMonHTypes:: ; ce0e
 wMonHType1:: ; ce0e
-	ds 1
+    ds 1
 wMonHType2:: ; ce0f
-	ds 1
+    ds 1
 
 wMonHCatchRate:: ; ce10
-	ds 1
+    ds 1
 wMonHBaseEXP:: ; ce11
-	ds 1
+    ds 1
 
 wMonHItems:: ; ce12
 wMonHItem1:: ; ce12
-	ds 1
+    ds 1
 wMonHItem2:: ; ce13
-	ds 1
+    ds 1
 
 wMonHGenderRatio:: ; ce14
-	ds 1
+    ds 1
 
 wMonHUnk0:: ; ce15
-	ds 1
+    ds 1
 wMonHUnk1:: ; ce16
-	ds 1
+    ds 1
 wMonHUnk2:: ; ce17
-	ds 1
+    ds 1
 
 wMonHSpriteDim:: ; ce18
-	ds 1
+    ds 1
 wMonHFrontSprite:: ; ce19
-	ds 2
+    ds 2
 wMonHBackSprite:: ; ce1b
-	ds 2
+    ds 2
 
 wMonHGrowthRate:: ; ce1d
-	ds 1
+    ds 1
 
 wMonHLearnset:: ; ce1e
 ; bit field
-	flag_array 50 + 5
-	ds 1
+    flag_array 50 + 5
+    ds 1
 
-SECTION "CE3C", WRAM0[$CE3C]
+SECTION "CE37", WRAM0[$CE37]
+
+wce37:: ; ce37
+    db
+
+SECTION "CE3B", WRAM0[$CE3B]
+
+wVBlankSavedROMBank:: ; ce3b
+    db
 
 wBuffer:: ; ce3c
     db
 
+wTimeOfDay:: db ; ce3d
+; based on RTC
+; Time of Day   Regular    Debug
+; 00 - Day      09--15h    00--30s
+; 01 - Night    15--06h    30--35s
+; 02 - Cave                35--50s
+; 03 - Morning  06--09h    50--59s
 
 SECTION "CE5F", WRAM0[$CE5F]
 
 wce5f:: ; ce5f ; TODO
     db
 
+SECTION "CE63", WRAM0[$CE63]
+
+wce63:: db ; ce63
+; 76543210
+;       \-- global debug enable
+
+SECTION "D152", WRAM0[$D152]
+
+wMapTimeOfDayPalette:: db ; d152
+; Applied according to wMapTimeOfDay from wMapTimeOfDayPaletteMap
+
+wd153:: db ; d153
+; 76543210
+; \-------- switch overworld palettes according to seconds not hours
+
+    ds 3 ; TODO
+wd157:: db ; d157
+; 76543210
+; \-------- disable overworld palette switch
+
+wMapTimeOfDayPaletteMap:: db ; d158
+; 76543210
+; \/\/\/\/
+;  | | | \- Map Palette for TimeOfDay 0x00
+;  | | \--- Map Palette for TimeOfDay 0x01
+;  | \----- Map Palette for TimeOfDay 0x02
+;  \------- Map Palette for TimeOfDay 0x03
+
+wMapTimeOfDay:: db ; d159
+
+SECTION "D19E", WRAM0[$D19E]
+
+wNumBagItems:: ; d19e
+    db
+
+SECTION "D4AB", WRAM0[$D4AB]
+
+wJoypadFlags:: db ; d4ab
+; 76543210
+; ||||\__/
+; ||||  \-- unkn
+; |||\----- unkn
+; ||\------ don't wait for keypress to close text box
+; |\------- joypad sync mtx
+; \-------- joypad disabled
+
 SECTION "PokeDexFlags", WRAM0[$D81A]
 
 wPokedexOwned::    ; d81a
-	flag_array NUM_POKEMON
+    flag_array NUM_POKEMON
 wPokedexOwnedEnd:: ; d839
 
 wPokedexSeen::     ; d83a
-	flag_array NUM_POKEMON
+    flag_array NUM_POKEMON
 wPokedexSeenEnd::  ; d859
 
 wAnnonDex:: ds 26  ; d85a
