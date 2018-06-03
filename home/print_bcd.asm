@@ -1,6 +1,10 @@
 INCLUDE "constants.asm"
 
-SECTION "BCD Functions", ROM0[$3ab2]
+if DEBUG
+SECTION "BCD Functions", ROM0[$3AB2]
+else
+SECTION "BCD Functions", ROM0[$3A76]
+endc
 
 ; function to print a BCD (Binary-coded decimal) number
 ; de = address of BCD number

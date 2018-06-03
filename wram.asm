@@ -119,6 +119,10 @@ wVBCopyFarSrc:: ds 2 ; cb72
 wVBCopyFarDst:: ds 2 ; cb74
 wVBCopyFarSrcBank:: ds 1 ; cb76
 
+SECTION "CBD2", WRAM0[$CBD2]
+wcbd2:: ; cbd2
+    ds $14
+
 SECTION "CBF7", WRAM0[$CBF7]
 
 wActiveBackpackPocket:: db ; cbf7
@@ -132,7 +136,6 @@ SECTION "CC2A", WRAM0[$CC2A]
 wMenuCursorY:: db ; cc2a
 
 SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
-
 wVBlankJoyFrameCounter: db ; cc32
 
 wVBlankOccurred: db ; cc33

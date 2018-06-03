@@ -6,8 +6,8 @@ hOAMDMA:: ; ff80
 hRTCHours:: db ; ff8d
 hRTCMinutes:: db ; ff8e
 hRTCSeconds:: db ; ff8f
-
-    ds 7 ; TODO
+hRTCDays:: db ; ff90
+    ds 6 ; TODO
 
 hVBlankCounter:: ; ff97
     db

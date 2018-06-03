@@ -35,11 +35,19 @@ INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
 SECTION "SGB Border GFX", ROMX[$6B1C], BANK[$02]
 SGBBorderGFX::
-INCBIN "gfx/sgb/sgb_border.2bpp"
+if def(GOLD)
+INCBIN "gfx/sgb/sgb_border_gold.2bpp"
+else
+INCBIN "gfx/sgb/sgb_border_silver.2bpp"
+endc
 
 SECTION "Title Screen GFX", ROMX[$47CF], BANK[$04]
 TitleScreenGFX::
-INCBIN "gfx/title/title.2bpp"
+if def(GOLD)
+INCBIN "gfx/title/title_gold.2bpp"
+else
+INCBIN "gfx/title/title_silver.2bpp"
+endc
 
 SECTION "Mail Icon GFX", ROMX[$5BB1], BANK[$04]
 MailIconGFX::
@@ -50,11 +58,17 @@ TrainerCardGFX::                     INCBIN "gfx/trainer_card/trainer_card.2bpp"
 TrainerCardColonGFX::                INCBIN "gfx/trainer_card/colon.2bpp"        ; 0x013381--0x013391
 TrainerCardIDNoGFX::                 INCBIN "gfx/trainer_card/id_no.2bpp"        ; 0x013391--0x0133B1
 TrainerCardIDNoGFXEnd::
-TrainerCardLeadersGFX::              INCBIN "gfx/trainer_card/leaders.2bpp"      ; 0x0133B1--0x133BA1
-
+TrainerCardLeadersGFX::              INCBIN "gfx/trainer_card/leaders.2bpp"      ; 0x0133B1--0x013BA1
+if DEBUG || def(GOLD)
 	db $18, $00 ; leftover of previous graphics
+else
+    db $b2, $aa ; leftover of previous graphics?
+endc
 
-Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp" ; 0x1
+if DEBUG
+; Not sure how to parse this from the non-debug ROM, so I'll leave this be for now
+Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp" ; 0x13ba3
+endc
 
 SECTION "Bank 6 Tilesets 00", ROMX[$4000], BANK[$06]
 Tileset_00_GFX:

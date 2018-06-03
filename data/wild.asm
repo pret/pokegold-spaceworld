@@ -7,9 +7,15 @@ GrassWildMons:: ; f:6a3c
 	db $01, $01 ; map group, map id
 	db 8 percent, 8 percent, 8 percent ; encounter rates: morn/day/nite
 	; morn
+if def(GOLD)
 	db 7, DEX_SUNNY
 	db 3, DEX_SUNNY
 	db 5, DEX_SUNNY
+else
+	db 8, DEX_POPPO
+	db 8, DEX_POPPO
+	db 7, DEX_POPPO
+endc
 	db 5, DEX_PIKACHU
 	db 5, DEX_POPPO
 	db 5, DEX_POPPO
@@ -17,23 +23,38 @@ GrassWildMons:: ; f:6a3c
 	db 4, DEX_KORATTA
 	db 6, DEX_KIRINRIKI
 	db 4, DEX_KIRINRIKI
+if def(GOLD)
 	db 4, DEX_HANEKO
+else
+	db 4, DEX_MARIL
+endc
 	db 4, DEX_POPPO
 	db 8, DEX_KORATTA
 	; nite
 	db 7, DEX_KORATTA
 	db 5, DEX_KORATTA
 	db 5, DEX_KORATTA
+if def(GOLD)
 	db 7, DEX_KORATTA
 	db 8, DEX_KORATTA
+else
+	db 5, DEX_HOHO
+	db 3, DEX_HOHO
+endc
 	db 5, DEX_PIKACHU
 
 	db $01, $02 ; map group, map id
 	db 8 percent, 8 percent, 8 percent ; encounter rates: morn/day/nite
 	; morn
+if def(GOLD)
 	db 6, DEX_SUNNY
 	db 6, DEX_SUNNY
 	db 6, DEX_SUNNY
+else
+	db 8, DEX_POPPO
+	db 8, DEX_POPPO
+	db 6, DEX_POPPO
+endc
 	db 5, DEX_PIKACHU
 	db 4, DEX_ARBO
 	db 5, DEX_KORATTA
@@ -41,13 +62,21 @@ GrassWildMons:: ; f:6a3c
 	db 5, DEX_POPPO
 	db 7, DEX_YOROIDORI
 	db 5, DEX_KORATTA
+if def(GOLD)
 	db 8, DEX_HANEKO
+else
+	db 8, DEX_MARIL
+endc
 	db 4, DEX_POPPO
 	db 7, DEX_KORATTA
 	; nite
 	db 7, DEX_KORATTA
 	db 6, DEX_ARBO
+if def(GOLD)
 	db 6, DEX_KORATTA
+else
+	db 6, DEX_HOHO
+endc
 	db 7, DEX_ARBO
 	db 8, DEX_KORATTA
 	db 5, DEX_PIKACHU
@@ -593,13 +622,21 @@ GrassWildMons:: ; f:6a3c
 	db 6, DEX_POPPO
 	db 4, DEX_CATERPIE
 	db 6, DEX_CATERPIE
+if def(GOLD)
 	db 6, DEX_HANEKO
+else
+	db 6, DEX_MARIL
+endc
 	db 5, DEX_CATERPIE
 	db 8, DEX_REDIBA
 	; nite
 	db 4, DEX_TRANSEL
 	db 6, DEX_KORATTA
+if def(GOLD)
 	db 6, DEX_CATERPIE
+else
+	db 5, DEX_HOHO
+endc
 	db 6, DEX_REDIBA
 	db 5, DEX_TRANSEL
 	db 5, DEX_PIKACHU

@@ -1,6 +1,10 @@
 INCLUDE "constants.asm"
 
+if DEBUG
 SECTION "Jumptable functions", ROM0[$35cd]
+else
+SECTION "Jumptable functions", ROM0[$3591]
+endc
 
 CallJumptable:: ; 35cd (0:35cd)
 ; CallJumptable

@@ -1,11 +1,16 @@
 INCLUDE "constants.asm"
 
+if DEBUG
 SECTION "Startmenu and Select Button Check", ROM0[$2C05]
+else
+SECTION "Startmenu and Select Button Check", ROM0[$2BDF]
+endc
 
 OverworldStartButtonCheck:: ; 2c05 (0:2c05)
 	ldh a, [hJoyState]
 	bit START_F, a
 	ret z
+if DEBUG
 	and (START | B_BUTTON)
 	cp (START | B_BUTTON)
 	jr nz, .regularMenu
@@ -17,6 +22,7 @@ OverworldStartButtonCheck:: ; 2c05 (0:2c05)
 	call FarCall_hl
 	jr CheckStartmenuSelectHook
 .regularMenu
+endc
 	ld a, BANK(DisplayStartMenu)
 	ld hl, DisplayStartMenu
 	call FarCall_hl
@@ -42,7 +48,11 @@ CheckStartmenuSelectHook:
 	dec a
 	ret
 
+if DEBUG
 SECTION "Install StartMenu Hook Function", ROM0[$35EC]
+else
+SECTION "Install StartMenu Hook Function", ROM0[$35B0]
+endc
 
 InstallStartmenuCloseAndSelectHook::
 ; Install a function that is called as soon as

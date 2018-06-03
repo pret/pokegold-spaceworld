@@ -1,6 +1,10 @@
 INCLUDE "constants.asm"
 
+if DEBUG
 SECTION "Print Hexadecimal functions", ROM0[$3597]
+else
+SECTION "Print Hexadecimal functions", ROM0[$355B]
+endc
 
 PrintHexBytes: ; 3597 (0:3597)
 ; Print c hex bytes located at de to hl
