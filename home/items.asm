@@ -1,6 +1,10 @@
 INCLUDE "constants.asm"
 
+if DEBUG
 SECTION "AddItemToInventory", ROM0[$3259]
+else
+SECTION "AddItemToInventory", ROM0[$321D]
+endc
 
 AddItemToInventory:: ; 3259
 ; function to add an item (in varying quantities) to the player's bag or PC box
@@ -25,7 +29,11 @@ AddItemToInventory:: ; 3259
 	pop bc
 	ret
 
+if DEBUG
 SECTION "GiveItem", ROM0[$366C]
+else
+SECTION "GiveItem", ROM0[$3630]
+endc
 
 GiveItem::
 ; Give player quantity c of item b,
@@ -44,7 +52,11 @@ GiveItem::
 	scf
 	ret
 
+if DEBUG
 SECTION "GetItemName", ROM0[$376F]
+else
+SECTION "GetItemName", ROM0[$3733]
+endc
 
 GetItemName:: ; 376F
 ; given an item ID at [wce37], store the name of the item into a string
@@ -69,7 +81,11 @@ GetItemName:: ; 376F
 	pop hl
 	ret
 
+if DEBUG
 SECTION "GetMachineName", ROM0[$378E]
+else
+SECTION "GetMachineName", ROM0[$3752]
+endc
 
 GetMachineName::
 ; copies the name of the TM/HM in [wce37] to wcd26

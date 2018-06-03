@@ -1,10 +1,12 @@
-text   EQUS "db $00," ; Start writing text.
-next   EQUS "db $4e," ; Move a line down.
-line   EQUS "db $4f," ; Start writing at the bottom line.
-para   EQUS "db $51," ; Start a new paragraph.
-cont   EQUS "db $55," ; Scroll to the next line.
-done   EQUS "db $57"  ; End a text box.
-prompt EQUS "db $58"  ; Prompt the player to end a text box (initiating some other event).
+text   EQUS "db $00,"          ; Start writing text.
+next   EQUS "db \"<NEXT>\","   ; Move a line down.
+line   EQUS "db \"<LINE>\","   ; Start writing at the bottom line.
+para   EQUS "db \"<PARA>\","   ; Start a new paragraph.
+cont   EQUS "db \"<CONT>\","   ; Scroll to the next line.
+done   EQUS "db \"<DONE>\""    ; End a text box.
+prompt EQUS "db \"<PROMPT>\""  ; Prompt the player to end a text box (initiating some other event).
+text_end EQUS "db $50"         ; End control code for text processor
+                               ; different from @
 
 ; TODO: determine if these are in
 ; Pokedex text commands are only used with pokered.
@@ -67,7 +69,7 @@ deciram: macro
 	endm
 
 	enum TX_EXIT
-interpret_data: macro
+text_exit: macro
 	db TX_EXIT
 	endm
 
@@ -77,7 +79,7 @@ sound_dex_fanfare_50_79: macro
 	endm
 
 	enum TX_DOTS
-limited_interpret_data: macro
+text_dots: macro
 	db TX_DOTS
 	db \1
 	endm

@@ -29,8 +29,13 @@ if __name__ == "__main__":
     rows_per_bank = bank_size // (width * bpp)
     
     r = MapReader()
-    with open(args.mapfile, 'r') as f:
-        l = f.readlines()
+    try:
+        with open(args.mapfile, 'r') as f:
+            l = f.readlines()
+    except UnicodeDecodeError:
+        # Python 3 seems to choke on the file's encoding, but the `encoding` keyword only works on Py3
+        with open(args.mapfile, 'r', encoding= "utf-8") as f:
+            l = f.readlines()
     r.read_map_data(l)
     
     hit_data = [[0] * width for _ in range(height)]

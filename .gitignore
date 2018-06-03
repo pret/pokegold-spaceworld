@@ -13,7 +13,7 @@
 *.pic
 *.pcm
 *.map
-pokegold-spaceworld.sym
+poke*-spaceworld.sym
 shim.asm
 
 *~
@@ -23,8 +23,9 @@ shim.asm
 tools/scan_includes
 tools/pkmncompress
 tools/gfx
-tools/*.pyc
+*.pyc
 build/
+.idea/
 
 coverage.png
 coverage.log

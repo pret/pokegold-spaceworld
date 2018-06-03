@@ -6,8 +6,8 @@ hOAMDMA:: ; ff80
 hRTCHours:: db ; ff8d
 hRTCMinutes:: db ; ff8e
 hRTCSeconds:: db ; ff8f
-
-    ds 7 ; TODO
+hRTCDays:: db ; ff90
+    ds 6 ; TODO
 
 hVBlankCounter:: ; ff97
     db
@@ -19,7 +19,11 @@ hROMBank:: ; ff98
 hVBlank:: ; ff99
     db
 
-    ds 3 ; TODO
+    db ; TODO
+
+hStartmenuCloseAndSelectHookEnable:: db ; ff9b
+
+hStartmenuCloseAndSelectHookTemp:: db ; ff9c
 
 hJoypadUp:: db ; ff9d
 ; Raw Joypad Up Event

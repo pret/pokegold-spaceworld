@@ -1,6 +1,10 @@
 INCLUDE "constants.asm"
 
+if DEBUG
 SECTION "Predef", ROM0[$2FDE]
+else
+SECTION "Predef", ROM0[$2FA2]
+endc
 
 Predef:: ; 2fde
 	ld [wPredefID], a

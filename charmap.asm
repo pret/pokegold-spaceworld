@@ -116,6 +116,9 @@
 	charmap "▲", $61
 	charmap "☎", $62
 
+	charmap "Ａ", $60
+	charmap "Ｂ", $61
+	charmap "Ｃ", $62
 	charmap "Ｄ", $63
 	charmap "Ｅ", $64
 	charmap "Ｆ", $65

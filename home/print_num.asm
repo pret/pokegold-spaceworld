@@ -1,6 +1,10 @@
 INCLUDE "constants.asm"
 
+if DEBUG
 SECTION "Number Printing Functions", ROM0[$3460]
+else
+SECTION "Number Printing Functions", ROM0[$3424]
+endc
 
 PrintNumber:: ; 3460 (0:3460)
 ; function to print a number

@@ -1,0 +1,9 @@
+.loc_0000:
+	db "<NULL>ほんとにりセットしますか？<LINE>@"
+.loc_0010:
+	db "イ゛でほヴどほぉエ゛<ROUTE>ほオ゛<WATASHI>ふゲデガギグゴ<KOKO_WA>ふＦザジズ<PLAY_G>ゼゾダヂヅデド<PLAY_G><15><16>@"
+.loc_0035:
+	db "<NULL>ほんとにりセットしますか？<DONE>"
+.loc_0044:
+	db "ゲ"
+.loc_0045:

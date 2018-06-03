@@ -1,21 +1,3 @@
-
-
-; pitch
-	const_def
-	const __
-	const C_
-	const C#
-	const D_
-	const D#
-	const E_
-	const F_
-	const F#
-	const G_
-	const G#
-	const A_
-	const A#
-	const B_
-
 ; channel
 	const_def
 	const CHAN1

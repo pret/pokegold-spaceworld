@@ -35,25 +35,40 @@ INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
 SECTION "SGB Border GFX", ROMX[$6B1C], BANK[$02]
 SGBBorderGFX::
-INCBIN "gfx/sgb/sgb_border.2bpp"
+if def(GOLD)
+INCBIN "gfx/sgb/sgb_border_gold.2bpp"
+else
+INCBIN "gfx/sgb/sgb_border_silver.2bpp"
+endc
 
 SECTION "Title Screen GFX", ROMX[$47CF], BANK[$04]
 TitleScreenGFX::
-INCBIN "gfx/title/title.2bpp"
+if def(GOLD)
+INCBIN "gfx/title/title_gold.2bpp"
+else
+INCBIN "gfx/title/title_silver.2bpp"
+endc
 
 SECTION "Mail Icon GFX", ROMX[$5BB1], BANK[$04]
 MailIconGFX::
 INCBIN "gfx/icons/mail.2bpp"
 
 SECTION "Trainer Card GFX", ROMX[$7171], BANK[$04]
-TrainerCardGFX::
-INCBIN "gfx/trainer_card/trainer_card.2bpp"
-TrainerCardLeadersGFX::
-INCBIN "gfx/trainer_card/leaders.2bpp"
+TrainerCardGFX::                     INCBIN "gfx/trainer_card/trainer_card.2bpp" ; 0x013171--0x013381
+TrainerCardColonGFX::                INCBIN "gfx/trainer_card/colon.2bpp"        ; 0x013381--0x013391
+TrainerCardIDNoGFX::                 INCBIN "gfx/trainer_card/id_no.2bpp"        ; 0x013391--0x0133B1
+TrainerCardIDNoGFXEnd::
+TrainerCardLeadersGFX::              INCBIN "gfx/trainer_card/leaders.2bpp"      ; 0x0133B1--0x013BA1
+if DEBUG || def(GOLD)
+	db $18, $00 ; leftover of previous graphics
+else
+    db $b2, $aa ; leftover of previous graphics?
+endc
 
-SECTION "Unused Leader", ROMX[$7BA3], BANK[$04]
-UnusedLeaderNameGFX::
-INCBIN "gfx/trainer_card/unused_leader_name.2bpp"
+if DEBUG
+; Not sure how to parse this from the non-debug ROM, so I'll leave this be for now
+Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp" ; 0x13ba3
+endc
 
 SECTION "Bank 6 Tilesets 00", ROMX[$4000], BANK[$06]
 Tileset_00_GFX:
@@ -135,6 +150,10 @@ SECTION "Bank C Tilesets 0c", ROMX[$7100], BANK[$0C]
 Tileset_0c_GFX:
 INCBIN "gfx/tilesets/tileset_0c.2bpp"
 
+SECTION "PokeBalls GFX", ROMX[$4494], BANK[$0E]
+
+PokeBallsGFX::                   INCBIN "gfx/misc/poke_balls.2bpp" ; 0x038494--0x0384d4
+
 SECTION "Pokedex GFX", ROMX[$40D5], BANK[$11]
 PokedexButtonsGFX::
 INCBIN "gfx/pokedex/buttons.2bpp"
@@ -144,6 +163,49 @@ PokedexCursorsGFX::
 INCBIN "gfx/pokedex/cursors.2bpp"
 PokedexSearchGFX::
 INCBIN "gfx/pokedex/search.2bpp"
+
+SECTION "Trainer Battle Sprites", ROMX[$4000], BANK[$12]
+HayatoPic:: INCBIN "gfx/trainer/hayato.pic"
+AkanePic:: INCBIN "gfx/trainer/akane.pic" ; Gen 1 Bug Catcher
+TsukushiPic:: INCBIN "gfx/trainer/tsukushi.pic"
+EnokiPic:: INCBIN "gfx/trainer/enoki.pic"
+OkeraPic:: INCBIN "gfx/trainer/okera.pic" ; Gen 1 Police Female
+MikanPic:: INCBIN "gfx/trainer/mikan.pic"
+BluePic:: INCBIN "gfx/trainer/blue.pic"	; Gen 1 Pokemaniac
+GamaPic:: INCBIN "gfx/trainer/gama.pic" ; Gen 1 Super Nerd
+RivalPic:: INCBIN "gfx/trainer/rival.pic"
+OakPic:: INCBIN "gfx/trainer/oak.pic"
+ProtagonistPic:: INCBIN "/gfx/trainer/protagonist.pic"
+KurtPic:: INCBIN "/gfx/trainer/kurt.pic"
+YoungsterPic:: INCBIN "gfx/trainer/youngster.pic"
+SchoolboyPic:: INCBIN "gfx/trainer/schoolboy.pic"
+FledglingPic:: INCBIN "gfx/trainer/fledgling.pic"
+LassPic:: INCBIN "gfx/trainer/lass.pic"
+ProfessionalMPic:: INCBIN "gfx/trainer/professional_m.pic"
+ProfessionalFPic:: INCBIN "gfx/trainer/professional_f.pic"
+BeautyPic:: INCBIN "gfx/trainer/beauty.pic"
+PokemaniacPic:: INCBIN "gfx/trainer/pokemaniac.pic"
+RocketMPic:: INCBIN "gfx/trainer/rocket_m.pic"
+TeacherMPic:: INCBIN "gfx/trainer/teacher_m.pic"
+TeacherFPic:: INCBIN "gfx/trainer/teacher_f.pic"
+BugCatcherBoyPic:: INCBIN "gfx/trainer/bug_catcher_boy.pic"
+FisherPic:: INCBIN "gfx/trainer/fisher.pic"
+SwimmerMPic:: INCBIN "gfx/trainer/swimmer_m.pic"
+SwimmerFPic:: INCBIN "gfx/trainer/swimmer_f.pic"
+SuperNerdPic:: INCBIN "gfx/trainer/supernerd.pic"
+EngineerPic:: INCBIN "gfx/trainer/engineer.pic"
+GreenPic:: INCBIN "gfx/trainer/green.pic" ; Gen 1 Green
+BikerPic:: INCBIN "gfx/trainer/biker.pic"
+BurglarPic:: INCBIN "gfx/trainer/burglar.pic"
+FirebreatherPic:: INCBIN "gfx/trainer/firebreather.pic"
+JugglerPic:: INCBIN "gfx/trainer/juggler.pic"
+BlackbeltPic:: INCBIN "gfx/trainer/blackbelt.pic"
+SportsmanPic:: INCBIN "gfx/trainer/sportsman.pic"
+MediumPic:: INCBIN "gfx/trainer/medium.pic"
+SoldierPic:: INCBIN "gfx/trainer/soldier.pic"
+KimonoGirlPic:: INCBIN "gfx/trainer/kimonogirl.pic"
+TwinsPic:: INCBIN "gfx/trainer/twins.pic"
+
 
 SECTION "Bank 13 Tilesets 0a", ROMX[$4000], BANK[$13]
 Tileset_0a_GFX:
@@ -165,6 +227,7 @@ SECTION "PKMN Sprite Bank List", ROMX[$725C], BANK[$14]
 INCLUDE "gfx/pokemon/pkmn_pic_banks.asm"
 
 INCLUDE "gfx/pokemon/pkmn_pics.asm"
+
 
 SECTION "Annon Pic Ptrs and Pics", ROMX[$4d6a], BANK[$1f]
 INCLUDE "gfx/pokemon/annon_pic_ptrs.asm"
@@ -359,44 +422,63 @@ INCBIN "gfx/intro/fushigibana.2bpp"
 
 SECTION "Misc GFX", ROMX[$4162], BANK[$3E]
 FontExtraGFX::
-INCBIN "gfx/font/font_extra.2bpp"
-FontGFX::
-INCBIN "gfx/font/font.1bpp"
+FontExtraAB_GFX::                 INCBIN "gfx/font/font_extra.ab.2bpp"          ; 0x0f8162--0x0f8182
+FontExtraCDEFGHIVSLM_GFX::        INCBIN "gfx/font/font_extra.cdefghivslm.2bpp" ; 0x0f8182--0x0f8242
+FontSmallKanaPunctuationGFX::     INCBIN "gfx/font/small_kana_punctuation.2bpp" ; 0x0f8242--0x0f82f2
+FontSmallKanaPunctuationGFXEnd::
+Unreferenced_DefaultFrame0GFX::   INCBIN "gfx/frames/1.2bpp"                    ; 0x0f82f2--0x0f8362
+FontGFX::                         INCBIN "gfx/font/font.1bpp"                   ; 0x0f8362--0x0f8712 kana
+FontGFXEnd::                                                                    ; 0x0f8712--0x0f8762 numbers
 FontBattleExtraGFX::
-INCBIN "gfx/font/font_battle_extra.2bpp"
+BattleHPBarGFX::                  INCBIN "gfx/battle/hp_bar.2bpp"               ; 0x0f8762--0x0f8822
+BattleHPBarGFXEnd::
+HpExpBarParts0_2bppGFX::          INCBIN "gfx/battle/hp_exp_bar_parts0.2bpp"    ; 0x0f8822--0x0f8862
+BattleMarkersGFX::                INCBIN "gfx/battle/markers.2bpp"              ; 0x0f8862--0x0f8892
+BattleMarkersGFXEnd::
+LevelUpGFX::                      INCBIN "gfx/battle/levelup.2bpp"              ; 0x0f8892--0x0f88f2
+LevelUpGFXEnd::
+Unreferenced_DefaultFrame1::      INCBIN "gfx/frames/1.2bpp"                    ; 0x0f88f2--0x0f8962
 FrameGFX::
-INCBIN "gfx/frames/1.1bpp"
-INCBIN "gfx/frames/2.1bpp"
-INCBIN "gfx/frames/3.1bpp"
-INCBIN "gfx/frames/4.1bpp"
-INCBIN "gfx/frames/5.1bpp"
-INCBIN "gfx/frames/6.1bpp"
-INCBIN "gfx/frames/7.1bpp"
-INCBIN "gfx/frames/8.1bpp"
-INCBIN "gfx/frames/9.1bpp"
-StatsSeparatorGFX::
-INCBIN "gfx/stats/separator.2bpp"
-StatsGFX::
-INCBIN "gfx/stats/stats.2bpp"
-HPExpBarBorderGFX::
-INCBIN "gfx/battle/hp_exp_bar_border.1bpp"
-ExpBarGFX::
-INCBIN "gfx/battle/exp_bar.2bpp"
-PokedexUnitsGFX::
-INCBIN "gfx/pokedex/m_kg.2bpp"
-PokedexGFX::
-INCBIN "gfx/pokedex/pokedex.2bpp"
-TownMapGFX::
-INCBIN "gfx/pokegear/town_map.2bpp"
-HUD_GFX::
-INCBIN "gfx/hud/hud.2bpp"
-BoldAlphabetGFX::
-INCBIN "gfx/font/alphabet.1bpp"
-AnnonAlphabetGFX::
-INCBIN "gfx/font/annon_alphabet.1bpp"
-INCBIN "gfx/font/gfx_f9322.1bpp"
-PackIconGFX::
-INCBIN "gfx/pack/pack_icons.2bpp"
+FrameGFXFirstFrame::              INCBIN "gfx/frames/1.1bpp"                    ; 0x0f8962--0x0f8992
+FrameGFXFirstFrameEnd::
+                                  INCBIN "gfx/frames/2.1bpp"                    ; 0x0f8992--0x0f89c2
+                                  INCBIN "gfx/frames/3.1bpp"                    ; 0x0f89c2--0x0f89f2
+                                  INCBIN "gfx/frames/4.1bpp"                    ; 0x0f89f2--0x0f8a22
+                                  INCBIN "gfx/frames/5.1bpp"                    ; 0x0f8a22--0x0f8a52
+                                  INCBIN "gfx/frames/6.1bpp"                    ; 0x0f8a52--0x0f8a82
+                                  INCBIN "gfx/frames/7.1bpp"                    ; 0x0f8a82--0x0f8ab2
+                                  INCBIN "gfx/frames/8.1bpp"                    ; 0x0f8ab2--0x0f8ae2
+                                  INCBIN "gfx/frames/9.1bpp"                    ; 0x0f8ae2--0x0f8b12
+StatsGFX::                        INCBIN "gfx/stats/separator.2bpp"             ; 0x0f8b12--0x0f8b22
+                                  INCBIN "gfx/stats/stats.2bpp"                 ; 0x0f8b22--0x0f8c22
+StatsGFXEnd::
+
+HpExpBarParts0GFX::               INCBIN "gfx/battle/hp_exp_bar_parts0.1bpp"    ; 0x0f8c42--0x0f8c5a
+HpExpBarParts0GFXEnd::
+HpExpBarParts1GFX::               INCBIN "gfx/battle/hp_exp_bar_parts1.1bpp"    ; 0x0f8c42--0x0f8c5a
+HpExpBarParts1GFXEnd::
+HpExpBarParts2GFX::               INCBIN "gfx/battle/hp_exp_bar_parts2.1bpp"    ; 0x0f8c5a--0x0f8c6a
+HpExpBarParts2GFXEnd::
+HpExpBarParts3GFX::               INCBIN "gfx/battle/hp_exp_bar_parts3.1bpp"    ; 0x0f8c6a--0x0f8c72
+HpExpBarParts3GFXEnd::
+ExpBarGFX::                       INCBIN "gfx/battle/exp_bar.2bpp"              ; 0x0f8c72--0x0f8cf2
+ExpBarGFXEnd::
+PokedexGFX::                      INCBIN "gfx/pokedex/pokedex.2bpp"             ; 0x0f8cf2--0x0f8dc2
+PokedexGFXEnd::
+PokedexLocationGFX::              INCBIN "gfx/pokedex/locations.2bpp"           ; 0x0f8dc2--0x0f8e12
+PokedexLocationGFXEnd::
+TownMapGFX::                      INCBIN "gfx/pokegear/town_map.2bpp"           ; 0x0f8e12--0x0f8fc2
+TownMapGFXEnd::
+HUD_GFX::                         INCBIN "gfx/hud/hud.2bpp"                     ; 0x0f8fc2--0x0f9052
+HUD_GFXEnd::
+BoldAlphabetGFX::                 INCBIN "gfx/font/alphabet.1bpp"
+AnnonAlphabetGFX::                INCBIN "gfx/font/annon_alphabet.1bpp"
+EmptyTile1bppGFX::                INCBIN "gfx/misc/empty_tile.1bpp"             ; 0x0f9322--0x0f932a
+EmptyTile1bppGFXEnd::
+BlackTileAndCursor1bppGFX::       INCBIN "gfx/misc/black_tile_cursor.1bpp"      ; 0x0f932a--0x0f933a
+BlackTileAndCursor1bppGFXEnd::
+PackIconGFX::                     INCBIN "gfx/pack/pack_icons.2bpp"             ; 0x0f933a--0x0f941a
+PackIconGFXEnd::
 
 SECTION "Town Map Cursor", ROMX[$506F], BANK[$3F]
 TownMapCursorGFX::

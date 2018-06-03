@@ -622,7 +622,7 @@ KongpangEvosAttacks: ; 42a1c
 	db 35, MOVE_LEECH_LIFE
 	db 42, MOVE_PSYBEAM
 	db 49, MOVE_SLEEP_POWDER
-	db 56, MOVE_PSYCHIC_M
+	db 56, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
 MorphonEvosAttacks: ; 42a33
@@ -635,7 +635,7 @@ MorphonEvosAttacks: ; 42a33
 	db 40, MOVE_LEECH_LIFE
 	db 48, MOVE_PSYBEAM
 	db 56, MOVE_SLEEP_POWDER
-	db 64, MOVE_PSYCHIC_M
+	db 64, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
 DigdaEvosAttacks: ; 42a47
@@ -825,7 +825,7 @@ YungererEvosAttacks: ; 42b5d
 	db 36, MOVE_RECOVER
 	db 41, MOVE_REFLECT
 	db 41, MOVE_LIGHT_SCREEN
-	db 46, MOVE_PSYCHIC_M
+	db 46, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
 FoodinEvosAttacks: ; 42b76
@@ -839,7 +839,7 @@ FoodinEvosAttacks: ; 42b76
 	db 36, MOVE_RECOVER
 	db 41, MOVE_REFLECT
 	db 41, MOVE_LIGHT_SCREEN
-	db 46, MOVE_PSYCHIC_M
+	db 46, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
 WanrikyEvosAttacks: ; 42b8c
@@ -1032,7 +1032,7 @@ YadonEvosAttacks: ; 42cb3
 	db 22, MOVE_WATER_GUN
 	db 31, MOVE_HEADBUTT
 	db 41, MOVE_AMNESIA
-	db 52, MOVE_PSYCHIC_M
+	db 52, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
 YadoranEvosAttacks: ; 42cc6
@@ -1045,7 +1045,7 @@ YadoranEvosAttacks: ; 42cc6
 	db 37, MOVE_WITHDRAW
 	db 39, MOVE_HEADBUTT
 	db 51, MOVE_AMNESIA
-	db 64, MOVE_PSYCHIC_M
+	db 64, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
 CoilEvosAttacks: ; 42cdc
@@ -1269,7 +1269,7 @@ SleepeEvosAttacks: ; 42e30
 	db 26, MOVE_POISON_GAS
 	db 31, MOVE_MEDITATE
 	db 36, MOVE_STALKER
-	db 41, MOVE_PSYCHIC_M
+	db 41, MOVE_PSYCHIC
 	db 46, MOVE_CONFUSE_RAY
 	db 0 ; no more level-up moves
 
@@ -1283,7 +1283,7 @@ SleeperEvosAttacks: ; 42e49
 	db 31, MOVE_POISON_GAS
 	db 37, MOVE_MEDITATE
 	db 43, MOVE_STALKER
-	db 49, MOVE_PSYCHIC_M
+	db 49, MOVE_PSYCHIC
 	db 55, MOVE_CONFUSE_RAY
 	db 0 ; no more level-up moves
 
@@ -1994,7 +1994,7 @@ MewtwoEvosAttacks: ; 432bf
 	db 46, MOVE_RECOVER
 	db 58, MOVE_SAFEGUARD
 	db 71, MOVE_BARRIER
-	db 85, MOVE_PSYCHIC_M
+	db 85, MOVE_PSYCHIC
 	db 100, MOVE_AMNESIA
 	db 0 ; no more level-up moves
 
@@ -2465,7 +2465,7 @@ KokumoEvosAttacks: ; 435a2
 	db 26, MOVE_BITE
 	db 34, MOVE_SPIDER_WEB
 	db 43, MOVE_NIGHT_SHADE
-	db 53, MOVE_PSYCHIC_M
+	db 53, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
 TwoheadEvosAttacks: ; 435b9
@@ -2478,7 +2478,7 @@ TwoheadEvosAttacks: ; 435b9
 	db 31, MOVE_BITE
 	db 40, MOVE_SPIDER_WEB
 	db 50, MOVE_NIGHT_SHADE
-	db 61, MOVE_PSYCHIC_M
+	db 61, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
 YoroidoriEvosAttacks: ; 435cd
@@ -2644,7 +2644,7 @@ YadokingEvosAttacks: ; 436b6
 	db 37, MOVE_SWAGGER
 	db 39, MOVE_HEADBUTT
 	db 51, MOVE_AMNESIA
-	db 64, MOVE_PSYCHIC_M
+	db 64, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
 AnnonEvosAttacks: ; 436ca
@@ -2697,7 +2697,7 @@ EifieEvosAttacks: ; 436ff
 	db 42, MOVE_AGILITY
 	db 49, MOVE_REFLECT
 	db 56, MOVE_LIGHT_SCREEN
-	db 63, MOVE_PSYCHIC_M
+	db 63, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
 BlackyEvosAttacks: ; 43715
@@ -2998,7 +2998,7 @@ NorowaraEvosAttacks: ; 438d5
 	db 35, MOVE_CONFUSION
 	db 46, MOVE_NIGHT_SHADE
 	db 58, MOVE_SUBSTITUTE
-	db 71, MOVE_PSYCHIC_M
+	db 71, MOVE_PSYCHIC
 	db 85, MOVE_PAIN_SPLIT
 	db 100, MOVE_NAIL_DOWN
 	db 0 ; no more level-up moves
