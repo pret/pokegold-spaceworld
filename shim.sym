@@ -30,6 +30,7 @@
 00:3655 SetHPPal.done
 00:36C8 NamesPointers
 00:36E0 GetName
+00:38E3 CheckRandomEncounter
 00:39BA PlayCry
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
@@ -65,6 +66,8 @@
 03:4AA1 AddItemToInventory_
 
 04:5677 DoPlayerMovement
+04:5dbe DisplayStartMenu
+04:6c58 CheckRegisteredItem
 
 0e:4b78 LoadTrainerClassName
 0e:4ba0 LoadTrainerClassName.got_name
@@ -103,7 +106,6 @@
 00:cdbe wTargetMapUnk
 00:cdbf wTargetMapGroup
 00:cdc0 wTargetMapId
-00:ce62 wTextBoxFlags
 00:ce67 wPlayerName
 
 01:d165 wTMCounts
