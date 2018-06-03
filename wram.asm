@@ -317,7 +317,11 @@ SECTION "CE5F", WRAM0[$CE5F]
 wce5f:: ; ce5f ; TODO
     db
 
-SECTION "CE63", WRAM0[$CE63]
+SECTION "CE61", WRAM0[$CE61]
+
+wActiveFrame:: db ; ce61
+
+     db ; TODO
 
 wce63:: db ; ce63
 ; 76543210

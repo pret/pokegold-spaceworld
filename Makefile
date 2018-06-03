@@ -77,6 +77,7 @@ $(BUILD)/gfx/sgb/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/title/title.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/trainer_card/trainer_card.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/minigames/slots.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/minigames/poker.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/intro/purin_pikachu.2bpp: tools/gfx += --trim-whitespace
