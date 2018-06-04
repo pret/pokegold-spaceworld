@@ -4,12 +4,12 @@ SECTION "AddItemToInventory_", ROMX[$4AA1], BANK[$03]
 
 _ReceiveItem: ; 03:4AA1
 	call DoesHLEqualwNumBagItems
-	jp nz, PutItemInPocket ; not bag (so it's the pc)
+	jp nz, PutItemInPocket ; If its not bag, then its the PC, so jump down
 	push hl
 	ld hl, CheckItemPocket
 	ld a, BANK( CheckItemPocket )
 	call FarCall_hl
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeParamBuffer] ; a = PocketType
 	dec a
 	ld hl, .Pockets
 	jp CallJumptable
@@ -39,17 +39,17 @@ _ReceiveItem: ; 03:4AA1
 	pop hl
 	ld a, [wCurItem]
 	ld c, a
-	call GetTMHMNumber
-	jp ReceiveTMHM
+	call GetTMHMNumber ; get the index of the TMHM being added
+	jp ReceiveTMHM ; increase the quantity at that index
 	
 _TossItem: ; 03:4AE0
 	call DoesHLEqualwNumBagItems
-	jr nz, .removeItem
+	jr nz, .removeItem ; If its not bag, then its the PC, so jump down
 	push hl
 	ld hl, CheckItemPocket
 	ld a, BANK( CheckItemPocket )
 	call FarCall_hl
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeParamBuffer] ; a = PocketType
 	dec a
 	ld hl, .Pockets
 	jp CallJumptable
@@ -60,32 +60,72 @@ _TossItem: ; 03:4AE0
 	dw .Ball
 	dw .TMHM
 	
-.Ball
+.Ball ; 03:4B00
 	pop hl
 	ld a, [wCurItem]
 	ld c, a
-	call GetBallIndex
-	jp TossBall
+	call GetBallIndex ; get the index of the ball being removed
+	jp TossBall ; and decrease the quantity at that index
 	
-.TMHM
+.TMHM ; 03:4B0B
 	pop hl
 	ld a, [wCurItem]
 	ld c, a
-	call GetTMHMNumber
-	jp TossTMHM
+	call GetTMHMNumber ; get the index of the TMHM being removed
+	jp TossTMHM ; and decrease the quantity at that index
 	
-.KeyItem
+.KeyItem ; 03:4B16
 	pop hl
 	jp TossKeyItem
 	
-.Item
+.Item ; 03:4B1A
 	pop hl
 
-.removeItem
+.removeItem ; 03:4B1B
 	jp RemoveItemFromPocket
 
-SECTION "DoesHLEqualwNumBagItems", ROMX[$4B5C], BANK[$03]
+_CheckItem:: ; 03:4B1E
+	call DoesHLEqualwNumBagItems
+	jr nz, .checkItem ; If its not bag, then its the PC, so jump down
+	push hl
+	ld hl, CheckItemPocket
+	ld a, BANK( CheckItemPocket )
+	call FarCall_hl
+	ld a, [wItemAttributeParamBuffer] ; a = PocketType
+	dec a
+	ld hl, .Pockets
+	jp CallJumptable
 	
+.Pockets ; 03:4B36
+	dw .Item
+	dw .KeyItem
+	dw .Ball
+	dw .TMHM
+	
+.Ball ; 03:4B3E
+	pop hl
+	ld a, [wCurItem]
+	ld c, a
+	call GetBallIndex ; get the index of the ball being checked
+	jp CheckBall ; and check that index
+
+.TMHM ; 03:4B49
+	pop hl
+	ld a, [wCurItem]
+	ld c, a
+	call GetTMHMNumber ; get the index of the TMHM being checked
+	jp CheckTMHM ; and check that index
+	
+.KeyItem ; 03:4B54
+	pop hl
+	jp CheckKeyItems
+	
+.Item ; 03:4B58
+	pop hl
+	
+.checkItem
+	jp CheckTheItem
+
 ; Zero flag is set if hl = wNumBagItems
 DoesHLEqualwNumBagItems: ; 03:4B5C
 	ld a, l
@@ -97,36 +137,37 @@ DoesHLEqualwNumBagItems: ; 03:4B5C
 
 PutItemInPocket: ; 03:4B64
 	ld d, h
-	ld e, l ; de = pc inventory address
+	ld e, l ; de = address of start of inventory
 	inc hl
 	ld a, [wCurItem]
 	ld c, a
-	ld b, 0
+	ld b, 0 ; b = available space for slots already containing this item, initialize to 0
 	
 .findItemLoop
 	ld a, [hli]
 	cp $FF ; was the end of the list reached?
-	jr z, .checkIfInventoryFull ; if so, check if it can be added to the end
+	jr z, .checkIfInventoryFull ; if so, see if there are empty slots
 	cp c ; does the item match?
 	jr nz, .checkNextItem ; if not, move to the next item
 	ld a, 99 ; max amount of an item
-	sub [hl] ; subtract the current amount of items, so a = max number that can be added
-	add b ; ? why is this done? b = 0
-	ld b, a ; b = max number of items which can be added
-	ld a, [wItemQuantity]
-	cp b ; compare the to-add quantity to the max quantity
-	jr z, .itemCanBeAdded  ; if the number is equal, then add the item
-	jr c, .itemCanBeAdded  ; if the number is less than the max, then add the item
+	sub [hl] ; subtract the current amount of items, so a = the available space for this item slot
+	add b ; combine with the available space from previous slots for this item, so a = the total available space in all slots for this item
+	ld b, a ; store the total available space into b (for future iterations)
+	ld a, [wItemQuantity] ; a = quantity to add
+	cp b ; compare the quantity to add to the available space
+	jr z, .itemCanBeAdded  ; if the numbers are equal, then add the item
+	jr c, .itemCanBeAdded  ; if the number to add is less than the available space, then add the item
 
 .checkNextItem
 	inc hl ; move to the next item in the list
 	jr .findItemLoop
 	
 .checkIfInventoryFull
-	call GetPocketCapacity
+	call GetPocketCapacity ; c = maximum size for this inventory
 	ld a, [de] ; get the current size of the inventory
 	cp c ; compare to the maximum
 	jr c, .itemCanBeAdded ; if its not at the maximum, then an item can be added
+	
 	and a ; unset the carry flag to indicate failure
 	ret
 	
@@ -148,7 +189,7 @@ PutItemInPocket: ; 03:4B64
 	add [hl] ; a = new item quantity
 	cp a, 100 ; does it exceed 99?
 	jr nc, .setMax ; if it exceeds, then only increase quantity to the max
-	ld [hl], a ; store the new item quantity
+	ld [hl], a ; otherwise, store the new item quantity
 	jr .success
 
 ; set the inventory quantity to 99, and then add the remainder to the list
@@ -197,12 +238,12 @@ RemoveItemFromPocket: ;03:4BCF
 	add hl, bc ; hl = address of item at given index
 	inc hl
 	ld a, [wItemQuantity]
-	ld b, a ; b = to-remove amount
+	ld b, a ; b = amount to remove
 	ld a, [hl] ; a = current amount
-	sub b ; a = new amount
+	sub b ; a = remaining amount
 	jr c, .fail ; if trying to remove too many, then fail
 	
-	ld [hl],a ; store new amount
+	ld [hl], a ; store new amount
 	ld [wItemQuantityBuffer], a
 	and a ; is the new amount 0?
 	jr nz, .success ; if not, then dont shift items upwards
@@ -218,7 +259,7 @@ RemoveItemFromPocket: ;03:4BCF
 	ld [bc], a
 	inc bc ; overwrite the previous item value with the next item value
 	cp $FF ; reached the end of the list?
-	jr nz, .shift ; if not, shift the next row
+	jr nz, .shift ; if not, shift the next value
 	
 	ld h, d
 	ld l, e ; hl = inventory size
@@ -260,7 +301,7 @@ ReceiveKeyItem: ; 03:4C0E
 	jr nc, .fail ; then fail
 	ld c, a
 	ld b, 0
-	add hl, bc ; hl = address to store the item, end if the list
+	add hl, bc ; hl = address to store the item ( the end of the list )
 	ld a, [wCurItem]
 	ld [hli], a ; store item ID
 	ld [hl], $FF ; store terminator
@@ -364,8 +405,8 @@ BallItems: ; 03:4C73
 	
 
 ; To empty out the ball pocket
-; TODO - Is this buggy?
-; The ball pocket just is a set length, not $FF terminated
+; Note - Is this buggy?
+; The ball pocket is a fixed length, not $FF terminated
 EmptyBallPocket: ; 03:4C78
 	ld hl, wNumBallItems
 	xor a
@@ -373,7 +414,7 @@ EmptyBallPocket: ; 03:4C78
 	ld [hl], $FF ; add terminator
 	ret
 	
-; The Ball pocket is just a list of quantities, which directly map to BallItems
+; The Ball pocket is a list of quantities, which directly map to BallItems
 ; c = item index in table
 ; wItemQuantity = amount to add
 ; Sets carry flag if successful
@@ -381,13 +422,13 @@ ReceiveBall: ; 03:4C80
 	ld hl, wBallQuantities
 	ld b, 0
 	add hl, bc ; hl = address of item quantity in table
-	ld a, [wItemQuantity]
-	add [hl] ; add the current item quantity to the to-add quantity
+	ld a, [wItemQuantity] ; a = quantity to add
+	add [hl] ; combine with the current quantity, so a = new quantity
 	cp 100 ; does it exceed 99?
 	jr nc, .fail ; if so, fail
 	ld b, a ; b = new quantity
-	ld a, [hl] ; a = old quantity
-	and a ; is old quantity zero?
+	ld a, [hl] ; a = current quantity
+	and a ; is current quantity zero?
 	jr nz, .dontIncreaseInventorySize ; if not, dont increase the inventory size
 	ld a, [wNumBallItems]
 	inc a
@@ -411,11 +452,12 @@ TossBall: ; 03:4C9F
 	ld b, 0
 	add hl, bc ; hl = index for this item
 	ld a, [wItemQuantity]
-	ld b, a ; b = to-remove quantity
-	ld a, [hl] ; a = old quantity 
-	sub b ; a = new quantity
-	jr c, .fail ; if to-remove exceeds the current quantity, then fail
+	ld b, a ; b = quantity to remove
+	ld a, [hl] ; a = current quantity 
+	sub b ; a = remaining quantity
+	jr c, .fail ; if quantity to remove exceeds the current quantity, then fail
 	jr nz, .dontDecreaseInventorySize ; if the new quantity is not 0, then dont decrease the inventory size
+	
 	ld b, a
 	ld a, [wNumBallItems]
 	dec a
@@ -435,7 +477,7 @@ TossBall: ; 03:4C9F
 ; Inputs
 ; c = index of item
 ; Outputs
-; carry if item is in list
+; carry if ball has a non zero quantity
 CheckBall: ; 03:4CC0
 	ld hl, wBallQuantities
 	ld b, 0
@@ -472,7 +514,7 @@ TossTMHM: ; 03:4CDE
 	ld a, [wItemQuantity]
 	ld b, a ; b = amount to remove
 	ld a, [hl] ; a = current amount
-	sub b ; get the new amount
+	sub b ; a = remaining amount
 	jr c, .fail ; if the amount to remove exceeds the current amount, then fail
 	ld [hl], a ; store the new item count
 	ld [wItemQuantityBuffer], a
