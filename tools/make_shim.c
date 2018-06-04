@@ -119,7 +119,7 @@ int main(int argc, char * argv[]) {
             end = strchr(lineptr, ';');
             if (end) *end = 0;
             lineptr[strrspn(lineptr, " \t\n")] = 0;
-            if (!*line)
+            if (!*lineptr)
                 continue;
 
             // Get the bank, address, and symbol
