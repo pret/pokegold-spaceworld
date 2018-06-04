@@ -84,10 +84,10 @@ GiveItemPredef::
 	add_predef Function_145b8
 	add_predef Function_146dc
 	add_predef Function_145de
-	add_predef Function_c8000
+	add_predef ExecuteBGEffects
 	add_predef Function_1457a
 	add_predef Function_143e0
-	add_predef Function_9695
+	add_predef CheckSGB
 	add_predef Function_928b
 	add_predef Function_8786
 	add_predef Function_8c4be

@@ -1,7 +1,9 @@
 SECTION "HRAM", HRAM[$FF80]
 
 hOAMDMA:: ; ff80
-    ds 13
+    ds 10
+
+	ds 3 ; TODO
 
 hRTCHours:: db ; ff8d
 hRTCMinutes:: db ; ff8e
@@ -19,7 +21,8 @@ hROMBank:: ; ff98
 hVBlank:: ; ff99
     db
 
-    db ; TODO
+hMapEntryMethod:: ; ff9a
+    db
 
 hStartmenuCloseAndSelectHookEnable:: db ; ff9b
 
@@ -59,11 +62,27 @@ UNION
 hTextBoxCursorBlinkInterval:: ds 2 ; ffaf
 
 NEXTU
+
 hSpriteWidth:: ; ffaf
 hSpriteInterlaceCounter:: ; ffaf
     db 
 hSpriteHeight:: ; ffb0
     db
+
+NEXTU
+
+hConnectionStripLength:: ; ffaf
+	db
+hConnectedMapWidth:: ; ffb0
+	db
+
+NEXTU
+
+hMapObjectIndexBuffer:: ; ffaf
+	db
+hObjectStructIndexBuffer:: ; ffb0
+	db
+
 ENDU
 
 hSpriteOffset:: ; ffb1
@@ -82,8 +101,9 @@ hPrintNumTemp:: ds 3 ; ffba big-endian
 hLCDCPointer:: ; ffd0
     db
 
-
-    ds 3 ; TODO
+hLYOverrideStart:: db ; ffd1
+hLYOverrideEnd:: db ; ffd2
+    ds 1 ; TODO
 
 
 hSerialReceived:: ; ffd4
@@ -158,10 +178,17 @@ hRedrawRowOrColumnMode:: db ; ffe5
 hRedrawRowOrColumnDest:: ds 2 ; ffe6
 
 hMapAnims:: ; ffe8
-    ; TODO: figure out size
-    ds 7
+    db
+
+hTileAnimFrame:: ; ffe9
+	db
+
+    ds 5 ; TODO
+
 hRandomAdd:: db ; ffef
 hRandomSub:: db ; fff0
 hRTCRandom:: db ; fff1
+
+hBattleTurn:: db ; fff2
 
     ; TODO

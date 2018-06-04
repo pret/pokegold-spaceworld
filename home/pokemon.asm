@@ -219,7 +219,7 @@ InterlaceMergeSpriteBuffers:: ; 3bc6 (0:3bc6)
 	ld c, (2 * SPRITEBUFFERSIZE) / 16 ; $31, number of 16 byte chunks to be copied
 	ldh a, [hROMBank]
 	ld b, a
-	call CopyVideoDataOptimized
+	call Get2bpp
 	call CloseSRAM
 	ret
 
