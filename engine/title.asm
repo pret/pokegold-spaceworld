@@ -646,3 +646,4 @@ GameInit::
 	ld a, $23
 	ld [wce5f], a
 	jp IntroSequence
+
