@@ -1,11 +1,5 @@
 INCLUDE "constants.asm"
 
-SECTION "Title Screen Sprites", ROMX[$5EB8], BANK[$01]
-TitleFireGFX::
-INCBIN "gfx/title/fire.2bpp"
-TitleNotesGFX::
-INCBIN "gfx/title/notes.2bpp"
-
 SECTION "Mon Nest Icon", ROMX[$4A0F], BANK[$02]
 PokedexNestIconGFX::
 INCBIN "gfx/pokegear/dexmap_nest_icon.1bpp"
@@ -25,6 +19,10 @@ SECTION "Pokegear GFX", ROMX[$4F32], BANK[$02]
 PokegearGFX::
 INCBIN "gfx/pokegear/pokegear.2bpp"
 
+SECTION "Title Screen BG Decoration Border", ROMX[$51FB], BANK[$02]
+TitleBGDecorationBorder::
+INCBIN "gfx/title/titlebgdecoration.2bpp"
+
 SECTION "Super Palettes", ROMX[$5B4C], BANK[$02]
 INCLUDE "data/pokemon/palettes.inc"
 INCLUDE "data/super_palettes.inc"
@@ -42,11 +40,18 @@ INCBIN "gfx/sgb/sgb_border_silver.2bpp"
 endc
 
 SECTION "Title Screen GFX", ROMX[$47CF], BANK[$04]
-TitleScreenGFX::
 if def(GOLD)
-INCBIN "gfx/title/title_gold.2bpp"
+TitleScreenGFX:: INCBIN "gfx/title/title.2bpp"
+TitleScreenVersionGFX:: INCBIN "gfx/title/title_gold_version.2bpp"
+TitleScreenHoOhGFX:: INCBIN "gfx/title/title_hooh.2bpp"
+TitleScreenLogoGFX:: INCBIN "gfx/title/title_logo.2bpp"
+TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_goldlogo.2bpp"
 else
-INCBIN "gfx/title/title_silver.2bpp"
+TitleScreenGFX:: INCBIN "gfx/title/title.2bpp"
+TitleScreenVersionGFX:: INCBIN "gfx/title/title_silver_version.2bpp"
+TitleScreenHoOhGFX:: INCBIN "gfx/title/title_hooh.2bpp"
+TitleScreenLogoGFX:: INCBIN "gfx/title/title_logo.2bpp"
+TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_silverlogo.2bpp"
 endc
 
 SECTION "Mail Icon GFX", ROMX[$5BB1], BANK[$04]
@@ -58,7 +63,7 @@ TrainerCardGFX::                     INCBIN "gfx/trainer_card/trainer_card.2bpp"
 TrainerCardColonGFX::                INCBIN "gfx/trainer_card/colon.2bpp"        ; 0x013381--0x013391
 TrainerCardIDNoGFX::                 INCBIN "gfx/trainer_card/id_no.2bpp"        ; 0x013391--0x0133B1
 TrainerCardIDNoGFXEnd::
-TrainerCardLeadersGFX::              INCBIN "gfx/trainer_card/leaders.2bpp"      ; 0x0133B1--0x013BA1
+TrainerCardLeadersGFX::              INCBIN "gfx/trainer_card/leaders.2bpp"      ; 0x0133B1--0x133BA1
 if DEBUG || def(GOLD)
 	db $18, $00 ; leftover of previous graphics
 else
