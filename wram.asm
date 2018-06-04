@@ -32,9 +32,17 @@ wMusicID:: ; c19c
 
 wMusicBank:: ; c19e
     db
+	
+	ds 6 ; TODO
+	
+wSoundFade:: ; c1a5
+	db
+	ds 1
 
-    ds 14 ; TODO
-
+wNextBGM:: ; c1a7
+	db
+	ds 5
+	
 wMapMusic:: ; c1ad
     db
 
@@ -103,6 +111,9 @@ SECTION "CB56", WRAM0[$CB5B]
 wcb5b:: ds 1         ; multipurpose, also wName, wMonDexIndex2
 wNameCategory:: ds 1
 
+SECTION "CB5E", WRAM0[$CB5E]
+wSequence:: ds 4
+
 SECTION "CB62", WRAM0[$CB62]
 
 wVBCopySize:: ds 1 ; cb62
@@ -142,7 +153,8 @@ wVBlankOccurred: db ; cc33
 
     ds 4
 
-wcc38:: ; cc38 ; TODO: wceeb in pokegold, what is this?
+;Controls what type of opening (fire/notes) you get.
+wOpeningType:: ; cc38
     db
 
 wDebugWarpSelection:: ; cc39
