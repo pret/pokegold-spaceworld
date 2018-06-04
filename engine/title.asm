@@ -414,7 +414,7 @@ TitleSeq_TitleScreenInputAndTimeout::
 	cp D_UP | B_BUTTON | SELECT
 	jr z, .psbtn_sramclear
 	ld a, [hl]
-	and SELECT						; SELECT will bring you to the debug menu. 
+	and SELECT	; SELECT will bring you to the debug menu. 
 	jr nz, .psbtn_gotodebug
 	ld a, [hl]
 	and $09
@@ -579,9 +579,9 @@ IntroCopyRightInfo::
 	jp PlaceString
 
 IntroCopyRightInfo_Text::
-	db $60, $61, $62, $63, $6D, $6E, $6F, $70, $71, $72, $4E 				; "(C)1997 Nintendo\n" 
-	db $60, $61, $62, $63, $73, $74, $75, $76, $77, $78, $6B, $6C, $4E 		; "(C)1997 Creatures Inc.\n" 
-	db $60, $61, $62, $63, $64, $65, $66, $67, $68, $69, $6A, $6B, $6C, $50 ; "(C)1997 GAME FREAK Inc.{EOL}" 
+	db $60, $61, $62, $63, $6D, $6E, $6F, $70, $71, $72, $4E	; "(C)1997 Nintendo\n" 
+	db $60, $61, $62, $63, $73, $74, $75, $76, $77, $78, $6B, $6C, $4E	; "(C)1997 Creatures Inc.\n" 
+	db $60, $61, $62, $63, $64, $65, $66, $67, $68, $69, $6A, $6B, $6C, $50	; "(C)1997 GAME FREAK Inc.{EOL}" 
 
 Set_HoOh::
 	coord hl, 7, 9
@@ -646,5 +646,3 @@ GameInit::
 	ld a, $23
 	ld [wce5f], a
 	jp IntroSequence
-	
-	
