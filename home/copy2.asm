@@ -49,7 +49,7 @@ FarCopyDataDouble: ; d3e (0:d3e)
 	call Bankswitch
 	ret
 
-CopyVideoData:: ; d68 (0:d68)
+Request2bpp:: ; d68 (0:d68)
 ; Wait for the next VBlank, then copy c 2bpp
 ; tiles from b:de to hl, 8 tiles at a time.
 ; This takes c/8 frames.
@@ -89,7 +89,7 @@ CopyVideoData:: ; d68 (0:d68)
 	ld c, a
 	jr .loop
 
-CopyVideoDataDouble:: ; da6 (0:da6)
+Request1bpp:: ; da6 (0:da6)
 ; Wait for the next VBlank, then copy c 1bpp
 ; tiles from b:de to hl, 8 tiles at a time.
 ; This takes c/8 frames.
@@ -129,13 +129,14 @@ CopyVideoDataDouble:: ; da6 (0:da6)
 	ld c, a
 	jr .loop
 
-CopyVideoDataOptimized:: ; de4 (0:de4)
+Get2bpp:: ; de4 (0:de4)
 ; Copy c 2bpp tiles from b:de to hl in VRAM
 ; using VBlank service or direct copy in
 ; case LCD is off
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
-	jp nz, CopyVideoData ; copy video data during vblank while screen is on
+	jp nz, Request2bpp ; copy video data during vblank while screen is on
+Copy2bpp:: ; 0deb
 	push hl              ; convert to FarCopyData call
 	ld h, d
 	ld l, e
@@ -152,13 +153,14 @@ CopyVideoDataOptimized:: ; de4 (0:de4)
 	pop af
 	jp FarCopyData
 
-CopyVideoDataDoubleOptimized: ; dff (0:dff)
+Get1bpp: ; dff (0:dff)
 ; Copy c 1bpp tiles from b:de to hl in VRAM
 ; using VBlank service or direct copy in
 ; case LCD is off
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
-	jp nz, CopyVideoDataDouble
+	jp nz, Request1bpp
+Copy1bpp:: ; 0e06
 	push de
 	ld d, h
 	ld e, l

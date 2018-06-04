@@ -1,5 +1,6 @@
-00:032B UpdateTimeOfDayPalettes
-00:0436 RTC
+; ROM0
+00:032b UpdateTimeOfDayPalettes
+00:0436 UpdateTime
 00:051C Reset
 00:0D0A LoadFont
 00:0D1A LoadFontExtra
@@ -8,13 +9,17 @@
 00:0E93 PlaceString
 00:0E94 PlaceNextChar
 00:0E9D CheckDict
-00:1D49 LoadMenuHeader
-00:1E58 OpenMenu
+00:15be GetMapObject
+00:1720 CheckObjectVisibility
+00:17bf GetObjectStruct
+00:1d49 LoadMenuHeader
+00:1e58 OpenMenu
 00:1F9E ClearWindowData
 00:1FCC ClearWindowData.bytefill
-00:20FF RunMapScript
-00:232C LoadMapWarp
-00:23E5 OverworldFadeIn
+
+00:20ff RunMapScript
+00:23dc LoadWildMons
+00:23e5 FadeIn ; This is not OverworldFadeIn, but I don't know what it is
 00:2C05 StartMenuCheck
 00:3270 Random
 00:3621 WaitBGMap
@@ -43,6 +48,8 @@
 00:3E1B GetMapMusic
 00:3E2E GetMapMusic.unk_3E2E
 00:3E32 Unk_3E32
+
+
 01:4031 Function_4031
 01:53CC MainMenu
 01:5D27 Function_5d27
@@ -52,6 +59,8 @@
 01:6713 Function_6713
 01:68F3 ItemAttributes
 02:4786 Function_8786
+
+02:4098 _InitializeVisibleSprites
 02:4856 DecompTownMapTilemap
 02:48DA DecompTownMapTilemap.tilemap
 02:4C7C DrawMap
@@ -59,6 +68,7 @@
 02:4F32 PokegearRadioGfx
 02:528B Function_928b
 02:5695 CheckSGB
+
 03:4791 DebugWarp
 03:479F DebugWarp.Destinations
 03:4D33 Function_cd33
@@ -81,24 +91,44 @@
 03:5E79 Function_de79
 03:5F7D Function_df7d
 03:5F91 Function_df91
+
+04:4001 MapGroupPointers
 04:528F Function_1128f
 04:52C1 Function_112c1
 04:5677 DoPlayerMovement
 04:5DBE DisplayStartMenu
 04:640B Function_1240b
 04:6C58 CheckRegisteredItem
+
+05:400a GetPlayerSprite
+05:4036 AddMapSprites
+05:404c CheckInteriorMap
+05:405b AddIndoorSprites
+05:40aa AddOutdoorSprites
+05:40fb LoadUsedSpritesGfx ; TODO: maybe there's a better name
 05:43E0 Function_143e0
 05:457A Function_1457a
 05:45B8 Function_145b8
 05:45DE Function_145de
 05:46DC Function_146dc
+; Structure:
+; byte Map group ($ff = end)
+; byte Map ID
+; ptr  Copied to c5e9, also byte pointed to written at wUnknownIdc5e8
+; ptr  Copied to c5eb
+; word Unknown (2 bytes)
+05:470e UnknownMapBufferPointers
+
 0A:4C98 Function_28c98
 0A:4D6E Function_28d6e
 0A:4DA4 Function_28da4
+
 0B:5663 Function_2d663
-0E:4B78 LoadTrainerClassName
-0E:4BA0 LoadTrainerClassName.got_name
-0E:4BA9 LoadTrainerClass
+
+0e:4b78 LoadTrainerClassName
+0e:4ba0 LoadTrainerClassName.got_name
+0e:4ba9 LoadTrainerClass
+
 0F:508C Function_3d08c
 0F:55CE Function_3d5ce
 0F:567C Function_3d67c
@@ -106,10 +136,12 @@
 0F:6874 Function_3e874
 0F:691E Function_3e91e
 0F:6963 Function_3e963
+0f:69a9 _LoadWildMons
 0F:6F19 Function_3ef19
 0F:7019 Function_3f019
 0F:704A Function_3f04a
 0F:7068 Function_3f068
+
 10:4000 Function_40000
 10:40A6 ShowPokedexMenu
 10:4AC7 Function_40ac7
@@ -117,6 +149,7 @@
 10:5FA1 Function_41fa1
 10:61F8 Function_421f8
 10:6252 Function_42252
+
 14:4000 Function_50000
 14:4073 Function_50073
 14:40A0 Function_500a0
@@ -134,12 +167,16 @@
 14:4BCD Function_50bcd
 14:4BFE Function_50bfe
 14:4ED9 Function_50ed9
+
 23:4000 AnimateTilesetImpl
-23:4349 OverworldFadeOut
+23:42dc UpdateTimeOfDayPal
+23:4354 ReplaceTimeOfDayPals
+23:4370 GetTimePalette
 23:44BE Function_8c4be
 23:4940 Function_8c940
 23:49C6 Function_8c9c6
-23:60CC MenuMonIconGfx
+23:60cc MenuMonIconGfx
+
 24:4000 SetClockDialog
 24:4239 SlotMachineGame
 32:4000 Function_c8000
@@ -165,23 +202,22 @@
 3F:654E PicTest
 3F:6750 PicTestMenu
 3F:6755 PicTestMenu.loop
+
 00:C5E8 wMapScriptNumber
-00:CA22 wTrainerClass
 00:CBF2 wWindowData
 00:CBF2 wWindowStackPointer
 00:CC02 wMenuDataHeader
 00:CC12 wMenuData2
 00:CC22 wMenuData3
-00:CDBE wTargetMapUnk
-00:CDBF wTargetMapGroup
-00:CDC0 wTargetMapId
-00:CE67 wPlayerName
-01:D165 wTMCounts
-01:D19E wItems
-01:D258 wRivalName
+00:ce67 wPlayerName
+
+01:d165 wTMCounts
+01:d19e wItems
+01:d258 wRivalName
 01:D264 wPlayerBikeSurfState
-01:D656 wMapGroup
-01:D657 wMapId
-01:D66A wMapScriptPtr
+; The starting house's map script number is stored at d29a. Others are probably nearby.
+01:d35f wOptions
+01:d656 wMapGroup
+01:d657 wMapId
 01:D7D2 wPartyMonOT
 01:DA3B wUnk_DA3B
