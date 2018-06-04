@@ -251,8 +251,8 @@ IsAnySFXOn: ; 3a:42d0
 
 SECTION "Function_e82f0", ROMX[$42f0], BANK[$3a]
 Function_e82f0: ; 3a:42f0
-	call Function_e8352
-	call Function_e8307
+	call IncrementTempo
+	call PlayDanger
 	call FadeMusic
 	call Function_e841d
 	ld a, [wVolume]
@@ -261,7 +261,166 @@ Function_e82f0: ; 3a:42f0
 	ld [rNR51], a
 	ret
 
-SECTION "FadeMusic", ROMX[$43ce], BANK[$3a]
+PlayDanger: ; 3a:4307
+	ld a, [wLowHealthAlarm]
+	bit DANGER_ON_F, a
+	ret z
+
+	; Don't do anything if SFX is being played
+	and $ff ^ (1 << DANGER_ON_F)
+	ld d, a
+	call IsAnySFXOn
+	jr c, .increment
+
+	; Play the high tone
+	and a
+	jr z, .begin
+
+	; Play the low tone
+	cp 16
+	jr z, .halfway
+
+	jr .increment
+
+.halfway
+	ld hl, DangerSoundLow
+	jr .applychannel
+
+.begin
+	ld hl, DangerSoundHigh
+
+.applychannel
+	xor a
+	ld [rNR10], a
+	ld a, [hli]
+	ld [rNR11], a
+	ld a, [hli]
+	ld [rNR12], a
+	ld a, [hli]
+	ld [rNR13], a
+	ld a, [hli]
+	ld [rNR14], a
+
+.increment
+	ld a, d
+	inc a
+	cp 30 ; Ending frame
+	jr c, .noreset
+	xor a
+.noreset
+	; Make sure the danger sound is kept on
+	or 1 << DANGER_ON_F
+	ld [wLowHealthAlarm], a
+
+	; Make sure channel 1 is on
+	ld a, [wSoundOutput]
+	or $11
+	ld [wSoundOutput], a
+	ret
+
+DangerSoundHigh: ; 3a:434a
+	db $80 ; duty 50%
+	db $e2 ; volume 14, envelope decrease sweep 2
+	db $50 ; frequency: $750
+	db $87 ; restart sound
+
+DangerSoundLow: ; 3a:434e
+	db $80 ; duty 50%
+	db $e2 ; volume 14, envelope decrease sweep 2
+	db $ee ; frequency: $6ee
+	db $86 ; restart sound
+
+IncrementTempo: ; 3a:4352
+	call IsAnyChannelOn
+	ret c
+
+	ld a, [wIncrementTempo]
+	ld e, a
+	ld a, [wIncrementTempo + 1]
+	ld d, a
+	or e
+	ret z
+
+	ld hl, wChannel1Tempo
+	call .addtempo
+	ld hl, wChannel2Tempo
+	call .addtempo
+	ld hl, wChannel3Tempo
+	call .addtempo
+	ld hl, wChannel4Tempo
+	call .addtempo
+	xor a
+	ld [wIncrementTempo], a
+	ld [wIncrementTempo + 1], a
+	ret
+
+.addtempo
+	; (int16)[hl] += de
+	push de
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, de
+	ld e, l
+	ld d, h
+	pop hl
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop de
+	ret
+
+IsAnyChannelOn: ; 3a:438e
+; Check if any music channel is on and isn't on the last frame
+
+	ld hl, wChannel1Flags1
+	bit SOUND_CHANNEL_ON, [hl]
+	jr z, .check_channel2
+
+	ld hl, wChannel1NoteDuration
+	ld a, [hl]
+	cp 1
+	jr nz, .on
+
+.check_channel2
+	ld hl, wChannel2Flags1
+	bit SOUND_CHANNEL_ON, [hl]
+	jr z, .check_channel3
+
+	ld hl, wChannel2NoteDuration
+	ld a, [hl]
+	cp 1
+	jr nz, .on
+
+.check_channel3
+	ld hl, wChannel3Flags1
+	bit SOUND_CHANNEL_ON, [hl]
+	jr z, .check_channel4
+
+	ld hl, wChannel3NoteDuration
+	ld a, [hl]
+	cp 1
+	jr nz, .on
+
+.check_channel4
+	ld hl, wChannel4Flags1
+	bit SOUND_CHANNEL_ON, [hl]
+	jr z, .off
+
+	ld hl, wChannel4NoteDuration
+	ld a, [hl]
+	cp 1
+	jr nz, .on
+
+.off
+	and a
+	ret
+
+.on
+	scf
+	ret
+
 FadeMusic: ; 3a:43ce
 ; Fade music if applicable
 ; usage:

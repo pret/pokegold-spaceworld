@@ -28,14 +28,24 @@ wc195:: db ; c195
 
 wCurChannel:: db ; c198
 wVolume:: db ; c199
-wSoundOutput:: db ; c19a
+wSoundOutput:: ; c19a
+; corresponds to $ff25
+; bit 4-7: ch1-4 so2 on/off
+; bit 0-3: ch1-4 so1 on/off
+	db
 
     ds 1 ; TODO
 
 wMusicID:: dw ; c19c
 wMusicBank:: db ; c19e
 
-	ds 6 ; TODO
+	ds 5 ; TODO
+
+wLowHealthAlarm:: ; c1a4
+; bit 7: on/off
+; bit 4: pitch
+; bit 0-3: counter
+	db
 
 wMusicFade:: ; c1a5
 ; fades volume over x frames
@@ -46,8 +56,9 @@ wMusicFade:: ; c1a5
 wMusicFadeCount:: db ; c1a6
 wMusicFadeID:: dw ; c1a7
 
-    ds 4 ; TODO
+    ds 2 ; TODO
 
+wIncrementTempo: dw ; c1ab
 wMapMusic:: db ; c1ad
 wCryPitch:: dw ; c1ae
 wCryLength:: dw ; c1b0
