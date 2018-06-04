@@ -54,17 +54,19 @@ size_t strrcspn(const char *s1, const char *s2) {
     return _s1 - s1;
 }
 
-#define RIP(errmsg) {       \
-    errno = EIO;            \
-    perror(errmsg);         \
-    if (file) fclose(file); \
-    return 1;               \
+#define RIP(errmsg) {                                                \
+    fprintf(stderr, "%s:%d:%s: %s\n", fname, lineno, eline, errmsg); \
+    if (file) fclose(file);                                          \
+    return 1;                                                        \
 }
 
 int main(int argc, char * argv[]) {
     int ch;
     char line[16*1024];
+    char eline[16*1024];
     char *lineptr = NULL;
+    char *fname;
+    int lineno;
 
     section_t section_list[] = {
         {0x4000, false, "ROM0", false},
@@ -93,15 +95,21 @@ int main(int argc, char * argv[]) {
     }
 
     for (int arg_idx = optind; arg_idx < argc; arg_idx++) {
-        FILE * file = fopen(argv[arg_idx], "r");
+        eline[0] = 0;
+        lineno = 0;
+        fname = argv[arg_idx];
+        FILE * file = fopen(fname, "r");
         if (file == NULL)
-            RIP("file io");
+            RIP("Unable to open file");
         while ((lineptr = fgets(line, sizeof(line), file)) != NULL) {
+            lineno++;
             unsigned short bank = 0;
             unsigned short pointer = 0;
             char * symbol = NULL;
             char * end;
             char * addr_p;
+            strcpy(eline, line);  // Unmodified copy for tracebacks
+            *strrchr(eline, '\n') = 0;
 
             // line = line.split(";")[0].strip()
             lineptr += strspn(lineptr, " \t\n");
@@ -115,18 +123,18 @@ int main(int argc, char * argv[]) {
             end = lineptr + strcspn(lineptr, " \t\n");
             symbol = end + strspn(end, " \t\n");
             if (!*symbol)
-                RIP("parse");
+                RIP("Declaration not in \"bank:addr Name\" format");
             *end = 0;
             addr_p = strchr(lineptr, ':');
             if (!addr_p)
-                RIP("parse");
+                RIP("Pointer not in bank:addr format");
             *addr_p++ = 0;
             pointer = strtoul(addr_p, &end, 16);
             if (pointer == 0 && end == addr_p)
-                RIP("parse");
+                RIP("Unable to parse symbol address");
             bank = strtoul(lineptr, &end, 16);
             if (bank == 0 && end == lineptr)
-                RIP("parse");
+                RIP("Unable to parse bank number");
 
             // Main loop
             const char * section = NULL;
