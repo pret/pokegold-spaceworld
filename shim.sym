@@ -58,7 +58,6 @@
 02:4F32 PokegearRadioGfx
 02:528B Function_928b
 02:5695 CheckSGB
-02:5695 Function_9695
 03:4791 DebugWarp
 03:479F DebugWarp.Destinations
 03:4AA1 AddItemToInventory_
