@@ -40,7 +40,7 @@ Init: ; 052f
 	ld [rOBP1], a
 	ld [rTMA], a
 	ld [rTAC], a
-	ld [wcc38], a ; Useless, since WRAM gets cleared right after
+	ld [wTitleSequenceOpeningType], a ; Useless, since WRAM gets cleared right after
 	ld a, 1 << rTAC_ON | rTAC_4096_HZ
 	ld [rTAC], a
 	ld a, 1 << rLCDC_ENABLE

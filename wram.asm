@@ -17,42 +17,45 @@ wChannel6:: channel_struct wChannel6 ; c0fa
 wChannel7:: channel_struct wChannel7 ; c12c
 wChannel8:: channel_struct wChannel8 ; c15e
 
-    ds 1 ; c190
+    ds 8 ; TODO
 
-wCurTrackDuty:: db ; c191
-wCurTrackIntensity:: db ; c192
-wCurTrackFrequency:: dw ; c193
-wc195:: db ; c195
+wCurChannel:: ; c198
+    db
 
-	ds 2 ; TODO
+wVolume:: ; c199
+    db
 
-wCurChannel:: db ; c198
-wVolume:: db ; c199
-wSoundOutput:: db ; c19a
+    ds 2 ; TODO
 
-    ds 1 ; TODO
+wMusicID:: ; c19c
+    dw
 
-wMusicID:: dw ; c19c
-wMusicBank:: db ; c19e
-
+wMusicBank:: ; c19e
+    db
+	
 	ds 6 ; TODO
-
-wMusicFade:: ; c1a5
-; fades volume over x frames
-; bit 7: fade in/out
-; bit 0-6: number of frames for each volume level
-; $00 = none (default)
+	
+wSoundFade:: ; c1a5
 	db
-wMusicFadeCount:: db ; c1a6
-wMusicFadeID:: dw ; c1a7
+	
+	ds 1
 
-    ds 4 ; TODO
+wNextBGM:: ; c1a7
+	db
+	
+	ds 5
+	
+wMapMusic:: ; c1ad
+    db
 
-wMapMusic:: db ; c1ad
-wCryPitch:: dw ; c1ae
-wCryLength:: dw ; c1b0
+wCryPitch:: ; c1ae
+    dw
+
+wCryLength:: ; c1b0
+    dw
 
     ds 10 ; TODO
+
 
 ; either wChannelsEnd or wMusicEnd, unsure
 wMusicInitEnd:: ; c1bc
@@ -110,6 +113,9 @@ SECTION "CB56", WRAM0[$CB5B]
 wcb5b:: ds 1         ; multipurpose, also wName, wMonDexIndex2
 wNameCategory:: ds 1
 
+SECTION "CB5E", WRAM0[$CB5E]
+wJumptableIndex:: ds 4
+
 SECTION "CB62", WRAM0[$CB62]
 
 wVBCopySize:: ds 1 ; cb62
@@ -149,7 +155,8 @@ wVBlankOccurred: db ; cc33
 
     ds 4
 
-wcc38:: ; cc38 ; TODO: wceeb in pokegold, what is this?
+;Controls what type of opening (fire/notes) you get.
+wTitleSequenceOpeningType:: ; cc38
     db
 
 wDebugWarpSelection:: ; cc39
