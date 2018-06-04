@@ -60,7 +60,8 @@ mostlyclean:
 	rm -rf $(ROM) $(CORRECTEDROM) $(OBJS) $(OBJS:.o=.d) $(ROMS:.gb=.sym) $(ROMS:.gb=.map)
 
 $(CORRECTEDROM): %-correctheader.gb: %.gb
-	cp $< $@
+	$(RGBASM) $(RGBASMFLAGS) -o $(BUILD)/zero_checksum.o zero_checksum.inc
+	$(RGBLINK) -O $< -o $@ $(BUILD)/zero_checksum.o
 	$(RGBFIX) -f hg -m 0x10 $@
 
 $(ROM): poke%-spaceworld.gb: $(OBJS) | $(BASEROM)

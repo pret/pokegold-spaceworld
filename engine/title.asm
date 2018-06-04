@@ -3,16 +3,16 @@ INCLUDE "vram.asm"
 
 SECTION "Title screen", ROMX[$5D8C], BANK[$01]
 
-IntroSequence:: 					; 5D8C 
+IntroSequence::
 	callfar GameFreakIntro, $39
-	jr c, TitleSequenceStart			; 5DAE 
-	ld a, [wTitleSequenceOpeningType] 	; CC38 
+	jr c, TitleSequenceStart
+	ld a, [wTitleSequenceOpeningType]
 	and a
 	jr z, .opening_sequence
 	
 .pikachu_minigame
 	callfar PikachuMiniGame, $38
-	jr TitleSequenceStart 			; 5DAE 
+	jr TitleSequenceStart
 
 .opening_sequence
 	callfar OpeningCutscene, $39
@@ -22,17 +22,17 @@ TitleSequenceStart::
 	callfar SetTitleBGDecorationBorder, $02
 	
 .loop
-	call TitleScreenMain 			; 5FB8 
+	call TitleScreenMain 
 	jr nc, .loop
 	
-	call ClearPalettesAndWait 		; 361E 
+	call ClearPalettesAndWait
 	call ClearSprites
 	ld a, $01
 	ldh [hBGMapMode], a
 	call ClearTileMap
-	call ResetPalette ;33a
+	call ResetPalette
 	
-	ld a, [wJumptableIndex + 1]	; CB5F 
+	ld a, [wJumptableIndex + 1]
 	ld e, a
 	ld d, 0
 	ld hl, TitleScreenJumpTable
@@ -46,8 +46,8 @@ TitleSequenceStart::
 
 TitleScreenJumpTable::
 	dw MainMenu
-	dw DebugMenu 					; 4031 
-	dw SRAMClearMenu 				; 61C6 
+	dw DebugMenu 
+	dw SRAMClearMenu
 	dw IntroSequence
 
 TitleSequenceInit::
@@ -58,7 +58,7 @@ TitleSequenceInit::
 	ldh [hSCY], a
 	ldh [hSCX], a
 	
-	ld de, MUSIC_NONE 					; Stop the music. 
+	ld de, MUSIC_NONE	; Stop the music. 
 	call PlayMusic
 	
 	call ClearTileMap
@@ -66,7 +66,7 @@ TitleSequenceInit::
 	call ClearSprites
 	
 	ld a, $23
-	ld hl, InitEffectObject			; 8CCFD - create another object? 
+	ld hl, InitEffectObject
 	call FarCall_hl
 	ld hl, vChars0
 	ld bc, vBGMap0 - vChars0
@@ -79,45 +79,45 @@ TitleSequenceInit::
 	or c
 	jr nz, .clear_loop
 
-	ld hl, TitleScreenGFX			; 107CF 
-	ld de, $9410
+	ld hl, TitleScreenGFX
+	ld de, vChars2 + 65 tiles
 	ld bc, 13 tiles
 	ld a, BANK(TitleScreenGFX)
 	call FarCopyData
 	
-	ld hl, TitleScreenVersionGFX	; 1095F 
-	ld de, $9600
+	ld hl, TitleScreenVersionGFX
+	ld de, vChars2 + 96 tiles
 	ld bc, 24 tiles
 	ld a, BANK(TitleScreenVersionGFX)
 	call FarCopyData
 	
-	ld hl, TitleScreenHoOhGFX		; 10ADF 
-	ld de, $9000
+	ld hl, TitleScreenHoOhGFX
+	ld de, vChars2
 	ld bc, 49 tiles
 	ld a, BANK(TitleScreenHoOhGFX)
 	call FarCopyData
 	
-	ld hl, TitleScreenLogoGFX		; 10DEF 
-	ld de, $8800
+	ld hl, TitleScreenLogoGFX
+	ld de, vChars1
 	ld bc, 58 tiles
 	ld a, BANK(TitleScreenLogoGFX)
 	call FarCopyData
 	
-	ld hl, TitleScreenGoldLogoGFX	; 1118F 
-	ld de, $8BA0
+	ld hl, TitleScreenGoldLogoGFX
+	ld de, vChars0 + 186 tiles
 	ld bc, 20 tiles
 	ld a, BANK(TitleScreenGoldLogoGFX)
 	call FarCopyData
 	
-	call SetTitleGfx 				; 6288 
-	ld hl, wTileMapBackup			; C408 
+	call SetTitleGfx
+	ld hl, wTileMapBackup
 	ld a, $24
 	ld [hli], a
 	ld a, $00
 	ld [hli], a
 	
 	ld hl, vBGMap0
-	ld bc, $0800
+	ld bc, 128 tiles
 	ld a, "　"
 	call ByteFill
 	
@@ -129,11 +129,11 @@ TitleSequenceInit::
 	call WaitBGMap
 	xor a
 	ldh [hBGMapMode], a
-	ld hl, wJumptableIndex		; CB5E 
-	ld [hli], a 					; (Possibly wJumptableIndex from Crystal) 
-	ld [hli], a 					; (Possibly wIntroSceneFrameCounter from Crystal) 
-	ld [hli], a 					; (Possibly wTitleScreenTimer from Crystal) 
-	ld [hl], a  					; (Possibly wTitleScreenTimer + 1 from Crystal) 
+	ld hl, wJumptableIndex
+	ld [hli], a	; (Possibly wJumptableIndex from Crystal) 
+	ld [hli], a	; (Possibly wIntroSceneFrameCounter from Crystal) 
+	ld [hli], a	; (Possibly wTitleScreenTimer from Crystal) 
+	ld [hl], a	; (Possibly wTitleScreenTimer + 1 from Crystal) 
 	
 	call .load_position_table
 		
@@ -146,7 +146,7 @@ TitleSequenceInit::
 	
 .load_position_table:
 	ld hl, FirePositionTable
-	ld c, 6							; Load 6 flying objects on the screen. 
+	ld c, 6	; Load 6 flying objects on the screen. 
 	
 .set_fire_note_loop
 	push bc
@@ -155,15 +155,15 @@ TitleSequenceInit::
 	ld d, [hl]
 	inc hl
 	push hl
-	ld a, $2E						; Title fire/note object effect type? 
-	call InitSpriteAnimStruct 		; 3CA8
+	ld a, $2E	; Title fire/note object effect type? 
+	call InitSpriteAnimStruct
 	pop hl
 	pop bc
 	dec c
 	jr nz, .set_fire_note_loop
 	ret
 
-FirePositionTable::					; 5EAC-5EB7 
+FirePositionTable::
 	dw $4CE0
 	dw $58A0
 	dw $6490
@@ -171,16 +171,16 @@ FirePositionTable::					; 5EAC-5EB7
 	dw $7CB0
 	dw $8800
 
-TitleFireGFX::	INCBIN "gfx/title/fire.2bpp"	; 5EB8-5F37 
-TitleNotesGFX::	INCBIN "gfx/title/notes.2bpp"	; 5F38=5FB7 
+TitleFireGFX:: INCBIN "gfx/title/fire.2bpp"	; 5EB8-5F37 
+TitleNotesGFX:: INCBIN "gfx/title/notes.2bpp"	; 5F38=5FB7 
 
-TitleScreenMain:: 					; 5FB8
-	ld a, [wJumptableIndex]		; CB5E
+TitleScreenMain::
+	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
 	call TitleScreenSequence
 	ld a, $23
-	ld hl, EffectObjectJumpNoDelay	; 8CD13
+	ld hl, EffectObjectJumpNoDelay
 	call FarCall_hl
 	call DelayFrame
 	and a
@@ -243,12 +243,12 @@ TitleScreenSequenceTable::
 	dw TitleSeq_TitleScreenInputAndTimeout 
 	dw TitleSeq_FadeMusicOut
 
-TitleSeq_IncreaseJumpTableIndex:: 		; 6025 
-	ld hl, wJumptableIndex	; CB5E 
+TitleSeq_IncreaseJumpTableIndex::
+	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-TitleSeq_WaitForNextSequence:: 			; 602A 
+TitleSeq_WaitForNextSequence::
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wJumptableIndex + 2
@@ -262,18 +262,18 @@ TitleSeq_WaitForNextSequence:: 			; 602A
 	call TitleSeq_IncreaseJumpTableIndex
 	ret
 
-TitleSeq_LoadPokemonLogo:: 				; 603a 
-	call PrintPokemonLogo		; 6196 
-	call TitleSeq_IncreaseJumpTableIndex ; 6025 
+TitleSeq_LoadPokemonLogo::
+	call PrintPokemonLogo
+	call TitleSeq_IncreaseJumpTableIndex
 	ld a, $01
 	ldh [hBGMapMode], a
 	ret	
 	
-TitleSeq_Start:: 						; 6045 
+TitleSeq_Start:: 
 	call TitleSeq_IncreaseJumpTableIndex
 	push de
 	ld de, $002D
-	call PlaySFX				; Play "Swish" sound 
+	call PlaySFX	; Play "Swish" sound 
 	pop de
 	ld a, $80
 	ld [wJumptableIndex + 2], a
@@ -282,7 +282,7 @@ TitleSeq_Start:: 						; 6045
 	ldh [hLCDCPointer], a
 	ret
 
-TitleSeq_MoveTitle:: 					; 605d 
+TitleSeq_MoveTitle:: 
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wJumptableIndex + 2
@@ -304,15 +304,15 @@ TitleSeq_MoveTitle:: 					; 605d
 	call TitleSeq_IncreaseJumpTableIndex
 	ret	
 	
-TitleSeq_MoveTitleEnd:: 					; 607A 
+TitleSeq_MoveTitleEnd::
 	xor a
 	ldh [hLCDCPointer], a
 	call TitleSeq_IncreaseJumpTableIndex
 	ld de, MUSIC_TITLE
-	call PlayMusic				; Play "Title Theme" 
+	call PlayMusic	; Play "Title Theme" 
 	ret
 
-TitleSeq_InitFlashTitle:: 				; 6087 
+TitleSeq_InitFlashTitle::
 	call TitleSeq_IncreaseJumpTableIndex
 	ld a, %00011010
 	ld [wJumptableIndex + 2], a
@@ -320,7 +320,7 @@ TitleSeq_InitFlashTitle:: 				; 6087
 	ld [wJumptableIndex + 3], a
 	ret
 
-TitleSeq_FlashTitle:: 					; 6095 
+TitleSeq_FlashTitle:: 
 	ld hl, wJumptableIndex + 3
 	ld a, [hl]
 	and a
@@ -340,7 +340,7 @@ TitleSeq_FlashTitle:: 					; 6095
 	ldh [rBGP], a
 	ret
 
-TitleSeq_PMJapaneseChara:: 				; 60B6 
+TitleSeq_PMJapaneseChara::
 	call PrintPMJapaneseChara
 	ld a, $10
 	ld [wJumptableIndex + 2], a
@@ -349,7 +349,7 @@ TitleSeq_PMJapaneseChara:: 				; 60B6
 	ldh [hBGMapMode], a
 	ret
 
-TitleSeq_PMSubtitle:: 					; 60C6
+TitleSeq_PMSubtitle::
 	call PrintPMSubtitle
 	ld a, $10
 	ld [wJumptableIndex + 2], a
@@ -358,7 +358,7 @@ TitleSeq_PMSubtitle:: 					; 60C6
 	ldh [hBGMapMode], a
 	ret
 
-TitleSeq_Version:: 						; 60D6
+TitleSeq_Version::
 	call PrintVersion
 	ld a, $10
 	ld [wJumptableIndex + 2], a
@@ -367,7 +367,7 @@ TitleSeq_Version:: 						; 60D6
 	ldh [hBGMapMode], a
 	ret
 
-TitleSeq_CopyRight:: 					; 60e6 
+TitleSeq_CopyRight:: 
 	call PrintCopyRight
 	ld a, $10
 	ld [wJumptableIndex + 2], a
@@ -376,7 +376,7 @@ TitleSeq_CopyRight:: 					; 60e6
 	ldh [hBGMapMode], a
 	ret
 
-TitleSeq_HoOh:: 							; 60f6 
+TitleSeq_HoOh::
 	call Set_HoOh
 	ld a, $10
 	ld [wJumptableIndex + 2], a
@@ -385,7 +385,7 @@ TitleSeq_HoOh:: 							; 60f6
 	ldh [hBGMapMode], a
 	ret
 
-TitleSeq_PressButtonInit:: 				; 6106 
+TitleSeq_PressButtonInit::
 	ld hl, wJumptableIndex
 	inc [hl]
 	ld hl, wJumptableIndex + 2
@@ -395,7 +395,7 @@ TitleSeq_PressButtonInit:: 				; 6106
 	ld [hl], d
 	ret	
 	
-TitleSeq_TitleScreenInputAndTimeout:: 	; 6114 
+TitleSeq_TitleScreenInputAndTimeout::
 	ld hl, wJumptableIndex + 2
 	ld e, [hl]
 	inc hl
@@ -408,9 +408,9 @@ TitleSeq_TitleScreenInputAndTimeout:: 	; 6114
 	dec hl
 	ld [hl], e
 	call GetJoypad
-	ld hl, hJoyState			; hJoyState = $FFA3 
+	ld hl, hJoyState 
 	ld a, [hl]
-	and D_UP | B_BUTTON | SELECT						; UP + B + SELECT brings you to the SRAM clear screen. 
+	and D_UP | B_BUTTON | SELECT	; UP + B + SELECT brings you to the SRAM clear screen. 
 	cp D_UP | B_BUTTON | SELECT
 	jr z, .psbtn_sramclear
 	ld a, [hl]
@@ -421,19 +421,19 @@ TitleSeq_TitleScreenInputAndTimeout:: 	; 6114
 	ret z
 	
 .psbtn_play
-	ld a, $00					; MainMenu 
+	ld a, $00	; MainMenu 
 	jr .psbtn_nextseq
 
 .psbtn_gotodebug
 if DEBUG 
-	ld a, $01					; DebugMenu 
+	ld a, $01	; DebugMenu 
 	jr .psbtn_nextseq
 else
 	ret
 endc
 
 .psbtn_sramclear
-	ld a, $02					; SRAMClearMenu 
+	ld a, $02
 	
 .psbtn_nextseq
 	ld [wJumptableIndex + 1], a
@@ -445,13 +445,13 @@ endc
 	ld hl, wJumptableIndex
 	inc [hl]
 	xor a
-	ld [wMusicFadeID], a 			; C1A7
+	ld [wMusicFadeID], a 
 	ld [wMusicFadeID + 1], a
-	ld hl, wMusicFade 			; C1A5 
+	ld hl, wMusicFade
 	ld [hl], 8
 	ret	
 	
-TitleSeq_FadeMusicOut:: 					; 615C 
+TitleSeq_FadeMusicOut::
 	ld a, [wMusicFade]
 	and a
 	ret nz
@@ -461,7 +461,7 @@ TitleSeq_FadeMusicOut:: 					; 615C
 	set 7, [hl]
 	ret	
 
-SetLYOverrides:: 				; 616C 
+SetLYOverrides::
 	ld hl, wLYOverrides
 	ld c, $30
 .setly_loop
@@ -470,31 +470,31 @@ SetLYOverrides:: 				; 616C
 	jr nz, .setly_loop
 	ret
 
-PrintPMSubtitle:: 				; 6176 
+PrintPMSubtitle::
 	coord hl, 2, 6
 	ld b, 15
 	ld a, $69
-	jr LoadPrintArea 			; 6186 
+	jr LoadPrintArea
 
-PrintVersion:: 					; 617f 
+PrintVersion::
 	coord hl, 4, 1
 	ld b, $09
 	ld a, $60
 	
-LoadPrintArea:: 				; 6186 
+LoadPrintArea::
 	ld [hli], a
 	inc a
 	dec b
 	jr nz, LoadPrintArea
 	ret
 
-PrintPMJapaneseChara:: 			; 618C 
+PrintPMJapaneseChara::
 	coord hl, 15, 2
 	ld a, "こ"
 	lb bc, 4, 4
 	jr PrintBoxArea
 
-PrintPokemonLogo:: 				; 6196 
+PrintPokemonLogo::
 	coord hl, 15, 3
 	ld [hl], $B8
 	coord hl, 15, 4
@@ -532,58 +532,58 @@ PrintCopyRight::
 	jr nz, .loop
 	ret
 	
-SRAMClearMenu:: 				; 61C6 
+SRAMClearMenu::
 	call ClearTileMap
 	call GetMemSGBLayout
 	call LoadFont
 	call LoadFontExtra
-	ld hl, SRAMClear_TextMsg1
-	call PrintText 	; E70 
+	ld hl, SRAMClear_Message
+	call PrintText
 	ld hl, SRAMClear_WinPOS
-	call CopyMenuHeader 		; 1D50
-	call VerticalMenu 			; 1D87
+	call CopyMenuHeader
+	call VerticalMenu
 	jp c, Init
-	ld a, [wMenuCursorY]				; CC2A
+	ld a, [wMenuCursorY]
 	cp $01
 	jp z, Init
 
 	callfar InitAllSRAMBanks, $05
 	jp Init
 
-SRAMClear_TextMsg1::
-db "<NULL>すべての　セーブデータエりアを"
-db "<LINE>クりア　しますか？<DONE>"
+SRAMClear_Message::
+	db "<NULL>すべての　セーブデータエりアを"
+	db "<LINE>クりア　しますか？<DONE>"
 
 SRAMClear_WinPOS::
-db	0
-db	7,14,11,19
-dw SRAMClear_TextChoice ; menu data
-db	1 ; default option 
+	db 0
+	db 7,14,11,19
+	dw SRAMClear_TextChoice ; menu data
+	db 1 ; default option 
 
 SRAMClear_TextChoice::
-db	%11000000
-db	2
-db "いいえ@"
-db "はい@"
+	db %11000000
+	db 2
+	db "いいえ@"
+	db "はい@"
 
-IntroCopyRightInfo:: 					; 6223
+IntroCopyRightInfo::
 	call ClearTileMap
 	call LoadFontExtra
 	ld de, TitleScreenGFX
 	ld hl, $9600
 	lb bc, BANK(TitleScreenGFX), $19
-	call CopyVideoData
+	call Request2bpp
 
 	coord hl, 5, 7
 	ld de, IntroCopyRightInfo_Text
 	jp PlaceString
 
-IntroCopyRightInfo_Text:: 				; 623E
-db $60, $61, $62, $63, $6D, $6E, $6F, $70, $71, $72, $4E 				; "(C)1997 Nintendo\n" 
-db $60, $61, $62, $63, $73, $74, $75, $76, $77, $78, $6B, $6C, $4E 		; "(C)1997 Creatures Inc.\n" 
-db $60, $61, $62, $63, $64, $65, $66, $67, $68, $69, $6A, $6B, $6C, $50 ; "(C)1997 GAME FREAK Inc.{EOL}" 	
+IntroCopyRightInfo_Text::
+	db $60, $61, $62, $63, $6D, $6E, $6F, $70, $71, $72, $4E 				; "(C)1997 Nintendo\n" 
+	db $60, $61, $62, $63, $73, $74, $75, $76, $77, $78, $6B, $6C, $4E 		; "(C)1997 Creatures Inc.\n" 
+	db $60, $61, $62, $63, $64, $65, $66, $67, $68, $69, $6A, $6B, $6C, $50 ; "(C)1997 GAME FREAK Inc.{EOL}" 
 
-Set_HoOh:: 								; 6264
+Set_HoOh::
 	coord hl, 7, 9
 	ld de, $000D
 	ld a, $00
@@ -601,17 +601,17 @@ Set_HoOh:: 								; 6264
 	ret
 
 ; Unused code, looks like it sets the font type for the logo? 
-SetTitleFont::							; 627A 
-	ld de, $8800
+SetTitleFont::
+	ld de, vChars1
 	ld hl, TitleScreenLogoGFX
 	ld bc, 130 tiles
 	ld a, $04
-	jp FarCopyDataDouble 				; 0D3E 
+	jp FarCopyDataDouble
 
 ; Sets the type of art that will be displayed on the title screen 
 ; depending on wTitleSequenceOpeningType. 
-SetTitleGfx:: ;6288
-	ld hl, wTitleSequenceOpeningType 	; CC38 
+SetTitleGfx::
+	ld hl, wTitleSequenceOpeningType
 	ld a, [hl]
 	xor $01
 	ld [hl], a
@@ -624,7 +624,7 @@ SetTitleGfx:: ;6288
 .flame
 	ld hl, TitleFireGFX
 SetTitleGfxNext::
-	ld de, $8000
+	ld de, vChars0
 	ld c, $80
 .loop
 	ld a, [hli]
@@ -641,8 +641,10 @@ SECTION "Title screen TEMPORARY", ROMX[$62A2],BANK[1] ; TODO: merge this with th
 endc
 	
 
-GameInit:: 								; 62A5
+GameInit::
 	call ClearWindowData
 	ld a, $23
 	ld [wce5f], a
 	jp IntroSequence
+	
+	
