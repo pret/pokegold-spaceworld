@@ -120,12 +120,67 @@ NEXTU
 
 wLYOverrides:: ; c600
     ds SCREEN_HEIGHT_PX
+; c690
+    ds $10
+wLYOverrides2:: ; c6a0
 
 NEXTU
+; Battle-related
 
-	ds $422 ; TODO
+	ds $1ea
 
-wTrainerClass:: ; ca22
+; c7ea
+wActiveBGEffects:: ; c7ea
+wBGEffect1:: battle_bg_effect wBGEffect1
+wBGEffect2:: battle_bg_effect wBGEffect2
+wBGEffect3:: battle_bg_effect wBGEffect3
+wBGEffect4:: battle_bg_effect wBGEffect4
+wBGEffect5:: battle_bg_effect wBGEffect5
+wActiveBGEffectsEnd::
+
+wNumActiveBattleAnims:: db ; c7fe
+
+wBattleAnimFlags:: db ; c7ff
+wBattleAnimAddress:: dw ; c800
+wBattleAnimDuration:: db ; c802
+wBattleAnimParent:: dw ; c803
+wBattleAnimLoops:: db ; c805
+wBattleAnimVar:: db ; c806
+wBattleAnimByte:: db ; c807
+wBattleAnimOAMPointerLo:: db ; c808
+	db
+
+UNION ; c80a
+; unidentified
+wBattleAnimTemp0:: db
+wBattleAnimTemp1:: db
+wBattleAnimTemp2:: db
+wBattleAnimTemp3:: db
+
+NEXTU ; c80a
+wBattleAnimTempOAMFlags:: db
+wBattleAnimTempField02:: db
+wBattleAnimTempTileID:: db
+wBattleAnimTempXCoord:: db
+wBattleAnimTempYCoord:: db
+wBattleAnimTempXOffset:: db
+wBattleAnimTempYOffset:: db
+wBattleAnimTempAddSubFlags:: db
+wBattleAnimTempPalette:: db
+ENDU ; c813
+
+        ds $32
+wBattleAnimEnd::
+; c845
+
+	ds $1f8 ; TODO
+
+wPlayerSubStatus3:: db ; ca3d
+	ds $4
+wEnemySubStatus3:: db ; ca42
+; ca43
+	ds $14
+wTrainerClass:: ; ca57
 	db
 
 ENDU
@@ -249,6 +304,7 @@ wOBP1:: db ; cccc
 SECTION "CCCE", WRAM0[$CCCE]
 
 wDisableVBlankWYUpdate:: db ; ccce
+wcccf:: db
 
 SECTION "CD26", WRAM0[$CD26]
 
