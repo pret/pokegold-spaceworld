@@ -445,14 +445,14 @@ endc
 	ld hl, wJumptableIndex
 	inc [hl]
 	xor a
-	ld [wNextBGM], a 			; C1A7
-	ld [wNextBGM + 1], a
-	ld hl, wSoundFade 			; C1A5 
+	ld [wMusicFadeID], a 			; C1A7
+	ld [wMusicFadeID + 1], a
+	ld hl, wMusicFade 			; C1A5 
 	ld [hl], 8
 	ret	
 	
 TitleSeq_FadeMusicOut:: 					; 615C 
-	ld a, [wSoundFade]
+	ld a, [wMusicFade]
 	and a
 	ret nz
 	ld a, 3

@@ -17,45 +17,42 @@ wChannel6:: channel_struct wChannel6 ; c0fa
 wChannel7:: channel_struct wChannel7 ; c12c
 wChannel8:: channel_struct wChannel8 ; c15e
 
-    ds 8 ; TODO
+    ds 1 ; c190
 
-wCurChannel:: ; c198
-    db
+wCurTrackDuty:: db ; c191
+wCurTrackIntensity:: db ; c192
+wCurTrackFrequency:: dw ; c193
+wc195:: db ; c195
 
-wVolume:: ; c199
-    db
+	ds 2 ; TODO
 
-    ds 2 ; TODO
+wCurChannel:: db ; c198
+wVolume:: db ; c199
+wSoundOutput:: db ; c19a
 
-wMusicID:: ; c19c
-    dw
+    ds 1 ; TODO
 
-wMusicBank:: ; c19e
-    db
-	
+wMusicID:: dw ; c19c
+wMusicBank:: db ; c19e
+
 	ds 6 ; TODO
-	
-wSoundFade:: ; c1a5
+
+wMusicFade:: ; c1a5
+; fades volume over x frames
+; bit 7: fade in/out
+; bit 0-6: number of frames for each volume level
+; $00 = none (default)
 	db
-	
-	ds 1
+wMusicFadeCount:: db ; c1a6
+wMusicFadeID:: dw ; c1a7
 
-wNextBGM:: ; c1a7
-	db
-	
-	ds 5
-	
-wMapMusic:: ; c1ad
-    db
+    ds 4 ; TODO
 
-wCryPitch:: ; c1ae
-    dw
-
-wCryLength:: ; c1b0
-    dw
+wMapMusic:: db ; c1ad
+wCryPitch:: dw ; c1ae
+wCryLength:: dw ; c1b0
 
     ds 10 ; TODO
-
 
 ; either wChannelsEnd or wMusicEnd, unsure
 wMusicInitEnd:: ; c1bc
