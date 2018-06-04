@@ -1,6 +1,5 @@
 ; ROM0
 00:032b UpdateTimeOfDayPalettes
-00:033a ResetPalette
 00:0436 UpdateTime
 00:051C Reset
 00:0D0A LoadFont
@@ -8,7 +7,6 @@
 00:0E18 ClearBox
 00:0E2A ClearTileMap
 00:0E3D DrawTextBox
-00:0e70 PrintText
 00:0E93 PlaceString
 00:0E94 PlaceNextChar
 00:0E9D CheckDict
@@ -16,8 +14,6 @@
 00:1720 CheckObjectVisibility
 00:17bf GetObjectStruct
 00:1d49 LoadMenuHeader
-00:1d50 CopyMenuHeader
-00:1d87 VerticalMenu
 00:1e58 OpenMenu
 00:1F9E ClearWindowData
 00:1FCC ClearWindowData.bytefill
@@ -27,7 +23,6 @@
 00:23e5 FadeIn ; This is not OverworldFadeIn, but I don't know what it is
 00:2C05 StartMenuCheck
 00:3270 Random
-00:361E ClearPalettesAndWait
 00:3621 WaitBGMap
 00:362B SetPalettes
 00:3634 ClearPalettes
@@ -38,7 +33,6 @@
 00:36C8 NamesPointers
 00:36E0 GetName
 00:39BA PlayCry
-00:3CA8 InitSpriteAnimStruct
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
 00:3DA5 MaxVolume
@@ -58,9 +52,9 @@
 
 
 01:4031 Function_4031
-01:4031 DebugMenu
 01:53CC MainMenu
 01:5D27 Function_5d27
+01:6114 TitleScreenInputAndTimeout
 01:6445 Function_6445
 01:66B1 Function_66b1
 01:6713 Function_6713
@@ -72,7 +66,6 @@
 02:4C7C DrawMap
 02:4DC2 TownMapGfx
 02:4F32 PokegearRadioGfx
-02:51D2 SetTitleBGDecorationBorder
 02:528B Function_928b
 02:5695 CheckSGB
 
@@ -114,7 +107,6 @@
 05:405b AddIndoorSprites
 05:40aa AddOutdoorSprites
 05:40fb LoadUsedSpritesGfx ; TODO: maybe there's a better name
-05:43B6 InitAllSRAMBanks 
 05:43E0 Function_143e0
 05:457A Function_1457a
 05:45B8 Function_145b8
@@ -184,8 +176,6 @@
 23:44BE Function_8c4be
 23:4940 Function_8c940
 23:49C6 Function_8c9c6
-23:4CFD InitEffectObject
-23:4d13 EffectObjectJumpNoDelay
 23:60cc MenuMonIconGfx
 
 24:4000 SetClockDialog
@@ -199,9 +189,6 @@
 33:467B QueueBattleAnimation
 33:625D BattleAnim_Sine_e
 33:6263 BattleAnim_Cosine_e
-38:4000 PikachuMiniGame
-39:4000 GameFreakIntro
-39:432F OpeningCutscene
 3A:441D Function_e841d
 3A:45D8 Function_e85d8
 3A:47F9 Function_e87f9
