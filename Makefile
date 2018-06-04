@@ -59,6 +59,14 @@ clean:
 mostlyclean:
 	rm -rf $(ROM) $(CORRECTEDROM) $(OBJS) $(OBJS:.o=.d) $(ROMS:.gb=.sym) $(ROMS:.gb=.map)
 
+.PHONY: linkerscript
+linkerscript: $(ROM:.gb=.link)
+
+%.link: %.map
+	$(PYTHON3) tools/map2link.py $< $@
+
+%.map: %.gb;
+
 $(CORRECTEDROM): %-correctheader.gb: %.gb
 	cp $< $@
 	$(RGBFIX) -f hg -m 0x10 $@

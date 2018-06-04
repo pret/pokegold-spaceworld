@@ -249,13 +249,10 @@ ROMX $03
 	"Shim for Function_cd6f" ; size: $0000
 	org $4de3
 	"Shim for Function_cde3" ; size: $0000
-	"Shim for Function_cde3_2" ; size: $0000
-	"Shim for Function_cde3_3" ; size: $0000
 	org $4df9
 	"Shim for Function_cdf9" ; size: $0000
 	org $4e10
 	"Shim for Function_ce10" ; size: $0000
-	"Shim for Function_ce10_2" ; size: $0000
 	org $4e3c
 	"Shim for Function_ce3c" ; size: $0000
 	org $4e7c
@@ -595,7 +592,6 @@ ROMX $32
 	"Shim for Function_cb733" ; size: $0000
 ROMX $33
 	"Shim for Function_cc000" ; size: $0000
-	"Shim for Function_cc000_2" ; size: $0000
 	org $4001
 	"Shim for Function_cc001" ; size: $0000
 ROMX $37
@@ -723,7 +719,6 @@ WRAM0
 	org $cbe5
 	"CBD2" ; size: $0014
 	"Shim for wWindowData" ; size: $0000
-	"Shim for wWindowStackPointer" ; size: $0000
 	org $cbf7
 	"CBF7" ; size: $0001
 	org $cc02
