@@ -23,3 +23,5 @@ INCLUDE "constants/music_constants.asm"
 INCLUDE "constants/serial_constants.asm"
 
 INCLUDE "constants/misc_constants.asm"
+
+INCLUDE "constants/battle_anim_constants.asm"

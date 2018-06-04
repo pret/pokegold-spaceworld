@@ -101,8 +101,9 @@ hPrintNumTemp:: ds 3 ; ffba big-endian
 hLCDCPointer:: ; ffd0
     db
 
-
-    ds 3 ; TODO
+hLYOverrideStart:: db ; ffd1
+hLYOverrideEnd:: db ; ffd2
+    ds 1 ; TODO
 
 
 hSerialReceived:: ; ffd4
@@ -187,5 +188,7 @@ hTileAnimFrame:: ; ffe9
 hRandomAdd:: db ; ffef
 hRandomSub:: db ; fff0
 hRTCRandom:: db ; fff1
+
+hBattleTurn:: db ; fff2
 
     ; TODO
