@@ -4,6 +4,7 @@
 00:051C Reset
 00:0D0A LoadFont
 00:0D1A LoadFontExtra
+00:0E18 ClearBox
 00:0E2A ClearTileMap
 00:0E3D DrawTextBox
 00:0E93 PlaceString
@@ -179,13 +180,15 @@
 
 24:4000 SetClockDialog
 24:4239 SlotMachineGame
-32:4000 Function_c8000
 32:76FF Function_cb6ff
 32:7710 Function_cb710
 32:7733 Function_cb733
 33:4000 Function_cc000
 33:4000 Function_cc000_2
 33:4001 Function_cc001
+33:467B QueueBattleAnimation
+33:625D BattleAnim_Sine_e
+33:6263 BattleAnim_Cosine_e
 3A:441D Function_e841d
 3A:45D8 Function_e85d8
 3A:47F9 Function_e87f9
