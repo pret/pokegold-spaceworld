@@ -22,9 +22,3 @@ D_DOWN     EQU 1 << D_DOWN_F
 
 BUTTONS    EQU A_BUTTON | B_BUTTON | SELECT | START
 D_PAD      EQU D_RIGHT | D_LEFT | D_UP | D_DOWN
-
-; backpack
-
-	const_def 1
-	const REGULAR_ITEM_POCKET
-	const KEY_ITEM_POCKET

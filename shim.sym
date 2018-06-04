@@ -50,6 +50,7 @@
 01:6445 Function_6445
 01:66B1 Function_66b1
 01:6713 Function_6713
+01:68F3 ItemAttributes
 02:4786 Function_8786
 02:4856 DecompTownMapTilemap
 02:48DA DecompTownMapTilemap.tilemap
@@ -60,7 +61,6 @@
 02:5695 CheckSGB
 03:4791 DebugWarp
 03:479F DebugWarp.Destinations
-03:4AA1 AddItemToInventory_
 03:4D33 Function_cd33
 03:4D6F Function_cd6f
 03:4DE3 Function_cde3

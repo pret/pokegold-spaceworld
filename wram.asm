@@ -243,18 +243,24 @@ wFarCallBCBuffer:: ; cd54
 
 SECTION "CD76", WRAM0[$CD76]
 
-wcd76:: ; cd76
+wCurItem:: ; cd76
     db
 
-wcd77:: ;cd77
+wItemIndex:: ;cd77
     db
 
 wMonDexIndex: ds 1 ; cd78
 
 SECTION "CD7D", WRAM0[$CD7D]
 
-wItemQuantity:: ; cd7d
-    db
+wItemQuantity:: db ; cd7d
+	
+wItemQuantityBuffer:: db ; cd7e
+	
+SECTION "CDBA", WRAM0[$CDBA]
+
+wItemAttributeParamBuffer:: ; cdba
+	db
 
 SECTION "CDBD", WRAM0[$CDBD]
 
@@ -263,6 +269,7 @@ wLinkMode:: db ; cdbd
 ; 01 - 
 ; 02 - 
 ; 03 -  
+
 
 SECTION "CE00", WRAM0[$CE00]
 
@@ -394,19 +401,26 @@ wMapTimeOfDayPaletteMap:: db ; d158
 
 wMapTimeOfDay:: db ; d159
 
+SECTION "D165", WRAM0[$D165]
+
+wTMsHMs:: db ; d165
+
 SECTION "D19E", WRAM0[$D19E]
 
-wNumBagItems:: ; d19e
-    db
+wNumBagItems:: db ; d19e
 
 SECTION "D1C8", WRAM0[$D1C8]
 
 wNumKeyItems:: db ; d1c8
 
+wKeyItems:: db ; d1c9
+
+
 SECTION "D1DE", WRAM0[$D1DE]
 
 wNumBallItems:: db ; d1de
 
+wBallQuantities:: db ; d1df
 
 SECTION "D4AB", WRAM0[$D4AB]
 
