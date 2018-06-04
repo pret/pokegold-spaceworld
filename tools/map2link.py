@@ -36,10 +36,11 @@ class MapFile:
                 self.bankno = 0
             else:
                 self.bankno = int(match.group(1))
+            bankname = linestr.split()[0].rstrip(':')
             try:
-                self.banktype = MapFile.bank_types.index(linestr.split()[0].rstrip(':'))
+                self.banktype = MapFile.bank_types.index(bankname)
             except ValueError as e:
-                raise ValueError(f'Unrecognized bank type: {linestr.split()[0]}') from e
+                raise ValueError(f'Unrecognized bank type: {bankname}') from e
 
         @property
         def name(self):
