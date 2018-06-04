@@ -109,7 +109,7 @@ endr
 	ld [MBC3RomBank], a ; Unsafe
 	ldh [hROMBank], a
 	call _PlayCryHeader
-    
+
 	pop af
 	ld [MBC3RomBank], a ; Unsafe
 	ldh [hROMBank], a

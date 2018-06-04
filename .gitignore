@@ -22,6 +22,7 @@ shim.asm
 *.exe
 tools/scan_includes
 tools/pkmncompress
+tools/make_shim
 tools/gfx
 *.pyc
 build/

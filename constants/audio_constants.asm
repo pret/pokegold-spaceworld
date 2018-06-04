@@ -12,33 +12,87 @@ NUM_NOISE_CHANS EQU const_value
 	const CHAN8
 NUM_CHANNELS EQU const_value
 
+; channel_struct members (see macros/wram.asm)
+CHANNEL_MUSIC_ID EQUS "(wChannel1MusicID - wChannel1)"
+CHANNEL_MUSIC_BANK EQUS "(wChannelMusicBank - wChannel1)"
+CHANNEL_FLAGS1 EQUS "(wChannel1Flags1 - wChannel1)"
+CHANNEL_FLAGS2 EQUS "(wChannel1Flags2 - wChannel1)"
+CHANNEL_FLAGS3 EQUS "(wChannel1Flags3 - wChannel1)"
+CHANNEL_MUSIC_ADDRESS EQUS "(wChannel1MusicAddress - wChannel1)"
+CHANNEL_LAST_MUSIC_ADDRESS EQUS "(wChannel1LastMusicAddress - wChannel1)"
+CHANNEL_NOTE_FLAGS EQUS "(wChannel1NoteFlags - wChannel1)"
+CHANNEL_CONDITION EQUS "(wChannel1Condition - wChannel1)"
+CHANNEL_DUTY_CYCLE EQUS "(wChannel1DutyCycle - wChannel1)"
+CHANNEL_INTENSITY EQUS "(wChannel1Intensity - wChannel1)"
+CHANNEL_FREQUENCY EQUS "(wChannel1Frequency - wChannel1)"
+CHANNEL_PITCH EQUS "(wChannel1Pitch - wChannel1)"
+CHANNEL_OCTAVE EQUS "(wChannelOctave - wChannel1)"
+CHANNEL_PITCH_OFFSET EQUS "(wChannelPitchOffset - wChannel1)"
+CHANNEL_NOTE_DURATION EQUS "(wChannel1NoteDuration - wChannel1)"
+CHANNEL_FIELD16 EQUS "(wChannel1Field16 - wChannel1)"
+CHANNEL_LOOP_COUNT EQUS "(wChannel1LoopCount - wChannel1)"
+CHANNEL_TEMPO EQUS "(wChannel1Tempo - wChannel1)"
+CHANNEL_TRACKS EQUS "(wChannel1Tracks - wChannel1)"
+CHANNEL_SFX_DUTY_LOOP EQUS "(wChannel1SFXDutyLoop - wChannel1)"
+CHANNEL_VIBRATO_DELAY_COUNT EQUS "(wChannel1VibratoDelayCount - wChannel1)"
+CHANNEL_VIBRATO_DELAY EQUS "(wChannel1VibratoDelay - wChannel1)"
+CHANNEL_VIBRATO_EXTENT EQUS "(wChannel1VibratoExtent - wChannel1)"
+CHANNEL_VIBRATO_RATE EQUS "(wChannel1VibratoRate - wChannel1)"
+CHANNEL_PITCH_WHEEL_TARGET EQUS "(wChannel1PitchWheelTarget - wChannel1)"
+CHANNEL_PITCH_WHEEL_AMOUNT EQUS "(wChannel1PitchWheelAmount - wChannel1)"
+CHANNEL_PITCH_WHEEL_AMOUNT_FRACTION EQUS "(wChannel1PitchWheelAmountFraction - wChannel1)"
+CHANNEL_FIELD25 EQUS "(wChannel1Field25 - wChannel1)"
+CHANNEL_CRY_PITCH EQUS "(wChannel1CryPitch - wChannel1)"
+CHANNEL_FIELD29 EQUS "(wChannel1Field29 - wChannel1)"
+CHANNEL_FIELD2A EQUS "(wChannel1Field2a - wChannel1)"
+CHANNEL_FIELD2C EQUS "(wChannel1Field2c - wChannel1)"
+CHANNEL_NOTE_LENGTH EQUS "(wChannel1NoteLength - wChannel1)"
+CHANNEL_FIELD2E EQUS "(wChannel1Field2e - wChannel1)"
+CHANNEL_FIELD2F EQUS "(wChannel1Field2f - wChannel1)"
+CHANNEL_FIELD30 EQUS "(wChannel1Field30 - wChannel1)"
+CHANNEL_STRUCT_LENGTH EQUS "(wChannel2 - wChannel1)"
+
 ; Flags1
-SOUND_CHANNEL_ON EQU 0
-SOUND_SUBROUTINE EQU 1
-SOUND_LOOPING EQU 2
-SOUND_SFX EQU 3
-SOUND_NOISE EQU 4
-SOUND_REST EQU 5
+	const_def
+	const SOUND_CHANNEL_ON ; 0
+	const SOUND_SUBROUTINE ; 1
+	const SOUND_LOOPING    ; 2
+	const SOUND_SFX        ; 3
+	const SOUND_NOISE      ; 4
+	const SOUND_REST       ; 5
 
 ; Flags2
-
-SOUND_VIBRATO EQU 0
-SOUND_PITCH_WHEEL EQU 1
-SOUND_DUTY EQU 2
-SOUND_UNKN_0B EQU 3
-SOUND_CRY_PITCH EQU 4
-SOUND_UNKN_0D EQU 5
-SOUND_UNKN_0E EQU 6
-SOUND_UNKN_0F EQU 7
+	const_def
+	const SOUND_VIBRATO     ; 0
+	const SOUND_PITCH_WHEEL ; 1
+	const SOUND_DUTY        ; 2
+	const SOUND_UNKN_0B     ; 3
+	const SOUND_CRY_PITCH   ; 4
+	const SOUND_UNKN_0D     ; 5
+	const SOUND_UNKN_0E     ; 6
+	const SOUND_UNKN_0F     ; 7
 
 ; Flags3
-SOUND_VIBRATO_DIR EQU 0
-SOUND_PITCH_WHEEL_DIR EQU 1
+	const_def
+	const SOUND_VIBRATO_DIR     ; 0
+	const SOUND_PITCH_WHEEL_DIR ; 1
 
 ; NoteFlags
-NOTE_UNKN_0 EQU 0
-NOTE_UNKN_1 EQU 1
-NOTE_UNKN_3 EQU 3
-NOTE_UNKN_4 EQU 4
-NOTE_REST EQU 5
-NOTE_UNKN_6 EQU 6
+	const_def
+	const NOTE_DUTY_OVERRIDE    ; 0
+	const NOTE_FREQ_OVERRIDE    ; 1
+	const NOTE_UNUSED           ; 2
+	const NOTE_UNKN_3           ; 3
+	const NOTE_NOISE_SAMPLING   ; 4
+	const NOTE_REST             ; 5
+	const NOTE_VIBRATO_OVERRIDE ; 6
+
+; wVolume
+VOLUME_SO1_F EQU 3
+VOLUME_SO2_F EQU 7
+VOLUME_SO1_LEVEL EQU %00000111
+VOLUME_SO2_LEVEL EQU %01110000
+MAX_VOLUME EQU $77
+
+; wMusicFade
+MUSIC_FADE_IN_F EQU 7
