@@ -94,10 +94,42 @@ wWhichPicTest:: ; c40b
 ENDU
 
 
-SECTION "LY overrides buffer", WRAM0[$C600]
+SECTION "Unknown map buffer?", WRAM0[$C5E8]
+
+; TODO: this is probably not related to the map script. Figure out what it actually is
+wUnknownIdC5E8:: ; c5e8
+    db
+
+wUnknownIdC5E8Location::
+    dw ; c5e9 ; TODO
+
+wUnknownMapPointer::
+    dw ; c5eb ; TODO
+
+    ds 19 ; TODO
+wUnknownMapBufferEnd:: ; c600
+
+
+UNION
+
+wOverworldMapBlocks:: ; c600
+    ds $514 ; TODO: constantify this
+wOverworldMapBlocksEnd:: ; cb14
+
+NEXTU
 
 wLYOverrides:: ; c600
     ds SCREEN_HEIGHT_PX
+
+NEXTU
+
+	ds $422 ; TODO
+
+wTrainerClass:: ; ca22
+	db
+
+ENDU
+
 
 SECTION "CB14", WRAM0[$CB14]
 
@@ -137,12 +169,20 @@ wVBCopyFarSrc:: ds 2 ; cb72
 wVBCopyFarDst:: ds 2 ; cb74
 wVBCopyFarSrcBank:: ds 1 ; cb76
 
+SECTION "Collision buffer", WRAM0[$CB90]
+
+wTileDown::  db ; cb90
+wTileUp::    db ; cb91
+wTileLeft::  db ; cb92
+wTileRight:: db ; cb93
+
 SECTION "CBD2", WRAM0[$CBD2]
 wcbd2:: ; cbd2
     ds $14
 
 SECTION "CBF7", WRAM0[$CBF7]
 
+wWhichIndexSet::
 wActiveBackpackPocket:: db ; cbf7
 
 SECTION "CC09", WRAM0[$CC09]
@@ -171,7 +211,14 @@ wDebugWarpSelection:: ; cc39
 wSGB:: ; cc40
     db
 
-SECTION "CCAC", WRAM0[$CCAC]
+SECTION "CC9C", WRAM0[$CC9C]
+
+wUnknownWordCC9C:: ; cc9c
+    dw
+
+wUnknownBufferCC9E:: ; cc9e
+    ds 14
+
 
 wSpriteCurPosX          : ds 1 ; ccac
 wSpriteCurPosY          : ds 1 ; ccad
@@ -263,6 +310,10 @@ wLinkMode:: db ; cdbd
 ; 01 - 
 ; 02 - 
 ; 03 -  
+
+wTargetMapUnk:: db ; cdbe ; TODO: Probably warp ID, check
+wTargetMapGroup:: db ; cdbf
+wTargetMapId:: db ; cdc0
 
 SECTION "CE00", WRAM0[$CE00]
 
@@ -370,21 +421,64 @@ wce63:: db ; ce63
 ; 76543210
 ;       \-- global debug enable
 
-SECTION "D152", WRAM0[$D152]
 
-wMapTimeOfDayPalette:: db ; d152
-; Applied according to wMapTimeOfDay from wMapTimeOfDayPaletteMap
+SECTION "CE7F", WRAM0[$CE76]
+
+wObjectFollow_Leader:: ; ce76
+    db
+wObjectFollow_Follower:: ; ce77
+    db
+
+
+SECTION "Object structs", WRAM0[$CECF]
+
+wObjectStructs:: ; cecf
+wPlayerStruct::   object_struct wPlayer
+wObject1Struct::  object_struct wObject1
+wObject2Struct::  object_struct wObject2
+wObject3Struct::  object_struct wObject3
+wObject4Struct::  object_struct wObject4
+wObject5Struct::  object_struct wObject5
+wObject6Struct::  object_struct wObject6
+wObject7Struct::  object_struct wObject7
+wObjectStructsEnd:: ; d00f
+
+SECTION "Objects", WRAM0[$D04F]
+
+wMapObjects:: ; d04f
+wPlayerObject:: map_object wPlayer
+wMap1Object::   map_object wMap1
+wMap2Object::   map_object wMap2
+wMap3Object::   map_object wMap3
+wMap4Object::   map_object wMap4
+wMap5Object::   map_object wMap5
+wMap6Object::   map_object wMap6
+wMap7Object::   map_object wMap7
+wMap8Object::   map_object wMap8
+wMap9Object::   map_object wMap9
+wMap10Object::  map_object wMap10
+wMap11Object::  map_object wMap11
+wMap12Object::  map_object wMap12
+wMap13Object::  map_object wMap13
+wMap14Object::  map_object wMap14
+wMap15Object::  map_object wMap15
+wMapObjectsEnd:: ; d14f
+
+	ds 3 ; TODO
+
+wTimeOfDayPal:: db ; d152
+; Applied according to wCurTimeOfDay from wTimeOfDayPalset
 
 wd153:: db ; d153
 ; 76543210
 ; \-------- switch overworld palettes according to seconds not hours
 
     ds 3 ; TODO
-wd157:: db ; d157
+wTimeOfDayPalFlags:: db ; d157
 ; 76543210
 ; \-------- disable overworld palette switch
 
-wMapTimeOfDayPaletteMap:: db ; d158
+wTimeOfDayPalset:: db ; d158
 ; 76543210
 ; \/\/\/\/
 ;  | | | \- Map Palette for TimeOfDay 0x00
@@ -392,7 +486,7 @@ wMapTimeOfDayPaletteMap:: db ; d158
 ;  | \----- Map Palette for TimeOfDay 0x02
 ;  \------- Map Palette for TimeOfDay 0x03
 
-wMapTimeOfDay:: db ; d159
+wCurTimeOfDay:: db ; d159
 
 SECTION "D19E", WRAM0[$D19E]
 
@@ -419,6 +513,101 @@ wJoypadFlags:: db ; d4ab
 ; |\------- joypad sync mtx
 ; \-------- joypad disabled
 
+
+SECTION "Warp data", WRAM0[$D514]
+
+wCurrMapWarpCount:: ; d514
+    db
+
+wCurrMapWarps:: ; d515
+REPT 32 ; TODO: confirm this
+    ds 5
+ENDR
+
+
+wCurrMapSignCount:: ; d5b5
+    db
+
+wCurrMapSigns:: ; d5b6
+REPT 16 ; TODO: confirm this
+    ds 4
+ENDR
+
+wCurrMapObjectCount:: ; d5f6
+    db
+
+
+SECTION "Used sprites", WRAM0[$D643]
+
+wBGMapAnchor:: ; d643
+	dw
+
+wUsedSprites:: ; d645
+	dw ; This is for the player
+	ds 2 * 5 ; This is for the NPCs
+wUsedSpritesEnd:: ; d651
+
+
+SECTION "Map header", WRAM0[$D658]
+
+wOverworldMapAnchor:: ; d658
+	dw
+
+wYCoord:: db ; d65a
+wXCoord:: db ; d65b
+
+wMetaTileStandingY:: db ; d65c
+wMetaTileStandingX:: db ; d65d
+
+; d65f
+	ds 1 ; TODO
+
+wMapPartial:: ; d65f
+wMapAttributesBank:: ; d65f
+    db
+wMapTileset:: ; d660
+    db
+wMapPermissions:: ; d661
+    db
+wMapAttributesPtr:: ; d662
+    dw
+wMapPartialEnd:: ; d664
+
+wMapAttributes:: ; d664
+wMapHeight:: ; d664
+    db
+wMapWidth:: ; d665
+    db
+wMapBlocksPointer:: ; d666
+	dw
+    ds 2 ; TODO
+wMapScriptPtr:: ; d66a
+    dw
+wMapObjectsPtr:: ; d66c
+    dw
+wMapConnections:: ; d66e
+    db
+wMapAttributesEnd:: ; d66f
+
+wNorthMapConnection:: map_connection_struct wNorth ; d66f
+wSouthMapConnection:: map_connection_struct wSouth ; d67b
+wWestMapConnection::  map_connection_struct wWest  ; d687
+wEastMapConnection::  map_connection_struct wEast  ; d693
+
+
+wTileset:: ; d69f
+wTilesetBank:: ; d69f
+	db
+wTilesetBlocksAddress:: ; d6a0
+	dw
+wTilesetTilesAddress:: ; d6a2
+	dw
+wTilesetCollisionAddress:: ; d6a4
+	dw
+	ds 4 ; TODO
+wTilesetEnd:: ; d6aa
+
+
 SECTION "PokeDexFlags", WRAM0[$D81A]
 
 wPokedexOwned::    ; d81a
@@ -432,6 +621,13 @@ wPokedexSeenEnd::  ; d859
 wAnnonDex:: ds 26  ; d85a
 
 wAnnonID:: ds 1    ; d874
+
+
+SECTION "Wild mon buffer", WRAM0[$D91B]
+
+wWildMons:: ; d91b
+	ds 41
+
 
 SECTION "Stack bottom", WRAM0[$DFFF]
 

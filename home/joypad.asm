@@ -210,7 +210,7 @@ WaitAorB_BlinkCursor:: ; 8ea (0:8ea)
 	ldh a, [hJoySum]
 	and (A_BUTTON | B_BUTTON)
 	ret nz
-	call RTC
+	call UpdateTime
 	call UpdateTimeOfDayPalettes
 	ld a, $01
 	ldh [hBGMapMode], a

@@ -114,6 +114,19 @@ box: MACRO
 ENDM
 
 
+map_connection_struct: MACRO
+\1ConnectedMapGroup::       db
+\1ConnectedMapNumber::      db
+\1ConnectionStripPointer::  dw
+\1ConnectionStripLocation:: dw
+\1ConnectionStripLength::   db
+\1ConnectedMapWidth::       db
+\1ConnectionStripYOffset::  db
+\1ConnectionStripXOffset::  db
+\1ConnectionWindow::        dw
+ENDM
+
+
 channel_struct: MACRO
 ; TODO: CH1 isn't at C101, please rebase all of these
 ; Addreses are Channel1 (c101).
@@ -247,7 +260,6 @@ slot_reel: MACRO
 endm
 
 object_struct: MACRO
-\1Struct::
 \1Sprite:: ds 1
 \1MapObjectIndex:: ds 1
 \1SpriteTile:: ds 1
@@ -285,7 +297,6 @@ object_struct: MACRO
 ENDM
 
 map_object: MACRO
-\1Object::
 \1ObjectStructID::  ds 1
 \1ObjectSprite::    ds 1
 \1ObjectYCoord::    ds 1
