@@ -347,6 +347,9 @@ wPredefBC:: ; cd54
 wFarCallBCBuffer:: ; cd54
     dw
 
+    ds 3
+wVramState:: db
+
 SECTION "CD76", WRAM0[$CD76]
 
 wCurItem:: db ; cd76

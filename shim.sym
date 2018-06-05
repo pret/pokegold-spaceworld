@@ -1,5 +1,4 @@
 ; ROM0
-00:032b UpdateTimeOfDayPalettes
 00:0436 UpdateTime
 00:051C Reset
 00:0D0A LoadFont
@@ -170,6 +169,8 @@
 
 23:4000 AnimateTilesetImpl
 23:42dc UpdateTimeOfDayPal
+23:42e3 _TimeOfDayPals
+23:4335 _UpdateTimePals
 23:4354 ReplaceTimeOfDayPals
 23:4370 GetTimePalette
 23:44BE Function_8c4be
