@@ -75,10 +75,12 @@ class MapFile:
         def __init__(self, linestr):
             super().__init__(linestr)
             match = re.search(r'\$([0-9A-F]{4}) \(\$([0-9A-F]+) bytes\) \["(.+)"\]', linestr, re.I)
-            start, size, self.name = match.groups()
-            self.start = int(start, 16)
+            end, size, self.name = match.groups()
+            self.end = int(end, 16)
             self.size = int(size, 16)
-            self.end = self.start + self.size
+            if self.size > 0:
+                self.end += 1
+            self.start = self.end - self.size
             self.symbols = []
 
     class SymbolLine(MapFileLine):
