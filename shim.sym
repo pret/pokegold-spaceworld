@@ -111,7 +111,7 @@
 ; Structure:
 ; byte Map group ($ff = end)
 ; byte Map ID
-; ptr  Copied to c5e9, also byte pointed to written at wUnknownIdc5e8
+; ptr  Copied to c5e9, also byte pointed to written at wMapScriptNumber
 ; ptr  Copied to c5eb
 ; word Unknown (2 bytes)
 05:470e UnknownMapBufferPointers

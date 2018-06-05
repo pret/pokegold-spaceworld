@@ -98,8 +98,8 @@ SECTION "Unknown map buffer?", WRAM0[$C5E8]
 
 wMapBuffer::
 wMapScriptNumber:: db ; c5e8
-wUnknownIdC5E8Location:: dw ; c5e9
-wUnknownMapPointer:: dw ; c5eb
+wMapScriptNumberLocation:: dw ; c5e9
+wUnknownMapPointer:: dw ; c5eb ; TODO
     ds 19 ; TODO
 wMapBufferEnd:: ; c600
 
