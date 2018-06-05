@@ -75,7 +75,6 @@ GetName:: ; 00:36e0
 	call Bankswitch
 	ret
 
-
 GetNthString::
 ; Return the address of the ath string starting from hl.
 	and a

@@ -19,8 +19,17 @@ RunMapScript:: ; 20ff
 	ld de, .return
 	push de
 	jp hl
+
 .return
 	pop bc
 	pop de
 	pop hl
+	ret
+
+SECTION "ClearMapBuffer", ROM0[$2123]
+ClearMapBuffer:: ; 00:2123
+	ld hl, wMapBuffer
+	ld bc, wMapBufferEnd - wMapBuffer
+	ld a, 0
+	call ByteFill
 	ret
