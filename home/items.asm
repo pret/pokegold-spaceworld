@@ -10,17 +10,17 @@ AddItemToInventory:: ; 3259
 ; function to add an item (in varying quantities) to the player's bag or PC box
 ; INPUT:
 ; HL = address of inventory (either wNumBagItems or wNumBoxItems)
-; [wcd76] = item ID
+; [wCurItem] = item ID
 ; [wItemQuantity] = item quantity
 ; sets carry flag if successful, unsets carry flag if unsuccessful
 	push bc
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(AddItemToInventory_)
+	ld a, BANK(_ReceiveItem)
 	call Bankswitch
 	push hl
 	push de
-	call AddItemToInventory_
+	call _ReceiveItem
 	pop de
 	pop hl
 	pop bc
@@ -41,7 +41,7 @@ GiveItem::
 ; Return carry on success.
 	ld a, b
 	ld [wce37], a
-	ld [wcd76], a
+	ld [wCurItem], a
 	ld a, c
 	ld [wItemQuantity], a
 	ld hl, wNumBagItems

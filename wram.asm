@@ -120,12 +120,67 @@ NEXTU
 
 wLYOverrides:: ; c600
     ds SCREEN_HEIGHT_PX
+; c690
+    ds $10
+wLYOverrides2:: ; c6a0
 
 NEXTU
+; Battle-related
 
-	ds $422 ; TODO
+	ds $1ea
 
-wTrainerClass:: ; ca22
+; c7ea
+wActiveBGEffects:: ; c7ea
+wBGEffect1:: battle_bg_effect wBGEffect1
+wBGEffect2:: battle_bg_effect wBGEffect2
+wBGEffect3:: battle_bg_effect wBGEffect3
+wBGEffect4:: battle_bg_effect wBGEffect4
+wBGEffect5:: battle_bg_effect wBGEffect5
+wActiveBGEffectsEnd::
+
+wNumActiveBattleAnims:: db ; c7fe
+
+wBattleAnimFlags:: db ; c7ff
+wBattleAnimAddress:: dw ; c800
+wBattleAnimDuration:: db ; c802
+wBattleAnimParent:: dw ; c803
+wBattleAnimLoops:: db ; c805
+wBattleAnimVar:: db ; c806
+wBattleAnimByte:: db ; c807
+wBattleAnimOAMPointerLo:: db ; c808
+	db
+
+UNION ; c80a
+; unidentified
+wBattleAnimTemp0:: db
+wBattleAnimTemp1:: db
+wBattleAnimTemp2:: db
+wBattleAnimTemp3:: db
+
+NEXTU ; c80a
+wBattleAnimTempOAMFlags:: db
+wBattleAnimTempField02:: db
+wBattleAnimTempTileID:: db
+wBattleAnimTempXCoord:: db
+wBattleAnimTempYCoord:: db
+wBattleAnimTempXOffset:: db
+wBattleAnimTempYOffset:: db
+wBattleAnimTempAddSubFlags:: db
+wBattleAnimTempPalette:: db
+ENDU ; c813
+
+        ds $32
+wBattleAnimEnd::
+; c845
+
+	ds $1f8 ; TODO
+
+wPlayerSubStatus3:: db ; ca3d
+	ds $4
+wEnemySubStatus3:: db ; ca42
+; ca43
+	ds $14
+wTrainerClass:: ; ca57
 	db
 
 ENDU
@@ -249,6 +304,7 @@ wOBP1:: db ; cccc
 SECTION "CCCE", WRAM0[$CCCE]
 
 wDisableVBlankWYUpdate:: db ; ccce
+wcccf:: db
 
 SECTION "CD26", WRAM0[$CD26]
 
@@ -290,18 +346,18 @@ wFarCallBCBuffer:: ; cd54
 
 SECTION "CD76", WRAM0[$CD76]
 
-wcd76:: ; cd76
-    db
-
-wcd77:: ;cd77
-    db
-
-wMonDexIndex: ds 1 ; cd78
+wCurItem:: db ; cd76
+wItemIndex:: db ;cd77
+wMonDexIndex: db ; cd78
 
 SECTION "CD7D", WRAM0[$CD7D]
 
-wItemQuantity:: ; cd7d
-    db
+wItemQuantity:: db ; cd7d
+wItemQuantityBuffer:: db ; cd7e
+	
+SECTION "CDBA", WRAM0[$CDBA]
+
+wItemAttributeParamBuffer:: db ; cdba
 
 SECTION "CDBD", WRAM0[$CDBD]
 
@@ -488,19 +544,23 @@ wTimeOfDayPalset:: db ; d158
 
 wCurTimeOfDay:: db ; d159
 
+SECTION "D165", WRAM0[$D165]
+
+wTMsHMs:: db ; d165
+
 SECTION "D19E", WRAM0[$D19E]
 
-wNumBagItems:: ; d19e
-    db
+wNumBagItems:: db ; d19e
 
 SECTION "D1C8", WRAM0[$D1C8]
 
 wNumKeyItems:: db ; d1c8
+wKeyItems:: db ; d1c9
 
 SECTION "D1DE", WRAM0[$D1DE]
 
 wNumBallItems:: db ; d1de
-
+wBallQuantities:: db ; d1df
 
 SECTION "D4AB", WRAM0[$D4AB]
 
