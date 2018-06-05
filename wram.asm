@@ -346,24 +346,18 @@ wFarCallBCBuffer:: ; cd54
 
 SECTION "CD76", WRAM0[$CD76]
 
-wCurItem:: ; cd76
-    db
-
-wItemIndex:: ;cd77
-    db
-
-wMonDexIndex: ds 1 ; cd78
+wCurItem:: db ; cd76
+wItemIndex:: db ;cd77
+wMonDexIndex: db ; cd78
 
 SECTION "CD7D", WRAM0[$CD7D]
 
 wItemQuantity:: db ; cd7d
-	
 wItemQuantityBuffer:: db ; cd7e
 	
 SECTION "CDBA", WRAM0[$CDBA]
 
-wItemAttributeParamBuffer:: ; cdba
-	db
+wItemAttributeParamBuffer:: db ; cdba
 
 SECTION "CDBD", WRAM0[$CDBD]
 
@@ -561,14 +555,11 @@ wNumBagItems:: db ; d19e
 SECTION "D1C8", WRAM0[$D1C8]
 
 wNumKeyItems:: db ; d1c8
-
 wKeyItems:: db ; d1c9
-
 
 SECTION "D1DE", WRAM0[$D1DE]
 
 wNumBallItems:: db ; d1de
-
 wBallQuantities:: db ; d1df
 
 SECTION "D4AB", WRAM0[$D4AB]
