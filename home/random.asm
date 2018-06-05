@@ -30,3 +30,15 @@ Random::
 	ldh [hRandomSub], a
 	pop bc
 	ret
+
+BattleRandom::
+	ldh a, [hROMBank]
+	push af
+	ld a, BANK(_BattleRandom)
+	call Bankswitch
+	call _BattleRandom
+	ld [wPredefHL + 1], a
+	pop af
+	call Bankswitch
+	ld a, [wPredefHL + 1]
+	ret
