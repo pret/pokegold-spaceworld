@@ -16,25 +16,25 @@ SECTION "Map Data", ROMX[$4000], BANK[$04]
 	db 0 ; ???
 
 MapGroupPointers:
-	dw MapGroup_0
-	dw MapGroup_1
-	dw MapGroup_2
-	dw MapGroup_3
-	dw MapGroup_4
-	dw MapGroup_5
-	dw MapGroup_6
-	dw MapGroup_7
-	dw MapGroup_8
-	dw MapGroup_9
-	dw MapGroup_10
-	dw MapGroup_11
-	dw MapGroup_12
-	dw MapGroup_13
-	dw MapGroup_14
-	dw MapGroup_15
-	dw MapGroup_16
+	dw MapGroup_SilentHill
+	dw MapGroup_OldCity
+	dw MapGroup_West
+	dw MapGroup_Haiteku
+	dw MapGroup_Fonto
+	dw MapGroup_Baadon
+	dw MapGroup_Newtype
+	dw MapGroup_Sugar
+	dw MapGroup_Bull
+	dw MapGroup_Stand
+	dw MapGroup_Kanto
+	dw MapGroup_Prince
+	dw MapGroup_MtFuji
+	dw MapGroup_South
+	dw MapGroup_North
+	dw MapGroup_Misc
+	dw MapGroup_Empty
 
-MapGroup_0:
+MapGroup_SilentHill:
 	map Route1P1, TILESET_00, ROUTE, LANDMARK_MT_FUJI
 	map Route1P2, TILESET_00, ROUTE, LANDMARK_SOUTH
 	map RouteSilentEast, TILESET_00, ROUTE, LANDMARK_BLUE_FOREST
@@ -51,31 +51,31 @@ MapGroup_0:
 	map Unused13, TILESET_0A, INDOOR, LANDMARK_STAND
 	map ShizukanaOka, TILESET_1B, CAVE, LANDMARK_NONE
 
-MapGroup_1:
+MapGroup_OldCity:
 	map Route2, TILESET_01, ROUTE, LANDMARK_ROUTE_15
 	map OldCity, TILESET_01, TOWN, LANDMARK_NORTH
 	map Route2Gate1F, TILESET_11, GATE, LANDMARK_ROUTE_15
 	map Route2Gate2F, TILESET_11, GATE, LANDMARK_ROUTE_15
 	map Route2House, TILESET_09, INDOOR, LANDMARK_ROUTE_15
-	map OldMuseum, TILESET_0F, INDOOR, LANDMARK_NORTH
-	map OldGym, TILESET_14, INDOOR, LANDMARK_NORTH
-	map OldTower1F, TILESET_0F, INDOOR, LANDMARK_NORTH
-	map OldTower2F, TILESET_0F, INDOOR, LANDMARK_NORTH
-	map OldTower3F, TILESET_0F, INDOOR, LANDMARK_NORTH
-	map OldTower4F, TILESET_0F, INDOOR, LANDMARK_NORTH
-	map OldTower5F, TILESET_0F, INDOOR, LANDMARK_NORTH
-	map OldBillsHouse, TILESET_0B, INDOOR, LANDMARK_NORTH
-	map OldMart, TILESET_0D, INDOOR, LANDMARK_NORTH
-	map OldHouse, TILESET_0B, INDOOR, LANDMARK_NORTH
-	map OldPokecenter1F, TILESET_0C, INDOOR, LANDMARK_NORTH
-	map OldPokecenter2F, TILESET_0C, INDOOR, LANDMARK_NORTH
-	map OldPokecenterTrade, TILESET_11, GATE, LANDMARK_NORTH
-	map OldPokecenterBattle, TILESET_11, GATE, LANDMARK_NORTH
-	map OldPokecenterTimeMachine, TILESET_0C, INDOOR, LANDMARK_NORTH
-	map OldKurtsHouse, TILESET_0B, INDOOR, LANDMARK_NORTH
-	map OldSchool, TILESET_0F, INDOOR, LANDMARK_NORTH
+	map OldCityMuseum, TILESET_0F, INDOOR, LANDMARK_NORTH
+	map OldCityGym, TILESET_14, INDOOR, LANDMARK_NORTH
+	map OldCityTower1F, TILESET_0F, INDOOR, LANDMARK_NORTH
+	map OldCityTower2F, TILESET_0F, INDOOR, LANDMARK_NORTH
+	map OldCityTower3F, TILESET_0F, INDOOR, LANDMARK_NORTH
+	map OldCityTower4F, TILESET_0F, INDOOR, LANDMARK_NORTH
+	map OldCityTower5F, TILESET_0F, INDOOR, LANDMARK_NORTH
+	map OldCityBillsHouse, TILESET_0B, INDOOR, LANDMARK_NORTH
+	map OldCityMart, TILESET_0D, INDOOR, LANDMARK_NORTH
+	map OldCityHouse, TILESET_0B, INDOOR, LANDMARK_NORTH
+	map OldCityPokecenter1F, TILESET_0C, INDOOR, LANDMARK_NORTH
+	map OldCityPokecenter2F, TILESET_0C, INDOOR, LANDMARK_NORTH
+	map OldCityPokecenterTrade, TILESET_11, GATE, LANDMARK_NORTH
+	map OldCityPokecenterBattle, TILESET_11, GATE, LANDMARK_NORTH
+	map OldCityPokecenterTimeMachine, TILESET_0C, INDOOR, LANDMARK_NORTH
+	map OldCityKurtsHouse, TILESET_0B, INDOOR, LANDMARK_NORTH
+	map OldCitySchool, TILESET_0F, INDOOR, LANDMARK_NORTH
 
-MapGroup_2:
+MapGroup_West:
 	map West, TILESET_02, TOWN, LANDMARK_ROUTE_18
 	map WestMart1F, TILESET_10, INDOOR, LANDMARK_ROUTE_18
 	map WestMart2F, TILESET_10, INDOOR, LANDMARK_ROUTE_18
@@ -96,7 +96,7 @@ MapGroup_2:
 	map WestHouse1, TILESET_09, INDOOR, LANDMARK_ROUTE_18
 	map WestHouse2, TILESET_09, INDOOR, LANDMARK_ROUTE_18
 
-MapGroup_3:
+MapGroup_Haiteku:
 	map HaitekuWestRoute, TILESET_03, ROUTE, LANDMARK_POKEMON_LEAGUE_3
 	map HaitekuWestRouteOcean, TILESET_03, ROUTE, LANDMARK_POKEMON_LEAGUE_2
 	map Haiteku, TILESET_03, TOWN, LANDMARK_POKEMON_LEAGUE_4
@@ -112,7 +112,7 @@ MapGroup_3:
 	map HaitekuAquarium1F, TILESET_0E, INDOOR, LANDMARK_POKEMON_LEAGUE_4
 	map HaitekuAquarium2F, TILESET_0E, INDOOR, LANDMARK_POKEMON_LEAGUE_4
 
-MapGroup_4:
+MapGroup_Fonto:
 	map FontoRoute1, TILESET_05, ROUTE, LANDMARK_POKEMON_LEAGUE_1_2
 	map FontoRoute2, TILESET_05, ROUTE, LANDMARK_HIDEOUT_3
 	map FontoRoute3, TILESET_05, ROUTE, LANDMARK_HIDEOUT_1
@@ -130,7 +130,7 @@ MapGroup_4:
 	map FontoPokecenter2F, TILESET_0C, INDOOR, LANDMARK_HIDEOUT_2
 	map FontoLab, TILESET_0A, INDOOR, LANDMARK_HIDEOUT_2
 
-MapGroup_5:
+MapGroup_Baadon:
 	map BaadonRoute1, TILESET_04, ROUTE, LANDMARK_POWER_PLANT_1
 	map BaadonRoute2, TILESET_04, ROUTE, LANDMARK_POWER_PLANT_3
 	map BaadonRoute3, TILESET_04, ROUTE, LANDMARK_POWER_PLANT_4
@@ -146,7 +146,7 @@ MapGroup_5:
 	map BaadonLeague1F, TILESET_0F, INDOOR, LANDMARK_POWER_PLANT_2
 	map BaadonLeague2F, TILESET_14, INDOOR, LANDMARK_POWER_PLANT_2
 
-MapGroup_6:
+MapGroup_Newtype:
 	map Route15, TILESET_00, ROUTE, LANDMARK_RUINS_1
 	map NewtypeRoute, TILESET_00, ROUTE, LANDMARK_MINES_3
 	map Route18, TILESET_00, ROUTE, LANDMARK_MINES_4
@@ -168,7 +168,7 @@ MapGroup_6:
 	map NewtypeHouse2, TILESET_09, INDOOR, LANDMARK_RUINS_2
 	map NewtypeHouse3, TILESET_09, INDOOR, LANDMARK_RUINS_2
 
-MapGroup_7:
+MapGroup_Sugar:
 	map SugarRoute, TILESET_03, ROUTE, LANDMARK_MINES_1
 	map Sugar, TILESET_03, TOWN, LANDMARK_MINES_2
 	map SugarRouteGate, TILESET_11, GATE, LANDMARK_MINES_1
@@ -178,7 +178,7 @@ MapGroup_7:
 	map SugarPokecenter1F, TILESET_0C, INDOOR, LANDMARK_MINES_2
 	map SugarPokecenter2F, TILESET_0C, INDOOR, LANDMARK_MINES_2
 
-MapGroup_8:
+MapGroup_Bull:
 	map BullForestRoute1, TILESET_06, ROUTE, LANDMARK_MINES_5
 	map BullForestRoute2, TILESET_06, ROUTE, LANDMARK_HIGH_TECH
 	map BullForestRoute3, TILESET_06, ROUTE, LANDMARK_OLD
@@ -195,7 +195,7 @@ MapGroup_8:
 	map BullLeague2F, TILESET_14, INDOOR, LANDMARK_WEST
 	map BullHouse4, TILESET_09, INDOOR, LANDMARK_WEST
 
-MapGroup_9:
+MapGroup_Stand:
 	map StandRoute, TILESET_00, ROUTE, LANDMARK_BIRDON
 	map Stand, TILESET_00, TOWN, LANDMARK_FOUNT
 	map StandRouteGateKanto, TILESET_11, GATE, LANDMARK_BIRDON
@@ -210,7 +210,7 @@ MapGroup_9:
 	map StandLeague1F, TILESET_0F, INDOOR, LANDMARK_FOUNT
 	map StandLeague2F, TILESET_14, INDOOR, LANDMARK_FOUNT
 
-MapGroup_10:
+MapGroup_Kanto:
 	map KantoEastRoute, TILESET_07, ROUTE, LANDMARK_NEW_TYPE
 	map Kanto, TILESET_07, TOWN, LANDMARK_SUGAR
 	map KantoCeruleanHouse, TILESET_11, GATE, LANDMARK_SUGAR
@@ -250,15 +250,15 @@ MapGroup_10:
 	map KantoLeague22F, TILESET_14, INDOOR, LANDMARK_SUGAR
 	map KantoFishingGuru, TILESET_09, INDOOR, LANDMARK_SUGAR
 
-MapGroup_11:
+MapGroup_Prince:
 	map PrinceRoute, TILESET_00, ROUTE, LANDMARK_KANTO
 	map Prince, TILESET_00, TOWN, LANDMARK_KANTO
 
-MapGroup_12:
+MapGroup_MtFuji:
 	map MtFujiRoute, TILESET_00, ROUTE, LANDMARK_PRINCE
 	map MtFuji, TILESET_00, TOWN, LANDMARK_PRINCE
 
-MapGroup_13:
+MapGroup_South:
 	map South, TILESET_08, TOWN, LANDMARK_POKEMON_LEAGUE_1
 	map SouthHouse1, TILESET_09, INDOOR, LANDMARK_POKEMON_LEAGUE_1
 	map SouthPokecenter1F, TILESET_0C, INDOOR, LANDMARK_POKEMON_LEAGUE_1
@@ -266,7 +266,7 @@ MapGroup_13:
 	map SouthMart, TILESET_0D, INDOOR, LANDMARK_POKEMON_LEAGUE_1
 	map SouthHouse2, TILESET_09, INDOOR, LANDMARK_POKEMON_LEAGUE_1
 
-MapGroup_14:
+MapGroup_North:
 	map North, TILESET_06, TOWN, LANDMARK_SILENT
 	map NorthHouse1, TILESET_09, INDOOR, LANDMARK_SILENT
 	map NorthMart, TILESET_0D, INDOOR, LANDMARK_SILENT
@@ -274,7 +274,7 @@ MapGroup_14:
 	map NorthPokecenter1F, TILESET_0C, INDOOR, LANDMARK_SILENT
 	map NorthPokecenter2F, TILESET_0C, INDOOR, LANDMARK_SILENT
 
-MapGroup_15:
+MapGroup_Misc:
 	map PowerPlant1, TILESET_18, INDOOR, LANDMARK_NONE
 	map PowerPlant2, TILESET_18, INDOOR, LANDMARK_NONE
 	map PowerPlant3, TILESET_18, INDOOR, LANDMARK_NONE
@@ -294,4 +294,4 @@ MapGroup_15:
 	map SlowpokeWellEntrance, TILESET_17, CAVE, LANDMARK_NONE
 	map SlowpokeWellMain, TILESET_17, CAVE, LANDMARK_NONE
 
-MapGroup_16:
+MapGroup_Empty:
