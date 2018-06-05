@@ -95,6 +95,8 @@ int main(int argc, char * argv[]) {
     }
 
     for (int arg_idx = optind; arg_idx < argc; arg_idx++) {
+        int last = -1;
+        int curr;
         eline[0] = 0;
         lineno = 0;
         fname = argv[arg_idx];
@@ -102,6 +104,7 @@ int main(int argc, char * argv[]) {
         if (file == NULL)
             RIP("Unable to open file");
         while ((lineptr = fgets(line, sizeof(line), file)) != NULL) {
+            // Assume it's already sorted
             lineno++;
             unsigned short bank = 0;
             unsigned short pointer = 0;
@@ -135,6 +138,7 @@ int main(int argc, char * argv[]) {
             bank = strtoul(lineptr, &end, 16);
             if (bank == 0 && end == lineptr)
                 RIP("Unable to parse bank number");
+            curr = (bank << 14) | (pointer & 0x3fff);
 
             // Main loop
             const char * section = NULL;
@@ -157,10 +161,16 @@ int main(int argc, char * argv[]) {
                 // Found section, but cannot shim it
                 continue;
 
-            printf("SECTION \"Shim for %s\", %s[$%04X]", symbol, section, pointer);
-            if (bank)
-                printf(", BANK[$%04X]", bank);
-            printf("\n%s::\n\n", symbol);
+            if (curr != last) {
+                if (last != -1)
+                    fputc('\n', stdout);
+                printf("SECTION \"Shim for %s\", %s[$%04X]", symbol, section, pointer);
+                if (bank)
+                    printf(", BANK[$%04X]", bank);
+                printf("\n%s::\n", symbol);
+                last = curr;
+            } else
+                printf("%s::\n", symbol);
             fflush(stdout);
         }
         fclose(file);
