@@ -18,7 +18,6 @@
 00:1F9E ClearWindowData
 00:1FCC ClearWindowData.bytefill
 
-00:20ff RunMapScript
 00:23dc LoadWildMons
 00:23e5 FadeIn ; This is not OverworldFadeIn, but I don't know what it is
 00:2C05 StartMenuCheck
@@ -29,8 +28,6 @@
 00:363E GetSGBLayout
 00:3648 SetHPPal
 00:3655 SetHPPal.done
-00:36C8 NamesPointers
-00:36E0 GetName
 00:39BA PlayCry
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
@@ -205,7 +202,6 @@
 3F:6750 PicTestMenu
 3F:6755 PicTestMenu.loop
 
-00:C5E8 wMapScriptNumber
 00:CBF2 wWindowData
 00:CBF2 wWindowStackPointer
 00:CC02 wMenuDataHeader
@@ -222,4 +218,4 @@
 01:d656 wMapGroup
 01:d657 wMapId
 01:D7D2 wPartyMonOT
-01:DA3B wUnk_DA3B
+01:DA3B wOTPartyMonOT
