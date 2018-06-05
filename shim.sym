@@ -22,7 +22,6 @@
 00:23dc LoadWildMons
 00:23e5 FadeIn ; This is not OverworldFadeIn, but I don't know what it is
 00:2C05 StartMenuCheck
-00:3270 Random
 00:3621 WaitBGMap
 00:362B SetPalettes
 00:3634 ClearPalettes
