@@ -104,9 +104,9 @@ MONS_PER_BOX EQU 20
 NUM_BOXES    EQU 14
 
 ; hall of fame
-HOF_MON_LENGTH = 1 + 2 + 2 + 1 + (MON_NAME_LENGTH + -1) ; species, id, dvs, level, nick
-HOF_LENGTH = 1 + HOF_MON_LENGTH * PARTY_LENGTH + 1 ; win count, party, terminator
-NUM_HOF_TEAMS = 30
+HOF_MON_LENGTH EQUS "(wHallOfFamePokemonListMon1End - wHallOfFamePokemonListMon1)"
+HOF_LENGTH EQUS "(wHallOfFamePokemonListEnd - wHallOfFamePokemonList + 1)"
+NUM_HOF_TEAMS EQU 30
 
 
 ; evolution types (used in data/pokemon/evos_attacks.asm)

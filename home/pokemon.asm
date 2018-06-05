@@ -8,7 +8,7 @@ endc
 GetMonHeader:: ; 3a4b (0:3a4b)
 ; copies the base stat data of a pokemon to wMonHeader
 ; INPUT:
-; [wcb5b] = pokemon ID in dex order
+; [wCurSpecies] = pokemon ID in dex order
 	push bc
 	push de
 	push hl
@@ -16,7 +16,7 @@ GetMonHeader:: ; 3a4b (0:3a4b)
 	push af
 	ld a, BANK(MonBaseStats)
 	call Bankswitch
-	ld a, [wcb5b]
+	ld a, [wCurSpecies]
 	cp DEX_FD
 	jr z, .egg
 	dec a
@@ -38,7 +38,7 @@ GetMonHeader:: ; 3a4b (0:3a4b)
 	ld [hl], d
 	jr .done
 .done
-	ld a, [wcb5b]
+	ld a, [wCurSpecies]
 	ld [wMonHIndex], a
 	pop af
 	call Bankswitch

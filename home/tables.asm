@@ -7,7 +7,7 @@ SECTION "FindItemInTable", ROM0[$35F8]
 FindItemInTable: ; 00:35F8
 	ld b, 0
 	ld c, a
-	
+
 .loop
 	ld a, [hl]
 	cp -1
@@ -17,11 +17,11 @@ FindItemInTable: ; 00:35F8
 	inc b
 	add hl, de
 	jr .loop
-	
+
 .fail
 	and a
 	ret
-	
+
 .success
 	scf
 	ret
