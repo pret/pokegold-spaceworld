@@ -17,20 +17,14 @@ if DEBUG
 	ld a, [wce63]
 	bit 1, a
 	ret z              ; debug disabled
-	ld a, BANK(InGameDebugMenu)
-	ld hl, InGameDebugMenu
-	call FarCall_hl
+	callba InGameDebugMenu
 	jr CheckStartmenuSelectHook
 .regularMenu
 endc
-	ld a, BANK(DisplayStartMenu)
-	ld hl, DisplayStartMenu
-	call FarCall_hl
+	callba DisplayStartMenu
 	jr CheckStartmenuSelectHook
 SelectButtonFunction:: ; 2c2a (0:2c2a)
-	ld hl, CheckRegisteredItem
-	ld a, BANK(CheckRegisteredItem)
-	call FarCall_hl
+	callab CheckRegisteredItem
 CheckStartmenuSelectHook:
 	ldh a, [hStartmenuCloseAndSelectHookEnable]
 	and a
