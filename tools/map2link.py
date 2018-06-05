@@ -177,6 +177,7 @@ def main():
         start = bank.start
         for section in sections:
             if section.start > start:
+                print(f'\t; ${start:04x}', file=args.linkfile)
                 print(f'\torg ${section.start:04x}', file=args.linkfile)
             print(f'\t"{section.name}" ; size: ${section.size:04x}', file=args.linkfile)
             start = section.end
