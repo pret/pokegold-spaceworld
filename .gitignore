@@ -1,32 +1,36 @@
+# ROM
 *.gb
 *.sgb
 *.gbc
+*.sym
+*.map
 *.sav
 *.sn1
 *.rtc
 
+# build artifacts
+build/
 *.d
 *.o
-# converted image data
 *.2bpp
 *.1bpp
 *.pic
 *.pcm
-*.map
-poke*-spaceworld.sym
 shim.asm
 
-*~
-
-; binaries
-*.exe
+# build utilities
 tools/scan_includes
 tools/pkmncompress
 tools/make_shim
 tools/gfx
+*.exe
 *.pyc
-build/
+
+# editor files
+*~
 .idea/
 
+# extra utilities
 coverage.png
 coverage.log
+pokegold-spaceworld.link
