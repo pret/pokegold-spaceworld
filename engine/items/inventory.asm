@@ -7,7 +7,7 @@ _ReceiveItem: ; 03:4AA1
 	jp nz, PutItemInPocket
 	push hl
 	ld hl, CheckItemPocket
-	ld a, BANK( CheckItemPocket )
+	ld a, BANK(CheckItemPocket)
 	call FarCall_hl
 	ld a, [wItemAttributeParamBuffer]
 	dec a
@@ -45,10 +45,10 @@ _ReceiveItem: ; 03:4AA1
 
 _TossItem: ; 03:4AE0
 	call DoesHLEqualwNumBagItems
-	jr nz, .removeItem
+	jr nz, .remove_item
 	push hl
 	ld hl, CheckItemPocket
-	ld a, BANK( CheckItemPocket )
+	ld a, BANK(CheckItemPocket)
 	call FarCall_hl
 	ld a, [wItemAttributeParamBuffer]
 	dec a
@@ -82,16 +82,16 @@ _TossItem: ; 03:4AE0
 .Item ; 03:4B1A
 	pop hl
 
-.removeItem ; 03:4B1B
+.remove_item ; 03:4B1B
 	jp RemoveItemFromPocket
 
 
 _CheckItem: ; 03:4B1E
 	call DoesHLEqualwNumBagItems
-	jr nz, .checkItem
+	jr nz, .check_item
 	push hl
 	ld hl, CheckItemPocket
-	ld a, BANK( CheckItemPocket )
+	ld a, BANK(CheckItemPocket)
 	call FarCall_hl
 	ld a, [wItemAttributeParamBuffer]
 	dec a
@@ -125,7 +125,7 @@ _CheckItem: ; 03:4B1E
 .Item ; 03:4B58
 	pop hl
 	
-.checkItem
+.check_item
 	jp CheckTheItem
 
 
@@ -149,74 +149,75 @@ PutItemInPocket: ; 03:4B64
 ; will add the item once the total
 ; available space (b) exceeds the
 ; amount being added
-.findItemLoop
+.find_item_loop
 	ld a, [hli]
-	cp $FF
-	jr z, .checkIfInventoryFull
+	cp -1
+	jr z, .capacity_check
 	cp c
-	jr nz, .checkNextItem
+	jr nz, .next
 	ld a, 99
 	sub [hl]
 	add b
 	ld b, a
 	ld a, [wItemQuantity]
 	cp b
-	jr z, .itemCanBeAdded
-	jr c, .itemCanBeAdded
+	jr z, .can_add
+	jr c, .can_add
 
-.checkNextItem
+.next
 	inc hl
-	jr .findItemLoop
+	jr .find_item_loop
 	
-.checkIfInventoryFull
+.capacity_check
 	call GetPocketCapacity
 	ld a, [de]
 	cp c
-	jr c, .itemCanBeAdded
+	jr c, .can_add
 	
 	and a
 	ret
 	
-.itemCanBeAdded
+.can_add
 	ld h, d
 	ld l, e
 	ld a, [wCurItem]
 	ld c, a
 	
-.findItemToAddLoop
+.find_item_loop2
 	inc hl
 	ld a, [hli]
-	cp a, $FF
-	jr z, .addNewItem
+	cp a, -1
+	jr z, .add
 	cp c
-	jr nz, .findItemToAddLoop
+	jr nz, .find_item_loop2
 	
 	ld a, [wItemQuantity]
 	add [hl]
 	cp a, 100
-	jr nc, .setMax
+	jr nc, .set_max
 	ld [hl], a
 	jr .success
 
 ; set this slot's quantity to 99,
 ; and keep iterating through list
 ; to add remaining amount
-.setMax
+.set_max
 	ld [hl], 99
 	sub 99
 	ld [wItemQuantity], a
-	jr .findItemToAddLoop
+	jr .find_item_loop2
 	
-.addNewItem
+.add
 	dec hl
 	ld a, [wCurItem]
 	ld [hli], a
 	ld a, [wItemQuantity]
 	ld [hli], a
-	ld [hl], $FF
+	ld [hl], -1
 	ld h, d
 	ld l, e
 	inc [hl]
+	
 .success
 	scf
 	ret
@@ -226,12 +227,12 @@ GetPocketCapacity: ; 03:4BC1
 	ld c, MAX_ITEMS
 	ld a, e
 	cp a, LOW(wNumBagItems)
-	jr nz, .notBag
+	jr nz, .not_bag
 	ld a, d
 	cp HIGH(wNumBagItems)
 	ret z
 	
-.notBag
+.not_bag
 	ld c, MAX_PC_ITEMS
 	ret
 
@@ -255,7 +256,7 @@ RemoveItemFromPocket: ;03:4BCF
 	ld [hl], a
 	ld [wItemQuantityBuffer], a
 	and a
-	jr nz, .dontEraseSlot
+	jr nz, .dont_erase
 	
 ; if the remaining quantity is zero
 ; then erase the slot by shifting
@@ -270,7 +271,7 @@ RemoveItemFromPocket: ;03:4BCF
 	ld a, [hli]
 	ld [bc], a
 	inc bc
-	cp $FF
+	cp -1
 	jr nz, .shift
 	
 	ld h, d
@@ -278,7 +279,7 @@ RemoveItemFromPocket: ;03:4BCF
 	
 	dec [hl]
 	
-.dontEraseSlot
+.dont_erase
 	scf
 	ret
 	
@@ -294,7 +295,7 @@ CheckTheItem: ; 03:4BFD
 .loop
 	inc hl
 	ld a, [hli]
-	cp $FF
+	cp -1
 	jr z, .fail
 	cp c
 	jr nz, .loop
@@ -317,7 +318,7 @@ ReceiveKeyItem: ; 03:4C0E
 	add hl, bc
 	ld a, [wCurItem]
 	ld [hli], a
-	ld [hl], $FF
+	ld [hl], -1
 	ld hl, wNumKeyItems
 	inc [hl]
 	scf
@@ -344,7 +345,7 @@ TossKeyItem: ; 03:4C28
 	ld a, [hli]
 	ld [de], a
 	inc de
-	cp $FF
+	cp -1
 	jr nz, .shift
 	
 	scf
@@ -359,14 +360,14 @@ CheckKeyItems: ; 03:4C40
 .loop
 	ld a, [hli]
 	cp c
-	jr z, .matchFound
-	cp $FF
+	jr z, .success
+	cp -1
 	jr nz, .loop
 
 	and a
 	ret
 	
-.matchFound
+.success
 	scf
 	ret
 	
@@ -407,19 +408,19 @@ BallItems: ; 03:4C73
 	db ITEM_ULTRA_BALL
 	db ITEM_GREAT_BALL
 	db ITEM_POKE_BALL
-	db $FF
+	db -1
 	
 
 ; empties the ball pocket by setting the
 ; terminator immediately after wNumBallItems
 
 	; Note, the ball pocket appears to be
-	; a fixed length, not $FF terminated
+	; a fixed length, not -1 terminated
 EmptyBallPocket: ; 03:4C78
 	ld hl, wNumBallItems
 	xor a
 	ld [hli], a
-	ld [hl], $FF
+	ld [hl], -1
 	ret
 	
 
@@ -434,13 +435,13 @@ ReceiveBall: ; 03:4C80
 	ld b, a
 	ld a, [hl]
 	and a
-	jr nz, .skipIncreasingNumItems
+	jr nz, .skip
 	
 	ld a, [wNumBallItems]
 	inc a
 	ld [wNumBallItems], a
 	
-.skipIncreasingNumItems
+.skip
 	ld [hl], b
 	scf
 	ret
@@ -459,7 +460,7 @@ TossBall: ; 03:4C9F
 	ld a, [hl]
 	sub b
 	jr c, .fail
-	jr nz, .skipDecreasingNumItems
+	jr nz, .skip
 	
 	ld b, a
 	ld a, [wNumBallItems]
@@ -467,7 +468,7 @@ TossBall: ; 03:4C9F
 	ld [wNumBallItems], a
 	ld a, b
 	
-.skipDecreasingNumItems
+.skip
 	ld [hl], a
 	ld [wItemQuantityBuffer], a
 	scf
@@ -541,15 +542,15 @@ GetTMHMNumber: ; 03:4CFF
 	ld c, 0
 	
 	sub ITEM_TM01
-	jr c, .notMachine
+	jr c, .not_machine
 	
 	cp ITEM_C8 - ITEM_TM01
-	jr z, .notMachine
+	jr z, .not_machine
 	jr c, .finish
 	
 	inc c
 	cp ITEM_E1 - ITEM_TM01
-	jr z, .notMachine
+	jr z, .not_machine
 	
 	jr c, .finish
 	inc c
@@ -563,14 +564,14 @@ GetTMHMNumber: ; 03:4CFF
 	scf
 	ret
 	
-.notMachine
+.not_machine
 	and a
 	ret
 	
 SECTION "_CheckTossableItem", ROMX[$53AD], BANK[$03]
 
-_CheckTossableItem: ; 03:53AD
 ; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be removed from the bag.
+_CheckTossableItem: ; 03:53AD
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
 	bit CANT_TOSS_F, a
@@ -578,8 +579,8 @@ _CheckTossableItem: ; 03:53AD
 	and a
 	ret
 
-CheckSelectableItem: ; 03:53B8
 ; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be selected.
+CheckSelectableItem: ; 03:53B8
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
 	bit CANT_SELECT_F, a
@@ -587,24 +588,24 @@ CheckSelectableItem: ; 03:53B8
 	and a
 	ret
 
-CheckItemPocket: ; 03:53C3
 ; Return the pocket for wCurItem in wItemAttributeParamBuffer.
+CheckItemPocket: ; 03:53C3
 	ld a, ITEMATTR_POCKET
 	call GetItemAttr
-	and $0F
+	and $f
 	ld [wItemAttributeParamBuffer], a
 	ret
 
-CheckItemContext: ; 03:53CE
 ; Return the context for wCurItem in wItemAttributeParamBuffer.
+CheckItemContext: ; 03:53CE
 	ld a, ITEMATTR_HELP
 	call GetItemAttr
-	and $0F
+	and $f
 	ld [wItemAttributeParamBuffer], a
 	ret
 
-CheckItemMenu: ; 03:53D9
 ; Return the menu for wCurItem in wItemAttributeParamBuffer.
+CheckItemMenu: ; 03:53D9
 	ld a, ITEMATTR_HELP
 	call GetItemAttr
 	swap a
@@ -612,8 +613,8 @@ CheckItemMenu: ; 03:53D9
 	ld [wItemAttributeParamBuffer], a
 	ret
 	
-GetItemAttr: ; 03:53E6
 ; Get attribute a of wCurItem.
+GetItemAttr: ; 03:53E6
 	push hl
 	push bc
 	ld hl, ItemAttributes
@@ -627,7 +628,7 @@ GetItemAttr: ; 03:53E6
 	ld c, a
 	ld a, ITEMATTR_STRUCT_LENGTH
 	call AddNTimes
-	ld a, BANK( ItemAttributes )
+	ld a, BANK(ItemAttributes)
 	call GetFarByte
 	pop bc
 	pop hl
@@ -639,8 +640,8 @@ ItemAttr_ReturnCarry: ; 03:5405
 	scf
 	ret
 	
-GetItemPrice: ; 03:540C
 ; Return the price of wCurItem in de.
+GetItemPrice: ; 03:540C
 	push hl
 	push bc
 	ld a, ITEMATTR_PRICE
