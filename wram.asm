@@ -316,8 +316,12 @@ wcd26:: ; cd26
 
 SECTION "CD31", WRAM0[$CD31]
 
+wStartDay::
 wcd31:: ; cd31
     db
+
+wStartHour:: db
+wStartMinute:: db
 
 SECTION "CD3E", WRAM0[$CD3D]
 

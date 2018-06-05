@@ -1,5 +1,4 @@
 ; ROM0
-00:0436 UpdateTime
 00:051C Reset
 00:0D0A LoadFont
 00:0D1A LoadFontExtra
