@@ -295,6 +295,3 @@ MapGroup_15:
 	map SlowpokeWellMain, TILESET_17, CAVE, LANDMARK_NONE
 
 MapGroup_16:
-
-SECTION "MapAttributes1", ROMX[$59df], BANK[$36]
-Map1_MapAttributes:
