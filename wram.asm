@@ -207,7 +207,18 @@ wRedrawFlashlightWidthHeight:: db ; cb20
 ; in units of two tiles (people event meta tile)
 ENDU
 
-SECTION "CB56", WRAM0[$CB5B]
+SECTION "CB56", WRAM0[$CB4C]
+wOtherPlayerLinkMode:: db ; cb4c
+wOtherPlayerLinkAction:: db ; cb4d
+	ds 3 ; TODO
+
+wPlayerLinkAction:: db ; cb51
+	ds 4 ; TODO
+
+wLinkTimeoutFrames:: dw ; cb56
+wcb58:: ds 2 ; cb58
+; cb5a
+	ds 1 ; TODO
 wcb5b:: ds 1         ; multipurpose, also wName, wMonDexIndex2
 wNameCategory:: ds 1
 

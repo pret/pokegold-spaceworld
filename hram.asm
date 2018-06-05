@@ -114,8 +114,8 @@ hSerialReceived:: ; ffd4
 hLinkPlayerNumber:: ; ffd5
     db
 
-
-    db ; TODO
+hSerialIgnoringInitialData::
+    db
 
 
 hSerialSend:: ; ffd7
