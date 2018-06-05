@@ -251,7 +251,7 @@ PokemonPalettes:
 	db PAL_BROWNMON  ; BULU
 	db PAL_BROWNMON  ; TAIL
 	db PAL_GREENMON  ; LEAFY
-	db PAL_MEWMON    ; NONE
-	db PAL_MEWMON    ; NONE
-	db PAL_MEWMON    ; NONE
-	db PAL_MEWMON    ; NONE
+	db PAL_MEWMON    ; FC
+	db PAL_MEWMON    ; FD
+	db PAL_MEWMON    ; FE
+	db PAL_MEWMON    ; FF
