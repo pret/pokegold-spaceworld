@@ -4,22 +4,22 @@ INCLUDE "vram.asm"
 SECTION "Title screen", ROMX[$5D8C], BANK[$01]
 
 IntroSequence::
-	callab GameFreakIntro;, $39
+	callab GameFreakIntro	; Bank $39 
 	jr c, TitleSequenceStart
 	ld a, [wTitleSequenceOpeningType]
 	and a
 	jr z, .opening_sequence
 	
 .pikachu_minigame
-	callab PikachuMiniGame;, $38
+	callab PikachuMiniGame	; Bank $38 
 	jr TitleSequenceStart
 
 .opening_sequence
-	callab OpeningCutscene;, $39
+	callab OpeningCutscene	; Bank $39 
 
 TitleSequenceStart::
 	call TitleSequenceInit
-	callab SetTitleBGDecorationBorder;, $02
+	callab SetTitleBGDecorationBorder	; Bank $02 
 	
 .loop
 	call TitleScreenMain 
@@ -65,10 +65,7 @@ TitleSequenceInit::
 	call DisableLCD
 	call ClearSprites
 	
-	;ld a, $23
-	;ld hl, InitEffectObject
-	;call FarCall_hl
-	callba InitEffectObject
+	callba InitEffectObject	; Bank $23 
 	ld hl, vChars0
 	ld bc, vBGMap0 - vChars0
 
@@ -180,10 +177,7 @@ TitleScreenMain::
 	bit 7, a
 	jr nz, .exit
 	call TitleScreenSequence
-	;ld a, $23
-	;ld hl, EffectObjectJumpNoDelay
-	;call FarCall_hl
-	callba EffectObjectJumpNoDelay
+	callba EffectObjectJumpNoDelay	; Bank $23 
 	call DelayFrame
 	and a
 	ret
@@ -549,7 +543,7 @@ SRAMClearMenu::
 	cp $01
 	jp z, Init
 
-	callab InitAllSRAMBanks;, $05
+	callab InitAllSRAMBanks	; Bank $05
 	jp Init
 
 SRAMClear_Message::
