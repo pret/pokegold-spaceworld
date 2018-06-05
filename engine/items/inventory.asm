@@ -88,7 +88,7 @@ _TossItem: ; 03:4AE0
 
 _CheckItem: ; 03:4B1E
 	call DoesHLEqualwNumBagItems
-	jr nz, .check_item
+	jr nz, .not_bag
 	push hl
 	ld hl, CheckItemPocket
 	ld a, BANK(CheckItemPocket)
@@ -125,7 +125,7 @@ _CheckItem: ; 03:4B1E
 .Item ; 03:4B58
 	pop hl
 	
-.check_item
+.not_bag
 	jp CheckTheItem
 
 
@@ -149,10 +149,10 @@ PutItemInPocket: ; 03:4B64
 ; will add the item once the total
 ; available space (b) exceeds the
 ; amount being added
-.find_item_loop
+.loop
 	ld a, [hli]
 	cp -1
-	jr z, .capacity_check
+	jr z, .terminator
 	cp c
 	jr nz, .next
 	ld a, 99
@@ -166,9 +166,9 @@ PutItemInPocket: ; 03:4B64
 
 .next
 	inc hl
-	jr .find_item_loop
+	jr .loop
 	
-.capacity_check
+.terminator
 	call GetPocketCapacity
 	ld a, [de]
 	cp c
@@ -183,20 +183,20 @@ PutItemInPocket: ; 03:4B64
 	ld a, [wCurItem]
 	ld c, a
 	
-.find_item_loop2
+.loop2
 	inc hl
 	ld a, [hli]
 	cp a, -1
-	jr z, .add
+	jr z, .terminator2
 	cp c
-	jr nz, .find_item_loop2
+	jr nz, .loop2
 	
 	ld a, [wItemQuantity]
 	add [hl]
 	cp a, 100
 	jr nc, .set_max
 	ld [hl], a
-	jr .success
+	jr .done
 
 ; set this slot's quantity to 99,
 ; and keep iterating through list
@@ -205,9 +205,9 @@ PutItemInPocket: ; 03:4B64
 	ld [hl], 99
 	sub 99
 	ld [wItemQuantity], a
-	jr .find_item_loop2
+	jr .loop2
 	
-.add
+.terminator2
 	dec hl
 	ld a, [wCurItem]
 	ld [hli], a
@@ -218,7 +218,7 @@ PutItemInPocket: ; 03:4B64
 	ld l, e
 	inc [hl]
 	
-.success
+.done
 	scf
 	ret
 
@@ -251,12 +251,12 @@ RemoveItemFromPocket: ;03:4BCF
 	ld b, a
 	ld a, [hl]
 	sub b
-	jr c, .fail
+	jr c, .underflow
 	
 	ld [hl], a
 	ld [wItemQuantityBuffer], a
 	and a
-	jr nz, .dont_erase
+	jr nz, .done
 	
 ; if the remaining quantity is zero
 ; then erase the slot by shifting
@@ -267,23 +267,21 @@ RemoveItemFromPocket: ;03:4BCF
 	inc hl
 	inc hl
 	
-.shift
+.loop
 	ld a, [hli]
 	ld [bc], a
 	inc bc
 	cp -1
-	jr nz, .shift
-	
+	jr nz, .loop
 	ld h, d
 	ld l, e
-	
 	dec [hl]
 	
-.dont_erase
+.done
 	scf
 	ret
 	
-.fail
+.underflow
 	and a
 	ret
 	
@@ -312,7 +310,7 @@ ReceiveKeyItem: ; 03:4C0E
 	ld hl, wNumKeyItems
 	ld a, [hli]
 	cp a, MAX_KEY_ITEMS
-	jr nc, .fail
+	jr nc, .full_pack
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -324,7 +322,7 @@ ReceiveKeyItem: ; 03:4C0E
 	scf
 	ret
 	
-.fail
+.full_pack
 	and a
 	ret
 	
@@ -341,13 +339,14 @@ TossKeyItem: ; 03:4C28
 	ld e, l
 	inc hl
 	
-.shift
+; erase this item by shifting
+; all subsequent data upwards
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	cp -1
-	jr nz, .shift
-	
+	jr nz, .loop
 	scf
 	ret
 	
@@ -360,14 +359,14 @@ CheckKeyItems: ; 03:4C40
 .loop
 	ld a, [hli]
 	cp c
-	jr z, .success
+	jr z, .done
 	cp -1
 	jr nz, .loop
 
 	and a
 	ret
 	
-.success
+.done
 	scf
 	ret
 	
@@ -409,7 +408,7 @@ BallItems: ; 03:4C73
 	db ITEM_GREAT_BALL
 	db ITEM_POKE_BALL
 	db -1
-	
+
 
 ; empties the ball pocket by setting the
 ; terminator immediately after wNumBallItems
@@ -431,22 +430,24 @@ ReceiveBall: ; 03:4C80
 	ld a, [wItemQuantity]
 	add [hl]
 	cp 100
-	jr nc, .fail
+	jr nc, .overflow
 	ld b, a
 	ld a, [hl]
 	and a
-	jr nz, .skip
+	jr nz, .done
 	
+; increase the ball pocket size if
+; this ball's previous quantity was 0
 	ld a, [wNumBallItems]
 	inc a
 	ld [wNumBallItems], a
 	
-.skip
+.done
 	ld [hl], b
 	scf
 	ret
 	
-.fail
+.overflow
 	and a
 	ret
 	
@@ -459,22 +460,24 @@ TossBall: ; 03:4C9F
 	ld b, a
 	ld a, [hl]
 	sub b
-	jr c, .fail
-	jr nz, .skip
+	jr c, .underflow
+	jr nz, .done
 	
+; increase the ball pocket size if
+; this ball's new quantity is 0
 	ld b, a
 	ld a, [wNumBallItems]
 	dec a
 	ld [wNumBallItems], a
 	ld a, b
 	
-.skip
+.done
 	ld [hl], a
 	ld [wItemQuantityBuffer], a
 	scf
 	ret
 	
-.fail
+.underflow
 	and a
 	ret
 	
@@ -497,12 +500,12 @@ ReceiveTMHM: ; 03:4CCB
 	ld a, [wItemQuantity]
 	add [hl]
 	cp 100
-	jr nc, .fail
+	jr nc, .overflow
 	ld [hl], a
 	scf
 	ret
 	
-.fail
+.overflow
 	and a
 	ret
 	
@@ -515,14 +518,14 @@ TossTMHM: ; 03:4CDE
 	ld b, a
 	ld a, [hl]
 	sub b
-	jr c, .fail
+	jr c, .underflow
 	
 	ld [hl], a
 	ld [wItemQuantityBuffer], a
 	scf
 	ret
 
-.fail
+.underflow
 	and a
 	ret
 
