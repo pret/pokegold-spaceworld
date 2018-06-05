@@ -182,6 +182,9 @@ wEnemySubStatus3:: db ; ca42
 	ds $14
 wTrainerClass:: ; ca57
 	db
+; ca58
+	ds $6b
+wLinkBattleRNCount:: db ; cac3
 
 ENDU
 
@@ -370,6 +373,10 @@ wLinkMode:: db ; cdbd
 wTargetMapUnk:: db ; cdbe ; TODO: Probably warp ID, check
 wTargetMapGroup:: db ; cdbf
 wTargetMapId:: db ; cdc0
+; cdc1
+	ds $c
+wLinkBattleRNs:: ds 10 ; cdcd
+; cddd
 
 SECTION "CE00", WRAM0[$CE00]
 
