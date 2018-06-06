@@ -74,7 +74,7 @@ _UpdateSound:: ; 3a:4037
 	cp NUM_CHANNELS
 	jr nz, .loop
 
-	call Function_e82f0
+	call Functione82f0
 	ret
 
 UpdateChannel: ; 3a:4061
@@ -94,10 +94,10 @@ UpdateChannel: ; 3a:4061
 
 .noteover
 	call DisablePitchWheel
-	call Function_e884f
+	call Functione884f
 
 .continue_sound_update
-	call Function_e80b6
+	call Functione80b6
 	ret
 
 DisablePitchWheel: ; 3a:4061
@@ -106,7 +106,7 @@ DisablePitchWheel: ; 3a:4061
 	res SOUND_PITCH_WHEEL, [hl]
 	ret
 
-Unreferenced_Function_e8081: ; 3a:4081
+Unreferenced_Functione8081: ; 3a:4081
 	ld a, [wMapMusic]
 	bit 0, a
 	jr nz, .disable_music
@@ -153,7 +153,7 @@ GetChannelRegisters: ; 3a:40a4
 .registers
 	db LOW(rNR10), LOW(rNR20), LOW(rNR30), LOW(rNR40)
 
-Function_e80b6: ; 3a:40b6
+Functione80b6: ; 3a:40b6
 	ld hl, CHANNEL_DUTY_CYCLE
 	add hl, bc
 	ld a, [hl]
@@ -172,13 +172,13 @@ Function_e80b6: ; 3a:40b6
 	ld [wCurTrackFrequency + 1], a
 	ld a, $3f
 	ld [wc195], a
-	call Function_e85d8
-	call Function_e87f9
-	call Function_e8839
+	call Functione85d8
+	call Functione87f9
+	call Functione8839
 	call IsChannelSFXOn
 	jr nc, .end
 
-	call Function_e80fa
+	call Functione80fa
 	ld hl, CHANNEL_TRACKS
 	add hl, bc
 	ld a, [wSoundOutput]
@@ -192,7 +192,7 @@ Function_e80b6: ; 3a:40b6
 	ld [hl], a
 	ret
 
-Function_e80fa: ; 3a:40fa
+Functione80fa: ; 3a:40fa
 	ld hl, .jumptable
 	ld a, [wCurChannel]
 	maskbits NUM_CHANNELS
@@ -249,12 +249,12 @@ IsAnySFXOn: ; 3a:42d0
 	scf
 	ret
 
-SECTION "Function_e82f0", ROMX[$42f0], BANK[$3a]
-Function_e82f0: ; 3a:42f0
+SECTION "Functione82f0", ROMX[$42f0], BANK[$3a]
+Functione82f0: ; 3a:42f0
 	call IncrementTempo
 	call PlayDanger
 	call FadeMusic
-	call Function_e841d
+	call Functione841d
 	ld a, [wVolume]
 	ld [rNR50], a
 	ld a, [wSoundOutput]

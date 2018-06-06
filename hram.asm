@@ -9,7 +9,9 @@ hRTCHours:: db ; ff8d
 hRTCMinutes:: db ; ff8e
 hRTCSeconds:: db ; ff8f
 hRTCDays:: db ; ff90
-    ds 6 ; TODO
+    ds 2 ; TODO
+hRTCStatusFlags:: db ; ff93
+	ds 3 ; TODO
 
 hVBlankCounter:: ; ff97
     db
@@ -62,6 +64,10 @@ UNION
 hTextBoxCursorBlinkInterval:: ds 2 ; ffaf
 
 NEXTU
+	ds 1 ; TODO
+hTextErrno:: db ; ffb0
+
+NEXTU
 
 hSpriteWidth:: ; ffaf
 hSpriteInterlaceCounter:: ; ffaf
@@ -112,8 +118,8 @@ hSerialReceived:: ; ffd4
 hLinkPlayerNumber:: ; ffd5
     db
 
-
-    db ; TODO
+hSerialIgnoringInitialData::
+    db
 
 
 hSerialSend:: ; ffd7
