@@ -91,7 +91,7 @@ GetMenuIndexSet:: ; 00:1ec3
 	ret
 
 Function1ee9:: ; 1ee9
-	call Function1d2d
+	call MenuBoxCoord2Tile
 	call Function1c86
 	ld a, [wMenuDataItems]
 	add a
@@ -110,7 +110,7 @@ Function1ee9:: ; 1ee9
 	ret
 
 RunMenuItemPrintingFunction:: ; 00:1f02
-	call Function1d2d
+	call MenuBoxCoord2Tile
 	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
 .asm_1f09: ; 00:1f09
@@ -140,7 +140,7 @@ RunMenuItemPrintingFunction:: ; 00:1f02
 Function1f27:: ; 00:1f27
 ; Combines Crystal functions "InitMenuCursorAndButtonPermissions" and "GetStaticMenuJoypad"
 	push de
-	call Function1c44
+	call InitVerticalMenuCursor
 	ld hl, wMenuJoypadFilter
 	ld a, [wMenuData2]
 	bit 3, a

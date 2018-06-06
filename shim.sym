@@ -5,14 +5,14 @@
 00:17BF GetObjectStruct
 00:1A7C Function1a7c
 00:1BF4 Function1bf4
-00:1C44 Function1c44
-00:1C60 Function1c60
-00:1C7A Function1c7a
+00:1C44 InitVerticalMenuCursor
+00:1C60 Function1c60 ; PopWindow?
+00:1C7A Function1c7a ; HandleWindow?
 00:1C86 Function1c86
-00:1C96 Function1c96
-00:1CAE Function1cae
+00:1C96 Function1c96 ; CopyMenuData?
+00:1CAE Function1cae ; PushWindow?
 00:1CEB Function1ceb
-00:1D2D Function1d2d
+00:1D2D MenuBoxCoord2Tile
 00:1D49 LoadMenuHeader
 00:202C Function202c
 
