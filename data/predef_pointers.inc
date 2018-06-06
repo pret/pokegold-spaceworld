@@ -11,7 +11,7 @@ PredefPointers:: ; 1:62d3
 ; Please be a peach and nuke the hell out of these:
 ; WE NEED LABELS!
 ; Thank youu~
-	add_predef Function6445
+	add_predef Function6445 ; 0
 	add_predef Function5d27
 	add_predef Function6713
 	add_predef Function66b1
@@ -19,7 +19,7 @@ PredefPointers:: ; 1:62d3
 	add_predef Functionce10
 	add_predef Functioncd6f
 	add_predef Functioncde3
-	add_predef Functioncde3_2
+	add_predef Functioncde3_2 ; 8
 	add_predef Functioncde3_3
 	add_predef Functioncdf9
 	add_predef Functionce10_2
@@ -28,7 +28,7 @@ GiveItemPredef::
 	dbw 3, GiveItem
 	add_predef Functionce3c
 	add_predef Functionda28
-	add_predef Functiond886
+	add_predef Functiond886 ; 10
 	add_predef Functionda4f
 	add_predef Functiondac8
 	add_predef Functiondcfc
@@ -36,7 +36,7 @@ GiveItemPredef::
 	add_predef Functiondd5c
 	add_predef Functionde79
 	add_predef Functionce7c
-	add_predef Functiondf7d
+	add_predef Functiondf7d ; 18
 	add_predef Functiondf91
 	add_predef Function1128f
 	add_predef Function112c1
@@ -44,7 +44,7 @@ GiveItemPredef::
 	add_predef Function2d663
 	add_predef Function3d5ce
 	add_predef Function3f019
-	add_predef Function3f068
+	add_predef Function3f068 ; 20
 	add_predef Function3f04a
 	add_predef Function3d08c
 	add_predef Function3d67c
@@ -52,7 +52,7 @@ GiveItemPredef::
 	add_predef Function3ef19
 	add_predef Function3e874
 	add_predef Function3e91e
-	add_predef Function3e963
+	add_predef Function3e963 ; 28
 	add_predef Function421f8
 	add_predef Function42252
 	add_predef Function41fa1
@@ -60,7 +60,7 @@ GiveItemPredef::
 	add_predef Function28d6e
 	add_predef Function40ac7
 	add_predef Function40000
-	add_predef Function40b5c
+	add_predef Function40b5c ; 30
 	add_predef Function50000
 	add_predef Function50bfe
 	add_predef Function50bcd
@@ -68,7 +68,7 @@ GiveItemPredef::
 	add_predef Function508c4
 	add_predef Function50771
 	add_predef Function50774
-	add_predef Function5081f
+	add_predef Function5081f ; 38
 	add_predef Function506d4
 	add_predef Function5069e
 	add_predef Function502b5
@@ -76,7 +76,7 @@ GiveItemPredef::
 	add_predef Function50248
 	add_predef Function500c6
 	add_predef Function500a0
-	add_predef Function50073
+	add_predef Function50073 ; 40
 	add_predef Function50ed9
 	add_predef Functioncb6ff
 	add_predef Functioncb710
@@ -84,7 +84,7 @@ GiveItemPredef::
 	add_predef Function145b8
 	add_predef Function146dc
 	add_predef Function145de
-	add_predef ExecuteBGEffects
+	add_predef ExecuteBGEffects ; 48
 	add_predef Function1457a
 	add_predef Function143e0
 	add_predef CheckSGB
@@ -92,7 +92,7 @@ GiveItemPredef::
 	add_predef Function8786
 	add_predef Function8c4be
 	add_predef Function8c9c6
-	add_predef Function8c940
+	add_predef Function8c940 ; 50
 	add_predef Functioncc001
 	add_predef Functioncc000
 	add_predef Functioncc000_2

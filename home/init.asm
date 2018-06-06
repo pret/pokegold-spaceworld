@@ -104,9 +104,7 @@ Init: ; 052f
 
 	call DisableAudio
 	call _2007
-	; predef ???
-	ld a, $4B ; TODO: add predefs so the line above can be uncommented
-	call Predef
+	predef CheckSGB
 	ld a, $1F
 	ld [rIE], a
 	ld a, HIGH($9C00)
