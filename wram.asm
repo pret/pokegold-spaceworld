@@ -268,7 +268,7 @@ wMenuBorderTopCoord:: db ; cc03
 wMenuBorderLeftCoord:: db ; cc04
 wMenuBorderBottomCoord:: db ; cc05
 wMenuBorderRightCoord:: db ; cc06
-	ds 2 ; TODO
+wMenuDataPointer:: dw ; cc07
 wMenuCursorBuffer:: db ; cc09
 ; cc0a
 	ds 8 ; TODO

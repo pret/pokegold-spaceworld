@@ -1,9 +1,188 @@
 include "constants.asm"
 
-SECTION "Window related functions", ROM0 [$1E58]
+SECTION "Window related functions", ROM0 [$1d49]
+
+LoadMenuHeader:: ; 00:1d49
+	call CopyMenuHeader
+	call PushWindow
+	ret
+
+CopyMenuHeader:: ; 00:1d50
+	ld de, wMenuDataHeader
+	ld bc, $10
+	jp CopyBytes
+
+MenuTextBox:: ; 00:1d59
+	push hl
+	ld hl, .Data
+	call LoadMenuHeader
+	pop hl
+	jp PrintText
+
+; unused
+	ret
+
+.Data: ; 00:1d65
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw VRAM_Begin
+	db 0 ; default option
+
+MenuTextBoxBackup::
+	call MenuTextBox
+	call CloseWindow
+	ret
+
+LoadStandardMenuHeader::
+	ld hl, .Data
+	call LoadMenuHeader
+	ret
+
+.Data: ; 00:1d7b
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw 0
+	db 1 ; default option
+
+Call_ExitMenu::
+	call ExitMenu
+	ret
+
+VerticalMenu:: ; 00:1d87
+	xor a
+	ldh [hBGMapMode], a
+	call MenuBox
+	call UpdateSprites
+	call PlaceVerticalMenuItems
+	call WaitBGMap
+	call CopyMenuData
+	ld a, [wMenuData2]
+	bit 7, a
+	jr z, .asm_1daa
+	call InitVerticalMenuCursor
+	call Function1a7c
+	bit 1, a
+	jr z, .asm_1dac
+.asm_1daa: ; 00:1daa
+	scf
+	ret
+
+.asm_1dac: ; 00:1dac
+	and a
+	ret
+
+GetMenu2::
+	call LoadMenuHeader
+	call VerticalMenu
+	call CloseWindow
+	ld a, [wMenuCursorY]
+	ret
+
+CopyNameFromMenu::
+	push hl
+	push bc
+	push af
+	ld hl, wMenuDataPointer
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	inc hl
+	inc hl
+	pop af
+	call GetNthString
+	ld d, h
+	ld e, l
+	call CopyStringToCD31
+	pop bc
+	pop hl
+	ret
+
+YesNoBox::
+	lb bc, 14, 7
+	jr asm_1ddc
+
+PlaceGenericTwoOptionBox::
+	call LoadMenuHeader
+	jr asm_1df9
+
+asm_1ddc: ; 00:1ddc
+	push bc
+	ld hl, YesNoMenuHeader
+	call CopyMenuHeader
+	pop bc
+	ld a, b
+	ld [wMenuBorderLeftCoord], a
+	add 5
+	ld [wMenuBorderRightCoord], a
+	ld a, c
+	ld [wMenuBorderTopCoord], a
+	add 4
+	ld [wMenuBorderBottomCoord], a
+	call PushWindow
+asm_1df9: ; 00:1df9
+	call VerticalMenu
+	push af
+	ld c, 15
+	call DelayFrames
+	call CloseWindow
+	pop af
+	jr c, .asm_1e11
+	ld a, [wMenuCursorY]
+	cp $2
+	jr z, .asm_1e11
+	and a
+	ret
+
+.asm_1e11: ; 00:1e11
+	ld a, $2
+	ld [wMenuCursorY], a
+	scf
+	ret
+
+YesNoMenuHeader:: ; 00:1e18
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 5, 15, 9
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
+	db 2
+	db "はい@"
+	db "いいえ@"
+
+OffsetMenuHeader::
+	call _OffsetMenuHeader
+	call PushWindow
+	ret
+
+_OffsetMenuHeader:: ; 00:1e30
+	push de
+	call CopyMenuHeader
+	pop de
+	ld a, [wMenuBorderLeftCoord]
+	ld h, a
+	ld a, [wMenuBorderRightCoord]
+	sub h
+.asm_1e3d: ; 00:1e3d
+	ld h, a
+	ld a, d
+	ld [wMenuBorderLeftCoord], a
+	add h
+	ld [wMenuBorderRightCoord], a
+	ld a, [wMenuBorderTopCoord]
+	ld l, a
+	ld a, [wMenuBorderBottomCoord]
+	sub l
+	ld l, a
+	ld a, e
+	ld [wMenuBorderTopCoord], a
+	add l
+	ld [wMenuBorderBottomCoord], a
+	ret
 
 OpenMenu:: ; 00:1e58
-	call Function1c96
+	call CopyMenuData
 	call GetMenuIndexSet
 	push de
 	ld a, [wMenuCursorBuffer]
@@ -12,15 +191,15 @@ OpenMenu:: ; 00:1e58
 	pop af
 	ld [wMenuCursorBuffer], a
 	call AutomaticGetMenuBottomCoord
-	call Function1bf4
-	call Function1ceb
+	call PushWindow
+	call MenuBox
 	pop de
 	call GetMenuIndexSet
 	push de
 	call RunMenuItemPrintingFunction
 	ld a, $1
 	ldh [hBGMapMode], a
-	call Function17a8
+	call UpdateSprites
 	call GetMenuIndexSet
 	pop de
 	call Function1f27

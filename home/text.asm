@@ -90,7 +90,7 @@ PrintText::
 	ld b, TEXTBOX_INNERH
 	ld c, TEXTBOX_INNERW
 	call DrawTextBox
-	call Function17a8
+	call UpdateSprites
 	call WaitBGMap
 	pop hl
 PrintTextBoxText::
