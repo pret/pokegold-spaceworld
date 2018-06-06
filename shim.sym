@@ -1,16 +1,25 @@
 ; ROM0
-00:15be GetMapObject
+00:15BE GetMapObject
 00:1720 CheckObjectVisibility
-00:17a8 Function17a8
-00:17bf GetObjectStruct
-00:1d49 LoadMenuHeader
-00:1e58 OpenMenu
-00:1F9E ClearWindowData
-00:1FCC ClearWindowData.bytefill
+00:17A8 Function17a8
+00:17BF GetObjectStruct
+00:1A7C Function1a7c
+00:1BF4 Function1bf4
+00:1C44 Function1c44
+00:1C60 Function1c60
+00:1C7A Function1c7a
+00:1C86 Function1c86
+00:1C96 Function1c96
+00:1CAE Function1cae
+00:1CEB Function1ceb
+00:1D2D Function1d2d
+00:1D49 LoadMenuHeader
+00:202C Function202c
 
-00:23dc LoadWildMons
-00:23e5 FadeIn ; This is not OverworldFadeIn, but I don't know what it is
+00:23DC LoadWildMons
+00:23E5 FadeIn ; This is not OverworldFadeIn, but I don't know what it is
 00:2C05 StartMenuCheck
+00:3171 Function3171
 00:3621 WaitBGMap
 00:362B SetPalettes
 00:3634 ClearPalettes
@@ -41,14 +50,16 @@
 01:53CC MainMenu
 01:5D27 Function5d27
 01:6114 TitleScreenInputAndTimeout
+01:63D8 ReanchorBGMap_NoOAMUpdate
+01:6437 LoadFonts_NoOAMUpdate
 01:6445 Function6445
 01:66B1 Function66b1
 01:6713 Function6713
 01:68F3 ItemAttributes
-02:4000 Function8000
-02:4786 Function8786
 
+02:4000 Function8000
 02:4098 _InitializeVisibleSprites
+02:4786 Function8786
 02:4856 DecompTownMapTilemap
 02:48DA DecompTownMapTilemap.tilemap
 02:4C7C DrawMap
@@ -88,12 +99,12 @@
 04:6C58 CheckRegisteredItem
 
 05:4000 Function14000
-05:400a GetPlayerSprite
+05:400A GetPlayerSprite
 05:4036 AddMapSprites
-05:404c CheckInteriorMap
-05:405b AddIndoorSprites
-05:40aa AddOutdoorSprites
-05:40fb LoadUsedSpritesGfx ; TODO: maybe there's a better name
+05:404C CheckInteriorMap
+05:405B AddIndoorSprites
+05:40AA AddOutdoorSprites
+05:40FB LoadUsedSpritesGfx ; TODO: maybe there's a better name
 05:43E0 Function143e0
 05:457A Function1457a
 05:45B8 Function145b8
@@ -105,7 +116,7 @@
 ; ptr  Copied to c5e9, also byte pointed to written at wMapScriptNumber
 ; ptr  Copied to c5eb
 ; word Unknown (2 bytes)
-05:470e UnknownMapBufferPointers
+05:470E UnknownMapBufferPointers
 
 0A:4C98 Function28c98
 0A:4D6E Function28d6e
@@ -113,9 +124,9 @@
 
 0B:5663 Function2d663
 
-0e:4b78 LoadTrainerClassName
-0e:4ba0 LoadTrainerClassName.got_name
-0e:4ba9 LoadTrainerClass
+0E:4B78 LoadTrainerClassName
+0E:4BA0 LoadTrainerClassName.got_name
+0E:4BA9 LoadTrainerClass
 
 0F:508C Function3d08c
 0F:55CE Function3d5ce
@@ -124,7 +135,7 @@
 0F:6874 Function3e874
 0F:691E Function3e91e
 0F:6963 Function3e963
-0f:69a9 _LoadWildMons
+0F:69A9 _LoadWildMons
 0F:6F19 Function3ef19
 0F:7019 Function3f019
 0F:704A Function3f04a
@@ -157,81 +168,19 @@
 14:4ED9 Function50ed9
 
 23:4000 AnimateTilesetImpl
-23:42dc UpdateTimeOfDayPal
-23:42e3 _TimeOfDayPals
+23:42DC UpdateTimeOfDayPal
+23:42E3 _TimeOfDayPals
 23:4335 _UpdateTimePals
 23:4354 ReplaceTimeOfDayPals
 23:4370 GetTimePalette
 23:44BE Function8c4be
 23:4940 Function8c940
 23:49C6 Function8c9c6
-23:60cc MenuMonIconGfx
+23:60CC MenuMonIconGfx
 
 24:4000 SetClockDialog
 24:4239 SlotMachineGame
-32:76FF Functioncb6ff
-32:7710 Functioncb710
-32:7733 Functioncb733
-33:4000 Functioncc000
-33:4000 Functioncc000_2
-33:4001 Functioncc001
-33:467B QueueBattleAnimation
-33:625D BattleAnim_Sine_e
-33:6263 BattleAnim_Cosine_e
-3A:441D Functione841d
-3A:45D8 Functione85d8
-3A:47F9 Functione87f9
-3A:4839 Functione8839
-3A:484F Functione884f
-3A:4D9D _PlayCryHeader
-3A:4E22 _PlaySFX
-3A:4F11 LoadChannel
-3A:4F6C LoadMusicByte
-3A:52C7 Music
-3F:40E9 InGameDebugMenu
-3F:5B66 Functionfdb66
-3F:6255 Functionfe255
-3F:64CE MonsterTest
-3F:654E PicTest
-3F:6750 PicTestMenu
-3F:6755 PicTestMenu.loop
 
-00:CBF2 wWindowData
-00:CBF2 wWindowStackPointer
-00:CC02 wMenuDataHeader
-00:CC12 wMenuData2
-00:CC22 wMenuData3
-00:ce67 wPlayerName
-
-01:d165 wTMCounts
-01:d19e wItems
-01:d258 wRivalName
-01:D264 wPlayerBikeSurfState
-; The starting house's map script number is stored at d29a. Others are probably nearby.
-01:d35f wOptions
-01:d656 wMapGroup
-01:d657 wMapId
-01:D7D2 wPartyMonOT
-01:DA3B wOTPartyMonOT
-
-; MapAttributes
-36:59DF Route1P1_MapAttributes
-36:5ABE Route1P2_MapAttributes
-36:724D RouteSilentEast_MapAttributes
-36:4014 SilentHill_MapAttributes
-26:4000 Route1Gate1F_MapAttributes
-26:40DA Route1Gate2F_MapAttributes
-34:4000 RouteSilentEastGate_MapAttributes
-34:4042 PlayerHouse1F_MapAttributes
-34:4132 PlayerHouse2F_MapAttributes
-34:45FF SilentPokecenter_MapAttributes
-34:47D5 SilentHillHouse_MapAttributes
-34:4AAC SilentHillLab_MapAttributes
-34:5BE6 SilentHillLab2_MapAttributes
-34:605D Unused13_MapAttributes
-2F:53DD ShizukanaOka_MapAttributes
-36:5BD4 Route2_MapAttributes
-36:410D OldCity_MapAttributes
 25:4000 Route2Gate1F_MapAttributes
 25:407C Route2Gate2F_MapAttributes
 25:40DC Route2House_MapAttributes
@@ -252,7 +201,9 @@
 25:492F OldCityPokecenterTimeMachine_MapAttributes
 25:49AC OldCityKurtsHouse_MapAttributes
 25:4A26 OldCitySchool_MapAttributes
-36:4372 West_MapAttributes
+
+26:4000 Route1Gate1F_MapAttributes
+26:40DA Route1Gate2F_MapAttributes
 26:4224 WestMart1F_MapAttributes
 26:42A0 WestMart2F_MapAttributes
 26:4374 WestMart3F_MapAttributes
@@ -271,9 +222,7 @@
 26:4B5E WestGym_MapAttributes
 26:4C1A WestHouse1_MapAttributes
 26:4C9E WestHouse2_MapAttributes
-36:5CC6 HaitekuWestRoute_MapAttributes
-36:5DD1 HaitekuWestRouteOcean_MapAttributes
-36:45D2 Haiteku_MapAttributes
+
 27:4000 HaitekuWestRouteGate_MapAttributes
 27:405B HaitekuPokecenter1F_MapAttributes
 27:40EF HaitekuPokecenter2F_MapAttributes
@@ -285,13 +234,6 @@
 27:43DD HaitekuImposterOakHouse_MapAttributes
 27:4444 HaitekuAquarium1F_MapAttributes
 27:44CB HaitekuAquarium2F_MapAttributes
-36:5F17 FontoRoute1_MapAttributes
-36:61E8 FontoRoute2_MapAttributes
-36:63B2 FontoRoute3_MapAttributes
-36:62C6 FontoRoute4_MapAttributes
-36:7444 FontoRoute5_MapAttributes
-36:6083 FontoRoute6_MapAttributes
-36:47F8 Fonto_MapAttributes
 27:4537 FontoRouteGate1_MapAttributes
 27:4592 FontoRouteGate2_MapAttributes
 27:45ED FontoRouteGate3_MapAttributes
@@ -301,12 +243,6 @@
 27:47AF FontoPokecenter1F_MapAttributes
 27:4843 FontoPokecenter2F_MapAttributes
 27:48BC FontoLab_MapAttributes
-36:64BD BaadonRoute1_MapAttributes
-36:6603 BaadonRoute2_MapAttributes
-36:67EF BaadonRoute3_MapAttributes
-36:48F3 Baadon_MapAttributes
-27:4CDD BaadonRouteGateWest_MapAttributes
-27:4D38 BaadonRouteGateNewtype_MapAttributes
 27:4923 BaadonMart_MapAttributes
 27:49A3 BaadonPokecenter1F_MapAttributes
 27:4A2A BaadonPokecenter2F_MapAttributes
@@ -315,15 +251,8 @@
 27:4B42 BaadonHouse2_MapAttributes
 27:4B9C BaadonLeague1F_MapAttributes
 27:4C3D BaadonLeague2F_MapAttributes
-36:68DB Route15_MapAttributes
-36:69BD NewtypeRoute_MapAttributes
-36:6A6E Route18_MapAttributes
-36:49F9 Newtype_MapAttributes
-27:52E0 Route15Pokecenter1F_MapAttributes
-27:5374 Route15Pokecenter2F_MapAttributes
-27:53C6 NewtypeRouteGate_MapAttributes
-27:5421 Route18Pokecenter1F_MapAttributes
-27:54B5 Route18Pokecenter2F_MapAttributes
+27:4CDD BaadonRouteGateWest_MapAttributes
+27:4D38 BaadonRouteGateNewtype_MapAttributes
 27:4D93 NewtypePokecenter1F_MapAttributes
 27:4E27 NewtypePokecenter2F_MapAttributes
 27:4EA0 NewtypeLeague1F_MapAttributes
@@ -335,18 +264,17 @@
 27:51AF NewtypeDiner_MapAttributes
 27:522C NewtypeHouse2_MapAttributes
 27:5286 NewtypeHouse3_MapAttributes
-36:6D8F SugarRoute_MapAttributes
-36:4C3A Sugar_MapAttributes
+27:52E0 Route15Pokecenter1F_MapAttributes
+27:5374 Route15Pokecenter2F_MapAttributes
+27:53C6 NewtypeRouteGate_MapAttributes
+27:5421 Route18Pokecenter1F_MapAttributes
+27:54B5 Route18Pokecenter2F_MapAttributes
 27:5507 SugarRouteGate_MapAttributes
 27:5562 SugarHouse_MapAttributes
 27:55E2 SugarHouse2_MapAttributes
 27:5638 SugarMart_MapAttributes
 27:56B8 SugarPokecenter1F_MapAttributes
 27:574C SugarPokecenter2F_MapAttributes
-36:6C6F BullForestRoute1_MapAttributes
-36:6ED5 BullForestRoute2_MapAttributes
-36:7530 BullForestRoute3_MapAttributes
-36:4D05 BullForest_MapAttributes
 27:57C5 BullForestRoute1House_MapAttributes
 27:581F BullForestRouteGateStand_MapAttributes
 27:587A BullMart_MapAttributes
@@ -358,8 +286,6 @@
 27:5B11 BullLeague1F_MapAttributes
 27:5BB2 BullLeague2F_MapAttributes
 27:5C52 BullHouse4_MapAttributes
-36:701B StandRoute_MapAttributes
-36:4F28 Stand_MapAttributes
 27:5C9F StandRouteGateKanto_MapAttributes
 27:5CFA StandLab_MapAttributes
 27:5D50 StandPokecenter1F_MapAttributes
@@ -371,8 +297,6 @@
 27:6024 StandRocketHouse2F_MapAttributes
 27:6083 StandLeague1F_MapAttributes
 27:6124 StandLeague2F_MapAttributes
-36:7161 KantoEastRoute_MapAttributes
-36:519D Kanto_MapAttributes
 27:61C4 KantoCeruleanHouse_MapAttributes
 27:621E KantoPokecenter1F_MapAttributes
 27:62B2 KantoPokecenter2F_MapAttributes
@@ -409,22 +333,17 @@
 27:713B KantoLeague21F_MapAttributes
 27:71DC KantoLeague22F_MapAttributes
 27:727C KantoFishingGuru_MapAttributes
-36:738C PrinceRoute_MapAttributes
-36:55F3 Prince_MapAttributes
-36:73E8 MtFujiRoute_MapAttributes
-36:5677 MtFuji_MapAttributes
-36:56EF South_MapAttributes
 27:72D6 SouthHouse1_MapAttributes
 27:7330 SouthPokecenter1F_MapAttributes
 27:73C4 SouthPokecenter2F_MapAttributes
 27:743D SouthMart_MapAttributes
 27:74BD SouthHouse2_MapAttributes
-36:5914 North_MapAttributes
 27:7517 NorthHouse1_MapAttributes
 27:7571 NorthMart_MapAttributes
 27:75F1 NorthHouse2_MapAttributes
 27:764B NorthPokecenter1F_MapAttributes
 27:76DF NorthPokecenter2F_MapAttributes
+
 2F:4000 PowerPlant1_MapAttributes
 2F:407D PowerPlant2_MapAttributes
 2F:40FA PowerPlant3_MapAttributes
@@ -443,3 +362,99 @@
 2F:51B2 Office3_MapAttributes
 2F:5289 SlowpokeWellEntrance_MapAttributes
 2F:5306 SlowpokeWellMain_MapAttributes
+2F:53DD ShizukanaOka_MapAttributes
+
+32:76FF Functioncb6ff
+32:7710 Functioncb710
+32:7733 Functioncb733
+
+33:4000 Functioncc000
+33:4000 Functioncc000_2
+33:4001 Functioncc001
+33:467B QueueBattleAnimation
+33:625D BattleAnim_Sine_e
+33:6263 BattleAnim_Cosine_e
+
+34:4000 RouteSilentEastGate_MapAttributes
+34:4042 PlayerHouse1F_MapAttributes
+34:4132 PlayerHouse2F_MapAttributes
+34:45FF SilentPokecenter_MapAttributes
+34:47D5 SilentHillHouse_MapAttributes
+34:4AAC SilentHillLab_MapAttributes
+34:5BE6 SilentHillLab2_MapAttributes
+34:605D Unused13_MapAttributes
+
+36:4014 SilentHill_MapAttributes
+36:410D OldCity_MapAttributes
+36:4372 West_MapAttributes
+36:45D2 Haiteku_MapAttributes
+36:47F8 Fonto_MapAttributes
+36:48F3 Baadon_MapAttributes
+36:49F9 Newtype_MapAttributes
+36:4C3A Sugar_MapAttributes
+36:4D05 BullForest_MapAttributes
+36:4F28 Stand_MapAttributes
+36:519D Kanto_MapAttributes
+36:55F3 Prince_MapAttributes
+36:5677 MtFuji_MapAttributes
+36:56EF South_MapAttributes
+36:5914 North_MapAttributes
+36:59DF Route1P1_MapAttributes
+36:5ABE Route1P2_MapAttributes
+36:5BD4 Route2_MapAttributes
+36:5CC6 HaitekuWestRoute_MapAttributes
+36:5DD1 HaitekuWestRouteOcean_MapAttributes
+36:5F17 FontoRoute1_MapAttributes
+36:6083 FontoRoute6_MapAttributes
+36:61E8 FontoRoute2_MapAttributes
+36:62C6 FontoRoute4_MapAttributes
+36:63B2 FontoRoute3_MapAttributes
+36:64BD BaadonRoute1_MapAttributes
+36:6603 BaadonRoute2_MapAttributes
+36:67EF BaadonRoute3_MapAttributes
+36:68DB Route15_MapAttributes
+36:69BD NewtypeRoute_MapAttributes
+36:6A6E Route18_MapAttributes
+36:6C6F BullForestRoute1_MapAttributes
+36:6D8F SugarRoute_MapAttributes
+36:6ED5 BullForestRoute2_MapAttributes
+36:701B StandRoute_MapAttributes
+36:7161 KantoEastRoute_MapAttributes
+36:724D RouteSilentEast_MapAttributes
+36:738C PrinceRoute_MapAttributes
+36:73E8 MtFujiRoute_MapAttributes
+36:7444 FontoRoute5_MapAttributes
+36:7530 BullForestRoute3_MapAttributes
+
+3A:441D Functione841d
+3A:45D8 Functione85d8
+3A:47F9 Functione87f9
+3A:4839 Functione8839
+3A:484F Functione884f
+3A:4D9D _PlayCryHeader
+3A:4E22 _PlaySFX
+3A:4F11 LoadChannel
+3A:4F6C LoadMusicByte
+3A:52C7 Music
+
+3F:40E9 InGameDebugMenu
+3F:5B66 Functionfdb66
+3F:6255 Functionfe255
+3F:64CE MonsterTest
+3F:654E PicTest
+3F:6750 PicTestMenu
+3F:6755 PicTestMenu.loop
+
+00:CC22 wMenuData3
+00:CE67 wPlayerName
+
+01:D165 wTMCounts
+01:D19E wItems
+01:D258 wRivalName
+01:D264 wPlayerBikeSurfState
+; The starting house's map script number is stored at d29a. Others are probably nearby.
+01:D35F wOptions
+01:D656 wMapGroup
+01:D657 wMapId
+01:D7D2 wPartyMonOT
+01:DA3B wOTPartyMonOT

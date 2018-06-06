@@ -246,18 +246,43 @@ wTileRight:: db ; cb93
 SECTION "CBD2", WRAM0[$CBD2]
 wcbd2:: ; cbd2
     ds $14
+; cbe6
 
-SECTION "CBF7", WRAM0[$CBF7]
+SECTION "CBF2", WRAM0[$CBF2]
 
+wWindowData::
+wWindowStackPointer:: dw ; cbf2
+wMenuJoypad:: db ; cbf4
+wMenuSelection:: db ; cbf5
+wMenuSelectionQuantity:: db ; cbf6
 wWhichIndexSet::
 wActiveBackpackPocket:: db ; cbf7
+wScrollingMenuCursorPosition:: db ; cbf8
+wWindowStackSize:: db ; cbf9
 
-SECTION "CC09", WRAM0[$CC09]
+SECTION "CC09", WRAM0[$CC02]
 
+wMenuDataHeader::
+	db ; cc02
+wMenuBorderTopCoord:: db ; cc03
+wMenuBorderLeftCoord:: db ; cc04
+wMenuBorderBottomCoord:: db ; cc05
+wMenuBorderRightCoord:: db ; cc06
+	ds 2 ; TODO
 wMenuCursorBuffer:: db ; cc09
+; cc0a
+	ds 8 ; TODO
 
-SECTION "CC2A", WRAM0[$CC2A]
+wMenuData2::
+	db ; cc12
+wMenuDataItems:: db ; cc13
+wMenuDataIndicesPointer:: dw ; cc14
+wMenuDataDisplayFunctionPointer:: dw ; cc16
+wMenuDataPointerTableAddr:: dw ; cc18
 
+SECTION "CC2A", WRAM0[$CC29]
+
+wMenuJoypadFilter:: db ; cc29
 wMenuCursorY:: db ; cc2a
 
 SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
