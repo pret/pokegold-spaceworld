@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Clear Box", ROM0[$0e18]
+SECTION "Text Printing Functions", ROM0[$0e18]
 
 ClearBox:: ; 00:0e18
 ; Fill a c*b box at hl with blank tiles.
