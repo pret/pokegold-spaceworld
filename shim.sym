@@ -1,12 +1,7 @@
 ; ROM0
-00:0E18 ClearBox
-00:0E2A ClearTileMap
-00:0E3D DrawTextBox
-00:0E93 PlaceString
-00:0E94 PlaceNextChar
-00:0E9D CheckDict
 00:15be GetMapObject
 00:1720 CheckObjectVisibility
+00:17a8 Function17a8
 00:17bf GetObjectStruct
 00:1d49 LoadMenuHeader
 00:1e58 OpenMenu

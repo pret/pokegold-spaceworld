@@ -172,8 +172,12 @@ ENDU ; c813
         ds $32
 wBattleAnimEnd::
 ; c845
+	ds $1b1 ; TODO
 
-	ds $1f8 ; TODO
+wBattleMonNickname:: ds 6 ; c9f6
+wEnemyMonNickname:: ds 6 ; c9fc
+; ca02
+	ds $3b ; TODO
 
 wPlayerSubStatus3:: db ; ca3d
 	ds $4
@@ -502,6 +506,8 @@ wce63:: db ; ce63
 ; 76543210
 ;       \-- global debug enable
 
+SECTION "Mom's Name", WRAM0[$CE6D]
+wMomsName:: ds 6 ; ce6d
 
 SECTION "CE7F", WRAM0[$CE76]
 
@@ -586,6 +592,9 @@ SECTION "D1DE", WRAM0[$D1DE]
 
 wNumBallItems:: db ; d1de
 wBallQuantities:: db ; d1df
+
+SECTION "Rival's Name", WRAM0[$D258]
+wRivalsName:: ds 6 ; d258
 
 SECTION "D4AB", WRAM0[$D4AB]
 

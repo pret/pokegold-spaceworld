@@ -64,6 +64,10 @@ UNION
 hTextBoxCursorBlinkInterval:: ds 2 ; ffaf
 
 NEXTU
+	ds 1 ; TODO
+hTextErrno:: db ; ffb0
+
+NEXTU
 
 hSpriteWidth:: ; ffaf
 hSpriteInterlaceCounter:: ; ffaf
