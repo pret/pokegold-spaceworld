@@ -20,6 +20,10 @@ INCLUDE "constants/sprite_constants.asm"
 INCLUDE "constants/battle_constants.asm"
 INCLUDE "constants/palette_constants.asm"
 INCLUDE "constants/music_constants.asm"
+INCLUDE "constants/landmark_constants.asm"
+INCLUDE "constants/map_constants.asm"
+INCLUDE "constants/tileset_constants.asm"
+INCLUDE "constants/map_data_constants.asm"
 
 INCLUDE "constants/serial_constants.asm"
 

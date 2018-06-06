@@ -96,18 +96,12 @@ ENDU
 
 SECTION "Unknown map buffer?", WRAM0[$C5E8]
 
-; TODO: this is probably not related to the map script. Figure out what it actually is
-wUnknownIdC5E8:: ; c5e8
-    db
-
-wUnknownIdC5E8Location::
-    dw ; c5e9 ; TODO
-
-wUnknownMapPointer::
-    dw ; c5eb ; TODO
-
+wMapBuffer::
+wMapScriptNumber:: db ; c5e8
+wMapScriptNumberLocation:: dw ; c5e9
+wUnknownMapPointer:: dw ; c5eb ; TODO
     ds 19 ; TODO
-wUnknownMapBufferEnd:: ; c600
+wMapBufferEnd:: ; c600
 
 
 UNION
@@ -223,8 +217,8 @@ wLinkTimeoutFrames:: dw ; cb56
 wcb58:: ds 2 ; cb58
 ; cb5a
 	ds 1 ; TODO
-wcb5b:: ds 1         ; multipurpose, also wName, wMonDexIndex2
-wNameCategory:: ds 1
+wCurSpecies:: db ; cb5b
+wNamedObjectTypeBuffer:: db ; cb5c
 
 SECTION "CB62", WRAM0[$CB62]
 
@@ -326,8 +320,7 @@ wcccf:: db
 
 SECTION "CD26", WRAM0[$CD26]
 
-wcd26:: ; cd26
-    db
+wStringBuffer1:: ds 1 ; How long is this? ; cd26
 
 SECTION "CD31", WRAM0[$CD31]
 
@@ -366,10 +359,13 @@ wPredefBC:: ; cd54
 wFarCallBCBuffer:: ; cd54
     dw
 
-    ds 3
+    ds 3 ; TODO
 wVramState:: db
 
-SECTION "CD76", WRAM0[$CD76]
+SECTION "CD72", WRAM0[$CD72]
+wcd72:: dw ; cd72
+
+	ds 2 ; TODO
 
 wCurItem:: db ; cd76
 wItemIndex:: db ;cd77
@@ -472,6 +468,7 @@ wMonHLearnset:: ; ce1e
 
 SECTION "CE37", WRAM0[$CE37]
 
+wNamedObjectIndexBuffer::
 wce37:: ; ce37
     db
 
