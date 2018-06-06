@@ -49,3 +49,22 @@ PrintLetterDelay:: ; 33a3 (0:33a3)
 	pop hl
 	ret
 ; 0x33e3
+
+CopyDataUntil:: ; 33e3
+; Copy [hl .. bc) to de.
+
+; In other words, the source data is
+; from hl up to but not including bc,
+; and the destination is de.
+
+.asm_33e3: ; 00:33e3
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, h
+	cp b
+	jr nz, .asm_33e3
+	ld a, l
+	cp c
+	jr nz, .asm_33e3
+	ret
