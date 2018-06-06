@@ -545,7 +545,7 @@ EnableSprites:: ; 1531 (0:1531)
 	ret
 ; 0x1538
 
-Function_1538: ; 1538 (0:1538)
+Function1538: ; 1538 (0:1538)
 	ld a, [$d14f]
 	bit 0, a
 	ret z

@@ -135,4 +135,4 @@ Function094c::
 	pop af
 	call Bankswitch
 
-	jp Function_4031
+	jp Function4031
