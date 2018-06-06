@@ -1,6 +1,4 @@
 ; ROM0
-00:0D0A LoadFont
-00:0D1A LoadFontExtra
 00:0E18 ClearBox
 00:0E2A ClearTileMap
 00:0E3D DrawTextBox
@@ -97,6 +95,7 @@
 04:640B Function_1240b
 04:6C58 CheckRegisteredItem
 
+05:4000 Function14000
 05:400a GetPlayerSprite
 05:4036 AddMapSprites
 05:404c CheckInteriorMap
