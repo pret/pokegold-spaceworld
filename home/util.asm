@@ -86,3 +86,35 @@ memcmp:: ; 3430
     dec c
     jr nz, .loop
     ret
+
+Function3439:: ; 3439
+; Place 2x2 sprite from *de into OAM at slot a
+	ld h, HIGH(wVirtualOAM)
+	swap a
+	ld l, a
+	call .Load
+	push bc
+	ld a, $8
+	add c
+	ld c, a
+	call .Load
+	pop bc
+	ld a, $8
+	add b
+	ld b, a
+	call .Load
+	ld a, $8
+	add c
+	ld c, a
+.Load: ; 00:3455
+	ld [hl], b
+	inc hl
+	ld [hl], c
+	inc hl
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ret

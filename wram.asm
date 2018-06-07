@@ -300,7 +300,7 @@ wDebugWarpSelection:: ; cc39
 
     ds 6
 
-wSGB:: ; cc40
+wcc40:: ; cc40
     db
 
 SECTION "CC9C", WRAM0[$CC9C]
@@ -341,7 +341,7 @@ wOBP1:: db ; cccc
 SECTION "CCCE", WRAM0[$CCCE]
 
 wDisableVBlankWYUpdate:: db ; ccce
-wcccf:: db
+wSGB:: db
 
 SECTION "CD26", WRAM0[$CD26]
 
