@@ -215,8 +215,7 @@ wPlayerLinkAction:: db ; cb51
 
 wLinkTimeoutFrames:: dw ; cb56
 wcb58:: ds 2 ; cb58
-; cb5a
-	ds 1 ; TODO
+wMonType:: db ; cb5a
 wCurSpecies:: db ; cb5b
 wNamedObjectTypeBuffer:: db ; cb5c
 
@@ -404,6 +403,7 @@ wItemQuantityBuffer:: db ; cd7e
 SECTION "CDBA", WRAM0[$CDBA]
 
 wItemAttributeParamBuffer:: db ; cdba
+wCurPartyLevel:: db ; cdbb
 
 SECTION "CDBD", WRAM0[$CDBD]
 
