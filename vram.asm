@@ -1,21 +1,59 @@
-vChars0 EQU $8000
-vChars1 EQU $8800
-vChars2 EQU $9000
-vBGMap0 EQU $9800
-vBGMap1 EQU $9c00
+INCLUDE "constants.asm"
 
-; Battle/Menu
-vSprites  EQU vChars0
-vFont     EQU vChars1
-vFrontPic EQU vChars2
-vBackPic  EQU vFrontPic + 7 * 7 * $10
+SECTION "VRAM", VRAM[$8000],BANK[0] ; Get around a RGBLINK bug. Remove this when it doesn't yield an error about fixing the section
 
-; Overworld
-vNPCSprites  EQU vChars0
-vNPCSprites2 EQU vChars1
-vTileset     EQU vChars2
+UNION
 
-; Title
-vTitleLogo  EQU vChars1
-vTitleLogo2 EQU vFrontPic + 7 * 7 * $10
+vChars0:: ; 8000
+	ds $80 tiles
 
+vChars1:: ; 8800
+	ds $80 tiles
+
+vChars2:: ; 9000
+	ds $80 tiles
+
+NEXTU
+
+; Battle/menu
+vSprites:: ; 8000
+	ds $80 tiles
+
+vFont:: ; 8800
+	ds $80 tiles
+
+vFrontPic:: ; 9000
+	ds 7 * 7 tiles
+
+NEXTU
+
+vNPCSprites:: ; 8000
+	ds $80 tiles
+
+vNPCSprites2:: ; 8800
+	ds $80 tiles
+
+vTileset:: ; 9000
+	ds $80 tiles
+
+NEXTU
+
+	ds $80 tiles
+
+vTitleLogo:: ; 8800
+	ds $80 tiles
+
+;vFrontPic:: ; 9000
+	ds 7 * 7 tiles
+
+vTitleLogo2:: ; 9310
+	; TODO: what size?
+
+ENDU
+
+
+vBGMap0:: ; 9800
+	ds BG_MAP_WIDTH * BG_MAP_HEIGHT
+
+vBGMap1:: ; 9c00
+	ds BG_MAP_WIDTH * BG_MAP_HEIGHT
