@@ -43,3 +43,87 @@ NUM_POCKETS EQU const_value
 MAX_ITEMS     EQU 20
 MAX_KEY_ITEMS EQU 20
 MAX_PC_ITEMS  EQU 50
+
+; held item effects
+	const_def
+	const HELD_NONE
+	const HELD_BERRY
+	const HELD_2
+	const HELD_LEFTOVERS
+	const HELD_4
+	const HELD_5
+	const HELD_RESTORE_PP
+	const HELD_RESTORE_ALL_PP
+	const HELD_CLEANSE_TAG
+
+	const_def 10
+	const HELD_HEAL_POISON
+	const HELD_HEAL_FREEZE
+	const HELD_HEAL_BURN
+	const HELD_HEAL_SLEEP
+	const HELD_HEAL_PARALYZE
+	const HELD_HEAL_STATUS
+	const HELD_HEAL_CONFUSION
+
+	const_def 20
+	const HELD_PREVENT_POISON
+	const HELD_PREVENT_BURN
+	const HELD_PREVENT_FREEZE
+	const HELD_PREVENT_SLEEP
+	const HELD_PREVENT_PARALYZE
+	const HELD_PREVENT_CONFUSE
+
+	const_def 30
+	const HELD_30
+	const HELD_ATTACK_UP
+	const HELD_DEFENSE_UP
+	const HELD_SPEED_UP
+	const HELD_SP_ATTACK_UP
+	const HELD_SP_DEFENSE_UP
+	const HELD_ACCURACY_UP
+	const HELD_EVASION_UP
+	const HELD_38
+
+	const_def 40
+	const HELD_40
+	const HELD_41
+	const HELD_METAL_POWDER
+	const HELD_43
+	const HELD_44
+	const HELD_45
+	const HELD_46
+	const HELD_47
+	const HELD_48
+
+	const_def 50
+	const HELD_NORMAL_BOOST
+	const HELD_FIGHTING_BOOST
+	const HELD_FLYING_BOOST
+	const HELD_POISON_BOOST
+	const HELD_GROUND_BOOST
+	const HELD_ROCK_BOOST
+	const HELD_BUG_BOOST
+	const HELD_GHOST_BOOST
+	const HELD_FIRE_BOOST
+	const HELD_WATER_BOOST
+	const HELD_GRASS_BOOST
+	const HELD_ELECTRIC_BOOST
+	const HELD_PSYCHIC_BOOST
+	const HELD_ICE_BOOST
+	const HELD_DRAGON_BOOST
+	const HELD_DARK_BOOST
+	const HELD_STEEL_BOOST
+
+	const_def 70
+	const HELD_CATCH_CHANCE
+	const HELD_71
+	const HELD_ESCAPE
+	const HELD_CRITICAL_UP
+	const HELD_QUICK_CLAW
+	const HELD_FLINCH
+	const HELD_AMULET_COIN
+	const HELD_BRIGHTPOWDER
+	const HELD_78
+	const HELD_FOCUS_BAND
+
+
