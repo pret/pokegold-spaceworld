@@ -21,8 +21,20 @@ else
 endc
 endc
 
+SECTION "Init", ROM0[$51C]
 
-SECTION "Init", ROM0[$52F]
+Reset: ; 51c (0:051c)
+	call DisableAudio
+	call ClearPalettes
+	ei
+
+	ld hl, wJoypadFlags
+	set 7, [hl]
+
+	ld c, 32
+	call DelayFrames
+
+	jr Init
 
 Init: ; 052f
 	di

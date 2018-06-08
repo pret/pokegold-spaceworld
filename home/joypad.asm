@@ -1,6 +1,14 @@
 INCLUDE "constants.asm"
 
-SECTION "Joypad functions", ROM0[$07FE]
+SECTION "Joypad functions", ROM0[$07F8]
+
+ClearJoypad::
+	xor a
+; Pressed this frame (delta)
+	ldh [hJoyDown], a
+; Currently pressed
+	ldh [hJoyState], a
+	ret
 
 Joypad:: ; 7fe (0:7fe)
 ; Read the joypad register and translate it to something more

@@ -166,8 +166,12 @@ ENDU ; c813
         ds $32
 wBattleAnimEnd::
 ; c845
+	ds $1b1 ; TODO
 
-	ds $1f8 ; TODO
+wBattleMonNickname:: ds 6 ; c9f6
+wEnemyMonNickname:: ds 6 ; c9fc
+; ca02
+	ds $3b ; TODO
 
 wPlayerSubStatus3:: db ; ca3d
 	ds $4
@@ -201,7 +205,18 @@ wRedrawFlashlightWidthHeight:: db ; cb20
 ; in units of two tiles (people event meta tile)
 ENDU
 
-SECTION "CB5B", WRAM0[$CB5B]
+SECTION "CB56", WRAM0[$CB4C]
+wOtherPlayerLinkMode:: db ; cb4c
+wOtherPlayerLinkAction:: db ; cb4d
+	ds 3 ; TODO
+
+wPlayerLinkAction:: db ; cb51
+	ds 4 ; TODO
+
+wLinkTimeoutFrames:: dw ; cb56
+wcb58:: ds 2 ; cb58
+; cb5a
+	ds 1 ; TODO
 wCurSpecies:: db ; cb5b
 wNamedObjectTypeBuffer:: db ; cb5c
 
@@ -234,18 +249,43 @@ wTileRight:: db ; cb93
 SECTION "CBD2", WRAM0[$CBD2]
 wcbd2:: ; cbd2
     ds $14
+; cbe6
 
-SECTION "CBF7", WRAM0[$CBF7]
+SECTION "CBF2", WRAM0[$CBF2]
 
+wWindowData::
+wWindowStackPointer:: dw ; cbf2
+wMenuJoypad:: db ; cbf4
+wMenuSelection:: db ; cbf5
+wMenuSelectionQuantity:: db ; cbf6
 wWhichIndexSet::
 wActiveBackpackPocket:: db ; cbf7
+wScrollingMenuCursorPosition:: db ; cbf8
+wWindowStackSize:: db ; cbf9
 
-SECTION "CC09", WRAM0[$CC09]
+SECTION "CC09", WRAM0[$CC02]
 
+wMenuDataHeader::
+	db ; cc02
+wMenuBorderTopCoord:: db ; cc03
+wMenuBorderLeftCoord:: db ; cc04
+wMenuBorderBottomCoord:: db ; cc05
+wMenuBorderRightCoord:: db ; cc06
+wMenuDataPointer:: dw ; cc07
 wMenuCursorBuffer:: db ; cc09
+; cc0a
+	ds 8 ; TODO
 
-SECTION "CC2A", WRAM0[$CC2A]
+wMenuData2::
+	db ; cc12
+wMenuDataItems:: db ; cc13
+wMenuDataIndicesPointer:: dw ; cc14
+wMenuDataDisplayFunctionPointer:: dw ; cc16
+wMenuDataPointerTableAddr:: dw ; cc18
 
+SECTION "CC2A", WRAM0[$CC29]
+
+wMenuJoypadFilter:: db ; cc29
 wMenuCursorY:: db ; cc2a
 
 SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
@@ -314,8 +354,12 @@ wStringBuffer1:: ds 1 ; How long is this? ; cd26
 
 SECTION "CD31", WRAM0[$CD31]
 
+wStartDay::
 wcd31:: ; cd31
     db
+
+wStartHour:: db
+wStartMinute:: db
 
 SECTION "CD3E", WRAM0[$CD3D]
 
@@ -344,6 +388,9 @@ wPredefBC:: ; cd54
 
 wFarCallBCBuffer:: ; cd54
     dw
+
+    ds 3 ; TODO
+wVramState:: db
 
 SECTION "CD72", WRAM0[$CD72]
 wcd72:: dw ; cd72
@@ -486,6 +533,8 @@ wce63:: db ; ce63
 ; 76543210
 ;       \-- global debug enable
 
+SECTION "Mom's Name", WRAM0[$CE6D]
+wMomsName:: ds 6 ; ce6d
 
 SECTION "CE7F", WRAM0[$CE76]
 
@@ -570,6 +619,9 @@ SECTION "D1DE", WRAM0[$D1DE]
 
 wNumBallItems:: db ; d1de
 wBallQuantities:: db ; d1df
+
+SECTION "Rival's Name", WRAM0[$D258]
+wRivalsName:: ds 6 ; d258
 
 SECTION "D4AB", WRAM0[$D4AB]
 

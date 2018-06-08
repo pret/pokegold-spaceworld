@@ -1,6 +1,21 @@
 INCLUDE "constants.asm"
 
-SECTION "Video Copy functions", ROM0[$0D2A]
+SECTION "Video Copy functions", ROM0[$0D02]
+
+Function0d02::
+	jpab Function14000
+
+LoadFont:: ; 00:0d0a
+	jpab LoadFontGraphics
+
+LoadFontsBattleExtra::
+	jpab LoadPokemonMenuGraphics
+
+LoadFontExtra:: ; 00:0d1a
+	jpab LoadFontExtraGraphicsWithCursor
+
+LoadFontExtra2::
+	jpab LoadHexadecimalFontOrHUDGraphics
 
 FarCopyData: ; d2a (0:d2a)
 ; Identical to FarCopyBytes except for tail call optimization

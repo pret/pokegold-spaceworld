@@ -121,3 +121,18 @@ _20F1:: ; 20f1
     ld [de], a
     inc de
     ret
+
+SECTION "Unknown_094c", ROM0 [$094C]
+
+Function094c::
+	ldh a, [hROMBank]
+	push af
+	ld a, BANK(Functionfe255)
+	call Bankswitch
+
+	call Functionfe255
+
+	pop af
+	call Bankswitch
+
+	jp Function4031

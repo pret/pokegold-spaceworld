@@ -20,3 +20,15 @@ homecall: MACRO
 	pop af
 	call Bankswitch
 ENDM
+
+jpba: MACRO
+	ld a, BANK(\1)
+	ld hl, \1
+	jp FarCall_hl
+ENDM
+
+jpab: MACRO
+	ld hl, \1
+	ld a, BANK(\1)
+	jp FarCall_hl
+ENDM

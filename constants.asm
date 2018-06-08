@@ -30,3 +30,4 @@ INCLUDE "constants/serial_constants.asm"
 INCLUDE "constants/misc_constants.asm"
 
 INCLUDE "constants/battle_anim_constants.asm"
+INCLUDE "constants/menu_constants.asm"
