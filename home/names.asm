@@ -103,12 +103,17 @@ GetPokemonName: ; 00:3741
 	; Each name is five characters
 	ld a, [wNamedObjectIndexBuffer]
 	dec a
-	ld hl, PokemonNames
-	ld e, a
-	ld d, 0
-rept MON_NAME_LENGTH
-	add hl, de
-endr
+	ld bc, PokemonNames
+	ld l, a
+	ld h, 0
+
+	; hl = hl * MON_NAME_LENGTH + bc
+	; FIXME: can we assert it?
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, bc
 
 	; Terminator
 	ld de, wStringBuffer1
