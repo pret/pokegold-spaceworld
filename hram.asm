@@ -98,11 +98,37 @@ hSpriteOffset:: ; ffb1
 
     db ; TODO
 
+UNION
+
+; ffb3
+hProduct::
+hDividend::
+	; ds 4
+	db
+
+; ffb4
+hMultiplicand::
+hQuotient::
+	ds 3
+
+; ffb7
+hMultiplier::
+hDivisor::
+hRemainder::
+	db
+
+; ffb8
+hMathBuffer::
+	ds 5
+
+NEXTU
+
 hPrintNumLeadingDigit:: db ; ffb3 digit one place-value up
 hPrintNumDividend:: ds 3 ; ffb4 big-endian
 hPrintNumDivisor:: ds 3 ; ffb7 big-endian
 hPrintNumTemp:: ds 3 ; ffba big-endian
 
+ENDU
     ds 19 ; TODO
 
 
