@@ -1,4 +1,5 @@
 	charmap "<NULL>", $00
+	charmap "<UNKNOWN>", $cb
 
 	charmap "イ゛", $01
 	charmap "ヴ",  $02
@@ -155,32 +156,59 @@
 
 	charmap "　", $7f
 
-	charmap "ア", $80
-	charmap "イ", $81
-	charmap "ウ", $82
-	charmap "エ", $83
-	charmap "オ", $84
-	charmap "カ", $85
-	charmap "キ", $86
-	charmap "ク", $87
-	charmap "ケ", $88
-	charmap "コ", $89
-	charmap "サ", $8a
-	charmap "シ", $8b
-	charmap "ス", $8c
-	charmap "セ", $8d
-	charmap "ソ", $8e
-	charmap "タ", $8f
-	charmap "チ", $90
-	charmap "ツ", $91
-	charmap "テ", $92
-	charmap "ト", $93
-	charmap "ナ", $94
-	charmap "ニ", $95
-	charmap "ヌ", $96
-	charmap "ネ", $97
-	charmap "ノ", $98
-	charmap "ハ", $99
+	charmap "a", $80
+	charmap "b", $81
+	charmap "c", $82
+	charmap "d", $83
+	charmap "e", $84
+	charmap "f", $85
+	charmap "g", $86
+	charmap "h", $87
+	charmap "i", $88
+	charmap "j", $89
+	charmap "k", $8a
+	charmap "l", $8b
+	charmap "m", $8c
+	charmap "n", $8d
+	charmap "o", $8e
+	charmap "p", $8f
+	charmap "q", $90
+	charmap "r", $91
+	charmap "s", $92
+	charmap "t", $93
+	charmap "u", $94
+	charmap "v", $95
+	charmap "w", $96
+	charmap "x", $97
+	charmap "y", $98
+	charmap "z", $99
+
+	charmap "ア", $cb
+	charmap "イ", $cb
+	charmap "ウ", $cb
+	charmap "エ", $cb
+	charmap "オ", $cb
+	charmap "カ", $cb
+	charmap "キ", $cb
+	charmap "ク", $cb
+	charmap "ケ", $cb
+	charmap "コ", $cb
+	charmap "サ", $cb
+	charmap "シ", $cb
+	charmap "ス", $cb
+	charmap "セ", $cb
+	charmap "ソ", $cb
+	charmap "タ", $cb
+	charmap "チ", $cb
+	charmap "ツ", $cb
+	charmap "テ", $cb
+	charmap "ト", $cb
+	charmap "ナ", $cb
+	charmap "ニ", $cb
+	charmap "ヌ", $cb
+	charmap "ネ", $cb
+	charmap "ノ", $cb
+	charmap "ハ", $cb
 	charmap "ヒ", $9a
 	charmap "フ", $9b
 	charmap "ホ", $9c
@@ -206,32 +234,59 @@
 	charmap "ョ", $af
 	charmap "ィ", $b0
 
-	charmap "あ", $b1
-	charmap "い", $b2
-	charmap "う", $b3
-	charmap "え", $b4
-	charmap "お", $b5
-	charmap "か", $b6
-	charmap "き", $b7
-	charmap "く", $b8
-	charmap "け", $b9
-	charmap "こ", $ba
-	charmap "さ", $bb
-	charmap "し", $bc
-	charmap "す", $bd
-	charmap "せ", $be
-	charmap "そ", $bf
-	charmap "た", $c0
-	charmap "ち", $c1
-	charmap "つ", $c2
-	charmap "て", $c3
-	charmap "と", $c4
-	charmap "な", $c5
-	charmap "に", $c6
-	charmap "ぬ", $c7
-	charmap "ね", $c8
-	charmap "の", $c9
-	charmap "は", $ca
+	charmap "A", $b1
+	charmap "B", $b2
+	charmap "C", $b3
+	charmap "D", $b4
+	charmap "E", $b5
+	charmap "F", $b6
+	charmap "G", $b7
+	charmap "H", $b8
+	charmap "I", $b9
+	charmap "J", $ba
+	charmap "K", $bb
+	charmap "L", $bc
+	charmap "M", $bd
+	charmap "N", $be
+	charmap "O", $bf
+	charmap "P", $c0
+	charmap "Q", $c1
+	charmap "R", $c2
+	charmap "S", $c3
+	charmap "T", $c4
+	charmap "U", $c5
+	charmap "V", $c6
+	charmap "W", $c7
+	charmap "X", $c8
+	charmap "Y", $c9
+	charmap "Z", $ca
+
+	charmap "あ", $cb
+	charmap "い", $cb
+	charmap "う", $cb
+	charmap "え", $cb
+	charmap "お", $cb
+	charmap "か", $cb
+	charmap "き", $cb
+	charmap "く", $cb
+	charmap "け", $cb
+	charmap "こ", $cb
+	charmap "さ", $cb
+	charmap "し", $cb
+	charmap "す", $cb
+	charmap "せ", $cb
+	charmap "そ", $cb
+	charmap "た", $cb
+	charmap "ち", $cb
+	charmap "つ", $cb
+	charmap "て", $cb
+	charmap "と", $cb
+	charmap "な", $cb
+	charmap "に", $cb
+	charmap "ぬ", $cb
+	charmap "ね", $cb
+	charmap "の", $cb
+	charmap "は", $cb
 	charmap "ひ", $cb
 	charmap "ふ", $cc
 	charmap "へ", $cd
