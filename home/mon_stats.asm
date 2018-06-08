@@ -63,7 +63,7 @@ _PrepMonFrontpic::
 	cp 252
 	jr nc, .asm_39a8
 	push hl
-	ld de, $9000
+	ld de, vFrontPic
 	call LoadMonFrontSprite
 	pop hl
 	xor a
