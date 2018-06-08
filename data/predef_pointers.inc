@@ -43,7 +43,7 @@ GiveItemPredef::
 	add_predef Function28c98
 	add_predef Function2d663
 	add_predef Function3d5ce
-	add_predef Function3f019
+	add_predef PlaceGraphic
 	add_predef Function3f068 ; 20
 	add_predef Function3f04a
 	add_predef Function3d08c

@@ -17,11 +17,15 @@
 00:1CEB MenuBox
 00:1D2D MenuBoxCoord2Tile
 00:202C Function202c
-
+00:2117 Function2117
 00:23DC LoadWildMons
 00:23E5 FadeIn ; This is not OverworldFadeIn, but I don't know what it is
 00:2C05 StartMenuCheck
+00:3111 Function3111
 00:3171 Function3171
+00:3233 Function3233
+00:323E Function323e
+00:3240 Function3240
 00:39BA PlayCry
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
@@ -116,6 +120,17 @@
 ; ptr  Copied to c5eb
 ; word Unknown (2 bytes)
 05:470E UnknownMapBufferPointers
+05:4CAC Function14cac
+05:4DAC Function14dac
+05:4DC4 Function14dc4
+05:4DDD Function14ddd
+05:4E00 Function14e00
+05:4E5F Function14e5f
+05:4E27 Function14e27
+05:4E4A Function14e4a
+
+09:426A _InitScrollingMenu
+09:4287 _ScrollingMenu
 
 0A:4C98 Function28c98
 0A:4D6E Function28d6e
@@ -135,8 +150,9 @@
 0F:691E Function3e91e
 0F:6963 Function3e963
 0F:69A9 _LoadWildMons
+0F:6E3E Function3ee3e
 0F:6F19 Function3ef19
-0F:7019 Function3f019
+0F:7019 PlaceGraphic
 0F:704A Function3f04a
 0F:7068 Function3f068
 
@@ -175,7 +191,9 @@
 23:44BE Function8c4be
 23:4940 Function8c940
 23:49C6 Function8c9c6
+23:4D0C Function8cd0c
 23:60CC MenuMonIconGfx
+23:71CB Function_8f1cb
 
 24:4000 SetClockDialog
 24:4239 SlotMachineGame

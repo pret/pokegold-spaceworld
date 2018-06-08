@@ -57,7 +57,9 @@ hJoyDebounceSrc:: db ; ffa5
 
 hJoypadState2:: db ; ffa6
 
-    ds 8 ; TODO
+    ds 6 ; TODO
+hGraphicStartTile:: db ; ffad
+hMoveMon:: db
 
 UNION
 

@@ -100,7 +100,8 @@ wMapBuffer::
 wMapScriptNumber:: db ; c5e8
 wMapScriptNumberLocation:: dw ; c5e9
 wUnknownMapPointer:: dw ; c5eb ; TODO
-    ds 19 ; TODO
+wc5ed:: db ; c5ed
+    ds 18 ; TODO
 wMapBufferEnd:: ; c600
 
 
@@ -384,7 +385,10 @@ wFarCallBCBuffer:: ; cd54
     dw
 
     ds 3 ; TODO
-wVramState:: db
+wVramState:: db ; cd59
+
+	ds 3 ; TODO
+wcd5d:: db ; cd5d
 
 SECTION "CD72", WRAM0[$CD72]
 wcd72:: dw ; cd72
@@ -618,8 +622,10 @@ wBallQuantities:: db ; d1df
 SECTION "Rival's Name", WRAM0[$D258]
 wRivalsName:: ds 6 ; d258
 
-SECTION "D4AB", WRAM0[$D4AB]
+SECTION "D4AB", WRAM0[$D4A9]
 
+wd4a9:: db ; d4a9
+	ds 1 ; TODO
 wJoypadFlags:: db ; d4ab
 ; 76543210
 ; ||||\__/
@@ -652,6 +658,8 @@ ENDR
 wCurrMapObjectCount:: ; d5f6
     db
 
+SECTION "D637", WRAM0[$D637]
+wd637:: db ; d637
 
 SECTION "Used sprites", WRAM0[$D643]
 
