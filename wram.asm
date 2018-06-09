@@ -229,12 +229,18 @@ wVBCopyDoubleSize:: ds 1 ; cb67
 wVBCopyDoubleSrc:: ds 2 ; cb68
 wVBCopyDoubleDst:: ds 2 ; cb6a
 
-SECTION "CB71", WRAM0[$CB71]
+SECTION "CB71", WRAM0[$CB70]
+
+wcb70:: db
 
 wVBCopyFarSize:: ds 1 ; cb71
 wVBCopyFarSrc:: ds 2 ; cb72
 wVBCopyFarDst:: ds 2 ; cb74
 wVBCopyFarSrcBank:: ds 1 ; cb76
+	db
+
+wMovementObject:: db ; cb78
+	ptrba wMovementData ; cb79
 
 SECTION "Collision buffer", WRAM0[$CB90]
 
@@ -541,22 +547,31 @@ wObjectFollow_Leader:: ; ce76
     db
 wObjectFollow_Follower:: ; ce77
     db
+wCenteredObject:: ; ce78
+	db
+wFollowerMovementQueueLength:: ; ce79
+	db
+wFollowMovementQueue:: ; ce7a
+	ds 5
 
-
-SECTION "Object structs", WRAM0[$CECF]
-
-wObjectStructs:: ; cecf
-wPlayerStruct::   object_struct wPlayer
-wObject1Struct::  object_struct wObject1
-wObject2Struct::  object_struct wObject2
-wObject3Struct::  object_struct wObject3
-wObject4Struct::  object_struct wObject4
-wObject5Struct::  object_struct wObject5
-wObject6Struct::  object_struct wObject6
-wObject7Struct::  object_struct wObject7
+wObjectStructs:: ; ce7f
+wUnkObjectStruct:: object_struct wUnkObject ; ce7f
+wPlayerStruct::   object_struct wPlayer ; cea7
+wObject1Struct::  object_struct wObject1 ; cecf
+wObject2Struct::  object_struct wObject2 ; cef7
+wObject3Struct::  object_struct wObject3 ; cf1f
+wObject4Struct::  object_struct wObject4 ; cf47
+wObject5Struct::  object_struct wObject5 ; cf6f
+wObject6Struct::  object_struct wObject6 ; cf97
+wObject7Struct::  object_struct wObject7 ; cfbf
+wObject8Struct::  object_struct wObject8 ; cfe7
 wObjectStructsEnd:: ; d00f
 
-SECTION "Objects", WRAM0[$D04F]
+wCmdQueue:: ; d00f
+wCmdQueueEntry1:: ds 16
+wCmdQueueEntry2:: ds 16
+wCmdQueueEntry3:: ds 16
+wCmdQueueEntry4:: ds 16
 
 wMapObjects:: ; d04f
 wPlayerObject:: map_object wPlayer

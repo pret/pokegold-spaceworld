@@ -371,3 +371,13 @@ warp_struct: MACRO
 \1MapGroup:: ds 1
 \1MapNumber:: ds 1
 ENDM
+
+ptrba: MACRO
+\1Bank:: db
+\1Addr:: dw
+ENDM
+
+ptrab: MACRO
+\1Addr:: dw
+\1Bank:: db
+ENDM

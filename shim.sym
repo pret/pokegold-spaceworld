@@ -1,8 +1,4 @@
 ; ROM0
-00:15BE GetMapObject
-00:1720 CheckObjectVisibility
-00:17A8 UpdateSprites
-00:17BF GetObjectStruct
 00:1A7C Function1a7c
 00:202C Function202c
 00:2117 Function2117
@@ -33,8 +29,10 @@
 00:3E2E GetMapMusic.unk_3E2E
 00:3E32 Unk_3E32
 
-
 01:4031 Function4031
+01:40EB Function40eb
+01:5007 Function5007
+01:5190 Function5190
 01:53CC MainMenu
 01:5D27 Function5d27
 01:6114 TitleScreenInputAndTimeout
@@ -46,6 +44,12 @@
 
 02:4000 Function8000
 02:4098 _InitializeVisibleSprites
+02:4125 Function8125
+02:4131 Function8131
+02:413D Function813d
+02:43E8 Function83e8
+02:45DF QueueFollowerFirstStep
+02:462E Function862e
 02:4786 Function8786
 02:4856 DecompTownMapTilemap
 02:48DA DecompTownMapTilemap.tilemap
