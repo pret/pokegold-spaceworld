@@ -34,7 +34,12 @@ vNPCSprites2:: ; 8800
 	ds $80 tiles
 
 vTileset:: ; 9000
-	ds $80 tiles
+;	ds $60 tiles
+	ds $20 tiles
+
+vExteriorTileset:: ; 9200
+	ds $40 tiles
+vTilesetEnd:: ; 9600
 
 NEXTU
 

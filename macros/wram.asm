@@ -309,6 +309,7 @@ map_object: MACRO
 \1ObjectRange::     ds 1
 \1ObjectScript::    ds 2
 \1ObjectEventFlag:: ds 2
+\1ObjectUnused::
 	ds 2
 endm
 
