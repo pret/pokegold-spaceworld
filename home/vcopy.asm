@@ -1,5 +1,4 @@
 INCLUDE "constants.asm"
-INCLUDE "vram.asm"
 
 SECTION "Copy Routines used by VBlank ISR", ROM0[$123a]
 

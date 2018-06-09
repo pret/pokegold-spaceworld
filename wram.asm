@@ -94,7 +94,7 @@ wWhichPicTest:: ; c40b
 ENDU
 
 
-SECTION "Unknown map buffer?", WRAM0[$C5E8]
+SECTION "Map buffer", WRAM0[$C5E8]
 
 wMapBuffer::
 wMapScriptNumber:: db ; c5e8
@@ -106,9 +106,9 @@ wMapBufferEnd:: ; c600
 
 UNION
 
-wOverworldMapBlocks:: ; c600
+wOverworldMap:: ; c600
     ds $514 ; TODO: constantify this
-wOverworldMapBlocksEnd:: ; cb14
+wOverworldMapEnd:: ; cb14
 
 NEXTU
 
@@ -246,6 +246,9 @@ wTileUp::    db ; cb91
 wTileLeft::  db ; cb92
 wTileRight:: db ; cb93
 
+wScreenSave:: ; cb94
+	ds 6 * 5
+
 SECTION "CBD2", WRAM0[$CBD2]
 wcbd2:: ; cbd2
     ds $14
@@ -310,10 +313,10 @@ wSGB:: ; cc40
 
 SECTION "CC9C", WRAM0[$CC9C]
 
-wUnknownWordCC9C:: ; cc9c
+wUnknownWordcc9c:: ; cc9c
     dw
 
-wUnknownBufferCC9E:: ; cc9e
+wUnknownBuffercc9e:: ; cc9e
     ds 14
 
 
@@ -418,11 +421,13 @@ wLinkMode:: db ; cdbd
 ; 02 - 
 ; 03 -  
 
-wTargetMapUnk:: db ; cdbe ; TODO: Probably warp ID, check
-wTargetMapGroup:: db ; cdbf
-wTargetMapId:: db ; cdc0
-; cdc1
-	ds $c
+wNextWarp:: db ; cdbe
+wNextMapGroup:: db ; cdbf
+wNextMapId:: db ; cdc0
+wPrevWarp:: db ; cdc1
+
+	ds 11
+
 wLinkBattleRNs:: ds 10 ; cdcd
 ; cddd
 
@@ -544,10 +549,11 @@ wObjectFollow_Follower:: ; ce77
     db
 
 
-SECTION "Object structs", WRAM0[$CECF]
+SECTION "Object structs", WRAM0[$CEA7]
 
-wObjectStructs:: ; cecf
+wObjectStructs:: ; cea7
 wPlayerStruct::   object_struct wPlayer
+wObject0Struct::  object_struct wObject0
 wObject1Struct::  object_struct wObject1
 wObject2Struct::  object_struct wObject2
 wObject3Struct::  object_struct wObject3
@@ -557,7 +563,17 @@ wObject6Struct::  object_struct wObject6
 wObject7Struct::  object_struct wObject7
 wObjectStructsEnd:: ; d00f
 
-SECTION "Objects", WRAM0[$D04F]
+; TODO: there are 4 structs of 16 bytes here,
+;       cleared by ClearObjectStructs.
+;       What are they?
+; d00f
+	ds 16
+; d01f
+	ds 16
+; d02f
+	ds 16
+; d03f
+	ds 16
 
 wMapObjects:: ; d04f
 wPlayerObject:: map_object wPlayer
@@ -669,7 +685,10 @@ wUsedSprites:: ; d645
 wUsedSpritesEnd:: ; d651
 
 
-SECTION "Map header", WRAM0[$D658]
+SECTION "Map header", WRAM0[$D656]
+
+wMapGroup:: db ; d656
+wMapId:: db ; d657
 
 wOverworldMapAnchor:: ; d658
 	dw
@@ -677,8 +696,8 @@ wOverworldMapAnchor:: ; d658
 wYCoord:: db ; d65a
 wXCoord:: db ; d65b
 
-wMetaTileStandingY:: db ; d65c
-wMetaTileStandingX:: db ; d65d
+wMetatileStandingY:: db ; d65c
+wMetatileStandingX:: db ; d65d
 
 ; d65f
 	ds 1 ; TODO

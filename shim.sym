@@ -18,8 +18,6 @@
 00:1D2D MenuBoxCoord2Tile
 00:202C Function202c
 
-00:23DC LoadWildMons
-00:23E5 FadeIn ; This is not OverworldFadeIn, but I don't know what it is
 00:2C05 StartMenuCheck
 00:3171 Function3171
 00:3621 WaitBGMap
@@ -49,6 +47,7 @@
 
 
 01:4031 Function4031
+01:5190 _UpdateSprites
 01:53CC MainMenu
 01:5D27 Function5d27
 01:6114 TitleScreenInputAndTimeout
@@ -72,6 +71,7 @@
 
 03:4791 DebugWarp
 03:479F DebugWarp.Destinations
+03:488D Tilesets
 03:4D33 Functioncd33
 03:4D6F Functioncd6f
 03:4DE3 Functioncde3
@@ -102,7 +102,7 @@
 
 05:4000 Function14000
 05:400A GetPlayerSprite
-05:4036 AddMapSprites
+05:4036 RefreshSprites
 05:404C CheckInteriorMap
 05:405B AddIndoorSprites
 05:40AA AddOutdoorSprites
@@ -125,6 +125,8 @@
 0A:4DA4 Function28da4
 
 0B:5663 Function2d663
+
+0C:7C00 CommonExteriorTiles
 
 0E:4B78 LoadTrainerClassName
 0E:4BA0 LoadTrainerClassName.got_name
@@ -447,6 +449,7 @@
 3F:6750 PicTestMenu
 3F:6755 PicTestMenu.loop
 
+00:CB6F wPlayerStepDirection
 00:CC22 wMenuData3
 00:CE67 wPlayerName
 
@@ -456,7 +459,6 @@
 01:D264 wPlayerBikeSurfState
 ; The starting house's map script number is stored at d29a. Others are probably nearby.
 01:D35F wOptions
-01:D656 wMapGroup
-01:D657 wMapId
+01:D513 wWarpNumber
 01:D7D2 wPartyMonOT
 01:DA3B wOTPartyMonOT
