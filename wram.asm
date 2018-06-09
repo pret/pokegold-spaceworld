@@ -274,7 +274,7 @@ wMenuCursorBuffer:: db ; cc09
 	ds 8 ; TODO
 
 wMenuData2::
-	db ; cc12
+wMenuDataFlags:: db ; cc12
 wMenuDataItems:: db ; cc13
 wMenuDataIndicesPointer:: dw ; cc14
 wMenuDataDisplayFunctionPointer:: dw ; cc16

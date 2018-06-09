@@ -210,15 +210,15 @@ Function1e8a:: ; 00:1e8a
 	ldh [hBGMapMode], a
 	xor a
 	call OpenSRAM
-	call Function1cae
+	call GetWindowStackTop
 	ld a, l
 	ld [wWindowStackPointer], a
 	ld a, h
 	ld [wWindowStackPointer + 1], a
-	call Function1c7a
+	call PopWindow
 	ld d, h
 	ld e, l
-	call Function1c60
+	call RestoreTileBackup
 	call CloseSRAM
 	ld hl, wWindowStackSize
 	dec [hl]
@@ -271,7 +271,7 @@ GetMenuIndexSet:: ; 00:1ec3
 
 Function1ee9:: ; 1ee9
 	call MenuBoxCoord2Tile
-	call Function1c86
+	call GetMenuBoxDims
 	ld a, [wMenuDataItems]
 	add a
 	cp b
