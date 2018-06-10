@@ -220,6 +220,9 @@ wcb58:: ds 2 ; cb58
 wCurSpecies:: db ; cb5b
 wNamedObjectTypeBuffer:: db ; cb5c
 
+SECTION "CB5E", WRAM0[$CB5E]
+wJumptableIndex:: ds 4
+
 SECTION "CB62", WRAM0[$CB62]
 
 wVBCopySize:: ds 1 ; cb62
@@ -295,7 +298,9 @@ wVBlankOccurred: db ; cc33
 
     ds 4
 
-wcc38:: ; cc38 ; TODO: wceeb in pokegold, what is this?
+;Controls what type of opening (fire/notes) you get.
+wcc38::
+wTitleSequenceOpeningType:: ; cc38
     db
 
 wDebugWarpSelection:: ; cc39
