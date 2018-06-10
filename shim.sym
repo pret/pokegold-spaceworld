@@ -2,8 +2,10 @@
 00:1A7C Function1a7c
 00:202C Function202c
 00:2C05 StartMenuCheck
+00:2F1D Function2f1d
 00:3111 Function3111
 00:3171 Function3171
+00:319B Function319b
 00:3233 Function3233
 00:323E Function323e
 00:3240 Function3240
@@ -39,6 +41,7 @@
 01:6445 Function6445
 01:66B1 Function66b1
 01:6713 Function6713
+01:776E Function776e
 
 02:4000 Function8000
 02:4098 _InitializeVisibleSprites

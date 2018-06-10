@@ -217,12 +217,22 @@ hMapAnims:: ; ffe8
 hTileAnimFrame:: ; ffe9
 	db
 
-    ds 5 ; TODO
+hFFEA:: ; ffea
+	db
+
+hFFEB:: db
+hFFEC:: db
+hFFED:: db
+
+hFFEE:: ; ffee
+	db
 
 hRandomAdd:: db ; ffef
 hRandomSub:: db ; fff0
 hRTCRandom:: db ; fff1
 
 hBattleTurn:: db ; fff2
+
+hUnknownFFF3:: dw ; fff3
 
     ; TODO

@@ -75,6 +75,8 @@ wVirtualOAM:: ; c200
     ds SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
 wVirtualOAMEnd::
 
+SECTION "Tile map", WRAM0 [$C2A0]
+
 wTileMap:: ; c2a0
     ds SCREEN_HEIGHT * SCREEN_WIDTH
 
@@ -417,6 +419,10 @@ SECTION "CD7D", WRAM0[$CD7D]
 
 wItemQuantity:: db ; cd7d
 wItemQuantityBuffer:: db ; cd7e
+
+SECTION "CDB0", WRAM0 [$CDB0]
+wcdb0:: ; bit 0 = has engaged NPC in dialogue (?)
+	db
 	
 SECTION "CDBA", WRAM0[$CDBA]
 
@@ -734,7 +740,8 @@ wMapWidth:: ; d665
     db
 wMapBlocksPointer:: ; d666
 	dw
-    ds 2 ; TODO
+wd668::
+	dw
 wMapScriptPtr:: ; d66a
     dw
 wMapObjectsPtr:: ; d66c
