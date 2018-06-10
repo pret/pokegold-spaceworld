@@ -24,7 +24,7 @@ TitleSequenceStart::
 	call TitleScreenMain 
 	jr nc, .loop
 	
-	call ClearPalettesAndWait
+	call ClearBGPalettes
 	call ClearSprites
 	ld a, $01
 	ldh [hBGMapMode], a

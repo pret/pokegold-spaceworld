@@ -12,7 +12,7 @@ callab: MACRO ; address, bank
 ENDM
 
 homecall: MACRO
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(\1)
 	call Bankswitch

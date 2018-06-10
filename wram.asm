@@ -100,7 +100,8 @@ wMapBuffer::
 wMapScriptNumber:: db ; c5e8
 wMapScriptNumberLocation:: dw ; c5e9
 wUnknownMapPointer:: dw ; c5eb ; TODO
-    ds 19 ; TODO
+wc5ed:: db ; c5ed
+    ds 18 ; TODO
 wMapBufferEnd:: ; c600
 
 
@@ -215,8 +216,7 @@ wPlayerLinkAction:: db ; cb51
 
 wLinkTimeoutFrames:: dw ; cb56
 wcb58:: ds 2 ; cb58
-; cb5a
-	ds 1 ; TODO
+wMonType:: db ; cb5a
 wCurSpecies:: db ; cb5b
 wNamedObjectTypeBuffer:: db ; cb5c
 
@@ -232,12 +232,18 @@ wVBCopyDoubleSize:: ds 1 ; cb67
 wVBCopyDoubleSrc:: ds 2 ; cb68
 wVBCopyDoubleDst:: ds 2 ; cb6a
 
-SECTION "CB71", WRAM0[$CB71]
+SECTION "CB71", WRAM0[$CB70]
+
+wcb70:: db
 
 wVBCopyFarSize:: ds 1 ; cb71
 wVBCopyFarSrc:: ds 2 ; cb72
 wVBCopyFarDst:: ds 2 ; cb74
 wVBCopyFarSrcBank:: ds 1 ; cb76
+	db
+
+wMovementObject:: db ; cb78
+	ptrba wMovementData ; cb79
 
 SECTION "Collision buffer", WRAM0[$CB90]
 
@@ -280,7 +286,7 @@ wMenuCursorBuffer:: db ; cc09
 	ds 8 ; TODO
 
 wMenuData2::
-	db ; cc12
+wMenuDataFlags:: db ; cc12
 wMenuDataItems:: db ; cc13
 wMenuDataIndicesPointer:: dw ; cc14
 wMenuDataDisplayFunctionPointer:: dw ; cc16
@@ -308,7 +314,7 @@ wDebugWarpSelection:: ; cc39
 
     ds 6
 
-wSGB:: ; cc40
+wcc40:: ; cc40
     db
 
 SECTION "CC9C", WRAM0[$CC9C]
@@ -349,7 +355,7 @@ wOBP1:: db ; cccc
 SECTION "CCCE", WRAM0[$CCCE]
 
 wDisableVBlankWYUpdate:: db ; ccce
-wcccf:: db
+wSGB:: db
 
 SECTION "CD26", WRAM0[$CD26]
 
@@ -393,7 +399,10 @@ wFarCallBCBuffer:: ; cd54
     dw
 
     ds 3 ; TODO
-wVramState:: db
+wVramState:: db ; cd59
+
+	ds 3 ; TODO
+wcd5d:: db ; cd5d
 
 SECTION "CD72", WRAM0[$CD72]
 wcd72:: dw ; cd72
@@ -412,6 +421,7 @@ wItemQuantityBuffer:: db ; cd7e
 SECTION "CDBA", WRAM0[$CDBA]
 
 wItemAttributeParamBuffer:: db ; cdba
+wCurPartyLevel:: db ; cdbb
 
 SECTION "CDBD", WRAM0[$CDBD]
 
@@ -547,33 +557,33 @@ wObjectFollow_Leader:: ; ce76
     db
 wObjectFollow_Follower:: ; ce77
     db
+wCenteredObject:: ; ce78
+	db
+wFollowerMovementQueueLength:: ; ce79
+	db
+wFollowMovementQueue:: ; ce7a
+	ds 5
 
-
-SECTION "Object structs", WRAM0[$CEA7]
-
-wObjectStructs:: ; cea7
-wPlayerStruct::   object_struct wPlayer
-wObject0Struct::  object_struct wObject0
-wObject1Struct::  object_struct wObject1
-wObject2Struct::  object_struct wObject2
-wObject3Struct::  object_struct wObject3
-wObject4Struct::  object_struct wObject4
-wObject5Struct::  object_struct wObject5
-wObject6Struct::  object_struct wObject6
-wObject7Struct::  object_struct wObject7
+wObjectStructs:: ; ce7f
+; Note: this might actually not be an object. TODO: Investigate (if indexing starts at 1, then this isn't an object)
+; It might just be unused/a leftover.
+wUnkObjectStruct:: object_struct wUnkObject ; ce7f
+wPlayerStruct::   object_struct wPlayer ; cea7
+wObject1Struct::  object_struct wObject1 ; cecf
+wObject2Struct::  object_struct wObject2 ; cef7
+wObject3Struct::  object_struct wObject3 ; cf1f
+wObject4Struct::  object_struct wObject4 ; cf47
+wObject5Struct::  object_struct wObject5 ; cf6f
+wObject6Struct::  object_struct wObject6 ; cf97
+wObject7Struct::  object_struct wObject7 ; cfbf
+wObject8Struct::  object_struct wObject8 ; cfe7
 wObjectStructsEnd:: ; d00f
 
-; TODO: there are 4 structs of 16 bytes here,
-;       cleared by ClearObjectStructs.
-;       What are they?
-; d00f
-	ds 16
-; d01f
-	ds 16
-; d02f
-	ds 16
-; d03f
-	ds 16
+wCmdQueue:: ; d00f
+wCmdQueueEntry1:: ds 16
+wCmdQueueEntry2:: ds 16
+wCmdQueueEntry3:: ds 16
+wCmdQueueEntry4:: ds 16
 
 wMapObjects:: ; d04f
 wPlayerObject:: map_object wPlayer
@@ -639,8 +649,10 @@ wBallQuantities:: db ; d1df
 SECTION "Rival's Name", WRAM0[$D258]
 wRivalsName:: ds 6 ; d258
 
-SECTION "D4AB", WRAM0[$D4AB]
+SECTION "D4AB", WRAM0[$D4A9]
 
+wd4a9:: db ; d4a9
+	ds 1 ; TODO
 wJoypadFlags:: db ; d4ab
 ; 76543210
 ; ||||\__/
@@ -673,6 +685,8 @@ ENDR
 wCurrMapObjectCount:: ; d5f6
     db
 
+SECTION "D637", WRAM0[$D637]
+wd637:: db ; d637
 
 SECTION "Used sprites", WRAM0[$D643]
 

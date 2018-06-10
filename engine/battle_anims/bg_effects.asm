@@ -2357,7 +2357,7 @@ BGEffect_CheckFlyDigStatus: ; c8ccc (32:4ccc)
 	ret
 
 BattleBGEffects_CheckSGB: ; c8ce3 (32:4ce3)
-	ld a, [wcccf]
+	ld a, [wSGB]
 	and a
 	ret
 
