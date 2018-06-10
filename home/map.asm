@@ -888,8 +888,8 @@ ReadObjectEvents:: ; 268f
 
 ClearObjectStructs:: ; 26cf
 	xor a
-	ld [$CE7F], a ; TODO
-	ld hl, wObject1Struct
+	ld [wUnkObjectStruct], a ; TODO
+	ld hl, wObject2Struct
 	ld de, wObject2Struct - wObject1Struct
 	ld c, 7
 .clear_struct
