@@ -15,7 +15,7 @@ Function360b::
 	call GetMemSGBLayout
 	jr WaitBGMap
 
-ClearBGPalettes::
+ClearBGPalettes:: ; 361e
 	call ClearPalettes
 WaitBGMap:: ; 00:3621
 ; Tell VBlank to update BG Map

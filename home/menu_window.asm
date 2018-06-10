@@ -27,7 +27,7 @@ Function1c0a:: ; 00:1c0a
 	call CopyBytes
 	call CloseSRAM
 
-	call OverworldTextModeSwitch
+	call LoadMapPart
 
 	xor a
 	call OpenSRAM

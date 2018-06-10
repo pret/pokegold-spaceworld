@@ -60,7 +60,7 @@ Function38e3::
 	and a
 	ret z
 	ld a, $3
-	call Function2117
+	call WriteIntod637
 	call Function3240
 	ret
 
@@ -74,7 +74,7 @@ Function3904::
 	set 4, [hl]
 	set 6, [hl]
 	ld a, $b
-	call Function2117
+	call WriteIntod637
 	ret
 
 Function391f::
@@ -85,7 +85,7 @@ Function3910::
 	cp $1
 	jr z, .asm_392d
 	ld a, $4
-	call Function2117
+	call WriteIntod637
 	ret
 
 .asm_392d: ; 00:392d

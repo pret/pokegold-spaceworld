@@ -40,7 +40,7 @@ GiveItemPredef::
 	add_predef Functiondf91
 	add_predef Function1128f
 	add_predef Function112c1
-	add_predef Function28c98
+	add_predef LinkTextboxAtHL
 	add_predef Function2d663
 	add_predef Function3d5ce
 	add_predef PlaceGraphic
@@ -98,4 +98,4 @@ GiveItemPredef::
 	add_predef Functioncc000_2
 	add_predef Functionfdb66
 	add_predef Function1240b
-	dbw $ff, InexplicablyEmptyFunction
+	dbw $ff, InexplicablyEmptyFunction ; 56

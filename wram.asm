@@ -94,7 +94,7 @@ wWhichPicTest:: ; c40b
 ENDU
 
 
-SECTION "Unknown map buffer?", WRAM0[$C5E8]
+SECTION "Map buffer", WRAM0[$C5E8]
 
 wMapBuffer::
 wMapScriptNumber:: db ; c5e8
@@ -107,9 +107,9 @@ wMapBufferEnd:: ; c600
 
 UNION
 
-wOverworldMapBlocks:: ; c600
+wOverworldMap:: ; c600
     ds $514 ; TODO: constantify this
-wOverworldMapBlocksEnd:: ; cb14
+wOverworldMapEnd:: ; cb14
 
 NEXTU
 
@@ -220,6 +220,9 @@ wMonType:: db ; cb5a
 wCurSpecies:: db ; cb5b
 wNamedObjectTypeBuffer:: db ; cb5c
 
+SECTION "CB5E", WRAM0[$CB5E]
+wJumptableIndex:: ds 4
+
 SECTION "CB62", WRAM0[$CB62]
 
 wVBCopySize:: ds 1 ; cb62
@@ -248,6 +251,9 @@ wTileDown::  db ; cb90
 wTileUp::    db ; cb91
 wTileLeft::  db ; cb92
 wTileRight:: db ; cb93
+
+wScreenSave:: ; cb94
+	ds 6 * 5
 
 SECTION "CBD2", WRAM0[$CBD2]
 wcbd2:: ; cbd2
@@ -298,7 +304,9 @@ wVBlankOccurred: db ; cc33
 
     ds 4
 
-wcc38:: ; cc38 ; TODO: wceeb in pokegold, what is this?
+;Controls what type of opening (fire/notes) you get.
+wcc38::
+wTitleSequenceOpeningType:: ; cc38
     db
 
 wDebugWarpSelection:: ; cc39
@@ -311,10 +319,10 @@ wcc40:: ; cc40
 
 SECTION "CC9C", WRAM0[$CC9C]
 
-wUnknownWordCC9C:: ; cc9c
+wUnknownWordcc9c:: ; cc9c
     dw
 
-wUnknownBufferCC9E:: ; cc9e
+wUnknownBuffercc9e:: ; cc9e
     ds 14
 
 
@@ -423,11 +431,13 @@ wLinkMode:: db ; cdbd
 ; 02 - 
 ; 03 -  
 
-wTargetMapUnk:: db ; cdbe ; TODO: Probably warp ID, check
-wTargetMapGroup:: db ; cdbf
-wTargetMapId:: db ; cdc0
-; cdc1
-	ds $c
+wNextWarp:: db ; cdbe
+wNextMapGroup:: db ; cdbf
+wNextMapId:: db ; cdc0
+wPrevWarp:: db ; cdc1
+
+	ds 11
+
 wLinkBattleRNs:: ds 10 ; cdcd
 ; cddd
 
@@ -555,6 +565,8 @@ wFollowMovementQueue:: ; ce7a
 	ds 5
 
 wObjectStructs:: ; ce7f
+; Note: this might actually not be an object. TODO: Investigate (if indexing starts at 1, then this isn't an object)
+; It might just be unused/a leftover.
 wUnkObjectStruct:: object_struct wUnkObject ; ce7f
 wPlayerStruct::   object_struct wPlayer ; cea7
 wObject1Struct::  object_struct wObject1 ; cecf
@@ -687,7 +699,10 @@ wUsedSprites:: ; d645
 wUsedSpritesEnd:: ; d651
 
 
-SECTION "Map header", WRAM0[$D658]
+SECTION "Map header", WRAM0[$D656]
+
+wMapGroup:: db ; d656
+wMapId:: db ; d657
 
 wOverworldMapAnchor:: ; d658
 	dw
@@ -695,8 +710,8 @@ wOverworldMapAnchor:: ; d658
 wYCoord:: db ; d65a
 wXCoord:: db ; d65b
 
-wMetaTileStandingY:: db ; d65c
-wMetaTileStandingX:: db ; d65d
+wMetatileStandingY:: db ; d65c
+wMetatileStandingX:: db ; d65d
 
 ; d65f
 	ds 1 ; TODO
