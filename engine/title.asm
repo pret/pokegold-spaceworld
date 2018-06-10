@@ -1,5 +1,4 @@
 INCLUDE "constants.asm"
-; INCLUDE "vram.asm"
 
 SECTION "Title screen", ROMX[$5D8C], BANK[$01]
 
