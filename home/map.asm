@@ -27,7 +27,7 @@ RunMapScript:: ; 20ff
 	ret
 
 ; TODO: is this used?
-WriteIntod637:: ; 2118
+WriteIntod637:: ; 2117
 	push af
 	; TODO: figure out what variables are concerned here
 
