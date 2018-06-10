@@ -264,25 +264,25 @@ LoadMap:: ; 2253
 	ret
 
 .jumptable
-	dw LoadMap_Continue
-	dw LoadMap_22af ; TODO
-	dw LoadMap_Reload
-	dw LoadMap_22de ; TODO
-	dw LoadMap_22de ; TODO
-	dw LoadMap_Warp
-	dw LoadMap_Connection
-	dw LoadMap_2275 ; TODO
+	dw MapSetup_Continue
+	dw MapSetup_22af ; TODO
+	dw MapSetup_Reload
+	dw MapSetup_22de ; TODO
+	dw MapSetup_22de ; TODO
+	dw MapSetup_Warp
+	dw MapSetup_Connection
+	dw MapSetup_2275 ; TODO
 
 
-LoadMap_2275:: ; 2275
+MapSetup_2275:: ; 2275
 	ldh a, [hROMBank]
 	push af
-	call LoadMap_22af ; TODO
+	call MapSetup_22af ; TODO
 	pop af
 	call Bankswitch
 	ret
 
-LoadMap_Reload:: ; 2280
+MapSetup_Reload:: ; 2280
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
@@ -301,7 +301,7 @@ LoadMap_Reload:: ; 2280
 	call FadeIn
 	ret
 
-LoadMap_22af:: ; 22af
+MapSetup_22af:: ; 22af
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
@@ -320,10 +320,10 @@ LoadMap_22af:: ; 22af
 	call FadeIn
 	ret
 
-LoadMap_22de:: ; 22de
+MapSetup_22de:: ; 22de
 	callab OverworldFadeOut
 
-LoadMap_Continue:: ; 22e6
+MapSetup_Continue:: ; 22e6
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
@@ -348,7 +348,7 @@ LoadMap_Continue:: ; 22e6
 	call FadeIn
 	ret
 
-LoadMap_Warp:: ; 232c
+MapSetup_Warp:: ; 232c
 	callab OverworldFadeOut
 	call DisableLCD
 	call Function27C7 ; TODO
@@ -448,7 +448,7 @@ Function2407:: ; 2407
 
 
 SECTION "Map stuff", ROM0[$2439]
-LoadMap_Connection:: ; 2439
+MapSetup_Connection:: ; 2439
 	call EnterMapConnection
 	call CopyMapPartialAndAttributes
 	call SetUpMapBuffer
