@@ -124,7 +124,7 @@
 ; word Unknown (2 bytes)
 05:470E UnknownMapBufferPointers
 
-0A:4C98 Function28c98
+0A:4C98 LinkTextboxAtHL
 0A:4D6E Function28d6e
 0A:4DA4 Function28da4
 
