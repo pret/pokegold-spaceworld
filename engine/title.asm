@@ -1,5 +1,5 @@
 INCLUDE "constants.asm"
-INCLUDE "vram.asm"
+; INCLUDE "vram.asm"
 
 SECTION "Title screen", ROMX[$5D8C], BANK[$01]
 
@@ -30,7 +30,7 @@ TitleSequenceStart::
 	ld a, $01
 	ldh [hBGMapMode], a
 	call ClearTileMap
-	call ResetPalette
+	call UpdateTimePals
 	
 	ld a, [wJumptableIndex + 1]
 	ld e, a

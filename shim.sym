@@ -20,6 +20,7 @@
 
 00:2C05 StartMenuCheck
 00:3171 Function3171
+00:361E ClearPalettesAndWait
 00:3621 WaitBGMap
 00:362B SetPalettes
 00:3634 ClearPalettes
@@ -28,6 +29,7 @@
 00:3648 SetHPPal
 00:3655 SetHPPal.done
 00:39BA PlayCry
+00:3CA8 InitSpriteAnimStruct
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
 00:3DA5 MaxVolume
@@ -47,10 +49,10 @@
 
 
 01:4031 Function4031
+01:4031 DebugMenu
 01:5190 _UpdateSprites
 01:53CC MainMenu
 01:5D27 Function5d27
-01:6114 TitleScreenInputAndTimeout
 01:63D8 ReanchorBGMap_NoOAMUpdate
 01:6437 LoadFonts_NoOAMUpdate
 01:6445 Function6445
@@ -66,6 +68,7 @@
 02:4C7C DrawMap
 02:4DC2 TownMapGfx
 02:4F32 PokegearRadioGfx
+02:51D2 SetTitleBGDecorationBorder
 02:528B Function928b
 02:5695 CheckSGB
 
@@ -107,6 +110,7 @@
 05:405B AddIndoorSprites
 05:40AA AddOutdoorSprites
 05:40FB LoadUsedSpritesGfx ; TODO: maybe there's a better name
+05:43B6 InitAllSRAMBanks 
 05:43E0 Function143e0
 05:457A Function1457a
 05:45B8 Function145b8
@@ -180,7 +184,9 @@
 23:44BE Function8c4be
 23:4940 Function8c940
 23:49C6 Function8c9c6
-23:60CC MenuMonIconGfx
+23:4CFD InitEffectObject
+23:4d13 EffectObjectJumpNoDelay
+23:60cc MenuMonIconGfx
 
 24:4000 SetClockDialog
 24:4239 SlotMachineGame
@@ -429,7 +435,9 @@
 36:73E8 MtFujiRoute_MapAttributes
 36:7444 FontoRoute5_MapAttributes
 36:7530 BullForestRoute3_MapAttributes
-
+38:4000 PikachuMiniGame
+39:4000 GameFreakIntro
+39:432F OpeningCutscene
 3A:441D Functione841d
 3A:45D8 Functione85d8
 3A:47F9 Functione87f9
