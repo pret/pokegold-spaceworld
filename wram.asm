@@ -242,8 +242,7 @@ wVBCopyFarSize:: ds 1 ; cb71
 wVBCopyFarSrc:: ds 2 ; cb72
 wVBCopyFarDst:: ds 2 ; cb74
 wVBCopyFarSrcBank:: ds 1 ; cb76
-	db
-
+wcb77:: db ; cb77
 wMovementObject:: db ; cb78
 	ptrba wMovementData ; cb79
 

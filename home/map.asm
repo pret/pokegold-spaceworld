@@ -447,11 +447,32 @@ FadeIn:: ; 23e5 ; This is not OverworldFadeIn, but I don't know what it is
 	callab OverworldFadeIn
 	ret
 
-Function2407:: ; 2407
-	; TODO
+Function2407:: ; 00:2407
+	ld a, $2a
+	ld [wcb77], a
+	xor a
+	ld [wPlayerAction], a
+	ld a, [wPlayerFacing]
+	and $c
+	ld [wPlayerFacing], a
+	ld a, [wPlayerStandingTile]
+	and $f0
+	cp $70
+	ret nz
+	ld a, [wPlayerStandingTile]
+	cp $72
+	ret z
+	cp $70
+	ret z
+	cp $78
+	ret z
+	ld a, $0
+	ld [wPlayerFacing], a
+	ld a, $0
+	ld d, $0
+	call Function19c0
+	ret
 
-
-SECTION "Map stuff", ROM0[$2439]
 MapSetup_Connection:: ; 2439
 	call EnterMapConnection
 	call CopyMapPartialAndAttributes
