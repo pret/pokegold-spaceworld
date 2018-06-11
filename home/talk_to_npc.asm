@@ -22,13 +22,13 @@ Function3036:: ; 3036
 .Text: ; 00:303a
 	db "@"
 
-Function303b::
+CallMapTextSubroutine::
 	ld a, [wcdb0]
 	bit 0, a
 	jr z, asm_3062
 	call Function3055
 	ret z
-	ld hl, hUnknownFFF3
+	ld hl, hCurMapTextSubroutinePtr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -105,24 +105,24 @@ Function3085:: ; 00:3085
 	pop hl
 	ret
 
-Function30b7::
+QueueMapTextSubroutine::
 	ldh a, [hJoyState]
 	bit A_BUTTON_F, a
 	jp z, Function323e
-	call Function3103
+	call GetFacingPersonText
 	jp nc, Function30e8
 	ld d, $0
 	ld e, a
 	ld a, [wce63]
 	bit 1, a
 	call nz, Function3085
-	ld hl, wd668
+	ld hl, wMapTextPtr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, de
 	add hl, de
-	ld de, hUnknownFFF3
+	ld de, hCurMapTextSubroutinePtr
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -134,7 +134,7 @@ Function30b7::
 	ret
 
 Function30e8:: ; 00:30e8
-	call Function2f1d
+	call GetFacingSignpost
 	jp nc, Function323e
 	ld a, e
 	ldh [hFFEB], a
@@ -149,10 +149,9 @@ Function30e8:: ; 00:30e8
 	call Function3240
 	ret
 
-Function3103:: ; 00:3103
+GetFacingPersonText:: ; 00:3103
 	callba Function776e
 	ret nc
 	call Function319b
 	scf
 	ret
-

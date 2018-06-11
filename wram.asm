@@ -756,7 +756,7 @@ wMapWidth:: ; d665
     db
 wMapBlocksPointer:: ; d666
 	dw
-wd668::
+wMapTextPtr::
 	dw
 wMapScriptPtr:: ; d66a
     dw

@@ -233,6 +233,6 @@ hRTCRandom:: db ; fff1
 
 hBattleTurn:: db ; fff2
 
-hUnknownFFF3:: dw ; fff3
+hCurMapTextSubroutinePtr:: dw ; fff3
 
     ; TODO
