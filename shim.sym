@@ -1,5 +1,4 @@
 ; ROM0
-00:202C Function202c
 00:2C05 StartMenuCheck
 00:2F1D Function2f1d
 00:3111 Function3111

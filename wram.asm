@@ -257,9 +257,11 @@ wTileRight:: db ; cb93
 wScreenSave:: ; cb94
 	ds 6 * 5
 
-SECTION "CBD2", WRAM0[$CBD2]
+SECTION "CBB2", WRAM0[$CBB2]
+wcbb2:: ; cbb2
+	ds $20
 wcbd2:: ; cbd2
-    ds $14
+    ds $20
 ; cbe6
 
 SECTION "CBF2", WRAM0[$CBF2]
@@ -623,6 +625,7 @@ wMap14Object::  map_object wMap14
 wMap15Object::  map_object wMap15
 wMapObjectsEnd:: ; d14f
 
+wd14f::
 	ds 3 ; TODO
 
 wTimeOfDayPal:: db ; d152
@@ -706,6 +709,7 @@ wCurrMapObjectCount:: ; d5f6
 
 SECTION "D637", WRAM0[$D637]
 wd637:: db ; d637
+wd638:: db ; d638
 
 SECTION "Used sprites", WRAM0[$D643]
 

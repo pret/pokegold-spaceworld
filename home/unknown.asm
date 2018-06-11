@@ -39,13 +39,67 @@ _2007:: ; 2007
     call CloseSRAM
     ret
 
-SECTION "Unknown functions 2", ROM0[$2075]
+Function2018::
+	ld hl, wd153
+	res 0, [hl]
+	ld hl, wd14f
+	set 0, [hl]
+	ret
 
-_2075:: ; 2075
+Function2023::
+	ld hl, wd14f
+	res 0, [hl]
+	xor a
+	ldh [hLCDCPointer], a
+	ret
+
+Function202c:: ; 00:202c
+	xor a
+	ldh [hBGMapMode], a
+	ld hl, wd14f
+	bit 0, [hl]
+	jr z, .asm_206b
+
+	res 7, [hl]
+	call LoadFontExtra2
+
+	ld hl, wcbb2
+	ld a, "─"
+	ld bc, SCREEN_WIDTH
+	call ByteFill
+
+	ld hl, wcbd2
+	ld a, "　"
+	ld bc, SCREEN_WIDTH
+	call ByteFill
+
+	call Function2075
+
+	ld hl, vBGMap1
+	ld bc, $4
+	ld de, wcbb2
+	call Get2bpp
+
+	ld a, $80
+	ldh [hLCDCPointer], a
+	ld a, $80
+	ldh [rWY], a
+	ldh [hWY], a
+	ret
+
+.asm_206b: ; 00:206b
+	xor a
+	ldh [hLCDCPointer], a
+	ld a, $90
+	ldh [rWY], a
+	ldh [hWY], a
+	ret
+
+Function2075:: ; 2075
 ; Prepares a buffer for the clock display, which in the Debug ROM is displayed on the bottom of the screen.
 ; This function is called every frame, and loads special tiles into the $66-$7a space.
     ld hl, wcbd2
-    ld bc, $14
+    ld bc, SCREEN_WIDTH
     ld a, "　"
     call ByteFill
 
@@ -121,6 +175,11 @@ _20F1:: ; 20f1
     ld [de], a
     inc de
     ret
+
+Function20f8::
+	call Function1848
+	call Function18cc
+	ret
 
 SECTION "Unknown_094c", ROM0 [$094C]
 

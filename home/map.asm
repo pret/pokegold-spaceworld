@@ -30,8 +30,12 @@ RunMapScript:: ; 20ff
 WriteIntod637:: ; 2117
 	push af
 	; TODO: figure out what variables are concerned here
+	ld a, [wd637]
+	ld [wd638], a
+	pop af
+	ld [wd637], a
+	ret
 
-SECTION "ClearMapBuffer", ROM0[$2123]
 ClearMapBuffer:: ; 00:2123
 	ld hl, wMapBuffer
 	ld bc, wMapBufferEnd - wMapBuffer
