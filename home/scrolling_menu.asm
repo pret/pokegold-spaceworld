@@ -77,7 +77,7 @@ Function3872:: ; 00:3872
 	jr asm_387d
 
 Function3875::
-	callab Function8cd0c
+	callab PlaySpriteAnimationsAndDelayFrame
 asm_387d: ; 00:387d
 	pop bc
 	call GetJoypad

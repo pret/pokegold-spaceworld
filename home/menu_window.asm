@@ -1,6 +1,281 @@
 include "constants.asm"
 
-SECTION "Menu Window Functions", ROM0 [$1bf4]
+SECTION "Menu Window Functions", ROM0 [$1a64]
+
+SetMenuAttributes::
+	push hl
+	push bc
+	ld hl, wMenuData3
+	ld b, $8
+.asm_1a6b: ; 00:1a6b
+	ld a, [de]
+	inc de
+	ld [hli], a
+	dec b
+	jr nz, .asm_1a6b
+	ld a, $1
+	ld [hli], a
+	ld [hli], a
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	pop bc
+	pop hl
+	ret
+
+Get2DMenuJoypad:: ; 00:1a7c
+	call Place2DMenuCursor
+	ld hl, w2DMenuFlags + 1
+	res 7, [hl]
+.loop: ; 00:1a84
+	call Move2DMenuCursor
+	call WaitBGMap
+.asm_1a8a: ; 00:1a8a
+	call UpdateTime
+	call UpdateTimeOfDayPalettes
+	call Menu_WasButtonPressed
+	jr c, .asm_1a9f
+	ld a, [w2DMenuFlags]
+	bit 7, a
+	jp nz, .done
+	jr .asm_1a8a
+
+.asm_1a9f: ; 00:1a9f
+	call _2DMenuInterpretJoypad
+	jp c, .done
+	ld a, [w2DMenuFlags]
+	bit 7, a
+	jr nz, .done
+	ldh a, [hJoySum]
+	ld b, a
+	ld a, [wMenuJoypadFilter]
+	and b
+	jp z, .loop
+.done: ; 00:1ab6
+	ldh a, [hJoyDown]
+	and A_BUTTON | B_BUTTON
+	jr z, .asm_1ac4
+	push de
+	ld de, SE_SELECT
+	call PlaySFX
+	pop de
+.asm_1ac4: ; 00:1ac4
+	ldh a, [hJoySum]
+	ret
+
+Menu_WasButtonPressed:: ; 00:1ac7
+	ld a, [w2DMenuFlags]
+	bit 6, a
+	jr z, .asm_1ad6
+	callba PlaySpriteAnimationsAndDelayFrame
+.asm_1ad6: ; 00:1ad6
+	call GetJoypadDebounced
+	ldh a, [hJoySum]
+	and a
+	ret z
+	scf
+	ret
+
+_2DMenuInterpretJoypad:: ; 00:1adf
+	ldh a, [hJoySum]
+	bit A_BUTTON_F, a
+	jp nz, .PressedABStartOrSelect
+	bit B_BUTTON_F, a
+	jp nz, .PressedABStartOrSelect
+	bit SELECT_F, a
+	jp nz, .PressedABStartOrSelect
+	bit START_F, a
+	jp nz, .PressedABStartOrSelect
+	bit D_RIGHT_F, a
+	jr nz, .PressedRight
+	bit D_LEFT_F, a
+	jr nz, .PressedLeft
+	bit D_UP_F, a
+	jr nz, .PressedUp
+	bit D_DOWN_F, a
+	jr nz, .PressedDown
+	and a
+	ret
+
+.SetFlag15AndCarry: ; 00:1b07
+	ld hl, w2DMenuFlags + 1
+	set 7, [hl]
+	scf
+	ret
+
+.PressedDown: ; 00:1b0e
+	ld hl, wMenuCursorY
+	ld a, [w2DMenuNumRows]
+	cp [hl]
+	jr z, .asm_1b1a
+	inc [hl]
+	xor a
+	ret
+
+.asm_1b1a: ; 00:1b1a
+	ld a, [w2DMenuFlags]
+	bit 5, a
+	jr nz, .asm_1b28
+	bit 3, a
+	jp nz, .SetFlag15AndCarry
+	xor a
+	ret
+
+.asm_1b28: ; 00:1b28
+	ld [hl], $1
+	xor a
+	ret
+
+.PressedUp: ; 00:1b2c
+	ld hl, wMenuCursorY
+	ld a, [hl]
+	dec a
+	jr z, .asm_1b36
+	ld [hl], a
+	xor a
+	ret
+
+.asm_1b36: ; 00:1b36
+	ld a, [w2DMenuFlags]
+	bit 5, a
+	jr nz, .asm_1b44
+	bit 2, a
+	jp nz, .SetFlag15AndCarry
+	xor a
+	ret
+
+.asm_1b44: ; 00:1b44
+	ld a, [w2DMenuNumRows]
+	ld [hl], a
+	xor a
+	ret
+
+.PressedLeft: ; 00:1b4a
+	ld hl, wMenuCursorX
+	ld a, [hl]
+	dec a
+	jr z, .asm_1b54
+	ld [hl], a
+	xor a
+	ret
+
+.asm_1b54: ; 00:1b54
+	ld a, [w2DMenuFlags]
+	bit 4, a
+	jr nz, .asm_1b62
+	bit 1, a
+	jp nz, .SetFlag15AndCarry
+	xor a
+	ret
+
+.asm_1b62: ; 00:1b62
+	ld a, [w2DMenuNumCols]
+	ld [hl], a
+	xor a
+	ret
+
+.PressedRight: ; 00:1b68
+	ld hl, wMenuCursorX
+	ld a, [w2DMenuNumCols]
+	cp [hl]
+	jr z, .asm_1b74
+	inc [hl]
+	xor a
+	ret
+
+.asm_1b74: ; 00:1b74
+	ld a, [w2DMenuFlags]
+	bit 4, a
+	jr nz, .asm_1b82
+	bit 0, a
+	jp nz, .SetFlag15AndCarry
+	xor a
+	ret
+
+.asm_1b82: ; 00:1b82
+	ld [hl], $1
+	xor a
+	ret
+
+.PressedABStartOrSelect: ; 00:1b86
+	xor a
+	ret
+
+Move2DMenuCursor:: ; 00:1b88
+	ld hl, wCursorCurrentTile
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hl]
+	cp $ed
+	jr nz, Place2DMenuCursor
+	ld a, [wCursorOffCharacter]
+	ld [hl], a
+Place2DMenuCursor:: ; 00:1b97
+	ld a, [w2DMenuCursorInitY]
+	ld b, a
+	ld a, [w2DMenuCursorInitX]
+	ld c, a
+	call Coord2Tile
+	ld a, [w2DMenuCursorOffsets]
+	swap a
+	and $f
+	ld c, a
+	ld a, [wMenuCursorY]
+	ld b, a
+	xor a
+	dec b
+	jr z, .asm_1bb6
+.asm_1bb2: ; 00:1bb2
+	add c
+	dec b
+	jr nz, .asm_1bb2
+.asm_1bb6: ; 00:1bb6
+	ld c, SCREEN_WIDTH
+	call AddNTimes
+	ld a, [w2DMenuCursorOffsets]
+	and $f
+	ld c, a
+	ld a, [wMenuCursorX]
+	ld b, a
+	xor a
+	dec b
+	jr z, .asm_1bcd
+.asm_1bc9: ; 00:1bc9
+	add c
+	dec b
+	jr nz, .asm_1bc9
+.asm_1bcd: ; 00:1bcd
+	ld c, a
+	add hl, bc
+	ld a, [hl]
+	cp $ed
+	jr z, .asm_1bd9
+	ld [wCursorOffCharacter], a
+	ld [hl], $ed
+.asm_1bd9: ; 00:1bd9
+	ld a, l
+	ld [wCursorCurrentTile], a
+	ld a, h
+	ld [wCursorCurrentTile + 1], a
+	ret
+
+PlaceHollowCursor::
+	ld hl, wCursorCurrentTile
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld [hl], $ec
+	ret
+
+HideCursor::
+	ld hl, wCursorCurrentTile
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld [hl], $7f
+	ret
 
 PushWindow:: ; 00:1bf4
 	ld hl, PlaceWaitingText

@@ -60,7 +60,7 @@ VerticalMenu:: ; 00:1d87
 	bit 7, a
 	jr z, .asm_1daa
 	call InitVerticalMenuCursor
-	call Function1a7c
+	call Get2DMenuJoypad
 	bit 1, a
 	jr z, .asm_1dac
 .asm_1daa: ; 00:1daa
@@ -332,7 +332,7 @@ Function1f27:: ; 00:1f27
 	or D_LEFT | D_RIGHT
 	ld [hl], a
 .asm_1f3f: ; 00:1f3f
-	call Function1a7c
+	call Get2DMenuJoypad
 	pop de
 	bit 0, a
 	jr nz, .asm_1f66

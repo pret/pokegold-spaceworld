@@ -294,10 +294,22 @@ wMenuDataIndicesPointer:: dw ; cc14
 wMenuDataDisplayFunctionPointer:: dw ; cc16
 wMenuDataPointerTableAddr:: dw ; cc18
 
-SECTION "CC2A", WRAM0[$CC29]
+SECTION "MenuData3", WRAM0[$CC22]
+wMenuData3:: ; cc22
 
+w2DMenuCursorInitY:: db ; cc22
+w2DMenuCursorInitX:: db ; cc23
+w2DMenuNumRows:: db ; cc24
+w2DMenuNumCols:: db ; cc25
+w2DMenuFlags:: dw ; cc26
+w2DMenuCursorOffsets:: db ; cc28
 wMenuJoypadFilter:: db ; cc29
+w2DMenuDataEnd::
+
 wMenuCursorY:: db ; cc2a
+wMenuCursorX:: db ; cc2b
+wCursorOffCharacter:: db ; cc2c
+wCursorCurrentTile:: dw ; cc2d
 
 SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
 wVBlankJoyFrameCounter: db ; cc32

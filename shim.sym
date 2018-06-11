@@ -1,5 +1,4 @@
 ; ROM0
-00:1A7C Function1a7c
 00:202C Function202c
 00:2C05 StartMenuCheck
 00:2F1D Function2f1d
@@ -191,7 +190,7 @@
 23:4940 Function8c940
 23:49C6 Function8c9c6
 23:4CFD InitEffectObject
-23:4D0C Function8cd0c
+23:4D0C PlaySpriteAnimationsAndDelayFrame
 23:4d13 EffectObjectJumpNoDelay
 23:60cc MenuMonIconGfx
 23:71CB Function_8f1cb
@@ -466,7 +465,6 @@
 3F:6755 PicTestMenu.loop
 
 00:CB6F wPlayerStepDirection
-00:CC22 wMenuData3
 00:CE67 wPlayerName
 
 01:D165 wTMCounts
