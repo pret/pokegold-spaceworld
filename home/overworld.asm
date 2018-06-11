@@ -42,6 +42,9 @@ CheckStartmenuSelectHook:
 	dec a
 	ret
 
+Function2c4a::
+; TODO
+
 if DEBUG
 SECTION "Install StartMenu Hook Function", ROM0[$35EC]
 else

@@ -1538,6 +1538,202 @@ FillEastConnectionStrip:: ; 2a60
 	jr nz, .loop
 	ret
 
+Function2a85::
+.asm_2a85: ; 00:2a85
+	call LoadMap
+	call Function2a8d
+	jr .asm_2a85
+
+Function2a8d:: ; 00:2a8d
+	push hl
+	push de
+	push bc
+	push af
+
+	ld a, [wd637]
+	and $f
+	add a
+	ld e, a
+	ld d, $0
+	ld hl, .Pointers
+	add hl, de
+	add hl, de
+
+	ld a, [hli]
+	call Bankswitch
+
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, .Return
+	push de
+	jp hl
+
+.Return: ; 00:2aac
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+
+.Pointers: ; 00:2ab1
+	dbbw $00, $55, Function2ae5
+ 	dbbw $00, $55, Function2b52
+  	dbbw $00, $55, Function2b77
+ 	dbbw $0e, $33, Function3904
+	dbbw $00, $55, Function2b39
+ 	dbbw $0e, $33, Function391f
+  	dbbw $00, $33, Function2b78
+ 	dbbw $00, $33, Function2b78
+	dbbw $0e, $33, Function3904
+ 	dbbw $00, $55, Function2b79
+  	dbbw $00, $55, Function2b87
+ 	dbbw $0e, $33, Function3920
+	dbbw $05, $33, Function14777
+
+Function2ae5::
+.asm_2ae5: ; 00:2ae5
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	set 6, [hl]
+	call UpdateTime
+	call TimeOfDayPals
+	ld hl, wJoypadFlags
+	res 4, [hl]
+	res 6, [hl]
+	call GetJoypad
+	call Function2be5
+	ld hl, wc5ed
+	bit 7, [hl]
+	res 7, [hl]
+	ret nz
+	call Function38e3
+	ret nz
+	call OverworldStartButtonCheck
+	ret nz
+	ld hl, PlaceWaitingText
+	ld a, $3
+	call FarCall_hl
+	ldh a, [hMapEntryMethod]
+	and a
+	ret nz
+	call Function2c4a
+	jr nc, .asm_2ae5
+	callba Function824c
+	ld a, [wc5ed]
+	bit 6, a
+	jr nz, .asm_2ae5
+	call CheckMovingOffEdgeOfMap
+	ret c
+	call WarpCheck
+	ret c
+	jr .asm_2ae5
+
+Function2b39::
+	ld hl, wJoypadFlags
+	res 4, [hl]
+	res 6, [hl]
+	ld hl, wce63
+	res 6, [hl]
+	res 7, [hl]
+	ld hl, wVramState
+	res 7, [hl]
+	ld a, $0
+	call WriteIntod637
+	ret
+
+Function2b52::
+.asm_2b52: ; 00:2b52
+	call UpdateTime
+	ld a, [wVramState]
+	bit 7, a
+	jr z, Function2b39
+	ldh a, [hMapEntryMethod]
+	and a
+	ret nz
+	call Function2c4a
+	jr nc, .asm_2b52
+	callba Function824c
+	call CheckMovingOffEdgeOfMap
+	ret c
+	call WarpCheck
+	ret c
+	jr .asm_2b52
+
+Function2b77::
+	ret
+
+Function2b78::
+	ret
+
+Function2b79::
+	callab Functionfce3e
+	ld a, $4
+	call WriteIntod637
+	ret
+
+Function2b87::
+.asm_2b87: ; 00:2b87
+	call UpdateTime
+	call GetJoypad
+	call OverworldStartButtonCheck
+	ret nz
+	callab Functionc000
+	call Function2ba8
+	jr nc, .asm_2b87
+	callba Function824c
+	jr .asm_2b87
+
+Function2ba8:: ; 00:2ba8
+	ldh a, [hROMBank]
+	push af
+	ld a, $1
+	call Bankswitch
+	call Function50b9
+	call Function18a0
+	ld a, $3
+	call Bankswitch
+	call Functiond6e4
+	ld a, $1
+	call Bankswitch
+	call _UpdateSprites
+	call DelayFrame
+	call Function2075
+	ld hl, wd14f
+	set 2, [hl]
+	call DelayFrame
+	pop af
+	call Bankswitch
+	and a
+	ld a, [wcb6e]
+	bit 5, a
+	ret z
+	bit 6, a
+	jr z, Function2ba8
+	scf
+	ret
+
+Function2be5:: ; 00:2be5
+	ld a, [wce63]
+	bit 7, a
+	ret nz
+	ld a, [wMapGroup]
+	ld b, a
+	ld a, [wMapId]
+	ld c, a
+	call SwitchToAnyMapBank
+	call QueueMapTextSubroutine
+	ld hl, wMapScriptPtr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, .Return
+	push de
+	jp hl
+
+.Return: ; 00:2c04
+	ret
 
 SECTION "LoadTilesetGFX", ROM0[$2D26]
 LoadTilesetGFX:: ; 2d26
@@ -1892,8 +2088,45 @@ GetBlockLocation:: ; 2ef8
 	add hl, bc
 	ret
 
+GetFacingSignpost:: ; 00:2f1d
+	call GetFacingTileCoord
+	ld b, a
+	ld a, d
+	sub $4
+	ld d, a
+	ld a, e
+	sub $4
+	ld e, a
+	ld a, [wCurrMapSignCount]
+	and a
+	ret z
+	ld c, a
+	ld hl, wCurrMapSigns
+.asm_2f32: ; 00:2f32
+	ld a, [hli]
+	cp e
+	jr nz, .asm_2f3e
+	ld a, [hli]
+	cp d
+	jr nz, .asm_2f3f
+	ld a, [hli]
+	cp b ; useless comparison
+	jr .asm_2f46
 
-SECTION "LoadTileset", ROM0[$2F48]
+.asm_2f3e: ; 00:2f3e
+	inc hl
+.asm_2f3f: ; 00:2f3f
+	inc hl
+	inc hl
+	dec c
+	jr nz, .asm_2f32
+	xor a
+	ret
+
+.asm_2f46: ; 00:2f46
+	scf
+	ret
+
 LoadTileset:: ; 2f48
 	push hl
 	push bc

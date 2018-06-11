@@ -179,7 +179,7 @@ def main():
             if section.start > start:
                 print(f'\t; ${start:04x}', file=args.linkfile)
                 print(f'\torg ${section.start:04x}', file=args.linkfile)
-            print(f'\t"{section.name}" ; size: ${section.size:04x}', file=args.linkfile)
+            print(f'\t"{section.name}" ; ${section.start:04x}, size: ${section.size:04x}', file=args.linkfile)
             start = section.end
 
 

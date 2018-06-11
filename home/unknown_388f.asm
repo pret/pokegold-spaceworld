@@ -80,7 +80,7 @@ Function3904::
 Function391f::
 	ret
 
-Function3910::
+Function3920::
 	ld a, [wcd5d]
 	cp $1
 	jr z, .asm_392d

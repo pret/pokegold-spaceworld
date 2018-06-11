@@ -233,6 +233,8 @@ wVBCopyDst:: ds 2 ; cb65
 wVBCopyDoubleSize:: ds 1 ; cb67
 wVBCopyDoubleSrc:: ds 2 ; cb68
 wVBCopyDoubleDst:: ds 2 ; cb6a
+	ds 2
+wcb6e:: db
 
 SECTION "CB71", WRAM0[$CB70]
 

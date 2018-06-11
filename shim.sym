@@ -1,5 +1,4 @@
 ; ROM0
-00:2F1D GetFacingSignpost
 00:3111 Function3111
 00:3171 Function3171
 00:319B Function319b
@@ -29,6 +28,7 @@
 01:4031 DebugMenu
 01:40EB Function40eb
 01:5007 Function5007
+01:50B9 Function50b9
 01:5190 _UpdateSprites
 01:5190 Function5190
 01:53CC MainMenu
@@ -45,6 +45,7 @@
 02:4125 Function8125
 02:4131 Function8131
 02:413D Function813d
+02:424C Function824c
 02:43E8 Function83e8
 02:45DF QueueFollowerFirstStep
 02:462E Function862e
@@ -58,6 +59,7 @@
 02:528B Function928b
 02:5695 CheckSGB
 
+03:4000 Functionc000
 03:4791 DebugWarp
 03:479F DebugWarp.Destinations
 03:488D Tilesets
@@ -71,6 +73,7 @@
 03:4E10 Functionce10_2
 03:4E3C Functionce3c
 03:4E7C Functionce7c
+03:56E4 Functiond6e4
 03:5886 Functiond886
 03:5A28 Functionda28
 03:5A4F Functionda4f
@@ -111,6 +114,7 @@
 ; ptr  Copied to c5eb
 ; word Unknown (2 bytes)
 05:470E UnknownMapBufferPointers
+05:4777 Function14777
 05:4CAC Function14cac
 05:4DAC Function14dac
 05:4DC4 Function14dc4
@@ -455,6 +459,7 @@
 3A:52C7 Music
 
 3F:40E9 InGameDebugMenu
+3F:4E3E Functionfce3e
 3F:5B66 Functionfdb66
 3F:6255 Functionfe255
 3F:64CE MonsterTest
