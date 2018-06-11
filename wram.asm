@@ -62,10 +62,15 @@ wIncrementTempo: dw ; c1ab
 wMapMusic:: db ; c1ad
 wCryPitch:: dw ; c1ae
 wCryLength:: dw ; c1b0
+; c1b2
+    ds 7 ; TODO
 
-    ds 10 ; TODO
-
+wc1b9:: db ; c1b9
+wc1ba:: db ; c1ba
 ; either wChannelsEnd or wMusicEnd, unsure
+
+	ds 1 ; TODO
+
 wMusicInitEnd:: ; c1bc
 
 
@@ -436,6 +441,11 @@ SECTION "CD7D", WRAM0[$CD7D]
 wItemQuantity:: db ; cd7d
 wItemQuantityBuffer:: db ; cd7e
 
+SECTION "CD9E", WRAM0 [$CD9E]
+
+wcd9e::
+	db
+
 SECTION "CDB0", WRAM0 [$CDB0]
 wcdb0:: ; bit 0 = has engaged NPC in dialogue (?)
 	db
@@ -530,8 +540,12 @@ wMonHGrowthRate:: ; ce1d
 
 wMonHLearnset:: ; ce1e
 ; bit field
-    flag_array 50 + 5
+    flag_array 50 + 5 ; size = 7
     ds 1
+
+SECTION "CE2E", WRAM0[$CE2E]
+wce2e:: ; ce2e
+	ds 9
 
 SECTION "CE37", WRAM0[$CE37]
 

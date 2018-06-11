@@ -5,7 +5,6 @@
 00:3233 Function3233
 00:323E Function323e
 00:3240 Function3240
-00:39BA PlayCry
 00:3CA8 InitSpriteAnimStruct
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
@@ -159,6 +158,7 @@
 10:4000 Function40000
 10:40A6 ShowPokedexMenu
 10:4AC7 Function40ac7
+10:4B45 Function40b45
 10:4B5C Function40b5c
 10:5FA1 Function41fa1
 10:61F8 Function421f8
