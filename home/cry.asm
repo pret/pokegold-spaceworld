@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "Cry Home", ROM0 [$39b1]
 
-Function39b1::
+PlayStereoCry::
 	push af
 	ld a, $1
 	ld [wc1b9], a
@@ -73,26 +73,26 @@ GetCryIndex:: ; 00:3a02
 	ld [wce37], a
 	ret
 
-Function3a1f::
+PrintLevel::
 	ld a, $6e
 	ld [hli], a
-	ld c, $2
+	ld c, 2
 	ld a, [wcd9e]
-	cp $64
+	cp 100
 	jr c, asm_3a37
 	dec hl
 	inc c
 	jr asm_3a37
 
-Function3a2f::
+PrintLevelFullWidth::
 	ld a, $6e
 	ld [hli], a
-	ld c, $3
+	ld c, 3
 	ld a, [wcd9e]
 asm_3a37: ; 00:3a37
 	ld [wce37], a
 	ld de, wce37
-	ld b, $41
+	ld b, PRINTNUM_RIGHTALIGN | 1
 	jp PrintNumber
 
 Function3a42::
