@@ -314,10 +314,11 @@ wTitleSequenceOpeningType:: ; cc38
 wDebugWarpSelection:: ; cc39
     db
 
-    ds 6
-
-wcc40:: ; cc40
-    db
+wMovementBufferCount:: db ; cc3a
+wMovementBufferObject:: db ; cc3b
+	ptrba wMovementBufferPointer ; cc3c
+wMovementBuffer:: ; cc3f
+	ds 55
 
 SECTION "CC9C", WRAM0[$CC9C]
 
