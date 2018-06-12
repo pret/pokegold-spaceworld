@@ -31,13 +31,13 @@ _1FF4:: ; 1ff4
 	ret
 
 _2007:: ; 2007
-    ld a, BANK(s0_a600)
-    call OpenSRAM
-    ld a, [s0_a600]
-    and 8
-    ld [wce5f], a
-    call CloseSRAM
-    ret
+	ld a, BANK(s0_a600)
+	call OpenSRAM
+	ld a, [s0_a600]
+	and 8
+	ld [wce5f], a
+	call CloseSRAM
+	ret
 
 Function2018::
 	ld hl, wd153
@@ -95,86 +95,86 @@ Function202c:: ; 00:202c
 	ldh [hWY], a
 	ret
 
-Function2075:: ; 2075
+UpdateToolgear:: ; 2075
 ; Prepares a buffer for the clock display, which in the Debug ROM is displayed on the bottom of the screen.
 ; This function is called every frame, and loads special tiles into the $66-$7a space.
-    ld hl, wcbd2
-    ld bc, SCREEN_WIDTH
-    ld a, "　"
-    call ByteFill
+	ld hl, wcbd2
+	ld bc, SCREEN_WIDTH
+	ld a, "　"
+	call ByteFill
 
 if DEBUG
-    ld hl, $d153
-    bit 0, [hl]
-    jr z, ._209e
-    ld hl, $d65b
-    ld de, wcbd2 + 4
-    ld c, $01
-    call _20CD
-    ld hl, $d65a
-    ld de, wcbd2 + 8
-    ld c, $01
-    call _20CD
-    ret
+	ld hl, wd153
+	bit 0, [hl]
+	jr z, ._209e
+	ld hl, $d65b
+	ld de, wcbd2 + 4
+	ld c, $01
+	call _20CD
+	ld hl, $d65a
+	ld de, wcbd2 + 8
+	ld c, $01
+	call _20CD
+	ret
 ._209e:
 endc
 
-    ld hl, hRTCHours
-    ld de, wcbd2
-    call _20DC
-    ld hl, hRTCMinutes
-    ld de, wcbd2 + 3
-    call _20DC
-    ldh a, [hRTCDays]
-    and 7
-    add $71 ; Sunday
-    ld [wcbd2 + 6], a
-    ld a, $78 ; power
-    ld [wcbd2 + 9], a
-    inc a ; mobile
-    ld [wcbd2 + 11], a
-    ldh a, [hRTCSeconds]
-    and 1
-    ret z
-    ld a, $70 ; :
-    ld [wcbd2 + 2], a
-    ret
+	ld hl, hRTCHours
+	ld de, wcbd2
+	call _20DC
+	ld hl, hRTCMinutes
+	ld de, wcbd2 + 3
+	call _20DC
+	ldh a, [hRTCDays]
+	and 7
+	add $71 ; Sunday
+	ld [wcbd2 + 6], a
+	ld a, $78 ; power
+	ld [wcbd2 + 9], a
+	inc a ; mobile
+	ld [wcbd2 + 11], a
+	ldh a, [hRTCSeconds]
+	and 1
+	ret z
+	ld a, $70 ; :
+	ld [wcbd2 + 2], a
+	ret
 
 _20CD:: ; 20cd
 ; PrintAsHex
-    ld a, [hli]
-    ld b, a
-    swap a
-    call _20F1
-    ld a, b
-    call _20F1
-    dec c
-    jr nz, _20CD
-    ret
+	ld a, [hli]
+	ld b, a
+	swap a
+	call _20F1
+	ld a, b
+	call _20F1
+	dec c
+	jr nz, _20CD
+	ret
 
 _20DC:: ; 20dc
 ; PrintAsDec
-    ld a, [hli]
-    ld b, 0
+	ld a, [hli]
+	ld b, 0
 ._20df:
-    inc b
-    sub 10
-    jr nc, ._20df
-    dec b
-    add 10
-    push af
-    ld a, b
-    call _20F1
-    pop af
-    call _20F1
-    ret
+	inc b
+	sub 10
+	jr nc, ._20df
+	dec b
+	add 10
+	push af
+	ld a, b
+	call _20F1
+	pop af
+	call _20F1
+	ret
 
 _20F1:: ; 20f1
-    and %1111
-    add $66 ; digit 0
-    ld [de], a
-    inc de
-    ret
+	and %1111
+	add $66 ; digit 0
+	ld [de], a
+	inc de
+	ret
 
 Function20f8::
 	call Function1848
