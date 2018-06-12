@@ -8,7 +8,7 @@ endc
 
 Function3025::
 	ld hl, .Text
-	call Function3111
+	call PrintFieldText
 	ret
 
 .Text: ; 00:302c
@@ -77,7 +77,7 @@ Function307a:: ; 00:307a
 	call Function3240
 	ret
 
-Function3085:: ; 00:3085
+Debug_PrintScriptMapAndNumber:: ; 00:3085
 	push hl
 	push de
 	push bc
@@ -115,7 +115,7 @@ QueueMapTextSubroutine::
 	ld e, a
 	ld a, [wce63]
 	bit 1, a
-	call nz, Function3085
+	call nz, Debug_PrintScriptMapAndNumber
 	ld hl, wMapTextPtr
 	ld a, [hli]
 	ld h, [hl]
@@ -154,4 +154,56 @@ GetFacingPersonText:: ; 00:3103
 	ret nc
 	call Function319b
 	scf
+	ret
+
+PrintFieldText:: ; 00:3111
+	push hl
+	call DrawFieldTextbox
+	ld a, [wce63]
+	bit 1, a
+	call nz, Debug_PrintScriptMapAndNumber
+	pop hl
+	call PrintFieldText_
+	ret
+
+PrintFieldText_NoDebug:: ; 3124
+	push hl
+	call DrawFieldTextbox
+	pop hl
+PrintFieldText_:: ; 00:3127
+	call PrintTextBoxText
+.asm_312a: ; 00:312a
+	ld a, [wJoypadFlags]
+	bit 5, a
+	res 5, a
+	ld [wJoypadFlags], a
+	jr nz, .asm_314a
+	call GetJoypad
+	ldh a, [hJoyDown]
+	and A_BUTTON | B_BUTTON
+	jr nz, .asm_314a
+	call UpdateTime
+	call UpdateTimeOfDayPalettes
+	call DelayFrame
+	jr .asm_312a
+
+.asm_314a: ; 00:314a
+	call Function3171
+	ret
+
+DrawFieldTextbox:: ; 00:314e
+	call ClearWindowData
+	ldh a, [hROMBank]
+	push af
+	ld a, BANK(ReanchorBGMap_NoOAMUpdate)
+	call Bankswitch
+	call ReanchorBGMap_NoOAMUpdate
+	hlcoord 0, 12
+	ld b, $4
+	ld c, $12
+	call DrawTextBox
+	call WaitBGMap
+	call LoadFonts_NoOAMUpdate
+	pop af
+	call Bankswitch
 	ret
