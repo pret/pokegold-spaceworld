@@ -417,3 +417,26 @@ LoadTileset:: ; 2f48
 	pop bc
 	pop hl
 	ret
+
+Function2f6b:: ; 2f6b
+	call DisableLCD
+	ldh a, [hROMBank]
+	push af
+	ld a, [wMapGroup]
+	ld b, a
+	ld a, [wMapId]
+	ld c, a
+	call SwitchToAnyMapBank
+	call LoadFontExtra
+	call LoadMapPart
+	call LoadTilesetGFX
+	pop af
+	call Bankswitch
+	call EnableLCD
+	ret
+
+Function2f8d:: ; 2f8d
+	call DisableLCD
+	call LoadTilesetGFX
+	call EnableLCD
+	ret
