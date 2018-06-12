@@ -65,8 +65,8 @@ wCryLength:: dw ; c1b0
 ; c1b2
     ds 7 ; TODO
 
-wc1b9:: db ; c1b9
-wc1ba:: db ; c1ba
+wStereoPanningMask:: db ; c1b9
+wCryTracks:: db ; c1ba
 ; either wChannelsEnd or wMusicEnd, unsure
 
 	ds 1 ; TODO
@@ -640,8 +640,8 @@ wMap14Object::  map_object wMap14
 wMap15Object::  map_object wMap15
 wMapObjectsEnd:: ; d14f
 
-wd14f::
-	ds 3 ; TODO
+wd14f:: db ; d14f
+	ds 2 ; TODO
 
 wTimeOfDayPal:: db ; d152
 ; Applied according to wCurTimeOfDay from wTimeOfDayPalset

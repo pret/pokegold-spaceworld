@@ -1734,3 +1734,178 @@ Function2be5:: ; 00:2be5
 
 .Return: ; 00:2c04
 	ret
+
+
+OverworldStartButtonCheck:: ; 2c05 (0:2c05)
+	ldh a, [hJoyState]
+	bit START_F, a
+	ret z
+if DEBUG
+	and (START | B_BUTTON)
+	cp (START | B_BUTTON)
+	jr nz, .regularMenu
+	ld a, [wce63]
+	bit 1, a
+	ret z              ; debug disabled
+	callba InGameDebugMenu
+	jr CheckStartmenuSelectHook
+.regularMenu
+endc
+	callba DisplayStartMenu
+	jr CheckStartmenuSelectHook
+SelectButtonFunction:: ; 2c2a (0:2c2a)
+	callab CheckRegisteredItem
+CheckStartmenuSelectHook:
+	ldh a, [hStartmenuCloseAndSelectHookEnable]
+	and a
+	ret z          ; hook is disabled
+	ld hl, StartmenuCloseAndSelectHookPtr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [StartmenuCloseAndSelectHookBank]
+	call FarCall_hl
+	ld hl, hStartmenuCloseAndSelectHookEnable
+	xor a
+	ld [hli], a    ; clear hook enable and ???
+	ld [hl], a
+	dec a
+	ret
+
+Function2c4a:: ; 00:2c4a
+.loop:
+	call Function2c5a
+	and a
+	ld a, [wcb6e]
+	bit 5, a
+	ret z
+	bit 6, a
+	jr z, .loop
+	scf
+	ret
+
+Function2c5a:: ; 00:2c5a
+	ldh a, [hROMBank]
+	push af
+
+	ld a, BANK(Function50b9)
+	call Bankswitch
+	call Function50b9
+
+	call Function18a0
+
+	ld a, BANK(Functiond4e6)
+	call Bankswitch
+	call Functiond4e6
+
+	ld a, BANK(Function5190)
+	call Bankswitch
+	call Function5190
+
+	call DelayFrame
+	call Function2075
+	ld hl, wd14f
+	set 2, [hl]
+	call DelayFrame
+
+	pop af
+	call Bankswitch
+	ret
+
+Function2c8b::
+	call DelayFrame
+	call Function2075
+	ld hl, wd14f
+	set 2, [hl]
+	call DelayFrame
+	ret
+
+Function2c9a::
+	hlcoord 0, 0
+	call Function2d04
+	ld a, [wBGMapAnchor]
+	ldh [hRedrawRowOrColumnDest], a
+	ld a, [wBGMapAnchor + 1]
+	ldh [hRedrawRowOrColumnDest + 1], a
+	ld a, $2
+	ldh [hRedrawRowOrColumnMode], a
+	ret
+
+Function2caf::
+	hlcoord 0, 16
+	call Function2d04
+	ld a, [wBGMapAnchor]
+	ld l, a
+	ld a, [wBGMapAnchor + 1]
+	ld h, a
+	ld bc, $200
+	add hl, bc
+	ld a, h
+	and $3
+	or HIGH(vBGMap0)
+	ldh [hRedrawRowOrColumnDest + 1], a
+	ld a, l
+	ldh [hRedrawRowOrColumnDest], a
+	ld a, $2
+	ldh [hRedrawRowOrColumnMode], a
+	ret
+
+Function2cd0::
+	hlcoord 18, 0
+	call Function2d10
+	ld a, [wBGMapAnchor]
+	ld c, a
+	and $e0
+	ld b, a
+	ld a, c
+	add $12
+	and $1f
+	or b
+	ldh [hRedrawRowOrColumnDest], a
+	ld a, [wBGMapAnchor + 1]
+	ldh [hRedrawRowOrColumnDest + 1], a
+	ld a, $1
+	ldh [hRedrawRowOrColumnMode], a
+	ret
+
+Function2cef::
+	hlcoord 0, 0
+	call Function2d10
+	ld a, [wBGMapAnchor]
+	ldh [hRedrawRowOrColumnDest], a
+	ld a, [wBGMapAnchor + 1]
+	ldh [hRedrawRowOrColumnDest + 1], a
+	ld a, $1
+	ldh [hRedrawRowOrColumnMode], a
+	ret
+
+Function2d04:: ; 00:2d04
+	ld de, wRedrawRowOrColumnSrcTiles
+	ld c, $28
+.asm_2d09: ; 00:2d09
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .asm_2d09
+	ret
+
+Function2d10:: ; 00:2d10
+	ld de, wRedrawRowOrColumnSrcTiles
+	ld c, $12
+.asm_2d15: ; 00:2d15
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	inc de
+	ld a, $13
+	add l
+	ld l, a
+	jr nc, .asm_2d22
+	inc h
+.asm_2d22: ; 00:2d22
+	dec c
+	jr nz, .asm_2d15
+	ret
