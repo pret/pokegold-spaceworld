@@ -67,6 +67,7 @@
 03:4E10 Functionce10_2
 03:4E3C Functionce3c
 03:4E7C Functionce7c
+03:53AD Functiond3ad
 03:54E6 Functiond4e6
 03:56E4 Functiond6e4
 03:5886 Functiond886
@@ -79,6 +80,7 @@
 03:5E79 Functionde79
 03:5F7D Functiondf7d
 03:5F91 Functiondf91
+03:677F Functione77f
 
 04:528F Function1128f
 04:52C1 Function112c1
@@ -474,5 +476,4 @@
 ; The starting house's map script number is stored at d29a. Others are probably nearby.
 01:D35F wOptions
 01:D513 wWarpNumber
-01:D7D2 wPartyMonOT
 01:DA3B wOTPartyMonOT

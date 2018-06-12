@@ -804,13 +804,28 @@ wTilesetCollisionAddress:: ; d6a4
 	ds 4 ; TODO
 wTilesetEnd:: ; d6aa
 
-SECTION "Party Mon Nicknames", WRAM0 [$D7F6]
+SECTION "Player Party", WRAM0 [$D6AA]
+
+wPartyCount:: db
+wPartySpecies:: ds PARTY_LENGTH
+wPartyEnd:: db
+
+wPartyMons::
+wPartyMon1:: party_struct wPartyMon1 ; d6b2
+wPartyMon2:: party_struct wPartyMon2 ; d6e2
+wPartyMon3:: party_struct wPartyMon3 ; d712
+wPartyMon4:: party_struct wPartyMon4 ; d742
+wPartyMon5:: party_struct wPartyMon5 ; d772
+wPartyMon6:: party_struct wPartyMon6 ; d7a2
+wPlayerPartyEnd:: ; d7d2
+
+wPartyMonOT:: ; d7d2
+	ds PARTY_LENGTH * 6
+wPartyMonOTEnd:: ; d7f6
 
 wPartyMonNicknames:: ; d7f6
-	ds PARTY_LENGTH * MON_NAME_LENGTH ; = 36
-
-
-SECTION "PokeDexFlags", WRAM0[$D81A]
+	ds PARTY_LENGTH * MON_NAME_LENGTH ; = $24
+wPartyMonNicknamesEnd:: ; d81a
 
 wPokedexOwned::    ; d81a
     flag_array NUM_POKEMON
