@@ -1,9 +1,4 @@
 ; ROM0
-00:3171 Function3171
-00:319B Function319b
-00:3233 Function3233
-00:323E Function323e
-00:3240 Function3240
 00:3CA8 InitSpriteAnimStruct
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
@@ -99,6 +94,7 @@
 05:405B AddIndoorSprites
 05:40AA AddOutdoorSprites
 05:40D9 Function140d9
+05:40EA Function140ea
 05:40FB LoadUsedSpritesGfx ; TODO: maybe there's a better name
 05:43B6 InitAllSRAMBanks 
 05:43E0 Function143e0

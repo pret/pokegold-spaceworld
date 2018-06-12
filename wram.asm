@@ -721,6 +721,9 @@ ENDR
 
 wCurrMapObjectCount:: ; d5f6
     db
+wd5f7:: ; d5f7
+	ds 2 * 16
+; d617
 
 SECTION "D637", WRAM0[$D637]
 wd637:: db ; d637

@@ -207,3 +207,151 @@ DrawFieldTextbox:: ; 00:314e
 	pop af
 	call Bankswitch
 	ret
+
+Function3171:: ; 00:3171
+	callab ReanchorBGMap_NoOAMUpdate
+	call UpdateSprites
+	xor a
+	ldh [hBGMapMode], a
+	ld a, $90
+	ldh [hWY], a
+	call Function318f
+	ld hl, wd14f
+	res 7, [hl]
+	call Function202c
+	ret
+
+Function318f:: ; 00:318f
+	callab Function140ea
+	call Function0d02
+	ret
+
+Function319b:: ; 00:319b
+	ldh a, [hObjectStructIndexBuffer]
+	call GetObjectStruct
+	ld hl, OBJECT_SPRITE
+	add hl, bc
+	ld a, [hl]
+	call Function17de
+	jr c, .asm_31b9
+	ld a, [wPlayerWalking]
+	xor $4
+	ld hl, OBJECT_DIRECTION_WALKING
+	add hl, bc
+	ld [hl], a
+	push bc
+	call UpdateSprites
+	pop bc
+.asm_31b9: ; 00:31b9
+	ld hl, OBJECT_MAP_OBJECT_INDEX
+	add hl, bc
+	ld a, [hl]
+	sub $2
+	ldh [hFFEA], a
+	ret
+
+Function31c3::
+	ret
+
+Function31c4:: ; 31c4
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
+	add hl, de
+	ld a, [hl]
+	call GetObjectStruct
+	call GetVectorFromNPCToPlayer
+	jr nc, .asm_31ea
+	ld hl, OBJECT_ACTION
+	add hl, de
+	ld a, [hl]
+	cp b
+	jr c, .asm_31ea
+	ld hl, OBJECT_SPRITE
+	add hl, de
+	ld a, [hl]
+	add a
+	ld hl, wd5f7
+	add l
+	ld l, a
+	jr nc, .asm_31e7
+	inc h
+.asm_31e7: ; 00:31e7
+	ld [hl], b
+	inc hl
+	ld [hl], c
+.asm_31ea: ; 00:31ea
+	ret
+
+GetVectorFromNPCToPlayer:: ; 00:31eb
+	ld hl, OBJECT_NEXT_MAP_X
+	add hl, bc
+	ld a, [wPlayerStandingMapX]
+	cp [hl]
+	jr z, .asm_3201
+	ld hl, OBJECT_NEXT_MAP_Y
+	add hl, bc
+	ld a, [wPlayerStandingMapY]
+	cp [hl]
+	jr z, .asm_3219
+	and a
+	ret
+
+.asm_3201: ; 00:3201
+	ld hl, OBJECT_NEXT_MAP_Y
+	add hl, bc
+	ld a, [wPlayerStandingMapY]
+	sub [hl]
+	jr z, .asm_3231
+	jr nc, .asm_3214
+	cpl
+	inc a
+	ld b, a
+	ld c, UP
+	scf
+	ret
+
+.asm_3214: ; 00:3214
+	ld b, a
+	ld c, DOWN
+	scf
+	ret
+
+.asm_3219: ; 00:3219
+	ld hl, OBJECT_NEXT_MAP_X
+	add hl, bc
+	ld a, [wPlayerStandingMapX]
+	sub [hl]
+	jr z, .asm_3231
+	jr nc, .asm_322c
+	cpl
+	inc a
+	ld b, a
+	ld c, LEFT
+	scf
+	ret
+
+.asm_322c: ; 00:322c
+	ld b, a
+	ld c, RIGHT
+	scf
+	ret
+
+.asm_3231: ; 00:3231
+	and a
+	ret
+
+Function3233:: ; 00:3233
+	ld a, [wce63]
+	bit 1, a
+	ret z
+	ldh a, [hJoyState]
+	bit B_BUTTON_F, a
+	ret
+
+Function323e:: ; 00:323e
+	xor a
+	ret
+
+Function3240:: ; 00:3240
+	xor a
+	dec a
+	ret
