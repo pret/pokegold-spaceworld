@@ -42,11 +42,29 @@ ldcoord_a: MACRO
 	endc
 ENDM
 
+ldbgcoord_a: MACRO
+; x, y[, origin]
+	if _NARG < 3
+	ld [(\2) * BG_MAP_WIDTH + (\1) + vBGMap0], a
+	else
+	ld [(\2) * BG_MAP_WIDTH + (\1) + \3], a
+	endc
+ENDM
+
 lda_coord: MACRO
 ; x, y[, origin]
 	if _NARG < 3
 	ld a, [(\2) * SCREEN_WIDTH + (\1) + wTileMap]
 	else
 	ld a, [(\2) * SCREEN_WIDTH + (\1) + \3]
+	endc
+ENDM
+
+lda_bgcoord: MACRO
+; x, y[, origin]
+	if _NARG < 3
+	ld a, [(\2) * BG_MAP_WIDTH + (\1) + vBGMap0]
+	else
+	ld a, [(\2) * BG_MAP_WIDTH + (\1) + \3]
 	endc
 ENDM
