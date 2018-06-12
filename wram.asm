@@ -435,6 +435,7 @@ wcd72:: dw ; cd72
 wCurItem:: db ; cd76
 wItemIndex:: db ;cd77
 wMonDexIndex: db ; cd78
+wCurPartyMon:: db ; cd79
 
 SECTION "CD7D", WRAM0[$CD7D]
 
@@ -544,7 +545,7 @@ wMonHLearnset:: ; ce1e
     ds 1
 
 SECTION "CE2E", WRAM0[$CE2E]
-wce2e:: ; ce2e
+wListMoves_MoveIndicesBuffer:: ; ce2e
 	ds 9
 
 SECTION "CE37", WRAM0[$CE37]
@@ -802,6 +803,11 @@ wTilesetCollisionAddress:: ; d6a4
 	dw
 	ds 4 ; TODO
 wTilesetEnd:: ; d6aa
+
+SECTION "Party Mon Nicknames", WRAM0 [$D7F6]
+
+wPartyMonNicknames:: ; d7f6
+	ds PARTY_LENGTH * MON_NAME_LENGTH ; = 36
 
 
 SECTION "PokeDexFlags", WRAM0[$D81A]

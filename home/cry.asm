@@ -72,33 +72,3 @@ GetCryIndex:: ; 00:3a02
 	pop af
 	ld [wce37], a
 	ret
-
-PrintLevel::
-	ld a, $6e
-	ld [hli], a
-	ld c, 2
-	ld a, [wcd9e]
-	cp 100
-	jr c, asm_3a37
-	dec hl
-	inc c
-	jr asm_3a37
-
-PrintLevelFullWidth::
-	ld a, $6e
-	ld [hli], a
-	ld c, 3
-	ld a, [wcd9e]
-asm_3a37: ; 00:3a37
-	ld [wce37], a
-	ld de, wce37
-	ld b, PRINTNUM_RIGHTALIGN | 1
-	jp PrintNumber
-
-Function3a42::
-	ld hl, wce2e
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	ret

@@ -1,53 +1,6 @@
 INCLUDE "constants.asm"
 
 if DEBUG
-SECTION "3A4B", ROM0[$3A4B]
-else
-SECTION "3A4B", ROM0[$3A0F]
-endc
-GetMonHeader:: ; 3a4b (0:3a4b)
-; copies the base stat data of a pokemon to wMonHeader
-; INPUT:
-; [wCurSpecies] = pokemon ID in dex order
-	push bc
-	push de
-	push hl
-	ldh a, [hROMBank]
-	push af
-	ld a, BANK(MonBaseStats)
-	call Bankswitch
-	ld a, [wCurSpecies]
-	cp DEX_FD
-	jr z, .egg
-	dec a
-	ld bc, MonBaseStatsEnd - MonBaseStats
-	ld hl, MonBaseStats
-	call AddNTimes
-	ld de, wMonHeader
-	ld bc, MonBaseStatsEnd - MonBaseStats
-	call CopyBytes
-	jr .done
-.egg
-	ld de, EggPicFront
-	ln b, 5, 5 ; egg sprite dimension
-	ld hl, wMonHSpriteDim
-	ld [hl], b
-	ld hl, wMonHFrontSprite
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	jr .done
-.done
-	ld a, [wCurSpecies]
-	ld [wMonHIndex], a
-	pop af
-	call Bankswitch
-	pop hl
-	pop de
-	pop bc
-	ret
-
-if DEBUG
 SECTION "3AED", ROM0[$3AED]
 else
 SECTION "3AED", ROM0[$3AB1]
