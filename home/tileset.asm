@@ -5,12 +5,12 @@ SECTION "LoadTilesetGFX", ROM0[$2D26]
 
 LoadTilesetGFX:: ; 2d26
 	call GetMapEnvironment
-	cp 1 ; TODO: constantify this
+	cp TOWN
 	jr z, .exterior
-	cp 2 ; TODO: constantify this
+	cp ROUTE
 	jr z, .exterior
 	ld a, [wMapTileset]
-	cp $1B ; TODO: constantify this
+	cp TILESET_SS_ANNE_DOCK
 	jr z, .exterior
 
 	ld a, [wTilesetTilesAddress]
