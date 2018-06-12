@@ -98,6 +98,10 @@ NEXTU
 wWhichPicTest:: ; c40b
     db
 
+	ds $b4 ; TODO
+
+wSpriteAnimIDBuffer:: db ; c4c0
+
 ENDU
 
 

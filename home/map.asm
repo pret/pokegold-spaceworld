@@ -1688,14 +1688,14 @@ Function2b87::
 Function2ba8:: ; 00:2ba8
 	ldh a, [hROMBank]
 	push af
-	ld a, $1
+	ld a, BANK(Function50b9)
 	call Bankswitch
 	call Function50b9
 	call Function18a0
-	ld a, $3
+	ld a, BANK(Functiond6e4)
 	call Bankswitch
 	call Functiond6e4
-	ld a, $1
+	ld a, BANK(_UpdateSprites)
 	call Bankswitch
 	call _UpdateSprites
 	call DelayFrame

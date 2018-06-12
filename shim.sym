@@ -1,5 +1,4 @@
 ; ROM0
-00:3CA8 InitSpriteAnimStruct
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
 00:3DA5 MaxVolume
@@ -193,6 +192,7 @@
 23:4CFD InitEffectObject
 23:4D0C PlaySpriteAnimationsAndDelayFrame
 23:4d13 EffectObjectJumpNoDelay
+23:4D52 _InitSpriteAnimStruct
 23:60cc MenuMonIconGfx
 23:71CB Function_8f1cb
 
