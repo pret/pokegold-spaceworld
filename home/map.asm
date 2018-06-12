@@ -1820,9 +1820,9 @@ Function2c8b::
 	call DelayFrame
 	ret
 
-Function2c9a::
+ScrollMapDown:: ; 2c9a
 	hlcoord 0, 0
-	call Function2d04
+	call BackupBGMapRow
 	ld a, [wBGMapAnchor]
 	ldh [hRedrawRowOrColumnDest], a
 	ld a, [wBGMapAnchor + 1]
@@ -1831,9 +1831,9 @@ Function2c9a::
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-Function2caf::
+ScrollMapUp:: ; 2caf
 	hlcoord 0, 16
-	call Function2d04
+	call BackupBGMapRow
 	ld a, [wBGMapAnchor]
 	ld l, a
 	ld a, [wBGMapAnchor + 1]
@@ -1850,9 +1850,9 @@ Function2caf::
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-Function2cd0::
+ScrollMapLeft:: ; 2cd0
 	hlcoord 18, 0
-	call Function2d10
+	call BackupBGMapColumn
 	ld a, [wBGMapAnchor]
 	ld c, a
 	and $e0
@@ -1868,9 +1868,9 @@ Function2cd0::
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-Function2cef::
+ScrollMapRight:: ; 2cef
 	hlcoord 0, 0
-	call Function2d10
+	call BackupBGMapColumn
 	ld a, [wBGMapAnchor]
 	ldh [hRedrawRowOrColumnDest], a
 	ld a, [wBGMapAnchor + 1]
@@ -1879,7 +1879,7 @@ Function2cef::
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-Function2d04:: ; 00:2d04
+BackupBGMapRow:: ; 00:2d04
 	ld de, wRedrawRowOrColumnSrcTiles
 	ld c, $28
 .asm_2d09: ; 00:2d09
@@ -1890,7 +1890,7 @@ Function2d04:: ; 00:2d04
 	jr nz, .asm_2d09
 	ret
 
-Function2d10:: ; 00:2d10
+BackupBGMapColumn:: ; 00:2d10
 	ld de, wRedrawRowOrColumnSrcTiles
 	ld c, $12
 .asm_2d15: ; 00:2d15
