@@ -661,7 +661,7 @@ Function19b5::
 	res 7, [hl]
 	ret
 
-Function19c0::
+SetObjectFacing::
 	push de
 	call CheckObjectVisibility
 	pop de

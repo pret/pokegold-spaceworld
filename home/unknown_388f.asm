@@ -92,7 +92,7 @@ Function3920::
 	ld hl, wJoypadFlags
 	res 4, [hl]
 	ld hl, .text
-	call Function3111
+	call PrintFieldText
 	call RotateFourPalettesLeft
 	jp Init
 

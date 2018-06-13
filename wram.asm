@@ -65,8 +65,8 @@ wCryLength:: dw ; c1b0
 ; c1b2
     ds 7 ; TODO
 
-wc1b9:: db ; c1b9
-wc1ba:: db ; c1ba
+wStereoPanningMask:: db ; c1b9
+wCryTracks:: db ; c1ba
 ; either wChannelsEnd or wMusicEnd, unsure
 
 	ds 1 ; TODO
@@ -97,6 +97,10 @@ NEXTU
 ; Monster or Trainer test?
 wWhichPicTest:: ; c40b
     db
+
+	ds $b4 ; TODO
+
+wSpriteAnimIDBuffer:: db ; c4c0
 
 ENDU
 
@@ -433,6 +437,7 @@ wcd72:: dw ; cd72
 wCurItem:: db ; cd76
 wItemIndex:: db ;cd77
 wMonDexIndex: db ; cd78
+wCurPartyMon:: db ; cd79
 
 SECTION "CD7D", WRAM0[$CD7D]
 
@@ -542,7 +547,7 @@ wMonHLearnset:: ; ce1e
     ds 1
 
 SECTION "CE2E", WRAM0[$CE2E]
-wce2e:: ; ce2e
+wListMoves_MoveIndicesBuffer:: ; ce2e
 	ds 9
 
 SECTION "CE37", WRAM0[$CE37]
@@ -704,6 +709,11 @@ wJoypadFlags:: db ; d4ab
 ; |\------- joypad sync mtx
 ; \-------- joypad disabled
 
+SECTION "D4B2", WRAM0 [$D4B2]
+
+wDigWarp:: db ; d4b2
+wDigMapGroup:: db ; d4b3
+wDigMapId:: db ; d4b4
 
 SECTION "Warp data", WRAM0[$D514]
 
@@ -726,6 +736,9 @@ ENDR
 
 wCurrMapObjectCount:: ; d5f6
     db
+wd5f7:: ; d5f7
+	ds 2 * 16
+; d617
 
 SECTION "D637", WRAM0[$D637]
 wd637:: db ; d637
@@ -805,8 +818,28 @@ wTilesetCollisionAddress:: ; d6a4
 	ds 4 ; TODO
 wTilesetEnd:: ; d6aa
 
+SECTION "Player Party", WRAM0 [$D6AA]
 
-SECTION "PokeDexFlags", WRAM0[$D81A]
+wPartyCount:: db
+wPartySpecies:: ds PARTY_LENGTH
+wPartyEnd:: db
+
+wPartyMons::
+wPartyMon1:: party_struct wPartyMon1 ; d6b2
+wPartyMon2:: party_struct wPartyMon2 ; d6e2
+wPartyMon3:: party_struct wPartyMon3 ; d712
+wPartyMon4:: party_struct wPartyMon4 ; d742
+wPartyMon5:: party_struct wPartyMon5 ; d772
+wPartyMon6:: party_struct wPartyMon6 ; d7a2
+wPlayerPartyEnd:: ; d7d2
+
+wPartyMonOT:: ; d7d2
+	ds PARTY_LENGTH * 6
+wPartyMonOTEnd:: ; d7f6
+
+wPartyMonNicknames:: ; d7f6
+	ds PARTY_LENGTH * MON_NAME_LENGTH ; = $24
+wPartyMonNicknamesEnd:: ; d81a
 
 wPokedexOwned::    ; d81a
     flag_array NUM_POKEMON

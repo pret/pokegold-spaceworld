@@ -299,7 +299,7 @@ MapSetup_Reload:: ; 2280
 	call PlayMapMusic
 	ld a, $88 ; TODO: constantify this
 	ld [wMusicFade], a
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAPPALS
 	call GetSGBLayout
 	call LoadWildMons
 	call FadeIn
@@ -319,7 +319,7 @@ MapSetup_22af:: ; 22af
 	call PlayMapMusic
 	ld a, $88 ; TODO: constantify this
 	ld [wMusicFade], a
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAPPALS
 	call GetSGBLayout
 	call FadeIn
 	ret
@@ -345,17 +345,17 @@ MapSetup_Continue:: ; 22e6
 	call PlayMapMusic
 	ld a, $88 ; TODO: constantify this
 	ld [wMusicFade], a
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAPPALS
 	call GetSGBLayout
 	call LoadWildMons
-	call $242C ; TODO
+	call SpawnFacingDown
 	call FadeIn
 	ret
 
 MapSetup_Warp:: ; 232c
 	callab OverworldFadeOut
 	call DisableLCD
-	call Function27C7 ; TODO
+	call SetDigWarp ; TODO
 	ld a, [wNextWarp]
 	ld [wWarpNumber], a
 	ld a, [wNextMapGroup]
@@ -373,11 +373,11 @@ MapSetup_Warp:: ; 232c
 	call InitializeVisibleSprites
 	call EnableLCD
 	call PlayMapMusic
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAPPALS
 	call GetSGBLayout
 	call LoadWildMons
 	call FadeIn
-	call Function2407 ; TODO
+	call TrySpawnFacingCurrent
 	ret
 
 LoadMapTimeOfDay:: ; 237c
@@ -441,13 +441,13 @@ FadeIn:: ; 23e5 ; This is not OverworldFadeIn, but I don't know what it is
 	call RefreshTiles
 	ld hl, wVramState
 	set 0, [hl]
-	call Function2407
+	call TrySpawnFacingCurrent
 	callab _UpdateSprites
 	call DelayFrame
 	callab OverworldFadeIn
 	ret
 
-Function2407:: ; 00:2407
+TrySpawnFacingCurrent:: ; 00:2407
 	ld a, $2a
 	ld [wcb77], a
 	xor a
@@ -466,11 +466,12 @@ Function2407:: ; 00:2407
 	ret z
 	cp $78
 	ret z
+SpawnFacingDown::
 	ld a, $0
 	ld [wPlayerFacing], a
 	ld a, $0
 	ld d, $0
-	call Function19c0
+	call SetObjectFacing
 	ret
 
 MapSetup_Connection:: ; 2439
@@ -483,7 +484,7 @@ MapSetup_Connection:: ; 2439
 	call ChangeMap
 	call SaveScreen
 	call FadeToMapMusic
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAPPALS
 	call GetSGBLayout
 	call LoadWildMons
 	scf
@@ -923,7 +924,7 @@ ClearObjectStructs:: ; 26cf
 	dec c
 	jr nz, .clear_struct
 
-	ld hl, $D00F ; TODO
+	ld hl, wCmdQueue
 	ld de, 16
 	ld c, 4
 	xor a
@@ -1081,7 +1082,7 @@ GetCoordOfUpperLeftCorner:: ; 277a
 	ld [wMetatileStandingX], a
 	ret
 
-Function27C7:: ; 27c7 ; TODO
+SetDigWarp:: ; 27c7 ; TODO
 	call GetMapEnvironment
 	cp 2
 	jr z, .interior
@@ -1103,7 +1104,7 @@ Function27C7:: ; 27c7 ; TODO
 	ret
 
 .exterior
-	ld hl, $D4B2 ; TODO: figure out what this is
+	ld hl, wDigWarp ; TODO: figure out what this is
 	ld a, [wPrevWarp]
 	ld [hli], a
 	ld a, [wMapGroup]
@@ -1733,4 +1734,179 @@ Function2be5:: ; 00:2be5
 	jp hl
 
 .Return: ; 00:2c04
+	ret
+
+
+OverworldStartButtonCheck:: ; 2c05 (0:2c05)
+	ldh a, [hJoyState]
+	bit START_F, a
+	ret z
+if DEBUG
+	and (START | B_BUTTON)
+	cp (START | B_BUTTON)
+	jr nz, .regularMenu
+	ld a, [wce63]
+	bit 1, a
+	ret z              ; debug disabled
+	callba InGameDebugMenu
+	jr CheckStartmenuSelectHook
+.regularMenu
+endc
+	callba DisplayStartMenu
+	jr CheckStartmenuSelectHook
+SelectButtonFunction:: ; 2c2a (0:2c2a)
+	callab CheckRegisteredItem
+CheckStartmenuSelectHook:
+	ldh a, [hStartmenuCloseAndSelectHookEnable]
+	and a
+	ret z          ; hook is disabled
+	ld hl, StartmenuCloseAndSelectHookPtr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [StartmenuCloseAndSelectHookBank]
+	call FarCall_hl
+	ld hl, hStartmenuCloseAndSelectHookEnable
+	xor a
+	ld [hli], a    ; clear hook enable and ???
+	ld [hl], a
+	dec a
+	ret
+
+Function2c4a:: ; 00:2c4a
+.loop:
+	call Function2c5a
+	and a
+	ld a, [wcb6e]
+	bit 5, a
+	ret z
+	bit 6, a
+	jr z, .loop
+	scf
+	ret
+
+Function2c5a:: ; 00:2c5a
+	ldh a, [hROMBank]
+	push af
+
+	ld a, BANK(Function50b9)
+	call Bankswitch
+	call Function50b9
+
+	call Function18a0
+
+	ld a, BANK(Functiond4e6)
+	call Bankswitch
+	call Functiond4e6
+
+	ld a, BANK(Function5190)
+	call Bankswitch
+	call Function5190
+
+	call DelayFrame
+	call UpdateToolgear
+	ld hl, wToolgearFlags
+	set 2, [hl]
+	call DelayFrame
+
+	pop af
+	call Bankswitch
+	ret
+
+UpdateAndTransferToolgear::
+	call DelayFrame
+	call UpdateToolgear
+	ld hl, wToolgearFlags
+	set 2, [hl]
+	call DelayFrame
+	ret
+
+ScrollMapDown:: ; 2c9a
+	hlcoord 0, 0
+	call BackupBGMapRow
+	ld a, [wBGMapAnchor]
+	ldh [hRedrawRowOrColumnDest], a
+	ld a, [wBGMapAnchor + 1]
+	ldh [hRedrawRowOrColumnDest + 1], a
+	ld a, $2
+	ldh [hRedrawRowOrColumnMode], a
+	ret
+
+ScrollMapUp:: ; 2caf
+	hlcoord 0, SCREEN_HEIGHT - 2
+	call BackupBGMapRow
+	ld a, [wBGMapAnchor]
+	ld l, a
+	ld a, [wBGMapAnchor + 1]
+	ld h, a
+	ld bc, BG_MAP_WIDTH * (SCREEN_HEIGHT - 2)
+	add hl, bc
+	ld a, h
+	and %00000011
+	or HIGH(vBGMap0)
+	ldh [hRedrawRowOrColumnDest + 1], a
+	ld a, l
+	ldh [hRedrawRowOrColumnDest], a
+	ld a, $2
+	ldh [hRedrawRowOrColumnMode], a
+	ret
+
+ScrollMapLeft:: ; 2cd0
+	hlcoord SCREEN_WIDTH - 2, 0
+	call BackupBGMapColumn
+	ld a, [wBGMapAnchor]
+	ld c, a
+	and %11100000
+	ld b, a
+	ld a, c
+	add SCREEN_HEIGHT
+	and %00011111
+	or b
+	ldh [hRedrawRowOrColumnDest], a
+	ld a, [wBGMapAnchor + 1]
+	ldh [hRedrawRowOrColumnDest + 1], a
+	ld a, $1
+	ldh [hRedrawRowOrColumnMode], a
+	ret
+
+ScrollMapRight:: ; 2cef
+	hlcoord 0, 0
+	call BackupBGMapColumn
+	ld a, [wBGMapAnchor]
+	ldh [hRedrawRowOrColumnDest], a
+	ld a, [wBGMapAnchor + 1]
+	ldh [hRedrawRowOrColumnDest + 1], a
+	ld a, $1
+	ldh [hRedrawRowOrColumnMode], a
+	ret
+
+BackupBGMapRow:: ; 00:2d04
+	ld de, wRedrawRowOrColumnSrcTiles
+	ld c, 2 * SCREEN_WIDTH
+.loop: ; 00:2d09
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop
+	ret
+
+BackupBGMapColumn:: ; 00:2d10
+	ld de, wRedrawRowOrColumnSrcTiles
+	ld c, $12
+.loop: ; 00:2d15
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	inc de
+	ld a, SCREEN_WIDTH - 1
+	add l
+	ld l, a
+	jr nc, .skip
+	inc h
+.skip: ; 00:2d22
+	dec c
+	jr nz, .loop
 	ret
