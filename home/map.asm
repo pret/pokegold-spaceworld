@@ -1813,7 +1813,7 @@ Function2c5a:: ; 00:2c5a
 	call Bankswitch
 	ret
 
-Function2c8b::
+UpdateAndTransferToolgear::
 	call DelayFrame
 	call UpdateToolgear
 	ld hl, wToolgearFlags
@@ -1833,16 +1833,16 @@ ScrollMapDown:: ; 2c9a
 	ret
 
 ScrollMapUp:: ; 2caf
-	hlcoord 0, 16
+	hlcoord 0, SCREEN_HEIGHT - 2
 	call BackupBGMapRow
 	ld a, [wBGMapAnchor]
 	ld l, a
 	ld a, [wBGMapAnchor + 1]
 	ld h, a
-	ld bc, $200
+	ld bc, BG_MAP_WIDTH * (SCREEN_HEIGHT - 2)
 	add hl, bc
 	ld a, h
-	and $3
+	and %00000011
 	or HIGH(vBGMap0)
 	ldh [hRedrawRowOrColumnDest + 1], a
 	ld a, l
@@ -1852,15 +1852,15 @@ ScrollMapUp:: ; 2caf
 	ret
 
 ScrollMapLeft:: ; 2cd0
-	hlcoord 18, 0
+	hlcoord SCREEN_WIDTH - 2, 0
 	call BackupBGMapColumn
 	ld a, [wBGMapAnchor]
 	ld c, a
-	and $e0
+	and %11100000
 	ld b, a
 	ld a, c
-	add $12
-	and $1f
+	add SCREEN_HEIGHT
+	and %00011111
 	or b
 	ldh [hRedrawRowOrColumnDest], a
 	ld a, [wBGMapAnchor + 1]
@@ -1882,31 +1882,31 @@ ScrollMapRight:: ; 2cef
 
 BackupBGMapRow:: ; 00:2d04
 	ld de, wRedrawRowOrColumnSrcTiles
-	ld c, $28
-.asm_2d09: ; 00:2d09
+	ld c, 2 * SCREEN_WIDTH
+.loop: ; 00:2d09
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_2d09
+	jr nz, .loop
 	ret
 
 BackupBGMapColumn:: ; 00:2d10
 	ld de, wRedrawRowOrColumnSrcTiles
 	ld c, $12
-.asm_2d15: ; 00:2d15
+.loop: ; 00:2d15
 	ld a, [hli]
 	ld [de], a
 	inc de
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld a, $13
+	ld a, SCREEN_WIDTH - 1
 	add l
 	ld l, a
-	jr nc, .asm_2d22
+	jr nc, .skip
 	inc h
-.asm_2d22: ; 00:2d22
+.skip: ; 00:2d22
 	dec c
-	jr nz, .asm_2d15
+	jr nz, .loop
 	ret

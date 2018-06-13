@@ -469,7 +469,6 @@
 00:CB6F wPlayerStepDirection
 00:CE67 wPlayerName
 
-01:D165 wTMCounts
 01:D19E wItems
 01:D258 wRivalName
 01:D264 wPlayerBikeSurfState
