@@ -10,7 +10,7 @@ LoadTilesetGFX:: ; 2d26
 	cp ROUTE
 	jr z, .exterior
 	ld a, [wMapTileset]
-	cp TILESET_SS_ANNE_DOCK
+	cp TILESET_FOREST
 	jr z, .exterior
 
 	ld a, [wTilesetTilesAddress]

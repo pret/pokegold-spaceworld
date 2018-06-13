@@ -44,6 +44,7 @@ CheckStartmenuSelectHook:
 
 Function2c4a: ; 2c4a (0:2c4a)
 ; copy of Function2ba8
+; calling Functiond4e6 instead of Functiond6e4
 .loop
 	call Function2c5a
 	and a
@@ -61,10 +62,10 @@ Function2c5a: ; 2c5a (0:2c5a)
 	ld a, BANK(Function50b9)
 	call Bankswitch
 	call Function50b9
-	call Function_18a0
-	ld a, BANK(Functiond6e4)
+	call Function18a0
+	ld a, BANK(Functiond4e6)
 	call Bankswitch
-	call Functiond6e4
+	call Functiond4e6
 	ld a, BANK(_UpdateSprites)
 	call Bankswitch
 	call _UpdateSprites
@@ -124,7 +125,7 @@ ScheduleEastColumnRedraw: ; 2cd0 (0:2cd0)
 	and ($FF ^ (BG_MAP_WIDTH - 1))  ; mask upper address bits
 	ld b, a
 	ld a, c
-	add SCREEN_WIDTH
+	add SCREEN_WIDTH - 2
 	and BG_MAP_WIDTH - 1            ; mask lower address bits
 	or b
 	ldh [hRedrawRowOrColumnDest], a
