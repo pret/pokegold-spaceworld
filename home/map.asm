@@ -437,7 +437,7 @@ InitializeVisibleSprites:: ; 23dc
 	ret
 
 FadeIn:: ; 23e5 ; This is not OverworldFadeIn, but I don't know what it is
-	call Function202c ; TODO
+	call InitToolgearBuffer
 	call RefreshTiles
 	ld hl, wVramState
 	set 0, [hl]
@@ -1700,9 +1700,9 @@ Function2ba8:: ; 00:2ba8
 	call Bankswitch
 	call _UpdateSprites
 	call DelayFrame
-	call Function2075
-	ld hl, wd14f
-	set 2, [hl]
+	call UpdateToolgear
+	ld hl, wToolgearFlags
+	set 2, [hl] ; transfer toolgear to window
 	call DelayFrame
 	pop af
 	call Bankswitch
@@ -1804,8 +1804,8 @@ Function2c5a:: ; 00:2c5a
 	call Function5190
 
 	call DelayFrame
-	call Function2075
-	ld hl, wd14f
+	call UpdateToolgear
+	ld hl, wToolgearFlags
 	set 2, [hl]
 	call DelayFrame
 
@@ -1815,8 +1815,8 @@ Function2c5a:: ; 00:2c5a
 
 Function2c8b::
 	call DelayFrame
-	call Function2075
-	ld hl, wd14f
+	call UpdateToolgear
+	ld hl, wToolgearFlags
 	set 2, [hl]
 	call DelayFrame
 	ret

@@ -14,8 +14,8 @@ LoadFontsBattleExtra::
 LoadFontExtra:: ; 00:0d1a
 	jpab LoadFontExtraGraphicsWithCursor
 
-LoadFontExtra2::
-	jpab LoadHexadecimalFontOrHUDGraphics
+LoadToolgearGraphics::
+	jpab LoadToolgearGraphicsDebug
 
 FarCopyData: ; d2a (0:d2a)
 ; Identical to FarCopyBytes except for tail call optimization

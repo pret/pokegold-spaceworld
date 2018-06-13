@@ -216,9 +216,9 @@ Function3171:: ; 00:3171
 	ld a, $90
 	ldh [hWY], a
 	call Function318f
-	ld hl, wd14f
+	ld hl, wToolgearFlags
 	res 7, [hl]
-	call Function202c
+	call InitToolgearBuffer
 	ret
 
 Function318f:: ; 00:318f

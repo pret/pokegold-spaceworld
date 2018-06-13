@@ -23,11 +23,11 @@ LoadPokemonMenuGraphics:: ; f8026 (3e:4026)
 	lb bc, BANK(BattleHPBarGFX), ((LevelUpGFXEnd - BattleHPBarGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	jr LoadActiveFrameGraphics
-LoadHexadecimalFontOrHUDGraphics:: ; f8034 (3e:4034)
+LoadToolgearGraphicsDebug:: ; f8034 (3e:4034)
 	call LoadActiveFrameGraphics
 	ld hl, $d153
 	bit 0, [hl]
-	jr z, LoadHudGraphics
+	jr z, .loadToolgearGraphics
 	ld hl, $9660
 	ld de, FontGFX + (("０" - "ア") * $08)
 	lb bc, BANK(FontGFX), ("９" - "０" + 1)
@@ -37,14 +37,14 @@ LoadHexadecimalFontOrHUDGraphics:: ; f8034 (3e:4034)
 	lb bc, BANK(FontExtraAB_GFX), ("Ｆ" - "Ａ" + 1)
 	call Get2bpp
 	ret
-LoadHudGraphics:: ; f8057 (3e:4057)
+.loadToolgearGraphics:: ; f8057 (3e:4057)
 	ld hl, $9660
 	ld de, FontGFX + (("０" - "ア") * $08)
 	lb bc, BANK(FontGFX), ("９" - "０" + 1)
 	call Get1bpp
 	ld hl, $9700
-	ld de, $7381
-	ld bc, $0401
+	ld de, TrainerCardColonGFX
+	lb bc, BANK(TrainerCardColonGFX), 1 ; tile
 	call Get2bpp
 	ld hl, $9710
 	ld de, HUD_GFX

@@ -268,11 +268,9 @@ wScreenSave:: ; cb94
 	ds 6 * 5
 
 SECTION "CBB2", WRAM0[$CBB2]
-wcbb2:: ; cbb2
-	ds $20
-wcbd2:: ; cbd2
-    ds $20
-; cbe6
+wToolgearBuffer:: ; cbb2
+	ds $40
+	; cbe2
 
 SECTION "CBF2", WRAM0[$CBF2]
 
@@ -645,7 +643,13 @@ wMap14Object::  map_object wMap14
 wMap15Object::  map_object wMap15
 wMapObjectsEnd:: ; d14f
 
-wd14f:: db ; d14f
+wToolgearFlags:: db ; d14f
+; 76543210
+; |    | \- show toolgear
+; |    |
+; |    \--- transfer toolgear to window
+; \-------- hide toolgear
+
 	ds 2 ; TODO
 
 wTimeOfDayPal:: db ; d152
@@ -653,6 +657,7 @@ wTimeOfDayPal:: db ; d152
 
 wd153:: db ; d153
 ; 76543210
+; |      \- show player coords in toolgear instead of time
 ; \-------- switch overworld palettes according to seconds not hours
 
     ds 3 ; TODO

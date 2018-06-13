@@ -544,8 +544,10 @@ EnableSprites:: ; 1531 (0:1531)
 	ret
 ; 0x1538
 
-Function1538: ; 1538 (0:1538)
-	ld a, [$d14f]
+TransferToolgearRow: ; 1538 (0:1538)
+; TransferToolgearRow
+; Copy second line of toolgear to window
+	ld a, [wToolgearFlags]
 	bit 0, a
 	ret z
 	bit 7, a
@@ -553,11 +555,11 @@ Function1538: ; 1538 (0:1538)
 	bit 2, a
 	res 2, a
 	ret z
-	ld [$d14f], a
+	ld [wToolgearFlags], a
 	ld [hSPTemp], sp
-	ld hl, $cbd2
+	bgcoord hl, 0, 1, wToolgearBuffer
 	ld sp, hl
-	ld hl, $9c20
+	bgcoord hl, 0, 1, vBGMap1
 	ld a, $01
 	jp TransferBgRows
 
