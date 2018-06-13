@@ -924,7 +924,7 @@ ClearObjectStructs:: ; 26cf
 	dec c
 	jr nz, .clear_struct
 
-	ld hl, $D00F ; TODO
+	ld hl, wCmdQueue
 	ld de, 16
 	ld c, 4
 	xor a
