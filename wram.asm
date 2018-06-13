@@ -704,6 +704,11 @@ wJoypadFlags:: db ; d4ab
 ; |\------- joypad sync mtx
 ; \-------- joypad disabled
 
+SECTION "D4B2", WRAM0 [$D4B2]
+
+wDigWarp:: db ; d4b2
+wDigMapGroup:: db ; d4b3
+wDigMapId:: db ; d4b4
 
 SECTION "Warp data", WRAM0[$D514]
 

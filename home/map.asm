@@ -299,7 +299,7 @@ MapSetup_Reload:: ; 2280
 	call PlayMapMusic
 	ld a, $88 ; TODO: constantify this
 	ld [wMusicFade], a
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAPPALS
 	call GetSGBLayout
 	call LoadWildMons
 	call FadeIn
@@ -319,7 +319,7 @@ MapSetup_22af:: ; 22af
 	call PlayMapMusic
 	ld a, $88 ; TODO: constantify this
 	ld [wMusicFade], a
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAPPALS
 	call GetSGBLayout
 	call FadeIn
 	ret
@@ -345,17 +345,17 @@ MapSetup_Continue:: ; 22e6
 	call PlayMapMusic
 	ld a, $88 ; TODO: constantify this
 	ld [wMusicFade], a
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAPPALS
 	call GetSGBLayout
 	call LoadWildMons
-	call $242C ; TODO
+	call SpawnFacingDown
 	call FadeIn
 	ret
 
 MapSetup_Warp:: ; 232c
 	callab OverworldFadeOut
 	call DisableLCD
-	call Function27C7 ; TODO
+	call SetDigWarp ; TODO
 	ld a, [wNextWarp]
 	ld [wWarpNumber], a
 	ld a, [wNextMapGroup]
@@ -373,11 +373,11 @@ MapSetup_Warp:: ; 232c
 	call InitializeVisibleSprites
 	call EnableLCD
 	call PlayMapMusic
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAPPALS
 	call GetSGBLayout
 	call LoadWildMons
 	call FadeIn
-	call Function2407 ; TODO
+	call TrySpawnFacingCurrent
 	ret
 
 LoadMapTimeOfDay:: ; 237c
@@ -441,13 +441,13 @@ FadeIn:: ; 23e5 ; This is not OverworldFadeIn, but I don't know what it is
 	call RefreshTiles
 	ld hl, wVramState
 	set 0, [hl]
-	call Function2407
+	call TrySpawnFacingCurrent
 	callab _UpdateSprites
 	call DelayFrame
 	callab OverworldFadeIn
 	ret
 
-Function2407:: ; 00:2407
+TrySpawnFacingCurrent:: ; 00:2407
 	ld a, $2a
 	ld [wcb77], a
 	xor a
@@ -466,11 +466,12 @@ Function2407:: ; 00:2407
 	ret z
 	cp $78
 	ret z
+SpawnFacingDown::
 	ld a, $0
 	ld [wPlayerFacing], a
 	ld a, $0
 	ld d, $0
-	call Function19c0
+	call SetObjectFacing
 	ret
 
 MapSetup_Connection:: ; 2439
@@ -483,7 +484,7 @@ MapSetup_Connection:: ; 2439
 	call ChangeMap
 	call SaveScreen
 	call FadeToMapMusic
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAPPALS
 	call GetSGBLayout
 	call LoadWildMons
 	scf
@@ -1081,7 +1082,7 @@ GetCoordOfUpperLeftCorner:: ; 277a
 	ld [wMetatileStandingX], a
 	ret
 
-Function27C7:: ; 27c7 ; TODO
+SetDigWarp:: ; 27c7 ; TODO
 	call GetMapEnvironment
 	cp 2
 	jr z, .interior
@@ -1103,7 +1104,7 @@ Function27C7:: ; 27c7 ; TODO
 	ret
 
 .exterior
-	ld hl, $D4B2 ; TODO: figure out what this is
+	ld hl, wDigWarp ; TODO: figure out what this is
 	ld a, [wPrevWarp]
 	ld [hli], a
 	ld a, [wMapGroup]
