@@ -1,6 +1,6 @@
 SECTION "SmallFarFlagAction", ROMX[$4d33], BANK[$03]
 
-SmallFarFlagAction: ; 4d7c1
+SmallFarFlagAction: ; 03:4d33
 ; Perform action b on bit c in flag array hl.
 ; If checking a flag, check flag array d:hl unless d is 0.
 
