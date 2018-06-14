@@ -570,6 +570,29 @@ GetTMHMNumber: ; 03:4CFF
 .not_machine
 	and a
 	ret
+
+GetNumberedTMHM: ; 03:4D1A
+; Return the item id of a TM/HM by number c.
+	ld a, c
+	ld c, 0
+; Adjust for any dummy items.
+	cp ITEM_C8 - ITEM_TM01 ; TM01-04
+	jr c, .adjust
+	inc c
+	cp ITEM_E1 - ITEM_TM01 - 1 ; TM28 - TM05
+	jr c, .adjust
+	inc c
+	cp ITEM_FF - ITEM_TM01 - 2 ; End of list
+	jr nc, .dont_adjust
+.adjust
+	add c
+	add ITEM_TM01
+	ld c, a
+	scf
+	ret
+.dont_adjust
+	and a
+	ret
 	
 SECTION "_CheckTossableItem", ROMX[$53AD], BANK[$03]
 

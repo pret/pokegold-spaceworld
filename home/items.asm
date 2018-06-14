@@ -1,12 +1,28 @@
 INCLUDE "constants.asm"
 
 if DEBUG
-SECTION "AddItemToInventory", ROM0[$3259]
+SECTION "TossItem", ROM0[$3243]
 else
-SECTION "AddItemToInventory", ROM0[$321D]
+SECTION "TossItem", ROM0[$3207]
 endc
 
-AddItemToInventory:: ; 3259
+TossItem: ; 00:3243
+	ldh a, [hROMBank]
+	push af
+	ld a, BANK(_TossItem)
+	call Bankswitch
+	push hl
+	push de
+	push bc
+	call _TossItem
+	pop bc
+	pop de
+	pop hl
+	pop af
+	call Bankswitch
+	ret
+
+ReceiveItem:: ; 3259
 ; function to add an item (in varying quantities) to the player's bag or PC box
 ; INPUT:
 ; HL = address of inventory (either wNumBagItems or wNumBoxItems)
@@ -45,7 +61,7 @@ GiveItem::
 	ld a, c
 	ld [wItemQuantity], a
 	ld hl, wNumBagItems
-	call AddItemToInventory
+	call ReceiveItem
 	ret nc
 	call GetItemName
 	call CopyStringToCD31
