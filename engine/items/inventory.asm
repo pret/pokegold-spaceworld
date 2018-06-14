@@ -577,20 +577,20 @@ GetNumberedTMHM: ; 03:4D1A
 	ld c, 0
 ; Adjust for any dummy items.
 	cp ITEM_C8 - ITEM_TM01 ; TM01-04
-	jr c, .adjust
+	jr c, .finish
 	inc c
-	cp ITEM_E1 - ITEM_TM01 - 1 ; TM28 - TM05
-	jr c, .adjust
+	cp ITEM_E1 - ITEM_TM01 - 1 ; TM05-28
+	jr c, .finish
 	inc c
 	cp ITEM_FF - ITEM_TM01 - 2 ; End of list
-	jr nc, .dont_adjust
-.adjust
+	jr nc, .not_machine
+.finish
 	add c
 	add ITEM_TM01
 	ld c, a
 	scf
 	ret
-.dont_adjust
+.not_machine
 	and a
 	ret
 	
