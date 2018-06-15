@@ -321,8 +321,10 @@ SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
 wVBlankJoyFrameCounter: db ; cc32
 
 wVBlankOccurred: db ; cc33
+wLastSpawnMapGroup: db ;cc34
+wLastSpawnMapNumber: db ; cc35
 
-    ds 4
+    ds 2
 
 ;Controls what type of opening (fire/notes) you get.
 wcc38::
@@ -404,8 +406,8 @@ wMenuScrollPosition:: db ; cd49
 
 wTextDest:: ds 2; cd4a
 
-StartmenuCloseAndSelectHookBank:: db ; cd4c
-StartmenuCloseAndSelectHookPtr:: dw ; cd4d
+wQueuedScriptBank:: db ; cd4c
+wQueuedScriptAddr:: dw ; cd4d
 
 wPredefID:: ; cd4f
     db
@@ -419,7 +421,9 @@ wPredefBC:: ; cd54
 wFarCallBCBuffer:: ; cd54
     dw
 
-    ds 3 ; TODO
+    ds 2 ; TODO
+
+wFieldMoveSucceeded:: db ; cd58
 wVramState:: db ; cd59
 
 	ds 3 ; TODO
@@ -466,10 +470,15 @@ wNextMapGroup:: db ; cdbf
 wNextMapId:: db ; cdc0
 wPrevWarp:: db ; cdc1
 
-	ds 11
+	ds 1
+
+wFieldMoveScriptID:: db ; cdc3
+
+	ds 9
 
 wLinkBattleRNs:: ds 10 ; cdcd
 ; cddd
+
 
 SECTION "CE00", WRAM0[$CE00]
 

@@ -596,7 +596,8 @@ GetNumberedTMHM: ; 03:4D1A
 	
 SECTION "_CheckTossableItem", ROMX[$53AD], BANK[$03]
 
-; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be removed from the bag.
+; Return 1 in wItemAttributeParamBuffer and
+; carry if wCurItem can't be removed from the bag.
 _CheckTossableItem: ; 03:53AD
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
@@ -605,7 +606,8 @@ _CheckTossableItem: ; 03:53AD
 	and a
 	ret
 
-; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be selected.
+; Return 1 in wItemAttributeParamBuffer
+; and carry if wCurItem can't be selected.
 CheckSelectableItem: ; 03:53B8
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
