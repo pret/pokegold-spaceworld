@@ -58,7 +58,8 @@ TeleportFunction: ; 03:52db
 
 .Text_CantFindDestination:
 	text "とびさきが　みつかりません"
-	para_done
+	para ""
+	done
 
 .DoTeleport: ; 03:534b
 	ldh a, [hROMBank]
@@ -78,7 +79,8 @@ TeleportFunction: ; 03:52db
 
 .Text_CantUseHere:
 	text "ここでは　つかえません！"
-	para_done
+	para ""
+	done
 
 .TeleportScript: ; 03:5375
 	call RefreshScreen
