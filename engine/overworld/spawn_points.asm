@@ -46,7 +46,7 @@ IsSpawnPoint: ; 03:47b6
 	jr z, .succeed
 .next
 	push bc
-	ld bc, 4
+	ld bc, SPAWN_POINT_SIZE
 	add hl, bc
 	pop bc
 	inc c

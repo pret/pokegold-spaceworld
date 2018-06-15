@@ -2,18 +2,21 @@ INCLUDE "constants.asm"
 
 SECTION "TeleportFunction", ROMX[$52db], BANK[$03]
 
+; Sets wFieldMoveSucceeded to $f if successful, $0 if not
 TeleportFunction: ; 03:52db
 	xor a
 	ld [wFieldMoveScriptID], a
 .loop
 	ld a, [wFieldMoveScriptID]
-	bit 7, a
+	bit SCRIPT_FINISHED_FLAG, a
 	jr nz, .finish
 	ld hl, .JumpTable
 	call CallJumptable
 	jr .loop
+
+; Finish by returning only the low nibble
 .finish
-	and $7f
+	and $FF - SCRIPT_FINISHED
 	ld [wFieldMoveSucceeded], a
 	ret
 	
@@ -29,11 +32,11 @@ TeleportFunction: ; 03:52db
 	jr z, .success
 	cp ROUTE
 	jr z, .success
-	ld a, $02
+	ld a, SCRIPT_FAIL_TELEPORT
 	ld [wFieldMoveScriptID], a
 	ret
 .success
-	ld a, $03
+	ld a, SCRIPT_CHECK_SPAWN_TELEPORT
 	ld [wFieldMoveScriptID], a
 	ret
 	
@@ -46,40 +49,40 @@ TeleportFunction: ; 03:52db
 	jr c, .not_spawn
 	ld hl, .Text_CantFindDestination
 	call MenuTextBoxBackup
-	ld a, $80
+	ld a, SCRIPT_FINISHED | SCRIPT_FAIL
 	ld [wFieldMoveScriptID], a
 	ret
 .not_spawn
 	ld a, c
 	ld [wDefaultSpawnpoint], a
-	ld a, $01
+	ld a, SCRIPT_DO_TELEPORT
 	ld [wFieldMoveScriptID], a
 	ret
 
 .Text_CantFindDestination:
 	text "とびさきが　みつかりません"
-	para ""
+	para
 	done
 
 .DoTeleport: ; 03:534b
 	ldh a, [hROMBank]
 	ld hl, .TeleportScript
 	call QueueScript
-	ld a, $8f
+	ld a, SCRIPT_FINISHED | SCRIPT_SUCCESS
 	ld [wFieldMoveScriptID], a
 	ret
 
 .FailTeleport: ; 03:5359
 	ld hl, .Text_CantUseHere
 	call MenuTextBoxBackup
-	ld a, $80
+	ld a, SCRIPT_FINISHED | SCRIPT_FAIL
 	ld [wFieldMoveScriptID], a
 	scf
 	ret
 
 .Text_CantUseHere:
 	text "ここでは　つかえません！"
-	para ""
+	para
 	done
 
 .TeleportScript: ; 03:5375
