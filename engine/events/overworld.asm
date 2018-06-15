@@ -8,7 +8,7 @@ TeleportFunction: ; 03:52db
 	ld [wFieldMoveScriptID], a
 .loop
 	ld a, [wFieldMoveScriptID]
-	bit SCRIPT_FINISHED_FLAG, a
+	bit SCRIPT_FINISHED, a
 	jr nz, .finish
 	ld hl, .JumpTable
 	call CallJumptable
@@ -16,7 +16,7 @@ TeleportFunction: ; 03:52db
 
 ; Finish by returning only the low nibble
 .finish
-	and $FF - SCRIPT_FINISHED
+	and $FF - SCRIPT_FINISHED_MASK
 	ld [wFieldMoveSucceeded], a
 	ret
 	
@@ -32,11 +32,11 @@ TeleportFunction: ; 03:52db
 	jr z, .success
 	cp ROUTE
 	jr z, .success
-	ld a, SCRIPT_FAIL_TELEPORT
+	ld a, SCRIPT_ID_02
 	ld [wFieldMoveScriptID], a
 	ret
 .success
-	ld a, SCRIPT_CHECK_SPAWN_TELEPORT
+	ld a, SCRIPT_ID_03
 	ld [wFieldMoveScriptID], a
 	ret
 	
@@ -49,13 +49,13 @@ TeleportFunction: ; 03:52db
 	jr c, .not_spawn
 	ld hl, .Text_CantFindDestination
 	call MenuTextBoxBackup
-	ld a, SCRIPT_FINISHED | SCRIPT_FAIL
+	ld a, SCRIPT_FAIL
 	ld [wFieldMoveScriptID], a
 	ret
 .not_spawn
 	ld a, c
 	ld [wDefaultSpawnpoint], a
-	ld a, SCRIPT_DO_TELEPORT
+	ld a, SCRIPT_ID_01
 	ld [wFieldMoveScriptID], a
 	ret
 
@@ -68,14 +68,14 @@ TeleportFunction: ; 03:52db
 	ldh a, [hROMBank]
 	ld hl, .TeleportScript
 	call QueueScript
-	ld a, SCRIPT_FINISHED | SCRIPT_SUCCESS
+	ld a, SCRIPT_SUCCESS
 	ld [wFieldMoveScriptID], a
 	ret
 
 .FailTeleport: ; 03:5359
 	ld hl, .Text_CantUseHere
 	call MenuTextBoxBackup
-	ld a, SCRIPT_FINISHED | SCRIPT_FAIL
+	ld a, SCRIPT_FAIL
 	ld [wFieldMoveScriptID], a
 	scf
 	ret
