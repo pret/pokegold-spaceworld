@@ -59,7 +59,7 @@ TeleportFunction: ; 03:52db
 	ld [wFieldMoveScriptID], a
 	ret
 
-.Text_CantFindDestination:
+.Text_CantFindDestination: ; 03:533B
 	text "とびさきが　みつかりません"
 	para
 	done
@@ -80,7 +80,7 @@ TeleportFunction: ; 03:52db
 	scf
 	ret
 
-.Text_CantUseHere:
+.Text_CantUseHere: ; 03:5366
 	text "ここでは　つかえません！"
 	para
 	done
@@ -97,7 +97,7 @@ TeleportFunction: ; 03:52db
 	ldh [hMapEntryMethod], a
 	jpab Functionfcc24
 	
-.Text_ReturnToLastMonCenter:
+.Text_ReturnToLastMonCenter: ; 03:5395
 	text "さいごに　たちよった"
 	line "#センターにもどります"
 	done
