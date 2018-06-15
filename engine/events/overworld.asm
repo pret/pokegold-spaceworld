@@ -57,9 +57,8 @@ TeleportFunction: ; 03:52db
 	ret
 
 .Text_CantFindDestination:
-	db "<NULL>"
-	db "とびさきが　みつかりません"
-	db "<PARA><DONE>"
+	text "とびさきが　みつかりません"
+	para_done
 
 .DoTeleport: ; 03:534b
 	ldh a, [hROMBank]
@@ -78,9 +77,8 @@ TeleportFunction: ; 03:52db
 	ret
 
 .Text_CantUseHere:
-	db "<NULL>"
-	db "ここでは　つかえません！"
-	db "<PARA><DONE>"
+	text "ここでは　つかえません！"
+	para_done
 
 .TeleportScript: ; 03:5375
 	call RefreshScreen
@@ -95,8 +93,6 @@ TeleportFunction: ; 03:52db
 	jpab Functionfcc24
 	
 .Text_ReturnToLastMonCenter:
-	db "<NULL>"
-	db "さいごに　たちよった"
-	db "<LINE>"
-	db "#センターにもどります"
-	db "<DONE>"
+	text "さいごに　たちよった"
+	line "#センターにもどります"
+	done

@@ -7,6 +7,8 @@ done   EQUS "db \"<DONE>\""    ; End a text box.
 prompt EQUS "db \"<PROMPT>\""  ; Prompt the player to end a text box (initiating some other event).
 text_end EQUS "db $50"         ; End control code for text processor
                                ; different from @
+							   
+para_done EQUS "db \"<PARA>\",\"<DONE>\"" ;Start a new paragraph and End a text box
 
 ; TODO: determine if these are in
 ; Pokedex text commands are only used with pokered.
