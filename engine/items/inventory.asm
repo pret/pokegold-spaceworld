@@ -6,9 +6,7 @@ _ReceiveItem: ; 03:4AA1
 	call DoesHLEqualwNumBagItems
 	jp nz, PutItemInPocket
 	push hl
-	ld hl, CheckItemPocket
-	ld a, BANK(CheckItemPocket)
-	call FarCall_hl
+	callab CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]
 	dec a
 	ld hl, .Pockets
@@ -47,9 +45,7 @@ _TossItem: ; 03:4AE0
 	call DoesHLEqualwNumBagItems
 	jr nz, .remove_item
 	push hl
-	ld hl, CheckItemPocket
-	ld a, BANK(CheckItemPocket)
-	call FarCall_hl
+	callab CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]
 	dec a
 	ld hl, .Pockets
@@ -90,9 +86,7 @@ _CheckItem: ; 03:4B1E
 	call DoesHLEqualwNumBagItems
 	jr nz, .not_bag
 	push hl
-	ld hl, CheckItemPocket
-	ld a, BANK(CheckItemPocket)
-	call FarCall_hl
+	callab CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]
 	dec a
 	ld hl, .Pockets

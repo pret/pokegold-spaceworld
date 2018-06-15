@@ -42,9 +42,7 @@ TeleportFunction: ; 03:52db
 	ld d, a
 	ld a, [wLastSpawnMapNumber]
 	ld e, a
-	ld hl, IsSpawnPoint
-	ld a, BANK(IsSpawnPoint)
-	call FarCall_hl
+	callab IsSpawnPoint
 	jr c, .not_spawn
 	ld hl, .Text_CantFindDestination
 	call MenuTextBoxBackup
@@ -94,9 +92,7 @@ TeleportFunction: ; 03:52db
 	call Function1fea
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
-	ld hl, Functionfcc24
-	ld a, BANK(Functionfcc24)
-	jp FarCall_hl
+	jpab Functionfcc24
 	
 .Text_ReturnToLastMonCenter:
 	db "<NULL>"
