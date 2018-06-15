@@ -59,9 +59,7 @@
 02:5695 CheckSGB
 
 03:4000 Functionc000
-03:4791 DebugWarp
-03:479F DebugWarp.Destinations
-03:47B6 IsSpawnPoint
+03:47D5 SpawnPoints
 03:488D Tilesets
 03:4D33 Functioncd33
 03:4D6F Functioncd6f

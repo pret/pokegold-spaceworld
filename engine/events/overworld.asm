@@ -51,7 +51,7 @@ TeleportFunction: ; 03:52db
 	ret
 .not_spawn
 	ld a, c
-	ld [wDebugWarpSelection], a
+	ld [wDefaultSpawnpoint], a
 	ld a, $01
 	ld [wFieldMoveScriptID], a
 	ret

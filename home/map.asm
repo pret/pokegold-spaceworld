@@ -331,7 +331,7 @@ MapSetup_Continue:: ; 22e6
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
-	callab DebugWarp
+	callab LoadSpawnPoint
 	call CopyMapPartialAndAttributes
 	call SetUpMapBuffer
 	call InitUnknownBuffercc9e

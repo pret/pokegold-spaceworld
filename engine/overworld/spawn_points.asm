@@ -1,0 +1,60 @@
+INCLUDE "constants.asm"
+
+SECTION "LoadSpawnPoint", ROMX[$4791], BANK[$03]
+
+LoadSpawnPoint: ; 03:4791
+; loads the spawn point in wDefaultSpawnpoint
+	push hl
+	push de
+	ld a, [wDefaultSpawnpoint]
+	and a
+	jr z, .skip
+	dec a
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	ld de, SpawnPoints
+	add hl, de
+	ld a, [hli]
+	ld [wMapGroup], a
+	ld a, [hli]
+	ld [wMapId], a
+	ld a, [hli]
+	ld [wXCoord], a
+	ld a, [hli]
+	ld [wYCoord], a
+.skip
+	pop de
+	pop hl
+	ret
+	
+IsSpawnPoint: ; 03:47b6
+; Checks if the map loaded in de is a spawn point.
+; Returns carry if it's a spawn point.
+	ld hl, SpawnPoints
+	ld c, 1
+.loop
+	ld a, [hl]
+	cp SPAWN_N_A
+	jr z, .fail
+	cp d
+	jr nz, .next
+	inc hl
+	ld a, [hld]
+	cp e
+	jr z, .succeed
+.next
+	push bc
+	ld bc, 4
+	add hl, bc
+	pop bc
+	inc c
+	jr .loop
+.fail
+	and a
+	ret
+.succeed
+	scf
+	ret
+

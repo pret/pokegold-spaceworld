@@ -7,3 +7,7 @@
 	const ENVIRONMENT_5
 	const GATE
 	const DUNGEON
+
+; SpawnPoints indexes (see data/maps/spawn_points.asm)
+const_value = -1
+	const SPAWN_N_A

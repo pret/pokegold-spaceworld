@@ -331,7 +331,7 @@ wcc38::
 wTitleSequenceOpeningType:: ; cc38
     db
 
-wDebugWarpSelection:: ; cc39
+wDefaultSpawnpoint:: ; cc39
     db
 
 wMovementBufferCount:: db ; cc3a
