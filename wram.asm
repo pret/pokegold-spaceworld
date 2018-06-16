@@ -389,12 +389,19 @@ wStringBuffer1:: ds 1 ; How long is this? ; cd26
 
 SECTION "CD31", WRAM0[$CD31]
 
-wStartDay::
-wcd31:: ; cd31
-    db
+UNION
+wStartDay:: db ;cd31
+wStartHour:: db ;cd32
+wStartMinute:: db ;cd33
 
-wStartHour:: db
-wStartMinute:: db
+NEXTU
+wHPBarTempHP:: dw ; cd31
+
+NEXTU
+wStringBuffer2:: db ; How long is this? ; cd31
+
+ENDU
+
 
 SECTION "CD3E", WRAM0[$CD3D]
 
@@ -442,7 +449,11 @@ wItemIndex:: db ;cd77
 wMonDexIndex: db ; cd78
 wWhichPokemon: db ; cd79
 
-SECTION "CD7D", WRAM0[$CD7D]
+SECTION "CD7B", WRAM0[$CD7B]
+
+wHPBarType:: db ; cd76
+	
+	ds 1
 
 wItemQuantity:: db ; cd7d
 wItemQuantityBuffer:: db ; cd7e
@@ -476,9 +487,22 @@ wPrevWarp:: db ; cdc1
 
 	ds 1
 
-wFieldMoveScriptID:: db ; cdc3
+UNION
+wFieldMoveScriptID:: db; cdc3
+wMapBlocksAddress:: dw ; cdc4
+wReplacementBlock:: db ; cdc6
 
-	ds 9
+NEXTU
+
+wHPBarMaxHP:: dw ; cdc3
+wHPBarOldHP:: dw ; cdc5
+
+ENDU
+
+wHPBarNewHP:: dw ; cdc7
+wHPBarDelta::   db ; cdc9
+wcdca:: db ; cdca
+wHPBarHPDifference:: dw ; cdcb
 
 wLinkBattleRNs:: ds 10 ; cdcd
 ; cddd
@@ -594,6 +618,11 @@ wTextBoxFlags::  db ; ce62
 wce63:: db ; ce63
 ; 76543210
 ;       \-- global debug enable
+
+	ds 3
+	
+wPlayerName:: db ; ce67
+
 
 SECTION "Mom's Name", WRAM0[$CE6D]
 wMomsName:: ds 6 ; ce6d

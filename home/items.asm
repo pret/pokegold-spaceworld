@@ -64,6 +64,6 @@ GiveItem::
 	call ReceiveItem
 	ret nc
 	call GetItemName
-	call CopyStringToCD31
+	call CopyStringToStringBuffer2
 	scf
 	ret

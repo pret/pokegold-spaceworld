@@ -243,3 +243,20 @@ Unreferenced_GetMoveName:: ; 00:37fc
 	ld de, wStringBuffer1
 	pop hl
 	ret
+
+SECTION "GetNick", ROM0[$3a97]
+
+GetNick: ; 00:3a97
+; Get nickname a from list hl.
+	push hl
+	push bc
+	call SkipNames
+	ld de, wStringBuffer1
+	push de
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	pop de
+	callab CorrectNickErrors
+	pop bc
+	pop hl
+	ret

@@ -35,7 +35,7 @@ GiveItemPredef::
 	add_predef Functiondc16
 	add_predef Functiondd5c
 	add_predef Functionde79
-	add_predef Functionce7c
+	add_predef UpdateHPBar
 	add_predef Functiondf7d ; 18
 	add_predef Functiondf91
 	add_predef Function1128f

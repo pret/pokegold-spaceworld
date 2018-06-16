@@ -1,6 +1,297 @@
 INCLUDE "constants.asm"
 
-SECTION "FlyFunction", ROMX[$51af], BANK[$03]
+SECTION "CutFunction", ROMX[$4fab], BANK[$03]
+
+CutFunction: ; 03:4fab
+	call .reset
+.loop
+	call .next
+	jr nc, .loop
+	ld [wFieldMoveSucceeded], a
+	ret
+.reset
+	xor a
+	ld [wFieldMoveScriptID], a
+	ret
+.next
+	ld a, [wFieldMoveScriptID]
+	ld hl, CutTable
+	jp CallJumptable
+	
+CutTable
+	dw TryCut
+	dw CheckMapForSomethingToCut
+	dw CheckMapForSomethingToCut2
+	dw DoCut
+	dw DoCut
+	dw FailCut
+
+TryCut: ; 03:4fd1
+	call GetMapEnvironment
+	cp ROUTE
+	jr z, .success
+	cp TOWN
+	jr z, .success
+	ld a, SCRIPT_ID_05
+	ld [wFieldMoveScriptID], a
+	xor a
+	ret
+.success
+	ld a, SCRIPT_ID_01
+	ld [wFieldMoveScriptID], a
+	xor a
+	ret
+
+CheckMapForSomethingToCut: ; 03:4fea
+	call GetFacingTileCoord
+	cp $80 ; TODO - Constant
+	jr nz, .fail
+	call GetBlockLocation
+	ld a, l
+	ld [wMapBlocksAddress], a
+	ld a, h
+	ld [wMapBlocksAddress + 1], a
+	ld a, [hl]
+	call GetCutReplacementBlock
+	jr nc, .fail
+	dec hl
+	ld a, [hl]
+	ld [wReplacementBlock], a
+	ld a, SCRIPT_ID_04
+	ld [wFieldMoveScriptID], a
+	xor a
+	ret
+.fail
+	ld a, SCRIPT_ID_02
+	ld [wFieldMoveScriptID], a
+	xor a
+	ret
+
+GetCutReplacementBlock:
+	ld c, a
+	ld hl, CutReplacementBlocks
+.loop
+	ld a, [hli]
+	cp -1
+	ret z
+	inc hl
+	cp c
+	jr nz, .loop
+	scf
+	ret
+	
+CutReplacementBlocks:
+; replacement block, facing block
+	db $30, $25
+	db $31, $2A
+	db $32, $34
+	db $33, $35
+	db -1
+
+; TODO - Better name
+CheckMapForSomethingToCut2: ; 03:502c
+	call GetFacingTileCoord
+	call CheckCuttableTile
+	jr nc, .fail
+	call GetBlockLocation
+	ld a, [hl]
+	cp $3b	; TODO - constant?
+	jr nz, .fail
+	ld a, l
+	ld [wMapBlocksAddress], a
+	ld a, h
+	ld [wMapBlocksAddress + 1], a
+	ld a, $04
+	ld [wReplacementBlock], a
+	ld a, SCRIPT_ID_03
+	ld [wFieldMoveScriptID], a
+	xor a
+	ret
+.fail
+	ld a, SCRIPT_ID_05
+	ld [wFieldMoveScriptID], a
+	xor a
+	ret
+	
+CheckCuttableTile:
+	ld hl, CuttableTiles
+	ld c, a
+.loop
+	ld a, [hli]
+	cp -1
+	ret z
+	cp c
+	jr nz, .loop
+	scf
+	ret
+	
+CuttableTiles:
+	db $81
+	db $82
+	db $8A
+	db $8B
+	db -1
+
+FailCut: ; 03:5069
+	ld hl, Text_CantUseCutHere
+	call MenuTextBoxBackup
+	scf
+	ld a, SCRIPT_FAIL
+	ret
+	
+Text_CantUseCutHere: ; 03:5073
+	text "ここでは　つかえません"
+	prompt
+
+DoCut: ; 03:5080
+	ld hl, CutScript
+	ld a, BANK(CutScript)
+	call QueueScript
+	scf
+	ld a, SCRIPT_SUCCESS
+	ret
+
+CutScript: ; 03:508C
+	call RefreshScreen
+	ld hl, wPartyMonNicknames
+	ld a, 2 ; TODO - constant
+	ld [wMonType], a
+	ld a, [wWhichPokemon]
+	call GetNick
+	call CopyStringToStringBuffer2
+	ld hl, Text_CutItDown
+	call MenuTextBoxBackup
+	ld de, $62 ; TODO - constant
+	call PlaySFX
+	ld hl, wMapBlocksAddress
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wReplacementBlock]
+	ld [hl], a
+	call LoadMapPart
+	call UpdateSprites
+	call WaitBGMap
+	call Function1fea
+	scf
+	ret
+	
+Text_CutItDown: ; 03:50c4
+	text_from_ram wStringBuffer2
+	text "　は　"
+	line "くさかりを　つかった！"
+	prompt	
+
+SurfFunction: ; 03:50d8
+	call .reset
+.loop
+	call .next
+	jr nc, .loop
+	ld [wFieldMoveSucceeded], a
+	ret
+.reset
+	xor a
+	ld [wFieldMoveScriptID], a
+	ret
+.next
+	ld a, [wFieldMoveScriptID]
+	ld hl, SurfTable
+	jp CallJumptable
+
+SurfTable:
+	dw TrySurf
+	dw DoSurf
+	dw FailSurf
+
+TrySurf: ; 03:50f8
+	call GetFacingTileCoord
+	and $f0 ; todo - mask constant
+	cp $20 ; todo -constant
+	jr z, .success
+	cp $40 ; todo - constant
+	jr z, .success
+	ld a, SCRIPT_ID_02
+	ld [wFieldMoveScriptID], a
+	xor a
+	ret
+.success
+	ld a, SCRIPT_ID_01
+	ld [wFieldMoveScriptID], a
+	xor a
+	ret
+
+DoSurf: ; 03:5113
+	ldh a, [hROMBank]
+	ld hl, SurfScript
+	call QueueScript
+	ld a, SCRIPT_FINISHED
+	ld [wFieldMoveScriptID], a
+	scf
+	ld a, SCRIPT_SUCCESS
+	ret
+
+FailSurf: ; 03:5124
+	ld hl, Text_CantSurfHere
+	call MenuTextBoxBackup
+	ld a, SCRIPT_FINISHED
+	ld [wFieldMoveScriptID], a
+	scf
+	ld a, SCRIPT_FAIL
+	ret
+
+Text_CantSurfHere: ; 03:5133
+	text "ここでは　のることが"
+	next "できません"
+	prompt
+	
+SurfScript: ; 03:5145
+	call RefreshScreen
+	ld hl, wPartyMonNicknames
+	ld a, 2 ; TODO - constant
+	ld [wMonType], a
+	ld a, [wWhichPokemon]
+	call GetNick
+	call CopyStringToStringBuffer2
+	ld hl, Text_UsedSurf
+	call MenuTextBoxBackup
+	ld a, $04 ; TODO - constant
+	ld [wPlayerBikeSurfState], a
+	call Function0d02
+	call PlayMapMusic
+	call Function_d185
+	call Function1fea
+	ret
+
+Text_UsedSurf: ; 03:5171
+	text_from_ram wStringBuffer2
+	text "　は　"
+	line "@"
+	text_from_ram wPlayerName
+	text "を　のせた！"
+	prompt
+	
+Function_d185: ; 03:5185
+	call InitMovementBuffer
+	call .sub_d19b
+	call AppendToMovementBuffer
+	ld a, $32 ; TODO - constant
+	call AppendToMovementBuffer
+	ld a, 0 ; TODO - constant
+	ld hl, wMovementBuffer
+	call LoadMovementDataPointer
+.sub_d19b
+	ld a, [wPlayerWalking]
+	srl a
+	srl a
+	ld e, a
+	ld d, $00
+	ld hl, Table_Unknown_d1ab
+	add hl, de
+	ld a, [hl]
+	ret
+
+Table_Unknown_d1ab:
+	db 4, 5, 6, 7
 
 ; Sets wFieldMoveSucceeded to $f if successful, $0 if not
 FlyFunction: ; 03:51af
@@ -129,13 +420,13 @@ DigTable: ; 03:527D
 CheckCanDig: ; 03:5283
 	call GetMapEnvironment
 	cp INDOOR
-	jr z, .fail
+	jr z, .success
 	cp CAVE
-	jr z, .fail
+	jr z, .success
 	ld a, SCRIPT_ID_02
 	ld [wFieldMoveScriptID], a
 	ret
-.fail
+.success
 	ld a, SCRIPT_ID_01
 	ld [wFieldMoveScriptID], a
 	ret

@@ -92,7 +92,7 @@ CopyNameFromMenu::
 	call GetNthString
 	ld d, h
 	ld e, l
-	call CopyStringToCD31
+	call CopyStringToStringBuffer2
 	pop bc
 	pop hl
 	ret

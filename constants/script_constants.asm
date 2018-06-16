@@ -5,6 +5,8 @@
 	const SCRIPT_ID_01   ; 01
 	const SCRIPT_ID_02   ; 02
 	const SCRIPT_ID_03   ; 03
+	const SCRIPT_ID_04   ; 04
+	const SCRIPT_ID_05   ; 05
 	
 ; Flags
 SCRIPT_FINISHED_FLAG      EQU 7
