@@ -16,16 +16,16 @@ FlyFunction: ; 03:51af
 	ret
 .next
 	ld a, [wFieldMoveScriptID]
-	ld hl, .FlyTable
+	ld hl, FlyTable
 	jp CallJumptable
 
-.FlyTable ; 03:51c9
-	dw .TryFly
-	dw .ShowFlyMap
-	dw .DoFly
-	dw .FailFly
+FlyTable: ; 03:51c9
+	dw TryFly
+	dw ShowFlyMap
+	dw DoFly
+	dw FailFly
 
-.TryFly: ; 03:51d1
+TryFly: ; 03:51d1
 	call GetMapEnvironment
 	cp TOWN
 	jr z, .success
@@ -35,13 +35,13 @@ FlyFunction: ; 03:51af
 	ld [wFieldMoveScriptID], a
 	xor a
 	ret
-.success: ; 03:51e3
+.success
 	ld a, SCRIPT_ID_01
 	ld [wFieldMoveScriptID], a
 	xor a
 	ret
 
-.ShowFlyMap: ; 03:51ea
+ShowFlyMap: ; 03:51ea
 	call LoadStandardMenuHeader
 	call ClearSprites
 	callab FlyMap
@@ -58,7 +58,7 @@ FlyFunction: ; 03:51af
 	xor a
 	ret
 
-.dont_fly: ; 03:5213
+.dont_fly ; 03:5213
 	call UpdateTimePals
 	ld a, SCRIPT_FINISHED
 	ld [wFieldMoveScriptID], a
@@ -66,12 +66,12 @@ FlyFunction: ; 03:51af
 	ld a, SCRIPT_FAIL
 	ret
 
-.DoFly: ; 03:521f
+DoFly: ; 03:521f
 	ld a, [wFlyDestination]
 	inc a
 	ld [wDefaultSpawnPoint], a
 	ldh a, [hROMBank]
-	ld hl, .FlyScript
+	ld hl, FlyScript
 	call QueueScript
 	ld a, -1
 	ld [wFieldMoveScriptID], a
@@ -79,8 +79,8 @@ FlyFunction: ; 03:51af
 	ld a, SCRIPT_SUCCESS
 	ret
 
-.FailFly: ; 03:5237
-	ld hl, .Text_CantUseFlyHere
+FailFly: ; 03:5237
+	ld hl, Text_CantUseFlyHere
 	call MenuTextBoxBackup
 	ld a, SCRIPT_FINISHED
 	ld [wFieldMoveScriptID], a
@@ -88,11 +88,11 @@ FlyFunction: ; 03:51af
 	ld a, SCRIPT_FAIL
 	ret
 
-.Text_CantUseFlyHere: ; 03:5246
+Text_CantUseFlyHere: ; 03:5246
 	text "ここでは　つかえません！"
 	prompt
 
-.FlyScript: ; 03:5254
+FlyScript: ; 03:5254
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
 	jpab Functionfcc24
@@ -106,7 +106,7 @@ DigFunction: ; 03:5260
 	ld a, [wFieldMoveScriptID]
 	bit SCRIPT_FINISHED_FLAG, a
 	jr nz, .finish
-	ld hl, .DigTable
+	ld hl, DigTable
 	call CallJumptable
 	jr .loop
 
@@ -121,12 +121,12 @@ DigFunction: ; 03:5260
 	ld [wFieldMoveScriptID], a
 	ret
 
-.DigTable: ; 03:527D
-	dw .CheckCanDig
-	dw .DoDig
-	dw .FailDig
+DigTable: ; 03:527D
+	dw CheckCanDig
+	dw DoDig
+	dw FailDig
 
-.CheckCanDig: ; 03:5283
+CheckCanDig: ; 03:5283
 	call GetMapEnvironment
 	cp INDOOR
 	jr z, .fail
@@ -140,26 +140,26 @@ DigFunction: ; 03:5260
 	ld [wFieldMoveScriptID], a
 	ret
 
-.DoDig: ; 03:529a
-	ld hl, .DigScript
+DoDig: ; 03:529a
+	ld hl, DigScript
 	ldh a, [hROMBank]
 	call QueueScript
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_SUCCESS
 	ld [wFieldMoveScriptID], a
 	ret
 
-.FailDig: ; 03:52a8
-	ld hl, .Text_CantUseDigHere
+FailDig: ; 03:52a8
+	ld hl, Text_CantUseDigHere
 	call MenuTextBoxBackup
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_FAIL
 	ld [wFieldMoveScriptID], a
 	ret
 
-.Text_CantUseDigHere: ; 03:52b4
+Text_CantUseDigHere: ; 03:52b4
 	text "ここでは　つかえません！"
 	prompt
 	
-.DigScript: ; 03:52c2
+DigScript: ; 03:52c2
 	ld hl, wDigWarpNumber
 	ld de, wNextWarp
 	ld bc, 3
@@ -181,7 +181,7 @@ TeleportFunction: ; 03:52db
 	ld a, [wFieldMoveScriptID]
 	bit SCRIPT_FINISHED_FLAG, a
 	jr nz, .finish
-	ld hl, .TeleportTable
+	ld hl, TeleportTable
 	call CallJumptable
 	jr .loop
 
@@ -191,13 +191,13 @@ TeleportFunction: ; 03:52db
 	ld [wFieldMoveSucceeded], a
 	ret
 	
-.TeleportTable
-	dw .TryTeleport
-	dw .DoTeleport
-	dw .FailTeleport
-	dw .CheckIfSpawnPoint
+TeleportTable
+	dw TryTeleport
+	dw DoTeleport
+	dw FailTeleport
+	dw CheckIfSpawnPoint
 
-.TryTeleport: ; 03:52fc
+TryTeleport: ; 03:52fc
 	call GetMapEnvironment
 	cp TOWN
 	jr z, .success
@@ -211,14 +211,14 @@ TeleportFunction: ; 03:52db
 	ld [wFieldMoveScriptID], a
 	ret
 	
-.CheckIfSpawnPoint ; 03:5313
+CheckIfSpawnPoint ; 03:5313
 	ld a, [wLastSpawnMapGroup]
 	ld d, a
 	ld a, [wLastSpawnMapNumber]
 	ld e, a
 	callab IsSpawnPoint
 	jr c, .not_spawn
-	ld hl, .Text_CantFindDestination
+	ld hl, Text_CantFindDestination
 	call MenuTextBoxBackup
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_FAIL
 	ld [wFieldMoveScriptID], a
@@ -230,35 +230,35 @@ TeleportFunction: ; 03:52db
 	ld [wFieldMoveScriptID], a
 	ret
 
-.Text_CantFindDestination: ; 03:533B
+Text_CantFindDestination: ; 03:533B
 	text "とびさきが　みつかりません"
 	para
 	done
 
-.DoTeleport: ; 03:534b
+DoTeleport: ; 03:534b
 	ldh a, [hROMBank]
-	ld hl, .TeleportScript
+	ld hl, TeleportScript
 	call QueueScript
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_SUCCESS
 	ld [wFieldMoveScriptID], a
 	ret
 
-.FailTeleport: ; 03:5359
-	ld hl, .Text_CantUseTeleportHere
+FailTeleport: ; 03:5359
+	ld hl, Text_CantUseTeleportHere
 	call MenuTextBoxBackup
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_FAIL
 	ld [wFieldMoveScriptID], a
 	scf
 	ret
 
-.Text_CantUseTeleportHere: ; 03:5366
+Text_CantUseTeleportHere: ; 03:5366
 	text "ここでは　つかえません！"
 	para
 	done
 
-.TeleportScript: ; 03:5375
+TeleportScript: ; 03:5375
 	call RefreshScreen
-	ld hl, .Text_ReturnToLastMonCenter
+	ld hl, Text_ReturnToLastMonCenter
 	call MenuTextBox
 	ld c, 60
 	call DelayFrames
@@ -268,7 +268,7 @@ TeleportFunction: ; 03:52db
 	ldh [hMapEntryMethod], a
 	jpab Functionfcc24
 	
-.Text_ReturnToLastMonCenter: ; 03:5395
+Text_ReturnToLastMonCenter: ; 03:5395
 	text "さいごに　たちよった"
 	line "#センターにもどります"
 	done
