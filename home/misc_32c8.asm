@@ -7,7 +7,7 @@ SECTION "Unknown 32c8", ROM0[$328c]
 endc
 
 Function32c8::
-	predef Functionce10
+	predef GetItemAmount
 	ld a, b
 	and a
 	ret

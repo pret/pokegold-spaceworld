@@ -587,6 +587,52 @@ GetNumberedTMHM: ; 03:4D1A
 .not_machine
 	and a
 	ret
+
+SECTION "GetItemAmount", ROMX[$4e10], BANK[$03]
+
+; Returns carry if user has the item
+; and the amount in b
+GetItemAmount: ; 03:4e10
+	call CheckAmountInItemPocket
+	ret c
+	call CheckAmountInKeyItems
+	ret c
+	ld b, 0
+	and a
+	ret
+	
+; Returns the amount of item b in b
+CheckAmountInItemPocket: ; 03:4E1C
+	ld hl, wItems
+.loop
+	inc hl
+	ld a, [hli]
+	cp -1
+	ret z
+	cp b
+	jr nz, .loop
+
+	ld a, [hl]
+	ld b, a
+	scf
+	ret
+
+; Returns the amount of item b in b
+CheckAmountInKeyItems: ; 03:4E2B
+	ld hl, wNumKeyItems
+	ld a, [hli]
+	and a
+	ret z
+
+.loop
+	ld a, [hli]
+	cp -1
+	ret z
+	cp b
+	jr nz, .loop
+	ld b, 1
+	scf
+	ret
 	
 SECTION "_CheckTossableItem", ROMX[$53AD], BANK[$03]
 

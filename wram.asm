@@ -440,6 +440,7 @@ wcd72:: dw ; cd72
 wCurItem:: db ; cd76
 wItemIndex:: db ;cd77
 wMonDexIndex: db ; cd78
+wWhichPokemon: db ; cd79
 
 SECTION "CD7D", WRAM0[$CD7D]
 
@@ -821,8 +822,26 @@ wTilesetCollisionAddress:: ; d6a4
 	ds 4 ; TODO
 wTilesetEnd:: ; d6aa
 
+wPartyCount:: db
+wPartySpecies:: ds PARTY_LENGTH
+wPartyEnd:: db
 
-SECTION "PokeDexFlags", WRAM0[$D81A]
+wPartyMons::
+wPartyMon1:: party_struct wPartyMon1 ; d6b2
+wPartyMon2:: party_struct wPartyMon2 ; d6e2
+wPartyMon3:: party_struct wPartyMon3 ; d712
+wPartyMon4:: party_struct wPartyMon4 ; d742
+wPartyMon5:: party_struct wPartyMon5 ; d772
+wPartyMon6:: party_struct wPartyMon6 ; d7a2
+wPlayerPartyEnd:: ; d7d2
+
+wPartyMonOT:: ; d7d2
+	ds PARTY_LENGTH * 6
+wPartyMonOTEnd:: ; d7f6
+
+wPartyMonNicknames:: ; d7f6
+	ds PARTY_LENGTH * MON_NAME_LENGTH ; = $24
+wPartyMonNicknamesEnd:: ; d81a
 
 wPokedexOwned::    ; d81a
     flag_array NUM_POKEMON
