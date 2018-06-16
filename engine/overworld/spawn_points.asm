@@ -3,10 +3,10 @@ INCLUDE "constants.asm"
 SECTION "LoadSpawnPoint", ROMX[$4791], BANK[$03]
 
 LoadSpawnPoint: ; 03:4791
-; loads the spawn point in wDefaultSpawnpoint
+; loads the spawn point in wDefaultSpawnPoint
 	push hl
 	push de
-	ld a, [wDefaultSpawnpoint]
+	ld a, [wDefaultSpawnPoint]
 	and a
 	jr z, .skip
 	dec a

@@ -48,6 +48,7 @@
 02:43E8 Function83e8
 02:45DF QueueFollowerFirstStep
 02:462E Function862e
+02:46CB FlyMap
 02:4786 Function8786
 02:4856 DecompTownMapTilemap
 02:48DA DecompTownMapTilemap.tilemap

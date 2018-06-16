@@ -228,7 +228,10 @@ wCurSpecies:: db ; cb5b
 wNamedObjectTypeBuffer:: db ; cb5c
 
 SECTION "CB5E", WRAM0[$CB5E]
-wJumptableIndex:: ds 4
+wJumptableIndex:: db ; cb5e
+wFlyDestination:: db ; cb5f
+
+	ds 2
 
 SECTION "CB62", WRAM0[$CB62]
 
@@ -331,7 +334,7 @@ wcc38::
 wTitleSequenceOpeningType:: ; cc38
     db
 
-wDefaultSpawnpoint:: ; cc39
+wDefaultSpawnPoint:: ; cc39
     db
 
 wMovementBufferCount:: db ; cc3a
@@ -712,6 +715,10 @@ wJoypadFlags:: db ; d4ab
 ; ||\------ don't wait for keypress to close text box
 ; |\------- joypad sync mtx
 ; \-------- joypad disabled
+
+SECTION "wDigWarpNumber", WRAM0[$D4B2]
+
+wDigWarpNumber:: db ; d4b2
 
 
 SECTION "Warp data", WRAM0[$D514]
