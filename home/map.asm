@@ -1593,7 +1593,7 @@ Function2a8d:: ; 00:2a8d
 	dbbw $05, $33, Function14777
 
 Function2ae5::
-.asm_2ae5: ; 00:2ae5
+.loop: ; 00:2ae5
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	set 6, [hl]
@@ -1608,7 +1608,7 @@ Function2ae5::
 	bit 7, [hl]
 	res 7, [hl]
 	ret nz
-	call Function38e3
+	call TestWildBattleStart
 	ret nz
 	call OverworldStartButtonCheck
 	ret nz
@@ -1619,16 +1619,16 @@ Function2ae5::
 	and a
 	ret nz
 	call Function2c4a
-	jr nc, .asm_2ae5
+	jr nc, .loop
 	callba Function824c
 	ld a, [wc5ed]
 	bit 6, a
-	jr nz, .asm_2ae5
+	jr nz, .loop
 	call CheckMovingOffEdgeOfMap
 	ret c
 	call WarpCheck
 	ret c
-	jr .asm_2ae5
+	jr .loop
 
 Function2b39::
 	ld hl, wJoypadFlags

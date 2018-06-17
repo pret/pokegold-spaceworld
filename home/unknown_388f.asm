@@ -49,19 +49,19 @@ Function38d8::
 	ld [wd637], a
 	ret
 
-Function38e3::
+TestWildBattleStart::
 	ldh a, [hJoyState]
-	and $f0
-	ret z
-	call Function3233
-	jp nz, Function323e
+	and D_PAD 
+	ret z ; if no directions are down, don't try and trigger a wild encounter
+	call CheckAPressedDebug
+	jp nz, ClearAccumulator ; if b button is down, clear acc
 	callab Function3ee3e
 	ld a, [wBattleMode]
 	and a
-	ret z
+	ret z ; if no battle, return
 	ld a, $3
 	call WriteIntod637
-	call Function3240
+	call SetFFInAccumulator
 	ret
 
 Function3904::

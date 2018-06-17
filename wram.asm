@@ -108,7 +108,7 @@ wMapScriptNumber:: db ; c5e8
 wMapScriptNumberLocation:: dw ; c5e9
 wUnknownMapPointer:: dw ; c5eb ; TODO
 wc5ed:: db ; c5ed
-    ds 18 ; TODO
+    ds 18
 wMapBufferEnd:: ; c600
 
 
@@ -445,8 +445,9 @@ wcd9e::
 	db
 
 SECTION "CDB0", WRAM0 [$CDB0]
-wcdb0:: ; bit 0 = has engaged NPC in dialogue (?)
-	db
+wTalkingTargetType:: db ; cdb0 
+;bit 0 = has engaged NPC in dialogue 
+;bit 1 = has engaged sign in dialogue
 	
 SECTION "CDBA", WRAM0[$CDBA]
 
@@ -726,10 +727,15 @@ ENDR
 
 wCurrMapObjectCount:: ; d5f6
     db
+	
+wCurrMapInlineTrainers:: ; d5f7
+REPT 32 ; TODO: confirm this
+	ds 2 ; inline trainers. each pair of bytes is direction, distance
+ENDR
 
 SECTION "D637", WRAM0[$D637]
-wd637:: db ; d637
-wd638:: db ; d638
+wd637:: db ; d637 ;OW battle state? $3 wild battle, $8 is trainer battle $4 is left battle, $B is load overworld? $0 is in overworld
+wd638:: db ; d638 ;wd637's last written-to value
 
 SECTION "Used sprites", WRAM0[$D643]
 

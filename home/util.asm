@@ -65,12 +65,13 @@ SkipNames:: ; 341f
     ret
 
 AddNTimes:: ; 3429 (0:3429)
+; Adds bc to hl, a times
 	and a
 	ret z
-.asm_342b
+.loop
 	add hl, bc
 	dec a
-	jr nz, .asm_342b
+	jr nz, .loop
 	ret
 ; 0x3430
 
