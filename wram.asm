@@ -733,6 +733,9 @@ wBallQuantities:: db ; d1df
 SECTION "Rival's Name", WRAM0[$D258]
 wRivalsName:: ds 6 ; d258
 
+SECTION "PlayerState", WRAM0[$D264]
+wPlayerState:: db ; d264
+
 SECTION "D4AB", WRAM0[$D4A9]
 
 wd4a9:: db ; d4a9

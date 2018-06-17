@@ -464,7 +464,6 @@
 
 01:D19E wItems
 01:D258 wRivalName
-01:D264 wPlayerBikeSurfState
 ; The starting house's map script number is stored at d29a. Others are probably nearby.
 01:D35F wOptions
 01:D513 wWarpNumber

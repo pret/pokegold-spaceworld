@@ -1,5 +1,7 @@
 INCLUDE "constants.asm"
 
+; TODO - need to constantize tile ids, movements
+
 SECTION "CutFunction", ROMX[$4fab], BANK[$03]
 
 CutFunction: ; 03:4fab
@@ -20,8 +22,8 @@ CutFunction: ; 03:4fab
 	
 CutTable
 	dw TryCut
-	dw CheckMapForSomethingToCut
-	dw CheckMapForSomethingToCut2
+	dw CheckCuttableBlock
+	dw CheckCuttableTile
 	dw DoCut
 	dw DoCut
 	dw FailCut
@@ -42,9 +44,9 @@ TryCut: ; 03:4fd1
 	xor a
 	ret
 
-CheckMapForSomethingToCut: ; 03:4fea
+CheckCuttableBlock: ; 03:4fea
 	call GetFacingTileCoord
-	cp $80 ; TODO - Constant
+	cp $80
 	jr nz, .fail
 	call GetBlockLocation
 	ld a, l
@@ -88,14 +90,13 @@ CutReplacementBlocks:
 	db $33, $35
 	db -1
 
-; TODO - Better name
-CheckMapForSomethingToCut2: ; 03:502c
+CheckCuttableTile: ; 03:502c
 	call GetFacingTileCoord
-	call CheckCuttableTile
+	call IsCuttableTile
 	jr nc, .fail
 	call GetBlockLocation
 	ld a, [hl]
-	cp $3b	; TODO - constant?
+	cp $3b
 	jr nz, .fail
 	ld a, l
 	ld [wMapBlocksAddress], a
@@ -113,7 +114,7 @@ CheckMapForSomethingToCut2: ; 03:502c
 	xor a
 	ret
 	
-CheckCuttableTile:
+IsCuttableTile:
 	ld hl, CuttableTiles
 	ld c, a
 .loop
@@ -154,14 +155,14 @@ DoCut: ; 03:5080
 CutScript: ; 03:508C
 	call RefreshScreen
 	ld hl, wPartyMonNicknames
-	ld a, 2 ; TODO - constant
+	ld a, BOXMON
 	ld [wMonType], a
 	ld a, [wWhichPokemon]
 	call GetNick
 	call CopyStringToStringBuffer2
 	ld hl, Text_CutItDown
 	call MenuTextBoxBackup
-	ld de, $62 ; TODO - constant
+	ld de, MUSIC_SURF
 	call PlaySFX
 	ld hl, wMapBlocksAddress
 	ld a, [hli]
@@ -205,10 +206,10 @@ SurfTable:
 
 TrySurf: ; 03:50f8
 	call GetFacingTileCoord
-	and $f0 ; todo - mask constant
-	cp $20 ; todo -constant
+	and $f0
+	cp $20
 	jr z, .success
-	cp $40 ; todo - constant
+	cp $40
 	jr z, .success
 	ld a, SCRIPT_ID_02
 	ld [wFieldMoveScriptID], a
@@ -247,18 +248,18 @@ Text_CantSurfHere: ; 03:5133
 SurfScript: ; 03:5145
 	call RefreshScreen
 	ld hl, wPartyMonNicknames
-	ld a, 2 ; TODO - constant
+	ld a, BOXMON
 	ld [wMonType], a
 	ld a, [wWhichPokemon]
 	call GetNick
 	call CopyStringToStringBuffer2
 	ld hl, Text_UsedSurf
 	call MenuTextBoxBackup
-	ld a, $04 ; TODO - constant
-	ld [wPlayerBikeSurfState], a
+	ld a, PLAYER_SURF
+	ld [wPlayerState], a
 	call Function0d02
 	call PlayMapMusic
-	call Function_d185
+	call MovePlayerIntoWater
 	call Function1fea
 	ret
 
@@ -270,30 +271,31 @@ Text_UsedSurf: ; 03:5171
 	text "を　のせた！"
 	prompt
 	
-Function_d185: ; 03:5185
+MovePlayerIntoWater: ; 03:5185
 	call InitMovementBuffer
-	call .sub_d19b
+	call .get_movement_direction
 	call AppendToMovementBuffer
-	ld a, $32 ; TODO - constant
+	ld a, $32
 	call AppendToMovementBuffer
-	ld a, 0 ; TODO - constant
+	ld a, 0
 	ld hl, wMovementBuffer
 	call LoadMovementDataPointer
-.sub_d19b
+.get_movement_direction
 	ld a, [wPlayerWalking]
 	srl a
 	srl a
 	ld e, a
 	ld d, $00
-	ld hl, Table_Unknown_d1ab
+	ld hl, SurfMovementDirections
 	add hl, de
 	ld a, [hl]
 	ret
 
-Table_Unknown_d1ab:
+; Direction to move player, mapped to facing direction
+SurfMovementDirections:
 	db 4, 5, 6, 7
 
-; Sets wFieldMoveSucceeded to $f if successful, $0 if not
+	
 FlyFunction: ; 03:51af
 	call .reset
 .loop
@@ -389,8 +391,6 @@ FlyScript: ; 03:5254
 	jpab Functionfcc24
 
 	
-	
-; Sets wFieldMoveSucceeded to $f if successful, $0 if not
 DigFunction: ; 03:5260
 	call .reset
 .loop
@@ -463,8 +463,7 @@ EmptyFunctiond2da: ; 03:52da
 	ret
 	
 	
-	
-; Sets wFieldMoveSucceeded to $f if successful, $0 if not
+
 TeleportFunction: ; 03:52db
 	xor a
 	ld [wFieldMoveScriptID], a
