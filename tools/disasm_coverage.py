@@ -10,13 +10,14 @@ import png
 from mapreader import MapReader
 from colorsys import hls_to_rgb
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # argument parser
     ap = argparse.ArgumentParser()
-    ap.add_argument("-o", dest="filename", default="coverage.png")
-    ap.add_argument("-s", dest="statsname", default="coverage.log")
-    ap.add_argument("-m", dest="mapfile", required=True)
-    ap.add_argument("-b", dest="num_banks", required=True, type=lambda x: int(x, 0))
+    ap.add_argument('-r', dest='romname')
+    ap.add_argument('-o', dest='filename', default='coverage.png')
+    ap.add_argument('-s', dest='statsname', default='coverage.log')
+    ap.add_argument('-m', dest='mapfile', required=True)
+    ap.add_argument('-b', dest='num_banks', required=True, type=lambda x: int(x, 0))
     args = ap.parse_args()
     
     bank_mask = 0x3FFF
@@ -24,6 +25,7 @@ if __name__ == "__main__":
     width = 256 # pixels per row
     bpp = 8 # bytes per pixel
     
+    romname = args.romname
     rom_size = args.num_banks * bank_size # bytes
     height = (args.num_banks * bank_size + (width * bpp - 1)) // (width * bpp) # pixels
     rows_per_bank = bank_size // (width * bpp)
@@ -34,12 +36,29 @@ if __name__ == "__main__":
             l = f.readlines()
     except UnicodeDecodeError:
         # Python 3 seems to choke on the file's encoding, but the `encoding` keyword only works on Py3
-        with open(args.mapfile, 'r', encoding= "utf-8") as f:
+        with open(args.mapfile, 'r', encoding= 'utf-8') as f:
             l = f.readlines()
     r.read_map_data(l)
     
-    hit_data = [[0] * width for _ in range(height)]
     default_bank_data = {'sections': [], 'used': 0, 'slack': bank_size}
+    filler = [0x00, 0xFF]
+    
+    if (romname is not None):
+        with open(romname, 'rb') as f:
+            for rb in range(0, args.num_banks):
+                data = r.bank_data['ROM Bank'].get(rb, default_bank_data)
+                bank = f.read(bank_size)
+                if (bank[bank_size - 1] in filler):
+                    fill = bank[bank_size - 1]
+                    for i in reversed(range(-1, bank_size - 1)):
+                        if (i < 0 or bank[i] != fill):
+                            break
+                    # i is now pointing to first different byte
+                    beg = i + 1     + (0 if rb == 0 else bank_size)
+                    end = bank_size + (0 if rb == 0 else bank_size)
+                    data['sections'].append({'beg': beg, 'end': end, 'name': 'Section_Trailing_Fill', 'symbols': []})
+    
+    hit_data = [[0] * width for _ in range(height)]
     for bank in range(args.num_banks):
         data = r.bank_data['ROM Bank'].get(bank, default_bank_data)
         for s in data['sections']:
