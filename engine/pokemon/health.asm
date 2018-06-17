@@ -21,7 +21,7 @@ HealParty: ; 03:4d6f
 	ld [hl], a
 	
 ; Reset the PP
-	ld hl, MON_MAXHP - MON_HP ; TODO - This should point to the MOVES, not max HP...
+	ld hl, MON_MOVES
 	add hl, de
 	ld b, NUM_MOVES
 	
@@ -105,7 +105,7 @@ ComputeHPBarPixels: ; 03:4e3c
 	ldh [hMultiplicand + 1], a
 	ld a, c
 	ldh [hMultiplicand + 2], a
-	ld a, 6 * 8
+	ld a, HP_BAR_LENGTH_PX
 	ldh [hMultiplier], a
 	call Multiply
 	; We need de to be under 256 because hDivisor is only 1 byte.
@@ -222,7 +222,7 @@ UpdateHPBar: ; 03:4e7c
 	ld d, e
 .mon_fainted
 	call UpdateHPBar_PrintHPNumber
-	ld a, 1 ; TODO - Constant
+	ld a, 1
 	call UpdateHPBar_AnimateHPBar
 	jp WaitBGMap
 	
@@ -235,9 +235,9 @@ UpdateHPBar_AnimateHPBar: ; 03:4F11
 .bar_animation_loop
 	push af
 	push de
-	ld d, 6	; TODO - constant
+	ld d, HP_BAR_LENGTH
 	ld a, [wHPBarType]
-	and $01 ; TODO - what mask is this?
+	and BATTLE_HP_BAR
 	ld b, a
 	call DrawBattleHPBar
 	ld c, 2
@@ -245,7 +245,7 @@ UpdateHPBar_AnimateHPBar: ; 03:4F11
 	pop de
 	ld a, [wHPBarDelta]
 	add e
-	cp $31	; TODO - constant
+	cp HP_BAR_LENGTH_PX + 1
 	jr nc, .bar_filled_up
 	ld e, a
 	pop af
@@ -308,7 +308,7 @@ UpdateHPBar_PrintHPNumber: ; 03:4F5B
 	ld a, [wHPBarOldHP + 1]
 	ld [wHPBarTempHP], a
 	push hl
-	ld de, $15	; TODO - Constant
+	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	push hl
 	ld a, "　"

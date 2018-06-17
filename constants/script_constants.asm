@@ -9,10 +9,14 @@
 	const SCRIPT_ID_05   ; 05
 	
 ; Flags
-SCRIPT_FINISHED_FLAG      EQU 7
+SCRIPT_FINISHED_F      EQU 7
 
 ; Masks/Return Values
-SCRIPT_FINISHED_MASK EQU 1 << SCRIPT_FINISHED_FLAG
+SCRIPT_FINISHED_MASK EQU 1 << SCRIPT_FINISHED_F
 SCRIPT_SUCCESS  EQU $f
 SCRIPT_FAIL     EQU 0
-SCRIPT_FINISHED EQU $FF
+
+; Some script don't combine the return value with the flag
+; Instead, they load this into the wFieldMoveScriptID, and keep
+; the return value in a
+SCRIPT_FINISHED EQU -1 

@@ -5,7 +5,7 @@
 00:3233 Function3233
 00:323E Function323e
 00:3240 Function3240
-00:3C43	GetPartyParamLocation
+00:3C43 GetPartyParamLocation
 00:3CA8 InitSpriteAnimStruct
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait

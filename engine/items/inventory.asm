@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "AddItemToInventory_", ROMX[$4AA1], BANK[$03]
+SECTION "Inventory", ROMX[$4AA1], BANK[$03]
 
 _ReceiveItem: ; 03:4AA1
 	call DoesHLEqualwNumBagItems

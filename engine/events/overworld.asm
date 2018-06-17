@@ -395,7 +395,7 @@ DigFunction: ; 03:5260
 	call .reset
 .loop
 	ld a, [wFieldMoveScriptID]
-	bit SCRIPT_FINISHED_FLAG, a
+	bit SCRIPT_FINISHED_F, a
 	jr nz, .finish
 	ld hl, DigTable
 	call CallJumptable
@@ -470,7 +470,7 @@ TeleportFunction: ; 03:52db
 	ld [wFieldMoveScriptID], a
 .loop
 	ld a, [wFieldMoveScriptID]
-	bit SCRIPT_FINISHED_FLAG, a
+	bit SCRIPT_FINISHED_F, a
 	jr nz, .finish
 	ld hl, TeleportTable
 	call CallJumptable
