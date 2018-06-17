@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 ; TODO - need to constantize tile ids, movements
 
-SECTION "CutFunction", ROMX[$4fab], BANK[$03]
+SECTION "Field Moves", ROMX[$4fab], BANK[$03]
 
 CutFunction: ; 03:4fab
 	call .reset
