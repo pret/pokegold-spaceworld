@@ -63,6 +63,10 @@ if __name__ == '__main__':
         for s in data['sections']:
             beg = (s['beg'] & bank_mask) + bank * bank_size
             end = (s['end'] & bank_mask) + bank * bank_size
+            # skip zero-sized entries
+            if (beg == end):
+                continue
+            end -= 1 # end is exclusive
             y_beg = beg // (width * bpp)
             x_beg = (beg % (width * bpp)) // bpp
             y_end = end // (width * bpp)
