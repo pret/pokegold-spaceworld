@@ -53,10 +53,8 @@ Function094c::
 	push af
 	ld a, BANK(Functionfe255)
 	call Bankswitch
-
 	call Functionfe255
 
 	pop af
 	call Bankswitch
-
-	jp Function4031
+	jp DebugMenu

@@ -15,7 +15,7 @@ PredefPointers:: ; 1:62d3
 	add_predef Function5d27
 	add_predef Function6713
 	add_predef Function66b1
-	add_predef Function4031
+	add_predef DebugMenu
 	add_predef Functionce10
 	add_predef Functioncd6f
 	add_predef Functioncde3

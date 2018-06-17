@@ -570,7 +570,7 @@ wTimeOfDay:: db ; ce3d
 
 SECTION "CE5F", WRAM0[$CE5F]
 
-wce5f:: ; ce5f ; TODO
+wce5f:: ; ce5f ; debug menu writes $41 to it
     db
 
 SECTION "CE61", WRAM0[$CE61]

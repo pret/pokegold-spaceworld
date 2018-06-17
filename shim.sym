@@ -1,14 +1,12 @@
 ; ROM0
 00:3CA8 InitSpriteAnimStruct
 
-01:4031 Function4031
-01:4031 DebugMenu
-01:40EB Function40eb
 01:5007 Function5007
 01:50B9 Function50b9
 01:5190 _UpdateSprites
 01:5190 Function5190
 01:53CC MainMenu
+01:555C Function555C
 01:5D27 Function5d27
 01:63D8 ReanchorBGMap_NoOAMUpdate
 01:6437 LoadFonts_NoOAMUpdate
@@ -29,6 +27,7 @@
 02:4786 Function8786
 02:4856 DecompTownMapTilemap
 02:48DA DecompTownMapTilemap.tilemap
+02:4AAB OpenPokegear
 02:4C7C DrawMap
 02:4DC2 TownMapGfx
 02:4F32 PokegearRadioGfx
@@ -446,6 +445,7 @@
 3F:654E PicTest
 3F:6750 PicTestMenu
 3F:6755 PicTestMenu.loop
+3F:67A1 CallSubGameMenu
 
 00:CB6F wPlayerStepDirection
 00:CE67 wPlayerName
