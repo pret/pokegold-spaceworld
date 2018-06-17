@@ -15,7 +15,6 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('-r', dest='romname')
     ap.add_argument('-o', dest='filename', default='coverage.png')
-    ap.add_argument('-s', dest='statsname', default='coverage.log')
     ap.add_argument('-m', dest='mapfile', required=True)
     ap.add_argument('-b', dest='num_banks', required=True, type=lambda x: int(x, 0))
     args = ap.parse_args()
@@ -81,10 +80,6 @@ if __name__ == '__main__':
                 x_line_end = width - 1 if y_end != y else x_end - 1
                 for x in range(x_line_beg, x_line_end + 1):
                     hit_data[y][x] += bpp
-    
-    with open(args.statsname, 'w') as stats:
-        # TODO: write stats
-        pass
     
     png_data = []
     for i, row in enumerate(hit_data):
