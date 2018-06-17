@@ -6,9 +6,7 @@ _ReceiveItem: ; 03:4AA1
 	call DoesHLEqualwNumBagItems
 	jp nz, PutItemInPocket
 	push hl
-	ld hl, CheckItemPocket
-	ld a, BANK(CheckItemPocket)
-	call FarCall_hl
+	callab CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]
 	dec a
 	ld hl, .Pockets
@@ -47,9 +45,7 @@ _TossItem: ; 03:4AE0
 	call DoesHLEqualwNumBagItems
 	jr nz, .remove_item
 	push hl
-	ld hl, CheckItemPocket
-	ld a, BANK(CheckItemPocket)
-	call FarCall_hl
+	callab CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]
 	dec a
 	ld hl, .Pockets
@@ -90,9 +86,7 @@ _CheckItem: ; 03:4B1E
 	call DoesHLEqualwNumBagItems
 	jr nz, .not_bag
 	push hl
-	ld hl, CheckItemPocket
-	ld a, BANK(CheckItemPocket)
-	call FarCall_hl
+	callab CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]
 	dec a
 	ld hl, .Pockets
@@ -570,10 +564,34 @@ GetTMHMNumber: ; 03:4CFF
 .not_machine
 	and a
 	ret
+
+GetNumberedTMHM: ; 03:4D1A
+; Return the item id of a TM/HM by number c.
+	ld a, c
+	ld c, 0
+; Adjust for any dummy items.
+	cp ITEM_C8 - ITEM_TM01 ; TM01-04
+	jr c, .finish
+	inc c
+	cp ITEM_E1 - ITEM_TM01 - 1 ; TM05-28
+	jr c, .finish
+	inc c
+	cp ITEM_FF - ITEM_TM01 - 2 ; End of list
+	jr nc, .not_machine
+.finish
+	add c
+	add ITEM_TM01
+	ld c, a
+	scf
+	ret
+.not_machine
+	and a
+	ret
 	
 SECTION "_CheckTossableItem", ROMX[$53AD], BANK[$03]
 
-; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be removed from the bag.
+; Return 1 in wItemAttributeParamBuffer and
+; carry if wCurItem can't be removed from the bag.
 _CheckTossableItem: ; 03:53AD
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
@@ -582,7 +600,8 @@ _CheckTossableItem: ; 03:53AD
 	and a
 	ret
 
-; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be selected.
+; Return 1 in wItemAttributeParamBuffer
+; and carry if wCurItem can't be selected.
 CheckSelectableItem: ; 03:53B8
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr

@@ -59,8 +59,7 @@
 02:5695 CheckSGB
 
 03:4000 Functionc000
-03:4791 DebugWarp
-03:479F DebugWarp.Destinations
+03:47D5 SpawnPoints
 03:488D Tilesets
 03:4D33 Functioncd33
 03:4D6F Functioncd6f
@@ -460,6 +459,7 @@
 3A:52C7 Music
 
 3F:40E9 InGameDebugMenu
+3F:4C24 Functionfcc24
 3F:4E3E Functionfce3e
 3F:5B66 Functionfdb66
 3F:6255 Functionfe255
