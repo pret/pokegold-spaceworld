@@ -1,21 +1,5 @@
 ; ROM0
 00:3CA8 InitSpriteAnimStruct
-00:3D86 WaitSFX
-00:3D87 WaitSFX.wait
-00:3DA5 MaxVolume
-00:3DAB LowVolume
-00:3DB1 VolumeOff
-00:3DB6 UpdateSoundNTimes
-00:3DBE FadeToMapMusic
-00:3DDC FadeToMapMusic.dontfade
-00:3DE1 PlayMapMusic
-00:3E00 PlayMapMusic.dontplay
-00:3E05 SpecialMapMusic
-00:3E14 SpecialMapMusic.state2
-00:3E19 SpecialMapMusic.normal
-00:3E1B GetMapMusic
-00:3E2E GetMapMusic.unk_3E2E
-00:3E32 Unk_3E32
 
 01:4031 Function4031
 01:4031 DebugMenu

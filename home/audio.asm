@@ -140,3 +140,130 @@ PlaySFX:: ; 3d63
 	ret
 
 WaitPlaySFX:: ; 3d7f
+	call WaitSFX
+	call PlaySFX
+	ret
+
+WaitSFX:: ; 3d86
+	push hl
+.loop
+	ld hl, wChannel5Flags1
+	bit 0, [hl]
+	jr nz, .loop
+	ld hl, wChannel6Flags1
+	bit 0, [hl]
+	jr nz, .loop
+	ld hl, wChannel7Flags1
+	bit 0, [hl]
+	jr nz, .loop
+	ld hl, wChannel8Flags1
+	bit 0, [hl]
+	jr nz, .loop
+	pop hl
+	ret
+	
+MaxVolume:: ; 3DA5
+	ld a, $77
+	ld [wVolume], a
+	ret
+
+LowVolume:: ; 3DAB
+	ld a, $33
+	ld [wVolume], a
+	ret
+
+VolumeOff:: ; 3DB1
+	xor a
+	ld [wVolume], a
+	ret
+
+UpdateSoundNTimes:: ; 3DB6
+.loop
+	and a
+	ret z
+	dec a
+	call UpdateSound
+	jr .loop
+
+FadeToMapMusic:: ; 3DBE
+	push hl
+	push de
+	push bc
+	push af
+	call GetMapMusic
+	ld a, [wMapMusic]
+	cp e
+	jr z, .jump
+	ld a, $08
+	ld [wMusicFade], a
+	ld a, e
+	ld [wMusicFadeID], a
+	ld a, d
+	ld [wMusicFadeID+1], a
+	ld a, e
+	ld [wMapMusic], a
+.jump
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+
+PlayMapMusic:: ; 3DE1
+	push hl
+	push de
+	push bc
+	push af
+	call GetMapMusic
+	ld a, [wMapMusic]
+	cp e
+	jr z, .jump
+	push de
+	ld de, $0000
+	call PlayMusic
+	call DelayFrame
+	pop de
+	ld a, e
+	ld [wMapMusic], a
+	call PlayMusic
+.jump
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+
+SpecialMapMusic:: ; 3E05
+	ld a, [wPlayerBikeSurfState]
+	and a
+	jr z, .normal
+	cp $02
+	jr z, .state2
+	ld de, $0009
+	scf
+	ret
+
+.state2 ; 3E14
+	ld de, $0000
+	scf
+	ret
+
+.normal ; 3E19
+	and a
+	ret
+
+GetMapMusic:: ; 3E1B
+	call SpecialMapMusic
+	ret c
+	ld a, [wMapPermissions]
+	cp $01
+	jr z, .jump
+	cp $03
+	jr z, .jump
+	ld de, $0002 
+	ret
+.jump ; 3E2E
+	ld de, $0007
+	ret
+
+; 3E32, this is likely not a function.

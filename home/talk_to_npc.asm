@@ -260,7 +260,7 @@ CheckInlineTrainer:: ; 00:31C4
 	add hl, de
 	ld a, [hl]
 	call GetObjectStruct ; de is the address of the number of object we want
-	call $31EB
+	call GetInlineMapObject
 	jr nc, .escape ; if c flag isn't set, leave
 	ld hl, $000B ; map_object script
 	add hl, de
@@ -354,4 +354,20 @@ SetFFInAccumulator:: ; 3240
 	dec a
 	ret
 	
-; 3243
+Function3243:: ; 3243
+	ldh a, [hROMBank]
+	push af
+	ld a, $03
+	call Bankswitch
+	push hl
+	push de
+	push bc
+	call _TossItem
+	pop bc
+	pop de
+	pop hl
+	pop af
+	call Bankswitch
+	ret
+
+;3259
