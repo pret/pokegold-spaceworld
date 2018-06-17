@@ -62,11 +62,10 @@ if __name__ == '__main__':
         data = r.bank_data['ROM Bank'].get(bank, default_bank_data)
         for s in data['sections']:
             beg = (s['beg'] & bank_mask) + bank * bank_size
-            end = (s['end'] & bank_mask) + bank * bank_size
+            end = ((s['end'] -1) & bank_mask) + bank * bank_size # end is exclusive
             # skip zero-sized entries
-            if (beg == end):
+            if (s['beg'] == s['end']):
                 continue
-            end -= 1 # end is exclusive
             y_beg = beg // (width * bpp)
             x_beg = (beg % (width * bpp)) // bpp
             y_end = end // (width * bpp)
