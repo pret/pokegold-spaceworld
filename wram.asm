@@ -579,9 +579,10 @@ wActiveFrame:: db ; ce61
 
 wTextBoxFlags::  db ; ce62
 
-wce63:: db ; ce63
+wDebugFlags:: db ; ce63
 ; 76543210
-;       \-- global debug enable
+;       |\- debug battle indicator
+;       \-- debug field indicator
 
 SECTION "Mom's Name", WRAM0[$CE6D]
 wMomsName:: ds 6 ; ce6d

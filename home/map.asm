@@ -1612,9 +1612,7 @@ Function2ae5::
 	ret nz
 	call OverworldStartButtonCheck
 	ret nz
-	ld hl, PlaceWaitingText
-	ld a, $3
-	call FarCall_hl
+	callab Functionc000
 	ldh a, [hMapEntryMethod]
 	and a
 	ret nz
@@ -1634,7 +1632,7 @@ Function2b39::
 	ld hl, wJoypadFlags
 	res 4, [hl]
 	res 6, [hl]
-	ld hl, wce63
+	ld hl, wDebugFlags
 	res 6, [hl]
 	res 7, [hl]
 	ld hl, wVramState
@@ -1714,8 +1712,8 @@ Function2ba8:: ; 00:2ba8
 	scf
 	ret
 
-Function2be5:: ; 00:2be5
-	ld a, [wce63]
+Function2be5:: ; 00:2be5 ; TODO
+	ld a, [wDebugFlags]
 	bit 7, a
 	ret nz
 	ld a, [wMapGroup]

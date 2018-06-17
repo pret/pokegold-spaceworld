@@ -8,7 +8,7 @@ endc
 
 Function3025::
 	ld hl, .Text
-	call Function3111
+	call StartTextboxWithDebug
 	ret
 
 .Text: ; 00:302c
@@ -85,13 +85,13 @@ PrintTextboxDebugNumbers:: ; 00:3085
 	ld a, [wTalkingTargetType]
 	bit 0, a
 	jr z, .CheckSign
-	ld de, hFFEA ; address if we're talking to an NPC
+	ld de, hFFEA
 	jr .PrintNum
 
 .CheckSign: ; 00:3097
 	bit 1, a
 	jr z, .PrintNum
-	ld de, hFFEE ; address if we're talking to a sign
+	ld de, hFFEE
 
 .PrintNum: ; 00:309e
 	hlcoord 4, 12
@@ -114,8 +114,8 @@ QueueMapTextSubroutine:: ; 00:30b7
 	jp nc, Function30e8 ; if not talking to a person
 	ld d, $0
 	ld e, a
-	ld a, [wce63]
-	bit 1, a
+	ld a, [wDebugFlags]
+	bit DEBUG_FIELD_F, a
 	call nz, PrintTextboxDebugNumbers ; if debug, print these
 	ld hl, wMapTextPtr
 	ld a, [hli]
@@ -157,38 +157,40 @@ GetFacingPersonText:: ; 00:3103
 	scf
 	ret
 
-Function3111:: ; 00:3111
+StartTextboxWithDebug:: ; 00:3111
+	; Identical to StartTextbox except it prints debug numbers if in debug mode.
 	push hl
 	call PrepareTextbox
-	ld a, [wce63]
-	bit 1, a
-	call nz, PrintTextboxDebugNumbers ; if debug, print text IDs
+	ld a, [wDebugFlags]
+	bit DEBUG_FIELD_F, a
+	call nz, PrintTextboxDebugNumbers
 	pop hl
 	call TextboxIdle 
 	ret
 
-Function3122:: ; 00:3122
+StartTextbox:: ; 00:3122
 	push hl 
 	call PrepareTextbox 
 	pop hl
 
 TextboxIdle:: ; 00:3127
+	; Prints text, then waits for A or B to be pressed, unless bit 5 of JoypadFlags is set.
 	call PrintTextBoxText
-.loop
+.Loop
 	ld a, [wJoypadFlags]
 	bit 5, a
 	res 5, a 
 	ld [wJoypadFlags], a 
-	jr nz, .escape ; if bit 5 of joyflags is set, escape
+	jr nz, .Escape
 	call GetJoypad
 	ldh a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
-	jr nz, .escape ; if A or B are down, escape
+	jr nz, .Escape 
 	call UpdateTime 
 	call UpdateTimeOfDayPalettes
 	call DelayFrame
-	jr .loop
-.escape
+	jr .Loop
+.Escape
 	call TextboxCleanup
 	ret
 
@@ -199,7 +201,7 @@ PrepareTextbox:: ; 00:314E
 	ld a, 01 
 	call Bankswitch
 	call ReanchorBGMap_NoOAMUpdate
-	ld hl, $C390 ;in the tilemap in WRAM
+	hlcoord 0, 12 ;in the tilemap in WRAM
 	ld b, 04 
 	ld c, $12 
 	call DrawTextBox
@@ -213,12 +215,12 @@ TextboxCleanup ; 00:3171
 	callab ReanchorBGMap_NoOAMUpdate
 	call UpdateSprites
 	xor a
-	ldh [hBGMapMode], a ;reset this
+	ldh [hBGMapMode], a
 	ld a, $90
-	ldh [hWY], a ;set window Y to $90
+	ldh [hWY], a
 	call Function318f 
 	ld hl, wToolgearFlags
-	res 7, [hl] ; show toolgear
+	res 7, [hl]
 	call InitToolgearBuffer
 	ret
 
@@ -228,23 +230,24 @@ Function318f ; 00:318f
 	ret
 	
 TurnNPCTalkingTo:: ; 00:319b 
+	; If an NPC is allowed to turn when talked to, turn it.
 	ldh a, [hObjectStructIndexBuffer] 
 	call GetObjectStruct
-	ld hl, $0000
-	add hl, bc ; bc is the address of the a'th object struct
+	ld hl, OBJECT_SPRITE
+	add hl, bc
 	ld a, [hl]
 	call CheckNonTurningSprite
-	jr c, .jump ;if it's a non-turning sprite, skip this
-	ld a, [wPlayerWalking] ; shouldn't this be direction?
-	xor 04 ; get opposite direction from player
-	ld hl, $0007
-	add hl, bc ; get NPC's direction
-	ld [hl], a ; overwrite it
+	jr c, .Jump
+	ld a, [wPlayerWalking]
+	xor 04
+	ld hl, OBJECT_DIRECTION_WALKING
+	add hl, bc
+	ld [hl], a
 	push bc
 	call UpdateSprites
 	pop bc
-.jump
-	ld hl, $0001
+.Jump
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
 	sub 02
@@ -255,98 +258,99 @@ Function31C3:: ; 00:31C3
 	ret
 
 CheckInlineTrainer:: ; 00:31C4
-	; passed de is the start of a map_object struct. if it's an inline trainer, write to relevant wram region.
-	ld hl, $0000
+	; Passed de is the pointer to a map_object struct. If it's an inline trainer, write to relevant wram region.
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, de
 	ld a, [hl]
-	call GetObjectStruct ; de is the address of the number of object we want
+	call GetObjectStruct
 	call GetInlineMapObject
-	jr nc, .escape ; if c flag isn't set, leave
-	ld hl, $000B ; map_object script
+	jr nc, .Escape 
+	ld hl, MAPOBJECT_POINTER_HI
 	add hl, de
 	ld a, [hl]
 	cp b
-	jr c, .escape ;if action is less than b, return
-	ld hl, $0000 ; obj id
+	jr c, .Escape
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, de
 	ld a, [hl]
-	add a, a ; objid*2
+	add a, a
 	ld hl, wCurrMapInlineTrainers 
 	add a, l
 	ld l, a
-	jr nc, .noCarry
+	jr nc, .NoCarry
 	inc h
-.noCarry
-	ld [hl], b ; store bc (distance, direction) in new hl
+.NoCarry
+	ld [hl], b
 	inc hl
 	ld [hl], c
-.escape
+.Escape
 	ret
 
 GetInlineMapObject:: ; 00:31EB
 	;bc is start of object struct. if c flag set, returns distance in B and direction in C
-	ld hl, $0010 ; offset for StandingMapX
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [wPlayerStandingMapX]
 	cp [hl]
-	jr z, .equalX ; if player x == object x
-	ld hl, $0011 ; offset for StandingMapY
+	jr z, .EqualX
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [wPlayerStandingMapY]
 	cp [hl]
-	jr z, .equalY ; if player y == object y and px != ox, jump
-	and a ; clears c for the ret
+	jr z, .EqualY
+	and a 
 	ret
-.equalX ; player x == object x
-	ld hl, $0011
+.EqualX 
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [wPlayerStandingMapY]
-	sub [hl] ; py - oy
-	jr z, .reset ; if py == oy, jump
-	jr nc, .setDown ; if py > oy, jump
+	sub [hl]
+	jr z, .Reset 
+	jr nc, .SetDown 
 	cpl
 	inc a
 	ld b, a
-	ld c, 01 ; 1 in c means player has smaller Y, same x
-	scf ; sets c for the ret
+	ld c, UP
+	scf
 	ret
-.setDown ; 3214
-	ld b, a ; b is difference in y
-	ld c, 00 ; 0 in c means player has bigger Y, same x
-	scf ; set c
+.SetDown ; 3214
+	ld b, a
+	ld c, DOWN
+	scf
 	ret
-.equalY ; 3219 
-	ld hl, $0010
+.EqualY ; 3219 
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [wPlayerStandingMapX]
 	sub [hl]
-	jr z, .reset ; if px == ox, jump (this is impossible)
-	jr nc, .setRight ; if px > ox, jump
+	jr z, .Reset ; (this condition is impossible to meet)
+	jr nc, .SetRight
 	cpl
 	inc a
 	ld b, a
-	ld c, 02 ; 2 in c means player has smaller x, equal y
+	ld c, LEFT
 	scf
 	ret
-.setRight ; 322C
+.SetRight ; 322C
 	ld b, a
-	ld c, 03 ; 3 in c means player has bigger x, equal y
+	ld c, RIGHT
 	scf
 	ret
-.reset ; 3231
-	and a ; clear c
+.Reset ; 3231
+	and a
 	ret
 	
 CheckAPressedDebug ; 3233
-	ld a, [wce63]
-	bit 1, a
-	ret z ; return if not debug
+	; If in debug mode, returns a check on the A button.
+	ld a, [wDebugFlags]
+	bit DEBUG_FIELD_F, a
+	ret z
 	ldh a, [hJoyState]
 	bit A_BUTTON, a
 	ret
 
 ClearAccumulator:: ; 323E
-	xor a ; clear a
+	xor a
 	ret
 	
 SetFFInAccumulator:: ; 3240

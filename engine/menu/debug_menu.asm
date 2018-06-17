@@ -39,7 +39,7 @@ DebugMenuData: ; 4070
 .MenuData: ; 4078
 	db $A0 
 	db 0 ; items
-	dw $40A0
+	dw DebugMenuItems
 	db $8A, $1F 
 	dw .Strings
 	
@@ -62,17 +62,17 @@ DebugMenuItems:
 	db -1
 
 DebugMenuOptionField:: ; 40A8
-	ld hl, wce63
-	set 1, [hl] ; set debug mode
+	ld hl, wDebugFlags
+	set DEBUG_FIELD_F, [hl] ; set debug mode
 	jp Function555C
 	
 DebugMenuOptionFight:: ; 40B0
-	ld hl, wce63
-	set 0, [hl]
+	ld hl, wDebugFlags
+	set DEBUG_BATTLE_F, [hl]
 	ld a, $54
 	call Predef
-	ld hl, wce63
-	res 0, [hl]
+	ld hl, wDebugFlags
+	res DEBUG_BATTLE_F, [hl]
 	ret
 
 DebugMenuOptionSubGames:: ; 40C0

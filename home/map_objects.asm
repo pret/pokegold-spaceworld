@@ -342,14 +342,14 @@ CheckNonTurningSprite:: ; 00:17de
 	ld c, a
 	ld b, $ff
 	ld hl, .Data
-.loop: ; 00:17e6
+.loop:
 	ld a, [hli]
 	cp b
-	jr z, .escape ; if a == $FF, escape
+	jr z, .escape
 	cp c
-	jr nz, .loop ; if a != c, loop
+	jr nz, .loop
 	scf
-.escape: ; 00:17ee
+.escape:
 	pop bc
 	pop hl
 	ret
