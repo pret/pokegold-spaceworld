@@ -1,58 +1,49 @@
 INCLUDE "constants.asm"
 
-jump_dest: MACRO
-\1JumpTable
-	dw \1
-ENDM
-
-next_jump: MACRO
-	ld a, (\1JumpTable - .JumpTable) / 2
-	ld [wFieldMoveScriptID], a
-ENDM
-
 ; TODO - need to constantize tile ids, movements
 
 SECTION "Field Moves", ROMX[$4fab], BANK[$03]
 
 CutFunction: ; 03:4fab
-	call .reset
-.next_script
-	call .run_script
-	jr nc, .next_script
+	call .ResetScriptID
+.next
+	call .ExecScript
+	jr nc, .next
 	ld [wFieldMoveSucceeded], a
 	ret
-.reset
+.ResetScriptID
 	xor a
 	ld [wFieldMoveScriptID], a
 	ret
-.run_script
+.ExecScript
 	ld a, [wFieldMoveScriptID]
-	ld hl, .JumpTable
+	ld hl, .CutScriptTable
 	jp CallJumptable
 	
-.JumpTable
-	jump_dest .TryCut
-	jump_dest .CheckCuttableBlock
-	jump_dest .CheckCuttableTile
-	jump_dest .DoCut
-	jump_dest .DoCut2
-	jump_dest .FailCut
+.CutScriptTable ; 03:4fc5
+	init_script_table
+	add_script TryCut
+	add_script CheckCuttableBlock
+	add_script CheckCuttableTile
+	add_script DoCut
+	add_script DoCut2
+	add_script FailCut
 
-.TryCut ; 03:4fd1
+TryCut: ; 03:4fd1
 	call GetMapEnvironment
 	cp ROUTE
 	jr z, .success
 	cp TOWN
 	jr z, .success
-	next_jump .FailCut
+	set_script FailCut
 	xor a
 	ret
 .success
-	next_jump .CheckCuttableBlock
+	set_script CheckCuttableBlock
 	xor a
 	ret
 
-.CheckCuttableBlock ; 03:4fea
+CheckCuttableBlock: ; 03:4fea
 	call GetFacingTileCoord
 	cp $80
 	jr nz, .fail
@@ -62,33 +53,33 @@ CutFunction: ; 03:4fab
 	ld a, h
 	ld [wMapBlocksAddress + 1], a
 	ld a, [hl]
-	call .GetCutReplacementBlock
+	call GetCutReplacementBlock
 	jr nc, .fail
 	dec hl
 	ld a, [hl]
 	ld [wReplacementBlock], a
-	next_jump .DoCut2
+	set_script DoCut2
 	xor a
 	ret
 .fail
-	next_jump .CheckCuttableTile
+	set_script CheckCuttableTile
 	xor a
 	ret
 
-.GetCutReplacementBlock ;TODO - address
+GetCutReplacementBlock: ; 03:5015
 	ld c, a
-	ld hl, .CutReplacementBlocks
-.loop1
+	ld hl, CutReplacementBlocks
+.loop
 	ld a, [hli]
 	cp -1
 	ret z
 	inc hl
 	cp c
-	jr nz, .loop1
+	jr nz, .loop
 	scf
 	ret
 	
-.CutReplacementBlocks ; TODO - address
+CutReplacementBlocks: ; 03:5023
 ; replacement block, facing block
 	db $30, $25
 	db $31, $2A
@@ -96,68 +87,66 @@ CutFunction: ; 03:4fab
 	db $33, $35
 	db -1
 
-.CheckCuttableTile ; 03:502c
+CheckCuttableTile: ; 03:502c
 	call GetFacingTileCoord
-	call .IsCuttableTile
-	jr nc, .fail2
+	call IsCuttableTile
+	jr nc, .fail
 	call GetBlockLocation
 	ld a, [hl]
 	cp $3b
-	jr nz, .fail2
+	jr nz, .fail
 	ld a, l
 	ld [wMapBlocksAddress], a
 	ld a, h
 	ld [wMapBlocksAddress + 1], a
 	ld a, $04
 	ld [wReplacementBlock], a
-	next_jump .DoCut
+	set_script DoCut
 	xor a
 	ret
-.fail2
-	next_jump .FailCut
+.fail
+	set_script FailCut
 	xor a
 	ret
 	
-.IsCuttableTile ; TODO - address
-	ld hl, .CuttableTiles
+IsCuttableTile: ; 03:5057
+	ld hl, CuttableTiles
 	ld c, a
-.loop2
+.loop
 	ld a, [hli]
 	cp -1
 	ret z
 	cp c
-	jr nz, .loop2
+	jr nz, .loop
 	scf
 	ret
 	
-.CuttableTiles ; TODO - address
+CuttableTiles: ; 03:5064
 	db $81
 	db $82
 	db $8A
 	db $8B
 	db -1
 
-.FailCut ; 03:5069
-	ld hl, .Text_CantUseCutHere
+FailCut: ; 03:5069
+	ld hl, Text_CantUseCutHere
 	call MenuTextBoxBackup
 	scf
 	ld a, SCRIPT_FAIL
 	ret
 	
-.Text_CantUseCutHere ; 03:5073
+Text_CantUseCutHere: ; 03:5073
 	text "ここでは　つかえません"
 	prompt
 
-.DoCut ; 03:5080
-.DoCut2
-	ld hl, .CutScript
-	ld a, BANK(.CutScript)
-	call QueueScript
+DoCut:
+DoCut2: ; 03:5080
+	far_queue CutScript
 	scf
 	ld a, SCRIPT_SUCCESS
 	ret
 
-.CutScript ; 03:508C
+CutScript: ; 03:508C
 	call RefreshScreen
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
@@ -165,7 +154,7 @@ CutFunction: ; 03:4fab
 	ld a, [wWhichPokemon]
 	call GetNick
 	call CopyStringToStringBuffer2
-	ld hl, .Text_CutItDown
+	ld hl, Text_CutItDown
 	call MenuTextBoxBackup
 	ld de, MUSIC_SURF
 	call PlaySFX
@@ -182,32 +171,33 @@ CutFunction: ; 03:4fab
 	scf
 	ret
 	
-.Text_CutItDown ; 03:50c4
+Text_CutItDown ; 03:50c4
 	text_from_ram wStringBuffer2
 	text "　は　"
 	line "くさかりを　つかった！"
 	prompt	
 
 SurfFunction: ; 03:50d8
-	call .reset
-.loop
-	call .next
-	jr nc, .loop
+	call .ResetScriptID
+.next
+	call .ExecScript
+	jr nc, .next
 	ld [wFieldMoveSucceeded], a
 	ret
-.reset
+.ResetScriptID
 	xor a
 	ld [wFieldMoveScriptID], a
 	ret
-.next
+.ExecScript
 	ld a, [wFieldMoveScriptID]
-	ld hl, SurfTable
+	ld hl, .SurfScriptTable
 	jp CallJumptable
 
-SurfTable:
-	dw TrySurf
-	dw DoSurf
-	dw FailSurf
+.SurfScriptTable: ; 03:50f2
+	init_script_table
+	add_script TrySurf
+	add_script DoSurf
+	add_script FailSurf
 
 TrySurf: ; 03:50f8
 	call GetFacingTileCoord
@@ -216,20 +206,16 @@ TrySurf: ; 03:50f8
 	jr z, .success
 	cp $40
 	jr z, .success
-	ld a, SCRIPT_ID_02
-	ld [wFieldMoveScriptID], a
+	set_script FailSurf
 	xor a
 	ret
 .success
-	ld a, SCRIPT_ID_01
-	ld [wFieldMoveScriptID], a
+	set_script DoSurf
 	xor a
 	ret
 
 DoSurf: ; 03:5113
-	ldh a, [hROMBank]
-	ld hl, SurfScript
-	call QueueScript
+	queue_ba SurfScript
 	ld a, SCRIPT_FINISHED
 	ld [wFieldMoveScriptID], a
 	scf
@@ -297,31 +283,32 @@ MovePlayerIntoWater: ; 03:5185
 	ret
 
 ; Direction to move player, mapped to facing direction
-SurfMovementDirections:
+SurfMovementDirections: ; 03:51ab
 	db 4, 5, 6, 7
 
-	
+
 FlyFunction: ; 03:51af
-	call .reset
-.loop
-	call .next
-	jr nc, .loop
+	call .ResetScriptID
+.next
+	call .ExecScript
+	jr nc, .next
 	ld [wFieldMoveSucceeded], a
 	ret
-.reset
+.ResetScriptID
 	xor a
 	ld [wFieldMoveScriptID], a
 	ret
-.next
+.ExecScript
 	ld a, [wFieldMoveScriptID]
-	ld hl, FlyTable
+	ld hl, .FlyScriptTable
 	jp CallJumptable
 
-FlyTable: ; 03:51c9
-	dw TryFly
-	dw ShowFlyMap
-	dw DoFly
-	dw FailFly
+.FlyScriptTable: ; 03:51c9
+	init_script_table
+	add_script TryFly
+	add_script ShowFlyMap
+	add_script DoFly
+	add_script FailFly
 
 TryFly: ; 03:51d1
 	call GetMapEnvironment
@@ -329,13 +316,11 @@ TryFly: ; 03:51d1
 	jr z, .success
 	cp ROUTE
 	jr z, .success
-	ld a, SCRIPT_ID_03
-	ld [wFieldMoveScriptID], a
+	set_script FailFly
 	xor a
 	ret
 .success
-	ld a, SCRIPT_ID_01
-	ld [wFieldMoveScriptID], a
+	set_script ShowFlyMap
 	xor a
 	ret
 
@@ -351,12 +336,10 @@ ShowFlyMap: ; 03:51ea
 	jr z, .dont_fly
 	cp NUM_SPAWNS
 	jr nc, .dont_fly
-	ld a, SCRIPT_ID_02
-	ld [wFieldMoveScriptID], a
+	set_script DoFly
 	xor a
 	ret
-
-.dont_fly ; 03:5213
+.dont_fly
 	call UpdateTimePals
 	ld a, SCRIPT_FINISHED
 	ld [wFieldMoveScriptID], a
@@ -368,10 +351,8 @@ DoFly: ; 03:521f
 	ld a, [wFlyDestination]
 	inc a
 	ld [wDefaultSpawnPoint], a
-	ldh a, [hROMBank]
-	ld hl, FlyScript
-	call QueueScript
-	ld a, -1
+	queue_ba FlyScript
+	ld a, SCRIPT_FINISHED
 	ld [wFieldMoveScriptID], a
 	scf
 	ld a, SCRIPT_SUCCESS
@@ -397,14 +378,14 @@ FlyScript: ; 03:5254
 
 	
 DigFunction: ; 03:5260
-	call .reset
-.loop
+	call .ResetScriptID
+.next
 	ld a, [wFieldMoveScriptID]
 	bit SCRIPT_FINISHED_F, a
 	jr nz, .finish
-	ld hl, DigTable
+	ld hl, .DigScriptTable
 	call CallJumptable
-	jr .loop
+	jr .next
 
 ; Finish by returning only the low nibble
 .finish
@@ -412,15 +393,16 @@ DigFunction: ; 03:5260
 	ld [wFieldMoveSucceeded], a
 	ret
 	
-.reset
+.ResetScriptID
 	xor a
 	ld [wFieldMoveScriptID], a
 	ret
 
-DigTable: ; 03:527D
-	dw CheckCanDig
-	dw DoDig
-	dw FailDig
+.DigScriptTable: ; 03:527D
+	init_script_table
+	add_script CheckCanDig
+	add_script DoDig
+	add_script FailDig
 
 CheckCanDig: ; 03:5283
 	call GetMapEnvironment
@@ -428,18 +410,14 @@ CheckCanDig: ; 03:5283
 	jr z, .success
 	cp CAVE
 	jr z, .success
-	ld a, SCRIPT_ID_02
-	ld [wFieldMoveScriptID], a
+	set_script FailDig
 	ret
 .success
-	ld a, SCRIPT_ID_01
-	ld [wFieldMoveScriptID], a
+	set_script DoDig
 	ret
 
 DoDig: ; 03:529a
-	ld hl, DigScript
-	ldh a, [hROMBank]
-	call QueueScript
+	queue_ab DigScript
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_SUCCESS
 	ld [wFieldMoveScriptID], a
 	ret
@@ -467,18 +445,16 @@ DigScript: ; 03:52c2
 EmptyFunctiond2da: ; 03:52da
 	ret
 	
-	
-
 TeleportFunction: ; 03:52db
 	xor a
 	ld [wFieldMoveScriptID], a
-.loop
+.next
 	ld a, [wFieldMoveScriptID]
 	bit SCRIPT_FINISHED_F, a
 	jr nz, .finish
-	ld hl, TeleportTable
+	ld hl, .TeleportScriptTable
 	call CallJumptable
-	jr .loop
+	jr .next
 
 ; Finish by returning only the low nibble
 .finish
@@ -486,11 +462,12 @@ TeleportFunction: ; 03:52db
 	ld [wFieldMoveSucceeded], a
 	ret
 	
-TeleportTable
-	dw TryTeleport
-	dw DoTeleport
-	dw FailTeleport
-	dw CheckIfSpawnPoint
+.TeleportScriptTable
+	init_script_table
+	add_script TryTeleport
+	add_script DoTeleport
+	add_script FailTeleport
+	add_script CheckIfSpawnPoint
 
 TryTeleport: ; 03:52fc
 	call GetMapEnvironment
@@ -498,12 +475,10 @@ TryTeleport: ; 03:52fc
 	jr z, .success
 	cp ROUTE
 	jr z, .success
-	ld a, SCRIPT_ID_02
-	ld [wFieldMoveScriptID], a
+	set_script FailTeleport
 	ret
 .success
-	ld a, SCRIPT_ID_03
-	ld [wFieldMoveScriptID], a
+	set_script CheckIfSpawnPoint
 	ret
 	
 CheckIfSpawnPoint ; 03:5313
@@ -521,19 +496,16 @@ CheckIfSpawnPoint ; 03:5313
 .not_spawn
 	ld a, c
 	ld [wDefaultSpawnPoint], a
-	ld a, SCRIPT_ID_01
-	ld [wFieldMoveScriptID], a
+	set_script DoTeleport
 	ret
 
 Text_CantFindDestination: ; 03:533B
 	text "とびさきが　みつかりません"
-	para
+	para ""
 	done
 
 DoTeleport: ; 03:534b
-	ldh a, [hROMBank]
-	ld hl, TeleportScript
-	call QueueScript
+	queue_ba TeleportScript
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_SUCCESS
 	ld [wFieldMoveScriptID], a
 	ret
@@ -548,7 +520,7 @@ FailTeleport: ; 03:5359
 
 Text_CantUseTeleportHere: ; 03:5366
 	text "ここでは　つかえません！"
-	para
+	para ""
 	done
 
 TeleportScript: ; 03:5375
