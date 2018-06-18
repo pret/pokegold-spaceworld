@@ -244,7 +244,7 @@ ENDM
 
 PrintMomsName::   print_name wMomsName
 PrintPlayerName:: print_name wPlayerName
-PrintRivalName::  print_name wRivalsName
+PrintRivalName::  print_name wRivalName
 
 TrainerChar:: print_name TrainerCharText
 TMChar::      print_name TMCharText

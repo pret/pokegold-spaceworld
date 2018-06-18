@@ -184,8 +184,12 @@ wEnemyMonNickname:: ds 6 ; c9fc
 wPlayerSubStatus3:: db ; ca3d
 	ds $4
 wEnemySubStatus3:: db ; ca42
-; ca43
-	ds $14
+
+wca43:: db ; ca43
+
+wca44:: db ; ca44
+
+	ds $12
 wTrainerClass:: ; ca57
 	db
 ; ca58
@@ -470,6 +474,8 @@ wPrevWarp:: db ; cdc1
 	ds 11
 
 wLinkBattleRNs:: ds 10 ; cdcd
+
+wcdd7:: db ; cdd7
 ; cddd
 
 SECTION "CE00", WRAM0[$CE00]
@@ -549,6 +555,7 @@ wce2e:: ; ce2e
 SECTION "CE37", WRAM0[$CE37]
 
 wNamedObjectIndexBuffer::
+wCountSetBitsResult:: 
 wce37:: ; ce37
     db
 
@@ -573,7 +580,8 @@ SECTION "CE5F", WRAM0[$CE5F]
 wce5f:: ; ce5f ; debug menu writes $41 to it
     db
 
-SECTION "CE61", WRAM0[$CE61]
+wce60:: ; ce60
+	db ; main menu checks this, maybe states if there's a save present?
 
 wActiveFrame:: db ; ce61
 
@@ -584,7 +592,9 @@ wDebugFlags:: db ; ce63
 ;       |\- debug battle indicator
 ;       \-- debug field indicator
 
-SECTION "Mom's Name", WRAM0[$CE6D]
+SECTION "Player And Mom Names", WRAM0[$CE67]
+wPlayerName:: ds 6 ; ce67
+
 wMomsName:: ds 6 ; ce6d
 
 SECTION "CE7F", WRAM0[$CE76]
@@ -672,7 +682,19 @@ wTimeOfDayPalset:: db ; d158
 
 wCurTimeOfDay:: db ; d159
 
-SECTION "D165", WRAM0[$D165]
+SECTION "D15D", WRAM0[$D15D]
+
+wd15d:: db ; d15d
+
+wd15e:: db ; d15e
+
+wd15f:: db ; d15f
+
+SECTION "D163", WRAM0[$D163]
+
+wd163:: db ; d163
+
+wd164:: db ; d164
 
 wTMsHMs:: db ; d165
 
@@ -691,7 +713,7 @@ wNumBallItems:: db ; d1de
 wBallQuantities:: db ; d1df
 
 SECTION "Rival's Name", WRAM0[$D258]
-wRivalsName:: ds 6 ; d258
+wRivalName:: ds 6 ; d258
 
 SECTION "D4AB", WRAM0[$D4A9]
 
@@ -763,7 +785,7 @@ wXCoord:: db ; d65b
 wMetatileStandingY:: db ; d65c
 wMetatileStandingX:: db ; d65d
 
-; d65f
+wd65e:: ; d65e
 	ds 1 ; TODO
 
 wMapPartial:: ; d65f
@@ -812,6 +834,9 @@ wTilesetCollisionAddress:: ; d6a4
 	ds 4 ; TODO
 wTilesetEnd:: ; d6aa
 
+SECTION "D6B3", WRAM0[$D6B3]
+
+wd6b3 :: db ; d6b3
 
 SECTION "PokeDexFlags", WRAM0[$D81A]
 
@@ -827,7 +852,7 @@ wAnnonDex:: ds 26  ; d85a
 
 wAnnonID:: ds 1    ; d874
 
-
+	
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
 wWildMons:: ; d91b

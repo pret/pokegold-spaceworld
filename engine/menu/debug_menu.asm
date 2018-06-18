@@ -3,26 +3,26 @@ INCLUDE "constants.asm"
 SECTION "Debug Menu", ROMX[$4031], BANK[$01]
 
 DebugMenu:: ; $4031
-call ClearTileMap
-call ClearWindowData
-call LoadFont
-call LoadFontsBattleExtra
-call ClearSprites
-call GetMemSGBLayout
-xor a
-ld [wWhichIndexSet], a
-ld hl, DebugMenuData
-call LoadMenuHeader
-call OpenMenu
-call CloseWindow
-jp c, TitleSequenceStart
-ld a, $41
-ld [wce5f], a
-ld a, [wMenuSelection]
-ld hl, DebugJumpTable1
-jp CallJumptable
+	call ClearTileMap
+	call ClearWindowData
+	call LoadFont
+	call LoadFontsBattleExtra
+	call ClearSprites
+	call GetMemSGBLayout
+	xor a
+	ld [wWhichIndexSet], a
+	ld hl, DebugMenuHeader
+	call LoadMenuHeader
+	call OpenMenu
+	call CloseWindow
+	jp c, TitleSequenceStart
+	ld a, $41
+	ld [wce5f], a
+	ld a, [wMenuSelection]
+	ld hl, DebugJumpTable
+	jp CallJumptable
 
-DebugJumpTable1:: ; 4064
+DebugJumpTable:: ; 4064
 	dw DebugMenuOptionFight
 	dw DebugMenuOptionField
 	dw Function094c ; sound test
@@ -30,7 +30,7 @@ DebugJumpTable1:: ; 4064
 	dw DebugMenuOptionMonsterTest
 	dw DebugMenuOptionName
 	
-DebugMenuData: ; 4070
+DebugMenuHeader: ; 4070
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 05, 02, SCREEN_WIDTH - 7, SCREEN_HEIGHT - 1
 	dw .MenuData
@@ -64,7 +64,7 @@ DebugMenuItems:
 DebugMenuOptionField:: ; 40A8
 	ld hl, wDebugFlags
 	set DEBUG_FIELD_F, [hl] ; set debug mode
-	jp Function555C
+	jp StartNewGame
 	
 DebugMenuOptionFight:: ; 40B0
 	ld hl, wDebugFlags

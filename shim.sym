@@ -5,8 +5,8 @@
 01:50B9 Function50b9
 01:5190 _UpdateSprites
 01:5190 Function5190
-01:53CC MainMenu
-01:555C Function555C
+01:52F9 Function52f9
+01:5388 Function5388
 01:5D27 Function5d27
 01:63D8 ReanchorBGMap_NoOAMUpdate
 01:6437 LoadFonts_NoOAMUpdate
@@ -84,6 +84,7 @@
 05:457A Function1457a
 05:45B8 Function145b8
 05:45DE Function145de
+05:4624 Function14624
 05:46DC Function146dc
 ; Structure:
 ; byte Map group ($ff = end)
@@ -123,6 +124,7 @@
 0F:508C Function3d08c
 0F:55CE Function3d5ce
 0F:567C Function3d67c
+0F:6043 Function3e043
 0F:61A4 Function3e1a4
 0F:6874 Function3e874
 0F:691E Function3e91e
@@ -423,6 +425,7 @@
 36:73E8 MtFujiRoute_MapAttributes
 36:7444 FontoRoute5_MapAttributes
 36:7530 BullForestRoute3_MapAttributes
+36:7AE4 SetTime
 38:4000 PikachuMiniGame
 39:4000 GameFreakIntro
 39:432F OpeningCutscene
@@ -448,10 +451,8 @@
 3F:67A1 CallSubGameMenu
 
 00:CB6F wPlayerStepDirection
-00:CE67 wPlayerName
 
 01:D19E wItems
-01:D258 wRivalName
 01:D264 wPlayerBikeSurfState
 ; The starting house's map script number is stored at d29a. Others are probably nearby.
 01:D35F wOptions
