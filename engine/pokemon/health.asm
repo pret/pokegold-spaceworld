@@ -356,4 +356,3 @@ UpdateHPBar_CalcOldNewHPBarPixels: ; 03:4F8B
 	ld e, a
 	pop hl
 	ret
-

@@ -1,50 +1,58 @@
 INCLUDE "constants.asm"
 
+jump_dest: MACRO
+\1JumpTable
+	dw \1
+ENDM
+
+next_jump: MACRO
+	ld a, (\1JumpTable - .JumpTable) / 2
+	ld [wFieldMoveScriptID], a
+ENDM
+
 ; TODO - need to constantize tile ids, movements
 
 SECTION "Field Moves", ROMX[$4fab], BANK[$03]
 
 CutFunction: ; 03:4fab
 	call .reset
-.loop
-	call .next
-	jr nc, .loop
+.next_script
+	call .run_script
+	jr nc, .next_script
 	ld [wFieldMoveSucceeded], a
 	ret
 .reset
 	xor a
 	ld [wFieldMoveScriptID], a
 	ret
-.next
+.run_script
 	ld a, [wFieldMoveScriptID]
-	ld hl, CutTable
+	ld hl, .JumpTable
 	jp CallJumptable
 	
-CutTable
-	dw TryCut
-	dw CheckCuttableBlock
-	dw CheckCuttableTile
-	dw DoCut
-	dw DoCut
-	dw FailCut
+.JumpTable
+	jump_dest .TryCut
+	jump_dest .CheckCuttableBlock
+	jump_dest .CheckCuttableTile
+	jump_dest .DoCut
+	jump_dest .DoCut2
+	jump_dest .FailCut
 
-TryCut: ; 03:4fd1
+.TryCut ; 03:4fd1
 	call GetMapEnvironment
 	cp ROUTE
 	jr z, .success
 	cp TOWN
 	jr z, .success
-	ld a, SCRIPT_ID_05
-	ld [wFieldMoveScriptID], a
+	next_jump .FailCut
 	xor a
 	ret
 .success
-	ld a, SCRIPT_ID_01
-	ld [wFieldMoveScriptID], a
+	next_jump .CheckCuttableBlock
 	xor a
 	ret
 
-CheckCuttableBlock: ; 03:4fea
+.CheckCuttableBlock ; 03:4fea
 	call GetFacingTileCoord
 	cp $80
 	jr nz, .fail
@@ -54,35 +62,33 @@ CheckCuttableBlock: ; 03:4fea
 	ld a, h
 	ld [wMapBlocksAddress + 1], a
 	ld a, [hl]
-	call GetCutReplacementBlock
+	call .GetCutReplacementBlock
 	jr nc, .fail
 	dec hl
 	ld a, [hl]
 	ld [wReplacementBlock], a
-	ld a, SCRIPT_ID_04
-	ld [wFieldMoveScriptID], a
+	next_jump .DoCut2
 	xor a
 	ret
 .fail
-	ld a, SCRIPT_ID_02
-	ld [wFieldMoveScriptID], a
+	next_jump .CheckCuttableTile
 	xor a
 	ret
 
-GetCutReplacementBlock:
+.GetCutReplacementBlock ;TODO - address
 	ld c, a
-	ld hl, CutReplacementBlocks
-.loop
+	ld hl, .CutReplacementBlocks
+.loop1
 	ld a, [hli]
 	cp -1
 	ret z
 	inc hl
 	cp c
-	jr nz, .loop
+	jr nz, .loop1
 	scf
 	ret
 	
-CutReplacementBlocks:
+.CutReplacementBlocks ; TODO - address
 ; replacement block, facing block
 	db $30, $25
 	db $31, $2A
@@ -90,69 +96,68 @@ CutReplacementBlocks:
 	db $33, $35
 	db -1
 
-CheckCuttableTile: ; 03:502c
+.CheckCuttableTile ; 03:502c
 	call GetFacingTileCoord
-	call IsCuttableTile
-	jr nc, .fail
+	call .IsCuttableTile
+	jr nc, .fail2
 	call GetBlockLocation
 	ld a, [hl]
 	cp $3b
-	jr nz, .fail
+	jr nz, .fail2
 	ld a, l
 	ld [wMapBlocksAddress], a
 	ld a, h
 	ld [wMapBlocksAddress + 1], a
 	ld a, $04
 	ld [wReplacementBlock], a
-	ld a, SCRIPT_ID_03
-	ld [wFieldMoveScriptID], a
+	next_jump .DoCut
 	xor a
 	ret
-.fail
-	ld a, SCRIPT_ID_05
-	ld [wFieldMoveScriptID], a
+.fail2
+	next_jump .FailCut
 	xor a
 	ret
 	
-IsCuttableTile:
-	ld hl, CuttableTiles
+.IsCuttableTile ; TODO - address
+	ld hl, .CuttableTiles
 	ld c, a
-.loop
+.loop2
 	ld a, [hli]
 	cp -1
 	ret z
 	cp c
-	jr nz, .loop
+	jr nz, .loop2
 	scf
 	ret
 	
-CuttableTiles:
+.CuttableTiles ; TODO - address
 	db $81
 	db $82
 	db $8A
 	db $8B
 	db -1
 
-FailCut: ; 03:5069
-	ld hl, Text_CantUseCutHere
+.FailCut ; 03:5069
+	ld hl, .Text_CantUseCutHere
 	call MenuTextBoxBackup
 	scf
 	ld a, SCRIPT_FAIL
 	ret
 	
-Text_CantUseCutHere: ; 03:5073
+.Text_CantUseCutHere ; 03:5073
 	text "ここでは　つかえません"
 	prompt
 
-DoCut: ; 03:5080
-	ld hl, CutScript
-	ld a, BANK(CutScript)
+.DoCut ; 03:5080
+.DoCut2
+	ld hl, .CutScript
+	ld a, BANK(.CutScript)
 	call QueueScript
 	scf
 	ld a, SCRIPT_SUCCESS
 	ret
 
-CutScript: ; 03:508C
+.CutScript ; 03:508C
 	call RefreshScreen
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
@@ -160,7 +165,7 @@ CutScript: ; 03:508C
 	ld a, [wWhichPokemon]
 	call GetNick
 	call CopyStringToStringBuffer2
-	ld hl, Text_CutItDown
+	ld hl, .Text_CutItDown
 	call MenuTextBoxBackup
 	ld de, MUSIC_SURF
 	call PlaySFX
@@ -177,7 +182,7 @@ CutScript: ; 03:508C
 	scf
 	ret
 	
-Text_CutItDown: ; 03:50c4
+.Text_CutItDown ; 03:50c4
 	text_from_ram wStringBuffer2
 	text "　は　"
 	line "くさかりを　つかった！"

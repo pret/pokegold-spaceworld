@@ -19,4 +19,4 @@ SCRIPT_FAIL     EQU 0
 ; Some script don't combine the return value with the flag
 ; Instead, they load this into the wFieldMoveScriptID, and keep
 ; the return value in a
-SCRIPT_FINISHED EQU -1 
+SCRIPT_FINISHED EQU -1

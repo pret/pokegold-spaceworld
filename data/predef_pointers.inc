@@ -19,10 +19,10 @@ PredefPointers:: ; 1:62d3
 	add_predef GetItemAmount
 	add_predef HealParty
 	add_predef AddBCD
-	dbw BANK(AddBCD), AddBCD ; 8
-	dbw BANK(AddBCD), AddBCD
+	dba AddBCD ; 8
+	dba AddBCD
 	add_predef SubBCD
-	dbw BANK(GetItemAmount), GetItemAmount
+	dba GetItemAmount
 	add_predef SmallFarFlagAction
 GiveItemPredef::
 	dbw 3, GiveItem

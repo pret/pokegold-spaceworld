@@ -10,7 +10,7 @@ PlayMapMusic: ; 00:3de1
 	cp e
 	jr z, .dont_play
 	push de
-	ld de, $0000
+	ld de, 0
 	call PlayMusic
 	call DelayFrame
 	pop de

@@ -57,4 +57,3 @@ IsSpawnPoint: ; 03:47b6
 .succeed
 	scf
 	ret
-
