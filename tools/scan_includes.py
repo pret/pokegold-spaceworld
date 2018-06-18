@@ -42,10 +42,14 @@ def shallow_dependencies_of(asm_file_path):
             
             keyword = m.group(1).upper()
             line = line.split(';', 1)[0]
-            path = line[line.index('"') + 1:line.rindex('"')]
+            # RGBDS treats absolute(-looking) paths as relative,
+            # so leading slashes should be stripped.
+            path = line[line.index('"') + 1:line.rindex('"')].lstrip('/')
             if keyword == 'INCLUDE':
                 asm_dependencies.add(path)
             else:
+                if not os.path.isfile(path):
+                    path = 'build/' + path
                 bin_dependencies.add(path)
     
     return asm_dependencies, bin_dependencies

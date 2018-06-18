@@ -168,8 +168,8 @@ FirePositionTable::
 	dw $7CB0
 	dw $8800
 
-TitleFireGFX:: INCBIN "build/gfx/title/fire.2bpp"	; 5EB8-5F37 
-TitleNotesGFX:: INCBIN "build/gfx/title/notes.2bpp"	; 5F38=5FB7 
+TitleFireGFX:: INCBIN "gfx/title/fire.2bpp"	; 5EB8-5F37 
+TitleNotesGFX:: INCBIN "gfx/title/notes.2bpp"	; 5F38=5FB7 
 
 TitleScreenMain::
 	ld a, [wJumptableIndex]

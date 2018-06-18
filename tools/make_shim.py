@@ -5,19 +5,19 @@ import argparse
 from sys import stderr
 from collections import OrderedDict, namedtuple
 
-Section = namedtuple('Section', ('end', 'invalud', 'banked'))
-section_list = OrderedDict(
-    ROM0=Section(0x4000, False, False),
-    ROMX=Section(0x8000, False, True),
-    VRAM=Section(0xA000, False, True),
-    SRAM=Section(0xC000, False, True),
-    WRAM0=Section(0xD000, False, False),
-    WRAMX=Section(0xE000, False, True),
-    EchoRAM=Section(0xFE00, True, False),
-    OAM=Section(0xFEA0, False, False),
-    IO=Section(0xFF80, True, False),
-    HRAM=Section(0xFFFF, False, False)
-)
+Section = namedtuple('Section', ('end', 'invalid', 'banked'))
+section_list = OrderedDict((
+    ('ROM0', Section(0x4000, False, False)),
+    ('ROMX', Section(0x8000, False, True)),
+    ('VRAM', Section(0xA000, False, True)),
+    ('SRAM', Section(0xC000, False, True)),
+    ('WRAM0', Section(0xD000, False, False)),
+    ('WRAMX', Section(0xE000, False, True)),
+    ('EchoRAM', Section(0xFE00, True, False)),
+    ('OAM', Section(0xFEA0, False, False)),
+    ('IO', Section(0xFF80, True, False)),
+    ('HRAM', Section(0xFFFF, False, False))
+))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('files', nargs='+', type=argparse.FileType())
@@ -28,14 +28,14 @@ args = parser.parse_args()
 
 
 if args.w or args.d:
-    section_list['WRAM0'].end = 0xE000
+    section_list['WRAM0'] = Section(0xE000, *section_list['WRAM0'][1:])
 
 if args.t:
-    section_list['ROM0'].end = 0x8000
+    section_list['ROM0'] = Section(0x8000, *section_list['ROM0'][1:])
 
 
-for file_name in args.files:
-    for line in open(file_name, "rt"):
+for f in args.files:
+    for line in f:
 
         # Strip out the comment
         line = line.split(";")[0].strip()
@@ -50,13 +50,13 @@ for file_name in args.files:
             pointer = int(pointer, 16)
         except ValueError:
             print("Error: Cannot parse line: %s" % line, file=stderr)
-            raise from None
+            raise
 
         section = None
         for name, section_type in section_list.items():
             if pointer < section_type.end:
                 if section_type.invalid:
-                    print("Warning: cannot shim '%s' in section type '%s'" % (symbol, section_type['name']), file=stderr)
+                    print("Warning: cannot shim '%s' in section type '%s'" % (symbol, name), file=stderr)
                     section = False
                 else:
                     section = name

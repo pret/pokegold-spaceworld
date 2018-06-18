@@ -11,7 +11,7 @@ RGBFIX := rgbfix
 sort_sym := tools/sort_symfile.sh
 #sort_sym := $(PYTHON3) tools/sort_sym.py
 
-RGBASMFLAGS := -h -E -DGOLD -DDEBUG=1
+RGBASMFLAGS := -h -E -i build/ -DGOLD -DDEBUG=1
 tools/gfx :=
 
 ROM := pokegold-spaceworld.gb
@@ -83,8 +83,8 @@ $(BASEROM):
 	@echo "Please obtain a copy of Gold_debug.sgb and put it in this directory as $@"
 	@exit 1
 
-$(BUILD)/shim.asm: tools/make_shim $(SHIM) | $$(dir $$@)
-	tools/make_shim -w $(filter-out $<, $^) > $@
+$(BUILD)/shim.asm: tools/make_shim.py $(SHIM) | $$(dir $$@)
+	$(PYTHON3) tools/make_shim.py -w $(filter-out $<, $^) > $@
 
 $(BUILD)/gfx.o: | $(GFX)
 $(BUILD)/%.o: $(BUILD)/%.asm | $$(dir $$@)
