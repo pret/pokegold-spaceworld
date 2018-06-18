@@ -11,7 +11,7 @@ RGBFIX := rgbfix
 sort_sym := tools/sort_symfile.sh
 #sort_sym := $(PYTHON3) tools/sort_sym.py
 
-RGBASMFLAGS := -h -E -i $(BUILD)/ -DGOLD -DDEBUG=1
+RGBASMFLAGS := -h -E -i build/ -DGOLD -DDEBUG=1
 tools/gfx :=
 
 ROM := pokegold-spaceworld.gb
@@ -21,8 +21,9 @@ CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
 
 rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
 DIRS := home engine data audio
+ASMFILES := $(call rwildcard, $(DIRS), *.asm)
 OBJS := $(addprefix $(BUILD)/, gfx.o vram.o sram.o wram.o hram.o shim.o)
-OBJS += $(patsubst %.asm, $(BUILD)/%.o, $(call rwildcard, $(DIRS), *.asm))
+OBJS += $(patsubst %.asm, $(BUILD)/%.o, $(ASMFILES))
 
 GFX := $(patsubst %.png, $(BUILD)/%.2bpp, \
        $(patsubst %.1bpp.png, $(BUILD)/%.1bpp, \
@@ -53,7 +54,7 @@ clean:
 # Remove files except for graphics.
 .PHONY: mostlyclean
 mostlyclean:
-	rm -rf $(ROM) $(CORRECTEDROM) $(OBJS) $(OBJS:.o=.d) $(ROMS:.gb=.sym) $(ROMS:.gb=.map)
+	rm -rf $(ROM) $(CORRECTEDROM) $(OBJS) $(ROMS:.gb=.sym) $(ROMS:.gb=.map)
 
 # Utilities
 .PHONY: coverage
@@ -82,14 +83,14 @@ $(BASEROM):
 	@echo "Please obtain a copy of Gold_debug.sgb and put it in this directory as $@"
 	@exit 1
 
-$(BUILD)/shim.asm: tools/make_shim $(SHIM) | $$(dir $$@)
-	tools/make_shim -w $(filter-out $<, $^) > $@
+$(BUILD)/shim.asm: tools/make_shim.py $(SHIM) | $$(dir $$@)
+	$(PYTHON3) tools/make_shim.py -w $(filter-out $<, $^) > $@
 
 $(BUILD)/gfx.o: | $(GFX)
 $(BUILD)/%.o: $(BUILD)/%.asm | $$(dir $$@)
-	$(RGBASM) $(RGBASMFLAGS) -M $(@:.o=.d) $(OUTPUT_OPTION) $<
+	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<
 $(BUILD)/%.o: %.asm | $$(dir $$@)
-	$(RGBASM) $(RGBASMFLAGS) -M $(@:.o=.d) $(OUTPUT_OPTION) $<
+	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<
 
 $(BUILD)/gfx/sgb/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_gold.2bpp: tools/gfx += --trim-whitespace
@@ -123,4 +124,8 @@ $(BUILD)/%.tilemap: %.png | $$(dir $$@)
 %/:
 	mkdir -p $@
 
--include $(OBJS:.o=.d)
+DEPENDENCY_SCAN_EXIT_STATUS := $(shell $(PYTHON3) tools/scan_includes.py $(ASMFILES) > dependencies.d; echo $$?)
+ifneq ($(DEPENDENCY_SCAN_EXIT_STATUS), 0)
+$(error Dependency scan failed)
+endif
+include dependencies.d
