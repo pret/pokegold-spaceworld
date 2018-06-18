@@ -23,7 +23,7 @@ PredefPointers:: ; 1:62d3
 	add_predef Functioncde3_3
 	add_predef Functioncdf9
 	add_predef Functionce10_2
-	add_predef Functioncd33
+	add_predef SmallFarFlagAction
 GiveItemPredef::
 	dbw 3, GiveItem
 	add_predef Functionce3c
