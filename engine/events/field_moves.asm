@@ -216,7 +216,7 @@ TrySurf: ; 03:50f8
 
 DoSurf: ; 03:5113
 	queue_ba SurfScript
-	ld a, SCRIPT_FINISHED
+	ld a, -1
 	ld [wFieldMoveScriptID], a
 	scf
 	ld a, SCRIPT_SUCCESS
@@ -225,7 +225,7 @@ DoSurf: ; 03:5113
 FailSurf: ; 03:5124
 	ld hl, Text_CantSurfHere
 	call MenuTextBoxBackup
-	ld a, SCRIPT_FINISHED
+	ld a, -1
 	ld [wFieldMoveScriptID], a
 	scf
 	ld a, SCRIPT_FAIL
@@ -341,7 +341,7 @@ ShowFlyMap: ; 03:51ea
 	ret
 .dont_fly
 	call UpdateTimePals
-	ld a, SCRIPT_FINISHED
+	ld a, -1
 	ld [wFieldMoveScriptID], a
 	scf
 	ld a, SCRIPT_FAIL
@@ -352,7 +352,7 @@ DoFly: ; 03:521f
 	inc a
 	ld [wDefaultSpawnPoint], a
 	queue_ba FlyScript
-	ld a, SCRIPT_FINISHED
+	ld a, -1
 	ld [wFieldMoveScriptID], a
 	scf
 	ld a, SCRIPT_SUCCESS
@@ -361,7 +361,7 @@ DoFly: ; 03:521f
 FailFly: ; 03:5237
 	ld hl, Text_CantUseFlyHere
 	call MenuTextBoxBackup
-	ld a, SCRIPT_FINISHED
+	ld a, -1
 	ld [wFieldMoveScriptID], a
 	scf
 	ld a, SCRIPT_FAIL
