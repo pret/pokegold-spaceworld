@@ -61,7 +61,7 @@ MainMenuHeader: ; 01:5418
 MainMenuJumptable: ; 01:5457
 	dw MainMenuOptionContinue
 	dw StartNewGame
-	dw $5cf3
+	dw MenuCallSettings
 	dw StartNewGame
 	dw MainMenuOptionSetTime
 
@@ -205,44 +205,44 @@ StartNewGame:: ; 555C
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
 	jp z, DemoStart
-	call DebugSetUpPlayer ; todo - sets up debug stuff?
-	jp IntroCleanup ; todo - gives strter & does shrinkydink?
+	call DebugSetUpPlayer
+	jp IntroCleanup
 	
 DemoStart:: ; 558D
-	ld de, $4BD4
+	ld de, $4BD4 ; maybe this should be a macro - b is bank, de is address, c is flag
 	ld bc, $1200
-	call Function5d27
-	call $5CF7 ; todo
-	ld hl, OakSpeechDemo ; todo
+	call IntroDisplayPicCenteredOrUpperRight
+	call FadeInIntroPic
+	ld hl, OakSpeechDemo
 	call PrintText
 	call RotateThreePalettesRight
 	call ClearTileMap
 	ld de, $4D10
 	ld bc, $1200
-	call Function5d27
-	call $5D0E ; todo
+	call IntroDisplayPicCenteredOrUpperRight
+	call MovePicLeft
 	ld a, $D0 ; todo
 	ldh [rOBP0], a
-	call DemoSetUpPlayer ; todo
-	jp IntroCleanup ; todo
+	call DemoSetUpPlayer
+	jp IntroCleanup
 	
 GameStart:: ; 55BB
 	ld de, $4BD4
 	ld bc, $1200
-	call Function5d27
-	call $5CF7
+	call IntroDisplayPicCenteredOrUpperRight
+	call FadeInIntroPic
 	ld hl, OakSpeech1
 	call PrintText
 	call RotateThreePalettesRight
 	call ClearTileMap
-	ld a, $C8
+	ld a, $C8 ;  pokemon preview ID
 	ld [$CB5B], a
 	ld [$CD78], a
 	call GetMonHeader
 	ld hl, $C2F6
 	ld hl, $C2F6
 	call PrepMonFrontpic
-	call $5D0E
+	call MovePicLeft
 	ld hl, OakSpeech2
 	call PrintText
 	ld a, $C8 ; this should be a constant methinks
@@ -253,37 +253,35 @@ GameStart:: ; 55BB
 	call ClearTileMap
 	ld de, $4D10
 	ld bc, $1200
-	call Function5d27
-	call $5D0E
+	call IntroDisplayPicCenteredOrUpperRight
+	call MovePicLeft
 	ld hl, OakSpeech4
 	call PrintText
-	call $5B25
+	call ChoosePlayerName
 	call RotateThreePalettesRight
 	call ClearTileMap
 	ld de, $4ab7
 	ld bc, $1200
-	call Function5d27
-	call $5CF7
+	call IntroDisplayPicCenteredOrUpperRight
+	call FadeInIntroPic
 	ld hl, OakSpeech5
 	call PrintText
-	call $5BA9
+	call ChooseRivalName
 	call RotateThreePalettesRight
 	call ClearTileMap
 	ld de, $4BD4
 	ld bc, $1200
-	call Function5d27
-	call $5CF7
+	call IntroDisplayPicCenteredOrUpperRight
+	call FadeInIntroPic
 	ld hl, OakSpeech6
 	call PrintText
-	ld a, $24
-	ld hl, $4000
-	call FarCall_hl
+	callba SetClockDialog
 	call Function04ac
 	call RotateThreePalettesRight
 	call ClearTileMap
 	ld de, $4D10
 	ld bc, $1200
-	call Function5d27
+	call IntroDisplayPicCenteredOrUpperRight
 	call RotateThreePalettesLeft
 	ld hl, OakSpeech7
 	call PrintText
@@ -293,9 +291,9 @@ GameStart:: ; 55BB
 	ld [wMusicFade], a
 	ld de, MUSIC_NONE
 	ld a, e
-	ld [wMusicFadeID], a
+	ld [wMusicFadeIDLow], a
 	ld a, d
-	ld [$C1A8], a
+	ld [wMusicFadeIDHigh], a
 	ld de, $000B ; should be a constant - shrink noise?
 	call PlaySFX
 	pop af
@@ -306,12 +304,12 @@ GameStart:: ; 55BB
 IntroCleanup:: ; 568E
 	ld de, $4743
 	ld bc, $0400
-	call $5D27
+	call IntroDisplayPicCenteredOrUpperRight
 	ld c, $04
 	call DelayFrames
 	ld de, $479D
 	ld bc, $0400
-	call $5D27
+	call IntroDisplayPicCenteredOrUpperRight
 	ld c, $14
 	call DelayFrames
 	ld hl, $C30A
@@ -361,14 +359,14 @@ SetUpGameEntry:: ; 56E8
 GameStartPlacement:: ; 570D
 	db $01 ; map group 
 	db $09 ; map
-	dw $C633 ; screen anchor
+	dw $C633 ; screen anchor - should be coords
 	db $04 ; metatile x
 	db $04 ; metatile y
 	db $00 ; in-metatile x
 	db $01 ; in-metatile y
 	
 DebugSetUpPlayer:: ; 5715
-	call $5B07
+	call SetPlayerNamesDebug
 	ld a, $0F
 	ld [wd15d], a
 	ld a, $42
@@ -390,7 +388,7 @@ DebugSetUpPlayer:: ; 5715
 	call DebugFillPokedex
 	ld hl, wAnnonDex
 	ld [hl], $01
-	call $40FD
+	call $40FD ; todo
 	ret
  
 DebugFillPokedex:: ; 5755
@@ -670,4 +668,339 @@ OakSpeech7:: ; 5AC2
 	para "レッツ　ゴー！"
 	done
 	
-; 5B07
+SetPlayerNamesDebug:: ; 5B07
+	ld hl, DebugPlayerName
+	ld de, wPlayerName
+	call CopyNameDebug
+	ld hl, DebugRivalName
+	ld de, wRivalName
+	
+CopyNameDebug:
+	ld bc, 0006 ; constant - name length
+	call CopyBytes
+	ret
+	
+DebugPlayerName: ; 5B1D
+	db "コージ@"
+	
+DebugRivalName: ; 5B21
+	db "レッド@"
+	
+ChoosePlayerName:: ; 5B25
+	call PanPortraitRight
+	ld hl, PlayerNameMenuHeader
+	call NamingWindow
+	ld a, [wMenuCursorY]
+	dec a
+	jr z, .loop
+	ld de, wPlayerName
+	call SaveCustomName
+	jr .farjump
+	
+.loop
+	ld b, $01
+	ld de, wPlayerName
+	callba Function113f4
+	ld a, [wPlayerName]
+	cp "@"
+	jr z, .loop
+	
+	call RotateThreePalettesRight
+	call ClearTileMap
+	call LoadFontExtra
+	call WaitBGMap
+	ld de, $4D10
+	ld bc, $1200
+	call IntroDisplayPicCenteredOrUpperRight
+	call RotateThreePalettesLeft
+.farjump
+	ld hl, ChoosePlayerNameEndText
+	call PrintText
+	ret
+	
+ChoosePlayerNameEndText: ; 5B6F
+	text "ふむ・・・"
+	line "<PLAYER>　と　いうんだな！"
+	prompt
+	
+PlayerNameMenuHeader: ; 5B81
+	db $40 
+	menu_coords 00, 00, 10, 11
+	dw $5B89
+	db 01 ; initial selection
+	
+; 5B89
+	db "ツオ゛じぶんできめる@"
+	
+; 5B93
+	db "ゴールド@"
+	
+; 5B98
+	db "サトシ@"
+	
+; 5B9C
+	db "ジャック@"
+	
+; 5BA1
+	db "エ゛なまえこうほ@"
+
+ChooseRivalName:: ; 5BA9
+	call PanPortraitRight
+	ld hl, RivalNameMenuHeader
+	call NamingWindow
+	ld a, [wMenuCursorY]
+	dec a
+	jr z, .loop
+	ld de, wRivalName
+	call SaveCustomName
+	jr .farjump
+	
+.loop
+	ld b, $02
+	ld de, wRivalName
+	callba Function113f4 ; manual text entry box?
+	ld a, [wRivalName]
+	cp "@"
+	jr z, .loop
+	
+	call RotateThreePalettesRight
+	call ClearTileMap
+	call LoadFontExtra
+	call WaitBGMap
+	ld de, $4BD4
+	ld bc, $1200
+	call IntroDisplayPicCenteredOrUpperRight
+	call RotateThreePalettesLeft
+.farjump
+	ld hl, ChooseRivalNameEndText
+	call PrintText
+	ret
+	
+ChooseRivalNameEndText: ; 5BF3
+	text "そうか　そうだったな"
+	line "<RIVAL>　という　なまえだ"
+	prompt
+	
+RivalNameMenuHeader: ; 5C0A
+	db $40 
+	menu_coords 00, 00, 10, 11
+	dw RivalNameMenuData 
+	db 01 ; initial selection
+	
+RivalNameMenuData: ; 5C12
+	db $91 
+	db 04 ; items
+	dw $3C2C 
+	db $DE, $33 
+	dw $D2B7 
+	
+	db $D9, $50
+	
+; 5C1C
+	db "シルバー@"
+	
+; 5C21
+	db "シゲル@"
+	
+; 5C25
+	db "ジョン@"
+	
+; 5C29
+	db "エ゛なまえこうほ@"
+	
+MomNamePrompt:: ; 5C31
+	ld hl, MomNameMenuHeader
+	call NamingWindow
+	ld a, [wMenuCursorY]
+	dec a
+	jr z, .loop
+	ld de, wMomsName
+	call SaveCustomName
+	jr .escape
+	
+.loop
+	ld b, $03
+	ld de, wMomsName
+	callba Function113f4
+	ld a, [wMomsName]
+	cp "@"
+	jr z, .loop
+	
+	call ClearPalettes
+	call ClearTileMap
+	callab Function140d9
+	call LoadFontExtra
+	call GetMemSGBLayout
+	call WaitBGMap
+.escape
+	ret
+	
+MomNameMenuHeader: ; 5C71
+	db $40 ; flags
+	menu_coords 00, 00, 10, 11
+	dw .MomNameMenuData
+	db 01 ; initial selection
+	
+.MomNameMenuData: ; 5C79
+	db $91 
+	db 04 ; items
+	dw $3C2C 
+	db $DE, $33 
+	dw $B77F
+
+; 5C81
+	db "める@"
+	
+; 5C84
+	db "おかあさん@"
+
+; 5C8A
+	db "ママ@"
+	
+; 5C8D
+	db "かあちゃん@"
+	
+; 5C93
+	db "エ゛なまえこうほ@"
+	
+NamingWindow:: ; 5C9B
+	; loads the menu header put into hl
+	call LoadMenuHeader
+	call VerticalMenu
+	ld a, [wMenuCursorY]
+	dec a
+	call CopyNameFromMenu
+	call CloseWindow
+	ret
+	
+SaveCustomName:: ; 5CAC
+	ld hl, wcd31
+	ld bc, $0006 ; constant, player name length
+	call CopyBytes
+	ret
+	
+PanPortraitRight:: ; 5CB6
+	ld hl, $C2F5 ; should be a hlcoord i think
+	ld d, $06
+	ld e, $7E
+	ld b, d
+	ld c, e
+	ld d, $00
+	add hl, de
+.loop
+	xor a
+	ldh [hBGMapMode], a
+	push hl
+	push bc
+.innerLoop
+	;pans all the tiles onscreen to the right one
+	ld a, [hl+]
+	ld [hl-], a
+	dec hl
+	dec c
+	jr nz, .innerLoop
+	
+	call WaitBGMap
+	pop bc
+	pop hl
+	inc hl
+	dec b ; passed c - how many tiles right to pan?
+	jr nz, .loop
+	ret
+	
+PanPortraitLeft:: ; 5CD7
+	ld hl, $C2FC ; hlcoord
+	ld b, $06
+	ld c, $7E
+.loop
+	xor a
+	ldh [hBGMapMode], a
+	push hl
+	push bc
+.innerloop
+	ld a, [hl-]
+	ld [hl+], a
+	inc hl
+	dec c
+	jr nz, .innerloop
+	
+	call WaitBGMap
+	pop bc
+	pop hl
+	inc hl
+	dec b
+	jr nz, .loop
+	ret
+	
+MenuCallSettings:: ; 5CF3
+	call SettingsScreen
+	ret
+	
+FadeInIntroPic: ; 5CF7
+	ld hl, IntroFadePalettes
+	ld b, 6
+.next
+	ld a, [hl+]
+	ldh [rBGP], a
+	ld c, 10
+	call DelayFrames
+	dec b
+	jr nz, .next
+	ret
+	
+IntroFadePalettes:
+	db %01010100
+	db %10101000
+	db %11111100
+	db %11111000
+	db %11110100
+	db %11100100
+	
+MovePicLeft: ; 5D0E
+	ld a, 119
+	ldh [hWX], a
+	call DelayFrame
+	
+	ld a, %11100100
+	ldh [rBGP], a
+.next
+	call DelayFrame
+	ldh a, [hWX]
+	sub 8
+	cp $FF
+	ret z
+	ldh [hWX], a
+	jr .next
+	
+IntroDisplayPicCenteredOrUpperRight:: ; 5D27
+; b = bank
+; de = address of compressed pic
+; c: 0 = centred, non-zero = upper-right
+	ld a, c
+	and a
+	hlcoord 13, 4
+	jr nz, .skip
+	hlcoord 6, 4
+.skip
+	push hl
+	ld a, b
+	call UncompressSpriteFromDE
+	ld a, $00
+	call OpenSRAM
+	ld hl, $A188
+	ld de, $A000
+	ld bc, $0310
+	call CopyBytes
+	call CloseSRAM
+	ld de, $9000
+	call InterlaceMergeSpriteBuffers
+	pop hl
+	xor a
+	ldh [hGraphicStartTile], a
+	ld bc, $0707
+	; ld a, $1F
+	; call Predef
+	predef PlaceGraphic
+	ret
+	
+; 5D5D

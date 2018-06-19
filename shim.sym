@@ -7,13 +7,13 @@
 01:5190 Function5190
 01:52F9 Function52f9
 01:5388 Function5388
-01:5D27 Function5d27
 01:63D8 ReanchorBGMap_NoOAMUpdate
 01:6437 LoadFonts_NoOAMUpdate
 01:6445 Function6445
 01:66B1 Function66b1
 01:6713 Function6713
 01:776E Function776e
+01:78E5 SettingsScreen
 
 02:4000 Function8000
 02:4098 _InitializeVisibleSprites
@@ -65,6 +65,7 @@
 04:528F Function1128f
 04:52C1 Function112c1
 04:530A Function1130a
+04:53F4 Function113f4
 04:5677 DoPlayerMovement
 04:5DBE DisplayStartMenu
 04:640B Function1240b

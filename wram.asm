@@ -54,7 +54,9 @@ wMusicFade:: ; c1a5
 ; $00 = none (default)
 	db
 wMusicFadeCount:: db ; c1a6
-wMusicFadeID:: dw ; c1a7
+wMusicFadeID:: 
+wMusicFadeIDLow:: db ; c1a7
+wMusicFadeIDHigh:: db ; c1a8
 
     ds 2 ; TODO
 
@@ -786,7 +788,7 @@ wMetatileStandingY:: db ; d65c
 wMetatileStandingX:: db ; d65d
 
 wd65e:: ; d65e
-	ds 1 ; TODO
+	db
 
 wMapPartial:: ; d65f
 wMapAttributesBank:: ; d65f
