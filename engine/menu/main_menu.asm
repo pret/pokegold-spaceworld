@@ -39,7 +39,7 @@ MainMenu:: ; 01:53CC
 	jp CallJumptable
 
 MainMenuHeader: ; 01:5418
-	db $40
+	db MENU_BACKUP_TILES
 	menu_coords 0, 0, 13, 7
 	dw .MenuData
 	db 1 ; default option
@@ -110,11 +110,11 @@ MainMenuOptionContinue:: ;547C
 	jp nz, MainMenu
 	jr .loop
 .escape
-	call $5397 ; todo
-	call $53B0 ; todo
+	call Function5397
+	call Function53b0
 	ld hl, wDebugFlags
 	res DEBUG_FIELD_F, [hl]
-	set 2, [hl]
+	set CONTINUED_F, [hl]
 	set 3, [hl]
 	ldh a, [hJoyState]
 	bit SELECT_F, a
@@ -125,7 +125,7 @@ MainMenuOptionContinue:: ;547C
 	call ClearTileMap
 	ld c, $0A
 	call DelayFrames
-	jp OverworldStart ; todo
+	jp OverworldStart
 
 DisplayContinueGameInfo:: ; 54BF
 	xor a
@@ -209,50 +209,50 @@ StartNewGame:: ; 555C
 	jp IntroCleanup
 	
 DemoStart:: ; 558D
-	ld de, $4BD4 ; maybe this should be a macro - b is bank, de is address, c is flag
-	ld bc, $1200
+	ld de, OakPic
+	lb bc, BANK(OakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call FadeInIntroPic
 	ld hl, OakSpeechDemo
 	call PrintText
 	call RotateThreePalettesRight
 	call ClearTileMap
-	ld de, $4D10
-	ld bc, $1200
+	ld de, ProtagonistPic
+	lb bc, BANK(ProtagonistPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call MovePicLeft
-	ld a, $D0 ; todo
+	ld a, %11010000
 	ldh [rOBP0], a
 	call DemoSetUpPlayer
 	jp IntroCleanup
 	
 GameStart:: ; 55BB
-	ld de, $4BD4
-	ld bc, $1200
+	ld de, OakPic
+	lb bc, BANK(OakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call FadeInIntroPic
 	ld hl, OakSpeech1
 	call PrintText
 	call RotateThreePalettesRight
 	call ClearTileMap
-	ld a, $C8 ;  pokemon preview ID
-	ld [$CB5B], a
-	ld [$CD78], a
+	ld a, DEX_YADOKING
+	ld [wCurSpecies], a
+	ld [wMonDexIndex], a
 	call GetMonHeader
-	ld hl, $C2F6
+	ld hl, $C2F6 ; tilemap coord
 	ld hl, $C2F6
 	call PrepMonFrontpic
 	call MovePicLeft
 	ld hl, OakSpeech2
 	call PrintText
-	ld a, $C8 ; this should be a constant methinks
+	ld a, DEX_YADOKING
 	call PlayCry
 	ld hl, OakSpeech3
 	call PrintText
 	call RotateThreePalettesRight
 	call ClearTileMap
-	ld de, $4D10
-	ld bc, $1200
+	ld de, ProtagonistPic
+	lb bc, BANK(ProtagonistPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call MovePicLeft
 	ld hl, OakSpeech4
@@ -260,8 +260,8 @@ GameStart:: ; 55BB
 	call ChoosePlayerName
 	call RotateThreePalettesRight
 	call ClearTileMap
-	ld de, $4ab7
-	ld bc, $1200
+	ld de, RivalPic
+	lb bc, BANK(RivalPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call FadeInIntroPic
 	ld hl, OakSpeech5
@@ -269,8 +269,8 @@ GameStart:: ; 55BB
 	call ChooseRivalName
 	call RotateThreePalettesRight
 	call ClearTileMap
-	ld de, $4BD4
-	ld bc, $1200
+	ld de, OakPic
+	lb bc, BANK(OakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call FadeInIntroPic
 	ld hl, OakSpeech6
@@ -279,8 +279,8 @@ GameStart:: ; 55BB
 	call Function04ac
 	call RotateThreePalettesRight
 	call ClearTileMap
-	ld de, $4D10
-	ld bc, $1200
+	ld de, ProtagonistPic
+	lb bc, BANK(ProtagonistPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call RotateThreePalettesLeft
 	ld hl, OakSpeech7
@@ -302,23 +302,23 @@ GameStart:: ; 55BB
 	call DelayFrames
 	
 IntroCleanup:: ; 568E
-	ld de, $4743
-	ld bc, $0400
+	ld de, ShrinkPic1
+	lb bc, BANK(ShrinkPic1), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	ld c, $04
 	call DelayFrames
-	ld de, $479D
-	ld bc, $0400
+	ld de, ShrinkPic2
+	lb bc, BANK(ShrinkPic2), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	ld c, $14
 	call DelayFrames
-	ld hl, $C30A
+	hlcoord 6, 5
 	ld b, $07
 	ld c, $07
 	call ClearBox
 	ld c, $14
 	call DelayFrames
-	call $5D5D
+	call LoadStartingSprites
 	call LoadFontExtra
 	ld c, $32
 	call DelayFrames
@@ -332,7 +332,7 @@ IntroCleanup:: ; 568E
 OverworldStart::
 	call SetUpGameEntry
 	ld hl, wDebugFlags
-	bit 2, [hl] ; ?
+	bit CONTINUED_F, [hl]
 	call z, Function15b5
 	ld hl, wd4a9
 	set 0, [hl]
@@ -344,7 +344,7 @@ SetUpGameEntry:: ; 56E8
 	ld a, $F2
 	ldh [hMapEntryMethod], a
 	ld hl, wDebugFlags
-	bit 2, [hl] ; ?
+	bit CONTINUED_F, [hl] ; if we loaded a game
 	ret nz
 	ld a, $F1
 	ldh [hMapEntryMethod], a
@@ -352,14 +352,14 @@ SetUpGameEntry:: ; 56E8
 	ld [wDebugWarpSelection], a
 	ld hl, GameStartPlacement
 	ld de, wMapGroup
-	ld bc, $0008
+	ld bc, wd65e - wMapGroup
 	call CopyBytes
 	ret
 	
 GameStartPlacement:: ; 570D
 	db $01 ; map group 
-	db $09 ; map
-	dw $C633 ; screen anchor - should be coords
+	db PLAYER_HOUSE_2F+1 ; map
+	dwcoord 15, 45 ; screen anchor
 	db $04 ; metatile x
 	db $04 ; metatile y
 	db $00 ; in-metatile x
@@ -378,7 +378,7 @@ DebugSetUpPlayer:: ; 5715
 	ld [wd164], a
 	call GiveRandomJohto
 	ld a, $03
-	call Function57eb
+	call AddRandomPokemonToBox
 	call FillTMs
 	ld de, DebugBagItems
 	call FillBagWithList
@@ -388,7 +388,7 @@ DebugSetUpPlayer:: ; 5715
 	call DebugFillPokedex
 	ld hl, wAnnonDex
 	ld [hl], $01
-	call $40FD ; todo
+	call Function40fd
 	ret
  
 DebugFillPokedex:: ; 5755
@@ -440,12 +440,12 @@ DebugBagItems:: ; 5777
 	db ITEM_DETECT_ORB, $63 
 	db $FF
 	
-Function57A0 ; 57A0
+GiveRandomPokemon:: ; 57A0
 	and a
 	ret z
 .loop
 	push af
-	call RandomOver246
+	call RandomUnder246
 	ld b, $0A
 	call GivePokemon
 	pop af
@@ -489,18 +489,18 @@ GivePokemon:: ; 57DE
 	call Predef
 	ret
 	
-Function57eb ; 57EB
+AddRandomPokemonToBox: ; 57EB
 	and a
 	ret z
 .loop
 	push af
 	xor a
 	ld [wca44], a
-	call RandomOver246
+	call RandomUnder246
 	ld [wcdd7], a
 	ld a, $05
 	ld [wCurPartyLevel], a
-	callab Function3e043
+	callab AddPokemonToBox
 	ld a, [wcdd7]
 	ld [wMonDexIndex], a
 	callab Functiondd5c
@@ -509,7 +509,7 @@ Function57eb ; 57EB
 	jr nz, .loop
 	ret
 	
-RandomOver246:: ; 5818
+RandomUnder246:: ; 5818
 .loop	
 	call Random
 	and a
@@ -557,7 +557,7 @@ DemoSetUpPlayer:: ; 5849
 	ld hl, wRivalName
 	ld de, DemoRivalName
 	call CopyString
-	call $40FD
+	call Function40fd
 	ld de, DemoItemList
 	call FillBagWithList
 	call GiveRandomJohto
@@ -676,7 +676,7 @@ SetPlayerNamesDebug:: ; 5B07
 	ld de, wRivalName
 	
 CopyNameDebug:
-	ld bc, 0006 ; constant - name length
+	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 	ret
 	
@@ -724,21 +724,17 @@ ChoosePlayerNameEndText: ; 5B6F
 	prompt
 	
 PlayerNameMenuHeader: ; 5B81
-	db $40 
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
 	dw $5B89
 	db 01 ; initial selection
 	
 ; 5B89
-	db "ツオ゛じぶんできめる@"
-	
-; 5B93
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B 
+	db 04 ; items
+	db "じぶんできめる@"
 	db "ゴールド@"
-	
-; 5B98
 	db "サトシ@"
-	
-; 5B9C
 	db "ジャック@"
 	
 ; 5BA1
@@ -782,27 +778,17 @@ ChooseRivalNameEndText: ; 5BF3
 	prompt
 	
 RivalNameMenuHeader: ; 5C0A
-	db $40 
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
 	dw RivalNameMenuData 
 	db 01 ; initial selection
 	
 RivalNameMenuData: ; 5C12
-	db $91 
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B 
 	db 04 ; items
-	dw $3C2C 
-	db $DE, $33 
-	dw $D2B7 
-	
-	db $D9, $50
-	
-; 5C1C
+	db "じぶんできめる@"
 	db "シルバー@"
-	
-; 5C21
 	db "シゲル@"
-	
-; 5C25
 	db "ジョン@"
 	
 ; 5C29
@@ -836,28 +822,17 @@ MomNamePrompt:: ; 5C31
 	ret
 	
 MomNameMenuHeader: ; 5C71
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
 	dw .MomNameMenuData
 	db 01 ; initial selection
 	
 .MomNameMenuData: ; 5C79
-	db $91 
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B 
 	db 04 ; items
-	dw $3C2C 
-	db $DE, $33 
-	dw $B77F
-
-; 5C81
-	db "める@"
-	
-; 5C84
+	db "じぶんで　きめる@"
 	db "おかあさん@"
-
-; 5C8A
 	db "ママ@"
-	
-; 5C8D
 	db "かあちゃん@"
 	
 ; 5C93
@@ -875,12 +850,12 @@ NamingWindow:: ; 5C9B
 	
 SaveCustomName:: ; 5CAC
 	ld hl, wcd31
-	ld bc, $0006 ; constant, player name length
+	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 	ret
 	
 PanPortraitRight:: ; 5CB6
-	ld hl, $C2F5 ; should be a hlcoord i think
+	hlcoord 5, 4
 	ld d, $06
 	ld e, $7E
 	ld b, d
@@ -909,7 +884,7 @@ PanPortraitRight:: ; 5CB6
 	ret
 	
 PanPortraitLeft:: ; 5CD7
-	ld hl, $C2FC ; hlcoord
+	hlcoord 12, 4
 	ld b, $06
 	ld c, $7E
 .loop
@@ -987,20 +962,48 @@ IntroDisplayPicCenteredOrUpperRight:: ; 5D27
 	call UncompressSpriteFromDE
 	ld a, $00
 	call OpenSRAM
-	ld hl, $A188
-	ld de, $A000
-	ld bc, $0310
+	ld hl, sSpriteBuffer1
+	ld de, sSpriteBuffer0
+	ld bc, DOUBLESPRITEBUFFERSIZE
 	call CopyBytes
 	call CloseSRAM
-	ld de, $9000
+	ld de, VRAM_Begin + $1000
 	call InterlaceMergeSpriteBuffers
 	pop hl
 	xor a
 	ldh [hGraphicStartTile], a
 	ld bc, $0707
-	; ld a, $1F
-	; call Predef
 	predef PlaceGraphic
 	ret
 	
-; 5D5D
+LoadStartingSprites: ; 5D5D
+	ld de, GoldSpriteGFX
+	lb bc, BANK(GoldSpriteGFX), $0C
+	ld hl, VRAM_Begin
+	call Request2bpp
+	ld hl, wVirtualOAM
+	ld de, GameStartSprites
+	ld c, $04
+.loop
+	ld a, [de]
+	inc de
+	ld [hl+], a
+	ld a, [de]
+	inc de
+	ld [hl+], a
+	ld a, [de]
+	inc de
+	ld [hl+], a
+	xor a
+	ld [hl+], a
+	dec c
+	jr nz, .loop
+	ret
+	
+GameStartSprites: ; 5D80
+	db $50, $48, $00 
+	db $50, $50, $01 
+	db $58, $48, $02
+	db $58, $50, $03
+	
+; 5D8C

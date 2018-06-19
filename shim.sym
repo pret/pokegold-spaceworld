@@ -1,12 +1,15 @@
 ; ROM0
 00:3CA8 InitSpriteAnimStruct
 
+01:40FD Function40fd
 01:5007 Function5007
 01:50B9 Function50b9
 01:5190 _UpdateSprites
 01:5190 Function5190
 01:52F9 Function52f9
 01:5388 Function5388
+01:5397 Function5397
+01:53B0 Function53b0
 01:63D8 ReanchorBGMap_NoOAMUpdate
 01:6437 LoadFonts_NoOAMUpdate
 01:6445 Function6445
@@ -62,6 +65,8 @@
 03:5F7D Functiondf7d
 03:5F91 Functiondf91
 
+04:4743 ShrinkPic1
+04:479D ShrinkPic2
 04:528F Function1128f
 04:52C1 Function112c1
 04:530A Function1130a
@@ -125,7 +130,7 @@
 0F:508C Function3d08c
 0F:55CE Function3d5ce
 0F:567C Function3d67c
-0F:6043 Function3e043
+0F:6043 AddPokemonToBox
 0F:61A4 Function3e1a4
 0F:6874 Function3e874
 0F:691E Function3e91e

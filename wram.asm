@@ -591,8 +591,9 @@ wTextBoxFlags::  db ; ce62
 
 wDebugFlags:: db ; ce63
 ; 76543210
-;       |\- debug battle indicator
-;       \-- debug field indicator
+;     \/|\- debug battle indicator
+;     | \-- debug field indicator
+;     \---- loaded/continued game
 
 SECTION "Player And Mom Names", WRAM0[$CE67]
 wPlayerName:: ds 6 ; ce67
