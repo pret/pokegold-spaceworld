@@ -12,5 +12,7 @@
 const_value = -1
 	const SPAWN_N_A
 	
+NUM_SPAWNS EQU 18
+	
 ; size of each spawn point data
 SPAWN_POINT_SIZE EQU 4

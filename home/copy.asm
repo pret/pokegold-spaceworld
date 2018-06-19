@@ -99,9 +99,9 @@ ReloadTilesFromBuffer:: ; 3361
 	ldh [hBGMapMode], a
 	ret
 
-CopyStringToCD31::
-; copies a string from [de] to [wcd31]
-	ld hl, wcd31
+CopyStringToStringBuffer2::
+; copies a string from [de] to [wStringBuffer2]
+	ld hl, wStringBuffer2
 	; fallthrough
 
 CopyString::

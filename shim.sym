@@ -5,6 +5,7 @@
 00:3233 Function3233
 00:323E Function323e
 00:3240 Function3240
+00:3C43 GetPartyParamLocation
 00:3CA8 InitSpriteAnimStruct
 00:3D86 WaitSFX
 00:3D87 WaitSFX.wait
@@ -14,8 +15,6 @@
 00:3DB6 UpdateSoundNTimes
 00:3DBE FadeToMapMusic
 00:3DDC FadeToMapMusic.dontfade
-00:3DE1 PlayMapMusic
-00:3E00 PlayMapMusic.dontplay
 00:3E05 SpecialMapMusic
 00:3E14 SpecialMapMusic.state2
 00:3E19 SpecialMapMusic.normal
@@ -37,6 +36,7 @@
 01:6445 Function6445
 01:66B1 Function66b1
 01:6713 Function6713
+01:67d5 CorrectNickErrors
 01:776E Function776e
 
 02:4000 Function8000
@@ -48,6 +48,7 @@
 02:43E8 Function83e8
 02:45DF QueueFollowerFirstStep
 02:462E Function862e
+02:46CB FlyMap
 02:4786 Function8786
 02:4856 DecompTownMapTilemap
 02:48DA DecompTownMapTilemap.tilemap
@@ -61,19 +62,10 @@
 03:4000 Functionc000
 03:47D5 SpawnPoints
 03:488D Tilesets
-03:4D6F Functioncd6f
-03:4DE3 Functioncde3
-03:4DE3 Functioncde3_2
-03:4DE3 Functioncde3_3
-03:4DF9 Functioncdf9
-03:4E10 Functionce10
-03:4E10 Functionce10_2
-03:4E3C Functionce3c
-03:4E7C Functionce7c
 03:54E6 Functiond4e6
 03:56E4 Functiond6e4
 03:5886 Functiond886
-03:5A28 Functionda28
+03:5A28 FillPP
 03:5A4F Functionda4f
 03:5AC8 Functiondac8
 03:5C16 Functiondc16
@@ -159,6 +151,7 @@
 10:4AC7 Function40ac7
 10:4B45 Function40b45
 10:4B5C Function40b5c
+10:58BB Moves
 10:5FA1 Function41fa1
 10:61F8 Function421f8
 10:6252 Function42252
@@ -468,13 +461,10 @@
 3F:6755 PicTestMenu.loop
 
 00:CB6F wPlayerStepDirection
-00:CE67 wPlayerName
 
 01:D19E wItems
 01:D258 wRivalName
-01:D264 wPlayerBikeSurfState
 ; The starting house's map script number is stored at d29a. Others are probably nearby.
 01:D35F wOptions
 01:D513 wWarpNumber
-01:D7D2 wPartyMonOT
 01:DA3B wOTPartyMonOT

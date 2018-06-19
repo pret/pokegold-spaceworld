@@ -16,18 +16,18 @@ PredefPointers:: ; 1:62d3
 	add_predef Function6713
 	add_predef Function66b1
 	add_predef Function4031
-	add_predef Functionce10
-	add_predef Functioncd6f
-	add_predef Functioncde3
-	add_predef Functioncde3_2 ; 8
-	add_predef Functioncde3_3
-	add_predef Functioncdf9
-	add_predef Functionce10_2
+	add_predef GetItemAmount
+	add_predef HealParty
+	add_predef AddBCD
+	dba AddBCD ; 8
+	dba AddBCD
+	add_predef SubBCD
+	dba GetItemAmount
 	add_predef SmallFarFlagAction
 GiveItemPredef::
 	dbw 3, GiveItem
-	add_predef Functionce3c
-	add_predef Functionda28
+	add_predef ComputeHPBarPixels
+	add_predef FillPP
 	add_predef Functiond886 ; 10
 	add_predef Functionda4f
 	add_predef Functiondac8
@@ -35,7 +35,7 @@ GiveItemPredef::
 	add_predef Functiondc16
 	add_predef Functiondd5c
 	add_predef Functionde79
-	add_predef Functionce7c
+	add_predef UpdateHPBar
 	add_predef Functiondf7d ; 18
 	add_predef Functiondf91
 	add_predef Function1128f

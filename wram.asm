@@ -228,7 +228,10 @@ wCurSpecies:: db ; cb5b
 wNamedObjectTypeBuffer:: db ; cb5c
 
 SECTION "CB5E", WRAM0[$CB5E]
-wJumptableIndex:: ds 4
+wJumptableIndex:: db ; cb5e
+wFlyDestination:: db ; cb5f
+
+	ds 2
 
 SECTION "CB62", WRAM0[$CB62]
 
@@ -331,7 +334,7 @@ wcc38::
 wTitleSequenceOpeningType:: ; cc38
     db
 
-wDefaultSpawnpoint:: ; cc39
+wDefaultSpawnPoint:: ; cc39
     db
 
 wMovementBufferCount:: db ; cc3a
@@ -386,12 +389,19 @@ wStringBuffer1:: ds 1 ; How long is this? ; cd26
 
 SECTION "CD31", WRAM0[$CD31]
 
-wStartDay::
-wcd31:: ; cd31
-    db
+UNION
+wStartDay:: db ;cd31
+wStartHour:: db ;cd32
+wStartMinute:: db ;cd33
 
-wStartHour:: db
-wStartMinute:: db
+NEXTU
+wHPBarTempHP:: dw ; cd31
+
+NEXTU
+wStringBuffer2:: db ; How long is this? ; cd31
+
+ENDU
+
 
 SECTION "CD3E", WRAM0[$CD3D]
 
@@ -437,8 +447,13 @@ wcd72:: dw ; cd72
 wCurItem:: db ; cd76
 wItemIndex:: db ;cd77
 wMonDexIndex: db ; cd78
+wWhichPokemon: db ; cd79
 
-SECTION "CD7D", WRAM0[$CD7D]
+SECTION "CD7B", WRAM0[$CD7B]
+
+wHPBarType:: db ; cd76
+	
+	ds 1
 
 wItemQuantity:: db ; cd7d
 wItemQuantityBuffer:: db ; cd7e
@@ -472,9 +487,22 @@ wPrevWarp:: db ; cdc1
 
 	ds 1
 
-wFieldMoveScriptID:: db ; cdc3
+UNION
+wFieldMoveScriptID:: db; cdc3
+wMapBlocksAddress:: dw ; cdc4
+wReplacementBlock:: db ; cdc6
 
-	ds 9
+NEXTU
+
+wHPBarMaxHP:: dw ; cdc3
+wHPBarOldHP:: dw ; cdc5
+
+ENDU
+
+wHPBarNewHP:: dw ; cdc7
+wHPBarDelta::   db ; cdc9
+wcdca:: db ; cdca
+wHPBarHPDifference:: dw ; cdcb
 
 wLinkBattleRNs:: ds 10 ; cdcd
 ; cddd
@@ -591,6 +619,11 @@ wce63:: db ; ce63
 ; 76543210
 ;       \-- global debug enable
 
+	ds 3
+	
+wPlayerName:: db ; ce67
+
+
 SECTION "Mom's Name", WRAM0[$CE6D]
 wMomsName:: ds 6 ; ce6d
 
@@ -700,6 +733,9 @@ wBallQuantities:: db ; d1df
 SECTION "Rival's Name", WRAM0[$D258]
 wRivalsName:: ds 6 ; d258
 
+SECTION "PlayerState", WRAM0[$D264]
+wPlayerState:: db ; d264
+
 SECTION "D4AB", WRAM0[$D4A9]
 
 wd4a9:: db ; d4a9
@@ -712,6 +748,10 @@ wJoypadFlags:: db ; d4ab
 ; ||\------ don't wait for keypress to close text box
 ; |\------- joypad sync mtx
 ; \-------- joypad disabled
+
+SECTION "wDigWarpNumber", WRAM0[$D4B2]
+
+wDigWarpNumber:: db ; d4b2
 
 
 SECTION "Warp data", WRAM0[$D514]
@@ -814,8 +854,26 @@ wTilesetCollisionAddress:: ; d6a4
 	ds 4 ; TODO
 wTilesetEnd:: ; d6aa
 
+wPartyCount:: db
+wPartySpecies:: ds PARTY_LENGTH
+wPartyEnd:: db
 
-SECTION "PokeDexFlags", WRAM0[$D81A]
+wPartyMons::
+wPartyMon1:: party_struct wPartyMon1 ; d6b2
+wPartyMon2:: party_struct wPartyMon2 ; d6e2
+wPartyMon3:: party_struct wPartyMon3 ; d712
+wPartyMon4:: party_struct wPartyMon4 ; d742
+wPartyMon5:: party_struct wPartyMon5 ; d772
+wPartyMon6:: party_struct wPartyMon6 ; d7a2
+wPlayerPartyEnd:: ; d7d2
+
+wPartyMonOT:: ; d7d2
+	ds PARTY_LENGTH * 6
+wPartyMonOTEnd:: ; d7f6
+
+wPartyMonNicknames:: ; d7f6
+	ds PARTY_LENGTH * MON_NAME_LENGTH ; = $24
+wPartyMonNicknamesEnd:: ; d81a
 
 wPokedexOwned::    ; d81a
     flag_array NUM_POKEMON
