@@ -239,8 +239,8 @@ GameStart:: ; 55BB
 	ld [wCurSpecies], a
 	ld [wMonDexIndex], a
 	call GetMonHeader
-	ld hl, $C2F6 ; tilemap coord
-	ld hl, $C2F6
+	hlcoord 6, 4
+	hlcoord 6, 4
 	call PrepMonFrontpic
 	call MovePicLeft
 	ld hl, OakSpeech2
