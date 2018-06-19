@@ -726,19 +726,18 @@ ChoosePlayerNameEndText: ; 5B6F
 PlayerNameMenuHeader: ; 5B81
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
-	dw $5B89
+	dw PlayerNameMenuData
 	db 01 ; initial selection
 	
-; 5B89
+PlayerNameMenuData; 5B89
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B 
 	db 04 ; items
 	db "じぶんできめる@"
 	db "ゴールド@"
 	db "サトシ@"
 	db "ジャック@"
-	
-; 5BA1
-	db "エ゛なまえこうほ@"
+	db 3 ; x offset for the title string
+	db "なまえこうほ@"
 
 ChooseRivalName:: ; 5BA9
 	call PanPortraitRight
@@ -790,9 +789,8 @@ RivalNameMenuData: ; 5C12
 	db "シルバー@"
 	db "シゲル@"
 	db "ジョン@"
-	
-; 5C29
-	db "エ゛なまえこうほ@"
+	db 3
+	db "なまえこうほ@"
 	
 MomNamePrompt:: ; 5C31
 	ld hl, MomNameMenuHeader
@@ -834,9 +832,8 @@ MomNameMenuHeader: ; 5C71
 	db "おかあさん@"
 	db "ママ@"
 	db "かあちゃん@"
-	
-; 5C93
-	db "エ゛なまえこうほ@"
+	db 3
+	db "なまえこうほ@"
 	
 NamingWindow:: ; 5C9B
 	; loads the menu header put into hl
