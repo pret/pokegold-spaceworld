@@ -53,7 +53,7 @@ TestWildBattleStart::
 	ldh a, [hJoyState]
 	and D_PAD 
 	ret z ; if no directions are down, don't try and trigger a wild encounter
-	call CheckAPressedDebug
+	call CheckBPressedDebug
 	jp nz, ClearAccumulator ; if b button is down, clear acc
 	callab Function3ee3e
 	ld a, [wBattleMode]

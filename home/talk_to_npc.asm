@@ -340,13 +340,13 @@ GetInlineMapObject:: ; 00:31EB
 	and a
 	ret
 	
-CheckAPressedDebug ; 3233
-	; If in debug mode, returns a check on the A button.
+CheckBPressedDebug ; 3233
+	; If in debug mode, returns a check on the B button.
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
 	ret z
 	ldh a, [hJoyState]
-	bit A_BUTTON, a
+	bit B_BUTTON_F, a
 	ret
 
 ClearAccumulator:: ; 323E
