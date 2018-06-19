@@ -466,7 +466,7 @@ GiveRandomJohto::  ; 57B0
 	ld b, $08
 	call GivePokemon
 	ld a, $8D
-	ld [wd6b3], a
+	ld [wPartyMon1 + 1], a
 	ret
   
 GiveKantoStarters:: ; 57C8

@@ -463,5 +463,4 @@
 ; The starting house's map script number is stored at d29a. Others are probably nearby.
 01:D35F wOptions
 01:D513 wWarpNumber
-01:D7D2 wPartyMonOT
 01:DA3B wOTPartyMonOT
