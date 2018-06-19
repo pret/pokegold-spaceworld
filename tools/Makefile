@@ -4,8 +4,7 @@ CFLAGS := -O3 -std=c99 -Wall -Wextra
 
 tools := \
 	pkmncompress \
-	gfx \
-	make_shim
+	gfx
 
 all: $(tools)
 
