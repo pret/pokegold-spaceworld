@@ -16,14 +16,14 @@ PredefPointers:: ; 1:62d3
 	add_predef Function6713
 	add_predef Function66b1
 	add_predef DebugMenu
-	add_predef Functionce10
-	add_predef Functioncd6f
-	add_predef Functioncde3
-	add_predef Functioncde3_2 ; 8
-	add_predef Functioncde3_3
-	add_predef Functioncdf9
-	add_predef Functionce10_2
-	add_predef Functioncd33
+	add_predef GetItemAmount
+	add_predef HealParty
+	add_predef AddBCD
+	dba AddBCD ; 8
+	dba AddBCD
+	add_predef SubBCD
+	dba GetItemAmount
+	add_predef SmallFarFlagAction
 GiveItemPredef::
 	dbw 3, GiveItem
 	add_predef Functionce3c

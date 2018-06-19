@@ -595,7 +595,8 @@ wDebugFlags:: db ; ce63
 ;     | \-- debug field indicator
 ;     \---- loaded/continued game
 
-SECTION "Player And Mom Names", WRAM0[$CE67]
+	ds 3
+	
 wPlayerName:: ds 6 ; ce67
 
 wMomsName:: ds 6 ; ce6d
