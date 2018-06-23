@@ -18,16 +18,9 @@ MainMenu:
 	jr .next1
 .skip1
 	ld a, 1 ; continue
+	ld a, 0 ; the check above is wrong somehow:
+	        ; bit 0 of $ce60 is set even when there's no saved game.
 .next1
-	ld a, [$ffa3]
-	and $83
-	cp $83
-	jr nz, .skip2
-	ld a, 3 ; play pokemon, set time
-	jr .next2
-.skip2
-	ld a, 2 ; play pokemon
-.next2
 	ld [$cbf7],a
 	ld hl, MainMenuHeader
 	call $1d49
@@ -75,26 +68,17 @@ SET_TIME     EQU 4
 MainMenuItems:
 
 NewGameMenu:
-	db 2
+	db 4
 	db NEW_GAME
+	db PLAY_POKEMON
 	db OPTION
+	db SET_TIME
 	db -1
 
 ContinueMenu:
-	db 3
+	db 5
 	db CONTINUE
 	db NEW_GAME
-	db OPTION
-	db -1
-
-PlayPokemonMenu:
-	db 2
-	db PLAY_POKEMON
-	db OPTION
-	db -1
-
-PlayPokemonSetTimeMenu:
-	db 3
 	db PLAY_POKEMON
 	db OPTION
 	db SET_TIME
