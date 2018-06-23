@@ -114,9 +114,8 @@ wMapBufferEnd:: ; c600
 
 UNION
 
-wOverworldMap:: ; c600
-    ds $514 ; TODO: constantify this
-wOverworldMapEnd:: ; cb14
+wOverworldMapBlocks:: ds 1300 ; c600
+wOverworldMapBlocksEnd:: ; cb14
 
 NEXTU
 
