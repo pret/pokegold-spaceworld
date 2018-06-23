@@ -98,22 +98,15 @@ MainMenu:: ; 01:53CC
 	call Function5388
 	ld hl, wce60
 	bit 0, [hl]
-	jr nz, .setMenuContinue
-	xor a
-	jr .skip
-.setMenuContinue
+	jr nz, .skip1
+	xor a ; new game
+	jr .next1
+.skip1
 	ld a, M_CONTINUE
-.skip
-	ldh a, [hJoyState]
-	and D_DOWN | B_BUTTON | A_BUTTON
-	cp D_DOWN | B_BUTTON | A_BUTTON
-	jr nz, .setMenuPlay
-	ld a, M_SET_TIME
-	jr .triggerMenu
-.setMenuPlay
-	ld a, M_PLAY_GAME
-.triggerMenu
-	ld [wWhichIndexSet], a
+	ld a, M_NEW_GAME ; the check above is wrong somehow: bit 0 of $ce60
+	                 ; is set even when there's no saved game.
+.next1
+	ld [wWhichIndexSet],a
 	ld hl, MainMenuHeader
 	call LoadMenuHeader
 	call OpenMenu
@@ -125,7 +118,7 @@ MainMenu:: ; 01:53CC
 
 MainMenuHeader: ; 01:5418
 	db MENU_BACKUP_TILES
-	menu_coords 0, 0, 13, 7
+	menu_coords 0, 0, 14, 7
 	dw .MenuData
 	db 1 ; default option
 
@@ -154,26 +147,17 @@ MainMenuJumptable: ; 01:5457
 MainMenuItems:
 
 NewGameMenu:
-	db 2
+	db 4
 	db NEW_GAME
+	db PLAY_POKEMON
 	db OPTION
+	db SET_TIME
 	db -1
 
 ContinueMenu:
-	db 3
+	db 5
 	db CONTINUE
 	db NEW_GAME
-	db OPTION
-	db -1
-
-PlayPokemonMenu:
-	db 2
-	db PLAY_POKEMON
-	db OPTION
-	db -1
-
-PlayPokemonSetTimeMenu:
-	db 3
 	db PLAY_POKEMON
 	db OPTION
 	db SET_TIME
