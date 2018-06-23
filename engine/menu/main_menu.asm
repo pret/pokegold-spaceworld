@@ -1,6 +1,42 @@
 INCLUDE "constants.asm"
 
-SECTION "Main Menu Definition", ROMX[$5418], BANK[$01]
+SECTION "Main Menu Definition", ROMX[$53cc], BANK[$01]
+
+MainMenu:
+	ld hl, $d4a9
+	res 0, [hl]
+	call $0e2a
+	call $363c
+	call $0d1a
+	call $0d0a
+	call $1f9e
+	call $5388
+	ld hl, $ce60
+	bit 0, [hl]
+	jr nz, .skip1
+	xor a ; new game
+	jr .next1
+.skip1
+	ld a, 1 ; continue
+.next1
+	ld a, [$ffa3]
+	and $83
+	cp $83
+	jr nz, .skip2
+	ld a, 3 ; play pokemon, set time
+	jr .next2
+.skip2
+	ld a, 2 ; play pokemon
+.next2
+	ld [$cbf7],a
+	ld hl, MainMenuHeader
+	call $1d49
+	call $1e58
+	call $1c4c
+	jp c, $5dae
+	ld hl, MainMenuJumptable
+	ld a, [$cbf5]
+	jp $35cd
 
 MainMenuHeader:
 	db $40

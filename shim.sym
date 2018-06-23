@@ -29,7 +29,6 @@
 01:50B9 Function50b9
 01:5190 _UpdateSprites
 01:5190 Function5190
-01:53CC MainMenu
 01:5D27 Function5d27
 01:63D8 ReanchorBGMap_NoOAMUpdate
 01:6437 LoadFonts_NoOAMUpdate
