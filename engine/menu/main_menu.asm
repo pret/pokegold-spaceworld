@@ -3,13 +3,13 @@ INCLUDE "constants.asm"
 SECTION "Main Menu Definition", ROMX[$53cc], BANK[$01]
 
 MainMenu:
-	ld hl, $d4a9
+	ld hl, wd4a9
 	res 0, [hl]
-	call $0e2a
-	call $363c
-	call $0d1a
-	call $0d0a
-	call $1f9e
+	call ClearTileMap
+	call GetMemSGBLayout
+	call LoadFontExtra
+	call LoadFont
+	call ClearWindowData
 	call $5388
 	ld hl, $ce60
 	bit 0, [hl]
@@ -30,13 +30,13 @@ MainMenu:
 .next2
 	ld [$cbf7],a
 	ld hl, MainMenuHeader
-	call $1d49
-	call $1e58
-	call $1c4c
+	call LoadMenuHeader
+	call OpenMenu
+	call CloseWindow
 	jp c, $5dae
 	ld hl, MainMenuJumptable
 	ld a, [$cbf5]
-	jp $35cd
+	jp CallJumptable
 
 MainMenuHeader:
 	db $40
@@ -98,3 +98,152 @@ PlayPokemonSetTimeMenu:
 	db OPTION
 	db SET_TIME
 	db -1
+
+SECTION "Oak Speech", ROMX[$555c], BANK[$01]
+	ld de, 0
+	call PlayMusic
+	ld de, 3
+	call PlayMusic
+	call LoadFontExtra
+	xor a
+	ld [$ffde], a
+	ld a, 1
+	ld hl, $52f9
+	call FarCall_hl
+	call ClearTileMap
+	call ClearWindowData
+	xor a
+	ld [$ffe8], a
+	ld a, [wce63]
+	bit 1, a
+	jp z, OakSpeechPlayPokemon
+	call $5715
+	jp $568e
+
+OakSpeechPlayPokemon:
+	ld de, OakPic
+	lb bc, BANK(OakPic), 0
+	call $5d27
+	call $5cf7
+	ld hl, $587b
+	call PrintText
+	call RotateThreePalettesRight
+	call ClearTileMap
+	ld de, ProtagonistPic
+	lb bc, BANK(ProtagonistPic), 0
+	call $5d27
+	call $5d0e
+	ld a, $d0
+	ld [$ff48], a
+	call $5849
+	jp $568e
+
+OakSpeechNewGame:
+	ld de, OakPic
+	lb bc, BANK(OakPic), 0
+	call $5d27
+	call $5cf7
+	ld hl, $5956
+	call PrintText
+	call RotateThreePalettesRight
+	call ClearTileMap
+	ld a, DEX_YADOKING
+	ld [$cb5b], a
+	ld [$cd78], a
+	call GetMonHeader
+	ld hl, $c2f6
+	ld hl, $c2f6
+	call PrepMonFrontpic
+	call $5d0e
+	ld hl, $599f
+	call PrintText
+	ld a, DEX_YADOKING
+	call PlayCry
+	ld hl, $59e8
+	call PrintText
+	call RotateThreePalettesRight
+	call ClearTileMap
+	ld de, ProtagonistPic
+	lb bc, BANK(ProtagonistPic), 0
+	call $5d27
+	call $5d0e
+	ld hl, $5a35
+	call PrintText
+	call $5b25 ; naming screen
+	call RotateThreePalettesRight
+	call ClearTileMap
+	ld de, RivalPic
+	lb bc, BANK(RivalPic), 0
+	call $5d27
+	call $5cf7
+	ld hl, $5a52
+	call PrintText
+	call $5ba9 ; naming screen
+	call RotateThreePalettesRight
+	call ClearTileMap
+	ld de, OakPic
+	lb bc, BANK(OakPic), 0
+	call $5d27
+	call $5cf7
+	ld hl, $5a8f
+	call PrintText
+	ld a, $24
+	ld hl, $4000
+	call FarCall_hl
+	call Function04ac
+	call RotateThreePalettesRight
+	call ClearTileMap
+	ld de, ProtagonistPic
+	lb bc, BANK(ProtagonistPic), 0
+	call $5d27
+	call RotateThreePalettesLeft
+	ld hl, $5ac2
+	call PrintText
+	ld a, [$ff98]
+	push af
+	ld a, $20
+	ld [$c1a5], a
+	ld de, 0
+	ld a, e
+	ld [$c1a7], a
+	ld a, d
+	ld [$c1a8], a
+	ld de, $b
+	call PlaySFX
+	pop af
+	call Bankswitch
+	ld c, 4
+	call DelayFrames
+	ld de, $4743
+	ld bc, $400
+	call $5d27
+	ld c, 4
+	call DelayFrames
+	ld de, $479d
+	ld bc, $400
+	call $5d27
+	ld c, 20
+	call DelayFrames
+	ld hl, $c30a
+	ld b, 7
+	ld c, 7
+	call ClearBox
+	ld c, 20
+	call DelayFrames
+	call $5d5d
+	call LoadFontExtra
+	ld c, 50
+	call DelayFrames
+	call RotateThreePalettesRight
+	call ClearTileMap
+	call Function0502
+	ld a, 0
+	ld [$d638], a
+	ld [$d637], a
+	call $56e8
+	ld hl, wce63
+	bit 2, [hl]
+	call z, Function15b5
+	ld hl, wd4a9
+	set 0, [hl]
+	jp Function2a85
