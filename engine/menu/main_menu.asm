@@ -60,9 +60,9 @@ MainMenuHeader:
 
 MainMenuJumptable: ; 01:5457
 	dw $547c
-	dw $555c
+	dw NewGame
 	dw $5cf3
-	dw $555c
+	dw NewGame
 	dw $5473
 
 CONTINUE     EQU 0
@@ -100,6 +100,8 @@ PlayPokemonSetTimeMenu:
 	db -1
 
 SECTION "Oak Speech", ROMX[$555c], BANK[$01]
+
+NewGame:
 	ld de, 0
 	call PlayMusic
 	ld de, 3
@@ -116,11 +118,11 @@ SECTION "Oak Speech", ROMX[$555c], BANK[$01]
 	ld [$ffe8], a
 	ld a, [wce63]
 	bit 1, a
-	jp z, OakSpeechPlayPokemon
-	call $5715
-	jp $568e
+	jp z, .OakSpeechPlayPokemon
+	call Function5715
+	jp .PlayerShrink
 
-OakSpeechPlayPokemon:
+.OakSpeechPlayPokemon
 	ld de, OakPic
 	lb bc, BANK(OakPic), 0
 	call $5d27
@@ -136,9 +138,9 @@ OakSpeechPlayPokemon:
 	ld a, $d0
 	ld [$ff48], a
 	call $5849
-	jp $568e
+	jp .PlayerShrink
 
-OakSpeechNewGame:
+.OakSpeechNewGame
 	ld de, OakPic
 	lb bc, BANK(OakPic), 0
 	call $5d27
@@ -214,6 +216,7 @@ OakSpeechNewGame:
 	call Bankswitch
 	ld c, 4
 	call DelayFrames
+.PlayerShrink
 	ld de, $4743
 	ld bc, $400
 	call $5d27
@@ -240,10 +243,32 @@ OakSpeechNewGame:
 	ld a, 0
 	ld [$d638], a
 	ld [$d637], a
-	call $56e8
+	call Function56e8
 	ld hl, wce63
 	bit 2, [hl]
 	call z, Function15b5
 	ld hl, wd4a9
 	set 0, [hl]
 	jp Function2a85
+
+Function56e8:
+	ld a, 4
+	ld [$d65e], a
+	ld a, $f2
+	ld [$ff9a], a
+	ld hl, $ce63
+	bit 2, [hl]
+	ret nz
+	ld a, $f1
+	ld [$ff9a], a
+	ld a, 0
+	ld [$cc39], a
+	ld hl, .Data
+	ld de, $d656
+	ld bc, 8
+	call CopyBytes
+	ret
+.Data
+	db $01, $09, $33, $c6, $04, $04, $00, $01
+
+Function5715:
