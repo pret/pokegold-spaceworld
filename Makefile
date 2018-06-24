@@ -20,7 +20,7 @@ SHIM := shim.sym
 CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
 
 rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
-DIRS := home engine data audio
+DIRS := home engine data audio maps
 OBJS := $(addprefix $(BUILD)/, gfx.o vram.o sram.o wram.o hram.o shim.o)
 OBJS += $(patsubst %.asm, $(BUILD)/%.o, $(call rwildcard, $(DIRS), *.asm))
 

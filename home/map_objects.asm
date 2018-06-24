@@ -663,7 +663,8 @@ Function19b5::
 	res 7, [hl]
 	ret
 
-Function19c0::
+SetObjectFacing:: ; 19C0
+	; a is NPC number, d is direction
 	push de
 	call CheckObjectVisibility
 	pop de

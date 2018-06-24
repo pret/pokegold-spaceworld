@@ -64,6 +64,8 @@
 03:5E79 Functionde79
 03:5F7D Functiondf7d
 03:5F91 Functiondf91
+03:60A0 Function60a0
+03:6734 Function6734
 
 04:4743 ShrinkPic1
 04:479D ShrinkPic2
@@ -100,6 +102,7 @@
 ; word Unknown (2 bytes)
 05:470E UnknownMapBufferPointers
 05:4777 Function14777
+05:477D Function1477D
 05:4CAC Function14cac
 05:4DAC Function14dac
 05:4DC4 Function14dc4
@@ -459,7 +462,6 @@
 00:CB6F wPlayerStepDirection
 
 01:D19E wItems
-01:D264 wPlayerBikeSurfState
 ; The starting house's map script number is stored at d29a. Others are probably nearby.
 01:D35F wOptions
 01:D513 wWarpNumber

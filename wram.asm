@@ -430,6 +430,8 @@ wVramState:: db ; cd59
 
 	ds 3 ; TODO
 wcd5d:: db ; cd5d
+	db
+wChosenStarter:: db ; cd5f
 
 SECTION "CD72", WRAM0[$CD72]
 wcd72:: dw ; cd72
@@ -482,8 +484,11 @@ wcdd7:: db ; cdd7
 
 SECTION "CE00", WRAM0[$CE00]
 
-wBattleMode:: ; ce00
+wBattleMode:: db ; ce00
     db
+wce02:: db ; ce02
+	ds 2
+wce05:: db ; ce05
 
 SECTION "CE07", WRAM0[$CE07]
 
@@ -718,8 +723,32 @@ wBallQuantities:: db ; d1df
 
 SECTION "Rival's Name", WRAM0[$D258]
 wRivalName:: ds 6 ; d258
+	ds 6
 
-SECTION "D4AB", WRAM0[$D4A9]
+wPlayerBikeSurfState:: db ; d264
+wd265:: db ; d265
+wd266:: db ; d266
+	
+SECTION "D29A", WRAM0[$D29A]
+wd29a:: db ; d29a
+wd29b:: db ; d29b
+	db ; d29c
+wd29d:: db ; d29d
+	db
+	db
+wd2a0:: db ; d2a0
+
+SECTION "D39D", WRAM0[$D39D]
+wd39d:: db
+
+SECTION "Game Event Flags", WRAM0[$D41A]
+wd41a:: db
+wd41b:: db
+wd41c:: db
+wd41d:: db
+wd41e:: db
+
+SECTION "D4A9", WRAM0[$D4A9]
 
 wd4a9:: db ; d4a9
 	ds 1 ; TODO
@@ -727,7 +756,7 @@ wJoypadFlags:: db ; d4ab
 ; 76543210
 ; ||||\__/
 ; ||||  \-- unkn
-; |||\----- unkn
+; |||\----- set for rival intro textbox
 ; ||\------ don't wait for keypress to close text box
 ; |\------- joypad sync mtx
 ; \-------- joypad disabled

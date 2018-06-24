@@ -6,9 +6,9 @@ else
 SECTION "Unknown 3025", ROM0 [$2fe9]
 endc
 
-Function3025::
+MapDefaultText::
 	ld hl, .Text
-	call StartTextboxWithDebug
+	call OpenTextbox
 	ret
 
 .Text: ; 00:302c
@@ -157,8 +157,8 @@ GetFacingPersonText:: ; 00:3103
 	scf
 	ret
 
-StartTextboxWithDebug:: ; 00:3111
-	; Identical to StartTextbox except it prints debug numbers if in debug mode.
+OpenTextbox:: ; 00:3111
+	; Opens a textbox and waits for input
 	push hl
 	call PrepareTextbox
 	ld a, [wDebugFlags]
@@ -168,7 +168,7 @@ StartTextboxWithDebug:: ; 00:3111
 	call TextboxIdle 
 	ret
 
-StartTextbox:: ; 00:3122
+OpenTextboxNoInput:: ; 00:3122
 	push hl 
 	call PrepareTextbox 
 	pop hl
@@ -211,7 +211,7 @@ PrepareTextbox:: ; 00:314E
 	call Bankswitch
 	ret
 
-TextboxCleanup ; 00:3171
+TextboxCleanup: ; 00:3171
 	callab ReanchorBGMap_NoOAMUpdate
 	call UpdateSprites
 	xor a
@@ -224,7 +224,7 @@ TextboxCleanup ; 00:3171
 	call InitToolgearBuffer
 	ret
 
-Function318f ; 00:318f
+Function318f: ; 00:318f
 	callab Function140ea
 	call Function0d02
 	ret
@@ -340,7 +340,7 @@ GetInlineMapObject:: ; 00:31EB
 	and a
 	ret
 	
-CheckBPressedDebug ; 3233
+CheckBPressedDebug: ; 3233
 	; If in debug mode, returns a check on the B button.
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a

@@ -470,7 +470,7 @@ Function2407:: ; 00:2407
 	ld [wPlayerFacing], a
 	ld a, $0
 	ld d, $0
-	call Function19c0
+	call SetObjectFacing
 	ret
 
 MapSetup_Connection:: ; 2439

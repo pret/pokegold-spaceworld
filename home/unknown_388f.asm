@@ -92,7 +92,7 @@ Function3920::
 	ld hl, wJoypadFlags
 	res 4, [hl]
 	ld hl, .text
-	call StartTextboxWithDebug
+	call OpenTextbox
 	call RotateFourPalettesLeft
 	jp Init
 
