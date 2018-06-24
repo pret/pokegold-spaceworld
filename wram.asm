@@ -343,7 +343,10 @@ wMovementBufferObject:: db ; cc3b
 wMovementBuffer:: ; cc3f
 	ds 55
 
-SECTION "CC9C", WRAM0[$CC9C]
+SECTION "CC9A", WRAM0[$CC9A]
+
+wSkatingDirection:: db ; cc9a
+wCompanionCollisionFrameCounter:: db ; cc9b
 
 wUnknownWordcc9c:: ; cc9c
     dw
@@ -735,6 +738,10 @@ wRivalsName:: ds 6 ; d258
 
 SECTION "PlayerState", WRAM0[$D264]
 wPlayerState:: db ; d264
+; 00 - walking
+; 01 - bicycle
+; 02 - skateboard
+; 04 - surfing
 
 SECTION "D4AB", WRAM0[$D4A9]
 

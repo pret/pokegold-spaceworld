@@ -1679,7 +1679,7 @@ Function2b87::
 	call GetJoypad
 	call OverworldStartButtonCheck
 	ret nz
-	callab Functionc000
+	callab OverworldMovementCheck
 	call Function2ba8
 	jr nc, .asm_2b87
 	callba Function824c

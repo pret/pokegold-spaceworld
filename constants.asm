@@ -24,6 +24,8 @@ INCLUDE "constants/landmark_constants.asm"
 INCLUDE "constants/map_constants.asm"
 INCLUDE "constants/map_setup_constants.asm"
 INCLUDE "constants/tileset_constants.asm"
+INCLUDE "constants/collision_constants.asm"
+INCLUDE "constants/metatile_constants.asm"
 INCLUDE "constants/map_data_constants.asm"
 INCLUDE "constants/script_constants.asm"
 
