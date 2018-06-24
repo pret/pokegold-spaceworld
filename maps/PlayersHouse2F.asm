@@ -145,7 +145,7 @@ PlayersHouse2FN64Text: ; 426B
 	
 PlayersHouse2FTextString1: ; 4272
 	text "ケン『おっ　おまえの　うでで"
-	line "ひかりかがやく　そのとけいは……"
+	line "ひかりかがやく　そのとけいは⋯⋯"
 	cont "<PLAYER>も　ついに"
 	cont "トレーナーギアを　かったのか！"
 	
@@ -178,7 +178,7 @@ PlayersHouse2FTextString3: ; 4365
 	
 PlayersHouse2FTextString4: ; 438D
 	text "ニンテンドウ６４を　してる！"
-	cont "……　……　さてと！"
+	cont "⋯⋯　⋯⋯　さてと！"
 	cont "そろそろ　そとに　あそびに"
 	cont "でかけるか！"
 	done
@@ -210,7 +210,7 @@ PlayersHouse2FTextString6: ; 43FA
 	
 PlayersHouse2FTextString7: ; 4456
 	text "あとで"
-	line "よもっと<……>"
+	line "よもっと<⋯⋯>"
 	done
 	
 PlayersHouse2FTextString8: ; 4461 (unused?)
@@ -226,8 +226,8 @@ PlayersHouse2FTextString8: ; 4461 (unused?)
 	para "とどめは"
 	line "ラジオを　きくことができる！"
 	
-	para "もうしこみさきは……"
-	line "………………………………"
+	para "もうしこみさきは⋯⋯"
+	line "⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯"
 	cont "シルフの　ホームぺージだ"
 	done
 	
@@ -240,7 +240,7 @@ PlayersHouse2FTextString9: ; 44FE
 	cont "#　ほうそうきょく　です"
 	
 	para "#ニュースを　おおくりします"
-	line "<……>　#の　せかいてきな"
+	line "<⋯⋯>　#の　せかいてきな"
 	cont "けんきゅうしゃ　オーキドはかせが"
 	cont "カントー　から"
 	cont "すがたを　けしました"
@@ -252,10 +252,10 @@ PlayersHouse2FTextString9: ; 44FE
 	cont "かんけいしゃは　とても"
 	cont "しんぱい　しています"
 	
-	para "<……><……>いじょう"
+	para "<⋯⋯><⋯⋯>いじょう"
 	line "#ニュースでした"
 	
-	para "<……><……><……><……><……><……>"
+	para "<⋯⋯><⋯⋯><⋯⋯><⋯⋯><⋯⋯><⋯⋯>"
 	line "それでは　ひきつづき"
 	cont "おんがくを　おたのしみ　ください"
 	done

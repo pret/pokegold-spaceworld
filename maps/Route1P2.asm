@@ -111,7 +111,7 @@ Route1P2TextString4: ; 7D3B
 
 Route1P2TextString5: ; 7DBD
 	text "ここは　１ばん　どうろ"
-	line "サイレントヒル　……　オールドシティ"
+	line "サイレントヒル　⋯⋯　オールドシティ"
 	done
 
 ;7DDD

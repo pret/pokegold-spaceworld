@@ -607,7 +607,7 @@ SilentLabP1TextString1: ; 4FFD
 	text "パソコンを　みると"
 	line "なんと　メールが　きていた！"
 	
-	para "<……>　<……>　<……>"
+	para "<⋯⋯>　<⋯⋯>　<⋯⋯>"
 	line "オーキドはかせ！"
 	cont "あなたが　ゆくえふめいに"
 	cont "なっていると　せけんは"
@@ -622,8 +622,8 @@ SilentLabP1TextString1: ; 4FFD
 	
 	para "やはり　あいつは"
 	line "かくうの　#なのでは"
-	cont "ないでしょうか<……>"
-	cont "<……>　<……>　<……>じょしゅより"
+	cont "ないでしょうか<⋯⋯>"
+	cont "<⋯⋯>　<⋯⋯>　<⋯⋯>じょしゅより"
 	done
 	
 SilentLabP1Text2: ; 50B3
@@ -712,8 +712,8 @@ SilentLabP1TextString6A: ; 51AE
 	para "１５０しゅるいの"
 	line "#を　みつけることに"
 	cont "せいこう　したのじゃ！"
-	cont "が　<……>　<……>　<……>"
-	cont "しかし　<……>　<……>"
+	cont "が　<⋯⋯>　<⋯⋯>　<⋯⋯>"
+	cont "しかし　<⋯⋯>　<⋯⋯>"
 	
 	para "せかいは　ひろいものじゃ"
 	line "そのご　ぜんこく　かくちで"
@@ -727,7 +727,7 @@ SilentLabP1TextString6A: ; 51AE
 	para "ばしょが　かわれば"
 	line "あたらしい　#にも"
 	cont "であうことが　できるからな"
-	cont "<……>　<……>　<……>　<……>"
+	cont "<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>"
 	
 	para "これからも　どんどんと"
 	line "けんきゅうを　すすめるが"
@@ -741,9 +741,9 @@ SilentLabP1TextString6A: ; 51AE
 	done
 	
 SilentLabP1TextString6B: ; 5332
-	text "オーキド『そうか<……>"
+	text "オーキド『そうか<⋯⋯>"
 	line "わしに　ひとを　みるめが"
-	cont "なかったと　いうことじゃな<……>"
+	cont "なかったと　いうことじゃな<⋯⋯>"
 	
 	para "いや！"
 	line "わしの　ひとを　みるめは"
@@ -813,7 +813,7 @@ SilentLabP1TextString11A: ; 54C3
 SilentLabP1TextString11B: ; 54E3
 	text "オーキド『おう！　<PLAYER>"
 	line "どうだ？"
-	cont "わしの　あげた　#は<……>？"
+	cont "わしの　あげた　#は<⋯⋯>？"
 	
 	para "ほう！"
 	cont "だいぶ　なついた　みたいだな"
@@ -837,7 +837,7 @@ SilentLabP1TextString12: ; 5567
 	line "#ずかんの"
 	cont "ちょうしは　どうかな？"
 	
-	para "どれ<……>　ちょっと"
+	para "どれ<⋯⋯>　ちょっと"
 	cont "みて　あげようか！"
 	done
 	
@@ -847,7 +847,7 @@ SilentLabP1Text9: ; 559A
 	ret
 	
 SilentLabP1TextString13: ; 55A1
-	text "オーキド『<……>　おっほんッ！"
+	text "オーキド『<⋯⋯>　おっほんッ！"
 	line "よくやったな　<PLAYER>！"
 	
 	para "ちょっと"
@@ -875,7 +875,7 @@ SilentLabP1TextString14: ; 5621
 	line "<PLAYER>じゃないか！"
 	cont "おれも　ここが"
 	cont "あやしいと　おもって　きたんだけど"
-	cont "だれも　いないみたいだな<……>"
+	cont "だれも　いないみたいだな<⋯⋯>"
 	done
 	
 SilentLabP1Text11: ; 5658
@@ -898,7 +898,7 @@ SilentLabP1TextString17: ; 56A4
 	text "<RIVAL>『<PLAYER>！"
 	line "せっかく　じいさんに"
 	cont "#　もらったんだから"
-	cont "<……>　ちょっと"
+	cont "<⋯⋯>　ちょっと"
 	cont "たたかわせて　みようぜ！"
 	done
 	
@@ -933,7 +933,7 @@ SilentLabP1TextString21: ; 5730
 	line "こころを　いれかえて"
 	cont "じいさんの　けんきゅうを"
 	cont "てつだうように　なったのさ"
-	cont "<……>　<……>　<……>　<……>　<……>"
+	cont "<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>"
 	
 	para "さあ！"
 	line "これが　#ずかんだ！"
@@ -951,7 +951,7 @@ SilentLabP1Text12: ; 5814
 	
 SilentLabP1TextString22: ; 581B
 	text "ぼくも　むかし　やったけど"
-	line "なかなか　たいへんだよ<……>"
+	line "なかなか　たいへんだよ<⋯⋯>"
 	cont "がんばってね！"
 	done
 	
@@ -962,9 +962,9 @@ SilentLabP1Text13: ; 583F
 	
 SilentLabP1TextString23: ; 5846
 	text "ナナミ『さっき　あなたを　"
-	line "つれてきた　わかい　おとこのこ<……>"
+	line "つれてきた　わかい　おとこのこ<⋯⋯>"
 	cont "あれは　わたしの　おとうとなの"
-	cont "<……>ということは　つまり"
+	cont "<⋯⋯>ということは　つまり"
 	
 	para "そう！"
 	line "わたしも　オーキドの　まご　なの！"
@@ -977,7 +977,7 @@ SilentLabP1TextString23: ; 5846
 	cont "おじいちゃん　ちょうしに　のるから"
 	cont "ないしょに　しておいてね！"
 	
-	para "<……>おじいちゃん　すっかり"
+	para "<⋯⋯>おじいちゃん　すっかり"
 	line "わすれている　みたいだから"
 	
 	para "わたしが　かわりに　これを　あげる！"
@@ -1004,12 +1004,12 @@ SilentLabP1TextString23: ; 5846
 	cont "このまちを　でるまえに"
 	cont "かおを　みせに　いってあげてね"
 	
-	para "<……>あなたの　かつやく"
+	para "<⋯⋯>あなたの　かつやく"
 	line "いのっているわ"
 	done
 	
 SilentLabP1TextString24: ; 5A23
-	text "<……>あなたの　かつやく"
+	text "<⋯⋯>あなたの　かつやく"
 	line "いのってるわ"
 	done
 	
@@ -1064,7 +1064,7 @@ SilentLabP1Text17: ; 5B05
 	
 SilentLabP1TextString28: ; 5B0D
 	text "<RIVAL>『あのメールを　くれた"
-	line "オーキドって　こんな　じじい<……>"
+	line "オーキドって　こんな　じじい<⋯⋯>"
 	
 	para "あっ　ゴメン"
 	line "こんな　じいさん　なのか？"

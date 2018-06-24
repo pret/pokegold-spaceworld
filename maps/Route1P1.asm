@@ -69,7 +69,7 @@ Route1P1TextString3: ; 7C2A
 	
 Route1P1TextString4:; 7C48
 	text "ここは　１ばん　どうろ"
-	line "サイレントヒル　……　オールドシティ"
+	line "サイレントヒル　⋯⋯　オールドシティ"
 	done
 	
 ; 7C68

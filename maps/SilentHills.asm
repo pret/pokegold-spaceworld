@@ -334,7 +334,7 @@ SilentHillsTextRival1: ; 78DD
 	cont "え？　おまえにも　きたの？"
 	cont "ちぇっ！　つまんねーの！"
 	
-	para "……ふん！"
+	para "⋯⋯ふん！"
 	line "じゃあさ　じゃあさー　おまえさー"
 	cont "じぶんの　ははおや　のこと"
 	cont "いつも　なんて　よんでる？@"
@@ -390,10 +390,10 @@ SilentHillsTextPokemonInGrassString: ; 7A2A
 	
 	para "じぶんも　ポケモンを"
 	line "もって　いれば"
-	cont "たたかえるんだ……"
+	cont "たたかえるんだ⋯⋯"
 	
 	para "あっ！　ひょっとして　きみは"
-	line "……ちょっと"
+	line "⋯⋯ちょっと"
 	cont "ぼくに　ついて　きて！"
 	done
 	

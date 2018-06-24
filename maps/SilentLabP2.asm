@@ -159,7 +159,7 @@ SilentLabP2TextString1: ; 5D84
 	
 	para "こいつらを　きみたちに"
 	cont "いっぴき　づつ　やろう！"
-	cont "……　さあ　えらべ！"
+	cont "⋯⋯　さあ　えらべ！"
 	done
 	
 SilentLabP2TextString2: ; 5DCD

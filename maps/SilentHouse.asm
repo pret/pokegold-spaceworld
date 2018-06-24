@@ -99,7 +99,7 @@ SilentHouseTextString2: ; 48DB
 	
 SilentHouseTextString3: ; 4937
 	text "ひとのメールは"
-	line "みちゃ　いけないよな<……>"
+	line "みちゃ　いけないよな<⋯⋯>"
 	done
 	
 SilentHouseTextPointers2:: ; 494C
@@ -147,7 +147,7 @@ SilentHouseTextString5: ; 4991
 	cont "トレーナーギアを　かしてみな"
 	
 	para "スロットに　マップの　カセットを　"
-	line "さしこんでっと……"
+	line "さしこんでっと⋯⋯"
 	cont "よし　これで　マップが　みれるぞ！"
 	done
 	
