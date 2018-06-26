@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "Video Copy functions", ROM0[$0D02]
 
 RedrawPlayerSprite::
-	jpab Function14000
+	jpab _RedrawPlayerSprite
 
 LoadFont:: ; 00:0d0a
 	jpab LoadFontGraphics

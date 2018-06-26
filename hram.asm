@@ -79,17 +79,13 @@ hSpriteHeight:: ; ffb0
 
 NEXTU
 
-hConnectionStripLength:: ; ffaf
-	db
-hConnectedMapWidth:: ; ffb0
-	db
+hConnectionStripLength:: db ; ffaf
+hConnectedMapWidth:: db ; ffb0
 
 NEXTU
 
-hMapObjectIndexBuffer:: ; ffaf
-	db
-hObjectStructIndexBuffer:: ; ffb0
-	db
+hMapObjectIndexBuffer:: db ; ffaf
+hObjectStructIndexBuffer:: db ; ffb0
 
 ENDU
 

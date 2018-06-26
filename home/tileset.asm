@@ -50,7 +50,7 @@ RefreshPlayerCoords:: ; 2d74
 	ld a, [wXCoord]
 	add a, 4
 	ld d, a
-	ld hl, wPlayerStandingMapX
+	ld hl, wPlayerNextMapX
 	sub [hl]
 	ld [hl], d
 	ld hl, wPlayerObjectXCoord
@@ -61,7 +61,7 @@ RefreshPlayerCoords:: ; 2d74
 	ld a, [wYCoord]
 	add a, 4
 	ld e, a
-	ld hl, wPlayerStandingMapY
+	ld hl, wPlayerNextMapY
 	sub [hl]
 	ld [hl], e
 	ld hl, wPlayerObjectYCoord
@@ -211,18 +211,18 @@ SaveScreen:: ; 2df1
 RefreshTiles:: ; 2e52
 	call .left_right
 	call .up_down
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	ld d, a
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	ld e, a
 	call GetCoordTile
 	ld [wPlayerStandingTile], a
 	ret
 
 .up_down ; 2e67
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	ld d, a
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	ld e, a
 	push de
 	inc e
@@ -235,9 +235,9 @@ RefreshTiles:: ; 2e52
 	ret
 
 .left_right ; 2e80
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	ld d, a
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	ld e, a
 	push de
 	dec d
@@ -270,10 +270,10 @@ GetFacingTileCoord:: ; 2e99
 	ld h, [hl]
 	ld l, a
 
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	add a, d
 	ld d, a
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	add a, e
 	ld e, a
 	ld a, [hl]

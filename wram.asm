@@ -252,7 +252,7 @@ wVBCopyFarSize:: ds 1 ; cb71
 wVBCopyFarSrc:: ds 2 ; cb72
 wVBCopyFarDst:: ds 2 ; cb74
 wVBCopyFarSrcBank:: ds 1 ; cb76
-wcb77:: db ; cb77
+wPlayerMovement:: db ; cb77
 wMovementObject:: db ; cb78
 	ptrba wMovementData ; cb79
 
@@ -466,7 +466,8 @@ SECTION "CD9E", WRAM0 [$CD9E]
 wcd9e::
 	db
 
-SECTION "CDB0", WRAM0 [$CDB0]
+SECTION "CDAF", WRAM0 [$CDAF]
+wcdaf:: db ; cdaf
 wcdb0:: ; bit 0 = has engaged NPC in dialogue (?)
 	db
 	

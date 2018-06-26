@@ -334,26 +334,34 @@ Function17cb::
 	call Bankswitch
 	ret
 
-Function17de::
+; sets carry flag if the sprite data includes "in-motion" sprites
+IsAnimatedSprite:: ; 00:17de
 	push hl
 	push bc
 	ld c, a
-	ld b, $ff
-	ld hl, .Data
-.asm_17e6: ; 00:17e6
+	ld b, -1
+	ld hl, .NonAnimatedSprites
+.loop
 	ld a, [hli]
 	cp b
-	jr z, .asm_17ee
+	jr z, .done
 	cp c
-	jr nz, .asm_17e6
+	jr nz, .loop
 	scf
-.asm_17ee: ; 00:17ee
+.done
 	pop bc
 	pop hl
 	ret
 
-.Data: ; 00:17f1
-	db $51, $55, $56, $57, $58, $5a, $5b, $ff
+.NonAnimatedSprites: ; 00:17f1
+	db SPRITE_KABIGON
+	db SPRITE_POKE_BALL
+	db SPRITE_POKEDEX
+	db SPRITE_PAPER
+	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_EGG
+	db SPRITE_BOULDER
+	db -1
 
 Function17f9::
 	call GetMapObject

@@ -448,8 +448,8 @@ FadeIn:: ; 23e5 ; This is not OverworldFadeIn, but I don't know what it is
 	ret
 
 Function2407:: ; 00:2407
-	ld a, $2a
-	ld [wcb77], a
+	ld a, NO_MOVEMENT
+	ld [wPlayerMovement], a
 	xor a
 	ld [wPlayerAction], a
 	ld a, [wPlayerFacing]
@@ -505,7 +505,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .down
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	sub 4
 	ld b, a
 	ld a, [wMapHeight]
@@ -516,7 +516,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .up
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -524,7 +524,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .left
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -532,7 +532,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .right
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	sub 4
 	ld b, a
 	ld a, [wMapWidth]
@@ -701,10 +701,10 @@ WarpCheck:: ; 259f
 	ret
 
 GetDestinationWarpPointer: ; 25b9
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	sub 4
 	ld d, a
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	sub 4
 	ld e, a
 	ld a, [wCurrMapWarpCount]

@@ -2,15 +2,15 @@ INCLUDE "constants.asm"
 
 SECTION "Player Movement", ROMX[$4000], BANK[$3]
 
-OverworldMovementCheck::
+OverworldMovementCheck:: ; 03:4000
 	jp _OverworldMovementCheck
 
-UnusedOverworldMovementCheck::
-	ld a, $01
+UnusedOverworldMovementCheck:: ; 03:4003
+	ld a, PLAYER_OBJECT_INDEX
 	ldh [hEventCollisionException], a
 	ld a, [wPlayerDirection]
 	and a
-	jr z, _SetPlayerIdle ; player movement is disabled
+	jr z, SetPlayerIdle ; player movement is disabled
 	ldh a, [hJoyState]
 	ld d, a
 	ld hl, wce63
@@ -21,183 +21,188 @@ UnusedOverworldMovementCheck::
 .skip_debug_move
 	ld a, [wPlayerState]
 	cp PLAYER_SKATE
-	jp z, OldCheckMovementSkateboard
+	jp z, CheckMovementSkateboard
 	cp PLAYER_SURF
 	jp z, OldCheckMovementSurf
 	jp CheckMovementWalkOrBike
-_SetPlayerIdle:
-	ld a, $2a
-_SetPlayerAnimation:
-	ld [wcb77], a
+
+SetPlayerIdle: ; 03:402c
+	ld a, NO_MOVEMENT
+	
+SetPlayerMovement: ; 03:402e
+	ld [wPlayerMovement], a
 	ld a, [wPlayerLastMapX]
-	ld [wPlayerStandingMapX], a
+	ld [wPlayerNextMapX], a
 	ld a, [wPlayerLastMapY]
-	ld [wPlayerStandingMapY], a
+	ld [wPlayerNextMapY], a
 	and a
 	ret
 
-CheckMovementWalkOrBike:
+CheckMovementWalkOrBike: ; 03:403f
 	call _CheckMovementWalkOrBike
-	jp _SetPlayerAnimation
+	jp SetPlayerMovement
 
-_CheckMovementWalkOrBike:
+_CheckMovementWalkOrBike: ; 03:4045
 	ld a, d
-	and (D_DOWN | D_UP | D_LEFT | D_RIGHT)
-	jp z, .done
+	and D_PAD
+	jp z, .idle
 	ld a, d
 	bit D_DOWN_F, a
-	jp nz, .moveDown
+	jp nz, .check_down
 	bit D_UP_F, a
-	jp nz, .moveUp
+	jp nz, .check_up
 	bit D_LEFT_F, a
-	jp nz, .moveLeft
+	jp nz, .check_left
 	bit D_RIGHT_F, a
-	jr nz, .moveRight
-.done:
-	ld a, $2a
+	jr nz, .check_right
+.idle
+	ld a, NO_MOVEMENT
 	ret
-.moveRight:
+	
+.check_right
 	ld a, [wPlayerLastMapX]
 	inc a
-	ld [wPlayerStandingMapX], a
-	call _CheckPlayerObjectCollision
-	jr c, .faceRight
+	ld [wPlayerNextMapX], a
+	call CheckPlayerObjectCollision
+	jr c, .face_right
 	call IsPlayerCollisionTileSolid
-	jr nc, .canMoveRight
-	jr .faceRight
-.canMoveRight
+	jr nc, .move_right
+	jr .face_right
+.move_right
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
-	ld a, $0f
+	ld a, FAST_STEP_RIGHT
 	ret z
-	ld a, $0b
+	ld a, STEP_RIGHT
 	ret
-.faceRight:
-	ld a, $03
+.face_right
+	ld a, FACE_RIGHT
 	ret
 
-.moveLeft:
+.check_left:
 	ld a, [wPlayerLastMapX]
 	dec a
-	ld [wPlayerStandingMapX], a
-	call _CheckPlayerObjectCollision
-	jr c, .faceLeft
+	ld [wPlayerNextMapX], a
+	call CheckPlayerObjectCollision
+	jr c, .face_left
 	call IsPlayerCollisionTileSolid
-	jr nc, .canMoveLeft
-	jr .faceLeft
-.canMoveLeft
+	jr nc, .move_left
+	jr .face_left
+.move_left
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
-	ld a, $0e
+	ld a, FAST_STEP_LEFT
 	ret z
-	ld a, $0a
+	ld a, STEP_LEFT
 	ret
-.faceLeft:
-	ld a, $02
+.face_left
+	ld a, FACE_LEFT
 	ret
 
-.moveDown:
+.check_down
 	ld a, [wPlayerLastMapY]
 	inc a
-	ld [wPlayerStandingMapY], a
-	call _CheckPlayerObjectCollision
-	jr c, .faceDown
+	ld [wPlayerNextMapY], a
+	call CheckPlayerObjectCollision
+	jr c, .face_down
 	call IsPlayerCollisionTileSolid
-	jr nc, .canMoveDown
+	jr nc, .move_down
 	cp OLD_COLLISION_LEDGE
-	jr nz, .faceDown
-.jumpDown:
-	ld a, $18
+	jr nz, .face_down
+	ld a, JUMP_DOWN
 	ret
-.canMoveDown
+.move_down
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
-	ld a, $0c
+	ld a, FAST_STEP_DOWN
 	ret z
-	ld a, $08
+	ld a, STEP_DOWN
 	ret
-.faceDown:
-	ld a, $00
+.face_down
+	ld a, FACE_DOWN
 	ret
 
-.moveUp:
+.check_up
 	ld a, [wPlayerLastMapY]
 	dec a
-	ld [wPlayerStandingMapY], a
-	call _CheckPlayerObjectCollision
-	jr c, .faceUp
+	ld [wPlayerNextMapY], a
+	call CheckPlayerObjectCollision
+	jr c, .face_up
 	call IsPlayerCollisionTileSolid
-	jr nc, .canMoveUp
-	jr .faceUp
-.canMoveUp
+	jr nc, .move_up
+	jr .face_up
+.move_up
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
-	ld a, $0d
+	ld a, FAST_STEP_UP
 	ret z
-	ld a, $09
+	ld a, STEP_UP
 	ret
-.faceUp:
-	ld a, $01
+.face_up
+	ld a, FACE_UP
 	ret
 
-CheckMovementDebug::
+CheckMovementDebug:: ; 03:40eb
 	ld a, d
 	call _CheckMovementDebug
-	jp _SetPlayerAnimation
+	jp SetPlayerMovement
 
-_CheckMovementDebug:
+_CheckMovementDebug: ; 03:40f2
 	bit D_DOWN_F, a
-	jr nz, .moveDown
+	jr nz, .move_down
 	bit D_UP_F, a
-	jr nz, .moveUp
+	jr nz, .move_up
 	bit D_LEFT_F, a
-	jr nz, .moveLeft
+	jr nz, .move_left
 	bit D_RIGHT_F, a
-	jr nz, .moveRight
-.idle:
-	ld a, $2a
+	jr nz, .move_right
+	ld a, NO_MOVEMENT
 	ret
-.moveDown:
+	
+.move_down
 	ld a, [wTileDown]
-	cp $ff
-	ld a, $0c
+	cp -1
+	ld a, FAST_STEP_DOWN
 	ret nz
-	ld a, $19
+	ld a, JUMP_UP
 	ret
-.moveUp:
+	
+.move_up
 	ld a, [wTileUp]
-	cp $ff
-	ld a, $0d
+	cp -1
+	ld a, FAST_STEP_UP
 	ret nz
-	ld a, $18
+	ld a, JUMP_DOWN
 	ret
-.moveLeft:
+	
+.move_left
 	ld a, [wTileLeft]
-	cp $ff
-	ld a, $0e
+	cp -1
+	ld a, FAST_STEP_LEFT
 	ret nz
-	ld a, $1b
+	ld a, JUMP_RIGHT
 	ret
-.moveRight:
+	
+.move_right
 	ld a, [wTileRight]
-	cp $ff
-	ld a, $0f
+	cp -1
+	ld a, FAST_STEP_RIGHT
 	ret nz
-	ld a, $1a
+	ld a, JUMP_LEFT
 	ret
 
-OldCheckMovementSkateboard::
-	call _OldCheckMovementSkateboard
-	jp _SetPlayerAnimation
+CheckMovementSkateboard:: ; 03:4131
+	call _CheckMovementSkateboard
+	jp SetPlayerMovement
 
-_OldCheckMovementSkateboard:
+_CheckMovementSkateboard:  ; 03:4137
 	ld a, [wSkatingDirection]
-	cp $ff
-	jp z, .skateStand
+	cp STANDING
+	jp z, .not_moving
 	push de
 	ld e, a
 	ld d, $00
-	ld hl, .skateMovementTable
+	ld hl, .SkateMovementTable
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -205,149 +210,161 @@ _OldCheckMovementSkateboard:
 	ld l, a
 	pop de
 	jp hl
-.skateMovementTable:
-	dw .skateDown
-	dw .skateUp
-	dw .skateLeft
-	dw .skateRight
 
-.skateStand:
+.SkateMovementTable ; 03:414d
+	dw CheckSkateDown
+	dw CheckSkateUp
+	dw CheckSkateLeft
+	dw CheckSkateRight
+
+.not_moving  ; 03:4155
 	ld a, d
-	and (D_DOWN | D_UP | D_LEFT | D_RIGHT)
-	jp z, .done
+	and D_PAD
+	jp z, .idle
 	bit D_DOWN_F, d
-	jp nz, .skateDown
+	jp nz, CheckSkateDown
 	bit D_UP_F, d
-	jp nz, .skateUp
+	jp nz, CheckSkateUp
 	bit D_LEFT_F, d
-	jp nz, .skateLeft
+	jp nz, CheckSkateLeft
 	bit D_RIGHT_F, d
-	jp nz, .skateRight
-.done:
-	ld a, $ff
+	jp nz, CheckSkateRight
+
+.idle
+	ld a, STANDING
 	ld [wSkatingDirection], a
-	ld a, $2a
+	ld a, NO_MOVEMENT
 	ret
 
-.skateDown:
+CheckSkateDown:  ; 03:4177
 	ld a, [wPlayerLastMapY]
 	inc a
-	ld [wPlayerStandingMapY], a
-	ld a, $00
+	ld [wPlayerNextMapY], a
+	ld a, DOWN
 	ld [wSkatingDirection], a
-	call _CheckPlayerObjectCollision
-	jr c, .skateDownCollision
+	call CheckPlayerObjectCollision
+	jr c, .collision
 	call IsPlayerCollisionTileSolid
-	jr nc, .canSkateDown
+	jr nc, .can_skate
 	cp OLD_COLLISION_LEDGE
-	jr z, .skateJumpDown
+	jr z, .jump
 	cp (OLD_COLLISION_ROCK | COLLISION_FLAG)
-	jr nz, .skateDownCollision
-.skateJumpDown:
-	ld a, $1c
-	ret
-.canSkateDown:
-	call OldIsTileCollisionGrass
-	jr z, .skateDownSlowly
-	ld a, $0c
-	ret
-.skateDownSlowly:
-	ld a, $08
-	ret
-.skateDownCollision:
-	ld a, $ff
-	ld [wSkatingDirection], a
-	ld a, $00
+	jr nz, .collision
+
+.jump
+	ld a, FAST_JUMP_DOWN
 	ret
 
-.skateUp:
+.can_skate
+	call OldIsTileCollisionGrass
+	jr z, .slow
+	ld a, FAST_STEP_DOWN
+	ret
+	
+.slow
+	ld a, STEP_DOWN
+	ret
+	
+.collision
+	ld a, STANDING
+	ld [wSkatingDirection], a
+	ld a, FACE_DOWN
+	ret
+
+CheckSkateUp: ; 03:41ab
 	ld a, [wPlayerLastMapY]
 	dec a
-	ld [wPlayerStandingMapY], a
-	ld a, $01
+	ld [wPlayerNextMapY], a
+	ld a, UP
 	ld [wSkatingDirection], a
-	call _CheckPlayerObjectCollision
-	jr c, .skateUpCollision
+	call CheckPlayerObjectCollision
+	jr c, .collision
 	call IsPlayerCollisionTileSolid
-	jr nc, .canSkateUp
-	cp $59
-	jr nz, .skateUpCollision
-.skateJumpUp:
-	ld a, $1d
+	jr nc, .can_skate
+	cp (OLD_COLLISION_ROCK | COLLISION_FLAG)
+	jr nz, .collision
+	ld a, FAST_JUMP_UP
 	ret
-.canSkateUp:
+	
+.can_skate
 	call OldIsTileCollisionGrass
-	jr z, .skateUpSlowly
-	ld a, $0d
+	jr z, .slow
+	ld a, FAST_STEP_UP
 	ret
-.skateUpSlowly:
-	ld a, $09
+	
+.slow
+	ld a, STEP_UP
 	ret
-.skateUpCollision:
-	ld a, $ff
+	
+.collision
+	ld a, STANDING
 	ld [wSkatingDirection], a
-	ld a, $01
+	ld a, FACE_UP
 	ret
 
-.skateLeft:
+CheckSkateLeft: ; 03:41db
 	ld a, [wPlayerLastMapX]
 	dec a
-	ld [wPlayerStandingMapX], a
-	ld a, $02
+	ld [wPlayerNextMapX], a
+	ld a, LEFT
 	ld [wSkatingDirection], a
-	call _CheckPlayerObjectCollision
-	jr c, .skateLeftCollision
+	call CheckPlayerObjectCollision
+	jr c, .collision
 	call IsPlayerCollisionTileSolid
-	jr nc, .canSkateLeft
-	cp $59
-	jr nz, .skateLeftCollision
-.skateJumpLeft:
-	ld a, $1e
+	jr nc, .can_skate
+	cp (OLD_COLLISION_ROCK | COLLISION_FLAG)
+	jr nz, .collision
+	ld a, FAST_JUMP_LEFT
 	ret
-.canSkateLeft:
+	
+.can_skate
 	call OldIsTileCollisionGrass
-	jr z, .skateLeftSlowly
-	ld a, $0e
-	ret
-.skateLeftSlowly:
-	ld a, $0a
-	ret
-.skateLeftCollision:
-	ld a, $ff
-	ld [wSkatingDirection], a
-	ld a, $02
+	jr z, .slow
+	ld a, FAST_STEP_LEFT
 	ret
 
-.skateRight:
+.slow
+	ld a, STEP_LEFT
+	ret
+	
+.collision
+	ld a, STANDING
+	ld [wSkatingDirection], a
+	ld a, FACE_LEFT
+	ret
+
+CheckSkateRight: ; 03:420b
 	ld a, [wPlayerLastMapX]
 	inc a
-	ld [wPlayerStandingMapX], a
-	ld a, $03
+	ld [wPlayerNextMapX], a
+	ld a, RIGHT
 	ld [wSkatingDirection], a
-	call _CheckPlayerObjectCollision
-	jr c, .skateRightCollision
+	call CheckPlayerObjectCollision
+	jr c, .collision
 	call IsPlayerCollisionTileSolid
-	jr nc, .canSkateRight
-	cp $59
-	jr nz, .skateRightCollision
-.skateJumpRight:
-	ld a, $1f
-	ret
-.canSkateRight:
-	call OldIsTileCollisionGrass
-	jr z, .skateRightSlowly
-	ld a, $0f
-	ret
-.skateRightSlowly:
-	ld a, $0b
-	ret
-.skateRightCollision:
-	ld a, $ff
-	ld [wSkatingDirection], a
-	ld a, $03
+	jr nc, .can_skate
+	cp (OLD_COLLISION_ROCK | COLLISION_FLAG)
+	jr nz, .collision
+	ld a, FAST_JUMP_RIGHT
 	ret
 
-OldIsTileCollisionGrass::
+.can_skate
+	call OldIsTileCollisionGrass
+	jr z, .slow
+	ld a, FAST_STEP_RIGHT
+	ret
+
+.slow
+	ld a, STEP_RIGHT
+	ret
+	
+.collision
+	ld a, STANDING
+	ld [wSkatingDirection], a
+	ld a, FACE_RIGHT
+	ret
+
+OldIsTileCollisionGrass:: ; 03:423b
 ; Check whether collision ID in a is
 ; grass
 ; Result:
@@ -362,114 +379,109 @@ OldIsTileCollisionGrass::
 	cp $8b
 	ret
 
-OldCheckMovementSurf::
+OldCheckMovementSurf:: ; 03:4247
 	call _OldCheckMovementSurf
-	jp _SetPlayerAnimation
+	jp SetPlayerMovement
 
-_OldCheckMovementSurf:
+_OldCheckMovementSurf: ; 03:424d
 	ld a, d
-	and (D_DOWN | D_UP | D_LEFT | D_RIGHT)
+	and D_PAD
 	bit D_DOWN_F, a
-	jp nz, .trySurfDown
+	jp nz, .check_down
 	bit D_UP_F, a
-	jp nz, .trySurfUp
+	jp nz, .check_up
 	bit D_LEFT_F, a
-	jp nz, .trySurfLeft
+	jp nz, .check_left
 	bit D_RIGHT_F, a
-	jr nz, .trySurfRight
-.idle:
-	ld a, $2a
+	jr nz, .check_right
+	ld a, NO_MOVEMENT
 	ret
 
-.trySurfDown:
+.check_down
 	ld a, [wPlayerLastMapY]
 	inc a
-	ld [wPlayerStandingMapY], a
-	call _CheckPlayerObjectCollision
-	jr c, .faceDown
+	ld [wPlayerNextMapY], a
+	call CheckPlayerObjectCollision
+	jr c, .face_down
 	call IsPlayerCollisionTileSolid
-	jr nc, .surfDownLand ; FIXME: This assumes cut-trees are solid, which they aren't.
-	                     ;        You can walk into them from water because of this.
+	jr nc, .exit_water_down ; FIXME: This assumes cut-trees are solid, which they aren't.
+	                        ;        You can walk into them from water because of this.
 	call OldIsTileCollisionWater
-	jr c, .faceDown
-.surfDown:
-	ld a, $08
+	jr c, .face_down
+	ld a, STEP_DOWN
 	ret
-.faceDown:
-	ld a, $00
+.face_down
+	ld a, FACE_DOWN
 	ret
-.surfDownLand:
+.exit_water_down
 	call SetPlayerStateWalk
-	ld a, $04
+	ld a, SLOW_STEP_DOWN
 	ret
 
-.trySurfUp:
+.check_up
 	ld a, [wPlayerLastMapY]
 	dec a
-	ld [wPlayerStandingMapY], a
-	call _CheckPlayerObjectCollision
-	jr c, .faceUp
+	ld [wPlayerNextMapY], a
+	call CheckPlayerObjectCollision
+	jr c, .face_up
 	call IsPlayerCollisionTileSolid
-	jr nc, .surfUpLand ; FIXME: This assumes cut-trees are solid, which they aren't.
-	                   ;        You can walk into them from water because of this.
-	call OldIsTileCollisionWater
-	jr c, .faceUp
-.surfUp:
-	ld a, $09
-	ret
-.faceUp:
-	ld a, $01
-	ret
-.surfUpLand:
-	call SetPlayerStateWalk
-	ld a, $05
-	ret
-
-.trySurfLeft:
-	ld a, [wPlayerLastMapX]
-	dec a
-	ld [wPlayerStandingMapX], a
-	call _CheckPlayerObjectCollision
-	jr c, .faceLeft
-	call IsPlayerCollisionTileSolid
-	jr nc, .surfLeftLand ; FIXME: This assumes cut-trees are solid, which they aren't.
-	                     ;        You can walk into them from water because of this.
-	call OldIsTileCollisionWater
-	jr c, .faceLeft
-.surfLeft:
-	ld a, $0a
-	ret
-.faceLeft:
-	ld a, $02
-	ret
-.surfLeftLand
-	call SetPlayerStateWalk
-	ld a, $06
-	ret
-
-.trySurfRight
-	ld a, [wPlayerLastMapX]
-	inc a
-	ld [wPlayerStandingMapX], a
-	call _CheckPlayerObjectCollision
-	jr c, .faceRight
-	call IsPlayerCollisionTileSolid
-	jr nc, .surfRightLand ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr nc, .exit_water_up ; FIXME: This assumes cut-trees are solid, which they aren't.
 	                      ;        You can walk into them from water because of this.
 	call OldIsTileCollisionWater
-	jr c, .faceRight
-.surfRight:
-	ld a, $0b
+	jr c, .face_up
+	ld a, STEP_UP
 	ret
-.faceRight:
-	ld a, $03
+.face_up
+	ld a, FACE_UP
 	ret
-.surfRightLand
+.exit_water_up
 	call SetPlayerStateWalk
-	ld a, $07
+	ld a, SLOW_STEP_UP
 	ret
 
-OldIsTileCollisionWater:: ; c2ee (3:42ee)
+.check_left
+	ld a, [wPlayerLastMapX]
+	dec a
+	ld [wPlayerNextMapX], a
+	call CheckPlayerObjectCollision
+	jr c, .face_left
+	call IsPlayerCollisionTileSolid
+	jr nc, .exit_water_left ; FIXME: This assumes cut-trees are solid, which they aren't.
+	                        ;        You can walk into them from water because of this.
+	call OldIsTileCollisionWater
+	jr c, .face_left
+	ld a, STEP_LEFT
+	ret
+.face_left
+	ld a, FACE_LEFT
+	ret
+.exit_water_left
+	call SetPlayerStateWalk
+	ld a, SLOW_STEP_LEFT
+	ret
+
+.check_right
+	ld a, [wPlayerLastMapX]
+	inc a
+	ld [wPlayerNextMapX], a
+	call CheckPlayerObjectCollision
+	jr c, .face_right
+	call IsPlayerCollisionTileSolid
+	jr nc, .exit_water_right ; FIXME: This assumes cut-trees are solid, which they aren't.
+	                      ;        You can walk into them from water because of this.
+	call OldIsTileCollisionWater
+	jr c, .face_right
+	ld a, STEP_RIGHT
+	ret
+.face_right
+	ld a, FACE_RIGHT
+	ret
+.exit_water_right
+	call SetPlayerStateWalk
+	ld a, SLOW_STEP_RIGHT
+	ret
+
+OldIsTileCollisionWater:: ; 03:42ee
 ; Check if collision ID in a is water
 ; Input:
 ; a - collision ID
@@ -484,7 +496,7 @@ OldIsTileCollisionWater:: ; c2ee (3:42ee)
 	scf
 	ret
 
-SetPlayerStateWalk::
+SetPlayerStateWalk:: ; 03:42f8
 	push bc
 	ld a, PLAYER_NORMAL
 	ld [wPlayerState], a
@@ -492,7 +504,7 @@ SetPlayerStateWalk::
 	pop bc
 	ret
 
-IsPlayerCollisionTileSolid::
+IsPlayerCollisionTileSolid:: ; 03:4303
 ; Return whether the collision under player's feet
 ; is solid/sometimes solid or non-solid.
 ; Clobbers: a
@@ -502,64 +514,60 @@ IsPlayerCollisionTileSolid::
 ;  c - solid/sometimes solid
 	push de
 	ld bc, wPlayerStruct
-	ld hl, $775a
-	ld a, $01
-	call FarCall_hl
+	callab _IsObjectCollisionTileSolid
 	ld a, e
 	pop de
 	ret
 
-_CheckPlayerObjectCollision::
+CheckPlayerObjectCollision:: ; 03:4312
 ; Check whether player object currentl
 ; collides with any other object.
 ; Result:
 ; nc - no collision
 ;  c - collision
 	push de
-	ld hl, $7894
-	ld a, $01
-	call FarCall_hl
+	callab _CheckPlayerObjectCollision
 	pop de
 	ret nc
-	jp _CheckCompanionObjectCollision
+	jp CheckCompanionObjectCollision
 
-_CheckCompanionObjectCollision::
+CheckCompanionObjectCollision:: ; 03:4320
 ; Marks the object struct pointed to by hl
 ; as having collided with player object.
-; If object struct (as identified by hEventID)
+; If object struct (as identified by hObjectStructIndexBuffer)
 ; is companion, cancel collision on 5th frames.
 ; Result:
 ; nc - no collision
 ;  c - collision
-	ld hl, (wPlayerFlags + 1) - wPlayerStruct
+	ld hl, OBJECT_FLAGS + 1
 	add hl, bc
 	set 1, [hl] ; mark object as having collided with player
-	ldh a, [hEventID]
-	cp $02
-	jr z, .isCompanion
+	ldh a, [hObjectStructIndexBuffer]
+	cp COMPANION_OBJECT_INDEX
+	jr z, .is_companion
 	xor a
 	ld [wCompanionCollisionFrameCounter], a
 	scf
 	ret
-.isCompanion
+.is_companion
 	ld a, [wCompanionCollisionFrameCounter]
 	inc a
-	cp $05
+	cp 5
 	ld [wCompanionCollisionFrameCounter], a
-	jr z, .cancelCollision
+	jr z, .cancel_collision
 	scf
 	ret
-.cancelCollision
+.cancel_collision
 	xor a
 	ld [wCompanionCollisionFrameCounter], a
 	ret
 
-_OverworldMovementCheck::
-	ld a, $01
+_OverworldMovementCheck:: ; 03:4344
+	ld a, PLAYER_OBJECT_INDEX
 	ldh [hEventCollisionException], a
 	ld a, [wPlayerDirection]
 	and a
-	jp z, _SetPlayerIdle
+	jp z, SetPlayerIdle
 	ldh a, [hJoyState]
 	ld d, a
 	ld hl, wce63
@@ -567,28 +575,29 @@ _OverworldMovementCheck::
 	jr z, .skip_debug_move
 	bit B_BUTTON_F, d
 	jp nz, CheckMovementDebug
-.skip_debug_move
-	call .checkMovementRelease
-	jp _SetPlayerAnimation
 
-.checkMovementRelease:
+.skip_debug_move
+	call GetPlayerMovementByState
+	jp SetPlayerMovement
+
+GetPlayerMovementByState: ; 03:4364
 	ld a, [wPlayerState]
 	cp PLAYER_SKATE
-	jp z, OldCheckMovementSkateboard ; FIXME: OldCheckMovementSkateboard already calls _SetPlayerAnimation
+	jp z, CheckMovementSkateboard ; FIXME: CheckMovementSkateboard already calls SetPlayerMovement
 	                                 ;        The skateboard doesn't work, because it uses the current
 	                                 ;        coordinate as player animation.
 	cp PLAYER_SURF
 	jp z, CheckMovementSurf
 	jp CheckMovementWalk
 
-CheckMovementWalk::
+CheckMovementWalk:: ; 03:4374
 	ld a, [wPlayerStandingTile]
 	swap a
 	and LOW((COLLISION_TYPE_MASK >> 4) | (COLLISION_TYPE_MASK << 4))
-	ld hl, .walkingCollisionTable
+	ld hl, .WalkingCollisionTable
 	jp CallJumptable
 
-.walkingCollisionTable:
+.WalkingCollisionTable ; 03:4381
 	dw CheckMovementWalkRegular ; regular
 	dw CheckMovementWalkSolid   ; trees, grass, etc.
 	dw CheckMovementWalkSolid   ; water
@@ -606,288 +615,288 @@ CheckMovementWalk::
 	dw CheckMovementWalkRegular ; unused
 	dw CheckMovementWalkRegular ; unused
 
-_MovementDone:
-	ld a, $2a
+NoWalkMovement: ; 03:43a1
+	ld a, NO_MOVEMENT
 	ret
 
-CheckMovementWalkSolid::
+CheckMovementWalkSolid:: ; 03:43a4
 	jp CheckMovementWalkRegular
 
-CheckMovementWalkLand::
+CheckMovementWalkLand:: ; 03:43a7
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
-	jr nz, .slowdown
+	jr nz, .force_movement
 	call CheckMovementWalkRegular
-	call .slowMovementDown
+	call SlowDownMovementWalk
 	ret
-.slowdown
-	ld b, $08
+
+.force_movement
+	ld b, STEP_DOWN
 	cp (COLLISION_LAND_S & COLLISION_SUBTYPE_MASK)
-	jr z, .slowdownDone
-	ld b, $09
+	jr z, .finish
+	ld b, STEP_UP
 	cp (COLLISION_LAND_N & COLLISION_SUBTYPE_MASK)
-	jr z, .slowdownDone
-	ld b, $0a
+	jr z, .finish
+	ld b, STEP_LEFT
 	cp (COLLISION_LAND_W & COLLISION_SUBTYPE_MASK)
-	jr z, .slowdownDone
-	ld b, $0b
+	jr z, .finish
+	ld b, STEP_RIGHT
 	cp (COLLISION_LAND_E & COLLISION_SUBTYPE_MASK)
-	jr z, .slowdownDone
+	jr z, .finish
 	; fall-through --> map other codes to COLLISION_LAND_E
-.slowdownDone
-	ld a, b
-	ret
-.slowMovementDown:
-	ld b, $04
-	cp $08
-	jr z, .slowMovementDownDone
-	ld b, $05
-	cp $09
-	jr z, .slowMovementDownDone
-	ld b, $06
-	cp $0a
-	jr z, .slowMovementDownDone
-	ld b, $07
-	cp $0b
-	jr z, .slowMovementDownDone
-	ret
-.slowMovementDownDone
+.finish
 	ld a, b
 	ret
 
-CheckMovementWalkLand2::
+SlowDownMovementWalk: ; 03:43cf
+	ld b, SLOW_STEP_DOWN
+	cp STEP_DOWN
+	jr z, .finish
+	ld b, SLOW_STEP_UP
+	cp STEP_UP
+	jr z, .finish
+	ld b, SLOW_STEP_LEFT
+	cp STEP_LEFT
+	jr z, .finish
+	ld b, SLOW_STEP_RIGHT
+	cp STEP_RIGHT
+	jr z, .finish
+	ret
+.finish
+	ld a, b
+	ret
+
+CheckMovementWalkLand2:: ; 03:43ea
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
-	ld b, $08
+	ld b, STEP_DOWN
 	cp (COLLISION_LAND2_S & COLLISION_SUBTYPE_MASK)
-	jr z, .done
-	ld b, $09
+	jr z, .finish
+	ld b, STEP_UP
 	cp (COLLISION_LAND2_N & COLLISION_SUBTYPE_MASK)
-	jr z, .done
-	ld b, $0a
+	jr z, .finish
+	ld b, STEP_LEFT
 	cp (COLLISION_LAND2_W & COLLISION_SUBTYPE_MASK)
-	jr z, .done
-	ld b, $0b
+	jr z, .finish
+	ld b, STEP_RIGHT
 	cp (COLLISION_LAND2_E & COLLISION_SUBTYPE_MASK)
-	jr z, .done
+	jr z, .finish
 	; fall-through --> map other codes to COLLISION_LAND2_E
-.done
+.finish
 	ld a, b
 	ret
 
-UnusedCheckMovementWalk60::
+UnusedCheckMovementWalk60:: ; 03:4409
 	jp CheckMovementWalkRegular
 
-CheckMovementWalkWarp::
+CheckMovementWalkWarp:: ; 03:440c
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
-	jr z, .exitWarpDpadDirection
-	cp $01
-	jr z, .exitWarpDownNoBoundsCheck
+	jr z, .check_dpad
+	cp 1
+	jr z, .move_down
 	ld a, [wPlayerStandingTile]
 	cp $7a
-	jr z, .exitWarpDownNoBoundsCheck
+	jr z, .move_down
 	jp CheckMovementWalkRegular
-.exitWarpDownNoBoundsCheck
-	ld a, $08
+.move_down
+	ld a, STEP_DOWN
 	ret
-.exitWarpDpadDirection
+
+.check_dpad
 	ldh a, [hJoyState]
 	bit D_DOWN_F, a
-	jr nz, .exitWarpDown
+	jr nz, .down
 	bit D_UP_F, a
-	jr nz, .exitWarpUp
+	jr nz, .up
 	bit D_LEFT_F, a
-	jr nz, .exitWarpLeft
+	jr nz, .left
 	bit D_RIGHT_F, a
-	jr nz, .exitWarpRight
-	jp _MovementDone
-.exitWarpDown
+	jr nz, .right
+	jp NoWalkMovement
+
+.down
 	ld a, [wTileDown]
-	cp $ff
+	cp -1
 	jp nz, CheckMovementWalkRegular
-	call z, _ReportMovementOutOfBounds
-.faceDown:
-	ld a, $00
+	call z, .moved_out_of_bounds
+	ld a, FACE_DOWN
 	ret
-.exitWarpUp
+.up
 	ld a, [wTileUp]
-	cp $ff
+	cp -1
 	jp nz, CheckMovementWalkRegular
-	call z, _ReportMovementOutOfBounds
-.faceUp:
-	ld a, $01
+	call z, .moved_out_of_bounds
+	ld a, FACE_UP
 	ret
-.exitWarpLeft
+.left
 	ld a, [wTileLeft]
-	cp $ff
+	cp -1
 	jp nz, CheckMovementWalkRegular
-	call z, _ReportMovementOutOfBounds
-.faceLeft:
-	ld a, $02
+	call z, .moved_out_of_bounds
+	ld a, FACE_LEFT
 	ret
-.exitWarpRight
+.right
 	ld a, [wTileRight]
-	cp $ff
+	cp -1
 	jp nz, CheckMovementWalkRegular
-	call z, _ReportMovementOutOfBounds
-.faceRight:
-	ld a, $03
+	call z, .moved_out_of_bounds
+	ld a, FACE_RIGHT
 	ret
 
-_ReportMovementOutOfBounds::
+.moved_out_of_bounds
 	ret
 
-CheckMovementWalkMisc::
+CheckMovementWalkMisc:: ; 03:4472
 	jp CheckMovementWalkRegular
 
-CheckMovementWalkSpecial::
+CheckMovementWalkSpecial:: ; 03:4475
 	jp CheckMovementWalkRegular
 
-CheckMovementWalkRegular::
+CheckMovementWalkRegular:: ; 03:4478
 	ldh a, [hJoyState]
 	bit D_DOWN_F, a
-	jp nz, TryWalkDown
+	jp nz, CheckWalkDown
 	bit D_UP_F, a
-	jp nz, TryWalkUp
+	jp nz, CheckWalkUp
 	bit D_LEFT_F, a
-	jp nz, TryWalkLeft
+	jp nz, CheckWalkLeft
 	bit D_RIGHT_F, a
-	jp nz, TryWalkRight
-	jp _MovementDone
+	jp nz, CheckWalkRight
+	jp NoWalkMovement
 
-CheckMovementWalkJump:
+CheckMovementWalkJump: ; 03:4491
 	ldh a, [hJoyState]
 	bit D_DOWN_F, a
-	jr nz, .checkJumpDown
+	jr nz, .down
 	bit D_UP_F, a
-	jr nz, .checkJumpUp
+	jr nz, .up
 	bit D_LEFT_F, a
-	jr nz, .checkJumpLeft
+	jr nz, .left
 	bit D_RIGHT_F, a
-	jr nz, .checkJumpRight
-	jp _MovementDone
-.checkJumpDown:
+	jr nz, .right
+	jp NoWalkMovement
+
+.down
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_JUMP_S & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpDown
+	jr z, .jump_down
 	cp (COLLISION_JUMP_SE & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpDown
+	jr z, .jump_down
 	cp (COLLISION_JUMP_SW & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpDown
-	jp TryWalkDown
-.jumpDown:
-	ld a, $18
+	jr z, .jump_down
+	jp CheckWalkDown
+.jump_down
+	ld a, JUMP_DOWN
 	ret
-.checkJumpUp:
+
+.up
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_JUMP_N & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpUp
+	jr z, .jump_up
 	cp (COLLISION_JUMP_NE & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpUp
+	jr z, .jump_up
 	cp (COLLISION_JUMP_NW & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpUp
-	jp TryWalkUp
-.jumpUp:
-	ld a, $19
+	jr z, .jump_up
+	jp CheckWalkUp
+.jump_up
+	ld a, JUMP_UP
 	ret
-.checkJumpLeft:
+
+.left
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_JUMP_W & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpLeft
+	jr z, .jump_left
 	cp (COLLISION_JUMP_SW & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpLeft
+	jr z, .jump_left
 	cp (COLLISION_JUMP_NW & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpLeft
-	jp TryWalkLeft
-.jumpLeft:
-	ld a, $1a
+	jr z, .jump_left
+	jp CheckWalkLeft
+.jump_left
+	ld a, JUMP_LEFT
 	ret
-.checkJumpRight
+
+.right
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_JUMP_E & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpRight
+	jr z, .jump_right
 	cp (COLLISION_JUMP_SE & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpRight
+	jr z, .jump_right
 	cp (COLLISION_JUMP_NE & COLLISION_SUBTYPE_MASK)
-	jr z, .jumpRight
-	jp TryWalkRight
-.jumpRight
-	ld a, $1b
+	jr z, .jump_right
+	jp CheckWalkRight
+.jump_right
+	ld a, JUMP_RIGHT
 	ret
 
-TryWalkDown::
+CheckWalkDown:: ; 03:4502
 	ld d, 0
 	ld e, 1
-	call _CheckObjectCollision
-	jr c, .faceDown
+	call CheckObjectCollision
+	jr c, .face_down
 	ld a, [wTileDown]
 	call CheckCollisionSolid
-	jr c, .faceDown
-.moveDown:
-	ld a, $08
+	jr c, .face_down
+	ld a, STEP_DOWN
 	ret
-.faceDown:
-	ld a, $00
+.face_down
+	ld a, FACE_DOWN
 	ret
 
-TryWalkUp::
+CheckWalkUp:: ; 03:4519
 	ld d, 0
 	ld e, -1
-	call _CheckObjectCollision
-	jr c, .faceUp
+	call CheckObjectCollision
+	jr c, .face_up
 	ld a, [wTileUp]
 	call CheckCollisionSolid
-	jr c, .faceUp
-.moveUp:
-	ld a, $09
+	jr c, .face_up
+	ld a, STEP_UP
 	ret
-.faceUp:
-	ld a, $01
+.face_up
+	ld a, FACE_UP
 	ret
 
-TryWalkLeft::
+CheckWalkLeft:: ; 03:4530
 	ld d, -1
 	ld e, 0
-	call _CheckObjectCollision
-	jr c, .faceLeft
+	call CheckObjectCollision
+	jr c, .face_left
 	ld a, [wTileLeft]
 	call CheckCollisionSolid
-	jr c, .faceLeft
-.moveLeft:
-	ld a, $0a
+	jr c, .face_left
+	ld a, STEP_LEFT
 	ret
-.faceLeft:
-	ld a, $02
+.face_left
+	ld a, FACE_LEFT
 	ret
 
-TryWalkRight::
+CheckWalkRight:: ; 03:4547
 	ld d, 1
 	ld e, 0
-	call _CheckObjectCollision
-	jr c, .faceRight
+	call CheckObjectCollision
+	jr c, .face_right
 	ld a, [wTileRight]
 	call CheckCollisionSolid
-	jr c, .faceRight
-.moveRight:
-	ld a, $0b
+	jr c, .face_right
+	ld a, STEP_RIGHT
 	ret
-.faceRight:
-	ld a, $03
+.face_right
+	ld a, FACE_RIGHT
 	ret
 
-CheckMovementSurf::
+CheckMovementSurf:: ; 03:455e
 	ld a, [wPlayerStandingTile]
 	swap a
 	and  LOW((COLLISION_TYPE_MASK >> 4) | (COLLISION_TYPE_MASK << 4))
-	ld hl, .surfCollisionTable
+	ld hl, .SurfCollisionTable
 	jp CallJumptable
 
-.surfCollisionTable
+.SurfCollisionTable ; 03:456b
 	dw CheckMovementSurfRegular
 	dw CheckMovementSurfRegular
 	dw CheckMovementSurfWater
@@ -905,113 +914,114 @@ CheckMovementSurf::
 	dw CheckMovementSurfRegular
 	dw CheckMovementSurfRegular
 
-CheckMovementSurfRegular::
+CheckMovementSurfRegular:: ; 03:458b
 	ldh a, [hJoyState]
 	bit D_DOWN_F, a
-	jp nz, TrySurfDown
+	jp nz, CheckSurfDown
 	bit D_UP_F, a
-	jp nz, TrySurfUp
+	jp nz, CheckSurfUp
 	bit D_LEFT_F, a
-	jp nz, TrySurfLeft
+	jp nz, CheckSurfLeft
 	bit D_RIGHT_F, a
-	jp nz, TrySurfRight
-	jp _MovementDone
+	jp nz, CheckSurfRight
+	jp NoWalkMovement
 
-CheckMovementSurfWater::
+CheckMovementSurfWater:: ; 03:45a4
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_WATERFALL & COLLISION_SUBTYPE_MASK)
 	jr nz, CheckMovementSurfRegular
-.waterfall:
-	ld a, $0c
+; waterfall
+	ld a, FAST_STEP_DOWN
 	ret
 
-CheckMovementSurfWater2::
+CheckMovementSurfWater2:: ; 03:45b0
 	ld a, [wPlayerStandingTile]
 	and COLLISION_WATER_SUBTYPE_MASK
-	ld d, $0b
-	jr z, .done ; COLLISION_WATER2_E
-	ld d, $0a
+	ld d, STEP_RIGHT
+	jr z, .finish ; COLLISION_WATER2_E
+	ld d, STEP_LEFT
 	cp (COLLISION_WATER2_W & COLLISION_WATER_SUBTYPE_MASK)
-	jr z, .done
-	ld d, $09
+	jr z, .finish
+	ld d, STEP_UP
 	cp (COLLISION_WATER2_N & COLLISION_WATER_SUBTYPE_MASK)
-	jr z, .done
-	ld d, $08
+	jr z, .finish
+	ld d, STEP_DOWN
 	cp (COLLISION_WATER2_S & COLLISION_WATER_SUBTYPE_MASK)
-	jr z, .done
+	jr z, .finish
 	; fall-through --> no aliasing due to mask
-.done
+.finish
 	ld a, d
 	ret
 
-TrySurfDown:
+CheckSurfDown: ; 03:45cd
 	ld d, 0
 	ld e, 1
-	call _CheckObjectCollision
-	jr c, .faceDown
+	call CheckObjectCollision
+	jr c, .face_down
 	ld a, [wTileDown]
 	call CheckCollisionSometimesSolid
-	jr c, .faceDown ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr c, .face_down ; FIXME: This assumes cut-trees are solid, which they aren't.
 	                ;        You can walk into them from water because of this.
 	call nz, SurfDismount
-	ld a, $08
+	ld a, STEP_DOWN
 	ret
-.faceDown:
-	ld a, $00
+.face_down
+	ld a, FACE_DOWN
 	ret
 
-TrySurfUp:
+CheckSurfUp: ; 03:45e7
 	ld d, 0
 	ld e, -1
-	call _CheckObjectCollision
-	jr c, .faceUp
+	call CheckObjectCollision
+	jr c, .face_up
 	ld a, [wTileUp]
 	call CheckCollisionSometimesSolid
-	jr c, .faceUp ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr c, .face_up ; FIXME: This assumes cut-trees are solid, which they aren't.
 	              ;        You can walk into them from water because of this.
 	call nz, SurfDismount
-	ld a, $09
+	ld a, STEP_UP
 	ret
-.faceUp:
-	ld a, $01
+.face_up
+	ld a, FACE_UP
 	ret
 
-TrySurfLeft:
+CheckSurfLeft: ; 03:4601
 	ld d, -1
 	ld e, 0
-	call _CheckObjectCollision
-	jr c, .faceLeft
+	call CheckObjectCollision
+	jr c, .face_left
 	ld a, [wTileLeft]
 	call CheckCollisionSometimesSolid
-	jr c, .faceLeft ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr c, .face_left ; FIXME: This assumes cut-trees are solid, which they aren't.
 	                ;        You can walk into them from water because of this.
 	call nz, SurfDismount
-	ld a, $0a
+	ld a, STEP_LEFT
 	ret
-.faceLeft:
-	ld a, $02
+.face_left
+	ld a, FACE_LEFT
 	ret
 
-TrySurfRight:
+CheckSurfRight: ; 03:461b
 	ld d, 1
 	ld e, 0
-	call _CheckObjectCollision
-	jr c, .faceRight
+	call CheckObjectCollision
+	jr c, .face_right
 	ld a, [wTileRight]
 	call CheckCollisionSometimesSolid
-	jr c, .faceRight ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr c, .face_right ; FIXME: This assumes cut-trees are solid, which they aren't.
 	                 ;        You can walk into them from water because of this.
 	call nz, SurfDismount
-	ld a, $0b
+	ld a, STEP_RIGHT
 	ret
-.faceRight:
-	ld a, $03
+.face_right
+	ld a, FACE_RIGHT
 	ret
-SurfDismount:
+
+SurfDismount: ; 03:4635
 	jp SetPlayerStateWalk
 
-_CheckObjectCollision::
+CheckObjectCollision:: ; 03:4638
 ; Check if coordinates relative
 ; to player collide with another object
 ; Clobbers:
@@ -1021,20 +1031,18 @@ _CheckObjectCollision::
 ; Output:
 ; nc - no collision
 ;  c - collision
-; hEventID - Event ID of colliding event
-	ld a, $01
+; hObjectStructIndexBuffer - Event ID of colliding event
+	ld a, PLAYER_OBJECT_INDEX
 	ldh [hEventCollisionException], a
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	add d
 	ld d, a
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	add e
 	ld e, a
-	ld hl, $77dd
-	ld a, $01
-	call FarCall_hl
+	callab _CheckObjectCollision
 	ret nc
-	jp _CheckCompanionObjectCollision
+	jp CheckCompanionObjectCollision
 
 CheckCollisionSolid::
 ; Checks whether collision ID in a
@@ -1064,27 +1072,90 @@ GetCollisionType::
 ;      01 - sometimes solid (cut tree, water etc.)
 ;      0F - always solid
 	push de
-	ld hl, .collisionTypeTable
+	ld hl, CollisionTypeTable
 	ld e, a
-	ld d, $00
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	pop de
 	ret
 
-.collisionTypeTable:
-INCBIN "data/collision/collision_type_table.bin"
+CollisionTypeTable: ; 03:4664
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $00
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     ALWAYS_SOLID    ; $04
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $08
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     ALWAYS_SOLID    ; $0C
+	db NEVER_SOLID,     NEVER_SOLID,     SOMETIMES_SOLID, NEVER_SOLID     ; $10
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $14
+	db NEVER_SOLID,     NEVER_SOLID,     SOMETIMES_SOLID, NEVER_SOLID     ; $18
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $1C
+	db SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID ; $20
+	db SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID, ALWAYS_SOLID    ; $24
+	db SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID ; $28
+	db SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID, ALWAYS_SOLID    ; $30
+	db SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID ; $34
+	db SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID ; $38
+	db SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID ; $3C
+	db SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID, SOMETIMES_SOLID ; $40
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $44
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $48
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $4C
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $50
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $54
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $58
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $5C
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $60
+	db NEVER_SOLID,     NEVER_SOLID,     ALWAYS_SOLID,    NEVER_SOLID     ; $64
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $68
+	db NEVER_SOLID,     NEVER_SOLID,     ALWAYS_SOLID,    NEVER_SOLID     ; $6C
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $70
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $74
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $78
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $7C
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $80
+	db ALWAYS_SOLID,    ALWAYS_SOLID,    ALWAYS_SOLID,    ALWAYS_SOLID    ; $84
+	db ALWAYS_SOLID,    NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $88
+	db ALWAYS_SOLID,    ALWAYS_SOLID,    ALWAYS_SOLID,    ALWAYS_SOLID    ; $8C
+	db ALWAYS_SOLID,    NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $90
+	db ALWAYS_SOLID,    ALWAYS_SOLID,    ALWAYS_SOLID,    ALWAYS_SOLID    ; $94
+	db ALWAYS_SOLID,    ALWAYS_SOLID,    NEVER_SOLID,     ALWAYS_SOLID    ; $98
+	db ALWAYS_SOLID,    ALWAYS_SOLID,    ALWAYS_SOLID,    ALWAYS_SOLID    ; $9C
+	db ALWAYS_SOLID,    ALWAYS_SOLID,    NEVER_SOLID,     ALWAYS_SOLID    ; $A0
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $A4
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $A8
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $AC
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $B0
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $B4
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $B8
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $BC
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $C0
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $C4
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $C8
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $CC
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $D0
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $D4
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $D8
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $DC
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $E0
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $E4
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $E8
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $EC
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $F0
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $F4
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $F8
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $FC
+	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     ALWAYS_SOLID    ; $100
 
-_UnusedReturnFalse::
+_UnusedReturnFalse:: ; 03:4764
 	xor a
 	ret
 
-_UnusedReturnTrue::
+_UnusedReturnTrue:: ; 03:4766
 	xor a
 	scf
 	ret
 
-CheckCollisionSometimesSolid::
+CheckCollisionSometimesSolid:: ; 03:4769
 ; Checks whether collision ID in a
 ; is sometimes, always or never solid.
 ; Clobbers:
@@ -1098,18 +1169,58 @@ CheckCollisionSometimesSolid::
 ;      00 - sometimes solid
 ;      01 - never solid
 	call GetCollisionType
-	cp $01
-	jr z, .sometimesSolid
+	cp SOMETIMES_SOLID
+	jr z, .sometimes_solid
 	and a
-	jr z, .solid
-	jr .alwaysSolid
-.sometimesSolid:
+	jr z, .never_solid
+	jr .always_solid
+.sometimes_solid
 	xor a
 	ret
-.solid:
-	ld a, $01
+.never_solid
+	ld a, 1
 	and a
 	ret
-.alwaysSolid:
+.always_solid
 	scf
 	ret
+
+
+SECTION "_RedrawPlayerSprite", ROMX[$4000], BANK[$05]
+
+_RedrawPlayerSprite: ; 05:4000
+	call GetPlayerSprite
+	ld hl, vChars0
+	call LoadOverworldSprite
+	ret
+
+GetPlayerSprite: ; 05:400a
+	ld a, [wPlayerState]
+	ld hl, PlayerSpriteTable
+	ld c, a
+.loop
+	ld a, [hli]
+	cp c
+	jr z, .match
+	inc hl
+	cp -1
+	jr nz, .loop
+	xor a
+	ld [wPlayerState], a
+	ld a, SPRITE_GOLD
+	jr .skip
+.match
+	ld a, [hl]
+.skip
+	ld [wUsedSprites], a
+	ld [wPlayerSprite], a
+	ld [wPlayerObjectSprite], a
+	ret
+	
+PlayerSpriteTable: ; 03:402d
+; state, sprite
+	db PLAYER_NORMAL, SPRITE_GOLD
+	db PLAYER_BIKE,   SPRITE_GOLD_BIKE
+	db PLAYER_SKATE,  SPRITE_GOLD_SKATEBOARD
+	db PLAYER_SURF,   SPRITE_LAPLACE
+	db -1

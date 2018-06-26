@@ -1,4 +1,3 @@
-
 ; all outside tileset share certain metatiles
 ; this is used in overworld code when editing the map
 ; D - dirt
