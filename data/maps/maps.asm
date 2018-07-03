@@ -11,7 +11,7 @@ map: MACRO
 	db 0, 0 ; ???
 ENDM
 
-SECTION "Map Data", ROMX[$4000], BANK[$04]
+SECTION "data/maps/maps.asm", ROMX
 
 	db 0 ; ???
 

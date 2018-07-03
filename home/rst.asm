@@ -1,27 +1,27 @@
 ; rst vectors
 
-SECTION "rst00", ROM0[$000]
+SECTION "home/rst.asm@rst00", ROM0
 	rst $38
 
-SECTION "rst08", ROM0[$008]
+SECTION "home/rst.asm@rst08", ROM0
 	rst $38
 
-SECTION "rst10", ROM0[$010]
+SECTION "home/rst.asm@rst10", ROM0
 	rst $38
 
-SECTION "rst18", ROM0[$018]
+SECTION "home/rst.asm@rst18", ROM0
 	rst $38
 
-SECTION "rst20", ROM0[$020]
+SECTION "home/rst.asm@rst20", ROM0
 	rst $38
 
-SECTION "rst28", ROM0[$028]
+SECTION "home/rst.asm@rst28", ROM0
 	rst $38
 
-SECTION "rst30", ROM0[$030]
+SECTION "home/rst.asm@rst30", ROM0
 	rst $38
 
-SECTION "rst38", ROM0[$038]
+SECTION "home/rst.asm@rst38", ROM0
 if DEBUG && def(SILVER)
 	rst $38
 else

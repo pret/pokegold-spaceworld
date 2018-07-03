@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
-if DEBUG
-SECTION "Names", ROM0[$36c8]
-else
-SECTION "Names", ROM0[$368c] ; Unsure
-endc
+; if DEBUG
+SECTION "home/names.asm@Names", ROM0
+; else
+; SECTION "Names", ROM0[$368c] ; Unsure
+; endc
 
 NamesPointers:: ; 00:36c8
 ; entries correspond to GetName constants (see constants/text_constants.asm)
@@ -244,7 +244,7 @@ Unreferenced_GetMoveName:: ; 00:37fc
 	pop hl
 	ret
 
-SECTION "GetNick", ROM0[$3a97]
+SECTION "home/names.asm@GetNick", ROM0
 
 GetNick: ; 00:3a97
 ; Get nickname a from list hl.

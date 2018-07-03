@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
-if DEBUG
-SECTION "Tileset Headers", ROMX[$488D], BANK[$03]
-else
-SECTION "Tileset Headers", ROMX[$4875], BANK[$03]
-endc
+; if DEBUG
+SECTION "data/tileset_headers.asm", ROMX
+; else
+; SECTION "Tileset Headers", ROMX[$4875], BANK[$03]
+; endc
 
 Tileset_00: ; 0xc88d
 	db $06 ; bank

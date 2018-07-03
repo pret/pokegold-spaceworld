@@ -1,7 +1,7 @@
 include "constants.asm"
 
 
-SECTION "LoadTilesetGFX", ROM0[$2D26]
+SECTION "home/tileset.asm", ROM0
 
 LoadTilesetGFX:: ; 2d26
 	call GetMapEnvironment

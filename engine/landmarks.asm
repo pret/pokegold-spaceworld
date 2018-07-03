@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "GetLandmarkName", ROMX[$4AA5], BANK[$3F]
+SECTION "engine/landmarks.asm", ROMX
 
 GetLandmarkName::
 	dec a

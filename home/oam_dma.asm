@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "OAM DMA", ROMX[$4153], BANK[$01]
+SECTION "home/oam_dma.asm", ROMX
 
 WriteOAMDMACodeToHRAM:: ; 4153
 	ld c, LOW(hOAMDMA)

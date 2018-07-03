@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Route 1 Gate 1F", ROMX[$4061], BANK[$26]
+SECTION "maps/Route1Gate1F.asm", ROMX
 
 Route1Gate1FScriptLoader: ;4061
 	ld hl, Route1Gate1FScriptPointers
@@ -52,4 +52,3 @@ Route1Gate1FText2String: ; 40AC
 	done
 	
 ;ends at 40D9
-

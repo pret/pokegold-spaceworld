@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Silent Hills Script", ROMX[$7669], BANK[$36]
+SECTION "maps/SilentHills.asm", ROMX
 
 SilentHillsScriptLoader:: ; 7669
 	ld hl, SilentHillsScriptPointers1

@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Main Menu", ROMX[$53CC], BANK[$01]
+SECTION "engine/menu/main_menu.asm", ROMX
 
 MainMenu:: ; 01:53CC
 	ld hl, wd4a9 

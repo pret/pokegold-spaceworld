@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Misc GFX Loading Functions", ROMX[$4000], BANK[$3E]
+SECTION "engine/gfx.asm", ROMX
 
 LoadFontGraphics:: ; f8000 (3e:4000)
 	ld de, FontGFX

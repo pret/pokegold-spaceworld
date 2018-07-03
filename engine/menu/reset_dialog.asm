@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Debug Reset Menu", ROMX[$4362], BANK[$3F]
+SECTION "engine/menu/reset_dialog.asm", ROMX
 
 DisplayResetDialog:: ; fc362 (3f:4362)
 	ld hl, _ResetConfirmText

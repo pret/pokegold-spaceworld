@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Inventory", ROMX[$4AA1], BANK[$03]
+SECTION "engine/items/inventory.asm@Inventory", ROMX
 
 _ReceiveItem: ; 03:4AA1
 	call DoesHLEqualwNumBagItems
@@ -588,7 +588,7 @@ GetNumberedTMHM: ; 03:4D1A
 	and a
 	ret
 
-SECTION "GetItemAmount", ROMX[$4e10], BANK[$03]
+SECTION "engine/items/inventory.asm@GetItemAmount", ROMX
 
 ; Returns carry if user has the item
 ; and the amount in b
@@ -634,7 +634,7 @@ CheckAmountInKeyItems: ; 03:4E2B
 	scf
 	ret
 	
-SECTION "_CheckTossableItem", ROMX[$53AD], BANK[$03]
+SECTION "engine/items/inventory.asm@_CheckTossableItem", ROMX
 
 ; Return 1 in wItemAttributeParamBuffer and
 ; carry if wCurItem can't be removed from the bag.

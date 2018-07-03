@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Window Functions", ROM0[$1fd4]
+SECTION "home/window.asm", ROM0
 
 RefreshScreen::
 	call ClearWindowData

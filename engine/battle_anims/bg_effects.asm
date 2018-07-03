@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Battle Anims BG Effects", ROMX [$4000], BANK [$32]
+SECTION "engine/battle_anims/bg_effects.asm", ROMX
 
 	const_def
 	const BGSQUARE_SIX

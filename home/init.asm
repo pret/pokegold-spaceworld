@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
-SECTION "Entry point", ROM0[$100]
+SECTION "home/init.asm@Entry point", ROM0
 	nop
 	jp Init
 
-SECTION "Global check value", ROM0[$14E]
+SECTION "home/init.asm@Global check value", ROM0
 ; The ROM has an incorrect global check, so set it here
 ; It is not corrected by RGBFIX
 if def(GOLD)
@@ -21,7 +21,7 @@ else
 endc
 endc
 
-SECTION "Init", ROM0[$51C]
+SECTION "home/init.asm@Init", ROM0
 
 Reset: ; 51c (0:051c)
 	call DisableAudio

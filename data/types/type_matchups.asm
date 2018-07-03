@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Type Matchups", ROMX[$506D], BANK[$0D]
+SECTION "data/types/type_matchups.asm", ROMX
 
 TypeMatchups: ; 3506d
 	;  attacker,  defender,  *=

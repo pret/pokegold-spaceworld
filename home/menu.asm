@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Menu Functions", ROM0 [$1d49]
+SECTION "home/menu.asm", ROM0
 
 LoadMenuHeader:: ; 00:1d49
 	call CopyMenuHeader

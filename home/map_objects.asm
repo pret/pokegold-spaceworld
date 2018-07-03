@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Map Object Related Functions", ROM0 [$15b5]
+SECTION "home/map_objects.asm", ROM0
 
 Function15b5:: ; 15b5
 	callab Function8000

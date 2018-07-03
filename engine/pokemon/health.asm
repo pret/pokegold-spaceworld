@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "HealParty", ROMX[$4d6f], BANK[$03]
+SECTION "engine/pokemon/health.asm@HealParty", ROMX
 
 HealParty: ; 03:4d6f
 	ld hl, wPartySpecies
@@ -95,7 +95,7 @@ HealParty: ; 03:4d6f
 	jr nz, .pp_up
 	ret
 	
-SECTION "HP Bar", ROMX[$4e3c], BANK[$03]
+SECTION "engine/pokemon/health.asm@HP Bar", ROMX
 	
 ComputeHPBarPixels: ; 03:4e3c
 	push hl

@@ -1,7 +1,7 @@
 INCLUDE "constants.asm"
 
 
-SECTION "Music engine RAM", WRAM0[$C000]
+SECTION "Music engine RAM", WRAM0
 
 wMusic:: ; c000
 
@@ -76,13 +76,11 @@ wc1ba:: db ; c1ba
 wMusicInitEnd:: ; c1bc
 
 
-SECTION "OAM buffer", WRAM0[$C200]
+SECTION "OAM Buffer", WRAM0
 
 wVirtualOAM:: ; c200
     ds SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
 wVirtualOAMEnd::
-
-SECTION "Tile map", WRAM0 [$C2A0]
 
 wTileMap:: ; c2a0
     ds SCREEN_HEIGHT * SCREEN_WIDTH
@@ -103,7 +101,7 @@ wWhichPicTest:: ; c40b
 ENDU
 
 
-SECTION "Map buffer", WRAM0[$C5E8]
+SECTION "Map Buffer", WRAM0
 
 wMapBuffer::
 wMapScriptNumber:: db ; c5e8
@@ -955,7 +953,7 @@ wWildMons:: ; d91b
 	ds 41
 
 
-SECTION "Stack bottom", WRAM0[$DFFF]
+SECTION "Stack Bottom", WRAM0
 
 ; Where SP is set at game init
 wStackBottom:: ; dfff

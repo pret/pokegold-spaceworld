@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Player's House 1F", ROMX[$409C], BANK[$34]
+SECTION "maps/PlayersHouse1F.asm", ROMX
 
 PlayersHouse1FScriptLoader:: ; 409C
 	ld hl, PlayersHouse1FScriptPointers

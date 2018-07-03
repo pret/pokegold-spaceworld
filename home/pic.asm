@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Decompression Functions", ROM0[$095E]
+SECTION "home/pic.asm", ROM0
 
 UncompressSpriteData:: ; 95e (0:95e)
 ; bankswitches and runs _UncompressSpriteData

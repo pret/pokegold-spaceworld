@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Map 13 Script", ROMX[$6078], BANK[$34]
+SECTION "maps/Map13.asm", ROMX
 
 Map13ScriptLoader:: ; 6078
 	ld hl, Map13ScriptPointers

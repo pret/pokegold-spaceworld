@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Map functions", ROM0[$20FF]
+SECTION "home/map.asm", ROM0
 
 ; Runs a map script indexed by wMapScriptNumber
 RunMapScript:: ; 20ff

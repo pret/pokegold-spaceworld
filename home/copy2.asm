@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Video Copy functions", ROM0[$0D02]
+SECTION "home/copy2.asm", ROM0
 
 RedrawPlayerSprite::
 	jpab _RedrawPlayerSprite

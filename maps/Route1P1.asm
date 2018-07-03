@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Route 1 East", ROMX[$7B98], BANK[$36]
+SECTION "maps/Route1P1.asm", ROMX
 
 Route1P1ScriptLoader:: ; 7B98
 	ld hl, Route1P1ScriptPointers
