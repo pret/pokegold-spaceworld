@@ -67,22 +67,6 @@ for root, dirs, files in os.walk(cwd):
                                 content_lines[i+3] = "; " + content_lines[i+3]
                                 content_lines[i+4] = "; " + content_lines[i+4]
                                 skip_next_line = True
-                                    
-                            """
-                            if debug_code:
-                                debug_content_lines = content_lines[i+1:]
-                                debug_code_index = 0
-                                while True:
-                                    #if debug_content_lines[debug_code_index].startswith("else"):
-                                    #    conditional_type = 0
-                                    #    break
-                                    if debug_content_lines[debug_code_index].strip().startswith("endc"):
-                                        break
-                                    debug_code_index += 1
-                                print(line)
-                                for debug_content_line in debug_content_lines[:debug_code_index+1]:
-                                    print(debug_content_line)
-                            """
                     else:
                         skip_next_line = False
                 
