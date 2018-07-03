@@ -470,7 +470,7 @@ Function2407:: ; 00:2407
 	ld [wPlayerFacing], a
 	ld a, $0
 	ld d, $0
-	call Function19c0
+	call SetObjectFacing
 	ret
 
 MapSetup_Connection:: ; 2439
@@ -1593,7 +1593,7 @@ Function2a8d:: ; 00:2a8d
 	dbbw $05, $33, Function14777
 
 Function2ae5::
-.asm_2ae5: ; 00:2ae5
+.loop: ; 00:2ae5
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	set 6, [hl]
@@ -1608,33 +1608,31 @@ Function2ae5::
 	bit 7, [hl]
 	res 7, [hl]
 	ret nz
-	call Function38e3
+	call TestWildBattleStart
 	ret nz
 	call OverworldStartButtonCheck
 	ret nz
-	ld hl, PlaceWaitingText
-	ld a, $3
-	call FarCall_hl
+	callab Functionc000
 	ldh a, [hMapEntryMethod]
 	and a
 	ret nz
 	call Function2c4a
-	jr nc, .asm_2ae5
+	jr nc, .loop
 	callba Function824c
 	ld a, [wc5ed]
 	bit 6, a
-	jr nz, .asm_2ae5
+	jr nz, .loop
 	call CheckMovingOffEdgeOfMap
 	ret c
 	call WarpCheck
 	ret c
-	jr .asm_2ae5
+	jr .loop
 
 Function2b39::
 	ld hl, wJoypadFlags
 	res 4, [hl]
 	res 6, [hl]
-	ld hl, wce63
+	ld hl, wDebugFlags
 	res 6, [hl]
 	res 7, [hl]
 	ld hl, wVramState
@@ -1714,8 +1712,8 @@ Function2ba8:: ; 00:2ba8
 	scf
 	ret
 
-Function2be5:: ; 00:2be5
-	ld a, [wce63]
+Function2be5:: ; 00:2be5 ; TODO
+	ld a, [wDebugFlags]
 	bit 7, a
 	ret nz
 	ld a, [wMapGroup]

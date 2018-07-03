@@ -21,3 +21,9 @@ PLAYER_BIKE      EQU 1
 PLAYER_SKATE     EQU 2
 PLAYER_SURF      EQU 4
 PLAYER_SURF_PIKA EQU 8
+
+; wDebugFlags:: ; ce63
+	const_def
+	const DEBUG_BATTLE_F
+	const DEBUG_FIELD_F
+	const CONTINUED_F

@@ -54,7 +54,9 @@ wMusicFade:: ; c1a5
 ; $00 = none (default)
 	db
 wMusicFadeCount:: db ; c1a6
-wMusicFadeID:: dw ; c1a7
+wMusicFadeID:: 
+wMusicFadeIDLow:: db ; c1a7
+wMusicFadeIDHigh:: db ; c1a8
 
     ds 2 ; TODO
 
@@ -108,7 +110,7 @@ wMapScriptNumber:: db ; c5e8
 wMapScriptNumberLocation:: dw ; c5e9
 wUnknownMapPointer:: dw ; c5eb ; TODO
 wc5ed:: db ; c5ed
-    ds 18 ; TODO
+    ds 18
 wMapBufferEnd:: ; c600
 
 
@@ -184,8 +186,12 @@ wEnemyMonNickname:: ds 6 ; c9fc
 wPlayerSubStatus3:: db ; ca3d
 	ds $4
 wEnemySubStatus3:: db ; ca42
-; ca43
-	ds $14
+
+wca43:: db ; ca43
+
+wca44:: db ; ca44
+
+	ds $12
 wTrainerClass:: ; ca57
 	db
 ; ca58
@@ -438,6 +444,8 @@ wVramState:: db ; cd59
 
 	ds 3 ; TODO
 wcd5d:: db ; cd5d
+	db
+wChosenStarter:: db ; cd5f
 
 SECTION "CD72", WRAM0[$CD72]
 wcd72:: dw ; cd72
@@ -464,8 +472,9 @@ wcd9e::
 	db
 
 SECTION "CDB0", WRAM0 [$CDB0]
-wcdb0:: ; bit 0 = has engaged NPC in dialogue (?)
-	db
+wTalkingTargetType:: db ; cdb0 
+;bit 0 = has engaged NPC in dialogue 
+;bit 1 = has engaged sign in dialogue
 	
 SECTION "CDBA", WRAM0[$CDBA]
 
@@ -505,13 +514,18 @@ wcdca:: db ; cdca
 wHPBarHPDifference:: dw ; cdcb
 
 wLinkBattleRNs:: ds 10 ; cdcd
+
+wcdd7:: db ; cdd7
 ; cddd
 
 
 SECTION "CE00", WRAM0[$CE00]
 
-wBattleMode:: ; ce00
+wBattleMode:: db ; ce00
     db
+wce02:: db ; ce02
+	ds 2
+wce05:: db ; ce05
 
 SECTION "CE07", WRAM0[$CE07]
 
@@ -585,6 +599,7 @@ wce2e:: ; ce2e
 SECTION "CE37", WRAM0[$CE37]
 
 wNamedObjectIndexBuffer::
+wCountSetBitsResult:: 
 wce37:: ; ce37
     db
 
@@ -606,25 +621,26 @@ wTimeOfDay:: db ; ce3d
 
 SECTION "CE5F", WRAM0[$CE5F]
 
-wce5f:: ; ce5f ; TODO
+wce5f:: ; ce5f ; debug menu writes $41 to it
     db
 
-SECTION "CE61", WRAM0[$CE61]
+wce60:: ; ce60
+	db ; main menu checks this, maybe states if there's a save present?
 
 wActiveFrame:: db ; ce61
 
 wTextBoxFlags::  db ; ce62
 
-wce63:: db ; ce63
+wDebugFlags:: db ; ce63
 ; 76543210
-;       \-- global debug enable
+;     \/|\- debug battle indicator
+;     | \-- debug field indicator
+;     \---- loaded/continued game
 
 	ds 3
 	
-wPlayerName:: db ; ce67
+wPlayerName:: ds 6 ; ce67
 
-
-SECTION "Mom's Name", WRAM0[$CE6D]
 wMomsName:: ds 6 ; ce6d
 
 SECTION "CE7F", WRAM0[$CE76]
@@ -712,7 +728,19 @@ wTimeOfDayPalset:: db ; d158
 
 wCurTimeOfDay:: db ; d159
 
-SECTION "D165", WRAM0[$D165]
+SECTION "D15D", WRAM0[$D15D]
+
+wd15d:: db ; d15d
+
+wd15e:: db ; d15e
+
+wd15f:: db ; d15f
+
+SECTION "D163", WRAM0[$D163]
+
+wd163:: db ; d163
+
+wd164:: db ; d164
 
 wTMsHMs:: db ; d165
 
@@ -731,12 +759,33 @@ wNumBallItems:: db ; d1de
 wBallQuantities:: db ; d1df
 
 SECTION "Rival's Name", WRAM0[$D258]
-wRivalsName:: ds 6 ; d258
+wRivalName:: ds 6 ; d258
+	ds 6
 
-SECTION "PlayerState", WRAM0[$D264]
 wPlayerState:: db ; d264
+wd265:: db ; d265
+wd266:: db ; d266
+	
+SECTION "D29A", WRAM0[$D29A]
+wd29a:: db ; d29a
+wd29b:: db ; d29b
+	db ; d29c
+wd29d:: db ; d29d
+	db
+	db
+wd2a0:: db ; d2a0
 
-SECTION "D4AB", WRAM0[$D4A9]
+SECTION "D39D", WRAM0[$D39D]
+wd39d:: db
+
+SECTION "Game Event Flags", WRAM0[$D41A]
+wd41a:: db
+wd41b:: db
+wd41c:: db
+wd41d:: db
+wd41e:: db
+
+SECTION "D4A9", WRAM0[$D4A9]
 
 wd4a9:: db ; d4a9
 	ds 1 ; TODO
@@ -744,7 +793,7 @@ wJoypadFlags:: db ; d4ab
 ; 76543210
 ; ||||\__/
 ; ||||  \-- unkn
-; |||\----- unkn
+; |||\----- set for rival intro textbox
 ; ||\------ don't wait for keypress to close text box
 ; |\------- joypad sync mtx
 ; \-------- joypad disabled
@@ -775,10 +824,15 @@ ENDR
 
 wCurrMapObjectCount:: ; d5f6
     db
+	
+wCurrMapInlineTrainers:: ; d5f7
+REPT 32 ; TODO: confirm this
+	ds 2 ; inline trainers. each pair of bytes is direction, distance
+ENDR
 
 SECTION "D637", WRAM0[$D637]
-wd637:: db ; d637
-wd638:: db ; d638
+wd637:: db ; d637 ;OW battle state? $3 wild battle, $8 is trainer battle $4 is left battle, $B is load overworld? $0 is in overworld
+wd638:: db ; d638 ;wd637's last written-to value
 
 SECTION "Used sprites", WRAM0[$D643]
 
@@ -805,8 +859,8 @@ wXCoord:: db ; d65b
 wMetatileStandingY:: db ; d65c
 wMetatileStandingX:: db ; d65d
 
-; d65f
-	ds 1 ; TODO
+wd65e:: ; d65e
+	db
 
 wMapPartial:: ; d65f
 wMapAttributesBank:: ; d65f
@@ -887,7 +941,7 @@ wAnnonDex:: ds 26  ; d85a
 
 wAnnonID:: ds 1    ; d874
 
-
+	
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
 wWildMons:: ; d91b

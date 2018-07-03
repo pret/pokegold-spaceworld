@@ -35,6 +35,7 @@ HP_YELLOW EQU 1
 HP_RED    EQU 2
 
 SPRITEBUFFERSIZE EQU 7*7 * 8 ; 7 * 7 (tiles) * 8 (bytes per tile)
+DOUBLESPRITEBUFFERSIZE EQU 2*SPRITEBUFFERSIZE
 
 ; sprite_oam_struct members (see macros/wram.asm)
 	const_def

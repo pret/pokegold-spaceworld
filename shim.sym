@@ -1,35 +1,16 @@
 ; ROM0
-00:3111 Function3111
-00:3171 Function3171
-00:319B Function319b
-00:3233 Function3233
-00:323E Function323e
-00:3240 Function3240
 00:3C43 GetPartyParamLocation
 00:3CA8 InitSpriteAnimStruct
-00:3D86 WaitSFX
-00:3D87 WaitSFX.wait
-00:3DA5 MaxVolume
-00:3DAB LowVolume
-00:3DB1 VolumeOff
-00:3DB6 UpdateSoundNTimes
-00:3DBE FadeToMapMusic
-00:3DDC FadeToMapMusic.dontfade
-00:3E05 SpecialMapMusic
-00:3E14 SpecialMapMusic.state2
-00:3E19 SpecialMapMusic.normal
-00:3E1B GetMapMusic
-00:3E2E GetMapMusic.unk_3E2E
-00:3E32 Unk_3E32
 
-01:4031 Function4031
-01:4031 DebugMenu
-01:40EB Function40eb
+01:40FD Function40fd
 01:5007 Function5007
 01:50B9 Function50b9
 01:5190 _UpdateSprites
 01:5190 Function5190
-01:5D27 Function5d27
+01:52F9 Function52f9
+01:5388 Function5388
+01:5397 Function5397
+01:53B0 Function53b0
 01:63D8 ReanchorBGMap_NoOAMUpdate
 01:6437 LoadFonts_NoOAMUpdate
 01:6445 Function6445
@@ -37,6 +18,7 @@
 01:6713 Function6713
 01:67d5 CorrectNickErrors
 01:776E Function776e
+01:78E5 SettingsScreen
 
 02:4000 Function8000
 02:4098 _InitializeVisibleSprites
@@ -51,6 +33,7 @@
 02:4786 Function8786
 02:4856 DecompTownMapTilemap
 02:48DA DecompTownMapTilemap.tilemap
+02:4AAB OpenPokegear
 02:4C7C DrawMap
 02:4DC2 TownMapGfx
 02:4F32 PokegearRadioGfx
@@ -73,10 +56,15 @@
 03:5E79 Functionde79
 03:5F7D Functiondf7d
 03:5F91 Functiondf91
+03:60A0 Function60a0
+03:6734 Function6734
 
+04:4743 ShrinkPic1
+04:479D ShrinkPic2
 04:528F Function1128f
 04:52C1 Function112c1
 04:530A Function1130a
+04:53F4 Function113f4
 04:5677 DoPlayerMovement
 04:5DBE DisplayStartMenu
 04:640B Function1240b
@@ -89,12 +77,14 @@
 05:405B AddIndoorSprites
 05:40AA AddOutdoorSprites
 05:40D9 Function140d9
+05:40EA Function140ea
 05:40FB LoadUsedSpritesGfx ; TODO: maybe there's a better name
 05:43B6 InitAllSRAMBanks 
 05:43E0 Function143e0
 05:457A Function1457a
 05:45B8 Function145b8
 05:45DE Function145de
+05:4624 Function14624
 05:46DC Function146dc
 ; Structure:
 ; byte Map group ($ff = end)
@@ -104,6 +94,7 @@
 ; word Unknown (2 bytes)
 05:470E UnknownMapBufferPointers
 05:4777 Function14777
+05:477D Function1477D
 05:4CAC Function14cac
 05:4DAC Function14dac
 05:4DC4 Function14dc4
@@ -134,6 +125,7 @@
 0F:508C Function3d08c
 0F:55CE Function3d5ce
 0F:567C Function3d67c
+0F:6043 AddPokemonToBox
 0F:61A4 Function3e1a4
 0F:6874 Function3e874
 0F:691E Function3e91e
@@ -435,6 +427,7 @@
 36:73E8 MtFujiRoute_MapAttributes
 36:7444 FontoRoute5_MapAttributes
 36:7530 BullForestRoute3_MapAttributes
+36:7AE4 SetTime
 38:4000 PikachuMiniGame
 39:4000 GameFreakIntro
 39:432F OpeningCutscene
@@ -458,11 +451,11 @@
 3F:654E PicTest
 3F:6750 PicTestMenu
 3F:6755 PicTestMenu.loop
+3F:67A1 CallSubGameMenu
 
 00:CB6F wPlayerStepDirection
 
 01:D19E wItems
-01:D258 wRivalName
 ; The starting house's map script number is stored at d29a. Others are probably nearby.
 01:D35F wOptions
 01:D513 wWarpNumber

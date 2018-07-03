@@ -1,45 +1,45 @@
 INCLUDE "constants.asm"
 
-SECTION "Main Menu Definition", ROMX[$53cc], BANK[$01]
+SECTION "Main Menu", ROMX[$53CC], BANK[$01]
 
-MainMenu:
-	ld hl, wd4a9
+MainMenu:: ; 01:53CC
+	ld hl, wd4a9 
 	res 0, [hl]
 	call ClearTileMap
 	call GetMemSGBLayout
 	call LoadFontExtra
 	call LoadFont
 	call ClearWindowData
-	call $5388
-	ld hl, $ce60
+	call Function5388
+	ld hl, wce60
 	bit 0, [hl]
-	jr nz, .skip1
-	xor a ; new game
-	jr .next1
-.skip1
-	ld a, 1 ; continue
-.next1
-	ld a, [$ffa3]
-	and $83
-	cp $83
-	jr nz, .skip2
-	ld a, 3 ; play pokemon, set time
-	jr .next2
-.skip2
-	ld a, 2 ; play pokemon
-.next2
-	ld [$cbf7],a
+	jr nz, .setMenuContinue
+	xor a
+	jr .skip
+.setMenuContinue
+	ld a, M_CONTINUE
+.skip
+	ldh a, [hJoyState]
+	and D_DOWN | B_BUTTON | A_BUTTON
+	cp D_DOWN | B_BUTTON | A_BUTTON
+	jr nz, .setMenuPlay
+	ld a, M_SET_TIME
+	jr .triggerMenu
+.setMenuPlay
+	ld a, M_PLAY_GAME
+.triggerMenu
+	ld [wWhichIndexSet], a
 	ld hl, MainMenuHeader
 	call LoadMenuHeader
 	call OpenMenu
 	call CloseWindow
-	jp c, $5dae
+	jp c, TitleSequenceStart
 	ld hl, MainMenuJumptable
-	ld a, [$cbf5]
+	ld a, [wMenuSelection]
 	jp CallJumptable
 
-MainMenuHeader:
-	db $40
+MainMenuHeader: ; 01:5418
+	db MENU_BACKUP_TILES
 	menu_coords 0, 0, 13, 7
 	dw .MenuData
 	db 1 ; default option
@@ -59,17 +59,11 @@ MainMenuHeader:
 	db "じかんセット@"
 
 MainMenuJumptable: ; 01:5457
-	dw $547c
-	dw NewGame
-	dw $5cf3
-	dw NewGame
-	dw $5473
-
-CONTINUE     EQU 0
-NEW_GAME     EQU 1
-OPTION       EQU 2
-PLAY_POKEMON EQU 3
-SET_TIME     EQU 4
+	dw MainMenuOptionContinue
+	dw StartNewGame
+	dw MenuCallSettings
+	dw StartNewGame
+	dw MainMenuOptionSetTime
 
 MainMenuItems:
 
@@ -99,176 +93,119 @@ PlayPokemonSetTimeMenu:
 	db SET_TIME
 	db -1
 
-SECTION "Oak Speech", ROMX[$555c], BANK[$01]
+MainMenuOptionSetTime:: ; 5473
+	callab SetTime
+	ret
 
-NewGame:
-	ld de, 0
+MainMenuOptionContinue:: ;547C
+	callab Function14624
+	call DisplayContinueGameInfo
+.loop
+	call ClearJoypad
+	call GetJoypad
+	ldh a, [hJoyState]
+	bit A_BUTTON_F, a
+	jr nz, .escape
+	bit B_BUTTON_F, a
+	jp nz, MainMenu
+	jr .loop
+.escape
+	call Function5397
+	call Function53b0
+	ld hl, wDebugFlags
+	res DEBUG_FIELD_F, [hl]
+	set CONTINUED_F, [hl]
+	set 3, [hl]
+	ldh a, [hJoyState]
+	bit SELECT_F, a
+	jr z, .skip
+	set 1, [hl]
+.skip
+	call ClearBGPalettes
+	call ClearTileMap
+	ld c, $0A
+	call DelayFrames
+	jp OverworldStart
+
+DisplayContinueGameInfo:: ; 54BF
+	xor a
+	ldh [hBGMapMode], a
+	hlcoord 4, 7
+	ld b, $08
+	ld c, $0D
+	call DrawTextBox
+	hlcoord 5, 9
+	ld de, PlayerInfoText
+	call PlaceString
+	hlcoord 13, 9
+	ld de, wPlayerName
+	call PlaceString
+	hlcoord 14, 11
+	call PrintNumBadges
+	hlcoord 13, 13
+	call PrintNumOwnedMons
+	hlcoord 12, 15
+	call PrintPlayTime
+	ld a, $01
+	ldh [hBGMapMode], a
+	ld c, $1E
+	call DelayFrames
+	ret
+
+PrintNumBadges:: ;54FA
+	push hl
+	ld hl, wd163 ; badges?
+	ld b, $01
+	call CountSetBits
+	pop hl
+	ld de, wCountSetBitsResult
+	ld bc, $0102 ; flags and constants for this? 1 byte source, 2 digit display
+	jp PrintNumber
+
+PrintNumOwnedMons:: ; 550D
+	push hl
+	ld hl, wPokedexOwned
+	ld b, $20 ; flag_array NUM_POKEMON?
+	call CountSetBits
+	pop hl
+	ld de, wCountSetBitsResult
+	ld bc, $0103 ; 1 byte, 3 digit
+	jp PrintNumber
+
+PrintPlayTime:: ; 5520
+	ld de, hRTCHours
+	ld bc, $0103 ; 1 byte, 3 digit
+	call PrintNumber
+	ld [hl], "："
+	inc hl
+	ld de, hRTCMinutes
+	ld bc, $8102 ; PRINTNUM_LEADINGZEROS, 1 byte, 2 digit
+	jp PrintNumber
+
+PlayerInfoText:
+	db   "しゅじんこう"
+	next "もっているバッジ　　　　こ"
+	next "#ずかん　　　　ひき"
+	next "プレイじかん"
+	text_end
+	
+StartNewGame:: ; 555C
+	ld de, MUSIC_NONE
 	call PlayMusic
-	ld de, 3
+	ld de, MUSIC_OAK_INTRO
 	call PlayMusic
 	call LoadFontExtra
 	xor a
-	ld [$ffde], a
-	ld a, 1
-	ld hl, $52f9
-	call FarCall_hl
+	ldh [hBGMapMode], a
+	callba Function52f9
 	call ClearTileMap
 	call ClearWindowData
 	xor a
-	ld [$ffe8], a
-	ld a, [wce63]
-	bit 1, a
-	jp z, .OakSpeechPlayPokemon
-	call Function5715
-	jp .PlayerShrink
-
-.OakSpeechPlayPokemon
-	ld de, OakPic
-	lb bc, BANK(OakPic), 0
-	call $5d27
-	call $5cf7
-	ld hl, $587b
-	call PrintText
-	call RotateThreePalettesRight
-	call ClearTileMap
-	ld de, ProtagonistPic
-	lb bc, BANK(ProtagonistPic), 0
-	call $5d27
-	call $5d0e
-	ld a, $d0
-	ld [$ff48], a
-	call $5849
-	jp .PlayerShrink
-
-.OakSpeechNewGame
-	ld de, OakPic
-	lb bc, BANK(OakPic), 0
-	call $5d27
-	call $5cf7
-	ld hl, $5956
-	call PrintText
-	call RotateThreePalettesRight
-	call ClearTileMap
-	ld a, DEX_YADOKING
-	ld [$cb5b], a
-	ld [$cd78], a
-	call GetMonHeader
-	ld hl, $c2f6
-	ld hl, $c2f6
-	call PrepMonFrontpic
-	call $5d0e
-	ld hl, $599f
-	call PrintText
-	ld a, DEX_YADOKING
-	call PlayCry
-	ld hl, $59e8
-	call PrintText
-	call RotateThreePalettesRight
-	call ClearTileMap
-	ld de, ProtagonistPic
-	lb bc, BANK(ProtagonistPic), 0
-	call $5d27
-	call $5d0e
-	ld hl, $5a35
-	call PrintText
-	call $5b25 ; naming screen
-	call RotateThreePalettesRight
-	call ClearTileMap
-	ld de, RivalPic
-	lb bc, BANK(RivalPic), 0
-	call $5d27
-	call $5cf7
-	ld hl, $5a52
-	call PrintText
-	call $5ba9 ; naming screen
-	call RotateThreePalettesRight
-	call ClearTileMap
-	ld de, OakPic
-	lb bc, BANK(OakPic), 0
-	call $5d27
-	call $5cf7
-	ld hl, $5a8f
-	call PrintText
-	ld a, $24
-	ld hl, $4000
-	call FarCall_hl
-	call Function04ac
-	call RotateThreePalettesRight
-	call ClearTileMap
-	ld de, ProtagonistPic
-	lb bc, BANK(ProtagonistPic), 0
-	call $5d27
-	call RotateThreePalettesLeft
-	ld hl, $5ac2
-	call PrintText
-	ld a, [$ff98]
-	push af
-	ld a, $20
-	ld [$c1a5], a
-	ld de, 0
-	ld a, e
-	ld [$c1a7], a
-	ld a, d
-	ld [$c1a8], a
-	ld de, $b
-	call PlaySFX
-	pop af
-	call Bankswitch
-	ld c, 4
-	call DelayFrames
-.PlayerShrink
-	ld de, $4743
-	ld bc, $400
-	call $5d27
-	ld c, 4
-	call DelayFrames
-	ld de, $479d
-	ld bc, $400
-	call $5d27
-	ld c, 20
-	call DelayFrames
-	ld hl, $c30a
-	ld b, 7
-	ld c, 7
-	call ClearBox
-	ld c, 20
-	call DelayFrames
-	call $5d5d
-	call LoadFontExtra
-	ld c, 50
-	call DelayFrames
-	call RotateThreePalettesRight
-	call ClearTileMap
-	call Function0502
-	ld a, 0
-	ld [$d638], a
-	ld [$d637], a
-	call Function56e8
-	ld hl, wce63
-	bit 2, [hl]
-	call z, Function15b5
-	ld hl, wd4a9
-	set 0, [hl]
-	jp Function2a85
-
-Function56e8:
-	ld a, 4
-	ld [$d65e], a
-	ld a, $f2
-	ld [$ff9a], a
-	ld hl, $ce63
-	bit 2, [hl]
-	ret nz
-	ld a, $f1
-	ld [$ff9a], a
-	ld a, 0
-	ld [$cc39], a
-	ld hl, .Data
-	ld de, $d656
-	ld bc, 8
-	call CopyBytes
-	ret
-.Data
-	db $01, $09, $33, $c6, $04, $04, $00, $01
-
-Function5715:
+	ldh [hMapAnims], a
+	ld a, [wDebugFlags]
+	bit DEBUG_FIELD_F, a
+	jp z, DemoStart
+	call DebugSetUpPlayer
+	jp IntroCleanup
+	
+; 558D
