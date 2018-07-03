@@ -1036,7 +1036,7 @@ Function275e:: ; 275e ; TODO: is this used?
 
 
 GetCoordOfUpperLeftCorner:: ; 277a
-	ld hl, wOverworldMap
+	ld hl, wOverworldMapBlocks
 	ld a, [wXCoord]
 	bit 0, a
 	jr nz, .increment_then_halve1
@@ -1324,12 +1324,12 @@ ENDR
 
 
 ChangeMap:: ; 294d
-	ld hl, wOverworldMap
-	ld bc, wOverworldMapEnd - wOverworldMap
+	ld hl, wOverworldMapBlocks
+	ld bc, wOverworldMapBlocksEnd - wOverworldMapBlocks
 	ld a, 0
 	call ByteFill
 
-	ld hl, wOverworldMap
+	ld hl, wOverworldMapBlocks
 	ld a, [wMapWidth]
 	ldh [hConnectedMapWidth], a
 	add a, 6

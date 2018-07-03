@@ -331,7 +331,7 @@ GetBlockLocation:: ; 2ef8
 	add a, 6
 	ld c, a
 	ld b, 0
-	ld hl, wOverworldMap + 1
+	ld hl, wOverworldMapBlocks + 1
 	add hl, bc
 	ld a, e
 	srl a

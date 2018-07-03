@@ -152,7 +152,7 @@ SetUpGameEntry:: ; 56E8
 	
 GameStartPlacement:: ; 570D
 	db $01 ; map group 
-	db PLAYER_HOUSE_2F+1 ; map
+	db MAP_PLAYER_HOUSE_2F ; map
 	dwcoord 15, 45 ; screen anchor
 	db $04 ; metatile x
 	db $04 ; metatile y
