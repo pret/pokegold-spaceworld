@@ -275,8 +275,8 @@ object_struct: MACRO
 \1Facing:: ds 1
 \1StandingTile:: ds 1 ; collision
 \1LastTile:: ds 1     ; collision
-\1StandingMapX:: ds 1
-\1StandingMapY:: ds 1
+\1NextMapX:: ds 1
+\1NextMapY:: ds 1
 \1LastMapX:: ds 1
 \1LastMapY:: ds 1
 \1ObjectInitX:: ds 1

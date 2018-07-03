@@ -32,8 +32,8 @@ UpdateTime:: ; 436 (0:0436)
 	and $1f
 	ldh [hRTCHours], a
 	call CloseSRAM
-	ld a, [wce63]
-	bit 1, a
+	ld a, [wDebugFlags]
+	bit DEBUG_FIELD_F, a
 	jr z, .asm_0478
 	ld a, [wd153]
 	bit 7, a

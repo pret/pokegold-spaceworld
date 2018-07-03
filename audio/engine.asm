@@ -502,7 +502,7 @@ FadeMusic: ; 3a:43ce
 	ld [wVolume], a
 	ret
 
-SECTION "Audio engine, part 2", ROMX[$4CEE],BANK[$3A] ; TODO: disassemble what's above (gulp) and remove this
+SECTION "Audio engine, part 2", ROMX[$4CEE], BANK[$3A] ; TODO: disassemble what's above (gulp) and remove this
 
 SetGlobalTempo: ; 3a:4cee
 	push bc

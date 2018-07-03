@@ -448,8 +448,8 @@ FadeIn:: ; 23e5 ; This is not OverworldFadeIn, but I don't know what it is
 	ret
 
 Function2407:: ; 00:2407
-	ld a, $2a
-	ld [wcb77], a
+	ld a, NO_MOVEMENT
+	ld [wPlayerMovement], a
 	xor a
 	ld [wPlayerAction], a
 	ld a, [wPlayerFacing]
@@ -470,7 +470,7 @@ Function2407:: ; 00:2407
 	ld [wPlayerFacing], a
 	ld a, $0
 	ld d, $0
-	call Function19c0
+	call SetObjectFacing
 	ret
 
 MapSetup_Connection:: ; 2439
@@ -505,7 +505,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .down
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	sub 4
 	ld b, a
 	ld a, [wMapHeight]
@@ -516,7 +516,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .up
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -524,7 +524,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .left
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -532,7 +532,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .right
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	sub 4
 	ld b, a
 	ld a, [wMapWidth]
@@ -701,10 +701,10 @@ WarpCheck:: ; 259f
 	ret
 
 GetDestinationWarpPointer: ; 25b9
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	sub 4
 	ld d, a
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	sub 4
 	ld e, a
 	ld a, [wCurrMapWarpCount]
@@ -1028,15 +1028,15 @@ Function275e:: ; 275e ; TODO: is this used?
 	ld [wOverworldMapAnchor + 1], a
 	ld a, [wYCoord]
 	and 1
-	ld [wMetatileStandingY], a
+	ld [wMetatileNextY], a
 	ld a, [wXCoord]
 	and 1
-	ld [wMetatileStandingX], a
+	ld [wMetatileNextX], a
 	ret
 
 
 GetCoordOfUpperLeftCorner:: ; 277a
-	ld hl, wOverworldMap
+	ld hl, wOverworldMapBlocks
 	ld a, [wXCoord]
 	bit 0, a
 	jr nz, .increment_then_halve1
@@ -1075,10 +1075,10 @@ GetCoordOfUpperLeftCorner:: ; 277a
 	ld [wOverworldMapAnchor + 1], a
 	ld a, [wYCoord]
 	and 1
-	ld [wMetatileStandingY], a
+	ld [wMetatileNextY], a
 	ld a, [wXCoord]
 	and 1
-	ld [wMetatileStandingX], a
+	ld [wMetatileNextX], a
 	ret
 
 Function27C7:: ; 27c7 ; TODO
@@ -1175,13 +1175,13 @@ LoadMetatiles:: ; 2822
 
 ApplyFlashlight:: ; 285a
 	ld hl, wTileMapBackup
-	ld a, [wMetatileStandingY]
+	ld a, [wMetatileNextY]
 	and a
 	jr z, .top_row
 	ld bc, $30 ; TODO: constantify this
 	add hl, bc
 .top_row
-	ld a, [wMetatileStandingX]
+	ld a, [wMetatileNextX]
 	and a
 	jr z, .left_col
 	inc hl
@@ -1324,12 +1324,12 @@ ENDR
 
 
 ChangeMap:: ; 294d
-	ld hl, wOverworldMap
-	ld bc, wOverworldMapEnd - wOverworldMap
+	ld hl, wOverworldMapBlocks
+	ld bc, wOverworldMapBlocksEnd - wOverworldMapBlocks
 	ld a, 0
 	call ByteFill
 
-	ld hl, wOverworldMap
+	ld hl, wOverworldMapBlocks
 	ld a, [wMapWidth]
 	ldh [hConnectedMapWidth], a
 	add a, 6
@@ -1593,7 +1593,7 @@ Function2a8d:: ; 00:2a8d
 	dbbw $05, $33, Function14777
 
 Function2ae5::
-.asm_2ae5: ; 00:2ae5
+.loop: ; 00:2ae5
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	set 6, [hl]
@@ -1608,33 +1608,31 @@ Function2ae5::
 	bit 7, [hl]
 	res 7, [hl]
 	ret nz
-	call Function38e3
+	call TestWildBattleStart
 	ret nz
 	call OverworldStartButtonCheck
 	ret nz
-	ld hl, PlaceWaitingText
-	ld a, $3
-	call FarCall_hl
+	callab OverworldMovementCheck
 	ldh a, [hMapEntryMethod]
 	and a
 	ret nz
 	call Function2c4a
-	jr nc, .asm_2ae5
+	jr nc, .loop
 	callba Function824c
 	ld a, [wc5ed]
 	bit 6, a
-	jr nz, .asm_2ae5
+	jr nz, .loop
 	call CheckMovingOffEdgeOfMap
 	ret c
 	call WarpCheck
 	ret c
-	jr .asm_2ae5
+	jr .loop
 
 Function2b39::
 	ld hl, wJoypadFlags
 	res 4, [hl]
 	res 6, [hl]
-	ld hl, wce63
+	ld hl, wDebugFlags
 	res 6, [hl]
 	res 7, [hl]
 	ld hl, wVramState
@@ -1679,7 +1677,7 @@ Function2b87::
 	call GetJoypad
 	call OverworldStartButtonCheck
 	ret nz
-	callab Functionc000
+	callab OverworldMovementCheck
 	call Function2ba8
 	jr nc, .asm_2b87
 	callba Function824c
@@ -1714,8 +1712,8 @@ Function2ba8:: ; 00:2ba8
 	scf
 	ret
 
-Function2be5:: ; 00:2be5
-	ld a, [wce63]
+Function2be5:: ; 00:2be5 ; TODO
+	ld a, [wDebugFlags]
 	bit 7, a
 	ret nz
 	ld a, [wMapGroup]

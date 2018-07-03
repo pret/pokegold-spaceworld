@@ -101,7 +101,7 @@
 	charmap "<RIVAL>",   $53 ; wRivalName
 	charmap "#",         $54 ; "POKé"
 	charmap "<CONT>",    $55
-	charmap "<……>",      $56 ; "……"
+	charmap "<⋯⋯>",      $56 ; "⋯⋯"
 	charmap "<DONE>",    $57
 	charmap "<PROMPT>",  $58
 	charmap "<TARGET>",  $59
@@ -140,7 +140,7 @@
 	charmap "『", $72
 	charmap "』", $73
 	charmap "・", $74
-	charmap "…", $75
+	charmap "⋯", $75
 
 	charmap "ぁ", $76
 	charmap "ぇ", $77

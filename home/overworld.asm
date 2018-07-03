@@ -14,8 +14,8 @@ if DEBUG
 	and (START | B_BUTTON)
 	cp (START | B_BUTTON)
 	jr nz, .regularMenu
-	ld a, [wce63]
-	bit 1, a
+	ld a, [wDebugFlags]
+	bit DEBUG_FIELD_F, a
 	ret z              ; debug disabled
 	callba InGameDebugMenu
 	jr CheckStartmenuSelectHook

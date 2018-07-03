@@ -17,7 +17,7 @@ RefreshScreen::
 	ret
 
 Function1fea::
-	call Function3171
+	call TextboxCleanup
 	call ClearWindowData
 	call InitToolgearBuffer
 	ret
