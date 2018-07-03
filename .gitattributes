@@ -20,3 +20,4 @@
 *.1bpp binary
 *.bin binary
 *.blk binary
+*.pic binary
