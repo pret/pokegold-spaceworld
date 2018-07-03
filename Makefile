@@ -9,13 +9,12 @@ RGBGFX := rgbgfx
 RGBLINK := rgblink
 RGBFIX := rgbfix
 sort_sym := tools/sort_symfile.sh
-#sort_sym := $(PYTHON3) tools/sort_sym.py
 
 RGBASMFLAGS := -h -E -i $(BUILD)/ -DGOLD -DDEBUG=1
 tools/gfx :=
 
-ROMNAME := pokegold-spaceworld
-ROM := $(ROMNAME).gb
+ROM := pokegold-spaceworld.gb
+LINKERSCRIPT := pokegold-spaceworld-gen.link
 BASEROM := baserom.gb
 SHIM := shim.sym
 CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
@@ -56,9 +55,10 @@ coverage: $(ROM:.gb=.map) tools/disasm_coverage.py
 	$(PYTHON) tools/disasm_coverage.py -m $< -b 0x40
 
 .PHONY: linkerscript
-linkerscript: $(ROMNAME)-gen.link
+linkerscript: $(ROM:.gb=-gen.link)
 
-%.link: %.map tools/map2link.py
+# TODO FIX HARDCODE
+%.link: pokegold-spaceworld.map tools/map2link.py
 	$(PYTHON3) tools/map2link.py $< $@
 
 %.map: %.gb
@@ -69,7 +69,7 @@ $(CORRECTEDROM): %-correctheader.gb: %.gb
 	$(RGBFIX) -f hg -m 0x10 $@
 
 $(ROM): poke%-spaceworld.gb: $(OBJS) | $(BASEROM)
-	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -l $(ROMNAME).link -O $(BASEROM) -o $@ $^
+	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -l $(@:.gb=.link) -O $(BASEROM) -o $@ $^
 	$(RGBFIX) -f lh -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t "POKEMON2$(shell echo $* | cut -d _ -f 1 | tr '[:lower:]' '[:upper:]')" $@
 	$(sort_sym) $(@:.gb=.sym)
 

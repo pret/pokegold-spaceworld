@@ -2,40 +2,28 @@
 ROM0
 	org $0000
 	"home/rst.asm@rst00"
-	; $0001
 	org $0008
 	"home/rst.asm@rst08"
-	; $0009
 	org $0010
 	"home/rst.asm@rst10"
-	; $0011
 	org $0018
 	"home/rst.asm@rst18"
-	; $0019
 	org $0020
 	"home/rst.asm@rst20"
-	; $0021
 	org $0028
 	"home/rst.asm@rst28"
-	; $0029
 	org $0030
 	"home/rst.asm@rst30"
-	; $0031
 	org $0038
 	"home/rst.asm@rst38"
-	; $003b
 	org $0040
 	"home/interrupts.asm@VBlank interrupt vector"
-	; $0043
 	org $0048
 	"home/interrupts.asm@LCD interrupt vector"
-	; $004b
 	org $0050
 	"home/interrupts.asm@Timer interrupt vector"
-	; $0053
 	org $0058
 	"home/interrupts.asm@Serial interrupt vector"
-	; $005b
 	org $0060
 	"home/interrupts.asm@Joypad interrupt vector"
 	; $0063
@@ -136,7 +124,6 @@ ROMX $01
 	org $7894
 	"engine/overworld/object_collision.asm@_CheckPlayerObjectCollision"
 ROMX $02
-	org $4000
 	org $4000
 	org $44bf
 	"gfx.asm@Bank 2 Misc GFX"
@@ -294,7 +281,6 @@ ROMX $0f
 	"data/wild.asm"
 ROMX $10
 	org $4000
-	org $4000
 	org $4943
 	"data/pokemon/dex_order_alpha.asm"
 	; $4a3e
@@ -330,7 +316,6 @@ ROMX $13
 	org $6900
 	"gfx.asm@Bank 13 Tilesets 1a"
 ROMX $14
-	org $4000
 	org $4000
 	org $40dd
 	"data/types/names.asm"
@@ -379,7 +364,6 @@ ROMX $21
 	"gfx.asm@Attack Animation GFX"
 ROMX $23
 	org $4000
-	org $4000
 	org $433e
 	"engine/palettes.asm@Overworld fade"
 	org $43d1
@@ -388,7 +372,6 @@ ROMX $23
 	org $60cc
 	"gfx.asm@Pokemon Party Sprites"
 ROMX $24
-	org $4000
 	org $4000
 	org $4fdb
 	"gfx.asm@Slot Machine GFX"
@@ -766,7 +749,6 @@ ROMX $32
 	; $4cfe
 ROMX $33
 	org $4000
-	org $4000
 ROMX $34
 	org $4000
 	"data/maps/attributes.asm@RouteSilentEastGate"
@@ -785,7 +767,6 @@ ROMX $34
 	org $605d
 	"data/maps/attributes.asm@Unused13"
 ROMX $36
-	org $4000
 	org $4000
 	org $4014
 	"data/maps/attributes.asm@SilentHill"
@@ -883,7 +864,6 @@ ROMX $37
 	"gfx.asm@Bank 37 Tilesets 18"
 ROMX $38
 	org $4000
-	org $4000
 	org $5403
 	"gfx.asm@Poker GFX"
 	; $5ae3
@@ -896,7 +876,6 @@ ROMX $38
 	org $75b7
 	"gfx.asm@Picross GFX"
 ROMX $39
-	org $4000
 	org $4000
 	org $41ff
 	"gfx.asm@Gamefreak Logo GFX"
