@@ -635,10 +635,9 @@ wActiveFrame:: db ; ce61
 wTextBoxFlags::  db ; ce62
 
 wDebugFlags:: db ; ce63
-; 76543210
-;     \/|\- debug battle indicator
-;     | \-- debug field indicator
-;     \---- loaded/continued game
+; Bit 0: Debug battle indicator
+; Bit 1: Debug field indicator
+; Bit 2-3: Game is continued (set when selecting continue on the main menu)
 
 	ds 3
 	

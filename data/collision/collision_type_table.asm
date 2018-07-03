@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Collision Type Table", ROMX[$4664], BANK[$3]
+SECTION "Collision Type Table", ROMX[$4664], BANK[$03]
 
 CollisionTypeTable: ; 03:4664
 	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $00

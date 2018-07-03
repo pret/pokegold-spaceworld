@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Player Movement", ROMX[$4000], BANK[$3]
+SECTION "Player Movement", ROMX[$4000], BANK[$03]
 
 OverworldMovementCheck:: ; 03:4000
 	jp _OverworldMovementCheck
@@ -1080,7 +1080,7 @@ GetCollisionType::
 	pop de
 	ret
 
-SECTION "Rest of Player Movement", ROMX[$4764], BANK[$3]
+SECTION "Rest of Player Movement", ROMX[$4764], BANK[$03]
 	
 _UnusedReturnFalse:: ; 03:4764
 	xor a

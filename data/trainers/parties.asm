@@ -622,7 +622,7 @@ KimonoGirlGroup::
 else
 
 
-SECTION "Trainer Parties 1 TEMPORARY", ROMX[$51BF],BANK[$E]
+SECTION "Trainer Parties 1 TEMPORARY", ROMX[$51BF], BANK[$E]
 AkaneGroup::
 BugCatcherBoyGroup::
 	; BUG_CATCHER_BOY_KENJI
@@ -635,47 +635,47 @@ BugCatcherBoyGroup::
 	db  7, DEX_KONGPANG, ITEM_NONE, MOVE_STUN_SPORE, MOVE_LEECH_LIFE, MOVE_NONE, MOVE_NONE
 	db -1 ; end
 
-SECTION "Trainer Parties 2 TEMPORARY", ROMX[$52B4],BANK[$E]
+SECTION "Trainer Parties 2 TEMPORARY", ROMX[$52B4], BANK[$E]
 MikanGroup::
 
-SECTION "Trainer Parties 3 TEMPORARY", ROMX[$53BC],BANK[$E]
+SECTION "Trainer Parties 3 TEMPORARY", ROMX[$53BC], BANK[$E]
 OkidoGroup::
 
-SECTION "Trainer Parties 4 TEMPORARY", ROMX[$54BA],BANK[$E]
+SECTION "Trainer Parties 4 TEMPORARY", ROMX[$54BA], BANK[$E]
 WataruGroup::
 
-SECTION "Trainer Parties 5 TEMPORARY", ROMX[$54E0],BANK[$E]
+SECTION "Trainer Parties 5 TEMPORARY", ROMX[$54E0], BANK[$E]
 GerugeMemberMGroup::
 
-SECTION "Trainer Parties 6 TEMPORARY", ROMX[$54FE],BANK[$E]
+SECTION "Trainer Parties 6 TEMPORARY", ROMX[$54FE], BANK[$E]
 Trio1Group::
 BeautyGroup::
 
-SECTION "Trainer Parties 7 TEMPORARY", ROMX[$55EB],BANK[$E]
+SECTION "Trainer Parties 7 TEMPORARY", ROMX[$55EB], BANK[$E]
 FledglingGroup::
 
-SECTION "Trainer Parties 8 TEMPORARY", ROMX[$56CE],BANK[$E]
+SECTION "Trainer Parties 8 TEMPORARY", ROMX[$56CE], BANK[$E]
 PokeManiacGroup::
 
-SECTION "Trainer Parties 9 TEMPORARY", ROMX[$57BC],BANK[$E]
+SECTION "Trainer Parties 9 TEMPORARY", ROMX[$57BC], BANK[$E]
 GentlemanGroup::
 
-SECTION "Trainer Parties 10 TEMPORARY", ROMX[$57E0],BANK[$E]
+SECTION "Trainer Parties 10 TEMPORARY", ROMX[$57E0], BANK[$E]
 TeacherMGroup::
 
-SECTION "Trainer Parties 11 TEMPORARY", ROMX[$57EC],BANK[$E]
+SECTION "Trainer Parties 11 TEMPORARY", ROMX[$57EC], BANK[$E]
 TeacherFGroup::
 
-SECTION "Trainer Parties 12 TEMPORARY", ROMX[$57F2],BANK[$E]
+SECTION "Trainer Parties 12 TEMPORARY", ROMX[$57F2], BANK[$E]
 ManchildGroup::
 
-SECTION "Trainer Parties 13 TEMPORARY", ROMX[$58C3],BANK[$E]
+SECTION "Trainer Parties 13 TEMPORARY", ROMX[$58C3], BANK[$E]
 RockerGroup::
 
-SECTION "Trainer Parties 14 TEMPORARY", ROMX[$58F2],BANK[$E]
+SECTION "Trainer Parties 14 TEMPORARY", ROMX[$58F2], BANK[$E]
 HikerGroup::
 
-SECTION "Trainer Parties 15 TEMPORARY", ROMX[$5995],BANK[$E]
+SECTION "Trainer Parties 15 TEMPORARY", ROMX[$5995], BANK[$E]
 KimonoGirlGroup::
 	; KIMONO_GIRL_KOUME
 	db "こうめ@", TRAINERTYPE_ITEM_MOVES
@@ -687,112 +687,112 @@ KimonoGirlGroup::
 	db 10, DEX_PURIN, ITEM_NONE, MOVE_CHARM, MOVE_POUND, MOVE_ENCORE, MOVE_NONE
 	db -1 ; end
 
-SECTION "Trainer Parties 16 TEMPORARY", ROMX[$518A],BANK[$E]
+SECTION "Trainer Parties 16 TEMPORARY", ROMX[$518A], BANK[$E]
 HayatoGroup::
 
-SECTION "Trainer Parties 17 TEMPORARY", ROMX[$5216],BANK[$E]
+SECTION "Trainer Parties 17 TEMPORARY", ROMX[$5216], BANK[$E]
 TsukishiGroup::
 LassGroup::
 
-SECTION "Trainer Parties 18 TEMPORARY", ROMX[$526F],BANK[$E]
+SECTION "Trainer Parties 18 TEMPORARY", ROMX[$526F], BANK[$E]
 EnokiGroup::
 
-SECTION "Trainer Parties 19 TEMPORARY", ROMX[$528F],BANK[$E]
+SECTION "Trainer Parties 19 TEMPORARY", ROMX[$528F], BANK[$E]
 OkeraGroup::
 
-SECTION "Trainer Parties 20 TEMPORARY", ROMX[$533D],BANK[$E]
+SECTION "Trainer Parties 20 TEMPORARY", ROMX[$533D], BANK[$E]
 GamaGroup::
 
-SECTION "Trainer Parties 21 TEMPORARY", ROMX[$5542],BANK[$E]
+SECTION "Trainer Parties 21 TEMPORARY", ROMX[$5542], BANK[$E]
 Trio2Group::
 
-SECTION "Trainer Parties 22 TEMPORARY", ROMX[$5554],BANK[$E]
+SECTION "Trainer Parties 22 TEMPORARY", ROMX[$5554], BANK[$E]
 Trio3Group::
 
-SECTION "Trainer Parties 23 TEMPORARY", ROMX[$5673],BANK[$E]
+SECTION "Trainer Parties 23 TEMPORARY", ROMX[$5673], BANK[$E]
 ProfessionalMGroup::
 ProfessionalFGroup::
 
-SECTION "Trainer Parties 24 TEMPORARY", ROMX[$5812],BANK[$E]
+SECTION "Trainer Parties 24 TEMPORARY", ROMX[$5812], BANK[$E]
 SwimmerMGroup::
 
-SECTION "Trainer Parties 25 TEMPORARY", ROMX[$5821],BANK[$E]
+SECTION "Trainer Parties 25 TEMPORARY", ROMX[$5821], BANK[$E]
 SuperNerdGroup::
 
-SECTION "Trainer Parties 26 TEMPORARY", ROMX[$5833],BANK[$E]
+SECTION "Trainer Parties 26 TEMPORARY", ROMX[$5833], BANK[$E]
 EngineerGroup::
 
-SECTION "Trainer Parties 27 TEMPORARY", ROMX[$5965],BANK[$E]
+SECTION "Trainer Parties 27 TEMPORARY", ROMX[$5965], BANK[$E]
 JugglerGroup::
 
-SECTION "Trainer Parties 28 TEMPORARY", ROMX[$5971],BANK[$E]
+SECTION "Trainer Parties 28 TEMPORARY", ROMX[$5971], BANK[$E]
 TwinsGroup::
 
-SECTION "Trainer Parties 29 TEMPORARY", ROMX[$5976],BANK[$E]
+SECTION "Trainer Parties 29 TEMPORARY", ROMX[$5976], BANK[$E]
 SchoolboyGroup::
 	; SCHOOLBOY_TETSUYA
 	db "てつや@", TRAINERTYPE_ITEM
 	db  8, DEX_YADOKING, ITEM_NONE
 	db -1 ; end
 
-SECTION "Trainer Parties 30 TEMPORARY", ROMX[$597F],BANK[$E]
+SECTION "Trainer Parties 30 TEMPORARY", ROMX[$597F], BANK[$E]
 FirebreatherGroup::
 	; FIREBREATHER_AKITO
 	db "あきと@", TRAINERTYPE_ITEM
 	db  8, DEX_BOOBY, ITEM_NONE
 	db -1 ; end
 
-SECTION "Trainer Parties 31 TEMPORARY", ROMX[$5320],BANK[$E]
+SECTION "Trainer Parties 31 TEMPORARY", ROMX[$5320], BANK[$E]
 BlueGroup::
 
-SECTION "Trainer Parties 32 TEMPORARY", ROMX[$5375],BANK[$E]
+SECTION "Trainer Parties 32 TEMPORARY", ROMX[$5375], BANK[$E]
 RivalGroup::
 
-SECTION "Trainer Parties 33 TEMPORARY", ROMX[$5404],BANK[$E]
+SECTION "Trainer Parties 33 TEMPORARY", ROMX[$5404], BANK[$E]
 SakakiGroup::
 
-SECTION "Trainer Parties 34 TEMPORARY", ROMX[$5427],BANK[$E]
+SECTION "Trainer Parties 34 TEMPORARY", ROMX[$5427], BANK[$E]
 ProtagonistGroup::
 
-SECTION "Trainer Parties 35 TEMPORARY", ROMX[$5433],BANK[$E]
+SECTION "Trainer Parties 35 TEMPORARY", ROMX[$5433], BANK[$E]
 SibaGroup::
 KasumiGroup::
 FisherGroup::
 
-SECTION "Trainer Parties 36 TEMPORARY", ROMX[$5476],BANK[$E]
+SECTION "Trainer Parties 36 TEMPORARY", ROMX[$5476], BANK[$E]
 KannaGroup::
 
-SECTION "Trainer Parties 37 TEMPORARY", ROMX[$555D],BANK[$E]
+SECTION "Trainer Parties 37 TEMPORARY", ROMX[$555D], BANK[$E]
 RocketFGroup::
 
-SECTION "Trainer Parties 38 TEMPORARY", ROMX[$557E],BANK[$E]
+SECTION "Trainer Parties 38 TEMPORARY", ROMX[$557E], BANK[$E]
 YoungsterGroup::
 
-SECTION "Trainer Parties 39 TEMPORARY", ROMX[$564F],BANK[$E]
+SECTION "Trainer Parties 39 TEMPORARY", ROMX[$564F], BANK[$E]
 ProdigyGroup::
 
-SECTION "Trainer Parties 40 TEMPORARY", ROMX[$578C],BANK[$E]
+SECTION "Trainer Parties 40 TEMPORARY", ROMX[$578C], BANK[$E]
 RocketMGroup::
 
-SECTION "Trainer Parties 41 TEMPORARY", ROMX[$5808],BANK[$E]
+SECTION "Trainer Parties 41 TEMPORARY", ROMX[$5808], BANK[$E]
 SwimmerFGroup::
 
-SECTION "Trainer Parties 42 TEMPORARY", ROMX[$5817],BANK[$E]
+SECTION "Trainer Parties 42 TEMPORARY", ROMX[$5817], BANK[$E]
 SailorGroup::
 
-SECTION "Trainer Parties 43 TEMPORARY", ROMX[$58FE],BANK[$E]
+SECTION "Trainer Parties 43 TEMPORARY", ROMX[$58FE], BANK[$E]
 BikerGroup::
 
-SECTION "Trainer Parties 44 TEMPORARY", ROMX[$594D],BANK[$E]
+SECTION "Trainer Parties 44 TEMPORARY", ROMX[$594D], BANK[$E]
 RockClimberGroup::
 
-SECTION "Trainer Parties 45 TEMPORARY", ROMX[$5959],BANK[$E]
+SECTION "Trainer Parties 45 TEMPORARY", ROMX[$5959], BANK[$E]
 BurglarGroup::
 
-SECTION "Trainer Parties 46 TEMPORARY", ROMX[$5969],BANK[$E]
+SECTION "Trainer Parties 46 TEMPORARY", ROMX[$5969], BANK[$E]
 BlackbeltGroup::
 
-SECTION "Trainer Parties 47 TEMPORARY", ROMX[$596D],BANK[$E]
+SECTION "Trainer Parties 47 TEMPORARY", ROMX[$596D], BANK[$E]
 PsychicGroup::
 KungFuMasterGroup::
 FortuneTellerGroup::
@@ -802,7 +802,7 @@ MediumGroup::
 SoldierGroup::
 GerugeMemberFGroup::
 
-SECTION "Trainer Parties 48 TEMPORARY", ROMX[$5988],BANK[$E]
+SECTION "Trainer Parties 48 TEMPORARY", ROMX[$5988], BANK[$E]
 SportsmanGroup::
 	; SPORTSMAN_SHIGEKI
 	db "てつじ@", TRAINERTYPE_ITEM_MOVES
