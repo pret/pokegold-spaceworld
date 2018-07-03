@@ -226,7 +226,7 @@ TextboxCleanup: ; 00:3171
 
 Function318f: ; 00:318f
 	callab Function140ea
-	call Function0d02
+	call RedrawPlayerSprite
 	ret
 	
 TurnNPCTalkingTo:: ; 00:319b 
@@ -236,7 +236,7 @@ TurnNPCTalkingTo:: ; 00:319b
 	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
-	call CheckNonTurningSprite
+	call IsAnimatedSprite
 	jr c, .Jump
 	ld a, [wPlayerWalking]
 	xor 04
@@ -290,12 +290,12 @@ GetInlineMapObject:: ; 00:31EB
 	;bc is start of object struct. if c flag set, returns distance in B and direction in C
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	cp [hl]
 	jr z, .EqualX
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	cp [hl]
 	jr z, .EqualY
 	and a 
@@ -303,7 +303,7 @@ GetInlineMapObject:: ; 00:31EB
 .EqualX 
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	sub [hl]
 	jr z, .Reset 
 	jr nc, .SetDown 
@@ -321,7 +321,7 @@ GetInlineMapObject:: ; 00:31EB
 .EqualY ; 3219 
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	sub [hl]
 	jr z, .Reset ; (this condition is impossible to meet)
 	jr nc, .SetRight

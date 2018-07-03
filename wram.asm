@@ -257,7 +257,7 @@ wVBCopyFarSize:: ds 1 ; cb71
 wVBCopyFarSrc:: ds 2 ; cb72
 wVBCopyFarDst:: ds 2 ; cb74
 wVBCopyFarSrcBank:: ds 1 ; cb76
-wcb77:: db ; cb77
+wPlayerMovement:: db ; cb77
 wMovementObject:: db ; cb78
 	ptrba wMovementData ; cb79
 
@@ -348,7 +348,10 @@ wMovementBufferObject:: db ; cc3b
 wMovementBuffer:: ; cc3f
 	ds 55
 
-SECTION "CC9C", WRAM0[$CC9C]
+SECTION "CC9A", WRAM0[$CC9A]
+
+wSkatingDirection:: db ; cc9a
+wCompanionCollisionFrameCounter:: db ; cc9b
 
 wUnknownWordcc9c:: ; cc9c
     dw
@@ -466,15 +469,16 @@ wItemQuantity:: db ; cd7d
 wItemQuantityBuffer:: db ; cd7e
 
 SECTION "CD9E", WRAM0 [$CD9E]
+wcd9e:: db ; cd9e
 
-wcd9e::
-	db
+SECTION "CDAF", WRAM0 [$CDAF]
+wcdaf:: db ; cdaf
 
 SECTION "CDB0", WRAM0 [$CDB0]
 wTalkingTargetType:: db ; cdb0 
 ;bit 0 = has engaged NPC in dialogue 
 ;bit 1 = has engaged sign in dialogue
-	
+
 SECTION "CDBA", WRAM0[$CDBA]
 
 wItemAttributeParamBuffer:: db ; cdba
@@ -762,6 +766,11 @@ wRivalName:: ds 6 ; d258
 	ds 6
 
 wPlayerState:: db ; d264
+; 00 - walking
+; 01 - bicycle
+; 02 - skateboard
+; 04 - surfing
+
 wd265:: db ; d265
 wd266:: db ; d266
 	
@@ -855,8 +864,8 @@ wOverworldMapAnchor:: ; d658
 wYCoord:: db ; d65a
 wXCoord:: db ; d65b
 
-wMetatileStandingY:: db ; d65c
-wMetatileStandingX:: db ; d65d
+wMetatileNextY:: db ; d65c
+wMetatileNextX:: db ; d65d
 
 wd65e:: ; d65e
 	db

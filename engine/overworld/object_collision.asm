@@ -1,0 +1,157 @@
+INCLUDE "constants.asm"
+
+SECTION "GetSpritesNextTile", ROMX[$774a], BANK[$01]
+
+; Get the tile that the sprite will walk onto next
+GetSpritesNextTile: ; 01:774a
+	ld hl, OBJECT_NEXT_MAP_X
+	add hl, bc
+	ld d, [hl]
+	ld hl, OBJECT_NEXT_MAP_Y
+	add hl, bc
+	ld e, [hl]
+	push bc
+	call GetCoordTile
+	pop bc
+	ret
+
+; Sets carry flag if the object (bc) next tile is a collision
+_IsObjectCollisionTileSolid: ; 01:775a
+	call GetSpritesNextTile
+	ld e, a
+	ld d, 0
+	ld hl, CollisionTypeTable
+	add hl, de
+	ld a, BANK(CollisionTypeTable)
+	call GetFarByte
+	and ALWAYS_SOLID ; also covers SOMETIMES_SOLID
+	ret z
+	scf
+	ret
+
+
+
+SECTION "_CheckObjectCollision", ROMX[$77dd], BANK[$01]
+
+; returns the carry flag if a sprite is at coords d, e
+; will not collide with sprite index stored in hEventCollisionException
+_CheckObjectCollision: ; 01:77dd
+	ld bc, wObjectStructs
+	xor a
+.loop
+	ldh [hObjectStructIndexBuffer], a
+	ld hl, OBJECT_SPRITE
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .next
+	ld hl, OBJECT_NEXT_MAP_X
+	add hl, bc
+	ld a, [hl]
+	cp d
+	jr nz, .check_last_position
+	ld hl, OBJECT_NEXT_MAP_Y
+	add hl, bc
+	ld a, [hl]
+	cp e
+	jr nz, .check_last_position
+	ldh a, [hEventCollisionException]
+	ld l, a
+	ldh a, [hObjectStructIndexBuffer]
+	cp l
+	jr nz, .collision
+.check_last_position
+	ld hl, OBJECT_MAP_X
+	add hl, bc
+	ld a, [hl]
+	cp d
+	jr nz, .next
+	ld hl, OBJECT_MAP_Y
+	add hl, bc
+	ld a, [hl]
+	cp e
+	jr nz, .next
+	ldh a, [hEventCollisionException]
+	ld l, a
+	ldh a, [hObjectStructIndexBuffer]
+	cp l
+	jr nz, .collision
+.next
+	ld hl, OBJECT_LENGTH
+	add hl, bc
+	ld b, h
+	ld c, l
+	ldh a, [hObjectStructIndexBuffer]
+	inc a
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
+	and a
+	ret
+
+.collision
+	scf
+	ret
+	
+SECTION "_CheckPlayerObjectCollision", ROMX[$7894], BANK[$01]
+
+; Sets the carry flag if the player will collide with another sprite's current or next position
+_CheckPlayerObjectCollision: ; 01:7894
+	ld a, [wPlayerNextMapX]
+	ld d, a
+	ld a, [wPlayerNextMapY]
+	ld e, a
+	ld bc, wObjectStructs
+	xor a
+	
+.loop
+	ldh [hObjectStructIndexBuffer], a
+	ld hl, OBJECT_SPRITE
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .next
+	ld hl, OBJECT_NEXT_MAP_Y
+	add hl, bc
+	ld a, [hl]
+	cp e
+	jr nz, .check_last_position
+	ld hl, OBJECT_NEXT_MAP_X
+	add hl, bc
+	ld a, [hl]
+	cp d
+	jr nz, .check_last_position
+	
+; skip the player sprite
+	ldh a, [hObjectStructIndexBuffer]
+	cp PLAYER_OBJECT_INDEX
+	jr z, .next
+	jr .collision
+	
+.check_last_position
+	ld hl, OBJECT_MAP_Y
+	add hl, bc
+	ld a, [hl]
+	cp e
+	jr nz, .next
+	ld hl, OBJECT_MAP_X
+	add hl, bc
+	ld a, [hl]
+	cp d
+	jr nz, .next
+	jr .collision
+
+.next
+	ld hl, OBJECT_LENGTH
+	add hl, bc
+	ld b, h
+	ld c, l
+	ldh a, [hObjectStructIndexBuffer]
+	inc a
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
+	xor a
+	ret
+	
+.collision
+	scf
+	ret

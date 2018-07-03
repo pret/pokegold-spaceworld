@@ -335,27 +335,34 @@ Function17cb::
 	call Bankswitch
 	ret
 
-CheckNonTurningSprite:: ; 00:17de
-	; sets carry flag if a is equal to any of the sprites below
+; sets carry flag if the sprite data includes "in-motion" sprites
+IsAnimatedSprite:: ; 00:17de
 	push hl
 	push bc
 	ld c, a
-	ld b, $ff
-	ld hl, .Data
-.loop:
+	ld b, -1
+	ld hl, .NonAnimatedSprites
+.loop
 	ld a, [hli]
 	cp b
-	jr z, .escape
+	jr z, .done
 	cp c
 	jr nz, .loop
 	scf
-.escape:
+.done
 	pop bc
 	pop hl
 	ret
 
-.Data: ; 00:17f1
-	db SPRITE_KABIGON, SPRITE_POKE_BALL, SPRITE_POKEDEX, SPRITE_PAPER, SPRITE_OLD_LINK_RECEPTIONIST, SPRITE_EGG, SPRITE_BOULDER, $ff
+.NonAnimatedSprites: ; 00:17f1
+	db SPRITE_KABIGON
+	db SPRITE_POKE_BALL
+	db SPRITE_POKEDEX
+	db SPRITE_PAPER
+	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_EGG
+	db SPRITE_BOULDER
+	db -1
 
 Function17f9::
 	call GetMapObject

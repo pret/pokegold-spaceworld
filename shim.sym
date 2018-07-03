@@ -41,7 +41,6 @@
 02:528B Function928b
 02:5695 CheckSGB
 
-03:4000 Functionc000
 03:47D5 SpawnPoints
 03:488D Tilesets
 03:54E6 Functiond4e6
@@ -70,8 +69,6 @@
 04:640B Function1240b
 04:6C58 CheckRegisteredItem
 
-05:4000 Function14000
-05:400A GetPlayerSprite
 05:4036 RefreshSprites
 05:404C CheckInteriorMap
 05:405B AddIndoorSprites

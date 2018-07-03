@@ -448,8 +448,8 @@ FadeIn:: ; 23e5 ; This is not OverworldFadeIn, but I don't know what it is
 	ret
 
 Function2407:: ; 00:2407
-	ld a, $2a
-	ld [wcb77], a
+	ld a, NO_MOVEMENT
+	ld [wPlayerMovement], a
 	xor a
 	ld [wPlayerAction], a
 	ld a, [wPlayerFacing]
@@ -505,7 +505,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .down
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	sub 4
 	ld b, a
 	ld a, [wMapHeight]
@@ -516,7 +516,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .up
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -524,7 +524,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .left
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -532,7 +532,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	ret
 
 .right
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	sub 4
 	ld b, a
 	ld a, [wMapWidth]
@@ -701,10 +701,10 @@ WarpCheck:: ; 259f
 	ret
 
 GetDestinationWarpPointer: ; 25b9
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerNextMapY]
 	sub 4
 	ld d, a
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerNextMapX]
 	sub 4
 	ld e, a
 	ld a, [wCurrMapWarpCount]
@@ -1028,10 +1028,10 @@ Function275e:: ; 275e ; TODO: is this used?
 	ld [wOverworldMapAnchor + 1], a
 	ld a, [wYCoord]
 	and 1
-	ld [wMetatileStandingY], a
+	ld [wMetatileNextY], a
 	ld a, [wXCoord]
 	and 1
-	ld [wMetatileStandingX], a
+	ld [wMetatileNextX], a
 	ret
 
 
@@ -1075,10 +1075,10 @@ GetCoordOfUpperLeftCorner:: ; 277a
 	ld [wOverworldMapAnchor + 1], a
 	ld a, [wYCoord]
 	and 1
-	ld [wMetatileStandingY], a
+	ld [wMetatileNextY], a
 	ld a, [wXCoord]
 	and 1
-	ld [wMetatileStandingX], a
+	ld [wMetatileNextX], a
 	ret
 
 Function27C7:: ; 27c7 ; TODO
@@ -1175,13 +1175,13 @@ LoadMetatiles:: ; 2822
 
 ApplyFlashlight:: ; 285a
 	ld hl, wTileMapBackup
-	ld a, [wMetatileStandingY]
+	ld a, [wMetatileNextY]
 	and a
 	jr z, .top_row
 	ld bc, $30 ; TODO: constantify this
 	add hl, bc
 .top_row
-	ld a, [wMetatileStandingX]
+	ld a, [wMetatileNextX]
 	and a
 	jr z, .left_col
 	inc hl
@@ -1612,7 +1612,7 @@ Function2ae5::
 	ret nz
 	call OverworldStartButtonCheck
 	ret nz
-	callab Functionc000
+	callab OverworldMovementCheck
 	ldh a, [hMapEntryMethod]
 	and a
 	ret nz
@@ -1677,7 +1677,7 @@ Function2b87::
 	call GetJoypad
 	call OverworldStartButtonCheck
 	ret nz
-	callab Functionc000
+	callab OverworldMovementCheck
 	call Function2ba8
 	jr nc, .asm_2b87
 	callba Function824c

@@ -232,7 +232,7 @@ NullChar:: ; 00:0f66
 	ret
 
 .Text:
-	deciram hTextErrno, 1, 2
+	deciram hEventID, 1, 2
 	text "エラー"
 	done
 
