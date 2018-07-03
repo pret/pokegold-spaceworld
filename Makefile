@@ -71,6 +71,8 @@ $(ROM): poke%-spaceworld.gb: $(OBJS) | $(BASEROM)
 	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -O $(BASEROM) -o $@ $^
 	$(RGBFIX) -f lh -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t "POKEMON2$(shell echo $* | cut -d _ -f 1 | tr '[:lower:]' '[:upper:]')" $@
 	$(sort_sym) $(@:.gb=.sym)
+# TODO FIX THIS
+	cp $(@:.gb=.sym) pokegold-spaceworld-correctheader.sym
 
 $(BASEROM):
 	@echo "Please obtain a copy of Gold_debug.sgb and put it in this directory as $@"

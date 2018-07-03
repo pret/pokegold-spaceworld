@@ -23,7 +23,7 @@ wCurTrackDuty:: db ; c191
 wCurTrackIntensity:: db ; c192
 wCurTrackFrequency:: dw ; c193
 wc195:: db ; c195
-
+; c196
 	ds 2 ; TODO
 
 wCurChannel:: db ; c198
@@ -34,11 +34,12 @@ wSoundOutput:: ; c19a
 ; bit 0-3: ch1-4 so1 on/off
 	db
 
+; c19b
     ds 1 ; TODO
 
 wMusicID:: dw ; c19c
 wMusicBank:: db ; c19e
-
+; c19f
 	ds 5 ; TODO
 
 wLowHealthAlarm:: ; c1a4
@@ -53,9 +54,10 @@ wMusicFade:: ; c1a5
 ; bit 0-6: number of frames for each volume level
 ; $00 = none (default)
 	db
+
 wMusicFadeCount:: db ; c1a6
 wMusicFadeID:: dw ; c1a7
-
+; c1a9
     ds 2 ; TODO
 
 wIncrementTempo: dw ; c1ab
@@ -69,39 +71,36 @@ wc1b9:: db ; c1b9
 wc1ba:: db ; c1ba
 ; either wChannelsEnd or wMusicEnd, unsure
 
+; c1bb
 	ds 1 ; TODO
 
 wMusicInitEnd:: ; c1bc
 
 
-SECTION "OAM buffer", WRAM0[$C200]
+SECTION "OAM Buffer", WRAM0[$C200]
 
 wVirtualOAM:: ; c200
     ds SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
 wVirtualOAMEnd::
 
-SECTION "Tile map", WRAM0 [$C2A0]
+SECTION "Tile Map", WRAM0[$C2A0]
 
 wTileMap:: ; c2a0
     ds SCREEN_HEIGHT * SCREEN_WIDTH
 
-UNION
-
+UNION ; c408
 wTileMapBackup:: ; c408
     ds SCREEN_HEIGHT * SCREEN_WIDTH
 
-NEXTU
-
+NEXTU ; c408
     ds 3
 
 ; Monster or Trainer test?
 wWhichPicTest:: ; c40b
     db
+ENDU ; c570
 
-ENDU
-
-
-SECTION "Map buffer", WRAM0[$C5E8]
+	ds 120 ; TODO (is used)
 
 wMapBuffer::
 wMapScriptNumber:: db ; c5e8
@@ -112,26 +111,23 @@ wc5ed:: db ; c5ed
 wMapBufferEnd:: ; c600
 
 
-UNION
-
+UNION ; c600
 wOverworldMap:: ; c600
-    ds $514 ; TODO: constantify this
+    ds 1300
 wOverworldMapEnd:: ; cb14
 
-NEXTU
-
+NEXTU ; c600
 wLYOverrides:: ; c600
     ds SCREEN_HEIGHT_PX
 ; c690
     ds $10
 wLYOverrides2:: ; c6a0
 
-NEXTU
+NEXTU ; c600
 ; Battle-related
 
-	ds $1ea
+	ds 490 ; TODO
 
-; c7ea
 wActiveBGEffects:: ; c7ea
 wBGEffect1:: battle_bg_effect wBGEffect1
 wBGEffect2:: battle_bg_effect wBGEffect2
@@ -171,31 +167,31 @@ wBattleAnimTempAddSubFlags:: db
 wBattleAnimTempPalette:: db
 ENDU ; c813
 
-        ds $32
+	ds 50
 wBattleAnimEnd::
 ; c845
-	ds $1b1 ; TODO
+	ds 433 ; TODO
 
 wBattleMonNickname:: ds 6 ; c9f6
 wEnemyMonNickname:: ds 6 ; c9fc
 ; ca02
-	ds $3b ; TODO
+	ds 59 ; TODO
 
 wPlayerSubStatus3:: db ; ca3d
-	ds $4
+; ca3e
+	ds 4 ; TODO
+
 wEnemySubStatus3:: db ; ca42
 ; ca43
-	ds $14
-wTrainerClass:: ; ca57
-	db
+	ds 20 ; TODO
+
+wTrainerClass:: db ; ca57
 ; ca58
-	ds $6b
+	ds 107 ; TODO
+
 wLinkBattleRNCount:: db ; cac3
 
 ENDU
-
-
-SECTION "CB14", WRAM0[$CB14]
 
 UNION
 wRedrawRowOrColumnSrcTiles:: ; cb14
@@ -212,13 +208,16 @@ wRedrawFlashlightWidthHeight:: db ; cb20
 ; width or height of flashlight redraw region
 ; in units of two tiles (people event meta tile)
 ENDU
+; cb3c
+	ds 16 ; TODO
 
-SECTION "CB56", WRAM0[$CB4C]
 wOtherPlayerLinkMode:: db ; cb4c
 wOtherPlayerLinkAction:: db ; cb4d
+; cb4e
 	ds 3 ; TODO
 
 wPlayerLinkAction:: db ; cb51
+; cb52
 	ds 4 ; TODO
 
 wLinkTimeoutFrames:: dw ; cb56
@@ -226,14 +225,13 @@ wcb58:: ds 2 ; cb58
 wMonType:: db ; cb5a
 wCurSpecies:: db ; cb5b
 wNamedObjectTypeBuffer:: db ; cb5c
+; cb5d
+	ds 1 ; TODO
 
-SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db ; cb5e
 wFlyDestination:: db ; cb5f
-
-	ds 2
-
-SECTION "CB62", WRAM0[$CB62]
+; cb60
+	ds 2 ; TODO
 
 wVBCopySize:: ds 1 ; cb62
 wVBCopySrc:: ds 2 ; cb63
@@ -241,11 +239,11 @@ wVBCopyDst:: ds 2 ; cb65
 wVBCopyDoubleSize:: ds 1 ; cb67
 wVBCopyDoubleSrc:: ds 2 ; cb68
 wVBCopyDoubleDst:: ds 2 ; cb6a
-	ds 2
+; cb6b
+	ds 2 ; TODO
+
 wcb6e:: db
-
-SECTION "CB71", WRAM0[$CB70]
-
+wPlayerStepDirection:: db
 wcb70:: db
 
 wVBCopyFarSize:: ds 1 ; cb71
@@ -254,9 +252,10 @@ wVBCopyFarDst:: ds 2 ; cb74
 wVBCopyFarSrcBank:: ds 1 ; cb76
 wcb77:: db ; cb77
 wMovementObject:: db ; cb78
-	ptrba wMovementData ; cb79
-
-SECTION "Collision buffer", WRAM0[$CB90]
+wMovementDataBank:: db ; cb79
+wMovementDataAddr:: dw ; cb7a
+; cb7c
+	ds 20
 
 wTileDown::  db ; cb90
 wTileUp::    db ; cb91
@@ -266,12 +265,10 @@ wTileRight:: db ; cb93
 wScreenSave:: ; cb94
 	ds 6 * 5
 
-SECTION "CBB2", WRAM0[$CBB2]
 wToolgearBuffer:: ; cbb2
-	ds $40
-	; cbe2
+	ds 64
+; cbe2
 
-SECTION "CBF2", WRAM0[$CBF2]
 
 wWindowData::
 wWindowStackPointer:: dw ; cbf2
@@ -282,11 +279,10 @@ wWhichIndexSet::
 wActiveBackpackPocket:: db ; cbf7
 wScrollingMenuCursorPosition:: db ; cbf8
 wWindowStackSize:: db ; cbf9
+; cbfa
+	ds 8
 
-SECTION "CC09", WRAM0[$CC02]
-
-wMenuDataHeader::
-	db ; cc02
+wMenuDataHeader:: db ; cc02
 wMenuBorderTopCoord:: db ; cc03
 wMenuBorderLeftCoord:: db ; cc04
 wMenuBorderBottomCoord:: db ; cc05
@@ -302,8 +298,9 @@ wMenuDataItems:: db ; cc13
 wMenuDataIndicesPointer:: dw ; cc14
 wMenuDataDisplayFunctionPointer:: dw ; cc16
 wMenuDataPointerTableAddr:: dw ; cc18
+; cc1a
+	ds 8
 
-SECTION "MenuData3", WRAM0[$CC22]
 wMenuData3:: ; cc22
 
 w2DMenuCursorInitY:: db ; cc22
@@ -319,14 +316,15 @@ wMenuCursorY:: db ; cc2a
 wMenuCursorX:: db ; cc2b
 wCursorOffCharacter:: db ; cc2c
 wCursorCurrentTile:: dw ; cc2d
+; cc2f
+	ds 3 ; TODO
 
-SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
 wVBlankJoyFrameCounter: db ; cc32
 
 wVBlankOccurred: db ; cc33
 wLastSpawnMapGroup: db ;cc34
 wLastSpawnMapNumber: db ; cc35
-
+; cc36
     ds 2
 
 ;Controls what type of opening (fire/notes) you get.
@@ -339,18 +337,16 @@ wDefaultSpawnPoint:: ; cc39
 
 wMovementBufferCount:: db ; cc3a
 wMovementBufferObject:: db ; cc3b
-	ptrba wMovementBufferPointer ; cc3c
+wMovementBufferBank:: db ; cc3c
+wMovementBufferAddr:: dw ; cc3d
 wMovementBuffer:: ; cc3f
 	ds 55
+; cc76
+	ds 38 ; TODO
 
-SECTION "CC9C", WRAM0[$CC9C]
-
-wUnknownWordcc9c:: ; cc9c
-    dw
-
+wUnknownWordcc9c:: dw ; cc9c
 wUnknownBuffercc9e:: ; cc9e
     ds 14
-
 
 wSpriteCurPosX          : ds 1 ; ccac
 wSpriteCurPosY          : ds 1 ; ccad
@@ -367,21 +363,21 @@ wSpriteOutputPtr        : ds 2 ; ccb8
 wSpriteOutputPtrCached  : ds 2 ; ccba
 wSpriteDecodeTable0Ptr  : ds 2 ; ccbc
 wSpriteDecodeTable1Ptr  : ds 2 ; ccbe
-
-SECTION "CCC7", WRAM0[$CCC7]
+; ccc0
+	ds 7 ; TODO
 
 wDisableVBlankOAMUpdate:: db ; ccc7
-
-SECTION "CCCA", WRAM0[$CCCA]
+; ccc8
+	ds 2 ; TODO
 
 wBGP:: db ; ccca
 wOBP0:: db ; cccb
 wOBP1:: db ; cccc
-
-SECTION "CCCE", WRAM0[$CCCE]
+; cccd
+	ds 1 ; TODO
 
 wDisableVBlankWYUpdate:: db ; ccce
-wSGB:: db
+wSGB:: db ; cccf
 
 SECTION "CD26", WRAM0[$CD26]
 

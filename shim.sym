@@ -459,8 +459,6 @@
 3F:6750 PicTestMenu
 3F:6755 PicTestMenu.loop
 
-00:CB6F wPlayerStepDirection
-
 01:D19E wItems
 01:D258 wRivalName
 ; The starting house's map script number is stored at d29a. Others are probably nearby.
