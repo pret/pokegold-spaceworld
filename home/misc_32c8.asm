@@ -78,7 +78,7 @@ WaitPressedAny:: ; 369a
 
 CountSetBits:: ; 36b1
 ; Count the number of bits set in b bytes at hl.
-; Return to a, c, and wce37.
+; Return to a, c, and wCountSetBitsResult.
 	ld c, $0
 .asm_36b3: ; 00:36b3
 	ld a, [hli]
@@ -94,5 +94,5 @@ CountSetBits:: ; 36b1
 	dec b
 	jr nz, .asm_36b3
 	ld a, c
-	ld [wce37], a
+	ld [wCountSetBitsResult], a
 	ret

@@ -1,6 +1,6 @@
 ; name lengths
 NAME_LENGTH          EQU 11 ; English
-PLAYER_NAME_LENGTH   EQU 8 ; English
+PLAYER_NAME_LENGTH   EQU 6 ; Japanese
 BOX_NAME_LENGTH      EQU 9 ; English
 MON_NAME_LENGTH      EQU 6
 MOVE_NAME_LENGTH     EQU 13 ; English

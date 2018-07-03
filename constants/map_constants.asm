@@ -1,231 +1,293 @@
-; Map IDs
+newgroup: MACRO
+const_value = const_value + 1
+	enum_start 1
+ENDM
 
+map_const: MACRO
+;\1: map id
+;\2: width: in blocks
+;\3: height: in blocks
+GROUP_\1 EQU const_value
+	enum MAP_\1
+\1_WIDTH EQU \2
+\1_HEIGHT EQU \3
+ENDM
+
+; Map IDs
 	const_def
-	const ROUTE_1_P1
-	const ROUTE_1_P2
-	const ROUTE_SILENT_EAST
-	const SILENT_HILL
-	const ROUTE_1_GATE_1F
-	const ROUTE_1_GATE_2F
-	const ROUTE_SILENT_EAST_GATE
-	const PLAYER_HOUSE_1F
-	const PLAYER_HOUSE_2F
-	const SILENT_POKECENTER
-	const SILENT_HILL_HOUSE
-	const SILENT_HILL_LAB
-	const SILENT_HILL_LAB_2
-	const UNUSED_13
-	const SHIZUKANA_OKA
-	const ROUTE_2
-	const OLD_CITY
-	const ROUTE_2_GATE_1F
-	const ROUTE_2_GATE_2F
-	const ROUTE_2_HOUSE
-	const OLD_CITY_MUSEUM
-	const OLD_CITY_GYM
-	const OLD_CITY_TOWER_1F
-	const OLD_CITY_TOWER_2F
-	const OLD_CITY_TOWER_3F
-	const OLD_CITY_TOWER_4F
-	const OLD_CITY_TOWER_5F
-	const OLD_CITY_BILLS_HOUSE
-	const OLD_CITY_MART
-	const OLD_CITY_HOUSE
-	const OLD_CITY_POKECENTER_1F
-	const OLD_CITY_POKECENTER_2F
-	const OLD_CITY_POKECENTER_TRADE
-	const OLD_CITY_POKECENTER_BATTLE
-	const OLD_CITY_POKECENTER_TIME_MACHINE
-	const OLD_CITY_KURTS_HOUSE
-	const OLD_CITY_SCHOOL
-	const WEST
-	const WEST_MART_1F
-	const WEST_MART_2F
-	const WEST_MART_3F
-	const WEST_MART_4F
-	const WEST_MART_5F
-	const WEST_MART_6F
-	const WEST_MART_ELEVATOR
-	const WEST_RADIO_TOWER_1F
-	const WEST_RADIO_TOWER_2F
-	const WEST_RADIO_TOWER_3F
-	const WEST_RADIO_TOWER_4F
-	const WEST_RADIO_TOWER_5F
-	const WEST_ROCKET_RAIDED_HOUSE
-	const WEST_POKECENTER_1F
-	const WEST_POKECENTER_2F
-	const WEST_GYM
-	const WEST_HOUSE_1
-	const WEST_HOUSE_2
-	const HAITEKU_WEST_ROUTE
-	const HAITEKU_WEST_ROUTE_OCEAN
-	const HAITEKU
-	const HAITEKU_WEST_ROUTE_GATE
-	const HAITEKU_POKECENTER_1F
-	const HAITEKU_POKECENTER_2F
-	const HAITEKU_LEAGUE_1F
-	const HAITEKU_LEAGUE_2F
-	const HAITEKU_MART
-	const HAITEKU_HOUSE_1
-	const HAITEKU_HOUSE_2
-	const HAITEKU_IMPOSTER_OAK_HOUSE
-	const HAITEKU_AQUARIUM_1F
-	const HAITEKU_AQUARIUM_2F
-	const FONTO_ROUTE_1
-	const FONTO_ROUTE_2
-	const FONTO_ROUTE_3
-	const FONTO_ROUTE_4
-	const FONTO_ROUTE_5
-	const FONTO_ROUTE_6
-	const FONTO
-	const FONTO_ROUTE_GATE_1
-	const FONTO_ROUTE_GATE_2
-	const FONTO_ROUTE_GATE_3
-	const FONTO_ROCKET_HOUSE
-	const FONTO_MART
-	const FONTO_HOUSE
-	const FONTO_POKECENTER_1F
-	const FONTO_POKECENTER_2F
-	const FONTO_LAB
-	const BAADON_ROUTE_1
-	const BAADON_ROUTE_2
-	const BAADON_ROUTE_3
-	const BAADON
-	const BAADON_ROUTE_GATE_WEST
-	const BAADON_ROUTE_GATE_NEWTYPE
-	const BAADON_MART
-	const BAADON_POKECENTER_1F
-	const BAADON_POKECENTER_2F
-	const BAADON_HOUSE_1
-	const BAADON_WALLPAPER_HOUSE
-	const BAADON_HOUSE_2
-	const BAADON_LEAGUE_1F
-	const BAADON_LEAGUE_2F
-	const ROUTE_15
-	const NEWTYPE_ROUTE
-	const ROUTE_18
-	const NEWTYPE
-	const ROUTE_15_POKECENTER_1F
-	const ROUTE_15_POKECENTER_2F
-	const NEWTYPE_ROUTE_GATE
-	const ROUTE_18_POKECENTER_1F
-	const ROUTE_18_POKECENTER_2F
-	const NEWTYPE_POKECENTER_1F
-	const NEWTYPE_POKECENTER_2F
-	const NEWTYPE_LEAGUE_1F
-	const NEWTYPE_LEAGUE_2F
-	const NEWTYPE_SAILOR_HOUSE
-	const NEWTYPE_MART
-	const NEWTYPE_DOJO
-	const NEWTYPE_HOUSE_1
-	const NEWTYPE_DINER
-	const NEWTYPE_HOUSE_2
-	const NEWTYPE_HOUSE_3
-	const SUGAR_ROUTE
-	const SUGAR
-	const SUGAR_ROUTE_GATE
-	const SUGAR_HOUSE
-	const SUGAR_HOUSE_2
-	const SUGAR_MART
-	const SUGAR_POKECENTER_1F
-	const SUGAR_POKECENTER_2F
-	const BULL_FOREST_ROUTE_1
-	const BULL_FOREST_ROUTE_2
-	const BULL_FOREST_ROUTE_3
-	const BULL_FOREST
-	const BULL_FOREST_ROUTE_1_HOUSE
-	const BULL_FOREST_ROUTE_GATE_STAND
-	const BULL_MART
-	const BULL_HOUSE_1
-	const BULL_HOUSE_2
-	const BULL_HOUSE_3
-	const BULL_POKECENTER_1F
-	const BULL_POKECENTER_2F
-	const BULL_LEAGUE_1F
-	const BULL_LEAGUE_2F
-	const BULL_HOUSE_4
-	const STAND_ROUTE
-	const STAND
-	const STAND_ROUTE_GATE_KANTO
-	const STAND_LAB
-	const STAND_POKECENTER_1F
-	const STAND_POKECENTER_2F
-	const STAND_OFFICE
-	const STAND_MART
-	const STAND_HOUSE
-	const STAND_ROCKET_HOUSE_1F
-	const STAND_ROCKET_HOUSE_2F
-	const STAND_LEAGUE_1F
-	const STAND_LEAGUE_2F
-	const KANTO_EAST_ROUTE
-	const KANTO
-	const KANTO_CERULEAN_HOUSE
-	const KANTO_POKECENTER_1F
-	const KANTO_POKECENTER_2F
-	const KANTO_LEAGUE_1F
-	const KANTO_LEAGUE_2F
-	const KANTO_LAVENDER_HOUSE
-	const KANTO_CELADON_MART_1F
-	const KANTO_CELADON_MART_2F
-	const KANTO_CELADON_MART_3F
-	const KANTO_CELADON_MART_4F
-	const KANTO_CELADON_MART_5F
-	const KANTO_CELADON_ELEVATOR
-	const KANTO_MART
-	const KANTO_GAMEFREAK_HQ_1
-	const KANTO_GAMEFREAK_HQ_2
-	const KANTO_GAMEFREAK_HQ_3
-	const KANTO_GAMEFREAK_HQ_4
-	const KANTO_GAMEFREAK_HQ_5
-	const KANTO_SILPH_CO
-	const KANTO_VIRIDIAN_HOUSE
-	const KANTO_GAME_CORNER
-	const KANTO_UNUSED_AREA
-	const KANTO_GAME_CORNER_PRIZES
-	const KANTO_DINER
-	const KANTO_SCHOOL
-	const KANTO_HOSPITAL
-	const KANTO_POKECENTER_2_1F
-	const KANTO_POKECENTER_2_2F
-	const KANTO_REDS_HOUSE
-	const KANTO_GREENS_HOUSE_1F
-	const KANTO_GREENS_HOUSE_2F
-	const KANTO_ELDERS_HOUSE
-	const KANTO_OAKS_LAB
-	const KANTO_LEAGUE_2_1F
-	const KANTO_LEAGUE_2_2F
-	const KANTO_FISHING_GURU
-	const PRINCE_ROUTE
-	const PRINCE
-	const MT_FUJI_ROUTE
-	const MT_FUJI
-	const SOUTH
-	const SOUTH_HOUSE_1
-	const SOUTH_POKECENTER_1F
-	const SOUTH_POKECENTER_2F
-	const SOUTH_MART
-	const SOUTH_HOUSE_2
-	const NORTH
-	const NORTH_HOUSE_1
-	const NORTH_MART
-	const NORTH_HOUSE_2
-	const NORTH_POKECENTER_1F
-	const NORTH_POKECENTER_2F
-	const POWER_PLANT_1
-	const POWER_PLANT_2
-	const POWER_PLANT_3
-	const POWER_PLANT_4
-	const RUINS_OF_ALPH_ENTRANCE
-	const RUINS_OF_ALPH_MAIN
-	const CAVE_MINECARTS_1
-	const CAVE_MINECARTS_2
-	const CAVE_MINECARTS_3
-	const CAVE_MINECARTS_4
-	const CAVE_MINECARTS_5
-	const CAVE_MINECARTS_6
-	const CAVE_MINECARTS_7
-	const OFFICE_1
-	const OFFICE_2
-	const OFFICE_3
-	const SLOWPOKE_WELL_ENTRANCE
-	const SLOWPOKE_WELL_MAIN
+
+	newgroup                                           ;  1
+
+	map_const ROUTE_1_P1,                       15,  9 ;  1
+	map_const ROUTE_1_P2,                       10, 18 ;  2
+	map_const ROUTE_SILENT_EAST,                30,  9 ;  3
+	map_const SILENT_HILL,                      10,  9 ;  4
+	map_const ROUTE_1_GATE_1F,                   5,  4 ;  5
+	map_const ROUTE_1_GATE_2F,                   4,  3 ;  6
+	map_const ROUTE_SILENT_EAST_GATE,            5,  4 ;  7
+	map_const PLAYER_HOUSE_1F,                   5,  4 ;  8
+	map_const PLAYER_HOUSE_2F,                   5,  4 ;  9
+	map_const SILENT_POKECENTER,                 8,  4 ; 10
+	map_const SILENT_HILL_HOUSE,                 5,  4 ; 11
+	map_const SILENT_HILL_LAB,                   4,  8 ; 12
+	map_const SILENT_HILL_LAB_2,                 4,  4 ; 13
+	map_const UNUSED_13,                         4,  4 ; 14
+	map_const SHIZUKANA_OKA,                    25, 18 ; 15
+
+	newgroup                                           ;  2
+
+	map_const ROUTE_2,                          15,  9 ;  1
+	map_const OLD_CITY,                         20, 18 ;  2
+	map_const ROUTE_2_GATE_1F,                   5,  4 ;  3
+	map_const ROUTE_2_GATE_2F,                   4,  3 ;  4
+	map_const ROUTE_2_HOUSE,                     4,  4 ;  5
+	map_const OLD_CITY_MUSEUM,                   8,  4 ;  6
+	map_const OLD_CITY_GYM,                      5,  9 ;  7
+	map_const OLD_CITY_TOWER_1F,                 4,  4 ;  8
+	map_const OLD_CITY_TOWER_2F,                 4,  4 ;  9
+	map_const OLD_CITY_TOWER_3F,                 4,  4 ; 10
+	map_const OLD_CITY_TOWER_4F,                 4,  4 ; 11
+	map_const OLD_CITY_TOWER_5F,                 3,  3 ; 12
+	map_const OLD_CITY_BILLS_HOUSE,              4,  4 ; 13
+	map_const OLD_CITY_MART,                     6,  4 ; 14
+	map_const OLD_CITY_HOUSE,                    4,  4 ; 15
+	map_const OLD_CITY_POKECENTER_1F,            8,  4 ; 16
+	map_const OLD_CITY_POKECENTER_2F,            8,  4 ; 17
+	map_const OLD_CITY_POKECENTER_TRADE,         5,  4 ; 18
+	map_const OLD_CITY_POKECENTER_BATTLE,        5,  4 ; 19
+	map_const OLD_CITY_POKECENTER_TIME_MACHINE,  8,  4 ; 20
+	map_const OLD_CITY_KURTS_HOUSE,              8,  4 ; 21
+	map_const OLD_CITY_SCHOOL,                   4,  8 ; 22
+
+	newgroup                                           ;  3
+
+	map_const WEST,                             20, 18 ;  1
+	map_const WEST_MART_1F,                      8,  4 ;  2
+	map_const WEST_MART_2F,                      8,  4 ;  3
+	map_const WEST_MART_3F,                      8,  4 ;  4
+	map_const WEST_MART_4F,                      8,  4 ;  5
+	map_const WEST_MART_5F,                      8,  4 ;  6
+	map_const WEST_MART_6F,                      8,  4 ;  7
+	map_const WEST_MART_ELEVATOR,                2,  2 ;  8
+	map_const WEST_RADIO_TOWER_1F,               4,  4 ;  9
+	map_const WEST_RADIO_TOWER_2F,               4,  4 ; 10
+	map_const WEST_RADIO_TOWER_3F,               4,  4 ; 11
+	map_const WEST_RADIO_TOWER_4F,               4,  4 ; 12
+	map_const WEST_RADIO_TOWER_5F,               4,  4 ; 13
+	map_const WEST_ROCKET_RAIDED_HOUSE,          5,  4 ; 14
+	map_const WEST_POKECENTER_1F,                8,  4 ; 15
+	map_const WEST_POKECENTER_2F,                8,  4 ; 16
+	map_const WEST_GYM,                          5,  9 ; 17
+	map_const WEST_HOUSE_1,                      5,  4 ; 18
+	map_const WEST_HOUSE_2,                      5,  4 ; 19
+
+	newgroup                                           ;  4
+
+	map_const HAITEKU_WEST_ROUTE,               25,  9 ;  1
+	map_const HAITEKU_WEST_ROUTE_OCEAN,         10, 27 ;  2
+	map_const HAITEKU,                          20, 18 ;  3
+	map_const HAITEKU_WEST_ROUTE_GATE,           5,  4 ;  4
+	map_const HAITEKU_POKECENTER_1F,             8,  4 ;  5
+	map_const HAITEKU_POKECENTER_2F,             8,  4 ;  6
+	map_const HAITEKU_LEAGUE_1F,                 4,  8 ;  7
+	map_const HAITEKU_LEAGUE_2F,                 5,  9 ;  8
+	map_const HAITEKU_MART,                      6,  4 ;  9
+	map_const HAITEKU_HOUSE_1,                   5,  4 ; 10
+	map_const HAITEKU_HOUSE_2,                   5,  4 ; 11
+	map_const HAITEKU_IMPOSTER_OAK_HOUSE,        5,  4 ; 12
+	map_const HAITEKU_AQUARIUM_1F,               8,  4 ; 13
+	map_const HAITEKU_AQUARIUM_2F,               8,  4 ; 14
+
+	newgroup
+
+	map_const FONTO_ROUTE_1,                    35,  9
+	map_const FONTO_ROUTE_2,                    10, 18
+	map_const FONTO_ROUTE_3,                    25,  9
+	map_const FONTO_ROUTE_4,                    10, 18
+	map_const FONTO_ROUTE_5,                    10, 18
+	map_const FONTO_ROUTE_6,                    35,  9
+	map_const FONTO,                            10,  9
+	map_const FONTO_ROUTE_GATE_1,                5,  4
+	map_const FONTO_ROUTE_GATE_2,                5,  4
+	map_const FONTO_ROUTE_GATE_3,                5,  4
+	map_const FONTO_ROCKET_HOUSE,                8,  4
+	map_const FONTO_MART,                        8,  4
+	map_const FONTO_HOUSE,                       5,  4
+	map_const FONTO_POKECENTER_1F,               8,  4
+	map_const FONTO_POKECENTER_2F,               8,  4
+	map_const FONTO_LAB,                         5,  4
+
+	newgroup
+
+	map_const BAADON_ROUTE_1,                   10, 27
+	map_const BAADON_ROUTE_2,                   50,  9
+	map_const BAADON_ROUTE_3,                   10, 18
+	map_const BAADON,                           10,  9
+	map_const BAADON_ROUTE_GATE_WEST,            5,  4
+	map_const BAADON_ROUTE_GATE_NEWTYPE,         5,  4
+	map_const BAADON_MART,                       8,  4
+	map_const BAADON_POKECENTER_1F,              8,  4
+	map_const BAADON_POKECENTER_2F,              8,  4
+	map_const BAADON_HOUSE_1,                    4,  4
+	map_const BAADON_WALLPAPER_HOUSE,            4,  4
+	map_const BAADON_HOUSE_2,                    5,  4
+	map_const BAADON_LEAGUE_1F,                  4,  8
+	map_const BAADON_LEAGUE_2F,                  5,  9
+
+	newgroup
+
+	map_const ROUTE_15,                         15,  9
+	map_const NEWTYPE_ROUTE,                    15,  9
+	map_const ROUTE_18,                         10, 45
+	map_const NEWTYPE,                          20, 18
+	map_const ROUTE_15_POKECENTER_1F,            8,  4
+	map_const ROUTE_15_POKECENTER_2F,            8,  4
+	map_const NEWTYPE_ROUTE_GATE,                5,  4
+	map_const ROUTE_18_POKECENTER_1F,            8,  4
+	map_const ROUTE_18_POKECENTER_2F,            8,  4
+	map_const NEWTYPE_POKECENTER_1F,             8,  4
+	map_const NEWTYPE_POKECENTER_2F,             8,  4
+	map_const NEWTYPE_LEAGUE_1F,                 4,  8
+	map_const NEWTYPE_LEAGUE_2F,                 5,  9
+	map_const NEWTYPE_SAILOR_HOUSE,              5,  4
+	map_const NEWTYPE_MART,                      8,  4
+	map_const NEWTYPE_DOJO,                      4,  8
+	map_const NEWTYPE_HOUSE_1,                   5,  4
+	map_const NEWTYPE_DINER,                     4,  4
+	map_const NEWTYPE_HOUSE_2,                   5,  4
+	map_const NEWTYPE_HOUSE_3,                   5,  4
+
+	newgroup
+
+	map_const SUGAR_ROUTE,                      10, 27
+	map_const SUGAR,                            10,  9
+	map_const SUGAR_ROUTE_GATE,                  5,  4
+	map_const SUGAR_HOUSE,                       4,  8
+	map_const SUGAR_HOUSE_2,                     4,  4
+	map_const SUGAR_MART,                        8,  4
+	map_const SUGAR_POKECENTER_1F,               8,  4
+	map_const SUGAR_POKECENTER_2F,               8,  4
+
+	newgroup
+
+	map_const BULL_FOREST_ROUTE_1,              25,  9
+	map_const BULL_FOREST_ROUTE_2,              10, 27
+	map_const BULL_FOREST_ROUTE_3,              10, 27
+	map_const BULL_FOREST,                      20, 18
+	map_const BULL_FOREST_ROUTE_1_HOUSE,         5,  4
+	map_const BULL_FOREST_ROUTE_GATE_STAND,      5,  4
+	map_const BULL_MART,                         8,  4
+	map_const BULL_HOUSE_1,                      4,  4
+	map_const BULL_HOUSE_2,                      5,  4
+	map_const BULL_HOUSE_3,                      5,  4
+	map_const BULL_POKECENTER_1F,                8,  4
+	map_const BULL_POKECENTER_2F,                8,  4
+	map_const BULL_LEAGUE_1F,                    4,  8
+	map_const BULL_LEAGUE_2F,                    5,  9
+	map_const BULL_HOUSE_4,                      5,  4
+
+	newgroup
+
+	map_const STAND_ROUTE,                      10, 27
+	map_const STAND,                            20, 18
+	map_const STAND_ROUTE_GATE_KANTO,            5,  4
+	map_const STAND_LAB,                         4,  4
+	map_const STAND_POKECENTER_1F,               8,  4
+	map_const STAND_POKECENTER_2F,               8,  4
+	map_const STAND_OFFICE,                      8,  4
+	map_const STAND_MART,                        8,  4
+	map_const STAND_HOUSE,                       5,  4
+	map_const STAND_ROCKET_HOUSE_1F,             8,  4
+	map_const STAND_ROCKET_HOUSE_2F,             8,  4
+	map_const STAND_LEAGUE_1F,                   4,  8
+	map_const STAND_LEAGUE_2F,                   5,  9
+
+	newgroup
+
+	map_const KANTO_EAST_ROUTE,                 20,  9
+	map_const KANTO,                            30, 27
+	map_const KANTO_CERULEAN_HOUSE,              5,  4
+	map_const KANTO_POKECENTER_1F,               8,  4
+	map_const KANTO_POKECENTER_2F,               8,  4
+	map_const KANTO_LEAGUE_1F,                   4,  8
+	map_const KANTO_LEAGUE_2F,                   5,  9
+	map_const KANTO_LAVENDER_HOUSE,              5,  4
+	map_const KANTO_CELADON_MART_1F,             8,  4
+	map_const KANTO_CELADON_MART_2F,             8,  4
+	map_const KANTO_CELADON_MART_3F,             8,  4
+	map_const KANTO_CELADON_MART_4F,             8,  4
+	map_const KANTO_CELADON_MART_5F,             8,  4
+	map_const KANTO_CELADON_ELEVATOR,            2,  2
+	map_const KANTO_MART,                        8,  4
+	map_const KANTO_GAMEFREAK_HQ_1,              4,  6
+	map_const KANTO_GAMEFREAK_HQ_2,              4,  6
+	map_const KANTO_GAMEFREAK_HQ_3,              4,  6
+	map_const KANTO_GAMEFREAK_HQ_4,              4,  6
+	map_const KANTO_GAMEFREAK_HQ_5,              4,  4
+	map_const KANTO_SILPH_CO,                   12,  8
+	map_const KANTO_VIRIDIAN_HOUSE,              5,  4
+	map_const KANTO_GAME_CORNER,                10,  7
+	map_const KANTO_UNUSED_AREA,                 4,  4
+	map_const KANTO_GAME_CORNER_PRIZES,          5,  4
+	map_const KANTO_DINER,                       5,  4
+	map_const KANTO_SCHOOL,                      4,  8
+	map_const KANTO_HOSPITAL,                    8,  4
+	map_const KANTO_POKECENTER_2_1F,             8,  4
+	map_const KANTO_POKECENTER_2_2F,             8,  4
+	map_const KANTO_REDS_HOUSE,                  5,  4
+	map_const KANTO_GREENS_HOUSE_1F,             4,  4
+	map_const KANTO_GREENS_HOUSE_2F,             4,  4
+	map_const KANTO_ELDERS_HOUSE,                5,  4
+	map_const KANTO_OAKS_LAB,                    4,  4
+	map_const KANTO_LEAGUE_2_1F,                 4,  8
+	map_const KANTO_LEAGUE_2_2F,                 5,  9
+	map_const KANTO_FISHING_GURU,                5,  4
+
+	newgroup
+
+	map_const PRINCE_ROUTE,                     10,  5
+	map_const PRINCE,                           10,  9
+
+	newgroup
+
+	map_const MT_FUJI_ROUTE,                    10,  5
+	map_const MT_FUJI,                          10,  9
+
+	newgroup
+
+	map_const SOUTH,                            20, 18
+	map_const SOUTH_HOUSE_1,                     5,  4
+	map_const SOUTH_POKECENTER_1F,               8,  4
+	map_const SOUTH_POKECENTER_2F,               8,  4
+	map_const SOUTH_MART,                        8,  4
+	map_const SOUTH_HOUSE_2,                     5,  4
+
+	newgroup
+
+	map_const NORTH,                            10,  9
+	map_const NORTH_HOUSE_1,                     5,  4
+	map_const NORTH_MART,                        6,  4
+	map_const NORTH_HOUSE_2,                     5,  4
+	map_const NORTH_POKECENTER_1F,               8,  4
+	map_const NORTH_POKECENTER_2F,               8,  4
+
+	newgroup
+
+	map_const POWER_PLANT_1,                    10,  9
+	map_const POWER_PLANT_2,                    10,  9
+	map_const POWER_PLANT_3,                    15, 18
+	map_const POWER_PLANT_4,                    15, 18
+	map_const RUINS_OF_ALPH_ENTRANCE,           10,  9
+	map_const RUINS_OF_ALPH_MAIN,               25, 27
+	map_const CAVE_MINECARTS_1,                 20, 18
+	map_const CAVE_MINECARTS_2,                 20, 18
+	map_const CAVE_MINECARTS_3,                 20, 18
+	map_const CAVE_MINECARTS_4,                 20, 18
+	map_const CAVE_MINECARTS_5,                 20, 18
+	map_const CAVE_MINECARTS_6,                 10, 18
+	map_const CAVE_MINECARTS_7,                 10, 18
+	map_const OFFICE_1,                         10,  9
+	map_const OFFICE_2,                         15, 18
+	map_const OFFICE_3,                         10, 18
+	map_const SLOWPOKE_WELL_ENTRANCE,           10,  9
+	map_const SLOWPOKE_WELL_MAIN,               10, 18

@@ -630,9 +630,9 @@ SetTitleGfxNext::
 	ret
 
 if DEBUG
-SECTION "Title screen TEMPORARY", ROMX[$62A5],BANK[1] ; TODO: merge this with the main section above
+SECTION "Title screen TEMPORARY", ROMX[$62A5], BANK[$01] ; TODO: merge this with the main section above
 else
-SECTION "Title screen TEMPORARY", ROMX[$62A2],BANK[1] ; TODO: merge this with the main section above
+SECTION "Title screen TEMPORARY", ROMX[$62A2], BANK[$01] ; TODO: merge this with the main section above
 endc
 	
 

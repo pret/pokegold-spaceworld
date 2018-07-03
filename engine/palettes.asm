@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Overworld fade", ROMX[$433e],BANK[$23]
+SECTION "Overworld fade", ROMX[$433e], BANK[$23]
 
 OverworldFadeIn:: ; 23:433e
     ld c, 0
@@ -18,7 +18,7 @@ OverworldFadeOut:: ; 23:4349
 
 
 ; TODO: merge this
-SECTION "Palette fading, part 2?", ROMX[$43d1],BANK[$23]
+SECTION "Palette fading, part 2?", ROMX[$43d1], BANK[$23]
 
 ApplyPalettesAtHL:: ; 23:43d1
     push hl

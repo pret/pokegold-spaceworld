@@ -156,7 +156,7 @@ ENDM
 	dict "<TM>", TMChar
 	dict "<TRAINER>", TrainerChar
 	dict "<CONT>", ContText
-	dict "<……>", SixDotsChar
+	dict "<⋯⋯>", SixDotsChar
 	dict "<DONE>", DoneText
 	dict "<PROMPT>", PromptText
 	dict "<GA>", GaCharacter
@@ -232,7 +232,7 @@ NullChar:: ; 00:0f66
 	ret
 
 .Text:
-	deciram hTextErrno, 1, 2
+	deciram hEventID, 1, 2
 	text "エラー"
 	done
 
@@ -244,7 +244,7 @@ ENDM
 
 PrintMomsName::   print_name wMomsName
 PrintPlayerName:: print_name wPlayerName
-PrintRivalName::  print_name wRivalsName
+PrintRivalName::  print_name wRivalName
 
 TrainerChar:: print_name TrainerCharText
 TMChar::      print_name TMCharText
@@ -287,7 +287,7 @@ TrainerCharText:: db "トレーナー@"
 PCCharText::      db "パソコン@"
 RocketCharText::  db "ロケットだん@"
 POKeCharText::    db "ポケモン@"
-SixDotsCharText:: db "……@"
+SixDotsCharText:: db "⋯⋯@"
 EnemyText::       db "てきの　@"
 GaCharacterTExt:: db "が　@"
 
@@ -680,7 +680,7 @@ Text_TX_DOTS: ; 11e1 (0:11e1)
 	ld h, b
 	ld l, c
 .loop
-	ld a, "…"
+	ld a, "⋯"
 	ld [hli], a
 	push de
 	call GetJoypad

@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "VRAM", VRAM[$8000],BANK[0] ; Get around a RGBLINK bug. Remove this when it doesn't yield an error about fixing the section
+SECTION "VRAM", VRAM[$8000], BANK[$00] ; Get around a RGBLINK bug. Remove this when it doesn't yield an error about fixing the section
 
 UNION
 

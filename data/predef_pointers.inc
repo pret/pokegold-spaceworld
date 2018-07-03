@@ -12,10 +12,10 @@ PredefPointers:: ; 1:62d3
 ; WE NEED LABELS!
 ; Thank youu~
 	add_predef Function6445 ; 0
-	add_predef Function5d27
+	add_predef IntroDisplayPicCenteredOrUpperRight
 	add_predef Function6713
 	add_predef Function66b1
-	add_predef Function4031
+	add_predef DebugMenu
 	add_predef GetItemAmount
 	add_predef HealParty
 	add_predef AddBCD

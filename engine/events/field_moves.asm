@@ -248,7 +248,7 @@ SurfScript: ; 03:5145
 	call MenuTextBoxBackup
 	ld a, PLAYER_SURF
 	ld [wPlayerState], a
-	call Function0d02
+	call RedrawPlayerSprite
 	call PlayMapMusic
 	call MovePlayerIntoWater
 	call Function1fea
