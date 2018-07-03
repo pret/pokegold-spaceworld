@@ -218,8 +218,6 @@
 3F:6755 PicTestMenu.loop
 3F:67A1 CallSubGameMenu
 
-00:CB6F wPlayerStepDirection
-
 01:D19E wItems
 ; The starting house's map script number is stored at d29a. Others are probably nearby.
 01:D35F wOptions

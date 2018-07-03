@@ -7,11 +7,11 @@ InitMovementBuffer::
 	xor a
 	ld [wMovementBufferCount], a
 	ld a, BANK(wMovementBuffer)
-	ld [wMovementBufferPointerBank], a
+	ld [wMovementBufferBank], a
 	ld a, LOW(wMovementBuffer)
-	ld [wMovementBufferPointerAddr], a
+	ld [wMovementBufferAddr], a
 	ld a, HIGH(wMovementBuffer)
-	ld [wMovementBufferPointerAddr + 1], a
+	ld [wMovementBufferAddr + 1], a
 	ret
 
 DecrementMovementBufferCount::

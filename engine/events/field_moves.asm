@@ -1,4 +1,3 @@
-
 INCLUDE "constants.asm"
 
 ; TODO - need to constantize tile ids, movements

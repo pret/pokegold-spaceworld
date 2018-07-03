@@ -85,9 +85,9 @@ GameStart:: ; 55BB
 	ld [wMusicFade], a
 	ld de, MUSIC_NONE
 	ld a, e
-	ld [wMusicFadeIDLow], a
+	ld [wMusicFadeID], a
 	ld a, d
-	ld [wMusicFadeIDHigh], a
+	ld [wMusicFadeID + 1], a
 	ld de, $000B ; should be a constant - shrink noise?
 	call PlaySFX
 	pop af
