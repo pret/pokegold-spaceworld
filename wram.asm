@@ -97,6 +97,10 @@ NEXTU
 ; Monster or Trainer test?
 wWhichPicTest:: ; c40b
     db
+; c40c	
+	ds 180
+
+wSpriteAnimIDBuffer:: db ; c4c0
 
 ENDU
 

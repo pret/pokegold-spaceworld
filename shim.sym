@@ -1,6 +1,4 @@
-; ROM0
-00:3C43 GetPartyParamLocation
-00:3CA8 InitSpriteAnimStruct
+; ROMX
 
 01:40FD Function40fd
 01:5007 Function5007
@@ -57,6 +55,7 @@
 03:5F91 Functiondf91
 03:60A0 Function60a0
 03:6734 Function6734
+03:677F _UseItem
 
 04:4743 ShrinkPic1
 04:479D ShrinkPic2
@@ -174,6 +173,7 @@
 23:4CFD InitEffectObject
 23:4D0C PlaySpriteAnimationsAndDelayFrame
 23:4d13 EffectObjectJumpNoDelay
+23:4d52 _InitSpriteAnimStruct
 23:60cc MenuMonIconGfx
 23:71CB Function_8f1cb
 
@@ -183,10 +183,11 @@
 32:76FF Functioncb6ff
 32:7710 Functioncb710
 32:7733 Functioncb733
+32:7FFF BattleAnimationsBankRef
 
 33:4000 Functioncc000
 33:4000 Functioncc000_2
-33:4001 Functioncc001
+33:4001 PlayBattleAnim
 33:467B QueueBattleAnimation
 33:625D BattleAnim_Sine_e
 33:6263 BattleAnim_Cosine_e

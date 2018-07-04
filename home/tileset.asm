@@ -417,3 +417,27 @@ LoadTileset:: ; 2f48
 	pop bc
 	pop hl
 	ret
+
+ReloadFontAndTileset:: ; 2f6b (00:2f6b)
+	call DisableLCD
+	ldh a, [hROMBank]
+	push af
+	ld a, [wMapGroup]
+	ld b, a
+	ld a, [wMapId]
+	ld c, a
+	call SwitchToAnyMapBank
+	call LoadFontExtra
+	call LoadMapPart
+	call LoadTilesetGFX
+	pop af
+	call Bankswitch
+
+	call EnableLCD
+	ret
+
+LoadTilesetGFX_LCDOff:: ; 2f8d (00:2f8d)
+	call DisableLCD
+	call LoadTilesetGFX
+	call EnableLCD
+	ret

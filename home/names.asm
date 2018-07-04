@@ -246,6 +246,10 @@ Unreferenced_GetMoveName:: ; 00:37fc
 
 SECTION "home/names.asm@GetNick", ROM0
 
+GetCurNick:: ; 3a91 (00:3a91)
+	ld a, [wWhichPokemon]
+	ld hl, wPartyMonNicknames
+
 GetNick: ; 00:3a97
 ; Get nickname a from list hl.
 	push hl

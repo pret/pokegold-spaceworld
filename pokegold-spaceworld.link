@@ -59,8 +59,6 @@ ROM0
 	"home/map.asm"
 	"home/overworld.asm@Startmenu and Select Button Check"
 	"home/tileset.asm"
-	; $2f6b
-	org $2f97
 	"home/unknown.asm@Empty function"
 	"home/farcall.asm"
 	"home/predef.asm"
@@ -89,12 +87,10 @@ ROM0
 	"home/mon_stats.asm"
 	"home/cry.asm"
 	"home/pokemon.asm@3A4B"
-	; $3a91
-	org $3a97
 	"home/names.asm@GetNick"
 	"home/print_bcd.asm"
 	"home/pokemon.asm@3AED"
-	org $3cbf
+	"home/misc_3c43.asm"
 	"home/audio.asm"
 ROMX $01
 	org $4000

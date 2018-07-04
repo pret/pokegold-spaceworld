@@ -93,7 +93,7 @@ GiveItemPredef::
 	add_predef Function8c4be
 	add_predef Function8c9c6
 	add_predef Function8c940 ; 50
-	add_predef Functioncc001
+	add_predef PlayBattleAnim
 	add_predef Functioncc000
 	add_predef Functioncc000_2
 	add_predef Functionfdb66
