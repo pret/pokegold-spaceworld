@@ -5,21 +5,8 @@ SECTION "Entry point", ROM0[$100]
 	jp Init
 
 SECTION "Global check value", ROM0[$14E]
-; The ROM has an incorrect global check, so set it here
-; It is not corrected by RGBFIX
-if def(GOLD)
-if DEBUG
-    db $21, $C6
-else
-    db $7e, $49
-endc
-else
-if DEBUG
-    db $c9, $2f
-else
-    db $b1, $7a
-endc
-endc
+; To work around a bug in rgbfix v0.3.7.
+dw 0
 
 SECTION "Init", ROM0[$51C]
 
