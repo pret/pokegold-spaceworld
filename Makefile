@@ -63,9 +63,10 @@ linkerscript: $(ROM:.gb=.link)
 %.map: %.gb
 
 $(CORRECTEDROM): %-correctheader.gb: %.gb
-	$(RGBASM) $(RGBASMFLAGS) -o $(BUILD)/zero_checksum.o zero_checksum.inc
+	$(RGBASM) $(RGBASMFLAGS) -o $(BUILD)/zero_checksum.o zero_checksum.asm
 	$(RGBLINK) -O $< -o $@ $(BUILD)/zero_checksum.o
 	$(RGBFIX) -f hg -m 0x10 $@
+	cp $(<:.gb=.sym) $(@:.gb=.sym)
 
 $(ROM): poke%-spaceworld.gb: $(OBJS) | $(BASEROM)
 	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -O $(BASEROM) -o $@ $^
