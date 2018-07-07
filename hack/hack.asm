@@ -6,45 +6,41 @@ INCLUDE "constants.asm"
 SECTION "Patch WRAM", WRAM0[$DA00]
 wPatchWRAM:
 wHackOldBank: db
-wTempA: db
-wTempL: db
-wTempH: db
-wWorked: db
 wPatchWRAMEnd:
 
 SECTION "Hack interrupt vector", ROM0[HackInterrupt]
-    push af
-    ldh a, [hROMBank]
-    ld [wHackOldBank], a
+	push af
+	ldh a, [hROMBank]
+	ld [wHackOldBank], a
 
-    ld a, BANK(RunHack)
+	ld a, BANK(RunHack)
 	call Bankswitch
 
-    pop af
-    call RunHack
+	pop af
+	call RunHack
 
-    push af
-    ld a, [wHackOldBank]
-    call Bankswitch
-    pop af
+	push af
+	ld a, [wHackOldBank]
+	call Bankswitch
+	pop af
 
-    ret
+	ret
 
 SECTION "Patch ROM", ROMX[$4000], BANK[$28]
 ; A: Index of hack function to run.
 RunHack:
 	; Save A and HL for later.
-	ld [wTempA], a
+	ld [wPredefID], a
 	ld a, h
-	ld [wTempH], a
+	ld [wPredefHL], a
 	ld a, l
-	ld [wTempL], a
+	ld [wPredefHL + 1], a
 
 	; Calculate offset in jump table.
 	push bc
 	ld hl, HackTable
 	ld b, 0
-	ld a, [wTempA] ; Get back old A.
+	ld a, [wPredefID] ; Get back old A.
 	ld c, a
 	add hl, bc
 	add hl, bc
@@ -54,14 +50,14 @@ RunHack:
 	ld c, a
 	ld a, [hl]
 	ld b, a
-	push bc
-	pop hl
+	ld h, b
+	ld l, c
 	pop bc
 
 	push hl
-	ld a, [wTempH]
+	ld a, [wPredefHL]
 	ld h, a
-	ld a, [wTempL]
+	ld a, [wPredefHL + 1]
 	ld l, a
 	ret ; Jump to HL.
 
