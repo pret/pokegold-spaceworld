@@ -141,7 +141,7 @@ MainMenuJumptable: ; 01:5457
 	dw MainMenuOptionContinue
 	dw StartNewGame
 	dw MenuCallSettings
-	dw StartNewGame
+	dw StartDemo
 	dw MainMenuOptionSetTime
 
 MainMenuItems:
@@ -260,6 +260,12 @@ PlayerInfoText:
 	text_end
 	
 StartNewGame:: ; 555C
+	ld a,1
+	jp StartGame
+StartDemo::
+	xor a
+StartGame::
+	push af
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld de, MUSIC_OAK_INTRO
@@ -272,10 +278,9 @@ StartNewGame:: ; 555C
 	call ClearWindowData
 	xor a
 	ldh [hMapAnims], a
-	ld a, [wDebugFlags]
-	bit DEBUG_FIELD_F, a
+	pop af
+	and a
 	jp z, DemoStart
-	call DebugSetUpPlayer
-	jp IntroCleanup
+	jp GameStart
 	
 ; 558D
