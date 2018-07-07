@@ -1,3 +1,17 @@
+; WRAM0
+
+00:CB6F wPlayerStepDirection
+
+01:D19E wItems
+; The starting house's map script number is stored at d29a. Others are probably nearby.
+01:D1EA wUnknownListLengthd1ea
+01:D1EB wUnknownListd1eb
+01:D35F wOptions
+01:D513 wWarpNumber
+01:DA3B wOTPartyMonOT
+01:DA83 wUnknownListLengthda83
+01:DA84 wUnknownListda84
+
 ; ROM0
 00:3C43 GetPartyParamLocation
 00:3CA8 InitSpriteAnimStruct
@@ -217,14 +231,6 @@
 3F:6750 PicTestMenu
 3F:6755 PicTestMenu.loop
 3F:67A1 CallSubGameMenu
-
-00:CB6F wPlayerStepDirection
-
-01:D19E wItems
-; The starting house's map script number is stored at d29a. Others are probably nearby.
-01:D35F wOptions
-01:D513 wWarpNumber
-01:DA3B wOTPartyMonOT
 
 ; Maps
 25:404D Route2Gate1F_Blocks

@@ -622,6 +622,8 @@ wTimeOfDay:: db ; ce3d
 ; 02 - Cave                35--50s
 ; 03 - Morning  06--09h    50--59s
 
+wcd3f: ds 1
+
 SECTION "CE5F", WRAM0[$CE5F]
 
 wce5f:: ; ce5f ; debug menu writes $41 to it
@@ -645,7 +647,11 @@ wPlayerName:: ds 6 ; ce67
 
 wMomsName:: ds 6 ; ce6d
 
-SECTION "CE7F", WRAM0[$CE76]
+SECTION "CE73", WRAM0[$CE73]
+
+wce73: ds 1 ; ce73
+wce74: ds 1 ; ce74
+wce75: ds 1 ; ce75
 
 wObjectFollow_Leader:: ; ce76
     db
@@ -730,7 +736,11 @@ wTimeOfDayPalset:: db ; d158
 
 wCurTimeOfDay:: db ; d159
 
-SECTION "D15D", WRAM0[$D15D]
+SECTION "D15B", WRAM0[$D15B]
+
+wd15b:: db ; d15b
+
+wd15c:: db ; d15c
 
 wd15d:: db ; d15d
 

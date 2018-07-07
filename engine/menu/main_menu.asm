@@ -1,5 +1,90 @@
 INCLUDE "constants.asm"
 
+SECTION "Initialize new game WRAM", ROMX[$52F9], BANK[$01]
+; TODO: Move this to another file when surrounding
+; functions have been disassembled.
+InitializeNewGameWRAM:
+	ld a, [wSGB]
+	push af
+
+	; Clear a lot of in-game WRAM.
+
+	ld hl, wVirtualOAM
+	ld bc, (wcd3f + 1) - wVirtualOAM
+	xor a
+	call ByteFill
+
+	ld hl, wPlayerName
+	ld bc, $1164
+	xor a
+	call ByteFill
+	
+	; Lots of other setup.
+
+	pop af
+	ld [wSGB], a
+
+	ldh a, [rLY]
+	ldh [hRTCRandom], a
+	call DelayFrame
+
+	ldh a, [hRandomSub]
+	ld [wce73], a
+	ldh a, [rLY]
+	ldh [hRTCRandom], a
+	call DelayFrame
+
+	ldh a, [hRandomAdd]
+	ld [wce74], a
+
+	ld hl, wPartyCount
+	call InitializeByteList
+	ld hl, wUnknownListLengthda83
+	call InitializeByteList
+	ld hl, wNumBagItems
+	call InitializeByteList
+	ld hl, wNumKeyItems
+	call InitializeByteList
+	ld hl, wUnknownListLengthd1ea
+	call InitializeByteList
+
+	xor a
+	ld [wMonType], a
+	ld [wd163], a
+	ld [wd164], a
+	ld [wd15b], a
+	ld [wd15c], a
+	ld [wd15d], a
+
+	ld a, $0B
+	ld [wd15e], a
+
+	ld a, $B8
+	ld [wd15f], a
+	
+	ld hl, wUnknownListLengthd1ea
+	ld a, ITEM_REPEL
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call ReceiveItem
+
+	ld a, MAP_SILENT_HILL
+	ld [wMapId], a
+	ld a, GROUP_SILENT_HILL
+	ld [wMapGroup], a
+
+	ret
+
+; Initializes a 0xFF-terminated list preceded by a length to
+; length 0, with an immediate terminator.
+InitializeByteList:
+	xor a
+	ld [hli], a
+	dec a
+	ld [hl], a
+	ret
+
 SECTION "Main Menu", ROMX[$53CC], BANK[$01]
 
 MainMenu:: ; 01:53CC
@@ -197,7 +282,7 @@ StartNewGame:: ; 555C
 	call LoadFontExtra
 	xor a
 	ldh [hBGMapMode], a
-	callba Function52f9
+	callba InitializeNewGameWRAM
 	call ClearTileMap
 	call ClearWindowData
 	xor a
