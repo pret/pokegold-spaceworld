@@ -2,6 +2,8 @@ INCLUDE "charmap.asm"
 
 INCLUDE "macros.asm"
 
+INCLUDE "constants/patch_constants.asm"
+
 INCLUDE "constants/audio_constants.asm"
 INCLUDE "constants/gfx_constants.asm"
 INCLUDE "constants/hardware_constants.asm"

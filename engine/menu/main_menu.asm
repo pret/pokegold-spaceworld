@@ -14,10 +14,14 @@ InitializeNewGameWRAM:
 	xor a
 	call ByteFill
 
-	ld hl, wPlayerName
-	ld bc, $1164
-	xor a
-	call ByteFill
+	hack InitializeNewGameWRAM
+REPT 7
+	nop
+ENDR
+	; ld hl, wPlayerName
+	; ld bc, $1164
+	; xor a
+	; call ByteFill
 	
 	; Lots of other setup.
 

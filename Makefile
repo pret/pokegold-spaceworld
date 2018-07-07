@@ -20,7 +20,7 @@ SHIM := shim.sym
 
 rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
 DIRS := home engine data audio maps
-ASMFILES := $(call rwildcard, $(DIRS), *.asm) gfx.asm vram.asm sram.asm wram.asm hram.asm
+ASMFILES := $(call rwildcard, $(DIRS), *.asm) gfx.asm vram.asm sram.asm wram.asm hram.asm hack/hack.asm
 OBJS := $(patsubst %.asm, $(BUILD)/%.o, $(ASMFILES))
 OBJS += $(BUILD)/shim.o
 
