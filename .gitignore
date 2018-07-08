@@ -5,7 +5,7 @@
 *.sym
 *.map
 *.sav
-*.sn1
+*.sn*
 *.rtc
 !shim.sym
 
