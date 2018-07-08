@@ -1,8 +1,8 @@
 include "constants.asm"
 
-SECTION "maps/Route1Gate1F.asm", ROMX
+SECTION "Route 1 Gate 1F", ROMX[$4061], BANK[$26]
 
-Route1Gate1FScriptLoader: ;4061
+Route1Gate1FScriptLoader:: ;4061
 	ld hl, Route1Gate1FScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -17,14 +17,15 @@ Route1Gate1FNPCIDs: ; 406F
 	db $01
 	db $FF
 
-Route1Gate1FTextPointers:
+Route1Gate1FSignPointers: ; 4072
 	dw MapDefaultText ;no signs
+Route1Gate1FTextPointers:: ; 4074
 	dw Route1Gate1FText1
 	dw Route1Gate1FText2
 
 Route1Gate1FScript: ; 4078
 	ld hl, Route1Gate1FNPCIDs
-	ld de, Route1Gate1FTextPointers
+	ld de, Route1Gate1FSignPointers
 	call CallMapTextSubroutine
 	ret
 

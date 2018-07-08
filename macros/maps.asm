@@ -12,8 +12,8 @@ CURRENT_MAP_HEIGHT = \2_HEIGHT
 \1_MapAttributes::
 	db CURRENT_MAP_HEIGHT, CURRENT_MAP_WIDTH
 	dw \1_Blocks
-	dw \1_Unk
-	dw \1_MapScripts
+	dw \1TextPointers
+	dw \1ScriptLoader
 	dw \1_MapEvents
 	db \3
 ENDM

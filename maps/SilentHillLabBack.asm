@@ -1,52 +1,52 @@
 include "constants.asm"
 
-SECTION "maps/SilentLabP2.asm", ROMX
+SECTION "Silent Lab P2 Script", ROMX[$5C69], BANK[$34]
 
-SilentLabP2ScriptLoader:: ; 5C69
-	ld hl, SilentLabP2ScriptPointers
+SilentHillLabBackScriptLoader:: ; 5C69
+	ld hl, SilentHillLabBackScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 	
-SilentLabP2ScriptPointers: ; 5C73
-	dw SilentLabP2Script1
-	dw SilentLabP2NPCIDs1
-	dw SilentLabP2Script2 
-	dw SilentLabP2NPCIDs1
-	dw SilentLabP2Script3
-	dw SilentLabP2NPCIDs1
-	dw SilentLabP2RivalChoosePokemon
-	dw SilentLabP2NPCIDs1
-	dw SilentLabP2Script5 
-	dw SilentLabP2NPCIDs1 
-	dw SilentLabP2Script6 
-	dw SilentLabP2NPCIDs1 
-	dw SilentLabP2Script7
-	dw SilentLabP2NPCIDs1
+SilentHillLabBackScriptPointers: ; 5C73
+	dw SilentHillLabBackScript1
+	dw SilentHillLabBackNPCIDs1
+	dw SilentHillLabBackScript2 
+	dw SilentHillLabBackNPCIDs1
+	dw SilentHillLabBackScript3
+	dw SilentHillLabBackNPCIDs1
+	dw SilentHillLabBackRivalChoosePokemon
+	dw SilentHillLabBackNPCIDs1
+	dw SilentHillLabBackScript5 
+	dw SilentHillLabBackNPCIDs1 
+	dw SilentHillLabBackScript6 
+	dw SilentHillLabBackNPCIDs1 
+	dw SilentHillLabBackScript7
+	dw SilentHillLabBackNPCIDs1
 	
-SilentLabP2NPCIDs1: ; 5C8F
+SilentHillLabBackNPCIDs1: ; 5C8F
 	db 00, 01, 02, 03, 04, $FF 
-SilentLabP2NPCIDs2: ; 5C95
+SilentHillLabBackNPCIDs2: ; 5C95
 	db 00, 01, 04, $FF 
-SilentLabP2NPCIDs3: ; 5C99
+SilentHillLabBackNPCIDs3: ; 5C99
 	db 00, 01, 02, $FF 
-SilentLabP2NPCIDs4: ; 5C9D
+SilentHillLabBackNPCIDs4: ; 5C9D
 	db 00, 01, 03, $FF
 	
-SilentLabP2TextPointers1: ; 5CA1 
-	dw SilentLabP2Text1
-	dw SilentLabP2Func3
-	dw SilentLabP2Func4 
-	dw SilentLabP2Func4
-	dw SilentLabP2Func4
+SilentHillLabBackTextPointers:: ; 5CA1 
+	dw SilentHillLabBackText1
+	dw SilentHillLabBackFunc3
+	dw SilentHillLabBackFunc4 
+	dw SilentHillLabBackFunc4
+	dw SilentHillLabBackFunc4
 	
-SilentLabP2Script1: ; 5CAB
+SilentHillLabBackScript1: ; 5CAB
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 0
 	call Function17f9
 	ld a, 0
-	ld hl, SilentLabP2Movement1
+	ld hl, SilentHillLabBackMovement1
 	call LoadMovementDataPointer
 	ld hl, wd41b
 	set 1, [hl]
@@ -58,38 +58,38 @@ SilentLabP2Script1: ; 5CAB
 	call WriteIntod637
 	ret
 	
-SilentLabP2Movement1: ; 5CD2
+SilentHillLabBackMovement1: ; 5CD2
 	db 09, 09, 05, $32
 	
-SilentLabP2Script2: ; 5CD6
+SilentHillLabBackScript2: ; 5CD6
 	ld hl, wc5ed
 	set 6, [hl]
 	call Function20f8
 	ld a, 3
 	ld d, UP
 	call SetObjectFacing
-	ld hl, SilentLabP2TextString1
+	ld hl, SilentHillLabBackTextString1
 	call OpenTextbox
-	ld hl, SilentLabP2TextString10
+	ld hl, SilentHillLabBackTextString10
 	call OpenTextbox
-	ld hl, SilentLabP2TextString2
+	ld hl, SilentHillLabBackTextString2
 	call OpenTextbox
 	ld a, 2
 	ld [wMapScriptNumber], a
 	ret
 	
-SilentLabP2Script3: ; 5CFD
-	ld hl, SilentLabP2NPCIDs1
-	ld de, SilentLabP2TextPointers2
+SilentHillLabBackScript3: ; 5CFD
+	ld hl, SilentHillLabBackNPCIDs1
+	ld de, SilentHillLabBackTextPointers2
 	call CallMapTextSubroutine
 	ret
 	
-SilentLabP2RivalChoosePokemon: ; 5D07
+SilentHillLabBackRivalChoosePokemon: ; 5D07
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 3
 	call Function17f9
-	ld hl, SilentLabP2MovementPointers
+	ld hl, SilentHillLabBackMovementPointers
 	ld a, [wChosenStarter]
 	ld d, 0
 	ld e, a
@@ -108,27 +108,27 @@ SilentLabP2RivalChoosePokemon: ; 5D07
 	call WriteIntod637
 	ret
 	
-SilentLabP2MovementPointers: ; 5D34
-	dw SilentLabP2Movement2+1
-	dw SilentLabP2Movement2
-	dw SilentLabP2Movement2+2
+SilentHillLabBackMovementPointers: ; 5D34
+	dw SilentHillLabBackMovement2+1
+	dw SilentHillLabBackMovement2
+	dw SilentHillLabBackMovement2+2
 	
-SilentLabP2Movement2: ; 5D3A
+SilentHillLabBackMovement2: ; 5D3A
 	db $0B, $0B, $0B, $0B, $05, $32
 	
-SilentLabP2Script5: ; 5D40
-	ld hl, SilentLabP2TextString12
+SilentHillLabBackScript5: ; 5D40
+	ld hl, SilentHillLabBackTextString12
 	call OpenTextbox
 	ld a, [wd266]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, SilentLabP2TextString13
+	ld hl, SilentHillLabBackTextString13
 	call OpenTextbox
 	ld a, 5
 	ld [wMapScriptNumber], a
 	ret
 	
-SilentLabP2Script6: ; 5D5B
+SilentHillLabBackScript6: ; 5D5B
 	call Function20f8
 	ld hl, wc5ed
 	res 6, [hl]
@@ -136,23 +136,23 @@ SilentLabP2Script6: ; 5D5B
 	ld[wMapScriptNumber], a
 	ret
 	
-SilentLabP2Script7: ; 5D69
-	ld hl, SilentLabP2NPCIDs1
-	ld de, SilentLabP2TextPointers2
+SilentHillLabBackScript7: ; 5D69
+	ld hl, SilentHillLabBackNPCIDs1
+	ld de, SilentHillLabBackTextPointers2
 	call CallMapTextSubroutine
 	ret
 	
-SilentLabP2Text1: ; 5D73
+SilentHillLabBackText1: ; 5D73
 	ld hl, wd41b
 	bit 2, [hl]
-	ld hl, SilentLabP2TextString3
+	ld hl, SilentHillLabBackTextString3
 	jr z, .skip
-	ld hl, SilentLabP2TextString9
+	ld hl, SilentHillLabBackTextString9
 .skip
 	call OpenTextbox
 	ret
 	
-SilentLabP2TextString1: ; 5D84
+SilentHillLabBackTextString1: ; 5D84
 	text "オーキド『ほれ　そこに　３びき"
 	cont "ポケモンが　いる　じゃろう！"
 	cont "ほっほ！"
@@ -162,18 +162,18 @@ SilentLabP2TextString1: ; 5D84
 	cont "⋯⋯　さあ　えらべ！"
 	done
 	
-SilentLabP2TextString2: ; 5DCD
+SilentHillLabBackTextString2: ; 5DCD
 	text "オーキド『まあ"
 	line "あわてるな　<RIVAL>！"
 	cont "おまえも　すきなものを　とれ！"
 	done
 	
-SilentLabP2TextString3: ; 5DEF
+SilentHillLabBackTextString3: ; 5DEF
 	text "オーキド『さあ　<PLAYER>"
 	line "どの　ポケモンに　するかね？"
 	done
 	
-SilentLabP2TextString4: ; 5E1C
+SilentHillLabBackTextString4: ; 5E1C
 	text "オーキド『ほう！　ほのおのポケモン"
 	line "@"
 	ld bc, wStringBuffer1
@@ -183,7 +183,7 @@ SilentLabP2TextString4: ; 5E1C
 	call Function3036
 	ret
 	
-SilentLabP2TextString5: ; 5E32
+SilentHillLabBackTextString5: ; 5E32
 	text "オーキド『ふむ　みずのポケモン"
 	line "@"
 	ld bc, wStringBuffer1
@@ -193,7 +193,7 @@ SilentLabP2TextString5: ; 5E32
 	call Function3036
 	ret
 	
-SilentLabP2TextString6: ; 5E6E
+SilentHillLabBackTextString6: ; 5E6E
 	text "オーキド『おお！　くさのポケモン"
 	line "@"
 	ld bc, wStringBuffer1
@@ -214,7 +214,7 @@ ConfirmPokemonSelection: ; 5E85
 	ld [wd29a], a
 	ld a, 1
 	ld [wd2a0], a
-	ld hl, SilentLabP2TextString8
+	ld hl, SilentHillLabBackTextString8
 	call PrintText
 	ld hl, wJoypadFlags
 	set 5, [hl]
@@ -229,16 +229,16 @@ ConfirmPokemonSelection: ; 5E85
 	ld [wMapScriptNumber], a
 	ret
 .bigJump ; 5EC6
-	ld hl, SilentLabP2TextString7
+	ld hl, SilentHillLabBackTextString7
 	call PrintText 
 	ret
 	
-SilentLabP2TextString7: ; 5ECD
+SilentHillLabBackTextString7: ; 5ECD
 	text "では"
 	line "どれに　するのじゃ？"
 	done
 	
-SilentLabP2TextString8: ; 5EDC
+SilentHillLabBackTextString8: ; 5EDC
 	text "オーキド『この　ポケモンは"
 	line "ほんとに　げんきが　いいぞ！"
 	
@@ -247,53 +247,53 @@ SilentLabP2TextString8: ; 5EDC
 	ld bc, wStringBuffer1
 	text "を　もらった！<PROMPT>"
 	
-SilentLabP2TextString9: ; 5F14
+SilentHillLabBackTextString9: ; 5F14
 	text "オーキド『そうじゃ！"
 	line "やせいの　ポケモンが　でて　きても"
 	cont "そいつを　たたかわせて　いけば"
 	cont "となりまちへ　いける！"
 	done
 	
-SilentLabP2Func3: ; 5F4E
+SilentHillLabBackFunc3: ; 5F4E
 	ld hl, wd41b
 	bit 2, [hl]
-	ld hl, SilentLabP2TextString11
+	ld hl, SilentHillLabBackTextString11
 	jr z, .skip
-	ld hl, SilentLabP2TextString14
+	ld hl, SilentHillLabBackTextString14
 .skip
 	call OpenTextbox
 	ret
 	
-SilentLabP2TextString10: ; 5F5F
+SilentHillLabBackTextString10: ; 5F5F
 	text "<RIVAL>『あッ！　おれにも！"
 	line "じいさん　おれにもくれよう！"
 	done
 	
-SilentLabP2TextString11: ; 5F7B
+SilentHillLabBackTextString11: ; 5F7B
 	text "<RIVAL>『いいぜ　<PLAYER>！"
 	line "さきに　えらんで！"
 	cont "おれは　こころが　ひろいからな"
 	done
 	
-SilentLabP2TextString12: ; 5F9F
+SilentHillLabBackTextString12: ; 5F9F
 	text "<RIVAL>『じゃ　おれは　これ！"
 	done
 	
-SilentLabP2TextString13: ; 5FAD
+SilentHillLabBackTextString13: ; 5FAD
 	text "<RIVAL>は　オーキドから"
 	line "@"
 	ld bc, wStringBuffer1
 	text "を　もらった！"
 	done
 	
-SilentLabP2TextString14: ; 5FC5
+SilentHillLabBackTextString14: ; 5FC5
 	text "<RIVAL>『<PLAYER>の#"
 	line "いいなあ！"
 	cont "でも　おれのポケモンも"
 	cont "ちょっと　いいだろ？"
 	done
 	
-SilentLabP2Func4: ; 5FE9
+SilentHillLabBackFunc4: ; 5FE9
 	ld hl, wd41b
 	bit 2, [hl]
 	jr nz, .bigjump
@@ -302,7 +302,7 @@ SilentLabP2Func4: ; 5FE9
 	ld [wChosenStarter], a
 	ld d, 0
 	ld e, a
-	ld hl, SilentLabP2StarterData
+	ld hl, SilentHillLabBackStarterData
 	add hl, de
 	add hl, de
 	add hl, de
@@ -328,11 +328,11 @@ SilentLabP2Func4: ; 5FE9
 	ld [wd266], a
 	ret
 .bigjump
-	ld hl, SilentLabP2TextString15
+	ld hl, SilentHillLabBackTextString15
 	call OpenTextbox
 	ret
 	
-SilentLabP2StarterData: ; 6031
+SilentHillLabBackStarterData: ; 6031
 	db DEX_HONOGUMA 
 	dw $5E09 
 	db DEX_KURUSU 
@@ -345,12 +345,12 @@ SilentLabP2StarterData: ; 6031
 	dw $5E5C 
 	db DEX_HONOGUMA
 	
-SilentLabP2TextString15: ; 603D
+SilentHillLabBackTextString15: ; 603D
 	text "オーキド『これ！"
 	line "よくばっちゃ　いかん！"
 	done
 	
-SilentLabP2TextPointers2: ; 6053
+SilentHillLabBackTextPointers2: ; 6053
 	dw Function3899 
 	dw Function3899
 	dw Function3899

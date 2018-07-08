@@ -1,47 +1,49 @@
 include "constants.asm"
 
-SECTION "maps/PlayersHouse2F.asm", ROMX
+SECTION "Player's House 2F", ROMX[$418B], BANK[$34]
 
-PlayersHouse2FScriptLoader:: ; 418B
-	ld hl, PlayersHouse2FScriptPointers
+PlayerHouse2FScriptLoader:: ; 418B
+	ld hl, PlayerHouse2FScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 	
-PlayersHouse2FScriptPointers: ; 4195
-	dw PlayersHouse2FScript1 
-	dw PlayersHouse2FNPCIDs1 
-	dw PlayersHouse2FScript2 
-	dw PlayersHouse2FNPCIDs2 
-	dw PlayersHouse2FScript3 
-	dw PlayersHouse2FDollText 
+PlayerHouse2FScriptPointers: ; 4195
+	dw PlayerHouse2FScript1
+	dw PlayerHouse2FNPCIDs1
+	dw PlayerHouse2FScript2 
+	dw PlayerHouse2FNPCIDs2
+
+PlayerHouse2FTextPointers::
+	dw PlayerHouse2FText1
+	dw PlayerHouse2FDollText
 	
-PlayersHouse2FNPCIDs1: ; 41A1
+PlayerHouse2FNPCIDs1: ; 41A1
 	db 0
 	db 1
 	db $FF
 	
-PlayersHouse2FNPCIDs2: ; 41A4
+PlayerHouse2FNPCIDs2: ; 41A4
 	db 1
 	db $FF
 	
-PlayersHouse2FTextPointers: ; 41A6
+PlayerHouse2FSignPointers: ; 41A6
 	dw Function3899 
-	dw PlayersHouse2FRadioText
-	dw PlayersHouse2FComputerText 
+	dw PlayerHouse2FRadioText
+	dw PlayerHouse2FComputerText
 	dw Function3899 
-	dw PlayersHouse2FN64Text 
+	dw PlayerHouse2FN64Text 
 	
-PlayersHouse2FScript1: ; 41B0
-	call PlayersHouse2PositionCheck
+PlayerHouse2FScript1: ; 41B0
+	call PlayerHouse2PositionCheck
 	ret z
-	ld hl, PlayersHouse2FNPCIDs1
-	ld de, PlayersHouse2FTextPointers
+	ld hl, PlayerHouse2FNPCIDs1
+	ld de, PlayerHouse2FSignPointers
 	call CallMapTextSubroutine
 	ret nz
 	ret
 	
-PlayersHouse2PositionCheck: ; 41BF
+PlayerHouse2PositionCheck: ; 41BF
 	ld hl, wd41a
 	bit 0, [hl]
 	ret nz
@@ -56,13 +58,13 @@ PlayersHouse2PositionCheck: ; 41BF
 	ld a, LEFT
 	ld d, 0
 	call SetObjectFacing
-	ld hl, PlayersHouse2FTextString2
+	ld hl, PlayerHouse2FTextString2
 	call OpenTextbox
-	call PlayersHouse2FMovePlayer
+	call PlayerHouse2FMovePlayer
 	call ClearAccumulator
 	ret
 	
-PlayersHouse2FMovePlayer: ; 41EA
+PlayerHouse2FMovePlayer: ; 41EA
 	ld a, 0
 	ld hl, Movement
 	call LoadMovementDataPointer
@@ -77,42 +79,42 @@ Movement: ; 41FD
 	db $04
 	db $32
 	
-PlayersHouse2FScript2: ; 4200
-	ld hl, PlayersHouse2FNPCIDs2
-	ld de, PlayersHouse2FTextPointers
+PlayerHouse2FScript2: ; 4200
+	ld hl, PlayerHouse2FNPCIDs2
+	ld de, PlayerHouse2FSignPointers
 	call CallMapTextSubroutine
 	ret
 	
-PlayersHouse2FScript3: ; 420A
+PlayerHouse2FText1: ; 420A
 	ld hl, wd41a
 	bit 3, [hl]
 	jr nz, .jump
-	ld hl, PlayersHouse2FTextString1
+	ld hl, PlayerHouse2FTextString1
 	call OpenTextbox
 	ld hl, wd41a
 	set 3, [hl]
 	ld c, 3
 	call DelayFrames
 .jump
-	ld hl, PlayersHouse2FTextString2
+	ld hl, PlayerHouse2FTextString2
 	call OpenTextbox
 	ret
 	
-PlayersHouse2FDollText: ; 4228
-	ld hl, PlayersHouse2FTextString3
+PlayerHouse2FDollText: ; 4228
+	ld hl, PlayerHouse2FTextString3
 	call OpenTextbox
 	ret
 	
-PlayersHouse2FRadioText: ; 422F
-	ld hl, PlayersHouse2FTextString9
+PlayerHouse2FRadioText: ; 422F
+	ld hl, PlayerHouse2FTextString9
 	call OpenTextbox
 	ret
 	
-PlayersHouse2FComputerText: ; 4236
+PlayerHouse2FComputerText: ; 4236
 	ld hl, wd41a
 	bit 0, [hl]
 	jr nz, .jump
-	ld hl, PlayersHouse2FTextString5
+	ld hl, PlayerHouse2FTextString5
 	call OpenTextbox
 	ret
 
@@ -123,27 +125,27 @@ PlayersHouse2FComputerText: ; 4236
 	call Function1fea
 	ret
 	
-PlayersHouse2FCheckEmail: ; 4253
+PlayerHouse2FCheckEmail: ; 4253
 	call YesNoBox
 	jr c, .jump2
 	ld hl, wd41a
 	set 0, [hl]
-	ld hl, PlayersHouse2FTextString6
+	ld hl, PlayerHouse2FTextString6
 	call PrintText
 	ret
 	
 .jump2
 ; 4264
-	ld hl, PlayersHouse2FTextString7
+	ld hl, PlayerHouse2FTextString7
 	call PrintText
 	ret
 	
-PlayersHouse2FN64Text: ; 426B
-	ld hl, PlayersHouse2FTextString4
+PlayerHouse2FN64Text: ; 426B
+	ld hl, PlayerHouse2FTextString4
 	call OpenTextbox
 	ret
 	
-PlayersHouse2FTextString1: ; 4272
+PlayerHouse2FTextString1: ; 4272
 	text "ケン『おっ　おまえの　うでで"
 	line "ひかりかがやく　そのとけいは⋯⋯"
 	cont "<PLAYER>も　ついに"
@@ -163,27 +165,27 @@ PlayersHouse2FTextString1: ; 4272
 	cont "きょうは　むり　だぜ！"
 	done
 	
-PlayersHouse2FTextString2: ; 4332
+PlayerHouse2FTextString2: ; 4332
 	text "そうだ　おまえの　パソコンに"
 	line "メールが　とどいていたな"
 	cont "でかけるんなら"
 	cont "メールぐらい　よんでおけよ"
 	done
 	
-PlayersHouse2FTextString3: ; 4365
+PlayerHouse2FTextString3: ; 4365
 	text "クりスマスに　カントーの"
 	line "しんせきに　プレゼント"
 	cont "してもらった　にんぎょうだ"
 	done
 	
-PlayersHouse2FTextString4: ; 438D
+PlayerHouse2FTextString4: ; 438D
 	text "ニンテンドウ６４を　してる！"
 	cont "⋯⋯　⋯⋯　さてと！"
 	cont "そろそろ　そとに　あそびに"
 	cont "でかけるか！"
 	done
 	
-PlayersHouse2FTextString5: ; 43BD
+PlayerHouse2FTextString5: ; 43BD
 	text "<PLAYER>は"
 	line "パソコンの　スイッチを　いれた！"
 	
@@ -194,11 +196,11 @@ PlayersHouse2FTextString5: ; 43BD
 	db $08
 	
 ; 43F3
-	call PlayersHouse2FCheckEmail
+	call PlayerHouse2FCheckEmail
 	call Function3036
 	ret
 	
-PlayersHouse2FTextString6: ; 43FA
+PlayerHouse2FTextString6: ; 43FA
 	text "とつぜん　メールを　さしあげる"
 	line "しつれいを　おゆるしあれ"
 	
@@ -208,12 +210,12 @@ PlayersHouse2FTextString6: ; 43FA
 	cont "ポケモンけんきゅうしゃ　オーキド"
 	done
 	
-PlayersHouse2FTextString7: ; 4456
+PlayerHouse2FTextString7: ; 4456
 	text "あとで"
 	line "よもっと<⋯⋯>"
 	done
 	
-PlayersHouse2FTextString8: ; 4461 (unused?)
+PlayerHouse2FTextString8: ; 4461 (unused?)
 	text "しんはつばい　トレーナーギア！"
 	line "ポケモントレーナーの　ための"
 	cont "さいせんたんの　とけい　です"
@@ -231,7 +233,7 @@ PlayersHouse2FTextString8: ; 4461 (unused?)
 	cont "シルフの　ホームぺージだ"
 	done
 	
-PlayersHouse2FTextString9: ; 44FE
+PlayerHouse2FTextString9: ; 44FE
 	text "<PLAYER>は"
 	line "ラジオのスイッチを　おした！"
 	

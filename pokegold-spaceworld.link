@@ -753,15 +753,15 @@ ROMX $34
 	org $4132
 	"data/maps/attributes.asm@PlayerHouse2F"
 	org $45ff
-	"data/maps/attributes.asm@SilentPokecenter"
+	"data/maps/attributes.asm@SilentHillPokecenter"
 	org $47d5
 	"data/maps/attributes.asm@SilentHillHouse"
 	org $4aac
-	"data/maps/attributes.asm@SilentHillLab"
+	"data/maps/attributes.asm@SilentHillLabFront"
 	org $5be6
-	"data/maps/attributes.asm@SilentHillLab2"
+	"data/maps/attributes.asm@SilentHillLabBack"
 	org $605d
-	"data/maps/attributes.asm@Unused13"
+	"data/maps/attributes.asm@UnusedMap13"
 ROMX $36
 	org $4000
 	org $4014

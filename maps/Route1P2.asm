@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "maps/Route1P2.asm", ROMX
+SECTION "Route 1 West", ROMX[$7C68], BANK[$36]
 
 Route1P2ScriptLoader:: ; 7C67
 	ld hl, Route1P2ScriptPointers
@@ -17,8 +17,10 @@ Route1P2NPCIDs: ; 7C76
 	db $01
 	db $FF
 
-Route1P2TextPointers:
+Route1P2SignPointers:
 	dw Route1P2TextSign1
+
+Route1P2TextPointers::
 	dw Route1P2Text1
 	dw Route1P2Text2
 
@@ -38,7 +40,7 @@ Route1P2Script:: ; 7C7F
 	jr .endDemo
 .skipCheck
 	ld hl, Route1P2NPCIDs ;data
-	ld de, Route1P2TextPointers ;start of textld pointers?
+	ld de, Route1P2SignPointers ;start of textld pointers?
 	call CallMapTextSubroutine
 	ret
 

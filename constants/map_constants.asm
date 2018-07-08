@@ -27,11 +27,11 @@ ENDM
 	map_const ROUTE_SILENT_EAST_GATE,            5,  4 ;  7
 	map_const PLAYER_HOUSE_1F,                   5,  4 ;  8
 	map_const PLAYER_HOUSE_2F,                   5,  4 ;  9
-	map_const SILENT_POKECENTER,                 8,  4 ; 10
+	map_const SILENT_HILL_POKECENTER,            8,  4 ; 10
 	map_const SILENT_HILL_HOUSE,                 5,  4 ; 11
-	map_const SILENT_HILL_LAB,                   4,  8 ; 12
-	map_const SILENT_HILL_LAB_2,                 4,  4 ; 13
-	map_const UNUSED_13,                         4,  4 ; 14
+	map_const SILENT_HILL_LAB_FRONT,             4,  8 ; 12
+	map_const SILENT_HILL_LAB_BACK,              4,  4 ; 13
+	map_const UNUSED_MAP_13,                         4,  4 ; 14
 	map_const SHIZUKANA_OKA,                    25, 18 ; 15
 
 	newgroup                                           ;  2

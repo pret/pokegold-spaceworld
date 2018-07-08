@@ -3506,10 +3506,10 @@ PlayerHouse2F_MapEvents::
 
 PlayerHouse2F_Blocks:: INCBIN "maps/blk/PlayerHouse2F.blk"
 
-SECTION "data/maps/attributes.asm@SilentPokecenter", ROMX
-	map_attributes SilentPokecenter, SILENT_POKECENTER, 0
+SECTION "data/maps/attributes.asm@SilentHillPokecenter", ROMX
+	map_attributes SilentHillPokecenter, SILENT_HILL_POKECENTER, 0
 
-SilentPokecenter_MapEvents::
+SilentHillPokecenter_MapEvents::
 	dw $4000 ; unknown
 
 	db 2 ; warp events
@@ -3526,7 +3526,7 @@ SilentPokecenter_MapEvents::
 	object_event 9, 1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_SIDON, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
-SilentPokecenter_Blocks:: INCBIN "maps/blk/SilentPokecenter.blk"
+SilentHillPokecenter_Blocks:: INCBIN "maps/blk/SilentHillPokecenter.blk"
 
 SECTION "data/maps/attributes.asm@SilentHillHouse", ROMX
 	map_attributes SilentHillHouse, SILENT_HILL_HOUSE, 0
@@ -3552,16 +3552,16 @@ SilentHillHouse_MapEvents::
 
 SilentHillHouse_Blocks:: INCBIN "maps/blk/SilentHillHouse.blk"
 
-SECTION "data/maps/attributes.asm@SilentHillLab", ROMX
-	map_attributes SilentHillLab, SILENT_HILL_LAB, 0
+SECTION "data/maps/attributes.asm@SilentHillLabFront", ROMX
+	map_attributes SilentHillLabFront, SILENT_HILL_LAB_FRONT, 0
 
-SilentHillLab_MapEvents::
+SilentHillLabFront_MapEvents::
 	dw $4000 ; unknown
 
 	db 3 ; warp events
 	warp_event 3, 15, 4, SILENT_HILL, wOverworldMapBlocks + 82
 	warp_event 4, 15, 5, SILENT_HILL, wOverworldMapBlocks + 83
-	warp_event 4, 0, 2, SILENT_HILL_LAB_2, wOverworldMapBlocks + 13
+	warp_event 4, 0, 2, SILENT_HILL_LAB_BACK, wOverworldMapBlocks + 13
 
 	db 15 ; bg events
 	bg_event 6, 1, 0, 1
@@ -3593,17 +3593,17 @@ SilentHillLab_MapEvents::
 	object_event 0, 1, SPRITE_POKEDEX, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 1, SPRITE_POKEDEX, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
-SilentHillLab_Blocks:: INCBIN "maps/blk/SilentHillLab.blk"
+SilentHillLabFront_Blocks:: INCBIN "maps/blk/SilentHillLabFront.blk"
 
-SECTION "data/maps/attributes.asm@SilentHillLab2", ROMX
-	map_attributes SilentHillLab2, SILENT_HILL_LAB_2, 0
+SECTION "data/maps/attributes.asm@SilentHillLabBack", ROMX
+	map_attributes SilentHillLabBack, SILENT_HILL_LAB_BACK, 0
 
-SilentHillLab2_MapEvents::
+SilentHillLabBack_MapEvents::
 	dw $4000 ; unknown
 
 	db 2 ; warp events
-	warp_event 3, 7, 3, SILENT_HILL_LAB, wOverworldMapBlocks + 42
-	warp_event 4, 7, 3, SILENT_HILL_LAB, wOverworldMapBlocks + 43
+	warp_event 3, 7, 3, SILENT_HILL_LAB_FRONT, wOverworldMapBlocks + 42
+	warp_event 4, 7, 3, SILENT_HILL_LAB_FRONT, wOverworldMapBlocks + 43
 
 	db 5 ; bg events
 	bg_event 0, 1, 0, 1
@@ -3619,13 +3619,13 @@ SilentHillLab2_MapEvents::
 	object_event 6, 2, SPRITE_POKE_BALL, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 7, 2, SPRITE_POKE_BALL, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
-SilentHillLab2_Blocks:: INCBIN "maps/blk/SilentHillLab2.blk"
+SilentHillLabBack_Blocks:: INCBIN "maps/blk/SilentHillLabBack.blk"
 
-SECTION "data/maps/attributes.asm@Unused13", ROMX
-	map_attributes Unused13, UNUSED_13, 0
+SECTION "data/maps/attributes.asm@UnusedMap13", ROMX
+	map_attributes UnusedMap13, UNUSED_MAP_13, 0
 
-Unused13_MapEvents::
-Unused13_Blocks::
+UnusedMap13_MapEvents::
+UnusedMap13_Blocks::
 
 SECTION "data/maps/attributes.asm@SilentHill", ROMX
 	map_attributes SilentHill, SILENT_HILL, NORTH | WEST | EAST
@@ -3638,10 +3638,10 @@ SilentHill_MapEvents::
 
 	db 5 ; warp events
 	warp_event 5, 4, 1, PLAYER_HOUSE_1F, wOverworldMapBlocks + 51
-	warp_event 13, 4, 1, SILENT_POKECENTER, wOverworldMapBlocks + 55
+	warp_event 13, 4, 1, SILENT_HILL_POKECENTER, wOverworldMapBlocks + 55
 	warp_event 3, 12, 1, SILENT_HILL_HOUSE, wOverworldMapBlocks + 114
-	warp_event 14, 11, 1, SILENT_HILL_LAB, wOverworldMapBlocks + 104
-	warp_event 15, 11, 2, SILENT_HILL_LAB, wOverworldMapBlocks + 104
+	warp_event 14, 11, 1, SILENT_HILL_LAB_FRONT, wOverworldMapBlocks + 104
+	warp_event 15, 11, 2, SILENT_HILL_LAB_FRONT, wOverworldMapBlocks + 104
 
 	db 5 ; bg events
 	bg_event 8, 4, 0, 1

@@ -11,13 +11,17 @@ debug_lines_startswith = [
     "endc"
 ]
 
-with open("pokegold-spaceworld.link", "r") as f:
+with open("pokegold-spaceworld-gen.link", "r") as f:
     linkerscript = f.read()
 
 def clean_section(line, file, multiple):
     global linkerscript
     lines = line.lstrip().split("\"")
-    file += "@" + lines[1] if multiple else ""
+    if "@" not in lines[1] and not file == lines[1]:
+        file += ("@" + lines[1]) if multiple else ""
+    else:
+        file = lines[1]
+    
     linkerscript = linkerscript.replace("\"" + lines[1] + "\"", "\"" + file + "\"")
     if "ROMX" in lines[2]:
         return "SECTION \"%s\", ROMX" % file
@@ -32,7 +36,7 @@ def clean_section(line, file, multiple):
     else:
         raise
 
-TEMP_PATH = ""
+TEMP_PATH = "temp/"
 
 for root, dirs, files in os.walk(cwd):
     for file in files:
