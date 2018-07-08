@@ -19,6 +19,8 @@ Route2Gate1F_MapEvents::
 	object_event 8, 3, SPRITE_BUG_CATCHER_BOY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 0, 1, SPRITE_YOUNGSTER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+Route2Gate1F_Blocks:: INCBIN "maps/blk/Route2Gate1F.blk"
+
 SECTION "data/maps/attributes.asm@Route2Gate2F", ROMX
 	map_attributes Route2Gate2F, ROUTE_2_GATE_2F, 0
 
@@ -35,6 +37,8 @@ Route2Gate2F_MapEvents::
 	db 2 ; person events
 	object_event 2, 2, SPRITE_LASS, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 5, 4, SPRITE_TWIN, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+Route2Gate2F_Blocks:: INCBIN "maps/blk/Route2Gate2F.blk"
 
 SECTION "data/maps/attributes.asm@Route2House", ROMX
 	map_attributes Route2House, ROUTE_2_HOUSE, 0
@@ -57,6 +61,8 @@ Route2House_MapEvents::
 	db 1 ; person events
 	object_event 6, 6, SPRITE_SCIENTIST, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+Route2House_Blocks:: INCBIN "maps/blk/Route2House.blk"
+
 SECTION "data/maps/attributes.asm@OldCityMuseum", ROMX
 	map_attributes OldCityMuseum, OLD_CITY_MUSEUM, 0
 
@@ -76,6 +82,8 @@ OldCityMuseum_MapEvents::
 	db 2 ; person events
 	object_event 1, 5, SPRITE_FISHER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 13, 4, SPRITE_EGG, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+OldCityMuseum_Blocks:: INCBIN "maps/blk/OldCityMuseum.blk"
 
 SECTION "data/maps/attributes.asm@OldCityGym", ROMX
 	map_attributes OldCityGym, OLD_CITY_GYM, 0
@@ -99,6 +107,8 @@ OldCityGym_MapEvents::
 	object_event 1, 9, SPRITE_YOUNGSTER, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 1, 0, 0
 	object_event 7, 15, SPRITE_GYM_GUY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 1, 0, 0
 
+OldCityGym_Blocks:: INCBIN "maps/blk/OldCityGym.blk"
+
 SECTION "data/maps/attributes.asm@OldCityTower1F", ROMX
 	map_attributes OldCityTower1F, OLD_CITY_TOWER_1F, 0
 
@@ -121,6 +131,8 @@ OldCityTower1F_MapEvents::
 	object_event 5, 1, SPRITE_SAGE, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
 	object_event 6, 4, SPRITE_SAGE, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 4, 0, 0
 
+OldCityTower1F_Blocks:: INCBIN "maps/blk/OldCityTower1F.blk"
+
 SECTION "data/maps/attributes.asm@OldCityTower2F", ROMX
 	map_attributes OldCityTower2F, OLD_CITY_TOWER_2F, 0
 
@@ -140,6 +152,8 @@ OldCityTower2F_MapEvents::
 	object_event 5, 3, SPRITE_MEDIUM, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
 	object_event 2, 6, SPRITE_MEDIUM, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
 	object_event 5, 6, SPRITE_MEDIUM, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
+
+OldCityTower2F_Blocks:: INCBIN "maps/blk/OldCityTower2F.blk"
 
 SECTION "data/maps/attributes.asm@OldCityTower3F", ROMX
 	map_attributes OldCityTower3F, OLD_CITY_TOWER_3F, 0
@@ -161,6 +175,8 @@ OldCityTower3F_MapEvents::
 	object_event 4, 4, SPRITE_SAGE, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
 	object_event 5, 5, SPRITE_SAGE, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
 
+OldCityTower3F_Blocks:: INCBIN "maps/blk/OldCityTower3F.blk"
+
 SECTION "data/maps/attributes.asm@OldCityTower4F", ROMX
 	map_attributes OldCityTower4F, OLD_CITY_TOWER_4F, 0
 
@@ -181,6 +197,8 @@ OldCityTower4F_MapEvents::
 	object_event 6, 7, SPRITE_SAGE, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0
 	object_event 7, 1, SPRITE_SAGE, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 4, 0, 0
 
+OldCityTower4F_Blocks:: INCBIN "maps/blk/OldCityTower4F.blk"
+
 SECTION "data/maps/attributes.asm@OldCityTower5F", ROMX
 	map_attributes OldCityTower5F, OLD_CITY_TOWER_5F, 0
 
@@ -197,6 +215,8 @@ OldCityTower5F_MapEvents::
 
 	db 1 ; person events
 	object_event 2, 3, SPRITE_SAGE, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+OldCityTower5F_Blocks:: INCBIN "maps/blk/OldCityTower5F.blk"
 
 SECTION "data/maps/attributes.asm@OldCityBillsHouse", ROMX
 	map_attributes OldCityBillsHouse, OLD_CITY_BILLS_HOUSE, 0
@@ -219,6 +239,8 @@ OldCityBillsHouse_MapEvents::
 	db 1 ; person events
 	object_event 5, 4, SPRITE_MASAKI, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+OldCityBillsHouse_Blocks:: INCBIN "maps/blk/OldCityBillsHouse.blk"
+
 SECTION "data/maps/attributes.asm@OldCityMart", ROMX
 	map_attributes OldCityMart, OLD_CITY_MART, 0
 
@@ -236,6 +258,8 @@ OldCityMart_MapEvents::
 	object_event 1, 3, SPRITE_CLERK, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 5, SPRITE_YOUNGSTER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_24, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+OldCityMart_Blocks:: INCBIN "maps/blk/OldCityMart.blk"
 
 SECTION "data/maps/attributes.asm@OldCityHouse", ROMX
 	map_attributes OldCityHouse, OLD_CITY_HOUSE, 0
@@ -258,6 +282,8 @@ OldCityHouse_MapEvents::
 	object_event 0, 6, SPRITE_LASS, FACE_RIGHT, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 5, 1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+OldCityHouse_Blocks:: INCBIN "maps/blk/OldCityHouse.blk"
+
 SECTION "data/maps/attributes.asm@OldCityPokecenter1F", ROMX
 	map_attributes OldCityPokecenter1F, OLD_CITY_POKECENTER_1F, 0
 
@@ -277,6 +303,8 @@ OldCityPokecenter1F_MapEvents::
 	object_event 14, 6, SPRITE_GENTLEMAN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 2, 5, SPRITE_YOUNGSTER, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_35, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+OldCityPokecenter1F_Blocks:: INCBIN "maps/blk/OldCityPokecenter1F.blk"
 
 SECTION "data/maps/attributes.asm@OldCityPokecenter2F", ROMX
 	map_attributes OldCityPokecenter2F, OLD_CITY_POKECENTER_2F, 0
@@ -299,6 +327,8 @@ OldCityPokecenter2F_MapEvents::
 	object_event 2, 3, SPRITE_GRAMPS, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 13, 3, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+OldCityPokecenter2F_Blocks:: INCBIN "maps/blk/OldCityPokecenter2F.blk"
+
 SECTION "data/maps/attributes.asm@OldCityPokecenterTrade", ROMX
 	map_attributes OldCityPokecenterTrade, OLD_CITY_POKECENTER_TRADE, 0
 
@@ -313,6 +343,8 @@ OldCityPokecenterTrade_MapEvents::
 
 	db 1 ; person events
 	object_event 3, 3, SPRITE_GOLD, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+OldCityPokecenterTrade_Blocks:: INCBIN "maps/blk/OldCityPokecenterTrade.blk"
 
 SECTION "data/maps/attributes.asm@OldCityPokecenterBattle", ROMX
 	map_attributes OldCityPokecenterBattle, OLD_CITY_POKECENTER_BATTLE, 0
@@ -329,6 +361,8 @@ OldCityPokecenterBattle_MapEvents::
 	db 1 ; person events
 	object_event 3, 3, SPRITE_GOLD, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+OldCityPokecenterBattle_Blocks:: INCBIN "maps/blk/OldCityPokecenterBattle.blk"
+
 SECTION "data/maps/attributes.asm@OldCityPokecenterTimeMachine", ROMX
 	map_attributes OldCityPokecenterTimeMachine, OLD_CITY_POKECENTER_TIME_MACHINE, 0
 
@@ -344,6 +378,8 @@ OldCityPokecenterTimeMachine_MapEvents::
 
 	db 1 ; person events
 	object_event 13, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+OldCityPokecenterTimeMachine_Blocks:: INCBIN "maps/blk/OldCityPokecenterTimeMachine.blk"
 
 SECTION "data/maps/attributes.asm@OldCityKurtsHouse", ROMX
 	map_attributes OldCityKurtsHouse, OLD_CITY_KURTS_HOUSE, 0
@@ -364,6 +400,8 @@ OldCityKurtsHouse_MapEvents::
 
 	db 1 ; person events
 	object_event 2, 2, SPRITE_GANTETSU, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+OldCityKurtsHouse_Blocks:: INCBIN "maps/blk/OldCityKurtsHouse.blk"
 
 SECTION "data/maps/attributes.asm@OldCitySchool", ROMX
 	map_attributes OldCitySchool, OLD_CITY_SCHOOL, 0
@@ -389,6 +427,8 @@ OldCitySchool_MapEvents::
 	object_event 6, 6, SPRITE_TEACHER, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 2, 11, SPRITE_YOUNGSTER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+OldCitySchool_Blocks:: INCBIN "maps/blk/OldCitySchool.blk"
+
 SECTION "data/maps/attributes.asm@Route1Gate1F", ROMX
 	map_attributes Route1Gate1F, ROUTE_1_GATE_1F, 0
 
@@ -408,6 +448,8 @@ Route1Gate1F_MapEvents::
 	object_event 6, 1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 6, SPRITE_COOLTRAINER_F, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+Route1Gate1F_Blocks:: INCBIN "maps/blk/Route1Gate1F.blk"
+
 SECTION "data/maps/attributes.asm@Route1Gate2F", ROMX
 	map_attributes Route1Gate2F, ROUTE_1_GATE_2F, 0
 
@@ -424,6 +466,8 @@ Route1Gate2F_MapEvents::
 	db 2 ; person events
 	object_event 3, 3, SPRITE_LASS, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 4, SPRITE_TWIN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+Route1Gate2F_Blocks:: INCBIN "maps/blk/Route1Gate2F.blk"
 
 SECTION "data/maps/attributes.asm@WestMart1F", ROMX
 	map_attributes WestMart1F, WEST_MART_1F, 0
@@ -443,6 +487,8 @@ WestMart1F_MapEvents::
 
 	db 1 ; person events
 	object_event 7, 1, SPRITE_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+WestMart1F_Blocks:: INCBIN "maps/blk/WestMart1F.blk"
 
 SECTION "data/maps/attributes.asm@WestMart2F", ROMX
 	map_attributes WestMart2F, WEST_MART_2F, 0
@@ -479,6 +525,8 @@ WestMart2F_MapEvents::
 	object_event 1, 5, SPRITE_BURGLAR, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 2, SPRITE_ROCKET_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+WestMart2F_Blocks:: INCBIN "maps/blk/WestMart2F.blk"
+
 SECTION "data/maps/attributes.asm@WestMart3F", ROMX
 	map_attributes WestMart3F, WEST_MART_3F, 0
 
@@ -510,6 +558,8 @@ WestMart3F_MapEvents::
 	object_event 6, 1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 13, 4, SPRITE_GENTLEMAN, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 3, 5, SPRITE_SUPER_NERD, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+WestMart3F_Blocks:: INCBIN "maps/blk/WestMart3F.blk"
 
 SECTION "data/maps/attributes.asm@WestMart4F", ROMX
 	map_attributes WestMart4F, WEST_MART_4F, 0
@@ -543,6 +593,8 @@ WestMart4F_MapEvents::
 	object_event 8, 6, SPRITE_24, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 7, 2, SPRITE_ROCKER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+WestMart4F_Blocks:: INCBIN "maps/blk/WestMart4F.blk"
+
 SECTION "data/maps/attributes.asm@WestMart5F", ROMX
 	map_attributes WestMart5F, WEST_MART_5F, 0
 
@@ -562,6 +614,8 @@ WestMart5F_MapEvents::
 	object_event 8, 5, SPRITE_GYM_GUY, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 13, 5, SPRITE_YOUNGSTER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 13, 4, SPRITE_NYOROBON, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+WestMart5F_Blocks:: INCBIN "maps/blk/WestMart5F.blk"
 
 SECTION "data/maps/attributes.asm@WestMart6F", ROMX
 	map_attributes WestMart6F, WEST_MART_6F, 0
@@ -584,6 +638,8 @@ WestMart6F_MapEvents::
 	object_event 6, 4, SPRITE_SIDON, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 3, 6, SPRITE_POPPO, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+WestMart6F_Blocks:: INCBIN "maps/blk/WestMart6F.blk"
+
 SECTION "data/maps/attributes.asm@WestMartElevator", ROMX
 	map_attributes WestMartElevator, WEST_MART_ELEVATOR, 0
 
@@ -597,6 +653,8 @@ WestMartElevator_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+WestMartElevator_Blocks:: INCBIN "maps/blk/WestMartElevator.blk"
 
 SECTION "data/maps/attributes.asm@WestRadioTower1F", ROMX
 	map_attributes WestRadioTower1F, WEST_RADIO_TOWER_1F, 0
@@ -617,6 +675,8 @@ WestRadioTower1F_MapEvents::
 	object_event 6, 6, SPRITE_RECEPTIONIST, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 2, 3, SPRITE_SUPER_NERD, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 7, 4, SPRITE_ROCKER, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+WestRadioTower1F_Blocks:: INCBIN "maps/blk/WestRadioTower1F.blk"
 
 SECTION "data/maps/attributes.asm@WestRadioTower2F", ROMX
 	map_attributes WestRadioTower2F, WEST_RADIO_TOWER_2F, 0
@@ -640,6 +700,8 @@ WestRadioTower2F_MapEvents::
 	object_event 6, 6, SPRITE_36, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 2, 7, SPRITE_36, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+WestRadioTower2F_Blocks:: INCBIN "maps/blk/WestRadioTower2F.blk"
+
 SECTION "data/maps/attributes.asm@WestRadioTower3F", ROMX
 	map_attributes WestRadioTower3F, WEST_RADIO_TOWER_3F, 0
 
@@ -662,6 +724,8 @@ WestRadioTower3F_MapEvents::
 	object_event 2, 3, SPRITE_36, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 7, SPRITE_36, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 7, 6, SPRITE_36, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+WestRadioTower3F_Blocks:: INCBIN "maps/blk/WestRadioTower3F.blk"
 
 SECTION "data/maps/attributes.asm@WestRadioTower4F", ROMX
 	map_attributes WestRadioTower4F, WEST_RADIO_TOWER_4F, 0
@@ -687,6 +751,8 @@ WestRadioTower4F_MapEvents::
 	object_event 5, 1, SPRITE_36, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 2, SPRITE_36, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+WestRadioTower4F_Blocks:: INCBIN "maps/blk/WestRadioTower4F.blk"
+
 SECTION "data/maps/attributes.asm@WestRadioTower5F", ROMX
 	map_attributes WestRadioTower5F, WEST_RADIO_TOWER_5F, 0
 
@@ -710,6 +776,8 @@ WestRadioTower5F_MapEvents::
 	object_event 4, 2, SPRITE_36, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 2, 4, SPRITE_36, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 7, SPRITE_TEACHER, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+WestRadioTower5F_Blocks:: INCBIN "maps/blk/WestRadioTower5F.blk"
 
 SECTION "data/maps/attributes.asm@WestRocketRaidedHouse", ROMX
 	map_attributes WestRocketRaidedHouse, WEST_ROCKET_RAIDED_HOUSE, 0
@@ -737,6 +805,8 @@ WestRocketRaidedHouse_MapEvents::
 	object_event 1, 3, SPRITE_POKEFAN_F, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 7, 2, SPRITE_POKE_BALL, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+WestRocketRaidedHouse_Blocks:: INCBIN "maps/blk/WestRocketRaidedHouse.blk"
+
 SECTION "data/maps/attributes.asm@WestPokecenter1F", ROMX
 	map_attributes WestPokecenter1F, WEST_POKECENTER_1F, 0
 
@@ -757,6 +827,8 @@ WestPokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_LASS, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_ROCKET_M, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+WestPokecenter1F_Blocks:: INCBIN "maps/blk/WestPokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@WestPokecenter2F", ROMX
 	map_attributes WestPokecenter2F, WEST_POKECENTER_2F, 0
 
@@ -773,6 +845,8 @@ WestPokecenter2F_MapEvents::
 	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 13, 3, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+WestPokecenter2F_Blocks:: INCBIN "maps/blk/WestPokecenter2F.blk"
 
 SECTION "data/maps/attributes.asm@WestGym", ROMX
 	map_attributes WestGym, WEST_GYM, 0
@@ -796,6 +870,8 @@ WestGym_MapEvents::
 	object_event 4, 6, SPRITE_TWIN, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
 	object_event 7, 15, SPRITE_GYM_GUY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+WestGym_Blocks:: INCBIN "maps/blk/WestGym.blk"
+
 SECTION "data/maps/attributes.asm@WestHouse1", ROMX
 	map_attributes WestHouse1, WEST_HOUSE_1, 0
 
@@ -816,6 +892,8 @@ WestHouse1_MapEvents::
 	object_event 7, 3, SPRITE_GRAMPS, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 6, SPRITE_YOUNGSTER, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 4, SPRITE_POPPO, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+WestHouse1_Blocks:: INCBIN "maps/blk/WestHouse1.blk"
 
 SECTION "data/maps/attributes.asm@WestHouse2", ROMX
 	map_attributes WestHouse2, WEST_HOUSE_2, 0
@@ -838,6 +916,8 @@ WestHouse2_MapEvents::
 	object_event 8, 6, SPRITE_YOUNGSTER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 5, SPRITE_BUG_CATCHER_BOY, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
+WestHouse2_Blocks:: INCBIN "maps/blk/WestHouse2.blk"
+
 SECTION "data/maps/attributes.asm@HaitekuWestRouteGate", ROMX
 	map_attributes HaitekuWestRouteGate, HAITEKU_WEST_ROUTE_GATE, 0
 
@@ -853,6 +933,8 @@ HaitekuWestRouteGate_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+HaitekuWestRouteGate_Blocks:: INCBIN "maps/blk/HaitekuWestRouteGate.blk"
 
 SECTION "data/maps/attributes.asm@HaitekuPokecenter1F", ROMX
 	map_attributes HaitekuPokecenter1F, HAITEKU_POKECENTER_1F, 0
@@ -873,6 +955,8 @@ HaitekuPokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_FISHER, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_SAILOR, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+HaitekuPokecenter1F_Blocks:: INCBIN "maps/blk/HaitekuPokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@HaitekuPokecenter2F", ROMX
 	map_attributes HaitekuPokecenter2F, HAITEKU_POKECENTER_2F, 0
 
@@ -888,6 +972,8 @@ HaitekuPokecenter2F_MapEvents::
 	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+HaitekuPokecenter2F_Blocks:: INCBIN "maps/blk/HaitekuPokecenter2F.blk"
 
 SECTION "data/maps/attributes.asm@HaitekuLeague1F", ROMX
 	map_attributes HaitekuLeague1F, HAITEKU_LEAGUE_1F, 0
@@ -909,6 +995,8 @@ HaitekuLeague1F_MapEvents::
 	object_event 3, 1, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 6, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
+HaitekuLeague1F_Blocks:: INCBIN "maps/blk/HaitekuLeague1F.blk"
+
 SECTION "data/maps/attributes.asm@HaitekuLeague2F", ROMX
 	map_attributes HaitekuLeague2F, HAITEKU_LEAGUE_2F, 0
 
@@ -927,6 +1015,8 @@ HaitekuLeague2F_MapEvents::
 	object_event 2, 10, SPRITE_24, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 7, 7, SPRITE_COOLTRAINER_F, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+HaitekuLeague2F_Blocks:: INCBIN "maps/blk/HaitekuLeague2F.blk"
+
 SECTION "data/maps/attributes.asm@HaitekuMart", ROMX
 	map_attributes HaitekuMart, HAITEKU_MART, 0
 
@@ -944,6 +1034,8 @@ HaitekuMart_MapEvents::
 	object_event 10, 5, SPRITE_POKEFAN_M, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_SAILOR, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+HaitekuMart_Blocks:: INCBIN "maps/blk/HaitekuMart.blk"
+
 SECTION "data/maps/attributes.asm@HaitekuHouse1", ROMX
 	map_attributes HaitekuHouse1, HAITEKU_HOUSE_1, 0
 
@@ -958,6 +1050,8 @@ HaitekuHouse1_MapEvents::
 
 	db 1 ; person events
 	object_event 7, 3, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+HaitekuHouse1_Blocks:: INCBIN "maps/blk/HaitekuHouse1.blk"
 
 SECTION "data/maps/attributes.asm@HaitekuHouse2", ROMX
 	map_attributes HaitekuHouse2, HAITEKU_HOUSE_2, 0
@@ -974,6 +1068,8 @@ HaitekuHouse2_MapEvents::
 	db 1 ; person events
 	object_event 7, 3, SPRITE_SAILOR, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+HaitekuHouse2_Blocks:: INCBIN "maps/blk/HaitekuHouse2.blk"
+
 SECTION "data/maps/attributes.asm@HaitekuImposterOakHouse", ROMX
 	map_attributes HaitekuImposterOakHouse, HAITEKU_IMPOSTER_OAK_HOUSE, 0
 
@@ -989,6 +1085,8 @@ HaitekuImposterOakHouse_MapEvents::
 	db 2 ; person events
 	object_event 7, 3, SPRITE_EVIL_OKIDO, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 2, SPRITE_POKEFAN_F, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+HaitekuImposterOakHouse_Blocks:: INCBIN "maps/blk/HaitekuImposterOakHouse.blk"
 
 SECTION "data/maps/attributes.asm@HaitekuAquarium1F", ROMX
 	map_attributes HaitekuAquarium1F, HAITEKU_AQUARIUM_1F, 0
@@ -1008,6 +1106,8 @@ HaitekuAquarium1F_MapEvents::
 	object_event 12, 2, SPRITE_YOUNGSTER, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 5, SPRITE_LASS, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
+HaitekuAquarium1F_Blocks:: INCBIN "maps/blk/HaitekuAquarium1F.blk"
+
 SECTION "data/maps/attributes.asm@HaitekuAquarium2F", ROMX
 	map_attributes HaitekuAquarium2F, HAITEKU_AQUARIUM_2F, 0
 
@@ -1022,6 +1122,8 @@ HaitekuAquarium2F_MapEvents::
 	db 2 ; person events
 	object_event 7, 6, SPRITE_POKEFAN_M, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 4, SPRITE_TEACHER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+HaitekuAquarium2F_Blocks:: INCBIN "maps/blk/HaitekuAquarium2F.blk"
 
 SECTION "data/maps/attributes.asm@FontoRouteGate1", ROMX
 	map_attributes FontoRouteGate1, FONTO_ROUTE_GATE_1, 0
@@ -1039,6 +1141,8 @@ FontoRouteGate1_MapEvents::
 
 	db 0 ; person events
 
+FontoRouteGate1_Blocks:: INCBIN "maps/blk/FontoRouteGate1.blk"
+
 SECTION "data/maps/attributes.asm@FontoRouteGate2", ROMX
 	map_attributes FontoRouteGate2, FONTO_ROUTE_GATE_2, 0
 
@@ -1055,6 +1159,8 @@ FontoRouteGate2_MapEvents::
 
 	db 0 ; person events
 
+FontoRouteGate2_Blocks:: INCBIN "maps/blk/FontoRouteGate2.blk"
+
 SECTION "data/maps/attributes.asm@FontoRouteGate3", ROMX
 	map_attributes FontoRouteGate3, FONTO_ROUTE_GATE_3, 0
 
@@ -1070,6 +1176,8 @@ FontoRouteGate3_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+FontoRouteGate3_Blocks:: INCBIN "maps/blk/FontoRouteGate3.blk"
 
 SECTION "data/maps/attributes.asm@FontoRocketHouse", ROMX
 	map_attributes FontoRocketHouse, FONTO_ROCKET_HOUSE, 0
@@ -1089,6 +1197,8 @@ FontoRocketHouse_MapEvents::
 	object_event 14, 2, SPRITE_36, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 12, 2, SPRITE_POPPO, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+FontoRocketHouse_Blocks:: INCBIN "maps/blk/FontoRocketHouse.blk"
+
 SECTION "data/maps/attributes.asm@FontoMart", ROMX
 	map_attributes FontoMart, FONTO_MART, 0
 
@@ -1106,6 +1216,8 @@ FontoMart_MapEvents::
 	object_event 10, 5, SPRITE_GIRL, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_POKEFAN_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+FontoMart_Blocks:: INCBIN "maps/blk/FontoMart.blk"
+
 SECTION "data/maps/attributes.asm@FontoHouse", ROMX
 	map_attributes FontoHouse, FONTO_HOUSE, 0
 
@@ -1120,6 +1232,8 @@ FontoHouse_MapEvents::
 
 	db 1 ; person events
 	object_event 8, 4, SPRITE_GENTLEMAN, FACE_RIGHT, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
+
+FontoHouse_Blocks:: INCBIN "maps/blk/FontoHouse.blk"
 
 SECTION "data/maps/attributes.asm@FontoPokecenter1F", ROMX
 	map_attributes FontoPokecenter1F, FONTO_POKECENTER_1F, 0
@@ -1140,6 +1254,8 @@ FontoPokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_24, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+FontoPokecenter1F_Blocks:: INCBIN "maps/blk/FontoPokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@FontoPokecenter2F", ROMX
 	map_attributes FontoPokecenter2F, FONTO_POKECENTER_2F, 0
 
@@ -1155,6 +1271,8 @@ FontoPokecenter2F_MapEvents::
 	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+FontoPokecenter2F_Blocks:: INCBIN "maps/blk/FontoPokecenter2F.blk"
 
 SECTION "data/maps/attributes.asm@FontoLab", ROMX
 	map_attributes FontoLab, FONTO_LAB, 0
@@ -1172,6 +1290,8 @@ FontoLab_MapEvents::
 	object_event 2, 2, SPRITE_SCIENTIST, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 8, 5, SPRITE_SCIENTIST, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+FontoLab_Blocks:: INCBIN "maps/blk/FontoLab.blk"
+
 SECTION "data/maps/attributes.asm@BaadonMart", ROMX
 	map_attributes BaadonMart, BAADON_MART, 0
 
@@ -1188,6 +1308,8 @@ BaadonMart_MapEvents::
 	object_event 1, 3, SPRITE_CLERK, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 5, SPRITE_YOUNGSTER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_TEACHER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+BaadonMart_Blocks:: INCBIN "maps/blk/BaadonMart.blk"
 
 SECTION "data/maps/attributes.asm@BaadonPokecenter1F", ROMX
 	map_attributes BaadonPokecenter1F, BAADON_POKECENTER_1F, 0
@@ -1207,6 +1329,8 @@ BaadonPokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_GENTLEMAN, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_POKEFAN_M, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+BaadonPokecenter1F_Blocks:: INCBIN "maps/blk/BaadonPokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@BaadonPokecenter2F", ROMX
 	map_attributes BaadonPokecenter2F, BAADON_POKECENTER_2F, 0
 
@@ -1223,6 +1347,8 @@ BaadonPokecenter2F_MapEvents::
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+BaadonPokecenter2F_Blocks:: INCBIN "maps/blk/BaadonPokecenter2F.blk"
+
 SECTION "data/maps/attributes.asm@BaadonHouse1", ROMX
 	map_attributes BaadonHouse1, BAADON_HOUSE_1, 0
 
@@ -1238,6 +1364,8 @@ BaadonHouse1_MapEvents::
 	db 1 ; person events
 	object_event 2, 3, SPRITE_ELDER, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+BaadonHouse1_Blocks:: INCBIN "maps/blk/BaadonHouse1.blk"
+
 SECTION "data/maps/attributes.asm@BaadonWallpaperHouse", ROMX
 	map_attributes BaadonWallpaperHouse, BAADON_WALLPAPER_HOUSE, 0
 
@@ -1251,6 +1379,8 @@ BaadonWallpaperHouse_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+BaadonWallpaperHouse_Blocks:: INCBIN "maps/blk/BaadonWallpaperHouse.blk"
 
 SECTION "data/maps/attributes.asm@BaadonHouse2", ROMX
 	map_attributes BaadonHouse2, BAADON_HOUSE_2, 0
@@ -1266,6 +1396,8 @@ BaadonHouse2_MapEvents::
 
 	db 1 ; person events
 	object_event 7, 5, SPRITE_GRANNY, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+BaadonHouse2_Blocks:: INCBIN "maps/blk/BaadonHouse2.blk"
 
 SECTION "data/maps/attributes.asm@BaadonLeague1F", ROMX
 	map_attributes BaadonLeague1F, BAADON_LEAGUE_1F, 0
@@ -1287,6 +1419,8 @@ BaadonLeague1F_MapEvents::
 	object_event 3, 1, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 6, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
+BaadonLeague1F_Blocks:: INCBIN "maps/blk/BaadonLeague1F.blk"
+
 SECTION "data/maps/attributes.asm@BaadonLeague2F", ROMX
 	map_attributes BaadonLeague2F, BAADON_LEAGUE_2F, 0
 
@@ -1305,6 +1439,8 @@ BaadonLeague2F_MapEvents::
 	object_event 9, 9, SPRITE_24, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 2, 11, SPRITE_COOLTRAINER_F, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+BaadonLeague2F_Blocks:: INCBIN "maps/blk/BaadonLeague2F.blk"
+
 SECTION "data/maps/attributes.asm@BaadonRouteGateWest", ROMX
 	map_attributes BaadonRouteGateWest, BAADON_ROUTE_GATE_WEST, 0
 
@@ -1321,6 +1457,8 @@ BaadonRouteGateWest_MapEvents::
 
 	db 0 ; person events
 
+BaadonRouteGateWest_Blocks:: INCBIN "maps/blk/BaadonRouteGateWest.blk"
+
 SECTION "data/maps/attributes.asm@BaadonRouteGateNewtype", ROMX
 	map_attributes BaadonRouteGateNewtype, BAADON_ROUTE_GATE_NEWTYPE, 0
 
@@ -1336,6 +1474,8 @@ BaadonRouteGateNewtype_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+BaadonRouteGateNewtype_Blocks:: INCBIN "maps/blk/BaadonRouteGateNewtype.blk"
 
 SECTION "data/maps/attributes.asm@NewtypePokecenter1F", ROMX
 	map_attributes NewtypePokecenter1F, NEWTYPE_POKECENTER_1F, 0
@@ -1356,6 +1496,8 @@ NewtypePokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_LASS, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+NewtypePokecenter1F_Blocks:: INCBIN "maps/blk/NewtypePokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@NewtypePokecenter2F", ROMX
 	map_attributes NewtypePokecenter2F, NEWTYPE_POKECENTER_2F, 0
 
@@ -1371,6 +1513,8 @@ NewtypePokecenter2F_MapEvents::
 	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+NewtypePokecenter2F_Blocks:: INCBIN "maps/blk/NewtypePokecenter2F.blk"
 
 SECTION "data/maps/attributes.asm@NewtypeLeague1F", ROMX
 	map_attributes NewtypeLeague1F, NEWTYPE_LEAGUE_1F, 0
@@ -1392,6 +1536,8 @@ NewtypeLeague1F_MapEvents::
 	object_event 3, 1, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 6, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
+NewtypeLeague1F_Blocks:: INCBIN "maps/blk/NewtypeLeague1F.blk"
+
 SECTION "data/maps/attributes.asm@NewtypeLeague2F", ROMX
 	map_attributes NewtypeLeague2F, NEWTYPE_LEAGUE_2F, 0
 
@@ -1410,6 +1556,8 @@ NewtypeLeague2F_MapEvents::
 	object_event 0, 11, SPRITE_24, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 11, SPRITE_COOLTRAINER_F, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+NewtypeLeague2F_Blocks:: INCBIN "maps/blk/NewtypeLeague2F.blk"
+
 SECTION "data/maps/attributes.asm@NewtypeSailorHouse", ROMX
 	map_attributes NewtypeSailorHouse, NEWTYPE_SAILOR_HOUSE, 0
 
@@ -1424,6 +1572,8 @@ NewtypeSailorHouse_MapEvents::
 
 	db 1 ; person events
 	object_event 6, 3, SPRITE_47, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+NewtypeSailorHouse_Blocks:: INCBIN "maps/blk/NewtypeSailorHouse.blk"
 
 SECTION "data/maps/attributes.asm@NewtypeMart", ROMX
 	map_attributes NewtypeMart, NEWTYPE_MART, 0
@@ -1441,6 +1591,8 @@ NewtypeMart_MapEvents::
 	object_event 1, 3, SPRITE_CLERK, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 5, SPRITE_POKEFAN_F, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_POKEFAN_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+NewtypeMart_Blocks:: INCBIN "maps/blk/NewtypeMart.blk"
 
 SECTION "data/maps/attributes.asm@NewtypeDojo", ROMX
 	map_attributes NewtypeDojo, NEWTYPE_DOJO, 0
@@ -1461,6 +1613,8 @@ NewtypeDojo_MapEvents::
 	object_event 3, 10, SPRITE_BLACKBELT, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 10, SPRITE_BLACKBELT, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+NewtypeDojo_Blocks:: INCBIN "maps/blk/NewtypeDojo.blk"
+
 SECTION "data/maps/attributes.asm@NewtypeHouse1", ROMX
 	map_attributes NewtypeHouse1, NEWTYPE_HOUSE_1, 0
 
@@ -1475,6 +1629,8 @@ NewtypeHouse1_MapEvents::
 
 	db 1 ; person events
 	object_event 7, 3, SPRITE_BUG_CATCHER_BOY, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+NewtypeHouse1_Blocks:: INCBIN "maps/blk/NewtypeHouse1.blk"
 
 SECTION "data/maps/attributes.asm@NewtypeDiner", ROMX
 	map_attributes NewtypeDiner, NEWTYPE_DINER, 0
@@ -1494,6 +1650,8 @@ NewtypeDiner_MapEvents::
 	object_event 5, 3, SPRITE_SAILOR, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 5, 1, SPRITE_TEACHER, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+NewtypeDiner_Blocks:: INCBIN "maps/blk/NewtypeDiner.blk"
+
 SECTION "data/maps/attributes.asm@NewtypeHouse2", ROMX
 	map_attributes NewtypeHouse2, NEWTYPE_HOUSE_2, 0
 
@@ -1509,6 +1667,8 @@ NewtypeHouse2_MapEvents::
 	db 1 ; person events
 	object_event 4, 3, SPRITE_GENTLEMAN, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+NewtypeHouse2_Blocks:: INCBIN "maps/blk/NewtypeHouse2.blk"
+
 SECTION "data/maps/attributes.asm@NewtypeHouse3", ROMX
 	map_attributes NewtypeHouse3, NEWTYPE_HOUSE_3, 0
 
@@ -1523,6 +1683,8 @@ NewtypeHouse3_MapEvents::
 
 	db 1 ; person events
 	object_event 4, 3, SPRITE_GRAMPS, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+NewtypeHouse3_Blocks:: INCBIN "maps/blk/NewtypeHouse3.blk"
 
 SECTION "data/maps/attributes.asm@Route15Pokecenter1F", ROMX
 	map_attributes Route15Pokecenter1F, ROUTE_15_POKECENTER_1F, 0
@@ -1543,6 +1705,8 @@ Route15Pokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_LASS, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+Route15Pokecenter1F_Blocks:: INCBIN "maps/blk/Route15Pokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@Route15Pokecenter2F", ROMX
 	map_attributes Route15Pokecenter2F, ROUTE_15_POKECENTER_2F, 0
 
@@ -1555,6 +1719,8 @@ Route15Pokecenter2F_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+Route15Pokecenter2F_Blocks:: INCBIN "maps/blk/Route15Pokecenter2F.blk"
 
 SECTION "data/maps/attributes.asm@NewtypeRouteGate", ROMX
 	map_attributes NewtypeRouteGate, NEWTYPE_ROUTE_GATE, 0
@@ -1571,6 +1737,8 @@ NewtypeRouteGate_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+NewtypeRouteGate_Blocks:: INCBIN "maps/blk/NewtypeRouteGate.blk"
 
 SECTION "data/maps/attributes.asm@Route18Pokecenter1F", ROMX
 	map_attributes Route18Pokecenter1F, ROUTE_18_POKECENTER_1F, 0
@@ -1591,6 +1759,8 @@ Route18Pokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_LASS, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+Route18Pokecenter1F_Blocks:: INCBIN "maps/blk/Route18Pokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@Route18Pokecenter2F", ROMX
 	map_attributes Route18Pokecenter2F, ROUTE_18_POKECENTER_2F, 0
 
@@ -1603,6 +1773,8 @@ Route18Pokecenter2F_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+Route18Pokecenter2F_Blocks:: INCBIN "maps/blk/Route18Pokecenter2F.blk"
 
 SECTION "data/maps/attributes.asm@SugarRouteGate", ROMX
 	map_attributes SugarRouteGate, SUGAR_ROUTE_GATE, 0
@@ -1619,6 +1791,8 @@ SugarRouteGate_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+SugarRouteGate_Blocks:: INCBIN "maps/blk/SugarRouteGate.blk"
 
 SECTION "data/maps/attributes.asm@SugarHouse", ROMX
 	map_attributes SugarHouse, SUGAR_HOUSE, 0
@@ -1637,6 +1811,8 @@ SugarHouse_MapEvents::
 	object_event 4, 5, SPRITE_TWIN, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 3, 1, SPRITE_GRAMPS, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+SugarHouse_Blocks:: INCBIN "maps/blk/SugarHouse.blk"
+
 SECTION "data/maps/attributes.asm@SugarHouse2", ROMX
 	map_attributes SugarHouse2, SUGAR_HOUSE_2, 0
 
@@ -1651,6 +1827,8 @@ SugarHouse2_MapEvents::
 
 	db 1 ; person events
 	object_event 2, 3, SPRITE_FISHING_GURU, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+SugarHouse2_Blocks:: INCBIN "maps/blk/SugarHouse2.blk"
 
 SECTION "data/maps/attributes.asm@SugarMart", ROMX
 	map_attributes SugarMart, SUGAR_MART, 0
@@ -1668,6 +1846,8 @@ SugarMart_MapEvents::
 	object_event 1, 3, SPRITE_CLERK, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 5, SPRITE_GIRL, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_POKEFAN_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+SugarMart_Blocks:: INCBIN "maps/blk/SugarMart.blk"
 
 SECTION "data/maps/attributes.asm@SugarPokecenter1F", ROMX
 	map_attributes SugarPokecenter1F, SUGAR_POKECENTER_1F, 0
@@ -1688,6 +1868,8 @@ SugarPokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_24, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+SugarPokecenter1F_Blocks:: INCBIN "maps/blk/SugarPokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@SugarPokecenter2F", ROMX
 	map_attributes SugarPokecenter2F, SUGAR_POKECENTER_2F, 0
 
@@ -1704,6 +1886,8 @@ SugarPokecenter2F_MapEvents::
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+SugarPokecenter2F_Blocks:: INCBIN "maps/blk/SugarPokecenter2F.blk"
+
 SECTION "data/maps/attributes.asm@BullForestRoute1House", ROMX
 	map_attributes BullForestRoute1House, BULL_FOREST_ROUTE_1_HOUSE, 0
 
@@ -1718,6 +1902,8 @@ BullForestRoute1House_MapEvents::
 
 	db 1 ; person events
 	object_event 1, 5, SPRITE_COOLTRAINER_F, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+BullForestRoute1House_Blocks:: INCBIN "maps/blk/BullForestRoute1House.blk"
 
 SECTION "data/maps/attributes.asm@BullForestRouteGateStand", ROMX
 	map_attributes BullForestRouteGateStand, BULL_FOREST_ROUTE_GATE_STAND, 0
@@ -1734,6 +1920,8 @@ BullForestRouteGateStand_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+BullForestRouteGateStand_Blocks:: INCBIN "maps/blk/BullForestRouteGateStand.blk"
 
 SECTION "data/maps/attributes.asm@BullMart", ROMX
 	map_attributes BullMart, BULL_MART, 0
@@ -1752,6 +1940,8 @@ BullMart_MapEvents::
 	object_event 10, 5, SPRITE_FISHER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_YOUNGSTER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+BullMart_Blocks:: INCBIN "maps/blk/BullMart.blk"
+
 SECTION "data/maps/attributes.asm@BullHouse1", ROMX
 	map_attributes BullHouse1, BULL_HOUSE_1, 0
 
@@ -1766,6 +1956,8 @@ BullHouse1_MapEvents::
 
 	db 1 ; person events
 	object_event 2, 3, SPRITE_KIKUKO, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+BullHouse1_Blocks:: INCBIN "maps/blk/BullHouse1.blk"
 
 SECTION "data/maps/attributes.asm@BullHouse2", ROMX
 	map_attributes BullHouse2, BULL_HOUSE_2, 0
@@ -1782,6 +1974,8 @@ BullHouse2_MapEvents::
 	db 1 ; person events
 	object_event 8, 4, SPRITE_GRANNY, FACE_RIGHT, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
+BullHouse2_Blocks:: INCBIN "maps/blk/BullHouse2.blk"
+
 SECTION "data/maps/attributes.asm@BullHouse3", ROMX
 	map_attributes BullHouse3, BULL_HOUSE_3, 0
 
@@ -1796,6 +1990,8 @@ BullHouse3_MapEvents::
 
 	db 1 ; person events
 	object_event 4, 3, SPRITE_GRAMPS, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+BullHouse3_Blocks:: INCBIN "maps/blk/BullHouse3.blk"
 
 SECTION "data/maps/attributes.asm@BullPokecenter1F", ROMX
 	map_attributes BullPokecenter1F, BULL_POKECENTER_1F, 0
@@ -1816,6 +2012,8 @@ BullPokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_24, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+BullPokecenter1F_Blocks:: INCBIN "maps/blk/BullPokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@BullPokecenter2F", ROMX
 	map_attributes BullPokecenter2F, BULL_POKECENTER_2F, 0
 
@@ -1831,6 +2029,8 @@ BullPokecenter2F_MapEvents::
 	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+BullPokecenter2F_Blocks:: INCBIN "maps/blk/BullPokecenter2F.blk"
 
 SECTION "data/maps/attributes.asm@BullLeague1F", ROMX
 	map_attributes BullLeague1F, BULL_LEAGUE_1F, 0
@@ -1852,6 +2052,8 @@ BullLeague1F_MapEvents::
 	object_event 3, 1, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 6, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
+BullLeague1F_Blocks:: INCBIN "maps/blk/BullLeague1F.blk"
+
 SECTION "data/maps/attributes.asm@BullLeague2F", ROMX
 	map_attributes BullLeague2F, BULL_LEAGUE_2F, 0
 
@@ -1870,6 +2072,8 @@ BullLeague2F_MapEvents::
 	object_event 2, 11, SPRITE_COOLTRAINER_F, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 7, 11, SPRITE_COOLTRAINER_F, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+BullLeague2F_Blocks:: INCBIN "maps/blk/BullLeague2F.blk"
+
 SECTION "data/maps/attributes.asm@BullHouse4", ROMX
 	map_attributes BullHouse4, BULL_HOUSE_4, 0
 
@@ -1883,6 +2087,8 @@ BullHouse4_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+BullHouse4_Blocks:: INCBIN "maps/blk/BullHouse4.blk"
 
 SECTION "data/maps/attributes.asm@StandRouteGateKanto", ROMX
 	map_attributes StandRouteGateKanto, STAND_ROUTE_GATE_KANTO, 0
@@ -1900,6 +2106,8 @@ StandRouteGateKanto_MapEvents::
 
 	db 0 ; person events
 
+StandRouteGateKanto_Blocks:: INCBIN "maps/blk/StandRouteGateKanto.blk"
+
 SECTION "data/maps/attributes.asm@StandLab", ROMX
 	map_attributes StandLab, STAND_LAB, 0
 
@@ -1914,6 +2122,8 @@ StandLab_MapEvents::
 
 	db 1 ; person events
 	object_event 2, 3, SPRITE_NURSE, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+StandLab_Blocks:: INCBIN "maps/blk/StandLab.blk"
 
 SECTION "data/maps/attributes.asm@StandPokecenter1F", ROMX
 	map_attributes StandPokecenter1F, STAND_POKECENTER_1F, 0
@@ -1934,6 +2144,8 @@ StandPokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_GENTLEMAN, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_LASS, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+StandPokecenter1F_Blocks:: INCBIN "maps/blk/StandPokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@StandPokecenter2F", ROMX
 	map_attributes StandPokecenter2F, STAND_POKECENTER_2F, 0
 
@@ -1949,6 +2161,8 @@ StandPokecenter2F_MapEvents::
 	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+StandPokecenter2F_Blocks:: INCBIN "maps/blk/StandPokecenter2F.blk"
 
 SECTION "data/maps/attributes.asm@StandOffice", ROMX
 	map_attributes StandOffice, STAND_OFFICE, 0
@@ -1967,6 +2181,8 @@ StandOffice_MapEvents::
 	object_event 5, 6, SPRITE_SUPER_NERD, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 7, SPRITE_POKEFAN_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+StandOffice_Blocks:: INCBIN "maps/blk/StandOffice.blk"
+
 SECTION "data/maps/attributes.asm@StandMart", ROMX
 	map_attributes StandMart, STAND_MART, 0
 
@@ -1984,6 +2200,8 @@ StandMart_MapEvents::
 	object_event 10, 5, SPRITE_GIRL, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_POKEFAN_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+StandMart_Blocks:: INCBIN "maps/blk/StandMart.blk"
+
 SECTION "data/maps/attributes.asm@StandHouse", ROMX
 	map_attributes StandHouse, STAND_HOUSE, 0
 
@@ -1998,6 +2216,8 @@ StandHouse_MapEvents::
 
 	db 1 ; person events
 	object_event 2, 3, SPRITE_SUPER_NERD, FACE_RIGHT, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
+
+StandHouse_Blocks:: INCBIN "maps/blk/StandHouse.blk"
 
 SECTION "data/maps/attributes.asm@StandRocketHouse1F", ROMX
 	map_attributes StandRocketHouse1F, STAND_ROCKET_HOUSE_1F, 0
@@ -2015,6 +2235,8 @@ StandRocketHouse1F_MapEvents::
 	db 1 ; person events
 	object_event 11, 4, SPRITE_36, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+StandRocketHouse1F_Blocks:: INCBIN "maps/blk/StandRocketHouse1F.blk"
+
 SECTION "data/maps/attributes.asm@StandRocketHouse2F", ROMX
 	map_attributes StandRocketHouse2F, STAND_ROCKET_HOUSE_2F, 0
 
@@ -2028,6 +2250,8 @@ StandRocketHouse2F_MapEvents::
 
 	db 1 ; person events
 	object_event 5, 4, SPRITE_ROCKET_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
+
+StandRocketHouse2F_Blocks:: INCBIN "maps/blk/StandRocketHouse2F.blk"
 
 SECTION "data/maps/attributes.asm@StandLeague1F", ROMX
 	map_attributes StandLeague1F, STAND_LEAGUE_1F, 0
@@ -2049,6 +2273,8 @@ StandLeague1F_MapEvents::
 	object_event 3, 1, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 6, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
+StandLeague1F_Blocks:: INCBIN "maps/blk/StandLeague1F.blk"
+
 SECTION "data/maps/attributes.asm@StandLeague2F", ROMX
 	map_attributes StandLeague2F, STAND_LEAGUE_2F, 0
 
@@ -2067,6 +2293,8 @@ StandLeague2F_MapEvents::
 	object_event 9, 6, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 5, 1, SPRITE_COOLTRAINER_F, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+StandLeague2F_Blocks:: INCBIN "maps/blk/StandLeague2F.blk"
+
 SECTION "data/maps/attributes.asm@KantoCeruleanHouse", ROMX
 	map_attributes KantoCeruleanHouse, KANTO_CERULEAN_HOUSE, 0
 
@@ -2081,6 +2309,8 @@ KantoCeruleanHouse_MapEvents::
 
 	db 1 ; person events
 	object_event 3, 3, SPRITE_FISHER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+KantoCeruleanHouse_Blocks:: INCBIN "maps/blk/KantoCeruleanHouse.blk"
 
 SECTION "data/maps/attributes.asm@KantoPokecenter1F", ROMX
 	map_attributes KantoPokecenter1F, KANTO_POKECENTER_1F, 0
@@ -2101,6 +2331,8 @@ KantoPokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_24, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoPokecenter1F_Blocks:: INCBIN "maps/blk/KantoPokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@KantoPokecenter2F", ROMX
 	map_attributes KantoPokecenter2F, KANTO_POKECENTER_2F, 0
 
@@ -2116,6 +2348,8 @@ KantoPokecenter2F_MapEvents::
 	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+KantoPokecenter2F_Blocks:: INCBIN "maps/blk/KantoPokecenter2F.blk"
 
 SECTION "data/maps/attributes.asm@KantoLeague1F", ROMX
 	map_attributes KantoLeague1F, KANTO_LEAGUE_1F, 0
@@ -2137,6 +2371,8 @@ KantoLeague1F_MapEvents::
 	object_event 3, 1, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 6, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoLeague1F_Blocks:: INCBIN "maps/blk/KantoLeague1F.blk"
+
 SECTION "data/maps/attributes.asm@KantoLeague2F", ROMX
 	map_attributes KantoLeague2F, KANTO_LEAGUE_2F, 0
 
@@ -2155,6 +2391,8 @@ KantoLeague2F_MapEvents::
 	object_event 9, 6, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 5, 1, SPRITE_COOLTRAINER_F, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoLeague2F_Blocks:: INCBIN "maps/blk/KantoLeague2F.blk"
+
 SECTION "data/maps/attributes.asm@KantoLavenderHouse", ROMX
 	map_attributes KantoLavenderHouse, KANTO_LAVENDER_HOUSE, 0
 
@@ -2170,6 +2408,8 @@ KantoLavenderHouse_MapEvents::
 	db 2 ; person events
 	object_event 7, 3, SPRITE_POKEFAN_M, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 5, SPRITE_POKEFAN_F, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+KantoLavenderHouse_Blocks:: INCBIN "maps/blk/KantoLavenderHouse.blk"
 
 SECTION "data/maps/attributes.asm@KantoCeladonMart1F", ROMX
 	map_attributes KantoCeladonMart1F, KANTO_CELADON_MART_1F, 0
@@ -2188,6 +2428,8 @@ KantoCeladonMart1F_MapEvents::
 	db 1 ; person events
 	object_event 7, 1, SPRITE_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoCeladonMart1F_Blocks:: INCBIN "maps/blk/KantoCeladonMart1F.blk"
+
 SECTION "data/maps/attributes.asm@KantoCeladonMart2F", ROMX
 	map_attributes KantoCeladonMart2F, KANTO_CELADON_MART_2F, 0
 
@@ -2205,6 +2447,8 @@ KantoCeladonMart2F_MapEvents::
 	object_event 14, 5, SPRITE_CLERK, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 5, 5, SPRITE_LASS, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoCeladonMart2F_Blocks:: INCBIN "maps/blk/KantoCeladonMart2F.blk"
+
 SECTION "data/maps/attributes.asm@KantoCeladonMart3F", ROMX
 	map_attributes KantoCeladonMart3F, KANTO_CELADON_MART_3F, 0
 
@@ -2221,6 +2465,8 @@ KantoCeladonMart3F_MapEvents::
 	db 2 ; person events
 	object_event 6, 1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 3, 5, SPRITE_GIRL, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+KantoCeladonMart3F_Blocks:: INCBIN "maps/blk/KantoCeladonMart3F.blk"
 
 SECTION "data/maps/attributes.asm@KantoCeladonMart4F", ROMX
 	map_attributes KantoCeladonMart4F, KANTO_CELADON_MART_4F, 0
@@ -2240,6 +2486,8 @@ KantoCeladonMart4F_MapEvents::
 	object_event 8, 5, SPRITE_MEDIUM, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 2, 5, SPRITE_MEDIUM, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoCeladonMart4F_Blocks:: INCBIN "maps/blk/KantoCeladonMart4F.blk"
+
 SECTION "data/maps/attributes.asm@KantoCeladonMart5F", ROMX
 	map_attributes KantoCeladonMart5F, KANTO_CELADON_MART_5F, 0
 
@@ -2257,6 +2505,8 @@ KantoCeladonMart5F_MapEvents::
 	object_event 8, 3, SPRITE_SIDON, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 2, 5, SPRITE_POPPO, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoCeladonMart5F_Blocks:: INCBIN "maps/blk/KantoCeladonMart5F.blk"
+
 SECTION "data/maps/attributes.asm@KantoCeladonElevator", ROMX
 	map_attributes KantoCeladonElevator, KANTO_CELADON_ELEVATOR, 0
 
@@ -2270,6 +2520,8 @@ KantoCeladonElevator_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+KantoCeladonElevator_Blocks:: INCBIN "maps/blk/KantoCeladonElevator.blk"
 
 SECTION "data/maps/attributes.asm@KantoMart", ROMX
 	map_attributes KantoMart, KANTO_MART, 0
@@ -2287,6 +2539,8 @@ KantoMart_MapEvents::
 	object_event 1, 3, SPRITE_CLERK, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 5, SPRITE_TWIN, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_GRAMPS, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+KantoMart_Blocks:: INCBIN "maps/blk/KantoMart.blk"
 
 SECTION "data/maps/attributes.asm@KantoGamefreakHQ1", ROMX
 	map_attributes KantoGamefreakHQ1, KANTO_GAMEFREAK_HQ_1, 0
@@ -2309,6 +2563,8 @@ KantoGamefreakHQ1_MapEvents::
 	object_event 0, 8, SPRITE_PIPPI, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 2, 7, SPRITE_POPPO, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoGamefreakHQ1_Blocks:: INCBIN "maps/blk/KantoGamefreakHQ1.blk"
+
 SECTION "data/maps/attributes.asm@KantoGamefreakHQ2", ROMX
 	map_attributes KantoGamefreakHQ2, KANTO_GAMEFREAK_HQ_2, 0
 
@@ -2325,6 +2581,8 @@ KantoGamefreakHQ2_MapEvents::
 
 	db 1 ; person events
 	object_event 2, 4, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+KantoGamefreakHQ2_Blocks:: INCBIN "maps/blk/KantoGamefreakHQ2.blk"
 
 SECTION "data/maps/attributes.asm@KantoGamefreakHQ3", ROMX
 	map_attributes KantoGamefreakHQ3, KANTO_GAMEFREAK_HQ_3, 0
@@ -2345,6 +2603,8 @@ KantoGamefreakHQ3_MapEvents::
 	object_event 0, 7, SPRITE_BURGLAR, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 2, 7, SPRITE_FISHER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoGamefreakHQ3_Blocks:: INCBIN "maps/blk/KantoGamefreakHQ3.blk"
+
 SECTION "data/maps/attributes.asm@KantoGamefreakHQ4", ROMX
 	map_attributes KantoGamefreakHQ4, KANTO_GAMEFREAK_HQ_4, 0
 
@@ -2360,6 +2620,8 @@ KantoGamefreakHQ4_MapEvents::
 
 	db 0 ; person events
 
+KantoGamefreakHQ4_Blocks:: INCBIN "maps/blk/KantoGamefreakHQ4.blk"
+
 SECTION "data/maps/attributes.asm@KantoGamefreakHQ5", ROMX
 	map_attributes KantoGamefreakHQ5, KANTO_GAMEFREAK_HQ_5, 0
 
@@ -2373,6 +2635,8 @@ KantoGamefreakHQ5_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+KantoGamefreakHQ5_Blocks:: INCBIN "maps/blk/KantoGamefreakHQ5.blk"
 
 SECTION "data/maps/attributes.asm@KantoSilphCo", ROMX
 	map_attributes KantoSilphCo, KANTO_SILPH_CO, 0
@@ -2390,6 +2654,8 @@ KantoSilphCo_MapEvents::
 	object_event 2, 2, SPRITE_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 22, 1, SPRITE_OFFICER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoSilphCo_Blocks:: INCBIN "maps/blk/KantoSilphCo.blk"
+
 SECTION "data/maps/attributes.asm@KantoViridianHouse", ROMX
 	map_attributes KantoViridianHouse, KANTO_VIRIDIAN_HOUSE, 0
 
@@ -2405,6 +2671,8 @@ KantoViridianHouse_MapEvents::
 	db 2 ; person events
 	object_event 7, 3, SPRITE_BUG_CATCHER_BOY, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 5, SPRITE_TWIN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+KantoViridianHouse_Blocks:: INCBIN "maps/blk/KantoViridianHouse.blk"
 
 SECTION "data/maps/attributes.asm@KantoGameCorner", ROMX
 	map_attributes KantoGameCorner, KANTO_GAME_CORNER, 0
@@ -2432,6 +2700,8 @@ KantoGameCorner_MapEvents::
 	object_event 17, 9, SPRITE_POKEFAN_M, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 13, 2, SPRITE_ROCKER, SLOW_STEP_DOWN, 3, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoGameCorner_Blocks:: INCBIN "maps/blk/KantoGameCorner.blk"
+
 SECTION "data/maps/attributes.asm@KantoUnusedArea", ROMX
 	map_attributes KantoUnusedArea, KANTO_UNUSED_AREA, 0
 
@@ -2443,6 +2713,8 @@ KantoUnusedArea_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+KantoUnusedArea_Blocks:: INCBIN "maps/blk/KantoUnusedArea.blk"
 
 SECTION "data/maps/attributes.asm@KantoGameCornerPrizes", ROMX
 	map_attributes KantoGameCornerPrizes, KANTO_GAME_CORNER_PRIZES, 0
@@ -2461,6 +2733,8 @@ KantoGameCornerPrizes_MapEvents::
 	object_event 4, 1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoGameCornerPrizes_Blocks:: INCBIN "maps/blk/KantoGameCornerPrizes.blk"
+
 SECTION "data/maps/attributes.asm@KantoDiner", ROMX
 	map_attributes KantoDiner, KANTO_DINER, 0
 
@@ -2474,6 +2748,8 @@ KantoDiner_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+KantoDiner_Blocks:: INCBIN "maps/blk/KantoDiner.blk"
 
 SECTION "data/maps/attributes.asm@KantoSchool", ROMX
 	map_attributes KantoSchool, KANTO_SCHOOL, 0
@@ -2494,6 +2770,8 @@ KantoSchool_MapEvents::
 	object_event 3, 1, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 6, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoSchool_Blocks:: INCBIN "maps/blk/KantoSchool.blk"
+
 SECTION "data/maps/attributes.asm@KantoHospital", ROMX
 	map_attributes KantoHospital, KANTO_HOSPITAL, 0
 
@@ -2510,6 +2788,8 @@ KantoHospital_MapEvents::
 	object_event 5, 1, SPRITE_NURSE, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 6, SPRITE_ROCKER, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 12, 6, SPRITE_GIRL, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+KantoHospital_Blocks:: INCBIN "maps/blk/KantoHospital.blk"
 
 SECTION "data/maps/attributes.asm@KantoPokecenter21F", ROMX
 	map_attributes KantoPokecenter21F, KANTO_POKECENTER_2_1F, 0
@@ -2530,6 +2810,8 @@ KantoPokecenter21F_MapEvents::
 	object_event 2, 5, SPRITE_24, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoPokecenter21F_Blocks:: INCBIN "maps/blk/KantoPokecenter21F.blk"
+
 SECTION "data/maps/attributes.asm@KantoPokecenter22F", ROMX
 	map_attributes KantoPokecenter22F, KANTO_POKECENTER_2_2F, 0
 
@@ -2545,6 +2827,8 @@ KantoPokecenter22F_MapEvents::
 	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+KantoPokecenter22F_Blocks:: INCBIN "maps/blk/KantoPokecenter22F.blk"
 
 SECTION "data/maps/attributes.asm@KantoRedsHouse", ROMX
 	map_attributes KantoRedsHouse, KANTO_REDS_HOUSE, 0
@@ -2562,6 +2846,8 @@ KantoRedsHouse_MapEvents::
 	object_event 7, 3, SPRITE_SUPER_NERD, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 5, SPRITE_TEACHER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoRedsHouse_Blocks:: INCBIN "maps/blk/KantoRedsHouse.blk"
+
 SECTION "data/maps/attributes.asm@KantoGreensHouse1F", ROMX
 	map_attributes KantoGreensHouse1F, KANTO_GREENS_HOUSE_1F, 0
 
@@ -2578,6 +2864,8 @@ KantoGreensHouse1F_MapEvents::
 	db 1 ; person events
 	object_event 5, 3, SPRITE_0F, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoGreensHouse1F_Blocks:: INCBIN "maps/blk/KantoGreensHouse1F.blk"
+
 SECTION "data/maps/attributes.asm@KantoGreensHouse2F", ROMX
 	map_attributes KantoGreensHouse2F, KANTO_GREENS_HOUSE_2F, 0
 
@@ -2590,6 +2878,8 @@ KantoGreensHouse2F_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+KantoGreensHouse2F_Blocks:: INCBIN "maps/blk/KantoGreensHouse2F.blk"
 
 SECTION "data/maps/attributes.asm@KantoEldersHouse", ROMX
 	map_attributes KantoEldersHouse, KANTO_ELDERS_HOUSE, 0
@@ -2607,6 +2897,8 @@ KantoEldersHouse_MapEvents::
 	object_event 7, 3, SPRITE_GRAMPS, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 5, SPRITE_GRANNY, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoEldersHouse_Blocks:: INCBIN "maps/blk/KantoEldersHouse.blk"
+
 SECTION "data/maps/attributes.asm@KantoOaksLab", ROMX
 	map_attributes KantoOaksLab, KANTO_OAKS_LAB, 0
 
@@ -2621,6 +2913,8 @@ KantoOaksLab_MapEvents::
 
 	db 1 ; person events
 	object_event 3, 2, SPRITE_NANAMI, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+KantoOaksLab_Blocks:: INCBIN "maps/blk/KantoOaksLab.blk"
 
 SECTION "data/maps/attributes.asm@KantoLeague21F", ROMX
 	map_attributes KantoLeague21F, KANTO_LEAGUE_2_1F, 0
@@ -2642,6 +2936,8 @@ KantoLeague21F_MapEvents::
 	object_event 3, 1, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 6, SPRITE_COOLTRAINER_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoLeague21F_Blocks:: INCBIN "maps/blk/KantoLeague21F.blk"
+
 SECTION "data/maps/attributes.asm@KantoLeague22F", ROMX
 	map_attributes KantoLeague22F, KANTO_LEAGUE_2_2F, 0
 
@@ -2660,6 +2956,8 @@ KantoLeague22F_MapEvents::
 	object_event 9, 6, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 5, 1, SPRITE_COOLTRAINER_F, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoLeague22F_Blocks:: INCBIN "maps/blk/KantoLeague22F.blk"
+
 SECTION "data/maps/attributes.asm@KantoFishingGuru", ROMX
 	map_attributes KantoFishingGuru, KANTO_FISHING_GURU, 0
 
@@ -2675,6 +2973,8 @@ KantoFishingGuru_MapEvents::
 	db 1 ; person events
 	object_event 4, 3, SPRITE_FISHING_GURU, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+KantoFishingGuru_Blocks:: INCBIN "maps/blk/KantoFishingGuru.blk"
+
 SECTION "data/maps/attributes.asm@SouthHouse1", ROMX
 	map_attributes SouthHouse1, SOUTH_HOUSE_1, 0
 
@@ -2689,6 +2989,8 @@ SouthHouse1_MapEvents::
 
 	db 1 ; person events
 	object_event 2, 3, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+SouthHouse1_Blocks:: INCBIN "maps/blk/SouthHouse1.blk"
 
 SECTION "data/maps/attributes.asm@SouthPokecenter1F", ROMX
 	map_attributes SouthPokecenter1F, SOUTH_POKECENTER_1F, 0
@@ -2709,6 +3011,8 @@ SouthPokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_24, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+SouthPokecenter1F_Blocks:: INCBIN "maps/blk/SouthPokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@SouthPokecenter2F", ROMX
 	map_attributes SouthPokecenter2F, SOUTH_POKECENTER_2F, 0
 
@@ -2724,6 +3028,8 @@ SouthPokecenter2F_MapEvents::
 	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+SouthPokecenter2F_Blocks:: INCBIN "maps/blk/SouthPokecenter2F.blk"
 
 SECTION "data/maps/attributes.asm@SouthMart", ROMX
 	map_attributes SouthMart, SOUTH_MART, 0
@@ -2742,6 +3048,8 @@ SouthMart_MapEvents::
 	object_event 10, 5, SPRITE_GIRL, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_POKEFAN_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+SouthMart_Blocks:: INCBIN "maps/blk/SouthMart.blk"
+
 SECTION "data/maps/attributes.asm@SouthHouse2", ROMX
 	map_attributes SouthHouse2, SOUTH_HOUSE_2, 0
 
@@ -2757,6 +3065,8 @@ SouthHouse2_MapEvents::
 	db 1 ; person events
 	object_event 1, 2, SPRITE_FISHER, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+SouthHouse2_Blocks:: INCBIN "maps/blk/SouthHouse2.blk"
+
 SECTION "data/maps/attributes.asm@NorthHouse1", ROMX
 	map_attributes NorthHouse1, NORTH_HOUSE_1, 0
 
@@ -2771,6 +3081,8 @@ NorthHouse1_MapEvents::
 
 	db 1 ; person events
 	object_event 2, 3, SPRITE_TWIN, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+NorthHouse1_Blocks:: INCBIN "maps/blk/NorthHouse1.blk"
 
 SECTION "data/maps/attributes.asm@NorthMart", ROMX
 	map_attributes NorthMart, NORTH_MART, 0
@@ -2789,6 +3101,8 @@ NorthMart_MapEvents::
 	object_event 10, 5, SPRITE_GIRL, FACE_RIGHT, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 4, 1, SPRITE_POKEFAN_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+NorthMart_Blocks:: INCBIN "maps/blk/NorthMart.blk"
+
 SECTION "data/maps/attributes.asm@NorthHouse2", ROMX
 	map_attributes NorthHouse2, NORTH_HOUSE_2, 0
 
@@ -2803,6 +3117,8 @@ NorthHouse2_MapEvents::
 
 	db 1 ; person events
 	object_event 2, 3, SPRITE_TWIN, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+NorthHouse2_Blocks:: INCBIN "maps/blk/NorthHouse2.blk"
 
 SECTION "data/maps/attributes.asm@NorthPokecenter1F", ROMX
 	map_attributes NorthPokecenter1F, NORTH_POKECENTER_1F, 0
@@ -2823,6 +3139,8 @@ NorthPokecenter1F_MapEvents::
 	object_event 2, 5, SPRITE_24, FACE_RIGHT, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+NorthPokecenter1F_Blocks:: INCBIN "maps/blk/NorthPokecenter1F.blk"
+
 SECTION "data/maps/attributes.asm@NorthPokecenter2F", ROMX
 	map_attributes NorthPokecenter2F, NORTH_POKECENTER_2F, 0
 
@@ -2839,6 +3157,8 @@ NorthPokecenter2F_MapEvents::
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 7, SPRITE_FISHING_GURU, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+NorthPokecenter2F_Blocks:: INCBIN "maps/blk/NorthPokecenter2F.blk"
+
 SECTION "data/maps/attributes.asm@PowerPlant1", ROMX
 	map_attributes PowerPlant1, POWER_PLANT_1, 0
 
@@ -2850,6 +3170,8 @@ PowerPlant1_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+PowerPlant1_Blocks:: INCBIN "maps/blk/PowerPlant1.blk"
 
 SECTION "data/maps/attributes.asm@PowerPlant2", ROMX
 	map_attributes PowerPlant2, POWER_PLANT_2, 0
@@ -2863,6 +3185,8 @@ PowerPlant2_MapEvents::
 
 	db 0 ; person events
 
+PowerPlant2_Blocks:: INCBIN "maps/blk/PowerPlant2.blk"
+
 SECTION "data/maps/attributes.asm@PowerPlant3", ROMX
 	map_attributes PowerPlant3, POWER_PLANT_3, 0
 
@@ -2874,6 +3198,8 @@ PowerPlant3_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+PowerPlant3_Blocks:: INCBIN "maps/blk/PowerPlant3.blk"
 
 SECTION "data/maps/attributes.asm@PowerPlant4", ROMX
 	map_attributes PowerPlant4, POWER_PLANT_4, 0
@@ -2887,6 +3213,8 @@ PowerPlant4_MapEvents::
 
 	db 0 ; person events
 
+PowerPlant4_Blocks:: INCBIN "maps/blk/PowerPlant4.blk"
+
 SECTION "data/maps/attributes.asm@RuinsOfAlphEntrance", ROMX
 	map_attributes RuinsOfAlphEntrance, RUINS_OF_ALPH_ENTRANCE, 0
 
@@ -2898,6 +3226,8 @@ RuinsOfAlphEntrance_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+RuinsOfAlphEntrance_Blocks:: INCBIN "maps/blk/RuinsOfAlphEntrance.blk"
 
 SECTION "data/maps/attributes.asm@RuinsOfAlphMain", ROMX
 	map_attributes RuinsOfAlphMain, RUINS_OF_ALPH_MAIN, 0
@@ -2911,6 +3241,8 @@ RuinsOfAlphMain_MapEvents::
 
 	db 0 ; person events
 
+RuinsOfAlphMain_Blocks:: INCBIN "maps/blk/RuinsOfAlphMain.blk"
+
 SECTION "data/maps/attributes.asm@CaveMinecarts1", ROMX
 	map_attributes CaveMinecarts1, CAVE_MINECARTS_1, 0
 
@@ -2922,6 +3254,8 @@ CaveMinecarts1_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+CaveMinecarts1_Blocks:: INCBIN "maps/blk/CaveMinecarts1.blk"
 
 SECTION "data/maps/attributes.asm@CaveMinecarts2", ROMX
 	map_attributes CaveMinecarts2, CAVE_MINECARTS_2, 0
@@ -2935,6 +3269,8 @@ CaveMinecarts2_MapEvents::
 
 	db 0 ; person events
 
+CaveMinecarts2_Blocks:: INCBIN "maps/blk/CaveMinecarts2.blk"
+
 SECTION "data/maps/attributes.asm@CaveMinecarts3", ROMX
 	map_attributes CaveMinecarts3, CAVE_MINECARTS_3, 0
 
@@ -2946,6 +3282,8 @@ CaveMinecarts3_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+CaveMinecarts3_Blocks:: INCBIN "maps/blk/CaveMinecarts3.blk"
 
 SECTION "data/maps/attributes.asm@CaveMinecarts4", ROMX
 	map_attributes CaveMinecarts4, CAVE_MINECARTS_4, 0
@@ -2959,6 +3297,8 @@ CaveMinecarts4_MapEvents::
 
 	db 0 ; person events
 
+CaveMinecarts4_Blocks:: INCBIN "maps/blk/CaveMinecarts4.blk"
+
 SECTION "data/maps/attributes.asm@CaveMinecarts5", ROMX
 	map_attributes CaveMinecarts5, CAVE_MINECARTS_5, 0
 
@@ -2970,6 +3310,8 @@ CaveMinecarts5_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+CaveMinecarts5_Blocks:: INCBIN "maps/blk/CaveMinecarts5.blk"
 
 SECTION "data/maps/attributes.asm@CaveMinecarts6", ROMX
 	map_attributes CaveMinecarts6, CAVE_MINECARTS_6, 0
@@ -2983,6 +3325,8 @@ CaveMinecarts6_MapEvents::
 
 	db 0 ; person events
 
+CaveMinecarts6_Blocks:: INCBIN "maps/blk/CaveMinecarts6.blk"
+
 SECTION "data/maps/attributes.asm@CaveMinecarts7", ROMX
 	map_attributes CaveMinecarts7, CAVE_MINECARTS_7, 0
 
@@ -2994,6 +3338,8 @@ CaveMinecarts7_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+CaveMinecarts7_Blocks:: INCBIN "maps/blk/CaveMinecarts7.blk"
 
 SECTION "data/maps/attributes.asm@Office1", ROMX
 	map_attributes Office1, OFFICE_1, 0
@@ -3007,6 +3353,8 @@ Office1_MapEvents::
 
 	db 0 ; person events
 
+Office1_Blocks:: INCBIN "maps/blk/Office1.blk"
+
 SECTION "data/maps/attributes.asm@Office2", ROMX
 	map_attributes Office2, OFFICE_2, 0
 
@@ -3018,6 +3366,8 @@ Office2_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+Office2_Blocks:: INCBIN "maps/blk/Office2.blk"
 
 SECTION "data/maps/attributes.asm@Office3", ROMX
 	map_attributes Office3, OFFICE_3, 0
@@ -3031,6 +3381,8 @@ Office3_MapEvents::
 
 	db 0 ; person events
 
+Office3_Blocks:: INCBIN "maps/blk/Office3.blk"
+
 SECTION "data/maps/attributes.asm@SlowpokeWellEntrance", ROMX
 	map_attributes SlowpokeWellEntrance, SLOWPOKE_WELL_ENTRANCE, 0
 
@@ -3043,6 +3395,8 @@ SlowpokeWellEntrance_MapEvents::
 
 	db 0 ; person events
 
+SlowpokeWellEntrance_Blocks:: INCBIN "maps/blk/SlowpokeWellEntrance.blk"
+
 SECTION "data/maps/attributes.asm@SlowpokeWellMain", ROMX
 	map_attributes SlowpokeWellMain, SLOWPOKE_WELL_MAIN, 0
 
@@ -3054,6 +3408,8 @@ SlowpokeWellMain_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+SlowpokeWellMain_Blocks:: INCBIN "maps/blk/SlowpokeWellMain.blk"
 
 SECTION "data/maps/attributes.asm@ShizukanaOka", ROMX
 	map_attributes ShizukanaOka, SHIZUKANA_OKA, 0
@@ -3085,6 +3441,8 @@ ShizukanaOka_MapEvents::
 	object_event 36, 16, SPRITE_TEACHER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0
 	object_event 9, 25, SPRITE_YOUNGSTER, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 4, 0, 0
 
+ShizukanaOka_Blocks:: INCBIN "maps/blk/ShizukanaOka.blk"
+
 SECTION "data/maps/attributes.asm@RouteSilentEastGate", ROMX
 	map_attributes RouteSilentEastGate, ROUTE_SILENT_EAST_GATE, 0
 
@@ -3100,6 +3458,8 @@ RouteSilentEastGate_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+RouteSilentEastGate_Blocks:: INCBIN "maps/blk/RouteSilentEastGate.blk"
 
 SECTION "data/maps/attributes.asm@PlayerHouse1F", ROMX
 	map_attributes PlayerHouse1F, PLAYER_HOUSE_1F, 0
@@ -3122,6 +3482,8 @@ PlayerHouse1F_MapEvents::
 	db 1 ; person events
 	object_event 7, 3, SPRITE_MOM, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+PlayerHouse1F_Blocks:: INCBIN "maps/blk/PlayerHouse1F.blk"
+
 SECTION "data/maps/attributes.asm@PlayerHouse2F", ROMX
 	map_attributes PlayerHouse2F, PLAYER_HOUSE_2F, 0
 
@@ -3142,6 +3504,8 @@ PlayerHouse2F_MapEvents::
 	object_event 8, 1, SPRITE_ROCKER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 1, SPRITE_PIPPI, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+PlayerHouse2F_Blocks:: INCBIN "maps/blk/PlayerHouse2F.blk"
+
 SECTION "data/maps/attributes.asm@SilentPokecenter", ROMX
 	map_attributes SilentPokecenter, SILENT_POKECENTER, 0
 
@@ -3161,6 +3525,8 @@ SilentPokecenter_MapEvents::
 	object_event 3, 4, SPRITE_24, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 1, SPRITE_SIDON, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+SilentPokecenter_Blocks:: INCBIN "maps/blk/SilentPokecenter.blk"
 
 SECTION "data/maps/attributes.asm@SilentHillHouse", ROMX
 	map_attributes SilentHillHouse, SILENT_HILL_HOUSE, 0
@@ -3183,6 +3549,8 @@ SilentHillHouse_MapEvents::
 	db 2 ; person events
 	object_event 5, 3, SPRITE_SILVERS_MOM, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 5, 4, SPRITE_ROCKER, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+SilentHillHouse_Blocks:: INCBIN "maps/blk/SilentHillHouse.blk"
 
 SECTION "data/maps/attributes.asm@SilentHillLab", ROMX
 	map_attributes SilentHillLab, SILENT_HILL_LAB, 0
@@ -3225,6 +3593,8 @@ SilentHillLab_MapEvents::
 	object_event 0, 1, SPRITE_POKEDEX, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 1, 1, SPRITE_POKEDEX, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+SilentHillLab_Blocks:: INCBIN "maps/blk/SilentHillLab.blk"
+
 SECTION "data/maps/attributes.asm@SilentHillLab2", ROMX
 	map_attributes SilentHillLab2, SILENT_HILL_LAB_2, 0
 
@@ -3249,10 +3619,14 @@ SilentHillLab2_MapEvents::
 	object_event 6, 2, SPRITE_POKE_BALL, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 7, 2, SPRITE_POKE_BALL, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+SilentHillLab2_Blocks:: INCBIN "maps/blk/SilentHillLab2.blk"
+
 SECTION "data/maps/attributes.asm@Unused13", ROMX
 	map_attributes Unused13, UNUSED_13, 0
 
-Unused13_MapEvents
+Unused13_MapEvents::
+Unused13_Blocks::
+
 SECTION "data/maps/attributes.asm@SilentHill", ROMX
 	map_attributes SilentHill, SILENT_HILL, NORTH | WEST | EAST
 	connection north, PrinceRoute, PRINCE_ROUTE, 0, 0, 10
@@ -3281,6 +3655,8 @@ SilentHill_MapEvents::
 	object_event 6, 9, SPRITE_BLUE, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 8, 6, SPRITE_TEACHER, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 13, SPRITE_SUPER_NERD, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+SilentHill_Blocks:: INCBIN "maps/blk/SilentHill.blk"
 
 SECTION "data/maps/attributes.asm@OldCity", ROMX
 	map_attributes OldCity, OLD_CITY, SOUTH | WEST
@@ -3327,6 +3703,8 @@ OldCity_MapEvents::
 	object_event 10, 21, SPRITE_BUG_CATCHER_BOY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 17, 19, SPRITE_POKE_BALL, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+OldCity_Blocks:: INCBIN "maps/blk/OldCity.blk"
+
 SECTION "data/maps/attributes.asm@West", ROMX
 	map_attributes West, WEST, NORTH | EAST
 	connection north, BaadonRoute1, BAADON_ROUTE_1, 5, 0, 10
@@ -3367,6 +3745,8 @@ West_MapEvents::
 	object_event 22, 19, SPRITE_COOLTRAINER_F, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 18, 13, SPRITE_36, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+West_Blocks:: INCBIN "maps/blk/West.blk"
+
 SECTION "data/maps/attributes.asm@Haiteku", ROMX
 	map_attributes Haiteku, HAITEKU, WEST
 	connection west, HaitekuWestRoute, HAITEKU_WEST_ROUTE, 0, 0, 9
@@ -3402,6 +3782,8 @@ Haiteku_MapEvents::
 	object_event 26, 10, SPRITE_SAILOR, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 14, SPRITE_GENTLEMAN, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+Haiteku_Blocks:: INCBIN "maps/blk/Haiteku.blk"
+
 SECTION "data/maps/attributes.asm@Fonto", ROMX
 	map_attributes Fonto, FONTO, NORTH | WEST | EAST
 	connection north, FontoRoute2, FONTO_ROUTE_2, 0, 0, 10
@@ -3430,6 +3812,8 @@ Fonto_MapEvents::
 	object_event 2, 5, SPRITE_SIDON, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 5, 14, SPRITE_YOUNGSTER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 16, 8, SPRITE_TWIN, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+
+Fonto_Blocks:: INCBIN "maps/blk/Fonto.blk"
 
 SECTION "data/maps/attributes.asm@Baadon", ROMX
 	map_attributes Baadon, BAADON, NORTH | SOUTH | EAST
@@ -3461,6 +3845,8 @@ Baadon_MapEvents::
 	object_event 14, 8, SPRITE_SUPER_NERD, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 9, SPRITE_YOUNGSTER, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 14, SPRITE_TWIN, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+Baadon_Blocks:: INCBIN "maps/blk/Baadon.blk"
 
 SECTION "data/maps/attributes.asm@Newtype", ROMX
 	map_attributes Newtype, NEWTYPE, NORTH | WEST | EAST
@@ -3499,6 +3885,8 @@ Newtype_MapEvents::
 	object_event 24, 9, SPRITE_ROCKER, FACE_UP, 2, 1, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 30, SPRITE_GIRL, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+Newtype_Blocks:: INCBIN "maps/blk/Newtype.blk"
+
 SECTION "data/maps/attributes.asm@Sugar", ROMX
 	map_attributes Sugar, SUGAR, SOUTH
 	connection south, SugarRoute, SUGAR_ROUTE, 0, 0, 10
@@ -3522,6 +3910,8 @@ Sugar_MapEvents::
 	object_event 8, 12, SPRITE_TWIN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 6, SPRITE_GRANNY, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 13, 11, SPRITE_GRAMPS, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+
+Sugar_Blocks:: INCBIN "maps/blk/Sugar.blk"
 
 SECTION "data/maps/attributes.asm@BullForest", ROMX
 	map_attributes BullForest, BULL_FOREST, NORTH | SOUTH | WEST
@@ -3553,6 +3943,8 @@ BullForest_MapEvents::
 	object_event 7, 16, SPRITE_GRANNY, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 20, 19, SPRITE_TEACHER, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 20, 29, SPRITE_BUG_CATCHER_BOY, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
+
+BullForest_Blocks:: INCBIN "maps/blk/BullForest.blk"
 
 SECTION "data/maps/attributes.asm@Stand", ROMX
 	map_attributes Stand, STAND, NORTH | SOUTH
@@ -3596,6 +3988,8 @@ Stand_MapEvents::
 	object_event 6, 6, SPRITE_SIDON, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14, 15, SPRITE_POPPO, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 6, 21, SPRITE_SIDON, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+Stand_Blocks:: INCBIN "maps/blk/Stand.blk"
 
 SECTION "data/maps/attributes.asm@Kanto", ROMX
 	map_attributes Kanto, KANTO, WEST | EAST
@@ -3653,6 +4047,8 @@ Kanto_MapEvents::
 
 	db 0 ; person events
 
+Kanto_Blocks:: INCBIN "maps/blk/Kanto.blk"
+
 SECTION "data/maps/attributes.asm@Prince", ROMX
 	map_attributes Prince, PRINCE, NORTH | SOUTH
 	connection north, MtFujiRoute, MT_FUJI_ROUTE, 0, 0, 10
@@ -3667,6 +4063,8 @@ Prince_MapEvents::
 
 	db 0 ; person events
 
+Prince_Blocks:: INCBIN "maps/blk/Prince.blk"
+
 SECTION "data/maps/attributes.asm@MtFuji", ROMX
 	map_attributes MtFuji, MT_FUJI, SOUTH
 	connection south, MtFujiRoute, MT_FUJI_ROUTE, 0, 0, 10
@@ -3679,6 +4077,8 @@ MtFuji_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+MtFuji_Blocks:: INCBIN "maps/blk/MtFuji.blk"
 
 SECTION "data/maps/attributes.asm@South", ROMX
 	map_attributes South, SOUTH, NORTH | SOUTH | EAST
@@ -3713,6 +4113,8 @@ South_MapEvents::
 	object_event 22, 16, SPRITE_ROCKER, SLOW_STEP_DOWN, 3, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 30, 11, SPRITE_FISHING_GURU, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
+South_Blocks:: INCBIN "maps/blk/South.blk"
+
 SECTION "data/maps/attributes.asm@North", ROMX
 	map_attributes North, NORTH, SOUTH
 	connection south, BullForestRoute3, BULL_FOREST_ROUTE_3, 0, 0, 10
@@ -3737,6 +4139,8 @@ North_MapEvents::
 	object_event 10, 9, SPRITE_BUG_CATCHER_BOY, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 9, 9, SPRITE_TWIN, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
+North_Blocks:: INCBIN "maps/blk/North.blk"
+
 SECTION "data/maps/attributes.asm@Route1P1", ROMX
 	map_attributes Route1P1, ROUTE_1_P1, WEST | EAST
 	connection west, Route1P2, ROUTE_1_P2, -3, 6, 12
@@ -3756,6 +4160,8 @@ Route1P1_MapEvents::
 	db 2 ; person events
 	object_event 20, 5, SPRITE_SUPER_NERD, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 18, 12, SPRITE_YOUNGSTER, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+
+Route1P1_Blocks:: INCBIN "maps/blk/Route1P1.blk"
 
 SECTION "data/maps/attributes.asm@Route1P2", ROMX
 	map_attributes Route1P2, ROUTE_1_P2, NORTH | EAST
@@ -3777,6 +4183,8 @@ Route1P2_MapEvents::
 	db 2 ; person events
 	object_event 8, 6, SPRITE_SILVER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 7, 15, SPRITE_TEACHER, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0
+
+Route1P2_Blocks:: INCBIN "maps/blk/Route1P2.blk"
 
 SECTION "data/maps/attributes.asm@Route2", ROMX
 	map_attributes Route2, ROUTE_2, WEST | EAST
@@ -3800,6 +4208,8 @@ Route2_MapEvents::
 	object_event 15, 7, SPRITE_YOUNGSTER, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 8, SPRITE_YOUNGSTER, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0
 
+Route2_Blocks:: INCBIN "maps/blk/Route2.blk"
+
 SECTION "data/maps/attributes.asm@HaitekuWestRoute", ROMX
 	map_attributes HaitekuWestRoute, HAITEKU_WEST_ROUTE, WEST | EAST
 	connection west, HaitekuWestRouteOcean, HAITEKU_WEST_ROUTE_OCEAN, -3, 15, 12
@@ -3813,6 +4223,8 @@ HaitekuWestRoute_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+HaitekuWestRoute_Blocks:: INCBIN "maps/blk/HaitekuWestRoute.blk"
 
 SECTION "data/maps/attributes.asm@HaitekuWestRouteOcean", ROMX
 	map_attributes HaitekuWestRouteOcean, HAITEKU_WEST_ROUTE_OCEAN, NORTH | EAST
@@ -3830,6 +4242,8 @@ HaitekuWestRouteOcean_MapEvents::
 
 	db 0 ; person events
 
+HaitekuWestRouteOcean_Blocks:: INCBIN "maps/blk/HaitekuWestRouteOcean.blk"
+
 SECTION "data/maps/attributes.asm@FontoRoute1", ROMX
 	map_attributes FontoRoute1, FONTO_ROUTE_1, WEST | EAST
 	connection west, South, SOUTH, 0, 0, 12
@@ -3845,6 +4259,8 @@ FontoRoute1_MapEvents::
 
 	db 0 ; person events
 
+FontoRoute1_Blocks:: INCBIN "maps/blk/FontoRoute1.blk"
+
 SECTION "data/maps/attributes.asm@FontoRoute6", ROMX
 	map_attributes FontoRoute6, FONTO_ROUTE_6, WEST | EAST
 	connection west, FontoRoute5, FONTO_ROUTE_5, 0, 0, 12
@@ -3859,6 +4275,8 @@ FontoRoute6_MapEvents::
 
 	db 0 ; person events
 
+FontoRoute6_Blocks:: INCBIN "maps/blk/FontoRoute6.blk"
+
 SECTION "data/maps/attributes.asm@FontoRoute2", ROMX
 	map_attributes FontoRoute2, FONTO_ROUTE_2, SOUTH | WEST
 	connection south, Fonto, FONTO, 0, 0, 10
@@ -3872,6 +4290,8 @@ FontoRoute2_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+FontoRoute2_Blocks:: INCBIN "maps/blk/FontoRoute2.blk"
 
 SECTION "data/maps/attributes.asm@FontoRoute4", ROMX
 	map_attributes FontoRoute4, FONTO_ROUTE_4, SOUTH | WEST
@@ -3889,6 +4309,8 @@ FontoRoute4_MapEvents::
 
 	db 0 ; person events
 
+FontoRoute4_Blocks:: INCBIN "maps/blk/FontoRoute4.blk"
+
 SECTION "data/maps/attributes.asm@FontoRoute3", ROMX
 	map_attributes FontoRoute3, FONTO_ROUTE_3, WEST | EAST
 	connection west, Fonto, FONTO, 0, 0, 9
@@ -3902,6 +4324,8 @@ FontoRoute3_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+FontoRoute3_Blocks:: INCBIN "maps/blk/FontoRoute3.blk"
 
 SECTION "data/maps/attributes.asm@BaadonRoute1", ROMX
 	map_attributes BaadonRoute1, BAADON_ROUTE_1, NORTH | SOUTH
@@ -3919,6 +4343,8 @@ BaadonRoute1_MapEvents::
 
 	db 0 ; person events
 
+BaadonRoute1_Blocks:: INCBIN "maps/blk/BaadonRoute1.blk"
+
 SECTION "data/maps/attributes.asm@BaadonRoute2", ROMX
 	map_attributes BaadonRoute2, BAADON_ROUTE_2, WEST | EAST
 	connection west, Baadon, BAADON, 0, 0, 9
@@ -3932,6 +4358,8 @@ BaadonRoute2_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+BaadonRoute2_Blocks:: INCBIN "maps/blk/BaadonRoute2.blk"
 
 SECTION "data/maps/attributes.asm@BaadonRoute3", ROMX
 	map_attributes BaadonRoute3, BAADON_ROUTE_3, SOUTH | WEST
@@ -3948,6 +4376,8 @@ BaadonRoute3_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+BaadonRoute3_Blocks:: INCBIN "maps/blk/BaadonRoute3.blk"
 
 SECTION "data/maps/attributes.asm@Route15", ROMX
 	map_attributes Route15, ROUTE_15, NORTH | EAST
@@ -3970,6 +4400,8 @@ Route15_MapEvents::
 
 	db 0 ; person events
 
+Route15_Blocks:: INCBIN "maps/blk/Route15.blk"
+
 SECTION "data/maps/attributes.asm@NewtypeRoute", ROMX
 	map_attributes NewtypeRoute, NEWTYPE_ROUTE, WEST | EAST
 	connection west, Newtype, NEWTYPE, -3, 6, 12
@@ -3983,6 +4415,8 @@ NewtypeRoute_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+NewtypeRoute_Blocks:: INCBIN "maps/blk/NewtypeRoute.blk"
 
 SECTION "data/maps/attributes.asm@Route18", ROMX
 	map_attributes Route18, ROUTE_18, NORTH | WEST
@@ -4001,6 +4435,8 @@ Route18_MapEvents::
 
 	db 0 ; person events
 
+Route18_Blocks:: INCBIN "maps/blk/Route18.blk"
+
 SECTION "data/maps/attributes.asm@BullForestRoute1", ROMX
 	map_attributes BullForestRoute1, BULL_FOREST_ROUTE_1, SOUTH | EAST
 	connection south, Route18, ROUTE_18, 0, 0, 10
@@ -4018,6 +4454,8 @@ BullForestRoute1_MapEvents::
 
 	db 0 ; person events
 
+BullForestRoute1_Blocks:: INCBIN "maps/blk/BullForestRoute1.blk"
+
 SECTION "data/maps/attributes.asm@SugarRoute", ROMX
 	map_attributes SugarRoute, SUGAR_ROUTE, NORTH | SOUTH
 	connection north, Sugar, SUGAR, 0, 0, 10
@@ -4033,6 +4471,8 @@ SugarRoute_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+SugarRoute_Blocks:: INCBIN "maps/blk/SugarRoute.blk"
 
 SECTION "data/maps/attributes.asm@BullForestRoute2", ROMX
 	map_attributes BullForestRoute2, BULL_FOREST_ROUTE_2, NORTH | SOUTH
@@ -4050,6 +4490,8 @@ BullForestRoute2_MapEvents::
 
 	db 0 ; person events
 
+BullForestRoute2_Blocks:: INCBIN "maps/blk/BullForestRoute2.blk"
+
 SECTION "data/maps/attributes.asm@StandRoute", ROMX
 	map_attributes StandRoute, STAND_ROUTE, NORTH | SOUTH
 	connection north, Stand, STAND, -3, 7, 13
@@ -4065,6 +4507,8 @@ StandRoute_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+StandRoute_Blocks:: INCBIN "maps/blk/StandRoute.blk"
 
 SECTION "data/maps/attributes.asm@KantoEastRoute", ROMX
 	map_attributes KantoEastRoute, KANTO_EAST_ROUTE, NORTH | WEST
@@ -4082,6 +4526,8 @@ KantoEastRoute_MapEvents::
 
 	db 0 ; person events
 
+KantoEastRoute_Blocks:: INCBIN "maps/blk/KantoEastRoute.blk"
+
 SECTION "data/maps/attributes.asm@RouteSilentEast", ROMX
 	map_attributes RouteSilentEast, ROUTE_SILENT_EAST, WEST | EAST
 	connection west, SilentHill, SILENT_HILL, 0, 0, 9
@@ -4097,6 +4543,8 @@ RouteSilentEast_MapEvents::
 
 	db 0 ; person events
 
+RouteSilentEast_Blocks:: INCBIN "maps/blk/RouteSilentEast.blk"
+
 SECTION "data/maps/attributes.asm@PrinceRoute", ROMX
 	map_attributes PrinceRoute, PRINCE_ROUTE, NORTH | SOUTH
 	connection north, Prince, PRINCE, 0, 0, 10
@@ -4111,6 +4559,8 @@ PrinceRoute_MapEvents::
 
 	db 0 ; person events
 
+PrinceRoute_Blocks:: INCBIN "maps/blk/PrinceRoute.blk"
+
 SECTION "data/maps/attributes.asm@MtFujiRoute", ROMX
 	map_attributes MtFujiRoute, MT_FUJI_ROUTE, NORTH | SOUTH
 	connection north, MtFuji, MT_FUJI, 0, 0, 10
@@ -4124,6 +4574,8 @@ MtFujiRoute_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+MtFujiRoute_Blocks:: INCBIN "maps/blk/MtFujiRoute.blk"
 
 SECTION "data/maps/attributes.asm@FontoRoute5", ROMX
 	map_attributes FontoRoute5, FONTO_ROUTE_5, SOUTH | EAST
@@ -4141,6 +4593,8 @@ FontoRoute5_MapEvents::
 
 	db 0 ; person events
 
+FontoRoute5_Blocks:: INCBIN "maps/blk/FontoRoute5.blk"
+
 SECTION "data/maps/attributes.asm@BullForestRoute3", ROMX
 	map_attributes BullForestRoute3, BULL_FOREST_ROUTE_3, NORTH | SOUTH
 	connection north, North, NORTH, 0, 0, 10
@@ -4154,4 +4608,6 @@ BullForestRoute3_MapEvents::
 	db 0 ; bg events
 
 	db 0 ; person events
+
+BullForestRoute3_Blocks:: INCBIN "maps/blk/BullForestRoute3.blk"
 
