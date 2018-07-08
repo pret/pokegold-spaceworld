@@ -1,5 +1,6 @@
 import os, errno
 import re
+import fix_sections_directory
 
 os.chdir("..")
 cwd = os.getcwd()
@@ -17,10 +18,10 @@ with open("pokegold-spaceworld-gen.link", "r") as f:
 def clean_section(line, file, multiple):
     global linkerscript
     lines = line.lstrip().split("\"")
-    if "@" not in lines[1] and not file == lines[1]:
-        file += ("@" + lines[1]) if multiple else ""
-    else:
+    if "@" in lines[1] or file == lines[1] or file == "hram.asm" or file == "vram.asm" or file == "sram.asm":
         file = lines[1]
+    else:
+        file += ("@" + lines[1]) if multiple else ""
     
     linkerscript = linkerscript.replace("\"" + lines[1] + "\"", "\"" + file + "\"")
     if "ROMX" in lines[2]:
@@ -36,7 +37,7 @@ def clean_section(line, file, multiple):
     else:
         raise
 
-TEMP_PATH = "temp/"
+TEMP_PATH = fix_sections_directory.TEMP_DIRECTORY
 
 for root, dirs, files in os.walk(cwd):
     for file in files:
@@ -89,9 +90,17 @@ for root, dirs, files in os.walk(cwd):
 linkerscript_lines = linkerscript.splitlines()
 
 i = 0
+clean_wram = False
+
 while i < len(linkerscript_lines):
     line = linkerscript_lines[i]
-    if "\"Shim for " in line:
+    if clean_wram:
+        if "org $dfff" not in line:
+            print(linkerscript_lines.pop(i))
+        else:
+            clean_wram = False
+            i += 1
+    elif "\"Shim for " in line:
         no_pop_count = 0
         shim_addr = line.replace(", ", " ; ").split(" ; ")[1]
         if linkerscript_lines[i-1] == "\torg " + shim_addr and linkerscript_lines[i-1] != "\torg $4000":
@@ -107,8 +116,14 @@ while i < len(linkerscript_lines):
         
         i -= 3 - no_pop_count
         print("")
-    elif "ROMX" in line:
+    elif "ROMX" in line and "org $4000" not in linkerscript_lines[i+1]:
         linkerscript_lines.insert(i+1, "\torg $4000")
+        i += 1
+    elif line.startswith("WRAM0"):
+        linkerscript_lines.insert(i+1, "\torg $c000")
+        i += 1
+    elif "\"Map Buffer\"" in line:
+        clean_wram = True
         i += 1
     else:
         i += 1
@@ -116,7 +131,7 @@ while i < len(linkerscript_lines):
 for i in range(len(linkerscript_lines)):
     linkerscript_lines[i] = linkerscript_lines[i].split(" ; ")[0]
 
-linkerscript = "\n".join(linkerscript_lines)
+linkerscript = "\n".join(linkerscript_lines) + "\n"
 
 with open(TEMP_PATH + "pokegold-spaceworld.link", "w+") as f:
     f.write(linkerscript)

@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Silent Hills Pokecenter", ROMX[$4682], BANK[$34]
+SECTION "maps/SilentHillPokecenter.asm", ROMX
 
 SilentHillPokecenterScriptLoader:: ; 4682
 	ld hl, SilentHillPokecenterScriptPointers

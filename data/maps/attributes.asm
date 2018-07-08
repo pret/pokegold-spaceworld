@@ -4610,4 +4610,3 @@ BullForestRoute3_MapEvents::
 	db 0 ; person events
 
 BullForestRoute3_Blocks:: INCBIN "maps/blk/BullForestRoute3.blk"
-

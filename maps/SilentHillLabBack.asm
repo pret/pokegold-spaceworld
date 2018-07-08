@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Silent Lab P2 Script", ROMX[$5C69], BANK[$34]
+SECTION "maps/SilentHillLabBack.asm", ROMX
 
 SilentHillLabBackScriptLoader:: ; 5C69
 	ld hl, SilentHillLabBackScriptPointers
