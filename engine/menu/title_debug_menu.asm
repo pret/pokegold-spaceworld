@@ -1,8 +1,8 @@
 INCLUDE "constants.asm"
 
-SECTION "Debug Menu", ROMX[$4031], BANK[$01]
+SECTION "Title Debug Menu", ROMX[$4031], BANK[$01]
 
-DebugMenu:: ; $4031
+TitleDebugMenu:: ; $4031
 	call ClearTileMap
 	call ClearWindowData
 	call LoadFont
@@ -11,7 +11,7 @@ DebugMenu:: ; $4031
 	call GetMemSGBLayout
 	xor a
 	ld [wWhichIndexSet], a
-	ld hl, DebugMenuHeader
+	ld hl, TitleDebugMenuHeader
 	call LoadMenuHeader
 	call OpenMenu
 	call CloseWindow
@@ -19,18 +19,18 @@ DebugMenu:: ; $4031
 	ld a, $41
 	ld [wce5f], a
 	ld a, [wMenuSelection]
-	ld hl, DebugJumpTable
+	ld hl, TitleDebugJumpTable
 	jp CallJumptable
 
-DebugJumpTable:: ; 4064
-	dw DebugMenuOptionFight
-	dw DebugMenuOptionField
+TitleDebugJumpTable:: ; 4064
+	dw TitleDebugMenuOptionFight
+	dw TitleDebugMenuOptionField
 	dw Function094c ; sound test
-	dw DebugMenuOptionSubGames
-	dw DebugMenuOptionMonsterTest
-	dw DebugMenuOptionName
+	dw TitleDebugMenuOptionSubGames
+	dw TitleDebugMenuOptionMonsterTest
+	dw TitleDebugMenuOptionName
 	
-DebugMenuHeader: ; 4070
+TitleDebugMenuHeader: ; 4070
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 05, 02, SCREEN_WIDTH - 7, SCREEN_HEIGHT - 1
 	dw .MenuData
@@ -39,7 +39,7 @@ DebugMenuHeader: ; 4070
 .MenuData: ; 4078
 	db $A0 
 	db 0 ; items
-	dw DebugMenuItems
+	dw TitleDebugMenuItems
 	db $8A, $1F 
 	dw .Strings
 	
@@ -51,7 +51,7 @@ DebugMenuHeader: ; 4070
 	db "モンスター@"
 	db "なまえ@"
 	
-DebugMenuItems:
+TitleDebugMenuItems:
 	db 06 
 	db 00 
 	db 01 
@@ -61,12 +61,12 @@ DebugMenuItems:
 	db 05 
 	db -1
 
-DebugMenuOptionField:: ; 40A8
+TitleDebugMenuOptionField:: ; 40A8
 	ld hl, wDebugFlags
 	set DEBUG_FIELD_F, [hl] ; set debug mode
 	jp StartNewGame
 	
-DebugMenuOptionFight:: ; 40B0
+TitleDebugMenuOptionFight:: ; 40B0
 	ld hl, wDebugFlags
 	set DEBUG_BATTLE_F, [hl]
 	ld a, $54
@@ -75,11 +75,11 @@ DebugMenuOptionFight:: ; 40B0
 	res DEBUG_BATTLE_F, [hl]
 	ret
 
-DebugMenuOptionSubGames:: ; 40C0
+TitleDebugMenuOptionSubGames:: ; 40C0
 	callab CallSubGameMenu
-	jp DebugMenu
+	jp TitleDebugMenu
 
-DebugMenuOptionMonsterTest:: ; 40CB
+TitleDebugMenuOptionMonsterTest:: ; 40CB
 	ld hl, wPokedexOwned
 	ld de, wPokedexSeen
 	ld b, $1F
@@ -98,12 +98,12 @@ DebugMenuOptionMonsterTest:: ; 40CB
 	ldh [rBGP], a
 	
 Function40eb::
-	jp DebugMenu
+	jp TitleDebugMenu
 
-DebugMenuOptionName:: ; 40EE
+TitleDebugMenuOptionName:: ; 40EE
 	callab OpenPokegear
 	ld a, $e4
 	ldh [rBGP], a
-	jp DebugMenu
+	jp TitleDebugMenu
 	
 ; 40FD

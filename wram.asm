@@ -283,6 +283,7 @@ wWindowStackPointer:: dw ; cbf2
 wMenuJoypad:: db ; cbf4
 wMenuSelection:: db ; cbf5
 wMenuSelectionQuantity:: db ; cbf6
+wFieldDebugMenuPage::
 wWhichIndexSet::
 wActiveBackpackPocket:: db ; cbf7
 wScrollingMenuCursorPosition:: db ; cbf8
@@ -416,7 +417,8 @@ SECTION "CD3E", WRAM0[$CD3D]
 wRegularItemsCursor:: db ; cd3d
 wBackpackAndKeyItemsCursor:: db ;cd3e
 wStartmenuCursor:: db ; cd3f
-    ds 4 ; TODO
+    ds 3 ; TODO
+wFieldDebugMenuCursorBuffer:: db ; cd43
 wRegularItemsScrollPosition:: db ; cd44
 wBackpackAndKeyItemsScrollPosition:: db ; cd45
     ds 3 ; TODO
