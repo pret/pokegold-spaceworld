@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "engine/Intro.asm", ROMX
+SECTION "engine/intro.asm", ROMX
 
 DemoStart:: ; 558D
 	ld de, OakPic

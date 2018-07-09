@@ -110,9 +110,11 @@ ROMX $01
 	org $4153
 	"home/oam_dma.asm"
 	; $416b
+	org $52f9
+	"engine/menu/main_menu.asm@Initialize new game WRAM"
 	org $53cc
-	"engine/menu/main_menu.asm"
-	"engine/Intro.asm"
+	"engine/menu/main_menu.asm@MainMenu"
+	"engine/intro.asm"
 	"engine/title.asm@Title screen"
 	"engine/title.asm@Title screen TEMPORARY"
 	"engine/predef.asm"

@@ -42,7 +42,7 @@ TEMP_PATH = fix_sections_directory.TEMP_DIRECTORY
 for root, dirs, files in os.walk(cwd):
     for file in files:
         rel_root = os.path.relpath(root, cwd)
-        if not rel_root.startswith("build") and not rel_root.startswith("temp") and file.endswith(".asm") and file != "rst.asm" and file != "wram.asm":
+        if not rel_root.startswith("build") and not rel_root.startswith("temp") and file.endswith(".asm") and file != "rst.asm" and file != "wram.asm" and file != "zero_checksum.asm":
             canonical_path = os.path.join(root, file)
             rel_path = os.path.relpath(canonical_path, cwd)
             with open(canonical_path, "r") as f:

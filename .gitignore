@@ -23,6 +23,7 @@ shim.asm
 tools/scan_includes
 tools/pkmncompress
 tools/gfx
+tools/fix_sections_directory.py
 *.exe
 *.pyc
 
