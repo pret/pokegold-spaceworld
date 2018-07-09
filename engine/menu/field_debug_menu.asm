@@ -167,7 +167,7 @@ FieldDebugMenu:: ; 3F:40E9
 	cp A_BUTTON
 	jr z, .RunFunction
 	call ChangeFieldDebugMenuPage
-	jr RunFieldDebugWindowFunction
+	jr .RunReturn
 
 .RunFunction: ; 3F:4123
 	ld a, [wMenuSelection]
@@ -175,6 +175,7 @@ FieldDebugMenu:: ; 3F:40E9
 	call CallJumptable
 
 ; Field Debug menu items may have different return functions.
+.RunReturn: ; 3F:412C
 	ld hl, FieldDebugMenuReturns
 	jp CallJumptable
 
@@ -205,7 +206,7 @@ FieldDebugMenu:: ; 3F:40E9
 	call ExitMenu
 	ld a, HMENURETURN_ASM
 	ld [hStartmenuCloseAndSelectHookEnable], a
-	jr CleanFieldDebugWindow
+	jr .Clean
 
 CloseFieldDebugMenu: ; 3F:415A
 	ld a, $02
