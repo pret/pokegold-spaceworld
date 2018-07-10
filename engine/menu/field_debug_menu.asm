@@ -381,13 +381,13 @@ ChangeTransportationMenuHeader:: ; 3F:426F
 	db "ラプラス@"
 
 TransportationPlayerString1: ; 3F:428D
-	db "<PLAYER>は@"
+	text "<PLAYER>は@"
 
 TransportationPlayerString2: ; 3F:429D
-	db "<PLAYER>は@"
+	text "<PLAYER>は@"
 
 TransportationCannotSurfString: ; 3F:42AC
-	db "ここでは　のることが"
+	text "ここでは　のることが"
 	next "できません"
 	prompt
 
@@ -512,7 +512,7 @@ ResetPromptMenu: ; 3F:4362
 	ret
 
 .ResetPromptString: ; 3F:4372
-	db "ほんとにりセットしますか？"
+	text "ほんとにりセットしますか？"
 	done
 
 ; 3F:4381
