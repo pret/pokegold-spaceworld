@@ -80,6 +80,7 @@
 04:53F4 Function113f4
 04:5677 DoPlayerMovement
 04:5DBE DisplayStartMenu
+04:5F25 DisplayTrainerCard
 04:640B Function1240b
 04:6C58 CheckRegisteredItem
 

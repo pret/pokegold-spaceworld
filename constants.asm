@@ -3,6 +3,7 @@ INCLUDE "charmap.asm"
 INCLUDE "macros.asm"
 
 INCLUDE "constants/audio_constants.asm"
+INCLUDE "constants/sfx_constants.asm"
 INCLUDE "constants/gfx_constants.asm"
 INCLUDE "constants/hardware_constants.asm"
 INCLUDE "constants/text_constants.asm"
