@@ -7,19 +7,19 @@ SECTION "home/talk_to_npc.asm", ROM0
 ; endc
 
 MapDefaultText::
-	ld hl, .Text
+	ld hl, GameplayText
 	call OpenTextbox
 	ret
 
-.Text: ; 00:302c
+GameplayText:: ; 00:302c
 	text "ゲームフりーク！"
 	done
 
 Function3036:: ; 3036
-	ld hl, .Text
+	ld hl, EmptyText
 	ret
 
-.Text: ; 00:303a
+EmptyText:: ; 00:303a
 	db "@"
 
 CallMapTextSubroutine:: ; 00:303b

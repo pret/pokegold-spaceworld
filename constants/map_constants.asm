@@ -31,7 +31,7 @@ ENDM
 	map_const SILENT_HILL_HOUSE,                 5,  4 ; 11
 	map_const SILENT_HILL_LAB_FRONT,             4,  8 ; 12
 	map_const SILENT_HILL_LAB_BACK,              4,  4 ; 13
-	map_const UNUSED_MAP_13,                         4,  4 ; 14
+	map_const UNUSED_MAP_13,                     4,  4 ; 14
 	map_const SHIZUKANA_OKA,                    25, 18 ; 15
 
 	newgroup                                           ;  2

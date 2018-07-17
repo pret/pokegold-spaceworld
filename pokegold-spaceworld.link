@@ -387,33 +387,33 @@ ROMX $24
 ROMX $25
 	org $4000
 	"data/maps/attributes/Route2Gate1F.asm"
-	org $407c
+	"maps/Route2Gate1F.asm"
 	"data/maps/attributes/Route2Gate2F.asm"
-	org $40dc
+	"maps/Route2Gate2F.asm"
 	"data/maps/attributes/Route2House.asm"
-	org $414a
+	"maps/Route2House.asm"
 	"data/maps/attributes/OldCityMuseum.asm"
-	org $41cd
+	"maps/OldCityMuseum.asm"
 	"data/maps/attributes/OldCityGym.asm"
-	org $4289
+	"maps/OldCityGym.asm"
 	"data/maps/attributes/OldCityTower1F.asm"
-	org $4319
+	"maps/OldCityTower1F.asm"
 	"data/maps/attributes/OldCityTower2F.asm"
-	org $439e
+	"maps/OldCityTower2F.asm"
 	"data/maps/attributes/OldCityTower3F.asm"
-	org $4423
+	"maps/OldCityTower3F.asm"
 	"data/maps/attributes/OldCityTower4F.asm"
-	org $44a8
+	"maps/OldCityTower4F.asm"
 	"data/maps/attributes/OldCityTower5F.asm"
-	org $44fc
+	"maps/OldCityTower5F.asm"
 	"data/maps/attributes/OldCityBillsHouse.asm"
-	org $456a
+	"maps/OldCityBillsHouse.asm"
 	"data/maps/attributes/OldCityMart.asm"
-	org $45ee
+	"maps/OldCityMart.asm"
 	"data/maps/attributes/OldCityHouse.asm"
-	org $466e
+	"maps/OldCityHouse.asm"
 	"data/maps/attributes/OldCityPokecenter1F.asm"
-	org $46fe
+	"maps/OldCityPokecenter1F.asm"
 	"data/maps/attributes/OldCityPokecenter2F.asm"
 	org $4826
 	"data/maps/attributes/OldCityPokecenterTrade.asm"
@@ -423,8 +423,9 @@ ROMX $25
 	"data/maps/attributes/OldCityPokecenterTimeMachine.asm"
 	org $49ac
 	"data/maps/attributes/OldCityKurtsHouse.asm"
-	org $4a26
+	"maps/OldCityKurtsHouse.asm"
 	"data/maps/attributes/OldCitySchool.asm"
+	"maps/OldCitySchool.asm"
 ROMX $26
 	org $4000
 	"data/maps/attributes/Route1Gate1F.asm"
@@ -432,319 +433,321 @@ ROMX $26
 	"data/maps/attributes/Route1Gate2F.asm"
 	"maps/Route1Gate2F.asm"
 	"data/maps/attributes/WestMart1F.asm"
-	org $42a0
+	"maps/WestMart1F.asm"
 	"data/maps/attributes/WestMart2F.asm"
-	org $4374
+	"maps/WestMart2F.asm"
 	"data/maps/attributes/WestMart3F.asm"
-	org $4433
+	"maps/WestMart3F.asm"
 	"data/maps/attributes/WestMart4F.asm"
-	org $44f2
+	"maps/WestMart4F.asm"
 	"data/maps/attributes/WestMart5F.asm"
-	org $4581
+	"maps/WestMart5F.asm"
 	"data/maps/attributes/WestMart6F.asm"
-	org $460e
+	"maps/WestMart6F.asm"
 	"data/maps/attributes/WestMartElevator.asm"
-	org $464b
+	"maps/WestMartElevator.asm"
 	"data/maps/attributes/WestRadioTower1F.asm"
-	org $46ca
+	"maps/WestRadioTower1F.asm"
 	"data/maps/attributes/WestRadioTower2F.asm"
-	org $4772
+	"maps/WestRadioTower2F.asm"
 	"data/maps/attributes/WestRadioTower3F.asm"
-	org $4827
+	"maps/WestRadioTower3F.asm"
 	"data/maps/attributes/WestRadioTower4F.asm"
-	org $48e9
+	"maps/WestRadioTower4F.asm"
 	"data/maps/attributes/WestRadioTower5F.asm"
-	org $499f
+	"maps/WestRadioTower5F.asm"
 	"data/maps/attributes/WestRocketRaidedHouse.asm"
-	org $4a49
+	"maps/WestRocketRaidedHouse.asm"
 	"data/maps/attributes/WestPokecenter1F.asm"
-	org $4ae1
+	"maps/WestPokecenter1F.asm"
 	"data/maps/attributes/WestPokecenter2F.asm"
-	org $4b5e
+	"maps/WestPokecenter2F.asm"
 	"data/maps/attributes/WestGym.asm"
-	org $4c1a
+	"maps/WestGym.asm"
 	"data/maps/attributes/WestHouse1.asm"
-	org $4c9e
+	"maps/WestHouse1.asm"
 	"data/maps/attributes/WestHouse2.asm"
+	"maps/WestHouse2.asm"
 ROMX $27
 	org $4000
 	"data/maps/attributes/HaitekuWestRouteGate.asm"
-	org $405b
+	"maps/HaitekuWestRouteGate.asm"
 	"data/maps/attributes/HaitekuPokecenter1F.asm"
-	org $40ef
+	"maps/HaitekuPokecenter1F.asm"
 	"data/maps/attributes/HaitekuPokecenter2F.asm"
-	org $4168
+	"maps/HaitekuPokecenter2F.asm"
 	"data/maps/attributes/HaitekuLeague1F.asm"
-	org $4209
+	"maps/HaitekuLeague1F.asm"
 	"data/maps/attributes/HaitekuLeague2F.asm"
-	org $42a9
+	"maps/HaitekuLeague2F.asm"
 	"data/maps/attributes/HaitekuMart.asm"
-	org $4329
+	"maps/HaitekuMart.asm"
 	"data/maps/attributes/HaitekuHouse1.asm"
-	org $4383
+	"maps/HaitekuHouse1.asm"
 	"data/maps/attributes/HaitekuHouse2.asm"
-	org $43dd
+	"maps/HaitekuHouse2.asm"
 	"data/maps/attributes/HaitekuImposterOakHouse.asm"
-	org $4444
+	"maps/HaitekuImposterOakHouse.asm"
 	"data/maps/attributes/HaitekuAquarium1F.asm"
-	org $44cb
+	"maps/HaitekuAquarium1F.asm"
 	"data/maps/attributes/HaitekuAquarium2F.asm"
-	org $4537
+	"maps/HaitekuAquarium2F.asm"
 	"data/maps/attributes/FontoRouteGate1.asm"
-	org $4592
+	"maps/FontoRouteGate1.asm"
 	"data/maps/attributes/FontoRouteGate2.asm"
-	org $45ed
+	"maps/FontoRouteGate2.asm"
 	"data/maps/attributes/FontoRouteGate3.asm"
-	org $4648
+	"maps/FontoRouteGate3.asm"
 	"data/maps/attributes/FontoRocketHouse.asm"
-	org $46d5
+	"maps/FontoRocketHouse.asm"
 	"data/maps/attributes/FontoMart.asm"
-	org $4755
+	"maps/FontoMart.asm"
 	"data/maps/attributes/FontoHouse.asm"
-	org $47af
+	"maps/FontoHouse.asm"
 	"data/maps/attributes/FontoPokecenter1F.asm"
-	org $4843
+	"maps/FontoPokecenter1F.asm"
 	"data/maps/attributes/FontoPokecenter2F.asm"
-	org $48bc
+	"maps/FontoPokecenter2F.asm"
 	"data/maps/attributes/FontoLab.asm"
-	org $4923
+	"maps/FontoLab.asm"
 	"data/maps/attributes/BaadonMart.asm"
-	org $49a3
+	"maps/BaadonMart.asm"
 	"data/maps/attributes/BaadonPokecenter1F.asm"
-	org $4a2a
+	"maps/BaadonPokecenter1F.asm"
 	"data/maps/attributes/BaadonPokecenter2F.asm"
-	org $4aa3
+	"maps/BaadonPokecenter2F.asm"
 	"data/maps/attributes/BaadonHouse1.asm"
-	org $4af9
+	"maps/BaadonHouse1.asm"
 	"data/maps/attributes/BaadonWallpaperHouse.asm"
-	org $4b42
+	"maps/BaadonWallpaperHouse.asm"
 	"data/maps/attributes/BaadonHouse2.asm"
-	org $4b9c
+	"maps/BaadonHouse2.asm"
 	"data/maps/attributes/BaadonLeague1F.asm"
-	org $4c3d
+	"maps/BaadonLeague1F.asm"
 	"data/maps/attributes/BaadonLeague2F.asm"
-	org $4cdd
+	"maps/BaadonLeague2F.asm"
 	"data/maps/attributes/BaadonRouteGateWest.asm"
-	org $4d38
+	"maps/BaadonRouteGateWest.asm"
 	"data/maps/attributes/BaadonRouteGateNewtype.asm"
-	org $4d93
+	"maps/BaadonRouteGateNewtype.asm"
 	"data/maps/attributes/NewtypePokecenter1F.asm"
-	org $4e27
+	"maps/NewtypePokecenter1F.asm"
 	"data/maps/attributes/NewtypePokecenter2F.asm"
-	org $4ea0
+	"maps/NewtypePokecenter2F.asm"
 	"data/maps/attributes/NewtypeLeague1F.asm"
-	org $4f41
+	"maps/NewtypeLeague1F.asm"
 	"data/maps/attributes/NewtypeLeague2F.asm"
-	org $4fe1
+	"maps/NewtypeLeague2F.asm"
 	"data/maps/attributes/NewtypeSailorHouse.asm"
-	org $503b
+	"maps/NewtypeSailorHouse.asm"
 	"data/maps/attributes/NewtypeMart.asm"
-	org $50bb
+	"maps/NewtypeMart.asm"
 	"data/maps/attributes/NewtypeDojo.asm"
-	org $5155
+	"maps/NewtypeDojo.asm"
 	"data/maps/attributes/NewtypeHouse1.asm"
-	org $51af
+	"maps/NewtypeHouse1.asm"
 	"data/maps/attributes/NewtypeDiner.asm"
-	org $522c
+	"maps/NewtypeDiner.asm"
 	"data/maps/attributes/NewtypeHouse2.asm"
-	org $5286
+	"maps/NewtypeHouse2.asm"
 	"data/maps/attributes/NewtypeHouse3.asm"
-	org $52e0
+	"maps/NewtypeHouse3.asm"
 	"data/maps/attributes/Route15Pokecenter1F.asm"
-	org $5374
+	"maps/Route15Pokecenter1F.asm"
 	"data/maps/attributes/Route15Pokecenter2F.asm"
-	org $53c6
+	"maps/Route15Pokecenter2F.asm"
 	"data/maps/attributes/NewtypeRouteGate.asm"
-	org $5421
+	"maps/NewtypeRouteGate.asm"
 	"data/maps/attributes/Route18Pokecenter1F.asm"
-	org $54b5
+	"maps/Route18Pokecenter1F.asm"
 	"data/maps/attributes/Route18Pokecenter2F.asm"
-	org $5507
+	"maps/Route18Pokecenter2F.asm"
 	"data/maps/attributes/SugarRouteGate.asm"
-	org $5562
+	"maps/SugarRouteGate.asm"
 	"data/maps/attributes/SugarHouse.asm"
-	org $55e2
+	"maps/SugarHouse.asm"
 	"data/maps/attributes/SugarHouse2.asm"
-	org $5638
+	"maps/SugarHouse2.asm"
 	"data/maps/attributes/SugarMart.asm"
-	org $56b8
+	"maps/SugarMart.asm"
 	"data/maps/attributes/SugarPokecenter1F.asm"
-	org $574c
+	"maps/SugarPokecenter1F.asm"
 	"data/maps/attributes/SugarPokecenter2F.asm"
-	org $57c5
+	"maps/SugarPokecenter2F.asm"
 	"data/maps/attributes/BullForestRoute1House.asm"
-	org $581f
+	"maps/BullForestRoute1House.asm"
 	"data/maps/attributes/BullForestRouteGateStand.asm"
-	org $587a
+	"maps/BullForestRouteGateStand.asm"
 	"data/maps/attributes/BullMart.asm"
-	org $58fa
+	"maps/BullMart.asm"
 	"data/maps/attributes/BullHouse1.asm"
-	org $5950
+	"maps/BullHouse1.asm"
 	"data/maps/attributes/BullHouse2.asm"
-	org $59aa
+	"maps/BullHouse2.asm"
 	"data/maps/attributes/BullHouse3.asm"
-	org $5a04
+	"maps/BullHouse3.asm"
 	"data/maps/attributes/BullPokecenter1F.asm"
-	org $5a98
+	"maps/BullPokecenter1F.asm"
 	"data/maps/attributes/BullPokecenter2F.asm"
-	org $5b11
+	"maps/BullPokecenter2F.asm"
 	"data/maps/attributes/BullLeague1F.asm"
-	org $5bb2
+	"maps/BullLeague1F.asm"
 	"data/maps/attributes/BullLeague2F.asm"
-	org $5c52
+	"maps/BullLeague2F.asm"
 	"data/maps/attributes/BullHouse4.asm"
-	org $5c9f
+	"maps/BullHouse4.asm"
 	"data/maps/attributes/StandRouteGateKanto.asm"
-	org $5cfa
+	"maps/StandRouteGateKanto.asm"
 	"data/maps/attributes/StandLab.asm"
-	org $5d50
+	"maps/StandLab.asm"
 	"data/maps/attributes/StandPokecenter1F.asm"
-	org $5de4
+	"maps/StandPokecenter1F.asm"
 	"data/maps/attributes/StandPokecenter2F.asm"
-	org $5e5d
+	"maps/StandPokecenter2F.asm"
 	"data/maps/attributes/StandOffice.asm"
-	org $5edd
+	"maps/StandOffice.asm"
 	"data/maps/attributes/StandMart.asm"
-	org $5f5d
+	"maps/StandMart.asm"
 	"data/maps/attributes/StandHouse.asm"
-	org $5fb7
+	"maps/StandHouse.asm"
 	"data/maps/attributes/StandRocketHouse1F.asm"
-	org $6024
+	"maps/StandRocketHouse1F.asm"
 	"data/maps/attributes/StandRocketHouse2F.asm"
-	org $6083
+	"maps/StandRocketHouse2F.asm"
 	"data/maps/attributes/StandLeague1F.asm"
-	org $6124
+	"maps/StandLeague1F.asm"
 	"data/maps/attributes/StandLeague2F.asm"
-	org $61c4
+	"maps/StandLeague2F.asm"
 	"data/maps/attributes/KantoCeruleanHouse.asm"
-	org $621e
+	"maps/KantoCeruleanHouse.asm"
 	"data/maps/attributes/KantoPokecenter1F.asm"
-	org $62b2
+	"maps/KantoPokecenter1F.asm"
 	"data/maps/attributes/KantoPokecenter2F.asm"
-	org $632b
+	"maps/KantoPokecenter2F.asm"
 	"data/maps/attributes/KantoLeague1F.asm"
-	org $63cc
+	"maps/KantoLeague1F.asm"
 	"data/maps/attributes/KantoLeague2F.asm"
-	org $646c
+	"maps/KantoLeague2F.asm"
 	"data/maps/attributes/KantoLavenderHouse.asm"
-	org $64d3
+	"maps/KantoLavenderHouse.asm"
 	"data/maps/attributes/KantoCeladonMart1F.asm"
-	org $6547
+	"maps/KantoCeladonMart1F.asm"
 	"data/maps/attributes/KantoCeladonMart2F.asm"
-	org $65c1
+	"maps/KantoCeladonMart2F.asm"
 	"data/maps/attributes/KantoCeladonMart3F.asm"
-	org $663b
+	"maps/KantoCeladonMart3F.asm"
 	"data/maps/attributes/KantoCeladonMart4F.asm"
-	org $66c2
+	"maps/KantoCeladonMart4F.asm"
 	"data/maps/attributes/KantoCeladonMart5F.asm"
-	org $6742
+	"maps/KantoCeladonMart5F.asm"
 	"data/maps/attributes/KantoCeladonElevator.asm"
-	org $677f
+	"maps/KantoCeladonElevator.asm"
 	"data/maps/attributes/KantoMart.asm"
-	org $67ff
+	"maps/KantoMart.asm"
 	"data/maps/attributes/KantoGamefreakHQ1.asm"
-	org $6899
+	"maps/KantoGamefreakHQ1.asm"
 	"data/maps/attributes/KantoGamefreakHQ2.asm"
-	org $6905
+	"maps/KantoGamefreakHQ2.asm"
 	"data/maps/attributes/KantoGamefreakHQ3.asm"
-	org $698b
+	"maps/KantoGamefreakHQ3.asm"
 	"data/maps/attributes/KantoGamefreakHQ4.asm"
-	org $69e3
+	"maps/KantoGamefreakHQ4.asm"
 	"data/maps/attributes/KantoGamefreakHQ5.asm"
-	org $6a2c
+	"maps/KantoGamefreakHQ5.asm"
 	"data/maps/attributes/KantoSilphCo.asm"
-	org $6adf
+	"maps/KantoSilphCo.asm"
 	"data/maps/attributes/KantoViridianHouse.asm"
-	org $6b46
+	"maps/KantoViridianHouse.asm"
 	"data/maps/attributes/KantoGameCorner.asm"
-	org $6c55
+	"maps/KantoGameCorner.asm"
 	"data/maps/attributes/KantoUnusedArea.asm"
-	org $6c90
+	"maps/KantoUnusedArea.asm"
 	"data/maps/attributes/KantoGameCornerPrizes.asm"
-	org $6d04
+	"maps/KantoGameCornerPrizes.asm"
 	"data/maps/attributes/KantoDiner.asm"
-	org $6d51
+	"maps/KantoDiner.asm"
 	"data/maps/attributes/KantoSchool.asm"
-	org $6deb
+	"maps/KantoSchool.asm"
 	"data/maps/attributes/KantoHospital.asm"
-	org $6e6b
+	"maps/KantoHospital.asm"
 	"data/maps/attributes/KantoPokecenter21F.asm"
-	org $6eff
+	"maps/KantoPokecenter21F.asm"
 	"data/maps/attributes/KantoPokecenter22F.asm"
-	org $6f78
+	"maps/KantoPokecenter22F.asm"
 	"data/maps/attributes/KantoRedsHouse.asm"
-	org $6fdf
+	"maps/KantoRedsHouse.asm"
 	"data/maps/attributes/KantoGreensHouse1F.asm"
-	org $703c
+	"maps/KantoGreensHouse1F.asm"
 	"data/maps/attributes/KantoGreensHouse2F.asm"
-	org $707e
+	"maps/KantoGreensHouse2F.asm"
 	"data/maps/attributes/KantoEldersHouse.asm"
-	org $70e5
+	"maps/KantoEldersHouse.asm"
 	"data/maps/attributes/KantoOaksLab.asm"
-	org $713b
+	"maps/KantoOaksLab.asm"
 	"data/maps/attributes/KantoLeague21F.asm"
-	org $71dc
+	"maps/KantoLeague21F.asm"
 	"data/maps/attributes/KantoLeague22F.asm"
-	org $727c
+	"maps/KantoLeague22F.asm"
 	"data/maps/attributes/KantoFishingGuru.asm"
-	org $72d6
+	"maps/KantoFishingGuru.asm"
 	"data/maps/attributes/SouthHouse1.asm"
-	org $7330
+	"maps/SouthHouse1.asm"
 	"data/maps/attributes/SouthPokecenter1F.asm"
-	org $73c4
+	"maps/SouthPokecenter1F.asm"
 	"data/maps/attributes/SouthPokecenter2F.asm"
-	org $743d
+	"maps/SouthPokecenter2F.asm"
 	"data/maps/attributes/SouthMart.asm"
-	org $74bd
+	"maps/SouthMart.asm"
 	"data/maps/attributes/SouthHouse2.asm"
-	org $7517
+	"maps/SouthHouse2.asm"
 	"data/maps/attributes/NorthHouse1.asm"
-	org $7571
+	"maps/NorthHouse1.asm"
 	"data/maps/attributes/NorthMart.asm"
-	org $75f1
+	"maps/NorthMart.asm"
 	"data/maps/attributes/NorthHouse2.asm"
-	org $764b
+	"maps/NorthHouse2.asm"
 	"data/maps/attributes/NorthPokecenter1F.asm"
-	org $76df
+	"maps/NorthPokecenter1F.asm"
 	"data/maps/attributes/NorthPokecenter2F.asm"
+	"maps/NorthPokecenter2F.asm"
 ROMX $2f
 	org $4000
 	"data/maps/attributes/PowerPlant1.asm"
-	org $407d
+	"maps/PowerPlant1.asm"
 	"data/maps/attributes/PowerPlant2.asm"
-	org $40fa
+	"maps/PowerPlant2.asm"
 	"data/maps/attributes/PowerPlant3.asm"
-	org $422b
+	"maps/PowerPlant3.asm"
 	"data/maps/attributes/PowerPlant4.asm"
-	org $435c
+	"maps/PowerPlant4.asm"
 	"data/maps/attributes/RuinsOfAlphEntrance.asm"
-	org $43d9
+	"maps/RuinsOfAlphEntrance.asm"
 	"data/maps/attributes/RuinsOfAlphMain.asm"
-	org $469f
+	"maps/RuinsOfAlphMain.asm"
 	"data/maps/attributes/CaveMinecarts1.asm"
-	org $482a
+	"maps/CaveMinecarts1.asm"
 	"data/maps/attributes/CaveMinecarts2.asm"
-	org $49b5
+	"maps/CaveMinecarts2.asm"
 	"data/maps/attributes/CaveMinecarts3.asm"
-	org $4b40
+	"maps/CaveMinecarts3.asm"
 	"data/maps/attributes/CaveMinecarts4.asm"
-	org $4ccb
+	"maps/CaveMinecarts4.asm"
 	"data/maps/attributes/CaveMinecarts5.asm"
-	org $4e56
+	"maps/CaveMinecarts5.asm"
 	"data/maps/attributes/CaveMinecarts6.asm"
-	org $4f2d
+	"maps/CaveMinecarts6.asm"
 	"data/maps/attributes/CaveMinecarts7.asm"
-	org $5004
+	"maps/CaveMinecarts7.asm"
 	"data/maps/attributes/Office1.asm"
-	org $5081
+	"maps/Office1.asm"
 	"data/maps/attributes/Office2.asm"
-	org $51b2
+	"maps/Office2.asm"
 	"data/maps/attributes/Office3.asm"
-	org $5289
+	"maps/Office3.asm"
 	"data/maps/attributes/SlowpokeWellEntrance.asm"
-	org $5306
+	"maps/SlowpokeWellEntrance.asm"
 	"data/maps/attributes/SlowpokeWellMain.asm"
-	org $53dd
+	"maps/SlowpokeWellMain.asm"
 	"data/maps/attributes/ShizukanaOka.asm"
 ROMX $30
 	org $4000
@@ -761,7 +764,7 @@ ROMX $33
 ROMX $34
 	org $4000
 	"data/maps/attributes/RouteSilentEastGate.asm"
-	org $4042
+	"maps/RouteSilentEastGate.asm"
 	"data/maps/attributes/PlayerHouse1F.asm"
 	"maps/PlayerHouse1F.asm"
 	"data/maps/attributes/PlayerHouse2F.asm"
@@ -775,91 +778,89 @@ ROMX $34
 	"data/maps/attributes/SilentHillLabBack.asm"
 	"maps/SilentHillLabBack.asm"
 	"data/maps/attributes/UnusedMap13.asm"
-	; $6068
-	org $6078
 	"maps/UnusedMap13.asm"
 ROMX $36
 	org $4000
-	org $4014
+	"maps/dummy_text_pointers.asm"
 	"data/maps/attributes/SilentHill.asm"
 	"data/maps/attributes/OldCity.asm"
-	org $4372
+	"maps/OldCity.asm"
 	"data/maps/attributes/West.asm"
-	org $45d2
+	"maps/West.asm"
 	"data/maps/attributes/Haiteku.asm"
-	org $47f8
+	"maps/Haiteku.asm"
 	"data/maps/attributes/Fonto.asm"
-	org $48f3
+	"maps/Fonto.asm"
 	"data/maps/attributes/Baadon.asm"
-	org $49f9
+	"maps/Baadon.asm"
 	"data/maps/attributes/Newtype.asm"
-	org $4c3a
+	"maps/Newtype.asm"
 	"data/maps/attributes/Sugar.asm"
-	org $4d05
+	"maps/Sugar.asm"
 	"data/maps/attributes/BullForest.asm"
-	org $4f28
+	"maps/BullForest.asm"
 	"data/maps/attributes/Stand.asm"
-	org $519d
+	"maps/Stand.asm"
 	"data/maps/attributes/Kanto.asm"
-	org $55f3
+	"maps/Kanto.asm"
 	"data/maps/attributes/Prince.asm"
-	org $5677
+	"maps/Prince.asm"
 	"data/maps/attributes/MtFuji.asm"
-	org $56ef
+	"maps/MtFuji.asm"
 	"data/maps/attributes/South.asm"
-	org $5914
+	"maps/South.asm"
 	"data/maps/attributes/North.asm"
-	org $59df
+	"maps/North.asm"
 	"data/maps/attributes/Route1P1.asm"
 	"data/maps/attributes/Route1P2.asm"
 	"data/maps/attributes/Route2.asm"
-	org $5cc6
+	"maps/Route2.asm"
 	"data/maps/attributes/HaitekuWestRoute.asm"
-	org $5dd1
+	"maps/HaitekuWestRoute.asm"
 	"data/maps/attributes/HaitekuWestRouteOcean.asm"
-	org $5f17
+	"maps/HaitekuWestRouteOcean.asm"
 	"data/maps/attributes/FontoRoute1.asm"
-	org $6083
+	"maps/FontoRoute1.asm"
 	"data/maps/attributes/FontoRoute6.asm"
-	org $61e8
+	"maps/FontoRoute6.asm"
 	"data/maps/attributes/FontoRoute2.asm"
-	org $62c6
+	"maps/FontoRoute2.asm"
 	"data/maps/attributes/FontoRoute4.asm"
-	org $63b2
+	"maps/FontoRoute4.asm"
 	"data/maps/attributes/FontoRoute3.asm"
-	org $64bd
+	"maps/FontoRoute3.asm"
 	"data/maps/attributes/BaadonRoute1.asm"
-	org $6603
+	"maps/BaadonRoute1.asm"
 	"data/maps/attributes/BaadonRoute2.asm"
-	org $67ef
+	"maps/BaadonRoute2.asm"
 	"data/maps/attributes/BaadonRoute3.asm"
-	org $68db
+	"maps/BaadonRoute3.asm"
 	"data/maps/attributes/Route15.asm"
-	org $69bd
+	"maps/Route15.asm"
 	"data/maps/attributes/NewtypeRoute.asm"
-	org $6a6e
+	"maps/NewtypeRoute.asm"
 	"data/maps/attributes/Route18.asm"
-	org $6c6f
+	"maps/Route18.asm"
 	"data/maps/attributes/BullForestRoute1.asm"
-	org $6d8f
+	"maps/BullForestRoute1.asm"
 	"data/maps/attributes/SugarRoute.asm"
-	org $6ed5
+	"maps/SugarRoute.asm"
 	"data/maps/attributes/BullForestRoute2.asm"
-	org $701b
+	"maps/BullForestRoute2.asm"
 	"data/maps/attributes/StandRoute.asm"
-	org $7161
+	"maps/StandRoute.asm"
 	"data/maps/attributes/KantoEastRoute.asm"
-	org $724d
+	"maps/KantoEastRoute.asm"
 	"data/maps/attributes/RouteSilentEast.asm"
-	org $738c
+	"maps/RouteSilentEast.asm"
 	"data/maps/attributes/PrinceRoute.asm"
-	org $73e8
+	"maps/PrinceRoute.asm"
 	"data/maps/attributes/MtFujiRoute.asm"
-	org $7444
+	"maps/MtFujiRoute.asm"
 	"data/maps/attributes/FontoRoute5.asm"
-	org $7530
+	"maps/FontoRoute5.asm"
 	"data/maps/attributes/BullForestRoute3.asm"
-	org $7669
+	"maps/BullForestRoute3.asm"
 	"maps/SilentHill.asm"
 	org $7b98
 	"maps/Route1P1.asm"
