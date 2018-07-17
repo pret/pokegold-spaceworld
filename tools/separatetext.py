@@ -40,7 +40,7 @@ def parse_charmap(asm):
 with open('charmap.asm', 'r', encoding='utf-8') as f:
     CHARMAP = parse_charmap(f.read())
 
-def strings_in(asm):
+def strings_in_asm(asm):
     label = ''
     cur_lines = []
     first_line = None
@@ -127,7 +127,13 @@ def to_csv(strings, out_path):
             starts = starts[:-1] if starts else starts
             japanese = japanese[:-1] if japanese else japanese
 
-            if len(string.label) <= 18 - 2:
+            starts_present = set(filter(
+                lambda start: start and not LINE_STARTS[start].is_end,
+                (line.start for line in string.lines)
+            ))
+            if starts_present == {'db'} or 'next' in starts_present:
+                placeholder = japanese
+            elif len(string.label) <= 18 - 2:
                 placeholder = "[{}]".format(string.label)
             else:
                 placeholder = "[{}]".format(string.label[:18 - 2 - 1] + "…")
@@ -184,7 +190,7 @@ def main(argv):
     with open(asm_path, 'r', encoding='utf-8') as f:
         s = f.read()
     
-    strings = list(strings_in(s))
+    strings = list(strings_in_asm(s))
     
     to_csv(strings, csv_path)
     with open(asm_path, 'w', encoding='utf-8') as f:
