@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Song VictoryTrainer", ROMX[$59ea], BANK[$3b]
+SECTION "audio/songs/victorytrainer.asm", ROMX
 
 Song_VictoryTrainer:: ; ed9ea (3b:59ea)
 	db 2 << 6 | 0

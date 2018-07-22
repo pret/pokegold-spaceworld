@@ -1,10 +1,10 @@
 include "constants.asm"
 
-if DEBUG
-SECTION "DMG Palette Fade Effect", ROM0 [$0343]
-else
-SECTION "DMG Palette Fade Effect", ROM0 [$0307]
-endc
+; if DEBUG
+SECTION "home/fade.asm", ROM0
+; else
+; SECTION "DMG Palette Fade Effect", ROM0 [$0307]
+; endc
 
 Function0343:: ; 0343
 	ld a, [wTimeOfDayPal]

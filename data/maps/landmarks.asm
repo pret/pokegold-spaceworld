@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "LandmarkNames", ROMX[$4AAF], BANK[$3F]
+SECTION "data/maps/landmarks.asm", ROMX
 
 LandmarkNames::
 	db "サイレント@" ; SILENT

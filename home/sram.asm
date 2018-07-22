@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
-if DEBUG
-SECTION "SRAM functions", ROM0[$32A7]
-else
-SECTION "SRAM functions", ROM0[$326B]
-endc
+; if DEBUG
+SECTION "home/sram.asm", ROM0
+; else
+; SECTION "SRAM functions", ROM0[$326B]
+; endc
 
 OpenSRAM:: ; 32a7
 	push af

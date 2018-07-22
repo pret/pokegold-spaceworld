@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
-if DEBUG
-SECTION "TossItem", ROM0[$3243]
-else
-SECTION "TossItem", ROM0[$3207]
-endc
+; if DEBUG
+SECTION "home/items.asm@TossItem", ROM0
+; else
+; SECTION "TossItem", ROM0[$3207]
+; endc
 
 TossItem: ; 00:3243
 	ldh a, [hROMBank]
@@ -45,11 +45,11 @@ ReceiveItem:: ; 3259
 	pop bc
 	ret
 
-if DEBUG
-SECTION "GiveItem", ROM0[$366C]
-else
-SECTION "GiveItem", ROM0[$3630]
-endc
+; if DEBUG
+SECTION "home/items.asm@GiveItem", ROM0
+; else
+; SECTION "GiveItem", ROM0[$3630]
+; endc
 
 GiveItem::
 ; Give player quantity c of item b,

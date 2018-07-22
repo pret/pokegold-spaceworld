@@ -9,18 +9,18 @@ RGBGFX := rgbgfx
 RGBLINK := rgblink
 RGBFIX := rgbfix
 sort_sym := tools/sort_symfile.sh
-#sort_sym := $(PYTHON3) tools/sort_sym.py
 
 RGBASMFLAGS := -h -E -i $(BUILD)/ -DGOLD -DDEBUG=1
 tools/gfx :=
 
 ROM := pokegold-spaceworld.gb
+LINKERSCRIPT := pokegold-spaceworld-gen.link
 BASEROM := baserom.gb
 SHIM := shim.sym
 CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
 
 rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
-DIRS := home engine data audio
+DIRS := home engine data audio maps
 ASMFILES := $(call rwildcard, $(DIRS), *.asm) gfx.asm vram.asm sram.asm wram.asm hram.asm
 OBJS := $(patsubst %.asm, $(BUILD)/%.o, $(ASMFILES))
 OBJS += $(BUILD)/shim.o
@@ -55,9 +55,10 @@ coverage: $(ROM:.gb=.map) tools/disasm_coverage.py
 	$(PYTHON) tools/disasm_coverage.py -m $< -b 0x40
 
 .PHONY: linkerscript
-linkerscript: $(ROM:.gb=.link)
+linkerscript: $(ROM:.gb=-gen.link)
 
-%.link: %.map tools/map2link.py
+# TODO FIX HARDCODE
+%.link: pokegold-spaceworld.map tools/map2link.py
 	$(PYTHON3) tools/map2link.py $< $@
 
 %.map: %.gb
@@ -69,7 +70,7 @@ $(CORRECTEDROM): %-correctheader.gb: %.gb
 	cp $(<:.gb=.sym) $(@:.gb=.sym)
 
 $(ROM): poke%-spaceworld.gb: $(OBJS) | $(BASEROM)
-	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -O $(BASEROM) -o $@ $^
+	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -l $(@:.gb=.link) -O $(BASEROM) -o $@ $^
 	$(RGBFIX) -f lh -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t "POKEMON2$(shell echo $* | cut -d _ -f 1 | tr '[:lower:]' '[:upper:]')" $@
 	$(sort_sym) $(@:.gb=.sym)
 

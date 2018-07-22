@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "ApplyPPUp", ROMX[$78f6], BANK[$03]
+SECTION "engine/items/item_effects.asm", ROMX
 
 ApplyPPUp: ; 03:78f6
 	ld a, MON_MOVES

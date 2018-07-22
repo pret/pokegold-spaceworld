@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Movement ROM0", ROM0 [$19d1]
+SECTION "home/movement.asm", ROM0
 
 InitMovementBuffer::
 	ld [wMovementBufferObject], a

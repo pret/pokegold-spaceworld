@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Base Data", ROMX[$4F10], BANK[$14]
+SECTION "data/pokemon/base_stats.asm", ROMX
 
 tmhm: MACRO
 ; used in data/pokemon/base_stats/*.asm

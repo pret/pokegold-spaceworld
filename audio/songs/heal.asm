@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Song Heal", ROMX[$55f4], BANK[$3b]
+SECTION "audio/songs/heal.asm", ROMX
 
 Song_Heal:: ; ed5f4 (3b:55f4)
 	db 2 << 6 | 0

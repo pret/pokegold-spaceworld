@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Copy Routines used by VBlank ISR", ROM0[$123a]
+SECTION "home/vcopy.asm", ROM0
 
 RedrawRowOrColumn:: ; 123a (0:123a)
 ; This function redraws a BG row of height 2 or a BG column of width 2.

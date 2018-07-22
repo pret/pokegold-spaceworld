@@ -1,10 +1,10 @@
 include "constants.asm"
 
-if DEBUG
-SECTION "Random Number Generation", ROM0 [$3270]
-else
-SECTION "Random Number Generation", ROM0 [$3234]
-endc
+; if DEBUG
+SECTION "home/random.asm", ROM0
+; else
+; SECTION "Random Number Generation", ROM0 [$3234]
+; endc
 
 Random::
 ; A simple hardware-based random number generator (RNG).

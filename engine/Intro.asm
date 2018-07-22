@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Oak Intro and Game Setup", ROMX[$558D], BANK[$01]
+SECTION "engine/intro.asm", ROMX
 
 DemoStart:: ; 558D
 	ld de, OakPic

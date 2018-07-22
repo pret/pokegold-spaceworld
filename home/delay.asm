@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Delay", ROM0[$0317]
+SECTION "home/delay.asm", ROM0
 
 DelayFrame::
 ; Wait for one frame

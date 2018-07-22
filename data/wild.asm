@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Wild Pokémon", ROMX[$6A3C], BANK[$0F]
+SECTION "data/wild.asm", ROMX
 
 GrassWildMons:: ; f:6a3c
 

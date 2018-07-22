@@ -1,4 +1,4 @@
-SECTION "HRAM", HRAM[$FF80]
+SECTION "HRAM", HRAM
 
 hOAMDMA:: ; ff80
     ds 10

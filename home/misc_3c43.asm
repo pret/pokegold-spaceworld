@@ -1,0 +1,91 @@
+INCLUDE "constants.asm"
+
+SECTION "home/misc_3c43.asm", ROM0
+
+GetPartyParamLocation:: ; 3c43 (00:3c43)
+; Get the location of parameter a from wCurPartyMon in hl
+	push bc
+	ld hl, wPartyMons
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld a, [wWhichPokemon]
+	call AddNTimes
+	pop bc
+	ret
+
+UseItem:: ; 3c56 (00:3c56)
+	jpba _UseItem
+
+CheckTossableItem:: ; 3c5e (00:3c5e)
+	push hl
+	push de
+	push bc
+	callab _CheckTossableItem
+	pop bc
+	pop de
+	pop hl
+	ret
+
+GetBattleAnimPointer:: ; 3c6d (00:3c6d)
+	ld a, BANK(BattleAnimationsBankRef)
+	ld [MBC3RomBank], a
+	ldh [hROMBank], a
+
+	ld a, [hli]
+	ld [wBattleAnimAddress], a
+	ld a, [hl]
+	ld [wBattleAnimAddress + 1], a
+
+	ld a, BANK(PlayBattleAnim)
+	ld [MBC3RomBank], a
+	ldh [hROMBank], a
+
+	ret
+
+GetBattleAnimByte:: ; 3c84 (00:3c84)
+	push hl
+	push de
+
+	ld hl, wBattleAnimAddress
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+
+	ld a, BANK(BattleAnimationsBankRef)
+	ld [MBC3RomBank], a
+	ldh [hROMBank], a
+
+	ld a, [de]
+	ld [wBattleAnimByte], a
+	inc de
+
+	ld a, BANK(PlayBattleAnim)
+	ld [MBC3RomBank], a
+	ldh [hROMBank], a
+
+	ld [hl], d
+	dec hl
+	ld [hl], e
+
+	pop de
+	pop hl
+
+	ld a, [wBattleAnimByte]
+	ret
+
+InitSpriteAnimStruct:: ; 3ca8 (00:3ca8)
+	ld [wSpriteAnimIDBuffer], a
+	ldh a, [hROMBank]
+	push af
+	ld a, BANK(_InitSpriteAnimStruct)
+	call Bankswitch
+	ld a, [wSpriteAnimIDBuffer]
+	call _InitSpriteAnimStruct
+	pop af
+	call Bankswitch
+	ret
+
+EmptyFunction3cbe:: ; 3cbe (00:3cbe)
+	ret

@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 	
-SECTION "BCD", ROMX[$4de3], BANK[$03]
+SECTION "engine/bcd.asm", ROMX
 
 AddBCD: ; 03:4de3
 	and a

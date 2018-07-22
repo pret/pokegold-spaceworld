@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "VBlank handler", ROM0[$150]
+SECTION "home/vblank.asm", ROM0
 
 VBlank:: ; 0150
 	push af

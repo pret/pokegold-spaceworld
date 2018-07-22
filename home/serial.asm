@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Serial handler", ROM0[$602]
+SECTION "home/serial.asm", ROM0
 
 Serial::
 	push af

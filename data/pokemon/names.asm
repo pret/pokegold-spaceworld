@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "PokemonNames", ROMX[$6D75], BANK[$14]
+SECTION "data/pokemon/names.asm", ROMX
 
 PokemonNames::
 	db "フシギダネ" ; FUSHIGIDANE

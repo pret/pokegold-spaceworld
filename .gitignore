@@ -5,7 +5,7 @@
 *.sym
 *.map
 *.sav
-*.sn1
+*.sn*
 *.rtc
 !shim.sym
 
@@ -23,6 +23,7 @@ shim.asm
 tools/scan_includes
 tools/pkmncompress
 tools/gfx
+tools/fix_sections_directory.py
 *.exe
 *.pyc
 
@@ -33,4 +34,6 @@ tools/gfx
 # extra utilities
 coverage.png
 coverage.log
-pokegold-spaceworld.link
+temp/
+pokegold-spaceworld-gen.link
+*.txt

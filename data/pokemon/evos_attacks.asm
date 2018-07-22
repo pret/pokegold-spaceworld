@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Evolutions and Attacks", ROMX[$6493], BANK[$10]
+SECTION "data/pokemon/evos_attacks.asm", ROMX
 
 ; Evolutions for Pokémon available in the demo were removed,
 ; and have been left in comments.

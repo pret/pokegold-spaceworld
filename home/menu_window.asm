@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Menu Window Functions", ROM0 [$1a64]
+SECTION "home/menu_window.asm", ROM0
 
 SetMenuAttributes::
 	push hl
