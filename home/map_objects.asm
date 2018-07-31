@@ -325,6 +325,8 @@ GetObjectStruct:: ; 00:17bf
 
 Function17cb::
 	add $10
+	
+Function17cd::
 	ld e, a
 	ldh a, [hROMBank]
 	push af

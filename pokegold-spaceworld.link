@@ -109,15 +109,21 @@ ROMX $01
 	"engine/menu/debug_menu.asm"
 	"engine/dumps/bank01.asm@Function40fd"
 	"home/oam_dma.asm"
-	; $416b
+	"engine/dumps/bank01.asm@Table416b"
 	org $42db
 	"engine/dumps/bank01.asm@Function42db"
-	org $44f2
-	"engine/dumps/bank01.asm@Function44f2"
-	org $453e
-	"engine/dumps/bank01.asm@Function453e"
-	org $486a
-	"engine/dumps/bank01.asm@Function486a"
+	org $4748
+	"engine/dumps/bank01.asm@Function4748"
+	org $49fc
+	"engine/dumps/bank01.asm@Function49fc"
+	org $4ed5
+	"engine/dumps/bank01.asm@Function4ed5"
+	org $4f14
+	"engine/dumps/bank01.asm@Function4f14"
+	org $4f86
+	"engine/dumps/bank01.asm@Function4f86"
+	org $4fbc
+	"engine/dumps/bank01.asm@Function4fbc"
 	org $5007
 	"engine/dumps/bank01.asm@Function5007"
 	org $52f9
@@ -134,12 +140,15 @@ ROMX $01
 	; $6fe5
 	org $6fec
 	"data/items/names.asm"
-	; $771e
+	org $771e
+	"engine/dumps/bank01.asm@Function771e"
 	org $774a
 	"engine/overworld/object_collision.asm@GetSpritesNextTile"
+	org $77a1
+	"engine/dumps/bank01.asm@Function77a1"
 	org $77dd
 	"engine/overworld/object_collision.asm@_CheckObjectCollision"
-	; $782c
+	"engine/dumps/bank01.asm@Function782c"
 	org $7894
 	"engine/overworld/object_collision.asm@_CheckPlayerObjectCollision"
 ROMX $02
