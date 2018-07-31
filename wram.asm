@@ -248,8 +248,9 @@ wVBCopyDst:: ds 2 ; cb65
 wVBCopyDoubleSize:: ds 1 ; cb67
 wVBCopyDoubleSrc:: ds 2 ; cb68
 wVBCopyDoubleDst:: ds 2 ; cb6a
-	ds 2
-wcb6e:: db
+wcb6c:: db ; cb6c
+wcb6d:: db ; cb6d
+wcb6e:: db ; cb6e
 
 SECTION "CB71", WRAM0[$CB70]
 
@@ -788,9 +789,9 @@ wd266:: db ; d266
 SECTION "D29A", WRAM0[$D29A]
 wd29a:: db ; d29a
 wd29b:: db ; d29b
-	db ; d29c
+wd29c::	db ; d29c
 wd29d:: db ; d29d
-	db
+wd29e::	db ; d29e
 	db
 wd2a0:: db ; d2a0
 

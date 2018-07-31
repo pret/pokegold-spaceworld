@@ -107,9 +107,19 @@ ROMX $01
 	org $4000
 	"engine/link/place_waiting_text.asm"
 	"engine/menu/debug_menu.asm"
-	org $4153
+	"engine/dumps/bank01.asm@Function40fd"
 	"home/oam_dma.asm"
 	; $416b
+	org $42db
+	"engine/dumps/bank01.asm@Function42db"
+	org $44f2
+	"engine/dumps/bank01.asm@Function44f2"
+	org $453e
+	"engine/dumps/bank01.asm@Function453e"
+	org $486a
+	"engine/dumps/bank01.asm@Function486a"
+	org $5007
+	"engine/dumps/bank01.asm@Function5007"
 	org $52f9
 	"engine/menu/main_menu.asm@Initialize new game WRAM"
 	org $53cc

@@ -125,8 +125,14 @@ hPrintNumDivisor:: ds 3 ; ffb7 big-endian
 hPrintNumTemp:: ds 3 ; ffba big-endian
 
 ENDU
-    ds 19 ; TODO
 
+	ds 10 ; TODO
+	
+hffc7:: db ; ffc7
+hffc8:: db ; ffc8
+hffc9:: db ; ffc9
+
+    ds 6 ; TODO
 
 hLCDCPointer:: ; ffd0
     db
