@@ -131,8 +131,11 @@ ENDU
 hffc7:: db ; ffc7
 hffc8:: db ; ffc8
 hffc9:: db ; ffc9
+hffca:: db ; ffca
+hffcb:: db ; ffcb
+hffcc:: db ; ffcc
 
-    ds 6 ; TODO
+    ds 3 ; TODO
 
 hLCDCPointer:: ; ffd0
     db

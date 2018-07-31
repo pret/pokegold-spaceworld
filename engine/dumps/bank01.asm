@@ -1241,8 +1241,59 @@ Function497a: ; 01:497a
 	add hl, bc
 	ld [hl], a
 	ret
-
-SECTION "engine/dumps/bank01.asm@Function49fc", ROMX
+	
+Table4994: ; 01:4994
+	db $00, $FF, $FE, $FD
+	db $FC, $FD, $FE, $FF
+	
+Function499c: ; 01:499c
+	call Function46f9
+	ld hl, $001f
+	add hl, bc
+	ld e, [hl]
+	add e
+	ld [hl], a
+	ld d, $00
+	ld hl, $49dc
+	add hl, de
+	ld a, [hl]
+	ld hl, $001b
+	add hl, bc
+	ld [hl], a
+	ldh a, [hConnectionStripLength]
+	cp $01
+	ret nz
+	ldh a, [hJoypadState]
+	and $f0
+	ret z
+	ld d, $00
+	bit 7, a
+	jr nz, .sub_49d0
+	ld d, $04
+	bit 6, a
+	jr nz, .sub_49d0
+	ld d, $08
+	bit 5, a
+	jr nz, .sub_49d0
+	ld d, $0c
+.sub_49d0
+	ld hl, $0007
+	add hl, bc
+	ld [hl], d
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $02
+	ret
+	
+Unknown49dc: ; 01:49dc
+	db $FC, $FB, $FA, $F9
+	db $F8, $F7, $F6, $F5
+	db $F5, $F5, $F4, $F4
+	db $F4, $F4, $F4, $F4
+	db $F5, $F5, $F6, $F6
+	db $F7, $F7, $F8, $F8
+	db $FA, $FB, $FC, $FE
+	db $FF, $00, $00, $00
 
 Function49fc: ; 01:49fc
 	ld hl, $0008
@@ -1430,6 +1481,8 @@ Function4b0c: ; 01:4b0c
 	
 Function4b22: ; 01:4b22
 	call Function4792
+	
+Function4b25: ; 01:4b25
 	ret
 
 Function4b26: ; 01:4b26
@@ -1618,20 +1671,541 @@ Function4c37: ; 01:4c37
 	ld h, [hl]
 	ld l, a
 	jp hl
+	
+Table4c48: ; 01:4c48
+	dw Function4d94
+	dw Function4d98
+	dw Function4d9c
+	dw Function4da0
+	dw Function4db6
+	dw Function4dbb
+	dw Function4dc0
+	dw Function4dc5
+	dw Function4dca
+	dw Function4dcf
+	dw Function4dd4
+	dw Function4dd9
+	dw Function4dde
+	dw Function4de3
+	dw Function4de8
+	dw Function4ded
+	dw Function4df2
+	dw Function4df7
+	dw Function4dfc
+	dw Function4e01
+	dw Function4e06
+	dw Function4e0b
+	dw Function4e10
+	dw Function4e15
+	dw Function4e1a
+	dw Function4e1f
+	dw Function4e24
+	dw Function4e29
+	dw Function4e2e
+	dw Function4e33
+	dw Function4e38
+	dw Function4e3d
+	dw Function4e42
+	dw Function4e47
+	dw Function4e4c
+	dw Function4e51
+	dw Function4d5e
+	dw Function4d67
+	dw Function4d70
+	dw Function4d79
+	dw Function4d82
+	dw Function4d8b
+	dw Function4d2c
+	dw Function4d30
+	dw Function4d34
+	dw Function4d38
+	dw Function4d3c
+	dw Function4d40
+	dw Function4d44
+	dw Function4d48
+	dw Function4cc1
+	dw Function4cef
+	dw Function4cb8
+	dw Function4d1a
+	dw Function49fc
+	dw Function4a82
 
-SECTION "engine/dumps/bank01.asm@Function4ed5", ROMX
+Function4cb8: ; 01:4cb8
+	ld hl, $001c
+	add hl, bc
+	ld [hl], $00
+	jp Function47b8
+
+Function4cc1: ; 01:4cc1
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr nz, .sub_4cce
+	ld a, $05
+	jr .sub_4cd8
+.sub_4cce
+	push bc
+	call GetMapObject
+	ld hl, $0004
+	add hl, bc
+	ld a, [hl]
+	pop bc
+.sub_4cd8
+	ld hl, $0003
+	add hl, bc
+	ld [hl], a
+	ld hl, $0008
+	add hl, bc
+	ld [hl], $01
+	ld hl, $001c
+	add hl, bc
+	ld [hl], $00
+	ld hl, wVramState
+	res 7, [hl]
+	ret
+
+Function4cef: ; 01:4cef
+	push bc
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	push af
+	ld h, b
+	ld l, c
+	ld bc, $0028
+	xor a
+	call ByteFill
+	pop af
+	call GetMapObject
+	ld hl, $0000
+	add hl, bc
+	ld [hl], $ff
+	pop bc
+	ld hl, wObjectFollow_Leader
+	ldh a, [hConnectionStripLength]
+	cp [hl]
+	jr nz, .sub_4d14
+	ld [hl], $ff
+.sub_4d14
+	ld hl, wVramState
+	res 7, [hl]
+	ret
+
+Function4d1a: ; 01:4d1a
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $02
+	ld hl, $0008
+	add hl, bc
+	ld [hl], $04
+	ld hl, wVramState
+	res 7, [hl]
+	ret
+
+Function4d2c: ; 01:4d2c
+	ld a, $01
+	jr Function4d4a
+
+Function4d30: ; 01:4d30
+	ld a, $02
+	jr Function4d4a
+
+Function4d34: ; 01:4d34
+	ld a, $03
+	jr Function4d4a
+
+Function4d38: ; 01:4d38
+	ld a, $04
+	jr Function4d4a
+
+Function4d3c: ; 01:4d3c
+	ld a, $05
+	jr Function4d4a
+
+Function4d40: ; 01:4d40
+	ld a, $06
+	jr Function4d4a
+
+Function4d44: ; 01:4d44
+	ld a, $07
+	jr Function4d4a
+
+Function4d48: ; 01:4d48
+	ld a, $08
+
+Function4d4a: ; 01:4d4a
+	ld hl, $0009
+	add hl, bc
+	ld [hl], a
+	ld hl, $0008
+	add hl, bc
+	ld [hl], $03
+	ld hl, $0006
+	add hl, bc
+	ld [hl], $ff
+	jp Function4b65
+
+Function4d5e: ; 01:4d5e
+	ld hl, $0004
+	add hl, bc
+	res 3, [hl]
+	jp Function47b8
+
+Function4d67: ; 01:4d67
+	ld hl, $0004
+	add hl, bc
+	set 3, [hl]
+	jp Function47b8
+
+Function4d70: ; 01:4d70
+	ld hl, $0004
+	add hl, bc
+	res 2, [hl]
+	jp Function47b8
+
+Function4d79: ; 01:4d79
+	ld hl, $0004
+	add hl, bc
+	set 2, [hl]
+	jp Function47b8
+
+Function4d82: ; 01:4d82
+	ld hl, $0005
+	add hl, bc
+	res 0, [hl]
+	jp Function47b8
+
+Function4d8b: ; 01:4d8b
+	ld hl, $0005
+	add hl, bc
+	set 0, [hl]
+	jp Function47b8
+
+Function4d94: ; 01:4d94
+	ld a, $00
+	jr Function4da4
+
+Function4d98: ; 01:4d98
+	ld a, $04
+	jr Function4da4
+
+Function4d9c: ; 01:4d9c
+	ld a, $08
+	jr Function4da4
+
+Function4da0: ; 01:4da0
+	ld a, $0c
+	jr Function4da4
+
+Function4da4: ; 01:4da4
+	ld hl, $0007
+	add hl, bc
+	ld [hl], a
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $02
+	ld hl, $0006
+	add hl, bc
+	ld [hl], $ff
+	ret
+
+Function4db6: ; 01:4db6
+	ld a, $00
+	jp Function4e56
+
+Function4dbb: ; 01:4dbb
+	ld a, $01
+	jp Function4e56
+
+Function4dc0: ; 01:4dc0
+	ld a, $02
+	jp Function4e56
+
+Function4dc5: ; 01:4dc5
+	ld a, $03
+	jp Function4e56
+
+Function4dca: ; 01:4dca
+	ld a, $04
+	jp Function4e56
+
+Function4dcf: ; 01:4dcf
+	ld a, $05
+	jp Function4e56
+
+Function4dd4: ; 01:4dd4
+	ld a, $06
+	jp Function4e56
+
+Function4dd9: ; 01:4dd9
+	ld a, $07
+	jp Function4e56
+
+Function4dde: ; 01:4dde
+	ld a, $08
+	jp Function4e56
+
+Function4de3: ; 01:4de3
+	ld a, $09
+	jp Function4e56
+
+Function4de8: ; 01:4de8
+	ld a, $0a
+	jp Function4e56
+
+Function4ded: ; 01:4ded
+	ld a, $0b
+	jp Function4e56
+
+Function4df2: ; 01:4df2
+	ld a, $0c
+	jp Function4e56
+
+Function4df7: ; 01:4df7
+	ld a, $0d
+	jp Function4e56
+
+Function4dfc: ; 01:4dfc
+	ld a, $0e
+	jp Function4e56
+
+Function4e01: ; 01:4e01
+	ld a, $0f
+	jp Function4e56
+
+Function4e06: ; 01:4e06
+	ld a, $00
+	jp Function4e7c
+
+Function4e0b: ; 01:4e0b
+	ld a, $01
+	jp Function4e7c
+
+Function4e10: ; 01:4e10
+	ld a, $02
+	jp Function4e7c
+
+Function4e15: ; 01:4e15
+	ld a, $03
+	jp Function4e7c
+
+Function4e1a: ; 01:4e1a
+	ld a, $04
+	jp Function4e7c
+
+Function4e1f: ; 01:4e1f
+	ld a, $05
+	jp Function4e7c
+
+Function4e24: ; 01:4e24
+	ld a, $06
+	jp Function4e7c
+
+Function4e29: ; 01:4e29
+	ld a, $07
+	jp Function4e7c
+
+Function4e2e: ; 01:4e2e
+	ld a, $08
+	jp Function4e7c
+
+Function4e33: ; 01:4e33
+	ld a, $09
+	jp Function4e7c
+
+Function4e38: ; 01:4e38
+	ld a, $0a
+	jp Function4e7c
+
+Function4e3d: ; 01:4e3d
+	ld a, $0b
+	jp Function4e7c
+
+Function4e42: ; 01:4e42
+	ld a, $0c
+	jp Function4e7c
+
+Function4e47: ; 01:4e47
+	ld a, $0d
+	jp Function4e7c
+
+Function4e4c: ; 01:4e4c
+	ld a, $0e
+	jp Function4e7c
+
+Function4e51: ; 01:4e51
+	ld a, $0f
+	jp Function4e7c
+
+Function4e56: ; 01:4e56
+	call Function468a
+	call Function4613
+	ld a, [wCenteredObject]
+	ld d, a
+	ldh a, [hConnectionStripLength]
+	cp d
+	jr z, .sub_4e6e
+	ld hl, $0008
+	add hl, bc
+	ld [hl], $02
+	jp Function4b88
+.sub_4e6e
+	ld hl, wcb6e
+	set 7, [hl]
+	ld hl, $0008
+	add hl, bc
+	ld [hl], $05
+	jp Function4bc9
+
+Function4e7c: ; 01:4e7c
+	call Function468a
+	ld hl, $001f
+	add hl, bc
+	ld [hl], $00
+	ld hl, $0005
+	add hl, bc
+	res 3, [hl]
+	call Function4792
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $02
+	call Function4b26
+	ld a, [wCenteredObject]
+	ld d, a
+	ldh a, [hConnectionStripLength]
+	cp d
+	jr z, .sub_4ea9
+	ld hl, $0008
+	add hl, bc
+	ld [hl], $0f
+	jp Function4ed5
+.sub_4ea9
+	ld hl, wcb6e
+	set 7, [hl]
+	ld hl, $0008
+	add hl, bc
+	ld [hl], $10
+	jp Function4f14
+
+Function4eb7: ; 01:4eb7
+	call Function468a
+	ld hl, $0008
+	add hl, bc
+	ld [hl], $0f
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $02
+	ld hl, $0005
+	add hl, bc
+	res 3, [hl]
+	ld hl, $001f
+	add hl, bc
+	ld [hl], $00
+	call Function4792
 
 Function4ed5: ; 01:4ed5
 	ld de, Table4edb
 	jp Function47ab
 
-SECTION "engine/dumps/bank01.asm@Function4f14", ROMX
+Table4edb: ; 01:4edb
+	dw Function4edf
+	dw Function4efb
+	
+Function4edf: ; 01:4edf
+	call Function46d3
+	call Function499c
+	ld hl, $0009
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function4799
+	call Function45d4
+	call Function468a.sub_46a2
+	ld hl, $0005
+	add hl, bc
+	res 3, [hl]
+	ret
+
+Function4efb: ; 01:4efb
+	call Function46d3
+	call Function499c
+	ld hl, $0009
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $0008
+	add hl, bc
+	ld [hl], $01
+	call Function45d4
+	call Function4792
+	ret
 
 Function4f14: ; 01:4f14
 	ld de, Table4f1a
 	jp Function47ab
 	
-SECTION "engine/dumps/bank01.asm@Function4f86", ROMX
+Table4f1a: ; 01:4f1a
+	dw Function4f20
+	dw Function4f40
+	dw Function4f4b
+	
+Function4f20: ; 01:4f20
+	call Function499c
+	call Function4750
+	ld hl, $0009
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function45d4
+	ld hl, $0005
+	add hl, bc
+	res 3, [hl]
+	ld hl, wcb6e
+	set 6, [hl]
+	set 4, [hl]
+	call Function4799
+	ret
+
+Function4f40: ; 01:4f40
+	call Function468a.sub_46a2
+	ld hl, wcb6e
+	set 7, [hl]
+	call Function4799
+
+Function4f4b: ; 01:4f4b
+	call Function499c
+	call Function4750
+	ld hl, $0009
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $0008
+	add hl, bc
+	ld [hl], $01
+	call Function45d4
+	ld hl, wcb6e
+	set 6, [hl]
+	call Function4792
+	ldh a, [hConnectionStripLength]
+	cp $01
+	jp z, .sub_4f70
+	ret
+.sub_4f70
+	ld hl, $0007
+	add hl, bc
+	ld a, [hl]
+	rra
+	rra
+	and $03
+	ld d, a
+	ld hl, $0006
+	add hl, bc
+	ld a, [hl]
+	and $03
+	cp d
+	ret z
+	jp Function4b25
 
 Function4f86: ; 01:4f86
 	ld e, a
@@ -1670,8 +2244,6 @@ Function4f86: ; 01:4f86
 	pop af
 	ld [hl], a
 	ret
-	
-SECTION "engine/dumps/bank01.asm@Function4fbc", ROMX
 
 Function4fbc: ; 01:4fbc
 	call .sub_4fc5
@@ -1723,8 +2295,6 @@ Function4fbc: ; 01:4fbc
 	ld a, $32
 	scf
 	ret
-	
-SECTION "engine/dumps/bank01.asm@Function5007", ROMX
 
 Function5007: ; 01:5007
 	ld bc, wObjectStructs
@@ -1974,6 +2544,291 @@ Function50b9: ; 01:50b9
 	pop bc
 	ret
 
+_UpdateSprites: ; 01:5190
+	ld a, [wVramState]
+	bit 0, a
+	ret z
+	xor a
+	ldh [hffc7], a
+	call .sub_51a3
+	call .sub_5258
+	call .sub_5243
+	ret
+.sub_51a3
+	xor a
+	ld bc, wObjectStructs
+.sub_51a7
+	push af
+	push bc
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	and a
+	jp z, .sub_5234
+	ld hl, $0005
+	add hl, bc
+	bit 0, [hl]
+	jp nz, .sub_5234
+	xor a
+	bit 7, [hl]
+	jr z, .sub_51c2
+	add $80
+.sub_51c2
+	bit 4, [hl]
+	jr z, .sub_51c8
+	add $10
+.sub_51c8
+	ld d, a
+	xor a
+	bit 3, [hl]
+	jr z, .sub_51d0
+	or $80
+.sub_51d0
+	ldh [hffcc], a
+	ld hl, $0002
+	add hl, bc
+	ld a, [hl]
+	ldh [hffcb], a
+	ld hl, $0018
+	add hl, bc
+	ld a, [hl]
+	ld hl, $001a
+	add hl, bc
+	add [hl]
+	add $08
+	ldh [hffc9], a
+	ld hl, $0019
+	add hl, bc
+	ld a, [hl]
+	ld hl, $001b
+	add hl, bc
+	add [hl]
+	add $10
+	ldh [hffca], a
+	ld hl, $000d
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jp z, .sub_5234
+	ld l, a
+	ld h, $00
+	add hl, hl
+	ld bc, $421b
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ldh a, [hffc7]
+	ld c, a
+	ld b, $c2
+.sub_520f
+	ldh a, [hffca]
+	add [hl]
+	inc hl
+	ld [bc], a
+	inc c
+	ldh a, [hffc9]
+	add [hl]
+	inc hl
+	ld [bc], a
+	inc c
+	ldh a, [hffcb]
+	add [hl]
+	inc hl
+	ld [bc], a
+	inc c
+	ld a, [hl]
+	bit 1, a
+	jr z, .sub_5229
+	ldh a, [hffcc]
+	or [hl]
+.sub_5229
+	inc hl
+	or d
+	ld [bc], a
+	inc c
+	bit 0, a
+	jr z, .sub_520f
+	ld a, c
+	ldh [hffc7], a
+.sub_5234
+	pop bc
+	ld hl, $0028
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop af
+	inc a
+	cp $0a
+	jp nz, .sub_51a7
+	ret
+.sub_5243
+	ld b, $a0
+	ldh a, [hffc7]
+	cp b
+	ret nc
+	ld l, a
+	ld h, $c2
+	ld de, $0004
+	ld a, b
+	ld c, $a0
+.sub_5252
+	ld [hl], c
+	add hl, de
+	cp l
+	jr nz, .sub_5252
+	ret
+.sub_5258
+	ld bc, wCmdQueue
+	ld a, $04
+.sub_525d
+	push af
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .sub_52cf
+	ld hl, $0004
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0006
+	add hl, bc
+	add [hl]
+	add $08
+	ldh [hffc9], a
+	ld hl, $0005
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0007
+	add hl, bc
+	add [hl]
+	add $10
+	ldh [hffca], a
+	ld hl, $0003
+	add hl, bc
+	ld a, [hl]
+	ldh [hffcb], a
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .sub_52cf
+	ld e, a
+	ld d, $00
+	ld hl, Table44ab
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ldh a, [hffc7]
+	ld d, a
+	ld a, [hl]
+	and a
+	jr z, .sub_52cf
+	add a
+	add a
+	add d
+	cp $a0
+	jr nc, .sub_52da
+	ldh a, [hffc7]
+	ld e, a
+	ld d, $c2
+	ld a, [hli]
+.sub_52b0
+	ldh [hffc8], a
+	ldh a, [hffca]
+	add [hl]
+	ld [de], a
+	inc hl
+	inc de
+	ldh a, [hffc9]
+	add [hl]
+	ld [de], a
+	inc hl
+	inc de
+	ldh a, [hffcb]
+	add [hl]
+	ld [de], a
+	inc hl
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ldh a, [hffc8]
+	dec a
+	jr nz, .sub_52b0
+	ld a, e
+	ldh [hffc7], a
+.sub_52cf
+	ld hl, $0010
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop af
+	dec a
+	jr nz, .sub_525d
+	ret
+.sub_52da
+	pop af
+	ret
+
+Function52dc: ; 01:52dc
+	call MenuBoxCoord2Tile
+	push hl
+	ld de, $005a
+	add hl, de
+	call PrintNumBadges
+	pop hl
+	push hl
+	ld de, $0081
+	add hl, de
+	call PrintNumOwnedMons
+	pop hl
+	ld de, $00a8
+	add hl, de
+	call PrintPlayTime
+	ret
+	
+SECTION "engine/dumps/bank01.asmFunction5388", ROMX
+
+Function5388: ; 01:5388
+	ld a, $00
+	call OpenSRAM
+	ld a, [s0_a600]
+	ld [wce60], a
+	call CloseSRAM
+	ret
+
+Function5397: ; 01:5397
+	ld a, $00
+	call OpenSRAM
+	ld hl, s0_a600
+	ld a, [hli]
+	ld [wce5f], a
+	inc hl
+	ld a, [hli]
+	ld [wActiveFrame], a
+	ld a, [hl]
+	ld [wTextBoxFlags], a
+	call CloseSRAM
+	ret
+
+Function53b0: ; 01:53b0
+	ld a, $00
+	call OpenSRAM
+	ld hl, wDebugFlags
+	ld a, [hli]
+	ld [wDebugFlags], a
+	ld a, [hli]
+	ld [wce64], a
+	ld a, [hli]
+	ld [wce65], a
+	ld a, [hl]
+	ld [wce66], a
+	call CloseSRAM
+	ret
+	
 SECTION "engine/dumps/bank01.asm@Function771e", ROMX
 
 Function771e: ; 01:771e

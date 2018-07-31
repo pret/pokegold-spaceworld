@@ -311,7 +311,7 @@ UpdateSprites:: ; 00:17a8
 	bit 0, a
 	ret z
 	callab Function5007
-	callab Function5190
+	callab _UpdateSprites
 	ret
 
 GetObjectStruct:: ; 00:17bf

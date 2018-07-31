@@ -644,7 +644,9 @@ wDebugFlags:: db ; ce63
 ; Bit 1: Debug field indicator
 ; Bit 2-3: Game is continued (set when selecting continue on the main menu)
 
-	ds 3
+wce64:: ds 1 ; ce64
+wce65:: ds 1 ; ce65
+wce66:: ds 1 ; ce66
 	
 wPlayerName:: ds 6 ; ce67
 

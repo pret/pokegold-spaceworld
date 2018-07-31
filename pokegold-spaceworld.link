@@ -114,21 +114,9 @@ ROMX $01
 	"engine/dumps/bank01.asm@Function42db"
 	org $4748
 	"engine/dumps/bank01.asm@Function4748"
-	org $49fc
-	"engine/dumps/bank01.asm@Function49fc"
-	org $4ed5
-	"engine/dumps/bank01.asm@Function4ed5"
-	org $4f14
-	"engine/dumps/bank01.asm@Function4f14"
-	org $4f86
-	"engine/dumps/bank01.asm@Function4f86"
-	org $4fbc
-	"engine/dumps/bank01.asm@Function4fbc"
-	org $5007
-	"engine/dumps/bank01.asm@Function5007"
 	org $52f9
 	"engine/menu/main_menu.asm@Initialize new game WRAM"
-	org $53cc
+	"engine/dumps/bank01.asmFunction5388"
 	"engine/menu/main_menu.asm@MainMenu"
 	"engine/intro.asm"
 	"engine/title.asm@Title screen"
