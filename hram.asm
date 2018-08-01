@@ -128,12 +128,12 @@ ENDU
 
 	ds 10 ; TODO
 	
-hffc7:: db ; ffc7
-hffc8:: db ; ffc8
-hffc9:: db ; ffc9
-hffca:: db ; ffca
-hffcb:: db ; ffcb
-hffcc:: db ; ffcc
+hFFC7:: db ; FFC7
+hFFC8:: db ; FFC8
+hFFC9:: db ; FFC9
+hFFCA:: db ; FFCA
+hFFCB:: db ; FFCB
+hFFCC:: db ; FFCC
 
     ds 3 ; TODO
 

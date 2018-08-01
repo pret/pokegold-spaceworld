@@ -2494,12 +2494,12 @@ Function5007: ; 01:5007
 	ld d, $03
 .sub_5073
 	ld a, d
-	ldh [hffc9], a
+	ldh [hFFC9], a
 	ld a, [hl]
 	srl a
 	srl a
 	srl a
-	ldh [hffc7], a
+	ldh [hFFC7], a
 	ld hl, $0019
 	add hl, bc
 	ld a, [hl]
@@ -2512,16 +2512,16 @@ Function5007: ; 01:5007
 	srl a
 	srl a
 	srl a
-	ldh [hffc8], a
-	ldh a, [hffc7]
+	ldh [hFFC8], a
+	ldh a, [hFFC7]
 	ld c, a
-	ldh a, [hffc8]
+	ldh a, [hFFC8]
 	ld b, a
 	call Coord2Tile
 	ld bc, $0014
 .sub_50a1
 	push hl
-	ldh a, [hffc9]
+	ldh a, [hFFC9]
 	ld d, a
 .sub_50a5
 	ld a, [hli]
@@ -2676,7 +2676,7 @@ _UpdateSprites: ; 01:5190
 	bit 0, a
 	ret z
 	xor a
-	ldh [hffc7], a
+	ldh [hFFC7], a
 	call .sub_51a3
 	call .sub_5258
 	call .sub_5243
@@ -2711,11 +2711,11 @@ _UpdateSprites: ; 01:5190
 	jr z, .sub_51d0
 	or $80
 .sub_51d0
-	ldh [hffcc], a
+	ldh [hFFCC], a
 	ld hl, $0002
 	add hl, bc
 	ld a, [hl]
-	ldh [hffcb], a
+	ldh [hFFCB], a
 	ld hl, $0018
 	add hl, bc
 	ld a, [hl]
@@ -2723,7 +2723,7 @@ _UpdateSprites: ; 01:5190
 	add hl, bc
 	add [hl]
 	add $08
-	ldh [hffc9], a
+	ldh [hFFC9], a
 	ld hl, $0019
 	add hl, bc
 	ld a, [hl]
@@ -2731,7 +2731,7 @@ _UpdateSprites: ; 01:5190
 	add hl, bc
 	add [hl]
 	add $10
-	ldh [hffca], a
+	ldh [hFFCA], a
 	ld hl, $000d
 	add hl, bc
 	ld a, [hl]
@@ -2745,21 +2745,21 @@ _UpdateSprites: ; 01:5190
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ldh a, [hffc7]
+	ldh a, [hFFC7]
 	ld c, a
 	ld b, $c2
 .sub_520f
-	ldh a, [hffca]
+	ldh a, [hFFCA]
 	add [hl]
 	inc hl
 	ld [bc], a
 	inc c
-	ldh a, [hffc9]
+	ldh a, [hFFC9]
 	add [hl]
 	inc hl
 	ld [bc], a
 	inc c
-	ldh a, [hffcb]
+	ldh a, [hFFCB]
 	add [hl]
 	inc hl
 	ld [bc], a
@@ -2767,7 +2767,7 @@ _UpdateSprites: ; 01:5190
 	ld a, [hl]
 	bit 1, a
 	jr z, .sub_5229
-	ldh a, [hffcc]
+	ldh a, [hFFCC]
 	or [hl]
 .sub_5229
 	inc hl
@@ -2777,7 +2777,7 @@ _UpdateSprites: ; 01:5190
 	bit 0, a
 	jr z, .sub_520f
 	ld a, c
-	ldh [hffc7], a
+	ldh [hFFC7], a
 .sub_5234
 	pop bc
 	ld hl, $0028
@@ -2791,7 +2791,7 @@ _UpdateSprites: ; 01:5190
 	ret
 .sub_5243
 	ld b, $a0
-	ldh a, [hffc7]
+	ldh a, [hFFC7]
 	cp b
 	ret nc
 	ld l, a
@@ -2822,7 +2822,7 @@ _UpdateSprites: ; 01:5190
 	add hl, bc
 	add [hl]
 	add $08
-	ldh [hffc9], a
+	ldh [hFFC9], a
 	ld hl, $0005
 	add hl, bc
 	ld a, [hl]
@@ -2830,11 +2830,11 @@ _UpdateSprites: ; 01:5190
 	add hl, bc
 	add [hl]
 	add $10
-	ldh [hffca], a
+	ldh [hFFCA], a
 	ld hl, $0003
 	add hl, bc
 	ld a, [hl]
-	ldh [hffcb], a
+	ldh [hFFCB], a
 	ld hl, $000c
 	add hl, bc
 	ld a, [hl]
@@ -2848,7 +2848,7 @@ _UpdateSprites: ; 01:5190
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ldh a, [hffc7]
+	ldh a, [hFFC7]
 	ld d, a
 	ld a, [hl]
 	and a
@@ -2858,23 +2858,23 @@ _UpdateSprites: ; 01:5190
 	add d
 	cp $a0
 	jr nc, .sub_52da
-	ldh a, [hffc7]
+	ldh a, [hFFC7]
 	ld e, a
 	ld d, $c2
 	ld a, [hli]
 .sub_52b0
-	ldh [hffc8], a
-	ldh a, [hffca]
+	ldh [hFFC8], a
+	ldh a, [hFFCA]
 	add [hl]
 	ld [de], a
 	inc hl
 	inc de
-	ldh a, [hffc9]
+	ldh a, [hFFC9]
 	add [hl]
 	ld [de], a
 	inc hl
 	inc de
-	ldh a, [hffcb]
+	ldh a, [hFFCB]
 	add [hl]
 	ld [de], a
 	inc hl
@@ -2882,11 +2882,11 @@ _UpdateSprites: ; 01:5190
 	ld a, [hli]
 	ld [de], a
 	inc de
-	ldh a, [hffc8]
+	ldh a, [hFFC8]
 	dec a
 	jr nz, .sub_52b0
 	ld a, e
-	ldh [hffc7], a
+	ldh [hFFC7], a
 .sub_52cf
 	ld hl, $0010
 	add hl, bc
