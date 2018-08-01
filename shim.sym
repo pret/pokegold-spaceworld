@@ -1,35 +1,3 @@
-; WRAM0
-
-00:CB6F wPlayerStepDirection
-
-01:D19E wItems
-; The starting house's map script number is stored at d29a. Others are probably nearby.
-01:D1EA wUnknownListLengthd1ea
-01:D1EB wUnknownListd1eb
-01:D35F wOptions
-01:D513 wWarpNumber
-01:DA3B wOTPartyMonOT
-01:DA83 wUnknownListLengthda83
-01:DA84 wUnknownListda84
-
-01:40FD Function40fd
-01:5007 Function5007
-01:50B9 Function50b9
-01:5190 _UpdateSprites
-01:5190 Function5190
-01:52F9 Function52f9
-01:5388 Function5388
-01:5397 Function5397
-01:53B0 Function53b0
-01:63D8 ReanchorBGMap_NoOAMUpdate
-01:6437 LoadFonts_NoOAMUpdate
-01:6445 Function6445
-01:66B1 Function66b1
-01:6713 Function6713
-01:67d5 CorrectNickErrors
-01:776E Function776e
-01:78E5 SettingsScreen
-
 02:4000 Function8000
 02:4098 _InitializeVisibleSprites
 02:4125 Function8125
@@ -50,6 +18,7 @@
 02:51D2 SetTitleBGDecorationBorder
 02:528B Function928b
 02:5695 CheckSGB
+02:56eb Function96eb
 
 03:47D5 SpawnPoints
 03:488D Tilesets
@@ -135,6 +104,7 @@
 0F:567C Function3d67c
 0F:6043 AddPokemonToBox
 0F:61A4 Function3e1a4
+0F:63a7 Function3e3a7
 0F:6874 Function3e874
 0F:691E Function3e91e
 0F:6963 Function3e963
