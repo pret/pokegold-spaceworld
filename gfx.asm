@@ -59,6 +59,7 @@ MailIconGFX::
 INCBIN "gfx/icons/mail.2bpp"
 
 SECTION "gfx.asm@Trainer Card GFX", ROMX
+TrainerCardBorderGFX::                  INCBIN "gfx/trainer_card/border.2bpp"
 TrainerCardGFX::                     INCBIN "gfx/trainer_card/trainer_card.2bpp" ; 0x013171--0x013381
 TrainerCardColonGFX::                INCBIN "gfx/trainer_card/colon.2bpp"        ; 0x013381--0x013391
 TrainerCardIDNoGFX::                 INCBIN "gfx/trainer_card/id_no.2bpp"        ; 0x013391--0x0133B1

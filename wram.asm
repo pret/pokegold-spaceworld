@@ -92,13 +92,21 @@ wTileMapBackup:: ; c408
 
 NEXTU
 
-    ds 3
+	ds 1
+
+wc409:: ds 1 ; c409
+wc40a:: ds 1 ; c40a
 
 ; Monster or Trainer test?
 wWhichPicTest:: ; c40b
     db
-; c40c	
-	ds 180
+	
+
+wc40c:: ds 1 ; c40c
+wc40d:: ds 1 ; c40d
+wc40e:: ds 1 ; c40e
+
+	ds 177
 
 wSpriteAnimIDBuffer:: db ; c4c0
 
@@ -181,8 +189,16 @@ wBattleAnimEnd::
 
 wBattleMonNickname:: ds 6 ; c9f6
 wEnemyMonNickname:: ds 6 ; c9fc
-; ca02
-	ds $3b ; TODO
+
+	ds 2
+
+wca04:: ds 1 ; ca04
+
+	ds 5
+	
+wca0a:: ds 1 ; ca0a
+
+	ds $32 ; TODO
 
 wPlayerSubStatus3:: db ; ca3d
 	ds $4
@@ -251,6 +267,7 @@ wVBCopyDoubleDst:: ds 2 ; cb6a
 wcb6c:: db ; cb6c
 wcb6d:: db ; cb6d
 wcb6e:: db ; cb6e
+wPlayerStepDirection:: db ; cb6f
 
 SECTION "CB71", WRAM0[$CB70]
 
@@ -263,6 +280,8 @@ wVBCopyFarSrcBank:: ds 1 ; cb76
 wPlayerMovement:: db ; cb77
 wMovementObject:: db ; cb78
 	ptrba wMovementData ; cb79
+	
+wcb7c:: ds 1 ; cb7c
 
 SECTION "Collision buffer", WRAM0[$CB90]
 
@@ -394,7 +413,11 @@ SECTION "CCCE", WRAM0[$CCCE]
 wDisableVBlankWYUpdate:: db ; ccce
 wSGB:: db
 
-SECTION "CD26", WRAM0[$CD26]
+SECTION "CD11", WRAM0[$CD11]
+
+wcd11:: ds 1 ; cd11
+
+	ds 20
 
 wStringBuffer1:: ds 1 ; How long is this? ; cd26
 
@@ -419,7 +442,10 @@ SECTION "CD3E", WRAM0[$CD3D]
 wRegularItemsCursor:: db ; cd3d
 wBackpackAndKeyItemsCursor:: db ;cd3e
 wStartmenuCursor:: db ; cd3f
-    ds 4 ; TODO
+wcd40:: db ; cd40
+wcd41:: db ; cd41
+wcd42:: db ; cd42
+wcd43:: db ; cd43
 wRegularItemsScrollPosition:: db ; cd44
 wBackpackAndKeyItemsScrollPosition:: db ; cd45
     ds 3 ; TODO
@@ -442,8 +468,8 @@ wPredefBC:: ; cd54
 wFarCallBCBuffer:: ; cd54
     dw
 
-    ds 2 ; TODO
-
+wcd56:: ds 1 ; cd56
+wcd57:: ds 1 ; cd57
 wFieldMoveSucceeded:: db ; cd58
 wVramState:: db ; cd59
 
@@ -454,8 +480,8 @@ wChosenStarter:: db ; cd5f
 
 SECTION "CD72", WRAM0[$CD72]
 wcd72:: dw ; cd72
-
-	ds 2 ; TODO
+wcd74:: db ; cd74
+wcd75:: db ; cd75
 
 wCurItem:: db ; cd76
 wItemIndex:: db ;cd77
@@ -464,7 +490,7 @@ wWhichPokemon: db ; cd79
 
 SECTION "CD7B", WRAM0[$CD7B]
 
-wHPBarType:: db ; cd76
+wHPBarType:: db ; cd7b
 	
 	ds 1
 
@@ -599,10 +625,15 @@ wMonHLearnset:: ; ce1e
     ds 1
 
 SECTION "CE2E", WRAM0[$CE2E]
-wce2e:: ; ce2e
-	ds 9
-
-SECTION "CE37", WRAM0[$CE37]
+wce2e:: db ; ce2e
+wce2f:: db ; ce2f
+wce30:: db ; ce30
+wce31:: db ; ce31
+wce32:: db ; ce32
+wce33:: db ; ce33
+wce34:: db ; ce34
+wce35:: db ; ce35
+wce36:: db ; ce36
 
 wNamedObjectIndexBuffer::
 wCountSetBitsResult:: 
@@ -763,6 +794,7 @@ wTMsHMs:: db ; d165
 
 SECTION "D19E", WRAM0[$D19E]
 
+wItems::
 wNumBagItems:: db ; d19e
 
 SECTION "D1C8", WRAM0[$D1C8]
@@ -774,6 +806,11 @@ SECTION "D1DE", WRAM0[$D1DE]
 
 wNumBallItems:: db ; d1de
 wBallQuantities:: db ; d1df
+
+	ds 10
+	
+wUnknownListLengthd1ea:: db ; d1ea
+wUnknownListd1eb:: db ; d1eb
 
 SECTION "Rival's Name", WRAM0[$D258]
 wRivalName:: ds 6 ; d258
@@ -788,6 +825,7 @@ wPlayerState:: db ; d264
 wd265:: db ; d265
 wd266:: db ; d266
 	
+;The starting house's map script number is stored at d29a. Others are probably nearby.
 SECTION "D29A", WRAM0[$D29A]
 wd29a:: db ; d29a
 wd29b:: db ; d29b
@@ -796,6 +834,9 @@ wd29d:: db ; d29d
 wd29e::	db ; d29e
 	db
 wd2a0:: db ; d2a0
+
+SECTION "D35F", WRAM0[$D35F]
+wOptions:: db ; d35f
 
 SECTION "D39D", WRAM0[$D39D]
 wd39d:: db
@@ -825,7 +866,9 @@ SECTION "wDigWarpNumber", WRAM0[$D4B2]
 wDigWarpNumber:: db ; d4b2
 
 
-SECTION "Warp data", WRAM0[$D514]
+SECTION "Warp data", WRAM0[$D513]
+
+wWarpNumber:: db ; d513
 
 wCurrMapWarpCount:: ; d514
     db
@@ -969,6 +1012,14 @@ SECTION "Wild mon buffer", WRAM0[$D91B]
 wWildMons:: ; d91b
 	ds 41
 
+SECTION "DA3B", WRAM0[$DA3B]
+
+wOTPartyMonOT:: db ; da3b
+
+SECTION "DA83", WRAM0[$DA83]
+
+wUnknownListLengthda83:: db ; da83
+wUnknownListda84:: db ; da84
 
 SECTION "Stack Bottom", WRAM0
 

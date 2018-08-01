@@ -107,8 +107,112 @@ Table416b:
 	dw Unknown41eb
 	dw Unknown4203
 
-SECTION "engine/dumps/bank01.asm@Function42db", ROMX
+Unknown41eb: ; 01:41eb
+	db $00, $01, $02, $03
+	
+Unknown41ef: ; 01:41ef
+	db $80, $81, $82, $83
+	
+Unknown41f3: ; 01:41f3
+	db $04, $05, $06, $07
+	
+Unknown41f7: ; 01:41f7
+	db $84, $85, $86, $87
+	
+Unknown41fb: ; 01:41fb
+	db $08, $09, $0a, $0b
+	
+Unknown41ff: ; 01:41ff
+	db $88, $89, $8a, $8b
+	
+Unknown4203: ; 01:4203
+	db $00, $00, $00, $00
+	db $08, $00, $08, $00
+	db $02, $08, $08, $03
+	
+Unknown420f: ; 01:420f
+	db $00, $08, $20, $00
+	db $00, $20, $08, $08
+	db $22, $08, $00, $23
+	
+Table421b: ; 01:421b
+	dw Unknown423b
+	dw Unknown424b
+	dw Unknown423b
+	dw Unknown425b
+	dw Unknown426b
+	dw Unknown427b
+	dw Unknown426b
+	dw Unknown428b
+	dw Unknown429b
+	dw Unknown42bb
+	dw Unknown429b
+	dw Unknown42bb
+	dw Unknown42ab
+	dw Unknown42cb
+	dw Unknown42ab
+	dw Unknown42cb
+	
+Unknown423b: ; 01:423b
+	db $00, $00, $00, $00
+	db $00, $08, $01, $00
+	db $08, $00, $02, $02
+	db $08, $08, $03, $03
+	
+Unknown424b: ; 01:424b
+	db $00, $00, $80, $00
+	db $00, $08, $81, $00
+	db $08, $00, $82, $02
+	db $08, $08, $83, $03
 
+Unknown425b: ; 01:425b
+	db $00, $08, $80, $20
+	db $00, $00, $81, $20
+	db $08, $08, $82, $22
+	db $08, $00, $83, $23
+	
+Unknown426b: ; 01:426b
+	db $00, $00, $04, $00
+	db $00, $08, $05, $00
+	db $08, $00, $06, $02
+	db $08, $08, $07, $03
+	
+Unknown427b: ; 01:427b
+	db $00, $00, $84, $00
+	db $00, $08, $85, $00
+	db $08, $00, $86, $02
+	db $08, $08, $87, $03
+	
+Unknown428b: ; 01:428b
+	db $00, $08, $84, $20
+	db $00, $00, $85, $20
+	db $08, $08, $86, $22
+	db $08, $00, $87, $23
+	
+Unknown429b: ; 01:429b
+	db $00, $00, $08, $00
+	db $00, $08, $09, $00
+	db $08, $00, $0a, $02
+	db $08, $08, $0b, $03
+	
+Unknown42ab: ; 01:42ab
+	db $00, $08, $08, $20
+	db $00, $00, $09, $20
+	db $08, $08, $0a, $22
+	db $08, $00, $0b, $23
+	
+Unknown42bb: ; 01:42bb
+	db $00, $00, $88, $00
+	db $00, $08, $89, $00
+	db $08, $00, $8a, $02
+	db $08, $08, $8b, $03
+	
+Unknown42cb: ; 01:42cb
+	db $00, $08, $88, $20
+	db $00, $00, $89, $20
+	db $08, $08, $8a, $22
+	db $08, $00, $8b, $23
+	
 Function42db: ; 01:42db
 	ld bc, wCmdQueue
 	ld a, $01
@@ -765,15 +869,16 @@ Function468a: ; 01:468a
 	ld hl, $0004
 	add hl, bc
 	bit 2, [hl]
-	jr nz, .sub_46a2
+	jr nz, Function46a2
 	ld hl, $0007
 	add hl, bc
 	add a
 	add a
 	and $0c
 	ld [hl], a
-.sub_46a2
-	call Function46d3.sub_46e5
+
+Function46a2: ; 01:46a2
+	call Function46e5
 	ld hl, $0009
 	add hl, bc
 	ld [hl], a
@@ -804,7 +909,7 @@ Function468a: ; 01:468a
 	ret
 
 Function46d3: ; 01:46d3
-	call .sub_46e5
+	call Function46e5
 	ld hl, $0018
 	add hl, bc
 	ld a, [hl]
@@ -816,7 +921,8 @@ Function46d3: ; 01:46d3
 	add e
 	ld [hl], a
 	ret
-.sub_46e5
+
+Function46e5: ; 01:46e5
 	ld hl, $0006
 	add hl, bc
 	ld l, [hl]
@@ -848,7 +954,28 @@ Function46f9: ; 01:46f9
 Table4708: ; 01:4708
 	db $00, $01, $10
 	
-SECTION "engine/dumps/bank01.asm@Function4748", ROMX
+Table470b: ; 01:470b
+	db $01, $00, $ff
+	db $10, $01, $ff
+	db $00, $10, $01
+	db $01, $00, $10
+	db $01, $00, $02
+	db $08, $02, $00
+	db $fe, $08, $02
+	db $fe, $00, $08
+	db $02, $02, $00
+	db $08, $02, $00
+	db $04, $04, $04
+	db $00, $fc, $04
+	db $04, $fc, $00
+	db $04, $04, $04
+	db $00, $04, $04
+	db $00, $08, $02
+	db $08, $00, $f8
+	db $02, $08, $f8
+	db $00, $02, $08
+	db $08, $00, $02
+	db $08
 
 Function4748: ; 01:4748
 	add a
@@ -864,7 +991,7 @@ Function4750: ; 01:4750
 	ld a, [hl]
 	and $03
 	ld [wPlayerStepDirection], a
-	call Function46d3.sub_46e5
+	call Function46e5
 	ld a, d
 	ld [wcb6c], a
 	ld a, e
@@ -1254,7 +1381,7 @@ Function499c: ; 01:499c
 	add e
 	ld [hl], a
 	ld d, $00
-	ld hl, $49dc
+	ld hl, Unknown49dc
 	add hl, de
 	ld a, [hl]
 	ld hl, $001b
@@ -1635,7 +1762,7 @@ Function4c0c: ; 01:4c0c
 	ld e, [hl]
 	inc [hl]
 	ld d, $00
-	ld hl, $cb7c
+	ld hl, wcb7c
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2121,7 +2248,7 @@ Function4edf: ; 01:4edf
 	ret nz
 	call Function4799
 	call Function45d4
-	call Function468a.sub_46a2
+	call Function46a2
 	ld hl, $0005
 	add hl, bc
 	res 3, [hl]
@@ -2168,7 +2295,7 @@ Function4f20: ; 01:4f20
 	ret
 
 Function4f40: ; 01:4f40
-	call Function468a.sub_46a2
+	call Function46a2
 	ld hl, wcb6e
 	set 7, [hl]
 	call Function4799
@@ -2613,7 +2740,7 @@ _UpdateSprites: ; 01:5190
 	ld l, a
 	ld h, $00
 	add hl, hl
-	ld bc, $421b
+	ld bc, Table421b
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -2790,7 +2917,7 @@ Function52dc: ; 01:52dc
 	call PrintPlayTime
 	ret
 	
-SECTION "engine/dumps/bank01.asmFunction5388", ROMX
+SECTION "engine/dumps/bank01.asm@Function5388", ROMX
 
 Function5388: ; 01:5388
 	ld a, $00
@@ -2829,6 +2956,538 @@ Function53b0: ; 01:53b0
 	call CloseSRAM
 	ret
 	
+SECTION "engine/dumps/bank01.asm@ReanchorBGMap_NoOAMUpdate", ROMX
+
+ReanchorBGMap_NoOAMUpdate: ; 01:63d8
+	xor a
+	ldh [hLCDCPointer], a
+	ld hl, wMapObjectsEnd
+	set 7, [hl]
+	res 2, [hl]
+	ld a, $90
+	ldh [hWY], a
+	xor a
+	ldh [hBGMapMode], a
+	xor a
+	ldh [hBGMapAddress], a
+	ld a, $9c
+	ldh [hBGMapAddress+1], a
+	call LoadMapPart
+	call WaitBGMap
+	xor a
+	ldh [hBGMapMode], a
+	ldh [hWY], a
+	call .sub_6412
+	xor a
+	ld [wBGMapAnchor], a
+	ld a, $98
+	ldh [hBGMapAddress+1], a
+	ld [wBGMapAnchor+1], a
+	xor a
+	ldh [hSCX], a
+	ldh [hSCY], a
+	call WaitBGMap
+	ret
+.sub_6412
+	ld a, $60
+	ld hl, wTileMapBackup
+	ld bc, $0080
+	call ByteFill
+	ld hl, vBGMap0
+	ld c, $08
+.sub_6422
+	push bc
+	push hl
+	ld de, wTileMapBackup
+	ld bc, $0008
+	call Request2bpp
+	pop hl
+	ld bc, $0080
+	add hl, bc
+	pop bc
+	dec c
+	jr nz, .sub_6422
+	ret
+
+LoadFonts_NoOAMUpdate: ; 01:6437
+	call UpdateSprites
+	call LoadFont
+	call LoadFontExtra
+	ld a, $90
+	ldh [hWY], a
+	ret
+	
+
+Function6445: ; 01:6445
+	call BackUpTilesToBuffer
+	ld a, [wWhichPokemon]
+	ld hl, wPartyMonNicknames
+	call GetNick
+	ld hl, wStringBuffer1
+	ld de, wcd11
+	ld bc, $0006
+	call CopyBytes
+.sub_645d
+	ld hl, wPartyMon1Moves
+	ld bc, $0030
+	ld a, [wWhichPokemon]
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld b, $04
+.sub_646d
+	ld a, [hl]
+	and a
+	jr z, .sub_648d
+	inc hl
+	dec b
+	jr nz, .sub_646d
+	push de
+	call .sub_64f4
+	pop de
+	jp c, .sub_64d6
+	push hl
+	push de
+	ld [wce37], a
+	call Unreferenced_GetMoveName
+	ld hl, Text664b
+	call PrintText
+	pop de
+	pop hl
+.sub_648d
+	ld a, [wce32]
+	ld [hl], a
+	ld bc, $0015
+	add hl, bc
+	push hl
+	push de
+	dec a
+	ld hl, Moves
+	ld bc, $0007
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	pop de
+	pop hl
+	ld [hl], a
+	ld a, [wBattleMode]
+	and a
+	jp z, .sub_64eb
+	ld a, [wWhichPokemon]
+	ld b, a
+	ld a, [wcd41]
+	cp b
+	jp nz, .sub_64eb
+	ld h, d
+	ld l, e
+	ld de, wca04
+	ld bc, $0004
+	call CopyBytes
+	ld bc, $0011
+	add hl, bc
+	ld de, wca0a
+	ld bc, $0004
+	call CopyBytes
+	jp .sub_64eb
+.sub_64d6
+	ld hl, Text65b9
+	call PrintText
+	call YesNoBox
+	jp c, .sub_645d
+	ld hl, Text65d7
+	call PrintText
+	ld b, $00
+	ret
+.sub_64eb
+	ld hl, Text658c
+	call PrintText
+	ld b, $01
+	ret
+.sub_64f4
+	push hl
+	ld hl, Text65f0
+	call PrintText
+	call YesNoBox
+	pop hl
+	ret c
+	ld bc, $fffc
+	add hl, bc
+	push hl
+	ld de, wce2e
+	ld bc, $0004
+	call CopyBytes
+	pop hl
+.sub_650f
+	push hl
+	ld hl, Text65a8
+	call PrintText
+	coord hl, 10, 8
+	ld b, $08
+	ld c, $08
+	call DrawTextBox
+	coord hl, 12, 10
+	ld a, $28
+	ld [wFieldMoveScriptID], a
+	ld a, $32
+	call Predef
+	ld a, $0a
+	ld [w2DMenuCursorInitY], a
+	ld a, $0b
+	ld [w2DMenuCursorInitX], a
+	ld a, [wcd57]
+	inc a
+	ld [w2DMenuNumRows], a
+	ld a, $01
+	ld [w2DMenuNumCols], a
+	ld [w2DMenuDataEnd], a
+	ld [wMenuCursorX], a
+	ld a, $03
+	ld [wMenuJoypadFilter], a
+	ld a, $20
+	ld [w2DMenuFlags], a
+	xor a
+	ld [w2DMenuFlags+1], a
+	ld a, $20
+	ld [w2DMenuCursorOffsets], a
+	call Get2DMenuJoypad
+	push af
+	call ReloadTilesFromBuffer
+	pop af
+	pop hl
+	bit 1, a
+	jr nz, .sub_658a
+	push hl
+	ld a, [w2DMenuDataEnd]
+	dec a
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld a, [hl]
+	push af
+	push bc
+	call IsHMMove
+	pop bc
+	pop de
+	ld a, d
+	jr c, .sub_6581
+	pop hl
+	add hl, bc
+	and a
+	ret
+.sub_6581
+	ld hl, Text6691
+	call PrintText
+	pop hl
+	jr .sub_650f
+.sub_658a
+	scf
+	ret
+	
+Text658c: ; 01:658c
+	text_from_ram wcd11
+	text "は　あたらしく"
+	line ""
+	text_end
+
+Text6599: ; 01:6599
+	text_from_ram wStringBuffer2
+	text "を　おぼえた！"
+	text_end
+
+Text65a5: ; 01:65a5
+	sound_dex_fanfare_50_79
+	text_waitbutton
+	text_end
+	
+Text65a8: ; 01:65a8
+	text "どの　わざを"
+	next "わすれさせたい？"
+	done
+
+Text65b9: ; 01:65b9
+	text "それでは<⋯⋯>　"
+	text_end
+	
+Text65c1: ; 01:65c1
+	text_from_ram wStringBuffer2
+	text "を"
+	line "おぼえるのを　あきらめますか？"
+	done
+	
+Text65d7: ; 01:65d7
+	text_from_ram wcd11
+	text "は　"
+	text_end
+	
+Text65de: ; 01:65de
+	text_from_ram wStringBuffer2
+	text "を"
+	line "おぼえずに　おわった！"
+	prompt
+	
+Text65f0: ; 01:65f0
+	text_from_ram wcd11
+	text "は　あたらしく"
+	line ""
+	text_end
+	
+Text65fd: ; 01:65fd
+	text_from_ram wStringBuffer2
+	text "を　おぼえたい<⋯⋯>！"
+	para "しかし　"
+	text_end
+
+Text6610: ; 01:6610
+	text_from_ram wcd11
+	text "は　わざを　４つ"
+	line "おぼえるので　せいいっぱいだ！"
+	para ""
+	text_end
+
+Text662e: ; 01:662e
+	text_from_ram wStringBuffer2
+	text "の　かわりに"
+	line "ほかの　わざを　わすれさせますか？"
+	done
+	
+Text664b: ; 01:664b
+	text "１　２の　<⋯⋯>"
+	text_end
+	
+Text6653: ; 01:6653
+	text_exit
+	start_asm
+	push de
+	ld de, $001b
+	call PlaySFX
+	pop de
+	ld hl, Text6661
+	ret
+	
+Text6661:  ; 01:6661
+	text "　ポカン！"
+	text_end
+	
+Text6668: ; 01:6668
+	text_exit
+	text ""
+	para ""
+	text_end
+	
+Text666c: ; 01:666c
+	text_from_ram wcd11
+	text "は　"
+	text_end
+
+Text6673: ; 01:6673
+	text_from_ram wStringBuffer1
+	text "の"
+	line "つかいかたを　きれいに　わすれた！"
+	para "そして<⋯⋯>！"
+	prompt
+	
+Text6691: ; 01:6691
+	text "それは　たいせつなわざです"
+	line "わすれさせることは　できません！"
+	prompt
+
+Function66b1: ; 01:66b1
+	ld hl, wcd74
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wCurItem]
+	cp $c4
+	jr nc, .sub_66d2
+	dec a
+	ld c, a
+	ld b, $00
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	inc hl
+	ld a, [hld]
+	ldh [hSpriteOffset], a
+	ld a, [hld]
+	ldh [hConnectedMapWidth], a
+	ld a, [hl]
+	ldh [hConnectionStripLength], a
+	jr .sub_66d5
+.sub_66d2
+	call .sub_66d9
+.sub_66d5
+	ld de, hConnectionStripLength
+	ret
+.sub_66d9
+	ld a, [wCurItem]
+	sub $c9
+	ret c
+	ld d, a
+	ld hl, Table66fa
+	srl a
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld a, [hl]
+	srl d
+	jr nc, .sub_66f0
+	swap a
+.sub_66f0
+	and $f0
+	ldh [hConnectedMapWidth], a
+	xor a
+	ldh [hConnectionStripLength], a
+	ldh [hSpriteOffset], a
+	ret
+	
+Table66fa: ; 01:66fa
+	db $32, $21, $34, $24
+	db $34, $21, $45, $55
+	db $32, $32, $55, $52
+	db $54, $52, $41, $21
+	db $12, $42, $25, $24
+	db $22, $52, $24, $34
+	db $42
+
+Function6713: ; 01:6713
+	push hl
+	call LoadStandardMenuHeader
+	ld a, [wBattleMode]
+	dec a
+	coord hl, 1, 0
+	ld b, $04
+	ld c, $0a
+	call z, ClearBox
+	ld a, [wMonDexIndex]
+	ld [wce37], a
+	call GetPokemonName
+	ld a, [wDebugFlags]
+	bit 1, a
+	pop hl
+	push hl
+	ld hl, Text6788
+	call PrintText
+	call YesNoBox
+	pop hl
+	jr c, .sub_6779
+	push hl
+	ld e, l
+	ld d, h
+	ld a, BANK(Function113f4)
+	ld b, $00
+	ld hl, Function113f4
+	call FarCall_hl
+	call ClearBGPalettes
+	call ClearTileMap
+	call ClearSprites
+	call GetMemSGBLayout
+	call SetPalettes
+	ld a, [wBattleMode]
+	and a
+	jr nz, .sub_676b
+	call LoadFontExtra
+	call Function3657
+	jr .sub_6773
+.sub_676b
+	ld hl, Function3e3a7
+	ld a, BANK(Function3e3a7)
+	call FarCall_hl
+.sub_6773
+	pop hl
+	ld a, [hl]
+	cp $50
+	jr nz, .sub_6784
+.sub_6779
+	ld d, h
+	ld e, l
+	ld hl, wStringBuffer1
+	ld bc, $0006
+	call CopyBytes
+.sub_6784
+	call CloseWindow
+	ret
+	
+Text6788: ; 01:6788
+	text_from_ram wStringBuffer1
+	text "に"
+	line "ニックネームを　つけますか？"
+	done
+	
+Function679d: ; 01:679d
+	ld de, wFieldMoveScriptID
+	push de
+	ld hl, Function113f4
+	ld b, $00
+	ld a, BANK(Function113f4)
+	call FarCall_hl
+	call ClearBGPalettes
+	call Function360b
+	call UpdateTimePals
+	pop de
+	ld a, [de]
+	cp $50
+	jr z, .sub_67d3
+	ld hl, wPartyMonNicknames
+	ld bc, $0006
+	ld a, [wWhichPokemon]
+	call AddNTimes
+	ld e, l
+	ld d, h
+	ld hl, wFieldMoveScriptID
+	ld bc, $0006
+	call CopyBytes
+	and a
+	ret
+.sub_67d3
+	scf
+	ret
+
+CorrectNickErrors: ; 01:67d5
+	push bc
+	push de
+	ld b, $06
+.sub_67d9
+	ld a, [de]
+	cp $50
+	jr z, .sub_6802
+	ld hl, Table6805
+	dec hl
+.sub_67e2
+	inc hl
+	ld a, [hl]
+	cp $ff
+	jr z, .sub_67f5
+	ld a, [de]
+	cp [hl]
+	inc hl
+	jr c, .sub_67e2
+	cp [hl]
+	jr nc, .sub_67e2
+	ld a, $e6
+	ld [de], a
+	jr .sub_67e2
+.sub_67f5
+	inc de
+	dec b
+	jr nz, .sub_67d9
+	pop de
+	push de
+	ld a, $e6
+	ld [de], a
+	inc de
+	ld a, $50
+	ld [de], a
+.sub_6802
+	pop de
+	pop bc
+	ret
+	
+Table6805:: ; 01:6805
+	db $00, $05, $14, $19, $1d
+	db $26, $35, $3a, $49, $7f
+	db $ff
+	
 SECTION "engine/dumps/bank01.asm@Function771e", ROMX
 
 Function771e: ; 01:771e
@@ -2864,7 +3523,43 @@ Function771e: ; 01:771e
 	and a
 	ret
 
-SECTION "engine/dumps/bank01.asm@Function77a1", ROMX
+SECTION "engine/dumps/bank01.asm@Function776e", ROMX
+
+Function776e: ; 01:776e
+	call GetFacingTileCoord
+	cp $90
+	jr z, .sub_7779
+	cp $98
+	jr nz, .sub_7789
+.sub_7779
+	ld a, [wPlayerNextMapX]
+	sub d
+	cpl
+	inc a
+	add d
+	ld d, a
+	ld a, [wPlayerNextMapY]
+	sub e
+	cpl
+	inc a
+	add e
+	ld e, a
+.sub_7789
+	ld bc, wPlayerSprite
+	ld a, $01
+	ldh [hConnectionStripLength], a
+	call _CheckObjectCollision
+	ret nc
+	ld hl, $0006
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr z, .sub_779f
+	xor a
+	ret
+.sub_779f
+	scf
+	ret
 
 Function77a1: ; 01:77a1
 	ld hl, $0010
@@ -2874,6 +3569,41 @@ Function77a1: ; 01:77a1
 	add hl, bc
 	ld e, [hl]
 	jr _CheckObjectCollision
+	
+Function77ad: ; 01:77ad
+	ldh a, [hConnectionStripLength]
+	call GetObjectStruct
+	call .sub_77b9
+	call _CheckObjectCollision
+	ret
+.sub_77b9
+	ld hl, $0010
+	add hl, bc
+	ld d, [hl]
+	ld hl, $0011
+	add hl, bc
+	ld e, [hl]
+	ld hl, $0007
+	add hl, bc
+	ld a, [hl]
+	and $0c
+	and a
+	jr z, .sub_77d7
+	cp $04
+	jr z, .sub_77d9
+	cp $08
+	jr z, .sub_77db
+	inc d
+	ret
+.sub_77d7
+	inc e
+	ret
+.sub_77d9
+	dec e
+	ret
+.sub_77db
+	dec d
+	ret
 
 SECTION "engine/dumps/bank01.asm@Function782c", ROMX
 
@@ -2956,3 +3686,405 @@ Function786e: ; 01:786e
 .sub_7892
 	scf
 	ret
+
+SECTION "engine/dumps/bank01.asm@SettingsScreen", ROMX
+
+SettingsScreen: ; 01:78e5
+	ld a, [wVramState]
+	push af
+	xor a
+	ld [wVramState], a
+
+Function78ed: ; 01:78ed
+	call Function7a93
+
+Function78f0: ; 01:78f0
+	call Function7a41
+	ld [hl], $ed
+	call Function7a55
+	call WaitBGMap
+.sub_78fb
+	call DelayFrame
+	call GetJoypadDebounced
+	ldh a, [hJoySum]
+	ld b, a
+	and a
+	jr z, .sub_78fb
+	ld a, b
+	and $0a
+	jr nz, .sub_7924
+	ld a, b
+	and $04
+	jr nz, .sub_7939
+	ld a, b
+	and $01
+	jr z, Function7977
+	ld a, [wc409]
+	cp $10
+	jr nz, Function78f0
+	ld a, [wTileMapBackup]
+	cp $07
+	jr z, .sub_7956
+.sub_7924
+	push de
+	ld de, $0005
+	call PlaySFX
+	pop de
+	pop af
+	ld [wVramState], a
+	ld hl, wd4a9
+	bit 0, [hl]
+	jp z, TitleSequenceStart
+	ret
+.sub_7939
+	ld hl, wce5f
+	ld a, [hl]
+	xor $08
+	ld [hl], a
+	ld hl, Function96eb
+	ld a, BANK(Function96eb)
+	call FarCall_hl
+	call LoadFont
+	call LoadFontExtra
+	ld c, $70
+	call DelayFrames
+	jp Function78ed
+.sub_7956
+	ld a, [wActiveFrame]
+	inc a
+	and $07
+	ld [wActiveFrame], a
+	coord hl, 17, 16
+	add $f7
+	ld [hl], a
+	call LoadFontExtra
+	jr Function78f0
+
+Function796a: ; 01:796a
+	push af
+	call Function7a41
+	ld [hl], $7f
+	pop af
+	ld [wTileMapBackup], a
+	jp Function78f0
+
+Function7977: ; 01:7977
+	ld a, [wc409]
+	bit 7, b
+	jr nz, .sub_799e
+	bit 6, b
+	jr nz, .sub_79c1
+	cp $07
+	jp z, .sub_7a10
+	cp $0b
+	jp z, .sub_7a1b
+	cp $0d
+	jp z, .sub_7a26
+	cp $10
+	jp z, .sub_7a31
+	bit 5, b
+	jp nz, .sub_79f6
+	jp .sub_7a01
+.sub_799e
+	cp $10
+	ld b, $f3
+	ld hl, wc40a
+	jr z, .sub_79e2
+	cp $03
+	ld b, $04
+	inc hl
+	jr z, .sub_79e2
+	cp $07
+	ld b, $04
+	inc hl
+	jr z, .sub_79e2
+	cp $0b
+	ld b, $02
+	inc hl
+	jr z, .sub_79e2
+	ld b, $03
+	inc hl
+	jr .sub_79e2
+.sub_79c1
+	cp $07
+	ld b, $fc
+	ld hl, wc40a
+	jr z, .sub_79e2
+	cp $0b
+	ld b, $fc
+	inc hl
+	jr z, .sub_79e2
+	cp $0d
+	ld b, $fe
+	inc hl
+	jr z, .sub_79e2
+	cp $10
+	ld b, $fd
+	inc hl
+	jr z, .sub_79e2
+	ld b, $0d
+	inc hl
+.sub_79e2
+	add b
+	push af
+	ld a, [hl]
+	push af
+	call Function7a41
+	ld [hl], $ec
+	pop af
+	ld [wTileMapBackup], a
+	pop af
+	ld [wc409], a
+	jp Function78f0
+.sub_79f6
+	ld a, [wc40a]
+	cp $01
+	jr z, .sub_7a0a
+	sub $07
+	jr .sub_7a0a
+.sub_7a01
+	ld a, [wc40a]
+	cp $0f
+	jr z, .sub_7a0a
+	add $07
+.sub_7a0a
+	ld [wc40a], a
+	jp Function796a
+.sub_7a10
+	ld a, [wWhichPicTest]
+	xor $0b
+	ld [wWhichPicTest], a
+	jp Function796a
+.sub_7a1b
+	ld a, [wc40c]
+	xor $0b
+	ld [wc40c], a
+	jp Function796a
+.sub_7a26
+	ld a, [wc40d]
+	xor $0b
+	ld [wc40d], a
+	jp Function796a
+.sub_7a31
+	call Function7a41
+	ld [hl], $ec
+	ld a, [wTileMapBackup]
+	xor $06
+	ld [wTileMapBackup], a
+	jp Function78f0
+
+Function7a41: ; 01:7a41
+	ld a, [wc409]
+	ld hl, wTileMap
+	ld bc, $0014
+	call AddNTimes
+	ld a, [wTileMapBackup]
+	ld b, $00
+	ld c, a
+	add hl, bc
+	ret
+
+Function7a55: ; 01:7a55
+	ld hl, Table7c22
+	ld a, [wc40a]
+	ld c, a
+.sub_7a5c
+	ld a, [hli]
+	cp c
+	jr z, .sub_7a63
+	inc hl
+	jr .sub_7a5c
+.sub_7a63
+	ld a, [hl]
+	ld d, a
+	ld a, [wWhichPicTest]
+	dec a
+	jr z, .sub_7a6f
+	set 7, d
+	jr .sub_7a71
+.sub_7a6f
+	res 7, d
+.sub_7a71
+	ld a, [wc40c]
+	dec a
+	jr z, .sub_7a7b
+	set 6, d
+	jr .sub_7a7d
+.sub_7a7b
+	res 6, d
+.sub_7a7d
+	ld a, [wc40d]
+	dec a
+	jr z, .sub_7a87
+	set 5, d
+	jr .sub_7a89
+.sub_7a87
+	res 5, d
+.sub_7a89
+	ld a, [wce5f]
+	and $08
+	or d
+	ld [wce5f], a
+	ret
+
+Function7a93: ; 01:7a93
+	call ClearBGPalettes
+	call DisableLCD
+	xor a
+	ldh [hBGMapMode], a
+	call .sub_7b26
+	xor a
+	ld hl, wc40a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	inc a
+	ld [wTextBoxFlags], a
+	ld hl, Table7c23
+	ld a, [wce5f]
+	ld c, a
+	and $07
+	push bc
+	ld de, $0002
+	call FindItemInTable
+	pop bc
+	dec hl
+	ld a, [hl]
+	ld [wc40a], a
+	coord hl, 0, 3
+	call .sub_7b1f
+	sla c
+	ld a, $01
+	jr nc, .sub_7ad0
+	ld a, $0a
+.sub_7ad0
+	ld [wWhichPicTest], a
+	coord hl, 0, 7
+	call .sub_7b1f
+	sla c
+	ld a, $01
+	jr nc, .sub_7ae1
+	ld a, $0a
+.sub_7ae1
+	ld [wc40c], a
+	coord hl, 0, 11
+	call .sub_7b1f
+	sla c
+	ld a, $01
+	jr nc, .sub_7af2
+	ld a, $0a
+.sub_7af2
+	ld [wc40d], a
+	coord hl, 0, 13
+	call .sub_7b1f
+	ld a, $01
+	ld [wc40e], a
+	coord hl, 1, 16
+	ld [hl], $ec
+	coord hl, 7, 16
+	ld [hl], $ec
+	ld a, [wc40a]
+	ld [wTileMapBackup], a
+	ld a, $03
+	ld [wc409], a
+	call EnableLCD
+	call WaitBGMap
+	call SetPalettes
+	ret
+.sub_7b1f
+	ld e, a
+	ld d, $00
+	add hl, de
+	ld [hl], $ec
+	ret
+.sub_7b26
+	ld de, vChars1 + $0700
+	ld hl, TrainerCardGFX
+	ld bc, $0010
+	ld a, BANK(TrainerCardGFX)
+	call FarCopyData
+	ld hl, wTileMap
+	ld bc, $0168
+	ld a, $f0
+	call ByteFill
+	coord hl, 1, 1
+	lb bc, 3, 18
+	call ClearBox
+	coord hl, 1, 5
+	lb bc, 3, 18
+	call ClearBox
+	coord hl, 1, 9
+	lb bc, 3, 18
+	call ClearBox
+	coord hl, 1, 13
+	lb bc, 1, 18
+	call ClearBox
+	coord hl, 1, 1
+	ld de, Text7bad
+	call PlaceString
+	coord hl, 1, 5
+	ld de, Text7bc9
+	call PlaceString
+	coord hl, 1, 9
+	ld de, Text7be8
+	call PlaceString
+	coord hl, 1, 13
+	ld de, Text7c03
+	call PlaceString
+	coord hl, 1, 16
+	ld de, Text7c12
+	call PlaceString
+	coord hl, 6, 15
+	ld b, $01
+	ld c, $0b
+	call DrawTextBox
+	coord hl, 7, 16
+	ld de, Text7c17
+	call PlaceString
+	ld a, [wActiveFrame]
+	coord hl, 17, 16
+	add $f7
+	ld [hl], a
+	ret
+	
+Text7bad: ; 01:7bad
+	db "はなしの　はやさ"
+	next "　はやい　　　　ふつう　　　　おそい"
+	text_end
+
+Text7bc9: ; 01:7bc9
+	db "せんとう　アニメーション"
+	next "　じっくり　みる　　とばして　みる"
+	text_end
+
+Text7be8: ; 01:7be8
+	db "しあいの　ルール"
+	next "　いれかえタイプ　　かちぬきタイプ"
+	text_end
+
+Text7c03: ; 01:7c03
+	db "　モノラル　　　　　ステレオ"
+	text_end
+
+Text7c12: ; 01:7c12
+	db "　おわり"
+	text_end
+
+Text7c17: ; 01:7c17
+	db "　わく　を　かえる　"
+	text_end
+	
+Table7c22: ; 01:7c22
+	db $0F
+	
+Table7c23: ; 01:7c23
+	db $05, $08, $03
+	db $01, $01, $08
+	db $FF
+	
+Unknown7c2a: ; 01:7c2a
+rept 491
+	db $39, $00
+endr

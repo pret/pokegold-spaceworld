@@ -110,35 +110,24 @@ ROMX $01
 	"engine/dumps/bank01.asm@Function40fd"
 	"home/oam_dma.asm"
 	"engine/dumps/bank01.asm@Table416b"
-	org $42db
-	"engine/dumps/bank01.asm@Function42db"
-	org $4748
-	"engine/dumps/bank01.asm@Function4748"
-	org $52f9
 	"engine/menu/main_menu.asm@Initialize new game WRAM"
-	"engine/dumps/bank01.asmFunction5388"
+	"engine/dumps/bank01.asm@Function5388"
 	"engine/menu/main_menu.asm@MainMenu"
 	"engine/intro.asm"
 	"engine/title.asm@Title screen"
 	"engine/title.asm@Title screen TEMPORARY"
 	"engine/predef.asm"
-	org $6810
+	"engine/dumps/bank01.asm@ReanchorBGMap_NoOAMUpdate"
 	"engine/math/math.asm"
 	"data/items/attributes.asm"
-	; $6fe5
-	org $6fec
 	"data/items/names.asm"
-	org $771e
 	"engine/dumps/bank01.asm@Function771e"
-	org $774a
 	"engine/overworld/object_collision.asm@GetSpritesNextTile"
-	org $77a1
-	"engine/dumps/bank01.asm@Function77a1"
-	org $77dd
+	"engine/dumps/bank01.asm@Function776e"
 	"engine/overworld/object_collision.asm@_CheckObjectCollision"
 	"engine/dumps/bank01.asm@Function782c"
-	org $7894
 	"engine/overworld/object_collision.asm@_CheckPlayerObjectCollision"
+	"engine/dumps/bank01.asm@SettingsScreen"
 ROMX $02
 	org $4000
 	org $44bf
