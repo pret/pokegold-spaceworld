@@ -93,8 +93,6 @@
 
 0B:5663 Function2d663
 
-0C:7C00 CommonExteriorTiles
-
 0E:4B78 LoadTrainerClassName
 0E:4BA0 LoadTrainerClassName.got_name
 0E:4BA9 LoadTrainerClass

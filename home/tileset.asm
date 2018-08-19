@@ -27,9 +27,9 @@ LoadTilesetGFX:: ; 2d26
 	ret
 
 .exterior
-	ld de, CommonExteriorTiles ; TODO: maybe find a better name
+	ld de, CommonExteriorTilesGFX ; TODO: maybe find a better name
 	ld hl, vTileset
-	lb bc, BANK(CommonExteriorTiles), $20
+	lb bc, BANK(CommonExteriorTilesGFX), $20
 	call Get2bpp
 
 	ld a, [wTilesetTilesAddress]

@@ -260,6 +260,9 @@ ROMX $0c
 	org $7100
 	"gfx.asm@Bank C Tilesets 0c"
 	; $7700
+	org $7c00
+	"gfx.asm@Bank C Tilesets Common"
+	; $7e00
 ROMX $0d
 	org $4000
 	; $4000
