@@ -254,9 +254,8 @@ SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db ; cb5e
 wFlyDestination:: db ; cb5f
 
-	ds 2
-
-SECTION "CB62", WRAM0[$CB62]
+wcb60:: ds 1 ; cb60
+wcb61:: ds 1 ; cb61
 
 wVBCopySize:: ds 1 ; cb62
 wVBCopySrc:: ds 2 ; cb63

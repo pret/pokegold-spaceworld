@@ -133,8 +133,7 @@ ROMX $02
 	"gfx.asm@Bank 2 Misc GFX"
 	"engine/dumps/bank02.asm@QueueFollowerFirstStep"
 	"gfx.asm@Mon Nest Icon"
-	; $4a17
-	org $4f32
+	"engine/dumps/bank02.asm@Data8a17"
 	"gfx.asm@Pokegear GFX"
 	org $51fb
 	"gfx.asm@Title Screen BG Decoration Border"

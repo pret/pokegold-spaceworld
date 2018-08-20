@@ -1,3 +1,5 @@
+include "constants.asm"
+
 SECTION "engine/dumps/bank02.asm@Function8000", ROMX
 
 Function8000: ; 02:4000
@@ -1036,7 +1038,7 @@ Function8786: ; 02:4786
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wTileMap
-	ld bc, VBlank.return
+	ld bc, $0168
 	xor a
 	call ByteFill
 	ld hl, $69dc
@@ -1105,10 +1107,10 @@ Function881e: ; 02:481e
 	call ClearTileMap
 	call UpdateSprites
 	call DisableLCD
-	ld hl, TownMapGfx
+	ld hl, PokedexLocationGFX
 	ld de, vTilesetEnd
 	ld bc, $0200
-	ld a, $3e
+	ld a, BANK(PokedexLocationGFX)
 	call FarCopyData
 	ld hl, wTileMap
 	call DecompTownMapTilemap
@@ -1353,3 +1355,711 @@ TownMapTilemap: ; 02:48da
 	db $10, $01
 	db $04, $01
 	db $00
+	
+SECTION "engine/dumps/bank02.asm@Data8a17", ROMX
+
+Data8a17: ; 02:4a17
+	db $0b
+	db $ff
+	
+	db $01, $0a, $03, $00, $02, $00, $05, $01, $03, $01, $04, $02, $0d, $02
+	db $0d, $03, $0d, $05, $04, $02, $04, $06, $07
+	db $ff
+	
+	db $05, $08
+	db $ff
+	
+	db $06
+	db $ff
+	
+	db $ff
+	
+	db $0e, $09, $06, $0e, $08, $0a, $0a
+	db $08, $09, $00, $00, $09, $0c, $00
+	db $ff
+	
+	db $ff
+	
+	db $ff
+	
+	db $0b
+	db $ff
+	
+	db $ff
+	
+	db $04, $03
+	db $ff
+	
+	db $04
+	db $ff
+	
+	db $08, $08
+	db $ff
+
+Data8a53: ; 02:4a53
+	db $00, $00, $1c, $9c, $28, $9c, $34, $9c
+	db $40, $9c, $4c, $9c, $5c, $9c, $6c, $94
+	db $6c, $84, $6c, $78, $6c, $6c, $64, $6c
+	db $5c, $6c, $6c, $64, $6c, $5c, $5c, $5c
+	db $5c, $50, $5c, $44, $50, $44, $44, $44
+	db $44, $5c, $44, $6c, $4c, $74, $4c, $7c
+	db $40, $7c, $34, $7c, $4c, $84, $3c, $8c
+	db $34, $94, $5c, $80, $54, $68, $3c, $38
+	db $3c, $2c, $34, $2c, $2c, $20, $34, $14
+	db $3c, $14, $3c, $20, $48, $14, $54, $1c
+	db $54, $2c, $54, $38, $3c, $44, $48, $2c
+
+OpenPokegear: ; 02:4aab
+	ld hl, wce5f
+	ld a, [hl]
+	push af
+	set 4, [hl]
+	ldh a, [hMapAnims]
+	push af
+	xor a
+	ldh [hMapAnims], a
+	ldh a, [hJoypadSum]
+	push af
+	ld a, [wVramState]
+	push af
+	xor a
+	ld [wVramState], a
+	call Function8ae0
+	call DelayFrame
+.sub_8ac9
+	call Function8ba3
+	jr nc, .sub_8ac9
+	pop af
+	ld [wVramState], a
+	pop af
+	ldh [hJoypadSum], a
+	pop af
+	ldh [hMapAnims], a
+	pop af
+	ld [wce5f], a
+	call ClearJoypad
+	ret
+
+Function8ae0: ; 02:4ae0
+	call ClearBGPalettes
+	call DisableLCD
+	call ClearSprites
+	ld b, $13
+	call GetSGBLayout
+	ld hl, PokegearGFX
+	ld de, vChars2
+	ld bc, $0200
+	ld a, $02
+	call FarCopyData
+	call Function8b2a
+	call Function8b7e
+	xor a
+	ldh [hSCY], a
+	ldh [hSCX], a
+	ld [wJumptableIndex], a
+	ld [wFlyDestination], a
+	ld a, $ff
+	ld [wcb60], a
+	ld a, $07
+	ldh [hWX], a
+	ld a, $08
+	call UpdateSoundNTimes
+	ld a, $e3
+	ldh [rLCDC], a
+	call WaitBGMap
+	call SetPalettes
+	ld a, $e0
+	ldh [rOBP1], a
+	ret
+
+Function8b2a: ; 02:4b2a
+	ld hl, wTileMap
+	ld bc, $0168
+	ld a, $7f
+	call ByteFill
+	ld de, wTileMap
+	ld hl, $4b42
+	ld bc, $003c
+	call CopyBytes
+	ret
+
+Data8b42: ; 02:4b42
+	db $0d, $1c, $1d, $0b, $1c, $1d, $0b, $1c
+	db $1d, $0c, $01, $05, $05, $05, $05, $05
+	db $05, $05, $05, $02, $08, $1e, $1f, $0a
+	db $1e, $1f, $0a, $1e, $1f, $07, $08, $7f
+	db $7f, $0f, $7f, $7f, $0f, $7f, $7f, $07
+	db $03, $06, $06, $09, $06, $06, $09, $06
+	db $06, $04, $03, $06, $06, $06, $06, $06
+	db $06, $06, $06, $04
+
+Function8b7e: ; 02:4b7e
+	ld hl, $c2a1
+	ld a, $10
+	call Function8b97
+	ld hl, $c2a4
+	ld a, $14
+	call Function8b97
+	ld hl, $c2a7
+	ld a, $18
+	call Function8b97
+	ret
+
+Function8b97: ; 02:4b97
+	ld [hli], a
+	inc a
+	ld [hld], a
+	ld bc, $0014
+	add hl, bc
+	inc a
+	ld [hli], a
+	inc a
+	ld [hld], a
+	ret
+
+Function8ba3: ; 02:4ba3
+	call UpdateTime
+	call GetJoypadDebounced
+	ld a, [wJumptableIndex]
+	bit 7, a
+	jr nz, .sub_8bc3
+	call Function8bfd
+	ld a, $23
+	ld hl, $4d13
+	call FarCall_hl
+	call Function8bd5
+	call DelayFrame
+	and a
+	ret
+.sub_8bc3
+	ld hl, $4cfd
+	ld a, $23
+	call FarCall_hl
+	call ClearSprites
+	xor a
+	ldh [hSCX], a
+	ldh [hSCY], a
+	scf
+	ret
+
+Function8bd5: ; 02:4bd5
+	ld hl, $c2bf
+	ld a, $7f
+	ld [hli], a
+	ld [hl], a
+	ld de, hRTCHours
+	ld hl, $c2bf
+	ld bc, $0102
+	call PrintNumber
+	inc hl
+	ld de, hRTCMinutes
+	ld bc, $8102
+	call PrintNumber
+	inc hl
+	ld de, hRTCSeconds
+	ld bc, $8102
+	call PrintNumber
+	ret
+	
+Function8bfd: ; 02:4bfd
+	ld a, [wJumptableIndex]
+	ld e, a
+	ld d, $00
+	ld hl, Table8c0c
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+Table8c0c: ; 02:4c0c
+	dw Function8c21
+	dw Function8c49
+	dw DrawMap
+	dw Function8cab
+	dw Function8cb7
+	dw Function8d62
+	dw Function8e6c
+	dw Function8e9e
+	
+Function8c1c: ; 02:4c1c
+	ld hl, wJumptableIndex
+	inc [hl]
+	ret
+
+Function8c21: ; 02:4c21
+	ld hl, $4cfd
+	ld a, $23
+	call FarCall_hl
+	ld de, $56b0
+	ld hl, $87c0
+	ld bc, $2104
+	call Request2bpp
+	ld a, $29
+	ld hl, wTileMapBackup
+	ld [hli], a
+	ld [hl], $7c
+	ld de, $241c
+	ld a, $44
+	call InitSpriteAnimStruct
+	call Function8c1c
+	ret
+
+Function8c49: ; 02:4c49
+	ld hl, hJoySum
+	ld a, [hl]
+	and $02
+	jr nz, .sub_8c59
+	ld a, [hl]
+	and $01
+	ret z
+	call Function8c5f
+	ret
+.sub_8c59
+	ld hl, wJumptableIndex
+	set 7, [hl]
+	ret
+
+Function8c5f: ; 02:4c5f
+	ld a, [wFlyDestination]
+	ld hl, wcb60
+	cp [hl]
+	ret z
+	ld [wcb60], a
+	and $03
+	ld e, a
+	ld d, $00
+	ld hl, $4c78
+	add hl, de
+	ld a, [hl]
+	ld [wJumptableIndex], a
+	ret
+
+Unknown8c78: ; 02:4c78
+	db $02, $04, $06, $02
+
+DrawMap: ; 02:4c7c
+	call Function8c1c
+	call Function8eaa
+	call WaitForAutoBgMapTransfer
+	ld b, $14
+	call GetSGBLayout
+	ld de, PokedexLocationGFX
+	ld hl, vTilesetEnd
+	lb bc, BANK(PokedexLocationGFX), $1f
+	call Request2bpp
+	ld hl, $c2dc
+	call DecompTownMapTilemap
+	call WaitBGMap
+	call Function886a
+	ld hl, $0005
+	add hl, bc
+	ld a, [hl]
+	add $18
+	ld [hl], a
+	ret
+	
+Function8cab: ; 02:4cab
+	ld hl, hJoyDown
+	ld a, [hl]
+	and $02
+	ret z
+	xor a
+	ld [wJumptableIndex], a
+	ret
+	
+Function8cb7: ; 02:4cb7
+	call Function8c1c
+	call Function8eaa
+	call WaitForAutoBgMapTransfer
+	ld b, $15
+	call GetSGBLayout
+	ld de, $5132
+	ld hl, vTilesetEnd
+	ld bc, $0209
+	call Request2bpp
+	ld de, $51b2
+	ld hl, vChars0
+	ld bc, $0201
+	call Request2bpp
+	ld hl, $c2dc
+	ld bc, $00b4
+	ld a, $0e
+	call ByteFill
+	ld hl, $c341
+	ld bc, $0412
+	call Function8ef9
+	ld hl, $c2e0
+	ld bc, $060e
+	call Function8ef9
+	ld a, $05
+	ld hl, $c37c
+	ld [hl], a
+	ld hl, $c38f
+	ld [hl], a
+	ld hl, $c306
+	ld a, $60
+	ld [hli], a
+	inc a
+	ld [hld], a
+	inc a
+	ld bc, $0014
+	add hl, bc
+	ld [hli], a
+	inc a
+	ld [hld], a
+	ld hl, $c2f2
+	ld a, $64
+	ld [hli], a
+	inc a
+	ld [hl], a
+	ld hl, $c309
+	ld bc, $000c
+	ld a, $66
+	call ByteFill
+	ld hl, $c31d
+	ld bc, $000c
+	ld a, $67
+	call ByteFill
+	ld hl, $51c2
+	call PrintText
+	call WaitBGMap
+	ld de, $4c23
+	ld a, $44
+	call InitSpriteAnimStruct
+	ld hl, $0002
+	add hl, bc
+	ld [hl], $00
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $7c
+	ld de, $4030
+	ld a, $4b
+	call InitSpriteAnimStruct
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $00
+	xor a
+	ld [wcb61], a
+	ret
+	
+Function8d62: ; 02:4d62
+	ld hl, hJoyDown
+	ld a, [hl]
+	and $02
+	ret z
+	xor a
+	ld [wJumptableIndex], a
+	ret
+	
+Function8d6e: ; 02:4d6e
+	ld hl, wcb61
+	ld e, [hl]
+	ld d, $00
+	ld hl, Table8d7d
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+Table8d7d: ; 02:4d7d
+	dw Function8d85
+	dw Function8d91
+	dw Function8d85
+	dw Function8db9
+
+Function8d85: ; 02:4d85
+	ld hl, hJoyDown
+	ld a, [hl]
+	and $01
+	ret z
+	ld hl, wcb61
+	inc [hl]
+	ret
+
+Function8d91: ; 02:4d91
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, .sub_8da6
+	call Function8dfd
+	jr c, .sub_8db1
+	ld hl, $0006
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .sub_8dab
+.sub_8da6
+	ld hl, $ffc0
+	jr Function8de3
+.sub_8dab
+	ld a, $03
+	ld [wcb61], a
+	ret
+.sub_8db1
+	call .sub_8da6
+	xor a
+	ld [wcb61], a
+	ret
+
+Function8db9: ; 02:4db9
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, .sub_8dcf
+	call Function8dfd
+	jr c, .sub_8dda
+	ld hl, $0006
+	add hl, bc
+	ld a, [hl]
+	cp $60
+	jr z, .sub_8dd4
+.sub_8dcf
+	ld hl, $0040
+	jr Function8de3
+.sub_8dd4
+	ld a, $01
+	ld [wcb61], a
+	ret
+.sub_8dda
+	call .sub_8dcf
+	ld a, $02
+	ld [wcb61], a
+	ret
+
+Function8de3: ; 02:4de3
+	push hl
+	ld hl, $0006
+	add hl, bc
+	ld d, [hl]
+	ld hl, $000c
+	add hl, bc
+	ld e, [hl]
+	pop hl
+	add hl, de
+	ld e, l
+	ld d, h
+	ld hl, $000c
+	add hl, bc
+	ld [hl], e
+	ld hl, $0006
+	add hl, bc
+	ld [hl], d
+	ret
+
+Function8dfd: ; 02:4dfd
+	ld hl, $0006
+	add hl, bc
+	push bc
+	ld c, [hl]
+	ld a, [wMapGroup]
+	ld e, a
+	ld d, $00
+	ld hl, Table8e2f
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+.sub_8e11
+	ld a, [hl]
+	and a
+	jr z, .sub_8e1e
+	cp c
+	jr z, .sub_8e21
+	ld de, $0006
+	add hl, de
+	jr .sub_8e11
+.sub_8e1e
+	pop bc
+	and a
+	ret
+.sub_8e21
+	ld de, Function8e2c
+	push de
+	inc hl
+	ld e, [hl]
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+	
+Function8e2c: ; 02:4e2c
+	pop bc
+	scf
+	ret
+	
+Table8e2f: ; 02:4e2f
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+	dw Data8e4d
+
+Data8e4d: ; 02:4e4d
+	db $10, $02
+	dw Function8e66
+	dw Function8e66
+	
+	db $20, $05
+	dw Function8e66
+	dw Function8e66
+	
+	db $40, $07
+	dw Function8e66
+	dw Function8e66
+	
+	db $48, $09
+	dw Function8e66
+	dw Function8e66
+	
+	db $00
+	
+Function8e66: ; 02:4e66
+	ld d, $00
+	call PlayMusic
+	ret
+
+Function8e6c: ; 02:4e6c
+	call Function8c1c
+	call Function8eaa
+	call WaitForAutoBgMapTransfer
+	ld b, $13
+	call GetSGBLayout
+	call LoadFontExtra
+	ld de, Text8e90
+	ld hl, $c333
+	call PlaceString
+	ld hl, Text8e95
+	call PrintText
+	call WaitBGMap
+	ret
+
+Text8e90: ; 02:4e90
+	db "けんがい@"
+
+Text8e95: ; 02:4e95
+	text "ちぇっ⋯⋯⋯⋯"
+	done
+
+Function8e9e: ; 02:4e9e
+	ld hl, hJoyDown
+	ld a, [hl]
+	and $02
+	ret z
+	xor a
+	ld [wJumptableIndex], a
+	ret
+
+Function8eaa: ; 02:4eaa
+	ld hl, $4cfd
+	ld a, $23
+	call FarCall_hl
+	call ClearSprites
+	call WaitForAutoBgMapTransfer
+	ld hl, $c2dc
+	ld bc, $012c
+	ld a, $7f
+	call ByteFill
+	call WaitBGMap
+	call WaitBGMap
+	ret
+
+Function8eca: ; 02:4eca
+	ld hl, wFlyDestination
+	ld de, hJoySum
+	ld a, [de]
+	and $20
+	jr nz, .sub_8edc
+	ld a, [de]
+	and $10
+	jr nz, .sub_8ee2
+	jr .sub_8ee7
+.sub_8edc
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	jr .sub_8ee7
+.sub_8ee2
+	ld a, [hl]
+	cp $02
+	ret nc
+	inc [hl]
+.sub_8ee7
+	ld e, [hl]
+	ld d, $00
+	ld hl, Data8ef5
+	add hl, de
+	ld a, [hl]
+	ld hl, $0006
+	add hl, bc
+	ld [hl], a
+	ret
+
+Data8ef5: ; 02:4ef5
+	db $00, $18, $30, $00
+	
+Function8ef9: ; 02:4ef9
+	dec c
+	dec c
+	dec b
+	dec b
+	ld de, $0014
+	push bc
+	push hl
+	ld a, $01
+	ld [hli], a
+	ld a, $05
+.sub_8f07
+	ld [hli], a
+	dec c
+	jr nz, .sub_8f07
+	ld a, $02
+	ld [hl], a
+	pop hl
+	pop bc
+	add hl, de
+.sub_8f11
+	push bc
+	push hl
+	ld a, $08
+	ld [hli], a
+	ld a, $7f
+.sub_8f18
+	ld [hli], a
+	dec c
+	jr nz, .sub_8f18
+	ld a, $07
+	ld [hli], a
+	pop hl
+	add hl, de
+	pop bc
+	dec b
+	jr nz, .sub_8f11
+	ld a, $03
+	ld [hli], a
+	ld a, $06
+.sub_8f2a
+	ld [hli], a
+	dec c
+	jr nz, .sub_8f2a
+	ld a, $04
+	ld [hli], a
+	ret
