@@ -764,3 +764,592 @@ Function84b8: ; 02:44b8
 	ld [hl], $00
 	ld b, $06
 	jp Function842d
+
+SECTION "engine/dumps/bank02.asm@QueueFollowerFirstStep", ROMX
+	
+QueueFollowerFirstStep: ; 02:45df
+	call Function85f2
+	jr c, .sub_85ec
+	ld [wFollowMovementQueue], a
+	xor a
+	ld [wFollowerMovementQueueLength], a
+	ret
+.sub_85ec
+	ld a, $ff
+	ld [wFollowerMovementQueueLength], a
+	ret
+
+Function85f2: ; 02:45f2
+	ld a, [wObjectFollow_Leader]
+	call GetObjectStruct
+	ld hl, $0010
+	add hl, bc
+	ld d, [hl]
+	ld hl, $0011
+	add hl, bc
+	ld e, [hl]
+	ld a, [wObjectFollow_Follower]
+	call GetObjectStruct
+	ld hl, $0010
+	add hl, bc
+	ld a, d
+	cp [hl]
+	jr z, .sub_861a
+	jr c, .sub_8616
+	and a
+	ld a, $0b
+	ret
+.sub_8616
+	and a
+	ld a, $0a
+	ret
+.sub_861a
+	ld hl, $0011
+	add hl, bc
+	ld a, e
+	cp [hl]
+	jr z, .sub_862c
+	jr c, .sub_8628
+	and a
+	ld a, $08
+	ret
+.sub_8628
+	and a
+	ld a, $09
+	ret
+.sub_862c
+	scf
+	ret
+
+Function862e: ; 02:462e
+	ld a, e
+	and $3f
+	cp $20
+	jr nc, .sub_863a
+	call Function8644
+	ld a, h
+	ret
+.sub_863a
+	and $1f
+	call Function8644
+	ld a, h
+	xor $ff
+	inc a
+	ret
+
+Function8644: ; 02:4644
+	ld e, a
+	ld a, d
+	ld d, $00
+	ld hl, Data8660
+	add hl, de
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, $0000
+.sub_8653
+	srl a
+	jr nc, .sub_8658
+	add hl, de
+.sub_8658
+	sla e
+	rl d
+	and a
+	jr nz, .sub_8653
+	ret
+
+Data8660: ; 02:4660
+	dw $00
+	dw $19
+	dw $32
+	dw $4a
+	dw $62
+	dw $79
+	dw $8e
+	dw $a2
+	dw $b5
+	dw $c6
+	dw $d5
+	dw $e2
+	dw $ed
+	dw $f5
+	dw $fb
+	dw $ff
+	dw $100
+	dw $ff
+	dw $fb
+	dw $f5
+	dw $ed
+	dw $e2
+	dw $d5
+	dw $c6
+	dw $b5
+	dw $a2
+	dw $8e
+	dw $79
+	dw $62
+	dw $4a
+	dw $32
+	dw $19
+
+Function86a0: ; 02:46a0
+	call Function881e
+	ld hl, InitEffectObject
+	ld a, BANK(InitEffectObject)
+	call FarCall_hl
+	call Function886a
+	call WaitBGMap
+	call SetPalettes
+.sub_86b4
+	call DelayFrame
+	call GetJoypadDebounced
+	ld hl, EffectObjectJumpNoDelay
+	ld a, BANK(EffectObjectJumpNoDelay)
+	call FarCall_hl
+	ld hl, hJoyDown
+	ld a, [hl]
+	and $03
+	jr z, .sub_86b4
+	ret
+	
+FlyMap: ; 02:46cb
+	ld hl, hJoyDebounceSrc
+	ld a, [hl]
+	push af
+	ld [hl], $01
+	call Function881e
+	ld hl, $4cfd
+	ld a, $23
+	call FarCall_hl
+	call Function886a
+	call Function88b3
+	ld hl, $cb60
+	ld [hl], c
+	inc hl
+	ld [hl], b
+	ld hl, $c3cd
+	ld de, Text8776
+	call PlaceString
+	call WaitBGMap
+	call SetPalettes
+	xor a
+	ld [wFlyDestination], a
+.sub_86fc
+	call DelayFrame
+	call GetJoypadDebounced
+	ld hl, $4d13
+	ld a, $23
+	call FarCall_hl
+	ld hl, hJoyDown
+	ld a, [hl]
+	and $02
+	jr nz, .sub_873e
+	ld a, [hl]
+	and $01
+	jr nz, .sub_8743
+	call Function8747
+	ld hl, $477d
+	ld a, $03
+	call FarCall_hl
+	ld d, $00
+	ld hl, $4a53
+	add hl, de
+	add hl, de
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	ld hl, $cb60
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	ld hl, $0004
+	add hl, bc
+	ld [hl], e
+	ld hl, $0005
+	add hl, bc
+	ld [hl], d
+	jr .sub_86fc
+.sub_873e
+	ld a, $ff
+	ld [wFlyDestination], a
+.sub_8743
+	pop af
+	ldh [hJoyDebounceSrc], a
+	ret
+
+Function8747: ; 02:4747
+	ld a, [wFlyDestination]
+	ld l, a
+	ld h, $00
+	add hl, hl
+	add hl, hl
+	ld de, $4a17
+	add hl, de
+	ld de, hJoySum
+	ld a, [de]
+	and $40
+	jr nz, .sub_876e
+	inc hl
+	ld a, [de]
+	and $80
+	jr nz, .sub_876e
+	inc hl
+	ld a, [de]
+	and $20
+	jr nz, .sub_876e
+	inc hl
+	ld a, [de]
+	and $10
+	jr nz, .sub_876e
+	ret
+.sub_876e
+	ld a, [hl]
+	cp $ff
+	ret z
+	ld [wFlyDestination], a
+	ret
+	
+Text8776: ; 02:4776
+	;db "とびさき　を　えらんでください@"
+	db $c4, $3b, $bb, $b7, $7f, $dd, $7f, $b4
+	db $d7, $de, $33, $b8, $30, $bb, $b2, $50
+	
+Function8786: ; 02:4786
+	ld a, [wFlyDestination]
+	push af
+	xor a
+	ld [wFlyDestination], a
+	call Function881e
+	ld de, PokedexNestIconGFX
+	ld hl, $87f0
+	ld bc, $0201
+	call Request1bpp
+	call GetPokemonName
+	ld hl, $c3d0
+	call PlaceString
+	ld hl, $c3d5
+	ld de, Text87e4
+	call PlaceString
+	call WaitBGMap
+	call SetPalettes
+	xor a
+	ldh [hBGMapMode], a
+	ld hl, wTileMap
+	ld bc, VBlank.return
+	xor a
+	call ByteFill
+	ld hl, $69dc
+	ld a, $0f
+	call FarCall_hl
+.sub_87ca
+	call Function87ea
+	call GetJoypadDebounced
+	ldh a, [hJoyDown]
+	and $03
+	jr nz, .sub_87df
+	ld hl, wFlyDestination
+	inc [hl]
+	call DelayFrame
+	jr .sub_87ca
+.sub_87df
+	pop af
+	ld [wFlyDestination], a
+	ret
+
+Text87e4: ; 02:47e4
+	;db "の　すみか@"
+	db $c9, $7f, $bd, $d0, $b6, $50
+	
+Function87ea: ; 02:47ea
+	ld a, [wFlyDestination]
+	and $10
+	jr z, .sub_881a
+	ld de, wTileMap
+	ld hl, wVirtualOAM
+.sub_87f7
+	ld a, [de]
+	and a
+	ret z
+	push de
+	push hl
+	ld e, a
+	ld d, $00
+	ld hl, $4a53
+	add hl, de
+	add hl, de
+	ld e, l
+	ld d, h
+	pop hl
+	ld a, [de]
+	inc de
+	sub $04
+	ld [hli], a
+	ld a, [de]
+	inc de
+	sub $04
+	ld [hli], a
+	ld a, $7f
+	ld [hli], a
+	xor a
+	ld [hli], a
+	pop de
+	inc de
+	jr .sub_87f7
+.sub_881a
+	call ClearSprites
+	ret
+
+Function881e: ; 02:481e
+	call ClearBGPalettes
+	call ClearTileMap
+	call UpdateSprites
+	call DisableLCD
+	ld hl, TownMapGfx
+	ld de, vTilesetEnd
+	ld bc, $0200
+	ld a, $3e
+	call FarCopyData
+	ld hl, wTileMap
+	call DecompTownMapTilemap
+	ld hl, $c3a4
+	ld b, $03
+	ld c, $12
+	call DrawTextBox
+	ld a, $03
+	call UpdateSoundNTimes
+	call EnableLCD
+	ld b, $02
+	call GetSGBLayout
+	ret
+
+DecompTownMapTilemap: ; 02:4856
+	ld de, TownMapTilemap
+.sub_8859
+	ld a, [de]
+	and a
+	ret z
+	ld b, a
+	inc de
+	ld a, [de]
+	ld c, a
+	ld a, b
+	add $60
+.sub_8863
+	ld [hli], a
+	dec c
+	jr nz, .sub_8863
+	inc de
+	jr .sub_8859
+
+Function886a: ; 02:486a
+	ld de, Function8000
+	ld hl, vChars0
+	ld bc, $3004
+	call Request2bpp
+	ld de, $40c0
+	ld hl, $8040
+	ld bc, $3004
+	call Request2bpp
+	ld de, $0000
+	ld a, $41
+	call InitSpriteAnimStruct
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $00
+	push bc
+	ld a, [wMapGroup]
+	ld b, a
+	ld a, [wMapId]
+	ld c, a
+	call GetWorldMapLocation
+	ld e, a
+	ld d, $00
+	ld hl, $4a53
+	add hl, de
+	add hl, de
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	pop bc
+	ld hl, $0004
+	add hl, bc
+	ld [hl], e
+	ld hl, $0005
+	add hl, bc
+	ld [hl], d
+	ret
+
+Function88b3: ; 02:48b3
+	ld de, $5800
+	ld hl, $8080
+	ld bc, $3104
+	call Request2bpp
+	ld de, $58c0
+	ld hl, $80c0
+	ld bc, $3104
+	call Request2bpp
+	ld de, $0000
+	ld a, $41
+	call InitSpriteAnimStruct
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $08
+	ret
+	
+TownMapTilemap: ; 02:48da
+	db $04, $05
+	db $19, $01
+	db $1a, $08
+	db $1b, $01
+	db $04, $02
+	db $09, $01
+	db $06, $02
+	db $04, $05
+	db $1c, $01
+	db $05, $01
+	db $11, $01
+	db $12, $01
+	db $13, $01
+	db $14, $01
+	db $15, $01
+	db $16, $01
+	db $17, $01
+	db $1c, $01
+	db $04, $02
+	db $0a, $01
+	db $05, $01
+	db $06, $01
+	db $04, $05
+	db $1d, $01
+	db $1a, $08
+	db $1e, $01
+	db $04, $03
+	db $0f, $01
+	db $10, $01
+	db $04, $01
+	db $0d, $01
+	db $0e, $02
+	db $0d, $01
+	db $04, $09
+	db $02, $01
+	db $04, $02
+	db $01, $01
+	db $07, $01
+	db $08, $01
+	db $02, $01
+	db $0f, $01
+	db $02, $01
+	db $04, $01
+	db $0f, $01
+	db $09, $01
+	db $06, $01
+	db $08, $01
+	db $04, $05
+	db $01, $01
+	db $05, $01
+	db $03, $01
+	db $07, $02
+	db $05, $01
+	db $06, $01
+	db $06, $01
+	db $05, $01
+	db $07, $01
+	db $0e, $01
+	db $05, $01
+	db $07, $03
+	db $08, $01
+	db $04, $03
+	db $02, $01
+	db $04, $01
+	db $0f, $01
+	db $04, $01
+	db $0c, $01
+	db $06, $01
+	db $07, $01
+	db $0b, $01
+	db $06, $01
+	db $07, $01
+	db $0b, $01
+	db $04, $01
+	db $0f, $01
+	db $10, $01
+	db $06, $01
+	db $05, $01
+	db $07, $02
+	db $0c, $01
+	db $07, $02
+	db $03, $01
+	db $0f, $01
+	db $09, $01
+	db $07, $01
+	db $06, $01
+	db $07, $01
+	db $03, $01
+	db $06, $01
+	db $0f, $01
+	db $09, $01
+	db $06, $01
+	db $07, $01
+	db $03, $01
+	db $0a, $01
+	db $06, $05
+	db $07, $02
+	db $05, $01
+	db $07, $02
+	db $06, $01
+	db $05, $01
+	db $04, $01
+	db $0b, $01
+	db $0d, $01
+	db $0c, $01
+	db $07, $01
+	db $05, $01
+	db $0e, $01
+	db $07, $02
+	db $06, $0a
+	db $07, $01
+	db $03, $01
+	db $04, $02
+	db $0a, $01
+	db $06, $01
+	db $0b, $01
+	db $04, $01
+	db $06, $01
+	db $05, $01
+	db $07, $02
+	db $05, $01
+	db $06, $01
+	db $05, $01
+	db $06, $05
+	db $0c, $01
+	db $08, $01
+	db $04, $06
+	db $0a, $01
+	db $06, $02
+	db $0b, $01
+	db $07, $01
+	db $06, $01
+	db $0c, $01
+	db $06, $02
+	db $18, $01
+	db $06, $02
+	db $07, $01
+	db $06, $01
+	db $04, $0a
+	db $0c, $01
+	db $07, $01
+	db $05, $01
+	db $07, $02
+	db $05, $01
+	db $07, $03
+	db $0b, $01
+	db $04, $0d
+	db $10, $01
+	db $04, $01
+	db $0a, $01
+	db $0b, $01
+	db $04, $01
+	db $10, $01
+	db $04, $01
+	db $00

@@ -131,8 +131,7 @@ ROMX $01
 ROMX $02
 	"engine/dumps/bank02.asm@Function8000"
 	"gfx.asm@Bank 2 Misc GFX"
-	; $45df
-	org $4a0f
+	"engine/dumps/bank02.asm@QueueFollowerFirstStep"
 	"gfx.asm@Mon Nest Icon"
 	; $4a17
 	org $4f32
