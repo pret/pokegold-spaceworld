@@ -906,7 +906,10 @@ wBGMapAnchor:: ; d643
 
 wUsedSprites:: ; d645
 	dw ; This is for the player
+	
+wUsedNPCSprites:: ;d647
 	ds 2 * 5 ; This is for the NPCs
+	
 wUsedSpritesEnd:: ; d651
 
 

@@ -5,6 +5,7 @@ PokedexNestIconGFX::
 INCBIN "gfx/pokegear/dexmap_nest_icon.1bpp"
 
 SECTION "gfx.asm@Bank 2 Misc GFX", ROMX
+UnknownBouncingOrbGFX::
 INCBIN "gfx/overworld/gfx_84bf.2bpp"
 JumpShadowGFX::
 INCBIN "gfx/overworld/shadow.2bpp"
@@ -14,6 +15,8 @@ QuestionEmoteGFX::
 INCBIN "gfx/overworld/question.2bpp"
 HappyEmoteGFX::
 INCBIN "gfx/overworld/happy.2bpp"
+UnknownBallGFX::
+INCBIN "gfx/overworld/gfx_85cf.2bpp"
 
 SECTION "gfx.asm@Pokegear GFX", ROMX
 PokegearGFX::

@@ -129,10 +129,9 @@ ROMX $01
 	"engine/overworld/object_collision.asm@_CheckPlayerObjectCollision"
 	"engine/dumps/bank01.asm@SettingsScreen"
 ROMX $02
-	org $4000
-	org $44bf
+	"engine/dumps/bank02.asm@Function8000"
 	"gfx.asm@Bank 2 Misc GFX"
-	; $45cf
+	; $45df
 	org $4a0f
 	"gfx.asm@Mon Nest Icon"
 	; $4a17

@@ -1,10 +1,3 @@
-02:4000 Function8000
-02:4098 _InitializeVisibleSprites
-02:4125 Function8125
-02:4131 Function8131
-02:413D Function813d
-02:424C Function824c
-02:43E8 Function83e8
 02:45DF QueueFollowerFirstStep
 02:462E Function862e
 02:46CB FlyMap
