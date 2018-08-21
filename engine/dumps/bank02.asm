@@ -2778,22 +2778,23 @@ Function96eb: ; 02:56eb
 	ret
 
 Function9704: ; 02:5704
-	call .sub_9710
+	call Function9710
 	push de
 	call Function980a
 	pop hl
 	call Function97be
 	ret
-.sub_9710
+
+Function9710: ; 02:5710
 	ld a, [wce5f]
 	bit 3, a
 	jr nz, .sub_971e
 	ld hl, UnusedSGBBorderGFX
-	ld de, $5e1c
+	ld de, Corrupted9e1cGFX
 	ret
 .sub_971e
 	ld hl, SGBBorderGFX
-	ld de, $666c
+	ld de, Corrupteda66cGFX
 	ret
 
 Function9725: ; 02:5725

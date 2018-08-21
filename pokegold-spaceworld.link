@@ -138,13 +138,8 @@ ROMX $02
 	"engine/dumps/bank02.asm@Text91c2"
 	"gfx.asm@Title Screen BG Decoration Border"
 	"engine/dumps/bank02.asm@Function928b"
-	"gfx.asm@Super Palettes"
-	; $5e1c
-	org $62cc
-	"gfx.asm@Unused SGB Border GFX"
-	; $666c
-	org $6b1c
-	"gfx.asm@SGB Border GFX"
+	"gfx.asm@SGB GFX"
+	; 6ebc
 ROMX $03
 	org $4000
 	"engine/overworld/player_movement.asm@Player Movement"

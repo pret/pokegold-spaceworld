@@ -26,15 +26,20 @@ SECTION "gfx.asm@Title Screen BG Decoration Border", ROMX
 TitleBGDecorationBorder::
 INCBIN "gfx/title/titlebgdecoration.2bpp"
 
-SECTION "gfx.asm@Super Palettes", ROMX
+SECTION "gfx.asm@SGB GFX", ROMX
+
 INCLUDE "data/pokemon/palettes.inc"
 INCLUDE "data/super_palettes.inc"
 
-SECTION "gfx.asm@Unused SGB Border GFX", ROMX
+Corrupted9e1cGFX:
+INCBIN "gfx/sgb/corrupted_9e1c.2bpp"
+
 UnusedSGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
-SECTION "gfx.asm@SGB Border GFX", ROMX
+Corrupteda66cGFX:
+INCBIN "gfx/sgb/corrupted_a66c.2bpp"
+
 SGBBorderGFX::
 if def(GOLD)
 INCBIN "gfx/sgb/sgb_border_gold.2bpp"

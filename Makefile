@@ -89,6 +89,9 @@ $(BUILD)/%.o: %.asm | $$(dir $$@)
 $(BUILD)/gfx/sgb/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_gold.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/corrupted_9e1c.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/corrupted_a66c.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/pokegear/town_map.2bpp: tools/gfx += --trim-trailing
 $(BUILD)/gfx/minigames/slots.2bpp: tools/gfx += --trim-whitespace
