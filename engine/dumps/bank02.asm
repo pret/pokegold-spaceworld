@@ -921,8 +921,8 @@ FlyMap: ; 02:46cb
 	push af
 	ld [hl], $01
 	call Function881e
-	ld hl, $4cfd
-	ld a, $23
+	ld hl, InitEffectObject
+	ld a, BANK(InitEffectObject)
 	call FarCall_hl
 	call Function886a
 	call Function88b3
@@ -940,8 +940,8 @@ FlyMap: ; 02:46cb
 .sub_86fc
 	call DelayFrame
 	call GetJoypadDebounced
-	ld hl, $4d13
-	ld a, $23
+	ld hl, EffectObjectJumpNoDelay
+	ld a, BANK(EffectObjectJumpNoDelay)
 	call FarCall_hl
 	ld hl, hJoyDown
 	ld a, [hl]
@@ -951,11 +951,11 @@ FlyMap: ; 02:46cb
 	and $01
 	jr nz, .sub_8743
 	call Function8747
-	ld hl, $477d
-	ld a, $03
+	ld hl, Functionc77d
+	ld a, BANK(Functionc77d)
 	call FarCall_hl
 	ld d, $00
-	ld hl, $4a53
+	ld hl, Data8a53
 	add hl, de
 	add hl, de
 	ld d, [hl]
@@ -986,7 +986,7 @@ Function8747: ; 02:4747
 	ld h, $00
 	add hl, hl
 	add hl, hl
-	ld de, $4a17
+	ld de, Data8a17
 	add hl, de
 	ld de, hJoySum
 	ld a, [de]
@@ -1041,8 +1041,8 @@ Function8786: ; 02:4786
 	ld bc, $0168
 	xor a
 	call ByteFill
-	ld hl, $69dc
-	ld a, $0f
+	ld hl, Function3e9dc
+	ld a, BANK(Function3e9dc)
 	call FarCall_hl
 .sub_87ca
 	call Function87ea
@@ -1077,7 +1077,7 @@ Function87ea: ; 02:47ea
 	push hl
 	ld e, a
 	ld d, $00
-	ld hl, $4a53
+	ld hl, Data8a53
 	add hl, de
 	add hl, de
 	ld e, l
@@ -1145,13 +1145,13 @@ DecompTownMapTilemap: ; 02:4856
 	jr .sub_8859
 
 Function886a: ; 02:486a
-	ld de, Function8000
+	ld de, GoldSpriteGFX
 	ld hl, vChars0
-	ld bc, $3004
+	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
-	ld de, $40c0
+	ld de, GoldSpriteGFX + $c0
 	ld hl, $8040
-	ld bc, $3004
+	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
 	ld de, $0000
 	ld a, $41
@@ -1167,7 +1167,7 @@ Function886a: ; 02:486a
 	call GetWorldMapLocation
 	ld e, a
 	ld d, $00
-	ld hl, $4a53
+	ld hl, Data8a53
 	add hl, de
 	add hl, de
 	ld d, [hl]
@@ -1183,13 +1183,13 @@ Function886a: ; 02:486a
 	ret
 
 Function88b3: ; 02:48b3
-	ld de, $5800
+	ld de, PoppoSpriteGFX
 	ld hl, $8080
-	ld bc, $3104
+	lb bc, BANK(PoppoSpriteGFX), $04
 	call Request2bpp
-	ld de, $58c0
+	ld de, PoppoSpriteGFX + $c0
 	ld hl, $80c0
-	ld bc, $3104
+	lb bc, BANK(PoppoSpriteGFX), $04
 	call Request2bpp
 	ld de, $0000
 	ld a, $41
@@ -1446,7 +1446,7 @@ Function8ae0: ; 02:4ae0
 	call ClearSprites
 	ld b, $13
 	call GetSGBLayout
-	ld hl, PokegearGFX
+	ld hl, Pokegear1GFX
 	ld de, vChars2
 	ld bc, $0200
 	ld a, $02
@@ -1478,7 +1478,7 @@ Function8b2a: ; 02:4b2a
 	ld a, $7f
 	call ByteFill
 	ld de, wTileMap
-	ld hl, $4b42
+	ld hl, Data8b42
 	ld bc, $003c
 	call CopyBytes
 	ret
@@ -1524,16 +1524,16 @@ Function8ba3: ; 02:4ba3
 	bit 7, a
 	jr nz, .sub_8bc3
 	call Function8bfd
-	ld a, $23
-	ld hl, $4d13
+	ld a, BANK(EffectObjectJumpNoDelay)
+	ld hl, EffectObjectJumpNoDelay
 	call FarCall_hl
 	call Function8bd5
 	call DelayFrame
 	and a
 	ret
 .sub_8bc3
-	ld hl, $4cfd
-	ld a, $23
+	ld hl, InitEffectObject
+	ld a, BANK(InitEffectObject)
 	call FarCall_hl
 	call ClearSprites
 	xor a
@@ -1589,12 +1589,12 @@ Function8c1c: ; 02:4c1c
 	ret
 
 Function8c21: ; 02:4c21
-	ld hl, $4cfd
-	ld a, $23
+	ld hl, InitEffectObject
+	ld a, BANK(InitEffectObject)
 	call FarCall_hl
-	ld de, $56b0
+	ld de, PointerGFX
 	ld hl, $87c0
-	ld bc, $2104
+	lb bc, BANK(PointerGFX), $04
 	call Request2bpp
 	ld a, $29
 	ld hl, wTileMapBackup
@@ -1630,7 +1630,7 @@ Function8c5f: ; 02:4c5f
 	and $03
 	ld e, a
 	ld d, $00
-	ld hl, $4c78
+	ld hl, Unknown8c78
 	add hl, de
 	ld a, [hl]
 	ld [wJumptableIndex], a
@@ -1675,13 +1675,13 @@ Function8cb7: ; 02:4cb7
 	call WaitForAutoBgMapTransfer
 	ld b, $15
 	call GetSGBLayout
-	ld de, $5132
+	ld de, Pokegear2GFX
 	ld hl, vTilesetEnd
-	ld bc, $0209
+	lb bc, BANK(Pokegear2GFX), $09
 	call Request2bpp
-	ld de, $51b2
+	ld de, VerticalPipeGFX
 	ld hl, vChars0
-	ld bc, $0201
+	lb bc, BANK(VerticalPipeGFX), $01
 	call Request2bpp
 	ld hl, $c2dc
 	ld bc, $00b4
@@ -1968,8 +1968,8 @@ Function8e9e: ; 02:4e9e
 	ret
 
 Function8eaa: ; 02:4eaa
-	ld hl, $4cfd
-	ld a, $23
+	ld hl, InitEffectObject
+	ld a, BANK(InitEffectObject)
 	call FarCall_hl
 	call ClearSprites
 	call WaitForAutoBgMapTransfer
@@ -2073,7 +2073,7 @@ Text91c2: ; 02:51c2
 SetTitleBGDecorationBorder: ; 02:51d2
 	ld de, TitleBGDecorationBorder
 	ld hl, $9500
-	ld bc, $0209
+	lb bc, BANK(TitleBGDecorationBorder), $09
 	call Request2bpp
 	ld hl, $c340
 	ld b, $50
@@ -2142,12 +2142,12 @@ Table92a8: ; 02:52a8
 	dw Function94c8
 
 Function92d4: ; 02:52d4
-	ld hl, $59ec
-	ld de, $588c
+	ld hl, Data99ec
+	ld de, Data988c
 	ret
 
 Function92db: ; 02:52db
-	ld hl, $595c
+	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
 	call CopyBytes
@@ -2182,13 +2182,13 @@ Function92db: ; 02:52db
 	ld a, c
 	ld [hl], a
 	ld hl, wcce1
-	ld de, $588c
+	ld de, Data988c
 	ld a, $01
 	ld [wccd0], a
 	ret
 
 Function932b: ; 02:532b
-	ld hl, $595c
+	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
 	call CopyBytes
@@ -2200,16 +2200,16 @@ Function932b: ; 02:532b
 	add $23
 	ld [hl], a
 	ld hl, wcce1
-	ld de, $58bc
+	ld de, Data98bc
 	ret
 
 Function934b: ; 02:534b
-	ld hl, $59fc
-	ld de, $586c
+	ld hl, Data99fc
+	ld de, Data986c
 	ret
 
 Function9352: ; 02:5352
-	ld hl, $595c
+	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
 	call CopyBytes
@@ -2225,16 +2225,16 @@ Function9352: ; 02:5352
 	pop af
 	ld [hl], a
 	ld hl, wcce1
-	ld de, $58ac
+	ld de, Data98ac
 	ret
 
 Function937b: ; 02:537b
-	ld hl, $59dc
+	ld hl, Data99dc
 	ld de, wcce2
 	ret
 
 Function9382: ; 02:5382
-	ld hl, $5a0c
+	ld hl, Data9a0c
 	ld de, wcce1
 	ld bc, $0010
 	call CopyBytes
@@ -2243,32 +2243,32 @@ Function9382: ; 02:5382
 	ld hl, wcce4
 	ld [hl], a
 	ld hl, wcce1
-	ld de, $58cc
+	ld de, Data98cc
 	ret
 
 Function939f: ; 02:539f
-	ld hl, $59bc
-	ld de, $586c
+	ld hl, Data99bc
+	ld de, Data986c
 	ret
 
 Function93a6: ; 02:53a6
-	ld hl, $5a1c
-	ld de, $58dc
+	ld hl, Data9a1c
+	ld de, Data98dc
 	ret
 
 Function93ad: ; 02:53ad
-	ld hl, $5a2c
-	ld de, $593c
+	ld hl, Data9a2c
+	ld de, Data993c
 	ret
 
 Function93b4: ; 02:53b4
-	ld hl, $5a3c
-	ld de, $586c
+	ld hl, Data9a3c
+	ld de, Data986c
 	ret
 
 Function93bb: ; 02:53bb
 	ld b, $00
-	ld hl, $53cc
+	ld hl, Table93cc
 	add hl, bc
 	add hl, bc
 	add hl, bc
@@ -2293,42 +2293,42 @@ Table93cc: ; 02:53cc
 	dw Data999c
 
 Function93d8: ; 02:53d8
-	ld hl, $5a4c
-	ld de, $586c
+	ld hl, Data9a4c
+	ld de, Data986c
 	ld a, $08
 	ld [wccd0], a
 	ret
 
 Function93e4: ; 02:53e4
-	ld hl, $59cc
-	ld de, $586c
+	ld hl, Data99cc
+	ld de, Data986c
 	ret
 
 Function93eb: ; 02:53eb
-	ld hl, $586c
+	ld hl, Data986c
 	ld de, $c51a
 	ld bc, $0010
 	call CopyBytes
-	ld hl, $594c
-	ld de, $586c
+	ld hl, Data994c
+	ld de, Data986c
 	ret
 
 Function93fe: ; 02:53fe
-	ld hl, $595c
+	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
 	call CopyBytes
 	call Function94e5
 	ld hl, wcce2
 	ld [hld], a
-	ld de, $586c
+	ld de, Data986c
 	ld a, $09
 	ld [wccd0], a
 	ret
 
 Function941a: ; 02:541a
 	push bc
-	ld hl, $595c
+	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
 	call CopyBytes
@@ -2343,20 +2343,20 @@ Function941a: ; 02:541a
 .sub_9437
 	ld [wcce2], a
 	ld hl, wcce1
-	ld de, $586c
+	ld de, Data986c
 	ret
 
 Function9441: ; 02:5441
-	ld hl, $5a3c
-	ld de, $586c
+	ld hl, Data9a3c
+	ld de, Data986c
 	ret
 
 Function9448: ; 02:5448
-	ld hl, $595c
+	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
 	call CopyBytes
-	ld hl, $586c
+	ld hl, Data986c
 	ld de, $ccf1
 	ld bc, $0010
 	call CopyBytes
@@ -2383,7 +2383,7 @@ Function9448: ; 02:5448
 	ret
 
 Function948e: ; 02:548e
-	ld hl, $595c
+	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
 	call CopyBytes
@@ -2392,11 +2392,11 @@ Function948e: ; 02:548e
 	ld a, $30
 	ld [wcce4], a
 	ld hl, wcce1
-	ld de, $592c
+	ld de, Data992c
 	ret
 
 Function94ab: ; 02:54ab
-	ld hl, $595c
+	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
 	call CopyBytes
@@ -2405,11 +2405,11 @@ Function94ab: ; 02:54ab
 	ld a, $26
 	ld [wcce4], a
 	ld hl, wcce1
-	ld de, $592c
+	ld de, Data992c
 	ret
 
 Function94c8: ; 02:54c8
-	ld hl, $595c
+	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
 	call CopyBytes
@@ -2418,7 +2418,7 @@ Function94c8: ; 02:54c8
 	ld a, $39
 	ld [wcce4], a
 	ld hl, wcce1
-	ld de, $592c
+	ld de, Data992c
 	ret
 
 Function94e5: ; 02:54e5
@@ -2729,7 +2729,7 @@ CheckSGB: ; 02:5695
 	call Function9704
 	call Function979a
 	call Function9725
-	ld hl, $5abc
+	ld hl, Data9abc
 	call Function965c
 .sub_96c0
 	pop af
@@ -2769,10 +2769,10 @@ Function96eb: ; 02:56eb
 	di
 	xor a
 	ldh [rJOYP], a
-	ld hl, $5aac
+	ld hl, Data9aac
 	call Function965c
 	call Function9704
-	ld hl, $5abc
+	ld hl, Data9abc
 	call Function965c
 	ei
 	ret
@@ -2805,7 +2805,7 @@ Function9725: ; 02:5725
 	ret
 
 Function9730: ; 02:5730
-	ld hl, $5a7c
+	ld hl, Data9a7c
 	call Function965c
 	call Function9860
 	ldh a, [rJOYP]
@@ -2851,7 +2851,7 @@ Function9730: ; 02:5730
 	scf
 	ret
 .sub_9791
-	ld hl, $5a6c
+	ld hl, Data9a6c
 	call Function965c
 	jp Function9860
 
@@ -2866,7 +2866,7 @@ Function979a: ; 02:579a
 	call Function984a
 	ld a, $e3
 	ldh [rLCDC], a
-	ld hl, $5a5c
+	ld hl, Data9a5c
 	call Function965c
 	xor a
 	ldh [rBGP], a
@@ -2900,7 +2900,7 @@ Function97be: ; 02:57be
 	call Function984a
 	ld a, $e3
 	ldh [rLCDC], a
-	ld hl, $5a9c
+	ld hl, Data9a9c
 	call Function965c
 	xor a
 	ldh [rBGP], a
@@ -2924,7 +2924,7 @@ Function980a: ; 02:580a
 	call Function984a
 	ld a, $e3
 	ldh [rLCDC], a
-	ld hl, $5a8c
+	ld hl, Data9a8c
 	call Function965c
 	xor a
 	ldh [rBGP], a
