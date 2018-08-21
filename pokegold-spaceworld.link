@@ -135,9 +135,9 @@ ROMX $02
 	"gfx.asm@Mon Nest Icon"
 	"engine/dumps/bank02.asm@Data8a17"
 	"gfx.asm@Pokegear GFX"
-	org $51fb
+	"engine/dumps/bank02.asm@Text91c2"
 	"gfx.asm@Title Screen BG Decoration Border"
-	org $5b4c
+	"engine/dumps/bank02.asm@Function928b"
 	"gfx.asm@Super Palettes"
 	; $5e1c
 	org $62cc

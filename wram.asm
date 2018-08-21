@@ -190,8 +190,8 @@ wBattleAnimEnd::
 wBattleMonNickname:: ds 6 ; c9f6
 wEnemyMonNickname:: ds 6 ; c9fc
 
-	ds 2
-
+wca02:: ds 1 ; ca02
+wca03:: ds 1 ; ca03
 wca04:: ds 1 ; ca04
 
 	ds 5
@@ -201,7 +201,12 @@ wca0a:: ds 1 ; ca0a
 	ds $32 ; TODO
 
 wPlayerSubStatus3:: db ; ca3d
-	ds $4
+
+wca3e:: ds 1 ; ca3e
+wca3f:: ds 1 ; ca3f
+wca40:: ds 1 ; ca40
+wca41:: ds 1 ; ca41
+	
 wEnemySubStatus3:: db ; ca42
 
 wca43:: db ; ca43
@@ -215,7 +220,13 @@ wTrainerClass:: ; ca57
 	ds $6b
 wLinkBattleRNCount:: db ; cac3
 
+	ds 29
+	
+wcae1:: ds 1 ; cae1
+
 ENDU
+
+
 
 
 SECTION "CB14", WRAM0[$CB14]
@@ -411,6 +422,30 @@ SECTION "CCCE", WRAM0[$CCCE]
 
 wDisableVBlankWYUpdate:: db ; ccce
 wSGB:: db
+
+SECTION "CCD0", WRAM0[$CCD0]
+
+wccd0:: ds 1 ; ccd0
+wccd1:: ds 1 ; ccd1
+wccd2:: ds 1 ; ccd2
+
+	ds 6
+	
+wccd9:: ds 1 ; ccd9
+
+SECTION "CCE1", WRAM0[$CCE1]
+
+wcce1:: ds 1 ; cce1
+wcce2:: ds 1 ; cce2
+wcce3:: ds 1 ; cce3
+wcce4:: ds 1 ; cce4
+
+	ds 12
+	
+wccf1:: ds 1 ; ccf1
+wccf2:: ds 1 ; ccf2
+wccf3:: ds 1 ; ccf3
+wccf4:: ds 1 ; ccf4
 
 SECTION "CD11", WRAM0[$CD11]
 

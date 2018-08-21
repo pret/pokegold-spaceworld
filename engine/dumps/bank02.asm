@@ -1722,7 +1722,7 @@ Function8cb7: ; 02:4cb7
 	ld bc, $000c
 	ld a, $67
 	call ByteFill
-	ld hl, $51c2
+	ld hl, Text91c2
 	call PrintText
 	call WaitBGMap
 	ld de, $4c23
@@ -2063,3 +2063,1101 @@ Function8ef9: ; 02:4ef9
 	ld a, $04
 	ld [hli], a
 	ret
+
+SECTION "engine/dumps/bank02.asm@Text91c2", ROMX
+
+Text91c2: ; 02:51c2
+	text "エーボタンで　チューニング！"
+	done
+
+SetTitleBGDecorationBorder: ; 02:51d2
+	ld de, TitleBGDecorationBorder
+	ld hl, $9500
+	ld bc, $0209
+	call Request2bpp
+	ld hl, $c340
+	ld b, $50
+	call Function91ef
+	ld hl, $c3e0
+	ld b, $54
+	call Function91ef
+	ret
+	
+Function91ef: ; 02:51ef
+	xor a
+	ld c, $14
+.sub_91f2
+	and $03
+	or b
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .sub_91f2
+	ret
+
+SECTION "engine/dumps/bank02.asm@Function928b", ROMX
+
+Function928b: ; 02:528b
+	ld a, b
+	cp $ff
+	jr nz, .sub_9293
+	ld a, [wccd0]
+.sub_9293
+	cp $fc
+	jp z, Function9604
+	ld l, a
+	ld h, $00
+	add hl, hl
+	ld de, Table92a8
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, Function955f
+	push de
+	jp hl
+
+Table92a8: ; 02:52a8
+	dw Function92d4
+	dw Function92db
+	dw Function934b
+	dw Function9352
+	dw Function9382
+	dw Function93a6
+	dw Function93ad
+	dw Function93bb
+	dw Function93b4
+	dw Function93fe
+	dw Function937b
+	dw Function941a
+	dw Function93d8
+	dw Function9441
+	dw Function932b
+	dw Function93e4
+	dw Function939f
+	dw Function93eb
+	dw Function9448
+	dw Function948e
+	dw Function94ab
+	dw Function94c8
+
+Function92d4: ; 02:52d4
+	ld hl, $59ec
+	ld de, $588c
+	ret
+
+Function92db: ; 02:52db
+	ld hl, $595c
+	ld de, wcce1
+	ld bc, $0010
+	call CopyBytes
+	ld a, [wca3f]
+	ld hl, wca02
+	call Function9567
+	jr c, .sub_92f7
+	ld e, $00
+	call Function9599
+.sub_92f7
+	ld b, a
+	ld a, [wca44]
+	ld hl, wcdd7
+	call Function9567
+	jr c, .sub_9308
+	ld e, $01
+	call Function9599
+.sub_9308
+	ld c, a
+	ld hl, wcce2
+	ld a, [wccd1]
+	add $23
+	ld [hli], a
+	inc hl
+	ld a, [wccd2]
+	add $23
+	ld [hli], a
+	inc hl
+	ld a, b
+	ld [hli], a
+	inc hl
+	ld a, c
+	ld [hl], a
+	ld hl, wcce1
+	ld de, $588c
+	ld a, $01
+	ld [wccd0], a
+	ret
+
+Function932b: ; 02:532b
+	ld hl, $595c
+	ld de, wcce1
+	ld bc, $0010
+	call CopyBytes
+	ld hl, wcce2
+	ld [hl], $10
+	inc hl
+	inc hl
+	ld a, [wccd1]
+	add $23
+	ld [hl], a
+	ld hl, wcce1
+	ld de, $58bc
+	ret
+
+Function934b: ; 02:534b
+	ld hl, $59fc
+	ld de, $586c
+	ret
+
+Function9352: ; 02:5352
+	ld hl, $595c
+	ld de, wcce1
+	ld bc, $0010
+	call CopyBytes
+	ld a, [wMonDexIndex]
+	call Function956d
+	call Function957e
+	push af
+	ld hl, wcce2
+	ld a, [wccd9]
+	add $23
+	ld [hli], a
+	inc hl
+	pop af
+	ld [hl], a
+	ld hl, wcce1
+	ld de, $58ac
+	ret
+
+Function937b: ; 02:537b
+	ld hl, $59dc
+	ld de, wcce2
+	ret
+
+Function9382: ; 02:5382
+	ld hl, $5a0c
+	ld de, wcce1
+	ld bc, $0010
+	call CopyBytes
+	ld a, [wMonDexIndex]
+	call Function956d
+	ld hl, wcce4
+	ld [hl], a
+	ld hl, wcce1
+	ld de, $58cc
+	ret
+
+Function939f: ; 02:539f
+	ld hl, $59bc
+	ld de, $586c
+	ret
+
+Function93a6: ; 02:53a6
+	ld hl, $5a1c
+	ld de, $58dc
+	ret
+
+Function93ad: ; 02:53ad
+	ld hl, $5a2c
+	ld de, $593c
+	ret
+
+Function93b4: ; 02:53b4
+	ld hl, $5a3c
+	ld de, $586c
+	ret
+
+Function93bb: ; 02:53bb
+	ld b, $00
+	ld hl, $53cc
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ret
+
+Table93cc: ; 02:53cc
+	dw Data986c
+	dw Data996c
+	
+	dw Data987c
+	dw Data998c
+	
+	dw Data986c
+	dw Data999c
+
+Function93d8: ; 02:53d8
+	ld hl, $5a4c
+	ld de, $586c
+	ld a, $08
+	ld [wccd0], a
+	ret
+
+Function93e4: ; 02:53e4
+	ld hl, $59cc
+	ld de, $586c
+	ret
+
+Function93eb: ; 02:53eb
+	ld hl, $586c
+	ld de, $c51a
+	ld bc, $0010
+	call CopyBytes
+	ld hl, $594c
+	ld de, $586c
+	ret
+
+Function93fe: ; 02:53fe
+	ld hl, $595c
+	ld de, wcce1
+	ld bc, $0010
+	call CopyBytes
+	call Function94e5
+	ld hl, wcce2
+	ld [hld], a
+	ld de, $586c
+	ld a, $09
+	ld [wccd0], a
+	ret
+
+Function941a: ; 02:541a
+	push bc
+	ld hl, $595c
+	ld de, wcce1
+	ld bc, $0010
+	call CopyBytes
+	pop bc
+	ld a, c
+	and a
+	ld a, $0e
+	jr nz, .sub_9437
+	ld a, [wccd1]
+	call Function956d
+	call Function957e
+.sub_9437
+	ld [wcce2], a
+	ld hl, wcce1
+	ld de, $586c
+	ret
+
+Function9441: ; 02:5441
+	ld hl, $5a3c
+	ld de, $586c
+	ret
+
+Function9448: ; 02:5448
+	ld hl, $595c
+	ld de, wcce1
+	ld bc, $0010
+	call CopyBytes
+	ld hl, $586c
+	ld de, $ccf1
+	ld bc, $0010
+	call CopyBytes
+	call Function94e5
+	ld hl, wcce2
+	ld [hl], a
+	ld a, [wMonDexIndex]
+	call Function956d
+	ld hl, wcce4
+	ld [hl], a
+	ld hl, wccf4
+	ld a, $05
+	ld [hli], a
+	ld a, [wMenuBorderLeftCoord]
+	ld [hli], a
+	ld a, [wMenuBorderTopCoord]
+	ld [hli], a
+	ld a, [wMenuBorderRightCoord]
+	ld [hli], a
+	ld a, [wMenuBorderBottomCoord]
+	ld [hl], a
+	ld hl, wcce1
+	ld de, wccf1
+	ret
+
+Function948e: ; 02:548e
+	ld hl, $595c
+	ld de, wcce1
+	ld bc, $0010
+	call CopyBytes
+	ld a, $16
+	ld [wcce2], a
+	ld a, $30
+	ld [wcce4], a
+	ld hl, wcce1
+	ld de, $592c
+	ret
+
+Function94ab: ; 02:54ab
+	ld hl, $595c
+	ld de, wcce1
+	ld bc, $0010
+	call CopyBytes
+	ld a, $16
+	ld [wcce2], a
+	ld a, $26
+	ld [wcce4], a
+	ld hl, wcce1
+	ld de, $592c
+	ret
+
+Function94c8: ; 02:54c8
+	ld hl, $595c
+	ld de, wcce1
+	ld bc, $0010
+	call CopyBytes
+	ld a, $16
+	ld [wcce2], a
+	ld a, $39
+	ld [wcce4], a
+	ld hl, wcce1
+	ld de, $592c
+	ret
+
+Function94e5: ; 02:54e5
+	ld a, [wMapPermissions]
+	cp $02
+	jr z, .sub_950e
+	cp $04
+	jr z, .sub_9516
+	cp $06
+	jr z, .sub_951e
+	cp $05
+	jr z, .sub_9521
+	cp $03
+	jr z, .sub_9505
+	call Function9527
+	jr c, .sub_9524
+	call Function9543
+	ret
+.sub_9505
+	call Function9536
+	jr c, .sub_9524
+	call Function9543
+	ret
+.sub_950e
+	call Function9527
+	jr c, .sub_9524
+	ld a, $00
+	ret
+.sub_9516
+	call Function9527
+	jr c, .sub_9524
+	ld a, $0c
+	ret
+.sub_951e
+	ld a, $03
+	ret
+.sub_9521
+	ld a, $04
+	ret
+.sub_9524
+	ld a, $0d
+	ret
+
+Function9527: ; 02:5527
+	ld a, [wTimeOfDay]
+	and $03
+	jr z, .sub_9534
+	cp $03
+	jr z, .sub_9534
+	scf
+	ret
+.sub_9534
+	and a
+	ret
+
+Function9536: ; 02:5536
+	ld a, [wTimeOfDay]
+	and $03
+	cp $02
+	jr nz, .sub_9541
+	scf
+	ret
+.sub_9541
+	and a
+	ret
+
+Function9543: ; 02:5543
+	ld a, [wMapGroup]
+	ld e, a
+	ld d, $00
+	ld hl, Data954f
+	add hl, de
+	ld a, [hl]
+	ret
+
+Data954f: ; 02:554f
+	db $01, $07, $0c, $03, $08, $06, $0b, $04
+	db $05, $0a, $02, $03, $02, $02, $09, $01
+
+Function955f: ; 02:555f
+	push de
+	call Function964b
+	pop hl
+	jp Function964b
+
+Function9567: ; 02:5567
+	bit 3, a
+	ld a, $18
+	ret nz
+	ld a, [hl]
+
+Function956d: ; 02:556d
+	and a
+	jr z, .sub_957a
+	ld e, a
+	ld d, $00
+	ld hl, PokemonPalettes
+	add hl, de
+	ld a, [hl]
+	and a
+	ret
+.sub_957a
+	ld a, $0f
+	scf
+	ret
+
+Function957e: ; 02:557e
+	push bc
+	push af
+	ld hl, wPartyMon1DVs
+	ld a, [wWhichPokemon]
+	ld bc, $0030
+	call AddNTimes
+	call Function95b0
+	ld b, $00
+	jr nc, .sub_9595
+	ld b, $0a
+.sub_9595
+	pop af
+	add b
+	pop bc
+	ret
+
+Function9599: ; 02:5599
+	push bc
+	push af
+	ld a, e
+	and a
+	ld a, [wcae1]
+	jr z, .sub_95a4
+	srl a
+.sub_95a4
+	srl a
+	ld b, $00
+	jr nc, .sub_95ac
+	ld b, $0a
+.sub_95ac
+	pop af
+	add b
+	pop bc
+	ret
+
+Function95b0: ; 02:55b0
+	ld a, [hl]
+	cp $a0
+	jr c, .sub_95ca
+	ld a, [hli]
+	and $0f
+	cp $0a
+	jr c, .sub_95ca
+	ld a, [hl]
+	cp $a0
+	jr c, .sub_95ca
+	ld a, [hl]
+	and $0f
+	cp $0a
+	jr c, .sub_95ca
+	scf
+	ret
+.sub_95ca
+	and a
+	ret
+
+Function95cc: ; 02:55cc
+	ld hl, $cddf
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .sub_95d7
+	ld hl, $ca08
+.sub_95d7
+	call Function95b0
+	ld hl, wcae1
+	jr nc, .sub_95ec
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .sub_95e8
+	set 0, [hl]
+	jr .sub_95f7
+.sub_95e8
+	set 1, [hl]
+	jr .sub_95f7
+.sub_95ec
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .sub_95f5
+	res 0, [hl]
+	jr .sub_95f7
+.sub_95f5
+	res 1, [hl]
+.sub_95f7
+	ret
+
+Function95f8: ; 02:55f8
+	ld hl, Data98fc
+	ld de, wcce2
+	ld bc, $0030
+	jp CopyBytes
+
+Function9604: ; 02:5604
+	ld hl, $ccd3
+	ld a, [wcce1]
+	ld e, a
+	ld d, $00
+	add hl, de
+	ld e, l
+	ld d, h
+	ld a, [de]
+	and a
+	ld e, $05
+	jr z, .sub_961d
+	dec a
+	ld e, $0a
+	jr z, .sub_961d
+	ld e, $0f
+.sub_961d
+	push de
+	ld hl, $cceb
+	ld bc, $0006
+	ld a, [wcce1]
+	call AddNTimes
+	pop de
+	ld [hl], e
+	ret
+
+Function962d: ; 02:562d
+	ld hl, Data997c
+	jp Function964b
+
+Function9633: ; 02:5633
+	ld hl, Data986c
+	jp Function964b
+
+Function9639: ; 02:5639
+	ld hl, Data99ac
+	jp Function964b
+
+Function963f: ; 02:563f
+	ld hl, Data99bc
+	jp Function964b
+
+Function9645: ; 02:5645
+	ld hl, $c51a
+	jp Function964b
+
+Function964b: ; 02:564b
+	ld a, [wJoypadFlags]
+	push af
+	set 7, a
+	ld [wJoypadFlags], a
+	call Function965c
+	pop af
+	ld [wJoypadFlags], a
+	ret
+
+Function965c: ; 02:565c
+	ld a, [hl]
+	and $07
+	ret z
+	ld b, a
+.sub_9661
+	push bc
+	xor a
+	ldh [rJOYP], a
+	ld a, $30
+	ldh [rJOYP], a
+	ld b, $10
+.sub_966b
+	ld e, $08
+	ld a, [hli]
+	ld d, a
+.sub_966f
+	bit 0, d
+	ld a, $10
+	jr nz, .sub_9677
+	ld a, $20
+.sub_9677
+	ldh [rJOYP], a
+	ld a, $30
+	ldh [rJOYP], a
+	rr d
+	dec e
+	jr nz, .sub_966f
+	dec b
+	jr nz, .sub_966b
+	ld a, $20
+	ldh [rJOYP], a
+	ld a, $30
+	ldh [rJOYP], a
+	call Function9860
+	pop bc
+	dec b
+	jr nz, .sub_9661
+	ret
+
+CheckSGB: ; 02:5695
+	ld a, [wJoypadFlags]
+	push af
+	set 7, a
+	ld [wJoypadFlags], a
+	xor a
+	ldh [rJOYP], a
+	ld [wSGB], a
+	call Function9730
+	jr nc, .sub_96c0
+	ld a, $01
+	ld [wSGB], a
+	call .sub_96c5
+	call Function9704
+	call Function979a
+	call Function9725
+	ld hl, $5abc
+	call Function965c
+.sub_96c0
+	pop af
+	ld [wJoypadFlags], a
+	ret
+.sub_96c5
+	ld hl, Table96d9
+	ld c, $09
+.sub_96ca
+	push bc
+	ld a, [hli]
+	push hl
+	ld h, [hl]
+	ld l, a
+	call Function965c
+	pop hl
+	inc hl
+	pop bc
+	dec c
+	jr nz, .sub_96ca
+	ret
+
+Table96d9: ; 02:56d9
+	dw Data9aac
+	dw Data9acc
+	dw Data9adc
+	dw Data9aec
+	dw Data9afc
+	dw Data9b0c
+	dw Data9b1c
+	dw Data9b2c
+	dw Data9b3c
+
+Function96eb: ; 02:56eb
+	ld a, [wSGB]
+	ret z
+	di
+	xor a
+	ldh [rJOYP], a
+	ld hl, $5aac
+	call Function965c
+	call Function9704
+	ld hl, $5abc
+	call Function965c
+	ei
+	ret
+
+Function9704: ; 02:5704
+	call .sub_9710
+	push de
+	call Function980a
+	pop hl
+	call Function97be
+	ret
+.sub_9710
+	ld a, [wce5f]
+	bit 3, a
+	jr nz, .sub_971e
+	ld hl, UnusedSGBBorderGFX
+	ld de, $5e1c
+	ret
+.sub_971e
+	ld hl, SGBBorderGFX
+	ld de, $666c
+	ret
+
+Function9725: ; 02:5725
+	ld hl, vChars0
+	ld bc, $2000
+	xor a
+	call ByteFill
+	ret
+
+Function9730: ; 02:5730
+	ld hl, $5a7c
+	call Function965c
+	call Function9860
+	ldh a, [rJOYP]
+	and $03
+	cp $03
+	jr nz, .sub_978c
+	ld a, $20
+	ldh [rJOYP], a
+	ldh a, [rJOYP]
+	ldh a, [rJOYP]
+	call Function9860
+	call Function9860
+	ld a, $30
+	ldh [rJOYP], a
+	call Function9860
+	call Function9860
+	ld a, $10
+	ldh [rJOYP], a
+	ldh a, [rJOYP]
+	ldh a, [rJOYP]
+	ldh a, [rJOYP]
+	ldh a, [rJOYP]
+	ldh a, [rJOYP]
+	ldh a, [rJOYP]
+	call Function9860
+	call Function9860
+	ld a, $30
+	ldh [rJOYP], a
+	ldh a, [rJOYP]
+	ldh a, [rJOYP]
+	ldh a, [rJOYP]
+	call Function9860
+	call Function9860
+	ldh a, [rJOYP]
+	and $03
+	cp $03
+	jr nz, .sub_978c
+	call .sub_9791
+	and a
+	ret
+.sub_978c
+	call .sub_9791
+	scf
+	ret
+.sub_9791
+	ld hl, $5a6c
+	call Function965c
+	jp Function9860
+
+Function979a: ; 02:579a
+	call DisableLCD
+	ld a, $e4
+	ldh [rBGP], a
+	ld hl, SuperPalettes
+	ld de, vChars1
+	ld bc, $1000
+	call Function9838
+	call Function984a
+	ld a, $e3
+	ldh [rLCDC], a
+	ld hl, $5a5c
+	call Function965c
+	xor a
+	ldh [rBGP], a
+	ret
+
+Function97be: ; 02:57be
+	call DisableLCD
+	ld a, $e4
+	ldh [rBGP], a
+	ld de, vChars1
+	ld bc, $0140
+	call Function9838
+	ld b, $12
+.sub_97d0
+	push bc
+	ld bc, $000c
+	call Function9838
+	ld bc, $0028
+	call Function9841
+	ld bc, $000c
+	call Function9838
+	pop bc
+	dec b
+	jr nz, .sub_97d0
+	ld bc, $0140
+	call Function9838
+	ld bc, $0100
+	call Function9841
+	ld bc, $0080
+	call Function9838
+	call Function984a
+	ld a, $e3
+	ldh [rLCDC], a
+	ld hl, $5a9c
+	call Function965c
+	xor a
+	ldh [rBGP], a
+	ret
+
+Function980a: ; 02:580a
+	call DisableLCD
+	ld a, $e4
+	ldh [rBGP], a
+	ld de, vChars1
+	ld b, $80
+.sub_9816
+	push bc
+	ld bc, $0010
+	call Function9838
+	ld bc, $0010
+	call Function9841
+	pop bc
+	dec b
+	jr nz, .sub_9816
+	call Function984a
+	ld a, $e3
+	ldh [rLCDC], a
+	ld hl, $5a8c
+	call Function965c
+	xor a
+	ldh [rBGP], a
+	ret
+
+Function9838: ; 02:5838
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, Function9838
+	ret
+
+Function9841: ; 02:5841
+	xor a
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, Function9841
+	ret
+
+Function984a: ; 02:584a
+	ld hl, vBGMap0
+	ld de, $000c
+	ld a, $80
+	ld c, $0d
+.sub_9854
+	ld b, $14
+.sub_9856
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .sub_9856
+	add hl, de
+	dec c
+	jr nz, .sub_9854
+	ret
+
+Function9860: ; 02:5860
+	ld de, $1b58
+.sub_9863
+	nop
+	nop
+	nop
+	dec de
+	ld a, d
+	or e
+	jr nz, .sub_9863
+	ret
+
+Data986c: ; 02:586c
+	db $21, $01, $03, $00, $00, $00, $13, $11
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data987c: ; 02:587c
+	db $21, $01, $07, $05, $00, $0a, $13, $0d
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data988c: ; 02:588c
+	db $22, $05, $07, $0a, $00, $0c, $13, $11
+	db $03, $05, $01, $00, $0a, $03, $03, $00
+
+Data989c: ; 02:589c
+	db $0a, $08, $13, $0a, $03, $0a, $00, $04
+	db $08, $0b, $03, $0f, $0b, $00, $13, $07
+
+Data98ac: ; 02:58ac
+	db $21, $01, $07, $05, $00, $01, $07, $07
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data98bc: ; 02:58bc
+	db $21, $01, $07, $05, $0b, $01, $13, $02
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data98cc: ; 02:58cc
+	db $21, $01, $07, $05, $01, $01, $08, $08
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data98dc: ; 02:58dc
+	db $22, $05, $03, $05, $00, $00, $13, $0b
+	db $03, $0a, $00, $04, $13, $09, $02, $0f
+
+Data98ec: ; 02:58ec
+	db $00, $06, $13, $07, $03, $00, $04, $04
+	db $0f, $09, $03, $00, $00, $0c, $13, $11
+
+Data98fc: ; 02:58fc
+	db $23, $07, $07, $10, $00, $00, $02, $0c
+	db $02, $00, $0c, $00, $12, $01, $02, $00
+
+Data990c: ; 02:590c
+	db $0c, $02, $12, $03, $02, $00, $0c, $04
+	db $12, $05, $02, $00, $0c, $06, $12, $07
+
+Data991c: ; 02:591c
+	db $02, $00, $0c, $08, $12, $09, $02, $00
+	db $0c, $0a, $12, $0b, $00, $00, $00, $00
+
+Data992c: ; 02:592c
+	db $21, $01, $07, $10, $00, $00, $13, $02
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data993c: ; 02:593c
+	db $21, $01, $07, $10, $00, $00, $13, $05
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data994c: ; 02:594c
+	db $51, $35, $00, $36, $00, $37, $00, $38
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data995c: ; 02:595c
+	db $51, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data996c: ; 02:596c
+	db $51, $2a, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data997c: ; 02:597c
+	db $51, $2b, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data998c: ; 02:598c
+	db $51, $2c, $00, $2d, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data999c: ; 02:599c
+	db $51, $2e, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data99ac: ; 02:59ac
+	db $51, $2f, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data99bc: ; 02:59bc
+	db $51, $30, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data99cc: ; 02:59cc
+	db $51, $2d, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data99dc: ; 02:59dc
+	db $51, $22, $00, $23, $00, $24, $00, $25
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data99ec: ; 02:59ec
+	db $51, $0e, $00, $0e, $00, $0e, $00, $0e
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data99fc: ; 02:59fc
+	db $51, $26, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9a0c: ; 02:5a0c
+	db $51, $30, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9a1c: ; 02:5a1c
+	db $51, $31, $00, $32, $00, $33, $00, $34
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9a2c: ; 02:5a2c
+	db $51, $27, $00, $28, $00, $0f, $00, $13
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9a3c: ; 02:5a3c
+	db $51, $0f, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9a4c: ; 02:5a4c
+	db $51, $29, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9a5c: ; 02:5a5c
+	db $59, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9a6c: ; 02:5a6c
+	db $89, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9a7c: ; 02:5a7c
+	db $89, $01, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9a8c: ; 02:5a8c
+	db $99, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9a9c: ; 02:5a9c
+	db $a1, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9aac: ; 02:5aac
+	db $b9, $01, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9abc: ; 02:5abc
+	db $b9, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+
+Data9acc: ; 02:5acc
+	db $79, $5d, $08, $00, $0b, $8c, $d0, $f4
+	db $60, $00, $00, $00, $00, $00, $00, $00
+
+Data9adc: ; 02:5adc
+	db $79, $52, $08, $00, $0b, $a9, $e7, $9f
+	db $01, $c0, $7e, $e8, $e8, $e8, $e8, $e0
+
+Data9aec: ; 02:5aec
+	db $79, $47, $08, $00, $0b, $c4, $d0, $16
+	db $a5, $cb, $c9, $05, $d0, $10, $a2, $28
+
+Data9afc: ; 02:5afc
+	db $79, $3c, $08, $00, $0b, $f0, $12, $a5
+	db $c9, $c9, $c8, $d0, $1c, $a5, $ca, $c9
+
+Data9b0c: ; 02:5b0c
+	db $79, $31, $08, $00, $0b, $0c, $a5, $ca
+	db $c9, $7e, $d0, $06, $a5, $cb, $c9, $7e
+
+Data9b1c: ; 02:5b1c
+	db $79, $26, $08, $00, $0b, $39, $cd, $48
+	db $0c, $d0, $34, $a5, $c9, $c9, $80, $d0
+
+Data9b2c: ; 02:5b2c
+	db $79, $1b, $08, $00, $0b, $ea, $ea, $ea
+	db $ea, $ea, $a9, $01, $cd, $4f, $0c, $d0
+
+Data9b3c: ; 02:5b3c
+	db $79, $10, $08, $00, $0b, $4c, $20, $08
+	db $ea, $ea, $ea, $ea, $ea, $60, $ea, $ea
