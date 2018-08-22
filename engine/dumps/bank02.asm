@@ -690,7 +690,7 @@ Function843d: ; 02:443d
 	ld hl, HappyEmoteGFX
 
 Function8440: ; 02:4440
-	ld de, $8f80
+	ld de, vChars1 + $780
 	ld b, $04
 	ld c, BANK(HappyEmoteGFX)
 	jp Function8419
@@ -698,7 +698,7 @@ Function8440: ; 02:4440
 Function844a: ; 02:444a
 	ld [hl], $00
 	ld hl, JumpShadowGFX
-	ld de, $8fc0
+	ld de, vChars1 + $7c0
 	ld b, $01
 	ld c, BANK(JumpShadowGFX)
 	jp Function8419
@@ -706,7 +706,7 @@ Function844a: ; 02:444a
 Function8459: ; 02:4459
 	ld [hl], $00
 	ld hl, UnknownBouncingOrbGFX
-	ld de, $8fc0
+	ld de, vChars1 + $7c0
 	ld b, $04
 	ld c, BANK(UnknownBouncingOrbGFX)
 	jp Function8419
@@ -714,7 +714,7 @@ Function8459: ; 02:4459
 Function8468: ; 02:4468
 	ld [hl], $00
 	ld hl, UnknownBallGFX
-	ld de, $8fc0
+	ld de, vChars1 + $7c0
 	ld b, $01
 	ld c, BANK(UnknownBallGFX)
 	jp Function8419
@@ -926,11 +926,11 @@ FlyMap: ; 02:46cb
 	call FarCall_hl
 	call Function886a
 	call Function88b3
-	ld hl, $cb60
+	ld hl, wcb60
 	ld [hl], c
 	inc hl
 	ld [hl], b
-	ld hl, $c3cd
+	coord hl, 1, 15
 	ld de, Text8776
 	call PlaceString
 	call WaitBGMap
@@ -961,7 +961,7 @@ FlyMap: ; 02:46cb
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	ld hl, $cb60
+	ld hl, wcb60
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -1024,13 +1024,13 @@ Function8786: ; 02:4786
 	ld [wFlyDestination], a
 	call Function881e
 	ld de, PokedexNestIconGFX
-	ld hl, $87f0
+	ld hl, vChars0 + $7f0
 	ld bc, $0201
 	call Request1bpp
 	call GetPokemonName
-	ld hl, $c3d0
+	coord hl, 4, 15
 	call PlaceString
-	ld hl, $c3d5
+	coord hl, 9, 15
 	ld de, Text87e4
 	call PlaceString
 	call WaitBGMap
@@ -1114,7 +1114,7 @@ Function881e: ; 02:481e
 	call FarCopyData
 	ld hl, wTileMap
 	call DecompTownMapTilemap
-	ld hl, $c3a4
+	coord hl, 0, 13
 	ld b, $03
 	ld c, $12
 	call DrawTextBox
@@ -1150,7 +1150,7 @@ Function886a: ; 02:486a
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
 	ld de, GoldSpriteGFX + $c0
-	ld hl, $8040
+	ld hl, vChars0 + $40
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
 	ld de, $0000
@@ -1184,11 +1184,11 @@ Function886a: ; 02:486a
 
 Function88b3: ; 02:48b3
 	ld de, PoppoSpriteGFX
-	ld hl, $8080
+	ld hl, vChars0 + $80
 	lb bc, BANK(PoppoSpriteGFX), $04
 	call Request2bpp
 	ld de, PoppoSpriteGFX + $c0
-	ld hl, $80c0
+	ld hl, vChars0 + $c0
 	lb bc, BANK(PoppoSpriteGFX), $04
 	call Request2bpp
 	ld de, $0000
@@ -1494,13 +1494,13 @@ Data8b42: ; 02:4b42
 	db $06, $06, $06, $04
 
 Function8b7e: ; 02:4b7e
-	ld hl, $c2a1
+	coord hl, 1, 0
 	ld a, $10
 	call Function8b97
-	ld hl, $c2a4
+	coord hl, 4, 0
 	ld a, $14
 	call Function8b97
-	ld hl, $c2a7
+	coord hl, 7, 0
 	ld a, $18
 	call Function8b97
 	ret
@@ -1543,12 +1543,12 @@ Function8ba3: ; 02:4ba3
 	ret
 
 Function8bd5: ; 02:4bd5
-	ld hl, $c2bf
+	coord hl, 11, 1
 	ld a, $7f
 	ld [hli], a
 	ld [hl], a
 	ld de, hRTCHours
-	ld hl, $c2bf
+	coord hl, 11, 1
 	ld bc, $0102
 	call PrintNumber
 	inc hl
@@ -1593,7 +1593,7 @@ Function8c21: ; 02:4c21
 	ld a, BANK(InitEffectObject)
 	call FarCall_hl
 	ld de, PointerGFX
-	ld hl, $87c0
+	ld hl, vChars0 + $7c0
 	lb bc, BANK(PointerGFX), $04
 	call Request2bpp
 	ld a, $29
@@ -1649,7 +1649,7 @@ DrawMap: ; 02:4c7c
 	ld hl, vTilesetEnd
 	lb bc, BANK(PokedexLocationGFX), $1f
 	call Request2bpp
-	ld hl, $c2dc
+	coord hl, 0, 3
 	call DecompTownMapTilemap
 	call WaitBGMap
 	call Function886a
@@ -1683,22 +1683,22 @@ Function8cb7: ; 02:4cb7
 	ld hl, vChars0
 	lb bc, BANK(VerticalPipeGFX), $01
 	call Request2bpp
-	ld hl, $c2dc
+	coord hl, 0, 3
 	ld bc, $00b4
 	ld a, $0e
 	call ByteFill
-	ld hl, $c341
+	coord hl, 1, 8
 	ld bc, $0412
 	call Function8ef9
-	ld hl, $c2e0
+	coord hl, 4, 3
 	ld bc, $060e
 	call Function8ef9
 	ld a, $05
-	ld hl, $c37c
+	coord hl, 0, 11
 	ld [hl], a
-	ld hl, $c38f
+	coord hl, 19, 11
 	ld [hl], a
-	ld hl, $c306
+	coord hl, 2, 5
 	ld a, $60
 	ld [hli], a
 	inc a
@@ -1709,16 +1709,16 @@ Function8cb7: ; 02:4cb7
 	ld [hli], a
 	inc a
 	ld [hld], a
-	ld hl, $c2f2
+	coord hl, 2, 4
 	ld a, $64
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, $c309
+	coord hl, 5, 5
 	ld bc, $000c
 	ld a, $66
 	call ByteFill
-	ld hl, $c31d
+	coord hl, 5, 6
 	ld bc, $000c
 	ld a, $67
 	call ByteFill
@@ -1794,7 +1794,7 @@ Function8d91: ; 02:4d91
 	and a
 	jr z, .sub_8dab
 .sub_8da6
-	ld hl, $ffc0
+	ld hl, hFFC0
 	jr Function8de3
 .sub_8dab
 	ld a, $03
@@ -1944,7 +1944,7 @@ Function8e6c: ; 02:4e6c
 	call GetSGBLayout
 	call LoadFontExtra
 	ld de, Text8e90
-	ld hl, $c333
+	coord hl, 7, 7
 	call PlaceString
 	ld hl, Text8e95
 	call PrintText
@@ -1973,7 +1973,7 @@ Function8eaa: ; 02:4eaa
 	call FarCall_hl
 	call ClearSprites
 	call WaitForAutoBgMapTransfer
-	ld hl, $c2dc
+	coord hl, 0, 3
 	ld bc, $012c
 	ld a, $7f
 	call ByteFill
@@ -2072,13 +2072,13 @@ Text91c2: ; 02:51c2
 
 SetTitleBGDecorationBorder: ; 02:51d2
 	ld de, TitleBGDecorationBorder
-	ld hl, $9500
+	ld hl, vChars2 + $500
 	lb bc, BANK(TitleBGDecorationBorder), $09
 	call Request2bpp
-	ld hl, $c340
+	coord hl, 0, 8
 	ld b, $50
 	call Function91ef
-	ld hl, $c3e0
+	coord hl, 0, 16
 	ld b, $54
 	call Function91ef
 	ret
@@ -2306,7 +2306,7 @@ Function93e4: ; 02:53e4
 
 Function93eb: ; 02:53eb
 	ld hl, Data986c
-	ld de, $c51a
+	ld de, wc51a
 	ld bc, $0010
 	call CopyBytes
 	ld hl, Data994c
@@ -2357,7 +2357,7 @@ Function9448: ; 02:5448
 	ld bc, $0010
 	call CopyBytes
 	ld hl, Data986c
-	ld de, $ccf1
+	ld de, wccf1
 	ld bc, $0010
 	call CopyBytes
 	call Function94e5
@@ -2583,11 +2583,11 @@ Function95b0: ; 02:55b0
 	ret
 
 Function95cc: ; 02:55cc
-	ld hl, $cddf
+	ld hl, wcddf
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .sub_95d7
-	ld hl, $ca08
+	ld hl, wca08
 .sub_95d7
 	call Function95b0
 	ld hl, wcae1
@@ -2618,7 +2618,7 @@ Function95f8: ; 02:55f8
 	jp CopyBytes
 
 Function9604: ; 02:5604
-	ld hl, $ccd3
+	ld hl, wccd3
 	ld a, [wcce1]
 	ld e, a
 	ld d, $00
@@ -2635,7 +2635,7 @@ Function9604: ; 02:5604
 	ld e, $0f
 .sub_961d
 	push de
-	ld hl, $cceb
+	ld hl, wcceb
 	ld bc, $0006
 	ld a, [wcce1]
 	call AddNTimes
@@ -2660,7 +2660,7 @@ Function963f: ; 02:563f
 	jp Function964b
 
 Function9645: ; 02:5645
-	ld hl, $c51a
+	ld hl, wc51a
 	jp Function964b
 
 Function964b: ; 02:564b

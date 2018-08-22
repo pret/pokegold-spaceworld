@@ -110,6 +110,10 @@ wc40e:: ds 1 ; c40e
 
 wSpriteAnimIDBuffer:: db ; c4c0
 
+	ds 89
+	
+wc51a:: ds 1 ; c51a
+
 ENDU
 
 
@@ -194,8 +198,10 @@ wca02:: ds 1 ; ca02
 wca03:: ds 1 ; ca03
 wca04:: ds 1 ; ca04
 
-	ds 5
-	
+	ds 3
+
+wca08:: ds 1 ; ca08
+wca09:: ds 1 ; ca09	
 wca0a:: ds 1 ; ca0a
 
 	ds $32 ; TODO
@@ -428,8 +434,9 @@ SECTION "CCD0", WRAM0[$CCD0]
 wccd0:: ds 1 ; ccd0
 wccd1:: ds 1 ; ccd1
 wccd2:: ds 1 ; ccd2
+wccd3:: ds 1 ; ccd3
 
-	ds 6
+	ds 5
 	
 wccd9:: ds 1 ; ccd9
 
@@ -440,7 +447,11 @@ wcce2:: ds 1 ; cce2
 wcce3:: ds 1 ; cce3
 wcce4:: ds 1 ; cce4
 
-	ds 12
+	ds 6
+	
+wcceb:: ds 1 ; cceb
+	
+	ds 5
 	
 wccf1:: ds 1 ; ccf1
 wccf2:: ds 1 ; ccf2
@@ -581,8 +592,11 @@ wHPBarHPDifference:: dw ; cdcb
 
 wLinkBattleRNs:: ds 10 ; cdcd
 
-wcdd7:: db ; cdd7
-; cddd
+wcdd7:: ds 1 ; cdd7
+
+	ds 7
+	
+wcddf:: ds 1 ; cddf
 
 
 SECTION "CE00", WRAM0[$CE00]
