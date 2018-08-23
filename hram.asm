@@ -126,7 +126,11 @@ hPrintNumTemp:: ds 3 ; ffba big-endian
 
 ENDU
 
-	ds 10 ; TODO
+	ds 3 ; TODO
+
+hFFC0:: ds 1 ; FFC0
+	
+	ds 6
 	
 hFFC7:: db ; FFC7
 hFFC8:: db ; FFC8

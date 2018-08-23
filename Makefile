@@ -21,7 +21,7 @@ CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
 
 rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
 DIRS := home engine data audio maps
-ASMFILES := $(call rwildcard, $(DIRS), *.asm) gfx.asm vram.asm sram.asm wram.asm hram.asm
+ASMFILES := $(call rwildcard, $(DIRS), *.asm) bin.asm gfx.asm vram.asm sram.asm wram.asm hram.asm
 OBJS := $(patsubst %.asm, $(BUILD)/%.o, $(ASMFILES))
 OBJS += $(BUILD)/shim.o
 
@@ -88,12 +88,19 @@ $(BUILD)/%.o: %.asm | $$(dir $$@)
 
 $(BUILD)/gfx/sgb/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_gold.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/sgb_border_gold_corrupted.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/corrupted_9e1c.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/corrupted_a66c.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/corrupted_b1e3.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/pokegear/town_map.2bpp: tools/gfx += --trim-trailing
 $(BUILD)/gfx/minigames/slots.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/minigames/poker.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/intro/purin_pikachu.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/battle_anims/attack_animations_1.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/battle_anims/attack_animations_2.2bpp: tools/gfx += --trim-whitespace
 
 .PRECIOUS: $(BUILD)/%.pic
 $(BUILD)/%.pic: $(BUILD)/%.2bpp tools/pkmncompress | $$(dir $$@)

@@ -129,25 +129,19 @@ ROMX $01
 	"engine/overworld/object_collision.asm@_CheckPlayerObjectCollision"
 	"engine/dumps/bank01.asm@SettingsScreen"
 ROMX $02
-	org $4000
-	org $44bf
+	"engine/dumps/bank02.asm@Function8000"
 	"gfx.asm@Bank 2 Misc GFX"
-	; $45cf
-	org $4a0f
+	"engine/dumps/bank02.asm@QueueFollowerFirstStep"
 	"gfx.asm@Mon Nest Icon"
-	; $4a17
-	org $4f32
+	"engine/dumps/bank02.asm@Data8a17"
 	"gfx.asm@Pokegear GFX"
-	org $51fb
+	"engine/dumps/bank02.asm@Text91c2"
 	"gfx.asm@Title Screen BG Decoration Border"
-	org $5b4c
-	"gfx.asm@Super Palettes"
-	; $5e1c
-	org $62cc
-	"gfx.asm@Unused SGB Border GFX"
-	; $666c
-	org $6b1c
-	"gfx.asm@SGB Border GFX"
+	"engine/dumps/bank02.asm@Function928b"
+	"gfx.asm@SGB GFX"
+	"bin.asm@Unknownaebc"
+	"gfx.asm@Corrupted SGB GFX"
+	"bin.asm@Unknownbb43"
 ROMX $03
 	org $4000
 	"engine/overworld/player_movement.asm@Player Movement"

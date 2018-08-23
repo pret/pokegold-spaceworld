@@ -1,25 +1,4 @@
-02:4000 Function8000
-02:4098 _InitializeVisibleSprites
-02:4125 Function8125
-02:4131 Function8131
-02:413D Function813d
-02:424C Function824c
-02:43E8 Function83e8
-02:45DF QueueFollowerFirstStep
-02:462E Function862e
-02:46CB FlyMap
-02:4786 Function8786
-02:4856 DecompTownMapTilemap
-02:48DA DecompTownMapTilemap.tilemap
-02:4AAB OpenPokegear
-02:4C7C DrawMap
-02:4DC2 TownMapGfx
-02:4F32 PokegearRadioGfx
-02:51D2 SetTitleBGDecorationBorder
-02:528B Function928b
-02:5695 CheckSGB
-02:56eb Function96eb
-
+03:477D Functionc77d
 03:47D5 SpawnPoints
 03:488D Tilesets
 03:54E6 Functiond4e6
@@ -107,6 +86,7 @@
 0F:691E Function3e91e
 0F:6963 Function3e963
 0F:69A9 _LoadWildMons
+0F:69DC Function3e9dc
 0F:6E3E Function3ee3e
 0F:6F19 Function3ef19
 0F:7019 PlaceGraphic

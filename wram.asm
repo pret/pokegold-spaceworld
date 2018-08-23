@@ -110,6 +110,10 @@ wc40e:: ds 1 ; c40e
 
 wSpriteAnimIDBuffer:: db ; c4c0
 
+	ds 89
+	
+wc51a:: ds 1 ; c51a
+
 ENDU
 
 
@@ -190,18 +194,25 @@ wBattleAnimEnd::
 wBattleMonNickname:: ds 6 ; c9f6
 wEnemyMonNickname:: ds 6 ; c9fc
 
-	ds 2
-
+wca02:: ds 1 ; ca02
+wca03:: ds 1 ; ca03
 wca04:: ds 1 ; ca04
 
-	ds 5
-	
+	ds 3
+
+wca08:: ds 1 ; ca08
+wca09:: ds 1 ; ca09	
 wca0a:: ds 1 ; ca0a
 
 	ds $32 ; TODO
 
 wPlayerSubStatus3:: db ; ca3d
-	ds $4
+
+wca3e:: ds 1 ; ca3e
+wca3f:: ds 1 ; ca3f
+wca40:: ds 1 ; ca40
+wca41:: ds 1 ; ca41
+	
 wEnemySubStatus3:: db ; ca42
 
 wca43:: db ; ca43
@@ -215,7 +226,13 @@ wTrainerClass:: ; ca57
 	ds $6b
 wLinkBattleRNCount:: db ; cac3
 
+	ds 29
+	
+wcae1:: ds 1 ; cae1
+
 ENDU
+
+
 
 
 SECTION "CB14", WRAM0[$CB14]
@@ -254,9 +271,8 @@ SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db ; cb5e
 wFlyDestination:: db ; cb5f
 
-	ds 2
-
-SECTION "CB62", WRAM0[$CB62]
+wcb60:: ds 1 ; cb60
+wcb61:: ds 1 ; cb61
 
 wVBCopySize:: ds 1 ; cb62
 wVBCopySrc:: ds 2 ; cb63
@@ -413,6 +429,35 @@ SECTION "CCCE", WRAM0[$CCCE]
 wDisableVBlankWYUpdate:: db ; ccce
 wSGB:: db
 
+SECTION "CCD0", WRAM0[$CCD0]
+
+wccd0:: ds 1 ; ccd0
+wccd1:: ds 1 ; ccd1
+wccd2:: ds 1 ; ccd2
+wccd3:: ds 1 ; ccd3
+
+	ds 5
+	
+wccd9:: ds 1 ; ccd9
+
+SECTION "CCE1", WRAM0[$CCE1]
+
+wcce1:: ds 1 ; cce1
+wcce2:: ds 1 ; cce2
+wcce3:: ds 1 ; cce3
+wcce4:: ds 1 ; cce4
+
+	ds 6
+	
+wcceb:: ds 1 ; cceb
+	
+	ds 5
+	
+wccf1:: ds 1 ; ccf1
+wccf2:: ds 1 ; ccf2
+wccf3:: ds 1 ; ccf3
+wccf4:: ds 1 ; ccf4
+
 SECTION "CD11", WRAM0[$CD11]
 
 wcd11:: ds 1 ; cd11
@@ -547,8 +592,11 @@ wHPBarHPDifference:: dw ; cdcb
 
 wLinkBattleRNs:: ds 10 ; cdcd
 
-wcdd7:: db ; cdd7
-; cddd
+wcdd7:: ds 1 ; cdd7
+
+	ds 7
+	
+wcddf:: ds 1 ; cddf
 
 
 SECTION "CE00", WRAM0[$CE00]
@@ -906,7 +954,10 @@ wBGMapAnchor:: ; d643
 
 wUsedSprites:: ; d645
 	dw ; This is for the player
+	
+wUsedNPCSprites:: ;d647
 	ds 2 * 5 ; This is for the NPCs
+	
 wUsedSpritesEnd:: ; d651
 
 

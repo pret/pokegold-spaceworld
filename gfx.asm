@@ -5,6 +5,7 @@ PokedexNestIconGFX::
 INCBIN "gfx/pokegear/dexmap_nest_icon.1bpp"
 
 SECTION "gfx.asm@Bank 2 Misc GFX", ROMX
+UnknownBouncingOrbGFX::
 INCBIN "gfx/overworld/gfx_84bf.2bpp"
 JumpShadowGFX::
 INCBIN "gfx/overworld/shadow.2bpp"
@@ -14,30 +15,55 @@ QuestionEmoteGFX::
 INCBIN "gfx/overworld/question.2bpp"
 HappyEmoteGFX::
 INCBIN "gfx/overworld/happy.2bpp"
+UnknownBallGFX::
+INCBIN "gfx/overworld/gfx_85cf.2bpp"
 
 SECTION "gfx.asm@Pokegear GFX", ROMX
-PokegearGFX::
-INCBIN "gfx/pokegear/pokegear.2bpp"
+Pokegear1GFX::
+INCBIN "gfx/pokegear/pokegear_1.2bpp"
+Pokegear2GFX::
+INCBIN "gfx/pokegear/pokegear_2.2bpp"
+VerticalPipeGFX::
+INCBIN "gfx/pokegear/vertical_pipe.2bpp"
 
 SECTION "gfx.asm@Title Screen BG Decoration Border", ROMX
 TitleBGDecorationBorder::
 INCBIN "gfx/title/titlebgdecoration.2bpp"
 
-SECTION "gfx.asm@Super Palettes", ROMX
+SECTION "gfx.asm@SGB GFX", ROMX
+
 INCLUDE "data/pokemon/palettes.inc"
 INCLUDE "data/super_palettes.inc"
 
-SECTION "gfx.asm@Unused SGB Border GFX", ROMX
+Corrupted9e1cGFX:
+INCBIN "gfx/sgb/corrupted_9e1c.2bpp"
+
 UnusedSGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
-SECTION "gfx.asm@SGB Border GFX", ROMX
+Corrupteda66cGFX:
+INCBIN "gfx/sgb/corrupted_a66c.2bpp"
+
 SGBBorderGFX::
 if def(GOLD)
 INCBIN "gfx/sgb/sgb_border_gold.2bpp"
 else
 INCBIN "gfx/sgb/sgb_border_silver.2bpp"
 endc
+
+SECTION "gfx.asm@Corrupted SGB GFX", ROMX
+
+SGBBorderGoldCorruptedGFX:
+INCBIN "gfx/sgb/sgb_border_gold_corrupted.2bpp"
+
+Corruptedb1e3GFX:
+INCBIN "gfx/sgb/corrupted_b1e3.2bpp"
+
+SGBBorderSilverCorruptedGFX:
+INCBIN "gfx/sgb/sgb_border_silver_corrupted.2bpp"
+
+Corruptedba93GFX:
+INCBIN "gfx/sgb/corrupted_ba93.2bpp"
 
 SECTION "gfx.asm@Title Screen GFX", ROMX
 if def(GOLD)
@@ -246,7 +272,11 @@ INCLUDE "gfx/pokemon/annon_pics.asm"
 INCLUDE "gfx/pokemon/egg.asm"
 
 SECTION "gfx.asm@Attack Animation GFX", ROMX
-INCBIN "gfx/battle_anims/attack_animations.2bpp"
+
+INCBIN "gfx/battle_anims/attack_animations_1.2bpp"
+PointerGFX::
+INCBIN "gfx/battle_anims/pointer.2bpp"
+INCBIN "gfx/battle_anims/attack_animations_2.2bpp"
 
 SECTION "gfx.asm@Pokemon Party Sprites", ROMX
 NyoromoIcon:: INCBIN "gfx/icons/nyoromo.2bpp"
