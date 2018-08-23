@@ -1013,9 +1013,7 @@ Function8747: ; 02:4747
 	ret
 	
 Text8776: ; 02:4776
-	;db "とびさき　を　えらんでください@"
-	db $c4, $3b, $bb, $b7, $7f, $dd, $7f, $b4
-	db $d7, $de, $33, $b8, $30, $bb, $b2, $50
+	db "とびさき　を　えらんでください@"
 	
 Function8786: ; 02:4786
 	ld a, [wFlyDestination]
@@ -1025,7 +1023,7 @@ Function8786: ; 02:4786
 	call Function881e
 	ld de, PokedexNestIconGFX
 	ld hl, vChars0 + $7f0
-	ld bc, $0201
+	lb bc, BANK(PokedexNestIconGFX), $01
 	call Request1bpp
 	call GetPokemonName
 	coord hl, 4, 15
@@ -1060,8 +1058,7 @@ Function8786: ; 02:4786
 	ret
 
 Text87e4: ; 02:47e4
-	;db "の　すみか@"
-	db $c9, $7f, $bd, $d0, $b6, $50
+	db "の　すみか@"
 	
 Function87ea: ; 02:47ea
 	ld a, [wFlyDestination]
