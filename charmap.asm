@@ -24,6 +24,7 @@
 	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"
 
 	charmap "<15>", $15 ; nothing
+	charmap "<FAR_TEXT>", $15 ; Far text pointer (patch)
 	charmap "<16>", $16 ; nothing
 
 	charmap "ネ゛", $17

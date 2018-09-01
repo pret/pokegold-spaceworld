@@ -47,12 +47,16 @@ def shallow_dependencies_of(asm_file_path, build_dirs=[]):
             # so leading slashes should be stripped.
             path = line[line.index('"') + 1:line.rindex('"')].lstrip('/')
             if keyword == 'INCLUDE':
-                asm_dependencies.add(path)
+                dependency_category = asm_dependencies
             else:
-                if os.path.isfile(path) or not build_dirs:
-                    bin_dependencies.add(path)
-                else:
-                    bin_dependencies.update(os.path.join(d, path) for d in build_dirs)
+                dependency_category = bin_dependencies
+            
+            if os.path.isfile(path) or not build_dirs:
+                dependency_category.add(path)
+            else:
+                # Always add .inc and .asm files in the build directory to
+                # bin_dependencies, as they shouldn't be scanned for includes.
+                bin_dependencies.update(os.path.join(d, path) for d in build_dirs)
     
     return asm_dependencies, bin_dependencies
 

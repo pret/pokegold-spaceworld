@@ -23,6 +23,8 @@ DIRS := home engine data audio
 ASMFILES := $(call rwildcard, $(DIRS), *.asm) gfx.asm vram.asm sram.asm wram.asm hram.asm hack/hack.asm
 OBJS := $(patsubst %.asm, $(BUILD)/%.o, $(ASMFILES))
 OBJS += $(BUILD)/shim.o
+OBJS += $(BUILD)/hack/relocated_text.o
+TEXTCSVS := $(wildcard hack/text/*.csv)
 
 .SECONDEXPANSION:
 
@@ -46,7 +48,7 @@ clean:
 # Remove files except for graphics.
 .PHONY: mostlyclean
 mostlyclean:
-	rm -rf $(ROM) $(OBJS) $(ROMS:.gb=.sym) $(ROMS:.gb=.map) *.d
+	rm -rf $(ROM) $(OBJS) $(ROMS:.gb=.sym) $(ROMS:.gb=.map) $(BUILD)/shim.asm $(BUILD)/hack/relocated_text.asm $(BUILD)/hack/text/* *.d
 
 # Utilities
 .PHONY: coverage
@@ -105,6 +107,17 @@ $(BUILD)/%.1bpp: %.1bpp.png tools/gfx | $$(dir $$@)
 .PRECIOUS: $(BUILD)/%.tilemap
 $(BUILD)/%.tilemap: %.png | $$(dir $$@)
 	$(RGBGFX) -t $@ $<
+
+.PRECIOUS: $(BUILD)/hack/text.inc $(BUILD)/hack/text/%.asm
+$(BUILD)/hack/text/%.inc $(BUILD)/hack/text/%.asm: hack/text/%.csv
+	$(PYTHON3) tools/compile_text.py $<
+
+# Switch out this approach if more text banks are needed.
+.PRECIOUS: $(BUILD)/hack/relocated_text.asm
+$(BUILD)/hack/relocated_text.asm: hack/text_bank_start.asm $(TEXTCSVS:%.csv=$(BUILD)/%.asm)
+	cat $^ > $@
+# For posterity! Since relocated_text.asm isn't scanned automatically.
+$(BUILD)/hack/relocated_text.o: constants.asm
 
 .PRECIOUS: %/
 %/:

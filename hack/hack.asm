@@ -5,32 +5,43 @@ INCLUDE "constants.asm"
 ; Move elsewhere if $DA00 turns out to be used.
 SECTION "Patch WRAM", WRAM0[$DA00]
 wPatchWRAM:
-wHackOldBank: db
+
+; RAM values here...
+
 wPatchWRAMEnd:
 
 SECTION "Hack interrupt vector", ROM0[HackInterrupt]
-	push af
+	; Save A for RunHack.
+	ld [wPredefID], a
+
+	di
+	; Save bank to be able to switch back.
 	ldh a, [hROMBank]
-	ld [wHackOldBank], a
+	push af
 
 	ld a, BANK(RunHack)
 	call Bankswitch
+	ei
 
-	pop af
 	call RunHack
 
+	di
+	; Juggly way to both pop the previous bank off the stack and preserve AF.
 	push af
-	ld a, [wHackOldBank]
+	add sp, 1 * 2
+	pop af
+	add sp, -2 * 2
 	call Bankswitch
 	pop af
+	inc sp
+	inc sp
 
-	ret
+	reti
 
 SECTION "Patch ROM", ROMX[$4000], BANK[$28]
-; A: Index of hack function to run.
+; [wPredefID]: Index of hack function to run.
 RunHack:
-	; Save A and HL for later.
-	ld [wPredefID], a
+	; Save HL for later.
 	ld a, h
 	ld [wPredefHL], a
 	ld a, l

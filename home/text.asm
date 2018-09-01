@@ -164,7 +164,11 @@ ENDM
 	dict "<TARGET>", PlaceMoveTargetsName
 	dict "<USER>", PlaceMoveUsersName
 
-	cp "ﾟ"
+	; Skip over all the diacritic code for the patch. If more space
+	; is needed, all the diacritic code below could be removed.
+	jr .place
+
+	; cp "ﾟ"
 	jr z, .diacritic
 	cp "ﾞ"
 	jr nz, .not_diacritic

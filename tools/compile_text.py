@@ -8,7 +8,7 @@ import csv
 import os
 import sys
 from collections import namedtuple
-from separatetext import *
+from separate_text import *
 
 String = namedtuple('String', ('label', 'lines', 'space'))
 
