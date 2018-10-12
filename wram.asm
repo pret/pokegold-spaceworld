@@ -216,9 +216,13 @@ wca10:: ds 1 ; ca10
 wca11:: ds 1 ; ca11
 wca12:: ds 1 ; ca12
 wca13:: ds 1 ; ca13
+wca14:: ds 1 ; ca14
 
-	ds $26 ; TODO
+	ds $22 ; TODO
 
+wca37:: ds 1 ; ca37
+wca38:: ds 1 ; ca38
+wca39:: ds 1 ; ca39
 wca3a:: ds 1 ; ca3a
 wca3b:: ds 1 ; ca3b
 wca3c:: ds 1 ; ca3c
@@ -257,7 +261,15 @@ wcac2:: ds 1 ; cac2
 	
 wLinkBattleRNCount:: db ; cac3
 
-	ds 29
+	ds 12
+	
+wcad0:: ds 1 ; cad0
+
+	ds 9
+	
+wcada:: ds 1 ;cada
+
+	ds 6
 	
 wcae1:: ds 1 ; cae1
 
@@ -502,7 +514,7 @@ wcd11:: ds 1 ; cd11
 	ds 20
 
 wStringBuffer1:: ds 1 ; How long is this? ; cd26
-
+wcd27:: ds 1
 SECTION "CD31", WRAM0[$CD31]
 
 UNION
@@ -582,6 +594,7 @@ wcd7c:: ds 1 ; cd7c
 
 wItemQuantity:: db ; cd7d
 wItemQuantityBuffer:: db ; cd7e
+wcd7f:: db ; cd7f
 
 SECTION "CD9E", WRAM0 [$CD9E]
 wcd9e:: db ; cd9e
@@ -658,6 +671,7 @@ wcde7:: ds 1 ; cde7
 wcde8:: ds 1 ; cde8
 wcde9:: ds 1 ; cde9
 wcdea:: ds 1 ; cdea
+wcdeb:: ds 1 ; cdeb
 
 
 SECTION "CDFE", WRAM0[$CDFE]
@@ -982,6 +996,9 @@ wd4b3:: ds 1 ; d4b3
 wd4b4:: ds 1 ; d4b4
 wd4b5:: ds 1 ; d4b5
 wd4b6:: ds 1 ; d4b6
+wd4b7:: ds 1 ; d4b7
+wd4b8:: ds 1 ; d4b8
+wd4b9:: ds 1 ; d4b9
 
 
 SECTION "Warp data", WRAM0[$D513]
@@ -1127,13 +1144,29 @@ wAnnonDex:: ds 26  ; d85a
 
 wAnnonID:: ds 1    ; d874
 
-	ds 13
+wd875:: ds 1 ; d875
+wd876:: ds 1 ; d876
+
+	ds 5
+
+wd87c:: ds 1 ; d87c
 	
+	ds 5
+
 wd882:: ds 1 ; d882
+wd883:: ds 1 ; d883
+wd884:: ds 1 ; d884
 
 SECTION "D8A2", WRAM0[$D8A2]
 
 wd8a2:: ds 1 ; d8a2
+wd8a3:: ds 1 ; d8a3
+wd8a4:: ds 1 ; d8a4
+wd8a5:: ds 1 ; d8a5
+
+	ds 5
+	
+wd8ab:: ds 1 ; d8ab
 
 SECTION "wd8b1", WRAM0[$D8B1]
 
@@ -1144,6 +1177,18 @@ wd8b1:: ds 1 ; d8b1
 wd8b7:: ds 1 ; d8b7
 wd8b8:: ds 1 ; d8b8
 
+SECTION "D8D1", WRAM0[$D8D1]
+
+wd8d1:: ds 1 ; d8d1
+
+	ds 5
+	
+wd8d7:: ds 1 ; d8d7
+
+	ds 5
+	
+wd8dd:: ds 1 ; d8dd
+
 SECTION "D8E3", WRAM0[$D8E3]
 
 wd8e3:: ds 1 ; d8e3
@@ -1152,24 +1197,51 @@ wd8e4:: ds 1 ; d8e4
 SECTION "D8FD", WRAM0[$D8FD]
 
 wd8fd:: ds 1 ; d8fd
+
+SECTION "D913", WRAM0[$D913]
+
+wd913:: ds 1 ; d913
 	
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
+UNION
 wWildMons:: ; d91b
 	ds 41
+NEXTU
+	ds 2
+wd91d:: ds 1 ; d91d
+	ds 29
+wd93b:: ds 1 ; d93b
+ENDU
 
 SECTION "DA3B", WRAM0[$DA3B]
 
 wOTPartyMonOT:: db ; da3b
+
+SECTION "DA5F", WRAM0[$DA5F]
+
+wda5f:: db ; da5f
 
 SECTION "DA83", WRAM0[$DA83]
 
 wUnknownListLengthda83:: db ; da83
 wUnknownListda84:: db ; da84
 
+SECTION "DAA3", WRAM0[$DAA3]
+
+wdaa3:: db ; daa3
+wdaa4:: db ; daa4
+wdaa5:: db ; daa5
+
+SECTION "DE63", WRAM0[$DE63]
+
+wde63:: db ; de63
 
 SECTION "DF17", WRAM0[$DF17]
 wdf17:: ds 1 ; df17
+
+SECTION "DFCB", WRAM0[$DFCB]
+wdfcb:: ds 1 ; dfcb
 
 SECTION "Stack Bottom", WRAM0
 

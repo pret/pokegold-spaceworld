@@ -908,7 +908,7 @@ Functiond886: ; 03:5886
 	ld a, [wMonType]
 	and $0f
 	jr z, .sub_d893
-	ld de, $d913
+	ld de, wd913
 .sub_d893
 	ld a, [de]
 	inc a
@@ -1111,7 +1111,7 @@ Functiond8b6: ; 03:58b6
 	ld [de], a
 	inc de
 	push hl
-	ld hl, $cde1
+	ld hl, wcde1
 	ld b, $04
 .sub_d9e3
 	ld a, [hli]
@@ -1145,7 +1145,7 @@ Functiond8b6: ; 03:58b6
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .sub_da1c
-	ld hl, $cdeb
+	ld hl, wcdeb
 	ld bc, $000c
 	call CopyBytes
 	pop hl
@@ -1209,7 +1209,7 @@ Functionda4f: ; 03:5a4f
 	call AddNTimes
 	ld e, l
 	ld d, h
-	ld hl, $cd7f
+	ld hl, wcd7f
 	call CopyBytes
 	ld hl, wPartyMon6StatsEnd
 	ld a, [wPartyCount]
@@ -1228,7 +1228,7 @@ Functionda4f: ; 03:5a4f
 	call SkipNames
 	ld d, h
 	ld e, l
-	ld hl, $da5f
+	ld hl, wda5f
 	ld a, [wWhichPokemon]
 	call SkipNames
 	ld bc, $0006
@@ -1289,7 +1289,7 @@ Functiondac8: ; 03:5ac8
 	ld bc, $0030
 	ld a, [wPartyCount]
 	jr nz, .sub_db1b
-	ld hl, $daa3
+	ld hl, wdaa3
 	ld bc, $0020
 	ld a, [wUnknownListLengthda83]
 .sub_db1b
@@ -1301,7 +1301,7 @@ Functiondac8: ; 03:5ac8
 	ld d, h
 	ld a, [wcd7c]
 	and a
-	ld hl, $daa3
+	ld hl, wdaa3
 	ld bc, $0020
 	jr z, .sub_db3b
 	cp $02
@@ -1317,13 +1317,13 @@ Functiondac8: ; 03:5ac8
 	call CopyBytes
 	ld a, [wcd7c]
 	cp $03
-	ld de, $d87c
+	ld de, wd87c
 	jr z, .sub_db66
 	dec a
 	ld hl, wPartyMon6StatsEnd
 	ld a, [wPartyCount]
 	jr nz, .sub_db60
-	ld hl, $de63
+	ld hl, wde63
 	ld a, [wUnknownListLengthda83]
 .sub_db60
 	dec a
@@ -1331,11 +1331,11 @@ Functiondac8: ; 03:5ac8
 	ld d, h
 	ld e, l
 .sub_db66
-	ld hl, $de63
+	ld hl, wde63
 	ld a, [wcd7c]
 	and a
 	jr z, .sub_db79
-	ld hl, $d87c
+	ld hl, wd87c
 	cp $02
 	jr z, .sub_db7f
 	ld hl, wPartyMon6StatsEnd
@@ -1347,13 +1347,13 @@ Functiondac8: ; 03:5ac8
 	call CopyBytes
 	ld a, [wcd7c]
 	cp $03
-	ld de, $d876
+	ld de, wd876
 	jr z, .sub_dba4
 	dec a
 	ld hl, wPartyMonNicknames
 	ld a, [wPartyCount]
 	jr nz, .sub_db9e
-	ld hl, $df17
+	ld hl, wdf17
 	ld a, [wUnknownListLengthda83]
 .sub_db9e
 	dec a
@@ -1361,11 +1361,11 @@ Functiondac8: ; 03:5ac8
 	ld d, h
 	ld e, l
 .sub_dba4
-	ld hl, $df17
+	ld hl, wdf17
 	ld a, [wcd7c]
 	and a
 	jr z, .sub_dbb7
-	ld hl, $d876
+	ld hl, wd876
 	cp $02
 	jr z, .sub_dbbd
 	ld hl, wPartyMonNicknames
@@ -1448,10 +1448,10 @@ Functiondc16: ; 03:5c16
 	ld a, [wcd7c]
 	and a
 	ld a, [wd882]
-	ld de, $d876
+	ld de, wd876
 	jr z, .sub_dc42
 	ld a, [wd8b1]
-	ld de, $d8a5
+	ld de, wd8a5
 .sub_dc42
 	ld [hli], a
 	ld [wCurSpecies], a
@@ -1515,7 +1515,7 @@ Functiondc16: ; 03:5c16
 	ld [de], a
 	jr .sub_dce9
 .sub_dcad
-	ld hl, $df17
+	ld hl, wdf17
 	ld a, [wUnknownListLengthda83]
 	ld bc, $0006
 	call AddNTimes
@@ -1525,7 +1525,7 @@ Functiondc16: ; 03:5c16
 	pop de
 	call CopyBytes
 	push hl
-	ld hl, $de63
+	ld hl, wde63
 	ld a, [wUnknownListLengthda83]
 	ld bc, $0006
 	call AddNTimes
@@ -1534,7 +1534,7 @@ Functiondc16: ; 03:5c16
 	pop hl
 	call CopyBytes
 	push hl
-	ld hl, $daa3
+	ld hl, wdaa3
 	ld a, [wUnknownListLengthda83]
 	ld bc, $0030
 	call AddNTimes
@@ -1547,8 +1547,8 @@ Functiondc16: ; 03:5c16
 	ld a, [wcd7c]
 	and a
 	ret z
-	ld hl, $d8d1
-	ld de, $d8a5
+	ld hl, wd8d1
+	ld de, wd8a5
 	ld bc, $002c
 	call CopyBytes
 	and a
@@ -1556,22 +1556,22 @@ Functiondc16: ; 03:5c16
 
 Functiondcfc: ; 03:5cfc
 	ld a, [wcd7c]
-	ld de, $d876
+	ld de, wd876
 	and a
 	jr z, .sub_dd2c
-	ld hl, $d8a5
-	ld de, $d8d1
+	ld hl, wd8a5
+	ld de, wd8d1
 	ld bc, $0006
 	call CopyBytes
-	ld hl, $d8ab
-	ld de, $d8d7
+	ld hl, wd8ab
+	ld de, wd8d7
 	ld bc, $0006
 	call CopyBytes
 	ld hl, wd8b1
-	ld de, $d8dd
+	ld de, wd8dd
 	ld bc, $0020
 	call CopyBytes
-	ld de, $d8a5
+	ld de, wd8a5
 .sub_dd2c
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicknames
@@ -1610,7 +1610,7 @@ Functiondd5c: ; 03:5d5c
 	cp $ff
 	jr nz, .sub_dd6c
 	call GetMonHeader
-	ld hl, $de63
+	ld hl, wde63
 	ld bc, $0006
 	ld a, [wUnknownListLengthda83]
 	dec a
@@ -1641,13 +1641,13 @@ Functiondd5c: ; 03:5d5c
 	jr nz, .sub_dd96
 .sub_dda9
 	ld hl, wPlayerName
-	ld de, $de63
+	ld de, wde63
 	ld bc, $0006
 	call CopyBytes
 	ld a, [wUnknownListLengthda83]
 	dec a
 	jr z, .sub_dde5
-	ld hl, $df17
+	ld hl, wdf17
 	ld bc, $0006
 	dec a
 	call AddNTimes
@@ -1677,14 +1677,14 @@ Functiondd5c: ; 03:5d5c
 	ld a, [wMonDexIndex]
 	ld [wce37], a
 	call GetPokemonName
-	ld de, $df17
+	ld de, wdf17
 	ld hl, wStringBuffer1
 	ld bc, $0006
 	call CopyBytes
 	ld a, [wUnknownListLengthda83]
 	dec a
 	jr z, .sub_de2a
-	ld hl, $daa3
+	ld hl, wdaa3
 	ld bc, $0020
 	dec a
 	call AddNTimes
@@ -1712,7 +1712,7 @@ Functiondd5c: ; 03:5d5c
 	jr nz, .sub_de17
 .sub_de2a
 	ld hl, wcdd9
-	ld de, $daa3
+	ld de, wdaa3
 	ld bc, $0006
 	call CopyBytes
 	ld hl, wce73
@@ -1786,7 +1786,7 @@ Functionde79: ; 03:5e79
 	ld a, BANK(AddPokemonToBox)
 	call FarCall_hl
 	call Functiondd5c
-	ld de, $df17
+	ld de, wdf17
 	ld hl, wUnknownListLengthda83
 .sub_dead
 	ld a, [hl]
@@ -1840,7 +1840,7 @@ Functiondecd: ; 03:5ecd
 	ld a, [wcd7c]
 	and a
 	jr z, .sub_defc
-	ld hl, $de63
+	ld hl, wde63
 	ld d, $1d
 .sub_defc
 	ld a, [wWhichPokemon]
@@ -1859,7 +1859,7 @@ Functiondecd: ; 03:5ecd
 	ld a, [wcd7c]
 	and a
 	jr z, .sub_df1d
-	ld bc, $df17
+	ld bc, wdf17
 .sub_df1d
 	call CopyDataUntil
 	ld hl, wPartyMon1
@@ -1867,7 +1867,7 @@ Functiondecd: ; 03:5ecd
 	ld a, [wcd7c]
 	and a
 	jr z, .sub_df32
-	ld hl, $daa3
+	ld hl, wdaa3
 	ld bc, $0020
 .sub_df32
 	ld a, [wWhichPokemon]
@@ -1879,7 +1879,7 @@ Functiondecd: ; 03:5ecd
 	jr z, .sub_df49
 	ld bc, $0020
 	add hl, bc
-	ld bc, $de63
+	ld bc, wde63
 	jr .sub_df50
 .sub_df49
 	ld bc, $0030
@@ -1891,7 +1891,7 @@ Functiondecd: ; 03:5ecd
 	ld a, [wcd7c]
 	and a
 	jr z, .sub_df5f
-	ld hl, $df17
+	ld hl, wdf17
 .sub_df5f
 	ld bc, $0006
 	ld a, [wWhichPokemon]
@@ -1904,7 +1904,7 @@ Functiondecd: ; 03:5ecd
 	ld a, [wcd7c]
 	and a
 	jr z, .sub_df7a
-	ld bc, $dfcb
+	ld bc, wdfcb
 .sub_df7a
 	jp CopyDataUntil
 
@@ -2143,7 +2143,7 @@ Function60a0: ; 03:60a0
 	pop bc
 	jp nc, .sub_e165
 	ld a, c
-	ld de, $df17
+	ld de, wdf17
 	ld b, $01
 	push bc
 	push de
@@ -2489,7 +2489,7 @@ Functione3c8: ; 03:63c8
 	ret
 
 Functione3ed: ; 03:63ed
-	ld hl, $d4b9
+	ld hl, wd4b9
 	ld c, $00
 .sub_e3f2
 	push hl
@@ -2534,7 +2534,7 @@ Functione438: ; 03:6438
 	ld a, [wMenuSelection]
 	dec a
 	ld bc, $0009
-	ld hl, $d4b9
+	ld hl, wd4b9
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -2661,7 +2661,7 @@ Functione57e: ; 03:657e
 	ld a, [wMovementBufferCount]
 	cp $50
 	ret z
-	ld hl, $d4b9
+	ld hl, wd4b9
 	ld bc, $0009
 	ld a, [wMenuSelection]
 	dec a
@@ -2731,15 +2731,15 @@ Functione5d3: ; 03:65d3
 	set 4, [hl]
 	call ClearTileMap
 	ld a, [wd4b6]
-	ld hl, $d4b9
+	ld hl, wd4b9
 	ld bc, $0009
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, $c2b5
+	coord hl, 1, 1
 	ld de, Texte679
 	call PlaceString
-	ld hl, $c2dc
+	coord hl, 0, 3
 	ld a, $79
 	ld [hli], a
 	ld a, $7a
@@ -2756,7 +2756,7 @@ Functione5d3: ; 03:65d3
 	add hl, de
 	dec c
 	jr nz, .sub_e660
-	ld hl, $c2de
+	coord hl, 2, 3
 	ld de, Texte687
 	call PlaceString
 	ld hl, Texte697
@@ -2780,7 +2780,7 @@ Functione6a4: ; 03:66a4
 	ld [wcd70], a
 	ld a, h
 	ld [wcd71], a
-	ld hl, $c2cc
+	coord hl, 4, 2
 	ld b, $09
 	ld c, $0e
 	call DrawTextBox
@@ -3259,7 +3259,7 @@ Functione8f9: ; 03:68f9
 	jr .sub_ea55
 .sub_ea48
 	set 3, [hl]
-	ld hl, $cad0
+	ld hl, wcad0
 	ld a, [wcddf]
 	ld [hli], a
 	ld a, [wcde0]
@@ -3361,13 +3361,13 @@ Functione8f9: ; 03:68f9
 	call PrintText
 	call YesNoBox
 	jr c, .sub_eb47
-	ld de, $df17
+	ld de, wdf17
 	ld b, $00
 	ld a, BANK(Function113f4)
 	ld hl, Function113f4
 	call FarCall_hl
 	call RotateThreePalettesRight
-	ld de, $df17
+	ld de, wdf17
 	ld a, [de]
 	cp $50
 	jr nz, .sub_eb47
@@ -3829,11 +3829,11 @@ Functionef17: ; 03:6f17
 	ld [wca10], a
 	ld hl, wca3f
 	res 0, [hl]
-	ld hl, $ca3b
+	ld hl, wca3b
 	res 0, [hl]
 	ld a, $24
 	call GetPartyParamLocation
-	ld de, $ca14
+	ld de, wca14
 	ld bc, $000a
 	call CopyBytes
 	ld a, $24
@@ -3888,7 +3888,7 @@ Functionef8c: ; 03:6f8c
 	ld a, [wWhichPokemon]
 	ld c, a
 	ld d, $00
-	ld hl, $cada
+	ld hl, wcada
 	ld b, $02
 	ld a, $0c
 	call Predef
@@ -3897,7 +3897,7 @@ Functionef8c: ; 03:6f8c
 	jr z, .sub_efc9
 	ld a, [wWhichPokemon]
 	ld c, a
-	ld hl, $ca37
+	ld hl, wca37
 	ld b, $01
 	ld a, $0c
 	call Predef
@@ -3954,7 +3954,7 @@ Functionefee: ; 03:6fee
 	jr nc, .sub_f049
 	ld hl, wca3f
 	res 0, [hl]
-	ld hl, $ca3b
+	ld hl, wca3b
 	res 0, [hl]
 	xor a
 	ld [wca10], a
@@ -4022,7 +4022,7 @@ Functionf0b0: ; 03:70b0
 	call WaitPlaySFX
 	pop de
 	ld a, [wWhichPokemon]
-	ld hl, $c2ab
+	coord hl, 11, 0
 	ld bc, $0028
 	call AddNTimes
 	ld a, $02
@@ -4443,19 +4443,19 @@ Functionf355: ; 03:7355
 	xor a
 	ld [wMovementBufferCount], a
 	ld b, $f8
-	ld hl, $d6d2
+	ld hl, wPartyMon1Status
 	call Functionf397
 	ld a, [wBattleMode]
 	cp $01
 	jr z, .sub_f36e
-	ld hl, $d93b
+	ld hl, wd93b
 	call Functionf397
 .sub_f36e
-	ld hl, $ca10
+	ld hl, wca10
 	ld a, [hl]
 	and b
 	ld [hl], a
-	ld hl, $cde7
+	ld hl, wcde7
 	ld a, [hl]
 	and b
 	ld [hl], a
@@ -5103,20 +5103,20 @@ SECTION "engine/dumps/bank03.asm@Functionf960", ROMX
 Functionf960: ; 03:7960
 	ld a, [wMonType]
 	and a
-	ld hl, $d6b4
+	ld hl, wPartyMon1Moves
 	ld bc, $0030
 	jr z, .sub_f989
-	ld hl, $d91d
+	ld hl, wd91d
 	dec a
 	jr z, .sub_f989
-	ld hl, $daa5
+	ld hl, wdaa5
 	ld bc, $0020
 	dec a
 	jr z, .sub_f989
-	ld hl, $d884
+	ld hl, wd884
 	dec a
 	jr z, .sub_f984
-	ld hl, $ca04
+	ld hl, wca04
 .sub_f984
 	call Functionf9cf
 	jr .sub_f98c
@@ -5147,7 +5147,7 @@ Functionf960: ; 03:7960
 	and $c0
 	pop bc
 	or b
-	ld hl, $cd27
+	ld hl, wcd27
 	ld [hl], a
 	xor a
 	ld [wce37], a
