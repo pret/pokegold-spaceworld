@@ -189,7 +189,13 @@ ENDU ; c813
         ds $32
 wBattleAnimEnd::
 ; c845
-	ds $1b1 ; TODO
+
+	ds $1aa ; TODO
+	
+	
+wc9ef:: ds 1 ; c9ef
+
+	ds 6
 
 wBattleMonNickname:: ds 6 ; c9f6
 wEnemyMonNickname:: ds 6 ; c9fc
@@ -204,8 +210,18 @@ wca08:: ds 1 ; ca08
 wca09:: ds 1 ; ca09	
 wca0a:: ds 1 ; ca0a
 
-	ds $32 ; TODO
+	ds 5 ; TODO
 
+wca10:: ds 1 ; ca10
+wca11:: ds 1 ; ca11
+wca12:: ds 1 ; ca12
+wca13:: ds 1 ; ca13
+
+	ds $26 ; TODO
+
+wca3a:: ds 1 ; ca3a
+wca3b:: ds 1 ; ca3b
+wca3c:: ds 1 ; ca3c
 wPlayerSubStatus3:: db ; ca3d
 
 wca3e:: ds 1 ; ca3e
@@ -222,8 +238,23 @@ wca44:: db ; ca44
 	ds $12
 wTrainerClass:: ; ca57
 	db
-; ca58
-	ds $6b
+
+wca58:: ds 1 ; ca58
+wca59:: ds 1 ; ca59
+wca5a:: ds 1 ; ca5a
+wca5b:: ds 1 ; ca5b
+wca5c:: ds 1 ; ca5c
+	
+	ds $5c
+	
+wcab9:: ds 1 ; cab9
+
+	ds 6
+
+wcac0:: ds 1 ; cac0
+wcac1:: ds 1 ; cac1
+wcac2:: ds 1 ; cac2
+	
 wLinkBattleRNCount:: db ; cac3
 
 	ds 29
@@ -414,6 +445,12 @@ wSpriteOutputPtrCached  : ds 2 ; ccba
 wSpriteDecodeTable0Ptr  : ds 2 ; ccbc
 wSpriteDecodeTable1Ptr  : ds 2 ; ccbe
 
+wccc0:: ds 1 ; ccc0
+wccc1:: ds 1 ; ccc1
+wccc2:: ds 1 ; ccc2
+wccc3:: ds 1 ; ccc3
+wccc4:: ds 1 ; ccc4
+
 SECTION "CCC7", WRAM0[$CCC7]
 
 wDisableVBlankOAMUpdate:: db ; ccc7
@@ -424,7 +461,7 @@ wBGP:: db ; ccca
 wOBP0:: db ; cccb
 wOBP1:: db ; cccc
 
-SECTION "CCCE", WRAM0[$CCCE]
+wcccd:: ds 1 ; cccd
 
 wDisableVBlankWYUpdate:: db ; ccce
 wSGB:: db
@@ -482,8 +519,9 @@ wStringBuffer2:: db ; How long is this? ; cd31
 ENDU
 
 
-SECTION "CD3E", WRAM0[$CD3D]
+SECTION "CD3C", WRAM0[$CD3C]
 
+wcd3c:: db ; cd3c
 wRegularItemsCursor:: db ; cd3d
 wBackpackAndKeyItemsCursor:: db ;cd3e
 wStartmenuCursor:: db ; cd3f
@@ -493,7 +531,9 @@ wcd42:: db ; cd42
 wcd43:: db ; cd43
 wRegularItemsScrollPosition:: db ; cd44
 wBackpackAndKeyItemsScrollPosition:: db ; cd45
-    ds 3 ; TODO
+wcd46:: ds 1 ; cd46
+wcd47:: ds 1 ; cd47
+wcd48:: ds 1 ; cd48
 wMenuScrollPosition:: db ; cd49
 
 wTextDest:: ds 2; cd4a
@@ -523,7 +563,9 @@ wcd5d:: db ; cd5d
 	db
 wChosenStarter:: db ; cd5f
 
-SECTION "CD72", WRAM0[$CD72]
+SECTION "CD70", WRAM0[$CD70]
+wcd70:: ds 1 ; cd70
+wcd71:: ds 1 ; cd71
 wcd72:: dw ; cd72
 wcd74:: db ; cd74
 wcd75:: db ; cd75
@@ -536,8 +578,7 @@ wWhichPokemon: db ; cd79
 SECTION "CD7B", WRAM0[$CD7B]
 
 wHPBarType:: db ; cd7b
-	
-	ds 1
+wcd7c:: ds 1 ; cd7c
 
 wItemQuantity:: db ; cd7d
 wItemQuantityBuffer:: db ; cd7e
@@ -553,7 +594,12 @@ wTalkingTargetType:: db ; cdb0
 ;bit 0 = has engaged NPC in dialogue 
 ;bit 1 = has engaged sign in dialogue
 
-SECTION "CDBA", WRAM0[$CDBA]
+wcdb1:: ds 1 ; cdb1
+wcdb2:: ds 1 ; cdb2
+
+SECTION "CDB9", WRAM0[$CDB9]
+
+wcdb9:: ds 1 ; cdb9
 
 wItemAttributeParamBuffer:: db ; cdba
 wCurPartyLevel:: db ; cdbb
@@ -593,21 +639,38 @@ wHPBarHPDifference:: dw ; cdcb
 wLinkBattleRNs:: ds 10 ; cdcd
 
 wcdd7:: ds 1 ; cdd7
-
-	ds 7
-	
+wcdd8:: ds 1 ; cdd8
+wcdd9:: ds 1 ; cdd9
+wcdda:: ds 1 ; cdda
+wcddb:: ds 1 ; cddb
+wcddc:: ds 1 ; cddc
+wcddd:: ds 1 ; cddd
+wcdde:: ds 1 ; cdde	
 wcddf:: ds 1 ; cddf
+wcde0:: ds 1 ; cde0
+wcde1:: ds 1 ; cde1
+wcde2:: ds 1 ; cde2
+wcde3:: ds 1 ; cde3
+wcde4:: ds 1 ; cde4
+wcde5:: ds 1 ; cde5
+wcde6:: ds 1 ; cde6
+wcde7:: ds 1 ; cde7
+wcde8:: ds 1 ; cde8
+wcde9:: ds 1 ; cde9
+wcdea:: ds 1 ; cdea
 
 
-SECTION "CE00", WRAM0[$CE00]
+SECTION "CDFE", WRAM0[$CDFE]
 
+wcdfe:: ds 1 ; cdfe
+wcdff:: ds 1 ; cdff
 wBattleMode:: db ; ce00
-    db
-wce02:: db ; ce02
-	ds 2
-wce05:: db ; ce05
-
-SECTION "CE07", WRAM0[$CE07]
+wce01:: ds 1 ; ce01
+wce02:: ds 1 ; ce02
+wce03:: ds 1 ; ce03
+wce04:: ds 1 ; ce04
+wce05:: ds 1 ; ce05
+wce06:: ds 1 ; ce06
 
 wMonHeader::
 
@@ -672,23 +735,26 @@ wMonHLearnset:: ; ce1e
     flag_array 50 + 5 ; size = 7
     ds 1
 
-SECTION "CE2E", WRAM0[$CE2E]
-wce2e:: db ; ce2e
-wce2f:: db ; ce2f
-wce30:: db ; ce30
-wce31:: db ; ce31
-wce32:: db ; ce32
-wce33:: db ; ce33
-wce34:: db ; ce34
-wce35:: db ; ce35
-wce36:: db ; ce36
+SECTION "CE2D", WRAM0[$CE2D]
+wce2d:: ds 1 ; ce2d
+wce2e:: ds 1 ; ce2e
+wce2f:: ds 1 ; ce2f
+wce30:: ds 1 ; ce30
+wce31:: ds 1 ; ce31
+wce32:: ds 1 ; ce32
+wce33:: ds 1 ; ce33
+wce34:: ds 1 ; ce34
+wce35:: ds 1 ; ce35
+wce36:: ds 1 ; ce36
 
 wNamedObjectIndexBuffer::
 wCountSetBitsResult:: 
 wce37:: ; ce37
     db
 
-SECTION "CE3B", WRAM0[$CE3B]
+SECTION "CE3A", WRAM0[$CE3A]
+
+wce3a:: ds 1 ; ce3a
 
 wVBlankSavedROMBank:: ; ce3b
     db
@@ -912,6 +978,10 @@ wJoypadFlags:: db ; d4ab
 SECTION "wDigWarpNumber", WRAM0[$D4B2]
 
 wDigWarpNumber:: db ; d4b2
+wd4b3:: ds 1 ; d4b3
+wd4b4:: ds 1 ; d4b4
+wd4b5:: ds 1 ; d4b5
+wd4b6:: ds 1 ; d4b6
 
 
 SECTION "Warp data", WRAM0[$D513]
@@ -1057,6 +1127,31 @@ wAnnonDex:: ds 26  ; d85a
 
 wAnnonID:: ds 1    ; d874
 
+	ds 13
+	
+wd882:: ds 1 ; d882
+
+SECTION "D8A2", WRAM0[$D8A2]
+
+wd8a2:: ds 1 ; d8a2
+
+SECTION "wd8b1", WRAM0[$D8B1]
+
+wd8b1:: ds 1 ; d8b1
+
+	ds 5
+	
+wd8b7:: ds 1 ; d8b7
+wd8b8:: ds 1 ; d8b8
+
+SECTION "D8E3", WRAM0[$D8E3]
+
+wd8e3:: ds 1 ; d8e3
+wd8e4:: ds 1 ; d8e4
+
+SECTION "D8FD", WRAM0[$D8FD]
+
+wd8fd:: ds 1 ; d8fd
 	
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
@@ -1071,6 +1166,10 @@ SECTION "DA83", WRAM0[$DA83]
 
 wUnknownListLengthda83:: db ; da83
 wUnknownListda84:: db ; da84
+
+
+SECTION "DF17", WRAM0[$DF17]
+wdf17:: ds 1 ; df17
 
 SECTION "Stack Bottom", WRAM0
 

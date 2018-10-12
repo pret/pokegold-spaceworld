@@ -1,22 +1,3 @@
-03:477D Functionc77d
-03:47D5 SpawnPoints
-03:488D Tilesets
-03:54E6 Functiond4e6
-03:56E4 Functiond6e4
-03:5886 Functiond886
-03:5A28 FillPP
-03:5A4F Functionda4f
-03:5AC8 Functiondac8
-03:5C16 Functiondc16
-03:5CFC Functiondcfc
-03:5D5C Functiondd5c
-03:5E79 Functionde79
-03:5F7D Functiondf7d
-03:5F91 Functiondf91
-03:60A0 Function60a0
-03:6734 Function6734
-03:677F _UseItem
-
 04:4743 ShrinkPic1
 04:479D ShrinkPic2
 04:528F Function1128f
@@ -76,12 +57,17 @@
 0E:4BA0 LoadTrainerClassName.got_name
 0E:4BA9 LoadTrainerClass
 
+0D:7E3D Function37e3d
+
 0F:508C Function3d08c
 0F:55CE Function3d5ce
 0F:567C Function3d67c
+0F:5AA7 Function3daa7
 0F:6043 AddPokemonToBox
 0F:61A4 Function3e1a4
-0F:63a7 Function3e3a7
+0F:63A7 Function3e3a7
+0F:639F Function3e39f
+0F:65BF Function3e5bf
 0F:6874 Function3e874
 0F:691E Function3e91e
 0F:6963 Function3e963
@@ -96,9 +82,11 @@
 10:4000 Function40000
 10:40A6 ShowPokedexMenu
 10:4AC7 Function40ac7
+10:4B07 Function40b07
 10:4B45 Function40b45
 10:4B5C Function40b5c
 10:58BB Moves
+10:5F93 Function4af93
 10:5FA1 Function41fa1
 10:61F8 Function421f8
 10:6252 Function42252
@@ -110,15 +98,19 @@
 14:4244 Function50244
 14:4248 Function50248
 14:42B5 Function502b5
+14:4628 Function50628
 14:469E Function5069e
 14:46D4 Function506d4
 14:4771 Function50771
 14:4774 Function50774
 14:481F Function5081f
+14:487E Function5087e
 14:48C4 Function508c4
 14:4B92 Function50b92
 14:4BCD Function50bcd
 14:4BFE Function50bfe
+14:4CAA Function50caa
+14:4CD1 Function50cd1
 14:4ED9 Function50ed9
 
 23:4000 AnimateTilesetImpl
