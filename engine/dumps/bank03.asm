@@ -3435,7 +3435,9 @@ Textebfd: ; 03:6bfd
 	text "を　つかまえたぞ！@"
 
 Textec0b: ; 03:6c0b
-	db "ヂギ@"
+	sound_caught_mon
+	text_waitbutton
+	text_end
 
 Textec0e: ; 03:6c0e
 	text_from_ram wdf17
@@ -3455,7 +3457,9 @@ Textec3e: ; 03:6c3e
 	line "#ずかんに　セーブされます！@"
 
 Textec5e: ; 03:6c5e
-	db "ドギ@"
+	sound_slot_machine_start
+	text_waitbutton
+	text_end
 
 Textec61: ; 03:6c61
 	text "つかまえた　@"
@@ -4491,11 +4495,17 @@ Functionf397: ; 03:7397
 	jr nz, .sub_f39c
 	ret
 
-Textf3af: ; 03:73af
-	db "ぼゴべザ<ENEMY>ザぼジ９"
+Dataf3af: ; 03:73af
+	db $3e, $09
+	db $3d, $0a
+	db $3f, $0a
+	db $3e, $0b
+	db $ff
 
-Textf3b8: ; 03:73b8
-	db "ザブザバ９"
+Dataf3b8: ; 03:73b8
+	db $0a, $1b
+	db $0a, $19
+	db $ff
 
 Textf3bd: ; 03:73bd
 	text "#のふえを　ふいた！"
@@ -5295,7 +5305,7 @@ Functionfaba: ; 03:7aba
 .sub_fade
 	ld hl, Textfc19
 	call PrintText
-	ld hl, Textfc30
+	ld hl, Datafc30
 	call LoadMenuHeader
 	call VerticalMenu
 	push af
@@ -5438,8 +5448,14 @@ Textfc19: ; 03:7c19
 	line "さて　どうする？"
 	done
 
-Textfc30: ; 03:7c30
-	db "パオ゛ゼジド<RED>│イ゛アエ゛あずける@"
+Datafc30: ; 03:7c30
+	db $40, $04, $0d, $0b, $13
+	dw Datafc38
+	db $01
+	
+Datafc38: ; 03:7c38
+	db $80, $03
+	db "あずける@"
 
 Textfc3f: ; 03:7c3f
 	db "ひきとる@"
