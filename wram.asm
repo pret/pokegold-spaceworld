@@ -834,9 +834,10 @@ wd15f:: db ; d15f
 
 SECTION "D163", WRAM0[$D163]
 
-wd163:: db ; d163
-
-wd164:: db ; d164
+JohtoBadges:: ; d163
+	flag_array 8
+KantoBadges:: ; d164
+	flag_array 8
 
 wTMsHMs:: db ; d165
 
