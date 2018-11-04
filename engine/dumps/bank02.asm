@@ -724,10 +724,10 @@ Function8459:
 
 Function8468:
 	ld [hl], $00
-	ld hl, UnknownBallGFX
+	ld hl, BoulderDustGFX
 	ld de, vChars1 + $7c0
 	ld b, $01
-	ld c, BANK(UnknownBallGFX)
+	ld c, BANK(BoulderDustGFX)
 	jp Function8419
 
 Function8477:
