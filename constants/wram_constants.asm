@@ -15,6 +15,31 @@ DEF NUM_DIRECTIONS EQU const_value
 	const TEMPMON    ; 3
 	const WILDMON    ; 4
 
+; wJohtoBadges:: ; d163
+	const_def
+	const BADGE_0
+	const BADGE_1
+	const BADGE_2
+	const BADGE_3
+	const BADGE_4
+	const BADGE_5
+	const BADGE_6
+	const BADGE_7
+DEF NUM_JOHTO_BADGES EQU const_value
+
+; wKantoBadges:: ; d164
+	const_def
+	const BOULDERBADGE
+	const CASCADEBADGE
+	const THUNDERBADGE
+	const RAINBOWBADGE
+	const SOULBADGE
+	const MARSHBADGE
+	const VOLCANOBADGE
+	const EARTHBADGE
+DEF NUM_KANTO_BADGES EQU const_value
+DEF NUM_BADGES EQU NUM_JOHTO_BADGES + NUM_KANTO_BADGES
+
 ; wPlayerState::
 DEF PLAYER_NORMAL    EQU 0
 DEF PLAYER_BIKE      EQU 1
