@@ -6,12 +6,18 @@ INCBIN "gfx/pokegear/dexmap_nest_icon.1bpp"
 
 SECTION "gfx.asm@Bank 2 Misc GFX", ROMX
 UnknownBouncingOrbGFX:: INCBIN "gfx/overworld/gfx_84bf.2bpp"     ; 0x0084bf--0x0084ff
+.end:
 JumpShadowGFX::         INCBIN "gfx/overworld/shadow.2bpp"       ; 0x0084ff--0x00850f
+.end:
 EmoteGFX::
 ShockEmoteGFX::         INCBIN "gfx/overworld/shock.2bpp"        ; 0x00850f--0x00854f
+.end:
 QuestionEmoteGFX::      INCBIN "gfx/overworld/question.2bpp"     ; 0x00854f--0x00858f
+.end:
 HappyEmoteGFX::         INCBIN "gfx/overworld/happy.2bpp"        ; 0x00858f--0x0085cf
+.end:
 BoulderDustGFX::        INCBIN "gfx/overworld/boulder_dust.2bpp" ; 0x0085cf--0x0085df
+.end:
 
 SECTION "gfx.asm@Pokegear GFX", ROMX
 Pokegear1GFX::
@@ -348,6 +354,7 @@ RockerSpriteGFX:: INCBIN "gfx/sprites/rocker.2bpp" ; 30:6ac0
 PokefanMSpriteGFX:: INCBIN "gfx/sprites/pokefan_m.2bpp" ; 30:6c40
 PokefanFSpriteGFX:: INCBIN "gfx/sprites/pokefan_f.2bpp" ; 30:6dc0
 GrampsSpriteGFX:: INCBIN "gfx/sprites/gramps.2bpp" ; 30:6f40
+.end:
 GrannySpriteGFX:: INCBIN "gfx/sprites/granny.2bpp" ; 30:70c0
 SwimmerMSpriteGFX:: INCBIN "gfx/sprites/swimmer_m.2bpp" ; 30:7240
 SwimmerFSpriteGFX:: INCBIN "gfx/sprites/swimmer_f.2bpp" ; 30:73c0
@@ -376,6 +383,7 @@ HelmetSpriteGFX:: INCBIN "gfx/sprites/helmet.2bpp" ; 31:5200
 BurglarSpriteGFX:: INCBIN "gfx/sprites/burglar.2bpp" ; 31:5380
 SidonSpriteGFX:: INCBIN "gfx/sprites/sidon.2bpp" ; 31:5500
 PippiSpriteGFX:: INCBIN "gfx/sprites/pippi.2bpp" ; 31:5680
+.end:
 PoppoSpriteGFX:: INCBIN "gfx/sprites/poppo.2bpp" ; 31:5800
 LizardonSpriteGFX:: INCBIN "gfx/sprites/lizardon.2bpp" ; 31:5980
 KabigonSpriteGFX:: INCBIN "gfx/sprites/kabigon.2bpp" ; 31:5b00
