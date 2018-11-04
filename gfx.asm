@@ -5,18 +5,13 @@ PokedexNestIconGFX::
 INCBIN "gfx/pokegear/dexmap_nest_icon.1bpp"
 
 SECTION "gfx.asm@Bank 2 Misc GFX", ROMX
-UnknownBouncingOrbGFX::
-INCBIN "gfx/overworld/gfx_84bf.2bpp"
-JumpShadowGFX::
-INCBIN "gfx/overworld/shadow.2bpp"
-ShockEmoteGFX::
-INCBIN "gfx/overworld/shock.2bpp"
-QuestionEmoteGFX::
-INCBIN "gfx/overworld/question.2bpp"
-HappyEmoteGFX::
-INCBIN "gfx/overworld/happy.2bpp"
-UnknownBallGFX::
-INCBIN "gfx/overworld/gfx_85cf.2bpp"
+UnknownBouncingOrbGFX:: INCBIN "gfx/overworld/gfx_84bf.2bpp"     ; 0x0084bf--0x0084ff
+JumpShadowGFX::         INCBIN "gfx/overworld/shadow.2bpp"       ; 0x0084ff--0x00850f
+EmoteGFX::
+ShockEmoteGFX::         INCBIN "gfx/overworld/shock.2bpp"        ; 0x00850f--0x00854f
+QuestionEmoteGFX::      INCBIN "gfx/overworld/question.2bpp"     ; 0x00854f--0x00858f
+HappyEmoteGFX::         INCBIN "gfx/overworld/happy.2bpp"        ; 0x00858f--0x0085cf
+BoulderDustGFX::        INCBIN "gfx/overworld/boulder_dust.2bpp" ; 0x0085cf--0x0085df
 
 SECTION "gfx.asm@Pokegear GFX", ROMX
 Pokegear1GFX::
