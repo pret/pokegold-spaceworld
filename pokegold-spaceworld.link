@@ -147,12 +147,11 @@ ROMX $03
 	"engine/overworld/player_movement.asm@Player Movement"
 	"data/collision/collision_type_table.asm"
 	"engine/overworld/player_movement.asm@Rest of Player Movement"
-	; $477d
-	org $4791
+	"engine/dumps/bank03.asm@Functionc77d"
 	"engine/overworld/spawn_points.asm"
-	org $488d
+	"engine/dumps/bank03.asm@SpawnPoints"
 	"data/tileset_headers.asm"
-	org $4aa1
+	"engine/dumps/bank03.asm@Functionc9c1"
 	"engine/items/inventory.asm@Inventory"
 	"engine/smallflag.asm"
 	"engine/pokemon/health.asm@HealParty"
@@ -161,9 +160,9 @@ ROMX $03
 	"engine/pokemon/health.asm@HP Bar"
 	"engine/events/field_moves.asm"
 	"engine/items/inventory.asm@_CheckTossableItem"
-	; $541d
-	org $78f6
+	"engine/dumps/bank03.asm@Functiond41d"
 	"engine/items/item_effects.asm"
+	"engine/dumps/bank03.asm@Functionf960"
 ROMX $04
 	org $4000
 	"data/maps/maps.asm"
