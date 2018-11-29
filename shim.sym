@@ -1,13 +1,5 @@
 04:4743 ShrinkPic1
 04:479D ShrinkPic2
-04:528F Function1128f
-04:52C1 Function112c1
-04:530A Function1130a
-04:53F4 Function113f4
-04:5677 DoPlayerMovement
-04:5DBE DisplayStartMenu
-04:640B Function1240b
-04:6C58 CheckRegisteredItem
 
 05:4036 RefreshSprites
 05:404C CheckInteriorMap
@@ -44,13 +36,22 @@
 09:412C _ExitMenu
 09:4185 Function24185
 09:4199 _InitVerticalMenuCursor
+09:41EF Function241ef
 09:426A _InitScrollingMenu
 09:4287 _ScrollingMenu
+09:43AF Function243af
+09:45C5 Function245c5
+09:473B Function2473b
+09:4774 Function24774
+09:4783 Function24783
+09:4955 Function24955
+09:4C60 Function24c60
 
 0A:4C98 LinkTextboxAtHL
 0A:4D6E Function28d6e
 0A:4DA4 Function28da4
 
+0B:52FC Function2d2fc
 0B:5663 Function2d663
 
 0E:4B78 LoadTrainerClassName
@@ -85,6 +86,7 @@
 10:4B07 Function40b07
 10:4B45 Function40b45
 10:4B5C Function40b5c
+10:58B8 Data4a8b8
 10:58BB Moves
 10:5F93 Function4af93
 10:5FA1 Function41fa1
@@ -97,10 +99,11 @@
 14:40C6 Function500c6
 14:4244 Function50244
 14:4248 Function50248
-14:42B5 Function502b5
+14:42B5 Function502b5 ; Pokemon Summary routine?
 14:4628 Function50628
 14:469E Function5069e
 14:46D4 Function506d4
+14:4756 Function50756
 14:4771 Function50771
 14:4774 Function50774
 14:481F Function5081f
@@ -127,7 +130,10 @@
 23:4d13 EffectObjectJumpNoDelay
 23:4d52 _InitSpriteAnimStruct
 23:60cc MenuMonIconGfx
+23:70CC Function8f0cc
+23:70E3 Function8f0e3
 23:71CB Function_8f1cb
+23:71F2 Function8f1f2
 
 24:4000 SetClockDialog
 24:4239 SlotMachineGame
@@ -161,6 +167,7 @@
 3A:52C7 Music
 
 3F:40E9 InGameDebugMenu
+3F:4305 PokeGear
 3F:4C24 Functionfcc24
 3F:4E3E Functionfce3e
 3F:5B66 Functionfdb66

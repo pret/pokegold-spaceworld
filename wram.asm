@@ -106,11 +106,31 @@ wc40c:: ds 1 ; c40c
 wc40d:: ds 1 ; c40d
 wc40e:: ds 1 ; c40e
 
-	ds 177
+	ds 11
+
+wc41a:: db ; c41a
+
+	ds 165
 
 wSpriteAnimIDBuffer:: db ; c4c0
 
-	ds 89
+	ds 6
+	
+wc4c7:: db ; c4c7
+wc4c8:: db ; c4c8
+
+	ds 7
+	
+wNamingScreenDestinationPointer:: dw ; c4d0
+wNamingScreenCurNameLength:: db ; c4d2
+wNamingScreenMaxNameLength:: db ; c4d3
+wNamingScreenType:: db ; c4d4
+wNamingScreenCursorObjectPointer:: dw ; c4d5
+wNamingScreenLastCharacter:: db ; c4d7
+wNamingScreenStringEntryCoordY:: db ; c4d8
+wNamingScreenStringEntryCoordX:: db ; c4d9
+	
+	ds 64
 	
 wc51a:: ds 1 ; c51a
 
@@ -545,7 +565,7 @@ wRegularItemsScrollPosition:: db ; cd44
 wBackpackAndKeyItemsScrollPosition:: db ; cd45
 wcd46:: ds 1 ; cd46
 wcd47:: ds 1 ; cd47
-wcd48:: ds 1 ; cd48
+wSelectedSwapPosition:: db ; cd48
 wMenuScrollPosition:: db ; cd49
 
 wTextDest:: ds 2; cd4a
@@ -595,6 +615,8 @@ wcd7c:: ds 1 ; cd7c
 wItemQuantity:: db ; cd7d
 wItemQuantityBuffer:: db ; cd7e
 wcd7f:: db ; cd7f
+wcd80:: db ; cd80
+wcd81:: db ; cd81
 
 SECTION "CD9E", WRAM0 [$CD9E]
 wcd9e:: db ; cd9e
@@ -940,7 +962,9 @@ wBallQuantities:: db ; d1df
 wUnknownListLengthd1ea:: db ; d1ea
 wUnknownListd1eb:: db ; d1eb
 
-SECTION "Rival's Name", WRAM0[$D258]
+SECTION "Rival's Name", WRAM0[$D256]
+wRegisteredItem:: db ; d256
+wRegisteredItemQuantity:: db ; d257
 wRivalName:: ds 6 ; d258
 	ds 6
 
@@ -971,8 +995,16 @@ wd39d:: db
 
 SECTION "Game Event Flags", WRAM0[$D41A]
 wd41a:: db
+; 76543210
+; |      \- read email?
+; \-------- talked to Blue, triggers Oak
 wd41b:: db
+; 76543210
+;      |\-- followed Oak to his back room 
+;      \--- chose a starter
 wd41c:: db
+; 76543210
+;    \----- recieved pokedexes
 wd41d:: db
 wd41e:: db
 
@@ -1112,8 +1144,8 @@ wTilesetCollisionAddress:: ; d6a4
 wTilesetEnd:: ; d6aa
 
 wPartyCount:: db
-wPartySpecies:: ds PARTY_LENGTH
-wPartyEnd:: db
+wPartySpecies:: ds PARTY_LENGTH ; d6ab - d6b0
+wPartyEnd:: db ; d6b1
 
 wPartyMons::
 wPartyMon1:: party_struct wPartyMon1 ; d6b2
@@ -1224,8 +1256,8 @@ wda5f:: db ; da5f
 
 SECTION "DA83", WRAM0[$DA83]
 
-wUnknownListLengthda83:: db ; da83
-wUnknownListda84:: db ; da84
+wBoxListLength:: db ; da83
+wBoxList:: ds $1E ; da84
 
 SECTION "DAA3", WRAM0[$DAA3]
 

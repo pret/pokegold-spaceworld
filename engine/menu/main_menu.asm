@@ -39,7 +39,7 @@ InitializeNewGameWRAM:
 
 	ld hl, wPartyCount
 	call InitializeByteList
-	ld hl, wUnknownListLengthda83
+	ld hl, wBoxListLength
 	call InitializeByteList
 	ld hl, wNumBagItems
 	call InitializeByteList

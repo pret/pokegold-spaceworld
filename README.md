@@ -1,4 +1,4 @@
-WIP disassembly of the Spaceworld 1997 Gold proto
+WIP disassembly of the Space World 1997 Gold proto
 
 It attempts to build the following ROMs:
 
