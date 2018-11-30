@@ -933,7 +933,7 @@ SetupMail: ; 04:5C31
 	call LoadNamingScreenGFX
 	ld de, vChars1
 	ld hl, BoldAlphabetGFX
-	lb bc, $02, $E0
+	ld bc, $2e tiles
 	ld a, BANK(BoldAlphabetGFX)
 	call FarCopyDataDouble
 	ld de, vChars0

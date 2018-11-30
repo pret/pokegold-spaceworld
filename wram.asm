@@ -1006,6 +1006,8 @@ wd41c:: db
 ; 76543210
 ;    \----- recieved pokedexes
 wd41d:: db
+; 76543210
+;      \--- beat rival in the lab
 wd41e:: db
 
 SECTION "D4A9", WRAM0[$D4A9]
@@ -1257,7 +1259,7 @@ wda5f:: db ; da5f
 SECTION "DA83", WRAM0[$DA83]
 
 wBoxListLength:: db ; da83
-wBoxList:: ds $1E ; da84
+wBoxList:: ds MONS_PER_BOX ; da84
 
 SECTION "DAA3", WRAM0[$DAA3]
 

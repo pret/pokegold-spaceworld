@@ -8,7 +8,7 @@ DisplayStartMenu: ; 04:5DBE
 	call PlaySFX
 	ld hl, .StartMenuHeader
 	call LoadMenuHeader
-.prelabel
+.RefreshStartDisplay
 	call UpdateTimePals
 	call UpdateSprites
 	call ClearJoypad
@@ -16,7 +16,7 @@ DisplayStartMenu: ; 04:5DBE
 	ld a, [wStartmenuCursor]
 	ld [wMenuCursorBuffer], a
 	call OpenMenu
-	jr c, .bigjump
+	jr c, .MainReturn
 	ld a, [wMenuCursorBuffer]
 	ld [wStartmenuCursor], a
 	call PlaceHollowCursor
@@ -27,39 +27,40 @@ DisplayStartMenu: ; 04:5DBE
 	jp CallJumptable
 
 .StartMenuEntriesReturnTable: ; 04:5DFC
-	dw .prelabel  
-	dw .bigjump  
-	dw .label  
-	dw .label2  
-	dw .ExitAndLoadBankFF 
+	dw .RefreshStartDisplay  
+	dw .MainReturn  
+	dw .exit  
+	dw .UpdateTime  
+	dw .ExitAndHookFF 
 	
-.bigjump
-	call .label3
+.MainReturn
+	call .WaitForARelease
 	call LoadFontExtra
-.label
+.exit
 	call ExitMenu
-.label2
+.UpdateTime
 	call Function1fea
 	call UpdateTimePals
 	ret
 	
-; 04:5E16
-	call .label3
+.unused ; 04:5E16
+	call .WaitForARelease
 	call LoadFontExtra
 	call CloseWindow
-	jr .label2
-.label3
+	jr .UpdateTime
+	
+.WaitForARelease
 	call GetJoypad
 	ldh a, [hJoyDown]
-	bit 0, a
-	jr nz, .label3
+	bit A_BUTTON_F, a
+	jr nz, .WaitForARelease
 	ret
 	
-.ExitAndLoadBankFF: ; 04:5E2B
+.ExitAndHookFF: ; 04:5E2B
 	call ExitMenu
 	ld a, $FF
 	ldh [hStartmenuCloseAndSelectHookEnable], a
-	jr .label2
+	jr .UpdateTime
 	
 .StartMenuHeader: ; 04:5E34
 	db MENU_BACKUP_TILES
@@ -97,71 +98,72 @@ StartMenuJumpTable: ; 04:5E6C
 	dw StartMenu_Reset
 	
 StartMenuItems: ; 04:5E7E
-	db 04 
-	db 04 
-	db 05 
-	db 03 
-	db 06 
+	db 4 
+	db START_SAVE 
+	db START_OPTIONS 
+	db START_TRAINERCARD 
+	db START_EXIT 
 	db -1
 	
-	db 05 
-	db 01 
-	db 03 
-	db 04 
-	db 05 
-	db 06 
+	db 5 
+	db START_PARTY 
+	db START_TRAINERCARD 
+	db START_SAVE 
+	db START_OPTIONS 
+	db START_EXIT 
 	db -1 
 	
-	db 06 
-	db 00 
-	db 01 
-	db 03 
-	db 04 
-	db 05 
-	db 06 
+	db 6 
+	db START_POKEDEX 
+	db START_PARTY 
+	db START_TRAINERCARD 
+	db START_SAVE 
+	db START_OPTIONS 
+	db START_EXIT 
 	db -1 
 	
-	db 07 
-	db 00 
-	db 01 
-	db 02 
-	db 03 
-	db 04 
-	db 05 
-	db 06 
+	db 7 
+	db START_POKEDEX 
+	db START_PARTY 
+	db START_BACKPACK 
+	db START_TRAINERCARD 
+	db START_SAVE 
+	db START_OPTIONS 
+	db START_EXIT 
 	db -1 
 	
 	db 6
-	db 00 
-	db 01 
-	db 02 
-	db 03 
-	db 05 
-	db 06 
+	db START_POKEDEX 
+	db START_PARTY 
+	db START_BACKPACK 
+	db START_TRAINERCARD 
+	db START_OPTIONS 
+	db START_EXIT 
 	db -1
 	
 GetStartMenuState: ; 04:5EA4
 ; Stores one of four values to wActiveBackpackPocket
 ; based on story flags and debug mode.
-; 4 = debug, 3 = starting, 2 = D2 is on, 1 = pokedex recieved, 0 = chose starter
+; 4 = debug, 3 = starting, 2 = rival beat in lab
+; 1 = pokedex recieved, 0 = chose starter
 	ld b, 4
 	ld hl, wDebugFlags
-	bit 1, [hl]
-	jr z, .leap
+	bit DEBUG_FIELD_F, [hl]
+	jr z, .store
 	ld b, 0
 	ld hl, wd41b
 	bit 2, [hl]
-	jr z, .leap
+	jr z, .store
 	ld b, 1
 	ld hl, wd41c
 	bit 4, [hl]
-	jr z, .leap
+	jr z, .store
 	ld b, 2
 	ld hl, wd41d
 	bit 2, [hl]
-	jr z, .leap
+	jr z, .store
 	ld b, 3
-.leap
+.store
 	ld a, b
 	ld [wActiveBackpackPocket], a
 	ret
@@ -242,7 +244,7 @@ StartMenu_Pokedex: ; 04:5F4F
 	ld a, 0
 	ret
 	
-; 04:5F6F
+UnusedToolPocketData: ; 04:5F6F
 	dw ToolsPocketHeader 
 	dw wRegularItemsCursor 
 	dw wRegularItemsScrollPosition 
@@ -250,10 +252,10 @@ StartMenu_Pokedex: ; 04:5F4F
 ToolsPocketHeader: ; 04:5F75
 	db MENU_BACKUP_TILES ; flags 
 	menu_coords 03, 03, $11, $0A 
-	dw .toolspocketdata 
+	dw .ToolsPocketData 
 	db 1 
 	
-.toolspocketdata ; 04:5F7D
+.ToolsPocketData ; 04:5F7D
 	db $AD 
 	db 4, 9, 2, 0
 	dw wNumBagItems 
@@ -269,10 +271,10 @@ ToolsPocketHeader: ; 04:5F75
 KeyItemsPocketHeader: ; 04:5F93
 	db MENU_BACKUP_TILES ; flags 
 	menu_coords 03, 03, $11, $0A
-	dw .keypocketdata
+	dw .KeyPocketData
 	db 1 
 	
-.keypocketdata ; 04:5F9B
+.KeyPocketData ; 04:5F9B
 	db $AD 
 	db 4, 9, 1, 0 
 	dw wNumKeyItems
@@ -284,10 +286,10 @@ KeyItemsPocketHeader: ; 04:5F93
 BackpackMenuHeader: ; 04:5FAB
 	db MENU_BACKUP_TILES ; flags 
 	menu_coords 03, 03, $11, $0A
-	dw .backpackdata
+	dw .BackpackData
 	db 01 
 	
-.backpackdata ; 04:5FB3
+.BackpackData ; 04:5FB3
 	db $A1 
 	db 4, 9, 2, 0 
 	dw wNumBagItems 
@@ -351,7 +353,7 @@ DrawBackpack: ; 04:5FEE
 	
 StartMenu_Backpack: ; 04:6015
 	call CheckItemsQuantity
-	jr c, .noitems
+	jr c, .NoItems
 	call LoadStandardMenuHeader
 	ld hl, wVramState
 	res 0, [hl]
@@ -379,7 +381,7 @@ StartMenu_Backpack: ; 04:6015
 	pop af
 	ret
 	
-.noitems
+.NoItems
 	call DrawNoItemsText ; 6371
 	scf
 	ld a, 0
@@ -390,11 +392,11 @@ DebugBackpackLoop: ; 04:6056
 ; otherwise NondebugBackpackLoop runs
 ; if wactivebackpackpocket is 1 (doesn't have key items) then jumps below
 	ld a, [wDebugFlags]
-	bit 1, a
+	bit DEBUG_FIELD_F, a
 	jp z, NondebugBackpackLoop
 	ld a, [wActiveBackpackPocket]
 	cp 2
-	jr nz, .notools
+	jr nz, .NoTools
 	ld hl, ToolsPocketHeader
 	call CopyMenuHeader
 	ld de, .ToolsPocketText
@@ -414,7 +416,7 @@ DebugBackpackLoop: ; 04:6056
 .ToolsPocketText ; 04:608F
 	db "　　　　　　ふつうの　どうぐ　　　　　　@"
 	
-.notools
+.NoTools
 	ld hl, KeyItemsPocketHeader
 	call CopyMenuHeader
 	ld de, KeyItemsPocketText
@@ -457,40 +459,40 @@ BackpackHeaderText: ; 04:610B
 HandleBackpackInput: ; 04:611F
 	ld a, [wMenuJoypad]
 	cp A_BUTTON
-	jp z, .backpacka
+	jp z, .BackpackA
 	cp B_BUTTON
-	jp z, .backpackback
+	jp z, .BackpackBack
 	cp D_LEFT
-	jp z, .backpackswappocket
+	jp z, .BackpackSwapPocket
 	cp D_RIGHT
-	jp z, .backpackswappocket
+	jp z, .BackpackSwapPocket
 	cp SELECT
-	jp z, .backpackselect
+	jp z, .BackpackSelect
 	jp .exit
 	
-.backpackswappocket ; 04:613E
+.BackpackSwapPocket ; 04:613E
 	call FlipPocket2Status
 	xor a
 	ld [wSelectedSwapPosition], a
 	jp .exit
 	
-.backpackselect ; 04:6148
+.BackpackSelect ; 04:6148
 	callab Function245c5
 	jp .exit
 	
 .exit ; 04:6153
 	jp DebugBackpackLoop
 	
-.unusedNoItems ; 04:6156
+.UnusedNoItems ; 04:6156
 	call DrawNoItemsText
 	scf
 	ret
 	
-.backpackback ; 04:615B
+.BackpackBack ; 04:615B
 	scf
 	ret
 	
-.backpacka ; 04:615D
+.BackpackA ; 04:615D
 	and a
 	ret
 	
@@ -505,21 +507,21 @@ BackpackSelected: ; 04:615F
 	
 .BagSelectJumptable: ; 04:617E
 	dw SelectItem  
-	dw .unknownSelection
+	dw .UnknownSelection
 	dw BallPocketLoop  
-	dw .swappocket  
+	dw .SwapPocket  
 	dw SelectItem  
 	dw SelectItem  
 	dw SelectItem 
 
-.swappocket ; 04:618C	
+.SwapPocket ; 04:618C	
 	call FlipPocket2Status
 	xor a
 	ld [wSelectedSwapPosition], a
 	and a
 	ret
 	
-.unknownSelection ; 04:6195
+.UnknownSelection ; 04:6195
 	call LoadStandardMenuHeader
 	callab Function2d2fc
 	call ExitMenu
@@ -555,7 +557,7 @@ ItemUseMenu: ; 04:61CE
 ; loads SelectedItemMenu if not debug, 
 ; DebugSelectedItemMenu if debug
 	ld a, [wDebugFlags]
-	bit 1, a
+	bit DEBUG_FIELD_F, a
 	jr nz, .jump
 	ld hl, SelectedItemMenu
 	call LoadMenuHeader
@@ -572,10 +574,10 @@ ItemUseMenu: ; 04:61CE
 DebugSelectedItemMenu: ; 04:61EF
 	db MENU_BACKUP_TILES
 	menu_coords $0D, $0A, $13, $10 
-	dw .debugselecteditemmenutext
+	dw .DebugSelectedItemMenuText
 	db 01 
 	
-.debugselecteditemmenutext
+.DebugSelectedItemMenuText
 	db $C0 
 	db 3 
 	db "つかう@" ; use
@@ -585,10 +587,10 @@ DebugSelectedItemMenu: ; 04:61EF
 SelectedItemMenu: ; 04:6206
 	db MENU_BACKUP_TILES
 	menu_coords $0E, $0A, $13, $0E 
-	dw .selecteditemmenutext
+	dw .SelectedItemMenuText
 	db 01 
 	
-.selecteditemmenutext
+.SelectedItemMenuText
 	db $C0 
 	db 2 
 	db "つかう@" ; use
@@ -612,7 +614,7 @@ UseItemSelection: ; 04:6225
 	jp CallJumptable
 	
 .UseItemJumptable: ; 04:6236 ; jumptable
-	dw .failedmove  
+	dw .FailedMove  
 	dw .unusable 
 	dw .unusable 
 	dw .unusable 
@@ -644,12 +646,12 @@ UseItemSelection: ; 04:6225
 	call UseItem
 	ld a, [wFieldMoveSucceeded]
 	and a
-	jr z, .failedmove
+	jr z, .FailedMove
 	scf
 	ld a, 4
 	ret
 	
-.failedmove ; 04:6269
+.FailedMove ; 04:6269
 	call PrintCantUseText
 	and a
 	ret
@@ -660,7 +662,7 @@ TryTossItem: ; 04:626E
 	callab _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
-	jr nz, .tossfail
+	jr nz, .TossFail
 	ld hl, .TossedText
 	call MenuTextBox
 	callab Function24c60
@@ -668,14 +670,14 @@ TryTossItem: ; 04:626E
 	call CloseWindow
 	call ExitMenu
 	pop af
-	jr c, .tossreturn
+	jr c, .TossReturn
 	ld hl, .TossVerifyText
 	call MenuTextBox
 	call YesNoBox
 	push af
 	call ExitMenu
 	pop af
-	jr c, .tossreturn
+	jr c, .TossReturn
 	pop hl
 	ld a, [wItemIndex]
 	call TossItem
@@ -686,9 +688,9 @@ TryTossItem: ; 04:626E
 	and a
 	ret
 	
-.tossfail ; 04:62BD ;25
+.TossFail ; 04:62BD ;25
 	call CantDropItem
-.tossreturn
+.TossReturn
 	pop hl
 	scf
 	ret
@@ -896,7 +898,7 @@ HandleSelectedPokemon: ; 04:64CD
 	ld [wcdb9], a
 	ld [wSelectedSwapPosition], a
 	predef Function50774
-	db $18, $19 ; jr .partypromptreturn
+	jr PartyPrompt.partypromptreturn
 	
 PartyPrompt: ; 04:64DB
 	ld a, [wWhichPokemon]
@@ -973,7 +975,7 @@ PartyHeldItem: ; 04:6579
 	ld hl, .HoldItemMenu
 	call LoadMenuHeader
 	call VerticalMenu
-	jp c, .closewindow
+	jp c, .close
 	call GetCurNick
 	ld hl, wStringBuffer1
 	ld de, wcd11
@@ -989,7 +991,7 @@ PartyHeldItem: ; 04:6579
 	call .PartyTryRecieveItem
 	call CloseWindow
 	jr .jump
-.closewindow; 04:65B3
+.close; 04:65B3
 	call CloseWindow
 .jump
 	jp HandleSelectedPokemon
@@ -1002,24 +1004,24 @@ PartyHeldItem: ; 04:6579
 	call DebugBackpackLoop
 	ld a, [wMenuJoypad]
 	cp 2
-	jp z, .exitgiveitem
+	jp z, .ExitGiveItem
 	call SpeechTextBox
 	call LoadItemData
 	call CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
-	jp nz, .cantgive
+	jp nz, .CantGive
 	call GetPartyItemOffset
 	ld a, [hl]
 	and a
-	jr z, .bigleap
+	jr z, .NoItem
 	ld [wce37], a
 	call GetItemName
 	ld hl, ItemPrompt6753
 	call MenuTextBox
 	call YesNoBox
 	call ExitMenu
-	jp c, .exitgiveitem
+	jp c, .ExitGiveItem
 	ld a, 1
 	ld [wItemQuantity], a
 	ld hl, wNumBagItems
@@ -1031,38 +1033,41 @@ PartyHeldItem: ; 04:6579
 	ld a, b
 	ld [wCurItem], a
 	call PartyRecieveItem
-	jp nc, .label2
+	jp nc, .GiveItem
 	ld a, [wce37]
 	ld [wCurItem], a
 	ld hl, ItemWasEquippedText
 	call MenuTextBoxBackup
-	jr .yump
-.bigleap
+	jr .CheckMail
+	
+.NoItem
 	ld a, 1
 	ld [wItemQuantity], a
 	ld hl, wNumBagItems
 	call TossItem
 	ld hl, ItemPrompt66FA
 	call MenuTextBoxBackup
-.yump
+.CheckMail
 	call GetPartyItemOffset
 	ld a, [wCurItem]
 	ld [hl], a
 	ld a, [wCurItem]
 	cp ITEM_MAIL
 	call z, PartyGiveMail
-	jr .exitgiveitem
-.label2 ; 04:664B
+	jr .ExitGiveItem
+	
+.GiveItem ; 04:664B
 	ld a, [wce37]
 	ld [wCurItem], a
 	call PartyRecieveItem
 	ld hl, PartyItemRecieveBagFullText
 	call MenuTextBoxBackup
-	jr .exitgiveitem
-.cantgive ; 04:665C
+	jr .ExitGiveItem
+	
+.CantGive ; 04:665C
 	ld hl, .CantBeEquippedText
 	call MenuTextBoxBackup
-.exitgiveitem ;04:6662
+.ExitGiveItem ;04:6662
 	call ClearPalettes
 	call LoadFontsBattleExtra
 	call ExitMenu
@@ -1073,7 +1078,7 @@ PartyHeldItem: ; 04:6579
 	call GetPartyItemOffset
 	ld a, [hl]
 	and a
-	jr z, .noitem
+	jr z, .NoItemToRecieve
 	ld [wCurItem], a
 	call PartyRecieveItem
 	jr nc, .jump2
@@ -1085,7 +1090,7 @@ PartyHeldItem: ; 04:6579
 	ld hl, ItemPrompt673D
 	call MenuTextBoxBackup
 	jr .escape
-.noitem
+.NoItemToRecieve
 	ld hl, PartyNoItemToRecieveText
 	call MenuTextBoxBackup
 	jr .escape
@@ -1120,13 +1125,13 @@ ItemWasEquippedText ; 04:66D1
 	text "は　そうび　していた"
 	line "@"
 
-; 04:66E1
+.UnusedText1 ; 04:66E1
 	db 1 
 	dw wStringBuffer1
 	text "を　はずして"
 	para "@"
 	
-; 04:66ED
+.UnusedText2 ; 04:66ED
 	db 1 
 	dw wStringBuffer2
 	text "を　そうびした！<PROMPT>" 
@@ -1136,7 +1141,7 @@ ItemPrompt66FA: ; 04:66FA
 	dw wcd11 
 	text "は　@"
 	
-; 04:6701
+.UnusedText3 ; 04:6701
 	db 1 
 	dw wStringBuffer2
 	text "を"
@@ -1157,7 +1162,7 @@ ItemPrompt673D: ; 04:673D
 	dw wcd11  
 	text "から　@" 
 	
-; 04:6745
+.UnusedText4 ; 04:6745
 	db 1 
 	dw wStringBuffer1
 	text "を"
@@ -1168,7 +1173,7 @@ ItemPrompt6753: ; 04:6753
 	dw wcd11 
 	text "は　@"
 	
-; 04:675A
+.UnusedText5; 04:675A
 	db 1 
 	dw wStringBuffer1
 	text "を"
@@ -1257,7 +1262,7 @@ PartyMailMenu: ; 04:6806
 	cp 3
 	jp z, .exit
 	cp 1
-	jr z, .giveMail
+	jr z, .GiveMail
 	ld hl, .MessageRemoveMail
 	call MenuTextBox
 	call YesNoBox
@@ -1275,14 +1280,14 @@ PartyMailMenu: ; 04:6806
 	ld hl, wNumBagItems
 	call ReceiveItem
 	pop hl
-	jr nc, .escapeyump
+	jr nc, .MailFull
 	xor a
 	ld [hl], a
 	call GetCurNick
-	ld hl, .drawNick
+	ld hl, .DrawNick
 	call MenuTextBoxBackup
 	jr .exit
-.giveMail
+.GiveMail
 	ld a, [wWhichPokemon]
 	ld hl, $BA68
 	ld bc, $0028
@@ -1309,7 +1314,7 @@ PartyMailMenu: ; 04:6806
 	call CloseWindow
 	jp HandleSelectedPokemon
 	
-.escapeyump ; 04:689D
+.MailFull ; 04:689D
 	ld hl, .MailFullText
 	call MenuTextBoxBackup
 	jr .exit
@@ -1333,7 +1338,7 @@ PartyMailMenu: ; 04:6806
 	line "きえてしまいますが　いいですか？"
 	done
 	
-.drawNick ; 04:68E7
+.DrawNick ; 04:68E7
 	db 1 
 	dw wStringBuffer1
 	text "から　@"
@@ -1494,18 +1499,18 @@ PokeSummary: ; 04:6A2C
 	hlcoord 16, 0
 	ld a, [wWhichPokemon]
 	and a
-	jr z, .firstpokechosen
+	jr z, .FirstPokeChosen
 	ld [hl], "」"
-.firstpokechosen
+.FirstPokeChosen
 	inc a
 	ld b, a
 	ld a, [wPartyCount]
 	cp b
-	jr z, .lastpokechosen
+	jr z, .LastPokeChosen
 	inc hl
 	inc hl
 	ld [hl], "▶" ; right filled arrow
-.lastpokechosen
+.LastPokeChosen
 	ld de, PartyMenuAttributes
 	call SetMenuAttributes
 SummaryDrawPoke: ; 04:6AAC
@@ -1535,14 +1540,13 @@ SummaryDrawPoke: ; 04:6AAC
 	call DrawTextBox
 	ld hl, w2DMenuFlags
 	set 6, [hl]
-	db $18, $17 ; jr z, PartySelectSkipInputs
+	jr PartySelectionInputs.PartySelectSkipInputs
 PartySelectionInputs: ; 04:6AF9
 	call Get2DMenuJoypad + 3
 	bit B_BUTTON_F, a
 	jp nz, PartySelectionBackOut
 	bit A_BUTTON_F, a
 	jp nz, .PartyPokeSelect
-.PartySelectionRLInputs
 	bit D_RIGHT_F, a
 	jp nz, .PartyPokeDetailsAdvancePage
 	bit D_LEFT_F, a
@@ -1581,13 +1585,13 @@ PartySelectionInputs: ; 04:6AF9
 	call GetFarByte
 	hlcoord 15, 12
 	cp 2
-	jr c, .notamove
+	jr c, .NotAMove
 	ld [wce37], a
 	ld de, wce37
 	lb bc, 1, 3
 	call PrintNumber
 	jr .step
-.notamove
+.NotAMove
 	ld de, PartyPokeDivider
 	call PlaceString
 .step
@@ -1628,7 +1632,7 @@ PartySelectionInputs: ; 04:6AF9
 	ld a, [wMenuCursorY]
 	ld [wSelectedSwapPosition], a
 	call PlaceHollowCursor
-	db $18, $bf ; jr .PartySelectionRLInputs
+	jr .DrawMovePokeText
 .swap
 	ld hl, wPartyMon1 + MON_MOVES
 	ld bc, $0030
@@ -1641,7 +1645,7 @@ PartySelectionInputs: ; 04:6AF9
 	add hl, bc
 	call SwapEntries
 	ld a, [wBattleMode]
-	jr z, .notinbattle
+	jr z, .NotInBattle
 	ld hl, wca04
 	ld bc, $0020
 	ld a, [wWhichPokemon]
@@ -1652,7 +1656,7 @@ PartySelectionInputs: ; 04:6AF9
 	ld bc, $0006
 	add hl, bc
 	call SwapEntries
-.notinbattle
+.NotInBattle
 	hlcoord 1, 2
 	lb bc, 8, $12
 	call ClearBox
@@ -1716,16 +1720,16 @@ PartyMoveText: ; 04:6C4B
 	db "どこに　いどうしますか？@"
 	
 CheckRegisteredItem: ; 04:6C58
-	call .registereditem
+	call .RegisteredItem
 	ret
 	
-.registereditem ; 04:6C5C
+.RegisteredItem ; 04:6C5C
 	call GetRegisteredItemID
-	jr c, .notregistered
+	jr c, .NotRegistered
 	call UseRegisteredItem
 	ret
 	
-.notregistered ; 04:6C65
+.NotRegistered ; 04:6C65
 	call RefreshScreen
 	ld hl, .NothingRegisteredText
 	call MenuTextBoxBackup
@@ -1741,13 +1745,13 @@ GetRegisteredItemID: ; 04:6C8D
 ; otherwise sets 0 to a and sets the carry flag
 	ld a, [wRegisteredItem]
 	and a
-	jr z, .cantuse
+	jr z, .CantUse
 	bit 7, a
-	jr nz, .isKey
+	jr nz, .IsKey
 	dec a 
 	ld hl, wNumBagItems
 	cp [hl]
-	jr nc, .cantuse
+	jr nc, .CantUse
 	inc hl 
 	ld [wItemIndex], a
 	ld e, a
@@ -1756,17 +1760,17 @@ GetRegisteredItemID: ; 04:6C8D
 	add hl, de
 	ld a, [wRegisteredItemQuantity]
 	cp [hl]
-	jr nz, .cantuse
+	jr nz, .CantUse
 	ld a, [hl]
 	ld [wCurItem], a
 	and a
 	ret
-.isKey
+.IsKey
 	and $7F
 	dec a
 	ld hl, wNumKeyItems
 	cp [hl]
-	jr nc, .cantuse
+	jr nc, .CantUse
 	ld [wItemIndex], a
 	ld e, a
 	ld d, 0
@@ -1774,12 +1778,12 @@ GetRegisteredItemID: ; 04:6C8D
 	add hl, de
 	ld a, [wRegisteredItemQuantity]
 	cp [hl]
-	jr nz, .cantuse
+	jr nz, .CantUse
 	ld a, [hl]
 	ld [wCurItem], a
 	and a
 	ret
-.cantuse
+.CantUse
 	xor a
 	ld [wRegisteredItem], a
 	ld [wRegisteredItemQuantity], a
@@ -1793,21 +1797,21 @@ UseRegisteredItem: ; 04:6CD9
 	jp CallJumptable
 	
 .RegisteredItemJumptable ; 04:6CEA
-	dw .cantuse2 
-	dw .cantuse 
-	dw .cantuse
-	dw .cantuse
+	dw .CantUse2 
+	dw .CantUse 
+	dw .CantUse
+	dw .CantUse
 	dw .overworld 
-	dw .fieldmove  
+	dw .FieldMove  
 	
-.cantuse ; 04:6CF6
+.CantUse ; 04:6CF6
 	call RefreshScreen
 	call PrintCantUseText
 	call Function1fea
 	and a
 	ret
 	
-.simpleuse ; 04:6D01
+.UnusedSimpleUse ; 04:6D01
 	call RefreshScreen
 	call UseItem
 	call Function1fea
@@ -1826,18 +1830,18 @@ UseRegisteredItem: ; 04:6CD9
 	and a
 	ret
 	
-.fieldmove ; 04:6D25
+.FieldMove ; 04:6D25
 	call UseItem
 	ld a, [wFieldMoveSucceeded]
 	and a
-	jr z, .cantuse2
+	jr z, .CantUse2
 	scf
 	ld a, -1
 	ldh [hStartmenuCloseAndSelectHookEnable], a
 	ld a, 4
 	ret
 	
-.cantuse2
+.CantUse2
 	call RefreshScreen
 	call PrintCantUseText
 	call Function1fea
@@ -1949,13 +1953,13 @@ TrainerCardMainInputs: ; 04:6DE3
 	jr nz, .right
 	ld a, [hl]
 	and A_BUTTON
-	jr nz, .apress
+	jr nz, .a
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .exit
 	and a
 	ret
-.apress
+.a
 	ld a, [wFlyDestination]
 	and a
 	jr z, .exit
@@ -2212,47 +2216,47 @@ PlaceTrainerCardBGTile: ; 04:7133
 	ld a, $07
 	ld [hli], a
 	ld e, $11
-.scanloop
+.ScanLoop
 	inc hl
 	dec e
-	jr nz, .scanloop
+	jr nz, .ScanLoop
 	
 	ld a, 9
 	ld [hli], a
 	ld a, 7
 	ld [hli], a
-.biggerloop
+.OuterLoop
 	ld a, 7
 	ld [hli], a
 	ld e, $12
-.anotherloop
+.InnerLoop
 	inc hl
 	dec e
-	jr nz, .anotherloop
+	jr nz, .InnerLoop
 	
 	ld a, 7
 	ld [hli], a
 	dec d
-	jr nz, .biggerloop
+	jr nz, .OuterLoop
 	
 	ld a, 7
 	ld [hli], a
 	ld a, 8
 	ld [hli], a
 	ld e, $11
-.panandscan
+.ScanLoop2
 	inc hl
 	dec e
-	jr nz, .panandscan
+	jr nz, .ScanLoop2
 	
 	ld a, 7
 	ld [hli], a
 	ld e, $14
-.lastloop
+.LastLoop
 	ld a, 7
 	ld [hli], a
 	dec e
-	jr nz, .lastloop
+	jr nz, .LastLoop
 	ret
 	
 ; end of section

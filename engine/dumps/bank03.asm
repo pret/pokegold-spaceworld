@@ -2174,9 +2174,7 @@ Function60a0: ; 03:60a0
 	jr c, .sub_e155
 	push de
 	ld b, $00
-	ld a, BANK(NamingScreen)
-	ld hl, NamingScreen
-	call FarCall_hl
+	callba NamingScreen
 	pop de
 	ld a, [de]
 	cp $50
