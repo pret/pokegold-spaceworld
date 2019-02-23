@@ -1,23 +1,25 @@
 Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,546
-Current total,=SUM(B4:B9999)
-SilentHillsTextString1,16,"text
+Original total,546,,,,,
+Current total,546,,,,,
+SilentHillsTextString1,19,"text
 done","あれ？　カギが　かかっている
-",[SilentHillsText…]
+","Huh?
+It's locked…",,
 SilentHillsTextString2,18,"text
 done","にゅうきょしゃ　ぼしゅうちゅう！
-",[SilentHillsText…]
+",HOUSE FOR RENT,,
 SilentHillsTextString3,22,"text
 line
 done","ここは　サイレント　ヒル
 しずかな　おか
-",[SilentHillsText…]
+","Ever peaceful
+SILENT HILL",,
 SilentHillsTextString4,11,"text
 done","ここは　<PLAYER>　のいえ
-",[SilentHillsText…]
+",<PLAYER>'s house,,
 SilentHillsTextString5,11,"text
 done","ここは　<RIVAL>　のいえ
-",[SilentHillsText…]
+",<RIVAL>'s house,,
 SilentHillsTextRival1,145,"text
 cont
 cont
@@ -42,17 +44,36 @@ cont","<RIVAL>『よう　ちょっと　おまえに
 ⋯⋯ふん！
 じゃあさ　じゃあさー　おまえさー
 じぶんの　ははおや　のこと
-いつも　なんて　よんでる？@",[SilentHillsText…]
-MomNameMenuHeaderUnused,25,"db
+いつも　なんて　よんでる？@","<RIVAL>: Hey,
+there's something
+I've gotta brag
+to you about!
+
+I got an e-mail
+from PROF.OAK!
+Yeah, the famous
+one!
+
+Wha-? You got one
+too?! Man, that's
+no fun!
+
+…Hmph!
+Alright, um,
+then, uh...
+What do you call
+your mother?
+",,
+MomNameMenuHeaderUnused,22,"db
 db
 db
 db","じぶんで　きめる@
 おかあさん　@
 ママ@
-かあちゃん@","じぶんで　きめる@
-おかあさん　@
-ママ@
-かあちゃん@"
+かあちゃん@","NEW NAME@
+MOM@
+MA@
+MOMMY@",,
 SilentHillsTextRival2,104,"text
 line
 cont
@@ -73,12 +94,24 @@ done","<RIVAL>『えー　かっこわりい！
 おれは　ひとあし　おさきに
 オーキドのところへ
 いくことに　するぜ！
-",[SilentHillsText…]
+","<RIVAL>: Haha,
+that's so lame!
+You seriously call
+her something that
+childish?
+Ahhh, that feels
+a bit better.
+
+Alright, I'm off
+to OAK's!
+See ya there!
+",,
 SilentHillsTextNorthExit,22,"text
 line
 done","ちょいまち！
 まってよ！　まてっ　てば！
-",[SilentHillsText…]
+","Stop right there!
+Wait! Wait up!",,
 SilentHillsTextPokemonInGrassString,111,"text
 line
 cont
@@ -103,14 +136,33 @@ done","きみは　まったく
 あっ！　ひょっとして　きみは
 ⋯⋯ちょっと
 ぼくに　ついて　きて！
-",[SilentHillsText…]
+","You don't know
+anything, do you?
+Wild #MON live
+in tall grass!
+
+You need your own
+#MON for your
+protection.
+
+Ah! Are you
+perhaps…?
+…Come with me
+for a sec!
+",,
 SilentHillsTextBackpackString,32,"text
 line
 done","あなたの　りュック　かっこいいわよ
 どこで　てに　いれたの？
-",[SilentHillsText…]
+","That's such a
+cute PACK!
+Where'd you get it?",,Check that the 'd compresses into 1 tile
 SilentHillsTextPokemonHateString,29,"text
 line
 done","よのなかに　ポケモンが　きらいな
 ひとは　いるのかな？
-",[SilentHillsText…]
+","Is there anyone in
+the world who
+doesn't like
+#MON?
+",,

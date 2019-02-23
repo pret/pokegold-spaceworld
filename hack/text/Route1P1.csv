@@ -1,6 +1,6 @@
 Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,145
-Current total,=SUM(B4:B9999)
+Original total,145,,,,,
+Current total,145,,,,,
 Route1P1TextString1,49,"text
 
 para
@@ -11,19 +11,34 @@ done","しょうねん！
 モンスターボールは
 やせいの　ポケモンを　よわらせてから
 つかうのが　きほんだ！
-",[Route1P1TextStr…]
+","Listen well, young
+man!
+
+#BALLs should
+be used only after
+weakening the wild
+#MON!",,
 Route1P1TextString2,34,"text
 line
 done","ぼく　ゆうがた　じゅくの　かえりに
 かわった　ポケモンを　みたよ
-",[Route1P1TextStr…]
+","On my way home
+from cram school
+one evening I saw
+a strange #MON!",,
 Route1P1TextString3,30,"text
 line
 done","このさき　しずかな　おか
 やせいの　ポケモンに　ちゅうい
-",[Route1P1TextStr…]
+","Beyond here lies
+the silent hills.
+
+Beware of wild
+#MON.",,"Hmm... What to do about this? The route is called しずかなおか, while the town is called サイレントヒル."
 Route1P1TextString4,32,"text
 line
 done","ここは　１ばん　どうろ
 サイレントヒル　⋯⋯　オールドシティ
-",[Route1P1TextStr…]
+","ROUTE 1
+SILENT HILL -
+OLD CITY",,

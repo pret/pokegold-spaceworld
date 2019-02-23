@@ -1,6 +1,6 @@
 Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,2870
-Current total,=SUM(B4:B9999)
+Original total,2870,,,,,
+Current total,2870,,,,,
 SilentLabP1TextString1,182,"text
 line
 
@@ -41,23 +41,53 @@ done","パソコンを　みると
 かくうの　#なのでは
 ないでしょうか<⋯⋯>
 <⋯⋯>　<⋯⋯>　<⋯⋯>じょしゅより
-",[SilentLabP1Text…]
+","An e-mail is
+displayed on
+the screen!
+
+...
+PROF.OAK!
+The world is in
+a terrible stir
+over your unknown
+whereabouts!
+
+As for the #MON
+the professor
+requested I search
+for, I am yet to
+find even a single
+lead - let alone
+deduce its
+location.
+
+I suppose that's
+to be expected…
+After all,
+it's high up
+in the sky.
+
+Regards,
+Your AIDE",,
 SilentLabP1TextString2A,32,"text
 line
 done","スタート　ボタンを　プシュ！
 おすと　メニューが　ひらくなり
-",[SilentLabP1Text…]
+","Push START to
+open the MENU!",,From RG.
 SilentLabP1TextString2B,30,"text
 line
 done","セーブするには　#　レポート
 こまめに　かくと　いいなり
-",[SilentLabP1Text…]
+","The SAVE option is
+on the MENU
+screen.",,From RG.
 SilentLabP1TextString3,12,"text
 done","カギが　かかっている
-",[SilentLabP1Text…]
+",It's locked.,,
 SilentLabP1TextString4,14,"text
 done","オーキド『ごくろうさん！
-",[SilentLabP1Text…]
+",OAK: Good work!,,
 SilentLabP1TextString5,89,"text
 line
 cont
@@ -74,7 +104,17 @@ line","オーキド『そうとも！
 この　オーキドが　よんだのじゃ！
 
 すこし　わしの　はなしを
-きいては　くれんか？@",[SilentLabP1Text…]
+きいては　くれんか？@","OAK: Indeed! I am
+PROF.OAK. You've
+got quite the
+mouth on you!
+
+It is indeed I who
+called you here!
+
+Won't you listen
+for a while?
+",,
 SilentLabP1TextString6A,388,"text
 line
 cont
@@ -151,7 +191,59 @@ done","オーキド『いまから　１ねんまえ
 <PLAYER>！　<RIVAL>！
 #けんきゅうの　ために
 ちからを　かして　くれんか！
-",[SilentLabP1Text…]
+","OAK: One year ago,
+in KANTO, I
+entrusted two boys
+much like you
+with a #MON and
+a #DEX each,
+to assist in
+my research.
+
+In the end,
+they did an
+astounding job!
+
+They succeeded in
+discovering 150
+species of
+#MON!
+But… However…
+
+It's a vast world
+we live in. After
+that, new #MON
+started being
+found all over
+the country!
+
+Therefore, I moved
+from KANTO to
+here, SILENT HILL,
+to establish a new
+laboratory!
+
+Because, you see,
+in a new place,
+new #MON may
+well be found.
+…
+
+
+I'll be hard at
+work doing
+research from
+now on, but as you
+see, I'm growing
+old. My grandson
+and AIDEs help,
+but aren't quite
+enough!
+
+<PLAYER>!
+<RIVAL>!
+Please help me
+research #MON!",,
 SilentLabP1TextString6B,91,"text
 line
 cont
@@ -172,24 +264,40 @@ done","オーキド『そうか<⋯⋯>
 
 な？
 わしの　はなしを　きいてくれるな？
-",[SilentLabP1Text…]
+","OAK: Oh… I suppose
+I might not be as
+good a judge of
+character
+as I thought.
+
+…No! It can't be!
+I have an eye for
+this sort of
+thing!
+
+You'll surely
+listen, no?",,
 SilentLabP1TextString7,29,"text
 line
 done","オーキド『ふたりとも！
 ちょっと　わしに　ついてこい！
-",[SilentLabP1Text…]
+","OAK: Follow me,
+you two!",,
 SilentLabP1TextString8,31,"text
 line
 cont
 done","オーキド『<PLAYER>！<RIVAL>！
 このずかんを
 おまえたちに　あずける！
-",[SilentLabP1Text…]
+","OAK: <PLAYER> and
+<RIVAL>! Take
+these with you!",,"Almost identical to RG, except with two extra exclamation marks."
 SilentLabP1TextString9,23,"text
 line
 done","<PLAYER>は　オーキドから
 #ずかんを　もらった！
-",[SilentLabP1Text…]
+","<PLAYER> got
+#DEX from OAK!",,From RG.
 SilentLabP1TextString10,206,"text
 line
 cont
@@ -228,14 +336,41 @@ done","オーキド『この　せかいの　すべての
 さっそく　しゅっぱつ　してくれい！
 これは　#の　れきしに　のこる
 いだいな　しごとじゃー！
-",[SilentLabP1Text…]
+","OAK: To make a
+complete guide on
+all the POKéMON
+in the world…
+
+That was my dream!
+
+But new #MON
+are being found
+even as we speak.
+
+I don't have
+enough time left
+in this world.
+
+So, I want you two
+to fulfill my
+dream for me!
+
+Get moving, you
+two!
+
+This is a great
+undertaking in
+POKéMON history!",,Edited from RG.
 SilentLabP1TextString11A,32,"text
 line
 cont
 done","オーキド『せかい　じゅうの
 #たちが
 <PLAYER>を　まって　おるぞー
-",[SilentLabP1Text…]
+","OAK: POKéMON
+around the world
+wait for you,
+RED!",,From RG.
 SilentLabP1TextString11B,125,"text
 line
 cont
@@ -264,7 +399,25 @@ done","オーキド『おう！　<PLAYER>
 
 #ずかんの　ぺージが
 きに　なるからな
-",[SilentLabP1Text…]
+","Oak: <PLAYER>!
+How is the #MON
+I gave you doing?
+
+Oho! It seems to
+have taken a
+liking to you.
+
+It looks like you
+have a knack for
+being a trainer.
+
+I'm interested to
+see how your
+#DEX develops,
+so please come by
+and say hello
+once in a while!
+",,
 SilentLabP1TextString12,51,"text
 line
 cont
@@ -277,7 +430,12 @@ done","オーキド『よく　きたな！
 
 どれ<⋯⋯>　ちょっと
 みて　あげようか！
-",[SilentLabP1Text…]
+","OAK: Good to see
+you! How is your
+#DEX coming?
+
+Here, let me take
+a look!",,"From RG (probably, I only checked the English script for this one)"
 SilentLabP1TextString13,121,"text
 line
 
@@ -310,7 +468,27 @@ done","オーキド『<⋯⋯>　おっほんッ！
 でんせつの　#が
 ほしかった　だけじゃないのか？
 <RIVAL>『ギクッ！
-",[SilentLabP1Text…]
+","OAK: …Oho! Well
+done, <PLAYER>!
+
+Come with me for
+just a moment.
+
+Sorry, <RIVAL>,
+but you'll have
+to wait there.
+
+<RIVAL>: Whaaat!
+C'mon, me too!
+
+OAK: <RIVAL>,
+you were just
+after the
+legendary
+#MON, weren't
+you?
+
+<RIVAL>: Urk! ",,
 SilentLabP1TextString14,55,"text
 line
 cont
@@ -321,19 +499,31 @@ done","<RIVAL>『なんだ
 おれも　ここが
 あやしいと　おもって　きたんだけど
 だれも　いないみたいだな<⋯⋯>
-",[SilentLabP1Text…]
+","<RIVAL>: Well, if
+it isn't <PLAYER>!
+I thought this
+place looked
+suspicious too,
+but it looks like
+nobody's here… ",,
 SilentLabP1TextString15,25,"text
 line
 done","<RIVAL>『よっしゃあ！
 じいさん！　おれにまかせな！
-",[SilentLabP1Text…]
+","<RIVAL>: Alright!
+Leave it to me,
+old man!",,
 SilentLabP1TextString16,44,"text
 line
 cont
 done","<RIVAL>『おれが　えらんだ
 #のほうが　つよそうだぜ！
 こっちに　したかったんじゃないの？
-",[SilentLabP1Text…]
+","<RIVAL>: My
+#MON looks
+stronger!
+Sure you didn't
+want this one?",,
 SilentLabP1TextString17,48,"text
 line
 cont
@@ -344,12 +534,20 @@ done","<RIVAL>『<PLAYER>！
 #　もらったんだから
 <⋯⋯>　ちょっと
 たたかわせて　みようぜ！
-",[SilentLabP1Text…]
+","<RIVAL>: Hey,
+<PLAYER>, since
+we just got these
+#MON and all…
+
+Let's try 'em out
+in a battle!",,
 SilentLabP1TextString18,26,"text
 line
 done","<RIVAL>『くっそー！
 こんどは　ぜったい　まけないぞ！
-",[SilentLabP1Text…]
+","<RIVAL>: Darn it!
+I won't lose
+next time!",,
 SilentLabP1TextString19,49,"text
 line
 cont
@@ -360,12 +558,19 @@ done","<RIVAL>『よーし！
 もっと　もっと　つよくしよう！
 
 そんじゃ　ばいばい！
-",[SilentLabP1Text…]
+","<RIVAL>: Okay!
+I'll make my
+#MON fight to
+toughen it up!
+
+<PLAYER>! Old man!
+See ya later!",,
 SilentLabP1TextString20,17,"text
 line
 done","じいちゃん！
 つれてきたよー！
-",[SilentLabP1Text…]
+","Gramps!
+Look who I found!",,
 SilentLabP1TextString21,228,"text
 line
 cont
@@ -408,14 +613,42 @@ done","ぼくは　かつて
 じどうてきに　かきこまれて
 ぺージが　ふえて　いく　という
 とても　ハイテクな　ずかん　だよ！
-",[SilentLabP1Text…]
+","I used to want to
+be the world's best
+#MON trainer.
+When I got too
+arrogant, there
+was one who showed
+me humility.
+Somehow… you
+remind me of him.
+
+Thanks to him, I
+was able to mend
+my ways.
+Since, I've started
+helping my grandpa
+with his research.
+…
+…
+
+Right! This here's
+the #DEX!
+
+It automatically
+records data on
+POKéMON you've
+seen or caught!",,
 SilentLabP1TextString22,36,"text
 line
 cont
 done","ぼくも　むかし　やったけど
 なかなか　たいへんだよ<⋯⋯>
 がんばってね！
-",[SilentLabP1Text…]
+","I did the same
+work you did long
+ago, but it's real
+hard… Good luck!",,
 SilentLabP1TextString23,477,"text
 line
 cont
@@ -506,12 +739,62 @@ done","ナナミ『さっき　あなたを　
 
 <⋯⋯>あなたの　かつやく
 いのっているわ
-",[SilentLabP1Text…]
+","DAISY: The young
+boy who brought
+you here… That's
+my little brother.
+In other words…
+
+I'm PROF.OAK's
+granddaughter!
+
+Grandpa's a
+fantastic
+researcher! I'm so
+happy I get to
+help out. Oh, but
+grandpa would get
+full of himself
+if he heard that,
+so don't tell him!
+
+…Grandpa seems to
+have completely
+forgotten, so…
+
+I guess I'll give
+this to you! It's
+the newest model
+of #PACK!
+
+<PLAYER> received
+a #PACK!
+
+DAISY: This PACK
+comes with a BALL
+HOLDER for #
+BALLs, and a TM
+HOLDER for TMs!
+
+I'll throw in six
+# BALLs and a TM
+as a freebie!
+
+<PLAYER>, we can't
+have your mother
+worrying, so
+before you leave
+town, make sure
+to say goodbye.
+
+I'll be rooting
+for you!",,
 SilentLabP1TextString24,19,"text
 line
 done","<⋯⋯>あなたの　かつやく
 いのってるわ
-",[SilentLabP1Text…]
+","I'll be rooting
+for you!",,
 SilentLabP1TextString25,83,"text
 line
 
@@ -530,7 +813,17 @@ done","わたしは
 あなた　とは　また　どこかで
 おあい　することに
 なるような　きがします
-",[SilentLabP1Text…]
+","I am one of PROF.
+OAK's AIDEs.
+
+Of course,
+I respect the
+professor greatly.
+
+I have a feeling
+that we'll see
+each other again.
+",,
 SilentLabP1TextString26,83,"text
 line
 
@@ -549,12 +842,23 @@ done","わたしは
 あなた　とは　また　どこかで
 おあい　することに
 なるような　きがします
-",[SilentLabP1Text…]
+","I am one of PROF.
+OAK's AIDEs.
+
+Of course,
+I respect the
+professor greatly.
+
+I have a feeling
+that we'll see
+each other again.
+",,
 SilentLabP1TextString27,21,"text
 line
 done","なんだろう？
 でんし　てちょう　かな？
-",[SilentLabP1Text…]
+","What's this…?
+Some sort of PDA?",,
 SilentLabP1TextString28,66,"text
 line
 
@@ -567,14 +871,25 @@ done","<RIVAL>『あのメールを　くれた
 あっ　ゴメン
 こんな　じいさん　なのか？
 ほんもの　はじめて　みたよ！
-",[SilentLabP1Text…]
+","<RIVAL>: I can't
+believe this old
+geezer is
+PROF.OAK…
+
+Oh, sorry, I mean…
+“old man”? It's
+the first time I
+see him in person!",,
 SilentLabP1TextString29,25,"text
 line
 cont
 done","<RIVAL>『<PLAYER>！
 なんだか
 おもしろく　なってきたな！
-",[SilentLabP1Text…]
+","<RIVAL>: Hey
+<PLAYER>!
+This just got
+interesting!",,
 SilentLabP1TextString30,56,"text
 line
 
@@ -587,7 +902,12 @@ done","わたしは
 あなた　とは　また　どこかで
 おあい　することに
 なるような　きがします
-",[SilentLabP1Text…]
+","I'm one of PROF.
+OAK's AIDEs.
+
+I have a feeling
+that we'll see
+each other again.",,
 SilentLabP1TextString31,56,"text
 line
 
@@ -600,4 +920,9 @@ done","わたしは
 あなた　とは　また　どこかで
 おあい　することに
 なるような　きがします
-",[SilentLabP1Text…]
+","I'm one of PROF.
+OAK's AIDEs.
+
+I have a feeling
+that we'll see
+each other again.",,

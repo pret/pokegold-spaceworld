@@ -1,19 +1,26 @@
 Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,245
-Current total,=SUM(B4:B9999)
+Original total,245,,,,,
+Current total,245,,,,,
 Route1P2TextString1,36,"text
 line
 done","まあ　かわいらしい　トレーナーやこと
 うちと　ポケモン　しはります？
-",[Route1P2TextStr…]
+","What a lovely
+trainer you are!
+Won't you partake
+in a battle?",,
 Route1P2TextString2,13,"text
 done","いやあ　かんにんやわあ
-",[Route1P2TextStr…]
+","Oh, my apologies…",,
 Route1P2TextString3,34,"text
 line
 done","かわいい　かおして　つよおすなあ
 その　ちょうしで　おきばりやす
-",[Route1P2TextStr…]
+","You look cute, but
+you truly don't
+hold back! You'll
+strain yourself
+like that.",,
 Route1P2TextString4,130,"text
 
 para
@@ -42,9 +49,31 @@ done","シゲル『おっ　サトシじゃないか！
 
 ここで　ひきかえしたほうが　いいぜ！
 じゃあな
-",[Route1P2TextStr…]
+","GARY: Oh! If it
+isn't ASH!
+
+Guess you actually
+made it all the
+way here.
+Even though you're
+a wimp! Don't push
+yourself, huh?
+
+You've got your
+work cut out for
+you, don'tcha?
+Like catching more
+#MON, or
+raising lotsa
+different types
+of #MON.
+
+You should turn
+back here! See ya!",,
 Route1P2TextString5,32,"text
 line
 done","ここは　１ばん　どうろ
 サイレントヒル　⋯⋯　オールドシティ
-",[Route1P2TextStr…]
+","ROUTE 1
+SILENT HILL -
+OLD CITY",,

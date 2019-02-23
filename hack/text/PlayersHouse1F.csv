@@ -1,6 +1,6 @@
 Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,90
-Current total,=SUM(B4:B9999)
+Original total,90,,,,,
+Current total,90,,,,,
 PlayersHouse1FTextString1,90,"text
 line
 cont
@@ -17,4 +17,13 @@ done","おかあさん『えっ　あなた
 すごいじゃない！
 わたしも　ポケモン　きらいって
 わけじゃないし　がんばるのよ！
-",[PlayersHouse1FT…]
+","MOM: Oh, you were
+asked by PROF.OAK
+to help make a new
+#DEX?
+
+That's wonderful!
+I may not know too
+much about #-
+MON, but I'll be
+rooting for you!",,

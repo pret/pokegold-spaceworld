@@ -1,6 +1,6 @@
 Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,901
-Current total,=SUM(B4:B9999)
+Original total,901,,,,,
+Current total,901,,,,,
 PlayersHouse2FTextString1,192,"text
 line
 cont
@@ -35,7 +35,30 @@ done","ケン『おっ　おまえの　うでで
 かいものに　いってるから
 おこづかいを　もらおうなんて
 きょうは　むり　だぜ！
-",[PlayersHouse2FT…]
+","KEN: Oh! That
+shiny thing on
+your wrist...
+You finally bought
+a TRAINER GEAR!
+
+Sweet! But...
+Since it's new and
+all, you can't do
+much more than
+check the time,
+can you?
+I'll enable the
+map for ya later!
+You're going out
+anyway, right?
+
+Mom's out
+shopping, so if
+you were hoping to
+ask for some
+spending money,
+that's too bad!
+",,
 PlayersHouse2FTextString2,51,"text
 line
 cont
@@ -44,14 +67,22 @@ done","そうだ　おまえの　パソコンに
 メールが　とどいていたな
 でかけるんなら
 メールぐらい　よんでおけよ
-",[PlayersHouse2FT…]
+","Oh, right, I saw
+your PC got a new
+e-mail. At least
+check that before
+you leave, huh?
+",,
 PlayersHouse2FTextString3,40,"text
 line
 cont
 done","クりスマスに　カントーの
 しんせきに　プレゼント
 してもらった　にんぎょうだ
-",[PlayersHouse2FT…]
+","It's a doll you
+got as a Christmas
+present from a
+relative in KANTO.",,
 PlayersHouse2FTextString4,48,"text
 cont
 cont
@@ -60,7 +91,11 @@ done","ニンテンドウ６４を　してる！
 ⋯⋯　⋯⋯　さてと！
 そろそろ　そとに　あそびに
 でかけるか！
-",[PlayersHouse2FT…]
+","You're playing the
+Nintendo 64!
+…Alright!
+It's time to go
+play outside!",,Similar but not identical to the SNES line from RG.
 PlayersHouse2FTextString5,53,"text
 line
 
@@ -71,7 +106,13 @@ cont","<PLAYER>は
 
 おや？　<PLAYER>あてに
 メールが　とどいている　ようだ
-よんでみる？@",[PlayersHouse2FT…]
+よんでみる？@","<PLAYER> turned on
+the PC.
+
+What's this? There seems to be a new
+e-mail addressed
+to <PLAYER>. 
+Read it?@",,Don't know if this'll work properly with the @ at the end there - test in-game.
 PlayersHouse2FTextString6,92,"text
 line
 
@@ -86,12 +127,23 @@ done","とつぜん　メールを　さしあげる
 わたしたい　ものが　あるのじゃが
 うけとって　もらえんかのう
 ポケモンけんきゅうしゃ　オーキド
-",[PlayersHouse2FT…]
+","I hope you'll
+excuse the sudden
+e-mail, but there's
+something that I
+would like to
+entrust you with.
+Won't you come by
+and collect it?
+
+#MON researcher
+OAK",,
 PlayersHouse2FTextString7,11,"text
 line
 done","あとで
 よもっと<⋯⋯>
-",[PlayersHouse2FT…]
+","I'll read this
+later…",,
 PlayersHouse2FTextString8,157,"text
 line
 cont
@@ -122,7 +174,31 @@ done","しんはつばい　トレーナーギア！
 もうしこみさきは⋯⋯
 ⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯
 シルフの　ホームぺージだ
-",[PlayersHouse2FT…]
+","Introducing: the
+TRAINER GEAR! The
+cutting edge watch
+for #MON
+trainers!
+
+Of course you can
+use it to tell the
+time, but with a
+certain cartridge,
+you can even tell
+where you are on a
+map! You can also
+call people!
+
+As if that wasn't
+enough, it even
+lets you listen
+to the radio!
+
+To order, go to…
+
+It's Silph Co.'s
+homepage.
+",,
 PlayersHouse2FTextString9,257,"text
 line
 
@@ -175,4 +251,35 @@ done","<PLAYER>は
 <⋯⋯><⋯⋯><⋯⋯><⋯⋯><⋯⋯><⋯⋯>
 それでは　ひきつづき
 おんがくを　おたのしみ　ください
-",[PlayersHouse2FT…]
+","<PLAYER> turned on
+the radio.
+
+You're listening
+to JOPM, the
+#MON broadcast
+station!
+
+It's time for
+#MON news.
+World-famous
+#MON researcher
+PROF.OAK has dis-
+appeared from
+KANTO! It may be
+that he has left
+for a new place
+to study, but we
+can't yet discount
+the possibility
+that he has been
+involved in some
+sort of incident.
+Those who know him
+are very worried.
+
+…That concludes
+today's news.
+
+…
+
+Coming up, music.",,

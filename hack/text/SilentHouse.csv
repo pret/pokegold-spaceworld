@@ -1,11 +1,15 @@
 Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,454
-Current total,=SUM(B4:B9999)
+Original total,454,,,,,
+Current total,454,,,,,
 SilentHouseTextString1,33,"text
 line
 cont","おや？　<RIVAL>あてに　メールが
 とどいている　ようだ
-よんでみる？@",[SilentHouseText…]
+よんでみる？@","What's this? There
+seems to be a new
+e-mail addressed
+to <RIVAL>.
+Read it?@",,
 SilentHouseTextString2,92,"text
 line
 
@@ -20,17 +24,30 @@ done","とつぜん　メールを　さしあげる
 わたしたい　ものが　あるのじゃが
 うけとって　もらえんかのう
 ポケモンけんきゅうしゃ　オーキド
-",[SilentHouseText…]
+","I hope you'll
+excuse the sudden
+e-mail, but there's
+something that I
+would like to
+entrust you with.
+Won't you come by
+and collect it?
+
+#MON researcher
+OAK",,
 SilentHouseTextString3,21,"text
 line
 done","ひとのメールは
 みちゃ　いけないよな<⋯⋯>
-",[SilentHouseText…]
+","Right. I shouldn't
+read others' mail.",,
 SilentHouseTextString4,25,"text
 line
 done","このまえ　かわったいろの
 ポッポを　みかけたわ
-",[SilentHouseText…]
+","The other day I
+saw a strange-
+colored PIDGEY!",,
 SilentHouseTextString5,152,"text
 line
 
@@ -61,7 +78,26 @@ done","ケン『ななな
 スロットに　マップの　カセットを　
 さしこんでっと⋯⋯
 よし　これで　マップが　みれるぞ！
-",[SilentHouseText…]
+","KEN: Wh- wha-… If
+it isn't <PLAYER>!
+
+I'm, uh… I'm here
+to help out with
+homework! Yeah!
+
+Huh? A map? Right,
+I promised to help
+with that, didn't
+I? Hand me your
+TRAINER GEAR for
+a second.
+
+By putting the map
+cartridge into
+this slot here…
+There we go!
+Now you can use
+the map.",,
 SilentHouseTextString6,77,"text
 line
 
@@ -76,7 +112,17 @@ done","もし　オールドにいくなら
 すごい　ポケモン　マニアだ！
 きっと　おまえの
 てだすけを　してくれるぜ
-",[SilentHouseText…]
+","KEN: If you're
+going to OLD CITY,
+you should look
+for a guy called
+BILL!
+
+He's a friend of
+mine who knows a
+lot about #MON.
+I'm sure he'll
+help you out!",,
 SilentHouseTextString7,54,"text
 line
 cont
@@ -85,4 +131,8 @@ done","ケン『<PLAYER>
 オーキドはかせに　みこまれて
 ポケモンずかんを　つくるんだって？
 すごいじゃないか　がんばれよ
-",[SilentHouseText…]
+","KEN: You were
+invited by PROF.
+OAK to help make a
+new #DEX? Whoa!
+Good luck!",,
