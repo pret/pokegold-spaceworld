@@ -1,8 +1,8 @@
 Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
 Original total,797,,,,,
 Current total,797,,,,,
-DemoPlayerName,4,db,サトシ@,Ash@,,
-DemoRivalName,5,db,シゲル@,Gary@,,
+DemoPlayerName,4,db,サトシ@,ASH@,,
+DemoRivalName,5,db,シゲル@,GARY@,,
 OakSpeechDemo,219,"text
 line
 cont
@@ -221,8 +221,8 @@ A world of dreams
 and adventures
 with #MON
 awaits! Let's go!",,
-DebugPlayerName,5,db,コージ@,Koji@,,
-DebugRivalName,4,db,レッド@,Red@,,
+DebugPlayerName,5,db,コージ@,KOJI@,,
+DebugRivalName,4,db,レッド@,RED@,,
 ChoosePlayerNameEndText,18,"text
 line
 prompt","ふむ・・・
@@ -236,9 +236,9 @@ db","じぶんできめる@
 ゴールド@
 サトシ@
 ジャック@","NEW NAME@
-Gold@
-Ash@
-Jack@",,
+GOLD@
+ASH@
+JACK@",,
 PlayerNameMenuHeader,5,db,なまえこうほ@,NAME@,,
 ChooseRivalNameEndText,23,"text
 line
