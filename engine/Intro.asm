@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/intro.inc"
 
 SECTION "Oak Intro and Game Setup", ROMX[$558D], BANK[$01]
 
@@ -366,101 +367,34 @@ DemoItemList:: ; 5868
 	db $FF
 	
 DemoPlayerName:: ; 5873
-	db "サトシ@"
+	text_DemoPlayerName
 	
 DemoRivalName:: ; 5877
-	db "シゲル@"
+	text_DemoRivalName
 	
 OakSpeechDemo:: ; 587B
-	text "ようこそ" 
-	line "ポケット　モンスターの　せかいへ！"
-	cont "ごぞんじ　わしが　オーキドじゃ！"
-	
-	para "きょう　きみに　きてもらったのは"
-	line "ほかでもない"
-	cont "あたらしい　ずかんづくりを"
-	cont "てつだって　ほしいのじゃ！"
-	
-	para "もちろん"
-	line "きみの　パートナーとなる　ポケモンと"
-	cont "りュックは　ようい　しておる"
-	
-	para "りュックの　なかには"
-	line "キズぐすりと"
-	cont "モンスターボールが"
-	cont "はいっておるから　あんしんじゃ！"
-	
-	para "すでに　きみの　ライバルは"
-	line "しゅっぱつ　しとる"
-	
-	para "まけないよう　がんばって　くれい！"
-	prompt
+	text_OakSpeechDemo
 	
 OakSpeech1:: ; 5956
-	text "いやあ　またせた！"
-	
-	para "ポケット　モンスターの　せかいへ"
-	line "ようこそ！"
-	
-	para "わたしの　なまえは　オーキド"
-	
-	para "みんなからは　#　はかせと"
-	line "したわれて　おるよ"
-	prompt
+	text_OakSpeech1
 	
 OakSpeech2:: ; 599F
-	text "きみも　もちろん"
-	line "しっているとは　おもうが"
-	
-	para "この　せかいには"
-	line "ポケット　モンスターと　よばれる"
-	cont "いきもの　たちが"
-	cont "いたるところに　すんでいる！"
-	prompt
+	text_OakSpeech2
 	
 OakSpeech3:: ; 59E8
-	text "その　#　という　いきものを"
-	line "ひとは　ぺットに　したり"
-	cont "しょうぶに　つかったり"
-	cont "そして・・・"
-	
-	para "わたしは　この　#の"
-	line "けんきゅうを　してる　というわけだ"
-	prompt
+	text_OakSpeech3
 	
 OakSpeech4:: ; 5A35
-	text "では　はじめに　きみの　なまえを"
-	line "おしえて　もらおう！"
-	prompt
+	text_OakSpeech4
 	
 OakSpeech5:: ; 5A52
-	text "そして　この　しょうねんは"
-	line "きみの　おさななじみであり"
-	cont"ライバルである"
-	
-	para "・・・えーと？"
-	line "なまえは　なんて　いったかな？"
-	prompt
+	text_OakSpeech5
 	
 OakSpeech6:: ; 5A8F
-	text "さて　きみの　きねんすべき"
-	line "たびだちのひを"
-	cont "きろくしておこう！"
-	
-	para "じかんも　なるべく　せいかくにな！"
-	prompt
+	text_OakSpeech6
 	
 OakSpeech7:: ; 5AC2
-	text "<PLAYER>！"
-	
-	para "いよいよ　これから"
-	line "きみの　ものがたりの　はじまりだ！"
-	
-	para "ゆめと　ぼうけんと！"
-	line "ポケット　モンスターの　せかいへ！"
-	
-	para "レッツ　ゴー！"
-	done
+	text_OakSpeech7
 	
 SetPlayerNamesDebug:: ; 5B07
 	ld hl, DebugPlayerName
@@ -475,10 +409,10 @@ CopyNameDebug:
 	ret
 	
 DebugPlayerName: ; 5B1D
-	db "コージ@"
+	text_DebugPlayerName
 	
 DebugRivalName: ; 5B21
-	db "レッド@"
+	text_DebugRivalName
 	
 ChoosePlayerName:: ; 5B25
 	call PanPortraitRight
@@ -513,9 +447,7 @@ ChoosePlayerName:: ; 5B25
 	ret
 	
 ChoosePlayerNameEndText: ; 5B6F
-	text "ふむ・・・"
-	line "<PLAYER>　と　いうんだな！"
-	prompt
+	text_ChoosePlayerNameEndText
 	
 PlayerNameMenuHeader: ; 5B81
 	db MENU_BACKUP_TILES ; flags
@@ -526,12 +458,9 @@ PlayerNameMenuHeader: ; 5B81
 PlayerNameMenuData; 5B89
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B 
 	db 04 ; items
-	db "じぶんできめる@"
-	db "ゴールド@"
-	db "サトシ@"
-	db "ジャック@"
+	text_PlayerNameMenuHeader_1
 	db 3 ; x offset for the title string
-	db "なまえこうほ@"
+	text_PlayerNameMenuHeader_2
 
 ChooseRivalName:: ; 5BA9
 	call PanPortraitRight
@@ -566,9 +495,7 @@ ChooseRivalName:: ; 5BA9
 	ret
 	
 ChooseRivalNameEndText: ; 5BF3
-	text "そうか　そうだったな"
-	line "<RIVAL>　という　なまえだ"
-	prompt
+	text_ChooseRivalNameEndText
 	
 RivalNameMenuHeader: ; 5C0A
 	db MENU_BACKUP_TILES ; flags
@@ -579,12 +506,9 @@ RivalNameMenuHeader: ; 5C0A
 RivalNameMenuData: ; 5C12
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B 
 	db 04 ; items
-	db "じぶんできめる@"
-	db "シルバー@"
-	db "シゲル@"
-	db "ジョン@"
+	text_RivalNameMenuData_1
 	db 3
-	db "なまえこうほ@"
+	text_RivalNameMenuData_2
 	
 MomNamePrompt:: ; 5C31
 	ld hl, MomNameMenuHeader
@@ -622,12 +546,9 @@ MomNameMenuHeader: ; 5C71
 .MomNameMenuData: ; 5C79
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B 
 	db 04 ; items
-	db "じぶんで　きめる@"
-	db "おかあさん@"
-	db "ママ@"
-	db "かあちゃん@"
+	text_MomNameMenuHeader_1
 	db 3
-	db "なまえこうほ@"
+	text_MomNameMenuHeader_2
 	
 NamingWindow:: ; 5C9B
 	; loads the menu header put into hl

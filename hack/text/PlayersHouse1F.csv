@@ -1,0 +1,20 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,90
+Current total,=SUM(B4:B9999)
+PlayersHouse1FTextString1,90,"text
+line
+cont
+cont
+
+para
+line
+cont
+done","おかあさん『えっ　あなた
+オーキドはかせに
+ポケモンずかんを　つくってくれって
+たのまれたの？
+
+すごいじゃない！
+わたしも　ポケモン　きらいって
+わけじゃないし　がんばるのよ！
+",[PlayersHouse1FT…]

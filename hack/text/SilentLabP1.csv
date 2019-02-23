@@ -1,0 +1,603 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,2870
+Current total,=SUM(B4:B9999)
+SilentLabP1TextString1,182,"text
+line
+
+para
+line
+cont
+cont
+cont
+
+para
+line
+cont
+cont
+cont
+cont
+
+para
+line
+cont
+cont
+done","パソコンを　みると
+なんと　メールが　きていた！
+
+<⋯⋯>　<⋯⋯>　<⋯⋯>
+オーキドはかせ！
+あなたが　ゆくえふめいに
+なっていると　せけんは
+おおさわぎ　です！
+
+それは　そうと
+はかせ　から　みつけるように
+たのまれた　れいの#
+みつけるどころか
+まだ　てがかりも
+つかむことが　できません
+
+やはり　あいつは
+かくうの　#なのでは
+ないでしょうか<⋯⋯>
+<⋯⋯>　<⋯⋯>　<⋯⋯>じょしゅより
+",[SilentLabP1Text…]
+SilentLabP1TextString2A,32,"text
+line
+done","スタート　ボタンを　プシュ！
+おすと　メニューが　ひらくなり
+",[SilentLabP1Text…]
+SilentLabP1TextString2B,30,"text
+line
+done","セーブするには　#　レポート
+こまめに　かくと　いいなり
+",[SilentLabP1Text…]
+SilentLabP1TextString3,12,"text
+done","カギが　かかっている
+",[SilentLabP1Text…]
+SilentLabP1TextString4,14,"text
+done","オーキド『ごくろうさん！
+",[SilentLabP1Text…]
+SilentLabP1TextString5,89,"text
+line
+cont
+
+para
+line
+
+para
+line","オーキド『そうとも！
+わしが　オーキドじゃ！
+じじいで　わるかったな！
+
+おまえたち　ふたりは
+この　オーキドが　よんだのじゃ！
+
+すこし　わしの　はなしを
+きいては　くれんか？@",[SilentLabP1Text…]
+SilentLabP1TextString6A,388,"text
+line
+cont
+cont
+cont
+
+para
+line
+
+para
+line
+cont
+cont
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+cont
+cont
+cont
+
+para
+line
+cont
+done","オーキド『いまから　１ねんまえ
+わしは　カントーで
+きみたちの　ような　しょうねんに
+#の　けんきゅうの　ため
+#と　ずかんを　わたした
+
+そして　かれらは
+じつに　よくやってくれた！
+
+１５０しゅるいの
+#を　みつけることに
+せいこう　したのじゃ！
+が　<⋯⋯>　<⋯⋯>　<⋯⋯>
+しかし　<⋯⋯>　<⋯⋯>
+
+せかいは　ひろいものじゃ
+そのご　ぜんこく　かくちで
+あたらしい　#が　ぞくぞくと
+みつかっておる！
+
+そこで　わしは　カントーから
+ここ　サイレントヒルに
+けんきゅうの　ばしょを　うつした
+
+ばしょが　かわれば
+あたらしい　#にも
+であうことが　できるからな
+<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>
+
+これからも　どんどんと
+けんきゅうを　すすめるが
+わしも　ごらんのとおりの　おいぼれ
+まごや　じょしゅたちも　おるが
+それでも　やはり　かずが　たらん！
+
+<PLAYER>！　<RIVAL>！
+#けんきゅうの　ために
+ちからを　かして　くれんか！
+",[SilentLabP1Text…]
+SilentLabP1TextString6B,91,"text
+line
+cont
+
+para
+line
+cont
+
+para
+cont
+done","オーキド『そうか<⋯⋯>
+わしに　ひとを　みるめが
+なかったと　いうことじゃな<⋯⋯>
+
+いや！
+わしの　ひとを　みるめは
+まちがっては　おらんはず！
+
+な？
+わしの　はなしを　きいてくれるな？
+",[SilentLabP1Text…]
+SilentLabP1TextString7,29,"text
+line
+done","オーキド『ふたりとも！
+ちょっと　わしに　ついてこい！
+",[SilentLabP1Text…]
+SilentLabP1TextString8,31,"text
+line
+cont
+done","オーキド『<PLAYER>！<RIVAL>！
+このずかんを
+おまえたちに　あずける！
+",[SilentLabP1Text…]
+SilentLabP1TextString9,23,"text
+line
+done","<PLAYER>は　オーキドから
+#ずかんを　もらった！
+",[SilentLabP1Text…]
+SilentLabP1TextString10,206,"text
+line
+cont
+cont
+
+para
+cont
+
+para
+line
+
+para
+line
+cont
+
+para
+line
+cont
+cont
+done","オーキド『この　せかいの　すべての
+#を　きろくした
+かんぺきな　ずかんを　つくること！
+それが　わしの　ゆめ　だった！
+
+しかし　しんしゅの　#は
+ぞくぞくと　みつかっている！
+
+わしに　のこされた
+じかんは　すくない！
+
+そこで　おまえ　たちには
+わしの　かわりに
+ゆめを　はたして　ほしいのじゃ！
+
+さあ　ふたりとも
+さっそく　しゅっぱつ　してくれい！
+これは　#の　れきしに　のこる
+いだいな　しごとじゃー！
+",[SilentLabP1Text…]
+SilentLabP1TextString11A,32,"text
+line
+cont
+done","オーキド『せかい　じゅうの
+#たちが
+<PLAYER>を　まって　おるぞー
+",[SilentLabP1Text…]
+SilentLabP1TextString11B,125,"text
+line
+cont
+
+para
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+done","オーキド『おう！　<PLAYER>
+どうだ？
+わしの　あげた　#は<⋯⋯>？
+
+ほう！
+だいぶ　なついた　みたいだな
+
+おまえには　#トレーナーの
+さいのうが　あるかもしれん
+これからも　ときどきは
+わしのところへ　かおを　だせ！
+
+#ずかんの　ぺージが
+きに　なるからな
+",[SilentLabP1Text…]
+SilentLabP1TextString12,51,"text
+line
+cont
+
+para
+cont
+done","オーキド『よく　きたな！
+#ずかんの
+ちょうしは　どうかな？
+
+どれ<⋯⋯>　ちょっと
+みて　あげようか！
+",[SilentLabP1Text…]
+SilentLabP1TextString13,121,"text
+line
+
+para
+line
+
+para
+line
+
+para
+line
+
+para
+line
+cont
+cont
+done","オーキド『<⋯⋯>　おっほんッ！
+よくやったな　<PLAYER>！
+
+ちょっと
+わしに　ついて　きなさい！
+
+<RIVAL>は　すまんが
+そこで　まっていなさい！
+
+<RIVAL>『えー！
+なんだよ　ケチー！
+
+オーキド『<RIVAL>は
+でんせつの　#が
+ほしかった　だけじゃないのか？
+<RIVAL>『ギクッ！
+",[SilentLabP1Text…]
+SilentLabP1TextString14,55,"text
+line
+cont
+cont
+cont
+done","<RIVAL>『なんだ
+<PLAYER>じゃないか！
+おれも　ここが
+あやしいと　おもって　きたんだけど
+だれも　いないみたいだな<⋯⋯>
+",[SilentLabP1Text…]
+SilentLabP1TextString15,25,"text
+line
+done","<RIVAL>『よっしゃあ！
+じいさん！　おれにまかせな！
+",[SilentLabP1Text…]
+SilentLabP1TextString16,44,"text
+line
+cont
+done","<RIVAL>『おれが　えらんだ
+#のほうが　つよそうだぜ！
+こっちに　したかったんじゃないの？
+",[SilentLabP1Text…]
+SilentLabP1TextString17,48,"text
+line
+cont
+cont
+cont
+done","<RIVAL>『<PLAYER>！
+せっかく　じいさんに
+#　もらったんだから
+<⋯⋯>　ちょっと
+たたかわせて　みようぜ！
+",[SilentLabP1Text…]
+SilentLabP1TextString18,26,"text
+line
+done","<RIVAL>『くっそー！
+こんどは　ぜったい　まけないぞ！
+",[SilentLabP1Text…]
+SilentLabP1TextString19,49,"text
+line
+cont
+
+para
+done","<RIVAL>『よーし！
+ほかの　#と　たたかわせて
+もっと　もっと　つよくしよう！
+
+そんじゃ　ばいばい！
+",[SilentLabP1Text…]
+SilentLabP1TextString20,17,"text
+line
+done","じいちゃん！
+つれてきたよー！
+",[SilentLabP1Text…]
+SilentLabP1TextString21,228,"text
+line
+cont
+cont
+cont
+cont
+cont
+
+para
+line
+cont
+cont
+cont
+
+para
+line
+
+para
+line
+cont
+cont
+done","ぼくは　かつて
+#トレーナーの　ちょうてんを
+めざしたことが　あるんだ
+そのとき　いいきに　なっていた
+ぼくの　てんぐのはなを
+へしおった　やつに
+きみは　どことなく　にている
+
+あいつの　おかげで　ぼくは
+こころを　いれかえて
+じいさんの　けんきゅうを
+てつだうように　なったのさ
+<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>
+
+さあ！
+これが　#ずかんだ！
+
+みつけた　#の　データが
+じどうてきに　かきこまれて
+ぺージが　ふえて　いく　という
+とても　ハイテクな　ずかん　だよ！
+",[SilentLabP1Text…]
+SilentLabP1TextString22,36,"text
+line
+cont
+done","ぼくも　むかし　やったけど
+なかなか　たいへんだよ<⋯⋯>
+がんばってね！
+",[SilentLabP1Text…]
+SilentLabP1TextString23,477,"text
+line
+cont
+cont
+
+para
+line
+
+para
+cont
+cont
+cont
+cont
+cont
+cont
+
+para
+line
+
+para
+line
+
+para
+line
+
+para
+line
+cont
+cont
+cont
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+cont
+cont
+cont
+
+para
+line
+done","ナナミ『さっき　あなたを　
+つれてきた　わかい　おとこのこ<⋯⋯>
+あれは　わたしの　おとうとなの
+<⋯⋯>ということは　つまり
+
+そう！
+わたしも　オーキドの　まご　なの！
+
+おじいちゃんは　りっぱな
+#けんきゅうしゃよ
+わたしは　おてつだい　できることが
+とっても　うれしいの！
+あっ　こんなこと　しられたら
+おじいちゃん　ちょうしに　のるから
+ないしょに　しておいてね！
+
+<⋯⋯>おじいちゃん　すっかり
+わすれている　みたいだから
+
+わたしが　かわりに　これを　あげる！
+さいしんがた　#りュックよ
+
+<PLAYER>は
+#りュックを　もらった！
+
+ナナミ『この　りュックには
+モンスターボールを
+まとめて　いれられる
+ボールホルダと
+わざマシンを　まとめて　いれられる
+わざマシンホルダが　ついているの
+
+モンスターボール　６こと　
+わざマシンひとつは　オマケしておくわ
+ホルダに　なんにも　はいってないと
+さびしいもんね！
+
+ねえ　<PLAYER>くン
+あなたの　おかあさんが
+しんぱいすると　いけないから
+このまちを　でるまえに
+かおを　みせに　いってあげてね
+
+<⋯⋯>あなたの　かつやく
+いのっているわ
+",[SilentLabP1Text…]
+SilentLabP1TextString24,19,"text
+line
+done","<⋯⋯>あなたの　かつやく
+いのってるわ
+",[SilentLabP1Text…]
+SilentLabP1TextString25,83,"text
+line
+
+para
+line
+
+para
+line
+cont
+done","わたしは
+はかせの　じょしゅ　です
+
+わたしは　もちろん
+はかせを　ソンケー　しております
+
+あなた　とは　また　どこかで
+おあい　することに
+なるような　きがします
+",[SilentLabP1Text…]
+SilentLabP1TextString26,83,"text
+line
+
+para
+line
+
+para
+line
+cont
+done","わたしは
+はかせの　じょしゅ　です
+
+わたしは　もちろん
+はかせを　ソンケー　しております
+
+あなた　とは　また　どこかで
+おあい　することに
+なるような　きがします
+",[SilentLabP1Text…]
+SilentLabP1TextString27,21,"text
+line
+done","なんだろう？
+でんし　てちょう　かな？
+",[SilentLabP1Text…]
+SilentLabP1TextString28,66,"text
+line
+
+para
+line
+cont
+done","<RIVAL>『あのメールを　くれた
+オーキドって　こんな　じじい<⋯⋯>
+
+あっ　ゴメン
+こんな　じいさん　なのか？
+ほんもの　はじめて　みたよ！
+",[SilentLabP1Text…]
+SilentLabP1TextString29,25,"text
+line
+cont
+done","<RIVAL>『<PLAYER>！
+なんだか
+おもしろく　なってきたな！
+",[SilentLabP1Text…]
+SilentLabP1TextString30,56,"text
+line
+
+para
+line
+cont
+done","わたしは
+はかせの　じょしゅ　です
+
+あなた　とは　また　どこかで
+おあい　することに
+なるような　きがします
+",[SilentLabP1Text…]
+SilentLabP1TextString31,56,"text
+line
+
+para
+line
+cont
+done","わたしは
+はかせの　じょしゅ　です
+
+あなた　とは　また　どこかで
+おあい　することに
+なるような　きがします
+",[SilentLabP1Text…]

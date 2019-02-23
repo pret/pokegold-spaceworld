@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/Route1P1.inc"
 
 SECTION "Route 1 East", ROMX[$7B98], BANK[$36]
 
@@ -50,26 +51,15 @@ Route1P1TextSign2: ; 7BD0
 	ret
 	
 Route1P1TextString1: ; 7BD7
-	text "しょうねん！"
-	
-	para "モンスターボールは"
-	line "やせいの　ポケモンを　よわらせてから"
-	cont "つかうのが　きほんだ！"
-	done
+	text_Route1P1TextString1
 	
 Route1P1TextString2: ; 7C08
-	text "ぼく　ゆうがた　じゅくの　かえりに"
-	line "かわった　ポケモンを　みたよ"
-	done
+	text_Route1P1TextString2
 	
 Route1P1TextString3: ; 7C2A
-	text "このさき　しずかな　おか"
-	line "やせいの　ポケモンに　ちゅうい"
-	done
+	text_Route1P1TextString3
 	
 Route1P1TextString4:; 7C48
-	text "ここは　１ばん　どうろ"
-	line "サイレントヒル　⋯⋯　オールドシティ"
-	done
+	text_Route1P1TextString4
 	
 ; 7C68

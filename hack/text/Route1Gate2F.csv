@@ -1,0 +1,51 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,198
+Current total,=SUM(B4:B9999)
+Route1Gate2FTextString1,57,"text
+
+para
+line
+cont
+done","ガンテツさんって　しってる？
+
+ガンテツさんに
+きに　いられるように　なれば
+トレーナーとして　たいしたもの　よ
+",[Route1Gate2FTex…]
+Route1Gate2FTextString2,65,"text
+line
+
+para
+line
+cont
+cont
+done","あなた　かんこうで　きたの？
+なら　ざんねんね
+
+オールドシティの
+ごじゅうのとう　は
+だれでも　はいれる　って
+ものじゃないわ
+",[Route1Gate2FTex…]
+Route1Gate2FTextString3,39,"text
+line
+
+para
+line
+done","<PLAYER>は
+ぼうえんきょうを　のぞいた！
+
+むむむ！
+たかーい　とう　が　みえる！
+",[Route1Gate2FTex…]
+Route1Gate2FTextString4,37,"text
+line
+
+para
+line
+done","<PLAYER>は
+ぼうえんきょうを　のぞいた！
+
+むむ？
+ながーい　かわ　が　みえる
+",[Route1Gate2FTex…]

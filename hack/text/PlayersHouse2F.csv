@@ -1,0 +1,178 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,901
+Current total,=SUM(B4:B9999)
+PlayersHouse2FTextString1,192,"text
+line
+cont
+cont
+
+para
+line
+cont
+cont
+cont
+cont
+cont
+
+para
+line
+cont
+cont
+done","ケン『おっ　おまえの　うでで
+ひかりかがやく　そのとけいは⋯⋯
+<PLAYER>も　ついに
+トレーナーギアを　かったのか！
+
+すごいじゃないか！
+でも　かったばかりじゃ　じかんしか
+わからないだろ？
+あとで　マップが
+みられるように　してやるよ！
+おまえ　どうせ
+あそびに　いくんだろう？
+
+ざんねんながら　おふくろは
+かいものに　いってるから
+おこづかいを　もらおうなんて
+きょうは　むり　だぜ！
+",[PlayersHouse2FT…]
+PlayersHouse2FTextString2,51,"text
+line
+cont
+cont
+done","そうだ　おまえの　パソコンに
+メールが　とどいていたな
+でかけるんなら
+メールぐらい　よんでおけよ
+",[PlayersHouse2FT…]
+PlayersHouse2FTextString3,40,"text
+line
+cont
+done","クりスマスに　カントーの
+しんせきに　プレゼント
+してもらった　にんぎょうだ
+",[PlayersHouse2FT…]
+PlayersHouse2FTextString4,48,"text
+cont
+cont
+cont
+done","ニンテンドウ６４を　してる！
+⋯⋯　⋯⋯　さてと！
+そろそろ　そとに　あそびに
+でかけるか！
+",[PlayersHouse2FT…]
+PlayersHouse2FTextString5,53,"text
+line
+
+para
+line
+cont","<PLAYER>は
+パソコンの　スイッチを　いれた！
+
+おや？　<PLAYER>あてに
+メールが　とどいている　ようだ
+よんでみる？@",[PlayersHouse2FT…]
+PlayersHouse2FTextString6,92,"text
+line
+
+para
+line
+cont
+cont
+done","とつぜん　メールを　さしあげる
+しつれいを　おゆるしあれ
+
+じつは　きみに　どうしても
+わたしたい　ものが　あるのじゃが
+うけとって　もらえんかのう
+ポケモンけんきゅうしゃ　オーキド
+",[PlayersHouse2FT…]
+PlayersHouse2FTextString7,11,"text
+line
+done","あとで
+よもっと<⋯⋯>
+",[PlayersHouse2FT…]
+PlayersHouse2FTextString8,157,"text
+line
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+
+para
+line
+cont
+done","しんはつばい　トレーナーギア！
+ポケモントレーナーの　ための
+さいせんたんの　とけい　です
+
+じかんが　わかるのは　あたりまえ
+カセットを　ついかすれば
+ばしょも　わかる！　
+でんわが　かけられる！
+
+とどめは
+ラジオを　きくことができる！
+
+もうしこみさきは⋯⋯
+⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯
+シルフの　ホームぺージだ
+",[PlayersHouse2FT…]
+PlayersHouse2FTextString9,257,"text
+line
+
+para
+line
+cont
+
+para
+line
+cont
+cont
+cont
+cont
+cont
+cont
+cont
+cont
+cont
+cont
+
+para
+line
+
+para
+line
+cont
+done","<PLAYER>は
+ラジオのスイッチを　おした！
+
+ジェイ　オー　ピー　エム
+こちらは
+#　ほうそうきょく　です
+
+#ニュースを　おおくりします
+<⋯⋯>　#の　せかいてきな
+けんきゅうしゃ　オーキドはかせが
+カントー　から
+すがたを　けしました
+あらたな　けんきゅうの　ばしょを
+もとめて　いどうした　との
+みかたも　ありますが
+なんらかの　じけんに　まきこまれた
+かのうせいも　あり
+かんけいしゃは　とても
+しんぱい　しています
+
+<⋯⋯><⋯⋯>いじょう
+#ニュースでした
+
+<⋯⋯><⋯⋯><⋯⋯><⋯⋯><⋯⋯><⋯⋯>
+それでは　ひきつづき
+おんがくを　おたのしみ　ください
+",[PlayersHouse2FT…]

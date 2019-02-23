@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/PlayersHouse1F.inc"
 
 SECTION "Player's House 1F", ROMX[$409C], BANK[$34]
 
@@ -47,14 +48,6 @@ PlayersHouse1FNPCText1: ; 40D1
 	ret
 	
 PlayersHouse1FTextString1: ; 40D8
-	text "おかあさん『えっ　あなた"
-	line "オーキドはかせに"
-	cont "ポケモンずかんを　つくってくれって"
-	cont "たのまれたの？"
-	
-	para "すごいじゃない！"
-	line "わたしも　ポケモン　きらいって"
-	cont "わけじゃないし　がんばるのよ！"
-	done
+	text_PlayersHouse1FTextString1
 	
 ; 4132

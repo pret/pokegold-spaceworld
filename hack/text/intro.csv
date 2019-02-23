@@ -1,0 +1,243 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,797,,,,,
+Current total,797,,,,,
+DemoPlayerName,4,db,サトシ@,Ash@,,
+DemoRivalName,5,db,シゲル@,Gary@,,
+OakSpeechDemo,218,"text
+line
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+
+para
+prompt","ようこそ
+ポケット　モンスターの　せかいへ！
+ごぞんじ　わしが　オーキドじゃ！
+
+きょう　きみに　きてもらったのは
+ほかでもない
+あたらしい　ずかんづくりを
+てつだって　ほしいのじゃ！
+
+もちろん
+きみの　パートナーとなる　ポケモンと
+りュックは　ようい　しておる
+
+りュックの　なかには
+キズぐすりと
+モンスターボールが
+はいっておるから　あんしんじゃ！
+
+すでに　きみの　ライバルは
+しゅっぱつ　しとる
+
+まけないよう　がんばって　くれい！
+","Welcome… to the
+world of #MON!
+As you may know,
+I am PROF. OAK!
+
+The reason I have
+brought you here
+today... is that
+I need your help
+putting together
+a new #DEX!
+
+Naturally, I have
+prepared a #MON
+and a BAG for you.
+
+In the BAG, there
+is a POTION and a
+POKé BALL, so
+there is no need
+for worry!
+
+Your RIVAL has al-
+ready gone ahead.
+
+Hang in there!
+I will be counting
+on you!
+",,
+OakSpeech1,73,"text
+
+para
+line
+
+para
+
+para
+line
+prompt","いやあ　またせた！
+
+ポケット　モンスターの　せかいへ
+ようこそ！
+
+わたしの　なまえは　オーキド
+
+みんなからは　#　はかせと
+したわれて　おるよ
+","Oh! Terribly sorry
+to make you wait!
+
+Welcome to the
+world of #MON!
+
+My name is OAK!
+
+People call me
+the #MON PROF!",,"Oak's intro speech is mostly the same as in RGB, with only minor additions and changes here and there."
+OakSpeech2,73,"text
+line
+
+para
+line
+cont
+cont
+prompt","きみも　もちろん
+しっているとは　おもうが
+
+この　せかいには
+ポケット　モンスターと　よばれる
+いきもの　たちが
+いたるところに　すんでいる！
+","As you surely
+already know…
+
+This world is
+inhabited by
+creatures called
+#MON!
+",,
+OakSpeech3,77,"text
+line
+cont
+cont
+
+para
+line
+prompt","その　#　という　いきものを
+ひとは　ぺットに　したり
+しょうぶに　つかったり
+そして・・・
+
+わたしは　この　#の
+けんきゅうを　してる　というわけだ
+","For some people,
+#MON are
+pets. Others use
+them for fights.
+Myself...
+
+I study #MON
+as a profession.",,
+OakSpeech4,29,"text
+line
+prompt","では　はじめに　きみの　なまえを
+おしえて　もらおう！
+",[OakSpeech4],,
+OakSpeech5,61,"text
+line
+cont
+
+para
+line
+prompt","そして　この　しょうねんは
+きみの　おさななじみであり
+ライバルである
+
+・・・えーと？
+なまえは　なんて　いったかな？
+",[OakSpeech5],,
+OakSpeech6,51,"text
+line
+cont
+
+para
+prompt","さて　きみの　きねんすべき
+たびだちのひを
+きろくしておこう！
+
+じかんも　なるべく　せいかくにな！
+",[OakSpeech6],,
+OakSpeech7,69,"text
+
+para
+line
+
+para
+line
+
+para
+done","<PLAYER>！
+
+いよいよ　これから
+きみの　ものがたりの　はじまりだ！
+
+ゆめと　ぼうけんと！
+ポケット　モンスターの　せかいへ！
+
+レッツ　ゴー！
+",[OakSpeech7],,
+DebugPlayerName,4,db,コージ@,コージ@,,
+DebugRivalName,4,db,レッド@,レッド@,,
+ChoosePlayerNameEndText,18,"text
+line
+prompt","ふむ・・・
+<PLAYER>　と　いうんだな！
+",[ChoosePlayerNam…],,
+PlayerNameMenuHeader,22,"db
+db
+db
+db","じぶんできめる@
+ゴールド@
+サトシ@
+ジャック@","じぶんできめる@
+ゴールド@
+サトシ@
+ジャック@",,
+PlayerNameMenuHeader,7,db,なまえこうほ@,なまえこうほ@,,
+ChooseRivalNameEndText,23,"text
+line
+prompt","そうか　そうだったな
+<RIVAL>　という　なまえだ
+",[ChooseRivalName…],,
+RivalNameMenuData,21,"db
+db
+db
+db","じぶんできめる@
+シルバー@
+シゲル@
+ジョン@","じぶんできめる@
+シルバー@
+シゲル@
+ジョン@",,
+RivalNameMenuData,7,db,なまえこうほ@,なまえこうほ@,,
+MomNameMenuHeader,24,"db
+db
+db
+db","じぶんで　きめる@
+おかあさん@
+ママ@
+かあちゃん@","じぶんで　きめる@
+おかあさん@
+ママ@
+かあちゃん@",,
+MomNameMenuHeader,7,db,なまえこうほ@,なまえこうほ@,,

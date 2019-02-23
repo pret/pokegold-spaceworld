@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/SilentHills.inc"
 
 SECTION "Silent Hills Script", ROMX[$7669], BANK[$36]
 
@@ -268,8 +269,7 @@ LabClosed: ; 784C
 	ret
 	
 SilentHillsTextString1: ; 785F
-	text "あれ？　カギが　かかっている"
-	done
+	text_SilentHillsTextString1
 	
 SilentHillsMovement7: ; 786F
 	db $04, $32
@@ -287,8 +287,7 @@ SilentHillsLabText: ; 787B
 	ret
 	
 SilentHillsTextString2: ; 7882
-	text "にゅうきょしゃ　ぼしゅうちゅう！"
-	done
+	text_SilentHillsTextString2
 	
 SilentHillsSignText1: ; 7894
 	ld hl, SilentHillsTextString3
@@ -296,9 +295,7 @@ SilentHillsSignText1: ; 7894
 	ret
 	
 SilentHillsTextString3: ; 789B
-	text "ここは　サイレント　ヒル"
-	line "しずかな　おか"
-	done
+	text_SilentHillsTextString3
 	
 SilentHillsPlayerHouseText: ; 78B1
 	ld hl, SilentHillsTextString4
@@ -306,8 +303,7 @@ SilentHillsPlayerHouseText: ; 78B1
 	ret
 	
 SilentHillsTextString4: ; 78B8
-	text "ここは　<PLAYER>　のいえ"
-	done
+	text_SilentHillsTextString4
 	
 SilentHillsRivalHouseText: ; 78C3
 	ld hl, SilentHillsTextString5
@@ -315,8 +311,7 @@ SilentHillsRivalHouseText: ; 78C3
 	ret
 	
 SilentHillsTextString5: ; 78CA
-	text "ここは　<RIVAL>　のいえ"
-	done
+	text_SilentHillsTextString5
 	
 ; 78D5
 	dw SilentHillsTextRival1 ; west
@@ -325,19 +320,7 @@ SilentHillsTextString5: ; 78CA
 	dw SilentHillsTextPokemonHate ; npc2
 
 SilentHillsTextRival1: ; 78DD
-	text "<RIVAL>『よう　ちょっと　おまえに"
-	cont "じまん　したいことが"
-	cont "あってきたんだよ"
-	
-	para "おれ　あの　ゆうめいなオーキドから"
-	line "メール　もらっちゃった！"
-	cont "え？　おまえにも　きたの？"
-	cont "ちぇっ！　つまんねーの！"
-	
-	para "⋯⋯ふん！"
-	line "じゃあさ　じゃあさー　おまえさー"
-	cont "じぶんの　ははおや　のこと"
-	cont "いつも　なんて　よんでる？@"
+	text_SilentHillsTextRival1
 	
 	db $08
 	
@@ -359,43 +342,16 @@ MomNameMenuHeaderUnused: ; 7989
 .MomNameMenuDataUnused: ; 7991
 	db STATICMENU_CURSOR
 	db 04 ; items
-	db "じぶんで　きめる@"
-	db "おかあさん　@"
-	db "ママ@"
-	db "かあちゃん@"
+	text_MomNameMenuHeaderUnused
 	
 SilentHillsTextRival2: ; 79AC - BYTE OFF
-	text "<RIVAL>『えー　かっこわりい！"
-	line "そんな　こどもっぽい"
-	cont "よびかた　してるなんて"
-	cont "おわらいだぜ！"
-	cont"あー　ちょっとだけ　すっきりした！"
-	
-	para "そんじゃあ"
-	line "おれは　ひとあし　おさきに"
-	cont "オーキドのところへ"
-	cont "いくことに　するぜ！"
-	done
+	text_SilentHillsTextRival2
 	
 SilentHillsTextNorthExit: ; 7A14
-	text "ちょいまち！"
-	line "まってよ！　まてっ　てば！"
-	done
+	text_SilentHillsTextNorthExit
 	
 SilentHillsTextPokemonInGrassString: ; 7A2A
-	text "きみは　まったく"
-	line "なんにも　しらないんだね！"
-	cont "くさむらでは"
-	cont "やせいの　ポケモンが　とびだす！"
-	
-	para "じぶんも　ポケモンを"
-	line "もって　いれば"
-	cont "たたかえるんだ⋯⋯"
-	
-	para "あっ！　ひょっとして　きみは"
-	line "⋯⋯ちょっと"
-	cont "ぼくに　ついて　きて！"
-	done
+	text_SilentHillsTextPokemonInGrassString
 	
 SilentHillsTextBackpack: ; 7A99
 	ld hl, SilentHillsTextBackpackString
@@ -403,9 +359,7 @@ SilentHillsTextBackpack: ; 7A99
 	ret
 	
 SilentHillsTextBackpackString: ; 7AA0
-	text "あなたの　りュック　かっこいいわよ"
-	line "どこで　てに　いれたの？"
-	done
+	text_SilentHillsTextBackpackString
 	
 SilentHillsTextPokemonHate: ; 7AC0
 	ld hl, SilentHillsTextPokemonHateString
@@ -413,8 +367,6 @@ SilentHillsTextPokemonHate: ; 7AC0
 	ret
 	
 SilentHillsTextPokemonHateString: ; 7AC7
-	text "よのなかに　ポケモンが　きらいな"
-	line "ひとは　いるのかな？"
-	done
+	text_SilentHillsTextPokemonHateString
 	
 ; 7AE4

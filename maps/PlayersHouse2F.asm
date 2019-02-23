@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/PlayersHouse2F.inc"
 
 SECTION "Player's House 2F", ROMX[$418B], BANK[$34]
 
@@ -144,52 +145,19 @@ PlayersHouse2FN64Text: ; 426B
 	ret
 	
 PlayersHouse2FTextString1: ; 4272
-	text "ケン『おっ　おまえの　うでで"
-	line "ひかりかがやく　そのとけいは⋯⋯"
-	cont "<PLAYER>も　ついに"
-	cont "トレーナーギアを　かったのか！"
-	
-	para "すごいじゃないか！"
-	line "でも　かったばかりじゃ　じかんしか"
-	cont "わからないだろ？"
-	cont "あとで　マップが"
-	cont "みられるように　してやるよ！"
-	cont "おまえ　どうせ"
-	cont "あそびに　いくんだろう？"
-	
-	para "ざんねんながら　おふくろは"
-	line "かいものに　いってるから"
-	cont "おこづかいを　もらおうなんて"
-	cont "きょうは　むり　だぜ！"
-	done
+	text_PlayersHouse2FTextString1
 	
 PlayersHouse2FTextString2: ; 4332
-	text "そうだ　おまえの　パソコンに"
-	line "メールが　とどいていたな"
-	cont "でかけるんなら"
-	cont "メールぐらい　よんでおけよ"
-	done
+	text_PlayersHouse2FTextString2
 	
 PlayersHouse2FTextString3: ; 4365
-	text "クりスマスに　カントーの"
-	line "しんせきに　プレゼント"
-	cont "してもらった　にんぎょうだ"
-	done
+	text_PlayersHouse2FTextString3
 	
 PlayersHouse2FTextString4: ; 438D
-	text "ニンテンドウ６４を　してる！"
-	cont "⋯⋯　⋯⋯　さてと！"
-	cont "そろそろ　そとに　あそびに"
-	cont "でかけるか！"
-	done
+	text_PlayersHouse2FTextString4
 	
 PlayersHouse2FTextString5: ; 43BD
-	text "<PLAYER>は"
-	line "パソコンの　スイッチを　いれた！"
-	
-	para "おや？　<PLAYER>あてに"
-	line "メールが　とどいている　ようだ"
-	cont "よんでみる？@"
+	text_PlayersHouse2FTextString5
 	
 	db $08
 	
@@ -199,65 +167,15 @@ PlayersHouse2FTextString5: ; 43BD
 	ret
 	
 PlayersHouse2FTextString6: ; 43FA
-	text "とつぜん　メールを　さしあげる"
-	line "しつれいを　おゆるしあれ"
-	
-	para "じつは　きみに　どうしても"
-	line "わたしたい　ものが　あるのじゃが"
-	cont "うけとって　もらえんかのう"
-	cont "ポケモンけんきゅうしゃ　オーキド"
-	done
+	text_PlayersHouse2FTextString6
 	
 PlayersHouse2FTextString7: ; 4456
-	text "あとで"
-	line "よもっと<⋯⋯>"
-	done
+	text_PlayersHouse2FTextString7
 	
 PlayersHouse2FTextString8: ; 4461 (unused?)
-	text "しんはつばい　トレーナーギア！"
-	line "ポケモントレーナーの　ための"
-	cont "さいせんたんの　とけい　です"
-	
-	para "じかんが　わかるのは　あたりまえ"
-	line "カセットを　ついかすれば"
-	cont "ばしょも　わかる！　"
-	cont "でんわが　かけられる！"
-	
-	para "とどめは"
-	line "ラジオを　きくことができる！"
-	
-	para "もうしこみさきは⋯⋯"
-	line "⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯"
-	cont "シルフの　ホームぺージだ"
-	done
+	text_PlayersHouse2FTextString8
 	
 PlayersHouse2FTextString9: ; 44FE
-	text "<PLAYER>は"
-	line "ラジオのスイッチを　おした！"
-	
-	para "ジェイ　オー　ピー　エム"
-	line "こちらは"
-	cont "#　ほうそうきょく　です"
-	
-	para "#ニュースを　おおくりします"
-	line "<⋯⋯>　#の　せかいてきな"
-	cont "けんきゅうしゃ　オーキドはかせが"
-	cont "カントー　から"
-	cont "すがたを　けしました"
-	cont "あらたな　けんきゅうの　ばしょを"
-	cont "もとめて　いどうした　との"
-	cont "みかたも　ありますが"
-	cont "なんらかの　じけんに　まきこまれた"
-	cont "かのうせいも　あり"
-	cont "かんけいしゃは　とても"
-	cont "しんぱい　しています"
-	
-	para "<⋯⋯><⋯⋯>いじょう"
-	line "#ニュースでした"
-	
-	para "<⋯⋯><⋯⋯><⋯⋯><⋯⋯><⋯⋯><⋯⋯>"
-	line "それでは　ひきつづき"
-	cont "おんがくを　おたのしみ　ください"
-	done
+	text_PlayersHouse2FTextString9
 	
 ; 45FF

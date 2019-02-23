@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/SilentPokecenter.inc"
 
 SECTION "Silent Hills Pokecenter", ROMX[$4682], BANK[$34]
 
@@ -38,8 +39,7 @@ SilentPokecenterPCText: ; 46A4
 	ret
 	
 SilentPokecenterTextString1: ; 46AB
-	text "げんざい　ちょうせいちゅうです"
-	done
+	text_SilentPokecenterTextString1
 	
 SilentPokecenterTextPointers:: ; 46BC
 	dw SilentPokecenterNPCText1 
@@ -54,14 +54,7 @@ SilentPokecenterNPCText1: ; 46C6
 	ret
 	
 SilentPokecenterTextString2: ; 46CD
-	text "もうしわけありませんが"
-	line "ただいま　しゅうりちゅう　でして"
-	
-	para "かいふくは　できません"
-	
-	para "まちから　でるときは"
-	line "じゅうぶんに　おきをつけ　ください"
-	done
+	text_SilentPokecenterTextString2
 	
 SilentPokecenterNPCText2: ; 4714
 	ld hl, SilentPokecenterTextString3
@@ -69,12 +62,7 @@ SilentPokecenterNPCText2: ; 4714
 	ret
 	
 SilentPokecenterTextString3: ; 471B
-	text "あそこに　ある　パソコンは"
-	line "トレーナー　だったら"
-	cont "いつでも　むりょうで"
-	cont "つかうことが　できるよ"
-	cont "きが　きいてるよな！"
-	done 
+	text_SilentPokecenterTextString3
 	
 SilentPokecenterNPCText3: ; 4757
 	ld hl, SilentPokecenterTextString4
@@ -82,14 +70,7 @@ SilentPokecenterNPCText3: ; 4757
 	ret
 
 SilentPokecenterTextString4: ; 475E
-	text "いま　じゅんびちゅうの"
-	line "きかいは　すごいらしいよ"
-	
-	para "なんでも　ときを　こえて"
-	line "ポケモンが　こうかん　できるって！"
-	
-	para "ほんとかな？"
-	done
+	text_SilentPokecenterTextString4
 	
 SilentPokecenterNPCText4: ; 479E
 	ld hl, SilentPokecenterTextString5
@@ -97,9 +78,7 @@ SilentPokecenterNPCText4: ; 479E
 	ret
 	
 SilentPokecenterTextString5: ; 47A5
-	text "こいつ　へルガー"
-	line "いままでにない　タイプの　ポケモンさ"
-	done
+	text_SilentPokecenterTextString5
 	
 SilentPokecenterNPCText5: ; 47C2
 	ld hl, SilentPokecenterTextString6
@@ -107,7 +86,6 @@ SilentPokecenterNPCText5: ; 47C2
 	ret
 	
 SilentPokecenterTextString6: ; 47C9
-	text "へルガー『ぐるるうー"
-	done
+	text_SilentPokecenterTextString6
 	
 ; 47D5

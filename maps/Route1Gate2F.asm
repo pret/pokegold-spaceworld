@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/Route1Gate2F.inc"
 
 SECTION "Route 1 Gate 2F", ROMX[$411F], BANK[$26]
 
@@ -50,37 +51,15 @@ Route1Gate2FTextSign2: ; 4157
 	ret
 	
 Route1Gate2FTextString1: ; 415E
-	text "ガンテツさんって　しってる？"
-	
-	para "ガンテツさんに"
-	line "きに　いられるように　なれば"
-	cont "トレーナーとして　たいしたもの　よ"
-	done
+	text_Route1Gate2FTextString1
 	
 Route1Gate2FTextString2: ; 4197
-	text "あなた　かんこうで　きたの？"
-	line "なら　ざんねんね"
-	
-	para "オールドシティの"
-	line "ごじゅうのとう　は"
-	cont "だれでも　はいれる　って"
-	cont "ものじゃないわ"
-	done
+	text_Route1Gate2FTextString2
 	
 Route1Gate2FTextString3: ; 41D8
-	text "<PLAYER>は"
-	line "ぼうえんきょうを　のぞいた！"
-	
-	para "むむむ！"
-	line "たかーい　とう　が　みえる！"
-	done
+	text_Route1Gate2FTextString3
 	
 Route1Gate2FTextString4: ; 41FF
-	text "<PLAYER>は"
-	line "ぼうえんきょうを　のぞいた！"
-	
-	para "むむ？"
-	line "ながーい　かわ　が　みえる"
-	done
+	text_Route1Gate2FTextString4
 	
 ; 4224

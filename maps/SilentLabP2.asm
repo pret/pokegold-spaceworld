@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/SilentLabP2.inc"
 
 SECTION "Silent Lab P2 Script", ROMX[$5C69], BANK[$34]
 
@@ -153,51 +154,36 @@ SilentLabP2Text1: ; 5D73
 	ret
 	
 SilentLabP2TextString1: ; 5D84
-	text "オーキド『ほれ　そこに　３びき"
-	cont "ポケモンが　いる　じゃろう！"
-	cont "ほっほ！"
-	
-	para "こいつらを　きみたちに"
-	cont "いっぴき　づつ　やろう！"
-	cont "⋯⋯　さあ　えらべ！"
-	done
+	text_SilentLabP2TextString1
 	
 SilentLabP2TextString2: ; 5DCD
-	text "オーキド『まあ"
-	line "あわてるな　<RIVAL>！"
-	cont "おまえも　すきなものを　とれ！"
-	done
+	text_SilentLabP2TextString2
 	
 SilentLabP2TextString3: ; 5DEF
-	text "オーキド『さあ　<PLAYER>"
-	line "どの　ポケモンに　するかね？"
-	done
+	text_SilentLabP2TextString3
 	
 SilentLabP2TextString4: ; 5E1C
-	text "オーキド『ほう！　ほのおのポケモン"
-	line "@"
+	text_SilentLabP2TextString4_1
 	ld bc, wStringBuffer1
-	text "に　するんじゃな？@"
+	text_SilentLabP2TextString4_2
 	db 08
 	call ConfirmPokemonSelection 
 	call Function3036
 	ret
 	
 SilentLabP2TextString5: ; 5E32
-	text "オーキド『ふむ　みずのポケモン"
-	line "@"
+	text_SilentLabP2TextString5_1
 	ld bc, wStringBuffer1
-	text "に　きめるのじゃな？@"
+	text_SilentLabP2TextString5_2
 	db 08
 	call ConfirmPokemonSelection 
 	call Function3036
 	ret
 	
 SilentLabP2TextString6: ; 5E6E
-	text "オーキド『おお！　くさのポケモン"
-	line "@"
+	text_SilentLabP2TextString6_1
 	ld bc, wStringBuffer1
-	text "が　いいんじゃな？@"
+	text_SilentLabP2TextString6_2
 	db 08
 	call ConfirmPokemonSelection 
 	call Function3036
@@ -234,25 +220,15 @@ ConfirmPokemonSelection: ; 5E85
 	ret
 	
 SilentLabP2TextString7: ; 5ECD
-	text "では"
-	line "どれに　するのじゃ？"
-	done
+	text_SilentLabP2TextString7
 	
 SilentLabP2TextString8: ; 5EDC
-	text "オーキド『この　ポケモンは"
-	line "ほんとに　げんきが　いいぞ！"
-	
-	para "<PLAYER>は　オーキドはかせから"
-	line "@"
+	text_SilentLabP2TextString8_1
 	ld bc, wStringBuffer1
-	text "を　もらった！<PROMPT>"
+	text_SilentLabP2TextString8_2
 	
 SilentLabP2TextString9: ; 5F14
-	text "オーキド『そうじゃ！"
-	line "やせいの　ポケモンが　でて　きても"
-	cont "そいつを　たたかわせて　いけば"
-	cont "となりまちへ　いける！"
-	done
+	text_SilentLabP2TextString9
 	
 SilentLabP2Func3: ; 5F4E
 	ld hl, wd41b
@@ -265,33 +241,21 @@ SilentLabP2Func3: ; 5F4E
 	ret
 	
 SilentLabP2TextString10: ; 5F5F
-	text "<RIVAL>『あッ！　おれにも！"
-	line "じいさん　おれにもくれよう！"
-	done
+	text_SilentLabP2TextString10
 	
 SilentLabP2TextString11: ; 5F7B
-	text "<RIVAL>『いいぜ　<PLAYER>！"
-	line "さきに　えらんで！"
-	cont "おれは　こころが　ひろいからな"
-	done
+	text_SilentLabP2TextString11
 	
 SilentLabP2TextString12: ; 5F9F
-	text "<RIVAL>『じゃ　おれは　これ！"
-	done
+	text_SilentLabP2TextString12
 	
 SilentLabP2TextString13: ; 5FAD
-	text "<RIVAL>は　オーキドから"
-	line "@"
+	text_SilentLabP2TextString13_1
 	ld bc, wStringBuffer1
-	text "を　もらった！"
-	done
+	text_SilentLabP2TextString13_2
 	
 SilentLabP2TextString14: ; 5FC5
-	text "<RIVAL>『<PLAYER>の#"
-	line "いいなあ！"
-	cont "でも　おれのポケモンも"
-	cont "ちょっと　いいだろ？"
-	done
+	text_SilentLabP2TextString14
 	
 SilentLabP2Func4: ; 5FE9
 	ld hl, wd41b
@@ -346,9 +310,7 @@ SilentLabP2StarterData: ; 6031
 	db DEX_HONOGUMA
 	
 SilentLabP2TextString15: ; 603D
-	text "オーキド『これ！"
-	line "よくばっちゃ　いかん！"
-	done
+	text_SilentLabP2TextString15
 	
 SilentLabP2TextPointers2: ; 6053
 	dw Function3899 

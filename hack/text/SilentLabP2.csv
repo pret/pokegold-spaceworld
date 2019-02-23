@@ -1,0 +1,101 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,507
+Current total,=SUM(B4:B9999)
+SilentLabP2TextString1,73,"text
+cont
+cont
+
+para
+cont
+cont
+done","オーキド『ほれ　そこに　３びき
+ポケモンが　いる　じゃろう！
+ほっほ！
+
+こいつらを　きみたちに
+いっぴき　づつ　やろう！
+⋯⋯　さあ　えらべ！
+",[SilentLabP2Text…]
+SilentLabP2TextString2,34,"text
+line
+cont
+done","オーキド『まあ
+あわてるな　<RIVAL>！
+おまえも　すきなものを　とれ！
+",[SilentLabP2Text…]
+SilentLabP2TextString3,26,"text
+line
+done","オーキド『さあ　<PLAYER>
+どの　ポケモンに　するかね？
+",[SilentLabP2Text…]
+SilentLabP2TextString4,20,"text
+line","オーキド『ほう！　ほのおのポケモン
+@",[SilentLabP2Text…]
+SilentLabP2TextString4,11,text,に　するんじゃな？@,[SilentLabP2Text…]
+SilentLabP2TextString5,18,"text
+line","オーキド『ふむ　みずのポケモン
+@",[SilentLabP2Text…]
+SilentLabP2TextString5,12,text,に　きめるのじゃな？@,[SilentLabP2Text…]
+SilentLabP2TextString6,19,"text
+line","オーキド『おお！　くさのポケモン
+@",[SilentLabP2Text…]
+SilentLabP2TextString6,11,text,が　いいんじゃな？@,[SilentLabP2Text…]
+SilentLabP2TextString7,15,"text
+line
+done","では
+どれに　するのじゃ？
+",[SilentLabP2Text…]
+SilentLabP2TextString8,44,"text
+line
+
+para
+line","オーキド『この　ポケモンは
+ほんとに　げんきが　いいぞ！
+
+<PLAYER>は　オーキドはかせから
+@",[SilentLabP2Text…]
+SilentLabP2TextString8,9,text,を　もらった！<PROMPT>,[SilentLabP2Text…]
+SilentLabP2TextString9,58,"text
+line
+cont
+cont
+done","オーキド『そうじゃ！
+やせいの　ポケモンが　でて　きても
+そいつを　たたかわせて　いけば
+となりまちへ　いける！
+",[SilentLabP2Text…]
+SilentLabP2TextString10,28,"text
+line
+done","<RIVAL>『あッ！　おれにも！
+じいさん　おれにもくれよう！
+",[SilentLabP2Text…]
+SilentLabP2TextString11,36,"text
+line
+cont
+done","<RIVAL>『いいぜ　<PLAYER>！
+さきに　えらんで！
+おれは　こころが　ひろいからな
+",[SilentLabP2Text…]
+SilentLabP2TextString12,14,"text
+done","<RIVAL>『じゃ　おれは　これ！
+",[SilentLabP2Text…]
+SilentLabP2TextString13,12,"text
+line","<RIVAL>は　オーキドから
+@",[SilentLabP2Text…]
+SilentLabP2TextString13,9,"text
+done","を　もらった！
+",[SilentLabP2Text…]
+SilentLabP2TextString14,36,"text
+line
+cont
+cont
+done","<RIVAL>『<PLAYER>の#
+いいなあ！
+でも　おれのポケモンも
+ちょっと　いいだろ？
+",[SilentLabP2Text…]
+SilentLabP2TextString15,22,"text
+line
+done","オーキド『これ！
+よくばっちゃ　いかん！
+",[SilentLabP2Text…]

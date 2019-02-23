@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/SilentHouse.inc"
 
 SECTION "Silent Hills House", ROMX[$4839], BANK[$34]
 
@@ -67,9 +68,7 @@ SilentHouseNPCText1: ; 487E
 	ret
 	
 SilentHouseTextString1: ; 489B
-	text "おや？　<RIVAL>あてに　メールが"
-	line "とどいている　ようだ"
-	cont "よんでみる？@"
+	text_SilentHouseTextString1
 	db $08
 	
 SilentHouseNPCText2: ; 48BD (unused due to typo in the text pointers?)
@@ -88,19 +87,10 @@ SilentHouseNPCText2: ; 48BD (unused due to typo in the text pointers?)
 	ret
 	
 SilentHouseTextString2: ; 48DB
-	text "とつぜん　メールを　さしあげる"
-	line "しつれいを　おゆるしあれ"
-	
-	para "じつは　きみに　どうしても"
-	line "わたしたい　ものが　あるのじゃが"
-	cont "うけとって　もらえんかのう"
-	cont "ポケモンけんきゅうしゃ　オーキド"
-	done
+	text_SilentHouseTextString2
 	
 SilentHouseTextString3: ; 4937
-	text "ひとのメールは"
-	line "みちゃ　いけないよな<⋯⋯>"
-	done
+	text_SilentHouseTextString3
 	
 SilentHouseTextPointers2:: ; 494C
 	dw SilentHouseNPCText3 
@@ -112,9 +102,7 @@ SilentHouseNPCText3: ; 4950
 	ret
 	
 SilentHouseTextString4: ; 4957
-	text "このまえ　かわったいろの"
-	line "ポッポを　みかけたわ"
-	done
+	text_SilentHouseTextString4
 	
 SilentHouseNPCText4: ; 4970
 	ld hl, wd41e
@@ -134,38 +122,12 @@ SilentHouseNPCText4: ; 4970
 	ret
 	
 SilentHouseTextString5: ; 4991
-	text "ケン『ななな"
-	line "なんだ　<PLAYER>　じゃないか！"
-	
-	para "おれは　ちょっと　あのー"
-	line"がっこうの　しゅくだいを"
-	cont "おしえに　きてるんだ！"
-	
-	para "えっ　マップ？"
-	line "そうか　そんな　やくそくも　してたな"
-	cont "わかった"
-	cont "トレーナーギアを　かしてみな"
-	
-	para "スロットに　マップの　カセットを　"
-	line "さしこんでっと⋯⋯"
-	cont "よし　これで　マップが　みれるぞ！"
-	done
+	text_SilentHouseTextString5
 	
 SilentHouseTextString6: ; 4A29
-	text "もし　オールドにいくなら"
-	line "マサキって　やつに　あうといい"
-	
-	para "おれの　ともだちで"
-	line "すごい　ポケモン　マニアだ！"
-	cont "きっと　おまえの"
-	cont "てだすけを　してくれるぜ"
-	done
+	text_SilentHouseTextString6
 	
 SilentHouseTextString7: ; 4A76
-	text "ケン『<PLAYER>"
-	line "オーキドはかせに　みこまれて"
-	cont "ポケモンずかんを　つくるんだって？"
-	cont "すごいじゃないか　がんばれよ"
-	done
+	text_SilentHouseTextString7
 	
 ; 4AAC

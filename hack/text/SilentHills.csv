@@ -1,0 +1,116 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,546
+Current total,=SUM(B4:B9999)
+SilentHillsTextString1,16,"text
+done","あれ？　カギが　かかっている
+",[SilentHillsText…]
+SilentHillsTextString2,18,"text
+done","にゅうきょしゃ　ぼしゅうちゅう！
+",[SilentHillsText…]
+SilentHillsTextString3,22,"text
+line
+done","ここは　サイレント　ヒル
+しずかな　おか
+",[SilentHillsText…]
+SilentHillsTextString4,11,"text
+done","ここは　<PLAYER>　のいえ
+",[SilentHillsText…]
+SilentHillsTextString5,11,"text
+done","ここは　<RIVAL>　のいえ
+",[SilentHillsText…]
+SilentHillsTextRival1,145,"text
+cont
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+cont
+cont","<RIVAL>『よう　ちょっと　おまえに
+じまん　したいことが
+あってきたんだよ
+
+おれ　あの　ゆうめいなオーキドから
+メール　もらっちゃった！
+え？　おまえにも　きたの？
+ちぇっ！　つまんねーの！
+
+⋯⋯ふん！
+じゃあさ　じゃあさー　おまえさー
+じぶんの　ははおや　のこと
+いつも　なんて　よんでる？@",[SilentHillsText…]
+MomNameMenuHeaderUnused,25,"db
+db
+db
+db","じぶんで　きめる@
+おかあさん　@
+ママ@
+かあちゃん@","じぶんで　きめる@
+おかあさん　@
+ママ@
+かあちゃん@"
+SilentHillsTextRival2,104,"text
+line
+cont
+cont
+cont
+
+para
+line
+cont
+cont
+done","<RIVAL>『えー　かっこわりい！
+そんな　こどもっぽい
+よびかた　してるなんて
+おわらいだぜ！
+あー　ちょっとだけ　すっきりした！
+
+そんじゃあ
+おれは　ひとあし　おさきに
+オーキドのところへ
+いくことに　するぜ！
+",[SilentHillsText…]
+SilentHillsTextNorthExit,22,"text
+line
+done","ちょいまち！
+まってよ！　まてっ　てば！
+",[SilentHillsText…]
+SilentHillsTextPokemonInGrassString,111,"text
+line
+cont
+cont
+
+para
+line
+cont
+
+para
+line
+cont
+done","きみは　まったく
+なんにも　しらないんだね！
+くさむらでは
+やせいの　ポケモンが　とびだす！
+
+じぶんも　ポケモンを
+もって　いれば
+たたかえるんだ⋯⋯
+
+あっ！　ひょっとして　きみは
+⋯⋯ちょっと
+ぼくに　ついて　きて！
+",[SilentHillsText…]
+SilentHillsTextBackpackString,32,"text
+line
+done","あなたの　りュック　かっこいいわよ
+どこで　てに　いれたの？
+",[SilentHillsText…]
+SilentHillsTextPokemonHateString,29,"text
+line
+done","よのなかに　ポケモンが　きらいな
+ひとは　いるのかな？
+",[SilentHillsText…]

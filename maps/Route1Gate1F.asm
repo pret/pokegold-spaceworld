@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/Route1Gate1F.inc"
 
 SECTION "Route 1 Gate 1F", ROMX[$4061], BANK[$26]
 
@@ -39,17 +40,9 @@ Route1Gate1FText2: ; 4089
 	ret
 
 Route1Gate1FText1String: ; 4090
-	text "このゲートを　ぬけると"
-	line "すぐに　オールドシティ　です" 
-	done 
+	text_Route1Gate1FText1String
 	
 Route1Gate1FText2String: ; 40AC
-	text "オールドシティには"
-	line "あの　ゆうめいな"
-	cont "ごじゅうのとう　が　あるの"
-	
-	para "いってみたこと　ある？"
-	done
+	text_Route1Gate1FText2String
 	
 ;ends at 40D9
-

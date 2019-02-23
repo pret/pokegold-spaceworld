@@ -1,0 +1,88 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,454
+Current total,=SUM(B4:B9999)
+SilentHouseTextString1,33,"text
+line
+cont","おや？　<RIVAL>あてに　メールが
+とどいている　ようだ
+よんでみる？@",[SilentHouseText…]
+SilentHouseTextString2,92,"text
+line
+
+para
+line
+cont
+cont
+done","とつぜん　メールを　さしあげる
+しつれいを　おゆるしあれ
+
+じつは　きみに　どうしても
+わたしたい　ものが　あるのじゃが
+うけとって　もらえんかのう
+ポケモンけんきゅうしゃ　オーキド
+",[SilentHouseText…]
+SilentHouseTextString3,21,"text
+line
+done","ひとのメールは
+みちゃ　いけないよな<⋯⋯>
+",[SilentHouseText…]
+SilentHouseTextString4,25,"text
+line
+done","このまえ　かわったいろの
+ポッポを　みかけたわ
+",[SilentHouseText…]
+SilentHouseTextString5,152,"text
+line
+
+para
+line
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+cont
+done","ケン『ななな
+なんだ　<PLAYER>　じゃないか！
+
+おれは　ちょっと　あのー
+がっこうの　しゅくだいを
+おしえに　きてるんだ！
+
+えっ　マップ？
+そうか　そんな　やくそくも　してたな
+わかった
+トレーナーギアを　かしてみな
+
+スロットに　マップの　カセットを　
+さしこんでっと⋯⋯
+よし　これで　マップが　みれるぞ！
+",[SilentHouseText…]
+SilentHouseTextString6,77,"text
+line
+
+para
+line
+cont
+cont
+done","もし　オールドにいくなら
+マサキって　やつに　あうといい
+
+おれの　ともだちで
+すごい　ポケモン　マニアだ！
+きっと　おまえの
+てだすけを　してくれるぜ
+",[SilentHouseText…]
+SilentHouseTextString7,54,"text
+line
+cont
+cont
+done","ケン『<PLAYER>
+オーキドはかせに　みこまれて
+ポケモンずかんを　つくるんだって？
+すごいじゃないか　がんばれよ
+",[SilentHouseText…]

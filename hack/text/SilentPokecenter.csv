@@ -1,0 +1,55 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,253
+Current total,=SUM(B4:B9999)
+SilentPokecenterTextString1,17,"text
+done","げんざい　ちょうせいちゅうです
+",[SilentPokecente…]
+SilentPokecenterTextString2,71,"text
+line
+
+para
+
+para
+line
+done","もうしわけありませんが
+ただいま　しゅうりちゅう　でして
+
+かいふくは　できません
+
+まちから　でるときは
+じゅうぶんに　おきをつけ　ください
+",[SilentPokecente…]
+SilentPokecenterTextString3,60,"text
+line
+cont
+cont
+cont
+done","あそこに　ある　パソコンは
+トレーナー　だったら
+いつでも　むりょうで
+つかうことが　できるよ
+きが　きいてるよな！
+",[SilentPokecente…]
+SilentPokecenterTextString4,64,"text
+line
+
+para
+line
+
+para
+done","いま　じゅんびちゅうの
+きかいは　すごいらしいよ
+
+なんでも　ときを　こえて
+ポケモンが　こうかん　できるって！
+
+ほんとかな？
+",[SilentPokecente…]
+SilentPokecenterTextString5,29,"text
+line
+done","こいつ　へルガー
+いままでにない　タイプの　ポケモンさ
+",[SilentPokecente…]
+SilentPokecenterTextString6,12,"text
+done","へルガー『ぐるるうー
+",[SilentPokecente…]
