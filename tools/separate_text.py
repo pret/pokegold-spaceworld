@@ -96,7 +96,7 @@ def num_bytes_in(string):
                 if line.text[i:i + cur_length] == s and cur_length >= max_matching_length:
                     max_matching_length = cur_length
             if max_matching_length == 0:
-                raise ValueError("String contains a character not in the charmap.")
+                raise ValueError("String contains a character not in the charmap: {}.".format(line.text[i]))
             i += max_matching_length
             n += 1
     return n

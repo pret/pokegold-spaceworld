@@ -137,9 +137,13 @@
 	charmap "ぅ", $6f
 
 	charmap "「", $70
+	charmap "‘", $70
 	charmap "」", $71
+	charmap "’", $71
 	charmap "『", $72
+	charmap "“", $72
 	charmap "』", $73
+	charmap "”", $73
 	charmap "・", $74
 	charmap "⋯", $75
 	charmap "…", $75
