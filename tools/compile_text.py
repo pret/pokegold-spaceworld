@@ -105,9 +105,6 @@ def compile(csv_path):
         else:
             # Otherwise, they need to get put in the fearsome PATCH TEXT BANK!
             label = macro[0].upper() + macro[1:]
-            text_bank_code += "{}::\n".format(label)
-            text_bank_code += to_asm(string)
-            text_bank_code += "\n"
 
             first_start = string.lines[0].start
             if first_start == 'db':
@@ -125,6 +122,15 @@ def compile(csv_path):
                     "Too little space for a far text code (row {})! "
                     "Make space for 4 bytes, maybe?".format(row_num)
                 )
+
+            if string.lines[0].start == 'text':
+                # Since far text already starts with a text command, that shouldn't
+                # be included in the string. Remove this if the far text is
+                # changed to use a script command instead of a control code.
+                string.lines[0] = Line('db', string.lines[0].text)
+            text_bank_code += "{}::\n".format(label)
+            text_bank_code += to_asm(string)
+            text_bank_code += "\n"
         
         if num_bytes < string.space:
             macro_code += "\nREPT {} - {}\n\tdb \"@\"\nENDR\n".format(string.space, num_bytes)
