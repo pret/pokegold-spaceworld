@@ -163,63 +163,65 @@ ENDM
 	dict "<DEXEND>", PlaceDexEnd
 	dict "<TARGET>", PlaceMoveTargetsName
 	dict "<USER>", PlaceMoveUsersName
-
-	; Skip over all the diacritic code for the patch. If more space
-	; is needed, all the diacritic code below could be removed.
+	dict "<FAR_TEXT>", .fartext
 	jr .place
 
-	; cp "ﾟ"
-	jr z, .diacritic
-	cp "ﾞ"
-	jr nz, .not_diacritic
-.diacritic: ; 00:0f21
-	push hl
-	ld bc, -SCREEN_WIDTH
-	add hl, bc
-	ld [hl], a
-	pop hl
-	jr NextChar
-
-.not_diacritic: ; 00:0f2a
-	cp FIRST_REGULAR_TEXT_CHAR
-	jr nc, .place
-	cp "パ"
-	jr nc, .handakuten
-	cp FIRST_HIRAGANA_DAKUTEN_CHAR
-	jr nc, .hiragana_dakuten
-	add "カ" - "ガ"
-	jr .katakana_dakuten
-
-.hiragana_dakuten: ; 00:0f3a
-	add "か" - "が"
-.katakana_dakuten: ; 00:0f3c
+.fartext
+	inc de
+	ld a, [de]
+	ld [$DDFF], a
+	inc de
+	ld a, [de]
+	push de
+	ld d, a
+	ld a, [$DDFF]
+	ld e, a
+	ldh a, [hROMBank]
 	push af
-	ld a, "ﾞ"
-	push hl
-	ld bc, -SCREEN_WIDTH
-	add hl, bc
-	ld [hl], a
-	pop hl
-	pop af
-	jr .place
+	ld a, $29
+	call Bankswitch
 
-.handakuten: ; 00:0f49
-	cp "ぱ"
-	jr nc, .hiragana_handakuten
-	add "ハ" - "パ"
-	jr .katakana_handakuten
-
-.hiragana_handakuten: ; 00:0f51
-	add "は" - "ぱ"
-.katakana_handakuten: ; 00:0f53
-	push af
-	ld a, "ﾟ"
-	push hl
-	ld bc, -SCREEN_WIDTH
-	add hl, bc
-	ld [hl], a
-	pop hl
+	call PlaceString
+	ld h, b
+	ld l, c
 	pop af
+	pop de
+	inc de
+
+	call Bankswitch
+
+	jp PlaceNextChar
+
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+
 .place: ; 00:0f5e
 	ld [hli], a
 	call PrintLetterDelay
