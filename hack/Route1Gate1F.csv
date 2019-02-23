@@ -1,0 +1,24 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,74,,,,,
+Current total,74,,,,,
+Route1Gate1FText1String,28,"text
+line
+done","このゲートを　ぬけると
+すぐに　オールドシティ　です
+","Through this gate
+lies OLD CITY!",,
+Route1Gate1FText2String,46,"text
+line
+cont
+
+para
+done","オールドシティには
+あの　ゆうめいな
+ごじゅうのとう　が　あるの
+
+いってみたこと　ある？
+","That one famous
+five-story tower
+is in OLD CITY.
+
+Have you been?",,

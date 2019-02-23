@@ -1,0 +1,285 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,901,,,,,
+Current total,901,,,,,
+PlayersHouse2FTextString1,192,"text
+line
+cont
+cont
+
+para
+line
+cont
+cont
+cont
+cont
+cont
+
+para
+line
+cont
+cont
+done","ケン『おっ　おまえの　うでで
+ひかりかがやく　そのとけいは⋯⋯
+<PLAYER>も　ついに
+トレーナーギアを　かったのか！
+
+すごいじゃないか！
+でも　かったばかりじゃ　じかんしか
+わからないだろ？
+あとで　マップが
+みられるように　してやるよ！
+おまえ　どうせ
+あそびに　いくんだろう？
+
+ざんねんながら　おふくろは
+かいものに　いってるから
+おこづかいを　もらおうなんて
+きょうは　むり　だぜ！
+","KEN: Oh! That
+shiny thing on
+your wrist...
+You finally bought
+a TRAINER GEAR!
+
+Sweet! But...
+Since it's new and
+all, you can't do
+much more than
+check the time,
+can you?
+I'll enable the
+map for ya later!
+You're going out
+anyway, right?
+
+Mom's out
+shopping, so if
+you were hoping to
+ask for some
+spending money,
+that's too bad!
+",,
+PlayersHouse2FTextString2,51,"text
+line
+cont
+cont
+done","そうだ　おまえの　パソコンに
+メールが　とどいていたな
+でかけるんなら
+メールぐらい　よんでおけよ
+","Oh, right, I saw
+your PC got a new
+e-mail. At least
+check that before
+you leave, huh?
+",,
+PlayersHouse2FTextString3,40,"text
+line
+cont
+done","クりスマスに　カントーの
+しんせきに　プレゼント
+してもらった　にんぎょうだ
+","It's a doll you
+got as a Christmas
+present from a
+relative in KANTO.",,
+PlayersHouse2FTextString4,48,"text
+cont
+cont
+cont
+done","ニンテンドウ６４を　してる！
+⋯⋯　⋯⋯　さてと！
+そろそろ　そとに　あそびに
+でかけるか！
+","You're playing the
+Nintendo 64!
+…Alright!
+It's time to go
+play outside!",,Similar but not identical to the SNES line from RG.
+PlayersHouse2FTextString5,53,"text
+line
+
+para
+line
+cont","<PLAYER>は
+パソコンの　スイッチを　いれた！
+
+おや？　<PLAYER>あてに
+メールが　とどいている　ようだ
+よんでみる？@","<PLAYER> turned on
+the PC.
+
+What's this? There seems to be a new
+e-mail addressed
+to <PLAYER>. 
+Read it?@",,Don't know if this'll work properly with the @ at the end there - test in-game.
+PlayersHouse2FTextString6,92,"text
+line
+
+para
+line
+cont
+cont
+done","とつぜん　メールを　さしあげる
+しつれいを　おゆるしあれ
+
+じつは　きみに　どうしても
+わたしたい　ものが　あるのじゃが
+うけとって　もらえんかのう
+ポケモンけんきゅうしゃ　オーキド
+","I hope you'll
+excuse the sudden
+e-mail, but there's
+something that I
+would like to
+entrust you with.
+Won't you come by
+and collect it?
+
+#MON researcher
+OAK",,
+PlayersHouse2FTextString7,11,"text
+line
+done","あとで
+よもっと<⋯⋯>
+","I'll read this
+later…",,
+PlayersHouse2FTextString8,157,"text
+line
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+
+para
+line
+cont
+done","しんはつばい　トレーナーギア！
+ポケモントレーナーの　ための
+さいせんたんの　とけい　です
+
+じかんが　わかるのは　あたりまえ
+カセットを　ついかすれば
+ばしょも　わかる！　
+でんわが　かけられる！
+
+とどめは
+ラジオを　きくことができる！
+
+もうしこみさきは⋯⋯
+⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯
+シルフの　ホームぺージだ
+","Introducing: the
+TRAINER GEAR! The
+cutting edge watch
+for #MON
+trainers!
+
+Of course you can
+use it to tell the
+time, but with a
+certain cartridge,
+you can even tell
+where you are on a
+map! You can also
+call people!
+
+As if that wasn't
+enough, it even
+lets you listen
+to the radio!
+
+To order, go to…
+
+It's Silph Co.'s
+homepage.
+",,
+PlayersHouse2FTextString9,257,"text
+line
+
+para
+line
+cont
+
+para
+line
+cont
+cont
+cont
+cont
+cont
+cont
+cont
+cont
+cont
+cont
+
+para
+line
+
+para
+line
+cont
+done","<PLAYER>は
+ラジオのスイッチを　おした！
+
+ジェイ　オー　ピー　エム
+こちらは
+#　ほうそうきょく　です
+
+#ニュースを　おおくりします
+<⋯⋯>　#の　せかいてきな
+けんきゅうしゃ　オーキドはかせが
+カントー　から
+すがたを　けしました
+あらたな　けんきゅうの　ばしょを
+もとめて　いどうした　との
+みかたも　ありますが
+なんらかの　じけんに　まきこまれた
+かのうせいも　あり
+かんけいしゃは　とても
+しんぱい　しています
+
+<⋯⋯><⋯⋯>いじょう
+#ニュースでした
+
+<⋯⋯><⋯⋯><⋯⋯><⋯⋯><⋯⋯><⋯⋯>
+それでは　ひきつづき
+おんがくを　おたのしみ　ください
+","<PLAYER> turned on
+the radio.
+
+You're listening
+to JOPM, the
+#MON broadcast
+station!
+
+It's time for
+#MON news.
+World-famous
+#MON researcher
+PROF.OAK has dis-
+appeared from
+KANTO! It may be
+that he has left
+for a new place
+to study, but we
+can't yet discount
+the possibility
+that he has been
+involved in some
+sort of incident.
+Those who know him
+are very worried.
+
+…That concludes
+today's news.
+
+…
+
+Coming up, music.",,

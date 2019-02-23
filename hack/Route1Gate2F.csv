@@ -1,0 +1,74 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,198,,,,,
+Current total,198,,,,,
+Route1Gate2FTextString1,57,"text
+
+para
+line
+cont
+done","ガンテツさんって　しってる？
+
+ガンテツさんに
+きに　いられるように　なれば
+トレーナーとして　たいしたもの　よ
+","Have you heard of
+a man named KURT?
+
+If KURT takes an
+interest in you,
+that's a big deal
+as a trainer.",,
+Route1Gate2FTextString2,65,"text
+line
+
+para
+line
+cont
+cont
+done","あなた　かんこうで　きたの？
+なら　ざんねんね
+
+オールドシティの
+ごじゅうのとう　は
+だれでも　はいれる　って
+ものじゃないわ
+","Are you a tourist?
+
+If so, that's too
+bad… Not just
+anyone can enter
+the five-story
+tower.",,
+Route1Gate2FTextString3,39,"text
+line
+
+para
+line
+done","<PLAYER>は
+ぼうえんきょうを　のぞいた！
+
+むむむ！
+たかーい　とう　が　みえる！
+","<PLAYER> peeked
+through the
+telescope!
+
+Whoa! A tall, tall
+tower can be seen!",,
+Route1Gate2FTextString4,37,"text
+line
+
+para
+line
+done","<PLAYER>は
+ぼうえんきょうを　のぞいた！
+
+むむ？
+ながーい　かわ　が　みえる
+","<PLAYER> peeked
+through the
+telescope!
+
+Oho? A river
+stretches off into
+the distance.",,

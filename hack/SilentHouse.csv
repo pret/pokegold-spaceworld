@@ -1,0 +1,138 @@
+Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
+Original total,454,,,,,
+Current total,454,,,,,
+SilentHouseTextString1,33,"text
+line
+cont","おや？　<RIVAL>あてに　メールが
+とどいている　ようだ
+よんでみる？@","What's this? There
+seems to be a new
+e-mail addressed
+to <RIVAL>.
+Read it?@",,
+SilentHouseTextString2,92,"text
+line
+
+para
+line
+cont
+cont
+done","とつぜん　メールを　さしあげる
+しつれいを　おゆるしあれ
+
+じつは　きみに　どうしても
+わたしたい　ものが　あるのじゃが
+うけとって　もらえんかのう
+ポケモンけんきゅうしゃ　オーキド
+","I hope you'll
+excuse the sudden
+e-mail, but there's
+something that I
+would like to
+entrust you with.
+Won't you come by
+and collect it?
+
+#MON researcher
+OAK",,
+SilentHouseTextString3,21,"text
+line
+done","ひとのメールは
+みちゃ　いけないよな<⋯⋯>
+","Right. I shouldn't
+read others' mail.",,
+SilentHouseTextString4,25,"text
+line
+done","このまえ　かわったいろの
+ポッポを　みかけたわ
+","The other day I
+saw a strange-
+colored PIDGEY!",,
+SilentHouseTextString5,152,"text
+line
+
+para
+line
+cont
+
+para
+line
+cont
+cont
+
+para
+line
+cont
+done","ケン『ななな
+なんだ　<PLAYER>　じゃないか！
+
+おれは　ちょっと　あのー
+がっこうの　しゅくだいを
+おしえに　きてるんだ！
+
+えっ　マップ？
+そうか　そんな　やくそくも　してたな
+わかった
+トレーナーギアを　かしてみな
+
+スロットに　マップの　カセットを　
+さしこんでっと⋯⋯
+よし　これで　マップが　みれるぞ！
+","KEN: Wh- wha-… If
+it isn't <PLAYER>!
+
+I'm, uh… I'm here
+to help out with
+homework! Yeah!
+
+Huh? A map? Right,
+I promised to help
+with that, didn't
+I? Hand me your
+TRAINER GEAR for
+a second.
+
+By putting the map
+cartridge into
+this slot here…
+There we go!
+Now you can use
+the map.",,
+SilentHouseTextString6,77,"text
+line
+
+para
+line
+cont
+cont
+done","もし　オールドにいくなら
+マサキって　やつに　あうといい
+
+おれの　ともだちで
+すごい　ポケモン　マニアだ！
+きっと　おまえの
+てだすけを　してくれるぜ
+","KEN: If you're
+going to OLD CITY,
+you should look
+for a guy called
+BILL!
+
+He's a friend of
+mine who knows a
+lot about #MON.
+I'm sure he'll
+help you out!",,
+SilentHouseTextString7,54,"text
+line
+cont
+cont
+done","ケン『<PLAYER>
+オーキドはかせに　みこまれて
+ポケモンずかんを　つくるんだって？
+すごいじゃないか　がんばれよ
+","KEN: You were
+invited by PROF.
+OAK to help make a
+new #DEX? Whoa!
+Good luck!",,
