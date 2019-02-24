@@ -964,6 +964,8 @@ SECTION "Wild mon buffer", WRAM0[$D91B]
 wWildMons:: ; d91b
 	ds 41
 
+SECTION "DDFF (Patch-Only)", WRAM0[$DDFF]
+wRandomAddressForDataJuggling:: ds 1    ; ddff
 
 SECTION "Stack bottom", WRAM0[$DFFF]
 

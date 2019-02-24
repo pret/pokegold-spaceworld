@@ -1,3 +1,5 @@
+PATCH_TEXT_BANK EQU $29
+
 ; name lengths
 NAME_LENGTH          EQU 11 ; English
 PLAYER_NAME_LENGTH   EQU 6 ; Japanese
