@@ -169,16 +169,16 @@ ENDM
 .fartext
 	inc de
 	ld a, [de]
-	ld [$DDFF], a
+	ld [wRandomAddressForDataJuggling], a
 	inc de
 	ld a, [de]
 	push de
 	ld d, a
-	ld a, [$DDFF]
+	ld a, [wRandomAddressForDataJuggling]
 	ld e, a
 	ldh a, [hROMBank]
 	push af
-	ld a, $29
+	ld a, PATCH_TEXT_BANK
 	call Bankswitch
 
 	call PlaceString
