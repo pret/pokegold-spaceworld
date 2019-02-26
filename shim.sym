@@ -179,8 +179,6 @@
 3F:67A1 CallSubGameMenu
 
 ; Maps
-2F:5664 ShizukanaOkaTextPointers
-2F:564B ShizukanaOkaScriptLoader
 25:47A4 OldCityPokecenter2FTextPointers
 25:4782 OldCityPokecenter2FScriptLoader
 25:4882 OldCityPokecenterTradeTextPointers

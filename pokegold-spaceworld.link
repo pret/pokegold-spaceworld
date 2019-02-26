@@ -748,6 +748,7 @@ ROMX $2f
 	"data/maps/attributes/placeholder/SlowpokeWellMain.asm"
 	"maps/placeholder/SlowpokeWellMain.asm"
 	"data/maps/attributes/ShizukanaOka.asm"
+	"maps/ShizukanaOka.asm"
 ROMX $30
 	org $4000
 	"gfx.asm@Bank 30 Sprites 1"
