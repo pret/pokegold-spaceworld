@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Initialize new game WRAM", ROMX[$52F9], BANK[$01]
+SECTION "engine/menu/main_menu.asm@Initialize new game WRAM", ROMX
 ; TODO: Move this to another file when surrounding
 ; functions have been disassembled.
 InitializeNewGameWRAM:
@@ -43,7 +43,7 @@ ENDR
 
 	ld hl, wPartyCount
 	call InitializeByteList
-	ld hl, wUnknownListLengthda83
+	ld hl, wBoxListLength
 	call InitializeByteList
 	ld hl, wNumBagItems
 	call InitializeByteList
@@ -89,7 +89,7 @@ InitializeByteList:
 	ld [hl], a
 	ret
 
-SECTION "Main Menu", ROMX[$53CC], BANK[$01]
+SECTION "engine/menu/main_menu.asm@MainMenu", ROMX
 
 MainMenu:: ; 01:53CC
 	ld hl, wd4a9 

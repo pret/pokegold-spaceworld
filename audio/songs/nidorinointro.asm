@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Song NidorinoIntro", ROMX[$4000], BANK[$3b]
+SECTION "audio/songs/nidorinointro.asm", ROMX
 
 Song_NidorinoIntro:: ; ec000 (3b:4000)
 	db 3 << 6 | 0

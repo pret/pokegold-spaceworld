@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Multiply and Divide Engine", ROMX [$6810], BANK [$1]
+SECTION "engine/math/math.asm", ROMX
 
 _Multiply:: ; 6810
 

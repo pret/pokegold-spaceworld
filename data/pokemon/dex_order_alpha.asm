@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Alphabetical Pokedex Order", ROMX[$4943], BANK[$10]
+SECTION "data/pokemon/dex_order_alpha.asm", ROMX
 
 ; Every Pokémon sorted alphabetically by name (gojūon order).
 

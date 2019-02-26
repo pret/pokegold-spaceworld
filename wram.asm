@@ -1,7 +1,7 @@
 INCLUDE "constants.asm"
 
 
-SECTION "Music engine RAM", WRAM0[$C000]
+SECTION "Music engine RAM", WRAM0
 
 wMusic:: ; c000
 
@@ -76,13 +76,11 @@ wc1ba:: db ; c1ba
 wMusicInitEnd:: ; c1bc
 
 
-SECTION "OAM buffer", WRAM0[$C200]
+SECTION "OAM Buffer", WRAM0
 
 wVirtualOAM:: ; c200
     ds SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
 wVirtualOAMEnd::
-
-SECTION "Tile map", WRAM0 [$C2A0]
 
 wTileMap:: ; c2a0
     ds SCREEN_HEIGHT * SCREEN_WIDTH
@@ -94,16 +92,52 @@ wTileMapBackup:: ; c408
 
 NEXTU
 
-    ds 3
+	ds 1
+
+wc409:: ds 1 ; c409
+wc40a:: ds 1 ; c40a
 
 ; Monster or Trainer test?
 wWhichPicTest:: ; c40b
     db
+	
+
+wc40c:: ds 1 ; c40c
+wc40d:: ds 1 ; c40d
+wc40e:: ds 1 ; c40e
+
+	ds 11
+
+wc41a:: db ; c41a
+
+	ds 165
+
+wSpriteAnimIDBuffer:: db ; c4c0
+
+	ds 6
+	
+wc4c7:: db ; c4c7
+wc4c8:: db ; c4c8
+
+	ds 7
+	
+wNamingScreenDestinationPointer:: dw ; c4d0
+wNamingScreenCurNameLength:: db ; c4d2
+wNamingScreenMaxNameLength:: db ; c4d3
+wNamingScreenType:: db ; c4d4
+wNamingScreenCursorObjectPointer:: dw ; c4d5
+wNamingScreenLastCharacter:: db ; c4d7
+wNamingScreenStringEntryCoordY:: db ; c4d8
+wNamingScreenStringEntryCoordX:: db ; c4d9
+	
+	ds 64
+	
+wc51a:: ds 1 ; c51a
 
 ENDU
 
 
-SECTION "Map buffer", WRAM0[$C5E8]
+SECTION "Map Buffer", WRAM0
 
 wMapBuffer::
 wMapScriptNumber:: db ; c5e8
@@ -175,15 +209,50 @@ ENDU ; c813
         ds $32
 wBattleAnimEnd::
 ; c845
-	ds $1b1 ; TODO
+
+	ds $1aa ; TODO
+	
+	
+wc9ef:: ds 1 ; c9ef
+
+	ds 6
 
 wBattleMonNickname:: ds 6 ; c9f6
 wEnemyMonNickname:: ds 6 ; c9fc
-; ca02
-	ds $3b ; TODO
 
+wca02:: ds 1 ; ca02
+wca03:: ds 1 ; ca03
+wca04:: ds 1 ; ca04
+
+	ds 3
+
+wca08:: ds 1 ; ca08
+wca09:: ds 1 ; ca09	
+wca0a:: ds 1 ; ca0a
+
+	ds 5 ; TODO
+
+wca10:: ds 1 ; ca10
+wca11:: ds 1 ; ca11
+wca12:: ds 1 ; ca12
+wca13:: ds 1 ; ca13
+wca14:: ds 1 ; ca14
+
+	ds $22 ; TODO
+
+wca37:: ds 1 ; ca37
+wca38:: ds 1 ; ca38
+wca39:: ds 1 ; ca39
+wca3a:: ds 1 ; ca3a
+wca3b:: ds 1 ; ca3b
+wca3c:: ds 1 ; ca3c
 wPlayerSubStatus3:: db ; ca3d
-	ds $4
+
+wca3e:: ds 1 ; ca3e
+wca3f:: ds 1 ; ca3f
+wca40:: ds 1 ; ca40
+wca41:: ds 1 ; ca41
+	
 wEnemySubStatus3:: db ; ca42
 
 wca43:: db ; ca43
@@ -193,11 +262,40 @@ wca44:: db ; ca44
 	ds $12
 wTrainerClass:: ; ca57
 	db
-; ca58
-	ds $6b
+
+wca58:: ds 1 ; ca58
+wca59:: ds 1 ; ca59
+wca5a:: ds 1 ; ca5a
+wca5b:: ds 1 ; ca5b
+wca5c:: ds 1 ; ca5c
+	
+	ds $5c
+	
+wcab9:: ds 1 ; cab9
+
+	ds 6
+
+wcac0:: ds 1 ; cac0
+wcac1:: ds 1 ; cac1
+wcac2:: ds 1 ; cac2
+	
 wLinkBattleRNCount:: db ; cac3
 
+	ds 12
+	
+wcad0:: ds 1 ; cad0
+
+	ds 9
+	
+wcada:: ds 1 ;cada
+
+	ds 6
+	
+wcae1:: ds 1 ; cae1
+
 ENDU
+
+
 
 
 SECTION "CB14", WRAM0[$CB14]
@@ -236,9 +334,8 @@ SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db ; cb5e
 wFlyDestination:: db ; cb5f
 
-	ds 2
-
-SECTION "CB62", WRAM0[$CB62]
+wcb60:: ds 1 ; cb60
+wcb61:: ds 1 ; cb61
 
 wVBCopySize:: ds 1 ; cb62
 wVBCopySrc:: ds 2 ; cb63
@@ -246,8 +343,10 @@ wVBCopyDst:: ds 2 ; cb65
 wVBCopyDoubleSize:: ds 1 ; cb67
 wVBCopyDoubleSrc:: ds 2 ; cb68
 wVBCopyDoubleDst:: ds 2 ; cb6a
-	ds 2
-wcb6e:: db
+wcb6c:: db ; cb6c
+wcb6d:: db ; cb6d
+wcb6e:: db ; cb6e
+wPlayerStepDirection:: db ; cb6f
 
 SECTION "CB71", WRAM0[$CB70]
 
@@ -260,6 +359,8 @@ wVBCopyFarSrcBank:: ds 1 ; cb76
 wPlayerMovement:: db ; cb77
 wMovementObject:: db ; cb78
 	ptrba wMovementData ; cb79
+	
+wcb7c:: ds 1 ; cb7c
 
 SECTION "Collision buffer", WRAM0[$CB90]
 
@@ -376,6 +477,12 @@ wSpriteOutputPtrCached  : ds 2 ; ccba
 wSpriteDecodeTable0Ptr  : ds 2 ; ccbc
 wSpriteDecodeTable1Ptr  : ds 2 ; ccbe
 
+wccc0:: ds 1 ; ccc0
+wccc1:: ds 1 ; ccc1
+wccc2:: ds 1 ; ccc2
+wccc3:: ds 1 ; ccc3
+wccc4:: ds 1 ; ccc4
+
 SECTION "CCC7", WRAM0[$CCC7]
 
 wDisableVBlankOAMUpdate:: db ; ccc7
@@ -386,15 +493,48 @@ wBGP:: db ; ccca
 wOBP0:: db ; cccb
 wOBP1:: db ; cccc
 
-SECTION "CCCE", WRAM0[$CCCE]
+wcccd:: ds 1 ; cccd
 
 wDisableVBlankWYUpdate:: db ; ccce
 wSGB:: db
 
-SECTION "CD26", WRAM0[$CD26]
+SECTION "CCD0", WRAM0[$CCD0]
+
+wccd0:: ds 1 ; ccd0
+wccd1:: ds 1 ; ccd1
+wccd2:: ds 1 ; ccd2
+wccd3:: ds 1 ; ccd3
+
+	ds 5
+	
+wccd9:: ds 1 ; ccd9
+
+SECTION "CCE1", WRAM0[$CCE1]
+
+wcce1:: ds 1 ; cce1
+wcce2:: ds 1 ; cce2
+wcce3:: ds 1 ; cce3
+wcce4:: ds 1 ; cce4
+
+	ds 6
+	
+wcceb:: ds 1 ; cceb
+	
+	ds 5
+	
+wccf1:: ds 1 ; ccf1
+wccf2:: ds 1 ; ccf2
+wccf3:: ds 1 ; ccf3
+wccf4:: ds 1 ; ccf4
+
+SECTION "CD11", WRAM0[$CD11]
+
+wcd11:: ds 1 ; cd11
+
+	ds 20
 
 wStringBuffer1:: ds 1 ; How long is this? ; cd26
-
+wcd27:: ds 1
 SECTION "CD31", WRAM0[$CD31]
 
 UNION
@@ -411,15 +551,21 @@ wStringBuffer2:: db ; How long is this? ; cd31
 ENDU
 
 
-SECTION "CD3E", WRAM0[$CD3D]
+SECTION "CD3C", WRAM0[$CD3C]
 
+wcd3c:: db ; cd3c
 wRegularItemsCursor:: db ; cd3d
 wBackpackAndKeyItemsCursor:: db ;cd3e
 wStartmenuCursor:: db ; cd3f
-    ds 4 ; TODO
+wcd40:: db ; cd40
+wcd41:: db ; cd41
+wcd42:: db ; cd42
+wcd43:: db ; cd43
 wRegularItemsScrollPosition:: db ; cd44
 wBackpackAndKeyItemsScrollPosition:: db ; cd45
-    ds 3 ; TODO
+wcd46:: ds 1 ; cd46
+wcd47:: ds 1 ; cd47
+wSelectedSwapPosition:: db ; cd48
 wMenuScrollPosition:: db ; cd49
 
 wTextDest:: ds 2; cd4a
@@ -439,8 +585,8 @@ wPredefBC:: ; cd54
 wFarCallBCBuffer:: ; cd54
     dw
 
-    ds 2 ; TODO
-
+wcd56:: ds 1 ; cd56
+wcd57:: ds 1 ; cd57
 wFieldMoveSucceeded:: db ; cd58
 wVramState:: db ; cd59
 
@@ -449,10 +595,12 @@ wcd5d:: db ; cd5d
 	db
 wChosenStarter:: db ; cd5f
 
-SECTION "CD72", WRAM0[$CD72]
+SECTION "CD70", WRAM0[$CD70]
+wcd70:: ds 1 ; cd70
+wcd71:: ds 1 ; cd71
 wcd72:: dw ; cd72
-
-	ds 2 ; TODO
+wcd74:: db ; cd74
+wcd75:: db ; cd75
 
 wCurItem:: db ; cd76
 wItemIndex:: db ;cd77
@@ -461,12 +609,14 @@ wWhichPokemon: db ; cd79
 
 SECTION "CD7B", WRAM0[$CD7B]
 
-wHPBarType:: db ; cd76
-	
-	ds 1
+wHPBarType:: db ; cd7b
+wcd7c:: ds 1 ; cd7c
 
 wItemQuantity:: db ; cd7d
 wItemQuantityBuffer:: db ; cd7e
+wcd7f:: db ; cd7f
+wcd80:: db ; cd80
+wcd81:: db ; cd81
 
 SECTION "CD9E", WRAM0 [$CD9E]
 wcd9e:: db ; cd9e
@@ -479,7 +629,12 @@ wTalkingTargetType:: db ; cdb0
 ;bit 0 = has engaged NPC in dialogue 
 ;bit 1 = has engaged sign in dialogue
 
-SECTION "CDBA", WRAM0[$CDBA]
+wcdb1:: ds 1 ; cdb1
+wcdb2:: ds 1 ; cdb2
+
+SECTION "CDB9", WRAM0[$CDB9]
+
+wcdb9:: ds 1 ; cdb9
 
 wItemAttributeParamBuffer:: db ; cdba
 wCurPartyLevel:: db ; cdbb
@@ -518,19 +673,40 @@ wHPBarHPDifference:: dw ; cdcb
 
 wLinkBattleRNs:: ds 10 ; cdcd
 
-wcdd7:: db ; cdd7
-; cddd
+wcdd7:: ds 1 ; cdd7
+wcdd8:: ds 1 ; cdd8
+wcdd9:: ds 1 ; cdd9
+wcdda:: ds 1 ; cdda
+wcddb:: ds 1 ; cddb
+wcddc:: ds 1 ; cddc
+wcddd:: ds 1 ; cddd
+wcdde:: ds 1 ; cdde	
+wcddf:: ds 1 ; cddf
+wcde0:: ds 1 ; cde0
+wcde1:: ds 1 ; cde1
+wcde2:: ds 1 ; cde2
+wcde3:: ds 1 ; cde3
+wcde4:: ds 1 ; cde4
+wcde5:: ds 1 ; cde5
+wcde6:: ds 1 ; cde6
+wcde7:: ds 1 ; cde7
+wcde8:: ds 1 ; cde8
+wcde9:: ds 1 ; cde9
+wcdea:: ds 1 ; cdea
+wcdeb:: ds 1 ; cdeb
 
 
-SECTION "CE00", WRAM0[$CE00]
+SECTION "CDFE", WRAM0[$CDFE]
 
+wcdfe:: ds 1 ; cdfe
+wcdff:: ds 1 ; cdff
 wBattleMode:: db ; ce00
-    db
-wce02:: db ; ce02
-	ds 2
-wce05:: db ; ce05
-
-SECTION "CE07", WRAM0[$CE07]
+wce01:: ds 1 ; ce01
+wce02:: ds 1 ; ce02
+wce03:: ds 1 ; ce03
+wce04:: ds 1 ; ce04
+wce05:: ds 1 ; ce05
+wce06:: ds 1 ; ce06
 
 wMonHeader::
 
@@ -595,18 +771,26 @@ wMonHLearnset:: ; ce1e
     flag_array 50 + 5 ; size = 7
     ds 1
 
-SECTION "CE2E", WRAM0[$CE2E]
-wce2e:: ; ce2e
-	ds 9
-
-SECTION "CE37", WRAM0[$CE37]
+SECTION "CE2D", WRAM0[$CE2D]
+wce2d:: ds 1 ; ce2d
+wce2e:: ds 1 ; ce2e
+wce2f:: ds 1 ; ce2f
+wce30:: ds 1 ; ce30
+wce31:: ds 1 ; ce31
+wce32:: ds 1 ; ce32
+wce33:: ds 1 ; ce33
+wce34:: ds 1 ; ce34
+wce35:: ds 1 ; ce35
+wce36:: ds 1 ; ce36
 
 wNamedObjectIndexBuffer::
 wCountSetBitsResult:: 
 wce37:: ; ce37
     db
 
-SECTION "CE3B", WRAM0[$CE3B]
+SECTION "CE3A", WRAM0[$CE3A]
+
+wce3a:: ds 1 ; ce3a
 
 wVBlankSavedROMBank:: ; ce3b
     db
@@ -641,7 +825,9 @@ wDebugFlags:: db ; ce63
 ; Bit 1: Debug field indicator
 ; Bit 2-3: Game is continued (set when selecting continue on the main menu)
 
-	ds 3
+wce64:: ds 1 ; ce64
+wce65:: ds 1 ; ce65
+wce66:: ds 1 ; ce66
 	
 wPlayerName:: ds 6 ; ce67
 
@@ -758,6 +944,7 @@ wTMsHMs:: db ; d165
 
 SECTION "D19E", WRAM0[$D19E]
 
+wItems::
 wNumBagItems:: db ; d19e
 
 SECTION "D1C8", WRAM0[$D1C8]
@@ -770,7 +957,14 @@ SECTION "D1DE", WRAM0[$D1DE]
 wNumBallItems:: db ; d1de
 wBallQuantities:: db ; d1df
 
-SECTION "Rival's Name", WRAM0[$D258]
+	ds 10
+	
+wUnknownListLengthd1ea:: db ; d1ea
+wUnknownListd1eb:: db ; d1eb
+
+SECTION "Rival's Name", WRAM0[$D256]
+wRegisteredItem:: db ; d256
+wRegisteredItemQuantity:: db ; d257
 wRivalName:: ds 6 ; d258
 	ds 6
 
@@ -783,23 +977,37 @@ wPlayerState:: db ; d264
 wd265:: db ; d265
 wd266:: db ; d266
 	
+;The starting house's map script number is stored at d29a. Others are probably nearby.
 SECTION "D29A", WRAM0[$D29A]
 wd29a:: db ; d29a
 wd29b:: db ; d29b
-	db ; d29c
+wd29c::	db ; d29c
 wd29d:: db ; d29d
-	db
+wd29e::	db ; d29e
 	db
 wd2a0:: db ; d2a0
+
+SECTION "D35F", WRAM0[$D35F]
+wOptions:: db ; d35f
 
 SECTION "D39D", WRAM0[$D39D]
 wd39d:: db
 
 SECTION "Game Event Flags", WRAM0[$D41A]
 wd41a:: db
+; 76543210
+; |      \- read email?
+; \-------- talked to Blue, triggers Oak
 wd41b:: db
+; 76543210
+;      |\-- followed Oak to his back room 
+;      \--- chose a starter
 wd41c:: db
+; 76543210
+;    \----- recieved pokedexes
 wd41d:: db
+; 76543210
+;      \--- beat rival in the lab
 wd41e:: db
 
 SECTION "D4A9", WRAM0[$D4A9]
@@ -818,9 +1026,18 @@ wJoypadFlags:: db ; d4ab
 SECTION "wDigWarpNumber", WRAM0[$D4B2]
 
 wDigWarpNumber:: db ; d4b2
+wd4b3:: ds 1 ; d4b3
+wd4b4:: ds 1 ; d4b4
+wd4b5:: ds 1 ; d4b5
+wd4b6:: ds 1 ; d4b6
+wd4b7:: ds 1 ; d4b7
+wd4b8:: ds 1 ; d4b8
+wd4b9:: ds 1 ; d4b9
 
 
-SECTION "Warp data", WRAM0[$D514]
+SECTION "Warp data", WRAM0[$D513]
+
+wWarpNumber:: db ; d513
 
 wCurrMapWarpCount:: ; d514
     db
@@ -858,7 +1075,10 @@ wBGMapAnchor:: ; d643
 
 wUsedSprites:: ; d645
 	dw ; This is for the player
+	
+wUsedNPCSprites:: ;d647
 	ds 2 * 5 ; This is for the NPCs
+	
 wUsedSpritesEnd:: ; d651
 
 
@@ -926,8 +1146,8 @@ wTilesetCollisionAddress:: ; d6a4
 wTilesetEnd:: ; d6aa
 
 wPartyCount:: db
-wPartySpecies:: ds PARTY_LENGTH
-wPartyEnd:: db
+wPartySpecies:: ds PARTY_LENGTH ; d6ab - d6b0
+wPartyEnd:: db ; d6b1
 
 wPartyMons::
 wPartyMon1:: party_struct wPartyMon1 ; d6b2
@@ -958,16 +1178,109 @@ wAnnonDex:: ds 26  ; d85a
 
 wAnnonID:: ds 1    ; d874
 
+wd875:: ds 1 ; d875
+wd876:: ds 1 ; d876
+
+	ds 5
+
+wd87c:: ds 1 ; d87c
+	
+	ds 5
+
+wd882:: ds 1 ; d882
+wd883:: ds 1 ; d883
+wd884:: ds 1 ; d884
+
+SECTION "D8A2", WRAM0[$D8A2]
+
+wd8a2:: ds 1 ; d8a2
+wd8a3:: ds 1 ; d8a3
+wd8a4:: ds 1 ; d8a4
+wd8a5:: ds 1 ; d8a5
+
+	ds 5
+	
+wd8ab:: ds 1 ; d8ab
+
+SECTION "wd8b1", WRAM0[$D8B1]
+
+wd8b1:: ds 1 ; d8b1
+
+	ds 5
+	
+wd8b7:: ds 1 ; d8b7
+wd8b8:: ds 1 ; d8b8
+
+SECTION "D8D1", WRAM0[$D8D1]
+
+wd8d1:: ds 1 ; d8d1
+
+	ds 5
+	
+wd8d7:: ds 1 ; d8d7
+
+	ds 5
+	
+wd8dd:: ds 1 ; d8dd
+
+SECTION "D8E3", WRAM0[$D8E3]
+
+wd8e3:: ds 1 ; d8e3
+wd8e4:: ds 1 ; d8e4
+
+SECTION "D8FD", WRAM0[$D8FD]
+
+wd8fd:: ds 1 ; d8fd
+
+SECTION "D913", WRAM0[$D913]
+
+wd913:: ds 1 ; d913
 	
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
+UNION
 wWildMons:: ; d91b
 	ds 41
+NEXTU
+	ds 2
+wd91d:: ds 1 ; d91d
+	ds 29
+wd93b:: ds 1 ; d93b
+ENDU
+
+SECTION "DA3B", WRAM0[$DA3B]
+
+wOTPartyMonOT:: db ; da3b
+
+SECTION "DA5F", WRAM0[$DA5F]
+
+wda5f:: db ; da5f
+
+SECTION "DA83", WRAM0[$DA83]
+
+wBoxListLength:: db ; da83
+wBoxList:: ds MONS_PER_BOX ; da84
+
+SECTION "DAA3", WRAM0[$DAA3]
+
+wdaa3:: db ; daa3
+wdaa4:: db ; daa4
+wdaa5:: db ; daa5
+
+SECTION "DE63", WRAM0[$DE63]
+
+wde63:: db ; de63
+
+SECTION "DF17", WRAM0[$DF17]
+wdf17:: ds 1 ; df17
 
 SECTION "DDFF (Patch-Only)", WRAM0[$DDFF]
 wRandomAddressForDataJuggling:: ds 1    ; ddff
 
-SECTION "Stack bottom", WRAM0[$DFFF]
+SECTION "DFCB", WRAM0[$DFCB]
+wdfcb:: ds 1 ; dfcb
+
+SECTION "Stack Bottom", WRAM0
 
 ; Where SP is set at game init
 wStackBottom:: ; dfff

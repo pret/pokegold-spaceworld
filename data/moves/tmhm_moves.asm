@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "TM/HM Moves", ROMX[$52D1], BANK[$04]
+SECTION "data/moves/tmhm_moves.asm", ROMX
 
 ; This is a nearly-sequential table of new moves.
 ; It was probably meant for easy testing, not as

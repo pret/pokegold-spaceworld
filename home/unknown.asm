@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
-if DEBUG
-SECTION "Empty function", ROM0[$2F97]
-else
-SECTION "Empty function", ROM0[$2F5B]
-endc
+; if DEBUG
+SECTION "home/unknown.asm@Empty function", ROM0
+; else
+; SECTION "Empty function", ROM0[$2F5B]
+; endc
 
 InexplicablyEmptyFunction:: ; 2f97
 rept 16
@@ -18,7 +18,7 @@ endr
 ; 2. Give them proper names.
 ; 3. Move them to their own file(s).
 
-SECTION "Unknown functions", ROM0[$1FF4]
+SECTION "home/unknown.asm@Unknown functions", ROM0
 
 _1FF4:: ; 1ff4
 	ld a, BANK(s0_a600)
@@ -39,14 +39,14 @@ _2007:: ; 2007
 	call CloseSRAM
 	ret
 
-SECTION "Unknown_20f8", ROM0[$20F8]
+SECTION "home/unknown.asm@Unknown_20f8", ROM0
 
 Function20f8::
 	call Function1848
 	call Function18cc
 	ret
 
-SECTION "Unknown_094c", ROM0[$094C]
+SECTION "home/unknown.asm@Unknown_094c", ROM0
 
 Function094c::
 	ldh a, [hROMBank]

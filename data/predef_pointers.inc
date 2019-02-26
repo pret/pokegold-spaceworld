@@ -38,8 +38,8 @@ GiveItemPredef::
 	add_predef UpdateHPBar
 	add_predef Functiondf7d ; 18
 	add_predef Functiondf91
-	add_predef Function1128f
-	add_predef Function112c1
+	add_predef CanLearnTMHMMove
+	add_predef GetTMHMMove
 	add_predef LinkTextboxAtHL
 	add_predef Function2d663
 	add_predef Function3d5ce
@@ -93,9 +93,9 @@ GiveItemPredef::
 	add_predef Function8c4be
 	add_predef Function8c9c6
 	add_predef Function8c940 ; 50
-	add_predef Functioncc001
+	add_predef PlayBattleAnim
 	add_predef Functioncc000
 	add_predef Functioncc000_2
 	add_predef Functionfdb66
-	add_predef Function1240b
+	add_predef LoadItemData
 	dbw $ff, InexplicablyEmptyFunction ; 56

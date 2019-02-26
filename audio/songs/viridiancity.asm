@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Song ViridianCity", ROMX[$41b9], BANK[$3b]
+SECTION "audio/songs/viridiancity.asm", ROMX
 
 Song_ViridianCity:: ; ec1b9 (3b:41b9)
 	db 3 << 6 | 0

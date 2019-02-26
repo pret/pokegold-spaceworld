@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Toolgear drawing functions", ROM0[$2018]
+SECTION "home/toolgear.asm", ROM0
 
 ; local charmap, global charmap won't apply
 ; see https://github.com/rednex/rgbds/issues/265#issuecomment-395229694

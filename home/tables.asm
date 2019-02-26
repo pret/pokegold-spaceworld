@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 	
-SECTION "FindItemInTable", ROM0[$35F8]
+SECTION "home/tables.asm", ROM0
 
 ; find value a from table hl with row length de
 ; returns carry and row index b if successful

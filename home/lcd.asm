@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "LCD functions", ROM0[$3AE]
+SECTION "home/lcd.asm", ROM0
 
 LCD:: ; 03ae
 	push af

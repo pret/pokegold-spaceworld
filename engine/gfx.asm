@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Misc GFX Loading Functions", ROMX[$4000], BANK[$3E]
+SECTION "engine/gfx.asm", ROMX
 
 LoadFontGraphics:: ; f8000 (3e:4000)
 	ld de, FontGFX
@@ -117,6 +117,7 @@ LoadPokemonStatsGraphics:: ; f80fb (3e:40fb)
 	ld hl, $9550
 	lb bc, BANK(ExpBarGFX), ((ExpBarGFXEnd - ExpBarGFX) / LEN_2BPP_TILE)
 	call Get2bpp
+LoadOnlyPokemonStatsGraphics:: ; 3E:412E
 	ld de, StatsGFX
 	ld hl, $9310
 	lb bc, BANK(StatsGFX), ((StatsGFXEnd - StatsGFX) / LEN_2BPP_TILE)

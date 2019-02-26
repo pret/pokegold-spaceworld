@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Player Movement", ROMX[$4000], BANK[$03]
+SECTION "engine/overworld/player_movement.asm@Player Movement", ROMX
 
 OverworldMovementCheck:: ; 03:4000
 	jp _OverworldMovementCheck
@@ -1080,7 +1080,7 @@ GetCollisionType::
 	pop de
 	ret
 
-SECTION "Rest of Player Movement", ROMX[$4764], BANK[$03]
+SECTION "engine/overworld/player_movement.asm@Rest of Player Movement", ROMX
 	
 _UnusedReturnFalse:: ; 03:4764
 	xor a
@@ -1122,7 +1122,7 @@ CheckCollisionSometimesSolid:: ; 03:4769
 	ret
 
 
-SECTION "_RedrawPlayerSprite", ROMX[$4000], BANK[$05]
+SECTION "engine/overworld/player_movement.asm@_RedrawPlayerSprite", ROMX
 
 _RedrawPlayerSprite: ; 05:4000
 	call GetPlayerSprite

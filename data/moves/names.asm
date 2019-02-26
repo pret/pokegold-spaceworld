@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "MoveNames", ROMX[$52A1], BANK[$10]
+SECTION "data/moves/names.asm", ROMX
 
 MoveNames::
 	db "はたく@" ; POUND

@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 
 ; TODO - need to constantize tile ids, movements
 
-SECTION "Field Moves", ROMX[$4fab], BANK[$03]
+SECTION "engine/events/field_moves.asm", ROMX
 
 CutFunction: ; 03:4fab
 	call .ResetScriptID

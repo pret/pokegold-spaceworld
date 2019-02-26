@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "TypeNames", ROMX[$40DD], BANK[$14]
+SECTION "data/types/names.asm", ROMX
 
 TypeNames::
 	dw .Normal   ; NORMAL

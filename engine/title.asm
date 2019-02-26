@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Title screen", ROMX[$5D8C], BANK[$01]
+SECTION "engine/title.asm@Title screen", ROMX
 
 IntroSequence::
 	callab GameFreakIntro	; Bank $39 
@@ -629,11 +629,11 @@ SetTitleGfxNext::
 	jr nz, .loop
 	ret
 
-if DEBUG
-SECTION "Title screen TEMPORARY", ROMX[$62A5], BANK[$01] ; TODO: merge this with the main section above
-else
-SECTION "Title screen TEMPORARY", ROMX[$62A2], BANK[$01] ; TODO: merge this with the main section above
-endc
+; if DEBUG
+SECTION "engine/title.asm@Title screen TEMPORARY", ROMX
+; else
+; SECTION "Title screen TEMPORARY", ROMX[$62A2], BANK[$01] ; TODO: merge this with the main section above
+; endc
 	
 
 GameInit::

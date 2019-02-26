@@ -1,4 +1,4 @@
-SECTION "HRAM", HRAM[$FF80]
+SECTION "HRAM", HRAM
 
 hOAMDMA:: ; ff80
     ds 10
@@ -125,8 +125,21 @@ hPrintNumDivisor:: ds 3 ; ffb7 big-endian
 hPrintNumTemp:: ds 3 ; ffba big-endian
 
 ENDU
-    ds 19 ; TODO
 
+	ds 3 ; TODO
+
+hFFC0:: ds 1 ; FFC0
+	
+	ds 6
+	
+hFFC7:: db ; FFC7
+hFFC8:: db ; FFC8
+hFFC9:: db ; FFC9
+hFFCA:: db ; FFCA
+hFFCB:: db ; FFCB
+hFFCC:: db ; FFCC
+
+    ds 3 ; TODO
 
 hLCDCPointer:: ; ffd0
     db

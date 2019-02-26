@@ -9,18 +9,18 @@ RGBGFX := rgbgfx
 RGBLINK := rgblink
 RGBFIX := rgbfix
 sort_sym := tools/sort_symfile.sh
-#sort_sym := $(PYTHON3) tools/sort_sym.py
 
 RGBASMFLAGS := -h -E -i $(BUILD)/ -DGOLD -DDEBUG=1
 tools/gfx :=
 
 ROM := pokegold-spaceworld-english.gb
+LINKERSCRIPT := pokegold-spaceworld-gen.link
 BASEROM := baserom.gb
 SHIM := shim.sym
 
 rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
-DIRS := home engine data audio
-ASMFILES := $(call rwildcard, $(DIRS), *.asm) gfx.asm vram.asm sram.asm wram.asm hram.asm hack/hack.asm
+DIRS := home engine data audio maps
+ASMFILES := $(call rwildcard, $(DIRS), *.asm) bin.asm gfx.asm vram.asm sram.asm wram.asm hram.asm hack/hack.asm
 OBJS := $(patsubst %.asm, $(BUILD)/%.o, $(ASMFILES))
 OBJS += $(BUILD)/shim.o
 OBJS += $(BUILD)/hack/relocated_text.o
@@ -56,15 +56,22 @@ coverage: $(ROM:.gb=.map) tools/disasm_coverage.py
 	$(PYTHON) tools/disasm_coverage.py -m $< -b 0x40
 
 .PHONY: linkerscript
-linkerscript: $(ROM:.gb=.link)
+linkerscript: $(ROM:.gb=-gen.link)
 
-%.link: %.map tools/map2link.py
+# TODO FIX HARDCODE
+%.link: pokegold-spaceworld.map tools/map2link.py
 	$(PYTHON3) tools/map2link.py $< $@
 
 %.map: %.gb
 
+$(CORRECTEDROM): %-correctheader.gb: %.gb
+	$(RGBASM) $(RGBASMFLAGS) -o $(BUILD)/zero_checksum.o zero_checksum.asm
+	$(RGBLINK) -O $< -o $@ $(BUILD)/zero_checksum.o
+	$(RGBFIX) -f hg -m 0x10 $@
+	cp $(<:.gb=.sym) $(@:.gb=.sym)
+
 $(ROM): poke%-spaceworld-english.gb: $(OBJS) | $(BASEROM)
-	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -O $(BASEROM) -o $@ $^
+	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -l $(@:.gb=.link) -O $(BASEROM) -o $@ $^
 	$(RGBFIX) -f lhg -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t "POKEMON2$(shell echo $* | cut -d _ -f 1 | tr '[:lower:]' '[:upper:]')" $@
 	$(sort_sym) $(@:.gb=.sym)
 
@@ -82,13 +89,19 @@ $(BUILD)/%.o: %.asm | $$(dir $$@)
 
 $(BUILD)/gfx/sgb/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_gold.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/sgb_border_gold_corrupted.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/corrupted_9e1c.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/corrupted_a66c.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/sgb/corrupted_b1e3.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
-$(BUILD)/gfx/trainer_card/trainer_card.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/pokegear/town_map.2bpp: tools/gfx += --trim-trailing
 $(BUILD)/gfx/minigames/slots.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/minigames/poker.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/intro/purin_pikachu.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/battle_anims/attack_animations_1.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/battle_anims/attack_animations_2.2bpp: tools/gfx += --trim-whitespace
 
 .PRECIOUS: $(BUILD)/%.pic
 $(BUILD)/%.pic: $(BUILD)/%.2bpp tools/pkmncompress | $$(dir $$@)

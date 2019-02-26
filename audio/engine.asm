@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Audio", ROMX[$4000], BANK[$3A]
+SECTION "audio/engine.asm@Audio", ROMX
 
 _DisableAudio:: ; 3a:4000
 	push hl
@@ -208,7 +208,7 @@ Functione80fa: ; 3a:40fa
 .jumptable
 	; TODO
 
-SECTION "IsChannelSFXOn", ROMX[$42bd], BANK[$3a]
+SECTION "audio/engine.asm@IsChannelSFXOn", ROMX
 IsChannelSFXOn: ; 3a:42bd
 	; If it's not a valid channel, return
 	ld a, [wCurChannel]
@@ -249,7 +249,7 @@ IsAnySFXOn: ; 3a:42d0
 	scf
 	ret
 
-SECTION "Functione82f0", ROMX[$42f0], BANK[$3a]
+SECTION "audio/engine.asm@Functione82f0", ROMX
 Functione82f0: ; 3a:42f0
 	call IncrementTempo
 	call PlayDanger
@@ -502,7 +502,7 @@ FadeMusic: ; 3a:43ce
 	ld [wVolume], a
 	ret
 
-SECTION "Audio engine, part 2", ROMX[$4CEE], BANK[$3A] ; TODO: disassemble what's above (gulp) and remove this
+SECTION "audio/engine.asm@Audio engine, part 2", ROMX
 
 SetGlobalTempo: ; 3a:4cee
 	push bc
@@ -612,5 +612,5 @@ _PlayMusic:: ; 3a:4d66
 	xor a
 	; TODO
 
-SECTION "Song Header Pointers", ROMX[$52C7], BANK[$3A]
+SECTION "audio/engine.asm@Song Header Pointers", ROMX
 INCLUDE "audio/song_header_pointers.inc"

@@ -1,10 +1,11 @@
 INCLUDE "constants.asm"
 
-SECTION "Mon Nest Icon", ROMX[$4A0F], BANK[$02]
+SECTION "gfx.asm@Mon Nest Icon", ROMX
 PokedexNestIconGFX::
 INCBIN "gfx/pokegear/dexmap_nest_icon.1bpp"
 
-SECTION "Bank 2 Misc GFX", ROMX[$44bf], BANK[$02]
+SECTION "gfx.asm@Bank 2 Misc GFX", ROMX
+UnknownBouncingOrbGFX::
 INCBIN "gfx/overworld/gfx_84bf.2bpp"
 JumpShadowGFX::
 INCBIN "gfx/overworld/shadow.2bpp"
@@ -14,24 +15,35 @@ QuestionEmoteGFX::
 INCBIN "gfx/overworld/question.2bpp"
 HappyEmoteGFX::
 INCBIN "gfx/overworld/happy.2bpp"
+UnknownBallGFX::
+INCBIN "gfx/overworld/gfx_85cf.2bpp"
 
-SECTION "Pokegear GFX", ROMX[$4F32], BANK[$02]
-PokegearGFX::
-INCBIN "gfx/pokegear/pokegear.2bpp"
+SECTION "gfx.asm@Pokegear GFX", ROMX
+Pokegear1GFX::
+INCBIN "gfx/pokegear/pokegear_1.2bpp"
+Pokegear2GFX::
+INCBIN "gfx/pokegear/pokegear_2.2bpp"
+VerticalPipeGFX::
+INCBIN "gfx/pokegear/vertical_pipe.2bpp"
 
-SECTION "Title Screen BG Decoration Border", ROMX[$51FB], BANK[$02]
+SECTION "gfx.asm@Title Screen BG Decoration Border", ROMX
 TitleBGDecorationBorder::
 INCBIN "gfx/title/titlebgdecoration.2bpp"
 
-SECTION "Super Palettes", ROMX[$5B4C], BANK[$02]
+SECTION "gfx.asm@SGB GFX", ROMX
+
 INCLUDE "data/pokemon/palettes.inc"
 INCLUDE "data/super_palettes.inc"
 
-SECTION "Unused SGB Border GFX", ROMX[$62CC], BANK[$02]
+Corrupted9e1cGFX:
+INCBIN "gfx/sgb/corrupted_9e1c.2bpp"
+
 UnusedSGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
-SECTION "SGB Border GFX", ROMX[$6B1C], BANK[$02]
+Corrupteda66cGFX:
+INCBIN "gfx/sgb/corrupted_a66c.2bpp"
+
 SGBBorderGFX::
 if def(GOLD)
 INCBIN "gfx/sgb/sgb_border_gold.2bpp"
@@ -39,7 +51,21 @@ else
 INCBIN "gfx/sgb/sgb_border_silver.2bpp"
 endc
 
-SECTION "Title Screen GFX", ROMX[$47CF], BANK[$04]
+SECTION "gfx.asm@Corrupted SGB GFX", ROMX
+
+SGBBorderGoldCorruptedGFX:
+INCBIN "gfx/sgb/sgb_border_gold_corrupted.2bpp"
+
+Corruptedb1e3GFX:
+INCBIN "gfx/sgb/corrupted_b1e3.2bpp"
+
+SGBBorderSilverCorruptedGFX:
+INCBIN "gfx/sgb/sgb_border_silver_corrupted.2bpp"
+
+Corruptedba93GFX:
+INCBIN "gfx/sgb/corrupted_ba93.2bpp"
+
+SECTION "gfx.asm@Title Screen GFX", ROMX
 if def(GOLD)
 TitleScreenGFX:: INCBIN "gfx/title/title.2bpp"
 TitleScreenVersionGFX:: INCBIN "gfx/title/title_gold_version.2bpp"
@@ -54,11 +80,20 @@ TitleScreenLogoGFX:: INCBIN "gfx/title/title_logo.2bpp"
 TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_silverlogo.2bpp"
 endc
 
-SECTION "Mail Icon GFX", ROMX[$5BB1], BANK[$04]
+SECTION "gfx.asm@Name Entry Extra Tiles", ROMX
+TextScreenGFX_End:: 
+INCBIN "gfx/font/text_entry_end.1bpp"
+TextScreenGFX_Hyphen::
+INCBIN "gfx/font/text_entry_hyphen.1bpp"
+TextScreenGFX_Underscore::
+INCBIN "gfx/font/text_entry_underscore.1bpp"
+
+SECTION "gfx.asm@Mail Icon GFX", ROMX
 MailIconGFX::
 INCBIN "gfx/icons/mail.2bpp"
 
-SECTION "Trainer Card GFX", ROMX[$7171], BANK[$04]
+SECTION "gfx.asm@Trainer Card GFX", ROMX
+TrainerCardBorderGFX::               INCBIN "gfx/trainer_card/border.2bpp"
 TrainerCardGFX::                     INCBIN "gfx/trainer_card/trainer_card.2bpp" ; 0x013171--0x013381
 TrainerCardColonGFX::                INCBIN "gfx/trainer_card/colon.2bpp"        ; 0x013381--0x013391
 TrainerCardIDNoGFX::                 INCBIN "gfx/trainer_card/id_no.2bpp"        ; 0x013391--0x0133B1
@@ -75,101 +110,107 @@ if DEBUG
 Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp" ; 0x13ba3
 endc
 
-SECTION "Bank 6 Tilesets 00", ROMX[$4000], BANK[$06]
+SECTION "gfx.asm@Bank 6 Tilesets 00", ROMX
 Tileset_00_GFX:
 INCBIN "gfx/tilesets/tileset_00.2bpp"
 
-SECTION "Bank 6 Tilesets 01", ROMX[$5800], BANK[$06]
+SECTION "gfx.asm@Bank 6 Tilesets 01", ROMX
 Tileset_01_GFX:
 INCBIN "gfx/tilesets/tileset_01.2bpp"
 
-SECTION "Bank 6 Tilesets 02", ROMX[$6600], BANK[$06]
+SECTION "gfx.asm@Bank 6 Tilesets 02", ROMX
 Tileset_02_GFX:
 INCBIN "gfx/tilesets/tileset_02.2bpp"
 
-SECTION "Bank 6 Tilesets 09", ROMX[$7400], BANK[$06]
+SECTION "gfx.asm@Bank 6 Tilesets 09", ROMX
 Tileset_09_GFX:
 INCBIN "gfx/tilesets/tileset_09.2bpp"
 
-SECTION "Bank 7 Tilesets 13", ROMX[$4000], BANK[$07]
+SECTION "gfx.asm@Bank 7 Tilesets 13", ROMX
 Tileset_13_GFX:
 INCBIN "gfx/tilesets/tileset_13.2bpp"
 
-SECTION "Bank 7 Tilesets 0e", ROMX[$4B00], BANK[$07]
+SECTION "gfx.asm@Bank 7 Tilesets 0e", ROMX
 Tileset_0e_GFX:
 INCBIN "gfx/tilesets/tileset_0e.2bpp"
 
-SECTION "Bank 7 Tilesets 06", ROMX[$5600], BANK[$07]
+SECTION "gfx.asm@Bank 7 Tilesets 06", ROMX
 Tileset_06_GFX:
 INCBIN "gfx/tilesets/tileset_06.2bpp"
 
-SECTION "Bank 7 Tilesets 05", ROMX[$6400], BANK[$07]
+SECTION "gfx.asm@Bank 7 Tilesets 05", ROMX
 Tileset_05_GFX:
 INCBIN "gfx/tilesets/tileset_05.2bpp"
 
-SECTION "Bank 7 Tilesets 03", ROMX[$7200], BANK[$07]
+SECTION "gfx.asm@Bank 7 Tilesets 03", ROMX
 Tileset_03_GFX:
 INCBIN "gfx/tilesets/tileset_03.2bpp"
 
-SECTION "Bank 8 Tilesets 04", ROMX[$4000], BANK[$08]
+SECTION "gfx.asm@Bank 8 Tilesets 04", ROMX
 Tileset_04_GFX:
 INCBIN "gfx/tilesets/tileset_04.2bpp"
 
-SECTION "Bank 8 Tilesets 07", ROMX[$4E00], BANK[$08]
+SECTION "gfx.asm@Bank 8 Tilesets 07", ROMX
 Tileset_07_GFX:
 INCBIN "gfx/tilesets/tileset_07.2bpp"
 
-SECTION "Bank 8 Tilesets 08", ROMX[$5C00], BANK[$08]
+SECTION "gfx.asm@Bank 8 Tilesets 08", ROMX
 Tileset_08_GFX:
 INCBIN "gfx/tilesets/tileset_08.2bpp"
 
-SECTION "Bank 8 Tilesets 0f", ROMX[$6A00], BANK[$08]
+SECTION "gfx.asm@Bank 8 Tilesets 0f", ROMX
 Tileset_0f_GFX:
 INCBIN "gfx/tilesets/tileset_0f.2bpp"
 
-SECTION "Bank 8 Tilesets 11", ROMX[$7500], BANK[$08]
+SECTION "gfx.asm@Bank 8 Tilesets 11", ROMX
 Tileset_11_GFX:
 INCBIN "gfx/tilesets/tileset_11.2bpp"
 
-SECTION "Gameboy GFX", ROMX[$5641], BANK[$0A]
+SECTION "gfx.asm@Gameboy GFX", ROMX
 TradeGameBoyGFX::
 INCBIN "gfx/trade/gameboy.2bpp"
 
-SECTION "Bank C Tilesets 12", ROMX[$4000], BANK[$0C]
+SECTION "gfx.asm@Bank C Tilesets 12", ROMX
 Tileset_12_GFX:
 INCBIN "gfx/tilesets/tileset_12.2bpp"
 
-SECTION "Bank C Tilesets 0b", ROMX[$4B00], BANK[$0C]
+SECTION "gfx.asm@Bank C Tilesets 0b", ROMX
 Tileset_0b_GFX:
 INCBIN "gfx/tilesets/tileset_0b.2bpp"
 
-SECTION "Bank C Tilesets 0d", ROMX[$5600], BANK[$0C]
+SECTION "gfx.asm@Bank C Tilesets 0d", ROMX
 Tileset_0d_GFX:
 INCBIN "gfx/tilesets/tileset_0d.2bpp"
 
-SECTION "Bank C Tilesets 14", ROMX[$6100], BANK[$0C]
+SECTION "gfx.asm@Bank C Tilesets 14", ROMX
 Tileset_14_GFX:
 INCBIN "gfx/tilesets/tileset_14.2bpp"
 
-SECTION "Bank C Tilesets 0c", ROMX[$7100], BANK[$0C]
+SECTION "gfx.asm@Bank C Tilesets 0c", ROMX
 Tileset_0c_GFX:
 INCBIN "gfx/tilesets/tileset_0c.2bpp"
 
-SECTION "PokeBalls GFX", ROMX[$4494], BANK[$0E]
+SECTION "gfx.asm@Bank C Tilesets Common", ROMX
+CommonExteriorTilesGFX:
+INCBIN "gfx/tilesets/tileset_common.2bpp"
+
+SECTION "gfx.asm@PokeBalls GFX", ROMX
 
 PokeBallsGFX::                   INCBIN "gfx/misc/poke_balls.2bpp" ; 0x038494--0x0384d4
 
-SECTION "Pokedex GFX", ROMX[$40D5], BANK[$11]
+SECTION "gfx.asm@Pokedex GFX", ROMX
 PokedexButtonsGFX::
 INCBIN "gfx/pokedex/buttons.2bpp"
 PokedexPokeBallGFX::
 INCBIN "gfx/pokedex/poke_ball.2bpp"
-PokedexCursorsGFX::
-INCBIN "gfx/pokedex/cursors.2bpp"
+PokedexCursorGFX::
+INCBIN "gfx/pokedex/cursor.2bpp"
+PokedexBorderGFX::
+INCBIN "gfx/pokedex/border.2bpp"
 PokedexSearchGFX::
 INCBIN "gfx/pokedex/search.2bpp"
 
-SECTION "Trainer Battle Sprites", ROMX[$4000], BANK[$12]
+SECTION "gfx.asm@Trainer Battle Sprites", ROMX
 HayatoPic:: INCBIN "gfx/trainer/hayato.pic"
 AkanePic:: INCBIN "gfx/trainer/akane.pic" ; Gen 1 Bug Catcher
 TsukushiPic:: INCBIN "gfx/trainer/tsukushi.pic"
@@ -212,38 +253,42 @@ KimonoGirlPic:: INCBIN "gfx/trainer/kimonogirl.pic"
 TwinsPic:: INCBIN "gfx/trainer/twins.pic"
 
 
-SECTION "Bank 13 Tilesets 0a", ROMX[$4000], BANK[$13]
+SECTION "gfx.asm@Bank 13 Tilesets 0a", ROMX
 Tileset_0a_GFX:
 INCBIN "gfx/tilesets/tileset_0a.2bpp"
 
-SECTION "Bank 13 Tilesets 16", ROMX[$4B00], BANK[$13]
+SECTION "gfx.asm@Bank 13 Tilesets 16", ROMX
 Tileset_16_GFX:
 INCBIN "gfx/tilesets/tileset_16.2bpp"
 
-SECTION "Bank 13 Tilesets 19", ROMX[$5B00], BANK[$13]
+SECTION "gfx.asm@Bank 13 Tilesets 19", ROMX
 Tileset_19_GFX:
 INCBIN "gfx/tilesets/tileset_19.2bpp"
 
-SECTION "Bank 13 Tilesets 1a", ROMX[$6900], BANK[$13]
+SECTION "gfx.asm@Bank 13 Tilesets 1a", ROMX
 Tileset_1a_GFX:
 INCBIN "gfx/tilesets/tileset_1a.2bpp"
 
-SECTION "PKMN Sprite Bank List", ROMX[$725C], BANK[$14]
+SECTION "gfx.asm@PKMN Sprite Bank List", ROMX
 INCLUDE "gfx/pokemon/pkmn_pic_banks.asm"
 
 INCLUDE "gfx/pokemon/pkmn_pics.asm"
 
 
-SECTION "Annon Pic Ptrs and Pics", ROMX[$4d6a], BANK[$1f]
+SECTION "gfx.asm@Annon Pic Ptrs and Pics", ROMX
 INCLUDE "gfx/pokemon/annon_pic_ptrs.asm"
 INCLUDE "gfx/pokemon/annon_pics.asm"
 
 INCLUDE "gfx/pokemon/egg.asm"
 
-SECTION "Attack Animation GFX", ROMX[$4000], BANK[$21]
-INCBIN "gfx/battle_anims/attack_animations.2bpp"
+SECTION "gfx.asm@Attack Animation GFX", ROMX
 
-SECTION "Pokemon Party Sprites", ROMX[$60CC], BANK[$23]
+INCBIN "gfx/battle_anims/attack_animations_1.2bpp"
+PointerGFX::
+INCBIN "gfx/battle_anims/pointer.2bpp"
+INCBIN "gfx/battle_anims/attack_animations_2.2bpp"
+
+SECTION "gfx.asm@Pokemon Party Sprites", ROMX
 NyoromoIcon:: INCBIN "gfx/icons/nyoromo.2bpp"
 PurinIcon:: INCBIN "gfx/icons/purin.2bpp"
 DigdaIcon:: INCBIN "gfx/icons/digda.2bpp"
@@ -277,13 +322,13 @@ ButterfreeIcon:: INCBIN "gfx/icons/butterfree.2bpp"
 ZubatIcon:: INCBIN "gfx/icons/zubat.2bpp"
 KabigonIcon:: INCBIN "gfx/icons/kabigon.2bpp"
 
-SECTION "Slot Machine GFX", ROMX[$4FDB], BANK[$24]
+SECTION "gfx.asm@Slot Machine GFX", ROMX
 SlotMachineGFX::
 INCBIN "gfx/minigames/slots.2bpp"
 SlotMachine2GFX::
 INCBIN "gfx/minigames/slots_2.2bpp"
 
-SECTION "Bank 30 Sprites 1", ROMX[$4000], BANK[$30]
+SECTION "gfx.asm@Bank 30 Sprites 1", ROMX
 GoldSpriteGFX:: INCBIN "gfx/sprites/gold.2bpp" ; 30:4000
 GoldBikeSpriteGFX:: INCBIN "gfx/sprites/gold_bike.2bpp" ; 30:4180
 GoldSkateboardSpriteGFX:: INCBIN "gfx/sprites/gold_skateboard.2bpp" ; 30:4300
@@ -329,7 +374,7 @@ ClerkSpriteGFX:: INCBIN "gfx/sprites/clerk.2bpp" ; 30:79c0
 FisherSpriteGFX:: INCBIN "gfx/sprites/fisher.2bpp" ; 30:7b40
 FishingGuruSpriteGFX:: INCBIN "gfx/sprites/fishing_guru.2bpp" ; 30:7cc0
 
-SECTION "Bank 31 Sprites 2", ROMX[$4000], BANK[$31]
+SECTION "gfx.asm@Bank 31 Sprites 2", ROMX
 ScientistSpriteGFX:: INCBIN "gfx/sprites/scientist.2bpp" ; 31:4000
 MediumSpriteGFX:: INCBIN "gfx/sprites/medium.2bpp" ; 31:4180
 SageSpriteGFX:: INCBIN "gfx/sprites/sage.2bpp" ; 31:4300
@@ -359,57 +404,57 @@ OldLinkReceptionistSpriteGFX:: INCBIN "gfx/sprites/old_link_receptionist.2bpp" ;
 EggSpriteGFX:: INCBIN "gfx/sprites/egg.2bpp" ; 31:65c0
 BoulderSpriteGFX:: INCBIN "gfx/sprites/boulder.2bpp" ; 31:6600
 
-SECTION "Bank 37 Tilesets 10", ROMX[$4000], BANK[$37]
+SECTION "gfx.asm@Bank 37 Tilesets 10", ROMX
 Tileset_10_GFX:
 INCBIN "gfx/tilesets/tileset_10.2bpp"
 
-SECTION "Bank 37 Tilesets 15", ROMX[$4B00], BANK[$37]
+SECTION "gfx.asm@Bank 37 Tilesets 15", ROMX
 Tileset_15_GFX:
 INCBIN "gfx/tilesets/tileset_15.2bpp"
 
-SECTION "Bank 37 Tilesets 17", ROMX[$5B00], BANK[$37]
+SECTION "gfx.asm@Bank 37 Tilesets 17", ROMX
 Tileset_17_GFX:
 INCBIN "gfx/tilesets/tileset_17.2bpp"
 
-SECTION "Bank 37 Tilesets 18", ROMX[$6B00], BANK[$37]
+SECTION "gfx.asm@Bank 37 Tilesets 18", ROMX
 Tileset_18_GFX:
 INCBIN "gfx/tilesets/tileset_18.2bpp"
 
-SECTION "Poker GFX", ROMX[$5403], BANK[$38]
+SECTION "gfx.asm@Poker GFX", ROMX
 PokerGFX::
 INCBIN "gfx/minigames/poker.2bpp"
 
-SECTION "15 Puzzle GFX", ROMX[$5F93], BANK[$38]
+SECTION "gfx.asm@15 Puzzle GFX", ROMX
 FifteenPuzzleGFX::
 INCBIN "gfx/minigames/15_puzzle.2bpp"
 
-SECTION "Matches GFX", ROMX[$6606], BANK[$38]
+SECTION "gfx.asm@Matches GFX", ROMX
 MemoryGameGFX::
 INCBIN "gfx/minigames/matches.2bpp"
 
-SECTION "Picross GFX", ROMX[$75B7], BANK[$38]
+SECTION "gfx.asm@Picross GFX", ROMX
 PicrossGFX::
 INCBIN "gfx/minigames/picross.2bpp"
 PicrossCursorGFX::
 INCBIN "gfx/minigames/picross_cursor.2bpp"
 
-SECTION "Gamefreak Logo GFX", ROMX[$41FF], BANK[$39]
+SECTION "gfx.asm@Gamefreak Logo GFX", ROMX
 GameFreakLogoGFX::
 INCBIN "gfx/splash/game_freak_logo.1bpp"
 GameFreakLogoSparkleGFX::
 INCBIN "gfx/splash/game_freak_logo_oam.2bpp"
 
-SECTION "Intro Underwater GFX", ROMX[$4ADF], BANK[$39]
+SECTION "gfx.asm@Intro Underwater GFX", ROMX
 IntroUnderwaterGFX::
 INCBIN "gfx/intro/underwater.2bpp"
 
-SECTION "Intro Water Mon and Forest GFX", ROMX[$55EF], BANK[$39]
+SECTION "gfx.asm@Intro Water Mon and Forest GFX", ROMX
 IntroWaterPokemonGFX::
 INCBIN "gfx/intro/water_pokemon.2bpp"
 IntroForestGFX::
 INCBIN "gfx/intro/forest.2bpp"
 
-SECTION "Intro Mon", ROMX[$626F], BANK[$39]
+SECTION "gfx.asm@Intro Mon", ROMX
 IntroPurinPikachuGFX::
 INCBIN "gfx/intro/purin_pikachu.2bpp"
 IntroLizardon1GFX::
@@ -425,7 +470,7 @@ INCBIN "gfx/intro/kamex.2bpp"
 IntroFushigibanaGFX::
 INCBIN "gfx/intro/fushigibana.2bpp"
 
-SECTION "Misc GFX", ROMX[$4162], BANK[$3E]
+SECTION "gfx.asm@Misc GFX", ROMX
 FontExtraGFX::
 FontExtraAB_GFX::                 INCBIN "gfx/font/font_extra.ab.2bpp"          ; 0x0f8162--0x0f8182
 FontExtraCDEFGHIVSLM_GFX::        INCBIN "gfx/font/font_extra.cdefghivslm.2bpp" ; 0x0f8182--0x0f8242
@@ -485,6 +530,6 @@ BlackTileAndCursor1bppGFXEnd::
 PackIconGFX::                     INCBIN "gfx/pack/pack_icons.2bpp"             ; 0x0f933a--0x0f941a
 PackIconGFXEnd::
 
-SECTION "Town Map Cursor", ROMX[$506F], BANK[$3F]
+SECTION "gfx.asm@Town Map Cursor", ROMX
 TownMapCursorGFX::
 INCBIN "gfx/pokegear/town_map_cursor.2bpp"
