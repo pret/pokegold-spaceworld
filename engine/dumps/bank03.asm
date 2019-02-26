@@ -1256,7 +1256,7 @@ Functiondac8: ; 03:5ac8
 	cp $03
 	ld hl, wd882
 	jr z, .sub_db1f
-	ld hl, wUnknownListLengthda83
+	ld hl, wBoxListLength
 	ld a, [hl]
 	cp $1e
 	jr nz, .sub_daed
@@ -1291,7 +1291,7 @@ Functiondac8: ; 03:5ac8
 	jr nz, .sub_db1b
 	ld hl, wdaa3
 	ld bc, $0020
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 .sub_db1b
 	dec a
 	call AddNTimes
@@ -1324,7 +1324,7 @@ Functiondac8: ; 03:5ac8
 	ld a, [wPartyCount]
 	jr nz, .sub_db60
 	ld hl, wde63
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 .sub_db60
 	dec a
 	call SkipNames
@@ -1354,7 +1354,7 @@ Functiondac8: ; 03:5ac8
 	ld a, [wPartyCount]
 	jr nz, .sub_db9e
 	ld hl, wdf17
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 .sub_db9e
 	dec a
 	call SkipNames
@@ -1432,7 +1432,7 @@ Functiondc16: ; 03:5c16
 	cp $06
 	push af
 	jr nz, .sub_dc2a
-	ld hl, wUnknownListLengthda83
+	ld hl, wBoxListLength
 	ld a, [hl]
 	cp $1e
 	jr nz, .sub_dc2a
@@ -1516,7 +1516,7 @@ Functiondc16: ; 03:5c16
 	jr .sub_dce9
 .sub_dcad
 	ld hl, wdf17
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	ld bc, $0006
 	call AddNTimes
 	push hl
@@ -1526,7 +1526,7 @@ Functiondc16: ; 03:5c16
 	call CopyBytes
 	push hl
 	ld hl, wde63
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	ld bc, $0006
 	call AddNTimes
 	ld d, h
@@ -1535,7 +1535,7 @@ Functiondc16: ; 03:5c16
 	call CopyBytes
 	push hl
 	ld hl, wdaa3
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	ld bc, $0030
 	call AddNTimes
 	ld d, h
@@ -1591,7 +1591,7 @@ Functiondcfc: ; 03:5cfc
 	jp CopyBytes
 
 Functiondd5c: ; 03:5d5c
-	ld de, wUnknownListLengthda83
+	ld de, wBoxListLength
 	ld a, [de]
 	cp $1e
 	ret nc
@@ -1612,7 +1612,7 @@ Functiondd5c: ; 03:5d5c
 	call GetMonHeader
 	ld hl, wde63
 	ld bc, $0006
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	dec a
 	jr z, .sub_dda9
 	dec a
@@ -1623,7 +1623,7 @@ Functiondd5c: ; 03:5d5c
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	dec a
 	ld b, a
 .sub_dd96
@@ -1644,7 +1644,7 @@ Functiondd5c: ; 03:5d5c
 	ld de, wde63
 	ld bc, $0006
 	call CopyBytes
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	dec a
 	jr z, .sub_dde5
 	ld hl, wdf17
@@ -1657,7 +1657,7 @@ Functiondd5c: ; 03:5d5c
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	dec a
 	ld b, a
 .sub_ddd2
@@ -1681,7 +1681,7 @@ Functiondd5c: ; 03:5d5c
 	ld hl, wStringBuffer1
 	ld bc, $0006
 	call CopyBytes
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	dec a
 	jr z, .sub_de2a
 	ld hl, wdaa3
@@ -1694,7 +1694,7 @@ Functiondd5c: ; 03:5d5c
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	dec a
 	ld b, a
 .sub_de17
@@ -1774,7 +1774,7 @@ Functionde79: ; 03:5e79
 	ld hl, wPartyCount
 	jr .sub_dead
 .sub_de8b
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	cp $1e
 	scf
 	ret z
@@ -1787,7 +1787,7 @@ Functionde79: ; 03:5e79
 	call FarCall_hl
 	call Functiondd5c
 	ld de, wdf17
-	ld hl, wUnknownListLengthda83
+	ld hl, wBoxListLength
 .sub_dead
 	ld a, [hl]
 	push af
@@ -1817,7 +1817,7 @@ Functiondecd: ; 03:5ecd
 	ld a, [wcd7c]
 	and a
 	jr z, .sub_ded9
-	ld hl, wUnknownListLengthda83
+	ld hl, wBoxListLength
 .sub_ded9
 	ld a, [hl]
 	dec a
@@ -2174,9 +2174,7 @@ Function60a0: ; 03:60a0
 	jr c, .sub_e155
 	push de
 	ld b, $00
-	ld a, BANK(Function113f4)
-	ld hl, Function113f4
-	call FarCall_hl
+	callba NamingScreen
 	pop de
 	ld a, [de]
 	cp $50
@@ -2655,8 +2653,8 @@ Texte551: ; 03:6551
 Functione57e: ; 03:657e
 	ld b, $04
 	ld de, wMovementBufferCount
-	ld a, BANK(Function113f4)
-	ld hl, Function113f4
+	ld a, BANK(NamingScreen)
+	ld hl, NamingScreen
 	call FarCall_hl
 	ld a, [wMovementBufferCount]
 	cp $50
@@ -3079,7 +3077,7 @@ Functione8f9: ; 03:68f9
 	ld a, [wPartyCount]
 	cp $06
 	jr nz, .sub_e913
-	ld a, [wUnknownListLengthda83]
+	ld a, [wBoxListLength]
 	cp $1e
 	jp z, Functionf7d8
 .sub_e913
@@ -3340,8 +3338,8 @@ Functione8f9: ; 03:68f9
 	ld d, h
 	ld e, l
 	ld b, $00
-	ld a, BANK(Function113f4)
-	ld hl, Function113f4
+	ld a, BANK(NamingScreen)
+	ld hl, NamingScreen
 	push de
 	call FarCall_hl
 	call RotateThreePalettesRight
@@ -3363,8 +3361,8 @@ Functione8f9: ; 03:68f9
 	jr c, .sub_eb47
 	ld de, wdf17
 	ld b, $00
-	ld a, BANK(Function113f4)
-	ld hl, Function113f4
+	ld a, BANK(NamingScreen)
+	ld hl, NamingScreen
 	call FarCall_hl
 	call RotateThreePalettesRight
 	ld de, wdf17

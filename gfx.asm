@@ -80,6 +80,14 @@ TitleScreenLogoGFX:: INCBIN "gfx/title/title_logo.2bpp"
 TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_silverlogo.2bpp"
 endc
 
+SECTION "gfx.asm@Name Entry Extra Tiles", ROMX
+TextScreenGFX_End:: 
+INCBIN "gfx/font/text_entry_end.1bpp"
+TextScreenGFX_Hyphen::
+INCBIN "gfx/font/text_entry_hyphen.1bpp"
+TextScreenGFX_Underscore::
+INCBIN "gfx/font/text_entry_underscore.1bpp"
+
 SECTION "gfx.asm@Mail Icon GFX", ROMX
 MailIconGFX::
 INCBIN "gfx/icons/mail.2bpp"
@@ -195,8 +203,10 @@ PokedexButtonsGFX::
 INCBIN "gfx/pokedex/buttons.2bpp"
 PokedexPokeBallGFX::
 INCBIN "gfx/pokedex/poke_ball.2bpp"
-PokedexCursorsGFX::
-INCBIN "gfx/pokedex/cursors.2bpp"
+PokedexCursorGFX::
+INCBIN "gfx/pokedex/cursor.2bpp"
+PokedexBorderGFX::
+INCBIN "gfx/pokedex/border.2bpp"
 PokedexSearchGFX::
 INCBIN "gfx/pokedex/search.2bpp"
 

@@ -3374,9 +3374,9 @@ Function6713: ; 01:6713
 	push hl
 	ld e, l
 	ld d, h
-	ld a, BANK(Function113f4)
+	ld a, BANK(NamingScreen)
 	ld b, $00
-	ld hl, Function113f4
+	ld hl, NamingScreen
 	call FarCall_hl
 	call ClearBGPalettes
 	call ClearTileMap
@@ -3417,9 +3417,9 @@ Text6788: ; 01:6788
 Function679d: ; 01:679d
 	ld de, wFieldMoveScriptID
 	push de
-	ld hl, Function113f4
+	ld hl, NamingScreen
 	ld b, $00
-	ld a, BANK(Function113f4)
+	ld a, BANK(NamingScreen)
 	call FarCall_hl
 	call ClearBGPalettes
 	call Function360b

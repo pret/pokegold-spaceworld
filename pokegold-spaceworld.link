@@ -166,15 +166,22 @@ ROMX $03
 ROMX $04
 	org $4000
 	"data/maps/maps.asm"
+	; $4743
 	org $47cf
 	"gfx.asm@Title Screen GFX"
-	org $52d1
+	"engine/items/tmhm.asm"
 	"data/moves/tmhm_moves.asm"
-	org $5bb1
+	"engine/unknown_boxes.asm"
+	"engine/menu/text_entry.asm@naming"
+	"data/text/text_input_chars.asm"
+	"gfx.asm@Name Entry Extra Tiles"
+	"engine/menu/text_entry.asm@mail"
 	"gfx.asm@Mail Icon GFX"
-	; $5c31
-	org $7171
+	"engine/menu/text_entry.asm@mail2"
+	"engine/unknown11d32.asm"
+	"engine/menu/start_menu.asm"
 	"gfx.asm@Trainer Card GFX"
+	; $7be3
 ROMX $05
 	org $4000
 	"engine/overworld/player_movement.asm@_RedrawPlayerSprite"
