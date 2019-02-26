@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/SilentPokecenter.inc"
 
 SECTION "maps/SilentHillPokecenter.asm", ROMX
 
@@ -38,8 +39,7 @@ SilentHillPokecenterPCText: ; 46A4
 	ret
 	
 SilentHillPokecenterTextString1: ; 46AB
-	text "げんざい　ちょうせいちゅうです"
-	done
+	text_SilentPokecenterTextString1
 	
 SilentHillPokecenterTextPointers:: ; 46BC
 	dw SilentHillPokecenterNPCText1 
@@ -54,14 +54,7 @@ SilentHillPokecenterNPCText1: ; 46C6
 	ret
 	
 SilentHillPokecenterTextString2: ; 46CD
-	text "もうしわけありませんが"
-	line "ただいま　しゅうりちゅう　でして"
-	
-	para "かいふくは　できません"
-	
-	para "まちから　でるときは"
-	line "じゅうぶんに　おきをつけ　ください"
-	done
+	text_SilentPokecenterTextString2
 	
 SilentHillPokecenterNPCText2: ; 4714
 	ld hl, SilentHillPokecenterTextString3
@@ -69,12 +62,7 @@ SilentHillPokecenterNPCText2: ; 4714
 	ret
 	
 SilentHillPokecenterTextString3: ; 471B
-	text "あそこに　ある　パソコンは"
-	line "トレーナー　だったら"
-	cont "いつでも　むりょうで"
-	cont "つかうことが　できるよ"
-	cont "きが　きいてるよな！"
-	done 
+	text_SilentPokecenterTextString3
 	
 SilentHillPokecenterNPCText3: ; 4757
 	ld hl, SilentHillPokecenterTextString4
@@ -82,14 +70,7 @@ SilentHillPokecenterNPCText3: ; 4757
 	ret
 
 SilentHillPokecenterTextString4: ; 475E
-	text "いま　じゅんびちゅうの"
-	line "きかいは　すごいらしいよ"
-	
-	para "なんでも　ときを　こえて"
-	line "ポケモンが　こうかん　できるって！"
-	
-	para "ほんとかな？"
-	done
+	text_SilentPokecenterTextString4
 	
 SilentHillPokecenterNPCText4: ; 479E
 	ld hl, SilentHillPokecenterTextString5
@@ -97,9 +78,7 @@ SilentHillPokecenterNPCText4: ; 479E
 	ret
 	
 SilentHillPokecenterTextString5: ; 47A5
-	text "こいつ　へルガー"
-	line "いままでにない　タイプの　ポケモンさ"
-	done
+	text_SilentPokecenterTextString5
 	
 SilentHillPokecenterNPCText5: ; 47C2
 	ld hl, SilentHillPokecenterTextString6
@@ -107,7 +86,6 @@ SilentHillPokecenterNPCText5: ; 47C2
 	ret
 	
 SilentHillPokecenterTextString6: ; 47C9
-	text "へルガー『ぐるるうー"
-	done
+	text_SilentPokecenterTextString6
 	
 ; 47D5

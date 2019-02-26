@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/PlayersHouse1F.inc"
 
 SECTION "maps/PlayerHouse1F.asm", ROMX
 
@@ -48,14 +49,6 @@ PlayerHouse1FNPCText1: ; 40D1
 	ret
 	
 PlayerHouse1FTextString1: ; 40D8
-	text "おかあさん『えっ　あなた"
-	line "オーキドはかせに"
-	cont "ポケモンずかんを　つくってくれって"
-	cont "たのまれたの？"
-	
-	para "すごいじゃない！"
-	line "わたしも　ポケモン　きらいって"
-	cont "わけじゃないし　がんばるのよ！"
-	done
+	text_PlayersHouse1FTextString1
 	
 ; 4132
