@@ -494,7 +494,7 @@ ChoosePlayerName:: ; 5B25
 .loop
 	ld b, $01
 	ld de, wPlayerName
-	callba Function113f4
+	callba NamingScreen
 	ld a, [wPlayerName]
 	cp "@"
 	jr z, .loop
@@ -547,7 +547,7 @@ ChooseRivalName:: ; 5BA9
 .loop
 	ld b, $02
 	ld de, wRivalName
-	callba Function113f4 ; manual text entry box?
+	callba NamingScreen
 	ld a, [wRivalName]
 	cp "@"
 	jr z, .loop
@@ -599,7 +599,7 @@ MomNamePrompt:: ; 5C31
 .loop
 	ld b, $03
 	ld de, wMomsName
-	callba Function113f4
+	callba NamingScreen
 	ld a, [wMomsName]
 	cp "@"
 	jr z, .loop
