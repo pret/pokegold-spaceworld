@@ -862,7 +862,7 @@ ROMX $36
 	"data/maps/attributes/placeholder/BullForestRoute3.asm"
 	"maps/placeholder/BullForestRoute3.asm"
 	"maps/SilentHill.asm"
-	org $7b98
+	"engine/menu/set_time.asm"
 	"maps/Route1P1.asm"
 	"maps/Route1P2.asm"
 ROMX $37

@@ -156,8 +156,6 @@
 33:625D BattleAnim_Sine_e
 33:6263 BattleAnim_Cosine_e
 
-36:7AE4 SetTime
-
 38:4000 PikachuMiniGame
 39:4000 GameFreakIntro
 39:432F OpeningCutscene
