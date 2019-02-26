@@ -414,13 +414,13 @@ ROMX $25
 	"data/maps/attributes/placeholder/OldCityPokecenter1F.asm"
 	"maps/placeholder/OldCityPokecenter1F.asm"
 	"data/maps/attributes/OldCityPokecenter2F.asm"
-	org $4826
+	"maps/OldCityPokecenter2F.asm"
 	"data/maps/attributes/OldCityPokecenterTrade.asm"
-	org $48ac
+	"maps/OldCityPokecenterTrade.asm"
 	"data/maps/attributes/OldCityPokecenterBattle.asm"
-	org $492f
+	"maps/OldCityPokecenterBattle.asm"
 	"data/maps/attributes/OldCityPokecenterTimeMachine.asm"
-	org $49ac
+	"maps/OldCityPokecenterTimeMachine.asm"
 	"data/maps/attributes/placeholder/OldCityKurtsHouse.asm"
 	"maps/placeholder/OldCityKurtsHouse.asm"
 	"data/maps/attributes/placeholder/OldCitySchool.asm"
