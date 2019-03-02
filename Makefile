@@ -65,7 +65,7 @@ linkerscript: $(ROM:.gb=-gen.link)
 %.map: %.gb
 
 $(ROM): poke%-spaceworld-english.gb: $(OBJS) | $(BASEROM)
-	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -l $(@:.gb=.link) -O $(BASEROM) -o $@ $^
+	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -l poke$*-spaceworld.link -O $(BASEROM) -o $@ $^
 	$(RGBFIX) -f lhg -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t "POKEMON2$(shell echo $* | cut -d _ -f 1 | tr '[:lower:]' '[:upper:]')" $@
 	$(sort_sym) $(@:.gb=.sym)
 
