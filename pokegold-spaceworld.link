@@ -93,6 +93,7 @@ ROMX $01
 	"engine/menu/main_menu.asm@Initialize new game WRAM"
 	"engine/dumps/bank01.asm@Function5388"
 	"engine/menu/main_menu.asm@MainMenu"
+	org $558D
 	"engine/intro.asm"
 	"engine/title.asm@Title screen"
 	"engine/title.asm@Title screen TEMPORARY"
