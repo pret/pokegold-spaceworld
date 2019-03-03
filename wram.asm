@@ -993,6 +993,9 @@ wOptions:: db ; d35f
 SECTION "D39D", WRAM0[$D39D]
 wd39d:: db
 
+SECTION "D3A5", WRAM0[$D3A5]
+wd3a5:: db
+
 SECTION "Game Event Flags", WRAM0[$D41A]
 wd41a:: db
 ; 76543210
