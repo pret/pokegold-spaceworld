@@ -8,8 +8,8 @@ TextEntryChars: ; 04:58B3
 	db "abcde　fghij　klmno"
 	db "pqrst　uvwxy　zäéöü"
 	db "12345　67890　　　　　　"
-	db "?!.,'　:;×-/　[]()&"
-	db "<PK><MN>♂♀\　　　　　　　　　　　　"
+	db "?!.,'　:;×-/　　　　　　"
+	db "[]()&　<PK><MN>　　　　　　　　　"
 	db "　　　　　　　　　　　　　　　　円"
 	
 TextEntryHiragana: ; 04:593B
