@@ -1,7 +1,7 @@
 include "constants.asm"
 
 
-SECTION "LoadTilesetGFX", ROM0[$2D26]
+SECTION "home/tileset.asm", ROM0
 
 LoadTilesetGFX:: ; 2d26
 	call GetMapEnvironment
@@ -27,9 +27,9 @@ LoadTilesetGFX:: ; 2d26
 	ret
 
 .exterior
-	ld de, CommonExteriorTiles ; TODO: maybe find a better name
+	ld de, CommonExteriorTilesGFX ; TODO: maybe find a better name
 	ld hl, vTileset
-	lb bc, BANK(CommonExteriorTiles), $20
+	lb bc, BANK(CommonExteriorTilesGFX), $20
 	call Get2bpp
 
 	ld a, [wTilesetTilesAddress]
@@ -416,4 +416,28 @@ LoadTileset:: ; 2f48
 
 	pop bc
 	pop hl
+	ret
+
+ReloadFontAndTileset:: ; 2f6b (00:2f6b)
+	call DisableLCD
+	ldh a, [hROMBank]
+	push af
+	ld a, [wMapGroup]
+	ld b, a
+	ld a, [wMapId]
+	ld c, a
+	call SwitchToAnyMapBank
+	call LoadFontExtra
+	call LoadMapPart
+	call LoadTilesetGFX
+	pop af
+	call Bankswitch
+
+	call EnableLCD
+	ret
+
+LoadTilesetGFX_LCDOff:: ; 2f8d (00:2f8d)
+	call DisableLCD
+	call LoadTilesetGFX
+	call EnableLCD
 	ret

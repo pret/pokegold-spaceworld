@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Song OakIntro", ROMX[$4685], BANK[$3b]
+SECTION "audio/songs/oakintro.asm", ROMX
 
 Song_OakIntro:: ; ec685 (3b:4685)
 	db 3 << 6 | 0

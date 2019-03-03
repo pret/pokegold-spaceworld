@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
-if DEBUG
-SECTION "3A4B", ROM0[$3A4B]
-else
-SECTION "3A4B", ROM0[$3A0F]
-endc
+; if DEBUG
+SECTION "home/pokemon.asm@3A4B", ROM0
+; else
+; SECTION "3A4B", ROM0[$3A0F]
+; endc
 GetMonHeader:: ; 3a4b (0:3a4b)
 ; copies the base stat data of a pokemon to wMonHeader
 ; INPUT:
@@ -47,11 +47,11 @@ GetMonHeader:: ; 3a4b (0:3a4b)
 	pop bc
 	ret
 
-if DEBUG
-SECTION "3AED", ROM0[$3AED]
-else
-SECTION "3AED", ROM0[$3AB1]
-endc
+; if DEBUG
+SECTION "home/pokemon.asm@3AED", ROM0
+; else
+; SECTION "3AED", ROM0[$3AB1]
+; endc
 
 UncompressMonSprite:: ; 3aed (0:3aed)
 ; Uncompresses the front or back sprite of the specified mon

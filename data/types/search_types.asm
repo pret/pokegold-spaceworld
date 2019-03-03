@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "PokedexTypeSearchConversionTable", ROMX[$5068], BANK[$10]
+SECTION "data/types/search_types.asm", ROMX
 
 PokedexTypeSearchConversionTable::
 	db TYPE_NORMAL

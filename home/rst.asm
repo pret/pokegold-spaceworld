@@ -1,8 +1,6 @@
-; rst vectors
-
 ; Reset vector space used for hack interrupt - see hack.asm.
 
-SECTION "rst38", ROM0[$038]
+SECTION "home/rst.asm@rst38", ROM0
 if DEBUG && def(SILVER)
 	rst $38
 else

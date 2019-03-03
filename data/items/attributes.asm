@@ -7,7 +7,7 @@ item_attribute: MACRO
         dn \6, \7
 ENDM
 
-SECTION "Item Attributes", ROMX [$68f3], BANK [$01]
+SECTION "data/items/attributes.asm", ROMX
 
 ItemAttributes:: ; 68f3
 ; ITEM_MASTER_BALL
@@ -518,3 +518,5 @@ ItemAttributes:: ; 68f3
 	item_attribute     0, HELD_NONE,   0, CANT_SELECT | CANT_TOSS, TM_HM, ITEMMENU_PARTY, ITEMMENU_PARTY
 ; ITEM_HM07
 	item_attribute     0, HELD_NONE,   0, CANT_SELECT | CANT_TOSS, TM_HM, ITEMMENU_PARTY, ITEMMENU_PARTY
+; ITEM_FF
+	item_attribute     0, HELD_NONE,   0, NO_LIMITS, 0, ITEMMENU_NOUSE, ITEMMENU_NOUSE

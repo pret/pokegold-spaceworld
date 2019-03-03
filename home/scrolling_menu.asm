@@ -1,10 +1,10 @@
 include "constants.asm"
 
-if DEBUG
-SECTION "Scrolling Menu", ROM0 [$3810]
-else
-SECTION "Scrolling Menu", ROM0 [$37D4]
-endc
+; if DEBUG
+SECTION "home/scrolling_menu.asm", ROM0
+; else
+; SECTION "Scrolling Menu", ROM0 [$37D4]
+; endc
 
 Function3810::
 	ld e, [hl]

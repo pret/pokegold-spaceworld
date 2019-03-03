@@ -1,7 +1,7 @@
 include "constants.asm"
 INCLUDE "hack/text/Route1Gate2F.inc"
 
-SECTION "Route 1 Gate 2F", ROMX[$411F], BANK[$26]
+SECTION "maps/Route1Gate2F.asm", ROMX
 
 Route1Gate2FScriptLoader:: ; 411F
 	ld hl, Route1Gate2FScriptPointers
@@ -17,16 +17,17 @@ Route1Gate2FNPCIDs: ; 412D
 	db 0
 	db 1
 	db $FF
-	
-Route1Gate2FTextPointers: ; 4130
+
+Route1Gate2FSignPointers: ; 4130
 	dw Route1Gate2FTextSign1 
 	dw Route1Gate2FTextSign2 
+Route1Gate2FTextPointers:: ; 4134
 	dw Route1Gate2FTextNPC1 
 	dw Route1Gate2FTextNPC2
 	
 Route1Gate2FScript:: ; 4138
 	ld hl, Route1Gate2FNPCIDs
-	ld de, Route1Gate2FTextPointers
+	ld de, Route1Gate2FSignPointers
 	call CallMapTextSubroutine
 	ret
 	

@@ -1,10 +1,10 @@
 include "constants.asm"
 
-if DEBUG
-SECTION "Math utility functions", ROM0 [$3380]
-else
-SECTION "Math utility functions", ROM0 [$3344]
-endc
+; if DEBUG
+SECTION "home/math.asm", ROM0
+; else
+; SECTION "Math utility functions", ROM0 [$3344]
+; endc
 
 Multiply::
 	push hl

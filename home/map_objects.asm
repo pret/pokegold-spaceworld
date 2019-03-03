@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Map Object Related Functions", ROM0 [$15b5]
+SECTION "home/map_objects.asm", ROM0
 
 Function15b5:: ; 15b5
 	callab Function8000
@@ -311,7 +311,7 @@ UpdateSprites:: ; 00:17a8
 	bit 0, a
 	ret z
 	callab Function5007
-	callab Function5190
+	callab _UpdateSprites
 	ret
 
 GetObjectStruct:: ; 00:17bf
@@ -325,6 +325,8 @@ GetObjectStruct:: ; 00:17bf
 
 Function17cb::
 	add $10
+	
+Function17cd::
 	ld e, a
 	ldh a, [hROMBank]
 	push af

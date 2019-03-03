@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
-if DEBUG
-SECTION "Startmenu and Select Button Check", ROM0[$2C05]
-else
-SECTION "Startmenu and Select Button Check", ROM0[$2BDF]
-endc
+; if DEBUG
+SECTION "home/overworld.asm@Startmenu and Select Button Check", ROM0
+; else
+; SECTION "Startmenu and Select Button Check", ROM0[$2BDF]
+; endc
 
 OverworldStartButtonCheck:: ; 2c05 (0:2c05)
 	ldh a, [hJoyState]
@@ -177,11 +177,11 @@ ScheduleColumnRedrawHelper: ; 2d10 (0:2d10)
 	jr nz, .loop
 	ret
 
-if DEBUG
-SECTION "QueueScript", ROM0[$35EC]
-else
-SECTION "QueueScript", ROM0[$35B0]
-endc
+; if DEBUG
+SECTION "home/overworld.asm@QueueScript", ROM0
+; else
+; SECTION "QueueScript", ROM0[$35B0]
+; endc
 
 QueueScript::
 ; Install a function that is called as soon as

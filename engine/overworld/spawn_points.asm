@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "LoadSpawnPoint", ROMX[$4791], BANK[$03]
+SECTION "engine/overworld/spawn_points.asm", ROMX
 
 LoadSpawnPoint: ; 03:4791
 ; loads the spawn point in wDefaultSpawnPoint

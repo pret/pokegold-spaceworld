@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
-if DEBUG
-SECTION "Sprite clearing", ROM0[$32DC]
-else
-SECTION "Sprite clearing", ROM0[$32A0]
-endc
+; if DEBUG
+SECTION "home/clear_sprites.asm", ROM0
+; else
+; SECTION "Sprite clearing", ROM0[$32A0]
+; endc
 
 ClearSprites:: ; 32dc
 	ld hl, wVirtualOAM

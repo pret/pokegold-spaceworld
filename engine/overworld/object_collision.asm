@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "GetSpritesNextTile", ROMX[$774a], BANK[$01]
+SECTION "engine/overworld/object_collision.asm@GetSpritesNextTile", ROMX
 
 ; Get the tile that the sprite will walk onto next
 GetSpritesNextTile: ; 01:774a
@@ -31,7 +31,7 @@ _IsObjectCollisionTileSolid: ; 01:775a
 
 
 
-SECTION "_CheckObjectCollision", ROMX[$77dd], BANK[$01]
+SECTION "engine/overworld/object_collision.asm@_CheckObjectCollision", ROMX
 
 ; returns the carry flag if a sprite is at coords d, e
 ; will not collide with sprite index stored in hEventCollisionException
@@ -92,7 +92,7 @@ _CheckObjectCollision: ; 01:77dd
 	scf
 	ret
 	
-SECTION "_CheckPlayerObjectCollision", ROMX[$7894], BANK[$01]
+SECTION "engine/overworld/object_collision.asm@_CheckPlayerObjectCollision", ROMX
 
 ; Sets the carry flag if the player will collide with another sprite's current or next position
 _CheckPlayerObjectCollision: ; 01:7894

@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "PlaceWaitingText", ROMX[$4000], BANK[$01]
+SECTION "engine/link/place_waiting_text.asm", ROMX
 
 PlaceWaitingText:: ; 1:4000
 	hlcoord 3, 10

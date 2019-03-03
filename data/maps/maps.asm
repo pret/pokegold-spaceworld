@@ -1,17 +1,6 @@
 INCLUDE "constants.asm"
 
-map: MACRO
-;\1: map name: for the MapAttributes pointer (see data/maps/attributes.asm)
-;\2: tileset: a TILESET_* constant
-;\3: environment: TOWN, ROUTE, INDOOR, CAVE, ENVIRONMENT_5, GATE, or DUNGEON
-;\4: location: from constants/landmark_constants.asm
-	db BANK(\1_MapAttributes), \2, \3
-	dw \1_MapAttributes
-	db \4
-	db 0, 0 ; ???
-ENDM
-
-SECTION "Map Data", ROMX[$4000], BANK[$04]
+SECTION "data/maps/maps.asm", ROMX
 
 	db 0 ; ???
 
@@ -44,11 +33,11 @@ MapGroup_SilentHill:
 	map RouteSilentEastGate, TILESET_ROUTE_GATE, GATE, LANDMARK_ROUTE_SILENT_EAST
 	map PlayerHouse1F, TILESET_HOUSE, INDOOR, LANDMARK_SILENT_HILL
 	map PlayerHouse2F, TILESET_HOUSE, INDOOR, LANDMARK_SILENT_HILL
-	map SilentPokecenter, TILESET_POKECENTER, INDOOR, LANDMARK_SILENT_HILL
+	map SilentHillPokecenter, TILESET_POKECENTER, INDOOR, LANDMARK_SILENT_HILL
 	map SilentHillHouse, TILESET_HOUSE, INDOOR, LANDMARK_SILENT_HILL
-	map SilentHillLab, TILESET_LAB, INDOOR, LANDMARK_SILENT_HILL
-	map SilentHillLab2, TILESET_LAB, INDOOR, LANDMARK_SILENT_HILL
-	map Unused13, TILESET_LAB, INDOOR, LANDMARK_SILENT_HILL
+	map SilentHillLabFront, TILESET_LAB, INDOOR, LANDMARK_SILENT_HILL
+	map SilentHillLabBack, TILESET_LAB, INDOOR, LANDMARK_SILENT_HILL
+	map UnusedMap13, TILESET_LAB, INDOOR, LANDMARK_SILENT_HILL
 	map ShizukanaOka, TILESET_FOREST, CAVE, LANDMARK_NONE
 
 MapGroup_OldCity:

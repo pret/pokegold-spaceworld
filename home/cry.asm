@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "Cry Home", ROM0 [$39b1]
+SECTION "home/cry.asm", ROM0
 
 PlayStereoCry::
 	push af

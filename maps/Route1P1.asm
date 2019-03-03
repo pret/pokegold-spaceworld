@@ -1,7 +1,7 @@
 include "constants.asm"
 INCLUDE "hack/text/Route1P1.inc"
 
-SECTION "Route 1 East", ROMX[$7B98], BANK[$36]
+SECTION "maps/Route1P1.asm", ROMX
 
 Route1P1ScriptLoader:: ; 7B98
 	ld hl, Route1P1ScriptPointers
@@ -18,15 +18,17 @@ Route1P1NPCIDs: ; 7BA6
 	db 1
 	db $FF
 	
-Route1P1TextPointers: ;7BA9
+Route1P1SignPointers: ; 7BA9
 	dw Route1P1TextSign1
 	dw Route1P1TextSign2
+
+Route1P1TextPointers::
 	dw Route1P1TextNPC1
 	dw Route1P1TextNPC2
 	
 Route1P1Script:: ; 7BB1
 	ld hl, Route1P1NPCIDs
-	ld de, Route1P1TextPointers
+	ld de, Route1P1SignPointers
 	call CallMapTextSubroutine
 	ret
 

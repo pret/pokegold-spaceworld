@@ -1,6 +1,6 @@
 include "constants.asm"
 
-SECTION "RTC and Time Functions", ROM0 [$042B]
+SECTION "home/time.asm", ROM0
 
 LatchClock: ; 42b (0:042b)
 	ld a, 0

@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Joypad functions", ROM0[$07F8]
+SECTION "home/joypad.asm", ROM0
 
 ClearJoypad::
 	xor a

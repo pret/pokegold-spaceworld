@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "PokedexTypeSearchStrings", ROMX[$4ECC], BANK[$10]
+SECTION "data/types/search_strings.asm", ROMX
 
 PokedexTypeSearchStrings::
 	db "ノーマル@" ; NORMAL

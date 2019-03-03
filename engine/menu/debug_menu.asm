@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "Debug Menu", ROMX[$4031], BANK[$01]
+SECTION "engine/menu/debug_menu.asm", ROMX
 
 DebugMenu:: ; $4031
 	call ClearTileMap

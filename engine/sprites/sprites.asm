@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "LoadOverworldSprite", ROMX[$4150], BANK[$05]
+SECTION "engine/sprites/sprites.asm@LoadOverworldSprite", ROMX
 
 LoadOverworldSprite: ; 05:4150
 	push af
@@ -53,7 +53,7 @@ GetOverworldSpriteData: ; 05:417d
 	pop hl
 	ret
 
-SECTION "OverworldSprites", ROMX[$423B], BANK[$05]
+SECTION "engine/sprites/sprites.asm@OverworldSprites", ROMX
 
 overworld_sprite: MACRO
 ; pointer, length, bank
