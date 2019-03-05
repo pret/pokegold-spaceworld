@@ -3,6 +3,17 @@ INCLUDE "hack/text/Route1P1.inc"
 
 SECTION "maps/Route1P1.asm", ROMX
 
+	ret
+
+	dw Textdbb82
+Textdbb82: ; 36:7b82
+	text "べんりな　よのなかだね"
+	done
+
+	rept 9
+	ret
+	endr
+
 Route1P1ScriptLoader:: ; 7B98
 	ld hl, Route1P1ScriptPointers
 	call RunMapScript
