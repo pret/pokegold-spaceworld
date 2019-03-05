@@ -119,6 +119,18 @@ MainMenu:: ; 01:53CC
 	ld hl, MainMenuJumptable
 	ld a, [wMenuSelection]
 	jp CallJumptable
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
 
 MainMenuHeader: ; 01:5418
 	db MENU_BACKUP_TILES
@@ -166,6 +178,12 @@ ContinueMenu:
 	db OPTION
 	db SET_TIME
 	db -1
+	
+	nop
+	nop
+	nop
+	nop
+	nop
 
 MainMenuOptionSetTime:: ; 5473
 	callab SetTime
@@ -284,7 +302,7 @@ StartGame::
 	ldh [hMapAnims], a
 	pop af
 	and a
-	jp z, DemoStart
+	jr z, DemoStart
 	jp GameStart
 	
 ; 558D
