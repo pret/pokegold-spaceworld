@@ -1,11 +1,11 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,253,,,,,
-Current total,253,,,,,
-SilentPokecenterTextString1,17,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,253,,,,,,
+Current total,253,,,,,,
+SilentPokecenterTextString1,17,0,"text
 done","げんざい　ちょうせいちゅうです
 ","Currently under
 adjustment.",,
-SilentPokecenterTextString2,71,"text
+SilentPokecenterTextString2,71,0,"text
 line
 
 para
@@ -30,7 +30,7 @@ the moment.
 Please be very
 careful when you
 step out of town.",,
-SilentPokecenterTextString3,60,"text
+SilentPokecenterTextString3,60,0,"text
 line
 cont
 cont
@@ -46,7 +46,7 @@ use that PC over
 there anytime for
 free! Thoughtful
 of them, isn't it?",,
-SilentPokecenterTextString4,64,"text
+SilentPokecenterTextString4,64,0,"text
 line
 
 para
@@ -72,7 +72,7 @@ to trade #MON!
 
 I wonder if it's
 true?",,
-SilentPokecenterTextString5,29,"text
+SilentPokecenterTextString5,29,0,"text
 line
 done","こいつ　へルガー
 いままでにない　タイプの　ポケモンさ
@@ -80,6 +80,6 @@ done","こいつ　へルガー
 It's a #MON of
 a completely new
 type.",,
-SilentPokecenterTextString6,12,"text
+SilentPokecenterTextString6,12,0,"text
 done","へルガー『ぐるるうー
 ",HOUNDOOM: Grrrr…,,

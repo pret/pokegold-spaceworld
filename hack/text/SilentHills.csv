@@ -1,26 +1,26 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,546,,,,,
-Current total,546,,,,,
-SilentHillsTextString1,19,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,546,,,,,,
+Current total,546,,,,,,
+SilentHillsTextString1,19,0,"text
 done","あれ？　カギが　かかっている
 ","Huh?
 It's locked…",,
-SilentHillsTextString2,18,"text
+SilentHillsTextString2,18,0,"text
 done","にゅうきょしゃ　ぼしゅうちゅう！
 ",HOUSE FOR RENT,,
-SilentHillsTextString3,22,"text
+SilentHillsTextString3,22,0,"text
 line
 done","ここは　サイレント　ヒル
 しずかな　おか
 ","Ever peaceful
 SILENT HILL",,
-SilentHillsTextString4,11,"text
+SilentHillsTextString4,11,0,"text
 done","ここは　<PLAYER>　のいえ
 ",<PLAYER>'s house,,
-SilentHillsTextString5,11,"text
+SilentHillsTextString5,11,0,"text
 done","ここは　<RIVAL>　のいえ
 ",<RIVAL>'s house,,
-SilentHillsTextRival1,145,"text
+SilentHillsTextRival1,145,1,"text
 cont
 cont
 
@@ -62,9 +62,8 @@ no fun!
 Alright, um,
 then, uh...
 What do you call
-your mother?
-",,
-MomNameMenuHeaderUnused,22,"db
+your mother?@",,
+MomNameMenuHeaderUnused,22,0,"db
 db
 db
 db","じぶんで　きめる@
@@ -74,7 +73,7 @@ db","じぶんで　きめる@
 MOM@
 MA@
 MOMMY@",,
-SilentHillsTextRival2,104,"text
+SilentHillsTextRival2,104,0,"text
 line
 cont
 cont
@@ -106,13 +105,13 @@ Alright, I'm off
 to OAK's!
 See ya there!
 ",,
-SilentHillsTextNorthExit,22,"text
+SilentHillsTextNorthExit,22,0,"text
 line
 done","ちょいまち！
 まってよ！　まてっ　てば！
 ","Stop right there!
 Wait! Wait up!",,
-SilentHillsTextPokemonInGrassString,111,"text
+SilentHillsTextPokemonInGrassString,111,0,"text
 line
 cont
 cont
@@ -150,14 +149,14 @@ perhaps…?
 …Come with me
 for a sec!
 ",,
-SilentHillsTextBackpackString,32,"text
+SilentHillsTextBackpackString,32,0,"text
 line
 done","あなたの　りュック　かっこいいわよ
 どこで　てに　いれたの？
 ","That's such a
 cute PACK!
 Where'd you get it?",,Check that the 'd compresses into 1 tile
-SilentHillsTextPokemonHateString,29,"text
+SilentHillsTextPokemonHateString,29,0,"text
 line
 done","よのなかに　ポケモンが　きらいな
 ひとは　いるのかな？

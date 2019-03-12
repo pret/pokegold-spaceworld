@@ -318,5 +318,8 @@ SilentHillLabBackTextPointers2: ; 6053
 	dw Function3899
 	dw Function3899
 	dw MapDefaultText
+
+SilentHillLabBackPadding:
+	textpad_SilentLabP2
 	
 ; 605D

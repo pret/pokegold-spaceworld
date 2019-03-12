@@ -1,7 +1,7 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,2870,,,,,
-Current total,2870,,,,,
-SilentLabP1TextString1,182,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,2870,,,,,,
+Current total,2870,,,,,,
+SilentLabP1TextString1,182,0,"text
 line
 
 para
@@ -69,26 +69,26 @@ in the sky.
 
 Regards,
 Your AIDE",,
-SilentLabP1TextString2A,32,"text
+SilentLabP1TextString2A,32,0,"text
 line
 done","スタート　ボタンを　プシュ！
 おすと　メニューが　ひらくなり
 ","Push START to
 open the MENU!",,From RG.
-SilentLabP1TextString2B,30,"text
+SilentLabP1TextString2B,30,0,"text
 line
 done","セーブするには　#　レポート
 こまめに　かくと　いいなり
 ","The SAVE option is
 on the MENU
 screen.",,From RG.
-SilentLabP1TextString3,12,"text
+SilentLabP1TextString3,12,0,"text
 done","カギが　かかっている
 ",It's locked.,,
-SilentLabP1TextString4,14,"text
+SilentLabP1TextString4,14,0,"text
 done","オーキド『ごくろうさん！
 ",OAK: Good work!,,
-SilentLabP1TextString5,89,"text
+SilentLabP1TextString5,89,1,"text
 line
 cont
 
@@ -113,9 +113,8 @@ It is indeed I who
 called you here!
 
 Won't you listen
-for a while?
-",,
-SilentLabP1TextString6A,388,"text
+for a while?@",,
+SilentLabP1TextString6A,388,0,"text
 line
 cont
 cont
@@ -244,7 +243,7 @@ enough!
 <RIVAL>!
 Please help me
 research #MON!",,
-SilentLabP1TextString6B,91,"text
+SilentLabP1TextString6B,91,0,"text
 line
 cont
 
@@ -277,13 +276,13 @@ thing!
 
 You'll surely
 listen, no?",,
-SilentLabP1TextString7,29,"text
+SilentLabP1TextString7,29,0,"text
 line
 done","オーキド『ふたりとも！
 ちょっと　わしに　ついてこい！
 ","OAK: Follow me,
 you two!",,
-SilentLabP1TextString8,31,"text
+SilentLabP1TextString8,31,0,"text
 line
 cont
 done","オーキド『<PLAYER>！<RIVAL>！
@@ -292,13 +291,13 @@ done","オーキド『<PLAYER>！<RIVAL>！
 ","OAK: <PLAYER> and
 <RIVAL>! Take
 these with you!",,"Almost identical to RG, except with two extra exclamation marks."
-SilentLabP1TextString9,23,"text
+SilentLabP1TextString9,23,0,"text
 line
 done","<PLAYER>は　オーキドから
 #ずかんを　もらった！
 ","<PLAYER> got
 #DEX from OAK!",,From RG.
-SilentLabP1TextString10,206,"text
+SilentLabP1TextString10,206,0,"text
 line
 cont
 cont
@@ -361,7 +360,7 @@ two!
 This is a great
 undertaking in
 POKéMON history!",,Edited from RG.
-SilentLabP1TextString11A,32,"text
+SilentLabP1TextString11A,32,0,"text
 line
 cont
 done","オーキド『せかい　じゅうの
@@ -371,7 +370,7 @@ done","オーキド『せかい　じゅうの
 around the world
 wait for you,
 RED!",,From RG.
-SilentLabP1TextString11B,125,"text
+SilentLabP1TextString11B,125,0,"text
 line
 cont
 
@@ -418,7 +417,7 @@ so please come by
 and say hello
 once in a while!
 ",,
-SilentLabP1TextString12,51,"text
+SilentLabP1TextString12,51,0,"text
 line
 cont
 
@@ -436,7 +435,7 @@ you! How is your
 
 Here, let me take
 a look!",,"From RG (probably, I only checked the English script for this one)"
-SilentLabP1TextString13,121,"text
+SilentLabP1TextString13,121,0,"text
 line
 
 para
@@ -489,7 +488,7 @@ legendary
 you?
 
 <RIVAL>: Urk! ",,
-SilentLabP1TextString14,55,"text
+SilentLabP1TextString14,55,0,"text
 line
 cont
 cont
@@ -506,14 +505,14 @@ place looked
 suspicious too,
 but it looks like
 nobody's here… ",,
-SilentLabP1TextString15,25,"text
+SilentLabP1TextString15,25,0,"text
 line
 done","<RIVAL>『よっしゃあ！
 じいさん！　おれにまかせな！
 ","<RIVAL>: Alright!
 Leave it to me,
 old man!",,
-SilentLabP1TextString16,44,"text
+SilentLabP1TextString16,44,0,"text
 line
 cont
 done","<RIVAL>『おれが　えらんだ
@@ -524,7 +523,7 @@ done","<RIVAL>『おれが　えらんだ
 stronger!
 Sure you didn't
 want this one?",,
-SilentLabP1TextString17,48,"text
+SilentLabP1TextString17,48,0,"text
 line
 cont
 cont
@@ -541,14 +540,14 @@ we just got these
 
 Let's try 'em out
 in a battle!",,
-SilentLabP1TextString18,26,"text
+SilentLabP1TextString18,26,0,"text
 line
 done","<RIVAL>『くっそー！
 こんどは　ぜったい　まけないぞ！
 ","<RIVAL>: Darn it!
 I won't lose
 next time!",,
-SilentLabP1TextString19,49,"text
+SilentLabP1TextString19,49,0,"text
 line
 cont
 
@@ -565,13 +564,13 @@ toughen it up!
 
 <PLAYER>! Old man!
 See ya later!",,
-SilentLabP1TextString20,17,"text
+SilentLabP1TextString20,17,0,"text
 line
 done","じいちゃん！
 つれてきたよー！
 ","Gramps!
 Look who I found!",,
-SilentLabP1TextString21,228,"text
+SilentLabP1TextString21,228,0,"text
 line
 cont
 cont
@@ -639,7 +638,7 @@ It automatically
 records data on
 POKéMON you've
 seen or caught!",,
-SilentLabP1TextString22,36,"text
+SilentLabP1TextString22,36,0,"text
 line
 cont
 done","ぼくも　むかし　やったけど
@@ -649,7 +648,7 @@ done","ぼくも　むかし　やったけど
 work you did long
 ago, but it's real
 hard… Good luck!",,
-SilentLabP1TextString23,477,"text
+SilentLabP1TextString23,477,0,"text
 line
 cont
 cont
@@ -789,13 +788,13 @@ to say goodbye.
 
 I'll be rooting
 for you!",,
-SilentLabP1TextString24,19,"text
+SilentLabP1TextString24,19,0,"text
 line
 done","<⋯⋯>あなたの　かつやく
 いのってるわ
 ","I'll be rooting
 for you!",,
-SilentLabP1TextString25,83,"text
+SilentLabP1TextString25,83,0,"text
 line
 
 para
@@ -824,7 +823,7 @@ I have a feeling
 that we'll see
 each other again.
 ",,
-SilentLabP1TextString26,83,"text
+SilentLabP1TextString26,83,0,"text
 line
 
 para
@@ -853,13 +852,13 @@ I have a feeling
 that we'll see
 each other again.
 ",,
-SilentLabP1TextString27,21,"text
+SilentLabP1TextString27,21,0,"text
 line
 done","なんだろう？
 でんし　てちょう　かな？
 ","What's this…?
 Some sort of PDA?",,
-SilentLabP1TextString28,66,"text
+SilentLabP1TextString28,66,0,"text
 line
 
 para
@@ -880,7 +879,7 @@ Oh, sorry, I mean…
 “old man”? It's
 the first time I
 see him in person!",,
-SilentLabP1TextString29,25,"text
+SilentLabP1TextString29,25,0,"text
 line
 cont
 done","<RIVAL>『<PLAYER>！
@@ -890,7 +889,7 @@ done","<RIVAL>『<PLAYER>！
 <PLAYER>!
 This just got
 interesting!",,
-SilentLabP1TextString30,56,"text
+SilentLabP1TextString30,56,0,"text
 line
 
 para
@@ -908,7 +907,7 @@ OAK's AIDEs.
 I have a feeling
 that we'll see
 each other again.",,
-SilentLabP1TextString31,56,"text
+SilentLabP1TextString31,56,0,"text
 line
 
 para

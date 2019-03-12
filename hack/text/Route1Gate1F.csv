@@ -1,13 +1,13 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,74,,,,,
-Current total,74,,,,,
-Route1Gate1FText1String,28,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,74,,,,,,
+Current total,74,,,,,,
+Route1Gate1FText1String,28,0,"text
 line
 done","このゲートを　ぬけると
 すぐに　オールドシティ　です
 ","Through this gate
 lies OLD CITY!",,
-Route1Gate1FText2String,46,"text
+Route1Gate1FText2String,46,0,"text
 line
 cont
 

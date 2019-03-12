@@ -1,9 +1,9 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,797,,,,,
-Current total,797,,,,,
-DemoPlayerName,4,db,サトシ@,ASH@,,
-DemoRivalName,5,db,シゲル@,GARY@,,
-OakSpeechDemo,219,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,797,,,,,,
+Current total,797,,,,,,
+DemoPlayerName,4,0,db,サトシ@,ASH@,,
+DemoRivalName,5,0,db,シゲル@,GARY@,,
+OakSpeechDemo,219,0,"text
 line
 cont
 
@@ -76,7 +76,7 @@ Hang in there!
 I will be counting
 on you!
 ",,
-OakSpeech1,73,"text
+OakSpeech1,73,0,"text
 
 para
 line
@@ -104,7 +104,7 @@ My name is OAK!
 
 People call me
 the #MON PROF!",,"Oak's intro speech is mostly the same as in RGB, with only minor additions and changes here and there."
-OakSpeech2,73,"text
+OakSpeech2,73,0,"text
 line
 
 para
@@ -126,7 +126,7 @@ inhabited by
 creatures called
 #MON!
 ",,
-OakSpeech3,77,"text
+OakSpeech3,77,0,"text
 line
 cont
 cont
@@ -148,13 +148,13 @@ Myself…
 
 I study #MON
 as a profession.",,
-OakSpeech4,29,"text
+OakSpeech4,29,0,"text
 line
 prompt","では　はじめに　きみの　なまえを
 おしえて　もらおう！
 ","First, what is
 your name?",,
-OakSpeech5,61,"text
+OakSpeech5,61,0,"text
 line
 cont
 
@@ -172,7 +172,7 @@ your rival since
 you were a baby.
 …Erm, what is
 his name again?",,
-OakSpeech6,51,"text
+OakSpeech6,51,0,"text
 line
 cont
 
@@ -188,12 +188,12 @@ start of your
 adventure by
 setting the day!
 
-Be as exact as
+Be as precise as
 possible when
 setting the time,
 too, won't you?
 ",,
-OakSpeech7,69,"text
+OakSpeech7,69,0,"text
 
 para
 line
@@ -221,15 +221,15 @@ A world of dreams
 and adventures
 with #MON
 awaits! Let's go!",,
-DebugPlayerName,5,db,コージ@,KOJI@,,
-DebugRivalName,4,db,レッド@,RED@,,
-ChoosePlayerNameEndText,18,"text
+DebugPlayerName,5,0,db,コージ@,KOJI@,,
+DebugRivalName,4,0,db,レッド@,RED@,,
+ChoosePlayerNameEndText,18,0,"text
 line
 prompt","ふむ・・・
 <PLAYER>　と　いうんだな！
 ","Right! So your
 name is <PLAYER>!",,
-PlayerNameMenuHeader,23,"db
+PlayerNameMenuHeader,23,0,"db
 db
 db
 db","じぶんできめる@
@@ -239,15 +239,15 @@ db","じぶんできめる@
 GOLD@
 ASH@
 JACK@",,
-PlayerNameMenuHeader,5,db,なまえこうほ@,NAME@,,
-ChooseRivalNameEndText,23,"text
+PlayerNameMenuHeader,5,0,db,なまえこうほ@,NAME@,,
+ChooseRivalNameEndText,23,0,"text
 line
 prompt","そうか　そうだったな
 <RIVAL>　という　なまえだ
 ","That's right! I
 remember now! His
 name is <RIVAL>!",,
-RivalNameMenuData,26,"db
+RivalNameMenuData,26,0,"db
 db
 db
 db","じぶんできめる@
@@ -257,8 +257,8 @@ db","じぶんできめる@
 SILVER@
 GARY@
 JOHN@",,
-RivalNameMenuData,5,db,なまえこうほ@,NAME@,,
-MomNameMenuHeader,22,"db
+RivalNameMenuData,5,0,db,なまえこうほ@,NAME@,,
+MomNameMenuHeader,22,0,"db
 db
 db
 db","じぶんで　きめる@
@@ -268,4 +268,4 @@ db","じぶんで　きめる@
 MOM@
 MA@
 MOMMY@",,
-MomNameMenuHeader,5,db,なまえこうほ@,NAME@,,
+MomNameMenuHeader,5,0,db,なまえこうほ@,NAME@,,

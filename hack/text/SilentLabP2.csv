@@ -1,7 +1,7 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,507,,,,,
-Current total,507,,,,,
-SilentLabP2TextString1,73,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,507,,,,,,
+Current total,507,,,,,,
+SilentLabP2TextString1,73,0,"text
 cont
 cont
 
@@ -22,7 +22,7 @@ Hohoho!
 
 You can each have
 one! Choose!",,"Similar to RG. In fact, most of the text in this scene is either similar or identical to RG."
-SilentLabP2TextString2,34,"text
+SilentLabP2TextString2,34,0,"text
 line
 cont
 done","オーキド『まあ
@@ -34,38 +34,41 @@ no need to rush.
 Take whichever one
 you'd like!
 ",,
-SilentLabP2TextString3,26,"text
+SilentLabP2TextString3,26,0,"text
 line
 done","オーキド『さあ　<PLAYER>
 どの　ポケモンに　するかね？
 ","OAK: Now, <PLAYER>,
 which #MON
 do you want?",,From RG.
-SilentLabP2TextString4,20,"text
+SilentLabP2TextString4,20,1,"text
 line","オーキド『ほう！　ほのおのポケモン
 @","OAK: So! You want
-the fire #MON,@",,"These need to be tested big time.
+the fire #MON,
+@",,"These need to be tested big time.
 Also, they match up with RG."
-SilentLabP2TextString4,11,text,に　するんじゃな？@,?,,
-SilentLabP2TextString5,18,"text
+SilentLabP2TextString4,11,1,text,に　するんじゃな？@,?@,,
+SilentLabP2TextString5,18,1,"text
 line","オーキド『ふむ　みずのポケモン
 @","OAK: So! You want
-the water #MON,@",,
-SilentLabP2TextString5,12,text,に　きめるのじゃな？@,?,,
-SilentLabP2TextString6,19,"text
+the water #MON,
+@",,
+SilentLabP2TextString5,12,1,text,に　きめるのじゃな？@,?@,,
+SilentLabP2TextString6,19,1,"text
 line","オーキド『おお！　くさのポケモン
 @","OAK: So! You want
-the plant #MON,@
+the plant #MON,
+@
 ",,
-SilentLabP2TextString6,11,text,が　いいんじゃな？@,?,,
-SilentLabP2TextString7,15,"text
+SilentLabP2TextString6,11,1,text,が　いいんじゃな？@,?@,,
+SilentLabP2TextString7,15,0,"text
 line
 done","では
 どれに　するのじゃ？
 ","Very well.
 Which one would
 you like?",,
-SilentLabP2TextString8,44,"text
+SilentLabP2TextString8,44,1,"text
 line
 
 para
@@ -77,9 +80,9 @@ line","オーキド『この　ポケモンは
 really energetic!
 
 <PLAYER> received
-a@",,From RG.
-SilentLabP2TextString8,9,text,を　もらった！<PROMPT>,!,,
-SilentLabP2TextString9,58,"text
+a @",,From RG.
+SilentLabP2TextString8,9,0,text,を　もらった！<PROMPT>,!<PROMPT>,,
+SilentLabP2TextString9,58,0,"text
 line
 cont
 cont
@@ -91,14 +94,14 @@ done","オーキド『そうじゃ！
 #MON appears,
 your #MON can
 fight against it!",,Also from RG.
-SilentLabP2TextString10,28,"text
+SilentLabP2TextString10,28,0,"text
 line
 done","<RIVAL>『あッ！　おれにも！
 じいさん　おれにもくれよう！
 ","<RIVAL>: Me too!
 C'mon, gramps,
 gimme one too!",,
-SilentLabP2TextString11,36,"text
+SilentLabP2TextString11,36,0,"text
 line
 cont
 done","<RIVAL>『いいぜ　<PLAYER>！
@@ -109,18 +112,18 @@ you choose first,
 <PLAYER>, 'cause
 I'm a generous
 kind of guy!",,
-SilentLabP2TextString12,14,"text
+SilentLabP2TextString12,14,0,"text
 done","<RIVAL>『じゃ　おれは　これ！
 ","<RIVAL>: I'll take
 this one, then!",,
-SilentLabP2TextString13,12,"text
+SilentLabP2TextString13,12,1,"text
 line","<RIVAL>は　オーキドから
 @","<RIVAL> received
 a@",,
-SilentLabP2TextString13,9,"text
+SilentLabP2TextString13,9,0,"text
 done","を　もらった！
 ",!,,
-SilentLabP2TextString14,36,"text
+SilentLabP2TextString14,36,0,"text
 line
 cont
 cont
@@ -134,7 +137,7 @@ cool, <PLAYER>!
 But mine's pretty
 nice too, right?
 ",,
-SilentLabP2TextString15,22,"text
+SilentLabP2TextString15,22,0,"text
 line
 done","オーキド『これ！
 よくばっちゃ　いかん！

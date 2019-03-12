@@ -50,5 +50,8 @@ PlayerHouse1FNPCText1: ; 40D1
 	
 PlayerHouse1FTextString1: ; 40D8
 	text_PlayersHouse1FTextString1
+
+PlayerHouse1FPadding:
+	textpad_PlayersHouse1F
 	
 ; 4132

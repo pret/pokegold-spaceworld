@@ -1,7 +1,7 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,90,,,,,
-Current total,90,,,,,
-PlayersHouse1FTextString1,90,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,90,,,,,,
+Current total,90,,,,,,
+PlayersHouse1FTextString1,90,0,"text
 line
 cont
 cont

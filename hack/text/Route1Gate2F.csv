@@ -1,7 +1,7 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,198,,,,,
-Current total,198,,,,,
-Route1Gate2FTextString1,57,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,198,,,,,,
+Current total,198,,,,,,
+Route1Gate2FTextString1,57,0,"text
 
 para
 line
@@ -18,7 +18,7 @@ If KURT takes an
 interest in you,
 that's a big deal
 as a trainer.",,
-Route1Gate2FTextString2,65,"text
+Route1Gate2FTextString2,65,0,"text
 line
 
 para
@@ -39,7 +39,7 @@ bad… Not just
 anyone can enter
 the five-story
 tower.",,
-Route1Gate2FTextString3,39,"text
+Route1Gate2FTextString3,39,0,"text
 line
 
 para
@@ -55,7 +55,7 @@ telescope!
 
 Whoa! A tall, tall
 tower can be seen!",,
-Route1Gate2FTextString4,37,"text
+Route1Gate2FTextString4,37,0,"text
 line
 
 para

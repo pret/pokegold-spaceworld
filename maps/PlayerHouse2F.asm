@@ -179,5 +179,8 @@ PlayerHouse2FTextString8: ; 4461 (unused?)
 	
 PlayerHouse2FTextString9: ; 44FE
 	text_PlayersHouse2FTextString9
+
+PlayerHouse2FPadding:
+	textpad_PlayersHouse2F
 	
 ; 45FF
