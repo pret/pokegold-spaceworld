@@ -87,5 +87,8 @@ SilentHillPokecenterNPCText5: ; 47C2
 	
 SilentHillPokecenterTextString6: ; 47C9
 	text_SilentPokecenterTextString6
+
+SilentHillPokecenterPadding:
+	textpad_SilentPokecenter
 	
 ; 47D5

@@ -96,4 +96,7 @@ Route1P2TextString4: ; 7D3B
 Route1P2TextString5: ; 7DBD
 	text_Route1P2TextString5
 
+Route1P2Padding:
+	textpad_Route1P2
+
 ;7DDD

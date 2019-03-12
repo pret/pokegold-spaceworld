@@ -129,5 +129,8 @@ SilentHillHouseTextString6: ; 4A29
 	
 SilentHillHouseTextString7: ; 4A76
 	text_SilentHouseTextString7
+
+SilentHillHousePadding:
+	textpad_SilentHouse
 	
 ; 4AAC

@@ -1,18 +1,18 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,245,,,,,
-Current total,245,,,,,
-Route1P2TextString1,36,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,245,,,,,,
+Current total,245,,,,,,
+Route1P2TextString1,36,0,"text
 line
 done","まあ　かわいらしい　トレーナーやこと
 うちと　ポケモン　しはります？
 ","What a lovely
 trainer you are!
 Won't you partake
-in a battle?",,
-Route1P2TextString2,13,"text
+in a battle?",,Geisha-speak!
+Route1P2TextString2,13,0,"text
 done","いやあ　かんにんやわあ
 ","Oh, my apologies…",,
-Route1P2TextString3,34,"text
+Route1P2TextString3,34,0,"text
 line
 done","かわいい　かおして　つよおすなあ
 その　ちょうしで　おきばりやす
@@ -21,7 +21,7 @@ you truly don't
 hold back! You'll
 strain yourself
 like that.",,
-Route1P2TextString4,130,"text
+Route1P2TextString4,130,0,"text
 
 para
 line
@@ -70,7 +70,7 @@ of #MON.
 
 You should turn
 back here! See ya!",,
-Route1P2TextString5,32,"text
+Route1P2TextString5,32,0,"text
 line
 done","ここは　１ばん　どうろ
 サイレントヒル　⋯⋯　オールドシティ

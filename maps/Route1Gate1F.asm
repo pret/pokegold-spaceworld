@@ -45,5 +45,8 @@ Route1Gate1FText1String: ; 4090
 	
 Route1Gate1FText2String: ; 40AC
 	text_Route1Gate1FText2String
+
+Route1Gate1FPadding:
+	textpad_Route1Gate1F
 	
 ;ends at 40D9

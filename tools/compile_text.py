@@ -10,7 +10,7 @@ import sys
 from collections import namedtuple
 from separate_text import *
 
-String = namedtuple('String', ('label', 'lines', 'space'))
+String = namedtuple('String', ('label', 'lines', 'space', 'collapse'))
 
 def strings_in_csv(csv_path):
     strings = []
@@ -23,11 +23,12 @@ def strings_in_csv(csv_path):
         next(reader)
         
         total_space = 0
-        for label, num_bytes, jp_starts, _, text in (row[:5] for row in reader):
+        for label, num_bytes, collapse_bytes, jp_starts, _, text in (row[:6] for row in reader):
             num_bytes = int(num_bytes)
             jp_starts = jp_starts.split('\n')
             text = text.strip()
-            
+            collapse_bytes = int(collapse_bytes)
+                
             starts_present = set(filter(
                 lambda start: start and not LINE_STARTS[start].is_end,
                 jp_starts
@@ -65,7 +66,7 @@ def strings_in_csv(csv_path):
             if LINE_STARTS[jp_starts[-1]].is_end:
                 lines.append(Line(jp_starts[-1], None))
 
-            strings.append(String(label, lines, num_bytes))
+            strings.append(String(label, lines, num_bytes, collapse_bytes))
             total_space += num_bytes
 
     if total_space != target_space:
@@ -89,7 +90,10 @@ def to_asm(string):
 def compile(csv_path):
     strings = strings_in_csv(csv_path)
     macro_code = ""
+    extra_macro_code = ""
     text_bank_code = ""
+    
+    extra_macro_code += "textpad_{}: MACRO\n".format(os.path.splitext(os.path.basename(csv_path))[0])
     
     for row_num, (string, macro) in enumerate(zip(strings, string_macros(strings)), 4):
         macro_code += "{}: MACRO\n".format(macro)
@@ -115,12 +119,13 @@ def compile(csv_path):
             
             macro_code += "\t{} \"<FAR_TEXT>\"\n".format(first_start)
             macro_code += "\tdw {}\n".format(label)
+            macro_code += "\tdb \"@\"\n"
 
-            num_bytes = 4
+            num_bytes = 5
             if num_bytes > string.space:
                 raise ValueError(
                     "Too little space for a far text code (row {})! "
-                    "Make space for 4 bytes, maybe?".format(row_num)
+                    "Make space for 5 bytes, maybe?".format(row_num)
                 )
 
             if string.lines[0].start == 'text':
@@ -132,10 +137,18 @@ def compile(csv_path):
             text_bank_code += to_asm(string)
             text_bank_code += "\n"
         
+        
         if num_bytes < string.space:
-            macro_code += "\nREPT {} - {}\n\tdb \"@\"\nENDR\n".format(string.space, num_bytes)
+            if string.collapse > 0:
+                extra_macro_code += "\nREPT {} - {}\n\tnop\nENDR\n".format(string.space, num_bytes)
+            else:
+                macro_code += "\nREPT {} - {}\n\tdb \"@\"\nENDR\n".format(string.space, num_bytes)
+        
         macro_code += "ENDM\n\n"
-
+    
+    extra_macro_code += "ENDM\n\n"
+    macro_code += extra_macro_code
+    
     return macro_code, text_bank_code
 
 def main(argv):

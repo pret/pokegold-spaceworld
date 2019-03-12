@@ -1,7 +1,7 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,454,,,,,
-Current total,454,,,,,
-SilentHouseTextString1,33,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,454,,,,,,
+Current total,454,,,,,,
+SilentHouseTextString1,33,1,"text
 line
 cont","おや？　<RIVAL>あてに　メールが
 とどいている　ようだ
@@ -10,7 +10,7 @@ seems to be a new
 e-mail addressed
 to <RIVAL>.
 Read it?@",,
-SilentHouseTextString2,92,"text
+SilentHouseTextString2,92,0,"text
 line
 
 para
@@ -35,20 +35,20 @@ and collect it?
 
 #MON researcher
 OAK",,
-SilentHouseTextString3,21,"text
+SilentHouseTextString3,21,0,"text
 line
 done","ひとのメールは
 みちゃ　いけないよな<⋯⋯>
 ","Right. I shouldn't
 read others' mail.",,
-SilentHouseTextString4,25,"text
+SilentHouseTextString4,25,0,"text
 line
 done","このまえ　かわったいろの
 ポッポを　みかけたわ
 ","The other day I
 saw a strange-
 colored PIDGEY!",,
-SilentHouseTextString5,152,"text
+SilentHouseTextString5,152,0,"text
 line
 
 para
@@ -98,7 +98,7 @@ this slot here…
 There we go!
 Now you can use
 the map.",,
-SilentHouseTextString6,77,"text
+SilentHouseTextString6,77,0,"text
 line
 
 para
@@ -123,7 +123,7 @@ mine who knows a
 lot about #MON.
 I'm sure he'll
 help you out!",,
-SilentHouseTextString7,54,"text
+SilentHouseTextString7,54,0,"text
 line
 cont
 cont

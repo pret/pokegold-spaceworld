@@ -368,5 +368,8 @@ SilentHillTextPokemonHate: ; 7AC0
 	
 SilentHillTextPokemonHateString: ; 7AC7
 	text_SilentHillsTextPokemonHateString
+
+SilentHillPadding:
+	textpad_SilentHills
 	
 ; 7AE4

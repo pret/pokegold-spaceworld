@@ -1,7 +1,7 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,145,,,,,
-Current total,145,,,,,
-Route1P1TextString1,49,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,145,,,,,,
+Current total,145,,,,,,
+Route1P1TextString1,49,0,"text
 
 para
 line
@@ -18,7 +18,7 @@ man!
 be used only after
 weakening the wild
 #MON!",,
-Route1P1TextString2,34,"text
+Route1P1TextString2,34,0,"text
 line
 done","ぼく　ゆうがた　じゅくの　かえりに
 かわった　ポケモンを　みたよ
@@ -26,7 +26,7 @@ done","ぼく　ゆうがた　じゅくの　かえりに
 from cram school
 one evening I saw
 a strange #MON!",,
-Route1P1TextString3,30,"text
+Route1P1TextString3,30,0,"text
 line
 done","このさき　しずかな　おか
 やせいの　ポケモンに　ちゅうい
@@ -35,7 +35,7 @@ the silent hills.
 
 Beware of wild
 #MON.",,"Hmm... What to do about this? The route is called しずかなおか, while the town is called サイレントヒル."
-Route1P1TextString4,32,"text
+Route1P1TextString4,32,0,"text
 line
 done","ここは　１ばん　どうろ
 サイレントヒル　⋯⋯　オールドシティ

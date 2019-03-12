@@ -74,5 +74,8 @@ Route1P1TextString3: ; 7C2A
 	
 Route1P1TextString4:; 7C48
 	text_Route1P1TextString4
+
+Route1P1Padding:
+	textpad_Route1P1
 	
 ; 7C68

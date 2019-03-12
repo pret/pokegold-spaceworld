@@ -822,5 +822,8 @@ SilentHillLabFrontText19: ; 5BA7
 	
 SilentHillLabFrontTextString31: ; 5BAE
 	text_SilentLabP1TextString31
+
+SilentHillLabFrontPadding:
+	textpad_SilentLabP1
 	
 ; 5BE6

@@ -1,7 +1,7 @@
-Label,Bytes,Starts (JP),Japanese,English,Draft,Notes
-Original total,901,,,,,
-Current total,901,,,,,
-PlayersHouse2FTextString1,192,"text
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,901,,,,,,
+Current total,901,,,,,,
+PlayersHouse2FTextString1,192,0,"text
 line
 cont
 cont
@@ -59,7 +59,7 @@ ask for some
 spending money,
 that's too bad!
 ",,
-PlayersHouse2FTextString2,51,"text
+PlayersHouse2FTextString2,51,0,"text
 line
 cont
 cont
@@ -73,7 +73,7 @@ e-mail. At least
 check that before
 you leave, huh?
 ",,
-PlayersHouse2FTextString3,40,"text
+PlayersHouse2FTextString3,40,0,"text
 line
 cont
 done","クりスマスに　カントーの
@@ -83,7 +83,7 @@ done","クりスマスに　カントーの
 got as a Christmas
 present from a
 relative in KANTO.",,
-PlayersHouse2FTextString4,48,"text
+PlayersHouse2FTextString4,48,0,"text
 cont
 cont
 cont
@@ -96,7 +96,7 @@ Nintendo 64!
 …Alright!
 It's time to go
 play outside!",,Similar but not identical to the SNES line from RG.
-PlayersHouse2FTextString5,53,"text
+PlayersHouse2FTextString5,53,1,"text
 line
 
 para
@@ -109,11 +109,12 @@ cont","<PLAYER>は
 よんでみる？@","<PLAYER> turned on
 the PC.
 
-What's this? There seems to be a new
+What's this? There
+seems to be a new
 e-mail addressed
 to <PLAYER>. 
 Read it?@",,Don't know if this'll work properly with the @ at the end there - test in-game.
-PlayersHouse2FTextString6,92,"text
+PlayersHouse2FTextString6,92,0,"text
 line
 
 para
@@ -138,13 +139,13 @@ and collect it?
 
 #MON researcher
 OAK",,
-PlayersHouse2FTextString7,11,"text
+PlayersHouse2FTextString7,11,0,"text
 line
 done","あとで
 よもっと<⋯⋯>
 ","I'll read this
 later…",,
-PlayersHouse2FTextString8,157,"text
+PlayersHouse2FTextString8,157,0,"text
 line
 cont
 
@@ -196,10 +197,10 @@ to the radio!
 
 To order, go to…
 
-It's Silph Co.'s
+It's SILPH CO.'s
 homepage.
 ",,
-PlayersHouse2FTextString9,257,"text
+PlayersHouse2FTextString9,257,0,"text
 line
 
 para

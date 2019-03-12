@@ -62,5 +62,8 @@ Route1Gate2FTextString3: ; 41D8
 	
 Route1Gate2FTextString4: ; 41FF
 	text_Route1Gate2FTextString4
+
+Route1Gate2FPadding:
+	textpad_Route1Gate2F
 	
 ; 4224
