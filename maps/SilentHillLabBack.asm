@@ -334,15 +334,15 @@ SilentHillLabBackFunc4: ; 5FE9
 	
 SilentHillLabBackStarterData: ; 6031
 	db DEX_HONOGUMA 
-	dw $5E09 
+	dw SilentHillLabBackTextString4
 	db DEX_KURUSU 
 	
 	db DEX_KURUSU 
-	dw $5E33 
+	dw SilentHillLabBackTextString5
 	db DEX_HAPPA
 
 	db DEX_HAPPA 
-	dw $5E5C 
+	dw SilentHillLabBackTextString6
 	db DEX_HONOGUMA
 	
 SilentHillLabBackTextString15: ; 603D
