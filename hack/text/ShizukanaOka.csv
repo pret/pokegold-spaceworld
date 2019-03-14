@@ -1,0 +1,120 @@
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,580,,,,,,
+Current total,580,,,,,,
+ShizukanaOkaTrainer6EncounterString,66,0,"text
+
+para
+line
+done
+text
+line
+done","ねえ　ねえ　みてよ
+
+これ　ぜったい
+しんしゅの　ポケモン　だよ！
+
+まだ　ポケモンの　とくちょう
+わかってないから　しかたないよ
+",[ShizukanaOkaTra…],,
+ShizukanaOkaTrainer6WonString,42,0,"text
+line
+cont
+done","あたらしい　ポケモンだけでなく
+あたらしい　タイプも
+みつかったって　うわさだよ
+",[ShizukanaOkaTra…],,
+ShizukanaOkaTrainer5EncounterString,51,0,"text
+line
+done
+text
+line
+done","いい　てんきねー
+あなた　ちょうしは　いかが？
+
+なにするニャー
+⋯⋯なにいってるのかしら　あたし
+",[ShizukanaOkaTra…],,
+ShizukanaOkaTrainer5WonString,26,1,"text
+line","なんで　こうなるの？
+さんぽしてた　だけなのに@@",[ShizukanaOkaTra…]@@,,
+ShizukanaOkaTrainer4EncounterString,34,0,"text
+line
+done
+text
+done","こんなところで
+ひを　ふく　れんしゅう！
+
+あちち　しっぱいだー
+",[ShizukanaOkaTra…],,
+ShizukanaOkaTrainer4WonString,55,0,"text
+line
+
+para
+line
+done","よるになると　くらくなるから
+こどもは　はやく　かえりなさい！
+
+おれ？
+おれは　ひをふくから　だいじょうぶ
+",[ShizukanaOkaTra…],,
+ShizukanaOkaTrainer3EncounterString,33,0,"text
+line
+done
+text
+done","むしポケモンの　ことなら
+だれよりも　くわしいよ
+
+パラパラー
+",[ShizukanaOkaTra…],,
+ShizukanaOkaTrainer3WonString,51,0,"text
+line
+
+para
+line
+done","ポケモンずかんを　つくるんだって？
+ちょっと　みせてよ
+
+へー
+タイプべつに　ポケモン　さがせるんだ
+",[ShizukanaOkaTra…],,
+ShizukanaOkaTrainer2EncounterString,53,0,"text
+line
+cont
+done
+text
+done","いっとくけど
+きみよりも　べんきょう　してるから
+きみよりも　つよいよ　ぜったい！
+
+な　なぜなんだ？
+",[ShizukanaOkaTra…],,
+ShizukanaOkaTrainer2WonString,45,0,"text
+line
+cont
+done","おかしいよ⋯⋯
+まいにち　ポケモンの　べんきょうを
+きちんと　してるのに　まけるなんて
+",[ShizukanaOkaTra…],,
+ShizukanaOkaText1String,78,0,"text
+line
+cont
+
+para
+line
+done","この　おかの　ポケモンは　よわい！
+だから　ここで　しゅぎょう　している
+トレーナーも　おおいよ
+
+みんな　バトルが　すきだから
+うでだめしを　するといい
+",[ShizukanaOkaTex…],,
+ShizukanaOkaSignpost2String,23,0,"text
+line
+done","しずかな　おか
+サイレントヒル　は　こちら
+",[ShizukanaOkaSig…],,
+ShizukanaOkaSignpost1String,23,0,"text
+line
+done","しずかな　おか
+オールドシティ　は　こちら
+",[ShizukanaOkaSig…],,

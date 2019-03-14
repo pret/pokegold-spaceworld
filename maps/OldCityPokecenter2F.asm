@@ -1,4 +1,5 @@
 INCLUDE "constants.asm"
+INCLUDE "hack/text/OldCityPokecenter2F.inc"
 
 SECTION "maps/OldCityPokecenter2F.asm", ROMX
 
@@ -57,8 +58,7 @@ OldCityPokecenter2FText3: ; 25:47dc
 	ret
 
 Text947e3: ; 25:47e3
-	text "おりゃ！"
-	done
+	text_Text947e3
 
 OldCityPokecenter2FText4: ; 25:47e9
 	ld hl, OldCityPokecenter2FTextString4
@@ -78,12 +78,13 @@ OldCityPokecenter2FText4: ; 25:47e9
 	ret
 
 OldCityPokecenter2FTextString4: ; 25:480d
-	text "うしろにあるのは"
-	line "タイムマシンです"
-	done
+	text_OldCityPokecenter2FTextString4
 
 ; 25:4820
 	db $05, $25, $24, $48
 
 Data14824: ; movement data
 	db $07, $32
+
+OldCityPokecenter2FPadding:
+	textpad_OldCityPokecenter2F
