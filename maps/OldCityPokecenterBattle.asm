@@ -1,4 +1,5 @@
 INCLUDE "constants.asm"
+INCLUDE "hack/text/OldCityPokecenterBattle.inc"
 
 SECTION "maps/OldCityPokecenterBattle.asm", ROMX
 
@@ -38,8 +39,11 @@ OldCityPokecenterBattleText1: ; 25:4909
 	ret
 
 OldCityPokecenterBattleTextString1: ; 25:4922
-	text "ちょっとまってね！@"
+	text_OldCityPokecenterBattleTextString1
 	text_exit
 	db "@"
+
+OldCityPokecenterBattlePadding:
+	textpad_OldCityPokecenterBattle
 
 ; 25:492f

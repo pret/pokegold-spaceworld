@@ -1,0 +1,47 @@
+Label,Bytes,Compact,Starts (JP),Japanese,English,Draft,Notes
+Original total,145,,,,,,
+Current total,145,,,,,,
+Text_CantUseCutHere,13,0,"text
+prompt","ここでは　つかえません
+",[TextCantUseCut…],,
+CutScript,17,0,"text
+line
+prompt","　は　
+くさかりを　つかった！
+",[CutScript],,
+Text_CantSurfHere,18,0,"text
+next
+prompt","ここでは　のることが
+できません
+",[TextCantSurfHere],,
+Text_UsedSurf,6,0,"text
+line","　は　
+@",[TextUsedSurf]@,,
+Text_UsedSurf,8,0,"text
+prompt","を　のせた！
+",[TextUsedSurf],,
+Text_CantUseFlyHere,14,0,"text
+prompt","ここでは　つかえません！
+",[TextCantUseFly…],,
+Text_CantUseDigHere,14,0,"text
+prompt","ここでは　つかえません！
+",[TextCantUseDig…],,
+Text_CantFindDestination,16,0,"text
+
+para
+done","とびさきが　みつかりません
+
+
+",[TextCantFindDe…],,
+Text_CantUseTeleportHere,15,0,"text
+
+para
+done","ここでは　つかえません！
+
+
+",[TextCantUseTel…],,
+Text_ReturnToLastMonCenter,24,0,"text
+line
+done","さいごに　たちよった
+#センターにもどります
+",[TextReturnToLa…],,

@@ -1,3 +1,4 @@
+INCLUDE "hack/text/field_moves.inc"
 
 INCLUDE "constants.asm"
 
@@ -137,8 +138,7 @@ FailCut: ; 03:5069
 	ret
 	
 Text_CantUseCutHere: ; 03:5073
-	text "ここでは　つかえません"
-	prompt
+	text_Text_CantUseCutHere
 
 DoCut:
 DoCut2: ; 03:5080
@@ -174,9 +174,7 @@ CutScript: ; 03:508C
 	
 Text_CutItDown ; 03:50c4
 	text_from_ram wStringBuffer2
-	text "　は　"
-	line "くさかりを　つかった！"
-	prompt	
+	text_CutScript
 
 SurfFunction: ; 03:50d8
 	call .ResetScriptID
@@ -233,9 +231,7 @@ FailSurf: ; 03:5124
 	ret
 
 Text_CantSurfHere: ; 03:5133
-	text "ここでは　のることが"
-	next "できません"
-	prompt
+	text_Text_CantSurfHere
 	
 SurfScript: ; 03:5145
 	call RefreshScreen
@@ -257,11 +253,9 @@ SurfScript: ; 03:5145
 
 Text_UsedSurf: ; 03:5171
 	text_from_ram wStringBuffer2
-	text "　は　"
-	line "@"
+	text_Text_UsedSurf_1
 	text_from_ram wPlayerName
-	text "を　のせた！"
-	prompt
+	text_Text_UsedSurf_2
 	
 MovePlayerIntoWater: ; 03:5185
 	call InitMovementBuffer
@@ -369,8 +363,7 @@ FailFly: ; 03:5237
 	ret
 
 Text_CantUseFlyHere: ; 03:5246
-	text "ここでは　つかえません！"
-	prompt
+	text_Text_CantUseFlyHere
 
 FlyScript: ; 03:5254
 	ld a, MAPSETUP_TELEPORT
@@ -431,8 +424,7 @@ FailDig: ; 03:52a8
 	ret
 
 Text_CantUseDigHere: ; 03:52b4
-	text "ここでは　つかえません！"
-	prompt
+	text_Text_CantUseDigHere
 	
 DigScript: ; 03:52c2
 	ld hl, wDigWarpNumber
@@ -501,9 +493,7 @@ CheckIfSpawnPoint ; 03:5313
 	ret
 
 Text_CantFindDestination: ; 03:533B
-	text "とびさきが　みつかりません"
-	para ""
-	done
+	text_Text_CantFindDestination
 
 DoTeleport: ; 03:534b
 	queue_ba TeleportScript
@@ -520,9 +510,7 @@ FailTeleport: ; 03:5359
 	ret
 
 Text_CantUseTeleportHere: ; 03:5366
-	text "ここでは　つかえません！"
-	para ""
-	done
+	text_Text_CantUseTeleportHere
 
 TeleportScript: ; 03:5375
 	call RefreshScreen
@@ -537,6 +525,4 @@ TeleportScript: ; 03:5375
 	jpab Functionfcc24
 	
 Text_ReturnToLastMonCenter: ; 03:5395
-	text "さいごに　たちよった"
-	line "#センターにもどります"
-	done
+	text_Text_ReturnToLastMonCenter

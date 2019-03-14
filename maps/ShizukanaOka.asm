@@ -1,4 +1,5 @@
 include "constants.asm"
+INCLUDE "hack/text/ShizukanaOka.inc"
 
 SECTION "maps/ShizukanaOka.asm", ROMX
 
@@ -150,93 +151,43 @@ ShizukanaOkaSignpost1: ;574b
 	ret
 
 ShizukanaOkaTrainer6EncounterString: ; 2f:5752
-	text "ねえ　ねえ　みてよ"
-	para "これ　ぜったい"
-	line "しんしゅの　ポケモン　だよ！"
-	done
-
-	text "まだ　ポケモンの　とくちょう"
-	line "わかってないから　しかたないよ"
-	done
+	text_ShizukanaOkaTrainer6EncounterString
 
 ShizukanaOkaTrainer6WonString: ; 2f:5794
-	text "あたらしい　ポケモンだけでなく"
-	line "あたらしい　タイプも"
-	cont "みつかったって　うわさだよ"
-	done
+	text_ShizukanaOkaTrainer6WonString
 
 ShizukanaOkaTrainer5EncounterString: ; 2f:57be
-	text "いい　てんきねー"
-	line "あなた　ちょうしは　いかが？"
-	done
-
-	text "なにするニャー"
-	line "⋯⋯なにいってるのかしら　あたし"
-	done
+	text_ShizukanaOkaTrainer5EncounterString
 
 ShizukanaOkaTrainer5WonString: ; 2f:57f1
-	text "なんで　こうなるの？"
-	line "さんぽしてた　だけなのに@@"
+	text_ShizukanaOkaTrainer5WonString
 
 ShizukanaOkaTrainer4EncounterString: ; 2f:580b
-	text "こんなところで"
-	line "ひを　ふく　れんしゅう！"
-	done
-
-	text "あちち　しっぱいだー"
-	done
+	text_ShizukanaOkaTrainer4EncounterString
 
 ShizukanaOkaTrainer4WonString: ; 2f:582d
-	text "よるになると　くらくなるから"
-	line "こどもは　はやく　かえりなさい！"
-	para "おれ？"
-	line "おれは　ひをふくから　だいじょうぶ"
-	done
+	text_ShizukanaOkaTrainer4WonString
 
 ShizukanaOkaTrainer3EncounterString: ; 2f:5864
-	text "むしポケモンの　ことなら"
-	line "だれよりも　くわしいよ"
-	done
-
-	text "パラパラー"
-	done
+	text_ShizukanaOkaTrainer3EncounterString
 
 ShizukanaOkaTrainer3WonString: ; 2f:5885
-	text "ポケモンずかんを　つくるんだって？"
-	line "ちょっと　みせてよ"
-	para "へー"
-	line "タイプべつに　ポケモン　さがせるんだ"
-	done
+	text_ShizukanaOkaTrainer3WonString
 
 ShizukanaOkaTrainer2EncounterString: ; 2f:58b8
-	text "いっとくけど"
-	line "きみよりも　べんきょう　してるから"
-	cont "きみよりも　つよいよ　ぜったい！"
-	done
-
-	text "な　なぜなんだ？"
-	done
+	text_ShizukanaOkaTrainer2EncounterString
 
 ShizukanaOkaTrainer2WonString: ; 2f:58ed
-	text "おかしいよ⋯⋯"
-	line "まいにち　ポケモンの　べんきょうを"
-	cont "きちんと　してるのに　まけるなんて"
-	done
+	text_ShizukanaOkaTrainer2WonString
 
 ShizukanaOkaText1String: ; 2f:591a
-	text "この　おかの　ポケモンは　よわい！"
-	line "だから　ここで　しゅぎょう　している"
-	cont "トレーナーも　おおいよ"
-	para "みんな　バトルが　すきだから"
-	line "うでだめしを　するといい"
-	done
+	text_ShizukanaOkaText1String
 
 ShizukanaOkaSignpost2String: ; 2f:5968
-	text "しずかな　おか"
-	line "サイレントヒル　は　こちら"
-	done
+	text_ShizukanaOkaSignpost2String
 
 ShizukanaOkaSignpost1String: ; 2f:597f
-	text "しずかな　おか"
-	line "オールドシティ　は　こちら"
-	done
+	text_ShizukanaOkaSignpost1String
+
+ShizukanaOkaPadding:
+	textpad_ShizukanaOka
