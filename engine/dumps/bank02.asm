@@ -1443,7 +1443,7 @@ Function8ae0: ; 02:4ae0
 	call ClearSprites
 	ld b, $13
 	call GetSGBLayout
-	ld hl, TrainerGear1GFX
+	ld hl, TrainerGearGFX
 	ld de, vChars2
 	ld bc, $0200
 	ld a, $02
@@ -1672,9 +1672,9 @@ Function8cb7: ; 02:4cb7
 	call WaitForAutoBgMapTransfer
 	ld b, $15
 	call GetSGBLayout
-	ld de, TrainerGear2GFX
+	ld de, RadioGFX
 	ld hl, vTilesetEnd
-	lb bc, BANK(TrainerGear2GFX), $09
+	lb bc, BANK(RadioGFX), $09
 	call Request2bpp
 	ld de, VerticalPipeGFX
 	ld hl, vChars0

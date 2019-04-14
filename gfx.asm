@@ -19,10 +19,10 @@ UnknownBallGFX::
 INCBIN "gfx/overworld/gfx_85cf.2bpp"
 
 SECTION "gfx.asm@Trainer Gear GFX", ROMX
-TrainerGear1GFX::
-INCBIN "gfx/trainer_gear/trainer_gear_1.2bpp"
-TrainerGear2GFX::
-INCBIN "gfx/trainer_gear/trainer_gear_2.2bpp"
+TrainerGearGFX::
+INCBIN "gfx/trainer_gear/trainer_gear.2bpp"
+RadioGFX::
+INCBIN "gfx/trainer_gear/radio.2bpp"
 VerticalPipeGFX::
 INCBIN "gfx/trainer_gear/vertical_pipe.2bpp"
 
