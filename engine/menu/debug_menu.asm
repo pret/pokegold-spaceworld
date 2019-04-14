@@ -101,7 +101,7 @@ Function40eb::
 	jp DebugMenu
 
 DebugMenuOptionName:: ; 40EE
-	callab OpenPokegear
+	callab OpenTrainerGear
 	ld a, $e4
 	ldh [rBGP], a
 	jp DebugMenu
