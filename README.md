@@ -12,4 +12,4 @@ Requires [RGBDS](https://github.com/rednex/rgbds) version 0.3.8 or newer to buil
 ## See also
 * Discord: [**pret**][Discord]
 
-[Discord]: https://discord.gg/vdTW48Q
+[Discord]: https://discord.gg/d5dubZ3
