@@ -3,7 +3,7 @@ os: linux
 install:
   - |-
     ( cd
-        git clone -b v0.3.8 --depth=1 https://github.com/rednex/rgbds
+        git clone -b v0.4.1 --depth=1 https://github.com/rednex/rgbds
         sudo make -C rgbds install
         rm -rf rgbds
         sudo apt-get install wget p7zip-full

@@ -4,6 +4,7 @@ SECTION "home/toolgear.asm", ROM0
 
 ; local charmap, global charmap won't apply
 ; see https://github.com/rednex/rgbds/issues/265#issuecomment-395229694
+newcharmap local
 	charmap "０", $66
 	charmap "１", $67
 	charmap "２", $68
