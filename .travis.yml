@@ -23,4 +23,3 @@ before_script:
   - rm -f roms.7z P*\(Header\ Fixed\).sgb
 script:
   - make -j2 compare
-  - check_status
