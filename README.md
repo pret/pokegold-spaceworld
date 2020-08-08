@@ -9,8 +9,6 @@ It builds the following ROMs:
 
 You will need to provide a copy of Gold_debug.sgb renamed **baserom.gb** to build the ROMs.
 
-You will also need **rgbds 0.3.8**. If that is not your default version, you can put the 0.3.8 files in a subdirectory like rgbds/ and run `make RGBDS=rgbds/` instead of `make`.
-
 
 ## See also
 
