@@ -1,0 +1,26 @@
+language: c
+os: linux
+install:
+  - |-
+    ( cd
+        git clone -b v0.3.8 --depth=1 https://github.com/rednex/rgbds
+        sudo make -C rgbds install
+        rm -rf rgbds
+        sudo apt-get install wget p7zip-full
+        wget -O roms.7z 'https://tcrf.net/images/3/33/Pok%C3%A9mon_Gold_-_Spaceworld_1997_Demo_%28Debug%29.7z'
+        7z e roms.7z
+        mv 'Pokémon Gold - Spaceworld 1997 Demo (Debug).sgb' baserom.gb
+        rm -f roms.7z 'Pokémon Gold - Spaceworld 1997 Demo (Debug) (Header Fixed).sgb'
+    )
+before_script:
+  - |-
+    function check_status() {
+      if ! git diff-index --quiet --ignore-submodules=all HEAD --; then
+        echo 'Uncommitted changes detected:';
+        git diff-index HEAD --;
+        return 1;
+      fi;
+    }
+script:
+  - make -j2 compare
+  - check_status

@@ -4,10 +4,11 @@ MD5 := md5sum -c
 PYTHON := python
 PYTHON3 := python3
 
-RGBASM := rgbasm
-RGBGFX := rgbgfx
-RGBLINK := rgblink
-RGBFIX := rgbfix
+RGBDS ?=
+RGBASM := $(RGBDS)rgbasm
+RGBGFX := $(RGBDS)rgbgfx
+RGBLINK := $(RGBDS)rgblink
+RGBFIX := $(RGBDS)rgbfix
 sort_sym := tools/sort_symfile.sh
 
 RGBASMFLAGS := -h -E -i $(BUILD)/ -DGOLD -DDEBUG=1
