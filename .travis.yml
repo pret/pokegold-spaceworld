@@ -19,8 +19,8 @@ before_script:
     }
   - wget -O roms.7z 'https://tcrf.net/images/3/33/Pok%C3%A9mon_Gold_-_Spaceworld_1997_Demo_%28Debug%29.7z'
   - 7z e roms.7z
-  - mv 'Pokémon Gold - Spaceworld 1997 Demo (Debug).sgb' baserom.gb
-  - rm -f roms.7z 'Pokémon Gold - Spaceworld 1997 Demo (Debug) (Header Fixed).sgb'
+  - mv P*\(Debug\).sgb baserom.gb
+  - rm -f roms.7z P*\(Header\ Fixed\).sgb
 script:
   - make -j2 compare
   - check_status
