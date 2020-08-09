@@ -9,10 +9,10 @@ Function32c8::
 	ret
 
 Function32d0::
-	ld hl, .Data
+	ld hl, .EmptyString
 	ret
 
-.Data: ; 00:32d4
+.EmptyString:
 	db "@"
 
 SubtractSigned::
@@ -25,7 +25,7 @@ SubtractSigned::
 
 SECTION "home/misc_32c8.asm@Unknown 3686", ROM0
 
-GiveMonToPlayer:: ; 3686
+GiveMonToPlayer::
 ; Give to the player Pokemon of species b at level c.
 	ld a, b
 	ld [wMonDexIndex], a
@@ -35,7 +35,7 @@ GiveMonToPlayer:: ; 3686
 	ld [wMonType], a
 	jpba Function1130a
 
-WaitPressedAny:: ; 369a
+WaitPressedAny::
 ; Waits for one of the buttons in d to be pressed.
 ; If bc is negative, waits forever.
 ; Otherwise, times out after bc frames then returns z.
@@ -68,15 +68,15 @@ WaitPressedAny:: ; 369a
 ; Return z, signifying that the request timed out.
 	ret
 
-CountSetBits:: ; 36b1
+CountSetBits::
 ; Count the number of bits set in b bytes at hl.
 ; Return to a, c, and wCountSetBitsResult.
 	ld c, $0
-.asm_36b3: ; 00:36b3
+.asm_36b3:
 	ld a, [hli]
 	ld e, a
 	ld d, $8
-.asm_36b7: ; 00:36b7
+.asm_36b7:
 	srl e
 	ld a, $0
 	adc c

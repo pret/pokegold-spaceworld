@@ -13,7 +13,7 @@ SECTION "home/print_bcd.asm", ROM0
 ; bits 0-5: length of BCD number in bytes
 ; Note that bits 5 and 7 are modified during execution. The above reflects
 ; their meaning at the beginning of the functions's execution.
-PrintBCDNumber:: ; 3ab2 (0:3ab2)
+PrintBCDNumber::
 	ld b, c  ; save flags in b
 	res 7, c
 	res 6, c ; c now holds the length
@@ -39,7 +39,7 @@ PrintBCDNumber:: ; 3ab2 (0:3ab2)
 .done
 	ret
 
-PrintBCDDigit:: ; 3ad5 (0:3ad5)
+PrintBCDDigit::
 	and $0f
 	and a
 	jr z, .zeroDigit
@@ -56,4 +56,3 @@ PrintBCDDigit:: ; 3ad5 (0:3ad5)
 	ld a, "　"
 	ld [hli], a
 	ret
-; 0x3aed

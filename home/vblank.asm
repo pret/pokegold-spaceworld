@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "home/vblank.asm", ROM0
 
-VBlank:: ; 0150
+VBlank::
 	push af
 	push bc
 	push de
@@ -33,7 +33,7 @@ VBlank:: ; 0150
 	dw VBlank2
 	dw VBlank3
 
-VBlank0:: ; 175 (0:175)
+VBlank0::
 ; rng
 ; scx, scy, wy, wx
 ; bg map
@@ -115,7 +115,7 @@ VBlank0:: ; 175 (0:175)
 	ldh [rIE], a
 	ret
 
-VBlank1:: ; 1f6 (0:1f6)
+VBlank1::
 ; Simple VBlank
 ;
 ; scx, scy
@@ -162,7 +162,7 @@ VBlank1:: ; 1f6 (0:1f6)
 	ldh [rIE], a
 	ret
 
-VBlank2:: ; 241 (0:241)
+VBlank2::
 ; rng
 ; scx, scy, wy, wx
 ; joypad
@@ -223,7 +223,7 @@ VBlank2:: ; 241 (0:241)
 	call Bankswitch
 	ret
 
-VBlank3:: ; 2a0 (0:2a0)
+VBlank3::
 ; rng
 ; joypad
 ; scx, scy, wy, wx
@@ -297,4 +297,3 @@ VBlank3:: ; 2a0 (0:2a0)
 	ld a, (1 << JOYPAD | 1 << SERIAL | 1 << TIMER | 1 << LCD_STAT | 1 << VBLANK)
 	ldh [rIE], a
 	ret
-; 0x317

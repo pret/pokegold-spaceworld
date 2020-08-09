@@ -23,7 +23,7 @@ newcharmap local
 	charmap "Ｅ", $74
 	charmap "Ｆ", $75
 	; small kana aren't actively loaded
-	
+
 	; if clock shown
 	charmap "：", $70
 	charmap "日", $71
@@ -35,7 +35,7 @@ newcharmap local
 	charmap "土", $77
 	charmap "⚡", $78 ; power
 	charmap "☎", $79 ; mobile
-	
+
 	; active frame
 	charmap "┌", $79 ; only if debug coords shown
 	charmap "─", $7a
@@ -45,21 +45,21 @@ newcharmap local
 	charmap "┘", $7e
 	charmap "　", $7f
 
-EnableToolgear:: ; 00:2018
+EnableToolgear::
 	ld hl, wd153
 	res 0, [hl]
 	ld hl, wToolgearFlags
 	set 0, [hl]
 	ret
 
-DisableToolgear:: ; 00:2023
+DisableToolgear::
 	ld hl, wToolgearFlags
 	res 0, [hl]
 	xor a
 	ldh [hLCDCPointer], a
 	ret
 
-InitToolgearBuffer:: ; 00:202c
+InitToolgearBuffer::
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wToolgearFlags
@@ -93,7 +93,7 @@ InitToolgearBuffer:: ; 00:202c
 	ldh [hWY], a
 	ret
 
-.hide_window: ; 00:206b
+.hide_window:
 	xor a
 	ldh [hLCDCPointer], a
 	ld a, $90
@@ -101,7 +101,7 @@ InitToolgearBuffer:: ; 00:202c
 	ldh [hWY], a
 	ret
 
-UpdateToolgear:: ; 2075
+UpdateToolgear::
 ; Prepares a buffer for the clock display, which in the Debug ROM is displayed on the bottom of the screen.
 ; This function is called every frame, and loads special tiles into the $66-$7a space.
 	bgcoord hl, 0, 1, wToolgearBuffer
@@ -144,7 +144,7 @@ UpdateToolgear:: ; 2075
 	ldbgcoord_a 2, 1, wToolgearBuffer
 	ret
 
-.printHex:: ; 20cd
+.printHex::
 ; .printHex
 ; print c hexadecimal digits from hl to de
 ; clobbers: a, b
@@ -158,7 +158,7 @@ UpdateToolgear:: ; 2075
 	jr nz, .printHex
 	ret
 
-.printDec:: ; 20dc
+.printDec::
 ; .printDec
 ; print c decimal digits from hl to de
 ; clobbers: a, b
@@ -177,7 +177,7 @@ UpdateToolgear:: ; 2075
 	call .printDigit
 	ret
 
-.printDigit:: ; 20f1
+.printDigit::
 ; .printDigit
 ; print a hexadecimal digit for value in a to de
 	and $0f

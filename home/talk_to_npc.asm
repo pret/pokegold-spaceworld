@@ -7,18 +7,18 @@ MapDefaultText::
 	call OpenTextbox
 	ret
 
-GameplayText:: ; 00:302c
+GameplayText::
 	text "ゲームフりーク！"
 	done
 
-Function3036:: ; 3036
+Function3036::
 	ld hl, EmptyText
 	ret
 
-EmptyText:: ; 00:303a
+EmptyText::
 	db "@"
 
-CallMapTextSubroutine:: ; 00:303b
+CallMapTextSubroutine::
 	ld a, [wTalkingTargetType]
 	bit 0, a
 	jr z, asm_3062
@@ -32,14 +32,14 @@ CallMapTextSubroutine:: ; 00:303b
 	push de
 	jp hl
 
-.Return: ; 00:3051
+.Return:
 	call Function307a
 	ret
 
-Function3055:: ; 00:3055
+Function3055::
 	ldh a, [hFFEA]
 	ld b, a
-.Loop: ; 00:3058
+.Loop:
 	ld a, [hli]
 	cp $ff
 	ret z
@@ -47,7 +47,7 @@ Function3055:: ; 00:3055
 	jp z, SetFFInAccumulator
 	jr .Loop
 
-asm_3062: ; 00:3062
+asm_3062:
 	ld a, [wTalkingTargetType]
 	bit 1, a
 	ret z
@@ -66,14 +66,14 @@ asm_3062: ; 00:3062
 	push de
 	jp hl
 
-Function307a:: ; 00:307a
+Function307a::
 	ld hl, wTalkingTargetType
 	res 0, [hl]
 	res 1, [hl]
 	call SetFFInAccumulator
 	ret
 
-PrintTextboxDebugNumbers:: ; 00:3085
+PrintTextboxDebugNumbers::
 	push hl
 	push de
 	push bc
@@ -84,12 +84,12 @@ PrintTextboxDebugNumbers:: ; 00:3085
 	ld de, hFFEA
 	jr .PrintNum
 
-.CheckSign: ; 00:3097
+.CheckSign:
 	bit 1, a
 	jr z, .PrintNum
 	ld de, hFFEE
 
-.PrintNum: ; 00:309e
+.PrintNum:
 	hlcoord 4, 12
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNumber
@@ -102,7 +102,7 @@ PrintTextboxDebugNumbers:: ; 00:3085
 	pop hl
 	ret
 
-QueueMapTextSubroutine:: ; 00:30b7
+QueueMapTextSubroutine::
 	ldh a, [hJoyState]
 	bit A_BUTTON_F, a
 	jp z, ClearAccumulator ; if we didn't press a
@@ -130,7 +130,7 @@ QueueMapTextSubroutine:: ; 00:30b7
 	call SetFFInAccumulator
 	ret
 
-Function30e8:: ; 00:30e8
+Function30e8::
 	call GetFacingSignpost
 	jp nc, ClearAccumulator ; if not facing person or sign
 	ld a, e
@@ -146,14 +146,14 @@ Function30e8:: ; 00:30e8
 	call SetFFInAccumulator
 	ret
 
-GetFacingPersonText:: ; 00:3103
+GetFacingPersonText::
 	callba Function776e
 	ret nc
 	call TurnNPCTalkingTo
 	scf
 	ret
 
-OpenTextbox:: ; 00:3111
+OpenTextbox::
 	; Opens a textbox and waits for input
 	push hl
 	call PrepareTextbox
@@ -161,28 +161,28 @@ OpenTextbox:: ; 00:3111
 	bit DEBUG_FIELD_F, a
 	call nz, PrintTextboxDebugNumbers
 	pop hl
-	call TextboxIdle 
+	call TextboxIdle
 	ret
 
-OpenTextboxNoInput:: ; 00:3122
-	push hl 
-	call PrepareTextbox 
+OpenTextboxNoInput::
+	push hl
+	call PrepareTextbox
 	pop hl
 
-TextboxIdle:: ; 00:3127
+TextboxIdle::
 	; Prints text, then waits for A or B to be pressed, unless bit 5 of JoypadFlags is set.
 	call PrintTextBoxText
 .Loop
 	ld a, [wJoypadFlags]
 	bit 5, a
-	res 5, a 
-	ld [wJoypadFlags], a 
+	res 5, a
+	ld [wJoypadFlags], a
 	jr nz, .Escape
 	call GetJoypad
 	ldh a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
-	jr nz, .Escape 
-	call UpdateTime 
+	jr nz, .Escape
+	call UpdateTime
 	call UpdateTimeOfDayPalettes
 	call DelayFrame
 	jr .Loop
@@ -190,16 +190,16 @@ TextboxIdle:: ; 00:3127
 	call TextboxCleanup
 	ret
 
-PrepareTextbox:: ; 00:314E
+PrepareTextbox::
 	call ClearWindowData
 	ldh a, [hROMBank]
-	push af 
-	ld a, 01 
+	push af
+	ld a, 01
 	call Bankswitch
 	call ReanchorBGMap_NoOAMUpdate
 	hlcoord 0, 12 ;in the tilemap in WRAM
-	ld b, 04 
-	ld c, $12 
+	ld b, 04
+	ld c, $12
 	call DrawTextBox
 	call WaitBGMap
 	call LoadFonts_NoOAMUpdate
@@ -207,27 +207,27 @@ PrepareTextbox:: ; 00:314E
 	call Bankswitch
 	ret
 
-TextboxCleanup: ; 00:3171
+TextboxCleanup:
 	callab ReanchorBGMap_NoOAMUpdate
 	call UpdateSprites
 	xor a
 	ldh [hBGMapMode], a
 	ld a, $90
 	ldh [hWY], a
-	call Function318f 
+	call Function318f
 	ld hl, wToolgearFlags
 	res 7, [hl]
 	call InitToolgearBuffer
 	ret
 
-Function318f: ; 00:318f
+Function318f:
 	callab Function140ea
 	call RedrawPlayerSprite
 	ret
-	
-TurnNPCTalkingTo:: ; 00:319b 
+
+TurnNPCTalkingTo::
 	; If an NPC is allowed to turn when talked to, turn it.
-	ldh a, [hObjectStructIndexBuffer] 
+	ldh a, [hObjectStructIndexBuffer]
 	call GetObjectStruct
 	ld hl, OBJECT_SPRITE
 	add hl, bc
@@ -250,17 +250,17 @@ TurnNPCTalkingTo:: ; 00:319b
 	ldh [hFFEA], a
 	ret
 
-Function31C3:: ; 00:31C3
+Function31C3::
 	ret
 
-CheckInlineTrainer:: ; 00:31C4
+CheckInlineTrainer::
 	; Passed de is the pointer to a map_object struct. If it's an inline trainer, write to relevant wram region.
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, de
 	ld a, [hl]
 	call GetObjectStruct
 	call GetInlineMapObject
-	jr nc, .Escape 
+	jr nc, .Escape
 	ld hl, MAPOBJECT_POINTER_HI
 	add hl, de
 	ld a, [hl]
@@ -270,7 +270,7 @@ CheckInlineTrainer:: ; 00:31C4
 	add hl, de
 	ld a, [hl]
 	add a, a
-	ld hl, wCurrMapInlineTrainers 
+	ld hl, wCurrMapInlineTrainers
 	add a, l
 	ld l, a
 	jr nc, .NoCarry
@@ -282,7 +282,7 @@ CheckInlineTrainer:: ; 00:31C4
 .Escape
 	ret
 
-GetInlineMapObject:: ; 00:31EB
+GetInlineMapObject::
 	;bc is start of object struct. if c flag set, returns distance in B and direction in C
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
@@ -294,27 +294,27 @@ GetInlineMapObject:: ; 00:31EB
 	ld a, [wPlayerNextMapY]
 	cp [hl]
 	jr z, .EqualY
-	and a 
+	and a
 	ret
-.EqualX 
+.EqualX
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [wPlayerNextMapY]
 	sub [hl]
-	jr z, .Reset 
-	jr nc, .SetDown 
+	jr z, .Reset
+	jr nc, .SetDown
 	cpl
 	inc a
 	ld b, a
 	ld c, UP
 	scf
 	ret
-.SetDown ; 3214
+.SetDown
 	ld b, a
 	ld c, DOWN
 	scf
 	ret
-.EqualY ; 3219 
+.EqualY
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [wPlayerNextMapX]
@@ -327,16 +327,16 @@ GetInlineMapObject:: ; 00:31EB
 	ld c, LEFT
 	scf
 	ret
-.SetRight ; 322C
+.SetRight
 	ld b, a
 	ld c, RIGHT
 	scf
 	ret
-.Reset ; 3231
+.Reset
 	and a
 	ret
-	
-CheckBPressedDebug: ; 3233
+
+CheckBPressedDebug:
 	; If in debug mode, returns a check on the B button.
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
@@ -345,13 +345,11 @@ CheckBPressedDebug: ; 3233
 	bit B_BUTTON_F, a
 	ret
 
-ClearAccumulator:: ; 323E
+ClearAccumulator::
 	xor a
 	ret
-	
-SetFFInAccumulator:: ; 3240
+
+SetFFInAccumulator::
 	xor a
 	dec a
 	ret
-	
-; 3243

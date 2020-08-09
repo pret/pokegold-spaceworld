@@ -88,7 +88,7 @@ Function3920::
 	res 4, [hl]
 	ld hl, .text
 	call OpenTextbox
-	call RotateFourPalettesLeft
+	call GBFadeOutToBlack
 	jp Init
 
 .text:

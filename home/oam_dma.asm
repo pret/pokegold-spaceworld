@@ -2,19 +2,19 @@ INCLUDE "constants.asm"
 
 SECTION "home/oam_dma.asm", ROMX
 
-WriteOAMDMACodeToHRAM:: ; 4153
+WriteOAMDMACodeToHRAM::
 	ld c, LOW(hOAMDMA)
 	ld b, .OAMDMAEnd - .OAMDMA
 	ld hl, .OAMDMA
 .loop
 	ld a, [hli]
-	ld [$ff00+c], a
+	ldh [c], a
 	inc c
 	dec b
 	jr nz, .loop
 	ret
 
-.OAMDMA ; 4161
+.OAMDMA
 	ld a, HIGH(wVirtualOAM)
 	ldh [rDMA], a
 	ld a, $28
@@ -22,4 +22,4 @@ WriteOAMDMACodeToHRAM:: ; 4153
 	dec a
 	jr nz, .wait
 	ret
-.OAMDMAEnd ; 416b
+.OAMDMAEnd

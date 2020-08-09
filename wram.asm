@@ -401,6 +401,7 @@ wMenuDataPointer:: dw ; cc07
 wMenuCursorBuffer:: db ; cc09
 ; cc0a
 	ds 8 ; TODO
+wMenuDataHeaderEnd::
 
 wMenuData2::
 wMenuDataFlags:: db ; cc12
@@ -619,7 +620,7 @@ wcd80:: db ; cd80
 wcd81:: db ; cd81
 
 SECTION "CD9E", WRAM0 [$CD9E]
-wcd9e:: db ; cd9e
+wLoadedMonLevel:: db ; cd9e
 
 SECTION "CDAF", WRAM0 [$CDAF]
 wcdaf:: db ; cdaf

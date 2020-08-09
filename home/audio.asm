@@ -1,8 +1,9 @@
 INCLUDE "constants.asm"
 
+
 SECTION "home/audio.asm", ROM0
 
-DisableAudio:: ; 3cbf
+DisableAudio::
 	push hl
 	push de
 	push bc
@@ -22,7 +23,7 @@ DisableAudio:: ; 3cbf
 	pop hl
 	ret
 
-UpdateSound:: ; 3cdb
+UpdateSound::
 	push hl
 	push de
 	push bc
@@ -42,7 +43,7 @@ UpdateSound:: ; 3cdb
 	pop hl
 	ret
 
-_LoadMusicByte:: ; 3cf7
+_LoadMusicByte::
 	ld [MBC3RomBank], a ; Unsafe
 	ldh [hROMBank], a
 	ld a, [de]
@@ -53,7 +54,7 @@ _LoadMusicByte:: ; 3cf7
 	pop af
 	ret
 
-PlayMusic:: ; 3d07
+PlayMusic::
 	push hl
 	push de
 	push bc
@@ -73,7 +74,7 @@ PlayMusic:: ; 3d07
 	pop hl
 	ret
 
-PlayCryHeader:: ; 3d23
+PlayCryHeader::
 	push hl
 	push de
 	push bc
@@ -115,7 +116,7 @@ endr
 	pop hl
 	ret
 
-PlaySFX:: ; 3d63
+PlaySFX::
 	push hl
 	push de
 	push bc
@@ -135,12 +136,12 @@ PlaySFX:: ; 3d63
 	pop hl
 	ret
 
-WaitPlaySFX:: ; 3d7f
+WaitPlaySFX::
 	call WaitSFX
 	call PlaySFX
 	ret
 
-WaitSFX:: ; 3d86
+WaitSFX::
 	push hl
 .loop
 	ld hl, wChannel5Flags1
@@ -157,23 +158,23 @@ WaitSFX:: ; 3d86
 	jr nz, .loop
 	pop hl
 	ret
-	
-MaxVolume:: ; 3DA5
+
+MaxVolume::
 	ld a, $77
 	ld [wVolume], a
 	ret
 
-LowVolume:: ; 3DAB
+LowVolume::
 	ld a, $33
 	ld [wVolume], a
 	ret
 
-VolumeOff:: ; 3DB1
+VolumeOff::
 	xor a
 	ld [wVolume], a
 	ret
 
-UpdateSoundNTimes:: ; 3DB6
+UpdateSoundNTimes::
 .loop
 	and a
 	ret z
@@ -181,7 +182,7 @@ UpdateSoundNTimes:: ; 3DB6
 	call UpdateSound
 	jr .loop
 
-FadeToMapMusic:: ; 3DBE
+FadeToMapMusic::
 	push hl
 	push de
 	push bc
@@ -190,7 +191,7 @@ FadeToMapMusic:: ; 3DBE
 	ld a, [wMapMusic]
 	cp e
 	jr z, .jump
-	ld a, $08
+	ld a, 8
 	ld [wMusicFade], a
 	ld a, e
 	ld [wMusicFadeID], a
@@ -205,7 +206,7 @@ FadeToMapMusic:: ; 3DBE
 	pop hl
 	ret
 
-PlayMapMusic:: ; 3DE1
+PlayMapMusic::
 	push hl
 	push de
 	push bc
@@ -215,7 +216,7 @@ PlayMapMusic:: ; 3DE1
 	cp e
 	jr z, .jump
 	push de
-	ld de, $0000
+	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	pop de
@@ -229,37 +230,36 @@ PlayMapMusic:: ; 3DE1
 	pop hl
 	ret
 
-SpecialMapMusic:: ; 3E05
+SpecialMapMusic::
 	ld a, [wPlayerState]
 	and a
 	jr z, .normal
 	cp $02
 	jr z, .state2
-	ld de, $0009
+	ld de, MUSIC_BICYCLE
 	scf
 	ret
 
-.state2 ; 3E14
-	ld de, $0000
+.state2 ; 3e14
+	ld de, MUSIC_NONE
 	scf
 	ret
 
-.normal ; 3E19
+.normal ; 3e19
 	and a
 	ret
 
-GetMapMusic:: ; 3E1B
+GetMapMusic::
 	call SpecialMapMusic
 	ret c
 	ld a, [wMapPermissions]
-	cp $01
-	jr z, .jump
-	cp $03
-	jr z, .jump
-	ld de, $0002 
-	ret
-.jump ; 3E2E
-	ld de, $0007
+	cp TOWN
+	jr z, .not_route
+	cp INDOOR
+	jr z, .not_route
+	ld de, MUSIC_ROUTE_1
 	ret
 
-; 3E32, this is likely not a function.
+.not_route
+	ld de, MUSIC_VIRIDIAN_CITY
+	ret

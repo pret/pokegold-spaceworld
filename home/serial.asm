@@ -53,7 +53,7 @@ Serial::
 	pop af
 	reti
 
-Serial_ExchangeBytes:: ; 64c
+Serial_ExchangeBytes::
 	ld a, $1
 	ldh [hSerialIgnoringInitialData], a
 .loop
@@ -88,7 +88,7 @@ Serial_ExchangeBytes:: ; 64c
 	jr nz, .loop
 	ret
 
-Serial_ExchangeByte:: ; 677 (0:0677)
+Serial_ExchangeByte::
 .loop
 	xor a
 	ldh [hSerialReceived], a
@@ -187,14 +187,14 @@ Serial_ExchangeByte:: ; 677 (0:0677)
 	call DelayFrame
 	jp .loop
 
-.delay_15_cycles: ; 70e (0:070e)
+.delay_15_cycles:
 	ld a, 15
 .delay_cycles
 	dec a
 	jr nz, .delay_cycles
 	ret
 
-CheckwLinkTimeoutFramesNonzero: ; 714 (0:0714)
+CheckwLinkTimeoutFramesNonzero:
 	push hl
 	ld hl, wLinkTimeoutFrames
 	ld a, [hli]
@@ -202,7 +202,7 @@ CheckwLinkTimeoutFramesNonzero: ; 714 (0:0714)
 	pop hl
 	ret
 
-SerialDisconnected: ; 71c (0:071c)
+SerialDisconnected:
 	dec a
 	ld [wLinkTimeoutFrames], a
 	ld [wLinkTimeoutFrames + 1], a
@@ -241,7 +241,7 @@ Serial_PrintWaitingTextAndSyncAndExchangeNybble::
 	call WaitLinkTransfer
 	jp ReloadTilesFromBuffer
 
-WaitLinkTransfer:: ; 75c (0:075c)
+WaitLinkTransfer::
 	ld a, $ff
 	ld [wOtherPlayerLinkAction], a
 .loop
@@ -286,7 +286,7 @@ WaitLinkTransfer:: ; 75c (0:075c)
 	ld [wOtherPlayerLinkMode], a
 	ret
 
-LinkTransfer:: ; 7a0 (0:07a0)
+LinkTransfer::
 	push bc
 	ld b, $60
 	ld a, [wLinkMode]
@@ -310,7 +310,7 @@ LinkTransfer:: ; 7a0 (0:07a0)
 	pop bc
 	ret
 
-.Receive: ; 7c4 (0:07c4)
+.Receive:
 	ldh a, [hSerialReceive]
 	ld [wOtherPlayerLinkMode], a
 	and $f0
@@ -323,7 +323,7 @@ LinkTransfer:: ; 7a0 (0:07a0)
 	ld [wOtherPlayerLinkAction], a
 	ret
 
-LinkDataReceived:: ; 7d9 (0:07d9)
+LinkDataReceived::
 ; Let the other system know that the data has been received.
 	xor a
 	ldh [hSerialSend], a

@@ -1,8 +1,9 @@
 INCLUDE "constants.asm"
 
+
 SECTION "home/unknown.asm@Empty function", ROM0
 
-InexplicablyEmptyFunction:: ; 2f97
+InexplicablyEmptyFunction::
 rept 16
 	nop
 endr
@@ -16,7 +17,7 @@ endr
 
 SECTION "home/unknown.asm@Unknown functions", ROM0
 
-_1FF4:: ; 1ff4
+_1FF4::
 	ld a, BANK(s0_a600)
 	call OpenSRAM
 	ld hl, s0_a600 ; TODO: label this.
@@ -26,7 +27,7 @@ _1FF4:: ; 1ff4
 	call CloseSRAM
 	ret
 
-_2007:: ; 2007
+_2007::
 	ld a, BANK(s0_a600)
 	call OpenSRAM
 	ld a, [s0_a600]
@@ -35,12 +36,14 @@ _2007:: ; 2007
 	call CloseSRAM
 	ret
 
+
 SECTION "home/unknown.asm@Unknown_20f8", ROM0
 
 Function20f8::
 	call Function1848
 	call Function18cc
 	ret
+
 
 SECTION "home/unknown.asm@Unknown_094c", ROM0
 

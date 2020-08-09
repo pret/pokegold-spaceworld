@@ -614,4 +614,3 @@ VBlankCopyFar:: ; 1558 (0:1558)
 	ld h, a
 	ld sp, hl
 	ret
-; 0x15b5

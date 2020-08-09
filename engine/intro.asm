@@ -9,7 +9,7 @@ DemoStart:: ; 558D
 	call FadeInIntroPic
 	ld hl, OakSpeechDemo
 	call PrintText
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	call ClearTileMap
 	ld de, ProtagonistPic
 	lb bc, BANK(ProtagonistPic), $00
@@ -27,7 +27,7 @@ GameStart:: ; 55BB
 	call FadeInIntroPic
 	ld hl, OakSpeech1
 	call PrintText
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	call ClearTileMap
 	ld a, DEX_YADOKING
 	ld [wCurSpecies], a
@@ -43,7 +43,7 @@ GameStart:: ; 55BB
 	call PlayCry
 	ld hl, OakSpeech3
 	call PrintText
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	call ClearTileMap
 	ld de, ProtagonistPic
 	lb bc, BANK(ProtagonistPic), $00
@@ -52,7 +52,7 @@ GameStart:: ; 55BB
 	ld hl, OakSpeech4
 	call PrintText
 	call ChoosePlayerName
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	call ClearTileMap
 	ld de, RivalPic
 	lb bc, BANK(RivalPic), $00
@@ -61,7 +61,7 @@ GameStart:: ; 55BB
 	ld hl, OakSpeech5
 	call PrintText
 	call ChooseRivalName
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	call ClearTileMap
 	ld de, OakPic
 	lb bc, BANK(OakPic), $00
@@ -71,12 +71,12 @@ GameStart:: ; 55BB
 	call PrintText
 	callba SetClockDialog
 	call Function04ac
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	call ClearTileMap
 	ld de, ProtagonistPic
 	lb bc, BANK(ProtagonistPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
-	call RotateThreePalettesLeft
+	call GBFadeInFromWhite
 	ld hl, OakSpeech7
 	call PrintText
 	ldh a, [hROMBank]
@@ -116,7 +116,7 @@ IntroCleanup:: ; 568E
 	call LoadFontExtra
 	ld c, $32
 	call DelayFrames
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	call ClearTileMap
 	call Function0502
 	ld a, $00
@@ -499,14 +499,14 @@ ChoosePlayerName:: ; 5B25
 	cp "@"
 	jr z, .loop
 	
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	call ClearTileMap
 	call LoadFontExtra
 	call WaitBGMap
 	ld de, $4D10
 	ld bc, $1200
 	call IntroDisplayPicCenteredOrUpperRight
-	call RotateThreePalettesLeft
+	call GBFadeInFromWhite
 .farjump
 	ld hl, ChoosePlayerNameEndText
 	call PrintText
@@ -552,14 +552,14 @@ ChooseRivalName:: ; 5BA9
 	cp "@"
 	jr z, .loop
 	
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	call ClearTileMap
 	call LoadFontExtra
 	call WaitBGMap
 	ld de, $4BD4
 	ld bc, $1200
 	call IntroDisplayPicCenteredOrUpperRight
-	call RotateThreePalettesLeft
+	call GBFadeInFromWhite
 .farjump
 	ld hl, ChooseRivalNameEndText
 	call PrintText

@@ -2196,7 +2196,7 @@ Function60a0: ; 03:60a0
 	call LoadMapPart
 	call GetMemSGBLayout
 	call WaitBGMap
-	call RotateThreePalettesLeft
+	call GBFadeInFromWhite
 .sub_e155
 	pop bc
 	ld a, b
@@ -3342,7 +3342,7 @@ Functione8f9: ; 03:68f9
 	ld hl, NamingScreen
 	push de
 	call FarCall_hl
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	pop de
 	ld a, [de]
 	cp $50
@@ -3364,7 +3364,7 @@ Functione8f9: ; 03:68f9
 	ld a, BANK(NamingScreen)
 	ld hl, NamingScreen
 	call FarCall_hl
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	ld de, wdf17
 	ld a, [de]
 	cp $50

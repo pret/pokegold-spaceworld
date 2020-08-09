@@ -4,7 +4,7 @@ SECTION "home/tables.asm", ROM0
 
 ; find value a from table hl with row length de
 ; returns carry and row index b if successful
-FindItemInTable: ; 00:35F8
+FindItemInTable:
 	ld b, 0
 	ld c, a
 

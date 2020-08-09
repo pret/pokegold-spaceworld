@@ -1,5 +1,6 @@
 INCLUDE "constants.asm"
 
+
 SECTION "home/joypad.asm", ROM0
 
 ClearJoypad::
@@ -10,7 +11,8 @@ ClearJoypad::
 	ldh [hJoyState], a
 	ret
 
-Joypad:: ; 7fe (0:7fe)
+
+Joypad::
 ; Read the joypad register and translate it to something more
 ; workable for use in-game. There are 8 buttons, so we can use
 ; one byte to contain all player input.
@@ -68,7 +70,7 @@ Joypad:: ; 7fe (0:7fe)
 	jp z, Reset
 	ret
 
-GetJoypad:: ; 84a (0:84a)
+GetJoypad::
 ; Update mirror joypad input from hJoypadState (real input)
 
 ; hJoyReleased, hJoyDown and hJoyState are synchronized
@@ -104,7 +106,7 @@ GetJoypad:: ; 84a (0:84a)
 	pop af
 	ret
 
-JoyTitleScreenInput:: ; 869 (0:869)
+JoyTitleScreenInput::
 ; Check if any of the following conditions
 ; is met for c frames
 ; - B, Select and Up keys are pressed in same frame
@@ -132,7 +134,7 @@ JoyTitleScreenInput:: ; 869 (0:869)
 	scf
 	ret
 
-GetJoypadDebounced:: ; 884 (0:884)
+GetJoypadDebounced::
 ; Update hJoySum joypad input from either hJoyDown or
 ; hJoyState depending on hJoyDebounceSrc.
 ; hJoyState is only updated every 5 frames and
@@ -166,7 +168,7 @@ GetJoypadDebounced:: ; 884 (0:884)
 	ret
 ; 0x8ad
 
-TextboxWaitPressAorB_BlinkCursor: ; 8ad (0:8ad)
+TextboxWaitPressAorB_BlinkCursor:
 ; Show a blinking cursor in the lower right-hand
 ; corner of a textbox and wait until A or B is
 ; pressed.
@@ -197,7 +199,7 @@ TextboxWaitPressAorB_BlinkCursor: ; 8ad (0:8ad)
 	ldh [hSpriteWidth], a
 	ret
 
-ButtonSound:: ; 8d2 (0:8d2)
+ButtonSound::
 	ld a, [wLinkMode]
 	cp $03
 	jr z, .link
@@ -211,7 +213,7 @@ ButtonSound:: ; 8d2 (0:8d2)
 	ld c, $41
 	jp DelayFrames
 
-WaitAorB_BlinkCursor:: ; 8ea (0:8ea)
+WaitAorB_BlinkCursor::
 .loop
 	call BlinkCursor
 	call GetJoypadDebounced
@@ -225,7 +227,7 @@ WaitAorB_BlinkCursor:: ; 8ea (0:8ea)
 	call DelayFrame
 	jr .loop
 
-BlinkCursor: ; 904 (0:904)
+BlinkCursor:
 ; Show a blinking cursor in the lower right-hand
 ; corner of the screen
 ; Will toggle between cursor and blank every
@@ -241,7 +243,7 @@ BlinkCursor: ; 904 (0:904)
 	ldcoord_a (SCREEN_WIDTH - 2), (SCREEN_HEIGHT - 1)
 	ret
 
-TextboxBlinkCursor:: ; 914 (0:914)
+TextboxBlinkCursor::
 ; Show a blinking cursor at the specified position
 ; that toggles between down arrow and horizontal textbox
 ; frame tile.

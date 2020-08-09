@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "home/sram.asm", ROM0
 
-OpenSRAM:: ; 32a7
+OpenSRAM::
 	push af
 	ld a, 1
 	ld [MBC3LatchClock], a
@@ -12,7 +12,7 @@ OpenSRAM:: ; 32a7
 	ld [MBC3SRamBank], a
 	ret
 
-CloseSRAM:: ; 32b7
+CloseSRAM::
 	push af
 	ld a, SRAM_DISABLE
 	ld [MBC3LatchClock], a

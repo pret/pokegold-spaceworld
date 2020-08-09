@@ -22,4 +22,6 @@ SECTION "home/rst.asm@rst30", ROM0
 	rst $38
 
 SECTION "home/rst.asm@rst38", ROM0
-	jp $F080 ; Jumps in the middle of unmapped memory. Probably used to trigger a breakpoint of sorts.
+	; Jumps in the middle of unmapped echo RAM.
+	; Probably used to trigger a breakpoint.
+	jp $F080

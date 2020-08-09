@@ -2,14 +2,16 @@ include "constants.asm"
 
 SECTION "home/rtc.asm", ROM0
 
-UpdateTimeOfDayPalettes: ; 32b (0:032b)
+UpdateTimeOfDayPalettes:
 	ld a, [wVramState]
 	bit 0, a
 	ret z
+	; fallthrough
+
 TimeOfDayPals::
-	callab _TimeOfDayPals ; Func_8c2e3
+	callab _TimeOfDayPals
 	ret
 
-UpdateTimePals:: ; 33a
-	callab _UpdateTimePals ; Func_8c335
+UpdateTimePals::
+	callab _UpdateTimePals
 	ret
