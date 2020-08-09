@@ -5,7 +5,7 @@
 import os
 import argparse
 
-from tools import gfx, lz
+from utils import gfx, lz
 
 
 # Graphics with inverted tilemaps that aren't covered by filepath_rules.
