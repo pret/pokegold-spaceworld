@@ -1,11 +1,6 @@
 include "constants.asm"
 
-; if DEBUG
 SECTION "home/unknown_388f.asm", ROM0
-; else
-; SECTION "Unknown 388F", ROM0 [$3853]
-; endc
-
 
 Function388f::
 	ret

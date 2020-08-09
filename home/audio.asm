@@ -1,10 +1,6 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/audio.asm", ROM0
-; else
-; SECTION "Audio interface", ROM0[$3C83]
-; endc
 
 DisableAudio:: ; 3cbf
 	push hl

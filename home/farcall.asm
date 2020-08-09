@@ -1,10 +1,6 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/farcall.asm", ROM0
-; else
-; SECTION "FarCall", ROM0[$2F6C]
-; endc
 
 FarCall_hl:: ; 2fa8
 	push af

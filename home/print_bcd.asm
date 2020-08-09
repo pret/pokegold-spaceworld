@@ -1,10 +1,6 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/print_bcd.asm", ROM0
-; else
-; SECTION "BCD Functions", ROM0[$3A76]
-; endc
 
 ; function to print a BCD (Binary-coded decimal) number
 ; de = address of BCD number

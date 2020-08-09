@@ -1,10 +1,6 @@
 include "constants.asm"
 
-; if DEBUG
 SECTION "home/math.asm", ROM0
-; else
-; SECTION "Math utility functions", ROM0 [$3344]
-; endc
 
 Multiply::
 	push hl

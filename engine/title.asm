@@ -420,12 +420,8 @@ TitleSeq_TitleScreenInputAndTimeout::
 	jr .psbtn_nextseq
 
 .psbtn_gotodebug
-if DEBUG 
 	ld a, $01	; DebugMenu 
 	jr .psbtn_nextseq
-else
-	ret
-endc
 
 .psbtn_sramclear
 	ld a, $02
@@ -629,12 +625,7 @@ SetTitleGfxNext::
 	jr nz, .loop
 	ret
 
-; if DEBUG
 SECTION "engine/title.asm@Title screen TEMPORARY", ROMX
-; else
-; SECTION "Title screen TEMPORARY", ROMX[$62A2], BANK[$01] ; TODO: merge this with the main section above
-; endc
-	
 
 GameInit::
 	call ClearWindowData

@@ -1,10 +1,6 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/util.asm", ROM0
-; else
-; SECTION "Misc Utility Functions", ROM0[$33B3]
-; endc
 
 Function33ef::
 	; hl = src

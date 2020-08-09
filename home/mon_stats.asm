@@ -1,10 +1,6 @@
 include "constants.asm"
 
-; if DEBUG
 SECTION "home/mon_stats.asm", ROM0
-; else
-; SECTION "Mon Stats", ROM0 [$390f]
-; endc
 
 DrawBattleHPBar::
 	push hl

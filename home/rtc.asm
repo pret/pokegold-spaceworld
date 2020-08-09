@@ -1,10 +1,6 @@
 include "constants.asm"
 
-; if DEBUG
 SECTION "home/rtc.asm", ROM0
-; else
-; SECTION "Time Of Day Palettes", ROM0 [$02EF]
-; endc
 
 UpdateTimeOfDayPalettes: ; 32b (0:032b)
 	ld a, [wVramState]

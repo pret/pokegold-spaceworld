@@ -1,10 +1,6 @@
 include "constants.asm"
 
-; if DEBUG
 SECTION "home/print_text.asm", ROM0
-; else
-; SECTION "Print Letter Delay", ROM0[$3367]
-; endc
 
 PrintLetterDelay:: ; 33a3 (0:33a3)
 	ld a, [wce5f]

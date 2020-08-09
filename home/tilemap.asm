@@ -1,10 +1,6 @@
 include "constants.asm"
 
-; if DEBUG
 SECTION "home/tilemap.asm", ROM0
-; else
-; SECTION "Tilemap Functions", ROM0 [$35CF]
-; endc
 
 Function360b::
 	call ClearSprites

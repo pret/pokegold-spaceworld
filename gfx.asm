@@ -93,22 +93,14 @@ MailIconGFX::
 INCBIN "gfx/icons/mail.2bpp"
 
 SECTION "gfx.asm@Trainer Card GFX", ROMX
-TrainerCardBorderGFX::               INCBIN "gfx/trainer_card/border.2bpp"
-TrainerCardGFX::                     INCBIN "gfx/trainer_card/trainer_card.2bpp" ; 0x013171--0x013381
-TrainerCardColonGFX::                INCBIN "gfx/trainer_card/colon.2bpp"        ; 0x013381--0x013391
-TrainerCardIDNoGFX::                 INCBIN "gfx/trainer_card/id_no.2bpp"        ; 0x013391--0x0133B1
+TrainerCardBorderGFX::             INCBIN "gfx/trainer_card/border.2bpp"
+TrainerCardGFX::                   INCBIN "gfx/trainer_card/trainer_card.2bpp" ; 0x013171--0x013381
+TrainerCardColonGFX::              INCBIN "gfx/trainer_card/colon.2bpp"        ; 0x013381--0x013391
+TrainerCardIDNoGFX::               INCBIN "gfx/trainer_card/id_no.2bpp"        ; 0x013391--0x0133B1
 TrainerCardIDNoGFXEnd::
-TrainerCardLeadersGFX::              INCBIN "gfx/trainer_card/leaders.2bpp"      ; 0x0133B1--0x133BA1
-if DEBUG || def(GOLD)
+TrainerCardLeadersGFX::            INCBIN "gfx/trainer_card/leaders.2bpp"      ; 0x0133B1--0x133BA1
 	db $18, $00 ; leftover of previous graphics
-else
-    db $b2, $aa ; leftover of previous graphics?
-endc
-
-if DEBUG
-; Not sure how to parse this from the non-debug ROM, so I'll leave this be for now
 Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp" ; 0x13ba3
-endc
 
 SECTION "gfx.asm@Bank 6 Tilesets 00", ROMX
 Tileset_00_GFX:

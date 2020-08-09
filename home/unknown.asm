@@ -1,10 +1,6 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/unknown.asm@Empty function", ROM0
-; else
-; SECTION "Empty function", ROM0[$2F5B]
-; endc
 
 InexplicablyEmptyFunction:: ; 2f97
 rept 16

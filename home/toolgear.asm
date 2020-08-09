@@ -109,7 +109,6 @@ UpdateToolgear:: ; 2075
 	ld a, "　"
 	call ByteFill
 
-if DEBUG
 	ld hl, wd153
 	bit 0, [hl]
 	jr z, .debug_show_time
@@ -122,8 +121,7 @@ if DEBUG
 	ld c, $01
 	call .printHex
 	ret
-.debug_show_time:
-endc
+.debug_show_time
 
 	ld hl, hRTCHours
 	bgcoord de, 0, 1, wToolgearBuffer

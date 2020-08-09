@@ -24,7 +24,7 @@ RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
 RGBLINK ?= $(RGBDS)rgblink
 
-RGBASMFLAGS := -h -E -i $(BUILD)/ -DGOLD -DDEBUG=1
+RGBASMFLAGS := -h -E -i $(BUILD)/ -DGOLD
 
 tools/gfx :=
 
@@ -135,7 +135,7 @@ $(BUILD)/%.tilemap: %.png | $$(dir $$@)
 	mkdir -p $@
 
 
-### Scan .asm files for INCLUDE/INCBIN dependencies
+### Scan .asm files for INCLUDE dependencies
 
 DEPENDENCY_SCAN_EXIT_STATUS := $(shell $(PYTHON) tools/scan_includes.py $(BUILD:%=-b %) $(ASMFILES) > dependencies.d; echo $$?)
 ifneq ($(DEPENDENCY_SCAN_EXIT_STATUS), 0)

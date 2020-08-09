@@ -1,10 +1,6 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/names.asm@Names", ROM0
-; else
-; SECTION "Names", ROM0[$368c] ; Unsure
-; endc
 
 NamesPointers:: ; 00:36c8
 ; entries correspond to GetName constants (see constants/text_constants.asm)

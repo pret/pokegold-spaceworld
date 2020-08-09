@@ -1,10 +1,6 @@
 include "constants.asm"
 
-; if DEBUG
 SECTION "home/misc_32c8.asm@Unknown 32c8", ROM0
-; else
-; SECTION "Unknown 32c8", ROM0[$328c]
-; endc
 
 Function32c8::
 	predef GetItemAmount
@@ -27,11 +23,7 @@ SubtractSigned::
 	scf
 	ret
 
-; if DEBUG
 SECTION "home/misc_32c8.asm@Unknown 3686", ROM0
-; else
-; SECTION "Unknown 3686", ROM0[$364a]
-; endc
 
 GiveMonToPlayer:: ; 3686
 ; Give to the player Pokemon of species b at level c.
