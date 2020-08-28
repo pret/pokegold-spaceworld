@@ -1,11 +1,9 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
+
 SECTION "home/pokemon.asm@3A4B", ROM0
-; else
-; SECTION "3A4B", ROM0[$3A0F]
-; endc
-GetMonHeader:: ; 3a4b (0:3a4b)
+
+GetMonHeader::
 ; copies the base stat data of a pokemon to wMonHeader
 ; INPUT:
 ; [wCurSpecies] = pokemon ID in dex order
@@ -17,7 +15,7 @@ GetMonHeader:: ; 3a4b (0:3a4b)
 	ld a, BANK(MonBaseStats)
 	call Bankswitch
 	ld a, [wCurSpecies]
-	cp DEX_FD
+	cp DEX_EGG
 	jr z, .egg
 	dec a
 	ld bc, MonBaseStatsEnd - MonBaseStats
@@ -36,7 +34,7 @@ GetMonHeader:: ; 3a4b (0:3a4b)
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	jr .done
+	jr .done ; useless
 .done
 	ld a, [wCurSpecies]
 	ld [wMonHIndex], a
@@ -47,13 +45,10 @@ GetMonHeader:: ; 3a4b (0:3a4b)
 	pop bc
 	ret
 
-; if DEBUG
-SECTION "home/pokemon.asm@3AED", ROM0
-; else
-; SECTION "3AED", ROM0[$3AB1]
-; endc
 
-UncompressMonSprite:: ; 3aed (0:3aed)
+SECTION "home/pokemon.asm@3AED", ROM0
+
+UncompressMonSprite::
 ; Uncompresses the front or back sprite of the specified mon
 ; assumes the corresponding mon header is already loaded
 ; hl contains offset to sprite pointer ($b for front or $d for back)
@@ -104,7 +99,7 @@ UncompressMonSprite:: ; 3aed (0:3aed)
 	ld a, BANK(AnnonPics)
 	jp UncompressSpriteData
 
-LoadMonFrontSprite:: ; 3b3f
+LoadMonFrontSprite::
 ; Uncompress Pokémon Front Sprite for
 ; mon currently loaded in wMonHeader
 ; to 0x9000
@@ -119,7 +114,7 @@ LoadMonFrontSprite:: ; 3b3f
 	pop de
 	; fallthrough
 
-LoadUncompressedSpriteData:: ; 3b4c (0:3b4c)
+LoadUncompressedSpriteData::
 ; postprocesses uncompressed sprite chunks to a 2bpp sprite and loads it into video ram
 ; calculates alignment parameters to place both sprite chunks in the center of the 7*7 tile sprite buffers
 ; de: destination location
@@ -172,13 +167,13 @@ LoadUncompressedSpriteData:: ; 3b4c (0:3b4c)
 	call InterlaceMergeSpriteBuffers
 	ret
 
-ZeroSpriteBuffer:: ; 3ba1 (0:3ba1)
+ZeroSpriteBuffer::
 ; fills the sprite buffer (pointed to in hl) with zeros
 	ld bc, SPRITEBUFFERSIZE
 	xor a
 	jp ByteFill
 
-AlignSpriteDataCentered:: ; 3ba8 (0:3ba8)
+AlignSpriteDataCentered::
 ; copies and aligns the sprite data properly inside the sprite buffer
 ; sprite buffers are 7*7 tiles in size, the loaded sprite is centered within this area
 	ldh a, [hSpriteOffset]
@@ -206,7 +201,7 @@ AlignSpriteDataCentered:: ; 3ba8 (0:3ba8)
 	jr nz, .columnLoop
 	ret
 
-InterlaceMergeSpriteBuffers:: ; 3bc6 (0:3bc6)
+InterlaceMergeSpriteBuffers::
 ; combines the (7*7 tiles, 1bpp) sprite chunks in buffer 0 and 1 into a 2bpp sprite located in buffer 1 through 2
 ; in the resulting sprite, the rows of the two source sprites are interlaced
 ; de: output address
@@ -223,7 +218,7 @@ InterlaceMergeSpriteBuffers:: ; 3bc6 (0:3bc6)
 	call CloseSRAM
 	ret
 
-_InterlaceMergeSpriteBuffers:: ; 3bdf (0:3bdf)
+_InterlaceMergeSpriteBuffers::
 ; actual implementation of InterlaceMergeSpriteBuffers
 ; sprite flipping is now done during interlace merge loop
 ; and not as second loop after regular interlace merge

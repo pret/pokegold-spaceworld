@@ -1,10 +1,6 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "engine/predef.asm", ROMX
-; else
-; SECTION "Predef pointers", ROMX[$62AD], BANK[$01]
-; endc
 
 GetPredefPointer:: ; 1:62b0
 	ld a, h

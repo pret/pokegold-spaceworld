@@ -1,12 +1,8 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/predef.asm", ROM0
-; else
-; SECTION "Predef", ROM0[$2FA2]
-; endc
 
-Predef:: ; 2fde
+Predef:: 
 	ld [wPredefID], a
 	ldh a, [hROMBank]
 	push af
@@ -25,7 +21,7 @@ Predef:: ; 2fde
 	ld a, l
 	ld [wPredefHL + 1], a
 	pop hl
-	ld a, h ; Could have used `pop af` instead
+	ld a, h
 	call Bankswitch
 	ld a, [wPredefHL]
 	ld h, a

@@ -1,12 +1,8 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/farcall.asm", ROM0
-; else
-; SECTION "FarCall", ROM0[$2F6C]
-; endc
 
-FarCall_hl:: ; 2fa8
+FarCall_hl::
 	push af
 	ld a, b
 	ld [wFarCallBCBuffer], a
@@ -27,7 +23,7 @@ FarCall_hl:: ; 2fa8
 	ld c, a
 	ret
 
-.return
+.return:
 	ld a, b
 	ld [wFarCallBCBuffer], a
 	ld a, c

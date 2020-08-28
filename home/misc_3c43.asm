@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "home/misc_3c43.asm", ROM0
 
-GetPartyParamLocation:: ; 3c43 (00:3c43)
+GetPartyParamLocation::
 ; Get the location of parameter a from wCurPartyMon in hl
 	push bc
 	ld hl, wPartyMons
@@ -15,10 +15,10 @@ GetPartyParamLocation:: ; 3c43 (00:3c43)
 	pop bc
 	ret
 
-UseItem:: ; 3c56 (00:3c56)
+UseItem::
 	jpba _UseItem
 
-CheckTossableItem:: ; 3c5e (00:3c5e)
+CheckTossableItem::
 	push hl
 	push de
 	push bc
@@ -28,7 +28,7 @@ CheckTossableItem:: ; 3c5e (00:3c5e)
 	pop hl
 	ret
 
-GetBattleAnimPointer:: ; 3c6d (00:3c6d)
+GetBattleAnimPointer::
 	ld a, BANK(BattleAnimationsBankRef)
 	ld [MBC3RomBank], a
 	ldh [hROMBank], a
@@ -44,7 +44,7 @@ GetBattleAnimPointer:: ; 3c6d (00:3c6d)
 
 	ret
 
-GetBattleAnimByte:: ; 3c84 (00:3c84)
+GetBattleAnimByte::
 	push hl
 	push de
 
@@ -75,7 +75,7 @@ GetBattleAnimByte:: ; 3c84 (00:3c84)
 	ld a, [wBattleAnimByte]
 	ret
 
-InitSpriteAnimStruct:: ; 3ca8 (00:3ca8)
+InitSpriteAnimStruct::
 	ld [wSpriteAnimIDBuffer], a
 	ldh a, [hROMBank]
 	push af
@@ -87,5 +87,5 @@ InitSpriteAnimStruct:: ; 3ca8 (00:3ca8)
 	call Bankswitch
 	ret
 
-EmptyFunction3cbe:: ; 3cbe (00:3cbe)
+EmptyFunction3cbe::
 	ret

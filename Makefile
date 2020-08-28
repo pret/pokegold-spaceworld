@@ -1,29 +1,35 @@
+ROM := pokegold-spaceworld.gb
+CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
+BASEROM := baserom.gb
+
+DIRS := home engine data audio maps
+FILES := bin.asm gfx.asm vram.asm sram.asm wram.asm hram.asm
+
 BUILD := build
 
-MD5 := md5sum -c
-PYTHON := python
-PYTHON3 := python3
-
-RGBASM := rgbasm
-RGBGFX := rgbgfx
-RGBLINK := rgblink
-RGBFIX := rgbfix
-sort_sym := tools/sort_symfile.sh
-
-RGBASMFLAGS := -h -E -i $(BUILD)/ -DGOLD -DDEBUG=1
-tools/gfx :=
-
-ROM := pokegold-spaceworld.gb
-LINKERSCRIPT := pokegold-spaceworld-gen.link
-BASEROM := baserom.gb
-SHIM := shim.sym
-CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
-
 rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
-DIRS := home engine data audio maps
-ASMFILES := $(call rwildcard, $(DIRS), *.asm) bin.asm gfx.asm vram.asm sram.asm wram.asm hram.asm
+ASMFILES := $(call rwildcard, $(DIRS), *.asm) $(FILES)
 OBJS := $(patsubst %.asm, $(BUILD)/%.o, $(ASMFILES))
 OBJS += $(BUILD)/shim.o
+
+
+### Build tools
+
+MD5 := md5sum -c
+PYTHON := python3
+
+RGBDS ?=
+RGBASM  ?= $(RGBDS)rgbasm
+RGBFIX  ?= $(RGBDS)rgbfix
+RGBGFX  ?= $(RGBDS)rgbgfx
+RGBLINK ?= $(RGBDS)rgblink
+
+RGBASMFLAGS := -h -E -i $(BUILD)/ -DGOLD
+
+tools/gfx :=
+
+
+### Build targets
 
 .SECONDEXPANSION:
 
@@ -44,47 +50,43 @@ clean:
 	rm -rf $(ROM) $(CORRECTEDROM) $(BUILD) $(ROMS:.gb=.sym) $(ROMS:.gb=.map) *.d
 	"$(MAKE)" -C tools clean
 
-# Remove files except for graphics.
-.PHONY: mostlyclean
-mostlyclean:
+# Remove generated files except for graphics.
+.PHONY: tidy
+tidy:
 	rm -rf $(ROM) $(CORRECTEDROM) $(OBJS) $(ROMS:.gb=.sym) $(ROMS:.gb=.map) *.d
 
-# Utilities
+# Visualize disassembly progress.
 .PHONY: coverage
-coverage: $(ROM:.gb=.map) tools/disasm_coverage.py
-	$(PYTHON) tools/disasm_coverage.py -m $< -b 0x40
+coverage: $(ROM:.gb=.map) utils/disasm_coverage.py
+	$(PYTHON) utils/disasm_coverage.py -m $< -b 0x40
 
-.PHONY: linkerscript
-linkerscript: $(ROM:.gb=-gen.link)
-
-# TODO FIX HARDCODE
-%.link: pokegold-spaceworld.map tools/map2link.py
-	$(PYTHON3) tools/map2link.py $< $@
 
 %.map: %.gb
 
 $(CORRECTEDROM): %-correctheader.gb: %.gb
-	$(RGBASM) $(RGBASMFLAGS) -o $(BUILD)/zero_checksum.o zero_checksum.asm
-	$(RGBLINK) -O $< -o $@ $(BUILD)/zero_checksum.o
-	$(RGBFIX) -f hg -m 0x10 $@
+	cp $< $@
 	cp $(<:.gb=.sym) $(@:.gb=.sym)
+	$(RGBFIX) -f hg -m 0x10 $@
 
 $(ROM): poke%-spaceworld.gb: $(OBJS) | $(BASEROM)
-	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -l $(@:.gb=.link) -O $(BASEROM) -o $@ $^
+	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -l layout.link -O $(BASEROM) -o $@ $^
 	$(RGBFIX) -f lh -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t "POKEMON2$(shell echo $* | cut -d _ -f 1 | tr '[:lower:]' '[:upper:]')" $@
-	$(sort_sym) $(@:.gb=.sym)
 
 $(BASEROM):
 	@echo "Please obtain a copy of Gold_debug.sgb and put it in this directory as $@"
 	@exit 1
 
-$(BUILD)/shim.asm: tools/make_shim.py $(SHIM) | $$(dir $$@)
-	$(PYTHON3) tools/make_shim.py -w $(filter-out $<, $^) > $@
+$(BUILD)/shim.asm: tools/make_shim.py shim.sym | $$(dir $$@)
+	$(PYTHON) tools/make_shim.py -w $(filter-out $<, $^) > $@
 
 $(BUILD)/%.o: $(BUILD)/%.asm | $$(dir $$@)
 	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<
+
 $(BUILD)/%.o: %.asm | $$(dir $$@)
 	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<
+
+
+### Misc file-specific graphics rules
 
 $(BUILD)/gfx/sgb/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_gold.2bpp: tools/gfx += --trim-whitespace
@@ -94,13 +96,19 @@ $(BUILD)/gfx/sgb/corrupted_9e1c.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/corrupted_a66c.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/corrupted_b1e3.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
+
 $(BUILD)/gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/trainer_gear/town_map.2bpp: tools/gfx += --trim-trailing
 $(BUILD)/gfx/minigames/slots.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/minigames/poker.2bpp: tools/gfx += --trim-whitespace
+
 $(BUILD)/gfx/intro/purin_pikachu.2bpp: tools/gfx += --trim-whitespace
+
 $(BUILD)/gfx/battle_anims/attack_animations_1.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/battle_anims/attack_animations_2.2bpp: tools/gfx += --trim-whitespace
+
+
+### Catch-all graphics rules
 
 .PRECIOUS: $(BUILD)/%.pic
 $(BUILD)/%.pic: $(BUILD)/%.2bpp tools/pkmncompress | $$(dir $$@)
@@ -124,7 +132,10 @@ $(BUILD)/%.tilemap: %.png | $$(dir $$@)
 %/:
 	mkdir -p $@
 
-DEPENDENCY_SCAN_EXIT_STATUS := $(shell $(PYTHON3) tools/scan_includes.py $(BUILD:%=-b %) $(ASMFILES) > dependencies.d; echo $$?)
+
+### Scan .asm files for INCLUDE dependencies
+
+DEPENDENCY_SCAN_EXIT_STATUS := $(shell $(PYTHON) tools/scan_includes.py $(BUILD:%=-b %) $(ASMFILES) > dependencies.d; echo $$?)
 ifneq ($(DEPENDENCY_SCAN_EXIT_STATUS), 0)
 $(error Dependency scan failed)
 endif

@@ -61,7 +61,7 @@
 0B:5663 Function2d663
 
 0E:4B78 LoadTrainerClassName
-0E:4BA0 LoadTrainerClassName.got_name
+;0E:4BA0 LoadTrainerClassName.got_name
 0E:4BA9 LoadTrainerClass
 
 0D:7E3D Function37e3d
@@ -179,5 +179,5 @@
 3F:64CE MonsterTest
 3F:654E PicTest
 3F:6750 PicTestMenu
-3F:6755 PicTestMenu.loop
+;3F:6755 PicTestMenu.loop
 3F:67A1 CallSubGameMenu

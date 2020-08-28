@@ -1,29 +1,24 @@
 INCLUDE "constants.asm"
 
+
+SECTION "NULL", ROM0
+NULL::
+
+
 SECTION "home/init.asm@Entry point", ROM0
 	nop
 	jp Init
 
+
 SECTION "home/init.asm@Global check value", ROM0
-; The ROM has an incorrect global check, so set it here
-; It is not corrected by RGBFIX
-if def(GOLD)
-if DEBUG
-    db $21, $C6
-else
-    db $7e, $49
-endc
-else
-if DEBUG
-    db $c9, $2f
-else
-    db $b1, $7a
-endc
-endc
+; The ROM has an incorrect global check, so set it here.
+; It is not corrected by RGBFIX.
+    dw $C621
+
 
 SECTION "home/init.asm@Init", ROM0
 
-Reset: ; 51c (0:051c)
+Reset:
 	call DisableAudio
 	call ClearPalettes
 	ei
@@ -34,9 +29,9 @@ Reset: ; 51c (0:051c)
 	ld c, 32
 	call DelayFrames
 
-	jr Init
+	jr Init ; pointless
 
-Init: ; 052f
+Init:
 	di
 	xor a
 	ld [rIF], a
@@ -61,15 +56,17 @@ Init: ; 052f
 
 	ld sp, wStackBottom
 	call ClearVRAM
+
 	ld hl, WRAM0_Begin
 	ld bc, WRAM1_End - WRAM0_Begin
-.ByteFill ; 0565
+.clear_loop
 	ld [hl], 0
 	inc hl
 	dec bc
 	ld a, b
 	or c
-	jr nz, .ByteFill
+	jr nz, .clear_loop
+
 	ld hl, HRAM_Begin
 	ld bc, HRAM_End - HRAM_Begin
 	call ByteFill
@@ -129,7 +126,7 @@ Init: ; 052f
 	ld [MBC3SRamEnable], a
 	jp GameInit
 
-ClearVRAM: ; 05e6
+ClearVRAM:
 	ld hl, VRAM_Begin
 	ld bc, VRAM_End - VRAM_Begin
 	xor a
@@ -137,13 +134,11 @@ ClearVRAM: ; 05e6
 	ret
 
 BlankBGMap:
-	ld a, $7f
+	ld a, "　"
 	jr _FillBGMap
 
 FillBGMap:
 	ld a, l
-	; fallthrough
-
 _FillBGMap:
 	ld de, BG_MAP_WIDTH * BG_MAP_HEIGHT
 	ld l, e

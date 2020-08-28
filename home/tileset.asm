@@ -3,7 +3,7 @@ include "constants.asm"
 
 SECTION "home/tileset.asm", ROM0
 
-LoadTilesetGFX:: ; 2d26
+LoadTilesetGFX::
 	call GetMapEnvironment
 	cp TOWN
 	jr z, .exterior
@@ -27,7 +27,7 @@ LoadTilesetGFX:: ; 2d26
 	ret
 
 .exterior
-	ld de, CommonExteriorTilesGFX ; TODO: maybe find a better name
+	ld de, CommonExteriorTilesGFX
 	ld hl, vTileset
 	lb bc, BANK(CommonExteriorTilesGFX), $20
 	call Get2bpp
@@ -46,7 +46,7 @@ LoadTilesetGFX:: ; 2d26
 	ret
 
 
-RefreshPlayerCoords:: ; 2d74
+RefreshPlayerCoords::
 	ld a, [wXCoord]
 	add a, 4
 	ld d, a
@@ -103,8 +103,7 @@ RefreshPlayerCoords:: ; 2d74
 	ld [hl], a
 	ret
 
-
-BufferScreen:: ; 2dcd
+BufferScreen::
 	ld hl, wOverworldMapAnchor
 	ld a, [hli]
 	ld h, [hl]
@@ -132,7 +131,7 @@ BufferScreen:: ; 2dcd
 	jr nz, .row
 	ret
 
-SaveScreen:: ; 2df1
+SaveScreen::
 	ld hl, wOverworldMapAnchor
 	ld a, [hli]
 	ld h, [hl]
@@ -178,7 +177,7 @@ SaveScreen:: ; 2df1
 	ld b, 5
 	ld c, 5
 
-.load_neighbor ; 2e35
+.load_neighbor
 .row
 	push bc
 	push hl
@@ -208,7 +207,7 @@ SaveScreen:: ; 2df1
 	ret
 
 
-RefreshTiles:: ; 2e52
+RefreshTiles::
 	call .left_right
 	call .up_down
 	ld a, [wPlayerNextMapX]
@@ -219,7 +218,7 @@ RefreshTiles:: ; 2e52
 	ld [wPlayerStandingTile], a
 	ret
 
-.up_down ; 2e67
+.up_down
 	ld a, [wPlayerNextMapX]
 	ld d, a
 	ld a, [wPlayerNextMapY]
@@ -234,7 +233,7 @@ RefreshTiles:: ; 2e52
 	ld [wTileUp], a
 	ret
 
-.left_right ; 2e80
+.left_right
 	ld a, [wPlayerNextMapX]
 	ld d, a
 	ld a, [wPlayerNextMapY]
@@ -250,7 +249,7 @@ RefreshTiles:: ; 2e52
 	ret
 
 
-GetFacingTileCoord:: ; 2e99
+GetFacingTileCoord::
 	ld a, [wPlayerWalking] ; TODO: wPlayerDirection in Crystal. Not here?
 	and %1100
 	srl a
@@ -292,7 +291,7 @@ GetFacingTileCoord:: ; 2e99
 	db 1, 0
 	dw wTileRight
 
-GetCoordTile:: ; 2ece
+GetCoordTile::
 ; Get the collision byte for tile d, e
 	call GetBlockLocation
 	ld a, [hl]
@@ -326,7 +325,7 @@ GetCoordTile:: ; 2ece
 	ld a, -1
 	ret
 
-GetBlockLocation:: ; 2ef8
+GetBlockLocation::
 	ld a, [wMapWidth]
 	add a, 6
 	ld c, a
@@ -355,7 +354,7 @@ GetBlockLocation:: ; 2ef8
 	add hl, bc
 	ret
 
-GetFacingSignpost:: ; 00:2f1d
+GetFacingSignpost::
 	call GetFacingTileCoord
 	ld b, a
 	ld a, d
@@ -369,7 +368,7 @@ GetFacingSignpost:: ; 00:2f1d
 	ret z
 	ld c, a
 	ld hl, wCurrMapSigns
-.asm_2f32: ; 00:2f32
+.asm_2f32:
 	ld a, [hli]
 	cp e
 	jr nz, .asm_2f3e
@@ -380,9 +379,9 @@ GetFacingSignpost:: ; 00:2f1d
 	cp b ; useless comparison
 	jr .asm_2f46
 
-.asm_2f3e: ; 00:2f3e
+.asm_2f3e:
 	inc hl
-.asm_2f3f: ; 00:2f3f
+.asm_2f3f:
 	inc hl
 	inc hl
 	dec c
@@ -390,11 +389,11 @@ GetFacingSignpost:: ; 00:2f1d
 	xor a
 	ret
 
-.asm_2f46: ; 00:2f46
+.asm_2f46:
 	scf
 	ret
 
-LoadTileset:: ; 2f48
+LoadTileset::
 	push hl
 	push bc
 
@@ -418,7 +417,7 @@ LoadTileset:: ; 2f48
 	pop hl
 	ret
 
-ReloadFontAndTileset:: ; 2f6b (00:2f6b)
+ReloadFontAndTileset::
 	call DisableLCD
 	ldh a, [hROMBank]
 	push af
@@ -436,7 +435,7 @@ ReloadFontAndTileset:: ; 2f6b (00:2f6b)
 	call EnableLCD
 	ret
 
-LoadTilesetGFX_LCDOff:: ; 2f8d (00:2f8d)
+LoadTilesetGFX_LCDOff::
 	call DisableLCD
 	call LoadTilesetGFX
 	call EnableLCD

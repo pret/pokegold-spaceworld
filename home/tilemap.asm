@@ -1,10 +1,6 @@
 include "constants.asm"
 
-; if DEBUG
 SECTION "home/tilemap.asm", ROM0
-; else
-; SECTION "Tilemap Functions", ROM0 [$35CF]
-; endc
 
 Function360b::
 	call ClearSprites
@@ -15,9 +11,9 @@ Function360b::
 	call GetMemSGBLayout
 	jr WaitBGMap
 
-ClearBGPalettes:: ; 361e
+ClearBGPalettes::
 	call ClearPalettes
-WaitBGMap:: ; 00:3621
+WaitBGMap::
 ; Tell VBlank to update BG Map
 	ld a, $1
 	ldh [hBGMapMode], a
@@ -26,29 +22,29 @@ WaitBGMap:: ; 00:3621
 	call DelayFrames
 	ret
 
-SetPalettes:: ; 00:362b
+SetPalettes::
 	ld a, %11100100
 	ldh [rBGP], a
 	ld a, %11010000
 	ldh [rOBP0], a
 	ret
 
-ClearPalettes:: ; 00:3634
+ClearPalettes::
 	xor a
 	ldh [rBGP], a
 	ldh [rOBP0], a
 	ldh [rOBP1], a
 	ret
 
-GetMemSGBLayout:: ; 00:363c
+GetMemSGBLayout::
 	ld b, SGB_RAM
-GetSGBLayout:: ; 00:363e
+GetSGBLayout::
 	ld a, [wSGB]
 	and a
 	ret z
 	predef_jump Function928b
 
-SetHPPal:: ; 00:3648
+SetHPPal::
 	ld a, e
 	cp 27 ; 56.25%
 	ld d, $0
@@ -57,11 +53,11 @@ SetHPPal:: ; 00:3648
 	inc d
 	jr nc, .done
 	inc d
-.done: ; 00:3655
+.done:
 	ld [hl], d
 	ret
 
-Function3657:: ; 00:3657
+Function3657::
 	call DisableLCD
 	callab Function140d9
 	call LoadFont

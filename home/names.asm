@@ -1,12 +1,9 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
-SECTION "home/names.asm@Names", ROM0
-; else
-; SECTION "Names", ROM0[$368c] ; Unsure
-; endc
 
-NamesPointers:: ; 00:36c8
+SECTION "home/names.asm@Names", ROM0
+
+NamesPointers::
 ; entries correspond to GetName constants (see constants/text_constants.asm)
 	dba PokemonNames       ; MON_NAME (not used; jumps to GetPokemonName)
 	dba MoveNames          ; MOVE_NAME
@@ -17,7 +14,7 @@ NamesPointers:: ; 00:36c8
 	dba TrainerClassNames  ; TRAINER_NAME
 	dbw $04, $5677         ; MOVE_DESC_NAME_BROKEN (wrong bank..?)
 
-GetName:: ; 00:36e0
+GetName::
 ; Return name wCurSpecies from name list wNamedObjectTypeBuffer in wStringBuffer1.
 
 	ldh a, [hROMBank]
@@ -91,7 +88,7 @@ GetNthString::
 	pop bc
 	ret
 
-GetPokemonName: ; 00:3741
+GetPokemonName:
 ; Get Pokemon name wNamedObjectIndexBuffer.
 
 	ldh a, [hROMBank]
@@ -123,7 +120,7 @@ endr
 	call Bankswitch
 	ret
 
-GetItemName:: ; 376F
+GetItemName::
 ; given an item ID at [wNamedObjectIndexBuffer], store the name of the item into a string
 ; starting at wStringBuffer1
 	push hl
@@ -210,17 +207,17 @@ GetMachineName::
 .HMTextEnd:
 	db "@"
 
-IsHM:: ; 00:37e4
-	cp ITEM_TM01 ; ???
+IsHM::
+	cp ITEM_HM01_RED
 	jr c, .false
-	cp ITEM_TM05 ; ???
+	cp ITEM_TM01_RED
 	ret
 
 .false
 	and a
 	ret
 
-IsHMMove:: ; 00:37ed
+IsHMMove::
 	ld hl, .HMMoves
 	ld de, 1
 	jp FindItemInTable
@@ -233,7 +230,7 @@ IsHMMove:: ; 00:37ed
 	db MOVE_FLASH
 	db -1
 
-Unreferenced_GetMoveName:: ; 00:37fc
+Unreferenced_GetMoveName::
 	push hl
 	ld a, MOVE_NAME
 	ld [wNamedObjectTypeBuffer], a
@@ -244,13 +241,14 @@ Unreferenced_GetMoveName:: ; 00:37fc
 	pop hl
 	ret
 
+
 SECTION "home/names.asm@GetNick", ROM0
 
-GetCurNick:: ; 3a91 (00:3a91)
+GetCurNick::
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicknames
 
-GetNick: ; 00:3a97
+GetNick:
 ; Get nickname a from list hl.
 	push hl
 	push bc

@@ -1,12 +1,8 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/sram.asm", ROM0
-; else
-; SECTION "SRAM functions", ROM0[$326B]
-; endc
 
-OpenSRAM:: ; 32a7
+OpenSRAM::
 	push af
 	ld a, 1
 	ld [MBC3LatchClock], a
@@ -16,7 +12,7 @@ OpenSRAM:: ; 32a7
 	ld [MBC3SRamBank], a
 	ret
 
-CloseSRAM:: ; 32b7
+CloseSRAM::
 	push af
 	ld a, SRAM_DISABLE
 	ld [MBC3LatchClock], a

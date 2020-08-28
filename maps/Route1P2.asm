@@ -48,7 +48,7 @@ Route1P2Script:: ; 7C7F
 Route1P2Text1: ; 7CA7
 	ld hl, Route1P2TextString4
 	call OpenTextbox
-	call RotateFourPalettesLeft
+	call GBFadeOutToBlack
 	jp Init
 
 Route1P2Text2: ; 7CB3

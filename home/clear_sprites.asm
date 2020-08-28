@@ -1,12 +1,8 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/clear_sprites.asm", ROM0
-; else
-; SECTION "Sprite clearing", ROM0[$32A0]
-; endc
 
-ClearSprites:: ; 32dc
+ClearSprites::
 	ld hl, wVirtualOAM
 	ld b, wVirtualOAMEnd - wVirtualOAM
 	xor a
@@ -16,7 +12,7 @@ ClearSprites:: ; 32dc
 	jr nz, .loop
 	ret
 
-HideSprites:: ; 32e7
+HideSprites::
 	ld hl, wVirtualOAM
 	ld de, SPRITEOAMSTRUCT_LENGTH
 	ld b, NUM_SPRITE_OAM_STRUCTS

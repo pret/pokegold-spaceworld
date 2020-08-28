@@ -1,12 +1,8 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/copy.asm", ROM0
-; else
-; SECTION "Copy functions", ROM0[$32BB]
-; endc
 
-FarCopyBytes:: ; 32f7
+FarCopyBytes::
 ; Copy bc bytes from a:hl to de.
 	ld [wBuffer], a
 	ldh a, [hROMBank]
@@ -17,7 +13,7 @@ FarCopyBytes:: ; 32f7
 	pop af
 	jp Bankswitch
 
-CopyBytes:: ; 330a
+CopyBytes::
 ; Copy bc bytes from hl to de
 	ld a, b
 	and a
@@ -32,7 +28,7 @@ CopyBytes:: ; 330a
 	jr nz, .next
 	ret
 
-CopyBytesSmall:: ; 331a
+CopyBytesSmall::
 ; Copy c bytes from hl to de
 	ld a, [hli]
 	ld [de], a
@@ -41,7 +37,7 @@ CopyBytesSmall:: ; 331a
 	jr nz, CopyBytesSmall
 	ret
 
-GetFarByte:: ; 3321
+GetFarByte::
 	ld [wBuffer], a
 	ldh a, [hROMBank]
 	push af
@@ -54,7 +50,7 @@ GetFarByte:: ; 3321
 	ld a, [wBuffer]
 	ret
 
-ByteFill:: ; 3339
+ByteFill::
 	push af
 	ld a, b
 	and a
@@ -82,13 +78,13 @@ UncompressSpriteFromDE::
 	ld [hl], d
 	jp UncompressSpriteData
 
-BackUpTilesToBuffer:: ; 3355
+BackUpTilesToBuffer::
 	hlcoord 0, 0
 	decoord 0, 0, wTileMapBackup
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	jp CopyBytes
 
-ReloadTilesFromBuffer:: ; 3361
+ReloadTilesFromBuffer::
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 0, wTileMapBackup

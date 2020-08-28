@@ -1,12 +1,8 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/print_num.asm", ROM0
-; else
-; SECTION "Number Printing Functions", ROM0[$3424]
-; endc
 
-PrintNumber:: ; 3460 (0:3460)
+PrintNumber::
 ; function to print a number
 ; de = address of number in little-endian format
 ; hl = destination address
@@ -164,7 +160,7 @@ PrintNumber:: ; 3460 (0:3460)
 	pop bc
 	ret
 
-.PrintDigit: ; 3525 (0:3525)
+.PrintDigit:
 	ld c, $00
 .loop
 	ldh a, [hPrintNumDivisor]
@@ -237,7 +233,7 @@ PrintNumber:: ; 3460 (0:3460)
 	ld [hl], "０"
 	ret
 
-.AdvancePointer: ; 3589 (0:3589)
+.AdvancePointer:
 ; increments the pointer unless leading zeroes are not being printed,
 ; the number is left-aligned, and no nonzero digits have been printed yet
 	bit 7, d      ; print leading zeroes?

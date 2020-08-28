@@ -1,15 +1,42 @@
-WIP disassembly of the Space World 1997 Gold proto
+# Pokémon Gold and Silver: Space World 1997 Demo [![Build Status][travis-badge]][travis]
 
-It attempts to build the following ROMs:
+This is a work-in-progress disassembly of the Pokémon Gold and Pokémon Silver prototypes demoed at Space World 1997.
 
-pokegold_spaceworld.gb         (MD5: 3c407114de28d17b7113a2c0cee9a37c)  
-pokegold_debug_spaceworld.gb   (MD5: 2eadbed83b775c097ff79e5128d1184f)  
-pokesilver_spaceworld.gb       (MD5: c52a677c35f15320d5b495e14809f00d)  
-pokesilver_debug_spaceworld.gb (MD5: fa65d3759bb17c489de171a598ba4913)  
+It builds the following ROMs:
 
-Requires [RGBDS](https://github.com/rednex/rgbds) version 0.3.8 or newer to build!
+- Gold_debug.sgb `md5: 2eadbed83b775c097ff79e5128d1184f`
+- Gold_debug.sgb (correct header) `md5: 8e509301f6db1f89fee85aead8ebf8d4`
+
+You will need to provide a copy of Gold_debug.sgb renamed **baserom.gb** to build the ROMs.
+
 
 ## See also
-* Discord: [**pret**][Discord]
 
-[Discord]: https://discord.gg/vdTW48Q
+- **Discord:** [pret][discord]
+- **IRC:** [freenode#pret][irc]
+
+Other disassembly projects:
+
+- [**Pokémon Red/Blue**][pokered]
+- [**Pokémon Yellow**][pokeyellow]
+- [**Pokémon Gold**][pokegold]
+- [**Pokémon Crystal**][pokecrystal]
+- [**Pokémon Pinball**][pokepinball]
+- [**Pokémon TCG**][poketcg]
+- [**Pokémon Ruby**][pokeruby]
+- [**Pokémon FireRed**][pokefirered]
+- [**Pokémon Emerald**][pokeemerald]
+
+[pokered]: https://github.com/pret/pokered
+[pokeyellow]: https://github.com/pret/pokeyellow
+[pokegold]: https://github.com/pret/pokegold
+[pokecrystal]: https://github.com/pret/pokecrystal
+[pokepinball]: https://github.com/pret/pokepinball
+[poketcg]: https://github.com/pret/poketcg
+[pokeruby]: https://github.com/pret/pokeruby
+[pokefirered]: https://github.com/pret/pokefirered
+[pokeemerald]: https://github.com/pret/pokeemerald
+[discord]: https://discord.gg/d5dubZ3
+[irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
+[travis]: https://travis-ci.org/pret/pokegold-spaceworld
+[travis-badge]: https://travis-ci.org/pret/pokegold-spaceworld.svg?branch=master

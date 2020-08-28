@@ -1,5 +1,5 @@
-# #!/usr/bin/env python3
-# coding: utf-8
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 from __future__ import division
 
@@ -45,7 +45,8 @@ if __name__ == '__main__':
     if (romname is not None):
         with open(romname, 'rb') as f:
             for rb in range(0, args.num_banks):
-                data = r.bank_data['ROM Bank'].get(rb, default_bank_data)
+                bank_data = r.bank_data['ROM0 bank' if rb == 0 else 'ROMX bank']
+                data = bank_data.get(rb, default_bank_data)
                 bank = f.read(bank_size)
                 if (bank[bank_size - 1] in filler):
                     fill = bank[bank_size - 1]
@@ -59,7 +60,8 @@ if __name__ == '__main__':
     
     hit_data = [[0] * width for _ in range(height)]
     for bank in range(args.num_banks):
-        data = r.bank_data['ROM Bank'].get(bank, default_bank_data)
+        bank_data = r.bank_data['ROM0 bank' if bank == 0 else 'ROMX bank']
+        data = bank_data.get(bank, default_bank_data)
         for s in data['sections']:
             beg = (s['beg'] & bank_mask) + bank * bank_size
             end = ((s['end'] -1) & bank_mask) + bank * bank_size # end is exclusive

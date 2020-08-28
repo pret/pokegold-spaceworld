@@ -1,22 +1,17 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/jumptable.asm", ROM0
-; else
-; SECTION "Jumptable functions", ROM0[$3591]
-; endc
 
-CallJumptable:: ; 35cd (0:35cd)
+CallJumptable::
 ; CallJumptable
 ; Call function whose pointer is
 ; at index a in 2-byte pointer table
 ; pointed to by hl.
 ; Clobbers: a, hl
 ;
-; This ultimately wound up at rst $28 in
-; GSC
+; This became rst $28 in final GSC.
 	push de
-	ld d, $00
+	ld d, 0
 	ld e, a
 	add hl, de
 	add hl, de
@@ -38,10 +33,11 @@ CallFar_atHL::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call .jump
+	call ._hl_
 	pop hl
 	ld a, h
 	call Bankswitch
 	ret
-.jump: ; 35eb (0:35eb)
+
+._hl_:
 	jp hl

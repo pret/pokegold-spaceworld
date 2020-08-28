@@ -15,5 +15,5 @@
 	const MUSIC_EVOLUTION       ; 0C
 
 MUSIC_SURF EQU $62
-	
+
 SE_SELECT EQU 5

@@ -5,20 +5,20 @@ SECTION "home/copy2.asm", ROM0
 RedrawPlayerSprite::
 	jpab _RedrawPlayerSprite
 
-LoadFont:: ; 00:0d0a
+LoadFont::
 	jpab LoadFontGraphics
 
 LoadFontsBattleExtra::
 	jpab LoadPokemonMenuGraphics
 
-LoadFontExtra:: ; 00:0d1a
+LoadFontExtra::
 	jpab LoadFontExtraGraphicsWithCursor
 
 LoadToolgearGraphics::
 	jpab LoadToolgearGraphicsDebug
 
-FarCopyData: ; d2a (0:d2a)
-; Identical to FarCopyBytes except for tail call optimization
+FarCopyData:
+; Identical to FarCopyBytes except for tail call optimization.
 ; Copy bc 2bpp bytes from a:hl to de.
 	ld [wBuffer], a
 	ldh a, [hROMBank]
@@ -30,7 +30,7 @@ FarCopyData: ; d2a (0:d2a)
 	call Bankswitch
 	ret
 
-FarCopyDataDouble: ; d3e (0:d3e)
+FarCopyDataDouble:
 ; Copy and expand bc 1bpp bytes from a:hl to de.
 	ld [wBuffer], a
 	ldh a, [hROMBank]
@@ -64,7 +64,7 @@ FarCopyDataDouble: ; d3e (0:d3e)
 	call Bankswitch
 	ret
 
-Request2bpp:: ; d68 (0:d68)
+Request2bpp::
 ; Wait for the next VBlank, then copy c 2bpp
 ; tiles from b:de to hl, 8 tiles at a time.
 ; This takes c/8 frames.
@@ -104,7 +104,7 @@ Request2bpp:: ; d68 (0:d68)
 	ld c, a
 	jr .loop
 
-Request1bpp:: ; da6 (0:da6)
+Request1bpp::
 ; Wait for the next VBlank, then copy c 1bpp
 ; tiles from b:de to hl, 8 tiles at a time.
 ; This takes c/8 frames.
@@ -144,15 +144,16 @@ Request1bpp:: ; da6 (0:da6)
 	ld c, a
 	jr .loop
 
-Get2bpp:: ; de4 (0:de4)
-; Copy c 2bpp tiles from b:de to hl in VRAM
-; using VBlank service or direct copy in
-; case LCD is off
+Get2bpp::
+; Copy c 2bpp tiles from b:de to hl in VRAM using
+; VBlank service or direct copy in case LCD is off.
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp nz, Request2bpp ; copy video data during vblank while screen is on
-Copy2bpp:: ; 0deb
-	push hl              ; convert to FarCopyData call
+	; fallthrough
+
+Copy2bpp::
+	push hl
 	ld h, d
 	ld l, e
 	pop de
@@ -168,14 +169,15 @@ Copy2bpp:: ; 0deb
 	pop af
 	jp FarCopyData
 
-Get1bpp: ; dff (0:dff)
-; Copy c 1bpp tiles from b:de to hl in VRAM
-; using VBlank service or direct copy in
-; case LCD is off
+Get1bpp:
+; Copy c 1bpp tiles from b:de to hl in VRAM using
+; VBlank service or direct copy in case LCD is off.
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp nz, Request1bpp
-Copy1bpp:: ; 0e06
+	; fallthrough
+
+Copy1bpp::
 	push de
 	ld d, h
 	ld e, l
@@ -191,4 +193,3 @@ Copy1bpp:: ; 0e06
 	pop af
 	pop hl
 	jp FarCopyDataDouble
-; 0xe18

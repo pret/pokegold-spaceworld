@@ -1,16 +1,12 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
-SECTION "home/overworld.asm@Startmenu and Select Button Check", ROM0
-; else
-; SECTION "Startmenu and Select Button Check", ROM0[$2BDF]
-; endc
 
-OverworldStartButtonCheck:: ; 2c05 (0:2c05)
+SECTION "home/overworld.asm@Startmenu and Select Button Check", ROM0
+
+OverworldStartButtonCheck::
 	ldh a, [hJoyState]
 	bit START_F, a
 	ret z
-if DEBUG
 	and (START | B_BUTTON)
 	cp (START | B_BUTTON)
 	jr nz, .regularMenu
@@ -20,10 +16,9 @@ if DEBUG
 	callba InGameDebugMenu
 	jr CheckStartmenuSelectHook
 .regularMenu
-endc
 	callba DisplayStartMenu
 	jr CheckStartmenuSelectHook
-SelectButtonFunction:: ; 2c2a (0:2c2a)
+SelectButtonFunction::
 	callab CheckRegisteredItem
 CheckStartmenuSelectHook:
 	ldh a, [hStartmenuCloseAndSelectHookEnable]
@@ -42,7 +37,7 @@ CheckStartmenuSelectHook:
 	dec a
 	ret
 
-Function2c4a: ; 2c4a (0:2c4a)
+Function2c4a:
 ; copy of Function2ba8
 ; calling Functiond4e6 instead of Functiond6e4
 .loop
@@ -56,7 +51,7 @@ Function2c4a: ; 2c4a (0:2c4a)
 	scf
 	ret
 
-Function2c5a: ; 2c5a (0:2c5a)
+Function2c5a:
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(Function50b9)
@@ -78,7 +73,7 @@ Function2c5a: ; 2c5a (0:2c5a)
 	call Bankswitch
 	ret
 
-UpdateAndTransferToolgear: ; 2c8b (0:2c8b)
+UpdateAndTransferToolgear:
 	call DelayFrame
 	call UpdateToolgear
 	ld hl, wToolgearFlags
@@ -86,7 +81,7 @@ UpdateAndTransferToolgear: ; 2c8b (0:2c8b)
 	call DelayFrame
 	ret
 
-ScheduleNorthRowRedraw: ; 2c9a (0:2c9a)
+ScheduleNorthRowRedraw:
 	coord hl, 0, 0
 	call CopyToRedrawRowOrColumnSrcTiles
 	ld a, [wBGMapAnchor]
@@ -97,7 +92,7 @@ ScheduleNorthRowRedraw: ; 2c9a (0:2c9a)
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-ScheduleSouthRowRedraw: ; 2caf (0:2caf)
+ScheduleSouthRowRedraw:
 	coord hl, 0, SCREEN_HEIGHT - 2
 	call CopyToRedrawRowOrColumnSrcTiles
 	ld a, [wBGMapAnchor]
@@ -117,7 +112,7 @@ ScheduleSouthRowRedraw: ; 2caf (0:2caf)
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-ScheduleEastColumnRedraw: ; 2cd0 (0:2cd0)
+ScheduleEastColumnRedraw:
 	coord hl, SCREEN_WIDTH - 2, 0
 	call ScheduleColumnRedrawHelper
 	ld a, [wBGMapAnchor]
@@ -135,7 +130,7 @@ ScheduleEastColumnRedraw: ; 2cd0 (0:2cd0)
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-ScheduleWestColumnRedraw: ; 2cef (0:2cef)
+ScheduleWestColumnRedraw:
 	coord hl, 0, 0
 	call ScheduleColumnRedrawHelper
 	ld a, [wBGMapAnchor]
@@ -146,7 +141,7 @@ ScheduleWestColumnRedraw: ; 2cef (0:2cef)
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-CopyToRedrawRowOrColumnSrcTiles: ; 2d04 (0:2d04)
+CopyToRedrawRowOrColumnSrcTiles:
 	ld de, wRedrawRowOrColumnSrcTiles
 	ld c, 2 * SCREEN_WIDTH
 .loop
@@ -157,7 +152,7 @@ CopyToRedrawRowOrColumnSrcTiles: ; 2d04 (0:2d04)
 	jr nz, .loop
 	ret
 
-ScheduleColumnRedrawHelper: ; 2d10 (0:2d10)
+ScheduleColumnRedrawHelper:
 	ld de, wRedrawRowOrColumnSrcTiles
 	ld c, SCREEN_HEIGHT
 .loop
@@ -177,11 +172,8 @@ ScheduleColumnRedrawHelper: ; 2d10 (0:2d10)
 	jr nz, .loop
 	ret
 
-; if DEBUG
+
 SECTION "home/overworld.asm@QueueScript", ROM0
-; else
-; SECTION "QueueScript", ROM0[$35B0]
-; endc
 
 QueueScript::
 ; Install a function that is called as soon as

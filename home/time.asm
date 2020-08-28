@@ -2,14 +2,14 @@ include "constants.asm"
 
 SECTION "home/time.asm", ROM0
 
-LatchClock: ; 42b (0:042b)
+LatchClock:
 	ld a, 0
 	ld [MBC3LatchClock], a
 	ld a, 1
 	ld [MBC3LatchClock], a
 	ret
 
-UpdateTime:: ; 436 (0:0436)
+UpdateTime::
 	ldh a, [hRTCStatusFlags]
 	bit 0, a
 	ret nz
@@ -81,7 +81,7 @@ UpdateTime:: ; 436 (0:0436)
 	db $23, $01
 	db $32, $02
 	db $3b, $03
-	
+
 Function04ac::
 	ld hl, hRTCStatusFlags
 	set 0, [hl]
@@ -113,7 +113,7 @@ Function04ac::
 	res 0, [hl]
 	ret
 
-Function04ea:: ; 4ea (0:04ea)
+Function04ea::
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	call LatchClock
@@ -125,7 +125,7 @@ Function04ea:: ; 4ea (0:04ea)
 	call CloseSRAM
 	ret
 
-Function0502:: ; 0502
+Function0502::
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	call LatchClock
