@@ -509,7 +509,7 @@ PokedexGFX::                      INCBIN "gfx/pokedex/pokedex.2bpp"             
 PokedexGFXEnd::
 PokedexLocationGFX::              INCBIN "gfx/pokedex/locations.2bpp"           ; 0x0f8dc2--0x0f8e12
 PokedexLocationGFXEnd::
-TownMapGFX::                      INCBIN "gfx/trainer_gear/town_map.2bpp"           ; 0x0f8e12--0x0f8fc2
+TownMapGFX::                      INCBIN "gfx/trainer_gear/town_map.2bpp"       ; 0x0f8e12--0x0f8fc2
 TownMapGFXEnd::
 HUD_GFX::                         INCBIN "gfx/hud/hud.2bpp"                     ; 0x0f8fc2--0x0f9052
 HUD_GFXEnd::
