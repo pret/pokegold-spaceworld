@@ -94,7 +94,7 @@ StartMenuJumpTable: ; 04:5E6C
 	dw StartMenu_Save
 	dw StartMenu_Settings
 	dw StartMenu_Exit 
-	dw StartMenu_Pokegear
+	dw StartMenu_TrainerGear
 	dw StartMenu_Reset
 	
 StartMenuItems: ; 04:5E7E
@@ -173,8 +173,8 @@ StartMenu_Exit: ; 04:5ECF
 	ld a, 1
 	ret
 	
-StartMenu_Pokegear: ; 04:5ED2
-	callab PokeGear
+StartMenu_TrainerGear: ; 04:5ED2
+	callab TrainerGear
 	ld a, 0
 	ret
 	

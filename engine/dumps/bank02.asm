@@ -1406,7 +1406,7 @@ Data8a53: ; 02:4a53
 	db $3c, $14, $3c, $20, $48, $14, $54, $1c
 	db $54, $2c, $54, $38, $3c, $44, $48, $2c
 
-OpenPokegear: ; 02:4aab
+OpenTrainerGear: ; 02:4aab
 	ld hl, wce5f
 	ld a, [hl]
 	push af
@@ -1443,7 +1443,7 @@ Function8ae0: ; 02:4ae0
 	call ClearSprites
 	ld b, $13
 	call GetSGBLayout
-	ld hl, Pokegear1GFX
+	ld hl, TrainerGearGFX
 	ld de, vChars2
 	ld bc, $0200
 	ld a, $02
@@ -1672,9 +1672,9 @@ Function8cb7: ; 02:4cb7
 	call WaitForAutoBgMapTransfer
 	ld b, $15
 	call GetSGBLayout
-	ld de, Pokegear2GFX
+	ld de, RadioGFX
 	ld hl, vTilesetEnd
-	lb bc, BANK(Pokegear2GFX), $09
+	lb bc, BANK(RadioGFX), $09
 	call Request2bpp
 	ld de, VerticalPipeGFX
 	ld hl, vChars0
