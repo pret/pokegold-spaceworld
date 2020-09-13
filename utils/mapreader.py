@@ -6,7 +6,7 @@ import re
 
 class MapReader:
 
-    # {'ROM Bank': { 0: { 'sections': [ { 'beg': 1234,
+    # {'rom bank': { 0: { 'sections': [ { 'beg': 1234,
     #                                     'end': 5678,
     #                                     'name': 'Section001',
     #                                     'symbols': [ { 'symbol': 'Function1234',
@@ -19,7 +19,7 @@ class MapReader:
     #                     'slack': 4567,
     #                   },
     #               },
-    #  'OAM': { 'sections': [ { 'beg': 1234,
+    #  'oam': { 'sections': [ { 'beg': 1234,
     #                           'end': 5678,
     #                           'name': 'Section002',
     #                           'symbols': [ { 'symbol': 'Data1234',
@@ -36,13 +36,21 @@ class MapReader:
     bank_data = {}
 
     bank_types = {
-        'HRAM'     : { 'size': 0x80,   'banked': False, },
-        'OAM'      : { 'size': 0xA0,   'banked': False, },
-        'ROM0 bank': { 'size': 0x4000, 'banked': True,  },
-        'ROMX bank': { 'size': 0x4000, 'banked': True,  },
-        'SRAM bank': { 'size': 0x2000, 'banked': True,  },
-        'VRAM bank': { 'size': 0x1000, 'banked': True,  },
-        'WRAM bank': { 'size': 0x2000, 'banked': True,  },
+        'hram bank': { 'size': 0x80,   'banked': False, },
+        'oam bank' : { 'size': 0xA0,   'banked': False, },
+        'rom bank' : { 'size': 0x4000, 'banked': True,  },
+        'sram bank': { 'size': 0x2000, 'banked': True,  },
+        'vram bank': { 'size': 0x1000, 'banked': True,  },
+        'wram bank': { 'size': 0x2000, 'banked': True,  },
+    }
+
+    bank_aliases = {
+        'hram': 'hram bank',
+        'oam': 'oam bank',
+        'rom0 bank': 'rom bank',
+        'romx bank': 'rom bank',
+        'wram0 bank': 'wram bank',
+        'wramx bank': 'wram bank',
     }
 
     # FSM states
@@ -63,8 +71,11 @@ class MapReader:
         line = line.split(':', 1)[0]
         parts = line.split(' #', 1)
 
-        if (parts[0] in self.bank_types):
-            self._cur_bank_name = parts[0]
+        bank_type = parts[0].lower()
+        bank_type = self.bank_aliases.get(bank_type, bank_type)
+
+        if (bank_type in self.bank_types):
+            self._cur_bank_name = bank_type
             self._cur_bank_type = self.bank_types[self._cur_bank_name]
             if (self._cur_bank_type['banked'] and len(parts) > 1):
                 parts[1] = parts[1].split(':', 1)[0]
