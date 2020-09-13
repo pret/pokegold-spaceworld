@@ -57,8 +57,8 @@ tidy:
 
 # Visualize disassembly progress.
 .PHONY: coverage
-coverage: $(ROM:.gb=.map) utils/disasm_coverage.py
-	$(PYTHON) utils/disasm_coverage.py -m $< -b 0x40
+coverage: $(ROM:.gb=.map) utils/coverage.py
+	$(PYTHON) utils/coverage.py $<
 
 
 %.map: %.gb
