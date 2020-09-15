@@ -9,4 +9,4 @@
 	const NEW_GAME 
 	const OPTION 
 	const PLAY_POKEMON 
-	const SET_TIME 
+	const SET_TIME
