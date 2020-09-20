@@ -1,7 +1,7 @@
 SECTION "HRAM", HRAM
 
 hOAMDMA:: ; ff80
-    ds 10
+	ds 10
 
 	ds 3 ; TODO
 
@@ -9,22 +9,22 @@ hRTCHours:: db ; ff8d
 hRTCMinutes:: db ; ff8e
 hRTCSeconds:: db ; ff8f
 hRTCDays:: db ; ff90
-    ds 2 ; TODO
+	ds 2 ; TODO
 hRTCStatusFlags:: db ; ff93
 	ds 3 ; TODO
 
 hVBlankCounter:: ; ff97
-    db
+	db
 
 hROMBank:: ; ff98
-    db
+	db
 
 
 hVBlank:: ; ff99
-    db
+	db
 
 hMapEntryMethod:: ; ff9a
-    db
+	db
 
 hStartmenuCloseAndSelectHookEnable:: db ; ff9b
 
@@ -44,7 +44,7 @@ hJoypadSum:: db ; ffa0
 ; Sum of all keys that were pressed
 ; since hJoypadSum was last cleared
 
-    ds 1; TODO
+	ds 1; TODO
 hJoyDown:: db ; ffa2
 hJoyState:: db ; ffa3
 hJoySum:: db ; ffa4
@@ -57,7 +57,7 @@ hJoyDebounceSrc:: db ; ffa5
 
 hJoypadState2:: db ; ffa6
 
-    ds 6 ; TODO
+	ds 6 ; TODO
 hGraphicStartTile:: db ; ffad
 hMoveMon:: db
 
@@ -73,9 +73,9 @@ NEXTU
 
 hSpriteWidth:: ; ffaf
 hSpriteInterlaceCounter:: ; ffaf
-    db 
+	db
 hSpriteHeight:: ; ffb0
-    db
+	db
 
 NEXTU
 
@@ -90,9 +90,9 @@ hObjectStructIndexBuffer:: db ; ffb0
 ENDU
 
 hSpriteOffset:: ; ffb1
-    db
+	db
 
-    db ; TODO
+	db ; TODO
 
 UNION
 
@@ -129,9 +129,9 @@ ENDU
 	ds 3 ; TODO
 
 hFFC0:: ds 1 ; FFC0
-	
+
 	ds 6
-	
+
 hFFC7:: db ; FFC7
 hFFC8:: db ; FFC8
 hFFC9:: db ; FFC9
@@ -139,30 +139,30 @@ hFFCA:: db ; FFCA
 hFFCB:: db ; FFCB
 hFFCC:: db ; FFCC
 
-    ds 3 ; TODO
+	ds 3 ; TODO
 
 hLCDCPointer:: ; ffd0
-    db
+	db
 
 hLYOverrideStart:: db ; ffd1
 hLYOverrideEnd:: db ; ffd2
-    ds 1 ; TODO
+	ds 1 ; TODO
 
 
 hSerialReceived:: ; ffd4
-    db
+	db
 
 hLinkPlayerNumber:: ; ffd5
-    db
+	db
 
 hSerialIgnoringInitialData::
-    db
+	db
 
 
 hSerialSend:: ; ffd7
-    db
+	db
 hSerialReceive:: ; ffd8
-    db
+	db
 
 
 hSCX:: db ; ffd9
@@ -181,18 +181,18 @@ hOverworldFlashlightEffect:: db ; ffdd
 ; 0x04 -  2x 2 tile block
 
 hBGMapMode:: ; ffde
-    db
+	db
 
 hBGMapTransferPosition:: ; ffdf
-    db
+	db
 
 hBGMapAddress:: ; ffe0
-    dw
-    db ; TODO
-    
+	dw
+	db ; TODO
+
 hSPTemp:: ; ffe3
-    dw
-    
+	dw
+
 hRedrawRowOrColumnMode:: db ; ffe5
 ; Used for redrawing BG in small updates
 ; instead of once completely for faster
@@ -221,7 +221,7 @@ hRedrawRowOrColumnMode:: db ; ffe5
 hRedrawRowOrColumnDest:: ds 2 ; ffe6
 
 hMapAnims:: ; ffe8
-    db
+	db
 
 hTileAnimFrame:: ; ffe9
 	db
@@ -244,4 +244,4 @@ hBattleTurn:: db ; fff2
 
 hCurMapTextSubroutinePtr:: dw ; fff3
 
-    ; TODO
+	; TODO

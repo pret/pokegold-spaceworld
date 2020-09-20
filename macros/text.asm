@@ -5,8 +5,7 @@ para   EQUS "db \"<PARA>\","   ; Start a new paragraph.
 cont   EQUS "db \"<CONT>\","   ; Scroll to the next line.
 done   EQUS "db \"<DONE>\""    ; End a text box.
 prompt EQUS "db \"<PROMPT>\""  ; Prompt the player to end a text box (initiating some other event).
-text_end EQUS "db $50"         ; End control code for text processor
-                               ; different from @
+text_end EQUS "db $50"         ; End control code for text processor (different from "@")
 
 ; TODO: determine if these are in
 ; Pokedex text commands are only used with pokered.
@@ -123,12 +122,12 @@ sound_slot_machine_start: macro
 cry_nidorina: macro
 	db TX_CRY_14
 	endm
-	
+
 	enum TX_CRY_15 ; $15
 cry_pigeot: macro
 	db TX_CRY_15
 	endm
-	
+
 	enum TX_CRY_16 ; $16
 cry_jugon: macro
 	db TX_CRY_16

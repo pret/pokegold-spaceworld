@@ -1,5 +1,5 @@
 init_script_table: MACRO
-script_id = 0	
+script_id = 0
 ENDM
 
 add_script: MACRO

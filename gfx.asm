@@ -81,7 +81,7 @@ TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_silverlogo.2bpp"
 endc
 
 SECTION "gfx.asm@Name Entry Extra Tiles", ROMX
-TextScreenGFX_End:: 
+TextScreenGFX_End::
 INCBIN "gfx/font/text_entry_end.1bpp"
 TextScreenGFX_Hyphen::
 INCBIN "gfx/font/text_entry_hyphen.1bpp"

@@ -136,7 +136,7 @@ GetItemName::
 	jr .finish
 
 .machine
-    call GetMachineName
+	call GetMachineName
 .finish
 	ld de, wStringBuffer1
 	pop bc

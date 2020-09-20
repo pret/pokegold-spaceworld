@@ -28,7 +28,7 @@ LoadSpawnPoint: ; 03:4791
 	pop de
 	pop hl
 	ret
-	
+
 IsSpawnPoint: ; 03:47b6
 ; Checks if the map loaded in de is a spawn point.
 ; Returns carry if it's a spawn point.

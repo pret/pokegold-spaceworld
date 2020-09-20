@@ -7,7 +7,7 @@
 	const SCRIPT_ID_03   ; 03
 	const SCRIPT_ID_04   ; 04
 	const SCRIPT_ID_05   ; 05
-	
+
 ; Flags
 SCRIPT_FINISHED_F      EQU 7
 

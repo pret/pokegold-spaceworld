@@ -20,7 +20,7 @@ CutFunction: ; 03:4fab
 	ld a, [wFieldMoveScriptID]
 	ld hl, .CutScriptTable
 	jp CallJumptable
-	
+
 .CutScriptTable ; 03:4fc5
 	init_script_table
 	add_script TryCut
@@ -79,7 +79,7 @@ GetCutReplacementBlock: ; 03:5015
 	jr nz, .loop
 	scf
 	ret
-	
+
 CutReplacementBlocks: ; 03:5023
 ; replacement block, facing block
 	db $30, $25
@@ -109,7 +109,7 @@ CheckCuttableTile: ; 03:502c
 	set_script FailCut
 	xor a
 	ret
-	
+
 IsCuttableTile: ; 03:5057
 	ld hl, CuttableTiles
 	ld c, a
@@ -121,7 +121,7 @@ IsCuttableTile: ; 03:5057
 	jr nz, .loop
 	scf
 	ret
-	
+
 CuttableTiles: ; 03:5064
 	db $81
 	db $82
@@ -135,7 +135,7 @@ FailCut: ; 03:5069
 	scf
 	ld a, SCRIPT_FAIL
 	ret
-	
+
 Text_CantUseCutHere: ; 03:5073
 	text "ここでは　つかえません"
 	prompt
@@ -171,12 +171,12 @@ CutScript: ; 03:508C
 	call Function1fea
 	scf
 	ret
-	
-Text_CutItDown ; 03:50c4
+
+Text_CutItDown: ; 03:50c4
 	text_from_ram wStringBuffer2
 	text "　は　"
 	line "くさかりを　つかった！"
-	prompt	
+	prompt
 
 SurfFunction: ; 03:50d8
 	call .ResetScriptID
@@ -236,7 +236,7 @@ Text_CantSurfHere: ; 03:5133
 	text "ここでは　のることが"
 	next "できません"
 	prompt
-	
+
 SurfScript: ; 03:5145
 	call RefreshScreen
 	ld hl, wPartyMonNicknames
@@ -262,7 +262,7 @@ Text_UsedSurf: ; 03:5171
 	text_from_ram wPlayerName
 	text "を　のせた！"
 	prompt
-	
+
 MovePlayerIntoWater: ; 03:5185
 	call InitMovementBuffer
 	call .get_movement_direction
@@ -377,7 +377,7 @@ FlyScript: ; 03:5254
 	ldh [hMapEntryMethod], a
 	jpab Functionfcc24
 
-	
+
 DigFunction: ; 03:5260
 	call .ResetScriptID
 .next
@@ -393,7 +393,7 @@ DigFunction: ; 03:5260
 	and $FF - SCRIPT_FINISHED_MASK
 	ld [wFieldMoveSucceeded], a
 	ret
-	
+
 .ResetScriptID
 	xor a
 	ld [wFieldMoveScriptID], a
@@ -433,7 +433,7 @@ FailDig: ; 03:52a8
 Text_CantUseDigHere: ; 03:52b4
 	text "ここでは　つかえません！"
 	prompt
-	
+
 DigScript: ; 03:52c2
 	ld hl, wDigWarpNumber
 	ld de, wNextWarp
@@ -445,7 +445,7 @@ DigScript: ; 03:52c2
 
 EmptyFunctiond2da: ; 03:52da
 	ret
-	
+
 TeleportFunction: ; 03:52db
 	xor a
 	ld [wFieldMoveScriptID], a
@@ -462,7 +462,7 @@ TeleportFunction: ; 03:52db
 	and $FF - SCRIPT_FINISHED_MASK
 	ld [wFieldMoveSucceeded], a
 	ret
-	
+
 .TeleportScriptTable
 	init_script_table
 	add_script TryTeleport
@@ -481,8 +481,8 @@ TryTeleport: ; 03:52fc
 .success
 	set_script CheckIfSpawnPoint
 	ret
-	
-CheckIfSpawnPoint ; 03:5313
+
+CheckIfSpawnPoint: ; 03:5313
 	ld a, [wLastSpawnMapGroup]
 	ld d, a
 	ld a, [wLastSpawnMapNumber]
@@ -535,7 +535,7 @@ TeleportScript: ; 03:5375
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
 	jpab Functionfcc24
-	
+
 Text_ReturnToLastMonCenter: ; 03:5395
 	text "さいごに　たちよった"
 	line "#センターにもどります"

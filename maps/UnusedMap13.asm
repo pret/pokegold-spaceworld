@@ -7,20 +7,20 @@ UnusedMap13ScriptLoader:: ; 6078
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
-	
+
 UnusedMap13ScriptPointers: ; 6082
 	dw UnusedMap13Script
 	dw UnusedMap13NPCIDs
-	
+
 UnusedMap13NPCIDs: ; 6086
-	db $FF 
-	
+	db $FF
+
 UnusedMap13SignPointers: ; 6087
 	dw MapDefaultText
 
 UnusedMap13TextPointers:: ; 6089
 	dw MapDefaultText
-	
+
 UnusedMap13Script: ; 608B
 	ld hl, UnusedMap13NPCIDs
 	ld de, UnusedMap13SignPointers

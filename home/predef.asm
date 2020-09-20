@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "home/predef.asm", ROM0
 
-Predef:: 
+Predef::
 	ld [wPredefID], a
 	ldh a, [hROMBank]
 	push af

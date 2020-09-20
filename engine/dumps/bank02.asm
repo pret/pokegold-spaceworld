@@ -56,7 +56,7 @@ Function806c: ; 02:406c
 	ld a, $ff
 	ld [wObjectFollow_Leader], a
 	ret
-	
+
 Function807b: ; 02:407b
 	ld a, $01
 	ld hl, Data8089
@@ -152,7 +152,7 @@ Function80eb: ; 02:40eb
 	add hl, de
 	set 5, [hl]
 	ret
-	
+
 Function811a: ; 02:411a
 	ldh a, [hConnectionStripLength]
 	ld e, a
@@ -306,7 +306,7 @@ Function81f8: ; 02:41f8
 	add hl, de
 	ld [hl], a
 	ret
-	
+
 Function820d: ; 02:420d
 	push af
 	ldh a, [hConnectionStripLength]
@@ -360,7 +360,7 @@ Function824c: ; 02:424c
 	ret z
 	ld hl, Table8259
 	jp CallJumptable
-	
+
 Table8259: ; 02:4259
 	dw Function8299
 	dw Function8292
@@ -411,7 +411,7 @@ Function8292: ; 02:4292
 Function8299: ; 02:4299
 	ld a, [wYCoord]
 	add $09
-	
+
 Function829e: ; 02:429e
 	ld d, a
 	ld a, [wXCoord]
@@ -669,7 +669,7 @@ Function8425: ; 02:4425
 	ld [wVBCopyFarDst], a
 	ld a, d
 	ld [wVBCopyFarDst+1], a
-	
+
 Function842d: ; 02:442d
 	ld a, b
 	ld [wVBCopyFarSize], a
@@ -768,7 +768,7 @@ Function84b8: ; 02:44b8
 	jp Function842d
 
 SECTION "engine/dumps/bank02.asm@QueueFollowerFirstStep", ROMX
-	
+
 QueueFollowerFirstStep: ; 02:45df
 	call Function85f2
 	jr c, .sub_85ec
@@ -914,7 +914,7 @@ Function86a0: ; 02:46a0
 	and $03
 	jr z, .sub_86b4
 	ret
-	
+
 FlyMap: ; 02:46cb
 	ld hl, hJoyDebounceSrc
 	ld a, [hl]
@@ -1011,10 +1011,10 @@ Function8747: ; 02:4747
 	ret z
 	ld [wFlyDestination], a
 	ret
-	
+
 Text8776: ; 02:4776
 	db "とびさき　を　えらんでください@"
-	
+
 Function8786: ; 02:4786
 	ld a, [wFlyDestination]
 	push af
@@ -1059,7 +1059,7 @@ Function8786: ; 02:4786
 
 Text87e4: ; 02:47e4
 	db "の　すみか@"
-	
+
 Function87ea: ; 02:47ea
 	ld a, [wFlyDestination]
 	and $10
@@ -1195,7 +1195,7 @@ Function88b3: ; 02:48b3
 	add hl, bc
 	ld [hl], $08
 	ret
-	
+
 TownMapTilemap: ; 02:48da
 	db $04, $05
 	db $19, $01
@@ -1352,44 +1352,44 @@ TownMapTilemap: ; 02:48da
 	db $10, $01
 	db $04, $01
 	db $00
-	
+
 SECTION "engine/dumps/bank02.asm@Data8a17", ROMX
 
 Data8a17: ; 02:4a17
 	db $0b
 	db $ff
-	
+
 	db $01, $0a, $03, $00, $02, $00, $05, $01, $03, $01, $04, $02, $0d, $02
 	db $0d, $03, $0d, $05, $04, $02, $04, $06, $07
 	db $ff
-	
+
 	db $05, $08
 	db $ff
-	
+
 	db $06
 	db $ff
-	
+
 	db $ff
-	
+
 	db $0e, $09, $06, $0e, $08, $0a, $0a
 	db $08, $09, $00, $00, $09, $0c, $00
 	db $ff
-	
+
 	db $ff
-	
+
 	db $ff
-	
+
 	db $0b
 	db $ff
-	
+
 	db $ff
-	
+
 	db $04, $03
 	db $ff
-	
+
 	db $04
 	db $ff
-	
+
 	db $08, $08
 	db $ff
 
@@ -1557,7 +1557,7 @@ Function8bd5: ; 02:4bd5
 	ld bc, $8102
 	call PrintNumber
 	ret
-	
+
 Function8bfd: ; 02:4bfd
 	ld a, [wJumptableIndex]
 	ld e, a
@@ -1579,7 +1579,7 @@ Table8c0c: ; 02:4c0c
 	dw Function8d62
 	dw Function8e6c
 	dw Function8e9e
-	
+
 Function8c1c: ; 02:4c1c
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -1656,7 +1656,7 @@ DrawMap: ; 02:4c7c
 	add $18
 	ld [hl], a
 	ret
-	
+
 Function8cab: ; 02:4cab
 	ld hl, hJoyDown
 	ld a, [hl]
@@ -1665,7 +1665,7 @@ Function8cab: ; 02:4cab
 	xor a
 	ld [wJumptableIndex], a
 	ret
-	
+
 Function8cb7: ; 02:4cb7
 	call Function8c1c
 	call Function8eaa
@@ -1740,7 +1740,7 @@ Function8cb7: ; 02:4cb7
 	xor a
 	ld [wcb61], a
 	ret
-	
+
 Function8d62: ; 02:4d62
 	ld hl, hJoyDown
 	ld a, [hl]
@@ -1749,7 +1749,7 @@ Function8d62: ; 02:4d62
 	xor a
 	ld [wJumptableIndex], a
 	ret
-	
+
 Function8d6e: ; 02:4d6e
 	ld hl, wcb61
 	ld e, [hl]
@@ -1886,12 +1886,12 @@ Function8dfd: ; 02:4dfd
 	ld h, [hl]
 	ld l, a
 	jp hl
-	
+
 Function8e2c: ; 02:4e2c
 	pop bc
 	scf
 	ret
-	
+
 Table8e2f: ; 02:4e2f
 	dw Data8e4d
 	dw Data8e4d
@@ -1913,21 +1913,21 @@ Data8e4d: ; 02:4e4d
 	db $10, $02
 	dw Function8e66
 	dw Function8e66
-	
+
 	db $20, $05
 	dw Function8e66
 	dw Function8e66
-	
+
 	db $40, $07
 	dw Function8e66
 	dw Function8e66
-	
+
 	db $48, $09
 	dw Function8e66
 	dw Function8e66
-	
+
 	db $00
-	
+
 Function8e66: ; 02:4e66
 	ld d, $00
 	call PlayMusic
@@ -2012,7 +2012,7 @@ Function8eca: ; 02:4eca
 
 Data8ef5: ; 02:4ef5
 	db $00, $18, $30, $00
-	
+
 Function8ef9: ; 02:4ef9
 	dec c
 	dec c
@@ -2079,7 +2079,7 @@ SetTitleBGDecorationBorder: ; 02:51d2
 	ld b, $54
 	call Function91ef
 	ret
-	
+
 Function91ef: ; 02:51ef
 	xor a
 	ld c, $14
@@ -2282,10 +2282,10 @@ Function93bb: ; 02:53bb
 Table93cc: ; 02:53cc
 	dw Data986c
 	dw Data996c
-	
+
 	dw Data987c
 	dw Data998c
-	
+
 	dw Data986c
 	dw Data999c
 

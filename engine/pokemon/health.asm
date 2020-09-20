@@ -12,19 +12,19 @@ HealParty: ; 03:4d6f
 	jr z, .party_done
 	push hl
 	push de
-	
+
 ; Clear the status
 	ld hl, MON_STATUS
 	add hl, de
 	xor a
 	ld [hli], a
 	ld [hl], a
-	
+
 ; Reset the PP
 	ld hl, MON_MOVES
 	add hl, de
 	ld b, NUM_MOVES
-	
+
 .move_loop
 	push hl
 	push bc
@@ -46,14 +46,14 @@ HealParty: ; 03:4d6f
 	and PP_UP_MASK
 	add b
 	ld [hl], a
-	
+
 .next_move
 	pop bc
 	pop hl
 	inc hl
 	dec b
 	jr nz, .move_loop
-	
+
 ; Reset the HP
 	pop de
 	push de
@@ -94,9 +94,9 @@ HealParty: ; 03:4d6f
 	dec b
 	jr nz, .pp_up
 	ret
-	
+
 SECTION "engine/pokemon/health.asm@HP Bar", ROMX
-	
+
 ComputeHPBarPixels: ; 03:4e3c
 	push hl
 	xor a
@@ -139,7 +139,7 @@ ComputeHPBarPixels: ; 03:4e3c
 	ret nz
 	ld e, 1
 	ret
-		
+
 UpdateHPBar: ; 03:4e7c
 	ld a, [wHPBarOldHP]
 	ld c, a
@@ -178,7 +178,7 @@ UpdateHPBar: ; 03:4e7c
 	call UpdateHPBar_CompareNewHPToOldHP
 	jr z, .animate_hp_bar_done
 	jr nc, .hp_increase
-	
+
 ;hp_decrease
 	dec bc
 	ld a, c
@@ -225,7 +225,7 @@ UpdateHPBar: ; 03:4e7c
 	ld a, 1
 	call UpdateHPBar_AnimateHPBar
 	jp WaitBGMap
-	
+
 ; animates the HP bar going up or down for (a) ticks (two waiting frames each)
 ; stops prematurely if bar is filled up
 ; e: current health (in pixels) to start with
@@ -257,7 +257,7 @@ UpdateHPBar_AnimateHPBar: ; 03:4F11
 	pop af
 	pop hl
 	ret
-	
+
 ; compares old HP and new HP and sets c and z flags accordingly
 UpdateHPBar_CompareNewHPToOldHP: ; 03:4F37
 	ld a, d
@@ -266,7 +266,7 @@ UpdateHPBar_CompareNewHPToOldHP: ; 03:4F37
 	ld a, e
 	sub c
 	ret
-	
+
 ; calcs HP difference between bc and de (into de)
 UpdateHPBar_CalcHPDifference: ; 03:4F3D
 	ld a, d
@@ -296,7 +296,7 @@ UpdateHPBar_CalcHPDifference: ; 03:4F3D
 	jr nz, .new_hp_greater
 	ld de, 0
 	ret
-	
+
 UpdateHPBar_PrintHPNumber: ; 03:4F5B
 	push af
 	push de

@@ -411,8 +411,8 @@ TextCommandProcessor:: ; 10a6 (0:10a6)
 	ld [wTextDest], a
 	ld a, b
 	ld [wTextDest + 1], a
-    ; fall through
-    
+	; fall through
+
 NextTextCommand:: ; 10b7 (0:10b7)
 	ld a, [hli]
 	cp "@" ; terminator
@@ -454,7 +454,7 @@ Text_TX_BOX:: ; 10d0 (0:10d0)
 	call DrawTextBox
 	pop hl
 	jr NextTextCommand
-    
+
 Text_TX:: ; 10e2 (0:10e2)
 ; TX
 ; write text until "@"
@@ -697,7 +697,7 @@ Text_TX_DOTS: ; 11e1 (0:11e1)
 	ld c, l
 	pop hl
 	jp NextTextCommand
-	
+
 Text_TX_LINK_WAIT_BUTTON:: ; 1203 (0:1203)
 	push bc
 	call ButtonSound

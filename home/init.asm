@@ -13,7 +13,7 @@ SECTION "home/init.asm@Entry point", ROM0
 SECTION "home/init.asm@Global check value", ROM0
 ; The ROM has an incorrect global check, so set it here.
 ; It is not corrected by RGBFIX.
-    dw $C621
+	dw $C621
 
 
 SECTION "home/init.asm@Init", ROM0

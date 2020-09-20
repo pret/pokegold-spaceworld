@@ -51,14 +51,14 @@ Function33ef::
 
 SkipNames::
 ; Returns hl + a * 6
-    and a
-    ret z
-    ld bc, 6
+	and a
+	ret z
+	ld bc, 6
 .loop:
-    add hl, bc
-    dec a
-    jr nz, .loop
-    ret
+	add hl, bc
+	dec a
+	jr nz, .loop
+	ret
 
 AddNTimes::
 ; Adds bc to hl, a times
@@ -75,14 +75,14 @@ memcmp:: ; TODO: rename
 ; Compare c bytes at hl and de
 ; Returns z if all equal, nz otherwise.
 .loop:
-    ld a, [de]
-    cp [hl]
-    ret nz
-    inc de
-    inc hl
-    dec c
-    jr nz, .loop
-    ret
+	ld a, [de]
+	cp [hl]
+	ret nz
+	inc de
+	inc hl
+	dec c
+	jr nz, .loop
+	ret
 
 Function3439::
 ; Place 2x2 sprite from *de into OAM at slot a

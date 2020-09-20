@@ -20,7 +20,7 @@ PrintNumber::
 ;     instead of calling PrintNumber.
 ; This function works as follow
 ; There are three temporary registers
-; - hPrintNumDividend, 
+; - hPrintNumDividend,
 ; - hPrintNumDivisor,
 ; - hPrintNumTemp
 ; All are three bytes long and organized in big-endian order.

@@ -28,7 +28,7 @@ UnusedOverworldMovementCheck:: ; 03:4003
 
 SetPlayerIdle: ; 03:402c
 	ld a, NO_MOVEMENT
-	
+
 SetPlayerMovement: ; 03:402e
 	ld [wPlayerMovement], a
 	ld a, [wPlayerLastMapX]
@@ -58,7 +58,7 @@ _CheckMovementWalkOrBike: ; 03:4045
 .idle
 	ld a, NO_MOVEMENT
 	ret
-	
+
 .check_right
 	ld a, [wPlayerLastMapX]
 	inc a
@@ -158,7 +158,7 @@ _CheckMovementDebug: ; 03:40f2
 	jr nz, .move_right
 	ld a, NO_MOVEMENT
 	ret
-	
+
 .move_down
 	ld a, [wTileDown]
 	cp -1
@@ -166,7 +166,7 @@ _CheckMovementDebug: ; 03:40f2
 	ret nz
 	ld a, JUMP_UP
 	ret
-	
+
 .move_up
 	ld a, [wTileUp]
 	cp -1
@@ -174,7 +174,7 @@ _CheckMovementDebug: ; 03:40f2
 	ret nz
 	ld a, JUMP_DOWN
 	ret
-	
+
 .move_left
 	ld a, [wTileLeft]
 	cp -1
@@ -182,7 +182,7 @@ _CheckMovementDebug: ; 03:40f2
 	ret nz
 	ld a, JUMP_RIGHT
 	ret
-	
+
 .move_right
 	ld a, [wTileRight]
 	cp -1
@@ -260,11 +260,11 @@ CheckSkateDown:  ; 03:4177
 	jr z, .slow
 	ld a, FAST_STEP_DOWN
 	ret
-	
+
 .slow
 	ld a, STEP_DOWN
 	ret
-	
+
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
@@ -285,17 +285,17 @@ CheckSkateUp: ; 03:41ab
 	jr nz, .collision
 	ld a, FAST_JUMP_UP
 	ret
-	
+
 .can_skate
 	call OldIsTileCollisionGrass
 	jr z, .slow
 	ld a, FAST_STEP_UP
 	ret
-	
+
 .slow
 	ld a, STEP_UP
 	ret
-	
+
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
@@ -316,7 +316,7 @@ CheckSkateLeft: ; 03:41db
 	jr nz, .collision
 	ld a, FAST_JUMP_LEFT
 	ret
-	
+
 .can_skate
 	call OldIsTileCollisionGrass
 	jr z, .slow
@@ -326,7 +326,7 @@ CheckSkateLeft: ; 03:41db
 .slow
 	ld a, STEP_LEFT
 	ret
-	
+
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
@@ -357,7 +357,7 @@ CheckSkateRight: ; 03:420b
 .slow
 	ld a, STEP_RIGHT
 	ret
-	
+
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
@@ -1081,7 +1081,7 @@ GetCollisionType::
 	ret
 
 SECTION "engine/overworld/player_movement.asm@Rest of Player Movement", ROMX
-	
+
 _UnusedReturnFalse:: ; 03:4764
 	xor a
 	ret
@@ -1152,7 +1152,7 @@ GetPlayerSprite: ; 05:400a
 	ld [wPlayerSprite], a
 	ld [wPlayerObjectSprite], a
 	ret
-	
+
 PlayerSpriteTable: ; 03:402d
 ; state, sprite
 	db PLAYER_NORMAL, SPRITE_GOLD

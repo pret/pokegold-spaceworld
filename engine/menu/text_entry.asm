@@ -1,11 +1,11 @@
 INCLUDE "constants.asm"
-	
+
 SECTION "engine/menu/text_entry.asm@naming", ROMX
 
 NAMINGSCREEN_UNDERSCORE EQU "♀"
 NAMINGSCREEN_HYPHEN     EQU "♂"
 NAMINGSCREEN_END        EQU $F0
-	
+
 NamingScreen: ; 04:53F4
 	ld hl, wNamingScreenDestinationPointer
 	ld [hl], e
@@ -30,7 +30,7 @@ NamingScreen: ; 04:53F4
 .loop
 	call NamingScreenJoypadLoop
 	jr nc, .loop
-	
+
 	pop af
 	ldh [hJoyDebounceSrc], a
 	pop af
@@ -39,7 +39,7 @@ NamingScreen: ; 04:53F4
 	ld [wce5f], a
 	call ClearJoypad
 	ret
-	
+
 .SetUpNamingScreen: ; 04:542B
 	call ClearBGPalettes
 	ld b, SGB_DIPLOMA
@@ -58,7 +58,7 @@ NamingScreen: ; 04:53F4
 	ldh [rOBP0], a
 	call NamingScreenInitNameEntry
 	ret
-	
+
 GetNamingScreenSetup: ; 04:5455
 ; wNamingScreenType selects which entry in the table below to jump to
 	ld a, [wNamingScreenType]
@@ -72,17 +72,17 @@ GetNamingScreenSetup: ; 04:5455
 	ld h, [hl]
 	ld l, a
 	jp hl
-	
+
 .Jumptable: ; 04:5466
-	dw .Pokemon 
-	dw .Player 
-	dw .Rival 
-	dw .Mom 
-	dw .Box 
-	dw .Pokemon 
-	dw .Pokemon 
-	dw .Pokemon 
-	
+	dw .Pokemon
+	dw .Player
+	dw .Rival
+	dw .Mom
+	dw .Box
+	dw .Pokemon
+	dw .Pokemon
+	dw .Pokemon
+
 .Pokemon: ; 04:5476
 	ld hl, Function8f0e3
 	ld a, BANK(Function8f0e3)
@@ -100,7 +100,7 @@ GetNamingScreenSetup: ; 04:5455
 
 .NicknameText ; 04:5495
 	db "のニックネームは？@"
-	
+
 .Player: ; 04:549F
 	ld de, GoldSpriteGFX
 	call .LoadSprite
@@ -109,10 +109,10 @@ GetNamingScreenSetup: ; 04:5455
 	call PlaceString
 	call .StoreSpriteIconParams
 	ret
-	
+
 .NameText: ; 04:54B2
 	db "あなた　の　なまえは？@"
-	
+
 .Rival: ; 04:54BE
 	ld de, SilverSpriteGFX
 	call .LoadSprite
@@ -121,23 +121,23 @@ GetNamingScreenSetup: ; 04:5455
 	call PlaceString
 	call .StoreSpriteIconParams
 	ret
-	
+
 .RivalText: ; 04:54D1
 ; the ret just preceeding this would make the first word Rival.
 	db "ライバル　の　なまえは？@"
-	
+
 .Mom: ; 04:54DE
 	ld de, MomSpriteGFX
 	call .LoadSprite
 	hlcoord 5, 2
-	ld de, .MomText 
-	call PlaceString 
-	call .StoreSpriteIconParams 
+	ld de, .MomText
+	call PlaceString
+	call .StoreSpriteIconParams
 	ret
-	
+
 .MomText: ; 04:54F1
 	db "ははおや　の　なまえは？@"
-	
+
 .Box: ; 04:54FE
 	ld de, PokeBallSpriteGFX
 	ld hl, vChars0
@@ -158,13 +158,13 @@ GetNamingScreenSetup: ; 04:5455
 	call PlaceString
 	call .StoreBoxIconParams
 	ret
-	
+
 .BoxText: ; 04:552D
 	db "バンク　の　なまえは？@"
-	
+
 .LoadSprite: ; 04:5539
 ; copies the sprite at de into the top of VRAM, as well as the sprite $C0 after de
-	push de 
+	push de
 	ld hl, vChars0
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
@@ -184,7 +184,7 @@ GetNamingScreenSetup: ; 04:5455
 	ld a, $41
 	call InitSpriteAnimStruct
 	ret
-	
+
 .StoreSpriteIconParams: ; 04:5564
 	ld a, $05
 	ld [wNamingScreenMaxNameLength], a
@@ -194,7 +194,7 @@ GetNamingScreenSetup: ; 04:5455
 	ld a, h
 	ld [wNamingScreenStringEntryCoordX], a
 	ret
-	
+
 .StoreBoxIconParams: ; 04:5575
 	ld a, $08
 	ld [wNamingScreenMaxNameLength], a
@@ -204,7 +204,7 @@ GetNamingScreenSetup: ; 04:5455
 	ld a, h
 	ld [wNamingScreenStringEntryCoordX], a
 	ret
-	
+
 NamingScreen_InitText: ; 04:5586
 ; fills the tilemap with ■, then clears a 12x17 box at 1,1
 ; next it places the tiles at 04:58B3 onto the screen at 2,9 (tiles form an 11x8 box)
@@ -222,25 +222,25 @@ NamingScreen_InitText: ; 04:5586
 	hlcoord 2, 9
 	ld de, TextEntryChars
 	ld b, $08
-	
+
 .outerloop
 	ld c, $11
-	
+
 .innerloop
 	ld a, [de]
 	ld [hl+], a
 	inc de
 	dec c
 	jr nz, .innerloop
-	
+
 	inc hl
 	inc hl
 	inc hl
 	dec b
 	jr nz, .outerloop
 	ret
-	
-	
+
+
 NamingScreenJoypadLoop: ; 04:55BD
 	call GetJoypadDebounced
 	ld a, [wJumptableIndex]
@@ -252,7 +252,7 @@ NamingScreenJoypadLoop: ; 04:55BD
 	call DelayFrame
 	and a
 	ret
-	
+
 .leap ; 04:55DA
 ; kills sprites and resets screen position
 	callab InitEffectObject
@@ -283,7 +283,7 @@ NamingScreenJoypadLoop: ; 04:55BD
 	ld a, $01
 	ldh [hBGMapMode], a
 	ret
-	
+
 .RunJumpTable: ; 04:560C
 	ld a, [wJumptableIndex]
 	ld e, a
@@ -295,11 +295,11 @@ NamingScreenJoypadLoop: ; 04:55BD
 	ld h, [hl]
 	ld l, a
 	jp hl
-	
+
 .JumpTable: ; 04:561B
-	dw .InitCursor  
+	dw .InitCursor
 	dw .ReadButtons
-	
+
 .InitCursor: ; 04:561F
 	ld de, $5818
 	ld a, $39
@@ -311,7 +311,7 @@ NamingScreenJoypadLoop: ; 04:55BD
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
-	
+
 .ReadButtons: ; 04:5634
 ; if A or B were pressed, clear hJoypadSum after calling functions; if start, set 7 in the jumptable??
 	ld hl, hJoypadSum
@@ -325,7 +325,7 @@ NamingScreenJoypadLoop: ; 04:55BD
 	and START
 	jr nz, .jumpstart
 	ret
-	
+
 .jumpa ; 04:5647
 	call NamingScreenGetLastCharacter
 	cp NAMINGSCREEN_END
@@ -334,19 +334,19 @@ NamingScreenJoypadLoop: ; 04:55BD
 	xor a
 	ldh [hJoypadSum], a
 	ret
-	
+
 .jumpb ; 04:5655
 	call NamingScreenDeleteCharacter
 	xor a
 	ldh [hJoypadSum], a
 	ret
-	
+
 .jumpstart ; 04:565C
 	call NamingScreenStoreEntry
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
-	
+
 .GetDPad: ; 04:5665
 	ld hl, hJoySum
 	ld a, [hl]
@@ -362,7 +362,7 @@ NamingScreenJoypadLoop: ; 04:55BD
 	and D_RIGHT
 	jr nz, .rightjump
 	ret
-	
+
 .rightjump ; 04:567D
 	ld hl, $000C
 	add hl, bc
@@ -371,11 +371,11 @@ NamingScreenJoypadLoop: ; 04:55BD
 	jr nc, .skip1
 	inc [hl]
 	jr .escape
-	
+
 .skip1
 	ld [hl], $00
 	jr .escape
-	
+
 .leftjump
 	ld hl, $000C
 	add hl, bc
@@ -384,10 +384,10 @@ NamingScreenJoypadLoop: ; 04:55BD
 	jr z, .skip2
 	dec [hl]
 	jr .escape
-.skip2	
+.skip2
 	ld [hl], $0E
-	jr .escape 
-	
+	jr .escape
+
 .downjump
 	ld hl, $000D
 	add hl, bc
@@ -395,11 +395,11 @@ NamingScreenJoypadLoop: ; 04:55BD
 	cp $07
 	jr nc, .skip3
 	inc [hl]
-	jr .escape 
+	jr .escape
 .skip3
 	ld [hl], $00
 	jr .escape
-	
+
 .upjump ; 04:56AC :24
 	ld hl, $000D
 	add hl, bc
@@ -433,13 +433,13 @@ NamingScreenJoypadLoop: ; 04:55BD
 	add hl, bc
 	ld [hl], a
 	ret
-	
+
 LetterOffsetsTable1: ; 04:56DE
 	db $00, $08, $10, $18, $20, $30, $38, $40, $48, $50, $60, $68, $70, $78, $80
-	
+
 LetterOffsetsTable2:; 04:56ED
 	db $00, $08, $10, $18, $20, $28, $30, $38
-	
+
 NamingScreenTryAddCharacter: ; 04:56F5
 	ld a, [wNamingScreenLastCharacter]
 	ld hl, Dakutens
@@ -447,7 +447,7 @@ NamingScreenTryAddCharacter: ; 04:56F5
 	jr z, .jump
 	ld hl, Handakutens
 	cp "ﾟ"
-	jr z, .jump 
+	jr z, .jump
 	ld a, [wNamingScreenMaxNameLength]
 	ld c, a
 	ld a, [wNamingScreenCurNameLength]
@@ -464,7 +464,7 @@ NamingScreenTryAddCharacter: ; 04:56F5
 	ret z
 	ld [hl], NAMINGSCREEN_UNDERSCORE
 	ret
-	
+
 .jump ; 04:5724
 	ld a, [wNamingScreenCurNameLength]
 	and a
@@ -491,7 +491,7 @@ NamingScreenTryAddCharacter: ; 04:56F5
 	ld hl, wNamingScreenCurNameLength
 	inc [hl]
 	ret
-	
+
 Dakutens: ; 04:5748
 	db "かがきぎくぐけげこご"
 	db "さざしじすずせぜそぞ"
@@ -500,14 +500,14 @@ Dakutens: ; 04:5748
 	db "カガキギクグケゲコゴ"
 	db "サザシジスズセゼソゾ"
 	db "タダチヂツヅテデトド"
-	db "ハバヒビフブへべホボ" 
+	db "ハバヒビフブへべホボ"
 	db $FF
-	
+
 Handakutens: ; 04:5799
 	db "はぱひぴふぷへぺほぽ"
-	db "ハパヒピフプへぺホポ" 
-	db $FF 
-	
+	db "ハパヒピフプへぺホポ"
+	db $FF
+
 NamingScreenDeleteCharacter: ; 04:57AE
 	ld hl, wNamingScreenCurNameLength
 	ld a, [hl]
@@ -522,7 +522,7 @@ NamingScreenDeleteCharacter: ; 04:57AE
 	ret nz
 	ld [hl], NAMINGSCREEN_HYPHEN
 	ret
-	
+
 NamingScreenGetTextCursorPosition: ; 04:57C2
 	push af
 	ld hl, wNamingScreenDestinationPointer
@@ -535,7 +535,7 @@ NamingScreenGetTextCursorPosition: ; 04:57C2
 	add hl, de
 	pop af
 	ret
-	
+
 NamingScreenInitNameEntry: ; 04:57D2
 	ld hl, wNamingScreenDestinationPointer
 	ld a, [hli]
@@ -553,7 +553,7 @@ NamingScreenInitNameEntry: ; 04:57D2
 	jr nz, .loop
 	ld [hl], "@"
 	ret
-	
+
 NamingScreenStoreEntry: ; 04:57E9
 	ld hl, wNamingScreenDestinationPointer
 	ld a, [hli]
@@ -567,14 +567,14 @@ NamingScreenStoreEntry: ; 04:57E9
 	jr z, .terminator
 	cp NAMINGSCREEN_UNDERSCORE
 	jr nz, .notterminator
-.terminator	
+.terminator
 	ld [hl], "@"
 .notterminator
 	inc hl
 	dec c
 	jr nz, .loop
 	ret
-	
+
 NamingScreenGetLastCharacter: ; 04:5803
 	ld hl, wNamingScreenCursorObjectPointer
 	ld c, [hl]
@@ -601,7 +601,7 @@ NamingScreenGetLastCharacter: ; 04:5803
 	srl a
 	srl a
 	srl a
-	ld d, a 
+	ld d, a
 	hlcoord 0, 0
 	ld bc, $0014
 .loop
@@ -611,45 +611,45 @@ NamingScreenGetLastCharacter: ; 04:5803
 	add hl, bc
 	dec d
 	jr .loop
-	
+
 .done
-	add hl, de 
+	add hl, de
 	ld a, [hl]
 	ld [wNamingScreenLastCharacter], a
 	ret
-	
+
 LoadNamingScreenGFX: ; 04:5843
 	call ClearSprites
 	callab InitEffectObject
 	call LoadFont
-	
+
 	ld de, TextScreenGFX_End
 	ld hl, vChars1 tile $70
 	lb bc, BANK(TextScreenGFX_End), 1
 	call Get1bpp
-	
+
 	ld de, TextScreenGFX_Hyphen
 	ld hl, vChars1 tile $6F
 	lb bc, BANK(TextScreenGFX_Hyphen), 1
 	call Get1bpp
-	
+
 	ld de, TextScreenGFX_Underscore
 	ld hl, vChars1 tile $75
 	lb bc, BANK(TextScreenGFX_Underscore), 1
 	call Get1bpp
-	
+
 	ld de, vChars2 tile $60
 	ld hl, TrainerCardGFX
 	ld bc, $10
 	ld a, BANK(TrainerCardGFX)
 	call FarCopyData
-	
+
 	ld de, vChars0 tile $7f
 	ld hl, PokedexBorderGFX
 	ld bc, $10
 	ld a, BANK(PokedexBorderGFX)
 	call FarCopyData
-	
+
 	ld a, $26
 	ld hl, wc41a
 	ld [hli], a
@@ -690,17 +690,17 @@ ComposeMailMessage: ; 04:59EB
 .innerloop
 	call DoMailEntry
 	jr nc, .innerloop
-	
+
 	ld a, [wFlyDestination]
 	bit 7, a
 	jr nz, .outerloop
-	
+
 	pop af
 	ldh [hJoyDebounceSrc], a
 	pop af
 	ldh [hMapAnims], a
 	ret
-	
+
 .firstruncheck; 04:5A1B
 	ld hl, wFlyDestination
 	ld a, [hl]
@@ -712,7 +712,7 @@ ComposeMailMessage: ; 04:59EB
 .skip
 	call .InitBlankMail
 	ret
-	
+
 .InitBlankMail: ; 04:5A2C
 	call ClearBGPalettes
 	ld b, 8 ;diploma?
@@ -760,7 +760,7 @@ ComposeMailMessage: ; 04:59EB
 	add hl, de
 	ld [hl], "<NEXT>"
 	ret
-	
+
 InitMailText: ; 04:5A96
 	hlcoord 5, 2
 	ld de, MailPromptText
@@ -768,10 +768,10 @@ InitMailText: ; 04:5A96
 	ld a, $21
 	ld [wNamingScreenMaxNameLength], a
 	ret
-	
+
 MailPromptText: ; 04:5AA5
 	db "メールを　かいてね@"
-	
+
 InitCharSet: ; 04:5AAF
 	call WaitForAutoBgMapTransfer
 	ld hl, wTileMap
@@ -789,7 +789,7 @@ InitCharSet: ; 04:5AAF
 	ld b, $8
 .outerloop
 	ld c, $11
-.innerloop	
+.innerloop
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -801,7 +801,7 @@ InitCharSet: ; 04:5AAF
 	dec b
 	jr nz, .outerloop
 	ret
-	
+
 DoMailEntry: ; 04:5AE6
 	call GetJoypadDebounced
 	ld a, [wJumptableIndex]
@@ -816,7 +816,7 @@ DoMailEntry: ; 04:5AE6
 	call DelayFrame
 	and a
 	ret
-	
+
 .exit_mail ; 04:5B0A
 	callab InitEffectObject
 	call ClearSprites
@@ -825,7 +825,7 @@ DoMailEntry: ; 04:5AE6
 	ldh [hSCY], a
 	scf
 	ret
-	
+
 .Update: ; 04:5B1C
 	xor a
 	ldh [hBGMapMode], a
@@ -841,7 +841,7 @@ DoMailEntry: ; 04:5AE6
 	ld a, 1
 	ldh [hBGMapMode], a
 	ret
-	
+
 .DoJumpTable: ; 04:5B39
 	ld a, [wJumptableIndex]
 	ld e, a
@@ -853,16 +853,16 @@ DoMailEntry: ; 04:5AE6
 	ld h, [hl]
 	ld l, a
 	jp hl
-	
+
 .Jumptable: ; 04:5B48
-	dw .blinkcursor  
+	dw .blinkcursor
 	dw .processjoypad
 
 .blinkcursor ; 04:5B4C
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
-	
+
 .processjoypad; 04:5B51
 	ld hl, hJoypadSum
 	ld a, [hl]
@@ -878,7 +878,7 @@ DoMailEntry: ; 04:5AE6
 	and SELECT
 	jr nz, .selectjump
 	ret
-	
+
 .ajump ; 04:5B69
 	call NamingScreenGetLastCharacter
 	cp "円"
@@ -922,7 +922,7 @@ DoMailEntry: ; 04:5AE6
 	ld [hl], a
 	set 7, [hl]
 	ret
-	
+
 SECTION "engine/menu/text_entry.asm@mail2", ROMX
 
 SetupMail: ; 04:5C31
@@ -977,7 +977,7 @@ SetupMail: ; 04:5C31
 	add hl, de
 	ld [hl], "<NEXT>"
 	ret
-	
+
 DrawMailLoadedText: ; 04:5CA9
 	hlcoord 5, 2
 	ld de, MailLoadedText
@@ -985,10 +985,10 @@ DrawMailLoadedText: ; 04:5CA9
 	ld a, $21
 	ld [wNamingScreenMaxNameLength], a
 	ret
-	
+
 MailLoadedText: ; 04:5CB8
 	db "スアケシ！！！@" ; should be "MAIL!!!" since the bold english font is loaded into vChars1
-	
+
 DrawMail: ; 04:5CC0
 	call WaitForAutoBgMapTransfer
 	hlcoord 0, 0
@@ -1012,7 +1012,7 @@ DrawMail: ; 04:5CC0
 	ld c, $10
 	call DrawMailTextExtra
 	ret
-	
+
 DrawMailRow: ; 04:5CFC
 	ld c, $07
 	call .loop
@@ -1029,22 +1029,21 @@ DrawMailRow: ; 04:5CFC
 	inc hl
 	inc hl
 	ld c, $05
-	
+
 .loop ; 04:5D15
-	ld [hli], a 
+	ld [hli], a
 	inc a
 	dec c
 	jr nz, .loop
 	ret
-	
+
 DrawMailTextExtra: ; 04:5D1B
-	ld a, [de] 
+	ld a, [de]
 	inc de
 	ld [hli], a
 	dec c
 	jr nz, DrawMailTextExtra
 	ret
-	
+
 MailTextExtra: ; 04:5D22
 	db "？！１２３４５　　６７８９０ー円"
-	

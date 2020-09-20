@@ -2,9 +2,9 @@ include "constants.asm"
 
 item_attribute: MACRO
 ; price, held effect, parameter, property, pocket, field menu, battle menu
-        dw \1
-        db \2, \3, \4, \5
-        dn \6, \7
+	dw \1
+	db \2, \3, \4, \5
+	dn \6, \7
 ENDM
 
 SECTION "data/items/attributes.asm", ROMX

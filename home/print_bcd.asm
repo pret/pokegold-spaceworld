@@ -49,7 +49,7 @@ PrintBCDDigit::
 	ld [hli], a
 	jp PrintLetterDelay
 .zeroDigit
-	bit 7, b           ; either printing leading zeroes or 
+	bit 7, b           ; either printing leading zeroes or
 	jr z, .outputDigit ; already reached a nonzero digit?
 	bit 6, b
 	ret nz             ; left-align, don't pad with space

@@ -17,7 +17,7 @@ wChannel6:: channel_struct wChannel6 ; c0fa
 wChannel7:: channel_struct wChannel7 ; c12c
 wChannel8:: channel_struct wChannel8 ; c15e
 
-    ds 1 ; c190
+	ds 1 ; c190
 
 wCurTrackDuty:: db ; c191
 wCurTrackIntensity:: db ; c192
@@ -34,7 +34,7 @@ wSoundOutput:: ; c19a
 ; bit 0-3: ch1-4 so1 on/off
 	db
 
-    ds 1 ; TODO
+	ds 1 ; TODO
 
 wMusicID:: dw ; c19c
 wMusicBank:: db ; c19e
@@ -54,18 +54,18 @@ wMusicFade:: ; c1a5
 ; $00 = none (default)
 	db
 wMusicFadeCount:: db ; c1a6
-wMusicFadeID:: 
+wMusicFadeID::
 wMusicFadeIDLow:: db ; c1a7
 wMusicFadeIDHigh:: db ; c1a8
 
-    ds 2 ; TODO
+	ds 2 ; TODO
 
 wIncrementTempo: dw ; c1ab
 wMapMusic:: db ; c1ad
 wCryPitch:: dw ; c1ae
 wCryLength:: dw ; c1b0
 ; c1b2
-    ds 7 ; TODO
+	ds 7 ; TODO
 
 wc1b9:: db ; c1b9
 wc1ba:: db ; c1ba
@@ -79,16 +79,16 @@ wMusicInitEnd:: ; c1bc
 SECTION "OAM Buffer", WRAM0
 
 wVirtualOAM:: ; c200
-    ds SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
+	ds SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
 wVirtualOAMEnd::
 
 wTileMap:: ; c2a0
-    ds SCREEN_HEIGHT * SCREEN_WIDTH
+	ds SCREEN_HEIGHT * SCREEN_WIDTH
 
 UNION
 
 wTileMapBackup:: ; c408
-    ds SCREEN_HEIGHT * SCREEN_WIDTH
+	ds SCREEN_HEIGHT * SCREEN_WIDTH
 
 NEXTU
 
@@ -99,8 +99,8 @@ wc40a:: ds 1 ; c40a
 
 ; Monster or Trainer test?
 wWhichPicTest:: ; c40b
-    db
-	
+	db
+
 
 wc40c:: ds 1 ; c40c
 wc40d:: ds 1 ; c40d
@@ -115,12 +115,12 @@ wc41a:: db ; c41a
 wSpriteAnimIDBuffer:: db ; c4c0
 
 	ds 6
-	
+
 wc4c7:: db ; c4c7
 wc4c8:: db ; c4c8
 
 	ds 7
-	
+
 wNamingScreenDestinationPointer:: dw ; c4d0
 wNamingScreenCurNameLength:: db ; c4d2
 wNamingScreenMaxNameLength:: db ; c4d3
@@ -129,9 +129,9 @@ wNamingScreenCursorObjectPointer:: dw ; c4d5
 wNamingScreenLastCharacter:: db ; c4d7
 wNamingScreenStringEntryCoordY:: db ; c4d8
 wNamingScreenStringEntryCoordX:: db ; c4d9
-	
+
 	ds 64
-	
+
 wc51a:: ds 1 ; c51a
 
 ENDU
@@ -144,7 +144,7 @@ wMapScriptNumber:: db ; c5e8
 wMapScriptNumberLocation:: dw ; c5e9
 wUnknownMapPointer:: dw ; c5eb ; TODO
 wc5ed:: db ; c5ed
-    ds 18
+	ds 18
 wMapBufferEnd:: ; c600
 
 
@@ -156,9 +156,9 @@ wOverworldMapBlocksEnd:: ; cb14
 NEXTU
 
 wLYOverrides:: ; c600
-    ds SCREEN_HEIGHT_PX
+	ds SCREEN_HEIGHT_PX
 ; c690
-    ds $10
+	ds $10
 wLYOverrides2:: ; c6a0
 
 NEXTU
@@ -206,13 +206,13 @@ wBattleAnimTempAddSubFlags:: db
 wBattleAnimTempPalette:: db
 ENDU ; c813
 
-        ds $32
+	ds $32
 wBattleAnimEnd::
 ; c845
 
 	ds $1aa ; TODO
-	
-	
+
+
 wc9ef:: ds 1 ; c9ef
 
 	ds 6
@@ -227,7 +227,7 @@ wca04:: ds 1 ; ca04
 	ds 3
 
 wca08:: ds 1 ; ca08
-wca09:: ds 1 ; ca09	
+wca09:: ds 1 ; ca09
 wca0a:: ds 1 ; ca0a
 
 	ds 5 ; TODO
@@ -252,7 +252,7 @@ wca3e:: ds 1 ; ca3e
 wca3f:: ds 1 ; ca3f
 wca40:: ds 1 ; ca40
 wca41:: ds 1 ; ca41
-	
+
 wEnemySubStatus3:: db ; ca42
 
 wca43:: db ; ca43
@@ -268,9 +268,9 @@ wca59:: ds 1 ; ca59
 wca5a:: ds 1 ; ca5a
 wca5b:: ds 1 ; ca5b
 wca5c:: ds 1 ; ca5c
-	
+
 	ds $5c
-	
+
 wcab9:: ds 1 ; cab9
 
 	ds 6
@@ -278,19 +278,19 @@ wcab9:: ds 1 ; cab9
 wcac0:: ds 1 ; cac0
 wcac1:: ds 1 ; cac1
 wcac2:: ds 1 ; cac2
-	
+
 wLinkBattleRNCount:: db ; cac3
 
 	ds 12
-	
+
 wcad0:: ds 1 ; cad0
 
 	ds 9
-	
+
 wcada:: ds 1 ;cada
 
 	ds 6
-	
+
 wcae1:: ds 1 ; cae1
 
 ENDU
@@ -303,7 +303,7 @@ SECTION "CB14", WRAM0[$CB14]
 UNION
 wRedrawRowOrColumnSrcTiles:: ; cb14
 ; the tiles of the row or column to be redrawn by RedrawRowOrColumn
-    ds SCREEN_WIDTH * 2
+	ds SCREEN_WIDTH * 2
 NEXTU
 wRedrawFlashlightDst0:: dw ; cb14
 wRedrawFlashlightSrc0:: dw ; cb16
@@ -359,7 +359,7 @@ wVBCopyFarSrcBank:: ds 1 ; cb76
 wPlayerMovement:: db ; cb77
 wMovementObject:: db ; cb78
 	ptrba wMovementData ; cb79
-	
+
 wcb7c:: ds 1 ; cb7c
 
 SECTION "Collision buffer", WRAM0[$CB90]
@@ -434,15 +434,15 @@ wVBlankOccurred: db ; cc33
 wLastSpawnMapGroup: db ;cc34
 wLastSpawnMapNumber: db ; cc35
 
-    ds 2
+	ds 2
 
 ;Controls what type of opening (fire/notes) you get.
 wcc38::
 wTitleSequenceOpeningType:: ; cc38
-    db
+	db
 
 wDefaultSpawnPoint:: ; cc39
-    db
+	db
 
 wMovementBufferCount:: db ; cc3a
 wMovementBufferObject:: db ; cc3b
@@ -456,10 +456,10 @@ wSkatingDirection:: db ; cc9a
 wCompanionCollisionFrameCounter:: db ; cc9b
 
 wUnknownWordcc9c:: ; cc9c
-    dw
+	dw
 
 wUnknownBuffercc9e:: ; cc9e
-    ds 14
+	ds 14
 
 
 wSpriteCurPosX          : ds 1 ; ccac
@@ -507,7 +507,7 @@ wccd2:: ds 1 ; ccd2
 wccd3:: ds 1 ; ccd3
 
 	ds 5
-	
+
 wccd9:: ds 1 ; ccd9
 
 SECTION "CCE1", WRAM0[$CCE1]
@@ -518,11 +518,11 @@ wcce3:: ds 1 ; cce3
 wcce4:: ds 1 ; cce4
 
 	ds 6
-	
+
 wcceb:: ds 1 ; cceb
-	
+
 	ds 5
-	
+
 wccf1:: ds 1 ; ccf1
 wccf2:: ds 1 ; ccf2
 wccf3:: ds 1 ; ccf3
@@ -575,16 +575,16 @@ wQueuedScriptBank:: db ; cd4c
 wQueuedScriptAddr:: dw ; cd4d
 
 wPredefID:: ; cd4f
-    db
+	db
 
 wPredefHL:: ; cd50
-    dw
+	dw
 wPredefDE:: ; cd52
-    dw
+	dw
 wPredefBC:: ; cd54
 
 wFarCallBCBuffer:: ; cd54
-    dw
+	dw
 
 wcd56:: ds 1 ; cd56
 wcd57:: ds 1 ; cd57
@@ -626,8 +626,8 @@ SECTION "CDAF", WRAM0 [$CDAF]
 wcdaf:: db ; cdaf
 
 SECTION "CDB0", WRAM0 [$CDB0]
-wTalkingTargetType:: db ; cdb0 
-;bit 0 = has engaged NPC in dialogue 
+wTalkingTargetType:: db ; cdb0
+;bit 0 = has engaged NPC in dialogue
 ;bit 1 = has engaged sign in dialogue
 
 wcdb1:: ds 1 ; cdb1
@@ -643,10 +643,10 @@ wCurPartyLevel:: db ; cdbb
 SECTION "CDBD", WRAM0[$CDBD]
 
 wLinkMode:: db ; cdbd
-; 00 - 
-; 01 - 
-; 02 - 
-; 03 -  
+; 00 -
+; 01 -
+; 02 -
+; 03 -
 
 wNextWarp:: db ; cdbe
 wNextMapGroup:: db ; cdbf
@@ -681,7 +681,7 @@ wcdda:: ds 1 ; cdda
 wcddb:: ds 1 ; cddb
 wcddc:: ds 1 ; cddc
 wcddd:: ds 1 ; cddd
-wcdde:: ds 1 ; cdde	
+wcdde:: ds 1 ; cdde
 wcddf:: ds 1 ; cddf
 wcde0:: ds 1 ; cde0
 wcde1:: ds 1 ; cde1
@@ -714,63 +714,63 @@ wMonHeader::
 wMonHIndex:: ; ce07
 ; In the ROM base stats data structure, this is the dex number, but it is
 ; overwritten with the dex number after the header is copied to WRAM.
-    ds 1
+	ds 1
 
 wMonHBaseStats:: ; ce08
 wMonHBaseHP:: ; ce08
-    ds 1
+	ds 1
 wMonHBaseAttack:: ; ce09
-    ds 1
+	ds 1
 wMonHBaseDefense:: ; ce0a
-    ds 1
+	ds 1
 wMonHBaseSpeed:: ; ce0b
-    ds 1
+	ds 1
 wMonHBaseSpecialAtt:: ; ce0c
-    ds 1
+	ds 1
 wMonHBaseSpecialDef:: ; ce0d
-    ds 1
+	ds 1
 
 wMonHTypes:: ; ce0e
 wMonHType1:: ; ce0e
-    ds 1
+	ds 1
 wMonHType2:: ; ce0f
-    ds 1
+	ds 1
 
 wMonHCatchRate:: ; ce10
-    ds 1
+	ds 1
 wMonHBaseEXP:: ; ce11
-    ds 1
+	ds 1
 
 wMonHItems:: ; ce12
 wMonHItem1:: ; ce12
-    ds 1
+	ds 1
 wMonHItem2:: ; ce13
-    ds 1
+	ds 1
 
 wMonHGenderRatio:: ; ce14
-    ds 1
+	ds 1
 
 wMonHUnk0:: ; ce15
-    ds 1
+	ds 1
 wMonHUnk1:: ; ce16
-    ds 1
+	ds 1
 wMonHUnk2:: ; ce17
-    ds 1
+	ds 1
 
 wMonHSpriteDim:: ; ce18
-    ds 1
+	ds 1
 wMonHFrontSprite:: ; ce19
-    ds 2
+	ds 2
 wMonHBackSprite:: ; ce1b
-    ds 2
+	ds 2
 
 wMonHGrowthRate:: ; ce1d
-    ds 1
+	ds 1
 
 wMonHLearnset:: ; ce1e
 ; bit field
-    flag_array 50 + 5 ; size = 7
-    ds 1
+	flag_array 50 + 5 ; size = 7
+	ds 1
 
 SECTION "CE2D", WRAM0[$CE2D]
 wce2d:: ds 1 ; ce2d
@@ -785,19 +785,19 @@ wce35:: ds 1 ; ce35
 wce36:: ds 1 ; ce36
 
 wNamedObjectIndexBuffer::
-wCountSetBitsResult:: 
+wCountSetBitsResult::
 wce37:: ; ce37
-    db
+	db
 
 SECTION "CE3A", WRAM0[$CE3A]
 
 wce3a:: ds 1 ; ce3a
 
 wVBlankSavedROMBank:: ; ce3b
-    db
+	db
 
 wBuffer:: ; ce3c
-    db
+	db
 
 wTimeOfDay:: db ; ce3d
 ; based on RTC
@@ -812,7 +812,7 @@ wcd3f: ds 1
 SECTION "CE5F", WRAM0[$CE5F]
 
 wce5f:: ; ce5f ; debug menu writes $41 to it
-    db
+	db
 
 wce60:: ; ce60
 	db ; main menu checks this, maybe states if there's a save present?
@@ -829,7 +829,7 @@ wDebugFlags:: db ; ce63
 wce64:: ds 1 ; ce64
 wce65:: ds 1 ; ce65
 wce66:: ds 1 ; ce66
-	
+
 wPlayerName:: ds 6 ; ce67
 
 wMomsName:: ds 6 ; ce6d
@@ -841,9 +841,9 @@ wce74: ds 1 ; ce74
 wce75: ds 1 ; ce75
 
 wObjectFollow_Leader:: ; ce76
-    db
+	db
 wObjectFollow_Follower:: ; ce77
-    db
+	db
 wCenteredObject:: ; ce78
 	db
 wFollowerMovementQueueLength:: ; ce79
@@ -908,7 +908,7 @@ wd153:: db ; d153
 ; |      \- show player coords in toolgear instead of time
 ; \-------- switch overworld palettes according to seconds not hours
 
-    ds 3 ; TODO
+	ds 3 ; TODO
 wTimeOfDayPalFlags:: db ; d157
 ; 76543210
 ; \-------- disable overworld palette switch
@@ -959,7 +959,7 @@ wNumBallItems:: db ; d1de
 wBallQuantities:: db ; d1df
 
 	ds 10
-	
+
 wUnknownListLengthd1ea:: db ; d1ea
 wUnknownListd1eb:: db ; d1eb
 
@@ -977,7 +977,7 @@ wPlayerState:: db ; d264
 
 wd265:: db ; d265
 wd266:: db ; d266
-	
+
 ;The starting house's map script number is stored at d29a. Others are probably nearby.
 SECTION "D29A", WRAM0[$D29A]
 wd29a:: db ; d29a
@@ -1004,7 +1004,7 @@ wd41a:: db
 ; \-------- talked to Blue, triggers Oak
 wd41b:: db
 ; 76543210
-;      |\-- followed Oak to his back room 
+;      |\-- followed Oak to his back room
 ;      \--- chose a starter
 wd41c:: db
 ; 76543210
@@ -1044,25 +1044,25 @@ SECTION "Warp data", WRAM0[$D513]
 wWarpNumber:: db ; d513
 
 wCurrMapWarpCount:: ; d514
-    db
+	db
 
 wCurrMapWarps:: ; d515
 REPT 32 ; TODO: confirm this
-    ds 5
+	ds 5
 ENDR
 
 
 wCurrMapSignCount:: ; d5b5
-    db
+	db
 
 wCurrMapSigns:: ; d5b6
 REPT 16 ; TODO: confirm this
-    ds 4
+	ds 4
 ENDR
 
 wCurrMapObjectCount:: ; d5f6
-    db
-	
+	db
+
 wCurrMapInlineTrainers:: ; d5f7
 REPT 32 ; TODO: confirm this
 	ds 2 ; inline trainers. each pair of bytes is direction, distance
@@ -1079,10 +1079,10 @@ wBGMapAnchor:: ; d643
 
 wUsedSprites:: ; d645
 	dw ; This is for the player
-	
+
 wUsedNPCSprites:: ;d647
 	ds 2 * 5 ; This is for the NPCs
-	
+
 wUsedSpritesEnd:: ; d651
 
 
@@ -1105,30 +1105,30 @@ wd65e:: ; d65e
 
 wMapPartial:: ; d65f
 wMapAttributesBank:: ; d65f
-    db
+	db
 wMapTileset:: ; d660
-    db
+	db
 wMapPermissions:: ; d661
-    db
+	db
 wMapAttributesPtr:: ; d662
-    dw
+	dw
 wMapPartialEnd:: ; d664
 
 wMapAttributes:: ; d664
 wMapHeight:: ; d664
-    db
+	db
 wMapWidth:: ; d665
-    db
+	db
 wMapBlocksPointer:: ; d666
 	dw
 wMapTextPtr::
 	dw
 wMapScriptPtr:: ; d66a
-    dw
+	dw
 wMapObjectsPtr:: ; d66c
-    dw
+	dw
 wMapConnections:: ; d66e
-    db
+	db
 wMapAttributesEnd:: ; d66f
 
 wNorthMapConnection:: map_connection_struct wNorth ; d66f
@@ -1171,11 +1171,11 @@ wPartyMonNicknames:: ; d7f6
 wPartyMonNicknamesEnd:: ; d81a
 
 wPokedexOwned::    ; d81a
-    flag_array NUM_POKEMON
+	flag_array NUM_POKEMON
 wPokedexOwnedEnd:: ; d839
 
 wPokedexSeen::     ; d83a
-    flag_array NUM_POKEMON
+	flag_array NUM_POKEMON
 wPokedexSeenEnd::  ; d859
 
 wAnnonDex:: ds 26  ; d85a
@@ -1188,7 +1188,7 @@ wd876:: ds 1 ; d876
 	ds 5
 
 wd87c:: ds 1 ; d87c
-	
+
 	ds 5
 
 wd882:: ds 1 ; d882
@@ -1203,7 +1203,7 @@ wd8a4:: ds 1 ; d8a4
 wd8a5:: ds 1 ; d8a5
 
 	ds 5
-	
+
 wd8ab:: ds 1 ; d8ab
 
 SECTION "wd8b1", WRAM0[$D8B1]
@@ -1211,7 +1211,7 @@ SECTION "wd8b1", WRAM0[$D8B1]
 wd8b1:: ds 1 ; d8b1
 
 	ds 5
-	
+
 wd8b7:: ds 1 ; d8b7
 wd8b8:: ds 1 ; d8b8
 
@@ -1220,11 +1220,11 @@ SECTION "D8D1", WRAM0[$D8D1]
 wd8d1:: ds 1 ; d8d1
 
 	ds 5
-	
+
 wd8d7:: ds 1 ; d8d7
 
 	ds 5
-	
+
 wd8dd:: ds 1 ; d8dd
 
 SECTION "D8E3", WRAM0[$D8E3]
@@ -1239,7 +1239,7 @@ wd8fd:: ds 1 ; d8fd
 SECTION "D913", WRAM0[$D913]
 
 wd913:: ds 1 ; d913
-	
+
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
 UNION

@@ -109,32 +109,32 @@ Table416b:
 
 Unknown41eb: ; 01:41eb
 	db $00, $01, $02, $03
-	
+
 Unknown41ef: ; 01:41ef
 	db $80, $81, $82, $83
-	
+
 Unknown41f3: ; 01:41f3
 	db $04, $05, $06, $07
-	
+
 Unknown41f7: ; 01:41f7
 	db $84, $85, $86, $87
-	
+
 Unknown41fb: ; 01:41fb
 	db $08, $09, $0a, $0b
-	
+
 Unknown41ff: ; 01:41ff
 	db $88, $89, $8a, $8b
-	
+
 Unknown4203: ; 01:4203
 	db $00, $00, $00, $00
 	db $08, $00, $08, $00
 	db $02, $08, $08, $03
-	
+
 Unknown420f: ; 01:420f
 	db $00, $08, $20, $00
 	db $00, $20, $08, $08
 	db $22, $08, $00, $23
-	
+
 Table421b: ; 01:421b
 	dw Unknown423b
 	dw Unknown424b
@@ -152,13 +152,13 @@ Table421b: ; 01:421b
 	dw Unknown42cb
 	dw Unknown42ab
 	dw Unknown42cb
-	
+
 Unknown423b: ; 01:423b
 	db $00, $00, $00, $00
 	db $00, $08, $01, $00
 	db $08, $00, $02, $02
 	db $08, $08, $03, $03
-	
+
 Unknown424b: ; 01:424b
 	db $00, $00, $80, $00
 	db $00, $08, $81, $00
@@ -170,49 +170,49 @@ Unknown425b: ; 01:425b
 	db $00, $00, $81, $20
 	db $08, $08, $82, $22
 	db $08, $00, $83, $23
-	
+
 Unknown426b: ; 01:426b
 	db $00, $00, $04, $00
 	db $00, $08, $05, $00
 	db $08, $00, $06, $02
 	db $08, $08, $07, $03
-	
+
 Unknown427b: ; 01:427b
 	db $00, $00, $84, $00
 	db $00, $08, $85, $00
 	db $08, $00, $86, $02
 	db $08, $08, $87, $03
-	
+
 Unknown428b: ; 01:428b
 	db $00, $08, $84, $20
 	db $00, $00, $85, $20
 	db $08, $08, $86, $22
 	db $08, $00, $87, $23
-	
+
 Unknown429b: ; 01:429b
 	db $00, $00, $08, $00
 	db $00, $08, $09, $00
 	db $08, $00, $0a, $02
 	db $08, $08, $0b, $03
-	
+
 Unknown42ab: ; 01:42ab
 	db $00, $08, $08, $20
 	db $00, $00, $09, $20
 	db $08, $08, $0a, $22
 	db $08, $00, $0b, $23
-	
+
 Unknown42bb: ; 01:42bb
 	db $00, $00, $88, $00
 	db $00, $08, $89, $00
 	db $08, $00, $8a, $02
 	db $08, $08, $8b, $03
-	
+
 Unknown42cb: ; 01:42cb
 	db $00, $08, $88, $20
 	db $00, $00, $89, $20
 	db $08, $08, $8a, $22
 	db $08, $00, $8b, $23
-	
+
 Function42db: ; 01:42db
 	ld bc, wCmdQueue
 	ld a, $01
@@ -256,7 +256,7 @@ Function42db: ; 01:42db
 	ld h, [hl]
 	ld l, a
 	jp hl
-	
+
 Table431d::
 	dw Function4333
 	dw Function439e
@@ -264,14 +264,14 @@ Table431d::
 	dw Function4374
 	dw Function4374
 	dw Function43c9
-	
+
 Table4329::
 	dw Function4334
 	dw Function4452
 	dw Function4459
 	dw Function446c
 	dw Function4495
-	
+
 Function4333: ; 01:4333
 	ret
 
@@ -338,11 +338,11 @@ Function4366: ; 01:4366
 Function4374: ; 01:4374
 	ld de, Table437a
 	jp Function4358
-	
+
 Table437a: ; 01:437a
 	dw Function437e
 	dw Function439b
-	
+
 Function437e: ; 01:437e
 	call Function4341
 	ld hl, $000e
@@ -360,14 +360,14 @@ Function437e: ; 01:437e
 	ld hl, $0007
 	add hl, bc
 	ld [hl], a
-	
+
 Function439b: ; 01:439b
 	jp Function4402
 
 Function439e: ; 01:439e
 	ld de, Table43a4
 	jp Function4358
-	
+
 Table43a4: ; 01:43a4
 	dw Function43a8
 	dw Function43c6
@@ -464,11 +464,11 @@ Function4402: ; 01:4402
 Function4430: ; 01:4430
 	ld hl, Table4436
 	jp Function4358
-	
+
 Table4436: ; 01:4436
 	dw Function443a
 	dw Function444f
-	
+
 Function443a: ; 01:443a
 	call Function4341
 	ld hl, $000b
@@ -549,39 +549,39 @@ Function4495: ; 01:4495
 	add hl, bc
 	ld [hl], a
 	ret
-	
+
 Table44ab: ; 01:44ab
 	dw Unknown44b5
 	dw Unknown44b6
 	dw Unknown44c7
 	dw Unknown44d0
 	dw Unknown44e1
-	
+
 Unknown44b5: ; 01:44b5
 	db $00
-	
+
 Unknown44b6: ; 01:44b6
 	db $04, $00, $00, $00
 	db $00, $00, $08, $01
 	db $00, $08, $00, $02
 	db $00, $08, $08, $03, $00
-	
+
 Unknown44c7: ; 01:44c7
 	db $02, $00, $00, $00
 	db $00, $00, $08, $00, $20
-	
+
 Unknown44d0: ; 01:44d0
 	db $04, $00, $00, $00
 	db $00, $00, $08, $00
 	db $00, $08, $00, $00
 	db $00, $08, $08, $00, $00
-	
+
 Unknown44e1: ; 01:44e1
 	db $04, $00, $00, $00
 	db $40, $00, $08, $00
 	db $40, $08, $00, $00
 	db $40, $08, $08, $00, $40
-	
+
 Function44f2: ; 01:44f2
 	ld hl, $0008
 	add hl, bc
@@ -605,7 +605,7 @@ Function44f2: ; 01:44f2
 	ld h, [hl]
 	ld l, a
 	jp hl
-	
+
 Table4516::
 	dw Function486a
 	dw Function47b8
@@ -627,13 +627,13 @@ Table4516::
 	dw Function4a05
 	dw Function4a8b
 	dw Function4869
-	
+
 Function453e: ; 01:453e
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $02
 	ret
-	
+
 Function4545: ; 01:4545
 	ld hl, $0005
 	add hl, bc
@@ -644,7 +644,7 @@ Function4545: ; 01:4545
 	ld a, [hl]
 	ld hl, Table4558
 	jp CallJumptable
-	
+
 Table4558: ; 01:4558
 	dw Function4560
 	dw Function4567
@@ -729,7 +729,7 @@ Function45a0: ; 01:45a0
 	add hl, bc
 	ld [hl], a
 	ret
-	
+
 Unknown45d0: ; 01:45d0
 	db $00, $0C, $04, $08
 
@@ -806,7 +806,7 @@ Function4636: ; 01:4636
 	res 7, [hl]
 	and a
 	ret
-	
+
 Function4644: ; 01:4644
 	ld hl, $0005
 	add hl, bc
@@ -860,7 +860,7 @@ Function4678: ; 01:4678
 	add hl, bc
 	ld [hl], $ff
 	ret
-	
+
 Function468a: ; 01:468a
 	and $0f
 	ld hl, $0006
@@ -938,7 +938,7 @@ Function46e5: ; 01:46e5
 	ld a, [hli]
 	ld h, [hl]
 	ret
-	
+
 Function46f9: ; 01:46f9
 	ld hl, $0006
 	add hl, bc
@@ -950,10 +950,10 @@ Function46f9: ; 01:46f9
 	add hl, de
 	ld a, [hl]
 	ret
-	
+
 Table4708: ; 01:4708
 	db $00, $01, $10
-	
+
 Table470b: ; 01:470b
 	db $01, $00, $ff
 	db $10, $01, $ff
@@ -1068,7 +1068,7 @@ Function47b8: ; 01:47b8
 	and $1f
 	ld hl, Table47c5
 	jp CallJumptable
-	
+
 Table47c5: ; 01:47c5
 	dw Function47fb
 	dw Function4812
@@ -1205,7 +1205,7 @@ Function486a: ; 01:486a
 	add hl, bc
 	ld [hl], a
 	ret
-	
+
 Function488c: ; 01:488c
 	call Function468a
 	call Function771e
@@ -1262,7 +1262,7 @@ Function48da: ; 01:48da
 	add hl, bc
 	ld [hl], a
 	jp Function4b65
-	
+
 Function48f5: ; 01:48f5
 	ld hl, $0008
 	add hl, bc
@@ -1368,11 +1368,11 @@ Function497a: ; 01:497a
 	add hl, bc
 	ld [hl], a
 	ret
-	
+
 Table4994: ; 01:4994
 	db $00, $FF, $FE, $FD
 	db $FC, $FD, $FE, $FF
-	
+
 Function499c: ; 01:499c
 	call Function46f9
 	ld hl, $001f
@@ -1411,7 +1411,7 @@ Function499c: ; 01:499c
 	add hl, bc
 	ld [hl], $02
 	ret
-	
+
 Unknown49dc: ; 01:49dc
 	db $FC, $FB, $FA, $F9
 	db $F8, $F7, $F6, $F5
@@ -1431,13 +1431,13 @@ Function49fc: ; 01:49fc
 Function4a05: ; 01:4a05
 	ld de, Table4a0b
 	jp Function47ab
-	
+
 Table4a0b: ; 01:4a0b
 	dw Function4a13
 	dw Function4a28
 	dw Function4a38
 	dw Function4a53
-	
+
 Function4a13: ; 01:4a13
 	ld hl, $001e
 	add hl, bc
@@ -1503,7 +1503,7 @@ Function4a53: ; 01:4a53
 	ld [hl], $00
 	call Function4792
 	ret
-	
+
 Function4a82: ; 01:4a82
 	ld hl, $0008
 	add hl, bc
@@ -1513,7 +1513,7 @@ Function4a82: ; 01:4a82
 Function4a8b: ; 01:4a8b
 	ld de, Table4a91
 	jp Function47ab
-	
+
 Table4a91: ; 01:4a91
 	dw Function4a9f
 	dw Function4aaf
@@ -1555,7 +1555,7 @@ Function4ab8: ; 01:4ab8
 	ld [hl], $10
 	call Function4799
 	ret
-	
+
 Function4ad4: ; 01:4ad4
 	ld hl, $000a
 	add hl, bc
@@ -1583,7 +1583,7 @@ Function4af6: ; 01:4af6
 	ld [hl], $10
 	call Function4799
 	ret
-	
+
 Function4b00: ; 01:4b00
 	ld hl, $000a
 	add hl, bc
@@ -1605,10 +1605,10 @@ Function4b0c: ; 01:4b0c
 	ld [hl], $00
 	call Function4792
 	ret
-	
+
 Function4b22: ; 01:4b22
 	call Function4792
-	
+
 Function4b25: ; 01:4b25
 	ret
 
@@ -1630,10 +1630,10 @@ Function4b26: ; 01:4b26
 	add hl, de
 	ld [hl], a
 	ret
-	
+
 Unknown4b42: ; 01:4b42
 	db $01, $01, $FC, $02, $00, $08
-	
+
 Function4b48: ; 01:4b48
 	ld e, a
 	add a
@@ -1653,7 +1653,7 @@ Function4b48: ; 01:4b48
 
 Unknown4b5f: ; 01:4b5f
 	db $05, $04, $FC, $02, $02, $08
-	
+
 Function4b65: ; 01:4b65
 	ld hl, $000a
 	add hl, bc
@@ -1733,7 +1733,7 @@ Function4bc9: ; 01:4bc9
 	add hl, bc
 	ld [hl], $ff
 	ret
-	
+
 Function4bed: ; 01:4bed
 	ld a, [wPlayerMovement]
 	jp Function4c37
@@ -1798,7 +1798,7 @@ Function4c37: ; 01:4c37
 	ld h, [hl]
 	ld l, a
 	jp hl
-	
+
 Table4c48: ; 01:4c48
 	dw Function4d94
 	dw Function4d98
@@ -2238,7 +2238,7 @@ Function4ed5: ; 01:4ed5
 Table4edb: ; 01:4edb
 	dw Function4edf
 	dw Function4efb
-	
+
 Function4edf: ; 01:4edf
 	call Function46d3
 	call Function499c
@@ -2271,12 +2271,12 @@ Function4efb: ; 01:4efb
 Function4f14: ; 01:4f14
 	ld de, Table4f1a
 	jp Function47ab
-	
+
 Table4f1a: ; 01:4f1a
 	dw Function4f20
 	dw Function4f40
 	dw Function4f4b
-	
+
 Function4f20: ; 01:4f20
 	call Function499c
 	call Function4750
@@ -2916,7 +2916,7 @@ Function52dc: ; 01:52dc
 	add hl, de
 	call PrintPlayTime
 	ret
-	
+
 SECTION "engine/dumps/bank01.asm@Function5388", ROMX
 
 Function5388: ; 01:5388
@@ -2955,7 +2955,7 @@ Function53b0: ; 01:53b0
 	ld [wce66], a
 	call CloseSRAM
 	ret
-	
+
 SECTION "engine/dumps/bank01.asm@ReanchorBGMap_NoOAMUpdate", ROMX
 
 ReanchorBGMap_NoOAMUpdate: ; 01:63d8
@@ -3016,7 +3016,7 @@ LoadFonts_NoOAMUpdate: ; 01:6437
 	ld a, $90
 	ldh [hWY], a
 	ret
-	
+
 
 Function6445: ; 01:6445
 	call BackUpTilesToBuffer
@@ -3182,7 +3182,7 @@ Function6445: ; 01:6445
 .sub_658a
 	scf
 	ret
-	
+
 Text658c: ; 01:658c
 	text_from_ram wcd11
 	text "は　あたらしく"
@@ -3198,7 +3198,7 @@ Text65a5: ; 01:65a5
 	sound_dex_fanfare_50_79
 	text_waitbutton
 	text_end
-	
+
 Text65a8: ; 01:65a8
 	text "どの　わざを"
 	next "わすれさせたい？"
@@ -3207,30 +3207,30 @@ Text65a8: ; 01:65a8
 Text65b9: ; 01:65b9
 	text "それでは<⋯⋯>　"
 	text_end
-	
+
 Text65c1: ; 01:65c1
 	text_from_ram wStringBuffer2
 	text "を"
 	line "おぼえるのを　あきらめますか？"
 	done
-	
+
 Text65d7: ; 01:65d7
 	text_from_ram wcd11
 	text "は　"
 	text_end
-	
+
 Text65de: ; 01:65de
 	text_from_ram wStringBuffer2
 	text "を"
 	line "おぼえずに　おわった！"
 	prompt
-	
+
 Text65f0: ; 01:65f0
 	text_from_ram wcd11
 	text "は　あたらしく"
 	line ""
 	text_end
-	
+
 Text65fd: ; 01:65fd
 	text_from_ram wStringBuffer2
 	text "を　おぼえたい<⋯⋯>！"
@@ -3249,11 +3249,11 @@ Text662e: ; 01:662e
 	text "の　かわりに"
 	line "ほかの　わざを　わすれさせますか？"
 	done
-	
+
 Text664b: ; 01:664b
 	text "１　２の　<⋯⋯>"
 	text_end
-	
+
 Text6653: ; 01:6653
 	text_exit
 	start_asm
@@ -3263,17 +3263,17 @@ Text6653: ; 01:6653
 	pop de
 	ld hl, Text6661
 	ret
-	
+
 Text6661:  ; 01:6661
 	text "　ポカン！"
 	text_end
-	
+
 Text6668: ; 01:6668
 	text_exit
 	text ""
 	para ""
 	text_end
-	
+
 Text666c: ; 01:666c
 	text_from_ram wcd11
 	text "は　"
@@ -3285,7 +3285,7 @@ Text6673: ; 01:6673
 	line "つかいかたを　きれいに　わすれた！"
 	para "そして<⋯⋯>！"
 	prompt
-	
+
 Text6691: ; 01:6691
 	text "それは　たいせつなわざです"
 	line "わすれさせることは　できません！"
@@ -3340,7 +3340,7 @@ Function66b1: ; 01:66b1
 	ldh [hConnectionStripLength], a
 	ldh [hSpriteOffset], a
 	ret
-	
+
 Table66fa: ; 01:66fa
 	db $32, $21, $34, $24
 	db $34, $21, $45, $55
@@ -3407,13 +3407,13 @@ Function6713: ; 01:6713
 .sub_6784
 	call CloseWindow
 	ret
-	
+
 Text6788: ; 01:6788
 	text_from_ram wStringBuffer1
 	text "に"
 	line "ニックネームを　つけますか？"
 	done
-	
+
 Function679d: ; 01:679d
 	ld de, wFieldMoveScriptID
 	push de
@@ -3482,12 +3482,12 @@ CorrectNickErrors: ; 01:67d5
 	pop de
 	pop bc
 	ret
-	
+
 Table6805:: ; 01:6805
 	db $00, $05, $14, $19, $1d
 	db $26, $35, $3a, $49, $7f
 	db $ff
-	
+
 SECTION "engine/dumps/bank01.asm@Function771e", ROMX
 
 Function771e: ; 01:771e
@@ -3569,7 +3569,7 @@ Function77a1: ; 01:77a1
 	add hl, bc
 	ld e, [hl]
 	jr _CheckObjectCollision
-	
+
 Function77ad: ; 01:77ad
 	ldh a, [hConnectionStripLength]
 	call GetObjectStruct
@@ -4048,7 +4048,7 @@ Function7a93: ; 01:7a93
 	add $f7
 	ld [hl], a
 	ret
-	
+
 Text7bad: ; 01:7bad
 	db "はなしの　はやさ"
 	next "　はやい　　　　ふつう　　　　おそい"
@@ -4075,15 +4075,15 @@ Text7c12: ; 01:7c12
 Text7c17: ; 01:7c17
 	db "　わく　を　かえる　"
 	text_end
-	
+
 Table7c22: ; 01:7c22
 	db $0F
-	
+
 Table7c23: ; 01:7c23
 	db $05, $08, $03
 	db $01, $01, $08
 	db $FF
-	
+
 Unknown7c2a: ; 01:7c2a
 rept 491
 	db $39, $00

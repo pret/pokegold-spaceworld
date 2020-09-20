@@ -41,15 +41,15 @@ Route1Gate1FText2: ; 4089
 
 Route1Gate1FText1String: ; 4090
 	text "このゲートを　ぬけると"
-	line "すぐに　オールドシティ　です" 
-	done 
-	
+	line "すぐに　オールドシティ　です"
+	done
+
 Route1Gate1FText2String: ; 40AC
 	text "オールドシティには"
 	line "あの　ゆうめいな"
 	cont "ごじゅうのとう　が　あるの"
-	
+
 	para "いってみたこと　ある？"
 	done
-	
+
 ;ends at 40D9

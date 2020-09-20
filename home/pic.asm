@@ -47,10 +47,11 @@ _UncompressSpriteData:: ; 976 (0:976)
 	add a
 	add a
 	ld [wSpriteWidth], a
+	; initialite bit1 to 0 and bit0 to the first input bit
+	; this will load two chunks of data to sSpriteBuffer1 and sSpriteBuffer2
+	; bit 0 decides in which one the first chunk is placed
 	call ReadNextInputBit
-	ld [wSpriteLoadFlags], a ; initialite bit1 to 0 and bit0 to the first input bit
-                             ; this will load two chunks of data to sSpriteBuffer1 and sSpriteBuffer2
-                             ; bit 0 decides in which one the first chunk is placed
+	ld [wSpriteLoadFlags], a
 	; fallthrough
 
 UncompressSpriteDataLoop::

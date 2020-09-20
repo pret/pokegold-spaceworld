@@ -8,8 +8,7 @@ sSpriteBuffer2:: ds SPRITEBUFFERSIZE ; a310
 
 SECTION "Unknown, bank 0", SRAM
 
-s0_a600:: ; TODO: properly label this
-    ds 7 ; TODO: figure out exact size
+s0_a600:: ds 7 ; TODO: properly label this and figure out exact size
 
 SECTION "Window Stack Top", SRAM
 sWindowStackTop:: dw

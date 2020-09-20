@@ -7,17 +7,17 @@ Unknown11d32: ; 04:5D32
 	ld a, [hl]
 	and D_UP
 	jr nz, .upJump
-	ld a, [hl] 
+	ld a, [hl]
 	and D_DOWN
 	jr nz, .downJump
 	ld a, [hl]
 	and D_LEFT
 	jr nz, .leftJump
-	ld a, [hl] 
+	ld a, [hl]
 	and D_RIGHT
 	jr nz, .rightJump
 	ret
-	
+
 .rightJump; 04:5D4A
 	ld hl, $000C
 	add hl, bc
@@ -84,9 +84,9 @@ Unknown11d32: ; 04:5D32
 	add hl, bc
 	ld [hl], a
 	ret
-	
+
 .Offsets1: ; 04:5DAB
-	db $00, $08, $10, $18, $20, $28, $30, $48, $50, $58, $60, $68, $70, $78 
-	
+	db $00, $08, $10, $18, $20, $28, $30, $48, $50, $58, $60, $68, $70, $78
+
 .Offsets2: ; 04:5DB9
 	db $00, $08, $18, $20, $30

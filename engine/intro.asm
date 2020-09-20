@@ -19,7 +19,7 @@ DemoStart:: ; 558D
 	ldh [rOBP0], a
 	call DemoSetUpPlayer
 	jp IntroCleanup
-	
+
 GameStart:: ; 55BB
 	ld de, OakPic
 	lb bc, BANK(OakPic), $00
@@ -94,7 +94,7 @@ GameStart:: ; 55BB
 	call Bankswitch
 	ld c, $04
 	call DelayFrames
-	
+
 IntroCleanup:: ; 568E
 	ld de, ShrinkPic1
 	lb bc, BANK(ShrinkPic1), $00
@@ -122,7 +122,7 @@ IntroCleanup:: ; 568E
 	ld a, $00
 	ld [wd638], a
 	ld [wd637], a
-	
+
 OverworldStart::
 	call SetUpGameEntry
 	ld hl, wDebugFlags
@@ -131,7 +131,7 @@ OverworldStart::
 	ld hl, wd4a9
 	set 0, [hl]
 	jp Function2a85
-	
+
 SetUpGameEntry:: ; 56E8
 	ld a, $04
 	ld [wd65e], a
@@ -149,16 +149,16 @@ SetUpGameEntry:: ; 56E8
 	ld bc, wd65e - wMapGroup
 	call CopyBytes
 	ret
-	
+
 GameStartPlacement:: ; 570D
-	db $01 ; map group 
+	db $01 ; map group
 	db MAP_PLAYER_HOUSE_2F ; map
 	dwcoord 15, 45 ; screen anchor
 	db $04 ; metatile x
 	db $04 ; metatile y
 	db $00 ; in-metatile x
 	db $01 ; in-metatile y
-	
+
 DebugSetUpPlayer:: ; 5715
 	call SetPlayerNamesDebug
 	ld a, $0F
@@ -184,17 +184,17 @@ DebugSetUpPlayer:: ; 5715
 	ld [hl], $01
 	call Function40fd
 	ret
- 
+
 DebugFillPokedex:: ; 5755
 	ld b, $1F
 	ld a, $FF
 .loop
 	ld [hl+], a
 	dec b
-	jr nz, .loop 
+	jr nz, .loop
 	ld [hl], $07
 	ret
-	
+
 FillBagWithList:: ; 5760
 	ld hl, wNumBagItems
 .loop
@@ -203,37 +203,37 @@ FillBagWithList:: ; 5760
 	jr z, .yump
 	ld [wCurItem], a
 	inc de
-	ld a, [de] 
+	ld a, [de]
 	inc de
 	ld [wItemQuantity], a
 	call ReceiveItem
 	jr .loop
 .yump
 	ret
-	
+
 DebugBagItems:: ; 5777
-	db ITEM_IMPORTANT_BAG, $01 
-	db ITEM_BAG, $01 
-	db ITEM_TM_HOLDER, $01 
-	db ITEM_BALL_HOLDER, $01 
-	db ITEM_BICYCLE, $01 
-	db ITEM_MAIL, $06 
-	db ITEM_ULTRA_BALL, $1E 
-	db ITEM_POKE_BALL, $63 
-	db ITEM_POTION, $1E 
-	db ITEM_RARE_CANDY, $14 
-	db ITEM_MOON_STONE, $63 
-	db ITEM_FULL_HEAL, $63 
-	db ITEM_PROTEIN, $63 
-	db ITEM_QUICK_NEEDLE, $63 
-	db ITEM_SNAKESKIN, $63 
-	db ITEM_KINGS_ROCK, $63 
-	db ITEM_FLEE_FEATHER, $63 
-	db ITEM_FOCUS_ORB, $63 
-	db ITEM_SHARP_SCYTHE, $63 
-	db ITEM_DETECT_ORB, $63 
+	db ITEM_IMPORTANT_BAG, $01
+	db ITEM_BAG, $01
+	db ITEM_TM_HOLDER, $01
+	db ITEM_BALL_HOLDER, $01
+	db ITEM_BICYCLE, $01
+	db ITEM_MAIL, $06
+	db ITEM_ULTRA_BALL, $1E
+	db ITEM_POKE_BALL, $63
+	db ITEM_POTION, $1E
+	db ITEM_RARE_CANDY, $14
+	db ITEM_MOON_STONE, $63
+	db ITEM_FULL_HEAL, $63
+	db ITEM_PROTEIN, $63
+	db ITEM_QUICK_NEEDLE, $63
+	db ITEM_SNAKESKIN, $63
+	db ITEM_KINGS_ROCK, $63
+	db ITEM_FLEE_FEATHER, $63
+	db ITEM_FOCUS_ORB, $63
+	db ITEM_SHARP_SCYTHE, $63
+	db ITEM_DETECT_ORB, $63
 	db $FF
-	
+
 GiveRandomPokemon:: ; 57A0
 	and a
 	ret z
@@ -246,9 +246,9 @@ GiveRandomPokemon:: ; 57A0
 	dec a
 	jr nz, .loop
 	ret
- 
+
 GiveRandomJohto::  ; 57B0
-.loop  
+.loop
 	call Random
 	and $03
 	jr z, .loop
@@ -262,7 +262,7 @@ GiveRandomJohto::  ; 57B0
 	ld a, $8D
 	ld [wPartyMon1 + 1], a
 	ret
-  
+
 GiveKantoStarters:: ; 57C8
 	ld a, $03
 	ld b, $20
@@ -274,7 +274,7 @@ GiveKantoStarters:: ; 57C8
 	ld b, $24
 	call GivePokemon
 	ret
-	
+
 GivePokemon:: ; 57DE
 	ld [wMonDexIndex], a
 	ld a, b
@@ -282,7 +282,7 @@ GivePokemon:: ; 57DE
 	ld a, $10
 	call Predef
 	ret
-	
+
 AddRandomPokemonToBox: ; 57EB
 	and a
 	ret z
@@ -302,9 +302,9 @@ AddRandomPokemonToBox: ; 57EB
 	dec a
 	jr nz, .loop
 	ret
-	
+
 RandomUnder246:: ; 5818
-.loop	
+.loop
 	call Random
 	and a
 	jr z, .loop
@@ -321,7 +321,7 @@ FillTMs:: ; 5823
 	dec b
 	jr nz, .loop
 	ret
-	
+
 DebugGiveKeyItems:: ; 582F
 	ld hl, DebugKeyItemsList
 	ld de, wKeyItems
@@ -343,7 +343,7 @@ DebugKeyItemsList:: ; 5844
 	db ITEM_BAG
 	db ITEM_BICYCLE
 	db $FF
-	
+
 DemoSetUpPlayer:: ; 5849
 	ld hl, wPlayerName
 	ld de, DemoPlayerName
@@ -356,130 +356,130 @@ DemoSetUpPlayer:: ; 5849
 	call FillBagWithList
 	call GiveRandomJohto
 	ret
-	
+
 DemoItemList:: ; 5868
-	db ITEM_POKE_BALL, $05 
-	db ITEM_POTION, $0A 
-	db ITEM_FULL_HEAL, $0A 
-	db ITEM_STIMULUS_ORB, $01 
-	db ITEM_FOCUS_ORB, $01 
+	db ITEM_POKE_BALL, $05
+	db ITEM_POTION, $0A
+	db ITEM_FULL_HEAL, $0A
+	db ITEM_STIMULUS_ORB, $01
+	db ITEM_FOCUS_ORB, $01
 	db $FF
-	
+
 DemoPlayerName:: ; 5873
 	db "サトシ@"
-	
+
 DemoRivalName:: ; 5877
 	db "シゲル@"
-	
+
 OakSpeechDemo:: ; 587B
-	text "ようこそ" 
+	text "ようこそ"
 	line "ポケット　モンスターの　せかいへ！"
 	cont "ごぞんじ　わしが　オーキドじゃ！"
-	
+
 	para "きょう　きみに　きてもらったのは"
 	line "ほかでもない"
 	cont "あたらしい　ずかんづくりを"
 	cont "てつだって　ほしいのじゃ！"
-	
+
 	para "もちろん"
 	line "きみの　パートナーとなる　ポケモンと"
 	cont "りュックは　ようい　しておる"
-	
+
 	para "りュックの　なかには"
 	line "キズぐすりと"
 	cont "モンスターボールが"
 	cont "はいっておるから　あんしんじゃ！"
-	
+
 	para "すでに　きみの　ライバルは"
 	line "しゅっぱつ　しとる"
-	
+
 	para "まけないよう　がんばって　くれい！"
 	prompt
-	
+
 OakSpeech1:: ; 5956
 	text "いやあ　またせた！"
-	
+
 	para "ポケット　モンスターの　せかいへ"
 	line "ようこそ！"
-	
+
 	para "わたしの　なまえは　オーキド"
-	
+
 	para "みんなからは　#　はかせと"
 	line "したわれて　おるよ"
 	prompt
-	
+
 OakSpeech2:: ; 599F
 	text "きみも　もちろん"
 	line "しっているとは　おもうが"
-	
+
 	para "この　せかいには"
 	line "ポケット　モンスターと　よばれる"
 	cont "いきもの　たちが"
 	cont "いたるところに　すんでいる！"
 	prompt
-	
+
 OakSpeech3:: ; 59E8
 	text "その　#　という　いきものを"
 	line "ひとは　ぺットに　したり"
 	cont "しょうぶに　つかったり"
 	cont "そして・・・"
-	
+
 	para "わたしは　この　#の"
 	line "けんきゅうを　してる　というわけだ"
 	prompt
-	
+
 OakSpeech4:: ; 5A35
 	text "では　はじめに　きみの　なまえを"
 	line "おしえて　もらおう！"
 	prompt
-	
+
 OakSpeech5:: ; 5A52
 	text "そして　この　しょうねんは"
 	line "きみの　おさななじみであり"
 	cont"ライバルである"
-	
+
 	para "・・・えーと？"
 	line "なまえは　なんて　いったかな？"
 	prompt
-	
+
 OakSpeech6:: ; 5A8F
 	text "さて　きみの　きねんすべき"
 	line "たびだちのひを"
 	cont "きろくしておこう！"
-	
+
 	para "じかんも　なるべく　せいかくにな！"
 	prompt
-	
+
 OakSpeech7:: ; 5AC2
 	text "<PLAYER>！"
-	
+
 	para "いよいよ　これから"
 	line "きみの　ものがたりの　はじまりだ！"
-	
+
 	para "ゆめと　ぼうけんと！"
 	line "ポケット　モンスターの　せかいへ！"
-	
+
 	para "レッツ　ゴー！"
 	done
-	
+
 SetPlayerNamesDebug:: ; 5B07
 	ld hl, DebugPlayerName
 	ld de, wPlayerName
 	call CopyNameDebug
 	ld hl, DebugRivalName
 	ld de, wRivalName
-	
+
 CopyNameDebug:
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 	ret
-	
+
 DebugPlayerName: ; 5B1D
 	db "コージ@"
-	
+
 DebugRivalName: ; 5B21
 	db "レッド@"
-	
+
 ChoosePlayerName:: ; 5B25
 	call PanPortraitRight
 	ld hl, PlayerNameMenuHeader
@@ -490,7 +490,7 @@ ChoosePlayerName:: ; 5B25
 	ld de, wPlayerName
 	call SaveCustomName
 	jr .farjump
-	
+
 .loop
 	ld b, $01
 	ld de, wPlayerName
@@ -498,7 +498,7 @@ ChoosePlayerName:: ; 5B25
 	ld a, [wPlayerName]
 	cp "@"
 	jr z, .loop
-	
+
 	call GBFadeOutToWhite
 	call ClearTileMap
 	call LoadFontExtra
@@ -511,20 +511,20 @@ ChoosePlayerName:: ; 5B25
 	ld hl, ChoosePlayerNameEndText
 	call PrintText
 	ret
-	
+
 ChoosePlayerNameEndText: ; 5B6F
 	text "ふむ・・・"
 	line "<PLAYER>　と　いうんだな！"
 	prompt
-	
+
 PlayerNameMenuHeader: ; 5B81
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
 	dw PlayerNameMenuData
 	db 01 ; initial selection
-	
-PlayerNameMenuData; 5B89
-	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B 
+
+PlayerNameMenuData: ; 5B89
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
 	db 04 ; items
 	db "じぶんできめる@"
 	db "ゴールド@"
@@ -543,7 +543,7 @@ ChooseRivalName:: ; 5BA9
 	ld de, wRivalName
 	call SaveCustomName
 	jr .farjump
-	
+
 .loop
 	ld b, $02
 	ld de, wRivalName
@@ -551,7 +551,7 @@ ChooseRivalName:: ; 5BA9
 	ld a, [wRivalName]
 	cp "@"
 	jr z, .loop
-	
+
 	call GBFadeOutToWhite
 	call ClearTileMap
 	call LoadFontExtra
@@ -564,20 +564,20 @@ ChooseRivalName:: ; 5BA9
 	ld hl, ChooseRivalNameEndText
 	call PrintText
 	ret
-	
+
 ChooseRivalNameEndText: ; 5BF3
 	text "そうか　そうだったな"
 	line "<RIVAL>　という　なまえだ"
 	prompt
-	
+
 RivalNameMenuHeader: ; 5C0A
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
-	dw RivalNameMenuData 
+	dw RivalNameMenuData
 	db 01 ; initial selection
-	
+
 RivalNameMenuData: ; 5C12
-	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B 
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
 	db 04 ; items
 	db "じぶんできめる@"
 	db "シルバー@"
@@ -585,7 +585,7 @@ RivalNameMenuData: ; 5C12
 	db "ジョン@"
 	db 3
 	db "なまえこうほ@"
-	
+
 MomNamePrompt:: ; 5C31
 	ld hl, MomNameMenuHeader
 	call NamingWindow
@@ -595,7 +595,7 @@ MomNamePrompt:: ; 5C31
 	ld de, wMomsName
 	call SaveCustomName
 	jr .escape
-	
+
 .loop
 	ld b, $03
 	ld de, wMomsName
@@ -603,7 +603,7 @@ MomNamePrompt:: ; 5C31
 	ld a, [wMomsName]
 	cp "@"
 	jr z, .loop
-	
+
 	call ClearPalettes
 	call ClearTileMap
 	callab Function140d9
@@ -612,15 +612,15 @@ MomNamePrompt:: ; 5C31
 	call WaitBGMap
 .escape
 	ret
-	
+
 MomNameMenuHeader: ; 5C71
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
 	dw .MomNameMenuData
 	db 01 ; initial selection
-	
+
 .MomNameMenuData: ; 5C79
-	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B 
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
 	db 04 ; items
 	db "じぶんで　きめる@"
 	db "おかあさん@"
@@ -628,7 +628,7 @@ MomNameMenuHeader: ; 5C71
 	db "かあちゃん@"
 	db 3
 	db "なまえこうほ@"
-	
+
 NamingWindow:: ; 5C9B
 	; loads the menu header put into hl
 	call LoadMenuHeader
@@ -638,13 +638,13 @@ NamingWindow:: ; 5C9B
 	call CopyNameFromMenu
 	call CloseWindow
 	ret
-	
+
 SaveCustomName:: ; 5CAC
 	ld hl, wStringBuffer2
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 	ret
-	
+
 PanPortraitRight:: ; 5CB6
 	hlcoord 5, 4
 	ld d, $06
@@ -665,7 +665,7 @@ PanPortraitRight:: ; 5CB6
 	dec hl
 	dec c
 	jr nz, .innerLoop
-	
+
 	call WaitBGMap
 	pop bc
 	pop hl
@@ -673,7 +673,7 @@ PanPortraitRight:: ; 5CB6
 	dec b ; passed c - how many tiles right to pan?
 	jr nz, .loop
 	ret
-	
+
 PanPortraitLeft:: ; 5CD7
 	hlcoord 12, 4
 	ld b, $06
@@ -689,7 +689,7 @@ PanPortraitLeft:: ; 5CD7
 	inc hl
 	dec c
 	jr nz, .innerloop
-	
+
 	call WaitBGMap
 	pop bc
 	pop hl
@@ -697,11 +697,11 @@ PanPortraitLeft:: ; 5CD7
 	dec b
 	jr nz, .loop
 	ret
-	
+
 MenuCallSettings:: ; 5CF3
 	call SettingsScreen
 	ret
-	
+
 FadeInIntroPic: ; 5CF7
 	ld hl, IntroFadePalettes
 	ld b, 6
@@ -713,7 +713,7 @@ FadeInIntroPic: ; 5CF7
 	dec b
 	jr nz, .next
 	ret
-	
+
 IntroFadePalettes:
 	db %01010100
 	db %10101000
@@ -721,12 +721,12 @@ IntroFadePalettes:
 	db %11111000
 	db %11110100
 	db %11100100
-	
+
 MovePicLeft: ; 5D0E
 	ld a, 119
 	ldh [hWX], a
 	call DelayFrame
-	
+
 	ld a, %11100100
 	ldh [rBGP], a
 .next
@@ -737,7 +737,7 @@ MovePicLeft: ; 5D0E
 	ret z
 	ldh [hWX], a
 	jr .next
-	
+
 IntroDisplayPicCenteredOrUpperRight:: ; 5D27
 ; b = bank
 ; de = address of compressed pic
@@ -766,7 +766,7 @@ IntroDisplayPicCenteredOrUpperRight:: ; 5D27
 	ld bc, $0707
 	predef PlaceGraphic
 	ret
-	
+
 LoadStartingSprites: ; 5D5D
 	ld de, GoldSpriteGFX
 	lb bc, BANK(GoldSpriteGFX), $0C
@@ -790,11 +790,11 @@ LoadStartingSprites: ; 5D5D
 	dec c
 	jr nz, .loop
 	ret
-	
+
 GameStartSprites: ; 5D80
-	db $50, $48, $00 
-	db $50, $50, $01 
+	db $50, $48, $00
+	db $50, $50, $01
 	db $58, $48, $02
 	db $58, $50, $03
-	
+
 ; 5D8C

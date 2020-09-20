@@ -91,7 +91,7 @@ _CheckObjectCollision: ; 01:77dd
 .collision
 	scf
 	ret
-	
+
 SECTION "engine/overworld/object_collision.asm@_CheckPlayerObjectCollision", ROMX
 
 ; Sets the carry flag if the player will collide with another sprite's current or next position
@@ -102,7 +102,7 @@ _CheckPlayerObjectCollision: ; 01:7894
 	ld e, a
 	ld bc, wObjectStructs
 	xor a
-	
+
 .loop
 	ldh [hObjectStructIndexBuffer], a
 	ld hl, OBJECT_SPRITE
@@ -120,13 +120,13 @@ _CheckPlayerObjectCollision: ; 01:7894
 	ld a, [hl]
 	cp d
 	jr nz, .check_last_position
-	
+
 ; skip the player sprite
 	ldh a, [hObjectStructIndexBuffer]
 	cp PLAYER_OBJECT_INDEX
 	jr z, .next
 	jr .collision
-	
+
 .check_last_position
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
@@ -151,7 +151,7 @@ _CheckPlayerObjectCollision: ; 01:7894
 	jr nz, .loop
 	xor a
 	ret
-	
+
 .collision
 	scf
 	ret

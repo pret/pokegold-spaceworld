@@ -18,7 +18,7 @@ InitializeNewGameWRAM:
 	ld bc, $1164
 	xor a
 	call ByteFill
-	
+
 	; Lots of other setup.
 
 	pop af
@@ -61,7 +61,7 @@ InitializeNewGameWRAM:
 
 	ld a, $B8
 	ld [wd15f], a
-	
+
 	ld hl, wUnknownListLengthd1ea
 	ld a, ITEM_REPEL
 	ld [wCurItem], a
@@ -88,7 +88,7 @@ InitializeByteList:
 SECTION "engine/menu/main_menu.asm@MainMenu", ROMX
 
 MainMenu:: ; 01:53CC
-	ld hl, wd4a9 
+	ld hl, wd4a9
 	res 0, [hl]
 	call ClearTileMap
 	call GetMemSGBLayout
@@ -273,7 +273,7 @@ PlayerInfoText:
 	next "#ずかん　　　　ひき"
 	next "プレイじかん"
 	text_end
-	
+
 StartNewGame:: ; 555C
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -292,5 +292,5 @@ StartNewGame:: ; 555C
 	jp z, DemoStart
 	call DebugSetUpPlayer
 	jp IntroCleanup
-	
+
 ; 558D

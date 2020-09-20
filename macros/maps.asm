@@ -77,10 +77,10 @@ map: MACRO
 ENDM
 
 warp_event: MACRO
-    db \2, \1 ; y, x
-    db \3 ; index
-    map_id \4
-    dw \5 ; unused wOverworldMap offset
+	db \2, \1 ; y, x
+	db \3 ; index
+	map_id \4
+	dw \5 ; unused wOverworldMap offset
 ENDM
 
 bg_event: MACRO

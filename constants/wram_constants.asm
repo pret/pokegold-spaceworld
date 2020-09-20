@@ -14,7 +14,7 @@ NUM_DIRECTIONS EQU const_value
 	const BOXMON     ; 2
 	const TEMPMON    ; 3
 	const WILDMON    ; 4
-	
+
 ; wPlayerState:: ; d95d
 PLAYER_NORMAL    EQU 0
 PLAYER_BIKE      EQU 1

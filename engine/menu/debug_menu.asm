@@ -29,7 +29,7 @@ DebugJumpTable:: ; 4064
 	dw DebugMenuOptionSubGames
 	dw DebugMenuOptionMonsterTest
 	dw DebugMenuOptionName
-	
+
 DebugMenuHeader: ; 4070
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 05, 02, SCREEN_WIDTH - 7, SCREEN_HEIGHT - 1
@@ -37,12 +37,12 @@ DebugMenuHeader: ; 4070
 	db 01 ; default option
 
 .MenuData: ; 4078
-	db $A0 
+	db $A0
 	db 0 ; items
 	dw DebugMenuItems
-	db $8A, $1F 
+	db $8A, $1F
 	dw .Strings
-	
+
 .Strings
 	db "ファイト@"
 	db "フィールド@"
@@ -50,22 +50,22 @@ DebugMenuHeader: ; 4070
 	db "サブゲーム@"
 	db "モンスター@"
 	db "なまえ@"
-	
+
 DebugMenuItems:
-	db 06 
-	db 00 
-	db 01 
-	db 02 
-	db 03 
-	db 04 
-	db 05 
+	db 06
+	db 00
+	db 01
+	db 02
+	db 03
+	db 04
+	db 05
 	db -1
 
 DebugMenuOptionField:: ; 40A8
 	ld hl, wDebugFlags
 	set DEBUG_FIELD_F, [hl] ; set debug mode
 	jp StartNewGame
-	
+
 DebugMenuOptionFight:: ; 40B0
 	ld hl, wDebugFlags
 	set DEBUG_BATTLE_F, [hl]
@@ -96,7 +96,7 @@ DebugMenuOptionMonsterTest:: ; 40CB
 	callab MonsterTest
 	ld a, $e4
 	ldh [rBGP], a
-	
+
 Function40eb::
 	jp DebugMenu
 
@@ -105,5 +105,5 @@ DebugMenuOptionName:: ; 40EE
 	ld a, $e4
 	ldh [rBGP], a
 	jp DebugMenu
-	
+
 ; 40FD

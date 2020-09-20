@@ -62,7 +62,7 @@ ShizukanaOkaTrainer2: ;5681
 	ld hl, ShizukanaOkaTrainer2WonString
 	call OpenTextbox
 	ret
-	
+
 ShizukanaOkaTrainer3: ;56A8
 	ld hl, wd3a5
 	bit 2, [hl]
@@ -81,7 +81,7 @@ ShizukanaOkaTrainer3: ;56A8
 	ld hl, ShizukanaOkaTrainer3WonString
 	call OpenTextbox
 	ret
-	
+
 ShizukanaOkaTrainer4: ;56CF
 	ld hl, wd3a5
 	bit 3, [hl]
@@ -100,7 +100,7 @@ ShizukanaOkaTrainer4: ;56CF
 	ld hl, ShizukanaOkaTrainer4WonString
 	call OpenTextbox
 	ret
-	
+
 ShizukanaOkaTrainer5: ;56F6
 	ld hl, wd3a5
 	bit 4, [hl]
@@ -138,12 +138,12 @@ ShizukanaOkaTrainer6: ;571D
 	ld hl, ShizukanaOkaTrainer6WonString
 	call OpenTextbox
 	ret
-	
+
 ShizukanaOkaSignpost2: ;5744
 	ld hl, ShizukanaOkaSignpost2String
 	call OpenTextbox
 	ret
-	
+
 ShizukanaOkaSignpost1: ;574b
 	ld hl, ShizukanaOkaSignpost1String
 	call OpenTextbox

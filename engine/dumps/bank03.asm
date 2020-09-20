@@ -281,7 +281,7 @@ Functionca68: ; 03:4a68
 	pop hl
 .sub_caa0
 	ret
-	
+
 
 SECTION "engine/dumps/bank03.asm@Functiond41d", ROMX
 
@@ -337,7 +337,7 @@ Textd491: ; 03:5491
 	text "それは　とても　たいせつなモノです"
 	line "すてることは　できません！"
 	prompt
-	
+
 Functiond4b2: ; 03:54b2
 	push hl
 	push bc
@@ -385,7 +385,7 @@ Functiond4e6: ; 03:54e6
 	ret
 .sub_d4f8
 	jr Functiond505
-	
+
 Functiond4fa: ; 03:54fa
 	call Functiond51e
 	ld hl, Function8261
@@ -2239,7 +2239,7 @@ Texte1c3: ; 03:61c3
 	text "に"
 	line "なまえを　つけますか？"
 	done
-	
+
 Functione1d5: ; 03:61d5
 	call Functione284
 	ret c
@@ -2272,11 +2272,11 @@ Functione1d5: ; 03:61d5
 	call LoadFontExtra
 	call CloseWindow
 	ret
-	
+
 Texte224: ; 03:6224
 	text "なんに　するん？"
 	done
-	
+
 Datae22e: ; 03:622e
 	db $40, $00, $00, $11, $0e
 	dw Datae236
@@ -2287,10 +2287,10 @@ Datae236: ; 03:6236
 	dw Datae27c
 	db $8a, $1f
 	dw Texte23e
-	
+
 Texte23e: ; 03:623e
 	db "#の　ようすをみる@"
-	
+
 Texte248: ; 03:6248
 	db "#を　つれていく@"
 
@@ -2305,7 +2305,7 @@ Texte260: ; 03:6260
 
 Texte26a: ; 03:626a
 	db "さようなら@"
-	
+
 Tablee270: ; 03:6270
 	dw Functione5c5
 	dw Functione31b
@@ -2342,7 +2342,7 @@ Functione2a6: ; 03:62a6
 .sub_e2ae
 	and a
 	ret
-	
+
 Functione2b0: ; 03:72b0
 	ld a, [wPartyCount]
 	and a
@@ -2516,7 +2516,7 @@ Datae414: ; 03:6414
 	db $38, $64, $00, $00, $00, $03, $9d, $64
 	db $0a, $01, $02, $03, $04, $05, $06, $07
 	db $08, $09, $0a, $ff
-	
+
 Functione438: ; 03:6438
 	push de
 	ld a, [wMenuSelection]
@@ -2539,7 +2539,7 @@ Functione438: ; 03:6438
 	pop hl
 	call PlaceString
 	ret
-	
+
 Texte461: ; 03:6461
 	db "・.０１　@"
 	db "・.０２　@"
@@ -2551,7 +2551,7 @@ Texte461: ; 03:6461
 	db "・.０８　@"
 	db "・.０９　@"
 	db "・.１０　@"
-	
+
 Functione49d: ; 03:649d
 	ld h, d
 	ld l, e
@@ -2569,7 +2569,7 @@ Functione49d: ; 03:649d
 	ld de, Texte4ca
 	call PlaceString
 	ret
-	
+
 Texte4bf: ; 03:64bf
 	db "あずかっている#"
 	next "　@"
@@ -2594,7 +2594,7 @@ Functione4ce: ; 03:64ce
 	ld a, [hl]
 	call CloseSRAM
 	ret
-	
+
 Datae4e7: ; 03:64e7
 	db $02, $00, $a0
 	db $02, $48, $a5
@@ -2643,7 +2643,7 @@ Functione53e: ; 03:653e
 Functione54d: ; 03:654d
 	ld a, [wMenuSelection]
 	ret
-	
+
 Texte551: ; 03:6551
 	text "#　ボックスを　かえると"
 	line "どうじに　レポートが　かかれます"
@@ -2672,7 +2672,7 @@ Datae5a5: ; 03:65a5
 	db $40, $06, $00, $0e, $0e
 	dw Datae5ad
 	db $01
-	
+
 Datae5ad: ; 03:65ad
 	db $80, $03
 	db "ボックスきりかえ@"
@@ -2801,38 +2801,38 @@ Functione6a4: ; 03:66a4
 Texte6d0: ; 03:66d0
 	text "#を　えらんだ！"
 	prompt
-	
+
 Tablee6da: ; 03:66da
 	dw Datae6e0
 	dw wcd3c
 	dw wcd46
-	
+
 Datae6e0: ; 03:66e0
 	db $40, $03, $05, $0b, $12
 	dw Datae6e8
 	db $01
-	
+
 Datae6e8: ; 03:e6e8
 	db $00, $04
-	
+
 Datae6ea: ; 03:66ea
 	db $08, $01, $00, $aa, $d6, $09, $a6
 	db $47, $09, $ba, $47, $00, $00, $00
-	
+
 Datae6f8: ; 03:66f8
 	dw Datae6fe
 	dw wcd3c
 	dw wcd46
-	
+
 Datae6fe: ; 03:66fe
 	db $40, $03, $05, $0b, $12
 	dw Datae706
 	db $01
-	
+
 Datae706: ; 03:6706
 	db $00, $04, $08, $01, $00, $83, $da, $09
 	db $ab, $47, $09, $c1, $47, $00, $00, $00
-	
+
 Datae716: ; 03:6716
 	dw Datae71c
 	dw wcd3c
@@ -2842,7 +2842,7 @@ Datae71c: ; 03:671c
 	db $40, $04, $01, $0b, $13, $24, $67, $01
 	db $00, $04, $00, $01, $00, $83, $da, $09
 	db $d8, $47, $00, $00, $00, $00, $00, $00
-	
+
 Function6734: ; 03:6734
 	call RefreshScreen
 	call LowVolume
@@ -3423,11 +3423,11 @@ Textebdc: ; 03:6bdc
 	text "おしい！"
 	line "あと　ちょっとの　ところだったのに！"
 	prompt
-	
+
 Textebf5: ; 03:6bf5
 	text "やったー！"
 	line "@"
-	
+
 Textebfd: ; 03:6bfd
 	text_from_ram wBattleMonNickname
 	text "を　つかまえたぞ！@"
@@ -3538,7 +3538,7 @@ Functionecd5: ; 03:6cd5
 	call PlayMapMusic
 	call Function1fea
 	ret
-	
+
 Functioned00: ; 03:6d00
 	ld a, [wBattleMode]
 	and a
@@ -3651,7 +3651,7 @@ Textedd2: ; 03:6dd2
 	text "の"
 	line "きそ　ポイントが　あがった！"
 	prompt
-	
+
 
 
 Textede7: ; 03:6de7
@@ -3664,7 +3664,7 @@ Tableedf7: ; 03:6df7
 	dw Textee0f
 	dw Textee17
 	dw Textee1c
-	
+
 Textee01: ; 03:6e01
 	db "たいりょく@"
 
@@ -3679,7 +3679,7 @@ Textee17: ; 03:6e17
 
 Textee1c: ; 03:6e1c
 	db "とくしゅのうりょく@"
-	
+
 Functionee26: ; 03:6e26
 	ld a, [wCurItem]
 	ld hl, Dataee38
@@ -3694,14 +3694,14 @@ Functionee26: ; 03:6e26
 	ld c, a
 	ld b, $00
 	ret
-	
+
 Dataee38: ; 03:6e38
 	db $1a, $00
 	db $1b, $02
 	db $1c, $04
 	db $1d, $06
 	db $1f, $08
-	
+
 Functionee42: ; 03:6e42
 	ld a, [wBattleMode]
 	and a
@@ -3865,7 +3865,7 @@ Functionef17: ; 03:6f17
 	ld c, [hl]
 	pop hl
 	ret
-	
+
 Dataef77: ; 03:6f77
 	db $09, $f0, $08
 	db $0a, $f1, $10
@@ -3874,7 +3874,7 @@ Dataef77: ; 03:6f77
 	db $0d, $f4, $40
 	db $26, $f6, $ff
 	db $ff, $00, $00
-	
+
 Functionef8c: ; 03:6f8c
 	ld a, [wPartyCount]
 	and a
@@ -3923,7 +3923,7 @@ Functionef8c: ; 03:6f8c
 
 Functionefed: ; 03:6fed
 	ret
-	
+
 Functionefee: ; 03:6fee
 	ld a, [wPartyCount]
 	and a
@@ -4014,7 +4014,7 @@ Functionf05b: ; 03:705b
 	call Functionf0d8
 	call Functionf7a2
 	jp Functionf104
-	
+
 Functionf0af: ; 03:70af
 	ret
 
@@ -4175,7 +4175,7 @@ Functionf195: ; 03:7195
 	ld a, [wHPBarNewHP]
 	ld e, a
 	ret
-	
+
 Functionf19e: ; 03:719e
 	ld a, $22
 	call GetPartyParamLocation
@@ -4226,7 +4226,7 @@ Functionf1ce: ; 03:71ce
 	ldh a, [hQuotient+2]
 	ld e, a
 	ret
-	
+
 Functionf1e9: ; 03:71e9
 	push hl
 	ld a, [wCurItem]
@@ -4249,7 +4249,7 @@ Functionf1e9: ; 03:71e9
 	ld d, [hl]
 	pop hl
 	ret
-	
+
 Dataf203: ; 03:7203
 	db $2e, $32, $00
 	db $2f, $3c, $00
@@ -4258,7 +4258,7 @@ Dataf203: ; 03:7203
 	db $11, $32, $00
 	db $12, $14, $00
 	db $ff, $00, $00
-	
+
 Functionf218: ; 03:7218
 	ld a, [wcd3c]
 	dec a
@@ -4343,7 +4343,7 @@ Textf2a6: ; 03:72a6
 	text "その#には　"
 	line "つかえません"
 	done
-	
+
 Functionf2b5: ; 03:72b5
 	xor a
 	ld [wFieldMoveSucceeded], a
@@ -4519,7 +4519,7 @@ Textf3da: ; 03:73da
 Textf3ec: ; 03:73ec
 	text "<PLAYER>は"
 	line "#のふえを　ふいてみた！@"
-	
+
 Functionf3fd: ; 03:73fd
 	ld b, $08
 	ld a, [wBattleMode]
@@ -4541,16 +4541,16 @@ Functionf413: ; 03:7413
 	call MenuTextBox
 	call CloseWindow
 	ret
-	
+
 Textf424: ; 03:7424
 	text "あなたの　コイン"
 	line "@"
-	
+
 Textf42f: ; 03:742f
 	deciram wd15b, 2, 4
 	text "まい"
 	prompt
-	
+
 Functionf437: ; 03:7437
 	call Functionf49f
 	jp c, Functionf7dd
@@ -4585,7 +4585,7 @@ Functionf444: ; 03:7444
 
 Dataf46a: ; 03:746a
 	db $0a, $9d, $0a, $47
-	
+
 Functionf46e: ; 03:746e
 	call Functionf49f
 	jp c, Functionf7dd
@@ -5033,7 +5033,7 @@ Functionf7f4: ; 03:77f4
 	xor a
 	ld [wFieldMoveSucceeded], a
 	jp PrintText
-	
+
 Textf7fb: ; 03:77fb
 	text "オーキドの　ことば<⋯⋯>"
 	line "<PLAYER>よ！　こういうものには"
@@ -5051,7 +5051,7 @@ Textf832: ; 03:7832
 Textf841: ; 03:7841
 	text "つかっても　こうかがないよ"
 	prompt
-	
+
 Textf850: ; 03:7850
 	text "<TRAINER>に　ボールを　はじかれた！"
 	prompt
@@ -5105,7 +5105,7 @@ Textf8ea: ; 03:78ea
 	text_from_ram wStringBuffer2
 	text "から　おりた"
 	prompt
-	
+
 SECTION "engine/dumps/bank03.asm@Functionf960", ROMX
 
 Functionf960: ; 03:7960
@@ -5168,7 +5168,7 @@ Functionf960: ; 03:7960
 Functionf9c9: ; 03:79c9
 	ld a, [wWhichPokemon]
 	call AddNTimes
-	
+
 Functionf9cf: ; 03:79cf
 	ld a, [w2DMenuDataEnd]
 	ld c, a
@@ -5212,7 +5212,7 @@ Functionf9d9: ; 03:79d9
 	ld c, [hl]
 	ld e, $01
 	ret
-	
+
 Datafa08: ; 03:7a08
 	dbw $00, Datafa6c
 	dbw $01, Datafa6c
@@ -5248,7 +5248,7 @@ Datafa08: ; 03:7a08
 	dbw $e3, Datafaa2
 	dbw $e4, Datafaa2
 	db $ff
-	
+
 Datafa6c: ; 03:7a6c
 	db $02, $0f, $18, $0f, $47
 
@@ -5450,7 +5450,7 @@ Datafc30: ; 03:7c30
 	db $40, $04, $0d, $0b, $13
 	dw Datafc38
 	db $01
-	
+
 Datafc38: ; 03:7c38
 	db $80, $03
 	db "あずける@"
@@ -5620,12 +5620,12 @@ Textfdc7: ; 03:7dc7
 	text_from_ram wStringBuffer1
 	text "は　すでに"
 	line "@"
-	
+
 Textfdd2: ; 03:7dd2
 	text_from_ram wStringBuffer2
 	text "を　おぼえています"
 	prompt
-	
+
 Textfde0: ; 03:7de0
 	db "います"
 	prompt
@@ -5656,7 +5656,7 @@ Functionfdf3: ; 03:7df3
 	call PrintText
 	scf
 	ret
-	
+
 Textfe0a: ; 03:7e0a
 	text_from_ram wStringBuffer1
 	text "は　すでに"
@@ -5666,7 +5666,7 @@ Textfe15: ; 03:7e15
 	text_from_ram wStringBuffer2
 	text "を　おぼえています"
 	prompt
-	
+
 Datafe23: ; 03:7e23
 	db $e0, $22, $47, $24, $80, $a3, $01, $50
 	db $02, $85, $b0, $09, $35, $51, $2c, $08

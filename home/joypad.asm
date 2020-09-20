@@ -172,7 +172,7 @@ TextboxWaitPressAorB_BlinkCursor:
 ; Show a blinking cursor in the lower right-hand
 ; corner of a textbox and wait until A or B is
 ; pressed.
-; 
+;
 ; CAUTION: The cursor has to be shown when calling
 ; this function or no cursor will be shown at all.
 ; Waiting on button presses is unaffected by this.

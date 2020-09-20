@@ -61,7 +61,7 @@ ComputePathToWalkToPlayer::
 	dec a
 	cpl
 	ld h, RIGHT
-.asm_1a1d: 
+.asm_1a1d:
 	ld d, a
 	ld a, c
 	sub e
@@ -70,7 +70,7 @@ ComputePathToWalkToPlayer::
 	dec a
 	cpl
 	ld l, DOWN
-.asm_1a28: 
+.asm_1a28:
 	ld e, a
 	cp d
 	jr nc, .asm_1a32
@@ -80,7 +80,7 @@ ComputePathToWalkToPlayer::
 	ld a, d
 	ld d, e
 	ld e, a
-.asm_1a32: 
+.asm_1a32:
 	pop af
 	ld b, a
 	ld a, h
@@ -110,7 +110,7 @@ ComputePathToWalkToPlayer::
 	pop de
 	ret
 
-.Data: 
+.Data:
 	db $04, $05, $06, $07
 	db $08, $09, $0a, $0b
 	db $0c, $0d, $0e, $0f

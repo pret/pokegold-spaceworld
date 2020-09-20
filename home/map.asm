@@ -959,7 +959,7 @@ InitUnknownBuffercc9e:: ; 26f4
 	ld a, e
 	or d
 	jr z, .null
-	
+
 	ld a, [wMapBuffer]
 	ld l, a
 	ld h, 0
@@ -1579,17 +1579,17 @@ Function2a8d:: ; 00:2a8d
 
 .Pointers: ; 00:2ab1
 	dbbw $00, $55, Function2ae5
- 	dbbw $00, $55, Function2b52
-  	dbbw $00, $55, Function2b77
- 	dbbw $0e, $33, Function3904
-	dbbw $00, $55, Function2b39
- 	dbbw $0e, $33, Function391f
-  	dbbw $00, $33, Function2b78
- 	dbbw $00, $33, Function2b78
+	dbbw $00, $55, Function2b52
+	dbbw $00, $55, Function2b77
 	dbbw $0e, $33, Function3904
- 	dbbw $00, $55, Function2b79
-  	dbbw $00, $55, Function2b87
- 	dbbw $0e, $33, Function3920
+	dbbw $00, $55, Function2b39
+	dbbw $0e, $33, Function391f
+	dbbw $00, $33, Function2b78
+	dbbw $00, $33, Function2b78
+	dbbw $0e, $33, Function3904
+	dbbw $00, $55, Function2b79
+	dbbw $00, $55, Function2b87
+	dbbw $0e, $33, Function3920
 	dbbw $05, $33, Function14777
 
 Function2ae5::

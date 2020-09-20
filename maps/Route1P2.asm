@@ -96,17 +96,17 @@ Route1P2TextString3: ; 7D19
 
 Route1P2TextString4: ; 7D3B
 	text "シゲル『おっ　サトシじゃないか！"
-	
+
 	para "なんとか　ここまで　これた"
 	line "って　かんじだな"
-	
+
 	para "じつりょくが　ないのに"
 	line "むり　するなよな"
-	
+
 	para "もっと　ポケモン　あつめるとか"
 	line "いろんな　ポケモン　そだてるとか"
 	cont "やること　あるだろ？"
-	
+
 	para "ここで　ひきかえしたほうが　いいぜ！"
 	line "じゃあな"
 	done
