@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "engine/math/math.asm", ROMX
 
-_Multiply:: ; 6810
+_Multiply::
 
 ; hMultiplier is one byte.
 	ld a, 8
@@ -89,7 +89,7 @@ _Multiply:: ; 6810
 ; 6870
 
 
-_Divide:: ; 6870
+_Divide::
 	xor a
 	ldh [hMathBuffer + 0], a
 	ldh [hMathBuffer + 1], a

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/items/tmhm.asm", ROMX
 
-CanLearnTMHMMove: ; 04:528f
+CanLearnTMHMMove:
 ; Gets the index of TM or HM with move ID wce32,
 ; then checks the corresponding flag in wMonDexIndex's learnset.
 ; Sets register c to 1 if TM/HM is in learnset OR if debug is enabled.
@@ -37,7 +37,7 @@ CanLearnTMHMMove: ; 04:528f
 	pop de
 	ret
 
-GetTMHMMove: ; 04:52C1
+GetTMHMMove:
 ; converts TM/HM list index to TM/HM move ID
 	ld a, [wNamedObjectIndexBuffer]
 	dec a

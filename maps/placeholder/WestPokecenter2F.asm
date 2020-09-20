@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/WestPokecenter2F.asm", ROMX
 
-WestPokecenter2FScriptLoader:: ; 98b43 (26:4b43)
+WestPokecenter2FScriptLoader::
 	ret
 
-WestPokecenter2FTextPointers:: ; 98b44 (26:4b44)
+WestPokecenter2FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

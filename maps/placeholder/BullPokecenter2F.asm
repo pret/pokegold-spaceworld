@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/BullPokecenter2F.asm", ROMX
 
-BullPokecenter2FScriptLoader:: ; 9daf6 (27:5af6)
+BullPokecenter2FScriptLoader::
 	ret
 
-BullPokecenter2FTextPointers:: ; 9daf7 (27:5af7)
+BullPokecenter2FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

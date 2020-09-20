@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/menu/set_time.asm", ROMX
 
-SetTime: ; 36:7ae4
+SetTime:
 	ld hl, wStartHour
 	ldh a, [hRTCHours]
 	ld [hli], a
@@ -12,7 +12,7 @@ SetTime: ; 36:7ae4
 	call PrintText
 	ret
 
-Textdbaf4: ; 36:7af4
+Textdbaf4:
 	deciram wStartHour, 1, 2
 	text "　じ"
 	line "@"
@@ -72,7 +72,7 @@ Textdbaf4: ; 36:7af4
 	call Function0502
 	jp Function3036
 
-Textdbb6c: ; 36:7b6c
+Textdbb6c:
 	deciram wStartHour, 1, 2
 	text "　じ"
 	line "@"

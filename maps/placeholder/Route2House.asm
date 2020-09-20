@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/Route2House.asm", ROMX
 
-Route2HouseScriptLoader:: ; 9412f (25:412f)
+Route2HouseScriptLoader::
 	ret
 
-Route2HouseTextPointers:: ; 94130 (25:4130)
+Route2HouseTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

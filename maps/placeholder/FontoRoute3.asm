@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/FontoRoute3.asm", ROMX
 
-FontoRoute3ScriptLoader:: ; da4bb (36:64bb)
+FontoRoute3ScriptLoader::
 	ret
 
 	db "@"

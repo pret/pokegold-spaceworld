@@ -2,32 +2,32 @@ INCLUDE "constants.asm"
 
 SECTION "maps/OldCityPokecenterBattle.asm", ROMX
 
-OldCityPokecenterBattleScriptLoader: ; 25:48eb
+OldCityPokecenterBattleScriptLoader:
 	ld hl, OldCityPokecenterBattleScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-OldCityPokecenterBattleScriptPointers: ; 25:48f5
+OldCityPokecenterBattleScriptPointers:
 	dw OldCityPokecenterBattleScript1
 	dw OldCityPokecenterBattleNPCIds
 
-OldCityPokecenterBattleScript1: ; 25:48f9
+OldCityPokecenterBattleScript1:
 	ld hl, OldCityPokecenterBattleNPCIds
 	ld de, OldCityPokecenterBattleSignPointers
 	call CallMapTextSubroutine
 	ret
 
-OldCityPokecenterBattleNPCIds: ; 25:4903
+OldCityPokecenterBattleNPCIds:
 	db $00, $ff
 
-OldCityPokecenterBattleSignPointers: ; 25:4905
+OldCityPokecenterBattleSignPointers:
 	dw MapDefaultText
 
-OldCityPokecenterBattleTextPointers: ; 25:4907
+OldCityPokecenterBattleTextPointers:
 	dw OldCityPokecenterBattleText1
 
-OldCityPokecenterBattleText1: ; 25:4909
+OldCityPokecenterBattleText1:
 	ld hl, wJoypadFlags
 	set 5, [hl]
 	ld hl, OldCityPokecenterBattleTextString1
@@ -37,7 +37,7 @@ OldCityPokecenterBattleText1: ; 25:4909
 	callab Function28000
 	ret
 
-OldCityPokecenterBattleTextString1: ; 25:4922
+OldCityPokecenterBattleTextString1:
 	text "ちょっとまってね！@"
 	text_exit
 	db "@"

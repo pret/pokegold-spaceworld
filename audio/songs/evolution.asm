@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/evolution.asm", ROMX
 
-Song_Evolution:: ; edb1c (3b:5b1c)
+Song_Evolution::
 	db 2 << 6 | 0
 	dw Song_Evolution_Ch0
 	db 1
@@ -10,7 +10,7 @@ Song_Evolution:: ; edb1c (3b:5b1c)
 	db 2
 	dw Song_Evolution_Ch2
 
-Song_Evolution_Ch0:: ; edb25 (3b:5b25)
+Song_Evolution_Ch0::
 	tempo 132
 	volume 7, 7
 	vibrato 6, 3, 4
@@ -53,7 +53,7 @@ Song_Evolution_branch_edb5b::
 	endchannel
 
 
-Song_Evolution_Ch1:: ; edb67 (3b:5b67)
+Song_Evolution_Ch1::
 	duty 2
 	vibrato 8, 2, 5
 	notetype 12, 10, 2
@@ -87,7 +87,7 @@ Song_Evolution_branch_edb89::
 	endchannel
 
 
-Song_Evolution_Ch2:: ; edb95 (3b:5b95)
+Song_Evolution_Ch2::
 	notetype 12, 1, 0
 	rest 8
 

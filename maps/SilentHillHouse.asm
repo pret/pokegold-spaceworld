@@ -2,13 +2,13 @@ include "constants.asm"
 
 SECTION "maps/SilentHillHouse.asm", ROMX
 
-SilentHillHouseScriptLoader:: ; 4839
+SilentHillHouseScriptLoader::
 	ld hl, SilentHillHouseScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillHouseScriptPointers: ; 4843
+SilentHillHouseScriptPointers:
 	dw SilentHillHouseScript1
 	dw SilentHillHouseNPCIDs1
 	dw SilentHillHouseScript2
@@ -16,19 +16,19 @@ SilentHillHouseScriptPointers: ; 4843
 	dw SilentHillHouseScript3
 	dw SilentHillHouseNPCIDs1
 
-SilentHillHouseScript1: ; 484F
+SilentHillHouseScript1:
 	ld hl, SilentHillHouseNPCIDs1
 	ld de, SilentHillHouseTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-SilentHillHouseScript2: ; 4859
+SilentHillHouseScript2:
 	ld hl, SilentHillHouseNPCIDs2
 	ld de, SilentHillHouseTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-SilentHillHouseScript3: ; 4863
+SilentHillHouseScript3:
 	ld hl, SilentHillHouseNPCIDs1
 	ld de, SilentHillHouseTextPointers2
 	call CallMapTextSubroutine
@@ -43,7 +43,7 @@ SilentHillHouseNPCIDs2:
 	db 1
 	db $FF
 
-SilentHillHouseTextPointers2:: ; 4872
+SilentHillHouseTextPointers2::
 	dw SilentHillHouseNPCText1
 	dw Function38bd
 	dw Function3899
@@ -51,7 +51,7 @@ SilentHillHouseTextPointers2:: ; 4872
 	dw Function38ab
 	dw Function38cf
 
-SilentHillHouseNPCText1: ; 487E
+SilentHillHouseNPCText1:
 	ld hl, wd41a
 	bit 6, [hl]
 	jr nz, .jump
@@ -66,13 +66,13 @@ SilentHillHouseNPCText1: ; 487E
 	call Function1fea
 	ret
 
-SilentHillHouseTextString1: ; 489B
+SilentHillHouseTextString1:
 	text "おや？　<RIVAL>あてに　メールが"
 	line "とどいている　ようだ"
 	cont "よんでみる？@"
 	db $08
 
-SilentHillHouseNPCText2: ; 48BD (unused due to typo in the text pointers?)
+SilentHillHouseNPCText2: ; (unused due to typo in the text pointers?)
 	call YesNoBox
 	jr c, .jump
 	ld hl, wd41a
@@ -87,7 +87,7 @@ SilentHillHouseNPCText2: ; 48BD (unused due to typo in the text pointers?)
 	call Function3036
 	ret
 
-SilentHillHouseTextString2: ; 48DB
+SilentHillHouseTextString2:
 	text "とつぜん　メールを　さしあげる"
 	line "しつれいを　おゆるしあれ"
 
@@ -97,26 +97,26 @@ SilentHillHouseTextString2: ; 48DB
 	cont "ポケモンけんきゅうしゃ　オーキド"
 	done
 
-SilentHillHouseTextString3: ; 4937
+SilentHillHouseTextString3:
 	text "ひとのメールは"
 	line "みちゃ　いけないよな<⋯⋯>"
 	done
 
-SilentHillHouseTextPointers:: ; 494C
+SilentHillHouseTextPointers::
 	dw SilentHillHouseNPCText3
 	dw SilentHillHouseNPCText4
 
-SilentHillHouseNPCText3: ; 4950
+SilentHillHouseNPCText3:
 	ld hl, SilentHillHouseTextString4
 	call OpenTextbox
 	ret
 
-SilentHillHouseTextString4: ; 4957
+SilentHillHouseTextString4:
 	text "このまえ　かわったいろの"
 	line "ポッポを　みかけたわ"
 	done
 
-SilentHillHouseNPCText4: ; 4970
+SilentHillHouseNPCText4:
 	ld hl, wd41e
 	bit 2, [hl]
 	jr nz, .jump
@@ -133,7 +133,7 @@ SilentHillHouseNPCText4: ; 4970
 	call OpenTextbox
 	ret
 
-SilentHillHouseTextString5: ; 4991
+SilentHillHouseTextString5:
 	text "ケン『ななな"
 	line "なんだ　<PLAYER>　じゃないか！"
 
@@ -151,7 +151,7 @@ SilentHillHouseTextString5: ; 4991
 	cont "よし　これで　マップが　みれるぞ！"
 	done
 
-SilentHillHouseTextString6: ; 4A29
+SilentHillHouseTextString6:
 	text "もし　オールドにいくなら"
 	line "マサキって　やつに　あうといい"
 
@@ -161,7 +161,7 @@ SilentHillHouseTextString6: ; 4A29
 	cont "てだすけを　してくれるぜ"
 	done
 
-SilentHillHouseTextString7: ; 4A76
+SilentHillHouseTextString7:
 	text "ケン『<PLAYER>"
 	line "オーキドはかせに　みこまれて"
 	cont "ポケモンずかんを　つくるんだって？"

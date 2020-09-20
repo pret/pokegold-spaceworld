@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "home/vcopy.asm", ROM0
 
-RedrawRowOrColumn:: ; 123a (0:123a)
+RedrawRowOrColumn::
 ; This function redraws a BG row of height 2 or a BG column of width 2.
 ; One of its main uses is redrawing the row or column that will be exposed upon
 ; scrolling the BG when the player takes a step. Redrawing only the exposed
@@ -116,7 +116,7 @@ RedrawRowOrColumn:: ; 123a (0:123a)
 	dw RedrawFlashlightColumn3 ; $1301
 	dw RedrawFlashlightColumn3 ; $1301
 
-RedrawFlashlightColumn0:: ; 12c3 (0:12c3)
+RedrawFlashlightColumn0::
 	ldh a, [hSCX]
 	and $07
 	ret nz        ; wait till we moved one complete tile in X
@@ -131,7 +131,7 @@ RedrawFlashlightColumn0:: ; 12c3 (0:12c3)
 	call _RedrawFlashlightColumn
 	ret
 
-RedrawFlashlightColumn1:: ; 12dc (0:12dc)
+RedrawFlashlightColumn1::
 	ld a, [wRedrawFlashlightBlackDst0]
 	ld e, a
 	ld a, [wRedrawFlashlightBlackDst0 + 1]
@@ -140,7 +140,7 @@ RedrawFlashlightColumn1:: ; 12dc (0:12dc)
 	ret
 ; 0x12e8
 
-RedrawFlashlightColumn2:: ; 12e8 (0:12e8)
+RedrawFlashlightColumn2::
 	ldh a, [hSCX]
 	and $0f
 	ret nz        ; wait till we moved two complete tiles in X
@@ -155,7 +155,7 @@ RedrawFlashlightColumn2:: ; 12e8 (0:12e8)
 	call _RedrawFlashlightColumn
 	ret
 
-RedrawFlashlightColumn3:: ; 1301 (0:1301)
+RedrawFlashlightColumn3::
 	ld a, [wRedrawFlashlightBlackDst1]
 	ld e, a
 	ld a, [wRedrawFlashlightBlackDst1 + 1]
@@ -165,7 +165,7 @@ RedrawFlashlightColumn3:: ; 1301 (0:1301)
 	ldh [hRedrawRowOrColumnMode], a ; end flashlight redraw
 	ret
 
-RedrawFlashlightRow0:: ; 1310 (0:1310)
+RedrawFlashlightRow0::
 	ldh a, [hSCY]
 	and $07
 	ret nz        ; wait till we moved one complete tile in Y
@@ -180,7 +180,7 @@ RedrawFlashlightRow0:: ; 1310 (0:1310)
 	call _RedrawFlashlightRow
 	ret
 
-RedrawFlashlightRow1:: ; 1329 (0:1329)
+RedrawFlashlightRow1::
 	ld a, [wRedrawFlashlightBlackDst0]
 	ld e, a
 	ld a, [wRedrawFlashlightBlackDst0 + 1]
@@ -189,7 +189,7 @@ RedrawFlashlightRow1:: ; 1329 (0:1329)
 	ret
 ; 0x12e8
 
-RedrawFlashlightRow2:: ; 1335 (0:1335)
+RedrawFlashlightRow2::
 	ldh a, [hSCY]
 	and $0f
 	ret nz        ; wait till we moved two complete tiles in Y
@@ -204,7 +204,7 @@ RedrawFlashlightRow2:: ; 1335 (0:1335)
 	call _RedrawFlashlightRow
 	ret
 
-RedrawFlashlightRow3:: ; 134e (0:134e)
+RedrawFlashlightRow3::
 	ld a, [wRedrawFlashlightBlackDst1]
 	ld e, a
 	ld a, [wRedrawFlashlightBlackDst1 + 1]
@@ -214,7 +214,7 @@ RedrawFlashlightRow3:: ; 134e (0:134e)
 	ldh [hRedrawRowOrColumnMode], a ; end flashlight redraw
 	ret
 
-_RedrawFlashlightColumn:: ; 135d (0:135d)
+_RedrawFlashlightColumn::
 	ld a, [wRedrawFlashlightWidthHeight]
 	add a
 	ld c, a
@@ -245,7 +245,7 @@ _RedrawFlashlightColumn:: ; 135d (0:135d)
 	ldh [hRedrawRowOrColumnMode], a ; has four directions
 	ret
 
-_RedrawFlashlightRow:: ; 1382 (0:1382)
+_RedrawFlashlightRow::
 	ld a, [wRedrawFlashlightWidthHeight]
 	ld c, a
 .loop
@@ -270,7 +270,7 @@ _RedrawFlashlightRow:: ; 1382 (0:1382)
 	ldh [hRedrawRowOrColumnMode], a ; has four directions
 	ret
 
-_RedrawFlashlightColumnBlack:: ; 139f (0:139f)
+_RedrawFlashlightColumnBlack::
 	ld l, e
 	ld h, d
 	ld b, "■"
@@ -293,7 +293,7 @@ _RedrawFlashlightColumnBlack:: ; 139f (0:139f)
 	ldh [hRedrawRowOrColumnMode], a ; has four directions
 	ret
 
-_RedrawFlashlightRowBlack:: ; 13bd (0:13bd)
+_RedrawFlashlightRowBlack::
 	ld l, e
 	ld h, d
 	ld b, "■"
@@ -319,7 +319,7 @@ _RedrawFlashlightRowBlack:: ; 13bd (0:13bd)
 	ldh [hRedrawRowOrColumnMode], a ; has four directions
 	ret
 
-WaitForAutoBgMapTransfer:: ; 13dc (0:13dc)
+WaitForAutoBgMapTransfer::
 .loop
 	ldh a, [hBGMapMode]
 	and a
@@ -341,7 +341,7 @@ WaitForAutoBgMapTransfer:: ; 13dc (0:13dc)
 ; on when talking to sprites, battling, using menus, etc. This is because
 ; the above function, RedrawRowOrColumn, is used when walking to
 ; improve efficiency.
-AutoBgMapTransfer:: ; 13ee (0:13ee)
+AutoBgMapTransfer::
 	ldh a, [hBGMapMode]
 	and a
 	ret z
@@ -386,7 +386,7 @@ AutoBgMapTransfer:: ; 13ee (0:13ee)
 	ld a, $06                 ; 6 rows of SCREEN_WIDTH each
 	; fallthrough
 
-TransferBgRows:: ; 1430 (0:1430)
+TransferBgRows::
 	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH + 1
 .loop
 
@@ -412,7 +412,7 @@ TransferBgRows:: ; 1430 (0:1430)
 	ld sp, hl
 	ret
 
-VBlankCopyDouble:: ; 1470 (0:1470)
+VBlankCopyDouble::
 ; Copy [wVBCopyDoubleSize] 1bpp tiles
 ; from wVBCopyDoubleSrc to wVBCopyDoubleDst.
 ; wVBCopyDoubleDst must be aligned to 0x10 bytes.
@@ -474,7 +474,7 @@ VBlankCopyDouble:: ; 1470 (0:1470)
 	ld sp, hl
 	ret
 
-VBlankCopy:: ; 14c7 (0:14c7)
+VBlankCopy::
 ; Copy 16 * [wVBCopySize] bytes
 ; from wVBCopySrc to wVBCopyDst.
 ; wVBCopyDst must be aligned to 0x10 bytes.
@@ -527,7 +527,7 @@ VBlankCopy:: ; 14c7 (0:14c7)
 	ld sp, hl
 	ret
 
-AnimateTileset:: ; 1522 (0:1522)
+AnimateTileset::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(AnimateTilesetImpl)
@@ -537,14 +537,14 @@ AnimateTileset:: ; 1522 (0:1522)
 	jp Bankswitch
 ; 0x1531
 
-EnableSprites:: ; 1531 (0:1531)
+EnableSprites::
 	nop
 	ld hl, rLCDC
 	set rLCDC_SPRITES_ENABLE, [hl]
 	ret
 ; 0x1538
 
-TransferToolgearRow: ; 1538 (0:1538)
+TransferToolgearRow:
 ; TransferToolgearRow
 ; Copy second line of toolgear to window
 	ld a, [wToolgearFlags]
@@ -563,7 +563,7 @@ TransferToolgearRow: ; 1538 (0:1538)
 	ld a, $01
 	jp TransferBgRows
 
-VBlankCopyFar:: ; 1558 (0:1558)
+VBlankCopyFar::
 ; Copy 0x10 * [wVBCopyFarSize] bytes
 ; from wVBCopyFarSrcBank::wVBCopyFarSrc to wVBCopyFarDst.
 ; wVBCopyFarDst must be aligned to 0x10 bytes.

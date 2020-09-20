@@ -43,7 +43,7 @@ WaitPressedAny::
 ; Reset hJoypadSum to clear button history
 	xor a
 	ldh [hJoypadSum], a
-.loop: ; 00:369d
+.loop:
 ; Wait for joypad polling.
 	call DelayFrame
 
@@ -53,7 +53,7 @@ WaitPressedAny::
 	jr z, .not_pressed
 	and d
 	ret nz
-.not_pressed: ; 00:36a7
+.not_pressed:
 
 ; If bc < 0, don't check timeout.
 	bit 7, b

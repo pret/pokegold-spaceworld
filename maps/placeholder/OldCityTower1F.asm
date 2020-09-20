@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/OldCityTower1F.asm", ROMX
 
-OldCityTower1FScriptLoader:: ; 942fe (25:42fe)
+OldCityTower1FScriptLoader::
 	ret
 
-OldCityTower1FTextPointers:: ; 942ff (25:42ff)
+OldCityTower1FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

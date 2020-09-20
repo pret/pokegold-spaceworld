@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/KantoPokecenter1F.asm", ROMX
 
-KantoPokecenter1FScriptLoader:: ; 9e297 (27:6297)
+KantoPokecenter1FScriptLoader::
 	ret
 
-KantoPokecenter1FTextPointers:: ; 9e298 (27:6298)
+KantoPokecenter1FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

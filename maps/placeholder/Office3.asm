@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/Office3.asm", ROMX
 
-Office3ScriptLoader:: ; bd276 (2f:5276)
+Office3ScriptLoader::
 	ret
 
-Office3TextPointers:: ; bd277 (2f:5277)
+Office3TextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText

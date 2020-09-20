@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/StandPokecenter1F.asm", ROMX
 
-StandPokecenter1FScriptLoader:: ; 9ddc9 (27:5dc9)
+StandPokecenter1FScriptLoader::
 	ret
 
-StandPokecenter1FTextPointers:: ; 9ddca (27:5dca)
+StandPokecenter1FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

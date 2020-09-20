@@ -83,7 +83,7 @@ Function3920::
 	call WriteIntod637
 	ret
 
-.asm_392d: ; 00:392d
+.asm_392d:
 	ld hl, wJoypadFlags
 	res 4, [hl]
 	ld hl, .text

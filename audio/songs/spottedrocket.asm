@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/spottedrocket.asm", ROMX
 
-Song_SpottedRocket:: ; ed978 (3b:5978)
+Song_SpottedRocket::
 	db 2 << 6 | 0
 	dw Song_SpottedRocket_Ch0
 	db 1
@@ -10,7 +10,7 @@ Song_SpottedRocket:: ; ed978 (3b:5978)
 	db 2
 	dw Song_SpottedRocket_Ch2
 
-Song_SpottedRocket_Ch0:: ; ed981 (3b:5981)
+Song_SpottedRocket_Ch0::
 	tempo 124
 	volume 7, 7
 	duty 2
@@ -35,7 +35,7 @@ Song_SpottedRocket_branch_ed996::
 	loopchannel 0, Song_SpottedRocket_branch_ed996
 
 
-Song_SpottedRocket_Ch1:: ; ed9a4 (3b:59a4)
+Song_SpottedRocket_Ch1::
 	duty 1
 	notetype 12, 11, 6
 	octave 3
@@ -74,7 +74,7 @@ Song_SpottedRocket_branch_ed9ad::
 	loopchannel 0, Song_SpottedRocket_branch_ed9ad
 
 
-Song_SpottedRocket_Ch2:: ; ed9d6 (3b:59d6)
+Song_SpottedRocket_Ch2::
 	notetype 12, 1, 0
 	rest 8
 	octave 4

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/leaderbattle.asm", ROMX
 
-Song_LeaderBattle:: ; ec858 (3b:4858)
+Song_LeaderBattle::
 	db 2 << 6 | 0
 	dw Song_LeaderBattle_Ch0
 	db 1
@@ -10,7 +10,7 @@ Song_LeaderBattle:: ; ec858 (3b:4858)
 	db 2
 	dw Song_LeaderBattle_Ch2
 
-Song_LeaderBattle_Ch0:: ; ec861 (3b:4861)
+Song_LeaderBattle_Ch0::
 	tempo 104
 	volume 7, 7
 	duty 3
@@ -561,7 +561,7 @@ Song_LeaderBattle_branch_ec8a4::
 	loopchannel 0, Song_LeaderBattle_branch_ec8a4
 
 
-Song_LeaderBattle_Ch1:: ; eca9c (3b:4a9c)
+Song_LeaderBattle_Ch1::
 	duty 3
 	vibrato 8, 2, 5
 	notetype 12, 12, 3
@@ -862,7 +862,7 @@ Song_LeaderBattle_branch_ecadc::
 	loopchannel 0, Song_LeaderBattle_branch_ecadc
 
 
-Song_LeaderBattle_Ch2:: ; ecc05 (3b:4c05)
+Song_LeaderBattle_Ch2::
 	vibrato 0, 2, 0
 	notetype 12, 1, 3
 	rest 12

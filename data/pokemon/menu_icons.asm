@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/pokemon/menu_icons.asm", ROMX
 
-MonMenuIcons:: ; 8F22A
+MonMenuIcons::
 	db ICON_FUSHIGIDANE ; 01 FUSHIGIDANE
 	db ICON_FUSHIGIDANE ; 02 FUSHIGISOU
 	db ICON_FUSHIGIDANE ; 03 FUSHIGIBANA

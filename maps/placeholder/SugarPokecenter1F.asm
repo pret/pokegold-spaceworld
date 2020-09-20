@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/SugarPokecenter1F.asm", ROMX
 
-SugarPokecenter1FScriptLoader:: ; 9d731 (27:5731)
+SugarPokecenter1FScriptLoader::
 	ret
 
-SugarPokecenter1FTextPointers:: ; 9d732 (27:5732)
+SugarPokecenter1FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

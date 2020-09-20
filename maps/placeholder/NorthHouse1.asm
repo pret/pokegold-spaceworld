@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/NorthHouse1.asm", ROMX
 
-NorthHouse1ScriptLoader:: ; 9f556 (27:7556)
+NorthHouse1ScriptLoader::
 	ret
 
-NorthHouse1TextPointers:: ; 9f557 (27:7557)
+NorthHouse1TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

@@ -321,80 +321,80 @@ SlotMachine2GFX::
 INCBIN "gfx/minigames/slots_2.2bpp"
 
 SECTION "gfx.asm@Bank 30 Sprites 1", ROMX
-GoldSpriteGFX:: INCBIN "gfx/sprites/gold.2bpp" ; 30:4000
-GoldBikeSpriteGFX:: INCBIN "gfx/sprites/gold_bike.2bpp" ; 30:4180
-GoldSkateboardSpriteGFX:: INCBIN "gfx/sprites/gold_skateboard.2bpp" ; 30:4300
-SilverSpriteGFX:: INCBIN "gfx/sprites/silver.2bpp" ; 30:4480
-OkidoSpriteGFX:: INCBIN "gfx/sprites/okido.2bpp" ; 30:4600
-RedSpriteGFX:: INCBIN "gfx/sprites/red.2bpp" ; 30:4780
-BlueSpriteGFX:: INCBIN "gfx/sprites/blue.2bpp" ; 30:4900
-MasakiSpriteGFX:: INCBIN "gfx/sprites/masaki.2bpp" ; 30:4a80
-ElderSpriteGFX:: INCBIN "gfx/sprites/elder.2bpp" ; 30:4c00
-SakakiSpriteGFX:: INCBIN "gfx/sprites/sakaki.2bpp" ; 30:4d80
-GantetsuSpriteGFX:: INCBIN "gfx/sprites/gantetsu.2bpp" ; 30:4f00
-MomSpriteGFX:: INCBIN "gfx/sprites/mom.2bpp" ; 30:5080
-SilversMomSpriteGFX:: INCBIN "gfx/sprites/silvers_mom.2bpp" ; 30:5200
-RedsMomSpriteGFX:: INCBIN "gfx/sprites/reds_mom.2bpp" ; 30:5380
-NanamiSpriteGFX:: INCBIN "gfx/sprites/nanami.2bpp" ; 30:5500
-EvilOkidoSpriteGFX:: INCBIN "gfx/sprites/evil_okido.2bpp" ; 30:5680
-KikukoSpriteGFX:: INCBIN "gfx/sprites/kikuko.2bpp" ; 30:5800
-HayatoSpriteGFX:: INCBIN "gfx/sprites/hayato.2bpp" ; 30:5980
-TsukushiSpriteGFX:: INCBIN "gfx/sprites/tsukushi.2bpp" ; 30:5a40
-EnokiSpriteGFX:: INCBIN "gfx/sprites/enoki.2bpp" ; 30:5b00
-MikanSpriteGFX:: INCBIN "gfx/sprites/mikan.2bpp" ; 30:5bc0
-CooltrainerMSpriteGFX:: INCBIN "gfx/sprites/cooltrainer_m.2bpp" ; 30:5d40
-CooltrainerFSpriteGFX:: INCBIN "gfx/sprites/cooltrainer_f.2bpp" ; 30:5ec0
-BugCatcherBoySpriteGFX:: INCBIN "gfx/sprites/bug_catcher_boy.2bpp" ; 30:6040
-TwinSpriteGFX:: INCBIN "gfx/sprites/twin.2bpp" ; 30:61c0
-YoungsterSpriteGFX:: INCBIN "gfx/sprites/youngster.2bpp" ; 30:6340
-LassSpriteGFX:: INCBIN "gfx/sprites/lass.2bpp" ; 30:64c0
-TeacherSpriteGFX:: INCBIN "gfx/sprites/teacher.2bpp" ; 30:6640
-GirlSpriteGFX:: INCBIN "gfx/sprites/girl.2bpp" ; 30:67c0
-SuperNerdSpriteGFX:: INCBIN "gfx/sprites/super_nerd.2bpp" ; 30:6940
-RockerSpriteGFX:: INCBIN "gfx/sprites/rocker.2bpp" ; 30:6ac0
-PokefanMSpriteGFX:: INCBIN "gfx/sprites/pokefan_m.2bpp" ; 30:6c40
-PokefanFSpriteGFX:: INCBIN "gfx/sprites/pokefan_f.2bpp" ; 30:6dc0
-GrampsSpriteGFX:: INCBIN "gfx/sprites/gramps.2bpp" ; 30:6f40
-GrannySpriteGFX:: INCBIN "gfx/sprites/granny.2bpp" ; 30:70c0
-SwimmerMSpriteGFX:: INCBIN "gfx/sprites/swimmer_m.2bpp" ; 30:7240
-SwimmerFSpriteGFX:: INCBIN "gfx/sprites/swimmer_f.2bpp" ; 30:73c0
-RocketMSpriteGFX:: INCBIN "gfx/sprites/rocket_m.2bpp" ; 30:7540
-RocketFSpriteGFX:: INCBIN "gfx/sprites/rocket_f.2bpp" ; 30:76c0
-NurseSpriteGFX:: INCBIN "gfx/sprites/nurse.2bpp" ; 30:7840
-LinkReceptionistSpriteGFX:: INCBIN "gfx/sprites/link_receptionist.2bpp" ; 30:7900
-ClerkSpriteGFX:: INCBIN "gfx/sprites/clerk.2bpp" ; 30:79c0
-FisherSpriteGFX:: INCBIN "gfx/sprites/fisher.2bpp" ; 30:7b40
-FishingGuruSpriteGFX:: INCBIN "gfx/sprites/fishing_guru.2bpp" ; 30:7cc0
+GoldSpriteGFX:: INCBIN "gfx/sprites/gold.2bpp"
+GoldBikeSpriteGFX:: INCBIN "gfx/sprites/gold_bike.2bpp"
+GoldSkateboardSpriteGFX:: INCBIN "gfx/sprites/gold_skateboard.2bpp"
+SilverSpriteGFX:: INCBIN "gfx/sprites/silver.2bpp"
+OkidoSpriteGFX:: INCBIN "gfx/sprites/okido.2bpp"
+RedSpriteGFX:: INCBIN "gfx/sprites/red.2bpp"
+BlueSpriteGFX:: INCBIN "gfx/sprites/blue.2bpp"
+MasakiSpriteGFX:: INCBIN "gfx/sprites/masaki.2bpp"
+ElderSpriteGFX:: INCBIN "gfx/sprites/elder.2bpp"
+SakakiSpriteGFX:: INCBIN "gfx/sprites/sakaki.2bpp"
+GantetsuSpriteGFX:: INCBIN "gfx/sprites/gantetsu.2bpp"
+MomSpriteGFX:: INCBIN "gfx/sprites/mom.2bpp"
+SilversMomSpriteGFX:: INCBIN "gfx/sprites/silvers_mom.2bpp"
+RedsMomSpriteGFX:: INCBIN "gfx/sprites/reds_mom.2bpp"
+NanamiSpriteGFX:: INCBIN "gfx/sprites/nanami.2bpp"
+EvilOkidoSpriteGFX:: INCBIN "gfx/sprites/evil_okido.2bpp"
+KikukoSpriteGFX:: INCBIN "gfx/sprites/kikuko.2bpp"
+HayatoSpriteGFX:: INCBIN "gfx/sprites/hayato.2bpp"
+TsukushiSpriteGFX:: INCBIN "gfx/sprites/tsukushi.2bpp"
+EnokiSpriteGFX:: INCBIN "gfx/sprites/enoki.2bpp"
+MikanSpriteGFX:: INCBIN "gfx/sprites/mikan.2bpp"
+CooltrainerMSpriteGFX:: INCBIN "gfx/sprites/cooltrainer_m.2bpp"
+CooltrainerFSpriteGFX:: INCBIN "gfx/sprites/cooltrainer_f.2bpp"
+BugCatcherBoySpriteGFX:: INCBIN "gfx/sprites/bug_catcher_boy.2bpp"
+TwinSpriteGFX:: INCBIN "gfx/sprites/twin.2bpp"
+YoungsterSpriteGFX:: INCBIN "gfx/sprites/youngster.2bpp"
+LassSpriteGFX:: INCBIN "gfx/sprites/lass.2bpp"
+TeacherSpriteGFX:: INCBIN "gfx/sprites/teacher.2bpp"
+GirlSpriteGFX:: INCBIN "gfx/sprites/girl.2bpp"
+SuperNerdSpriteGFX:: INCBIN "gfx/sprites/super_nerd.2bpp"
+RockerSpriteGFX:: INCBIN "gfx/sprites/rocker.2bpp"
+PokefanMSpriteGFX:: INCBIN "gfx/sprites/pokefan_m.2bpp"
+PokefanFSpriteGFX:: INCBIN "gfx/sprites/pokefan_f.2bpp"
+GrampsSpriteGFX:: INCBIN "gfx/sprites/gramps.2bpp"
+GrannySpriteGFX:: INCBIN "gfx/sprites/granny.2bpp"
+SwimmerMSpriteGFX:: INCBIN "gfx/sprites/swimmer_m.2bpp"
+SwimmerFSpriteGFX:: INCBIN "gfx/sprites/swimmer_f.2bpp"
+RocketMSpriteGFX:: INCBIN "gfx/sprites/rocket_m.2bpp"
+RocketFSpriteGFX:: INCBIN "gfx/sprites/rocket_f.2bpp"
+NurseSpriteGFX:: INCBIN "gfx/sprites/nurse.2bpp"
+LinkReceptionistSpriteGFX:: INCBIN "gfx/sprites/link_receptionist.2bpp"
+ClerkSpriteGFX:: INCBIN "gfx/sprites/clerk.2bpp"
+FisherSpriteGFX:: INCBIN "gfx/sprites/fisher.2bpp"
+FishingGuruSpriteGFX:: INCBIN "gfx/sprites/fishing_guru.2bpp"
 
 SECTION "gfx.asm@Bank 31 Sprites 2", ROMX
-ScientistSpriteGFX:: INCBIN "gfx/sprites/scientist.2bpp" ; 31:4000
-MediumSpriteGFX:: INCBIN "gfx/sprites/medium.2bpp" ; 31:4180
-SageSpriteGFX:: INCBIN "gfx/sprites/sage.2bpp" ; 31:4300
-FrowningManSpriteGFX:: INCBIN "gfx/sprites/frowning_man.2bpp" ; 31:4480
-GentlemanSpriteGFX:: INCBIN "gfx/sprites/gentleman.2bpp" ; 31:4600
-BlackbeltSpriteGFX:: INCBIN "gfx/sprites/blackbelt.2bpp" ; 31:4780
-ReceptionistSpriteGFX:: INCBIN "gfx/sprites/receptionist.2bpp" ; 31:4900
-OfficerSpriteGFX:: INCBIN "gfx/sprites/officer.2bpp" ; 31:4a80
-CaptainSpriteGFX:: INCBIN "gfx/sprites/captain.2bpp" ; 31:4c00
-MohawkSpriteGFX:: INCBIN "gfx/sprites/mohawk.2bpp" ; 31:4d80
-GymGuySpriteGFX:: INCBIN "gfx/sprites/gym_guy.2bpp" ; 31:4f00
-SailorSpriteGFX:: INCBIN "gfx/sprites/sailor.2bpp" ; 31:5080
-HelmetSpriteGFX:: INCBIN "gfx/sprites/helmet.2bpp" ; 31:5200
-BurglarSpriteGFX:: INCBIN "gfx/sprites/burglar.2bpp" ; 31:5380
-SidonSpriteGFX:: INCBIN "gfx/sprites/sidon.2bpp" ; 31:5500
-PippiSpriteGFX:: INCBIN "gfx/sprites/pippi.2bpp" ; 31:5680
-PoppoSpriteGFX:: INCBIN "gfx/sprites/poppo.2bpp" ; 31:5800
-LizardonSpriteGFX:: INCBIN "gfx/sprites/lizardon.2bpp" ; 31:5980
-KabigonSpriteGFX:: INCBIN "gfx/sprites/kabigon.2bpp" ; 31:5b00
-PawouSpriteGFX:: INCBIN "gfx/sprites/pawou.2bpp" ; 31:5c80
-NyorobonSpriteGFX:: INCBIN "gfx/sprites/nyorobon.2bpp" ; 31:5e00
-LaplaceSpriteGFX:: INCBIN "gfx/sprites/laplace.2bpp" ; 31:5f80
-PokeBallSpriteGFX:: INCBIN "gfx/sprites/poke_ball.2bpp" ; 31:6100
-PokedexSpriteGFX:: INCBIN "gfx/sprites/pokedex.2bpp" ; 31:6280
-PaperSpriteGFX:: INCBIN "gfx/sprites/paper.2bpp" ; 31:6400
-OldLinkReceptionistSpriteGFX:: INCBIN "gfx/sprites/old_link_receptionist.2bpp" ; 31:6580
-EggSpriteGFX:: INCBIN "gfx/sprites/egg.2bpp" ; 31:65c0
-BoulderSpriteGFX:: INCBIN "gfx/sprites/boulder.2bpp" ; 31:6600
+ScientistSpriteGFX:: INCBIN "gfx/sprites/scientist.2bpp"
+MediumSpriteGFX:: INCBIN "gfx/sprites/medium.2bpp"
+SageSpriteGFX:: INCBIN "gfx/sprites/sage.2bpp"
+FrowningManSpriteGFX:: INCBIN "gfx/sprites/frowning_man.2bpp"
+GentlemanSpriteGFX:: INCBIN "gfx/sprites/gentleman.2bpp"
+BlackbeltSpriteGFX:: INCBIN "gfx/sprites/blackbelt.2bpp"
+ReceptionistSpriteGFX:: INCBIN "gfx/sprites/receptionist.2bpp"
+OfficerSpriteGFX:: INCBIN "gfx/sprites/officer.2bpp"
+CaptainSpriteGFX:: INCBIN "gfx/sprites/captain.2bpp"
+MohawkSpriteGFX:: INCBIN "gfx/sprites/mohawk.2bpp"
+GymGuySpriteGFX:: INCBIN "gfx/sprites/gym_guy.2bpp"
+SailorSpriteGFX:: INCBIN "gfx/sprites/sailor.2bpp"
+HelmetSpriteGFX:: INCBIN "gfx/sprites/helmet.2bpp"
+BurglarSpriteGFX:: INCBIN "gfx/sprites/burglar.2bpp"
+SidonSpriteGFX:: INCBIN "gfx/sprites/sidon.2bpp"
+PippiSpriteGFX:: INCBIN "gfx/sprites/pippi.2bpp"
+PoppoSpriteGFX:: INCBIN "gfx/sprites/poppo.2bpp"
+LizardonSpriteGFX:: INCBIN "gfx/sprites/lizardon.2bpp"
+KabigonSpriteGFX:: INCBIN "gfx/sprites/kabigon.2bpp"
+PawouSpriteGFX:: INCBIN "gfx/sprites/pawou.2bpp"
+NyorobonSpriteGFX:: INCBIN "gfx/sprites/nyorobon.2bpp"
+LaplaceSpriteGFX:: INCBIN "gfx/sprites/laplace.2bpp"
+PokeBallSpriteGFX:: INCBIN "gfx/sprites/poke_ball.2bpp"
+PokedexSpriteGFX:: INCBIN "gfx/sprites/pokedex.2bpp"
+PaperSpriteGFX:: INCBIN "gfx/sprites/paper.2bpp"
+OldLinkReceptionistSpriteGFX:: INCBIN "gfx/sprites/old_link_receptionist.2bpp"
+EggSpriteGFX:: INCBIN "gfx/sprites/egg.2bpp"
+BoulderSpriteGFX:: INCBIN "gfx/sprites/boulder.2bpp"
 
 SECTION "gfx.asm@Bank 37 Tilesets 10", ROMX
 Tileset_10_GFX:

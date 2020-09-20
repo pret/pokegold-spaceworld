@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/FontoPokecenter1F.asm", ROMX
 
-FontoPokecenter1FScriptLoader:: ; 9c828 (27:4828)
+FontoPokecenter1FScriptLoader::
 	ret
 
-FontoPokecenter1FTextPointers:: ; 9c829 (27:4829)
+FontoPokecenter1FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

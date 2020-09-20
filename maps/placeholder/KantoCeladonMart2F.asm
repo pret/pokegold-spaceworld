@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/KantoCeladonMart2F.asm", ROMX
 
-KantoCeladonMart2FScriptLoader:: ; 9e5a6 (27:65a6)
+KantoCeladonMart2FScriptLoader::
 	ret
 
-KantoCeladonMart2FTextPointers:: ; 9e5a7 (27:65a7)
+KantoCeladonMart2FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

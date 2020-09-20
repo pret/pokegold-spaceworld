@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/NewtypeHouse1.asm", ROMX
 
-NewtypeHouse1ScriptLoader:: ; 9d194 (27:5194)
+NewtypeHouse1ScriptLoader::
 	ret
 
-NewtypeHouse1TextPointers:: ; 9d195 (27:5195)
+NewtypeHouse1TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

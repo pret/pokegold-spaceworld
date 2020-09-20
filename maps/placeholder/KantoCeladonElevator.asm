@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/KantoCeladonElevator.asm", ROMX
 
-KantoCeladonElevatorScriptLoader:: ; 9e764 (27:6764)
+KantoCeladonElevatorScriptLoader::
 	ret
 
-KantoCeladonElevatorTextPointers:: ; 9e765 (27:6765)
+KantoCeladonElevatorTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

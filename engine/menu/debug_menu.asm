@@ -22,7 +22,7 @@ DebugMenu:: ; $4031
 	ld hl, DebugJumpTable
 	jp CallJumptable
 
-DebugJumpTable:: ; 4064
+DebugJumpTable::
 	dw DebugMenuOptionFight
 	dw DebugMenuOptionField
 	dw Function094c ; sound test
@@ -30,13 +30,13 @@ DebugJumpTable:: ; 4064
 	dw DebugMenuOptionMonsterTest
 	dw DebugMenuOptionName
 
-DebugMenuHeader: ; 4070
+DebugMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 05, 02, SCREEN_WIDTH - 7, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 01 ; default option
 
-.MenuData: ; 4078
+.MenuData:
 	db $A0
 	db 0 ; items
 	dw DebugMenuItems
@@ -61,12 +61,12 @@ DebugMenuItems:
 	db 05
 	db -1
 
-DebugMenuOptionField:: ; 40A8
+DebugMenuOptionField::
 	ld hl, wDebugFlags
 	set DEBUG_FIELD_F, [hl] ; set debug mode
 	jp StartNewGame
 
-DebugMenuOptionFight:: ; 40B0
+DebugMenuOptionFight::
 	ld hl, wDebugFlags
 	set DEBUG_BATTLE_F, [hl]
 	ld a, $54
@@ -75,11 +75,11 @@ DebugMenuOptionFight:: ; 40B0
 	res DEBUG_BATTLE_F, [hl]
 	ret
 
-DebugMenuOptionSubGames:: ; 40C0
+DebugMenuOptionSubGames::
 	callab CallSubGameMenu
 	jp DebugMenu
 
-DebugMenuOptionMonsterTest:: ; 40CB
+DebugMenuOptionMonsterTest::
 	ld hl, wPokedexOwned
 	ld de, wPokedexSeen
 	ld b, $1F
@@ -100,7 +100,7 @@ DebugMenuOptionMonsterTest:: ; 40CB
 Function40eb::
 	jp DebugMenu
 
-DebugMenuOptionName:: ; 40EE
+DebugMenuOptionName::
 	callab OpenTrainerGear
 	ld a, $e4
 	ldh [rBGP], a

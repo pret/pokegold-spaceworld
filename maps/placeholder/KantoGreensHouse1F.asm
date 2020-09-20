@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/KantoGreensHouse1F.asm", ROMX
 
-KantoGreensHouse1FScriptLoader:: ; 9f021 (27:7021)
+KantoGreensHouse1FScriptLoader::
 	ret
 
-KantoGreensHouse1FTextPointers:: ; 9f022 (27:7022)
+KantoGreensHouse1FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

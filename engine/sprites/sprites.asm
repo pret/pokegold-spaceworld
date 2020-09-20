@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/sprites/sprites.asm@LoadOverworldSprite", ROMX
 
-LoadOverworldSprite: ; 05:4150
+LoadOverworldSprite:
 	push af
 	call GetOverworldSpriteData
 	push bc
@@ -33,7 +33,7 @@ LoadOverworldSprite: ; 05:4150
 
 ; get the data for overworld sprite in a
 ; returns: gfx ptr in hl, length in c, bank in b
-GetOverworldSpriteData: ; 05:417d
+GetOverworldSpriteData:
 	push hl
 	dec a
 	ld l, a

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/WestMartElevator.asm", ROMX
 
-WestMartElevatorScriptLoader:: ; 98630 (26:4630)
+WestMartElevatorScriptLoader::
 	ret
 
-WestMartElevatorTextPointers:: ; 98631 (26:4631)
+WestMartElevatorTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

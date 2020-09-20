@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "home/map.asm", ROM0
 
 ; Runs a map script indexed by wMapScriptNumber
-RunMapScript:: ; 20ff
+RunMapScript::
 	push hl
 	push de
 	push bc
@@ -27,7 +27,7 @@ RunMapScript:: ; 20ff
 	ret
 
 ; TODO: is this used?
-WriteIntod637:: ; 2117
+WriteIntod637::
 	push af
 	; TODO: figure out what variables are concerned here
 	ld a, [wd637]
@@ -36,14 +36,14 @@ WriteIntod637:: ; 2117
 	ld [wd637], a
 	ret
 
-ClearMapBuffer:: ; 00:2123
+ClearMapBuffer::
 	ld hl, wMapBuffer
 	ld bc, wMapBufferEnd - wMapBuffer
 	ld a, 0
 	call ByteFill
 	ret
 
-SetUpMapBuffer:: ; 212f
+SetUpMapBuffer::
 	call ClearMapBuffer
 	ldh a, [hROMBank]
 	push af
@@ -86,7 +86,7 @@ SetUpMapBuffer:: ; 212f
 	add hl, de
 	jr .search
 
-GetMapScriptNumber:: ; 2171
+GetMapScriptNumber::
 	push hl
 	ld a, [hli]
 	ld h, [hl]
@@ -96,7 +96,7 @@ GetMapScriptNumber:: ; 2171
 	pop hl
 	ret
 
-CopyWord:: ; 217b
+CopyWord::
 	ld a, [hli]
 	ld [de], a
 	ld a, [hli]
@@ -105,21 +105,21 @@ CopyWord:: ; 217b
 	ret
 
 
-SetMapScriptNumber:: ; 2181
+SetMapScriptNumber::
 	ld [wMapScriptNumber], a
 	ret
 
-IncMapScriptNumber:: ; 2185
+IncMapScriptNumber::
 	ld hl, wMapScriptNumber
 	inc [hl]
 	ret
 
-DecMapScriptNumber:: ; 218a
+DecMapScriptNumber::
 	ld hl, wMapScriptNumber
 	dec [hl]
 	ret
 
-WriteBackMapScriptNumber:: ; 218f
+WriteBackMapScriptNumber::
 	ld a, [wMapScriptNumberLocation]
 	ld l, a
 	ld a, [wMapScriptNumberLocation + 1]
@@ -129,12 +129,12 @@ WriteBackMapScriptNumber:: ; 218f
 	ret
 
 
-GetMapPointer:: ; 219c
+GetMapPointer::
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapId]
 	ld c, a
-GetAnyMapPointer:: ; 21a4
+GetAnyMapPointer::
 	push bc
 	dec b
 	ld c, b
@@ -153,12 +153,12 @@ GetAnyMapPointer:: ; 21a4
 	ret
 
 
-SwitchToMapBank:: ; 21bb
+SwitchToMapBank::
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapId]
 	ld c, a
-SwitchToAnyMapBank:: ; 21c3
+SwitchToAnyMapBank::
 	push hl
 	ld a, BANK(MapGroupPointers)
 	call Bankswitch
@@ -169,7 +169,7 @@ SwitchToAnyMapBank:: ; 21c3
 	ret
 
 
-CopyMapPartial:: ; 213d
+CopyMapPartial::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(MapGroupPointers)
@@ -182,7 +182,7 @@ CopyMapPartial:: ; 213d
 	call Bankswitch
 	ret
 
-GetMapAttributesPointer:: ; 21eb
+GetMapAttributesPointer::
 	push bc
 	ldh a, [hROMBank]
 	push af
@@ -203,7 +203,7 @@ GetMapAttributesPointer:: ; 21eb
 	pop bc
 	ret
 
-GetMapEnvironment:: ; 220c
+GetMapEnvironment::
 	push hl
 	push bc
 	ldh a, [hROMBank]
@@ -221,7 +221,7 @@ GetMapEnvironment:: ; 220c
 	pop hl
 	ret
 
-GetAnyMapEnvironment:: ; 2226
+GetAnyMapEnvironment::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(MapGroupPointers)
@@ -235,7 +235,7 @@ GetAnyMapEnvironment:: ; 2226
 	ld a, b
 	ret
 
-GetWorldMapLocation:: ; 223c
+GetWorldMapLocation::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(MapGroupPointers)
@@ -250,11 +250,11 @@ GetWorldMapLocation:: ; 223c
 	ret
 
 
-EmptyFunction2252:: ; 2252
+EmptyFunction2252::
 	ret
 
 
-LoadMap:: ; 2253
+LoadMap::
 	ldh a, [hMapEntryMethod]
 	and a ; Possible bug: if the entry method is $X0, this will overflow
 	ret z
@@ -278,7 +278,7 @@ LoadMap:: ; 2253
 	dw MapSetup_2275 ; TODO
 
 
-MapSetup_2275:: ; 2275
+MapSetup_2275::
 	ldh a, [hROMBank]
 	push af
 	call MapSetup_22af ; TODO
@@ -286,7 +286,7 @@ MapSetup_2275:: ; 2275
 	call Bankswitch
 	ret
 
-MapSetup_Reload:: ; 2280
+MapSetup_Reload::
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
@@ -305,7 +305,7 @@ MapSetup_Reload:: ; 2280
 	call FadeIn
 	ret
 
-MapSetup_22af:: ; 22af
+MapSetup_22af::
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
@@ -324,10 +324,10 @@ MapSetup_22af:: ; 22af
 	call FadeIn
 	ret
 
-MapSetup_22de:: ; 22de
+MapSetup_22de::
 	callab OverworldFadeOut
 
-MapSetup_Continue:: ; 22e6
+MapSetup_Continue::
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
@@ -352,7 +352,7 @@ MapSetup_Continue:: ; 22e6
 	call FadeIn
 	ret
 
-MapSetup_Warp:: ; 232c
+MapSetup_Warp::
 	callab OverworldFadeOut
 	call DisableLCD
 	call Function27C7 ; TODO
@@ -380,14 +380,14 @@ MapSetup_Warp:: ; 232c
 	call Function2407 ; TODO
 	ret
 
-LoadMapTimeOfDay:: ; 237c
+LoadMapTimeOfDay::
 	callab ReplaceTimeOfDayPals
 	call LoadMapPart
 	call .ClearBGMap
 	call .PushAttrMap
 	ret
 
-.ClearBGMap ; 238e
+.ClearBGMap
 	ld a, HIGH(vBGMap0)
 	ld [wBGMapAnchor + 1], a
 	xor a ; LOW(vBGMap0)
@@ -401,7 +401,7 @@ LoadMapTimeOfDay:: ; 237c
 	call ByteFill
 	ret
 
-.PushAttrMap ; 23a7
+.PushAttrMap
 	decoord 0, 0
 	hlbgcoord 0, 0
 	ld c, SCREEN_WIDTH
@@ -421,22 +421,22 @@ LoadMapTimeOfDay:: ; 237c
 	jr nz, .row
 	ret
 
-LoadWildMons:: ; 23c1
+LoadWildMons::
 	callab _LoadWildMons
 	ret
 
-LoadGraphics:: ; 23ca
+LoadGraphics::
 	call LoadTileset
 	call LoadTilesetGFX
 	callba RefreshSprites
 	call LoadFontExtra
 	ret
 
-InitializeVisibleSprites:: ; 23dc
+InitializeVisibleSprites::
 	callab _InitializeVisibleSprites
 	ret
 
-FadeIn:: ; 23e5 ; This is not OverworldFadeIn, but I don't know what it is
+FadeIn:: ; This is not OverworldFadeIn, but I don't know what it is
 	call InitToolgearBuffer
 	call RefreshTiles
 	ld hl, wVramState
@@ -447,7 +447,7 @@ FadeIn:: ; 23e5 ; This is not OverworldFadeIn, but I don't know what it is
 	callab OverworldFadeIn
 	ret
 
-Function2407:: ; 00:2407
+Function2407::
 	ld a, NO_MOVEMENT
 	ld [wPlayerMovement], a
 	xor a
@@ -473,7 +473,7 @@ Function2407:: ; 00:2407
 	call SetObjectFacing
 	ret
 
-MapSetup_Connection:: ; 2439
+MapSetup_Connection::
 	call EnterMapConnection
 	call CopyMapPartialAndAttributes
 	call SetUpMapBuffer
@@ -489,7 +489,7 @@ MapSetup_Connection:: ; 2439
 	scf
 	ret
 
-CheckMovingOffEdgeOfMap:: ; 245e
+CheckMovingOffEdgeOfMap::
 	ld a, [wPlayerStepDirection]
 	cp STANDING
 	ret z
@@ -548,7 +548,7 @@ CheckMovingOffEdgeOfMap:: ; 245e
 	scf
 	ret
 
-EnterMapConnection: ; 24af
+EnterMapConnection:
 ; Return carry if a connection has been entered.
 	ld a, [wPlayerStepDirection]
 	and a
@@ -684,7 +684,7 @@ EnterMapConnection: ; 24af
 	ret
 
 
-WarpCheck:: ; 259f
+WarpCheck::
 	call GetDestinationWarpPointer
 	ret nc
 	ld a, [hli]
@@ -700,7 +700,7 @@ WarpCheck:: ; 259f
 	scf
 	ret
 
-GetDestinationWarpPointer: ; 25b9
+GetDestinationWarpPointer:
 	ld a, [wPlayerNextMapY]
 	sub 4
 	ld d, a
@@ -740,13 +740,13 @@ GetDestinationWarpPointer: ; 25b9
 	ret
 
 
-CopyMapPartialAndAttributes:: ; 25ea
+CopyMapPartialAndAttributes::
 	call SwitchToMapBank
 	call CopyAndReadHeaders
 	call ReadObjectEvents
 	ret
 
-CopyAndReadHeaders:: ; 25f4
+CopyAndReadHeaders::
 	call CopyMapPartial
 	call GetMapAttributesPointer
 	ld hl, wMapAttributesPtr
@@ -772,7 +772,7 @@ CopyAndReadHeaders:: ; 25f4
 	call ReadSigns
 	ret
 
-GetMapConnections:: ; 261d
+GetMapConnections::
 	ld a, $ff
 	ld [wNorthConnectedMapGroup], a
 	ld [wSouthConnectedMapGroup], a
@@ -807,7 +807,7 @@ GetMapConnections:: ; 261d
 
 	ret
 
-GetMapConnection:: ; 2658
+GetMapConnection::
 	ld c, wSouthMapConnection - wNorthMapConnection
 .copy
 	ld a, [hli]
@@ -818,7 +818,7 @@ GetMapConnection:: ; 2658
 	ret
 
 
-ReadWarps:: ; 2661
+ReadWarps::
 	ld a, [hli]
 	ld [wCurrMapWarpCount], a
 	and a
@@ -840,7 +840,7 @@ ReadWarps:: ; 2661
 	ret
 
 
-ReadSigns:: ; 2679
+ReadSigns::
 	ld a, [hli]
 	ld [wCurrMapSignCount], a
 	and a
@@ -860,7 +860,7 @@ ReadSigns:: ; 2679
 	ret
 
 
-ReadObjectEvents:: ; 268f
+ReadObjectEvents::
 	push hl
 	call ClearObjectStructs
 	pop de
@@ -911,7 +911,7 @@ ReadObjectEvents:: ; 268f
 	ld l, e
 	ret
 
-ClearObjectStructs:: ; 26cf
+ClearObjectStructs::
 	xor a
 	ld [wUnkObjectStruct], a ; TODO
 	ld hl, wObject2Struct
@@ -935,7 +935,7 @@ ClearObjectStructs:: ; 26cf
 	ret
 
 
-ReadWord:: ; 26ef ; TODO: is this used?
+ReadWord:: ; TODO: is this used?
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -943,7 +943,7 @@ ReadWord:: ; 26ef ; TODO: is this used?
 	ret
 
 
-InitUnknownBuffercc9e:: ; 26f4
+InitUnknownBuffercc9e::
 	xor a
 	ld hl, wUnknownWordcc9c
 	ld [hli], a
@@ -995,7 +995,7 @@ InitUnknownBuffercc9e:: ; 26f4
 	ret
 
 
-RestoreFacingAfterWarp:: ; 273d
+RestoreFacingAfterWarp::
 	ld hl, wMapObjectsPtr
 	ld a, [hli]
 	ld h, [hl]
@@ -1018,7 +1018,7 @@ RestoreFacingAfterWarp:: ; 273d
 	ret
 
 
-Function275e:: ; 275e ; TODO: is this used?
+Function275e:: ; TODO: is this used?
 	inc hl
 	inc hl
 	inc hl
@@ -1035,7 +1035,7 @@ Function275e:: ; 275e ; TODO: is this used?
 	ret
 
 
-GetCoordOfUpperLeftCorner:: ; 277a
+GetCoordOfUpperLeftCorner::
 	ld hl, wOverworldMapBlocks
 	ld a, [wXCoord]
 	bit 0, a
@@ -1081,7 +1081,7 @@ GetCoordOfUpperLeftCorner:: ; 277a
 	ld [wMetatileNextX], a
 	ret
 
-Function27C7:: ; 27c7 ; TODO
+Function27C7:: ; TODO
 	call GetMapEnvironment
 	cp 2
 	jr z, .interior
@@ -1112,7 +1112,7 @@ Function27C7:: ; 27c7 ; TODO
 	ld [hli], a
 	ret
 
-LoadMapPart:: ; 27fb
+LoadMapPart::
 	callab UpdateTimeOfDayPal
 
 	ldh a, [hROMBank]
@@ -1132,7 +1132,7 @@ LoadMapPart:: ; 27fb
 	call Bankswitch
 	ret
 
-LoadMetatiles:: ; 2822
+LoadMetatiles::
 	ld a, [wOverworldMapAnchor]
 	ld e, a
 	ld a, [wOverworldMapAnchor + 1]
@@ -1173,7 +1173,7 @@ LoadMetatiles:: ; 2822
 	jr nz, .row
 	ret
 
-ApplyFlashlight:: ; 285a
+ApplyFlashlight::
 	ld hl, wTileMapBackup
 	ld a, [wMetatileNextY]
 	and a
@@ -1253,19 +1253,19 @@ redraw_with_flashlight: MACRO
 	jr nz, .row\1
 ENDM
 
-.force_1 ; 289b
+.force_1
 	redraw_with_flashlight 1
 	ret
 
-.force_2 ; 28be
+.force_2
 	redraw_with_flashlight 2
 	ret
 
-.force_3 ; 28e1
+.force_3
 	redraw_with_flashlight 3
 	ret
 
-.force_9001 ; 2904
+.force_9001
 	; Actually force 4, but this also applies to larger values
 	decoord 4 * 2, 4 * 2
 	ld bc, 4 * $32 ; TODO: constantify the $32
@@ -1290,7 +1290,7 @@ ENDM
 	ld [de], a
 	ret
 
-DrawMetatile:: ; 2921
+DrawMetatile::
 	push hl
 	ld hl, wTilesetBlocksAddress
 	ld a, [hli]
@@ -1323,7 +1323,7 @@ ENDR
 	ret
 
 
-ChangeMap:: ; 294d
+ChangeMap::
 	ld hl, wOverworldMapBlocks
 	ld bc, wOverworldMapBlocksEnd - wOverworldMapBlocks
 	ld a, 0
@@ -1368,7 +1368,7 @@ ChangeMap:: ; 294d
 	dec b
 	jr nz, .row
 
-; FillMapConnections:: ; 298e
+; FillMapConnections::
 
 	ld a, [wNorthConnectedMapGroup]
 	cp $ff
@@ -1465,7 +1465,7 @@ ChangeMap:: ; 294d
 	ret
 
 FillNorthConnectionStrip::
-FillSouthConnectionStrip:: ; 2a3d
+FillSouthConnectionStrip::
 
 	ld c, 3
 .y
@@ -1501,7 +1501,7 @@ FillSouthConnectionStrip:: ; 2a3d
 ; 25f6
 
 FillWestConnectionStrip::
-FillEastConnectionStrip:: ; 2a60
+FillEastConnectionStrip::
 
 .loop
 	ld a, [wMapWidth]
@@ -1539,12 +1539,12 @@ FillEastConnectionStrip:: ; 2a60
 	ret
 
 Function2a85::
-.asm_2a85: ; 00:2a85
+.asm_2a85:
 	call LoadMap
 	call Function2a8d
 	jr .asm_2a85
 
-Function2a8d:: ; 00:2a8d
+Function2a8d::
 	push hl
 	push de
 	push bc
@@ -1570,14 +1570,14 @@ Function2a8d:: ; 00:2a8d
 	push de
 	jp hl
 
-.Return: ; 00:2aac
+.Return:
 	pop af
 	pop bc
 	pop de
 	pop hl
 	ret
 
-.Pointers: ; 00:2ab1
+.Pointers:
 	dbbw $00, $55, Function2ae5
 	dbbw $00, $55, Function2b52
 	dbbw $00, $55, Function2b77
@@ -1593,7 +1593,7 @@ Function2a8d:: ; 00:2a8d
 	dbbw $05, $33, Function14777
 
 Function2ae5::
-.loop: ; 00:2ae5
+.loop:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	set 6, [hl]
@@ -1642,7 +1642,7 @@ Function2b39::
 	ret
 
 Function2b52::
-.asm_2b52: ; 00:2b52
+.asm_2b52:
 	call UpdateTime
 	ld a, [wVramState]
 	bit 7, a
@@ -1672,7 +1672,7 @@ Function2b79::
 	ret
 
 Function2b87::
-.asm_2b87: ; 00:2b87
+.asm_2b87:
 	call UpdateTime
 	call GetJoypad
 	call OverworldStartButtonCheck
@@ -1683,7 +1683,7 @@ Function2b87::
 	callba Function824c
 	jr .asm_2b87
 
-Function2ba8:: ; 00:2ba8
+Function2ba8::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(Function50b9)
@@ -1712,7 +1712,7 @@ Function2ba8:: ; 00:2ba8
 	scf
 	ret
 
-Function2be5:: ; 00:2be5 ; TODO
+Function2be5:: ; TODO
 	ld a, [wDebugFlags]
 	bit 7, a
 	ret nz
@@ -1730,5 +1730,5 @@ Function2be5:: ; 00:2be5 ; TODO
 	push de
 	jp hl
 
-.Return: ; 00:2c04
+.Return:
 	ret

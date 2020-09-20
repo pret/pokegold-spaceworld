@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/items/item_effects.asm", ROMX
 
-ApplyPPUp: ; 03:78f6
+ApplyPPUp:
 	ld a, MON_MOVES
 	call GetPartyParamLocation
 	push hl
@@ -35,7 +35,7 @@ ApplyPPUp: ; 03:78f6
 	inc de
 	jr .loop
 
-ComputeMaxPP: ; 03:792B
+ComputeMaxPP:
 	push bc
 	; Divide the base PP by 5.
 	ld a, [de]

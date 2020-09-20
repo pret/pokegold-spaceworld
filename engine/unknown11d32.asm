@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/unknown11d32.asm", ROMX
 
-Unknown11d32: ; 04:5D32
+Unknown11d32:
 	ld hl, hJoySum
 	ld a, [hl]
 	and D_UP
@@ -85,8 +85,8 @@ Unknown11d32: ; 04:5D32
 	ld [hl], a
 	ret
 
-.Offsets1: ; 04:5DAB
+.Offsets1:
 	db $00, $08, $10, $18, $20, $28, $30, $48, $50, $58, $60, $68, $70, $78
 
-.Offsets2: ; 04:5DB9
+.Offsets2:
 	db $00, $08, $18, $20, $30

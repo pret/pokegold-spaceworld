@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/WestMart4F.asm", ROMX
 
-WestMart4FScriptLoader:: ; 984d7 (26:44d7)
+WestMart4FScriptLoader::
 	ret
 
-WestMart4FTextPointers:: ; 984d8 (26:44d8)
+WestMart4FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

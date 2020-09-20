@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/bcd.asm", ROMX
 
-AddBCD: ; 03:4de3
+AddBCD:
 	and a
 	ld b, c
 .add
@@ -29,7 +29,7 @@ AddBCD: ; 03:4de3
 	ret
 
 
-SubBCD: ; 03:4df9
+SubBCD:
 	and a
 	ld b, c
 .sub

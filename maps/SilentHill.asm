@@ -2,58 +2,58 @@ include "constants.asm"
 
 SECTION "maps/SilentHill.asm", ROMX
 
-SilentHillScriptLoader:: ; 7669
+SilentHillScriptLoader::
 	ld hl, SilentHillScriptPointers1
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillNPCIDs1: ; 7673
+SilentHillNPCIDs1:
 	db 0
 	db 2
 	db 3
 	db $FF
 
-SilentHillNPCIDs2: ; 7677
+SilentHillNPCIDs2:
 	db 2
 	db 3
 	db $FF
 
-SilentHillNPCIDs3: ; 767A
+SilentHillNPCIDs3:
 	db 1
 	db 2
 	db 3
 	db $FF
 
-SilentHillScriptPointers1: ; 767E
+SilentHillScriptPointers1:
 	dw SilentHillScript1
 	dw SilentHillNPCIDs1
 
-SilentHillScriptPointers2: ; 7682
+SilentHillScriptPointers2:
 	dw SilentHillScript2
 	dw SilentHillNPCIDs1
 
-SilentHillScriptPointers3: ; 7686
+SilentHillScriptPointers3:
 	dw SilentHillScript3
 	dw SilentHillNPCIDs1
 
-SilentHillScriptPointers4: ; 768A
+SilentHillScriptPointers4:
 	dw SilentHillScript4
 	dw SilentHillNPCIDs2
 
-SilentHillScriptPointers5: ; 768E
+SilentHillScriptPointers5:
 	dw SilentHillScript5
 	dw SilentHillNPCIDs3
 
-SilentHillScriptPointers6: ; 7692
+SilentHillScriptPointers6:
 	dw SilentHillScript6
 	dw SilentHillNPCIDs2
 
-SilentHillScriptPointers7: ; 7696
+SilentHillScriptPointers7:
 	dw SilentHillScript7
 	dw SilentHillNPCIDs2
 
-SilentHillScript1: ; 769A
+SilentHillScript1:
 	ld a, [wYCoord]
 	cp 5
 	ret nz
@@ -75,7 +75,7 @@ SilentHillScript1: ; 769A
 	call WriteIntod637
 	ret
 
-SilentHillMovement1: ; 76C8
+SilentHillMovement1:
 	db $0D
 	db $0D
 	db $0D
@@ -84,7 +84,7 @@ SilentHillMovement1: ; 76C8
 	db $02
 	db $32
 
-SilentHillScript2: ; 76CF
+SilentHillScript2:
 	ld a, 0
 	ld d, RIGHT
 	call SetObjectFacing
@@ -105,17 +105,17 @@ SilentHillScript2: ; 76CF
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillMovement2: ; 76FF
+SilentHillMovement2:
 	db $00, $04, $08, $0C, $0C, $0C, $33
 
-SilentHillScript3: ;7706
+SilentHillScript3:
 	call Function1848
 	ld a, 3
 	ld [wMapScriptNumber], a
 	call InitUnknownBuffercc9e
 	ret
 
-SilentHillScript4: ; 7712
+SilentHillScript4:
 	ld a, [wXCoord]
 	cp 0
 	jr nz, .bigjump
@@ -158,7 +158,7 @@ SilentHillScript4: ; 7712
 	call CallMapTextSubroutine
 	ret
 
-Function776a: ; 776A
+Function776a:
 	ld hl, wd41a
 	set 7, [hl]
 	ld a, 1
@@ -166,13 +166,13 @@ Function776a: ; 776A
 	ld [hl], a
 	ret
 
-SilentHillMovement3: ; 7776
+SilentHillMovement3:
 	db $0A, $0A, $0A, $09, $0A, $06, $02, $32
 
-SilentHillMovement4: ; 777E
+SilentHillMovement4:
 	db $0A, $0A, $0A, $0A, $06, $02, $32
 
-SilentHillScript5: ; 7785
+SilentHillScript5:
 	ld a, 0
 	ld d, RIGHT
 	call SetObjectFacing
@@ -205,13 +205,13 @@ SilentHillScript5: ; 7785
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillMovement5: ; 77CC
+SilentHillMovement5:
 	db $0B, $0B, $0B, $0B, $0B, $0B, $08, $08, $08, $08, $0B, $0B, $0B, $0B, $0B, $0B, $0B, $0B, $05, $33
 
-SilentHillMovement6: ; 77E0
+SilentHillMovement6:
 	db $0B, $0B, $0B, $0B, $0B, $0B, $08, $08, $08, $0B, $0B, $0B, $0B, $0B, $0B, $0B, $0B, $05, $33
 
-SilentHillScript6: ; 77F3
+SilentHillScript6:
 	ld hl, SilentHillNPCIDs2
 	ld de, SilentHillSignPointers
 	call CallMapTextSubroutine
@@ -224,7 +224,7 @@ SilentHillScript6: ; 77F3
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillScript7: ; 780D
+SilentHillScript7:
 	call CheckLabDoor
 	ret z
 	ld hl, SilentHillNPCIDs2
@@ -232,7 +232,7 @@ SilentHillScript7: ; 780D
 	call CallMapTextSubroutine
 	ret
 
-CheckLabDoor: ; 781B
+CheckLabDoor:
 	ld a, [wYCoord]
 	cp $C
 	ret nz
@@ -257,7 +257,7 @@ CheckLabDoor: ; 781B
 	call ClearAccumulator
 	ret
 
-LabClosed: ; 784C
+LabClosed:
 	ld a, 0
 	ld hl, SilentHillMovement7
 	call LoadMovementDataPointer
@@ -267,64 +267,64 @@ LabClosed: ; 784C
 	call WriteIntod637
 	ret
 
-SilentHillTextString1: ; 785F
+SilentHillTextString1:
 	text "あれ？　カギが　かかっている"
 	done
 
-SilentHillMovement7: ; 786F
+SilentHillMovement7:
 	db $04, $32
 
-SilentHillSignPointers:: ; 7871
+SilentHillSignPointers::
 	dw SilentHillPlayerHouseText
 	dw Function38c6
 	dw SilentHillSignText1
 	dw SilentHillLabText
 	dw SilentHillRivalHouseText
 
-SilentHillLabText: ; 787B
+SilentHillLabText:
 	ld hl, SilentHillTextString2
 	call OpenTextbox
 	ret
 
-SilentHillTextString2: ; 7882
+SilentHillTextString2:
 	text "にゅうきょしゃ　ぼしゅうちゅう！"
 	done
 
-SilentHillSignText1: ; 7894
+SilentHillSignText1:
 	ld hl, SilentHillTextString3
 	call OpenTextbox
 	ret
 
-SilentHillTextString3: ; 789B
+SilentHillTextString3:
 	text "ここは　サイレント　ヒル"
 	line "しずかな　おか"
 	done
 
-SilentHillPlayerHouseText: ; 78B1
+SilentHillPlayerHouseText:
 	ld hl, SilentHillTextString4
 	call OpenTextbox
 	ret
 
-SilentHillTextString4: ; 78B8
+SilentHillTextString4:
 	text "ここは　<PLAYER>　のいえ"
 	done
 
-SilentHillRivalHouseText: ; 78C3
+SilentHillRivalHouseText:
 	ld hl, SilentHillTextString5
 	call OpenTextbox
 	ret
 
-SilentHillTextString5: ; 78CA
+SilentHillTextString5:
 	text "ここは　<RIVAL>　のいえ"
 	done
 
-SilentHillTextPointers:: ; 78d5
+SilentHillTextPointers::
 	dw SilentHillTextRival1 ; west
 	dw SilentHillTextNorthExit ; north
 	dw SilentHillTextBackpack ; npc1
 	dw SilentHillTextPokemonHate ; npc2
 
-SilentHillTextRival1: ; 78DD
+SilentHillTextRival1:
 	text "<RIVAL>『よう　ちょっと　おまえに"
 	cont "じまん　したいことが"
 	cont "あってきたんだよ"
@@ -341,7 +341,7 @@ SilentHillTextRival1: ; 78DD
 
 	db $08
 
-LoadMomNamePromptUnused: ; 796F
+LoadMomNamePromptUnused:
 	call LoadStandardMenuHeader
 	callab MomNamePrompt
 	call CloseWindow
@@ -350,13 +350,13 @@ LoadMomNamePromptUnused: ; 796F
 	call UpdateTimePals
 	jp Function3036
 
-MomNameMenuHeaderUnused: ; 7989
+MomNameMenuHeaderUnused:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
 	dw .MomNameMenuDataUnused
 	db 01 ; initial selection
 
-.MomNameMenuDataUnused: ; 7991
+.MomNameMenuDataUnused:
 	db STATICMENU_CURSOR
 	db 04 ; items
 	db "じぶんで　きめる@"
@@ -364,7 +364,7 @@ MomNameMenuHeaderUnused: ; 7989
 	db "ママ@"
 	db "かあちゃん@"
 
-SilentHillTextRival2: ; 79AC - BYTE OFF
+SilentHillTextRival2: ; BYTE OFF
 	text "<RIVAL>『えー　かっこわりい！"
 	line "そんな　こどもっぽい"
 	cont "よびかた　してるなんて"
@@ -377,12 +377,12 @@ SilentHillTextRival2: ; 79AC - BYTE OFF
 	cont "いくことに　するぜ！"
 	done
 
-SilentHillTextNorthExit: ; 7A14
+SilentHillTextNorthExit:
 	text "ちょいまち！"
 	line "まってよ！　まてっ　てば！"
 	done
 
-SilentHillTextPokemonInGrassString: ; 7A2A
+SilentHillTextPokemonInGrassString:
 	text "きみは　まったく"
 	line "なんにも　しらないんだね！"
 	cont "くさむらでは"
@@ -397,22 +397,22 @@ SilentHillTextPokemonInGrassString: ; 7A2A
 	cont "ぼくに　ついて　きて！"
 	done
 
-SilentHillTextBackpack: ; 7A99
+SilentHillTextBackpack:
 	ld hl, SilentHillTextBackpackString
 	call OpenTextbox
 	ret
 
-SilentHillTextBackpackString: ; 7AA0
+SilentHillTextBackpackString:
 	text "あなたの　りュック　かっこいいわよ"
 	line "どこで　てに　いれたの？"
 	done
 
-SilentHillTextPokemonHate: ; 7AC0
+SilentHillTextPokemonHate:
 	ld hl, SilentHillTextPokemonHateString
 	call OpenTextbox
 	ret
 
-SilentHillTextPokemonHateString: ; 7AC7
+SilentHillTextPokemonHateString:
 	text "よのなかに　ポケモンが　きらいな"
 	line "ひとは　いるのかな？"
 	done

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/NewtypeRouteGate.asm", ROMX
 
-NewtypeRouteGateScriptLoader:: ; 9d406 (27:5406)
+NewtypeRouteGateScriptLoader::
 	ret
 
-NewtypeRouteGateTextPointers:: ; 9d407 (27:5407)
+NewtypeRouteGateTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

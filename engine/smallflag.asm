@@ -1,6 +1,6 @@
 SECTION "engine/smallflag.asm", ROMX
 
-SmallFarFlagAction: ; 03:4d33
+SmallFarFlagAction:
 ; Perform action b on bit c in flag array hl.
 ; If checking a flag, check flag array d:hl unless d is 0.
 

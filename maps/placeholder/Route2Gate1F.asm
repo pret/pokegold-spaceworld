@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/Route2Gate1F.asm", ROMX
 
-Route2Gate1FScriptLoader:: ; 94061 (25:4061)
+Route2Gate1FScriptLoader::
 	ret
 
-Route2Gate1FTextPointers:: ; 94062 (25:4062)
+Route2Gate1FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

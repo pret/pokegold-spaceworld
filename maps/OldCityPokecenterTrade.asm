@@ -2,32 +2,32 @@ INCLUDE "constants.asm"
 
 SECTION "maps/OldCityPokecenterTrade.asm", ROMX
 
-OldCityPokecenterTradeScriptLoader: ; 25:4866
+OldCityPokecenterTradeScriptLoader:
 	ld hl, OldCityPokecenterTradeScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-OldCityPokecenterTradeScriptPointers: ; 25:4870
+OldCityPokecenterTradeScriptPointers:
 	dw OldCityPokecenterTradeScript1
 	dw OldCityPokecenterTradeNPCIds
 
-OldCityPokecenterTradeScript1: ; 25:4874
+OldCityPokecenterTradeScript1:
 	ld hl, OldCityPokecenterTradeNPCIds
 	ld de, OldCityPokecenterTradeSignPointers
 	call CallMapTextSubroutine
 	ret
 
-OldCityPokecenterTradeNPCIds: ; 25:487e
+OldCityPokecenterTradeNPCIds:
 	db $00, $ff
 
-OldCityPokecenterTradeSignPointers: ; 25:4880
+OldCityPokecenterTradeSignPointers:
 	dw MapDefaultText
 
-OldCityPokecenterTradeTextPointers: ; 25:4882
+OldCityPokecenterTradeTextPointers:
 	dw OldCityPokecenterTradeText1
 
-OldCityPokecenterTradeText1: ; 25:4884
+OldCityPokecenterTradeText1:
 	ld hl, wJoypadFlags
 	set 5, [hl]
 	ld hl, OldCityPokecenterTradeTextString1
@@ -37,7 +37,7 @@ OldCityPokecenterTradeText1: ; 25:4884
 	callab Function28000
 	ret
 
-OldCityPokecenterTradeTextString1: ; 25:489d
+OldCityPokecenterTradeTextString1:
 	text "ちょっとまってね！@"
 	text_exit
 	text_exit

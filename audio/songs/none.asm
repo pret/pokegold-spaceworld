@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/none.asm", ROMX
 
-Song_None:: ; e92ee (3a:52ee)
+Song_None::
 	db 3 << 6 | 0
 	dw Song_None_Ch0
 	db 1
@@ -12,9 +12,9 @@ Song_None:: ; e92ee (3a:52ee)
 	db 3
 	dw Song_None_Ch3
 
-Song_None_Ch0:: ; e92fa (3a:52fa)
-Song_None_Ch1:: ; e92fa (3a:52fa)
-Song_None_Ch2:: ; e92fa (3a:52fa)
-Song_None_Ch3:: ; e92fa (3a:52fa)
+Song_None_Ch0::
+Song_None_Ch1::
+Song_None_Ch2::
+Song_None_Ch3::
 	endchannel
 ; 0xe92fb

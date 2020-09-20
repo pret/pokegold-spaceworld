@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "engine/dumps/bank02.asm@Function8000", ROMX
 
-Function8000: ; 02:4000
+Function8000:
 	ld a, $00
 	ld hl, Data8022
 	call Function1656
@@ -18,11 +18,11 @@ Function8000: ; 02:4000
 	call Function1908
 	ret
 
-Data8022: ; 02:4022
+Data8022:
 	db $01, $00, $00, $10, $ee, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00
 
-Function8031: ; 02:4031
+Function8031:
 	call Function8047
 	ld a, [wUsedSprites+1]
 	ld [wMap1ObjectSprite], a
@@ -33,7 +33,7 @@ Function8031: ; 02:4031
 	call StartFollow
 	ret
 
-Function8047: ; 02:4047
+Function8047:
 	ld a, $01
 	ld hl, Data805d
 	call Function1656
@@ -44,11 +44,11 @@ Function8047: ; 02:4047
 	ld [wMap1ObjectYCoord], a
 	ret
 
-Data805d: ; 02:405d
+Data805d:
 	db $4d, $00, $00, $18, $ff, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00
 
-Function806c: ; 02:406c
+Function806c:
 	ld a, $01
 	call Function169f
 	xor a
@@ -57,7 +57,7 @@ Function806c: ; 02:406c
 	ld [wObjectFollow_Leader], a
 	ret
 
-Function807b: ; 02:407b
+Function807b:
 	ld a, $01
 	ld hl, Data8089
 	call Function1656
@@ -65,11 +65,11 @@ Function807b: ; 02:407b
 	call Function1668
 	ret
 
-Data8089: ; 02:4089
+Data8089:
 	db $01, $00, $00, $17, $ee, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00
 
-_InitializeVisibleSprites: ; 02:4098
+_InitializeVisibleSprites:
 	ld bc, wMap2Object
 	ld a, $02
 .sub_809d
@@ -119,10 +119,10 @@ _InitializeVisibleSprites: ; 02:4098
 	jr nz, .sub_809d
 	ret
 
-Function80ea: ; 02:40ea
+Function80ea:
 	ret
 
-Function80eb: ; 02:40eb
+Function80eb:
 	call Function811a
 	and a
 	ret nz
@@ -153,7 +153,7 @@ Function80eb: ; 02:40eb
 	set 5, [hl]
 	ret
 
-Function811a: ; 02:411a
+Function811a:
 	ldh a, [hConnectionStripLength]
 	ld e, a
 	ld d, $00
@@ -162,7 +162,7 @@ Function811a: ; 02:411a
 	ld a, [hl]
 	ret
 
-Function8125: ; 02:4125
+Function8125:
 	ldh a, [hConnectionStripLength]
 	ld e, a
 	ld d, $00
@@ -171,7 +171,7 @@ Function8125: ; 02:4125
 	ld [hl], $ff
 	ret
 
-Function8131: ; 02:4131
+Function8131:
 	ldh a, [hConnectionStripLength]
 	ld e, a
 	ld d, $00
@@ -180,7 +180,7 @@ Function8131: ; 02:4131
 	ld [hl], $00
 	ret
 
-Function813d: ; 02:413d
+Function813d:
 	ldh a, [hConnectionStripLength]
 	ld hl, $0001
 	add hl, de
@@ -263,7 +263,7 @@ Function813d: ; 02:413d
 	and a
 	ret
 
-Function81ce: ; 02:41ce
+Function81ce:
 	ld hl, $0004
 	add hl, de
 	ld [hl], $70
@@ -291,7 +291,7 @@ Function81ce: ; 02:41ce
 	set 4, [hl]
 	ret
 
-Function81f8: ; 02:41f8
+Function81f8:
 	push af
 	swap a
 	and $0f
@@ -307,7 +307,7 @@ Function81f8: ; 02:41f8
 	ld [hl], a
 	ret
 
-Function820d: ; 02:420d
+Function820d:
 	push af
 	ldh a, [hConnectionStripLength]
 	cp $00
@@ -349,11 +349,11 @@ Function820d: ; 02:420d
 	pop hl
 	ret
 
-Data8242: ; 02:4242
+Data8242:
 	db $18, $24, $30, $3c, $48, $54, $60, $6c
 	db $78, $7c
 
-Function824c: ; 02:424c
+Function824c:
 	nop
 	ld a, [wPlayerStepDirection]
 	cp $ff
@@ -361,58 +361,58 @@ Function824c: ; 02:424c
 	ld hl, Table8259
 	jp CallJumptable
 
-Table8259: ; 02:4259
+Table8259:
 	dw Function8299
 	dw Function8292
 	dw Function82e6
 	dw Function82ed
 
-Function8261: ; 02:4261
+Function8261:
 	ret
 
-Function8262: ; 02:4262
+Function8262:
 	ld a, [wPlayerStepDirection]
 	cp $ff
 	ret z
 	ld hl, Table826e
 	jp CallJumptable
 
-Table826e: ; 02:426e
+Table826e:
 	dw Function827d
 	dw Function8276
 	dw Function8284
 	dw Function828b
 
-Function8276: ; 02:4276
+Function8276:
 	ld a, [wYCoord]
 	sub $02
 	jr Function829e
 
-Function827d: ; 02:427d
+Function827d:
 	ld a, [wYCoord]
 	add $0a
 	jr Function829e
 
-Function8284: ; 02:4284
+Function8284:
 	ld a, [wXCoord]
 	sub $02
 	jr Function82f2
 
-Function828b: ; 02:428b
+Function828b:
 	ld a, [wXCoord]
 	add $0b
 	jr Function82f2
 
-Function8292: ; 02:4292
+Function8292:
 	ld a, [wYCoord]
 	sub $01
 	jr Function829e
 
-Function8299: ; 02:4299
+Function8299:
 	ld a, [wYCoord]
 	add $09
 
-Function829e: ; 02:429e
+Function829e:
 	ld d, a
 	ld a, [wXCoord]
 	ld e, a
@@ -459,16 +459,16 @@ Function829e: ; 02:429e
 	jr nz, .sub_82a8
 	ret
 
-Function82e6: ; 02:42e6
+Function82e6:
 	ld a, [wXCoord]
 	sub $01
 	jr Function82f2
 
-Function82ed: ; 02:42ed
+Function82ed:
 	ld a, [wXCoord]
 	add $0a
 
-Function82f2: ; 02:42f2
+Function82f2:
 	ld e, a
 	ld a, [wYCoord]
 	ld d, a
@@ -515,7 +515,7 @@ Function82f2: ; 02:42f2
 	jr nz, .sub_82fc
 	ret
 
-Function833a: ; 02:433a
+Function833a:
 	ld a, c
 	push af
 	call InitMovementBuffer
@@ -555,7 +555,7 @@ Function833a: ; 02:433a
 	xor a
 	ret
 
-Function837c: ; 02:437c
+Function837c:
 	call InitMovementBuffer
 	push bc
 	ld a, b
@@ -578,7 +578,7 @@ Function837c: ; 02:437c
 	call AppendToMovementBuffer
 	ret
 
-Function83a2: ; 02:43a2
+Function83a2:
 	push de
 	call InitMovementBuffer
 	pop de
@@ -587,7 +587,7 @@ Function83a2: ; 02:43a2
 	call AppendToMovementBuffer
 	ret
 
-Function83b0: ; 02:43b0
+Function83b0:
 	push de
 	push bc
 	ld a, c
@@ -623,7 +623,7 @@ Function83b0: ; 02:43b0
 	call ComputePathToWalkToPlayer
 	ret
 
-Function83e8: ; 02:43e8
+Function83e8:
 	ld hl, wcb70
 	push hl
 	ld a, [hl]
@@ -639,7 +639,7 @@ Function83e8: ; 02:43e8
 	push de
 	ret
 
-Table83fb: ; 02:43fb
+Table83fb:
 	dw Function8432
 	dw Function844a
 	dw Function8459
@@ -656,7 +656,7 @@ Table83fb: ; 02:43fb
 	dw Function84af
 	dw Function84b8
 
-Function8419: ; 02:4419
+Function8419:
 	ld a, c
 	ld [wVBCopyFarSrcBank], a
 	ld a, l
@@ -664,38 +664,38 @@ Function8419: ; 02:4419
 	ld a, h
 	ld [wVBCopyFarSrc+1], a
 
-Function8425: ; 02:4425
+Function8425:
 	ld a, e
 	ld [wVBCopyFarDst], a
 	ld a, d
 	ld [wVBCopyFarDst+1], a
 
-Function842d: ; 02:442d
+Function842d:
 	ld a, b
 	ld [wVBCopyFarSize], a
 	ret
 
-Function8432: ; 02:4432
+Function8432:
 	ret
 
-Function8433: ; 02:4433
+Function8433:
 	ld hl, ShockEmoteGFX
 	jr Function8440
 
-Function8438: ; 02:4438
+Function8438:
 	ld hl, QuestionEmoteGFX
 	jr Function8440
 
-Function843d: ; 02:443d
+Function843d:
 	ld hl, HappyEmoteGFX
 
-Function8440: ; 02:4440
+Function8440:
 	ld de, vChars1 + $780
 	ld b, $04
 	ld c, BANK(HappyEmoteGFX)
 	jp Function8419
 
-Function844a: ; 02:444a
+Function844a:
 	ld [hl], $00
 	ld hl, JumpShadowGFX
 	ld de, vChars1 + $7c0
@@ -703,7 +703,7 @@ Function844a: ; 02:444a
 	ld c, BANK(JumpShadowGFX)
 	jp Function8419
 
-Function8459: ; 02:4459
+Function8459:
 	ld [hl], $00
 	ld hl, UnknownBouncingOrbGFX
 	ld de, vChars1 + $7c0
@@ -711,7 +711,7 @@ Function8459: ; 02:4459
 	ld c, BANK(UnknownBouncingOrbGFX)
 	jp Function8419
 
-Function8468: ; 02:4468
+Function8468:
 	ld [hl], $00
 	ld hl, UnknownBallGFX
 	ld de, vChars1 + $7c0
@@ -719,7 +719,7 @@ Function8468: ; 02:4468
 	ld c, BANK(UnknownBallGFX)
 	jp Function8419
 
-Function8477: ; 02:4477
+Function8477:
 	inc [hl]
 	ld hl, GrampsSpriteGFX
 	ld de, vChars0
@@ -727,23 +727,23 @@ Function8477: ; 02:4477
 	ld c, BANK(GrampsSpriteGFX)
 	jp Function8419
 
-Function8485: ; 02:4485
+Function8485:
 	inc [hl]
 	ld b, $06
 	jp Function842d
 
-Function848b: ; 02:448b
+Function848b:
 	inc [hl]
 	ld de, vChars1
 	ld b, $06
 	jp Function8425
 
-Function8494: ; 02:4494
+Function8494:
 	ld [hl], $00
 	ld b, $06
 	jp Function842d
 
-Function849b: ; 02:449b
+Function849b:
 	inc [hl]
 	ld hl, PippiSpriteGFX
 	ld de, vChars0
@@ -751,25 +751,25 @@ Function849b: ; 02:449b
 	ld c, BANK(PippiSpriteGFX)
 	jp Function8419
 
-Function84a9: ; 02:44a9
+Function84a9:
 	inc [hl]
 	ld b, $06
 	jp Function842d
 
-Function84af: ; 02:44af
+Function84af:
 	inc [hl]
 	ld de, vChars1
 	ld b, $06
 	jp Function8425
 
-Function84b8: ; 02:44b8
+Function84b8:
 	ld [hl], $00
 	ld b, $06
 	jp Function842d
 
 SECTION "engine/dumps/bank02.asm@QueueFollowerFirstStep", ROMX
 
-QueueFollowerFirstStep: ; 02:45df
+QueueFollowerFirstStep:
 	call Function85f2
 	jr c, .sub_85ec
 	ld [wFollowMovementQueue], a
@@ -781,7 +781,7 @@ QueueFollowerFirstStep: ; 02:45df
 	ld [wFollowerMovementQueueLength], a
 	ret
 
-Function85f2: ; 02:45f2
+Function85f2:
 	ld a, [wObjectFollow_Leader]
 	call GetObjectStruct
 	ld hl, $0010
@@ -823,7 +823,7 @@ Function85f2: ; 02:45f2
 	scf
 	ret
 
-Function862e: ; 02:462e
+Function862e:
 	ld a, e
 	and $3f
 	cp $20
@@ -839,7 +839,7 @@ Function862e: ; 02:462e
 	inc a
 	ret
 
-Function8644: ; 02:4644
+Function8644:
 	ld e, a
 	ld a, d
 	ld d, $00
@@ -861,7 +861,7 @@ Function8644: ; 02:4644
 	jr nz, .sub_8653
 	ret
 
-Data8660: ; 02:4660
+Data8660:
 	dw $00
 	dw $19
 	dw $32
@@ -895,7 +895,7 @@ Data8660: ; 02:4660
 	dw $32
 	dw $19
 
-Function86a0: ; 02:46a0
+Function86a0:
 	call Function881e
 	ld hl, InitEffectObject
 	ld a, BANK(InitEffectObject)
@@ -915,7 +915,7 @@ Function86a0: ; 02:46a0
 	jr z, .sub_86b4
 	ret
 
-FlyMap: ; 02:46cb
+FlyMap:
 	ld hl, hJoyDebounceSrc
 	ld a, [hl]
 	push af
@@ -980,7 +980,7 @@ FlyMap: ; 02:46cb
 	ldh [hJoyDebounceSrc], a
 	ret
 
-Function8747: ; 02:4747
+Function8747:
 	ld a, [wFlyDestination]
 	ld l, a
 	ld h, $00
@@ -1012,10 +1012,10 @@ Function8747: ; 02:4747
 	ld [wFlyDestination], a
 	ret
 
-Text8776: ; 02:4776
+Text8776:
 	db "とびさき　を　えらんでください@"
 
-Function8786: ; 02:4786
+Function8786:
 	ld a, [wFlyDestination]
 	push af
 	xor a
@@ -1057,10 +1057,10 @@ Function8786: ; 02:4786
 	ld [wFlyDestination], a
 	ret
 
-Text87e4: ; 02:47e4
+Text87e4:
 	db "の　すみか@"
 
-Function87ea: ; 02:47ea
+Function87ea:
 	ld a, [wFlyDestination]
 	and $10
 	jr z, .sub_881a
@@ -1099,7 +1099,7 @@ Function87ea: ; 02:47ea
 	call ClearSprites
 	ret
 
-Function881e: ; 02:481e
+Function881e:
 	call ClearBGPalettes
 	call ClearTileMap
 	call UpdateSprites
@@ -1122,7 +1122,7 @@ Function881e: ; 02:481e
 	call GetSGBLayout
 	ret
 
-DecompTownMapTilemap: ; 02:4856
+DecompTownMapTilemap:
 	ld de, TownMapTilemap
 .sub_8859
 	ld a, [de]
@@ -1141,7 +1141,7 @@ DecompTownMapTilemap: ; 02:4856
 	inc de
 	jr .sub_8859
 
-Function886a: ; 02:486a
+Function886a:
 	ld de, GoldSpriteGFX
 	ld hl, vChars0
 	lb bc, BANK(GoldSpriteGFX), $04
@@ -1179,7 +1179,7 @@ Function886a: ; 02:486a
 	ld [hl], d
 	ret
 
-Function88b3: ; 02:48b3
+Function88b3:
 	ld de, PoppoSpriteGFX
 	ld hl, vChars0 + $80
 	lb bc, BANK(PoppoSpriteGFX), $04
@@ -1196,7 +1196,7 @@ Function88b3: ; 02:48b3
 	ld [hl], $08
 	ret
 
-TownMapTilemap: ; 02:48da
+TownMapTilemap:
 	db $04, $05
 	db $19, $01
 	db $1a, $08
@@ -1355,7 +1355,7 @@ TownMapTilemap: ; 02:48da
 
 SECTION "engine/dumps/bank02.asm@Data8a17", ROMX
 
-Data8a17: ; 02:4a17
+Data8a17:
 	db $0b
 	db $ff
 
@@ -1393,7 +1393,7 @@ Data8a17: ; 02:4a17
 	db $08, $08
 	db $ff
 
-Data8a53: ; 02:4a53
+Data8a53:
 	db $00, $00, $1c, $9c, $28, $9c, $34, $9c
 	db $40, $9c, $4c, $9c, $5c, $9c, $6c, $94
 	db $6c, $84, $6c, $78, $6c, $6c, $64, $6c
@@ -1406,7 +1406,7 @@ Data8a53: ; 02:4a53
 	db $3c, $14, $3c, $20, $48, $14, $54, $1c
 	db $54, $2c, $54, $38, $3c, $44, $48, $2c
 
-OpenTrainerGear: ; 02:4aab
+OpenTrainerGear:
 	ld hl, wce5f
 	ld a, [hl]
 	push af
@@ -1437,7 +1437,7 @@ OpenTrainerGear: ; 02:4aab
 	call ClearJoypad
 	ret
 
-Function8ae0: ; 02:4ae0
+Function8ae0:
 	call ClearBGPalettes
 	call DisableLCD
 	call ClearSprites
@@ -1469,7 +1469,7 @@ Function8ae0: ; 02:4ae0
 	ldh [rOBP1], a
 	ret
 
-Function8b2a: ; 02:4b2a
+Function8b2a:
 	ld hl, wTileMap
 	ld bc, $0168
 	ld a, $7f
@@ -1480,7 +1480,7 @@ Function8b2a: ; 02:4b2a
 	call CopyBytes
 	ret
 
-Data8b42: ; 02:4b42
+Data8b42:
 	db $0d, $1c, $1d, $0b, $1c, $1d, $0b, $1c
 	db $1d, $0c, $01, $05, $05, $05, $05, $05
 	db $05, $05, $05, $02, $08, $1e, $1f, $0a
@@ -1490,7 +1490,7 @@ Data8b42: ; 02:4b42
 	db $06, $04, $03, $06, $06, $06, $06, $06
 	db $06, $06, $06, $04
 
-Function8b7e: ; 02:4b7e
+Function8b7e:
 	coord hl, 1, 0
 	ld a, $10
 	call Function8b97
@@ -1502,7 +1502,7 @@ Function8b7e: ; 02:4b7e
 	call Function8b97
 	ret
 
-Function8b97: ; 02:4b97
+Function8b97:
 	ld [hli], a
 	inc a
 	ld [hld], a
@@ -1514,7 +1514,7 @@ Function8b97: ; 02:4b97
 	ld [hld], a
 	ret
 
-Function8ba3: ; 02:4ba3
+Function8ba3:
 	call UpdateTime
 	call GetJoypadDebounced
 	ld a, [wJumptableIndex]
@@ -1539,7 +1539,7 @@ Function8ba3: ; 02:4ba3
 	scf
 	ret
 
-Function8bd5: ; 02:4bd5
+Function8bd5:
 	coord hl, 11, 1
 	ld a, $7f
 	ld [hli], a
@@ -1558,7 +1558,7 @@ Function8bd5: ; 02:4bd5
 	call PrintNumber
 	ret
 
-Function8bfd: ; 02:4bfd
+Function8bfd:
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, $00
@@ -1570,7 +1570,7 @@ Function8bfd: ; 02:4bfd
 	ld l, a
 	jp hl
 
-Table8c0c: ; 02:4c0c
+Table8c0c:
 	dw Function8c21
 	dw Function8c49
 	dw DrawMap
@@ -1580,12 +1580,12 @@ Table8c0c: ; 02:4c0c
 	dw Function8e6c
 	dw Function8e9e
 
-Function8c1c: ; 02:4c1c
+Function8c1c:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-Function8c21: ; 02:4c21
+Function8c21:
 	ld hl, InitEffectObject
 	ld a, BANK(InitEffectObject)
 	call FarCall_hl
@@ -1603,7 +1603,7 @@ Function8c21: ; 02:4c21
 	call Function8c1c
 	ret
 
-Function8c49: ; 02:4c49
+Function8c49:
 	ld hl, hJoySum
 	ld a, [hl]
 	and $02
@@ -1618,7 +1618,7 @@ Function8c49: ; 02:4c49
 	set 7, [hl]
 	ret
 
-Function8c5f: ; 02:4c5f
+Function8c5f:
 	ld a, [wFlyDestination]
 	ld hl, wcb60
 	cp [hl]
@@ -1633,10 +1633,10 @@ Function8c5f: ; 02:4c5f
 	ld [wJumptableIndex], a
 	ret
 
-Unknown8c78: ; 02:4c78
+Unknown8c78:
 	db $02, $04, $06, $02
 
-DrawMap: ; 02:4c7c
+DrawMap:
 	call Function8c1c
 	call Function8eaa
 	call WaitForAutoBgMapTransfer
@@ -1657,7 +1657,7 @@ DrawMap: ; 02:4c7c
 	ld [hl], a
 	ret
 
-Function8cab: ; 02:4cab
+Function8cab:
 	ld hl, hJoyDown
 	ld a, [hl]
 	and $02
@@ -1666,7 +1666,7 @@ Function8cab: ; 02:4cab
 	ld [wJumptableIndex], a
 	ret
 
-Function8cb7: ; 02:4cb7
+Function8cb7:
 	call Function8c1c
 	call Function8eaa
 	call WaitForAutoBgMapTransfer
@@ -1741,7 +1741,7 @@ Function8cb7: ; 02:4cb7
 	ld [wcb61], a
 	ret
 
-Function8d62: ; 02:4d62
+Function8d62:
 	ld hl, hJoyDown
 	ld a, [hl]
 	and $02
@@ -1750,7 +1750,7 @@ Function8d62: ; 02:4d62
 	ld [wJumptableIndex], a
 	ret
 
-Function8d6e: ; 02:4d6e
+Function8d6e:
 	ld hl, wcb61
 	ld e, [hl]
 	ld d, $00
@@ -1762,13 +1762,13 @@ Function8d6e: ; 02:4d6e
 	ld l, a
 	jp hl
 
-Table8d7d: ; 02:4d7d
+Table8d7d:
 	dw Function8d85
 	dw Function8d91
 	dw Function8d85
 	dw Function8db9
 
-Function8d85: ; 02:4d85
+Function8d85:
 	ld hl, hJoyDown
 	ld a, [hl]
 	and $01
@@ -1777,7 +1777,7 @@ Function8d85: ; 02:4d85
 	inc [hl]
 	ret
 
-Function8d91: ; 02:4d91
+Function8d91:
 	ld hl, $000c
 	add hl, bc
 	ld a, [hl]
@@ -1803,7 +1803,7 @@ Function8d91: ; 02:4d91
 	ld [wcb61], a
 	ret
 
-Function8db9: ; 02:4db9
+Function8db9:
 	ld hl, $000c
 	add hl, bc
 	ld a, [hl]
@@ -1829,7 +1829,7 @@ Function8db9: ; 02:4db9
 	ld [wcb61], a
 	ret
 
-Function8de3: ; 02:4de3
+Function8de3:
 	push hl
 	ld hl, $0006
 	add hl, bc
@@ -1849,7 +1849,7 @@ Function8de3: ; 02:4de3
 	ld [hl], d
 	ret
 
-Function8dfd: ; 02:4dfd
+Function8dfd:
 	ld hl, $0006
 	add hl, bc
 	push bc
@@ -1887,12 +1887,12 @@ Function8dfd: ; 02:4dfd
 	ld l, a
 	jp hl
 
-Function8e2c: ; 02:4e2c
+Function8e2c:
 	pop bc
 	scf
 	ret
 
-Table8e2f: ; 02:4e2f
+Table8e2f:
 	dw Data8e4d
 	dw Data8e4d
 	dw Data8e4d
@@ -1909,7 +1909,7 @@ Table8e2f: ; 02:4e2f
 	dw Data8e4d
 	dw Data8e4d
 
-Data8e4d: ; 02:4e4d
+Data8e4d:
 	db $10, $02
 	dw Function8e66
 	dw Function8e66
@@ -1928,12 +1928,12 @@ Data8e4d: ; 02:4e4d
 
 	db $00
 
-Function8e66: ; 02:4e66
+Function8e66:
 	ld d, $00
 	call PlayMusic
 	ret
 
-Function8e6c: ; 02:4e6c
+Function8e6c:
 	call Function8c1c
 	call Function8eaa
 	call WaitForAutoBgMapTransfer
@@ -1948,14 +1948,14 @@ Function8e6c: ; 02:4e6c
 	call WaitBGMap
 	ret
 
-Text8e90: ; 02:4e90
+Text8e90:
 	db "けんがい@"
 
-Text8e95: ; 02:4e95
+Text8e95:
 	text "ちぇっ⋯⋯⋯⋯"
 	done
 
-Function8e9e: ; 02:4e9e
+Function8e9e:
 	ld hl, hJoyDown
 	ld a, [hl]
 	and $02
@@ -1964,7 +1964,7 @@ Function8e9e: ; 02:4e9e
 	ld [wJumptableIndex], a
 	ret
 
-Function8eaa: ; 02:4eaa
+Function8eaa:
 	ld hl, InitEffectObject
 	ld a, BANK(InitEffectObject)
 	call FarCall_hl
@@ -1978,7 +1978,7 @@ Function8eaa: ; 02:4eaa
 	call WaitBGMap
 	ret
 
-Function8eca: ; 02:4eca
+Function8eca:
 	ld hl, wFlyDestination
 	ld de, hJoySum
 	ld a, [de]
@@ -2010,10 +2010,10 @@ Function8eca: ; 02:4eca
 	ld [hl], a
 	ret
 
-Data8ef5: ; 02:4ef5
+Data8ef5:
 	db $00, $18, $30, $00
 
-Function8ef9: ; 02:4ef9
+Function8ef9:
 	dec c
 	dec c
 	dec b
@@ -2063,11 +2063,11 @@ Function8ef9: ; 02:4ef9
 
 SECTION "engine/dumps/bank02.asm@Text91c2", ROMX
 
-Text91c2: ; 02:51c2
+Text91c2:
 	text "エーボタンで　チューニング！"
 	done
 
-SetTitleBGDecorationBorder: ; 02:51d2
+SetTitleBGDecorationBorder:
 	ld de, TitleBGDecorationBorder
 	ld hl, vChars2 + $500
 	lb bc, BANK(TitleBGDecorationBorder), $09
@@ -2080,7 +2080,7 @@ SetTitleBGDecorationBorder: ; 02:51d2
 	call Function91ef
 	ret
 
-Function91ef: ; 02:51ef
+Function91ef:
 	xor a
 	ld c, $14
 .sub_91f2
@@ -2094,7 +2094,7 @@ Function91ef: ; 02:51ef
 
 SECTION "engine/dumps/bank02.asm@Function928b", ROMX
 
-Function928b: ; 02:528b
+Function928b:
 	ld a, b
 	cp $ff
 	jr nz, .sub_9293
@@ -2114,7 +2114,7 @@ Function928b: ; 02:528b
 	push de
 	jp hl
 
-Table92a8: ; 02:52a8
+Table92a8:
 	dw Function92d4
 	dw Function92db
 	dw Function934b
@@ -2138,12 +2138,12 @@ Table92a8: ; 02:52a8
 	dw Function94ab
 	dw Function94c8
 
-Function92d4: ; 02:52d4
+Function92d4:
 	ld hl, Data99ec
 	ld de, Data988c
 	ret
 
-Function92db: ; 02:52db
+Function92db:
 	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
@@ -2184,7 +2184,7 @@ Function92db: ; 02:52db
 	ld [wccd0], a
 	ret
 
-Function932b: ; 02:532b
+Function932b:
 	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
@@ -2200,12 +2200,12 @@ Function932b: ; 02:532b
 	ld de, Data98bc
 	ret
 
-Function934b: ; 02:534b
+Function934b:
 	ld hl, Data99fc
 	ld de, Data986c
 	ret
 
-Function9352: ; 02:5352
+Function9352:
 	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
@@ -2225,12 +2225,12 @@ Function9352: ; 02:5352
 	ld de, Data98ac
 	ret
 
-Function937b: ; 02:537b
+Function937b:
 	ld hl, Data99dc
 	ld de, wcce2
 	ret
 
-Function9382: ; 02:5382
+Function9382:
 	ld hl, Data9a0c
 	ld de, wcce1
 	ld bc, $0010
@@ -2243,27 +2243,27 @@ Function9382: ; 02:5382
 	ld de, Data98cc
 	ret
 
-Function939f: ; 02:539f
+Function939f:
 	ld hl, Data99bc
 	ld de, Data986c
 	ret
 
-Function93a6: ; 02:53a6
+Function93a6:
 	ld hl, Data9a1c
 	ld de, Data98dc
 	ret
 
-Function93ad: ; 02:53ad
+Function93ad:
 	ld hl, Data9a2c
 	ld de, Data993c
 	ret
 
-Function93b4: ; 02:53b4
+Function93b4:
 	ld hl, Data9a3c
 	ld de, Data986c
 	ret
 
-Function93bb: ; 02:53bb
+Function93bb:
 	ld b, $00
 	ld hl, Table93cc
 	add hl, bc
@@ -2279,7 +2279,7 @@ Function93bb: ; 02:53bb
 	ld l, a
 	ret
 
-Table93cc: ; 02:53cc
+Table93cc:
 	dw Data986c
 	dw Data996c
 
@@ -2289,19 +2289,19 @@ Table93cc: ; 02:53cc
 	dw Data986c
 	dw Data999c
 
-Function93d8: ; 02:53d8
+Function93d8:
 	ld hl, Data9a4c
 	ld de, Data986c
 	ld a, $08
 	ld [wccd0], a
 	ret
 
-Function93e4: ; 02:53e4
+Function93e4:
 	ld hl, Data99cc
 	ld de, Data986c
 	ret
 
-Function93eb: ; 02:53eb
+Function93eb:
 	ld hl, Data986c
 	ld de, wc51a
 	ld bc, $0010
@@ -2310,7 +2310,7 @@ Function93eb: ; 02:53eb
 	ld de, Data986c
 	ret
 
-Function93fe: ; 02:53fe
+Function93fe:
 	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
@@ -2323,7 +2323,7 @@ Function93fe: ; 02:53fe
 	ld [wccd0], a
 	ret
 
-Function941a: ; 02:541a
+Function941a:
 	push bc
 	ld hl, Data995c
 	ld de, wcce1
@@ -2343,12 +2343,12 @@ Function941a: ; 02:541a
 	ld de, Data986c
 	ret
 
-Function9441: ; 02:5441
+Function9441:
 	ld hl, Data9a3c
 	ld de, Data986c
 	ret
 
-Function9448: ; 02:5448
+Function9448:
 	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
@@ -2379,7 +2379,7 @@ Function9448: ; 02:5448
 	ld de, wccf1
 	ret
 
-Function948e: ; 02:548e
+Function948e:
 	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
@@ -2392,7 +2392,7 @@ Function948e: ; 02:548e
 	ld de, Data992c
 	ret
 
-Function94ab: ; 02:54ab
+Function94ab:
 	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
@@ -2405,7 +2405,7 @@ Function94ab: ; 02:54ab
 	ld de, Data992c
 	ret
 
-Function94c8: ; 02:54c8
+Function94c8:
 	ld hl, Data995c
 	ld de, wcce1
 	ld bc, $0010
@@ -2418,7 +2418,7 @@ Function94c8: ; 02:54c8
 	ld de, Data992c
 	ret
 
-Function94e5: ; 02:54e5
+Function94e5:
 	ld a, [wMapPermissions]
 	cp $02
 	jr z, .sub_950e
@@ -2459,7 +2459,7 @@ Function94e5: ; 02:54e5
 	ld a, $0d
 	ret
 
-Function9527: ; 02:5527
+Function9527:
 	ld a, [wTimeOfDay]
 	and $03
 	jr z, .sub_9534
@@ -2471,7 +2471,7 @@ Function9527: ; 02:5527
 	and a
 	ret
 
-Function9536: ; 02:5536
+Function9536:
 	ld a, [wTimeOfDay]
 	and $03
 	cp $02
@@ -2482,7 +2482,7 @@ Function9536: ; 02:5536
 	and a
 	ret
 
-Function9543: ; 02:5543
+Function9543:
 	ld a, [wMapGroup]
 	ld e, a
 	ld d, $00
@@ -2491,23 +2491,23 @@ Function9543: ; 02:5543
 	ld a, [hl]
 	ret
 
-Data954f: ; 02:554f
+Data954f:
 	db $01, $07, $0c, $03, $08, $06, $0b, $04
 	db $05, $0a, $02, $03, $02, $02, $09, $01
 
-Function955f: ; 02:555f
+Function955f:
 	push de
 	call Function964b
 	pop hl
 	jp Function964b
 
-Function9567: ; 02:5567
+Function9567:
 	bit 3, a
 	ld a, $18
 	ret nz
 	ld a, [hl]
 
-Function956d: ; 02:556d
+Function956d:
 	and a
 	jr z, .sub_957a
 	ld e, a
@@ -2522,7 +2522,7 @@ Function956d: ; 02:556d
 	scf
 	ret
 
-Function957e: ; 02:557e
+Function957e:
 	push bc
 	push af
 	ld hl, wPartyMon1DVs
@@ -2539,7 +2539,7 @@ Function957e: ; 02:557e
 	pop bc
 	ret
 
-Function9599: ; 02:5599
+Function9599:
 	push bc
 	push af
 	ld a, e
@@ -2558,7 +2558,7 @@ Function9599: ; 02:5599
 	pop bc
 	ret
 
-Function95b0: ; 02:55b0
+Function95b0:
 	ld a, [hl]
 	cp $a0
 	jr c, .sub_95ca
@@ -2579,7 +2579,7 @@ Function95b0: ; 02:55b0
 	and a
 	ret
 
-Function95cc: ; 02:55cc
+Function95cc:
 	ld hl, wcddf
 	ldh a, [hBattleTurn]
 	and a
@@ -2608,13 +2608,13 @@ Function95cc: ; 02:55cc
 .sub_95f7
 	ret
 
-Function95f8: ; 02:55f8
+Function95f8:
 	ld hl, Data98fc
 	ld de, wcce2
 	ld bc, $0030
 	jp CopyBytes
 
-Function9604: ; 02:5604
+Function9604:
 	ld hl, wccd3
 	ld a, [wcce1]
 	ld e, a
@@ -2640,27 +2640,27 @@ Function9604: ; 02:5604
 	ld [hl], e
 	ret
 
-Function962d: ; 02:562d
+Function962d:
 	ld hl, Data997c
 	jp Function964b
 
-Function9633: ; 02:5633
+Function9633:
 	ld hl, Data986c
 	jp Function964b
 
-Function9639: ; 02:5639
+Function9639:
 	ld hl, Data99ac
 	jp Function964b
 
-Function963f: ; 02:563f
+Function963f:
 	ld hl, Data99bc
 	jp Function964b
 
-Function9645: ; 02:5645
+Function9645:
 	ld hl, wc51a
 	jp Function964b
 
-Function964b: ; 02:564b
+Function964b:
 	ld a, [wJoypadFlags]
 	push af
 	set 7, a
@@ -2670,7 +2670,7 @@ Function964b: ; 02:564b
 	ld [wJoypadFlags], a
 	ret
 
-Function965c: ; 02:565c
+Function965c:
 	ld a, [hl]
 	and $07
 	ret z
@@ -2710,7 +2710,7 @@ Function965c: ; 02:565c
 	jr nz, .sub_9661
 	ret
 
-CheckSGB: ; 02:5695
+CheckSGB:
 	ld a, [wJoypadFlags]
 	push af
 	set 7, a
@@ -2749,7 +2749,7 @@ CheckSGB: ; 02:5695
 	jr nz, .sub_96ca
 	ret
 
-Table96d9: ; 02:56d9
+Table96d9:
 	dw Data9aac
 	dw Data9acc
 	dw Data9adc
@@ -2760,7 +2760,7 @@ Table96d9: ; 02:56d9
 	dw Data9b2c
 	dw Data9b3c
 
-Function96eb: ; 02:56eb
+Function96eb:
 	ld a, [wSGB]
 	ret z
 	di
@@ -2774,7 +2774,7 @@ Function96eb: ; 02:56eb
 	ei
 	ret
 
-Function9704: ; 02:5704
+Function9704:
 	call Function9710
 	push de
 	call Function980a
@@ -2782,7 +2782,7 @@ Function9704: ; 02:5704
 	call Function97be
 	ret
 
-Function9710: ; 02:5710
+Function9710:
 	ld a, [wce5f]
 	bit 3, a
 	jr nz, .sub_971e
@@ -2794,14 +2794,14 @@ Function9710: ; 02:5710
 	ld de, Corrupteda66cGFX
 	ret
 
-Function9725: ; 02:5725
+Function9725:
 	ld hl, vChars0
 	ld bc, $2000
 	xor a
 	call ByteFill
 	ret
 
-Function9730: ; 02:5730
+Function9730:
 	ld hl, Data9a7c
 	call Function965c
 	call Function9860
@@ -2852,7 +2852,7 @@ Function9730: ; 02:5730
 	call Function965c
 	jp Function9860
 
-Function979a: ; 02:579a
+Function979a:
 	call DisableLCD
 	ld a, $e4
 	ldh [rBGP], a
@@ -2869,7 +2869,7 @@ Function979a: ; 02:579a
 	ldh [rBGP], a
 	ret
 
-Function97be: ; 02:57be
+Function97be:
 	call DisableLCD
 	ld a, $e4
 	ldh [rBGP], a
@@ -2903,7 +2903,7 @@ Function97be: ; 02:57be
 	ldh [rBGP], a
 	ret
 
-Function980a: ; 02:580a
+Function980a:
 	call DisableLCD
 	ld a, $e4
 	ldh [rBGP], a
@@ -2927,7 +2927,7 @@ Function980a: ; 02:580a
 	ldh [rBGP], a
 	ret
 
-Function9838: ; 02:5838
+Function9838:
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -2937,7 +2937,7 @@ Function9838: ; 02:5838
 	jr nz, Function9838
 	ret
 
-Function9841: ; 02:5841
+Function9841:
 	xor a
 	ld [de], a
 	inc de
@@ -2947,7 +2947,7 @@ Function9841: ; 02:5841
 	jr nz, Function9841
 	ret
 
-Function984a: ; 02:584a
+Function984a:
 	ld hl, vBGMap0
 	ld de, $000c
 	ld a, $80
@@ -2964,7 +2964,7 @@ Function984a: ; 02:584a
 	jr nz, .sub_9854
 	ret
 
-Function9860: ; 02:5860
+Function9860:
 	ld de, $1b58
 .sub_9863
 	nop
@@ -2976,186 +2976,186 @@ Function9860: ; 02:5860
 	jr nz, .sub_9863
 	ret
 
-Data986c: ; 02:586c
+Data986c:
 	db $21, $01, $03, $00, $00, $00, $13, $11
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data987c: ; 02:587c
+Data987c:
 	db $21, $01, $07, $05, $00, $0a, $13, $0d
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data988c: ; 02:588c
+Data988c:
 	db $22, $05, $07, $0a, $00, $0c, $13, $11
 	db $03, $05, $01, $00, $0a, $03, $03, $00
 
-Data989c: ; 02:589c
+Data989c:
 	db $0a, $08, $13, $0a, $03, $0a, $00, $04
 	db $08, $0b, $03, $0f, $0b, $00, $13, $07
 
-Data98ac: ; 02:58ac
+Data98ac:
 	db $21, $01, $07, $05, $00, $01, $07, $07
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data98bc: ; 02:58bc
+Data98bc:
 	db $21, $01, $07, $05, $0b, $01, $13, $02
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data98cc: ; 02:58cc
+Data98cc:
 	db $21, $01, $07, $05, $01, $01, $08, $08
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data98dc: ; 02:58dc
+Data98dc:
 	db $22, $05, $03, $05, $00, $00, $13, $0b
 	db $03, $0a, $00, $04, $13, $09, $02, $0f
 
-Data98ec: ; 02:58ec
+Data98ec:
 	db $00, $06, $13, $07, $03, $00, $04, $04
 	db $0f, $09, $03, $00, $00, $0c, $13, $11
 
-Data98fc: ; 02:58fc
+Data98fc:
 	db $23, $07, $07, $10, $00, $00, $02, $0c
 	db $02, $00, $0c, $00, $12, $01, $02, $00
 
-Data990c: ; 02:590c
+Data990c:
 	db $0c, $02, $12, $03, $02, $00, $0c, $04
 	db $12, $05, $02, $00, $0c, $06, $12, $07
 
-Data991c: ; 02:591c
+Data991c:
 	db $02, $00, $0c, $08, $12, $09, $02, $00
 	db $0c, $0a, $12, $0b, $00, $00, $00, $00
 
-Data992c: ; 02:592c
+Data992c:
 	db $21, $01, $07, $10, $00, $00, $13, $02
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data993c: ; 02:593c
+Data993c:
 	db $21, $01, $07, $10, $00, $00, $13, $05
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data994c: ; 02:594c
+Data994c:
 	db $51, $35, $00, $36, $00, $37, $00, $38
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data995c: ; 02:595c
+Data995c:
 	db $51, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data996c: ; 02:596c
+Data996c:
 	db $51, $2a, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data997c: ; 02:597c
+Data997c:
 	db $51, $2b, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data998c: ; 02:598c
+Data998c:
 	db $51, $2c, $00, $2d, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data999c: ; 02:599c
+Data999c:
 	db $51, $2e, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99ac: ; 02:59ac
+Data99ac:
 	db $51, $2f, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99bc: ; 02:59bc
+Data99bc:
 	db $51, $30, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99cc: ; 02:59cc
+Data99cc:
 	db $51, $2d, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99dc: ; 02:59dc
+Data99dc:
 	db $51, $22, $00, $23, $00, $24, $00, $25
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99ec: ; 02:59ec
+Data99ec:
 	db $51, $0e, $00, $0e, $00, $0e, $00, $0e
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99fc: ; 02:59fc
+Data99fc:
 	db $51, $26, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a0c: ; 02:5a0c
+Data9a0c:
 	db $51, $30, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a1c: ; 02:5a1c
+Data9a1c:
 	db $51, $31, $00, $32, $00, $33, $00, $34
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a2c: ; 02:5a2c
+Data9a2c:
 	db $51, $27, $00, $28, $00, $0f, $00, $13
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a3c: ; 02:5a3c
+Data9a3c:
 	db $51, $0f, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a4c: ; 02:5a4c
+Data9a4c:
 	db $51, $29, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a5c: ; 02:5a5c
+Data9a5c:
 	db $59, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a6c: ; 02:5a6c
+Data9a6c:
 	db $89, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a7c: ; 02:5a7c
+Data9a7c:
 	db $89, $01, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a8c: ; 02:5a8c
+Data9a8c:
 	db $99, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a9c: ; 02:5a9c
+Data9a9c:
 	db $a1, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9aac: ; 02:5aac
+Data9aac:
 	db $b9, $01, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9abc: ; 02:5abc
+Data9abc:
 	db $b9, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9acc: ; 02:5acc
+Data9acc:
 	db $79, $5d, $08, $00, $0b, $8c, $d0, $f4
 	db $60, $00, $00, $00, $00, $00, $00, $00
 
-Data9adc: ; 02:5adc
+Data9adc:
 	db $79, $52, $08, $00, $0b, $a9, $e7, $9f
 	db $01, $c0, $7e, $e8, $e8, $e8, $e8, $e0
 
-Data9aec: ; 02:5aec
+Data9aec:
 	db $79, $47, $08, $00, $0b, $c4, $d0, $16
 	db $a5, $cb, $c9, $05, $d0, $10, $a2, $28
 
-Data9afc: ; 02:5afc
+Data9afc:
 	db $79, $3c, $08, $00, $0b, $f0, $12, $a5
 	db $c9, $c9, $c8, $d0, $1c, $a5, $ca, $c9
 
-Data9b0c: ; 02:5b0c
+Data9b0c:
 	db $79, $31, $08, $00, $0b, $0c, $a5, $ca
 	db $c9, $7e, $d0, $06, $a5, $cb, $c9, $7e
 
-Data9b1c: ; 02:5b1c
+Data9b1c:
 	db $79, $26, $08, $00, $0b, $39, $cd, $48
 	db $0c, $d0, $34, $a5, $c9, $c9, $80, $d0
 
-Data9b2c: ; 02:5b2c
+Data9b2c:
 	db $79, $1b, $08, $00, $0b, $ea, $ea, $ea
 	db $ea, $ea, $a9, $01, $cd, $4f, $0c, $d0
 
-Data9b3c: ; 02:5b3c
+Data9b3c:
 	db $79, $10, $08, $00, $0b, $4c, $20, $08
 	db $ea, $ea, $ea, $ea, $ea, $60, $ea, $ea

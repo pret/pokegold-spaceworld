@@ -309,12 +309,12 @@ Function1c0a::
 	ld hl, sSpriteBuffer0
 	decoord 0, 0
 	ld bc, $168
-.asm_1c33: ; 00:1c33
+.asm_1c33:
 	ld a, [hl]
 	cp $61
 	jr c, .asm_1c39
 	ld [de], a
-.asm_1c39: ; 00:1c39
+.asm_1c39:
 	inc hl
 	inc de
 	dec bc

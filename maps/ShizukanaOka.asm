@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "maps/ShizukanaOka.asm", ROMX
 
-ShizukanaOkaScriptLoader:: ; 564B
+ShizukanaOkaScriptLoader::
 	ld hl, ShizukanaOkaScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -12,7 +12,7 @@ ShizukanaOkaScriptPointers:
 	dw ShizukanaOkaScript
 	dw ShizukanaOkaNPCIDs
 
-ShizukanaOkaNPCIDs: ; 5659
+ShizukanaOkaNPCIDs:
 	db 0
 	db 1
 	db 2
@@ -22,29 +22,29 @@ ShizukanaOkaNPCIDs: ; 5659
 	db $FF
 
 ShizukanaOkaSignPointers:
-	dw ShizukanaOkaSignpost1 ;574b
-	dw ShizukanaOkaSignpost2 ;5744
+	dw ShizukanaOkaSignpost1
+	dw ShizukanaOkaSignpost2
 
-ShizukanaOkaTextPointers: ;5664
-	dw ShizukanaOkaText1 ;567a
-	dw ShizukanaOkaTrainer2 ;5681
-	dw ShizukanaOkaTrainer3 ;56A8
-	dw ShizukanaOkaTrainer4 ;56cf
-	dw ShizukanaOkaTrainer5 ;56f6
-	dw ShizukanaOkaTrainer6 ;571d
+ShizukanaOkaTextPointers:
+	dw ShizukanaOkaText1
+	dw ShizukanaOkaTrainer2
+	dw ShizukanaOkaTrainer3
+	dw ShizukanaOkaTrainer4
+	dw ShizukanaOkaTrainer5
+	dw ShizukanaOkaTrainer6
 
-ShizukanaOkaScript: ;5670
+ShizukanaOkaScript:
 	ld hl, ShizukanaOkaNPCIDs
 	ld de, ShizukanaOkaSignPointers
 	call CallMapTextSubroutine
 	ret
 
-ShizukanaOkaText1: ;567a
+ShizukanaOkaText1:
 	ld hl, ShizukanaOkaText1String
 	call OpenTextbox
 	ret
 
-ShizukanaOkaTrainer2: ;5681
+ShizukanaOkaTrainer2:
 	ld hl, $D3A5
 	bit 1, [hl]
 	jr nz, .Trainer2Won
@@ -63,7 +63,7 @@ ShizukanaOkaTrainer2: ;5681
 	call OpenTextbox
 	ret
 
-ShizukanaOkaTrainer3: ;56A8
+ShizukanaOkaTrainer3:
 	ld hl, wd3a5
 	bit 2, [hl]
 	jr nz, .Trainer3Won
@@ -82,7 +82,7 @@ ShizukanaOkaTrainer3: ;56A8
 	call OpenTextbox
 	ret
 
-ShizukanaOkaTrainer4: ;56CF
+ShizukanaOkaTrainer4:
 	ld hl, wd3a5
 	bit 3, [hl]
 	jr nz, .Trainer4Won
@@ -101,7 +101,7 @@ ShizukanaOkaTrainer4: ;56CF
 	call OpenTextbox
 	ret
 
-ShizukanaOkaTrainer5: ;56F6
+ShizukanaOkaTrainer5:
 	ld hl, wd3a5
 	bit 4, [hl]
 	jr nz, .Trainer5Won
@@ -120,7 +120,7 @@ ShizukanaOkaTrainer5: ;56F6
 	call OpenTextbox
 	ret
 
-ShizukanaOkaTrainer6: ;571D
+ShizukanaOkaTrainer6:
 	ld hl, wd3a5
 	bit 5, [hl]
 	jr nz, .Trainer6Won
@@ -139,17 +139,17 @@ ShizukanaOkaTrainer6: ;571D
 	call OpenTextbox
 	ret
 
-ShizukanaOkaSignpost2: ;5744
+ShizukanaOkaSignpost2:
 	ld hl, ShizukanaOkaSignpost2String
 	call OpenTextbox
 	ret
 
-ShizukanaOkaSignpost1: ;574b
+ShizukanaOkaSignpost1:
 	ld hl, ShizukanaOkaSignpost1String
 	call OpenTextbox
 	ret
 
-ShizukanaOkaTrainer6EncounterString: ; 2f:5752
+ShizukanaOkaTrainer6EncounterString:
 	text "ねえ　ねえ　みてよ"
 	para "これ　ぜったい"
 	line "しんしゅの　ポケモン　だよ！"
@@ -159,13 +159,13 @@ ShizukanaOkaTrainer6EncounterString: ; 2f:5752
 	line "わかってないから　しかたないよ"
 	done
 
-ShizukanaOkaTrainer6WonString: ; 2f:5794
+ShizukanaOkaTrainer6WonString:
 	text "あたらしい　ポケモンだけでなく"
 	line "あたらしい　タイプも"
 	cont "みつかったって　うわさだよ"
 	done
 
-ShizukanaOkaTrainer5EncounterString: ; 2f:57be
+ShizukanaOkaTrainer5EncounterString:
 	text "いい　てんきねー"
 	line "あなた　ちょうしは　いかが？"
 	done
@@ -174,11 +174,11 @@ ShizukanaOkaTrainer5EncounterString: ; 2f:57be
 	line "⋯⋯なにいってるのかしら　あたし"
 	done
 
-ShizukanaOkaTrainer5WonString: ; 2f:57f1
+ShizukanaOkaTrainer5WonString:
 	text "なんで　こうなるの？"
 	line "さんぽしてた　だけなのに@@"
 
-ShizukanaOkaTrainer4EncounterString: ; 2f:580b
+ShizukanaOkaTrainer4EncounterString:
 	text "こんなところで"
 	line "ひを　ふく　れんしゅう！"
 	done
@@ -186,14 +186,14 @@ ShizukanaOkaTrainer4EncounterString: ; 2f:580b
 	text "あちち　しっぱいだー"
 	done
 
-ShizukanaOkaTrainer4WonString: ; 2f:582d
+ShizukanaOkaTrainer4WonString:
 	text "よるになると　くらくなるから"
 	line "こどもは　はやく　かえりなさい！"
 	para "おれ？"
 	line "おれは　ひをふくから　だいじょうぶ"
 	done
 
-ShizukanaOkaTrainer3EncounterString: ; 2f:5864
+ShizukanaOkaTrainer3EncounterString:
 	text "むしポケモンの　ことなら"
 	line "だれよりも　くわしいよ"
 	done
@@ -201,14 +201,14 @@ ShizukanaOkaTrainer3EncounterString: ; 2f:5864
 	text "パラパラー"
 	done
 
-ShizukanaOkaTrainer3WonString: ; 2f:5885
+ShizukanaOkaTrainer3WonString:
 	text "ポケモンずかんを　つくるんだって？"
 	line "ちょっと　みせてよ"
 	para "へー"
 	line "タイプべつに　ポケモン　さがせるんだ"
 	done
 
-ShizukanaOkaTrainer2EncounterString: ; 2f:58b8
+ShizukanaOkaTrainer2EncounterString:
 	text "いっとくけど"
 	line "きみよりも　べんきょう　してるから"
 	cont "きみよりも　つよいよ　ぜったい！"
@@ -217,13 +217,13 @@ ShizukanaOkaTrainer2EncounterString: ; 2f:58b8
 	text "な　なぜなんだ？"
 	done
 
-ShizukanaOkaTrainer2WonString: ; 2f:58ed
+ShizukanaOkaTrainer2WonString:
 	text "おかしいよ⋯⋯"
 	line "まいにち　ポケモンの　べんきょうを"
 	cont "きちんと　してるのに　まけるなんて"
 	done
 
-ShizukanaOkaText1String: ; 2f:591a
+ShizukanaOkaText1String:
 	text "この　おかの　ポケモンは　よわい！"
 	line "だから　ここで　しゅぎょう　している"
 	cont "トレーナーも　おおいよ"
@@ -231,12 +231,12 @@ ShizukanaOkaText1String: ; 2f:591a
 	line "うでだめしを　するといい"
 	done
 
-ShizukanaOkaSignpost2String: ; 2f:5968
+ShizukanaOkaSignpost2String:
 	text "しずかな　おか"
 	line "サイレントヒル　は　こちら"
 	done
 
-ShizukanaOkaSignpost1String: ; 2f:597f
+ShizukanaOkaSignpost1String:
 	text "しずかな　おか"
 	line "オールドシティ　は　こちら"
 	done

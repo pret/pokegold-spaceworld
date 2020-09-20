@@ -2,17 +2,17 @@ include "constants.asm"
 
 SECTION "maps/SilentHillPokecenter.asm", ROMX
 
-SilentHillPokecenterScriptLoader:: ; 4682
+SilentHillPokecenterScriptLoader::
 	ld hl, SilentHillPokecenterScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillPokecenterScriptPointers: ; 468C
+SilentHillPokecenterScriptPointers:
 	dw SilentHillPokecenterScript
 	dw SilentHillPokecenterNPCIDs
 
-SilentHillPokecenterScript: ; 4690
+SilentHillPokecenterScript:
 	ld hl, SilentHillPokecenterNPCIDs
 	ld de, SilentHillPokecenterPCPointer
 	call CallMapTextSubroutine
@@ -21,7 +21,7 @@ SilentHillPokecenterScript: ; 4690
 ; 469A
 	dw SilentHillPokecenterNPCIDs
 
-SilentHillPokecenterNPCIDs: ; 469C
+SilentHillPokecenterNPCIDs:
 	db 0
 	db 1
 	db 2
@@ -29,31 +29,31 @@ SilentHillPokecenterNPCIDs: ; 469C
 	db 4
 	db $FF
 
-SilentHillPokecenterPCPointer: ; 46A2
+SilentHillPokecenterPCPointer:
 	dw SilentHillPokecenterPCText
 
-SilentHillPokecenterPCText: ; 46A4
+SilentHillPokecenterPCText:
 	ld hl, SilentHillPokecenterTextString1
 	call OpenTextbox
 	ret
 
-SilentHillPokecenterTextString1: ; 46AB
+SilentHillPokecenterTextString1:
 	text "げんざい　ちょうせいちゅうです"
 	done
 
-SilentHillPokecenterTextPointers:: ; 46BC
+SilentHillPokecenterTextPointers::
 	dw SilentHillPokecenterNPCText1
 	dw SilentHillPokecenterNPCText2
 	dw SilentHillPokecenterNPCText3
 	dw SilentHillPokecenterNPCText4
 	dw SilentHillPokecenterNPCText5
 
-SilentHillPokecenterNPCText1: ; 46C6
+SilentHillPokecenterNPCText1:
 	ld hl, SilentHillPokecenterTextString2
 	call OpenTextbox
 	ret
 
-SilentHillPokecenterTextString2: ; 46CD
+SilentHillPokecenterTextString2:
 	text "もうしわけありませんが"
 	line "ただいま　しゅうりちゅう　でして"
 
@@ -63,12 +63,12 @@ SilentHillPokecenterTextString2: ; 46CD
 	line "じゅうぶんに　おきをつけ　ください"
 	done
 
-SilentHillPokecenterNPCText2: ; 4714
+SilentHillPokecenterNPCText2:
 	ld hl, SilentHillPokecenterTextString3
 	call OpenTextbox
 	ret
 
-SilentHillPokecenterTextString3: ; 471B
+SilentHillPokecenterTextString3:
 	text "あそこに　ある　パソコンは"
 	line "トレーナー　だったら"
 	cont "いつでも　むりょうで"
@@ -76,12 +76,12 @@ SilentHillPokecenterTextString3: ; 471B
 	cont "きが　きいてるよな！"
 	done
 
-SilentHillPokecenterNPCText3: ; 4757
+SilentHillPokecenterNPCText3:
 	ld hl, SilentHillPokecenterTextString4
 	call OpenTextbox
 	ret
 
-SilentHillPokecenterTextString4: ; 475E
+SilentHillPokecenterTextString4:
 	text "いま　じゅんびちゅうの"
 	line "きかいは　すごいらしいよ"
 
@@ -91,22 +91,22 @@ SilentHillPokecenterTextString4: ; 475E
 	para "ほんとかな？"
 	done
 
-SilentHillPokecenterNPCText4: ; 479E
+SilentHillPokecenterNPCText4:
 	ld hl, SilentHillPokecenterTextString5
 	call OpenTextbox
 	ret
 
-SilentHillPokecenterTextString5: ; 47A5
+SilentHillPokecenterTextString5:
 	text "こいつ　へルガー"
 	line "いままでにない　タイプの　ポケモンさ"
 	done
 
-SilentHillPokecenterNPCText5: ; 47C2
+SilentHillPokecenterNPCText5:
 	ld hl, SilentHillPokecenterTextString6
 	call OpenTextbox
 	ret
 
-SilentHillPokecenterTextString6: ; 47C9
+SilentHillPokecenterTextString6:
 	text "へルガー『ぐるるうー"
 	done
 

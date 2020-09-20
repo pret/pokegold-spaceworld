@@ -4,61 +4,61 @@ SECTION "VRAM", VRAM
 
 UNION
 
-vChars0:: ; 8000
+vChars0::
 	ds $80 tiles
 
-vChars1:: ; 8800
+vChars1::
 	ds $80 tiles
 
-vChars2:: ; 9000
+vChars2::
 	ds $80 tiles
 
 NEXTU
 
 ; Battle/menu
-vSprites:: ; 8000
+vSprites::
 	ds $80 tiles
 
-vFont:: ; 8800
+vFont::
 	ds $80 tiles
 
-vFrontPic:: ; 9000
+vFrontPic::
 	ds 7 * 7 tiles
 
 NEXTU
 
-vNPCSprites:: ; 8000
+vNPCSprites::
 	ds $80 tiles
 
-vNPCSprites2:: ; 8800
+vNPCSprites2::
 	ds $80 tiles
 
-vTileset:: ; 9000
+vTileset::
 ;	ds $60 tiles
 	ds $20 tiles
 
-vExteriorTileset:: ; 9200
+vExteriorTileset::
 	ds $40 tiles
-vTilesetEnd:: ; 9600
+vTilesetEnd::
 
 NEXTU
 
 	ds $80 tiles
 
-vTitleLogo:: ; 8800
+vTitleLogo::
 	ds $80 tiles
 
-;vFrontPic:: ; 9000
+;vFrontPic::
 	ds 7 * 7 tiles
 
-vTitleLogo2:: ; 9310
+vTitleLogo2::
 	; TODO: what size?
 
 ENDU
 
 
-vBGMap0:: ; 9800
+vBGMap0::
 	ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 
-vBGMap1:: ; 9c00
+vBGMap1::
 	ds BG_MAP_WIDTH * BG_MAP_HEIGHT

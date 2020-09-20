@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/WestGym.asm", ROMX
 
-WestGymScriptLoader:: ; 98bff (26:4bff)
+WestGymScriptLoader::
 	ret
 
-WestGymTextPointers:: ; 98c00 (26:4c00)
+WestGymTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText
