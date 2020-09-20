@@ -45,7 +45,7 @@ Corrupteda66cGFX:
 INCBIN "gfx/sgb/corrupted_a66c.2bpp"
 
 SGBBorderGFX::
-if def(GOLD)
+if DEF(GOLD)
 INCBIN "gfx/sgb/sgb_border_gold.2bpp"
 else
 INCBIN "gfx/sgb/sgb_border_silver.2bpp"
@@ -66,7 +66,7 @@ Corruptedba93GFX:
 INCBIN "gfx/sgb/corrupted_ba93.2bpp"
 
 SECTION "gfx.asm@Title Screen GFX", ROMX
-if def(GOLD)
+if DEF(GOLD)
 TitleScreenGFX:: INCBIN "gfx/title/title.2bpp"
 TitleScreenVersionGFX:: INCBIN "gfx/title/title_gold_version.2bpp"
 TitleScreenHoOhGFX:: INCBIN "gfx/title/title_hooh.2bpp"
