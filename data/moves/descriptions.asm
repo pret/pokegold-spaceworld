@@ -255,7 +255,6 @@ MoveDescriptions::
 	dw MoveDescription_783E
 	dw MoveDescription_785E
 
-
 MoveDescription_586D:
 	db   "てや　しっぽなどを　つかい"
 	next "てきを　はたいて　こうげき@"
