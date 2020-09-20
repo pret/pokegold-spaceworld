@@ -5,22 +5,22 @@ SECTION "engine/gfx.asm", ROMX
 LoadFontGraphics::
 	ld de, FontGFX
 	ld hl, $8800
-	lb bc, BANK(FontGFX), ((FontGFXEnd - FontGFX) / LEN_1BPP_TILE)
+	lb bc, BANK(FontGFX), ((FontGFX.End - FontGFX) / LEN_1BPP_TILE)
 	jp Get1bpp
 LoadFontExtraGraphicsWithCursor::
 	ld de, FontExtraCDEFGHIVSLM_GFX
 	ld hl, $9620
-	lb bc, BANK(FontExtraCDEFGHIVSLM_GFX), ((FontSmallKanaPunctuationGFXEnd - FontExtraCDEFGHIVSLM_GFX) / LEN_2BPP_TILE)
+	lb bc, BANK(FontExtraCDEFGHIVSLM_GFX), ((FontSmallKanaPunctuationGFX.End - FontExtraCDEFGHIVSLM_GFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	ld de, BlackTileAndCursor1bppGFX
 	ld hl, $9600
-	lb bc, BANK(BlackTileAndCursor1bppGFX), ((BlackTileAndCursor1bppGFXEnd - BlackTileAndCursor1bppGFX) / LEN_1BPP_TILE)
+	lb bc, BANK(BlackTileAndCursor1bppGFX), ((BlackTileAndCursor1bppGFX.End - BlackTileAndCursor1bppGFX) / LEN_1BPP_TILE)
 	call Get1bpp
 	jr LoadActiveFrameGraphics
 LoadPokemonMenuGraphics::
 	ld de, BattleHPBarGFX
 	ld hl, $9600
-	lb bc, BANK(BattleHPBarGFX), ((LevelUpGFXEnd - BattleHPBarGFX) / LEN_2BPP_TILE)
+	lb bc, BANK(BattleHPBarGFX), ((LevelUpGFX.End - BattleHPBarGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	jr LoadActiveFrameGraphics
 LoadToolgearGraphicsDebug::
@@ -48,29 +48,29 @@ LoadToolgearGraphicsDebug::
 	call Get2bpp
 	ld hl, $9710
 	ld de, HUD_GFX
-	lb bc, BANK(HUD_GFX), ((HUD_GFXEnd - HUD_GFX) / LEN_2BPP_TILE)
+	lb bc, BANK(HUD_GFX), ((HUD_GFX.End - HUD_GFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	ret
 LoadActiveFrameGraphics::
 	ld a, [wActiveFrame]
-	ld bc, (FrameGFXFirstFrameEnd - FrameGFXFirstFrame)
+	ld bc, (FrameGFX.FirstEntryEnd - FrameGFX)
 	ld hl, FrameGFX
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, $9790
-	lb bc, BANK(FrameGFX), ((FrameGFXFirstFrameEnd - FrameGFXFirstFrame) / LEN_1BPP_TILE)
+	lb bc, BANK(FrameGFX), ((FrameGFX.FirstEntryEnd - FrameGFX) / LEN_1BPP_TILE)
 	call Get1bpp
 	ld hl, $97f0
 	ld de, EmptyTile1bppGFX
-	lb bc, BANK(EmptyTile1bppGFX), ((EmptyTile1bppGFXEnd - EmptyTile1bppGFX) / LEN_1BPP_TILE)
+	lb bc, BANK(EmptyTile1bppGFX), ((EmptyTile1bppGFX.End - EmptyTile1bppGFX) / LEN_1BPP_TILE)
 	call Get1bpp
 	ret
 LoadPokeDexGraphics::
 	call LoadPokemonMenuGraphics
 	ld de, PokedexGFX
 	ld hl, $9600
-	lb bc, BANK(PokedexGFX), ((PokedexLocationGFXEnd - PokedexGFX) / LEN_2BPP_TILE)
+	lb bc, BANK(PokedexGFX), ((PokedexLocationGFX.End - PokedexGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	ld de, PokeBallsGFX
 	ld hl, $9720
@@ -79,31 +79,31 @@ LoadPokeDexGraphics::
 LoadBattleGraphics::
 	ld de, BattleHPBarGFX
 	ld hl, $9600
-	lb bc, BANK(BattleHPBarGFX), ((BattleHPBarGFXEnd - BattleHPBarGFX) / LEN_2BPP_TILE)
+	lb bc, BANK(BattleHPBarGFX), ((BattleHPBarGFX.End - BattleHPBarGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	ld hl, $9700
 	ld de, BattleMarkersGFX
-	lb bc, BANK(BattleMarkersGFX), ((BattleMarkersGFXEnd - BattleMarkersGFX) / LEN_2BPP_TILE)
+	lb bc, BANK(BattleMarkersGFX), ((BattleMarkersGFX.End - BattleMarkersGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	call LoadActiveFrameGraphics
 	ld de, HpExpBarParts0GFX
 	ld hl, $96c0
-	lb bc, BANK(HpExpBarParts0GFX), ((HpExpBarParts0GFXEnd - HpExpBarParts0GFX) / LEN_1BPP_TILE)
+	lb bc, BANK(HpExpBarParts0GFX), ((HpExpBarParts0GFX.End - HpExpBarParts0GFX) / LEN_1BPP_TILE)
 	call Get1bpp
 	ld de, HpExpBarParts1GFX
 	ld hl, $9730
-	lb bc, BANK(HpExpBarParts1GFX), ((HpExpBarParts3GFXEnd - HpExpBarParts1GFX) / LEN_1BPP_TILE)
+	lb bc, BANK(HpExpBarParts1GFX), ((HpExpBarParts3GFX.End - HpExpBarParts1GFX) / LEN_1BPP_TILE)
 	call Get1bpp
 	ld de, ExpBarGFX
 	ld hl, $9550
-	lb bc, BANK(ExpBarGFX), ((ExpBarGFXEnd - ExpBarGFX) / LEN_2BPP_TILE)
+	lb bc, BANK(ExpBarGFX), ((ExpBarGFX.End - ExpBarGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	ret
 LoadPokemonStatsGraphics::
 	call LoadPokemonMenuGraphics
 	ld de, HpExpBarParts0GFX
 	ld hl, $96c0
-	lb bc, BANK(HpExpBarParts0GFX), ((HpExpBarParts0GFXEnd - HpExpBarParts0GFX) / LEN_1BPP_TILE)
+	lb bc, BANK(HpExpBarParts0GFX), ((HpExpBarParts0GFX.End - HpExpBarParts0GFX) / LEN_1BPP_TILE)
 	call Get1bpp
 	ld de, HpExpBarParts1GFX
 	ld hl, $9780
@@ -111,22 +111,22 @@ LoadPokemonStatsGraphics::
 	call Get1bpp
 	ld de, HpExpBarParts2GFX
 	ld hl, $9760
-	lb bc, BANK(HpExpBarParts0GFX), ((HpExpBarParts2GFXEnd - HpExpBarParts2GFX) / LEN_1BPP_TILE)
+	lb bc, BANK(HpExpBarParts0GFX), ((HpExpBarParts2GFX.End - HpExpBarParts2GFX) / LEN_1BPP_TILE)
 	call Get1bpp
 	ld de, ExpBarGFX
 	ld hl, $9550
-	lb bc, BANK(ExpBarGFX), ((ExpBarGFXEnd - ExpBarGFX) / LEN_2BPP_TILE)
+	lb bc, BANK(ExpBarGFX), ((ExpBarGFX.End - ExpBarGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 LoadOnlyPokemonStatsGraphics::
 	ld de, StatsGFX
 	ld hl, $9310
-	lb bc, BANK(StatsGFX), ((StatsGFXEnd - StatsGFX) / LEN_2BPP_TILE)
+	lb bc, BANK(StatsGFX), ((StatsGFX.End - StatsGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	ret
 LoadBackpackGraphics::
 	ld de, BlackTileAndCursor1bppGFX
 	ld hl, $9600
-	lb bc, BANK(BlackTileAndCursor1bppGFX), ((BlackTileAndCursor1bppGFXEnd - BlackTileAndCursor1bppGFX) / LEN_1BPP_TILE)
+	lb bc, BANK(BlackTileAndCursor1bppGFX), ((BlackTileAndCursor1bppGFX.End - BlackTileAndCursor1bppGFX) / LEN_1BPP_TILE)
 	call Get1bpp
 	ld de, PackIconGFX
 	ld hl, $9620
@@ -134,6 +134,6 @@ LoadBackpackGraphics::
 	call Get2bpp
 	ld de, FontSmallKanaPunctuationGFX
 	ld hl, $96e0
-	lb bc, BANK(FontSmallKanaPunctuationGFX), ((FontSmallKanaPunctuationGFXEnd - FontSmallKanaPunctuationGFX) / LEN_2BPP_TILE)
+	lb bc, BANK(FontSmallKanaPunctuationGFX), ((FontSmallKanaPunctuationGFX.End - FontSmallKanaPunctuationGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	jp LoadActiveFrameGraphics

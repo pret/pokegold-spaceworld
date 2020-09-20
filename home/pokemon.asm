@@ -12,17 +12,17 @@ GetMonHeader::
 	push hl
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(MonBaseStats)
+	ld a, BANK(BaseData)
 	call Bankswitch
 	ld a, [wCurSpecies]
 	cp DEX_EGG
 	jr z, .egg
 	dec a
-	ld bc, MonBaseStatsEnd - MonBaseStats
-	ld hl, MonBaseStats
+	ld bc, BaseData.FirstEntryEnd - BaseData
+	ld hl, BaseData
 	call AddNTimes
 	ld de, wMonHeader
-	ld bc, MonBaseStatsEnd - MonBaseStats
+	ld bc, BaseData.FirstEntryEnd - BaseData
 	call CopyBytes
 	jr .done
 .egg

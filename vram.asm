@@ -34,9 +34,7 @@ vNPCSprites2::
 	ds $80 tiles
 
 vTileset::
-;	ds $60 tiles
 	ds $20 tiles
-
 vExteriorTileset::
 	ds $40 tiles
 vTilesetEnd::

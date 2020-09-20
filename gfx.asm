@@ -97,7 +97,7 @@ TrainerCardBorderGFX:: INCBIN "gfx/trainer_card/border.2bpp"
 TrainerCardGFX:: INCBIN "gfx/trainer_card/trainer_card.2bpp"
 TrainerCardColonGFX:: INCBIN "gfx/trainer_card/colon.2bpp"
 TrainerCardIDNoGFX:: INCBIN "gfx/trainer_card/id_no.2bpp"
-TrainerCardIDNoGFXEnd::
+.End::
 TrainerCardLeadersGFX:: INCBIN "gfx/trainer_card/leaders.2bpp"
 	db $18, $00 ; leftover of previous graphics
 Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp"
@@ -467,24 +467,24 @@ FontExtraGFX::
 FontExtraAB_GFX:: INCBIN "gfx/font/font_extra.ab.2bpp"
 FontExtraCDEFGHIVSLM_GFX:: INCBIN "gfx/font/font_extra.cdefghivslm.2bpp"
 FontSmallKanaPunctuationGFX:: INCBIN "gfx/font/small_kana_punctuation.2bpp"
-FontSmallKanaPunctuationGFXEnd::
+.End::
 Unreferenced_DefaultFrame0GFX:: INCBIN "gfx/frames/1.2bpp"
 FontGFX:: INCBIN "gfx/font/font.1bpp"
-FontGFXEnd::
+.End::
 FontBattleExtraGFX::
 BattleHPBarGFX:: INCBIN "gfx/battle/hp_bar.2bpp"
-BattleHPBarGFXEnd::
+.End::
 HpExpBarParts0_2bppGFX:: INCBIN "gfx/battle/hp_exp_bar_parts0.2bpp"
 BattleMarkersGFX:: INCBIN "gfx/battle/markers.2bpp"
-BattleMarkersGFXEnd::
+.End::
 LevelUpGFX:: INCBIN "gfx/battle/levelup.2bpp"
-LevelUpGFXEnd::
+.End::
 
 Unreferenced_DefaultFrame1:: INCBIN "gfx/frames/1.2bpp"
 
 FrameGFX::
-FrameGFXFirstFrame:: INCBIN "gfx/frames/1.1bpp"
-FrameGFXFirstFrameEnd::
+INCBIN "gfx/frames/1.1bpp"
+.FirstEntryEnd::
 INCBIN "gfx/frames/2.1bpp"
 INCBIN "gfx/frames/3.1bpp"
 INCBIN "gfx/frames/4.1bpp"
@@ -497,34 +497,34 @@ INCBIN "gfx/frames/9.1bpp"
 StatsGFX::
 INCBIN "gfx/stats/separator.2bpp"
 INCBIN "gfx/stats/stats.2bpp"
-StatsGFXEnd::
+.End::
 
 HpExpBarParts0GFX:: INCBIN "gfx/battle/hp_exp_bar_parts0.1bpp"
-HpExpBarParts0GFXEnd::
+.End::
 HpExpBarParts1GFX:: INCBIN "gfx/battle/hp_exp_bar_parts1.1bpp"
-HpExpBarParts1GFXEnd::
+.End::
 HpExpBarParts2GFX:: INCBIN "gfx/battle/hp_exp_bar_parts2.1bpp"
-HpExpBarParts2GFXEnd::
+.End::
 HpExpBarParts3GFX:: INCBIN "gfx/battle/hp_exp_bar_parts3.1bpp"
-HpExpBarParts3GFXEnd::
+.End::
 ExpBarGFX:: INCBIN "gfx/battle/exp_bar.2bpp"
-ExpBarGFXEnd::
+.End::
 PokedexGFX:: INCBIN "gfx/pokedex/pokedex.2bpp"
-PokedexGFXEnd::
+.End::
 PokedexLocationGFX:: INCBIN "gfx/pokedex/locations.2bpp"
-PokedexLocationGFXEnd::
+.End::
 TownMapGFX:: INCBIN "gfx/trainer_gear/town_map.2bpp"
-TownMapGFXEnd::
+.End::
 HUD_GFX:: INCBIN "gfx/hud/hud.2bpp"
-HUD_GFXEnd::
+.End::
 BoldAlphabetGFX:: INCBIN "gfx/font/alphabet.1bpp"
 AnnonAlphabetGFX:: INCBIN "gfx/font/annon_alphabet.1bpp"
 EmptyTile1bppGFX:: INCBIN "gfx/misc/empty_tile.1bpp"
-EmptyTile1bppGFXEnd::
+.End::
 BlackTileAndCursor1bppGFX:: INCBIN "gfx/misc/black_tile_cursor.1bpp"
-BlackTileAndCursor1bppGFXEnd::
+.End::
 PackIconGFX:: INCBIN "gfx/pack/pack_icons.2bpp"
-PackIconGFXEnd::
+.End::
 
 SECTION "gfx.asm@Town Map Cursor", ROMX
 TownMapCursorGFX::
