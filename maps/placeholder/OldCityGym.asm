@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/OldCityGym.asm", ROMX
 
-OldCityGymScriptLoader:: ; 9426e (25:426e)
+OldCityGymScriptLoader::
 	ret
 
-OldCityGymTextPointers:: ; 9426f (25:426f)
+OldCityGymTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

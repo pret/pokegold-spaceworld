@@ -2,14 +2,14 @@ INCLUDE "constants.asm"
 
 SECTION "engine/palettes.asm@Overworld fade", ROMX
 
-OverworldFadeIn:: ; 23:433e
+OverworldFadeIn::
 	ld c, 0
 	call GetFadeStep
 	ld b, 4
 	call FadeTowardsWhite
 	ret
 
-OverworldFadeOut:: ; 23:4349
+OverworldFadeOut::
 	ld c, 9
 	call GetFadeStep
 	ld b, 4
@@ -20,7 +20,7 @@ OverworldFadeOut:: ; 23:4349
 ; TODO: merge this
 SECTION "engine/palettes.asm@Palette fading, part 2?", ROMX
 
-ApplyPalettesAtHL:: ; 23:43d1
+ApplyPalettesAtHL::
 	push hl
 	ld a, [hli]
 	ld [rBGP], a
@@ -31,7 +31,7 @@ ApplyPalettesAtHL:: ; 23:43d1
 	pop hl
 	ret
 
-FadeTowardsWhite:: ; 23:43dd
+FadeTowardsWhite::
 	call ApplyPalettesAtHL
 	inc hl
 	inc hl
@@ -42,7 +42,7 @@ FadeTowardsWhite:: ; 23:43dd
 	jr nz, FadeTowardsWhite
 	ret
 
-FadeTowardsBlack:: ; 23:43ec
+FadeTowardsBlack::
 	call ApplyPalettesAtHL
 	dec hl
 	dec hl
@@ -53,7 +53,7 @@ FadeTowardsBlack:: ; 23:43ec
 	jr nz, FadeTowardsBlack
 	ret
 
-GetFadeStep:: ; 23:43fb
+GetFadeStep::
 	ld a, [wTimeOfDayPal]
 	and 3
 	push bc

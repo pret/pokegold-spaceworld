@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/HaitekuMart.asm", ROMX
 
-HaitekuMartScriptLoader:: ; 9c30e (27:430e)
+HaitekuMartScriptLoader::
 	ret
 
-HaitekuMartTextPointers:: ; 9c30f (27:430f)
+HaitekuMartTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

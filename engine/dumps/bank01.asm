@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "engine/dumps/bank01.asm@Function40fd", ROMX
 
-Function40fd: ; 01:40fd
+Function40fd:
 	ld hl, wd41a
 	set 5, [hl]
 	ld hl, wd41a
@@ -107,35 +107,35 @@ Table416b:
 	dw Unknown41eb
 	dw Unknown4203
 
-Unknown41eb: ; 01:41eb
+Unknown41eb:
 	db $00, $01, $02, $03
 
-Unknown41ef: ; 01:41ef
+Unknown41ef:
 	db $80, $81, $82, $83
 
-Unknown41f3: ; 01:41f3
+Unknown41f3:
 	db $04, $05, $06, $07
 
-Unknown41f7: ; 01:41f7
+Unknown41f7:
 	db $84, $85, $86, $87
 
-Unknown41fb: ; 01:41fb
+Unknown41fb:
 	db $08, $09, $0a, $0b
 
-Unknown41ff: ; 01:41ff
+Unknown41ff:
 	db $88, $89, $8a, $8b
 
-Unknown4203: ; 01:4203
+Unknown4203:
 	db $00, $00, $00, $00
 	db $08, $00, $08, $00
 	db $02, $08, $08, $03
 
-Unknown420f: ; 01:420f
+Unknown420f:
 	db $00, $08, $20, $00
 	db $00, $20, $08, $08
 	db $22, $08, $00, $23
 
-Table421b: ; 01:421b
+Table421b:
 	dw Unknown423b
 	dw Unknown424b
 	dw Unknown423b
@@ -153,67 +153,67 @@ Table421b: ; 01:421b
 	dw Unknown42ab
 	dw Unknown42cb
 
-Unknown423b: ; 01:423b
+Unknown423b:
 	db $00, $00, $00, $00
 	db $00, $08, $01, $00
 	db $08, $00, $02, $02
 	db $08, $08, $03, $03
 
-Unknown424b: ; 01:424b
+Unknown424b:
 	db $00, $00, $80, $00
 	db $00, $08, $81, $00
 	db $08, $00, $82, $02
 	db $08, $08, $83, $03
 
-Unknown425b: ; 01:425b
+Unknown425b:
 	db $00, $08, $80, $20
 	db $00, $00, $81, $20
 	db $08, $08, $82, $22
 	db $08, $00, $83, $23
 
-Unknown426b: ; 01:426b
+Unknown426b:
 	db $00, $00, $04, $00
 	db $00, $08, $05, $00
 	db $08, $00, $06, $02
 	db $08, $08, $07, $03
 
-Unknown427b: ; 01:427b
+Unknown427b:
 	db $00, $00, $84, $00
 	db $00, $08, $85, $00
 	db $08, $00, $86, $02
 	db $08, $08, $87, $03
 
-Unknown428b: ; 01:428b
+Unknown428b:
 	db $00, $08, $84, $20
 	db $00, $00, $85, $20
 	db $08, $08, $86, $22
 	db $08, $00, $87, $23
 
-Unknown429b: ; 01:429b
+Unknown429b:
 	db $00, $00, $08, $00
 	db $00, $08, $09, $00
 	db $08, $00, $0a, $02
 	db $08, $08, $0b, $03
 
-Unknown42ab: ; 01:42ab
+Unknown42ab:
 	db $00, $08, $08, $20
 	db $00, $00, $09, $20
 	db $08, $08, $0a, $22
 	db $08, $00, $0b, $23
 
-Unknown42bb: ; 01:42bb
+Unknown42bb:
 	db $00, $00, $88, $00
 	db $00, $08, $89, $00
 	db $08, $00, $8a, $02
 	db $08, $08, $8b, $03
 
-Unknown42cb: ; 01:42cb
+Unknown42cb:
 	db $00, $08, $88, $20
 	db $00, $00, $89, $20
 	db $08, $08, $8a, $22
 	db $08, $00, $8b, $23
 
-Function42db: ; 01:42db
+Function42db:
 	ld bc, wCmdQueue
 	ld a, $01
 .sub_42e0
@@ -272,13 +272,13 @@ Table4329::
 	dw Function446c
 	dw Function4495
 
-Function4333: ; 01:4333
+Function4333:
 	ret
 
-Function4334: ; 01:4334
+Function4334:
 	ret
 
-Function4335: ; 01:4335
+Function4335:
 	push bc
 	ld h, b
 	ld l, c
@@ -288,13 +288,13 @@ Function4335: ; 01:4335
 	pop bc
 	ret
 
-Function4341: ; 01:4341
+Function4341:
 	ld hl, $000a
 	add hl, bc
 	inc [hl]
 	ret
 
-Function4347: ; 01:4347
+Function4347:
 	pop hl
 	ld e, [hl]
 	inc hl
@@ -310,7 +310,7 @@ Function4347: ; 01:4347
 	ld l, a
 	jp hl
 
-Function4358: ; 01:4358
+Function4358:
 	ld hl, $000a
 	add hl, bc
 	ld a, [hl]
@@ -323,7 +323,7 @@ Function4358: ; 01:4358
 	ld l, a
 	jp hl
 
-Function4366: ; 01:4366
+Function4366:
 	push bc
 	ld hl, $0000
 	add hl, bc
@@ -335,15 +335,15 @@ Function4366: ; 01:4366
 	pop bc
 	ret
 
-Function4374: ; 01:4374
+Function4374:
 	ld de, Table437a
 	jp Function4358
 
-Table437a: ; 01:437a
+Table437a:
 	dw Function437e
 	dw Function439b
 
-Function437e: ; 01:437e
+Function437e:
 	call Function4341
 	ld hl, $000e
 	add hl, bc
@@ -361,18 +361,18 @@ Function437e: ; 01:437e
 	add hl, bc
 	ld [hl], a
 
-Function439b: ; 01:439b
+Function439b:
 	jp Function4402
 
-Function439e: ; 01:439e
+Function439e:
 	ld de, Table43a4
 	jp Function4358
 
-Table43a4: ; 01:43a4
+Table43a4:
 	dw Function43a8
 	dw Function43c6
 
-Function43a8: ; 01:43a8
+Function43a8:
 	call Function4341
 	call Function4366
 	ld hl, $0009
@@ -390,18 +390,18 @@ Function43a8: ; 01:43a8
 	add hl, bc
 	ld [hl], $08
 
-Function43c6: ; 01:43c6
+Function43c6:
 	jp Function4402
 
-Function43c9: ; 01:43c9
+Function43c9:
 	ld de, Table43cf
 	jp Function4358
 
-Table43cf: ; 01:43cf
+Table43cf:
 	dw Function43d3
 	dw Function43ff
 
-Function43d3: ; 01:43d3
+Function43d3:
 	call Function4366
 	ld hl, $0009
 	add hl, de
@@ -428,10 +428,10 @@ Function43d3: ; 01:43d3
 	ld [hl], a
 	ldh [rOBP1], a
 
-Function43ff: ; 01:43ff
+Function43ff:
 	jp Function4402
 
-Function4402: ; 01:4402
+Function4402:
 	ld hl, $000b
 	add hl, bc
 	ld a, [hl]
@@ -461,15 +461,15 @@ Function4402: ; 01:4402
 	ld [hl], a
 	ret
 
-Function4430: ; 01:4430
+Function4430:
 	ld hl, Table4436
 	jp Function4358
 
-Table4436: ; 01:4436
+Table4436:
 	dw Function443a
 	dw Function444f
 
-Function443a: ; 01:443a
+Function443a:
 	call Function4341
 	ld hl, $000b
 	add hl, bc
@@ -481,16 +481,16 @@ Function443a: ; 01:443a
 	add hl, bc
 	ld [hl], $f0
 
-Function444f: ; 01:444f
+Function444f:
 	jp Function4402
 
-Function4452: ; 01:4452
+Function4452:
 	ld hl, $000c
 	add hl, bc
 	ld [hl], $02
 	ret
 
-Function4459: ; 01:4459
+Function4459:
 	ld hl, $000b
 	add hl, bc
 	ld a, [hl]
@@ -504,7 +504,7 @@ Function4459: ; 01:4459
 	ld [hl], a
 	ret
 
-Function446c: ; 01:446c
+Function446c:
 	ld hl, $0009
 	add hl, bc
 	inc [hl]
@@ -533,7 +533,7 @@ Function446c: ; 01:446c
 	ld [hl], a
 	ret
 
-Function4495: ; 01:4495
+Function4495:
 	ld hl, $0009
 	add hl, bc
 	inc [hl]
@@ -550,39 +550,39 @@ Function4495: ; 01:4495
 	ld [hl], a
 	ret
 
-Table44ab: ; 01:44ab
+Table44ab:
 	dw Unknown44b5
 	dw Unknown44b6
 	dw Unknown44c7
 	dw Unknown44d0
 	dw Unknown44e1
 
-Unknown44b5: ; 01:44b5
+Unknown44b5:
 	db $00
 
-Unknown44b6: ; 01:44b6
+Unknown44b6:
 	db $04, $00, $00, $00
 	db $00, $00, $08, $01
 	db $00, $08, $00, $02
 	db $00, $08, $08, $03, $00
 
-Unknown44c7: ; 01:44c7
+Unknown44c7:
 	db $02, $00, $00, $00
 	db $00, $00, $08, $00, $20
 
-Unknown44d0: ; 01:44d0
+Unknown44d0:
 	db $04, $00, $00, $00
 	db $00, $00, $08, $00
 	db $00, $08, $00, $00
 	db $00, $08, $08, $00, $00
 
-Unknown44e1: ; 01:44e1
+Unknown44e1:
 	db $04, $00, $00, $00
 	db $40, $00, $08, $00
 	db $40, $08, $00, $00
 	db $40, $08, $08, $00, $40
 
-Function44f2: ; 01:44f2
+Function44f2:
 	ld hl, $0008
 	add hl, bc
 	ld a, [hl]
@@ -628,13 +628,13 @@ Table4516::
 	dw Function4a8b
 	dw Function4869
 
-Function453e: ; 01:453e
+Function453e:
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $02
 	ret
 
-Function4545: ; 01:4545
+Function4545:
 	ld hl, $0005
 	add hl, bc
 	bit 6, [hl]
@@ -645,19 +645,19 @@ Function4545: ; 01:4545
 	ld hl, Table4558
 	jp CallJumptable
 
-Table4558: ; 01:4558
+Table4558:
 	dw Function4560
 	dw Function4567
 	dw Function4593
 	dw Function45a0
 
-Function4560: ; 01:4560
+Function4560:
 	ld hl, $000d
 	add hl, bc
 	ld [hl], $ff
 	ret
 
-Function4567: ; 01:4567
+Function4567:
 	ld hl, $0004
 	add hl, bc
 	bit 3, [hl]
@@ -686,7 +686,7 @@ Function4567: ; 01:4567
 	ld [hl], a
 	ret
 
-Function4593: ; 01:4593
+Function4593:
 	ld hl, $0007
 	add hl, bc
 	ld a, [hl]
@@ -696,7 +696,7 @@ Function4593: ; 01:4593
 	ld [hl], a
 	ret
 
-Function45a0: ; 01:45a0
+Function45a0:
 	ld hl, $000b
 	add hl, bc
 	ld a, [hl]
@@ -730,10 +730,10 @@ Function45a0: ; 01:45a0
 	ld [hl], a
 	ret
 
-Unknown45d0: ; 01:45d0
+Unknown45d0:
 	db $00, $0C, $04, $08
 
-Function45d4: ; 01:45d4
+Function45d4:
 	ld hl, $0010
 	add hl, bc
 	ld a, [hl]
@@ -759,7 +759,7 @@ Function45d4: ; 01:45d4
 	call Function4636
 	ret
 
-Function45fe: ; 01:45fe
+Function45fe:
 	ld hl, $0012
 	add hl, bc
 	ld a, [hl]
@@ -774,7 +774,7 @@ Function45fe: ; 01:45fe
 	ld [hl], a
 	ret
 
-Function4613: ; 01:4613
+Function4613:
 	ld hl, $0005
 	add hl, bc
 	bit 3, [hl]
@@ -796,7 +796,7 @@ Function4613: ; 01:4613
 	call Function4636
 	ret
 
-Function4636: ; 01:4636
+Function4636:
 	and $f0
 	cp $70
 	nop
@@ -807,14 +807,14 @@ Function4636: ; 01:4636
 	and a
 	ret
 
-Function4644: ; 01:4644
+Function4644:
 	ld hl, $0005
 	add hl, bc
 	set 7, [hl]
 	scf
 	ret
 
-Function464c: ; 01:464c
+Function464c:
 	call .sub_465f
 	jr c, .sub_4658
 	ld hl, $0005
@@ -848,7 +848,7 @@ Function464c: ; 01:464c
 	scf
 	ret
 
-Function4678: ; 01:4678
+Function4678:
 	xor a
 	ld hl, $000a
 	add hl, bc
@@ -861,7 +861,7 @@ Function4678: ; 01:4678
 	ld [hl], $ff
 	ret
 
-Function468a: ; 01:468a
+Function468a:
 	and $0f
 	ld hl, $0006
 	add hl, bc
@@ -877,7 +877,7 @@ Function468a: ; 01:468a
 	and $0c
 	ld [hl], a
 
-Function46a2: ; 01:46a2
+Function46a2:
 	call Function46e5
 	ld hl, $0009
 	add hl, bc
@@ -908,7 +908,7 @@ Function46a2: ; 01:46a2
 	ld [hl], a
 	ret
 
-Function46d3: ; 01:46d3
+Function46d3:
 	call Function46e5
 	ld hl, $0018
 	add hl, bc
@@ -922,7 +922,7 @@ Function46d3: ; 01:46d3
 	ld [hl], a
 	ret
 
-Function46e5: ; 01:46e5
+Function46e5:
 	ld hl, $0006
 	add hl, bc
 	ld l, [hl]
@@ -939,7 +939,7 @@ Function46e5: ; 01:46e5
 	ld h, [hl]
 	ret
 
-Function46f9: ; 01:46f9
+Function46f9:
 	ld hl, $0006
 	add hl, bc
 	ld l, [hl]
@@ -951,10 +951,10 @@ Function46f9: ; 01:46f9
 	ld a, [hl]
 	ret
 
-Table4708: ; 01:4708
+Table4708:
 	db $00, $01, $10
 
-Table470b: ; 01:470b
+Table470b:
 	db $01, $00, $ff
 	db $10, $01, $ff
 	db $00, $10, $01
@@ -977,7 +977,7 @@ Table470b: ; 01:470b
 	db $08, $00, $02
 	db $08
 
-Function4748: ; 01:4748
+Function4748:
 	add a
 	ret z
 	ld a, $01
@@ -985,7 +985,7 @@ Function4748: ; 01:4748
 	ld a, $ff
 	ret
 
-Function4750: ; 01:4750
+Function4750:
 	ld hl, $0006
 	add hl, bc
 	ld a, [hl]
@@ -1000,7 +1000,7 @@ Function4750: ; 01:4750
 	set 5, [hl]
 	ret
 
-Function476b: ; 01:476b
+Function476b:
 	ld a, [wXCoord]
 	ld d, a
 	ld hl, $0010
@@ -1025,31 +1025,31 @@ Function476b: ; 01:476b
 	ld [hl], a
 	ret
 
-Function4792: ; 01:4792
+Function4792:
 	ld hl, $001d
 	add hl, bc
 	ld [hl], $00
 	ret
 
-Function4799: ; 01:4799
+Function4799:
 	ld hl, $001d
 	add hl, bc
 	inc [hl]
 	ret
 
-Function479f: ; 01:479f
+Function479f:
 	ld hl, $001d
 	add hl, bc
 	ld a, [hl]
 	ret
 
-Function47a5: ; 01:47a5
+Function47a5:
 	ld hl, $001d
 	add hl, bc
 	ld [hl], a
 	ret
 
-Function47ab: ; 01:47ab
+Function47ab:
 	ld hl, $001d
 	add hl, bc
 	ld l, [hl]
@@ -1061,7 +1061,7 @@ Function47ab: ; 01:47ab
 	ld l, a
 	jp hl
 
-Function47b8: ; 01:47b8
+Function47b8:
 	ld hl, $0003
 	add hl, bc
 	ld a, [hl]
@@ -1069,7 +1069,7 @@ Function47b8: ; 01:47b8
 	ld hl, Table47c5
 	jp CallJumptable
 
-Table47c5: ; 01:47c5
+Table47c5:
 	dw Function47fb
 	dw Function4812
 	dw Function481c
@@ -1098,29 +1098,29 @@ Table47c5: ; 01:47c5
 	dw Function4865
 	dw Function4868
 
-Function47fb: ; 01:47fb
+Function47fb:
 	ret
 
-Function47fc: ; 01:47fc
+Function47fc:
 	call Random
 	ldh a, [hRandomAdd]
 	and $01
 	jp Function48a9
 
-Function4806: ; 01:4806
+Function4806:
 	call Random
 	ldh a, [hRandomAdd]
 	and $01
 	or $02
 	jp Function48a9
 
-Function4812: ; 01:4812
+Function4812:
 	call Random
 	ldh a, [hRandomAdd]
 	and $03
 	jp Function48a9
 
-Function481c: ; 01:481c
+Function481c:
 	call Random
 	ldh a, [hRandomAdd]
 	and $0c
@@ -1129,22 +1129,22 @@ Function481c: ; 01:481c
 	ld [hl], a
 	jp Function48da
 
-Function482b: ; 01:482b
+Function482b:
 	ld a, $00
 	jr Function4839
 
-Function482f: ; 01:482f
+Function482f:
 	ld a, $04
 	jr Function4839
 
-Function4833: ; 01:4833
+Function4833:
 	ld a, $08
 	jr Function4839
 
-Function4837: ; 01:4837
+Function4837:
 	ld a, $0c
 
-Function4839: ; 01:4839
+Function4839:
 	ld hl, $0007
 	add hl, bc
 	ld [hl], a
@@ -1155,37 +1155,37 @@ Function4839: ; 01:4839
 	ld [hl], $04
 	jp Function4b78
 
-Function484d: ; 01:484d
+Function484d:
 	ld hl, $0008
 	add hl, bc
 	ld [hl], $07
 	jp Function4bed
 
-Function4856: ; 01:4856
+Function4856:
 	jp Function4bf9
 
-Function4859: ; 01:4859
+Function4859:
 	jp Function4c0c
 
-Function485c: ; 01:485c
+Function485c:
 	jp Function4fbc
 
-Function485f: ; 01:485f
+Function485f:
 	jp Function4bf3
 
-Function4862: ; 01:4862
+Function4862:
 	jp Function4fbc
 
-Function4865: ; 01:4865
+Function4865:
 	jp Function4c1f
 
-Function4868: ; 01:4868
+Function4868:
 	ret
 
-Function4869: ; 01:4869
+Function4869:
 	ret
 
-Function486a: ; 01:486a
+Function486a:
 	ld hl, $0010
 	add hl, bc
 	ld d, [hl]
@@ -1206,7 +1206,7 @@ Function486a: ; 01:486a
 	ld [hl], a
 	ret
 
-Function488c: ; 01:488c
+Function488c:
 	call Function468a
 	call Function771e
 	jr c, Function48d4
@@ -1221,7 +1221,7 @@ Function488c: ; 01:488c
 	ld [hl], $02
 	jp Function4b88
 
-Function48a9: ; 01:48a9
+Function48a9:
 	call Function468a
 	call Function771e
 	jr c, Function48d4
@@ -1236,7 +1236,7 @@ Function48a9: ; 01:48a9
 	ld [hl], $06
 	jp Function4baa
 
-Function48c6: ; 01:48c6
+Function48c6:
 	ld hl, $0008
 	add hl, bc
 	ld [hl], $05
@@ -1244,11 +1244,11 @@ Function48c6: ; 01:48c6
 	set 7, [hl]
 	jp Function4bc9
 
-Function48d4: ; 01:48d4
+Function48d4:
 	call Function4678
 	call Function45fe
 
-Function48da: ; 01:48da
+Function48da:
 	ld hl, $0006
 	add hl, bc
 	ld [hl], $ff
@@ -1263,7 +1263,7 @@ Function48da: ; 01:48da
 	ld [hl], a
 	jp Function4b65
 
-Function48f5: ; 01:48f5
+Function48f5:
 	ld hl, $0008
 	add hl, bc
 	ld [hl], $01
@@ -1296,7 +1296,7 @@ Function48f5: ; 01:48f5
 	call Function45fe
 	ret
 
-Function4930: ; 01:4930
+Function4930:
 	ld a, [wPlayerNextMapX]
 	ld d, a
 	ld a, [wPlayerNextMapY]
@@ -1348,10 +1348,10 @@ Function4930: ; 01:4930
 	cpl
 	ret
 
-Function4979: ; 01:4979
+Function4979:
 	ret
 
-Function497a: ; 01:497a
+Function497a:
 	ld hl, $001e
 	add hl, bc
 	inc [hl]
@@ -1369,11 +1369,11 @@ Function497a: ; 01:497a
 	ld [hl], a
 	ret
 
-Table4994: ; 01:4994
+Table4994:
 	db $00, $FF, $FE, $FD
 	db $FC, $FD, $FE, $FF
 
-Function499c: ; 01:499c
+Function499c:
 	call Function46f9
 	ld hl, $001f
 	add hl, bc
@@ -1412,7 +1412,7 @@ Function499c: ; 01:499c
 	ld [hl], $02
 	ret
 
-Unknown49dc: ; 01:49dc
+Unknown49dc:
 	db $FC, $FB, $FA, $F9
 	db $F8, $F7, $F6, $F5
 	db $F5, $F5, $F4, $F4
@@ -1422,23 +1422,23 @@ Unknown49dc: ; 01:49dc
 	db $FA, $FB, $FC, $FE
 	db $FF, $00, $00, $00
 
-Function49fc: ; 01:49fc
+Function49fc:
 	ld hl, $0008
 	add hl, bc
 	ld [hl], $11
 	call Function4792
 
-Function4a05: ; 01:4a05
+Function4a05:
 	ld de, Table4a0b
 	jp Function47ab
 
-Table4a0b: ; 01:4a0b
+Table4a0b:
 	dw Function4a13
 	dw Function4a28
 	dw Function4a38
 	dw Function4a53
 
-Function4a13: ; 01:4a13
+Function4a13:
 	ld hl, $001e
 	add hl, bc
 	ld [hl], $04
@@ -1450,7 +1450,7 @@ Function4a13: ; 01:4a13
 	ld [hl], $10
 	call Function4799
 
-Function4a28: ; 01:4a28
+Function4a28:
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $03
@@ -1461,7 +1461,7 @@ Function4a28: ; 01:4a28
 	call Function4799
 	ret
 
-Function4a38: ; 01:4a38
+Function4a38:
 	ld hl, $001e
 	add hl, bc
 	ld [hl], $04
@@ -1476,7 +1476,7 @@ Function4a38: ; 01:4a38
 	ld [hl], $10
 	call Function4799
 
-Function4a53: ; 01:4a53
+Function4a53:
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $03
@@ -1504,17 +1504,17 @@ Function4a53: ; 01:4a53
 	call Function4792
 	ret
 
-Function4a82: ; 01:4a82
+Function4a82:
 	ld hl, $0008
 	add hl, bc
 	ld [hl], $12
 	call Function4792
 
-Function4a8b: ; 01:4a8b
+Function4a8b:
 	ld de, Table4a91
 	jp Function47ab
 
-Table4a91: ; 01:4a91
+Table4a91:
 	dw Function4a9f
 	dw Function4aaf
 	dw Function4ab8
@@ -1523,7 +1523,7 @@ Table4a91: ; 01:4a91
 	dw Function4b00
 	dw Function4b0c
 
-Function4a9f: ; 01:4a9f
+Function4a9f:
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $00
@@ -1533,14 +1533,14 @@ Function4a9f: ; 01:4a9f
 	call Function4799
 	ret
 
-Function4aaf: ; 01:4aaf
+Function4aaf:
 	ld hl, $0009
 	add hl, bc
 	dec [hl]
 	ret nz
 	call Function4799
 
-Function4ab8: ; 01:4ab8
+Function4ab8:
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $00
@@ -1556,7 +1556,7 @@ Function4ab8: ; 01:4ab8
 	call Function4799
 	ret
 
-Function4ad4: ; 01:4ad4
+Function4ad4:
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $03
@@ -1577,14 +1577,14 @@ Function4ad4: ; 01:4ad4
 	ret nz
 	call Function4799
 
-Function4af6: ; 01:4af6
+Function4af6:
 	ld hl, $0009
 	add hl, bc
 	ld [hl], $10
 	call Function4799
 	ret
 
-Function4b00: ; 01:4b00
+Function4b00:
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $03
@@ -1593,7 +1593,7 @@ Function4b00: ; 01:4b00
 	dec [hl]
 	ret nz
 
-Function4b0c: ; 01:4b0c
+Function4b0c:
 	ld hl, $0008
 	add hl, bc
 	ld [hl], $01
@@ -1606,13 +1606,13 @@ Function4b0c: ; 01:4b0c
 	call Function4792
 	ret
 
-Function4b22: ; 01:4b22
+Function4b22:
 	call Function4792
 
-Function4b25: ; 01:4b25
+Function4b25:
 	ret
 
-Function4b26: ; 01:4b26
+Function4b26:
 	ld a, $01
 	ld [wcb70], a
 	push bc
@@ -1631,10 +1631,10 @@ Function4b26: ; 01:4b26
 	ld [hl], a
 	ret
 
-Unknown4b42: ; 01:4b42
+Unknown4b42:
 	db $01, $01, $FC, $02, $00, $08
 
-Function4b48: ; 01:4b48
+Function4b48:
 	ld e, a
 	add a
 	add e
@@ -1651,10 +1651,10 @@ Function4b48: ; 01:4b48
 	ld [wcb70], a
 	ret
 
-Unknown4b5f: ; 01:4b5f
+Unknown4b5f:
 	db $05, $04, $FC, $02, $02, $08
 
-Function4b65: ; 01:4b65
+Function4b65:
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $02
@@ -1667,7 +1667,7 @@ Function4b65: ; 01:4b65
 	ld [hl], $01
 	ret
 
-Function4b78: ; 01:4b78
+Function4b78:
 	call Function4979
 	ld hl, $000a
 	add hl, bc
@@ -1677,7 +1677,7 @@ Function4b78: ; 01:4b78
 	ld [hl], $ff
 	ret
 
-Function4b88: ; 01:4b88
+Function4b88:
 	call Function4979
 	ld hl, $000a
 	add hl, bc
@@ -1696,7 +1696,7 @@ Function4b88: ; 01:4b88
 	ld [hl], $ff
 	ret
 
-Function4baa: ; 01:4baa
+Function4baa:
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $01
@@ -1714,7 +1714,7 @@ Function4baa: ; 01:4baa
 	ld [hl], $01
 	ret
 
-Function4bc9: ; 01:4bc9
+Function4bc9:
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $01
@@ -1734,15 +1734,15 @@ Function4bc9: ; 01:4bc9
 	ld [hl], $ff
 	ret
 
-Function4bed: ; 01:4bed
+Function4bed:
 	ld a, [wPlayerMovement]
 	jp Function4c37
 
-Function4bf3: ; 01:4bf3
+Function4bf3:
 	ld a, [wMovementObject]
 	jp Function4c37
 
-Function4bf9: ; 01:4bf9
+Function4bf9:
 	ld hl, $001c
 	add hl, bc
 	ld e, [hl]
@@ -1756,7 +1756,7 @@ Function4bf9: ; 01:4bf9
 	ld a, [hl]
 	jp Function4c37
 
-Function4c0c: ; 01:4c0c
+Function4c0c:
 	ld hl, $001c
 	add hl, bc
 	ld e, [hl]
@@ -1770,7 +1770,7 @@ Function4c0c: ; 01:4c0c
 	ld a, [hl]
 	jp Function4c37
 
-Function4c1f: ; 01:4c1f
+Function4c1f:
 	ld hl, $001c
 	add hl, bc
 	ld e, [hl]
@@ -1785,7 +1785,7 @@ Function4c1f: ; 01:4c1f
 	call GetFarByte
 	jp Function4c37
 
-Function4c37: ; 01:4c37
+Function4c37:
 	push af
 	call Function4f86
 	pop af
@@ -1799,7 +1799,7 @@ Function4c37: ; 01:4c37
 	ld l, a
 	jp hl
 
-Table4c48: ; 01:4c48
+Table4c48:
 	dw Function4d94
 	dw Function4d98
 	dw Function4d9c
@@ -1857,13 +1857,13 @@ Table4c48: ; 01:4c48
 	dw Function49fc
 	dw Function4a82
 
-Function4cb8: ; 01:4cb8
+Function4cb8:
 	ld hl, $001c
 	add hl, bc
 	ld [hl], $00
 	jp Function47b8
 
-Function4cc1: ; 01:4cc1
+Function4cc1:
 	ld hl, $0001
 	add hl, bc
 	ld a, [hl]
@@ -1892,7 +1892,7 @@ Function4cc1: ; 01:4cc1
 	res 7, [hl]
 	ret
 
-Function4cef: ; 01:4cef
+Function4cef:
 	push bc
 	ld hl, $0001
 	add hl, bc
@@ -1919,7 +1919,7 @@ Function4cef: ; 01:4cef
 	res 7, [hl]
 	ret
 
-Function4d1a: ; 01:4d1a
+Function4d1a:
 	ld hl, $000a
 	add hl, bc
 	ld [hl], $02
@@ -1930,38 +1930,38 @@ Function4d1a: ; 01:4d1a
 	res 7, [hl]
 	ret
 
-Function4d2c: ; 01:4d2c
+Function4d2c:
 	ld a, $01
 	jr Function4d4a
 
-Function4d30: ; 01:4d30
+Function4d30:
 	ld a, $02
 	jr Function4d4a
 
-Function4d34: ; 01:4d34
+Function4d34:
 	ld a, $03
 	jr Function4d4a
 
-Function4d38: ; 01:4d38
+Function4d38:
 	ld a, $04
 	jr Function4d4a
 
-Function4d3c: ; 01:4d3c
+Function4d3c:
 	ld a, $05
 	jr Function4d4a
 
-Function4d40: ; 01:4d40
+Function4d40:
 	ld a, $06
 	jr Function4d4a
 
-Function4d44: ; 01:4d44
+Function4d44:
 	ld a, $07
 	jr Function4d4a
 
-Function4d48: ; 01:4d48
+Function4d48:
 	ld a, $08
 
-Function4d4a: ; 01:4d4a
+Function4d4a:
 	ld hl, $0009
 	add hl, bc
 	ld [hl], a
@@ -1973,59 +1973,59 @@ Function4d4a: ; 01:4d4a
 	ld [hl], $ff
 	jp Function4b65
 
-Function4d5e: ; 01:4d5e
+Function4d5e:
 	ld hl, $0004
 	add hl, bc
 	res 3, [hl]
 	jp Function47b8
 
-Function4d67: ; 01:4d67
+Function4d67:
 	ld hl, $0004
 	add hl, bc
 	set 3, [hl]
 	jp Function47b8
 
-Function4d70: ; 01:4d70
+Function4d70:
 	ld hl, $0004
 	add hl, bc
 	res 2, [hl]
 	jp Function47b8
 
-Function4d79: ; 01:4d79
+Function4d79:
 	ld hl, $0004
 	add hl, bc
 	set 2, [hl]
 	jp Function47b8
 
-Function4d82: ; 01:4d82
+Function4d82:
 	ld hl, $0005
 	add hl, bc
 	res 0, [hl]
 	jp Function47b8
 
-Function4d8b: ; 01:4d8b
+Function4d8b:
 	ld hl, $0005
 	add hl, bc
 	set 0, [hl]
 	jp Function47b8
 
-Function4d94: ; 01:4d94
+Function4d94:
 	ld a, $00
 	jr Function4da4
 
-Function4d98: ; 01:4d98
+Function4d98:
 	ld a, $04
 	jr Function4da4
 
-Function4d9c: ; 01:4d9c
+Function4d9c:
 	ld a, $08
 	jr Function4da4
 
-Function4da0: ; 01:4da0
+Function4da0:
 	ld a, $0c
 	jr Function4da4
 
-Function4da4: ; 01:4da4
+Function4da4:
 	ld hl, $0007
 	add hl, bc
 	ld [hl], a
@@ -2037,135 +2037,135 @@ Function4da4: ; 01:4da4
 	ld [hl], $ff
 	ret
 
-Function4db6: ; 01:4db6
+Function4db6:
 	ld a, $00
 	jp Function4e56
 
-Function4dbb: ; 01:4dbb
+Function4dbb:
 	ld a, $01
 	jp Function4e56
 
-Function4dc0: ; 01:4dc0
+Function4dc0:
 	ld a, $02
 	jp Function4e56
 
-Function4dc5: ; 01:4dc5
+Function4dc5:
 	ld a, $03
 	jp Function4e56
 
-Function4dca: ; 01:4dca
+Function4dca:
 	ld a, $04
 	jp Function4e56
 
-Function4dcf: ; 01:4dcf
+Function4dcf:
 	ld a, $05
 	jp Function4e56
 
-Function4dd4: ; 01:4dd4
+Function4dd4:
 	ld a, $06
 	jp Function4e56
 
-Function4dd9: ; 01:4dd9
+Function4dd9:
 	ld a, $07
 	jp Function4e56
 
-Function4dde: ; 01:4dde
+Function4dde:
 	ld a, $08
 	jp Function4e56
 
-Function4de3: ; 01:4de3
+Function4de3:
 	ld a, $09
 	jp Function4e56
 
-Function4de8: ; 01:4de8
+Function4de8:
 	ld a, $0a
 	jp Function4e56
 
-Function4ded: ; 01:4ded
+Function4ded:
 	ld a, $0b
 	jp Function4e56
 
-Function4df2: ; 01:4df2
+Function4df2:
 	ld a, $0c
 	jp Function4e56
 
-Function4df7: ; 01:4df7
+Function4df7:
 	ld a, $0d
 	jp Function4e56
 
-Function4dfc: ; 01:4dfc
+Function4dfc:
 	ld a, $0e
 	jp Function4e56
 
-Function4e01: ; 01:4e01
+Function4e01:
 	ld a, $0f
 	jp Function4e56
 
-Function4e06: ; 01:4e06
+Function4e06:
 	ld a, $00
 	jp Function4e7c
 
-Function4e0b: ; 01:4e0b
+Function4e0b:
 	ld a, $01
 	jp Function4e7c
 
-Function4e10: ; 01:4e10
+Function4e10:
 	ld a, $02
 	jp Function4e7c
 
-Function4e15: ; 01:4e15
+Function4e15:
 	ld a, $03
 	jp Function4e7c
 
-Function4e1a: ; 01:4e1a
+Function4e1a:
 	ld a, $04
 	jp Function4e7c
 
-Function4e1f: ; 01:4e1f
+Function4e1f:
 	ld a, $05
 	jp Function4e7c
 
-Function4e24: ; 01:4e24
+Function4e24:
 	ld a, $06
 	jp Function4e7c
 
-Function4e29: ; 01:4e29
+Function4e29:
 	ld a, $07
 	jp Function4e7c
 
-Function4e2e: ; 01:4e2e
+Function4e2e:
 	ld a, $08
 	jp Function4e7c
 
-Function4e33: ; 01:4e33
+Function4e33:
 	ld a, $09
 	jp Function4e7c
 
-Function4e38: ; 01:4e38
+Function4e38:
 	ld a, $0a
 	jp Function4e7c
 
-Function4e3d: ; 01:4e3d
+Function4e3d:
 	ld a, $0b
 	jp Function4e7c
 
-Function4e42: ; 01:4e42
+Function4e42:
 	ld a, $0c
 	jp Function4e7c
 
-Function4e47: ; 01:4e47
+Function4e47:
 	ld a, $0d
 	jp Function4e7c
 
-Function4e4c: ; 01:4e4c
+Function4e4c:
 	ld a, $0e
 	jp Function4e7c
 
-Function4e51: ; 01:4e51
+Function4e51:
 	ld a, $0f
 	jp Function4e7c
 
-Function4e56: ; 01:4e56
+Function4e56:
 	call Function468a
 	call Function4613
 	ld a, [wCenteredObject]
@@ -2185,7 +2185,7 @@ Function4e56: ; 01:4e56
 	ld [hl], $05
 	jp Function4bc9
 
-Function4e7c: ; 01:4e7c
+Function4e7c:
 	call Function468a
 	ld hl, $001f
 	add hl, bc
@@ -2215,7 +2215,7 @@ Function4e7c: ; 01:4e7c
 	ld [hl], $10
 	jp Function4f14
 
-Function4eb7: ; 01:4eb7
+Function4eb7:
 	call Function468a
 	ld hl, $0008
 	add hl, bc
@@ -2231,15 +2231,15 @@ Function4eb7: ; 01:4eb7
 	ld [hl], $00
 	call Function4792
 
-Function4ed5: ; 01:4ed5
+Function4ed5:
 	ld de, Table4edb
 	jp Function47ab
 
-Table4edb: ; 01:4edb
+Table4edb:
 	dw Function4edf
 	dw Function4efb
 
-Function4edf: ; 01:4edf
+Function4edf:
 	call Function46d3
 	call Function499c
 	ld hl, $0009
@@ -2254,7 +2254,7 @@ Function4edf: ; 01:4edf
 	res 3, [hl]
 	ret
 
-Function4efb: ; 01:4efb
+Function4efb:
 	call Function46d3
 	call Function499c
 	ld hl, $0009
@@ -2268,16 +2268,16 @@ Function4efb: ; 01:4efb
 	call Function4792
 	ret
 
-Function4f14: ; 01:4f14
+Function4f14:
 	ld de, Table4f1a
 	jp Function47ab
 
-Table4f1a: ; 01:4f1a
+Table4f1a:
 	dw Function4f20
 	dw Function4f40
 	dw Function4f4b
 
-Function4f20: ; 01:4f20
+Function4f20:
 	call Function499c
 	call Function4750
 	ld hl, $0009
@@ -2294,13 +2294,13 @@ Function4f20: ; 01:4f20
 	call Function4799
 	ret
 
-Function4f40: ; 01:4f40
+Function4f40:
 	call Function46a2
 	ld hl, wcb6e
 	set 7, [hl]
 	call Function4799
 
-Function4f4b: ; 01:4f4b
+Function4f4b:
 	call Function499c
 	call Function4750
 	ld hl, $0009
@@ -2334,7 +2334,7 @@ Function4f4b: ; 01:4f4b
 	ret z
 	jp Function4b25
 
-Function4f86: ; 01:4f86
+Function4f86:
 	ld e, a
 	ld a, [wObjectFollow_Follower]
 	and a
@@ -2372,7 +2372,7 @@ Function4f86: ; 01:4f86
 	ld [hl], a
 	ret
 
-Function4fbc: ; 01:4fbc
+Function4fbc:
 	call .sub_4fc5
 	ld hl, Table4c48
 	jp CallJumptable
@@ -2423,7 +2423,7 @@ Function4fbc: ; 01:4fbc
 	scf
 	ret
 
-Function5007: ; 01:5007
+Function5007:
 	ld bc, wObjectStructs
 	xor a
 .sub_500b
@@ -2542,7 +2542,7 @@ Function5007: ; 01:5007
 	scf
 	ret
 
-Function50b9: ; 01:50b9
+Function50b9:
 	call .sub_50c3
 	call .sub_50d3
 	call Function42db
@@ -2671,7 +2671,7 @@ Function50b9: ; 01:50b9
 	pop bc
 	ret
 
-_UpdateSprites: ; 01:5190
+_UpdateSprites:
 	ld a, [wVramState]
 	bit 0, a
 	ret z
@@ -2900,7 +2900,7 @@ _UpdateSprites: ; 01:5190
 	pop af
 	ret
 
-Function52dc: ; 01:52dc
+Function52dc:
 	call MenuBoxCoord2Tile
 	push hl
 	ld de, $005a
@@ -2919,7 +2919,7 @@ Function52dc: ; 01:52dc
 
 SECTION "engine/dumps/bank01.asm@Function5388", ROMX
 
-Function5388: ; 01:5388
+Function5388:
 	ld a, $00
 	call OpenSRAM
 	ld a, [s0_a600]
@@ -2927,7 +2927,7 @@ Function5388: ; 01:5388
 	call CloseSRAM
 	ret
 
-Function5397: ; 01:5397
+Function5397:
 	ld a, $00
 	call OpenSRAM
 	ld hl, s0_a600
@@ -2941,7 +2941,7 @@ Function5397: ; 01:5397
 	call CloseSRAM
 	ret
 
-Function53b0: ; 01:53b0
+Function53b0:
 	ld a, $00
 	call OpenSRAM
 	ld hl, wDebugFlags
@@ -2958,7 +2958,7 @@ Function53b0: ; 01:53b0
 
 SECTION "engine/dumps/bank01.asm@ReanchorBGMap_NoOAMUpdate", ROMX
 
-ReanchorBGMap_NoOAMUpdate: ; 01:63d8
+ReanchorBGMap_NoOAMUpdate:
 	xor a
 	ldh [hLCDCPointer], a
 	ld hl, wMapObjectsEnd
@@ -3009,7 +3009,7 @@ ReanchorBGMap_NoOAMUpdate: ; 01:63d8
 	jr nz, .sub_6422
 	ret
 
-LoadFonts_NoOAMUpdate: ; 01:6437
+LoadFonts_NoOAMUpdate:
 	call UpdateSprites
 	call LoadFont
 	call LoadFontExtra
@@ -3018,7 +3018,7 @@ LoadFonts_NoOAMUpdate: ; 01:6437
 	ret
 
 
-Function6445: ; 01:6445
+Function6445:
 	call BackUpTilesToBuffer
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicknames
@@ -3183,78 +3183,78 @@ Function6445: ; 01:6445
 	scf
 	ret
 
-Text658c: ; 01:658c
+Text658c:
 	text_from_ram wcd11
 	text "は　あたらしく"
 	line ""
 	text_end
 
-Text6599: ; 01:6599
+Text6599:
 	text_from_ram wStringBuffer2
 	text "を　おぼえた！"
 	text_end
 
-Text65a5: ; 01:65a5
+Text65a5:
 	sound_dex_fanfare_50_79
 	text_waitbutton
 	text_end
 
-Text65a8: ; 01:65a8
+Text65a8:
 	text "どの　わざを"
 	next "わすれさせたい？"
 	done
 
-Text65b9: ; 01:65b9
+Text65b9:
 	text "それでは<⋯⋯>　"
 	text_end
 
-Text65c1: ; 01:65c1
+Text65c1:
 	text_from_ram wStringBuffer2
 	text "を"
 	line "おぼえるのを　あきらめますか？"
 	done
 
-Text65d7: ; 01:65d7
+Text65d7:
 	text_from_ram wcd11
 	text "は　"
 	text_end
 
-Text65de: ; 01:65de
+Text65de:
 	text_from_ram wStringBuffer2
 	text "を"
 	line "おぼえずに　おわった！"
 	prompt
 
-Text65f0: ; 01:65f0
+Text65f0:
 	text_from_ram wcd11
 	text "は　あたらしく"
 	line ""
 	text_end
 
-Text65fd: ; 01:65fd
+Text65fd:
 	text_from_ram wStringBuffer2
 	text "を　おぼえたい<⋯⋯>！"
 	para "しかし　"
 	text_end
 
-Text6610: ; 01:6610
+Text6610:
 	text_from_ram wcd11
 	text "は　わざを　４つ"
 	line "おぼえるので　せいいっぱいだ！"
 	para ""
 	text_end
 
-Text662e: ; 01:662e
+Text662e:
 	text_from_ram wStringBuffer2
 	text "の　かわりに"
 	line "ほかの　わざを　わすれさせますか？"
 	done
 
-Text664b: ; 01:664b
+Text664b:
 	text "１　２の　<⋯⋯>"
 	text_end
 
-Text6653: ; 01:6653
+Text6653:
 	text_exit
 	start_asm
 	push de
@@ -3264,34 +3264,34 @@ Text6653: ; 01:6653
 	ld hl, Text6661
 	ret
 
-Text6661:  ; 01:6661
+Text6661: 
 	text "　ポカン！"
 	text_end
 
-Text6668: ; 01:6668
+Text6668:
 	text_exit
 	text ""
 	para ""
 	text_end
 
-Text666c: ; 01:666c
+Text666c:
 	text_from_ram wcd11
 	text "は　"
 	text_end
 
-Text6673: ; 01:6673
+Text6673:
 	text_from_ram wStringBuffer1
 	text "の"
 	line "つかいかたを　きれいに　わすれた！"
 	para "そして<⋯⋯>！"
 	prompt
 
-Text6691: ; 01:6691
+Text6691:
 	text "それは　たいせつなわざです"
 	line "わすれさせることは　できません！"
 	prompt
 
-Function66b1: ; 01:66b1
+Function66b1:
 	ld hl, wcd74
 	ld a, [hli]
 	ld h, [hl]
@@ -3341,7 +3341,7 @@ Function66b1: ; 01:66b1
 	ldh [hSpriteOffset], a
 	ret
 
-Table66fa: ; 01:66fa
+Table66fa:
 	db $32, $21, $34, $24
 	db $34, $21, $45, $55
 	db $32, $32, $55, $52
@@ -3350,7 +3350,7 @@ Table66fa: ; 01:66fa
 	db $22, $52, $24, $34
 	db $42
 
-Function6713: ; 01:6713
+Function6713:
 	push hl
 	call LoadStandardMenuHeader
 	ld a, [wBattleMode]
@@ -3408,13 +3408,13 @@ Function6713: ; 01:6713
 	call CloseWindow
 	ret
 
-Text6788: ; 01:6788
+Text6788:
 	text_from_ram wStringBuffer1
 	text "に"
 	line "ニックネームを　つけますか？"
 	done
 
-Function679d: ; 01:679d
+Function679d:
 	ld de, wFieldMoveScriptID
 	push de
 	ld hl, NamingScreen
@@ -3443,7 +3443,7 @@ Function679d: ; 01:679d
 	scf
 	ret
 
-CorrectNickErrors: ; 01:67d5
+CorrectNickErrors:
 	push bc
 	push de
 	ld b, $06
@@ -3483,14 +3483,14 @@ CorrectNickErrors: ; 01:67d5
 	pop bc
 	ret
 
-Table6805:: ; 01:6805
+Table6805::
 	db $00, $05, $14, $19, $1d
 	db $26, $35, $3a, $49, $7f
 	db $ff
 
 SECTION "engine/dumps/bank01.asm@Function771e", ROMX
 
-Function771e: ; 01:771e
+Function771e:
 	ld hl, $0004
 	add hl, bc
 	bit 4, [hl]
@@ -3525,7 +3525,7 @@ Function771e: ; 01:771e
 
 SECTION "engine/dumps/bank01.asm@Function776e", ROMX
 
-Function776e: ; 01:776e
+Function776e:
 	call GetFacingTileCoord
 	cp $90
 	jr z, .sub_7779
@@ -3561,7 +3561,7 @@ Function776e: ; 01:776e
 	scf
 	ret
 
-Function77a1: ; 01:77a1
+Function77a1:
 	ld hl, $0010
 	add hl, bc
 	ld d, [hl]
@@ -3570,7 +3570,7 @@ Function77a1: ; 01:77a1
 	ld e, [hl]
 	jr _CheckObjectCollision
 
-Function77ad: ; 01:77ad
+Function77ad:
 	ldh a, [hConnectionStripLength]
 	call GetObjectStruct
 	call .sub_77b9
@@ -3607,7 +3607,7 @@ Function77ad: ; 01:77ad
 
 SECTION "engine/dumps/bank01.asm@Function782c", ROMX
 
-Function782c: ; 01:782c
+Function782c:
 	ld hl, $0016
 	add hl, bc
 	ld a, [hl]
@@ -3660,7 +3660,7 @@ Function782c: ; 01:782c
 	scf
 	ret
 
-Function786e: ; 01:786e
+Function786e:
 	ld hl, $0010
 	add hl, bc
 	ld a, [wXCoord]
@@ -3689,16 +3689,16 @@ Function786e: ; 01:786e
 
 SECTION "engine/dumps/bank01.asm@SettingsScreen", ROMX
 
-SettingsScreen: ; 01:78e5
+SettingsScreen:
 	ld a, [wVramState]
 	push af
 	xor a
 	ld [wVramState], a
 
-Function78ed: ; 01:78ed
+Function78ed:
 	call Function7a93
 
-Function78f0: ; 01:78f0
+Function78f0:
 	call Function7a41
 	ld [hl], $ed
 	call Function7a55
@@ -3760,7 +3760,7 @@ Function78f0: ; 01:78f0
 	call LoadFontExtra
 	jr Function78f0
 
-Function796a: ; 01:796a
+Function796a:
 	push af
 	call Function7a41
 	ld [hl], $7f
@@ -3768,7 +3768,7 @@ Function796a: ; 01:796a
 	ld [wTileMapBackup], a
 	jp Function78f0
 
-Function7977: ; 01:7977
+Function7977:
 	ld a, [wc409]
 	bit 7, b
 	jr nz, .sub_799e
@@ -3873,7 +3873,7 @@ Function7977: ; 01:7977
 	ld [wTileMapBackup], a
 	jp Function78f0
 
-Function7a41: ; 01:7a41
+Function7a41:
 	ld a, [wc409]
 	ld hl, wTileMap
 	ld bc, $0014
@@ -3884,7 +3884,7 @@ Function7a41: ; 01:7a41
 	add hl, bc
 	ret
 
-Function7a55: ; 01:7a55
+Function7a55:
 	ld hl, Table7c22
 	ld a, [wc40a]
 	ld c, a
@@ -3927,7 +3927,7 @@ Function7a55: ; 01:7a55
 	ld [wce5f], a
 	ret
 
-Function7a93: ; 01:7a93
+Function7a93:
 	call ClearBGPalettes
 	call DisableLCD
 	xor a
@@ -4049,42 +4049,42 @@ Function7a93: ; 01:7a93
 	ld [hl], a
 	ret
 
-Text7bad: ; 01:7bad
+Text7bad:
 	db "はなしの　はやさ"
 	next "　はやい　　　　ふつう　　　　おそい"
 	text_end
 
-Text7bc9: ; 01:7bc9
+Text7bc9:
 	db "せんとう　アニメーション"
 	next "　じっくり　みる　　とばして　みる"
 	text_end
 
-Text7be8: ; 01:7be8
+Text7be8:
 	db "しあいの　ルール"
 	next "　いれかえタイプ　　かちぬきタイプ"
 	text_end
 
-Text7c03: ; 01:7c03
+Text7c03:
 	db "　モノラル　　　　　ステレオ"
 	text_end
 
-Text7c12: ; 01:7c12
+Text7c12:
 	db "　おわり"
 	text_end
 
-Text7c17: ; 01:7c17
+Text7c17:
 	db "　わく　を　かえる　"
 	text_end
 
-Table7c22: ; 01:7c22
+Table7c22:
 	db $0F
 
-Table7c23: ; 01:7c23
+Table7c23:
 	db $05, $08, $03
 	db $01, $01, $08
 	db $FF
 
-Unknown7c2a: ; 01:7c2a
+Unknown7c2a:
 rept 491
 	db $39, $00
 endr

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/HaitekuLeague2F.asm", ROMX
 
-HaitekuLeague2FScriptLoader:: ; 9c28e (27:428e)
+HaitekuLeague2FScriptLoader::
 	ret
 
-HaitekuLeague2FTextPointers:: ; 9c28f (27:428f)
+HaitekuLeague2FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

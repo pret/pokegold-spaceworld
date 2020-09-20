@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/PowerPlant4.asm", ROMX
 
-PowerPlant4ScriptLoader:: ; bc349 (2f:4349)
+PowerPlant4ScriptLoader::
 	ret
 
-PowerPlant4TextPointers:: ; bc34a (2f:434a)
+PowerPlant4TextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText

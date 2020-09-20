@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/HaitekuAquarium2F.asm", ROMX
 
-HaitekuAquarium2FScriptLoader:: ; 9c51c (27:451c)
+HaitekuAquarium2FScriptLoader::
 	ret
 
-HaitekuAquarium2FTextPointers:: ; 9c51d (27:451d)
+HaitekuAquarium2FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

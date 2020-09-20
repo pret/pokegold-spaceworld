@@ -6,7 +6,7 @@ SECTION "data/moves/tmhm_moves.asm", ROMX
 ; It was probably meant for easy testing, not as
 ; a final set of TM moves.
 
-TMHMMoves: ; 04:52d1
+TMHMMoves:
 ; TMs
 	db MOVE_SKETCH ; TM01
 	db MOVE_HIDDEN_POWER ; TM02

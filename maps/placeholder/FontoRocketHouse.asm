@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/FontoRocketHouse.asm", ROMX
 
-FontoRocketHouseScriptLoader:: ; 9c6ba (27:46ba)
+FontoRocketHouseScriptLoader::
 	ret
 
-FontoRocketHouseTextPointers:: ; 9c6bb (27:46bb)
+FontoRocketHouseTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

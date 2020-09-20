@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/KantoGameCorner.asm", ROMX
 
-KantoGameCornerScriptLoader:: ; 9ec3a (27:6c3a)
+KantoGameCornerScriptLoader::
 	ret
 
-KantoGameCornerTextPointers:: ; 9ec3b (27:6c3b)
+KantoGameCornerTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

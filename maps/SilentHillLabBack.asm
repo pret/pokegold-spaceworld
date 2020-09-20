@@ -2,13 +2,13 @@ include "constants.asm"
 
 SECTION "maps/SilentHillLabBack.asm", ROMX
 
-SilentHillLabBackScriptLoader:: ; 5C69
+SilentHillLabBackScriptLoader::
 	ld hl, SilentHillLabBackScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillLabBackScriptPointers: ; 5C73
+SilentHillLabBackScriptPointers:
 	dw SilentHillLabBackScript1
 	dw SilentHillLabBackNPCIDs1
 	dw SilentHillLabBackScript2
@@ -24,23 +24,23 @@ SilentHillLabBackScriptPointers: ; 5C73
 	dw SilentHillLabBackScript7
 	dw SilentHillLabBackNPCIDs1
 
-SilentHillLabBackNPCIDs1: ; 5C8F
+SilentHillLabBackNPCIDs1:
 	db 00, 01, 02, 03, 04, $FF
-SilentHillLabBackNPCIDs2: ; 5C95
+SilentHillLabBackNPCIDs2:
 	db 00, 01, 04, $FF
-SilentHillLabBackNPCIDs3: ; 5C99
+SilentHillLabBackNPCIDs3:
 	db 00, 01, 02, $FF
-SilentHillLabBackNPCIDs4: ; 5C9D
+SilentHillLabBackNPCIDs4:
 	db 00, 01, 03, $FF
 
-SilentHillLabBackTextPointers:: ; 5CA1
+SilentHillLabBackTextPointers::
 	dw SilentHillLabBackText1
 	dw SilentHillLabBackFunc3
 	dw SilentHillLabBackFunc4
 	dw SilentHillLabBackFunc4
 	dw SilentHillLabBackFunc4
 
-SilentHillLabBackScript1: ; 5CAB
+SilentHillLabBackScript1:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 0
@@ -58,10 +58,10 @@ SilentHillLabBackScript1: ; 5CAB
 	call WriteIntod637
 	ret
 
-SilentHillLabBackMovement1: ; 5CD2
+SilentHillLabBackMovement1:
 	db 09, 09, 05, $32
 
-SilentHillLabBackScript2: ; 5CD6
+SilentHillLabBackScript2:
 	ld hl, wc5ed
 	set 6, [hl]
 	call Function20f8
@@ -78,13 +78,13 @@ SilentHillLabBackScript2: ; 5CD6
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabBackScript3: ; 5CFD
+SilentHillLabBackScript3:
 	ld hl, SilentHillLabBackNPCIDs1
 	ld de, SilentHillLabBackTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-SilentHillLabBackRivalChoosePokemon: ; 5D07
+SilentHillLabBackRivalChoosePokemon:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 3
@@ -108,15 +108,15 @@ SilentHillLabBackRivalChoosePokemon: ; 5D07
 	call WriteIntod637
 	ret
 
-SilentHillLabBackMovementPointers: ; 5D34
+SilentHillLabBackMovementPointers:
 	dw SilentHillLabBackMovement2+1
 	dw SilentHillLabBackMovement2
 	dw SilentHillLabBackMovement2+2
 
-SilentHillLabBackMovement2: ; 5D3A
+SilentHillLabBackMovement2:
 	db $0B, $0B, $0B, $0B, $05, $32
 
-SilentHillLabBackScript5: ; 5D40
+SilentHillLabBackScript5:
 	ld hl, SilentHillLabBackTextString12
 	call OpenTextbox
 	ld a, [wd266]
@@ -128,7 +128,7 @@ SilentHillLabBackScript5: ; 5D40
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabBackScript6: ; 5D5B
+SilentHillLabBackScript6:
 	call Function20f8
 	ld hl, wc5ed
 	res 6, [hl]
@@ -136,13 +136,13 @@ SilentHillLabBackScript6: ; 5D5B
 	ld[wMapScriptNumber], a
 	ret
 
-SilentHillLabBackScript7: ; 5D69
+SilentHillLabBackScript7:
 	ld hl, SilentHillLabBackNPCIDs1
 	ld de, SilentHillLabBackTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-SilentHillLabBackText1: ; 5D73
+SilentHillLabBackText1:
 	ld hl, wd41b
 	bit 2, [hl]
 	ld hl, SilentHillLabBackTextString3
@@ -152,7 +152,7 @@ SilentHillLabBackText1: ; 5D73
 	call OpenTextbox
 	ret
 
-SilentHillLabBackTextString1: ; 5D84
+SilentHillLabBackTextString1:
 	text "オーキド『ほれ　そこに　３びき"
 	cont "ポケモンが　いる　じゃろう！"
 	cont "ほっほ！"
@@ -162,18 +162,18 @@ SilentHillLabBackTextString1: ; 5D84
 	cont "⋯⋯　さあ　えらべ！"
 	done
 
-SilentHillLabBackTextString2: ; 5DCD
+SilentHillLabBackTextString2:
 	text "オーキド『まあ"
 	line "あわてるな　<RIVAL>！"
 	cont "おまえも　すきなものを　とれ！"
 	done
 
-SilentHillLabBackTextString3: ; 5DEF
+SilentHillLabBackTextString3:
 	text "オーキド『さあ　<PLAYER>"
 	line "どの　ポケモンに　するかね？"
 	done
 
-SilentHillLabBackTextString4: ; 5E1C
+SilentHillLabBackTextString4:
 	text "オーキド『ほう！　ほのおのポケモン"
 	line "@"
 	ld bc, wStringBuffer1
@@ -183,7 +183,7 @@ SilentHillLabBackTextString4: ; 5E1C
 	call Function3036
 	ret
 
-SilentHillLabBackTextString5: ; 5E32
+SilentHillLabBackTextString5:
 	text "オーキド『ふむ　みずのポケモン"
 	line "@"
 	ld bc, wStringBuffer1
@@ -193,7 +193,7 @@ SilentHillLabBackTextString5: ; 5E32
 	call Function3036
 	ret
 
-SilentHillLabBackTextString6: ; 5E6E
+SilentHillLabBackTextString6:
 	text "オーキド『おお！　くさのポケモン"
 	line "@"
 	ld bc, wStringBuffer1
@@ -203,7 +203,7 @@ SilentHillLabBackTextString6: ; 5E6E
 	call Function3036
 	ret
 
-ConfirmPokemonSelection: ; 5E85
+ConfirmPokemonSelection:
 	call YesNoBox
 	jr c, .bigJump
 	ld hl, wd41b
@@ -228,17 +228,17 @@ ConfirmPokemonSelection: ; 5E85
 	ld a, 3
 	ld [wMapScriptNumber], a
 	ret
-.bigJump ; 5EC6
+.bigJump
 	ld hl, SilentHillLabBackTextString7
 	call PrintText
 	ret
 
-SilentHillLabBackTextString7: ; 5ECD
+SilentHillLabBackTextString7:
 	text "では"
 	line "どれに　するのじゃ？"
 	done
 
-SilentHillLabBackTextString8: ; 5EDC
+SilentHillLabBackTextString8:
 	text "オーキド『この　ポケモンは"
 	line "ほんとに　げんきが　いいぞ！"
 
@@ -247,14 +247,14 @@ SilentHillLabBackTextString8: ; 5EDC
 	ld bc, wStringBuffer1
 	text "を　もらった！<PROMPT>"
 
-SilentHillLabBackTextString9: ; 5F14
+SilentHillLabBackTextString9:
 	text "オーキド『そうじゃ！"
 	line "やせいの　ポケモンが　でて　きても"
 	cont "そいつを　たたかわせて　いけば"
 	cont "となりまちへ　いける！"
 	done
 
-SilentHillLabBackFunc3: ; 5F4E
+SilentHillLabBackFunc3:
 	ld hl, wd41b
 	bit 2, [hl]
 	ld hl, SilentHillLabBackTextString11
@@ -264,36 +264,36 @@ SilentHillLabBackFunc3: ; 5F4E
 	call OpenTextbox
 	ret
 
-SilentHillLabBackTextString10: ; 5F5F
+SilentHillLabBackTextString10:
 	text "<RIVAL>『あッ！　おれにも！"
 	line "じいさん　おれにもくれよう！"
 	done
 
-SilentHillLabBackTextString11: ; 5F7B
+SilentHillLabBackTextString11:
 	text "<RIVAL>『いいぜ　<PLAYER>！"
 	line "さきに　えらんで！"
 	cont "おれは　こころが　ひろいからな"
 	done
 
-SilentHillLabBackTextString12: ; 5F9F
+SilentHillLabBackTextString12:
 	text "<RIVAL>『じゃ　おれは　これ！"
 	done
 
-SilentHillLabBackTextString13: ; 5FAD
+SilentHillLabBackTextString13:
 	text "<RIVAL>は　オーキドから"
 	line "@"
 	ld bc, wStringBuffer1
 	text "を　もらった！"
 	done
 
-SilentHillLabBackTextString14: ; 5FC5
+SilentHillLabBackTextString14:
 	text "<RIVAL>『<PLAYER>の#"
 	line "いいなあ！"
 	cont "でも　おれのポケモンも"
 	cont "ちょっと　いいだろ？"
 	done
 
-SilentHillLabBackFunc4: ; 5FE9
+SilentHillLabBackFunc4:
 	ld hl, wd41b
 	bit 2, [hl]
 	jr nz, .bigjump
@@ -332,7 +332,7 @@ SilentHillLabBackFunc4: ; 5FE9
 	call OpenTextbox
 	ret
 
-SilentHillLabBackStarterData: ; 6031
+SilentHillLabBackStarterData:
 	db DEX_HONOGUMA
 	dw SilentHillLabBackTextString4
 	db DEX_KURUSU
@@ -345,12 +345,12 @@ SilentHillLabBackStarterData: ; 6031
 	dw SilentHillLabBackTextString6
 	db DEX_HONOGUMA
 
-SilentHillLabBackTextString15: ; 603D
+SilentHillLabBackTextString15:
 	text "オーキド『これ！"
 	line "よくばっちゃ　いかん！"
 	done
 
-SilentHillLabBackTextPointers2: ; 6053
+SilentHillLabBackTextPointers2:
 	dw Function3899
 	dw Function3899
 	dw Function3899

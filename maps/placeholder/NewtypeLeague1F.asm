@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/NewtypeLeague1F.asm", ROMX
 
-NewtypeLeague1FScriptLoader:: ; 9cf26 (27:4f26)
+NewtypeLeague1FScriptLoader::
 	ret
 
-NewtypeLeague1FTextPointers:: ; 9cf27 (27:4f27)
+NewtypeLeague1FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

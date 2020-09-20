@@ -1,95 +1,95 @@
 SECTION "HRAM", HRAM
 
-hOAMDMA:: ; ff80
+hOAMDMA::
 	ds 10
 
 	ds 3 ; TODO
 
-hRTCHours:: db ; ff8d
-hRTCMinutes:: db ; ff8e
-hRTCSeconds:: db ; ff8f
-hRTCDays:: db ; ff90
+hRTCHours:: db
+hRTCMinutes:: db
+hRTCSeconds:: db
+hRTCDays:: db
 	ds 2 ; TODO
-hRTCStatusFlags:: db ; ff93
+hRTCStatusFlags:: db
 	ds 3 ; TODO
 
-hVBlankCounter:: ; ff97
+hVBlankCounter::
 	db
 
-hROMBank:: ; ff98
+hROMBank::
 	db
 
 
-hVBlank:: ; ff99
+hVBlank::
 	db
 
-hMapEntryMethod:: ; ff9a
+hMapEntryMethod::
 	db
 
-hStartmenuCloseAndSelectHookEnable:: db ; ff9b
+hStartmenuCloseAndSelectHookEnable:: db
 
-hStartmenuCloseAndSelectHookTemp:: db ; ff9c
+hStartmenuCloseAndSelectHookTemp:: db
 
-hJoypadUp:: db ; ff9d
+hJoypadUp:: db
 ; Raw Joypad Up Event
 ; A pressed key was released
-hJoypadDown:: db ; ff9e
+hJoypadDown:: db
 ; Raw Joypad Down Event
 ; An unpressed key was pressed
-hJoypadState:: db ; ff9f
+hJoypadState:: db
 ; Raw Joypad State
 ; State of all keys during current frame
-hJoypadSum:: db ; ffa0
+hJoypadSum:: db
 ; Raw Joypad State Sum
 ; Sum of all keys that were pressed
 ; since hJoypadSum was last cleared
 
 	ds 1; TODO
-hJoyDown:: db ; ffa2
-hJoyState:: db ; ffa3
-hJoySum:: db ; ffa4
+hJoyDown:: db
+hJoyState:: db
+hJoySum:: db
 
-hJoyDebounceSrc:: db ; ffa5
+hJoyDebounceSrc:: db
 ; hJoySum will be updated from
 ; 00 - hJoyDown
 ; <> - hJoyState
 ; See GetJoypadDebounced
 
-hJoypadState2:: db ; ffa6
+hJoypadState2:: db
 
 	ds 6 ; TODO
-hGraphicStartTile:: db ; ffad
+hGraphicStartTile:: db
 hMoveMon:: db
 
 UNION
 
-hTextBoxCursorBlinkInterval:: ds 2 ; ffaf
+hTextBoxCursorBlinkInterval:: ds 2
 
 NEXTU
-hEventCollisionException:: db ; ffaf
+hEventCollisionException:: db
 hEventID:: db ;; ffb0
 
 NEXTU
 
-hSpriteWidth:: ; ffaf
-hSpriteInterlaceCounter:: ; ffaf
+hSpriteWidth::
+hSpriteInterlaceCounter::
 	db
-hSpriteHeight:: ; ffb0
+hSpriteHeight::
 	db
 
 NEXTU
 
-hConnectionStripLength:: db ; ffaf
-hConnectedMapWidth:: db ; ffb0
+hConnectionStripLength:: db
+hConnectedMapWidth:: db
 
 NEXTU
 
-hMapObjectIndexBuffer:: db ; ffaf
-hObjectStructIndexBuffer:: db ; ffb0
+hMapObjectIndexBuffer:: db
+hObjectStructIndexBuffer:: db
 
 ENDU
 
-hSpriteOffset:: ; ffb1
+hSpriteOffset::
 	db
 
 	db ; TODO
@@ -119,58 +119,58 @@ hMathBuffer::
 
 NEXTU
 
-hPrintNumLeadingDigit:: db ; ffb3 digit one place-value up
-hPrintNumDividend:: ds 3 ; ffb4 big-endian
-hPrintNumDivisor:: ds 3 ; ffb7 big-endian
-hPrintNumTemp:: ds 3 ; ffba big-endian
+hPrintNumLeadingDigit:: db ; digit one place-value up
+hPrintNumDividend:: ds 3 ; big-endian
+hPrintNumDivisor:: ds 3 ; big-endian
+hPrintNumTemp:: ds 3 ; big-endian
 
 ENDU
 
 	ds 3 ; TODO
 
-hFFC0:: ds 1 ; FFC0
+hFFC0:: ds 1
 
 	ds 6
 
-hFFC7:: db ; FFC7
-hFFC8:: db ; FFC8
-hFFC9:: db ; FFC9
-hFFCA:: db ; FFCA
-hFFCB:: db ; FFCB
-hFFCC:: db ; FFCC
+hFFC7:: db
+hFFC8:: db
+hFFC9:: db
+hFFCA:: db
+hFFCB:: db
+hFFCC:: db
 
 	ds 3 ; TODO
 
-hLCDCPointer:: ; ffd0
+hLCDCPointer::
 	db
 
-hLYOverrideStart:: db ; ffd1
-hLYOverrideEnd:: db ; ffd2
+hLYOverrideStart:: db
+hLYOverrideEnd:: db
 	ds 1 ; TODO
 
 
-hSerialReceived:: ; ffd4
+hSerialReceived::
 	db
 
-hLinkPlayerNumber:: ; ffd5
+hLinkPlayerNumber::
 	db
 
 hSerialIgnoringInitialData::
 	db
 
 
-hSerialSend:: ; ffd7
+hSerialSend::
 	db
-hSerialReceive:: ; ffd8
+hSerialReceive::
 	db
 
 
-hSCX:: db ; ffd9
-hSCY:: db ; ffda
-hWX:: db ; ffdb
-hWY:: db ; ffdc
+hSCX:: db
+hSCY:: db
+hWX:: db
+hWY:: db
 
-hOverworldFlashlightEffect:: db ; ffdd
+hOverworldFlashlightEffect:: db
 ; Influences draw distance of map around HIRO
 ; Meant to go from 0x00--> to desired distance
 ; or else graphical errors will occur.
@@ -180,20 +180,20 @@ hOverworldFlashlightEffect:: db ; ffdd
 ; 0x03 -  6x 6 tile block
 ; 0x04 -  2x 2 tile block
 
-hBGMapMode:: ; ffde
+hBGMapMode::
 	db
 
-hBGMapTransferPosition:: ; ffdf
+hBGMapTransferPosition::
 	db
 
-hBGMapAddress:: ; ffe0
+hBGMapAddress::
 	dw
 	db ; TODO
 
-hSPTemp:: ; ffe3
+hSPTemp::
 	dw
 
-hRedrawRowOrColumnMode:: db ; ffe5
+hRedrawRowOrColumnMode:: db
 ; Used for redrawing BG in small updates
 ; instead of once completely for faster
 ; scrolling on overworld etc.
@@ -218,30 +218,30 @@ hRedrawRowOrColumnMode:: db ; ffe5
 ; 0x11 - flashlight column redraw 3 (move left)
 ; 0x12 - flashlight column redraw 3 (move right)
 
-hRedrawRowOrColumnDest:: ds 2 ; ffe6
+hRedrawRowOrColumnDest:: ds 2
 
-hMapAnims:: ; ffe8
+hMapAnims::
 	db
 
-hTileAnimFrame:: ; ffe9
+hTileAnimFrame::
 	db
 
-hFFEA:: ; ffea
+hFFEA::
 	db
 
 hFFEB:: db
 hFFEC:: db
 hFFED:: db
 
-hFFEE:: ; ffee
+hFFEE::
 	db
 
-hRandomAdd:: db ; ffef
-hRandomSub:: db ; fff0
-hRTCRandom:: db ; fff1
+hRandomAdd:: db
+hRandomSub:: db
+hRTCRandom:: db
 
-hBattleTurn:: db ; fff2
+hBattleTurn:: db
 
-hCurMapTextSubroutinePtr:: dw ; fff3
+hCurMapTextSubroutinePtr:: dw
 
 	; TODO

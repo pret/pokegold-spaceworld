@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/victorytrainer.asm", ROMX
 
-Song_VictoryTrainer:: ; ed9ea (3b:59ea)
+Song_VictoryTrainer::
 	db 2 << 6 | 0
 	dw Song_VictoryTrainer_Ch0
 	db 1
@@ -10,7 +10,7 @@ Song_VictoryTrainer:: ; ed9ea (3b:59ea)
 	db 2
 	dw Song_VictoryTrainer_Ch2
 
-Song_VictoryTrainer_Ch0:: ; ed9f3 (3b:59f3)
+Song_VictoryTrainer_Ch0::
 	tempo 224
 	volume 7, 7
 	duty 2
@@ -108,7 +108,7 @@ Song_VictoryTrainer_branch_eda18::
 	loopchannel 0, Song_VictoryTrainer_branch_eda18
 
 
-Song_VictoryTrainer_Ch1:: ; eda64 (3b:5a64)
+Song_VictoryTrainer_Ch1::
 	duty 2
 	notetype 4, 12, 3
 	octave 4
@@ -184,7 +184,7 @@ Song_VictoryTrainer_branch_eda75::
 	loopchannel 0, Song_VictoryTrainer_branch_eda75
 
 
-Song_VictoryTrainer_Ch2:: ; edabd (3b:5abd)
+Song_VictoryTrainer_Ch2::
 	notetype 4, 1, 0
 	octave 5
 	D_ 2

@@ -22,7 +22,7 @@ MenuTextBox::
 ; unused
 	ret
 
-.Data: ; 00:1d65
+.Data:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw VRAM_Begin
@@ -63,11 +63,11 @@ VerticalMenu::
 	call Get2DMenuJoypad
 	bit 1, a
 	jr z, .asm_1dac
-.asm_1daa: ; 00:1daa
+.asm_1daa:
 	scf
 	ret
 
-.asm_1dac: ; 00:1dac
+.asm_1dac:
 	and a
 	ret
 
@@ -292,7 +292,7 @@ RunMenuItemPrintingFunction::
 	call MenuBoxCoord2Tile
 	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
-.asm_1f09: ; 00:1f09
+.asm_1f09:
 	inc de
 	ld a, [de]
 	cp -1

@@ -2,9 +2,9 @@ INCLUDE "constants.asm"
 
 SECTION "Sprite Buffers", SRAM
 
-sSpriteBuffer0:: ds SPRITEBUFFERSIZE ; a000
-sSpriteBuffer1:: ds SPRITEBUFFERSIZE ; a188
-sSpriteBuffer2:: ds SPRITEBUFFERSIZE ; a310
+sSpriteBuffer0:: ds SPRITEBUFFERSIZE
+sSpriteBuffer1:: ds SPRITEBUFFERSIZE
+sSpriteBuffer2:: ds SPRITEBUFFERSIZE
 
 SECTION "Unknown, bank 0", SRAM
 

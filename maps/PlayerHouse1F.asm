@@ -2,38 +2,38 @@ include "constants.asm"
 
 SECTION "maps/PlayerHouse1F.asm", ROMX
 
-PlayerHouse1FScriptLoader:: ; 409C
+PlayerHouse1FScriptLoader::
 	ld hl, PlayerHouse1FScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-PlayerHouse1FScriptPointers: ; 40A6
+PlayerHouse1FScriptPointers:
 	dw PlayerHouse1FScript1
 	dw PlayerHouse1FNPCIDs1
 	dw PlayerHouse1FScript2
 	dw PlayerHouse1FNPCIDs2
 
-PlayerHouse1FNPCIDs1: ; 40AE
+PlayerHouse1FNPCIDs1:
 	db $FF
 
-PlayerHouse1FNPCIDs2: ; 40AF
+PlayerHouse1FNPCIDs2:
 	db 0
 	db $FF
 
-PlayerHouse1FScript1: ; 40B1
+PlayerHouse1FScript1:
 	ld hl, PlayerHouse1FNPCIDs1
 	ld de, PlayerHouse1FSignPointers
 	call CallMapTextSubroutine
 	ret
 
-PlayerHouse1FScript2: ; 40BB
+PlayerHouse1FScript2:
 	ld hl, PlayerHouse1FNPCIDs2
 	ld de, PlayerHouse1FSignPointers
 	call CallMapTextSubroutine
 	ret
 
-PlayerHouse1FSignPointers: ; 40C5
+PlayerHouse1FSignPointers:
 	dw Function38ab
 	dw Function38b4
 	dw Function38a2
@@ -42,12 +42,12 @@ PlayerHouse1FSignPointers: ; 40C5
 PlayerHouse1FTextPointers::
 	dw PlayerHouse1FNPCText1
 
-PlayerHouse1FNPCText1: ; 40D1
+PlayerHouse1FNPCText1:
 	ld hl, PlayerHouse1FTextString1
 	call OpenTextbox
 	ret
 
-PlayerHouse1FTextString1: ; 40D8
+PlayerHouse1FTextString1:
 	text "おかあさん『えっ　あなた"
 	line "オーキドはかせに"
 	cont "ポケモンずかんを　つくってくれって"

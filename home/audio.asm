@@ -240,12 +240,12 @@ SpecialMapMusic::
 	scf
 	ret
 
-.state2 ; 3e14
+.state2
 	ld de, MUSIC_NONE
 	scf
 	ret
 
-.normal ; 3e19
+.normal
 	and a
 	ret
 

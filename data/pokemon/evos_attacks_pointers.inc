@@ -1,6 +1,6 @@
 ; Evolutions and attacks are grouped together since they're both checked at level-up.
 
-EvosAttacksPointers:: ; 42493
+EvosAttacksPointers::
 	dw FushigidaneEvosAttacks
 	dw FushigisouEvosAttacks
 	dw FushigibanaEvosAttacks

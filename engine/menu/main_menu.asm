@@ -87,7 +87,7 @@ InitializeByteList:
 
 SECTION "engine/menu/main_menu.asm@MainMenu", ROMX
 
-MainMenu:: ; 01:53CC
+MainMenu::
 	ld hl, wd4a9
 	res 0, [hl]
 	call ClearTileMap
@@ -123,27 +123,27 @@ MainMenu:: ; 01:53CC
 	ld a, [wMenuSelection]
 	jp CallJumptable
 
-MainMenuHeader: ; 01:5418
+MainMenuHeader:
 	db MENU_BACKUP_TILES
 	menu_coords 0, 0, 13, 7
 	dw .MenuData
 	db 1 ; default option
 
-.MenuData: ; 01:5420
+.MenuData:
 	db $80
 	db 0 ; items
 	dw MainMenuItems
 	db $8a, $1f
 	dw .Strings
 
-.Strings: ; 01:5428
+.Strings:
 	db "つづきから　はじめる@"
 	db "さいしょから　はじめる@"
 	db "せっていを　かえる@"
 	db "#を　あそぶ@"
 	db "じかんセット@"
 
-MainMenuJumptable: ; 01:5457
+MainMenuJumptable:
 	dw MainMenuOptionContinue
 	dw StartNewGame
 	dw MenuCallSettings
@@ -178,11 +178,11 @@ PlayPokemonSetTimeMenu:
 	db SET_TIME
 	db -1
 
-MainMenuOptionSetTime:: ; 5473
+MainMenuOptionSetTime::
 	callab SetTime
 	ret
 
-MainMenuOptionContinue:: ;547C
+MainMenuOptionContinue::
 	callab Function14624
 	call DisplayContinueGameInfo
 .loop
@@ -212,7 +212,7 @@ MainMenuOptionContinue:: ;547C
 	call DelayFrames
 	jp OverworldStart
 
-DisplayContinueGameInfo:: ; 54BF
+DisplayContinueGameInfo::
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 4, 7
@@ -237,7 +237,7 @@ DisplayContinueGameInfo:: ; 54BF
 	call DelayFrames
 	ret
 
-PrintNumBadges:: ;54FA
+PrintNumBadges::
 	push hl
 	ld hl, wd163 ; badges?
 	ld b, $01
@@ -247,7 +247,7 @@ PrintNumBadges:: ;54FA
 	ld bc, $0102 ; flags and constants for this? 1 byte source, 2 digit display
 	jp PrintNumber
 
-PrintNumOwnedMons:: ; 550D
+PrintNumOwnedMons::
 	push hl
 	ld hl, wPokedexOwned
 	ld b, $20 ; flag_array NUM_POKEMON?
@@ -257,7 +257,7 @@ PrintNumOwnedMons:: ; 550D
 	ld bc, $0103 ; 1 byte, 3 digit
 	jp PrintNumber
 
-PrintPlayTime:: ; 5520
+PrintPlayTime::
 	ld de, hRTCHours
 	ld bc, $0103 ; 1 byte, 3 digit
 	call PrintNumber
@@ -274,7 +274,7 @@ PlayerInfoText:
 	next "プレイじかん"
 	text_end
 
-StartNewGame:: ; 555C
+StartNewGame::
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld de, MUSIC_OAK_INTRO

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/BaadonLeague2F.asm", ROMX
 
-BaadonLeague2FScriptLoader:: ; 9ccc2 (27:4cc2)
+BaadonLeague2FScriptLoader::
 	ret
 
-BaadonLeague2FTextPointers:: ; 9ccc3 (27:4cc3)
+BaadonLeague2FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

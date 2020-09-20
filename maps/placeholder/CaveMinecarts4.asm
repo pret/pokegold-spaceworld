@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/CaveMinecarts4.asm", ROMX
 
-CaveMinecarts4ScriptLoader:: ; bccb8 (2f:4cb8)
+CaveMinecarts4ScriptLoader::
 	ret
 
-CaveMinecarts4TextPointers:: ; bccb9 (2f:4cb9)
+CaveMinecarts4TextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText

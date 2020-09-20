@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/collision/collision_type_table.asm", ROMX
 
-CollisionTypeTable: ; 03:4664
+CollisionTypeTable:
 	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $00
 	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     ALWAYS_SOLID    ; $04
 	db NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID,     NEVER_SOLID     ; $08

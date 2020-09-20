@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "maps/Route1P2.asm", ROMX
 
-Route1P2ScriptLoader:: ; 7C67
+Route1P2ScriptLoader::
 	ld hl, Route1P2ScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -12,7 +12,7 @@ Route1P2ScriptPointers:
 	dw Route1P2Script
 	dw Route1P2NPCIDs
 
-Route1P2NPCIDs: ; 7C76
+Route1P2NPCIDs:
 	db $00
 	db $01
 	db $FF
@@ -24,7 +24,7 @@ Route1P2TextPointers::
 	dw Route1P2Text1
 	dw Route1P2Text2
 
-Route1P2Script:: ; 7C7F
+Route1P2Script::
 	ld a, [wYCoord]
 	cp $06
 	jr nz, .skipCheck
@@ -45,13 +45,13 @@ Route1P2Script:: ; 7C7F
 	ret
 
 .endDemo
-Route1P2Text1: ; 7CA7
+Route1P2Text1:
 	ld hl, Route1P2TextString4
 	call OpenTextbox
 	call GBFadeOutToBlack
 	jp Init
 
-Route1P2Text2: ; 7CB3
+Route1P2Text2:
 	ld hl, $D3A2 ; trainer flags?
 	bit 1, [hl]
 	jr nz, .Text2Jump ; already fought
@@ -70,31 +70,31 @@ Route1P2Text2: ; 7CB3
 	ret
 
 .Text2Jump
-Route1P2Text3: ; 7CDA
+Route1P2Text3:
 	ld hl, Route1P2TextString3
 	call OpenTextbox
 	ret
 
-Route1P2TextSign1: ; 7CE1
+Route1P2TextSign1:
 	ld hl, Route1P2TextString5
 	call OpenTextbox
 	ret
 
-Route1P2TextString1: ; 7CE8
+Route1P2TextString1:
 	text "まあ　かわいらしい　トレーナーやこと"
 	line "うちと　ポケモン　しはります？"
 	done
 
-Route1P2TextString2: ; 7D0C (unused?)
+Route1P2TextString2: ; (unused?)
 	text "いやあ　かんにんやわあ"
 	done
 
-Route1P2TextString3: ; 7D19
+Route1P2TextString3:
 	text "かわいい　かおして　つよおすなあ"
 	line "その　ちょうしで　おきばりやす"
 	done
 
-Route1P2TextString4: ; 7D3B
+Route1P2TextString4:
 	text "シゲル『おっ　サトシじゃないか！"
 
 	para "なんとか　ここまで　これた"
@@ -111,7 +111,7 @@ Route1P2TextString4: ; 7D3B
 	line "じゃあな"
 	done
 
-Route1P2TextString5: ; 7DBD
+Route1P2TextString5:
 	text "ここは　１ばん　どうろ"
 	line "サイレントヒル　⋯⋯　オールドシティ"
 	done

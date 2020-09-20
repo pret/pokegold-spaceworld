@@ -2,36 +2,36 @@ INCLUDE "constants.asm"
 
 SECTION "maps/OldCityPokecenter2F.asm", ROMX
 
-OldCityPokecenter2FScriptLoader: ; 25:4782
+OldCityPokecenter2FScriptLoader:
 	call Unreferenced_Function7e6
 	ld hl, OldCityPokecenter2FScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-OldCityPokecenter2FScriptPointers: ; 25:478f
+OldCityPokecenter2FScriptPointers:
 	dw OldCityPokecenter2FScript1
 	dw OldCityPokecenter2FNPCIds
 
-OldCityPokecenter2FScript1: ; 25:4793
+OldCityPokecenter2FScript1:
 	ld hl, OldCityPokecenter2FNPCIds
 	ld de, OldCityPokecenter2FSignPointers
 	call CallMapTextSubroutine
 	ret
 
-OldCityPokecenter2FNPCIds: ; 25:479d
+OldCityPokecenter2FNPCIds:
 	db $00, $01, $02, $03, $ff
 
-OldCityPokecenter2FSignPointers: ; 25:47a2
+OldCityPokecenter2FSignPointers:
 	dw MapDefaultText
 
-OldCityPokecenter2FTextPointers: ; 25:47a4
+OldCityPokecenter2FTextPointers:
 	dw OldCityPokecenter2FText1
 	dw OldCityPokecenter2FText2
 	dw OldCityPokecenter2FText3
 	dw OldCityPokecenter2FText4
 
-OldCityPokecenter2FText1: ; 25:47ac
+OldCityPokecenter2FText1:
 	ld a, $01
 	ld [wce37], a
 	ld hl, wJoypadFlags
@@ -41,7 +41,7 @@ OldCityPokecenter2FText1: ; 25:47ac
 	res 5, [hl]
 	ret
 
-OldCityPokecenter2FText2: ; 25:47c4
+OldCityPokecenter2FText2:
 	ld a, $02
 	ld [wce37], a
 	ld hl, wJoypadFlags
@@ -51,16 +51,16 @@ OldCityPokecenter2FText2: ; 25:47c4
 	res 5, [hl]
 	ret
 
-OldCityPokecenter2FText3: ; 25:47dc
+OldCityPokecenter2FText3:
 	ld hl, Text947e3
 	call OpenTextbox
 	ret
 
-Text947e3: ; 25:47e3
+Text947e3:
 	text "おりゃ！"
 	done
 
-OldCityPokecenter2FText4: ; 25:47e9
+OldCityPokecenter2FText4:
 	ld hl, OldCityPokecenter2FTextString4
 	call OpenTextbox
 	callab Function29a1f
@@ -77,7 +77,7 @@ OldCityPokecenter2FText4: ; 25:47e9
 .asm_9480c
 	ret
 
-OldCityPokecenter2FTextString4: ; 25:480d
+OldCityPokecenter2FTextString4:
 	text "うしろにあるのは"
 	line "タイムマシンです"
 	done

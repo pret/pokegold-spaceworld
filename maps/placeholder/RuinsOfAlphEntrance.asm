@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/RuinsOfAlphEntrance.asm", ROMX
 
-RuinsOfAlphEntranceScriptLoader:: ; bc3c6 (2f:43c6)
+RuinsOfAlphEntranceScriptLoader::
 	ret
 
-RuinsOfAlphEntranceTextPointers:: ; bc3c7 (2f:43c7)
+RuinsOfAlphEntranceTextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText

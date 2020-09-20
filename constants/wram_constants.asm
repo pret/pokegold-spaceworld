@@ -7,7 +7,7 @@
 	const RIGHT    ; 3
 NUM_DIRECTIONS EQU const_value
 
-; wMonType:: ; cb5a
+; wMonType::
 	const_def
 	const PARTYMON   ; 0
 	const OTPARTYMON ; 1
@@ -15,14 +15,14 @@ NUM_DIRECTIONS EQU const_value
 	const TEMPMON    ; 3
 	const WILDMON    ; 4
 
-; wPlayerState:: ; d95d
+; wPlayerState::
 PLAYER_NORMAL    EQU 0
 PLAYER_BIKE      EQU 1
 PLAYER_SKATE     EQU 2
 PLAYER_SURF      EQU 4
 PLAYER_SURF_PIKA EQU 8
 
-; wDebugFlags:: ; ce63
+; wDebugFlags::
 	const_def
 	const DEBUG_BATTLE_F
 	const DEBUG_FIELD_F

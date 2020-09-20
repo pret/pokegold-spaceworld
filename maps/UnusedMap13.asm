@@ -2,26 +2,26 @@ include "constants.asm"
 
 SECTION "maps/UnusedMap13.asm", ROMX
 
-UnusedMap13ScriptLoader:: ; 6078
+UnusedMap13ScriptLoader::
 	ld hl, UnusedMap13ScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-UnusedMap13ScriptPointers: ; 6082
+UnusedMap13ScriptPointers:
 	dw UnusedMap13Script
 	dw UnusedMap13NPCIDs
 
-UnusedMap13NPCIDs: ; 6086
+UnusedMap13NPCIDs:
 	db $FF
 
-UnusedMap13SignPointers: ; 6087
+UnusedMap13SignPointers:
 	dw MapDefaultText
 
-UnusedMap13TextPointers:: ; 6089
+UnusedMap13TextPointers::
 	dw MapDefaultText
 
-UnusedMap13Script: ; 608B
+UnusedMap13Script:
 	ld hl, UnusedMap13NPCIDs
 	ld de, UnusedMap13SignPointers
 	call CallMapTextSubroutine

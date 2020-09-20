@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/KantoOaksLab.asm", ROMX
 
-KantoOaksLabScriptLoader:: ; 9f120 (27:7120)
+KantoOaksLabScriptLoader::
 	ret
 
-KantoOaksLabTextPointers:: ; 9f121 (27:7121)
+KantoOaksLabTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

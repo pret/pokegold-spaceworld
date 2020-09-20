@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/engine.asm@Audio", ROMX
 
-_DisableAudio:: ; 3a:4000
+_DisableAudio::
 	push hl
 	push de
 	push bc
@@ -47,7 +47,7 @@ _DisableAudio:: ; 3a:4000
 	pop hl
 	ret
 
-_UpdateSound:: ; 3a:4037
+_UpdateSound::
 ; Called once per frame
 	xor a
 	ld [wCurChannel], a
@@ -77,7 +77,7 @@ _UpdateSound:: ; 3a:4037
 	call Functione82f0
 	ret
 
-UpdateChannel: ; 3a:4061
+UpdateChannel:
 	; Get the note's duration
 	ld hl, CHANNEL_NOTE_DURATION
 	add hl, bc
@@ -100,13 +100,13 @@ UpdateChannel: ; 3a:4061
 	call Functione80b6
 	ret
 
-DisablePitchWheel: ; 3a:4061
+DisablePitchWheel:
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
 	res SOUND_PITCH_WHEEL, [hl]
 	ret
 
-Unreferenced_Functione8081: ; 3a:4081
+Unreferenced_Functione8081:
 	ld a, [wMapMusic]
 	bit 0, a
 	jr nz, .disable_music
@@ -140,7 +140,7 @@ Unreferenced_Functione8081: ; 3a:4081
 	scf
 	ret
 
-GetChannelRegisters: ; 3a:40a4
+GetChannelRegisters:
 	ld a, [wCurChannel]
 	ld e, a
 	ld d, $00
@@ -153,7 +153,7 @@ GetChannelRegisters: ; 3a:40a4
 .registers
 	db LOW(rNR10), LOW(rNR20), LOW(rNR30), LOW(rNR40)
 
-Functione80b6: ; 3a:40b6
+Functione80b6:
 	ld hl, CHANNEL_DUTY_CYCLE
 	add hl, bc
 	ld a, [hl]
@@ -192,7 +192,7 @@ Functione80b6: ; 3a:40b6
 	ld [hl], a
 	ret
 
-Functione80fa: ; 3a:40fa
+Functione80fa:
 	ld hl, .jumptable
 	ld a, [wCurChannel]
 	maskbits NUM_CHANNELS
@@ -209,7 +209,7 @@ Functione80fa: ; 3a:40fa
 	; TODO
 
 SECTION "audio/engine.asm@IsChannelSFXOn", ROMX
-IsChannelSFXOn: ; 3a:42bd
+IsChannelSFXOn:
 	; If it's not a valid channel, return
 	ld a, [wCurChannel]
 	cp NUM_MUSIC_CHANS
@@ -228,7 +228,7 @@ IsChannelSFXOn: ; 3a:42bd
 	scf
 	ret
 
-IsAnySFXOn: ; 3a:42d0
+IsAnySFXOn:
 	ld hl, wChannel5Flags1
 	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .on
@@ -250,7 +250,7 @@ IsAnySFXOn: ; 3a:42d0
 	ret
 
 SECTION "audio/engine.asm@Functione82f0", ROMX
-Functione82f0: ; 3a:42f0
+Functione82f0:
 	call IncrementTempo
 	call PlayDanger
 	call FadeMusic
@@ -261,7 +261,7 @@ Functione82f0: ; 3a:42f0
 	ld [rNR51], a
 	ret
 
-PlayDanger: ; 3a:4307
+PlayDanger:
 	ld a, [wLowHealthAlarm]
 	bit DANGER_ON_F, a
 	ret z
@@ -318,19 +318,19 @@ PlayDanger: ; 3a:4307
 	ld [wSoundOutput], a
 	ret
 
-DangerSoundHigh: ; 3a:434a
+DangerSoundHigh:
 	db $80 ; duty 50%
 	db $e2 ; volume 14, envelope decrease sweep 2
 	db $50 ; frequency: $750
 	db $87 ; restart sound
 
-DangerSoundLow: ; 3a:434e
+DangerSoundLow:
 	db $80 ; duty 50%
 	db $e2 ; volume 14, envelope decrease sweep 2
 	db $ee ; frequency: $6ee
 	db $86 ; restart sound
 
-IncrementTempo: ; 3a:4352
+IncrementTempo:
 	call IsAnyChannelOn
 	ret c
 
@@ -371,7 +371,7 @@ IncrementTempo: ; 3a:4352
 	pop de
 	ret
 
-IsAnyChannelOn: ; 3a:438e
+IsAnyChannelOn:
 ; Check if any music channel is on and isn't on the last frame
 
 	ld hl, wChannel1Flags1
@@ -421,7 +421,7 @@ IsAnyChannelOn: ; 3a:438e
 	scf
 	ret
 
-FadeMusic: ; 3a:43ce
+FadeMusic:
 ; Fade music if applicable
 ; usage:
 ;	write to wMusicFade
@@ -504,7 +504,7 @@ FadeMusic: ; 3a:43ce
 
 SECTION "audio/engine.asm@Audio engine, part 2", ROMX
 
-SetGlobalTempo: ; 3a:4cee
+SetGlobalTempo:
 	push bc
 	ld a, [wCurChannel]
 	cp CHAN5
@@ -533,7 +533,7 @@ SetGlobalTempo: ; 3a:4cee
 	pop bc
 	ret
 
-Tempo: ; 3a:4d2a
+Tempo:
 	ld hl, CHANNEL_TEMPO
 	add hl, bc
 	ld [hl], e
@@ -546,7 +546,7 @@ Tempo: ; 3a:4d2a
 	ret
 
 
-StartChannel: ; 3a:4d38
+StartChannel:
 	call SetLRTracks
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
@@ -554,7 +554,7 @@ StartChannel: ; 3a:4d38
 	ret
 
 
-StopChannel: ; 3a:4d42
+StopChannel:
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
 	res SOUND_CHANNEL_ON, [hl]
@@ -567,7 +567,7 @@ StopChannel: ; 3a:4d42
 	ret
 
 
-SetLRTracks: ; 3a:4d51
+SetLRTracks:
 	push de
 	ld a, [wCurChannel]
 	maskbits NUM_MUSIC_CHANS
@@ -583,7 +583,7 @@ SetLRTracks: ; 3a:4d51
 	ret
 
 
-_PlayMusic:: ; 3a:4d66
+_PlayMusic::
 	ld hl, wMusicID
 	ld [hl], e
 	inc hl

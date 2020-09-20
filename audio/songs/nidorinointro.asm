@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/nidorinointro.asm", ROMX
 
-Song_NidorinoIntro:: ; ec000 (3b:4000)
+Song_NidorinoIntro::
 	db 3 << 6 | 0
 	dw Song_NidorinoIntro_Ch0
 	db 1
@@ -12,7 +12,7 @@ Song_NidorinoIntro:: ; ec000 (3b:4000)
 	db 3
 	dw Song_NidorinoIntro_Ch3
 
-Song_NidorinoIntro_Ch0:: ; ec00c (3b:400c)
+Song_NidorinoIntro_Ch0::
 	tempo 102
 	volume 7, 7
 	duty 3
@@ -106,7 +106,7 @@ Song_NidorinoIntro_Ch0:: ; ec00c (3b:400c)
 	endchannel
 
 
-Song_NidorinoIntro_Ch1:: ; ec09f (3b:409f)
+Song_NidorinoIntro_Ch1::
 	duty 3
 	vibrato 8, 2, 5
 	notetype 12, 12, 2
@@ -181,7 +181,7 @@ Song_NidorinoIntro_Ch1:: ; ec09f (3b:409f)
 	endchannel
 
 
-Song_NidorinoIntro_Ch2:: ; ec116 (3b:4116)
+Song_NidorinoIntro_Ch2::
 	notetype 12, 1, 0
 	rest 8
 	octave 4
@@ -245,7 +245,7 @@ Song_NidorinoIntro_Ch2:: ; ec116 (3b:4116)
 	endchannel
 
 
-Song_NidorinoIntro_Ch3:: ; ec155 (3b:4155)
+Song_NidorinoIntro_Ch3::
 	drumset 2
 	dspeed 6
 	snare4 1

@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "engine/intro.asm", ROMX
 
-DemoStart:: ; 558D
+DemoStart::
 	ld de, OakPic
 	lb bc, BANK(OakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -20,7 +20,7 @@ DemoStart:: ; 558D
 	call DemoSetUpPlayer
 	jp IntroCleanup
 
-GameStart:: ; 55BB
+GameStart::
 	ld de, OakPic
 	lb bc, BANK(OakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -95,7 +95,7 @@ GameStart:: ; 55BB
 	ld c, $04
 	call DelayFrames
 
-IntroCleanup:: ; 568E
+IntroCleanup::
 	ld de, ShrinkPic1
 	lb bc, BANK(ShrinkPic1), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -132,7 +132,7 @@ OverworldStart::
 	set 0, [hl]
 	jp Function2a85
 
-SetUpGameEntry:: ; 56E8
+SetUpGameEntry::
 	ld a, $04
 	ld [wd65e], a
 	ld a, $F2
@@ -150,7 +150,7 @@ SetUpGameEntry:: ; 56E8
 	call CopyBytes
 	ret
 
-GameStartPlacement:: ; 570D
+GameStartPlacement::
 	db $01 ; map group
 	db MAP_PLAYER_HOUSE_2F ; map
 	dwcoord 15, 45 ; screen anchor
@@ -159,7 +159,7 @@ GameStartPlacement:: ; 570D
 	db $00 ; in-metatile x
 	db $01 ; in-metatile y
 
-DebugSetUpPlayer:: ; 5715
+DebugSetUpPlayer::
 	call SetPlayerNamesDebug
 	ld a, $0F
 	ld [wd15d], a
@@ -185,7 +185,7 @@ DebugSetUpPlayer:: ; 5715
 	call Function40fd
 	ret
 
-DebugFillPokedex:: ; 5755
+DebugFillPokedex::
 	ld b, $1F
 	ld a, $FF
 .loop
@@ -195,7 +195,7 @@ DebugFillPokedex:: ; 5755
 	ld [hl], $07
 	ret
 
-FillBagWithList:: ; 5760
+FillBagWithList::
 	ld hl, wNumBagItems
 .loop
 	ld a, [de]
@@ -211,7 +211,7 @@ FillBagWithList:: ; 5760
 .yump
 	ret
 
-DebugBagItems:: ; 5777
+DebugBagItems::
 	db ITEM_IMPORTANT_BAG, $01
 	db ITEM_BAG, $01
 	db ITEM_TM_HOLDER, $01
@@ -234,7 +234,7 @@ DebugBagItems:: ; 5777
 	db ITEM_DETECT_ORB, $63
 	db $FF
 
-GiveRandomPokemon:: ; 57A0
+GiveRandomPokemon::
 	and a
 	ret z
 .loop
@@ -247,7 +247,7 @@ GiveRandomPokemon:: ; 57A0
 	jr nz, .loop
 	ret
 
-GiveRandomJohto::  ; 57B0
+GiveRandomJohto:: 
 .loop
 	call Random
 	and $03
@@ -263,7 +263,7 @@ GiveRandomJohto::  ; 57B0
 	ld [wPartyMon1 + 1], a
 	ret
 
-GiveKantoStarters:: ; 57C8
+GiveKantoStarters::
 	ld a, $03
 	ld b, $20
 	call GivePokemon
@@ -275,7 +275,7 @@ GiveKantoStarters:: ; 57C8
 	call GivePokemon
 	ret
 
-GivePokemon:: ; 57DE
+GivePokemon::
 	ld [wMonDexIndex], a
 	ld a, b
 	ld [wCurPartyLevel], a
@@ -283,7 +283,7 @@ GivePokemon:: ; 57DE
 	call Predef
 	ret
 
-AddRandomPokemonToBox: ; 57EB
+AddRandomPokemonToBox:
 	and a
 	ret z
 .loop
@@ -303,7 +303,7 @@ AddRandomPokemonToBox: ; 57EB
 	jr nz, .loop
 	ret
 
-RandomUnder246:: ; 5818
+RandomUnder246::
 .loop
 	call Random
 	and a
@@ -312,7 +312,7 @@ RandomUnder246:: ; 5818
 	jr nc, .loop
 	ret
 
-FillTMs:: ; 5823
+FillTMs::
 	ld b, $39
 	ld a, $01
 	ld hl, wTMsHMs
@@ -322,7 +322,7 @@ FillTMs:: ; 5823
 	jr nz, .loop
 	ret
 
-DebugGiveKeyItems:: ; 582F
+DebugGiveKeyItems::
 	ld hl, DebugKeyItemsList
 	ld de, wKeyItems
 	ld c, $FF
@@ -337,14 +337,14 @@ DebugGiveKeyItems:: ; 582F
 	ld [wNumKeyItems], a
 	ret
 
-DebugKeyItemsList:: ; 5844
+DebugKeyItemsList::
 	db ITEM_TM_HOLDER
 	db ITEM_BALL_HOLDER
 	db ITEM_BAG
 	db ITEM_BICYCLE
 	db $FF
 
-DemoSetUpPlayer:: ; 5849
+DemoSetUpPlayer::
 	ld hl, wPlayerName
 	ld de, DemoPlayerName
 	call CopyString
@@ -357,7 +357,7 @@ DemoSetUpPlayer:: ; 5849
 	call GiveRandomJohto
 	ret
 
-DemoItemList:: ; 5868
+DemoItemList::
 	db ITEM_POKE_BALL, $05
 	db ITEM_POTION, $0A
 	db ITEM_FULL_HEAL, $0A
@@ -365,13 +365,13 @@ DemoItemList:: ; 5868
 	db ITEM_FOCUS_ORB, $01
 	db $FF
 
-DemoPlayerName:: ; 5873
+DemoPlayerName::
 	db "サトシ@"
 
-DemoRivalName:: ; 5877
+DemoRivalName::
 	db "シゲル@"
 
-OakSpeechDemo:: ; 587B
+OakSpeechDemo::
 	text "ようこそ"
 	line "ポケット　モンスターの　せかいへ！"
 	cont "ごぞんじ　わしが　オーキドじゃ！"
@@ -396,7 +396,7 @@ OakSpeechDemo:: ; 587B
 	para "まけないよう　がんばって　くれい！"
 	prompt
 
-OakSpeech1:: ; 5956
+OakSpeech1::
 	text "いやあ　またせた！"
 
 	para "ポケット　モンスターの　せかいへ"
@@ -408,7 +408,7 @@ OakSpeech1:: ; 5956
 	line "したわれて　おるよ"
 	prompt
 
-OakSpeech2:: ; 599F
+OakSpeech2::
 	text "きみも　もちろん"
 	line "しっているとは　おもうが"
 
@@ -418,7 +418,7 @@ OakSpeech2:: ; 599F
 	cont "いたるところに　すんでいる！"
 	prompt
 
-OakSpeech3:: ; 59E8
+OakSpeech3::
 	text "その　#　という　いきものを"
 	line "ひとは　ぺットに　したり"
 	cont "しょうぶに　つかったり"
@@ -428,12 +428,12 @@ OakSpeech3:: ; 59E8
 	line "けんきゅうを　してる　というわけだ"
 	prompt
 
-OakSpeech4:: ; 5A35
+OakSpeech4::
 	text "では　はじめに　きみの　なまえを"
 	line "おしえて　もらおう！"
 	prompt
 
-OakSpeech5:: ; 5A52
+OakSpeech5::
 	text "そして　この　しょうねんは"
 	line "きみの　おさななじみであり"
 	cont"ライバルである"
@@ -442,7 +442,7 @@ OakSpeech5:: ; 5A52
 	line "なまえは　なんて　いったかな？"
 	prompt
 
-OakSpeech6:: ; 5A8F
+OakSpeech6::
 	text "さて　きみの　きねんすべき"
 	line "たびだちのひを"
 	cont "きろくしておこう！"
@@ -450,7 +450,7 @@ OakSpeech6:: ; 5A8F
 	para "じかんも　なるべく　せいかくにな！"
 	prompt
 
-OakSpeech7:: ; 5AC2
+OakSpeech7::
 	text "<PLAYER>！"
 
 	para "いよいよ　これから"
@@ -462,7 +462,7 @@ OakSpeech7:: ; 5AC2
 	para "レッツ　ゴー！"
 	done
 
-SetPlayerNamesDebug:: ; 5B07
+SetPlayerNamesDebug::
 	ld hl, DebugPlayerName
 	ld de, wPlayerName
 	call CopyNameDebug
@@ -474,13 +474,13 @@ CopyNameDebug:
 	call CopyBytes
 	ret
 
-DebugPlayerName: ; 5B1D
+DebugPlayerName:
 	db "コージ@"
 
-DebugRivalName: ; 5B21
+DebugRivalName:
 	db "レッド@"
 
-ChoosePlayerName:: ; 5B25
+ChoosePlayerName::
 	call PanPortraitRight
 	ld hl, PlayerNameMenuHeader
 	call NamingWindow
@@ -512,18 +512,18 @@ ChoosePlayerName:: ; 5B25
 	call PrintText
 	ret
 
-ChoosePlayerNameEndText: ; 5B6F
+ChoosePlayerNameEndText:
 	text "ふむ・・・"
 	line "<PLAYER>　と　いうんだな！"
 	prompt
 
-PlayerNameMenuHeader: ; 5B81
+PlayerNameMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
 	dw PlayerNameMenuData
 	db 01 ; initial selection
 
-PlayerNameMenuData: ; 5B89
+PlayerNameMenuData:
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
 	db 04 ; items
 	db "じぶんできめる@"
@@ -533,7 +533,7 @@ PlayerNameMenuData: ; 5B89
 	db 3 ; x offset for the title string
 	db "なまえこうほ@"
 
-ChooseRivalName:: ; 5BA9
+ChooseRivalName::
 	call PanPortraitRight
 	ld hl, RivalNameMenuHeader
 	call NamingWindow
@@ -565,18 +565,18 @@ ChooseRivalName:: ; 5BA9
 	call PrintText
 	ret
 
-ChooseRivalNameEndText: ; 5BF3
+ChooseRivalNameEndText:
 	text "そうか　そうだったな"
 	line "<RIVAL>　という　なまえだ"
 	prompt
 
-RivalNameMenuHeader: ; 5C0A
+RivalNameMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
 	dw RivalNameMenuData
 	db 01 ; initial selection
 
-RivalNameMenuData: ; 5C12
+RivalNameMenuData:
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
 	db 04 ; items
 	db "じぶんできめる@"
@@ -586,7 +586,7 @@ RivalNameMenuData: ; 5C12
 	db 3
 	db "なまえこうほ@"
 
-MomNamePrompt:: ; 5C31
+MomNamePrompt::
 	ld hl, MomNameMenuHeader
 	call NamingWindow
 	ld a, [wMenuCursorY]
@@ -613,13 +613,13 @@ MomNamePrompt:: ; 5C31
 .escape
 	ret
 
-MomNameMenuHeader: ; 5C71
+MomNameMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 00, 00, 10, 11
 	dw .MomNameMenuData
 	db 01 ; initial selection
 
-.MomNameMenuData: ; 5C79
+.MomNameMenuData:
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
 	db 04 ; items
 	db "じぶんで　きめる@"
@@ -629,7 +629,7 @@ MomNameMenuHeader: ; 5C71
 	db 3
 	db "なまえこうほ@"
 
-NamingWindow:: ; 5C9B
+NamingWindow::
 	; loads the menu header put into hl
 	call LoadMenuHeader
 	call VerticalMenu
@@ -639,13 +639,13 @@ NamingWindow:: ; 5C9B
 	call CloseWindow
 	ret
 
-SaveCustomName:: ; 5CAC
+SaveCustomName::
 	ld hl, wStringBuffer2
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 	ret
 
-PanPortraitRight:: ; 5CB6
+PanPortraitRight::
 	hlcoord 5, 4
 	ld d, $06
 	ld e, $7E
@@ -674,7 +674,7 @@ PanPortraitRight:: ; 5CB6
 	jr nz, .loop
 	ret
 
-PanPortraitLeft:: ; 5CD7
+PanPortraitLeft::
 	hlcoord 12, 4
 	ld b, $06
 	ld c, $7E
@@ -698,11 +698,11 @@ PanPortraitLeft:: ; 5CD7
 	jr nz, .loop
 	ret
 
-MenuCallSettings:: ; 5CF3
+MenuCallSettings::
 	call SettingsScreen
 	ret
 
-FadeInIntroPic: ; 5CF7
+FadeInIntroPic:
 	ld hl, IntroFadePalettes
 	ld b, 6
 .next
@@ -722,7 +722,7 @@ IntroFadePalettes:
 	db %11110100
 	db %11100100
 
-MovePicLeft: ; 5D0E
+MovePicLeft:
 	ld a, 119
 	ldh [hWX], a
 	call DelayFrame
@@ -738,7 +738,7 @@ MovePicLeft: ; 5D0E
 	ldh [hWX], a
 	jr .next
 
-IntroDisplayPicCenteredOrUpperRight:: ; 5D27
+IntroDisplayPicCenteredOrUpperRight::
 ; b = bank
 ; de = address of compressed pic
 ; c: 0 = centred, non-zero = upper-right
@@ -767,7 +767,7 @@ IntroDisplayPicCenteredOrUpperRight:: ; 5D27
 	predef PlaceGraphic
 	ret
 
-LoadStartingSprites: ; 5D5D
+LoadStartingSprites:
 	ld de, GoldSpriteGFX
 	lb bc, BANK(GoldSpriteGFX), $0C
 	ld hl, VRAM_Begin
@@ -791,7 +791,7 @@ LoadStartingSprites: ; 5D5D
 	jr nz, .loop
 	ret
 
-GameStartSprites: ; 5D80
+GameStartSprites:
 	db $50, $48, $00
 	db $50, $50, $01
 	db $58, $48, $02

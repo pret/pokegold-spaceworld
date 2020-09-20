@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/FontoMart.asm", ROMX
 
-FontoMartScriptLoader:: ; 9c73a (27:473a)
+FontoMartScriptLoader::
 	ret
 
-FontoMartTextPointers:: ; 9c73b (27:473b)
+FontoMartTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

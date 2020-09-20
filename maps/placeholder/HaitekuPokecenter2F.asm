@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/HaitekuPokecenter2F.asm", ROMX
 
-HaitekuPokecenter2FScriptLoader:: ; 9c14d (27:414d)
+HaitekuPokecenter2FScriptLoader::
 	ret
 
-HaitekuPokecenter2FTextPointers:: ; 9c14e (27:414e)
+HaitekuPokecenter2FTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

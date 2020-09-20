@@ -6,7 +6,7 @@ add_predef: MACRO
 	dba \1
 ENDM
 
-PredefPointers:: ; 1:62d3
+PredefPointers::
 ; To YOU who is reading this:
 ; Please be a peach and nuke the hell out of these:
 ; WE NEED LABELS!

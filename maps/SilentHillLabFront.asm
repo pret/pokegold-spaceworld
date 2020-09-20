@@ -2,13 +2,13 @@ include "constants.asm"
 
 SECTION "maps/SilentHillLabFront.asm", ROMX
 
-SilentHillLabFrontScriptLoader:: ; 4BBC
+SilentHillLabFrontScriptLoader::
 	ld hl, SilentHillLabFrontScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillLabFrontScriptPointers: ; 4BC6
+SilentHillLabFrontScriptPointers:
 	dw SilentHillLabFrontScript1
 	dw SilentHillLabFrontNPCIDs1
 
@@ -66,30 +66,30 @@ SilentHillLabFrontScriptPointers: ; 4BC6
 	dw SilentHillLabFrontScript19
 	dw SilentHillLabFrontNPCIDs9
 
-SilentHillLabFrontNPCIDs1: ; 4C12
+SilentHillLabFrontNPCIDs1:
 	db $02
 	db $09
 	db $0A
 	db $FF
-SilentHillLabFrontNPCIDs2: ; 4C16
+SilentHillLabFrontNPCIDs2:
 	db $00
 	db $02
 	db $04
 	db $09
 	db $0A
 	db $FF
-SilentHillLabFrontNPCIDs3: ; 4C1C
+SilentHillLabFrontNPCIDs3:
 	db $02
 	db $04
 	db $09
 	db $0A
 	db $FF
-SilentHillLabFrontNPCIDs4: ; 4C21
+SilentHillLabFrontNPCIDs4:
 	db $04
 	db $09
 	db $0A
 	db $FF
-SilentHillLabFrontNPCIDs5: ; 4C25
+SilentHillLabFrontNPCIDs5:
 	db $01
 	db $03
 	db $05
@@ -99,7 +99,7 @@ SilentHillLabFrontNPCIDs5: ; 4C25
 	db $09
 	db $0A
 	db $FF
-SilentHillLabFrontNPCIDs6: ; 4C2E
+SilentHillLabFrontNPCIDs6:
 	db $01
 	db $03
 	db $05
@@ -107,14 +107,14 @@ SilentHillLabFrontNPCIDs6: ; 4C2E
 	db $07
 	db $08
 	db $FF
-SilentHillLabFrontNPCIDs7: ; 4C35
+SilentHillLabFrontNPCIDs7:
 	db $00
 	db $05
 	db $06
 	db $07
 	db $08
 	db $FF
-SilentHillLabFrontNPCIDs8: ; 4C3B (unused?)
+SilentHillLabFrontNPCIDs8: ; (unused?)
 	db $00
 	db $03
 	db $05
@@ -124,13 +124,13 @@ SilentHillLabFrontNPCIDs8: ; 4C3B (unused?)
 	db $09
 	db $0A
 	db $FF
-SilentHillLabFrontNPCIDs9: ; 4C44
+SilentHillLabFrontNPCIDs9:
 	db $00
 	db $07
 	db $08
 	db $FF
 
-SilentHillLabFrontTextPointers:: ; 4C48
+SilentHillLabFrontTextPointers::
 	dw SilentHillLabFrontText4
 	dw SilentHillLabFrontText7
 	dw SilentHillLabFrontText10
@@ -143,7 +143,7 @@ SilentHillLabFrontTextPointers:: ; 4C48
 	dw SilentHillLabFrontText16
 	dw SilentHillLabFrontText16
 
-SilentHillLabFrontScript1: ; 4C5E
+SilentHillLabFrontScript1:
 	call SilentHillLabFrontMoveDown
 	ret z
 	ld hl, SilentHillLabFrontNPCIDs1
@@ -151,7 +151,7 @@ SilentHillLabFrontScript1: ; 4C5E
 	call CallMapTextSubroutine
 	ret
 
-SilentHillLabFrontMoveDown: ; 4C6C
+SilentHillLabFrontMoveDown:
 	ld a, [wXCoord]
 	cp 4
 	ret nz
@@ -176,15 +176,15 @@ SilentHillLabFrontMoveDown: ; 4C6C
 	call ClearAccumulator
 	ret
 
-SilentHillLabFrontMovement1: ; 4CA2
+SilentHillLabFrontMovement1:
 	db $06, $32
 
-SilentHillLabFrontScript2: ; 4CA4
+SilentHillLabFrontScript2:
 	ld a, 2
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabFrontScript3: ; 4CAA
+SilentHillLabFrontScript3:
 	ld a, 6
 	call Function17f9
 	ld a, 0
@@ -203,16 +203,16 @@ SilentHillLabFrontScript3: ; 4CAA
 	call WriteIntod637
 	ret
 
-SilentHillLabFrontMovement2: ; 4CD3
+SilentHillLabFrontMovement2:
 	db 09, 09, 09, 09, 09, 09, 09, 09, 09, 05, 07, 01, $32
 
-SilentHillLabFrontScript4: ; 4CE0
+SilentHillLabFrontScript4:
 	call Function1828
 	ld a, 4
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabFrontConversation1: ; 4CE9
+SilentHillLabFrontConversation1:
 	ld a, 4
 	ld d, RIGHT
 	call SetObjectFacing
@@ -237,7 +237,7 @@ SilentHillLabFrontConversation1: ; 4CE9
 	call SilentHillLabFrontScript5
 	ret
 
-SilentHillLabFrontScript5: ; 4D26
+SilentHillLabFrontScript5:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 2
@@ -253,10 +253,10 @@ SilentHillLabFrontScript5: ; 4D26
 	call WriteIntod637
 	ret
 
-SilentHillLabFrontMovement3: ; 4D48
+SilentHillLabFrontMovement3:
 	db 9, 5, $33
 
-SilentHillLabFrontScript6: ; 4D4B
+SilentHillLabFrontScript6:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 4
@@ -272,10 +272,10 @@ SilentHillLabFrontScript6: ; 4D4B
 	call WriteIntod637
 	ret
 
-SilentHillLabFrontMovement4: ; 4D6D
+SilentHillLabFrontMovement4:
 	db $0D, $0D, $0F, $0D, $0D, $33
 
-SilentHillLabFrontScript7: ; 4D73
+SilentHillLabFrontScript7:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 0
@@ -291,10 +291,10 @@ SilentHillLabFrontScript7: ; 4D73
 	call WriteIntod637
 	ret
 
-SilentHillLabFrontMovement5: ; 4D95
+SilentHillLabFrontMovement5:
 	db 09, 09, 09, 05, $32
 
-SilentHillLabFrontScript8: ; 4D9A
+SilentHillLabFrontScript8:
 	ld a, 3
 	call Function1989
 	ld a, 5
@@ -314,10 +314,10 @@ SilentHillLabFrontScript8: ; 4D9A
 	call WriteIntod637
 	ret
 
-SilentHillLabFrontMovement6: ; 4DC6
+SilentHillLabFrontMovement6:
 	db 8, 8, 8, $0A, 6, $32
 
-SilentHillLabFrontScript9: ; 4DCC
+SilentHillLabFrontScript9:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 5
@@ -335,10 +335,10 @@ SilentHillLabFrontScript9: ; 4DCC
 	call WriteIntod637
 	ret
 
-SilentHillLabFrontMovement7: ; 4DF3
+SilentHillLabFrontMovement7:
 	db $08, $08, $08, $08, $0A, $06, $32
 
-SilentHillLabFrontScript10: ; 4DFA
+SilentHillLabFrontScript10:
 	ld a, 5
 	ld d, RIGHT
 	call SetObjectFacing
@@ -367,10 +367,10 @@ SilentHillLabFrontScript10: ; 4DFA
 	call WriteIntod637
 	ret
 
-SilentHillLabFrontMovement8: ; 4E3C
+SilentHillLabFrontMovement8:
 	db $08, $04, $32
 
-SilentHillLabFrontScript11: ; 4E3F
+SilentHillLabFrontScript11:
 	ld hl, SilentHillLabFrontTextString8
 	call OpenTextbox
 	ld hl, SilentHillLabFrontTextString9
@@ -391,7 +391,7 @@ SilentHillLabFrontScript11: ; 4E3F
 	call InitUnknownBuffercc9e
 	ret
 
-SilentHillLabFrontScript12: ; 4E72
+SilentHillLabFrontScript12:
 	call SilentHillLabFrontMoveDown
 	ret z
 	call SilentHillLabFrontRivalMovePokemon
@@ -401,7 +401,7 @@ SilentHillLabFrontScript12: ; 4E72
 	call CallMapTextSubroutine
 	ret
 
-SilentHillLabFrontRivalMovePokemon: ; 4E84
+SilentHillLabFrontRivalMovePokemon:
 	ld a, [wYCoord]
 	cp 8
 	ret nz
@@ -430,13 +430,13 @@ SilentHillLabFrontRivalMovePokemon: ; 4E84
 	call ClearAccumulator
 	ret
 
-SilentHillLabFrontMovement9: ; 4EDE
+SilentHillLabFrontMovement9:
 	db $08, $0B, $0B, $08, $08, $04, $32
 
-SilentHillLabFrontMovement10: ; 4EC5
+SilentHillLabFrontMovement10:
 	db $08, $0B, $08, $08, $04, $32
 
-SilentHillLabFrontScript13: ; 4ECB
+SilentHillLabFrontScript13:
 	ld hl, SilentHillLabFrontTextString17
 	call OpenTextbox
 	call GetLabPokemon
@@ -449,7 +449,7 @@ SilentHillLabFrontScript13: ; 4ECB
 	call InitUnknownBuffercc9e
 	ret
 
-GetLabPokemon: ; 4EE7
+GetLabPokemon:
 	ld hl, LabPokemon
 	ld a, [wd266]
 	ld b, a
@@ -466,7 +466,7 @@ GetLabPokemon: ; 4EE7
 	inc hl
 	jr .loop
 
-LabPokemon: ; 4EFF
+LabPokemon:
 	db DEX_KURUSU
 	db 1
 	db DEX_HAPPA
@@ -474,7 +474,7 @@ LabPokemon: ; 4EFF
 	db DEX_HONOGUMA
 	db 3
 
-SilentHillLabFrontScript14: ; 4F05
+SilentHillLabFrontScript14:
 	ld hl, SilentHillLabFrontTextString19
 	ld a, [wcd5d]
 	and a
@@ -497,17 +497,17 @@ SilentHillLabFrontScript14: ; 4F05
 	call WriteIntod637
 	ret
 
-SilentHillLabFrontMovement11: ; 4F36
+SilentHillLabFrontMovement11:
 	db $04, $08, $08, $08, $33
 
-SilentHillLabFrontScript15: ; 4F3B
+SilentHillLabFrontScript15:
 	call Function20f8
 	ld a, $0F
 	ld [wMapScriptNumber], a
 	call InitUnknownBuffercc9e
 	ret
 
-SilentHillLabFrontScript16: ; 4F47
+SilentHillLabFrontScript16:
 	call SilentHillLabFrontMoveDown
 	ret z
 	call SilentHillLabFrontMoveRivalLeave
@@ -517,7 +517,7 @@ SilentHillLabFrontScript16: ; 4F47
 	call CallMapTextSubroutine
 	ret
 
-SilentHillLabFrontMoveRivalLeave: ; 4F59
+SilentHillLabFrontMoveRivalLeave:
 	ld a, [wYCoord]
 	cp $0B
 	ret nz
@@ -549,7 +549,7 @@ SilentHillLabFrontMoveRivalLeave: ; 4F59
 Movememt12:; 4F93
 	db $07, $07, $07, $05, $32
 
-SilentHillLabFrontScript17: ; 4F98
+SilentHillLabFrontScript17:
 	ld hl, SilentHillLabFrontTextString23
 	call OpenTextbox
 	ld hl, wd41d
@@ -565,7 +565,7 @@ SilentHillLabFrontScript17: ; 4F98
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabFrontScript18: ; 4FBC
+SilentHillLabFrontScript18:
 	call SilentHillLabFrontMoveDown
 	ret z
 	ld hl, SilentHillLabFrontNPCIDs7
@@ -573,7 +573,7 @@ SilentHillLabFrontScript18: ; 4FBC
 	call CallMapTextSubroutine
 	ret
 
-SilentHillLabFrontScript19: ; 4FCA
+SilentHillLabFrontScript19:
 	call SilentHillLabFrontMoveDown
 	ret z
 	ld hl, SilentHillLabFrontNPCIDs9
@@ -581,7 +581,7 @@ SilentHillLabFrontScript19: ; 4FCA
 	call CallMapTextSubroutine
 	ret
 
-SilentHillLabFrontTextPointers2: ; 4FD8
+SilentHillLabFrontTextPointers2:
 	dw SilentHillLabFrontText1
 	dw SilentHillLabFrontText2
 	dw Function3899
@@ -598,12 +598,12 @@ SilentHillLabFrontTextPointers2: ; 4FD8
 	dw Function3899
 	dw SilentHillLabFrontText3
 
-SilentHillLabFrontText1: ; 4FF6
+SilentHillLabFrontText1:
 	ld hl, SilentHillLabFrontTextString1
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString1: ; 4FFD
+SilentHillLabFrontTextString1:
 	text "パソコンを　みると"
 	line "なんと　メールが　きていた！"
 
@@ -626,7 +626,7 @@ SilentHillLabFrontTextString1: ; 4FFD
 	cont "<⋯⋯>　<⋯⋯>　<⋯⋯>じょしゅより"
 	done
 
-SilentHillLabFrontText2: ; 50B3
+SilentHillLabFrontText2:
 	ld hl, wd39d
 	bit 0, [hl]
 	set 0, [hl]
@@ -640,26 +640,26 @@ SilentHillLabFrontText2: ; 50B3
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString2A: ; 50CA
+SilentHillLabFrontTextString2A:
 	text "スタート　ボタンを　プシュ！"
 	line "おすと　メニューが　ひらくなり"
 	done
 
-SilentHillLabFrontTextString2B: ; 50EA
+SilentHillLabFrontTextString2B:
 	text "セーブするには　#　レポート"
 	line "こまめに　かくと　いいなり"
 	done
 
-SilentHillLabFrontText3: ; 5108
+SilentHillLabFrontText3:
 	ld hl, SilentHillLabFrontTextString3
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString3: ; 510F
+SilentHillLabFrontTextString3:
 	text "カギが　かかっている"
 	done
 
-SilentHillLabFrontText4: ; 511B
+SilentHillLabFrontText4:
 	ld a, [wMapScriptNumber]
 	cp $0E
 	jp nc, SilentHillLabFrontText7
@@ -667,11 +667,11 @@ SilentHillLabFrontText4: ; 511B
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString4: ; 512A
+SilentHillLabFrontTextString4:
 	text "オーキド『ごくろうさん！"
 	done
 
-SilentHillLabFrontTextString5: ; 5138
+SilentHillLabFrontTextString5:
 	text "オーキド『そうとも！"
 	line "わしが　オーキドじゃ！"
 	cont "じじいで　わるかったな！"
@@ -683,7 +683,7 @@ SilentHillLabFrontTextString5: ; 5138
 	line "きいては　くれんか？@"
 	db $08
 
-SilentHillLabFrontText6: ; 5192
+SilentHillLabFrontText6:
 	call YesNoBox
 	jr c, .jump
 .loop
@@ -699,7 +699,7 @@ SilentHillLabFrontText6: ; 5192
 	jr c, .jump
 	jr .loop
 
-SilentHillLabFrontTextString6A: ; 51AE
+SilentHillLabFrontTextString6A:
 	text "オーキド『いまから　１ねんまえ"
 	line "わしは　カントーで"
 	cont "きみたちの　ような　しょうねんに"
@@ -740,7 +740,7 @@ SilentHillLabFrontTextString6A: ; 51AE
 	cont "ちからを　かして　くれんか！"
 	done
 
-SilentHillLabFrontTextString6B: ; 5332
+SilentHillLabFrontTextString6B:
 	text "オーキド『そうか<⋯⋯>"
 	line "わしに　ひとを　みるめが"
 	cont "なかったと　いうことじゃな<⋯⋯>"
@@ -753,12 +753,12 @@ SilentHillLabFrontTextString6B: ; 5332
 	cont "わしの　はなしを　きいてくれるな？"
 	done
 
-SilentHillLabFrontTextString7: ; 538D
+SilentHillLabFrontTextString7:
 	text "オーキド『ふたりとも！"
 	line "ちょっと　わしに　ついてこい！"
 	done
 
-SilentHillLabFrontText7: ; 53AA
+SilentHillLabFrontText7:
 	ld a, [wMapScriptNumber]
 	cp $12
 	jr z, .jump
@@ -771,18 +771,18 @@ SilentHillLabFrontText7: ; 53AA
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString8: ; 53BF
+SilentHillLabFrontTextString8:
 	text "オーキド『<PLAYER>！<RIVAL>！"
 	line "このずかんを"
 	cont "おまえたちに　あずける！"
 	done
 
-SilentHillLabFrontTextString9: ; 53DE
+SilentHillLabFrontTextString9:
 	text "<PLAYER>は　オーキドから"
 	line "#ずかんを　もらった！"
 	done
 
-SilentHillLabFrontTextString10: ; 53F5
+SilentHillLabFrontTextString10:
 	text "オーキド『この　せかいの　すべての"
 	line "#を　きろくした"
 	cont "かんぺきな　ずかんを　つくること！"
@@ -804,13 +804,13 @@ SilentHillLabFrontTextString10: ; 53F5
 	cont "いだいな　しごとじゃー！"
 	done
 
-SilentHillLabFrontTextString11A: ; 54C3
+SilentHillLabFrontTextString11A:
 	text "オーキド『せかい　じゅうの"
 	line "#たちが"
 	cont "<PLAYER>を　まって　おるぞー"
 	done
 
-SilentHillLabFrontTextString11B: ; 54E3
+SilentHillLabFrontTextString11B:
 	text "オーキド『おう！　<PLAYER>"
 	line "どうだ？"
 	cont "わしの　あげた　#は<⋯⋯>？"
@@ -827,12 +827,12 @@ SilentHillLabFrontTextString11B: ; 54E3
 	line "きに　なるからな"
 	done
 
-SilentHillLabFrontText8: ; 5560
+SilentHillLabFrontText8:
 	ld hl, SilentHillLabFrontTextString12
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString12: ; 5567
+SilentHillLabFrontTextString12:
 	text "オーキド『よく　きたな！"
 	line "#ずかんの"
 	cont "ちょうしは　どうかな？"
@@ -841,12 +841,12 @@ SilentHillLabFrontTextString12: ; 5567
 	cont "みて　あげようか！"
 	done
 
-SilentHillLabFrontText9: ; 559A
+SilentHillLabFrontText9:
 	ld hl, SilentHillLabFrontTextString13
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString13: ; 55A1
+SilentHillLabFrontTextString13:
 	text "オーキド『<⋯⋯>　おっほんッ！"
 	line "よくやったな　<PLAYER>！"
 
@@ -865,12 +865,12 @@ SilentHillLabFrontTextString13: ; 55A1
 	cont "<RIVAL>『ギクッ！"
 	done
 
-SilentHillLabFrontText10: ; 561A
+SilentHillLabFrontText10:
 	ld hl, SilentHillLabFrontTextString14
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString14: ; 5621
+SilentHillLabFrontTextString14:
 	text "<RIVAL>『なんだ"
 	line "<PLAYER>じゃないか！"
 	cont "おれも　ここが"
@@ -878,23 +878,23 @@ SilentHillLabFrontTextString14: ; 5621
 	cont "だれも　いないみたいだな<⋯⋯>"
 	done
 
-SilentHillLabFrontText11: ; 5658
+SilentHillLabFrontText11:
 	ld hl, SilentHillLabFrontTextString16
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString15: ; 565F
+SilentHillLabFrontTextString15:
 	text "<RIVAL>『よっしゃあ！"
 	line "じいさん！　おれにまかせな！"
 	done
 
-SilentHillLabFrontTextString16: ; 5678
+SilentHillLabFrontTextString16:
 	text "<RIVAL>『おれが　えらんだ"
 	line "#のほうが　つよそうだぜ！"
 	cont "こっちに　したかったんじゃないの？"
 	done
 
-SilentHillLabFrontTextString17: ; 56A4
+SilentHillLabFrontTextString17:
 	text "<RIVAL>『<PLAYER>！"
 	line "せっかく　じいさんに"
 	cont "#　もらったんだから"
@@ -902,12 +902,12 @@ SilentHillLabFrontTextString17: ; 56A4
 	cont "たたかわせて　みようぜ！"
 	done
 
-SilentHillLabFrontTextString18: ; 56D4
+SilentHillLabFrontTextString18:
 	text "<RIVAL>『くっそー！"
 	line "こんどは　ぜったい　まけないぞ！"
 	done
 
-SilentHillLabFrontTextString19: ; 56EE
+SilentHillLabFrontTextString19:
 	text "<RIVAL>『よーし！"
 	line "ほかの　#と　たたかわせて"
 	cont "もっと　もっと　つよくしよう！"
@@ -915,12 +915,12 @@ SilentHillLabFrontTextString19: ; 56EE
 	para "そんじゃ　ばいばい！"
 	done
 
-SilentHillLabFrontTextString20: ; 571F
+SilentHillLabFrontTextString20:
 	text "じいちゃん！"
 	line "つれてきたよー！"
 	done
 
-SilentHillLabFrontTextString21: ; 5730
+SilentHillLabFrontTextString21:
 	text "ぼくは　かつて"
 	line "#トレーナーの　ちょうてんを"
 	cont "めざしたことが　あるんだ"
@@ -944,23 +944,23 @@ SilentHillLabFrontTextString21: ; 5730
 	cont "とても　ハイテクな　ずかん　だよ！"
 	done
 
-SilentHillLabFrontText12: ; 5814
+SilentHillLabFrontText12:
 	ld hl, SilentHillLabFrontTextString22
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString22: ; 581B
+SilentHillLabFrontTextString22:
 	text "ぼくも　むかし　やったけど"
 	line "なかなか　たいへんだよ<⋯⋯>"
 	cont "がんばってね！"
 	done
 
-SilentHillLabFrontText13: ; 583F
+SilentHillLabFrontText13:
 	ld hl, SilentHillLabFrontTextString24
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString23: ; 5846
+SilentHillLabFrontTextString23:
 	text "ナナミ『さっき　あなたを　"
 	line "つれてきた　わかい　おとこのこ<⋯⋯>"
 	cont "あれは　わたしの　おとうとなの"
@@ -1008,17 +1008,17 @@ SilentHillLabFrontTextString23: ; 5846
 	line "いのっているわ"
 	done
 
-SilentHillLabFrontTextString24: ; 5A23
+SilentHillLabFrontTextString24:
 	text "<⋯⋯>あなたの　かつやく"
 	line "いのってるわ"
 	done
 
-SilentHillLabFrontText14: ; 5A36
+SilentHillLabFrontText14:
 	ld hl, SilentHillLabFrontTextString25
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString25: ; 5A3D
+SilentHillLabFrontTextString25:
 	text "わたしは"
 	line "はかせの　じょしゅ　です"
 
@@ -1030,12 +1030,12 @@ SilentHillLabFrontTextString25: ; 5A3D
 	cont "なるような　きがします"
 	done
 
-SilentHillLabFrontText15: ; 5A90
+SilentHillLabFrontText15:
 	ld hl, SilentHillLabFrontTextString26
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString26: ; 5A97
+SilentHillLabFrontTextString26:
 	text "わたしは"
 	line "はかせの　じょしゅ　です"
 
@@ -1047,22 +1047,22 @@ SilentHillLabFrontTextString26: ; 5A97
 	cont "なるような　きがします"
 	done
 
-SilentHillLabFrontText16: ; 5AEA
+SilentHillLabFrontText16:
 	ld hl, SilentHillLabFrontTextString27
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString27: ; 5AF1
+SilentHillLabFrontTextString27:
 	text "なんだろう？"
 	line "でんし　てちょう　かな？"
 	done
 
-SilentHillLabFrontText17: ; 5B05
+SilentHillLabFrontText17:
 	ld hl, SilentHillLabFrontTextString28
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString28: ; 5B0D
+SilentHillLabFrontTextString28:
 	text "<RIVAL>『あのメールを　くれた"
 	line "オーキドって　こんな　じじい<⋯⋯>"
 
@@ -1071,18 +1071,18 @@ SilentHillLabFrontTextString28: ; 5B0D
 	cont "ほんもの　はじめて　みたよ！"
 	done
 
-SilentHillLabFrontTextString29: ; 5B4F
+SilentHillLabFrontTextString29:
 	text "<RIVAL>『<PLAYER>！"
 	line "なんだか"
 	cont "おもしろく　なってきたな！"
 	done
 
-SilentHillLabFrontText18: ; 5B68
+SilentHillLabFrontText18:
 	ld hl, SilentHillLabFrontTextString30
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString30: ; 5B6F
+SilentHillLabFrontTextString30:
 	text "わたしは"
 	line "はかせの　じょしゅ　です"
 
@@ -1091,12 +1091,12 @@ SilentHillLabFrontTextString30: ; 5B6F
 	cont "なるような　きがします"
 	done
 
-SilentHillLabFrontText19: ; 5BA7
+SilentHillLabFrontText19:
 	ld hl, SilentHillLabFrontTextString31
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString31: ; 5BAE
+SilentHillLabFrontTextString31:
 	text "わたしは"
 	line "はかせの　じょしゅ　です"
 

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/SugarRouteGate.asm", ROMX
 
-SugarRouteGateScriptLoader:: ; 9d547 (27:5547)
+SugarRouteGateScriptLoader::
 	ret
 
-SugarRouteGateTextPointers:: ; 9d548 (27:5548)
+SugarRouteGateTextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

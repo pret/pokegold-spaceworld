@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/wild.asm", ROMX
 
-GrassWildMons:: ; f:6a3c
+GrassWildMons::
 
 	db $01, $01 ; map group, map id
 	db 8 percent, 8 percent, 8 percent ; encounter rates: morn/day/nite

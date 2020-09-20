@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/OldCityPokecenter1F.asm", ROMX
 
-OldCityPokecenter1FScriptLoader:: ; 946eb (25:46eb)
+OldCityPokecenter1FScriptLoader::
 	ret
 
-OldCityPokecenter1FTextPointers:: ; 946ec (25:46ec)
+OldCityPokecenter1FTextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText
