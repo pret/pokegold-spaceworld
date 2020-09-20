@@ -17,4 +17,3 @@ Song_None_Ch1::
 Song_None_Ch2::
 Song_None_Ch3::
 	endchannel
-; 0xe92fb

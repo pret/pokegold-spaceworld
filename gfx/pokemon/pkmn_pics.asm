@@ -1,543 +1,543 @@
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 1", ROMX
 
-FushigidanePicFront:: INCBIN "gfx/pokemon/fushigidane/front.pic"   ; 0x054000--0x0540bc
-FushigidanePicBack::  INCBIN "gfx/pokemon/fushigidane/back.pic"    ; 0x0540bc--0x0541ca
-FushigisouPicFront::  INCBIN "gfx/pokemon/fushigisou/front.pic"    ; 0x0541ca--0x0542e7
-FushigisouPicBack::   INCBIN "gfx/pokemon/fushigisou/back.pic"     ; 0x0542e7--0x05441a
-FushigibanaPicFront:: INCBIN "gfx/pokemon/fushigibana/front.pic"   ; 0x05441a--0x05464f
-FushigibanaPicBack::  INCBIN "gfx/pokemon/fushigibana/back.pic"    ; 0x05464f--0x0547d4
-HitokagePicFront::    INCBIN "gfx/pokemon/hitokage/front.pic"      ; 0x0547d4--0x0548d6
-HitokagePicBack::     INCBIN "gfx/pokemon/hitokage/back.pic"       ; 0x0548d6--0x0549d3
-LizardoPicFront::     INCBIN "gfx/pokemon/lizardo/front.pic"       ; 0x0549d3--0x054b3a
-LizardoPicBack::      INCBIN "gfx/pokemon/lizardo/back.pic"        ; 0x054b3a--0x054c4c
-LizardonPicFront::    INCBIN "gfx/pokemon/lizardon/front.pic"      ; 0x054c4c--0x054e83
-LizardonPicBack::     INCBIN "gfx/pokemon/lizardon/back.pic"       ; 0x054e83--0x054fe0
-ZenigamePicFront::    INCBIN "gfx/pokemon/zenigame/front.pic"      ; 0x054fe0--0x0550c7
-ZenigamePicBack::     INCBIN "gfx/pokemon/zenigame/back.pic"       ; 0x0550c7--0x0551f9
-KameilPicFront::      INCBIN "gfx/pokemon/kameil/front.pic"        ; 0x0551f9--0x05536c
-KameilPicBack::       INCBIN "gfx/pokemon/kameil/back.pic"         ; 0x05536c--0x0554ac
-KamexPicFront::       INCBIN "gfx/pokemon/kamex/front.pic"         ; 0x0554ac--0x0556b6
-KamexPicBack::        INCBIN "gfx/pokemon/kamex/back.pic"          ; 0x0556b6--0x0557f2
-CaterpiePicFront::    INCBIN "gfx/pokemon/caterpie/front.pic"      ; 0x0557f2--0x05589f
-CaterpiePicBack::     INCBIN "gfx/pokemon/caterpie/back.pic"       ; 0x05589f--0x05598b
-TranselPicFront::     INCBIN "gfx/pokemon/transel/front.pic"       ; 0x05598b--0x055a41
-TranselPicBack::      INCBIN "gfx/pokemon/transel/back.pic"        ; 0x055a41--0x055b17
-ButterfreePicFront::  INCBIN "gfx/pokemon/butterfree/front.pic"    ; 0x055b17--0x055d0c
-ButterfreePicBack::   INCBIN "gfx/pokemon/butterfree/back.pic"     ; 0x055d0c--0x055e7e
-BeedlePicFront::      INCBIN "gfx/pokemon/beedle/front.pic"        ; 0x055e7e--0x055f46
-BeedlePicBack::       INCBIN "gfx/pokemon/beedle/back.pic"         ; 0x055f46--0x055ffa
-CocoonPicFront::      INCBIN "gfx/pokemon/cocoon/front.pic"        ; 0x055ffa--0x0560be
-CocoonPicBack::       INCBIN "gfx/pokemon/cocoon/back.pic"         ; 0x0560be--0x0561ac
-SpearPicFront::       INCBIN "gfx/pokemon/spear/front.pic"         ; 0x0561ac--0x05639b
-SpearPicBack::        INCBIN "gfx/pokemon/spear/back.pic"          ; 0x05639b--0x056566
-PoppoPicFront::       INCBIN "gfx/pokemon/poppo/front.pic"         ; 0x056566--0x056658
-PoppoPicBack::        INCBIN "gfx/pokemon/poppo/back.pic"          ; 0x056658--0x0567b9
-PigeonPicFront::      INCBIN "gfx/pokemon/pigeon/front.pic"        ; 0x0567b9--0x05690a
-PigeonPicBack::       INCBIN "gfx/pokemon/pigeon/back.pic"         ; 0x05690a--0x05699d
-PigeotPicFront::      INCBIN "gfx/pokemon/pigeot/front.pic"        ; 0x05699d--0x056b54
-PigeotPicBack::       INCBIN "gfx/pokemon/pigeot/back.pic"         ; 0x056b54--0x056c3f
-KorattaPicFront::     INCBIN "gfx/pokemon/koratta/front.pic"       ; 0x056c3f--0x056d1f
-KorattaPicBack::      INCBIN "gfx/pokemon/koratta/back.pic"        ; 0x056d1f--0x056e52
-RattaPicFront::       INCBIN "gfx/pokemon/ratta/front.pic"         ; 0x056e52--0x056fe5
-RattaPicBack::        INCBIN "gfx/pokemon/ratta/back.pic"          ; 0x056fe5--0x057125
-OnisuzumePicFront::   INCBIN "gfx/pokemon/onisuzume/front.pic"     ; 0x057125--0x057206
-OnisuzumePicBack::    INCBIN "gfx/pokemon/onisuzume/back.pic"      ; 0x057206--0x0572f0
-OnidrillPicFront::    INCBIN "gfx/pokemon/onidrill/front.pic"      ; 0x0572f0--0x057496
-OnidrillPicBack::     INCBIN "gfx/pokemon/onidrill/back.pic"       ; 0x057496--0x057550
-ArboPicFront::        INCBIN "gfx/pokemon/arbo/front.pic"          ; 0x057550--0x057651
-ArboPicBack::         INCBIN "gfx/pokemon/arbo/back.pic"           ; 0x057651--0x05778b
-ArbokPicFront::       INCBIN "gfx/pokemon/arbok/front.pic"         ; 0x05778b--0x0579e8
-ArbokPicBack::        INCBIN "gfx/pokemon/arbok/back.pic"          ; 0x0579e8--0x057abd
-PikachuPicFront::     INCBIN "gfx/pokemon/pikachu/front.pic"       ; 0x057abd--0x057b9d
-PikachuPicBack::      INCBIN "gfx/pokemon/pikachu/back.pic"        ; 0x057b9d--0x057cc3
-RaichuPicFront::      INCBIN "gfx/pokemon/raichu/front.pic"        ; 0x057cc3--0x057e7e
-RaichuPicBack::       INCBIN "gfx/pokemon/raichu/back.pic"         ; 0x057e7e--0x057f9f
+FushigidanePicFront:: INCBIN "gfx/pokemon/fushigidane/front.pic"
+FushigidanePicBack::  INCBIN "gfx/pokemon/fushigidane/back.pic"
+FushigisouPicFront::  INCBIN "gfx/pokemon/fushigisou/front.pic"
+FushigisouPicBack::   INCBIN "gfx/pokemon/fushigisou/back.pic"
+FushigibanaPicFront:: INCBIN "gfx/pokemon/fushigibana/front.pic"
+FushigibanaPicBack::  INCBIN "gfx/pokemon/fushigibana/back.pic"
+HitokagePicFront::    INCBIN "gfx/pokemon/hitokage/front.pic"
+HitokagePicBack::     INCBIN "gfx/pokemon/hitokage/back.pic"
+LizardoPicFront::     INCBIN "gfx/pokemon/lizardo/front.pic"
+LizardoPicBack::      INCBIN "gfx/pokemon/lizardo/back.pic"
+LizardonPicFront::    INCBIN "gfx/pokemon/lizardon/front.pic"
+LizardonPicBack::     INCBIN "gfx/pokemon/lizardon/back.pic"
+ZenigamePicFront::    INCBIN "gfx/pokemon/zenigame/front.pic"
+ZenigamePicBack::     INCBIN "gfx/pokemon/zenigame/back.pic"
+KameilPicFront::      INCBIN "gfx/pokemon/kameil/front.pic"
+KameilPicBack::       INCBIN "gfx/pokemon/kameil/back.pic"
+KamexPicFront::       INCBIN "gfx/pokemon/kamex/front.pic"
+KamexPicBack::        INCBIN "gfx/pokemon/kamex/back.pic"
+CaterpiePicFront::    INCBIN "gfx/pokemon/caterpie/front.pic"
+CaterpiePicBack::     INCBIN "gfx/pokemon/caterpie/back.pic"
+TranselPicFront::     INCBIN "gfx/pokemon/transel/front.pic"
+TranselPicBack::      INCBIN "gfx/pokemon/transel/back.pic"
+ButterfreePicFront::  INCBIN "gfx/pokemon/butterfree/front.pic"
+ButterfreePicBack::   INCBIN "gfx/pokemon/butterfree/back.pic"
+BeedlePicFront::      INCBIN "gfx/pokemon/beedle/front.pic"
+BeedlePicBack::       INCBIN "gfx/pokemon/beedle/back.pic"
+CocoonPicFront::      INCBIN "gfx/pokemon/cocoon/front.pic"
+CocoonPicBack::       INCBIN "gfx/pokemon/cocoon/back.pic"
+SpearPicFront::       INCBIN "gfx/pokemon/spear/front.pic"
+SpearPicBack::        INCBIN "gfx/pokemon/spear/back.pic"
+PoppoPicFront::       INCBIN "gfx/pokemon/poppo/front.pic"
+PoppoPicBack::        INCBIN "gfx/pokemon/poppo/back.pic"
+PigeonPicFront::      INCBIN "gfx/pokemon/pigeon/front.pic"
+PigeonPicBack::       INCBIN "gfx/pokemon/pigeon/back.pic"
+PigeotPicFront::      INCBIN "gfx/pokemon/pigeot/front.pic"
+PigeotPicBack::       INCBIN "gfx/pokemon/pigeot/back.pic"
+KorattaPicFront::     INCBIN "gfx/pokemon/koratta/front.pic"
+KorattaPicBack::      INCBIN "gfx/pokemon/koratta/back.pic"
+RattaPicFront::       INCBIN "gfx/pokemon/ratta/front.pic"
+RattaPicBack::        INCBIN "gfx/pokemon/ratta/back.pic"
+OnisuzumePicFront::   INCBIN "gfx/pokemon/onisuzume/front.pic"
+OnisuzumePicBack::    INCBIN "gfx/pokemon/onisuzume/back.pic"
+OnidrillPicFront::    INCBIN "gfx/pokemon/onidrill/front.pic"
+OnidrillPicBack::     INCBIN "gfx/pokemon/onidrill/back.pic"
+ArboPicFront::        INCBIN "gfx/pokemon/arbo/front.pic"
+ArboPicBack::         INCBIN "gfx/pokemon/arbo/back.pic"
+ArbokPicFront::       INCBIN "gfx/pokemon/arbok/front.pic"
+ArbokPicBack::        INCBIN "gfx/pokemon/arbok/back.pic"
+PikachuPicFront::     INCBIN "gfx/pokemon/pikachu/front.pic"
+PikachuPicBack::      INCBIN "gfx/pokemon/pikachu/back.pic"
+RaichuPicFront::      INCBIN "gfx/pokemon/raichu/front.pic"
+RaichuPicBack::       INCBIN "gfx/pokemon/raichu/back.pic"
 
 
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 2", ROMX
 
-SandPicFront::        INCBIN "gfx/pokemon/sand/front.pic"          ; 0x058000--0x058103
-SandPicBack::         INCBIN "gfx/pokemon/sand/back.pic"           ; 0x058103--0x058238
-SandpanPicFront::     INCBIN "gfx/pokemon/sandpan/front.pic"       ; 0x058238--0x0583d4
-SandpanPicBack::      INCBIN "gfx/pokemon/sandpan/back.pic"        ; 0x0583d4--0x058545
-Nidoran_FPicFront::   INCBIN "gfx/pokemon/nidoran_f/front.pic"     ; 0x058545--0x0585fe
-Nidoran_FPicBack::    INCBIN "gfx/pokemon/nidoran_f/back.pic"      ; 0x0585fe--0x0586d0
-NidorinaPicFront::    INCBIN "gfx/pokemon/nidorina/front.pic"      ; 0x0586d0--0x05880d
-NidorinaPicBack::     INCBIN "gfx/pokemon/nidorina/back.pic"       ; 0x05880d--0x05893c
-NidoqueenPicFront::   INCBIN "gfx/pokemon/nidoqueen/front.pic"     ; 0x05893c--0x058b22
-NidoqueenPicBack::    INCBIN "gfx/pokemon/nidoqueen/back.pic"      ; 0x058b22--0x058c65
-Nidoran_MPicFront::   INCBIN "gfx/pokemon/nidoran_m/front.pic"     ; 0x058c65--0x058d4c
-Nidoran_MPicBack::    INCBIN "gfx/pokemon/nidoran_m/back.pic"      ; 0x058d4c--0x058e28
-NidorinoPicFront::    INCBIN "gfx/pokemon/nidorino/front.pic"      ; 0x058e28--0x058f96
-NidorinoPicBack::     INCBIN "gfx/pokemon/nidorino/back.pic"       ; 0x058f96--0x0590d4
-NidokingPicFront::    INCBIN "gfx/pokemon/nidoking/front.pic"      ; 0x0590d4--0x05933c
-NidokingPicBack::     INCBIN "gfx/pokemon/nidoking/back.pic"       ; 0x05933c--0x0594a9
-PippiPicFront::       INCBIN "gfx/pokemon/pippi/front.pic"         ; 0x0594a9--0x059589
-PippiPicBack::        INCBIN "gfx/pokemon/pippi/back.pic"          ; 0x059589--0x0596db
-PixyPicFront::        INCBIN "gfx/pokemon/pixy/front.pic"          ; 0x0596db--0x05982c
-PixyPicBack::         INCBIN "gfx/pokemon/pixy/back.pic"           ; 0x05982c--0x059980
-RokonPicFront::       INCBIN "gfx/pokemon/rokon/front.pic"         ; 0x059980--0x059afb
-RokonPicBack::        INCBIN "gfx/pokemon/rokon/back.pic"          ; 0x059afb--0x059c46
-KyukonPicFront::      INCBIN "gfx/pokemon/kyukon/front.pic"        ; 0x059c46--0x059e65
-KyukonPicBack::       INCBIN "gfx/pokemon/kyukon/back.pic"         ; 0x059e65--0x059fad
-PurinPicFront::       INCBIN "gfx/pokemon/purin/front.pic"         ; 0x059fad--0x05a097
-PurinPicBack::        INCBIN "gfx/pokemon/purin/back.pic"          ; 0x05a097--0x05a156
-PukurinPicFront::     INCBIN "gfx/pokemon/pukurin/front.pic"       ; 0x05a156--0x05a2af
-PukurinPicBack::      INCBIN "gfx/pokemon/pukurin/back.pic"        ; 0x05a2af--0x05a397
-ZubatPicFront::       INCBIN "gfx/pokemon/zubat/front.pic"         ; 0x05a397--0x05a49e
-ZubatPicBack::        INCBIN "gfx/pokemon/zubat/back.pic"          ; 0x05a49e--0x05a5c9
-GolbatPicFront::      INCBIN "gfx/pokemon/golbat/front.pic"        ; 0x05a5c9--0x05a774
-GolbatPicBack::       INCBIN "gfx/pokemon/golbat/back.pic"         ; 0x05a774--0x05a7f6
-NazonokusaPicFront::  INCBIN "gfx/pokemon/nazonokusa/front.pic"    ; 0x05a7f6--0x05a8a3
-NazonokusaPicBack::   INCBIN "gfx/pokemon/nazonokusa/back.pic"     ; 0x05a8a3--0x05a973
-KusaihanaPicFront::   INCBIN "gfx/pokemon/kusaihana/front.pic"     ; 0x05a973--0x05aacb
-KusaihanaPicBack::    INCBIN "gfx/pokemon/kusaihana/back.pic"      ; 0x05aacb--0x05abdd
-RuffresiaPicFront::   INCBIN "gfx/pokemon/ruffresia/front.pic"     ; 0x05abdd--0x05ad51
-RuffresiaPicBack::    INCBIN "gfx/pokemon/ruffresia/back.pic"      ; 0x05ad51--0x05ae8a
-ParasPicFront::       INCBIN "gfx/pokemon/paras/front.pic"         ; 0x05ae8a--0x05af4d
-ParasPicBack::        INCBIN "gfx/pokemon/paras/back.pic"          ; 0x05af4d--0x05b03c
-ParasectPicFront::    INCBIN "gfx/pokemon/parasect/front.pic"      ; 0x05b03c--0x05b1b3
-ParasectPicBack::     INCBIN "gfx/pokemon/parasect/back.pic"       ; 0x05b1b3--0x05b2e7
-KongpangPicFront::    INCBIN "gfx/pokemon/kongpang/front.pic"      ; 0x05b2e7--0x05b404
-KongpangPicBack::     INCBIN "gfx/pokemon/kongpang/back.pic"       ; 0x05b404--0x05b4c6
-MorphonPicFront::     INCBIN "gfx/pokemon/morphon/front.pic"       ; 0x05b4c6--0x05b6b6
-MorphonPicBack::      INCBIN "gfx/pokemon/morphon/back.pic"        ; 0x05b6b6--0x05b7f7
-DigdaPicFront::       INCBIN "gfx/pokemon/digda/front.pic"         ; 0x05b7f7--0x05b8e1
-DigdaPicBack::        INCBIN "gfx/pokemon/digda/back.pic"          ; 0x05b8e1--0x05b9fc
-DugtrioPicFront::     INCBIN "gfx/pokemon/dugtrio/front.pic"       ; 0x05b9fc--0x05bc2d
-DugtrioPicBack::      INCBIN "gfx/pokemon/dugtrio/back.pic"        ; 0x05bc2d--0x05bda8
+SandPicFront::        INCBIN "gfx/pokemon/sand/front.pic"
+SandPicBack::         INCBIN "gfx/pokemon/sand/back.pic"
+SandpanPicFront::     INCBIN "gfx/pokemon/sandpan/front.pic"
+SandpanPicBack::      INCBIN "gfx/pokemon/sandpan/back.pic"
+Nidoran_FPicFront::   INCBIN "gfx/pokemon/nidoran_f/front.pic"
+Nidoran_FPicBack::    INCBIN "gfx/pokemon/nidoran_f/back.pic"
+NidorinaPicFront::    INCBIN "gfx/pokemon/nidorina/front.pic"
+NidorinaPicBack::     INCBIN "gfx/pokemon/nidorina/back.pic"
+NidoqueenPicFront::   INCBIN "gfx/pokemon/nidoqueen/front.pic"
+NidoqueenPicBack::    INCBIN "gfx/pokemon/nidoqueen/back.pic"
+Nidoran_MPicFront::   INCBIN "gfx/pokemon/nidoran_m/front.pic"
+Nidoran_MPicBack::    INCBIN "gfx/pokemon/nidoran_m/back.pic"
+NidorinoPicFront::    INCBIN "gfx/pokemon/nidorino/front.pic"
+NidorinoPicBack::     INCBIN "gfx/pokemon/nidorino/back.pic"
+NidokingPicFront::    INCBIN "gfx/pokemon/nidoking/front.pic"
+NidokingPicBack::     INCBIN "gfx/pokemon/nidoking/back.pic"
+PippiPicFront::       INCBIN "gfx/pokemon/pippi/front.pic"
+PippiPicBack::        INCBIN "gfx/pokemon/pippi/back.pic"
+PixyPicFront::        INCBIN "gfx/pokemon/pixy/front.pic"
+PixyPicBack::         INCBIN "gfx/pokemon/pixy/back.pic"
+RokonPicFront::       INCBIN "gfx/pokemon/rokon/front.pic"
+RokonPicBack::        INCBIN "gfx/pokemon/rokon/back.pic"
+KyukonPicFront::      INCBIN "gfx/pokemon/kyukon/front.pic"
+KyukonPicBack::       INCBIN "gfx/pokemon/kyukon/back.pic"
+PurinPicFront::       INCBIN "gfx/pokemon/purin/front.pic"
+PurinPicBack::        INCBIN "gfx/pokemon/purin/back.pic"
+PukurinPicFront::     INCBIN "gfx/pokemon/pukurin/front.pic"
+PukurinPicBack::      INCBIN "gfx/pokemon/pukurin/back.pic"
+ZubatPicFront::       INCBIN "gfx/pokemon/zubat/front.pic"
+ZubatPicBack::        INCBIN "gfx/pokemon/zubat/back.pic"
+GolbatPicFront::      INCBIN "gfx/pokemon/golbat/front.pic"
+GolbatPicBack::       INCBIN "gfx/pokemon/golbat/back.pic"
+NazonokusaPicFront::  INCBIN "gfx/pokemon/nazonokusa/front.pic"
+NazonokusaPicBack::   INCBIN "gfx/pokemon/nazonokusa/back.pic"
+KusaihanaPicFront::   INCBIN "gfx/pokemon/kusaihana/front.pic"
+KusaihanaPicBack::    INCBIN "gfx/pokemon/kusaihana/back.pic"
+RuffresiaPicFront::   INCBIN "gfx/pokemon/ruffresia/front.pic"
+RuffresiaPicBack::    INCBIN "gfx/pokemon/ruffresia/back.pic"
+ParasPicFront::       INCBIN "gfx/pokemon/paras/front.pic"
+ParasPicBack::        INCBIN "gfx/pokemon/paras/back.pic"
+ParasectPicFront::    INCBIN "gfx/pokemon/parasect/front.pic"
+ParasectPicBack::     INCBIN "gfx/pokemon/parasect/back.pic"
+KongpangPicFront::    INCBIN "gfx/pokemon/kongpang/front.pic"
+KongpangPicBack::     INCBIN "gfx/pokemon/kongpang/back.pic"
+MorphonPicFront::     INCBIN "gfx/pokemon/morphon/front.pic"
+MorphonPicBack::      INCBIN "gfx/pokemon/morphon/back.pic"
+DigdaPicFront::       INCBIN "gfx/pokemon/digda/front.pic"
+DigdaPicBack::        INCBIN "gfx/pokemon/digda/back.pic"
+DugtrioPicFront::     INCBIN "gfx/pokemon/dugtrio/front.pic"
+DugtrioPicBack::      INCBIN "gfx/pokemon/dugtrio/back.pic"
 
 
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 3", ROMX
 
-NyarthPicFront::      INCBIN "gfx/pokemon/nyarth/front.pic"        ; 0x05c000--0x05c12f
-NyarthPicBack::       INCBIN "gfx/pokemon/nyarth/back.pic"         ; 0x05c12f--0x05c272
-PersianPicFront::     INCBIN "gfx/pokemon/persian/front.pic"       ; 0x05c272--0x05c438
-PersianPicBack::      INCBIN "gfx/pokemon/persian/back.pic"        ; 0x05c438--0x05c552
-KoduckPicFront::      INCBIN "gfx/pokemon/koduck/front.pic"        ; 0x05c552--0x05c660
-KoduckPicBack::       INCBIN "gfx/pokemon/koduck/back.pic"         ; 0x05c660--0x05c742
-GolduckPicFront::     INCBIN "gfx/pokemon/golduck/front.pic"       ; 0x05c742--0x05c91c
-GolduckPicBack::      INCBIN "gfx/pokemon/golduck/back.pic"        ; 0x05c91c--0x05ca29
-MankeyPicFront::      INCBIN "gfx/pokemon/mankey/front.pic"        ; 0x05ca29--0x05cb3c
-MankeyPicBack::       INCBIN "gfx/pokemon/mankey/back.pic"         ; 0x05cb3c--0x05cc86
-OkorizaruPicFront::   INCBIN "gfx/pokemon/okorizaru/front.pic"     ; 0x05cc86--0x05ce52
-OkorizaruPicBack::    INCBIN "gfx/pokemon/okorizaru/back.pic"      ; 0x05ce52--0x05cf7a
-GardiePicFront::      INCBIN "gfx/pokemon/gardie/front.pic"        ; 0x05cf7a--0x05d063
-GardiePicBack::       INCBIN "gfx/pokemon/gardie/back.pic"         ; 0x05d063--0x05d151
-WindiePicFront::      INCBIN "gfx/pokemon/windie/front.pic"        ; 0x05d151--0x05d32e
-WindiePicBack::       INCBIN "gfx/pokemon/windie/back.pic"         ; 0x05d32e--0x05d45f
-NyoromoPicFront::     INCBIN "gfx/pokemon/nyoromo/front.pic"       ; 0x05d45f--0x05d548
-NyoromoPicBack::      INCBIN "gfx/pokemon/nyoromo/back.pic"        ; 0x05d548--0x05d613
-NyorozoPicFront::     INCBIN "gfx/pokemon/nyorozo/front.pic"       ; 0x05d613--0x05d770
-NyorozoPicBack::      INCBIN "gfx/pokemon/nyorozo/back.pic"        ; 0x05d770--0x05d852
-NyorobonPicFront::    INCBIN "gfx/pokemon/nyorobon/front.pic"      ; 0x05d852--0x05da00
-NyorobonPicBack::     INCBIN "gfx/pokemon/nyorobon/back.pic"       ; 0x05da00--0x05dacb
-CaseyPicFront::       INCBIN "gfx/pokemon/casey/front.pic"         ; 0x05dacb--0x05dbce
-CaseyPicBack::        INCBIN "gfx/pokemon/casey/back.pic"          ; 0x05dbce--0x05dcff
-YungererPicFront::    INCBIN "gfx/pokemon/yungerer/front.pic"      ; 0x05dcff--0x05de88
-YungererPicBack::     INCBIN "gfx/pokemon/yungerer/back.pic"       ; 0x05de88--0x05df92
-FoodinPicFront::      INCBIN "gfx/pokemon/foodin/front.pic"        ; 0x05df92--0x05e1b1
-FoodinPicBack::       INCBIN "gfx/pokemon/foodin/back.pic"         ; 0x05e1b1--0x05e30c
-WanrikyPicFront::     INCBIN "gfx/pokemon/wanriky/front.pic"       ; 0x05e30c--0x05e414
-WanrikyPicBack::      INCBIN "gfx/pokemon/wanriky/back.pic"        ; 0x05e414--0x05e52d
-GorikyPicFront::      INCBIN "gfx/pokemon/goriky/front.pic"        ; 0x05e52d--0x05e72e
-GorikyPicBack::       INCBIN "gfx/pokemon/goriky/back.pic"         ; 0x05e72e--0x05e860
-KairikyPicFront::     INCBIN "gfx/pokemon/kairiky/front.pic"       ; 0x05e860--0x05ea59
-KairikyPicBack::      INCBIN "gfx/pokemon/kairiky/back.pic"        ; 0x05ea59--0x05ebc0
-MadatsubomiPicFront:: INCBIN "gfx/pokemon/madatsubomi/front.pic"   ; 0x05ebc0--0x05ecb0
-MadatsubomiPicBack::  INCBIN "gfx/pokemon/madatsubomi/back.pic"    ; 0x05ecb0--0x05ed8e
-UtsudonPicFront::     INCBIN "gfx/pokemon/utsudon/front.pic"       ; 0x05ed8e--0x05eed2
-UtsudonPicBack::      INCBIN "gfx/pokemon/utsudon/back.pic"        ; 0x05eed2--0x05f00c
-UtsubotPicFront::     INCBIN "gfx/pokemon/utsubot/front.pic"       ; 0x05f00c--0x05f1e6
-UtsubotPicBack::      INCBIN "gfx/pokemon/utsubot/back.pic"        ; 0x05f1e6--0x05f2b8
-MenokuragePicFront::  INCBIN "gfx/pokemon/menokurage/front.pic"    ; 0x05f2b8--0x05f3a2
-MenokuragePicBack::   INCBIN "gfx/pokemon/menokurage/back.pic"     ; 0x05f3a2--0x05f4ae
-DokukuragePicFront::  INCBIN "gfx/pokemon/dokukurage/front.pic"    ; 0x05f4ae--0x05f61c
-DokukuragePicBack::   INCBIN "gfx/pokemon/dokukurage/back.pic"     ; 0x05f61c--0x05f747
-IsitsubutePicFront::  INCBIN "gfx/pokemon/isitsubute/front.pic"    ; 0x05f747--0x05f821
-IsitsubutePicBack::   INCBIN "gfx/pokemon/isitsubute/back.pic"     ; 0x05f821--0x05f919
-GolonePicFront::      INCBIN "gfx/pokemon/golone/front.pic"        ; 0x05f919--0x05fa9c
-GolonePicBack::       INCBIN "gfx/pokemon/golone/back.pic"         ; 0x05fa9c--0x05fbee
+NyarthPicFront::      INCBIN "gfx/pokemon/nyarth/front.pic"
+NyarthPicBack::       INCBIN "gfx/pokemon/nyarth/back.pic"
+PersianPicFront::     INCBIN "gfx/pokemon/persian/front.pic"
+PersianPicBack::      INCBIN "gfx/pokemon/persian/back.pic"
+KoduckPicFront::      INCBIN "gfx/pokemon/koduck/front.pic"
+KoduckPicBack::       INCBIN "gfx/pokemon/koduck/back.pic"
+GolduckPicFront::     INCBIN "gfx/pokemon/golduck/front.pic"
+GolduckPicBack::      INCBIN "gfx/pokemon/golduck/back.pic"
+MankeyPicFront::      INCBIN "gfx/pokemon/mankey/front.pic"
+MankeyPicBack::       INCBIN "gfx/pokemon/mankey/back.pic"
+OkorizaruPicFront::   INCBIN "gfx/pokemon/okorizaru/front.pic"
+OkorizaruPicBack::    INCBIN "gfx/pokemon/okorizaru/back.pic"
+GardiePicFront::      INCBIN "gfx/pokemon/gardie/front.pic"
+GardiePicBack::       INCBIN "gfx/pokemon/gardie/back.pic"
+WindiePicFront::      INCBIN "gfx/pokemon/windie/front.pic"
+WindiePicBack::       INCBIN "gfx/pokemon/windie/back.pic"
+NyoromoPicFront::     INCBIN "gfx/pokemon/nyoromo/front.pic"
+NyoromoPicBack::      INCBIN "gfx/pokemon/nyoromo/back.pic"
+NyorozoPicFront::     INCBIN "gfx/pokemon/nyorozo/front.pic"
+NyorozoPicBack::      INCBIN "gfx/pokemon/nyorozo/back.pic"
+NyorobonPicFront::    INCBIN "gfx/pokemon/nyorobon/front.pic"
+NyorobonPicBack::     INCBIN "gfx/pokemon/nyorobon/back.pic"
+CaseyPicFront::       INCBIN "gfx/pokemon/casey/front.pic"
+CaseyPicBack::        INCBIN "gfx/pokemon/casey/back.pic"
+YungererPicFront::    INCBIN "gfx/pokemon/yungerer/front.pic"
+YungererPicBack::     INCBIN "gfx/pokemon/yungerer/back.pic"
+FoodinPicFront::      INCBIN "gfx/pokemon/foodin/front.pic"
+FoodinPicBack::       INCBIN "gfx/pokemon/foodin/back.pic"
+WanrikyPicFront::     INCBIN "gfx/pokemon/wanriky/front.pic"
+WanrikyPicBack::      INCBIN "gfx/pokemon/wanriky/back.pic"
+GorikyPicFront::      INCBIN "gfx/pokemon/goriky/front.pic"
+GorikyPicBack::       INCBIN "gfx/pokemon/goriky/back.pic"
+KairikyPicFront::     INCBIN "gfx/pokemon/kairiky/front.pic"
+KairikyPicBack::      INCBIN "gfx/pokemon/kairiky/back.pic"
+MadatsubomiPicFront:: INCBIN "gfx/pokemon/madatsubomi/front.pic"
+MadatsubomiPicBack::  INCBIN "gfx/pokemon/madatsubomi/back.pic"
+UtsudonPicFront::     INCBIN "gfx/pokemon/utsudon/front.pic"
+UtsudonPicBack::      INCBIN "gfx/pokemon/utsudon/back.pic"
+UtsubotPicFront::     INCBIN "gfx/pokemon/utsubot/front.pic"
+UtsubotPicBack::      INCBIN "gfx/pokemon/utsubot/back.pic"
+MenokuragePicFront::  INCBIN "gfx/pokemon/menokurage/front.pic"
+MenokuragePicBack::   INCBIN "gfx/pokemon/menokurage/back.pic"
+DokukuragePicFront::  INCBIN "gfx/pokemon/dokukurage/front.pic"
+DokukuragePicBack::   INCBIN "gfx/pokemon/dokukurage/back.pic"
+IsitsubutePicFront::  INCBIN "gfx/pokemon/isitsubute/front.pic"
+IsitsubutePicBack::   INCBIN "gfx/pokemon/isitsubute/back.pic"
+GolonePicFront::      INCBIN "gfx/pokemon/golone/front.pic"
+GolonePicBack::       INCBIN "gfx/pokemon/golone/back.pic"
 
 
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 4", ROMX
 
-GolonyaPicFront::     INCBIN "gfx/pokemon/golonya/front.pic"       ; 0x060000--0x06017e
-GolonyaPicBack::      INCBIN "gfx/pokemon/golonya/back.pic"        ; 0x06017e--0x060279
-PonytaPicFront::      INCBIN "gfx/pokemon/ponyta/front.pic"        ; 0x060279--0x0603c5
-PonytaPicBack::       INCBIN "gfx/pokemon/ponyta/back.pic"         ; 0x0603c5--0x060536
-GallopPicFront::      INCBIN "gfx/pokemon/gallop/front.pic"        ; 0x060536--0x060718
-GallopPicBack::       INCBIN "gfx/pokemon/gallop/back.pic"         ; 0x060718--0x06081a
-YadonPicFront::       INCBIN "gfx/pokemon/yadon/front.pic"         ; 0x06081a--0x060929
-YadonPicBack::        INCBIN "gfx/pokemon/yadon/back.pic"          ; 0x060929--0x060a3c
-YadoranPicFront::     INCBIN "gfx/pokemon/yadoran/front.pic"       ; 0x060a3c--0x060c33
-YadoranPicBack::      INCBIN "gfx/pokemon/yadoran/back.pic"        ; 0x060c33--0x060d48
-CoilPicFront::        INCBIN "gfx/pokemon/coil/front.pic"          ; 0x060d48--0x060dce
-CoilPicBack::         INCBIN "gfx/pokemon/coil/back.pic"           ; 0x060dce--0x060e55
-RarecoilPicFront::    INCBIN "gfx/pokemon/rarecoil/front.pic"      ; 0x060e55--0x060fe7
-RarecoilPicBack::     INCBIN "gfx/pokemon/rarecoil/back.pic"       ; 0x060fe7--0x061128
-KamonegiPicFront::    INCBIN "gfx/pokemon/kamonegi/front.pic"      ; 0x061128--0x0612b3
-KamonegiPicBack::     INCBIN "gfx/pokemon/kamonegi/back.pic"       ; 0x0612b3--0x0613d1
-DodoPicFront::        INCBIN "gfx/pokemon/dodo/front.pic"          ; 0x0613d1--0x0614da
-DodoPicBack::         INCBIN "gfx/pokemon/dodo/back.pic"           ; 0x0614da--0x061615
-DodorioPicFront::     INCBIN "gfx/pokemon/dodorio/front.pic"       ; 0x061615--0x061814
-DodorioPicBack::      INCBIN "gfx/pokemon/dodorio/back.pic"        ; 0x061814--0x06195c
-PawouPicFront::       INCBIN "gfx/pokemon/pawou/front.pic"         ; 0x06195c--0x061aa7
-PawouPicBack::        INCBIN "gfx/pokemon/pawou/back.pic"          ; 0x061aa7--0x061b9b
-JugonPicFront::       INCBIN "gfx/pokemon/jugon/front.pic"         ; 0x061b9b--0x061d51
-JugonPicBack::        INCBIN "gfx/pokemon/jugon/back.pic"          ; 0x061d51--0x061e2d
-BetbeterPicFront::    INCBIN "gfx/pokemon/betbeter/front.pic"      ; 0x061e2d--0x061f5d
-BetbeterPicBack::     INCBIN "gfx/pokemon/betbeter/back.pic"       ; 0x061f5d--0x0620f0
-BetbetonPicFront::    INCBIN "gfx/pokemon/betbeton/front.pic"      ; 0x0620f0--0x0622c5
-BetbetonPicBack::     INCBIN "gfx/pokemon/betbeton/back.pic"       ; 0x0622c5--0x0623b0
-ShellderPicFront::    INCBIN "gfx/pokemon/shellder/front.pic"      ; 0x0623b0--0x0624ba
-ShellderPicBack::     INCBIN "gfx/pokemon/shellder/back.pic"       ; 0x0624ba--0x0625d7
-ParshenPicFront::     INCBIN "gfx/pokemon/parshen/front.pic"       ; 0x0625d7--0x0627ae
-ParshenPicBack::      INCBIN "gfx/pokemon/parshen/back.pic"        ; 0x0627ae--0x062928
-GhosPicFront::        INCBIN "gfx/pokemon/ghos/front.pic"          ; 0x062928--0x062a76
-GhosPicBack::         INCBIN "gfx/pokemon/ghos/back.pic"           ; 0x062a76--0x062bcd
-GhostPicFront::       INCBIN "gfx/pokemon/ghost/front.pic"         ; 0x062bcd--0x062d40
-GhostPicBack::        INCBIN "gfx/pokemon/ghost/back.pic"          ; 0x062d40--0x062ea1
-GangarPicFront::      INCBIN "gfx/pokemon/gangar/front.pic"        ; 0x062ea1--0x062fd2
-GangarPicBack::       INCBIN "gfx/pokemon/gangar/back.pic"         ; 0x062fd2--0x06309b
-IwarkPicFront::       INCBIN "gfx/pokemon/iwark/front.pic"         ; 0x06309b--0x063237
-IwarkPicBack::        INCBIN "gfx/pokemon/iwark/back.pic"          ; 0x063237--0x063361
-SleepePicFront::      INCBIN "gfx/pokemon/sleepe/front.pic"        ; 0x063361--0x0634bd
-SleepePicBack::       INCBIN "gfx/pokemon/sleepe/back.pic"         ; 0x0634bd--0x0635d8
-SleeperPicFront::     INCBIN "gfx/pokemon/sleeper/front.pic"       ; 0x0635d8--0x063798
-SleeperPicBack::      INCBIN "gfx/pokemon/sleeper/back.pic"        ; 0x063798--0x0638ae
-CrabPicFront::        INCBIN "gfx/pokemon/crab/front.pic"          ; 0x0638ae--0x0639e7
-CrabPicBack::         INCBIN "gfx/pokemon/crab/back.pic"           ; 0x0639e7--0x063b57
+GolonyaPicFront::     INCBIN "gfx/pokemon/golonya/front.pic"
+GolonyaPicBack::      INCBIN "gfx/pokemon/golonya/back.pic"
+PonytaPicFront::      INCBIN "gfx/pokemon/ponyta/front.pic"
+PonytaPicBack::       INCBIN "gfx/pokemon/ponyta/back.pic"
+GallopPicFront::      INCBIN "gfx/pokemon/gallop/front.pic"
+GallopPicBack::       INCBIN "gfx/pokemon/gallop/back.pic"
+YadonPicFront::       INCBIN "gfx/pokemon/yadon/front.pic"
+YadonPicBack::        INCBIN "gfx/pokemon/yadon/back.pic"
+YadoranPicFront::     INCBIN "gfx/pokemon/yadoran/front.pic"
+YadoranPicBack::      INCBIN "gfx/pokemon/yadoran/back.pic"
+CoilPicFront::        INCBIN "gfx/pokemon/coil/front.pic"
+CoilPicBack::         INCBIN "gfx/pokemon/coil/back.pic"
+RarecoilPicFront::    INCBIN "gfx/pokemon/rarecoil/front.pic"
+RarecoilPicBack::     INCBIN "gfx/pokemon/rarecoil/back.pic"
+KamonegiPicFront::    INCBIN "gfx/pokemon/kamonegi/front.pic"
+KamonegiPicBack::     INCBIN "gfx/pokemon/kamonegi/back.pic"
+DodoPicFront::        INCBIN "gfx/pokemon/dodo/front.pic"
+DodoPicBack::         INCBIN "gfx/pokemon/dodo/back.pic"
+DodorioPicFront::     INCBIN "gfx/pokemon/dodorio/front.pic"
+DodorioPicBack::      INCBIN "gfx/pokemon/dodorio/back.pic"
+PawouPicFront::       INCBIN "gfx/pokemon/pawou/front.pic"
+PawouPicBack::        INCBIN "gfx/pokemon/pawou/back.pic"
+JugonPicFront::       INCBIN "gfx/pokemon/jugon/front.pic"
+JugonPicBack::        INCBIN "gfx/pokemon/jugon/back.pic"
+BetbeterPicFront::    INCBIN "gfx/pokemon/betbeter/front.pic"
+BetbeterPicBack::     INCBIN "gfx/pokemon/betbeter/back.pic"
+BetbetonPicFront::    INCBIN "gfx/pokemon/betbeton/front.pic"
+BetbetonPicBack::     INCBIN "gfx/pokemon/betbeton/back.pic"
+ShellderPicFront::    INCBIN "gfx/pokemon/shellder/front.pic"
+ShellderPicBack::     INCBIN "gfx/pokemon/shellder/back.pic"
+ParshenPicFront::     INCBIN "gfx/pokemon/parshen/front.pic"
+ParshenPicBack::      INCBIN "gfx/pokemon/parshen/back.pic"
+GhosPicFront::        INCBIN "gfx/pokemon/ghos/front.pic"
+GhosPicBack::         INCBIN "gfx/pokemon/ghos/back.pic"
+GhostPicFront::       INCBIN "gfx/pokemon/ghost/front.pic"
+GhostPicBack::        INCBIN "gfx/pokemon/ghost/back.pic"
+GangarPicFront::      INCBIN "gfx/pokemon/gangar/front.pic"
+GangarPicBack::       INCBIN "gfx/pokemon/gangar/back.pic"
+IwarkPicFront::       INCBIN "gfx/pokemon/iwark/front.pic"
+IwarkPicBack::        INCBIN "gfx/pokemon/iwark/back.pic"
+SleepePicFront::      INCBIN "gfx/pokemon/sleepe/front.pic"
+SleepePicBack::       INCBIN "gfx/pokemon/sleepe/back.pic"
+SleeperPicFront::     INCBIN "gfx/pokemon/sleeper/front.pic"
+SleeperPicBack::      INCBIN "gfx/pokemon/sleeper/back.pic"
+CrabPicFront::        INCBIN "gfx/pokemon/crab/front.pic"
+CrabPicBack::         INCBIN "gfx/pokemon/crab/back.pic"
 
 
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 5", ROMX
 
-KinglerPicFront::     INCBIN "gfx/pokemon/kingler/front.pic"       ; 0x064000--0x0641f2
-KinglerPicBack::      INCBIN "gfx/pokemon/kingler/back.pic"        ; 0x0641f2--0x06433d
-BiriridamaPicFront::  INCBIN "gfx/pokemon/biriridama/front.pic"    ; 0x06433d--0x0643c6
-BiriridamaPicBack::   INCBIN "gfx/pokemon/biriridama/back.pic"     ; 0x0643c6--0x064467
-MaruminePicFront::    INCBIN "gfx/pokemon/marumine/front.pic"      ; 0x064467--0x06452e
-MaruminePicBack::     INCBIN "gfx/pokemon/marumine/back.pic"       ; 0x06452e--0x0645ed
-TamatamaPicFront::    INCBIN "gfx/pokemon/tamatama/front.pic"      ; 0x0645ed--0x064806
-TamatamaPicBack::     INCBIN "gfx/pokemon/tamatama/back.pic"       ; 0x064806--0x064924
-NassyPicFront::       INCBIN "gfx/pokemon/nassy/front.pic"         ; 0x064924--0x064ae7
-NassyPicBack::        INCBIN "gfx/pokemon/nassy/back.pic"          ; 0x064ae7--0x064c6d
-KarakaraPicFront::    INCBIN "gfx/pokemon/karakara/front.pic"      ; 0x064c6d--0x064d5b
-KarakaraPicBack::     INCBIN "gfx/pokemon/karakara/back.pic"       ; 0x064d5b--0x064eaf
-GaragaraPicFront::    INCBIN "gfx/pokemon/garagara/front.pic"      ; 0x064eaf--0x065021
-GaragaraPicBack::     INCBIN "gfx/pokemon/garagara/back.pic"       ; 0x065021--0x065153
-SawamularPicFront::   INCBIN "gfx/pokemon/sawamular/front.pic"     ; 0x065153--0x0652f2
-SawamularPicBack::    INCBIN "gfx/pokemon/sawamular/back.pic"      ; 0x0652f2--0x065443
-EbiwalarPicFront::    INCBIN "gfx/pokemon/ebiwalar/front.pic"      ; 0x065443--0x0655ca
-EbiwalarPicBack::     INCBIN "gfx/pokemon/ebiwalar/back.pic"       ; 0x0655ca--0x065712
-BeroringaPicFront::   INCBIN "gfx/pokemon/beroringa/front.pic"     ; 0x065712--0x06589c
-BeroringaPicBack::    INCBIN "gfx/pokemon/beroringa/back.pic"      ; 0x06589c--0x065980
-DogarsPicFront::      INCBIN "gfx/pokemon/dogars/front.pic"        ; 0x065980--0x065acf
-DogarsPicBack::       INCBIN "gfx/pokemon/dogars/back.pic"         ; 0x065acf--0x065c0f
-MatadogasPicFront::   INCBIN "gfx/pokemon/matadogas/front.pic"     ; 0x065c0f--0x065e09
-MatadogasPicBack::    INCBIN "gfx/pokemon/matadogas/back.pic"      ; 0x065e09--0x065f88
-SihornPicFront::      INCBIN "gfx/pokemon/sihorn/front.pic"        ; 0x065f88--0x06618f
-SihornPicBack::       INCBIN "gfx/pokemon/sihorn/back.pic"         ; 0x06618f--0x0662a1
-SidonPicFront::       INCBIN "gfx/pokemon/sidon/front.pic"         ; 0x0662a1--0x0664a3
-SidonPicBack::        INCBIN "gfx/pokemon/sidon/back.pic"          ; 0x0664a3--0x0665f9
-LuckyPicFront::       INCBIN "gfx/pokemon/lucky/front.pic"         ; 0x0665f9--0x06674a
-LuckyPicBack::        INCBIN "gfx/pokemon/lucky/back.pic"          ; 0x06674a--0x066844
-MonjaraPicFront::     INCBIN "gfx/pokemon/monjara/front.pic"       ; 0x066844--0x0669f2
-MonjaraPicBack::      INCBIN "gfx/pokemon/monjara/back.pic"        ; 0x0669f2--0x066afd
-GaruraPicFront::      INCBIN "gfx/pokemon/garura/front.pic"        ; 0x066afd--0x066d09
-GaruraPicBack::       INCBIN "gfx/pokemon/garura/back.pic"         ; 0x066d09--0x066eab
-TattuPicFront::       INCBIN "gfx/pokemon/tattu/front.pic"         ; 0x066eab--0x066f87
-TattuPicBack::        INCBIN "gfx/pokemon/tattu/back.pic"          ; 0x066f87--0x06703d
-SeadraPicFront::      INCBIN "gfx/pokemon/seadra/front.pic"        ; 0x06703d--0x0671a4
-SeadraPicBack::       INCBIN "gfx/pokemon/seadra/back.pic"         ; 0x0671a4--0x0672a3
-TosakintoPicFront::   INCBIN "gfx/pokemon/tosakinto/front.pic"     ; 0x0672a3--0x06738f
-TosakintoPicBack::    INCBIN "gfx/pokemon/tosakinto/back.pic"      ; 0x06738f--0x0674ea
-AzumaoPicFront::      INCBIN "gfx/pokemon/azumao/front.pic"        ; 0x0674ea--0x0676c0
-AzumaoPicBack::       INCBIN "gfx/pokemon/azumao/back.pic"         ; 0x0676c0--0x06782d
-HitodemanPicFront::   INCBIN "gfx/pokemon/hitodeman/front.pic"     ; 0x06782d--0x067939
-HitodemanPicBack::    INCBIN "gfx/pokemon/hitodeman/back.pic"      ; 0x067939--0x067a28
-StarmiePicFront::     INCBIN "gfx/pokemon/starmie/front.pic"       ; 0x067a28--0x067bb8
-StarmiePicBack::      INCBIN "gfx/pokemon/starmie/back.pic"        ; 0x067bb8--0x067ca1
+KinglerPicFront::     INCBIN "gfx/pokemon/kingler/front.pic"
+KinglerPicBack::      INCBIN "gfx/pokemon/kingler/back.pic"
+BiriridamaPicFront::  INCBIN "gfx/pokemon/biriridama/front.pic"
+BiriridamaPicBack::   INCBIN "gfx/pokemon/biriridama/back.pic"
+MaruminePicFront::    INCBIN "gfx/pokemon/marumine/front.pic"
+MaruminePicBack::     INCBIN "gfx/pokemon/marumine/back.pic"
+TamatamaPicFront::    INCBIN "gfx/pokemon/tamatama/front.pic"
+TamatamaPicBack::     INCBIN "gfx/pokemon/tamatama/back.pic"
+NassyPicFront::       INCBIN "gfx/pokemon/nassy/front.pic"
+NassyPicBack::        INCBIN "gfx/pokemon/nassy/back.pic"
+KarakaraPicFront::    INCBIN "gfx/pokemon/karakara/front.pic"
+KarakaraPicBack::     INCBIN "gfx/pokemon/karakara/back.pic"
+GaragaraPicFront::    INCBIN "gfx/pokemon/garagara/front.pic"
+GaragaraPicBack::     INCBIN "gfx/pokemon/garagara/back.pic"
+SawamularPicFront::   INCBIN "gfx/pokemon/sawamular/front.pic"
+SawamularPicBack::    INCBIN "gfx/pokemon/sawamular/back.pic"
+EbiwalarPicFront::    INCBIN "gfx/pokemon/ebiwalar/front.pic"
+EbiwalarPicBack::     INCBIN "gfx/pokemon/ebiwalar/back.pic"
+BeroringaPicFront::   INCBIN "gfx/pokemon/beroringa/front.pic"
+BeroringaPicBack::    INCBIN "gfx/pokemon/beroringa/back.pic"
+DogarsPicFront::      INCBIN "gfx/pokemon/dogars/front.pic"
+DogarsPicBack::       INCBIN "gfx/pokemon/dogars/back.pic"
+MatadogasPicFront::   INCBIN "gfx/pokemon/matadogas/front.pic"
+MatadogasPicBack::    INCBIN "gfx/pokemon/matadogas/back.pic"
+SihornPicFront::      INCBIN "gfx/pokemon/sihorn/front.pic"
+SihornPicBack::       INCBIN "gfx/pokemon/sihorn/back.pic"
+SidonPicFront::       INCBIN "gfx/pokemon/sidon/front.pic"
+SidonPicBack::        INCBIN "gfx/pokemon/sidon/back.pic"
+LuckyPicFront::       INCBIN "gfx/pokemon/lucky/front.pic"
+LuckyPicBack::        INCBIN "gfx/pokemon/lucky/back.pic"
+MonjaraPicFront::     INCBIN "gfx/pokemon/monjara/front.pic"
+MonjaraPicBack::      INCBIN "gfx/pokemon/monjara/back.pic"
+GaruraPicFront::      INCBIN "gfx/pokemon/garura/front.pic"
+GaruraPicBack::       INCBIN "gfx/pokemon/garura/back.pic"
+TattuPicFront::       INCBIN "gfx/pokemon/tattu/front.pic"
+TattuPicBack::        INCBIN "gfx/pokemon/tattu/back.pic"
+SeadraPicFront::      INCBIN "gfx/pokemon/seadra/front.pic"
+SeadraPicBack::       INCBIN "gfx/pokemon/seadra/back.pic"
+TosakintoPicFront::   INCBIN "gfx/pokemon/tosakinto/front.pic"
+TosakintoPicBack::    INCBIN "gfx/pokemon/tosakinto/back.pic"
+AzumaoPicFront::      INCBIN "gfx/pokemon/azumao/front.pic"
+AzumaoPicBack::       INCBIN "gfx/pokemon/azumao/back.pic"
+HitodemanPicFront::   INCBIN "gfx/pokemon/hitodeman/front.pic"
+HitodemanPicBack::    INCBIN "gfx/pokemon/hitodeman/back.pic"
+StarmiePicFront::     INCBIN "gfx/pokemon/starmie/front.pic"
+StarmiePicBack::      INCBIN "gfx/pokemon/starmie/back.pic"
 
 
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 6", ROMX
 
-BarrierdPicFront::    INCBIN "gfx/pokemon/barrierd/front.pic"      ; 0x068000--0x068154
-BarrierdPicBack::     INCBIN "gfx/pokemon/barrierd/back.pic"       ; 0x068154--0x06828f
-StrikePicFront::      INCBIN "gfx/pokemon/strike/front.pic"        ; 0x06828f--0x0684af
-StrikePicBack::       INCBIN "gfx/pokemon/strike/back.pic"         ; 0x0684af--0x0685dc
-RougelaPicFront::     INCBIN "gfx/pokemon/rougela/front.pic"       ; 0x0685dc--0x068796
-RougelaPicBack::      INCBIN "gfx/pokemon/rougela/back.pic"        ; 0x068796--0x068863
-ElebooPicFront::      INCBIN "gfx/pokemon/eleboo/front.pic"        ; 0x068863--0x0689eb
-ElebooPicBack::       INCBIN "gfx/pokemon/eleboo/back.pic"         ; 0x0689eb--0x068b21
-BooberPicFront::      INCBIN "gfx/pokemon/boober/front.pic"        ; 0x068b21--0x068c7f
-BooberPicBack::       INCBIN "gfx/pokemon/boober/back.pic"         ; 0x068c7f--0x068de5
-KailiosPicFront::     INCBIN "gfx/pokemon/kailios/front.pic"       ; 0x068de5--0x068fb5
-KailiosPicBack::      INCBIN "gfx/pokemon/kailios/back.pic"        ; 0x068fb5--0x06911e
-KentaurosPicFront::   INCBIN "gfx/pokemon/kentauros/front.pic"     ; 0x06911e--0x0692f4
-KentaurosPicBack::    INCBIN "gfx/pokemon/kentauros/back.pic"      ; 0x0692f4--0x06944b
-KoikingPicFront::     INCBIN "gfx/pokemon/koiking/front.pic"       ; 0x06944b--0x0695dd
-KoikingPicBack::      INCBIN "gfx/pokemon/koiking/back.pic"        ; 0x0695dd--0x0696f5
-GyaradosPicFront::    INCBIN "gfx/pokemon/gyarados/front.pic"      ; 0x0696f5--0x069946
-GyaradosPicBack::     INCBIN "gfx/pokemon/gyarados/back.pic"       ; 0x069946--0x069ae8
-LaplacePicFront::     INCBIN "gfx/pokemon/laplace/front.pic"       ; 0x069ae8--0x069ca3
-LaplacePicBack::      INCBIN "gfx/pokemon/laplace/back.pic"        ; 0x069ca3--0x069dc0
-MetamonPicFront::     INCBIN "gfx/pokemon/metamon/front.pic"       ; 0x069dc0--0x069e5f
-MetamonPicBack::      INCBIN "gfx/pokemon/metamon/back.pic"        ; 0x069e5f--0x069f0e
-EievuiPicFront::      INCBIN "gfx/pokemon/eievui/front.pic"        ; 0x069f0e--0x06a003
-EievuiPicBack::       INCBIN "gfx/pokemon/eievui/back.pic"         ; 0x06a003--0x06a110
-ShowersPicFront::     INCBIN "gfx/pokemon/showers/front.pic"       ; 0x06a110--0x06a274
-ShowersPicBack::      INCBIN "gfx/pokemon/showers/back.pic"        ; 0x06a274--0x06a38c
-ThundersPicFront::    INCBIN "gfx/pokemon/thunders/front.pic"      ; 0x06a38c--0x06a4ec
-ThundersPicBack::     INCBIN "gfx/pokemon/thunders/back.pic"       ; 0x06a4ec--0x06a5d8
-BoosterPicFront::     INCBIN "gfx/pokemon/booster/front.pic"       ; 0x06a5d8--0x06a784
-BoosterPicBack::      INCBIN "gfx/pokemon/booster/back.pic"        ; 0x06a784--0x06a8b1
-PorygonPicFront::     INCBIN "gfx/pokemon/porygon/front.pic"       ; 0x06a8b1--0x06a9e1
-PorygonPicBack::      INCBIN "gfx/pokemon/porygon/back.pic"        ; 0x06a9e1--0x06aae6
-OmnitePicFront::      INCBIN "gfx/pokemon/omnite/front.pic"        ; 0x06aae6--0x06abbf
-OmnitePicBack::       INCBIN "gfx/pokemon/omnite/back.pic"         ; 0x06abbf--0x06ace4
-OmstarPicFront::      INCBIN "gfx/pokemon/omstar/front.pic"        ; 0x06ace4--0x06ae9c
-OmstarPicBack::       INCBIN "gfx/pokemon/omstar/back.pic"         ; 0x06ae9c--0x06affe
-KabutoPicFront::      INCBIN "gfx/pokemon/kabuto/front.pic"        ; 0x06affe--0x06b0c3
-KabutoPicBack::       INCBIN "gfx/pokemon/kabuto/back.pic"         ; 0x06b0c3--0x06b18a
-KabutopsPicFront::    INCBIN "gfx/pokemon/kabutops/front.pic"      ; 0x06b18a--0x06b343
-KabutopsPicBack::     INCBIN "gfx/pokemon/kabutops/back.pic"       ; 0x06b343--0x06b4f3
-PteraPicFront::       INCBIN "gfx/pokemon/ptera/front.pic"         ; 0x06b4f3--0x06b6ae
-PteraPicBack::        INCBIN "gfx/pokemon/ptera/back.pic"          ; 0x06b6ae--0x06b78b
-KabigonPicFront::     INCBIN "gfx/pokemon/kabigon/front.pic"       ; 0x06b78b--0x06b917
-KabigonPicBack::      INCBIN "gfx/pokemon/kabigon/back.pic"        ; 0x06b917--0x06b992
-FreezerPicFront::     INCBIN "gfx/pokemon/freezer/front.pic"       ; 0x06b992--0x06bbca
-FreezerPicBack::      INCBIN "gfx/pokemon/freezer/back.pic"        ; 0x06bbca--0x06bce6
+BarrierdPicFront::    INCBIN "gfx/pokemon/barrierd/front.pic"
+BarrierdPicBack::     INCBIN "gfx/pokemon/barrierd/back.pic"
+StrikePicFront::      INCBIN "gfx/pokemon/strike/front.pic"
+StrikePicBack::       INCBIN "gfx/pokemon/strike/back.pic"
+RougelaPicFront::     INCBIN "gfx/pokemon/rougela/front.pic"
+RougelaPicBack::      INCBIN "gfx/pokemon/rougela/back.pic"
+ElebooPicFront::      INCBIN "gfx/pokemon/eleboo/front.pic"
+ElebooPicBack::       INCBIN "gfx/pokemon/eleboo/back.pic"
+BooberPicFront::      INCBIN "gfx/pokemon/boober/front.pic"
+BooberPicBack::       INCBIN "gfx/pokemon/boober/back.pic"
+KailiosPicFront::     INCBIN "gfx/pokemon/kailios/front.pic"
+KailiosPicBack::      INCBIN "gfx/pokemon/kailios/back.pic"
+KentaurosPicFront::   INCBIN "gfx/pokemon/kentauros/front.pic"
+KentaurosPicBack::    INCBIN "gfx/pokemon/kentauros/back.pic"
+KoikingPicFront::     INCBIN "gfx/pokemon/koiking/front.pic"
+KoikingPicBack::      INCBIN "gfx/pokemon/koiking/back.pic"
+GyaradosPicFront::    INCBIN "gfx/pokemon/gyarados/front.pic"
+GyaradosPicBack::     INCBIN "gfx/pokemon/gyarados/back.pic"
+LaplacePicFront::     INCBIN "gfx/pokemon/laplace/front.pic"
+LaplacePicBack::      INCBIN "gfx/pokemon/laplace/back.pic"
+MetamonPicFront::     INCBIN "gfx/pokemon/metamon/front.pic"
+MetamonPicBack::      INCBIN "gfx/pokemon/metamon/back.pic"
+EievuiPicFront::      INCBIN "gfx/pokemon/eievui/front.pic"
+EievuiPicBack::       INCBIN "gfx/pokemon/eievui/back.pic"
+ShowersPicFront::     INCBIN "gfx/pokemon/showers/front.pic"
+ShowersPicBack::      INCBIN "gfx/pokemon/showers/back.pic"
+ThundersPicFront::    INCBIN "gfx/pokemon/thunders/front.pic"
+ThundersPicBack::     INCBIN "gfx/pokemon/thunders/back.pic"
+BoosterPicFront::     INCBIN "gfx/pokemon/booster/front.pic"
+BoosterPicBack::      INCBIN "gfx/pokemon/booster/back.pic"
+PorygonPicFront::     INCBIN "gfx/pokemon/porygon/front.pic"
+PorygonPicBack::      INCBIN "gfx/pokemon/porygon/back.pic"
+OmnitePicFront::      INCBIN "gfx/pokemon/omnite/front.pic"
+OmnitePicBack::       INCBIN "gfx/pokemon/omnite/back.pic"
+OmstarPicFront::      INCBIN "gfx/pokemon/omstar/front.pic"
+OmstarPicBack::       INCBIN "gfx/pokemon/omstar/back.pic"
+KabutoPicFront::      INCBIN "gfx/pokemon/kabuto/front.pic"
+KabutoPicBack::       INCBIN "gfx/pokemon/kabuto/back.pic"
+KabutopsPicFront::    INCBIN "gfx/pokemon/kabutops/front.pic"
+KabutopsPicBack::     INCBIN "gfx/pokemon/kabutops/back.pic"
+PteraPicFront::       INCBIN "gfx/pokemon/ptera/front.pic"
+PteraPicBack::        INCBIN "gfx/pokemon/ptera/back.pic"
+KabigonPicFront::     INCBIN "gfx/pokemon/kabigon/front.pic"
+KabigonPicBack::      INCBIN "gfx/pokemon/kabigon/back.pic"
+FreezerPicFront::     INCBIN "gfx/pokemon/freezer/front.pic"
+FreezerPicBack::      INCBIN "gfx/pokemon/freezer/back.pic"
 
 
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 7", ROMX
 
-ThunderPicFront::     INCBIN "gfx/pokemon/thunder/front.pic"       ; 0x06c000--0x06c1e7
-ThunderPicBack::      INCBIN "gfx/pokemon/thunder/back.pic"        ; 0x06c1e7--0x06c305
-FirePicFront::        INCBIN "gfx/pokemon/fire/front.pic"          ; 0x06c305--0x06c55b
-FirePicBack::         INCBIN "gfx/pokemon/fire/back.pic"           ; 0x06c55b--0x06c66e
-MiniryuPicFront::     INCBIN "gfx/pokemon/miniryu/front.pic"       ; 0x06c66e--0x06c748
-MiniryuPicBack::      INCBIN "gfx/pokemon/miniryu/back.pic"        ; 0x06c748--0x06c814
-HakuryuPicFront::     INCBIN "gfx/pokemon/hakuryu/front.pic"       ; 0x06c814--0x06c967
-HakuryuPicBack::      INCBIN "gfx/pokemon/hakuryu/back.pic"        ; 0x06c967--0x06ca6c
-KairyuPicFront::      INCBIN "gfx/pokemon/kairyu/front.pic"        ; 0x06ca6c--0x06cc81
-KairyuPicBack::       INCBIN "gfx/pokemon/kairyu/back.pic"         ; 0x06cc81--0x06cdd1
-MewtwoPicFront::      INCBIN "gfx/pokemon/mewtwo/front.pic"        ; 0x06cdd1--0x06cfd7
-MewtwoPicBack::       INCBIN "gfx/pokemon/mewtwo/back.pic"         ; 0x06cfd7--0x06d144
-MewPicFront::         INCBIN "gfx/pokemon/mew/front.pic"           ; 0x06d144--0x06d245
-MewPicBack::          INCBIN "gfx/pokemon/mew/back.pic"            ; 0x06d245--0x06d382
-HappaPicFront::       INCBIN "gfx/pokemon/happa/front.pic"         ; 0x06d382--0x06d46c
-HappaPicBack::        INCBIN "gfx/pokemon/happa/back.pic"          ; 0x06d46c--0x06d57a
-HanamoguraPicFront::  INCBIN "gfx/pokemon/hanamogura/front.pic"    ; 0x06d57a--0x06d6c0
-HanamoguraPicBack::   INCBIN "gfx/pokemon/hanamogura/back.pic"     ; 0x06d6c0--0x06d7b5
-HanaryuPicFront::     INCBIN "gfx/pokemon/hanaryu/front.pic"       ; 0x06d7b5--0x06d9e3
-HanaryuPicBack::      INCBIN "gfx/pokemon/hanaryu/back.pic"        ; 0x06d9e3--0x06db0f
-HonogumaPicFront::    INCBIN "gfx/pokemon/honoguma/front.pic"      ; 0x06db0f--0x06dc20
-HonogumaPicBack::     INCBIN "gfx/pokemon/honoguma/back.pic"       ; 0x06dc20--0x06dd1c
-VolbearPicFront::     INCBIN "gfx/pokemon/volbear/front.pic"       ; 0x06dd1c--0x06de85
-VolbearPicBack::      INCBIN "gfx/pokemon/volbear/back.pic"        ; 0x06de85--0x06df82
-DynabearPicFront::    INCBIN "gfx/pokemon/dynabear/front.pic"      ; 0x06df82--0x06e1a3
-DynabearPicBack::     INCBIN "gfx/pokemon/dynabear/back.pic"       ; 0x06e1a3--0x06e275
-KurusuPicFront::      INCBIN "gfx/pokemon/kurusu/front.pic"        ; 0x06e275--0x06e33f
-KurusuPicBack::       INCBIN "gfx/pokemon/kurusu/back.pic"         ; 0x06e33f--0x06e42f
-AquaPicFront::        INCBIN "gfx/pokemon/aqua/front.pic"          ; 0x06e42f--0x06e542
-AquaPicBack::         INCBIN "gfx/pokemon/aqua/back.pic"           ; 0x06e542--0x06e628
-AquariaPicFront::     INCBIN "gfx/pokemon/aquaria/front.pic"       ; 0x06e628--0x06e829
-AquariaPicBack::      INCBIN "gfx/pokemon/aquaria/back.pic"        ; 0x06e829--0x06e8e9
-HohoPicFront::        INCBIN "gfx/pokemon/hoho/front.pic"          ; 0x06e8e9--0x06e9fb
-HohoPicBack::         INCBIN "gfx/pokemon/hoho/back.pic"           ; 0x06e9fb--0x06eb48
-BoboPicFront::        INCBIN "gfx/pokemon/bobo/front.pic"          ; 0x06eb48--0x06ec87
-BoboPicBack::         INCBIN "gfx/pokemon/bobo/back.pic"           ; 0x06ec87--0x06ed65
-PachimeePicFront::    INCBIN "gfx/pokemon/pachimee/front.pic"      ; 0x06ed65--0x06ee74
-PachimeePicBack::     INCBIN "gfx/pokemon/pachimee/back.pic"       ; 0x06ee74--0x06eff0
-MokokoPicFront::      INCBIN "gfx/pokemon/mokoko/front.pic"        ; 0x06eff0--0x06f14f
-MokokoPicBack::       INCBIN "gfx/pokemon/mokoko/back.pic"         ; 0x06f14f--0x06f2bc
-DenryuPicFront::      INCBIN "gfx/pokemon/denryu/front.pic"        ; 0x06f2bc--0x06f448
-DenryuPicBack::       INCBIN "gfx/pokemon/denryu/back.pic"         ; 0x06f448--0x06f56f
-MikonPicFront::       INCBIN "gfx/pokemon/mikon/front.pic"         ; 0x06f56f--0x06f675
-MikonPicBack::        INCBIN "gfx/pokemon/mikon/back.pic"          ; 0x06f675--0x06f7af
-MonjaPicFront::       INCBIN "gfx/pokemon/monja/front.pic"         ; 0x06f7af--0x06f8b7
-MonjaPicBack::        INCBIN "gfx/pokemon/monja/back.pic"          ; 0x06f8b7--0x06fa05
-JaranraPicFront::     INCBIN "gfx/pokemon/jaranra/front.pic"       ; 0x06fa05--0x06fc03
-JaranraPicBack::      INCBIN "gfx/pokemon/jaranra/back.pic"        ; 0x06fc03--0x06fd27
+ThunderPicFront::     INCBIN "gfx/pokemon/thunder/front.pic"
+ThunderPicBack::      INCBIN "gfx/pokemon/thunder/back.pic"
+FirePicFront::        INCBIN "gfx/pokemon/fire/front.pic"
+FirePicBack::         INCBIN "gfx/pokemon/fire/back.pic"
+MiniryuPicFront::     INCBIN "gfx/pokemon/miniryu/front.pic"
+MiniryuPicBack::      INCBIN "gfx/pokemon/miniryu/back.pic"
+HakuryuPicFront::     INCBIN "gfx/pokemon/hakuryu/front.pic"
+HakuryuPicBack::      INCBIN "gfx/pokemon/hakuryu/back.pic"
+KairyuPicFront::      INCBIN "gfx/pokemon/kairyu/front.pic"
+KairyuPicBack::       INCBIN "gfx/pokemon/kairyu/back.pic"
+MewtwoPicFront::      INCBIN "gfx/pokemon/mewtwo/front.pic"
+MewtwoPicBack::       INCBIN "gfx/pokemon/mewtwo/back.pic"
+MewPicFront::         INCBIN "gfx/pokemon/mew/front.pic"
+MewPicBack::          INCBIN "gfx/pokemon/mew/back.pic"
+HappaPicFront::       INCBIN "gfx/pokemon/happa/front.pic"
+HappaPicBack::        INCBIN "gfx/pokemon/happa/back.pic"
+HanamoguraPicFront::  INCBIN "gfx/pokemon/hanamogura/front.pic"
+HanamoguraPicBack::   INCBIN "gfx/pokemon/hanamogura/back.pic"
+HanaryuPicFront::     INCBIN "gfx/pokemon/hanaryu/front.pic"
+HanaryuPicBack::      INCBIN "gfx/pokemon/hanaryu/back.pic"
+HonogumaPicFront::    INCBIN "gfx/pokemon/honoguma/front.pic"
+HonogumaPicBack::     INCBIN "gfx/pokemon/honoguma/back.pic"
+VolbearPicFront::     INCBIN "gfx/pokemon/volbear/front.pic"
+VolbearPicBack::      INCBIN "gfx/pokemon/volbear/back.pic"
+DynabearPicFront::    INCBIN "gfx/pokemon/dynabear/front.pic"
+DynabearPicBack::     INCBIN "gfx/pokemon/dynabear/back.pic"
+KurusuPicFront::      INCBIN "gfx/pokemon/kurusu/front.pic"
+KurusuPicBack::       INCBIN "gfx/pokemon/kurusu/back.pic"
+AquaPicFront::        INCBIN "gfx/pokemon/aqua/front.pic"
+AquaPicBack::         INCBIN "gfx/pokemon/aqua/back.pic"
+AquariaPicFront::     INCBIN "gfx/pokemon/aquaria/front.pic"
+AquariaPicBack::      INCBIN "gfx/pokemon/aquaria/back.pic"
+HohoPicFront::        INCBIN "gfx/pokemon/hoho/front.pic"
+HohoPicBack::         INCBIN "gfx/pokemon/hoho/back.pic"
+BoboPicFront::        INCBIN "gfx/pokemon/bobo/front.pic"
+BoboPicBack::         INCBIN "gfx/pokemon/bobo/back.pic"
+PachimeePicFront::    INCBIN "gfx/pokemon/pachimee/front.pic"
+PachimeePicBack::     INCBIN "gfx/pokemon/pachimee/back.pic"
+MokokoPicFront::      INCBIN "gfx/pokemon/mokoko/front.pic"
+MokokoPicBack::       INCBIN "gfx/pokemon/mokoko/back.pic"
+DenryuPicFront::      INCBIN "gfx/pokemon/denryu/front.pic"
+DenryuPicBack::       INCBIN "gfx/pokemon/denryu/back.pic"
+MikonPicFront::       INCBIN "gfx/pokemon/mikon/front.pic"
+MikonPicBack::        INCBIN "gfx/pokemon/mikon/back.pic"
+MonjaPicFront::       INCBIN "gfx/pokemon/monja/front.pic"
+MonjaPicBack::        INCBIN "gfx/pokemon/monja/back.pic"
+JaranraPicFront::     INCBIN "gfx/pokemon/jaranra/front.pic"
+JaranraPicBack::      INCBIN "gfx/pokemon/jaranra/back.pic"
 
 
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 8", ROMX
 
-HaneeiPicFront::      INCBIN "gfx/pokemon/haneei/front.pic"        ; 0x070000--0x070176
-HaneeiPicBack::       INCBIN "gfx/pokemon/haneei/back.pic"         ; 0x070176--0x0702cd
-PukuPicFront::        INCBIN "gfx/pokemon/puku/front.pic"          ; 0x0702cd--0x0703b2
-PukuPicBack::         INCBIN "gfx/pokemon/puku/back.pic"           ; 0x0703b2--0x0704f8
-ShibirefuguPicFront:: INCBIN "gfx/pokemon/shibirefugu/front.pic"   ; 0x0704f8--0x07069c
-ShibirefuguPicBack::  INCBIN "gfx/pokemon/shibirefugu/back.pic"    ; 0x07069c--0x0707a3
-PichuPicFront::       INCBIN "gfx/pokemon/pichu/front.pic"         ; 0x0707a3--0x07083b
-PichuPicBack::        INCBIN "gfx/pokemon/pichu/back.pic"          ; 0x07083b--0x0708f3
-PyPicFront::          INCBIN "gfx/pokemon/py/front.pic"            ; 0x0708f3--0x0709a5
-PyPicBack::           INCBIN "gfx/pokemon/py/back.pic"             ; 0x0709a5--0x070a65
-PupurinPicFront::     INCBIN "gfx/pokemon/pupurin/front.pic"       ; 0x070a65--0x070b19
-PupurinPicBack::      INCBIN "gfx/pokemon/pupurin/back.pic"        ; 0x070b19--0x070bd7
-MizuuoPicFront::      INCBIN "gfx/pokemon/mizuuo/front.pic"        ; 0x070bd7--0x070d13
-MizuuoPicBack::       INCBIN "gfx/pokemon/mizuuo/back.pic"         ; 0x070d13--0x070e08
-NatyPicFront::        INCBIN "gfx/pokemon/naty/front.pic"          ; 0x070e08--0x070e9e
-NatyPicBack::         INCBIN "gfx/pokemon/naty/back.pic"           ; 0x070e9e--0x070f4f
-NatioPicFront::       INCBIN "gfx/pokemon/natio/front.pic"         ; 0x070f4f--0x07108e
-NatioPicBack::        INCBIN "gfx/pokemon/natio/back.pic"          ; 0x07108e--0x0711e1
-GyopinPicFront::      INCBIN "gfx/pokemon/gyopin/front.pic"        ; 0x0711e1--0x07128b
-GyopinPicBack::       INCBIN "gfx/pokemon/gyopin/back.pic"         ; 0x07128b--0x071352
-MarilPicFront::       INCBIN "gfx/pokemon/maril/front.pic"         ; 0x071352--0x071441
-MarilPicBack::        INCBIN "gfx/pokemon/maril/back.pic"          ; 0x071441--0x07154b
-Manbo1PicFront::      INCBIN "gfx/pokemon/manbo1/front.pic"        ; 0x07154b--0x071630
-Manbo1PicBack::       INCBIN "gfx/pokemon/manbo1/back.pic"         ; 0x071630--0x071743
-IkariPicFront::       INCBIN "gfx/pokemon/ikari/front.pic"         ; 0x071743--0x071858
-IkariPicBack::        INCBIN "gfx/pokemon/ikari/back.pic"          ; 0x071858--0x071986
-GrotessPicFront::     INCBIN "gfx/pokemon/grotess/front.pic"       ; 0x071986--0x071a7c
-GrotessPicBack::      INCBIN "gfx/pokemon/grotess/back.pic"        ; 0x071a7c--0x071b51
-EksingPicFront::      INCBIN "gfx/pokemon/eksing/front.pic"        ; 0x071b51--0x071cbe
-EksingPicBack::       INCBIN "gfx/pokemon/eksing/back.pic"         ; 0x071cbe--0x071dba
-ParaPicFront::        INCBIN "gfx/pokemon/para/front.pic"          ; 0x071dba--0x071ea9
-ParaPicBack::         INCBIN "gfx/pokemon/para/back.pic"           ; 0x071ea9--0x071f96
-KokumoPicFront::      INCBIN "gfx/pokemon/kokumo/front.pic"        ; 0x071f96--0x072051
-KokumoPicBack::       INCBIN "gfx/pokemon/kokumo/back.pic"         ; 0x072051--0x072170
-TwoheadPicFront::     INCBIN "gfx/pokemon/twohead/front.pic"       ; 0x072170--0x07232e
-TwoheadPicBack::      INCBIN "gfx/pokemon/twohead/back.pic"        ; 0x07232e--0x0724b6
-YoroidoriPicFront::   INCBIN "gfx/pokemon/yoroidori/front.pic"     ; 0x0724b6--0x0726b6
-YoroidoriPicBack::    INCBIN "gfx/pokemon/yoroidori/back.pic"      ; 0x0726b6--0x072797
-AnimonPicFront::      INCBIN "gfx/pokemon/animon/front.pic"        ; 0x072797--0x072846
-AnimonPicBack::       INCBIN "gfx/pokemon/animon/back.pic"         ; 0x072846--0x0728cc
-HinazuPicFront::      INCBIN "gfx/pokemon/hinazu/front.pic"        ; 0x0728cc--0x072a0a
-HinazuPicBack::       INCBIN "gfx/pokemon/hinazu/back.pic"         ; 0x072a0a--0x072b8d
-SunnyPicFront::       INCBIN "gfx/pokemon/sunny/front.pic"         ; 0x072b8d--0x072d26
-SunnyPicBack::        INCBIN "gfx/pokemon/sunny/back.pic"          ; 0x072d26--0x072ebc
-PaonPicFront::        INCBIN "gfx/pokemon/paon/front.pic"          ; 0x072ebc--0x072f94
-PaonPicBack::         INCBIN "gfx/pokemon/paon/back.pic"           ; 0x072f94--0x07308b
-DonphanPicFront::     INCBIN "gfx/pokemon/donphan/front.pic"       ; 0x07308b--0x07323a
-DonphanPicBack::      INCBIN "gfx/pokemon/donphan/back.pic"        ; 0x07323a--0x073306
-TwinzPicFront::       INCBIN "gfx/pokemon/twinz/front.pic"         ; 0x073306--0x073477
-TwinzPicBack::        INCBIN "gfx/pokemon/twinz/back.pic"          ; 0x073477--0x0735c2
-KirinrikiPicFront::   INCBIN "gfx/pokemon/kirinriki/front.pic"     ; 0x0735c2--0x07377e
-KirinrikiPicBack::    INCBIN "gfx/pokemon/kirinriki/back.pic"      ; 0x07377e--0x073912
-PainterPicFront::     INCBIN "gfx/pokemon/painter/front.pic"       ; 0x073912--0x073aaa
-PainterPicBack::      INCBIN "gfx/pokemon/painter/back.pic"        ; 0x073aaa--0x073bdb
-KounyaPicFront::      INCBIN "gfx/pokemon/kounya/front.pic"        ; 0x073bdb--0x073ca8
-KounyaPicBack::       INCBIN "gfx/pokemon/kounya/back.pic"         ; 0x073ca8--0x073d7f
+HaneeiPicFront::      INCBIN "gfx/pokemon/haneei/front.pic"
+HaneeiPicBack::       INCBIN "gfx/pokemon/haneei/back.pic"
+PukuPicFront::        INCBIN "gfx/pokemon/puku/front.pic"
+PukuPicBack::         INCBIN "gfx/pokemon/puku/back.pic"
+ShibirefuguPicFront:: INCBIN "gfx/pokemon/shibirefugu/front.pic"
+ShibirefuguPicBack::  INCBIN "gfx/pokemon/shibirefugu/back.pic"
+PichuPicFront::       INCBIN "gfx/pokemon/pichu/front.pic"
+PichuPicBack::        INCBIN "gfx/pokemon/pichu/back.pic"
+PyPicFront::          INCBIN "gfx/pokemon/py/front.pic"
+PyPicBack::           INCBIN "gfx/pokemon/py/back.pic"
+PupurinPicFront::     INCBIN "gfx/pokemon/pupurin/front.pic"
+PupurinPicBack::      INCBIN "gfx/pokemon/pupurin/back.pic"
+MizuuoPicFront::      INCBIN "gfx/pokemon/mizuuo/front.pic"
+MizuuoPicBack::       INCBIN "gfx/pokemon/mizuuo/back.pic"
+NatyPicFront::        INCBIN "gfx/pokemon/naty/front.pic"
+NatyPicBack::         INCBIN "gfx/pokemon/naty/back.pic"
+NatioPicFront::       INCBIN "gfx/pokemon/natio/front.pic"
+NatioPicBack::        INCBIN "gfx/pokemon/natio/back.pic"
+GyopinPicFront::      INCBIN "gfx/pokemon/gyopin/front.pic"
+GyopinPicBack::       INCBIN "gfx/pokemon/gyopin/back.pic"
+MarilPicFront::       INCBIN "gfx/pokemon/maril/front.pic"
+MarilPicBack::        INCBIN "gfx/pokemon/maril/back.pic"
+Manbo1PicFront::      INCBIN "gfx/pokemon/manbo1/front.pic"
+Manbo1PicBack::       INCBIN "gfx/pokemon/manbo1/back.pic"
+IkariPicFront::       INCBIN "gfx/pokemon/ikari/front.pic"
+IkariPicBack::        INCBIN "gfx/pokemon/ikari/back.pic"
+GrotessPicFront::     INCBIN "gfx/pokemon/grotess/front.pic"
+GrotessPicBack::      INCBIN "gfx/pokemon/grotess/back.pic"
+EksingPicFront::      INCBIN "gfx/pokemon/eksing/front.pic"
+EksingPicBack::       INCBIN "gfx/pokemon/eksing/back.pic"
+ParaPicFront::        INCBIN "gfx/pokemon/para/front.pic"
+ParaPicBack::         INCBIN "gfx/pokemon/para/back.pic"
+KokumoPicFront::      INCBIN "gfx/pokemon/kokumo/front.pic"
+KokumoPicBack::       INCBIN "gfx/pokemon/kokumo/back.pic"
+TwoheadPicFront::     INCBIN "gfx/pokemon/twohead/front.pic"
+TwoheadPicBack::      INCBIN "gfx/pokemon/twohead/back.pic"
+YoroidoriPicFront::   INCBIN "gfx/pokemon/yoroidori/front.pic"
+YoroidoriPicBack::    INCBIN "gfx/pokemon/yoroidori/back.pic"
+AnimonPicFront::      INCBIN "gfx/pokemon/animon/front.pic"
+AnimonPicBack::       INCBIN "gfx/pokemon/animon/back.pic"
+HinazuPicFront::      INCBIN "gfx/pokemon/hinazu/front.pic"
+HinazuPicBack::       INCBIN "gfx/pokemon/hinazu/back.pic"
+SunnyPicFront::       INCBIN "gfx/pokemon/sunny/front.pic"
+SunnyPicBack::        INCBIN "gfx/pokemon/sunny/back.pic"
+PaonPicFront::        INCBIN "gfx/pokemon/paon/front.pic"
+PaonPicBack::         INCBIN "gfx/pokemon/paon/back.pic"
+DonphanPicFront::     INCBIN "gfx/pokemon/donphan/front.pic"
+DonphanPicBack::      INCBIN "gfx/pokemon/donphan/back.pic"
+TwinzPicFront::       INCBIN "gfx/pokemon/twinz/front.pic"
+TwinzPicBack::        INCBIN "gfx/pokemon/twinz/back.pic"
+KirinrikiPicFront::   INCBIN "gfx/pokemon/kirinriki/front.pic"
+KirinrikiPicBack::    INCBIN "gfx/pokemon/kirinriki/back.pic"
+PainterPicFront::     INCBIN "gfx/pokemon/painter/front.pic"
+PainterPicBack::      INCBIN "gfx/pokemon/painter/back.pic"
+KounyaPicFront::      INCBIN "gfx/pokemon/kounya/front.pic"
+KounyaPicBack::       INCBIN "gfx/pokemon/kounya/back.pic"
 
 
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 9", ROMX
 
-RinrinPicFront::      INCBIN "gfx/pokemon/rinrin/front.pic"        ; 0x074000--0x074109
-RinrinPicBack::       INCBIN "gfx/pokemon/rinrin/back.pic"         ; 0x074109--0x07421a
-BerurunPicFront::     INCBIN "gfx/pokemon/berurun/front.pic"       ; 0x07421a--0x074346
-BerurunPicBack::      INCBIN "gfx/pokemon/berurun/back.pic"        ; 0x074346--0x074419
-NyorotonoPicFront::   INCBIN "gfx/pokemon/nyorotono/front.pic"     ; 0x074419--0x0745c2
-NyorotonoPicBack::    INCBIN "gfx/pokemon/nyorotono/back.pic"      ; 0x0745c2--0x0746a7
-YadokingPicFront::    INCBIN "gfx/pokemon/yadoking/front.pic"      ; 0x0746a7--0x074865
-YadokingPicBack::     INCBIN "gfx/pokemon/yadoking/back.pic"       ; 0x074865--0x0749b8
-RedibaPicFront::      INCBIN "gfx/pokemon/rediba/front.pic"        ; 0x0749b8--0x074afa
-RedibaPicBack::       INCBIN "gfx/pokemon/rediba/back.pic"         ; 0x074afa--0x074c54
-MitsuboshiPicFront::  INCBIN "gfx/pokemon/mitsuboshi/front.pic"    ; 0x074c54--0x074d6c
-MitsuboshiPicBack::   INCBIN "gfx/pokemon/mitsuboshi/back.pic"     ; 0x074d6c--0x074e1d
-PuchicornPicFront::   INCBIN "gfx/pokemon/puchicorn/front.pic"     ; 0x074e1d--0x074f29
-PuchicornPicBack::    INCBIN "gfx/pokemon/puchicorn/back.pic"      ; 0x074f29--0x075060
-EifiePicFront::       INCBIN "gfx/pokemon/eifie/front.pic"         ; 0x075060--0x0751b6
-EifiePicBack::        INCBIN "gfx/pokemon/eifie/back.pic"          ; 0x0751b6--0x0752fa
-BlackyPicFront::      INCBIN "gfx/pokemon/blacky/front.pic"        ; 0x0752fa--0x075409
-BlackyPicBack::       INCBIN "gfx/pokemon/blacky/back.pic"         ; 0x075409--0x075515
-TurbanPicFront::      INCBIN "gfx/pokemon/turban/front.pic"        ; 0x075515--0x07566b
-TurbanPicBack::       INCBIN "gfx/pokemon/turban/back.pic"         ; 0x07566b--0x0757b1
-BetbabyPicFront::     INCBIN "gfx/pokemon/betbaby/front.pic"       ; 0x0757b1--0x075849
-BetbabyPicBack::      INCBIN "gfx/pokemon/betbaby/back.pic"        ; 0x075849--0x0758eb
-TeppouoPicFront::     INCBIN "gfx/pokemon/teppouo/front.pic"       ; 0x0758eb--0x0759f2
-TeppouoPicBack::      INCBIN "gfx/pokemon/teppouo/back.pic"        ; 0x0759f2--0x075b3c
-OkutankPicFront::     INCBIN "gfx/pokemon/okutank/front.pic"       ; 0x075b3c--0x075c7a
-OkutankPicBack::      INCBIN "gfx/pokemon/okutank/back.pic"        ; 0x075c7a--0x075d92
-GonguPicFront::       INCBIN "gfx/pokemon/gongu/front.pic"         ; 0x075d92--0x075e8a
-GonguPicBack::        INCBIN "gfx/pokemon/gongu/back.pic"          ; 0x075e8a--0x075f9e
-KapoererPicFront::    INCBIN "gfx/pokemon/kapoerer/front.pic"      ; 0x075f9e--0x076180
-KapoererPicBack::     INCBIN "gfx/pokemon/kapoerer/back.pic"       ; 0x076180--0x0762ea
-PudiePicFront::       INCBIN "gfx/pokemon/pudie/front.pic"         ; 0x0762ea--0x0763b3
-PudiePicBack::        INCBIN "gfx/pokemon/pudie/back.pic"          ; 0x0763b3--0x07648b
-HanekoPicFront::      INCBIN "gfx/pokemon/haneko/front.pic"        ; 0x07648b--0x076572
-HanekoPicBack::       INCBIN "gfx/pokemon/haneko/back.pic"         ; 0x076572--0x076699
-PoponekoPicFront::    INCBIN "gfx/pokemon/poponeko/front.pic"      ; 0x076699--0x0767c6
-PoponekoPicBack::     INCBIN "gfx/pokemon/poponeko/back.pic"       ; 0x0767c6--0x076906
-WatanekoPicFront::    INCBIN "gfx/pokemon/wataneko/front.pic"      ; 0x076906--0x076ad1
-WatanekoPicBack::     INCBIN "gfx/pokemon/wataneko/back.pic"       ; 0x076ad1--0x076c34
-BaririnaPicFront::    INCBIN "gfx/pokemon/baririna/front.pic"      ; 0x076c34--0x076ce2
-BaririnaPicBack::     INCBIN "gfx/pokemon/baririna/back.pic"       ; 0x076ce2--0x076db0
-LipPicFront::         INCBIN "gfx/pokemon/lip/front.pic"           ; 0x076db0--0x076e9b
-LipPicBack::          INCBIN "gfx/pokemon/lip/back.pic"            ; 0x076e9b--0x076f77
-ElebabyPicFront::     INCBIN "gfx/pokemon/elebaby/front.pic"       ; 0x076f77--0x077022
-ElebabyPicBack::      INCBIN "gfx/pokemon/elebaby/back.pic"        ; 0x077022--0x0770ea
-BoobyPicFront::       INCBIN "gfx/pokemon/booby/front.pic"         ; 0x0770ea--0x077222
-BoobyPicBack::        INCBIN "gfx/pokemon/booby/back.pic"          ; 0x077222--0x077310
-KireihanaPicFront::   INCBIN "gfx/pokemon/kireihana/front.pic"     ; 0x077310--0x0774dc
-KireihanaPicBack::    INCBIN "gfx/pokemon/kireihana/back.pic"      ; 0x0774dc--0x077654
-TsubomittoPicFront::  INCBIN "gfx/pokemon/tsubomitto/front.pic"    ; 0x077654--0x07783e
-TsubomittoPicBack::   INCBIN "gfx/pokemon/tsubomitto/back.pic"     ; 0x07783e--0x0779e0
-MiltankPicFront::     INCBIN "gfx/pokemon/miltank/front.pic"       ; 0x0779e0--0x077b5a
-MiltankPicBack::      INCBIN "gfx/pokemon/miltank/back.pic"        ; 0x077b5a--0x077c81
-BombseekerPicFront::  INCBIN "gfx/pokemon/bombseeker/front.pic"    ; 0x077c81--0x077dac
-BombseekerPicBack::   INCBIN "gfx/pokemon/bombseeker/back.pic"     ; 0x077dac--0x077ecf
+RinrinPicFront::      INCBIN "gfx/pokemon/rinrin/front.pic"
+RinrinPicBack::       INCBIN "gfx/pokemon/rinrin/back.pic"
+BerurunPicFront::     INCBIN "gfx/pokemon/berurun/front.pic"
+BerurunPicBack::      INCBIN "gfx/pokemon/berurun/back.pic"
+NyorotonoPicFront::   INCBIN "gfx/pokemon/nyorotono/front.pic"
+NyorotonoPicBack::    INCBIN "gfx/pokemon/nyorotono/back.pic"
+YadokingPicFront::    INCBIN "gfx/pokemon/yadoking/front.pic"
+YadokingPicBack::     INCBIN "gfx/pokemon/yadoking/back.pic"
+RedibaPicFront::      INCBIN "gfx/pokemon/rediba/front.pic"
+RedibaPicBack::       INCBIN "gfx/pokemon/rediba/back.pic"
+MitsuboshiPicFront::  INCBIN "gfx/pokemon/mitsuboshi/front.pic"
+MitsuboshiPicBack::   INCBIN "gfx/pokemon/mitsuboshi/back.pic"
+PuchicornPicFront::   INCBIN "gfx/pokemon/puchicorn/front.pic"
+PuchicornPicBack::    INCBIN "gfx/pokemon/puchicorn/back.pic"
+EifiePicFront::       INCBIN "gfx/pokemon/eifie/front.pic"
+EifiePicBack::        INCBIN "gfx/pokemon/eifie/back.pic"
+BlackyPicFront::      INCBIN "gfx/pokemon/blacky/front.pic"
+BlackyPicBack::       INCBIN "gfx/pokemon/blacky/back.pic"
+TurbanPicFront::      INCBIN "gfx/pokemon/turban/front.pic"
+TurbanPicBack::       INCBIN "gfx/pokemon/turban/back.pic"
+BetbabyPicFront::     INCBIN "gfx/pokemon/betbaby/front.pic"
+BetbabyPicBack::      INCBIN "gfx/pokemon/betbaby/back.pic"
+TeppouoPicFront::     INCBIN "gfx/pokemon/teppouo/front.pic"
+TeppouoPicBack::      INCBIN "gfx/pokemon/teppouo/back.pic"
+OkutankPicFront::     INCBIN "gfx/pokemon/okutank/front.pic"
+OkutankPicBack::      INCBIN "gfx/pokemon/okutank/back.pic"
+GonguPicFront::       INCBIN "gfx/pokemon/gongu/front.pic"
+GonguPicBack::        INCBIN "gfx/pokemon/gongu/back.pic"
+KapoererPicFront::    INCBIN "gfx/pokemon/kapoerer/front.pic"
+KapoererPicBack::     INCBIN "gfx/pokemon/kapoerer/back.pic"
+PudiePicFront::       INCBIN "gfx/pokemon/pudie/front.pic"
+PudiePicBack::        INCBIN "gfx/pokemon/pudie/back.pic"
+HanekoPicFront::      INCBIN "gfx/pokemon/haneko/front.pic"
+HanekoPicBack::       INCBIN "gfx/pokemon/haneko/back.pic"
+PoponekoPicFront::    INCBIN "gfx/pokemon/poponeko/front.pic"
+PoponekoPicBack::     INCBIN "gfx/pokemon/poponeko/back.pic"
+WatanekoPicFront::    INCBIN "gfx/pokemon/wataneko/front.pic"
+WatanekoPicBack::     INCBIN "gfx/pokemon/wataneko/back.pic"
+BaririnaPicFront::    INCBIN "gfx/pokemon/baririna/front.pic"
+BaririnaPicBack::     INCBIN "gfx/pokemon/baririna/back.pic"
+LipPicFront::         INCBIN "gfx/pokemon/lip/front.pic"
+LipPicBack::          INCBIN "gfx/pokemon/lip/back.pic"
+ElebabyPicFront::     INCBIN "gfx/pokemon/elebaby/front.pic"
+ElebabyPicBack::      INCBIN "gfx/pokemon/elebaby/back.pic"
+BoobyPicFront::       INCBIN "gfx/pokemon/booby/front.pic"
+BoobyPicBack::        INCBIN "gfx/pokemon/booby/back.pic"
+KireihanaPicFront::   INCBIN "gfx/pokemon/kireihana/front.pic"
+KireihanaPicBack::    INCBIN "gfx/pokemon/kireihana/back.pic"
+TsubomittoPicFront::  INCBIN "gfx/pokemon/tsubomitto/front.pic"
+TsubomittoPicBack::   INCBIN "gfx/pokemon/tsubomitto/back.pic"
+MiltankPicFront::     INCBIN "gfx/pokemon/miltank/front.pic"
+MiltankPicBack::      INCBIN "gfx/pokemon/miltank/back.pic"
+BombseekerPicFront::  INCBIN "gfx/pokemon/bombseeker/front.pic"
+BombseekerPicBack::   INCBIN "gfx/pokemon/bombseeker/back.pic"
 
 
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 10", ROMX
 
-GiftPicFront::        INCBIN "gfx/pokemon/gift/front.pic"          ; 0x078000--0x078153
-GiftPicBack::         INCBIN "gfx/pokemon/gift/back.pic"           ; 0x078153--0x078281
-KotoraPicFront::      INCBIN "gfx/pokemon/kotora/front.pic"        ; 0x078281--0x0783b2
-KotoraPicBack::       INCBIN "gfx/pokemon/kotora/back.pic"         ; 0x0783b2--0x078519
-RaitoraPicFront::     INCBIN "gfx/pokemon/raitora/front.pic"       ; 0x078519--0x078731
-RaitoraPicBack::      INCBIN "gfx/pokemon/raitora/back.pic"        ; 0x078731--0x07882b
-MadamePicFront::      INCBIN "gfx/pokemon/madame/front.pic"        ; 0x07882b--0x078a32
-MadamePicBack::       INCBIN "gfx/pokemon/madame/back.pic"         ; 0x078a32--0x078b5b
-NorowaraPicFront::    INCBIN "gfx/pokemon/norowara/front.pic"      ; 0x078b5b--0x078cb1
-NorowaraPicBack::     INCBIN "gfx/pokemon/norowara/back.pic"       ; 0x078cb1--0x078e35
-KyonpanPicFront::     INCBIN "gfx/pokemon/kyonpan/front.pic"       ; 0x078e35--0x078f94
-KyonpanPicBack::      INCBIN "gfx/pokemon/kyonpan/back.pic"        ; 0x078f94--0x07908f
-YamikarasuPicFront::  INCBIN "gfx/pokemon/yamikarasu/front.pic"    ; 0x07908f--0x07919e
-YamikarasuPicBack::   INCBIN "gfx/pokemon/yamikarasu/back.pic"     ; 0x07919e--0x079286
-HappiPicFront::       INCBIN "gfx/pokemon/happi/front.pic"         ; 0x079286--0x079414
-HappiPicBack::        INCBIN "gfx/pokemon/happi/back.pic"          ; 0x079414--0x07951b
-ScissorsPicFront::    INCBIN "gfx/pokemon/scissors/front.pic"      ; 0x07951b--0x079749
-ScissorsPicBack::     INCBIN "gfx/pokemon/scissors/back.pic"       ; 0x079749--0x0798cc
-PurakkusuPicFront::   INCBIN "gfx/pokemon/purakkusu/front.pic"     ; 0x0798cc--0x079a9e
-PurakkusuPicBack::    INCBIN "gfx/pokemon/purakkusu/back.pic"      ; 0x079a9e--0x079bfe
-DevilPicFront::       INCBIN "gfx/pokemon/devil/front.pic"         ; 0x079bfe--0x079d21
-DevilPicBack::        INCBIN "gfx/pokemon/devil/back.pic"          ; 0x079d21--0x079e14
-HelgaaPicFront::      INCBIN "gfx/pokemon/helgaa/front.pic"        ; 0x079e14--0x079fa3
-HelgaaPicBack::       INCBIN "gfx/pokemon/helgaa/back.pic"         ; 0x079fa3--0x07a0a7
-WolfmanPicFront::     INCBIN "gfx/pokemon/wolfman/front.pic"       ; 0x07a0a7--0x07a1b4
-WolfmanPicBack::      INCBIN "gfx/pokemon/wolfman/back.pic"        ; 0x07a1b4--0x07a2b9
-WarwolfPicFront::     INCBIN "gfx/pokemon/warwolf/front.pic"       ; 0x07a2b9--0x07a4bc
-WarwolfPicBack::      INCBIN "gfx/pokemon/warwolf/back.pic"        ; 0x07a4bc--0x07a5c5
-Porygon2PicFront::    INCBIN "gfx/pokemon/porygon2/front.pic"      ; 0x07a5c5--0x07a72f
-Porygon2PicBack::     INCBIN "gfx/pokemon/porygon2/back.pic"       ; 0x07a72f--0x07a87d
-NameilPicFront::      INCBIN "gfx/pokemon/nameil/front.pic"        ; 0x07a87d--0x07aa2b
-NameilPicBack::       INCBIN "gfx/pokemon/nameil/back.pic"         ; 0x07aa2b--0x07ab36
-HaganeilPicFront::    INCBIN "gfx/pokemon/haganeil/front.pic"      ; 0x07ab36--0x07ad76
-HaganeilPicBack::     INCBIN "gfx/pokemon/haganeil/back.pic"       ; 0x07ad76--0x07aecd
-KingdraPicFront::     INCBIN "gfx/pokemon/kingdra/front.pic"       ; 0x07aecd--0x07b0cf
-KingdraPicBack::      INCBIN "gfx/pokemon/kingdra/back.pic"        ; 0x07b0cf--0x07b1f6
-RaiPicFront::         INCBIN "gfx/pokemon/rai/front.pic"           ; 0x07b1f6--0x07b3da
+GiftPicFront::        INCBIN "gfx/pokemon/gift/front.pic"
+GiftPicBack::         INCBIN "gfx/pokemon/gift/back.pic"
+KotoraPicFront::      INCBIN "gfx/pokemon/kotora/front.pic"
+KotoraPicBack::       INCBIN "gfx/pokemon/kotora/back.pic"
+RaitoraPicFront::     INCBIN "gfx/pokemon/raitora/front.pic"
+RaitoraPicBack::      INCBIN "gfx/pokemon/raitora/back.pic"
+MadamePicFront::      INCBIN "gfx/pokemon/madame/front.pic"
+MadamePicBack::       INCBIN "gfx/pokemon/madame/back.pic"
+NorowaraPicFront::    INCBIN "gfx/pokemon/norowara/front.pic"
+NorowaraPicBack::     INCBIN "gfx/pokemon/norowara/back.pic"
+KyonpanPicFront::     INCBIN "gfx/pokemon/kyonpan/front.pic"
+KyonpanPicBack::      INCBIN "gfx/pokemon/kyonpan/back.pic"
+YamikarasuPicFront::  INCBIN "gfx/pokemon/yamikarasu/front.pic"
+YamikarasuPicBack::   INCBIN "gfx/pokemon/yamikarasu/back.pic"
+HappiPicFront::       INCBIN "gfx/pokemon/happi/front.pic"
+HappiPicBack::        INCBIN "gfx/pokemon/happi/back.pic"
+ScissorsPicFront::    INCBIN "gfx/pokemon/scissors/front.pic"
+ScissorsPicBack::     INCBIN "gfx/pokemon/scissors/back.pic"
+PurakkusuPicFront::   INCBIN "gfx/pokemon/purakkusu/front.pic"
+PurakkusuPicBack::    INCBIN "gfx/pokemon/purakkusu/back.pic"
+DevilPicFront::       INCBIN "gfx/pokemon/devil/front.pic"
+DevilPicBack::        INCBIN "gfx/pokemon/devil/back.pic"
+HelgaaPicFront::      INCBIN "gfx/pokemon/helgaa/front.pic"
+HelgaaPicBack::       INCBIN "gfx/pokemon/helgaa/back.pic"
+WolfmanPicFront::     INCBIN "gfx/pokemon/wolfman/front.pic"
+WolfmanPicBack::      INCBIN "gfx/pokemon/wolfman/back.pic"
+WarwolfPicFront::     INCBIN "gfx/pokemon/warwolf/front.pic"
+WarwolfPicBack::      INCBIN "gfx/pokemon/warwolf/back.pic"
+Porygon2PicFront::    INCBIN "gfx/pokemon/porygon2/front.pic"
+Porygon2PicBack::     INCBIN "gfx/pokemon/porygon2/back.pic"
+NameilPicFront::      INCBIN "gfx/pokemon/nameil/front.pic"
+NameilPicBack::       INCBIN "gfx/pokemon/nameil/back.pic"
+HaganeilPicFront::    INCBIN "gfx/pokemon/haganeil/front.pic"
+HaganeilPicBack::     INCBIN "gfx/pokemon/haganeil/back.pic"
+KingdraPicFront::     INCBIN "gfx/pokemon/kingdra/front.pic"
+KingdraPicBack::      INCBIN "gfx/pokemon/kingdra/back.pic"
+RaiPicFront::         INCBIN "gfx/pokemon/rai/front.pic"
 	db 0 ; how did that get here?
-RaiPicBack::          INCBIN "gfx/pokemon/rai/back.pic"            ; 0x07b3db--0x07b51a
-EnPicFront::          INCBIN "gfx/pokemon/en/front.pic"            ; 0x07b51a--0x07b73d
-EnPicBack::           INCBIN "gfx/pokemon/en/back.pic"             ; 0x07b73d--0x07b824
-SuiPicFront::         INCBIN "gfx/pokemon/sui/front.pic"           ; 0x07b824--0x07ba63
-SuiPicBack::          INCBIN "gfx/pokemon/sui/back.pic"            ; 0x07ba63--0x07bbb4
-NyulaPicFront::       INCBIN "gfx/pokemon/nyula/front.pic"         ; 0x07bbb4--0x07bccb
-NyulaPicBack::        INCBIN "gfx/pokemon/nyula/back.pic"          ; 0x07bccb--0x07be22
+RaiPicBack::          INCBIN "gfx/pokemon/rai/back.pic"
+EnPicFront::          INCBIN "gfx/pokemon/en/front.pic"
+EnPicBack::           INCBIN "gfx/pokemon/en/back.pic"
+SuiPicFront::         INCBIN "gfx/pokemon/sui/front.pic"
+SuiPicBack::          INCBIN "gfx/pokemon/sui/back.pic"
+NyulaPicFront::       INCBIN "gfx/pokemon/nyula/front.pic"
+NyulaPicBack::        INCBIN "gfx/pokemon/nyula/back.pic"
 
 
 SECTION "gfx/pokemon/pkmn_pics.asm@PKMN Pics 11", ROMX
 
-HououPicFront::       INCBIN "gfx/pokemon/houou/front.pic"         ; 0x07c000--0x07c2ab
-HououPicBack::        INCBIN "gfx/pokemon/houou/back.pic"          ; 0x07c2ab--0x07c3e7
-TogepyPicFront::      INCBIN "gfx/pokemon/togepy/front.pic"        ; 0x07c3e7--0x07c4ea
-TogepyPicBack::       INCBIN "gfx/pokemon/togepy/back.pic"         ; 0x07c4ea--0x07c626
-BuluPicFront::        INCBIN "gfx/pokemon/bulu/front.pic"          ; 0x07c626--0x07c761
-BuluPicBack::         INCBIN "gfx/pokemon/bulu/back.pic"           ; 0x07c761--0x07c891
-TailPicFront::        INCBIN "gfx/pokemon/tail/front.pic"          ; 0x07c891--0x07c99f
-TailPicBack::         INCBIN "gfx/pokemon/tail/back.pic"           ; 0x07c99f--0x07ca6b
-LeafyPicFront::       INCBIN "gfx/pokemon/leafy/front.pic"         ; 0x07ca6b--0x07cc18
-LeafyPicBack::        INCBIN "gfx/pokemon/leafy/back.pic"          ; 0x07cc18--0x07cd6a
+HououPicFront::       INCBIN "gfx/pokemon/houou/front.pic"
+HououPicBack::        INCBIN "gfx/pokemon/houou/back.pic"
+TogepyPicFront::      INCBIN "gfx/pokemon/togepy/front.pic"
+TogepyPicBack::       INCBIN "gfx/pokemon/togepy/back.pic"
+BuluPicFront::        INCBIN "gfx/pokemon/bulu/front.pic"
+BuluPicBack::         INCBIN "gfx/pokemon/bulu/back.pic"
+TailPicFront::        INCBIN "gfx/pokemon/tail/front.pic"
+TailPicBack::         INCBIN "gfx/pokemon/tail/back.pic"
+LeafyPicFront::       INCBIN "gfx/pokemon/leafy/front.pic"
+LeafyPicBack::        INCBIN "gfx/pokemon/leafy/back.pic"

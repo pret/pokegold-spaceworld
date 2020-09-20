@@ -1412,4 +1412,3 @@ Song_LeaderBattle_branch_eccc9::
 	octave 4
 	G_ 6
 	loopchannel 0, Song_LeaderBattle_branch_eccc9
-; 0xece31

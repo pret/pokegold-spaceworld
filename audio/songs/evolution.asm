@@ -123,4 +123,3 @@ Song_Evolution_branch_edba7::
 	A_ 2
 	rest 2
 	endchannel
-; 0xedbbd

@@ -423,4 +423,3 @@ Song_Route1_branch_ec625::
 	snare4 2
 	loopchannel 0, Song_Route1_branch_ec625
 	endchannel
-; 0xec685

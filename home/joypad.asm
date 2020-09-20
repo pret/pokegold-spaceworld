@@ -166,7 +166,6 @@ GetJoypadDebounced::
 	ld a, $05
 	ld [wVBlankJoyFrameCounter], a
 	ret
-; 0x8ad
 
 TextboxWaitPressAorB_BlinkCursor:
 ; Show a blinking cursor in the lower right-hand
@@ -183,7 +182,7 @@ TextboxWaitPressAorB_BlinkCursor:
 	xor a
 	ldh [hTextBoxCursorBlinkInterval], a
 	ld a, $06
-	ldh [hTextBoxCursorBlinkInterval + 1], a ; initially, 0x600 iterations
+	ldh [hTextBoxCursorBlinkInterval + 1], a ; initially, $600 iterations
 .loop
 	push hl
 	coord hl, (TEXTBOX_WIDTH - 2), (TEXTBOX_Y + TEXTBOX_HEIGHT - 1)
@@ -249,7 +248,7 @@ TextboxBlinkCursor::
 ; frame tile.
 ; hl - address of cursor
 ; hTextBoxCursorBlinkInterval - initial delay between toggling
-;                               subsequent delays will be 0x6FF
+;                               subsequent delays will be $6FF
 ;                               calls of this function
 ; CAUTION: if the cursor is not shown initially, even initial
 ; hTextBoxCursorBlinkInterval values will cause no cursor
@@ -273,7 +272,7 @@ TextboxBlinkCursor::
 	ld a, $ff
 	ldh [hTextBoxCursorBlinkInterval], a
 	ld a, $06
-	ldh [hTextBoxCursorBlinkInterval + 1], a ; reset to 0x6FF iterations
+	ldh [hTextBoxCursorBlinkInterval + 1], a ; reset to $6FF iterations
 	ret
 .showCursorCountdown
 	ldh a, [hTextBoxCursorBlinkInterval]
@@ -289,7 +288,7 @@ TextboxBlinkCursor::
 	ldh [hTextBoxCursorBlinkInterval + 1], a
 	ret nz
 	ld a, $06
-	ldh [hTextBoxCursorBlinkInterval + 1], a ; reset to 0x6FF iterations
+	ldh [hTextBoxCursorBlinkInterval + 1], a ; reset to $6FF iterations
 	ld a, "▼"
 	ld [hl], a
 	ret

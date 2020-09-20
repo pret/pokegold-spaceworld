@@ -93,14 +93,14 @@ MailIconGFX::
 INCBIN "gfx/icons/mail.2bpp"
 
 SECTION "gfx.asm@Trainer Card GFX", ROMX
-TrainerCardBorderGFX::             INCBIN "gfx/trainer_card/border.2bpp"
-TrainerCardGFX::                   INCBIN "gfx/trainer_card/trainer_card.2bpp" ; 0x013171--0x013381
-TrainerCardColonGFX::              INCBIN "gfx/trainer_card/colon.2bpp"        ; 0x013381--0x013391
-TrainerCardIDNoGFX::               INCBIN "gfx/trainer_card/id_no.2bpp"        ; 0x013391--0x0133B1
+TrainerCardBorderGFX:: INCBIN "gfx/trainer_card/border.2bpp"
+TrainerCardGFX:: INCBIN "gfx/trainer_card/trainer_card.2bpp"
+TrainerCardColonGFX:: INCBIN "gfx/trainer_card/colon.2bpp"
+TrainerCardIDNoGFX:: INCBIN "gfx/trainer_card/id_no.2bpp"
 TrainerCardIDNoGFXEnd::
-TrainerCardLeadersGFX::            INCBIN "gfx/trainer_card/leaders.2bpp"      ; 0x0133B1--0x133BA1
+TrainerCardLeadersGFX:: INCBIN "gfx/trainer_card/leaders.2bpp"
 	db $18, $00 ; leftover of previous graphics
-Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp" ; 0x13ba3
+Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp"
 
 SECTION "gfx.asm@Bank 6 Tilesets 00", ROMX
 Tileset_00_GFX:
@@ -188,7 +188,7 @@ INCBIN "gfx/tilesets/tileset_common.2bpp"
 
 SECTION "gfx.asm@PokeBalls GFX", ROMX
 
-PokeBallsGFX::                   INCBIN "gfx/misc/poke_balls.2bpp" ; 0x038494--0x0384d4
+PokeBallsGFX:: INCBIN "gfx/misc/poke_balls.2bpp"
 
 SECTION "gfx.asm@Pokedex GFX", ROMX
 PokedexButtonsGFX::
@@ -213,8 +213,8 @@ BluePic:: INCBIN "gfx/trainer/blue.pic"	; Gen 1 Pokemaniac
 GamaPic:: INCBIN "gfx/trainer/gama.pic" ; Gen 1 Super Nerd
 RivalPic:: INCBIN "gfx/trainer/rival.pic"
 OakPic:: INCBIN "gfx/trainer/oak.pic"
-ProtagonistPic:: INCBIN "/gfx/trainer/protagonist.pic"
-KurtPic:: INCBIN "/gfx/trainer/kurt.pic"
+ProtagonistPic:: INCBIN "gfx/trainer/protagonist.pic"
+KurtPic:: INCBIN "gfx/trainer/kurt.pic"
 YoungsterPic:: INCBIN "gfx/trainer/youngster.pic"
 SchoolboyPic:: INCBIN "gfx/trainer/schoolboy.pic"
 FledglingPic:: INCBIN "gfx/trainer/fledgling.pic"
@@ -464,62 +464,66 @@ INCBIN "gfx/intro/fushigibana.2bpp"
 
 SECTION "gfx.asm@Misc GFX", ROMX
 FontExtraGFX::
-FontExtraAB_GFX::                 INCBIN "gfx/font/font_extra.ab.2bpp"          ; 0x0f8162--0x0f8182
-FontExtraCDEFGHIVSLM_GFX::        INCBIN "gfx/font/font_extra.cdefghivslm.2bpp" ; 0x0f8182--0x0f8242
-FontSmallKanaPunctuationGFX::     INCBIN "gfx/font/small_kana_punctuation.2bpp" ; 0x0f8242--0x0f82f2
+FontExtraAB_GFX:: INCBIN "gfx/font/font_extra.ab.2bpp"
+FontExtraCDEFGHIVSLM_GFX:: INCBIN "gfx/font/font_extra.cdefghivslm.2bpp"
+FontSmallKanaPunctuationGFX:: INCBIN "gfx/font/small_kana_punctuation.2bpp"
 FontSmallKanaPunctuationGFXEnd::
-Unreferenced_DefaultFrame0GFX::   INCBIN "gfx/frames/1.2bpp"                    ; 0x0f82f2--0x0f8362
-FontGFX::                         INCBIN "gfx/font/font.1bpp"                   ; 0x0f8362--0x0f8712 kana
-FontGFXEnd::                                                                    ; 0x0f8712--0x0f8762 numbers
+Unreferenced_DefaultFrame0GFX:: INCBIN "gfx/frames/1.2bpp"
+FontGFX:: INCBIN "gfx/font/font.1bpp"
+FontGFXEnd::
 FontBattleExtraGFX::
-BattleHPBarGFX::                  INCBIN "gfx/battle/hp_bar.2bpp"               ; 0x0f8762--0x0f8822
+BattleHPBarGFX:: INCBIN "gfx/battle/hp_bar.2bpp"
 BattleHPBarGFXEnd::
-HpExpBarParts0_2bppGFX::          INCBIN "gfx/battle/hp_exp_bar_parts0.2bpp"    ; 0x0f8822--0x0f8862
-BattleMarkersGFX::                INCBIN "gfx/battle/markers.2bpp"              ; 0x0f8862--0x0f8892
+HpExpBarParts0_2bppGFX:: INCBIN "gfx/battle/hp_exp_bar_parts0.2bpp"
+BattleMarkersGFX:: INCBIN "gfx/battle/markers.2bpp"
 BattleMarkersGFXEnd::
-LevelUpGFX::                      INCBIN "gfx/battle/levelup.2bpp"              ; 0x0f8892--0x0f88f2
+LevelUpGFX:: INCBIN "gfx/battle/levelup.2bpp"
 LevelUpGFXEnd::
-Unreferenced_DefaultFrame1::      INCBIN "gfx/frames/1.2bpp"                    ; 0x0f88f2--0x0f8962
+
+Unreferenced_DefaultFrame1:: INCBIN "gfx/frames/1.2bpp"
+
 FrameGFX::
-FrameGFXFirstFrame::              INCBIN "gfx/frames/1.1bpp"                    ; 0x0f8962--0x0f8992
+FrameGFXFirstFrame:: INCBIN "gfx/frames/1.1bpp"
 FrameGFXFirstFrameEnd::
-                                  INCBIN "gfx/frames/2.1bpp"                    ; 0x0f8992--0x0f89c2
-                                  INCBIN "gfx/frames/3.1bpp"                    ; 0x0f89c2--0x0f89f2
-                                  INCBIN "gfx/frames/4.1bpp"                    ; 0x0f89f2--0x0f8a22
-                                  INCBIN "gfx/frames/5.1bpp"                    ; 0x0f8a22--0x0f8a52
-                                  INCBIN "gfx/frames/6.1bpp"                    ; 0x0f8a52--0x0f8a82
-                                  INCBIN "gfx/frames/7.1bpp"                    ; 0x0f8a82--0x0f8ab2
-                                  INCBIN "gfx/frames/8.1bpp"                    ; 0x0f8ab2--0x0f8ae2
-                                  INCBIN "gfx/frames/9.1bpp"                    ; 0x0f8ae2--0x0f8b12
-StatsGFX::                        INCBIN "gfx/stats/separator.2bpp"             ; 0x0f8b12--0x0f8b22
-                                  INCBIN "gfx/stats/stats.2bpp"                 ; 0x0f8b22--0x0f8c22
+INCBIN "gfx/frames/2.1bpp"
+INCBIN "gfx/frames/3.1bpp"
+INCBIN "gfx/frames/4.1bpp"
+INCBIN "gfx/frames/5.1bpp"
+INCBIN "gfx/frames/6.1bpp"
+INCBIN "gfx/frames/7.1bpp"
+INCBIN "gfx/frames/8.1bpp"
+INCBIN "gfx/frames/9.1bpp"
+
+StatsGFX::
+INCBIN "gfx/stats/separator.2bpp"
+INCBIN "gfx/stats/stats.2bpp"
 StatsGFXEnd::
 
-HpExpBarParts0GFX::               INCBIN "gfx/battle/hp_exp_bar_parts0.1bpp"    ; 0x0f8c42--0x0f8c5a
+HpExpBarParts0GFX:: INCBIN "gfx/battle/hp_exp_bar_parts0.1bpp"
 HpExpBarParts0GFXEnd::
-HpExpBarParts1GFX::               INCBIN "gfx/battle/hp_exp_bar_parts1.1bpp"    ; 0x0f8c42--0x0f8c5a
+HpExpBarParts1GFX:: INCBIN "gfx/battle/hp_exp_bar_parts1.1bpp"
 HpExpBarParts1GFXEnd::
-HpExpBarParts2GFX::               INCBIN "gfx/battle/hp_exp_bar_parts2.1bpp"    ; 0x0f8c5a--0x0f8c6a
+HpExpBarParts2GFX:: INCBIN "gfx/battle/hp_exp_bar_parts2.1bpp"
 HpExpBarParts2GFXEnd::
-HpExpBarParts3GFX::               INCBIN "gfx/battle/hp_exp_bar_parts3.1bpp"    ; 0x0f8c6a--0x0f8c72
+HpExpBarParts3GFX:: INCBIN "gfx/battle/hp_exp_bar_parts3.1bpp"
 HpExpBarParts3GFXEnd::
-ExpBarGFX::                       INCBIN "gfx/battle/exp_bar.2bpp"              ; 0x0f8c72--0x0f8cf2
+ExpBarGFX:: INCBIN "gfx/battle/exp_bar.2bpp"
 ExpBarGFXEnd::
-PokedexGFX::                      INCBIN "gfx/pokedex/pokedex.2bpp"             ; 0x0f8cf2--0x0f8dc2
+PokedexGFX:: INCBIN "gfx/pokedex/pokedex.2bpp"
 PokedexGFXEnd::
-PokedexLocationGFX::              INCBIN "gfx/pokedex/locations.2bpp"           ; 0x0f8dc2--0x0f8e12
+PokedexLocationGFX:: INCBIN "gfx/pokedex/locations.2bpp"
 PokedexLocationGFXEnd::
-TownMapGFX::                      INCBIN "gfx/trainer_gear/town_map.2bpp"       ; 0x0f8e12--0x0f8fc2
+TownMapGFX:: INCBIN "gfx/trainer_gear/town_map.2bpp"
 TownMapGFXEnd::
-HUD_GFX::                         INCBIN "gfx/hud/hud.2bpp"                     ; 0x0f8fc2--0x0f9052
+HUD_GFX:: INCBIN "gfx/hud/hud.2bpp"
 HUD_GFXEnd::
-BoldAlphabetGFX::                 INCBIN "gfx/font/alphabet.1bpp"
-AnnonAlphabetGFX::                INCBIN "gfx/font/annon_alphabet.1bpp"
-EmptyTile1bppGFX::                INCBIN "gfx/misc/empty_tile.1bpp"             ; 0x0f9322--0x0f932a
+BoldAlphabetGFX:: INCBIN "gfx/font/alphabet.1bpp"
+AnnonAlphabetGFX:: INCBIN "gfx/font/annon_alphabet.1bpp"
+EmptyTile1bppGFX:: INCBIN "gfx/misc/empty_tile.1bpp"
 EmptyTile1bppGFXEnd::
-BlackTileAndCursor1bppGFX::       INCBIN "gfx/misc/black_tile_cursor.1bpp"      ; 0x0f932a--0x0f933a
+BlackTileAndCursor1bppGFX:: INCBIN "gfx/misc/black_tile_cursor.1bpp"
 BlackTileAndCursor1bppGFXEnd::
-PackIconGFX::                     INCBIN "gfx/pack/pack_icons.2bpp"             ; 0x0f933a--0x0f941a
+PackIconGFX:: INCBIN "gfx/pack/pack_icons.2bpp"
 PackIconGFXEnd::
 
 SECTION "gfx.asm@Town Map Cursor", ROMX

@@ -4,7 +4,7 @@ SECTION "data/tileset_headers.asm", ROMX
 
 Tilesets::
 
-Tileset_00: ; 0xc88d
+Tileset_00:
 	db $06 ; bank
 	dw $4400 ; blocks
 	dw Tileset_00_GFX ; graphics
@@ -14,7 +14,7 @@ Tileset_00: ; 0xc88d
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_01: ; 0xc898
+Tileset_01:
 	db $06 ; bank
 	dw $5c00 ; blocks
 	dw Tileset_01_GFX ; graphics
@@ -24,7 +24,7 @@ Tileset_01: ; 0xc898
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_02: ; 0xc8a3
+Tileset_02:
 	db $06 ; bank
 	dw $6a00 ; blocks
 	dw Tileset_02_GFX ; graphics
@@ -34,7 +34,7 @@ Tileset_02: ; 0xc8a3
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_03: ; 0xc8ae
+Tileset_03:
 	db $07 ; bank
 	dw $7600 ; blocks
 	dw Tileset_03_GFX ; graphics
@@ -44,7 +44,7 @@ Tileset_03: ; 0xc8ae
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_04: ; 0xc8b9
+Tileset_04:
 	db $08 ; bank
 	dw $4400 ; blocks
 	dw Tileset_04_GFX ; graphics
@@ -54,7 +54,7 @@ Tileset_04: ; 0xc8b9
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_05: ; 0xc8c4
+Tileset_05:
 	db $07 ; bank
 	dw $6800 ; blocks
 	dw Tileset_05_GFX ; graphics
@@ -64,7 +64,7 @@ Tileset_05: ; 0xc8c4
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_06: ; 0xc8cf
+Tileset_06:
 	db $07 ; bank
 	dw $5a00 ; blocks
 	dw Tileset_06_GFX ; graphics
@@ -74,7 +74,7 @@ Tileset_06: ; 0xc8cf
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_07: ; 0xc8da
+Tileset_07:
 	db $08 ; bank
 	dw $5200 ; blocks
 	dw Tileset_07_GFX ; graphics
@@ -84,7 +84,7 @@ Tileset_07: ; 0xc8da
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_08: ; 0xc8e5
+Tileset_08:
 	db $08 ; bank
 	dw $6000 ; blocks
 	dw Tileset_08_GFX ; graphics
@@ -94,7 +94,7 @@ Tileset_08: ; 0xc8e5
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_09: ; 0xc8f0
+Tileset_09:
 	db $06 ; bank
 	dw $7a00 ; blocks
 	dw Tileset_09_GFX ; graphics
@@ -104,7 +104,7 @@ Tileset_09: ; 0xc8f0
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_0a: ; 0xc8fb
+Tileset_0a:
 	db $13 ; bank
 	dw $4600 ; blocks
 	dw Tileset_0a_GFX ; graphics
@@ -114,7 +114,7 @@ Tileset_0a: ; 0xc8fb
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_0b: ; 0xc906
+Tileset_0b:
 	db $0c ; bank
 	dw $5100 ; blocks
 	dw Tileset_0b_GFX ; graphics
@@ -124,7 +124,7 @@ Tileset_0b: ; 0xc906
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_0c: ; 0xc911
+Tileset_0c:
 	db $0c ; bank
 	dw $7700 ; blocks
 	dw Tileset_0c_GFX ; graphics
@@ -134,7 +134,7 @@ Tileset_0c: ; 0xc911
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_0d: ; 0xc91c
+Tileset_0d:
 	db $0c ; bank
 	dw $5c00 ; blocks
 	dw Tileset_0d_GFX ; graphics
@@ -144,7 +144,7 @@ Tileset_0d: ; 0xc91c
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_0e: ; 0xc927
+Tileset_0e:
 	db $07 ; bank
 	dw $5100 ; blocks
 	dw Tileset_0e_GFX ; graphics
@@ -154,7 +154,7 @@ Tileset_0e: ; 0xc927
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_0f: ; 0xc932
+Tileset_0f:
 	db $08 ; bank
 	dw $7000 ; blocks
 	dw Tileset_0f_GFX ; graphics
@@ -164,7 +164,7 @@ Tileset_0f: ; 0xc932
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_10: ; 0xc93d
+Tileset_10:
 	db $37 ; bank
 	dw $4600 ; blocks
 	dw Tileset_10_GFX ; graphics
@@ -174,7 +174,7 @@ Tileset_10: ; 0xc93d
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_11: ; 0xc948
+Tileset_11:
 	db $08 ; bank
 	dw $7b00 ; blocks
 	dw Tileset_11_GFX ; graphics
@@ -184,7 +184,7 @@ Tileset_11: ; 0xc948
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_12: ; 0xc953
+Tileset_12:
 	db $0c ; bank
 	dw $4600 ; blocks
 	dw Tileset_12_GFX ; graphics
@@ -194,7 +194,7 @@ Tileset_12: ; 0xc953
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_13: ; 0xc95e
+Tileset_13:
 	db $07 ; bank
 	dw $4600 ; blocks
 	dw Tileset_13_GFX ; graphics
@@ -204,7 +204,7 @@ Tileset_13: ; 0xc95e
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_14: ; 0xc969
+Tileset_14:
 	db $0c ; bank
 	dw $6700 ; blocks
 	dw Tileset_14_GFX ; graphics
@@ -214,7 +214,7 @@ Tileset_14: ; 0xc969
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_15: ; 0xc974
+Tileset_15:
 	db $37 ; bank
 	dw $5100 ; blocks
 	dw Tileset_15_GFX ; graphics
@@ -224,7 +224,7 @@ Tileset_15: ; 0xc974
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_16: ; 0xc97f
+Tileset_16:
 	db $13 ; bank
 	dw $5100 ; blocks
 	dw Tileset_16_GFX ; graphics
@@ -234,7 +234,7 @@ Tileset_16: ; 0xc97f
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_17: ; 0xc98a
+Tileset_17:
 	db $37 ; bank
 	dw $6100 ; blocks
 	dw Tileset_17_GFX ; graphics
@@ -244,7 +244,7 @@ Tileset_17: ; 0xc98a
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_18: ; 0xc995
+Tileset_18:
 	db $37 ; bank
 	dw $7100 ; blocks
 	dw Tileset_18_GFX ; graphics
@@ -254,7 +254,7 @@ Tileset_18: ; 0xc995
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_19: ; 0xc9a0
+Tileset_19:
 	db $13 ; bank
 	dw $5f00 ; blocks
 	dw Tileset_19_GFX ; graphics
@@ -264,7 +264,7 @@ Tileset_19: ; 0xc9a0
 	db $00 ; talking over tile 3
 	db $00 ; unknown
 
-Tileset_1a: ; 0xc9ab
+Tileset_1a:
 	db $13 ; bank
 	dw $6d00 ; blocks
 	dw Tileset_1a_GFX ; graphics
@@ -275,7 +275,7 @@ Tileset_1a: ; 0xc9ab
 	db $00 ; unknown
 
 ; uses tileset 00 graphics
-Tileset_1b: ; 0xc9b6
+Tileset_1b:
 	db $06 ; bank
 	dw $4e00 ; blocks
 	dw Tileset_00_GFX ; graphics

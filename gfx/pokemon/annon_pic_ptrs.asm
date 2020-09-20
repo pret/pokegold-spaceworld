@@ -52,4 +52,4 @@ AnnonPicPtrsBack::
 	dw AnnonYPicFront
 	dw AnnonYPicBack
 	dw AnnonZPicFront
-	dw AnnonYPicBack  ; typo in original list
+	dw AnnonYPicBack ; typo in original list, should be AnnonZPicBack

@@ -1,53 +1,53 @@
 AnnonPics::
-AnnonAPicFront:: INCBIN "gfx/pokemon/annon_a/front.pic" ; 0x07cdd2--0x07ce57
-AnnonAPicBack::  INCBIN "gfx/pokemon/annon_a/back.pic"  ; 0x07ce57--0x07ced0
-AnnonBPicFront:: INCBIN "gfx/pokemon/annon_b/front.pic" ; 0x07ced0--0x07cf64
-AnnonBPicBack::  INCBIN "gfx/pokemon/annon_b/back.pic"  ; 0x07cf64--0x07cfed
-AnnonCPicFront:: INCBIN "gfx/pokemon/annon_c/front.pic" ; 0x07cfed--0x07d0a1
-AnnonCPicBack::  INCBIN "gfx/pokemon/annon_c/back.pic"  ; 0x07d0a1--0x07d147
-AnnonDPicFront:: INCBIN "gfx/pokemon/annon_d/front.pic" ; 0x07d147--0x07d1ec
-AnnonDPicBack::  INCBIN "gfx/pokemon/annon_d/back.pic"  ; 0x07d1ec--0x07d285
-AnnonEPicFront:: INCBIN "gfx/pokemon/annon_e/front.pic" ; 0x07d285--0x07d30e
-AnnonEPicBack::  INCBIN "gfx/pokemon/annon_e/back.pic"  ; 0x07d30e--0x07d38b
-AnnonFPicFront:: INCBIN "gfx/pokemon/annon_f/front.pic" ; 0x07d38b--0x07d425
-AnnonFPicBack::  INCBIN "gfx/pokemon/annon_f/back.pic"  ; 0x07d425--0x07d4ae
-AnnonGPicFront:: INCBIN "gfx/pokemon/annon_g/front.pic" ; 0x07d4ae--0x07d53f
-AnnonGPicBack::  INCBIN "gfx/pokemon/annon_g/back.pic"  ; 0x07d53f--0x07d5c4
-AnnonHPicFront:: INCBIN "gfx/pokemon/annon_h/front.pic" ; 0x07d5c4--0x07d693
-AnnonHPicBack::  INCBIN "gfx/pokemon/annon_h/back.pic"  ; 0x07d693--0x07d757
-AnnonIPicFront:: INCBIN "gfx/pokemon/annon_i/front.pic" ; 0x07d757--0x07d7c0
-AnnonIPicBack::  INCBIN "gfx/pokemon/annon_i/back.pic"  ; 0x07d7c0--0x07d81f
-AnnonJPicFront:: INCBIN "gfx/pokemon/annon_j/front.pic" ; 0x07d81f--0x07d89b
-AnnonJPicBack::  INCBIN "gfx/pokemon/annon_j/back.pic"  ; 0x07d89b--0x07d909
-AnnonKPicFront:: INCBIN "gfx/pokemon/annon_k/front.pic" ; 0x07d909--0x07d98d
-AnnonKPicBack::  INCBIN "gfx/pokemon/annon_k/back.pic"  ; 0x07d98d--0x07da06
-AnnonLPicFront:: INCBIN "gfx/pokemon/annon_l/front.pic" ; 0x07da06--0x07da7a
-AnnonLPicBack::  INCBIN "gfx/pokemon/annon_l/back.pic"  ; 0x07da7a--0x07dade
-AnnonMPicFront:: INCBIN "gfx/pokemon/annon_m/front.pic" ; 0x07dade--0x07dba1
-AnnonMPicBack::  INCBIN "gfx/pokemon/annon_m/back.pic"  ; 0x07dba1--0x07dc57
-AnnonNPicFront:: INCBIN "gfx/pokemon/annon_n/front.pic" ; 0x07dc57--0x07dcf4
-AnnonNPicBack::  INCBIN "gfx/pokemon/annon_n/back.pic"  ; 0x07dcf4--0x07dd8b
-AnnonOPicFront:: INCBIN "gfx/pokemon/annon_o/front.pic" ; 0x07dd8b--0x07de55
-AnnonOPicBack::  INCBIN "gfx/pokemon/annon_o/back.pic"  ; 0x07de55--0x07df15
-AnnonPPicFront:: INCBIN "gfx/pokemon/annon_p/front.pic" ; 0x07df15--0x07df7d
-AnnonPPicBack::  INCBIN "gfx/pokemon/annon_p/back.pic"  ; 0x07df7d--0x07dfd6
-AnnonQPicFront:: INCBIN "gfx/pokemon/annon_q/front.pic" ; 0x07dfd6--0x07e03d
-AnnonQPicBack::  INCBIN "gfx/pokemon/annon_q/back.pic"  ; 0x07e03d--0x07e099
-AnnonRPicFront:: INCBIN "gfx/pokemon/annon_r/front.pic" ; 0x07e099--0x07e0ff
-AnnonRPicBack::  INCBIN "gfx/pokemon/annon_r/back.pic"  ; 0x07e0ff--0x07e159
-AnnonSPicFront:: INCBIN "gfx/pokemon/annon_s/front.pic" ; 0x07e159--0x07e1f0
-AnnonSPicBack::  INCBIN "gfx/pokemon/annon_s/back.pic"  ; 0x07e1f0--0x07e27a
-AnnonTPicFront:: INCBIN "gfx/pokemon/annon_t/front.pic" ; 0x07e27a--0x07e2e8
-AnnonTPicBack::  INCBIN "gfx/pokemon/annon_t/back.pic"  ; 0x07e2e8--0x07e348
-AnnonUPicFront:: INCBIN "gfx/pokemon/annon_u/front.pic" ; 0x07e348--0x07e3e7
-AnnonUPicBack::  INCBIN "gfx/pokemon/annon_u/back.pic"  ; 0x07e3e7--0x07e47a
-AnnonVPicFront:: INCBIN "gfx/pokemon/annon_v/front.pic" ; 0x07e47a--0x07e50a
-AnnonVPicBack::  INCBIN "gfx/pokemon/annon_v/back.pic"  ; 0x07e50a--0x07e589
-AnnonWPicFront:: INCBIN "gfx/pokemon/annon_w/front.pic" ; 0x07e589--0x07e60d
-AnnonWPicBack::  INCBIN "gfx/pokemon/annon_w/back.pic"  ; 0x07e60d--0x07e681
-AnnonXPicFront:: INCBIN "gfx/pokemon/annon_x/front.pic" ; 0x07e681--0x07e705
-AnnonXPicBack::  INCBIN "gfx/pokemon/annon_x/back.pic"  ; 0x07e705--0x07e77b
-AnnonYPicFront:: INCBIN "gfx/pokemon/annon_y/front.pic" ; 0x07e77b--0x07e801
-AnnonYPicBack::  INCBIN "gfx/pokemon/annon_y/back.pic"  ; 0x07e801--0x07e87c
-AnnonZPicFront:: INCBIN "gfx/pokemon/annon_z/front.pic" ; 0x07e87c--0x07e8fa
-AnnonZPicBack::  INCBIN "gfx/pokemon/annon_z/back.pic"  ; 0x07e8fa--0x07e96a
+AnnonAPicFront:: INCBIN "gfx/pokemon/annon_a/front.pic"
+AnnonAPicBack::  INCBIN "gfx/pokemon/annon_a/back.pic"
+AnnonBPicFront:: INCBIN "gfx/pokemon/annon_b/front.pic"
+AnnonBPicBack::  INCBIN "gfx/pokemon/annon_b/back.pic"
+AnnonCPicFront:: INCBIN "gfx/pokemon/annon_c/front.pic"
+AnnonCPicBack::  INCBIN "gfx/pokemon/annon_c/back.pic"
+AnnonDPicFront:: INCBIN "gfx/pokemon/annon_d/front.pic"
+AnnonDPicBack::  INCBIN "gfx/pokemon/annon_d/back.pic"
+AnnonEPicFront:: INCBIN "gfx/pokemon/annon_e/front.pic"
+AnnonEPicBack::  INCBIN "gfx/pokemon/annon_e/back.pic"
+AnnonFPicFront:: INCBIN "gfx/pokemon/annon_f/front.pic"
+AnnonFPicBack::  INCBIN "gfx/pokemon/annon_f/back.pic"
+AnnonGPicFront:: INCBIN "gfx/pokemon/annon_g/front.pic"
+AnnonGPicBack::  INCBIN "gfx/pokemon/annon_g/back.pic"
+AnnonHPicFront:: INCBIN "gfx/pokemon/annon_h/front.pic"
+AnnonHPicBack::  INCBIN "gfx/pokemon/annon_h/back.pic"
+AnnonIPicFront:: INCBIN "gfx/pokemon/annon_i/front.pic"
+AnnonIPicBack::  INCBIN "gfx/pokemon/annon_i/back.pic"
+AnnonJPicFront:: INCBIN "gfx/pokemon/annon_j/front.pic"
+AnnonJPicBack::  INCBIN "gfx/pokemon/annon_j/back.pic"
+AnnonKPicFront:: INCBIN "gfx/pokemon/annon_k/front.pic"
+AnnonKPicBack::  INCBIN "gfx/pokemon/annon_k/back.pic"
+AnnonLPicFront:: INCBIN "gfx/pokemon/annon_l/front.pic"
+AnnonLPicBack::  INCBIN "gfx/pokemon/annon_l/back.pic"
+AnnonMPicFront:: INCBIN "gfx/pokemon/annon_m/front.pic"
+AnnonMPicBack::  INCBIN "gfx/pokemon/annon_m/back.pic"
+AnnonNPicFront:: INCBIN "gfx/pokemon/annon_n/front.pic"
+AnnonNPicBack::  INCBIN "gfx/pokemon/annon_n/back.pic"
+AnnonOPicFront:: INCBIN "gfx/pokemon/annon_o/front.pic"
+AnnonOPicBack::  INCBIN "gfx/pokemon/annon_o/back.pic"
+AnnonPPicFront:: INCBIN "gfx/pokemon/annon_p/front.pic"
+AnnonPPicBack::  INCBIN "gfx/pokemon/annon_p/back.pic"
+AnnonQPicFront:: INCBIN "gfx/pokemon/annon_q/front.pic"
+AnnonQPicBack::  INCBIN "gfx/pokemon/annon_q/back.pic"
+AnnonRPicFront:: INCBIN "gfx/pokemon/annon_r/front.pic"
+AnnonRPicBack::  INCBIN "gfx/pokemon/annon_r/back.pic"
+AnnonSPicFront:: INCBIN "gfx/pokemon/annon_s/front.pic"
+AnnonSPicBack::  INCBIN "gfx/pokemon/annon_s/back.pic"
+AnnonTPicFront:: INCBIN "gfx/pokemon/annon_t/front.pic"
+AnnonTPicBack::  INCBIN "gfx/pokemon/annon_t/back.pic"
+AnnonUPicFront:: INCBIN "gfx/pokemon/annon_u/front.pic"
+AnnonUPicBack::  INCBIN "gfx/pokemon/annon_u/back.pic"
+AnnonVPicFront:: INCBIN "gfx/pokemon/annon_v/front.pic"
+AnnonVPicBack::  INCBIN "gfx/pokemon/annon_v/back.pic"
+AnnonWPicFront:: INCBIN "gfx/pokemon/annon_w/front.pic"
+AnnonWPicBack::  INCBIN "gfx/pokemon/annon_w/back.pic"
+AnnonXPicFront:: INCBIN "gfx/pokemon/annon_x/front.pic"
+AnnonXPicBack::  INCBIN "gfx/pokemon/annon_x/back.pic"
+AnnonYPicFront:: INCBIN "gfx/pokemon/annon_y/front.pic"
+AnnonYPicBack::  INCBIN "gfx/pokemon/annon_y/back.pic"
+AnnonZPicFront:: INCBIN "gfx/pokemon/annon_z/front.pic"
+AnnonZPicBack::  INCBIN "gfx/pokemon/annon_z/back.pic"

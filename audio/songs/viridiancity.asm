@@ -674,4 +674,3 @@ Song_ViridianCity_branch_ec4bd::
 	triangle2 2
 	triangle2 2
 	endchannel
-; 0xec4c2

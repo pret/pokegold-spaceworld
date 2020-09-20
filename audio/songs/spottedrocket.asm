@@ -92,4 +92,3 @@ Song_SpottedRocket_branch_ed9df::
 	rest 3
 	A# 4
 	loopchannel 0, Song_SpottedRocket_branch_ed9df
-; 0xed9ea

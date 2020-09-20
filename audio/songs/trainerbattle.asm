@@ -1869,4 +1869,3 @@ Song_TrainerBattle_branch_ed2f7::
 	D_ 2
 	C_ 2
 	loopchannel 0, Song_TrainerBattle_branch_ed2f7
-; 0xed5f4

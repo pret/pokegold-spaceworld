@@ -137,4 +137,3 @@ LoadBackpackGraphics::
 	lb bc, BANK(FontSmallKanaPunctuationGFX), ((FontSmallKanaPunctuationGFXEnd - FontSmallKanaPunctuationGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	jp LoadActiveFrameGraphics
-; 0xf8162

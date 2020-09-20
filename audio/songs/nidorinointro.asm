@@ -344,4 +344,3 @@ Song_NidorinoIntro_Ch3::
 	rest 16
 	rest 14
 	endchannel
-; 0xec1b9

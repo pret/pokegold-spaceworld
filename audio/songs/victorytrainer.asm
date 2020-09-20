@@ -275,4 +275,3 @@ Song_VictoryTrainer_branch_edacc::
 	octave 4
 	A_ 3
 	loopchannel 0, Song_VictoryTrainer_branch_edacc
-; 0xedb1c

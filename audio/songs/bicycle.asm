@@ -721,4 +721,3 @@ Song_Bicycle_branch_ed96e::
 	snare7 1
 	snare7 1
 	endchannel
-; 0xed978

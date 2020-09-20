@@ -138,7 +138,6 @@ RedrawFlashlightColumn1::
 	ld d, a
 	call _RedrawFlashlightColumnBlack
 	ret
-; 0x12e8
 
 RedrawFlashlightColumn2::
 	ldh a, [hSCX]
@@ -187,7 +186,6 @@ RedrawFlashlightRow1::
 	ld d, a
 	call _RedrawFlashlightRowBlack
 	ret
-; 0x12e8
 
 RedrawFlashlightRow2::
 	ldh a, [hSCY]
@@ -415,7 +413,7 @@ endr
 VBlankCopyDouble::
 ; Copy [wVBCopyDoubleSize] 1bpp tiles
 ; from wVBCopyDoubleSrc to wVBCopyDoubleDst.
-; wVBCopyDoubleDst must be aligned to 0x10 bytes.
+; wVBCopyDoubleDst must be aligned to $10 bytes.
 
 ; While we're here, convert to 2bpp.
 ; The process is straightforward:
@@ -477,7 +475,7 @@ endr
 VBlankCopy::
 ; Copy 16 * [wVBCopySize] bytes
 ; from wVBCopySrc to wVBCopyDst.
-; wVBCopyDst must be aligned to 0x10 bytes.
+; wVBCopyDst must be aligned to $10 bytes.
 
 ; Source and destination addresses are updated,
 ; so transfer can continue in subsequent calls.
@@ -535,14 +533,12 @@ AnimateTileset::
 	call AnimateTilesetImpl
 	pop af
 	jp Bankswitch
-; 0x1531
 
 EnableSprites::
 	nop
 	ld hl, rLCDC
 	set rLCDC_SPRITES_ENABLE, [hl]
 	ret
-; 0x1538
 
 TransferToolgearRow:
 ; TransferToolgearRow
@@ -564,9 +560,9 @@ TransferToolgearRow:
 	jp TransferBgRows
 
 VBlankCopyFar::
-; Copy 0x10 * [wVBCopyFarSize] bytes
+; Copy $10 * [wVBCopyFarSize] bytes
 ; from wVBCopyFarSrcBank::wVBCopyFarSrc to wVBCopyFarDst.
-; wVBCopyFarDst must be aligned to 0x10 bytes.
+; wVBCopyFarDst must be aligned to $10 bytes.
 
 ; Source and destination addresses are updated,
 ; so transfer can continue in subsequent calls.

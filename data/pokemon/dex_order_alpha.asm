@@ -4,7 +4,7 @@ SECTION "data/pokemon/dex_order_alpha.asm", ROMX
 
 ; Every Pokémon sorted alphabetically by name (gojūon order).
 
-AlphabeticalPokedexOrder: ; 0x40943
+AlphabeticalPokedexOrder:
 	db DEX_ARBO
 	db DEX_ARBOK
 	db DEX_AQUA

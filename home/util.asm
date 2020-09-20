@@ -69,7 +69,6 @@ AddNTimes::
 	dec a
 	jr nz, .loop
 	ret
-; 0x3430
 
 memcmp:: ; TODO: rename
 ; Compare c bytes at hl and de

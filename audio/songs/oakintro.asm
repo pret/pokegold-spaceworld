@@ -442,4 +442,3 @@ Song_OakIntro_branch_ec7e9::
 	rest 3
 	loopchannel 0, Song_OakIntro_branch_ec7e9
 	endchannel
-; 0xec858

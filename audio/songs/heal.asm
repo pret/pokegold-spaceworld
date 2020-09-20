@@ -59,4 +59,3 @@ Song_Heal_Ch2::
 	E_ 6
 	rest 2
 	endchannel
-; 0xed63e

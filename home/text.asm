@@ -526,7 +526,6 @@ Text_TX_LOW::
 	pop hl
 	coord bc, TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	jp NextTextCommand
-; 0x1124
 
 Text_WAIT_BUTTON::
 ; TX_WAITBUTTON
@@ -594,7 +593,6 @@ Text_TX_NUM::
 	ld c, l
 	pop hl
 	jp NextTextCommand
-; 0x1175
 
 Text_TX_EXIT:
 ; TX_EXIT
@@ -610,7 +608,6 @@ Text_TX_EXIT:
 	pop bc
 	pop hl
 	jp NextTextCommand
-; 0x1189
 
 Text_PlaySound::
 ; Text_PlaySound
@@ -702,7 +699,6 @@ Text_TX_LINK_WAIT_BUTTON::
 	pop bc
 	pop hl
 	jp NextTextCommand
-; 0x120c
 
 TextCommands::
 	dw Text_TX
