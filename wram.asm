@@ -910,10 +910,10 @@ wTimeOfDayPalFlags:: db
 wTimeOfDayPalset:: db
 ; 76543210
 ; \/\/\/\/
-;  | | | \- Map Palette for TimeOfDay 0x00
-;  | | \--- Map Palette for TimeOfDay 0x01
-;  | \----- Map Palette for TimeOfDay 0x02
-;  \------- Map Palette for TimeOfDay 0x03
+;  | | | \- Map Palette for TimeOfDay $00 (MORN)
+;  | | \--- Map Palette for TimeOfDay $01 (DAY)
+;  | \----- Map Palette for TimeOfDay $02 (NITE)
+;  \------- Map Palette for TimeOfDay $03 (DARK)
 
 wCurTimeOfDay:: db
 

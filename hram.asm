@@ -168,13 +168,13 @@ hWY:: db
 
 hOverworldFlashlightEffect:: db
 ; Influences draw distance of map around HIRO
-; Meant to go from 0x00--> to desired distance
+; Meant to go from 0 --> to desired distance
 ; or else graphical errors will occur.
-; 0x00 - regular distance
-; 0x01 - 14x14 tile block
-; 0x02 - 10x10 tile block
-; 0x03 -  6x 6 tile block
-; 0x04 -  2x 2 tile block
+; 0 - regular distance
+; 1 - 14x14 tile block
+; 2 - 10x10 tile block
+; 3 -  6x 6 tile block
+; 4 -  2x 2 tile block
 
 hBGMapMode::
 	db
@@ -194,25 +194,25 @@ hRedrawRowOrColumnMode:: db
 ; instead of once completely for faster
 ; scrolling on overworld etc.
 ; Valid values:
-; 0x00 - no redraw
-; 0x01 - column redraw (move horizontally)
-; 0x02 - row redraw    (move vertically)
-; 0x03 - flashlight row redraw 0 (move up)
-; 0x04 - flashlight row redraw 0 (move down)
-; 0x05 - flashlight column redraw 0 (move left)
-; 0x06 - flashlight column redraw 0 (move right)
-; 0x07 - flashlight row redraw 1 (move up)
-; 0x08 - flashlight row redraw 1 (move down)
-; 0x09 - flashlight column redraw 1 (move left)
-; 0x0A - flashlight column redraw 1 (move right)
-; 0x0B - flashlight row redraw 2 (move up)
-; 0x0C - flashlight row redraw 2 (move down)
-; 0x0D - flashlight column redraw 2 (move left)
-; 0x0E - flashlight column redraw 2 (move right)
-; 0x0F - flashlight row redraw 3 (move up)
-; 0x10 - flashlight row redraw 3 (move down)
-; 0x11 - flashlight column redraw 3 (move left)
-; 0x12 - flashlight column redraw 3 (move right)
+; $00 - no redraw
+; $01 - column redraw (move horizontally)
+; $02 - row redraw    (move vertically)
+; $03 - flashlight row redraw 0 (move up)
+; $04 - flashlight row redraw 0 (move down)
+; $05 - flashlight column redraw 0 (move left)
+; $06 - flashlight column redraw 0 (move right)
+; $07 - flashlight row redraw 1 (move up)
+; $08 - flashlight row redraw 1 (move down)
+; $09 - flashlight column redraw 1 (move left)
+; $0A - flashlight column redraw 1 (move right)
+; $0B - flashlight row redraw 2 (move up)
+; $0C - flashlight row redraw 2 (move down)
+; $0D - flashlight column redraw 2 (move left)
+; $0E - flashlight column redraw 2 (move right)
+; $0F - flashlight row redraw 3 (move up)
+; $10 - flashlight row redraw 3 (move down)
+; $11 - flashlight column redraw 3 (move left)
+; $12 - flashlight column redraw 3 (move right)
 
 hRedrawRowOrColumnDest:: ds 2
 

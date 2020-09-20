@@ -76,7 +76,7 @@ InitializeNewGameWRAM:
 
 	ret
 
-; Initializes a 0xFF-terminated list preceded by a length to
+; Initializes a $FF-terminated list preceded by a length to
 ; length 0, with an immediate terminator.
 InitializeByteList:
 	xor a

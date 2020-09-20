@@ -100,9 +100,8 @@ UncompressMonSprite::
 	jp UncompressSpriteData
 
 LoadMonFrontSprite::
-; Uncompress Pokémon Front Sprite for
-; mon currently loaded in wMonHeader
-; to 0x9000
+; Uncompress Pokémon Front Sprite for mon
+; currently loaded in wMonHeader to vFrontPic
 ; de: destination location
 ; returns the sprite dimension in c
 	push de
