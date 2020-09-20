@@ -225,6 +225,8 @@ ROMX $0a
 
 ROMX $0b
 	org $4000
+	org $5677
+	"data/moves/descriptions.asm"
 
 ROMX $0c
 	org $4000

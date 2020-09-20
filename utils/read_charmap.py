@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, io
+import os
 from re import compile
 from sys import stderr
 
@@ -30,7 +30,7 @@ def parse_int(s):
 
 def read_charmap(charmap_path):
 	charmap = {}
-	with io.open(charmap_path, 'r', encoding='utf-8') as f:
+	with open(charmap_path, 'r', encoding='utf-8') as f:
 		lines = f.readlines()
 	for line in lines:
 		m = charmap_regex.match(line)
