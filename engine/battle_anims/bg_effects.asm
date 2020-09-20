@@ -174,7 +174,6 @@ BattleBGEffect_FlashInverted:
 .inverted
 	db %11100100
 	db %00011011
-; c80f3
 
 BattleBGEffect_FlashWhite:
 	ld de, .white
@@ -184,7 +183,6 @@ BattleBGEffect_FlashWhite:
 .white
 	db %11100100
 	db %00000000
-; c80fb
 
 BattleBGEffect_FlashContinue:
 ; current timer, flash duration, number of flashes
@@ -240,7 +238,6 @@ BattleBGEffect_WhiteHues:
 	db %11100000
 	db %11010000
 	db -1
-; c8141
 
 BattleBGEffect_BlackHues:
 	ld de, .Pals
@@ -258,7 +255,6 @@ BattleBGEffect_BlackHues:
 	db %11110100
 	db %11111000
 	db -1
-; c8155
 
 BattleBGEffect_AlternateHues:
 	ld de, .Pals
@@ -282,7 +278,6 @@ BattleBGEffect_AlternateHues:
 	db %01000000
 	db %10010000
 	db -2
-; c8171
 
 BattleBGEffect_06:
 	call BattleBGEffects_CheckSGB
@@ -306,7 +301,6 @@ BattleBGEffect_06:
 	db %11110000
 	db %11000000
 	db -2
-; c818b
 
 BattleBGEffect_07:
 	call BattleBGEffects_CheckSGB
@@ -330,7 +324,6 @@ BattleBGEffect_07:
 	db %11110000
 	db %11001100
 	db -2
-; c81a5
 
 BattleBGEffect_08:
 	ld de, .Pals
@@ -343,7 +336,6 @@ BattleBGEffect_08:
 	db %01100011
 	db %10000111
 	db -2
-; c81b3
 
 BattleBGEffect_HideMon:
 	call BattleBGEffects_AnonJumptable
@@ -409,7 +401,6 @@ BattleBGEffect_ShowMon:
 .EnemyData:
 	db  3, $00, 3
 	db -1
-; c8214
 
 BattleBGEffect_FeetFollow:
 	call BattleBGEffects_AnonJumptable
@@ -664,7 +655,6 @@ BattleBGEffect_EnterMon:
 	db  4, $00, 4
 	db  3, $00, 3
 	db -1
-; c83a8
 
 BattleBGEffect_ReturnMon:
 	call BGEffect_CheckBattleTurn
@@ -700,7 +690,6 @@ BattleBGEffect_ReturnMon:
 	db -2, $33, 5
 	db -3, $00, 0
 	db -1
-; c83ed
 
 BattleBGEffect_RunPicResizeScript:
 	call BattleBGEffects_AnonJumptable
@@ -903,7 +892,6 @@ ENDM
 	db $00, $15, $2a
 	db $03, $18, $2d
 	db $06, $1b, $30
-; c8545
 
 BattleBGEffect_Surf:
 	call BattleBGEffects_AnonJumptable
@@ -1764,7 +1752,6 @@ BattleBGEffect_2a:
 .data
 	db $00, $40, $90, $e4
 	db -1
-; c8acc
 
 BattleBGEffect_2b:
 	call BattleBGEffects_AnonJumptable
@@ -1892,7 +1879,6 @@ BattleBGEffect_1c:
 	db $90, $f8
 	db $40, $fc
 	db $90, $f8
-; c8be8
 
 BattleBGEffect_RapidFlash:
 	ld de, .FlashPals
@@ -1901,7 +1887,6 @@ BattleBGEffect_RapidFlash:
 
 .FlashPals:
 	db $e4, $6c, $fe
-; c8bf2
 
 BattleBGEffect_16:
 	ld de, .Pals
@@ -1910,7 +1895,6 @@ BattleBGEffect_16:
 
 .Pals:
 	db $e4, $90, $40, $ff
-; c8bfd
 
 BattleBGEffect_17:
 	ld de, .Pals
@@ -1919,7 +1903,6 @@ BattleBGEffect_17:
 
 .Pals:
 	db $e4, $f8, $fc, $ff
-; c8c08
 
 BattleBGEffect_18:
 	ld de, .Pals
@@ -1928,7 +1911,6 @@ BattleBGEffect_18:
 
 .Pals:
 	db $e4, $90, $40, $90, $fe
-; c8c14
 
 BattleBGEffect_19:
 	ld de, .Pals
@@ -1937,7 +1919,6 @@ BattleBGEffect_19:
 
 .Pals:
 	db $e4, $f8, $fc, $f8, $fe
-; c8c20
 
 BattleBGEffect_1a:
 	ld de, .Pals
@@ -1946,7 +1927,6 @@ BattleBGEffect_1a:
 
 .Pals:
 	db $e4, $f8, $fc, $f8, $e4, $90, $40, $90, $fe
-; c8c30
 
 BattleBGEffect_1b:
 	ld de, .Pals
@@ -1955,7 +1935,6 @@ BattleBGEffect_1b:
 
 .Pals:
 	db $e4, $fc, $e4, $00, $fe
-; c8c3c
 
 BattleBGEffect_1d:
 	ld de, .Pals
@@ -1964,7 +1943,6 @@ BattleBGEffect_1d:
 
 .Pals:
 	db $e4, $90, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $40, $90, $e4, $ff
-; c8c55
 
 BattleBGEffect_1e:
 	ld de, .Pals
@@ -1973,7 +1951,6 @@ BattleBGEffect_1e:
 
 .Pals:
 	db $00, $40, $90, $e4, $ff
-; c8c61
 
 BattleBGEffect_2e:
 	call Functionc8d0b
@@ -2372,5 +2349,3 @@ BattleBGEffects_Cosine:
 	callab BattleAnim_Cosine_e
 	ld a, e
 	ret
-
-; c906f (32:506f)

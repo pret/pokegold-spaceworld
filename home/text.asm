@@ -72,7 +72,6 @@ DrawTextBox::
 	ld [hl], "┘"
 
 	ret
-; e6a
 
 .PlaceChars:
 ; Place char a c times.
@@ -82,7 +81,6 @@ DrawTextBox::
 	dec d
 	jr nz, .loop
 	ret
-; e70
 
 PrintText::
 	push hl
@@ -668,7 +666,7 @@ Text_PlaySound::
 	dbw TX_SOUND_10, $0068
 	dbw TX_SOUND_11, $0069
 	dbw TX_SOUND_13, $0027
-	dbw TX_CRY_14,   MON_NIDORINA ; or MON_LEAFY?
+	dbw TX_CRY_14,   MON_NIDORINA
 	dbw TX_CRY_15,   MON_PIGEOT
 	dbw TX_CRY_16,   MON_JUGON
 

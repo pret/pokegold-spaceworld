@@ -1,7 +1,6 @@
 INCLUDE "constants.asm"
 
 SECTION "maps/placeholder/dummy_text_pointers.asm", ROMX
-; d8000 (36:4000)
 OldCityTextPointers::
 WestTextPointers::
 HaitekuTextPointers::

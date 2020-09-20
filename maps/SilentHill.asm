@@ -416,5 +416,3 @@ SilentHillTextPokemonHateString:
 	text "よのなかに　ポケモンが　きらいな"
 	line "ひとは　いるのかな？"
 	done
-
-; 7AE4

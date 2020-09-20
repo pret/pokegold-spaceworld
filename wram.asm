@@ -64,7 +64,6 @@ wIncrementTempo: dw
 wMapMusic:: db
 wCryPitch:: dw
 wCryLength:: dw
-; c1b2
 	ds 7 ; TODO
 
 wc1b9:: db
@@ -157,7 +156,6 @@ NEXTU
 
 wLYOverrides::
 	ds SCREEN_HEIGHT_PX
-; c690
 	ds $10
 wLYOverrides2::
 
@@ -166,7 +164,6 @@ NEXTU
 
 	ds $1ea
 
-; c7ea
 wActiveBGEffects::
 wBGEffect1:: battle_bg_effect wBGEffect1
 wBGEffect2:: battle_bg_effect wBGEffect2
@@ -208,7 +205,6 @@ ENDU
 
 	ds $32
 wBattleAnimEnd::
-; c845
 
 	ds $1aa ; TODO
 
@@ -375,7 +371,6 @@ wScreenSave::
 SECTION "CBB2", WRAM0[$CBB2]
 wToolgearBuffer::
 	ds $40
-	; cbe2
 
 SECTION "CBF2", WRAM0[$CBF2]
 
@@ -399,7 +394,6 @@ wMenuBorderBottomCoord:: db
 wMenuBorderRightCoord:: db
 wMenuDataPointer:: dw
 wMenuCursorBuffer:: db
-; cc0a
 	ds 8 ; TODO
 wMenuDataHeaderEnd::
 
@@ -569,7 +563,7 @@ wcd47:: ds 1
 wSelectedSwapPosition:: db
 wMenuScrollPosition:: db
 
-wTextDest:: ds 2; cd4a
+wTextDest:: ds 2
 
 wQueuedScriptBank:: db
 wQueuedScriptAddr:: dw
@@ -656,7 +650,7 @@ wPrevWarp:: db
 	ds 1
 
 UNION
-wFieldMoveScriptID:: db; cdc3
+wFieldMoveScriptID:: db
 wMapBlocksAddress:: dw
 wReplacementBlock:: db
 

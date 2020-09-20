@@ -33,5 +33,3 @@ OldCityPokecenterTimeMachineText1:
 	ld [wce37], a
 	callab Function29abf
 	ret
-
-; 25:49ac

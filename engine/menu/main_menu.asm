@@ -292,5 +292,3 @@ StartNewGame::
 	jp z, DemoStart
 	call DebugSetUpPlayer
 	jp IntroCleanup
-
-; 558D

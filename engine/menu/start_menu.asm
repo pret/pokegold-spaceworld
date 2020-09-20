@@ -345,7 +345,6 @@ DrawBackpack:
 	call DrawTextBox
 	ret
 
-; 04:600C
 	ld hl, wVramState
 	set 0, [hl]
 	call ExitMenu
@@ -993,7 +992,7 @@ PartyHeldItem:
 	call .PartyTryRecieveItem
 	call CloseWindow
 	jr .jump
-.close; 04:65B3
+.close
 	call CloseWindow
 .jump
 	jp HandleSelectedPokemon
@@ -1175,7 +1174,7 @@ ItemPrompt6753:
 	dw wcd11
 	text "は　@"
 
-.UnusedText5; 04:675A
+.UnusedText5:
 	db 1
 	dw wStringBuffer1
 	text "を"

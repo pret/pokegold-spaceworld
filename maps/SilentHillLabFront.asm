@@ -546,7 +546,7 @@ SilentHillLabFrontMoveRivalLeave:
 	call ClearAccumulator
 	ret
 
-Movememt12:; 4F93
+Movememt12:
 	db $07, $07, $07, $05, $32
 
 SilentHillLabFrontScript17:
@@ -1104,5 +1104,3 @@ SilentHillLabFrontTextString31:
 	line "おあい　することに"
 	cont "なるような　きがします"
 	done
-
-; 5BE6

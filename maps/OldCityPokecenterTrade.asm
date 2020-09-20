@@ -43,5 +43,3 @@ OldCityPokecenterTradeTextString1:
 	text_exit
 	text_exit
 	db "@"
-
-; 25:48ac

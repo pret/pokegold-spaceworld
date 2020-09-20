@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/menu/debug_menu.asm", ROMX
 
-DebugMenu:: ; $4031
+DebugMenu::
 	call ClearTileMap
 	call ClearWindowData
 	call LoadFont
@@ -105,5 +105,3 @@ DebugMenuOptionName::
 	ld a, $e4
 	ldh [rBGP], a
 	jp DebugMenu
-
-; 40FD

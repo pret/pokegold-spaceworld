@@ -110,4 +110,3 @@ TypeMatchups:
 	db TYPE_NORMAL,  TYPE_GHOST,   NO_EFFECT
 
 	db -1 ; end
-; 3519b

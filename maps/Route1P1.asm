@@ -80,9 +80,7 @@ Route1P1TextString3:
 	line "やせいの　ポケモンに　ちゅうい"
 	done
 
-Route1P1TextString4:; 7C48
+Route1P1TextString4:
 	text "ここは　１ばん　どうろ"
 	line "サイレントヒル　⋯⋯　オールドシティ"
 	done
-
-; 7C68

@@ -119,7 +119,6 @@ PlayerHouse2FComputerText:
 	ret
 
 .jump
-; 4244
 	call RefreshScreen
 	callab Function1477D
 	call Function1fea
@@ -135,7 +134,6 @@ PlayerHouse2FCheckEmail:
 	ret
 
 .jump2
-; 4264
 	ld hl, PlayerHouse2FTextString7
 	call PrintText
 	ret
@@ -195,7 +193,6 @@ PlayerHouse2FTextString5:
 
 	db $08
 
-; 43F3
 	call PlayerHouse2FCheckEmail
 	call Function3036
 	ret
@@ -261,5 +258,3 @@ PlayerHouse2FTextString9:
 	line "それでは　ひきつづき"
 	cont "おんがくを　おたのしみ　ください"
 	done
-
-; 45FF

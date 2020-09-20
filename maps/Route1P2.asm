@@ -115,5 +115,3 @@ Route1P2TextString5:
 	text "ここは　１ばん　どうろ"
 	line "サイレントヒル　⋯⋯　オールドシティ"
 	done
-
-;7DDD

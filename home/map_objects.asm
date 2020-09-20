@@ -574,8 +574,6 @@ Function191d::
 	ld [wCenteredObject], a
 	ret
 
-; 1932
-
 StartFollow::
 	push bc
 	ld a, b

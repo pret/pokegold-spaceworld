@@ -60,7 +60,6 @@ SilentHillHouseNPCText1:
 	ret
 
 .jump
-; 488C
 	call RefreshScreen
 	callab Function1477D
 	call Function1fea
@@ -167,5 +166,3 @@ SilentHillHouseTextString7:
 	cont "ポケモンずかんを　つくるんだって？"
 	cont "すごいじゃないか　がんばれよ"
 	done
-
-; 4AAC

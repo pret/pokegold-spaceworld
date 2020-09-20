@@ -41,5 +41,3 @@ OldCityPokecenterBattleTextString1:
 	text "ちょっとまってね！@"
 	text_exit
 	db "@"
-
-; 25:492f

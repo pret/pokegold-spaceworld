@@ -75,10 +75,10 @@ RedrawRowOrColumn::
 	ld a, e
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and BG_MAP_WIDTH - 1            ; mask lower address bits
+	and BG_MAP_WIDTH - 1 ; mask lower address bits
 	ld b, a
 	ld a, e
-	and ($FF ^ (BG_MAP_WIDTH - 1))  ; mask upper address bits
+	and ($FF ^ (BG_MAP_WIDTH - 1)) ; mask upper address bits
 	or b
 	ld e, a
 	dec c
@@ -99,27 +99,27 @@ RedrawRowOrColumn::
 	jp hl
 
 .flashlight_effect_table
-	dw RedrawFlashlightRow0    ; $1310
-	dw RedrawFlashlightRow0    ; $1310
-	dw RedrawFlashlightColumn0 ; $12C3
-	dw RedrawFlashlightColumn0 ; $12C3
-	dw RedrawFlashlightRow1    ; $1329
-	dw RedrawFlashlightRow1    ; $1329
-	dw RedrawFlashlightColumn1 ; $12DC
-	dw RedrawFlashlightColumn1 ; $12DC
-	dw RedrawFlashlightRow2    ; $1335
-	dw RedrawFlashlightRow2    ; $1335
-	dw RedrawFlashlightColumn2 ; $12E8
-	dw RedrawFlashlightColumn2 ; $12E8
-	dw RedrawFlashlightRow3    ; $134E
-	dw RedrawFlashlightRow3    ; $134E
-	dw RedrawFlashlightColumn3 ; $1301
-	dw RedrawFlashlightColumn3 ; $1301
+	dw RedrawFlashlightRow0
+	dw RedrawFlashlightRow0
+	dw RedrawFlashlightColumn0
+	dw RedrawFlashlightColumn0
+	dw RedrawFlashlightRow1
+	dw RedrawFlashlightRow1
+	dw RedrawFlashlightColumn1
+	dw RedrawFlashlightColumn1
+	dw RedrawFlashlightRow2
+	dw RedrawFlashlightRow2
+	dw RedrawFlashlightColumn2
+	dw RedrawFlashlightColumn2
+	dw RedrawFlashlightRow3
+	dw RedrawFlashlightRow3
+	dw RedrawFlashlightColumn3
+	dw RedrawFlashlightColumn3
 
 RedrawFlashlightColumn0::
 	ldh a, [hSCX]
 	and $07
-	ret nz        ; wait till we moved one complete tile in X
+	ret nz ; wait till we moved one complete tile in X
 	ld a, [wRedrawFlashlightDst0]
 	ld e, a
 	ld a, [wRedrawFlashlightDst0 + 1]
@@ -143,7 +143,7 @@ RedrawFlashlightColumn1::
 RedrawFlashlightColumn2::
 	ldh a, [hSCX]
 	and $0f
-	ret nz        ; wait till we moved two complete tiles in X
+	ret nz ; wait till we moved two complete tiles in X
 	ld a, [wRedrawFlashlightDst1]
 	ld e, a
 	ld a, [wRedrawFlashlightDst1 + 1]
@@ -168,7 +168,7 @@ RedrawFlashlightColumn3::
 RedrawFlashlightRow0::
 	ldh a, [hSCY]
 	and $07
-	ret nz        ; wait till we moved one complete tile in Y
+	ret nz ; wait till we moved one complete tile in Y
 	ld a, [wRedrawFlashlightDst0]
 	ld e, a
 	ld a, [wRedrawFlashlightDst0 + 1]
@@ -192,7 +192,7 @@ RedrawFlashlightRow1::
 RedrawFlashlightRow2::
 	ldh a, [hSCY]
 	and $0f
-	ret nz        ; wait till we moved two complete tiles in Y
+	ret nz ; wait till we moved two complete tiles in Y
 	ld a, [wRedrawFlashlightDst1]
 	ld e, a
 	ld a, [wRedrawFlashlightDst1 + 1]
@@ -241,8 +241,8 @@ _RedrawFlashlightColumn::
 	dec c
 	jr nz, .loop
 	ldh a, [hRedrawRowOrColumnMode]
-	add $04                         ; inc by 4, because flashlight redraw
-	ldh [hRedrawRowOrColumnMode], a ; has four directions
+	add $04 ; inc by 4, because flashlight redraw has four directions
+	ldh [hRedrawRowOrColumnMode], a
 	ret
 
 _RedrawFlashlightRow::
@@ -257,17 +257,17 @@ _RedrawFlashlightRow::
 	ld a, e
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and BG_MAP_WIDTH - 1            ; mask lower address bits
+	and BG_MAP_WIDTH - 1 ; mask lower address bits
 	ld b, a
 	ld a, e
-	and ($FF ^ (BG_MAP_WIDTH - 1))  ; mask upper address bits
+	and ($FF ^ (BG_MAP_WIDTH - 1)) ; mask upper address bits
 	or b
 	ld e, a
 	dec c
 	jr nz, .loop
 	ldh a, [hRedrawRowOrColumnMode]
-	add $04                         ; inc by 4, because flashlight redraw
-	ldh [hRedrawRowOrColumnMode], a ; has four directions
+	add $04 ; inc by 4, because flashlight redraw has four directions
+	ldh [hRedrawRowOrColumnMode], a
 	ret
 
 _RedrawFlashlightColumnBlack::
@@ -289,8 +289,8 @@ _RedrawFlashlightColumnBlack::
 	dec c
 	jr nz, .loop
 	ldh a, [hRedrawRowOrColumnMode]
-	add $04                         ; inc by 4, because flashlight redraw
-	ldh [hRedrawRowOrColumnMode], a ; has four directions
+	add $04 ; inc by 4, because flashlight redraw has four directions
+	ldh [hRedrawRowOrColumnMode], a
 	ret
 
 _RedrawFlashlightRowBlack::
@@ -306,17 +306,17 @@ _RedrawFlashlightRowBlack::
 	ld a, l
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and BG_MAP_WIDTH - 1            ; mask lower address bits
+	and BG_MAP_WIDTH - 1 ; mask lower address bits
 	ld d, a
 	ld a, l
-	and ($FF ^ (BG_MAP_WIDTH - 1))  ; mask upper address bits
+	and ($FF ^ (BG_MAP_WIDTH - 1)) ; mask upper address bits
 	or d
 	ld l, a
 	dec c
 	jr nz, .loop
 	ldh a, [hRedrawRowOrColumnMode]
-	add $04                         ; inc by 4, because flashlight redraw
-	ldh [hRedrawRowOrColumnMode], a ; has four directions
+	add $04 ; inc by 4, because flashlight redraw has four directions
+	ldh [hRedrawRowOrColumnMode], a
 	ret
 
 WaitForAutoBgMapTransfer::
@@ -383,20 +383,20 @@ AutoBgMapTransfer::
 	ld a, $02
 .doTransfer
 	ldh [hBGMapTransferPosition], a
-	ld a, $06                 ; 6 rows of SCREEN_WIDTH each
+	ld a, $06 ; 6 rows of SCREEN_WIDTH each
 	; fallthrough
 
 TransferBgRows::
 	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH + 1
 .loop
 
-	rept SCREEN_WIDTH / 2 - 1 ; two bytes per pop minus last block
+rept SCREEN_WIDTH / 2 - 1 ; two bytes per pop minus last block
 	pop de
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	endr
+endr
 
 	pop de
 	ld [hl], e
@@ -439,8 +439,8 @@ VBlankCopyDouble::
 	ld [wVBCopyDoubleSize], a
 .loop
 
-	rept 16/4 - 1 ; 16 bytes per 2bpp tile at 2 bytes per pop
-	pop de        ; copied twice minus last block
+rept 16/4 - 1 ; 16 bytes per 2bpp tile at 2 bytes per pop, copied twice minus last block
+	pop de
 	ld [hl], e
 	inc l
 	ld [hl], e
@@ -449,7 +449,7 @@ VBlankCopyDouble::
 	inc l
 	ld [hl], d
 	inc l
-	endr
+endr
 
 	pop de
 	ld [hl], e
@@ -500,13 +500,13 @@ VBlankCopy::
 	ld [wVBCopySize], a
 .loop
 
-	rept 16/2 - 1 ; 16 bytes per transfer at 2 bytes per pop
-	pop de        ; minus last block
+rept 16/2 - 1 ; 16 bytes per transfer at 2 bytes per pop minus last block
+	pop de
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	endr
+endr
 
 	pop de
 	ld [hl], e
@@ -590,13 +590,13 @@ VBlankCopyFar::
 	xor a
 	ld [wVBCopyFarSize], a
 .loop
-	rept 16/2 - 1 ; 16 bytes per transfer at 2 bytes per pop
+rept 16/2 - 1 ; 16 bytes per transfer at 2 bytes per pop
 	pop de
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	endr
+endr
 
 	pop de
 	ld [hl], e

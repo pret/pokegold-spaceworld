@@ -67,7 +67,7 @@ hTextBoxCursorBlinkInterval:: ds 2
 
 NEXTU
 hEventCollisionException:: db
-hEventID:: db ;; ffb0
+hEventID:: db
 
 NEXTU
 
@@ -96,24 +96,20 @@ hSpriteOffset::
 
 UNION
 
-; ffb3
 hProduct::
 hDividend::
 	; ds 4
 	db
 
-; ffb4
 hMultiplicand::
 hQuotient::
 	ds 3
 
-; ffb7
 hMultiplier::
 hDivisor::
 hRemainder::
 	db
 
-; ffb8
 hMathBuffer::
 	ds 5
 

@@ -83,5 +83,3 @@ Route1Gate2FTextString4:
 	para "むむ？"
 	line "ながーい　かわ　が　みえる"
 	done
-
-; 4224

@@ -1498,7 +1498,6 @@ FillSouthConnectionStrip::
 	dec c
 	jr nz, .y
 	ret
-; 25f6
 
 FillWestConnectionStrip::
 FillEastConnectionStrip::

@@ -79,5 +79,3 @@ Textdbb6c:
 	deciram wStartMinute, 1, 2
 	text "　ふん？"
 	done
-
-; 36:7b98

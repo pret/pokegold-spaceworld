@@ -642,4 +642,3 @@ endc
 	db 5, DEX_PIKACHU
 
 	db -1 ; end
-; f:6e3e

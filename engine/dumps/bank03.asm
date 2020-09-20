@@ -17,8 +17,6 @@ Functionc77d:
 	ld e, a
 	ret
 
-; 03:4791
-
 SECTION "engine/dumps/bank03.asm@SpawnPoints", ROMX
 ; Map, Warp ID
 SpawnPoints:
@@ -114,8 +112,6 @@ SpawnPoints:
 	db $10, $10
 	db $ff, $ff
 	db $ff, $ff
-
-; 03:488d
 
 
 SECTION "engine/dumps/bank03.asm@Functionc9c1", ROMX

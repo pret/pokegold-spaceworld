@@ -18,7 +18,7 @@ Unknown11d32:
 	jr nz, .rightJump
 	ret
 
-.rightJump; 04:5D4A
+.rightJump
 	ld hl, $000C
 	add hl, bc
 	ld a, [hl]

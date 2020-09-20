@@ -18,7 +18,6 @@ SilentHillPokecenterScript:
 	call CallMapTextSubroutine
 	ret
 
-; 469A
 	dw SilentHillPokecenterNPCIDs
 
 SilentHillPokecenterNPCIDs:
@@ -109,5 +108,3 @@ SilentHillPokecenterNPCText5:
 SilentHillPokecenterTextString6:
 	text "へルガー『ぐるるうー"
 	done
-
-; 47D5

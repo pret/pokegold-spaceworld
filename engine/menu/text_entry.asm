@@ -206,8 +206,8 @@ GetNamingScreenSetup:
 	ret
 
 NamingScreen_InitText:
-; fills the tilemap with ■, then clears a 12x17 box at 1,1
-; next it places the tiles at 04:58B3 onto the screen at 2,9 (tiles form an 11x8 box)
+; fills the tilemap with "■", then clears a 12x17 box at 1,1
+; next it places the tiles at TextEntryChars in a 11x8 box at 2,9
 	call WaitForAutoBgMapTransfer
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -437,7 +437,7 @@ NamingScreenJoypadLoop:
 LetterOffsetsTable1:
 	db $00, $08, $10, $18, $20, $30, $38, $40, $48, $50, $60, $68, $70, $78, $80
 
-LetterOffsetsTable2:; 04:56ED
+LetterOffsetsTable2:
 	db $00, $08, $10, $18, $20, $28, $30, $38
 
 NamingScreenTryAddCharacter:
@@ -701,7 +701,7 @@ ComposeMailMessage:
 	ldh [hMapAnims], a
 	ret
 
-.firstruncheck; 04:5A1B
+.firstruncheck
 	ld hl, wFlyDestination
 	ld a, [hl]
 	and 1
@@ -863,7 +863,7 @@ DoMailEntry:
 	inc [hl]
 	ret
 
-.processjoypad; 04:5B51
+.processjoypad
 	ld hl, hJoypadSum
 	ld a, [hl]
 	and A_BUTTON

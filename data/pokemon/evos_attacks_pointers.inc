@@ -252,4 +252,3 @@ EvosAttacksPointers::
 	dw BuluEvosAttacks
 	dw TailEvosAttacks
 	dw LeafyEvosAttacks
-; 42689

@@ -86,8 +86,6 @@ _Multiply::
 	ldh [hProduct + 0], a
 
 	ret
-; 6870
-
 
 _Divide::
 	xor a
@@ -197,4 +195,3 @@ _Divide::
 	ldh [hDividend + 0], a
 
 	ret
-; 68f3

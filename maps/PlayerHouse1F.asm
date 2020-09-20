@@ -57,5 +57,3 @@ PlayerHouse1FTextString1:
 	line "わたしも　ポケモン　きらいって"
 	cont "わけじゃないし　がんばるのよ！"
 	done
-
-; 4132

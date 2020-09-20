@@ -82,7 +82,6 @@ OldCityPokecenter2FTextString4:
 	line "タイムマシンです"
 	done
 
-; 25:4820
 	db $05, $25, $24, $48
 
 Data14824: ; movement data

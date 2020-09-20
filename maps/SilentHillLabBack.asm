@@ -356,5 +356,3 @@ SilentHillLabBackTextPointers2:
 	dw Function3899
 	dw Function3899
 	dw MapDefaultText
-
-; 605D

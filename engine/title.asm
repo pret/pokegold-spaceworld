@@ -3,22 +3,22 @@ INCLUDE "constants.asm"
 SECTION "engine/title.asm@Title screen", ROMX
 
 IntroSequence::
-	callab GameFreakIntro	; Bank $39
+	callab GameFreakIntro
 	jr c, TitleSequenceStart
 	ld a, [wTitleSequenceOpeningType]
 	and a
 	jr z, .opening_sequence
 
 .pikachu_minigame
-	callab PikachuMiniGame	; Bank $38
+	callab PikachuMiniGame
 	jr TitleSequenceStart
 
 .opening_sequence
-	callab OpeningCutscene	; Bank $39
+	callab OpeningCutscene
 
 TitleSequenceStart::
 	call TitleSequenceInit
-	callab SetTitleBGDecorationBorder	; Bank $02
+	callab SetTitleBGDecorationBorder
 
 .loop
 	call TitleScreenMain
@@ -57,14 +57,14 @@ TitleSequenceInit::
 	ldh [hSCY], a
 	ldh [hSCX], a
 
-	ld de, MUSIC_NONE	; Stop the music.
+	ld de, MUSIC_NONE
 	call PlayMusic
 
 	call ClearTileMap
 	call DisableLCD
 	call ClearSprites
 
-	callba InitEffectObject	; Bank $23
+	callba InitEffectObject
 	ld hl, vChars0
 	ld bc, vBGMap0 - vChars0
 
@@ -127,10 +127,10 @@ TitleSequenceInit::
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wJumptableIndex
-	ld [hli], a	; (Possibly wJumptableIndex from Crystal)
-	ld [hli], a	; (Possibly wIntroSceneFrameCounter from Crystal)
-	ld [hli], a	; (Possibly wTitleScreenTimer from Crystal)
-	ld [hl], a	; (Possibly wTitleScreenTimer + 1 from Crystal)
+	ld [hli], a ; (Possibly wJumptableIndex from Crystal)
+	ld [hli], a ; (Possibly wIntroSceneFrameCounter from Crystal)
+	ld [hli], a ; (Possibly wTitleScreenTimer from Crystal)
+	ld [hl], a  ; (Possibly wTitleScreenTimer + 1 from Crystal)
 
 	call .load_position_table
 
@@ -143,7 +143,7 @@ TitleSequenceInit::
 
 .load_position_table:
 	ld hl, FirePositionTable
-	ld c, 6	; Load 6 flying objects on the screen.
+	ld c, 6 ; Load 6 flying objects on the screen.
 
 .set_fire_note_loop
 	push bc
@@ -152,7 +152,7 @@ TitleSequenceInit::
 	ld d, [hl]
 	inc hl
 	push hl
-	ld a, $2E	; Title fire/note object effect type?
+	ld a, $2E ; Title fire/note object effect type?
 	call InitSpriteAnimStruct
 	pop hl
 	pop bc
@@ -168,15 +168,15 @@ FirePositionTable::
 	dw $7CB0
 	dw $8800
 
-TitleFireGFX:: INCBIN "gfx/title/fire.2bpp"	; 5EB8-5F37
-TitleNotesGFX:: INCBIN "gfx/title/notes.2bpp"	; 5F38=5FB7
+TitleFireGFX:: INCBIN "gfx/title/fire.2bpp"
+TitleNotesGFX:: INCBIN "gfx/title/notes.2bpp"
 
 TitleScreenMain::
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
 	call TitleScreenSequence
-	callba EffectObjectJumpNoDelay	; Bank $23
+	callba EffectObjectJumpNoDelay
 	call DelayFrame
 	and a
 	ret
@@ -267,8 +267,8 @@ TitleSeq_LoadPokemonLogo::
 TitleSeq_Start::
 	call TitleSeq_IncreaseJumpTableIndex
 	push de
-	ld de, $002D
-	call PlaySFX	; Play "Swish" sound
+	ld de, $2D ; "swish" sound
+	call PlaySFX
 	pop de
 	ld a, $80
 	ld [wJumptableIndex + 2], a
@@ -304,7 +304,7 @@ TitleSeq_MoveTitleEnd::
 	ldh [hLCDCPointer], a
 	call TitleSeq_IncreaseJumpTableIndex
 	ld de, MUSIC_TITLE
-	call PlayMusic	; Play "Title Theme"
+	call PlayMusic
 	ret
 
 TitleSeq_InitFlashTitle::
@@ -384,7 +384,7 @@ TitleSeq_PressButtonInit::
 	ld hl, wJumptableIndex
 	inc [hl]
 	ld hl, wJumptableIndex + 2
-	ld de, DecodeNybble0Table - 3	; DecodeNybble0Table - 3 = $0C00
+	ld de, DecodeNybble0Table - 3
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -404,23 +404,25 @@ TitleSeq_TitleScreenInputAndTimeout::
 	ld [hl], e
 	call GetJoypad
 	ld hl, hJoyState
+; UP + B + SELECT opens the SRAM clear screen
 	ld a, [hl]
-	and D_UP | B_BUTTON | SELECT	; UP + B + SELECT brings you to the SRAM clear screen.
+	and D_UP | B_BUTTON | SELECT
 	cp D_UP | B_BUTTON | SELECT
 	jr z, .psbtn_sramclear
+; SELECT opens the debug menu
 	ld a, [hl]
-	and SELECT	; SELECT will bring you to the debug menu.
+	and SELECT
 	jr nz, .psbtn_gotodebug
 	ld a, [hl]
 	and $09
 	ret z
 
 .psbtn_play
-	ld a, $00	; MainMenu
+	ld a, $00 ; MainMenu
 	jr .psbtn_nextseq
 
 .psbtn_gotodebug
-	ld a, $01	; DebugMenu
+	ld a, $01 ; DebugMenu
 	jr .psbtn_nextseq
 
 .psbtn_sramclear
@@ -538,7 +540,7 @@ SRAMClearMenu::
 	cp $01
 	jp z, Init
 
-	callab InitAllSRAMBanks	; Bank $05
+	callab InitAllSRAMBanks
 	jp Init
 
 SRAMClear_Message::
@@ -570,9 +572,9 @@ IntroCopyRightInfo::
 	jp PlaceString
 
 IntroCopyRightInfo_Text::
-	db $60, $61, $62, $63, $6D, $6E, $6F, $70, $71, $72, $4E	; "(C)1997 Nintendo\n"
-	db $60, $61, $62, $63, $73, $74, $75, $76, $77, $78, $6B, $6C, $4E	; "(C)1997 Creatures Inc.\n"
-	db $60, $61, $62, $63, $64, $65, $66, $67, $68, $69, $6A, $6B, $6C, $50	; "(C)1997 GAME FREAK Inc.{EOL}"
+	db $60, $61, $62, $63, $6D, $6E, $6F, $70, $71, $72, $4E                ; "ⓒ1997 Nintendo\n"
+	db $60, $61, $62, $63, $73, $74, $75, $76, $77, $78, $6B, $6C, $4E      ; "ⓒ1997 Creatures Inc.\n"
+	db $60, $61, $62, $63, $64, $65, $66, $67, $68, $69, $6A, $6B, $6C, $50 ; "ⓒ1997 GAME FREAK Inc.\0"
 
 Set_HoOh::
 	coord hl, 7, 9
