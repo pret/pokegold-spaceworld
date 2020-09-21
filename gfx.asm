@@ -187,22 +187,42 @@ INCBIN "gfx/trade/gameboy.2bpp"
 SECTION "gfx.asm@Bank C Tilesets 12", ROMX
 Tileset_12_GFX:
 INCBIN "gfx/tilesets/tileset_12.2bpp"
+Tileset_12_Meta:
+INCBIN "data/tilesets/tileset_12_metatiles.bin"
+Tileset_12_Coll:
+INCBIN "data/tilesets/tileset_12_collision.bin"
 
 SECTION "gfx.asm@Bank C Tilesets 0b", ROMX
 Tileset_0b_GFX:
 INCBIN "gfx/tilesets/tileset_0b.2bpp"
+Tileset_0b_Meta:
+INCBIN "data/tilesets/tileset_0b_metatiles.bin"
+Tileset_0b_Coll:
+INCBIN "data/tilesets/tileset_0b_collision.bin"
 
 SECTION "gfx.asm@Bank C Tilesets 0d", ROMX
 Tileset_0d_GFX:
 INCBIN "gfx/tilesets/tileset_0d.2bpp"
+Tileset_0d_Meta:
+INCBIN "data/tilesets/tileset_0d_metatiles.bin"
+Tileset_0d_Coll:
+INCBIN "data/tilesets/tileset_0d_collision.bin"
 
 SECTION "gfx.asm@Bank C Tilesets 14", ROMX
 Tileset_14_GFX:
 INCBIN "gfx/tilesets/tileset_14.2bpp"
+Tileset_14_Meta:
+INCBIN "data/tilesets/tileset_14_metatiles.bin"
+Tileset_14_Coll:
+INCBIN "data/tilesets/tileset_14_collision.bin"
 
 SECTION "gfx.asm@Bank C Tilesets 0c", ROMX
 Tileset_0c_GFX:
 INCBIN "gfx/tilesets/tileset_0c.2bpp"
+Tileset_0c_Meta:
+INCBIN "data/tilesets/tileset_0c_metatiles.bin"
+Tileset_0c_Coll:
+INCBIN "data/tilesets/tileset_0c_collision.bin"
 
 SECTION "gfx.asm@Bank C Tilesets Common", ROMX
 CommonExteriorTilesGFX:
