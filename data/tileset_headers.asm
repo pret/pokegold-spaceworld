@@ -6,9 +6,9 @@ Tilesets::
 
 Tileset_00:
 	db $06 ; bank
-	dw $4400 ; blocks
+	dw Tileset_00_Meta ; blocks
 	dw Tileset_00_GFX ; graphics
-	dw $4c00 ; collisions
+	dw Tileset_00_Coll ; collisions
 	db $77 ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -16,9 +16,9 @@ Tileset_00:
 
 Tileset_01:
 	db $06 ; bank
-	dw $5c00 ; blocks
+	dw Tileset_01_Meta ; blocks
 	dw Tileset_01_GFX ; graphics
-	dw $6400 ; collisions
+	dw Tileset_01_Coll ; collisions
 	db $4b ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -26,9 +26,9 @@ Tileset_01:
 
 Tileset_02:
 	db $06 ; bank
-	dw $6a00 ; blocks
+	dw Tileset_02_Meta ; blocks
 	dw Tileset_02_GFX ; graphics
-	dw $7200 ; collisions
+	dw Tileset_02_Coll ; collisions
 	db $1f ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -277,9 +277,9 @@ Tileset_1a:
 ; uses tileset 00 graphics
 Tileset_1b:
 	db $06 ; bank
-	dw $4e00 ; blocks
+	dw Tileset_1b_Meta ; blocks
 	dw Tileset_00_GFX ; graphics
-	dw $5600 ; collisions
+	dw Tileset_1b_Coll ; collisions
 	db $77 ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3

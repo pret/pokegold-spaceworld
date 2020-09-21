@@ -184,6 +184,8 @@ ROMX $05
 ROMX $06
 	org $4000
 	"gfx.asm@Bank 6 Tilesets 00"
+	org $4e00
+	"gfx.asm@Bank 6 Tilesets 1b"
 	org $5800
 	"gfx.asm@Bank 6 Tilesets 01"
 	org $6600

@@ -105,18 +105,40 @@ Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2
 SECTION "gfx.asm@Bank 6 Tilesets 00", ROMX
 Tileset_00_GFX:
 INCBIN "gfx/tilesets/tileset_00.2bpp"
+Tileset_00_Meta:
+INCBIN "data/tilesets/tileset_00_metatiles.bin"
+Tileset_00_Coll:
+INCBIN "data/tilesets/tileset_00_collision.bin"
+
+SECTION "gfx.asm@Bank 6 Tilesets 1b", ROMX
+Tileset_1b_Meta:
+INCBIN "data/tilesets/tileset_1b_metatiles.bin"
+Tileset_1b_Coll:
+INCBIN "data/tilesets/tileset_1b_collision.bin"
 
 SECTION "gfx.asm@Bank 6 Tilesets 01", ROMX
 Tileset_01_GFX:
 INCBIN "gfx/tilesets/tileset_01.2bpp"
+Tileset_01_Meta:
+INCBIN "data/tilesets/tileset_01_metatiles.bin"
+Tileset_01_Coll:
+INCBIN "data/tilesets/tileset_01_collision.bin"
 
 SECTION "gfx.asm@Bank 6 Tilesets 02", ROMX
 Tileset_02_GFX:
 INCBIN "gfx/tilesets/tileset_02.2bpp"
+Tileset_02_Meta:
+INCBIN "data/tilesets/tileset_02_metatiles.bin"
+Tileset_02_Coll:
+INCBIN "data/tilesets/tileset_02_collision.bin"
 
 SECTION "gfx.asm@Bank 6 Tilesets 09", ROMX
 Tileset_09_GFX:
 INCBIN "gfx/tilesets/tileset_09.2bpp"
+Tileset_09_Meta:
+INCBIN "data/tilesets/tileset_09_metatiles.bin"
+Tileset_09_Coll:
+INCBIN "data/tilesets/tileset_09_collision.bin"
 
 SECTION "gfx.asm@Bank 7 Tilesets 13", ROMX
 Tileset_13_GFX:
