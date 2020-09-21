@@ -143,42 +143,82 @@ INCBIN "data/tilesets/tileset_09_collision.bin"
 SECTION "gfx.asm@Bank 7 Tilesets 13", ROMX
 Tileset_13_GFX:
 INCBIN "gfx/tilesets/tileset_13.2bpp"
+Tileset_13_Meta:
+INCBIN "data/tilesets/tileset_13_metatiles.bin"
+Tileset_13_Coll:
+INCBIN "data/tilesets/tileset_13_collision.bin"
 
 SECTION "gfx.asm@Bank 7 Tilesets 0e", ROMX
 Tileset_0e_GFX:
 INCBIN "gfx/tilesets/tileset_0e.2bpp"
+Tileset_0e_Meta:
+INCBIN "data/tilesets/tileset_0e_metatiles.bin"
+Tileset_0e_Coll:
+INCBIN "data/tilesets/tileset_0e_collision.bin"
 
 SECTION "gfx.asm@Bank 7 Tilesets 06", ROMX
 Tileset_06_GFX:
 INCBIN "gfx/tilesets/tileset_06.2bpp"
+Tileset_06_Meta:
+INCBIN "data/tilesets/tileset_06_metatiles.bin"
+Tileset_06_Coll:
+INCBIN "data/tilesets/tileset_06_collision.bin"
 
 SECTION "gfx.asm@Bank 7 Tilesets 05", ROMX
 Tileset_05_GFX:
 INCBIN "gfx/tilesets/tileset_05.2bpp"
+Tileset_05_Meta:
+INCBIN "data/tilesets/tileset_05_metatiles.bin"
+Tileset_05_Coll:
+INCBIN "data/tilesets/tileset_05_collision.bin"
 
 SECTION "gfx.asm@Bank 7 Tilesets 03", ROMX
 Tileset_03_GFX:
 INCBIN "gfx/tilesets/tileset_03.2bpp"
+Tileset_03_Meta:
+INCBIN "data/tilesets/tileset_03_metatiles.bin"
+Tileset_03_Coll:
+INCBIN "data/tilesets/tileset_03_collision.bin"
 
 SECTION "gfx.asm@Bank 8 Tilesets 04", ROMX
 Tileset_04_GFX:
 INCBIN "gfx/tilesets/tileset_04.2bpp"
+Tileset_04_Meta:
+INCBIN "data/tilesets/tileset_04_metatiles.bin"
+Tileset_04_Coll:
+INCBIN "data/tilesets/tileset_04_collision.bin"
 
 SECTION "gfx.asm@Bank 8 Tilesets 07", ROMX
 Tileset_07_GFX:
 INCBIN "gfx/tilesets/tileset_07.2bpp"
+Tileset_07_Meta:
+INCBIN "data/tilesets/tileset_07_metatiles.bin"
+Tileset_07_Coll:
+INCBIN "data/tilesets/tileset_07_collision.bin"
 
 SECTION "gfx.asm@Bank 8 Tilesets 08", ROMX
 Tileset_08_GFX:
 INCBIN "gfx/tilesets/tileset_08.2bpp"
+Tileset_08_Meta:
+INCBIN "data/tilesets/tileset_08_metatiles.bin"
+Tileset_08_Coll:
+INCBIN "data/tilesets/tileset_08_collision.bin"
 
 SECTION "gfx.asm@Bank 8 Tilesets 0f", ROMX
 Tileset_0f_GFX:
 INCBIN "gfx/tilesets/tileset_0f.2bpp"
+Tileset_0f_Meta:
+INCBIN "data/tilesets/tileset_0f_metatiles.bin"
+Tileset_0f_Coll:
+INCBIN "data/tilesets/tileset_0f_collision.bin"
 
 SECTION "gfx.asm@Bank 8 Tilesets 11", ROMX
 Tileset_11_GFX:
 INCBIN "gfx/tilesets/tileset_11.2bpp"
+Tileset_11_Meta:
+INCBIN "data/tilesets/tileset_11_metatiles.bin"
+Tileset_11_Coll:
+INCBIN "data/tilesets/tileset_11_collision.bin"
 
 SECTION "gfx.asm@Gameboy GFX", ROMX
 TradeGameBoyGFX::
@@ -290,18 +330,34 @@ TwinsPic:: INCBIN "gfx/trainer/twins.pic"
 SECTION "gfx.asm@Bank 13 Tilesets 0a", ROMX
 Tileset_0a_GFX:
 INCBIN "gfx/tilesets/tileset_0a.2bpp"
+Tileset_0a_Meta:
+INCBIN "data/tilesets/tileset_0a_metatiles.bin"
+Tileset_0a_Coll:
+INCBIN "data/tilesets/tileset_0a_collision.bin"
 
 SECTION "gfx.asm@Bank 13 Tilesets 16", ROMX
 Tileset_16_GFX:
 INCBIN "gfx/tilesets/tileset_16.2bpp"
+Tileset_16_Meta:
+INCBIN "data/tilesets/tileset_16_metatiles.bin"
+Tileset_16_Coll:
+INCBIN "data/tilesets/tileset_16_collision.bin"
 
 SECTION "gfx.asm@Bank 13 Tilesets 19", ROMX
 Tileset_19_GFX:
 INCBIN "gfx/tilesets/tileset_19.2bpp"
+Tileset_19_Meta:
+INCBIN "data/tilesets/tileset_19_metatiles.bin"
+Tileset_19_Coll:
+INCBIN "data/tilesets/tileset_19_collision.bin"
 
 SECTION "gfx.asm@Bank 13 Tilesets 1a", ROMX
 Tileset_1a_GFX:
 INCBIN "gfx/tilesets/tileset_1a.2bpp"
+Tileset_1a_Meta:
+INCBIN "data/tilesets/tileset_1a_metatiles.bin"
+Tileset_1a_Coll:
+INCBIN "data/tilesets/tileset_1a_collision.bin"
 
 SECTION "gfx.asm@PKMN Sprite Bank List", ROMX
 INCLUDE "gfx/pokemon/pkmn_pic_banks.asm"
@@ -441,18 +497,34 @@ BoulderSpriteGFX:: INCBIN "gfx/sprites/boulder.2bpp"
 SECTION "gfx.asm@Bank 37 Tilesets 10", ROMX
 Tileset_10_GFX:
 INCBIN "gfx/tilesets/tileset_10.2bpp"
+Tileset_10_Meta:
+INCBIN "data/tilesets/tileset_10_metatiles.bin"
+Tileset_10_Coll:
+INCBIN "data/tilesets/tileset_10_collision.bin"
 
 SECTION "gfx.asm@Bank 37 Tilesets 15", ROMX
 Tileset_15_GFX:
 INCBIN "gfx/tilesets/tileset_15.2bpp"
+Tileset_15_Meta:
+INCBIN "data/tilesets/tileset_15_metatiles.bin"
+Tileset_15_Coll:
+INCBIN "data/tilesets/tileset_15_collision.bin"
 
 SECTION "gfx.asm@Bank 37 Tilesets 17", ROMX
 Tileset_17_GFX:
 INCBIN "gfx/tilesets/tileset_17.2bpp"
+Tileset_17_Meta:
+INCBIN "data/tilesets/tileset_17_metatiles.bin"
+Tileset_17_Coll:
+INCBIN "data/tilesets/tileset_17_collision.bin"
 
 SECTION "gfx.asm@Bank 37 Tilesets 18", ROMX
 Tileset_18_GFX:
 INCBIN "gfx/tilesets/tileset_18.2bpp"
+Tileset_18_Meta:
+INCBIN "data/tilesets/tileset_18_metatiles.bin"
+Tileset_18_Coll:
+INCBIN "data/tilesets/tileset_18_collision.bin"
 
 SECTION "gfx.asm@Poker GFX", ROMX
 PokerGFX::

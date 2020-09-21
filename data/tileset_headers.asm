@@ -36,9 +36,9 @@ Tileset_02:
 
 Tileset_03:
 	db $07 ; bank
-	dw $7600 ; blocks
+	dw Tileset_03_Meta ; blocks
 	dw Tileset_03_GFX ; graphics
-	dw $7e00 ; collisions
+	dw Tileset_03_Coll ; collisions
 	db $1f ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -46,9 +46,9 @@ Tileset_03:
 
 Tileset_04:
 	db $08 ; bank
-	dw $4400 ; blocks
+	dw Tileset_04_Meta ; blocks
 	dw Tileset_04_GFX ; graphics
-	dw $4c00 ; collisions
+	dw Tileset_04_Coll ; collisions
 	db $4b ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -56,9 +56,9 @@ Tileset_04:
 
 Tileset_05:
 	db $07 ; bank
-	dw $6800 ; blocks
+	dw Tileset_05_Meta ; blocks
 	dw Tileset_05_GFX ; graphics
-	dw $7000 ; collisions
+	dw Tileset_05_Coll ; collisions
 	db $a7 ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -66,9 +66,9 @@ Tileset_05:
 
 Tileset_06:
 	db $07 ; bank
-	dw $5a00 ; blocks
+	dw Tileset_06_Meta ; blocks
 	dw Tileset_06_GFX ; graphics
-	dw $6200 ; collisions
+	dw Tileset_06_Coll ; collisions
 	db $4b ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -76,9 +76,9 @@ Tileset_06:
 
 Tileset_07:
 	db $08 ; bank
-	dw $5200 ; blocks
+	dw Tileset_07_Meta ; blocks
 	dw Tileset_07_GFX ; graphics
-	dw $5a00 ; collisions
+	dw Tileset_07_Coll ; collisions
 	db $1f ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -86,9 +86,9 @@ Tileset_07:
 
 Tileset_08:
 	db $08 ; bank
-	dw $6000 ; blocks
+	dw Tileset_08_Meta ; blocks
 	dw Tileset_08_GFX ; graphics
-	dw $6800 ; collisions
+	dw Tileset_08_Coll ; collisions
 	db $4b ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -96,9 +96,9 @@ Tileset_08:
 
 Tileset_09:
 	db $06 ; bank
-	dw $7a00 ; blocks
+	dw Tileset_09_Meta ; blocks
 	dw Tileset_09_GFX ; graphics
-	dw $7e00 ; collisions
+	dw Tileset_09_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -106,9 +106,9 @@ Tileset_09:
 
 Tileset_0a:
 	db $13 ; bank
-	dw $4600 ; blocks
+	dw Tileset_0a_Meta ; blocks
 	dw Tileset_0a_GFX ; graphics
-	dw $4a00 ; collisions
+	dw Tileset_0a_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -146,9 +146,9 @@ Tileset_0d:
 
 Tileset_0e:
 	db $07 ; bank
-	dw $5100 ; blocks
+	dw Tileset_0e_Meta ; blocks
 	dw Tileset_0e_GFX ; graphics
-	dw $5500 ; collisions
+	dw Tileset_0e_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -156,9 +156,9 @@ Tileset_0e:
 
 Tileset_0f:
 	db $08 ; bank
-	dw $7000 ; blocks
+	dw Tileset_0f_Meta ; blocks
 	dw Tileset_0f_GFX ; graphics
-	dw $7400 ; collisions
+	dw Tileset_0f_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -166,9 +166,9 @@ Tileset_0f:
 
 Tileset_10:
 	db $37 ; bank
-	dw $4600 ; blocks
+	dw Tileset_10_Meta ; blocks
 	dw Tileset_10_GFX ; graphics
-	dw $4a00 ; collisions
+	dw Tileset_10_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -176,9 +176,9 @@ Tileset_10:
 
 Tileset_11:
 	db $08 ; bank
-	dw $7b00 ; blocks
+	dw Tileset_11_Meta ; blocks
 	dw Tileset_11_GFX ; graphics
-	dw $7f00 ; collisions
+	dw Tileset_11_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -196,9 +196,9 @@ Tileset_12:
 
 Tileset_13:
 	db $07 ; bank
-	dw $4600 ; blocks
+	dw Tileset_13_Meta ; blocks
 	dw Tileset_13_GFX ; graphics
-	dw $4a00 ; collisions
+	dw Tileset_13_Coll ; collisions
 	db $df ; talking over tile 1
 	db $40 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -216,9 +216,9 @@ Tileset_14:
 
 Tileset_15:
 	db $37 ; bank
-	dw $5100 ; blocks
+	dw Tileset_15_Meta ; blocks
 	dw Tileset_15_GFX ; graphics
-	dw $5900 ; collisions
+	dw Tileset_15_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -226,9 +226,9 @@ Tileset_15:
 
 Tileset_16:
 	db $13 ; bank
-	dw $5100 ; blocks
+	dw Tileset_16_Meta ; blocks
 	dw Tileset_16_GFX ; graphics
-	dw $5900 ; collisions
+	dw Tileset_16_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -236,9 +236,9 @@ Tileset_16:
 
 Tileset_17:
 	db $37 ; bank
-	dw $6100 ; blocks
+	dw Tileset_17_Meta ; blocks
 	dw Tileset_17_GFX ; graphics
-	dw $6900 ; collisions
+	dw Tileset_17_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -246,9 +246,9 @@ Tileset_17:
 
 Tileset_18:
 	db $37 ; bank
-	dw $7100 ; blocks
+	dw Tileset_18_Meta ; blocks
 	dw Tileset_18_GFX ; graphics
-	dw $7900 ; collisions
+	dw Tileset_18_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -256,9 +256,9 @@ Tileset_18:
 
 Tileset_19:
 	db $13 ; bank
-	dw $5f00 ; blocks
+	dw Tileset_19_Meta ; blocks
 	dw Tileset_19_GFX ; graphics
-	dw $6700 ; collisions
+	dw Tileset_19_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
@@ -266,9 +266,9 @@ Tileset_19:
 
 Tileset_1a:
 	db $13 ; bank
-	dw $6d00 ; blocks
+	dw Tileset_1a_Meta ; blocks
 	dw Tileset_1a_GFX ; graphics
-	dw $7500 ; collisions
+	dw Tileset_1a_Coll ; collisions
 	db $07 ; talking over tile 1
 	db $41 ; talking over tile 2
 	db $00 ; talking over tile 3
