@@ -2,285 +2,41 @@ INCLUDE "constants.asm"
 
 SECTION "data/tileset_headers.asm", ROMX
 
-Tilesets::
+tileset: MACRO
+	db BANK(\2)   ; Bank
+	dw \1, \2, \3 ; Block, GFX, Coll
+	db \4, \5, \6 ; counter tiles
+	db \7         ; grass tile
+	; db \8         ; permission (indoor, cave, outdoor)
+ENDM
 
-Tileset_00:
-	db $06 ; bank
-	dw Tileset_00_Meta ; blocks
-	dw Tileset_00_GFX ; graphics
-	dw Tileset_00_Coll ; collisions
-	db $77 ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_01:
-	db $06 ; bank
-	dw Tileset_01_Meta ; blocks
-	dw Tileset_01_GFX ; graphics
-	dw Tileset_01_Coll ; collisions
-	db $4b ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_02:
-	db $06 ; bank
-	dw Tileset_02_Meta ; blocks
-	dw Tileset_02_GFX ; graphics
-	dw Tileset_02_Coll ; collisions
-	db $1f ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_03:
-	db $07 ; bank
-	dw Tileset_03_Meta ; blocks
-	dw Tileset_03_GFX ; graphics
-	dw Tileset_03_Coll ; collisions
-	db $1f ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_04:
-	db $08 ; bank
-	dw Tileset_04_Meta ; blocks
-	dw Tileset_04_GFX ; graphics
-	dw Tileset_04_Coll ; collisions
-	db $4b ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_05:
-	db $07 ; bank
-	dw Tileset_05_Meta ; blocks
-	dw Tileset_05_GFX ; graphics
-	dw Tileset_05_Coll ; collisions
-	db $a7 ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_06:
-	db $07 ; bank
-	dw Tileset_06_Meta ; blocks
-	dw Tileset_06_GFX ; graphics
-	dw Tileset_06_Coll ; collisions
-	db $4b ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_07:
-	db $08 ; bank
-	dw Tileset_07_Meta ; blocks
-	dw Tileset_07_GFX ; graphics
-	dw Tileset_07_Coll ; collisions
-	db $1f ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_08:
-	db $08 ; bank
-	dw Tileset_08_Meta ; blocks
-	dw Tileset_08_GFX ; graphics
-	dw Tileset_08_Coll ; collisions
-	db $4b ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_09:
-	db $06 ; bank
-	dw Tileset_09_Meta ; blocks
-	dw Tileset_09_GFX ; graphics
-	dw Tileset_09_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_0a:
-	db $13 ; bank
-	dw Tileset_0a_Meta ; blocks
-	dw Tileset_0a_GFX ; graphics
-	dw Tileset_0a_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_0b:
-	db $0c ; bank
-	dw Tileset_0b_Meta ; blocks
-	dw Tileset_0b_GFX ; graphics
-	dw Tileset_0b_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_0c:
-	db $0c ; bank
-	dw Tileset_0c_Meta ; blocks
-	dw Tileset_0c_GFX ; graphics
-	dw Tileset_0c_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_0d:
-	db $0c ; bank
-	dw Tileset_0d_Meta ; blocks
-	dw Tileset_0d_GFX ; graphics
-	dw Tileset_0d_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_0e:
-	db $07 ; bank
-	dw Tileset_0e_Meta ; blocks
-	dw Tileset_0e_GFX ; graphics
-	dw Tileset_0e_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_0f:
-	db $08 ; bank
-	dw Tileset_0f_Meta ; blocks
-	dw Tileset_0f_GFX ; graphics
-	dw Tileset_0f_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_10:
-	db $37 ; bank
-	dw Tileset_10_Meta ; blocks
-	dw Tileset_10_GFX ; graphics
-	dw Tileset_10_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_11:
-	db $08 ; bank
-	dw Tileset_11_Meta ; blocks
-	dw Tileset_11_GFX ; graphics
-	dw Tileset_11_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_12:
-	db $0c ; bank
-	dw Tileset_12_Meta ; blocks
-	dw Tileset_12_GFX ; graphics
-	dw Tileset_12_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_13:
-	db $07 ; bank
-	dw Tileset_13_Meta ; blocks
-	dw Tileset_13_GFX ; graphics
-	dw Tileset_13_Coll ; collisions
-	db $df ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_14:
-	db $0c ; bank
-	dw Tileset_14_Meta ; blocks
-	dw Tileset_14_GFX ; graphics
-	dw Tileset_14_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_15:
-	db $37 ; bank
-	dw Tileset_15_Meta ; blocks
-	dw Tileset_15_GFX ; graphics
-	dw Tileset_15_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_16:
-	db $13 ; bank
-	dw Tileset_16_Meta ; blocks
-	dw Tileset_16_GFX ; graphics
-	dw Tileset_16_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_17:
-	db $37 ; bank
-	dw Tileset_17_Meta ; blocks
-	dw Tileset_17_GFX ; graphics
-	dw Tileset_17_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_18:
-	db $37 ; bank
-	dw Tileset_18_Meta ; blocks
-	dw Tileset_18_GFX ; graphics
-	dw Tileset_18_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_19:
-	db $13 ; bank
-	dw Tileset_19_Meta ; blocks
-	dw Tileset_19_GFX ; graphics
-	dw Tileset_19_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-Tileset_1a:
-	db $13 ; bank
-	dw Tileset_1a_Meta ; blocks
-	dw Tileset_1a_GFX ; graphics
-	dw Tileset_1a_Coll ; collisions
-	db $07 ; talking over tile 1
-	db $41 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
-
-; uses tileset 00 graphics
-Tileset_1b:
-	db $06 ; bank
-	dw Tileset_1b_Meta ; blocks
-	dw Tileset_00_GFX ; graphics
-	dw Tileset_1b_Coll ; collisions
-	db $77 ; talking over tile 1
-	db $40 ; talking over tile 2
-	db $00 ; talking over tile 3
-	db $00 ; unknown
+Tilesets: ; bank, block, gfx, coll, 3 counter tiles, grass tile, permission
+	tileset Tileset_00_Meta, Tileset_00_GFX, Tileset_00_Coll, $77, $40, $00, $00
+	tileset Tileset_01_Meta, Tileset_01_GFX, Tileset_01_Coll, $4b, $40, $00, $00
+	tileset Tileset_02_Meta, Tileset_02_GFX, Tileset_02_Coll, $1f, $40, $00, $00
+	tileset Tileset_03_Meta, Tileset_03_GFX, Tileset_03_Coll, $1f, $40, $00, $00
+	tileset Tileset_04_Meta, Tileset_04_GFX, Tileset_04_Coll, $4b, $40, $00, $00
+	tileset Tileset_05_Meta, Tileset_05_GFX, Tileset_05_Coll, $a7, $40, $00, $00
+	tileset Tileset_06_Meta, Tileset_06_GFX, Tileset_06_Coll, $4b, $40, $00, $00
+	tileset Tileset_07_Meta, Tileset_07_GFX, Tileset_07_Coll, $1f, $40, $00, $00
+	tileset Tileset_08_Meta, Tileset_08_GFX, Tileset_08_Coll, $4b, $40, $00, $00
+	tileset Tileset_09_Meta, Tileset_09_GFX, Tileset_09_Coll, $07, $41, $00, $00
+	tileset Tileset_0a_Meta, Tileset_0a_GFX, Tileset_0a_Coll, $07, $41, $00, $00
+	tileset Tileset_0b_Meta, Tileset_0b_GFX, Tileset_0b_Coll, $07, $41, $00, $00
+	tileset Tileset_0c_Meta, Tileset_0c_GFX, Tileset_0c_Coll, $07, $41, $00, $00
+	tileset Tileset_0d_Meta, Tileset_0d_GFX, Tileset_0d_Coll, $07, $41, $00, $00
+	tileset Tileset_0e_Meta, Tileset_0e_GFX, Tileset_0e_Coll, $07, $41, $00, $00
+	tileset Tileset_0f_Meta, Tileset_0f_GFX, Tileset_0f_Coll, $07, $41, $00, $00
+	tileset Tileset_10_Meta, Tileset_10_GFX, Tileset_10_Coll, $07, $41, $00, $00
+	tileset Tileset_11_Meta, Tileset_11_GFX, Tileset_11_Coll, $07, $41, $00, $00
+	tileset Tileset_12_Meta, Tileset_12_GFX, Tileset_12_Coll, $07, $41, $00, $00
+	tileset Tileset_13_Meta, Tileset_13_GFX, Tileset_13_Coll, $df, $40, $00, $00
+	tileset Tileset_14_Meta, Tileset_14_GFX, Tileset_14_Coll, $07, $41, $00, $00
+	tileset Tileset_15_Meta, Tileset_15_GFX, Tileset_15_Coll, $07, $41, $00, $00
+	tileset Tileset_16_Meta, Tileset_16_GFX, Tileset_16_Coll, $07, $41, $00, $00
+	tileset Tileset_17_Meta, Tileset_17_GFX, Tileset_17_Coll, $07, $41, $00, $00
+	tileset Tileset_18_Meta, Tileset_18_GFX, Tileset_18_Coll, $07, $41, $00, $00
+	tileset Tileset_19_Meta, Tileset_19_GFX, Tileset_19_Coll, $07, $41, $00, $00
+	tileset Tileset_1a_Meta, Tileset_1a_GFX, Tileset_1a_Coll, $07, $41, $00, $00
+	; Tileset_1b uses Tileset_00 graphics
+	tileset Tileset_1b_Meta, Tileset_00_GFX, Tileset_1b_Coll, $77, $40, $00, $00
