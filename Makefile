@@ -2,7 +2,7 @@ ROM := pokegold-spaceworld.gb
 CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
 BASEROM := baserom.gb
 
-DIRS := home engine data audio maps
+DIRS := home engine data audio maps scripts
 FILES := bin.asm gfx.asm vram.asm sram.asm wram.asm hram.asm
 
 BUILD := build
