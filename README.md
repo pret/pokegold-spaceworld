@@ -4,8 +4,8 @@ This is a work-in-progress disassembly of the Pokémon Gold and Pokémon Silver 
 
 It builds the following ROMs:
 
-- Gold_debug.sgb `md5: 2eadbed83b775c097ff79e5128d1184f`
-- Gold_debug.sgb (correct header) `md5: 8e509301f6db1f89fee85aead8ebf8d4`
+- Gold_debug.sgb `sha1: b1d7539a87dea81b2cff6146afaad64470d08d84`
+- Gold_debug.sgb (correct header) `sha1: 87fd8dbe5db39619529abcfc99e74cc5ecb8b94e`
 
 You will need to provide a copy of Gold_debug.sgb renamed **baserom.gb** to build the ROMs.
 
