@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BullHouse4.asm", ROMX
 
-BullHouse4ScriptLoader::
+BullHouse4_ScriptLoader::
 	ret
 
-BullHouse4TextPointers::
+BullHouse4_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

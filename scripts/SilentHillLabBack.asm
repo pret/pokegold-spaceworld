@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "scripts/SilentHillLabBack.asm", ROMX
 
-SilentHillLabBackScriptLoader::
+SilentHillLabBack_ScriptLoader::
 	ld hl, SilentHillLabBackScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -33,7 +33,7 @@ SilentHillLabBackNPCIDs3:
 SilentHillLabBackNPCIDs4:
 	db 00, 01, 03, $FF
 
-SilentHillLabBackTextPointers::
+SilentHillLabBack_TextPointers::
 	dw SilentHillLabBackText1
 	dw SilentHillLabBackFunc3
 	dw SilentHillLabBackFunc4

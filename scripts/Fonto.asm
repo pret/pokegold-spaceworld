@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/Fonto.asm", ROMX
 
-FontoScriptLoader::
+Fonto_ScriptLoader::
 	ret
 
 	db "@"

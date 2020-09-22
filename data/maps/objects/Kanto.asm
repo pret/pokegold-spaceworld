@@ -42,18 +42,18 @@ Kanto_MapEvents::
 	warp_event 21, 13, KANTO_GAMEFREAK_HQ_1, 5, 263
 
 	def_bg_events
-	bg_event 14,  4, 0, 1
-	bg_event 42,  4, 0, 2
-	bg_event 54,  8, 0, 3
-	bg_event  4, 18, 0, 4
-	bg_event 18, 18, 0, 5
-	bg_event 26, 19, 0, 6
-	bg_event 46, 18, 0, 7
-	bg_event  8, 38, 0, 8
-	bg_event 16, 38, 0, 9
-	bg_event  6, 41, 0, 10
-	bg_event 12, 45, 0, 11
-	bg_event 50, 30, 0, 12
+	bg_event 14,  4, 1
+	bg_event 42,  4, 2
+	bg_event 54,  8, 3
+	bg_event  4, 18, 4
+	bg_event 18, 18, 5
+	bg_event 26, 19, 6
+	bg_event 46, 18, 7
+	bg_event  8, 38, 8
+	bg_event 16, 38, 9
+	bg_event  6, 41, 10
+	bg_event 12, 45, 11
+	bg_event 50, 30, 12
 
 	def_object_events
 

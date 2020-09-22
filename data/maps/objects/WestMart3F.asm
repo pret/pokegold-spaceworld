@@ -13,20 +13,20 @@ WestMart3F_MapEvents::
 	warp_event  2,  0, WEST_MART_ELEVATOR, 1, 16
 
 	def_bg_events
-	bg_event 14,  0, 0, 1
-	bg_event  3,  0, 0, 2
-	bg_event  1,  4, 0, 3
-	bg_event  1,  5, 0, 3
-	bg_event  1,  6, 0, 3
-	bg_event  1,  7, 0, 3
-	bg_event  5,  4, 0, 3
-	bg_event  5,  5, 0, 3
-	bg_event  5,  6, 0, 3
-	bg_event  5,  7, 0, 3
-	bg_event  9,  4, 0, 3
-	bg_event  9,  5, 0, 3
-	bg_event  9,  6, 0, 3
-	bg_event  9,  7, 0, 3
+	bg_event 14,  0, 1
+	bg_event  3,  0, 2
+	bg_event  1,  4, 3
+	bg_event  1,  5, 3
+	bg_event  1,  6, 3
+	bg_event  1,  7, 3
+	bg_event  5,  4, 3
+	bg_event  5,  5, 3
+	bg_event  5,  6, 3
+	bg_event  5,  7, 3
+	bg_event  9,  4, 3
+	bg_event  9,  5, 3
+	bg_event  9,  6, 3
+	bg_event  9,  7, 3
 
 	def_object_events
 	object_event  6,  1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

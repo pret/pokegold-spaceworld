@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoCeladonMart2F.asm", ROMX
 
-KantoCeladonMart2FScriptLoader::
+KantoCeladonMart2F_ScriptLoader::
 	ret
 
-KantoCeladonMart2FTextPointers::
+KantoCeladonMart2F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

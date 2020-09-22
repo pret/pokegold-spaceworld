@@ -12,7 +12,7 @@ WestRadioTower2F_MapEvents::
 	warp_event  7,  0, WEST_RADIO_TOWER_1F, 3, 14
 
 	def_bg_events
-	bg_event  5,  0, 0, 1
+	bg_event  5,  0, 1
 
 	def_object_events
 	object_event  4,  6, SPRITE_GYM_GUY, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

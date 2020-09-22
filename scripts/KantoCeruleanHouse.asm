@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoCeruleanHouse.asm", ROMX
 
-KantoCeruleanHouseScriptLoader::
+KantoCeruleanHouse_ScriptLoader::
 	ret
 
-KantoCeruleanHouseTextPointers::
+KantoCeruleanHouse_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

@@ -13,9 +13,9 @@ OldCityTower1F_MapEvents::
 	warp_event  0,  1, OLD_CITY_TOWER_2F, 1, 11
 
 	def_bg_events
-	bg_event  2,  6, 0, 1
-	bg_event  5,  6, 0, 2
-	bg_event  4,  1, 0, 3
+	bg_event  2,  6, 1
+	bg_event  5,  6, 2
+	bg_event  4,  1, 3
 
 	def_object_events
 	object_event  0,  2, SPRITE_SAGE, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0

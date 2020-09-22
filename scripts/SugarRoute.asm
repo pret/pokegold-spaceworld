@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/SugarRoute.asm", ROMX
 
-SugarRouteScriptLoader::
+SugarRoute_ScriptLoader::
 	ret
 
 	db "@"

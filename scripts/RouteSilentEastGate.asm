@@ -2,8 +2,8 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/RouteSilentEastGate.asm", ROMX
 
-RouteSilentEastGateScriptLoader::
+RouteSilentEastGate_ScriptLoader::
 	ret
 
-RouteSilentEastGateTextPointers::
+RouteSilentEastGate_TextPointers::
 	db "@"

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoViridianHouse.asm", ROMX
 
-KantoViridianHouseScriptLoader::
+KantoViridianHouse_ScriptLoader::
 	ret
 
-KantoViridianHouseTextPointers::
+KantoViridianHouse_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

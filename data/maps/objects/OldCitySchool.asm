@@ -12,10 +12,10 @@ OldCitySchool_MapEvents::
 	warp_event  4, 15, OLD_CITY, 14, 83
 
 	def_bg_events
-	bg_event  0,  1, 0, 1
-	bg_event  1,  1, 0, 1
-	bg_event  3,  0, 0, 2
-	bg_event  4,  0, 0, 2
+	bg_event  0,  1, 1
+	bg_event  1,  1, 1
+	bg_event  3,  0, 2
+	bg_event  4,  0, 2
 
 	def_object_events
 	object_event  2,  5, SPRITE_GIRL, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

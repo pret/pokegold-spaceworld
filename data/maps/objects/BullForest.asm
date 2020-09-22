@@ -21,9 +21,9 @@ BullForest_MapEvents::
 	warp_event  3, 22, BULL_HOUSE_4, 1, 314
 
 	def_bg_events
-	bg_event 26,  6, 0, 1
-	bg_event  2, 16, 0, 2
-	bg_event 14, 18, 0, 3
+	bg_event 26,  6, 1
+	bg_event  2, 16, 2
+	bg_event 14, 18, 3
 
 	def_object_events
 	object_event 21,  9, SPRITE_TWIN, SLOW_STEP_DOWN, 3, 0, -1, -1, 0, 0, 0, 0, 0, 0

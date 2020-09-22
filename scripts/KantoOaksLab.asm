@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoOaksLab.asm", ROMX
 
-KantoOaksLabScriptLoader::
+KantoOaksLab_ScriptLoader::
 	ret
 
-KantoOaksLabTextPointers::
+KantoOaksLab_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

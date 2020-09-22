@@ -12,7 +12,7 @@ WestRadioTower4F_MapEvents::
 	warp_event  7,  0, WEST_RADIO_TOWER_3F, 2, 14
 
 	def_bg_events
-	bg_event  5,  0, 0, 1
+	bg_event  5,  0, 1
 
 	def_object_events
 	object_event  2,  6, SPRITE_SUPER_NERD, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

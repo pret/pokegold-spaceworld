@@ -20,14 +20,14 @@ Haiteku_MapEvents::
 	warp_event  7, 27, HAITEKU_AQUARIUM_1F, 2, 368
 
 	def_bg_events
-	bg_event 24,  7, 0, 1
-	bg_event 12, 12, 0, 2
-	bg_event 32, 10, 0, 3
-	bg_event 10, 17, 0, 4
-	bg_event 32, 16, 0, 5
-	bg_event 10, 27, 0, 6
-	bg_event 30, 25, 0, 7
-	bg_event 24, 28, 0, 8
+	bg_event 24,  7, 1
+	bg_event 12, 12, 2
+	bg_event 32, 10, 3
+	bg_event 10, 17, 4
+	bg_event 32, 16, 5
+	bg_event 10, 27, 6
+	bg_event 30, 25, 7
+	bg_event 24, 28, 8
 
 	def_object_events
 	object_event 22, 15, SPRITE_TWIN, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0

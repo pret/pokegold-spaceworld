@@ -13,11 +13,11 @@ PlayerHouse1F_MapEvents::
 	warp_event  9,  0, PLAYER_HOUSE_2F, 1, 16
 
 	def_bg_events
-	bg_event  0,  1, 0, 1
-	bg_event  1,  1, 0, 2
-	bg_event  2,  1, 0, 3
-	bg_event  4,  1, 0, 4
-	bg_event  5,  1, 0, 5
+	bg_event  0,  1, 1
+	bg_event  1,  1, 2
+	bg_event  2,  1, 3
+	bg_event  4,  1, 4
+	bg_event  5,  1, 5
 
 	def_object_events
 	object_event  7,  3, SPRITE_MOM, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

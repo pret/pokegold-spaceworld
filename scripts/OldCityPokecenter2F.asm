@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCityPokecenter2F.asm", ROMX
 
-OldCityPokecenter2FScriptLoader:
+OldCityPokecenter2F_ScriptLoader:
 	call Unreferenced_Function7e6
 	ld hl, OldCityPokecenter2FScriptPointers
 	call RunMapScript
@@ -25,7 +25,7 @@ OldCityPokecenter2FNPCIds:
 OldCityPokecenter2FSignPointers:
 	dw MapDefaultText
 
-OldCityPokecenter2FTextPointers:
+OldCityPokecenter2F_TextPointers:
 	dw OldCityPokecenter2FText1
 	dw OldCityPokecenter2FText2
 	dw OldCityPokecenter2FText3

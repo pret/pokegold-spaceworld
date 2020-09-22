@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/StandOffice.asm", ROMX
 
-StandOfficeScriptLoader::
+StandOffice_ScriptLoader::
 	ret
 
-StandOfficeTextPointers::
+StandOffice_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

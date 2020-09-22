@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/HaitekuImposterOakHouse.asm", ROMX
 
-HaitekuImposterOakHouseScriptLoader::
+HaitekuImposterOakHouse_ScriptLoader::
 	ret
 
-HaitekuImposterOakHouseTextPointers::
+HaitekuImposterOakHouse_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/Newtype.asm", ROMX
 
-NewtypeScriptLoader::
+Newtype_ScriptLoader::
 	ret
 
 	db "@"

@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "scripts/UnusedMap13.asm", ROMX
 
-UnusedMap13ScriptLoader::
+UnusedMap13_ScriptLoader::
 	ld hl, UnusedMap13ScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -18,7 +18,7 @@ UnusedMap13NPCIDs:
 UnusedMap13SignPointers:
 	dw MapDefaultText
 
-UnusedMap13TextPointers::
+UnusedMap13_TextPointers::
 	dw MapDefaultText
 
 UnusedMap13Script:

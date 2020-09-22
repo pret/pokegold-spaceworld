@@ -12,11 +12,11 @@ SilentHillLabBack_MapEvents::
 	warp_event  4,  7, SILENT_HILL_LAB_FRONT, 3, 43
 
 	def_bg_events
-	bg_event  0,  1, 0, 1
-	bg_event  1,  1, 0, 2
-	bg_event  2,  1, 0, 3
-	bg_event  3,  1, 0, 4
-	bg_event  6,  0, 0, 5
+	bg_event  0,  1, 1
+	bg_event  1,  1, 2
+	bg_event  2,  1, 3
+	bg_event  3,  1, 4
+	bg_event  6,  0, 5
 
 	def_object_events
 	object_event  4,  2, SPRITE_OKIDO, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

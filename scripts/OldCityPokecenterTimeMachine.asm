@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCityPokecenterTimeMachine.asm", ROMX
 
-OldCityPokecenterTimeMachineScriptLoader:
+OldCityPokecenterTimeMachine_ScriptLoader:
 	call Unreferenced_Function7e6
 	ld hl, OldCityPokecenterTimeMachineScriptPointers
 	call RunMapScript
@@ -25,7 +25,7 @@ OldCityPokecenterTimeMachineNPCIds:
 OldCityPokecenterTimeMachineSignPointers:
 	dw MapDefaultText
 
-OldCityPokecenterTimeMachineTextPointers:
+OldCityPokecenterTimeMachine_TextPointers:
 	dw OldCityPokecenterTimeMachineText1
 
 OldCityPokecenterTimeMachineText1:

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCityKurtsHouse.asm", ROMX
 
-OldCityKurtsHouseScriptLoader::
+OldCityKurtsHouse_ScriptLoader::
 	ret
 
-OldCityKurtsHouseTextPointers::
+OldCityKurtsHouse_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

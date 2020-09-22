@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/HaitekuLeague1F.asm", ROMX
 
-HaitekuLeague1FScriptLoader::
+HaitekuLeague1F_ScriptLoader::
 	ret
 
-HaitekuLeague1FTextPointers::
+HaitekuLeague1F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

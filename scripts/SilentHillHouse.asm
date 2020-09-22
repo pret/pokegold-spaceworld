@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "scripts/SilentHillHouse.asm", ROMX
 
-SilentHillHouseScriptLoader::
+SilentHillHouse_ScriptLoader::
 	ld hl, SilentHillHouseScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -101,7 +101,7 @@ SilentHillHouseTextString3:
 	line "みちゃ　いけないよな<⋯⋯>"
 	done
 
-SilentHillHouseTextPointers::
+SilentHillHouse_TextPointers::
 	dw SilentHillHouseNPCText3
 	dw SilentHillHouseNPCText4
 

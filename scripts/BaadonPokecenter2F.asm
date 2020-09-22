@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BaadonPokecenter2F.asm", ROMX
 
-BaadonPokecenter2FScriptLoader::
+BaadonPokecenter2F_ScriptLoader::
 	ret
 
-BaadonPokecenter2FTextPointers::
+BaadonPokecenter2F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

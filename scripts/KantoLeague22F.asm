@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoLeague22F.asm", ROMX
 
-KantoLeague22FScriptLoader::
+KantoLeague22F_ScriptLoader::
 	ret
 
-KantoLeague22FTextPointers::
+KantoLeague22F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

@@ -12,7 +12,7 @@ SilentHillPokecenter_MapEvents::
 	warp_event  6,  7, SILENT_HILL, 2, 60
 
 	def_bg_events
-	bg_event 13,  1, 0, 1
+	bg_event 13,  1, 1
 
 	def_object_events
 	object_event  5,  1, SPRITE_NURSE, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

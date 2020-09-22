@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoUnusedArea.asm", ROMX
 
-KantoUnusedAreaScriptLoader::
+KantoUnusedArea_ScriptLoader::
 	ret
 
-KantoUnusedAreaTextPointers::
+KantoUnusedArea_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

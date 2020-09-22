@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/SugarMart.asm", ROMX
 
-SugarMartScriptLoader::
+SugarMart_ScriptLoader::
 	ret
 
-SugarMartTextPointers::
+SugarMart_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

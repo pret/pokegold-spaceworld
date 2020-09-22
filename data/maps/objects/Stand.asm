@@ -22,16 +22,16 @@ Stand_MapEvents::
 	warp_event 31, 13, BULL_FOREST_ROUTE_GATE_STAND, 2, 198
 
 	def_bg_events
-	bg_event  8,  8, 0, 1
-	bg_event 14,  8, 0, 2
-	bg_event 20, 10, 0, 3
-	bg_event 16, 16, 0, 4
-	bg_event 10, 20, 0, 5
-	bg_event 18, 21, 0, 6
-	bg_event 24, 20, 0, 7
-	bg_event 34, 20, 0, 8
-	bg_event 36, 26, 0, 9
-	bg_event 32, 35, 0, 10
+	bg_event  8,  8, 1
+	bg_event 14,  8, 2
+	bg_event 20, 10, 3
+	bg_event 16, 16, 4
+	bg_event 10, 20, 5
+	bg_event 18, 21, 6
+	bg_event 24, 20, 7
+	bg_event 34, 20, 8
+	bg_event 36, 26, 9
+	bg_event 32, 35, 10
 
 	def_object_events
 	object_event 10, 10, SPRITE_POKEFAN_M, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0

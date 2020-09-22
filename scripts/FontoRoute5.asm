@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/FontoRoute5.asm", ROMX
 
-FontoRoute5ScriptLoader::
+FontoRoute5_ScriptLoader::
 	ret
 
 	db "@"

@@ -12,10 +12,10 @@ OldCityHouse_MapEvents::
 	warp_event  4,  7, OLD_CITY, 9, 43
 
 	def_bg_events
-	bg_event  0,  1, 0, 1
-	bg_event  1,  1, 0, 2
-	bg_event  2,  1, 0, 3
-	bg_event  7,  1, 0, 4
+	bg_event  0,  1, 1
+	bg_event  1,  1, 2
+	bg_event  2,  1, 3
+	bg_event  7,  1, 4
 
 	def_object_events
 	object_event  2,  3, SPRITE_POKEFAN_M, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

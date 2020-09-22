@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/StandLab.asm", ROMX
 
-StandLabScriptLoader::
+StandLab_ScriptLoader::
 	ret
 
-StandLabTextPointers::
+StandLab_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

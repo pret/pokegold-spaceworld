@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/SlowpokeWellMain.asm", ROMX
 
-SlowpokeWellMainScriptLoader::
+SlowpokeWellMain_ScriptLoader::
 	ret
 
-SlowpokeWellMainTextPointers::
+SlowpokeWellMain_TextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText

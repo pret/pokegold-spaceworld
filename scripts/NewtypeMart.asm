@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/NewtypeMart.asm", ROMX
 
-NewtypeMartScriptLoader::
+NewtypeMart_ScriptLoader::
 	ret
 
-NewtypeMartTextPointers::
+NewtypeMart_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

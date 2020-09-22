@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/CaveMinecarts1.asm", ROMX
 
-CaveMinecarts1ScriptLoader::
+CaveMinecarts1_ScriptLoader::
 	ret
 
-CaveMinecarts1TextPointers::
+CaveMinecarts1_TextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText

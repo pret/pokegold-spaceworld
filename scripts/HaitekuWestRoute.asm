@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/HaitekuWestRoute.asm", ROMX
 
-HaitekuWestRouteScriptLoader::
+HaitekuWestRoute_ScriptLoader::
 	ret
 
 	db "@"

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/StandRoute.asm", ROMX
 
-StandRouteScriptLoader::
+StandRoute_ScriptLoader::
 	ret
 
 	db "@"

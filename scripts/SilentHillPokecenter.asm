@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "scripts/SilentHillPokecenter.asm", ROMX
 
-SilentHillPokecenterScriptLoader::
+SilentHillPokecenter_ScriptLoader::
 	ld hl, SilentHillPokecenterScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -40,7 +40,7 @@ SilentHillPokecenterTextString1:
 	text "げんざい　ちょうせいちゅうです"
 	done
 
-SilentHillPokecenterTextPointers::
+SilentHillPokecenter_TextPointers::
 	dw SilentHillPokecenterNPCText1
 	dw SilentHillPokecenterNPCText2
 	dw SilentHillPokecenterNPCText3

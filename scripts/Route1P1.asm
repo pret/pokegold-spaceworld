@@ -13,7 +13,7 @@ Textdbb82:
 	ret
 	endr
 
-Route1P1ScriptLoader::
+Route1P1_ScriptLoader::
 	ld hl, Route1P1ScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -32,7 +32,7 @@ Route1P1SignPointers:
 	dw Route1P1TextSign1
 	dw Route1P1TextSign2
 
-Route1P1TextPointers::
+Route1P1_TextPointers::
 	dw Route1P1TextNPC1
 	dw Route1P1TextNPC2
 

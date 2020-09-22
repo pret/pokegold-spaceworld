@@ -15,10 +15,10 @@ North_MapEvents::
 	warp_event 13, 10, NORTH_POKECENTER_1F, 1, 103
 
 	def_bg_events
-	bg_event 12,  4, 0, 1
-	bg_event 16,  6, 0, 2
-	bg_event 14, 10, 0, 3
-	bg_event  8, 12, 0, 4
+	bg_event 12,  4, 1
+	bg_event 16,  6, 2
+	bg_event 14, 10, 3
+	bg_event  8, 12, 4
 
 	def_object_events
 	object_event  9,  6, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

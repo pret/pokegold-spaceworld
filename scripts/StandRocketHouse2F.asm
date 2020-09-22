@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/StandRocketHouse2F.asm", ROMX
 
-StandRocketHouse2FScriptLoader::
+StandRocketHouse2F_ScriptLoader::
 	ret
 
-StandRocketHouse2FTextPointers::
+StandRocketHouse2F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

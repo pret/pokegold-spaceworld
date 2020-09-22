@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/FontoRouteGate2.asm", ROMX
 
-FontoRouteGate2ScriptLoader::
+FontoRouteGate2_ScriptLoader::
 	ret
 
-FontoRouteGate2TextPointers::
+FontoRouteGate2_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

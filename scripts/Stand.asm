@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/Stand.asm", ROMX
 
-StandScriptLoader::
+Stand_ScriptLoader::
 	ret
 
 	db "@"

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/WestMart5F.asm", ROMX
 
-WestMart5FScriptLoader::
+WestMart5F_ScriptLoader::
 	ret
 
-WestMart5FTextPointers::
+WestMart5F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

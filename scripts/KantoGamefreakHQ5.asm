@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoGamefreakHQ5.asm", ROMX
 
-KantoGamefreakHQ5ScriptLoader::
+KantoGamefreakHQ5_ScriptLoader::
 	ret
 
-KantoGamefreakHQ5TextPointers::
+KantoGamefreakHQ5_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

@@ -26,18 +26,18 @@ OldCity_MapEvents::
 	warp_event 22, 26, OLD_CITY_SCHOOL, 1, 376
 
 	def_bg_events
-	bg_event  8, 14, 0, 1
-	bg_event  8, 16, 0, 2
-	bg_event 28, 16, 0, 3
-	bg_event 20, 22, 0, 4
-	bg_event 26, 22, 0, 5
-	bg_event  8, 26, 0, 6
-	bg_event 28, 28, 0, 7
-	bg_event 20, 29, 0, 8
-	bg_event  4, 32, 0, 9
-	bg_event 30, 22, 0, 10
-	bg_event  4, 14, 0, 11
-	bg_event  5, 14, 0, 11
+	bg_event  8, 14, 1
+	bg_event  8, 16, 2
+	bg_event 28, 16, 3
+	bg_event 20, 22, 4
+	bg_event 26, 22, 5
+	bg_event  8, 26, 6
+	bg_event 28, 28, 7
+	bg_event 20, 29, 8
+	bg_event  4, 32, 9
+	bg_event 30, 22, 10
+	bg_event  4, 14, 11
+	bg_event  5, 14, 11
 
 	def_object_events
 	object_event  8, 30, SPRITE_TWIN, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

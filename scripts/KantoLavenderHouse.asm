@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoLavenderHouse.asm", ROMX
 
-KantoLavenderHouseScriptLoader::
+KantoLavenderHouse_ScriptLoader::
 	ret
 
-KantoLavenderHouseTextPointers::
+KantoLavenderHouse_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

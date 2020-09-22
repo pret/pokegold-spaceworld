@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoEldersHouse.asm", ROMX
 
-KantoEldersHouseScriptLoader::
+KantoEldersHouse_ScriptLoader::
 	ret
 
-KantoEldersHouseTextPointers::
+KantoEldersHouse_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

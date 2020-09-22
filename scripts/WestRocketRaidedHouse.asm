@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/WestRocketRaidedHouse.asm", ROMX
 
-WestRocketRaidedHouseScriptLoader::
+WestRocketRaidedHouse_ScriptLoader::
 	ret
 
-WestRocketRaidedHouseTextPointers::
+WestRocketRaidedHouse_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

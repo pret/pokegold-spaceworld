@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCityMuseum.asm", ROMX
 
-OldCityMuseumScriptLoader::
+OldCityMuseum_ScriptLoader::
 	ret
 
-OldCityMuseumTextPointers::
+OldCityMuseum_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

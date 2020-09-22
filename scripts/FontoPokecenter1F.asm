@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/FontoPokecenter1F.asm", ROMX
 
-FontoPokecenter1FScriptLoader::
+FontoPokecenter1F_ScriptLoader::
 	ret
 
-FontoPokecenter1FTextPointers::
+FontoPokecenter1F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

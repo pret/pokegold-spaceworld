@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoDiner.asm", ROMX
 
-KantoDinerScriptLoader::
+KantoDiner_ScriptLoader::
 	ret
 
-KantoDinerTextPointers::
+KantoDiner_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

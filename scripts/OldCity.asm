@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCity.asm", ROMX
 
-OldCityScriptLoader::
+OldCity_ScriptLoader::
 	ret
 
 	db "@"

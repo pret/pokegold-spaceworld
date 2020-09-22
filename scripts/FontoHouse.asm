@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/FontoHouse.asm", ROMX
 
-FontoHouseScriptLoader::
+FontoHouse_ScriptLoader::
 	ret
 
-FontoHouseTextPointers::
+FontoHouse_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

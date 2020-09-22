@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoSchool.asm", ROMX
 
-KantoSchoolScriptLoader::
+KantoSchool_ScriptLoader::
 	ret
 
-KantoSchoolTextPointers::
+KantoSchool_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

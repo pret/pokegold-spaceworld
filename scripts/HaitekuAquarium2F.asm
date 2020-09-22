@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/HaitekuAquarium2F.asm", ROMX
 
-HaitekuAquarium2FScriptLoader::
+HaitekuAquarium2F_ScriptLoader::
 	ret
 
-HaitekuAquarium2FTextPointers::
+HaitekuAquarium2F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

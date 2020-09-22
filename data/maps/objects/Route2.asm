@@ -14,9 +14,9 @@ Route2_MapEvents::
 	warp_event 15,  4, ROUTE_2_HOUSE, 1, 71
 
 	def_bg_events
-	bg_event 15,  4, 0, 3
-	bg_event 14,  5, 0, 1
-	bg_event 24, 10, 0, 2
+	bg_event 15,  4, 3
+	bg_event 14,  5, 1
+	bg_event 24, 10, 2
 
 	def_object_events
 	object_event 19, 11, SPRITE_YOUNGSTER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0

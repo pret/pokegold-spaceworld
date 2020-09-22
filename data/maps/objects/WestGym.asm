@@ -12,8 +12,8 @@ WestGym_MapEvents::
 	warp_event  5, 17, WEST, 8, 102
 
 	def_bg_events
-	bg_event  3, 15, 0, 1
-	bg_event  6, 15, 0, 1
+	bg_event  3, 15, 1
+	bg_event  6, 15, 1
 
 	def_object_events
 	object_event  4,  4, SPRITE_TSUKUSHI, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

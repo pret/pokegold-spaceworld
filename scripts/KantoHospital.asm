@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoHospital.asm", ROMX
 
-KantoHospitalScriptLoader::
+KantoHospital_ScriptLoader::
 	ret
 
-KantoHospitalTextPointers::
+KantoHospital_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

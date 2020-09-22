@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BaadonWallpaperHouse.asm", ROMX
 
-BaadonWallpaperHouseScriptLoader::
+BaadonWallpaperHouse_ScriptLoader::
 	ret
 
-BaadonWallpaperHouseTextPointers::
+BaadonWallpaperHouse_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

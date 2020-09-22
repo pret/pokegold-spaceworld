@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCityPokecenterBattle.asm", ROMX
 
-OldCityPokecenterBattleScriptLoader:
+OldCityPokecenterBattle_ScriptLoader:
 	ld hl, OldCityPokecenterBattleScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -24,7 +24,7 @@ OldCityPokecenterBattleNPCIds:
 OldCityPokecenterBattleSignPointers:
 	dw MapDefaultText
 
-OldCityPokecenterBattleTextPointers:
+OldCityPokecenterBattle_TextPointers:
 	dw OldCityPokecenterBattleText1
 
 OldCityPokecenterBattleText1:

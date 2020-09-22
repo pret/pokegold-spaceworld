@@ -16,7 +16,7 @@ Route1P2_MapEvents::
 	warp_event  9, 25, SHIZUKANA_OKA, 9, 213
 
 	def_bg_events
-	bg_event 10, 20, 0, 1
+	bg_event 10, 20, 1
 
 	def_object_events
 	object_event  8,  6, SPRITE_SILVER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BaadonRouteGateNewtype.asm", ROMX
 
-BaadonRouteGateNewtypeScriptLoader::
+BaadonRouteGateNewtype_ScriptLoader::
 	ret
 
-BaadonRouteGateNewtypeTextPointers::
+BaadonRouteGateNewtype_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

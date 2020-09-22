@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/WestHouse2.asm", ROMX
 
-WestHouse2ScriptLoader::
+WestHouse2_ScriptLoader::
 	ret
 
-WestHouse2TextPointers::
+WestHouse2_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

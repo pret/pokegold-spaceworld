@@ -11,8 +11,8 @@ Route1Gate2F_MapEvents::
 	warp_event  5,  0, ROUTE_1_GATE_1F, 5, 13
 
 	def_bg_events
-	bg_event  1,  0, 0, 1
-	bg_event  3,  0, 0, 2
+	bg_event  1,  0, 1
+	bg_event  3,  0, 2
 
 	def_object_events
 	object_event  3,  3, SPRITE_LASS, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0

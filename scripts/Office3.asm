@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/Office3.asm", ROMX
 
-Office3ScriptLoader::
+Office3_ScriptLoader::
 	ret
 
-Office3TextPointers::
+Office3_TextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText

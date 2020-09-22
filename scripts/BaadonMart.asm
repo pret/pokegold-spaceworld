@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BaadonMart.asm", ROMX
 
-BaadonMartScriptLoader::
+BaadonMart_ScriptLoader::
 	ret
 
-BaadonMartTextPointers::
+BaadonMart_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

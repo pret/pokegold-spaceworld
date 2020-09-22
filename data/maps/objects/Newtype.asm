@@ -26,11 +26,11 @@ Newtype_MapEvents::
 	warp_event 19,  5, SUGAR_ROUTE_GATE, 2, 88
 
 	def_bg_events
-	bg_event  0,  8, 0, 1
-	bg_event  8,  8, 0, 2
-	bg_event  8, 14, 0, 3
-	bg_event 30, 15, 0, 4
-	bg_event 30, 21, 0, 5
+	bg_event  0,  8, 1
+	bg_event  8,  8, 2
+	bg_event  8, 14, 3
+	bg_event 30, 15, 4
+	bg_event 30, 21, 5
 
 	def_object_events
 	object_event  5, 10, SPRITE_SILVER, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

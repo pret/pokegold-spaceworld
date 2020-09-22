@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "scripts/PlayerHouse2F.asm", ROMX
 
-PlayerHouse2FScriptLoader::
+PlayerHouse2F_ScriptLoader::
 	ld hl, PlayerHouse2FScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -14,7 +14,7 @@ PlayerHouse2FScriptPointers:
 	dw PlayerHouse2FScript2
 	dw PlayerHouse2FNPCIDs2
 
-PlayerHouse2FTextPointers::
+PlayerHouse2F_TextPointers::
 	dw PlayerHouse2FText1
 	dw PlayerHouse2FDollText
 

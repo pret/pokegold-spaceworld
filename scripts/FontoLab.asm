@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/FontoLab.asm", ROMX
 
-FontoLabScriptLoader::
+FontoLab_ScriptLoader::
 	ret
 
-FontoLabTextPointers::
+FontoLab_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

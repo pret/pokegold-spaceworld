@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoEastRoute.asm", ROMX
 
-KantoEastRouteScriptLoader::
+KantoEastRoute_ScriptLoader::
 	ret
 
 	db "@"

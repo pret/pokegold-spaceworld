@@ -20,8 +20,8 @@ ShizukanaOka_MapEvents::
 	warp_event  9,  0, ROUTE_1_P2, 4, 36
 
 	def_bg_events
-	bg_event  9,  2, 0, 1
-	bg_event 47, 28, 0, 2
+	bg_event  9,  2, 1
+	bg_event 47, 28, 2
 
 	def_object_events
 	object_event 41, 28, SPRITE_ROCKER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

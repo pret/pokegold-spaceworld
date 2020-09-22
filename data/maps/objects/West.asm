@@ -25,12 +25,12 @@ West_MapEvents::
 	warp_event 35, 15, ROUTE_2_GATE_1F, 1, 226
 
 	def_bg_events
-	bg_event 16,  7, 0, 1
-	bg_event 28,  9, 0, 2
-	bg_event 12, 10, 0, 3
-	bg_event 32, 12, 0, 4
-	bg_event 26, 14, 0, 5
-	bg_event 18, 20, 0, 6
+	bg_event 16,  7, 1
+	bg_event 28,  9, 2
+	bg_event 12, 10, 3
+	bg_event 32, 12, 4
+	bg_event 26, 14, 5
+	bg_event 18, 20, 6
 
 	def_object_events
 	object_event  6,  8, SPRITE_SAILOR, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

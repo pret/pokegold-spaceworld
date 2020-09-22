@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/PowerPlant1.asm", ROMX
 
-PowerPlant1ScriptLoader::
+PowerPlant1_ScriptLoader::
 	ret
 
-PowerPlant1TextPointers::
+PowerPlant1_TextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText

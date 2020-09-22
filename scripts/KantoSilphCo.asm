@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoSilphCo.asm", ROMX
 
-KantoSilphCoScriptLoader::
+KantoSilphCo_ScriptLoader::
 	ret
 
-KantoSilphCoTextPointers::
+KantoSilphCo_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

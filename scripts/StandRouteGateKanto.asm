@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/StandRouteGateKanto.asm", ROMX
 
-StandRouteGateKantoScriptLoader::
+StandRouteGateKanto_ScriptLoader::
 	ret
 
-StandRouteGateKantoTextPointers::
+StandRouteGateKanto_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

@@ -14,8 +14,8 @@ WestMart1F_MapEvents::
 	warp_event  2,  0, WEST_MART_ELEVATOR, 1, 16
 
 	def_bg_events
-	bg_event 14,  0, 0, 1
-	bg_event  3,  0, 0, 2
+	bg_event 14,  0, 1
+	bg_event  3,  0, 2
 
 	def_object_events
 	object_event  7,  1, SPRITE_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

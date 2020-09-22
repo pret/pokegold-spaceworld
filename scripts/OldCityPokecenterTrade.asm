@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCityPokecenterTrade.asm", ROMX
 
-OldCityPokecenterTradeScriptLoader:
+OldCityPokecenterTrade_ScriptLoader:
 	ld hl, OldCityPokecenterTradeScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -24,7 +24,7 @@ OldCityPokecenterTradeNPCIds:
 OldCityPokecenterTradeSignPointers:
 	dw MapDefaultText
 
-OldCityPokecenterTradeTextPointers:
+OldCityPokecenterTrade_TextPointers:
 	dw OldCityPokecenterTradeText1
 
 OldCityPokecenterTradeText1:

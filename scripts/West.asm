@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/West.asm", ROMX
 
-WestScriptLoader::
+West_ScriptLoader::
 	ret
 
 	db "@"

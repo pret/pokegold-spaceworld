@@ -12,8 +12,8 @@ CURRENT_MAP_HEIGHT = \2_HEIGHT
 \1_MapAttributes::
 	db CURRENT_MAP_HEIGHT, CURRENT_MAP_WIDTH
 	dw \1_Blocks
-	dw \1TextPointers
-	dw \1ScriptLoader
+	dw \1_TextPointers
+	dw \1_ScriptLoader
 	dw \1_MapEvents
 	db \3
 ENDM
@@ -105,7 +105,7 @@ map: MACRO
 	db BANK(\1_MapAttributes), \2, \3
 	dw \1_MapAttributes
 	db \4
-	db 0, 0 ; ???
+	db 0, 0
 ENDM
 
 def_warp_events: MACRO
@@ -118,10 +118,14 @@ _NUM_WARP_EVENTS = 0
 ENDM
 
 warp_event: MACRO
-	db \2, \1 ; y, x
-	db \4 ; index
+;\1: x: left to right, starts at 0
+;\2: y: top to bottom, starts at 0
+;\3: map id: from constants/map_constants.asm
+;\4: warp destination: starts at 1
+;\5: wOverworldMapBlocks offset (unused)
+	db \2, \1, \4
 	map_id \3
-	dw wOverworldMapBlocks + \5 ; unused
+	dw wOverworldMapBlocks + \5
 _NUM_WARP_EVENTS = _NUM_WARP_EVENTS + 1
 ENDM
 
@@ -135,9 +139,10 @@ _NUM_BG_EVENTS = 0
 ENDM
 
 bg_event: MACRO
-	db \2, \1 ; y, x
-	db \3 ; function (unused?)
-	db \4 ; text index
+;\1: x: left to right, starts at 0
+;\2: y: top to bottom, starts at 0
+;\3: text index
+	db \2, \1, 0, \3
 _NUM_BG_EVENTS = _NUM_BG_EVENTS + 1
 ENDM
 
@@ -151,20 +156,35 @@ _NUM_OBJECT_EVENTS = 0
 ENDM
 
 object_event: MACRO
-	db \3 ; sprite
-	db \2 + 4, \1 + 4 ; x, y
-	db \4 ; movement function
-	dn \5, \6 ; radius
-	db \7, \8 ; hour limits?
+;\1: x: left to right, starts at 0
+;\2: y: top to bottom, starts at 0
+;\3: sprite: a SPRITE_* constant
+;\4: movement function: a SPRITEMOVEDATA_* constant
+;\5, \6: movement radius: x, y
+;\7, \8: hour limits: h1, h2 (0-23)
+;  * if h1 < h2, the object_event will only appear from h1 to h2
+;  * if h1 > h2, the object_event will not appear from h2 to h1
+;  * if h1 == h2, the object_event will always appear
+;  * if h1 == -1, h2 is treated as a time-of-day value:
+;    a combo of MORN, DAY, and/or NITE, or -1 to always appear
+;\9: object type function
+;\10: unknown 1
+;\11: unknown 2
+;\12: sight range
+;\13: unknown 3
+;\14: unknown 4
+	db \3, \2 + 4, \1 + 4, \4
+	dn \5, \6
+	db \7, \8
 	shift
-	db \8 ; object type function
+	db \8
 	shift
-	db \8, \9 ; unknown 1, 2
+	db \8, \9
 	shift
-	db \9 ; sight range
+	db \9
 	shift
-	db \9 ; unknown 3
+	db \9
 	shift
-	db \9 ; unknown 4
+	db \9
 _NUM_OBJECT_EVENTS = _NUM_OBJECT_EVENTS + 1
 ENDM

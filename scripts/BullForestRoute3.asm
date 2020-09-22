@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BullForestRoute3.asm", ROMX
 
-BullForestRoute3ScriptLoader::
+BullForestRoute3_ScriptLoader::
 	ret
 
 	db "@"

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/SouthPokecenter1F.asm", ROMX
 
-SouthPokecenter1FScriptLoader::
+SouthPokecenter1F_ScriptLoader::
 	ret
 
-SouthPokecenter1FTextPointers::
+SouthPokecenter1F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

@@ -12,12 +12,12 @@ Route2House_MapEvents::
 	warp_event  5,  7, ROUTE_2, 2, 43
 
 	def_bg_events
-	bg_event  0,  0, 0, 1
-	bg_event  2,  0, 0, 1
-	bg_event  4,  0, 0, 1
-	bg_event  6,  0, 0, 1
-	bg_event  0,  3, 0, 2
-	bg_event  4,  3, 0, 3
+	bg_event  0,  0, 1
+	bg_event  2,  0, 1
+	bg_event  4,  0, 1
+	bg_event  6,  0, 1
+	bg_event  0,  3, 2
+	bg_event  4,  3, 3
 
 	def_object_events
 	object_event  6,  6, SPRITE_SCIENTIST, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

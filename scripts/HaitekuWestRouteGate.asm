@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/HaitekuWestRouteGate.asm", ROMX
 
-HaitekuWestRouteGateScriptLoader::
+HaitekuWestRouteGate_ScriptLoader::
 	ret
 
-HaitekuWestRouteGateTextPointers::
+HaitekuWestRouteGate_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

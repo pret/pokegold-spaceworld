@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/WestRadioTower4F.asm", ROMX
 
-WestRadioTower4FScriptLoader::
+WestRadioTower4F_ScriptLoader::
 	ret
 
-WestRadioTower4FTextPointers::
+WestRadioTower4F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

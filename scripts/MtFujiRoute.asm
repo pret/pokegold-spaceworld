@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/MtFujiRoute.asm", ROMX
 
-MtFujiRouteScriptLoader::
+MtFujiRoute_ScriptLoader::
 	ret
 
 	db "@"

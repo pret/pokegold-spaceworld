@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "scripts/Route1P2.asm", ROMX
 
-Route1P2ScriptLoader::
+Route1P2_ScriptLoader::
 	ld hl, Route1P2ScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -20,7 +20,7 @@ Route1P2NPCIDs:
 Route1P2SignPointers:
 	dw Route1P2TextSign1
 
-Route1P2TextPointers::
+Route1P2_TextPointers::
 	dw Route1P2Text1
 	dw Route1P2Text2
 

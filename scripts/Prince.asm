@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/Prince.asm", ROMX
 
-PrinceScriptLoader::
+Prince_ScriptLoader::
 	ret
 
 	db "@"

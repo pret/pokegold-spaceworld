@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/RuinsOfAlphMain.asm", ROMX
 
-RuinsOfAlphMainScriptLoader::
+RuinsOfAlphMain_ScriptLoader::
 	ret
 
-RuinsOfAlphMainTextPointers::
+RuinsOfAlphMain_TextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText

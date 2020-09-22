@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/Kanto.asm", ROMX
 
-KantoScriptLoader::
+Kanto_ScriptLoader::
 	ret
 
 	db "@"

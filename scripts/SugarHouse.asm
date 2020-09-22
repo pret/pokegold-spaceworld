@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/SugarHouse.asm", ROMX
 
-SugarHouseScriptLoader::
+SugarHouse_ScriptLoader::
 	ret
 
-SugarHouseTextPointers::
+SugarHouse_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/SouthMart.asm", ROMX
 
-SouthMartScriptLoader::
+SouthMart_ScriptLoader::
 	ret
 
-SouthMartTextPointers::
+SouthMart_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

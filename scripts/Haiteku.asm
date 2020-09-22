@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/Haiteku.asm", ROMX
 
-HaitekuScriptLoader::
+Haiteku_ScriptLoader::
 	ret
 
 	db "@"

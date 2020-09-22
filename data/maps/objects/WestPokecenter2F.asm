@@ -11,7 +11,7 @@ WestPokecenter2F_MapEvents::
 	warp_event  0,  7, WEST_POKECENTER_1F, 3, 57
 
 	def_bg_events
-	bg_event  1,  1, 0, 1
+	bg_event  1,  1, 1
 
 	def_object_events
 	object_event  5,  2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

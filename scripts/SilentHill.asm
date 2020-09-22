@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "scripts/SilentHill.asm", ROMX
 
-SilentHillScriptLoader::
+SilentHill_ScriptLoader::
 	ld hl, SilentHillScriptPointers1
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -318,7 +318,7 @@ SilentHillTextString5:
 	text "ここは　<RIVAL>　のいえ"
 	done
 
-SilentHillTextPointers::
+SilentHill_TextPointers::
 	dw SilentHillTextRival1 ; west
 	dw SilentHillTextNorthExit ; north
 	dw SilentHillTextBackpack ; npc1

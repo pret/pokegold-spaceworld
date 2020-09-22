@@ -13,21 +13,21 @@ SilentHillLabFront_MapEvents::
 	warp_event  4,  0, SILENT_HILL_LAB_BACK, 2, 13
 
 	def_bg_events
-	bg_event  6,  1, 0, 1
-	bg_event  2,  0, 0, 2
-	bg_event  0,  7, 0, 3
-	bg_event  1,  7, 0, 4
-	bg_event  2,  7, 0, 5
-	bg_event  5,  7, 0, 6
-	bg_event  6,  7, 0, 7
-	bg_event  7,  7, 0, 8
-	bg_event  0, 11, 0, 9
-	bg_event  1, 11, 0, 10
-	bg_event  2, 11, 0, 11
-	bg_event  5, 11, 0, 12
-	bg_event  6, 11, 0, 13
-	bg_event  7, 11, 0, 14
-	bg_event  4,  0, 0, 15
+	bg_event  6,  1, 1
+	bg_event  2,  0, 2
+	bg_event  0,  7, 3
+	bg_event  1,  7, 4
+	bg_event  2,  7, 5
+	bg_event  5,  7, 6
+	bg_event  6,  7, 7
+	bg_event  7,  7, 8
+	bg_event  0, 11, 9
+	bg_event  1, 11, 10
+	bg_event  2, 11, 11
+	bg_event  5, 11, 12
+	bg_event  6, 11, 13
+	bg_event  7, 11, 14
+	bg_event  4,  0, 15
 
 	def_object_events
 	object_event  4,  2, SPRITE_OKIDO, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

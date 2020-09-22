@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/RouteSilentEast.asm", ROMX
 
-RouteSilentEastScriptLoader::
+RouteSilentEast_ScriptLoader::
 	ret
 
 	db "@"

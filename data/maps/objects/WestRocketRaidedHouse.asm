@@ -12,13 +12,13 @@ WestRocketRaidedHouse_MapEvents::
 	warp_event  5,  7, WEST, 5, 47
 
 	def_bg_events
-	bg_event  0,  1, 0, 1
-	bg_event  1,  1, 0, 2
-	bg_event  2,  1, 0, 3
-	bg_event  4,  1, 0, 4
-	bg_event  5,  1, 0, 4
-	bg_event  7,  1, 0, 5
-	bg_event  8,  0, 0, 6
+	bg_event  0,  1, 1
+	bg_event  1,  1, 2
+	bg_event  2,  1, 3
+	bg_event  4,  1, 4
+	bg_event  5,  1, 4
+	bg_event  7,  1, 5
+	bg_event  8,  0, 6
 
 	def_object_events
 	object_event  8,  1, SPRITE_36, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

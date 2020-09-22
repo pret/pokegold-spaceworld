@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BullLeague1F.asm", ROMX
 
-BullLeague1FScriptLoader::
+BullLeague1F_ScriptLoader::
 	ret
 
-BullLeague1FTextPointers::
+BullLeague1F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

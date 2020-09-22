@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoGreensHouse2F.asm", ROMX
 
-KantoGreensHouse2FScriptLoader::
+KantoGreensHouse2F_ScriptLoader::
 	ret
 
-KantoGreensHouse2FTextPointers::
+KantoGreensHouse2F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

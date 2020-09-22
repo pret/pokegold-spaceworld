@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/NewtypeDojo.asm", ROMX
 
-NewtypeDojoScriptLoader::
+NewtypeDojo_ScriptLoader::
 	ret
 
-NewtypeDojoTextPointers::
+NewtypeDojo_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

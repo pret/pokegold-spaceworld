@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/Route15.asm", ROMX
 
-Route15ScriptLoader::
+Route15_ScriptLoader::
 	ret
 
 	db "@"

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/NewtypePokecenter1F.asm", ROMX
 
-NewtypePokecenter1FScriptLoader::
+NewtypePokecenter1F_ScriptLoader::
 	ret
 
-NewtypePokecenter1FTextPointers::
+NewtypePokecenter1F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

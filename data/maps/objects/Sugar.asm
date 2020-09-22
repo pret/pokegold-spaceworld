@@ -15,10 +15,10 @@ Sugar_MapEvents::
 	warp_event  9, 10, SUGAR_POKECENTER_1F, 1, 101
 
 	def_bg_events
-	bg_event 14,  6, 0, 1
-	bg_event  6, 10, 0, 2
-	bg_event 10, 10, 0, 3
-	bg_event 10, 14, 0, 4
+	bg_event 14,  6, 1
+	bg_event  6, 10, 2
+	bg_event 10, 10, 3
+	bg_event 10, 14, 4
 
 	def_object_events
 	object_event  8, 12, SPRITE_TWIN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoFishingGuru.asm", ROMX
 
-KantoFishingGuruScriptLoader::
+KantoFishingGuru_ScriptLoader::
 	ret
 
-KantoFishingGuruTextPointers::
+KantoFishingGuru_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

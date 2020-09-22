@@ -22,11 +22,11 @@ South_MapEvents::
 	warp_event 31, 30, HAITEKU_WEST_ROUTE_GATE, 4, 432
 
 	def_bg_events
-	bg_event 30, 14, 0, 1
-	bg_event 34, 14, 0, 2
-	bg_event 28, 17, 0, 3
-	bg_event 16, 22, 0, 4
-	bg_event 20, 22, 0, 5
+	bg_event 30, 14, 1
+	bg_event 34, 14, 2
+	bg_event 28, 17, 3
+	bg_event 16, 22, 4
+	bg_event 20, 22, 5
 
 	def_object_events
 	object_event 25, 21, SPRITE_TWIN, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCityMart.asm", ROMX
 
-OldCityMartScriptLoader::
+OldCityMart_ScriptLoader::
 	ret
 
-OldCityMartTextPointers::
+OldCityMart_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

@@ -18,11 +18,11 @@ SilentHill_MapEvents::
 	warp_event 15, 11, SILENT_HILL_LAB_FRONT, 2, 104
 
 	def_bg_events
-	bg_event  8,  4, 0, 1
-	bg_event 14,  4, 0, 2
-	bg_event 16,  5, 0, 3
-	bg_event 10, 11, 0, 4
-	bg_event  6, 12, 0, 5
+	bg_event  8,  4, 1
+	bg_event 14,  4, 2
+	bg_event 16,  5, 3
+	bg_event 10, 11, 4
+	bg_event  6, 12, 5
 
 	def_object_events
 	object_event  6, 10, SPRITE_SILVER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

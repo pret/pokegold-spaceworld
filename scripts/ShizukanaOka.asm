@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "scripts/ShizukanaOka.asm", ROMX
 
-ShizukanaOkaScriptLoader::
+ShizukanaOka_ScriptLoader::
 	ld hl, ShizukanaOkaScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -25,7 +25,7 @@ ShizukanaOkaSignPointers:
 	dw ShizukanaOkaSignpost1
 	dw ShizukanaOkaSignpost2
 
-ShizukanaOkaTextPointers:
+ShizukanaOka_TextPointers:
 	dw ShizukanaOkaText1
 	dw ShizukanaOkaTrainer2
 	dw ShizukanaOkaTrainer3

@@ -12,11 +12,11 @@ OldCityKurtsHouse_MapEvents::
 	warp_event  4,  7, OLD_CITY, 11, 59
 
 	def_bg_events
-	bg_event  4,  1, 0, 1
-	bg_event  5,  1, 0, 2
-	bg_event 12,  1, 0, 3
-	bg_event 14,  0, 0, 4
-	bg_event 15,  0, 0, 4
+	bg_event  4,  1, 1
+	bg_event  5,  1, 2
+	bg_event 12,  1, 3
+	bg_event 14,  0, 4
+	bg_event 15,  0, 4
 
 	def_object_events
 	object_event  2,  2, SPRITE_GANTETSU, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

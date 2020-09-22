@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/NewtypeRoute.asm", ROMX
 
-NewtypeRouteScriptLoader::
+NewtypeRoute_ScriptLoader::
 	ret
 
 	db "@"

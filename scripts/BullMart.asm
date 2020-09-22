@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BullMart.asm", ROMX
 
-BullMartScriptLoader::
+BullMart_ScriptLoader::
 	ret
 
-BullMartTextPointers::
+BullMart_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

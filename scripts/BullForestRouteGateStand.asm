@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BullForestRouteGateStand.asm", ROMX
 
-BullForestRouteGateStandScriptLoader::
+BullForestRouteGateStand_ScriptLoader::
 	ret
 
-BullForestRouteGateStandTextPointers::
+BullForestRouteGateStand_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

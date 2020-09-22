@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BullForestRoute1House.asm", ROMX
 
-BullForestRoute1HouseScriptLoader::
+BullForestRoute1House_ScriptLoader::
 	ret
 
-BullForestRoute1HouseTextPointers::
+BullForestRoute1House_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

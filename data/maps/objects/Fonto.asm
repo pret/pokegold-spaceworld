@@ -18,11 +18,11 @@ Fonto_MapEvents::
 	warp_event 16, 13, FONTO_LAB, 1, 121
 
 	def_bg_events
-	bg_event 15,  4, 0, 1
-	bg_event 14,  6, 0, 2
-	bg_event  4, 12, 0, 3
-	bg_event  6, 12, 0, 4
-	bg_event 10, 12, 0, 5
+	bg_event 15,  4, 1
+	bg_event 14,  6, 2
+	bg_event  4, 12, 3
+	bg_event  6, 12, 4
+	bg_event 10, 12, 5
 
 	def_object_events
 	object_event  2,  4, SPRITE_36, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

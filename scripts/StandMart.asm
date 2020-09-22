@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/StandMart.asm", ROMX
 
-StandMartScriptLoader::
+StandMart_ScriptLoader::
 	ret
 
-StandMartTextPointers::
+StandMart_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

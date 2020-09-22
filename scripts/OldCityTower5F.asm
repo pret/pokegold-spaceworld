@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCityTower5F.asm", ROMX
 
-OldCityTower5FScriptLoader::
+OldCityTower5F_ScriptLoader::
 	ret
 
-OldCityTower5FTextPointers::
+OldCityTower5F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

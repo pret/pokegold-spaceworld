@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/SugarPokecenter2F.asm", ROMX
 
-SugarPokecenter2FScriptLoader::
+SugarPokecenter2F_ScriptLoader::
 	ret
 
-SugarPokecenter2FTextPointers::
+SugarPokecenter2F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

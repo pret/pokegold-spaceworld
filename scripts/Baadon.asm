@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/Baadon.asm", ROMX
 
-BaadonScriptLoader::
+Baadon_ScriptLoader::
 	ret
 
 	db "@"

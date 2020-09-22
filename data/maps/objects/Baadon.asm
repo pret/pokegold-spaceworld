@@ -22,10 +22,10 @@ Baadon_MapEvents::
 	warp_event  9,  5, FONTO_ROUTE_GATE_2, 2, 53
 
 	def_bg_events
-	bg_event  4,  4, 0, 1
-	bg_event 16,  4, 0, 2
-	bg_event 11, 10, 0, 3
-	bg_event  6, 14, 0, 4
+	bg_event  4,  4, 1
+	bg_event 16,  4, 2
+	bg_event 11, 10, 3
+	bg_event  6, 14, 4
 
 	def_object_events
 	object_event 14,  8, SPRITE_SUPER_NERD, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0

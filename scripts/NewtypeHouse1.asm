@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/NewtypeHouse1.asm", ROMX
 
-NewtypeHouse1ScriptLoader::
+NewtypeHouse1_ScriptLoader::
 	ret
 
-NewtypeHouse1TextPointers::
+NewtypeHouse1_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

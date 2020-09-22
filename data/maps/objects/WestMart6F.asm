@@ -11,11 +11,11 @@ WestMart6F_MapEvents::
 	warp_event 15,  0, WEST_MART_5F, 2, 22
 
 	def_bg_events
-	bg_event  8,  1, 0, 1
-	bg_event  9,  1, 0, 2
-	bg_event 10,  1, 0, 3
-	bg_event 11,  1, 0, 4
-	bg_event 14,  0, 0, 5
+	bg_event  8,  1, 1
+	bg_event  9,  1, 2
+	bg_event 10,  1, 3
+	bg_event 11,  1, 4
+	bg_event 14,  0, 5
 
 	def_object_events
 	object_event 12,  3, SPRITE_OFFICER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0

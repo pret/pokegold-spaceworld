@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoMart.asm", ROMX
 
-KantoMartScriptLoader::
+KantoMart_ScriptLoader::
 	ret
 
-KantoMartTextPointers::
+KantoMart_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

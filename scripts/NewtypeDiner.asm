@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/NewtypeDiner.asm", ROMX
 
-NewtypeDinerScriptLoader::
+NewtypeDiner_ScriptLoader::
 	ret
 
-NewtypeDinerTextPointers::
+NewtypeDiner_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

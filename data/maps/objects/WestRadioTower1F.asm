@@ -13,8 +13,8 @@ WestRadioTower1F_MapEvents::
 	warp_event  7,  0, WEST_RADIO_TOWER_2F, 2, 14
 
 	def_bg_events
-	bg_event  5,  0, 0, 1
-	bg_event  0,  1, 0, 2
+	bg_event  5,  0, 1
+	bg_event  0,  1, 2
 
 	def_object_events
 	object_event  6,  6, SPRITE_RECEPTIONIST, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

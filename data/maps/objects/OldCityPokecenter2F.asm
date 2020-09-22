@@ -14,7 +14,7 @@ OldCityPokecenter2F_MapEvents::
 	warp_event 13,  2, OLD_CITY_POKECENTER_TIME_MACHINE, 1, 35
 
 	def_bg_events
-	bg_event  1,  1, 0, 1
+	bg_event  1,  1, 1
 
 	def_object_events
 	object_event  5,  2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/BaadonRouteGateWest.asm", ROMX
 
-BaadonRouteGateWestScriptLoader::
+BaadonRouteGateWest_ScriptLoader::
 	ret
 
-BaadonRouteGateWestTextPointers::
+BaadonRouteGateWest_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

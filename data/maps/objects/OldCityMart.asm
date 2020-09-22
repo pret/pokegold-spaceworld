@@ -12,7 +12,7 @@ OldCityMart_MapEvents::
 	warp_event  5,  7, OLD_CITY, 8, 51
 
 	def_bg_events
-	bg_event  0,  7, 0, 1
+	bg_event  0,  7, 1
 
 	def_object_events
 	object_event  1,  3, SPRITE_CLERK, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

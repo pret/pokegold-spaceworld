@@ -2,7 +2,7 @@ include "constants.asm"
 
 SECTION "scripts/Route1Gate2F.asm", ROMX
 
-Route1Gate2FScriptLoader::
+Route1Gate2F_ScriptLoader::
 	ld hl, Route1Gate2FScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -20,7 +20,7 @@ Route1Gate2FNPCIDs:
 Route1Gate2FSignPointers:
 	dw Route1Gate2FTextSign1
 	dw Route1Gate2FTextSign2
-Route1Gate2FTextPointers::
+Route1Gate2F_TextPointers::
 	dw Route1Gate2FTextNPC1
 	dw Route1Gate2FTextNPC2
 

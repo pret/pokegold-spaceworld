@@ -11,9 +11,9 @@ WestRadioTower5F_MapEvents::
 	warp_event  0,  0, WEST_RADIO_TOWER_4F, 1, 11
 
 	def_bg_events
-	bg_event  3,  0, 0, 1
-	bg_event  6,  4, 0, 2
-	bg_event  7,  4, 0, 2
+	bg_event  3,  0, 1
+	bg_event  6,  4, 2
+	bg_event  7,  4, 2
 
 	def_object_events
 	object_event  6,  6, SPRITE_SCIENTIST, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0

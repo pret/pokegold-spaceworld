@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCityPokecenter1F.asm", ROMX
 
-OldCityPokecenter1FScriptLoader::
+OldCityPokecenter1F_ScriptLoader::
 	ret
 
-OldCityPokecenter1FTextPointers::
+OldCityPokecenter1F_TextPointers::
 	dw GameplayText
 	dw GameplayText
 	dw GameplayText

@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/KantoGameCornerPrizes.asm", ROMX
 
-KantoGameCornerPrizesScriptLoader::
+KantoGameCornerPrizes_ScriptLoader::
 	ret
 
-KantoGameCornerPrizesTextPointers::
+KantoGameCornerPrizes_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText

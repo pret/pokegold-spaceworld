@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/StandLeague2F.asm", ROMX
 
-StandLeague2FScriptLoader::
+StandLeague2F_ScriptLoader::
 	ret
 
-StandLeague2FTextPointers::
+StandLeague2F_TextPointers::
 	dw MapDefaultText
 	dw MapDefaultText
 	dw MapDefaultText
