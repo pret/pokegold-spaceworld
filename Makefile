@@ -15,7 +15,12 @@ OBJS += $(BUILD)/shim.o
 
 ### Build tools
 
-MD5 := md5sum -c
+ifeq (,$(shell which sha1sum))
+SHA1 := shasum
+else
+SHA1 := sha1sum
+endif
+
 PYTHON := python3
 
 RGBDS ?=
@@ -41,7 +46,7 @@ all: $(ROM) $(CORRECTEDROM) compare
 
 .PHONY: compare
 compare: $(ROM) $(CORRECTEDROM)
-	$(MD5) roms.md5
+	@$(SHA1) -c roms.sha1
 
 .PHONY: tools
 tools tools/pkmncompress tools/gfx tools/scan_includes:
