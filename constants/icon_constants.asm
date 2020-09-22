@@ -1,4 +1,4 @@
-; Icon IDs
+; icon ids
 	const_def
 	const ICON_NONE        ; 00
 	const ICON_NYOROMO     ; 01

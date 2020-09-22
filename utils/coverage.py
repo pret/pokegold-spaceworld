@@ -8,7 +8,7 @@ Generate a PNG visualizing the space used by each bank in the ROM.
 """
 
 import sys
-import png
+from pokemontools import png
 from colorsys import hls_to_rgb
 
 from mapreader import MapReader

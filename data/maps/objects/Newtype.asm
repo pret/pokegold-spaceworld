@@ -3,9 +3,9 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/Newtype.asm", ROMX
 
 	map_attributes Newtype, NEWTYPE, NORTH | WEST | EAST
-	connection north, SugarRoute, SUGAR_ROUTE, 5, 0, 10
-	connection west, Route15, ROUTE_15, 0, 0, 9
-	connection east, NewtypeRoute, NEWTYPE_ROUTE, 9, 0, 9
+	connection north, SugarRoute, SUGAR_ROUTE, 5
+	connection west, Route15, ROUTE_15, 0
+	connection east, NewtypeRoute, NEWTYPE_ROUTE, 9
 
 Newtype_MapEvents::
 	dw $4000 ; unknown

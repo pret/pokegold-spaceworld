@@ -36,13 +36,13 @@ INCLUDE "data/pokemon/palettes.inc"
 INCLUDE "data/super_palettes.inc"
 
 Corrupted9e1cGFX:
-INCBIN "gfx/sgb/corrupted_9e1c.2bpp"
+INCBIN "slack/corrupted_9e1c.2bpp"
 
 UnusedSGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
 Corrupteda66cGFX:
-INCBIN "gfx/sgb/corrupted_a66c.2bpp"
+INCBIN "slack/corrupted_a66c.2bpp"
 
 SGBBorderGFX::
 if DEF(GOLD)
@@ -50,20 +50,6 @@ INCBIN "gfx/sgb/sgb_border_gold.2bpp"
 else
 INCBIN "gfx/sgb/sgb_border_silver.2bpp"
 endc
-
-SECTION "gfx.asm@Corrupted SGB GFX", ROMX
-
-SGBBorderGoldCorruptedGFX:
-INCBIN "gfx/sgb/sgb_border_gold_corrupted.2bpp"
-
-Corruptedb1e3GFX:
-INCBIN "gfx/sgb/corrupted_b1e3.2bpp"
-
-SGBBorderSilverCorruptedGFX:
-INCBIN "gfx/sgb/sgb_border_silver_corrupted.2bpp"
-
-Corruptedba93GFX:
-INCBIN "gfx/sgb/corrupted_ba93.2bpp"
 
 SECTION "gfx.asm@Title Screen GFX", ROMX
 if DEF(GOLD)
@@ -361,16 +347,16 @@ Tileset_1a_Coll:
 INCBIN "data/tilesets/tileset_1a_collision.bin"
 
 SECTION "gfx.asm@PKMN Sprite Bank List", ROMX
-INCLUDE "gfx/pokemon/pkmn_pic_banks.asm"
+INCLUDE "gfx/pokemon/pkmn_pic_banks.inc"
 
-INCLUDE "gfx/pokemon/pkmn_pics.asm"
+INCLUDE "gfx/pokemon/pkmn_pics.inc"
 
 
 SECTION "gfx.asm@Annon Pic Ptrs and Pics", ROMX
-INCLUDE "gfx/pokemon/annon_pic_ptrs.asm"
-INCLUDE "gfx/pokemon/annon_pics.asm"
+INCLUDE "gfx/pokemon/annon_pic_ptrs.inc"
+INCLUDE "gfx/pokemon/annon_pics.inc"
 
-INCLUDE "gfx/pokemon/egg.asm"
+INCLUDE "gfx/pokemon/egg.inc"
 
 SECTION "gfx.asm@Attack Animation GFX", ROMX
 

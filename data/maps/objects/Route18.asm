@@ -3,8 +3,8 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/Route18.asm", ROMX
 
 	map_attributes Route18, ROUTE_18, NORTH | WEST
-	connection north, BullForestRoute1, BULL_FOREST_ROUTE_1, 0, 0, 13
-	connection west, NewtypeRoute, NEWTYPE_ROUTE, 36, 0, 9
+	connection north, BullForestRoute1, BULL_FOREST_ROUTE_1, 0
+	connection west, NewtypeRoute, NEWTYPE_ROUTE, 36
 
 Route18_MapEvents::
 	dw $4000 ; unknown

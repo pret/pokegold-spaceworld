@@ -3,9 +3,9 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/South.asm", ROMX
 
 	map_attributes South, SOUTH, NORTH | SOUTH | EAST
-	connection north, FontoRoute5, FONTO_ROUTE_5, 10, 0, 10
-	connection south, HaitekuWestRouteOcean, HAITEKU_WEST_ROUTE_OCEAN, 10, 0, 10
-	connection east, FontoRoute1, FONTO_ROUTE_1, 0, 0, 9
+	connection north, FontoRoute5, FONTO_ROUTE_5, 10
+	connection south, HaitekuWestRouteOcean, HAITEKU_WEST_ROUTE_OCEAN, 10
+	connection east, FontoRoute1, FONTO_ROUTE_1, 0
 
 South_MapEvents::
 	dw $4000 ; unknown

@@ -3,8 +3,8 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/Kanto.asm", ROMX
 
 	map_attributes Kanto, KANTO, WEST | EAST
-	connection west, RouteSilentEast, ROUTE_SILENT_EAST, 9, 0, 9
-	connection east, KantoEastRoute, KANTO_EAST_ROUTE, 9, 0, 9
+	connection west, RouteSilentEast, ROUTE_SILENT_EAST, 9
+	connection east, KantoEastRoute, KANTO_EAST_ROUTE, 9
 
 Kanto_MapEvents::
 	dw $4000 ; unknown

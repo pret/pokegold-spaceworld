@@ -3,9 +3,9 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/BullForest.asm", ROMX
 
 	map_attributes BullForest, BULL_FOREST, NORTH | SOUTH | WEST
-	connection north, BullForestRoute3, BULL_FOREST_ROUTE_3, 5, 0, 10
-	connection south, BullForestRoute2, BULL_FOREST_ROUTE_2, 5, 0, 10
-	connection west, BullForestRoute1, BULL_FOREST_ROUTE_1, 9, 0, 9
+	connection north, BullForestRoute3, BULL_FOREST_ROUTE_3, 5
+	connection south, BullForestRoute2, BULL_FOREST_ROUTE_2, 5
+	connection west, BullForestRoute1, BULL_FOREST_ROUTE_1, 9
 
 BullForest_MapEvents::
 	dw $4000 ; unknown

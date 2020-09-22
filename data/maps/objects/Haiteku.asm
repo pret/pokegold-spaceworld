@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/Haiteku.asm", ROMX
 
 	map_attributes Haiteku, HAITEKU, WEST
-	connection west, HaitekuWestRoute, HAITEKU_WEST_ROUTE, 0, 0, 9
+	connection west, HaitekuWestRoute, HAITEKU_WEST_ROUTE, 0
 
 Haiteku_MapEvents::
 	dw $4000 ; unknown

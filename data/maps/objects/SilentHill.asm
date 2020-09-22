@@ -3,9 +3,9 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/SilentHill.asm", ROMX
 
 	map_attributes SilentHill, SILENT_HILL, NORTH | WEST | EAST
-	connection north, PrinceRoute, PRINCE_ROUTE, 0, 0, 10
-	connection west, Route1P1, ROUTE_1_P1, 0, 0, 9
-	connection east, RouteSilentEast, ROUTE_SILENT_EAST, 0, 0, 9
+	connection north, PrinceRoute, PRINCE_ROUTE, 0
+	connection west, Route1P1, ROUTE_1_P1, 0
+	connection east, RouteSilentEast, ROUTE_SILENT_EAST, 0
 
 SilentHill_MapEvents::
 	dw $4000 ; unknown

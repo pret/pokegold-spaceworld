@@ -8,7 +8,7 @@ tms1 = 0 ; TM01-TM24 (24)
 tms2 = 0 ; TM25-TM48 (24)
 tms3 = 0 ; TM49-TM50 + HM01-HM07 (9)
 rept _NARG
-	if 0 < \1 && \1 <= (NUM_TMS_HMS + 7) / 8 * 8
+	if 0 < \1 && \1 <= (NUM_TM_HM + 7) / 8 * 8
 	if \1 < 24 + 1
 tms1 = tms1 | (1 << ((\1) - 1))
 	elif \1 < 48 + 1

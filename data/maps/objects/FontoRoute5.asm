@@ -3,8 +3,8 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/FontoRoute5.asm", ROMX
 
 	map_attributes FontoRoute5, FONTO_ROUTE_5, SOUTH | EAST
-	connection south, South, SOUTH, -3, 7, 13
-	connection east, FontoRoute6, FONTO_ROUTE_6, 0, 0, 9
+	connection south, South, SOUTH, -10
+	connection east, FontoRoute6, FONTO_ROUTE_6, 0
 
 FontoRoute5_MapEvents::
 	dw $4000 ; unknown

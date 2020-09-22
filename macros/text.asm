@@ -5,130 +5,132 @@ para   EQUS "db \"<PARA>\","   ; Start a new paragraph.
 cont   EQUS "db \"<CONT>\","   ; Scroll to the next line.
 done   EQUS "db \"<DONE>\""    ; End a text box.
 prompt EQUS "db \"<PROMPT>\""  ; Prompt the player to end a text box (initiating some other event).
-text_end EQUS "db $50"         ; End control code for text processor (different from "@")
 
-; TODO: determine if these are in
-; Pokedex text commands are only used with pokered.
-; They are included for compatibility.
-page   EQUS "db $50,"     ; Start a new Pokedex page.
-dex    EQUS "db $e8, $50" ; End a Pokedex entry.
+; TextCommands indexes (see home/text.asm)
+	const_def 1
 
-	enum_start 1
-	enum TX_RAM ; $01
+	const TX_RAM ; $01
 text_from_ram: MACRO
 	db TX_RAM
 	dw \1    ; address
-	ENDM
+endm
 
-	enum TX_BCD ; $02
+	const TX_BCD ; $02
 text_bcd: macro
 	db TX_BCD
 	dw \1    ; address
 	db \2    ; flags + digits, see PrintBCDNumber
-	ENDM
+endm
 
-	enum TX_MOVE ; $03
+	const TX_MOVE ; $03
 text_move: macro
 	db TX_MOVE
 	dw \1     ; address
-	ENDM
+endm
 
-	enum TX_BOX ; $04
+	const TX_BOX ; $04
 text_box: macro
 	db TX_BOX
 	dw \1     ; address
 	db \2, \3 ; width, height
-	ENDM
+endm
 
-	enum TX_LOW ; $05
+	const TX_LOW ; $05
 text_low: macro
 	db TX_LOW
-	endm
+endm
 
-	enum WAIT_BUTTON ; $06
+	const WAIT_BUTTON ; $06
 text_waitbutton: macro
 	db WAIT_BUTTON
-	endm
+endm
 
-	enum TX_SCROLL ; $07
+	const TX_SCROLL ; $07
 text_scroll: macro
 	db TX_SCROLL
-	endm
+endm
 
-	enum START_ASM ; $08
+	const START_ASM ; $08
 start_asm: macro
 	db START_ASM
-	endm
+endm
 
-	enum TX_NUM ; $09
+	const TX_NUM ; $09
 deciram: macro
 	db TX_NUM
 	dw \1     ; address
 	dn \2, \3 ; bytes, flags + digits
-	endm
+endm
 
-	enum TX_EXIT ; $0a
+	const TX_EXIT ; $0a
 text_exit: macro
 	db TX_EXIT
-	endm
+endm
 
-	enum TX_SOUND_0B ; $0b
+	const TX_SOUND_0B ; $0b
 sound_dex_fanfare_50_79: macro
 	db TX_SOUND_0B
-	endm
+endm
 
-	enum TX_DOTS ; $0c
+	const TX_DOTS ; $0c
 text_dots: macro
 	db TX_DOTS
 	db \1
-	endm
+endm
 
-	enum TX_LINK_WAIT_BUTTON ; $0d
+	const TX_LINK_WAIT_BUTTON ; $0d
 link_wait_button: macro
 	db TX_LINK_WAIT_BUTTON
-	endm
+endm
 
-	enum TX_SOUND_0E ; $0e
+	const TX_SOUND_0E ; $0e
 sound_dex_fanfare_20_49: macro
 	db TX_SOUND_0E
-	endm
+endm
 
-	enum TX_SOUND_0F ; $0f
+	const TX_SOUND_0F ; $0f
 sound_item: macro
 	db TX_SOUND_0F
-	endm
+endm
 
-	enum TX_SOUND_10 ; $10
+	const TX_SOUND_10 ; $10
 sound_caught_mon: macro
 	db TX_SOUND_10
-	endm
+endm
 
-	enum TX_SOUND_11 ; $11
+	const TX_SOUND_11 ; $11
 sound_dex_fanfare_80_109: macro
 	db TX_SOUND_11
-	endm
+endm
 
-	enum TX_SOUND_12 ; $12
+	const TX_SOUND_12 ; $12
 sound_fanfare: macro
 	db TX_SOUND_12
-	endm
+endm
 
-	enum TX_SOUND_13 ; $13
+	const TX_SOUND_13 ; $13
 sound_slot_machine_start: macro
 	db TX_SOUND_13
-	endm
+endm
 
-	enum TX_CRY_14 ; $14
+	const TX_CRY_14 ; $14
 cry_nidorina: macro
 	db TX_CRY_14
-	endm
+endm
 
-	enum TX_CRY_15 ; $15
+	const TX_CRY_15 ; $15
 cry_pigeot: macro
 	db TX_CRY_15
-	endm
+endm
 
-	enum TX_CRY_16 ; $16
+	const TX_CRY_16 ; $16
 cry_jugon: macro
 	db TX_CRY_16
-	endm
+endm
+
+	const_next $50
+
+	const TX_END ; $50
+text_end: macro
+	db TX_END
+endm
