@@ -40,13 +40,13 @@ LandmarkNames::
 	db "ヤドンの　いど２@"   ; YADON_WELL_2
 ; The Pokémon League landmarks below were misspelled by Game Freak
 ; since they should print out リーグ and not りーぐ.
-	db "#りーぐ１@"         ; POKEMON_LEAGUE_1
-	db "#りーぐ１@"         ; POKEMON_LEAGUE_1_2
+	db "#りーぐ１@"         ; POKEMON_LEAGUE_1 (map group $02)
+	db "#りーぐ１@"         ; POKEMON_LEAGUE_1_2 (map group $03)
 	db "#りーぐ２@"         ; POKEMON_LEAGUE_2
 	db "#りーぐ３@"         ; POKEMON_LEAGUE_3
 	db "#りーぐ４@"         ; POKEMON_LEAGUE_4
 	db "#りーぐ５@"         ; POKEMON_LEAGUE_5
 	db "#りーぐ６@"         ; POKEMON_LEAGUE_6
-	db "#りーぐ７@"         ; POKEMON_LEAGUE_7
-	db "#りーぐ７@"         ; POKEMON_LEAGUE_7_2
+	db "#りーぐ７@"         ; POKEMON_LEAGUE_7 (map group $0b, map $07)
+	db "#りーぐ７@"         ; POKEMON_LEAGUE_7_2 (map group $0b, map $25)
 	db "しずかなおか@"      ; SILENT_HILL (dungeon)
