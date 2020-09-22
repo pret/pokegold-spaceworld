@@ -952,8 +952,8 @@ PokedexEntryPointers2::
 	dw MiniryuDexEntry
 	dw HakuryuDexEntry
 	dw KairyuDexEntry
-    dw MewtwoDexEntry
-    dw MewDexEntry
+	dw MewtwoDexEntry
+	dw MewDexEntry
 	dw HappaDexEntry
 	dw HanamoguraDexEntry
 	dw HanaryuDexEntry
@@ -1021,7 +1021,7 @@ PokedexEntryPointers2::
 	dw WatanekoDexEntry
 	dw BaririnaDexEntry
 	dw LipDexEntry
-	dw NorowaraDexEntry ; ElebabyDexEntry (?)
+	dw NorowaraDexEntry ; should be ElebabyDexEntry
 	dw BoobyDexEntry
 	dw KireihanaDexEntry
 	dw TsubomittoDexEntry
