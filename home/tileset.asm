@@ -1,4 +1,4 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 
 SECTION "home/tileset.asm", ROM0

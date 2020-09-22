@@ -1,4 +1,4 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "home/mon_stats.asm", ROM0
 

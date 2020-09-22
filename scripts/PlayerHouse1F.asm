@@ -1,4 +1,4 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "scripts/PlayerHouse1F.asm", ROMX
 

@@ -1,4 +1,4 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "engine/dumps/bank02.asm@Function8000", ROMX
 

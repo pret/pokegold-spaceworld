@@ -1,4 +1,4 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "scripts/SilentHillHouse.asm", ROMX
 

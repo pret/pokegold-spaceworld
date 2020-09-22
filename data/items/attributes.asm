@@ -1,4 +1,4 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 item_attribute: MACRO
 ; price, held effect, parameter, property, pocket, field menu, battle menu

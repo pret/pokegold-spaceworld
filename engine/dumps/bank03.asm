@@ -1,4 +1,4 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "engine/dumps/bank03.asm@Functionc77d", ROMX
 

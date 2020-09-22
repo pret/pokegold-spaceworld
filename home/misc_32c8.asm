@@ -1,4 +1,4 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "home/misc_32c8.asm@Unknown 32c8", ROM0
 
