@@ -1,6 +1,6 @@
 INCLUDE "constants/charmap.asm"
 
-INCLUDE "macros/enum.asm"
+INCLUDE "macros/const.asm"
 INCLUDE "macros/predef.asm"
 INCLUDE "macros/data.asm"
 INCLUDE "macros/code.asm"
@@ -43,6 +43,7 @@ INCLUDE "constants/map_data_constants.asm"
 INCLUDE "constants/script_constants.asm"
 
 INCLUDE "constants/serial_constants.asm"
+INCLUDE "constants/input_constants.asm"
 
 INCLUDE "constants/misc_constants.asm"
 
@@ -51,6 +52,5 @@ INCLUDE "constants/menu_constants.asm"
 INCLUDE "constants/wram_constants.asm"
 INCLUDE "constants/sgb_constants.asm"
 INCLUDE "constants/map_object_constants.asm"
-INCLUDE "constants/main_menu_constants.asm"
 INCLUDE "constants/start_menu_constants.asm"
 INCLUDE "constants/movement_constants.asm"
