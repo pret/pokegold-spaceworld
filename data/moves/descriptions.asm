@@ -3,1251 +3,1251 @@ INCLUDE "constants.asm"
 SECTION "data/moves/descriptions.asm", ROMX
 
 MoveDescriptions::
-	dw MoveDescription_586D
-	dw MoveDescription_5889
-	dw MoveDescription_58A8
-	dw MoveDescription_58C6
-	dw MoveDescription_58E7
-	dw MoveDescription_5908
-	dw MoveDescription_592B
-	dw MoveDescription_594D
-	dw MoveDescription_596E
-	dw MoveDescription_5990
-	dw MoveDescription_59AB
-	dw MoveDescription_59C6
-	dw MoveDescription_59E7
-	dw MoveDescription_5A0B
-	dw MoveDescription_5A29
-	dw MoveDescription_5A4B
-	dw MoveDescription_5A6C
-	dw MoveDescription_5A8C
-	dw MoveDescription_5AAE
-	dw MoveDescription_5AD0
-	dw MoveDescription_5AF6
-	dw MoveDescription_5B14
-	dw MoveDescription_5B36
-	dw MoveDescription_5B58
-	dw MoveDescription_5B78
-	dw MoveDescription_5B9B
-	dw MoveDescription_5BC0
-	dw MoveDescription_5BE4
-	dw MoveDescription_5C05
-	dw MoveDescription_5C25
-	dw MoveDescription_5C40
-	dw MoveDescription_5C5E
-	dw MoveDescription_5C84
-	dw MoveDescription_5CA3
-	dw MoveDescription_5CC4
-	dw MoveDescription_5CE9
-	dw MoveDescription_5D0D
-	dw MoveDescription_5D32
-	dw MoveDescription_5D55
-	dw MoveDescription_5D74
-	dw MoveDescription_5D98
-	dw MoveDescription_5DBA
-	dw MoveDescription_5DDE
-	dw MoveDescription_5DFB
-	dw MoveDescription_5E1D
-	dw MoveDescription_5E3C
-	dw MoveDescription_5E5E
-	dw MoveDescription_5E7B
-	dw MoveDescription_5E9F
-	dw MoveDescription_5EC3
-	dw MoveDescription_5EE9
-	dw MoveDescription_5F0B
-	dw MoveDescription_5F2A
-	dw MoveDescription_5F48
-	dw MoveDescription_5F6B
-	dw MoveDescription_5F7F
-	dw MoveDescription_5F9F
-	dw MoveDescription_5FC1
-	dw MoveDescription_5FE1
-	dw MoveDescription_6003
-	dw MoveDescription_6025
-	dw MoveDescription_604A
-	dw MoveDescription_606B
-	dw MoveDescription_608F
-	dw MoveDescription_60AD
-	dw MoveDescription_60D2
-	dw MoveDescription_60F2
-	dw MoveDescription_6113
-	dw MoveDescription_6133
-	dw MoveDescription_6156
-	dw MoveDescription_6171
-	dw MoveDescription_6193
-	dw MoveDescription_61B5
-	dw MoveDescription_61D8
-	dw MoveDescription_61F9
-	dw MoveDescription_6218
-	dw MoveDescription_623C
-	dw MoveDescription_625B
-	dw MoveDescription_6276
-	dw MoveDescription_6292
-	dw MoveDescription_62B7
-	dw MoveDescription_62D5
-	dw MoveDescription_62F9
-	dw MoveDescription_631A
-	dw MoveDescription_6339
-	dw MoveDescription_635B
-	dw MoveDescription_6376
-	dw MoveDescription_6394
-	dw MoveDescription_63AC
-	dw MoveDescription_63CE
-	dw MoveDescription_63F4
-	dw MoveDescription_6415
-	dw MoveDescription_6431
-	dw MoveDescription_6451
-	dw MoveDescription_6476
-	dw MoveDescription_6491
-	dw MoveDescription_64B2
-	dw MoveDescription_64D3
-	dw MoveDescription_64F4
-	dw MoveDescription_6511
-	dw MoveDescription_652F
-	dw MoveDescription_6554
-	dw MoveDescription_6574
-	dw MoveDescription_6593
-	dw MoveDescription_65B1
-	dw MoveDescription_65D1
-	dw MoveDescription_65EE
-	dw MoveDescription_6612
-	dw MoveDescription_6631
-	dw MoveDescription_664E
-	dw MoveDescription_6666
-	dw MoveDescription_6685
-	dw MoveDescription_66A3
-	dw MoveDescription_66C5
-	dw MoveDescription_66E7
-	dw MoveDescription_6708
-	dw MoveDescription_6729
-	dw MoveDescription_674C
-	dw MoveDescription_6771
-	dw MoveDescription_678F
-	dw MoveDescription_67B2
-	dw MoveDescription_67CD
-	dw MoveDescription_67EF
-	dw MoveDescription_6812
-	dw MoveDescription_6833
-	dw MoveDescription_6855
-	dw MoveDescription_6878
-	dw MoveDescription_6896
-	dw MoveDescription_68B4
-	dw MoveDescription_68D9
-	dw MoveDescription_68FC
-	dw MoveDescription_6920
-	dw MoveDescription_6945
-	dw MoveDescription_696A
-	dw MoveDescription_698C
-	dw MoveDescription_69AC
-	dw MoveDescription_69D2
-	dw MoveDescription_69F5
-	dw MoveDescription_6A17
-	dw MoveDescription_6A2F
-	dw MoveDescription_6A51
-	dw MoveDescription_6A73
-	dw MoveDescription_6A92
-	dw MoveDescription_6AB5
-	dw MoveDescription_6ADB
-	dw MoveDescription_6AFD
-	dw MoveDescription_6B20
-	dw MoveDescription_6B3F
-	dw MoveDescription_6B64
-	dw MoveDescription_6B84
-	dw MoveDescription_6B95
-	dw MoveDescription_6BB6
-	dw MoveDescription_6BD6
-	dw MoveDescription_6BF9
-	dw MoveDescription_6C1C
-	dw MoveDescription_6C3E
-	dw MoveDescription_6C60
-	dw MoveDescription_6C7E
-	dw MoveDescription_6C9B
-	dw MoveDescription_6CB8
-	dw MoveDescription_6CDD
-	dw MoveDescription_6CFD
-	dw MoveDescription_6D20
-	dw MoveDescription_6D43
-	dw MoveDescription_6D63
-	dw MoveDescription_6D86
-	dw MoveDescription_6DAA
-	dw MoveDescription_6DCE
-	dw MoveDescription_6DF4
-	dw MoveDescription_6E17
-	dw MoveDescription_6E3D
-	dw MoveDescription_6E62
-	dw MoveDescription_6E83
-	dw MoveDescription_6EA5
-	dw MoveDescription_6EC9
-	dw MoveDescription_6EEA
-	dw MoveDescription_6F0E
-	dw MoveDescription_6F34
-	dw MoveDescription_6F56
-	dw MoveDescription_6F77
-	dw MoveDescription_6F9D
-	dw MoveDescription_6FBC
-	dw MoveDescription_6FCF
-	dw MoveDescription_6FF2
-	dw MoveDescription_7015
-	dw MoveDescription_7037
-	dw MoveDescription_7059
-	dw MoveDescription_7079
-	dw MoveDescription_709A
-	dw MoveDescription_70BB
-	dw MoveDescription_70DC
-	dw MoveDescription_7101
-	dw MoveDescription_7124
-	dw MoveDescription_7143
-	dw MoveDescription_7163
-	dw MoveDescription_7184
-	dw MoveDescription_71AA
-	dw MoveDescription_71CC
-	dw MoveDescription_71EE
-	dw MoveDescription_7211
-	dw MoveDescription_7236
-	dw MoveDescription_7256
-	dw MoveDescription_7278
-	dw MoveDescription_729C
-	dw MoveDescription_72C0
-	dw MoveDescription_72E3
-	dw MoveDescription_7302
-	dw MoveDescription_7327
-	dw MoveDescription_7347
-	dw MoveDescription_7367
-	dw MoveDescription_7388
-	dw MoveDescription_73A8
-	dw MoveDescription_73CD
-	dw MoveDescription_73F0
-	dw MoveDescription_7414
-	dw MoveDescription_7438
-	dw MoveDescription_745A
-	dw MoveDescription_747F
-	dw MoveDescription_74A0
-	dw MoveDescription_74C3
-	dw MoveDescription_74E4
-	dw MoveDescription_7504
-	dw MoveDescription_7527
-	dw MoveDescription_754C
-	dw MoveDescription_756F
-	dw MoveDescription_758A
-	dw MoveDescription_75A9
-	dw MoveDescription_75CC
-	dw MoveDescription_75EF
-	dw MoveDescription_7609
-	dw MoveDescription_762D
-	dw MoveDescription_7652
-	dw MoveDescription_7673
-	dw MoveDescription_7698
-	dw MoveDescription_76B8
-	dw MoveDescription_76D8
-	dw MoveDescription_76F8
-	dw MoveDescription_771B
-	dw MoveDescription_773D
-	dw MoveDescription_7755
-	dw MoveDescription_7773
-	dw MoveDescription_7792
-	dw MoveDescription_779E
-	dw MoveDescription_77AA
-	dw MoveDescription_77B6
-	dw MoveDescription_77D3
-	dw MoveDescription_77F5
-	dw MoveDescription_7801
-	dw MoveDescription_7821
-	dw MoveDescription_783E
-	dw MoveDescription_785E
+	dw PoundDescription
+	dw KarateChopDescription
+	dw DoubleslapDescription
+	dw CometPunchDescription
+	dw MegaPunchDescription
+	dw PayDayDescription
+	dw FirePunchDescription
+	dw IcePunchDescription
+	dw ThunderpunchDescription
+	dw ScratchDescription
+	dw VicegripDescription
+	dw GuillotineDescription
+	dw RazorWindDescription
+	dw SwordsDanceDescription
+	dw CutDescription
+	dw GustDescription
+	dw WingAttackDescription
+	dw WhirlwindDescription
+	dw FlyDescription
+	dw BindDescription
+	dw SlamDescription
+	dw VineWhipDescription
+	dw StompDescription
+	dw DoubleKickDescription
+	dw MegaKickDescription
+	dw JumpKickDescription
+	dw RollingKickDescription
+	dw SandAttackDescription
+	dw HeadbuttDescription
+	dw HornAttackDescription
+	dw FuryAttackDescription
+	dw HornDrillDescription
+	dw TackleDescription
+	dw BodySlamDescription
+	dw WrapDescription
+	dw TakeDownDescription
+	dw ThrashDescription
+	dw DoubleEdgeDescription
+	dw TailWhipDescription
+	dw PoisonStingDescription
+	dw TwineedleDescription
+	dw PinMissileDescription
+	dw LeerDescription
+	dw BiteDescription
+	dw GrowlDescription
+	dw RoarDescription
+	dw SingDescription
+	dw SupersonicDescription
+	dw SonicboomDescription
+	dw DisableDescription
+	dw AcidDescription
+	dw EmberDescription
+	dw FlamethrowerDescription
+	dw MistDescription
+	dw WaterGunDescription
+	dw HydroPumpDescription
+	dw SurfDescription
+	dw IceBeamDescription
+	dw BlizzardDescription
+	dw PsybeamDescription
+	dw BubblebeamDescription
+	dw AuroraBeamDescription
+	dw HyperBeamDescription
+	dw PeckDescription
+	dw DrillPeckDescription
+	dw SubmissionDescription
+	dw LowKickDescription
+	dw CounterDescription
+	dw SeismicTossDescription
+	dw StrengthDescription
+	dw AbsorbDescription
+	dw MegaDrainDescription
+	dw LeechSeedDescription
+	dw GrowthDescription
+	dw RazorLeafDescription
+	dw SolarbeamDescription
+	dw PoisonpowderDescription
+	dw StunSporeDescription
+	dw SleepPowderDescription
+	dw PetalDanceDescription
+	dw StringShotDescription
+	dw DragonRageDescription
+	dw FireSpinDescription
+	dw ThundershockDescription
+	dw ThunderboltDescription
+	dw ThunderWaveDescription
+	dw ThunderDescription
+	dw RockThrowDescription
+	dw EarthquakeDescription
+	dw FissureDescription
+	dw DigDescription
+	dw ToxicDescription
+	dw ConfusionDescription
+	dw PsychicMDescription
+	dw HypnosisDescription
+	dw MeditateDescription
+	dw AgilityDescription
+	dw QuickAttackDescription
+	dw RageDescription
+	dw TeleportDescription
+	dw NightShadeDescription
+	dw MimicDescription
+	dw ScreechDescription
+	dw DoubleTeamDescription
+	dw RecoverDescription
+	dw HardenDescription
+	dw MinimizeDescription
+	dw SmokescreenDescription
+	dw ConfuseRayDescription
+	dw WithdrawDescription
+	dw DefenseCurlDescription
+	dw BarrierDescription
+	dw LightScreenDescription
+	dw HazeDescription
+	dw ReflectDescription
+	dw FocusEnergyDescription
+	dw BideDescription
+	dw MetronomeDescription
+	dw MirrorMoveDescription
+	dw SelfdestructDescription
+	dw EggBombDescription
+	dw LickDescription
+	dw SmogDescription
+	dw SludgeDescription
+	dw BoneClubDescription
+	dw FireBlastDescription
+	dw WaterfallDescription
+	dw ClampDescription
+	dw SwiftDescription
+	dw SkullBashDescription
+	dw SpikeCannonDescription
+	dw ConstrictDescription
+	dw AmnesiaDescription
+	dw KinesisDescription
+	dw SoftboiledDescription
+	dw HiJumpKickDescription
+	dw GlareDescription
+	dw DreamEaterDescription
+	dw PoisonGasDescription
+	dw BarrageDescription
+	dw LeechLifeDescription
+	dw LovelyKissDescription
+	dw SkyAttackDescription
+	dw TransformDescription
+	dw BubbleDescription
+	dw DizzyPunchDescription
+	dw SporeDescription
+	dw FlashDescription
+	dw PsywaveDescription
+	dw SplashDescription
+	dw AcidArmorDescription
+	dw CrabhammerDescription
+	dw ExplosionDescription
+	dw FurySwipesDescription
+	dw BonemerangDescription
+	dw RestDescription
+	dw RockSlideDescription
+	dw HyperFangDescription
+	dw SharpenDescription
+	dw ConversionDescription
+	dw TriAttackDescription
+	dw SuperFangDescription
+	dw SlashDescription
+	dw SubstituteDescription
+	dw StruggleDescription
+	dw SketchDescription
+	dw TripleKickDescription
+	dw ThiefDescription
+	dw SpiderWebDescription
+	dw MindReaderDescription
+	dw NightmareDescription
+	dw FlameWheelDescription
+	dw SnoreDescription
+	dw NailDownDescription
+	dw FlailDescription
+	dw Conversion2Description
+	dw CoinHurlDescription
+	dw CottonSporeDescription
+	dw ReversalDescription
+	dw SpiteDescription
+	dw PowderSnowDescription
+	dw ProtectDescription
+	dw MachPunchDescription
+	dw ScaryFaceDescription
+	dw FaintAttackDescription
+	dw SweetKissDescription
+	dw BellyDrumDescription
+	dw SludgeBombDescription
+	dw MudSlapDescription
+	dw OctazookaDescription
+	dw SpikesDescription
+	dw ZapCannonDescription
+	dw ForesightDescription
+	dw DestinyBondDescription
+	dw PerishSongDescription
+	dw SynchronizeDescription
+	dw DetectDescription
+	dw BoneLockDescription
+	dw LockOnDescription
+	dw OutrageDescription
+	dw SandstormDescription
+	dw GigaDrainDescription
+	dw EndureDescription
+	dw CharmDescription
+	dw RolloutDescription
+	dw FalseSwipeDescription
+	dw SwaggerDescription
+	dw MilkDrinkDescription
+	dw SparkDescription
+	dw FuryCutterDescription
+	dw SteelWingDescription
+	dw StalkerDescription
+	dw AttractDescription
+	dw SleepTalkDescription
+	dw BellChimeDescription
+	dw ReturnDescription
+	dw PresentDescription
+	dw FrustrationDescription
+	dw SafeguardDescription
+	dw PainSplitDescription
+	dw SacredFireDescription
+	dw MagnitudeDescription
+	dw DynamicpunchDescription
+	dw MegaphoneDescription
+	dw DragonbreathDescription
+	dw BatonPassDescription
+	dw EncoreDescription
+	dw PursuitDescription
+	dw RapidSpinDescription
+	dw TemptDescription
+	dw IronTailDescription
+	dw RockHeadDescription
+	dw VitalThrowDescription
+	dw MorningSunDescription
+	dw SynthesisDescription
+	dw MoonlightDescription
+	dw HiddenPowerDescription
+	dw CrossCutterDescription
+	dw TwisterDescription
+	dw RainDanceDescription
+	dw SunnyDayDescription
+	dw F2Description
+	dw F3Description
+	dw F4Description
+	dw UprootDescription
+	dw WindRideDescription
+	dw WaterSportDescription
+	dw StrongArmDescription
+	dw BrightMossDescription
+	dw WhirlpoolDescription
+	dw BounceDescription
 
-MoveDescription_586D:
+PoundDescription:
 	db   "てや　しっぽなどを　つかい"
 	next "てきを　はたいて　こうげき@"
 
-MoveDescription_5889:
+KarateChopDescription:
 	db   "チョップで　てきを　こうげき"
 	next "クりティカルヒットが　でやすい@"
 
-MoveDescription_58A8:
+DoubleslapDescription:
 	db   "てきを　おうふくビンタで"
 	next "２ー５かい　れんぞくで　こうげき@"
 
-MoveDescription_58C6:
+CometPunchDescription:
 	db   "てきを　れんぞくで　なぐりつけ"
 	next "２ー５かい　れんぞくで　こうげき@"
 
-MoveDescription_58E7:
+MegaPunchDescription:
 	db   "ものすごい　ちからをこめた　パンチで"
 	next "てきを　なぐって　こうげき@"
 
-MoveDescription_5908:
+PayDayDescription:
 	db   "こばんをなげて　てきを　こうげき"
 	next "せんとうごに　おかねが　てにはいる@"
 
-MoveDescription_592B:
+FirePunchDescription:
 	db   "ほのおをこめた　パンチで　こうげき"
 	next "てきを　やけどさせることがある@"
 
-MoveDescription_594D:
+IcePunchDescription:
 	db   "れいきをこめた　パンチで　こうげき"
 	next "てきを　こおらせることがある@"
 
-MoveDescription_596E:
+ThunderpunchDescription:
 	db   "でんげきをこめた　パンチで　こうげき"
 	next "てきを　マヒさせることがある@"
 
-MoveDescription_5990:
+ScratchDescription:
 	db   "するどいツメを　つかい"
 	next "てきを　ひっかいて　こうげき@"
 
-MoveDescription_59AB:
+VicegripDescription:
 	db   "おおきなハサミを　つかい"
 	next "てきを　はさんで　こうげき@"
 
-MoveDescription_59C6:
+GuillotineDescription:
 	db   "おおきなハサミを　つかって"
 	next "てきを　はさみ　せんとうふのうにする@"
 
-MoveDescription_59E7:
+RazorWindDescription:
 	db   "１ターンめで　かぜのやいばを　つくり"
 	next "つぎのターンで　てきを　こうげき@"
 
-MoveDescription_5A0B:
+SwordsDanceDescription:
 	db   "たたかいの　おどりを　おどって"
 	next "こうげきを　グーンとあげる@"
 
-MoveDescription_5A29:
+CutDescription:
 	db   "するどいカマや　ツメなどを　つかって"
 	next "てきを　きりつけて　こうげき@"
 
-MoveDescription_5A4B:
+GustDescription:
 	db   "つばさで　つよいかぜを　おこし"
 	next "それを　てきにぶつけて　こうげき@"
 
-MoveDescription_5A6C:
+WingAttackDescription:
 	db   "つばさを　おおきく　ひろげて"
 	next "そのまま　てきに　たいあたりする@"
 
-MoveDescription_5A8C:
+WhirlwindDescription:
 	db   "つよいかぜで　てきを　ふきとばす"
 	next "ふきとばすと　せんとうは　おわる@"
 
-MoveDescription_5AAE:
+FlyDescription:
 	db   "１ターンめで　そらに　とびたって"
 	next "つぎのターンで　てきを　こうげき@"
 
-MoveDescription_5AD0:
+BindDescription:
 	db   "２ー５ターンのあいだ　ながいからだや"
 	next "つるを　つかって　てきを　しめつける@"
 
-MoveDescription_5AF6:
+SlamDescription:
 	db   "ながいシッポや　ツルなどを"
 	next "てきに　たたきつけて　こうげき@"
 
-MoveDescription_5B14:
+VineWhipDescription:
 	db   "ムチのように　ほそながい　つるを　"
 	next "てきに　たたきつけて　こうげき@"
 
-MoveDescription_5B36:
+StompDescription:
 	db   "おおきなあしで　ふみつけて　こうげき"
 	next "てきを　ひるませることがある@"
 
-MoveDescription_5B58:
+DoubleKickDescription:
 	db   "２ほんの　あしをつかって　てきを"
 	next "２かい　れんぞくで　こうげき@"
 
-MoveDescription_5B78:
+MegaKickDescription:
 	db   "ものすごい　ちからをこめた　キックで"
 	next "てきを　けっとばして　こうげき@"
 
-MoveDescription_5B9B:
+JumpKickDescription:
 	db   "ジャンプした　いきおいで　キックを"
 	next "くりだす　はずすと　ダメージをうける@"
 
-MoveDescription_5BC0:
+RollingKickDescription:
 	db   "からだを　すばやく　１かいてんさせ"
 	next "そのいきおいで　キックを　くりだす@"
 
-MoveDescription_5BE4:
+SandAttackDescription:
 	db   "てきの　かおなどに　すなをかけて　"
 	next "めいちゅうりつを　さげさせる@"
 
-MoveDescription_5C05:
+HeadbuttDescription:
 	db   "あたまから　つっこんで　こうげき"
 	next "てきを　ひるませることがある@"
 
-MoveDescription_5C25:
+HornAttackDescription:
 	db   "とがった　ツノを　つかい"
 	next "てきを　つついて　こうげき@"
 
-MoveDescription_5C40:
+FuryAttackDescription:
 	db   "とがった　ツノを　つかい"
 	next "２ー５かい　れんぞくで　こうげき@"
 
-MoveDescription_5C5E:
+HornDrillDescription:
 	db   "ツノを　ドりルのように　かいてんさせ"
 	next "てきを　つつき　せんとうふのうにする@"
 
-MoveDescription_5C84:
+TackleDescription:
 	db   "からだぜんたいを　つかって"
 	next "てきに　たいあたりして　こうげき@"
 
-MoveDescription_5CA3:
+BodySlamDescription:
 	db   "からだごと　たおれこんで　こうげき"
 	next "てきを　マヒさせることがある@"
 
-MoveDescription_5CC4:
+WrapDescription:
 	db   "２ー５ターンのあいだ　ながいからだや"
 	next "ツルをつかって　てきを　しめつける@"
 
-MoveDescription_5CE9:
+TakeDownDescription:
 	db   "いきおいをつけて　てきに　たいあたり"
 	next "じぶんもすこし　ダメージをうける@"
 
-MoveDescription_5D0D:
+ThrashDescription:
 	db   "２ー３ターンのあいだ　あばれつづける"
 	next "あばれたあとは　こんらんしてしまう@"
 
-MoveDescription_5D32:
+DoubleEdgeDescription:
 	db   "いのちをかけて　てきに　たいあたり"
 	next "じぶんもすこし　ダメージをうける@"
 
-MoveDescription_5D55:
+TailWhipDescription:
 	db   "てきに　しっぽをふって　ゆだんさせて"
 	next "ぼうぎょを　さげさせる@"
 
-MoveDescription_5D74:
+PoisonStingDescription:
 	db   "どくのある　ハりや　ツノで　こうげき"
 	next "てきに　どくをあたえることがある@"
 
-MoveDescription_5D98:
+TwineedleDescription:
 	db   "りょうての　ハりを　つかって"
 	next "てきを　２かい　れんぞくで　こうげき@"
 
-MoveDescription_5DBA:
+PinMissileDescription:
 	db   "するどいハりを　てきに　はっしゃして"
 	next "２ー５かい　れんぞくで　こうげき@"
 
-MoveDescription_5DDE:
+LeerDescription:
 	db   "てきを　にらんで　おびえさせて　"
 	next "ぼうぎょを　さげさせる@"
 
-MoveDescription_5DFB:
+BiteDescription:
 	db   "するどい　はで　かみついて　こうげき"
 	next "てきを　ひるませることがある@"
 
-MoveDescription_5E1D:
+GrowlDescription:
 	db   "かわいくないて　てきを　ゆだんさせて"
 	next "こうげきを　さげさせる@"
 
-MoveDescription_5E3C:
+RoarDescription:
 	db   "ほえて　てきを　にげださせる"
 	next "てきが　にげると　せんとうは　おわる@"
 
-MoveDescription_5E5E:
+SingDescription:
 	db   "ここちよい　うたごえで"
 	next "てきを　ふかいねむりへと　さそう@"
 
-MoveDescription_5E7B:
+SupersonicDescription:
 	db   "からだから　かいおんぱを　はっして"
 	next "てきを　こんらんさせることがある　@"
 
-MoveDescription_5E9F:
+SonicboomDescription:
 	db   "しょうげきはで　てきを　こうげき"
 	next "２０の　きまったダメージを　あたえる@"
 
-MoveDescription_5EC3:
+DisableDescription:
 	db   "ちょうのうりょくで　てきの　うごきを"
 	next "とめて　わざを　１つ　つかえなくする@"
 
-MoveDescription_5EE9:
+AcidDescription:
 	db   "つよいさんで　てきの　ひふを　とかす"
 	next "ぼうぎょを　さげることがある@"
 
-MoveDescription_5F0B:
+EmberDescription:
 	db   "ちいさな　ほのおで　こうげき"
 	next "てきを　やけどさせることがある@"
 
-MoveDescription_5F2A:
+FlamethrowerDescription:
 	db   "すごい　ほのおで　こうげき"
 	next "てきを　やけどさせることがある@"
 
-MoveDescription_5F48:
+MistDescription:
 	db   "しろいきりで　からだを　おおい"
 	next "のうりょくを　さげられないようにする@"
 
-MoveDescription_5F6B:
+WaterGunDescription:
 	db   "みずを　はっしゃして"
 	next "てきを　こうげき@"
 
-MoveDescription_5F7F:
+HydroPumpDescription:
 	db   "みずを　ものすごい　いきおいで"
 	next "はっしゃして　てきを　こうげき@"
 
-MoveDescription_5F9F:
+SurfDescription:
 	db   "みずに　なみを　おこし　それを"
 	next "ものすごい　ちからで　たたきつける@"
 
-MoveDescription_5FC1:
+IceBeamDescription:
 	db   "れいきを　はっしゃして　こうげき"
 	next "てきを　こおらせることがある@"
 
-MoveDescription_5FE1:
+BlizzardDescription:
 	db   "ゆきを　つよいかぜにのせて　こうげき"
 	next "てきを　こおらせることがある@"
 
-MoveDescription_6003:
+PsybeamDescription:
 	db   "ふしぎな　ひかりを　はっしゃする"
 	next "てきを　こんらんさせることがある@"
 
-MoveDescription_6025:
+BubblebeamDescription:
 	db   "みずを　いきおいよく　はっしゃする"
 	next "てきの　すばやさを　さげることがある@"
 
-MoveDescription_604A:
+AuroraBeamDescription:
 	db   "にじいろの　ひかりを　はっしゃする"
 	next "こうげきを　さげることがある@"
 
-MoveDescription_606B:
+HyperBeamDescription:
 	db   "ダメージは　おおきいが　つかうと"
 	next "つぎのターン　うごけなくなってしまう@"
 
-MoveDescription_608F:
+PeckDescription:
 	db   "ながい　くちばしを　つかって　"
 	next "てきを　つついて　こうげき@"
 
-MoveDescription_60AD:
+DrillPeckDescription:
 	db   "くちばしを　ちゅうしんに　からだを"
 	next "かいてんさせて　てきに　とっしんする@"
 
-MoveDescription_60D2:
+SubmissionDescription:
 	db   "じぶんごと　じめんに　たたきつける"
 	next "じぶんにも　すこしダメージ@"
 
-MoveDescription_60F2:
+LowKickDescription:
 	db   "タイミングよく　あしを　ひっかける"
 	next "てきを　ひるませることがある@"
 
-MoveDescription_6113:
+CounterDescription:
 	db   "てきからうけた　ぶつりこうげきの"
 	next "ダメージを　ばいにしてかえす@"
 
-MoveDescription_6133:
+SeismicTossDescription:
 	db   "いんりょくを　りようして　なげる"
 	next "レべルぶんの　ダメージを　あたえる@"
 
-MoveDescription_6156:
+StrengthDescription:
 	db   "ぜんしんに　すごいちからを　ためて"
 	next "てきを　こうげき@"
 
-MoveDescription_6171:
+AbsorbDescription:
 	db   "てきに　あたえた　ダメージの"
 	next "はんぶん　たいりょくを　かいふくする@"
 
-MoveDescription_6193:
+MegaDrainDescription:
 	db   "てきに　あたえた　ダメージの"
 	next "はんぶん　たいりょくを　かいふくする@"
 
-MoveDescription_61B5:
+LeechSeedDescription:
 	db   "てきの　からだに　タネをうえて"
 	next "ターンごとに　たいりょくを　すいとる@"
 
-MoveDescription_61D8:
+GrowthDescription:
 	db   "いっきに　からだを　せいちょうさせて"
 	next "とくしゅこうげきを　あげる@"
 
-MoveDescription_61F9:
+RazorLeafDescription:
 	db   "はっぱで　てきを　きりつける"
 	next "クりティカルヒットが　でやすい@"
 
-MoveDescription_6218:
+SolarbeamDescription:
 	db   "１ターンめで　ひかりを　きゅうしゅう"
 	next "つぎのターンで　てきを　こうげき@"
 
-MoveDescription_623C:
+PoisonpowderDescription:
 	db   "どくそを　ふくんだ　こなを　ふりまき"
 	next "てきに　どくをあたえる@"
 
-MoveDescription_625B:
+StunSporeDescription:
 	db   "しびれる　こなを　ふりまき"
 	next "てきを　マヒさせてしまう@"
 
-MoveDescription_6276:
+SleepPowderDescription:
 	db   "ねむくなる　こなを　ふりまき"
 	next "てきを　ねむらせてしまう@"
 
-MoveDescription_6292:
+PetalDanceDescription:
 	db   "２ー３ターンのあいだ　あばれつづける"
 	next "あばれたあとは　こんらんしてしまう@"
 
-MoveDescription_62B7:
+StringShotDescription:
 	db   "いとを　てきの　からだに　まきつけ"
 	next "すばやさを　さげさせる@"
 
-MoveDescription_62D5:
+DragonRageDescription:
 	db   "しょうげきはで　てきを　こうげき"
 	next "４０の　きまったダメージを　あたえる@"
 
-MoveDescription_62F9:
+FireSpinDescription:
 	db   "２ー５ターンのあいだ　てきを"
 	next "ほのおの　ちゅうしんに　とじこめる@"
 
-MoveDescription_631A:
+ThundershockDescription:
 	db   "でんげきを　あびせて　こうげき"
 	next "てきを　マヒさせることがある@"
 
-MoveDescription_6339:
+ThunderboltDescription:
 	db   "つよいでんげきを　あびせて　こうげき"
 	next "てきを　マヒさせることがある@"
 
-MoveDescription_635B:
+ThunderWaveDescription:
 	db   "よわいでんげきを　てきに　ぶつけて"
 	next "マヒさせてしまう@"
 
-MoveDescription_6376:
+ThunderDescription:
 	db   "てきに　むかって　かみなりを　おとす"
 	next "マヒさせることがある@"
 
-MoveDescription_6394:
+RockThrowDescription:
 	db   "ちいさな　いわを　なげつけて"
 	next "てきを　こうげき@"
 
-MoveDescription_63AC:
+EarthquakeDescription:
 	db   "じめんを　ゆらして　こうげき"
 	next "とんでる　てきいがいに　だいダメージ@"
 
-MoveDescription_63CE:
+FissureDescription:
 	db   "じわれを　おこして　てきを　のみこむ"
 	next "のみこまれると　せんとうふのうになる@"
 
-MoveDescription_63F4:
+DigDescription:
 	db   "１ターンめで　じめんに　もぐり"
 	next "つぎのターンで　てきを　こうげき@"
 
-MoveDescription_6415:
+ToxicDescription:
 	db   "じょじょに　ダメージがふえる　どくを"
 	next "てきに　あたえる@"
 
-MoveDescription_6431:
+ConfusionDescription:
 	db   "ちょうのうりょくで　こうげき"
 	next "てきを　こんらんさせることがある@"
 
-MoveDescription_6451:
+PsychicMDescription:
 	db   "つよいねんりきで　てきを　こうげき"
 	next "とくしゅぼうぎょを　さげることがある@"
 
-MoveDescription_6476:
+HypnosisDescription:
 	db   "てきに　あんじを　かけて"
 	next "ふかい　ねむりへと　さそう@"
 
-MoveDescription_6491:
+MeditateDescription:
 	db   "ヨガのポーズで　ねむった　ちからを"
 	next "ひきだし　こうげきを　あげる@"
 
-MoveDescription_64B2:
+AgilityDescription:
 	db   "ちからを　ぬいて　からだを　かるくし"
 	next "すばやさを　グーンとあげる@"
 
-MoveDescription_64D3:
+QuickAttackDescription:
 	db   "ものすごい　はやさで　うごいて　"
 	next "かならず　せんせいこうげきする@"
 
-MoveDescription_64F4:
+RageDescription:
 	db   "こうげきされるたびに　いかりで"
 	next "こうげきが　あがっていく@"
 
-MoveDescription_6511:
+TeleportDescription:
 	db   "ちょうのうりょくを　つかって"
 	next "せんとうから　だっしゅつする@"
 
-MoveDescription_652F:
+NightShadeDescription:
 	db   "てきに　おそろしい　まぼろしを　みせ"
 	next "レべルぶんの　ダメージを　あたえる@"
 
-MoveDescription_6554:
+MimicDescription:
 	db   "てきが　つかった　わざが　"
 	next "そのときだけ　じぶんの　わざになる@"
 
-MoveDescription_6574:
+ScreechDescription:
 	db   "いやなおとを　だして　てきの"
 	next "ぼうぎょを　ガクッとさげさせる@"
 
-MoveDescription_6593:
+DoubleTeamDescription:
 	db   "ぶんしんで　てきを　まどわせ"
 	next "めいちゅうりつを　さげさせる@"
 
-MoveDescription_65B1:
+RecoverDescription:
 	db   "キズついた　からだを　たいりょくの"
 	next "はんぶんだけ　かいふくする@"
 
-MoveDescription_65D1:
+HardenDescription:
 	db   "ぜんしんに　ちからをこめ　かたくなり"
 	next "ぼうぎょを　あげる@"
 
-MoveDescription_65EE:
+MinimizeDescription:
 	db   "からだを　ちぢめて　ちいさくなり"
 	next "てきの　めいちゅうりつを　さげさせる@"
 
-MoveDescription_6612:
+SmokescreenDescription:
 	db   "けむりや　スミなどで　てきの　"
 	next "めいちゅうりつを　さげさせる@"
 
-MoveDescription_6631:
+ConfuseRayDescription:
 	db   "あやしいひかりで　てきを　まどわし"
 	next "こんらんさせてしまう@"
 
-MoveDescription_664E:
+WithdrawDescription:
 	db   "かたいからに　もぐりこんで"
 	next "ぼうぎょを　あげる@"
 
-MoveDescription_6666:
+DefenseCurlDescription:
 	db   "からだを　まるめて　きゅうしょを"
 	next "かくし　ぼうぎょを　あげる@"
 
-MoveDescription_6685:
+BarrierDescription:
 	db   "めのまえに　かべを　つくりだし"
 	next "ぼうぎょを　グーンとあげる@"
 
-MoveDescription_66A3:
+LightScreenDescription:
 	db   "ひかりのかべを　つくり　とくしゅ"
 	next "こうげきの　ダメージを　よわめる@"
 
-MoveDescription_66C5:
+HazeDescription:
 	db   "くろいきりが　からだを　おおい"
 	next "からだの　いじょうを　もとにもどす@"
 
-MoveDescription_66E7:
+ReflectDescription:
 	db   "ひかりのかべを　つくり　ぶつり"
 	next "こうげきの　ダメージを　よわめる@"
 
-MoveDescription_6708:
+FocusEnergyDescription:
 	db   "こうげきに　きあいを　こめて"
 	next "クりティカルヒットを　でやすくする@"
 
-MoveDescription_6729:
+BideDescription:
 	db   "２ー３ターン　こうげきに　たえて"
 	next "うけたダメージを　ばいにしてかえす@"
 
-MoveDescription_674C:
+MetronomeDescription:
 	db   "ゆびを　ふって　のうを　しげきして"
 	next "いろんな　ワザを　ランダムでくりだす@"
 
-MoveDescription_6771:
+MirrorMoveDescription:
 	db   "てきの　わざを　まねして　"
 	next "おなじわざで　てきを　こうげき@"
 
-MoveDescription_678F:
+SelfdestructDescription:
 	db   "てきに　だいダメージを　あたえるが"
 	next "つかうと　せんとうふのうに　なる@"
 
-MoveDescription_67B2:
+EggBombDescription:
 	db   "タマゴを　おもいっきり　なげつけて"
 	next "てきを　こうげき@"
 
-MoveDescription_67CD:
+LickDescription:
 	db   "ながいしたで　なめまわして　こうげき"
 	next "てきを　マヒさせることがある@"
 
-MoveDescription_67EF:
+SmogDescription:
 	db   "はいきガスを　ふきかけて　こうげき"
 	next "てきに　どくをあたえることがある@"
 
-MoveDescription_6812:
+SludgeDescription:
 	db   "へドロを　なげつけて　こうげき"
 	next "てきに　どくをあたえることがある@"
 
-MoveDescription_6833:
+BoneClubDescription:
 	db   "てにもった　ホネで　てきを　こうげき"
 	next "てきを　ひるませることがある@"
 
-MoveDescription_6855:
+FireBlastDescription:
 	db   "だいの　もじが　すべてを　やきつくす"
 	next "てきを　やけどさせることがある@"
 
-MoveDescription_6878:
+WaterfallDescription:
 	db   "たきを　さかのぼるような　いきおいで"
 	next "てきに　とっしんする@"
 
-MoveDescription_6896:
+ClampDescription:
 	db   "２ー５ターンのあいだ　てきを"
 	next "からに　はさみこんでしまう　@"
 
-MoveDescription_68B4:
+SwiftDescription:
 	db   "ぜったいに　よけられない　ほしがたの"
 	next "こうせんを　むすうに　はっしゃする@"
 
-MoveDescription_68D9:
+SkullBashDescription:
 	db   "１ターンめで　あたまを　ひっこめて"
 	next "つぎのターンで　てきを　こうげき@"
 
-MoveDescription_68FC:
+SpikeCannonDescription:
 	db   "するどいハりを　てきに　はっしゃして"
 	next "２ー５かい　れんぞくで　こうげき@"
 
-MoveDescription_6920:
+ConstrictDescription:
 	db   "２ー５ターンのあいだ　ながいからだや"
 	next "ツルをつかって　てきを　しめつける@"
 
-MoveDescription_6945:
+AmnesiaDescription:
 	db   "いっしゅん　なにかを　わすれることで"
 	next "とくしゅぼうぎょを　グーンとあげる@"
 
-MoveDescription_696A:
+KinesisDescription:
 	db   "てきの　めを　スプーンに　むけさせて"
 	next "めいちゅうりつを　さげさせる@"
 
-MoveDescription_698C:
+SoftboiledDescription:
 	db   "キズついた　からだを　たいりょくの"
 	next "はんぶんだけ　かいふくする@"
 
-MoveDescription_69AC:
+HiJumpKickDescription:
 	db   "ジャンプした　いきおいで　ひざげりを"
 	next "くりだす　はずすと　ダメージをうける@"
 
-MoveDescription_69D2:
+GlareDescription:
 	db   "おなかの　もようで　てきを　いかくし"
 	next "おびえさせて　マヒさせてしまう@"
 
-MoveDescription_69F5:
+DreamEaterDescription:
 	db   "てきに　あたえた　ダメージの"
 	next "はんぶん　たいりょくを　かいふくする@"
 
-MoveDescription_6A17:
+PoisonGasDescription:
 	db   "どくガスを　てきに　ふきかけて"
 	next "どくをあたえる@"
 
-MoveDescription_6A2F:
+BarrageDescription:
 	db   "まるいものを　てきに　なげつけて"
 	next "２ー５かい　れんぞくで　こうげき@"
 
-MoveDescription_6A51:
+LeechLifeDescription:
 	db   "てきに　あたえた　ダメージの"
 	next "はんぶん　たいりょくを　かいふくする@"
 
-MoveDescription_6A73:
+LovelyKissDescription:
 	db   "こわい　かおで　キスを　せまる"
 	next "キスされると　ねむってしまう@"
 
-MoveDescription_6A92:
+SkyAttackDescription:
 	db   "１ターンめで　じゃくてんを　さがし"
 	next "つぎのターンで　てきを　こうげき@"
 
-MoveDescription_6AB5:
+TransformDescription:
 	db   "てきの　ポケモンと　おなじ　すがたに"
 	next "さいぼうを　へんかさせ　へんしんする@"
 
-MoveDescription_6ADB:
+BubbleDescription:
 	db   "あわを　ふきかけて　こうげき"
 	next "てきの　すばやさを　さげることがある@"
 
-MoveDescription_6AFD:
+DizzyPunchDescription:
 	db   "おやこどうじに　パンチで　こうげき"
 	next "てきを　こんらんさせることがある@"
 
-MoveDescription_6B20:
+SporeDescription:
 	db   "さいみんこうかのある　ほうしを"
 	next "ふりまき　てきを　ねむらせる@"
 
-MoveDescription_6B3F:
+FlashDescription:
 	db   "つよい　ひかりで　めを　くらませて"
 	next "てきの　めいちゅうりつを　さげさせる@"
 
-MoveDescription_6B64:
+PsywaveDescription:
 	db   "てきに　１ーレべル×１.５の"
 	next "ダメージを　ランダムで　あたえる@"
 
-MoveDescription_6B84:
+SplashDescription:
 	db   "はねるだけで　なにもおこらない⋯@"
 
-MoveDescription_6B95:
+AcidArmorDescription:
 	db   "からだを　えきじょうに　へんかさせて"
 	next "ぼうぎょを　グーンとあげる@"
 
-MoveDescription_6BB6:
+CrabhammerDescription:
 	db   "ハサミを　てきに　たたきつける"
 	next "クりティカルヒットが　でやすい@"
 
-MoveDescription_6BD6:
+ExplosionDescription:
 	db   "てきに　だいダメージを　あたえるが"
 	next "つかうと　せんとうふのうに　なる@"
 
-MoveDescription_6BF9:
+FurySwipesDescription:
 	db   "てきを　するどいツメで　ひっかいて"
 	next "２ー５かい　れんぞくで　こうげき@"
 
-MoveDescription_6C1C:
+BonemerangDescription:
 	db   "ホネを　なげつけて　いきと　かえりで"
 	next "２かい　れんぞくで　こうげき@"
 
-MoveDescription_6C3E:
+RestDescription:
 	db   "２ターン　ねむって　たいりょくと"
 	next "からだのいじょうを　かいふくする@"
 
-MoveDescription_6C60:
+RockSlideDescription:
 	db   "おおきな　いわを　なげつける"
 	next "てきを　ひるませることがある@"
 
-MoveDescription_6C7E:
+HyperFangDescription:
 	db   "するどいまえばで　てきを　こうげき"
 	next "ひるませることがある@"
 
-MoveDescription_6C9B:
+SharpenDescription:
 	db   "ポりゴンを　へらし　カクカクになって"
 	next "こうげきを　あげる@"
 
-MoveDescription_6CB8:
+ConversionDescription:
 	db   "じぶんに　テクスチャーを　はりつけて"
 	next "てきと　おなじ　ぞくせいに　かわる@"
 
-MoveDescription_6CDD:
+TriAttackDescription:
 	db   "３しゅるいの　こうせんを"
 	next "１つにまとめて　てきに　はっしゃする@"
 
-MoveDescription_6CFD:
+SuperFangDescription:
 	db   "するどいまえばで　こうげきして"
 	next "てきの　たいりょくを　はんぶんにする@"
 
-MoveDescription_6D20:
+SlashDescription:
 	db   "するどいカマや　ツメなどで　こうげき"
 	next "クりティカルヒットが　でやすい@"
 
-MoveDescription_6D43:
+SubstituteDescription:
 	db   "たいりょくの　４ぶんの１を　つかって"
 	next "じぶんの　ぶんしんをだす@"
 
-MoveDescription_6D63:
+StruggleDescription:
 	db   "わざポイントがなくなると　でるわざ"
 	next "じぶんもすこし　ダメージをうける@"
 
-MoveDescription_6D86:
+SketchDescription:
 	db   "てきが　つかったわざを　スケッチして"
 	next "そのわざを　じぶんのものに　する@"
 
-MoveDescription_6DAA:
+TripleKickDescription:
 	db   "てきを　３かい　れんぞくで　こうげき"
 	next "あてるたびに　ダメージが　あがる@"
 
-MoveDescription_6DCE:
+ThiefDescription:
 	db   "こうげきの　さいちゅうに　すきをみて"
 	next "てきが　もっている　どうぐを　ぬすむ@"
 
-MoveDescription_6DF4:
+SpiderWebDescription:
 	db   "ネバネバとした　いとを　からませて"
 	next "てきを　にげられなく　してしまう@"
 
-MoveDescription_6E17:
+MindReaderDescription:
 	db   "てきの　うごきを　こころで　かんじて"
 	next "つぎの　こうげきを　かならず　あてる@"
 
-MoveDescription_6E3D:
+NightmareDescription:
 	db   "てきが　ねてるあいだ　たいりょくを"
 	next "まいターン　８ぶんの１　へらしていく@"
 
-MoveDescription_6E62:
+FlameWheelDescription:
 	db   "ほのおを　まとって　とっしんする"
 	next "てきを　やけどさせることがある@"
 
-MoveDescription_6E83:
+SnoreDescription:
 	db   "ねているときだけ　つかえる　わざ"
 	next "すごいいびきで　てきを　こうげき@"
 
-MoveDescription_6EA5:
+NailDownDescription:
 	db   "じぶんを　こうげきすることで　てきに"
 	next "まいターン　ダメージを　あたえる@"
 
-MoveDescription_6EC9:
+FlailDescription:
 	db   "たいりょくが　すくないほど"
 	next "てきに　おおきなダメージを　あたえる@"
 
-MoveDescription_6EEA:
+Conversion2Description:
 	db   "てきに　テクスチャーを　はりつけて"
 	next "ぞくせいを　ランダムでかえてしまう@"
 
-MoveDescription_6F0E:
+CoinHurlDescription:
 	db   "おかねを　つかって　てきを　こうげき"
 	next "かいぬしが　りッチなほど　つよいワザ@"
 
-MoveDescription_6F34:
+CottonSporeDescription:
 	db   "ほうしを　まとわりつかせ　てきにの"
 	next "ぼうぎょを　ガクッとさげさせる@"
 
-MoveDescription_6F56:
+ReversalDescription:
 	db   "たいりょくが　すくないほど"
 	next "てきに　おおきなダメージを　あたえる@"
 
-MoveDescription_6F77:
+SpiteDescription:
 	db   "さいごに　うけた　わざを　うらんで　"
 	next "その　わざポイントを　へらしてしまう@"
 
-MoveDescription_6F9D:
+PowderSnowDescription:
 	db   "ゆきを　かぜにのせて　こうげき"
 	next "てきを　こおらせることがある@"
 
-MoveDescription_6FBC:
+ProtectDescription:
 	db   "つぎのターンの　こうげきを　うけない@"
 
-MoveDescription_6FCF:
+MachPunchDescription:
 	db   "ものすごいはやさで　パンチをくりだし"
 	next "かならず　せんせいこうげきする@"
 
-MoveDescription_6FF2:
+ScaryFaceDescription:
 	db   "こわいかおで　てきを　おびえさせて　"
 	next "ぼうぎょを　ガクッとさげさせる@"
 
-MoveDescription_7015:
+FaintAttackDescription:
 	db   "てきを　ゆだんさせて　ちかづき"
 	next "よけられない　こうげきを　くりだす@"
 
-MoveDescription_7037:
+SweetKissDescription:
 	db   "かわいい　かおで　キスを　せまる"
 	next "キスされると　こんらんしてしまう@"
 
-MoveDescription_7059:
+BellyDrumDescription:
 	db   "おなかを　たたいて　てきを　いかく"
 	next "こうげきを　グーンとあげる@"
 
-MoveDescription_7079:
+SludgeBombDescription:
 	db   "へドロを　なげつけて　こうげき"
 	next "てきに　どくをあたえることがある@"
 
-MoveDescription_709A:
+MudSlapDescription:
 	db   "てきの　かおなどに　ドロをかけて　"
 	next "めいちゅうりつを　さげさせる@"
 
-MoveDescription_70BB:
+OctazookaDescription:
 	db   "すみの　かたまりを　はっしゃして"
 	next "めいちゅうりつを　さげさせる　@"
 
-MoveDescription_70DC:
+SpikesDescription:
 	db   "てきが　にげるときに　わなを　しかけ"
 	next "こうたいした　てきを　こうげきする@"
 
-MoveDescription_7101:
+ZapCannonDescription:
 	db   "あたりにくいが　ダメージは　おおきい"
 	next "あたれば　かならず　マヒさせる@"
 
-MoveDescription_7124:
+ForesightDescription:
 	db   "ゴーストタイプの　てきに　"
 	next "ノーマルタイプの　わざが　あたる@"
 
-MoveDescription_7143:
+DestinyBondDescription:
 	db   "このわざの　あとに　たおされると"
 	next "てきも　せんとうふのうになる@"
 
-MoveDescription_7163:
+PerishSongDescription:
 	db   "きいた　ポケモンは　３ターンごに"
 	next "せんとうふのうに　なってしまう@"
 
-MoveDescription_7184:
+SynchronizeDescription:
 	db   "シンクロじょうたいに　なると　てきも"
 	next "おなじ　ダメージを　うけるようになる@"
 
-MoveDescription_71AA:
+DetectDescription:
 	db   "てきの　うごきを　みきることで"
 	next "つぎの　こうげきを　かならずあてる@"
 
-MoveDescription_71CC:
+BoneLockDescription:
 	db   "てにもった　ホネで　２ー５かい　"
 	next "れんぞくで　てきを　こうげきする@"
 
-MoveDescription_71EE:
+LockOnDescription:
 	db   "てきに　しょうじゅんを　あわせて"
 	next "つぎの　こうげきを　かならずあてる@"
 
-MoveDescription_7211:
+OutrageDescription:
 	db   "２ー３ターンのあいだ　あばれつづける"
 	next "あばれたあとは　こんらんしてしまう@"
 
-MoveDescription_7236:
+SandstormDescription:
 	db   "すなあらしを　はっせいさせて"
 	next "まいターン　ダメージを　あたえる@"
 
-MoveDescription_7256:
+GigaDrainDescription:
 	db   "てきに　あたえた　ダメージの"
 	next "はんぶん　たいりょくを　かいふくする@"
 
-MoveDescription_7278:
+EndureDescription:
 	db   "つぎのターンで　こうげきを　うけても"
 	next "かららず　たいりょくが　１のこる@"
 
-MoveDescription_729C:
+CharmDescription:
 	db   "かわいくあまえて　てきを　ゆだんさせ"
 	next "こうげきを　ガクッとさげさせる　@"
 
-MoveDescription_72C0:
+RolloutDescription:
 	db   "５ターンのあいだ　てきを　こうげき"
 	next "あてるたびに　ダメージが　あがる@"
 
-MoveDescription_72E3:
+FalseSwipeDescription:
 	db   "かならず　たいりょくが　１のこるよう"
 	next "てかげんして　こうげき@"
 
-MoveDescription_7302:
+SwaggerDescription:
 	db   "てきを　おこらせて　こんらんさせるが"
 	next "こうげきも　グーンと　あげてしまう@"
 
-MoveDescription_7327:
+MilkDrinkDescription:
 	db   "キズついた　からだを　たいりょくの"
 	next "はんぶんだけ　かいふくする@"
 
-MoveDescription_7347:
+SparkDescription:
 	db   "でんきを　まとって　とっしんする"
 	next "てきを　マヒさせることがある@"
 
-MoveDescription_7367:
+FuryCutterDescription:
 	db   "するどいカマや　ツメなどで　てきを"
 	next "２かい　れんぞくで　こうげき@"
 
-MoveDescription_7388:
+SteelWingDescription:
 	db   "つばさを　おおきく　ひろげて"
 	next "そのまま　てきに　たいあたりする@"
 
-MoveDescription_73A8:
+StalkerDescription:
 	db   "てきを　じーっと　みていると　なぜか"
 	next "てきは　にげられなく　なってしまう@"
 
-MoveDescription_73CD:
+AttractDescription:
 	db   "オスなら　メスに　メスなら　オスに"
 	next "こうげきが　できなくなってしまう@"
 
-MoveDescription_73F0:
+SleepTalkDescription:
 	db   "ねているときだけ　つかえる　わざ"
 	next "ランダムで　じぶんのわざを　くりだす@"
 
-MoveDescription_7414:
+BellChimeDescription:
 	db   "ここちよい　すずのねを　きかせて"
 	next "すべての　じょうたいを　かいふくする@"
 
-MoveDescription_7438:
+ReturnDescription:
 	db   "よくしてくれる　かいぬしの　ために"
 	next "ぜんりょくで　てきを　こうげき@"
 
-MoveDescription_745A:
+PresentDescription:
 	db   "てきに　ばくだんを　プレゼントする"
 	next "たまに　かいふくしてしまうことがある@"
 
-MoveDescription_747F:
+FrustrationDescription:
 	db   "むごい　しうちの　うさばらしに　"
 	next "てきを　ぜんりょくで　こうげき@"
 
-MoveDescription_74A0:
+SafeguardDescription:
 	db   "ふしぎな　ちからで　まもられて"
 	next "とくしゅ　じょうたいに　ならなくなる@"
 
-MoveDescription_74C3:
+PainSplitDescription:
 	db   "てきと　じぶんの　たいりょくを"
 	next "たして　それを　なかよく　わける@"
 
-MoveDescription_74E4:
+SacredFireDescription:
 	db   "しんぴてきな　ほのおで　こうげき"
 	next "てきを　ひるませることがある@"
 
-MoveDescription_7504:
+MagnitudeDescription:
 	db   "じめんを　ゆらして　てきを　こうげき"
 	next "ダメージは　ランダムで　かわる@"
 
-MoveDescription_7527:
+DynamicpunchDescription:
 	db   "あたりにくいが　ダメージは　おおきい"
 	next "あたれば　かならず　こんらんさせる@"
 
-MoveDescription_754C:
+MegaphoneDescription:
 	db   "すごいおとで　てきの　きをちらせて　"
 	next "とくしゅこうげきを　さげさせる@"
 
-MoveDescription_756F:
+DragonbreathDescription:
 	db   "くちから　ものすごい　いきをはいて"
 	next "てきを　こうげき@"
 
-MoveDescription_758A:
+BatonPassDescription:
 	db   "ついかこうかを　のこしたまま"
 	next "ほかの　ポケモンと　いれかわる@"
 
-MoveDescription_75A9:
+EncoreDescription:
 	db   "てきが　さいごに　つかった　わざを"
 	next "２ー５かい　れんぞくで　ださせる@"
 
-MoveDescription_75CC:
+PursuitDescription:
 	db   "てきが　にげるときに　つかうと"
 	next "だいダメージを　あたえることができる@"
 
-MoveDescription_75EF:
+RapidSpinDescription:
 	db   "からだを　はやく　かいてんさせて"
 	next "てきを　こうげき@"
 
-MoveDescription_7609:
+TemptDescription:
 	db   "てきに　エサをなげて　きを　そらせて"
 	next "てきの　かいひりつを　さげさせる@"
 
-MoveDescription_762D:
+IronTailDescription:
 	db   "かたい　シッポで　てきを　こうげき"
 	next "てきの　ぼうぎょを　さげることがある@"
 
-MoveDescription_7652:
+RockHeadDescription:
 	db   "かたい　あたまで　てきを　こうげき"
 	next "てきを　ひるませることがある@"
 
-MoveDescription_7673:
+VitalThrowDescription:
 	db   "こうげきを　うけずに　こうげきできる"
 	next "はずれると　だいダメージを　うける@"
 
-MoveDescription_7698:
+MorningSunDescription:
 	db   "たいりょくを　かいふくする"
 	next "じかんで　かいふくりょうが　かわる@"
 
-MoveDescription_76B8:
+SynthesisDescription:
 	db   "たいりょくを　かいふくする"
 	next "じかんで　かいふくりょうが　かわる@"
 
-MoveDescription_76D8:
+MoonlightDescription:
 	db   "たいりょくを　かいふくする"
 	next "じかんで　かいふくりょうが　かわる@"
 
-MoveDescription_76F8:
+HiddenPowerDescription:
 	db   "ポケモンによって　てきに　あたえる"
 	next "ダメージの　りょうが　へんかする@"
 
-MoveDescription_771B:
+CrossCutterDescription:
 	db   "ハサミを　こうさ　させて　こうげき"
 	next "クりティカルヒットが　でやすい@"
 
-MoveDescription_773D:
+TwisterDescription:
 	db   "ものすごい　かぜを　おこして"
 	next "てきを　こうげき@"
 
-MoveDescription_7755:
+RainDanceDescription:
 	db   "５ターンのあいだ　みずタイプの"
 	next "わざの　いりょくが　あがる@"
 
-MoveDescription_7773:
+SunnyDayDescription:
 	db   "５ターンのあいだ　ほのおタイプの"
 	next "わざの　いりょくが　あがる@"
 
-MoveDescription_7792:
+F2Description:
 	db   "コメントさくせいちゅう@"
 
-MoveDescription_779E:
+F3Description:
 	db   "コメントさくせいちゅう@"
 
-MoveDescription_77AA:
+F4Description:
 	db   "コメントさくせいちゅう@"
 
-MoveDescription_77B6:
+UprootDescription:
 	db   "てきを　つかんで　ほうりなげて"
 	next "だいダメージを　あたえる@"
 
-MoveDescription_77D3:
+WindRideDescription:
 	db   "かぜと　ともに　てきに　たいあたり"
 	next "クりティカルヒットが　でやすい@"
 
-MoveDescription_77F5:
+WaterSportDescription:
 	db   "コメントさくせいちゅう@"
 
-MoveDescription_7801:
+StrongArmDescription:
 	db   "ふとい　うでで　てきを　こうげき"
 	next "こうげきが　あがることがある@"
 
-MoveDescription_7821:
+BrightMossDescription:
 	db   "あたりを　あかるくして"
 	next "わざの　めいちゅうりつを　あげる@"
 
-MoveDescription_783E:
+WhirlpoolDescription:
 	db   "２ー５ターンのあいだ　てきを"
 	next "うずの　ちゅうしんに　とじこめる@"
 
-MoveDescription_785E:
+BounceDescription:
 	db   "はねるだけで　なにもおこらない⋯@"
