@@ -2,8 +2,8 @@ ROM := pokegold-spaceworld.gb
 CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
 BASEROM := baserom.gb
 
-DIRS := home engine data audio maps scripts
-FILES := bin.asm gfx.asm vram.asm sram.asm wram.asm hram.asm
+DIRS := home engine data gfx audio maps scripts ram slack
+FILES :=
 
 BUILD := build
 
@@ -94,13 +94,14 @@ $(BUILD)/%.d: %.asm | $$(dir $$@) $(SCAN_INCLUDES)
 
 ### Misc file-specific graphics rules
 
+$(BUILD)/slack/corrupted_9e1c.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/slack/corrupted_a66c.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/slack/corrupted_b1e3.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/slack/sgb_border_gold_corrupted.2bpp: tools/gfx += --trim-whitespace
+
 $(BUILD)/gfx/sgb/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_gold.2bpp: tools/gfx += --trim-whitespace
-$(BUILD)/gfx/sgb/sgb_border_gold_corrupted.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
-$(BUILD)/gfx/sgb/corrupted_9e1c.2bpp: tools/gfx += --trim-whitespace
-$(BUILD)/gfx/sgb/corrupted_a66c.2bpp: tools/gfx += --trim-whitespace
-$(BUILD)/gfx/sgb/corrupted_b1e3.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
 
 $(BUILD)/gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
