@@ -3,1177 +3,1177 @@ INCLUDE "constants.asm"
 SECTION "data/items/descriptions.asm", ROMX
 
 ItemDescriptions::
-	dw ItemDescription_Master_Ball
-	dw ItemDescription_Ultra_Ball
-	dw ItemDescription_03
-	dw ItemDescription_Great_Ball
-	dw ItemDescription_Poke_Ball
-	dw ItemDescription_Town_Map
-	dw ItemDescription_Bicycle
-	dw ItemDescription_Moon_Stone
-	dw ItemDescription_Antidote
-	dw ItemDescription_Burn_Heal
-	dw ItemDescription_Ice_Heal
-	dw ItemDescription_Awakening
-	dw ItemDescription_Parlyz_Heal
-	dw ItemDescription_Full_Restore
-	dw ItemDescription_Max_Potion
-	dw ItemDescription_Hyper_Potion
-	dw ItemDescription_Super_Potion
-	dw ItemDescription_Potion
-	dw ItemDescription_Escape_Rope
-	dw ItemDescription_Repel
-	dw ItemDescription_Max_Elixer
-	dw ItemDescription_Fire_Stone
-	dw ItemDescription_Thunderstone
-	dw ItemDescription_Water_Stone
-	dw ItemDescription_19
-	dw ItemDescription_HP_Up
-	dw ItemDescription_Protein
-	dw ItemDescription_Iron
-	dw ItemDescription_Carbos
-	dw ItemDescription_1E
-	dw ItemDescription_Calcium
-	dw ItemDescription_Rare_Candy
-	dw ItemDescription_X_Accuracy
-	dw ItemDescription_Leaf_Stone
-	dw ItemDescription_23
-	dw ItemDescription_Nugget
-	dw ItemDescription_Poke_Doll
-	dw ItemDescription_Full_Heal
-	dw ItemDescription_Revive
-	dw ItemDescription_Max_Revive
-	dw ItemDescription_Guard_Spec
-	dw ItemDescription_Super_Repel
-	dw ItemDescription_Max_Repel
-	dw ItemDescription_Dire_Hit
-	dw ItemDescription_2D
-	dw ItemDescription_Fresh_Water
-	dw ItemDescription_Soda_Pop
-	dw ItemDescription_Lemonade
-	dw ItemDescription_X_Attack
-	dw ItemDescription_32
-	dw ItemDescription_X_Defend
-	dw ItemDescription_X_Speed
-	dw ItemDescription_X_Special
-	dw ItemDescription_Coin_Case
-	dw ItemDescription_Itemfinder
-	dw ItemDescription_Poke_Flute
-	dw ItemDescription_Exp_Share
-	dw ItemDescription_Old_Rod
-	dw ItemDescription_Good_Rod
-	dw ItemDescription_3C
-	dw ItemDescription_Super_Rod
-	dw ItemDescription_PP_Up
-	dw ItemDescription_Ether
-	dw ItemDescription_Max_Ether
-	dw ItemDescription_Elixer
-	dw ItemDescription_Mystic_Petal
-	dw ItemDescription_White_Feather
-	dw ItemDescription_Confuse_Claw
-	dw ItemDescription_Wisdom_Orb
-	dw ItemDescription_Steel_Shell
-	dw ItemDescription_Up_Grade
-	dw ItemDescription_Strange_Thread
-	dw ItemDescription_Big_Leaf
-	dw ItemDescription_Quick_Needle
-	dw ItemDescription_4B
-	dw ItemDescription_Sharp_Stone
-	dw ItemDescription_Black_Feather
-	dw ItemDescription_Sharp_Fang
-	dw ItemDescription_Snakeskin
-	dw ItemDescription_Electric_Pouch
-	dw ItemDescription_Toxic_Needle
-	dw ItemDescription_Kings_Rock
-	dw ItemDescription_Strange_Power
-	dw ItemDescription_Life_Tag
-	dw ItemDescription_Poison_Fang
-	dw ItemDescription_Cordyceps
-	dw ItemDescription_Dragon_Fang
-	dw ItemDescription_Silverpowder
-	dw ItemDescription_Digging_Claw
-	dw ItemDescription_5A
-	dw ItemDescription_Amulet_Coin
-	dw ItemDescription_Migraine_Seed
-	dw ItemDescription_Counter_Cuff
-	dw ItemDescription_Talisman_Tag
-	dw ItemDescription_Strange_Water
-	dw ItemDescription_Twistedspoon
-	dw ItemDescription_Attack_Needle
-	dw ItemDescription_Power_Bracer
-	dw ItemDescription_Hard_Stone
-	dw ItemDescription_64
-	dw ItemDescription_Jiggling_Balloon
-	dw ItemDescription_Fire_Mane
-	dw ItemDescription_Slowpoketail
-	dw ItemDescription_Earth
-	dw ItemDescription_Stick
-	dw ItemDescription_Flee_Feather
-	dw ItemDescription_Ice_Fang
-	dw ItemDescription_Fossil_Shard
-	dw ItemDescription_Gross_Garbage
-	dw ItemDescription_Big_Pearl
-	dw ItemDescription_Champion_Belt
-	dw ItemDescription_Tag
-	dw ItemDescription_Spell_Tag
-	dw ItemDescription_5_Yen_Coin
-	dw ItemDescription_Guard_Thread
-	dw ItemDescription_Stimulus_Orb
-	dw ItemDescription_Calm_Berry
-	dw ItemDescription_Thick_Club
-	dw ItemDescription_Focus_Orb
-	dw ItemDescription_78
-	dw ItemDescription_Detect_Orb
-	dw ItemDescription_Long_Tongue
-	dw ItemDescription_Lotto_Ticket
-	dw ItemDescription_Everstone
-	dw ItemDescription_Sharp_Horn
-	dw ItemDescription_Lucky_Egg
-	dw ItemDescription_Long_Vine
-	dw ItemDescription_Moms_Love
-	dw ItemDescription_Smokescreen
-	dw ItemDescription_Wet_Horn
-	dw ItemDescription_Skateboard
-	dw ItemDescription_Crimson_Jewel
-	dw ItemDescription_Invisible_Wall
-	dw ItemDescription_Sharp_Scythe
-	dw ItemDescription_87
-	dw ItemDescription_Ice_Bikini
-	dw ItemDescription_Thunder_Fang
-	dw ItemDescription_Fire_Claw
-	dw ItemDescription_Twin_Horns
-	dw ItemDescription_Spike
-	dw ItemDescription_Berry
-	dw ItemDescription_Apple
-	dw ItemDescription_Metal_Coat
-	dw ItemDescription_Pretty_Tail
-	dw ItemDescription_Water_Tail
-	dw ItemDescription_Leftovers
-	dw ItemDescription_Ice_Wing
-	dw ItemDescription_Thunder_Wing
-	dw ItemDescription_Fire_Wing
-	dw ItemDescription_96
-	dw ItemDescription_Dragon_Scale
-	dw ItemDescription_Berserk_Gene
-	dw ItemDescription_Heart_Stone
-	dw ItemDescription_Fire_Tail
-	dw ItemDescription_Thunder_Tail
-	dw ItemDescription_Sacred_Ash
-	dw ItemDescription_TM_Holder
-	dw ItemDescription_Mail
-	dw ItemDescription_Ball_Holder
-	dw ItemDescription_Bag
-	dw ItemDescription_Important_Bag
-	dw ItemDescription_Poison_Stone
-	dw ItemDescription_A3
-	dw ItemDescription_A4
-	dw ItemDescription_A5
-	dw ItemDescription_A6
-	dw ItemDescription_A7
-	dw ItemDescription_A8
-	dw ItemDescription_A9
-	dw ItemDescription_AA
-	dw ItemDescription_AB
-	dw ItemDescription_AC
-	dw ItemDescription_AD
-	dw ItemDescription_AE
-	dw ItemDescription_AF
-	dw ItemDescription_B0
-	dw ItemDescription_B1
-	dw ItemDescription_B2
-	dw ItemDescription_B3
-	dw ItemDescription_B4
-	dw ItemDescription_B5
-	dw ItemDescription_B6
-	dw ItemDescription_B7
-	dw ItemDescription_B8
-	dw ItemDescription_B9
-	dw ItemDescription_BA
-	dw ItemDescription_BB
-	dw ItemDescription_BC
-	dw ItemDescription_BD
-	dw ItemDescription_BE
-	dw ItemDescription_BF
-	dw ItemDescription_C0
-	dw ItemDescription_C1
-	dw ItemDescription_C2
-	dw ItemDescription_C3
-	dw ItemDescription_TM01
-	dw ItemDescription_TM02
-	dw ItemDescription_TM03
-	dw ItemDescription_TM04
-	dw ItemDescription_C8
-	dw ItemDescription_TM05
-	dw ItemDescription_TM06
-	dw ItemDescription_TM07
-	dw ItemDescription_TM08
-	dw ItemDescription_TM09
-	dw ItemDescription_TM10
-	dw ItemDescription_TM11
-	dw ItemDescription_TM12
-	dw ItemDescription_TM13
-	dw ItemDescription_TM14
-	dw ItemDescription_TM15
-	dw ItemDescription_TM16
-	dw ItemDescription_TM17
-	dw ItemDescription_TM18
-	dw ItemDescription_TM19
-	dw ItemDescription_TM20
-	dw ItemDescription_TM21
-	dw ItemDescription_TM22
-	dw ItemDescription_TM23
-	dw ItemDescription_TM24
-	dw ItemDescription_TM25
-	dw ItemDescription_TM26
-	dw ItemDescription_TM27
-	dw ItemDescription_TM28
-	dw ItemDescription_E1
-	dw ItemDescription_TM29
-	dw ItemDescription_TM30
-	dw ItemDescription_TM31
-	dw ItemDescription_TM32
-	dw ItemDescription_TM33
-	dw ItemDescription_TM34
-	dw ItemDescription_TM35
-	dw ItemDescription_TM36
-	dw ItemDescription_TM37
-	dw ItemDescription_TM38
-	dw ItemDescription_TM39
-	dw ItemDescription_TM40
-	dw ItemDescription_TM41
-	dw ItemDescription_TM42
-	dw ItemDescription_TM43
-	dw ItemDescription_TM44
-	dw ItemDescription_TM45
-	dw ItemDescription_TM46
-	dw ItemDescription_TM47
-	dw ItemDescription_TM48
-	dw ItemDescription_TM49
-	dw ItemDescription_TM50
-	dw ItemDescription_HM01
-	dw ItemDescription_HM02
-	dw ItemDescription_HM03
-	dw ItemDescription_HM04
-	dw ItemDescription_HM05
-	dw ItemDescription_HM06
-	dw ItemDescription_HM07
-	dw ItemDescription_FF
+	dw MasterBallDescription
+	dw UltraBallDescription
+	dw Item03Description
+	dw GreatBallDescription
+	dw PokeBallDescription
+	dw TownMapDescription
+	dw BicycleDescription
+	dw MoonStoneDescription
+	dw AntidoteDescription
+	dw BurnHealDescription
+	dw IceHealDescription
+	dw AwakeningDescription
+	dw ParlyzHealDescription
+	dw FullRestoreDescription
+	dw MaxPotionDescription
+	dw HyperPotionDescription
+	dw SuperPotionDescription
+	dw PotionDescription
+	dw EscapeRopeDescription
+	dw RepelDescription
+	dw MaxElixerDescription
+	dw FireStoneDescription
+	dw ThunderstoneDescription
+	dw WaterStoneDescription
+	dw Item19Description
+	dw HPUpDescription
+	dw ProteinDescription
+	dw IronDescription
+	dw CarbosDescription
+	dw Item1EDescription
+	dw CalciumDescription
+	dw RareCandyDescription
+	dw XAccuracyDescription
+	dw LeafStoneDescription
+	dw Item23Description
+	dw NuggetDescription
+	dw PokeDollDescription
+	dw FullHealDescription
+	dw ReviveDescription
+	dw MaxReviveDescription
+	dw GuardSpecDescription
+	dw SuperRepelDescription
+	dw MaxRepelDescription
+	dw DireHitDescription
+	dw Item2DDescription
+	dw FreshWaterDescription
+	dw SodaPopDescription
+	dw LemonadeDescription
+	dw XAttackDescription
+	dw Item32Description
+	dw XDefendDescription
+	dw XSpeedDescription
+	dw XSpecialDescription
+	dw CoinCaseDescription
+	dw ItemfinderDescription
+	dw PokeFluteDescription
+	dw ExpShareDescription
+	dw OldRodDescription
+	dw GoodRodDescription
+	dw Item3CDescription
+	dw SuperRodDescription
+	dw PPUpDescription
+	dw EtherDescription
+	dw MaxEtherDescription
+	dw ElixerDescription
+	dw MysticPetalDescription
+	dw WhiteFeatherDescription
+	dw ConfuseClawDescription
+	dw WisdomOrbDescription
+	dw SteelShellDescription
+	dw UpGradeDescription
+	dw StrangeThreadDescription
+	dw BigLeafDescription
+	dw QuickNeedleDescription
+	dw Item4BDescription
+	dw SharpStoneDescription
+	dw BlackFeatherDescription
+	dw SharpFangDescription
+	dw SnakeskinDescription
+	dw ElectricPouchDescription
+	dw ToxicNeedleDescription
+	dw KingsRockDescription
+	dw StrangePowerDescription
+	dw LifeTagDescription
+	dw PoisonFangDescription
+	dw CordycepsDescription
+	dw DragonFangDescription
+	dw SilverpowderDescription
+	dw DiggingClawDescription
+	dw Item5ADescription
+	dw AmuletCoinDescription
+	dw MigraineSeedDescription
+	dw CounterCuffDescription
+	dw TalismanTagDescription
+	dw StrangeWaterDescription
+	dw TwistedspoonDescription
+	dw AttackNeedleDescription
+	dw PowerBracerDescription
+	dw HardStoneDescription
+	dw Item64Description
+	dw JigglingBalloonDescription
+	dw FireManeDescription
+	dw SlowpoketailDescription
+	dw EarthDescription
+	dw StickDescription
+	dw FleeFeatherDescription
+	dw IceFangDescription
+	dw FossilShardDescription
+	dw GrossGarbageDescription
+	dw BigPearlDescription
+	dw ChampionBeltDescription
+	dw TagDescription
+	dw SpellTagDescription
+	dw FiveYenCoinDescription
+	dw GuardThreadDescription
+	dw StimulusOrbDescription
+	dw CalmBerryDescription
+	dw ThickClubDescription
+	dw FocusOrbDescription
+	dw Item78Description
+	dw DetectOrbDescription
+	dw LongTongueDescription
+	dw LottoTicketDescription
+	dw EverstoneDescription
+	dw SharpHornDescription
+	dw LuckyEggDescription
+	dw LongVineDescription
+	dw MomsLoveDescription
+	dw SmokescreenItemDescription
+	dw WetHornDescription
+	dw SkateboardDescription
+	dw CrimsonJewelDescription
+	dw InvisibleWallDescription
+	dw SharpScytheDescription
+	dw Item87Description
+	dw IceBikiniDescription
+	dw ThunderFangDescription
+	dw FireClawDescription
+	dw TwinHornsDescription
+	dw SpikeDescription
+	dw BerryDescription
+	dw AppleDescription
+	dw MetalCoatDescription
+	dw PrettyTailDescription
+	dw WaterTailDescription
+	dw LeftoversDescription
+	dw IceWingDescription
+	dw ThunderWingDescription
+	dw FireWingDescription
+	dw Item96Description
+	dw DragonScaleDescription
+	dw BerserkGeneDescription
+	dw HeartStoneDescription
+	dw FireTailDescription
+	dw ThunderTailDescription
+	dw SacredAshDescription
+	dw TMHolderDescription
+	dw MailDescription
+	dw BallHolderDescription
+	dw BagDescription
+	dw ImportantBagDescription
+	dw PoisonStoneDescription
+	dw ItemA3Description
+	dw ItemA4Description
+	dw ItemA5Description
+	dw ItemA6Description
+	dw ItemA7Description
+	dw ItemA8Description
+	dw ItemA9Description
+	dw ItemAADescription
+	dw ItemABDescription
+	dw ItemACDescription
+	dw ItemADDescription
+	dw ItemAEDescription
+	dw ItemAFDescription
+	dw ItemB0Description
+	dw ItemB1Description
+	dw ItemB2Description
+	dw ItemB3Description
+	dw ItemB4Description
+	dw ItemB5Description
+	dw ItemB6Description
+	dw ItemB7Description
+	dw ItemB8Description
+	dw ItemB9Description
+	dw ItemBADescription
+	dw ItemBBDescription
+	dw ItemBCDescription
+	dw ItemBDDescription
+	dw ItemBEDescription
+	dw ItemBFDescription
+	dw ItemC0Description
+	dw ItemC1Description
+	dw ItemC2Description
+	dw ItemC3Description
+	dw TM01Description
+	dw TM02Description
+	dw TM03Description
+	dw TM04Description
+	dw ItemC8Description
+	dw TM05Description
+	dw TM06Description
+	dw TM07Description
+	dw TM08Description
+	dw TM09Description
+	dw TM10Description
+	dw TM11Description
+	dw TM12Description
+	dw TM13Description
+	dw TM14Description
+	dw TM15Description
+	dw TM16Description
+	dw TM17Description
+	dw TM18Description
+	dw TM19Description
+	dw TM20Description
+	dw TM21Description
+	dw TM22Description
+	dw TM23Description
+	dw TM24Description
+	dw TM25Description
+	dw TM26Description
+	dw TM27Description
+	dw TM28Description
+	dw ItemE1Description
+	dw TM29Description
+	dw TM30Description
+	dw TM31Description
+	dw TM32Description
+	dw TM33Description
+	dw TM34Description
+	dw TM35Description
+	dw TM36Description
+	dw TM37Description
+	dw TM38Description
+	dw TM39Description
+	dw TM40Description
+	dw TM41Description
+	dw TM42Description
+	dw TM43Description
+	dw TM44Description
+	dw TM45Description
+	dw TM46Description
+	dw TM47Description
+	dw TM48Description
+	dw TM49Description
+	dw TM50Description
+	dw HM01Description
+	dw HM02Description
+	dw HM03Description
+	dw HM04Description
+	dw HM05Description
+	dw HM06Description
+	dw HM07Description
+	dw ItemFFDescription
 
-ItemDescription_Master_Ball:
+MasterBallDescription:
 	db   "ポケモンを　つかまえることが　できる@"
 
-ItemDescription_Ultra_Ball:
+UltraBallDescription:
 	db   "ポケモンを　つかまえることが　できる@"
 
-ItemDescription_03:
+Item03Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_Great_Ball:
+GreatBallDescription:
 	db   "ポケモンを　つかまえることが　できる@"
 
-ItemDescription_Poke_Ball:
+PokeBallDescription:
 	db   "ポケモンを　つかまえることが　できる@"
 
-ItemDescription_Town_Map:
+TownMapDescription:
 	db   "マップを　みることが　できる@"
 
-ItemDescription_Bicycle:
+BicycleDescription:
 	db   "２ばいの　はやさで　いどうできる"
 	next "しつないでは　のることが　できない@"
 
-ItemDescription_Moon_Stone:
+MoonStoneDescription:
 	db   "とくていの　ポケモンを　しんかさせる@"
 
-ItemDescription_Antidote:
+AntidoteDescription:
 	db   "どく　じょうたいから　かいふくする@"
 
-ItemDescription_Burn_Heal:
+BurnHealDescription:
 	db   "やけど　じょうたいから　かいふくする@"
 
-ItemDescription_Ice_Heal:
+IceHealDescription:
 	db   "こおり　じょうたいから　かいふくする@"
 
-ItemDescription_Awakening:
+AwakeningDescription:
 	db   "ねむり　じょうたいから　かいふくする@"
 
-ItemDescription_Parlyz_Heal:
+ParlyzHealDescription:
 	db   "マヒ　じょうたいから　かいふくする@"
 
-ItemDescription_Full_Restore:
+FullRestoreDescription:
 	db   "すべての　ステータスいじょうと"
 	next "たいりょくを　ぜんかいふくする　　@"
 
-ItemDescription_Max_Potion:
+MaxPotionDescription:
 	db   "たいりょくを　ぜんかいふくする　　@"
 
-ItemDescription_Hyper_Potion:
+HyperPotionDescription:
 	db   "たいりょくを２００　かいふくする　　@"
 
-ItemDescription_Super_Potion:
+SuperPotionDescription:
 	db   "たいりょくを５０　かいふくする　　@"
 
-ItemDescription_Potion:
+PotionDescription:
 	db   "たいりょくを２０　かいふくする　　@"
 
-ItemDescription_Escape_Rope:
+EscapeRopeDescription:
 	db   "ダンジョンから　ぬけだす@"
 
-ItemDescription_Repel:
+RepelDescription:
 	db   "１００ぽのあいだ　よわい　ポケモンと"
 	next "エンカウントしなくなる@"
 
-ItemDescription_Max_Elixer:
+MaxElixerDescription:
 	db   "ポケモン　１たいの"
 	next "ピーピー　すべてを　ぜんかいふくする@"
 
-ItemDescription_Fire_Stone:
+FireStoneDescription:
 	db   "とくていの　ポケモンを　しんかさせる@"
 
-ItemDescription_Thunderstone:
+ThunderstoneDescription:
 	db   "とくていの　ポケモンを　しんかさせる@"
 
-ItemDescription_Water_Stone:
+WaterStoneDescription:
 	db   "とくていの　ポケモンを　しんかさせる@"
 
-ItemDescription_19:
+Item19Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_HP_Up:
+HPUpDescription:
 	db   "たいりょくの　さいだいちを　ふやす@"
 
-ItemDescription_Protein:
+ProteinDescription:
 	db   "こうげきの　きそポイントを　あげる@"
 
-ItemDescription_Iron:
+IronDescription:
 	db   "ぼうぎょの　きそポイントを　あげる@"
 
-ItemDescription_Carbos:
+CarbosDescription:
 	db   "すばやさの　きそポイントを　あげる@"
 
-ItemDescription_1E:
+Item1EDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_Calcium:
+CalciumDescription:
 	db   "とくしゅの　きそポイントを　あげる@"
 
-ItemDescription_Rare_Candy:
+RareCandyDescription:
 	db   "ポケモンの　レべルを　１つあげる@"
 
-ItemDescription_X_Accuracy:
+XAccuracyDescription:
 	db   "しようした　せんとうちゅうだけ"
 	next "めいちゅうりつが　あがる@"
 
-ItemDescription_Leaf_Stone:
+LeafStoneDescription:
 	db   "とくていの　ポケモンを　しんかさせる@"
 
-ItemDescription_23:
+Item23Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_Nugget:
+NuggetDescription:
 	db   "きんで　できた　タマ"
 	next "たかく　うれる@"
 
-ItemDescription_Poke_Doll:
+PokeDollDescription:
 	db   "エンカウントした　ポケモンから"
 	next "かならず　にげられる@"
 
-ItemDescription_Full_Heal:
+FullHealDescription:
 	db   "すべての　ステータスいじょうの"
 	next "じょうたいから　かいふくする@"
 
-ItemDescription_Revive:
+ReviveDescription:
 	db   "たいりょくが　はんぶんで"
 	next "ひんしじょうたいから　かいふくする@"
 
-ItemDescription_Max_Revive:
+MaxReviveDescription:
 	db   "たいりょくが　ぜんかいで"
 	next "ひんしじょうたいから　かいふくする@"
 
-ItemDescription_Guard_Spec:
+GuardSpecDescription:
 	db   "しようした　せんとうちゅうだけ"
 	next "とくしゅぼうぎょが　あがる@"
 
-ItemDescription_Super_Repel:
+SuperRepelDescription:
 	db   "２００ぽのあいだ　よわい　ポケモンと"
 	next "エンカウントしなくなる@"
 
-ItemDescription_Max_Repel:
+MaxRepelDescription:
 	db   "２５０ぽのあいだ　よわい　ポケモンと"
 	next "エンカウントしなくなる@"
 
-ItemDescription_Dire_Hit:
+DireHitDescription:
 	db   "しようした　せんとうちゅうだけ"
 	next "クりティカルりつが　あがる@"
 
-ItemDescription_2D:
+Item2DDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_Fresh_Water:
+FreshWaterDescription:
 	db   "たいりょくを５０　かいふくする　　@"
 
-ItemDescription_Soda_Pop:
+SodaPopDescription:
 	db   "たいりょくを６０　かいふくする　　@"
 
-ItemDescription_Lemonade:
+LemonadeDescription:
 	db   "たいりょくを８０　かいふくする　　@"
 
-ItemDescription_X_Attack:
+XAttackDescription:
 	db   "しようした　せんとうちゅうだけ"
 	next "こうげきが　あがる@"
 
-ItemDescription_32:
+Item32Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_X_Defend:
+XDefendDescription:
 	db   "しようした　せんとうちゅうだけ"
 	next "ぼうぎょが　あがる@"
 
-ItemDescription_X_Speed:
+XSpeedDescription:
 	db   "しようした　せんとうちゅうだけ"
 	next "すばやさが　あがる@"
 
-ItemDescription_X_Special:
+XSpecialDescription:
 	db   "しようした　せんとうちゅうだけ"
 	next "とくしゅこうげきが　あがる@"
 
-ItemDescription_Coin_Case:
+CoinCaseDescription:
 	db   "もっていると　コインを　"
 	next "９９９９まいまで　もつことが　できる@"
 
-ItemDescription_Itemfinder:
+ItemfinderDescription:
 	db   "かくされた　どうぐが　"
 	next "がめんないにあると　おとがなる@"
 
-ItemDescription_Poke_Flute:
+PokeFluteDescription:
 	db   "ねむっている　ポケモンを　おこす@"
 
-ItemDescription_Exp_Share:
+ExpShareDescription:
 	db   "たたかわなかった　ポケモンにも"
 	next "けいけんちが　ふりわけられる@"
 
-ItemDescription_Old_Rod:
+OldRodDescription:
 	db   "ポケモンが　つれる@"
 
-ItemDescription_Good_Rod:
+GoodRodDescription:
 	db   "ポケモンが　つれる@"
 
-ItemDescription_3C:
+Item3CDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_Super_Rod:
+SuperRodDescription:
 	db   "ポケモンが　つれる@"
 
-ItemDescription_PP_Up:
+PPUpDescription:
 	db   "わざポイントの　さいだいちが　あがる@"
 
-ItemDescription_Ether:
+EtherDescription:
 	db   "ポケモン１たいの　１つの　"
 	next "わざポイントを　１０かいふくする　　@"
 
-ItemDescription_Max_Ether:
+MaxEtherDescription:
 	db   "ポケモン１たいの　１つの"
 	next "わざポイントを　ぜんかいふくする　　@"
 
-ItemDescription_Elixer:
+ElixerDescription:
 	db   "ポケモン１たいの　すべての"
 	next "わざポイントを　１０かいふくする　　@"
 
-ItemDescription_Mystic_Petal:
+MysticPetalDescription:
 	db   "そうびすると　くさタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_White_Feather:
+WhiteFeatherDescription:
 	db   "そうびすると　ひこうタイプの"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Confuse_Claw:
+ConfuseClawDescription:
 	db   "そうびすると　せんとうの　まえに"
 	next "てきに　ダメージを　あたえる@"
 
-ItemDescription_Wisdom_Orb:
+WisdomOrbDescription:
 	db   "そうびすると　"
 	next "とくしゅぼうぎょが　１０あがる@"
 
-ItemDescription_Steel_Shell:
+SteelShellDescription:
 	db   "そうびすると　"
 	next "ぼうぎょが　１０あがる@"
 
-ItemDescription_Up_Grade:
+UpGradeDescription:
 	db   "そうびすると　"
 	next "すべての　のうりょくが　５あがる@"
 
-ItemDescription_Strange_Thread:
+StrangeThreadDescription:
 	db   "そうびすると"
 	next "てきの　こうげきを　よけることがある@"
 
-ItemDescription_Big_Leaf:
+BigLeafDescription:
 	db   "そうびすると　くさタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Quick_Needle:
+QuickNeedleDescription:
 	db   "そうびすると"
 	next "せんせいこうげき　することがある@"
 
-ItemDescription_4B:
+Item4BDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_Sharp_Stone:
+SharpStoneDescription:
 	db   "そうびすると　いわタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Black_Feather:
+BlackFeatherDescription:
 	db   "そうびすると　ひこうタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Sharp_Fang:
+SharpFangDescription:
 	db   "そうびすると　ノーマルタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Snakeskin:
+SnakeskinDescription:
 	db   "そうびすると　"
 	next "どく　じょうたいに　ならない@"
 
-ItemDescription_Electric_Pouch:
+ElectricPouchDescription:
 	db   "そうびすると　でんきタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Toxic_Needle:
+ToxicNeedleDescription:
 	db   "そうびすると　どくタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Kings_Rock:
+KingsRockDescription:
 	db   "そうびすると"
 	next "たまに　てきが　ひるむことがある@"
 
-ItemDescription_Strange_Power:
+StrangePowerDescription:
 	db   "そうびすると　"
 	next "すべての　タイプこうかが　むこう@"
 
-ItemDescription_Life_Tag:
+LifeTagDescription:
 	db   "そうびすると　せんとうごに"
 	next "ひんし　じょうたいから　かいふくする@"
 
-ItemDescription_Poison_Fang:
+PoisonFangDescription:
 	db   "そうびすると　どくタイプの"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Cordyceps:
+CordycepsDescription:
 	db   "りっぱな　キノコ"
 	next "たかく　うれる@"
 
-ItemDescription_Dragon_Fang:
+DragonFangDescription:
 	db   "そうびすると　ドラゴンタイプの"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Silverpowder:
+SilverpowderDescription:
 	db   "そうびすると　むしタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Digging_Claw:
+DiggingClawDescription:
 	db   "そうびすると　せんとういがいで"
 	next "あなをほるが　つかえるようになる@"
 
-ItemDescription_5A:
+Item5ADescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_Amulet_Coin:
+AmuletCoinDescription:
 	db   "そうびすると　"
 	next "もらえる　おかねが　２ばい@"
 
-ItemDescription_Migraine_Seed:
+MigraineSeedDescription:
 	db   "そうびすると　エスパータイプの"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Counter_Cuff:
+CounterCuffDescription:
 	db   "そうびすると　４ぶんの１で"
 	next "てきに　はんげきする　@"
 
-ItemDescription_Talisman_Tag:
+TalismanTagDescription:
 	db   "そうびすると　"
 	next "エンカウント　しにくくなる@"
 
-ItemDescription_Strange_Water:
+StrangeWaterDescription:
 	db   "そうびすると　みずタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Twistedspoon:
+TwistedspoonDescription:
 	db   "そうびすると　エスパータイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Attack_Needle:
+AttackNeedleDescription:
 	db   "そうびすると　むしタイプの"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Power_Bracer:
+PowerBracerDescription:
 	db   "そうびすると　かくとうタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Hard_Stone:
+HardStoneDescription:
 	db   "そうびすると　いわタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_64:
+Item64Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_Jiggling_Balloon:
+JigglingBalloonDescription:
 	db   "そうびすると　ノーマルタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Fire_Mane:
+FireManeDescription:
 	db   "そうびすると　ほのおタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Slowpoketail:
+SlowpoketailDescription:
 	db   "とても　おいしい"
 	next "たかく　うれる@"
 
-ItemDescription_Earth:
+EarthDescription:
 	db   "そうびすると"
 	next "マヒ　じょうたいに　ならない@"
 
-ItemDescription_Stick:
+StickDescription:
 	db   "そうびすると　ノーマルタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Flee_Feather:
+FleeFeatherDescription:
 	db   "そうびすると　１ターン　かけないで"
 	next "ほかの　ポケモンと　こうたいできる@"
 
-ItemDescription_Ice_Fang:
+IceFangDescription:
 	db   "そうびすると　こおりタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Fossil_Shard:
+FossilShardDescription:
 	db   "そうびすると　じめんタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Gross_Garbage:
+GrossGarbageDescription:
 	db   "そうびすると　どくタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Big_Pearl:
+BigPearlDescription:
 	db   "きれいな　しんじゅ"
 	next "たかく　うれる@"
 
-ItemDescription_Champion_Belt:
+ChampionBeltDescription:
 	db   "そうびすると　かくとうタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Tag:
+TagDescription:
 	db   "そうびすると　ゴーストタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Spell_Tag:
+SpellTagDescription:
 	db   "そうびすると　"
 	next "エンカウント　しやすくなる@"
 
-ItemDescription_5_Yen_Coin:
+FiveYenCoinDescription:
 	db   "そうびすると　エスパータイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Guard_Thread:
+GuardThreadDescription:
 	db   "そうびすると　むしタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Stimulus_Orb:
+StimulusOrbDescription:
 	db   "そうびすると　"
 	next "ねむり　じょうたいに　ならない@"
 
-ItemDescription_Calm_Berry:
+CalmBerryDescription:
 	db   "そうびすると　"
 	next "こんらん　じょうたいに　ならない@"
 
-ItemDescription_Thick_Club:
+ThickClubDescription:
 	db   "そうびすると　じめんタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Focus_Orb:
+FocusOrbDescription:
 	db   "そうびすると"
 	next "きぜつ　しないで　たえることがある@"
 
-ItemDescription_78:
+Item78Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_Detect_Orb:
+DetectOrbDescription:
 	db   "そうびすると"
 	next "てきの　こうげきを　よけることがある@"
 
-ItemDescription_Long_Tongue:
+LongTongueDescription:
 	db   "そうびすると"
 	next "ポケモンの　ほかくりつが　あがる@"
 
-ItemDescription_Lotto_Ticket:
+LottoTicketDescription:
 	db   "ふくびきが　できる@"
 
-ItemDescription_Everstone:
+EverstoneDescription:
 	db   "そうびすると"
 	next "ポケモンが　しんか　しなくなる@"
 
-ItemDescription_Sharp_Horn:
+SharpHornDescription:
 	db   "そうびすると　"
 	next "こうげきが　１０あがる@"
 
-ItemDescription_Lucky_Egg:
+LuckyEggDescription:
 	db   "そうびすると　"
 	next "もらえる　けいけんちが　２ばい@"
 
-ItemDescription_Long_Vine:
+LongVineDescription:
 	db   "そうびすると"
 	next "ポケモンの　ほかくりつが　あがる@"
 
-ItemDescription_Moms_Love:
+MomsLoveDescription:
 	db   "そうびすると　あるくたびに　　"
 	next "たいりょくが１　かいふくする@"
 
-ItemDescription_Smokescreen:
+SmokescreenItemDescription:
 	db   "そうびすると　"
 	next "エンカウントしたてきから　にげられる@"
 
-ItemDescription_Wet_Horn:
+WetHornDescription:
 	db   "そうびすると　みずタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Skateboard:
+SkateboardDescription:
 	db   "２ばいの　はやさで　いどうできる"
 	next "しつないでも　のることが　できる@"
 
-ItemDescription_Crimson_Jewel:
+CrimsonJewelDescription:
 	db   "あかい　ほうせき"
 	next "たかく　うれる@"
 
-ItemDescription_Invisible_Wall:
+InvisibleWallDescription:
 	db   "そうびすると　とくしゅこうげきの"
 	next "ダメージが　はんぶんになる@"
 
-ItemDescription_Sharp_Scythe:
+SharpScytheDescription:
 	db   "そうびすると"
 	next "クりティカルが　でやすくなる@"
 
-ItemDescription_87:
+Item87Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_Ice_Bikini:
+IceBikiniDescription:
 	db   "そうびすると　こおりタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Thunder_Fang:
+ThunderFangDescription:
 	db   "そうびすると　でんきタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Fire_Claw:
+FireClawDescription:
 	db   "そうびすると　ほのおタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Twin_Horns:
+TwinHornsDescription:
 	db   "そうびすると　"
 	next "こうげきが　１０あがる@"
 
-ItemDescription_Spike:
+SpikeDescription:
 	db   "そうびすると　ゴーストタイプの　"
 	next "わざのいりょくが　あがる@"
 
-ItemDescription_Berry:
+BerryDescription:
 	db   "たいりょくを２０　かいふくする　　@"
 
-ItemDescription_Apple:
+AppleDescription:
 	db   "たいりょくを５０　かいふくする　　@"
 
-ItemDescription_Metal_Coat:
+MetalCoatDescription:
 	db   "そうびすると　ふつうこうげきの"
 	next "ダメージが　はんぶんになる@"
 
-ItemDescription_Pretty_Tail:
+PrettyTailDescription:
 	db   "そうびすると　"
 	next "どく　じょうたいに　ならない@"
 
-ItemDescription_Water_Tail:
+WaterTailDescription:
 	db   "そうびすると　"
 	next "やけど　じょうたいに　ならない@"
 
-ItemDescription_Leftovers:
+LeftoversDescription:
 	db   "そうびすると　１ターンごとに　　"
 	next "たいりょくが３０　かいふくする@"
 
-ItemDescription_Ice_Wing:
+IceWingDescription:
 	db   "そうびすると　"
 	next "とくしゅぼうぎょが　１０あがる@"
 
-ItemDescription_Thunder_Wing:
+ThunderWingDescription:
 	db   "そうびすると　"
 	next "すばやさが　１０あがる@"
 
-ItemDescription_Fire_Wing:
+FireWingDescription:
 	db   "そうびすると　"
 	next "とくしゅこうげきが　１０あがる@"
 
-ItemDescription_96:
+Item96Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_Dragon_Scale:
+DragonScaleDescription:
 	db   "そうびすると　ドラゴンタイプの　"
 	next "わざのいりょくを　よわめられる@"
 
-ItemDescription_Berserk_Gene:
+BerserkGeneDescription:
 	db   "そうびすると　"
 	next "すべての　のうりょくが　１０あがる@"
 
-ItemDescription_Heart_Stone:
+HeartStoneDescription:
 	db   "とくていの　ポケモンを　しんかさせる@"
 
-ItemDescription_Fire_Tail:
+FireTailDescription:
 	db   "そうびすると　"
 	next "こおり　じょうたいに　ならない@"
 
-ItemDescription_Thunder_Tail:
+ThunderTailDescription:
 	db   "そうびすると　"
 	next "マヒ　じょうたいに　ならない@"
 
-ItemDescription_Sacred_Ash:
+SacredAshDescription:
 	db   "すべてのポケモンを　たいりょく１で"
 	next "ひんし　じょうたいから　かいふくする@"
 
-ItemDescription_TM_Holder:
+TMHolderDescription:
 	db   "わざマシンを　しまう　ホルダ@"
 
-ItemDescription_Mail:
+MailDescription:
 	db   "とくしゅ　アイテム@"
 
-ItemDescription_Ball_Holder:
+BallHolderDescription:
 	db   "とくしゅ　アイテム@"
 
-ItemDescription_Bag:
+BagDescription:
 	db   "ふつうの　どうぐを　しまう　ホルダ@"
 
-ItemDescription_Important_Bag:
+ImportantBagDescription:
 	db   "だいじな　どうぐを　しまう　ホルダ@"
 
-ItemDescription_Poison_Stone:
+PoisonStoneDescription:
 	db   "とくていの　ポケモンを　しんかさせる@"
 
-ItemDescription_A3:
+ItemA3Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_A4:
+ItemA4Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_A5:
+ItemA5Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_A6:
+ItemA6Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_A7:
+ItemA7Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_A8:
+ItemA8Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_A9:
+ItemA9Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_AA:
+ItemAADescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_AB:
+ItemABDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_AC:
+ItemACDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_AD:
+ItemADDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_AE:
+ItemAEDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_AF:
+ItemAFDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_B0:
+ItemB0Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_B1:
+ItemB1Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_B2:
+ItemB2Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_B3:
+ItemB3Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_B4:
+ItemB4Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_B5:
+ItemB5Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_B6:
+ItemB6Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_B7:
+ItemB7Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_B8:
+ItemB8Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_B9:
+ItemB9Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_BA:
+ItemBADescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_BB:
+ItemBBDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_BC:
+ItemBCDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_BD:
+ItemBDDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_BE:
+ItemBEDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_BF:
+ItemBFDescription:
 	db   "？"
 	next "？@"
 
-ItemDescription_C0:
+ItemC0Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_C1:
+ItemC1Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_C2:
+ItemC2Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_C3:
+ItemC3Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_TM01:
+TM01Description:
 	db   "わざマシン０１@"
 
-ItemDescription_TM02:
+TM02Description:
 	db   "わざマシン０２@"
 
-ItemDescription_TM03:
+TM03Description:
 	db   "わざマシン０３@"
 
-ItemDescription_TM04:
+TM04Description:
 	db   "わざマシン０４@"
 
-ItemDescription_C8:
+ItemC8Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_TM05:
+TM05Description:
 	db   "わざマシン０５@"
 
-ItemDescription_TM06:
+TM06Description:
 	db   "わざマシン０６@"
 
-ItemDescription_TM07:
+TM07Description:
 	db   "わざマシン０７@"
 
-ItemDescription_TM08:
+TM08Description:
 	db   "わざマシン０８@"
 
-ItemDescription_TM09:
+TM09Description:
 	db   "わざマシン０９@"
 
-ItemDescription_TM10:
+TM10Description:
 	db   "わざマシン１０@"
 
-ItemDescription_TM11:
+TM11Description:
 	db   "わざマシン１１@"
 
-ItemDescription_TM12:
+TM12Description:
 	db   "わざマシン１２@"
 
-ItemDescription_TM13:
+TM13Description:
 	db   "わざマシン１３@"
 
-ItemDescription_TM14:
+TM14Description:
 	db   "わざマシン１４@"
 
-ItemDescription_TM15:
+TM15Description:
 	db   "わざマシン１５@"
 
-ItemDescription_TM16:
+TM16Description:
 	db   "わざマシン１６@"
 
-ItemDescription_TM17:
+TM17Description:
 	db   "わざマシン１７@"
 
-ItemDescription_TM18:
+TM18Description:
 	db   "わざマシン１８@"
 
-ItemDescription_TM19:
+TM19Description:
 	db   "わざマシン１９@"
 
-ItemDescription_TM20:
+TM20Description:
 	db   "わざマシン２０@"
 
-ItemDescription_TM21:
+TM21Description:
 	db   "わざマシン２１@"
 
-ItemDescription_TM22:
+TM22Description:
 	db   "わざマシン２２@"
 
-ItemDescription_TM23:
+TM23Description:
 	db   "わざマシン２３@"
 
-ItemDescription_TM24:
+TM24Description:
 	db   "わざマシン２４@"
 
-ItemDescription_TM25:
+TM25Description:
 	db   "わざマシン２５@"
 
-ItemDescription_TM26:
+TM26Description:
 	db   "わざマシン２６@"
 
-ItemDescription_TM27:
+TM27Description:
 	db   "わざマシン２７@"
 
-ItemDescription_TM28:
+TM28Description:
 	db   "わざマシン２８@"
 
-ItemDescription_E1:
+ItemE1Description:
 	db   "？"
 	next "？@"
 
-ItemDescription_TM29:
+TM29Description:
 	db   "わざマシン２９@"
 
-ItemDescription_TM30:
+TM30Description:
 	db   "わざマシン３０@"
 
-ItemDescription_TM31:
+TM31Description:
 	db   "わざマシン３１@"
 
-ItemDescription_TM32:
+TM32Description:
 	db   "わざマシン３２@"
 
-ItemDescription_TM33:
+TM33Description:
 	db   "わざマシン３３@"
 
-ItemDescription_TM34:
+TM34Description:
 	db   "わざマシン３４@"
 
-ItemDescription_TM35:
+TM35Description:
 	db   "わざマシン３５@"
 
-ItemDescription_TM36:
+TM36Description:
 	db   "わざマシン３６@"
 
-ItemDescription_TM37:
+TM37Description:
 	db   "わざマシン３７@"
 
-ItemDescription_TM38:
+TM38Description:
 	db   "わざマシン３８@"
 
-ItemDescription_TM39:
+TM39Description:
 	db   "わざマシン３９@"
 
-ItemDescription_TM40:
+TM40Description:
 	db   "わざマシン４０@"
 
-ItemDescription_TM41:
+TM41Description:
 	db   "わざマシン４１@"
 
-ItemDescription_TM42:
+TM42Description:
 	db   "わざマシン４２@"
 
-ItemDescription_TM43:
+TM43Description:
 	db   "わざマシン４３@"
 
-ItemDescription_TM44:
+TM44Description:
 	db   "わざマシン４４@"
 
-ItemDescription_TM45:
+TM45Description:
 	db   "わざマシン４５@"
 
-ItemDescription_TM46:
+TM46Description:
 	db   "わざマシン４６@"
 
-ItemDescription_TM47:
+TM47Description:
 	db   "わざマシン４７@"
 
-ItemDescription_TM48:
+TM48Description:
 	db   "わざマシン４８@"
 
-ItemDescription_TM49:
+TM49Description:
 	db   "わざマシン４９@"
 
-ItemDescription_TM50:
+TM50Description:
 	db   "わざマシン５０@"
 
-ItemDescription_HM01:
+HM01Description:
 	db   "ひでんマシン０１@"
 
-ItemDescription_HM02:
+HM02Description:
 	db   "ひでんマシン０２@"
 
-ItemDescription_HM03:
+HM03Description:
 	db   "ひでんマシン０３@"
 
-ItemDescription_HM04:
+HM04Description:
 	db   "ひでんマシン０４@"
 
-ItemDescription_HM05:
+HM05Description:
 	db   "ひでんマシン０５@"
 
-ItemDescription_HM06:
+HM06Description:
 	db   "ひでんマシン０６@"
 
-ItemDescription_HM07:
+HM07Description:
 	db   "ひでんマシン０７@"
 
-ItemDescription_FF:
+ItemFFDescription:
 	db   "？"
 	next "？@"
