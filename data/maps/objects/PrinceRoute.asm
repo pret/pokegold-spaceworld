@@ -3,8 +3,8 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/PrinceRoute.asm", ROMX
 
 	map_attributes PrinceRoute, PRINCE_ROUTE, NORTH | SOUTH
-	connection north, Prince, PRINCE, 0, 0, 10
-	connection south, SilentHill, SILENT_HILL, 0, 0, 10
+	connection north, Prince, PRINCE, 0
+	connection south, SilentHill, SILENT_HILL, 0
 
 PrinceRoute_MapEvents::
 	dw $0 ; unknown

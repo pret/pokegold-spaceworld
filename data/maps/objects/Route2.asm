@@ -3,8 +3,8 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/Route2.asm", ROMX
 
 	map_attributes Route2, ROUTE_2, WEST | EAST
-	connection west, West, WEST, -3, 2, 15
-	connection east, OldCity, OLD_CITY, -3, 2, 15
+	connection west, West, WEST, -5
+	connection east, OldCity, OLD_CITY, -5
 
 Route2_MapEvents::
 	dw $4000 ; unknown

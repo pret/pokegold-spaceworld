@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/North.asm", ROMX
 
 	map_attributes North, NORTH, SOUTH
-	connection south, BullForestRoute3, BULL_FOREST_ROUTE_3, 0, 0, 10
+	connection south, BullForestRoute3, BULL_FOREST_ROUTE_3, 0
 
 North_MapEvents::
 	dw $4000 ; unknown

@@ -3,9 +3,9 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/Baadon.asm", ROMX
 
 	map_attributes Baadon, BAADON, NORTH | SOUTH | EAST
-	connection north, FontoRoute4, FONTO_ROUTE_4, 0, 0, 10
-	connection south, BaadonRoute1, BAADON_ROUTE_1, 0, 0, 10
-	connection east, BaadonRoute2, BAADON_ROUTE_2, 0, 0, 9
+	connection north, FontoRoute4, FONTO_ROUTE_4, 0
+	connection south, BaadonRoute1, BAADON_ROUTE_1, 0
+	connection east, BaadonRoute2, BAADON_ROUTE_2, 0
 
 Baadon_MapEvents::
 	dw $4000 ; unknown

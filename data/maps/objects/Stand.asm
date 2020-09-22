@@ -3,8 +3,8 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/Stand.asm", ROMX
 
 	map_attributes Stand, STAND, NORTH | SOUTH
-	connection north, BullForestRoute2, BULL_FOREST_ROUTE_2, 10, 0, 10
-	connection south, StandRoute, STAND_ROUTE, 10, 0, 10
+	connection north, BullForestRoute2, BULL_FOREST_ROUTE_2, 10
+	connection south, StandRoute, STAND_ROUTE, 10
 
 Stand_MapEvents::
 	dw $4000 ; unknown

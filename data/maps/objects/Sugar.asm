@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/Sugar.asm", ROMX
 
 	map_attributes Sugar, SUGAR, SOUTH
-	connection south, SugarRoute, SUGAR_ROUTE, 0, 0, 10
+	connection south, SugarRoute, SUGAR_ROUTE, 0
 
 Sugar_MapEvents::
 	dw $4000 ; unknown

@@ -3,8 +3,8 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/BaadonRoute1.asm", ROMX
 
 	map_attributes BaadonRoute1, BAADON_ROUTE_1, NORTH | SOUTH
-	connection north, Baadon, BAADON, 0, 0, 10
-	connection south, West, WEST, -3, 2, 16
+	connection north, Baadon, BAADON, 0
+	connection south, West, WEST, -5
 
 BaadonRoute1_MapEvents::
 	dw $4000 ; unknown
