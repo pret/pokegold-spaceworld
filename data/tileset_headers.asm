@@ -3,14 +3,14 @@ INCLUDE "constants.asm"
 SECTION "data/tileset_headers.asm", ROMX
 
 tileset: MACRO
-	db BANK(\2)   ; Bank
-	dw \1, \2, \3 ; Block, GFX, Coll
+	db BANK(\2)   ; bank
+	dw \1, \2, \3 ; Meta, GFX, Coll
 	db \4, \5, \6 ; counter tiles
-	db \7         ; grass tile
-	; db \8         ; permission (indoor, cave, outdoor)
+	db \7         ; unknown
 ENDM
 
-Tilesets: ; bank, block, gfx, coll, 3 counter tiles, grass tile, permission
+Tilesets:
+	; meta, gfx, coll, 3 counter tiles, unknown
 	tileset Tileset_00_Meta, Tileset_00_GFX, Tileset_00_Coll, $77, $40, $00, $00
 	tileset Tileset_01_Meta, Tileset_01_GFX, Tileset_01_Coll, $4b, $40, $00, $00
 	tileset Tileset_02_Meta, Tileset_02_GFX, Tileset_02_Coll, $1f, $40, $00, $00
@@ -38,5 +38,4 @@ Tilesets: ; bank, block, gfx, coll, 3 counter tiles, grass tile, permission
 	tileset Tileset_18_Meta, Tileset_18_GFX, Tileset_18_Coll, $07, $41, $00, $00
 	tileset Tileset_19_Meta, Tileset_19_GFX, Tileset_19_Coll, $07, $41, $00, $00
 	tileset Tileset_1a_Meta, Tileset_1a_GFX, Tileset_1a_Coll, $07, $41, $00, $00
-	; Tileset_1b uses Tileset_00 graphics
-	tileset Tileset_1b_Meta, Tileset_00_GFX, Tileset_1b_Coll, $77, $40, $00, $00
+	tileset Tileset_1b_Meta, Tileset_1b_GFX, Tileset_1b_Coll, $77, $40, $00, $00
