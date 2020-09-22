@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "data/maps/landmarks.asm", ROMX
 
 LandmarkNames::
-	db "サイレント@"       ; SILENT
+	db "サイレント@"       ; SILENT (Silent Hill, town)
 	db "オールド@"         ; OLD
 	db "ウエスト@"         ; WEST
 	db "ハイテク@"         ; HIGH_TECH
@@ -36,8 +36,10 @@ LandmarkNames::
 	db "アジト　１@"        ; HIDEOUT_1
 	db "アジト　２@"        ; HIDEOUT_2
 	db "アジト　３@"        ; HIDEOUT_3
-	db "ヤドンの　いど１@"   ; SLOWPOKE_WELL_1
-	db "ヤドンの　いど２@"   ; SLOWPOKE_WELL_2
+	db "ヤドンの　いど１@"   ; YADON_WELL_1
+	db "ヤドンの　いど２@"   ; YADON_WELL_2
+; The Pokémon League landmarks below were misspelled by Game Freak
+; since they should print out リーグ and not りーぐ.
 	db "#りーぐ１@"         ; POKEMON_LEAGUE_1
 	db "#りーぐ１@"         ; POKEMON_LEAGUE_1_2
 	db "#りーぐ２@"         ; POKEMON_LEAGUE_2
@@ -47,4 +49,4 @@ LandmarkNames::
 	db "#りーぐ６@"         ; POKEMON_LEAGUE_6
 	db "#りーぐ７@"         ; POKEMON_LEAGUE_7
 	db "#りーぐ７@"         ; POKEMON_LEAGUE_7_2
-	db "しずかなおか@"      ; SILENT_HILL (forest)
+	db "しずかなおか@"      ; SILENT_HILL (dungeon)
