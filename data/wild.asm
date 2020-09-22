@@ -4,7 +4,7 @@ SECTION "data/wild.asm", ROMX
 
 GrassWildMons::
 
-	db $01, $01 ; map group, map id
+	map_id ROUTE_1_P1
 	db 8 percent, 8 percent, 8 percent ; encounter rates: morn/day/nite
 	; morn
 if DEF(GOLD)
@@ -43,7 +43,7 @@ else
 endc
 	db 5, DEX_PIKACHU
 
-	db $01, $02 ; map group, map id
+	map_id ROUTE_1_P2
 	db 8 percent, 8 percent, 8 percent ; encounter rates: morn/day/nite
 	; morn
 if DEF(GOLD)
@@ -81,7 +81,7 @@ endc
 	db 8, DEX_KORATTA
 	db 5, DEX_PIKACHU
 
-	db $02, $01 ; map group, map id
+	map_id ROUTE_2
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 9, DEX_CATERPIE
@@ -105,7 +105,7 @@ endc
 	db 11, DEX_NAZONOKUSA
 	db 13, DEX_NAZONOKUSA
 
-	db $06, $01 ; map group, map id
+	map_id BAADON_ROUTE_1
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 19, DEX_METAMON
@@ -129,7 +129,7 @@ endc
 	db 23, DEX_SLEEPE
 	db 23, DEX_SLEEPE
 
-	db $04, $01 ; map group, map id
+	map_id HAITEKU_WEST_ROUTE
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 12, DEX_TAMATAMA
@@ -153,7 +153,7 @@ endc
 	db 16, DEX_ARBO
 	db 16, DEX_ARBO
 
-	db $04, $02 ; map group, map id
+	map_id HAITEKU_WEST_ROUTE_OCEAN
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_MENOKURAGE
@@ -177,7 +177,7 @@ endc
 	db 35, DEX_HANEEI
 	db 45, DEX_MENOKURAGE
 
-	db $05, $01 ; map group, map id
+	map_id FONTO_ROUTE_1
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_MENOKURAGE
@@ -201,7 +201,7 @@ endc
 	db 35, DEX_HANEEI
 	db 45, DEX_MENOKURAGE
 
-	db $05, $02 ; map group, map id
+	map_id FONTO_ROUTE_2
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_MENOKURAGE
@@ -225,7 +225,7 @@ endc
 	db 35, DEX_HANEEI
 	db 45, DEX_MENOKURAGE
 
-	db $05, $03 ; map group, map id
+	map_id FONTO_ROUTE_3
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 16, DEX_WANRIKY
@@ -249,7 +249,7 @@ endc
 	db 20, DEX_SLEEPE
 	db 20, DEX_SLEEPE
 
-	db $05, $04 ; map group, map id
+	map_id FONTO_ROUTE_4
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 17, DEX_ONISUZUME
@@ -273,7 +273,7 @@ endc
 	db 21, DEX_BULU
 	db 21, DEX_BULU
 
-	db $06, $02 ; map group, map id
+	map_id BAADON_ROUTE_2
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 21, DEX_ONISUZUME
@@ -297,7 +297,7 @@ endc
 	db 25, DEX_BULU
 	db 25, DEX_BULU
 
-	db $06, $03 ; map group, map id
+	map_id BAADON_ROUTE_3
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 23, DEX_HANEKO
@@ -321,7 +321,7 @@ endc
 	db 27, DEX_BULU
 	db 27, DEX_BULU
 
-	db $07, $01 ; map group, map id
+	map_id ROUTE_15
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 24, DEX_HANEKO
@@ -345,7 +345,7 @@ endc
 	db 28, DEX_SLEEPER
 	db 28, DEX_SLEEPER
 
-	db $08, $01 ; map group, map id
+	map_id SUGAR_ROUTE
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_MENOKURAGE
@@ -369,7 +369,7 @@ endc
 	db 35, DEX_IKARI
 	db 45, DEX_MENOKURAGE
 
-	db $07, $02 ; map group, map id
+	map_id NEWTYPE_ROUTE
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 28, DEX_HANEKO
@@ -393,7 +393,7 @@ endc
 	db 34, DEX_SLEEPER
 	db 34, DEX_SLEEPER
 
-	db $07, $03 ; map group, map id
+	map_id ROUTE_18
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 28, DEX_REDIBA
@@ -417,7 +417,7 @@ endc
 	db 36, DEX_SLEEPER
 	db 36, DEX_WOLFMAN
 
-	db $09, $01 ; map group, map id
+	map_id BULL_FOREST_ROUTE_1
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 29, DEX_REDIBA
@@ -441,7 +441,7 @@ endc
 	db 37, DEX_WOLFMAN
 	db 37, DEX_WOLFMAN
 
-	db $09, $02 ; map group, map id
+	map_id BULL_FOREST_ROUTE_2
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 32, DEX_MILTANK
@@ -465,7 +465,7 @@ endc
 	db 40, DEX_WARWOLF
 	db 40, DEX_WARWOLF
 
-	db $0a, $01 ; map group, map id
+	map_id STAND_ROUTE
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 29, DEX_KARAKARA
@@ -489,7 +489,7 @@ endc
 	db 37, DEX_ARBO
 	db 37, DEX_ARBOK
 
-	db $0b, $01 ; map group, map id
+	map_id KANTO_EAST_ROUTE
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 28, DEX_PICHU
@@ -513,7 +513,7 @@ endc
 	db 36, DEX_ARBO
 	db 36, DEX_ARBOK
 
-	db $01, $03 ; map group, map id
+	map_id ROUTE_SILENT_EAST
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 29, DEX_PICHU
@@ -537,7 +537,7 @@ endc
 	db 35, DEX_ARBOK
 	db 35, DEX_HOHO
 
-	db $05, $05 ; map group, map id
+	map_id FONTO_ROUTE_5
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_MENOKURAGE
@@ -561,7 +561,7 @@ endc
 	db 35, DEX_HANEEI
 	db 45, DEX_MENOKURAGE
 
-	db $05, $06 ; map group, map id
+	map_id FONTO_ROUTE_6
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_MENOKURAGE
@@ -585,7 +585,7 @@ endc
 	db 35, DEX_HANEEI
 	db 45, DEX_MENOKURAGE
 
-	db $09, $03 ; map group, map id
+	map_id BULL_FOREST_ROUTE_3
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_MENOKURAGE
@@ -609,7 +609,7 @@ endc
 	db 35, DEX_DOKUKURAGE
 	db 45, DEX_MENOKURAGE
 
-	db $01, $0F ; map group, map id
+	map_id SHIZUKANA_OKA
 	db 8 percent, 8 percent, 8 percent ; encounter rates: morn/day/nite
 	; morn
 	db 7, DEX_REDIBA
