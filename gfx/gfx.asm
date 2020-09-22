@@ -51,6 +51,12 @@ else
 INCBIN "gfx/sgb/sgb_border_silver.2bpp"
 endc
 
+SECTION "gfx.asm@Shrink GFX", ROMX
+ShrinkPic1::
+INCBIN "gfx/player/shrink1.pic"
+ShrinkPic2::
+INCBIN "gfx/player/shrink2.pic"
+
 SECTION "gfx.asm@Title Screen GFX", ROMX
 if DEF(GOLD)
 TitleScreenGFX:: INCBIN "gfx/title/title.2bpp"

@@ -158,7 +158,7 @@ ROMX $03
 ROMX $04
 	org $4000
 	"data/maps/maps.asm"
-	org $47cf
+	"gfx.asm@Shrink GFX"
 	"gfx.asm@Title Screen GFX"
 	"engine/items/tmhm.asm"
 	"data/moves/tmhm_moves.asm"
