@@ -7,15 +7,15 @@ SECTION "data/maps/objects/BullForestRouteGateStand.asm", ROMX
 BullForestRouteGateStand_MapEvents::
 	dw $4000 ; unknown
 
-	db 4 ; warp events
-	warp_event 4, 7, 9, STAND, wOverworldMapBlocks + 47
-	warp_event 5, 7, 10, STAND, wOverworldMapBlocks + 47
-	warp_event 4, 0, 1, BULL_FOREST_ROUTE_2, wOverworldMapBlocks + 14
-	warp_event 5, 0, 2, BULL_FOREST_ROUTE_2, wOverworldMapBlocks + 14
+	def_warp_events
+	warp_event  4,  7, STAND, 9, 47
+	warp_event  5,  7, STAND, 10, 47
+	warp_event  4,  0, BULL_FOREST_ROUTE_2, 1, 14
+	warp_event  5,  0, BULL_FOREST_ROUTE_2, 2, 14
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 BullForestRouteGateStand_Blocks::
 INCBIN "maps/BullForestRouteGateStand.blk"

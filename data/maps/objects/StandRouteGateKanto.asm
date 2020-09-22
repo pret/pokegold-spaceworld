@@ -7,15 +7,15 @@ SECTION "data/maps/objects/StandRouteGateKanto.asm", ROMX
 StandRouteGateKanto_MapEvents::
 	dw $4000 ; unknown
 
-	db 4 ; warp events
-	warp_event 4, 7, 1, KANTO_EAST_ROUTE, wOverworldMapBlocks + 47
-	warp_event 5, 7, 2, KANTO_EAST_ROUTE, wOverworldMapBlocks + 47
-	warp_event 4, 0, 1, STAND_ROUTE, wOverworldMapBlocks + 14
-	warp_event 5, 0, 2, STAND_ROUTE, wOverworldMapBlocks + 14
+	def_warp_events
+	warp_event  4,  7, KANTO_EAST_ROUTE, 1, 47
+	warp_event  5,  7, KANTO_EAST_ROUTE, 2, 47
+	warp_event  4,  0, STAND_ROUTE, 1, 14
+	warp_event  5,  0, STAND_ROUTE, 2, 14
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 StandRouteGateKanto_Blocks::
 INCBIN "maps/StandRouteGateKanto.blk"

@@ -7,14 +7,14 @@ SECTION "data/maps/objects/NewtypeHouse3.asm", ROMX
 NewtypeHouse3_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 4, 7, 11, NEWTYPE, wOverworldMapBlocks + 47
-	warp_event 5, 7, 11, NEWTYPE, wOverworldMapBlocks + 47
+	def_warp_events
+	warp_event  4,  7, NEWTYPE, 11, 47
+	warp_event  5,  7, NEWTYPE, 11, 47
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; person events
-	object_event 4, 3, SPRITE_GRAMPS, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  4,  3, SPRITE_GRAMPS, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NewtypeHouse3_Blocks::
 INCBIN "maps/NewtypeHouse3.blk"

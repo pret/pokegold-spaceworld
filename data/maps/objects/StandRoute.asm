@@ -9,13 +9,13 @@ SECTION "data/maps/objects/StandRoute.asm", ROMX
 StandRoute_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 8, 48, 3, STAND_ROUTE_GATE_KANTO, wOverworldMapBlocks + 405
-	warp_event 9, 48, 4, STAND_ROUTE_GATE_KANTO, wOverworldMapBlocks + 405
+	def_warp_events
+	warp_event  8, 48, STAND_ROUTE_GATE_KANTO, 3, 405
+	warp_event  9, 48, STAND_ROUTE_GATE_KANTO, 4, 405
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 StandRoute_Blocks::
 INCBIN "maps/StandRoute.blk"

@@ -7,14 +7,14 @@ SECTION "data/maps/objects/SouthHouse1.asm", ROMX
 SouthHouse1_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 4, 7, 1, SOUTH, wOverworldMapBlocks + 47
-	warp_event 5, 7, 1, SOUTH, wOverworldMapBlocks + 47
+	def_warp_events
+	warp_event  4,  7, SOUTH, 1, 47
+	warp_event  5,  7, SOUTH, 1, 47
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; person events
-	object_event 2, 3, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  2,  3, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SouthHouse1_Blocks::
 INCBIN "maps/SouthHouse1.blk"

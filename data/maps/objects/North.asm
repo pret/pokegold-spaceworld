@@ -8,22 +8,22 @@ SECTION "data/maps/objects/North.asm", ROMX
 North_MapEvents::
 	dw $4000 ; unknown
 
-	db 4 ; warp events
-	warp_event 5, 5, 1, NORTH_HOUSE_1, wOverworldMapBlocks + 51
-	warp_event 15, 6, 1, NORTH_MART, wOverworldMapBlocks + 72
-	warp_event 5, 9, 1, NORTH_HOUSE_2, wOverworldMapBlocks + 83
-	warp_event 13, 10, 1, NORTH_POKECENTER_1F, wOverworldMapBlocks + 103
+	def_warp_events
+	warp_event  5,  5, NORTH_HOUSE_1, 1, 51
+	warp_event 15,  6, NORTH_MART, 1, 72
+	warp_event  5,  9, NORTH_HOUSE_2, 1, 83
+	warp_event 13, 10, NORTH_POKECENTER_1F, 1, 103
 
-	db 4 ; bg events
-	bg_event 12, 4, 0, 1
-	bg_event 16, 6, 0, 2
+	def_bg_events
+	bg_event 12,  4, 0, 1
+	bg_event 16,  6, 0, 2
 	bg_event 14, 10, 0, 3
-	bg_event 8, 12, 0, 4
+	bg_event  8, 12, 0, 4
 
-	db 3 ; person events
-	object_event 9, 6, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 10, 9, SPRITE_BUG_CATCHER_BOY, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 9, 9, SPRITE_TWIN, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  9,  6, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10,  9, SPRITE_BUG_CATCHER_BOY, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  9, SPRITE_TWIN, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 North_Blocks::
 INCBIN "maps/North.blk"

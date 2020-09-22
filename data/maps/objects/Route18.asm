@@ -9,14 +9,14 @@ SECTION "data/maps/objects/Route18.asm", ROMX
 Route18_MapEvents::
 	dw $4000 ; unknown
 
-	db 3 ; warp events
-	warp_event 8, 5, 1, NEWTYPE_ROUTE_GATE, wOverworldMapBlocks + 53
-	warp_event 9, 5, 2, NEWTYPE_ROUTE_GATE, wOverworldMapBlocks + 53
-	warp_event 13, 28, 1, ROUTE_18_POKECENTER_1F, wOverworldMapBlocks + 247
+	def_warp_events
+	warp_event  8,  5, NEWTYPE_ROUTE_GATE, 1, 53
+	warp_event  9,  5, NEWTYPE_ROUTE_GATE, 2, 53
+	warp_event 13, 28, ROUTE_18_POKECENTER_1F, 1, 247
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 Route18_Blocks::
 INCBIN "maps/Route18.blk"

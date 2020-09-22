@@ -7,14 +7,14 @@ SECTION "data/maps/objects/BaadonHouse2.asm", ROMX
 BaadonHouse2_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 4, 7, 5, BAADON, wOverworldMapBlocks + 47
-	warp_event 5, 7, 5, BAADON, wOverworldMapBlocks + 47
+	def_warp_events
+	warp_event  4,  7, BAADON, 5, 47
+	warp_event  5,  7, BAADON, 5, 47
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; person events
-	object_event 7, 5, SPRITE_GRANNY, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  7,  5, SPRITE_GRANNY, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BaadonHouse2_Blocks::
 INCBIN "maps/BaadonHouse2.blk"

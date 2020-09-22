@@ -7,13 +7,13 @@ SECTION "data/maps/objects/BullHouse4.asm", ROMX
 BullHouse4_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 4, 7, 8, BULL_FOREST, wOverworldMapBlocks + 47
-	warp_event 5, 7, 8, BULL_FOREST, wOverworldMapBlocks + 47
+	def_warp_events
+	warp_event  4,  7, BULL_FOREST, 8, 47
+	warp_event  5,  7, BULL_FOREST, 8, 47
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 BullHouse4_Blocks::
 INCBIN "maps/BullHouse4.blk"

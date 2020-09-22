@@ -108,17 +108,46 @@ map: MACRO
 	db 0, 0 ; ???
 ENDM
 
+def_warp_events: MACRO
+if DEF(_NUM_WARP_EVENTS)
+	PURGE _NUM_WARP_EVENTS
+endc
+_NUM_WARP_EVENTS EQUS "_NUM_WARP_EVENTS_\@"
+	db _NUM_WARP_EVENTS
+_NUM_WARP_EVENTS = 0
+ENDM
+
 warp_event: MACRO
 	db \2, \1 ; y, x
-	db \3 ; index
-	map_id \4
-	dw \5 ; unused wOverworldMap offset
+	db \4 ; index
+	map_id \3
+	dw wOverworldMapBlocks + \5 ; unused
+_NUM_WARP_EVENTS = _NUM_WARP_EVENTS + 1
+ENDM
+
+def_bg_events: MACRO
+if DEF(_NUM_BG_EVENTS)
+	PURGE _NUM_BG_EVENTS
+endc
+_NUM_BG_EVENTS EQUS "_NUM_BG_EVENTS_\@"
+	db _NUM_BG_EVENTS
+_NUM_BG_EVENTS = 0
 ENDM
 
 bg_event: MACRO
 	db \2, \1 ; y, x
 	db \3 ; function (unused?)
 	db \4 ; text index
+_NUM_BG_EVENTS = _NUM_BG_EVENTS + 1
+ENDM
+
+def_object_events: MACRO
+if DEF(_NUM_OBJECT_EVENTS)
+	PURGE _NUM_OBJECT_EVENTS
+endc
+_NUM_OBJECT_EVENTS EQUS "_NUM_OBJECT_EVENTS_\@"
+	db _NUM_OBJECT_EVENTS
+_NUM_OBJECT_EVENTS = 0
 ENDM
 
 object_event: MACRO
@@ -137,4 +166,5 @@ object_event: MACRO
 	db \9 ; unknown 3
 	shift
 	db \9 ; unknown 4
+_NUM_OBJECT_EVENTS = _NUM_OBJECT_EVENTS + 1
 ENDM

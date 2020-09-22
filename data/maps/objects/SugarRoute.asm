@@ -9,13 +9,13 @@ SECTION "data/maps/objects/SugarRoute.asm", ROMX
 SugarRoute_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 8, 48, 3, SUGAR_ROUTE_GATE, wOverworldMapBlocks + 405
-	warp_event 9, 48, 4, SUGAR_ROUTE_GATE, wOverworldMapBlocks + 405
+	def_warp_events
+	warp_event  8, 48, SUGAR_ROUTE_GATE, 3, 405
+	warp_event  9, 48, SUGAR_ROUTE_GATE, 4, 405
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 SugarRoute_Blocks::
 INCBIN "maps/SugarRoute.blk"

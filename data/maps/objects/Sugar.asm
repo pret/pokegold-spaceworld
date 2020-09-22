@@ -8,21 +8,21 @@ SECTION "data/maps/objects/Sugar.asm", ROMX
 Sugar_MapEvents::
 	dw $4000 ; unknown
 
-	db 4 ; warp events
-	warp_event 5, 5, 1, SUGAR_HOUSE, wOverworldMapBlocks + 51
-	warp_event 15, 9, 1, SUGAR_HOUSE_2, wOverworldMapBlocks + 88
-	warp_event 5, 10, 1, SUGAR_MART, wOverworldMapBlocks + 99
-	warp_event 9, 10, 1, SUGAR_POKECENTER_1F, wOverworldMapBlocks + 101
+	def_warp_events
+	warp_event  5,  5, SUGAR_HOUSE, 1, 51
+	warp_event 15,  9, SUGAR_HOUSE_2, 1, 88
+	warp_event  5, 10, SUGAR_MART, 1, 99
+	warp_event  9, 10, SUGAR_POKECENTER_1F, 1, 101
 
-	db 4 ; bg events
-	bg_event 14, 6, 0, 1
-	bg_event 6, 10, 0, 2
+	def_bg_events
+	bg_event 14,  6, 0, 1
+	bg_event  6, 10, 0, 2
 	bg_event 10, 10, 0, 3
 	bg_event 10, 14, 0, 4
 
-	db 3 ; person events
-	object_event 8, 12, SPRITE_TWIN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 9, 6, SPRITE_GRANNY, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  8, 12, SPRITE_TWIN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  6, SPRITE_GRANNY, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 13, 11, SPRITE_GRAMPS, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
 Sugar_Blocks::

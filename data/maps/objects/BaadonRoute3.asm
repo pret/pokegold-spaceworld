@@ -9,13 +9,13 @@ SECTION "data/maps/objects/BaadonRoute3.asm", ROMX
 BaadonRoute3_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 8, 30, 3, BAADON_ROUTE_GATE_NEWTYPE, wOverworldMapBlocks + 261
-	warp_event 9, 30, 4, BAADON_ROUTE_GATE_NEWTYPE, wOverworldMapBlocks + 261
+	def_warp_events
+	warp_event  8, 30, BAADON_ROUTE_GATE_NEWTYPE, 3, 261
+	warp_event  9, 30, BAADON_ROUTE_GATE_NEWTYPE, 4, 261
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 BaadonRoute3_Blocks::
 INCBIN "maps/BaadonRoute3.blk"

@@ -7,18 +7,18 @@ SECTION "data/maps/objects/Route1Gate1F.asm", ROMX
 Route1Gate1F_MapEvents::
 	dw $4000 ; unknown
 
-	db 5 ; warp events
-	warp_event 4, 7, 1, ROUTE_1_P2, wOverworldMapBlocks + 47
-	warp_event 5, 7, 2, ROUTE_1_P2, wOverworldMapBlocks + 47
-	warp_event 4, 0, 12, OLD_CITY, wOverworldMapBlocks + 14
-	warp_event 5, 0, 13, OLD_CITY, wOverworldMapBlocks + 14
-	warp_event 1, 0, 1, ROUTE_1_GATE_2F, wOverworldMapBlocks + 12
+	def_warp_events
+	warp_event  4,  7, ROUTE_1_P2, 1, 47
+	warp_event  5,  7, ROUTE_1_P2, 2, 47
+	warp_event  4,  0, OLD_CITY, 12, 14
+	warp_event  5,  0, OLD_CITY, 13, 14
+	warp_event  1,  0, ROUTE_1_GATE_2F, 1, 12
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 2 ; person events
-	object_event 6, 1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 1, 6, SPRITE_COOLTRAINER_F, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  6,  1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  6, SPRITE_COOLTRAINER_F, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Route1Gate1F_Blocks::
 INCBIN "maps/Route1Gate1F.blk"

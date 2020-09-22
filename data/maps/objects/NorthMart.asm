@@ -7,16 +7,16 @@ SECTION "data/maps/objects/NorthMart.asm", ROMX
 NorthMart_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 4, 7, 2, NORTH, wOverworldMapBlocks + 51
-	warp_event 5, 7, 2, NORTH, wOverworldMapBlocks + 51
+	def_warp_events
+	warp_event  4,  7, NORTH, 2, 51
+	warp_event  5,  7, NORTH, 2, 51
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 3 ; person events
-	object_event 1, 3, SPRITE_CLERK, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 10, 5, SPRITE_GIRL, FACE_RIGHT, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 4, 1, SPRITE_POKEFAN_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  1,  3, SPRITE_CLERK, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10,  5, SPRITE_GIRL, FACE_RIGHT, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  1, SPRITE_POKEFAN_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NorthMart_Blocks::
 INCBIN "maps/NorthMart.blk"

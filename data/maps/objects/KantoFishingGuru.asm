@@ -7,14 +7,14 @@ SECTION "data/maps/objects/KantoFishingGuru.asm", ROMX
 KantoFishingGuru_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 3, 7, 28, KANTO, wOverworldMapBlocks + 46
-	warp_event 4, 7, 28, KANTO, wOverworldMapBlocks + 47
+	def_warp_events
+	warp_event  3,  7, KANTO, 28, 46
+	warp_event  4,  7, KANTO, 28, 47
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; person events
-	object_event 4, 3, SPRITE_FISHING_GURU, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  4,  3, SPRITE_FISHING_GURU, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoFishingGuru_Blocks::
 INCBIN "maps/KantoFishingGuru.blk"

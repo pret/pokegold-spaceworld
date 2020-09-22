@@ -9,16 +9,16 @@ SECTION "data/maps/objects/Route1P1.asm", ROMX
 Route1P1_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 8, 8, 2, SHIZUKANA_OKA, wOverworldMapBlocks + 110
-	warp_event 8, 9, 3, SHIZUKANA_OKA, wOverworldMapBlocks + 110
+	def_warp_events
+	warp_event  8,  8, SHIZUKANA_OKA, 2, 110
+	warp_event  8,  9, SHIZUKANA_OKA, 3, 110
 
-	db 2 ; bg events
-	bg_event 12, 7, 0, 1
-	bg_event 20, 8, 0, 2
+	def_bg_events
+	bg_event 12,  7, 0, 1
+	bg_event 20,  8, 0, 2
 
-	db 2 ; person events
-	object_event 20, 5, SPRITE_SUPER_NERD, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event 20,  5, SPRITE_SUPER_NERD, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 18, 12, SPRITE_YOUNGSTER, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
 Route1P1_Blocks::

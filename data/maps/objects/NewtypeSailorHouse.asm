@@ -7,14 +7,14 @@ SECTION "data/maps/objects/NewtypeSailorHouse.asm", ROMX
 NewtypeSailorHouse_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 4, 7, 4, NEWTYPE, wOverworldMapBlocks + 47
-	warp_event 5, 7, 4, NEWTYPE, wOverworldMapBlocks + 47
+	def_warp_events
+	warp_event  4,  7, NEWTYPE, 4, 47
+	warp_event  5,  7, NEWTYPE, 4, 47
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; person events
-	object_event 6, 3, SPRITE_47, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  6,  3, SPRITE_47, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NewtypeSailorHouse_Blocks::
 INCBIN "maps/NewtypeSailorHouse.blk"

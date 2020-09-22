@@ -7,18 +7,18 @@ SECTION "data/maps/objects/NewtypeDojo.asm", ROMX
 NewtypeDojo_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 3, 15, 6, NEWTYPE, wOverworldMapBlocks + 82
-	warp_event 4, 15, 7, NEWTYPE, wOverworldMapBlocks + 83
+	def_warp_events
+	warp_event  3, 15, NEWTYPE, 6, 82
+	warp_event  4, 15, NEWTYPE, 7, 83
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 5 ; person events
-	object_event 3, 2, SPRITE_BLACKBELT, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 2, 6, SPRITE_BLACKBELT, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 5, 6, SPRITE_BLACKBELT, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 3, 10, SPRITE_BLACKBELT, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 6, 10, SPRITE_BLACKBELT, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  3,  2, SPRITE_BLACKBELT, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  6, SPRITE_BLACKBELT, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5,  6, SPRITE_BLACKBELT, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3, 10, SPRITE_BLACKBELT, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6, 10, SPRITE_BLACKBELT, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NewtypeDojo_Blocks::
 INCBIN "maps/NewtypeDojo.blk"

@@ -7,11 +7,11 @@ SECTION "data/maps/objects/Office2.asm", ROMX
 Office2_MapEvents::
 	dw $0 ; unknown
 
-	db 0 ; warp events
+	def_warp_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 Office2_Blocks::
 INCBIN "maps/Office2.blk"

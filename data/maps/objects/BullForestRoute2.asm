@@ -9,13 +9,13 @@ SECTION "data/maps/objects/BullForestRoute2.asm", ROMX
 BullForestRoute2_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 8, 48, 3, BULL_FOREST_ROUTE_GATE_STAND, wOverworldMapBlocks + 405
-	warp_event 9, 48, 4, BULL_FOREST_ROUTE_GATE_STAND, wOverworldMapBlocks + 405
+	def_warp_events
+	warp_event  8, 48, BULL_FOREST_ROUTE_GATE_STAND, 3, 405
+	warp_event  9, 48, BULL_FOREST_ROUTE_GATE_STAND, 4, 405
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 BullForestRoute2_Blocks::
 INCBIN "maps/BullForestRoute2.blk"

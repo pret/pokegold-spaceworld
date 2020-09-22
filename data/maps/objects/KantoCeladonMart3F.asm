@@ -7,16 +7,16 @@ SECTION "data/maps/objects/KantoCeladonMart3F.asm", ROMX
 KantoCeladonMart3F_MapEvents::
 	dw $4000 ; unknown
 
-	db 3 ; warp events
-	warp_event 12, 0, 1, KANTO_CELADON_MART_2F, wOverworldMapBlocks + 21
-	warp_event 15, 0, 2, KANTO_CELADON_MART_4F, wOverworldMapBlocks + 22
-	warp_event 2, 0, 1, KANTO_CELADON_ELEVATOR, wOverworldMapBlocks + 16
+	def_warp_events
+	warp_event 12,  0, KANTO_CELADON_MART_2F, 1, 21
+	warp_event 15,  0, KANTO_CELADON_MART_4F, 2, 22
+	warp_event  2,  0, KANTO_CELADON_ELEVATOR, 1, 16
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 2 ; person events
-	object_event 6, 1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 3, 5, SPRITE_GIRL, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  6,  1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  5, SPRITE_GIRL, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoCeladonMart3F_Blocks::
 INCBIN "maps/KantoCeladonMart3F.blk"

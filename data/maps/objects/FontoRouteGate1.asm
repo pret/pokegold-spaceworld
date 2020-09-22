@@ -7,15 +7,15 @@ SECTION "data/maps/objects/FontoRouteGate1.asm", ROMX
 FontoRouteGate1_MapEvents::
 	dw $4000 ; unknown
 
-	db 4 ; warp events
-	warp_event 0, 7, 7, SOUTH, wOverworldMapBlocks + 45
-	warp_event 1, 7, 7, SOUTH, wOverworldMapBlocks + 45
-	warp_event 8, 7, 1, FONTO_ROUTE_1, wOverworldMapBlocks + 49
-	warp_event 9, 7, 1, FONTO_ROUTE_1, wOverworldMapBlocks + 49
+	def_warp_events
+	warp_event  0,  7, SOUTH, 7, 45
+	warp_event  1,  7, SOUTH, 7, 45
+	warp_event  8,  7, FONTO_ROUTE_1, 1, 49
+	warp_event  9,  7, FONTO_ROUTE_1, 1, 49
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 FontoRouteGate1_Blocks::
 INCBIN "maps/FontoRouteGate1.blk"

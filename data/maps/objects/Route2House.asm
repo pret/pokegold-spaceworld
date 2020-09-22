@@ -7,20 +7,20 @@ SECTION "data/maps/objects/Route2House.asm", ROMX
 Route2House_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 4, 7, 2, ROUTE_2, wOverworldMapBlocks + 43
-	warp_event 5, 7, 2, ROUTE_2, wOverworldMapBlocks + 43
+	def_warp_events
+	warp_event  4,  7, ROUTE_2, 2, 43
+	warp_event  5,  7, ROUTE_2, 2, 43
 
-	db 6 ; bg events
-	bg_event 0, 0, 0, 1
-	bg_event 2, 0, 0, 1
-	bg_event 4, 0, 0, 1
-	bg_event 6, 0, 0, 1
-	bg_event 0, 3, 0, 2
-	bg_event 4, 3, 0, 3
+	def_bg_events
+	bg_event  0,  0, 0, 1
+	bg_event  2,  0, 0, 1
+	bg_event  4,  0, 0, 1
+	bg_event  6,  0, 0, 1
+	bg_event  0,  3, 0, 2
+	bg_event  4,  3, 0, 3
 
-	db 1 ; person events
-	object_event 6, 6, SPRITE_SCIENTIST, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  6,  6, SPRITE_SCIENTIST, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Route2House_Blocks::
 INCBIN "maps/Route2House.blk"

@@ -7,14 +7,14 @@ SECTION "data/maps/objects/KantoGamefreakHQ4.asm", ROMX
 KantoGamefreakHQ4_MapEvents::
 	dw $4000 ; unknown
 
-	db 3 ; warp events
-	warp_event 2, 7, 1, KANTO_GAMEFREAK_HQ_5, wOverworldMapBlocks + 42
-	warp_event 6, 1, 2, KANTO_GAMEFREAK_HQ_3, wOverworldMapBlocks + 14
-	warp_event 2, 1, 3, KANTO_GAMEFREAK_HQ_3, wOverworldMapBlocks + 12
+	def_warp_events
+	warp_event  2,  7, KANTO_GAMEFREAK_HQ_5, 1, 42
+	warp_event  6,  1, KANTO_GAMEFREAK_HQ_3, 2, 14
+	warp_event  2,  1, KANTO_GAMEFREAK_HQ_3, 3, 12
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 KantoGamefreakHQ4_Blocks::
 INCBIN "maps/KantoGamefreakHQ4.blk"

@@ -7,15 +7,15 @@ SECTION "data/maps/objects/HaitekuWestRouteGate.asm", ROMX
 HaitekuWestRouteGate_MapEvents::
 	dw $4000 ; unknown
 
-	db 4 ; warp events
-	warp_event 4, 7, 1, HAITEKU_WEST_ROUTE_OCEAN, wOverworldMapBlocks + 47
-	warp_event 5, 7, 2, HAITEKU_WEST_ROUTE_OCEAN, wOverworldMapBlocks + 47
-	warp_event 4, 0, 8, SOUTH, wOverworldMapBlocks + 14
-	warp_event 5, 0, 9, SOUTH, wOverworldMapBlocks + 14
+	def_warp_events
+	warp_event  4,  7, HAITEKU_WEST_ROUTE_OCEAN, 1, 47
+	warp_event  5,  7, HAITEKU_WEST_ROUTE_OCEAN, 2, 47
+	warp_event  4,  0, SOUTH, 8, 14
+	warp_event  5,  0, SOUTH, 9, 14
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 HaitekuWestRouteGate_Blocks::
 INCBIN "maps/HaitekuWestRouteGate.blk"

@@ -9,12 +9,12 @@ SECTION "data/maps/objects/FontoRoute1.asm", ROMX
 FontoRoute1_MapEvents::
 	dw $4000 ; unknown
 
-	db 1 ; warp events
-	warp_event 6, 9, 3, FONTO_ROUTE_GATE_1, wOverworldMapBlocks + 209
+	def_warp_events
+	warp_event  6,  9, FONTO_ROUTE_GATE_1, 3, 209
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 FontoRoute1_Blocks::
 INCBIN "maps/FontoRoute1.blk"

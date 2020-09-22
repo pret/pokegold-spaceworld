@@ -7,11 +7,11 @@ SECTION "data/maps/objects/CaveMinecarts4.asm", ROMX
 CaveMinecarts4_MapEvents::
 	dw $0 ; unknown
 
-	db 0 ; warp events
+	def_warp_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 CaveMinecarts4_Blocks::
 INCBIN "maps/CaveMinecarts4.blk"

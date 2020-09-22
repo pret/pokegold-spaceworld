@@ -7,15 +7,15 @@ SECTION "data/maps/objects/RouteSilentEastGate.asm", ROMX
 RouteSilentEastGate_MapEvents::
 	dw $4000 ; unknown
 
-	db 4 ; warp events
-	warp_event 0, 7, 1, ROUTE_SILENT_EAST, wOverworldMapBlocks + 45
-	warp_event 1, 7, 1, ROUTE_SILENT_EAST, wOverworldMapBlocks + 45
-	warp_event 8, 7, 29, KANTO, wOverworldMapBlocks + 49
-	warp_event 9, 7, 29, KANTO, wOverworldMapBlocks + 49
+	def_warp_events
+	warp_event  0,  7, ROUTE_SILENT_EAST, 1, 45
+	warp_event  1,  7, ROUTE_SILENT_EAST, 1, 45
+	warp_event  8,  7, KANTO, 29, 49
+	warp_event  9,  7, KANTO, 29, 49
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 RouteSilentEastGate_Blocks::
 INCBIN "maps/RouteSilentEastGate.blk"

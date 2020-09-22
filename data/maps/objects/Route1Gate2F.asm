@@ -7,16 +7,16 @@ SECTION "data/maps/objects/Route1Gate2F.asm", ROMX
 Route1Gate2F_MapEvents::
 	dw $4000 ; unknown
 
-	db 1 ; warp events
-	warp_event 5, 0, 5, ROUTE_1_GATE_1F, wOverworldMapBlocks + 13
+	def_warp_events
+	warp_event  5,  0, ROUTE_1_GATE_1F, 5, 13
 
-	db 2 ; bg events
-	bg_event 1, 0, 0, 1
-	bg_event 3, 0, 0, 2
+	def_bg_events
+	bg_event  1,  0, 0, 1
+	bg_event  3,  0, 0, 2
 
-	db 2 ; person events
-	object_event 3, 3, SPRITE_LASS, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 6, 4, SPRITE_TWIN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  3,  3, SPRITE_LASS, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  4, SPRITE_TWIN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Route1Gate2F_Blocks::
 INCBIN "maps/Route1Gate2F.blk"

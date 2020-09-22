@@ -7,13 +7,13 @@ SECTION "data/maps/objects/KantoCeladonElevator.asm", ROMX
 KantoCeladonElevator_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 1, 3, 4, KANTO_CELADON_MART_1F, wOverworldMapBlocks + 17
-	warp_event 2, 3, 4, KANTO_CELADON_MART_1F, wOverworldMapBlocks + 18
+	def_warp_events
+	warp_event  1,  3, KANTO_CELADON_MART_1F, 4, 17
+	warp_event  2,  3, KANTO_CELADON_MART_1F, 4, 18
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 KantoCeladonElevator_Blocks::
 INCBIN "maps/KantoCeladonElevator.blk"

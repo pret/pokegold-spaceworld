@@ -9,13 +9,13 @@ SECTION "data/maps/objects/KantoEastRoute.asm", ROMX
 KantoEastRoute_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 28, 5, 1, STAND_ROUTE_GATE_KANTO, wOverworldMapBlocks + 93
-	warp_event 29, 5, 2, STAND_ROUTE_GATE_KANTO, wOverworldMapBlocks + 93
+	def_warp_events
+	warp_event 28,  5, STAND_ROUTE_GATE_KANTO, 1, 93
+	warp_event 29,  5, STAND_ROUTE_GATE_KANTO, 2, 93
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 KantoEastRoute_Blocks::
 INCBIN "maps/KantoEastRoute.blk"

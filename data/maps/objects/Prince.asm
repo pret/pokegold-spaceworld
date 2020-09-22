@@ -9,11 +9,11 @@ SECTION "data/maps/objects/Prince.asm", ROMX
 Prince_MapEvents::
 	dw $0 ; unknown
 
-	db 0 ; warp events
+	def_warp_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 Prince_Blocks::
 INCBIN "maps/Prince.blk"

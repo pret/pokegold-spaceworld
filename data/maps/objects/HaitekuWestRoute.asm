@@ -9,11 +9,11 @@ SECTION "data/maps/objects/HaitekuWestRoute.asm", ROMX
 HaitekuWestRoute_MapEvents::
 	dw $4000 ; unknown
 
-	db 0 ; warp events
+	def_warp_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 HaitekuWestRoute_Blocks::
 INCBIN "maps/HaitekuWestRoute.blk"

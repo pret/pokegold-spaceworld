@@ -7,16 +7,16 @@ SECTION "data/maps/objects/KantoGameCornerPrizes.asm", ROMX
 KantoGameCornerPrizes_MapEvents::
 	dw $4000 ; unknown
 
-	db 2 ; warp events
-	warp_event 4, 7, 15, KANTO, wOverworldMapBlocks + 47
-	warp_event 5, 7, 15, KANTO, wOverworldMapBlocks + 47
+	def_warp_events
+	warp_event  4,  7, KANTO, 15, 47
+	warp_event  5,  7, KANTO, 15, 47
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 3 ; person events
-	object_event 2, 1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 4, 1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 6, 1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  2,  1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoGameCornerPrizes_Blocks::
 INCBIN "maps/KantoGameCornerPrizes.blk"

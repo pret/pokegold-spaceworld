@@ -7,12 +7,12 @@ SECTION "data/maps/objects/Route15Pokecenter2F.asm", ROMX
 Route15Pokecenter2F_MapEvents::
 	dw $4000 ; unknown
 
-	db 1 ; warp events
-	warp_event 0, 7, 3, ROUTE_15_POKECENTER_1F, wOverworldMapBlocks + 57
+	def_warp_events
+	warp_event  0,  7, ROUTE_15_POKECENTER_1F, 3, 57
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 Route15Pokecenter2F_Blocks::
 INCBIN "maps/Route15Pokecenter2F.blk"

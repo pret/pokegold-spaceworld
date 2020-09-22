@@ -9,12 +9,12 @@ SECTION "data/maps/objects/RouteSilentEast.asm", ROMX
 RouteSilentEast_MapEvents::
 	dw $4000 ; unknown
 
-	db 1 ; warp events
-	warp_event 55, 9, 1, ROUTE_SILENT_EAST_GATE, wOverworldMapBlocks + 208
+	def_warp_events
+	warp_event 55,  9, ROUTE_SILENT_EAST_GATE, 1, 208
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; person events
+	def_object_events
 
 RouteSilentEast_Blocks::
 INCBIN "maps/RouteSilentEast.blk"

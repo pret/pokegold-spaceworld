@@ -7,14 +7,14 @@ SECTION "data/maps/objects/HaitekuAquarium2F.asm", ROMX
 HaitekuAquarium2F_MapEvents::
 	dw $4000 ; unknown
 
-	db 1 ; warp events
-	warp_event 0, 7, 3, HAITEKU_AQUARIUM_1F, wOverworldMapBlocks + 57
+	def_warp_events
+	warp_event  0,  7, HAITEKU_AQUARIUM_1F, 3, 57
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 2 ; person events
-	object_event 7, 6, SPRITE_POKEFAN_M, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 10, 4, SPRITE_TEACHER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	def_object_events
+	object_event  7,  6, SPRITE_POKEFAN_M, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10,  4, SPRITE_TEACHER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 HaitekuAquarium2F_Blocks::
 INCBIN "maps/HaitekuAquarium2F.blk"
