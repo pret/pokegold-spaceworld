@@ -179,7 +179,7 @@ if __name__ == '__main__':
                     help='dump text codes (line breaks, prompt etc) as macros instead of inline text'
                     )
     ap.add_argument('-o', dest='outfile', default=sys.stdout, help='output file name')
-    ap.add_argument('-m', dest='charmap', default='../charmap.asm', help='charmap file name')
+    ap.add_argument('-m', dest='charmap', default='../constants/charmap.asm', help='charmap file name')
     ap.add_argument('rom', help='path to ROM')
     ap.add_argument('start', help='start offset', type=conv_address)
     ap.add_argument('end', help='end offset', type=conv_address, nargs='?')

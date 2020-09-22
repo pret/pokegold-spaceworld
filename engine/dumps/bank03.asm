@@ -2537,16 +2537,16 @@ Functione438:
 	ret
 
 Texte461:
-	db "・.０１　@"
-	db "・.０２　@"
-	db "・.０３　@"
-	db "・.０４　@"
-	db "・.０５　@"
-	db "・.０６　@"
-	db "・.０７　@"
-	db "・.０８　@"
-	db "・.０９　@"
-	db "・.１０　@"
+	db "・．０１　@"
+	db "・．０２　@"
+	db "・．０３　@"
+	db "・．０４　@"
+	db "・．０５　@"
+	db "・．０６　@"
+	db "・．０７　@"
+	db "・．０８　@"
+	db "・．０９　@"
+	db "・．１０　@"
 
 Functione49d:
 	ld h, d
@@ -2571,7 +2571,7 @@ Texte4bf:
 	next "　@"
 
 Texte4ca:
-	db "/３０@"
+	db "／３０@"
 
 Functione4ce:
 	ld a, [wMenuSelection]
@@ -2760,7 +2760,7 @@ Functione5d3:
 	ret
 
 Texte679:
-	db "ボックス/いまの　ボックス@"
+	db "ボックス／いまの　ボックス@"
 
 Texte687:
 	db "しゅるい　　なまえ　　　レべル@"

@@ -1712,7 +1712,7 @@ PartyMenuAttributes:
 	db $F3
 
 PartyTypeText:
-	db "タイプ/　　　　　いりょく/@"
+	db "タイプ／　　　　　いりょく／@"
 
 PartyPokeDivider:
 	db "ーーー@"
@@ -2148,7 +2148,7 @@ DrawTrainerCardMainPage:
 	ret
 
 TrainerCardText:
-	db "なまえ/<NEXT><NEXT>おこづかい<NEXT><NEXT>#ずかん@"
+	db "なまえ／<NEXT><NEXT>おこづかい<NEXT><NEXT>#ずかん@"
 
 TrainerCardDexEntriesText:
 	db "ひき@"

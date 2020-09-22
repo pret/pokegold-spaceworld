@@ -116,6 +116,9 @@
 	charmap "▲", $61
 	charmap "☎", $62
 
+	charmap "Ａ", $60
+	charmap "Ｂ", $61
+	charmap "Ｃ", $62
 	charmap "Ｄ", $63
 	charmap "Ｅ", $64
 	charmap "Ｆ", $65
@@ -275,8 +278,8 @@
 	charmap "♂", $ef
 	charmap "円", $f0
 	charmap "×", $f1
-	charmap ".", $f2
-	charmap "/", $f3
+	charmap "．", $f2
+	charmap "／", $f3
 
 	charmap "ォ", $f4
 

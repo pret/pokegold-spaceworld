@@ -278,8 +278,8 @@
 	charmap "♂", $ef
 	charmap "円", $f0
 	charmap "×", $f1
-	charmap ".", $f2
-	charmap "/", $f3
+	charmap "．", $f2
+	charmap "／", $f3
 
 	charmap "ォ", $f4
 

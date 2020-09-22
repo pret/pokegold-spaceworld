@@ -848,7 +848,7 @@ FlashDescription:
 	next "てきの　めいちゅうりつを　さげさせる@"
 
 PsywaveDescription:
-	db   "てきに　１ーレべル×１.５の"
+	db   "てきに　１ーレべル×１．５の"
 	next "ダメージを　ランダムで　あたえる@"
 
 SplashDescription:
