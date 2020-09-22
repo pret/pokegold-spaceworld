@@ -5130,8 +5130,8 @@ Functionf960:
 	ld a, [hl]
 	dec a
 	push hl
-	ld hl, Moves
-	ld bc, $0007
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte

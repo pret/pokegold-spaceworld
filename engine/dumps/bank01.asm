@@ -3062,8 +3062,8 @@ Function6445:
 	push hl
 	push de
 	dec a
-	ld hl, Moves
-	ld bc, $0007
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte

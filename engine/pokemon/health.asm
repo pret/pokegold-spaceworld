@@ -33,8 +33,8 @@ HealParty:
 	jr z, .next_move
 	dec a
 	push hl
-	ld hl, Moves
-	ld bc, MOVE_DATA_SIZE
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte

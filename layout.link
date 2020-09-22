@@ -277,6 +277,8 @@ ROMX $10
 	"data/types/search_types.asm"
 	org $52a1
 	"data/moves/names.asm"
+	org $58b6
+	"data/moves/moves.asm"
 	org $6493
 	"data/pokemon/evos_attacks.asm"
 
