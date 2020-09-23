@@ -21,3 +21,8 @@ INCBIN "slack/sgb_border_silver_corrupted.2bpp"
 
 Corruptedba93GFX:
 INCBIN "slack/corrupted_ba93.2bpp"
+
+SECTION "slack.asm@Corrupted Sprites", ROMX
+
+CorruptedSpriteGFX:
+INCBIN "slack/sprites_corrupted.2bpp"

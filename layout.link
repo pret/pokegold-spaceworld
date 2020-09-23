@@ -755,6 +755,7 @@ ROMX $30
 ROMX $31
 	org $4000
 	"gfx.asm@Bank 31 Sprites 2"
+	"slack.asm@Corrupted Sprites"
 
 ROMX $32
 	org $4000
