@@ -944,9 +944,10 @@ ROMX $3f
 	org $4000
 	org $4362
 	"engine/menu/reset_dialog.asm"
-	org $4aa5
-	"engine/landmarks.asm"
+	org $4a57
+	"engine/landmarks.asm@1"
 	"data/maps/landmarks.asm"
+	"engine/landmarks.asm@2"
 	org $506f
 	"gfx.asm@Town Map Cursor"
 
