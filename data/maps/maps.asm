@@ -1,5 +1,16 @@
 INCLUDE "constants.asm"
 
+map: MACRO
+;\1: map name: for the MapAttributes pointer (see data/maps/attributes.asm)
+;\2: tileset: a TILESET_* constant
+;\3: environment: TOWN, ROUTE, INDOOR, CAVE, ENVIRONMENT_5, GATE, or DUNGEON
+;\4: location: from constants/landmark_constants.asm
+	db BANK(\1_MapAttributes), \2, \3
+	dw \1_MapAttributes
+	db \4
+	db 0, 0
+ENDM
+
 SECTION "data/maps/maps.asm", ROMX
 
 	db 0 ; ???
