@@ -272,7 +272,6 @@
 	charmap "？", $e6
 	charmap "！", $e7
 	charmap "。", $e8
-
 	charmap "ァ", $e9
 	charmap "ゥ", $ea
 	charmap "ェ", $eb
@@ -388,7 +387,7 @@
 
 	charmap "?",         $e6
 	charmap "!",         $e7
-	charmap ".",         $e8
+	charmap "<DOT>",     $e8 ; decimal point; same as "." in English
 	charmap "&",         $e9
 
 	charmap "é",         $ea
@@ -399,7 +398,7 @@
 	charmap "♂",         $ef
 	charmap "¥",         $f0
 	charmap "×",         $f1
-	charmap "<DOT>",     $f2 ; decimal point; same as "." in English
+	charmap ".",         $f2
 	charmap "/",         $f3
 	charmap ",",         $f4
 	charmap "♀",         $f5

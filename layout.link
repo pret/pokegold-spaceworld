@@ -1,20 +1,7 @@
 ROM0
 	org $0000
 	"NULL"
-	org $0000
-	"home/rst.asm@rst00"
-	org $0008
-	"home/rst.asm@rst08"
-	org $0010
-	"home/rst.asm@rst10"
-	org $0018
-	"home/rst.asm@rst18"
-	org $0020
-	"home/rst.asm@rst20"
-	org $0028
-	"home/rst.asm@rst28"
-	org $0030
-	"home/rst.asm@rst30"
+
 	org $0038
 	"home/rst.asm@rst38"
 	org $0040

@@ -1272,6 +1272,9 @@ wde63:: db
 SECTION "DF17", WRAM0[$DF17]
 wdf17:: ds 1
 
+SECTION "DDFF (Patch-Only)", WRAM0[$DDFF]
+wRandomAddressForDataJuggling:: ds 1    ; ddff
+
 SECTION "DFCB", WRAM0[$DFCB]
 wdfcb:: ds 1
 

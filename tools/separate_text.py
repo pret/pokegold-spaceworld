@@ -37,7 +37,7 @@ def parse_charmap(asm):
         charmap[m.group('string')] = int(m.group('byte'), 16)
     return charmap
 
-with open('charmap.asm', 'r', encoding='utf-8') as f:
+with open('constants/charmap.asm', 'r', encoding='utf-8') as f:
     CHARMAP = parse_charmap(f.read())
 
 def strings_in_asm(asm):
