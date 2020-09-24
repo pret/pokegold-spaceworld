@@ -1,5 +1,5 @@
+; song ids
 	const_def
-
 	const MUSIC_NONE            ; 00
 	const MUSIC_TITLE           ; 01
 	const MUSIC_ROUTE_1         ; 02
@@ -15,5 +15,5 @@
 	const MUSIC_EVOLUTION       ; 0C
 
 MUSIC_SURF EQU $62
-	
+
 SE_SELECT EQU 5

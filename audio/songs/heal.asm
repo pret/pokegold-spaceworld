@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/heal.asm", ROMX
 
-Song_Heal:: ; ed5f4 (3b:55f4)
+Song_Heal::
 	db 2 << 6 | 0
 	dw Song_Heal_Ch0
 	db 1
@@ -10,7 +10,7 @@ Song_Heal:: ; ed5f4 (3b:55f4)
 	db 2
 	dw Song_Heal_Ch2
 
-Song_Heal_Ch0:: ; ed5fd (3b:55fd)
+Song_Heal_Ch0::
 	tempo 144
 	volume 7, 7
 	duty 2
@@ -33,7 +33,7 @@ Song_Heal_Ch0:: ; ed5fd (3b:55fd)
 	endchannel
 
 
-Song_Heal_Ch1:: ; ed621 (3b:5621)
+Song_Heal_Ch1::
 	duty 2
 	notetype 12, 12, 3
 	octave 4
@@ -47,7 +47,7 @@ Song_Heal_Ch1:: ; ed621 (3b:5621)
 	endchannel
 
 
-Song_Heal_Ch2:: ; ed631 (3b:5631)
+Song_Heal_Ch2::
 	notetype 12, 1, 0
 	octave 4
 	E_ 2
@@ -59,4 +59,3 @@ Song_Heal_Ch2:: ; ed631 (3b:5631)
 	E_ 6
 	rest 2
 	endchannel
-; 0xed63e

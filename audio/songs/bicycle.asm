@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/bicycle.asm", ROMX
 
-Song_Bicycle:: ; ed63e (3b:563e)
+Song_Bicycle::
 	db 3 << 6 | 0
 	dw Song_Bicycle_Ch0
 	db 1
@@ -12,7 +12,7 @@ Song_Bicycle:: ; ed63e (3b:563e)
 	db 3
 	dw Song_Bicycle_Ch3
 
-Song_Bicycle_Ch0:: ; ed64a (3b:564a)
+Song_Bicycle_Ch0::
 	tempo 144
 	volume 7, 7
 	duty 3
@@ -171,7 +171,7 @@ Song_Bicycle_branch_ed659::
 	loopchannel 0, Song_Bicycle_branch_ed659
 
 
-Song_Bicycle_Ch1:: ; ed70d (3b:570d)
+Song_Bicycle_Ch1::
 	duty 2
 	vibrato 6, 1, 5
 	notetype 12, 12, 3
@@ -320,7 +320,7 @@ Song_Bicycle_branch_ed717::
 	loopchannel 0, Song_Bicycle_branch_ed717
 
 
-Song_Bicycle_Ch2:: ; ed7c5 (3b:57c5)
+Song_Bicycle_Ch2::
 	notetype 12, 1, 3
 	rest 2
 
@@ -661,7 +661,7 @@ Song_Bicycle_branch_ed7c9::
 	loopchannel 0, Song_Bicycle_branch_ed7c9
 
 
-Song_Bicycle_Ch3:: ; ed91a (3b:591a)
+Song_Bicycle_Ch3::
 	drumset 1
 	dspeed 12
 	rest 2
@@ -721,4 +721,3 @@ Song_Bicycle_branch_ed96e::
 	snare7 1
 	snare7 1
 	endchannel
-; 0xed978

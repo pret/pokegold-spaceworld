@@ -1,4 +1,4 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "home/cry.asm", ROM0
 
@@ -7,15 +7,15 @@ PlayStereoCry::
 	ld a, $1
 	ld [wc1b9], a
 	pop af
-	jr asm_39c3
+	jr _PlayCry
 
-PlayCry:: ; 00:39ba
+PlayCry::
 	push af
 	xor a
 	ld [wc1b9], a
 	ld [wc1ba], a
 	pop af
-asm_39c3: ; 00:39c3
+_PlayCry:
 	push hl
 	push de
 	push bc
@@ -58,7 +58,7 @@ LoadCryHeader::
 	call Bankswitch
 	ret
 
-GetCryIndex:: ; 00:3a02
+GetCryIndex::
 	ld d, a
 	ld a, [wce37]
 	push af
@@ -74,22 +74,22 @@ GetCryIndex:: ; 00:3a02
 	ret
 
 PrintLevel::
-	ld a, $6e
+	ld a, $6e ; ":L"
 	ld [hli], a
 	ld c, 2
-	ld a, [wcd9e]
+	ld a, [wLoadedMonLevel]
 	cp 100
-	jr c, asm_3a37
+	jr c, _PrintLevelCommon
 	dec hl
 	inc c
-	jr asm_3a37
+	jr _PrintLevelCommon
 
 PrintLevelFullWidth::
-	ld a, $6e
+	ld a, $6e ; ":L"
 	ld [hli], a
 	ld c, 3
-	ld a, [wcd9e]
-asm_3a37: ; 00:3a37
+	ld a, [wLoadedMonLevel]
+_PrintLevelCommon:
 	ld [wce37], a
 	ld de, wce37
 	ld b, PRINTNUM_RIGHTALIGN | 1
@@ -98,7 +98,7 @@ asm_3a37: ; 00:3a37
 Function3a42::
 	ld hl, wce2e
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ret

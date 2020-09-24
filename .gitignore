@@ -10,30 +10,15 @@
 !shim.sym
 
 # build artifacts
-build/
-*.d
-*.o
-*.2bpp
-*.1bpp
-*.pic
-*.pcm
-shim.asm
+/build
 
-# build utilities
+# build tools
 tools/scan_includes
 tools/pkmncompress
 tools/gfx
-tools/fix_sections_directory.py
 *.exe
 *.pyc
+__pycache__
 
-# editor files
-*~
-.idea/
-
-# extra utilities
-coverage.png
-coverage.log
-temp/
-pokegold-spaceworld-gen.link
-*.txt
+# utility output
+/coverage.png

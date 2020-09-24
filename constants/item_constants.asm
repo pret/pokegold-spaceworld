@@ -1,4 +1,4 @@
-; Item IDs
+; item ids
 	const_def
 	const ITEM_NONE             ; 00
 	const ITEM_MASTER_BALL      ; 01
@@ -66,6 +66,7 @@
 	const ITEM_ETHER            ; 3f
 	const ITEM_MAX_ETHER        ; 40
 	const ITEM_ELIXER           ; 41
+
 	const ITEM_MYSTIC_PETAL     ; 42 *RED_SCALE
 	const ITEM_WHITE_FEATHER    ; 43 *SECRETPOTION
 	const ITEM_CONFUSE_CLAW     ; 44 *S_S_TICKET
@@ -263,7 +264,7 @@ NUM_HMS = const_value - ITEM_HM01
 
 	const ITEM_FF
 
-NUM_TMS_HMS = NUM_TMS + NUM_HMS
+NUM_TM_HM = NUM_TMS + NUM_HMS
 
 ; leftovers from pokered
 ITEM_HM01_RED EQU $c4

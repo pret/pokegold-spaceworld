@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/link/place_waiting_text.asm", ROMX
 
-PlaceWaitingText:: ; 1:4000
+PlaceWaitingText::
 	hlcoord 3, 10
 	ld b, 1
 	ld c, 11

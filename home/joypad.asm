@@ -1,5 +1,6 @@
 INCLUDE "constants.asm"
 
+
 SECTION "home/joypad.asm", ROM0
 
 ClearJoypad::
@@ -10,7 +11,8 @@ ClearJoypad::
 	ldh [hJoyState], a
 	ret
 
-Joypad:: ; 7fe (0:7fe)
+
+Joypad::
 ; Read the joypad register and translate it to something more
 ; workable for use in-game. There are 8 buttons, so we can use
 ; one byte to contain all player input.
@@ -68,7 +70,7 @@ Joypad:: ; 7fe (0:7fe)
 	jp z, Reset
 	ret
 
-GetJoypad:: ; 84a (0:84a)
+GetJoypad::
 ; Update mirror joypad input from hJoypadState (real input)
 
 ; hJoyReleased, hJoyDown and hJoyState are synchronized
@@ -104,7 +106,7 @@ GetJoypad:: ; 84a (0:84a)
 	pop af
 	ret
 
-JoyTitleScreenInput:: ; 869 (0:869)
+JoyTitleScreenInput::
 ; Check if any of the following conditions
 ; is met for c frames
 ; - B, Select and Up keys are pressed in same frame
@@ -132,7 +134,7 @@ JoyTitleScreenInput:: ; 869 (0:869)
 	scf
 	ret
 
-GetJoypadDebounced:: ; 884 (0:884)
+GetJoypadDebounced::
 ; Update hJoySum joypad input from either hJoyDown or
 ; hJoyState depending on hJoyDebounceSrc.
 ; hJoyState is only updated every 5 frames and
@@ -164,13 +166,12 @@ GetJoypadDebounced:: ; 884 (0:884)
 	ld a, $05
 	ld [wVBlankJoyFrameCounter], a
 	ret
-; 0x8ad
 
-TextboxWaitPressAorB_BlinkCursor: ; 8ad (0:8ad)
+TextboxWaitPressAorB_BlinkCursor:
 ; Show a blinking cursor in the lower right-hand
 ; corner of a textbox and wait until A or B is
 ; pressed.
-; 
+;
 ; CAUTION: The cursor has to be shown when calling
 ; this function or no cursor will be shown at all.
 ; Waiting on button presses is unaffected by this.
@@ -181,7 +182,7 @@ TextboxWaitPressAorB_BlinkCursor: ; 8ad (0:8ad)
 	xor a
 	ldh [hTextBoxCursorBlinkInterval], a
 	ld a, $06
-	ldh [hTextBoxCursorBlinkInterval + 1], a ; initially, 0x600 iterations
+	ldh [hTextBoxCursorBlinkInterval + 1], a ; initially, $600 iterations
 .loop
 	push hl
 	coord hl, (TEXTBOX_WIDTH - 2), (TEXTBOX_Y + TEXTBOX_HEIGHT - 1)
@@ -197,7 +198,7 @@ TextboxWaitPressAorB_BlinkCursor: ; 8ad (0:8ad)
 	ldh [hSpriteWidth], a
 	ret
 
-ButtonSound:: ; 8d2 (0:8d2)
+ButtonSound::
 	ld a, [wLinkMode]
 	cp $03
 	jr z, .link
@@ -211,7 +212,7 @@ ButtonSound:: ; 8d2 (0:8d2)
 	ld c, $41
 	jp DelayFrames
 
-WaitAorB_BlinkCursor:: ; 8ea (0:8ea)
+WaitAorB_BlinkCursor::
 .loop
 	call BlinkCursor
 	call GetJoypadDebounced
@@ -225,7 +226,7 @@ WaitAorB_BlinkCursor:: ; 8ea (0:8ea)
 	call DelayFrame
 	jr .loop
 
-BlinkCursor: ; 904 (0:904)
+BlinkCursor:
 ; Show a blinking cursor in the lower right-hand
 ; corner of the screen
 ; Will toggle between cursor and blank every
@@ -241,13 +242,13 @@ BlinkCursor: ; 904 (0:904)
 	ldcoord_a (SCREEN_WIDTH - 2), (SCREEN_HEIGHT - 1)
 	ret
 
-TextboxBlinkCursor:: ; 914 (0:914)
+TextboxBlinkCursor::
 ; Show a blinking cursor at the specified position
 ; that toggles between down arrow and horizontal textbox
 ; frame tile.
 ; hl - address of cursor
 ; hTextBoxCursorBlinkInterval - initial delay between toggling
-;                               subsequent delays will be 0x6FF
+;                               subsequent delays will be $6FF
 ;                               calls of this function
 ; CAUTION: if the cursor is not shown initially, even initial
 ; hTextBoxCursorBlinkInterval values will cause no cursor
@@ -271,7 +272,7 @@ TextboxBlinkCursor:: ; 914 (0:914)
 	ld a, $ff
 	ldh [hTextBoxCursorBlinkInterval], a
 	ld a, $06
-	ldh [hTextBoxCursorBlinkInterval + 1], a ; reset to 0x6FF iterations
+	ldh [hTextBoxCursorBlinkInterval + 1], a ; reset to $6FF iterations
 	ret
 .showCursorCountdown
 	ldh a, [hTextBoxCursorBlinkInterval]
@@ -287,7 +288,7 @@ TextboxBlinkCursor:: ; 914 (0:914)
 	ldh [hTextBoxCursorBlinkInterval + 1], a
 	ret nz
 	ld a, $06
-	ldh [hTextBoxCursorBlinkInterval + 1], a ; reset to 0x6FF iterations
+	ldh [hTextBoxCursorBlinkInterval + 1], a ; reset to $6FF iterations
 	ld a, "▼"
 	ld [hl], a
 	ret

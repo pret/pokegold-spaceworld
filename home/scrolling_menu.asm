@@ -1,10 +1,6 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/scrolling_menu.asm", ROM0
-; else
-; SECTION "Scrolling Menu", ROM0 [$37D4]
-; endc
 
 Function3810::
 	ld e, [hl]
@@ -40,7 +36,7 @@ Function3810::
 	ld a, [wMenuJoypad]
 	ret
 
-ScrollingMenu:: ; 00:383e
+ScrollingMenu::
 	call CopyMenuData
 	ldh a, [hROMBank]
 	push af
@@ -64,7 +60,7 @@ Function385a::
 
 Function385d::
 	callab Function_8f1cb
-asm_3865: ; 00:3865
+asm_3865:
 	pop hl
 	call MenuTextBox
 	ld c, $0
@@ -72,22 +68,22 @@ asm_3865: ; 00:3865
 	call CloseWindow
 	ret
 
-Function3872:: ; 00:3872
+Function3872::
 	push bc
 	jr asm_387d
 
 Function3875::
 	callab PlaySpriteAnimationsAndDelayFrame
-asm_387d: ; 00:387d
+asm_387d:
 	pop bc
 	call GetJoypad
 	ldh a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
-	jr nz, .asm_388e
+	jr nz, .done
 	ld a, c
 	and a
 	jr z, Function3872
 	dec c
 	jr z, Function3872
-.asm_388e: ; 00:388e
+.done:
 	ret

@@ -1,8 +1,8 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "engine/dumps/bank03.asm@Functionc77d", ROMX
 
-Functionc77d: ; 03:477d
+Functionc77d:
 	ld a, [wFlyDestination]
 	ld l, a
 	ld h, $00
@@ -17,11 +17,9 @@ Functionc77d: ; 03:477d
 	ld e, a
 	ret
 
-; 03:4791
-
 SECTION "engine/dumps/bank03.asm@SpawnPoints", ROMX
 ; Map, Warp ID
-SpawnPoints: ; 03:47d5
+SpawnPoints:
 	db $01, $04
 	db $05, $05
 	db $02, $02
@@ -115,12 +113,10 @@ SpawnPoints: ; 03:47d5
 	db $ff, $ff
 	db $ff, $ff
 
-; 03:488d
-
 
 SECTION "engine/dumps/bank03.asm@Functionc9c1", ROMX
 
-Functionc9c1: ; 03:49c1
+Functionc9c1:
 	xor a
 	ld bc, $0020
 	ld hl, wCurrMapInlineTrainers
@@ -155,7 +151,7 @@ Functionc9c1: ; 03:49c1
 .sub_c9f5
 	jp CheckInlineTrainer
 
-Functionc9f8: ; 03:49f8
+Functionc9f8:
 	ld a, [wItemQuantity]
 	push af
 	push bc
@@ -239,7 +235,7 @@ Functionc9f8: ; 03:49f8
 	ld [wItemQuantity], a
 	ret
 
-Functionca68: ; 03:4a68
+Functionca68:
 	push hl
 	inc hl
 	ld a, [wItemIndex]
@@ -281,11 +277,11 @@ Functionca68: ; 03:4a68
 	pop hl
 .sub_caa0
 	ret
-	
+
 
 SECTION "engine/dumps/bank03.asm@Functiond41d", ROMX
 
-Functiond41d: ; 03:541d
+Functiond41d:
 	push hl
 	call Functiond4b2
 	ld a, [wItemAttributeParamBuffer]
@@ -321,24 +317,24 @@ Functiond41d: ; 03:541d
 	scf
 	ret
 
-Textd46b: ; 03:546b
+Textd46b:
 	text_from_ram wStringBuffer1
 	text "を"
 	line "すてました！"
 	prompt
 
-Textd478: ; 03:5478
+Textd478:
 	text_from_ram wStringBuffer2
 	text "を　すてます"
 	line "ほんとに　よろしいですか？"
 	prompt
 
-Textd491: ; 03:5491
+Textd491:
 	text "それは　とても　たいせつなモノです"
 	line "すてることは　できません！"
 	prompt
-	
-Functiond4b2: ; 03:54b2
+
+Functiond4b2:
 	push hl
 	push bc
 	ld a, $01
@@ -372,7 +368,7 @@ Functiond4b2: ; 03:54b2
 	pop hl
 	ret
 
-Functiond4e6: ; 03:54e6
+Functiond4e6:
 	ld a, [wcb6e]
 	and a
 	ret z
@@ -385,14 +381,14 @@ Functiond4e6: ; 03:54e6
 	ret
 .sub_d4f8
 	jr Functiond505
-	
-Functiond4fa: ; 03:54fa
+
+Functiond4fa:
 	call Functiond51e
 	ld hl, Function8261
 	ld a, BANK(Function8261)
 	call FarCall_hl
 
-Functiond505: ; 03:5505
+Functiond505:
 	ld a, $04
 	ld [wcdb2], a
 	ldh a, [hOverworldFlashlightEffect]
@@ -404,11 +400,11 @@ Functiond505: ; 03:5505
 	call Functiond708
 	jr Functiond543
 
-Functiond519: ; 03:5519
+Functiond519:
 	call Functiond51e
 	jr Functiond543
 
-Functiond51e: ; 03:551e
+Functiond51e:
 	ld a, [wPlayerStepDirection]
 	and a
 	jr nz, .sub_d529
@@ -434,7 +430,7 @@ Functiond51e: ; 03:551e
 	inc [hl]
 	ret
 
-Functiond543: ; 03:5543
+Functiond543:
 	call .sub_d5bf
 	ld a, [wcb6c]
 	ld d, a
@@ -531,7 +527,7 @@ Functiond543: ; 03:5543
 	ld l, a
 	jp hl
 
-Tabled5d3: ; 03:55d3
+Tabled5d3:
 	dw RefreshTiles
 	dw Functiond5ea
 	dw BufferScreen
@@ -544,16 +540,16 @@ Tabled5d3: ; 03:55d3
 	dw Functiond5e9
 	dw Functiond5e9
 
-Functiond5e9: ; 03:55e9
+Functiond5e9:
 	ret
 
-Functiond5ea: ; 03:55ea
+Functiond5ea:
 	ld hl, Functionc9c1
 	ld a, BANK(Functionc9c1)
 	call FarCall_hl
 	ret
 
-Functiond5f3: ; 03:55f3
+Functiond5f3:
 	ld a, [wPlayerStepDirection]
 	and a
 	jr z, .sub_d606
@@ -585,7 +581,7 @@ Functiond5f3: ; 03:55f3
 	call ScheduleEastColumnRedraw
 	ret
 
-Functiond62e: ; 03:562e
+Functiond62e:
 	ld a, [wBGMapAnchor]
 	add $40
 	ld [wBGMapAnchor], a
@@ -615,7 +611,7 @@ Functiond62e: ; 03:562e
 	inc [hl]
 	ret
 
-Functiond65f: ; 03:565f
+Functiond65f:
 	ld a, [wBGMapAnchor]
 	sub $40
 	ld [wBGMapAnchor], a
@@ -647,7 +643,7 @@ Functiond65f: ; 03:565f
 	dec [hl]
 	ret
 
-Functiond692: ; 03:5692
+Functiond692:
 	ld a, [wBGMapAnchor]
 	ld e, a
 	and $e0
@@ -675,7 +671,7 @@ Functiond692: ; 03:5692
 	dec [hl]
 	ret
 
-Functiond6bb: ; 03:56bb
+Functiond6bb:
 	ld a, [wBGMapAnchor]
 	ld e, a
 	and $e0
@@ -703,7 +699,7 @@ Functiond6bb: ; 03:56bb
 	inc [hl]
 	ret
 
-Functiond6e4: ; 03:56e4
+Functiond6e4:
 	ld a, [wcb6e]
 	and a
 	ret z
@@ -723,7 +719,7 @@ Functiond6e4: ; 03:56e4
 	call Functiond51e
 	jp Functiond543
 
-Functiond708: ; 03:5708
+Functiond708:
 	ld a, [wPlayerStepDirection]
 	and a
 	jr z, .sub_d71b
@@ -814,7 +810,7 @@ Functiond708: ; 03:5708
 	ld [wRedrawFlashlightBlackDst1+1], a
 	ret
 
-Datad7b1: ; 03:57b1
+Datad7b1:
 	db $02, $03, $02, $11, $02, $02, $02, $10
 	db $02, $0e, $02, $00, $02, $0f, $02, $01
 	db $03, $02, $11, $02, $02, $02, $10, $02
@@ -832,7 +828,7 @@ Datad7b1: ; 03:57b1
 	db $09, $08, $0b, $08, $08, $08, $0a, $08
 	db $08, $08, $06, $08, $09, $08, $07, $08
 
-Functiond831: ; 03:5831
+Functiond831:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -871,7 +867,7 @@ Functiond831: ; 03:5831
 	pop hl
 	ret
 
-Functiond85f: ; 03:585f
+Functiond85f:
 	push hl
 	ld hl, wTileMap
 	ld de, $0014
@@ -889,7 +885,7 @@ Functiond85f: ; 03:585f
 	pop hl
 	ret
 
-Functiond873: ; 03:5873
+Functiond873:
 	ldh a, [hOverworldFlashlightEffect]
 	dec a
 	ld l, a
@@ -900,10 +896,10 @@ Functiond873: ; 03:5873
 	ld [wRedrawFlashlightWidthHeight], a
 	ret
 
-Datad882: ; 03:5882
+Datad882:
 	db $07, $05, $03, $01
 
-Functiond886: ; 03:5886
+Functiond886:
 	ld de, wPartyCount
 	ld a, [wMonType]
 	and $0f
@@ -933,7 +929,7 @@ Functiond886: ; 03:5886
 	jr z, Functiond8b6
 	ld hl, wOTPartyMonOT
 
-Functiond8b6: ; 03:58b6
+Functiond8b6:
 	ldh a, [hMoveMon]
 	dec a
 	call SkipNames
@@ -1160,7 +1156,7 @@ Functiond8b6: ; 03:58b6
 	scf
 	ret
 
-FillPP: ; 03:5a28
+FillPP:
 	ld b, $04
 .sub_da2a
 	ld a, [hli]
@@ -1188,7 +1184,7 @@ FillPP: ; 03:5a28
 	ret
 
 
-Functionda4f: ; 03:5a4f
+Functionda4f:
 	ld hl, wPartyCount
 	ld a, [hl]
 	cp $06
@@ -1247,7 +1243,7 @@ Functionda4f: ; 03:5a4f
 	and a
 	ret
 
-Functiondac8: ; 03:5ac8
+Functiondac8:
 	ld a, [wcd7c]
 	and a
 	jr z, .sub_dae3
@@ -1426,7 +1422,7 @@ Functiondac8: ; 03:5ac8
 	and a
 	ret
 
-Functiondc16: ; 03:5c16
+Functiondc16:
 	ld hl, wPartyCount
 	ld a, [hl]
 	cp $06
@@ -1554,7 +1550,7 @@ Functiondc16: ; 03:5c16
 	and a
 	ret
 
-Functiondcfc: ; 03:5cfc
+Functiondcfc:
 	ld a, [wcd7c]
 	ld de, wd876
 	and a
@@ -1590,7 +1586,7 @@ Functiondcfc: ; 03:5cfc
 	ld bc, $0020
 	jp CopyBytes
 
-Functiondd5c: ; 03:5d5c
+Functiondd5c:
 	ld de, wBoxListLength
 	ld a, [de]
 	cp $1e
@@ -1765,7 +1761,7 @@ Functiondd5c: ; 03:5d5c
 	scf
 	ret
 
-Functionde79: ; 03:5e79
+Functionde79:
 	ld a, [wPartyCount]
 	cp $06
 	jr z, .sub_de8b
@@ -1812,7 +1808,7 @@ Functionde79: ; 03:5e79
 	and a
 	ret
 
-Functiondecd: ; 03:5ecd
+Functiondecd:
 	ld hl, wPartyCount
 	ld a, [wcd7c]
 	and a
@@ -1908,7 +1904,7 @@ Functiondecd: ; 03:5ecd
 .sub_df7a
 	jp CopyDataUntil
 
-Functiondf7d: ; 03:5f7d
+Functiondf7d:
 	ld c, $00
 .sub_df7f
 	inc c
@@ -1924,7 +1920,7 @@ Functiondf7d: ; 03:5f7d
 	jr nz, .sub_df7f
 	ret
 
-Functiondf91: ; 03:5f91
+Functiondf91:
 	push hl
 	push de
 	push bc
@@ -2111,7 +2107,7 @@ Functiondf91: ; 03:5f91
 	pop hl
 	ret
 
-Function60a0: ; 03:60a0
+Function60a0:
 	ld a, [wMonDexIndex]
 	dec a
 	ld c, a
@@ -2196,7 +2192,7 @@ Function60a0: ; 03:60a0
 	call LoadMapPart
 	call GetMemSGBLayout
 	call WaitBGMap
-	call RotateThreePalettesLeft
+	call GBFadeInFromWhite
 .sub_e155
 	pop bc
 	ld a, b
@@ -2211,36 +2207,36 @@ Function60a0: ; 03:60a0
 	ld b, $02
 	ret
 
-Texte168: ; 03:6168
+Texte168:
 	text_from_ram wStringBuffer1
 	text "は　マサキの　ところへ"
 	line "てんそうされた！"
 	prompt
 
-Texte181: ; 03:6181
+Texte181:
 	text_from_ram wStringBuffer1
 	text "は　だれかの　<PC>に"
 	line "てんそうされた！"
 	prompt
 
-Texte198: ; 03:6198
+Texte198:
 	text_from_ram wStringBuffer1
 	text "の　データが　あたらしく"
 	line "#ずかんに　セーブされます！@"
 
-Texte1b8: ; 03:61b8
+Texte1b8:
 	db "ドギ@"
 
-Texte1bb: ; 03:61bb
+Texte1bb:
 	text "ゲットした　@"
 
-Texte1c3: ; 03:61c3
+Texte1c3:
 	text_from_ram wStringBuffer1
 	text "に"
 	line "なまえを　つけますか？"
 	done
-	
-Functione1d5: ; 03:61d5
+
+Functione1d5:
 	call Functione284
 	ret c
 	call LoadStandardMenuHeader
@@ -2272,41 +2268,41 @@ Functione1d5: ; 03:61d5
 	call LoadFontExtra
 	call CloseWindow
 	ret
-	
-Texte224: ; 03:6224
+
+Texte224:
 	text "なんに　するん？"
 	done
-	
-Datae22e: ; 03:622e
+
+Datae22e:
 	db $40, $00, $00, $11, $0e
 	dw Datae236
 	db $01
 
-Datae236: ; 03:6236
+Datae236:
 	db $80, $00
 	dw Datae27c
 	db $8a, $1f
 	dw Texte23e
-	
-Texte23e: ; 03:623e
+
+Texte23e:
 	db "#の　ようすをみる@"
-	
-Texte248: ; 03:6248
+
+Texte248:
 	db "#を　つれていく@"
 
-Texte251: ; 03:6251
+Texte251:
 	db "#を　あずける@"
 
-Texte259: ; 03:6259
+Texte259:
 	db "#を　にがす@"
 
-Texte260: ; 03:6260
+Texte260:
 	db "ボックスを　かえる@"
 
-Texte26a: ; 03:626a
+Texte26a:
 	db "さようなら@"
-	
-Tablee270: ; 03:6270
+
+Tablee270:
 	dw Functione5c5
 	dw Functione31b
 	dw Functione2a6
@@ -2314,10 +2310,10 @@ Tablee270: ; 03:6270
 	dw Functione3c3
 	dw Functione2a4
 
-Datae27c: ; 03:627c
+Datae27c:
 	db $05, $00, $01, $02, $03, $04, $05, $ff
 
-Functione284: ; 03:6284
+Functione284:
 	ld a, [wPartyCount]
 	and a
 	ret nz
@@ -2326,24 +2322,24 @@ Functione284: ; 03:6284
 	scf
 	ret
 
-Texte291: ; 03:6291
+Texte291:
 	text "#もってへんやつは"
 	line "おことわりや！"
 	prompt
 
-Functione2a4: ; 03:62a4
+Functione2a4:
 	scf
 	ret
 
-Functione2a6: ; 03:62a6
+Functione2a6:
 	call Functione2b0
 	jr c, .sub_e2ae
 	call Functione2f0
 .sub_e2ae
 	and a
 	ret
-	
-Functione2b0: ; 03:72b0
+
+Functione2b0:
 	ld a, [wPartyCount]
 	and a
 	jr z, .sub_e2bc
@@ -2362,16 +2358,16 @@ Functione2b0: ; 03:72b0
 	scf
 	ret
 
-Texte2cc: ; 03:62cc
+Texte2cc:
 	text "１ぴきも　もってへんやんか！"
 	prompt
 
-Texte2dc: ; 03:62dc
+Texte2dc:
 	text "それ　あずけたら"
 	line "こまるんとちゃう？"
 	prompt
 
-Functione2f0: ; 03:62f0
+Functione2f0:
 	call LoadStandardMenuHeader
 	ld hl, Tablee6da
 	call Functione6a4
@@ -2390,7 +2386,7 @@ Functione2f0: ; 03:62f0
 	call Functiondecd
 	ret
 
-Functione31b: ; 03:631b
+Functione31b:
 	call .sub_e325
 	jr c, .sub_e323
 	call Functione350
@@ -2409,12 +2405,12 @@ Functione31b: ; 03:631b
 	scf
 	ret
 
-Texte336: ; 03:6336
+Texte336:
 	text "それいじょう　よくばったって"
 	line "#　もたれへんで！"
 	prompt
 
-Functione350: ; 03:6350
+Functione350:
 	call LoadStandardMenuHeader
 	ld hl, Datae6f8
 	call Functione6a4
@@ -2433,7 +2429,7 @@ Functione350: ; 03:6350
 	call Functiondecd
 	ret
 
-Functione37b: ; 03:637b
+Functione37b:
 	call .sub_e380
 	and a
 	ret
@@ -2457,18 +2453,18 @@ Functione37b: ; 03:637b
 	call Functiondecd
 	ret
 
-Texte3af: ; 03:63af
+Texte3af:
 	text_from_ram wStringBuffer1
 	text "　をほんとうに"
 	next "にがしますか？"
 	done
 
-Functione3c3: ; 03:63c3
+Functione3c3:
 	call Functione3c8
 	and a
 	ret
 
-Functione3c8: ; 03:63c8
+Functione3c8:
 	call Functione3ed
 	call LoadStandardMenuHeader
 	call ClearPalettes
@@ -2486,7 +2482,7 @@ Functione3c8: ; 03:63c8
 	call CloseWindow
 	ret
 
-Functione3ed: ; 03:63ed
+Functione3ed:
 	ld hl, wd4b9
 	ld c, $00
 .sub_e3f2
@@ -2507,17 +2503,17 @@ Functione3ed: ; 03:63ed
 	jr c, .sub_e3f2
 	ret
 
-Texte40c: ; 03:640c
+Texte40c:
 	db "ダミーボックス@"
 
-Datae414: ; 03:6414
+Datae414:
 	db $40, $00, $00, $0c, $13, $1c, $64, $01
 	db $20, $04, $00, $01, $03, $2c, $64, $03
 	db $38, $64, $00, $00, $00, $03, $9d, $64
 	db $0a, $01, $02, $03, $04, $05, $06, $07
 	db $08, $09, $0a, $ff
-	
-Functione438: ; 03:6438
+
+Functione438:
 	push de
 	ld a, [wMenuSelection]
 	dec a
@@ -2539,20 +2535,20 @@ Functione438: ; 03:6438
 	pop hl
 	call PlaceString
 	ret
-	
-Texte461: ; 03:6461
-	db "・.０１　@"
-	db "・.０２　@"
-	db "・.０３　@"
-	db "・.０４　@"
-	db "・.０５　@"
-	db "・.０６　@"
-	db "・.０７　@"
-	db "・.０８　@"
-	db "・.０９　@"
-	db "・.１０　@"
-	
-Functione49d: ; 03:649d
+
+Texte461:
+	db "・．０１　@"
+	db "・．０２　@"
+	db "・．０３　@"
+	db "・．０４　@"
+	db "・．０５　@"
+	db "・．０６　@"
+	db "・．０７　@"
+	db "・．０８　@"
+	db "・．０９　@"
+	db "・．１０　@"
+
+Functione49d:
 	ld h, d
 	ld l, e
 	ld de, Texte4bf
@@ -2569,15 +2565,15 @@ Functione49d: ; 03:649d
 	ld de, Texte4ca
 	call PlaceString
 	ret
-	
-Texte4bf: ; 03:64bf
+
+Texte4bf:
 	db "あずかっている#"
 	next "　@"
 
-Texte4ca: ; 03:64ca
-	db "/３０@"
+Texte4ca:
+	db "／３０@"
 
-Functione4ce: ; 03:64ce
+Functione4ce:
 	ld a, [wMenuSelection]
 	dec a
 	ld c, a
@@ -2594,8 +2590,8 @@ Functione4ce: ; 03:64ce
 	ld a, [hl]
 	call CloseSRAM
 	ret
-	
-Datae4e7: ; 03:64e7
+
+Datae4e7:
 	db $02, $00, $a0
 	db $02, $48, $a5
 	db $02, $90, $aa
@@ -2607,7 +2603,7 @@ Datae4e7: ; 03:64e7
 	db $03, $d8, $af
 	db $03, $20, $b5
 
-Functione505: ; 03:6505
+Functione505:
 	ld hl, Datae5a5
 	call LoadMenuHeader
 	call VerticalMenu
@@ -2621,18 +2617,18 @@ Functione505: ; 03:6505
 	and a
 	ret
 
-Functione51f: ; 03:651f
+Functione51f:
 	ld hl, Texte529
 	call MenuTextBox
 	call CloseWindow
 	ret
 
-Texte529: ; 03:6529
+Texte529:
 	text "バンクチェンジは"
 	next "かいはつちゅうです！"
 	prompt
 
-Functione53e: ; 03:653e
+Functione53e:
 	ld hl, Texte551
 	call MenuTextBox
 	call YesNoBox
@@ -2640,17 +2636,17 @@ Functione53e: ; 03:653e
 	ret c
 	jr Functione51f
 
-Functione54d: ; 03:654d
+Functione54d:
 	ld a, [wMenuSelection]
 	ret
-	
-Texte551: ; 03:6551
+
+Texte551:
 	text "#　ボックスを　かえると"
 	line "どうじに　レポートが　かかれます"
 	para "<⋯⋯>　それでも　いいですか？"
 	done
 
-Functione57e: ; 03:657e
+Functione57e:
 	ld b, $04
 	ld de, wMovementBufferCount
 	ld a, BANK(NamingScreen)
@@ -2668,18 +2664,18 @@ Functione57e: ; 03:657e
 	call CopyString
 	ret
 
-Datae5a5: ; 03:65a5
+Datae5a5:
 	db $40, $06, $00, $0e, $0e
 	dw Datae5ad
 	db $01
-	
-Datae5ad: ; 03:65ad
+
+Datae5ad:
 	db $80, $03
 	db "ボックスきりかえ@"
 	db "なまえを　かえる@"
 	db "やめる@"
 
-Functione5c5: ; 03:65c5
+Functione5c5:
 	call LoadStandardMenuHeader
 	call Functione5d3
 	call ClearPalettes
@@ -2687,7 +2683,7 @@ Functione5c5: ; 03:65c5
 	and a
 	ret
 
-Functione5d3: ; 03:65d3
+Functione5d3:
 	call ClearBGPalettes
 	call .sub_e62a
 	call SetPalettes
@@ -2763,17 +2759,17 @@ Functione5d3: ; 03:65d3
 	ld [wce5f], a
 	ret
 
-Texte679: ; 03:6679
-	db "ボックス/いまの　ボックス@"
+Texte679:
+	db "ボックス／いまの　ボックス@"
 
-Texte687: ; 03:6687
+Texte687:
 	db "しゅるい　　なまえ　　　レべル@"
 
-Texte697: ; 03:6697
+Texte697:
 	text "どの#が　みたいねん？"
 	done
 
-Functione6a4: ; 03:66a4
+Functione6a4:
 	ld a, l
 	ld [wcd70], a
 	ld a, h
@@ -2798,52 +2794,52 @@ Functione6a4: ; 03:66a4
 	scf
 	ret
 
-Texte6d0: ; 03:66d0
+Texte6d0:
 	text "#を　えらんだ！"
 	prompt
-	
-Tablee6da: ; 03:66da
+
+Tablee6da:
 	dw Datae6e0
 	dw wcd3c
 	dw wcd46
-	
-Datae6e0: ; 03:66e0
+
+Datae6e0:
 	db $40, $03, $05, $0b, $12
 	dw Datae6e8
 	db $01
-	
-Datae6e8: ; 03:e6e8
+
+Datae6e8:
 	db $00, $04
-	
-Datae6ea: ; 03:66ea
+
+Datae6ea:
 	db $08, $01, $00, $aa, $d6, $09, $a6
 	db $47, $09, $ba, $47, $00, $00, $00
-	
-Datae6f8: ; 03:66f8
+
+Datae6f8:
 	dw Datae6fe
 	dw wcd3c
 	dw wcd46
-	
-Datae6fe: ; 03:66fe
+
+Datae6fe:
 	db $40, $03, $05, $0b, $12
 	dw Datae706
 	db $01
-	
-Datae706: ; 03:6706
+
+Datae706:
 	db $00, $04, $08, $01, $00, $83, $da, $09
 	db $ab, $47, $09, $c1, $47, $00, $00, $00
-	
-Datae716: ; 03:6716
+
+Datae716:
 	dw Datae71c
 	dw wcd3c
 	dw wcd46
 
-Datae71c: ; 03:671c
+Datae71c:
 	db $40, $04, $01, $0b, $13, $24, $67, $01
 	db $00, $04, $00, $01, $00, $83, $da, $09
 	db $d8, $47, $00, $00, $00, $00, $00, $00
-	
-Function6734: ; 03:6734
+
+Function6734:
 	call RefreshScreen
 	call LowVolume
 	ldh a, [hMapAnims]
@@ -2875,7 +2871,7 @@ Function6734: ; 03:6734
 	call Function1fea
 	ret
 
-_UseItem: ; 03:677f
+_UseItem:
 	ld a, [wCurItem]
 	ld [wce37], a
 	call GetItemName
@@ -2896,7 +2892,7 @@ _UseItem: ; 03:677f
 	ld l, a
 	jp hl
 
-Tablee7a5: ; 03:67a5
+Tablee7a5:
 	dw Functione8f9
 	dw Functione8f9
 	dw Functionf66f
@@ -3068,7 +3064,7 @@ Tablee7a5: ; 03:67a5
 	dw Functionf672
 	dw Functionf672
 
-Functione8f9: ; 03:68f9
+Functione8f9:
 	ld a, [wBattleMode]
 	and a
 	jp z, Functionf7dd
@@ -3342,7 +3338,7 @@ Functione8f9: ; 03:68f9
 	ld hl, NamingScreen
 	push de
 	call FarCall_hl
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	pop de
 	ld a, [de]
 	cp $50
@@ -3364,7 +3360,7 @@ Functione8f9: ; 03:68f9
 	ld a, BANK(NamingScreen)
 	ld hl, NamingScreen
 	call FarCall_hl
-	call RotateThreePalettesRight
+	call GBFadeOutToWhite
 	ld de, wdf17
 	ld a, [de]
 	cp $50
@@ -3394,81 +3390,81 @@ Functione8f9: ; 03:68f9
 	ld [wItemQuantity], a
 	jp TossItem
 
-Texteb6e: ; 03:6b6e
+Texteb6e:
 	text "よけられた！"
 	line "こいつは　つかまりそうにないぞ！"
 	prompt
 
-Texteb87: ; 03:6b87
+Texteb87:
 	text "#に"
 	line "うまく　あたらなかった！"
 	prompt
 
-Texteb98: ; 03:6b98
+Texteb98:
 	text "だめだ！　#が"
 	line "ボールから　でてしまった！"
 	prompt
 
-Textebaf: ; 03:6baf
+Textebaf:
 	text "ああ！"
 	line "つかまえたと　おもったのに！"
 	prompt
 
-Textebc3: ; 03:6bc3
+Textebc3:
 	text "ざんねん！"
 	line "もうすこしで　つかまえられたのに！"
 	prompt
 
-Textebdc: ; 03:6bdc
+Textebdc:
 	text "おしい！"
 	line "あと　ちょっとの　ところだったのに！"
 	prompt
-	
-Textebf5: ; 03:6bf5
+
+Textebf5:
 	text "やったー！"
 	line "@"
-	
-Textebfd: ; 03:6bfd
+
+Textebfd:
 	text_from_ram wBattleMonNickname
 	text "を　つかまえたぞ！@"
 
-Textec0b: ; 03:6c0b
+Textec0b:
 	sound_caught_mon
 	text_waitbutton
 	text_end
 
-Textec0e: ; 03:6c0e
+Textec0e:
 	text_from_ram wdf17
 	text "は　マサキの　ところへ"
 	line "てんそうされた！"
 	prompt
 
-Textec27: ; 03:6c27
+Textec27:
 	text_from_ram wdf17
 	text "は　だれかの　<PC>に"
 	line "てんそうされた！"
 	prompt
 
-Textec3e: ; 03:6c3e
+Textec3e:
 	text_from_ram wBattleMonNickname
 	text "の　データが　あたらしく"
 	line "#ずかんに　セーブされます！@"
 
-Textec5e: ; 03:6c5e
+Textec5e:
 	sound_slot_machine_start
 	text_waitbutton
 	text_end
 
-Textec61: ; 03:6c61
+Textec61:
 	text "つかまえた　@"
 
-Textec69: ; 03:6c69
+Textec69:
 	text_from_ram wStringBuffer1
 	text "に"
 	line "なまえを　つけますか"
 	done
 
-Functionec7a: ; 03:6c7a
+Functionec7a:
 	call ClearPalettes
 	ld hl, Function3e39f
 	ld a, BANK(Function3e39f)
@@ -3480,7 +3476,7 @@ Functionec7a: ; 03:6c7a
 	call SetPalettes
 	ret
 
-Functionec95: ; 03:6c95
+Functionec95:
 	ld a, [wBattleMode]
 	and a
 	jp nz, Functionf7dd
@@ -3488,7 +3484,7 @@ Functionec95: ; 03:6c95
 	ld hl, Function86a0
 	jp FarCall_hl
 
-Functioneca4: ; 03:6ca4
+Functioneca4:
 	xor a
 	ld [wFieldMoveSucceeded], a
 	call .sub_ecba
@@ -3518,7 +3514,7 @@ Functioneca4: ; 03:6ca4
 	scf
 	ret
 
-Functionecd5: ; 03:6cd5
+Functionecd5:
 	call RefreshScreen
 	ld a, [wPlayerState]
 	cp $01
@@ -3538,8 +3534,8 @@ Functionecd5: ; 03:6cd5
 	call PlayMapMusic
 	call Function1fea
 	ret
-	
-Functioned00: ; 03:6d00
+
+Functioned00:
 	ld a, [wBattleMode]
 	and a
 	jp nz, Functionf7dd
@@ -3567,7 +3563,7 @@ Functioned00: ; 03:6d00
 	ld [wFieldMoveSucceeded], a
 	ret
 
-Functioned37: ; 03:6d37
+Functioned37:
 	ld a, [wBattleMode]
 	and a
 	jp nz, Functionf7dd
@@ -3616,13 +3612,13 @@ Functioned37: ; 03:6d37
 	call PrintText
 	jp Functionf7a2
 
-Functioneda1: ; 03:6da1
+Functioneda1:
 	pop hl
 	ld hl, Textede7
 	call PrintText
 	jp ClearPalettes
 
-Functionedab: ; 03:6dab
+Functionedab:
 	push hl
 	ld bc, $0024
 	add hl, bc
@@ -3635,52 +3631,52 @@ Functionedab: ; 03:6dab
 	ld a, $18
 	jp Predef
 
-Functionedbe: ; 03:6dbe
+Functionedbe:
 	xor a
 	ld [wFieldMoveSucceeded], a
 	call ClearPalettes
 	call z, GetMemSGBLayout
 	jp ReloadFontAndTileset
 
-Textedcb: ; 03:6dcb
+Textedcb:
 	text_from_ram wStringBuffer1
 	text "の　@"
 
-Textedd2: ; 03:6dd2
+Textedd2:
 	text_from_ram wStringBuffer2
 	text "の"
 	line "きそ　ポイントが　あがった！"
 	prompt
-	
 
 
-Textede7: ; 03:6de7
+
+Textede7:
 	text "つかっても　こうかが　ないよ"
 	prompt
 
-Tableedf7: ; 03:6df7
+Tableedf7:
 	dw Textee01
 	dw Textee07
 	dw Textee0f
 	dw Textee17
 	dw Textee1c
-	
-Textee01: ; 03:6e01
+
+Textee01:
 	db "たいりょく@"
 
-Textee07: ; 03:6e07
+Textee07:
 	db "こうげきりょく@"
 
-Textee0f: ; 03:6e0f
+Textee0f:
 	db "ぼうぎょりょく@"
 
-Textee17: ; 03:6e17
+Textee17:
 	db "すばやさ@"
 
-Textee1c: ; 03:6e1c
+Textee1c:
 	db "とくしゅのうりょく@"
-	
-Functionee26: ; 03:6e26
+
+Functionee26:
 	ld a, [wCurItem]
 	ld hl, Dataee38
 .sub_ee2c
@@ -3694,15 +3690,15 @@ Functionee26: ; 03:6e26
 	ld c, a
 	ld b, $00
 	ret
-	
-Dataee38: ; 03:6e38
+
+Dataee38:
 	db $1a, $00
 	db $1b, $02
 	db $1c, $04
 	db $1d, $06
 	db $1f, $08
-	
-Functionee42: ; 03:6e42
+
+Functionee42:
 	ld a, [wBattleMode]
 	and a
 	jp nz, Functionf7dd
@@ -3804,7 +3800,7 @@ Functionee42: ; 03:6e42
 	call FarCall_hl
 	jp Functionf7a2
 
-Functionef02: ; 03:6f02
+Functionef02:
 	ld a, [wPartyCount]
 	and a
 	jp z, Functionf7dd
@@ -3814,7 +3810,7 @@ Functionef02: ; 03:6f02
 	ld a, [wMonDexIndex]
 	ld [wCurSpecies], a
 
-Functionef17: ; 03:6f17
+Functionef17:
 	call .sub_ef61
 	ld a, $20
 	call GetPartyParamLocation
@@ -3865,8 +3861,8 @@ Functionef17: ; 03:6f17
 	ld c, [hl]
 	pop hl
 	ret
-	
-Dataef77: ; 03:6f77
+
+Dataef77:
 	db $09, $f0, $08
 	db $0a, $f1, $10
 	db $0b, $f2, $20
@@ -3874,8 +3870,8 @@ Dataef77: ; 03:6f77
 	db $0d, $f4, $40
 	db $26, $f6, $ff
 	db $ff, $00, $00
-	
-Functionef8c: ; 03:6f8c
+
+Functionef8c:
 	ld a, [wPartyCount]
 	and a
 	jp z, Functionf7dd
@@ -3921,10 +3917,10 @@ Functionef8c: ; 03:6f8c
 	call Functionf7a2
 	jp Functionf104
 
-Functionefed: ; 03:6fed
+Functionefed:
 	ret
-	
-Functionefee: ; 03:6fee
+
+Functionefee:
 	ld a, [wPartyCount]
 	and a
 	jp z, Functionf7dd
@@ -3974,10 +3970,10 @@ Functionefee: ; 03:6fee
 	call Functionf7a2
 	jp Functionf104
 
-Functionf05a: ; 03:705a
+Functionf05a:
 	ret
 
-Functionf05b: ; 03:705b
+Functionf05b:
 	ld a, [wPartyCount]
 	and a
 	jp z, Functionf7dd
@@ -4014,11 +4010,11 @@ Functionf05b: ; 03:705b
 	call Functionf0d8
 	call Functionf7a2
 	jp Functionf104
-	
-Functionf0af: ; 03:70af
+
+Functionf0af:
 	ret
 
-Functionf0b0: ; 03:70b0
+Functionf0b0:
 	push de
 	ld de, $0001
 	call WaitPlaySFX
@@ -4033,13 +4029,13 @@ Functionf0b0: ; 03:70b0
 	call Predef
 	ret
 
-Functionf0cf: ; 03:70cf
+Functionf0cf:
 	ld [wcdb9], a
 	ld a, $36
 	call Predef
 	ret
 
-Functionf0d8: ; 03:70d8
+Functionf0d8:
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wTileMap
@@ -4056,15 +4052,15 @@ Functionf0d8: ; 03:70d8
 	call TextboxWaitPressAorB_BlinkCursor
 	ret
 
-Functionf0fb: ; 03:70fb
+Functionf0fb:
 	call Functionf7e2
 	jr Functionf104
 
-Functionf100: ; 03:7100
+Functionf100:
 	xor a
 	ld [wFieldMoveSucceeded], a
 
-Functionf104: ; 03:7104
+Functionf104:
 	call ClearPalettes
 	call z, GetMemSGBLayout
 	ld a, [wBattleMode]
@@ -4073,7 +4069,7 @@ Functionf104: ; 03:7104
 	call ReloadFontAndTileset
 	ret
 
-Functionf113: ; 03:7113
+Functionf113:
 	ld a, [wBattleMode]
 	and a
 	ret z
@@ -4089,16 +4085,16 @@ Functionf113: ; 03:7113
 	xor a
 	ret
 
-Functionf127: ; 03:7127
+Functionf127:
 	call Functionf1c5
 	srl d
 	rr e
 	jr Functionf133
 
-Functionf130: ; 03:7130
+Functionf130:
 	call Functionf1c5
 
-Functionf133: ; 03:7133
+Functionf133:
 	ld a, $22
 	call GetPartyParamLocation
 	ld [hl], d
@@ -4107,7 +4103,7 @@ Functionf133: ; 03:7133
 	call Functionf17e
 	ret
 
-Functionf13f: ; 03:713f
+Functionf13f:
 	ld a, $23
 	call GetPartyParamLocation
 	ld a, [hl]
@@ -4134,7 +4130,7 @@ Functionf13f: ; 03:713f
 .sub_f164
 	ret
 
-Functionf165: ; 03:7165
+Functionf165:
 	call Functionf1b5
 	call Functionf19e
 	call Functionf1ac
@@ -4142,7 +4138,7 @@ Functionf165: ; 03:7165
 	or e
 	ret
 
-Functionf171: ; 03:7171
+Functionf171:
 	call Functionf1ac
 	ld h, d
 	ld l, e
@@ -4153,7 +4149,7 @@ Functionf171: ; 03:7171
 	sbc d
 	ret
 
-Functionf17e: ; 03:717e
+Functionf17e:
 	ld a, $22
 	call GetPartyParamLocation
 	ld a, [hli]
@@ -4162,21 +4158,21 @@ Functionf17e: ; 03:717e
 	ld [wHPBarNewHP], a
 	ret
 
-Functionf18c: ; 03:718c
+Functionf18c:
 	ld a, d
 	ld [wHPBarNewHP+1], a
 	ld a, e
 	ld [wHPBarNewHP], a
 	ret
 
-Functionf195: ; 03:7195
+Functionf195:
 	ld a, [wHPBarNewHP+1]
 	ld d, a
 	ld a, [wHPBarNewHP]
 	ld e, a
 	ret
-	
-Functionf19e: ; 03:719e
+
+Functionf19e:
 	ld a, $22
 	call GetPartyParamLocation
 	ld a, [hli]
@@ -4185,14 +4181,14 @@ Functionf19e: ; 03:719e
 	ld [wHPBarOldHP], a
 	ret
 
-Functionf1ac: ; 03:71ac
+Functionf1ac:
 	ld a, [wReplacementBlock]
 	ld d, a
 	ld a, [wHPBarOldHP]
 	ld e, a
 	ret
 
-Functionf1b5: ; 03:71b5
+Functionf1b5:
 	push hl
 	ld a, $24
 	call GetPartyParamLocation
@@ -4203,14 +4199,14 @@ Functionf1b5: ; 03:71b5
 	pop hl
 	ret
 
-Functionf1c5: ; 03:71c5
+Functionf1c5:
 	ld a, [wMapBlocksAddress]
 	ld d, a
 	ld a, [wFieldMoveScriptID]
 	ld e, a
 	ret
 
-Functionf1ce: ; 03:71ce
+Functionf1ce:
 	ld a, $24
 	call GetPartyParamLocation
 	ld a, [hli]
@@ -4226,8 +4222,8 @@ Functionf1ce: ; 03:71ce
 	ldh a, [hQuotient+2]
 	ld e, a
 	ret
-	
-Functionf1e9: ; 03:71e9
+
+Functionf1e9:
 	push hl
 	ld a, [wCurItem]
 	ld hl, Dataf203
@@ -4249,8 +4245,8 @@ Functionf1e9: ; 03:71e9
 	ld d, [hl]
 	pop hl
 	ret
-	
-Dataf203: ; 03:7203
+
+Dataf203:
 	db $2e, $32, $00
 	db $2f, $3c, $00
 	db $30, $50, $00
@@ -4258,8 +4254,8 @@ Dataf203: ; 03:7203
 	db $11, $32, $00
 	db $12, $14, $00
 	db $ff, $00, $00
-	
-Functionf218: ; 03:7218
+
+Functionf218:
 	ld a, [wcd3c]
 	dec a
 	ld b, a
@@ -4339,12 +4335,12 @@ Functionf218: ; 03:7218
 	pop bc
 	jp .sub_f21d
 
-Textf2a6: ; 03:72a6
+Textf2a6:
 	text "その#には　"
 	line "つかえません"
 	done
-	
-Functionf2b5: ; 03:72b5
+
+Functionf2b5:
 	xor a
 	ld [wFieldMoveSucceeded], a
 	ld hl, DigFunction
@@ -4352,18 +4348,18 @@ Functionf2b5: ; 03:72b5
 	call FarCall_hl
 	ret
 
-Functionf2c2: ; 03:72c2
+Functionf2c2:
 	ld b, $c8
 	jp Functionf2ce
 
-Functionf2c7: ; 03:72c7
+Functionf2c7:
 	ld b, $fa
 	jp Functionf2ce
 
-Functionf2cc: ; 03:72cc
+Functionf2cc:
 	ld b, $64
 
-Functionf2ce: ; 03:72ce
+Functionf2ce:
 	ld a, [wBattleMode]
 	and a
 	jp nz, Functionf7dd
@@ -4371,7 +4367,7 @@ Functionf2ce: ; 03:72ce
 	ld [wce2d], a
 	jp Functionf793
 
-Functionf2dc: ; 03:72dc
+Functionf2dc:
 	ld a, [wBattleMode]
 	and a
 	jp z, Functionf7dd
@@ -4379,7 +4375,7 @@ Functionf2dc: ; 03:72dc
 	set 0, [hl]
 	jp Functionf793
 
-Functionf2eb: ; 03:72eb
+Functionf2eb:
 	ld a, [wBattleMode]
 	dec a
 	jp nz, Functionf7dd
@@ -4387,7 +4383,7 @@ Functionf2eb: ; 03:72eb
 	ld [wce06], a
 	jp Functionf793
 
-Functionf2fa: ; 03:72fa
+Functionf2fa:
 	ld a, [wBattleMode]
 	and a
 	jp z, Functionf7dd
@@ -4395,7 +4391,7 @@ Functionf2fa: ; 03:72fa
 	set 1, [hl]
 	jp Functionf793
 
-Functionf309: ; 03:7309
+Functionf309:
 	ld a, [wBattleMode]
 	and a
 	jp z, Functionf7dd
@@ -4403,7 +4399,7 @@ Functionf309: ; 03:7309
 	set 2, [hl]
 	jp Functionf793
 
-Functionf318: ; 03:7318
+Functionf318:
 	ld a, [wBattleMode]
 	and a
 	jr nz, .sub_f327
@@ -4438,10 +4434,10 @@ Functionf318: ; 03:7318
 	ld [hl], a
 	ret
 
-Functionf354: ; 03:7354
+Functionf354:
 	ret
 
-Functionf355: ; 03:7355
+Functionf355:
 	xor a
 	ld [wMovementBufferCount], a
 	ld b, $f8
@@ -4474,7 +4470,7 @@ Functionf355: ; 03:7355
 	ld hl, Textf3da
 	jp PrintText
 
-Functionf397: ; 03:7397
+Functionf397:
 	ld de, $0030
 	ld c, $06
 .sub_f39c
@@ -4493,34 +4489,34 @@ Functionf397: ; 03:7397
 	jr nz, .sub_f39c
 	ret
 
-Dataf3af: ; 03:73af
+Dataf3af:
 	db $3e, $09
 	db $3d, $0a
 	db $3f, $0a
 	db $3e, $0b
 	db $ff
 
-Dataf3b8: ; 03:73b8
+Dataf3b8:
 	db $0a, $1b
 	db $0a, $19
 	db $ff
 
-Textf3bd: ; 03:73bd
+Textf3bd:
 	text "#のふえを　ふいた！"
 	para "うーん！"
 	line "すばらしい　ねいろだ！"
 	prompt
 
-Textf3da: ; 03:73da
+Textf3da:
 	text "すべての　#が"
 	line "めを　さました！"
 	prompt
 
-Textf3ec: ; 03:73ec
+Textf3ec:
 	text "<PLAYER>は"
 	line "#のふえを　ふいてみた！@"
-	
-Functionf3fd: ; 03:73fd
+
+Functionf3fd:
 	ld b, $08
 	ld a, [wBattleMode]
 	and a
@@ -4533,7 +4529,7 @@ Functionf3fd: ; 03:73fd
 .sub_f410
 	jp Function32d0
 
-Functionf413: ; 03:7413
+Functionf413:
 	ld a, [wBattleMode]
 	and a
 	jp nz, Functionf7dd
@@ -4541,24 +4537,24 @@ Functionf413: ; 03:7413
 	call MenuTextBox
 	call CloseWindow
 	ret
-	
-Textf424: ; 03:7424
+
+Textf424:
 	text "あなたの　コイン"
 	line "@"
-	
-Textf42f: ; 03:742f
+
+Textf42f:
 	deciram wd15b, 2, 4
 	text "まい"
 	prompt
-	
-Functionf437: ; 03:7437
+
+Functionf437:
 	call Functionf49f
 	jp c, Functionf7dd
 	ld bc, $0585
 	ld a, $01
 	jr Functionf478
 
-Functionf444: ; 03:7444
+Functionf444:
 	call Functionf49f
 	jp c, Functionf7dd
 .sub_f44a
@@ -4583,16 +4579,16 @@ Functionf444: ; 03:7444
 	xor $01
 	jr Functionf478
 
-Dataf46a: ; 03:746a
+Dataf46a:
 	db $0a, $9d, $0a, $47
-	
-Functionf46e: ; 03:746e
+
+Functionf46e:
 	call Functionf49f
 	jp c, Functionf7dd
 	call Functionf9d9
 	ld a, e
 
-Functionf478: ; 03:7478
+Functionf478:
 	ld [wMovementBufferCount], a
 	dec a
 	jr nz, .sub_f48b
@@ -4616,7 +4612,7 @@ Functionf478: ; 03:7478
 	ld [hl], a
 	ret
 
-Functionf49f: ; 03:749f
+Functionf49f:
 	ld a, [wBattleMode]
 	and a
 	jr z, .sub_f4a7
@@ -4641,12 +4637,12 @@ Functionf49f: ; 03:749f
 	scf
 	ret
 
-Functionf4ca: ; 03:74ca
+Functionf4ca:
 	ld a, [wBattleMode]
 	and a
 	jp nz, Functionf7dd
 
-Functionf4d1: ; 03:74d1
+Functionf4d1:
 	ld a, [wCurItem]
 	ld [wMovementBufferCount], a
 .sub_f4d7
@@ -4701,12 +4697,12 @@ Functionf4d1: ; 03:74d1
 	ld hl, Textf639
 	call PrintText
 
-Functionf547: ; 03:7547
+Functionf547:
 	call ClearPalettes
 	call GetMemSGBLayout
 	jp Functionf7a2
 
-Functionf550: ; 03:7550
+Functionf550:
 	ld a, [wBattleMode]
 	and a
 	jr z, .sub_f572
@@ -4728,12 +4724,12 @@ Functionf550: ; 03:7550
 	call PrintText
 	jr Functionf547
 
-Functionf580: ; 03:7580
+Functionf580:
 	call Functionf588
 	jr nz, Functionf550
 	jp Functionf5f0
 
-Functionf588: ; 03:7588
+Functionf588:
 	xor a
 	ld [wMonType], a
 	call Functionf960
@@ -4767,7 +4763,7 @@ Functionf588: ; 03:7588
 	ret z
 	jr .sub_f5b2
 
-Functionf5bd: ; 03:75bd
+Functionf5bd:
 	ld hl, wMovementBufferCount
 	dec [hl]
 	dec [hl]
@@ -4798,10 +4794,10 @@ Functionf5bd: ; 03:75bd
 	and a
 	jp nz, Functionf550
 
-Functionf5f0: ; 03:75f0
+Functionf5f0:
 	call Functionf7e2
 
-Functionf5f3: ; 03:75f3
+Functionf5f3:
 	call ClearPalettes
 	call GetMemSGBLayout
 	pop af
@@ -4809,34 +4805,34 @@ Functionf5f3: ; 03:75f3
 	ld [wFieldMoveSucceeded], a
 	ret
 
-Textf5ff: ; 03:75ff
+Textf5ff:
 	text "どのわざの"
 	line "ポイントをふやす？"
 	done
 
-Textf610: ; 03:7610
+Textf610:
 	text "どのわざを"
 	line "かいふくする？"
 	done
 
-Textf61f: ; 03:761f
+Textf61f:
 	text_from_ram wStringBuffer2
 	text "は　これいじょう"
 	line "ふやすことが　できません"
 	prompt
 
-Textf639: ; 03:7639
+Textf639:
 	text_from_ram wStringBuffer2
 	text "の"
 	line "わざポイントが　ふえた！"
 	prompt
 
-Textf64c: ; 03:764c
+Textf64c:
 	text "わざポイントが"
 	line "かいふくした！"
 	prompt
 
-Functionf65d: ; 03:765d
+Functionf65d:
 	ld a, [wBattleMode]
 	and a
 	jp nz, Functionf7dd
@@ -4844,19 +4840,19 @@ Functionf65d: ; 03:765d
 	ld a, $0b
 	jp FarCall_hl
 
-Functionf66c: ; 03:766c
+Functionf66c:
 	jp Functionf7dd
 
-Functionf66f: ; 03:766f
+Functionf66f:
 	jp Functionf7dd
 
-Functionf672: ; 03:7672
+Functionf672:
 	jp Functionf7dd
 
-Functionf675: ; 03:7675
+Functionf675:
 	jp Functionfaba
 
-Functionf678: ; 03:7678
+Functionf678:
 	ld a, [wBattleMode]
 	and a
 	jp nz, Functionf7dd
@@ -4936,58 +4932,58 @@ Functionf678: ; 03:7678
 	ret c
 	jp Functionf7a2
 
-Textf723: ; 03:7723
+Textf723:
 	text "<TM>を　きどうした！"
 	prompt
 
-Textf72e: ; 03:772e
+Textf72e:
 	text "ひでんマシンを　きどうした！"
 
-Textf73d: ; 03:773d
+Textf73d:
 	text "なかには　@"
 
-Textf744: ; 03:7744
+Textf744:
 	text_from_ram wStringBuffer2
 	text "が"
 	line "きろくされていた！"
 	para "@"
 
-Textf755: ; 03:7755
+Textf755:
 	text_from_ram wStringBuffer2
 	text "を"
 	line "#に　おぼえさせますか？"
 	done
 
-Textf768: ; 03:7768
+Textf768:
 	text_from_ram wStringBuffer1
 	text "と　@"
 
-Textf76f: ; 03:776f
+Textf76f:
 	text_from_ram wStringBuffer2
 	text "は"
 	line "あいしょうが　わるかった！"
 	para "@"
 
-Textf784: ; 03:7784
+Textf784:
 	text_from_ram wStringBuffer2
 	text "は　おぼえられない！"
 	prompt
 
-Functionf793: ; 03:7793
+Functionf793:
 	ld hl, Textf8c6
 	call PrintText
 	ld de, $0002
 	call WaitPlaySFX
 	call TextboxWaitPressAorB_BlinkCursor
 
-Functionf7a2: ; 03:77a2
+Functionf7a2:
 	ld hl, wItems
 	ld a, $01
 	ld [wItemQuantity], a
 	call TossItem
 	ret
 
-Functionf7ae: ; 03:77ae
+Functionf7ae:
 	call Functionec7a
 	ld de, $0100
 	ld a, e
@@ -5006,109 +5002,109 @@ Functionf7ae: ; 03:77ae
 	call PrintText
 	jr Functionf7a2
 
-Functionf7d8: ; 03:77d8
+Functionf7d8:
 	ld hl, Textf8a5
 	jr Functionf7f4
 
-Functionf7dd: ; 03:77dd
+Functionf7dd:
 	ld hl, Textf7fb
 	jr Functionf7f4
 
-Functionf7e2: ; 03:77e2
+Functionf7e2:
 	ld hl, Textf841
 	jr Functionf7f4
 
-Functionf7e7: ; 03:77e7
+Functionf7e7:
 	ld hl, Textf822
 	jr Functionf7f4
 
-Functionf7ec: ; 03:77ec
+Functionf7ec:
 	ld hl, Textf874
 	jr Functionf7f4
 
-Functionf7f1: ; 03:77f1
+Functionf7f1:
 	ld hl, Textf88d
 
-Functionf7f4: ; 03:77f4
+Functionf7f4:
 	xor a
 	ld [wFieldMoveSucceeded], a
 	jp PrintText
-	
-Textf7fb: ; 03:77fb
+
+Textf7fb:
 	text "オーキドの　ことば<⋯⋯>"
 	line "<PLAYER>よ！　こういうものには"
 	cont "つかいどきが　あるのじゃ！"
 	prompt
 
-Textf822: ; 03:7822
+Textf822:
 	text "たいせつな　あずかりものです！"
 
-Textf832: ; 03:7832
+Textf832:
 	db ""
 	next "つかうことは　できません！"
 	prompt
 
-Textf841: ; 03:7841
+Textf841:
 	text "つかっても　こうかがないよ"
 	prompt
-	
-Textf850: ; 03:7850
+
+Textf850:
 	text "<TRAINER>に　ボールを　はじかれた！"
 	prompt
 
-Textf860: ; 03:7860
+Textf860:
 	text "ひとの　ものを　とったら　どろぼう！"
 	prompt
 
-Textf874: ; 03:7874
+Textf874:
 	text "ここでは　じてんしゃに"
 	next "のることは　できません"
 	prompt
 
-Textf88d: ; 03:788d
+Textf88d:
 	text "ここでは@"
 
-Textf893: ; 03:7893
+Textf893:
 	text_from_ram wStringBuffer1
 	text "に"
 	line "のることは　できません"
 	prompt
 
-Textf8a5: ; 03:78a5
+Textf8a5:
 	text "ボックスに　あずけている　#が"
 	line "いっぱいなので　つかえません！"
 	prompt
 
-Textf8c6: ; 03:78c6
+Textf8c6:
 	text "<PLAYER>は@"
 
-Textf8ca: ; 03:78ca
+Textf8ca:
 	text_low
 	text_from_ram wStringBuffer2
 	text "を　つかった！"
 	done
 
-Textf8d7: ; 03:78d7
+Textf8d7:
 	text "<PLAYER>は@"
 
-Textf8db: ; 03:78db
+Textf8db:
 	text_low
 	text_from_ram wStringBuffer2
 	text "に　のった"
 	prompt
 
-Textf8e6: ; 03:78e6
+Textf8e6:
 	text "<PLAYER>は@"
 
-Textf8ea: ; 03:78ea
+Textf8ea:
 	text_low
 	text_from_ram wStringBuffer2
 	text "から　おりた"
 	prompt
-	
+
 SECTION "engine/dumps/bank03.asm@Functionf960", ROMX
 
-Functionf960: ; 03:7960
+Functionf960:
 	ld a, [wMonType]
 	and a
 	ld hl, wPartyMon1Moves
@@ -5134,8 +5130,8 @@ Functionf960: ; 03:7960
 	ld a, [hl]
 	dec a
 	push hl
-	ld hl, Moves
-	ld bc, $0007
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
@@ -5165,22 +5161,22 @@ Functionf960: ; 03:7960
 	ld [wce37], a
 	ret
 
-Functionf9c9: ; 03:79c9
+Functionf9c9:
 	ld a, [wWhichPokemon]
 	call AddNTimes
-	
-Functionf9cf: ; 03:79cf
+
+Functionf9cf:
 	ld a, [w2DMenuDataEnd]
 	ld c, a
 	ld b, $00
 	add hl, bc
 	ret
 
-Functionf9d7: ; 03:79d7
+Functionf9d7:
 	scf
 	ret
 
-Functionf9d9: ; 03:79d9
+Functionf9d9:
 	ld a, [wMapId]
 	ld de, $0003
 	ld hl, Datafa08
@@ -5212,8 +5208,8 @@ Functionf9d9: ; 03:79d9
 	ld c, [hl]
 	ld e, $01
 	ret
-	
-Datafa08: ; 03:7a08
+
+Datafa08:
 	dbw $00, Datafa6c
 	dbw $01, Datafa6c
 	dbw $03, Datafa76
@@ -5248,42 +5244,42 @@ Datafa08: ; 03:7a08
 	dbw $e3, Datafaa2
 	dbw $e4, Datafaa2
 	db $ff
-	
-Datafa6c: ; 03:7a6c
+
+Datafa6c:
 	db $02, $0f, $18, $0f, $47
 
-Datafa71: ; 03:7a71
+Datafa71:
 	db $02, $0f, $9d, $0f, $47
 
-Datafa76: ; 03:7a76
+Datafa76:
 	db $03, $0f, $2f, $0f, $9d, $0f, $4e
 
-Datafa7d: ; 03:7a7d
+Datafa7d:
 	db $02, $0f, $4e, $0f, $17
 
-Datafa82: ; 03:7a82
+Datafa82:
 	db $02, $17, $6e, $0f, $25
 
-Datafa87: ; 03:7a87
+Datafa87:
 	db $04, $0f, $58, $0f, $4e, $0f, $2f, $0f, $25
 
-Datafa90: ; 03:7a90
+Datafa90:
 	db $04, $05, $18, $0f, $4e, $0f, $9d, $0f, $85
 
-Datafa99: ; 03:7a99
+Datafa99:
 	db $04, $0f, $1b, $0f, $5c, $0f, $17, $0f, $9d
 
-Datafaa2: ; 03:7aa2
+Datafaa2:
 	db $04, $17, $08, $17, $9e, $17, $8a, $17, $5d
 
-Datafaab: ; 03:7aab
+Datafaab:
 	db $04, $17, $9e, $0f, $4e, $0f, $9d, $0f, $85
 
-Functionfab4: ; 03:7ab4
+Functionfab4:
 	call LoadMapPart
 	jp UpdateSprites
 
-Functionfaba: ; 03:7aba
+Functionfaba:
 	ld a, [wd8a2]
 	cp $02
 	jr c, .sub_fade
@@ -5406,17 +5402,17 @@ Functionfaba: ; 03:7aba
 	call PrintText
 	jr Functionfbde
 
-Functionfbde: ; 03:7bde
+Functionfbde:
 	call ClearBGPalettes
 	call Function360b
 	call GetMemSGBLayout
 	jp ReloadFontAndTileset
 
-Functionfbea: ; 03:7bea
+Functionfbea:
 	ld hl, Textfc91
 	jp PrintText
 
-Functionfbf0: ; 03:7bf0
+Functionfbf0:
 	ld a, [wd8fd]
 	ld b, a
 	srl b
@@ -5441,75 +5437,75 @@ Functionfbf0: ; 03:7bf0
 	ld [wce37], a
 	ret
 
-Textfc19: ; 03:7c19
+Textfc19:
 	text "わたしは　こずくりやさん"
 	line "さて　どうする？"
 	done
 
-Datafc30: ; 03:7c30
+Datafc30:
 	db $40, $04, $0d, $0b, $13
 	dw Datafc38
 	db $01
-	
-Datafc38: ; 03:7c38
+
+Datafc38:
 	db $80, $03
 	db "あずける@"
 
-Textfc3f: ; 03:7c3f
+Textfc3f:
 	db "ひきとる@"
 
-Textfc44: ; 03:7c44
+Textfc44:
 	db "やめる@"
 
-Textfc48: ; 03:7c48
+Textfc48:
 	text "あずけた！"
 	prompt
 
-Textfc4f: ; 03:7c4f
+Textfc4f:
 	text "すでに　２ひきの#を"
 	line "あずかっています"
 	prompt
 
-Textfc64: ; 03:7c64
+Textfc64:
 	text "こずくりを　ちゅうししますか？"
 	done
 
-Textfc75: ; 03:7c75
+Textfc75:
 	text "#は　いっぴきも"
 	line "あずかってませんが"
 	prompt
 
-Textfc89: ; 03:7c89
+Textfc89:
 	text "ひきとった！"
 	prompt
 
-Textfc91: ; 03:7c91
+Textfc91:
 	text "てもちも　マサキの　<PC>も"
 	line "#で　いっぱいのようです"
 	prompt
 
-Textfcac: ; 03:7cac
+Textfcac:
 	text "それでは　こづくりします！"
 	prompt
 
-Textfcbb: ; 03:7cbb
+Textfcbb:
 	text "あいしょうが　いいようです"
 	prompt
 
-Textfcca: ; 03:7cca
+Textfcca:
 	text "あいしょうが　わるいようです"
 	prompt
 
-Textfcda: ; 03:7cda
+Textfcda:
 	text "せいべつが　あわないようです"
 	prompt
 
-Textfcea: ; 03:7cea
+Textfcea:
 	text "ざんねんながら　まだ　うまれて"
 	line "こないようです"
 	prompt
 
-Functionfd03: ; 03:7d03
+Functionfd03:
 	ld hl, Textfd2e
 	call PrintText
 	call YesNoBox
@@ -5527,15 +5523,15 @@ Functionfd03: ; 03:7d03
 	call Predef
 	jp Functionfbde
 
-Textfd2e: ; 03:7d2e
+Textfd2e:
 	text "タマゴが　うまれました！"
 	line "ひきとりますか？"
 	done
 
-Functionfd45: ; 03:7d45
+Functionfd45:
 	ret
 
-Functionfd46: ; 03:7d46
+Functionfd46:
 	ld a, [wMapBlocksAddress]
 	inc a
 	ld [wMapBlocksAddress], a
@@ -5570,7 +5566,7 @@ Functionfd46: ; 03:7d46
 	ld c, $02
 	ret
 
-Datafd7b: ; 03:7d7b
+Datafd7b:
 	db $01, $3f
 	db $02, $4b
 	db $03, $54
@@ -5596,7 +5592,7 @@ Datafd7b: ; 03:7d7b
 	db $fe, $fd
 	db $ff, $ff
 
-Functionfdab: ; 03:7dab
+Functionfdab:
 	ld a, $02
 	call GetPartyParamLocation
 	ld a, [wce32]
@@ -5616,30 +5612,30 @@ Functionfdab: ; 03:7dab
 	scf
 	ret
 
-Textfdc7: ; 03:7dc7
+Textfdc7:
 	text_from_ram wStringBuffer1
 	text "は　すでに"
 	line "@"
-	
-Textfdd2: ; 03:7dd2
+
+Textfdd2:
 	text_from_ram wStringBuffer2
 	text "を　おぼえています"
 	prompt
-	
-Textfde0: ; 03:7de0
+
+Textfde0:
 	db "います"
 	prompt
 
 ; NOTE: This is missing the preceeding "text_from_ram"  byte
-Textfde4: ; 03:7de4
+Textfde4:
 	dw wStringBuffer2
 	text "を　おぼえています"
 	prompt
 
-Datafdf1: ; 03:7df1
+Datafdf1:
 	db $28, $3c
 
-Functionfdf3: ; 03:7df3
+Functionfdf3:
 	ld a, [wce32]
 	ld b, a
 	ld c, $04
@@ -5656,18 +5652,18 @@ Functionfdf3: ; 03:7df3
 	call PrintText
 	scf
 	ret
-	
-Textfe0a: ; 03:7e0a
+
+Textfe0a:
 	text_from_ram wStringBuffer1
 	text "は　すでに"
 	line "@"
 
-Textfe15: ; 03:7e15
+Textfe15:
 	text_from_ram wStringBuffer2
 	text "を　おぼえています"
 	prompt
-	
-Datafe23: ; 03:7e23
+
+Datafe23:
 	db $e0, $22, $47, $24, $80, $a3, $01, $50
 	db $02, $85, $b0, $09, $35, $51, $2c, $08
 	db $24, $25, $0b, $84, $84, $00, $4e, $3b

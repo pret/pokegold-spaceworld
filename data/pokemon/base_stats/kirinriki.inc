@@ -6,11 +6,7 @@
 	db TYPE_DARK, TYPE_NORMAL ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-if DEBUG || def(SILVER)
 	db ITEM_BERRY, ITEM_TAG ; items
-else
-    db ITEM_APPLE, ITEM_TAG ; item
-endc
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions

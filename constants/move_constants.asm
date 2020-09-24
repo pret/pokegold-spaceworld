@@ -1,4 +1,4 @@
-; Move IDs
+; move ids
 	const_def
 	const MOVE_NONE         ; 00
 	const MOVE_POUND        ; 01
@@ -252,7 +252,7 @@
 	const MOVE_BRIGHT_MOSS  ; f9 *ROCK_SMASH
 	const MOVE_WHIRLPOOL    ; fa
 	const MOVE_BOUNCE       ; fb *BEAT_UP
-NUM_ATTACKS EQU const_value + -1
+NUM_ATTACKS EQU const_value - 1
 
 	const MOVE_OR_ANIM_FC ; fc
 	const MOVE_OR_ANIM_FD ; fd
@@ -294,6 +294,3 @@ NUM_ATTACKS EQU const_value + -1
 	const BATTLEANIM_WOBBLE
 	const BATTLEANIM_SHAKE
 	const BATTLEANIM_HIT_CONFUSION
-	
-	
-MOVE_DATA_SIZE EQU 7

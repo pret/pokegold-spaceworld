@@ -1,12 +1,8 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/print_hex.asm", ROM0
-; else
-; SECTION "Print Hexadecimal functions", ROM0[$355B]
-; endc
 
-PrintHexBytes: ; 3597 (0:3597)
+PrintHexBytes:
 ; Print c hex bytes located at de to hl
 .loop
 	push bc
@@ -16,7 +12,7 @@ PrintHexBytes: ; 3597 (0:3597)
 	jr nz, .loop
 	ret
 
-PrintHexByte:: ; 35a0 (0:35a0)
+PrintHexByte::
 ; Print one hex byte located at de to hl
 	ld a, [de]
 	swap a
@@ -30,9 +26,8 @@ PrintHexByte:: ; 35a0 (0:35a0)
 	inc de
 	ret
 
-GetHexDigit: ; 35b2 (0:35b2)
-; Get a hex digit tile number
-; in a.
+GetHexDigit:
+; Get a hex digit tile number in a
 	ld bc, .hexDigitTable
 	add c
 	ld c, a

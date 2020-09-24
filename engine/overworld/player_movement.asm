@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "engine/overworld/player_movement.asm@Player Movement", ROMX
 
-OverworldMovementCheck:: ; 03:4000
+OverworldMovementCheck::
 	jp _OverworldMovementCheck
 
-UnusedOverworldMovementCheck:: ; 03:4003
+UnusedOverworldMovementCheck::
 	ld a, PLAYER_OBJECT_INDEX
 	ldh [hEventCollisionException], a
 	ld a, [wPlayerDirection]
@@ -26,10 +26,10 @@ UnusedOverworldMovementCheck:: ; 03:4003
 	jp z, OldCheckMovementSurf
 	jp CheckMovementWalkOrBike
 
-SetPlayerIdle: ; 03:402c
+SetPlayerIdle:
 	ld a, NO_MOVEMENT
-	
-SetPlayerMovement: ; 03:402e
+
+SetPlayerMovement:
 	ld [wPlayerMovement], a
 	ld a, [wPlayerLastMapX]
 	ld [wPlayerNextMapX], a
@@ -38,11 +38,11 @@ SetPlayerMovement: ; 03:402e
 	and a
 	ret
 
-CheckMovementWalkOrBike: ; 03:403f
+CheckMovementWalkOrBike:
 	call _CheckMovementWalkOrBike
 	jp SetPlayerMovement
 
-_CheckMovementWalkOrBike: ; 03:4045
+_CheckMovementWalkOrBike:
 	ld a, d
 	and D_PAD
 	jp z, .idle
@@ -58,7 +58,7 @@ _CheckMovementWalkOrBike: ; 03:4045
 .idle
 	ld a, NO_MOVEMENT
 	ret
-	
+
 .check_right
 	ld a, [wPlayerLastMapX]
 	inc a
@@ -142,12 +142,12 @@ _CheckMovementWalkOrBike: ; 03:4045
 	ld a, FACE_UP
 	ret
 
-CheckMovementDebug:: ; 03:40eb
+CheckMovementDebug::
 	ld a, d
 	call _CheckMovementDebug
 	jp SetPlayerMovement
 
-_CheckMovementDebug: ; 03:40f2
+_CheckMovementDebug:
 	bit D_DOWN_F, a
 	jr nz, .move_down
 	bit D_UP_F, a
@@ -158,7 +158,7 @@ _CheckMovementDebug: ; 03:40f2
 	jr nz, .move_right
 	ld a, NO_MOVEMENT
 	ret
-	
+
 .move_down
 	ld a, [wTileDown]
 	cp -1
@@ -166,7 +166,7 @@ _CheckMovementDebug: ; 03:40f2
 	ret nz
 	ld a, JUMP_UP
 	ret
-	
+
 .move_up
 	ld a, [wTileUp]
 	cp -1
@@ -174,7 +174,7 @@ _CheckMovementDebug: ; 03:40f2
 	ret nz
 	ld a, JUMP_DOWN
 	ret
-	
+
 .move_left
 	ld a, [wTileLeft]
 	cp -1
@@ -182,7 +182,7 @@ _CheckMovementDebug: ; 03:40f2
 	ret nz
 	ld a, JUMP_RIGHT
 	ret
-	
+
 .move_right
 	ld a, [wTileRight]
 	cp -1
@@ -191,11 +191,11 @@ _CheckMovementDebug: ; 03:40f2
 	ld a, JUMP_LEFT
 	ret
 
-CheckMovementSkateboard:: ; 03:4131
+CheckMovementSkateboard::
 	call _CheckMovementSkateboard
 	jp SetPlayerMovement
 
-_CheckMovementSkateboard:  ; 03:4137
+_CheckMovementSkateboard: 
 	ld a, [wSkatingDirection]
 	cp STANDING
 	jp z, .not_moving
@@ -211,13 +211,13 @@ _CheckMovementSkateboard:  ; 03:4137
 	pop de
 	jp hl
 
-.SkateMovementTable ; 03:414d
+.SkateMovementTable
 	dw CheckSkateDown
 	dw CheckSkateUp
 	dw CheckSkateLeft
 	dw CheckSkateRight
 
-.not_moving  ; 03:4155
+.not_moving 
 	ld a, d
 	and D_PAD
 	jp z, .idle
@@ -236,7 +236,7 @@ _CheckMovementSkateboard:  ; 03:4137
 	ld a, NO_MOVEMENT
 	ret
 
-CheckSkateDown:  ; 03:4177
+CheckSkateDown: 
 	ld a, [wPlayerLastMapY]
 	inc a
 	ld [wPlayerNextMapY], a
@@ -260,18 +260,18 @@ CheckSkateDown:  ; 03:4177
 	jr z, .slow
 	ld a, FAST_STEP_DOWN
 	ret
-	
+
 .slow
 	ld a, STEP_DOWN
 	ret
-	
+
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
 	ld a, FACE_DOWN
 	ret
 
-CheckSkateUp: ; 03:41ab
+CheckSkateUp:
 	ld a, [wPlayerLastMapY]
 	dec a
 	ld [wPlayerNextMapY], a
@@ -285,24 +285,24 @@ CheckSkateUp: ; 03:41ab
 	jr nz, .collision
 	ld a, FAST_JUMP_UP
 	ret
-	
+
 .can_skate
 	call OldIsTileCollisionGrass
 	jr z, .slow
 	ld a, FAST_STEP_UP
 	ret
-	
+
 .slow
 	ld a, STEP_UP
 	ret
-	
+
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
 	ld a, FACE_UP
 	ret
 
-CheckSkateLeft: ; 03:41db
+CheckSkateLeft:
 	ld a, [wPlayerLastMapX]
 	dec a
 	ld [wPlayerNextMapX], a
@@ -316,7 +316,7 @@ CheckSkateLeft: ; 03:41db
 	jr nz, .collision
 	ld a, FAST_JUMP_LEFT
 	ret
-	
+
 .can_skate
 	call OldIsTileCollisionGrass
 	jr z, .slow
@@ -326,14 +326,14 @@ CheckSkateLeft: ; 03:41db
 .slow
 	ld a, STEP_LEFT
 	ret
-	
+
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
 	ld a, FACE_LEFT
 	ret
 
-CheckSkateRight: ; 03:420b
+CheckSkateRight:
 	ld a, [wPlayerLastMapX]
 	inc a
 	ld [wPlayerNextMapX], a
@@ -357,14 +357,14 @@ CheckSkateRight: ; 03:420b
 .slow
 	ld a, STEP_RIGHT
 	ret
-	
+
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
 	ld a, FACE_RIGHT
 	ret
 
-OldIsTileCollisionGrass:: ; 03:423b
+OldIsTileCollisionGrass::
 ; Check whether collision ID in a is
 ; grass
 ; Result:
@@ -379,11 +379,11 @@ OldIsTileCollisionGrass:: ; 03:423b
 	cp $8b
 	ret
 
-OldCheckMovementSurf:: ; 03:4247
+OldCheckMovementSurf::
 	call _OldCheckMovementSurf
 	jp SetPlayerMovement
 
-_OldCheckMovementSurf: ; 03:424d
+_OldCheckMovementSurf:
 	ld a, d
 	and D_PAD
 	bit D_DOWN_F, a
@@ -481,7 +481,7 @@ _OldCheckMovementSurf: ; 03:424d
 	ld a, SLOW_STEP_RIGHT
 	ret
 
-OldIsTileCollisionWater:: ; 03:42ee
+OldIsTileCollisionWater::
 ; Check if collision ID in a is water
 ; Input:
 ; a - collision ID
@@ -496,7 +496,7 @@ OldIsTileCollisionWater:: ; 03:42ee
 	scf
 	ret
 
-SetPlayerStateWalk:: ; 03:42f8
+SetPlayerStateWalk::
 	push bc
 	ld a, PLAYER_NORMAL
 	ld [wPlayerState], a
@@ -504,7 +504,7 @@ SetPlayerStateWalk:: ; 03:42f8
 	pop bc
 	ret
 
-IsPlayerCollisionTileSolid:: ; 03:4303
+IsPlayerCollisionTileSolid::
 ; Return whether the collision under player's feet
 ; is solid/sometimes solid or non-solid.
 ; Clobbers: a
@@ -519,7 +519,7 @@ IsPlayerCollisionTileSolid:: ; 03:4303
 	pop de
 	ret
 
-CheckPlayerObjectCollision:: ; 03:4312
+CheckPlayerObjectCollision::
 ; Check whether player object currentl
 ; collides with any other object.
 ; Result:
@@ -531,7 +531,7 @@ CheckPlayerObjectCollision:: ; 03:4312
 	ret nc
 	jp CheckCompanionObjectCollision
 
-CheckCompanionObjectCollision:: ; 03:4320
+CheckCompanionObjectCollision::
 ; Marks the object struct pointed to by hl
 ; as having collided with player object.
 ; If object struct (as identified by hObjectStructIndexBuffer)
@@ -562,7 +562,7 @@ CheckCompanionObjectCollision:: ; 03:4320
 	ld [wCompanionCollisionFrameCounter], a
 	ret
 
-_OverworldMovementCheck:: ; 03:4344
+_OverworldMovementCheck::
 	ld a, PLAYER_OBJECT_INDEX
 	ldh [hEventCollisionException], a
 	ld a, [wPlayerDirection]
@@ -580,7 +580,7 @@ _OverworldMovementCheck:: ; 03:4344
 	call GetPlayerMovementByState
 	jp SetPlayerMovement
 
-GetPlayerMovementByState: ; 03:4364
+GetPlayerMovementByState:
 	ld a, [wPlayerState]
 	cp PLAYER_SKATE
 	jp z, CheckMovementSkateboard ; FIXME: CheckMovementSkateboard already calls SetPlayerMovement
@@ -590,14 +590,14 @@ GetPlayerMovementByState: ; 03:4364
 	jp z, CheckMovementSurf
 	jp CheckMovementWalk
 
-CheckMovementWalk:: ; 03:4374
+CheckMovementWalk::
 	ld a, [wPlayerStandingTile]
 	swap a
 	and LOW((COLLISION_TYPE_MASK >> 4) | (COLLISION_TYPE_MASK << 4))
 	ld hl, .WalkingCollisionTable
 	jp CallJumptable
 
-.WalkingCollisionTable ; 03:4381
+.WalkingCollisionTable
 	dw CheckMovementWalkRegular ; regular
 	dw CheckMovementWalkSolid   ; trees, grass, etc.
 	dw CheckMovementWalkSolid   ; water
@@ -615,14 +615,14 @@ CheckMovementWalk:: ; 03:4374
 	dw CheckMovementWalkRegular ; unused
 	dw CheckMovementWalkRegular ; unused
 
-NoWalkMovement: ; 03:43a1
+NoWalkMovement:
 	ld a, NO_MOVEMENT
 	ret
 
-CheckMovementWalkSolid:: ; 03:43a4
+CheckMovementWalkSolid::
 	jp CheckMovementWalkRegular
 
-CheckMovementWalkLand:: ; 03:43a7
+CheckMovementWalkLand::
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
 	jr nz, .force_movement
@@ -648,7 +648,7 @@ CheckMovementWalkLand:: ; 03:43a7
 	ld a, b
 	ret
 
-SlowDownMovementWalk: ; 03:43cf
+SlowDownMovementWalk:
 	ld b, SLOW_STEP_DOWN
 	cp STEP_DOWN
 	jr z, .finish
@@ -666,7 +666,7 @@ SlowDownMovementWalk: ; 03:43cf
 	ld a, b
 	ret
 
-CheckMovementWalkLand2:: ; 03:43ea
+CheckMovementWalkLand2::
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
 	ld b, STEP_DOWN
@@ -686,10 +686,10 @@ CheckMovementWalkLand2:: ; 03:43ea
 	ld a, b
 	ret
 
-UnusedCheckMovementWalk60:: ; 03:4409
+UnusedCheckMovementWalk60::
 	jp CheckMovementWalkRegular
 
-CheckMovementWalkWarp:: ; 03:440c
+CheckMovementWalkWarp::
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
 	jr z, .check_dpad
@@ -747,13 +747,13 @@ CheckMovementWalkWarp:: ; 03:440c
 .moved_out_of_bounds
 	ret
 
-CheckMovementWalkMisc:: ; 03:4472
+CheckMovementWalkMisc::
 	jp CheckMovementWalkRegular
 
-CheckMovementWalkSpecial:: ; 03:4475
+CheckMovementWalkSpecial::
 	jp CheckMovementWalkRegular
 
-CheckMovementWalkRegular:: ; 03:4478
+CheckMovementWalkRegular::
 	ldh a, [hJoyState]
 	bit D_DOWN_F, a
 	jp nz, CheckWalkDown
@@ -765,7 +765,7 @@ CheckMovementWalkRegular:: ; 03:4478
 	jp nz, CheckWalkRight
 	jp NoWalkMovement
 
-CheckMovementWalkJump: ; 03:4491
+CheckMovementWalkJump:
 	ldh a, [hJoyState]
 	bit D_DOWN_F, a
 	jr nz, .down
@@ -833,7 +833,7 @@ CheckMovementWalkJump: ; 03:4491
 	ld a, JUMP_RIGHT
 	ret
 
-CheckWalkDown:: ; 03:4502
+CheckWalkDown::
 	ld d, 0
 	ld e, 1
 	call CheckObjectCollision
@@ -847,7 +847,7 @@ CheckWalkDown:: ; 03:4502
 	ld a, FACE_DOWN
 	ret
 
-CheckWalkUp:: ; 03:4519
+CheckWalkUp::
 	ld d, 0
 	ld e, -1
 	call CheckObjectCollision
@@ -861,7 +861,7 @@ CheckWalkUp:: ; 03:4519
 	ld a, FACE_UP
 	ret
 
-CheckWalkLeft:: ; 03:4530
+CheckWalkLeft::
 	ld d, -1
 	ld e, 0
 	call CheckObjectCollision
@@ -875,7 +875,7 @@ CheckWalkLeft:: ; 03:4530
 	ld a, FACE_LEFT
 	ret
 
-CheckWalkRight:: ; 03:4547
+CheckWalkRight::
 	ld d, 1
 	ld e, 0
 	call CheckObjectCollision
@@ -889,14 +889,14 @@ CheckWalkRight:: ; 03:4547
 	ld a, FACE_RIGHT
 	ret
 
-CheckMovementSurf:: ; 03:455e
+CheckMovementSurf::
 	ld a, [wPlayerStandingTile]
 	swap a
 	and  LOW((COLLISION_TYPE_MASK >> 4) | (COLLISION_TYPE_MASK << 4))
 	ld hl, .SurfCollisionTable
 	jp CallJumptable
 
-.SurfCollisionTable ; 03:456b
+.SurfCollisionTable
 	dw CheckMovementSurfRegular
 	dw CheckMovementSurfRegular
 	dw CheckMovementSurfWater
@@ -914,7 +914,7 @@ CheckMovementSurf:: ; 03:455e
 	dw CheckMovementSurfRegular
 	dw CheckMovementSurfRegular
 
-CheckMovementSurfRegular:: ; 03:458b
+CheckMovementSurfRegular::
 	ldh a, [hJoyState]
 	bit D_DOWN_F, a
 	jp nz, CheckSurfDown
@@ -926,7 +926,7 @@ CheckMovementSurfRegular:: ; 03:458b
 	jp nz, CheckSurfRight
 	jp NoWalkMovement
 
-CheckMovementSurfWater:: ; 03:45a4
+CheckMovementSurfWater::
 	ld a, [wPlayerStandingTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_WATERFALL & COLLISION_SUBTYPE_MASK)
@@ -935,7 +935,7 @@ CheckMovementSurfWater:: ; 03:45a4
 	ld a, FAST_STEP_DOWN
 	ret
 
-CheckMovementSurfWater2:: ; 03:45b0
+CheckMovementSurfWater2::
 	ld a, [wPlayerStandingTile]
 	and COLLISION_WATER_SUBTYPE_MASK
 	ld d, STEP_RIGHT
@@ -954,7 +954,7 @@ CheckMovementSurfWater2:: ; 03:45b0
 	ld a, d
 	ret
 
-CheckSurfDown: ; 03:45cd
+CheckSurfDown:
 	ld d, 0
 	ld e, 1
 	call CheckObjectCollision
@@ -970,7 +970,7 @@ CheckSurfDown: ; 03:45cd
 	ld a, FACE_DOWN
 	ret
 
-CheckSurfUp: ; 03:45e7
+CheckSurfUp:
 	ld d, 0
 	ld e, -1
 	call CheckObjectCollision
@@ -986,7 +986,7 @@ CheckSurfUp: ; 03:45e7
 	ld a, FACE_UP
 	ret
 
-CheckSurfLeft: ; 03:4601
+CheckSurfLeft:
 	ld d, -1
 	ld e, 0
 	call CheckObjectCollision
@@ -1002,7 +1002,7 @@ CheckSurfLeft: ; 03:4601
 	ld a, FACE_LEFT
 	ret
 
-CheckSurfRight: ; 03:461b
+CheckSurfRight:
 	ld d, 1
 	ld e, 0
 	call CheckObjectCollision
@@ -1018,10 +1018,10 @@ CheckSurfRight: ; 03:461b
 	ld a, FACE_RIGHT
 	ret
 
-SurfDismount: ; 03:4635
+SurfDismount:
 	jp SetPlayerStateWalk
 
-CheckObjectCollision:: ; 03:4638
+CheckObjectCollision::
 ; Check if coordinates relative
 ; to player collide with another object
 ; Clobbers:
@@ -1081,17 +1081,17 @@ GetCollisionType::
 	ret
 
 SECTION "engine/overworld/player_movement.asm@Rest of Player Movement", ROMX
-	
-_UnusedReturnFalse:: ; 03:4764
+
+_UnusedReturnFalse::
 	xor a
 	ret
 
-_UnusedReturnTrue:: ; 03:4766
+_UnusedReturnTrue::
 	xor a
 	scf
 	ret
 
-CheckCollisionSometimesSolid:: ; 03:4769
+CheckCollisionSometimesSolid::
 ; Checks whether collision ID in a
 ; is sometimes, always or never solid.
 ; Clobbers:
@@ -1124,13 +1124,13 @@ CheckCollisionSometimesSolid:: ; 03:4769
 
 SECTION "engine/overworld/player_movement.asm@_RedrawPlayerSprite", ROMX
 
-_RedrawPlayerSprite: ; 05:4000
+_RedrawPlayerSprite:
 	call GetPlayerSprite
 	ld hl, vChars0
 	call LoadOverworldSprite
 	ret
 
-GetPlayerSprite: ; 05:400a
+GetPlayerSprite:
 	ld a, [wPlayerState]
 	ld hl, PlayerSpriteTable
 	ld c, a
@@ -1152,8 +1152,8 @@ GetPlayerSprite: ; 05:400a
 	ld [wPlayerSprite], a
 	ld [wPlayerObjectSprite], a
 	ret
-	
-PlayerSpriteTable: ; 03:402d
+
+PlayerSpriteTable:
 ; state, sprite
 	db PLAYER_NORMAL, SPRITE_GOLD
 	db PLAYER_BIKE,   SPRITE_GOLD_BIKE

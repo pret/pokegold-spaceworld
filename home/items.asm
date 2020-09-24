@@ -1,12 +1,9 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
-SECTION "home/items.asm@TossItem", ROM0
-; else
-; SECTION "TossItem", ROM0[$3207]
-; endc
 
-TossItem: ; 00:3243
+SECTION "home/items.asm@TossItem", ROM0
+
+TossItem:
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_TossItem)
@@ -22,7 +19,7 @@ TossItem: ; 00:3243
 	call Bankswitch
 	ret
 
-ReceiveItem:: ; 3259
+ReceiveItem::
 ; function to add an item (in varying quantities) to the player's bag or PC box
 ; INPUT:
 ; HL = address of inventory (either wNumBagItems or wNumBoxItems)
@@ -45,11 +42,8 @@ ReceiveItem:: ; 3259
 	pop bc
 	ret
 
-; if DEBUG
+
 SECTION "home/items.asm@GiveItem", ROM0
-; else
-; SECTION "GiveItem", ROM0[$3630]
-; endc
 
 GiveItem::
 ; Give player quantity c of item b,

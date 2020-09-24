@@ -1,5 +1,4 @@
-
-TrainerGroups: ; 0x039110
+TrainerGroups:
 	dw HayatoGroup
 	dw AkaneGroup
 	dw TsukishiGroup

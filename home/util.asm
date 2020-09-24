@@ -1,10 +1,6 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/util.asm", ROM0
-; else
-; SECTION "Misc Utility Functions", ROM0[$33B3]
-; endc
 
 Function33ef::
 	; hl = src
@@ -18,7 +14,7 @@ Function33ef::
 	dec a
 	dec a
 	ld b, $0
-.asm_33f7: ; 00:33f7
+.asm_33f7:
 	add hl, bc
 	dec a
 	jr nz, .asm_33f7
@@ -30,7 +26,7 @@ Function33ef::
 	ld d, h
 	ld e, l
 	pop hl
-.asm_3403: ; 00:3403
+.asm_3403:
 	push af
 	push bc
 	call CopyBytes
@@ -53,18 +49,18 @@ Function33ef::
 	pop de
 	jp CopyBytes
 
-SkipNames:: ; 341f
+SkipNames::
 ; Returns hl + a * 6
-    and a
-    ret z
-    ld bc, 6
+	and a
+	ret z
+	ld bc, 6
 .loop:
-    add hl, bc
-    dec a
-    jr nz, .loop
-    ret
+	add hl, bc
+	dec a
+	jr nz, .loop
+	ret
 
-AddNTimes:: ; 3429 (0:3429)
+AddNTimes::
 ; Adds bc to hl, a times
 	and a
 	ret z
@@ -73,22 +69,21 @@ AddNTimes:: ; 3429 (0:3429)
 	dec a
 	jr nz, .loop
 	ret
-; 0x3430
 
-memcmp:: ; 3430
+memcmp:: ; TODO: rename
 ; Compare c bytes at hl and de
 ; Returns z if all equal, nz otherwise.
 .loop:
-    ld a, [de]
-    cp [hl]
-    ret nz
-    inc de
-    inc hl
-    dec c
-    jr nz, .loop
-    ret
+	ld a, [de]
+	cp [hl]
+	ret nz
+	inc de
+	inc hl
+	dec c
+	jr nz, .loop
+	ret
 
-Function3439:: ; 3439
+Function3439::
 ; Place 2x2 sprite from *de into OAM at slot a
 	ld h, HIGH(wVirtualOAM)
 	swap a
@@ -107,7 +102,7 @@ Function3439:: ; 3439
 	ld a, $8
 	add c
 	ld c, a
-.Load: ; 00:3455
+.Load:
 	ld [hl], b
 	inc hl
 	ld [hl], c

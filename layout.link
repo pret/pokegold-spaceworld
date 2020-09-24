@@ -1,0 +1,976 @@
+ROM0
+	org $0000
+	"NULL"
+	org $0000
+	"home/rst.asm@rst00"
+	org $0008
+	"home/rst.asm@rst08"
+	org $0010
+	"home/rst.asm@rst10"
+	org $0018
+	"home/rst.asm@rst18"
+	org $0020
+	"home/rst.asm@rst20"
+	org $0028
+	"home/rst.asm@rst28"
+	org $0030
+	"home/rst.asm@rst30"
+	org $0038
+	"home/rst.asm@rst38"
+	org $0040
+	"home/interrupts.asm@VBlank interrupt vector"
+	org $0048
+	"home/interrupts.asm@LCD interrupt vector"
+	org $0050
+	"home/interrupts.asm@Timer interrupt vector"
+	org $0058
+	"home/interrupts.asm@Serial interrupt vector"
+	org $0060
+	"home/interrupts.asm@Joypad interrupt vector"
+	org $0100
+	"home/init.asm@Entry point"
+	org $014e
+	"home/init.asm@Global check value"
+	"home/vblank.asm"
+	"home/delay.asm"
+	"home/rtc.asm"
+	"home/fade.asm"
+	"home/lcd.asm"
+	"home/interrupts.asm@Timer dummy interrupt"
+	"home/time.asm"
+	"home/init.asm@Init"
+	"home/serial.asm"
+	"home/interrupts.asm@Joypad dummy interrupt"
+	"home/joypad.asm"
+	"home/unknown.asm@Unknown_094c"
+	"home/pic.asm"
+	"home/copy2.asm"
+	"home/text.asm"
+	"home/vcopy.asm"
+	"home/map_objects.asm"
+	"home/movement.asm"
+	"home/menu_window.asm"
+	"home/menu.asm"
+	"home/window.asm"
+	"home/unknown.asm@Unknown functions"
+	"home/toolgear.asm"
+	"home/unknown.asm@Unknown_20f8"
+	"home/map.asm"
+	"home/overworld.asm@Startmenu and Select Button Check"
+	"home/tileset.asm"
+	"home/unknown.asm@Empty function"
+	"home/farcall.asm"
+	"home/predef.asm"
+	"home/talk_to_npc.asm"
+	"home/items.asm@TossItem"
+	"home/random.asm"
+	"home/sram.asm"
+	"home/bankswitch.asm"
+	"home/misc_32c8.asm@Unknown 32c8"
+	"home/clear_sprites.asm"
+	"home/copy.asm"
+	"home/math.asm"
+	"home/print_text.asm"
+	"home/util.asm"
+	"home/print_num.asm"
+	"home/print_hex.asm"
+	"home/jumptable.asm"
+	"home/overworld.asm@QueueScript"
+	"home/tables.asm"
+	"home/tilemap.asm"
+	"home/items.asm@GiveItem"
+	"home/misc_32c8.asm@Unknown 3686"
+	"home/names.asm@Names"
+	"home/scrolling_menu.asm"
+	"home/unknown_388f.asm"
+	"home/mon_stats.asm"
+	"home/cry.asm"
+	"home/pokemon.asm@3A4B"
+	"home/names.asm@GetNick"
+	"home/print_bcd.asm"
+	"home/pokemon.asm@3AED"
+	"home/misc_3c43.asm"
+	"home/audio.asm"
+
+ROMX $01
+	org $4000
+	"engine/link/place_waiting_text.asm"
+	"engine/menu/debug_menu.asm"
+	"engine/dumps/bank01.asm@Function40fd"
+	"home/oam_dma.asm"
+	"engine/dumps/bank01.asm@Table416b"
+	"engine/menu/main_menu.asm@Initialize new game WRAM"
+	"engine/dumps/bank01.asm@Function5388"
+	"engine/menu/main_menu.asm@MainMenu"
+	"engine/intro.asm"
+	"engine/title.asm@Title screen"
+	"engine/title.asm@Title screen TEMPORARY"
+	"engine/predef.asm"
+	"engine/dumps/bank01.asm@ReanchorBGMap_NoOAMUpdate"
+	"engine/math/math.asm"
+	"data/items/attributes.asm"
+	"data/items/names.asm"
+	"engine/dumps/bank01.asm@Function771e"
+	"engine/overworld/object_collision.asm@GetSpritesNextTile"
+	"engine/dumps/bank01.asm@Function776e"
+	"engine/overworld/object_collision.asm@_CheckObjectCollision"
+	"engine/dumps/bank01.asm@Function782c"
+	"engine/overworld/object_collision.asm@_CheckPlayerObjectCollision"
+	"engine/dumps/bank01.asm@SettingsScreen"
+
+ROMX $02
+	"engine/dumps/bank02.asm@Function8000"
+	"gfx.asm@Bank 2 Misc GFX"
+	"engine/dumps/bank02.asm@QueueFollowerFirstStep"
+	"gfx.asm@Mon Nest Icon"
+	"engine/dumps/bank02.asm@Data8a17"
+	"gfx.asm@Trainer Gear GFX"
+	"engine/dumps/bank02.asm@Text91c2"
+	"gfx.asm@Title Screen BG Decoration Border"
+	"engine/dumps/bank02.asm@Function928b"
+	"gfx.asm@SGB GFX"
+	"slack.asm@Unknownaebc"
+	"slack.asm@Corrupted SGB GFX"
+	"slack.asm@Unknownbb43"
+
+ROMX $03
+	org $4000
+	"engine/overworld/player_movement.asm@Player Movement"
+	"data/collision/collision_type_table.asm"
+	"engine/overworld/player_movement.asm@Rest of Player Movement"
+	"engine/dumps/bank03.asm@Functionc77d"
+	"engine/overworld/spawn_points.asm"
+	"engine/dumps/bank03.asm@SpawnPoints"
+	"data/tileset_headers.asm"
+	"engine/dumps/bank03.asm@Functionc9c1"
+	"engine/items/inventory.asm@Inventory"
+	"engine/smallflag.asm"
+	"engine/pokemon/health.asm@HealParty"
+	"engine/bcd.asm"
+	"engine/items/inventory.asm@GetItemAmount"
+	"engine/pokemon/health.asm@HP Bar"
+	"engine/events/field_moves.asm"
+	"engine/items/inventory.asm@_CheckTossableItem"
+	"engine/dumps/bank03.asm@Functiond41d"
+	"engine/items/item_effects.asm"
+	"engine/dumps/bank03.asm@Functionf960"
+
+ROMX $04
+	org $4000
+	"data/maps/maps.asm"
+	"gfx.asm@Shrink GFX"
+	"gfx.asm@Title Screen GFX"
+	"engine/items/tmhm.asm"
+	"data/moves/tmhm_moves.asm"
+	"engine/unknown_boxes.asm"
+	"engine/menu/text_entry.asm@naming"
+	"data/text/text_input_chars.asm"
+	"gfx.asm@Name Entry Extra Tiles"
+	"engine/menu/text_entry.asm@mail"
+	"gfx.asm@Mail Icon GFX"
+	"engine/menu/text_entry.asm@mail2"
+	"engine/unknown11d32.asm"
+	"engine/menu/start_menu.asm"
+	"gfx.asm@Trainer Card GFX"
+
+ROMX $05
+	org $4000
+	"engine/overworld/player_movement.asm@_RedrawPlayerSprite"
+	org $4150
+	"engine/sprites/sprites.asm@LoadOverworldSprite"
+	org $423b
+	"engine/sprites/sprites.asm@OverworldSprites"
+
+ROMX $06
+	org $4000
+	"gfx.asm@Bank 6 Tilesets 00"
+	org $4e00
+	"gfx.asm@Bank 6 Tilesets 1b"
+	org $5800
+	"gfx.asm@Bank 6 Tilesets 01"
+	org $6600
+	"gfx.asm@Bank 6 Tilesets 02"
+	org $7400
+	"gfx.asm@Bank 6 Tilesets 09"
+
+ROMX $07
+	org $4000
+	"gfx.asm@Bank 7 Tilesets 13"
+	org $4b00
+	"gfx.asm@Bank 7 Tilesets 0e"
+	org $5600
+	"gfx.asm@Bank 7 Tilesets 06"
+	org $6400
+	"gfx.asm@Bank 7 Tilesets 05"
+	org $7200
+	"gfx.asm@Bank 7 Tilesets 03"
+
+ROMX $08
+	org $4000
+	"gfx.asm@Bank 8 Tilesets 04"
+	org $4e00
+	"gfx.asm@Bank 8 Tilesets 07"
+	org $5c00
+	"gfx.asm@Bank 8 Tilesets 08"
+	org $6a00
+	"gfx.asm@Bank 8 Tilesets 0f"
+	org $7500
+	"gfx.asm@Bank 8 Tilesets 11"
+
+ROMX $09
+	org $4000
+
+ROMX $0a
+	org $4000
+	org $5641
+	"gfx.asm@Gameboy GFX"
+
+ROMX $0b
+	org $4000
+	org $4014
+	"data/items/descriptions.asm"
+	org $5677
+	"data/moves/descriptions.asm"
+
+ROMX $0c
+	org $4000
+	"gfx.asm@Bank C Tilesets 12"
+	org $4b00
+	"gfx.asm@Bank C Tilesets 0b"
+	org $5600
+	"gfx.asm@Bank C Tilesets 0d"
+	org $6100
+	"gfx.asm@Bank C Tilesets 14"
+	org $7100
+	"gfx.asm@Bank C Tilesets 0c"
+	org $7c00
+	"gfx.asm@Bank C Tilesets Common"
+
+ROMX $0d
+	org $4000
+	org $506d
+	"data/types/type_matchups.asm"
+
+ROMX $0e
+	org $4000
+	org $4494
+	"gfx.asm@PokeBalls GFX"
+	org $4d90
+	"data/trainers/class_names.asm"
+	org $5110
+	"data/trainers/parties.asm@Trainer Parties"
+
+ROMX $0f
+	org $4000
+	org $63da
+	"engine/battle/core.asm"
+	org $6a3c
+	"data/wild.asm"
+
+ROMX $10
+	org $4000
+	org $4943
+	"data/pokemon/dex_order_alpha.asm"
+	org $4ecc
+	"data/types/search_strings.asm"
+	org $5068
+	"data/types/search_types.asm"
+	org $52a1
+	"data/moves/names.asm"
+	org $58b6
+	"data/moves/moves.asm"
+	org $6493
+	"data/pokemon/evos_attacks.asm"
+
+ROMX $11
+	org $4000
+	org $40d5
+	"gfx.asm@Pokedex GFX"
+	org $4945
+	"data/pokemon/dex_entries.asm"
+
+ROMX $12
+	org $4000
+	"gfx.asm@Trainer Battle Sprites"
+
+ROMX $13
+	org $4000
+	"gfx.asm@Bank 13 Tilesets 0a"
+	org $4b00
+	"gfx.asm@Bank 13 Tilesets 16"
+	org $5b00
+	"gfx.asm@Bank 13 Tilesets 19"
+	org $6900
+	"gfx.asm@Bank 13 Tilesets 1a"
+
+ROMX $14
+	org $4000
+	org $40dd
+	"data/types/names.asm"
+	org $4f10
+	"data/pokemon/base_stats.asm"
+	"data/pokemon/names.asm"
+	"gfx.asm@PKMN Sprite Bank List"
+
+ROMX $15
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 1"
+
+ROMX $16
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 2"
+
+ROMX $17
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 3"
+
+ROMX $18
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 4"
+
+ROMX $19
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 5"
+
+ROMX $1a
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 6"
+
+ROMX $1b
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 7"
+
+ROMX $1c
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 8"
+
+ROMX $1d
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 9"
+
+ROMX $1e
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 10"
+
+ROMX $1f
+	org $4000
+	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 11"
+	"gfx.asm@Annon Pic Ptrs and Pics"
+	"gfx/pokemon/egg.asm"
+
+ROMX $21
+	org $4000
+	"gfx.asm@Attack Animation GFX"
+
+ROMX $23
+	org $4000
+	org $433e
+	"engine/palettes.asm@Overworld fade"
+	org $43d1
+	"engine/palettes.asm@Palette fading, part 2?"
+	org $60cc
+	"gfx.asm@Pokemon Party Sprites"
+	org $722a
+	"data/pokemon/menu_icons.asm"
+
+ROMX $24
+	org $4000
+	org $4fdb
+	"gfx.asm@Slot Machine GFX"
+
+ROMX $25
+	org $4000
+	"data/maps/objects/Route2Gate1F.asm"
+	"scripts/Route2Gate1F.asm"
+	"data/maps/objects/Route2Gate2F.asm"
+	"scripts/Route2Gate2F.asm"
+	"data/maps/objects/Route2House.asm"
+	"scripts/Route2House.asm"
+	"data/maps/objects/OldCityMuseum.asm"
+	"scripts/OldCityMuseum.asm"
+	"data/maps/objects/OldCityGym.asm"
+	"scripts/OldCityGym.asm"
+	"data/maps/objects/OldCityTower1F.asm"
+	"scripts/OldCityTower1F.asm"
+	"data/maps/objects/OldCityTower2F.asm"
+	"scripts/OldCityTower2F.asm"
+	"data/maps/objects/OldCityTower3F.asm"
+	"scripts/OldCityTower3F.asm"
+	"data/maps/objects/OldCityTower4F.asm"
+	"scripts/OldCityTower4F.asm"
+	"data/maps/objects/OldCityTower5F.asm"
+	"scripts/OldCityTower5F.asm"
+	"data/maps/objects/OldCityBillsHouse.asm"
+	"scripts/OldCityBillsHouse.asm"
+	"data/maps/objects/OldCityMart.asm"
+	"scripts/OldCityMart.asm"
+	"data/maps/objects/OldCityHouse.asm"
+	"scripts/OldCityHouse.asm"
+	"data/maps/objects/OldCityPokecenter1F.asm"
+	"scripts/OldCityPokecenter1F.asm"
+	"data/maps/objects/OldCityPokecenter2F.asm"
+	"scripts/OldCityPokecenter2F.asm"
+	"data/maps/objects/OldCityPokecenterTrade.asm"
+	"scripts/OldCityPokecenterTrade.asm"
+	"data/maps/objects/OldCityPokecenterBattle.asm"
+	"scripts/OldCityPokecenterBattle.asm"
+	"data/maps/objects/OldCityPokecenterTimeMachine.asm"
+	"scripts/OldCityPokecenterTimeMachine.asm"
+	"data/maps/objects/OldCityKurtsHouse.asm"
+	"scripts/OldCityKurtsHouse.asm"
+	"data/maps/objects/OldCitySchool.asm"
+	"scripts/OldCitySchool.asm"
+
+ROMX $26
+	org $4000
+	"data/maps/objects/Route1Gate1F.asm"
+	"scripts/Route1Gate1F.asm"
+	"data/maps/objects/Route1Gate2F.asm"
+	"scripts/Route1Gate2F.asm"
+	"data/maps/objects/WestMart1F.asm"
+	"scripts/WestMart1F.asm"
+	"data/maps/objects/WestMart2F.asm"
+	"scripts/WestMart2F.asm"
+	"data/maps/objects/WestMart3F.asm"
+	"scripts/WestMart3F.asm"
+	"data/maps/objects/WestMart4F.asm"
+	"scripts/WestMart4F.asm"
+	"data/maps/objects/WestMart5F.asm"
+	"scripts/WestMart5F.asm"
+	"data/maps/objects/WestMart6F.asm"
+	"scripts/WestMart6F.asm"
+	"data/maps/objects/WestMartElevator.asm"
+	"scripts/WestMartElevator.asm"
+	"data/maps/objects/WestRadioTower1F.asm"
+	"scripts/WestRadioTower1F.asm"
+	"data/maps/objects/WestRadioTower2F.asm"
+	"scripts/WestRadioTower2F.asm"
+	"data/maps/objects/WestRadioTower3F.asm"
+	"scripts/WestRadioTower3F.asm"
+	"data/maps/objects/WestRadioTower4F.asm"
+	"scripts/WestRadioTower4F.asm"
+	"data/maps/objects/WestRadioTower5F.asm"
+	"scripts/WestRadioTower5F.asm"
+	"data/maps/objects/WestRocketRaidedHouse.asm"
+	"scripts/WestRocketRaidedHouse.asm"
+	"data/maps/objects/WestPokecenter1F.asm"
+	"scripts/WestPokecenter1F.asm"
+	"data/maps/objects/WestPokecenter2F.asm"
+	"scripts/WestPokecenter2F.asm"
+	"data/maps/objects/WestGym.asm"
+	"scripts/WestGym.asm"
+	"data/maps/objects/WestHouse1.asm"
+	"scripts/WestHouse1.asm"
+	"data/maps/objects/WestHouse2.asm"
+	"scripts/WestHouse2.asm"
+
+ROMX $27
+	org $4000
+	"data/maps/objects/HaitekuWestRouteGate.asm"
+	"scripts/HaitekuWestRouteGate.asm"
+	"data/maps/objects/HaitekuPokecenter1F.asm"
+	"scripts/HaitekuPokecenter1F.asm"
+	"data/maps/objects/HaitekuPokecenter2F.asm"
+	"scripts/HaitekuPokecenter2F.asm"
+	"data/maps/objects/HaitekuLeague1F.asm"
+	"scripts/HaitekuLeague1F.asm"
+	"data/maps/objects/HaitekuLeague2F.asm"
+	"scripts/HaitekuLeague2F.asm"
+	"data/maps/objects/HaitekuMart.asm"
+	"scripts/HaitekuMart.asm"
+	"data/maps/objects/HaitekuHouse1.asm"
+	"scripts/HaitekuHouse1.asm"
+	"data/maps/objects/HaitekuHouse2.asm"
+	"scripts/HaitekuHouse2.asm"
+	"data/maps/objects/HaitekuImposterOakHouse.asm"
+	"scripts/HaitekuImposterOakHouse.asm"
+	"data/maps/objects/HaitekuAquarium1F.asm"
+	"scripts/HaitekuAquarium1F.asm"
+	"data/maps/objects/HaitekuAquarium2F.asm"
+	"scripts/HaitekuAquarium2F.asm"
+	"data/maps/objects/FontoRouteGate1.asm"
+	"scripts/FontoRouteGate1.asm"
+	"data/maps/objects/FontoRouteGate2.asm"
+	"scripts/FontoRouteGate2.asm"
+	"data/maps/objects/FontoRouteGate3.asm"
+	"scripts/FontoRouteGate3.asm"
+	"data/maps/objects/FontoRocketHouse.asm"
+	"scripts/FontoRocketHouse.asm"
+	"data/maps/objects/FontoMart.asm"
+	"scripts/FontoMart.asm"
+	"data/maps/objects/FontoHouse.asm"
+	"scripts/FontoHouse.asm"
+	"data/maps/objects/FontoPokecenter1F.asm"
+	"scripts/FontoPokecenter1F.asm"
+	"data/maps/objects/FontoPokecenter2F.asm"
+	"scripts/FontoPokecenter2F.asm"
+	"data/maps/objects/FontoLab.asm"
+	"scripts/FontoLab.asm"
+	"data/maps/objects/BaadonMart.asm"
+	"scripts/BaadonMart.asm"
+	"data/maps/objects/BaadonPokecenter1F.asm"
+	"scripts/BaadonPokecenter1F.asm"
+	"data/maps/objects/BaadonPokecenter2F.asm"
+	"scripts/BaadonPokecenter2F.asm"
+	"data/maps/objects/BaadonHouse1.asm"
+	"scripts/BaadonHouse1.asm"
+	"data/maps/objects/BaadonWallpaperHouse.asm"
+	"scripts/BaadonWallpaperHouse.asm"
+	"data/maps/objects/BaadonHouse2.asm"
+	"scripts/BaadonHouse2.asm"
+	"data/maps/objects/BaadonLeague1F.asm"
+	"scripts/BaadonLeague1F.asm"
+	"data/maps/objects/BaadonLeague2F.asm"
+	"scripts/BaadonLeague2F.asm"
+	"data/maps/objects/BaadonRouteGateWest.asm"
+	"scripts/BaadonRouteGateWest.asm"
+	"data/maps/objects/BaadonRouteGateNewtype.asm"
+	"scripts/BaadonRouteGateNewtype.asm"
+	"data/maps/objects/NewtypePokecenter1F.asm"
+	"scripts/NewtypePokecenter1F.asm"
+	"data/maps/objects/NewtypePokecenter2F.asm"
+	"scripts/NewtypePokecenter2F.asm"
+	"data/maps/objects/NewtypeLeague1F.asm"
+	"scripts/NewtypeLeague1F.asm"
+	"data/maps/objects/NewtypeLeague2F.asm"
+	"scripts/NewtypeLeague2F.asm"
+	"data/maps/objects/NewtypeSailorHouse.asm"
+	"scripts/NewtypeSailorHouse.asm"
+	"data/maps/objects/NewtypeMart.asm"
+	"scripts/NewtypeMart.asm"
+	"data/maps/objects/NewtypeDojo.asm"
+	"scripts/NewtypeDojo.asm"
+	"data/maps/objects/NewtypeHouse1.asm"
+	"scripts/NewtypeHouse1.asm"
+	"data/maps/objects/NewtypeDiner.asm"
+	"scripts/NewtypeDiner.asm"
+	"data/maps/objects/NewtypeHouse2.asm"
+	"scripts/NewtypeHouse2.asm"
+	"data/maps/objects/NewtypeHouse3.asm"
+	"scripts/NewtypeHouse3.asm"
+	"data/maps/objects/Route15Pokecenter1F.asm"
+	"scripts/Route15Pokecenter1F.asm"
+	"data/maps/objects/Route15Pokecenter2F.asm"
+	"scripts/Route15Pokecenter2F.asm"
+	"data/maps/objects/NewtypeRouteGate.asm"
+	"scripts/NewtypeRouteGate.asm"
+	"data/maps/objects/Route18Pokecenter1F.asm"
+	"scripts/Route18Pokecenter1F.asm"
+	"data/maps/objects/Route18Pokecenter2F.asm"
+	"scripts/Route18Pokecenter2F.asm"
+	"data/maps/objects/SugarRouteGate.asm"
+	"scripts/SugarRouteGate.asm"
+	"data/maps/objects/SugarHouse.asm"
+	"scripts/SugarHouse.asm"
+	"data/maps/objects/SugarHouse2.asm"
+	"scripts/SugarHouse2.asm"
+	"data/maps/objects/SugarMart.asm"
+	"scripts/SugarMart.asm"
+	"data/maps/objects/SugarPokecenter1F.asm"
+	"scripts/SugarPokecenter1F.asm"
+	"data/maps/objects/SugarPokecenter2F.asm"
+	"scripts/SugarPokecenter2F.asm"
+	"data/maps/objects/BullForestRoute1House.asm"
+	"scripts/BullForestRoute1House.asm"
+	"data/maps/objects/BullForestRouteGateStand.asm"
+	"scripts/BullForestRouteGateStand.asm"
+	"data/maps/objects/BullMart.asm"
+	"scripts/BullMart.asm"
+	"data/maps/objects/BullHouse1.asm"
+	"scripts/BullHouse1.asm"
+	"data/maps/objects/BullHouse2.asm"
+	"scripts/BullHouse2.asm"
+	"data/maps/objects/BullHouse3.asm"
+	"scripts/BullHouse3.asm"
+	"data/maps/objects/BullPokecenter1F.asm"
+	"scripts/BullPokecenter1F.asm"
+	"data/maps/objects/BullPokecenter2F.asm"
+	"scripts/BullPokecenter2F.asm"
+	"data/maps/objects/BullLeague1F.asm"
+	"scripts/BullLeague1F.asm"
+	"data/maps/objects/BullLeague2F.asm"
+	"scripts/BullLeague2F.asm"
+	"data/maps/objects/BullHouse4.asm"
+	"scripts/BullHouse4.asm"
+	"data/maps/objects/StandRouteGateKanto.asm"
+	"scripts/StandRouteGateKanto.asm"
+	"data/maps/objects/StandLab.asm"
+	"scripts/StandLab.asm"
+	"data/maps/objects/StandPokecenter1F.asm"
+	"scripts/StandPokecenter1F.asm"
+	"data/maps/objects/StandPokecenter2F.asm"
+	"scripts/StandPokecenter2F.asm"
+	"data/maps/objects/StandOffice.asm"
+	"scripts/StandOffice.asm"
+	"data/maps/objects/StandMart.asm"
+	"scripts/StandMart.asm"
+	"data/maps/objects/StandHouse.asm"
+	"scripts/StandHouse.asm"
+	"data/maps/objects/StandRocketHouse1F.asm"
+	"scripts/StandRocketHouse1F.asm"
+	"data/maps/objects/StandRocketHouse2F.asm"
+	"scripts/StandRocketHouse2F.asm"
+	"data/maps/objects/StandLeague1F.asm"
+	"scripts/StandLeague1F.asm"
+	"data/maps/objects/StandLeague2F.asm"
+	"scripts/StandLeague2F.asm"
+	"data/maps/objects/KantoCeruleanHouse.asm"
+	"scripts/KantoCeruleanHouse.asm"
+	"data/maps/objects/KantoPokecenter1F.asm"
+	"scripts/KantoPokecenter1F.asm"
+	"data/maps/objects/KantoPokecenter2F.asm"
+	"scripts/KantoPokecenter2F.asm"
+	"data/maps/objects/KantoLeague1F.asm"
+	"scripts/KantoLeague1F.asm"
+	"data/maps/objects/KantoLeague2F.asm"
+	"scripts/KantoLeague2F.asm"
+	"data/maps/objects/KantoLavenderHouse.asm"
+	"scripts/KantoLavenderHouse.asm"
+	"data/maps/objects/KantoCeladonMart1F.asm"
+	"scripts/KantoCeladonMart1F.asm"
+	"data/maps/objects/KantoCeladonMart2F.asm"
+	"scripts/KantoCeladonMart2F.asm"
+	"data/maps/objects/KantoCeladonMart3F.asm"
+	"scripts/KantoCeladonMart3F.asm"
+	"data/maps/objects/KantoCeladonMart4F.asm"
+	"scripts/KantoCeladonMart4F.asm"
+	"data/maps/objects/KantoCeladonMart5F.asm"
+	"scripts/KantoCeladonMart5F.asm"
+	"data/maps/objects/KantoCeladonElevator.asm"
+	"scripts/KantoCeladonElevator.asm"
+	"data/maps/objects/KantoMart.asm"
+	"scripts/KantoMart.asm"
+	"data/maps/objects/KantoGamefreakHQ1.asm"
+	"scripts/KantoGamefreakHQ1.asm"
+	"data/maps/objects/KantoGamefreakHQ2.asm"
+	"scripts/KantoGamefreakHQ2.asm"
+	"data/maps/objects/KantoGamefreakHQ3.asm"
+	"scripts/KantoGamefreakHQ3.asm"
+	"data/maps/objects/KantoGamefreakHQ4.asm"
+	"scripts/KantoGamefreakHQ4.asm"
+	"data/maps/objects/KantoGamefreakHQ5.asm"
+	"scripts/KantoGamefreakHQ5.asm"
+	"data/maps/objects/KantoSilphCo.asm"
+	"scripts/KantoSilphCo.asm"
+	"data/maps/objects/KantoViridianHouse.asm"
+	"scripts/KantoViridianHouse.asm"
+	"data/maps/objects/KantoGameCorner.asm"
+	"scripts/KantoGameCorner.asm"
+	"data/maps/objects/KantoUnusedArea.asm"
+	"scripts/KantoUnusedArea.asm"
+	"data/maps/objects/KantoGameCornerPrizes.asm"
+	"scripts/KantoGameCornerPrizes.asm"
+	"data/maps/objects/KantoDiner.asm"
+	"scripts/KantoDiner.asm"
+	"data/maps/objects/KantoSchool.asm"
+	"scripts/KantoSchool.asm"
+	"data/maps/objects/KantoHospital.asm"
+	"scripts/KantoHospital.asm"
+	"data/maps/objects/KantoPokecenter21F.asm"
+	"scripts/KantoPokecenter21F.asm"
+	"data/maps/objects/KantoPokecenter22F.asm"
+	"scripts/KantoPokecenter22F.asm"
+	"data/maps/objects/KantoRedsHouse.asm"
+	"scripts/KantoRedsHouse.asm"
+	"data/maps/objects/KantoGreensHouse1F.asm"
+	"scripts/KantoGreensHouse1F.asm"
+	"data/maps/objects/KantoGreensHouse2F.asm"
+	"scripts/KantoGreensHouse2F.asm"
+	"data/maps/objects/KantoEldersHouse.asm"
+	"scripts/KantoEldersHouse.asm"
+	"data/maps/objects/KantoOaksLab.asm"
+	"scripts/KantoOaksLab.asm"
+	"data/maps/objects/KantoLeague21F.asm"
+	"scripts/KantoLeague21F.asm"
+	"data/maps/objects/KantoLeague22F.asm"
+	"scripts/KantoLeague22F.asm"
+	"data/maps/objects/KantoFishingGuru.asm"
+	"scripts/KantoFishingGuru.asm"
+	"data/maps/objects/SouthHouse1.asm"
+	"scripts/SouthHouse1.asm"
+	"data/maps/objects/SouthPokecenter1F.asm"
+	"scripts/SouthPokecenter1F.asm"
+	"data/maps/objects/SouthPokecenter2F.asm"
+	"scripts/SouthPokecenter2F.asm"
+	"data/maps/objects/SouthMart.asm"
+	"scripts/SouthMart.asm"
+	"data/maps/objects/SouthHouse2.asm"
+	"scripts/SouthHouse2.asm"
+	"data/maps/objects/NorthHouse1.asm"
+	"scripts/NorthHouse1.asm"
+	"data/maps/objects/NorthMart.asm"
+	"scripts/NorthMart.asm"
+	"data/maps/objects/NorthHouse2.asm"
+	"scripts/NorthHouse2.asm"
+	"data/maps/objects/NorthPokecenter1F.asm"
+	"scripts/NorthPokecenter1F.asm"
+	"data/maps/objects/NorthPokecenter2F.asm"
+	"scripts/NorthPokecenter2F.asm"
+
+ROMX $2f
+	org $4000
+	"data/maps/objects/PowerPlant1.asm"
+	"scripts/PowerPlant1.asm"
+	"data/maps/objects/PowerPlant2.asm"
+	"scripts/PowerPlant2.asm"
+	"data/maps/objects/PowerPlant3.asm"
+	"scripts/PowerPlant3.asm"
+	"data/maps/objects/PowerPlant4.asm"
+	"scripts/PowerPlant4.asm"
+	"data/maps/objects/RuinsOfAlphEntrance.asm"
+	"scripts/RuinsOfAlphEntrance.asm"
+	"data/maps/objects/RuinsOfAlphMain.asm"
+	"scripts/RuinsOfAlphMain.asm"
+	"data/maps/objects/CaveMinecarts1.asm"
+	"scripts/CaveMinecarts1.asm"
+	"data/maps/objects/CaveMinecarts2.asm"
+	"scripts/CaveMinecarts2.asm"
+	"data/maps/objects/CaveMinecarts3.asm"
+	"scripts/CaveMinecarts3.asm"
+	"data/maps/objects/CaveMinecarts4.asm"
+	"scripts/CaveMinecarts4.asm"
+	"data/maps/objects/CaveMinecarts5.asm"
+	"scripts/CaveMinecarts5.asm"
+	"data/maps/objects/CaveMinecarts6.asm"
+	"scripts/CaveMinecarts6.asm"
+	"data/maps/objects/CaveMinecarts7.asm"
+	"scripts/CaveMinecarts7.asm"
+	"data/maps/objects/Office1.asm"
+	"scripts/Office1.asm"
+	"data/maps/objects/Office2.asm"
+	"scripts/Office2.asm"
+	"data/maps/objects/Office3.asm"
+	"scripts/Office3.asm"
+	"data/maps/objects/SlowpokeWellEntrance.asm"
+	"scripts/SlowpokeWellEntrance.asm"
+	"data/maps/objects/SlowpokeWellMain.asm"
+	"scripts/SlowpokeWellMain.asm"
+	"data/maps/objects/ShizukanaOka.asm"
+	"scripts/ShizukanaOka.asm"
+
+ROMX $30
+	org $4000
+	"gfx.asm@Bank 30 Sprites 1"
+
+ROMX $31
+	org $4000
+	"gfx.asm@Bank 31 Sprites 2"
+	"slack.asm@Corrupted Sprites"
+
+ROMX $32
+	org $4000
+	"engine/battle_anims/bg_effects.asm"
+
+ROMX $33
+	org $4000
+
+ROMX $34
+	org $4000
+	"data/maps/objects/RouteSilentEastGate.asm"
+	"scripts/RouteSilentEastGate.asm"
+	"data/maps/objects/PlayerHouse1F.asm"
+	"scripts/PlayerHouse1F.asm"
+	"data/maps/objects/PlayerHouse2F.asm"
+	"scripts/PlayerHouse2F.asm"
+	"data/maps/objects/SilentHillPokecenter.asm"
+	"scripts/SilentHillPokecenter.asm"
+	"data/maps/objects/SilentHillHouse.asm"
+	"scripts/SilentHillHouse.asm"
+	"data/maps/objects/SilentHillLabFront.asm"
+	"scripts/SilentHillLabFront.asm"
+	"data/maps/objects/SilentHillLabBack.asm"
+	"scripts/SilentHillLabBack.asm"
+	"data/maps/objects/UnusedMap13.asm"
+	"scripts/UnusedMap13.asm"
+
+ROMX $36
+	org $4000
+	"scripts/dummy_text_pointers.asm"
+	"data/maps/objects/SilentHill.asm"
+	"data/maps/objects/OldCity.asm"
+	"scripts/OldCity.asm"
+	"data/maps/objects/West.asm"
+	"scripts/West.asm"
+	"data/maps/objects/Haiteku.asm"
+	"scripts/Haiteku.asm"
+	"data/maps/objects/Fonto.asm"
+	"scripts/Fonto.asm"
+	"data/maps/objects/Baadon.asm"
+	"scripts/Baadon.asm"
+	"data/maps/objects/Newtype.asm"
+	"scripts/Newtype.asm"
+	"data/maps/objects/Sugar.asm"
+	"scripts/Sugar.asm"
+	"data/maps/objects/BullForest.asm"
+	"scripts/BullForest.asm"
+	"data/maps/objects/Stand.asm"
+	"scripts/Stand.asm"
+	"data/maps/objects/Kanto.asm"
+	"scripts/Kanto.asm"
+	"data/maps/objects/Prince.asm"
+	"scripts/Prince.asm"
+	"data/maps/objects/MtFuji.asm"
+	"scripts/MtFuji.asm"
+	"data/maps/objects/South.asm"
+	"scripts/South.asm"
+	"data/maps/objects/North.asm"
+	"scripts/North.asm"
+	"data/maps/objects/Route1P1.asm"
+	"data/maps/objects/Route1P2.asm"
+	"data/maps/objects/Route2.asm"
+	"scripts/Route2.asm"
+	"data/maps/objects/HaitekuWestRoute.asm"
+	"scripts/HaitekuWestRoute.asm"
+	"data/maps/objects/HaitekuWestRouteOcean.asm"
+	"scripts/HaitekuWestRouteOcean.asm"
+	"data/maps/objects/FontoRoute1.asm"
+	"scripts/FontoRoute1.asm"
+	"data/maps/objects/FontoRoute6.asm"
+	"scripts/FontoRoute6.asm"
+	"data/maps/objects/FontoRoute2.asm"
+	"scripts/FontoRoute2.asm"
+	"data/maps/objects/FontoRoute4.asm"
+	"scripts/FontoRoute4.asm"
+	"data/maps/objects/FontoRoute3.asm"
+	"scripts/FontoRoute3.asm"
+	"data/maps/objects/BaadonRoute1.asm"
+	"scripts/BaadonRoute1.asm"
+	"data/maps/objects/BaadonRoute2.asm"
+	"scripts/BaadonRoute2.asm"
+	"data/maps/objects/BaadonRoute3.asm"
+	"scripts/BaadonRoute3.asm"
+	"data/maps/objects/Route15.asm"
+	"scripts/Route15.asm"
+	"data/maps/objects/NewtypeRoute.asm"
+	"scripts/NewtypeRoute.asm"
+	"data/maps/objects/Route18.asm"
+	"scripts/Route18.asm"
+	"data/maps/objects/BullForestRoute1.asm"
+	"scripts/BullForestRoute1.asm"
+	"data/maps/objects/SugarRoute.asm"
+	"scripts/SugarRoute.asm"
+	"data/maps/objects/BullForestRoute2.asm"
+	"scripts/BullForestRoute2.asm"
+	"data/maps/objects/StandRoute.asm"
+	"scripts/StandRoute.asm"
+	"data/maps/objects/KantoEastRoute.asm"
+	"scripts/KantoEastRoute.asm"
+	"data/maps/objects/RouteSilentEast.asm"
+	"scripts/RouteSilentEast.asm"
+	"data/maps/objects/PrinceRoute.asm"
+	"scripts/PrinceRoute.asm"
+	"data/maps/objects/MtFujiRoute.asm"
+	"scripts/MtFujiRoute.asm"
+	"data/maps/objects/FontoRoute5.asm"
+	"scripts/FontoRoute5.asm"
+	"data/maps/objects/BullForestRoute3.asm"
+	"scripts/BullForestRoute3.asm"
+	"scripts/SilentHill.asm"
+	"engine/menu/set_time.asm"
+	"scripts/Route1P1.asm"
+	"scripts/Route1P2.asm"
+
+ROMX $37
+	org $4000
+	"gfx.asm@Bank 37 Tilesets 10"
+	org $4b00
+	"gfx.asm@Bank 37 Tilesets 15"
+	org $5b00
+	"gfx.asm@Bank 37 Tilesets 17"
+	org $6b00
+	"gfx.asm@Bank 37 Tilesets 18"
+
+ROMX $38
+	org $4000
+	org $5403
+	"gfx.asm@Poker GFX"
+	org $5f93
+	"gfx.asm@15 Puzzle GFX"
+	org $6606
+	"gfx.asm@Matches GFX"
+	org $75b7
+	"gfx.asm@Picross GFX"
+
+ROMX $39
+	org $4000
+	org $41ff
+	"gfx.asm@Gamefreak Logo GFX"
+	org $4adf
+	"gfx.asm@Intro Underwater GFX"
+	org $55ef
+	"gfx.asm@Intro Water Mon and Forest GFX"
+	org $626f
+	"gfx.asm@Intro Mon"
+
+ROMX $3a
+	org $4000
+	"audio/engine.asm@Audio"
+	org $42bd
+	"audio/engine.asm@IsChannelSFXOn"
+	"audio/engine.asm@Functione82f0"
+	org $4cee
+	"audio/engine.asm@Audio engine, part 2"
+	org $52c7
+	"audio/engine.asm@Song Header Pointers"
+	org $52ee
+	"audio/songs/none.asm"
+
+ROMX $3b
+	org $4000
+	"audio/songs/nidorinointro.asm"
+	"audio/songs/viridiancity.asm"
+	"audio/songs/route1.asm"
+	"audio/songs/oakintro.asm"
+	"audio/songs/leaderbattle.asm"
+	"audio/songs/trainerbattle.asm"
+	"audio/songs/heal.asm"
+	"audio/songs/bicycle.asm"
+	"audio/songs/spottedrocket.asm"
+	"audio/songs/victorytrainer.asm"
+	"audio/songs/evolution.asm"
+
+ROMX $3c
+	org $4000
+	org $51cb
+	"audio/cries.asm"
+	org $62fe
+	"audio/songs/title.asm"
+
+ROMX $3e
+	org $4000
+	"engine/gfx.asm"
+	"gfx.asm@Misc GFX"
+
+ROMX $3f
+	org $4000
+	org $4362
+	"engine/menu/reset_dialog.asm"
+	org $4a57
+	"engine/landmarks.asm@1"
+	"data/maps/landmarks.asm"
+	"engine/landmarks.asm@2"
+	org $506f
+	"gfx.asm@Town Map Cursor"
+
+WRAM0
+	org $c000
+	"Music engine RAM"
+	org $c200
+	"OAM Buffer"
+	org $c5e8
+	"Map Buffer"
+	org $dfff
+	"Stack Bottom"
+
+VRAM 0
+	"VRAM"
+
+HRAM
+	"HRAM"
+
+SRAM 0
+	"Sprite Buffers"
+	org $a600
+	"Unknown, bank 0"
+	org $bffe
+	"Window Stack Top"

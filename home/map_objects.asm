@@ -1,12 +1,12 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "home/map_objects.asm", ROM0
 
-Function15b5:: ; 15b5
+Function15b5::
 	callab Function8000
 	ret
 
-GetMapObject:: ; 00:15be
+GetMapObject::
 	ld hl, wMapObjects
 	ld bc, MAP_OBJECT_LENGTH
 	call AddNTimes
@@ -14,13 +14,13 @@ GetMapObject:: ; 00:15be
 	ld c, l
 	ret
 
-GetMapObjectAttrPtr:: ; 15ca
+GetMapObjectAttrPtr::
 	call GetMapObject
 	ld d, $0
 	add hl, de
 	ret
 
-Function15d1:: ; 15d1
+Function15d1::
 	ldh [hMapObjectIndexBuffer], a
 	call GetMapObject
 	call Function40eb
@@ -52,7 +52,7 @@ Function1602::
 	callab Function813d
 	ret
 
-Function1617:: ; 00:1617
+Function1617::
 	ldh [hMapObjectIndexBuffer], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
@@ -68,13 +68,13 @@ Function1617:: ; 00:1617
 	jr nz, .asm_1633
 	ld a, $ff
 	ld [wObjectFollow_Leader], a
-.asm_1633: ; 00:1633
+.asm_1633:
 	ld a, [wObjectFollow_Follower]
 	cp d
 	jr nz, .asm_163e
 	ld a, $0
 	ld [wObjectFollow_Follower], a
-.asm_163e: ; 00:163e
+.asm_163e:
 	pop af
 	call GetObjectStruct
 	ld bc, OBJECT_LENGTH
@@ -156,7 +156,7 @@ Function169f::
 	jr nz, .asm_16c5
 	ld a, $ff
 	ld [wObjectFollow_Leader], a
-.asm_16c5: ; 00:16c5
+.asm_16c5:
 	ld a, b
 	call GetObjectStruct
 	ld bc, OBJECT_LENGTH
@@ -203,10 +203,10 @@ Function16fb::
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], $0
-.asm_171f: ; 00:171f
+.asm_171f:
 	ret
 
-CheckObjectVisibility:: ; 00:1720
+CheckObjectVisibility::
 	ldh [hMapObjectIndexBuffer], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
@@ -219,11 +219,11 @@ CheckObjectVisibility:: ; 00:1720
 	and a
 	ret
 
-.asm_1735: ; 00:1735
+.asm_1735:
 	scf
 	ret
 
-PushToCmdQueue:: ; 1737
+PushToCmdQueue::
 	push de
 	call GetCmdQueueEmptySlot
 	pop de
@@ -285,11 +285,11 @@ PushToCmdQueue:: ; 1737
 	ld [hl], a
 	ret
 
-GetCmdQueueEmptySlot:: ; 00:178e
+GetCmdQueueEmptySlot::
 	ld hl, wCmdQueue
 	ld de, CMDQUEUE_ENTRY_SIZE
 	ld a, 1
-.asm_1796: ; 00:1796
+.asm_1796:
 	ldh [hObjectStructIndexBuffer], a
 	ld a, [hl]
 	and a
@@ -302,11 +302,11 @@ GetCmdQueueEmptySlot:: ; 00:178e
 	scf
 	ret
 
-.asm_17a6: ; 00:17a6
+.asm_17a6:
 	xor a
 	ret
 
-UpdateSprites:: ; 00:17a8
+UpdateSprites::
 	ld a, [wVramState]
 	bit 0, a
 	ret z
@@ -314,7 +314,7 @@ UpdateSprites:: ; 00:17a8
 	callab _UpdateSprites
 	ret
 
-GetObjectStruct:: ; 00:17bf
+GetObjectStruct::
 ; Puts the start of the a'th object struct into bc
 	ld bc, $28
 	ld hl, wObjectStructs
@@ -325,7 +325,7 @@ GetObjectStruct:: ; 00:17bf
 
 Function17cb::
 	add $10
-	
+
 Function17cd::
 	ld e, a
 	ldh a, [hROMBank]
@@ -338,7 +338,7 @@ Function17cd::
 	ret
 
 ; sets carry flag if the sprite data includes "in-motion" sprites
-IsAnimatedSprite:: ; 00:17de
+IsAnimatedSprite::
 	push hl
 	push bc
 	ld c, a
@@ -356,7 +356,7 @@ IsAnimatedSprite:: ; 00:17de
 	pop hl
 	ret
 
-.NonAnimatedSprites: ; 00:17f1
+.NonAnimatedSprites:
 	db SPRITE_KABIGON
 	db SPRITE_POKE_BALL
 	db SPRITE_POKEDEX
@@ -395,10 +395,10 @@ Function1813::
 	set 5, [hl]
 	ret
 
-Function1828:: ; 00:1828
+Function1828::
 	ld bc, wObjectStructs
 	xor a
-.asm_182c: ; 00:182c
+.asm_182c:
 	push af
 	ld hl, OBJECT_SPRITE
 	add hl, bc
@@ -408,7 +408,7 @@ Function1828:: ; 00:1828
 	ld hl, OBJECT_FLAGS + 1
 	add hl, bc
 	set 5, [hl]
-.asm_183b: ; 00:183b
+.asm_183b:
 	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
@@ -423,7 +423,7 @@ Function1848::
 	push bc
 	ld bc, wObjectStructs
 	xor a
-.asm_184d: ; 00:184d
+.asm_184d:
 	push af
 	ld hl, OBJECT_SPRITE
 	add hl, bc
@@ -433,7 +433,7 @@ Function1848::
 	ld hl, OBJECT_FLAGS + 1
 	add hl, bc
 	res 5, [hl]
-.asm_185c: ; 00:185c
+.asm_185c:
 	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
@@ -460,7 +460,7 @@ Function186a::
 
 Function187f::
 	xor a
-.asm_1880: ; 00:1880
+.asm_1880:
 	push af
 	push hl
 	ld b, a
@@ -484,7 +484,7 @@ Function187f::
 	jr nz, .asm_1880
 	ret
 
-._hl_: ; 00:189f
+._hl_:
 	jp hl
 
 Function18a0::
@@ -526,7 +526,7 @@ Function18cc::
 	ld [hl], $0
 	ret
 
-Function18e5:: ; 00:18e5
+Function18e5::
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
@@ -562,7 +562,7 @@ Function1908::
 	ld [wCenteredObject], a
 	ret
 
-Function191d:: ; 00:191d
+Function191d::
 	ld a, [wCenteredObject]
 	cp $ff
 	ret z
@@ -574,8 +574,6 @@ Function191d:: ; 00:191d
 	ld [wCenteredObject], a
 	ret
 
-; 1932
-
 StartFollow::
 	push bc
 	ld a, b
@@ -586,7 +584,7 @@ StartFollow::
 	callab QueueFollowerFirstStep
 	ret
 
-SetLeaderIfVisible:: ; 00:1945
+SetLeaderIfVisible::
 	call CheckObjectVisibility
 	ret c
 	ldh a, [hObjectStructIndexBuffer]
@@ -598,7 +596,7 @@ ResetLeader::
 	ld [wObjectFollow_Leader], a
 	ret
 
-SetFollowerIfVisible:: ; 00:1954
+SetFollowerIfVisible::
 	push af
 	call ResetFollower
 	pop af
@@ -614,7 +612,7 @@ SetFollowerIfVisible:: ; 00:1954
 	ld [wObjectFollow_Follower], a
 	ret
 
-ResetFollower:: ; 00:196f
+ResetFollower::
 	ld a, [wObjectFollow_Follower]
 	and a
 	ret z
@@ -672,7 +670,7 @@ Function19b5::
 	res 7, [hl]
 	ret
 
-SetObjectFacing:: ; 19C0
+SetObjectFacing::
 	; a is NPC number, d is direction
 	push de
 	call CheckObjectVisibility

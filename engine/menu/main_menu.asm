@@ -1,5 +1,18 @@
 INCLUDE "constants.asm"
 
+	const_def
+	const M_NEW_GAME
+	const M_CONTINUE
+	const M_PLAY_GAME
+	const M_SET_TIME
+
+	const_def
+	const CONTINUE
+	const NEW_GAME
+	const OPTION
+	const PLAY_POKEMON
+	const SET_TIME
+
 SECTION "engine/menu/main_menu.asm@Initialize new game WRAM", ROMX
 ; TODO: Move this to another file when surrounding
 ; functions have been disassembled.
@@ -65,7 +78,7 @@ ENDR
 
 	ld a, $B8
 	ld [wd15f], a
-	
+
 	ld hl, wUnknownListLengthd1ea
 	ld a, ITEM_REPEL
 	ld [wCurItem], a
@@ -80,7 +93,7 @@ ENDR
 
 	ret
 
-; Initializes a 0xFF-terminated list preceded by a length to
+; Initializes a $FF-terminated list preceded by a length to
 ; length 0, with an immediate terminator.
 InitializeByteList:
 	xor a
@@ -91,8 +104,8 @@ InitializeByteList:
 
 SECTION "engine/menu/main_menu.asm@MainMenu", ROMX
 
-MainMenu:: ; 01:53CC
-	ld hl, wd4a9 
+MainMenu::
+	ld hl, wd4a9
 	res 0, [hl]
 	call ClearTileMap
 	call GetMemSGBLayout
@@ -132,20 +145,20 @@ MainMenu:: ; 01:53CC
 	nop
 	nop
 
-MainMenuHeader: ; 01:5418
+MainMenuHeader:
 	db MENU_BACKUP_TILES
 	menu_coords 0, 0, 14, 7
 	dw .MenuData
 	db 1 ; default option
 
-.MenuData: ; 01:5420
+.MenuData:
 	db $80
 	db 0 ; items
 	dw MainMenuItems
 	db $8a, $1f
 	dw .Strings
 
-.Strings: ; 01:5428
+.Strings:
 	db "CONTINUE@"
 	db "NEW GAME@"
 	db "OPTIONS@"
@@ -153,7 +166,7 @@ MainMenuHeader: ; 01:5418
 	db "TIME@"
 	db "@@@" 
 
-MainMenuJumptable: ; 01:5457
+MainMenuJumptable:
 	dw MainMenuOptionContinue
 	dw StartNewGame
 	dw MenuCallSettings
@@ -185,11 +198,11 @@ ContinueMenu:
 	nop
 	nop
 
-MainMenuOptionSetTime:: ; 5473
+MainMenuOptionSetTime::
 	callab SetTime
 	ret
 
-MainMenuOptionContinue:: ;547C
+MainMenuOptionContinue::
 	callab Function14624
 	call DisplayContinueGameInfo
 .loop
@@ -219,7 +232,7 @@ MainMenuOptionContinue:: ;547C
 	call DelayFrames
 	jp OverworldStart
 
-DisplayContinueGameInfo:: ; 54BF
+DisplayContinueGameInfo::
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 4, 7
@@ -244,7 +257,7 @@ DisplayContinueGameInfo:: ; 54BF
 	call DelayFrames
 	ret
 
-PrintNumBadges:: ;54FA
+PrintNumBadges::
 	push hl
 	ld hl, wd163 ; badges?
 	ld b, $01
@@ -254,7 +267,7 @@ PrintNumBadges:: ;54FA
 	ld bc, $0102 ; flags and constants for this? 1 byte source, 2 digit display
 	jp PrintNumber
 
-PrintNumOwnedMons:: ; 550D
+PrintNumOwnedMons::
 	push hl
 	ld hl, wPokedexOwned
 	ld b, $20 ; flag_array NUM_POKEMON?
@@ -264,7 +277,7 @@ PrintNumOwnedMons:: ; 550D
 	ld bc, $0103 ; 1 byte, 3 digit
 	jp PrintNumber
 
-PrintPlayTime:: ; 5520
+PrintPlayTime::
 	ld de, hRTCHours
 	ld bc, $0103 ; 1 byte, 3 digit
 	call PrintNumber

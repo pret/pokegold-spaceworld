@@ -1,11 +1,6 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/unknown_388f.asm", ROM0
-; else
-; SECTION "Unknown 388F", ROM0 [$3853]
-; endc
-
 
 Function388f::
 	ret
@@ -51,7 +46,7 @@ Function38d8::
 
 TestWildBattleStart::
 	ldh a, [hJoyState]
-	and D_PAD 
+	and D_PAD
 	ret z ; if no directions are down, don't try and trigger a wild encounter
 	call CheckBPressedDebug
 	jp nz, ClearAccumulator ; if b button is down, clear acc
@@ -88,12 +83,12 @@ Function3920::
 	call WriteIntod637
 	ret
 
-.asm_392d: ; 00:392d
+.asm_392d:
 	ld hl, wJoypadFlags
 	res 4, [hl]
 	ld hl, .text
 	call OpenTextbox
-	call RotateFourPalettesLeft
+	call GBFadeOutToBlack
 	jp Init
 
 .text:

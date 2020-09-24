@@ -1,6 +1,3 @@
-04:4743 ShrinkPic1
-04:479D ShrinkPic2
-
 05:4036 RefreshSprites
 05:404C CheckInteriorMap
 05:405B AddIndoorSprites
@@ -61,7 +58,7 @@
 0B:5663 Function2d663
 
 0E:4B78 LoadTrainerClassName
-0E:4BA0 LoadTrainerClassName.got_name
+;0E:4BA0 LoadTrainerClassName.got_name
 0E:4BA9 LoadTrainerClass
 
 0D:7E3D Function37e3d
@@ -93,7 +90,6 @@
 10:4B45 Function40b45
 10:4B5C Function40b5c
 10:58B8 Data4a8b8
-10:58BB Moves
 10:5F93 Function4af93
 10:5FA1 Function41fa1
 10:61F8 Function421f8
@@ -171,7 +167,7 @@
 3A:52C7 Music
 
 3F:40E9 InGameDebugMenu
-3F:4305 PokeGear
+3F:4305 TrainerGear
 3F:4C24 Functionfcc24
 3F:4E3E Functionfce3e
 3F:5B66 Functionfdb66
@@ -179,5 +175,5 @@
 3F:64CE MonsterTest
 3F:654E PicTest
 3F:6750 PicTestMenu
-3F:6755 PicTestMenu.loop
+;3F:6755 PicTestMenu.loop
 3F:67A1 CallSubGameMenu

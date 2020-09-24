@@ -1,7 +1,7 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "engine/battle/core.asm", ROMX
-_BattleRandom: ; 3e3da (f:63da)
+_BattleRandom:
 ; If the normal RNG is used in a link battle it'll desync.
 ; To circumvent this a shared PRNG is used instead.
 

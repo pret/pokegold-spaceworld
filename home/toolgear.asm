@@ -3,7 +3,8 @@ INCLUDE "constants.asm"
 SECTION "home/toolgear.asm", ROM0
 
 ; local charmap, global charmap won't apply
-; see https://github.com/rednex/rgbds/issues/265#issuecomment-395229694
+; see https://github.com/gbdev/rgbds/issues/265#issuecomment-395229694
+newcharmap local
 	charmap "０", $66
 	charmap "１", $67
 	charmap "２", $68
@@ -22,7 +23,7 @@ SECTION "home/toolgear.asm", ROM0
 	charmap "Ｅ", $74
 	charmap "Ｆ", $75
 	; small kana aren't actively loaded
-	
+
 	; if clock shown
 	charmap "：", $70
 	charmap "日", $71
@@ -34,7 +35,7 @@ SECTION "home/toolgear.asm", ROM0
 	charmap "土", $77
 	charmap "⚡", $78 ; power
 	charmap "☎", $79 ; mobile
-	
+
 	; active frame
 	charmap "┌", $79 ; only if debug coords shown
 	charmap "─", $7a
@@ -44,21 +45,21 @@ SECTION "home/toolgear.asm", ROM0
 	charmap "┘", $7e
 	charmap "　", $7f
 
-EnableToolgear:: ; 00:2018
+EnableToolgear::
 	ld hl, wd153
 	res 0, [hl]
 	ld hl, wToolgearFlags
 	set 0, [hl]
 	ret
 
-DisableToolgear:: ; 00:2023
+DisableToolgear::
 	ld hl, wToolgearFlags
 	res 0, [hl]
 	xor a
 	ldh [hLCDCPointer], a
 	ret
 
-InitToolgearBuffer:: ; 00:202c
+InitToolgearBuffer::
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wToolgearFlags
@@ -92,7 +93,7 @@ InitToolgearBuffer:: ; 00:202c
 	ldh [hWY], a
 	ret
 
-.hide_window: ; 00:206b
+.hide_window:
 	xor a
 	ldh [hLCDCPointer], a
 	ld a, $90
@@ -100,7 +101,7 @@ InitToolgearBuffer:: ; 00:202c
 	ldh [hWY], a
 	ret
 
-UpdateToolgear:: ; 2075
+UpdateToolgear::
 ; Prepares a buffer for the clock display, which in the Debug ROM is displayed on the bottom of the screen.
 ; This function is called every frame, and loads special tiles into the $66-$7a space.
 	bgcoord hl, 0, 1, wToolgearBuffer
@@ -108,7 +109,6 @@ UpdateToolgear:: ; 2075
 	ld a, "　"
 	call ByteFill
 
-if DEBUG
 	ld hl, wd153
 	bit 0, [hl]
 	jr z, .debug_show_time
@@ -121,8 +121,7 @@ if DEBUG
 	ld c, $01
 	call .printHex
 	ret
-.debug_show_time:
-endc
+.debug_show_time
 
 	ld hl, hRTCHours
 	bgcoord de, 0, 1, wToolgearBuffer
@@ -145,7 +144,7 @@ endc
 	ldbgcoord_a 2, 1, wToolgearBuffer
 	ret
 
-.printHex:: ; 20cd
+.printHex::
 ; .printHex
 ; print c hexadecimal digits from hl to de
 ; clobbers: a, b
@@ -159,7 +158,7 @@ endc
 	jr nz, .printHex
 	ret
 
-.printDec:: ; 20dc
+.printDec::
 ; .printDec
 ; print c decimal digits from hl to de
 ; clobbers: a, b
@@ -178,7 +177,7 @@ endc
 	call .printDigit
 	ret
 
-.printDigit:: ; 20f1
+.printDigit::
 ; .printDigit
 ; print a hexadecimal digit for value in a to de
 	and $0f

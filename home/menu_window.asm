@@ -1,4 +1,4 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
 SECTION "home/menu_window.asm", ROM0
 
@@ -7,7 +7,7 @@ SetMenuAttributes::
 	push bc
 	ld hl, wMenuData3
 	ld b, $8
-.asm_1a6b: ; 00:1a6b
+.asm_1a6b:
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -24,14 +24,14 @@ SetMenuAttributes::
 	pop hl
 	ret
 
-Get2DMenuJoypad:: ; 00:1a7c
+Get2DMenuJoypad::
 	call Place2DMenuCursor
 	ld hl, w2DMenuFlags + 1
 	res 7, [hl]
-.loop: ; 00:1a84
+.loop:
 	call Move2DMenuCursor
 	call WaitBGMap
-.asm_1a8a: ; 00:1a8a
+.asm_1a8a:
 	call UpdateTime
 	call UpdateTimeOfDayPalettes
 	call Menu_WasButtonPressed
@@ -41,7 +41,7 @@ Get2DMenuJoypad:: ; 00:1a7c
 	jp nz, .done
 	jr .asm_1a8a
 
-.asm_1a9f: ; 00:1a9f
+.asm_1a9f:
 	call _2DMenuInterpretJoypad
 	jp c, .done
 	ld a, [w2DMenuFlags]
@@ -52,7 +52,7 @@ Get2DMenuJoypad:: ; 00:1a7c
 	ld a, [wMenuJoypadFilter]
 	and b
 	jp z, .loop
-.done: ; 00:1ab6
+.done:
 	ldh a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
 	jr z, .asm_1ac4
@@ -60,16 +60,16 @@ Get2DMenuJoypad:: ; 00:1a7c
 	ld de, SE_SELECT
 	call PlaySFX
 	pop de
-.asm_1ac4: ; 00:1ac4
+.asm_1ac4:
 	ldh a, [hJoySum]
 	ret
 
-Menu_WasButtonPressed:: ; 00:1ac7
+Menu_WasButtonPressed::
 	ld a, [w2DMenuFlags]
 	bit 6, a
 	jr z, .asm_1ad6
 	callba PlaySpriteAnimationsAndDelayFrame
-.asm_1ad6: ; 00:1ad6
+.asm_1ad6:
 	call GetJoypadDebounced
 	ldh a, [hJoySum]
 	and a
@@ -77,7 +77,7 @@ Menu_WasButtonPressed:: ; 00:1ac7
 	scf
 	ret
 
-_2DMenuInterpretJoypad:: ; 00:1adf
+_2DMenuInterpretJoypad::
 	ldh a, [hJoySum]
 	bit A_BUTTON_F, a
 	jp nz, .PressedABStartOrSelect
@@ -98,13 +98,13 @@ _2DMenuInterpretJoypad:: ; 00:1adf
 	and a
 	ret
 
-.SetFlag15AndCarry: ; 00:1b07
+.SetFlag15AndCarry:
 	ld hl, w2DMenuFlags + 1
 	set 7, [hl]
 	scf
 	ret
 
-.PressedDown: ; 00:1b0e
+.PressedDown:
 	ld hl, wMenuCursorY
 	ld a, [w2DMenuNumRows]
 	cp [hl]
@@ -113,7 +113,7 @@ _2DMenuInterpretJoypad:: ; 00:1adf
 	xor a
 	ret
 
-.asm_1b1a: ; 00:1b1a
+.asm_1b1a:
 	ld a, [w2DMenuFlags]
 	bit 5, a
 	jr nz, .asm_1b28
@@ -122,12 +122,12 @@ _2DMenuInterpretJoypad:: ; 00:1adf
 	xor a
 	ret
 
-.asm_1b28: ; 00:1b28
+.asm_1b28:
 	ld [hl], $1
 	xor a
 	ret
 
-.PressedUp: ; 00:1b2c
+.PressedUp:
 	ld hl, wMenuCursorY
 	ld a, [hl]
 	dec a
@@ -136,7 +136,7 @@ _2DMenuInterpretJoypad:: ; 00:1adf
 	xor a
 	ret
 
-.asm_1b36: ; 00:1b36
+.asm_1b36:
 	ld a, [w2DMenuFlags]
 	bit 5, a
 	jr nz, .asm_1b44
@@ -145,13 +145,13 @@ _2DMenuInterpretJoypad:: ; 00:1adf
 	xor a
 	ret
 
-.asm_1b44: ; 00:1b44
+.asm_1b44:
 	ld a, [w2DMenuNumRows]
 	ld [hl], a
 	xor a
 	ret
 
-.PressedLeft: ; 00:1b4a
+.PressedLeft:
 	ld hl, wMenuCursorX
 	ld a, [hl]
 	dec a
@@ -160,7 +160,7 @@ _2DMenuInterpretJoypad:: ; 00:1adf
 	xor a
 	ret
 
-.asm_1b54: ; 00:1b54
+.asm_1b54:
 	ld a, [w2DMenuFlags]
 	bit 4, a
 	jr nz, .asm_1b62
@@ -169,13 +169,13 @@ _2DMenuInterpretJoypad:: ; 00:1adf
 	xor a
 	ret
 
-.asm_1b62: ; 00:1b62
+.asm_1b62:
 	ld a, [w2DMenuNumCols]
 	ld [hl], a
 	xor a
 	ret
 
-.PressedRight: ; 00:1b68
+.PressedRight:
 	ld hl, wMenuCursorX
 	ld a, [w2DMenuNumCols]
 	cp [hl]
@@ -184,7 +184,7 @@ _2DMenuInterpretJoypad:: ; 00:1adf
 	xor a
 	ret
 
-.asm_1b74: ; 00:1b74
+.asm_1b74:
 	ld a, [w2DMenuFlags]
 	bit 4, a
 	jr nz, .asm_1b82
@@ -193,16 +193,16 @@ _2DMenuInterpretJoypad:: ; 00:1adf
 	xor a
 	ret
 
-.asm_1b82: ; 00:1b82
+.asm_1b82:
 	ld [hl], $1
 	xor a
 	ret
 
-.PressedABStartOrSelect: ; 00:1b86
+.PressedABStartOrSelect:
 	xor a
 	ret
 
-Move2DMenuCursor:: ; 00:1b88
+Move2DMenuCursor::
 	ld hl, wCursorCurrentTile
 	ld a, [hli]
 	ld h, [hl]
@@ -212,7 +212,7 @@ Move2DMenuCursor:: ; 00:1b88
 	jr nz, Place2DMenuCursor
 	ld a, [wCursorOffCharacter]
 	ld [hl], a
-Place2DMenuCursor:: ; 00:1b97
+Place2DMenuCursor::
 	ld a, [w2DMenuCursorInitY]
 	ld b, a
 	ld a, [w2DMenuCursorInitX]
@@ -227,11 +227,11 @@ Place2DMenuCursor:: ; 00:1b97
 	xor a
 	dec b
 	jr z, .asm_1bb6
-.asm_1bb2: ; 00:1bb2
+.asm_1bb2:
 	add c
 	dec b
 	jr nz, .asm_1bb2
-.asm_1bb6: ; 00:1bb6
+.asm_1bb6:
 	ld c, SCREEN_WIDTH
 	call AddNTimes
 	ld a, [w2DMenuCursorOffsets]
@@ -242,11 +242,11 @@ Place2DMenuCursor:: ; 00:1b97
 	xor a
 	dec b
 	jr z, .asm_1bcd
-.asm_1bc9: ; 00:1bc9
+.asm_1bc9:
 	add c
 	dec b
 	jr nz, .asm_1bc9
-.asm_1bcd: ; 00:1bcd
+.asm_1bcd:
 	ld c, a
 	add hl, bc
 	ld a, [hl]
@@ -254,7 +254,7 @@ Place2DMenuCursor:: ; 00:1b97
 	jr z, .asm_1bd9
 	ld [wCursorOffCharacter], a
 	ld [hl], $ed
-.asm_1bd9: ; 00:1bd9
+.asm_1bd9:
 	ld a, l
 	ld [wCursorCurrentTile], a
 	ld a, h
@@ -277,19 +277,19 @@ HideCursor::
 	ld [hl], $7f
 	ret
 
-PushWindow:: ; 00:1bf4
+PushWindow::
 	ld hl, PlaceWaitingText
 	ld a, $9
 	jp FarCall_hl
 
-ExitMenu:: ; 00:1bfc
+ExitMenu::
 	push af
 	callab _ExitMenu
 	call Function1c0a
 	pop af
 	ret
 
-Function1c0a:: ; 00:1c0a
+Function1c0a::
 	ld a, [wVramState]
 	bit 0, a
 	ret z
@@ -309,12 +309,12 @@ Function1c0a:: ; 00:1c0a
 	ld hl, sSpriteBuffer0
 	decoord 0, 0
 	ld bc, $168
-.asm_1c33: ; 00:1c33
+.asm_1c33:
 	ld a, [hl]
 	cp $61
 	jr c, .asm_1c39
 	ld [de], a
-.asm_1c39: ; 00:1c39
+.asm_1c39:
 	inc hl
 	inc de
 	dec bc
@@ -325,10 +325,10 @@ Function1c0a:: ; 00:1c0a
 
 	ret
 
-InitVerticalMenuCursor:: ; 00:1c44
+InitVerticalMenuCursor::
 	jpab _InitVerticalMenuCursor
 
-CloseWindow:: ; 00:1c4c
+CloseWindow::
 	push af
 	call ExitMenu
 	call WaitBGMap
@@ -339,15 +339,15 @@ CloseWindow:: ; 00:1c4c
 Function1c58::
 	jpab Function24185
 
-RestoreTileBackup:: ; 00:1c60
+RestoreTileBackup::
 	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	inc b
 	inc c
-.asm_1c68: ; 00:1c68
+.asm_1c68:
 	push bc
 	push hl
-.asm_1c6a: ; 00:1c6a
+.asm_1c6a:
 	ld a, [de]
 	ld [hli], a
 	dec de
@@ -361,10 +361,10 @@ RestoreTileBackup:: ; 00:1c60
 	jr nz, .asm_1c68
 	ret
 
-PopWindow:: ; 00:1c7a
+PopWindow::
 	ld b, $10
 	ld de, wMenuDataHeader
-.asm_1c7f: ; 00:1c7f
+.asm_1c7f:
 	ld a, [hld]
 	ld [de], a
 	inc de
@@ -372,7 +372,7 @@ PopWindow:: ; 00:1c7a
 	jr nz, .asm_1c7f
 	ret
 
-GetMenuBoxDims:: ; 00:1c86
+GetMenuBoxDims::
 	push hl
 	ld hl, wMenuBorderTopCoord
 	ld a, [hli]
@@ -388,7 +388,7 @@ GetMenuBoxDims:: ; 00:1c86
 	pop hl
 	ret
 
-CopyMenuData:: ; 00:1c96
+CopyMenuData::
 	push hl
 	push de
 	push bc
@@ -406,7 +406,7 @@ CopyMenuData:: ; 00:1c96
 	pop hl
 	ret
 
-GetWindowStackTop:: ; 00:1cae
+GetWindowStackTop::
 	ld hl, wWindowStackPointer
 	ld a, [hli]
 	ld h, [hl]
@@ -417,7 +417,7 @@ GetWindowStackTop:: ; 00:1cae
 	ld l, a
 	ret
 
-PlaceVerticalMenuItems:: ; 00:1cb9
+PlaceVerticalMenuItems::
 	call CopyMenuData
 	ld hl, wMenuDataPointer
 	ld e, [hl]
@@ -429,7 +429,7 @@ PlaceVerticalMenuItems:: ; 00:1cb9
 	ld a, [de]
 	inc de
 	ld b, a
-.asm_1ccc: ; 00:1ccc
+.asm_1ccc:
 	push bc
 	call PlaceString
 	inc de
@@ -451,14 +451,14 @@ PlaceVerticalMenuItems:: ; 00:1cb9
 	add hl, bc
 	jp PlaceString
 
-MenuBox:: ; 00:1ceb
+MenuBox::
 	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	dec b
 	dec c
 	jp DrawTextBox
 
-GetMenuTextStartCoord:: ; 00:1cf6
+GetMenuTextStartCoord::
 	ld a, [wMenuBorderTopCoord]
 	ld b, a
 	inc b
@@ -469,12 +469,12 @@ GetMenuTextStartCoord:: ; 00:1cf6
 	bit 6, a
 	jr nz, .asm_1d08
 	inc b
-.asm_1d08: ; 00:1d08
+.asm_1d08
 	ld a, [wMenuDataFlags]
 	bit 7, a
-	jr z, .asm_1d10
+	jr z, .done
 	inc c
-.asm_1d10: ; 00:1d10
+.done
 	ret
 
 ClearMenuBoxInterior::
@@ -495,12 +495,12 @@ ClearWholeMenuBox::
 	call ClearBox
 	ret
 
-MenuBoxCoord2Tile:: ; 00:1d2d
+MenuBoxCoord2Tile::
 	ld a, [wMenuBorderLeftCoord]
 	ld c, a
 	ld a, [wMenuBorderTopCoord]
 	ld b, a
-Coord2Tile:: ; 00:1d35
+Coord2Tile::
 	xor a
 	ld h, a
 	ld l, b

@@ -1,8 +1,8 @@
 INCLUDE "constants.asm"
-	
+
 SECTION "engine/bcd.asm", ROMX
 
-AddBCD: ; 03:4de3
+AddBCD:
 	and a
 	ld b, c
 .add
@@ -15,10 +15,10 @@ AddBCD: ; 03:4de3
 	dec c
 	jr nz, .add
 	jr nc, .done
-	
+
 	ld a, $99
 	inc de
-	
+
 .fill
 	ld [de], a
 	inc de
@@ -29,7 +29,7 @@ AddBCD: ; 03:4de3
 	ret
 
 
-SubBCD: ; 03:4df9
+SubBCD:
 	and a
 	ld b, c
 .sub
@@ -44,7 +44,7 @@ SubBCD: ; 03:4df9
 	jr nc, .done
 	ld a, 0
 	inc de
-	
+
 .fill
 	ld [de], a
 	inc de

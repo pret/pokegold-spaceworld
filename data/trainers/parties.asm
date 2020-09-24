@@ -15,7 +15,8 @@ INCLUDE "data/trainers/party_pointers.inc"
 
 ; TODO: decode all data
 
-if def(GOLD)
+if DEF(GOLD)
+
 HayatoGroup::
 ; Leftover Youngster data from Red/Blue
 	db 11, MON_KORATTA, MON_ARBO, 0
@@ -612,8 +613,8 @@ KimonoGirlGroup::
 	db "こうめ@", TRAINERTYPE_ITEM_MOVES
 	db 10, DEX_PIPPI, ITEM_NONE, MOVE_CHARM, MOVE_SWEET_KISS, MOVE_POUND, MOVE_NONE
 	db -1 ; end
-else
 
+else
 
 SECTION "data/trainers/parties.asm@Trainer Parties 1 TEMPORARY", ROMX
 AkaneGroup::

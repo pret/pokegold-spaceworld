@@ -1,10 +1,6 @@
 INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "data/items/names.asm", ROMX
-; else
-; SECTION "ItemNames", ROMX[$6FE9], BANK[$01]
-; endc
 
 ItemNames::
 	db "マスターボール@" ; MASTER_BALL

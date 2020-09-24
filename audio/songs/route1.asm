@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/route1.asm", ROMX
 
-Song_Route1:: ; ec4c2 (3b:44c2)
+Song_Route1::
 	db 3 << 6 | 0
 	dw Song_Route1_Ch0
 	db 1
@@ -12,7 +12,7 @@ Song_Route1:: ; ec4c2 (3b:44c2)
 	db 3
 	dw Song_Route1_Ch3
 
-Song_Route1_Ch0:: ; ec4ce (3b:44ce)
+Song_Route1_Ch0::
 	tempo 152
 	volume 7, 7
 	vibrato 4, 2, 3
@@ -122,7 +122,7 @@ Song_Route1_branch_ec4db::
 	endchannel
 
 
-Song_Route1_Ch1:: ; ec546 (3b:4546)
+Song_Route1_Ch1::
 	duty 2
 
 Song_Route1_branch_ec548::
@@ -252,7 +252,7 @@ Song_Route1_branch_ec586::
 	endchannel
 
 
-Song_Route1_Ch2:: ; ec5d6 (3b:45d6)
+Song_Route1_Ch2::
 	vibrato 8, 2, 5
 	notetype 12, 1, 3
 
@@ -327,7 +327,7 @@ Song_Route1_branch_ec5dc::
 	endchannel
 
 
-Song_Route1_Ch3:: ; ec623 (3b:4623)
+Song_Route1_Ch3::
 	drumset 2
 
 Song_Route1_branch_ec625::
@@ -423,4 +423,3 @@ Song_Route1_branch_ec625::
 	snare4 2
 	loopchannel 0, Song_Route1_branch_ec625
 	endchannel
-; 0xec685

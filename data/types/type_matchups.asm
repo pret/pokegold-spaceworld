@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/types/type_matchups.asm", ROMX
 
-TypeMatchups: ; 3506d
+TypeMatchups:
 	;  attacker,  defender,  *=
 	db TYPE_NORMAL,   TYPE_ROCK,     NOT_VERY_EFFECTIVE
 	db TYPE_NORMAL,   TYPE_DARK,     SUPER_EFFECTIVE
@@ -110,4 +110,3 @@ TypeMatchups: ; 3506d
 	db TYPE_NORMAL,  TYPE_GHOST,   NO_EFFECT
 
 	db -1 ; end
-; 3519b

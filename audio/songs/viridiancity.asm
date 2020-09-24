@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/viridiancity.asm", ROMX
 
-Song_ViridianCity:: ; ec1b9 (3b:41b9)
+Song_ViridianCity::
 	db 3 << 6 | 0
 	dw Song_ViridianCity_Ch0
 	db 1
@@ -16,7 +16,7 @@ Song_ViridianCity_branch_ec1c5::
 	tempo 232
 	loopchannel 0, Song_ViridianCity_branch_ec1cf
 
-Song_ViridianCity_Ch0:: ; ec1cc (3b:41cc)
+Song_ViridianCity_Ch0::
 	tempo 144
 
 Song_ViridianCity_branch_ec1cf::
@@ -282,7 +282,7 @@ Song_ViridianCity_branch_ec2eb::
 	endchannel
 
 
-Song_ViridianCity_Ch1:: ; ec2f3 (3b:42f3)
+Song_ViridianCity_Ch1::
 	vibrato 5, 1, 5
 	callchannel Song_ViridianCity_branch_ec368
 	octave 4
@@ -415,7 +415,7 @@ Song_ViridianCity_branch_ec368::
 	endchannel
 
 
-Song_ViridianCity_Ch2:: ; ec3a2 (3b:43a2)
+Song_ViridianCity_Ch2::
 	notetype 12, 1, 1
 	toggleperfectpitch
 	rest 1
@@ -595,7 +595,7 @@ Song_ViridianCity_branch_ec441::
 	endchannel
 
 
-Song_ViridianCity_Ch3:: ; ec462 (3b:4462)
+Song_ViridianCity_Ch3::
 	drumset 0
 
 Song_ViridianCity_branch_ec464::
@@ -674,4 +674,3 @@ Song_ViridianCity_branch_ec4bd::
 	triangle2 2
 	triangle2 2
 	endchannel
-; 0xec4c2

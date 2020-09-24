@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/overworld/spawn_points.asm", ROMX
 
-LoadSpawnPoint: ; 03:4791
+LoadSpawnPoint:
 ; loads the spawn point in wDefaultSpawnPoint
 	push hl
 	push de
@@ -28,8 +28,8 @@ LoadSpawnPoint: ; 03:4791
 	pop de
 	pop hl
 	ret
-	
-IsSpawnPoint: ; 03:47b6
+
+IsSpawnPoint:
 ; Checks if the map loaded in de is a spawn point.
 ; Returns carry if it's a spawn point.
 	ld hl, SpawnPoints

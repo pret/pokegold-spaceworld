@@ -1,6 +1,7 @@
 ; significant level values
 MAX_LEVEL EQU 100
 MIN_LEVEL EQU 2
+EGG_LEVEL EQU 5
 
 ; maximum moves known per mon
 NUM_MOVES EQU 4
@@ -9,8 +10,9 @@ NUM_MOVES EQU 4
 BASE_STAT_LEVEL EQU 7
 MAX_STAT_LEVEL EQU 13
 
-; minimum damage before type effectiveness
+; damage limits before type effectiveness
 MIN_NEUTRAL_DAMAGE EQU 2
+MAX_NEUTRAL_DAMAGE EQU 999
 
 ; turns that sleep lasts
 REST_SLEEP_TURNS EQU 2
@@ -59,8 +61,10 @@ MOVE_LENGTH EQU const_value
 	const STAT_DEF
 	const STAT_SPD
 	const STAT_SATK
+NUM_EXP_STATS EQU const_value - 1
 	const STAT_SDEF
 NUM_STATS EQU const_value
+NUM_BATTLE_STATS EQU NUM_STATS - 1 ; don't count HP
 STAT_SPC EQU STAT_SATK
 
 ; stat formula constants
@@ -91,8 +95,6 @@ SPDSPCDV_SHINY EQU $AA
 	const BATTLETYPE_TREE
 	const BATTLETYPE_TRAP
 	const BATTLETYPE_FORCEITEM
-	const BATTLETYPE_CELEBI
-	const BATTLETYPE_SUICUNE
 
 ; BattleVarPairs indexes (see home/battle.asm)
 	const_def
@@ -158,59 +160,60 @@ SLP EQU %111 ; 0-7 turns
 ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 
 ; wPlayerSubStatus1 or wEnemySubStatus1 bit flags
-	enum_start 7, -1
-	enum SUBSTATUS_IN_LOVE
-	enum SUBSTATUS_ROLLOUT
-	enum SUBSTATUS_ENDURE
-	enum SUBSTATUS_PERISH
-	enum SUBSTATUS_IDENTIFIED
-	enum SUBSTATUS_PROTECT
-	enum SUBSTATUS_CURSE
-	enum SUBSTATUS_NIGHTMARE
+	const_def
+	const SUBSTATUS_NIGHTMARE
+	const SUBSTATUS_CURSE
+	const SUBSTATUS_PROTECT
+	const SUBSTATUS_IDENTIFIED
+	const SUBSTATUS_PERISH
+	const SUBSTATUS_ENDURE
+	const SUBSTATUS_ROLLOUT
+	const SUBSTATUS_IN_LOVE
 
 ; wPlayerSubStatus2 or wEnemySubStatus2 bit flags
-SUBSTATUS_CURLED EQU 0
+	const_def
+	const SUBSTATUS_CURLED
 
 ; wPlayerSubStatus3 or wEnemySubStatus3 bit flags
-	enum_start 7, -1
-	enum SUBSTATUS_CONFUSED
-	enum SUBSTATUS_FLYING
-	enum SUBSTATUS_UNDERGROUND
-	enum SUBSTATUS_CHARGED
-	enum SUBSTATUS_FLINCHED
-	enum SUBSTATUS_IN_LOOP
-	enum SUBSTATUS_RAMPAGE
-	enum SUBSTATUS_BIDE
+	const_def
+	const SUBSTATUS_BIDE
+	const SUBSTATUS_RAMPAGE
+	const SUBSTATUS_IN_LOOP
+	const SUBSTATUS_FLINCHED
+	const SUBSTATUS_CHARGED
+	const SUBSTATUS_UNDERGROUND
+	const SUBSTATUS_FLYING
+	const SUBSTATUS_CONFUSED
 
 ; wPlayerSubStatus4 or wEnemySubStatus4 bit flags
-	enum_start 7, -1
-	enum SUBSTATUS_LEECH_SEED
-	enum SUBSTATUS_RAGE
-	enum SUBSTATUS_RECHARGE
-	enum SUBSTATUS_SUBSTITUTE
-	enum SUBSTATUS_UNKNOWN_1
-	enum SUBSTATUS_FOCUS_ENERGY
-	enum SUBSTATUS_MIST
-	enum SUBSTATUS_X_ACCURACY
+	const_def
+	const SUBSTATUS_X_ACCURACY
+	const SUBSTATUS_MIST
+	const SUBSTATUS_FOCUS_ENERGY
+	const_skip
+	const SUBSTATUS_SUBSTITUTE
+	const SUBSTATUS_RECHARGE
+	const SUBSTATUS_RAGE
+	const SUBSTATUS_LEECH_SEED
 
 ; wPlayerSubStatus5 or wEnemySubStatus5 bit flags
-	enum_start 7, -1
-	enum SUBSTATUS_CANT_RUN
-	enum SUBSTATUS_DESTINY_BOND
-	enum SUBSTATUS_LOCK_ON
-	enum SUBSTATUS_ENCORED
-	enum SUBSTATUS_TRANSFORMED
-	enum SUBSTATUS_UNKNOWN_2
-	enum SUBSTATUS_UNKNOWN_3
-	enum SUBSTATUS_TOXIC
+	const_def
+	const SUBSTATUS_TOXIC
+	const_skip
+	const_skip
+	const SUBSTATUS_TRANSFORMED
+	const SUBSTATUS_ENCORED
+	const SUBSTATUS_LOCK_ON
+	const SUBSTATUS_DESTINY_BOND
+	const SUBSTATUS_CANT_RUN
 
 ; wPlayerScreens or wEnemyScreens bit flags
-	enum_start 4, -1
-	enum SCREENS_REFLECT
-	enum SCREENS_LIGHT_SCREEN
-	enum SCREENS_SAFEGUARD
-	enum SCREENS_UNUSED
-	enum SCREENS_SPIKES
+	const_def
+	const SCREENS_SPIKES
+	const_skip
+	const SCREENS_SAFEGUARD
+	const SCREENS_LIGHT_SCREEN
+	const SCREENS_REFLECT
 
 ; values in wBattleWeather
 	const_def
@@ -246,3 +249,6 @@ SUBSTATUS_CURLED EQU 0
 	const WIN
 	const LOSE
 	const DRAW
+
+BATTLERESULT_BOX_FULL EQU 7
+BATTLERESULT_BITMASK EQU (1 << BATTLERESULT_BOX_FULL)

@@ -5,11 +5,11 @@
 	const CHAN3
 	const CHAN4
 NUM_MUSIC_CHANS EQU const_value
-NUM_NOISE_CHANS EQU const_value
 	const CHAN5
 	const CHAN6
 	const CHAN7
 	const CHAN8
+NUM_NOISE_CHANS EQU const_value - NUM_MUSIC_CHANS
 NUM_CHANNELS EQU const_value
 
 ; channel_struct members (see macros/wram.asm)
@@ -51,6 +51,8 @@ CHANNEL_FIELD2E                     EQUS "(wChannel1Field2e - wChannel1)"
 CHANNEL_FIELD2F                     EQUS "(wChannel1Field2f - wChannel1)"
 CHANNEL_FIELD30                     EQUS "(wChannel1Field30 - wChannel1)"
 CHANNEL_STRUCT_LENGTH               EQUS "(wChannel2 - wChannel1)"
+
+NOISE_CHAN_F EQU 2 ; bit set in CHAN5-CHAN7
 
 ; Flags1
 	const_def

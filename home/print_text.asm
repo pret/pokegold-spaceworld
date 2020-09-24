@@ -1,12 +1,8 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/print_text.asm", ROM0
-; else
-; SECTION "Print Letter Delay", ROM0[$3367]
-; endc
 
-PrintLetterDelay:: ; 33a3 (0:33a3)
+PrintLetterDelay::
 	ld a, [wce5f]
 	bit 4, a
 	ret nz
@@ -48,23 +44,22 @@ PrintLetterDelay:: ; 33a3 (0:33a3)
 	pop de
 	pop hl
 	ret
-; 0x33e3
 
-CopyDataUntil:: ; 33e3
+CopyDataUntil::
 ; Copy [hl .. bc) to de.
 
 ; In other words, the source data is
 ; from hl up to but not including bc,
 ; and the destination is de.
 
-.asm_33e3: ; 00:33e3
+.loop:
 	ld a, [hli]
 	ld [de], a
 	inc de
 	ld a, h
 	cp b
-	jr nz, .asm_33e3
+	jr nz, .loop
 	ld a, l
 	cp c
-	jr nz, .asm_33e3
+	jr nz, .loop
 	ret

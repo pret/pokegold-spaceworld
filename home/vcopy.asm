@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "home/vcopy.asm", ROM0
 
-RedrawRowOrColumn:: ; 123a (0:123a)
+RedrawRowOrColumn::
 ; This function redraws a BG row of height 2 or a BG column of width 2.
 ; One of its main uses is redrawing the row or column that will be exposed upon
 ; scrolling the BG when the player takes a step. Redrawing only the exposed
@@ -75,10 +75,10 @@ RedrawRowOrColumn:: ; 123a (0:123a)
 	ld a, e
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and BG_MAP_WIDTH - 1            ; mask lower address bits
+	and BG_MAP_WIDTH - 1 ; mask lower address bits
 	ld b, a
 	ld a, e
-	and ($FF ^ (BG_MAP_WIDTH - 1))  ; mask upper address bits
+	and ($FF ^ (BG_MAP_WIDTH - 1)) ; mask upper address bits
 	or b
 	ld e, a
 	dec c
@@ -99,27 +99,27 @@ RedrawRowOrColumn:: ; 123a (0:123a)
 	jp hl
 
 .flashlight_effect_table
-	dw RedrawFlashlightRow0    ; $1310
-	dw RedrawFlashlightRow0    ; $1310
-	dw RedrawFlashlightColumn0 ; $12C3
-	dw RedrawFlashlightColumn0 ; $12C3
-	dw RedrawFlashlightRow1    ; $1329
-	dw RedrawFlashlightRow1    ; $1329
-	dw RedrawFlashlightColumn1 ; $12DC
-	dw RedrawFlashlightColumn1 ; $12DC
-	dw RedrawFlashlightRow2    ; $1335
-	dw RedrawFlashlightRow2    ; $1335
-	dw RedrawFlashlightColumn2 ; $12E8
-	dw RedrawFlashlightColumn2 ; $12E8
-	dw RedrawFlashlightRow3    ; $134E
-	dw RedrawFlashlightRow3    ; $134E
-	dw RedrawFlashlightColumn3 ; $1301
-	dw RedrawFlashlightColumn3 ; $1301
+	dw RedrawFlashlightRow0
+	dw RedrawFlashlightRow0
+	dw RedrawFlashlightColumn0
+	dw RedrawFlashlightColumn0
+	dw RedrawFlashlightRow1
+	dw RedrawFlashlightRow1
+	dw RedrawFlashlightColumn1
+	dw RedrawFlashlightColumn1
+	dw RedrawFlashlightRow2
+	dw RedrawFlashlightRow2
+	dw RedrawFlashlightColumn2
+	dw RedrawFlashlightColumn2
+	dw RedrawFlashlightRow3
+	dw RedrawFlashlightRow3
+	dw RedrawFlashlightColumn3
+	dw RedrawFlashlightColumn3
 
-RedrawFlashlightColumn0:: ; 12c3 (0:12c3)
+RedrawFlashlightColumn0::
 	ldh a, [hSCX]
 	and $07
-	ret nz        ; wait till we moved one complete tile in X
+	ret nz ; wait till we moved one complete tile in X
 	ld a, [wRedrawFlashlightDst0]
 	ld e, a
 	ld a, [wRedrawFlashlightDst0 + 1]
@@ -131,19 +131,18 @@ RedrawFlashlightColumn0:: ; 12c3 (0:12c3)
 	call _RedrawFlashlightColumn
 	ret
 
-RedrawFlashlightColumn1:: ; 12dc (0:12dc)
+RedrawFlashlightColumn1::
 	ld a, [wRedrawFlashlightBlackDst0]
 	ld e, a
 	ld a, [wRedrawFlashlightBlackDst0 + 1]
 	ld d, a
 	call _RedrawFlashlightColumnBlack
 	ret
-; 0x12e8
 
-RedrawFlashlightColumn2:: ; 12e8 (0:12e8)
+RedrawFlashlightColumn2::
 	ldh a, [hSCX]
 	and $0f
-	ret nz        ; wait till we moved two complete tiles in X
+	ret nz ; wait till we moved two complete tiles in X
 	ld a, [wRedrawFlashlightDst1]
 	ld e, a
 	ld a, [wRedrawFlashlightDst1 + 1]
@@ -155,7 +154,7 @@ RedrawFlashlightColumn2:: ; 12e8 (0:12e8)
 	call _RedrawFlashlightColumn
 	ret
 
-RedrawFlashlightColumn3:: ; 1301 (0:1301)
+RedrawFlashlightColumn3::
 	ld a, [wRedrawFlashlightBlackDst1]
 	ld e, a
 	ld a, [wRedrawFlashlightBlackDst1 + 1]
@@ -165,10 +164,10 @@ RedrawFlashlightColumn3:: ; 1301 (0:1301)
 	ldh [hRedrawRowOrColumnMode], a ; end flashlight redraw
 	ret
 
-RedrawFlashlightRow0:: ; 1310 (0:1310)
+RedrawFlashlightRow0::
 	ldh a, [hSCY]
 	and $07
-	ret nz        ; wait till we moved one complete tile in Y
+	ret nz ; wait till we moved one complete tile in Y
 	ld a, [wRedrawFlashlightDst0]
 	ld e, a
 	ld a, [wRedrawFlashlightDst0 + 1]
@@ -180,19 +179,18 @@ RedrawFlashlightRow0:: ; 1310 (0:1310)
 	call _RedrawFlashlightRow
 	ret
 
-RedrawFlashlightRow1:: ; 1329 (0:1329)
+RedrawFlashlightRow1::
 	ld a, [wRedrawFlashlightBlackDst0]
 	ld e, a
 	ld a, [wRedrawFlashlightBlackDst0 + 1]
 	ld d, a
 	call _RedrawFlashlightRowBlack
 	ret
-; 0x12e8
 
-RedrawFlashlightRow2:: ; 1335 (0:1335)
+RedrawFlashlightRow2::
 	ldh a, [hSCY]
 	and $0f
-	ret nz        ; wait till we moved two complete tiles in Y
+	ret nz ; wait till we moved two complete tiles in Y
 	ld a, [wRedrawFlashlightDst1]
 	ld e, a
 	ld a, [wRedrawFlashlightDst1 + 1]
@@ -204,7 +202,7 @@ RedrawFlashlightRow2:: ; 1335 (0:1335)
 	call _RedrawFlashlightRow
 	ret
 
-RedrawFlashlightRow3:: ; 134e (0:134e)
+RedrawFlashlightRow3::
 	ld a, [wRedrawFlashlightBlackDst1]
 	ld e, a
 	ld a, [wRedrawFlashlightBlackDst1 + 1]
@@ -214,7 +212,7 @@ RedrawFlashlightRow3:: ; 134e (0:134e)
 	ldh [hRedrawRowOrColumnMode], a ; end flashlight redraw
 	ret
 
-_RedrawFlashlightColumn:: ; 135d (0:135d)
+_RedrawFlashlightColumn::
 	ld a, [wRedrawFlashlightWidthHeight]
 	add a
 	ld c, a
@@ -241,11 +239,11 @@ _RedrawFlashlightColumn:: ; 135d (0:135d)
 	dec c
 	jr nz, .loop
 	ldh a, [hRedrawRowOrColumnMode]
-	add $04                         ; inc by 4, because flashlight redraw
-	ldh [hRedrawRowOrColumnMode], a ; has four directions
+	add $04 ; inc by 4, because flashlight redraw has four directions
+	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-_RedrawFlashlightRow:: ; 1382 (0:1382)
+_RedrawFlashlightRow::
 	ld a, [wRedrawFlashlightWidthHeight]
 	ld c, a
 .loop
@@ -257,20 +255,20 @@ _RedrawFlashlightRow:: ; 1382 (0:1382)
 	ld a, e
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and BG_MAP_WIDTH - 1            ; mask lower address bits
+	and BG_MAP_WIDTH - 1 ; mask lower address bits
 	ld b, a
 	ld a, e
-	and ($FF ^ (BG_MAP_WIDTH - 1))  ; mask upper address bits
+	and ($FF ^ (BG_MAP_WIDTH - 1)) ; mask upper address bits
 	or b
 	ld e, a
 	dec c
 	jr nz, .loop
 	ldh a, [hRedrawRowOrColumnMode]
-	add $04                         ; inc by 4, because flashlight redraw
-	ldh [hRedrawRowOrColumnMode], a ; has four directions
+	add $04 ; inc by 4, because flashlight redraw has four directions
+	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-_RedrawFlashlightColumnBlack:: ; 139f (0:139f)
+_RedrawFlashlightColumnBlack::
 	ld l, e
 	ld h, d
 	ld b, "■"
@@ -289,11 +287,11 @@ _RedrawFlashlightColumnBlack:: ; 139f (0:139f)
 	dec c
 	jr nz, .loop
 	ldh a, [hRedrawRowOrColumnMode]
-	add $04                         ; inc by 4, because flashlight redraw
-	ldh [hRedrawRowOrColumnMode], a ; has four directions
+	add $04 ; inc by 4, because flashlight redraw has four directions
+	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-_RedrawFlashlightRowBlack:: ; 13bd (0:13bd)
+_RedrawFlashlightRowBlack::
 	ld l, e
 	ld h, d
 	ld b, "■"
@@ -306,20 +304,20 @@ _RedrawFlashlightRowBlack:: ; 13bd (0:13bd)
 	ld a, l
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and BG_MAP_WIDTH - 1            ; mask lower address bits
+	and BG_MAP_WIDTH - 1 ; mask lower address bits
 	ld d, a
 	ld a, l
-	and ($FF ^ (BG_MAP_WIDTH - 1))  ; mask upper address bits
+	and ($FF ^ (BG_MAP_WIDTH - 1)) ; mask upper address bits
 	or d
 	ld l, a
 	dec c
 	jr nz, .loop
 	ldh a, [hRedrawRowOrColumnMode]
-	add $04                         ; inc by 4, because flashlight redraw
-	ldh [hRedrawRowOrColumnMode], a ; has four directions
+	add $04 ; inc by 4, because flashlight redraw has four directions
+	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-WaitForAutoBgMapTransfer:: ; 13dc (0:13dc)
+WaitForAutoBgMapTransfer::
 .loop
 	ldh a, [hBGMapMode]
 	and a
@@ -341,7 +339,7 @@ WaitForAutoBgMapTransfer:: ; 13dc (0:13dc)
 ; on when talking to sprites, battling, using menus, etc. This is because
 ; the above function, RedrawRowOrColumn, is used when walking to
 ; improve efficiency.
-AutoBgMapTransfer:: ; 13ee (0:13ee)
+AutoBgMapTransfer::
 	ldh a, [hBGMapMode]
 	and a
 	ret z
@@ -383,20 +381,20 @@ AutoBgMapTransfer:: ; 13ee (0:13ee)
 	ld a, $02
 .doTransfer
 	ldh [hBGMapTransferPosition], a
-	ld a, $06                 ; 6 rows of SCREEN_WIDTH each
+	ld a, $06 ; 6 rows of SCREEN_WIDTH each
 	; fallthrough
 
-TransferBgRows:: ; 1430 (0:1430)
+TransferBgRows::
 	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH + 1
 .loop
 
-	rept SCREEN_WIDTH / 2 - 1 ; two bytes per pop minus last block
+rept SCREEN_WIDTH / 2 - 1 ; two bytes per pop minus last block
 	pop de
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	endr
+endr
 
 	pop de
 	ld [hl], e
@@ -412,10 +410,10 @@ TransferBgRows:: ; 1430 (0:1430)
 	ld sp, hl
 	ret
 
-VBlankCopyDouble:: ; 1470 (0:1470)
+VBlankCopyDouble::
 ; Copy [wVBCopyDoubleSize] 1bpp tiles
 ; from wVBCopyDoubleSrc to wVBCopyDoubleDst.
-; wVBCopyDoubleDst must be aligned to 0x10 bytes.
+; wVBCopyDoubleDst must be aligned to $10 bytes.
 
 ; While we're here, convert to 2bpp.
 ; The process is straightforward:
@@ -439,8 +437,8 @@ VBlankCopyDouble:: ; 1470 (0:1470)
 	ld [wVBCopyDoubleSize], a
 .loop
 
-	rept 16/4 - 1 ; 16 bytes per 2bpp tile at 2 bytes per pop
-	pop de        ; copied twice minus last block
+rept 16/4 - 1 ; 16 bytes per 2bpp tile at 2 bytes per pop, copied twice minus last block
+	pop de
 	ld [hl], e
 	inc l
 	ld [hl], e
@@ -449,7 +447,7 @@ VBlankCopyDouble:: ; 1470 (0:1470)
 	inc l
 	ld [hl], d
 	inc l
-	endr
+endr
 
 	pop de
 	ld [hl], e
@@ -474,10 +472,10 @@ VBlankCopyDouble:: ; 1470 (0:1470)
 	ld sp, hl
 	ret
 
-VBlankCopy:: ; 14c7 (0:14c7)
+VBlankCopy::
 ; Copy 16 * [wVBCopySize] bytes
 ; from wVBCopySrc to wVBCopyDst.
-; wVBCopyDst must be aligned to 0x10 bytes.
+; wVBCopyDst must be aligned to $10 bytes.
 
 ; Source and destination addresses are updated,
 ; so transfer can continue in subsequent calls.
@@ -500,13 +498,13 @@ VBlankCopy:: ; 14c7 (0:14c7)
 	ld [wVBCopySize], a
 .loop
 
-	rept 16/2 - 1 ; 16 bytes per transfer at 2 bytes per pop
-	pop de        ; minus last block
+rept 16/2 - 1 ; 16 bytes per transfer at 2 bytes per pop minus last block
+	pop de
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	endr
+endr
 
 	pop de
 	ld [hl], e
@@ -527,7 +525,7 @@ VBlankCopy:: ; 14c7 (0:14c7)
 	ld sp, hl
 	ret
 
-AnimateTileset:: ; 1522 (0:1522)
+AnimateTileset::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(AnimateTilesetImpl)
@@ -535,16 +533,14 @@ AnimateTileset:: ; 1522 (0:1522)
 	call AnimateTilesetImpl
 	pop af
 	jp Bankswitch
-; 0x1531
 
-EnableSprites:: ; 1531 (0:1531)
+EnableSprites::
 	nop
 	ld hl, rLCDC
 	set rLCDC_SPRITES_ENABLE, [hl]
 	ret
-; 0x1538
 
-TransferToolgearRow: ; 1538 (0:1538)
+TransferToolgearRow:
 ; TransferToolgearRow
 ; Copy second line of toolgear to window
 	ld a, [wToolgearFlags]
@@ -563,10 +559,10 @@ TransferToolgearRow: ; 1538 (0:1538)
 	ld a, $01
 	jp TransferBgRows
 
-VBlankCopyFar:: ; 1558 (0:1558)
-; Copy 0x10 * [wVBCopyFarSize] bytes
+VBlankCopyFar::
+; Copy $10 * [wVBCopyFarSize] bytes
 ; from wVBCopyFarSrcBank::wVBCopyFarSrc to wVBCopyFarDst.
-; wVBCopyFarDst must be aligned to 0x10 bytes.
+; wVBCopyFarDst must be aligned to $10 bytes.
 
 ; Source and destination addresses are updated,
 ; so transfer can continue in subsequent calls.
@@ -590,13 +586,13 @@ VBlankCopyFar:: ; 1558 (0:1558)
 	xor a
 	ld [wVBCopyFarSize], a
 .loop
-	rept 16/2 - 1 ; 16 bytes per transfer at 2 bytes per pop
+rept 16/2 - 1 ; 16 bytes per transfer at 2 bytes per pop
 	pop de
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	endr
+endr
 
 	pop de
 	ld [hl], e
@@ -614,4 +610,3 @@ VBlankCopyFar:: ; 1558 (0:1558)
 	ld h, a
 	ld sp, hl
 	ret
-; 0x15b5

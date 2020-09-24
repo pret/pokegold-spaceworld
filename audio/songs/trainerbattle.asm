@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/trainerbattle.asm", ROMX
 
-Song_TrainerBattle:: ; ece31 (3b:4e31)
+Song_TrainerBattle::
 	db 2 << 6 | 0
 	dw Song_TrainerBattle_Ch0
 	db 1
@@ -10,7 +10,7 @@ Song_TrainerBattle:: ; ece31 (3b:4e31)
 	db 2
 	dw Song_TrainerBattle_Ch2
 
-Song_TrainerBattle_Ch0:: ; ece3a (3b:4e3a)
+Song_TrainerBattle_Ch0::
 	tempo 112
 	volume 7, 7
 	duty 3
@@ -663,7 +663,7 @@ Song_TrainerBattle_branch_ece86::
 	loopchannel 0, Song_TrainerBattle_branch_ece86
 
 
-Song_TrainerBattle_Ch1:: ; ed0d7 (3b:50d7)
+Song_TrainerBattle_Ch1::
 	duty 3
 	vibrato 10, 2, 5
 	notetype 12, 12, 2
@@ -967,7 +967,7 @@ Song_TrainerBattle_branch_ed129::
 	loopchannel 0, Song_TrainerBattle_branch_ed129
 
 
-Song_TrainerBattle_Ch2:: ; ed26a (3b:526a)
+Song_TrainerBattle_Ch2::
 	vibrato 0, 2, 0
 	notetype 12, 1, 4
 	octave 3
@@ -1869,4 +1869,3 @@ Song_TrainerBattle_branch_ed2f7::
 	D_ 2
 	C_ 2
 	loopchannel 0, Song_TrainerBattle_branch_ed2f7
-; 0xed5f4

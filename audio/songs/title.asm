@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/title.asm", ROMX
 
-Song_Title:: ; f22fe (3c:62fe)
+Song_Title::
 	db 3 << 6 | 0
 	dw Song_Title_Ch0
 	db 1
@@ -12,7 +12,7 @@ Song_Title:: ; f22fe (3c:62fe)
 	db 3
 	dw Song_Title_Ch3
 
-Song_Title_Ch0:: ; f230a (3c:630a)
+Song_Title_Ch0::
 	tempo 144
 	volume 7, 7
 	vibrato 9, 3, 4
@@ -168,7 +168,7 @@ Song_Title_branch_f23b3::
 	endchannel
 
 
-Song_Title_Ch1:: ; f23d0 (3c:63d0)
+Song_Title_Ch1::
 	vibrato 16, 4, 6
 	duty 1
 	notetype 12, 14, 1
@@ -337,7 +337,7 @@ Song_Title_branch_f24a2::
 	endchannel
 
 
-Song_Title_Ch2:: ; f24b0 (3c:64b0)
+Song_Title_Ch2::
 	notetype 12, 1, 0
 	octave 3
 	G_ 1
@@ -475,7 +475,7 @@ Song_Title_branch_f2556::
 	endchannel
 
 
-Song_Title_Ch3:: ; f255d (3c:655d)
+Song_Title_Ch3::
 	drumset 0
 	dspeed 6
 	rest 4
@@ -692,4 +692,3 @@ Song_Title_branch_f2645::
 	snare2 1
 	rest 3
 	endchannel
-; 0xf264e

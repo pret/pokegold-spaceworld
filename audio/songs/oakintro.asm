@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/oakintro.asm", ROMX
 
-Song_OakIntro:: ; ec685 (3b:4685)
+Song_OakIntro::
 	db 3 << 6 | 0
 	dw Song_OakIntro_Ch0
 	db 1
@@ -12,7 +12,7 @@ Song_OakIntro:: ; ec685 (3b:4685)
 	db 3
 	dw Song_OakIntro_Ch3
 
-Song_OakIntro_Ch0:: ; ec691 (3b:4691)
+Song_OakIntro_Ch0::
 	tempo 152
 	volume 7, 7
 	vibrato 9, 2, 5
@@ -156,7 +156,7 @@ Song_OakIntro_branch_ec69b::
 	endchannel
 
 
-Song_OakIntro_Ch1:: ; ec729 (3b:4729)
+Song_OakIntro_Ch1::
 	vibrato 8, 2, 6
 	duty 3
 
@@ -232,7 +232,7 @@ Song_OakIntro_branch_ec72e::
 	endchannel
 
 
-Song_OakIntro_Ch2:: ; ec779 (3b:4779)
+Song_OakIntro_Ch2::
 	vibrato 9, 2, 8
 
 Song_OakIntro_branch_ec77c::
@@ -340,7 +340,7 @@ Song_OakIntro_branch_ec77c::
 	endchannel
 
 
-Song_OakIntro_Ch3:: ; ec7e7 (3b:47e7)
+Song_OakIntro_Ch3::
 	drumset 0
 
 Song_OakIntro_branch_ec7e9::
@@ -442,4 +442,3 @@ Song_OakIntro_branch_ec7e9::
 	rest 3
 	loopchannel 0, Song_OakIntro_branch_ec7e9
 	endchannel
-; 0xec858

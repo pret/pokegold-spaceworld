@@ -6,7 +6,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/events/field_moves.asm", ROMX
 
-CutFunction: ; 03:4fab
+CutFunction:
 	call .ResetScriptID
 .next
 	call .ExecScript
@@ -21,8 +21,8 @@ CutFunction: ; 03:4fab
 	ld a, [wFieldMoveScriptID]
 	ld hl, .CutScriptTable
 	jp CallJumptable
-	
-.CutScriptTable ; 03:4fc5
+
+.CutScriptTable
 	init_script_table
 	add_script TryCut
 	add_script CheckCuttableBlock
@@ -31,7 +31,7 @@ CutFunction: ; 03:4fab
 	add_script DoCut2
 	add_script FailCut
 
-TryCut: ; 03:4fd1
+TryCut:
 	call GetMapEnvironment
 	cp ROUTE
 	jr z, .success
@@ -45,7 +45,7 @@ TryCut: ; 03:4fd1
 	xor a
 	ret
 
-CheckCuttableBlock: ; 03:4fea
+CheckCuttableBlock:
 	call GetFacingTileCoord
 	cp $80
 	jr nz, .fail
@@ -68,7 +68,7 @@ CheckCuttableBlock: ; 03:4fea
 	xor a
 	ret
 
-GetCutReplacementBlock: ; 03:5015
+GetCutReplacementBlock:
 	ld c, a
 	ld hl, CutReplacementBlocks
 .loop
@@ -80,8 +80,8 @@ GetCutReplacementBlock: ; 03:5015
 	jr nz, .loop
 	scf
 	ret
-	
-CutReplacementBlocks: ; 03:5023
+
+CutReplacementBlocks:
 ; replacement block, facing block
 	db $30, $25
 	db $31, $2A
@@ -89,7 +89,7 @@ CutReplacementBlocks: ; 03:5023
 	db $33, $35
 	db -1
 
-CheckCuttableTile: ; 03:502c
+CheckCuttableTile:
 	call GetFacingTileCoord
 	call IsCuttableTile
 	jr nc, .fail
@@ -110,8 +110,8 @@ CheckCuttableTile: ; 03:502c
 	set_script FailCut
 	xor a
 	ret
-	
-IsCuttableTile: ; 03:5057
+
+IsCuttableTile:
 	ld hl, CuttableTiles
 	ld c, a
 .loop
@@ -122,32 +122,32 @@ IsCuttableTile: ; 03:5057
 	jr nz, .loop
 	scf
 	ret
-	
-CuttableTiles: ; 03:5064
+
+CuttableTiles:
 	db $81
 	db $82
 	db $8A
 	db $8B
 	db -1
 
-FailCut: ; 03:5069
+FailCut:
 	ld hl, Text_CantUseCutHere
 	call MenuTextBoxBackup
 	scf
 	ld a, SCRIPT_FAIL
 	ret
 	
-Text_CantUseCutHere: ; 03:5073
+Text_CantUseCutHere:
 	text_Text_CantUseCutHere
 
 DoCut:
-DoCut2: ; 03:5080
+DoCut2:
 	far_queue CutScript
 	scf
 	ld a, SCRIPT_SUCCESS
 	ret
 
-CutScript: ; 03:508C
+CutScript:
 	call RefreshScreen
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
@@ -171,12 +171,12 @@ CutScript: ; 03:508C
 	call Function1fea
 	scf
 	ret
-	
-Text_CutItDown ; 03:50c4
+
+Text_CutItDown:
 	text_from_ram wStringBuffer2
 	text_CutScript
 
-SurfFunction: ; 03:50d8
+SurfFunction:
 	call .ResetScriptID
 .next
 	call .ExecScript
@@ -192,13 +192,13 @@ SurfFunction: ; 03:50d8
 	ld hl, .SurfScriptTable
 	jp CallJumptable
 
-.SurfScriptTable: ; 03:50f2
+.SurfScriptTable:
 	init_script_table
 	add_script TrySurf
 	add_script DoSurf
 	add_script FailSurf
 
-TrySurf: ; 03:50f8
+TrySurf:
 	call GetFacingTileCoord
 	and $f0
 	cp $20
@@ -213,7 +213,7 @@ TrySurf: ; 03:50f8
 	xor a
 	ret
 
-DoSurf: ; 03:5113
+DoSurf:
 	queue_ba SurfScript
 	ld a, -1
 	ld [wFieldMoveScriptID], a
@@ -221,7 +221,7 @@ DoSurf: ; 03:5113
 	ld a, SCRIPT_SUCCESS
 	ret
 
-FailSurf: ; 03:5124
+FailSurf:
 	ld hl, Text_CantSurfHere
 	call MenuTextBoxBackup
 	ld a, -1
@@ -230,10 +230,10 @@ FailSurf: ; 03:5124
 	ld a, SCRIPT_FAIL
 	ret
 
-Text_CantSurfHere: ; 03:5133
+Text_CantSurfHere:
 	text_Text_CantSurfHere
 	
-SurfScript: ; 03:5145
+SurfScript:
 	call RefreshScreen
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
@@ -251,13 +251,13 @@ SurfScript: ; 03:5145
 	call Function1fea
 	ret
 
-Text_UsedSurf: ; 03:5171
+Text_UsedSurf:
 	text_from_ram wStringBuffer2
 	text_Text_UsedSurf_1
 	text_from_ram wPlayerName
 	text_Text_UsedSurf_2
 	
-MovePlayerIntoWater: ; 03:5185
+MovePlayerIntoWater:
 	call InitMovementBuffer
 	call .get_movement_direction
 	call AppendToMovementBuffer
@@ -278,11 +278,11 @@ MovePlayerIntoWater: ; 03:5185
 	ret
 
 ; Direction to move player, mapped to facing direction
-SurfMovementDirections: ; 03:51ab
+SurfMovementDirections:
 	db 4, 5, 6, 7
 
 
-FlyFunction: ; 03:51af
+FlyFunction:
 	call .ResetScriptID
 .next
 	call .ExecScript
@@ -298,14 +298,14 @@ FlyFunction: ; 03:51af
 	ld hl, .FlyScriptTable
 	jp CallJumptable
 
-.FlyScriptTable: ; 03:51c9
+.FlyScriptTable:
 	init_script_table
 	add_script TryFly
 	add_script ShowFlyMap
 	add_script DoFly
 	add_script FailFly
 
-TryFly: ; 03:51d1
+TryFly:
 	call GetMapEnvironment
 	cp TOWN
 	jr z, .success
@@ -319,7 +319,7 @@ TryFly: ; 03:51d1
 	xor a
 	ret
 
-ShowFlyMap: ; 03:51ea
+ShowFlyMap:
 	call LoadStandardMenuHeader
 	call ClearSprites
 	callab FlyMap
@@ -342,7 +342,7 @@ ShowFlyMap: ; 03:51ea
 	ld a, SCRIPT_FAIL
 	ret
 
-DoFly: ; 03:521f
+DoFly:
 	ld a, [wFlyDestination]
 	inc a
 	ld [wDefaultSpawnPoint], a
@@ -353,7 +353,7 @@ DoFly: ; 03:521f
 	ld a, SCRIPT_SUCCESS
 	ret
 
-FailFly: ; 03:5237
+FailFly:
 	ld hl, Text_CantUseFlyHere
 	call MenuTextBoxBackup
 	ld a, -1
@@ -362,16 +362,16 @@ FailFly: ; 03:5237
 	ld a, SCRIPT_FAIL
 	ret
 
-Text_CantUseFlyHere: ; 03:5246
+Text_CantUseFlyHere:
 	text_Text_CantUseFlyHere
 
-FlyScript: ; 03:5254
+FlyScript:
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
 	jpab Functionfcc24
 
-	
-DigFunction: ; 03:5260
+
+DigFunction:
 	call .ResetScriptID
 .next
 	ld a, [wFieldMoveScriptID]
@@ -386,19 +386,19 @@ DigFunction: ; 03:5260
 	and $FF - SCRIPT_FINISHED_MASK
 	ld [wFieldMoveSucceeded], a
 	ret
-	
+
 .ResetScriptID
 	xor a
 	ld [wFieldMoveScriptID], a
 	ret
 
-.DigScriptTable: ; 03:527D
+.DigScriptTable:
 	init_script_table
 	add_script CheckCanDig
 	add_script DoDig
 	add_script FailDig
 
-CheckCanDig: ; 03:5283
+CheckCanDig:
 	call GetMapEnvironment
 	cp INDOOR
 	jr z, .success
@@ -410,23 +410,23 @@ CheckCanDig: ; 03:5283
 	set_script DoDig
 	ret
 
-DoDig: ; 03:529a
+DoDig:
 	queue_ab DigScript
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_SUCCESS
 	ld [wFieldMoveScriptID], a
 	ret
 
-FailDig: ; 03:52a8
+FailDig:
 	ld hl, Text_CantUseDigHere
 	call MenuTextBoxBackup
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_FAIL
 	ld [wFieldMoveScriptID], a
 	ret
 
-Text_CantUseDigHere: ; 03:52b4
+Text_CantUseDigHere:
 	text_Text_CantUseDigHere
 	
-DigScript: ; 03:52c2
+DigScript:
 	ld hl, wDigWarpNumber
 	ld de, wNextWarp
 	ld bc, 3
@@ -435,10 +435,10 @@ DigScript: ; 03:52c2
 	ldh [hMapEntryMethod], a
 	jpab Functionfcc24
 
-EmptyFunctiond2da: ; 03:52da
+EmptyFunctiond2da:
 	ret
-	
-TeleportFunction: ; 03:52db
+
+TeleportFunction:
 	xor a
 	ld [wFieldMoveScriptID], a
 .next
@@ -454,7 +454,7 @@ TeleportFunction: ; 03:52db
 	and $FF - SCRIPT_FINISHED_MASK
 	ld [wFieldMoveSucceeded], a
 	ret
-	
+
 .TeleportScriptTable
 	init_script_table
 	add_script TryTeleport
@@ -462,7 +462,7 @@ TeleportFunction: ; 03:52db
 	add_script FailTeleport
 	add_script CheckIfSpawnPoint
 
-TryTeleport: ; 03:52fc
+TryTeleport:
 	call GetMapEnvironment
 	cp TOWN
 	jr z, .success
@@ -473,8 +473,8 @@ TryTeleport: ; 03:52fc
 .success
 	set_script CheckIfSpawnPoint
 	ret
-	
-CheckIfSpawnPoint ; 03:5313
+
+CheckIfSpawnPoint:
 	ld a, [wLastSpawnMapGroup]
 	ld d, a
 	ld a, [wLastSpawnMapNumber]
@@ -492,16 +492,16 @@ CheckIfSpawnPoint ; 03:5313
 	set_script DoTeleport
 	ret
 
-Text_CantFindDestination: ; 03:533B
+Text_CantFindDestination:
 	text_Text_CantFindDestination
 
-DoTeleport: ; 03:534b
+DoTeleport:
 	queue_ba TeleportScript
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_SUCCESS
 	ld [wFieldMoveScriptID], a
 	ret
 
-FailTeleport: ; 03:5359
+FailTeleport:
 	ld hl, Text_CantUseTeleportHere
 	call MenuTextBoxBackup
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_FAIL
@@ -509,10 +509,10 @@ FailTeleport: ; 03:5359
 	scf
 	ret
 
-Text_CantUseTeleportHere: ; 03:5366
+Text_CantUseTeleportHere:
 	text_Text_CantUseTeleportHere
 
-TeleportScript: ; 03:5375
+TeleportScript:
 	call RefreshScreen
 	ld hl, Text_ReturnToLastMonCenter
 	call MenuTextBox
@@ -524,5 +524,5 @@ TeleportScript: ; 03:5375
 	ldh [hMapEntryMethod], a
 	jpab Functionfcc24
 	
-Text_ReturnToLastMonCenter: ; 03:5395
+Text_ReturnToLastMonCenter:
 	text_Text_ReturnToLastMonCenter

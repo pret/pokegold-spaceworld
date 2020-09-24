@@ -2,17 +2,17 @@ INCLUDE "constants.asm"
 
 SECTION "home/text.asm", ROM0
 
-ClearBox:: ; 00:0e18
+ClearBox::
 ; Fill a c*b box at hl with blank tiles.
 	ld a, "　"
 	; fallthrough
 
 FillBoxWithByte::
 	ld de, SCREEN_WIDTH
-.asm_0e1d: ; 00:0e1d
+.asm_0e1d:
 	push hl
 	push bc
-.asm_0e1f: ; 00:0e1f
+.asm_0e1f:
 	ld [hli], a
 	dec c
 	jr nz, .asm_0e1f
@@ -23,7 +23,7 @@ FillBoxWithByte::
 	jr nz, .asm_0e1d
 	ret
 
-ClearTileMap:: ; 00:0e2a
+ClearTileMap::
 ; Fill wTileMap with blank tiles.
 
 	hlcoord 0, 0
@@ -35,7 +35,7 @@ ClearTileMap:: ; 00:0e2a
 	ret z
 	jp WaitBGMap
 
-DrawTextBox:: ; 00:0e3d
+DrawTextBox::
 
 	; Top
 	push hl
@@ -72,9 +72,8 @@ DrawTextBox:: ; 00:0e3d
 	ld [hl], "┘"
 
 	ret
-; e6a
 
-.PlaceChars: ; e6a
+.PlaceChars:
 ; Place char a c times.
 	ld d, c
 .loop
@@ -82,7 +81,6 @@ DrawTextBox:: ; 00:0e3d
 	dec d
 	jr nz, .loop
 	ret
-; e70
 
 PrintText::
 	push hl
@@ -105,9 +103,9 @@ SpeechTextBox::
 	ld c, TEXTBOX_INNERW
 	jp DrawTextBox
 
-PlaceString:: ; 00:0e93
+PlaceString::
 	push hl
-PlaceNextChar:: ; 00:0e94
+PlaceNextChar::
 	ld a, [de]
 	cp "@"
 	jr nz, CheckDict
@@ -116,7 +114,7 @@ PlaceNextChar:: ; 00:0e94
 	pop hl
 	ret
 
-CheckDict:: ; 00:0e9d
+CheckDict::
 dict: MACRO
 if \1 == 0
 	and a
@@ -134,7 +132,7 @@ ENDM
 	push hl
 	jp NextChar
 
-.asm_0eaa: ; 00:0eaa
+.asm_0eaa:
 	cp "<LINE>"
 	jr nz, .asm_0eb6
 	pop hl
@@ -142,7 +140,7 @@ ENDM
 	push hl
 	jp NextChar
 
-.asm_0eb6: ; 00:0eb6
+.asm_0eb6:
 	dict 0, NullChar
 	dict "<SCROLL>", _ContTextNoPause
 	dict "<_CONT>", _ContText
@@ -222,14 +220,14 @@ ENDM
 	nop
 	nop
 
-.place: ; 00:0f5e
+.place:
 	ld [hli], a
 	call PrintLetterDelay
-NextChar:: ; 00:0f62
+NextChar::
 	inc de
 	jp PlaceNextChar
 
-NullChar:: ; 00:0f66
+NullChar::
 	ld b, h
 	ld c, l
 	pop hl
@@ -260,27 +258,27 @@ PlacePOKe::   print_name POKeCharText
 SixDotsChar:: print_name SixDotsCharText
 GaCharacter:: print_name GaCharacterTExt
 
-PlaceMoveTargetsName:: ; 00:0fb3
+PlaceMoveTargetsName::
 	ldh a, [hBattleTurn]
 	xor $1
 	jr asm_0fbb
 
-PlaceMoveUsersName:: ; 00:0fb9
+PlaceMoveUsersName::
 	ldh a, [hBattleTurn]
-asm_0fbb: ; 00:0fbb
+asm_0fbb:
 	push de
 	and a
 	jr nz, .asm_0fc4
 	ld de, wEnemyMonNickname
 	jr PlaceCommandCharacter
 
-.asm_0fc4: ; 00:0fc4
+.asm_0fc4:
 	ld de, EnemyText
 	call PlaceString
 	ld h, b
 	ld l, c
 	ld de, wBattleMonNickname
-PlaceCommandCharacter: ; 00:0fcf
+PlaceCommandCharacter:
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -297,7 +295,7 @@ SixDotsCharText:: db "⋯⋯@"
 EnemyText::       db "てきの　@"
 GaCharacterTExt:: db "が　@"
 
-ContText:: ; 00:1001
+ContText::
 	push de
 	ld b, h
 	ld c, l
@@ -313,32 +311,32 @@ ContText:: ; 00:1001
 	text "<_CONT>@"
 	db "@"
 
-PlaceDexEnd:: ; 00:1015
+PlaceDexEnd::
 	ld [hl], "。"
 	pop hl
 	ret
 
-PromptText:: ; 00:1019
+PromptText::
 	ld a, [wLinkMode]
 	cp $3
 	jp z, Function1026
 	ld a, "▼"
 	ldcoord_a 18, 17
-Function1026:: ; 00:1026
+Function1026::
 	call ProtectedWaitBGMap
 	call ButtonSound
 	ld a, "─"
 	ldcoord_a 18, 17
-DoneText:: ; 00:1031
+DoneText::
 	pop hl
 	ld de, .Text
 	dec de
 	ret
 
-.Text:: ; 00:1037
+.Text::
 	db "@"
 
-Paragraph:: ; 00:1038
+Paragraph::
 	push de
 	ld a, "▼"
 	ldcoord_a 18, 17
@@ -355,7 +353,7 @@ Paragraph:: ; 00:1038
 	hlcoord 1, 14
 	jp NextChar
 
-_ContText:: ; 00:105e
+_ContText::
 	ld a, "▼"
 	ldcoord_a 18, 17
 	call ProtectedWaitBGMap
@@ -364,7 +362,7 @@ _ContText:: ; 00:105e
 	pop de
 	ld a, "─"
 	ldcoord_a 18, 17
-_ContTextNoPause:: ; 00:1070
+_ContTextNoPause::
 	push de
 	call ScrollTextUpOneLine
 	call ScrollTextUpOneLine
@@ -372,7 +370,7 @@ _ContTextNoPause:: ; 00:1070
 	pop de
 	jp NextChar
 
-ScrollTextUpOneLine:: ; 107e (0:107e)
+ScrollTextUpOneLine::
 ; move both rows of text in the normal text box up one row
 ; always called twice in a row
 ; first time, copy the two rows of text to the "in between" rows that are usually emtpy
@@ -400,13 +398,13 @@ ScrollTextUpOneLine:: ; 107e (0:107e)
 	jr nz, .waitFrame
 	ret
 
-ProtectedWaitBGMap:: ; 10a0 (0:10a0)
+ProtectedWaitBGMap::
 	push bc
 	call WaitBGMap
 	pop bc
 	ret
 
-TextCommandProcessor:: ; 10a6 (0:10a6)
+TextCommandProcessor::
 ; Process a string of text commands
 ; at hl and write text to bc
 	ld a, [wTextBoxFlags]
@@ -417,9 +415,9 @@ TextCommandProcessor:: ; 10a6 (0:10a6)
 	ld [wTextDest], a
 	ld a, b
 	ld [wTextDest + 1], a
-    ; fall through
-    
-NextTextCommand:: ; 10b7 (0:10b7)
+	; fall through
+
+NextTextCommand::
 	ld a, [hli]
 	cp "@" ; terminator
 	jr nz, .doTextCommand
@@ -440,7 +438,7 @@ NextTextCommand:: ; 10b7 (0:10b7)
 	ld l, a
 	jp hl
 
-Text_TX_BOX:: ; 10d0 (0:10d0)
+Text_TX_BOX::
 ; TX_BOX
 ; draw a box
 ; little endian
@@ -460,8 +458,8 @@ Text_TX_BOX:: ; 10d0 (0:10d0)
 	call DrawTextBox
 	pop hl
 	jr NextTextCommand
-    
-Text_TX:: ; 10e2 (0:10e2)
+
+Text_TX::
 ; TX
 ; write text until "@"
 ; [$00]["...@"]
@@ -476,7 +474,7 @@ Text_TX:: ; 10e2 (0:10e2)
 	inc hl
 	jr NextTextCommand
 
-Text_TX_RAM:: ; 10ef (0:10ef)
+Text_TX_RAM::
 ; text_from_ram
 ; write text from a ram address
 ; little endian
@@ -493,7 +491,7 @@ Text_TX_RAM:: ; 10ef (0:10ef)
 	pop hl
 	jr NextTextCommand
 
-Text_TX_BCD:: ; 10fd (0:10fd)
+Text_TX_BCD::
 ; TX_BCD
 ; write bcd from address, typically ram
 ; [$02][addr][flags]
@@ -514,7 +512,7 @@ Text_TX_BCD:: ; 10fd (0:10fd)
 	pop hl
 	jr NextTextCommand
 
-Text_TX_MOVE:: ; 110f (0:110f)
+Text_TX_MOVE::
 ; TX_MOVE
 ; move to a new tile
 ; [$03][addr]
@@ -527,16 +525,15 @@ Text_TX_MOVE:: ; 110f (0:110f)
 	ld b, a
 	jp NextTextCommand
 
-Text_TX_LOW:: ; 111d (0:111d)
+Text_TX_LOW::
 ; TX_LOW
 ; write text at (1,16)
 ; [$05]
 	pop hl
 	coord bc, TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	jp NextTextCommand
-; 0x1124
 
-Text_WAIT_BUTTON:: ; 1124 (0:1124)
+Text_WAIT_BUTTON::
 ; TX_WAITBUTTON
 ; wait for button press
 ; show arrow
@@ -554,7 +551,7 @@ Text_WAIT_BUTTON:: ; 1124 (0:1124)
 	pop hl
 	jp NextTextCommand
 
-Text_TX_SCROLL:: ; 113f (0:113f)
+Text_TX_SCROLL::
 ; TX_SCROLL
 ; pushes text up two lines and sets the BC cursor to the border tile
 ; below the first character column of the text box.
@@ -567,7 +564,7 @@ Text_TX_SCROLL:: ; 113f (0:113f)
 	coord bc, TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	jp NextTextCommand
 
-Text_START_ASM:: ; 1151 (0:1151)
+Text_START_ASM::
 ; TX_ASM
 ; Executes code following this command.
 ; Text processing is resumed upon returning.
@@ -577,7 +574,7 @@ Text_START_ASM:: ; 1151 (0:1151)
 	push de
 	jp hl
 
-Text_TX_NUM:: ; 1157 (0:1157)
+Text_TX_NUM::
 ; TX_NUM
 ; [$09][addr][hi:bytes lo:digits]
 	pop hl
@@ -602,9 +599,8 @@ Text_TX_NUM:: ; 1157 (0:1157)
 	ld c, l
 	pop hl
 	jp NextTextCommand
-; 0x1175
 
-Text_TX_EXIT: ; 1175 (0:1175)
+Text_TX_EXIT:
 ; TX_EXIT
 ; [$0A]
 	push bc
@@ -618,9 +614,8 @@ Text_TX_EXIT: ; 1175 (0:1175)
 	pop bc
 	pop hl
 	jp NextTextCommand
-; 0x1189
 
-Text_PlaySound:: ; 1189 (0:1189)
+Text_PlaySound::
 ; Text_PlaySound
 ; [0B|0E..13] Play Sound Effects
 ; [14..16]    Play Pokémon Cries
@@ -674,11 +669,11 @@ Text_PlaySound:: ; 1189 (0:1189)
 	dbw TX_SOUND_10, $0068
 	dbw TX_SOUND_11, $0069
 	dbw TX_SOUND_13, $0027
-	dbw TX_CRY_14,   MON_NIDORINA ; or MON_LEAFY?
+	dbw TX_CRY_14,   MON_NIDORINA
 	dbw TX_CRY_15,   MON_PIGEOT
 	dbw TX_CRY_16,   MON_JUGON
 
-Text_TX_DOTS: ; 11e1 (0:11e1)
+Text_TX_DOTS:
 	pop hl
 	ld a, [hli]
 	ld d, a
@@ -703,16 +698,15 @@ Text_TX_DOTS: ; 11e1 (0:11e1)
 	ld c, l
 	pop hl
 	jp NextTextCommand
-	
-Text_TX_LINK_WAIT_BUTTON:: ; 1203 (0:1203)
+
+Text_TX_LINK_WAIT_BUTTON::
 	push bc
 	call ButtonSound
 	pop bc
 	pop hl
 	jp NextTextCommand
-; 0x120c
 
-TextCommands:: ; 120c
+TextCommands::
 	dw Text_TX
 	dw Text_TX_RAM
 	dw Text_TX_BCD

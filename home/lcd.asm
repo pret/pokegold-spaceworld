@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "home/lcd.asm", ROM0
 
-LCD:: ; 03ae
+LCD::
 	push af
 	ldh a, [hLCDCPointer]
 	and a
@@ -44,13 +44,10 @@ LCD:: ; 03ae
 	pop af
 	reti
 
-
-; 0:3e1
 ; TODO: can this be done using `sine_table`?
 	db 0, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 3, 3, 2, 2, 1, 0, -1, -2, -2, -3, -3, -4, -4, -4, -4, -4, -3, -3, -2, -2, -1
 
-
-DisableLCD:: ; 0401
+DisableLCD::
 	ld a, [rLCDC]
 	bit 7, a
 	ret z
@@ -73,7 +70,7 @@ DisableLCD:: ; 0401
 	ld [rIE], a
 	ret
 
-EnableLCD:: ; 0423
+EnableLCD::
 	ld a, [rLCDC]
 	set 7, a
 	ld [rLCDC], a

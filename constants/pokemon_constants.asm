@@ -192,8 +192,3 @@
 	const MON_MADATSUBOMI ; bc BELLSPROUT
 	const MON_UTSUDON     ; bd WEEPINBELL
 	const MON_UTSUBOT     ; be VICTREEBEL
-
-; LEAFY isn't in the table at 10:4B70
-; and its ID 0xFB will be found at
-; 10:4117 (index 0x4A7 + 1 % 0x100 = 0xA8)
-MON_LEAFY EQU MON_NIDORINA

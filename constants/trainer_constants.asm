@@ -1,9 +1,12 @@
+__trainer_class__ = 0
+
 trainerclass: MACRO
-	enum \1
+\1 EQU __trainer_class__
+__trainer_class__ = __trainer_class__ + 1
 const_value = 1
 ENDM
 
-	enum_start
+; trainer class ids
 	trainerclass TRAINER_NONE ; 00
 
 	trainerclass TRAINER_HAYATO ; 01
@@ -142,4 +145,4 @@ ENDM
 
 	trainerclass TRAINER_ELITE_FOUR_F ; 40
 
-NUM_TRAINER_CLASSES EQU __enum__
+NUM_TRAINER_CLASSES EQU __trainer_class__

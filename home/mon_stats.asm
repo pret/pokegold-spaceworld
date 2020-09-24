@@ -1,10 +1,6 @@
-include "constants.asm"
+INCLUDE "constants.asm"
 
-; if DEBUG
 SECTION "home/mon_stats.asm", ROM0
-; else
-; SECTION "Mon Stats", ROM0 [$390f]
-; endc
 
 DrawBattleHPBar::
 	push hl
@@ -16,7 +12,7 @@ DrawBattleHPBar::
 	ld [hli], a
 	push hl
 	ld a, $62
-.asm_3957: ; 00:3957
+.asm_3957:
 	ld [hli], a
 	dec d
 	jr nz, .asm_3957
@@ -31,7 +27,7 @@ DrawBattleHPBar::
 	and a
 	jr z, .asm_397d
 	ld e, $1
-.asm_396a: ; 00:396a
+.asm_396a:
 	ld a, e
 	sub $8
 	jr c, .asm_3979
@@ -43,11 +39,11 @@ DrawBattleHPBar::
 	jr z, .asm_397d
 	jr .asm_396a
 
-.asm_3979: ; 00:3979
+.asm_3979:
 	ld a, $62
 	add e
 	ld [hl], a
-.asm_397d: ; 00:397d
+.asm_397d:
 	pop bc
 	pop de
 	pop hl
@@ -60,7 +56,7 @@ _PrepMonFrontpic::
 	ld a, [wMonDexIndex]
 	and a
 	jr z, .asm_39a8
-	cp 252
+	cp NUM_POKEMON + 1
 	jr nc, .asm_39a8
 	push hl
 	ld de, vFrontPic
@@ -74,7 +70,7 @@ _PrepMonFrontpic::
 	ld [wSpriteFlipped], a
 	ret
 
-.asm_39a8: ; 00:39a8
+.asm_39a8:
 	xor a
 	ld [wSpriteFlipped], a
 	inc a

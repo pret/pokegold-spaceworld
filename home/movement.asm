@@ -22,7 +22,7 @@ DecrementMovementBufferCount::
 	ld [wMovementBufferCount], a
 	ret
 
-AppendToMovementBuffer:: ; 00:19f2
+AppendToMovementBuffer::
 	push hl
 	push de
 	ld hl, wMovementBufferCount
@@ -36,7 +36,7 @@ AppendToMovementBuffer:: ; 00:19f2
 	pop hl
 	ret
 
-AppendToMovementBufferNTimes:: ; 00:1a03
+AppendToMovementBufferNTimes::
 	push af
 	ld a, c
 	and a
@@ -44,9 +44,9 @@ AppendToMovementBufferNTimes:: ; 00:1a03
 	pop af
 	ret
 
-.asm_1a0a: ; 00:1a0a
+.asm_1a0a:
 	pop af
-.asm_1a0b: ; 00:1a0b
+.asm_1a0b:
 	call AppendToMovementBuffer
 	dec c
 	jr nz, .asm_1a0b
@@ -61,7 +61,7 @@ ComputePathToWalkToPlayer::
 	dec a
 	cpl
 	ld h, RIGHT
-.asm_1a1d: ; 00:1a1d
+.asm_1a1d:
 	ld d, a
 	ld a, c
 	sub e
@@ -70,7 +70,7 @@ ComputePathToWalkToPlayer::
 	dec a
 	cpl
 	ld l, DOWN
-.asm_1a28: ; 00:1a28
+.asm_1a28:
 	ld e, a
 	cp d
 	jr nc, .asm_1a32
@@ -80,7 +80,7 @@ ComputePathToWalkToPlayer::
 	ld a, d
 	ld d, e
 	ld e, a
-.asm_1a32: ; 00:1a32
+.asm_1a32:
 	pop af
 	ld b, a
 	ld a, h
@@ -93,7 +93,7 @@ ComputePathToWalkToPlayer::
 	call AppendToMovementBufferNTimes
 	ret
 
-.GetMovementData: ; 00:1a45
+.GetMovementData:
 	push de
 	push hl
 	ld l, b
@@ -110,11 +110,11 @@ ComputePathToWalkToPlayer::
 	pop de
 	ret
 
-.Data: ; 00:1a58
+.Data:
 	db $04, $05, $06, $07
 	db $08, $09, $0a, $0b
 	db $0c, $0d, $0e, $0f
-	
+
 ; 	slow_step DOWN
 ; 	slow_step UP
 ; 	slow_step LEFT

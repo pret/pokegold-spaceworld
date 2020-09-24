@@ -2,10 +2,10 @@ INCLUDE "constants.asm"
 
 SECTION "engine/unknown_boxes.asm", ROMX
 
-Function1130a: ; 04:530A
+Function1130a:
 	ret
-	
-Function1130b: ; 04:530B
+
+Function1130b:
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr c, .bigjump
@@ -28,7 +28,7 @@ Function1130b: ; 04:530B
 	call PrintText
 	scf
 	ret
-.fullbox	
+.fullbox
 	ld hl, BoxFullText
 	call PrintText
 	and a
@@ -38,8 +38,8 @@ Function1130b: ; 04:530B
 	predef Functiond886
 	scf
 	ret
-	
-RecievePokemon: ; 04:5357
+
+RecievePokemon:
 	ld a, [wMonDexIndex]
 	push af
 	ld [wNamedObjectIndexBuffer], a
@@ -53,18 +53,18 @@ RecievePokemon: ; 04:5357
 	call GetPokemonName
 	ld hl, RecievePokemonText
 	jp PrintText
-	
-RecievePokemonText: ; 04:5377
+
+RecievePokemonText:
 	text "<PLAYER>は"
 	line "@"
-	
+
 	db $01, $26, $CD
-	
+
 	text "を　てにいれた！@"
-	
-	db $0B, "@" 
-	
-BoxCantHoldText: ; 04:538B
+
+	db $0B, "@"
+
+BoxCantHoldText:
 	text "#を　もちきれないので"
 	line "<PC>の　ボックス@"
 	db $01, $31, $CD
@@ -73,8 +73,8 @@ BoxCantHoldText: ; 04:538B
 	db $01, $17, $DF
 	text "を　てんそうした！"
 	done
-	
-BoxFullText: ; 04:53B6
+
+BoxFullText:
 	text "#を　もちきれません！"
 	para "ボックスも　いっぱいで"
 	line "てんそうできません！"
