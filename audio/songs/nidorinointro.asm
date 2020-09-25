@@ -2,345 +2,340 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/nidorinointro.asm", ROMX
 
-Song_NidorinoIntro::
-	db 3 << 6 | 0
-	dw Song_NidorinoIntro_Ch0
-	db 1
-	dw Song_NidorinoIntro_Ch1
-	db 2
-	dw Song_NidorinoIntro_Ch2
-	db 3
-	dw Song_NidorinoIntro_Ch3
+Music_NidorinoIntro::
+	channel_count 4
+	channel 1, Music_NidorinoIntro_Ch1
+	channel 2, Music_NidorinoIntro_Ch2
+	channel 3, Music_NidorinoIntro_Ch3
+	channel 4, Music_NidorinoIntro_Ch4
 
-Song_NidorinoIntro_Ch0::
+Music_NidorinoIntro_Ch1::
 	tempo 102
 	volume 7, 7
-	duty 3
+	duty_cycle 3
 	vibrato 6, 3, 4
-	toggleperfectpitch
-	rest 1
-	rest 2
-	notetype 12, 11, 1
+	pitch_offset 1
+	note_type 12, 11, 1
 	rest 8
 	octave 2
-	A_ 2
-	A_ 2
-	notetype 12, 11, 4
+	note A_, 2
+	note A_, 2
+	note_type 12, 11, 4
 	octave 3
-	D_ 4
-	notetype 12, 11, 1
+	note D_, 4
+	note_type 12, 11, 1
 	octave 2
-	A_ 2
-	A_ 2
-	notetype 12, 11, 4
+	note A_, 2
+	note A_, 2
+	note_type 12, 11, 4
 	octave 3
-	D# 4
-	notetype 12, 11, 1
+	note D#, 4
+	note_type 12, 11, 1
 	octave 2
-	A_ 2
-	A_ 2
-	notetype 12, 11, 4
+	note A_, 2
+	note A_, 2
+	note_type 12, 11, 4
 	octave 3
-	D_ 4
-	notetype 12, 11, 1
+	note D_, 4
+	note_type 12, 11, 1
 	octave 2
-	A_ 2
-	A_ 2
-	notetype 12, 10, 0
-	A# 4
-	notetype 12, 11, 1
-	A_ 2
-	A_ 2
-	notetype 12, 11, 4
+	note A_, 2
+	note A_, 2
+	note_type 12, 10, 0
+	note A#, 4
+	note_type 12, 11, 1
+	note A_, 2
+	note A_, 2
+	note_type 12, 11, 4
 	octave 3
-	D_ 4
-	notetype 12, 11, 1
+	note D_, 4
+	note_type 12, 11, 1
 	octave 2
-	A_ 2
-	A_ 2
-	notetype 12, 2, 9
+	note A_, 2
+	note A_, 2
+	note_type 12, 2, 9
 	octave 3
-	G_ 4
-	notetype 12, 11, 0
-	A_ 8
+	note G_, 4
+	note_type 12, 11, 0
+	note A_, 8
 	octave 2
-	A_ 8
-	notetype 12, 11, 7
+	note A_, 8
+	note_type 12, 11, 7
 	octave 3
-	F_ 8
-	notetype 12, 4, 15
+	note F_, 8
+	note_type 12, 4, 15
 	octave 2
-	F_ 8
-	notetype 12, 11, 1
-	A_ 2
-	A_ 2
-	notetype 12, 11, 4
+	note F_, 8
+	note_type 12, 11, 1
+	note A_, 2
+	note A_, 2
+	note_type 12, 11, 4
 	octave 3
-	D_ 4
-	notetype 12, 11, 1
+	note D_, 4
+	note_type 12, 11, 1
 	octave 2
-	A_ 2
-	A_ 2
-	notetype 12, 11, 4
+	note A_, 2
+	note A_, 2
+	note_type 12, 11, 4
 	octave 3
-	D# 4
-	notetype 12, 11, 1
+	note D#, 4
+	note_type 12, 11, 1
 	octave 2
-	A_ 2
-	A_ 2
-	notetype 12, 11, 4
+	note A_, 2
+	note A_, 2
+	note_type 12, 11, 4
 	octave 3
-	F_ 4
-	notetype 12, 11, 1
+	note F_, 4
+	note_type 12, 11, 1
 	octave 2
-	A_ 2
-	A_ 2
-	notetype 12, 11, 4
+	note A_, 2
+	note A_, 2
+	note_type 12, 11, 4
 	octave 3
-	G_ 4
-	notetype 12, 11, 0
-	F# 16
-	notetype 12, 11, 1
+	note G_, 4
+	note_type 12, 11, 0
+	note F#, 16
+	note_type 12, 11, 1
 	octave 4
-	D_ 16
-	endchannel
+	note D_, 16
+	sound_ret
 
 
-Song_NidorinoIntro_Ch1::
-	duty 3
+Music_NidorinoIntro_Ch2::
+	duty_cycle 3
 	vibrato 8, 2, 5
-	notetype 12, 12, 2
+	note_type 12, 12, 2
 	rest 8
 	octave 3
-	D_ 2
-	D_ 2
-	notetype 12, 12, 5
-	A_ 4
-	notetype 12, 12, 2
-	D_ 2
-	D_ 2
-	notetype 12, 12, 5
-	A# 4
-	notetype 12, 12, 2
-	D_ 2
-	D_ 2
-	notetype 12, 12, 5
-	A_ 4
-	notetype 12, 12, 2
-	D_ 2
-	D_ 2
-	notetype 12, 11, 7
-	C# 4
-	notetype 12, 12, 2
-	D_ 2
-	D_ 2
-	notetype 12, 12, 5
-	A_ 4
-	notetype 12, 12, 2
+	note D_, 2
+	note D_, 2
+	note_type 12, 12, 5
+	note A_, 4
+	note_type 12, 12, 2
+	note D_, 2
+	note D_, 2
+	note_type 12, 12, 5
+	note A#, 4
+	note_type 12, 12, 2
+	note D_, 2
+	note D_, 2
+	note_type 12, 12, 5
+	note A_, 4
+	note_type 12, 12, 2
+	note D_, 2
+	note D_, 2
+	note_type 12, 11, 7
+	note C#, 4
+	note_type 12, 12, 2
+	note D_, 2
+	note D_, 2
+	note_type 12, 12, 5
+	note A_, 4
+	note_type 12, 12, 2
 	octave 3
-	D_ 2
-	D_ 2
-	notetype 12, 12, 7
+	note D_, 2
+	note D_, 2
+	note_type 12, 12, 7
 	octave 4
-	C# 4
-	D_ 8
+	note C#, 4
+	note D_, 8
 	octave 3
-	D_ 8
+	note D_, 8
 	octave 4
-	C_ 8
+	note C_, 8
 	octave 3
-	C_ 8
-	notetype 12, 12, 2
-	D_ 2
-	D_ 2
-	notetype 12, 12, 5
-	A_ 4
-	notetype 12, 12, 2
-	D_ 2
-	D_ 2
-	notetype 12, 12, 5
-	A# 4
-	notetype 12, 12, 2
-	D_ 2
-	D_ 2
-	notetype 12, 12, 5
+	note C_, 8
+	note_type 12, 12, 2
+	note D_, 2
+	note D_, 2
+	note_type 12, 12, 5
+	note A_, 4
+	note_type 12, 12, 2
+	note D_, 2
+	note D_, 2
+	note_type 12, 12, 5
+	note A#, 4
+	note_type 12, 12, 2
+	note D_, 2
+	note D_, 2
+	note_type 12, 12, 5
 	octave 4
-	C_ 4
-	notetype 12, 12, 2
+	note C_, 4
+	note_type 12, 12, 2
 	octave 3
-	D_ 2
-	D_ 2
-	notetype 12, 12, 5
+	note D_, 2
+	note D_, 2
+	note_type 12, 12, 5
 	octave 4
-	C# 4
-	notetype 12, 2, 15
-	D_ 16
-	notetype 12, 12, 1
+	note C#, 4
+	note_type 12, 2, 15
+	note D_, 16
+	note_type 12, 12, 1
 	octave 5
-	D_ 16
-	endchannel
+	note D_, 16
+	sound_ret
 
 
-Song_NidorinoIntro_Ch2::
-	notetype 12, 1, 0
+Music_NidorinoIntro_Ch3::
+	note_type 12, 1, 0
 	rest 8
 	octave 4
-	D_ 1
+	note D_, 1
 	rest 1
-	D_ 1
+	note D_, 1
 	rest 1
-	A_ 4
-	D_ 1
+	note A_, 4
+	note D_, 1
 	rest 1
-	D_ 1
+	note D_, 1
 	rest 1
-	A_ 4
-	D_ 1
+	note A_, 4
+	note D_, 1
 	rest 1
-	D_ 1
+	note D_, 1
 	rest 1
-	A_ 4
-	D_ 1
+	note A_, 4
+	note D_, 1
 	rest 1
-	D_ 1
+	note D_, 1
 	rest 1
-	F# 4
-	D_ 1
+	note F#, 4
+	note D_, 1
 	rest 1
-	D_ 1
+	note D_, 1
 	rest 1
-	A_ 4
-	D_ 1
+	note A_, 4
+	note D_, 1
 	rest 1
-	D_ 1
+	note D_, 1
 	rest 1
-	A# 4
-	A_ 8
-	D_ 8
-	A# 8
-	D_ 8
-	D_ 1
+	note A#, 4
+	note A_, 8
+	note D_, 8
+	note A#, 8
+	note D_, 8
+	note D_, 1
 	rest 1
-	D_ 1
+	note D_, 1
 	rest 1
-	A_ 4
-	D_ 1
+	note A_, 4
+	note D_, 1
 	rest 1
-	D_ 1
+	note D_, 1
 	rest 1
-	A_ 4
-	D_ 1
+	note A_, 4
+	note D_, 1
 	rest 1
-	D_ 1
+	note D_, 1
 	rest 1
-	A# 4
-	D_ 1
+	note A#, 4
+	note D_, 1
 	rest 1
-	D_ 1
+	note D_, 1
 	rest 1
-	A# 4
-	A_ 16
-	D_ 1
+	note A#, 4
+	note A_, 16
+	note D_, 1
 	rest 15
-	endchannel
+	sound_ret
 
 
-Song_NidorinoIntro_Ch3::
-	drumset 2
-	dspeed 6
-	snare4 1
-	snare4 1
-	snare4 1
-	snare4 1
-	snare3 1
-	snare4 1
-	snare3 1
-	snare4 1
-	snare3 1
-	snare4 1
-	snare3 1
-	snare3 1
-	snare3 1
-	snare3 1
-	snare2 1
-	snare2 1
-	snare2 4
-	snare2 4
-	snare4 1
-	snare4 1
-	snare4 1
-	snare4 1
-	snare3 1
-	snare3 1
-	snare3 1
-	snare3 1
-	snare2 4
-	snare2 4
-	snare2 8
-	snare2 4
-	snare2 4
-	snare2 8
-	snare2 4
-	snare2 4
-	snare4 1
-	snare4 1
-	snare4 1
-	snare4 1
-	snare3 1
-	snare3 1
-	snare3 1
-	snare3 1
-	snare2 4
-	snare2 4
-	snare2 8
-	snare2 4
-	snare2 4
-	snare2 4
-	snare4 1
-	snare4 1
-	snare3 1
-	snare3 1
-	snare2 16
-	snare2 16
-	snare2 16
-	snare4 1
-	snare4 1
-	snare4 1
-	snare4 1
-	snare3 1
-	snare4 1
-	snare3 1
-	snare4 1
-	snare3 1
-	snare3 1
-	snare3 1
-	snare3 1
-	snare2 1
-	snare2 1
-	snare2 1
-	snare2 1
-	snare2 4
-	snare2 4
-	snare2 8
-	snare2 4
-	snare2 4
-	snare4 1
-	snare4 1
-	snare4 1
-	snare4 1
-	snare3 1
-	snare3 1
-	snare3 1
-	snare3 1
-	snare2 4
-	snare2 4
-	snare2 8
-	snare2 4
-	snare2 8
-	snare2 4
-	snare2 16
-	snare2 16
-	snare2 2
+Music_NidorinoIntro_Ch4::
+    toggle_noise 2
+	drum_speed 6
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 2, 8
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 2, 8
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 2, 8
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 2, 16
+	drum_note 2, 16
+	drum_note 2, 16
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 2, 8
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 4, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 2, 4
+	drum_note 2, 4
+	drum_note 2, 8
+	drum_note 2, 4
+	drum_note 2, 8
+	drum_note 2, 4
+	drum_note 2, 16
+	drum_note 2, 16
+	drum_note 2, 2
 	rest 16
 	rest 14
-	endchannel
+	sound_ret
