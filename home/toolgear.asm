@@ -181,7 +181,7 @@ UpdateToolgear::
 ; .printDigit
 ; print a hexadecimal digit for value in a to de
 	and $0f
-	add "０"
+	add $f6
 	ld [de], a
 	inc de
 	ret
