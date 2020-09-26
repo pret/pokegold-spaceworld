@@ -215,7 +215,7 @@ ENDM
 	const stereo_panning_cmd ; $ee
 stereo_panning: MACRO
 	db stereo_panning_cmd
-	dn %1111 * (1 && \1), %1111 * (1 && \2) ; left enable, right enable
+	dn \1, \2 ; left output enable mask, right output enable mask
 ENDM
 
 	const unknownmusic0xef_cmd ; $ef
