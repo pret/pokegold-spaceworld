@@ -66,7 +66,7 @@ AlphabeticalPokedexOrder:
 	db DEX_TAUROS
 	db DEX_MAGIKARP
 	db DEX_MAGNEMITE
-	db DEX_GHOS
+	db DEX_GASTLY
 	db DEX_HAUNTER
 	db DEX_KOUNYA
 	db DEX_MACHOKE
@@ -250,7 +250,7 @@ AlphabeticalPokedexOrder:
 	db DEX_LIP
 	db DEX_RINRIN
 	db DEX_JYNX
-	db DEX_RAREMAGNEMITE
+	db DEX_MAGNETON
 	db DEX_REDIBA
 	db DEX_VULPIX
 	db DEX_WARWOLF

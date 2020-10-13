@@ -1,4 +1,4 @@
-	db DEX_GHOS ; 092
+	db DEX_GASTLY ; 092
 
 	db  30,  35,  30,  80, 100,  25
 	;   hp  atk  def  spd  sat  sdf

@@ -84,7 +84,7 @@ PokemonNames::
 	db "ヤドン@@" ; SLOWPOKE
 	db "ヤドラン@" ; SLOWBRO
 	db "コイル@@" ; MAGNEMITE
-	db "レアコイル" ; RAREMAGNEMITE
+	db "レアコイル" ; MAGNETON
 	db "カモネギ@" ; FARFETCHD
 	db "ドードー@" ; DODUO
 	db "ドードりオ" ; DODRIO

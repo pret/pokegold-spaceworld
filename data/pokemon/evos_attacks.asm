@@ -1049,7 +1049,7 @@ SlowbroEvosAttacks:
 	db 0 ; no more level-up moves
 
 MagnemiteEvosAttacks:
-	db EVOLVE_LEVEL, 30, DEX_RAREMAGNEMITE
+	db EVOLVE_LEVEL, 30, DEX_MAGNETON
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
 	db  7, MOVE_THUNDER_WAVE

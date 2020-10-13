@@ -1,4 +1,4 @@
-	db DEX_RAREMAGNEMITE ; 082
+	db DEX_MAGNETON ; 082
 
 	db  50,  60,  95,  70,  75, 120
 	;   hp  atk  def  spd  sat  sdf
