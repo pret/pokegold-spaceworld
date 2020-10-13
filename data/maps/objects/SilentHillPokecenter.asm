@@ -19,7 +19,7 @@ SilentHillPokecenter_MapEvents::
 	object_event 14,  6, SPRITE_GENTLEMAN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event  3,  4, SPRITE_24, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event  9,  1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 10,  1, SPRITE_SIDON, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10,  1, SPRITE_RHYDON, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SilentHillPokecenter_Blocks::
 INCBIN "maps/SilentHillPokecenter.blk"

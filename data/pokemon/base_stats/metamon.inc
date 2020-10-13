@@ -1,4 +1,4 @@
-	db DEX_METAMON ; 132
+	db DEX_DITTO ; 132
 
 	db  48,  48,  48,  48,  48,  48
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_UNKNOWN ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw MetamonPicFront, MetamonPicBack ; sprites
+	dw DittoPicFront, DittoPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

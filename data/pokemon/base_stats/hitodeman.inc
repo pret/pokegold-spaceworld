@@ -1,4 +1,4 @@
-	db DEX_HITODEMAN ; 120
+	db DEX_STARYU ; 120
 
 	db  30,  45,  55,  85,  70,  55
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw HitodemanPicFront, HitodemanPicBack ; sprites
+	dw StaryuPicFront, StaryuPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

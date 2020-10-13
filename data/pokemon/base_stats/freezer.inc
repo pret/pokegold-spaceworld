@@ -1,4 +1,4 @@
-	db DEX_FREEZER ; 144
+	db DEX_ARTICUNO ; 144
 
 	db  90,  85, 100,  85,  95, 125
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw FreezerPicFront, FreezerPicBack ; sprites
+	dw ArticunoPicFront, ArticunoPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_BERORINGA ; 108
+	db DEX_LICKITUNG ; 108
 
 	db  90,  55,  75,  30,  60,  90
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw BeroringaPicFront, BeroringaPicBack ; sprites
+	dw LickitungPicFront, LickitungPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_COIL ; 081
+	db DEX_MAGNEMITE ; 081
 
 	db  25,  35,  70,  45,  60,  95
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_UNKNOWN ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw CoilPicFront, CoilPicBack ; sprites
+	dw MagnemitePicFront, MagnemitePicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

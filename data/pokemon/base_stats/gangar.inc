@@ -1,4 +1,4 @@
-	db DEX_GANGAR ; 094
+	db DEX_GENGAR ; 094
 
 	db  60,  65,  60, 110, 130,  75
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw GangarPicFront, GangarPicBack ; sprites
+	dw GengarPicFront, GengarPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_SIDON ; 112
+	db DEX_RHYDON ; 112
 
 	db 105, 130, 120,  40,  45,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw SidonPicFront, SidonPicBack ; sprites
+	dw RhydonPicFront, RhydonPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

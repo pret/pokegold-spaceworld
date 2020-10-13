@@ -1,4 +1,4 @@
-	db DEX_OMSTAR ; 139
+	db DEX_OMASTAR ; 139
 
 	db  70,  60, 125,  55, 115,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw OmstarPicFront, OmstarPicBack ; sprites
+	dw OmastarPicFront, OmastarPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

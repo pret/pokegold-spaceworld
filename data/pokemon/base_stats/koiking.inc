@@ -1,4 +1,4 @@
-	db DEX_KOIKING ; 129
+	db DEX_MAGIKARP ; 129
 
 	db  20,  10,  55,  80,  15,  20
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw KoikingPicFront, KoikingPicBack ; sprites
+	dw MagikarpPicFront, MagikarpPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

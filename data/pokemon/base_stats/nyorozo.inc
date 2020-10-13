@@ -1,4 +1,4 @@
-	db DEX_NYOROZO ; 061
+	db DEX_POLIWHIRL ; 061
 
 	db  65,  65,  65,  90,  50,  65
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw NyorozoPicFront, NyorozoPicBack ; sprites
+	dw PoliwhirlPicFront, PoliwhirlPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

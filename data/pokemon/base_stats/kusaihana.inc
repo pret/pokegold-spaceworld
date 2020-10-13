@@ -1,4 +1,4 @@
-	db DEX_KUSAIHANA ; 044
+	db DEX_GLOOM ; 044
 
 	db  60,  65,  70,  40,  85,  80
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw KusaihanaPicFront, KusaihanaPicBack ; sprites
+	dw GloomPicFront, GloomPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

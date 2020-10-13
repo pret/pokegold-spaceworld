@@ -1,4 +1,4 @@
-	db DEX_MARUMINE ; 101
+	db DEX_ELECTRODE ; 101
 
 	db  60,  50,  70, 140,  80,  80
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_UNKNOWN ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw MaruminePicFront, MaruminePicBack ; sprites
+	dw ElectrodePicFront, ElectrodePicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

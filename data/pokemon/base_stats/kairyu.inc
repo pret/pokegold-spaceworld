@@ -1,4 +1,4 @@
-	db DEX_KAIRYU ; 149
+	db DEX_DRAGONITE ; 149
 
 	db  91, 134,  95,  80, 100, 100
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw KairyuPicFront, KairyuPicBack ; sprites
+	dw DragonitePicFront, DragonitePicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

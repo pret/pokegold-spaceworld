@@ -1,4 +1,4 @@
-	db DEX_ONIDRILL ; 022
+	db DEX_FEAROW ; 022
 
 	db  65,  90,  65, 100,  61,  61
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw OnidrillPicFront, OnidrillPicBack ; sprites
+	dw FearowPicFront, FearowPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_PUKURIN ; 040
+	db DEX_WIGGLYTUFF ; 040
 
 	db 140,  70,  45,  45,  50,  80
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw PukurinPicFront, PukurinPicBack ; sprites
+	dw WigglytuffPicFront, WigglytuffPicBack ; sprites
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset

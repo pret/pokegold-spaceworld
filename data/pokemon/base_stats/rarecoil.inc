@@ -1,4 +1,4 @@
-	db DEX_RARECOIL ; 082
+	db DEX_RAREMAGNEMITE ; 082
 
 	db  50,  60,  95,  70,  75, 120
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_UNKNOWN ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw RarecoilPicFront, RarecoilPicBack ; sprites
+	dw MagnetonPicFront, MagnetonPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

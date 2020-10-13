@@ -1,4 +1,4 @@
-	db DEX_MORPHON ; 049
+	db DEX_VENOMOTH ; 049
 
 	db  70,  65,  60,  90,  90, 100
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw MorphonPicFront, MorphonPicBack ; sprites
+	dw VenomothPicFront, VenomothPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_TATTU ; 116
+	db DEX_HORSEA ; 116
 
 	db  30,  40,  70,  60,  70,  45
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw TattuPicFront, TattuPicBack ; sprites
+	dw HorseaPicFront, HorseaPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_PTERA ; 142
+	db DEX_AERODACTYL ; 142
 
 	db  80, 105,  65, 130,  60,  85
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw PteraPicFront, PteraPicBack ; sprites
+	dw AerodactylPicFront, AerodactylPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_KYUKON ; 038
+	db DEX_NINETALES ; 038
 
 	db  73,  76,  75, 100, 100,  80
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw KyukonPicFront, KyukonPicBack ; sprites
+	dw NinetalesPicFront, NinetalesPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

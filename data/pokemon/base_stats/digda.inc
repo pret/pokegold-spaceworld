@@ -1,4 +1,4 @@
-	db DEX_DIGDA ; 050
+	db DEX_DIGLETT ; 050
 
 	db  10,  55,  25,  95,  50,  45
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw DigdaPicFront, DigdaPicBack ; sprites
+	dw DiglettPicFront, DiglettPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

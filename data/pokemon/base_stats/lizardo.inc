@@ -1,4 +1,4 @@
-	db DEX_LIZARDO ; 005
+	db DEX_CHARMELEON ; 005
 
 	db  58,  64,  58,  80,  75,  65
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw LizardoPicFront, LizardoPicBack ; sprites
+	dw CharmeleonPicFront, CharmeleonPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_KAMONEGI ; 083
+	db DEX_FARFETCHD ; 083
 
 	db  52,  65,  55,  60,  58,  58
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw KamonegiPicFront, KamonegiPicBack ; sprites
+	dw FarfetchdPicFront, FarfetchdPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

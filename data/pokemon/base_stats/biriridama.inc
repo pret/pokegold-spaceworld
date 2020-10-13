@@ -1,4 +1,4 @@
-	db DEX_BIRIRIDAMA ; 100
+	db DEX_VOLTORB ; 100
 
 	db  40,  30,  50, 100,  55,  55
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_UNKNOWN ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw BiriridamaPicFront, BiriridamaPicBack ; sprites
+	dw VoltorbPicFront, VoltorbPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

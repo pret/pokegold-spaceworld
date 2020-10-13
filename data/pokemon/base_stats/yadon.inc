@@ -1,4 +1,4 @@
-	db DEX_YADON ; 079
+	db DEX_SLOWPOKE ; 079
 
 	db  90,  65,  65,  15,  40,  35
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw YadonPicFront, YadonPicBack ; sprites
+	dw SlowpokePicFront, SlowpokePicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

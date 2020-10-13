@@ -1,4 +1,4 @@
-	db DEX_ZENIGAME ; 007
+	db DEX_SQUIRTLE ; 007
 
 	db  44,  48,  65,  43,  50,  55
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw ZenigamePicFront, ZenigamePicBack ; sprites
+	dw SquirtlePicFront, SquirtlePicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

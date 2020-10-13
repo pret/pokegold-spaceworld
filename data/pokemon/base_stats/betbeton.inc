@@ -1,4 +1,4 @@
-	db DEX_BETBETON ; 089
+	db DEX_MUK ; 089
 
 	db 105, 105,  75,  50,  80,  65
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw BetbetonPicFront, BetbetonPicBack ; sprites
+	dw MukPicFront, MukPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

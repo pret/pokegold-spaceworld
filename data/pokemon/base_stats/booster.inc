@@ -1,4 +1,4 @@
-	db DEX_BOOSTER ; 136
+	db DEX_FLAREON ; 136
 
 	db  65, 130,  60,  65,  70, 110
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw BoosterPicFront, BoosterPicBack ; sprites
+	dw FlareonPicFront, FlareonPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_ISITSUBUTE ; 074
+	db DEX_GEODUDE ; 074
 
 	db  40,  80, 100,  20,  30,  45
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw IsitsubutePicFront, IsitsubutePicBack ; sprites
+	dw GeodudePicFront, GeodudePicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

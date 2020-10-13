@@ -1,4 +1,4 @@
-	db DEX_NYARTH ; 052
+	db DEX_MEOWTH ; 052
 
 	db  40,  45,  35,  90,  40,  50
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw NyarthPicFront, NyarthPicBack ; sprites
+	dw MeowthPicFront, MeowthPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

@@ -38,11 +38,11 @@ Stand_MapEvents::
 	object_event 14, 17, SPRITE_TWIN, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 28, 19, SPRITE_ROCKER, FACE_RIGHT, 0, 3, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 30, 31, SPRITE_TEACHER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 21,  8, SPRITE_SIDON, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 13,  6, SPRITE_PIPPI, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6,  6, SPRITE_SIDON, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 14, 15, SPRITE_POPPO, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6, 21, SPRITE_SIDON, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 21,  8, SPRITE_RHYDON, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 13,  6, SPRITE_CLEFAIRY, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  6, SPRITE_RHYDON, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 14, 15, SPRITE_PIDGEY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6, 21, SPRITE_RHYDON, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Stand_Blocks::
 INCBIN "maps/Stand.blk"

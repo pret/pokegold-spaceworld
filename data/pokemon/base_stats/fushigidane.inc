@@ -1,4 +1,4 @@
-	db DEX_FUSHIGIDANE ; 001
+	db DEX_BULBASAUR ; 001
 
 	db  45,  49,  49,  45,  65,  65
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw FushigidanePicFront, FushigidanePicBack ; sprites
+	dw BulbasaurPicFront, BulbasaurPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

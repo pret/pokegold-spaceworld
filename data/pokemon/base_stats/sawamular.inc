@@ -1,4 +1,4 @@
-	db DEX_SAWAMULAR ; 106
+	db DEX_HITMONLEE ; 106
 
 	db  50, 120,  53,  87,  35,  85
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_MALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw SawamularPicFront, SawamularPicBack ; sprites
+	dw HitmonleePicFront, HitmonleePicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_SHOWERS ; 134
+	db DEX_VAPOREON ; 134
 
 	db 130,  65,  60,  65,  70, 110
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw ShowersPicFront, ShowersPicBack ; sprites
+	dw VaporeonPicFront, VaporeonPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

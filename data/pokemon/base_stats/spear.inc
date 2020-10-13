@@ -1,4 +1,4 @@
-	db DEX_SPEAR ; 015
+	db DEX_BEEDRILL ; 015
 
 	db  65,  80,  40,  75,  45,  80
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw SpearPicFront, SpearPicBack ; sprites
+	dw BeedrillPicFront, BeedrillPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

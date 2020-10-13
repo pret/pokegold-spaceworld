@@ -1,4 +1,4 @@
-	db DEX_PIPPI ; 035
+	db DEX_CLEFAIRY ; 035
 
 	db  70,  45,  48,  35,  60,  65
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw PippiPicFront, PippiPicBack ; sprites
+	dw ClefairyPicFront, ClefairyPicBack ; sprites
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset

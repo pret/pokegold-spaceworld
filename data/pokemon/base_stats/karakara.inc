@@ -1,4 +1,4 @@
-	db DEX_KARAKARA ; 104
+	db DEX_CUBONE ; 104
 
 	db  50,  50,  95,  35,  40,  40
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw KarakaraPicFront, KarakaraPicBack ; sprites
+	dw CubonePicFront, CubonePicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

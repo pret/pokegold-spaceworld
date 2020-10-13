@@ -1,4 +1,4 @@
-	db DEX_MATADOGAS ; 110
+	db DEX_WEEZING ; 110
 
 	db  65,  90, 120,  60,  85,  55
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw MatadogasPicFront, MatadogasPicBack ; sprites
+	dw WeezingPicFront, WeezingPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

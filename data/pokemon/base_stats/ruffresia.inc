@@ -1,4 +1,4 @@
-	db DEX_RUFFRESIA ; 045
+	db DEX_VILEPLUME ; 045
 
 	db  75,  80,  85,  50, 100,  95
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw RuffresiaPicFront, RuffresiaPicBack ; sprites
+	dw VileplumePicFront, VileplumePicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

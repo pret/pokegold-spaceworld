@@ -1,4 +1,4 @@
-	db DEX_LIZARDON ; 006
+	db DEX_CHARIZARD ; 006
 
 	db  78,  84,  78, 100, 100,  85
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw LizardonPicFront, LizardonPicBack ; sprites
+	dw CharizardPicFront, CharizardPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

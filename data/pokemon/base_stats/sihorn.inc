@@ -1,4 +1,4 @@
-	db DEX_SIHORN ; 111
+	db DEX_RHYHORN ; 111
 
 	db  80,  85,  95,  25,  30,  55
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw SihornPicFront, SihornPicBack ; sprites
+	dw RhyhornPicFront, RhyhornPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

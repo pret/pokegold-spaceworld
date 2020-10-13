@@ -31,7 +31,7 @@ Haiteku_MapEvents::
 
 	def_object_events
 	object_event 22, 15, SPRITE_TWIN, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 23, 14, SPRITE_PIPPI, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 23, 14, SPRITE_CLEFAIRY, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 23, 24, SPRITE_SAILOR, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 26, 10, SPRITE_SAILOR, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10, 14, SPRITE_GENTLEMAN, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0

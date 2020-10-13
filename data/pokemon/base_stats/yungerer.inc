@@ -1,4 +1,4 @@
-	db DEX_YUNGERER ; 064
+	db DEX_KADABRA ; 064
 
 	db  40,  35,  30, 105, 120,  75
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw YungererPicFront, YungererPicBack ; sprites
+	dw KadabraPicFront, KadabraPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

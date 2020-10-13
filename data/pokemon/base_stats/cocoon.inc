@@ -1,4 +1,4 @@
-	db DEX_COCOON ; 014
+	db DEX_KAKUNA ; 014
 
 	db  45,  25,  50,  35,  25,  25
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw CocoonPicFront, CocoonPicBack ; sprites
+	dw KakunaPicFront, KakunaPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

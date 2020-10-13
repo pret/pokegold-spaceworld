@@ -1,4 +1,4 @@
-	db DEX_SLEEPER ; 097
+	db DEX_HYPNO ; 097
 
 	db  85,  73,  70,  67,  70, 115
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw SleeperPicFront, SleeperPicBack ; sprites
+	dw HypnoPicFront, HypnoPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

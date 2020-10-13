@@ -1,4 +1,4 @@
-	db DEX_EIEVUI ; 133
+	db DEX_EEVEE ; 133
 
 	db  55,  55,  50,  55,  45,  65
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw EievuiPicFront, EievuiPicBack ; sprites
+	dw EeveePicFront, EeveePicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

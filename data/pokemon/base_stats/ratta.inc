@@ -1,4 +1,4 @@
-	db DEX_RATTA ; 020
+	db DEX_RATICATE ; 020
 
 	db  55,  81,  60,  97,  50,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw RattaPicFront, RattaPicBack ; sprites
+	dw RaticatePicFront, RaticatePicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

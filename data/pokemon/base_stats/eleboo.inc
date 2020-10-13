@@ -1,4 +1,4 @@
-	db DEX_ELEBOO ; 125
+	db DEX_ELECTABUZZ ; 125
 
 	db  65,  83,  57, 105,  85,  75
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw ElebooPicFront, ElebooPicBack ; sprites
+	dw ElectabuzzPicFront, ElectabuzzPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

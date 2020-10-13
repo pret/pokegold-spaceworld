@@ -1,4 +1,4 @@
-	db DEX_PURIN ; 039
+	db DEX_JIGGLYPUFF ; 039
 
 	db 115,  45,  20,  20,  25,  40
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw PurinPicFront, PurinPicBack ; sprites
+	dw JigglypuffPicFront, JigglypuffPicBack ; sprites
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset

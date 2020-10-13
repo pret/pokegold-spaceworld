@@ -1,4 +1,4 @@
-	db DEX_GOLONYA ; 076
+	db DEX_GOLEM ; 076
 
 	db  80, 110, 130,  45,  55,  80
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw GolonyaPicFront, GolonyaPicBack ; sprites
+	dw GolemPicFront, GolemPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_GARDIE ; 058
+	db DEX_GROWLITHE ; 058
 
 	db  55,  70,  45,  60,  50,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw GardiePicFront, GardiePicBack ; sprites
+	dw GrowlithePicFront, GrowlithePicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

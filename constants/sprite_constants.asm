@@ -76,14 +76,14 @@
 	const SPRITE_SAILOR                ; 4a
 	const SPRITE_HELMET                ; 4b
 	const SPRITE_BURGLAR               ; 4c
-	const SPRITE_SIDON                 ; 4d RHYDON
-	const SPRITE_PIPPI                 ; 4e CLEFAIRY
-	const SPRITE_POPPO                 ; 4f PIDGEY
-	const SPRITE_LIZARDON              ; 50 CHARIZARD
-	const SPRITE_KABIGON               ; 51 SNORLAX
-	const SPRITE_PAWOU                 ; 52 SEEL
-	const SPRITE_NYOROBON              ; 53 POLIWRATH
-	const SPRITE_LAPLACE               ; 54 LAPRAS
+	const SPRITE_RHYDON                ; 4d RHYDON
+	const SPRITE_CLEFAIRY              ; 4e CLEFAIRY
+	const SPRITE_PIDGEY                ; 4f PIDGEY
+	const SPRITE_CHARIZARD             ; 50 CHARIZARD
+	const SPRITE_SNORLAX               ; 51 SNORLAX
+	const SPRITE_SEEL                  ; 52 SEEL
+	const SPRITE_POLIWRATH             ; 53 POLIWRATH
+	const SPRITE_LAPRAS                ; 54 LAPRAS
 	const SPRITE_POKE_BALL             ; 55
 	const SPRITE_POKEDEX               ; 56
 	const SPRITE_PAPER                 ; 57

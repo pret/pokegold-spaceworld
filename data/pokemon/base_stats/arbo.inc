@@ -1,4 +1,4 @@
-	db DEX_ARBO ; 023
+	db DEX_EKANS ; 023
 
 	db  35,  60,  44,  55,  50,  40
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw ArboPicFront, ArboPicBack ; sprites
+	dw EkansPicFront, EkansPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

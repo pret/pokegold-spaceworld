@@ -1,4 +1,4 @@
-	db DEX_MONJARA ; 114
+	db DEX_TANGELA ; 114
 
 	db  65,  55, 115,  60,  55, 100
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw MonjaraPicFront, MonjaraPicBack ; sprites
+	dw TangelaPicFront, TangelaPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

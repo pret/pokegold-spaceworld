@@ -1,4 +1,4 @@
-	db DEX_MADATSUBOMI ; 069
+	db DEX_BELLSPROUT ; 069
 
 	db  50,  75,  35,  40,  55,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw MadatsubomiPicFront, MadatsubomiPicBack ; sprites
+	dw BellsproutPicFront, BellsproutPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

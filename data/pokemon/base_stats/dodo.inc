@@ -1,4 +1,4 @@
-	db DEX_DODO ; 084
+	db DEX_DODUO ; 084
 
 	db  35,  85,  45,  75,  35,  35
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw DodoPicFront, DodoPicBack ; sprites
+	dw DoduoPicFront, DoduoPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

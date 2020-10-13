@@ -18,9 +18,9 @@ KantoGamefreakHQ1_MapEvents::
 
 	def_object_events
 	object_event  1,  5, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  4,  5, SPRITE_SIDON, FACE_RIGHT, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  0,  8, SPRITE_PIPPI, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  2,  7, SPRITE_POPPO, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  5, SPRITE_RHYDON, FACE_RIGHT, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  0,  8, SPRITE_CLEFAIRY, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  7, SPRITE_PIDGEY, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoGamefreakHQ1_Blocks::
 INCBIN "maps/KantoGamefreakHQ1.blk"

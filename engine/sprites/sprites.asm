@@ -138,14 +138,14 @@ OverworldSprites::
 	overworld_sprite SailorSpriteGFX, 12
 	overworld_sprite HelmetSpriteGFX, 12
 	overworld_sprite BurglarSpriteGFX, 12
-	overworld_sprite SidonSpriteGFX, 12
-	overworld_sprite PippiSpriteGFX, 12
-	overworld_sprite PoppoSpriteGFX, 12
-	overworld_sprite LizardonSpriteGFX, 12
-	overworld_sprite KabigonSpriteGFX, 4
-	overworld_sprite PawouSpriteGFX, 12
-	overworld_sprite NyorobonSpriteGFX, 12
-	overworld_sprite LaplaceSpriteGFX, 12
+	overworld_sprite RhydonSpriteGFX, 12
+	overworld_sprite ClefairySpriteGFX, 12
+	overworld_sprite PidgeySpriteGFX, 12
+	overworld_sprite CharizardSpriteGFX, 12
+	overworld_sprite SnorlaxSpriteGFX, 4
+	overworld_sprite SeelSpriteGFX, 12
+	overworld_sprite PoliwrathSpriteGFX, 12
+	overworld_sprite LaprasSpriteGFX, 12
 	overworld_sprite PokeBallSpriteGFX, 4
 	overworld_sprite PokedexSpriteGFX, 4
 	overworld_sprite PaperSpriteGFX, 4

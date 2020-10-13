@@ -1,4 +1,4 @@
-	db DEX_HITOKAGE ; 004
+	db DEX_CHARMANDER ; 004
 
 	db  39,  52,  43,  65,  55,  50
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw HitokagePicFront, HitokagePicBack ; sprites
+	dw CharmanderPicFront, CharmanderPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

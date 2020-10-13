@@ -1,4 +1,4 @@
-	db DEX_KAIRIKY ; 068
+	db DEX_MACHAMP ; 068
 
 	db  90, 130,  80,  55,  65,  80
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw KairikyPicFront, KairikyPicBack ; sprites
+	dw MachampPicFront, MachampPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

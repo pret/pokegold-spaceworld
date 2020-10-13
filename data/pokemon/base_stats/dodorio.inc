@@ -1,4 +1,4 @@
-	db DEX_DODORIO ; 085
+	db DEX_DODRIO ; 085
 
 	db  60, 110,  70, 100,  60,  65
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw DodorioPicFront, DodorioPicBack ; sprites
+	dw DodrioPicFront, DodrioPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

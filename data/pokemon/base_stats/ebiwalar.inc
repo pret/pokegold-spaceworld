@@ -1,4 +1,4 @@
-	db DEX_EBIWALAR ; 107
+	db DEX_HITMONCHAN ; 107
 
 	db  50, 105,  79,  76,  35,  85
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_MALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw EbiwalarPicFront, EbiwalarPicBack ; sprites
+	dw HitmonchanPicFront, HitmonchanPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

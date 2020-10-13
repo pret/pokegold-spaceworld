@@ -1,4 +1,4 @@
-	db DEX_TAMATAMA ; 102
+	db DEX_EXEGGCUTE ; 102
 
 	db  60,  40,  80,  40,  60,  55
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw TamatamaPicFront, TamatamaPicBack ; sprites
+	dw ExeggcutePicFront, ExeggcutePicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

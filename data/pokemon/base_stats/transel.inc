@@ -1,4 +1,4 @@
-	db DEX_TRANSEL ; 011
+	db DEX_METAPOD ; 011
 
 	db  50,  20,  55,  30,  25,  25
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw TranselPicFront, TranselPicBack ; sprites
+	dw MetapodPicFront, MetapodPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

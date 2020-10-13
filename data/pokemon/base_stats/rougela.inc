@@ -1,4 +1,4 @@
-	db DEX_ROUGELA ; 124
+	db DEX_JYNX ; 124
 
 	db  65,  50,  35,  95,  95,  80
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_FEMALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw RougelaPicFront, RougelaPicBack ; sprites
+	dw JynxPicFront, JynxPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

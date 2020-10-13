@@ -1,4 +1,4 @@
-	db DEX_PIGEOT ; 018
+	db DEX_PIDGEOT ; 018
 
 	db  83,  80,  75,  91,  70,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw PigeotPicFront, PigeotPicBack ; sprites
+	dw PidgeotPicFront, PidgeotPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

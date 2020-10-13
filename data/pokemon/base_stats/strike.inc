@@ -1,4 +1,4 @@
-	db DEX_STRIKE ; 123
+	db DEX_SCYTHER ; 123
 
 	db  70, 110,  80, 105,  55,  85
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw StrikePicFront, StrikePicBack ; sprites
+	dw ScytherPicFront, ScytherPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

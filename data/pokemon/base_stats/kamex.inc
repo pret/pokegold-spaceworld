@@ -1,4 +1,4 @@
-	db DEX_KAMEX ; 009
+	db DEX_BLASTOISE ; 009
 
 	db  79,  83, 100,  78,  85, 100
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw KamexPicFront, KamexPicBack ; sprites
+	dw BlastoisePicFront, BlastoisePicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

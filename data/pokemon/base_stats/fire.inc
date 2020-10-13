@@ -1,4 +1,4 @@
-	db DEX_FIRE ; 146
+	db DEX_MOLTRES ; 146
 
 	db  90, 100,  90,  90, 125,  85
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw FirePicFront, FirePicBack ; sprites
+	dw MoltresPicFront, MoltresPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

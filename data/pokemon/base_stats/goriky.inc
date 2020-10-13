@@ -1,4 +1,4 @@
-	db DEX_GORIKY ; 067
+	db DEX_MACHOKE ; 067
 
 	db  80, 100,  70,  45,  50,  60
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw GorikyPicFront, GorikyPicBack ; sprites
+	dw MachokePicFront, MachokePicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

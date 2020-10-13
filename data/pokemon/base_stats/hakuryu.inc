@@ -1,4 +1,4 @@
-	db DEX_HAKURYU ; 148
+	db DEX_DRAGONAIR ; 148
 
 	db  61,  84,  65,  70,  70,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw HakuryuPicFront, HakuryuPicBack ; sprites
+	dw DragonairPicFront, DragonairPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

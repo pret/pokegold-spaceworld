@@ -1,4 +1,4 @@
-	db DEX_KAMEIL ; 008
+	db DEX_WARTORTLE ; 008
 
 	db  59,  63,  80,  58,  65,  75
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw KameilPicFront, KameilPicBack ; sprites
+	dw WartortlePicFront, WartortlePicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

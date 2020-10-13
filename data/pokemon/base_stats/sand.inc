@@ -1,4 +1,4 @@
-	db DEX_SAND ; 027
+	db DEX_SANDSHREW ; 027
 
 	db  50,  75,  85,  40,  30,  40
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw SandPicFront, SandPicBack ; sprites
+	dw SandshrewPicFront, SandshrewPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

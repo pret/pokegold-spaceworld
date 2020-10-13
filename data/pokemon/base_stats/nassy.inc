@@ -1,4 +1,4 @@
-	db DEX_NASSY ; 103
+	db DEX_EXEGGUTOR ; 103
 
 	db  95,  95,  85,  55, 125,  75
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw NassyPicFront, NassyPicBack ; sprites
+	dw ExeggutorPicFront, ExeggutorPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

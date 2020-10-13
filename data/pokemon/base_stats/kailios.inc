@@ -1,4 +1,4 @@
-	db DEX_KAILIOS ; 127
+	db DEX_PINSIR ; 127
 
 	db  65, 125, 100,  85,  55,  75
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw KailiosPicFront, KailiosPicBack ; sprites
+	dw PinsirPicFront, PinsirPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

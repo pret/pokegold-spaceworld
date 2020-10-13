@@ -1,4 +1,4 @@
-	db DEX_TOSAKINTO ; 118
+	db DEX_GOLDEEN ; 118
 
 	db  45,  67,  60,  63,  50,  50
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw TosakintoPicFront, TosakintoPicBack ; sprites
+	dw GoldeenPicFront, GoldeenPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

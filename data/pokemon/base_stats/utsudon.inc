@@ -1,4 +1,4 @@
-	db DEX_UTSUDON ; 070
+	db DEX_WEEPINBELL ; 070
 
 	db  65,  90,  50,  55,  55,  85
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw UtsudonPicFront, UtsudonPicBack ; sprites
+	dw WeepinbellPicFront, WeepinbellPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

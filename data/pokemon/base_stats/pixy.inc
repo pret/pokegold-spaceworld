@@ -1,4 +1,4 @@
-	db DEX_PIXY ; 036
+	db DEX_CLEFABLE ; 036
 
 	db  95,  70,  73,  60,  85,  95
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw PixyPicFront, PixyPicBack ; sprites
+	dw ClefablePicFront, ClefablePicBack ; sprites
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_NYOROMO ; 060
+	db DEX_POLIWAG ; 060
 
 	db  40,  50,  40,  90,  40,  45
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw NyoromoPicFront, NyoromoPicBack ; sprites
+	dw PoliwagPicFront, PoliwagPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

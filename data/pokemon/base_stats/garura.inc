@@ -1,4 +1,4 @@
-	db DEX_GARURA ; 115
+	db DEX_KANGASKHAN ; 115
 
 	db 105,  95,  80,  90,  40,  80
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_FEMALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw GaruraPicFront, GaruraPicBack ; sprites
+	dw KangaskhanPicFront, KangaskhanPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

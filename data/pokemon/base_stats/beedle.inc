@@ -1,4 +1,4 @@
-	db DEX_BEEDLE ; 013
+	db DEX_WEEDLE ; 013
 
 	db  40,  35,  30,  50,  20,  20
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw BeedlePicFront, BeedlePicBack ; sprites
+	dw WeedlePicFront, WeedlePicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

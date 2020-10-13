@@ -1,4 +1,4 @@
-	db DEX_ROKON ; 037
+	db DEX_VULPIX ; 037
 
 	db  38,  41,  40,  65,  65,  45
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw RokonPicFront, RokonPicBack ; sprites
+	dw VulpixPicFront, VulpixPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

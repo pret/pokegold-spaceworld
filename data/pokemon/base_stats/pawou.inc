@@ -1,4 +1,4 @@
-	db DEX_PAWOU ; 086
+	db DEX_SEEL ; 086
 
 	db  65,  45,  55,  45,  55,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw PawouPicFront, PawouPicBack ; sprites
+	dw SeelPicFront, SeelPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

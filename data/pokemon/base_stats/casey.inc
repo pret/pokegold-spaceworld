@@ -1,4 +1,4 @@
-	db DEX_CASEY ; 063
+	db DEX_ABRA ; 063
 
 	db  25,  20,  15,  90, 105,  65
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw CaseyPicFront, CaseyPicBack ; sprites
+	dw AbraPicFront, AbraPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

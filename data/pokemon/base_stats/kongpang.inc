@@ -1,4 +1,4 @@
-	db DEX_KONGPANG ; 048
+	db DEX_VENONAT ; 048
 
 	db  60,  55,  50,  45,  40,  50
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw KongpangPicFront, KongpangPicBack ; sprites
+	dw VenonatPicFront, VenonatPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

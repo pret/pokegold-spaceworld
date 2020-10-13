@@ -1,4 +1,4 @@
-	db DEX_MENOKURAGE ; 072
+	db DEX_TENTACOOL ; 072
 
 	db  40,  40,  35,  70,  60, 100
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw MenokuragePicFront, MenokuragePicBack ; sprites
+	dw TentacoolPicFront, TentacoolPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

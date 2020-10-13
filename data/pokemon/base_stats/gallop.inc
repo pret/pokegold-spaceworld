@@ -1,4 +1,4 @@
-	db DEX_GALLOP ; 078
+	db DEX_RAPIDASH ; 078
 
 	db  65, 100,  70, 105,  80,  75
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw GallopPicFront, GallopPicBack ; sprites
+	dw RapidashPicFront, RapidashPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

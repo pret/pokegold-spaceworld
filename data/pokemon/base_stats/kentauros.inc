@@ -1,4 +1,4 @@
-	db DEX_KENTAUROS ; 128
+	db DEX_TAUROS ; 128
 
 	db  75, 100,  95, 110,  55,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw KentaurosPicFront, KentaurosPicBack ; sprites
+	dw TaurosPicFront, TaurosPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

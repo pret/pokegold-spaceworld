@@ -1,4 +1,4 @@
-	db DEX_POPPO ; 016
+	db DEX_PIDGEY ; 016
 
 	db  40,  45,  40,  56,  35,  35
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw PoppoPicFront, PoppoPicBack ; sprites
+	dw PidgeyPicFront, PidgeyPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

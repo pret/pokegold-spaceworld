@@ -1,4 +1,4 @@
-	db DEX_DOGARS ; 109
+	db DEX_KOFFING ; 109
 
 	db  40,  65,  95,  35,  60,  40
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw DogarsPicFront, DogarsPicBack ; sprites
+	dw KoffingPicFront, KoffingPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

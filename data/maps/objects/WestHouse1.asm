@@ -20,7 +20,7 @@ WestHouse1_MapEvents::
 	def_object_events
 	object_event  7,  3, SPRITE_GRAMPS, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event  1,  6, SPRITE_YOUNGSTER, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  1,  4, SPRITE_POPPO, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  4, SPRITE_PIDGEY, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestHouse1_Blocks::
 INCBIN "maps/WestHouse1.blk"

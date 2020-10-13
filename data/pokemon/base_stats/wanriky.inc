@@ -1,4 +1,4 @@
-	db DEX_WANRIKY ; 066
+	db DEX_MACHOP ; 066
 
 	db  70,  80,  50,  35,  35,  40
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw WanrikyPicFront, WanrikyPicBack ; sprites
+	dw MachopPicFront, MachopPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

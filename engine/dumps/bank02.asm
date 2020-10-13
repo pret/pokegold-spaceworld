@@ -745,10 +745,10 @@ Function8494:
 
 Function849b:
 	inc [hl]
-	ld hl, PippiSpriteGFX
+	ld hl, ClefairySpriteGFX
 	ld de, vChars0
 	ld b, $06
-	ld c, BANK(PippiSpriteGFX)
+	ld c, BANK(ClefairySpriteGFX)
 	jp Function8419
 
 Function84a9:
@@ -1180,13 +1180,13 @@ Function886a:
 	ret
 
 Function88b3:
-	ld de, PoppoSpriteGFX
+	ld de, PidgeySpriteGFX
 	ld hl, vChars0 + $80
-	lb bc, BANK(PoppoSpriteGFX), $04
+	lb bc, BANK(PidgeySpriteGFX), $04
 	call Request2bpp
-	ld de, PoppoSpriteGFX + $c0
+	ld de, PidgeySpriteGFX + $c0
 	ld hl, vChars0 + $c0
-	lb bc, BANK(PoppoSpriteGFX), $04
+	lb bc, BANK(PidgeySpriteGFX), $04
 	call Request2bpp
 	ld de, $0000
 	ld a, $41

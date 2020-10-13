@@ -1,4 +1,4 @@
-	db DEX_LUCKY ; 113
+	db DEX_CHANSEY ; 113
 
 	db 250,   5,   5,  50,  35, 105
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw LuckyPicFront, LuckyPicBack ; sprites
+	dw ChanseyPicFront, ChanseyPicBack ; sprites
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset

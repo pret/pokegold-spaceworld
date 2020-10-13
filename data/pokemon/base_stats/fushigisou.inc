@@ -1,4 +1,4 @@
-	db DEX_FUSHIGISOU ; 002
+	db DEX_IVYSAUR ; 002
 
 	db  60,  62,  63,  60,  80,  80
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw FushigisouPicFront, FushigisouPicBack ; sprites
+	dw IvysaurPicFront, IvysaurPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

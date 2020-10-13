@@ -1,4 +1,4 @@
-	db DEX_CRAB ; 098
+	db DEX_KRABBY ; 098
 
 	db  30, 105,  90,  50,  35,  25
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw CrabPicFront, CrabPicBack ; sprites
+	dw KrabbyPicFront, KrabbyPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

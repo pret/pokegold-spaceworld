@@ -1,4 +1,4 @@
-	db DEX_SLEEPE ; 096
+	db DEX_DROWZEE ; 096
 
 	db  60,  48,  45,  42,  45,  90
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw SleepePicFront, SleepePicBack ; sprites
+	dw DrowzeePicFront, DrowzeePicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

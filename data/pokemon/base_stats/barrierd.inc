@@ -1,4 +1,4 @@
-	db DEX_BARRIERD ; 122
+	db DEX_MRMIME ; 122
 
 	db  40,  45,  65,  90, 100, 120
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw BarrierdPicFront, BarrierdPicBack ; sprites
+	dw MrMimePicFront, MrMimePicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

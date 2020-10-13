@@ -1,4 +1,4 @@
-	db DEX_BETBETER ; 088
+	db DEX_GRIMER ; 088
 
 	db  80,  80,  50,  25,  55,  40
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw BetbeterPicFront, BetbeterPicBack ; sprites
+	dw GrimerPicFront, GrimerPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

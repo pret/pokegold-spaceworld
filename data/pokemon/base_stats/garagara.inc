@@ -1,4 +1,4 @@
-	db DEX_GARAGARA ; 105
+	db DEX_MAROWAK ; 105
 
 	db  60,  80, 110,  45,  50,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw GaragaraPicFront, GaragaraPicBack ; sprites
+	dw MarowakPicFront, MarowakPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

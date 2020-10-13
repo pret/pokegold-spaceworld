@@ -1,4 +1,4 @@
-	db DEX_THUNDER ; 145
+	db DEX_ZAPDOS ; 145
 
 	db  90,  90,  85, 100, 125,  90
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw ThunderPicFront, ThunderPicBack ; sprites
+	dw ZapdosPicFront, ZapdosPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

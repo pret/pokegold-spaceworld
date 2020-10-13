@@ -1,4 +1,4 @@
-	db DEX_JUGON ; 087
+	db DEX_DEWGONG ; 087
 
 	db  90,  70,  80,  70,  80,  95
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw JugonPicFront, JugonPicBack ; sprites
+	dw DewgongPicFront, DewgongPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

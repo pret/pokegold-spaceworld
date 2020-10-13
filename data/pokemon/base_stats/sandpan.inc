@@ -1,4 +1,4 @@
-	db DEX_SANDPAN ; 028
+	db DEX_SANDSLASH ; 028
 
 	db  75, 100, 110,  65,  55,  75
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw SandpanPicFront, SandpanPicBack ; sprites
+	dw SandslashPicFront, SandslashPicBack ; sprites
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

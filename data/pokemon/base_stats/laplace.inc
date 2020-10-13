@@ -1,4 +1,4 @@
-	db DEX_LAPLACE ; 131
+	db DEX_LAPRAS ; 131
 
 	db 130,  85,  80,  60,  95, 105
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw LaplacePicFront, LaplacePicBack ; sprites
+	dw LaprasPicFront, LaprasPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

@@ -1,4 +1,4 @@
-	db DEX_PARSHEN ; 091
+	db DEX_CLOYSTER ; 091
 
 	db  50,  95, 180,  70,  85,  70
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw ParshenPicFront, ParshenPicBack ; sprites
+	dw CloysterPicFront, CloysterPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

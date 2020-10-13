@@ -1,4 +1,4 @@
-	db DEX_DOKUKURAGE ; 073
+	db DEX_TENTACRUEL ; 073
 
 	db  80,  70,  65, 100,  80, 120
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw DokukuragePicFront, DokukuragePicBack ; sprites
+	dw TentacruelPicFront, TentacruelPicBack ; sprites
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

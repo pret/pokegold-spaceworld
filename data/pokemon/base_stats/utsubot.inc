@@ -1,4 +1,4 @@
-	db DEX_UTSUBOT ; 071
+	db DEX_VICTREEBEL ; 071
 
 	db  80, 105,  65,  70,  65, 100
 	;   hp  atk  def  spd  sat  sdf
@@ -10,7 +10,7 @@
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw UtsubotPicFront, UtsubotPicBack ; sprites
+	dw VictreebelPicFront, VictreebelPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
