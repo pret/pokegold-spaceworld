@@ -20,8 +20,8 @@
 	sound_fanfare
 	sound_slot_machine_start
 	cry_nidorina
-	cry_pigeot
-	cry_jugon
+	cry_pidgeot
+	cry_dewgong
 	text_end
 	
 .loc_0035:
