@@ -94,7 +94,7 @@ PokemonNames::
 	db "べトべトン" ; MUK
 	db "シェルダー" ; SHELLDER
 	db "パルシェン" ; CLOYSTER
-	db "ゴース@@" ; GHOS
+	db "ゴース@@" ; GASTLY
 	db "ゴースト@" ; HAUNTER
 	db "ゲンガー@" ; GENGAR
 	db "イワーク@" ; ONIX
