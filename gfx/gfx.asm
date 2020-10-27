@@ -618,8 +618,6 @@ ExpBarGFX:: INCBIN "gfx/battle/exp_bar.2bpp"
 .End::
 PokedexGFX:: INCBIN "gfx/pokedex/pokedex.2bpp"
 .End::
-PokedexLocationGFX:: INCBIN "gfx/pokedex/locations.2bpp"
-.End::
 TownMapGFX:: INCBIN "gfx/trainer_gear/town_map.2bpp"
 .End::
 HUD_GFX:: INCBIN "gfx/hud/hud.2bpp"
