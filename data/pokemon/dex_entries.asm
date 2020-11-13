@@ -9,107 +9,107 @@ INCLUDE "constants.asm"
 SECTION "data/pokemon/dex_entries.asm", ROMX
 
 PokedexEntryPointers1::
-	dw FushigidaneDexEntry
-	dw FushigisouDexEntry
-	dw FushigibanaDexEntry
-	dw HitokageDexEntry
-	dw LizardoDexEntry
-	dw LizardonDexEntry
-	dw ZenigameDexEntry
-	dw KameilDexEntry
-	dw KamexDexEntry
+	dw BulbasaurDexEntry
+	dw IvysaurDexEntry
+	dw VenusaurDexEntry
+	dw CharmanderDexEntry
+	dw CharmeleonDexEntry
+	dw CharizardDexEntry
+	dw SquirtleDexEntry
+	dw WartortleDexEntry
+	dw BlastoiseDexEntry
 	dw CaterpieDexEntry
-	dw TranselDexEntry
+	dw MetapodDexEntry
 	dw ButterfreeDexEntry
-	dw BeedleDexEntry
-	dw CocoonDexEntry
-	dw SpearDexEntry
-	dw PoppoDexEntry
-	dw PigeonDexEntry
-	dw PigeotDexEntry
-	dw KorattaDexEntry
-	dw RattaDexEntry
-	dw OnisuzumeDexEntry
-	dw OnidrillDexEntry
-	dw ArboDexEntry
+	dw WeedleDexEntry
+	dw KakunaDexEntry
+	dw BeedrillDexEntry
+	dw PidgeyDexEntry
+	dw PidgeottoDexEntry
+	dw PidgeotDexEntry
+	dw RattataDexEntry
+	dw RaticateDexEntry
+	dw SpearowDexEntry
+	dw FearowDexEntry
+	dw EkansDexEntry
 	dw ArbokDexEntry
 	dw PikachuDexEntry
 	dw RaichuDexEntry
-	dw SandDexEntry
-	dw SandpanDexEntry
+	dw SandshrewDexEntry
+	dw SandslashDexEntry
 	dw NidoranFDexEntry
 	dw NidorinaDexEntry
 	dw NidoqueenDexEntry
 	dw NidoranMDexEntry
 	dw NidorinoDexEntry
 	dw NidokingDexEntry
-	dw PippiDexEntry
-	dw PixyDexEntry
-	dw RokonDexEntry
-	dw KyukonDexEntry
-	dw PurinDexEntry
-	dw PukurinDexEntry
+	dw ClefairyDexEntry
+	dw ClefableDexEntry
+	dw VulpixDexEntry
+	dw NinetalesDexEntry
+	dw JigglypuffDexEntry
+	dw WigglytuffDexEntry
 	dw ZubatDexEntry
 	dw GolbatDexEntry
-	dw NazonokusaDexEntry
-	dw KusaihanaDexEntry
-	dw RuffresiaDexEntry
+	dw OddishDexEntry
+	dw GloomDexEntry
+	dw VileplumeDexEntry
 	dw ParasDexEntry
 	dw ParasectDexEntry
-	dw KongpangDexEntry
-	dw MorphonDexEntry
-	dw DigdaDexEntry
+	dw VenonatDexEntry
+	dw VenomothDexEntry
+	dw DiglettDexEntry
 	dw DugtrioDexEntry
-	dw NyarthDexEntry
+	dw MeowthDexEntry
 	dw PersianDexEntry
-	dw KoduckDexEntry
+	dw PsyduckDexEntry
 	dw GolduckDexEntry
 	dw MankeyDexEntry
-	dw OkorizaruDexEntry
-	dw GardieDexEntry
-	dw WindieDexEntry
-	dw NyoromoDexEntry
-	dw NyorozoDexEntry
-	dw NyorobonDexEntry
-	dw CaseyDexEntry
-	dw YungererDexEntry
-	dw FoodinDexEntry
-	dw WanrikyDexEntry
-	dw GorikyDexEntry
-	dw KairikyDexEntry
-	dw MadatsubomiDexEntry
-	dw UtsudonDexEntry
-	dw UtsubotDexEntry
-	dw MenokurageDexEntry
-	dw DokukurageDexEntry
-	dw IsitsubuteDexEntry
-	dw GoloneDexEntry
-	dw GolonyaDexEntry
+	dw PrimeapeDexEntry
+	dw GrowlitheDexEntry
+	dw ArcanineDexEntry
+	dw PoliwagDexEntry
+	dw PoliwhirlDexEntry
+	dw PoliwrathDexEntry
+	dw AbraDexEntry
+	dw KadabraDexEntry
+	dw AlakazamDexEntry
+	dw MachopDexEntry
+	dw MachokeDexEntry
+	dw MachampDexEntry
+	dw BellsproutDexEntry
+	dw WeepinbellDexEntry
+	dw VictreebelDexEntry
+	dw TentacoolDexEntry
+	dw TentacruelDexEntry
+	dw GeodudeDexEntry
+	dw GravelerDexEntry
+	dw GolemDexEntry
 	dw PonytaDexEntry
-	dw GallopDexEntry
-	dw YadonDexEntry
-	dw YadoranDexEntry
-	dw CoilDexEntry
-	dw RarecoilDexEntry
-	dw KamonegiDexEntry
-	dw DodoDexEntry
-	dw DodorioDexEntry
-	dw PawouDexEntry
-	dw JugonDexEntry
-	dw BetbeterDexEntry
-	dw BetbetonDexEntry
+	dw RapidashDexEntry
+	dw SlowpokeDexEntry
+	dw SlowbroDexEntry
+	dw MagnemiteDexEntry
+	dw MagnetonDexEntry
+	dw FarfetchdDexEntry
+	dw DoduoDexEntry
+	dw DodrioDexEntry
+	dw SeelDexEntry
+	dw DewgongDexEntry
+	dw GrimerDexEntry
+	dw MukDexEntry
 	dw ShellderDexEntry
-	dw ParshenDexEntry
-	dw GhosDexEntry
-	dw GhostDexEntry
-	dw GangarDexEntry
-	dw IwarkDexEntry
-	dw SleepeDexEntry
-	dw SleeperDexEntry
-	dw CrabDexEntry
+	dw CloysterDexEntry
+	dw GastlyDexEntry
+	dw HaunterDexEntry
+	dw GengarDexEntry
+	dw OnixDexEntry
+	dw DrowzeeDexEntry
+	dw HypnoDexEntry
+	dw KrabbyDexEntry
 	dw KinglerDexEntry
 
-FushigidaneDexEntry:
+BulbasaurDexEntry:
 	db "たね@"
 	db 7
 	dw 69
@@ -117,7 +117,7 @@ FushigidaneDexEntry:
 	next "なにかの　タネが　うえてあり"
 	next "からだと　いっしょに　そだつ。@"
 
-FushigisouDexEntry:
+IvysaurDexEntry:
 	db "たね@"
 	db 10
 	dw 130
@@ -125,7 +125,7 @@ FushigisouDexEntry:
 	next "ようぶんを　きゅうしゅう　すると"
 	next "だんだん　そだってくる。@"
 
-FushigibanaDexEntry:
+VenusaurDexEntry:
 	db "たね@"
 	db 20
 	dw 1000
@@ -133,7 +133,7 @@ FushigibanaDexEntry:
 	next "ひなたをみつけると　まるで"
 	next "ひきよせられるように　いどうする。@"
 
-HitokageDexEntry:
+CharmanderDexEntry:
 	db "とかげ@"
 	db 6
 	dw 85
@@ -141,7 +141,7 @@ HitokageDexEntry:
 	next "しっぽの　ほのおは　こうふんすると"
 	next "おんどが　あがっていく。@"
 
-LizardoDexEntry:
+CharmeleonDexEntry:
 	db "かえん@"
 	db 11
 	dw 190
@@ -149,7 +149,7 @@ LizardoDexEntry:
 	next "まわりの　おんどが　どんどん"
 	next "あがって　あいてを　くるしめる。@"
 
-LizardonDexEntry:
+CharizardDexEntry:
 	db "かえん@"
 	db 17
 	dw 905
@@ -157,7 +157,7 @@ LizardonDexEntry:
 	next "こうねつの　ほのおを　はいて"
 	next "やまかじを　おこすことも　ある。@"
 
-ZenigameDexEntry:
+SquirtleDexEntry:
 	db "かめのこ@"
 	db 5
 	dw 90
@@ -165,7 +165,7 @@ ZenigameDexEntry:
 	next "かたい　こうらが　できる。くちから"
 	next "きょうりょくな　あわを　だす。@"
 
-KameilDexEntry:
+WartortleDexEntry:
 	db "かめ@"
 	db 10
 	dw 225
@@ -173,7 +173,7 @@ KameilDexEntry:
 	next "えものを　ねらう。はやく　およぐとき"
 	next "みみを　うごかして　バランスをとる。@"
 
-KamexDexEntry:
+BlastoiseDexEntry:
 	db "こうら@"
 	db 16
 	dw 855
@@ -189,7 +189,7 @@ CaterpieDexEntry:
 	next "だっぴして　せいちょうすると"
 	next "いとを　かけて　サナギに　かわる。@"
 
-TranselDexEntry:
+MetapodDexEntry:
 	db "さなぎ@"
 	db 7
 	dw 99
@@ -205,7 +205,7 @@ ButterfreeDexEntry:
 	next "まもられている。あめの　ひでも"
 	next "そらを　とぶことが　できる。@"
 
-BeedleDexEntry:
+WeedleDexEntry:
 	db "けむし@"
 	db 3
 	dw 32
@@ -213,7 +213,7 @@ BeedleDexEntry:
 	next "あたまに　するどい　ハりをもち"
 	next "さされると　どくに　おかされる。@"
 
-CocoonDexEntry:
+KakunaDexEntry:
 	db "さなぎ@"
 	db 6
 	dw 100
@@ -221,7 +221,7 @@ CocoonDexEntry:
 	next "カラのなかで　へんしんちゅう。"
 	next "ほとんど　うごけない。@"
 
-SpearDexEntry:
+BeedrillDexEntry:
 	db "どくばち@"
 	db 10
 	dw 295
@@ -229,7 +229,7 @@ SpearDexEntry:
 	next "もうスピードで　とびまわり"
 	next "おしりの　どくばりで　さしまくる。@"
 
-PoppoDexEntry:
+PidgeyDexEntry:
 	db "ことり@"
 	db 3
 	dw 18
@@ -237,7 +237,7 @@ PoppoDexEntry:
 	next "ちじょうに　おりてきたとき"
 	next "はばたいて　すなを　かけたりする。@"
 
-PigeonDexEntry:
+PidgeottoDexEntry:
 	db "とり@"
 	db 11
 	dw 300
@@ -245,7 +245,7 @@ PigeonDexEntry:
 	next "エサの　タマタマを　つかんで"
 	next "１００キロさきの　す　まで　はこぶ。@"
 
-PigeotDexEntry:
+PidgeotDexEntry:
 	db "とり@"
 	db 15
 	dw 395
@@ -253,7 +253,7 @@ PigeotDexEntry:
 	next "あいてを　いかくする。"
 	next "マッハ２で　そらを　とびまわる。@"
 
-KorattaDexEntry:
+RattataDexEntry:
 	db "ねずみ@"
 	db 3
 	dw 35
@@ -261,7 +261,7 @@ KorattaDexEntry:
 	next "ちいさいうえに　うごきが　すばやく"
 	next "いろんな　ところに　しゅつぼつする。@"
 
-RattaDexEntry:
+RaticateDexEntry:
 	db "ねずみ@"
 	db 7
 	dw 185
@@ -269,7 +269,7 @@ RattaDexEntry:
 	next "ちいさな　みずかきが　ついている。"
 	next "かわを　およいで　わたる。@"
 
-OnisuzumeDexEntry:
+SpearowDexEntry:
 	db "ことり@"
 	db 3
 	dw 20
@@ -277,7 +277,7 @@ OnisuzumeDexEntry:
 	next "はねが　みじかいために　いつも"
 	next "いそがしく　はばたいている。@"
 
-OnidrillDexEntry:
+FearowDexEntry:
 	db "くちばし@"
 	db 12
 	dw 380
@@ -285,7 +285,7 @@ OnidrillDexEntry:
 	next "とびつづけることが　できる。"
 	next "１かいも　おりなくても　へいきだ。@"
 
-ArboDexEntry:
+EkansDexEntry:
 	db "へび@"
 	db 20
 	dw 69
@@ -317,7 +317,7 @@ RaichuDexEntry:
 	next "たっする。シッポに　さわると"
 	next "インドぞうでも　きぜつする。@"
 
-SandDexEntry:
+SandshrewDexEntry:
 	db "ねずみ@"
 	db 6
 	dw 120
@@ -325,7 +325,7 @@ SandDexEntry:
 	next "ふかい　あなを　ほって　かくれる。"
 	next "えものを　ねらうときは　でてくる。@"
 
-SandpanDexEntry:
+SandslashDexEntry:
 	db "ねずみ@"
 	db 10
 	dw 295
@@ -381,7 +381,7 @@ NidokingDexEntry:
 	next "ながく　のびた　ツノが　とくちょう。"
 	next "ツノに　どくがあるので　ちゅうい。@"
 
-PippiDexEntry:
+ClefairyDexEntry:
 	db "ようせい@"
 	db 6
 	dw 75
@@ -389,7 +389,7 @@ PippiDexEntry:
 	next "ファンがいる。ただし　せいそくちが"
 	next "かぎられ　みつけるのが　たいへん。@"
 
-PixyDexEntry:
+ClefableDexEntry:
 	db "ようせい@"
 	db 13
 	dw 400
@@ -397,7 +397,7 @@ PixyDexEntry:
 	next "ところで　おとした　はりのおとを"
 	next "みごとに　ききわけられる。@"
 
-RokonDexEntry:
+VulpixDexEntry:
 	db "きつね@"
 	db 6
 	dw 99
@@ -405,7 +405,7 @@ RokonDexEntry:
 	next "うつくしい。せいちょうすると"
 	next "さらに　しっぽが　ふえる。@"
 
-KyukonDexEntry:
+NinetalesDexEntry:
 	db "きつね@"
 	db 11
 	dw 199
@@ -413,7 +413,7 @@ KyukonDexEntry:
 	next "９ほんの　ながい　しっぽを　もつ。"
 	next "１０００ねん　いきると　いわれる。@"
 
-PurinDexEntry:
+JigglypuffDexEntry:
 	db "ふうせん@"
 	db 5
 	dw 55
@@ -421,7 +421,7 @@ PurinDexEntry:
 	next "ねむけを　もよおす　ふしぎで"
 	next "きもちのいい　うたを　うたう。@"
 
-PukurinDexEntry:
+WigglytuffDexEntry:
 	db "ふうせん@"
 	db 10
 	dw 120
@@ -445,7 +445,7 @@ GolbatDexEntry:
 	next "いちどに　３００シーシーの"
 	next "ちを　すいとってしまう。@"
 
-NazonokusaDexEntry:
+OddishDexEntry:
 	db "ざっそう@"
 	db 5
 	dw 54
@@ -453,7 +453,7 @@ NazonokusaDexEntry:
 	next "あまり　うごかない。よるに　なると"
 	next "たねをまきながら　あるきまわる。@"
 
-KusaihanaDexEntry:
+GloomDexEntry:
 	db "ざっそう@"
 	db 8
 	dw 86
@@ -461,7 +461,7 @@ KusaihanaDexEntry:
 	next "くさい　においは　２キロさきまで"
 	next "とどき　きを　うしなわせる。@"
 
-RuffresiaDexEntry:
+VileplumeDexEntry:
 	db "フラワー@"
 	db 12
 	dw 186
@@ -485,7 +485,7 @@ ParasectDexEntry:
 	next "まきちらす。しかし　ちゅうごくでは"
 	next "このほうしを　かんぽうやくに　する。@"
 
-KongpangDexEntry:
+VenonatDexEntry:
 	db "こんちゅう@"
 	db 10
 	dw 300
@@ -493,7 +493,7 @@ KongpangDexEntry:
 	next "ほかのむしなどを　たべてるらしい。"
 	next "よるは　あかりのそばに　やってくる。@"
 
-MorphonDexEntry:
+VenomothDexEntry:
 	db "どくが@"
 	db 15
 	dw 125
@@ -501,7 +501,7 @@ MorphonDexEntry:
 	next "ヒラヒラと　はばたくたびに"
 	next "もうどくの　こなを　ばらまく。@"
 
-DigdaDexEntry:
+DiglettDexEntry:
 	db "もぐら@"
 	db 2
 	dw 8
@@ -517,7 +517,7 @@ DugtrioDexEntry:
 	next "ゆだんしている　ところを"
 	next "べつの　ばしょから　こうげきする。@"
 
-NyarthDexEntry:
+MeowthDexEntry:
 	db "ばけねこ@"
 	db 4
 	dw 42
@@ -533,7 +533,7 @@ PersianDexEntry:
 	next "まっすぐ　たてたら　よう　ちゅうい。"
 	next "とびかかって　かみつく　まえぶれだ。@"
 
-KoduckDexEntry:
+PsyduckDexEntry:
 	db "あひる@"
 	db 8
 	dw 196
@@ -557,7 +557,7 @@ MankeyDexEntry:
 	next "せいかく。おこって　あばれだすと"
 	next "てが　つけられなくなる。@"
 
-OkorizaruDexEntry:
+PrimeapeDexEntry:
 	db "ぶたざる@"
 	db 10
 	dw 320
@@ -565,7 +565,7 @@ OkorizaruDexEntry:
 	next "にげても　にげても　どこまでも"
 	next "おいかけてくる　せいかくだ。@"
 
-GardieDexEntry:
+GrowlitheDexEntry:
 	db "こいぬ@"
 	db 7
 	dw 190
@@ -573,7 +573,7 @@ GardieDexEntry:
 	next "なわばりを　もっており　ゆだんして"
 	next "ちかずくと　こうげきされる。@"
 
-WindieDexEntry:
+ArcanineDexEntry:
 	db "でんせつ@"
 	db 19
 	dw 1550
@@ -581,7 +581,7 @@ WindieDexEntry:
 	next "とりこにした　うつくしい　ポケモン。"
 	next "とぶように　かろやかに　はしる。@"
 
-NyoromoDexEntry:
+PoliwagDexEntry:
 	db "おたま@"
 	db 6
 	dw 124
@@ -589,7 +589,7 @@ NyoromoDexEntry:
 	next "おなかの　なかが　すけて"
 	next "うずまきじょうに　みえる。@"
 
-NyorozoDexEntry:
+PoliwhirlDexEntry:
 	db "おたま@"
 	db 10
 	dw 200
@@ -597,7 +597,7 @@ NyorozoDexEntry:
 	next "ちじょうでは　いつも　あせをかき"
 	next "からだを　ぬめぬめ　させている。@"
 
-NyorobonDexEntry:
+PoliwrathDexEntry:
 	db "おたま@"
 	db 13
 	dw 540
@@ -605,7 +605,7 @@ NyorobonDexEntry:
 	next "オりンピックの　せんしゅでも　"
 	next "ぐんぐんと　おいぬいていく。@"
 
-CaseyDexEntry:
+AbraDexEntry:
 	db "ねんりき@"
 	db 9
 	dw 195
@@ -613,7 +613,7 @@ CaseyDexEntry:
 	next "ねむってる　あいだでも　さまざまな"
 	next "ちょうのうりょくを　つかう。@"
 
-YungererDexEntry:
+KadabraDexEntry:
 	db "ねんりき@"
 	db 13
 	dw 565
@@ -621,7 +621,7 @@ YungererDexEntry:
 	next "でていて　そばに　ちかよるだけで"
 	next "あたまが　いたくなってくる。@"
 
-FoodinDexEntry:
+AlakazamDexEntry:
 	db "ねんりき@"
 	db 15
 	dw 480
@@ -629,7 +629,7 @@ FoodinDexEntry:
 	next "けいさんする　ずのうを　もつ。"
 	next "ちのうしすうは　だいたい５０００。@"
 
-WanrikyDexEntry:
+MachopDexEntry:
 	db "かいりき@"
 	db 8
 	dw 195
@@ -637,7 +637,7 @@ WanrikyDexEntry:
 	next "こどものようで　ありながら"
 	next "おとな　１００にんを　なげとばす。@"
 
-GorikyDexEntry:
+MachokeDexEntry:
 	db "かいりき@"
 	db 15
 	dw 705
@@ -645,7 +645,7 @@ GorikyDexEntry:
 	next "にくたい。すごくおもい　にもつを"
 	next "はこぶ　しごとなどを　てつだう。@"
 
-KairikyDexEntry:
+MachampDexEntry:
 	db "かいりき@"
 	db 16
 	dw 1300
@@ -653,7 +653,7 @@ KairikyDexEntry:
 	next "２びょうかんに　１０００ぱつの"
 	next "パンチを　くりだすことができる。@"
 
-MadatsubomiDexEntry:
+BellsproutDexEntry:
 	db "フラワー@"
 	db 7
 	dw 40
@@ -661,7 +661,7 @@ MadatsubomiDexEntry:
 	next "でんせつの　マンドラゴラの　いっしゅ"
 	next "ではないかと　ささやかれている。@"
 
-UtsudonDexEntry:
+WeepinbellDexEntry:
 	db "ハエとり@"
 	db 10
 	dw 64
@@ -669,7 +669,7 @@ UtsudonDexEntry:
 	next "あいてを　きりさく。くちからは"
 	next "なんでも　とかす　えきたいを　はく。@"
 
-UtsubotDexEntry:
+VictreebelDexEntry:
 	db "ハエとり@"
 	db 17
 	dw 155
@@ -677,7 +677,7 @@ UtsubotDexEntry:
 	next "きょうぼうな　しょくぶつ　ポケモン。"
 	next "ようかいえきで　なんでも　とかす。@"
 
-MenokurageDexEntry:
+TentacoolDexEntry:
 	db "くらげ@"
 	db 9
 	dw 455
@@ -685,7 +685,7 @@ MenokurageDexEntry:
 	next "めだまから　ふしぎな　ひかりの"
 	next "ビームを　はっしゃする。@"
 
-DokukurageDexEntry:
+TentacruelDexEntry:
 	db "くらげ@"
 	db 16
 	dw 550
@@ -693,7 +693,7 @@ DokukurageDexEntry:
 	next "うごく。さされると　どくに　おかされ"
 	next "するどい　いたみが　はしる。@"
 
-IsitsubuteDexEntry:
+GeodudeDexEntry:
 	db "がんせき@"
 	db 4
 	dw 20
@@ -701,7 +701,7 @@ IsitsubuteDexEntry:
 	next "いしころに　にていて　きがつかずに"
 	next "ふんだり　つまずいたり　してしまう。@"
 
-GoloneDexEntry:
+GravelerDexEntry:
 	db "がんせき@"
 	db 10
 	dw 1050
@@ -709,7 +709,7 @@ GoloneDexEntry:
 	next "ころがりながら　いどうするとき"
 	next "じゃまものは　おしつぶしていく。@"
 
-GolonyaDexEntry:
+GolemDexEntry:
 	db "メガトン@"
 	db 14
 	dw 3000
@@ -725,7 +725,7 @@ PonytaDexEntry:
 	next "ものすごい。１かいの　ジャンプで"
 	next "とうきょうタワーも　とびこえる。@"
 
-GallopDexEntry:
+RapidashDexEntry:
 	db "ひのうま@"
 	db 17
 	dw 950
@@ -733,7 +733,7 @@ GallopDexEntry:
 	next "メラメラ　もえながら　しんかんせんと"
 	next "おなじ　スピードで　かけぬける。@"
 
-YadonDexEntry:
+SlowpokeDexEntry:
 	db "まぬけ@"
 	db 12
 	dw 360
@@ -741,7 +741,7 @@ YadonDexEntry:
 	next "たたかれても　５びょう　たってから"
 	next "いたさを　かんじるほどだ。@"
 
-YadoranDexEntry:
+SlowbroDexEntry:
 	db "やどかり@"
 	db 16
 	dw 785
@@ -749,7 +749,7 @@ YadoranDexEntry:
 	next "とりにいったとき　シェルダーに"
 	next "しっぽをかまれ　ヤドランになった。@"
 
-CoilDexEntry:
+MagnemiteDexEntry:
 	db "じしゃく@"
 	db 3
 	dw 60
@@ -757,7 +757,7 @@ CoilDexEntry:
 	next "さゆうの　ユニットから"
 	next "でんじはなどを　ほうしゃする。@"
 
-RarecoilDexEntry:
+MagnetonDexEntry:
 	db "じしゃく@"
 	db 10
 	dw 600
@@ -765,7 +765,7 @@ RarecoilDexEntry:
 	next "きょうりょくな　じりょくせんと"
 	next "こうでんあつを　ほうしゃする。@"
 
-KamonegiDexEntry:
+FarfetchdDexEntry:
 	db "かるがも@"
 	db 8
 	dw 150
@@ -773,7 +773,7 @@ KamonegiDexEntry:
 	next "しょくぶつの　クキを　１ぽん"
 	next "いつも　もって　あるいている。@"
 
-DodoDexEntry:
+DoduoDexEntry:
 	db "ふたごどり@"
 	db 14
 	dw 392
@@ -781,7 +781,7 @@ DodoDexEntry:
 	next "はやく　きょだいな　あしあとを"
 	next "のこして　だいちを　かけぬける。@"
 
-DodorioDexEntry:
+DodrioDexEntry:
 	db "みつごどり@"
 	db 18
 	dw 852
@@ -789,7 +789,7 @@ DodorioDexEntry:
 	next "さくせんを　あやつる。ねるときも"
 	next "どれか　１つは　おきているという。@"
 
-PawouDexEntry:
+SeelDexEntry:
 	db "あしか@"
 	db 11
 	dw 900
@@ -797,7 +797,7 @@ PawouDexEntry:
 	next "ひふは　ぶあつくて　じょうぶ。"
 	next "れいか４０ど　でも　かつどうできる。@"
 
-JugonDexEntry:
+DewgongDexEntry:
 	db "あしか@"
 	db 17
 	dw 1200
@@ -805,7 +805,7 @@ JugonDexEntry:
 	next "おおわれている。さむさに　つよく"
 	next "むしろ　さむいほど　げんきになる。@"
 
-BetbeterDexEntry:
+GrimerDexEntry:
 	db "へドロ@"
 	db 9
 	dw 300
@@ -813,7 +813,7 @@ BetbeterDexEntry:
 	next "へドロが　べトべターにへんかした。"
 	next "きたないモノが　だいこうぶつ。@"
 
-BetbetonDexEntry:
+MukDexEntry:
 	db "へドロ@"
 	db 12
 	dw 300
@@ -829,7 +829,7 @@ ShellderDexEntry:
 	next "おおわれている。しかし　なかは"
 	next "とても　やわらかい。@"
 
-ParshenDexEntry:
+CloysterDexEntry:
 	db "２まいがい@"
 	db 15
 	dw 1325
@@ -837,7 +837,7 @@ ParshenDexEntry:
 	next "ナパームだんでも　こわせない。"
 	next "こうげきするときだけ　ひらく。@"
 
-GhosDexEntry:
+GastlyDexEntry:
 	db "ガスじょう@"
 	db 13
 	dw 1
@@ -845,7 +845,7 @@ GhosDexEntry:
 	next "ガスに　つつまれると"
 	next "インドぞうも　２びょうで　たおれる。@"
 
-GhostDexEntry:
+HaunterDexEntry:
 	db "ガスじょう@"
 	db 16
 	dw 1
@@ -853,7 +853,7 @@ GhostDexEntry:
 	next "みられているような　きがしたら"
 	next "そこに　ゴーストが　いるのだ。@"
 
-GangarDexEntry:
+GengarDexEntry:
 	db "シャドー@"
 	db 15
 	dw 405
@@ -861,7 +861,7 @@ GangarDexEntry:
 	next "いのちをうばいに　くらやみから"
 	next "あらわれることが　あるという。@"
 
-IwarkDexEntry:
+OnixDexEntry:
 	db "いわへび@"
 	db 88
 	dw 2100
@@ -869,7 +869,7 @@ IwarkDexEntry:
 	next "がんせきせいぶんが　へんかして"
 	next "くろい　ダイヤモンドのようになる。@"
 
-SleepeDexEntry:
+DrowzeeDexEntry:
 	db "さいみん@"
 	db 10
 	dw 324
@@ -877,7 +877,7 @@ SleepeDexEntry:
 	next "いきもの　バクの　しそん。"
 	next "さいみんじゅつが　とくいだ。@"
 
-SleeperDexEntry:
+HypnoDexEntry:
 	db "さいみん@"
 	db 16
 	dw 756
@@ -885,7 +885,7 @@ SleeperDexEntry:
 	next "こどもに　さいみんじゅつを　かけて"
 	next "どこかへ　つれさるじけんが　あった。@"
 
-CrabDexEntry:
+KrabbyDexEntry:
 	db "さわがに@"
 	db 4
 	dw 65
@@ -902,56 +902,56 @@ KinglerDexEntry:
 	next "おおきすぎて　うまく　うごかない。@"
 
 PokedexEntryPointers2::
-	dw BiriridamaDexEntry
-	dw MarumineDexEntry
-	dw TamatamaDexEntry
-	dw NassyDexEntry
-	dw KarakaraDexEntry
-	dw GaragaraDexEntry
-	dw SawamularDexEntry
-	dw EbiwalarDexEntry
-	dw BeroringaDexEntry
-	dw DogarsDexEntry
-	dw MatadogasDexEntry
-	dw SihornDexEntry
-	dw SidonDexEntry
-	dw LuckyDexEntry
-	dw MonjaraDexEntry
-	dw GaruraDexEntry
-	dw TattuDexEntry
+	dw VoltorbDexEntry
+	dw ElectrodeDexEntry
+	dw ExeggcuteDexEntry
+	dw ExeggutorDexEntry
+	dw CuboneDexEntry
+	dw MarowakDexEntry
+	dw HitmonleeDexEntry
+	dw HitmonchanDexEntry
+	dw LickitungDexEntry
+	dw KoffingDexEntry
+	dw WeezingDexEntry
+	dw RhyhornDexEntry
+	dw RhydonDexEntry
+	dw ChanseyDexEntry
+	dw TangelaDexEntry
+	dw KangaskhanDexEntry
+	dw HorseaDexEntry
 	dw SeadraDexEntry
-	dw TosakintoDexEntry
-	dw AzumaoDexEntry
-	dw HitodemanDexEntry
+	dw GoldeenDexEntry
+	dw SeakingDexEntry
+	dw StaryuDexEntry
 	dw StarmieDexEntry
-	dw BarrierdDexEntry
-	dw StrikeDexEntry
-	dw RougelaDexEntry
-	dw ElebooDexEntry
-	dw BooberDexEntry
-	dw KailiosDexEntry
-	dw KentaurosDexEntry
-	dw KoikingDexEntry
+	dw MrMimeDexEntry
+	dw ScytherDexEntry
+	dw JynxDexEntry
+	dw ElectabuzzDexEntry
+	dw MagmarDexEntry
+	dw PinsirDexEntry
+	dw TaurosDexEntry
+	dw MagikarpDexEntry
 	dw GyaradosDexEntry
-	dw LaplaceDexEntry
-	dw MetamonDexEntry
-	dw EievuiDexEntry
-	dw ShowersDexEntry
-	dw ThundersDexEntry
-	dw BoosterDexEntry
+	dw LaprasDexEntry
+	dw DittoDexEntry
+	dw EeveeDexEntry
+	dw VaporeonDexEntry
+	dw JolteonDexEntry
+	dw FlareonDexEntry
 	dw PorygonDexEntry
-	dw OmniteDexEntry
-	dw OmstarDexEntry
+	dw OmanyteDexEntry
+	dw OmastarDexEntry
 	dw KabutoDexEntry
 	dw KabutopsDexEntry
-	dw PteraDexEntry
-	dw KabigonDexEntry
-	dw FreezerDexEntry
-	dw ThunderDexEntry
-	dw FireDexEntry
-	dw MiniryuDexEntry
-	dw HakuryuDexEntry
-	dw KairyuDexEntry
+	dw AerodactylDexEntry
+	dw SnorlaxDexEntry
+	dw ArticunoDexEntry
+	dw ZapdosDexEntry
+	dw MoltresDexEntry
+	dw DratiniDexEntry
+	dw DragonairDexEntry
+	dw DragoniteDexEntry
 	dw MewtwoDexEntry
 	dw MewDexEntry
 	dw HappaDexEntry
@@ -1055,7 +1055,7 @@ PokedexEntryPointers2::
 	dw TailDexEntry
 	dw LeafyDexEntry
 
-BiriridamaDexEntry:
+VoltorbDexEntry:
 	db "ボール@"
 	db 5
 	dw 104
@@ -1063,7 +1063,7 @@ BiriridamaDexEntry:
 	next "モンスターボールと　まちがえて"
 	next "さわって　しびれるひとが　おおい。@"
 
-MarumineDexEntry:
+ElectrodeDexEntry:
 	db "ボール@"
 	db 12
 	dw 666
@@ -1071,7 +1071,7 @@ MarumineDexEntry:
 	next "ためこんでおり　ちょっとした"
 	next "しげきで　だいばくはつを　おこす。@"
 
-TamatamaDexEntry:
+ExeggcuteDexEntry:
 	db "たまご@"
 	db 4
 	dw 25
@@ -1079,7 +1079,7 @@ TamatamaDexEntry:
 	next "しょくぶつの　タネのような"
 	next "いきものだと　いうことが　わかった。@"
 
-NassyDexEntry:
+ExeggutorDexEntry:
 	db "やしのみ@"
 	db 20
 	dw 1200
@@ -1087,7 +1087,7 @@ NassyDexEntry:
 	next "みの　ひとつひとつに"
 	next "それぞれ　いしを　もっている。@"
 
-KarakaraDexEntry:
+CuboneDexEntry:
 	db "こどく@"
 	db 4
 	dw 65
@@ -1095,7 +1095,7 @@ KarakaraDexEntry:
 	next "あたまに　かぶっている。さびしいとき"
 	next "おおごえで　なくという。@"
 
-GaragaraDexEntry:
+MarowakDexEntry:
 	db "ほねずき@"
 	db 10
 	dw 450
@@ -1103,7 +1103,7 @@ GaragaraDexEntry:
 	next "よわかった。ホネを　つかうようになり"
 	next "せいかくが　きょうぼうか　した。@"
 
-SawamularDexEntry:
+HitmonleeDexEntry:
 	db "キック@"
 	db 15
 	dw 498
@@ -1111,7 +1111,7 @@ SawamularDexEntry:
 	next "あいてが　とおく　はなれていても"
 	next "かんたんに　けりあげてしまう。@"
 
-EbiwalarDexEntry:
+HitmonchanDexEntry:
 	db "パンチ@"
 	db 14
 	dw 502
@@ -1119,7 +1119,7 @@ EbiwalarDexEntry:
 	next "のりうつった。パンチのスピードは"
 	next "しんかんせんよりも　はやい。@"
 
-BeroringaDexEntry:
+LickitungDexEntry:
 	db "なめまわし@"
 	db 12
 	dw 655
@@ -1127,7 +1127,7 @@ BeroringaDexEntry:
 	next "エサをとったり　こうげきをしたりと"
 	next "まるで　てのように　うごくのだ。@"
 
-DogarsDexEntry:
+KoffingDexEntry:
 	db "どくガス@"
 	db 6
 	dw 10
@@ -1135,7 +1135,7 @@ DogarsDexEntry:
 	next "もうどくの　ガスが　つまっている。"
 	next "ちかくに　くるだけで　くさい。@"
 
-MatadogasDexEntry:
+WeezingDexEntry:
 	db "どくガス@"
 	db 12
 	dw 95
@@ -1143,7 +1143,7 @@ MatadogasDexEntry:
 	next "ふたごの　ちいさい　ドガースが"
 	next "れんけつしたまま　でることがある。@"
 
-SihornDexEntry:
+RhyhornDexEntry:
 	db "とげとげ@"
 	db 10
 	dw 1150
@@ -1151,7 +1151,7 @@ SihornDexEntry:
 	next "こうそうビルでも　たいあたりで"
 	next "コナゴナに　ふんさいしてしまう。@"
 
-SidonDexEntry:
+RhydonDexEntry:
 	db "ドりル@"
 	db 19
 	dw 1200
@@ -1159,7 +1159,7 @@ SidonDexEntry:
 	next "まもっている。２０００どの"
 	next "マグマの　なかでも　いきられる。@"
 
-LuckyDexEntry:
+ChanseyDexEntry:
 	db "たまご@"
 	db 11
 	dw 346
@@ -1167,7 +1167,7 @@ LuckyDexEntry:
 	next "つかまえた　ひとには　しあわせを"
 	next "もたらすと　いわれている。@"
 
-MonjaraDexEntry:
+TangelaDexEntry:
 	db "ツルじょう@"
 	db 10
 	dw 350
@@ -1175,7 +1175,7 @@ MonjaraDexEntry:
 	next "からみあい　しょうたいは　みえない。"
 	next "ちかずくものに　からみついてくる。@"
 
-GaruraDexEntry:
+KangaskhanDexEntry:
 	db "おやこ@"
 	db 22
 	dw 800
@@ -1183,7 +1183,7 @@ GaruraDexEntry:
 	next "ふくろから　ほとんど　でてこない。"
 	next "やく３ねんで　おやばなれする。@"
 
-TattuDexEntry:
+HorseaDexEntry:
 	db "ドラゴン@"
 	db 4
 	dw 80
@@ -1199,7 +1199,7 @@ SeadraDexEntry:
 	next "まえを　むいたまま　うしろへ"
 	next "およぐことも　できる　ポケモン。@"
 
-TosakintoDexEntry:
+GoldeenDexEntry:
 	db "きんぎょ@"
 	db 6
 	dw 150
@@ -1207,7 +1207,7 @@ TosakintoDexEntry:
 	next "はったつしており　すいちゅうを"
 	next "５ノットの　はやさで　およぐ。@"
 
-AzumaoDexEntry:
+SeakingDexEntry:
 	db "きんぎょ@"
 	db 13
 	dw 390
@@ -1215,7 +1215,7 @@ AzumaoDexEntry:
 	next "いわはだを　ツノで　くりぬき"
 	next "じぶんの　すを　つくっている。@"
 
-HitodemanDexEntry:
+StaryuDexEntry:
 	db "ほしがた@"
 	db 8
 	dw 345
@@ -1231,7 +1231,7 @@ StarmieDexEntry:
 	next "うちゅうせいぶつ　ではないかと"
 	next "じもとでは　うたがわれている。@"
 
-BarrierdDexEntry:
+MrMimeDexEntry:
 	db "バりアー@"
 	db 13
 	dw 545
@@ -1239,7 +1239,7 @@ BarrierdDexEntry:
 	next "パントマイムで　つくったカべが"
 	next "ほんとうに　あらわれるという。@"
 
-StrikeDexEntry:
+ScytherDexEntry:
 	db "かまきり@"
 	db 15
 	dw 560
@@ -1247,7 +1247,7 @@ StrikeDexEntry:
 	next "いきのねを　とめる。ごくまれに"
 	next "ハネをつかって　とぶことがある。@"
 
-RougelaDexEntry:
+JynxDexEntry:
 	db "ひとがた@"
 	db 14
 	dw 406
@@ -1255,7 +1255,7 @@ RougelaDexEntry:
 	next "ゆだんをすると　おもわず　つられて"
 	next "おどってしまうという。@"
 
-ElebooDexEntry:
+ElectabuzzDexEntry:
 	db "でんげき@"
 	db 11
 	dw 300
@@ -1263,7 +1263,7 @@ ElebooDexEntry:
 	next "おおきな　はつでんしょ　などに　"
 	next "しばしば　あらわれる。@"
 
-BooberDexEntry:
+MagmarDexEntry:
 	db "ひふき@"
 	db 13
 	dw 445
@@ -1271,7 +1271,7 @@ BooberDexEntry:
 	next "みつかった。くちから　ほのおをはく。"
 	next "たいおんは　１２００ど　もある。@"
 
-KailiosDexEntry:
+PinsirDexEntry:
 	db "くわがた@"
 	db 15
 	dw 550
@@ -1279,7 +1279,7 @@ KailiosDexEntry:
 	next "はさまれたら　ちぎれるまで"
 	next "はなさないという。@"
 
-KentaurosDexEntry:
+TaurosDexEntry:
 	db "あばれうし@"
 	db 14
 	dw 884
@@ -1287,7 +1287,7 @@ KentaurosDexEntry:
 	next "しっぽで　からだを　たたきながら"
 	next "まっすぐ　つっこんでくる。@"
 
-KoikingDexEntry:
+MagikarpDexEntry:
 	db "さかな@"
 	db 9
 	dw 100
@@ -1303,7 +1303,7 @@ GyaradosDexEntry:
 	next "くちからだす　はかいこうせんは"
 	next "すべてのものを　やきつくす。@"
 
-LaplaceDexEntry:
+LaprasDexEntry:
 	db "のりもの@"
 	db 25
 	dw 2200
@@ -1311,7 +1311,7 @@ LaplaceDexEntry:
 	next "ぜつめつ　すんぜんに　なっている。"
 	next "ひとをのせて　すすむ。@"
 
-MetamonDexEntry:
+DittoDexEntry:
 	db "へんしん@"
 	db 3
 	dw 40
@@ -1319,7 +1319,7 @@ MetamonDexEntry:
 	next "コピーして　あいて　そっくりに"
 	next "へんしんする　のうりょくがある。@"
 
-EievuiDexEntry:
+EeveeDexEntry:
 	db "しんか@"
 	db 3
 	dw 65
@@ -1327,7 +1327,7 @@ EievuiDexEntry:
 	next "いしからでる　ほうしゃせんによって"
 	next "からだが　とつぜんへんいを　おこす。@"
 
-ShowersDexEntry:
+VaporeonDexEntry:
 	db "あわはき@"
 	db 10
 	dw 290
@@ -1335,7 +1335,7 @@ ShowersDexEntry:
 	next "さかなのような　ひれが　のこっていて"
 	next "にんぎょと　まちがう　ひともいる。@"
 
-ThundersDexEntry:
+JolteonDexEntry:
 	db "かみなり@"
 	db 8
 	dw 245
@@ -1343,7 +1343,7 @@ ThundersDexEntry:
 	next "すいこんで　やく１００００ボルトの"
 	next "でんきを　はきだすことができる。@"
 
-BoosterDexEntry:
+FlareonDexEntry:
 	db "ほのお@"
 	db 9
 	dw 250
@@ -1359,7 +1359,7 @@ PorygonDexEntry:
 	next "ついに　じんこうの　ポケモンを"
 	next "つくることに　せいこうした。@"
 
-OmniteDexEntry:
+OmanyteDexEntry:
 	db "うずまき@"
 	db 4
 	dw 75
@@ -1367,7 +1367,7 @@ OmniteDexEntry:
 	next "かせきが　はっけんされ　そこから"
 	next "いきかえらせることが　できる。@"
 
-OmstarDexEntry:
+OmastarDexEntry:
 	db "うずまき@"
 	db 10
 	dw 350
@@ -1391,7 +1391,7 @@ KabutopsDexEntry:
 	next "するどい　カマで　えものを　とらえ"
 	next "たいえきを　すいとってしまう。@"
 
-PteraDexEntry:
+AerodactylDexEntry:
 	db "かせき@"
 	db 18
 	dw 590
@@ -1399,7 +1399,7 @@ PteraDexEntry:
 	next "いでんしから　ふっかつさせた。"
 	next "たかいこえで　なきながら　とぶ。@"
 
-KabigonDexEntry:
+SnorlaxDexEntry:
 	db "いねむり@"
 	db 21
 	dw 4600
@@ -1407,7 +1407,7 @@ KabigonDexEntry:
 	next "たべないと　きが　すまない。"
 	next "たべおわると　ねむってしまう。@"
 
-FreezerDexEntry:
+ArticunoDexEntry:
 	db "れいとう@"
 	db 17
 	dw 554
@@ -1415,7 +1415,7 @@ FreezerDexEntry:
 	next "めのまえに　あらわれるといわれる"
 	next "でんせつの　れいとうポケモン。@"
 
-ThunderDexEntry:
+ZapdosDexEntry:
 	db "でんげき@"
 	db 16
 	dw 526
@@ -1423,7 +1423,7 @@ ThunderDexEntry:
 	next "いなづまを　おとしながら　あらわれる"
 	next "でんせつの　とりポケモンである。@"
 
-FireDexEntry:
+MoltresDexEntry:
 	db "かえん@"
 	db 20
 	dw 600
@@ -1431,7 +1431,7 @@ FireDexEntry:
 	next "しられる。　はばたくたびに　はねが"
 	next "あかるく　もえあがり　うつくしい。@"
 
-MiniryuDexEntry:
+DratiniDexEntry:
 	db "ドラゴン@"
 	db 18
 	dw 33
@@ -1439,7 +1439,7 @@ MiniryuDexEntry:
 	next "よばれた。わずかだが　すいちゅうに"
 	next "すんでいることが　わかった。@"
 
-HakuryuDexEntry:
+DragonairDexEntry:
 	db "ドラゴン@"
 	db 40
 	dw 165
@@ -1447,7 +1447,7 @@ HakuryuDexEntry:
 	next "とぶとき　からだを　しなやかに"
 	next "くねらせて　とても　うつくしい。@"
 
-KairyuDexEntry:
+DragoniteDexEntry:
 	db "ドラゴン@"
 	db 22
 	dw 2100

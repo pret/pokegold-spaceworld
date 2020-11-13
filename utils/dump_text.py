@@ -158,8 +158,8 @@ control_codes = {
     0x12: lambda data: dump_control(data, 'sound_fanfare'           , ''    ),
     0x13: lambda data: dump_control(data, 'sound_slot_machine_start', ''    ),
     0x14: lambda data: dump_control(data, 'cry_nidorina'            , ''    ),
-    0x15: lambda data: dump_control(data, 'cry_pigeot'              , ''    ),
-    0x16: lambda data: dump_control(data, 'cry_jugon'               , ''    ),
+    0x15: lambda data: dump_control(data, 'cry_pidgeot'              , ''    ),
+    0x16: lambda data: dump_control(data, 'cry_dewgong'               , ''    ),
     0x50: lambda data: (True, 'text_end\n'),
 }
 

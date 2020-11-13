@@ -30,7 +30,7 @@ South_MapEvents::
 
 	def_object_events
 	object_event 25, 21, SPRITE_TWIN, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 24, 21, SPRITE_PIPPI, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 24, 21, SPRITE_CLEFAIRY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 22, 16, SPRITE_ROCKER, SLOW_STEP_DOWN, 3, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 30, 11, SPRITE_FISHING_GURU, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 

@@ -15,7 +15,7 @@ $(BUILD)/gfx/trainer_gear/town_map.2bpp: tools/gfx += --trim-trailing
 $(BUILD)/gfx/minigames/slots.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/minigames/poker.2bpp: tools/gfx += --trim-whitespace
 
-$(BUILD)/gfx/intro/purin_pikachu.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/intro/jigglypuff_pikachu.2bpp: tools/gfx += --trim-whitespace
 
 $(BUILD)/gfx/battle_anims/attack_animations_1.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/battle_anims/attack_animations_2.2bpp: tools/gfx += --trim-whitespace

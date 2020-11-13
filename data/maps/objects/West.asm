@@ -37,7 +37,7 @@ West_MapEvents::
 	object_event 12,  7, SPRITE_ROCKER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 26, 10, SPRITE_ROCKER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 30, 14, SPRITE_LASS, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 29, 14, SPRITE_PIPPI, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 29, 14, SPRITE_CLEFAIRY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 22, 19, SPRITE_COOLTRAINER_F, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 18, 13, SPRITE_36, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 

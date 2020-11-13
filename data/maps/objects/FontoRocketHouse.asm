@@ -17,7 +17,7 @@ FontoRocketHouse_MapEvents::
 	object_event  5,  4, SPRITE_36, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 10,  2, SPRITE_ROCKET_F, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 14,  2, SPRITE_36, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 12,  2, SPRITE_POPPO, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 12,  2, SPRITE_PIDGEY, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 FontoRocketHouse_Blocks::
 INCBIN "maps/FontoRocketHouse.blk"

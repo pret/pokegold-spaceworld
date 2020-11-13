@@ -119,12 +119,12 @@ cry_nidorina: macro
 endm
 
 	const TX_CRY_15 ; $15
-cry_pigeot: macro
+cry_pidgeot: macro
 	db TX_CRY_15
 endm
 
 	const TX_CRY_16 ; $16
-cry_jugon: macro
+cry_dewgong: macro
 	db TX_CRY_16
 endm
 

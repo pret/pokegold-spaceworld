@@ -664,8 +664,8 @@ Text_PlaySound::
 	dbw TX_SOUND_11, $0069
 	dbw TX_SOUND_13, $0027
 	dbw TX_CRY_14,   MON_NIDORINA
-	dbw TX_CRY_15,   MON_PIGEOT
-	dbw TX_CRY_16,   MON_JUGON
+	dbw TX_CRY_15,   MON_PIDGEOT
+	dbw TX_CRY_16,   MON_DEWGONG
 
 Text_TX_DOTS:
 	pop hl
