@@ -372,38 +372,38 @@ INCBIN "gfx/battle_anims/pointer.2bpp"
 INCBIN "gfx/battle_anims/attack_animations_2.2bpp"
 
 SECTION "gfx.asm@Pokemon Party Sprites", ROMX
-NyoromoIcon:: INCBIN "gfx/icons/nyoromo.2bpp"
-PurinIcon:: INCBIN "gfx/icons/purin.2bpp"
-DigdaIcon:: INCBIN "gfx/icons/digda.2bpp"
+PoliwagIcon:: INCBIN "gfx/icons/poliwag.2bpp"
+JigglypuffIcon:: INCBIN "gfx/icons/jigglypuff.2bpp"
+DiglettIcon:: INCBIN "gfx/icons/diglett.2bpp"
 PikachuIcon:: INCBIN "gfx/icons/pikachu.2bpp"
-HitodemanIcon:: INCBIN "gfx/icons/hitodeman.2bpp"
-KoikingIcon:: INCBIN "gfx/icons/koiking.2bpp"
-PoppoIcon:: INCBIN "gfx/icons/poppo.2bpp"
-SidonIcon:: INCBIN "gfx/icons/sidon.2bpp"
-PippiIcon:: INCBIN "gfx/icons/pippi.2bpp"
-NazonokusaIcon:: INCBIN "gfx/icons/nazonokusa.2bpp"
+StaryuIcon:: INCBIN "gfx/icons/staryu.2bpp"
+MagikarpIcon:: INCBIN "gfx/icons/magikarp.2bpp"
+PidgeyIcon:: INCBIN "gfx/icons/pidgey.2bpp"
+RhydonIcon:: INCBIN "gfx/icons/rhydon.2bpp"
+ClefairyIcon:: INCBIN "gfx/icons/clefairy.2bpp"
+OddishIcon:: INCBIN "gfx/icons/oddish.2bpp"
 MushiIcon:: INCBIN "gfx/icons/mushi.2bpp"
-GangarIcon:: INCBIN "gfx/icons/gangar.2bpp"
-LaplaceIcon:: INCBIN "gfx/icons/laplace.2bpp"
-BarrierdIcon:: INCBIN "gfx/icons/barrierd.2bpp"
+GengarIcon:: INCBIN "gfx/icons/gengar.2bpp"
+LaprasIcon:: INCBIN "gfx/icons/lapras.2bpp"
+MrMimeIcon:: INCBIN "gfx/icons/mrmime.2bpp"
 LokonIcon:: INCBIN "gfx/icons/lokon.2bpp"
-KentaurosIcon:: INCBIN "gfx/icons/kentauros.2bpp"
+TaurosIcon:: INCBIN "gfx/icons/tauros.2bpp"
 ShellderIcon:: INCBIN "gfx/icons/shellder.2bpp"
-MetamonIcon:: INCBIN "gfx/icons/metamon.2bpp"
-IwarkIcon:: INCBIN "gfx/icons/iwark.2bpp"
-BiriridamaIcon:: INCBIN "gfx/icons/biriridama.2bpp"
-ZenigameIcon:: INCBIN "gfx/icons/zenigame.2bpp"
-FushigidaneIcon:: INCBIN "gfx/icons/fushigidane.2bpp"
-HitokageIcon:: INCBIN "gfx/icons/hitokage.2bpp"
-BeedleIcon:: INCBIN "gfx/icons/beedle.2bpp"
+DittoIcon:: INCBIN "gfx/icons/ditto.2bpp"
+OnixIcon:: INCBIN "gfx/icons/onix.2bpp"
+VoltorbIcon:: INCBIN "gfx/icons/voltorb.2bpp"
+SquirtleIcon:: INCBIN "gfx/icons/squirtle.2bpp"
+BulbasaurIcon:: INCBIN "gfx/icons/bulbasaur.2bpp"
+CharmanderIcon:: INCBIN "gfx/icons/charmander.2bpp"
+WeedleIcon:: INCBIN "gfx/icons/weedle.2bpp"
 AnnonIcon:: INCBIN "gfx/icons/annon.2bpp"
-IsitsubuteIcon:: INCBIN "gfx/icons/isitsubute.2bpp"
-WanrikyIcon:: INCBIN "gfx/icons/wanriky.2bpp"
+GeodudeIcon:: INCBIN "gfx/icons/geodude.2bpp"
+MachopIcon:: INCBIN "gfx/icons/machop.2bpp"
 EggIcon:: INCBIN "gfx/icons/egg.2bpp"
-MenokurageIcon:: INCBIN "gfx/icons/menokurage.2bpp"
+TentacoolIcon:: INCBIN "gfx/icons/tentacool.2bpp"
 ButterfreeIcon:: INCBIN "gfx/icons/butterfree.2bpp"
 ZubatIcon:: INCBIN "gfx/icons/zubat.2bpp"
-KabigonIcon:: INCBIN "gfx/icons/kabigon.2bpp"
+SnorlaxIcon:: INCBIN "gfx/icons/snorlax.2bpp"
 
 SECTION "gfx.asm@Slot Machine GFX", ROMX
 SlotMachineGFX::
@@ -472,14 +472,14 @@ GymGuySpriteGFX:: INCBIN "gfx/sprites/gym_guy.2bpp"
 SailorSpriteGFX:: INCBIN "gfx/sprites/sailor.2bpp"
 HelmetSpriteGFX:: INCBIN "gfx/sprites/helmet.2bpp"
 BurglarSpriteGFX:: INCBIN "gfx/sprites/burglar.2bpp"
-SidonSpriteGFX:: INCBIN "gfx/sprites/sidon.2bpp"
-PippiSpriteGFX:: INCBIN "gfx/sprites/pippi.2bpp"
-PoppoSpriteGFX:: INCBIN "gfx/sprites/poppo.2bpp"
-LizardonSpriteGFX:: INCBIN "gfx/sprites/lizardon.2bpp"
-KabigonSpriteGFX:: INCBIN "gfx/sprites/kabigon.2bpp"
-PawouSpriteGFX:: INCBIN "gfx/sprites/pawou.2bpp"
-NyorobonSpriteGFX:: INCBIN "gfx/sprites/nyorobon.2bpp"
-LaplaceSpriteGFX:: INCBIN "gfx/sprites/laplace.2bpp"
+RhydonSpriteGFX:: INCBIN "gfx/sprites/rhydon.2bpp"
+ClefairySpriteGFX:: INCBIN "gfx/sprites/clefairy.2bpp"
+PidgeySpriteGFX:: INCBIN "gfx/sprites/pidgey.2bpp"
+CharizardSpriteGFX:: INCBIN "gfx/sprites/charizard.2bpp"
+SnorlaxSpriteGFX:: INCBIN "gfx/sprites/snorlax.2bpp"
+SeelSpriteGFX:: INCBIN "gfx/sprites/seel.2bpp"
+PoliwrathSpriteGFX:: INCBIN "gfx/sprites/poliwrath.2bpp"
+LaprasSpriteGFX:: INCBIN "gfx/sprites/lapras.2bpp"
 PokeBallSpriteGFX:: INCBIN "gfx/sprites/poke_ball.2bpp"
 PokedexSpriteGFX:: INCBIN "gfx/sprites/pokedex.2bpp"
 PaperSpriteGFX:: INCBIN "gfx/sprites/paper.2bpp"
@@ -554,20 +554,20 @@ IntroForestGFX::
 INCBIN "gfx/intro/forest.2bpp"
 
 SECTION "gfx.asm@Intro Mon", ROMX
-IntroPurinPikachuGFX::
-INCBIN "gfx/intro/purin_pikachu.2bpp"
-IntroLizardon1GFX::
-INCBIN "gfx/intro/lizardon_1.2bpp"
-IntroLizardon2GFX::
-INCBIN "gfx/intro/lizardon_2.2bpp"
-IntroLizardon3GFX::
-INCBIN "gfx/intro/lizardon_3.2bpp"
-IntroLizardonFlamesGFX::
-INCBIN "gfx/intro/lizardon_flames.2bpp"
-IntroKamexGFX::
-INCBIN "gfx/intro/kamex.2bpp"
-IntroFushigibanaGFX::
-INCBIN "gfx/intro/fushigibana.2bpp"
+IntroJigglypuffPikachuGFX::
+INCBIN "gfx/intro/jigglypuff_pikachu.2bpp"
+IntroCharizard1GFX::
+INCBIN "gfx/intro/charizard_1.2bpp"
+IntroCharizard2GFX::
+INCBIN "gfx/intro/charizard_2.2bpp"
+IntroCharizard3GFX::
+INCBIN "gfx/intro/charizard_3.2bpp"
+IntroCharizardFlamesGFX::
+INCBIN "gfx/intro/charizard_flames.2bpp"
+IntroBlastoiseGFX::
+INCBIN "gfx/intro/blastoise.2bpp"
+IntroVenusaurGFX::
+INCBIN "gfx/intro/venusaur.2bpp"
 
 SECTION "gfx.asm@Misc GFX", ROMX
 FontExtraGFX::
@@ -617,8 +617,6 @@ HpExpBarParts3GFX:: INCBIN "gfx/battle/hp_exp_bar_parts3.1bpp"
 ExpBarGFX:: INCBIN "gfx/battle/exp_bar.2bpp"
 .End::
 PokedexGFX:: INCBIN "gfx/pokedex/pokedex.2bpp"
-.End::
-PokedexLocationGFX:: INCBIN "gfx/pokedex/locations.2bpp"
 .End::
 TownMapGFX:: INCBIN "gfx/trainer_gear/town_map.2bpp"
 .End::

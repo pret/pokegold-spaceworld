@@ -745,10 +745,10 @@ Function8494:
 
 Function849b:
 	inc [hl]
-	ld hl, PippiSpriteGFX
+	ld hl, ClefairySpriteGFX
 	ld de, vChars0
 	ld b, $06
-	ld c, BANK(PippiSpriteGFX)
+	ld c, BANK(ClefairySpriteGFX)
 	jp Function8419
 
 Function84a9:
@@ -1104,10 +1104,10 @@ Function881e:
 	call ClearTileMap
 	call UpdateSprites
 	call DisableLCD
-	ld hl, PokedexLocationGFX
+	ld hl, TownMapGFX
 	ld de, vTilesetEnd
-	ld bc, $0200
-	ld a, BANK(PokedexLocationGFX)
+	ld bc, TownMapGFX.End - TownMapGFX
+	ld a, BANK(TownMapGFX)
 	call FarCopyData
 	ld hl, wTileMap
 	call DecompTownMapTilemap
@@ -1180,13 +1180,13 @@ Function886a:
 	ret
 
 Function88b3:
-	ld de, PoppoSpriteGFX
+	ld de, PidgeySpriteGFX
 	ld hl, vChars0 + $80
-	lb bc, BANK(PoppoSpriteGFX), $04
+	lb bc, BANK(PidgeySpriteGFX), $04
 	call Request2bpp
-	ld de, PoppoSpriteGFX + $c0
+	ld de, PidgeySpriteGFX + $c0
 	ld hl, vChars0 + $c0
-	lb bc, BANK(PoppoSpriteGFX), $04
+	lb bc, BANK(PidgeySpriteGFX), $04
 	call Request2bpp
 	ld de, $0000
 	ld a, $41
@@ -1197,161 +1197,7 @@ Function88b3:
 	ret
 
 TownMapTilemap:
-	db $04, $05
-	db $19, $01
-	db $1a, $08
-	db $1b, $01
-	db $04, $02
-	db $09, $01
-	db $06, $02
-	db $04, $05
-	db $1c, $01
-	db $05, $01
-	db $11, $01
-	db $12, $01
-	db $13, $01
-	db $14, $01
-	db $15, $01
-	db $16, $01
-	db $17, $01
-	db $1c, $01
-	db $04, $02
-	db $0a, $01
-	db $05, $01
-	db $06, $01
-	db $04, $05
-	db $1d, $01
-	db $1a, $08
-	db $1e, $01
-	db $04, $03
-	db $0f, $01
-	db $10, $01
-	db $04, $01
-	db $0d, $01
-	db $0e, $02
-	db $0d, $01
-	db $04, $09
-	db $02, $01
-	db $04, $02
-	db $01, $01
-	db $07, $01
-	db $08, $01
-	db $02, $01
-	db $0f, $01
-	db $02, $01
-	db $04, $01
-	db $0f, $01
-	db $09, $01
-	db $06, $01
-	db $08, $01
-	db $04, $05
-	db $01, $01
-	db $05, $01
-	db $03, $01
-	db $07, $02
-	db $05, $01
-	db $06, $01
-	db $06, $01
-	db $05, $01
-	db $07, $01
-	db $0e, $01
-	db $05, $01
-	db $07, $03
-	db $08, $01
-	db $04, $03
-	db $02, $01
-	db $04, $01
-	db $0f, $01
-	db $04, $01
-	db $0c, $01
-	db $06, $01
-	db $07, $01
-	db $0b, $01
-	db $06, $01
-	db $07, $01
-	db $0b, $01
-	db $04, $01
-	db $0f, $01
-	db $10, $01
-	db $06, $01
-	db $05, $01
-	db $07, $02
-	db $0c, $01
-	db $07, $02
-	db $03, $01
-	db $0f, $01
-	db $09, $01
-	db $07, $01
-	db $06, $01
-	db $07, $01
-	db $03, $01
-	db $06, $01
-	db $0f, $01
-	db $09, $01
-	db $06, $01
-	db $07, $01
-	db $03, $01
-	db $0a, $01
-	db $06, $05
-	db $07, $02
-	db $05, $01
-	db $07, $02
-	db $06, $01
-	db $05, $01
-	db $04, $01
-	db $0b, $01
-	db $0d, $01
-	db $0c, $01
-	db $07, $01
-	db $05, $01
-	db $0e, $01
-	db $07, $02
-	db $06, $0a
-	db $07, $01
-	db $03, $01
-	db $04, $02
-	db $0a, $01
-	db $06, $01
-	db $0b, $01
-	db $04, $01
-	db $06, $01
-	db $05, $01
-	db $07, $02
-	db $05, $01
-	db $06, $01
-	db $05, $01
-	db $06, $05
-	db $0c, $01
-	db $08, $01
-	db $04, $06
-	db $0a, $01
-	db $06, $02
-	db $0b, $01
-	db $07, $01
-	db $06, $01
-	db $0c, $01
-	db $06, $02
-	db $18, $01
-	db $06, $02
-	db $07, $01
-	db $06, $01
-	db $04, $0a
-	db $0c, $01
-	db $07, $01
-	db $05, $01
-	db $07, $02
-	db $05, $01
-	db $07, $03
-	db $0b, $01
-	db $04, $0d
-	db $10, $01
-	db $04, $01
-	db $0a, $01
-	db $0b, $01
-	db $04, $01
-	db $10, $01
-	db $04, $01
-	db $00
+INCBIN "gfx/trainer_gear/town_map.tilemap.rle"
 
 SECTION "engine/dumps/bank02.asm@Data8a17", ROMX
 
@@ -1642,9 +1488,9 @@ DrawMap:
 	call WaitForAutoBgMapTransfer
 	ld b, $14
 	call GetSGBLayout
-	ld de, PokedexLocationGFX
+	ld de, TownMapGFX
 	ld hl, vTilesetEnd
-	lb bc, BANK(PokedexLocationGFX), $1f
+	lb bc, BANK(TownMapGFX), ((TownMapGFX.End - TownMapGFX) / LEN_2BPP_TILE - 1)
 	call Request2bpp
 	coord hl, 0, 3
 	call DecompTownMapTilemap

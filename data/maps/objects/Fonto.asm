@@ -26,7 +26,7 @@ Fonto_MapEvents::
 
 	def_object_events
 	object_event  2,  4, SPRITE_36, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  2,  5, SPRITE_SIDON, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  5, SPRITE_RHYDON, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event  5, 14, SPRITE_YOUNGSTER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 16,  8, SPRITE_TWIN, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 

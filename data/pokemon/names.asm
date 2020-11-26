@@ -3,155 +3,155 @@ INCLUDE "constants.asm"
 SECTION "data/pokemon/names.asm", ROMX
 
 PokemonNames::
-	db "フシギダネ" ; FUSHIGIDANE
-	db "フシギソウ" ; FUSHIGISOU
-	db "フシギバナ" ; FUSHIGIBANA
-	db "ヒトカゲ@" ; HITOKAGE
-	db "りザード@" ; LIZARDO
-	db "りザードン" ; LIZARDON
-	db "ゼニガメ@" ; ZENIGAME
-	db "カメール@" ; KAMEIL
-	db "カメックス" ; KAMEX
+	db "フシギダネ" ; BULBASAUR
+	db "フシギソウ" ; IVYSAUR
+	db "フシギバナ" ; VENUSAUR
+	db "ヒトカゲ@" ; CHARMANDER
+	db "りザード@" ; CHARMELEON
+	db "りザードン" ; CHARIZARD
+	db "ゼニガメ@" ; SQUIRTLE
+	db "カメール@" ; WARTORTLE
+	db "カメックス" ; BLASTOISE
 	db "キャタピー" ; CATERPIE
-	db "トランセル" ; TRANSEL
+	db "トランセル" ; METAPOD
 	db "バタフりー" ; BUTTERFREE
-	db "ビードル@" ; BEEDLE
-	db "コクーン@" ; COCOON
-	db "スピアー@" ; SPEAR
-	db "ポッポ@@" ; POPPO
-	db "ピジョン@" ; PIGEON
-	db "ピジョット" ; PIGEOT
-	db "コラッタ@" ; KORATTA
-	db "ラッタ@@" ; RATTA
-	db "オニスズメ" ; ONISUZUME
-	db "オニドりル" ; ONIDRILL
-	db "アーボ@@" ; ARBO
+	db "ビードル@" ; WEEDLE
+	db "コクーン@" ; KAKUNA
+	db "スピアー@" ; BEEDRILL
+	db "ポッポ@@" ; PIDGEY
+	db "ピジョン@" ; PIDGEOTTO
+	db "ピジョット" ; PIDGEOT
+	db "コラッタ@" ; RATTATA
+	db "ラッタ@@" ; RATICATE
+	db "オニスズメ" ; SPEAROW
+	db "オニドりル" ; FEAROW
+	db "アーボ@@" ; EKANS
 	db "アーボック" ; ARBOK
 	db "ピカチュウ" ; PIKACHU
 	db "ライチュウ" ; RAICHU
-	db "サンド@@" ; SAND
-	db "サンドパン" ; SANDPAN
+	db "サンド@@" ; SANDSHREW
+	db "サンドパン" ; SANDSLASH
 	db "ニドラン♀" ; NIDORAN_F
 	db "ニドりーナ" ; NIDORINA
 	db "ニドクイン" ; NIDOQUEEN
 	db "ニドラン♂" ; NIDORAN_M
 	db "ニドりーノ" ; NIDORINO
 	db "ニドキング" ; NIDOKING
-	db "ピッピ@@" ; PIPPI
-	db "ピクシー@" ; PIXY
-	db "ロコン@@" ; ROKON
-	db "キュウコン" ; KYUKON
-	db "プりン@@" ; PURIN
-	db "プクりン@" ; PUKURIN
+	db "ピッピ@@" ; CLEFAIRY
+	db "ピクシー@" ; CLEFABLE
+	db "ロコン@@" ; VULPIX
+	db "キュウコン" ; NINETALES
+	db "プりン@@" ; JIGGLYPUFF
+	db "プクりン@" ; WIGGLYTUFF
 	db "ズバット@" ; ZUBAT
 	db "ゴルバット" ; GOLBAT
-	db "ナゾノクサ" ; NAZONOKUSA
-	db "クサイハナ" ; KUSAIHANA
-	db "ラフレシア" ; RUFFRESIA
+	db "ナゾノクサ" ; ODDISH
+	db "クサイハナ" ; GLOOM
+	db "ラフレシア" ; VILEPLUME
 	db "パラス@@" ; PARAS
 	db "パラセクト" ; PARASECT
-	db "コンパン@" ; KONGPANG
-	db "モルフォン" ; MORPHON
-	db "ディグダ@" ; DIGDA
+	db "コンパン@" ; VENONAT
+	db "モルフォン" ; VENOMOTH
+	db "ディグダ@" ; DIGLETT
 	db "ダグトりオ" ; DUGTRIO
-	db "ニャース@" ; NYARTH
+	db "ニャース@" ; MEOWTH
 	db "ぺルシアン" ; PERSIAN
-	db "コダック@" ; KODUCK
+	db "コダック@" ; PSYDUCK
 	db "ゴルダック" ; GOLDUCK
 	db "マンキー@" ; MANKEY
-	db "オコりザル" ; OKORIZARU
-	db "ガーディ@" ; GARDIE
-	db "ウインディ" ; WINDIE
-	db "ニョロモ@" ; NYOROMO
-	db "ニョロゾ@" ; NYOROZO
-	db "ニョロボン" ; NYOROBON
-	db "ケーシィ@" ; CASEY
-	db "ユンゲラー" ; YUNGERER
-	db "フーディン" ; FOODIN
-	db "ワンりキー" ; WANRIKY
-	db "ゴーりキー" ; GORIKY
-	db "カイりキー" ; KAIRIKY
-	db "マダツボミ" ; MADATSUBOMI
-	db "ウツドン@" ; UTSUDON
-	db "ウツボット" ; UTSUBOT
-	db "メノクラゲ" ; MENOKURAGE
-	db "ドククラゲ" ; DOKUKURAGE
-	db "イシツブテ" ; ISITSUBUTE
-	db "ゴローン@" ; GOLONE
-	db "ゴローニャ" ; GOLONYA
+	db "オコりザル" ; PRIMEAPE
+	db "ガーディ@" ; GROWLITHE
+	db "ウインディ" ; ARCANINE
+	db "ニョロモ@" ; POLIWAG
+	db "ニョロゾ@" ; POLIWHIRL
+	db "ニョロボン" ; POLIWRATH
+	db "ケーシィ@" ; ABRA
+	db "ユンゲラー" ; KADABRA
+	db "フーディン" ; ALAKAZAM
+	db "ワンりキー" ; MACHOP
+	db "ゴーりキー" ; MACHOKE
+	db "カイりキー" ; MACHAMP
+	db "マダツボミ" ; BELLSPROUT
+	db "ウツドン@" ; WEEPINBELL
+	db "ウツボット" ; VICTREEBEL
+	db "メノクラゲ" ; TENTACOOL
+	db "ドククラゲ" ; TENTACRUEL
+	db "イシツブテ" ; GEODUDE
+	db "ゴローン@" ; GRAVELER
+	db "ゴローニャ" ; GOLEM
 	db "ポニータ@" ; PONYTA
-	db "ギャロップ" ; GALLOP
-	db "ヤドン@@" ; YADON
-	db "ヤドラン@" ; YADORAN
-	db "コイル@@" ; COIL
-	db "レアコイル" ; RARECOIL
-	db "カモネギ@" ; KAMONEGI
-	db "ドードー@" ; DODO
-	db "ドードりオ" ; DODORIO
-	db "パウワウ@" ; PAWOU
-	db "ジュゴン@" ; JUGON
-	db "べトべター" ; BETBETER
-	db "べトべトン" ; BETBETON
+	db "ギャロップ" ; RAPIDASH
+	db "ヤドン@@" ; SLOWPOKE
+	db "ヤドラン@" ; SLOWBRO
+	db "コイル@@" ; MAGNEMITE
+	db "レアコイル" ; MAGNETON
+	db "カモネギ@" ; FARFETCHD
+	db "ドードー@" ; DODUO
+	db "ドードりオ" ; DODRIO
+	db "パウワウ@" ; SEEL
+	db "ジュゴン@" ; DEWGONG
+	db "べトべター" ; GRIMER
+	db "べトべトン" ; MUK
 	db "シェルダー" ; SHELLDER
-	db "パルシェン" ; PARSHEN
-	db "ゴース@@" ; GHOS
-	db "ゴースト@" ; GHOST
-	db "ゲンガー@" ; GANGAR
-	db "イワーク@" ; IWARK
-	db "スりープ@" ; SLEEPE
-	db "スりーパー" ; SLEEPER
-	db "クラブ@@" ; CRAB
+	db "パルシェン" ; CLOYSTER
+	db "ゴース@@" ; GASTLY
+	db "ゴースト@" ; HAUNTER
+	db "ゲンガー@" ; GENGAR
+	db "イワーク@" ; ONIX
+	db "スりープ@" ; DROWZEE
+	db "スりーパー" ; HYPNO
+	db "クラブ@@" ; KRABBY
 	db "キングラー" ; KINGLER
-	db "ビりりダマ" ; BIRIRIDAMA
-	db "マルマイン" ; MARUMINE
-	db "タマタマ@" ; TAMATAMA
-	db "ナッシー@" ; NASSY
-	db "カラカラ@" ; KARAKARA
-	db "ガラガラ@" ; GARAGARA
-	db "サワムラー" ; SAWAMULAR
-	db "エビワラー" ; EBIWALAR
-	db "べロりンガ" ; BERORINGA
-	db "ドガース@" ; DOGARS
-	db "マタドガス" ; MATADOGAS
-	db "サイホーン" ; SIHORN
-	db "サイドン@" ; SIDON
-	db "ラッキー@" ; LUCKY
-	db "モンジャラ" ; MONJARA
-	db "ガルーラ@" ; GARURA
-	db "タッツー@" ; TATTU
+	db "ビりりダマ" ; VOLTORB
+	db "マルマイン" ; ELECTRODE
+	db "タマタマ@" ; EXEGGCUTE
+	db "ナッシー@" ; EXEGGUTOR
+	db "カラカラ@" ; CUBONE
+	db "ガラガラ@" ; MAROWAK
+	db "サワムラー" ; HITMONLEE
+	db "エビワラー" ; HITMONCHAN
+	db "べロりンガ" ; LICKITUNG
+	db "ドガース@" ; KOFFING
+	db "マタドガス" ; WEEZING
+	db "サイホーン" ; RHYHORN
+	db "サイドン@" ; RHYDON
+	db "ラッキー@" ; CHANSEY
+	db "モンジャラ" ; TANGELA
+	db "ガルーラ@" ; KANGASKHAN
+	db "タッツー@" ; HORSEA
 	db "シードラ@" ; SEADRA
-	db "トサキント" ; TOSAKINTO
-	db "アズマオウ" ; AZUMAO
-	db "ヒトデマン" ; HITODEMAN
+	db "トサキント" ; GOLDEEN
+	db "アズマオウ" ; SEAKING
+	db "ヒトデマン" ; STARYU
 	db "スターミー" ; STARMIE
-	db "バりヤード" ; BARRIERD
-	db "ストライク" ; STRIKE
-	db "ルージュラ" ; ROUGELA
-	db "エレブー@" ; ELEBOO
-	db "ブーバー@" ; BOOBER
-	db "カイロス@" ; KAILIOS
-	db "ケンタロス" ; KENTAUROS
-	db "コイキング" ; KOIKING
+	db "バりヤード" ; MRMIME
+	db "ストライク" ; SCYTHER
+	db "ルージュラ" ; JYNX
+	db "エレブー@" ; ELECTABUZZ
+	db "ブーバー@" ; MAGMAR
+	db "カイロス@" ; PINSIR
+	db "ケンタロス" ; TAUROS
+	db "コイキング" ; MAGIKARP
 	db "ギャラドス" ; GYARADOS
-	db "ラプラス@" ; LAPLACE
-	db "メタモン@" ; METAMON
-	db "イーブイ@" ; EIEVUI
-	db "シャワーズ" ; SHOWERS
-	db "サンダース" ; THUNDERS
-	db "ブースター" ; BOOSTER
+	db "ラプラス@" ; LAPRAS
+	db "メタモン@" ; DITTO
+	db "イーブイ@" ; EEVEE
+	db "シャワーズ" ; VAPOREON
+	db "サンダース" ; JOLTEON
+	db "ブースター" ; FLAREON
 	db "ポりゴン@" ; PORYGON
-	db "オムナイト" ; OMNITE
-	db "オムスター" ; OMSTAR
+	db "オムナイト" ; OMANYTE
+	db "オムスター" ; OMASTAR
 	db "カブト@@" ; KABUTO
 	db "カブトプス" ; KABUTOPS
-	db "プテラ@@" ; PTERA
-	db "カビゴン@" ; KABIGON
-	db "フりーザー" ; FREEZER
-	db "サンダー@" ; THUNDER
-	db "ファイヤー" ; FIRE
-	db "ミニりュウ" ; MINIRYU
-	db "ハクりュー" ; HAKURYU
-	db "カイりュー" ; KAIRYU
+	db "プテラ@@" ; AERODACTYL
+	db "カビゴン@" ; SNORLAX
+	db "フりーザー" ; ARTICUNO
+	db "サンダー@" ; ZAPDOS
+	db "ファイヤー" ; MOLTRES
+	db "ミニりュウ" ; DRATINI
+	db "ハクりュー" ; DRAGONAIR
+	db "カイりュー" ; DRAGONITE
 	db "ミュウツー" ; MEWTWO
 	db "ミュウ@@" ; MEW
 	db "ハッパ@@" ; HAPPA

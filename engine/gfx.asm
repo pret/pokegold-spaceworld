@@ -70,7 +70,7 @@ LoadPokeDexGraphics::
 	call LoadPokemonMenuGraphics
 	ld de, PokedexGFX
 	ld hl, $9600
-	lb bc, BANK(PokedexGFX), ((PokedexLocationGFX.End - PokedexGFX) / LEN_2BPP_TILE)
+	lb bc, BANK(PokedexGFX), ((PokedexGFX.End - PokedexGFX) / LEN_2BPP_TILE + 5) ; copies first 5 tiles of TownMapGFX
 	call Get2bpp
 	ld de, PokeBallsGFX
 	ld hl, $9720

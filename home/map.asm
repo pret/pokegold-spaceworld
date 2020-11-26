@@ -1197,7 +1197,7 @@ ApplyFlashlight::
 	jr z, .force_2
 	cp 3
 	jr z, .force_3
-	jp .force_9001
+	jp .force_4
 
 .no_flashlight
 	ld de, wTileMap
@@ -1265,8 +1265,8 @@ ENDM
 	redraw_with_flashlight 3
 	ret
 
-.force_9001
-	; Actually force 4, but this also applies to larger values
+.force_4
+	; This also applies to larger values than 4
 	decoord 4 * 2, 4 * 2
 	ld bc, 4 * $32 ; TODO: constantify the $32
 	add hl, bc

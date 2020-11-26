@@ -357,7 +357,7 @@ IsAnimatedSprite::
 	ret
 
 .NonAnimatedSprites:
-	db SPRITE_KABIGON
+	db SPRITE_SNORLAX
 	db SPRITE_POKE_BALL
 	db SPRITE_POKEDEX
 	db SPRITE_PAPER

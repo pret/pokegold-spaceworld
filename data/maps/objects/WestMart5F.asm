@@ -19,7 +19,7 @@ WestMart5F_MapEvents::
 	def_object_events
 	object_event  8,  5, SPRITE_GYM_GUY, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event 13,  5, SPRITE_YOUNGSTER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 13,  4, SPRITE_NYOROBON, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 13,  4, SPRITE_POLIWRATH, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestMart5F_Blocks::
 INCBIN "maps/WestMart5F.blk"

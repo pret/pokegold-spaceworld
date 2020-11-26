@@ -15,8 +15,8 @@ KantoCeladonMart5F_MapEvents::
 
 	def_object_events
 	object_event 14,  5, SPRITE_CLERK, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  8,  3, SPRITE_SIDON, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  2,  5, SPRITE_POPPO, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  8,  3, SPRITE_RHYDON, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  5, SPRITE_PIDGEY, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoCeladonMart5F_Blocks::
 INCBIN "maps/KantoCeladonMart5F.blk"

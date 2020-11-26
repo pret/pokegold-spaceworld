@@ -1,35 +1,35 @@
 ; icon ids
 	const_def
-	const ICON_NONE        ; 00
-	const ICON_NYOROMO     ; 01
-	const ICON_PURIN       ; 02
-	const ICON_DIGDA       ; 03
-	const ICON_PIKACHU     ; 04
-	const ICON_HITODEMAN   ; 05
-	const ICON_KOIKING     ; 06
-	const ICON_POPPO       ; 07
-	const ICON_SIDON       ; 08
-	const ICON_PIPPI       ; 09
-	const ICON_NAZONOKUSA  ; 0a
-	const ICON_MUSHI       ; 0b
-	const ICON_GANGAR      ; 0c
-	const ICON_LAPLACE     ; 0d
-	const ICON_BARRIERD    ; 0e
-	const ICON_LOKON       ; 0f
-	const ICON_KENTAUROS   ; 10
-	const ICON_SHELLDER    ; 11
-	const ICON_METAMON     ; 12
-	const ICON_IWARK       ; 13
-	const ICON_BIRIRIDAMA  ; 14
-	const ICON_ZENIGAME    ; 15
-	const ICON_FUSHIGIDANE ; 16
-	const ICON_HITOKAGE    ; 17
-	const ICON_BEEDLE      ; 18
-	const ICON_ANNON       ; 19
-	const ICON_ISITSUBUTE  ; 1a
-	const ICON_WANRIKY     ; 1b
-	const ICON_EGG         ; 1c
-	const ICON_MENOKURAGE  ; 1d
-	const ICON_BUTTERFREE  ; 1e
-	const ICON_ZUBAT       ; 1f
-	const ICON_KABIGON     ; 20
+	const ICON_NONE
+	const ICON_POLIWAG
+	const ICON_JIGGLYPUFF
+	const ICON_DIGLETT
+	const ICON_PIKACHU
+	const ICON_STARYU
+	const ICON_MAGIKARP
+	const ICON_PIDGEY
+	const ICON_RHYDON
+	const ICON_CLEFAIRY
+	const ICON_ODDISH
+	const ICON_MUSHI
+	const ICON_GENGAR
+	const ICON_LAPRAS
+	const ICON_MRMIME
+	const ICON_LOKON
+	const ICON_TAUROS
+	const ICON_SHELLDER
+	const ICON_DITTO
+	const ICON_ONIX
+	const ICON_VOLTORB
+	const ICON_SQUIRTLE
+	const ICON_BULBASAUR
+	const ICON_CHARMANDER
+	const ICON_WEEDLE
+	const ICON_ANNON
+	const ICON_GEODUDE
+	const ICON_MACHOP
+	const ICON_EGG
+	const ICON_TENTACOOL
+	const ICON_BUTTERFREE
+	const ICON_ZUBAT
+	const ICON_SNORLAX
