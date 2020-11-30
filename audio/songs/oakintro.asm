@@ -209,7 +209,7 @@ Music_OakIntro_branch_ec72e::
 	note E_, 8
 	note F#, 2
 	note E_, 2
-	stereo_panning 4, 6
+	unknownmusic0xee 4, 6
 	note D#, 6
 	note D_, 2
 	note D_, 1

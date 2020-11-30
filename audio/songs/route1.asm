@@ -162,7 +162,7 @@ Music_Route1_branch_ec56e::
 	note E_, 2
 	note C#, 1
 	note D_, 1
-	stereo_panning 2, 9
+	unknownmusic0xee 2, 9
 	note D#, 8
 	note E_, 2
 	note E_, 2

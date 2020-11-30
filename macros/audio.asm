@@ -212,9 +212,9 @@ sfx_priority_off: MACRO
 	db sfx_priority_off_cmd
 ENDM
 
-	const stereo_panning_cmd ; $ee
-stereo_panning: MACRO
-	db stereo_panning_cmd
+	const unknownmusic0xee_cmd ; $ee
+unknownmusic0xee: MACRO
+	db unknownmusic0xee_cmd
 	dn \1, \2 ; left output enable mask, right output enable mask
 ENDM
 
