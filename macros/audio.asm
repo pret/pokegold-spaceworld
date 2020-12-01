@@ -215,7 +215,7 @@ ENDM
 	const unknownmusic0xee_cmd ; $ee
 unknownmusic0xee: MACRO
 	db unknownmusic0xee_cmd
-	db \1, \2 ; address
+	dw \1 ; address
 ENDM
 
 	const unknownmusic0xef_cmd ; $ef

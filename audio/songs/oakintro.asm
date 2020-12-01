@@ -209,7 +209,7 @@ Music_OakIntro_branch_ec72e::
 	note E_, 8
 	note F#, 2
 	note E_, 2
-	unknownmusic0xee $46, $45
+	unknownmusic0xee Music_Route1_Ch2
 
 	note D_, 2
 	note D_, 1
