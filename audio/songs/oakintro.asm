@@ -209,8 +209,8 @@ Music_OakIntro_branch_ec72e::
 	note E_, 8
 	note F#, 2
 	note E_, 2
-	unknownmusic0xee 4, 6
-	note D#, 6
+	unknownmusic0xee $46, $45
+
 	note D_, 2
 	note D_, 1
 	note E_, 1

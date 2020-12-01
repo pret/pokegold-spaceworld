@@ -215,7 +215,7 @@ ENDM
 	const unknownmusic0xee_cmd ; $ee
 unknownmusic0xee: MACRO
 	db unknownmusic0xee_cmd
-	dn \1, \2 ; left output enable mask, right output enable mask
+	db \1, \2 ; address
 ENDM
 
 	const unknownmusic0xef_cmd ; $ef
