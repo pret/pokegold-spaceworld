@@ -90,7 +90,7 @@ GiveItemPredef::
 	add_predef CheckSGB
 	add_predef Function928b
 	add_predef Function8786
-	add_predef Function8c4be
+	add_predef DoBattleTransition
 	add_predef Function8c9c6
 	add_predef Function8c940 ; 50
 	add_predef PlayBattleAnim
