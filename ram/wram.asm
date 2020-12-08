@@ -328,7 +328,12 @@ wNamedObjectTypeBuffer:: db
 
 SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db
+
+UNION
+wcb5f::	db
+NEXTU
 wFlyDestination:: db
+ENDU
 
 wcb60:: ds 1
 wcb61:: ds 1

@@ -1,17 +1,30 @@
 INCLUDE "constants.asm"
 
+; BattleTransitionJumptable.Jumptable indexes
+BATTLETRANSITION_WAVY             EQU $01
+BATTLETRANSITION_WIPE             EQU $08
+BATTLETRANSITION_SCANLINE         EQU $0F
+BATTLETRANSITION_SPIN             EQU $16
+BATTLETRANSITION_SCATTER          EQU $1D
+
+BATTLETRANSITION_FINISH           EQU $24
+BATTLETRANSITION_END              EQU $80
+
+BATTLETRANSITION_SQUARE EQU $fe
+BATTLETRANSITION_BLACK  EQU $ff
+
 SECTION "engine/battle/battle_transitions.asm", ROMX
 
 DoBattleTransition:	; 23:44be
 	ld a, %11100011
 	ldh [rLCDC], a
-	call Func44e6
+	call .InitGFX
 
 .loop	; 44c5
 	ld a, [wJumptableIndex]
 	bit 7, a	; BATTLETRANSITION_END?
 	jr nz, .done
-	call Func455d
+	call BattleTransitionJumptable
 	call DelayFrame
 	jr .loop
 
@@ -27,10 +40,10 @@ DoBattleTransition:	; 23:44be
 	ldh [rLCDC], a
 	ret
 
-Func44e6:
+.InitGFX:
 	callba ReanchorBGMap_NoOAMUpdate
 	call UpdateSprites
-	call Func450c
+	call ConvertTrainerBattlePokeballTilesTo2bpp
 	call WaitBGMap
 
 	ld a, SCREEN_HEIGHT_PX
@@ -43,14 +56,14 @@ Func44e6:
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	call Func48c4
+	call WipeLYOverrides
 	ret
 
-Func450c:
+ConvertTrainerBattlePokeballTilesTo2bpp:
 	ld hl, wOverworldMapBlocks
 	ld bc, $28 tiles
 .loop
-	ld [hl], -1
+	ld [hl], BATTLETRANSITION_BLACK
 	inc hl
 	dec bc
 	ld a, c
@@ -63,77 +76,82 @@ Func450c:
 	ld c, $28
 	call Request2bpp
 
-	ld de, Data453d
+	ld de, .BlackTile
 	ldh a, [hOverworldFlashlightEffect]
 	and a
 	jr z, .skip
-	ld de, Data454d
+	ld de, .GreyTile
 .skip
-	ld hl, vChars0 tile $FF
+	ld hl, vChars0 tile BATTLETRANSITION_BLACK
 	ld b, BANK(@)
 	ld c, $01
 	call Request2bpp
 	ret
 
-Data453d:
+.BlackTile:
 	rept 16
 	db $ff
 	endr
 
-Data454d:
+.GreyTile:
 	rept 8
 	db $00, $ff
 	endr
 
-Func455d:
+BattleTransitionJumptable:
 	jumptable .Jumptable, wJumptableIndex
 
-.Jumptable	; 456c
-	dw Func45b6	; 00
+.Jumptable ; 456c
+	dw StartTrainerBattle_DetermineWhichAnimation ; 00
 
-	dw Func4865	; 01	!
-	dw Func45d8	; 02
-	dw Func45e2	; 03
-	dw Func45e2	; 04
-	dw Func45e2	; 05
-	dw Func4614	; 06
-	dw Func462a	; 07
+; Wavy outro
+	dw StartTrainerBattle_LoadPokeBallGraphics ; 01
+	dw StartTrainerBattle_SetUpBGMap ; 02
+	dw StartTrainerBattle_Flash ; 03
+	dw StartTrainerBattle_Flash ; 04
+	dw StartTrainerBattle_Flash ; 05
+	dw StartTrainerBattle_SetUpForWavyOutro ; 06
+	dw StartTrainerBattle_SineWave ; 07
 
-	dw Func4865	; 08
-	dw Func45d8	; 09
-	dw Func45e2	; 0a
-	dw Func45e2	; 0b
-	dw Func45e2	; 0c
-	dw Func465f	; 0d
-	dw Func4676	; 0e
+; Wipe outro - unused
+	dw StartTrainerBattle_LoadPokeBallGraphics ; 08
+	dw StartTrainerBattle_SetUpBGMap ; 09
+	dw StartTrainerBattle_Flash ; 0a
+	dw StartTrainerBattle_Flash ; 0b
+	dw StartTrainerBattle_Flash ; 0c
+	dw StartTrainerBattle_SetUpForWipeOutro ; 0d
+	dw StartTrainerBattle_WipeOutro ; 0e
 
-	dw Func4865	; 0f	!
-	dw Func45d8	; 10
-	dw Func45e2	; 11
-	dw Func45e2	; 12
-	dw Func45e2	; 13
-	dw Func46a6	; 14
-	dw Func46b5	; 15
+; Scanline outro
+	dw StartTrainerBattle_LoadPokeBallGraphics ; 0f
+	dw StartTrainerBattle_SetUpBGMap ; 10
+	dw StartTrainerBattle_Flash ; 11
+	dw StartTrainerBattle_Flash ; 12
+	dw StartTrainerBattle_Flash ; 13
+	dw StartTrainerBattle_SetUpForScanlineOutro ; 14
+	dw StartTrainerBattle_Scanlines ; 15
 
-	dw Func4865	; 16	!
-	dw Func45d8	; 17
-	dw Func45e2	; 18
-	dw Func45e2	; 19
-	dw Func45e2	; 1a
-	dw Func46da	; 1b
-	dw Func46e2	; 1c
+; Spin clockwise
+	dw StartTrainerBattle_LoadPokeBallGraphics ; 16
+	dw StartTrainerBattle_SetUpBGMap ; 17
+	dw StartTrainerBattle_Flash ; 18
+	dw StartTrainerBattle_Flash ; 19
+	dw StartTrainerBattle_Flash ; 1a
+	dw StartTrainerBattle_SetUpForSpinOutro ; 1b
+	dw StartTrainerBattle_SpinToBlack ; 1c
 
-	dw Func4865	; 1d	!
-	dw Func45d8	; 1e
-	dw Func45e2	; 1f
-	dw Func45e2	; 20
-	dw Func45e2	; 21
-	dw Func480b	; 22
-	dw Func4818	; 23
+; Random scatter
+	dw StartTrainerBattle_LoadPokeBallGraphics ; 1d
+	dw StartTrainerBattle_SetUpBGMap ; 1e
+	dw StartTrainerBattle_Flash ; 1f
+	dw StartTrainerBattle_Flash ; 20
+	dw StartTrainerBattle_Flash ; 21
+	dw StartTrainerBattle_SetUpForRandomScatterOutro ; 22
+	dw StartTrainerBattle_SpeckleToBlack ; 23
 
-	dw Func45ca	; 24
+	dw StartTrainerBattle_Finish ; 24
 
-Func45b6:
+StartTrainerBattle_DetermineWhichAnimation:
 	ldh a, [hVBlankCounter]
 	and a, %00000011
 	ld e, a
@@ -145,37 +163,37 @@ Func45b6:
 	ret
 
 .StartingPoints	;45c6
-	db $01
-	db $1D
-	db $0F
-	db $16
+	db BATTLETRANSITION_WAVY
+	db BATTLETRANSITION_SCATTER
+	db BATTLETRANSITION_SCANLINE
+	db BATTLETRANSITION_SPIN
 
-Func45ca:
+StartTrainerBattle_Finish:
 	call ClearSprites
-	ld a, $80	; BATTLE_TRANSITION_END
+	ld a, BATTLETRANSITION_END
 	ld [wJumptableIndex], a
 	ret
 
-Func45d3:
+StartTrainerBattle_NextScene:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-Func45d8:
-	call Func45d3
+StartTrainerBattle_SetUpBGMap:
+	call StartTrainerBattle_NextScene
 	xor a
-	ld [wFlyDestination], a
+	ld [wcb5f], a
 	ldh [hBGMapMode], a
 	ret
 
-Func45e2:
-	call Func45ea
+StartTrainerBattle_Flash:
+	call .DoFlashAnimation
 	ret nc
-	call Func45d3
+	call StartTrainerBattle_NextScene
 	ret
 
-Func45ea:
-	ld hl, wFlyDestination
+.DoFlashAnimation:
+	ld hl, wcb5f
 	ld a, [hl]
 	inc [hl]
 	srl a
@@ -191,14 +209,14 @@ Func45ea:
 	ret
 .done
 	xor a
-	ld [wFlyDestination], a
+	ld [wcb5f], a
 	scf
 	ret
 .pals
 	db $f9, $fe, $ff, $fe, $f9, $e4, $90, $40, $00, $40, $90, $e4, $01
 
-Func4614:
-	call Func45d3
+StartTrainerBattle_SetUpForWavyOutro:
+	call StartTrainerBattle_NextScene
 	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
 	xor a
@@ -206,36 +224,36 @@ Func4614:
 	ld a, SCREEN_HEIGHT_PX
 	ldh [hLYOverrideEnd], a
 	xor a
-	ld [wFlyDestination], a
+	ld [wcb5f], a
 	ld [wcb60], a
 	ret
-Func462a:
-	ld a, [wFlyDestination]
+StartTrainerBattle_SineWave:
+	ld a, [wcb5f]
 	cp $60
 	jr nc, .end
-	call Func463b
+	call .DoSineWave
 	ret
 .end
-	ld a, $24
+	ld a, BATTLETRANSITION_FINISH
 	ld [wJumptableIndex], a
 	ret
 
-Func463b:
+.DoSineWave:
 	ld hl, wcb60
 	ld a, [hl]
 	inc [hl]
-	ld hl, wFlyDestination
+	ld hl, wcb5f
 	ld d, [hl]
 	add [hl]
 	ld [hl], a
 	ld a, SCREEN_HEIGHT_PX
-	ld bc, wLYOverrides	; ly override backups?
+	ld bc, wLYOverrides
 	ld e, 0
 .loop
 	push af
 	push de
 	ld a, e
-	call Func48cf
+	call StartTrainerBattle_DrawSineWave
 	ld [bc], a
 	inc bc
 	pop de
@@ -247,8 +265,8 @@ Func463b:
 	jr nz, .loop
 	ret
 
-Func465f:
-	call Func45d3
+StartTrainerBattle_SetUpForWipeOutro:
+	call StartTrainerBattle_NextScene
 	ld a, LOW(rSCY)
 	ldh [hLCDCPointer], a
 	xor a
@@ -256,13 +274,13 @@ Func465f:
 	ld a, SCREEN_HEIGHT_PX
 	ldh [hLYOverrideEnd], a
 	xor a
-	ld [wFlyDestination], a
-	ld a, $91
+	ld [wcb5f], a
+	ld a, SCREEN_HEIGHT_PX + 1
 	ldh [hSCY], a
 	ret
 
-Func4676:
-	ld hl, wFlyDestination
+StartTrainerBattle_WipeOutro:
+	ld hl, wcb5f
 	ld a, [hl]
 	cp $48
 	jr nc, .end
@@ -275,7 +293,7 @@ Func4676:
 	call Func4692
 	ret
 .end
-	ld a, $24
+	ld a, BATTLETRANSITION_FINISH
 	ld [wJumptableIndex], a
 	ret
 
@@ -283,45 +301,44 @@ Func4692:
 	ld c, $04
 	ld de, $0024
 	ld b, $91
-.jr4699
+.loop
 	ld a, b
 	sub l
 	ld [hl], a
 	add hl, de
 	dec c
-	jr nz, .jr4699
+	jr nz, .loop
 	ld hl, $c691
 	ld [hl], $91
 	ret
 
-Func46a6:
-	call Func45d3
-	ld a, $43
+StartTrainerBattle_SetUpForScanlineOutro:
+	call StartTrainerBattle_NextScene
+	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
 	xor a
-	ld [wFlyDestination], a
-	call Func48c4
+	ld [wcb5f], a
+	call WipeLYOverrides
 	ret
 
-Func46b5:
-	ld hl, wFlyDestination
+StartTrainerBattle_Scanlines:
+	ld hl, wcb5f
 	ld a, [hl]
 	cp $50
 	jr nc, .finished
 	inc [hl]
 	ld e, a
-	xor $ff
+	xor -1	; switch scroll direction
 	inc a
 	ld d, a
-	call Func46cd
+	call .SplitEvenOdd
 	ret
 .finished
-	ld a, $24
+	ld a, BATTLETRANSITION_FINISH
 	ld [wJumptableIndex], a
 	ret
 
-
-Func46cd:
+.SplitEvenOdd:
 	ld hl, wLYOverrides
 	ld c, $48
 .loop
@@ -333,37 +350,35 @@ Func46cd:
 	jr nz, .loop
 	ret
 
-Func46da:
-	call Func45d3
+StartTrainerBattle_SetUpForSpinOutro:
+	call StartTrainerBattle_NextScene
 	xor a
-	ld [wFlyDestination], a
+	ld [wcb5f], a
 	ret
 
-Func46e2:
+StartTrainerBattle_SpinToBlack:
 	xor a
 	ldh [hBGMapMode], a
-	ld a, [wFlyDestination]
+	ld a, [wcb5f]
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, .data4723
+rept 5
 	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
+endr
 	ld a, [hli]
 	cp -1
-	jr z, .done
+	jr z, .end
 	ld [wcb60], a
 	call .load
-	ld a, $01
+	ld a, 1
 	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
-	ld hl, wFlyDestination
+	ld hl, wcb5f
 	inc [hl]
 	ret
-.done
+.end
 	ld a, $01
 	ldh [hBGMapMode], a
 	call DelayFrame
@@ -371,7 +386,7 @@ Func46e2:
 	call DelayFrame
 	xor a
 	ldh [hBGMapMode], a
-	ld a, $24
+	ld a, BATTLETRANSITION_FINISH
 	ld [wJumptableIndex], a
 	ret
 
@@ -457,24 +472,24 @@ Func46e2:
 .wedge4 db 4, 1, 4, 0, 3, 1, 3, 0, 2, 1, 2, 0, 1, -1
 .wedge5 db 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 1, 0, 1, -1
 
-Func480b:
-	call Func45d3
+StartTrainerBattle_SetUpForRandomScatterOutro:
+	call StartTrainerBattle_NextScene
 	ld a, $10
-	ld [wFlyDestination], a
-	ld a, $01
+	ld [wcb5f], a
+	ld a, 1
 	ldh [hBGMapMode], a
 	ret
 
-Func4818:
-	ld hl, wFlyDestination
+StartTrainerBattle_SpeckleToBlack:
+	ld hl, wcb5f
 	ld a, [hl]
 	and a
 	jr z, .done
 	dec [hl]
-	ld c, $0c
+	ld c, 12
 .loop
 	push bc
-	call Func4841
+	call .BlackOutRandomTile
 	pop bc
 	dec c
 	jr nz, .loop
@@ -488,12 +503,11 @@ Func4818:
 	call DelayFrame
 	xor a
 	ldh [hBGMapMode], a
-	ld a, $24
+	ld a, BATTLETRANSITION_FINISH
 	ld [wJumptableIndex], a
 	ret
 
-
-Func4841:
+.BlackOutRandomTile:
 .y_loop
 	call Random
 	cp $12
@@ -520,7 +534,7 @@ Func4841:
 	ld [hl], $ff
 	ret
 
-Func4865:
+StartTrainerBattle_LoadPokeBallGraphics:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 2, 1
@@ -561,13 +575,31 @@ Func4865:
 	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
-	call Func45d3
+	call StartTrainerBattle_NextScene
 	ret
 .PokeBallTransition:
-	db $00, $00, $03, $c0, $0f, $f0, $1f, $f8, $3f, $fc, $3f, $fc, $7e, $7e, $7c, $3e
-	db $42, $42, $41, $82, $20, $04, $20, $04, $10, $08, $0c, $30, $03, $c0, $00, $00
+	; 16x16 overlay of a Poke Ball
+pusho
+opt b.X ; . = 0, X = 1
+	bigdw %................
+	bigdw %......XXXX......
+	bigdw %....XXXXXXXX....
+	bigdw %...XXXXXXXXXX...
+	bigdw %..XXXXXXXXXXXX..
+	bigdw %..XXXXXXXXXXXX..
+	bigdw %.XXXXXX..XXXXXX.
+	bigdw %.XXXXX....XXXXX.
+	bigdw %.X....X..X....X.
+	bigdw %.X.....XX.....X.
+	bigdw %..X..........X..
+	bigdw %..X..........X..
+	bigdw %...X........X...
+	bigdw %....XX....XX....
+	bigdw %......XXXX......
+	bigdw %................
+popo
 
-Func48c4:
+WipeLYOverrides:
 	ld hl, wLYOverrides
 	xor a
 	ld c, SCREEN_HEIGHT_PX
@@ -577,7 +609,7 @@ Func48c4:
 	jr nz, .wipe
 	ret
 
-Func48cf:
+StartTrainerBattle_DrawSineWave:
 	calc_sine_wave .sine_table
 .sine_table
 	dw $0000
