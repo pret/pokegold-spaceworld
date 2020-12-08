@@ -124,7 +124,6 @@
 23:4335 _UpdateTimePals
 23:4354 ReplaceTimeOfDayPals
 23:4370 GetTimePalette
-23:44BE Function8c4be
 23:4940 Function8c940
 23:49C6 Function8c9c6
 23:4CFD InitEffectObject

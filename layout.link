@@ -368,6 +368,8 @@ ROMX $23
 	"engine/palettes.asm@Overworld fade"
 	org $43d1
 	"engine/palettes.asm@Palette fading, part 2?"
+	org $44be
+	"engine/battle/battle_transitions.asm"
 	org $60cc
 	"gfx.asm@Pokemon Party Sprites"
 	org $722a
