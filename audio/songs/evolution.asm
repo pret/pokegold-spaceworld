@@ -2,124 +2,120 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/evolution.asm", ROMX
 
-Song_Evolution::
-	db 2 << 6 | 0
-	dw Song_Evolution_Ch0
-	db 1
-	dw Song_Evolution_Ch1
-	db 2
-	dw Song_Evolution_Ch2
+Music_Evolution::
+	channel_count 3
+	channel 1, Music_Evolution_Ch1
+	channel 2, Music_Evolution_Ch2
+	channel 3, Music_Evolution_Ch3
 
-Song_Evolution_Ch0::
+Music_Evolution_Ch1::
 	tempo 132
 	volume 7, 7
 	vibrato 6, 3, 4
-	toggleperfectpitch
-	rest 1
-	rest 2
-	duty 2
-	notetype 12, 9, 2
+	pitch_offset 1
+	duty_cycle 2
+	note_type 12, 9, 2
 	octave 3
-	pitchbend 0, 74
-	C_ 1
-	pitchbend 0, 74
-	G_ 1
-	pitchbend 0, 74
-	C_ 1
-	pitchbend 0, 74
-	G_ 1
+	pitch_slide 1, 4, A_
+	note C_, 1
+	pitch_slide 1, 4, A_
+	note G_, 1
+	pitch_slide 1, 4, A_
+	note C_, 1
+	pitch_slide 1, 4, A_
+	note G_, 1
 	rest 4
-	duty 3
+	duty_cycle 3
 
-Song_Evolution_branch_edb49::
-	callchannel Song_Evolution_branch_edb5b
-	notetype 12, 10, 4
-	F# 4
-	callchannel Song_Evolution_branch_edb5b
-	notetype 12, 10, 4
-	F# 4
-	loopchannel 0, Song_Evolution_branch_edb49
+Music_Evolution_branch_edb49::
+	sound_call Music_Evolution_branch_edb5b
+	note_type 12, 10, 4
+	note F#, 4
+	sound_call Music_Evolution_branch_edb5b
+	note_type 12, 10, 4
+	note F#, 4
+	sound_loop 0, Music_Evolution_branch_edb49
 
-Song_Evolution_branch_edb5b::
-	notetype 12, 10, 2
+Music_Evolution_branch_edb5b::
+	note_type 12, 10, 2
 	octave 3
-	C_ 4
-	G_ 4
-	C_ 4
-	G_ 4
-	C_ 4
-	G_ 4
-	C_ 4
-	endchannel
+	note C_, 4
+	note G_, 4
+	note C_, 4
+	note G_, 4
+	note C_, 4
+	note G_, 4
+	note C_, 4
+	sound_ret
 
 
-Song_Evolution_Ch1::
-	duty 2
+Music_Evolution_Ch2::
+	duty_cycle 2
 	vibrato 8, 2, 5
-	notetype 12, 10, 2
+	note_type 12, 10, 2
 	octave 4
-	G_ 1
-	D_ 1
-	G_ 1
-	D_ 1
+	note G_, 1
+	note D_, 1
+	note G_, 1
+	note D_, 1
 	rest 4
-	duty 3
+	duty_cycle 3
 
-Song_Evolution_branch_edb77::
-	callchannel Song_Evolution_branch_edb89
-	notetype 12, 11, 5
-	A_ 4
-	callchannel Song_Evolution_branch_edb89
-	notetype 12, 11, 5
-	B_ 4
-	loopchannel 0, Song_Evolution_branch_edb77
+Music_Evolution_branch_edb77::
+	sound_call Music_Evolution_branch_edb89
+	note_type 12, 11, 5
+	note A_, 4
+	sound_call Music_Evolution_branch_edb89
+	note_type 12, 11, 5
+	note B_, 4
+	sound_loop 0, Music_Evolution_branch_edb77
 
-Song_Evolution_branch_edb89::
-	notetype 12, 11, 2
+Music_Evolution_branch_edb89::
+	note_type 12, 11, 2
 	octave 3
-	G_ 4
-	D_ 4
-	G_ 4
-	D_ 4
-	G_ 4
-	D_ 4
-	G_ 4
-	endchannel
+	note G_, 4
+	note D_, 4
+	note G_, 4
+	note D_, 4
+	note G_, 4
+	note D_, 4
+	note G_, 4
+	sound_ret
 
 
-Song_Evolution_Ch2::
-	notetype 12, 1, 0
+Music_Evolution_Ch3::
+	note_type 12, 1, 0
 	rest 8
 
-Song_Evolution_branch_edb99::
-	callchannel Song_Evolution_branch_edba7
+Music_Evolution_branch_edb99::
+	sound_call Music_Evolution_branch_edba7
 	octave 4
-	A_ 4
-	callchannel Song_Evolution_branch_edba7
+	note A_, 4
+	sound_call Music_Evolution_branch_edba7
 	octave 4
-	B_ 4
-	loopchannel 0, Song_Evolution_branch_edb99
+	note B_, 4
+	sound_loop 0, Music_Evolution_branch_edb99
 
-Song_Evolution_branch_edba7::
+Music_Evolution_branch_edba7::
 	octave 3
-	A_ 2
+	note A_, 2
 	rest 2
 	octave 4
-	D_ 2
+	note D_, 2
 	rest 2
 	octave 3
-	A_ 2
+	note A_, 2
 	rest 2
 	octave 4
-	D_ 2
+	note D_, 2
 	rest 2
 	octave 3
-	A_ 2
+	note A_, 2
 	rest 2
 	octave 4
-	D_ 2
+	note D_, 2
 	rest 2
 	octave 3
-	A_ 2
+	note A_, 2
 	rest 2
-	endchannel
+	sound_ret

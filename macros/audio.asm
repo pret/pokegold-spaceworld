@@ -1,278 +1,315 @@
-Ch0    EQU 0
-Ch1    EQU 1
-Ch2    EQU 2
-Ch3    EQU 3
-Ch4    EQU 4
-Ch5    EQU 5
-Ch6    EQU 6
-Ch7    EQU 7
-
-audio: MACRO
-	db (_NARG - 2) << 6 | \2
-	dw \1_\2
-	IF _NARG > 2
-		db \3
-		dw \1_\3
-	ENDC
-	IF _NARG > 3
-		db \4
-		dw \1_\4
-	ENDC
-	IF _NARG > 4
-		db \5
-		dw \1_\5
-	ENDC
+channel_count: MACRO
+_num_channels = \1 - 1
 ENDM
 
-;format: length [0, 7], pitch change [-7, 7]
-pitchenvelope: MACRO
-	db $10
-	IF \2 > 0
-		db (\1 << 4) | \2
-	ELSE
-		db (\1 << 4) | (%1000 | (\2 * -1))
-	ENDC
+channel: MACRO
+	dn (_num_channels << 2), \1 - 1 ; channel id
+	dw \2 ; address
+_num_channels = 0
 ENDM
 
-;format: length [0, 15], volume [0, 15], volume change [-7, 7], pitch
-squarenote: MACRO
-	db $20 | \1
-	IF \3 < 0
-		db (\2 << 4) | (%1000 | (\3 * -1))
-	ELSE
-		db (\2 << 4) | \3
-	ENDC
-	dw \4
+note: MACRO
+	dn (\1), (\2) - 1 ; pitch, length
 ENDM
 
-;format: length [0, 15], volume [0, 15], volume change [-7, 7], pitch
-noisenote: MACRO
-	db $20 | \1
-	IF \3 < 0
-		db (\2 << 4) | (%1000 | (\3 * -1))
-	ELSE
-		db (\2 << 4) | \3
-	ENDC
-	db \4
+drum_note: MACRO
+	note \1, \2 ; drum instrument, length
 ENDM
 
-;format: rest length (in 16ths)
 rest: MACRO
-	db $00 | (\1 - 1)
+	note 0, \1 ; length
 ENDM
 
-;format: pitch length (in 16ths)
-C_: MACRO
-	db $10 | (\1 - 1)
+square_note: MACRO
+	db \1 ; length
+	IF \3 < 0
+		dn \2, %1000 | (\3 * -1) ; volume envelope
+	ELSE
+		dn \2, \3 ; volume envelope
+	ENDC
+	dw \4 ; frequency
 ENDM
 
-C#: MACRO
-	db $20 | (\1 - 1)
+noise_note: MACRO
+	db \1 ; length
+	IF \3 < 0
+		dn \2, %1000 | (\3 * -1) ; volume envelope
+	ELSE
+		dn \2, \3 ; volume envelope
+	ENDC
+	db \4 ; frequency
 ENDM
 
-D_: MACRO
-	db $30 | (\1 - 1)
-ENDM
+; MusicCommands indexes (see audio/engine.asm)
+	const_def $d0
+FIRST_MUSIC_CMD EQU const_value
 
-D#: MACRO
-	db $40 | (\1 - 1)
-ENDM
-
-E_: MACRO
-	db $50 | (\1 - 1)
-ENDM
-
-F_: MACRO
-	db $60 | (\1 - 1)
-ENDM
-
-F#: MACRO
-	db $70 | (\1 - 1)
-ENDM
-
-G_: MACRO
-	db $80 | (\1 - 1)
-ENDM
-
-G#: MACRO
-	db $90 | (\1 - 1)
-ENDM
-
-A_: MACRO
-	db $A0 | (\1 - 1)
-ENDM
-
-A#: MACRO
-	db $B0 | (\1 - 1)
-ENDM
-
-B_: MACRO
-	db $C0 | (\1 - 1)
-ENDM
-
-;format: instrument length (in 16ths)
-snare1: MACRO
-	db $10 | (\1 - 1)
-ENDM
-
-snare2: MACRO
-	db $20 | (\1 - 1)
-ENDM
-
-snare3: MACRO
-	db $30 | (\1 - 1)
-ENDM
-
-snare4: MACRO
-	db $40 | (\1 - 1)
-ENDM
-
-snare5: MACRO
-	db $50 | (\1 - 1)
-ENDM
-
-triangle1: MACRO
-	db $60 | (\1 - 1)
-ENDM
-
-triangle2: MACRO
-	db $70 | (\1 - 1)
-ENDM
-
-snare6: MACRO
-	db $80 | (\1 - 1)
-ENDM
-
-snare7: MACRO
-	db $90 | (\1 - 1)
-ENDM
-
-snare8: MACRO
-	db $A0 | (\1 - 1)
-ENDM
-
-snare9: MACRO
-	db $B0 | (\1 - 1)
-ENDM
-
-cymbal1: MACRO
-	db $C0 | (\1 - 1)
-ENDM
-
-cymbal2: MACRO
-	db $D0 | (\1 - 1)
-ENDM
-
-cymbal3: MACRO
-	db $E0 | (\1 - 1)
-ENDM
-
-mutedsnare1: MACRO
-	db $F0 | (\1 - 1)
-ENDM
-
-; TODO: clean up handling of drumsets
-;triangle3: MACRO
-;	db $10 | (\1 - 1)
-;ENDM
-
-;mutedsnare2: MACRO
-;	db $11 | (\1 - 1)
-;ENDM
-
-;mutedsnare3: MACRO
-;	db $12 | (\1 - 1)
-;ENDM
-
-;mutedsnare4: MACRO
-;	db $13 | (\1 - 1)
-;ENDM
-
+	const octave_cmd ; $d0
 octave: MACRO
-	db $D8 - \1
+	db octave_cmd | 8 - (\1) ; octave
 ENDM
 
-; format: notetype speed, volume, fade
-notetype: MACRO
-	db $D8
-	db \1
-	db (\2 << 4) | \3
+	const_skip 7 ; all octave values
+
+	const note_type_cmd ; $d8
+note_type: MACRO
+	db note_type_cmd
+	db \1 ; note length
+	IF _NARG >= 2
+		IF \3 < 0
+			dn \2, %1000 | (\3 * -1) ; volume envelope
+		ELSE
+			dn \2, \3 ; volume envelope
+		ENDC
+	ENDC
 ENDM
 
-dspeed: MACRO
-	db $D8
-	db \1
+; only valid on the noise channel
+drum_speed: MACRO
+	note_type \1 ; note length
 ENDM
 
+	const transpose_cmd ; $d9
+transpose: MACRO
+	db transpose_cmd
+	dn \1, \2 ; num octaves, num pitches
+ENDM
+
+	const tempo_cmd ; $da
 tempo: MACRO
-	db $DA
-	db \1 / $100
-	db \1 % $100
+	db tempo_cmd
+	bigdw \1 ; tempo
 ENDM
 
-duty: MACRO
-	db $DB
-	db \1
+	const duty_cycle_cmd ; $db
+duty_cycle: MACRO
+	db duty_cycle_cmd
+	db \1 ; duty cycle
 ENDM
 
-pitchbend: MACRO
-	db $E0
-	db \1
-	db \2
+	const volume_envelope_cmd ; $dc
+volume_envelope: MACRO
+	db volume_envelope_cmd
+	IF \2 < 0
+		dn \1, %1000 | (\2 * -1) ; volume envelope
+	ELSE
+		dn \1, \2 ; volume envelope
+	ENDC
 ENDM
 
-;format: vibrato delay, rate, depth
+	const pitch_sweep_cmd ; $dd
+pitch_sweep: MACRO
+	db pitch_sweep_cmd
+	IF \2 < 0
+		dn \1, %1000 | (\2 * -1) ; pitch sweep
+	ELSE
+		dn \1, \2 ; pitch sweep
+	ENDC
+ENDM
+
+	const duty_cycle_pattern_cmd ; $de
+duty_cycle_pattern: MACRO
+	db duty_cycle_pattern_cmd
+	db (\1 << 6) | (\2 << 4) | (\3 << 2) | (\4 << 0) ; duty cycle pattern
+ENDM
+
+	const toggle_sfx_cmd ; $df
+toggle_sfx: MACRO
+	db toggle_sfx_cmd
+ENDM
+
+	const pitch_slide_cmd ; $e0
+pitch_slide: MACRO
+	db pitch_slide_cmd
+	db \1 - 1 ; duration
+	dn 8 - \2, \3 % 12 ; octave, pitch
+ENDM
+
+	const vibrato_cmd ; $e1
 vibrato: MACRO
-	db $E1
-	db \1
-	db (\2 << 4) | \3
+	db vibrato_cmd
+	db \1 ; delay
+	IF _NARG > 2
+		dn \2, \3 ; extent, rate
+	ELSE
+		db \2 ; LEGACY: Support for 1-arg extent
+	ENDC
 ENDM
 
-drumset: MACRO
-	db $E3
-	db \1
+	const unknownmusic0xe2_cmd ; $e2
+unknownmusic0xe2: MACRO
+	db unknownmusic0xe2_cmd
+	db \1 ; unknown
 ENDM
 
+	const toggle_noise_cmd ; $e3
+toggle_noise: MACRO
+	db toggle_noise_cmd
+	IF _NARG > 0
+		db \1 ; drum kit
+	ENDC
+ENDM
+
+	const force_stereo_panning_cmd ; $e4
+force_stereo_panning: MACRO
+	db force_stereo_panning_cmd
+	dn %1111 * (1 && \1), %1111 * (1 && \2) ; left enable, right enable
+ENDM
+
+	const volume_cmd ; $e5
 volume: MACRO
-	db $E5
-	db (\1 << 4) | \2
+	db volume_cmd
+	IF _NARG > 1
+		dn \1, \2 ; left volume, right volume
+	ELSE
+		db \1 ; LEGACY: Support for 1-arg volume
+	ENDC
 ENDM
 
-toggleperfectpitch: MACRO
-	db $E6
+	const pitch_offset_cmd ; $e6
+pitch_offset: MACRO
+	db pitch_offset_cmd
+	bigdw \1 ; pitch offset
 ENDM
 
-stereopanning: MACRO
-	db $EE
-	db \1
+	const unknownmusic0xe7_cmd ; $e7
+unknownmusic0xe7: MACRO
+	db unknownmusic0xe7_cmd
+	db \1 ; unknown
 ENDM
 
-;executemusic: MACRO
-;	db $F8
-;ENDM
-
-unknown_f9: MACRO
-	db $F9
+	const unknownmusic0xe8_cmd ; $e8
+unknownmusic0xe8: MACRO
+	db unknownmusic0xe8_cmd
+	db \1 ; unknown
 ENDM
 
-;dutycycle: MACRO
-;	db $FC
-;	db \1
-;ENDM
-
-;format: loopchannel count, address
-loopchannel: MACRO
-	db $FD
-	db \1
-	dw \2
+	const tempo_relative_cmd ; $e9
+tempo_relative: MACRO
+	db tempo_relative_cmd
+	bigdw \1 ; tempo adjustment
 ENDM
 
-;format: callchannel address
-callchannel: MACRO
-	db $FE
-	dw \1
+	const restart_channel_cmd ; $ea
+restart_channel: MACRO
+	db restart_channel_cmd
+	dw \1 ; address
 ENDM
 
-endchannel: MACRO
-	db $FF
+	const new_song_cmd ; $eb
+new_song: MACRO
+	db new_song_cmd
+	bigdw \1 ; id
+ENDM
+
+	const sfx_priority_on_cmd ; $ec
+sfx_priority_on: MACRO
+	db sfx_priority_on_cmd
+ENDM
+
+	const sfx_priority_off_cmd ; $ed
+sfx_priority_off: MACRO
+	db sfx_priority_off_cmd
+ENDM
+
+	const unknownmusic0xee_cmd ; $ee
+unknownmusic0xee: MACRO
+	db unknownmusic0xee_cmd
+	dw \1 ; address
+ENDM
+
+	const unknownmusic0xef_cmd ; $ef
+unknownmusic0xef: MACRO
+	db unknownmusic0xef_cmd
+	dw \1 ; address
+ENDM
+
+	const sfx_toggle_noise_cmd ; $f0
+sfx_toggle_noise: MACRO
+	db sfx_toggle_noise_cmd
+	IF _NARG > 0
+		db \1 ; drum kit
+	ENDC
+ENDM
+
+	const music0xf1_cmd ; $f1
+music0xf1: MACRO
+	db music0xf1_cmd
+ENDM
+
+	const music0xf2_cmd ; $f2
+music0xf2: MACRO
+	db music0xf2_cmd
+ENDM
+
+	const music0xf3_cmd ; $f3
+music0xf3: MACRO
+	db music0xf3_cmd
+ENDM
+
+	const music0xf4_cmd ; $f4
+music0xf4: MACRO
+	db music0xf4_cmd
+ENDM
+
+	const music0xf5_cmd ; $f5
+music0xf5: MACRO
+	db music0xf5_cmd
+ENDM
+
+	const music0xf6_cmd ; $f6
+music0xf6: MACRO
+	db music0xf6_cmd
+ENDM
+
+	const music0xf7_cmd ; $f7
+music0xf7: MACRO
+	db music0xf7_cmd
+ENDM
+
+	const music0xf8_cmd ; $f8
+music0xf8: MACRO
+	db music0xf8_cmd
+ENDM
+
+	const unknownmusic0xf9_cmd ; $f9
+unknownmusic0xf9: MACRO
+	db unknownmusic0xf9_cmd
+ENDM
+
+	const set_condition_cmd ; $fa
+set_condition: MACRO
+	db set_condition_cmd
+	db \1 ; condition
+ENDM
+
+	const sound_jump_if_cmd ; $fb
+sound_jump_if: MACRO
+	db sound_jump_if_cmd
+	db \1 ; condition
+	dw \2 ; address
+ENDM
+
+	const sound_jump_cmd ; $fc
+sound_jump: MACRO
+	db sound_jump_cmd
+	dw \1 ; address
+ENDM
+
+	const sound_loop_cmd ; $fd
+sound_loop: MACRO
+	db sound_loop_cmd
+	db \1 ; count
+	dw \2 ; address
+ENDM
+
+	const sound_call_cmd ; $fe
+sound_call: MACRO
+	db sound_call_cmd
+	dw \1 ; address
+ENDM
+
+	const sound_ret_cmd ; $ff
+sound_ret: MACRO
+	db sound_ret_cmd
 ENDM
