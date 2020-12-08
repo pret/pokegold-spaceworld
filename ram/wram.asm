@@ -154,10 +154,11 @@ wOverworldMapBlocksEnd::
 
 NEXTU
 
-wLYOverrides::
-	ds SCREEN_HEIGHT_PX
-	ds $10
-wLYOverrides2::
+wLYOverrides:: ds SCREEN_HEIGHT_PX
+wLYOverridesEnd:: db
+	ds 15
+wLYOverrides2:: ds SCREEN_HEIGHT_PX
+wLYOverrides2End::
 
 NEXTU
 ; Battle-related
@@ -329,13 +330,13 @@ wNamedObjectTypeBuffer:: db
 SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db
 
-UNION
-wcb5f::	db
-NEXTU
-wFlyDestination:: db
-ENDU
+wFlyDestination::
+wBattleTransitionCounter:: db
 
+wBattleTransitionSineWaveOffset::
+wBattleTransitionSpinQuadrant::
 wcb60:: ds 1
+
 wcb61:: ds 1
 
 wVBCopySize:: ds 1
