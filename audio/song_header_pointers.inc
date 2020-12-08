@@ -1,14 +1,14 @@
 SongHeaderPointers:
-	dba Song_None
-	dba Song_Title
-	dba Song_Route1
-	dba Song_OakIntro
-	dba Song_LeaderBattle
-	dba Song_TrainerBattle
-	dba Song_NidorinoIntro
-	dba Song_ViridianCity
-	dba Song_Heal
-	dba Song_Bicycle
-	dba Song_SpottedRocket
-	dba Song_VictoryTrainer
-	dba Song_Evolution
+	dba Music_None
+	dba Music_Title
+	dba Music_Route1
+	dba Music_OakIntro
+	dba Music_LeaderBattle
+	dba Music_TrainerBattle
+	dba Music_NidorinoIntro
+	dba Music_ViridianCity
+	dba Music_Heal
+	dba Music_Bicycle
+	dba Music_SpottedRocket
+	dba Music_VictoryTrainer
+	dba Music_Evolution

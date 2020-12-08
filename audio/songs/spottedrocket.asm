@@ -2,93 +2,89 @@ INCLUDE "constants.asm"
 
 SECTION "audio/songs/spottedrocket.asm", ROMX
 
-Song_SpottedRocket::
-	db 2 << 6 | 0
-	dw Song_SpottedRocket_Ch0
-	db 1
-	dw Song_SpottedRocket_Ch1
-	db 2
-	dw Song_SpottedRocket_Ch2
+Music_SpottedRocket::
+	channel_count 3
+	channel 1, Music_SpottedRocket_Ch1
+	channel 2, Music_SpottedRocket_Ch2
+	channel 3, Music_SpottedRocket_Ch3
 
-Song_SpottedRocket_Ch0::
+Music_SpottedRocket_Ch1::
 	tempo 124
 	volume 7, 7
-	duty 2
-	toggleperfectpitch
-	rest 1
-	rest 2
-	notetype 12, 11, 1
+	duty_cycle 2
+	pitch_offset 1
+	note_type 12, 11, 1
 	rest 4
 	octave 3
-	D_ 2
-	C# 2
-	notetype 12, 4, 15
-	D_ 4
+	note D_, 2
+	note C#, 2
+	note_type 12, 4, 15
+	note D_, 4
 
-Song_SpottedRocket_branch_ed996::
-	notetype 12, 10, 1
-	D_ 4
-	D_ 4
-	D_ 4
-	notetype 12, 7, 0
-	D_ 4
-	loopchannel 0, Song_SpottedRocket_branch_ed996
+Music_SpottedRocket_branch_ed996::
+	note_type 12, 10, 1
+	note D_, 4
+	note D_, 4
+	note D_, 4
+	note_type 12, 7, 0
+	note D_, 4
+	sound_loop 0, Music_SpottedRocket_branch_ed996
 
 
-Song_SpottedRocket_Ch1::
-	duty 1
-	notetype 12, 11, 6
+Music_SpottedRocket_Ch2::
+	duty_cycle 1
+	note_type 12, 11, 6
 	octave 3
-	B_ 2
-	A# 2
-	B_ 8
+	note B_, 2
+	note A#, 2
+	note B_, 8
 
-Song_SpottedRocket_branch_ed9ad::
-	notetype 12, 12, 2
+Music_SpottedRocket_branch_ed9ad::
+	note_type 12, 12, 2
 	octave 4
-	D# 2
-	D_ 2
-	C# 2
-	C_ 2
+	note D#, 2
+	note D_, 2
+	note C#, 2
+	note C_, 2
 	octave 3
-	B_ 4
-	B_ 4
-	B_ 4
-	B_ 4
-	B_ 4
-	notetype 12, 4, 15
-	A# 4
-	notetype 12, 12, 2
-	G_ 2
-	G# 2
-	A_ 2
-	A# 2
-	B_ 4
-	B_ 4
-	B_ 4
-	B_ 4
-	B_ 4
-	notetype 12, 3, 15
-	A# 4
-	notetype 12, 12, 2
-	loopchannel 0, Song_SpottedRocket_branch_ed9ad
+	note B_, 4
+	note B_, 4
+	note B_, 4
+	note B_, 4
+	note B_, 4
+	note_type 12, 4, 15
+	note A#, 4
+	note_type 12, 12, 2
+	note G_, 2
+	note G#, 2
+	note A_, 2
+	note A#, 2
+	note B_, 4
+	note B_, 4
+	note B_, 4
+	note B_, 4
+	note B_, 4
+	note_type 12, 3, 15
+	note A#, 4
+	note_type 12, 12, 2
+	sound_loop 0, Music_SpottedRocket_branch_ed9ad
 
 
-Song_SpottedRocket_Ch2::
-	notetype 12, 1, 0
+Music_SpottedRocket_Ch3::
+	note_type 12, 1, 0
 	rest 8
 	octave 4
-	F# 1
+	note F#, 1
 	rest 1
-	F_ 1
+	note F_, 1
 	rest 1
 
-Song_SpottedRocket_branch_ed9df::
-	F# 1
+Music_SpottedRocket_branch_ed9df::
+	note F#, 1
 	rest 3
-	F# 1
+	note F#, 1
 	rest 3
-	F# 1
+	note F#, 1
 	rest 3
-	A# 4
-	loopchannel 0, Song_SpottedRocket_branch_ed9df
+	note A#, 4
+	sound_loop 0, Music_SpottedRocket_branch_ed9df
