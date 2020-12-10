@@ -161,12 +161,12 @@ TitleSequenceInit::
 	ret
 
 FirePositionTable::
-	dw $4CE0
-	dw $58A0
-	dw $6490
-	dw $70D0
-	dw $7CB0
-	dw $8800
+	dbpixel 28,  9,  0,  4
+	dbpixel 20, 11,  0,  0
+	dbpixel 18, 12,  0,  4
+	dbpixel 26, 14,  0,  0
+	dbpixel 22, 15,  0,  4
+	dbpixel  0, 17,  0,  0
 
 TitleFireGFX:: INCBIN "gfx/title/fire.2bpp"
 TitleNotesGFX:: INCBIN "gfx/title/notes.2bpp"

@@ -1150,7 +1150,7 @@ Function886a:
 	ld hl, vChars0 + $40
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
-	ld de, $0000
+	depixel 0, 0
 	ld a, $41
 	call InitSpriteAnimStruct
 	ld hl, $0003
@@ -1188,7 +1188,7 @@ Function88b3:
 	ld hl, vChars0 + $c0
 	lb bc, BANK(PidgeySpriteGFX), $04
 	call Request2bpp
-	ld de, $0000
+	depixel 0, 0
 	ld a, $41
 	call InitSpriteAnimStruct
 	ld hl, $0003
@@ -1443,7 +1443,7 @@ Function8c21:
 	ld hl, wTileMapBackup
 	ld [hli], a
 	ld [hl], $7c
-	ld de, $241c
+	depixel 4, 3, 4, 4
 	ld a, $44
 	call InitSpriteAnimStruct
 	call Function8c1c
@@ -1568,7 +1568,7 @@ Function8cb7:
 	ld hl, Text91c2
 	call PrintText
 	call WaitBGMap
-	ld de, $4c23
+	depixel 9, 4, 4, 3
 	ld a, $44
 	call InitSpriteAnimStruct
 	ld hl, $0002
@@ -1577,7 +1577,7 @@ Function8cb7:
 	ld hl, $0003
 	add hl, bc
 	ld [hl], $7c
-	ld de, $4030
+	depixel 8, 6
 	ld a, $4b
 	call InitSpriteAnimStruct
 	ld hl, $0003

@@ -168,7 +168,7 @@ GameFreakPresents_Wait64Frames:
 GameFreakPresents_Star:
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld de, $5458
+	depixel 10, 11, 4, 0
 	ld a, $3b	; SPRITE_ANIM_INDEX_GS_INTRO_STAR
 	call InitSpriteAnimStruct
 
@@ -186,7 +186,7 @@ GameFreakPresents_PlaceLogo:
 	and a
 	ret z
 
-	ld de, $5458
+	depixel 10, 11, 4, 0
 	ld a, $3a	; SPRITE_ANIM_INDEX_GAMEFREAK_LOGO
 	call InitSpriteAnimStruct
 	call GameFreakPresents_NextScene
@@ -292,7 +292,7 @@ GameFreakPresents_Sparkle:
 	srl a
 ; set up a new sparkle sprite
 	push af
-	ld de, $5858
+	depixel 11, 11
 	ld a, $3c
 	call InitSpriteAnimStruct
 	pop af

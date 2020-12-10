@@ -370,12 +370,11 @@ Intro_InitBubble:
 	db $40, $88
 
 Intro_InitMagikarps:
-	ld de, $403f
+	depixel 8, 7, 0, 7
 	ld a, [wSGB]
 	and a
 	jr z, .ok
-
-	ld de, $201f
+	depixel 4, 3, 0, 7
 
 .ok
 	ld hl, wIntroFrameCounter2
@@ -385,20 +384,25 @@ Intro_InitMagikarps:
 	ld a, [hl]
 	and d
 	jr nz, .alternate_frame
-	ld de, $e8e0
+
+	depixel 29, 28
 	call .PlaceMagikarp
-	ld de, wObject8SpriteXOffset
+
+	depixel 26, 0
 	call .PlaceMagikarp
-	ld de, $00c0
+
+	depixel 0, 24
 	call .PlaceMagikarp
 	ret
 
 .alternate_frame
-	ld de, $e0f0
+	depixel 28, 30
 	call .PlaceMagikarp
-	ld de, $f8c0
+
+	depixel 31, 24
 	call .PlaceMagikarp
-	ld de, $10e0
+
+	depixel 2, 28
 	call .PlaceMagikarp
 	ret
 
@@ -408,11 +412,12 @@ Intro_InitMagikarps:
 	ret
 
 Intro_InitOmanyte:
-	ld de, $9038
+	depixel 18, 7
 	call .PlaceOmanyte
-	ld de, $7050
+	depixel 14, 10
 	call .PlaceOmanyte
-	ld de, $8078
+	depixel 16, 15
+; fallback
 
 .PlaceOmanyte:
 	ld a, $22		; SPRITE_ANIM_INDEX_GS_INTRO_SHELLDER
@@ -423,13 +428,13 @@ Intro_InitLapras:
 	ld a, [wIntroFrameCounter2]
 	and %00011111
 	ret nz
-	ld de, $80c0
+	depixel 16, 24
 	ld a, $25		; SPRITE_ANIM_INDEX_GS_INTRO_LAPRAS
 	call InitSpriteAnimStruct
 	ret
 
 Intro_UnusedInitAerodactyl:	; unreferenced
-	ld de, $1000
+	depixel 2, 0
 	ld a, $24		; SPRITE_ANIM_INDEX_UNUSED_INTRO_AERODACTYL
 	call InitSpriteAnimStruct
 	ret
@@ -752,30 +757,30 @@ Intro_InitNote:
 	and $7f
 	jr z, .SmallerNote
 
-	ld de, $5c30
+	depixel 11, 6, 4, 0
 	ld a, $26	; SPRITE_ANIM_INDEX_GS_INTRO_NOTE
 	call InitSpriteAnimStruct
 	ret
 
 .SmallerNote:
-	ld de, $5430
+	depixel 10, 6, 4, 0
 	ld a, $27	; SPRITE_ANIM_INDEX_GS_INTRO_SMALLER_NOTE
 	call InitSpriteAnimStruct
 	ret
 
 
 Intro_InitJigglypuff:
-	ld de, $7030
+	depixel 14, 6
 	ld a, $28	; SPRITE_ANIM_INDEX_GS_INTRO_JIGGLYPUFF
 	call InitSpriteAnimStruct
 	ret
 
 
 Intro_InitPikachu:
-	ld de, $70c0
+	depixel 14, 24
 	ld a, $29	; SPRITE_ANIM_INDEX_GS_INTRO_PIKACHU
 	call InitSpriteAnimStruct
-	ld de, $70c0
+	depixel 14, 24
 	ld a, $2a	; SPRITE_ANIM_INDEX_GS_INTRO_PIKACHU_TAIL
 	call InitSpriteAnimStruct
 	ret
@@ -1123,7 +1128,7 @@ Intro_AnimateFireball:
 	inc [hl]
 	and 3
 	ret nz
-	ld de, $6454
+	depixel 12, 10, 4, 4
 	ld a, $2b	; SPRITE_ANIM_INDEX_GS_INTRO_FIREBALL
 	call InitSpriteAnimStruct
 	ld hl, hSCX
@@ -1133,13 +1138,13 @@ Intro_AnimateFireball:
 	ret
 
 Intro_LoadBlastoiseObject:
-	ld de, $b008
+	depixel 22, 1
 	ld a, $2c	; SPRITE_ANIM_INDEX_GS_INTRO_BLASTOISE
 	call InitSpriteAnimStruct
 	ret
 
 Intro_LoadVenusaurObject:
-	ld de, $b0a0
+	depixel 22, 20
 	ld a, $2d	; SPRITE_ANIM_INDEX_GS_INTRO_VENUSAUR
 	call InitSpriteAnimStruct
 	ret

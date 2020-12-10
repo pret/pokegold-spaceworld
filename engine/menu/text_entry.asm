@@ -147,7 +147,7 @@ GetNamingScreenSetup:
 	ld hl, wTileMapBackup
 	ld [hl+], a
 	ld [hl], $00
-	ld de, $2420
+	depixel 4, 4, 4, 0
 	ld a, $41
 	call InitSpriteAnimStruct
 	ld hl, $0001
@@ -180,7 +180,7 @@ GetNamingScreenSetup:
 	ld hl, wTileMapBackup
 	ld [hli], a
 	ld [hl], $00
-	ld de, $2420
+	depixel 4, 4, 4, 0
 	ld a, $41
 	call InitSpriteAnimStruct
 	ret
@@ -301,7 +301,7 @@ NamingScreenJoypadLoop:
 	dw .ReadButtons
 
 .InitCursor:
-	ld de, $5818
+	depixel 11, 3, 0, 0
 	ld a, $39
 	call InitSpriteAnimStruct
 	ld a, c
@@ -728,13 +728,13 @@ ComposeMailMessage:
 	ld hl, wTileMapBackup
 	ld [hli], a
 	ld [hl], 0
-	ld de, $2420
+	depixel 4, 4, 4, 0
 	ld a, 8
 	call InitSpriteAnimStruct
 	ld hl, $0002
 	add hl, bc
 	ld [hl], 0
-	ld de, $5818
+	depixel 11, 3, 0, 0
 	ld a, $39
 	call InitSpriteAnimStruct
 	ld a, c
@@ -945,13 +945,13 @@ SetupMail:
 	ld hl, wTileMapBackup
 	ld [hli], a
 	ld [hl], 0
-	ld de, $2420
+	depixel 4, 4, 4, 0
 	ld a, 8
 	call InitSpriteAnimStruct
 	ld hl, $0002
 	add hl, bc
 	ld [hl], 0
-	ld de, $6018
+	depixel 12, 3, 0, 0
 	ld a, $40
 	call InitSpriteAnimStruct
 	ld a, c
