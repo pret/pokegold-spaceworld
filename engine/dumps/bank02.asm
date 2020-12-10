@@ -1151,7 +1151,7 @@ Function886a:
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
 	depixel 0, 0
-	ld a, $41
+	ld a, SPRITE_ANIM_INDEX_41
 	call InitSpriteAnimStruct
 	ld hl, $0003
 	add hl, bc
@@ -1189,7 +1189,7 @@ Function88b3:
 	lb bc, BANK(PidgeySpriteGFX), $04
 	call Request2bpp
 	depixel 0, 0
-	ld a, $41
+	ld a, SPRITE_ANIM_INDEX_41
 	call InitSpriteAnimStruct
 	ld hl, $0003
 	add hl, bc
@@ -1444,7 +1444,7 @@ Function8c21:
 	ld [hli], a
 	ld [hl], $7c
 	depixel 4, 3, 4, 4
-	ld a, $44
+	ld a, SPRITE_ANIM_INDEX_44
 	call InitSpriteAnimStruct
 	call Function8c1c
 	ret
@@ -1569,7 +1569,7 @@ Function8cb7:
 	call PrintText
 	call WaitBGMap
 	depixel 9, 4, 4, 3
-	ld a, $44
+	ld a, SPRITE_ANIM_INDEX_44
 	call InitSpriteAnimStruct
 	ld hl, $0002
 	add hl, bc
@@ -1578,7 +1578,7 @@ Function8cb7:
 	add hl, bc
 	ld [hl], $7c
 	depixel 8, 6
-	ld a, $4b
+	ld a, SPRITE_ANIM_INDEX_4B
 	call InitSpriteAnimStruct
 	ld hl, $0003
 	add hl, bc

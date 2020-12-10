@@ -152,7 +152,7 @@ TitleSequenceInit::
 	ld d, [hl]
 	inc hl
 	push hl
-	ld a, $2E ; Title fire/note object effect type?
+	ld a, SPRITE_ANIM_INDEX_GS_TITLE_FLAME_NOTE
 	call InitSpriteAnimStruct
 	pop hl
 	pop bc

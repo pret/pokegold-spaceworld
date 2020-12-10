@@ -148,7 +148,7 @@ GetNamingScreenSetup:
 	ld [hl+], a
 	ld [hl], $00
 	depixel 4, 4, 4, 0
-	ld a, $41
+	ld a, SPRITE_ANIM_INDEX_41
 	call InitSpriteAnimStruct
 	ld hl, $0001
 	add hl, bc
@@ -181,7 +181,7 @@ GetNamingScreenSetup:
 	ld [hli], a
 	ld [hl], $00
 	depixel 4, 4, 4, 0
-	ld a, $41
+	ld a, SPRITE_ANIM_INDEX_41
 	call InitSpriteAnimStruct
 	ret
 
@@ -302,7 +302,7 @@ NamingScreenJoypadLoop:
 
 .InitCursor:
 	depixel 11, 3, 0, 0
-	ld a, $39
+	ld a, SPRITE_ANIM_INDEX_39
 	call InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a
@@ -729,13 +729,13 @@ ComposeMailMessage:
 	ld [hli], a
 	ld [hl], 0
 	depixel 4, 4, 4, 0
-	ld a, 8
+	ld a, SPRITE_ANIM_INDEX_08
 	call InitSpriteAnimStruct
 	ld hl, $0002
 	add hl, bc
 	ld [hl], 0
 	depixel 11, 3, 0, 0
-	ld a, $39
+	ld a, SPRITE_ANIM_INDEX_39
 	call InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a
@@ -946,13 +946,13 @@ SetupMail:
 	ld [hli], a
 	ld [hl], 0
 	depixel 4, 4, 4, 0
-	ld a, 8
+	ld a, SPRITE_ANIM_INDEX_08
 	call InitSpriteAnimStruct
 	ld hl, $0002
 	add hl, bc
 	ld [hl], 0
 	depixel 12, 3, 0, 0
-	ld a, $40
+	ld a, SPRITE_ANIM_INDEX_40
 	call InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a
