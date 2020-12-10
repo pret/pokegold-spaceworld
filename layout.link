@@ -901,6 +901,7 @@ ROMX $39
 	"gfx.asm@Intro Underwater GFX"
 	"gfx.asm@Intro Forest GFX"
 	"gfx.asm@Intro Mon"
+	"slack.asm@Unknowne7e9f"
 
 ROMX $3a
 	org $4000
