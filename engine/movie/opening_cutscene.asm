@@ -362,12 +362,12 @@ Intro_InitBubble:
 	ret
 
 .pixel_table
-	db $30, $74
-	db $70, $94
-	db $50, $84
-	db $60, $78
-	db $20, $68
-	db $40, $88
+	dbpixel  6, 14,  0,  4
+	dbpixel 14, 18,  0,  4
+	dbpixel 10, 16,  0,  4
+	dbpixel 12, 15,  0,  0
+	dbpixel  4, 13,  0,  0
+	dbpixel  8, 17,  0,  0
 
 Intro_InitMagikarps:
 	depixel 8, 7, 0, 7
