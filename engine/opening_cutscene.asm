@@ -142,7 +142,7 @@ IntroScene1:	; 43b8
 	ld a, $80
 	ld [wIntroFrameCounter1], a
 
-	ld a, $42
+	ld a, LOW(rSCY)
 	ldh [hLCDCPointer], a
 	call Intro_InitSineLYOverrides
 
