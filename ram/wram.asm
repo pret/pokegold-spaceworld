@@ -91,6 +91,10 @@ wTileMapBackup::
 
 NEXTU
 
+wSpriteAnimDict:: ds 10 * 2 ; NUM_SPRITEANIMDICT_ENTRIES * 2
+
+NEXTU
+
 	ds 1
 
 wc409:: ds 1
@@ -115,7 +119,10 @@ wSpriteAnimIDBuffer:: db
 
 	ds 6
 
+wGlobalAnimYOffset::
 wc4c7:: db
+
+wGlobalAnimXOffset::
 wc4c8:: db
 
 	ds 7
@@ -229,13 +236,31 @@ wca0a:: ds 1
 
 	ds 5 ; TODO
 
+wIntroJumptableIndex::
 wca10:: ds 1
+
+UNION
+wIntroBGMapPointer:: ds 2 ; ca11
+NEXTU
 wca11:: ds 1
 wca12:: ds 1
+ENDU
+
+UNION
+wIntroTilemapPointer:: ds 2 ; ca13
+NEXTU
 wca13:: ds 1
 wca14:: ds 1
+ENDU
 
-	ds $22 ; TODO
+wIntroTilesPointer:: ds 2 ; ca15
+
+wIntroFrameCounter1:: ds 1 ; ca17
+wIntroFrameCounter2:: ds 1 ; ca18
+
+wIntroSpriteStateFlag:: ds 1 ; ca19
+
+	ds $1d ; TODO
 
 wca37:: ds 1
 wca38:: ds 1
