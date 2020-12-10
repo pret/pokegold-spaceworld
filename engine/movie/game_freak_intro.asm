@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/game_freak_intro.asm", ROMX
+SECTION "engine/movie/game_freak_intro.asm", ROMX
 
 GameFreakIntro::
 ; Copyright screen and Game Freak logo

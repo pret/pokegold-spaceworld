@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/opening_cutscene.asm", ROMX
+SECTION "engine/movie/opening_cutscene.asm", ROMX
 
 OpeningCutscene::
 	call .Init

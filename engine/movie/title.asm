@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/title.asm@Title screen", ROMX
+SECTION "engine/movie/title.asm@Title screen", ROMX
 
 IntroSequence::
 	callab GameFreakIntro
@@ -627,7 +627,7 @@ SetTitleGfxNext::
 	jr nz, .loop
 	ret
 
-SECTION "engine/title.asm@Title screen TEMPORARY", ROMX
+SECTION "engine/movie/title.asm@Title screen TEMPORARY", ROMX
 
 GameInit::
 	call ClearWindowData

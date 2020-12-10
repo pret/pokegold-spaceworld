@@ -102,9 +102,9 @@ ROMX $01
 	"engine/menu/main_menu.asm@Initialize new game WRAM"
 	"engine/dumps/bank01.asm@Function5388"
 	"engine/menu/main_menu.asm@MainMenu"
-	"engine/intro.asm"
-	"engine/title.asm@Title screen"
-	"engine/title.asm@Title screen TEMPORARY"
+	"engine/movie/oak_speech.asm"
+	"engine/movie/title.asm@Title screen"
+	"engine/movie/title.asm@Title screen TEMPORARY"
 	"engine/predef.asm"
 	"engine/dumps/bank01.asm@ReanchorBGMap_NoOAMUpdate"
 	"engine/math/math.asm"
@@ -895,9 +895,9 @@ ROMX $38
 
 ROMX $39
 	org $4000
-	"engine/game_freak_intro.asm"
+	"engine/movie/game_freak_intro.asm"
 	"gfx.asm@Gamefreak Logo GFX"
-	"engine/opening_cutscene.asm"
+	"engine/movie/opening_cutscene.asm"
 	"gfx.asm@Intro Underwater GFX"
 	"gfx.asm@Intro Forest GFX"
 	"gfx.asm@Intro Mon"
