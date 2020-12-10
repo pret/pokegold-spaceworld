@@ -356,10 +356,12 @@ SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db
 
 wFlyDestination::
+wIntroSceneFrameCounter::
 wBattleTransitionCounter:: db
 
 wBattleTransitionSineWaveOffset::
 wBattleTransitionSpinQuadrant::
+wIntroSceneTimer::
 wcb60:: ds 1
 
 wcb61:: ds 1
