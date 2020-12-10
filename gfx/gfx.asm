@@ -546,12 +546,20 @@ INCBIN "gfx/splash/game_freak_logo_oam.2bpp"
 SECTION "gfx.asm@Intro Underwater GFX", ROMX
 IntroUnderwaterGFX::
 INCBIN "gfx/intro/underwater.2bpp"
-
-SECTION "gfx.asm@Intro Water Mon and Forest GFX", ROMX
+Intro_WaterTilemap::
+INCBIN "gfx/intro/water_tilemap.bin"
+Intro_WaterMeta::
+INCBIN "gfx/intro/water.bin"
 IntroWaterPokemonGFX::
 INCBIN "gfx/intro/water_pokemon.2bpp"
+
+SECTION "gfx.asm@Intro Forest GFX", ROMX
 IntroForestGFX::
 INCBIN "gfx/intro/forest.2bpp"
+Intro_GrassTilemap::
+INCBIN "gfx/intro/forest_tilemap.bin"
+Intro_GrassMeta::
+INCBIN "gfx/intro/forest.bin"
 
 SECTION "gfx.asm@Intro Mon", ROMX
 IntroJigglypuffPikachuGFX::

@@ -899,11 +899,8 @@ ROMX $39
 	"gfx.asm@Gamefreak Logo GFX"
 	org $432F
 	"engine/opening_cutscene.asm"
-	org $4adf
 	"gfx.asm@Intro Underwater GFX"
-	org $55ef
-	"gfx.asm@Intro Water Mon and Forest GFX"
-	org $626f
+	"gfx.asm@Intro Forest GFX"
 	"gfx.asm@Intro Mon"
 
 ROMX $3a

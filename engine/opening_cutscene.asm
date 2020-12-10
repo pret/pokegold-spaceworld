@@ -89,9 +89,9 @@ IntroScene1:	; 43b8
 	call Intro_Copy128Tiles
 
 ; Load water metatiles
-	ld a, $df
+	ld a, LOW(Intro_WaterMeta)
 	ld [wIntroTilesPointer + 0], a
-	ld a, $54
+	ld a, HIGH(Intro_WaterMeta)
 	ld [wIntroTilesPointer + 1], a
 
 ; Set destination BG map pointer
@@ -101,8 +101,8 @@ IntroScene1:	; 43b8
 	ld a, h
 	ld [wIntroBGMapPointer + 1], a
 
-; Set destination tilemap pointer
-	ld de, $53cf
+; Load water tilemap
+	ld de, Intro_WaterTilemap + 15 tiles
 	ld a, e
 	ld [wIntroTilemapPointer + 0], a
 	ld a, d
@@ -596,16 +596,16 @@ IntroScene6:
 	ld hl, vChars2
 	ld de, IntroForestGFX
 	call Intro_Copy128Tiles
-	ld a, $0f
+	ld a, LOW(Intro_GrassMeta)
 	ld [wIntroTilesPointer + 0], a
-	ld a, $62
+	ld a, HIGH(Intro_GrassMeta)
 	ld [wIntroTilesPointer + 1], a
 	ld hl, vBGMap0
 	ld a, l
 	ld [wIntroBGMapPointer + 0], a
 	ld a, h
 	ld [wIntroBGMapPointer + 1], a
-	ld de, $610f
+	ld de, Intro_GrassTilemap + 2 tiles
 	ld a, e
 	ld [wIntroTilemapPointer + 0], a
 	ld a, d
@@ -1224,5 +1224,3 @@ Intro_ResetLYOverrides:
 	dec c
 	jr nz, .loop
 	ret
-
-;;;;;; GFX goes here ;;;;;;;;;;;;;;;;;;
