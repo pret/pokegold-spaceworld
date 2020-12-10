@@ -112,7 +112,7 @@ IntroScene1:	; 43b8
 ; draw GFX
 	ld hl, IntroWaterPokemonGFX
 	ld de, vChars0
-	ld bc, $0800
+	ld bc, $80 tiles
 .draw_gfx
 	ld a, [hli]
 	ld [de], a
@@ -508,25 +508,29 @@ endr
 	ld [wVBCopySrc], a
 	ld a, h
 	ld [wVBCopySrc + 1], a
-	ld a, $e0
+	ld a, LOW(vBGMap0 + (15 * BG_MAP_WIDTH)) ; vBGMap0 row 15
 	ld [wVBCopyDst], a
-	ld a, $99
+	ld a, HIGH(vBGMap0 + (15 * BG_MAP_WIDTH)) ; vBGMap0 row 15
 	ld [wVBCopyDst + 1], a
 	ld a, 2
 	ld [wVBCopySize], a
 	ret
 .wave_tiles:
+; Fill an entire bg map row with each frame
 rept 8
-	db $70, $71, $72, $73
+	db $70, $71, $72, $73	; frame 1
 endr
+
 rept 8
-	db $74, $75, $76, $77
+	db $74, $75, $76, $77	; frame 2
 endr
+
 rept 8
-	db $78, $79, $7a, $7b
+	db $78, $79, $7a, $7b	; frame 3
 endr
+
 rept 8
-	db $7c, $7d, $7e, $7f
+	db $7c, $7d, $7e, $7f	; frame 4
 endr
 
 Intro_InitSineLYOverrides:
@@ -789,17 +793,17 @@ IntroScene10:
 
 	ld hl, vChars2
 	ld de, IntroCharizard1GFX
-	ld bc, $3980
+	lb bc, BANK(IntroCharizard1GFX), 8 tiles
 	call Request2bpp
 
 	ld hl, vFont
-	ld de, $735f
-	ld bc, $3980
+	ld de, IntroCharizard2GFX tile $40
+	lb bc, BANK(IntroCharizard2GFX), 8 tiles
 	call Request2bpp
 
 	ld hl, vChars0
 	ld de, IntroCharizardFlamesGFX
-	ld bc, $3980
+	lb bc, BANK(IntroCharizardFlamesGFX), 8 tiles
 	call Request2bpp
 
 	ld hl, wSpriteAnimDict
@@ -965,8 +969,8 @@ IntroScene16:
 	db -1
 
 Intro_BlankTilemapAndBGMap:
-	ld hl, $c2a0
-	ld bc, $0168
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 .blank_tilemap
 	ld [hl], 0
 	inc hl
@@ -975,8 +979,8 @@ Intro_BlankTilemapAndBGMap:
 	or c
 	jr nz, .blank_tilemap
 
-	ld hl, $c600
-	ld bc, $0400
+	ld hl, wOverworldMapBlocks	; $c600, buffer
+	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
 .blank_bgmap
 	ld [hl], 0
 	inc hl
@@ -986,8 +990,8 @@ Intro_BlankTilemapAndBGMap:
 	jr nz, .blank_bgmap
 
 	ld hl, vBGMap0
-	ld de, $c600
-	ld bc, $3940
+	ld de, wOverworldMapBlocks	; $c600, buffer
+	lb bc, BANK(@), $40
 	call Request2bpp
 	ret
 

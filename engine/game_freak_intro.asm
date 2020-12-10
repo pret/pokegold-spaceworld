@@ -62,19 +62,19 @@ GameFreakIntro::
 	call DisableLCD
 
 	ld hl, vBGMap0
-	ld bc, $0240
+	ld bc, BG_MAP_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
 
 	ld de, GameFreakLogoGFX
-	ld hl, vFont
-	ld bc, $391c
+	ld hl, vChars1
+	lb bc, BANK(GameFreakLogoGFX), 28
 	call Get1bpp
 
 	ld hl, GameFreakLogoSparkleGFX
-	ld de, $89c0
-	ld bc, $0050
-	ld a, $39
+	ld de, vChars1 tile $1C
+	ld bc, 5 tiles
+	ld a, BANK(GameFreakLogoSparkleGFX)
 	call FarCopyData
 
 	callba InitEffectObject
