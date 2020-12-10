@@ -240,25 +240,25 @@ wIntroJumptableIndex::
 wca10:: ds 1
 
 UNION
-wIntroBGMapPointer:: ds 2 ; ca11
+wIntroBGMapPointer:: ds 2
 NEXTU
 wca11:: ds 1
 wca12:: ds 1
 ENDU
 
 UNION
-wIntroTilemapPointer:: ds 2 ; ca13
+wIntroTilemapPointer:: ds 2
 NEXTU
 wca13:: ds 1
 wca14:: ds 1
 ENDU
 
-wIntroTilesPointer:: ds 2 ; ca15
+wIntroTilesPointer:: ds 2
 
-wIntroFrameCounter1:: ds 1 ; ca17
-wIntroFrameCounter2:: ds 1 ; ca18
+wIntroFrameCounter1:: ds 1
+wIntroFrameCounter2:: ds 1
 
-wIntroSpriteStateFlag:: ds 1 ; ca19
+wIntroSpriteStateFlag:: ds 1
 
 	ds $1d ; TODO
 
