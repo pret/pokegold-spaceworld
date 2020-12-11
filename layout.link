@@ -884,6 +884,7 @@ ROMX $37
 
 ROMX $38
 	org $4000
+	"engine/games/pikachu_minigame.asm@Pikachu Minigame"
 	org $5403
 	"gfx.asm@Poker GFX"
 	org $5f93
