@@ -91,7 +91,7 @@ wTileMapBackup::
 
 NEXTU
 
-wSpriteAnimDict:: ds 10 * 2 ; NUM_SPRITEANIMDICT_ENTRIES * 2
+wSpriteAnimDict:: ds NUM_SPRITEANIMDICT_ENTRIES * 2
 
 NEXTU
 
