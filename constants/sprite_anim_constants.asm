@@ -30,6 +30,9 @@ SPRITE_ANIM_INDEX_GS_INTRO_VENUSAUR             EQU $2d
 
 SPRITE_ANIM_INDEX_GS_TITLE_FLAME_NOTE           EQU $2e
 
+SPRITE_ANIM_INDEX_2F                            EQU $2f
+SPRITE_ANIM_INDEX_30                            EQU $30
+
 SPRITE_ANIM_INDEX_39                            EQU $39
 SPRITE_ANIM_INDEX_GAMEFREAK_LOGO                EQU $3a
 SPRITE_ANIM_INDEX_GS_INTRO_STAR                 EQU $3b

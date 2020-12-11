@@ -168,8 +168,69 @@ wLYOverrides2:: ds SCREEN_HEIGHT_PX
 wLYOverrides2End::
 
 NEXTU
-; Battle-related
 
+; Pikachu minigame
+
+wc600:: ds 1
+wc601:: ds 1
+wc602:: ds 1
+wc603:: ds 1
+wc604:: ds 1
+wc605:: ds 1
+wc606:: ds 1
+wc607:: ds 1
+wc608:: ds 1
+wPikachuMinigameScore:: ds 2
+wc60b:: ds 1
+wc60c:: ds 1
+wc60d:: ds 1
+wc60e:: ds 1
+wc60f:: ds 1
+wPikachuMinigameNoteCaught:: ds 1
+
+; Time keeping
+wPikachuMinigameTimeFrames:: ds 1
+wPikachuMinigameTimeSeconds:: ds 1
+
+wc613:: ds 1
+wc614:: ds 1
+wc615:: ds 1
+wc616:: ds 1
+wPikachuMinigameScrollSpeed:: ds 1
+wc618:: ds 1
+wc619:: ds 1
+wc61a:: ds 1
+wc61b:: ds 1
+wc61c:: ds 1
+wc61d:: ds 1
+wc61e:: ds 1
+wPikachuMinigameSceneTimer:: ds 1
+wPikachuMinigameJumptableIndex:: ds 1
+wPikachuMinigameBGMapPointer:: ds 2
+wc622:: ds 2
+wc623:: ds 2
+wc624:: ds 1
+wc625:: ds 1
+wc626:: ds 1
+wc627:: ds 1
+wc628:: ds 1
+wc629:: ds 1
+wc62a:: ds 1
+wc62b:: ds 1
+wc62c:: ds 1
+wc62d:: ds 1
+wc62e:: ds 1
+wc62f:: ds 1
+wc630:: ds 1
+wc631:: ds 1
+wc632:: ds 1
+wc633:: ds 1
+wc634:: ds 1
+wc635:: ds 1
+wc636:: ds 1
+
+NEXTU
+; Battle-related
 	ds $1ea
 
 wActiveBGEffects::
