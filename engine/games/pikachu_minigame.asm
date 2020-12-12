@@ -22,9 +22,7 @@ PikachuMiniGame::
 	call DisableLCD
 	ld b, SGB_BETA_PIKACHU_MINIGAME
 	call GetSGBLayout
-
 	callab InitEffectObject
-
 	call PikachuMiniGame_ClearBothTilemaps
 
 	ld hl, IntroForestGFX
@@ -86,17 +84,18 @@ PikachuMiniGame::
 	ld [wPikachuMinigameSpawnTypeIndex], a
 	ld [wPikachuMinigameSpawnDataIndex], a
 	ld [wPikachuMinigameRedrawTimer], a
-	ld [wc618], a
-	ld [wc619], a
-	ld [wc61a], a
+	ld [wPikachuMinigameColumnFlags], a
 	ld [wPikachuMinigameSavedColumnPointer], a
 	ld [wPikachuMinigameSavedColumnPointer + 1], a
+	ld [wPikachuMinigameRepeatColumnCounter], a
+	ld [wPikachuMinigameRepeatColumnCounter2], a
 
 	ld a, LOW(PikachuMiniGame_Columns)
 	ld [wPikachuMinigameColumnPointer], a
 	ld a, HIGH(PikachuMiniGame_Columns)
 	ld [wPikachuMinigameColumnPointer + 1], a
 
+; Set status bar position
 	ld a, $7c
 	ldh [hWY], a
 
@@ -114,7 +113,6 @@ PikachuMiniGame::
 	jr .load_pikachu
 
 .not_sgb
-
 ; Normal palette if on GB / GBC
 	ld a, %11100100
 	ldh [rBGP], a
@@ -125,6 +123,7 @@ PikachuMiniGame::
 	ld a, SPRITE_ANIM_INDEX_MINIGAME_PIKACHU
 	call InitSpriteAnimStruct
 
+; Save pointer to the newly initialized Pikachu object
 	ld a, c
 	ld [wPikachuMinigamePikachuObjectPointer], a
 	ld a, b
@@ -211,6 +210,7 @@ PikachuMiniGame_BlinkText:
 .DisplayText:
 	decoord 1, 1
 	ld hl, .text
+
 .render_text
 	ld a, [hli]
 	and a
@@ -239,8 +239,8 @@ PikachuMiniGame_BlinkText:
 	;  "スタートボタン▶タイトルがめん"
 	db 0	; terminator
 
-Func418b:	; unreferenced?
-	ld bc, $0800
+PikachuMiniGame_Copy128Tiles:	; unreferenced?
+	ld bc, $80 tiles
 .loop
 	ld a, [de]
 	inc de
@@ -253,9 +253,11 @@ Func418b:	; unreferenced?
 
 PikachuMiniGame_DrawBackground:
 	ld b, $10
+
 .outer_loop
 	push hl
 	ld c, $10
+
 .inner_loop
 	call PikachuMiniGame_Draw2x2Tile
 	dec c
@@ -297,7 +299,6 @@ PikachuMiniGame_Draw2x2Tile:
 	ld a, [de]
 	inc de
 	ld [hli], a
-
 	pop hl
 
 	ld bc, BG_MAP_WIDTH
@@ -308,7 +309,6 @@ PikachuMiniGame_Draw2x2Tile:
 	ld a, [de]
 	inc de
 	ld [hli], a
-
 	pop hl
 
 	inc hl
@@ -327,7 +327,9 @@ PikachuMiniGame_RunFrame:
 	call GetJoypad
 	ld hl, hJoyState
 	ld a, [hl]
-	and %00001000	; Start button
+
+; Skip minigame on pressing Start
+	and %00001000
 	jr nz, .Done
 
 	ld a, [wPikachuMinigameJumptableIndex]
@@ -351,9 +353,10 @@ PikachuMiniGame_RunFrame:
 	ldh [hBGMapMode], a
 
 	call PikachuMiniGame_ScrollScene
-	call PikachuMiniGame_ReloadCollisions
+	call PikachuMiniGame_UpdateBlocks
 
-	decoord  18, 1	; last digit
+; Print minigame score, starting from the last digit
+	decoord  18, 1
 	ld hl, wPikachuMinigameScore
 	call PikachuMiniGame_PrintBCD
 
@@ -388,14 +391,18 @@ PikachuMiniGame_RunFrame:
 
 PikachuMiniGame_RunTimer:
 	ld hl, wPikachuMinigameTimeFrames
+
+; Run BCD frame counter
 	ld a, [hl]
 	add 1
 	daa
 	ld [hl], a
-	cp $60	; 1 second = 60 frames
+	cp $60
 	ret c
 
-	ld [hl], 0	; reset frame counter
+; Clear frame counter upon passing one second and increment the
+; seconds counter instead
+	ld [hl], 0
 	ld hl, wPikachuMinigameTimeSeconds
 	ld a, [hl]
 	add 1
@@ -404,13 +411,13 @@ PikachuMiniGame_RunTimer:
 	cp $60	; 1 minute
 	ret c
 
-; end game here
+; When gameplay time reaches 1 minute, end the game here
 	ld a, $02
 	ld [wPikachuMinigameJumptableIndex], a
 	ret
 
 
-PikachuMiniGame_ReloadCollisions: ; XXX ?
+PikachuMiniGame_UpdateBlocks:
 	ldh a, [hSCX]
 	ld e, a
 	and $07
@@ -455,18 +462,21 @@ PikachuMiniGame_PrintBCD:
 	ld l, e
 	ld h, d
 
+; in the thousandths range?
 	ld a, b
 	swap a
-	and %00001111	; in the thousandths range?
+	and %00001111
 	jr nz, .four_digits
 
+; in the hundredths range?
 	ld a, b
-	and %00001111	; in the hundreds range?
+	and %00001111
 	jr nz, .three_digits
 
+; in the tenths range?
 	ld a, c
 	swap a
-	and %00001111	; in the tens range?
+	and %00001111
 	jr nz, .two_digits
 
 ; got one digit
@@ -510,13 +520,11 @@ PikachuMiniGame_PrintBCD:
 	pop hl
 	ret
 
-
 .PlaceDigit:
 	and $0f
 	add $36
 	ld [hld], a
 	ret
-
 
 PikachuMiniGame_PerformGameFunction:
 	jumptable .jumptable, wPikachuMinigameJumptableIndex
@@ -606,7 +614,7 @@ PikachuMiniGame_FadeOut:
 	ld a, [hl]
 	ldh [rOBP0], a
 
-; from this point, the timer *increments* instead
+; from this point, the timer increments*instead
 	ld hl, wPikachuMinigameSceneTimer
 	inc [hl]
 	ret
@@ -634,6 +642,8 @@ PikachuMiniGame_FadeOut:
 	db -1
 
 PikachuMiniGame_NoteSpawner:
+; Spawn notes from the left side of the screen.
+;
 	call PikachuMiniGame_RunTimer
 	ldh a, [hSCX]
 	and $20
@@ -650,8 +660,9 @@ PikachuMiniGame_NoteSpawner:
 	call .DetermineSpawnType
 	jr c, .next_scene
 
-	call .DetermineSpawnParameters
-	ret c	; skip spawning if y = $FF
+; Skip spawning if y = $FF
+	call .DetermineSpawnPosition
+	ret c
 
 	ldh a, [hSCX]
 	and $1f
@@ -688,7 +699,6 @@ PikachuMiniGame_NoteSpawner:
 	inc [hl]
 	ret
 
-
 .DetermineSpawnType:
 	ld a, [wPikachuMinigameSpawnTypeIndex]
 	ld l, a
@@ -705,22 +715,22 @@ PikachuMiniGame_NoteSpawner:
 	ret
 
 .SpawnTypes:
-; or .SpawnParameters indices
+; or .SpawnPositions indices
 	db $00, $01, $02, $03, $04, $05, $06, $00, $01, $02, $03, $04, $05, $06
 	db -1
 
-.DetermineSpawnParameters:
+.DetermineSpawnPosition:
 ; a = spawn type (index of spawn data)
 
 ; returns d = Y-starting position of a note
-;         carry, if no note is to be spawned ($FF)
+;         carry, if no note is to be spawned
 
 	ld l, a
 	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld de, .SpawnParameters
+	ld de, .SpawnPositions
 	add hl, de
 
 	ld a, [wPikachuMinigameSpawnDataIndex]
@@ -751,7 +761,7 @@ PikachuMiniGame_NoteSpawner:
 	scf
 	ret
 
-.SpawnParameters:
+.SpawnPositions:
 	db $70, $60, $50, $48, $48, $48, $48, $38 ; 00
 	db $28, $20, $28, $ff, $ff, $ff, $48, $48 ; 01
 	db $70, $70, $ff, $58, $ff, $ff, $48, $38 ; 02
@@ -766,9 +776,10 @@ MinigamePikachuDoMovement::
 	ld c, a
 	ld a, [wPikachuMinigamePikachuObjectPointer + 1]
 	ld b, a
-	call Call_038_459c
+	call MinigamePikachuCheckFloorCollision
 	call .ResetScoreModifiersAndCheckNoteCollision
-	ld hl, $000b
+
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -780,65 +791,72 @@ MinigamePikachuDoMovement::
 	ld l, a
 	jp hl
 .jump
-	dw .Func447d
-	dw .Func4489
-	dw .Func44b4
-	dw .Func44d6
+	dw .InitPikachuMovement
+	dw .ControlPikachu
+	dw .PikachuJumping
+	dw .FallDown
 
-.Func447d:
+.InitPikachuMovement:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld [hl], $01
-	ld a, $02
+	ld [hl], 1
+	ld a, 2
 	ld [wPikachuMinigamePikachuNextAnim], a
 	ret
 
-.Func4489:
+.ControlPikachu:
 	ldh a, [hJoyState]
 	ld hl, wPikachuMinigameControlEnable
 	and [hl]
 	ld d, a
-	and $01
-	jr nz, .jr_038_449f
+
+; Only read the A button
+	and %00000001
+	jr nz, .do_jump
+
+; Don't animate Pikachu when the screen is still
 	ld a, [wPikachuMinigameScrollSpeed]
 	and a
 	ret nz
-	ld a, $01
+
+	ld a, 1
 	ld [wPikachuMinigamePikachuNextAnim], a
 	ret
-.jr_038_449f
+
+.do_jump
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
-	ld a, $40
+	ld a, 64
 	ld [wPikachuMinigamePikachuYOffset], a
-	ld a, $03
+	ld a, 3
 	ld [wPikachuMinigamePikachuNextAnim], a
 	ld a, $10
 	ld [wc606], a
 	ret
 
-.Func44b4:
+.PikachuJumping:
 	ld hl, wPikachuMinigamePikachuYOffset
 	ld a, [hl]
-	cp $20
-	jr c, .jr_038_44cf
+	cp 32
+	jr c, .fall_down_from_jump
 	dec [hl]
 	ld d, $30
 	ld e, a
 	callba BattleAnim_Sine_e
 	ld a, e
-	ld hl, $0007
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
-.jr_038_44cf
-	ld hl, $000b
+.fall_down_from_jump
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld [hl], $03
+	ld [hl], 3
 	ret
-.Func44d6:
-	ld hl, $0005
+
+.FallDown:
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	inc [hl]
 	inc [hl]
@@ -849,59 +867,80 @@ MinigamePikachuDoMovement::
 .ResetScoreModifiersAndCheckNoteCollision:
 	xor a
 	ld [wPikachuMinigameScoreModifier], a
-	ld hl, $0005
+
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0007
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	add [hl]
+
+; Set the Y-collision range between Pikachu and note
+; between y-$10 and y+$10
+
 	add $10
 	ld e, a
-	sub $20
+	sub ($10 * 2)
 	ld d, a
 	push bc
+
+; Check if the Pikachu object collides with any of the note
+; objects.
+
 	ld bc, $c41c	; Pikachu object, hardcoded
-	ld a, $0a
-.jr_038_44f9
+	ld a, 10	; Number of objects to check
+.check_note_object
 	push af
 	push de
-	ld hl, $0000
+	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .jr_038_450f
-	ld hl, $0001
+; Deinitialized object, get the next object
+	jr z, .get_next_object
+
+; Is the current object a note?
+	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, [hl]
-	cp $07
-	jr nz, .jr_038_450f
-	call .Call_038_451f
-.jr_038_450f
-	ld hl, $0010
+	cp 7
+	jr nz, .get_next_object
+
+; Check if note collides with Pikachu
+	call .IsNoteColliding
+
+.get_next_object
+	ld hl, SPRITEANIMSTRUCT_LENGTH
 	add hl, bc
 	ld c, l
 	ld b, h
 	pop de
 	pop af
 	dec a
-	jr nz, .jr_038_44f9
+	jr nz, .check_note_object
 	pop bc
 	call PikachuMiniGame_AddToScore
 	ret
-.Call_038_451f:
+
+.IsNoteColliding:
+; Is the note object within $48 - $68 (middle of the screen)?
 	ld a, $48
-	ld hl, $4
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	cp [hl]
 	ret nc
+
 	ld a, $68
 	cp [hl]
 	ret c
+
+; Is the note object within collision range?
 	ld a, d
-	ld hl, $0005
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	cp [hl]
 	ret nc
+
 	ld a, e
 	cp [hl]
 	ret c
@@ -910,13 +949,14 @@ MinigamePikachuDoMovement::
 	ld a, 1
 	ld [wPikachuMinigameNoteCaught], a
 
-	ld hl, $b
+; Delete the note object
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
+
 	ld hl, wPikachuMinigameScoreModifier
 	inc [hl]
 	ret
-
 
 PikachuMiniGame_AddToScore:
 	ld hl, wPikachuMinigameScore
@@ -928,7 +968,7 @@ PikachuMiniGame_AddToScore:
 	daa
 	ld e, a
 	ld a, d
-	adc $00
+	adc 0
 	daa
 	ld d, a
 	ld [hl], d
@@ -991,80 +1031,92 @@ CopyPikachuObjDataToTailObj::
 	ld [hl], a
 	ret
 
-Call_038_459c:
-	ld hl, $0007
+MinigamePikachuCheckFloorCollision:
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0005
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	add [hl]
 	ld d, a
-	ld hl, $000b
+
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [hl]
-	cp $02
-	jr z, .jr_038_45c3
-	cp $03
-	jr z, .jr_038_45e3
+
+; Pikachu is jumping
+	cp 2
+	jr z, .jumping
+
+; Pikachu is falling
+	cp 3
+	jr z, .falling
+
 	ld a, d
 	cp $70
 	ret z
-	call Call_038_4602
+
+	call .CheckCollidingFloor
 	ret nz
-	ld hl, $000b
+
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld [hl], $03
+	ld [hl], 3
 	ret
 
-
-.jr_038_45c3
+.jumping
 	ld a, [wPikachuMinigamePikachuYOffset]
 	cp $3e
 	ret nc
-	call Call_038_4602
+
+	call .CheckCollidingFloor
 	ret z
-	ld hl, $000b
+
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld [hl], $00
-	ld hl, $0007
+	ld [hl], 0
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
-	ld [hl], $00
-	ld hl, $0005
+	ld [hl], 0
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	add [hl]
-	and $f8
+	and %11111000
 	ld [hl], a
 	ret
-.jr_038_45e3
+
+.falling
 	ld a, d
 	cp $70
-	jr z, .jr_038_45ec
-	call Call_038_4602
+	jr z, .landed
+	call .CheckCollidingFloor
 	ret z
-.jr_038_45ec
-	ld hl, $000b
+
+.landed
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld [hl], $00
-	ld hl, $0007
+	ld [hl], 0
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
-	ld [hl], $00
-	ld hl, $0005
+	ld [hl], 0
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	add [hl]
-	and $f8
+	and %11111000
 	ld [hl], a
 	ret
 
+.CheckCollidingFloor:
+; Returns z if we collided with a platform.
 
-Call_038_4602:
 	ld a, d
-	cp $40
-	jr z, .jr_038_4609
+	cp 64
+	jr z, .check_tile_below
 	xor a
 	ret
-.jr_038_4609
+.check_tile_below
 	ld hl, wPikachuMinigameColumnBuffer
 	ld a, $16
 	cp [hl]
@@ -1194,7 +1246,7 @@ PikachuMiniGame_GetNextColumn:
 	sub $f0
 	ld e, a
 	ld d, 0
-	ld hl, .table
+	ld hl, .Jumptable
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -1202,31 +1254,34 @@ PikachuMiniGame_GetNextColumn:
 	ld l, a
 	jp hl
 
-.table
-	dw .DummyCommand	; f0
-	dw .DummyCommand	; f1
-	dw .DummyCommand	; f2
-	dw .DummyCommand	; f3
-	dw .DummyCommand	; f4
-	dw .DummyCommand	; f5
-	dw .DummyCommand	; f6
-	dw .DummyCommand	; f7
-	dw .DummyCommand	; f8
-	dw .CommandF9	; f9
-	dw .CommandFA	; fa
-	dw .CommandFB	; fb
-	dw .JumpCommand	; fc
-	dw .CommandFD	; fd
-	dw .CommandFE	; fe
-	dw .CommandFF	; ff
+.Jumptable:
+	dw .DummyCommand  ; f0
+	dw .DummyCommand  ; f1
+	dw .DummyCommand  ; f2
+	dw .DummyCommand  ; f3
+	dw .DummyCommand  ; f4
+	dw .DummyCommand  ; f5
+	dw .DummyCommand  ; f6
+	dw .DummyCommand  ; f7
+	dw .DummyCommand  ; f8
+	dw .CommandF9	  ; f9
+	dw .CommandFA	  ; fa
+	dw .CommandFB	  ; fb
+	dw .JumpCommand	  ; fc
+	dw .CommandFD	  ; fd
+	dw .CallCommand	  ; fe
+	dw .ReturnCommand ; ff
 
 .DummyCommand:
 	ret
 
-.CommandFF:
-	ld hl, wc618
+.ReturnCommand:
+; End level subpart
+
+	ld hl, wPikachuMinigameColumnFlags
 	res 0, [hl]
-	ld hl, wc619
+
+	ld hl, wPikachuMinigameSavedColumnPointer
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1236,7 +1291,9 @@ PikachuMiniGame_GetNextColumn:
 	ld [hl], d
 	ret
 
-.CommandFE:
+.CallCommand:
+; Call a level subpart
+
 	call .GetNextByte
 	ld e, a
 	call .GetNextByte
@@ -1244,18 +1301,23 @@ PikachuMiniGame_GetNextColumn:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld hl, wc619
+
+	ld hl, wPikachuMinigameSavedColumnPointer
 	ld [hl], c
 	inc hl
 	ld [hl], b
+
 	ld hl, wPikachuMinigameColumnPointer + 1
 	ld [hld], a
 	ld [hl], e
-	ld hl, wc618
+
+	ld hl, wPikachuMinigameColumnFlags
 	set 0, [hl]
 	ret
 
 .JumpCommand:
+; Jump to another part of the level
+
 	call .GetNextByte
 	ld e, a
 	call .GetNextByte
@@ -1266,21 +1328,21 @@ PikachuMiniGame_GetNextColumn:
 
 .CommandFD:
 	call .GetNextByte
-	ld hl, wc618
+	ld hl, wPikachuMinigameColumnFlags
 	bit 1, [hl]
-	jr nz, .jr_038_473e
+	jr nz, .flag_set
 	and a
-	jr z, .jr_038_4746
+	jr z, .update_pointer
 	dec a
-	ld [wPikachuMinigameSavedColumnPointer], a
+	ld [wPikachuMinigameRepeatColumnCounter], a
 	set 1, [hl]
-.jr_038_473e
-	ld hl, wPikachuMinigameSavedColumnPointer
+.flag_set
+	ld hl, wPikachuMinigameRepeatColumnCounter
 	ld a, [hl]
 	and a
-	jr z, .jr_038_4753
+	jr z, .done
 	dec [hl]
-.jr_038_4746
+.update_pointer
 	call .GetNextByte
 	ld e, a
 	call .GetNextByte
@@ -1288,30 +1350,30 @@ PikachuMiniGame_GetNextColumn:
 	ld [hld], a
 	ld [hl], e
 	ret
-.jr_038_4753
-	ld hl, wc618
+.done
+	ld hl, wPikachuMinigameColumnFlags
 	res 2, [hl]
 	call .ReplaceColumnPointer
 	ret
 
 .CommandF9:
 	call .GetNextByte
-	ld [wPikachuMinigameSavedColumnPointer + 1], a
+	ld [wPikachuMinigameRepeatColumnCounter2], a
 	ret
 
 .CommandFA:
-	ld hl, wPikachuMinigameSavedColumnPointer + 1
+	ld hl, wPikachuMinigameRepeatColumnCounter2
 	inc [hl]
 	ret
 
 .CommandFB:
 	call .GetNextByte
-	ld hl, wPikachuMinigameSavedColumnPointer + 1
+	ld hl, wPikachuMinigameRepeatColumnCounter2
 	cp [hl]
-	jr z, .jr_038_4775
+	jr z, .got_match
 	call .ReplaceColumnPointer
 	ret
-.jr_038_4775
+.got_match
 	call .GetNextByte
 	ld e, a
 	call .GetNextByte
@@ -1350,7 +1412,7 @@ PikachuMiniGame_GetNextColumn:
 
 PikachuMiniGame_Columns:
 ; Essentially the "level design" of the minigame
-; Also see PikachuMiniGame_RenderColumn.ColumnSet
+; See also PikachuMiniGame_RenderColumn.ColumnSet
 
 	db $00, $01
 	db $00, $01

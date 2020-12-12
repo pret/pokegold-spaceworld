@@ -177,7 +177,7 @@ wPikachuMinigamePikachuNextAnim:: ds 1
 
 wPikachuMinigameControlEnable:: ds 1
 
-wc606:: ds 1
+wc606:: ds 1	; written to, but is this read from?
 
 wPikachuMinigamePikachuYOffset:: ds 1
 wPikachuMinigameNoteTimer:: ds 1
@@ -194,16 +194,20 @@ wPikachuMinigameNoteCaught:: ds 1
 wPikachuMinigameTimeFrames:: ds 1
 wPikachuMinigameTimeSeconds:: ds 1
 
+; are these two used?
 wc613:: ds 1
 wc614:: ds 1
+
 wPikachuMinigameRedrawTimer:: ds 1
 wc616:: ds 1
 wPikachuMinigameScrollSpeed:: ds 1
-wc618:: ds 1
-wc619:: ds 1
-wc61a:: ds 1
-wPikachuMinigameColumnPointer:: ds 2
+
+wPikachuMinigameColumnFlags:: ds 1
 wPikachuMinigameSavedColumnPointer:: ds 2
+wPikachuMinigameColumnPointer:: ds 2
+
+wPikachuMinigameRepeatColumnCounter:: ds 1
+wPikachuMinigameRepeatColumnCounter2:: ds 1
 
 wPikachuMinigameSceneTimer:: ds 1
 
