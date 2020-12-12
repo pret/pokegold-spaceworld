@@ -93,6 +93,22 @@ NEXTU
 
 wSpriteAnimDict:: ds 10 * 2 ; NUM_SPRITEANIMDICT_ENTRIES * 2
 
+wSpriteAnimationStructs::
+; field  0:   index
+; fields 1-3: loaded from SpriteAnimSeqData
+wSpriteAnim1::  sprite_anim_struct wSpriteAnim1
+wSpriteAnim2::  sprite_anim_struct wSpriteAnim2
+wSpriteAnim3::  sprite_anim_struct wSpriteAnim3
+wSpriteAnim4::  sprite_anim_struct wSpriteAnim4
+wSpriteAnim5::  sprite_anim_struct wSpriteAnim5
+wSpriteAnim6::  sprite_anim_struct wSpriteAnim6
+wSpriteAnim7::  sprite_anim_struct wSpriteAnim7
+wSpriteAnim8::  sprite_anim_struct wSpriteAnim8
+wSpriteAnim9::  sprite_anim_struct wSpriteAnim9
+wSpriteAnim10:: sprite_anim_struct wSpriteAnim10
+wSpriteAnimationStructsEnd::
+
+wSpriteAnimCount:: db
 NEXTU
 
 	ds 1

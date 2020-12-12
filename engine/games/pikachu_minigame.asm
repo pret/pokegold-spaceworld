@@ -1,5 +1,21 @@
 INCLUDE "constants.asm"
 
+; MinigamePikachuDoMovement.Jumptable constants
+	const_def
+	const MINIGAME_PIKACHU_INIT    ; 00
+	const MINIGAME_PIKACHU_CONTROL ; 01
+	const MINIGAME_PIKACHU_JUMPING ; 02
+	const MINIGAME_PIKACHU_FALLING ; 03
+
+; PikachuMiniGame_PerformGameFunction.Jumptable constants
+	const_def
+	const PIKACHU_MINIGAME_SETUP                ; 00
+	const PIKACHU_MINIGAME_NOTE_SPAWNER         ; 01
+	const PIKACHU_MINIGAME_SET_NEXT_SCENE_TIMER ; 02
+	const PIKACHU_MINIGAME_WAIT_AND_GOTO_NEXT   ; 03
+	const PIKACHU_MINIGAME_SHOW_JIGGLYPUFF      ; 04
+	const PIKACHU_MINIGAME_FADE_OUT             ; 05
+
 SECTION "engine/games/pikachu_minigame.asm@Pikachu Minigame", ROMX
 
 PikachuMiniGame::
@@ -59,7 +75,7 @@ PikachuMiniGame::
 	call PikachuMiniGame_DrawBackground
 
 	ld hl, wSpriteAnimDict
-	ld a, $22	; anim dict values?
+	ld a, SPRITE_ANIM_INDEX_GS_INTRO_OMANYTE
 	ld [hli], a
 	ld a, SPRITE_ANIM_DICT_DEFAULT
 	ld [hli], a
@@ -142,7 +158,7 @@ PikachuMiniGame::
 
 PikachuMiniGame_ClearBothTilemaps:
 	ld hl, vBGMap1
-	ld bc, $0280
+	ld bc, SCREEN_WIDTH * BG_MAP_HEIGHT
 .clear_bgmap
 	ld [hl], 0
 	inc hl
@@ -152,7 +168,7 @@ PikachuMiniGame_ClearBothTilemaps:
 	jr nz, .clear_bgmap
 
 	ld hl, wTileMap
-	ld bc, $0168
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 .clear_tilemap
 	ld [hl], 0
 	inc hl
@@ -329,7 +345,7 @@ PikachuMiniGame_RunFrame:
 	ld a, [hl]
 
 ; Skip minigame on pressing Start
-	and %00001000
+	and START
 	jr nz, .Done
 
 	ld a, [wPikachuMinigameJumptableIndex]
@@ -370,7 +386,7 @@ PikachuMiniGame_RunFrame:
 	callab InitEffectObject
 
 	ld hl, wVirtualOAM
-	ld c, $a0
+	ld c, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
 	xor a
 .clear_oam
 	ld [hli], a
@@ -408,11 +424,11 @@ PikachuMiniGame_RunTimer:
 	add 1
 	daa
 	ld [hl], a
-	cp $60	; 1 minute
+	cp $60
 	ret c
 
 ; When gameplay time reaches 1 minute, end the game here
-	ld a, $02
+	ld a, PIKACHU_MINIGAME_SET_NEXT_SCENE_TIMER
 	ld [wPikachuMinigameJumptableIndex], a
 	ret
 
@@ -420,7 +436,7 @@ PikachuMiniGame_RunTimer:
 PikachuMiniGame_UpdateBlocks:
 	ldh a, [hSCX]
 	ld e, a
-	and $07
+	and 7
 	ret nz
 
 	ld a, $48
@@ -442,7 +458,7 @@ PikachuMiniGame_UpdateBlocks:
 	ld [wVBCopySrc], a
 	ld a, h
 	ld [wVBCopySrc + 1], a
-	ld a, $01
+	ld a, 1
 	ld [wVBCopySize], a
 	ret
 
@@ -465,18 +481,18 @@ PikachuMiniGame_PrintBCD:
 ; in the thousandths range?
 	ld a, b
 	swap a
-	and %00001111
+	and $0f
 	jr nz, .four_digits
 
 ; in the hundredths range?
 	ld a, b
-	and %00001111
+	and $0f
 	jr nz, .three_digits
 
 ; in the tenths range?
 	ld a, c
 	swap a
-	and %00001111
+	and $0f
 	jr nz, .two_digits
 
 ; got one digit
@@ -527,9 +543,9 @@ PikachuMiniGame_PrintBCD:
 	ret
 
 PikachuMiniGame_PerformGameFunction:
-	jumptable .jumptable, wPikachuMinigameJumptableIndex
+	jumptable .Jumptable, wPikachuMinigameJumptableIndex
 
-.jumptable
+.Jumptable:
 ; jumptable here
 	dw PikachuMiniGame_SetupScene
 	dw PikachuMiniGame_NoteSpawner
@@ -543,7 +559,7 @@ PikachuMiniGame_SetupScene:
 	ld a, 4
 	ld [wPikachuMinigameScrollSpeed], a
 
-	ld a, %00110001
+	ld a, D_LEFT | D_RIGHT | A_BUTTON
 	ld [wPikachuMinigameControlEnable], a
 
 	ld hl, wPikachuMinigameJumptableIndex
@@ -570,7 +586,7 @@ PikachuMiniGame_WaitAndGotoNextScene:
 
 PikachuMiniGame_ShowJigglypuff:
 	depixel 14, 24
-	ld a, $32
+	ld a, SPRITE_ANIM_INDEX_MINIGAME_JIGGLYPUFF
 	call InitSpriteAnimStruct
 
 	xor a
@@ -667,13 +683,13 @@ PikachuMiniGame_NoteSpawner:
 	ldh a, [hSCX]
 	and $1f
 	ld e, a
-	ld a, $00
+	ld a, 0
 	sub e
 	ld e, a
-	ld a, $03
-	ld [$c4bc], a	; Hardcoded object loc
+	ld a, 3
+	ld [wSpriteAnimCount], a
 
-	ld a, $31	; NOTE
+	ld a, SPRITE_ANIM_INDEX_MINIGAME_NOTE	; NOTE
 	call InitSpriteAnimStruct
 
 ; add one to the note counter
@@ -734,10 +750,10 @@ PikachuMiniGame_NoteSpawner:
 	add hl, de
 
 	ld a, [wPikachuMinigameSpawnDataIndex]
-	and $07
+	and 7
 	ld e, a
 	inc a
-	cp $08
+	cp 8
 	jr c, .determine_y_coords
 
 ; next spawn type
@@ -783,14 +799,15 @@ MinigamePikachuDoMovement::
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, .jump
+	ld hl, .Jumptable
 	add hl, de
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
-.jump
+
+.Jumptable:
 	dw .InitPikachuMovement
 	dw .ControlPikachu
 	dw .PikachuJumping
@@ -799,7 +816,7 @@ MinigamePikachuDoMovement::
 .InitPikachuMovement:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld [hl], 1
+	ld [hl], MINIGAME_PIKACHU_CONTROL
 	ld a, 2
 	ld [wPikachuMinigamePikachuNextAnim], a
 	ret
@@ -810,8 +827,7 @@ MinigamePikachuDoMovement::
 	and [hl]
 	ld d, a
 
-; Only read the A button
-	and %00000001
+	and A_BUTTON
 	jr nz, .do_jump
 
 ; Don't animate Pikachu when the screen is still
@@ -852,7 +868,7 @@ MinigamePikachuDoMovement::
 .fall_down_from_jump
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld [hl], 3
+	ld [hl], MINIGAME_PIKACHU_FALLING
 	ret
 
 .FallDown:
@@ -887,7 +903,7 @@ MinigamePikachuDoMovement::
 ; Check if the Pikachu object collides with any of the note
 ; objects.
 
-	ld bc, $c41c	; Pikachu object, hardcoded
+	ld bc, wSpriteAnim1
 	ld a, 10	; Number of objects to check
 .check_note_object
 	push af
@@ -1045,11 +1061,11 @@ MinigamePikachuCheckFloorCollision:
 	ld a, [hl]
 
 ; Pikachu is jumping
-	cp 2
+	cp MINIGAME_PIKACHU_JUMPING
 	jr z, .jumping
 
 ; Pikachu is falling
-	cp 3
+	cp MINIGAME_PIKACHU_FALLING
 	jr z, .falling
 
 	ld a, d
@@ -1061,7 +1077,7 @@ MinigamePikachuCheckFloorCollision:
 
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld [hl], 3
+	ld [hl], MINIGAME_PIKACHU_FALLING
 	ret
 
 .jumping
@@ -1074,7 +1090,7 @@ MinigamePikachuCheckFloorCollision:
 
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld [hl], 0
+	ld [hl], MINIGAME_PIKACHU_INIT
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
@@ -1096,7 +1112,7 @@ MinigamePikachuCheckFloorCollision:
 .landed
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld [hl], 0
+	ld [hl], MINIGAME_PIKACHU_INIT
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
@@ -1152,13 +1168,13 @@ PikachuMiniGame_ScrollScene:
 	srl a
 	srl a
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, vBGMap0
 	add hl, de
 	ld a, l
 	ldh [hRedrawRowOrColumnDest], a
 	ld a, h
-	ldh [$ffe7], a
+	ldh [hRedrawRowOrColumnDest + 1], a
 	ld a, $01
 	ldh [hRedrawRowOrColumnMode], a
 	ret
