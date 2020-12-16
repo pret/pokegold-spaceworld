@@ -82,19 +82,19 @@ DebugMenuOptionSubGames::
 DebugMenuOptionMonsterTest::
 	ld hl, wPokedexOwned
 	ld de, wPokedexSeen
-	ld b, $1F
-	ld a, $FF
+	ld b, 31
+	ld a, -1
 .loop
 	ld [hl+], a
 	ld [de], a
 	inc de
 	dec b
 	jr nz, .loop
-	ld a, $03
+	ld a, 3
 	ld [hl], a
 	ld [de], a
 	callab MonsterTest
-	ld a, $e4
+	ld a, %11100100
 	ldh [rBGP], a
 
 Function40eb::
@@ -102,7 +102,7 @@ Function40eb::
 
 DebugMenuOptionName::
 	callab OpenTrainerGear
-	ld a, $e4
+	ld a, %11100100
 	ldh [rBGP], a
 	jp DebugMenu
 
