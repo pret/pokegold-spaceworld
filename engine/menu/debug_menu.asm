@@ -286,7 +286,7 @@ _DebugMenuSoundTest::
  	dbbw $00,  $3C, SoundTest_DealerText
  	dbbw $66,  $3C, SoundTest_Fanfare3Text_2
  	dbbw $69,  $3C, SoundTest_Fanfare6Text_2
- 	dbbw  -1    -1, .TextPointers
+ 	dbbw  -1,   -1, .TextPointers
 
 SoundTest_PalletTownText:
 	db "マサラタウン@"
