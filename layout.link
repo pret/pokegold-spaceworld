@@ -42,7 +42,7 @@ ROM0
 	"home/serial.asm"
 	"home/interrupts.asm@Joypad dummy interrupt"
 	"home/joypad.asm"
-	"home/unknown.asm@Unknown_094c"
+	"home/unknown.asm@Debug menu sound test call"
 	"home/pic.asm"
 	"home/copy2.asm"
 	"home/text.asm"
@@ -953,6 +953,8 @@ ROMX $3f
 	"engine/landmarks.asm@2"
 	org $506f
 	"gfx.asm@Town Map Cursor"
+	org $6255
+	"engine/menu/debug_menu.asm@Sound Test"
 
 WRAM0
 	org $c000
