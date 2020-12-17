@@ -155,6 +155,7 @@
 39:4000 GameFreakIntro
 39:432F OpeningCutscene
 
+3A:536D SFXPointers
 3A:52FB CryHeaderPointers
 
 3F:40E9 InGameDebugMenu
