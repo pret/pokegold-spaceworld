@@ -38,7 +38,7 @@ _DisableAudio::
 	or d
 	jr nz, .clear
 
-	ld a, $77
+	ld a, MAX_VOLUME
 	ld [wVolume], a
 
 	pop af
@@ -94,7 +94,7 @@ UpdateChannel:
 
 .noteover
 	call DisablePitchWheel
-	call Functione884f
+	call ParseMusic
 
 .continue_sound_update
 	call Functione80b6
@@ -173,8 +173,8 @@ Functione80b6:
 	ld a, $3F
 	ld [wSoundLength], a
 	call Functione85d8
-	call Functione87f9
-	call Functione8839
+	call ReadNoiseSample
+	call HaltMusicWhileSFXPlaying
 	call IsChannelSFXOn
 	jr nc, .end
 
@@ -782,6 +782,7 @@ DoSweepingFade::
 
 ; first nybble of wSweepingFadeIndex is the subroutine index
 ; second is the fade length
+
 	swap a
 	and 7
 	ld e, a
@@ -837,6 +838,7 @@ DoSweepingFade::
 	ret nc
 	ld a, 4
 	call .SetIndex
+
 .DoFade5:
 	call .RightChannel
 	call .DecrementCounter
@@ -850,7 +852,7 @@ DoSweepingFade::
 .DoFade6:
 	xor a
 	ld [wSweepingFadeIndex], a
-	ld a, $77
+	ld a, MAX_VOLUME
 	ld [wVolume], a
 	ret
 
@@ -925,11 +927,11 @@ DoSweepingFade::
 	ld [wSoundOutput], a
 	ret
 
-Call_03a_44fe:
+LoadNote:
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
 	bit SOUND_PITCH_WHEEL, [hl]
-	call nz, .pitch_wheel
+	call nz, .get_note
 	bit SOUND_VIBRATO, [hl]
 	call nz, .vibrato
 	bit SOUND_UNKN_0E, [hl]
@@ -940,192 +942,180 @@ Call_03a_44fe:
 	call nz, .flag_0b
 	ret
 
-.pitch_wheel:
+.get_note
 	push hl
 	ld hl, CHANNEL_NOTE_DURATION
 	add hl, bc
 	ld a, [hl]
-	ld hl, wc196
+	ld hl, wCurNoteDuration
 	sub [hl]
-	jr nc, .jr_03a_452a
-
-	ld a, $01
-
-.jr_03a_452a
+	jr nc, .ok
+	ld a, 1
+.ok
 	ld [hl], a
-	ld hl, $0010
+	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0021
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET
 	add hl, bc
 	ld a, e
 	sub [hl]
 	ld e, a
 	ld a, d
-	sbc $00
+	sbc 0
 	ld d, a
-	ld hl, $0022
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
 	add hl, bc
 	sub [hl]
-	jr nc, .jr_03a_4565
+	jr nc, .greater_than
 
-	ld hl, $0005
+	ld hl, CHANNEL_FLAGS3
 	add hl, bc
-	set 1, [hl]
-	ld hl, $0010
+	set SOUND_PITCH_WHEEL_DIR, [hl]
+	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0021
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET
 	add hl, bc
 	ld a, [hl]
 	sub e
 	ld e, a
 	ld a, d
-	sbc $00
+	sbc 0
 	ld d, a
-	ld hl, $0022
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
 	add hl, bc
 	ld a, [hl]
 	sub d
 	ld d, a
-	jr .jr_03a_4583
+	jr .resume
 
-.jr_03a_4565
-	ld hl, $0005
+.greater_than
+	ld hl, CHANNEL_FLAGS3
 	add hl, bc
-	res 1, [hl]
-	ld hl, $0010
+	res SOUND_PITCH_WHEEL_DIR, [hl]
+	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0021
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET
 	add hl, bc
 	ld a, e
 	sub [hl]
 	ld e, a
 	ld a, d
-	sbc $00
+	sbc 0
 	ld d, a
-	ld hl, $0022
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
 	add hl, bc
 	sub [hl]
 	ld d, a
 
-.jr_03a_4583
+.resume
 	push bc
-	ld hl, wc196
-	ld b, $00
+	ld hl, wCurNoteDuration
+	ld b, 0
 
-.jr_03a_4589
+.loop
 	inc b
 	ld a, e
 	sub [hl]
 	ld e, a
-	jr nc, .jr_03a_4589
+	jr nc, .loop
 
 	ld a, d
 	and a
-	jr z, .jr_03a_4596
+	jr z, .quit
 
 	dec d
-	jr .jr_03a_4589
+	jr .loop
 
-.jr_03a_4596
+.quit
 	ld a, e
 	add [hl]
 	ld d, b
 	pop bc
-	ld hl, $0023
+	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT
 	add hl, bc
 	ld [hl], d
-	ld hl, $0024
+	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT_FRACTION
 	add hl, bc
 	ld [hl], a
-	ld hl, $0025
+	ld hl, CHANNEL_FIELD25
 	add hl, bc
 	xor a
 	ld [hl], a
 	pop hl
 	ret
 
-
-.vibrato:
+.vibrato
 	push hl
-	ld hl, $001e
+	ld hl, CHANNEL_VIBRATO_DELAY
 	add hl, bc
 	ld a, [hl]
-	ld hl, $001d
+	ld hl, CHANNEL_VIBRATO_DELAY_COUNT
 	add hl, bc
 	ld [hl], a
 	pop hl
 	ret
 
-
-.flag_0e:
+.flag_0e
 	push hl
-	ld hl, $0005
+	ld hl, CHANNEL_FLAGS3
 	add hl, bc
-	res 2, [hl]
+	res NOTE_INTENSITY_OVERRIDE, [hl]
 	pop hl
 	ret
 
-
-.flag_0d:
+.flag_0d
 	push hl
-	ld hl, $002b
+	ld hl, CHANNEL_FIELD2A + 1
 	add hl, bc
-
-.Call_03a_45c7:
 	xor a
 	ld [hl], a
 	pop hl
 	ret
 
-
-.flag_0b:
+.flag_0b
 	push hl
-	ld hl, $002c
+	ld hl, CHANNEL_FIELD2C
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0026
+	ld hl, CHANNEL_FIELD25 + 1
 	add hl, bc
 	ld [hl], a
-
-.Call_03a_45d6:
 	pop hl
 	ret
-
 
 Functione85d8::
-	ld hl, $0004
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	bit 2, [hl]
-	call nz, Call_03a_4605
-	bit 6, [hl]
-	call nz, Call_03a_472b
-	bit 4, [hl]
-	call nz, Call_03a_4713
-	bit 1, [hl]
-	call nz, Call_03a_461b
-	bit 0, [hl]
-	call nz, Call_03a_46ad
-	bit 5, [hl]
-	call nz, Call_03a_475e
-	bit 3, [hl]
-	call nz, Call_03a_46ff
-	bit 7, [hl]
-	call nz, Call_03a_47bb
+	bit SOUND_DUTY, [hl]
+	call nz, HandleDuty
+	bit SOUND_UNKN_0E, [hl]
+	call nz, Handle_0e
+	bit SOUND_CRY_PITCH, [hl]
+	call nz, Handle_crypitch
+	bit SOUND_PITCH_WHEEL, [hl]
+	call nz, ApplyPitchSlide
+	bit SOUND_VIBRATO, [hl]
+	call nz, HandleVibrato
+	bit SOUND_UNKN_0D, [hl]
+	call nz, Handle_0d
+	bit SOUND_UNKN_0B, [hl]
+	call nz, Handle_0b
+	bit SOUND_UNKN_0F, [hl]
+	call nz, HandleNoise
 	ret
 
-
-Call_03a_4605:
+HandleDuty:
 	push hl
-	ld hl, $001c
+	ld hl, CHANNEL_SFX_DUTY_LOOP
 	add hl, bc
 	ld a, [hl]
 	rlca
@@ -1133,213 +1123,206 @@ Call_03a_4605:
 	ld [hl], a
 	and $c0
 	ld [wCurTrackDuty], a
-	ld hl, $000c
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
 	set 0, [hl]
 	pop hl
 	ret
 
-
-Call_03a_461b:
+ApplyPitchSlide:
 	push hl
-	ld hl, $0010
+	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0005
+	ld hl, CHANNEL_FLAGS3
 	add hl, bc
-	bit 1, [hl]
-	jr z, .jr_03a_465e
+	bit SOUND_PITCH_WHEEL_DIR, [hl]
+	jr z, .decreasing
 
-	ld hl, $0023
+	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT
 	add hl, bc
 	ld l, [hl]
-	ld h, $00
+	ld h, 0
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, $0024
+	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT_FRACTION
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0025
+	ld hl, CHANNEL_FIELD25
 	add hl, bc
 	add [hl]
 	ld [hl], a
-	ld a, $00
+	ld a, 0
 	adc e
 	ld e, a
-	ld a, $00
+	ld a, 0
 	adc d
 	ld d, a
-	ld hl, $0022
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jp c, .Jump_03a_468b
-
-	jr nz, .jr_03a_469e
-
-	ld hl, $0021
+	jp c, .finished_pitch_slide
+	jr nz, .continue_pitch_slide
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jp c, .Jump_03a_468b
+	jp c, .finished_pitch_slide
+	jr .continue_pitch_slide
 
-	jr .jr_03a_469e
-
-.jr_03a_465e
+.decreasing
 	ld a, e
-	ld hl, $0023
+	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT
 	add hl, bc
 	ld e, [hl]
 	sub e
 	ld e, a
 	ld a, d
-	sbc $00
+	sbc 0
 	ld d, a
-	ld hl, $0024
+	ld hl, CHANNEL_PITCH_WHEEL_AMOUNT_FRACTION
 	add hl, bc
 	ld a, [hl]
 	add a
 	ld [hl], a
 	ld a, e
-	sbc $00
+	sbc 0
 	ld e, a
 	ld a, d
-	sbc $00
+	sbc 0
 	ld d, a
-	ld hl, $0022
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
 	add hl, bc
 	ld a, d
 	cp [hl]
-	jr c, .jr_03a_468b
-
-	jr nz, .jr_03a_469e
-
-	ld hl, $0021
+	jr c, .finished_pitch_slide
+	jr nz, .continue_pitch_slide
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET
 	add hl, bc
 	ld a, e
 	cp [hl]
-	jr nc, .jr_03a_469e
+	jr nc, .continue_pitch_slide
 
-.Jump_03a_468b
-.jr_03a_468b
-	ld hl, $0004
+.finished_pitch_slide
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
 	res 1, [hl]
-	ld hl, $0005
+	ld hl, CHANNEL_FLAGS3
 	add hl, bc
 	res 1, [hl]
-	ld hl, $0022
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 
-.jr_03a_469e
-	ld hl, $0010
+.continue_pitch_slide
+	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $000c
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
 	set 1, [hl]
 	pop hl
 	ret
 
 
-Call_03a_46ad:
+HandleVibrato:
 	push hl
-	ld hl, $001d
+	ld hl, CHANNEL_VIBRATO_DELAY_COUNT
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .jr_03a_46bf
+	jr nz, .subexit
 
-	ld hl, $0020
+	ld hl, CHANNEL_VIBRATO_RATE
 	add hl, bc
 	ld a, [hl]
 	and $0f
-	jr z, .jr_03a_46c2
+	jr z, .toggle
 
-.jr_03a_46bf
+.subexit
 	dec [hl]
-	jr .jr_03a_46fd
+	jr .quit
 
-.jr_03a_46c2
+.toggle
 	ld a, [hl]
 	swap [hl]
 	or [hl]
 	ld [hl], a
-	ld hl, $001f
+	ld hl, CHANNEL_VIBRATO_EXTENT
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .jr_03a_46fd
+	jr z, .quit
 
-	ld hl, $0005
+	ld hl, CHANNEL_FLAGS3
 	add hl, bc
-	bit 0, [hl]
-	jr z, .jr_03a_46e5
+	bit SOUND_VIBRATO_DIR, [hl]
+	jr z, .down
 
-	res 0, [hl]
+	res SOUND_VIBRATO_DIR, [hl]
 	and $0f
 	ld d, a
 	ld a, [wCurTrackFrequency]
 	sub d
-	jr nc, .jr_03a_46f4
+	jr nc, .no_carry
 
 	xor a
-	jr .jr_03a_46f4
+	jr .no_carry
 
-.jr_03a_46e5
-	set 0, [hl]
+.down
+	set SOUND_VIBRATO_DIR, [hl]
 	and $f0
 	swap a
 	ld d, a
 	ld a, [wCurTrackFrequency]
 	add d
-	jr nc, .jr_03a_46f4
+	jr nc, .no_carry
 
 	ld a, $ff
 
-.jr_03a_46f4
+.no_carry
 	ld [wCurTrackFrequency], a
-	ld hl, $000c
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 1, [hl]
+	set NOTE_FREQ_OVERRIDE, [hl]
 
-.jr_03a_46fd
+.quit
 	pop hl
 	ret
 
 
-Call_03a_46ff:
+Handle_0b:
 	push hl
-	ld hl, $0026
+	ld hl, CHANNEL_FIELD25 + 1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .jr_03a_470b
+	jr z, .set_rest
 
 	dec [hl]
-	jr .jr_03a_4711
+	jr .done
 
-.jr_03a_470b
-	ld hl, $000c
+.set_rest
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 5, [hl]
+	set NOTE_REST, [hl]
 
-.jr_03a_4711
+.done
 	pop hl
 	ret
 
 
-Call_03a_4713:
+Handle_crypitch:
 	push hl
-	ld hl, $0027
+	ld hl, CHANNEL_CRY_PITCH
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -1360,201 +1343,196 @@ Call_03a_4713:
 	ret
 
 
-Call_03a_472b:
+Handle_0e:
 	push hl
-	ld hl, $0005
+	ld hl, CHANNEL_FLAGS3
 	add hl, bc
-	bit 2, [hl]
-	jr nz, .jr_03a_4738
+	bit SOUND_UNKN_12, [hl]
+	jr nz, .skip
 
-	set 2, [hl]
-	jr .jr_03a_4756
+	set SOUND_UNKN_12, [hl]
+	jr .done
 
-.jr_03a_4738
-	res 2, [hl]
-	ld hl, $0012
+.skip
+	res SOUND_UNKN_12, [hl]
+	ld hl, CHANNEL_PITCH
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .jr_03a_4756
+	jr z, .done
 
-	ld hl, $0029
+	ld hl, CHANNEL_FIELD29
 	add hl, bc
 	add [hl]
 	ld e, a
-	ld hl, $0013
+	ld hl, CHANNEL_OCTAVE
 	add hl, bc
 	ld d, [hl]
-	call Call_03a_4c84
+	call GetFrequency
 	ld hl, wCurTrackFrequency
 	ld [hl], e
 	inc hl
 	ld [hl], d
 
-.jr_03a_4756
-	ld hl, $000c
+.done
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 1, [hl]
+	set SOUND_PITCH_WHEEL_DIR, [hl]
 	pop hl
 	ret
 
 
-Call_03a_475e:
+Handle_0d:
 	push hl
-	ld hl, $002a
+	ld hl, CHANNEL_FIELD2A
 	add hl, bc
 	ld e, [hl]
-	ld d, $00
+	ld d, 0
 	ld a, [wCurChannel]
-	and $03
-	cp $02
-	jr nz, .jr_03a_4780
+	maskbits NUM_MUSIC_CHANS
+	cp CHAN3
+	jr nz, .not_ch3
 
-	ld hl, $5125
-	call Call_03a_479b
-	jr c, .jr_03a_4788
+	ld hl, Data_3a_5125
+	call Functione879b
+	jr c, .rest_done
 
 	ld d, a
 	ld a, [wCurTrackIntensity]
 	and $c0
 	or d
-	jr .jr_03a_4790
+	jr .intensity_done
 
-.jr_03a_4780
-	ld hl, $5140
-	call Call_03a_479b
-	jr nc, .jr_03a_4790
+.not_ch3
+	ld hl, Data_3a_5140
+	call Functione879b
+	jr nc, .intensity_done
 
-.jr_03a_4788
-	ld hl, $000c
+.rest_done
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 5, [hl]
+	set NOTE_REST, [hl]
 	pop hl
 	ret
 
 
-.jr_03a_4790
+.intensity_done
 	ld [wCurTrackIntensity], a
-	ld hl, $000c
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 2, [hl]
+	set NOTE_INTENSITY_OVERRIDE, [hl]
 	pop hl
 	ret
 
 
-Call_03a_479b:
+Functione879b:
 	add hl, de
 	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $002b
+	ld hl, CHANNEL_FIELD2A + 1
 	add hl, bc
 	push hl
 	ld l, [hl]
-	ld h, $00
+	ld h, 0
 	add hl, de
 	ld a, [hl]
 	pop hl
 	cp $ff
-	jr z, .jr_03a_47b9
+	jr z, .carry
 
 	cp $fe
-	jr nz, .jr_03a_47b6
+	jr nz, .done_nocarry
 
 	xor a
 	ld [hl], a
 	ld a, [de]
 
-.jr_03a_47b6
+.done_nocarry
 	inc [hl]
 	and a
 	ret
-
-
-.jr_03a_47b9
+.carry
 	scf
 	ret
 
 
-Call_03a_47bb:
-	ld hl, $002e
+HandleNoise:
+	ld hl, CHANNEL_FIELD2E
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .jr_03a_47cf
+	jr z, .skip
 
 	dec [hl]
-	ld hl, $0030
+	ld hl, CHANNEL_FIELD30
 	add hl, bc
 	ld a, [hl]
-	ld hl, $001b
+	ld hl, CHANNEL_TRACKS
 	add hl, bc
 	ld [hl], a
 	ret
 
-
-.jr_03a_47cf
-	ld hl, $002f
+.skip
+	ld hl, CHANNEL_FIELD2F
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .jr_03a_47e6
+	jr z, .skip2
 
 	dec [hl]
-	ld hl, $0030
+	ld hl, CHANNEL_FIELD30
 	add hl, bc
 	ld a, [hl]
 	swap a
 	or [hl]
-	ld hl, $001b
+	ld hl, CHANNEL_TRACKS
 	add hl, bc
 	ld [hl], a
 	ret
 
-
-.jr_03a_47e6
-	ld hl, $0030
+.skip2
+	ld hl, CHANNEL_FIELD30
 	add hl, bc
 	ld a, [hl]
 	swap a
-	ld hl, $001b
+	ld hl, CHANNEL_TRACKS
 	add hl, bc
 	ld [hl], a
-	ld hl, $0004
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	res 7, [hl]
+	res SOUND_UNKN_0F, [hl]
 	ret
 
 
-Functione87f9::
-	ld hl, $0003
+ReadNoiseSample::
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	bit 4, [hl]
+	bit SOUND_NOISE, [hl]
 	ret z
 
-	ld a, [wc1a1]
+	ld a, [wNoiseSampleDelay]
 	and a
-	jr z, .jr_03a_480b
+	jr z, .get_new_sample
 
 	dec a
-	ld [wc1a1], a
+	ld [wNoiseSampleDelay], a
 	ret
 
-
-.jr_03a_480b
-	ld hl, wc19f
+.get_new_sample
+	ld hl, wNoiseSampleAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld a, [de]
 	inc de
 	cp $ff
-	jr z, .jr_03a_4838
+	jr z, .done
 
 	and $0f
 	inc a
-	ld [wc1a1], a
+	ld [wNoiseSampleDelay], a
 	ld a, [de]
 	inc de
 	ld [wCurTrackIntensity], a
@@ -1563,103 +1541,98 @@ Functione87f9::
 	ld [wCurTrackFrequency], a
 	xor a
 	ld [wCurTrackFrequency + 1], a
-	ld hl, wc19f
+	ld hl, wNoiseSampleAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $000c
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 4, [hl]
+	set NOTE_NOISE_SAMPLING, [hl]
+	ret
+
+.done
 	ret
 
 
-.jr_03a_4838
-	ret
-
-
-Functione8839::
+HaltMusicWhileSFXPlaying::
 	ld a, [wSFXPriority]
 	and a
 	ret z
 
 	ld a, [wCurChannel]
-	cp $04
+	cp CHAN5
 	ret nc
 
 	call IsAnySFXOn
 	ret nc
 
-	ld hl, $000c
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 5, [hl]
+	set NOTE_REST, [hl]
 	ret
 
 
-Functione884f::
-	call Call_03a_4c65
-	cp $ff
-	jr z, .jr_03a_4876
+ParseMusic::
+	call GetMusicByte
+	cp sound_ret_cmd
+	jr z, .end_music
 
-	cp $d0
-	jr nc, .jr_03a_489a
+	cp FIRST_MUSIC_CMD
+	jr nc, .parse_commands
 
-	ld hl, $0003
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	bit 3, [hl]
-	jr nz, .jr_03a_486e
+	bit SOUND_SFX, [hl]
+	jr nz, .parse_sfx_or_rest
 
-	bit 5, [hl]
-	jr nz, .jr_03a_486e
+	bit SOUND_REST, [hl]
+	jr nz, .parse_sfx_or_rest
 
-	bit 4, [hl]
-	jr nz, .jr_03a_4872
+	bit SOUND_NOISE, [hl]
+	jr nz, .parse_noise
 
-	call Call_03a_48be
+	call _ParseMusic
 	ret
 
-
-.jr_03a_486e
-	call Call_03a_48f5
+.parse_sfx_or_rest
+	call ParseSFXOrRest
 	ret
 
-
-.jr_03a_4872
-	call Call_03a_4922
+.parse_noise
+	call GetNoiseSample
 	ret
 
-
-.jr_03a_4876
-	ld hl, $0003
+.end_music
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	bit 1, [hl]
-	jr nz, .jr_03a_489a
+	bit SOUND_SUBROUTINE, [hl]
+	jr nz, .parse_commands
 
 	call IsChannelSFXOn
-	jr nc, .jr_03a_4896
+	jr nc, .ok
 
-	ld hl, $0003
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	bit 5, [hl]
-	call nz, Call_03a_489f
+	bit SOUND_REST, [hl]
+	call nz, RestoreVolume
 	ld a, [wCurChannel]
-	cp $04
-	jr nz, .jr_03a_4896
+	cp CHAN5
+	jr nz, .ok
 
 	xor a
 	ldh [rNR10], a
 
-.jr_03a_4896
+.ok
 	call StopChannel
 	ret
 
+.parse_commands
+	call ParseMusicCommand
+	jr ParseMusic
 
-.jr_03a_489a
-	call Call_03a_4958
-	jr Functione884f
-
-Call_03a_489f:
+RestoreVolume:
 	ld a, [wCurChannel]
-	cp $04
+	cp CHAN5
 	ret nz
 
 	xor a
@@ -1677,109 +1650,119 @@ Call_03a_489f:
 	ret
 
 
-Call_03a_48be:
+_ParseMusic:
 	ld a, [wCurMusicByte]
-	and $0f
-	call Call_03a_4cb4
+	and $f
+	call SetNoteDuration
 	ld a, [wCurMusicByte]
 	swap a
-	and $0f
-	jr z, .jr_03a_48ee
+	and $f
+	jr z, .rest
 
-	ld hl, $0012
+	ld hl, CHANNEL_PITCH
 	add hl, bc
 	ld [hl], a
 	ld e, a
-	ld hl, $0013
+	ld hl, CHANNEL_OCTAVE
 	add hl, bc
 	ld d, [hl]
-	call Call_03a_4c84
-	ld hl, $0010
+	call GetFrequency
+	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $000c
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 4, [hl]
-	call Call_03a_44fe
+	set NOTE_NOISE_SAMPLING, [hl]
+	call LoadNote
 	ret
 
 
-.jr_03a_48ee
-	ld hl, $000c
+.rest
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 5, [hl]
+	set NOTE_REST, [hl]
 	ret
 
 
-Call_03a_48f5:
-	ld hl, $000c
+ParseSFXOrRest:
+; turn noise sampling on
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 4, [hl]
+	set NOTE_NOISE_SAMPLING, [hl]
 	ld a, [wCurMusicByte]
-	call Call_03a_4cb4
-	call Call_03a_4c65
-	ld hl, $000f
+	call SetNoteDuration
+
+; update volume envelope from next param
+	call GetMusicByte
+	ld hl, CHANNEL_INTENSITY
 	add hl, bc
 	ld [hl], a
-	call Call_03a_4c65
-	ld hl, $0010
+
+; update lo frequence from next param
+	call GetMusicByte
+	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
 	ld [hl], a
+
+; on noise channel?
 	ld a, [wCurChannel]
-	and $03
-	cp $03
+	maskbits NUM_MUSIC_CHANS
+	cp CHAN4
 	ret z
 
-	call Call_03a_4c65
-	ld hl, $0011
+; update hi frequency from next param
+	call GetMusicByte
+	ld hl, CHANNEL_FREQUENCY + 1
 	add hl, bc
 	ld [hl], a
 	ret
 
 
-Call_03a_4922:
+GetNoiseSample:
 	ld a, [wCurChannel]
-	cp $03
+	cp CHAN4
 	ret nz
 
 	ld a, [wCurMusicByte]
-	and $0f
-	call Call_03a_4cb4
-	ld a, [wc1a3]
+	and $f
+	call SetNoteDuration
+
+	ld a, [wNoiseSampleSet]
 	ld e, a
-	ld d, $00
-	ld hl, $51f4
+	ld d, 0
+	ld hl, Drumkits
 	add hl, de
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	ld a, [wCurMusicByte]
 	swap a
-	and $0f
+	and $f
 	ret z
 
 	ld e, a
-	ld d, $00
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]
-	ld [wc19f], a
+	ld [wNoiseSampleAddress], a
 	ld a, [hl]
-	ld [wc1a0], a
+	ld [wNoiseSampleAddress + 1], a
 	xor a
-	ld [wc1a1], a
+	ld [wNoiseSampleDelay], a
 	ret
 
 
-Call_03a_4958:
+ParseMusicCommand:
 	ld a, [wCurMusicByte]
-	sub $d0
+	sub FIRST_MUSIC_CMD
 	ld e, a
-	ld d, $00
-	ld hl, $4969
+	ld d, 0
+	ld hl, MusicCommands
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -1787,210 +1770,163 @@ Call_03a_4958:
 	ld l, a
 	jp hl
 
+MusicCommands:
+	dw Music_Octave8
+	dw Music_Octave7
+	dw Music_Octave6
+	dw Music_Octave5
+	dw Music_Octave4
+	dw Music_Octave3
+	dw Music_Octave2
+	dw Music_Octave1
+	dw Music_NoteType
+	dw Music_Transpose
+	dw Music_Tempo
+	dw Music_DutyCycle
+	dw Music_VolumeEnvelope
+	dw Music_PitchSweep
+	dw Music_DutyCyclePattern
+	dw Music_ToggleSFX
+	dw Music_PitchSlide
+	dw Music_Vibrato
+	dw MusicE2
+	dw Music_ToggleNoise
+	dw Music_ForceStereoPanning
+	dw Music_Volume
+	dw Music_PitchOffset
+	dw MusicE7
+	dw MusicE8
+	dw Music_TempoRelative
+	dw Music_RestartChannel
+	dw Music_NewSong
+	dw Music_SFXPriorityOn
+	dw Music_SFXPriorityOff
+	dw MusicEE
+	dw Music_StereoPanning
+	dw MusicF0
+	dw MusicF1
+	dw MusicF2
+	dw MusicF3
+	dw MusicF4
+	dw MusicF5
+	dw MusicF6
+	dw MusicF7
+	dw MusicF8
+	dw MusicF9
+	dw Music_SetCondition
+	dw Music_JumpIf
+	dw Music_Jump
+	dw Music_Loop
+	dw Music_Call
+	dw Music_Ret
 
-	jp nc, $d24b
-
-	ld c, e
-
-	db $d2, $4b, $d2, $4b, $d2, $4b, $d2, $4b, $d2, $4b
-
-	db $d2
-	ld c, e
-
-	db $8f, $4b
-
-	db $dd
-	ld c, e
-
-	db $c6, $4b, $b0, $4b
-
-	cp l
-	ld c, e
-
-	db $a3, $4b
-
-	ld b, [hl]
-	ld c, e
-	ld l, l
-	ld c, e
-
-	db $fd, $4a, $cb, $4a
-
-	cp h
-	ld c, d
-
-	db $7b, $4b
-
-	db $ec
-	ld c, e
-
-	db $f9, $4b
-
-	inc h
-	ld c, e
-	scf
-	ld c, e
-	ld e, [hl]
-	ld c, e
-	ld [$2f4c], sp
-	ld c, h
-	ld d, a
-	ld c, h
-	inc h
-	ld c, h
-	ld a, [hli]
-	ld c, h
-	add a
-	ld c, d
-	and $4b
+MusicF0:
+MusicF1:
+MusicF2:
+MusicF3:
+MusicF4:
+MusicF5:
+MusicF6:
+MusicF7:
+MusicF8:
 	ret
 
-
-	ld c, c
-	ret
-
-
-	ld c, c
-	ret
-
-
-	ld c, c
-	ret
-
-
-	ld c, c
-	ret
-
-
-	ld c, c
-	ret
-
-
-	ld c, c
-	ret
-
-
-	ld c, c
-	ret
-
-
-	ld c, c
-	ret
-
-
-	ld c, c
-
-	db $b6, $4a
-
-	ld d, a
-	ld c, d
-	ld h, b
-	ld c, d
-	dec b
-	ld c, d
-
-	db $15, $4a, $df, $49, $ca, $49
-
-	ret
-
-
-	ld hl, $0003
+Music_Ret:
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	res 1, [hl]
-	ld hl, $0008
+	res SOUND_SUBROUTINE, [hl]
+	ld hl, CHANNEL_LAST_MUSIC_ADDRESS
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0006
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ret
 
-
-	call Call_03a_4c65
+Music_Call:
+	call GetMusicByte
 	ld e, a
-	call Call_03a_4c65
+	call GetMusicByte
 	ld d, a
 	push de
-	ld hl, $0006
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0008
+	ld hl, CHANNEL_LAST_MUSIC_ADDRESS
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	pop de
-	ld hl, $0006
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $0003
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	set 1, [hl]
+	set SOUND_SUBROUTINE, [hl]
 	ret
 
-
-	call Call_03a_4c65
+Music_Jump:
+	call GetMusicByte
 	ld e, a
-	call Call_03a_4c65
+	call GetMusicByte
 	ld d, a
-	ld hl, $0006
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ret
 
-
-	call Call_03a_4c65
-	ld hl, $0003
+Music_Loop:
+	call GetMusicByte
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	bit 2, [hl]
-	jr nz, .jr_03a_4a2b
+	bit SOUND_LOOPING, [hl]
+	jr nz, .checkloop
 
 	and a
-	jr z, .jr_03a_4a34
+	jr z, .loop
 
 	dec a
-	set 2, [hl]
-	ld hl, $0018
+	set SOUND_LOOPING, [hl]
+	ld hl, CHANNEL_LOOP_COUNT
 	add hl, bc
 	ld [hl], a
 
-.jr_03a_4a2b
-	ld hl, $0018
+.checkloop
+	ld hl, CHANNEL_LOOP_COUNT
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .jr_03a_4a44
-
+	jr z, .endloop
 	dec [hl]
 
-.jr_03a_4a34
-	call Call_03a_4c65
+.loop
+	call GetMusicByte
 	ld e, a
-	call Call_03a_4c65
+	call GetMusicByte
 	ld d, a
-	ld hl, $0006
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ret
 
-
-.jr_03a_4a44
-	ld hl, $0003
+.endloop
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	res 2, [hl]
-	ld hl, $0006
+	res SOUND_LOOPING, [hl]
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -2002,21 +1938,20 @@ Call_03a_4958:
 	ld [hl], e
 	ret
 
-
-	call Call_03a_4c65
-	ld hl, $000d
+Music_SetCondition:
+	call GetMusicByte
+	ld hl, CHANNEL_CONDITION
 	add hl, bc
 	ld [hl], a
 	ret
 
-
-	call Call_03a_4c65
-	ld hl, $000d
+Music_JumpIf:
+	call GetMusicByte
+	ld hl, CHANNEL_CONDITION
 	add hl, bc
 	cp [hl]
-	jr z, .jr_03a_4a77
-
-	ld hl, $0006
+	jr z, .jump
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -2028,31 +1963,30 @@ Call_03a_4958:
 	ld [hl], e
 	ret
 
-
-.jr_03a_4a77
-	call Call_03a_4c65
+.jump
+	call GetMusicByte
 	ld e, a
-	call Call_03a_4c65
+	call GetMusicByte
 	ld d, a
-	ld hl, $0006
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ret
 
-
+MusicEE:
 	ld a, [wCurChannel]
-	and $03
+	maskbits NUM_MUSIC_CHANS
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, wChannel1JumpCondition
 	add hl, de
 	ld a, [hl]
 	and a
-	jr nz, .jr_03a_4aa4
+	jr nz, .jump
 
-	ld hl, $0006
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -2064,57 +1998,56 @@ Call_03a_4958:
 	ld [hl], e
 	ret
 
-
-.jr_03a_4aa4
-	ld [hl], $00
-	call Call_03a_4c65
+.jump
+	ld [hl], 0
+	call GetMusicByte
 	ld e, a
-	call Call_03a_4c65
+	call GetMusicByte
 	ld d, a
-	ld hl, $0006
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ret
 
-
-	ld a, $01
+MusicF9:
+	ld a, 1
 	ld [wc1b3], a
 	ret
 
-
-	call Call_03a_4c65
-	ld hl, $002c
+MusicE2:
+	call GetMusicByte
+	ld hl, CHANNEL_FIELD2C
 	add hl, bc
 	ld [hl], a
-	ld hl, $0004
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set 3, [hl]
+	set SOUND_UNKN_0B, [hl]
 	ret
 
-
-	ld hl, $0004
+Music_Vibrato:
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set 0, [hl]
-	res 0, [hl]
-	call Call_03a_4c65
-	ld hl, $001e
+	set SOUND_VIBRATO, [hl]
+	res SOUND_VIBRATO, [hl]
+	call GetMusicByte
+	ld hl, CHANNEL_VIBRATO_DELAY
 	add hl, bc
 	ld [hl], a
-	call Call_03a_4c65
-	ld hl, $001f
+	call GetMusicByte
+	ld hl, CHANNEL_VIBRATO_EXTENT
 	add hl, bc
 	ld d, a
 	and $f0
 	swap a
 	srl a
 	ld e, a
-	adc $00
+	adc 0
 	swap a
 	or e
 	ld [hl], a
-	ld hl, $0020
+	ld hl, CHANNEL_VIBRATO_RATE
 	add hl, bc
 	ld a, d
 	and $0f
@@ -2124,208 +2057,205 @@ Call_03a_4958:
 	ld [hl], a
 	ret
 
-
-	call Call_03a_4c65
-	ld [wc196], a
-	call Call_03a_4c65
+Music_PitchSlide:
+	call GetMusicByte
+	ld [wCurNoteDuration], a
+	call GetMusicByte
 	ld d, a
-	and $0f
+	and $f
 	ld e, a
 	ld a, d
 	swap a
-	and $0f
+	and $f
 	ld d, a
-	call Call_03a_4c84
-	ld hl, $0021
+	call GetFrequency
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET
 	add hl, bc
 	ld [hl], e
-	ld hl, $0022
+	ld hl, CHANNEL_PITCH_WHEEL_TARGET + 1
 	add hl, bc
 	ld [hl], d
-	ld hl, $0004
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set 1, [hl]
-
-Jump_03a_4b23:
+	set SOUND_PITCH_WHEEL, [hl]
 	ret
 
-
-	ld hl, $0004
+Music_PitchOffset:
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set 4, [hl]
-	ld hl, $0028
+	set SOUND_CRY_PITCH, [hl]
+	ld hl, CHANNEL_CRY_PITCH + 1
 	add hl, bc
-	call Call_03a_4c65
+	call GetMusicByte
 	ld [hld], a
-	call Call_03a_4c65
+	call GetMusicByte
 	ld [hl], a
 	ret
 
-
-	ld hl, $0004
+MusicE7:
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set 6, [hl]
-	call Call_03a_4c65
-	ld hl, $0029
+	set SOUND_UNKN_0E, [hl]
+	call GetMusicByte
+	ld hl, CHANNEL_FIELD29
 	add hl, bc
 	ld [hl], a
 	ret
 
-
-	ld hl, $0004
+Music_DutyCyclePattern:
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set 2, [hl]
-	call Call_03a_4c65
+	set SOUND_DUTY, [hl]
+	call GetMusicByte
 	rrca
 	rrca
-	ld hl, $001c
+	ld hl, CHANNEL_SFX_DUTY_LOOP
 	add hl, bc
 	ld [hl], a
 	and $c0
-	ld hl, $000e
+	ld hl, CHANNEL_DUTY_CYCLE
 	add hl, bc
 	ld [hl], a
 	ret
 
-
-	ld hl, $0004
+MusicE8:
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set 5, [hl]
-	call Call_03a_4c65
-	ld hl, $002a
+	set SOUND_UNKN_0D, [hl]
+	call GetMusicByte
+	ld hl, CHANNEL_FIELD2A
 	add hl, bc
 	ld [hl], a
 	ret
 
-
-	ld hl, $0003
+Music_ToggleSFX:
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	bit 3, [hl]
-	jr z, .jr_03a_4b78
-
-	res 3, [hl]
+	bit SOUND_SFX, [hl]
+	jr z, .on
+	res SOUND_SFX, [hl]
+	ret
+.on
+	set SOUND_SFX, [hl]
 	ret
 
-
-.jr_03a_4b78
-	set 3, [hl]
-	ret
-
-
-	ld hl, $0003
+Music_ToggleNoise:
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	bit 4, [hl]
-	jr z, .jr_03a_4b86
-
-	res 4, [hl]
+	bit SOUND_NOISE, [hl]
+	jr z, .on
+	res SOUND_NOISE, [hl]
+	ret
+.on
+	set SOUND_NOISE, [hl]
+	call GetMusicByte
+	ld [wNoiseSampleSet], a
 	ret
 
-
-.jr_03a_4b86
-	set 4, [hl]
-	call Call_03a_4c65
-	ld [wc1a3], a
-	ret
-
-
-	call Call_03a_4c65
-	ld hl, $002d
+Music_NoteType:
+	call GetMusicByte
+	ld hl, CHANNEL_NOTE_LENGTH
 	add hl, bc
 	ld [hl], a
 	ld a, [wCurChannel]
-	and $03
-	cp $03
+	maskbits NUM_MUSIC_CHANS
+	cp CHAN4
 	ret z
-
-	call Call_03a_4bbd
+	call Music_VolumeEnvelope
 	ret
 
-
-	call Call_03a_4c65
+Music_PitchSweep:
+	call GetMusicByte
 	ld [wPitchSweep], a
-	ld hl, $000c
+	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
 	set 3, [hl]
 	ret
 
-
-	call Call_03a_4c65
+Music_DutyCycle:
+	call GetMusicByte
 	rrca
 	rrca
 	and $c0
-	ld hl, $000e
+	ld hl, CHANNEL_DUTY_CYCLE
 	add hl, bc
 	ld [hl], a
 	ret
 
 
-Call_03a_4bbd:
-	call Call_03a_4c65
-	ld hl, $000f
+Music_VolumeEnvelope:
+	call GetMusicByte
+	ld hl, CHANNEL_INTENSITY
 	add hl, bc
 	ld [hl], a
 	ret
 
-
-	call Call_03a_4c65
+Music_Tempo:
+	call GetMusicByte
 	ld d, a
-	call Call_03a_4c65
+	call GetMusicByte
 	ld e, a
 	call SetGlobalTempo
 	ret
 
-
-	ld hl, $0013
+Music_Octave8:
+Music_Octave7:
+Music_Octave6:
+Music_Octave5:
+Music_Octave4:
+Music_Octave3:
+Music_Octave2:
+Music_Octave1:
+	ld hl, CHANNEL_OCTAVE
 	add hl, bc
 	ld a, [wCurMusicByte]
-	and $07
+	and 7
 	ld [hl], a
 	ret
 
-
-	call Call_03a_4c65
-	ld hl, $0014
+Music_Transpose:
+	call GetMusicByte
+	ld hl, CHANNEL_PITCH_OFFSET
 	add hl, bc
 	ld [hl], a
 	ret
 
-
+Music_StereoPanning:
 	ld a, [wce5f]
 	bit 5, a
 	ret z
 
+Music_ForceStereoPanning:
 	call SetLRTracks
-	call Call_03a_4c65
-	ld hl, $001b
+	call GetMusicByte
+	ld hl, CHANNEL_TRACKS
 	add hl, bc
 	and [hl]
 	ld [hl], a
 	ret
 
-
-	call Call_03a_4c65
+Music_Volume:
+	call GetMusicByte
 	ld a, [wMusicFade]
 	and a
 	ret nz
-
 	ld a, [wCurMusicByte]
 	ld [wVolume], a
 	ret
 
-
-	call Call_03a_4c65
+Music_TempoRelative:
+	call GetMusicByte
 	ld e, a
+; check sign
 	cp $80
-	jr nc, .jr_03a_4c14
-
-	ld d, $00
-	jr .jr_03a_4c16
-
-.jr_03a_4c14
-	ld d, $ff
-
-.jr_03a_4c16
-	ld hl, $0019
+	jr nc, .negative
+; positive
+	ld d, 0
+	jr .ok
+.negative
+	ld d, -1
+.ok
+	ld hl, CHANNEL_TEMPO
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -2336,30 +2266,30 @@ Call_03a_4bbd:
 	call SetGlobalTempo
 	ret
 
-
-	ld a, $01
+Music_SFXPriorityOn:
+	ld a, 1
 	ld [wSFXPriority], a
 	ret
 
-
+Music_SFXPriorityOff:
 	xor a
 	ld [wSFXPriority], a
 	ret
 
-
-	ld hl, $0000
+Music_RestartChannel:
+	ld hl, CHANNEL_MUSIC_ID
 	add hl, bc
 	ld a, [hli]
 	ld [wMusicID], a
 	ld a, [hl]
 	ld [wMusicID + 1], a
-	ld hl, $0002
+	ld hl, CHANNEL_MUSIC_BANK
 	add hl, bc
 	ld a, [hl]
 	ld [wMusicBank], a
-	call Call_03a_4c65
+	call GetMusicByte
 	ld l, a
-	call Call_03a_4c65
+	call GetMusicByte
 	ld h, a
 	ld e, [hl]
 	inc hl
@@ -2370,32 +2300,31 @@ Call_03a_4bbd:
 	pop bc
 	ret
 
-
-	call Call_03a_4c65
+Music_NewSong:
+	call GetMusicByte
 	ld e, a
-	call Call_03a_4c65
+	call GetMusicByte
 	ld d, a
 	push bc
 	call _PlayMusic
 	pop bc
 	ret
 
-
-Call_03a_4c65:
+GetMusicByte:
 	push hl
 	push de
-	ld hl, $0006
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0002
+	ld hl, CHANNEL_MUSIC_BANK
 	add hl, bc
 	ld a, [hl]
 	call _LoadMusicByte
 	ld [wCurMusicByte], a
 	inc de
-	ld hl, $0006
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	ld [hl], e
 	inc hl
@@ -2405,91 +2334,113 @@ Call_03a_4c65:
 	ret
 
 
-Call_03a_4c84:
-	ld hl, $0014
+GetFrequency:
+; generate frequency
+; input:
+; 	d: octave
+;	e: pitch
+; output:
+; 	de: frequency
+
+; get octave
+	ld hl, CHANNEL_PITCH_OFFSET
 	add hl, bc
 	ld a, [hl]
 	swap a
-	and $0f
+	and $f
 	add d
+
 	push af
-	ld hl, $0014
+
+	ld hl, CHANNEL_PITCH_OFFSET
 	add hl, bc
 	ld a, [hl]
-	and $0f
+	and $f
 	ld l, a
-	ld d, $00
+	ld d, 0
 	ld h, d
 	add hl, de
 	add hl, hl
-	ld de, $4f73
+
+	ld de, FrequencyTable
 	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+
 	pop af
 
-.jr_03a_4ca4
-	cp $07
-	jr nc, .jr_03a_4caf
+.loop
+; [7 - octave] loops
+	cp 7
+	jr nc, .ok
 
 	sra d
 	rr e
 	inc a
-	jr .jr_03a_4ca4
+	jr .loop
 
-.jr_03a_4caf
+.ok
 	ld a, d
 	and $07
 	ld d, a
 	ret
 
 
-Call_03a_4cb4:
+SetNoteDuration:
+; input: a = note duration in 16ths
+
 	inc a
 	ld e, a
-	ld d, $00
-	ld hl, $002d
+	ld d, 0
+	ld hl, CHANNEL_NOTE_LENGTH
 	add hl, bc
 	ld a, [hl]
-	ld l, $00
-	call Call_03a_4cdf
+	ld l, 0
+	call .Multiply
 	ld a, l
-	ld hl, $0019
+	ld hl, CHANNEL_TEMPO
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0016
+	ld hl, CHANNEL_FIELD16
 	add hl, bc
 	ld l, [hl]
-	call Call_03a_4cdf
+	call .Multiply
 	ld e, l
 	ld d, h
-	ld hl, $0016
+	ld hl, CHANNEL_FIELD16
 	add hl, bc
 	ld [hl], e
-	ld hl, $0015
+	ld hl, CHANNEL_NOTE_DURATION
 	add hl, bc
 	ld [hl], d
 	ret
 
 
-Call_03a_4cdf:
-	ld h, $00
+.Multiply:
+; multiplies a and de
+; adds the result to l
+; stores the result in hl
+	ld h, 0
 
-.jr_03a_4ce1
+.loop
+; halve a
 	srl a
-	jr nc, .jr_03a_4ce6
+	jr nc, .skip
 
+; add the remainder to the result
 	add hl, de
 
-.jr_03a_4ce6
+.skip
+; de * 2
 	sla e
 	rl d
-	and a
-	jr nz, .jr_03a_4ce1
 
+; done multiplying?
+	and a
+	jr nz, .loop
 	ret
 
 SetGlobalTempo:
@@ -2561,7 +2512,7 @@ SetLRTracks:
 	maskbits NUM_MUSIC_CHANS
 	ld e, a
 	ld d, 0
-	ld hl, Data_03a_52b3
+	ld hl, LRTracks
 	add hl, de
 	ld a, [hl]
 	ld hl, CHANNEL_TRACKS
@@ -2611,83 +2562,93 @@ _PlayCryHeader::
 	ld [hl], e
 	inc hl
 	ld [hl], d
+
 	ld hl, CryHeaderPointers
 	add hl, de
 	add hl, de
 	add hl, de
+
 	ld a, [hli]
 	ld [wMusicBank], a
+
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+
 	call LoadMusicByte
 	rlca
 	rlca
-	and $03
+	maskbits NUM_MUSIC_CHANS
 	inc a
 
-.jr_03a_4db8
+.loop
 	push af
 	call LoadChannel
-	ld hl, $0003
+
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	set 5, [hl]
-	ld hl, $0004
+	set SOUND_REST, [hl]
+
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set 4, [hl]
-	ld hl, $0027
+	set SOUND_CRY_PITCH, [hl]
+
+	ld hl, CHANNEL_CRY_PITCH
 	add hl, bc
 	ld a, [wCryPitch]
 	ld [hli], a
 	ld a, [wCryPitch + 1]
 	ld [hl], a
-	ld a, [wCurChannel]
-	and $03
-	cp $03
-	jr nc, .jr_03a_4de9
 
-	ld hl, $0019
+	ld a, [wCurChannel]
+	maskbits NUM_MUSIC_CHANS
+	cp 3
+	jr nc, .start
+
+; no tempo for ch4
+	ld hl, CHANNEL_TEMPO
 	add hl, bc
 	ld a, [wCryLength]
 	ld [hli], a
 	ld a, [wCryLength + 1]
 	ld [hl], a
 
-.jr_03a_4de9
+.start
 	call StartChannel
-	ld a, [wc1b9]
+	ld a, [wStereoPanningMask]
 	and a
-	jr z, .jr_03a_4e07
+	jr z, .next
 
 	ld a, [wce5f]
 	bit 5, a
-	jr z, .jr_03a_4e07
+	jr z, .next
 
-	ld hl, $001b
+	ld hl, CHANNEL_TRACKS
 	add hl, bc
 	ld a, [hl]
-	ld hl, wc1ba
+	ld hl, wCryTracks
 	and [hl]
-	ld hl, $001b
+	ld hl, CHANNEL_TRACKS
 	add hl, bc
 	ld [hl], a
 
-.jr_03a_4e07
+.next
 	pop af
 	dec a
-	jr nz, .jr_03a_4db8
+	jr nz, .loop
 
 	ld a, [wLastVolume]
 	and a
-	jr nz, .jr_03a_4e1c
+	jr nz, .end
 
 	ld a, [wVolume]
 	ld [wLastVolume], a
-	ld a, $77
+	ld a, MAX_VOLUME
 	ld [wVolume], a
 
-.jr_03a_4e1c
-	ld a, $01
+.end
+; stop playing music
+	ld a, 1
 	ld [wSFXPriority], a
 	ret
 
@@ -2697,10 +2658,12 @@ _PlaySFX::
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $536d
+	ld hl, SFXPointers
+; three byte pointers
 	add hl, de
 	add hl, de
 	add hl, de
+; get bank
 	ld a, [hli]
 	ld [wMusicBank], a
 	ld e, [hl]
@@ -2709,100 +2672,110 @@ _PlaySFX::
 	call LoadMusicByte
 	rlca
 	rlca
-	and $03
+	maskbits NUM_MUSIC_CHANS
 	inc a
 
-.jr_03a_4e3d
+.start_channels
 	push af
 	call LoadChannel
-	ld hl, $0003
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	set 3, [hl]
+	set SOUND_SFX, [hl]
 	call StartChannel
 	pop af
 	dec a
-	jr nz, .jr_03a_4e3d
-
+	jr nz, .start_channels
 	ret
 
-
 	ld a, [wce5f]
-	bit 5, a
+	bit 5, a	; Stereo flag?
 	jr z, _PlaySFX
 
 	ld hl, wMusicID
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $536d
+
+	ld hl, SFXPointers
 	add hl, de
 	add hl, de
 	add hl, de
+
 	ld a, [hli]
 	ld [wMusicBank], a
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+
 	call LoadMusicByte
 	rlca
 	rlca
-	and $03
+	maskbits NUM_MUSIC_CHANS
 	inc a
 
-.jr_03a_4e71
+.loop
 	push af
 	call LoadChannel
-	ld hl, $0003
+	ld hl, CHANNEL_FLAGS1
+
 	add hl, bc
-	set 3, [hl]
+	set SOUND_SFX, [hl]
 	push de
+
 	ld a, [wCurChannel]
-	and $03
+	maskbits NUM_MUSIC_CHANS
 	ld e, a
-	ld d, $00
-	ld hl, $52b3
+	ld d, 0
+	ld hl, LRTracks
 	add hl, de
 	ld a, [hl]
-	ld hl, wc1b9
+	ld hl, wStereoPanningMask
 	and [hl]
-	ld hl, $001b
-	add hl, bc
-	ld [hl], a
-	ld hl, $0030
-	add hl, bc
-	ld [hl], a
-	ld a, [wc1ba]
-	cp $02
-	jr c, .jr_03a_4eb1
 
-	ld a, [wc1bb]
-	ld hl, $002e
+	ld hl, CHANNEL_TRACKS
 	add hl, bc
 	ld [hl], a
-	ld hl, $002f
-	add hl, bc
-	ld [hl], a
-	ld hl, $0004
-	add hl, bc
-	set 7, [hl]
 
-.jr_03a_4eb1
+	ld hl, CHANNEL_FIELD30
+	add hl, bc
+	ld [hl], a
+	ld a, [wCryTracks]
+
+	cp 2
+	jr c, .skip
+
+	ld a, [wSFXDuration]
+
+	ld hl, CHANNEL_FIELD2E
+	add hl, bc
+	ld [hl], a
+
+	ld hl, CHANNEL_FIELD2F
+	add hl, bc
+	ld [hl], a
+
+	ld hl, CHANNEL_FLAGS2
+	add hl, bc
+	set SOUND_UNKN_0F, [hl]
+
+.skip
 	pop de
-	ld hl, $0003
+
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	set 0, [hl]
+	set SOUND_CHANNEL_ON, [hl]
+
 	pop af
 	dec a
-	jr nz, .jr_03a_4e71
+	jr nz, .loop
 
 	ret
-
 
 	ld hl, wMusicID
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, $536d
+	ld hl, SFXPointers
 	add hl, de
 	add hl, de
 	add hl, de
@@ -2814,41 +2787,41 @@ _PlaySFX::
 	call LoadMusicByte
 	rlca
 	rlca
-	and $03
+	maskbits NUM_MUSIC_CHANS
 	inc a
 
-.jr_03a_4ed8
+.cry_channels
 	push af
 	call LoadChannel
-	ld hl, $0003
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	set 3, [hl]
-	ld hl, $0004
+	set SOUND_SFX, [hl]
+	ld hl, CHANNEL_FLAGS2
 	add hl, bc
-	set 4, [hl]
-	ld hl, $0027
+	set SOUND_CRY_PITCH, [hl]
+	ld hl, CHANNEL_CRY_PITCH
 	add hl, bc
 	ld a, [wCryPitch]
 	ld [hli], a
 	ld a, [wCryPitch + 1]
 	ld [hl], a
 	ld a, [wCurChannel]
-	and $03
-	cp $03
-	jr nc, .jr_03a_4f09
+	maskbits NUM_MUSIC_CHANS
+	cp 3
+	jr nc, .cry_ok
 
-	ld hl, $0019
+	ld hl, CHANNEL_TEMPO
 	add hl, bc
 	ld a, [wCryLength]
 	ld [hli], a
 	ld a, [wCryLength + 1]
 	ld [hl], a
 
-.jr_03a_4f09
+.cry_ok
 	call StartChannel
 	pop af
 	dec a
-	jr nz, .jr_03a_4ed8
+	jr nz, .cry_channels
 
 	ret
 
@@ -2856,21 +2829,21 @@ _PlaySFX::
 LoadChannel::
 	call LoadMusicByte
 	inc de
-	and $07
+	and 7
 	ld [wCurChannel], a
 	ld c, a
-	ld b, $00
-	ld hl, $52b7
+	ld b, 0
+	ld hl, ChannelPointers
 	add hl, bc
 	add hl, bc
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld hl, $0003
+	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	res 0, [hl]
-	call Call_03a_4f51
-	ld hl, $0006
+	res SOUND_CHANNEL_ON, [hl]
+	call ChannelInit
+	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
 	call LoadMusicByte
 	ld [hli], a
@@ -2878,38 +2851,38 @@ LoadChannel::
 	call LoadMusicByte
 	ld [hl], a
 	inc de
-	ld hl, $0000
+	ld hl, CHANNEL_MUSIC_ID
 	add hl, bc
 	ld a, [wMusicID]
 	ld [hli], a
 	ld a, [wMusicID + 1]
 	ld [hl], a
-	ld hl, $0002
+	ld hl, CHANNEL_MUSIC_BANK
 	add hl, bc
 	ld a, [wMusicBank]
 	ld [hl], a
 	ret
 
 
-Call_03a_4f51:
+ChannelInit:
 	push de
 	xor a
-	ld hl, $0000
+	ld hl, CHANNEL_MUSIC_ID
 	add hl, bc
-	ld e, $32
+	ld e, CHANNEL_STRUCT_LENGTH
 
-.jr_03a_4f59
+.loop
 	ld [hli], a
 	dec e
-	jr nz, .jr_03a_4f59
+	jr nz, .loop
 
-	ld hl, $0019
+	ld hl, CHANNEL_TEMPO
 	add hl, bc
 	xor a
 	ld [hli], a
 	inc a
 	ld [hl], a
-	ld hl, $002d
+	ld hl, CHANNEL_NOTE_LENGTH
 	add hl, bc
 	ld [hl], a
 	pop de
@@ -2921,33 +2894,258 @@ LoadMusicByte::
 	call _LoadMusicByte
 	ret
 
-Data_4f73:
-	db $00, $00, $2C, $F8, $9D, $F8, $07, $F9, $6B, $F9, $CA, $F9, $23, $FA, $77, $FA, $C7, $FA, $12, $FB, $58, $FB, $9B, $FB, $DA, $FB, $16, $FC, $4E, $FC, $83, $FC, $B5, $FC, $E5, $FC, $11, $FD, $3B, $FD, $63, $FD, $89, $FD, $AC, $FD, $CD, $FD, $ED, $FD
+FrequencyTable:
+	dw 0     ; __
+	dw $f82c ; C_
+	dw $f89d ; C#
+	dw $f907 ; D_
+	dw $f96b ; D#
+	dw $f9ca ; E_
+	dw $fa23 ; F_
+	dw $fa77 ; F#
+	dw $fac7 ; G_
+	dw $fb12 ; G#
+	dw $fb58 ; A_
+	dw $fb9b ; A#
+	dw $fbda ; B_
+	dw $fc16 ; C_
+	dw $fc4e ; C#
+	dw $fc83 ; D_
+	dw $fcb5 ; D#
+	dw $fce5 ; E_
+	dw $fd11 ; F_
+	dw $fd3b ; F#
+	dw $fd63 ; G_
+	dw $fd89 ; G#
+	dw $fdac ; A_
+	dw $fdcd ; A#
+	dw $fded ; B_
 
 WaveSamples:
-	db $02, $46, $8A, $CE, $FF, $FE, $ED, $DC, $CB, $A9, $87, $65, $44, $33, $22, $11 ; 0
-	db $02, $46, $8A, $CE, $EF, $FF, $FE, $EE, $DD, $CB, $A9, $87, $65, $43, $22, $11 ; 1
-	db $13, $69, $BD, $EE, $EE, $FF, $FF, $ED, $DE, $FF, $FF, $EE, $EE, $DB, $96, $31 ; 2
-	db $02, $46, $8A, $CD, $EF, $FE, $DE, $FF, $EE, $DC, $BA, $98, $76, $54, $32, $10 ; 3
-	db $01, $23, $45, $67, $8A, $CD, $EE, $F7, $7F, $EE, $DC, $A8, $76, $54, $32, $10 ; 4
-	db $00, $23, $45, $67, $8A, $C7, $EE, $F7, $7F, $EE, $D7, $A8, $76, $54, $32, $14 ; 5
-	db $01, $02, $03, $04, $05, $06, $07, $08, $09, $0A, $0B, $0C, $0D, $0E, $0F, $0F ; 6
-	db $0F, $0F, $0E, $0E, $0D, $0D, $0C, $0C, $0B, $0B, $0A, $0A, $09, $09, $08, $08 ; 7
-	db $07, $07, $06, $06, $05, $05, $04, $04, $03, $03, $02, $02, $01, $01, $00, $00 ; 8
-	db $FF, $FF, $FF, $FF, $88, $88, $88, $88, $00, $00, $00, $00, $88, $88, $88, $88 ; 9
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $00, $00, $00, $00, $00, $00, $00, $00 ; a
-	db $EE, $EE, $EE, $EE, $EE, $EE, $EE, $EE, $00, $00, $00, $00, $00, $00, $00, $00 ; b
-	db $DD, $DD, $DD, $DD, $DD, $DD, $DD, $DD, $00, $00, $00, $00, $00, $00, $00, $00 ; c
-	db $CC, $CC, $CC, $CC, $CC, $CC, $CC, $CC, $00, $00, $00, $00, $00, $00, $00, $00 ; d
-	db $BB, $BB, $BB, $BB, $BB, $BB, $BB, $BB, $00, $00, $00, $00, $00, $00, $00, $00 ; e
-	db $AA, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $00, $00, $00, $00, $00, $00, $00, $00 ; f
+	dn  0,  2,  4,  6,  8, 10, 12, 14, 15, 15, 15, 14, 14, 13, 13, 12, 12, 11, 10,  9,  8,  7,  6,  5,  4,  4,  3,  3,  2,  2,  1,  1 ; 0
+	dn  0,  2,  4,  6,  8, 10, 12, 14, 14, 15, 15, 15, 15, 14, 14, 14, 13, 13, 12, 11, 10,  9,  8,  7,  6,  5,  4,  3,  2,  2,  1,  1 ; 1
+	dn  1,  3,  6,  9, 11, 13, 14, 14, 14, 14, 15, 15, 15, 15, 14, 13, 13, 14, 15, 15, 15, 15, 14, 14, 14, 14, 13, 11,  9,  6,  3,  1 ; 2
+	dn  0,  2,  4,  6,  8, 10, 12, 13, 14, 15, 15, 14, 13, 14, 15, 15, 14, 14, 13, 12, 11, 10,  9,  8,  7,  6,  5,  4,  3,  2,  1,  0 ; 3
+	dn  0,  1,  2,  3,  4,  5,  6,  7,  8, 10, 12, 13, 14, 14, 15,  7,  7, 15, 14, 14, 13, 12, 10,  8,  7,  6,  5,  4,  3,  2,  1,  0 ; 4
+	dn  0,  0,  2,  3,  4,  5,  6,  7,  8, 10, 12,  7, 14, 14, 15,  7,  7, 15, 14, 14, 13,  7, 10,  8,  7,  6,  5,  4,  3,  2,  1,  4 ; 5
+	dn  0,  1,  0,  2,  0,  3,  0,  4,  0,  5,  0,  6,  0,  7,  0,  8,  0,  9,  0, 10,  0, 11,  0, 12,  0, 13,  0, 14,  0, 15,  0, 15 ; 6
+	dn  0, 15,  0, 15,  0, 14,  0, 14,  0, 13,  0, 13,  0, 12,  0, 12,  0, 11,  0, 11,  0, 10,  0, 10,  0,  9,  0,  9,  0,  8,  0,  8 ; 7
+	dn  0,  7,  0,  7,  0,  6,  0,  6,  0,  5,  0,  5,  0,  4,  0,  4,  0,  3,  0,  3,  0,  2,  0,  2,  0,  1,  0,  1,  0,  0,  0,  0 ; 8
+	dn 15, 15, 15, 15, 15, 15, 15, 15,  8,  8,  8,  8,  8,  8,  8,  8,  0,  0,  0,  0,  0,  0,  0,  0,  8,  8,  8,  8,  8,  8,  8,  8 ; 9
+	dn 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; a
+	dn 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; b
+	dn 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; c
+	dn 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; d
+	dn 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; e
+	dn 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; f
 
-Filler_03a_50a5:
-	db $99, $99, $99, $99, $99, $99, $99, $99, $00, $00, $00, $00, $00, $00, $00, $00, $88, $88, $88, $88, $88, $88, $88, $88, $00, $00, $00, $00, $00, $00, $00, $00, $77, $77, $77, $77, $77, $77, $77, $77, $00, $00, $00, $00, $00, $00, $00, $00, $66, $66, $66, $66, $66, $66, $66, $66, $00, $00, $00, $00, $00, $00, $00, $00, $55, $55, $55, $55, $55, $55, $55, $55, $00, $00, $00, $00, $00, $00, $00, $00, $44, $44, $44, $44, $44, $44, $44, $44, $00, $00, $00, $00, $00, $00, $00, $00, $33, $33, $33, $33, $33, $33, $33, $33, $00, $00, $00, $00, $00, $00, $00, $00, $22, $22, $22, $22, $22, $22, $22, $22, $00, $00, $00, $00, $00, $00, $00, $00, $31, $51, $31, $51, $31, $51, $31, $51, $31, $51, $31, $51, $0A, $0B, $0C, $0D, $0E, $0F, $10, $11, $12, $13, $14, $15, $16, $17, $FF, $4C, $51, $99, $51, $BA, $51, $E3, $51, $F4, $51, $F4, $51, $11, $21, $31, $41, $51, $61, $71, $81, $91, $A1, $B1, $C1, $D1, $E1, $F1, $F1, $F1, $F1, $F1, $F1, $E1, $E1, $E1, $E1, $D1, $D1, $D1, $D1, $C1, $C1, $C1, $C1, $B1, $B1, $B1, $B1, $A1, $A1, $A1, $A1, $91, $91, $91, $91, $81, $81, $81, $81, $71, $71, $71, $71, $61, $61, $61, $61, $51, $51, $51, $51, $41, $41, $41, $41, $31, $31, $31, $31, $21, $21, $21, $21, $11, $11, $11, $11, $FF, $11, $91, $D1, $F1, $F1, $F1, $F1, $F1, $D1, $D1, $D1, $D1, $A1, $A1, $A1, $A1, $81, $81, $81, $81, $61, $61, $61, $61, $41, $41, $41, $41, $21, $21, $21, $21, $FF, $31, $51, $A1, $51, $F1, $51, $F1, $51, $F1, $51, $F1, $51, $D1, $51, $D1, $51, $B1, $51, $B1, $51, $91, $51, $91, $51, $71, $51, $71, $51, $51, $51, $51, $51, $31, $51, $31, $51, $11, $51, $11, $51, $FF, $F0, $E0, $D0, $C0, $B0, $A0, $90, $80, $70, $60, $50, $40, $30, $20, $10, $00, $FF, $00, $52, $1A, $52, $34, $52, $4E, $52, $4E, $52, $4E, $52, $4E, $52, $4F, $52, $53, $52, $57, $52, $5B, $52, $5F, $52, $72, $52, $76, $52, $7D, $52, $81, $52, $85, $52, $89, $52, $8D, $52, $4E, $52, $7D, $52, $81, $52, $85, $52, $89, $52, $8D, $52, $91, $52, $95, $52, $99, $52, $A0, $52, $A7, $52, $AB, $52, $AF, $52, $4E, $52, $4F, $52, $A7, $52, $AB, $52, $AF, $52, $5F, $52, $72, $52, $76, $52, $7D, $52, $81, $52, $85, $52, $89, $52, $8D, $52, $FF, $20, $C1, $33, $FF, $20, $B1, $33, $FF, $20, $A1, $33, $FF, $20, $81, $33, $FF, $27, $84, $37, $26, $84, $36, $25, $83, $35, $24, $83, $34, $23, $82, $33, $22, $81, $32, $FF, $20, $51, $2A, $FF, $21, $41, $2B, $20, $61, $2A, $FF, $20, $81, $10, $FF, $20, $82, $23, $FF, $20, $82, $25, $FF, $20, $82, $26, $FF, $20, $A1, $10, $FF, $20, $A2, $11, $FF, $20, $A2, $50, $FF, $20, $A1, $18, $20, $31, $33, $FF, $22, $91, $28, $20, $71, $18, $FF, $20, $91, $22, $FF, $20, $71, $22, $FF, $20, $61, $22, $FF
+; inaccessible beyond this point?
+	dn  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
+	dn  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
+	dn  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
+	dn  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
+	dn  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
+	dn  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
+	dn  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
+	dn  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
 
-Data_03a_52b3:
-	db $11, $22, $44, $88, $00, $c0, $32, $c0, $64, $c0, $96, $c0, $c8, $c0, $fa, $c0
-	db $2c, $c1, $5e, $c1
+Data_3a_5125:
+	dw .entry1
+	dw .entry1
+	dw .entry1
+	dw .entry1
+	dw .entry1
+	dw .entry1
+.entry1
+	db $0A, $0B, $0C, $0D, $0E, $0F, $10, $11, $12, $13, $14, $15, $16, $17
+	db -1
+
+Data_3a_5140:
+	dw .entry1
+	dw .entry2
+	dw .entry3
+	dw .entry4
+	dw Drumkits
+	dw Drumkits
+.entry1
+	db $11, $21, $31, $41, $51, $61, $71, $81, $91, $A1, $B1, $C1, $D1, $E1
+	db $F1, $F1, $F1, $F1, $F1, $F1, $E1, $E1, $E1, $E1, $D1, $D1, $D1, $D1
+	db $C1, $C1, $C1, $C1, $B1, $B1, $B1, $B1, $A1, $A1, $A1, $A1, $91, $91
+	db $91, $91, $81, $81, $81, $81, $71, $71, $71, $71, $61, $61, $61, $61
+	db $51, $51, $51, $51, $41, $41, $41, $41, $31, $31, $31, $31, $21, $21
+	db $21, $21, $11, $11, $11, $11
+	db -1
+.entry2
+	db $11, $91, $D1, $F1, $F1, $F1, $F1, $F1, $D1, $D1, $D1, $D1, $A1, $A1
+	db $A1, $A1, $81, $81, $81, $81, $61, $61, $61, $61, $41, $41, $41, $41
+	db $21, $21, $21, $21
+	db -1
+.entry3
+	db $31, $51, $A1, $51, $F1, $51, $F1, $51, $F1, $51, $F1, $51, $D1, $51
+	db $D1, $51, $B1, $51, $B1, $51, $91, $51, $91, $51, $71, $51, $71, $51
+	db $51, $51, $51, $51, $31, $51, $31, $51, $11, $51, $11, $51
+	db -1
+.entry4
+	db $F0, $E0, $D0, $C0, $B0, $A0, $90, $80, $70, $60, $50, $40, $30, $20
+	db $10, $00
+	db -1
+
+Drumkits:
+	dw Drumkit0
+	dw Drumkit1
+	dw Drumkit2
+	dw Drum00
+	dw Drum00
+	dw Drum00
+
+Drumkit0:
+	dw Drum00
+	dw Snare1
+	dw Snare2
+	dw Snare3
+	dw Snare4
+	dw Drum05
+	dw Triangle1
+	dw Triangle2
+	dw HiHat1
+	dw Snare5
+	dw Snare6
+	dw Snare7
+	dw HiHat2
+Drumkit1:
+	dw Drum00
+	dw HiHat1
+	dw Snare5
+	dw Snare6
+	dw Snare7
+	dw HiHat2
+	dw HiHat3
+	dw Snare8
+	dw Triangle3
+	dw Triangle4
+	dw Snare9
+	dw Snare10
+	dw Snare11
+Drumkit2:
+	dw Drum00
+	dw Snare1
+	dw Snare9
+	dw Snare10
+	dw Snare11
+	dw Drum05
+	dw Triangle1
+	dw Triangle2
+	dw HiHat1
+	dw Snare5
+	dw Snare6
+	dw Snare7
+	dw HiHat2
+
+Drum00:
+	sound_ret
+
+Snare1:
+	noise_note 32, 12, 1, 51
+	sound_ret
+
+Snare2:
+	noise_note 32, 11, 1, 51
+	sound_ret
+
+Snare3:
+	noise_note 32, 10, 1, 51
+	sound_ret
+
+Snare4:
+	noise_note 32, 8, 1, 51
+	sound_ret
+
+Drum05:
+; Reverse cymbal / wooshing sound
+	noise_note 39, 8, 4, 55
+	noise_note 38, 8, 4, 54
+	noise_note 37, 8, 3, 53
+	noise_note 36, 8, 3, 52
+	noise_note 35, 8, 2, 51
+	noise_note 34, 8, 1, 50
+	sound_ret
+
+Triangle1:
+	noise_note 32, 5, 1, 42
+	sound_ret
+
+Triangle2:
+	noise_note 33, 4, 1, 43
+	noise_note 32, 6, 1, 42
+	sound_ret
+
+HiHat1:
+	noise_note 32, 8, 1, 16
+	sound_ret
+
+Snare5:
+	noise_note 32, 8, 2, 35
+	sound_ret
+
+Snare6:
+	noise_note 32, 8, 2, 37
+	sound_ret
+
+Snare7:
+	noise_note 32, 8, 2, 38
+	sound_ret
+
+HiHat2:
+	noise_note 32, 10, 1, 16
+	sound_ret
+
+HiHat3:
+	noise_note 32, 10, 2, 17
+	sound_ret
+
+Snare8:
+	noise_note 32, 10, 2, 80
+	sound_ret
+
+Triangle3:
+	noise_note 32, 10, 1, 24
+	noise_note 32, 3, 1, 51
+	sound_ret
+
+Triangle4:
+	noise_note 34, 9, 1, 40
+	noise_note 32, 7, 1, 24
+	sound_ret
+
+Snare9:
+	noise_note 32, 9, 1, 34
+	sound_ret
+
+Snare10:
+	noise_note 32, 7, 1, 34
+	sound_ret
+
+Snare11:
+	noise_note 32, 6, 1, 34
+	sound_ret
+
+LRTracks:
+; bit corresponds to track #
+; hi: left channel
+; lo: right channel
+	db $11, $22, $44, $88
+
+ChannelPointers:
+; music channels
+	dw wChannel1
+	dw wChannel2
+	dw wChannel3
+	dw wChannel4
+; sfx channels
+	dw wChannel5
+	dw wChannel6
+	dw wChannel7
+	dw wChannel8
 
 
 SECTION "audio/engine.asm@Song Header Pointers", ROMX

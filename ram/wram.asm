@@ -23,7 +23,7 @@ wCurTrackDuty:: db
 wCurTrackIntensity:: db
 wCurTrackFrequency:: dw
 wSoundLength:: db
-wc196:: db
+wCurNoteDuration:: db
 wCurMusicByte:: db
 
 wCurChannel:: db
@@ -39,11 +39,10 @@ wPitchSweep:: db
 wMusicID:: dw
 wMusicBank:: db
 
-wc19f:: db
-wc1a0:: db
-wc1a1:: db
+wNoiseSampleAddress:: dw
+wNoiseSampleDelay:: db
 wc1a2:: db
-wc1a3:: db
+wNoiseSampleSet:: db
 
 wLowHealthAlarm::
 ; bit 7: on/off
@@ -77,11 +76,12 @@ wChannel2JumpCondition:: db
 wChannel3JumpCondition:: db
 wChannel4JumpCondition:: db
 
-wc1b9:: db
-wc1ba:: db
+wStereoPanningMask:: db
+
+wCryTracks:: db
 ; either wChannelsEnd or wMusicEnd, unsure
 
-wc1bb:: db
+wSFXDuration:: db
 
 wMusicInitEnd::
 
