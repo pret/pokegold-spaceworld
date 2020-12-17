@@ -184,13 +184,13 @@ PikachuMiniGame_ClearBothTilemaps:
 PikachuMiniGame_LoadFont:
 	ld hl, FontGFX
 	ld de, vFont tile $10
-	ld bc, (112 / 2) tiles
+	ld bc, 112 * LEN_1BPP_TILE
 	ld a, BANK(FontGFX)
 	call FarCopyDataDouble
 
 	ld hl, FontGFX tile $39
 	ld de, vChars2 tile $32
-	ld bc, ( (14 / 2) + 1) tiles
+	ld bc, 16 * LEN_1BPP_TILE
 	ld a, BANK(FontGFX)
 	call FarCopyDataDouble
 	ret
@@ -252,7 +252,6 @@ PikachuMiniGame_BlinkText:
 
 .text
 	db "スタートホタン▶タイトルかめん"
-	;  "スタートボタン▶タイトルがめん"
 	db 0	; terminator
 
 PikachuMiniGame_Copy128Tiles:	; unreferenced?
@@ -268,11 +267,11 @@ PikachuMiniGame_Copy128Tiles:	; unreferenced?
 	ret
 
 PikachuMiniGame_DrawBackground:
-	ld b, $10
+	ld b, BG_MAP_HEIGHT / 2
 
 .outer_loop
 	push hl
-	ld c, $10
+	ld c, BG_MAP_WIDTH / 2
 
 .inner_loop
 	call PikachuMiniGame_Draw2x2Tile
@@ -358,7 +357,7 @@ PikachuMiniGame_RunFrame:
 
 	xor a
 	ld [wPikachuMinigameNoteCaught], a
-	ld de, $30	; PAY_DAY
+	ld de, SFX_PAY_DAY
 	call PlaySFX
 
 .skip_playing_sfx
@@ -481,18 +480,18 @@ PikachuMiniGame_PrintBCD:
 ; in the thousandths range?
 	ld a, b
 	swap a
-	and $0f
+	and $f
 	jr nz, .four_digits
 
 ; in the hundredths range?
 	ld a, b
-	and $0f
+	and $f
 	jr nz, .three_digits
 
 ; in the tenths range?
 	ld a, c
 	swap a
-	and $0f
+	and $f
 	jr nz, .two_digits
 
 ; got one digit
@@ -546,7 +545,6 @@ PikachuMiniGame_PerformGameFunction:
 	jumptable .Jumptable, wPikachuMinigameJumptableIndex
 
 .Jumptable:
-; jumptable here
 	dw PikachuMiniGame_SetupScene
 	dw PikachuMiniGame_NoteSpawner
 	dw PikachuMiniGame_SetNextSceneTimer
@@ -689,7 +687,7 @@ PikachuMiniGame_NoteSpawner:
 	ld a, 3
 	ld [wSpriteAnimCount], a
 
-	ld a, SPRITE_ANIM_INDEX_MINIGAME_NOTE	; NOTE
+	ld a, SPRITE_ANIM_INDEX_MINIGAME_NOTE
 	call InitSpriteAnimStruct
 
 ; add one to the note counter
@@ -896,7 +894,7 @@ MinigamePikachuDoMovement::
 
 	add $10
 	ld e, a
-	sub ($10 * 2)
+	sub $10 * 2
 	ld d, a
 	push bc
 
@@ -904,7 +902,7 @@ MinigamePikachuDoMovement::
 ; objects.
 
 	ld bc, wSpriteAnim1
-	ld a, 10	; Number of objects to check
+	ld a, NUM_SPRITE_ANIM_STRUCTS
 .check_note_object
 	push af
 	push de
