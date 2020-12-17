@@ -633,6 +633,12 @@ wTalkingTargetType:: db
 wcdb1:: ds 1
 wcdb2:: ds 1
 
+ds 1
+
+wcdb4:: ds 1
+wcdb5:: ds 1
+wcdb6:: ds 1
+
 SECTION "CDB9", WRAM0[$CDB9]
 
 wcdb9:: ds 1

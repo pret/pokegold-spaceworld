@@ -45,14 +45,14 @@ Function20f8::
 	ret
 
 
-SECTION "home/unknown.asm@Unknown_094c", ROM0
+SECTION "home/unknown.asm@Debug menu sound test call", ROM0
 
-Function094c::
+DebugMenuSoundTest::
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(Functionfe255)
+	ld a, BANK(_DebugMenuSoundTest)
 	call Bankswitch
-	call Functionfe255
+	call _DebugMenuSoundTest
 
 	pop af
 	call Bankswitch
