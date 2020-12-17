@@ -82,15 +82,15 @@ DebugMenuOptionSubGames::
 DebugMenuOptionMonsterTest::
 	ld hl, wPokedexOwned
 	ld de, wPokedexSeen
-	ld b, 31
-	ld a, -1
+	ld b, NUM_POKEMON / 8
+	ld a, %11111111
 .loop
-	ld [hl+], a
+	ld [hli], a
 	ld [de], a
 	inc de
 	dec b
 	jr nz, .loop
-	ld a, 3
+	ld a, (1 << ((NUM_POKEMON - 1) % 8)) - 1 ; discount #251
 	ld [hl], a
 	ld [de], a
 	callab MonsterTest
@@ -188,7 +188,7 @@ _DebugMenuSoundTest::
 	ld a, 10
 	ld [wcdb5], a
 	ld [wcdb6], a
-	ld a, -1
+	ld a, $ff
 	ld [wcdb4], a
 	jr .RefreshScreenAndLoop
 
@@ -196,7 +196,7 @@ _DebugMenuSoundTest::
 	ld hl, SoundTestTextPointers
 	ldh a, [hDebugMenuSoundMenuIndex]
 	add a
-	add a	; a * 8
+	add a	; a * 4
 	ld d, 0
 	ld e, a
 	add hl, de
