@@ -138,6 +138,7 @@ ENDU
 
 	ds 3 ; TODO
 
+hCurSpriteYCoord::
 hFFC0:: ds 1
 
 	ds 6

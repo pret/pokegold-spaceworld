@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/intro.asm", ROMX
+SECTION "engine/movie/oak_speech.asm", ROMX
 
 DemoStart::
 	ld de, OakPic
