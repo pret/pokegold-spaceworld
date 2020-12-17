@@ -275,10 +275,10 @@ _DebugMenuSoundTest::
  	dbbw $00,  $3C, SoundTest_SurfText
  	dbbw $00,  $3C, SoundTest_CasinoText
  	dbbw $00,  $3C, SoundTest_IntroBattleText
- 	dbbw $00,  $3C, SoundTest_DungeonText
- 	dbbw $00,  $3C, SoundTest_DungeonText
- 	dbbw $00,  $3C, SoundTest_DungeonText
- 	dbbw $00,  $3C, SoundTest_DungeonText
+ 	dbbw $00,  $3C, SoundTest_CaveText
+ 	dbbw $00,  $3C, SoundTest_CaveText
+ 	dbbw $00,  $3C, SoundTest_CaveText
+ 	dbbw $00,  $3C, SoundTest_CaveText
  	dbbw $00,  $3C, SoundTest_PokemonTowerText
  	dbbw $00,  $3C, SoundTest_PokemonTowerText
  	dbbw $0A,  $3C, SoundTest_DealerText
@@ -381,7 +381,7 @@ SoundTest_CasinoText:
 SoundTest_IntroBattleText:
 	db "オープニングデモ@"
 
-SoundTest_DungeonText:
+SoundTest_CaveText:
 	db "どうくつ@"
 
 SoundTest_PokemonTowerText:
