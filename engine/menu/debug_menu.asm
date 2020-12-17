@@ -288,108 +288,38 @@ _DebugMenuSoundTest::
  	dbbw $69,  $3C, SoundTest_Fanfare6Text_2
  	dbbw  -1,   -1, .TextPointers
 
-SoundTest_PalletTownText:
-	db "マサラタウン@"
-
-SoundTest_PokecenterText:
-	db "#センター@"
-
-SoundTest_PokegymText:
-	db "#ジム@"
-
-SoundTest_PokeEvolutionText:
-	db "#しんか@"
-
-SoundTest_HealingText:
-	db "あさあさあさ@"
-
-SoundTest_HurryAlongText:
-	db "つれていかれる@"
-
-SoundTest_MeetOakText:
-	db "オーキドとともに@"
-
-SoundTest_RivalText:
-	db "ライバル@"
-
-SoundTest_SSAnneText:
-	db "サントアンヌゴウ@"
-
-SoundTest_FluteText:
-	db "ふえ@"
-
-SoundTest_BattleText:
-	db "せんとう@"
-
-SoundTest_ChampionBattleText:
-	db "さいしゆうせんとう@"
-
-SoundTest_VictoryText:
-	db "かち@"
-
-SoundTest_FanfareText:
-	db "フぁンファーレ@"
-
-SoundTest_Fanfare3Text:
-	db "フぁンファーレ３@"
-
-SoundTest_Fanfare5Text:
-	db "フぁンファーレ５@"
-
-SoundTest_Fanfare6Text:
-	db "フぁンファーレ６@"
-
-SoundTest_Fanfare4Text:
-	db "フぁンファーレ４@"
-
-SoundTest_Fanfare5Text_2:
-	db "フぁンファーレ５@"
-
-SoundTest_Fanfare8Text:
-	db "フぁンファーレ８@"
-
-SoundTest_Fanfare3Text_2:
-	db "フぁンファーレ３@"
-
-SoundTest_Fanfare6Text_2:
-	db "フぁンファーレ６@"
-
-SoundTest_TitleText:
-	db "タイトル@"
-
-SoundTest_EndingText:
-	db "エンディング@"
-
-SoundTest_HallOfFameText:
-	db "でんどういり@"
-
-SoundTest_OaksLabText:
-	db "けんきゆうじよ@"
-
-SoundTest_JigglypuffSongText:
-	db "プりンノうた@"
-
-SoundTest_BikeText:
-	db "じてんしや@"
-
-SoundTest_SurfText:
-	db "うみ@"
-
-SoundTest_CasinoText:
-	db "カジノ@"
-
-SoundTest_IntroBattleText:
-	db "オープニングデモ@"
-
-SoundTest_CaveText:
-	db "どうくつ@"
-
-SoundTest_PokemonTowerText:
-	db "とう@"
-
-SoundTest_DealerText:
-	db "ディーラー@"
-
-SoundTest_QuestionMarkText:
-	db "？@"
-
+SoundTest_PalletTownText:     db "マサラタウン@"
+SoundTest_PokecenterText:     db "#センター@"
+SoundTest_PokegymText:        db "#ジム@"
+SoundTest_PokeEvolutionText:  db "#しんか@"
+SoundTest_HealingText:        db "あさあさあさ@"
+SoundTest_HurryAlongText:     db "つれていかれる@"
+SoundTest_MeetOakText:        db "オーキドとともに@"
+SoundTest_RivalText:          db "ライバル@"
+SoundTest_SSAnneText:         db "サントアンヌゴウ@"
+SoundTest_FluteText:          db "ふえ@"
+SoundTest_BattleText:         db "せんとう@"
+SoundTest_ChampionBattleText: db "さいしゆうせんとう@"
+SoundTest_VictoryText:        db "かち@"
+SoundTest_FanfareText:        db "フぁンファーレ@"
+SoundTest_Fanfare3Text:       db "フぁンファーレ３@"
+SoundTest_Fanfare5Text:       db "フぁンファーレ５@"
+SoundTest_Fanfare6Text:       db "フぁンファーレ６@"
+SoundTest_Fanfare4Text:       db "フぁンファーレ４@"
+SoundTest_Fanfare5Text_2:     db "フぁンファーレ５@"
+SoundTest_Fanfare8Text:       db "フぁンファーレ８@"
+SoundTest_Fanfare3Text_2:     db "フぁンファーレ３@"
+SoundTest_Fanfare6Text_2:     db "フぁンファーレ６@"
+SoundTest_TitleText:          db "タイトル@"
+SoundTest_EndingText:         db "エンディング@"
+SoundTest_HallOfFameText:     db "でんどういり@"
+SoundTest_OaksLabText:        db "けんきゆうじよ@"
+SoundTest_JigglypuffSongText: db "プりンノうた@"
+SoundTest_BikeText:           db "じてんしや@"
+SoundTest_SurfText:           db "うみ@"
+SoundTest_CasinoText:         db "カジノ@"
+SoundTest_IntroBattleText:    db "オープニングデモ@"
+SoundTest_CaveText:           db "どうくつ@"
+SoundTest_PokemonTowerText:   db "とう@"
+SoundTest_DealerText:         db "ディーラー@"
+SoundTest_QuestionMarkText:   db "？@"
