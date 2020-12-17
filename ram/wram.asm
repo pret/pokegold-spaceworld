@@ -172,6 +172,7 @@ wMapBufferEnd::
 
 UNION
 
+wc600::
 wOverworldMapBlocks:: ds 1300
 wOverworldMapBlocksEnd::
 

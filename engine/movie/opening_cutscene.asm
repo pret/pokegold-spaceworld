@@ -19,7 +19,7 @@ OpeningCutscene::
 .PlayFrame:
 	ld hl, hJoypadDown
 	ld a, [hl]
-	and %00001111
+	and $f
 	jr nz, .Finish
 
 ; check done flag
@@ -70,7 +70,7 @@ IntroSceneJumper:
 	dw IntroScene16
 	dw IntroScene17
 
-IntroScene1:	; 43b8
+IntroScene1:
 ; Set up water cutscene
 	ld hl, wIntroJumptableIndex
 	inc [hl]
@@ -101,8 +101,8 @@ IntroScene1:	; 43b8
 	ld a, h
 	ld [wIntroBGMapPointer + 1], a
 
-; Load water tilemap
-	ld de, Intro_WaterTilemap + 15 tiles
+; Load water tilemap (shifted to starting position)
+	ld de, Intro_WaterTilemap + $F0
 	ld a, e
 	ld [wIntroTilemapPointer + 0], a
 	ld a, d
@@ -159,7 +159,7 @@ IntroScene1:	; 43b8
 	call Intro_InitOmanyte
 	ret
 
-IntroScene2: ; 444a
+IntroScene2:
 	call Intro_UpdateLYOverrides
 	ld hl, wIntroFrameCounter1
 	ld a, [hl]
@@ -194,7 +194,7 @@ IntroScene4:
 	ld hl, wIntroFrameCounter2
 	inc [hl]
 	ld a, [hl]
-	and $07
+	and $7
 	jr nz, .skip_move_left
 	ld hl, hSCX
 	dec [hl]
@@ -210,7 +210,7 @@ IntroScene4:
 	ld [wIntroFrameCounter1], a
 
 IntroScene5:
-; fade out
+; scroll right and fade out to white
 	ld hl, wIntroFrameCounter1
 	ld a, [hl]
 	inc [hl]
@@ -235,11 +235,11 @@ IntroScene5:
 	ret
 
 .palettes:
-	db %11100100
-	db %11100100
-	db %10010000
-	db %01000000
-	db %00000000
+	dc 3, 2, 1, 0
+	dc 3, 2, 1, 0
+	dc 2, 1, 0, 0
+	dc 1, 0, 0, 0
+	dc 0, 0, 0, 0
 	db -1
 
 IntroScene17:
@@ -287,7 +287,8 @@ IntroScene3_ScrollToSurface:
 
 IntroScene3_Jumper:
 	jumptable .subroutines, wIntroFrameCounter1
-.subroutines
+
+.subroutines:
 	dw .scene3_2
 	dw .scene3_2
 	dw .scene3_2
@@ -310,8 +311,9 @@ IntroScene3_Jumper:
 	call Intro_InitLapras
 	ld a, %11100100
 	ldh [rOBP0], a
+; fallthrough
 
-.scene3_2:	; fallthrough
+.scene3_2:
 	call Intro_AnimateOceanWaves
 	ret
 
@@ -328,7 +330,7 @@ IntroScene3_Jumper:
 	call Intro_InitMagikarps
 	ret
 .load_palettes
-	callab Function962d	; load magikarp palettes
+	callab LoadMagikarpPalettes_Intro
 	ret
 
 .scene3_5:
@@ -343,14 +345,14 @@ IntroScene3_Jumper:
 Intro_InitBubble:
 	ld hl, wIntroFrameCounter1
 	ld a, [hl]
-	and $0f
+	and $f
 	ret nz
 
 	ld a, [hl]
 	and $70
 	swap a
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, .pixel_table
 	add hl, de
 	add hl, de
@@ -361,7 +363,7 @@ Intro_InitBubble:
 	call InitSpriteAnimStruct
 	ret
 
-.pixel_table
+.pixel_table:
 	dbpixel  6, 14,  0,  4
 	dbpixel 14, 18,  0,  4
 	dbpixel 10, 16,  0,  4
@@ -417,7 +419,7 @@ Intro_InitOmanyte:
 	depixel 14, 10
 	call .PlaceOmanyte
 	depixel 16, 15
-; fallback
+; fallthrough
 
 .PlaceOmanyte:
 	ld a, SPRITE_ANIM_INDEX_GS_INTRO_OMANYTE
@@ -448,7 +450,7 @@ Intro_UpdateTilemapAndBGMap:
 	ld e, a
 	ld a, [wIntroTilemapPointer + 1]
 	ld d, a
-	ld hl, -$10
+	ld hl, -BG_MAP_WIDTH / 2
 	add hl, de
 	ld a, l
 	ld e, l
@@ -490,7 +492,6 @@ Intro_UpdateTilemapAndBGMap:
 	pop hl
 	ret
 
-
 Intro_AnimateOceanWaves:
 ; uses a 2bpp request to copy tile IDs to the BG map
 	ld hl, wIntroFrameCounter2
@@ -513,13 +514,14 @@ endr
 	ld [wVBCopySrc], a
 	ld a, h
 	ld [wVBCopySrc + 1], a
-	ld a, LOW(vBGMap0 + (15 * BG_MAP_WIDTH)) ; vBGMap0 row 15
+	ld a, LOW(vBGMap0 + 15 * BG_MAP_WIDTH)
 	ld [wVBCopyDst], a
-	ld a, HIGH(vBGMap0 + (15 * BG_MAP_WIDTH)) ; vBGMap0 row 15
+	ld a, HIGH(vBGMap0 + 15 * BG_MAP_WIDTH)
 	ld [wVBCopyDst + 1], a
 	ld a, 2
 	ld [wVBCopySize], a
 	ret
+
 .wave_tiles:
 ; Fill an entire bg map row with each frame
 rept 8
@@ -593,7 +595,7 @@ Intro_UpdateLYOverrides:
 	ret
 
 IntroScene6:
-; Set up grass cutscene (Pikachu/Jigglypuff)
+; Set up grass cutscene (Pikachu / Jigglypuff)
 	ld hl, wIntroJumptableIndex
 	inc [hl]
 	call DisableLCD
@@ -614,7 +616,7 @@ IntroScene6:
 	ld [wIntroBGMapPointer + 0], a
 	ld a, h
 	ld [wIntroBGMapPointer + 1], a
-	ld de, Intro_GrassTilemap + 2 tiles
+	ld de, Intro_GrassTilemap
 	ld a, e
 	ld [wIntroTilemapPointer + 0], a
 	ld a, d
@@ -622,7 +624,7 @@ IntroScene6:
 	call Intro_DrawBackground
 	ld hl, IntroJigglypuffPikachuGFX
 	ld de, vChars0
-	ld bc, $0a00
+	ld bc, 160 tiles ; last 16 tiles actually belong to charizard's gfx
 
 .load
 	ld a, [hli]
@@ -648,7 +650,7 @@ IntroScene6:
 	xor a
 	ld [wIntroFrameCounter2], a
 	call EnableLCD
-	ld a, $e4
+	ld a, %11100100
 	ldh [rBGP], a
 	ldh [rOBP0], a
 	call Intro_InitJigglypuff
@@ -661,7 +663,7 @@ IntroScene7:
 	ld hl, wIntroFrameCounter2
 	ld a, [hl]
 	inc [hl]
-	and $03
+	and $3
 	ret z
 
 	ld hl, hSCX
@@ -698,7 +700,7 @@ IntroScene8:
 	ld [wIntroFrameCounter1], a
 	ld hl, wIntroJumptableIndex
 	inc [hl]
-	callab Function9633
+	callab LoadForestPalettes2_Intro
 	ret
 
 IntroScene9:
@@ -706,9 +708,9 @@ IntroScene9:
 	ld a, [hl]
 	inc [hl]
 	swap a
-	and $0f
+	and $f
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, .palettes
 	add hl, de
 	ld a, [hl]
@@ -729,19 +731,18 @@ IntroScene9:
 
 .palettes:
 ; fade out to black
-	db %11100100
-	db %11100100
-	db %11100100
-	db %11100100
-	db %11100100
-	db %11111001
-	db %11111110
-	db %11111111
+	dc 3, 2, 1, 0
+	dc 3, 2, 1, 0
+	dc 3, 2, 1, 0
+	dc 3, 2, 1, 0
+	dc 3, 2, 1, 0
+	dc 3, 3, 2, 1
+	dc 3, 3, 3, 2
+	dc 3, 3, 3, 3
 	db 0
 
 Intro_DummyFunction:
 	ret
-
 
 Intro_InitNote:
 	ld a, [wIntroSpriteStateFlag]
@@ -768,13 +769,11 @@ Intro_InitNote:
 	call InitSpriteAnimStruct
 	ret
 
-
 Intro_InitJigglypuff:
 	depixel 14, 6
 	ld a, SPRITE_ANIM_INDEX_GS_INTRO_JIGGLYPUFF
 	call InitSpriteAnimStruct
 	ret
-
 
 Intro_InitPikachu:
 	depixel 14, 24
@@ -884,10 +883,10 @@ IntroScene12:
 	ret
 
 .palettes:
-	db %01101010
-	db %10100101
-	db %11100100
-	db %00000000
+	dc 1, 2, 2, 2
+	dc 2, 2, 1, 1
+	dc 3, 2, 1, 0
+	dc 0, 0, 0, 0
 
 IntroScene13:
 ; Charizard mouth open
@@ -951,13 +950,13 @@ IntroScene16:
 	ld a, [hl]
 	inc [hl]
 	swap a
-	and $07
+	and $7
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, .palettes
 	add hl, de
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr z, .next
 	ldh [rBGP], a
 	ldh [rOBP0], a
@@ -966,16 +965,18 @@ IntroScene16:
 	ld hl, wIntroJumptableIndex
 	inc [hl]
 	ret
+
 .palettes:
-	db %11100100
-	db %10010000
-	db %01000000
-	db %00000000
+	dc 3, 2, 1, 0
+	dc 2, 1, 0, 0
+	dc 1, 0, 0, 0
+	dc 0, 0, 0, 0
 	db -1
 
 Intro_BlankTilemapAndBGMap:
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+
 .blank_tilemap
 	ld [hl], 0
 	inc hl
@@ -984,8 +985,9 @@ Intro_BlankTilemapAndBGMap:
 	or c
 	jr nz, .blank_tilemap
 
-	ld hl, wOverworldMapBlocks	; $c600, buffer
+	ld hl, wc600
 	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
+
 .blank_bgmap
 	ld [hl], 0
 	inc hl
@@ -995,11 +997,10 @@ Intro_BlankTilemapAndBGMap:
 	jr nz, .blank_bgmap
 
 	ld hl, vBGMap0
-	ld de, wOverworldMapBlocks	; $c600, buffer
+	ld de, wc600
 	lb bc, BANK(@), $40
 	call Request2bpp
 	ret
-
 
 Intro_CheckSCYEvent:
 	ldh a, [hSCY]
@@ -1056,13 +1057,12 @@ Intro_FlashSilhouette:
 	ret
 
 Intro_LoadVenusaurPalette:
-	callab Function9639
+	callab LoadVenusaurPalettes_Intro
 	ret
 
 Intro_LoadCharizardPalette:
-	callab Function963f
+	callab LoadCharizardPalettes_Intro
 	ret
-
 
 DrawIntroCharizardGraphic:
 	push af
@@ -1076,7 +1076,7 @@ DrawIntroCharizardGraphic:
 
 	pop af
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, .charizard_data
 rept 5
 	add hl, de
@@ -1117,10 +1117,15 @@ endr
 	ldh [hBGMapMode], a
 	ret
 
-.charizard_data
-	db $00, $08, $08, $22, $c3
-	db $40, $09, $08, $21, $c3
-	db $88, $09, $08, $20, $c3
+.charizard_data:
+intro_graphic_def: MACRO
+	db \1
+	db \2, \3
+	dwcoord \4, \5
+ENDM
+	intro_graphic_def $00, 8, 8, 10, 6
+	intro_graphic_def $40, 9, 8,  9, 6
+	intro_graphic_def $88, 9, 8,  8, 6
 
 Intro_AnimateFireball:
 	ld hl, wIntroFrameCounter2
@@ -1161,7 +1166,6 @@ Intro_Copy128Tiles:
 	jr nz, .loop
 	ret
 
-
 Intro_DrawBackground:
 	ld b, BG_MAP_WIDTH / 2
 .outer_loop
@@ -1179,7 +1183,6 @@ Intro_DrawBackground:
 	dec b
 	jr nz, .outer_loop
 	ret
-
 
 Intro_Draw2x2Tiles:
 	push bc
@@ -1222,7 +1225,6 @@ Intro_Draw2x2Tiles:
 	inc de
 	pop bc
 	ret
-
 
 Intro_ResetLYOverrides:
 	ld hl, wLYOverrides

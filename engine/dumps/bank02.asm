@@ -2486,19 +2486,19 @@ Function9604:
 	ld [hl], e
 	ret
 
-Function962d:
+LoadMagikarpPalettes_Intro:
 	ld hl, Data997c
 	jp Function964b
 
-Function9633:
+LoadForestPalettes2_Intro:
 	ld hl, Data986c
 	jp Function964b
 
-Function9639:
+LoadVenusaurPalettes_Intro:
 	ld hl, Data99ac
 	jp Function964b
 
-Function963f:
+LoadCharizardPalettes_Intro:
 	ld hl, Data99bc
 	jp Function964b
 

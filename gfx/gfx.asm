@@ -556,6 +556,8 @@ INCBIN "gfx/intro/water_pokemon.2bpp"
 SECTION "gfx.asm@Intro Forest GFX", ROMX
 IntroForestGFX::
 INCBIN "gfx/intro/forest.2bpp"
+IntroForestLogGFX::
+INCBIN "gfx/intro/forest_log.2bpp"
 Intro_GrassTilemap::
 INCBIN "gfx/intro/forest_tilemap.bin"
 Intro_GrassMeta::
