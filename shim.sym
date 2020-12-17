@@ -154,16 +154,8 @@
 38:4000 PikachuMiniGame
 39:4000 GameFreakIntro
 39:432F OpeningCutscene
-3A:441D Functione841d
-3A:45D8 Functione85d8
-3A:47F9 Functione87f9
-3A:4839 Functione8839
-3A:484F Functione884f
-3A:4D9D _PlayCryHeader
-3A:4E22 _PlaySFX
-3A:4F11 LoadChannel
-3A:4F6C LoadMusicByte
-3A:52C7 Music
+
+3A:52FB CryHeaderPointers
 
 3F:40E9 InGameDebugMenu
 3F:4305 TrainerGear

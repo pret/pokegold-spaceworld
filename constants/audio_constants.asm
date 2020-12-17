@@ -96,13 +96,13 @@ NOISE_CHAN_F EQU 2 ; bit set in CHAN5-CHAN7
 
 ; NoteFlags
 	const_def
-	const NOTE_DUTY_OVERRIDE    ; 0
-	const NOTE_FREQ_OVERRIDE    ; 1
-	const NOTE_UNUSED           ; 2
-	const NOTE_UNKN_3           ; 3
-	const NOTE_NOISE_SAMPLING   ; 4
-	const NOTE_REST             ; 5
-	const NOTE_VIBRATO_OVERRIDE ; 6
+	const NOTE_DUTY_OVERRIDE      ; 0
+	const NOTE_FREQ_OVERRIDE      ; 1
+	const NOTE_INTENSITY_OVERRIDE ; 2
+	const NOTE_PITCH_SWEEP        ; 3
+	const NOTE_NOISE_SAMPLING     ; 4
+	const NOTE_REST               ; 5
+	const NOTE_VIBRATO_OVERRIDE   ; 6
 
 ; wVolume
 VOLUME_SO1_F     EQU 3
