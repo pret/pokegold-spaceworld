@@ -17,6 +17,7 @@
 	const SPRITEANIMSTRUCT_0E              ; e
 	const SPRITEANIMSTRUCT_0F              ; f
 SPRITEANIMSTRUCT_LENGTH EQU const_value
+NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 
 ; wSpriteAnimDict keys
 SPRITE_ANIM_DICT_DEFAULT EQU $00
