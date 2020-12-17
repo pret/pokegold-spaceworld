@@ -247,10 +247,10 @@ _DebugMenuSoundTest::
  	dbbw $00,  $3A, SoundTest_QuestionMarkText
  	dbbw $00,  $3A, SoundTest_QuestionMarkText
  	dbbw $00,  $3A, SoundTest_QuestionMarkText
- 	dbbw $00,  $3A, SoundTest_ReservedText
- 	dbbw $00,  $3A, SoundTest_OakText
+ 	dbbw $00,  $3A, SoundTest_HurryAlongText
+ 	dbbw $00,  $3A, SoundTest_MeetOakText
  	dbbw $00,  $3A, SoundTest_RivalText
- 	dbbw $00,  $3A, SoundTest_StAnneText
+ 	dbbw $00,  $3A, SoundTest_SSAnneText
  	dbbw $66,  $3A, SoundTest_Fanfare3Text
  	dbbw $68,  $3A, SoundTest_Fanfare5Text
  	dbbw $69,  $3A, SoundTest_Fanfare6Text
@@ -269,7 +269,7 @@ _DebugMenuSoundTest::
  	dbbw $00,  $3C, SoundTest_TitleText
  	dbbw $00,  $3C, SoundTest_EndingText
  	dbbw $00,  $3C, SoundTest_HallOfFameText
- 	dbbw $00,  $3C, SoundTest_KenkiYujiyoText
+ 	dbbw $00,  $3C, SoundTest_OaksLabText
  	dbbw $00,  $3C, SoundTest_JigglypuffSongText
  	dbbw $09,  $3C, SoundTest_BikeText
  	dbbw $00,  $3C, SoundTest_SurfText
@@ -279,8 +279,8 @@ _DebugMenuSoundTest::
  	dbbw $00,  $3C, SoundTest_DungeonText
  	dbbw $00,  $3C, SoundTest_DungeonText
  	dbbw $00,  $3C, SoundTest_DungeonText
- 	dbbw $00,  $3C, SoundTest_TouText
- 	dbbw $00,  $3C, SoundTest_TouText
+ 	dbbw $00,  $3C, SoundTest_PokemonTowerText
+ 	dbbw $00,  $3C, SoundTest_PokemonTowerText
  	dbbw $0A,  $3C, SoundTest_DealerText
  	dbbw $00,  $3C, SoundTest_DealerText
  	dbbw $00,  $3C, SoundTest_DealerText
@@ -303,16 +303,16 @@ SoundTest_PokeEvolutionText:
 SoundTest_HealingText:
 	db "あさあさあさ@"
 
-SoundTest_ReservedText:
+SoundTest_HurryAlongText:
 	db "つれていかれる@"
 
-SoundTest_OakText:
+SoundTest_MeetOakText:
 	db "オーキドとともに@"
 
 SoundTest_RivalText:
 	db "ライバル@"
 
-SoundTest_StAnneText:
+SoundTest_SSAnneText:
 	db "サントアンヌゴウ@"
 
 SoundTest_FluteText:
@@ -363,7 +363,7 @@ SoundTest_EndingText:
 SoundTest_HallOfFameText:
 	db "でんどういり@"
 
-SoundTest_KenkiYujiyoText:
+SoundTest_OaksLabText:
 	db "けんきゆうじよ@"
 
 SoundTest_JigglypuffSongText:
@@ -384,7 +384,7 @@ SoundTest_IntroBattleText:
 SoundTest_DungeonText:
 	db "どうくつ@"
 
-SoundTest_TouText:
+SoundTest_PokemonTowerText:
 	db "とう@"
 
 SoundTest_DealerText:
