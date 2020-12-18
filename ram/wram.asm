@@ -102,6 +102,26 @@ wTileMapBackup::
 
 NEXTU
 
+wSpriteAnimDict:: ds 10 * 2 ; NUM_SPRITEANIMDICT_ENTRIES * 2
+
+wSpriteAnimationStructs::
+; field  0:   index
+; fields 1-3: loaded from SpriteAnimSeqData
+wSpriteAnim1::  sprite_anim_struct wSpriteAnim1
+wSpriteAnim2::  sprite_anim_struct wSpriteAnim2
+wSpriteAnim3::  sprite_anim_struct wSpriteAnim3
+wSpriteAnim4::  sprite_anim_struct wSpriteAnim4
+wSpriteAnim5::  sprite_anim_struct wSpriteAnim5
+wSpriteAnim6::  sprite_anim_struct wSpriteAnim6
+wSpriteAnim7::  sprite_anim_struct wSpriteAnim7
+wSpriteAnim8::  sprite_anim_struct wSpriteAnim8
+wSpriteAnim9::  sprite_anim_struct wSpriteAnim9
+wSpriteAnim10:: sprite_anim_struct wSpriteAnim10
+wSpriteAnimationStructsEnd::
+
+wSpriteAnimCount:: db
+NEXTU
+
 	ds 1
 
 wc409:: ds 1
@@ -126,7 +146,10 @@ wSpriteAnimIDBuffer:: db
 
 	ds 6
 
+wGlobalAnimYOffset::
 wc4c7:: db
+
+wGlobalAnimXOffset::
 wc4c8:: db
 
 	ds 7
@@ -160,6 +183,7 @@ wMapBufferEnd::
 
 UNION
 
+wc600::
 wOverworldMapBlocks:: ds 1300
 wOverworldMapBlocksEnd::
 
@@ -172,8 +196,59 @@ wLYOverrides2:: ds SCREEN_HEIGHT_PX
 wLYOverrides2End::
 
 NEXTU
-; Battle-related
 
+; Pikachu minigame
+
+wPikachuMinigamePikachuObjectPointer:: ds 2
+wPikachuMinigamePikachuTailObjectPointer:: ds 2
+wPikachuMinigamePikachuNextAnim:: ds 1
+
+wPikachuMinigameControlEnable:: ds 1
+
+wc606:: ds 1	; written to, but is this read from?
+
+wPikachuMinigamePikachuYOffset:: ds 1
+wPikachuMinigameNoteTimer:: ds 1
+wPikachuMinigameScore:: ds 2
+wPikachuMinigameNoteCounter:: ds 2	; not used for anything meaningful?
+
+wPikachuMinigameSpawnTypeIndex:: ds 1
+wPikachuMinigameSpawnDataIndex:: ds 1
+wPikachuMinigameScoreModifier:: ds 1
+
+wPikachuMinigameNoteCaught:: ds 1
+
+; Time keeping
+wPikachuMinigameTimeFrames:: ds 1
+wPikachuMinigameTimeSeconds:: ds 1
+
+; are these two used?
+wc613:: ds 1
+wc614:: ds 1
+
+wPikachuMinigameRedrawTimer:: ds 1
+wc616:: ds 1
+wPikachuMinigameScrollSpeed:: ds 1
+
+wPikachuMinigameColumnFlags:: ds 1
+wPikachuMinigameSavedColumnPointer:: ds 2
+wPikachuMinigameColumnPointer:: ds 2
+
+wPikachuMinigameRepeatColumnCounter:: ds 1
+wPikachuMinigameRepeatColumnCounter2:: ds 1
+
+wPikachuMinigameSceneTimer:: ds 1
+
+wPikachuMinigameJumptableIndex:: ds 1
+
+wPikachuMinigameBGMapPointer:: ds 2
+wPikachuMinigameTilemapPointer:: ds 2
+wPikachuMinigameTilesPointer:: ds 2
+
+wPikachuMinigameColumnBuffer:: ds 16
+
+NEXTU
+; Battle-related
 	ds $1ea
 
 wActiveBGEffects::
@@ -240,13 +315,31 @@ wca0a:: ds 1
 
 	ds 5 ; TODO
 
+wIntroJumptableIndex::
 wca10:: ds 1
+
+UNION
+wIntroBGMapPointer:: ds 2
+NEXTU
 wca11:: ds 1
 wca12:: ds 1
+ENDU
+
+UNION
+wIntroTilemapPointer:: ds 2
+NEXTU
 wca13:: ds 1
 wca14:: ds 1
+ENDU
 
-	ds $22 ; TODO
+wIntroTilesPointer:: ds 2
+
+wIntroFrameCounter1:: ds 1
+wIntroFrameCounter2:: ds 1
+
+wIntroSpriteStateFlag:: ds 1
+
+	ds $1d ; TODO
 
 wca37:: ds 1
 wca38:: ds 1
@@ -342,10 +435,12 @@ SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db
 
 wFlyDestination::
+wIntroSceneFrameCounter::
 wBattleTransitionCounter:: db
 
 wBattleTransitionSineWaveOffset::
 wBattleTransitionSpinQuadrant::
+wIntroSceneTimer::
 wcb60:: ds 1
 
 wcb61:: ds 1
@@ -643,6 +738,12 @@ wTalkingTargetType:: db
 
 wcdb1:: ds 1
 wcdb2:: ds 1
+
+ds 1
+
+wcdb4:: ds 1
+wcdb5:: ds 1
+wcdb6:: ds 1
 
 SECTION "CDB9", WRAM0[$CDB9]
 

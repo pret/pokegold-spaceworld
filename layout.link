@@ -42,7 +42,7 @@ ROM0
 	"home/serial.asm"
 	"home/interrupts.asm@Joypad dummy interrupt"
 	"home/joypad.asm"
-	"home/unknown.asm@Unknown_094c"
+	"home/unknown.asm@Debug menu sound test call"
 	"home/pic.asm"
 	"home/copy2.asm"
 	"home/text.asm"
@@ -102,9 +102,9 @@ ROMX $01
 	"engine/menu/main_menu.asm@Initialize new game WRAM"
 	"engine/dumps/bank01.asm@Function5388"
 	"engine/menu/main_menu.asm@MainMenu"
-	"engine/intro.asm"
-	"engine/title.asm@Title screen"
-	"engine/title.asm@Title screen TEMPORARY"
+	"engine/movie/oak_speech.asm"
+	"engine/movie/title.asm@Title screen"
+	"engine/movie/title.asm@Title screen TEMPORARY"
 	"engine/predef.asm"
 	"engine/dumps/bank01.asm@ReanchorBGMap_NoOAMUpdate"
 	"engine/math/math.asm"
@@ -884,6 +884,7 @@ ROMX $37
 
 ROMX $38
 	org $4000
+	"engine/games/pikachu_minigame.asm@Pikachu Minigame"
 	org $5403
 	"gfx.asm@Poker GFX"
 	org $5f93
@@ -895,14 +896,13 @@ ROMX $38
 
 ROMX $39
 	org $4000
-	org $41ff
+	"engine/movie/game_freak_intro.asm"
 	"gfx.asm@Gamefreak Logo GFX"
-	org $4adf
+	"engine/movie/opening_cutscene.asm"
 	"gfx.asm@Intro Underwater GFX"
-	org $55ef
-	"gfx.asm@Intro Water Mon and Forest GFX"
-	org $626f
+	"gfx.asm@Intro Forest GFX"
 	"gfx.asm@Intro Mon"
+	"slack.asm@Unknowne7e9f"
 
 ROMX $3a
 	org $4000
@@ -945,6 +945,8 @@ ROMX $3f
 	"engine/landmarks.asm@2"
 	org $506f
 	"gfx.asm@Town Map Cursor"
+	org $6255
+	"engine/menu/debug_menu.asm@Sound Test"
 
 WRAM0
 	org $c000
