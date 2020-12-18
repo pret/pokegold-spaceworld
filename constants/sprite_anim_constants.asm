@@ -1,13 +1,28 @@
-; wSpriteAnimDict keys
+; sprite_anim_struct members (see macros/wram.asm)
 	const_def
-	const SPRITE_ANIM_DICT_DEFAULT      ; 0
-	const SPRITE_ANIM_DICT_GS_INTRO     ; 1
-	const SPRITE_ANIM_DICT_GS_INTRO_2   ; 2
-	const_skip 2                        ; unused
-	const SPRITE_ANIM_DICT_TEXT_CURSOR  ; 5
-	const SPRITE_ANIM_DICT_GS_SPLASH    ; 6
-	const SPRITE_ANIM_DICT_SLOTS        ; 7
-	const SPRITE_ANIM_DICT_ARROW_CURSOR ; 8
+	const SPRITEANIMSTRUCT_INDEX           ; 0
+	const SPRITEANIMSTRUCT_FRAMESET_ID     ; 1
+	const SPRITEANIMSTRUCT_ANIM_SEQ_ID     ; 2
+	const SPRITEANIMSTRUCT_TILE_ID         ; 3
+	const SPRITEANIMSTRUCT_XCOORD          ; 4
+	const SPRITEANIMSTRUCT_YCOORD          ; 5
+	const SPRITEANIMSTRUCT_XOFFSET         ; 6
+	const SPRITEANIMSTRUCT_YOFFSET         ; 7
+	const SPRITEANIMSTRUCT_DURATION        ; 8
+	const SPRITEANIMSTRUCT_DURATIONOFFSET  ; 9
+	const SPRITEANIMSTRUCT_FRAME           ; a
+	const SPRITEANIMSTRUCT_JUMPTABLE_INDEX ; b
+	const SPRITEANIMSTRUCT_0C              ; c
+	const SPRITEANIMSTRUCT_0D              ; d
+	const SPRITEANIMSTRUCT_0E              ; e
+	const SPRITEANIMSTRUCT_0F              ; f
+SPRITEANIMSTRUCT_LENGTH EQU const_value
+NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
+
+; wSpriteAnimDict keys
+SPRITE_ANIM_DICT_DEFAULT EQU $00
+SPRITE_ANIM_DICT_GS_SPLASH EQU $27
+
 ; wSpriteAnimDict size (see ram/wram.asm)
 NUM_SPRITEANIMDICT_ENTRIES EQU 10
 
@@ -29,6 +44,11 @@ SPRITE_ANIM_INDEX_GS_INTRO_BLASTOISE            EQU $2c
 SPRITE_ANIM_INDEX_GS_INTRO_VENUSAUR             EQU $2d
 
 SPRITE_ANIM_INDEX_GS_TITLE_FLAME_NOTE           EQU $2e
+
+SPRITE_ANIM_INDEX_MINIGAME_PIKACHU              EQU $2f
+SPRITE_ANIM_INDEX_MINIGAME_PIKACHU_TAIL         EQU $30
+SPRITE_ANIM_INDEX_MINIGAME_NOTE                 EQU $31
+SPRITE_ANIM_INDEX_MINIGAME_JIGGLYPUFF           EQU $32
 
 SPRITE_ANIM_INDEX_39                            EQU $39
 SPRITE_ANIM_INDEX_GAMEFREAK_LOGO                EQU $3a

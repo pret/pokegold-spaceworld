@@ -151,8 +151,6 @@
 33:625D BattleAnim_Sine_e
 33:6263 BattleAnim_Cosine_e
 
-38:4000 PikachuMiniGame
-
 3A:441D Functione841d
 3A:45D8 Functione85d8
 3A:47F9 Functione87f9
@@ -169,7 +167,6 @@
 3F:4C24 Functionfcc24
 3F:4E3E Functionfce3e
 3F:5B66 Functionfdb66
-3F:6255 Functionfe255
 3F:64CE MonsterTest
 3F:654E PicTest
 3F:6750 PicTestMenu

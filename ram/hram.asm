@@ -57,7 +57,21 @@ hJoyDebounceSrc:: db
 
 hJoypadState2:: db
 
-	ds 6 ; TODO
+UNION
+
+hFFA7:: db
+hFFA8:: db
+hFFA9:: db
+
+NEXTU
+
+hDebugMenuSoundMenuIndex:: db
+hDebugMenuSoundID:: db
+hDebugMenuSoundBank:: db
+
+ENDU
+
+	ds 3 ; TODO
 hGraphicStartTile:: db
 hMoveMon:: db
 

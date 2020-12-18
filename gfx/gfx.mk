@@ -20,5 +20,8 @@ $(BUILD)/gfx/intro/jigglypuff_pikachu.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/intro/%.bin: gfx/intro/%.bin
 	cp $< $@
 
+$(BUILD)/gfx/minigames/%.bin: gfx/minigames/%.bin
+	cp $< $@
+
 $(BUILD)/gfx/battle_anims/attack_animations_1.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/battle_anims/attack_animations_2.2bpp: tools/gfx += --trim-whitespace

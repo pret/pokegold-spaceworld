@@ -80,7 +80,7 @@ GameFreakIntro::
 	callba InitEffectObject
 
 	ld hl, wSpriteAnimDict
-	ld a, $27	; SPRITE_ANIM_DICT_GS_SPLASH
+	ld a, SPRITE_ANIM_DICT_GS_SPLASH
 	ld [hli], a
 	ld a, $8d
 	ld [hl], a
@@ -172,11 +172,11 @@ GameFreakPresents_Star:
 	ld a, SPRITE_ANIM_INDEX_GS_INTRO_STAR
 	call InitSpriteAnimStruct
 
-	ld hl, $000c	; SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], $a0	; star path radius
 
-	ld de, $0031	; SFX_GAME_FREAK_LOGO (metronome?)
+	ld de, SFX_GAME_FREAK_LOGO_RG
 	call PlaySFX
 	call GameFreakPresents_NextScene
 	ret
@@ -309,15 +309,15 @@ GameFreakPresents_Sparkle:
 ; set the angle and distance for this sprite
 	ld e, l
 	ld d, h
-	ld hl, $b ; SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [de]
 	ld [hl], a ; angle
 	inc de
-	ld hl, $c ; SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld [hl], 0
-	inc hl ; SPRITEANIMSTRUCT_VAR2
+	inc hl ; SPRITEANIMSTRUCT_0D
 	ld a, [de]
 	ld [hl], a ; distance
 	ret
