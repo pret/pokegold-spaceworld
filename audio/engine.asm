@@ -2527,7 +2527,7 @@ _PlayMusic::
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, Music
+	ld hl, SongHeaderPointers
 	add hl, de
 	add hl, de
 	add hl, de

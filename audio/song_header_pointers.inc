@@ -1,4 +1,3 @@
-Music:
 SongHeaderPointers:
 	dba Music_None
 	dba Music_Title
