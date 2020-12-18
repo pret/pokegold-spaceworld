@@ -906,8 +906,7 @@ ROMX $39
 
 ROMX $3a
 	org $4000
-	"audio/engine.asm@Audio"
-	"audio/engine.asm@Song Header Pointers"
+	"audio/engine.asm"
 	"audio/songs/none.asm"
 
 ROMX $3b

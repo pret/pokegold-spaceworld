@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "audio/engine.asm@Audio", ROMX
+SECTION "audio/engine.asm", ROMX
 
 _DisableAudio::
 	push hl
@@ -1393,8 +1393,8 @@ Handle_0d:
 	cp CHAN3
 	jr nz, .not_ch3
 
-	ld hl, Data_3a_5125
-	call Functione879b
+	ld hl, WaveOverrides
+	call GetFromTable
 	jr c, .rest_done
 
 	ld d, a
@@ -1404,8 +1404,8 @@ Handle_0d:
 	jr .intensity_done
 
 .not_ch3
-	ld hl, Data_3a_5140
-	call Functione879b
+	ld hl, IntensityOverrides
+	call GetFromTable
 	jr nc, .intensity_done
 
 .rest_done
@@ -1425,7 +1425,7 @@ Handle_0d:
 	ret
 
 
-Functione879b:
+GetFromTable:
 	add hl, de
 	add hl, de
 	ld e, [hl]
@@ -2894,240 +2894,15 @@ LoadMusicByte::
 	call _LoadMusicByte
 	ret
 
-FrequencyTable:
-	dw 0     ; __
-	dw $f82c ; C_
-	dw $f89d ; C#
-	dw $f907 ; D_
-	dw $f96b ; D#
-	dw $f9ca ; E_
-	dw $fa23 ; F_
-	dw $fa77 ; F#
-	dw $fac7 ; G_
-	dw $fb12 ; G#
-	dw $fb58 ; A_
-	dw $fb9b ; A#
-	dw $fbda ; B_
-	dw $fc16 ; C_
-	dw $fc4e ; C#
-	dw $fc83 ; D_
-	dw $fcb5 ; D#
-	dw $fce5 ; E_
-	dw $fd11 ; F_
-	dw $fd3b ; F#
-	dw $fd63 ; G_
-	dw $fd89 ; G#
-	dw $fdac ; A_
-	dw $fdcd ; A#
-	dw $fded ; B_
+INCLUDE "audio/notes.inc"
 
-WaveSamples:
-	dn  0,  2,  4,  6,  8, 10, 12, 14, 15, 15, 15, 14, 14, 13, 13, 12, 12, 11, 10,  9,  8,  7,  6,  5,  4,  4,  3,  3,  2,  2,  1,  1 ; 0
-	dn  0,  2,  4,  6,  8, 10, 12, 14, 14, 15, 15, 15, 15, 14, 14, 14, 13, 13, 12, 11, 10,  9,  8,  7,  6,  5,  4,  3,  2,  2,  1,  1 ; 1
-	dn  1,  3,  6,  9, 11, 13, 14, 14, 14, 14, 15, 15, 15, 15, 14, 13, 13, 14, 15, 15, 15, 15, 14, 14, 14, 14, 13, 11,  9,  6,  3,  1 ; 2
-	dn  0,  2,  4,  6,  8, 10, 12, 13, 14, 15, 15, 14, 13, 14, 15, 15, 14, 14, 13, 12, 11, 10,  9,  8,  7,  6,  5,  4,  3,  2,  1,  0 ; 3
-	dn  0,  1,  2,  3,  4,  5,  6,  7,  8, 10, 12, 13, 14, 14, 15,  7,  7, 15, 14, 14, 13, 12, 10,  8,  7,  6,  5,  4,  3,  2,  1,  0 ; 4
-	dn  0,  0,  2,  3,  4,  5,  6,  7,  8, 10, 12,  7, 14, 14, 15,  7,  7, 15, 14, 14, 13,  7, 10,  8,  7,  6,  5,  4,  3,  2,  1,  4 ; 5
-	dn  0,  1,  0,  2,  0,  3,  0,  4,  0,  5,  0,  6,  0,  7,  0,  8,  0,  9,  0, 10,  0, 11,  0, 12,  0, 13,  0, 14,  0, 15,  0, 15 ; 6
-	dn  0, 15,  0, 15,  0, 14,  0, 14,  0, 13,  0, 13,  0, 12,  0, 12,  0, 11,  0, 11,  0, 10,  0, 10,  0,  9,  0,  9,  0,  8,  0,  8 ; 7
-	dn  0,  7,  0,  7,  0,  6,  0,  6,  0,  5,  0,  5,  0,  4,  0,  4,  0,  3,  0,  3,  0,  2,  0,  2,  0,  1,  0,  1,  0,  0,  0,  0 ; 8
-	dn 15, 15, 15, 15, 15, 15, 15, 15,  8,  8,  8,  8,  8,  8,  8,  8,  0,  0,  0,  0,  0,  0,  0,  0,  8,  8,  8,  8,  8,  8,  8,  8 ; 9
-	dn 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; a
-	dn 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; b
-	dn 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; c
-	dn 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; d
-	dn 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; e
-	dn 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; f
+INCLUDE "audio/wave_samples.inc"
 
-; inaccessible beyond this point?
-	dn  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
-	dn  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
-	dn  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
-	dn  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
-	dn  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
-	dn  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
-	dn  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
-	dn  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ; 
+INCLUDE "audio/wave_overrides.inc"
 
-Data_3a_5125:
-	dw .entry1
-	dw .entry1
-	dw .entry1
-	dw .entry1
-	dw .entry1
-	dw .entry1
-.entry1
-	db $0A, $0B, $0C, $0D, $0E, $0F, $10, $11, $12, $13, $14, $15, $16, $17
-	db -1
+INCLUDE "audio/intensity_overrides.inc"
 
-Data_3a_5140:
-	dw .entry1
-	dw .entry2
-	dw .entry3
-	dw .entry4
-	dw Drumkits
-	dw Drumkits
-.entry1
-	db $11, $21, $31, $41, $51, $61, $71, $81, $91, $A1, $B1, $C1, $D1, $E1
-	db $F1, $F1, $F1, $F1, $F1, $F1, $E1, $E1, $E1, $E1, $D1, $D1, $D1, $D1
-	db $C1, $C1, $C1, $C1, $B1, $B1, $B1, $B1, $A1, $A1, $A1, $A1, $91, $91
-	db $91, $91, $81, $81, $81, $81, $71, $71, $71, $71, $61, $61, $61, $61
-	db $51, $51, $51, $51, $41, $41, $41, $41, $31, $31, $31, $31, $21, $21
-	db $21, $21, $11, $11, $11, $11
-	db -1
-.entry2
-	db $11, $91, $D1, $F1, $F1, $F1, $F1, $F1, $D1, $D1, $D1, $D1, $A1, $A1
-	db $A1, $A1, $81, $81, $81, $81, $61, $61, $61, $61, $41, $41, $41, $41
-	db $21, $21, $21, $21
-	db -1
-.entry3
-	db $31, $51, $A1, $51, $F1, $51, $F1, $51, $F1, $51, $F1, $51, $D1, $51
-	db $D1, $51, $B1, $51, $B1, $51, $91, $51, $91, $51, $71, $51, $71, $51
-	db $51, $51, $51, $51, $31, $51, $31, $51, $11, $51, $11, $51
-	db -1
-.entry4
-	db $F0, $E0, $D0, $C0, $B0, $A0, $90, $80, $70, $60, $50, $40, $30, $20
-	db $10, $00
-	db -1
-
-Drumkits:
-	dw Drumkit0
-	dw Drumkit1
-	dw Drumkit2
-	dw Drum00
-	dw Drum00
-	dw Drum00
-
-Drumkit0:
-	dw Drum00
-	dw Snare1
-	dw Snare2
-	dw Snare3
-	dw Snare4
-	dw Drum05
-	dw Triangle1
-	dw Triangle2
-	dw HiHat1
-	dw Snare5
-	dw Snare6
-	dw Snare7
-	dw HiHat2
-Drumkit1:
-	dw Drum00
-	dw HiHat1
-	dw Snare5
-	dw Snare6
-	dw Snare7
-	dw HiHat2
-	dw HiHat3
-	dw Snare8
-	dw Triangle3
-	dw Triangle4
-	dw Snare9
-	dw Snare10
-	dw Snare11
-Drumkit2:
-	dw Drum00
-	dw Snare1
-	dw Snare9
-	dw Snare10
-	dw Snare11
-	dw Drum05
-	dw Triangle1
-	dw Triangle2
-	dw HiHat1
-	dw Snare5
-	dw Snare6
-	dw Snare7
-	dw HiHat2
-
-Drum00:
-	sound_ret
-
-Snare1:
-	noise_note 32, 12, 1, 51
-	sound_ret
-
-Snare2:
-	noise_note 32, 11, 1, 51
-	sound_ret
-
-Snare3:
-	noise_note 32, 10, 1, 51
-	sound_ret
-
-Snare4:
-	noise_note 32, 8, 1, 51
-	sound_ret
-
-Drum05:
-; Reverse cymbal / wooshing sound
-	noise_note 39, 8, 4, 55
-	noise_note 38, 8, 4, 54
-	noise_note 37, 8, 3, 53
-	noise_note 36, 8, 3, 52
-	noise_note 35, 8, 2, 51
-	noise_note 34, 8, 1, 50
-	sound_ret
-
-Triangle1:
-	noise_note 32, 5, 1, 42
-	sound_ret
-
-Triangle2:
-	noise_note 33, 4, 1, 43
-	noise_note 32, 6, 1, 42
-	sound_ret
-
-HiHat1:
-	noise_note 32, 8, 1, 16
-	sound_ret
-
-Snare5:
-	noise_note 32, 8, 2, 35
-	sound_ret
-
-Snare6:
-	noise_note 32, 8, 2, 37
-	sound_ret
-
-Snare7:
-	noise_note 32, 8, 2, 38
-	sound_ret
-
-HiHat2:
-	noise_note 32, 10, 1, 16
-	sound_ret
-
-HiHat3:
-	noise_note 32, 10, 2, 17
-	sound_ret
-
-Snare8:
-	noise_note 32, 10, 2, 80
-	sound_ret
-
-Triangle3:
-	noise_note 32, 10, 1, 24
-	noise_note 32, 3, 1, 51
-	sound_ret
-
-Triangle4:
-	noise_note 34, 9, 1, 40
-	noise_note 32, 7, 1, 24
-	sound_ret
-
-Snare9:
-	noise_note 32, 9, 1, 34
-	sound_ret
-
-Snare10:
-	noise_note 32, 7, 1, 34
-	sound_ret
-
-Snare11:
-	noise_note 32, 6, 1, 34
-	sound_ret
+INCLUDE "audio/drumkits.inc"
 
 LRTracks:
 ; bit corresponds to track #
@@ -3147,8 +2922,4 @@ ChannelPointers:
 	dw wChannel7
 	dw wChannel8
 
-
-SECTION "audio/engine.asm@Song Header Pointers", ROMX
-
-Music::
 INCLUDE "audio/song_header_pointers.inc"
