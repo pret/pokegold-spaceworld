@@ -5,15 +5,15 @@ SECTION "home/cry.asm", ROM0
 PlayStereoCry::
 	push af
 	ld a, $1
-	ld [wc1b9], a
+	ld [wStereoPanningMask], a
 	pop af
 	jr _PlayCry
 
 PlayCry::
 	push af
 	xor a
-	ld [wc1b9], a
-	ld [wc1ba], a
+	ld [wStereoPanningMask], a
+	ld [wCryTracks], a
 	pop af
 _PlayCry:
 	push hl
