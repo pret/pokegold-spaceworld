@@ -20,6 +20,7 @@ Drumkit0:
 	dw Snare6
 	dw Snare7
 	dw HiHat2
+
 Drumkit1:
 	dw Drum00
 	dw HiHat1
@@ -34,6 +35,7 @@ Drumkit1:
 	dw Snare9
 	dw Snare10
 	dw Snare11
+
 Drumkit2:
 	dw Drum00
 	dw Snare1
