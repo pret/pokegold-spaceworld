@@ -4,7 +4,7 @@ SECTION "engine/menu/start_menu.asm", ROMX
 
 DisplayStartMenu:
 	call RefreshScreen
-	ld de, $0003
+	ld de, SFX_MENU
 	call PlaySFX
 	ld hl, .StartMenuHeader
 	call LoadMenuHeader
@@ -863,7 +863,7 @@ RegisterItem:
 	ld a, [wCurItem]
 	ld [wRegisteredItemQuantity], a
 	call LoadItemData
-	ld de, $0002
+	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
 	ld hl, .RegisteredItemText
 	call MenuTextBoxBackup
