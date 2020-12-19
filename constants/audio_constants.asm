@@ -42,7 +42,7 @@ CHANNEL_INTENSITY                   EQUS "(wChannel1Intensity - wChannel1)"
 CHANNEL_FREQUENCY                   EQUS "(wChannel1Frequency - wChannel1)"
 CHANNEL_PITCH                       EQUS "(wChannel1Pitch - wChannel1)"
 CHANNEL_OCTAVE                      EQUS "(wChannel1Octave - wChannel1)"
-CHANNEL_PITCH_OFFSET                EQUS "(wChannel1PitchOffset - wChannel1)"
+CHANNEL_PITCH_OFFSET                EQUS "(wChannel1StartingOctave - wChannel1)"
 CHANNEL_NOTE_DURATION               EQUS "(wChannel1NoteDuration - wChannel1)"
 CHANNEL_FIELD16                     EQUS "(wChannel1Field16 - wChannel1)"
 CHANNEL_LOOP_COUNT                  EQUS "(wChannel1LoopCount - wChannel1)"
@@ -93,16 +93,17 @@ NOISE_CHAN_F EQU 2 ; bit set in CHAN5-CHAN7
 	const_def
 	const SOUND_VIBRATO_DIR     ; 0
 	const SOUND_PITCH_WHEEL_DIR ; 1
+	const SOUND_UNKN_12 ; 2
 
 ; NoteFlags
 	const_def
-	const NOTE_DUTY_OVERRIDE    ; 0
-	const NOTE_FREQ_OVERRIDE    ; 1
-	const NOTE_UNUSED           ; 2
-	const NOTE_UNKN_3           ; 3
-	const NOTE_NOISE_SAMPLING   ; 4
-	const NOTE_REST             ; 5
-	const NOTE_VIBRATO_OVERRIDE ; 6
+	const NOTE_DUTY_OVERRIDE      ; 0
+	const NOTE_FREQ_OVERRIDE      ; 1
+	const NOTE_INTENSITY_OVERRIDE ; 2
+	const NOTE_PITCH_SWEEP        ; 3
+	const NOTE_NOISE_SAMPLING     ; 4
+	const NOTE_REST               ; 5
+	const NOTE_VIBRATO_OVERRIDE   ; 6
 
 ; wVolume
 VOLUME_SO1_F     EQU 3

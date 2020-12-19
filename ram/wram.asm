@@ -22,9 +22,9 @@ wChannel8:: channel_struct wChannel8
 wCurTrackDuty:: db
 wCurTrackIntensity:: db
 wCurTrackFrequency:: dw
-wc195:: db
-
-	ds 2 ; TODO
+wSoundLength:: db
+wCurNoteDuration:: db
+wCurMusicByte:: db
 
 wCurChannel:: db
 wVolume:: db
@@ -34,12 +34,15 @@ wSoundOutput::
 ; bit 0-3: ch1-4 so1 on/off
 	db
 
-	ds 1 ; TODO
+wPitchSweep:: db
 
 wMusicID:: dw
 wMusicBank:: db
 
-	ds 5 ; TODO
+wNoiseSampleAddress:: dw
+wNoiseSampleDelay:: db
+wc1a2:: db
+wNoiseSampleSet:: db
 
 wLowHealthAlarm::
 ; bit 7: on/off
@@ -58,19 +61,27 @@ wMusicFadeID::
 wMusicFadeIDLow:: db
 wMusicFadeIDHigh:: db
 
-	ds 2 ; TODO
+wSweepingFadeIndex:: db
+wSweepingFadeCounter:: db
 
 wIncrementTempo: dw
 wMapMusic:: db
 wCryPitch:: dw
 wCryLength:: dw
-	ds 7 ; TODO
+wLastVolume:: db
+wc1b3:: db
+wSFXPriority:: db
+wChannel1JumpCondition:: db
+wChannel2JumpCondition:: db
+wChannel3JumpCondition:: db
+wChannel4JumpCondition:: db
 
-wc1b9:: db
-wc1ba:: db
+wStereoPanningMask:: db
+
+wCryTracks:: db
 ; either wChannelsEnd or wMusicEnd, unsure
 
-	ds 1 ; TODO
+wSFXDuration:: db
 
 wMusicInitEnd::
 

@@ -906,15 +906,7 @@ ROMX $39
 
 ROMX $3a
 	org $4000
-	"audio/engine.asm@Audio"
-	org $42bd
-	"audio/engine.asm@IsChannelSFXOn"
-	"audio/engine.asm@Functione82f0"
-	org $4cee
-	"audio/engine.asm@Audio engine, part 2"
-	org $52c7
-	"audio/engine.asm@Song Header Pointers"
-	org $52ee
+	"audio/engine.asm"
 	"audio/songs/none.asm"
 
 ROMX $3b
