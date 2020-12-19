@@ -908,6 +908,8 @@ ROMX $3a
 	org $4000
 	"audio/engine.asm"
 	"audio/songs/none.asm"
+	"audio/cries.asm@Cry Header Pointers"
+	"audio/sfx.asm@SFX Pointers"
 
 ROMX $3b
 	org $4000
@@ -926,7 +928,7 @@ ROMX $3b
 ROMX $3c
 	org $4000
 	org $51cb
-	"audio/cries.asm"
+	"audio/cries.asm@Cries"
 	org $62fe
 	"audio/songs/title.asm"
 

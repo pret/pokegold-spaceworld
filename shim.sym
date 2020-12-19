@@ -151,9 +151,6 @@
 33:625D BattleAnim_Sine_e
 33:6263 BattleAnim_Cosine_e
 
-3A:536D SFXPointers
-3A:52FB CryHeaderPointers
-
 3F:40E9 InGameDebugMenu
 3F:4305 TrainerGear
 3F:4C24 Functionfcc24
