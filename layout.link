@@ -377,6 +377,7 @@ ROMX $23
 
 ROMX $24
 	org $4000
+	"engine/menu/set_clock_dialog.asm"
 	org $4fdb
 	"gfx.asm@Slot Machine GFX"
 

@@ -102,6 +102,11 @@ wTileMapBackup::
 
 NEXTU
 
+wc408:: db
+wc409:: db
+
+NEXTU
+
 wSpriteAnimDict:: ds NUM_SPRITEANIMDICT_ENTRIES * 2
 
 wSpriteAnimationStructs::
@@ -124,7 +129,7 @@ NEXTU
 
 	ds 1
 
-wc409:: ds 1
+wClockDialogArrowBlinkCounter:: ds 1
 wc40a:: ds 1
 
 ; Monster or Trainer test?
@@ -136,11 +141,18 @@ wc40c:: ds 1
 wc40d:: ds 1
 wc40e:: ds 1
 
-	ds 11
+	ds 3
+
+wDayOfWeekBuffer:: db
+
+	ds 7
 
 wc41a:: db
-
-	ds 165
+	ds 1
+wHourBuffer:: db
+	ds 9
+wMinuteBuffer:: db
+	ds 153
 
 wSpriteAnimIDBuffer:: db
 
