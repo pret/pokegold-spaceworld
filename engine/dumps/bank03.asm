@@ -4543,7 +4543,7 @@ Textf424:
 	line "@"
 
 Textf42f:
-	deciram wd15b, 2, 4
+	deciram wCoins, 2, 4
 	text "まい"
 	prompt
 

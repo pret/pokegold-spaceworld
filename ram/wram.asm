@@ -152,8 +152,10 @@ wc41a:: db
 wHourBuffer:: db
 	ds 9
 wMinuteBuffer:: db
-	ds 153
+	ds 150
 
+wc4bd:: db
+	ds 2
 wSpriteAnimIDBuffer:: db
 
 	ds 6
@@ -165,7 +167,7 @@ wGlobalAnimXOffset::
 wc4c8:: db
 
 	ds 7
-
+	
 wNamingScreenDestinationPointer:: dw
 wNamingScreenCurNameLength:: db
 wNamingScreenMaxNameLength:: db
@@ -175,7 +177,30 @@ wNamingScreenLastCharacter:: db
 wNamingScreenStringEntryCoordY:: db
 wNamingScreenStringEntryCoordX:: db
 
-	ds 64
+NEXTU
+
+	ds 200
+
+wSlots::
+wReel1:: slot_reel wReel1
+wReel2:: slot_reel wReel2
+wReel3:: slot_reel wReel3
+wReel1Stopped:: ds 3
+wReel2Stopped:: ds 3
+wReel3Stopped:: ds 3
+wSlotBias:: db
+wSlotBet:: db
+wFirstTwoReelsMatching:: db
+wFirstTwoReelsMatchingSevens:: db
+wSlotMatched:: db
+wCurReelStopped:: ds 3
+wPayout:: dw
+wCurReelXCoord:: db
+wCurReelYCoord:: db
+	ds 2
+wSlotBuildingMatch:: db
+
+	ds 2
 
 wc51a:: ds 1
 
@@ -446,6 +471,7 @@ wNamedObjectTypeBuffer:: db
 SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db
 
+wSlotsDelay::
 wFlyDestination::
 wIntroSceneFrameCounter::
 wBattleTransitionCounter:: db
@@ -1049,7 +1075,7 @@ wCurTimeOfDay:: db
 
 SECTION "D15B", WRAM0[$D15B]
 
-wd15b:: db
+wCoins:: db
 
 wd15c:: db
 

@@ -65,7 +65,7 @@ InitializeNewGameWRAM:
 	ld [wMonType], a
 	ld [wd163], a
 	ld [wd164], a
-	ld [wd15b], a
+	ld [wCoins], a
 	ld [wd15c], a
 	ld [wd15d], a
 

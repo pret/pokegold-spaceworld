@@ -129,6 +129,7 @@
 23:4CFD InitEffectObject
 23:4D0C PlaySpriteAnimationsAndDelayFrame
 23:4d13 EffectObjectJumpNoDelay
+23:4D24 DoNextFrameForFirst16Sprites
 23:4d52 _InitSpriteAnimStruct
 23:60cc MenuMonIconGfx
 23:70CC Function8f0cc
@@ -136,7 +137,7 @@
 23:71CB Function_8f1cb
 23:71F2 Function8f1f2
 
-24:4239 SlotMachineGame
+24:582B SlotMachine3GFX
 
 32:76FF Functioncb6ff
 32:7710 Functioncb710
