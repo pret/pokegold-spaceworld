@@ -94,7 +94,7 @@ StartMenuJumpTable:
 	dw StartMenu_Save
 	dw StartMenu_Settings
 	dw StartMenu_Exit
-	dw StartMenu_TrainerGear
+	dw StartMenu_SetFrame
 	dw StartMenu_Reset
 
 StartMenuItems:
@@ -173,8 +173,8 @@ StartMenu_Exit:
 	ld a, 1
 	ret
 
-StartMenu_TrainerGear:
-	callab TrainerGear
+StartMenu_SetFrame:
+	callab FrameTypeDialog
 	ld a, 0
 	ret
 

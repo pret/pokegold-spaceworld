@@ -6,5 +6,5 @@
 	const START_SAVE ; 4
 	const START_OPTIONS ; 5
 	const START_EXIT ; 6
-	const START_TRAINER_GEAR ; 7
+	const START_SET_FRAME ; 7
 	const START_RESET ; 8
