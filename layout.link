@@ -364,6 +364,7 @@ ROMX $21
 
 ROMX $23
 	org $4000
+	"engine/dumps/bank23.asm@AnimateTilesetImpl"
 	org $433e
 	"engine/palettes.asm@Overworld fade"
 	org $43d1

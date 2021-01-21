@@ -1336,7 +1336,9 @@ wTilesetTilesAddress::
 	dw
 wTilesetCollisionAddress::
 	dw
-	ds 4 ; TODO
+wTilesetAnim::
+	dw
+	ds 2 ; TODO
 wTilesetEnd::
 
 wPartyCount:: db
