@@ -2,6 +2,12 @@ INCLUDE "constants.asm"
 
 SECTION "engine/trainer_gear.asm", ROMX
 
+TRAINERGEAR_GFX_MAP_ICON   EQU $10
+TRAINERGEAR_GFX_RADIO_ICON EQU $14
+TRAINERGEAR_GFX_PHONE_ICON EQU $18
+
+TRAINERGEAR_END_LOOP_F EQU 7
+
 OpenTrainerGear:
 	ld hl, wce5f
 	ld a, [hl]
@@ -13,17 +19,19 @@ OpenTrainerGear:
 	ldh [hMapAnims], a
 	ldh a, [hJoypadSum]
 	push af
+
 	ld a, [wVramState]
 	push af
 	xor a
 	ld [wVramState], a
-	call Function8ae0
+	call TrainerGear_Init
 	call DelayFrame
-.sub_8ac9
-	call Function8ba3
-	jr nc, .sub_8ac9
+.loop
+	call TrainerGear_Loop
+	jr nc, .loop
 	pop af
 	ld [wVramState], a
+
 	pop af
 	ldh [hJoypadSum], a
 	pop af
@@ -33,19 +41,19 @@ OpenTrainerGear:
 	call ClearJoypad
 	ret
 
-Function8ae0:
+TrainerGear_Init:
 	call ClearBGPalettes
 	call DisableLCD
 	call ClearSprites
-	ld b, $13
+	ld b, SGB_TRAINER_GEAR
 	call GetSGBLayout
 	ld hl, TrainerGearGFX
 	ld de, vChars2
-	ld bc, $0200
-	ld a, $02
+	ld bc, $20 tiles
+	ld a, BANK(TrainerGearGFX)
 	call FarCopyData
-	call Function8b2a
-	call Function8b7e
+	call TrainerGear_InitTilemap
+	call TrainerGear_PlaceIcons
 	xor a
 	ldh [hSCY], a
 	ldh [hSCX], a
@@ -53,9 +61,9 @@ Function8ae0:
 	ld [wFlyDestination], a
 	ld a, $ff
 	ld [wcb60], a
-	ld a, $07
+	ld a, 7
 	ldh [hWX], a
-	ld a, $08
+	ld a, 8
 	call UpdateSoundNTimes
 	ld a, $e3
 	ldh [rLCDC], a
@@ -65,18 +73,18 @@ Function8ae0:
 	ldh [rOBP1], a
 	ret
 
-Function8b2a:
+TrainerGear_InitTilemap:
 	ld hl, wTileMap
-	ld bc, $0168
-	ld a, $7f
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld a, "　"
 	call ByteFill
 	ld de, wTileMap
-	ld hl, Data8b42
-	ld bc, $003c
+	ld hl, .Tilemap
+	ld bc, $3c
 	call CopyBytes
 	ret
 
-Data8b42:
+.Tilemap:
 	db $0d, $1c, $1d, $0b, $1c, $1d, $0b, $1c
 	db $1d, $0c, $01, $05, $05, $05, $05, $05
 	db $05, $05, $05, $02, $08, $1e, $1f, $0a
@@ -86,23 +94,25 @@ Data8b42:
 	db $06, $04, $03, $06, $06, $06, $06, $06
 	db $06, $06, $06, $04
 
-Function8b7e:
+TrainerGear_PlaceIcons:
 	coord hl, 1, 0
-	ld a, $10
-	call Function8b97
+	ld a, TRAINERGEAR_GFX_MAP_ICON
+	call .PlaceIcon
+
 	coord hl, 4, 0
-	ld a, $14
-	call Function8b97
+	ld a, TRAINERGEAR_GFX_RADIO_ICON
+	call .PlaceIcon
+
 	coord hl, 7, 0
-	ld a, $18
-	call Function8b97
+	ld a, TRAINERGEAR_GFX_PHONE_ICON
+	call .PlaceIcon
 	ret
 
-Function8b97:
+.PlaceIcon:
 	ld [hli], a
 	inc a
 	ld [hld], a
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	inc a
 	ld [hli], a
@@ -110,21 +120,21 @@ Function8b97:
 	ld [hld], a
 	ret
 
-Function8ba3:
+TrainerGear_Loop:
 	call UpdateTime
 	call GetJoypadDebounced
 	ld a, [wJumptableIndex]
-	bit 7, a
-	jr nz, .sub_8bc3
-	call Function8bfd
+	bit TRAINERGEAR_END_LOOP_F, a
+	jr nz, .done
+	call TrainerGear_PerformFunction
 	ld a, BANK(EffectObjectJumpNoDelay)
 	ld hl, EffectObjectJumpNoDelay
 	call FarCall_hl
-	call Function8bd5
+	call TrainerGear_UpdateTime
 	call DelayFrame
 	and a
 	ret
-.sub_8bc3
+.done
 	ld hl, InitEffectObject
 	ld a, BANK(InitEffectObject)
 	call FarCall_hl
@@ -135,59 +145,51 @@ Function8ba3:
 	scf
 	ret
 
-Function8bd5:
+TrainerGear_UpdateTime:
 	coord hl, 11, 1
-	ld a, $7f
+	ld a, "　"
 	ld [hli], a
 	ld [hl], a
+
 	ld de, hRTCHours
 	coord hl, 11, 1
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNumber
 	inc hl
+
 	ld de, hRTCMinutes
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNumber
 	inc hl
+
 	ld de, hRTCSeconds
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNumber
 	ret
 
-Function8bfd:
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, $00
-	ld hl, Table8c0c
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+TrainerGear_PerformFunction:
+	jumptable .Jumptable, wJumptableIndex
 
-Table8c0c:
-	dw Function8c21
-	dw Function8c49
-	dw DrawMap
-	dw Function8cab
-	dw Function8cb7
+.Jumptable:
+	dw TrainerGear_InitPointerSprite
+	dw TrainerGear_ReadInput
+	dw TrainerGear_Map
+	dw TrainerGear_MapLoop
+	dw TrainerGear_Radio
 	dw Function8d62
-	dw Function8e6c
+	dw TrainerGear_Phone
 	dw Function8e9e
 
-Function8c1c:
+TrainerGear_Next:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-Function8c21:
-	ld hl, InitEffectObject
-	ld a, BANK(InitEffectObject)
-	call FarCall_hl
+TrainerGear_InitPointerSprite:
+	callab InitEffectObject
 	ld de, PointerGFX
-	ld hl, vChars0 + $7c0
-	lb bc, BANK(PointerGFX), $04
+	ld hl, vChars0 tile $7c
+	lb bc, BANK(PointerGFX), 4
 	call Request2bpp
 	ld a, $29
 	ld hl, wTileMapBackup
@@ -196,25 +198,25 @@ Function8c21:
 	depixel 4, 3, 4, 4
 	ld a, SPRITE_ANIM_INDEX_44
 	call InitSpriteAnimStruct
-	call Function8c1c
+	call TrainerGear_Next
 	ret
 
-Function8c49:
+TrainerGear_ReadInput:
 	ld hl, hJoySum
 	ld a, [hl]
-	and $02
-	jr nz, .sub_8c59
+	and B_BUTTON
+	jr nz, .exit
 	ld a, [hl]
-	and $01
+	and A_BUTTON
 	ret z
-	call Function8c5f
+	call TrainerGear_DetermineView
 	ret
-.sub_8c59
+.exit
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 
-Function8c5f:
+TrainerGear_DetermineView:
 	ld a, [wFlyDestination]
 	ld hl, wcb60
 	cp [hl]
@@ -223,20 +225,21 @@ Function8c5f:
 	and $03
 	ld e, a
 	ld d, $00
-	ld hl, Unknown8c78
+	ld hl, .Views
 	add hl, de
 	ld a, [hl]
 	ld [wJumptableIndex], a
 	ret
 
-Unknown8c78:
+.Views:
+; these are jumptable indices
 	db $02, $04, $06, $02
 
-DrawMap:
-	call Function8c1c
-	call Function8eaa
+TrainerGear_Map:
+	call TrainerGear_Next
+	call TrainerGear_ClearView
 	call WaitForAutoBgMapTransfer
-	ld b, $14
+	ld b, SGB_PACKPALS
 	call GetSGBLayout
 	ld de, TownMapGFX
 	ld hl, vTilesetEnd
@@ -253,18 +256,18 @@ DrawMap:
 	ld [hl], a
 	ret
 
-Function8cab:
+TrainerGear_MapLoop:
 	ld hl, hJoyDown
 	ld a, [hl]
-	and $02
+	and B_BUTTON
 	ret z
 	xor a
 	ld [wJumptableIndex], a
 	ret
 
-Function8cb7:
-	call Function8c1c
-	call Function8eaa
+TrainerGear_Radio:
+	call TrainerGear_Next
+	call TrainerGear_ClearView
 	call WaitForAutoBgMapTransfer
 	ld b, $15
 	call GetSGBLayout
@@ -379,7 +382,7 @@ Function8d91:
 	ld a, [hl]
 	and a
 	jr nz, .sub_8da6
-	call Function8dfd
+	call TrainerGear_GetRadioEvents
 	jr c, .sub_8db1
 	ld hl, $0006
 	add hl, bc
@@ -405,7 +408,7 @@ Function8db9:
 	ld a, [hl]
 	and a
 	jr nz, .sub_8dcf
-	call Function8dfd
+	call TrainerGear_GetRadioEvents
 	jr c, .sub_8dda
 	ld hl, $0006
 	add hl, bc
@@ -445,35 +448,40 @@ Function8de3:
 	ld [hl], d
 	ret
 
-Function8dfd:
-	ld hl, $0006
+TrainerGear_GetRadioEvents:
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	push bc
 	ld c, [hl]
 	ld a, [wMapGroup]
 	ld e, a
-	ld d, $00
-	ld hl, Table8e2f
+	ld d, 0
+	ld hl, TrainerGear_RadioAreas
 	add hl, de
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.sub_8e11
+.find_matches
+; Finds an event corresponding to the radio cursor's X offset
 	ld a, [hl]
 	and a
-	jr z, .sub_8e1e
+	jr z, .no_match
 	cp c
-	jr z, .sub_8e21
-	ld de, $0006
+	jr z, .found
+	ld de, 6
 	add hl, de
-	jr .sub_8e11
-.sub_8e1e
+	jr .find_matches
+
+.no_match
+; No associated event found, quit the routine
 	pop bc
 	and a
 	ret
-.sub_8e21
-	ld de, Function8e2c
+
+.found
+; Execute associated event with a parameter stored in e
+	ld de, .AfterEvent
 	push de
 	inc hl
 	ld e, [hl]
@@ -483,55 +491,58 @@ Function8dfd:
 	ld l, a
 	jp hl
 
-Function8e2c:
+.AfterEvent:
 	pop bc
 	scf
 	ret
 
-Table8e2f:
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
-	dw Data8e4d
+TrainerGear_RadioAreas:
+; one set of radio stations per map group
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
+	dw TrainerGear_RadioStations_Music
 
-Data8e4d:
-	db $10, $02
-	dw Function8e66
-	dw Function8e66
+TrainerGear_RadioStations_Music:
+; list of radio stations associated with the map group
+	db $10           ; cursor's X position
+	db MUSIC_ROUTE_1 ; parameter at e
+	dw .PlayMusic    ; routine to jump to
+	dw .PlayMusic    ; unused
 
-	db $20, $05
-	dw Function8e66
-	dw Function8e66
+	db $20, MUSIC_TRAINER_BATTLE
+	dw .PlayMusic
+	dw .PlayMusic
 
-	db $40, $07
-	dw Function8e66
-	dw Function8e66
+	db $40, MUSIC_VIRIDIAN_CITY
+	dw .PlayMusic
+	dw .PlayMusic
 
-	db $48, $09
-	dw Function8e66
-	dw Function8e66
+	db $48, MUSIC_BICYCLE
+	dw .PlayMusic
+	dw .PlayMusic
 
-	db $00
+	db 0 ; list terminator
 
-Function8e66:
-	ld d, $00
+.PlayMusic:
+	ld d, 0
 	call PlayMusic
 	ret
 
-Function8e6c:
-	call Function8c1c
-	call Function8eaa
+TrainerGear_Phone:
+	call TrainerGear_Next
+	call TrainerGear_ClearView
 	call WaitForAutoBgMapTransfer
 	ld b, $13
 	call GetSGBLayout
@@ -560,15 +571,15 @@ Function8e9e:
 	ld [wJumptableIndex], a
 	ret
 
-Function8eaa:
+TrainerGear_ClearView:
 	ld hl, InitEffectObject
 	ld a, BANK(InitEffectObject)
 	call FarCall_hl
 	call ClearSprites
 	call WaitForAutoBgMapTransfer
 	coord hl, 0, 3
-	ld bc, $012c
-	ld a, $7f
+	ld bc, SCREEN_WIDTH * 15
+	ld a, "　"
 	call ByteFill
 	call WaitBGMap
 	call WaitBGMap
