@@ -124,6 +124,7 @@ ROMX $02
 	"engine/dumps/bank02.asm@QueueFollowerFirstStep"
 	"gfx.asm@Mon Nest Icon"
 	"engine/dumps/bank02.asm@Data8a17"
+	"engine/trainer_gear.asm"
 	"gfx.asm@Trainer Gear GFX"
 	"engine/dumps/bank02.asm@Text91c2"
 	"gfx.asm@Title Screen BG Decoration Border"
