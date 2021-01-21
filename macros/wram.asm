@@ -367,6 +367,13 @@ battle_bg_effect: MACRO
 \1_03:: ds 1
 endm
 
+sprite_oam_struct: MACRO
+\1YCoord::     db
+\1XCoord::     db
+\1TileID::     db
+\1Attributes:: db
+ENDM
+
 warp_struct: MACRO
 \1WarpNumber:: ds 1
 \1MapGroup:: ds 1
