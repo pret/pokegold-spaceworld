@@ -900,7 +900,7 @@ Function86a0:
 	ld hl, InitEffectObject
 	ld a, BANK(InitEffectObject)
 	call FarCall_hl
-	call Function886a
+	call PlaceGoldInMap
 	call WaitBGMap
 	call SetPalettes
 .sub_86b4
@@ -924,7 +924,7 @@ FlyMap:
 	ld hl, InitEffectObject
 	ld a, BANK(InitEffectObject)
 	call FarCall_hl
-	call Function886a
+	call PlaceGoldInMap
 	call Function88b3
 	ld hl, wcb60
 	ld [hl], c
@@ -1141,7 +1141,7 @@ DecompTownMapTilemap:
 	inc de
 	jr .sub_8859
 
-Function886a:
+PlaceGoldInMap:
 	ld de, GoldSpriteGFX
 	ld hl, vChars0
 	lb bc, BANK(GoldSpriteGFX), $04
@@ -1252,11 +1252,7 @@ Data8a53:
 	db $3c, $14, $3c, $20, $48, $14, $54, $1c
 	db $54, $2c, $54, $38, $3c, $44, $48, $2c
 
-SECTION "engine/dumps/bank02.asm@Text91c2", ROMX
-
-Text91c2:
-	text "エーボタンで　チューニング！"
-	done
+SECTION "engine/dumps/bank02.asm@SetTitleBGDecorationBorder", ROMX
 
 SetTitleBGDecorationBorder:
 	ld de, TitleBGDecorationBorder
