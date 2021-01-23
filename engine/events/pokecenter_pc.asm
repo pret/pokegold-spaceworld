@@ -2,15 +2,17 @@ INCLUDE "constants.asm"
 
 SECTION "engine/events/pokecenter_pc.asm", ROMX
 
-; enum PLAYERSHOUSEPC
+; PokemonCenterPC.Jumptable indices
 	const_def
-	const PLAYERSHOUSEPC_PLAYERSPC
-	const PLAYERSHOUSEPC_BILLSPC
-	const PLAYERSHOUSEPC_OAKSPC
-	const PLAYERSHOUSEPC_HALLOFFAME
-	const PLAYERSHOUSEPC_SHUTDOWN
+	const PCITEM_PLAYERS_PC
+	const PCITEM_BILLS_PC
+	const PCITEM_OAKS_PC
+	const PCITEM_HALL_OF_FAME
+	const PCITEM_TURN_OFF
 
 PokemonCenterPC:
+; Also used for player's PC (both in debug and in demo mode)
+
 	ld a, [wDebugFlags]
 	bit 1, a
 	jp z, PC_Demo
@@ -85,10 +87,10 @@ PokemonCenterPC:
 
 .WhichPC:
 	db 4
-	db PLAYERSHOUSEPC_PLAYERSPC
-	db PLAYERSHOUSEPC_BILLSPC
-	db PLAYERSHOUSEPC_OAKSPC
-	db PLAYERSHOUSEPC_SHUTDOWN
+	db PCITEM_PLAYERS_PC
+	db PCITEM_BILLS_PC
+	db PCITEM_OAKS_PC
+	db PCITEM_TURN_OFF
 	db -1
 
 PC_PlayBootSound:
