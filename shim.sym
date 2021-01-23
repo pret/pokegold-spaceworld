@@ -20,8 +20,7 @@
 ; word Unknown (2 bytes)
 05:470E UnknownMapBufferPointers
 05:4777 Function14777
-05:477D Function1477D
-05:4824 Function14824
+05:4C94 Data14c94
 05:4CAC Function14cac
 05:4DAC Function14dac
 05:4DC4 Function14dc4

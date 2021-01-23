@@ -61,7 +61,7 @@ SilentHillHouseNPCText1:
 
 .jump
 	call RefreshScreen
-	callab Function1477D
+	callab PokemonCenterPC
 	call Function1fea
 	ret
 
