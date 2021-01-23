@@ -139,7 +139,7 @@ PC_Demo:
 	done
 
 BillsPC:
-	callab Functione1d5
+	callab _BillsPC
 	and a
 	ret
 
@@ -252,7 +252,7 @@ PlayerWithdrawItemMenu:
 .AskQuantity:
 	ld hl, .HowManyToWithdrawText
 	call MenuTextBox
-	callab Function24c60
+	callab SelectQuantityToToss
 	call ExitMenu
 	call ExitMenu
 	jr c, .done
@@ -411,7 +411,7 @@ PlayerDepositItemMenu:
 .AskQuantity:
 	ld hl, .HowManyDepositText
 	call MenuTextBox
-	callab Function24c60 ; SelectQuantityToToss
+	callab SelectQuantityToToss
 	push af
 	call ExitMenu
 	call ExitMenu
@@ -479,12 +479,12 @@ PCItemsJoypad:
 	jr z, .select
 	jr .next
 .select
-	callab Function245c5
+	callab SwitchItemsInBag
 	jp .next
 .next
 	jp PCItemsJoypad
 .a_button
-	callab Function243af
+	callab ScrollingMenu_ClearLeftColumn
 	call PlaceHollowCursor
 	and a
 	ret
@@ -503,6 +503,6 @@ PCItemsJoypad:
 	db 4, 8 ; rows, columns
 	db SCROLLINGMENU_ITEMS_QUANTITY ; type
 	dbw 0, wUnknownListLengthd1ea
-	dba Function24774
-	dba Function24783
-	dba Function241ef
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba UpdateItemDescription
