@@ -937,6 +937,8 @@ ROMX $3e
 
 ROMX $3f
 	org $4000
+	org $4305
+	"engine/menu/frame_type_dialog.asm"
 	org $4362
 	"engine/menu/reset_dialog.asm"
 	org $4a57
