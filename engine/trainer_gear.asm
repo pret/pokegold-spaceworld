@@ -2,19 +2,19 @@ INCLUDE "constants.asm"
 
 SECTION "engine/trainer_gear.asm@OpenTrainerGear", ROMX
 
-TRAINERGEAR_GFX_VERTICAL_PIPE      EQU $0
+TRAINERGEAR_GFX_VERTICAL_PIPE      EQU $00
 TRAINERGEAR_GFX_POINTER            EQU $7c
 
-TRAINERGEAR_GFX_BORDER_TOPLEFT     EQU $1
-TRAINERGEAR_GFX_BORDER_TOPRIGHT    EQU $2
-TRAINERGEAR_GFX_BORDER_BOTTOMLEFT  EQU $3
-TRAINERGEAR_GFX_BORDER_BOTTOMRIGHT EQU $4
-TRAINERGEAR_GFX_BORDER_TOP         EQU $5
-TRAINERGEAR_GFX_BORDER_BOTTOM      EQU $6
-TRAINERGEAR_GFX_BORDER_RIGHT       EQU $7
-TRAINERGEAR_GFX_BORDER_LEFT        EQU $8
+TRAINERGEAR_GFX_BORDER_TOPLEFT     EQU $01
+TRAINERGEAR_GFX_BORDER_TOPRIGHT    EQU $02
+TRAINERGEAR_GFX_BORDER_BOTTOMLEFT  EQU $03
+TRAINERGEAR_GFX_BORDER_BOTTOMRIGHT EQU $04
+TRAINERGEAR_GFX_BORDER_TOP         EQU $05
+TRAINERGEAR_GFX_BORDER_BOTTOM      EQU $06
+TRAINERGEAR_GFX_BORDER_RIGHT       EQU $07
+TRAINERGEAR_GFX_BORDER_LEFT        EQU $08
 
-TRAINERGEAR_GFX_GRAYTILE           EQU $e
+TRAINERGEAR_GFX_GRAYTILE           EQU $0e
 TRAINERGEAR_GFX_BLANKTILE          EQU $7f
 
 TRAINERGEAR_GFX_MAP_ICON           EQU $10
@@ -31,7 +31,7 @@ TRAINERGEAR_GFX_RADIO_BOTTOMHALF   EQU $67
 	const TRAINERGEARCARD_MAP
 	const TRAINERGEARCARD_RADIO
 	const TRAINERGEARCARD_PHONE
-NUM_TRAINERGEAR_CARDS EQU const_value-1
+NUM_TRAINERGEAR_CARDS EQU const_value
 
 ; TrainerGear_Jumptable.Jumptable indices
 	const_def
@@ -127,14 +127,14 @@ TrainerGear_InitTilemap:
 	ld a, TRAINERGEAR_GFX_BLANKTILE
 	call ByteFill
 	ld de, wTileMap
-	ld hl, .Tilemap
-	ld bc, .Tilemap_End - .Tilemap
+	ld hl, TrainerGearTilemap
+	ld bc, TrainerGearTilemap.End - TrainerGearTilemap
 	call CopyBytes
 	ret
 
-.Tilemap:
-INCBIN "gfx/trainer_gear/trainer_gear_tilemap.bin"
-.Tilemap_End:
+TrainerGearTilemap:
+INCBIN "gfx/trainer_gear/trainer_gear.tilemap"
+.End:
 
 TrainerGear_PlaceIcons:
 	coord hl, 1, 0
@@ -263,7 +263,7 @@ TrainerGear_DetermineView:
 
 ; load a new view by jumping to its init routine
 	ld [wTrainerGearCard], a
-	and %11
+	maskbits NUM_TRAINERGEAR_CARDS
 	ld e, a
 	ld d, 0
 	ld hl, .Views
@@ -295,7 +295,7 @@ TrainerGear_Map:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
-	add 24
+	add 3 * TILE_WIDTH ; shift sprite down past the Trainer Gear UI
 	ld [hl], a
 	ret
 
@@ -654,7 +654,7 @@ AnimateTrainerGearModeIndicatorPointer::
 	jr .update_position
 .move_right
 	ld a, [hl]
-	cp NUM_TRAINERGEAR_CARDS
+	cp NUM_TRAINERGEAR_CARDS - 1
 	ret nc
 	inc [hl]
 .update_position
