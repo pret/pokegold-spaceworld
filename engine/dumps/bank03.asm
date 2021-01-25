@@ -3545,7 +3545,7 @@ Functioned00:
 	ld a, $01
 	ld [wcab9], a
 	push de
-	ld de, $0002
+	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
 	call WaitSFX
 	pop de
@@ -3606,7 +3606,7 @@ Functioned37:
 	ld de, wHPBarTempHP
 	ld bc, $000a
 	call CopyBytes
-	ld de, $0002
+	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
 	ld hl, Textedcb
 	call PrintText
@@ -3839,7 +3839,7 @@ Functionef17:
 .sub_ef50
 	call Functionf7a2
 	push de
-	ld de, $0002
+	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
 	pop de
 	call Functionf0d8
@@ -4016,7 +4016,7 @@ Functionf0af:
 
 Functionf0b0:
 	push de
-	ld de, $0001
+	ld de, SFX_POTION
 	call WaitPlaySFX
 	pop de
 	ld a, [wWhichPokemon]
@@ -4522,7 +4522,7 @@ Functionf3fd:
 	and a
 	jr nz, .sub_f410
 	push de
-	ld de, $0021
+	ld de, SFX_POKEFLUTE
 	call WaitPlaySFX
 	call WaitSFX
 	pop de
@@ -4543,7 +4543,7 @@ Textf424:
 	line "@"
 
 Textf42f:
-	deciram wd15b, 2, 4
+	deciram wCoins, 2, 4
 	text "まい"
 	prompt
 
@@ -4627,7 +4627,7 @@ Functionf49f:
 	call Functionfab4
 	ld hl, Textf8c6
 	call PrintText
-	ld de, $0002
+	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
 	ld c, $50
 	call DelayFrames
@@ -4718,7 +4718,7 @@ Functionf550:
 	ld bc, $0004
 	call CopyBytes
 .sub_f572
-	ld de, $0002
+	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
 	ld hl, Textf64c
 	call PrintText
@@ -4914,7 +4914,7 @@ Functionf678:
 	ld a, c
 	and a
 	jr nz, .sub_f70c
-	ld de, $0014
+	ld de, SFX_WRONG
 	call WaitPlaySFX
 	ld hl, Textf768
 	call PrintText
@@ -4972,7 +4972,7 @@ Textf784:
 Functionf793:
 	ld hl, Textf8c6
 	call PrintText
-	ld de, $0002
+	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
 	call TextboxWaitPressAorB_BlinkCursor
 

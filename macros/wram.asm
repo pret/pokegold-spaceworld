@@ -250,13 +250,13 @@ slot_reel: MACRO
 \1SpinRate::     db
 \1OAMAddr::      dw
 \1XCoord::       db
-\1Slot09::       ds 1
-\1Slot0a::       ds 1
-\1Slot0b::       ds 1
-\1Slot0c::       ds 1
-\1Slot0d::       ds 1
-\1Slot0e::       ds 1
-\1Slot0f::       ds 1
+\1ManipCounter:: db
+\1ManipDelay::   db
+\1Field0b::      db
+\1Field0c::      db
+\1Field0d::      db
+\1Field0e::      db
+\1StopDelay::    db
 endm
 
 object_struct: MACRO
@@ -366,6 +366,13 @@ battle_bg_effect: MACRO
 \1_02:: ds 1
 \1_03:: ds 1
 endm
+
+sprite_oam_struct: MACRO
+\1YCoord::     db
+\1XCoord::     db
+\1TileID::     db
+\1Attributes:: db
+ENDM
 
 warp_struct: MACRO
 \1WarpNumber:: ds 1

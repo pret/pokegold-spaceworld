@@ -3258,7 +3258,7 @@ Text6653:
 	text_exit
 	start_asm
 	push de
-	ld de, $001b
+	ld de, SFX_SWITCH_POKEMON
 	call PlaySFX
 	pop de
 	ld hl, Text6661
@@ -3727,7 +3727,7 @@ Function78f0:
 	jr z, .sub_7956
 .sub_7924
 	push de
-	ld de, $0005
+	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	pop de
 	pop af

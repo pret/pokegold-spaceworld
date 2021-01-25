@@ -88,7 +88,7 @@ GameStart::
 	ld [wMusicFadeIDLow], a
 	ld a, d
 	ld [wMusicFadeIDHigh], a
-	ld de, $000B ; should be a constant - shrink noise?
+	ld de, SFX_ESCAPE_ROPE
 	call PlaySFX
 	pop af
 	call Bankswitch

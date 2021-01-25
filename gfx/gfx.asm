@@ -407,9 +407,12 @@ SnorlaxIcon:: INCBIN "gfx/icons/snorlax.2bpp"
 
 SECTION "gfx.asm@Slot Machine GFX", ROMX
 SlotMachineGFX::
-INCBIN "gfx/minigames/slots.2bpp"
+INCBIN "gfx/minigames/slots_1.2bpp"
 SlotMachine2GFX::
 INCBIN "gfx/minigames/slots_2.2bpp"
+INCBIN "gfx/minigames/slots_3.2bpp"
+SlotMachine3GFX::
+INCBIN "gfx/minigames/slots_4.2bpp"
 
 SECTION "gfx.asm@Bank 30 Sprites 1", ROMX
 GoldSpriteGFX:: INCBIN "gfx/sprites/gold.2bpp"

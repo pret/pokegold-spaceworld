@@ -267,7 +267,7 @@ TitleSeq_LoadPokemonLogo::
 TitleSeq_Start::
 	call TitleSeq_IncreaseJumpTableIndex
 	push de
-	ld de, $2D ; "swish" sound
+	ld de, SFX_TITLE_ENTRANCE
 	call PlaySFX
 	pop de
 	ld a, $80

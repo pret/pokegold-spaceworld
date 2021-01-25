@@ -29,6 +29,8 @@ NUM_SPRITEANIMDICT_ENTRIES EQU 10
 ; SpriteAnimSeqData indexes
 SPRITE_ANIM_INDEX_08                            EQU $08
 
+SPRITE_ANIM_INDEX_20                            EQU $20
+
 SPRITE_ANIM_INDEX_GS_INTRO_BUBBLE               EQU $21
 SPRITE_ANIM_INDEX_GS_INTRO_OMANYTE              EQU $22
 SPRITE_ANIM_INDEX_GS_INTRO_MAGIKARP             EQU $23
@@ -54,7 +56,14 @@ SPRITE_ANIM_INDEX_39                            EQU $39
 SPRITE_ANIM_INDEX_GAMEFREAK_LOGO                EQU $3a
 SPRITE_ANIM_INDEX_GS_INTRO_STAR                 EQU $3b
 SPRITE_ANIM_INDEX_GS_INTRO_SPARKLE              EQU $3c
+SPRITE_ANIM_INDEX_SLOTS_GOLEM                   EQU $3d
+SPRITE_ANIM_INDEX_SLOTS_CHANSEY                 EQU $3e
+SPRITE_ANIM_INDEX_SLOTS_EGG                     EQU $3f
+
 SPRITE_ANIM_INDEX_40                            EQU $40
 SPRITE_ANIM_INDEX_41                            EQU $41
 SPRITE_ANIM_INDEX_44                            EQU $44
 SPRITE_ANIM_INDEX_4B                            EQU $4b
+
+SPRITE_ANIM_INDEX_28                            EQU $28
+
