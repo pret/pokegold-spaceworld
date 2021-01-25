@@ -2,44 +2,44 @@ INCLUDE "constants.asm"
 
 SECTION "audio/cries.asm@Cry Header Pointers", ROMX
 CryHeaderPointers::
-	dbw $3C, $57C5
- 	dbw $3C, $57CE
- 	dbw $3C, $57D7
- 	dbw $3C, $57E0
- 	dbw $3C, $57E9
- 	dbw $3C, $57F2
- 	dbw $3C, $57FB
- 	dbw $3C, $5804
- 	dbw $3C, $580D
- 	dbw $3C, $5816
- 	dbw $3C, $581F
- 	dbw $3C, $5828
- 	dbw $3C, $5831
- 	dbw $3C, $583A
- 	dbw $3C, $5843
- 	dbw $3C, $584C
- 	dbw $3C, $5855
- 	dbw $3C, $585E
- 	dbw $3C, $5867
- 	dbw $3C, $5870
- 	dbw $3C, $5879
- 	dbw $3C, $5882
- 	dbw $3C, $588B
- 	dbw $3C, $5894
- 	dbw $3C, $589D
- 	dbw $3C, $58A6
- 	dbw $3C, $58AF
- 	dbw $3C, $58B8
- 	dbw $3C, $58C1
- 	dbw $3C, $58CA
- 	dbw $3C, $58D3
- 	dbw $3C, $58DC
- 	dbw $3C, $58E5
- 	dbw $3C, $58EE
- 	dbw $3C, $58F7
- 	dbw $3C, $5900
- 	dbw $3C, $5909
- 	dbw $3C, $5912
+	dba CryHeader_f17c5
+	dba CryHeader_f17ce
+	dba CryHeader_f17d7
+	dba CryHeader_f17e0
+	dba CryHeader_f17e9
+	dba CryHeader_f17f2
+	dba CryHeader_f17fb
+	dba CryHeader_f1804
+	dba CryHeader_f180d
+	dba CryHeader_f1816
+	dba CryHeader_f181f
+	dba CryHeader_f1828
+	dba CryHeader_f1831
+	dba CryHeader_f183a
+	dba CryHeader_f1843
+	dba CryHeader_f184c
+	dba CryHeader_f1855
+	dba CryHeader_f185e
+	dba CryHeader_f1867
+	dba CryHeader_f1870
+	dba CryHeader_f1879
+	dba CryHeader_f1882
+	dba CryHeader_f188b
+	dba CryHeader_f1894
+	dba CryHeader_f189d
+	dba CryHeader_f18a6
+	dba CryHeader_f18af
+	dba CryHeader_f18b8
+	dba CryHeader_f18c1
+	dba CryHeader_f18ca
+	dba CryHeader_f18d3
+	dba CryHeader_f18dc
+	dba CryHeader_f18e5
+	dba CryHeader_f18ee
+	dba CryHeader_f18f7
+	dba CryHeader_f1900
+	dba CryHeader_f1909
+	dba CryHeader_f1912
 
 SECTION "audio/cries.asm@Cries", ROMX
 

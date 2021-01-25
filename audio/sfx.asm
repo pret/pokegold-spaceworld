@@ -2,111 +2,111 @@ INCLUDE "constants.asm"
 
 SECTION "audio/sfx.asm@SFX Pointers", ROMX
 SFXPointers::
-	dbw $3C, $43BE
- 	dbw $3C, $43C1
- 	dbw $3C, $43C4
- 	dbw $3C, $43C7
- 	dbw $3C, $43CA
- 	dbw $3C, $43CA
- 	dbw $3C, $43CD
- 	dbw $3C, $43D0
- 	dbw $3C, $43D3
- 	dbw $3C, $43D6
- 	dbw $3C, $43D9
- 	dbw $3C, $43DC
- 	dbw $3C, $43DF
- 	dbw $3C, $43E2
- 	dbw $3C, $43E5
- 	dbw $3C, $43E8
- 	dbw $3C, $43EB
- 	dbw $3C, $43EE
- 	dbw $3C, $43F1
- 	dbw $3C, $43F4
- 	dbw $3C, $43F7
- 	dbw $3C, $43FD
- 	dbw $3C, $4400
- 	dbw $3C, $4403
- 	dbw $3C, $4409
- 	dbw $3C, $440C
- 	dbw $3C, $440F
- 	dbw $3C, $4412
- 	dbw $3C, $4418
- 	dbw $3C, $441E
- 	dbw $3C, $4424
- 	dbw $3C, $4427
- 	dbw $3C, $442A
- 	dbw $3C, $4430
- 	dbw $3C, $4433
- 	dbw $3C, $4436
- 	dbw $3C, $443C
- 	dbw $3C, $4442
- 	dbw $3C, $4448
- 	dbw $3C, $444B
- 	dbw $3C, $4451
- 	dbw $3C, $4454
- 	dbw $3C, $4457
- 	dbw $3C, $445A
- 	dbw $3C, $445D
- 	dbw $3C, $4460
- 	dbw $3C, $4463
- 	dbw $3C, $4466
- 	dbw $3C, $4469
- 	dbw $3C, $446F
- 	dbw $3C, $4472
- 	dbw $3C, $4475
- 	dbw $3C, $4478
- 	dbw $3C, $447B
- 	dbw $3C, $447E
- 	dbw $3C, $4481
- 	dbw $3C, $4484
- 	dbw $3C, $4487
- 	dbw $3C, $448A
- 	dbw $3C, $448D
- 	dbw $3C, $4490
- 	dbw $3C, $4493
- 	dbw $3C, $4496
- 	dbw $3C, $4499
- 	dbw $3C, $449C
- 	dbw $3C, $449F
- 	dbw $3C, $44A2
- 	dbw $3C, $44A5
- 	dbw $3C, $44A8
- 	dbw $3C, $44AB
- 	dbw $3C, $44AE
- 	dbw $3C, $44B1
- 	dbw $3C, $44B4
- 	dbw $3C, $44B7
- 	dbw $3C, $44BD
- 	dbw $3C, $44C0
- 	dbw $3C, $44C3
- 	dbw $3C, $44C6
- 	dbw $3C, $44C9
- 	dbw $3C, $44CC
- 	dbw $3C, $44D2
- 	dbw $3C, $44D5
- 	dbw $3C, $44D8
- 	dbw $3C, $44E1
- 	dbw $3C, $44EA
- 	dbw $3C, $44F0
- 	dbw $3C, $44F9
- 	dbw $3C, $44FF
- 	dbw $3C, $4508
- 	dbw $3C, $4511
- 	dbw $3C, $451A
- 	dbw $3C, $4523
- 	dbw $3C, $452C
- 	dbw $3C, $4532
- 	dbw $3C, $4538
- 	dbw $3C, $453E
- 	dbw $3C, $4547
- 	dbw $3C, $454D
- 	dbw $3C, $4556
- 	dbw $3C, $4559
- 	dbw $3C, $4562
- 	dbw $3C, $456B
- 	dbw $3C, $4574
- 	dbw $3C, $457D
- 	dbw $3C, $4586
- 	dbw $3C, $458F
- 	dbw $3C, $4598
- 	dbw $3C, $45A1
+	dba Sfx_01
+	dba Sfx_02
+	dba Sfx_03
+	dba Sfx_04
+	dba Sfx_05
+	dba Sfx_06
+	dba Sfx_07
+	dba Sfx_08
+	dba Sfx_09
+	dba Sfx_0a
+	dba Sfx_0b
+	dba Sfx_0c
+	dba Sfx_0d
+	dba Sfx_0e
+	dba Sfx_0f
+	dba Sfx_10
+	dba Sfx_11
+	dba Sfx_12
+	dba Sfx_13
+	dba Sfx_14
+	dba Sfx_15
+	dba Sfx_16
+	dba Sfx_17
+	dba Sfx_18
+	dba Sfx_19
+	dba Sfx_1a
+	dba Sfx_1b
+	dba Sfx_1c
+	dba Sfx_1d
+	dba Sfx_1e
+	dba Sfx_1f
+	dba Sfx_20
+	dba Sfx_21
+	dba Sfx_22
+	dba Sfx_23
+	dba Sfx_24
+	dba Sfx_25
+	dba Sfx_26
+	dba Sfx_27
+	dba Sfx_28
+	dba Sfx_29
+	dba Sfx_2a
+	dba Sfx_2b
+	dba Sfx_2c
+	dba Sfx_2d
+	dba Sfx_2e
+	dba Sfx_2f
+	dba Sfx_30
+	dba Sfx_31
+	dba Sfx_32
+	dba Sfx_33
+	dba Sfx_34
+	dba Sfx_35
+	dba Sfx_36
+	dba Sfx_37
+	dba Sfx_38
+	dba Sfx_39
+	dba Sfx_3a
+	dba Sfx_3b
+	dba Sfx_3c
+	dba Sfx_3d
+	dba Sfx_3e
+	dba Sfx_3f
+	dba Sfx_40
+	dba Sfx_41
+	dba Sfx_42
+	dba Sfx_43
+	dba Sfx_44
+	dba Sfx_45
+	dba Sfx_46
+	dba Sfx_47
+	dba Sfx_48
+	dba Sfx_49
+	dba Sfx_4a
+	dba Sfx_4b
+	dba Sfx_4c
+	dba Sfx_4d
+	dba Sfx_4e
+	dba Sfx_4f
+	dba Sfx_50
+	dba Sfx_51
+	dba Sfx_52
+	dba Sfx_53
+	dba Sfx_54
+	dba Sfx_55
+	dba Sfx_56
+	dba Sfx_57
+	dba Sfx_58
+	dba Sfx_59
+	dba Sfx_5a
+	dba Sfx_5b
+	dba Sfx_5c
+	dba Sfx_5d
+	dba Sfx_5e
+	dba Sfx_5f
+	dba Sfx_60
+	dba Sfx_61
+	dba Sfx_62
+	dba Sfx_63
+	dba Sfx_64
+	dba Sfx_65
+	dba Sfx_66
+	dba Sfx_67
+	dba Sfx_68
+	dba Sfx_69
+	dba Sfx_6a
+	dba Sfx_6b
+	dba Sfx_6c
