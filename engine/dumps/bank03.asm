@@ -2236,7 +2236,7 @@ Texte1c3:
 	line "なまえを　つけますか？"
 	done
 
-Functione1d5:
+_BillsPC:
 	call Functione284
 	ret c
 	call LoadStandardMenuHeader

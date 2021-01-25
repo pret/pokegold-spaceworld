@@ -20,8 +20,7 @@
 ; word Unknown (2 bytes)
 05:470E UnknownMapBufferPointers
 05:4777 Function14777
-05:477D Function1477D
-05:4824 Function14824
+05:4C94 Data14c94
 05:4CAC Function14cac
 05:4DAC Function14dac
 05:4DC4 Function14dc4
@@ -34,16 +33,16 @@
 09:412C _ExitMenu
 09:4185 Function24185
 09:4199 _InitVerticalMenuCursor
-09:41EF Function241ef
+09:41EF UpdateItemDescription
 09:426A _InitScrollingMenu
 09:4287 _ScrollingMenu
-09:43AF Function243af
-09:45C5 Function245c5
+09:43AF ScrollingMenu_ClearLeftColumn
+09:45C5 SwitchItemsInBag
 09:473B Function2473b
-09:4774 Function24774
-09:4783 Function24783
+09:4774 PlaceMenuItemName
+09:4783 PlaceMenuItemQuantity
 09:4955 Function24955
-09:4C60 Function24c60
+09:4C60 SelectQuantityToToss
 
 ; all these probably print text
 0A:4000 Function28000
