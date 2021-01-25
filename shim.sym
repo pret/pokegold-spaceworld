@@ -150,6 +150,11 @@
 33:625D BattleAnim_Sine_e
 33:6263 BattleAnim_Cosine_e
 
+38:48A2 PokerMinigame
+38:5AE3 FifteenPuzzleMinigame
+38:622B MemoryMinigame
+38:6886 PicrossMinigame
+
 3A:536D SFXPointers
 3A:52FB CryHeaderPointers
 
@@ -162,4 +167,3 @@
 3F:654E PicTest
 3F:6750 PicTestMenu
 ;3F:6755 PicTestMenu.loop
-3F:67A1 CallSubGameMenu

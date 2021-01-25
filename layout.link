@@ -953,6 +953,8 @@ ROMX $3f
 	"gfx.asm@Town Map Cursor"
 	org $6255
 	"engine/menu/debug_menu.asm@Sound Test"
+	org $67a1
+	"engine/menu/debug_menu.asm@Subgame Menu"
 
 WRAM0
 	org $c000
