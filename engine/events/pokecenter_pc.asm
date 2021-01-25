@@ -62,7 +62,7 @@ PokemonCenterPC:
 	db MENU_BACKUP_TILES
 	menu_coords 0, 0, 14, 12
 	dw .MenuData
-	db 1          ; default item
+	db 1 ; default item
 
 .MenuData:
 	db STATICMENU_CURSOR
@@ -100,7 +100,7 @@ PC_PlayBootSound:
 ; Don't play the bootup sound if player has at least one mon
 	ret nz
 
-	ld de, $A
+	ld de, SFX_BOOT_PC
 	call PlaySFX
 	ld hl, .NoPokemonText
 	call OpenTextbox
@@ -117,7 +117,7 @@ PC_PlayBootSound:
 	text_end
 
 PC_Demo:
-	ld de, $A
+	ld de, SFX_BOOT_PC
 	call PlaySFX
 	ld hl, .SkarmoryText
 	call PrintText
