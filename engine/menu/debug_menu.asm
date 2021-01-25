@@ -2,6 +2,15 @@ INCLUDE "constants.asm"
 
 SECTION "engine/menu/debug_menu.asm", ROMX
 
+; DebugJumpTable indices
+	const_def
+	const DEBUGMENU_FIGHT
+	const DEBUGMENU_FIELD
+	const DEBUGMENU_SOUNDTEST
+	const DEBUGMENU_SUBGAME
+	const DEBUGMENU_POKEDEX
+	const DEBUGMENU_TRAINERGEAR
+
 DebugMenu::
 	call ClearTileMap
 	call ClearWindowData
@@ -32,15 +41,15 @@ DebugJumpTable::
 
 DebugMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 05, 02, SCREEN_WIDTH - 7, SCREEN_HEIGHT - 1
+	menu_coords 5, 2, SCREEN_WIDTH - 7, SCREEN_HEIGHT - 1
 	dw .MenuData
-	db 01 ; default option
+	db 1 ; default option
 
 .MenuData:
-	db $A0
-	db 0 ; items
+	db STATICMENU_CURSOR | STATICMENU_WRAP
+	db 0
 	dw DebugMenuItems
-	db $8A, $1F
+	dw PlaceMenuStrings
 	dw .Strings
 
 .Strings
@@ -52,13 +61,13 @@ DebugMenuHeader:
 	db "なまえ@"
 
 DebugMenuItems:
-	db 06
-	db 00
-	db 01
-	db 02
-	db 03
-	db 04
-	db 05
+	db 6 ; items
+	db DEBUGMENU_FIGHT
+	db DEBUGMENU_FIELD
+	db DEBUGMENU_SOUNDTEST
+	db DEBUGMENU_SUBGAME
+	db DEBUGMENU_POKEDEX
+	db DEBUGMENU_TRAINERGEAR
 	db -1
 
 DebugMenuOptionField::
@@ -69,8 +78,7 @@ DebugMenuOptionField::
 DebugMenuOptionFight::
 	ld hl, wDebugFlags
 	set DEBUG_BATTLE_F, [hl]
-	ld a, $54
-	call Predef
+	predef Functionfdb66
 	ld hl, wDebugFlags
 	res DEBUG_BATTLE_F, [hl]
 	ret
@@ -196,7 +204,7 @@ _DebugMenuSoundTest::
 	ld hl, SoundTestTextPointers
 	ldh a, [hDebugMenuSoundMenuIndex]
 	add a
-	add a	; a * 4
+	add a ; a * 4
 	ld d, 0
 	ld e, a
 	add hl, de
@@ -243,6 +251,7 @@ CallSubGameMenu:
 	call CopyMenuHeader
 	call VerticalMenu
 	ret c
+
 	ld a, [wMenuCursorY]
 	dec a
 	ld e, a
@@ -274,7 +283,7 @@ CallSubGameMenu:
 	db   1 ; default option
 
 .MenuData:
-	db $A0
+	db STATICMENU_CURSOR | STATICMENU_WRAP
 	db   5 ; items
 	db "ポーカー@"
 	db "１５パズル@"
