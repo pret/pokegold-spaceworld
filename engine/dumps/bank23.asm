@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "engine/dumps/bank23.asm@AnimateTilesetImpl", ROMX
 
 AnimateTilesetImpl:
-	ld a, [hMapAnims]
+	ldh a, [hMapAnims]
 	and a
 	ret z
 
@@ -11,10 +11,10 @@ AnimateTilesetImpl:
 	ld e, a
 	ld a, [wTilesetAnim+1]
 	ld d, a
-	ld a, [hTileAnimFrame]
+	ldh a, [hTileAnimFrame]
 	ld l, a
 	inc a
-	ld [hTileAnimFrame], a
+	ldh [hTileAnimFrame], a
 	ld h, 0
 	add hl, hl
 	add hl, hl
