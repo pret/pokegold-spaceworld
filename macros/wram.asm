@@ -256,7 +256,7 @@ slot_reel: MACRO
 \1Field0c::      db
 \1Field0d::      db
 \1Field0e::      db
-\1StopDelay::      db
+\1StopDelay::    db
 endm
 
 object_struct: MACRO

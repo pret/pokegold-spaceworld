@@ -2,8 +2,8 @@ INCLUDE "constants.asm"
 
 SECTION "engine/menu/set_clock_dialog.asm", ROMX
 
-UP_ARROW	equ $f0
-DOWN_ARROW	equ $ee
+UP_ARROW      EQU $f0
+DOWN_ARROW    EQU $ee
 
 SetClockDialog:
 	call SetClockDialog_Init
@@ -75,11 +75,11 @@ SetClockDialog_PrintUpDownArrows:
 	and 8
 	jr nz, .clear_arrows
 
-;Print up arrow
+; Print up arrow
 	hlcoord 18, 14
 	ld [hl], UP_ARROW
 
-;Print down arrow
+; Print down arrow
 	hlcoord 18, 16
 	ld [hl], DOWN_ARROW
 	ret
@@ -346,4 +346,3 @@ SetClockDialog_ConfirmTimeDate:
 	text "　　　ようび　　　じ　　　ふん"
 	line "ほんとうに　あっているかの？"
 	done
-

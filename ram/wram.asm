@@ -206,7 +206,7 @@ wGlobalAnimXOffset::
 wc4c8:: db
 
 	ds 7
-	
+
 wNamingScreenDestinationPointer:: dw
 wNamingScreenCurNameLength:: db
 wNamingScreenMaxNameLength:: db
@@ -1323,8 +1323,8 @@ wMapAttributesEnd::
 
 wNorthMapConnection:: map_connection_struct wNorth
 wSouthMapConnection:: map_connection_struct wSouth
-wWestMapConnection::  map_connection_struct wWest 
-wEastMapConnection::  map_connection_struct wEast 
+wWestMapConnection::  map_connection_struct wWest
+wEastMapConnection::  map_connection_struct wEast
 
 
 wTileset::
@@ -1362,17 +1362,17 @@ wPartyMonNicknames::
 	ds PARTY_LENGTH * MON_NAME_LENGTH ; = $24
 wPartyMonNicknamesEnd::
 
-wPokedexOwned::   
+wPokedexOwned::
 	flag_array NUM_POKEMON
 wPokedexOwnedEnd::
 
-wPokedexSeen::    
+wPokedexSeen::
 	flag_array NUM_POKEMON
-wPokedexSeenEnd:: 
+wPokedexSeenEnd::
 
-wAnnonDex:: ds 26 
+wAnnonDex:: ds 26
 
-wAnnonID:: ds 1   
+wAnnonID:: ds 1
 
 wd875:: ds 1
 wd876:: ds 1
