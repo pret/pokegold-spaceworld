@@ -14,7 +14,7 @@ FrameTypeDialog:
 	dec a
 	ld [wActiveFrame], a
 	push de
-	ld de, 3 ; SFX_MENU
+	ld de, SFX_MENU
 	call PlaySFX
 	pop de
 	call LoadFontExtra

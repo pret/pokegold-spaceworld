@@ -368,6 +368,7 @@ ROMX $21
 
 ROMX $23
 	org $4000
+	"engine/dumps/bank23.asm@AnimateTilesetImpl"
 	org $433e
 	"engine/palettes.asm@Overworld fade"
 	org $43d1
@@ -381,7 +382,8 @@ ROMX $23
 
 ROMX $24
 	org $4000
-	org $4fdb
+	"engine/menu/set_clock_dialog.asm"
+	"engine/games/slot_machine_game.asm"
 	"gfx.asm@Slot Machine GFX"
 
 ROMX $25
@@ -912,6 +914,8 @@ ROMX $3a
 	org $4000
 	"audio/engine.asm"
 	"audio/songs/none.asm"
+	"audio/cries.asm@Cry Header Pointers"
+	"audio/sfx.asm@SFX Pointers"
 
 ROMX $3b
 	org $4000
@@ -930,7 +934,7 @@ ROMX $3b
 ROMX $3c
 	org $4000
 	org $51cb
-	"audio/cries.asm"
+	"audio/cries.asm@Cries"
 	org $62fe
 	"audio/songs/title.asm"
 
