@@ -149,8 +149,10 @@
 
 38:48A2 PokerMinigame
 38:5AE3 FifteenPuzzleMinigame
-38:622B MemoryMinigame
 38:6886 PicrossMinigame
+
+38:4E5F Cursor_AnimateCursor
+38:4EA8 Cursor_InterpretJoypad
 
 ; SFX shims
 3C:43BE Sfx_01

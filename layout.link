@@ -895,7 +895,8 @@ ROMX $38
 	"gfx.asm@Poker GFX"
 	org $5f93
 	"gfx.asm@15 Puzzle GFX"
-	org $6606
+	org $622b
+	"engine/games/memory_minigame.asm"
 	"gfx.asm@Matches GFX"
 	org $75b7
 	"gfx.asm@Picross GFX"

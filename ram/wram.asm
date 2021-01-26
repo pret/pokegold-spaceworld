@@ -244,6 +244,22 @@ wc51a:: ds 1
 	ds 25
 wSlotsEnd:: db
 
+NEXTU
+
+	ds 200
+
+wMemoryGameCards:: ds 9 * 5
+wMemoryGameCardsEnd::
+wMemoryGameLastCardPicked:: db
+wMemoryGameCard1:: db
+wMemoryGameCard2:: db
+wMemoryGameCard1Location:: db
+wMemoryGameCard2Location:: db
+wMemoryGameNumberTriesRemaining:: db
+wMemoryGameLastMatches:: ds 5
+wMemoryGameCounter:: db
+wMemoryGameNumCardsMatched:: db
+
 ENDU
 
 
@@ -512,6 +528,7 @@ SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db
 
 wSlotsDelay::
+wMemoryGameCardChoice::
 wFlyDestination::
 wIntroSceneFrameCounter::
 wTrainerGearPointerPosition::
