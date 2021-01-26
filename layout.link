@@ -124,8 +124,10 @@ ROMX $02
 	"engine/dumps/bank02.asm@QueueFollowerFirstStep"
 	"gfx.asm@Mon Nest Icon"
 	"engine/dumps/bank02.asm@Data8a17"
+	"engine/trainer_gear.asm@OpenTrainerGear"
 	"gfx.asm@Trainer Gear GFX"
-	"engine/dumps/bank02.asm@Text91c2"
+	"engine/trainer_gear.asm@TrainerGear_RadioText"
+	"engine/dumps/bank02.asm@SetTitleBGDecorationBorder"
 	"gfx.asm@Title Screen BG Decoration Border"
 	"engine/dumps/bank02.asm@Function928b"
 	"gfx.asm@SGB GFX"
@@ -180,6 +182,8 @@ ROMX $05
 	"engine/sprites/sprites.asm@LoadOverworldSprite"
 	org $423b
 	"engine/sprites/sprites.asm@OverworldSprites"
+	org $477d
+	"engine/events/pokecenter_pc.asm"
 
 ROMX $06
 	org $4000
@@ -953,6 +957,8 @@ ROMX $3f
 	"gfx.asm@Town Map Cursor"
 	org $6255
 	"engine/menu/debug_menu.asm@Sound Test"
+	org $67a1
+	"engine/menu/debug_menu.asm@Subgame Menu"
 
 WRAM0
 	org $c000

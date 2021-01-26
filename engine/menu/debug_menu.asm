@@ -2,6 +2,15 @@ INCLUDE "constants.asm"
 
 SECTION "engine/menu/debug_menu.asm", ROMX
 
+; DebugJumpTable indices
+	const_def
+	const DEBUGMENU_FIGHT
+	const DEBUGMENU_FIELD
+	const DEBUGMENU_SOUNDTEST
+	const DEBUGMENU_SUBGAME
+	const DEBUGMENU_POKEDEX
+	const DEBUGMENU_TRAINERGEAR
+
 DebugMenu::
 	call ClearTileMap
 	call ClearWindowData
@@ -32,15 +41,15 @@ DebugJumpTable::
 
 DebugMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 05, 02, SCREEN_WIDTH - 7, SCREEN_HEIGHT - 1
+	menu_coords 5, 2, SCREEN_WIDTH - 7, SCREEN_HEIGHT - 1
 	dw .MenuData
-	db 01 ; default option
+	db 1 ; default option
 
 .MenuData:
-	db $A0
-	db 0 ; items
+	db STATICMENU_CURSOR | STATICMENU_WRAP
+	db 0
 	dw DebugMenuItems
-	db $8A, $1F
+	dw PlaceMenuStrings
 	dw .Strings
 
 .Strings
@@ -52,13 +61,13 @@ DebugMenuHeader:
 	db "なまえ@"
 
 DebugMenuItems:
-	db 06
-	db 00
-	db 01
-	db 02
-	db 03
-	db 04
-	db 05
+	db 6 ; items
+	db DEBUGMENU_FIGHT
+	db DEBUGMENU_FIELD
+	db DEBUGMENU_SOUNDTEST
+	db DEBUGMENU_SUBGAME
+	db DEBUGMENU_POKEDEX
+	db DEBUGMENU_TRAINERGEAR
 	db -1
 
 DebugMenuOptionField::
@@ -69,8 +78,7 @@ DebugMenuOptionField::
 DebugMenuOptionFight::
 	ld hl, wDebugFlags
 	set DEBUG_BATTLE_F, [hl]
-	ld a, $54
-	call Predef
+	predef Functionfdb66
 	ld hl, wDebugFlags
 	res DEBUG_BATTLE_F, [hl]
 	ret
@@ -196,7 +204,7 @@ _DebugMenuSoundTest::
 	ld hl, SoundTestTextPointers
 	ldh a, [hDebugMenuSoundMenuIndex]
 	add a
-	add a	; a * 4
+	add a ; a * 4
 	ld d, 0
 	ld e, a
 	add hl, de
@@ -230,3 +238,76 @@ _DebugMenuSoundTest::
 	done
 
 INCLUDE "data/sound_test_text_pointers.inc"
+
+SECTION "engine/menu/debug_menu.asm@Subgame Menu", ROMX
+
+CallSubGameMenu:
+	call ClearTileMap
+	call LoadFont
+	call LoadFontsBattleExtra
+	call ClearSprites
+	call GetMemSGBLayout
+	ld hl, .MenuHeader
+	call CopyMenuHeader
+	call VerticalMenu
+	ret c
+
+	ld a, [wMenuCursorY]
+	dec a
+	ld e, a
+	ld d, 0
+	ld hl, .Jumptable
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, .return
+	push de
+	jp hl
+
+.return
+	jr CallSubGameMenu
+
+.Jumptable:
+	dw SubGameMenu_PokerGame
+	dw SubGameMenu_PuzzleGame
+	dw SubGameMenu_CardFlipGame
+	dw SubGameMenu_PicrossGame
+	dw SubGameMenu_SlotMachineGame
+
+.MenuHeader:
+	db 0 ; flags
+	menu_coords 5, 4, SCREEN_WIDTH - 7, SCREEN_HEIGHT - 3
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_WRAP
+	db 5 ; items
+	db "ポーカー@"
+	db "１５パズル@"
+	db "しんけい@"
+	db "ピクロス@"
+	db "スロット@"
+
+SubGameMenu_PokerGame:
+	callab PokerMinigame
+	ret
+
+SubGameMenu_PuzzleGame:
+	callab FifteenPuzzleMinigame
+	ret
+
+SubGameMenu_CardFlipGame:
+	callab MemoryMinigame
+	ret
+
+SubGameMenu_PicrossGame:
+	callab PicrossMinigame
+	ret
+
+SubGameMenu_SlotMachineGame:
+	callab SlotMachineGame
+	ret
+

@@ -1,4 +1,5 @@
 ; TODO
+SFX_BOOT_PC                     EQU $0A
 
 SFX_POTION                      EQU $01
 SFX_FULL_HEAL                   EQU $02

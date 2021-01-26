@@ -514,13 +514,16 @@ wJumptableIndex:: db
 wSlotsDelay::
 wFlyDestination::
 wIntroSceneFrameCounter::
+wTrainerGearPointerPosition::
 wBattleTransitionCounter:: db
 
 wBattleTransitionSineWaveOffset::
 wBattleTransitionSpinQuadrant::
 wIntroSceneTimer::
+wTrainerGearCard::
 wcb60:: ds 1
 
+wTrainerGearRadioIndex::
 wcb61:: ds 1
 
 wVBCopySize:: ds 1
