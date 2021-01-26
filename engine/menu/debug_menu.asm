@@ -277,14 +277,14 @@ CallSubGameMenu:
 	dw SubGameMenu_SlotMachineGame
 
 .MenuHeader:
-	db   0 ; flags
+	db 0 ; flags
 	menu_coords 5, 4, SCREEN_WIDTH - 7, SCREEN_HEIGHT - 3
 	dw .MenuData
-	db   1 ; default option
+	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP
-	db   5 ; items
+	db 5 ; items
 	db "ポーカー@"
 	db "１５パズル@"
 	db "しんけい@"

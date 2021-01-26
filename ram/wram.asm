@@ -89,7 +89,46 @@ wMusicInitEnd::
 SECTION "OAM Buffer", WRAM0
 
 wVirtualOAM::
-	ds SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
+wVirtualOAMSprite00:: sprite_oam_struct wVirtualOAMSprite00
+wVirtualOAMSprite01:: sprite_oam_struct wVirtualOAMSprite01
+wVirtualOAMSprite02:: sprite_oam_struct wVirtualOAMSprite02
+wVirtualOAMSprite03:: sprite_oam_struct wVirtualOAMSprite03
+wVirtualOAMSprite04:: sprite_oam_struct wVirtualOAMSprite04
+wVirtualOAMSprite05:: sprite_oam_struct wVirtualOAMSprite05
+wVirtualOAMSprite06:: sprite_oam_struct wVirtualOAMSprite06
+wVirtualOAMSprite07:: sprite_oam_struct wVirtualOAMSprite07
+wVirtualOAMSprite08:: sprite_oam_struct wVirtualOAMSprite08
+wVirtualOAMSprite09:: sprite_oam_struct wVirtualOAMSprite09
+wVirtualOAMSprite10:: sprite_oam_struct wVirtualOAMSprite10
+wVirtualOAMSprite11:: sprite_oam_struct wVirtualOAMSprite11
+wVirtualOAMSprite12:: sprite_oam_struct wVirtualOAMSprite12
+wVirtualOAMSprite13:: sprite_oam_struct wVirtualOAMSprite13
+wVirtualOAMSprite14:: sprite_oam_struct wVirtualOAMSprite14
+wVirtualOAMSprite15:: sprite_oam_struct wVirtualOAMSprite15
+wVirtualOAMSprite16:: sprite_oam_struct wVirtualOAMSprite16
+wVirtualOAMSprite17:: sprite_oam_struct wVirtualOAMSprite17
+wVirtualOAMSprite18:: sprite_oam_struct wVirtualOAMSprite18
+wVirtualOAMSprite19:: sprite_oam_struct wVirtualOAMSprite19
+wVirtualOAMSprite20:: sprite_oam_struct wVirtualOAMSprite20
+wVirtualOAMSprite21:: sprite_oam_struct wVirtualOAMSprite21
+wVirtualOAMSprite22:: sprite_oam_struct wVirtualOAMSprite22
+wVirtualOAMSprite23:: sprite_oam_struct wVirtualOAMSprite23
+wVirtualOAMSprite24:: sprite_oam_struct wVirtualOAMSprite24
+wVirtualOAMSprite25:: sprite_oam_struct wVirtualOAMSprite25
+wVirtualOAMSprite26:: sprite_oam_struct wVirtualOAMSprite26
+wVirtualOAMSprite27:: sprite_oam_struct wVirtualOAMSprite27
+wVirtualOAMSprite28:: sprite_oam_struct wVirtualOAMSprite28
+wVirtualOAMSprite29:: sprite_oam_struct wVirtualOAMSprite29
+wVirtualOAMSprite30:: sprite_oam_struct wVirtualOAMSprite30
+wVirtualOAMSprite31:: sprite_oam_struct wVirtualOAMSprite31
+wVirtualOAMSprite32:: sprite_oam_struct wVirtualOAMSprite32
+wVirtualOAMSprite33:: sprite_oam_struct wVirtualOAMSprite33
+wVirtualOAMSprite34:: sprite_oam_struct wVirtualOAMSprite34
+wVirtualOAMSprite35:: sprite_oam_struct wVirtualOAMSprite35
+wVirtualOAMSprite36:: sprite_oam_struct wVirtualOAMSprite36
+wVirtualOAMSprite37:: sprite_oam_struct wVirtualOAMSprite37
+wVirtualOAMSprite38:: sprite_oam_struct wVirtualOAMSprite38
+wVirtualOAMSprite39:: sprite_oam_struct wVirtualOAMSprite39
 wVirtualOAMEnd::
 
 wTileMap::
@@ -102,7 +141,12 @@ wTileMapBackup::
 
 NEXTU
 
-wSpriteAnimDict:: ds 10 * 2 ; NUM_SPRITEANIMDICT_ENTRIES * 2
+wc408:: db
+wc409:: db
+
+NEXTU
+
+wSpriteAnimDict:: ds NUM_SPRITEANIMDICT_ENTRIES * 2
 
 wSpriteAnimationStructs::
 ; field  0:   index
@@ -124,7 +168,7 @@ NEXTU
 
 	ds 1
 
-wc409:: ds 1
+wClockDialogArrowBlinkCounter:: ds 1
 wc40a:: ds 1
 
 ; Monster or Trainer test?
@@ -136,12 +180,21 @@ wc40c:: ds 1
 wc40d:: ds 1
 wc40e:: ds 1
 
-	ds 11
+	ds 3
+
+wDayOfWeekBuffer:: db
+
+	ds 7
 
 wc41a:: db
+	ds 1
+wHourBuffer:: db
+	ds 9
+wMinuteBuffer:: db
+	ds 150
 
-	ds 165
-
+wc4bd:: db
+	ds 2
 wSpriteAnimIDBuffer:: db
 
 	ds 6
@@ -163,9 +216,33 @@ wNamingScreenLastCharacter:: db
 wNamingScreenStringEntryCoordY:: db
 wNamingScreenStringEntryCoordX:: db
 
-	ds 64
+NEXTU
 
+	ds 200
+
+wSlots::
+wReel1:: slot_reel wReel1
+wReel2:: slot_reel wReel2
+wReel3:: slot_reel wReel3
+wReel1Stopped:: ds 3
+wReel2Stopped:: ds 3
+wReel3Stopped:: ds 3
+wSlotBias:: db
+wSlotBet:: db
+wFirstTwoReelsMatching:: db
+wFirstTwoReelsMatchingSevens:: db
+wSlotMatched:: db
+wCurReelStopped:: ds 3
+wPayout:: dw
+wCurReelXCoord:: db
+wCurReelYCoord:: db
+	ds 2
+wSlotBuildingMatch:: db
+wSlotsDataEnd::
+	ds 2
 wc51a:: ds 1
+	ds 25
+wSlotsEnd:: db
 
 ENDU
 
@@ -434,15 +511,19 @@ wNamedObjectTypeBuffer:: db
 SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db
 
+wSlotsDelay::
 wFlyDestination::
 wIntroSceneFrameCounter::
+wTrainerGearPointerPosition::
 wBattleTransitionCounter:: db
 
 wBattleTransitionSineWaveOffset::
 wBattleTransitionSpinQuadrant::
 wIntroSceneTimer::
+wTrainerGearCard::
 wcb60:: ds 1
 
+wTrainerGearRadioIndex::
 wcb61:: ds 1
 
 wVBCopySize:: ds 1
@@ -1037,7 +1118,7 @@ wCurTimeOfDay:: db
 
 SECTION "D15B", WRAM0[$D15B]
 
-wd15b:: db
+wCoins:: db
 
 wd15c:: db
 
@@ -1245,8 +1326,8 @@ wMapAttributesEnd::
 
 wNorthMapConnection:: map_connection_struct wNorth
 wSouthMapConnection:: map_connection_struct wSouth
-wWestMapConnection::  map_connection_struct wWest 
-wEastMapConnection::  map_connection_struct wEast 
+wWestMapConnection::  map_connection_struct wWest
+wEastMapConnection::  map_connection_struct wEast
 
 
 wTileset::
@@ -1258,7 +1339,9 @@ wTilesetTilesAddress::
 	dw
 wTilesetCollisionAddress::
 	dw
-	ds 4 ; TODO
+wTilesetAnim::
+	dw
+	ds 2 ; TODO
 wTilesetEnd::
 
 wPartyCount:: db
@@ -1282,17 +1365,17 @@ wPartyMonNicknames::
 	ds PARTY_LENGTH * MON_NAME_LENGTH ; = $24
 wPartyMonNicknamesEnd::
 
-wPokedexOwned::   
+wPokedexOwned::
 	flag_array NUM_POKEMON
 wPokedexOwnedEnd::
 
-wPokedexSeen::    
+wPokedexSeen::
 	flag_array NUM_POKEMON
-wPokedexSeenEnd:: 
+wPokedexSeenEnd::
 
-wAnnonDex:: ds 26 
+wAnnonDex:: ds 26
 
-wAnnonID:: ds 1   
+wAnnonID:: ds 1
 
 wd875:: ds 1
 wd876:: ds 1

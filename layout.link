@@ -124,8 +124,10 @@ ROMX $02
 	"engine/dumps/bank02.asm@QueueFollowerFirstStep"
 	"gfx.asm@Mon Nest Icon"
 	"engine/dumps/bank02.asm@Data8a17"
+	"engine/trainer_gear.asm@OpenTrainerGear"
 	"gfx.asm@Trainer Gear GFX"
-	"engine/dumps/bank02.asm@Text91c2"
+	"engine/trainer_gear.asm@TrainerGear_RadioText"
+	"engine/dumps/bank02.asm@SetTitleBGDecorationBorder"
 	"gfx.asm@Title Screen BG Decoration Border"
 	"engine/dumps/bank02.asm@Function928b"
 	"gfx.asm@SGB GFX"
@@ -180,6 +182,8 @@ ROMX $05
 	"engine/sprites/sprites.asm@LoadOverworldSprite"
 	org $423b
 	"engine/sprites/sprites.asm@OverworldSprites"
+	org $477d
+	"engine/events/pokecenter_pc.asm"
 
 ROMX $06
 	org $4000
@@ -364,6 +368,7 @@ ROMX $21
 
 ROMX $23
 	org $4000
+	"engine/dumps/bank23.asm@AnimateTilesetImpl"
 	org $433e
 	"engine/palettes.asm@Overworld fade"
 	org $43d1
@@ -377,7 +382,8 @@ ROMX $23
 
 ROMX $24
 	org $4000
-	org $4fdb
+	"engine/menu/set_clock_dialog.asm"
+	"engine/games/slot_machine_game.asm"
 	"gfx.asm@Slot Machine GFX"
 
 ROMX $25
@@ -908,6 +914,8 @@ ROMX $3a
 	org $4000
 	"audio/engine.asm"
 	"audio/songs/none.asm"
+	"audio/cries.asm@Cry Header Pointers"
+	"audio/sfx.asm@SFX Pointers"
 
 ROMX $3b
 	org $4000
@@ -926,7 +934,7 @@ ROMX $3b
 ROMX $3c
 	org $4000
 	org $51cb
-	"audio/cries.asm"
+	"audio/cries.asm@Cries"
 	org $62fe
 	"audio/songs/title.asm"
 
@@ -937,6 +945,8 @@ ROMX $3e
 
 ROMX $3f
 	org $4000
+	org $4305
+	"engine/menu/frame_type_dialog.asm"
 	org $4362
 	"engine/menu/reset_dialog.asm"
 	org $4a57

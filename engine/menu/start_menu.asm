@@ -4,7 +4,7 @@ SECTION "engine/menu/start_menu.asm", ROMX
 
 DisplayStartMenu:
 	call RefreshScreen
-	ld de, $0003
+	ld de, SFX_MENU
 	call PlaySFX
 	ld hl, .StartMenuHeader
 	call LoadMenuHeader
@@ -94,7 +94,7 @@ StartMenuJumpTable:
 	dw StartMenu_Save
 	dw StartMenu_Settings
 	dw StartMenu_Exit
-	dw StartMenu_TrainerGear
+	dw StartMenu_SetFrame
 	dw StartMenu_Reset
 
 StartMenuItems:
@@ -173,8 +173,8 @@ StartMenu_Exit:
 	ld a, 1
 	ret
 
-StartMenu_TrainerGear:
-	callab TrainerGear
+StartMenu_SetFrame:
+	callab FrameTypeDialog
 	ld a, 0
 	ret
 
@@ -261,8 +261,8 @@ ToolsPocketHeader:
 	dw wNumBagItems
 
 	dba Function2473b
-	dba Function24783
-	dba Function241ef
+	dba PlaceMenuItemQuantity
+	dba UpdateItemDescription
 
 	dw KeyItemsPocketHeader
 	dw wBackpackAndKeyItemsCursor
@@ -280,8 +280,8 @@ KeyItemsPocketHeader:
 	dw wNumKeyItems
 
 	dba Function2473b
-	dba Function24783
-	dba Function241ef
+	dba PlaceMenuItemQuantity
+	dba UpdateItemDescription
 
 BackpackMenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -295,8 +295,8 @@ BackpackMenuHeader:
 	dw wNumBagItems
 
 	dba Function2473b
-	dba Function24783
-	dba Function241ef
+	dba PlaceMenuItemQuantity
+	dba UpdateItemDescription
 
 GetPocket2Status:
 ; puts 2 in wActiveBackpackPocket if pocket 2 has items
@@ -476,7 +476,7 @@ HandleBackpackInput:
 	jp .exit
 
 .BackpackSelect
-	callab Function245c5
+	callab SwitchItemsInBag
 	jp .exit
 
 .exit
@@ -496,7 +496,7 @@ HandleBackpackInput:
 	ret
 
 BackpackSelected:
-	callab Function243af
+	callab ScrollingMenu_ClearLeftColumn
 	call PlaceHollowCursor
 	call LoadItemData
 	callab CheckItemMenu
@@ -664,7 +664,7 @@ TryTossItem:
 	jr nz, .TossFail
 	ld hl, .TossedText
 	call MenuTextBox
-	callab Function24c60
+	callab SelectQuantityToToss
 	push af
 	call CloseWindow
 	call ExitMenu
@@ -795,9 +795,9 @@ BallPocket:
 	db 0 ; ???
 	dw wNumBallItems
 
-	dba Function24774
-	dba Function24783
-	dba Function241ef
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba UpdateItemDescription
 
 DrawBackpackTitleRow:
 	push de
@@ -863,7 +863,7 @@ RegisterItem:
 	ld a, [wCurItem]
 	ld [wRegisteredItemQuantity], a
 	call LoadItemData
-	ld de, $0002
+	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
 	ld hl, .RegisteredItemText
 	call MenuTextBoxBackup
