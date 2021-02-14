@@ -534,11 +534,11 @@ SECTION "gfx.asm@Matches GFX", ROMX
 MemoryGameGFX::
 INCBIN "gfx/minigames/matches.2bpp"
 
-SECTION "gfx.asm@Picross GFX", ROMX
-PicrossGFX::
-INCBIN "gfx/minigames/picross.2bpp"
-PicrossCursorGFX::
-INCBIN "gfx/minigames/picross_cursor.2bpp"
+;SECTION "gfx.asm@Picross GFX", ROMX
+;PicrossGFX::
+;INCBIN "gfx/minigames/picross.2bpp"
+;PicrossCursorGFX::
+;INCBIN "gfx/minigames/picross_cursor.2bpp"
 
 SECTION "gfx.asm@Gamefreak Logo GFX", ROMX
 GameFreakLogoGFX::

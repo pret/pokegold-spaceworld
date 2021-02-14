@@ -341,6 +341,29 @@ wPikachuMinigameTilesPointer:: ds 2
 wPikachuMinigameColumnBuffer:: ds 16
 
 NEXTU
+
+wPicrossCursorSpritePointer:: ds 2
+wPicrossCurrentGridNumber:: ds 1
+wPicrossCurrentTileNumber:: ds 1
+wPicrossCurrentTileType:: ds 1
+wPicrossJoypadAction:: ds 1
+	ds 1 ; wc606
+wc607:: ds 1
+wPicrossMarkedTiles:: ds 4*4*4*4
+	ds 1
+wPicrossLayoutBuffer:: ds $20
+wPicrossLayoutBuffer2:: ds $20 - 1
+wPicrossBitmap:: ds 4*4*4*4
+wPicrossBase2bppPointer:: ds 2
+wPicrossBaseGFXPointer:: ds 2
+wPicrossDrawingRoutineCounter:: ds 1
+	ds 11
+wPicrossRowColumnNumbersBuffer:: ds 4*4*4*4
+wPicrossRowGFX2bppBuffer:: ds 144
+	ds 112
+wPicrossErrorCheck:: ds 1
+; wca59
+NEXTU
 ; Battle-related
 	ds $1ea
 
