@@ -358,7 +358,7 @@ wPicrossBase2bppPointer:: ds 2
 wPicrossBaseGFXPointer:: ds 2
 wPicrossDrawingRoutineCounter:: ds 1
 	ds 11
-wPicrossRowColumnNumbersBuffer:: ds 4*4*4*4
+wPicrossNumbersBuffer:: ds 4*4*4*4
 wPicrossRowGFX2bppBuffer:: ds 144
 	ds 112
 wPicrossErrorCheck:: ds 1
