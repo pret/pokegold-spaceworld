@@ -17,6 +17,7 @@ $(BUILD)/gfx/minigames/slots_2.2bpp: tools/gfx += --interleave --png=$<
 $(BUILD)/gfx/minigames/slots_3.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates --keep-whitespace --remove-xflip
 $(BUILD)/gfx/minigames/slots_4.2bpp: tools/gfx += --interleave --png=$<
 $(BUILD)/gfx/minigames/poker.2bpp: tools/gfx += --trim-whitespace
+$(BUILD)/gfx/minigames/picross_numbers.2bpp: tools/gfx += --trim-whitespace
 
 $(BUILD)/gfx/intro/jigglypuff_pikachu.2bpp: tools/gfx += --trim-whitespace
 
