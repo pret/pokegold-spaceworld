@@ -52,6 +52,16 @@ vTitleLogo::
 vTitleLogo2::
 	; TODO: what size?
 
+NEXTU
+
+	ds $80 tiles
+
+vPicrossBackground::
+	ds $70 tiles
+
+vPicrossPlayArea::
+	ds $90 tiles
+
 ENDU
 
 

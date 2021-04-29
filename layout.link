@@ -900,8 +900,7 @@ ROMX $38
 	"gfx.asm@Matches GFX"
 	org $6886
 	"engine/games/picross_minigame.asm"
-;	org $75b7
-;	"gfx.asm@Picross GFX"
+	"gfx.asm@Picross GFX"
 
 ROMX $39
 	org $4000

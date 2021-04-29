@@ -347,7 +347,7 @@ wPicrossCurrentGridNumber:: ds 1
 wPicrossCurrentTileNumber:: ds 1
 wPicrossCurrentTileType:: ds 1
 wPicrossJoypadAction:: ds 1
-	ds 1 ; wc606
+	ds 1
 wc607:: ds 1
 wPicrossMarkedTiles:: ds 4*4*4*4
 	ds 1
@@ -362,7 +362,7 @@ wPicrossNumbersBuffer:: ds 4*4*4*4
 wPicrossRowGFX2bppBuffer:: ds 144
 	ds 112
 wPicrossErrorCheck:: ds 1
-; wca59
+	ds 1
 NEXTU
 ; Battle-related
 	ds $1ea

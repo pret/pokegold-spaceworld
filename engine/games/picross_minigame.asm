@@ -5,7 +5,29 @@ SECTION "engine/games/picross_minigame.asm", ROMX
 ; PicrossSprites constants
 	const_def
 	const PATTERN_NORMAL
-	const PATTERN_TILESET    ; The bottom part's data is offset by $100
+	const PATTERN_TILESET
+
+; PicrossMinigame.Jumptable constants
+	const_def
+	const PICROSS_INIT_MODE
+	const PICROSS_RUN_MODE
+	const PICROSS_EXIT_MODE
+PICROSS_END_LOOP_F EQU 7
+
+; wPicrossCurrentTileType constants
+	const_def
+	const PICROSS_BLANK_TILE
+	const PICROSS_COLORED_TILE
+	const PICROSS_MARKED_TILE
+
+PICROSS_GFX_BGTILE EQU $80
+PICROSS_GFX_BUSHTILE EQU $81
+PICROSS_GFX_BUSHGROUNDTILE EQU $82
+PICROSS_GFX_GROUNDTILE EQU $83
+
+PICROSS_GFX_COLUMNS EQU $84
+PICROSS_GFX_ROWS EQU $B4
+PICROSS_GFX_TABLESTART equ $F0
 
 PicrossMinigame:
 	call .Init
@@ -19,15 +41,13 @@ PicrossMinigame:
 
 .Init:
 	call DisableLCD
-	ld a, BANK(InitEffectObject)
-	ld hl, InitEffectObject
-	call FarCall_hl
+	callba InitEffectObject
 	call .InitGFX
 	call .PlacePlayerBG
 	call .InitRAM
 
-	ld de, $4040
-	ld a, $33
+	depixel 8, 8, 0, 0
+	ld a, SPRITE_ANIM_INDEX_MINIGAME_PICROSS_CURSOR
 	call InitSpriteAnimStruct
 
 	ld a, c
@@ -36,41 +56,44 @@ PicrossMinigame:
 	ld [wPicrossCursorSpritePointer+1], a
 
 	depixel 5, 4, 4, 4
-	ld a, $35
+	ld a, SPRITE_ANIM_INDEX_MINIGAME_PICROSS_GOLD
 	call InitSpriteAnimStruct
-	
-	ld a, $FF
+
+	ld a, -1
 	ld [wPicrossCurrentTileType], a
-	call PicrossMinigame_InitPicrossTable
-	call PicrossMinigame_InitPicrossDigits
-	
+	call Picross_InitPicrossTable
+	call Picross_InitPicrossDigits
+
 	xor a
 	ldh [hSCY], a
 	ldh [hSCX], a
 	ld [rWY], a
 	ld [wJumptableIndex], a
-	
+
 	ld a, 1
 	ldh [hBGMapMode], a
-	
+
 	ld a, %11100011
 	ld [rLCDC], a
 	ld a, %11100100
 	ld [rBGP], a
 	ld a, %11010000
 	ld [rOBP0], a
-	
+
 	xor a
 	ld [wPicrossCurrentTileType], a
 	ret
 
 .InitGFX:
+; Load the background GFX
 	ld hl, PicrossBackgroundGFX
-	ld de, $8800
-	ld bc, $40
+	ld de, vPicrossBackground
+	ld bc, 4 tiles
 	ld a, BANK(PicrossBackgroundGFX)
 	call FarCopyData
-	ld de, $8840
+
+; Load the column and row GFX
+	ld de, vPicrossBackground tile 4
 	ld b, 4
 
 .column_outer_loop
@@ -79,9 +102,9 @@ PicrossMinigame:
 
 .column_inner_loop
 	push bc
-	ld hl, PicrossColumnsGFX
-	ld bc, $30
-	ld a, BANK(PicrossColumnsGFX)
+	ld hl, PicrossGridHighlightsGFX
+	ld bc, 3 tiles
+	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
 	dec b
@@ -89,73 +112,73 @@ PicrossMinigame:
 	pop bc
 	dec b
 	jr nz, .column_outer_loop
-	ld de, $8B40
+	ld de, vPicrossBackground tile $34
 	ld b, 4
 
 .row_outer_loop
 	push bc
 	ld b, 3
 
-.row1:
+.row1
 	push bc
-	ld hl, PicrossRow1GFX
-	ld bc, $10
-	ld a, $38
+	ld hl, PicrossGridHighlightsGFX tile 3
+	ld bc, 1 tiles
+	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
 	dec b
 	jr nz, .row1
 	ld b, 3
 
-.row2:
+.row2
 	push bc
-	ld hl, PicrossRow2GFX
-	ld bc, $10
-	ld a, $38
+	ld hl, PicrossGridHighlightsGFX tile 4
+	ld bc, 1 tiles
+	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
 	dec b
 	jr nz, .row2
 	ld b, 3
 
-.row3:
+.row3
 	push bc
-	ld hl, PicrossRow3GFX
-	ld bc, $10
-	ld a, $38
+	ld hl, PicrossGridHighlightsGFX tile 5
+	ld bc, LEN_2BPP_TILE
+	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
 	dec b
 	jr nz, .row3
 	ld b, 2
 
-.row4:
+.row4
 	push bc
-	ld hl, PicrossRow1GFX
-	ld bc, $10
-	ld a, $38
+	ld hl, PicrossGridHighlightsGFX tile 3
+	ld bc, LEN_2BPP_TILE
+	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
 	dec b
 	jr nz, .row4
 	ld b, 2
 
-.row5:
+.row5
 	push bc
-	ld hl, PicrossRow2GFX
-	ld bc, $10
-	ld a, $38
+	ld hl, PicrossGridHighlightsGFX tile 4
+	ld bc, LEN_2BPP_TILE
+	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
 	dec b
 	jr nz, .row5
 	ld b, 2
 
-.row6:
+.row6
 	push bc
-	ld hl, PicrossRow3GFX
-	ld bc, $10
-	ld a, $38
+	ld hl, PicrossGridHighlightsGFX tile 5
+	ld bc, LEN_2BPP_TILE
+	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
 	dec b
@@ -163,63 +186,74 @@ PicrossMinigame:
 	pop bc
 	dec b
 	jr nz, .row_outer_loop
-	ld de, $8F00
-	ld b, $10
+	ld de, vPicrossPlayArea
+	ld b, 16
 
-.load_grid:
+.load_grid
 	push bc
 	ld hl, PicrossGridGFX
-	ld bc, $90
-	ld a, $38
+	ld bc, 9 tiles
+	ld a, BANK(PicrossGridGFX)
 	call FarCopyData
 	pop bc
 	dec b
 	jr nz, .load_grid
-	ld de, $8000
+
+; load cursor GFX
+	ld de, vSprites
 	ld hl, PicrossCursorGFX
-	ld bc, $90
-	ld a, $38
+	ld bc, 9 tiles
+	ld a, BANK(PicrossCursorGFX)
 	call FarCopyData
-	ld de, $8100
-	ld hl, $4040 ; GoldSpriteGFX tile 4
-	ld bc, $40 	; 4 tiles
-	ld a, $30
+
+; load Gold sprite
+	ld de, vSprites + $100
+	ld hl, GoldSpriteGFX + $40
+	ld bc, 4 tiles
+	ld a, BANK(GoldSpriteGFX)
 	call FarCopyData
-	ld de, $8140
-	ld hl, $4100 ; GoldSpriteGFX tile $10
-	ld bc, $40
-	ld a, $30
+
+	ld de, vSprites + $140
+	ld hl, GoldSpriteGFX + $100
+	ld bc, 4 tiles
+	ld a, BANK(GoldSpriteGFX)
 	call FarCopyData
-	ld a, $25
+
+; set sprite anim dict values
+	ld a, SPRITE_ANIM_DICT_25
 	ld hl, wSpriteAnimDict
-	ldi [hl], a
-	ld [hl], 0
+	ld [hli], a
+	ld [hl], SPRITE_ANIM_DICT_DEFAULT
 	inc hl
-	ld a, $22
-	ldi [hl], a
-	ld [hl], $10
+	ld a, SPRITE_ANIM_DICT_22
+	ld [hli], a
+	ld [hl], SPRITE_ANIM_DICT_10
 	ret
 
 .PlacePlayerBG:
-	ld hl, $C2A0
-	ld bc, $168
-	ld a, $80
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld a, PICROSS_GFX_BGTILE
 	call ByteFill
-	ld hl, $C2B5
+
+	hlcoord 1, 1
 	ld bc, 5
-	ld a, $81
+	ld a, PICROSS_GFX_BUSHTILE
 	call ByteFill
-	ld hl, $C2C9
+
+	hlcoord 1, 2
 	ld bc, 5
-	ld a, $81
+	ld a, PICROSS_GFX_BUSHTILE
 	call ByteFill
-	ld hl, $C2DD
+
+	hlcoord 1, 3
 	ld bc, 5
-	ld a, $82
+	ld a, PICROSS_GFX_BUSHGROUNDTILE
 	call ByteFill
-	ld hl, $C2F1
+
+	hlcoord 1, 4
 	ld bc, 5
-	ld a, $83
+	ld a, PICROSS_GFX_GROUNDTILE
 	call ByteFill
 	ret
 
@@ -233,12 +267,11 @@ PicrossMinigame:
 .GameLoop:
 	call .GetJoypadState
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit PICROSS_END_LOOP_F, a
 	jr nz, .quit
+
 	call .ExecuteJumptable
-	ld a, $23 ; '#'
-	ld hl, EffectObjectJumpNoDelay
-	call FarCall_hl
+	callba EffectObjectJumpNoDelay
 	call DelayFrame
 	and a
 	ret
@@ -255,22 +288,14 @@ PicrossMinigame:
 	ld a, [hl]
 	and a
 	ret z
+
 	dec [hl]
 	xor a
 	ld [wc606], a
 	ret
 
 .ExecuteJumptable:
-	ld a, [wJumptableIndex]
-	ld e, a
-	ld d, 0
-	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ldi a, [hl]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jumptable .Jumptable, wJumptableIndex
 
 .Jumptable:
 	dw .InitMode
@@ -284,19 +309,22 @@ PicrossMinigame:
 	ret
 
 .RunMode:
-	call PicrossMinigame_CheckPuzzleSolved
+	call Picross_CheckPuzzleSolved
 	jr c, .solved
-	call PicrossMinigame_ProcessJoypad
+	call Picross_ProcessJoypad
 	ret
 
 .solved
+; Mark the cursor sprite as not being used anymore
 	ld hl, wPicrossCursorSpritePointer
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld hl, 0
+	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	ld [hl], 0
+
+; Exit Picross minigame
 	ld hl, wJumptableIndex
 	inc [hl]
 
@@ -304,8 +332,10 @@ PicrossMinigame:
 	ldh a, [hJoyDown]
 	and START
 	ret z
+
+; Game will truly exit once the Start button is pressed
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set PICROSS_END_LOOP_F, [hl]
 	ret
 
 .PlaceBGMapTiles:
@@ -321,9 +351,11 @@ PicrossMinigame:
 	ret
 
 .PlaceTable:
+; Builds a table consisting of 256x256 Picross tiles.
+; It is divided into grids of 4x4 tiles.
 	ld hl, .TableCoords
-	ld c, $10
-	ld a, $F0
+	ld c, 4 * 4
+	ld a, PICROSS_GFX_TABLESTART
 
 .place_table_loop
 	push bc
@@ -332,7 +364,7 @@ PicrossMinigame:
 	inc hl
 	ld h, [hl]
 	ld l, e
-	call .PlaceTableTile
+	call .PlaceTableGrid
 	pop hl
 	inc hl
 	inc hl
@@ -341,57 +373,63 @@ PicrossMinigame:
 	jr nz, .place_table_loop
 	ret
 
-.PlaceTableTile:
-	ld de, $14
+.PlaceTableGrid:
+; Place a grid
+	ld de, SCREEN_WIDTH
 	ld b, 3
 
-.place_table_outerloop
+.placegrid_outerloop
 	push hl
 	ld c, 3
 
-.place_table_innerloop
-	ldi [hl], a
+.placegrid_innerloop
+	ld [hli], a
 	inc a
 	dec c
-	jr nz, .place_table_innerloop
+	jr nz, .placegrid_innerloop
 	pop hl
 	add hl, de
 	dec b
-	jr nz, .place_table_outerloop
+	jr nz, .placegrid_outerloop
 	ret
 
 .TableCoords:
+; row 1
 	dwcoord 7, 6
 	dwcoord 10, 6
 	dwcoord 13, 6
 	dwcoord 16, 6
+; row 2
 	dwcoord 7, 9
 	dwcoord 10, 9
 	dwcoord 13, 9
 	dwcoord 16, 9
+; row 3
 	dwcoord 7, 12
 	dwcoord 10, 12
 	dwcoord 13, 12
 	dwcoord 16, 12
+; row 4
 	dwcoord 7, 15
 	dwcoord 10, 15
 	dwcoord 13, 15
 	dwcoord 16, 15
 
 .PlaceColumnNumbers:
+; Set up the tile map for the column numbers.
 	hlcoord 7, 1
 	ld b, 4
-	ld a, $84
+	ld a, PICROSS_GFX_COLUMNS
 
 .column_numbers_outer_loop
 	push hl
-	ld de, $12
+	ld de, SCREEN_HEIGHT
 	ld c, 4
 
 .column_numbers_inner_loop
-	ldi [hl], a
+	ld [hli], a
 	inc a
-	ldi [hl], a
+	ld [hli], a
 	inc a
 	ld [hl], a
 	inc a
@@ -407,20 +445,21 @@ PicrossMinigame:
 	ret
 
 .PlaceRowNumbers:
+; Set up the tile map for the row numbers.
 	hlcoord 1, 6
 	ld b, 4
-	ld a, $B4
+	ld a, PICROSS_GFX_ROWS
 
 .row_numbers_loop1
 	push hl
 	push hl
-	ld de, $12
+	ld de, SCREEN_HEIGHT
 	ld c, 3
 
 .row_numbers_loop2
-	ldi [hl], a
+	ld [hli], a
 	inc a
-	ldi [hl], a
+	ld [hli], a
 	inc a
 	ld [hl], a
 	inc a
@@ -431,11 +470,11 @@ PicrossMinigame:
 	inc hl
 	inc hl
 	inc hl
-	ld de, $13
+	ld de, SCREEN_HEIGHT + 1
 	ld c, 3
 
 .row_numbers_loop3
-	ldi [hl], a
+	ld [hli], a
 	inc a
 	ld [hl], a
 	inc a
@@ -450,34 +489,37 @@ PicrossMinigame:
 	ret
 
 .HandleError:
+; If something's gone wrong, print a big ol' "ERROR" in
+; the middle of the game display.
 	ld a, [wPicrossErrorCheck]
 	and a
 	ret z
 
-; If something's gone wrong, print a big ol' "ERROR" in
-; the middle of the game display.
 	ld hl, .ErrorBitmap
 	decoord 0, 9
 	ld c, $64
 
 .print_message:
-	ldi a, [hl]
+	ld a, [hli]
 	add a, $80
 	ld [de], a
 	inc de
 	dec c
 	jr nz, .print_message
 	ret
-; End of function .HandleError
 
 .ErrorBitmap:
-	db 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0
-	db 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0
-	db 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0
-	db 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0
-	db 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0
+	pushc
+	charmap " ", 0
+	charmap "█", 1
+	db " ██ ██  ██  ███ ██  "
+	db " █  █ █ █ █ █ █ █ █ "
+	db " ██ ██  ██  █ █ ██  "
+	db " █  █ █ █ █ █ █ █ █ "
+	db " ██ █ █ █ █ ███ █ █ "
+	popc
 
-PicrossMinigame_CheckPuzzleSolved:
+Picross_CheckPuzzleSolved:
 	ld de, wPicrossBitmap
 	ld hl, wPicrossMarkedTiles
 	ld c, 0
@@ -510,7 +552,7 @@ PicrossMinigame_CheckPuzzleSolved:
 	and a
 	ret
 
-PicrossMinigame_ProcessJoypad:
+Picross_ProcessJoypad:
 	ld hl, hJoySum
 	ld a, [hl]
 	and A_BUTTON
@@ -532,12 +574,12 @@ PicrossMinigame_ProcessJoypad:
 	ld [wPicrossJoypadAction], a
 	ld a, 1
 	ld [wca59], a
-	call PicrossMinigame_DetermineTileCoord
-	call PicrossMinigame_MarkTile
-	call PicrossMinigame_InitDustObject
+	call Picross_DetermineGridCoord
+	call Picross_MarkTile
+	call Picross_InitDustObject
 	ret
 
-PicrossMinigame_InitDustObject:
+Picross_InitDustObject:
 	ld hl, wPicrossCursorSpritePointer
 	ld c, [hl]
 	inc hl
@@ -558,243 +600,263 @@ PicrossMinigame_InitDustObject:
 	ret nz
 
 ; Make dust object only if we are marking a tile
-	ld a, $34
+	ld a, SPRITE_ANIM_INDEX_MINIGAME_PICROSS_DUST
 	call InitSpriteAnimStruct
 	ret
 
-PicrossMinigame_DetermineTileCoord:
+Picross_DetermineGridCoord:
+; Transforms the sprite's current X and Y position
+; and determines wPicrossCurrentGridNumber and wPicrossCurrentTileNumber.
 	ld hl, wPicrossCursorSpritePointer
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
+
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hl]
 	sub $40
-	call PicrossMinigame_WriteXTileCoords
+	call .WriteXGridCoords
+
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]
 	sub $40
-	call PicrossMinigame_WriteYTileCoords
+	call .WriteYGridCoords
 	ret
 
-PicrossMinigame_WriteXTileCoords:
+.WriteXGridCoords:
 	cp $48
-	jr nc, loc_386C61
+	jr nc, .fourth_grid_column
 	cp $30
-	jr nc, loc_386C58
+	jr nc, .third_grid_column
 	cp $18
-	jr nc, loc_386C4F
+	jr nc, .second_grid_column
 
-; first part
-	call sub_386CA8
+.first_grid_column
+	call .WriteXTileCoords
 	ld a, 0
-	jr loc_386C68
+	jr .grid_column_okay
 
-loc_386C4F:
+.second_grid_column
 	sub $18
-	call sub_386CA8
+	call .WriteXTileCoords
 	ld a, 1
-	jr loc_386C68
+	jr .grid_column_okay
 
-loc_386C58:
+.third_grid_column
 	sub $30
-	call sub_386CA8
+	call .WriteXTileCoords
 	ld a, 2
-	jr loc_386C68
+	jr .grid_column_okay
 
-loc_386C61:
+.fourth_grid_column
 	sub $48
-	call sub_386CA8
+	call .WriteXTileCoords
 	ld a, 3
 
-loc_386C68:
-	ld [$C602], a
+.grid_column_okay
+	ld [wPicrossCurrentGridNumber], a
 	ret
 
-PicrossMinigame_WriteYTileCoords:
+.WriteYGridCoords:
 	cp $48
-	jr nc, loc_386C9A
+	jr nc, .fourth_grid_row
 	cp $30
-	jr nc, loc_386C8E
+	jr nc, .third_grid_row
 	cp $18
-	jr nc, loc_386C82
-	call sub_386CC6
-	ld a, [$C602]
+	jr nc, .second_grid_row
+
+.first_grid_row
+	call .WriteYTileCoords
+	ld a, [wPicrossCurrentGridNumber]
 	add a, 0
-	jr loc_386CA4
+	jr .grid_row_okay
 
-loc_386C82:
+.second_grid_row
 	sub $18
-	call sub_386CC6
-	ld a, [$C602]
+	call .WriteYTileCoords
+	ld a, [wPicrossCurrentGridNumber]
 	add a, 4
-	jr loc_386CA4
+	jr .grid_row_okay
 
-loc_386C8E:
+.third_grid_row
 	sub $30
-	call sub_386CC6
-	ld a, [$C602]
+	call .WriteYTileCoords
+	ld a, [wPicrossCurrentGridNumber]
 	add a, 8
-	jr loc_386CA4
+	jr .grid_row_okay
 
-loc_386C9A:
+.fourth_grid_row
 	sub $48
-	call sub_386CC6
-	ld a, [$C602]
-	add a, $C
+	call .WriteYTileCoords
+	ld a, [wPicrossCurrentGridNumber]
+	add a, 12
 
-loc_386CA4:
-	ld [$C602], a
+.grid_row_okay
+	ld [wPicrossCurrentGridNumber], a
 	ret
 
-sub_386CA8:
+.WriteXTileCoords:
 	cp $12
-	jr z, loc_386CC0
+	jr z, .fourth_tile_column
 	cp $C
-	jr z, loc_386CBC
-	cp 6
-	jr z, loc_386CB8
+	jr z, .third_tile_column
+	cp $6
+	jr z, .second_tile_column
+
+.first_tile_column
 	ld a, 0
-	jr loc_386CC2
+	jr .tile_column_okay
 
-loc_386CB8:
+.second_tile_column
 	ld a, 1
-	jr loc_386CC2
+	jr .tile_column_okay
 
-loc_386CBC:
+.third_tile_column
 	ld a, 2
-	jr loc_386CC2
+	jr .tile_column_okay
 
-loc_386CC0:
+.fourth_tile_column
 	ld a, 3
 
-loc_386CC2:
-	ld [$C603], a
+.tile_column_okay
+	ld [wPicrossCurrentTileNumber], a
 	ret
 
-sub_386CC6:
+.WriteYTileCoords:
 	cp $12
-	jr z, loc_386CE7
+	jr z, .fourth_tile_row
 	cp $C
-	jr z, loc_386CE0
-	cp 6
-	jr z, loc_386CD9
-	ld a, [$C603]
+	jr z, .third_tile_row
+	cp $6
+	jr z, .second_tile_row
+
+.first_tile_row
+	ld a, [wPicrossCurrentTileNumber]
 	add a, 0
-	jr loc_386CEC
+	jr .tile_row_okay
 
-loc_386CD9:
-	ld a, [$C603]
+.second_tile_row
+	ld a, [wPicrossCurrentTileNumber]
 	add a, 4
-	jr loc_386CEC
+	jr .tile_row_okay
 
-loc_386CE0:
-	ld a, [$C603]
+.third_tile_row
+	ld a, [wPicrossCurrentTileNumber]
 	add a, 8
-	jr loc_386CEC
+	jr .tile_row_okay
 
-loc_386CE7:
-	ld a, [$C603]
-	add a, $C
+.fourth_tile_row
+	ld a, [wPicrossCurrentTileNumber]
+	add a, 12
 
-loc_386CEC:
-	ld [$C603], a
+.tile_row_okay
+	ld [wPicrossCurrentTileNumber], a
 	ret
 
-PicrossMinigame_MarkTile:
-	call PicrossMinigame_SetTargetTileType
-	ld hl, $8F00
+Picross_MarkTile:
+	call Picross_SetTargetTileType
+	ld hl, vPicrossPlayArea
 
 ; space between each grid tileset
 	ld de, 144
 	ld a, [wPicrossCurrentGridNumber]
 
-loc_386CFC:
+.find_tile
 	and a
-	jr z, loc_386D03
+	jr z, .update_tile
 	dec a
 	add hl, de
-	jr loc_386CFC
+	jr .find_tile
 
-loc_386D03:
+.update_tile
 	push hl
 	ld e, l
 	ld d, h
 	ld hl, wPicrossRowGFX2bppBuffer
 	ld c, 9
-	ld b, $38 ; '8'
+	ld b, BANK(@)
 	call Request2bpp
-	call PicrossMinigame_SetMarkedTileGFX
+	call Picross_SetMarkedTileGFX
 	pop hl
+
 	ld de, wPicrossRowGFX2bppBuffer
 	ld c, 9
-	ld b, $38 ; '8'
+	ld b, BANK(@)
 	call Request2bpp
 	ret
 
-PicrossMinigame_SetTargetTileType:
+Picross_SetTargetTileType:
 	ld a, [wPicrossCurrentGridNumber]
 	ld d, a
-	and $C
+
+	and 12
 	swap a
 	ld e, a
+
 	ld a, d
 	and 3
 	sla a
 	sla a
 	or e
 	ld e, a
+
 	ld a, [wPicrossCurrentTileNumber]
 	ld d, a
-	and $C
+
+	and 12
 	sla a
 	sla a
 	or e
 	ld e, a
+
 	ld a, d
 	and 3
 	or e
 	ld e, a
 	ld d, 0
+
 	ld hl, wPicrossMarkedTiles
 	add hl, de
 	ldh a, [hJoypadState]
 	and %11111100
-	jr z, loc_386D53
+	jr z, .check_b_pressed
+
 	ld a, [wPicrossCurrentTileType]
 	ld [hl], a
 	ret
 
-loc_386D53:
+.check_b_pressed
 	ld a, [wPicrossJoypadAction]
 	and a
-	jr z, loc_386D65
+	jr z, .check_a_pressed
 	ld a, [hl]
 	cp B_BUTTON
-	jr z, loc_386D71
+	jr z, .done
+
 	ld a, 2
 	ld [wPicrossCurrentTileType], a
 	ld [hl], a
 	ret
 
-loc_386D65:
+.check_a_pressed
 	ld a, [hl]
 	cp A_BUTTON
-	jr z, loc_386D71
+	jr z, .done
+
 	ld a, 1
 	ld [wPicrossCurrentTileType], a
 	ld [hl], a
 	ret
 
-loc_386D71:
+.done
 	xor a
 	ld [wPicrossCurrentTileType], a
 	ld [hl], a
 	ret
 
-PicrossMinigame_SetMarkedTileGFX:
+Picross_SetMarkedTileGFX:
 	ld a, [wPicrossCurrentTileNumber]
 	ld e, a
 	ld d, 0
@@ -803,69 +865,77 @@ PicrossMinigame_SetMarkedTileGFX:
 	add hl, de
 	add hl, de
 	add hl, de
-	ldi a, [hl]
+	ld a, [hli]
 	ld [wPicrossBase2bppPointer], a
-	ldi a, [hl]
-	ld [wPicrossBase2bppPointer+1], a
-	ldi a, [hl]
+	ld a, [hli]
+	ld [wPicrossBase2bppPointer + 1], a
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
 .BufferRoutineTable:
-	dw $C958, PicrossMinigame_SetTileGFX_1
-	dw $C958, PicrossMinigame_SetTileGFX_2
-	dw $C968, PicrossMinigame_SetTileGFX_3
-	dw $C978, PicrossMinigame_SetTileGFX_4
-	dw $C958, PicrossMinigame_SetTileGFX_5
-	dw $C958, PicrossMinigame_SetTileGFX_6
-	dw $C968, PicrossMinigame_SetTileGFX_7
-	dw $C978, PicrossMinigame_SetTileGFX_8
-	dw $C988, PicrossMinigame_SetTileGFX_9
-	dw $C988, PicrossMinigame_SetTileGFX_10
-	dw $C998, PicrossMinigame_SetTileGFX_11
-	dw $C9A8, PicrossMinigame_SetTileGFX_12
-	dw $C9B8, PicrossMinigame_SetTileGFX_13
-	dw $C9B8, PicrossMinigame_SetTileGFX_14
-	dw $C9C8, PicrossMinigame_SetTileGFX_15
-	dw $C9D8, PicrossMinigame_SetTileGFX_16
+	dw wPicrossRowGFX2bppBuffer,       Picross_SetTileGFX_1
+	dw wPicrossRowGFX2bppBuffer,       Picross_SetTileGFX_2
+	dw wPicrossRowGFX2bppBuffer + $10, Picross_SetTileGFX_3
+	dw wPicrossRowGFX2bppBuffer + $20, Picross_SetTileGFX_4
 
-PicrossMinigame_InitPicrossTable:
+	dw wPicrossRowGFX2bppBuffer,       Picross_SetTileGFX_5
+	dw wPicrossRowGFX2bppBuffer,       Picross_SetTileGFX_6
+	dw wPicrossRowGFX2bppBuffer + $10, Picross_SetTileGFX_7
+	dw wPicrossRowGFX2bppBuffer + $20, Picross_SetTileGFX_8
+
+	dw wPicrossRowGFX2bppBuffer + $30, Picross_SetTileGFX_9
+	dw wPicrossRowGFX2bppBuffer + $30, Picross_SetTileGFX_10
+	dw wPicrossRowGFX2bppBuffer + $40, Picross_SetTileGFX_11
+	dw wPicrossRowGFX2bppBuffer + $50, Picross_SetTileGFX_12
+
+	dw wPicrossRowGFX2bppBuffer + $60, Picross_SetTileGFX_13
+	dw wPicrossRowGFX2bppBuffer + $60, Picross_SetTileGFX_14
+	dw wPicrossRowGFX2bppBuffer + $70, Picross_SetTileGFX_15
+	dw wPicrossRowGFX2bppBuffer + $80, Picross_SetTileGFX_16
+
+Picross_InitPicrossTable:
+; Pick between 4 available layouts
 	call Random
 	and 3
-	call PicrossMinigame_LoadLayout
-	call PicrossMinigame_GoThroughLayout
-	call PicrossMinigame_PopulateRAMBitmap
+
+	call Picross_LoadLayout
+	call Picross_GoThroughLayout
+	call Picross_PopulateRAMBitmap
 	ret
 
-PicrossMinigame_PopulateRAMBitmap:
+Picross_PopulateRAMBitmap:
 	ld de, wPicrossBitmap
 	ld hl, wPicrossLayoutBuffer
 	ld c, 8
 
+; Populate top half
 .tiles:
 	push bc
 	push hl
-	call PicrossMinigame_PopulateOneRow
-	ld bc, $10
+	call Picross_PopulateOneRow
+	ld bc, LEN_2BPP_TILE
 	add hl, bc
-	call PicrossMinigame_PopulateOneRow
+	call Picross_PopulateOneRow
 	pop hl
 	inc hl
 	inc hl
 	pop bc
 	dec c
 	jr nz, .tiles
+
+; Populate bottom half
 	ld hl, wPicrossLayoutBuffer2
 	ld c, 8
 
 .tiles2:
 	push bc
 	push hl
-	call PicrossMinigame_PopulateOneRow
-	ld bc, $10
+	call Picross_PopulateOneRow
+	ld bc, LEN_2BPP_TILE
 	add hl, bc
-	call PicrossMinigame_PopulateOneRow
+	call Picross_PopulateOneRow
 	pop hl
 	inc hl
 	inc hl
@@ -874,7 +944,7 @@ PicrossMinigame_PopulateRAMBitmap:
 	jr nz, .tiles2
 	ret
 
-PicrossMinigame_PopulateOneRow:
+Picross_PopulateOneRow:
 	ld b, [hl]
 	ld c, 8
 
@@ -888,29 +958,29 @@ PicrossMinigame_PopulateOneRow:
 	jr nz, .loop
 	ret
 
-PicrossMinigame_GoThroughLayout:
+Picross_GoThroughLayout:
 	ld hl, wPicrossLayoutBuffer - 1
-	ld c, 32
+	ld c, $20
 
 .loop
-	ldi a, [hl]
+	ld a, [hli]
 	and [hl]
-	ldi [hl], a
+	ld [hli], a
 	dec c
 	jr nz, .loop
 	ret
 
-PicrossMinigame_InitPicrossDigits:
-	call PicrossMinigame_InitDigitBuffer
-	call PicrossMinigame_CountColumnDigits
+Picross_InitPicrossDigits:
+	call Picross_InitDigitBuffer
+	call Picross_CountColumnDigits
 	jr c, .errored
-	
-	call PicrossMinigame_ApplyColumnDigits
-	call PicrossMinigame_InitDigitBuffer
-	call PicrossMinigame_CountRowDigits
+
+	call Picross_ApplyColumnDigits
+	call Picross_InitDigitBuffer
+	call Picross_CountRowDigits
 	jr c, .errored
-	
-	call PicrossMinigame_ApplyRowDigits
+
+	call Picross_ApplyRowDigits
 	xor a
 	ld [wPicrossErrorCheck], a
 	ret
@@ -920,18 +990,18 @@ PicrossMinigame_InitPicrossDigits:
 	ld [wPicrossErrorCheck], a
 	ret
 
-PicrossMinigame_InitDigitBuffer:
+Picross_InitDigitBuffer:
 	ld hl, wPicrossNumbersBuffer
 	ld c, 0
 	ld a, $FF
 
 .loop:
-	ldi [hl], a
+	ld [hli], a
 	dec c
 	jr nz, .loop
 	ret
 
-PicrossMinigame_CountColumnDigits:
+Picross_CountColumnDigits:
 	ld hl, wPicrossBitmap
 	ld de, wPicrossNumbersBuffer
 	ld c, $10
@@ -1007,7 +1077,7 @@ PicrossMinigame_CountColumnDigits:
 	scf
 	ret
 
-PicrossMinigame_CountRowDigits:
+Picross_CountRowDigits:
 	ld hl, wPicrossBitmap
 	ld de, wPicrossNumbersBuffer
 	ld c, $10
@@ -1070,7 +1140,7 @@ PicrossMinigame_CountRowDigits:
 	ret
 
 .determine
-	ldi a, [hl]
+	ld a, [hli]
 	dec c
 	jr z, .skip
 	and a
@@ -1080,237 +1150,237 @@ PicrossMinigame_CountRowDigits:
 	scf
 	ret
 
-
-PicrossMinigame_ApplyColumnDigits:
+Picross_ApplyColumnDigits:
 	ld c, 80
-	ld hl, PicrossMinigame_VRAMAndDigitRowPointers
-	call PicrossMinigame_ApplyDigits
+	ld hl, Picross_VRAMAndDigitRowPointers
+	call Picross_ApplyDigits
 	ret
 
-PicrossMinigame_VRAMAndDigitRowPointers:
-	dw $8840, PicrossMinigame_SetTileGFX_1
-	dw $8840, PicrossMinigame_SetTileGFX_5
-	dw $8870, PicrossMinigame_SetTileGFX_9
-	dw $88A0, PicrossMinigame_SetTileGFX_13
-	dw $88D0, PicrossMinigame_SetTileGFX_1
-	
-	dw $8840, PicrossMinigame_SetTileGFX_2
-	dw $8840, PicrossMinigame_SetTileGFX_6
-	dw $8870, PicrossMinigame_SetTileGFX_10
-	dw $88A0, PicrossMinigame_SetTileGFX_14
-	dw $88D0, PicrossMinigame_SetTileGFX_2
+Picross_VRAMAndDigitRowPointers:
+; 0
+	dw vPicrossBackground tile 4,  Picross_SetTileGFX_1
+	dw vPicrossBackground tile 4,  Picross_SetTileGFX_5
+	dw vPicrossBackground tile 7,  Picross_SetTileGFX_9
+	dw vPicrossBackground tile 10, Picross_SetTileGFX_13
+	dw vPicrossBackground tile 13, Picross_SetTileGFX_1
+; 1
+	dw $8840, Picross_SetTileGFX_2
+	dw $8840, Picross_SetTileGFX_6
+	dw $8870, Picross_SetTileGFX_10
+	dw $88A0, Picross_SetTileGFX_14
+	dw $88D0, Picross_SetTileGFX_2
+; 2
+	dw $8850, Picross_SetTileGFX_3
+	dw $8850, Picross_SetTileGFX_7
+	dw $8880, Picross_SetTileGFX_11
+	dw $88B0, Picross_SetTileGFX_15
+	dw $88E0, Picross_SetTileGFX_3
+; 3
+	dw $8860, Picross_SetTileGFX_4
+	dw $8860, Picross_SetTileGFX_8
+	dw $8890, Picross_SetTileGFX_12
+	dw $88C0, Picross_SetTileGFX_16
+	dw $88F0, Picross_SetTileGFX_4
+; 4
+	dw $8900, Picross_SetTileGFX_1
+	dw $8900, Picross_SetTileGFX_5
+	dw $8930, Picross_SetTileGFX_9
+	dw $8960, Picross_SetTileGFX_13
+	dw $8990, Picross_SetTileGFX_1
+; 5
+	dw $8900, Picross_SetTileGFX_2
+	dw $8900, Picross_SetTileGFX_6
+	dw $8930, Picross_SetTileGFX_10
+	dw $8960, Picross_SetTileGFX_14
+	dw $8990, Picross_SetTileGFX_2
+	dw $8910, Picross_SetTileGFX_3
+; 6
+	dw $8910, Picross_SetTileGFX_7
+	dw $8940, Picross_SetTileGFX_11
+	dw $8970, Picross_SetTileGFX_15
+	dw $89A0, Picross_SetTileGFX_3
+	dw $8920, Picross_SetTileGFX_4
+; 7
+	dw $8920, Picross_SetTileGFX_8
+	dw $8950, Picross_SetTileGFX_12
+	dw $8980, Picross_SetTileGFX_16
+	dw $89B0, Picross_SetTileGFX_4
+	dw $89C0, Picross_SetTileGFX_1
+; 8
+	dw $89C0, Picross_SetTileGFX_5
+	dw $89F0, Picross_SetTileGFX_9
+	dw $8A20, Picross_SetTileGFX_13
+	dw $8A50, Picross_SetTileGFX_1
+	dw $89C0, Picross_SetTileGFX_2
+; 9
+	dw $89C0, Picross_SetTileGFX_6
+	dw $89F0, Picross_SetTileGFX_10
+	dw $8A20, Picross_SetTileGFX_14
+; 10
+	dw $8A50, Picross_SetTileGFX_2
+	dw $89D0, Picross_SetTileGFX_3
+	dw $89D0, Picross_SetTileGFX_7
+	dw $8A00, Picross_SetTileGFX_11
+	dw $8A30, Picross_SetTileGFX_15
+	dw $8A60, Picross_SetTileGFX_3
+; 11
+	dw $89E0, Picross_SetTileGFX_4
+	dw $89E0, Picross_SetTileGFX_8
+	dw $8A10, Picross_SetTileGFX_12
+	dw $8A40, Picross_SetTileGFX_16
+	dw $8A70, Picross_SetTileGFX_4
+; 12
+	dw $8A80, Picross_SetTileGFX_1
+	dw $8A80, Picross_SetTileGFX_5
+	dw $8AB0, Picross_SetTileGFX_9
+	dw $8AE0, Picross_SetTileGFX_13
+	dw $8B10, Picross_SetTileGFX_1
+; 13
+	dw $8A80, Picross_SetTileGFX_2
+	dw $8A80, Picross_SetTileGFX_6
+	dw $8AB0, Picross_SetTileGFX_10
+	dw $8AE0, Picross_SetTileGFX_14
+	dw $8B10, Picross_SetTileGFX_2
+ ; 14
+	dw $8A90, Picross_SetTileGFX_3
+	dw $8A90, Picross_SetTileGFX_7
+	dw $8AC0, Picross_SetTileGFX_11
+	dw $8AF0, Picross_SetTileGFX_15
+	dw $8B20, Picross_SetTileGFX_3
+; 15
+	dw $8AA0, Picross_SetTileGFX_4
+	dw $8AA0, Picross_SetTileGFX_8
+	dw $8AD0, Picross_SetTileGFX_12
+	dw $8B00, Picross_SetTileGFX_16
+	dw $8B30, Picross_SetTileGFX_4
 
-	dw $8850, PicrossMinigame_SetTileGFX_3
-	dw $8850, PicrossMinigame_SetTileGFX_7
-	dw $8880, PicrossMinigame_SetTileGFX_11
-	dw $88B0, PicrossMinigame_SetTileGFX_15
-	dw $88E0, PicrossMinigame_SetTileGFX_3
-
-	dw $8860, PicrossMinigame_SetTileGFX_4
-	dw $8860, PicrossMinigame_SetTileGFX_8
-	dw $8890, PicrossMinigame_SetTileGFX_12
-	dw $88C0, PicrossMinigame_SetTileGFX_16
-	dw $88F0, PicrossMinigame_SetTileGFX_4
-
-	dw $8900, PicrossMinigame_SetTileGFX_1
-	dw $8900, PicrossMinigame_SetTileGFX_5
-	dw $8930, PicrossMinigame_SetTileGFX_9
-	dw $8960, PicrossMinigame_SetTileGFX_13
-	dw $8990, PicrossMinigame_SetTileGFX_1
-
-	dw $8900, PicrossMinigame_SetTileGFX_2
-	dw $8900, PicrossMinigame_SetTileGFX_6
-	dw $8930, PicrossMinigame_SetTileGFX_10
-	dw $8960, PicrossMinigame_SetTileGFX_14
-	dw $8990, PicrossMinigame_SetTileGFX_2
-	dw $8910, PicrossMinigame_SetTileGFX_3
-
-	dw $8910, PicrossMinigame_SetTileGFX_7
-	dw $8940, PicrossMinigame_SetTileGFX_11
-	dw $8970, PicrossMinigame_SetTileGFX_15
-	dw $89A0, PicrossMinigame_SetTileGFX_3
-	dw $8920, PicrossMinigame_SetTileGFX_4
-
-	dw $8920, PicrossMinigame_SetTileGFX_8
-	dw $8950, PicrossMinigame_SetTileGFX_12
-	dw $8980, PicrossMinigame_SetTileGFX_16
-	dw $89B0, PicrossMinigame_SetTileGFX_4
-	dw $89C0, PicrossMinigame_SetTileGFX_1
-
-	dw $89C0, PicrossMinigame_SetTileGFX_5
-	dw $89F0, PicrossMinigame_SetTileGFX_9
-	dw $8A20, PicrossMinigame_SetTileGFX_13
-	dw $8A50, PicrossMinigame_SetTileGFX_1
-	dw $89C0, PicrossMinigame_SetTileGFX_2
-
-	dw $89C0, PicrossMinigame_SetTileGFX_6
-	dw $89F0, PicrossMinigame_SetTileGFX_10
-	dw $8A20, PicrossMinigame_SetTileGFX_14
-	
-	dw $8A50, PicrossMinigame_SetTileGFX_2
-	dw $89D0, PicrossMinigame_SetTileGFX_3
-	dw $89D0, PicrossMinigame_SetTileGFX_7
-	dw $8A00, PicrossMinigame_SetTileGFX_11
-	dw $8A30, PicrossMinigame_SetTileGFX_15
-	dw $8A60, PicrossMinigame_SetTileGFX_3
-	
-	dw $89E0, PicrossMinigame_SetTileGFX_4
-	dw $89E0, PicrossMinigame_SetTileGFX_8
-	dw $8A10, PicrossMinigame_SetTileGFX_12
-	dw $8A40, PicrossMinigame_SetTileGFX_16
-	dw $8A70, PicrossMinigame_SetTileGFX_4
-	
-	dw $8A80, PicrossMinigame_SetTileGFX_1
-	dw $8A80, PicrossMinigame_SetTileGFX_5
-	dw $8AB0, PicrossMinigame_SetTileGFX_9
-	dw $8AE0, PicrossMinigame_SetTileGFX_13
-	dw $8B10, PicrossMinigame_SetTileGFX_1
-	
-	dw $8A80, PicrossMinigame_SetTileGFX_2
-	dw $8A80, PicrossMinigame_SetTileGFX_6
-	dw $8AB0, PicrossMinigame_SetTileGFX_10
-	dw $8AE0, PicrossMinigame_SetTileGFX_14
-	dw $8B10, PicrossMinigame_SetTileGFX_2
-	
-	dw $8A90, PicrossMinigame_SetTileGFX_3
-	dw $8A90, PicrossMinigame_SetTileGFX_7
-	dw $8AC0, PicrossMinigame_SetTileGFX_11
-	dw $8AF0, PicrossMinigame_SetTileGFX_15
-	dw $8B20, PicrossMinigame_SetTileGFX_3
-	
-	dw $8AA0, PicrossMinigame_SetTileGFX_4
-	dw $8AA0, PicrossMinigame_SetTileGFX_8
-	dw $8AD0, PicrossMinigame_SetTileGFX_12
-	dw $8B00, PicrossMinigame_SetTileGFX_16
-	dw $8B30, PicrossMinigame_SetTileGFX_4
-
-PicrossMinigame_ApplyRowDigits:
+Picross_ApplyRowDigits:
 	ld c, 96
-	ld hl, PicrossMinigame_VRAMAndDigitColumnPointers
-	call PicrossMinigame_ApplyDigits
+	ld hl, Picross_VRAMAndDigitColumnPointers
+	call Picross_ApplyDigits
 	ret
 
-PicrossMinigame_VRAMAndDigitColumnPointers:
-	dw $8B40, PicrossMinigame_SetTileGFX_1
-	dw $8B40, PicrossMinigame_SetTileGFX_2
-	dw $8B50, PicrossMinigame_SetTileGFX_3
-	dw $8B60, PicrossMinigame_SetTileGFX_4
-	dw $8BD0, PicrossMinigame_SetTileGFX_1
-	dw $8BD0, PicrossMinigame_SetTileGFX_2
-	
-	dw $8B40, PicrossMinigame_SetTileGFX_5
-	dw $8B40, PicrossMinigame_SetTileGFX_6
-	dw $8B50, PicrossMinigame_SetTileGFX_7
-	dw $8B60, PicrossMinigame_SetTileGFX_8
-	dw $8BD0, PicrossMinigame_ApplyDigit_17
-	dw $8BD0, PicrossMinigame_ApplyDigit_18
-	
-	dw $8B70, PicrossMinigame_SetTileGFX_9
-	dw $8B70, PicrossMinigame_SetTileGFX_10
-	dw $8B80, PicrossMinigame_SetTileGFX_11
-	dw $8B90, PicrossMinigame_SetTileGFX_12
-	dw $8BF0, PicrossMinigame_ApplyDigit_19
-	dw $8BF0, PicrossMinigame_ApplyDigit_20
-	
-	dw $8BA0, PicrossMinigame_SetTileGFX_13
-	dw $8BA0, PicrossMinigame_SetTileGFX_14
-	dw $8BB0, PicrossMinigame_SetTileGFX_15
-	dw $8BC0, PicrossMinigame_SetTileGFX_16
-	dw $8C10, PicrossMinigame_SetTileGFX_13
-	dw $8C10, PicrossMinigame_SetTileGFX_14
-	
-	dw $8C30, PicrossMinigame_SetTileGFX_1
-	dw $8C30, PicrossMinigame_SetTileGFX_2
-	dw $8C40, PicrossMinigame_SetTileGFX_3
-	dw $8C50, PicrossMinigame_SetTileGFX_4
-	dw $8CC0, PicrossMinigame_SetTileGFX_1
-	dw $8CC0, PicrossMinigame_SetTileGFX_2
-	
-	dw $8C30, PicrossMinigame_SetTileGFX_5
-	dw $8C30, PicrossMinigame_SetTileGFX_6
-	dw $8C40, PicrossMinigame_SetTileGFX_7
-	dw $8C50, PicrossMinigame_SetTileGFX_8
-	dw $8CC0, PicrossMinigame_ApplyDigit_17
-	dw $8CC0, PicrossMinigame_ApplyDigit_18
-	
-	dw $8C60, PicrossMinigame_SetTileGFX_9
-	dw $8C60, PicrossMinigame_SetTileGFX_10
-	dw $8C70, PicrossMinigame_SetTileGFX_11
-	dw $8C80, PicrossMinigame_SetTileGFX_12
-	dw $8CE0, PicrossMinigame_ApplyDigit_19
-	dw $8CE0, PicrossMinigame_ApplyDigit_20
-	
-	dw $8C90, PicrossMinigame_SetTileGFX_13
-	dw $8C90, PicrossMinigame_SetTileGFX_14
-	dw $8CA0, PicrossMinigame_SetTileGFX_15
-	dw $8CB0, PicrossMinigame_SetTileGFX_16
-	dw $8D00, PicrossMinigame_SetTileGFX_13
-	dw $8D00, PicrossMinigame_SetTileGFX_14
-	
-	dw $8D20, PicrossMinigame_SetTileGFX_1
-	dw $8D20, PicrossMinigame_SetTileGFX_2
-	dw $8D30, PicrossMinigame_SetTileGFX_3
-	dw $8D40, PicrossMinigame_SetTileGFX_4
-	dw $8DB0, PicrossMinigame_SetTileGFX_1
-	dw $8DB0, PicrossMinigame_SetTileGFX_2
-	
-	dw $8D20, PicrossMinigame_SetTileGFX_5
-	dw $8D20, PicrossMinigame_SetTileGFX_6
-	dw $8D30, PicrossMinigame_SetTileGFX_7
-	dw $8D40, PicrossMinigame_SetTileGFX_8
-	dw $8DB0, PicrossMinigame_ApplyDigit_17
-	dw $8DB0, PicrossMinigame_ApplyDigit_18
-	
-	dw $8D50, PicrossMinigame_SetTileGFX_9
-	dw $8D50, PicrossMinigame_SetTileGFX_10
-	dw $8D60, PicrossMinigame_SetTileGFX_11
-	dw $8D70, PicrossMinigame_SetTileGFX_12
-	dw $8DD0, PicrossMinigame_ApplyDigit_19
-	dw $8DD0, PicrossMinigame_ApplyDigit_20
-	
-	dw $8D80, PicrossMinigame_SetTileGFX_13
-	dw $8D80, PicrossMinigame_SetTileGFX_14
-	dw $8D90, PicrossMinigame_SetTileGFX_15
-	dw $8DA0, PicrossMinigame_SetTileGFX_16
-	dw $8DF0, PicrossMinigame_SetTileGFX_13
-	dw $8DF0, PicrossMinigame_SetTileGFX_14
-	
-	dw $8E10, PicrossMinigame_SetTileGFX_1
-	dw $8E10, PicrossMinigame_SetTileGFX_2
-	dw $8E20, PicrossMinigame_SetTileGFX_3
-	dw $8E30, PicrossMinigame_SetTileGFX_4
-	dw $8EA0, PicrossMinigame_SetTileGFX_1
-	dw $8EA0, PicrossMinigame_SetTileGFX_2
-	
-	dw $8E10, PicrossMinigame_SetTileGFX_5
-	dw $8E10, PicrossMinigame_SetTileGFX_6
-	dw $8E20, PicrossMinigame_SetTileGFX_7
-	dw $8E30, PicrossMinigame_SetTileGFX_8
-	dw $8EA0, PicrossMinigame_ApplyDigit_17
-	dw $8EA0, PicrossMinigame_ApplyDigit_18
-	
-	dw $8E40, PicrossMinigame_SetTileGFX_9
-	dw $8E40, PicrossMinigame_SetTileGFX_10
-	dw $8E50, PicrossMinigame_SetTileGFX_11
-	dw $8E60, PicrossMinigame_SetTileGFX_12
-	dw $8EC0, PicrossMinigame_ApplyDigit_19
-	dw $8EC0, PicrossMinigame_ApplyDigit_20
-	
-	dw $8E70, PicrossMinigame_SetTileGFX_13
-	dw $8E70, PicrossMinigame_SetTileGFX_14
-	dw $8E80, PicrossMinigame_SetTileGFX_15
-	dw $8E90, PicrossMinigame_SetTileGFX_16
-	dw $8EE0, PicrossMinigame_SetTileGFX_13
-	dw $8EE0, PicrossMinigame_SetTileGFX_14
+Picross_VRAMAndDigitColumnPointers:
+	dw $8B40, Picross_SetTileGFX_1
+	dw $8B40, Picross_SetTileGFX_2
+	dw $8B50, Picross_SetTileGFX_3
+	dw $8B60, Picross_SetTileGFX_4
+	dw $8BD0, Picross_SetTileGFX_1
+	dw $8BD0, Picross_SetTileGFX_2
 
-PicrossMinigame_ApplyDigits:
+	dw $8B40, Picross_SetTileGFX_5
+	dw $8B40, Picross_SetTileGFX_6
+	dw $8B50, Picross_SetTileGFX_7
+	dw $8B60, Picross_SetTileGFX_8
+	dw $8BD0, Picross_ApplyDigit_17
+	dw $8BD0, Picross_ApplyDigit_18
+
+	dw $8B70, Picross_SetTileGFX_9
+	dw $8B70, Picross_SetTileGFX_10
+	dw $8B80, Picross_SetTileGFX_11
+	dw $8B90, Picross_SetTileGFX_12
+	dw $8BF0, Picross_ApplyDigit_19
+	dw $8BF0, Picross_ApplyDigit_20
+
+	dw $8BA0, Picross_SetTileGFX_13
+	dw $8BA0, Picross_SetTileGFX_14
+	dw $8BB0, Picross_SetTileGFX_15
+	dw $8BC0, Picross_SetTileGFX_16
+	dw $8C10, Picross_SetTileGFX_13
+	dw $8C10, Picross_SetTileGFX_14
+
+	dw $8C30, Picross_SetTileGFX_1
+	dw $8C30, Picross_SetTileGFX_2
+	dw $8C40, Picross_SetTileGFX_3
+	dw $8C50, Picross_SetTileGFX_4
+	dw $8CC0, Picross_SetTileGFX_1
+	dw $8CC0, Picross_SetTileGFX_2
+
+	dw $8C30, Picross_SetTileGFX_5
+	dw $8C30, Picross_SetTileGFX_6
+	dw $8C40, Picross_SetTileGFX_7
+	dw $8C50, Picross_SetTileGFX_8
+	dw $8CC0, Picross_ApplyDigit_17
+	dw $8CC0, Picross_ApplyDigit_18
+
+	dw $8C60, Picross_SetTileGFX_9
+	dw $8C60, Picross_SetTileGFX_10
+	dw $8C70, Picross_SetTileGFX_11
+	dw $8C80, Picross_SetTileGFX_12
+	dw $8CE0, Picross_ApplyDigit_19
+	dw $8CE0, Picross_ApplyDigit_20
+
+	dw $8C90, Picross_SetTileGFX_13
+	dw $8C90, Picross_SetTileGFX_14
+	dw $8CA0, Picross_SetTileGFX_15
+	dw $8CB0, Picross_SetTileGFX_16
+	dw $8D00, Picross_SetTileGFX_13
+	dw $8D00, Picross_SetTileGFX_14
+
+	dw $8D20, Picross_SetTileGFX_1
+	dw $8D20, Picross_SetTileGFX_2
+	dw $8D30, Picross_SetTileGFX_3
+	dw $8D40, Picross_SetTileGFX_4
+	dw $8DB0, Picross_SetTileGFX_1
+	dw $8DB0, Picross_SetTileGFX_2
+
+	dw $8D20, Picross_SetTileGFX_5
+	dw $8D20, Picross_SetTileGFX_6
+	dw $8D30, Picross_SetTileGFX_7
+	dw $8D40, Picross_SetTileGFX_8
+	dw $8DB0, Picross_ApplyDigit_17
+	dw $8DB0, Picross_ApplyDigit_18
+
+	dw $8D50, Picross_SetTileGFX_9
+	dw $8D50, Picross_SetTileGFX_10
+	dw $8D60, Picross_SetTileGFX_11
+	dw $8D70, Picross_SetTileGFX_12
+	dw $8DD0, Picross_ApplyDigit_19
+	dw $8DD0, Picross_ApplyDigit_20
+
+	dw $8D80, Picross_SetTileGFX_13
+	dw $8D80, Picross_SetTileGFX_14
+	dw $8D90, Picross_SetTileGFX_15
+	dw $8DA0, Picross_SetTileGFX_16
+	dw $8DF0, Picross_SetTileGFX_13
+	dw $8DF0, Picross_SetTileGFX_14
+
+	dw $8E10, Picross_SetTileGFX_1
+	dw $8E10, Picross_SetTileGFX_2
+	dw $8E20, Picross_SetTileGFX_3
+	dw $8E30, Picross_SetTileGFX_4
+	dw $8EA0, Picross_SetTileGFX_1
+	dw $8EA0, Picross_SetTileGFX_2
+
+	dw $8E10, Picross_SetTileGFX_5
+	dw $8E10, Picross_SetTileGFX_6
+	dw $8E20, Picross_SetTileGFX_7
+	dw $8E30, Picross_SetTileGFX_8
+	dw $8EA0, Picross_ApplyDigit_17
+	dw $8EA0, Picross_ApplyDigit_18
+
+	dw $8E40, Picross_SetTileGFX_9
+	dw $8E40, Picross_SetTileGFX_10
+	dw $8E50, Picross_SetTileGFX_11
+	dw $8E60, Picross_SetTileGFX_12
+	dw $8EC0, Picross_ApplyDigit_19
+	dw $8EC0, Picross_ApplyDigit_20
+
+	dw $8E70, Picross_SetTileGFX_13
+	dw $8E70, Picross_SetTileGFX_14
+	dw $8E80, Picross_SetTileGFX_15
+	dw $8E90, Picross_SetTileGFX_16
+	dw $8EE0, Picross_SetTileGFX_13
+	dw $8EE0, Picross_SetTileGFX_14
+
+Picross_ApplyDigits:
 	xor a
 	ld [wPicrossDrawingRoutineCounter], a
 
 .loop:
 	push bc
 	push hl
-	call PicrossMinigame_ApplyDigit
+	call Picross_ApplyDigit
 	pop hl
 	inc hl
 	inc hl
@@ -1321,7 +1391,7 @@ PicrossMinigame_ApplyDigits:
 	jr nz, .loop
 	ret
 
-PicrossMinigame_ApplyDigit:
+Picross_ApplyDigit:
 	push hl
 	ld hl, wPicrossDrawingRoutineCounter
 	ld e, [hl]
@@ -1332,7 +1402,7 @@ PicrossMinigame_ApplyDigit:
 	ld a, [hl]
 	cp $FF
 	jr z, .done_applying_digit
-	
+
 	swap a
 	and $F0
 	ld e, a
@@ -1340,20 +1410,20 @@ PicrossMinigame_ApplyDigit:
 	swap a
 	and $F
 	ld d, a
-	
-	ld hl, PicrossGFX
+
+	ld hl, PicrossNumbersGFX
 	add hl, de
 	ld a, l
 	ld [wPicrossBaseGFXPointer], a
 	ld a, h
 	ld [wPicrossBaseGFXPointer+1], a
 	pop hl
-	
-	ldi a, [hl]
+
+	ld a, [hli]
 	ld [wPicrossBase2bppPointer], a
-	ldi a, [hl]
+	ld a, [hli]
 	ld [wPicrossBase2bppPointer+1], a
-	ldi a, [hl]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
@@ -1362,293 +1432,293 @@ PicrossMinigame_ApplyDigit:
 	pop hl
 	ret
 
-PicrossMinigame_SetTileGFX_1:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_1:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 0
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 5*2
-	call PicrossMinigame_ApplyTileGFXTopLeftFull
+	call Picross_ApplyTileGFXTopLeftFull
 	ret
 
-PicrossMinigame_SetTileGFX_2:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_2:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 0
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 5*2
-	call PicrossMinigame_ApplyTileGFXTopRight1
-	
-	call PicrossMinigame_SetTileGFXPointerDE
+	call Picross_ApplyTileGFXTopRight1
+
+	call Picross_SetTileGFXPointerDE
 	ld hl, $10
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 2*5
-	call PicrossMinigame_ApplyTileGFXTopLeft1
-	
+	call Picross_ApplyTileGFXTopLeft1
+
 	ret
 
-PicrossMinigame_SetTileGFX_3:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_3:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 0
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 5*2
-	call PicrossMinigame_ApplyTileGFXTopRight2
-	
-	call PicrossMinigame_SetTileGFXPointerDE
+	call Picross_ApplyTileGFXTopRight2
+
+	call Picross_SetTileGFXPointerDE
 	ld hl, $10
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 5*2
-	call PicrossMinigame_ApplyTileGFXTopLeft2
-	
+	call Picross_ApplyTileGFXTopLeft2
+
 	ret
 
-PicrossMinigame_SetTileGFX_4:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_4:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 0
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 5*2
-	call PicrossMinigame_ApplyTileGFXTopRightFull
+	call Picross_ApplyTileGFXTopRightFull
 	ret
 
-PicrossMinigame_SetTileGFX_5:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_5:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 6*2
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 4
-	call PicrossMinigame_ApplyTileGFXTopLeftFull
-	ld hl, $30 ; '0'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopLeftFull
+	ld hl, $30
+	call Picross_AddToHL2bppPointer
 	ld c, 3*2
-	call PicrossMinigame_ApplyTileGFXTopLeftFull
+	call Picross_ApplyTileGFXTopLeftFull
 	ret
 
-PicrossMinigame_SetTileGFX_6:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_6:
+	call Picross_SetTileGFXPointerDE
 	ld hl, $C
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 4
-	call PicrossMinigame_ApplyTileGFXTopRight1
-	ld hl, $30 ; '0'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopRight1
+	ld hl, $30
+	call Picross_AddToHL2bppPointer
 	ld c, 6
-	call PicrossMinigame_ApplyTileGFXTopRight1
-	call PicrossMinigame_SetTileGFXPointerDE
+	call Picross_ApplyTileGFXTopRight1
+	call Picross_SetTileGFXPointerDE
 	ld hl, $1C
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 4
-	call PicrossMinigame_ApplyTileGFXTopLeft1
-	ld hl, $40 ; '@'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopLeft1
+	ld hl, $40
+	call Picross_AddToHL2bppPointer
 	ld c, 6
-	call PicrossMinigame_ApplyTileGFXTopLeft1
+	call Picross_ApplyTileGFXTopLeft1
 	ret
 
-PicrossMinigame_SetTileGFX_7:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_7:
+	call Picross_SetTileGFXPointerDE
 	ld hl, $C
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 4
-	call PicrossMinigame_ApplyTileGFXTopRight2
-	ld hl, $30 ; '0'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopRight2
+	ld hl, $30
+	call Picross_AddToHL2bppPointer
 	ld c, 6
-	call PicrossMinigame_ApplyTileGFXTopRight2
-	call PicrossMinigame_SetTileGFXPointerDE
+	call Picross_ApplyTileGFXTopRight2
+	call Picross_SetTileGFXPointerDE
 	ld hl, $1C
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 4
-	call PicrossMinigame_ApplyTileGFXTopLeft2
-	ld hl, $40 ; '@'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopLeft2
+	ld hl, $40
+	call Picross_AddToHL2bppPointer
 	ld c, 6
-	call PicrossMinigame_ApplyTileGFXTopLeft2
+	call Picross_ApplyTileGFXTopLeft2
 	ret
 
-PicrossMinigame_SetTileGFX_8:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_8:
+	call Picross_SetTileGFXPointerDE
 	ld hl, $C
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 4
-	call PicrossMinigame_ApplyTileGFXTopRightFull
-	ld hl, $30 ; '0'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopRightFull
+	ld hl, $30
+	call Picross_AddToHL2bppPointer
 	ld c, 6
-	call PicrossMinigame_ApplyTileGFXTopRightFull
+	call Picross_ApplyTileGFXTopRightFull
 	ret
 
-PicrossMinigame_SetTileGFX_9:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_9:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 8
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 8
-	call PicrossMinigame_ApplyTileGFXTopLeftFull
-	ld hl, $30 ; '0'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopLeftFull
+	ld hl, $30
+	call Picross_AddToHL2bppPointer
 	ld c, 2
-	call PicrossMinigame_ApplyTileGFXTopLeftFull
+	call Picross_ApplyTileGFXTopLeftFull
 	ret
 
-PicrossMinigame_SetTileGFX_10:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_10:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 8
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 8
-	call PicrossMinigame_ApplyTileGFXTopRight1
-	ld hl, $30 ; '0'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopRight1
+	ld hl, $30
+	call Picross_AddToHL2bppPointer
 	ld c, 2
-	call PicrossMinigame_ApplyTileGFXTopRight1
-	call PicrossMinigame_SetTileGFXPointerDE
+	call Picross_ApplyTileGFXTopRight1
+	call Picross_SetTileGFXPointerDE
 	ld hl, $18
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 8
-	call PicrossMinigame_ApplyTileGFXTopLeft1
-	ld hl, $40 ; '@'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopLeft1
+	ld hl, $40
+	call Picross_AddToHL2bppPointer
 	ld c, 2
-	call PicrossMinigame_ApplyTileGFXTopLeft1
+	call Picross_ApplyTileGFXTopLeft1
 	ret
 
-PicrossMinigame_SetTileGFX_11:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_11:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 8
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 8
-	call PicrossMinigame_ApplyTileGFXTopRight2
-	ld hl, $30 ; '0'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopRight2
+	ld hl, $30
+	call Picross_AddToHL2bppPointer
 	ld c, 2
-	call PicrossMinigame_ApplyTileGFXTopRight2
-	call PicrossMinigame_SetTileGFXPointerDE
+	call Picross_ApplyTileGFXTopRight2
+	call Picross_SetTileGFXPointerDE
 	ld hl, $18
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 8
-	call PicrossMinigame_ApplyTileGFXTopLeft2
-	ld hl, $40 ; '@'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopLeft2
+	ld hl, $40
+	call Picross_AddToHL2bppPointer
 	ld c, 2
-	call PicrossMinigame_ApplyTileGFXTopLeft2
+	call Picross_ApplyTileGFXTopLeft2
 	ret
 
-PicrossMinigame_SetTileGFX_12:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_12:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 8
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 8
-	call PicrossMinigame_ApplyTileGFXTopRightFull
-	ld hl, $30 ; '0'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopRightFull
+	ld hl, $30
+	call Picross_AddToHL2bppPointer
 	ld c, 2
-	call PicrossMinigame_ApplyTileGFXTopRightFull
+	call Picross_ApplyTileGFXTopRightFull
 	ret
 
-PicrossMinigame_SetTileGFX_13:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_13:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 4
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, $A
-	call PicrossMinigame_ApplyTileGFXTopLeftFull
+	call Picross_ApplyTileGFXTopLeftFull
 	ret
 
-PicrossMinigame_SetTileGFX_14:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_14:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 4
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, $A
-	call PicrossMinigame_ApplyTileGFXTopRight1
-	call PicrossMinigame_SetTileGFXPointerDE
+	call Picross_ApplyTileGFXTopRight1
+	call Picross_SetTileGFXPointerDE
 	ld hl, $14
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, $A
-	call PicrossMinigame_ApplyTileGFXTopLeft1
+	call Picross_ApplyTileGFXTopLeft1
 	ret
 
-PicrossMinigame_SetTileGFX_15:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_15:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 4
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, $A
-	call PicrossMinigame_ApplyTileGFXTopRight2
-	call PicrossMinigame_SetTileGFXPointerDE
+	call Picross_ApplyTileGFXTopRight2
+	call Picross_SetTileGFXPointerDE
 	ld hl, $14
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, $A
-	call PicrossMinigame_ApplyTileGFXTopLeft2
+	call Picross_ApplyTileGFXTopLeft2
 	ret
 
-PicrossMinigame_SetTileGFX_16:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_SetTileGFX_16:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 4
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, $A
-	call PicrossMinigame_ApplyTileGFXTopRightFull
+	call Picross_ApplyTileGFXTopRightFull
 	ret
 
-PicrossMinigame_ApplyDigit_17:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_ApplyDigit_17:
+	call Picross_SetTileGFXPointerDE
 	ld hl, $C
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 4
-	call PicrossMinigame_ApplyTileGFXTopLeftFull
-	ld hl, $20 ; ' '
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopLeftFull
+	ld hl, $20
+	call Picross_AddToHL2bppPointer
 	ld c, 6
-	call PicrossMinigame_ApplyTileGFXTopLeftFull
+	call Picross_ApplyTileGFXTopLeftFull
 	ret
 
-PicrossMinigame_ApplyDigit_18:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_ApplyDigit_18:
+	call Picross_SetTileGFXPointerDE
 	ld hl, $C
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 4
-	call PicrossMinigame_ApplyTileGFXTopRight1
-	ld hl, $20 ; ' '
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopRight1
+	ld hl, $20
+	call Picross_AddToHL2bppPointer
 	ld c, 6
-	call PicrossMinigame_ApplyTileGFXTopRight1
-	call PicrossMinigame_SetTileGFXPointerDE
+	call Picross_ApplyTileGFXTopRight1
+	call Picross_SetTileGFXPointerDE
 	ld hl, $1C
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 4
-	call PicrossMinigame_ApplyTileGFXTopLeft1
-	ld hl, $30 ; '0'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopLeft1
+	ld hl, $30
+	call Picross_AddToHL2bppPointer
 	ld c, 6
-	call PicrossMinigame_ApplyTileGFXTopLeft1
+	call Picross_ApplyTileGFXTopLeft1
 	ret
 
-PicrossMinigame_ApplyDigit_19:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_ApplyDigit_19:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 8
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 8
-	call PicrossMinigame_ApplyTileGFXTopLeftFull
-	ld hl, $20 ; ' '
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopLeftFull
+	ld hl, $20
+	call Picross_AddToHL2bppPointer
 	ld c, 2
-	call PicrossMinigame_ApplyTileGFXTopLeftFull
+	call Picross_ApplyTileGFXTopLeftFull
 	ret
 
-PicrossMinigame_ApplyDigit_20:
-	call PicrossMinigame_SetTileGFXPointerDE
+Picross_ApplyDigit_20:
+	call Picross_SetTileGFXPointerDE
 	ld hl, 8
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 8
-	call PicrossMinigame_ApplyTileGFXTopRight1
-	ld hl, $20 ; ' '
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopRight1
+	ld hl, $20
+	call Picross_AddToHL2bppPointer
 	ld c, 2
-	call PicrossMinigame_ApplyTileGFXTopRight1
-	call PicrossMinigame_SetTileGFXPointerDE
+	call Picross_ApplyTileGFXTopRight1
+	call Picross_SetTileGFXPointerDE
 	ld hl, $18
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_AddToHL2bppPointer
 	ld c, 8
-	call PicrossMinigame_ApplyTileGFXTopLeft1
-	ld hl, $30 ; '0'
-	call PicrossMinigame_AddToHL2bppPointer
+	call Picross_ApplyTileGFXTopLeft1
+	ld hl, $30
+	call Picross_AddToHL2bppPointer
 	ld c, 2
-	call PicrossMinigame_ApplyTileGFXTopLeft1
+	call Picross_ApplyTileGFXTopLeft1
 	ret
 
-PicrossMinigame_AddToHL2bppPointer:
+Picross_AddToHL2bppPointer:
 	push de
 	ld a, [wPicrossBase2bppPointer]
 	ld e, a
@@ -1658,69 +1728,69 @@ PicrossMinigame_AddToHL2bppPointer:
 	pop de
 	ret
 
-PicrossMinigame_ApplyTileGFXTopLeftFull:
+Picross_ApplyTileGFXTopLeftFull:
 	ld a, [de]
 	inc de
-	ld b, $F8 ; 'ø'
-	call PicrossMinigame_ApplyTileGFXCommon
+	ld b, $F8
+	call Picross_ApplyTileGFXCommon
 	dec c
-	jr nz, PicrossMinigame_ApplyTileGFXTopLeftFull
+	jr nz, Picross_ApplyTileGFXTopLeftFull
 	ret
 
-PicrossMinigame_ApplyTileGFXTopRight1:
+Picross_ApplyTileGFXTopRight1:
 	ld a, [de]
 	inc de
 	rlca
 	rlca
 	ld b, 3
-	call PicrossMinigame_ApplyTileGFXCommon
+	call Picross_ApplyTileGFXCommon
 	dec c
-	jr nz, PicrossMinigame_ApplyTileGFXTopRight1
+	jr nz, Picross_ApplyTileGFXTopRight1
 	ret
 
-PicrossMinigame_ApplyTileGFXTopLeft1:
+Picross_ApplyTileGFXTopLeft1:
 	ld a, [de]
 	inc de
 	sla a
 	sla a
-	ld b, $E0 ; 'à'
-	call PicrossMinigame_ApplyTileGFXCommon
+	ld b, $E0
+	call Picross_ApplyTileGFXCommon
 	dec c
-	jr nz, PicrossMinigame_ApplyTileGFXTopLeft1
+	jr nz, Picross_ApplyTileGFXTopLeft1
 	ret
 
-PicrossMinigame_ApplyTileGFXTopRight2:
+Picross_ApplyTileGFXTopRight2:
 	ld a, [de]
 	inc de
 	swap a
 	ld b, $F
-	call PicrossMinigame_ApplyTileGFXCommon
+	call Picross_ApplyTileGFXCommon
 	dec c
-	jr nz, PicrossMinigame_ApplyTileGFXTopRight2
+	jr nz, Picross_ApplyTileGFXTopRight2
 	ret
 
-PicrossMinigame_ApplyTileGFXTopLeft2:
+Picross_ApplyTileGFXTopLeft2:
 	ld a, [de]
 	inc de
 	swap a
-	ld b, $80 ; '€'
-	call PicrossMinigame_ApplyTileGFXCommon
+	ld b, $80
+	call Picross_ApplyTileGFXCommon
 	dec c
-	jr nz, PicrossMinigame_ApplyTileGFXTopLeft2
+	jr nz, Picross_ApplyTileGFXTopLeft2
 	ret
 
-PicrossMinigame_ApplyTileGFXTopRightFull:
+Picross_ApplyTileGFXTopRightFull:
 	ld a, [de]
 	inc de
 	srl a
 	srl a
 	ld b, 62
-	call PicrossMinigame_ApplyTileGFXCommon
+	call Picross_ApplyTileGFXCommon
 	dec c
-	jr nz, PicrossMinigame_ApplyTileGFXTopRightFull
+	jr nz, Picross_ApplyTileGFXTopRightFull
 	ret
 
-PicrossMinigame_ApplyTileGFXCommon:
+Picross_ApplyTileGFXCommon:
 	push de
 	push af
 	ld a, [wPicrossCurrentTileType]
@@ -1734,7 +1804,7 @@ PicrossMinigame_ApplyTileGFXCommon:
 	ld [hl], a
 	jr .finish
 
-.skip:
+.skip
 	ld a, b
 	xor $FF
 	ld e, a
@@ -1749,7 +1819,7 @@ PicrossMinigame_ApplyTileGFXCommon:
 	ld [hl], a
 	jr .finish
 
-.Unreferenced:
+.asm_e3516 ; unreferenced
 	ld a, b
 	xor $FF
 	ld e, a
@@ -1758,12 +1828,12 @@ PicrossMinigame_ApplyTileGFXCommon:
 	ld [hl], a
 	pop af
 
-.finish:
+.finish
 	pop de
 	inc hl
 	ret
 
-PicrossMinigame_SetTileGFXPointerDE:
+Picross_SetTileGFXPointerDE:
 	ld a, [wPicrossCurrentTileType]
 	cp -1
 	jr z, .skip
@@ -1790,13 +1860,14 @@ PicrossMinigame_SetTileGFXPointerDE:
 	dw .filled
 	dw .crossed
 	dw .empty
-	
+
+; need to use `
 .empty:
-	dw 0
-	dw %1101000
-	dw %1001000
-	dw %1000
-	dw %1111000
+	db $00,$00
+	db $68,$00
+	db $48,$00
+	db $08,$00
+	db $78,$00
 
 .filled:
 	dw %1111100011111000
@@ -1812,24 +1883,23 @@ PicrossMinigame_SetTileGFXPointerDE:
 	dw %101000000001000
 	dw %000000001111000
 
-PicrossMinigame_LoadLayout:
+Picross_LoadLayout:
 	ld l, a
 	ld h, 0
 	add hl, hl
 	add hl, hl
 	ld de, PicrossSprites
 	add hl, de
-	ldi a, [hl]
+	ld a, [hli]
 	and a
 	jr z, .normal_pattern
 
 .tileset_pattern
-; Pattern originates from a tileset,
-; its bottom part data is offset by exactly $100.
-
+; Pattern originates from a tileset.
+; Its bottom half GFX is offset by exactly $100.
 	ld b, [hl]
 	inc hl
-	ldi a, [hl]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld de, wPicrossLayoutBuffer - 1
@@ -1848,12 +1918,10 @@ PicrossMinigame_LoadLayout:
 	ret
 
 .normal_pattern
-; Pattern originates from regular 2bpp data,
-; load the top part and bottom part sequentially.
-
+; Pattern originates from regular 2bpp data.
 	ld b, [hl]
 	inc hl
-	ldi a, [hl]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld de, wPicrossLayoutBuffer - 1
@@ -1877,62 +1945,7 @@ PicrossSprites:
 	picross_pattern PATTERN_NORMAL, GengarIcon
 	picross_pattern PATTERN_NORMAL, AnnonIcon
 	picross_pattern PATTERN_NORMAL, SnorlaxIcon
-	picross_pattern PATTERN_TILESET, $C, Tileset_0c_GFX + $200 ; PC
+; TODO: Setting fixed bank $C for now, need to rip Tileset_0c_GFX
+	picross_pattern PATTERN_TILESET, $C, Tileset_0c_GFX + $200
 	picross_pattern PATTERN_NORMAL, PoliwrathSpriteGFX
 
-; TODO: Turn this into GFX files
-PicrossGFX:	db $20, $20, $50, $50, $50, $50, $50, $50, $20, $20, 0
-	db 0, 0, 0, 0, 0, $20, $20, $60, $60, $20, $20, $20, $20
-	db $20, $20, 0, 0, 0, 0, 0, 0, $60, $60, $10, $10, $20
-	db $20, $40, $40, $70, $70, 0, 0, 0, 0, 0, 0, $60, $60
-	db $10, $10, $60, $60, $10, $10, $20, $20, 0, 0, 0, 0
-	db 0, 0, $30, $30, $50, $50, $50, $50, $38, $38, $10, $10
-	db 0, 0, 0, 0, 0, 0, $60, $60, $40, $40, $60, $60, $10
-	db $10, $60, $60, 0, 0, 0, 0, 0, 0, $30, $30, $40, $40
-	db $60, $60, $50, $50, $60, $60, 0, 0, 0, 0, 0, 0, $70
-	db $70, $10, $10, $10, $10, $20, $20, $20, $20, 0, 0, 0
-	db 0, 0, 0, $60, $60, $50, $50, $20, $20, $50, $50, $60
-	db $60, 0, 0, 0, 0, 0, 0, $60, $60, $50, $50, $30, $30
-	db $10, $10, $20, $20, 0, 0, 0, 0, 0, 0, $90, $90, $A8
-	db $A8, $A8, $A8, $A8, $A8, $90, $90, 0, 0, 0, 0, 0, 0
-	db $90, $90, $90, $90, $90, $90, $90, $90, $90, $90, 0
-	db 0, 0, 0, 0, 0, $A0, $A0, $90, $90, $90, $90, $A0, $A0
-	db $B8, $B8, 0, 0, 0, 0, 0, 0, $A0, $A0, $90, $90, $B0
-	db $B0, $88, $88, $B0, $B0, 0, 0, 0, 0, 0, 0, $98, $98
-	db $A8, $A8, $A8, $A8, $B8, $B8, $88, $88, 0, 0, 0, 0
-	db 0, 0, $B0, $B0, $A0, $A0, $B0, $B0, $88, $88, $B0, $B0
-	db 0, 0, 0, 0, 0, 0, $98, $98, $A0, $A0, $B0, $B0, $A8
-	db $A8, $B0, $B0, 0, 0, 0, 0, 0, 0
-PicrossBackgroundGFX:db $FE, 1, $8A, $75, $BA, $45, $FA, 5, $82, $7D, $BE, $41
-	db $FE, 1, 0, $FF, 0, $FF, $20, $DF, 5, $FA, $A, $F5, $45
-	db $BE, $22, $DF, $10, $FF, 0, $FF, 0, $FF, $48, $FF, $A2
-	db $FF, $F5, $FF, $FF, $FF, $AF, $5F, $55, $AA, $F8, 5
-	db $69, 0, $2A, 0, 1, 0, 8, 0, $45, 0, $AA, 0, $44, 0
-	db $A0, 0
-PicrossColumnsGFX:db $FC, 0, $FC, 0, $FC, 0, $FC, 0, $FC, 0, $FC, 0, $FC
-	db 0, $FC, 0, $F, 0, $F, 0, $F, 0, $F, 0, $F, 0, $F, 0
-	db $F, 0, $F, 0, $C0, 0, $C0, 0, $C0, 0, $C0, 0, $C0, 0
-	db $C0, 0, $C0, 0, $C0, 0
-PicrossRow1GFX:	db 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, $FF, 0, $FF, 0
-PicrossRow2GFX:	db $FF, 0, $FF, 0, $FF, 0, $FF, 0, 0, 0, 0, 0, 0, 0, 0
-	db 0
-PicrossRow3GFX:	db 0, 0, 0, 0, $FF, 0, $FF, 0, $FF, 0, $FF, 0, $FF, 0
-	db $FF, 0
-PicrossGridGFX:	db 4, 0, $6D, 0, $4D, 0, $C, 0, $7D, 0, $FF, 0, 4, 0, $6D
-	db 0, $10, 0, $B6, 0, $34, 0, $30, 0, $F7, 0, $FF, 0, $10
-	db 0, $B6, 0, $40, 1, $DA, 1, $D2, 1, $C2, 1, $DE, 1, $FE
-	db 1, $40, 1, $DA, 1, $4D, 0, $C, 0, $7D, 0, $FF, 0, 4
-	db 0, $6D, 0, $4D, 0, $C, 0, $34, 0, $30, 0, $F7, 0, $FF
-	db 0, $10, 0, $B6, 0, $34, 0, $30, 0, $D2, 1, $C2, 1, $DE
-	db 1, $FE, 1, $40, 1, $DA, 1, $D2, 1, $C2, 1, $7D, 0, $FF
-	db 0, 4, 0, $6D, 0, $4D, 0, $C, 0, $7D, 0, 0, $FF, $F7
-	db 0, $FF, 0, $10, 0, $B6, 0, $34, 0, $30, 0, $F7, 0, 0
-	db $FF, $DE, 1, $FE, 1, $40, 1, $DA, 1, $D2, 1, $C2, 1
-	db $DE, 1, 0, $FF
-PicrossCursorGFX:db $FE, $FE, $82, $82, $82, $82, $82, $82, $82, $82, $82
-	db $82, $FE, $FE, 0, 0, $10, $10, 0, $28, $26, $52, $36
-	db $BD, $61, $D5, $39, $12, $14, $C, $10, $50, $10, $10
-	db 0, 8, 2, $42, $10, 0, 0, $84, $21, 0, 0, 0, $10, $50
-	db 0, 0, $20, $20, 0, $10, 0, $84, $20, 0, 8, 0, 0, 8
-	db 0, 4
-	db   5
