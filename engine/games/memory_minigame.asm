@@ -348,7 +348,7 @@ MemoryGame_CheckMatch:
 .VictoryText:
 	start_asm
 	push bc
-	hlcoord 6, 0
+	hlcoord 2, 13
 	call MemoryGame_PlaceCard
 	ld hl, .YeahText
 	pop bc
@@ -623,3 +623,4 @@ MemoryGame_AnimateCursor:		; Called from sprite animation routine?
 	add a, 9
 	ld [hl], a
 	ret
+
