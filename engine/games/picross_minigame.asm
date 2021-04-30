@@ -14,11 +14,11 @@ SECTION "engine/games/picross_minigame.asm", ROMX
 	const PICROSS_EXIT_MODE
 PICROSS_END_LOOP_F EQU 7
 
-; wPicrossCurrentTileType constants
+; wPicrossCurrentCellType constants
 	const_def
-	const PICROSS_BLANK_TILE
-	const PICROSS_COLORED_TILE
-	const PICROSS_MARKED_TILE
+	const PICROSS_BLANK_CELL
+	const PICROSS_COLORED_CELL
+	const PICROSS_MARKED_CELL
 
 PICROSS_GFX_BGTILE EQU $80
 PICROSS_GFX_BUSHTILE EQU $81
@@ -26,8 +26,11 @@ PICROSS_GFX_BUSHGROUNDTILE EQU $82
 PICROSS_GFX_GROUNDTILE EQU $83
 
 PICROSS_GFX_COLUMNS EQU $84
-PICROSS_GFX_ROWS EQU $B4
-PICROSS_GFX_TABLESTART equ $F0
+PICROSS_GFX_ROWS EQU $b4
+PICROSS_GFX_TABLESTART equ $f0
+
+; The Picross game area is referred as the "table" here.
+; The table consists of 256 cells, divided into 4x4 "grids" of 16 cells each.
 
 PicrossMinigame:
 	call .Init
@@ -60,7 +63,7 @@ PicrossMinigame:
 	call InitSpriteAnimStruct
 
 	ld a, -1
-	ld [wPicrossCurrentTileType], a
+	ld [wPicrossCurrentCellType], a
 	call Picross_InitPicrossTable
 	call Picross_InitPicrossDigits
 
@@ -80,19 +83,18 @@ PicrossMinigame:
 	ld a, %11010000
 	ld [rOBP0], a
 
-	xor a
-	ld [wPicrossCurrentTileType], a
+	xor a ; PICROSS_BLANK_CELL
+	ld [wPicrossCurrentCellType], a
 	ret
 
 .InitGFX:
-; Load the background GFX
 	ld hl, PicrossBackgroundGFX
 	ld de, vPicrossBackground
 	ld bc, 4 tiles
 	ld a, BANK(PicrossBackgroundGFX)
 	call FarCopyData
 
-; Load the column and row GFX
+; Load the column GFX
 	ld de, vPicrossBackground tile 4
 	ld b, 4
 
@@ -112,6 +114,8 @@ PicrossMinigame:
 	pop bc
 	dec b
 	jr nz, .column_outer_loop
+
+; Load the row GFX
 	ld de, vPicrossBackground tile $34
 	ld b, 4
 
@@ -258,7 +262,7 @@ PicrossMinigame:
 	ret
 
 .InitRAM:
-	ld hl, wPicrossMarkedTiles
+	ld hl, wPicrossMarkedCells
 	ld bc, $514
 	xor a
 	call ByteFill
@@ -276,7 +280,7 @@ PicrossMinigame:
 	and a
 	ret
 
-.quit:
+.quit
 	scf
 	ret
 
@@ -324,7 +328,7 @@ PicrossMinigame:
 	add hl, bc
 	ld [hl], 0
 
-; Exit Picross minigame
+; Exit Picross minigame when the puzzle is solved
 	ld hl, wJumptableIndex
 	inc [hl]
 
@@ -351,8 +355,6 @@ PicrossMinigame:
 	ret
 
 .PlaceTable:
-; Builds a table consisting of 256x256 Picross tiles.
-; It is divided into grids of 4x4 tiles.
 	ld hl, .TableCoords
 	ld c, 4 * 4
 	ld a, PICROSS_GFX_TABLESTART
@@ -374,7 +376,6 @@ PicrossMinigame:
 	ret
 
 .PlaceTableGrid:
-; Place a grid
 	ld de, SCREEN_WIDTH
 	ld b, 3
 
@@ -399,16 +400,19 @@ PicrossMinigame:
 	dwcoord 10, 6
 	dwcoord 13, 6
 	dwcoord 16, 6
+
 ; row 2
 	dwcoord 7, 9
 	dwcoord 10, 9
 	dwcoord 13, 9
 	dwcoord 16, 9
+
 ; row 3
 	dwcoord 7, 12
 	dwcoord 10, 12
 	dwcoord 13, 12
 	dwcoord 16, 12
+
 ; row 4
 	dwcoord 7, 15
 	dwcoord 10, 15
@@ -482,14 +486,14 @@ PicrossMinigame:
 	dec c
 	jr nz, .row_numbers_loop3
 	pop hl
-	ld de, $3C
+	ld de, $3c
 	add hl, de
 	dec b
 	jr nz, .row_numbers_loop1
 	ret
 
 .HandleError:
-; If something's gone wrong, print a big ol' "ERROR" in
+; In case of invalid calculations, print "ERROR" in
 ; the middle of the game display.
 	ld a, [wPicrossErrorCheck]
 	and a
@@ -521,7 +525,7 @@ PicrossMinigame:
 
 Picross_CheckPuzzleSolved:
 	ld de, wPicrossBitmap
-	ld hl, wPicrossMarkedTiles
+	ld hl, wPicrossMarkedCells
 	ld c, 0
 
 .loop
@@ -565,17 +569,17 @@ Picross_ProcessJoypad:
 
 .b_pressed
 	ld a, 1
-	jr .mark_tile
+	jr .mark_cell
 
 .a_pressed
 	xor a
 
-.mark_tile
+.mark_cell
 	ld [wPicrossJoypadAction], a
 	ld a, 1
 	ld [wca59], a
 	call Picross_DetermineGridCoord
-	call Picross_MarkTile
+	call Picross_MarkCell
 	call Picross_InitDustObject
 	ret
 
@@ -595,18 +599,18 @@ Picross_InitDustObject:
 	ld d, [hl]
 	inc d
 	inc d
-	ld a, [wPicrossCurrentTileType]
-	cp 1
+	ld a, [wPicrossCurrentCellType]
+	cp PICROSS_COLORED_CELL
 	ret nz
 
-; Make dust object only if we are marking a tile
+; Make dust object only if we are marking a cell
 	ld a, SPRITE_ANIM_INDEX_MINIGAME_PICROSS_DUST
 	call InitSpriteAnimStruct
 	ret
 
 Picross_DetermineGridCoord:
-; Transforms the sprite's current X and Y position
-; and determines wPicrossCurrentGridNumber and wPicrossCurrentTileNumber.
+; Determines wPicrossCurrentGridNumber and wPicrossCurrentCellNumber
+; from the cursor's current X and Y position.
 	ld hl, wPicrossCursorSpritePointer
 	ld c, [hl]
 	inc hl
@@ -634,25 +638,25 @@ Picross_DetermineGridCoord:
 	jr nc, .second_grid_column
 
 .first_grid_column
-	call .WriteXTileCoords
+	call .WriteXCellCoords
 	ld a, 0
 	jr .grid_column_okay
 
 .second_grid_column
 	sub $18
-	call .WriteXTileCoords
+	call .WriteXCellCoords
 	ld a, 1
 	jr .grid_column_okay
 
 .third_grid_column
 	sub $30
-	call .WriteXTileCoords
+	call .WriteXCellCoords
 	ld a, 2
 	jr .grid_column_okay
 
 .fourth_grid_column
 	sub $48
-	call .WriteXTileCoords
+	call .WriteXCellCoords
 	ld a, 3
 
 .grid_column_okay
@@ -668,28 +672,28 @@ Picross_DetermineGridCoord:
 	jr nc, .second_grid_row
 
 .first_grid_row
-	call .WriteYTileCoords
+	call .WriteYCellCoords
 	ld a, [wPicrossCurrentGridNumber]
 	add a, 0
 	jr .grid_row_okay
 
 .second_grid_row
 	sub $18
-	call .WriteYTileCoords
+	call .WriteYCellCoords
 	ld a, [wPicrossCurrentGridNumber]
 	add a, 4
 	jr .grid_row_okay
 
 .third_grid_row
 	sub $30
-	call .WriteYTileCoords
+	call .WriteYCellCoords
 	ld a, [wPicrossCurrentGridNumber]
 	add a, 8
 	jr .grid_row_okay
 
 .fourth_grid_row
 	sub $48
-	call .WriteYTileCoords
+	call .WriteYCellCoords
 	ld a, [wPicrossCurrentGridNumber]
 	add a, 12
 
@@ -697,70 +701,70 @@ Picross_DetermineGridCoord:
 	ld [wPicrossCurrentGridNumber], a
 	ret
 
-.WriteXTileCoords:
+.WriteXCellCoords:
 	cp $12
-	jr z, .fourth_tile_column
-	cp $C
-	jr z, .third_tile_column
+	jr z, .fourth_cell_column
+	cp $c
+	jr z, .third_cell_column
 	cp $6
-	jr z, .second_tile_column
+	jr z, .second_cell_column
 
-.first_tile_column
+.first_cell_column
 	ld a, 0
-	jr .tile_column_okay
+	jr .cell_column_okay
 
-.second_tile_column
+.second_cell_column
 	ld a, 1
-	jr .tile_column_okay
+	jr .cell_column_okay
 
-.third_tile_column
+.third_cell_column
 	ld a, 2
-	jr .tile_column_okay
+	jr .cell_column_okay
 
-.fourth_tile_column
+.fourth_cell_column
 	ld a, 3
 
-.tile_column_okay
-	ld [wPicrossCurrentTileNumber], a
+.cell_column_okay
+	ld [wPicrossCurrentCellNumber], a
 	ret
 
-.WriteYTileCoords:
+.WriteYCellCoords:
 	cp $12
-	jr z, .fourth_tile_row
-	cp $C
-	jr z, .third_tile_row
+	jr z, .fourth_cell_row
+	cp $c
+	jr z, .third_cell_row
 	cp $6
-	jr z, .second_tile_row
+	jr z, .second_cell_row
 
-.first_tile_row
-	ld a, [wPicrossCurrentTileNumber]
+.first_cell_row
+	ld a, [wPicrossCurrentCellNumber]
 	add a, 0
-	jr .tile_row_okay
+	jr .cell_row_okay
 
-.second_tile_row
-	ld a, [wPicrossCurrentTileNumber]
+.second_cell_row
+	ld a, [wPicrossCurrentCellNumber]
 	add a, 4
-	jr .tile_row_okay
+	jr .cell_row_okay
 
-.third_tile_row
-	ld a, [wPicrossCurrentTileNumber]
+.third_cell_row
+	ld a, [wPicrossCurrentCellNumber]
 	add a, 8
-	jr .tile_row_okay
+	jr .cell_row_okay
 
-.fourth_tile_row
-	ld a, [wPicrossCurrentTileNumber]
+.fourth_cell_row
+	ld a, [wPicrossCurrentCellNumber]
 	add a, 12
 
-.tile_row_okay
-	ld [wPicrossCurrentTileNumber], a
+.cell_row_okay
+	ld [wPicrossCurrentCellNumber], a
 	ret
 
-Picross_MarkTile:
-	call Picross_SetTargetTileType
+Picross_MarkCell:
+	call Picross_SetTargetCellType
 	ld hl, vPicrossPlayArea
 
-; space between each grid tileset
-	ld de, 144
+; space between each grid in VRAM
+	ld de, 9 tiles
 	ld a, [wPicrossCurrentGridNumber]
 
 .find_tile
@@ -778,7 +782,7 @@ Picross_MarkTile:
 	ld c, 9
 	ld b, BANK(@)
 	call Request2bpp
-	call Picross_SetMarkedTileGFX
+	call Picross_SetMarkedCellGFX
 	pop hl
 
 	ld de, wPicrossRowGFX2bppBuffer
@@ -787,7 +791,7 @@ Picross_MarkTile:
 	call Request2bpp
 	ret
 
-Picross_SetTargetTileType:
+Picross_SetTargetCellType:
 	ld a, [wPicrossCurrentGridNumber]
 	ld d, a
 
@@ -802,7 +806,7 @@ Picross_SetTargetTileType:
 	or e
 	ld e, a
 
-	ld a, [wPicrossCurrentTileNumber]
+	ld a, [wPicrossCurrentCellNumber]
 	ld d, a
 
 	and 12
@@ -817,13 +821,13 @@ Picross_SetTargetTileType:
 	ld e, a
 	ld d, 0
 
-	ld hl, wPicrossMarkedTiles
+	ld hl, wPicrossMarkedCells
 	add hl, de
 	ldh a, [hJoypadState]
 	and %11111100
 	jr z, .check_b_pressed
 
-	ld a, [wPicrossCurrentTileType]
+	ld a, [wPicrossCurrentCellType]
 	ld [hl], a
 	ret
 
@@ -835,8 +839,8 @@ Picross_SetTargetTileType:
 	cp B_BUTTON
 	jr z, .done
 
-	ld a, 2
-	ld [wPicrossCurrentTileType], a
+	ld a, PICROSS_MARKED_CELL
+	ld [wPicrossCurrentCellType], a
 	ld [hl], a
 	ret
 
@@ -845,19 +849,19 @@ Picross_SetTargetTileType:
 	cp A_BUTTON
 	jr z, .done
 
-	ld a, 1
-	ld [wPicrossCurrentTileType], a
+	ld a, PICROSS_COLORED_CELL
+	ld [wPicrossCurrentCellType], a
 	ld [hl], a
 	ret
 
 .done
-	xor a
-	ld [wPicrossCurrentTileType], a
+	xor a ; PICROSS_BLANK_CELL
+	ld [wPicrossCurrentCellType], a
 	ld [hl], a
 	ret
 
-Picross_SetMarkedTileGFX:
-	ld a, [wPicrossCurrentTileNumber]
+Picross_SetMarkedCellGFX:
+	ld a, [wPicrossCurrentCellNumber]
 	ld e, a
 	ld d, 0
 	ld hl, .BufferRoutineTable
@@ -875,25 +879,25 @@ Picross_SetMarkedTileGFX:
 	jp hl
 
 .BufferRoutineTable:
-	dw wPicrossRowGFX2bppBuffer,       Picross_SetTileGFX_1
-	dw wPicrossRowGFX2bppBuffer,       Picross_SetTileGFX_2
-	dw wPicrossRowGFX2bppBuffer + $10, Picross_SetTileGFX_3
-	dw wPicrossRowGFX2bppBuffer + $20, Picross_SetTileGFX_4
+	dw wPicrossRowGFX2bppBuffer,       Picross_SetCellGFX_1
+	dw wPicrossRowGFX2bppBuffer,       Picross_SetCellGFX_2
+	dw wPicrossRowGFX2bppBuffer + $10, Picross_SetCellGFX_3
+	dw wPicrossRowGFX2bppBuffer + $20, Picross_SetCellGFX_4
 
-	dw wPicrossRowGFX2bppBuffer,       Picross_SetTileGFX_5
-	dw wPicrossRowGFX2bppBuffer,       Picross_SetTileGFX_6
-	dw wPicrossRowGFX2bppBuffer + $10, Picross_SetTileGFX_7
-	dw wPicrossRowGFX2bppBuffer + $20, Picross_SetTileGFX_8
+	dw wPicrossRowGFX2bppBuffer,       Picross_SetCellGFX_5
+	dw wPicrossRowGFX2bppBuffer,       Picross_SetCellGFX_6
+	dw wPicrossRowGFX2bppBuffer + $10, Picross_SetCellGFX_7
+	dw wPicrossRowGFX2bppBuffer + $20, Picross_SetCellGFX_8
 
-	dw wPicrossRowGFX2bppBuffer + $30, Picross_SetTileGFX_9
-	dw wPicrossRowGFX2bppBuffer + $30, Picross_SetTileGFX_10
-	dw wPicrossRowGFX2bppBuffer + $40, Picross_SetTileGFX_11
-	dw wPicrossRowGFX2bppBuffer + $50, Picross_SetTileGFX_12
+	dw wPicrossRowGFX2bppBuffer + $30, Picross_SetCellGFX_9
+	dw wPicrossRowGFX2bppBuffer + $30, Picross_SetCellGFX_10
+	dw wPicrossRowGFX2bppBuffer + $40, Picross_SetCellGFX_11
+	dw wPicrossRowGFX2bppBuffer + $50, Picross_SetCellGFX_12
 
-	dw wPicrossRowGFX2bppBuffer + $60, Picross_SetTileGFX_13
-	dw wPicrossRowGFX2bppBuffer + $60, Picross_SetTileGFX_14
-	dw wPicrossRowGFX2bppBuffer + $70, Picross_SetTileGFX_15
-	dw wPicrossRowGFX2bppBuffer + $80, Picross_SetTileGFX_16
+	dw wPicrossRowGFX2bppBuffer + $60, Picross_SetCellGFX_13
+	dw wPicrossRowGFX2bppBuffer + $60, Picross_SetCellGFX_14
+	dw wPicrossRowGFX2bppBuffer + $70, Picross_SetCellGFX_15
+	dw wPicrossRowGFX2bppBuffer + $80, Picross_SetCellGFX_16
 
 Picross_InitPicrossTable:
 ; Pick between 4 available layouts
@@ -911,13 +915,13 @@ Picross_PopulateRAMBitmap:
 	ld c, 8
 
 ; Populate top half
-.tiles:
+.tiles
 	push bc
 	push hl
-	call Picross_PopulateOneRow
+	call .PopulateOneRow
 	ld bc, LEN_2BPP_TILE
 	add hl, bc
-	call Picross_PopulateOneRow
+	call .PopulateOneRow
 	pop hl
 	inc hl
 	inc hl
@@ -929,13 +933,13 @@ Picross_PopulateRAMBitmap:
 	ld hl, wPicrossLayoutBuffer2
 	ld c, 8
 
-.tiles2:
+.tiles2
 	push bc
 	push hl
-	call Picross_PopulateOneRow
+	call .PopulateOneRow
 	ld bc, LEN_2BPP_TILE
 	add hl, bc
-	call Picross_PopulateOneRow
+	call .PopulateOneRow
 	pop hl
 	inc hl
 	inc hl
@@ -944,7 +948,7 @@ Picross_PopulateRAMBitmap:
 	jr nz, .tiles2
 	ret
 
-Picross_PopulateOneRow:
+.PopulateOneRow:
 	ld b, [hl]
 	ld c, 8
 
@@ -985,7 +989,7 @@ Picross_InitPicrossDigits:
 	ld [wPicrossErrorCheck], a
 	ret
 
-.errored:
+.errored
 	ld a, 1
 	ld [wPicrossErrorCheck], a
 	ret
@@ -993,7 +997,7 @@ Picross_InitPicrossDigits:
 Picross_InitDigitBuffer:
 	ld hl, wPicrossNumbersBuffer
 	ld c, 0
-	ld a, $FF
+	ld a, $ff
 
 .loop:
 	ld [hli], a
@@ -1157,102 +1161,105 @@ Picross_ApplyColumnDigits:
 	ret
 
 Picross_VRAMAndDigitRowPointers:
+; A huge table of VRAM locations and the subroutine to apply to it.
+; This is used for printing the row digits in the proper positions.
+
 ; 0
-	dw vPicrossBackground tile 4,  Picross_SetTileGFX_1
-	dw vPicrossBackground tile 4,  Picross_SetTileGFX_5
-	dw vPicrossBackground tile 7,  Picross_SetTileGFX_9
-	dw vPicrossBackground tile 10, Picross_SetTileGFX_13
-	dw vPicrossBackground tile 13, Picross_SetTileGFX_1
+	dw vPicrossBackground tile  4, Picross_SetCellGFX_1
+	dw vPicrossBackground tile  4, Picross_SetCellGFX_5
+	dw vPicrossBackground tile  7, Picross_SetCellGFX_9
+	dw vPicrossBackground tile 10, Picross_SetCellGFX_13
+	dw vPicrossBackground tile 13, Picross_SetCellGFX_1
 ; 1
-	dw $8840, Picross_SetTileGFX_2
-	dw $8840, Picross_SetTileGFX_6
-	dw $8870, Picross_SetTileGFX_10
-	dw $88A0, Picross_SetTileGFX_14
-	dw $88D0, Picross_SetTileGFX_2
+	dw vPicrossBackground tile  4, Picross_SetCellGFX_2
+	dw vPicrossBackground tile  4, Picross_SetCellGFX_6
+	dw vPicrossBackground tile  7, Picross_SetCellGFX_10
+	dw vPicrossBackground tile 10, Picross_SetCellGFX_14
+	dw vPicrossBackground tile 13, Picross_SetCellGFX_2
 ; 2
-	dw $8850, Picross_SetTileGFX_3
-	dw $8850, Picross_SetTileGFX_7
-	dw $8880, Picross_SetTileGFX_11
-	dw $88B0, Picross_SetTileGFX_15
-	dw $88E0, Picross_SetTileGFX_3
+	dw vPicrossBackground tile  5, Picross_SetCellGFX_3
+	dw vPicrossBackground tile  5, Picross_SetCellGFX_7
+	dw vPicrossBackground tile  8, Picross_SetCellGFX_11
+	dw vPicrossBackground tile 11, Picross_SetCellGFX_15
+	dw vPicrossBackground tile 14, Picross_SetCellGFX_3
 ; 3
-	dw $8860, Picross_SetTileGFX_4
-	dw $8860, Picross_SetTileGFX_8
-	dw $8890, Picross_SetTileGFX_12
-	dw $88C0, Picross_SetTileGFX_16
-	dw $88F0, Picross_SetTileGFX_4
+	dw vPicrossBackground tile  6, Picross_SetCellGFX_4
+	dw vPicrossBackground tile  6, Picross_SetCellGFX_8
+	dw vPicrossBackground tile  9, Picross_SetCellGFX_12
+	dw vPicrossBackground tile 12, Picross_SetCellGFX_16
+	dw vPicrossBackground tile 15, Picross_SetCellGFX_4
 ; 4
-	dw $8900, Picross_SetTileGFX_1
-	dw $8900, Picross_SetTileGFX_5
-	dw $8930, Picross_SetTileGFX_9
-	dw $8960, Picross_SetTileGFX_13
-	dw $8990, Picross_SetTileGFX_1
+	dw vPicrossBackground tile 16, Picross_SetCellGFX_1
+	dw vPicrossBackground tile 16, Picross_SetCellGFX_5
+	dw vPicrossBackground tile 19, Picross_SetCellGFX_9
+	dw vPicrossBackground tile 22, Picross_SetCellGFX_13
+	dw vPicrossBackground tile 25, Picross_SetCellGFX_1
 ; 5
-	dw $8900, Picross_SetTileGFX_2
-	dw $8900, Picross_SetTileGFX_6
-	dw $8930, Picross_SetTileGFX_10
-	dw $8960, Picross_SetTileGFX_14
-	dw $8990, Picross_SetTileGFX_2
-	dw $8910, Picross_SetTileGFX_3
+	dw vPicrossBackground tile 16, Picross_SetCellGFX_2
+	dw vPicrossBackground tile 16, Picross_SetCellGFX_6
+	dw vPicrossBackground tile 19, Picross_SetCellGFX_10
+	dw vPicrossBackground tile 22, Picross_SetCellGFX_14
+	dw vPicrossBackground tile 25, Picross_SetCellGFX_2
+	dw vPicrossBackground tile 17, Picross_SetCellGFX_3
 ; 6
-	dw $8910, Picross_SetTileGFX_7
-	dw $8940, Picross_SetTileGFX_11
-	dw $8970, Picross_SetTileGFX_15
-	dw $89A0, Picross_SetTileGFX_3
-	dw $8920, Picross_SetTileGFX_4
+	dw vPicrossBackground tile 17, Picross_SetCellGFX_7
+	dw vPicrossBackground tile 20, Picross_SetCellGFX_11
+	dw vPicrossBackground tile 23, Picross_SetCellGFX_15
+	dw vPicrossBackground tile 26, Picross_SetCellGFX_3
+	dw vPicrossBackground tile 18, Picross_SetCellGFX_4
 ; 7
-	dw $8920, Picross_SetTileGFX_8
-	dw $8950, Picross_SetTileGFX_12
-	dw $8980, Picross_SetTileGFX_16
-	dw $89B0, Picross_SetTileGFX_4
-	dw $89C0, Picross_SetTileGFX_1
+	dw vPicrossBackground tile 18, Picross_SetCellGFX_8
+	dw vPicrossBackground tile 21, Picross_SetCellGFX_12
+	dw vPicrossBackground tile 24, Picross_SetCellGFX_16
+	dw vPicrossBackground tile 27, Picross_SetCellGFX_4
+	dw vPicrossBackground tile 28, Picross_SetCellGFX_1
 ; 8
-	dw $89C0, Picross_SetTileGFX_5
-	dw $89F0, Picross_SetTileGFX_9
-	dw $8A20, Picross_SetTileGFX_13
-	dw $8A50, Picross_SetTileGFX_1
-	dw $89C0, Picross_SetTileGFX_2
+	dw vPicrossBackground tile 28, Picross_SetCellGFX_5
+	dw vPicrossBackground tile 31, Picross_SetCellGFX_9
+	dw vPicrossBackground tile 34, Picross_SetCellGFX_13
+	dw vPicrossBackground tile 37, Picross_SetCellGFX_1
+	dw vPicrossBackground tile 28, Picross_SetCellGFX_2
 ; 9
-	dw $89C0, Picross_SetTileGFX_6
-	dw $89F0, Picross_SetTileGFX_10
-	dw $8A20, Picross_SetTileGFX_14
+	dw vPicrossBackground tile 28, Picross_SetCellGFX_6
+	dw vPicrossBackground tile 31, Picross_SetCellGFX_10
+	dw vPicrossBackground tile 34, Picross_SetCellGFX_14
 ; 10
-	dw $8A50, Picross_SetTileGFX_2
-	dw $89D0, Picross_SetTileGFX_3
-	dw $89D0, Picross_SetTileGFX_7
-	dw $8A00, Picross_SetTileGFX_11
-	dw $8A30, Picross_SetTileGFX_15
-	dw $8A60, Picross_SetTileGFX_3
+	dw vPicrossBackground tile 37, Picross_SetCellGFX_2
+	dw vPicrossBackground tile 29, Picross_SetCellGFX_3
+	dw vPicrossBackground tile 29, Picross_SetCellGFX_7
+	dw vPicrossBackground tile 32, Picross_SetCellGFX_11
+	dw vPicrossBackground tile 35, Picross_SetCellGFX_15
+	dw vPicrossBackground tile 38, Picross_SetCellGFX_3
 ; 11
-	dw $89E0, Picross_SetTileGFX_4
-	dw $89E0, Picross_SetTileGFX_8
-	dw $8A10, Picross_SetTileGFX_12
-	dw $8A40, Picross_SetTileGFX_16
-	dw $8A70, Picross_SetTileGFX_4
+	dw vPicrossBackground tile 30, Picross_SetCellGFX_4
+	dw vPicrossBackground tile 30, Picross_SetCellGFX_8
+	dw vPicrossBackground tile 33, Picross_SetCellGFX_12
+	dw vPicrossBackground tile 36, Picross_SetCellGFX_16
+	dw vPicrossBackground tile 39, Picross_SetCellGFX_4
 ; 12
-	dw $8A80, Picross_SetTileGFX_1
-	dw $8A80, Picross_SetTileGFX_5
-	dw $8AB0, Picross_SetTileGFX_9
-	dw $8AE0, Picross_SetTileGFX_13
-	dw $8B10, Picross_SetTileGFX_1
+	dw vPicrossBackground tile 40, Picross_SetCellGFX_1
+	dw vPicrossBackground tile 40, Picross_SetCellGFX_5
+	dw vPicrossBackground tile 43, Picross_SetCellGFX_9
+	dw vPicrossBackground tile 46, Picross_SetCellGFX_13
+	dw vPicrossBackground tile 49, Picross_SetCellGFX_1
 ; 13
-	dw $8A80, Picross_SetTileGFX_2
-	dw $8A80, Picross_SetTileGFX_6
-	dw $8AB0, Picross_SetTileGFX_10
-	dw $8AE0, Picross_SetTileGFX_14
-	dw $8B10, Picross_SetTileGFX_2
- ; 14
-	dw $8A90, Picross_SetTileGFX_3
-	dw $8A90, Picross_SetTileGFX_7
-	dw $8AC0, Picross_SetTileGFX_11
-	dw $8AF0, Picross_SetTileGFX_15
-	dw $8B20, Picross_SetTileGFX_3
+	dw vPicrossBackground tile 40, Picross_SetCellGFX_2
+	dw vPicrossBackground tile 40, Picross_SetCellGFX_6
+	dw vPicrossBackground tile 43, Picross_SetCellGFX_10
+	dw vPicrossBackground tile 46, Picross_SetCellGFX_14
+	dw vPicrossBackground tile 49, Picross_SetCellGFX_2
+; 14
+	dw vPicrossBackground tile 41, Picross_SetCellGFX_3
+	dw vPicrossBackground tile 41, Picross_SetCellGFX_7
+	dw vPicrossBackground tile 44, Picross_SetCellGFX_11
+	dw vPicrossBackground tile 47, Picross_SetCellGFX_15
+	dw vPicrossBackground tile 50, Picross_SetCellGFX_3
 ; 15
-	dw $8AA0, Picross_SetTileGFX_4
-	dw $8AA0, Picross_SetTileGFX_8
-	dw $8AD0, Picross_SetTileGFX_12
-	dw $8B00, Picross_SetTileGFX_16
-	dw $8B30, Picross_SetTileGFX_4
+	dw vPicrossBackground tile 42, Picross_SetCellGFX_4
+	dw vPicrossBackground tile 42, Picross_SetCellGFX_8
+	dw vPicrossBackground tile 45, Picross_SetCellGFX_12
+	dw vPicrossBackground tile 48, Picross_SetCellGFX_16
+	dw vPicrossBackground tile 51, Picross_SetCellGFX_4
 
 Picross_ApplyRowDigits:
 	ld c, 96
@@ -1261,117 +1268,121 @@ Picross_ApplyRowDigits:
 	ret
 
 Picross_VRAMAndDigitColumnPointers:
-	dw $8B40, Picross_SetTileGFX_1
-	dw $8B40, Picross_SetTileGFX_2
-	dw $8B50, Picross_SetTileGFX_3
-	dw $8B60, Picross_SetTileGFX_4
-	dw $8BD0, Picross_SetTileGFX_1
-	dw $8BD0, Picross_SetTileGFX_2
+; Another huge table of VRAM locations and the subroutine to apply to it.
+; Used for printing the column digits in the proper positions.
 
-	dw $8B40, Picross_SetTileGFX_5
-	dw $8B40, Picross_SetTileGFX_6
-	dw $8B50, Picross_SetTileGFX_7
-	dw $8B60, Picross_SetTileGFX_8
-	dw $8BD0, Picross_ApplyDigit_17
-	dw $8BD0, Picross_ApplyDigit_18
-
-	dw $8B70, Picross_SetTileGFX_9
-	dw $8B70, Picross_SetTileGFX_10
-	dw $8B80, Picross_SetTileGFX_11
-	dw $8B90, Picross_SetTileGFX_12
-	dw $8BF0, Picross_ApplyDigit_19
-	dw $8BF0, Picross_ApplyDigit_20
-
-	dw $8BA0, Picross_SetTileGFX_13
-	dw $8BA0, Picross_SetTileGFX_14
-	dw $8BB0, Picross_SetTileGFX_15
-	dw $8BC0, Picross_SetTileGFX_16
-	dw $8C10, Picross_SetTileGFX_13
-	dw $8C10, Picross_SetTileGFX_14
-
-	dw $8C30, Picross_SetTileGFX_1
-	dw $8C30, Picross_SetTileGFX_2
-	dw $8C40, Picross_SetTileGFX_3
-	dw $8C50, Picross_SetTileGFX_4
-	dw $8CC0, Picross_SetTileGFX_1
-	dw $8CC0, Picross_SetTileGFX_2
-
-	dw $8C30, Picross_SetTileGFX_5
-	dw $8C30, Picross_SetTileGFX_6
-	dw $8C40, Picross_SetTileGFX_7
-	dw $8C50, Picross_SetTileGFX_8
-	dw $8CC0, Picross_ApplyDigit_17
-	dw $8CC0, Picross_ApplyDigit_18
-
-	dw $8C60, Picross_SetTileGFX_9
-	dw $8C60, Picross_SetTileGFX_10
-	dw $8C70, Picross_SetTileGFX_11
-	dw $8C80, Picross_SetTileGFX_12
-	dw $8CE0, Picross_ApplyDigit_19
-	dw $8CE0, Picross_ApplyDigit_20
-
-	dw $8C90, Picross_SetTileGFX_13
-	dw $8C90, Picross_SetTileGFX_14
-	dw $8CA0, Picross_SetTileGFX_15
-	dw $8CB0, Picross_SetTileGFX_16
-	dw $8D00, Picross_SetTileGFX_13
-	dw $8D00, Picross_SetTileGFX_14
-
-	dw $8D20, Picross_SetTileGFX_1
-	dw $8D20, Picross_SetTileGFX_2
-	dw $8D30, Picross_SetTileGFX_3
-	dw $8D40, Picross_SetTileGFX_4
-	dw $8DB0, Picross_SetTileGFX_1
-	dw $8DB0, Picross_SetTileGFX_2
-
-	dw $8D20, Picross_SetTileGFX_5
-	dw $8D20, Picross_SetTileGFX_6
-	dw $8D30, Picross_SetTileGFX_7
-	dw $8D40, Picross_SetTileGFX_8
-	dw $8DB0, Picross_ApplyDigit_17
-	dw $8DB0, Picross_ApplyDigit_18
-
-	dw $8D50, Picross_SetTileGFX_9
-	dw $8D50, Picross_SetTileGFX_10
-	dw $8D60, Picross_SetTileGFX_11
-	dw $8D70, Picross_SetTileGFX_12
-	dw $8DD0, Picross_ApplyDigit_19
-	dw $8DD0, Picross_ApplyDigit_20
-
-	dw $8D80, Picross_SetTileGFX_13
-	dw $8D80, Picross_SetTileGFX_14
-	dw $8D90, Picross_SetTileGFX_15
-	dw $8DA0, Picross_SetTileGFX_16
-	dw $8DF0, Picross_SetTileGFX_13
-	dw $8DF0, Picross_SetTileGFX_14
-
-	dw $8E10, Picross_SetTileGFX_1
-	dw $8E10, Picross_SetTileGFX_2
-	dw $8E20, Picross_SetTileGFX_3
-	dw $8E30, Picross_SetTileGFX_4
-	dw $8EA0, Picross_SetTileGFX_1
-	dw $8EA0, Picross_SetTileGFX_2
-
-	dw $8E10, Picross_SetTileGFX_5
-	dw $8E10, Picross_SetTileGFX_6
-	dw $8E20, Picross_SetTileGFX_7
-	dw $8E30, Picross_SetTileGFX_8
-	dw $8EA0, Picross_ApplyDigit_17
-	dw $8EA0, Picross_ApplyDigit_18
-
-	dw $8E40, Picross_SetTileGFX_9
-	dw $8E40, Picross_SetTileGFX_10
-	dw $8E50, Picross_SetTileGFX_11
-	dw $8E60, Picross_SetTileGFX_12
-	dw $8EC0, Picross_ApplyDigit_19
-	dw $8EC0, Picross_ApplyDigit_20
-
-	dw $8E70, Picross_SetTileGFX_13
-	dw $8E70, Picross_SetTileGFX_14
-	dw $8E80, Picross_SetTileGFX_15
-	dw $8E90, Picross_SetTileGFX_16
-	dw $8EE0, Picross_SetTileGFX_13
-	dw $8EE0, Picross_SetTileGFX_14
+; 0
+	dw vPicrossBackground tile  52, Picross_SetCellGFX_1
+	dw vPicrossBackground tile  52, Picross_SetCellGFX_2
+	dw vPicrossBackground tile  53, Picross_SetCellGFX_3
+	dw vPicrossBackground tile  54, Picross_SetCellGFX_4
+	dw vPicrossBackground tile  61, Picross_SetCellGFX_1
+	dw vPicrossBackground tile  61, Picross_SetCellGFX_2
+; 1
+	dw vPicrossBackground tile  52, Picross_SetCellGFX_5
+	dw vPicrossBackground tile  52, Picross_SetCellGFX_6
+	dw vPicrossBackground tile  53, Picross_SetCellGFX_7
+	dw vPicrossBackground tile  54, Picross_SetCellGFX_8
+	dw vPicrossBackground tile  61, Picross_ApplyDigit_17
+	dw vPicrossBackground tile  61, Picross_ApplyDigit_18
+; 2
+	dw vPicrossBackground tile  55, Picross_SetCellGFX_9
+	dw vPicrossBackground tile  55, Picross_SetCellGFX_10
+	dw vPicrossBackground tile  56, Picross_SetCellGFX_11
+	dw vPicrossBackground tile  57, Picross_SetCellGFX_12
+	dw vPicrossBackground tile  63, Picross_ApplyDigit_19
+	dw vPicrossBackground tile  63, Picross_ApplyDigit_20
+; 3
+	dw vPicrossBackground tile  58, Picross_SetCellGFX_13
+	dw vPicrossBackground tile  58, Picross_SetCellGFX_14
+	dw vPicrossBackground tile  59, Picross_SetCellGFX_15
+	dw vPicrossBackground tile  60, Picross_SetCellGFX_16
+	dw vPicrossBackground tile  65, Picross_SetCellGFX_13
+	dw vPicrossBackground tile  65, Picross_SetCellGFX_14
+; 4
+	dw vPicrossBackground tile  67, Picross_SetCellGFX_1
+	dw vPicrossBackground tile  67, Picross_SetCellGFX_2
+	dw vPicrossBackground tile  68, Picross_SetCellGFX_3
+	dw vPicrossBackground tile  69, Picross_SetCellGFX_4
+	dw vPicrossBackground tile  76, Picross_SetCellGFX_1
+	dw vPicrossBackground tile  76, Picross_SetCellGFX_2
+; 5
+	dw vPicrossBackground tile  67, Picross_SetCellGFX_5
+	dw vPicrossBackground tile  67, Picross_SetCellGFX_6
+	dw vPicrossBackground tile  68, Picross_SetCellGFX_7
+	dw vPicrossBackground tile  69, Picross_SetCellGFX_8
+	dw vPicrossBackground tile  76, Picross_ApplyDigit_17
+	dw vPicrossBackground tile  76, Picross_ApplyDigit_18
+; 6
+	dw vPicrossBackground tile  70, Picross_SetCellGFX_9
+	dw vPicrossBackground tile  70, Picross_SetCellGFX_10
+	dw vPicrossBackground tile  71, Picross_SetCellGFX_11
+	dw vPicrossBackground tile  72, Picross_SetCellGFX_12
+	dw vPicrossBackground tile  78, Picross_ApplyDigit_19
+	dw vPicrossBackground tile  78, Picross_ApplyDigit_20
+; 7
+	dw vPicrossBackground tile  73, Picross_SetCellGFX_13
+	dw vPicrossBackground tile  73, Picross_SetCellGFX_14
+	dw vPicrossBackground tile  74, Picross_SetCellGFX_15
+	dw vPicrossBackground tile  75, Picross_SetCellGFX_16
+	dw vPicrossBackground tile  80, Picross_SetCellGFX_13
+	dw vPicrossBackground tile  80, Picross_SetCellGFX_14
+; 8
+	dw vPicrossBackground tile  82, Picross_SetCellGFX_1
+	dw vPicrossBackground tile  82, Picross_SetCellGFX_2
+	dw vPicrossBackground tile  83, Picross_SetCellGFX_3
+	dw vPicrossBackground tile  84, Picross_SetCellGFX_4
+	dw vPicrossBackground tile  91, Picross_SetCellGFX_1
+	dw vPicrossBackground tile  91, Picross_SetCellGFX_2
+; 9
+	dw vPicrossBackground tile  82, Picross_SetCellGFX_5
+	dw vPicrossBackground tile  82, Picross_SetCellGFX_6
+	dw vPicrossBackground tile  83, Picross_SetCellGFX_7
+	dw vPicrossBackground tile  84, Picross_SetCellGFX_8
+	dw vPicrossBackground tile  91, Picross_ApplyDigit_17
+	dw vPicrossBackground tile  91, Picross_ApplyDigit_18
+; 10
+	dw vPicrossBackground tile  85, Picross_SetCellGFX_9
+	dw vPicrossBackground tile  85, Picross_SetCellGFX_10
+	dw vPicrossBackground tile  86, Picross_SetCellGFX_11
+	dw vPicrossBackground tile  87, Picross_SetCellGFX_12
+	dw vPicrossBackground tile  93, Picross_ApplyDigit_19
+	dw vPicrossBackground tile  93, Picross_ApplyDigit_20
+; 11
+	dw vPicrossBackground tile  88, Picross_SetCellGFX_13
+	dw vPicrossBackground tile  88, Picross_SetCellGFX_14
+	dw vPicrossBackground tile  89, Picross_SetCellGFX_15
+	dw vPicrossBackground tile  90, Picross_SetCellGFX_16
+	dw vPicrossBackground tile  95, Picross_SetCellGFX_13
+	dw vPicrossBackground tile  95, Picross_SetCellGFX_14
+; 12
+	dw vPicrossBackground tile  97, Picross_SetCellGFX_1
+	dw vPicrossBackground tile  97, Picross_SetCellGFX_2
+	dw vPicrossBackground tile  98, Picross_SetCellGFX_3
+	dw vPicrossBackground tile  99, Picross_SetCellGFX_4
+	dw vPicrossBackground tile 106, Picross_SetCellGFX_1
+	dw vPicrossBackground tile 106, Picross_SetCellGFX_2
+; 13
+	dw vPicrossBackground tile  97, Picross_SetCellGFX_5
+	dw vPicrossBackground tile  97, Picross_SetCellGFX_6
+	dw vPicrossBackground tile  98, Picross_SetCellGFX_7
+	dw vPicrossBackground tile  99, Picross_SetCellGFX_8
+	dw vPicrossBackground tile 106, Picross_ApplyDigit_17
+	dw vPicrossBackground tile 106, Picross_ApplyDigit_18
+; 14
+	dw vPicrossBackground tile 100, Picross_SetCellGFX_9
+	dw vPicrossBackground tile 100, Picross_SetCellGFX_10
+	dw vPicrossBackground tile 101, Picross_SetCellGFX_11
+	dw vPicrossBackground tile 102, Picross_SetCellGFX_12
+	dw vPicrossBackground tile 108, Picross_ApplyDigit_19
+	dw vPicrossBackground tile 108, Picross_ApplyDigit_20
+; 15
+	dw vPicrossBackground tile 103, Picross_SetCellGFX_13
+	dw vPicrossBackground tile 103, Picross_SetCellGFX_14
+	dw vPicrossBackground tile 104, Picross_SetCellGFX_15
+	dw vPicrossBackground tile 105, Picross_SetCellGFX_16
+	dw vPicrossBackground tile 110, Picross_SetCellGFX_13
+	dw vPicrossBackground tile 110, Picross_SetCellGFX_14
 
 Picross_ApplyDigits:
 	xor a
@@ -1400,15 +1411,15 @@ Picross_ApplyDigit:
 	ld hl, wPicrossNumbersBuffer
 	add hl, de
 	ld a, [hl]
-	cp $FF
+	cp $ff
 	jr z, .done_applying_digit
 
 	swap a
-	and $F0
+	and $f0
 	ld e, a
 	ld a, [hl]
 	swap a
-	and $F
+	and $f
 	ld d, a
 
 	ld hl, PicrossNumbersGFX
@@ -1432,67 +1443,67 @@ Picross_ApplyDigit:
 	pop hl
 	ret
 
-Picross_SetTileGFX_1:
+Picross_SetCellGFX_1:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 0
 	call Picross_AddToHL2bppPointer
-	ld c, 5*2
+	ld c, 10
 	call Picross_ApplyTileGFXTopLeftFull
 	ret
 
-Picross_SetTileGFX_2:
+Picross_SetCellGFX_2:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 0
 	call Picross_AddToHL2bppPointer
-	ld c, 5*2
+	ld c, 10
 	call Picross_ApplyTileGFXTopRight1
 
 	call Picross_SetTileGFXPointerDE
 	ld hl, $10
 	call Picross_AddToHL2bppPointer
-	ld c, 2*5
+	ld c, 10
 	call Picross_ApplyTileGFXTopLeft1
 
 	ret
 
-Picross_SetTileGFX_3:
+Picross_SetCellGFX_3:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 0
 	call Picross_AddToHL2bppPointer
-	ld c, 5*2
+	ld c, 10
 	call Picross_ApplyTileGFXTopRight2
 
 	call Picross_SetTileGFXPointerDE
 	ld hl, $10
 	call Picross_AddToHL2bppPointer
-	ld c, 5*2
+	ld c, 10
 	call Picross_ApplyTileGFXTopLeft2
 
 	ret
 
-Picross_SetTileGFX_4:
+Picross_SetCellGFX_4:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 0
 	call Picross_AddToHL2bppPointer
-	ld c, 5*2
+	ld c, 10
 	call Picross_ApplyTileGFXTopRightFull
 	ret
 
-Picross_SetTileGFX_5:
+Picross_SetCellGFX_5:
 	call Picross_SetTileGFXPointerDE
-	ld hl, 6*2
+	ld hl, 12
 	call Picross_AddToHL2bppPointer
 	ld c, 4
 	call Picross_ApplyTileGFXTopLeftFull
 	ld hl, $30
 	call Picross_AddToHL2bppPointer
-	ld c, 3*2
+	ld c, 6
 	call Picross_ApplyTileGFXTopLeftFull
 	ret
 
-Picross_SetTileGFX_6:
+Picross_SetCellGFX_6:
 	call Picross_SetTileGFXPointerDE
-	ld hl, $C
+	ld hl, 12
 	call Picross_AddToHL2bppPointer
 	ld c, 4
 	call Picross_ApplyTileGFXTopRight1
@@ -1501,7 +1512,7 @@ Picross_SetTileGFX_6:
 	ld c, 6
 	call Picross_ApplyTileGFXTopRight1
 	call Picross_SetTileGFXPointerDE
-	ld hl, $1C
+	ld hl, $1c
 	call Picross_AddToHL2bppPointer
 	ld c, 4
 	call Picross_ApplyTileGFXTopLeft1
@@ -1511,9 +1522,9 @@ Picross_SetTileGFX_6:
 	call Picross_ApplyTileGFXTopLeft1
 	ret
 
-Picross_SetTileGFX_7:
+Picross_SetCellGFX_7:
 	call Picross_SetTileGFXPointerDE
-	ld hl, $C
+	ld hl, $c
 	call Picross_AddToHL2bppPointer
 	ld c, 4
 	call Picross_ApplyTileGFXTopRight2
@@ -1522,7 +1533,7 @@ Picross_SetTileGFX_7:
 	ld c, 6
 	call Picross_ApplyTileGFXTopRight2
 	call Picross_SetTileGFXPointerDE
-	ld hl, $1C
+	ld hl, $1c
 	call Picross_AddToHL2bppPointer
 	ld c, 4
 	call Picross_ApplyTileGFXTopLeft2
@@ -1532,9 +1543,9 @@ Picross_SetTileGFX_7:
 	call Picross_ApplyTileGFXTopLeft2
 	ret
 
-Picross_SetTileGFX_8:
+Picross_SetCellGFX_8:
 	call Picross_SetTileGFXPointerDE
-	ld hl, $C
+	ld hl, $c
 	call Picross_AddToHL2bppPointer
 	ld c, 4
 	call Picross_ApplyTileGFXTopRightFull
@@ -1544,7 +1555,7 @@ Picross_SetTileGFX_8:
 	call Picross_ApplyTileGFXTopRightFull
 	ret
 
-Picross_SetTileGFX_9:
+Picross_SetCellGFX_9:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 8
 	call Picross_AddToHL2bppPointer
@@ -1556,7 +1567,7 @@ Picross_SetTileGFX_9:
 	call Picross_ApplyTileGFXTopLeftFull
 	ret
 
-Picross_SetTileGFX_10:
+Picross_SetCellGFX_10:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 8
 	call Picross_AddToHL2bppPointer
@@ -1577,7 +1588,7 @@ Picross_SetTileGFX_10:
 	call Picross_ApplyTileGFXTopLeft1
 	ret
 
-Picross_SetTileGFX_11:
+Picross_SetCellGFX_11:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 8
 	call Picross_AddToHL2bppPointer
@@ -1598,7 +1609,7 @@ Picross_SetTileGFX_11:
 	call Picross_ApplyTileGFXTopLeft2
 	ret
 
-Picross_SetTileGFX_12:
+Picross_SetCellGFX_12:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 8
 	call Picross_AddToHL2bppPointer
@@ -1610,51 +1621,51 @@ Picross_SetTileGFX_12:
 	call Picross_ApplyTileGFXTopRightFull
 	ret
 
-Picross_SetTileGFX_13:
+Picross_SetCellGFX_13:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 4
 	call Picross_AddToHL2bppPointer
-	ld c, $A
+	ld c, $a
 	call Picross_ApplyTileGFXTopLeftFull
 	ret
 
-Picross_SetTileGFX_14:
+Picross_SetCellGFX_14:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 4
 	call Picross_AddToHL2bppPointer
-	ld c, $A
+	ld c, $a
 	call Picross_ApplyTileGFXTopRight1
 	call Picross_SetTileGFXPointerDE
 	ld hl, $14
 	call Picross_AddToHL2bppPointer
-	ld c, $A
+	ld c, $a
 	call Picross_ApplyTileGFXTopLeft1
 	ret
 
-Picross_SetTileGFX_15:
+Picross_SetCellGFX_15:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 4
 	call Picross_AddToHL2bppPointer
-	ld c, $A
+	ld c, $a
 	call Picross_ApplyTileGFXTopRight2
 	call Picross_SetTileGFXPointerDE
 	ld hl, $14
 	call Picross_AddToHL2bppPointer
-	ld c, $A
+	ld c, $a
 	call Picross_ApplyTileGFXTopLeft2
 	ret
 
-Picross_SetTileGFX_16:
+Picross_SetCellGFX_16:
 	call Picross_SetTileGFXPointerDE
 	ld hl, 4
 	call Picross_AddToHL2bppPointer
-	ld c, $A
+	ld c, 10
 	call Picross_ApplyTileGFXTopRightFull
 	ret
 
 Picross_ApplyDigit_17:
 	call Picross_SetTileGFXPointerDE
-	ld hl, $C
+	ld hl, $c
 	call Picross_AddToHL2bppPointer
 	ld c, 4
 	call Picross_ApplyTileGFXTopLeftFull
@@ -1666,7 +1677,7 @@ Picross_ApplyDigit_17:
 
 Picross_ApplyDigit_18:
 	call Picross_SetTileGFXPointerDE
-	ld hl, $C
+	ld hl, $c
 	call Picross_AddToHL2bppPointer
 	ld c, 4
 	call Picross_ApplyTileGFXTopRight1
@@ -1675,7 +1686,7 @@ Picross_ApplyDigit_18:
 	ld c, 6
 	call Picross_ApplyTileGFXTopRight1
 	call Picross_SetTileGFXPointerDE
-	ld hl, $1C
+	ld hl, $1c
 	call Picross_AddToHL2bppPointer
 	ld c, 4
 	call Picross_ApplyTileGFXTopLeft1
@@ -1731,7 +1742,7 @@ Picross_AddToHL2bppPointer:
 Picross_ApplyTileGFXTopLeftFull:
 	ld a, [de]
 	inc de
-	ld b, $F8
+	ld b, $f8
 	call Picross_ApplyTileGFXCommon
 	dec c
 	jr nz, Picross_ApplyTileGFXTopLeftFull
@@ -1753,7 +1764,7 @@ Picross_ApplyTileGFXTopLeft1:
 	inc de
 	sla a
 	sla a
-	ld b, $E0
+	ld b, $e0
 	call Picross_ApplyTileGFXCommon
 	dec c
 	jr nz, Picross_ApplyTileGFXTopLeft1
@@ -1763,7 +1774,7 @@ Picross_ApplyTileGFXTopRight2:
 	ld a, [de]
 	inc de
 	swap a
-	ld b, $F
+	ld b, $f
 	call Picross_ApplyTileGFXCommon
 	dec c
 	jr nz, Picross_ApplyTileGFXTopRight2
@@ -1793,8 +1804,8 @@ Picross_ApplyTileGFXTopRightFull:
 Picross_ApplyTileGFXCommon:
 	push de
 	push af
-	ld a, [wPicrossCurrentTileType]
-	cp $FF
+	ld a, [wPicrossCurrentCellType]
+	cp -1
 	jr nz, .skip
 	pop af
 	and b
@@ -1806,7 +1817,7 @@ Picross_ApplyTileGFXCommon:
 
 .skip
 	ld a, b
-	xor $FF
+	xor $ff
 	ld e, a
 	ld a, [hl]
 	and e
@@ -1821,7 +1832,7 @@ Picross_ApplyTileGFXCommon:
 
 .asm_e3516 ; unreferenced
 	ld a, b
-	xor $FF
+	xor $ff
 	ld e, a
 	ld a, [hl]
 	and e
@@ -1834,13 +1845,13 @@ Picross_ApplyTileGFXCommon:
 	ret
 
 Picross_SetTileGFXPointerDE:
-	ld a, [wPicrossCurrentTileType]
+	ld a, [wPicrossCurrentCellType]
 	cp -1
 	jr z, .skip
 	and 3
 	ld e, a
 	ld d, 0
-	ld hl, .Tiles
+	ld hl, .CellGFX
 	add hl, de
 	add hl, de
 	ld e, [hl]
@@ -1855,33 +1866,36 @@ Picross_SetTileGFXPointerDE:
 	ld d, a
 	ret
 
-.Tiles:
+.CellGFX:
+; A "tileset" of 5x5 dots to place over the grid GFX.
 	dw .empty
-	dw .filled
-	dw .crossed
+	dw .colored
+	dw .marked
 	dw .empty
 
-; need to use `
+pusho
+opt b.X ; . = 0, X = 1
 .empty:
-	db $00,$00
-	db $68,$00
-	db $48,$00
-	db $08,$00
-	db $78,$00
+	db %........, %........
+	db %.XX.X..., %........
+	db %.X..X..., %........
+	db %....X..., %........
+	db %.XXXX..., %........
 
-.filled:
-	dw %1111100011111000
-	dw %1111100010000000
-	dw %1111100010000000
-	dw %1111100010000000
-	dw %1111100010000000
+.colored:
+	db %XXXXX..., %XXXXX...
+	db %X......., %XXXXX...
+	db %X......., %XXXXX...
+	db %X......., %XXXXX...
+	db %X......., %XXXXX...
 
-.crossed:
-	dw %000000000000000
-	dw %101000000101000
-	dw %010000001001000
-	dw %101000000001000
-	dw %000000001111000
+.marked:
+	db %........, %........
+	db %X.X....., %..X.X...
+	db %.X......, %.X..X...
+	db %X.X....., %....X...
+	db %........, %.XXXX...
+popo
 
 Picross_LoadLayout:
 	ld l, a
@@ -1896,7 +1910,7 @@ Picross_LoadLayout:
 
 .tileset_pattern
 ; Pattern originates from a tileset.
-; Its bottom half GFX is offset by exactly $100.
+; Its bottom half GFX is exactly $100 apart from the top half.
 	ld b, [hl]
 	inc hl
 	ld a, [hli]
@@ -1904,12 +1918,14 @@ Picross_LoadLayout:
 	ld l, a
 	ld de, wPicrossLayoutBuffer - 1
 	ld a, b
-	ld bc, $20 	; 2 tiles
+	ld bc, 2 tiles
 	push bc
 	push af
 	push hl
 	call FarCopyData
 	pop hl
+
+; apply offset of bottom half GFX
 	ld bc, $100
 	add hl, bc
 	pop af
@@ -1919,6 +1935,7 @@ Picross_LoadLayout:
 
 .normal_pattern
 ; Pattern originates from regular 2bpp data.
+; Its bottom half GFX directly follows the top half.
 	ld b, [hl]
 	inc hl
 	ld a, [hli]
@@ -1926,7 +1943,7 @@ Picross_LoadLayout:
 	ld l, a
 	ld de, wPicrossLayoutBuffer - 1
 	ld a, b
-	ld bc, $40 	; 4 tiles
+	ld bc, 4 tiles
 	call FarCopyData
 	ret
 
@@ -1945,7 +1962,7 @@ PicrossSprites:
 	picross_pattern PATTERN_NORMAL, GengarIcon
 	picross_pattern PATTERN_NORMAL, AnnonIcon
 	picross_pattern PATTERN_NORMAL, SnorlaxIcon
-; TODO: Setting fixed bank $C for now, need to rip Tileset_0c_GFX
-	picross_pattern PATTERN_TILESET, $C, Tileset_0c_GFX + $200
+; TODO: Setting fixed bank $C for now before Tileset_0c_GFX is ripped
+	picross_pattern PATTERN_TILESET, $c, Tileset_0c_GFX + $200
 	picross_pattern PATTERN_NORMAL, PoliwrathSpriteGFX
 

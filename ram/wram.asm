@@ -344,12 +344,12 @@ NEXTU
 
 wPicrossCursorSpritePointer:: ds 2
 wPicrossCurrentGridNumber:: ds 1
-wPicrossCurrentTileNumber:: ds 1
-wPicrossCurrentTileType:: ds 1
+wPicrossCurrentCellNumber:: ds 1
+wPicrossCurrentCellType:: ds 1
 wPicrossJoypadAction:: ds 1
 	ds 1
 wc607:: ds 1
-wPicrossMarkedTiles:: ds 4*4*4*4
+wPicrossMarkedCells:: ds 4*4*4*4
 	ds 1
 wPicrossLayoutBuffer:: ds $20
 wPicrossLayoutBuffer2:: ds $20 - 1
