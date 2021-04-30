@@ -60,8 +60,8 @@ MemoryMinigame:
 	call ByteFill
 
 	xor a
-	ldh [hSCY],	a
-	ldh [hSCX],	a
+	ldh [hSCY], a
+	ldh [hSCX], a
 	ld [rWY], a
 	ld [wJumptableIndex], a
 	ld a, 1
@@ -69,7 +69,7 @@ MemoryMinigame:
 	ld a, %11100011
 	ld [rLCDC], a
 	ld a, %11100100
-	ld [rBGP],	a
+	ld [rBGP], a
 	ld a, %11100000
 	ld [rOBP0], a
 	ret
@@ -83,6 +83,7 @@ MemoryMinigame:
 	call DelayFrame
 	and a
 	ret
+
 .quit
 	scf
 	ret
@@ -140,8 +141,8 @@ endr
 	ret
 
 .spawn_object
-	ld de, $341C
-	ld a, $43
+	depixel 6, 3, 4, 4
+	ld a, SPRITE_ANIM_INDEX_MEMORY_GAME_CURSOR
 	call InitSpriteAnimStruct
 	ld a, 5
 	ld [wMemoryGameNumberTriesRemaining], a
@@ -151,8 +152,8 @@ endr
 
 .CheckTriesRemaining:
 	ld a, [wMemoryGameNumberTriesRemaining]
-	ld hl, $C2B1
-	add a, "０"
+	hlcoord 17, 0
+	add "０"
 	ld [hl], a
 	ld hl, wMemoryGameNumberTriesRemaining
 	ld a, [hl]
@@ -161,12 +162,14 @@ endr
 	ld a, MEMORYGAME_REVEAL_ALL
 	ld [wJumptableIndex], a
 	ret
-.next_try:
+
+.next_try
 	dec [hl]
 	xor a
 	ld [wMemoryGameCardChoice], a
 	ld hl, wJumptableIndex
 	inc [hl]
+
 .PickCard1:
 	ld a, [wMemoryGameCardChoice]
 	and a
@@ -177,7 +180,7 @@ endr
 	ld hl, wMemoryGameCards
 	add hl, de
 	ld a, [hl]
-	cp $FF
+	cp -1
 	ret z
 	ld [wMemoryGameLastCardPicked], a
 	ld [wMemoryGameCard1], a
@@ -190,6 +193,7 @@ endr
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
+
 .PickCard2:
 	ld a, [wMemoryGameCardChoice]
 	and a
@@ -203,7 +207,7 @@ endr
 	ld hl, wMemoryGameCards
 	add hl, de
 	ld a, [hl]
-	cp $FF
+	cp -1
 	ret z
 	ld [wMemoryGameLastCardPicked], a
 	ld [wMemoryGameCard2], a
@@ -215,6 +219,7 @@ endr
 	ld [wMemoryGameCounter], a
 	ld hl, wJumptableIndex
 	inc [hl]
+
 .DelayPickAgain:
 	ld hl, wMemoryGameCounter
 	ld a, [hl]
@@ -222,17 +227,20 @@ endr
 	jr z, .PickAgain
 	dec [hl]
 	ret
+
 .PickAgain:
 	call MemoryGame_CheckMatch
 	ld a, MEMORYGAME_CHECK_TRIES_REMAINING
 	ld [wJumptableIndex], a
 	ret
+
 .RevealAll:
 	ldh a, [hJoypadDown]
 	and A_BUTTON
 	ret z
 	xor a
 	ld [wMemoryGameCounter], a
+
 .RevelationLoop:
 	ld hl, wMemoryGameCounter
 	ld a, [hl]
@@ -249,22 +257,25 @@ endr
 	add hl, de
 	ld a, [hl]
 	pop hl
-	cp $FF
+	cp -1
 	jr z, .RevelationLoop
 	ld [wMemoryGameLastCardPicked], a
 	call MemoryGame_PlaceCard
 	jr .RevelationLoop
-.finish_round:
+
+.finish_round
 	call TextboxWaitPressAorB_BlinkCursor
 	ld hl, wJumptableIndex
 	inc [hl]
+
 .AskPlayAgain:
 	call Cursor_InterpretJoypad
 	jr nc, .restart
 	ld hl, wJumptableIndex
 	set MEMORYGAME_END_LOOP_F, [hl]
 	ret
-.restart:
+
+.restart
 	xor a
 	ld [wJumptableIndex], a
 	ret
@@ -274,26 +285,31 @@ MemoryGame_CheckMatch:
 	ld a, [hli]
 	cp [hl]
 	jr nz, .no_match
+
 	ld a, [wMemoryGameCard1Location]
 	call MemoryGame_Card2Coord
 	call MemoryGame_DeleteCard
+
 	ld a, [wMemoryGameCard2Location]
 	call MemoryGame_Card2Coord
 	call MemoryGame_DeleteCard
+
 	ld a, [wMemoryGameCard1Location]
 	ld e, a
 	ld d, 0
 	ld hl, wMemoryGameCards
 	add hl, de
-	ld [hl], $FF
+	ld [hl], -1
+
 	ld a, [wMemoryGameCard2Location]
 	ld e, a
 	ld d, 0
 	ld hl, wMemoryGameCards
 	add hl, de
-	ld [hl], $FF
+	ld [hl], -1
+
 	ld hl, wMemoryGameLastMatches
-.find_empty_slot:
+.find_empty_slot
 	ld a, [hli]
 	and a
 	jr nz, .find_empty_slot
@@ -306,28 +322,33 @@ MemoryGame_CheckMatch:
 	inc [hl]
 	inc [hl]
 	ld d, 0
-	ld hl, $C2A5
+	hlcoord 5, 0
 	add hl, de
 	call MemoryGame_PlaceCard
 	ld hl, .VictoryText
 	call PrintText
 	ret
-.no_match:
+
+.no_match
 	xor a
 	ld [wMemoryGameLastCardPicked], a
+
 	ld a, [wMemoryGameCard1Location]
 	call MemoryGame_Card2Coord
 	call MemoryGame_PlaceCard
+
 	ld a, [wMemoryGameCard2Location]
 	call MemoryGame_Card2Coord
 	call MemoryGame_PlaceCard
+
 	ld hl, .DarnText
 	call PrintText
 	ret
 
-.VictoryText:db	8
+.VictoryText:
+	start_asm
 	push bc
-	ld hl, $C3A6
+	hlcoord 6, 0
 	call MemoryGame_PlaceCard
 	ld hl, .YeahText
 	pop bc
@@ -335,45 +356,59 @@ MemoryGame_CheckMatch:
 	inc bc
 	inc bc
 	ret
-.YeahText:db 0, $7F, $B2,	$C0, $30, $B7, $E7, $57
-.DarnText:db 0, $2B, $DE,	$C8, $DE, $75, $75, $57
+
+.YeahText:
+	text "　いただき！"
+	done
+
+.DarnText:
+	text "ざんねん⋯⋯"
+	done
 
 MemoryGame_InitBoard:
 	ld hl, wMemoryGameCards
-	ld bc, 45
+	ld bc, wMemoryGameCardsEnd - wMemoryGameCards
 	xor a
 	call ByteFill
 	call MemoryGame_GetDistributionOfTiles
+
 	ld c, 2
 	ld b, [hl]
 	call MemoryGame_SampleTilePlacement
+
 	ld c, 8
 	ld b, [hl]
 	call MemoryGame_SampleTilePlacement
+
 	ld c, 4
 	ld b, [hl]
 	call MemoryGame_SampleTilePlacement
+
 	ld c, 7
 	ld b, [hl]
 	call MemoryGame_SampleTilePlacement
+
 	ld c, 3
 	ld b, [hl]
 	call MemoryGame_SampleTilePlacement
+
 	ld c, 6
 	ld b, [hl]
 	call MemoryGame_SampleTilePlacement
+
 	ld c, 1
 	ld b, [hl]
 	call MemoryGame_SampleTilePlacement
+
 	ld c, 5
 	ld hl, wMemoryGameCards
-	ld b, 45
-.loop:
+	ld b, wMemoryGameCardsEnd - wMemoryGameCards
+.loop
 	ld a, [hl]
 	and a
 	jr nz, .no_load
 	ld [hl], c
-.no_load:
+.no_load
 	inc hl
 	dec b
 	jr nz, .loop
@@ -381,16 +416,11 @@ MemoryGame_InitBoard:
 
 
 MemoryGame_SampleTilePlacement:
-					; MemoryGame_InitBoard+16p
-					; MemoryGame_InitBoard+1Cp
-					; MemoryGame_InitBoard+22p ...
 	push hl
 	ld de, wMemoryGameCards
-.loop:
-					; MemoryGame_SampleTilePlacement+13j
-					; MemoryGame_SampleTilePlacement+17j
+.loop
 	call Random
-	and %111111
+	and %00111111
 	cp 45
 	jr nc, .loop
 	ld l, a
@@ -406,7 +436,6 @@ MemoryGame_SampleTilePlacement:
 	inc hl
 	ret
 
-
 MemoryGame_GetDistributionOfTiles:
 	ld a, [wMenuCursorY]
 	dec a
@@ -419,15 +448,16 @@ MemoryGame_GetDistributionOfTiles:
 	add hl, de
 	ret
 
-.distributions:db 2, 3, 6, 6,	6, 8, 8, 6, 2, 2, 4, 6,	6, 8, 8, 9, 2, 2
-	db 2, 4, 7, 8, 8, $C
+.distributions
+	db $02, $03, $06, $06, $06, $08, $08, $06
+	db $02, $02, $04, $06, $06, $08, $08, $09
+	db $02, $02, $02, $04, $07, $08, $08, $0c
 
 MemoryGame_PlaceCard:
-					; ROM38:638Dp ROM38:63D3p ...
 	ld a, [wMemoryGameLastCardPicked]
 	sla a
 	sla a
-	add a, 4
+	add 4
 	ld [hli], a
 	inc a
 	ld [hld], a
@@ -440,10 +470,8 @@ MemoryGame_PlaceCard:
 	ld c, 3
 	call DelayFrames
 	ret
-
 
 MemoryGame_DeleteCard:
-					; MemoryGame_CheckMatch+16p
 	ld a, 1
 	ld [hli], a
 	ld [hld], a
@@ -455,47 +483,50 @@ MemoryGame_DeleteCard:
 	call DelayFrames
 	ret
 
-
 MemoryGame_InitStrings:
-	ld hl, $C2A0
-	ld bc, $168
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, 1
 	call ByteFill
-	ld hl, $C2A0
+	hlcoord 0, 0
 	ld de, .str1
 	call PlaceString
-	ld hl, $C2AF
+	hlcoord 15, 0
 	ld de, .str2
 	call PlaceString
-	ld hl, .empty
+	ld hl, .dummy_text
 	call PrintText
 	ret
 
-.empty:db $50
-.str1:db	$C4, $DF, $C0, $D3, $C9, $50
-.str2:db	$B1, $C4, $7F, $B6, $B2, $50
+.dummy_text
+	db "@"
+.str1
+	db "とったもの@"
+.str2
+	db "あと　かい@"
 
 MemoryGame_Card2Coord:
-					; ROM38:638Ap ROM38:63BEp ...
 	ld d, 0
-.find_row:
+.find_row
 	sub 9
 	jr c, .found_row
 	inc d
 	jr .find_row
-.found_row:
-	add a, 9
+
+.found_row
+	add 9
 	ld e, a
-	ld hl, $C2C9
-	ld bc, $28
-.loop2:
+	hlcoord 1, 2
+	ld bc, 2 * SCREEN_WIDTH
+.loop2
 	ld a, d
 	and a
 	jr z, .done
 	add hl, bc
 	dec d
 	jr .loop2
-.done:
+
+.done
 	sla e
 	add hl, de
 	ret
@@ -522,49 +553,54 @@ MemoryGame_AnimateCursor:		; Called from sprite animation routine?
 	and D_DOWN
 	jr nz, .pressed_down
 	ret
-.quit:
+
+.quit
 	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
 	ld [hl], 0
 	ret
-.pressed_a:
+
+.pressed_a
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
 	inc a
 	ld [wMemoryGameCardChoice], a
 	ret
-.pressed_left:
+
+.pressed_left
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret z
-	sub $10
+	sub 1 tiles
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	dec [hl]
 	ret
-.pressed_right:
+
+.pressed_right
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
-	cp $80
+	cp (9 - 1) tiles
 	ret z
-	add a, $10
+	add 1 tiles
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	inc [hl]
 	ret
-.pressed_up:
+
+.pressed_up
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret z
-	sub $10
+	sub 1 tiles
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -572,11 +608,12 @@ MemoryGame_AnimateCursor:		; Called from sprite animation routine?
 	sub 9
 	ld [hl], a
 	ret
-.pressed_down:
+
+.pressed_down
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
-	cp $40
+	cp (5 - 1) tiles
 	ret z
 	add a, $10
 	ld [hl], a
