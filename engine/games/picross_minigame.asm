@@ -481,11 +481,11 @@ PicrossMinigame:
 ; Print "ERROR" in the middle of the game display.
 	ld hl, .ErrorBitmap
 	decoord 0, 9
-	ld c, $64
+	ld c, .ErrorBitmap_End - .ErrorBitmap
 
 .print_message:
 	ld a, [hli]
-	add a, $80
+	add a, PICROSS_GFX_BGTILE
 	ld [de], a
 	inc de
 	dec c
@@ -502,6 +502,7 @@ PicrossMinigame:
 	db " █  █ █ █ █ █ █ █ █ "
 	db " ██ █ █ █ █ ███ █ █ "
 	popc
+.ErrorBitmap_End:
 
 Picross_CheckPuzzleSolved:
 	ld de, wPicrossBitmap
