@@ -223,6 +223,7 @@ ROMX $08
 
 ROMX $09
 	org $4000
+	"engine/dumps/bank09.asm@Function24000"
 
 ROMX $0a
 	org $4000
