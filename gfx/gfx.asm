@@ -535,8 +535,14 @@ MemoryGameGFX::
 INCBIN "gfx/minigames/matches.2bpp"
 
 SECTION "gfx.asm@Picross GFX", ROMX
-PicrossGFX::
-INCBIN "gfx/minigames/picross.2bpp"
+PicrossNumbersGFX::
+INCBIN "gfx/minigames/picross_numbers.2bpp"
+PicrossBackgroundGFX::
+INCBIN "gfx/minigames/picross_background.2bpp"
+PicrossGridHighlightsGFX::
+INCBIN "gfx/minigames/picross_highlights.2bpp"
+PicrossGridGFX::
+INCBIN "gfx/minigames/picross_grid.2bpp"
 PicrossCursorGFX::
 INCBIN "gfx/minigames/picross_cursor.2bpp"
 
