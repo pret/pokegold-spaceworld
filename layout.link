@@ -223,6 +223,7 @@ ROMX $08
 
 ROMX $09
 	org $4000
+	"engine/dumps/bank09.asm@Function24000"
 
 ROMX $0a
 	org $4000
@@ -231,10 +232,7 @@ ROMX $0a
 
 ROMX $0b
 	org $4000
-	org $4014
-	"data/items/descriptions.asm"
-	org $5677
-	"data/moves/descriptions.asm"
+	"engine/dumps/bank0b.asm"
 
 ROMX $0c
 	org $4000

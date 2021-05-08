@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/moves/descriptions.asm", ROMX
-
 MoveDescriptions::
 	dw PoundDescription
 	dw KarateChopDescription

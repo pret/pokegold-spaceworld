@@ -30,20 +30,6 @@
 05:4E27 Function14e27
 05:4E4A Function14e4a
 
-09:412C _ExitMenu
-09:4185 Function24185
-09:4199 _InitVerticalMenuCursor
-09:41EF UpdateItemDescription
-09:426A _InitScrollingMenu
-09:4287 _ScrollingMenu
-09:43AF ScrollingMenu_ClearLeftColumn
-09:45C5 SwitchItemsInBag
-09:473B Function2473b
-09:4774 PlaceMenuItemName
-09:4783 PlaceMenuItemQuantity
-09:4955 Function24955
-09:4C60 SelectQuantityToToss
-
 ; all these probably print text
 0A:4000 Function28000
 0A:4C98 LinkTextboxAtHL
@@ -51,10 +37,6 @@
 0A:4DA4 Function28da4
 0A:5A1F Function29a1f ; prints text
 0A:5ABF Function29abf ; prints text
-
-
-0B:52FC Function2d2fc
-0B:5663 Function2d663
 
 0E:4B78 LoadTrainerClassName
 ;0E:4BA0 LoadTrainerClassName.got_name

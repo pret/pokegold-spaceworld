@@ -544,6 +544,8 @@ wPlayerLinkAction:: db
 wLinkTimeoutFrames:: dw
 wcb58:: ds 2
 wMonType:: db
+
+wSelectedItem::
 wCurSpecies:: db
 wNamedObjectTypeBuffer:: db
 
@@ -636,8 +638,11 @@ wMenuDataItems:: db
 wMenuDataIndicesPointer:: dw
 wMenuDataDisplayFunctionPointer:: dw
 wMenuDataPointerTableAddr:: dw
-
-SECTION "MenuData3", WRAM0[$CC22]
+	ds 2
+wcc1c:: dw
+	ds 1
+wcc1f:: dw
+	ds 1
 wMenuData3::
 
 w2DMenuCursorInitY:: db
@@ -759,7 +764,11 @@ SECTION "CD11", WRAM0[$CD11]
 
 wcd11:: ds 1
 
-	ds 20
+	ds 11
+
+wcd1d:: ds 8
+
+	ds 1
 
 wStringBuffer1:: ds 1 ; How long is this?
 wcd27:: ds 1
@@ -872,9 +881,7 @@ wcdb9:: ds 1
 
 wItemAttributeParamBuffer:: db
 wCurPartyLevel:: db
-
-SECTION "CDBD", WRAM0[$CDBD]
-
+wcdbc:: db
 wLinkMode:: db
 ; 00 -
 ; 01 -

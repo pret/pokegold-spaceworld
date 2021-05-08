@@ -26,6 +26,7 @@ SetMenuAttributes::
 
 Get2DMenuJoypad::
 	call Place2DMenuCursor
+Get2DMenuJoypad_NoPlaceCursor::
 	ld hl, w2DMenuFlags + 1
 	res 7, [hl]
 .loop:
