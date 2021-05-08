@@ -135,7 +135,9 @@ text_2d404:
 	text_from_ram wStringBuffer2
 	text "は　おぼえられない！"
 	prompt
-	db $02, $04, $00, $01, $0c, $20, $c3
+	db $02, $04, $00, $01
+	db $0c, $20
+	db $c3
 
 sub_2d436:
 	xor a

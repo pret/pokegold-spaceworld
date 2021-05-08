@@ -1265,10 +1265,10 @@ asm_4831:
 	ret
 
 .MenuHeader2484e:
-	db $00
-	db $00, $0b, $02, $13
+	db 0
+	menu_coords 11, 0, $13, 2
 	dw .data_24856
-	db $01
+	db 1
 
 .data_24856:
 	db $40, $01
@@ -1297,8 +1297,8 @@ asm_24872:
 	ret
 
 MenuHeader24888:
-	db $40
-	db $00, $0b, $02, $13
+	db MENU_BACKUP_TILES
+	menu_coords 11, 0, $13, 2
 	dw 0
 	db 1
 
@@ -1309,8 +1309,8 @@ asm_24890:
 	ret
 
 .MenuHeader2489a:
-	db $40
-	db $00, $00, $0a, $06
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 6, 10
 	dw .text_248a2
 	db 1
 
@@ -1389,13 +1389,9 @@ Function24955::
 
 .MenuHeader2497d:
 	db $40
-	db $0
-	db $B
-	db $11
-	db $13
-	db $0
-	db $0
-	db $1
+	menu_coords 11, 0, $13, $11
+	dw 0
+	db 1
 
 asm_24985:
 	ld a, [wFieldMoveScriptID]
@@ -1626,13 +1622,10 @@ asm_24aa9:
 	ret
 
 .MenuHeader24ae9:
-	db $0
-	db $B
-	db $B
-	db $11
-	db $13
+	db 0
+	menu_coords 11, 11, $13, $11
 	dw .text_24af1
-	db $1
+	db 1
 
 .text_24af1:
 	db "たエ゛とりかえる@"
@@ -1656,13 +1649,10 @@ asm_24b0e:
 	ret
 
 MenuHeader24b24:
-	db $40
-	db $C
-	db $9
-	db $11
-	db $13
+	db MENU_BACKUP_TILES
+	menu_coords 9, 12, $13, $11
 	dw .text_24b2c
-	db $1
+	db 1
 
 .text_24b2c:
 	db "ア<TA!>ガたたかう@"
@@ -1671,13 +1661,10 @@ MenuHeader24b24:
 	db "にげる@"
 
 MenuHeader24b3e:
-	db $40
-	db $C
-	db $0
-	db $11
-	db $13
+	db MENU_BACKUP_TILES
+	menu_coords 0, 12, $13, $11
 	dw .text_24b46
-	db $1
+	db 1
 
 .text_24b46:
 	db "ア<TA!>ジサファりボール×　　　@"
@@ -2003,22 +1990,14 @@ asm_24d15:
 	ret
 
 MenuHeader24d64:
-	db $40
-	db $9
-	db $F
-	db $B
-	db $13
-	db $0
-	db $0
-	db $0
+	db MENU_BACKUP_TILES
+	menu_coords 15, 9, $13, 11
+	dw 0
+	db 0
 
 MenuHeader24d6c:
-	db $40
-	db $F
-	db $7
-	db $11
-	db $13
-	db $FF
-	db $0
-	db $FF
+	db MENU_BACKUP_TILES
+	menu_coords 7, 15, $13, $11
+	dw $ff
+	db $ff
 
