@@ -232,9 +232,9 @@ ROMX $0a
 
 ROMX $0b
 	org $4000
-	org $4014
+	"engine/dumps/bank0b.asm@ShowItemDescription"
 	"data/items/descriptions.asm"
-	org $5677
+	"engine/dumps/bank0b.asm@Function2d2fc"
 	"data/moves/descriptions.asm"
 
 ROMX $0c

@@ -338,13 +338,13 @@ asm_241e5:
 
 UpdateItemDescription::
 	ld a, [wMenuSelection]
-	ld [wCurSpecies], a
+	ld [wSelectedItem], a
 	hlcoord 0, 12
 	ld b, $04
 	ld c, $12
 	call DrawTextBox
 	decoord 1, 14
-	callab Function2c000
+	callab ShowItemDescription
 	ret
 
 Function2420b:

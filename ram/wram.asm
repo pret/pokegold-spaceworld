@@ -544,6 +544,8 @@ wPlayerLinkAction:: db
 wLinkTimeoutFrames:: dw
 wcb58:: ds 2
 wMonType:: db
+
+wSelectedItem::
 wCurSpecies:: db
 wNamedObjectTypeBuffer:: db
 
@@ -762,7 +764,11 @@ SECTION "CD11", WRAM0[$CD11]
 
 wcd11:: ds 1
 
-	ds 20
+	ds 11
+
+wcd1d:: ds 8
+
+	ds 1
 
 wStringBuffer1:: ds 1 ; How long is this?
 wcd27:: ds 1
