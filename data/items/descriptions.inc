@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/items/descriptions.asm", ROMX
-
 ItemDescriptions::
 	dw MasterBallDescription
 	dw UltraBallDescription

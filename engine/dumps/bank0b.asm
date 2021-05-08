@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank0b.asm@ShowItemDescription", ROMX
+SECTION "engine/dumps/bank0b.asm", ROMX
 
 ShowItemDescription::
 	push de
@@ -17,7 +17,8 @@ ShowItemDescription::
 	pop hl
 	jp PlaceString
 
-SECTION "engine/dumps/bank0b.asm@Function2d2fc", ROMX
+INCLUDE "data/items/descriptions.inc"
+
 Function2d2fc:
 	ld a, $1
 	ldh [hJoyDebounceSrc], a
@@ -471,3 +472,5 @@ Function2d663:
 	ld d, [hl]
 	pop hl
 	jp PlaceString
+
+INCLUDE "data/moves/descriptions.inc"
