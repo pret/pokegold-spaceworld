@@ -223,6 +223,7 @@ ROMX $08
 
 ROMX $09
 	org $4000
+	"engine/dumps/bank09.asm@Function24000"
 
 ROMX $0a
 	org $4000
@@ -231,10 +232,7 @@ ROMX $0a
 
 ROMX $0b
 	org $4000
-	org $4014
-	"data/items/descriptions.asm"
-	org $5677
-	"data/moves/descriptions.asm"
+	"engine/dumps/bank0b.asm"
 
 ROMX $0c
 	org $4000
@@ -895,9 +893,11 @@ ROMX $38
 	"gfx.asm@Poker GFX"
 	org $5f93
 	"gfx.asm@15 Puzzle GFX"
-	org $6606
+	org $622b
+	"engine/games/memory_minigame.asm"
 	"gfx.asm@Matches GFX"
-	org $75b7
+	org $6886
+	"engine/games/picross_minigame.asm"
 	"gfx.asm@Picross GFX"
 
 ROMX $39

@@ -244,6 +244,22 @@ wc51a:: ds 1
 	ds 25
 wSlotsEnd:: db
 
+NEXTU
+
+	ds 200
+
+wMemoryGameCards:: ds 9 * 5
+wMemoryGameCardsEnd::
+wMemoryGameLastCardPicked:: db
+wMemoryGameCard1:: db
+wMemoryGameCard2:: db
+wMemoryGameCard1Location:: db
+wMemoryGameCard2Location:: db
+wMemoryGameNumberTriesRemaining:: db
+wMemoryGameLastMatches:: ds 5
+wMemoryGameCounter:: db
+wMemoryGameNumCardsMatched:: db
+
 ENDU
 
 
@@ -324,6 +340,29 @@ wPikachuMinigameTilesPointer:: ds 2
 
 wPikachuMinigameColumnBuffer:: ds 16
 
+NEXTU
+
+wPicrossCursorSpritePointer:: ds 2
+wPicrossCurrentGridNumber:: ds 1
+wPicrossCurrentCellNumber:: ds 1
+wPicrossCurrentCellType:: ds 1
+wPicrossJoypadAction:: ds 1
+	ds 1
+wc607:: ds 1
+wPicrossMarkedCells:: ds 4*4*4*4
+	ds 1
+wPicrossLayoutBuffer:: ds $20
+wPicrossLayoutBuffer2:: ds $20 - 1
+wPicrossBitmap:: ds 4*4*4*4
+wPicrossBase2bppPointer:: ds 2
+wPicrossBaseGFXPointer:: ds 2
+wPicrossDrawingRoutineCounter:: ds 1
+	ds 11
+wPicrossNumbersBuffer:: ds 4*4*4*4
+wPicrossRowGFX2bppBuffer:: ds 144
+	ds 112
+wPicrossErrorCheck:: ds 1
+	ds 1
 NEXTU
 ; Battle-related
 	ds $1ea
@@ -505,6 +544,8 @@ wPlayerLinkAction:: db
 wLinkTimeoutFrames:: dw
 wcb58:: ds 2
 wMonType:: db
+
+wSelectedItem::
 wCurSpecies:: db
 wNamedObjectTypeBuffer:: db
 
@@ -512,6 +553,7 @@ SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db
 
 wSlotsDelay::
+wMemoryGameCardChoice::
 wFlyDestination::
 wIntroSceneFrameCounter::
 wTrainerGearPointerPosition::
@@ -596,8 +638,11 @@ wMenuDataItems:: db
 wMenuDataIndicesPointer:: dw
 wMenuDataDisplayFunctionPointer:: dw
 wMenuDataPointerTableAddr:: dw
-
-SECTION "MenuData3", WRAM0[$CC22]
+	ds 2
+wcc1c:: dw
+	ds 1
+wcc1f:: dw
+	ds 1
 wMenuData3::
 
 w2DMenuCursorInitY:: db
@@ -719,7 +764,11 @@ SECTION "CD11", WRAM0[$CD11]
 
 wcd11:: ds 1
 
-	ds 20
+	ds 11
+
+wcd1d:: ds 8
+
+	ds 1
 
 wStringBuffer1:: ds 1 ; How long is this?
 wcd27:: ds 1
@@ -832,9 +881,7 @@ wcdb9:: ds 1
 
 wItemAttributeParamBuffer:: db
 wCurPartyLevel:: db
-
-SECTION "CDBD", WRAM0[$CDBD]
-
+wcdbc:: db
 wLinkMode:: db
 ; 00 -
 ; 01 -
