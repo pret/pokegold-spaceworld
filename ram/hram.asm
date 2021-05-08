@@ -149,8 +149,8 @@ hFFC9:: db
 hFFCA:: db
 hFFCB:: db
 hFFCC:: db
-
-	ds 3 ; TODO
+hFFCD:: db
+	ds 2 ; TODO
 
 hLCDCPointer::
 	db

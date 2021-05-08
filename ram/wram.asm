@@ -636,8 +636,11 @@ wMenuDataItems:: db
 wMenuDataIndicesPointer:: dw
 wMenuDataDisplayFunctionPointer:: dw
 wMenuDataPointerTableAddr:: dw
-
-SECTION "MenuData3", WRAM0[$CC22]
+	ds 2
+wcc1c:: dw
+	ds 1
+wcc1f:: dw
+	ds 1
 wMenuData3::
 
 w2DMenuCursorInitY:: db
@@ -872,9 +875,7 @@ wcdb9:: ds 1
 
 wItemAttributeParamBuffer:: db
 wCurPartyLevel:: db
-
-SECTION "CDBD", WRAM0[$CDBD]
-
+wcdbc:: db
 wLinkMode:: db
 ; 00 -
 ; 01 -

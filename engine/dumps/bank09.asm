@@ -12,22 +12,22 @@ Function24000:
 	push de
 	ld b, $10
 	ld hl, wMenuDataHeader
-asm_24010:
+.asm_24010
 	ld a, [hli]
 	ld [de], a
 	dec de
 	dec b
-	jr nz, asm_24010
+	jr nz, .asm_24010
 	ld a, [wMenuDataHeader]
 	bit 6, a
-	jr nz, asm_24028
+	jr nz, .asm_24028
 	bit 7, a
-	jr z, asm_2404e
+	jr z, .asm_2404e
 	push de
 	call asm_240b3
 	pop de
-	jr nc, asm_2404e
-asm_24028:
+	jr nc, .asm_2404e
+.asm_24028
 	ld hl, wWindowStackPointer
 	ld a, [hli]
 	ld h, [hl]
@@ -38,30 +38,33 @@ asm_24028:
 	inc b
 	inc c
 	call Function2406d
-asm_2403b:
+
+.asm_2403b
 	push bc
 	push hl
-asm_2403d:
+.asm_2403d
 	ld a, [hli]
 	ld [de], a
 	dec de
 	dec c
-	jr nz, asm_2403d
+	jr nz, .asm_2403d
 	pop hl
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, asm_2403b
-	jr asm_24055
-asm_2404e:
+	jr nz, .asm_2403b
+	jr .asm_24055
+
+.asm_2404e
 	pop hl
 	push hl
 	ld a, [hld]
 	ld l, [hl]
 	ld h, a
 	res 0, [hl]
-asm_24055:
+
+.asm_24055
 	pop hl
 	call Function2406d
 	ld a, h
@@ -109,34 +112,18 @@ Function2406d:
 	ret
 
 Function24090:
-	ld hl, $409c
+	ld hl, .text_2409c
 	call PrintText
 	call WaitBGMap
-asm_24099:
+.asm_24099
 	nop
-	jr asm_24099
-	nop
-	add d
-	or b
-	xor e
-	inc de
-	add d
-	adc l
-	db $e3
-	dec de
-	add e
-	ret c
-	add b
-	ld h, $4e
-	add h
-	db $e3
-	add hl, de
-	db $e3
-	cp h
-	rst $08
-	cp h
-	ret nz
-	ld d, a
+	jr .asm_24099
+
+.text_2409c:
+	text "ウィンドウセーブエりアが"
+	next "オーバーしました"
+	done
+
 asm_240b3:
 	ld hl, wWindowStackPointer
 	ld a, [hli]
@@ -245,7 +232,7 @@ _ExitMenu::
 	ld a, l
 	ld [wWindowStackPointer], a
 	ld a, h
-	ld [$cbf3], a
+	ld [wWindowStackPointer + 1], a
 	call PopWindow
 	ld a, [wMenuDataHeader]
 	bit 0, a
@@ -271,6 +258,7 @@ Function24164:
 	call WaitBGMap
 .loop
 	jr .loop
+
 .text_2416f:
 	text "ポップできる　ウィンドウが"
 	next "ありません！"
@@ -351,23 +339,22 @@ asm_241e5:
 UpdateItemDescription::
 	ld a, [wMenuSelection]
 	ld [wCurSpecies], a
-	ld hl, $c390
+	hlcoord 0, 12
 	ld b, $04
 	ld c, $12
 	call DrawTextBox
-	ld de, $c3b9
-	ld hl, $4000
-	ld a, $0b
-	call FarCall_hl
+	decoord 1, 14
+	callab Function2c000
 	ret
 
+Function2420b:
 	ld a, $01
 	ldh [hBGMapMode], a
-	ld hl, $4262
+	ld hl, .MenuHeader24262
 	call LoadMenuHeader
 	call MenuBox
 	call UpdateSprites
-	ld b, $12
+	ld b, SGB_POKEPIC
 	call GetSGBLayout
 	xor a
 	ldh [hBGMapMode], a
@@ -386,8 +373,7 @@ UpdateItemDescription::
 	ld a, $80
 	ldh [hGraphicStartTile], a
 	ld bc, $0707
-	ld a, $1f
-	call Predef
+	predef PlaceGraphic
 	ld a, $01
 	ldh [hBGMapMode], a
 	call TextboxWaitPressAorB_BlinkCursor
@@ -398,12 +384,12 @@ UpdateItemDescription::
 	call LoadFont
 	ret
 
-	ld b, b
-	inc b
-	ld b, $0d
-	ld c, $00
-	nop
-	db $01
+.MenuHeader24262:
+	db MENU_BACKUP_TILES
+	menu_coords 6, 4, $e, $d
+	dw 0
+	db 1
+
 _InitScrollingMenu::
 	xor a
 	ld [wMenuJoypad], a
@@ -421,12 +407,12 @@ _InitScrollingMenu::
 
 _ScrollingMenu::
 	call Function242b6
-	jp c, asm_24296
+	jp c, .asm_24296
 	ld a, $00
 	ldh [hJoypadSum], a
 	call z, Function242a3
 	jr _ScrollingMenu
-asm_24296:
+.asm_24296
 	ld [wMenuJoypad], a
 	ld a, $00
 	ldh [hJoyDebounceSrc], a
@@ -525,7 +511,7 @@ Function24342:
 	ret
 
 asm_2434e:
-	ld hl, $cc27
+	ld hl, w2DMenuFlags + 1
 	bit 7, [hl]
 	jp z, SetFFInAccumulator
 	ld a, [wMenuDataHeaderEnd]
@@ -536,7 +522,7 @@ asm_2434e:
 	ret
 
 asm_24362:
-	ld hl, $cc27
+	ld hl, w2DMenuFlags + 1
 	bit 7, [hl]
 	jp z, SetFFInAccumulator
 	ld a, [wMenuDataHeaderEnd]
@@ -547,7 +533,7 @@ asm_24362:
 	ret
 
 asm_24376:
-	ld hl, $cc27
+	ld hl, w2DMenuFlags + 1
 	bit 7, [hl]
 	jp z, ClearAccumulator
 	ld hl, wMenuScrollPosition
@@ -558,14 +544,14 @@ asm_24376:
 	jp ClearAccumulator
 
 asm_2438a:
-	ld hl, $cc27
+	ld hl, w2DMenuFlags + 1
 	bit 7, [hl]
 	jp z, ClearAccumulator
 	ld hl, wMenuScrollPosition
 	ld a, [wMenuDataItems]
 	add [hl]
 	ld b, a
-	ld a, [$cdbc]
+	ld a, [wcdbc]
 	cp b
 	jp c, ClearAccumulator
 	inc [hl]
@@ -581,9 +567,9 @@ asm_243a5:
 
 ScrollingMenu_ClearLeftColumn::
 	call MenuBoxCoord2Tile
-	ld de, $0014
+	ld de, $14
 	add hl, de
-	ld de, $0028
+	ld de, $28
 	ld a, [wMenuDataItems]
 asm_243bc:
 	ld [hl], $7f
@@ -593,43 +579,43 @@ asm_243bc:
 	ret
 
 asm_243c3:
-	ld hl, $cc17
+	ld hl, wMenuDataDisplayFunctionPointer + 1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wMenuDataDisplayFunctionPointer]
 	call GetFarByte
-	ld [$cdbc], a
+	ld [wcdbc], a
 	ld a, [wMenuScrollPosition]
 	ld c, a
 	ld a, [wMenuCursorBuffer]
 	add c
 	ld b, a
-	ld a, [$cdbc]
+	ld a, [wcdbc]
 	inc a
 	cp b
-	jr c, asm_243f2
+	jr c, .asm_243f2
 	ld a, [wMenuScrollPosition]
 	ld c, a
 	ld a, [wMenuDataItems]
 	add c
 	ld b, a
-	ld a, [$cdbc]
+	ld a, [wcdbc]
 	inc a
 	cp b
-	jr nc, asm_243fb
-asm_243f2:
+	jr nc, .asm_243fb
+.asm_243f2
 	xor a
 	ld [wMenuScrollPosition], a
 	ld a, $01
 	ld [wMenuCursorBuffer], a
-asm_243fb:
+.asm_243fb
 	ret
 
 asm_243fc:
 	ld a, [wMenuDataHeaderEnd]
 	ld c, a
-	ld a, [$cdbc]
+	ld a, [wcdbc]
 	ld b, a
 	ld a, [wMenuBorderTopCoord]
 	add $01
@@ -658,7 +644,7 @@ asm_2442e:
 asm_24434:
 	ld [w2DMenuFlags], a
 	xor a
-	ld [$cc27], a
+	ld [w2DMenuFlags + 1], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
 	ld a, $c3
@@ -687,7 +673,7 @@ asm_24462:
 	ld [wMenuCursorX], a
 	xor a
 	ld [wCursorCurrentTile], a
-	ld [$cc2e], a
+	ld [wCursorCurrentTile + 1], a
 	ld [wCursorOffCharacter], a
 	ret
 
@@ -741,23 +727,24 @@ asm_244c8:
 	ld a, [wMenuDataHeaderEnd]
 	bit 0, a
 	jr nz, asm_244da
-	ld de, $44d6
+	ld de, .text_244d6
 	call PlaceString
 	ret
 
-	call nc, $d9d2
-	ld d, b
+.text_244d6:
+	db "やめる@"
+
 asm_244da:
 	ld d, h
 	ld e, l
-	ld hl, $cc19
+	ld hl, wMenuDataPointerTableAddr + 1
 	jp CallFar_atHL
 
 asm_244e2:
 	push hl
 	ld d, h
 	ld e, l
-	ld hl, $cc19
+	ld hl, wMenuDataPointerTableAddr + 1
 	call CallFar_atHL
 	pop hl
 	ld a, [wMenuDataIndicesPointer]
@@ -768,7 +755,7 @@ asm_244e2:
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, $cc1c
+	ld hl, wcc1c
 	call CallFar_atHL
 asm_244fe:
 	ret
@@ -807,7 +794,7 @@ Function2452c:
 	ld a, [wMenuDataHeaderEnd]
 	bit 5, a
 	ret z
-	ld hl, $c390
+	hlcoord 0, 12
 	ld b, $04
 	ld c, $12
 	call DrawTextBox
@@ -816,13 +803,13 @@ Function2452c:
 	call asm_24555
 	ld a, [wMenuSelection]
 	cp $ff
-	jr z, asm_24554
-	ld de, $c3b9
-	ld hl, $cc1f
+	jr z, .done
+	decoord 1, 14
+	ld hl, wcc1f
 	call CallFar_atHL
 	ret
 
-asm_24554:
+.done
 	ret
 
 asm_24555:
@@ -833,12 +820,12 @@ asm_24555:
 	add e
 	ld e, a
 	ld d, $00
-	ld hl, $cc17
+	ld hl, wMenuDataDisplayFunctionPointer + 1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	inc hl
-	ld a, [$cc15]
+	ld a, [wMenuDataIndicesPointer + 1]
 	cp $01
 	jr z, asm_24576
 	cp $02
@@ -862,7 +849,7 @@ asm_24576:
 	ret
 
 asm_24590:
-	ld a, [$cdbc]
+	ld a, [wcdbc]
 	ld d, a
 	ld a, e
 	cp d
@@ -881,9 +868,7 @@ asm_2459b:
 	push bc
 	push hl
 	ld c, d
-	ld hl, $4c66
-	ld a, $03
-	call FarCall_hl
+	callab GetBallByIndex
 	ld d, c
 	pop hl
 	pop bc
@@ -1027,7 +1012,7 @@ asm_2469c:
 	inc hl
 	pop af
 	ld [hl], a
-	ld hl, $cc17
+	ld hl, wMenuDataDisplayFunctionPointer + 1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1081,7 +1066,7 @@ asm_246e8:
 asm_246f7:
 	push af
 	call asm_2471b
-	ld hl, $cc17
+	ld hl, wMenuDataDisplayFunctionPointer + 1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1099,7 +1084,7 @@ asm_24707:
 	dec a
 	cpl
 asm_24711:
-	ld hl, $0000
+	ld hl, 0
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -1108,10 +1093,10 @@ asm_24711:
 
 asm_2471b:
 	push hl
-	ld a, [$cc15]
+	ld a, [wMenuDataIndicesPointer + 1]
 	ld c, a
 	ld b, $00
-	ld hl, $472c
+	ld hl, .data_2472c
 	add hl, bc
 	add hl, bc
 	ld c, [hl]
@@ -1120,10 +1105,11 @@ asm_2471b:
 	pop hl
 	ret
 
-	nop
-	nop
-	ld bc, $0200
-	nop
+.data_2472c:
+	dw 0
+	dw 1
+	dw 2
+
 asm_24732:
 	ld a, [hld]
 	ld [de], a
@@ -1137,42 +1123,33 @@ asm_24732:
 Function2473b::
 	ld a, [wMenuSelection]
 	cp $ff
-	jr z, asm_24762
+	jr z, .asm_24762
 	push de
-	ld hl, $53d9
-	ld a, $03
-	call FarCall_hl
+	callab CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld e, a
 	ld d, $00
-	ld hl, $475b
+	ld hl, .data_2475b
 	add hl, de
 	ld a, [hl]
 	pop de
 	ld [de], a
 	inc de
 	jr PlaceMenuItemName
-	ld a, a
-	ld h, d
-	ld h, h
-	ld h, e
-	ld a, a
-	ld a, a
-	ld a, a
-asm_24762:
+
+.data_2475b:
+	db $7f, $62, $64, $63, $7f, $7f, $7f
+
+.asm_24762
 	ld h, d
 	ld l, e
-	ld de, $476b
+	ld de, .text_2476b
 	call PlaceString
 	ret
 
-	ld a, a
-	db $e3
-	db $e3
-	call nc, $d9d2
-	db $e3
-	db $e3
-	ld d, b
+.text_2476b:
+	db "　ーーやめるーー@"
+
 PlaceMenuItemName::
 	push de
 	ld a, [wMenuSelection]
@@ -1186,25 +1163,24 @@ PlaceMenuItemQuantity::
 	push de
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
-	ld hl, $53ad
-	ld a, $03
-	call FarCall_hl
+	callab _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	pop hl
 	and a
-	jr nz, asm_247a5
+	jr nz, .done
 	ld [hl], $f1
 	inc hl
 	ld de, wMenuSelectionQuantity
 	ld bc, $0102
 	call PrintNumber
-asm_247a5:
+.done
 	ret
 
+asm_247a6:
 	ld hl, wPartyMonOTEnd
-	jr asm_247ae
+	jr .asm_247ae
 	ld hl, wdf17
-asm_247ae:
+.asm_247ae
 	push de
 	ld a, [wScrollingMenuCursorPosition]
 	call GetNick
@@ -1212,23 +1188,25 @@ asm_247ae:
 	call PlaceString
 	ret
 
+asm_247ba:
 	ld a, $00
 	ld [wMonType], a
-	jr asm_247c6
+	jr .asm_247c6
 	ld a, $02
 	ld [wMonType], a
-asm_247c6:
+.asm_247c6
 	push de
 	ld a, [wScrollingMenuCursorPosition]
 	ld [wWhichPokemon], a
-	ld a, $31
-	call Predef
+	predef Function50000
 	pop hl
 	call PrintLevel
 	ret
 
+ret_247d7:
 	ret
 
+asm_247d8:
 	push de
 	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
@@ -1240,7 +1218,7 @@ asm_247c6:
 	call GetPokemonName
 	pop hl
 	call PlaceString
-	ld de, $0006
+	ld de, 6
 	add hl, de
 	push hl
 	ld a, [wScrollingMenuCursorPosition]
@@ -1248,7 +1226,7 @@ asm_247c6:
 	call GetNick
 	pop hl
 	call PlaceString
-	ld de, $0006
+	ld de, 6
 	add hl, de
 	push hl
 	ld a, [wScrollingMenuCursorPosition]
@@ -1261,21 +1239,20 @@ asm_247c6:
 	push hl
 	call PrintLevel
 	pop hl
-	ld de, $0003
+	ld de, 3
 	add hl, de
 	push hl
-	ld hl, $469e
-	ld a, $14
-	call FarCall_hl
+	callab Function5069e
 	ld a, $ef
-	jr c, asm_2482e
+	jr c, .asm_2482e
 	ld a, $f5
-asm_2482e:
+.asm_2482e
 	pop hl
 	ld [hl], a
 	ret
 
-	ld hl, $484e
+asm_4831:
+	ld hl, .MenuHeader2484e
 	call CopyMenuHeader
 	call MenuBox
 	call PlaceVerticalMenuItems
@@ -1287,28 +1264,27 @@ asm_2482e:
 	call PrintNumber
 	ret
 
-	nop
-	nop
-	dec bc
-	ld [bc], a
-	inc de
-	ld d, [hl]
-	ld c, b
-	ld bc, $0140
-	ld a, a
-	ld a, a
-	ld a, a
-	ld a, a
-	ld a, a
-	ld a, a
-	ldh a, [$ff50]
-	ld hl, $4888
+.MenuHeader2484e:
+	db $00
+	db $00, $0b, $02, $13
+	dw .data_24856
+	db $01
+
+.data_24856:
+	db $40, $01
+	db "　　　　　　円@"
+
+asm_24860:
+	ld hl, MenuHeader24888
 	call CopyMenuHeader
 	jr asm_24872
-	ld hl, $4888
+
+asm_24868:
+	ld hl, MenuHeader24888
 	ld d, $0b
 	ld e, $00
-	call $1e29
+	call OffsetMenuHeader
+
 asm_24872:
 	call MenuBox
 	call MenuBoxCoord2Tile
@@ -1320,185 +1296,111 @@ asm_24872:
 	ld [hl], $f0
 	ret
 
-	ld b, b
-	nop
-	dec bc
-	ld [bc], a
-	inc de
-	nop
-	nop
-	ld bc, $9a21
-	ld c, b
+MenuHeader24888:
+	db $40
+	db $00, $0b, $02, $13
+	dw 0
+	db 1
+
+asm_24890:
+	ld hl, .MenuHeader2489a
 	call LoadMenuHeader
 	call VerticalMenu
 	ret
 
-	ld b, b
-	nop
-	nop
-	ld a, [bc]
-	ld b, $a2
-	ld c, b
-	ld bc, $03c0
-	or e
-	reti
+.MenuHeader2489a:
+	db $40
+	db $00, $00, $0a, $06
+	dw .text_248a2
+	db 1
 
-	ld d, b
-	or [hl]
-	or e
-	ld d, b
-	call nc, $d9d2
-	ld d, b
-	cp b
-	cp e
-	or [hl]
-	ret c
-	ld d, b
-	call nz, $33de
-	cp c
-	ld d, b
-	inc [hl]
-	sbc $3c
-	rst $10
-	cp d
-	ld d, b
-	sbc e
-	and [hl]
-	ld b, b
-	xor c
-	db $e3
-	ld d, b
-	res 6, [hl]
-	ret c
-	add hl, bc
-	adc b
-	ld d, b
-	or e
-	dec l
-	cp h
-	or l
-	ld d, b
-	call nz, $ca3b
-	ret z
-	reti
+.text_248a2:
+	db "たエ゛うる@"
+	db "かう@"
+	db "やめる@"
+	db "くさかり@"
+	db "とんでけ@"
+	db "どんぶらこ@"
+	db "フルパワー@"
+	db "ひかりゴケ@"
+	db "うずしお@"
+	db "とびはねる@"
+	db "あなをほる@"
+	db "テレポート@"
+	db "タマゴうみ@"
 
-	ld d, b
-	or c
-	push bc
-	db $dd
-	adc $d9
-	ld d, b
-	sub d
-	and a
-	ld b, e
-	db $e3
-	sub e
-	ld d, b
-	adc a
-	sbc l
-	add hl, bc
-	or e
-	ret nc
-	ld d, b
-	jp nz, $bbd6
-	db $dd
-	ret nc
-	reti
+Text248e7:
+	db "つよさをみる@"
+	db "ならびかえ@"
+	db "そうび@"
+	db "キャンセル@"
+	db "もちわざ@"
+	db "メール@"
+	db "エラー！@"
 
-	ld d, b
-	push bc
-	rst $10
-	dec sp
-	or [hl]
-	or h
-	ld d, b
-	cp a
-	or e
-	dec sp
-	ld d, b
-	add [hl]
-	xor l
-	xor e
-	adc l
-	and [hl]
-	ld d, b
-	db $d3
-	pop bc
-	call c, $502b
-	and b
-	db $e3
-	and [hl]
-	ld d, b
-	add e
-	and l
-	db $e3
-	rst $20
-	ld d, b
-	push af
-	ld bc, $02f6
-	rst $30
-	inc bc
-	ld hl, sp+$04
-	ld sp, hl
-	dec b
-	ld a, [$fb06]
-	rlca
-	ld e, e
-	ld [$0964], sp
-	add a
-	ld a, [bc]
-	rst $38
-	ld bc, $f501
-	ld bc, $f602
-	ld bc, $f703
-	ld bc, $f804
-	ld bc, $f905
-	ld bc, $fa06
-	ld bc, $fb07
-	ld bc, $5b08
-	ld bc, $6409
-	ld bc, $870a
-	nop
-	dec bc
-	ld bc, $0c00
-	ld [bc], a
-	nop
-	dec c
-	inc bc
-	nop
-	ld c, $04
-	nop
-	rrca
-	dec b
-	nop
-	db $10
-	ld b, $00
-	ld de, $ff07
+Data2490c:
+	db $f5, $01
+	db $f6, $02
+	db $f7, $03
+	db $f8, $04
+	db $f9, $05
+	db $fa, $06
+	db $fb, $07
+	db $5b, $08
+	db $64, $09
+	db $87, $0a
+	db $ff
+
+Data24921:
+	db $01, $01, $f5
+	db $01, $02, $f6
+	db $01, $03, $f7
+	db $01, $04, $f8
+	db $01, $05, $f9
+	db $01, $06, $fa
+	db $01, $07, $fb
+	db $01, $08, $5b
+	db $01, $09, $64
+	db $01, $0a, $87
+	db $00, $0b, $01
+	db $00, $0c, $02
+	db $00, $0d, $03
+	db $00, $0e, $04
+	db $00, $0f, $05
+	db $00, $10, $06
+	db $00, $11, $07
+	db $ff
+
 Function24955::
 	xor a
 	ldh [hBGMapMode], a
 	call asm_24a0c
-	ld hl, $71cb
-	ld a, $23
-	call FarCall_hl
-	ld hl, $497d
+	callab Function_8f1cb
+	ld hl, .MenuHeader2497d
 	call LoadMenuHeader
-	call $4985
+	call asm_24985
 	call asm_249c9
-	ld a, $01
+	ld a, 1
 	ldh [hBGMapMode], a
 	call asm_24997
 	ld [wMenuSelection], a
 	call CloseWindow
 	ret
 
-	ld b, b
-	nop
-	dec bc
-	ld de, $0013
-	nop
-	ld bc, $c3fa
-	call $873c
+.MenuHeader2497d:
+	db $40
+	db $0
+	db $B
+	db $11
+	db $13
+	db $0
+	db $0
+	db $1
+
+asm_24985:
+	ld a, [wFieldMoveScriptID]
+	inc a
+	add a
 	ld b, a
 	ld a, [wMenuBorderBottomCoord]
 	sub b
@@ -1562,7 +1464,7 @@ asm_249e8:
 	add b
 	ld c, a
 	ld b, $00
-	ld hl, $4921
+	ld hl, Data24921
 	add hl, bc
 	ld a, [hli]
 	and a
@@ -1577,7 +1479,7 @@ asm_24a00:
 	inc hl
 	ld a, [hl]
 	dec a
-	ld hl, $48e7
+	ld hl, Text248e7
 	call GetNthString
 	ld d, h
 	ld e, l
@@ -1636,7 +1538,7 @@ asm_24a5f:
 
 asm_24a63:
 	ld b, a
-	ld hl, $4921
+	ld hl, Data24921
 asm_24a67:
 	ld a, [hli]
 	cp $ff
@@ -1657,7 +1559,7 @@ asm_24a78:
 	xor a
 	ld [wFieldMoveScriptID], a
 	ld hl, wMapBlocksAddress
-	ld bc, $0009
+	ld bc, $9
 	call ByteFill
 	ret
 
@@ -1687,7 +1589,8 @@ asm_24a93:
 	pop hl
 	ret
 
-	ld hl, $4ae9
+asm_24aa9:
+	ld hl, .MenuHeader24ae9
 	call CopyMenuHeader
 	xor a
 	ldh [hBGMapMode], a
@@ -1700,55 +1603,48 @@ asm_24a93:
 	ld h, [hl]
 	ld l, a
 	ld de, wMenuDataHeaderEnd
-	ld bc, $0008
+	ld bc, $8
 	call CopyBytes
 	ld a, [wMenuDataHeaderEnd]
 	bit 7, a
-	jr z, asm_24ae4
+	jr z, .asm_24ae4
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags
 	set 6, [hl]
 	call Get2DMenuJoypad
 	bit 1, a
-	jr z, asm_24ae6
+	jr z, .asm_24ae6
 	ret z
-asm_24ae4:
+.asm_24ae4:
 	scf
 	ret
 
-asm_24ae6:
+.asm_24ae6:
 	and a
 	ret
 
 	ret
 
-; data
-	nop
-	dec bc
-	dec bc
-	ld de, $f113
-	ld c, d
-	ld bc, $03c0
-	call nz, $b6d8
-	or h
-	reti
+.MenuHeader24ae9:
+	db $0
+	db $B
+	db $B
+	db $11
+	db $13
+	dw .text_24af1
+	db $1
 
-	ld d, b
-	jp nz, $bbd6
-	db $dd
-	ret nc
-	reti
+.text_24af1:
+	db "たエ゛とりかえる@"
+	db "つよさをみる@"
+	db "キャンセル@"
 
-	ld d, b
-	add [hl]
-	xor l
-	xor e
-	adc l
-	and [hl]
-	ld d, b
-	ld hl, $4b24
+asm_24b06:
+	ld hl, MenuHeader24b24
 	jr asm_24b0e
-	ld hl, $4b3e
+
+asm_24b0b:
+	ld hl, MenuHeader24b3e
 asm_24b0e:
 	call LoadMenuHeader
 	ld a, [wStartmenuCursor]
@@ -1759,67 +1655,36 @@ asm_24b0e:
 	call ExitMenu
 	ret
 
-	ld b, b
-	inc c
-	add hl, bc
-	ld de, $2c13
-	ld c, e
-	ld bc, MapSetup_Reload
-	dec b
-	ret nz
-	ret nz
-	or [hl]
-	or e
-	ld d, b
-	inc [hl]
-	or e
-	jr z, @+$52
-	ld d, h
-	ld d, b
-	add $29
-	reti
+MenuHeader24b24:
+	db $40
+	db $C
+	db $9
+	db $11
+	db $13
+	dw .text_24b2c
+	db $1
 
-	ld d, b
-	ld b, b
-	inc c
-	nop
-	ld de, $4613
-	ld c, e
-	ld bc, MapSetup_Reload
-	dec bc
-	adc d
-	sbc e
-	jp hl
+.text_24b2c:
+	db "ア<TA!>ガたたかう@"
+	db "どうぐ@"
+	db "#@"
+	db "にげる@"
 
-	ret c
-	inc e
-	db $e3
-	and [hl]
-	pop af
-	ld a, a
-	ld a, a
-	ld a, a
-	ld d, b
-	add e
-	adc d
-	db $dd
-	push bc
-	add hl, hl
-	reti
+MenuHeader24b3e:
+	db $40
+	db $C
+	db $0
+	db $11
+	db $13
+	dw .text_24b46
+	db $1
 
-	ld d, b
-	or d
-	cp h
-	db $dd
-	push bc
-	add hl, hl
-	reti
+.text_24b46:
+	db "ア<TA!>ジサファりボール×　　　@"
+	db "エサをなげる@"
+	db "いしをなげる@"
+	db "にげる@"
 
-	ld d, b
-	add $29
-	reti
-
-	ld d, b
 asm_24b67:
 	call CopyMenuData
 	call MenuBox
@@ -1866,6 +1731,7 @@ asm_24ba9:
 	pop bc
 	ret
 
+asm_24baf:
 	ld b, $00
 asm_24bb1:
 	inc b
@@ -1975,29 +1841,28 @@ asm_24c52:
 	xor a
 	ld [wCursorOffCharacter], a
 	ld [wCursorCurrentTile], a
-	ld [$cc2e], a
+	ld [wCursorCurrentTile + 1], a
 	ret
 
 SelectQuantityToToss::
-	ld hl, $4d64
+	ld hl, MenuHeader24d64
 	call LoadMenuHeader
 	call asm_24c84
 	ret
 
-	ld hl, $540c
-	ld a, $03
-	call FarCall_hl
+asm_24c64:
+	callab GetItemPrice
 	ld a, d
 	ld [wFieldMoveScriptID], a
 	ld a, e
 	ld [wMapBlocksAddress], a
-	ld hl, $4d6c
+	ld hl, MenuHeader24d6c
 	call LoadMenuHeader
 	call asm_24c84
 	ret
 
 asm_24c84:
-	ld a, $01
+	ld a, 1
 	ld [wItemQuantity], a
 asm_24c89:
 	call GetJoypad
@@ -2066,19 +1931,19 @@ asm_24ce2:
 	ld a, [wItemQuantityBuffer]
 	cp [hl]
 	jr nc, asm_24cee
-	ld [hl], $01
+	ld [hl], 1
 asm_24cee:
 	and a
 	ret
 
 asm_24cf0:
 	ld a, [wItemQuantity]
-	sub $0a
+	sub 10
 	jr c, asm_24cfb
 	jr z, asm_24cfb
 	jr asm_24cfd
 asm_24cfb:
-	ld a, $01
+	ld a, 1
 asm_24cfd:
 	ld [wItemQuantity], a
 	and a
@@ -2086,7 +1951,7 @@ asm_24cfd:
 
 asm_24d02:
 	ld a, [wItemQuantity]
-	add $0a
+	add 10
 	ld b, a
 	ld a, [wItemQuantityBuffer]
 	cp b
@@ -2101,7 +1966,7 @@ asm_24d0f:
 asm_24d15:
 	call MenuBox
 	call MenuBoxCoord2Tile
-	ld de, $0015
+	ld de, $15
 	add hl, de
 	ld [hl], $f1
 	inc hl
@@ -2114,25 +1979,46 @@ asm_24d15:
 	xor a
 	ldh [hMultiplicand], a
 	ld a, [wFieldMoveScriptID]
-	ldh [$ffb5], a
+	ldh [hMultiplicand + 1], a
 	ld a, [wMapBlocksAddress]
-	ldh [$ffb6], a
+	ldh [hMultiplicand + 2], a
 	ld a, [wItemQuantity]
 	ldh [hMultiplier], a
 	push hl
 	call Multiply
-	ld hl, $ffcd
+	ld hl, hFFCD
 	ldh a, [hMultiplicand]
 	ld [hli], a
-	ldh a, [$ffb5]
+	ldh a, [hMultiplicand + 1]
 	ld [hli], a
-	ldh a, [$ffb6]
+	ldh a, [hMultiplicand + 2]
 	ld [hl], a
 	pop hl
 	inc hl
-	ld de, $ffcd
+	ld de, hFFCD
 	ld bc, $0406
 	call PrintNumber
 	ld [hl], $f0
 	call WaitBGMap
 	ret
+
+MenuHeader24d64:
+	db $40
+	db $9
+	db $F
+	db $B
+	db $13
+	db $0
+	db $0
+	db $0
+
+MenuHeader24d6c:
+	db $40
+	db $F
+	db $7
+	db $11
+	db $13
+	db $FF
+	db $0
+	db $FF
+
