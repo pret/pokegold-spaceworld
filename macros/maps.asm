@@ -157,23 +157,13 @@ object_event: MACRO
 ;  * if h1 == -1, h2 is treated as a time-of-day value:
 ;    a combo of MORN, DAY, and/or NITE, or -1 to always appear
 ;\9: object type function
-;\10: unknown 1
-;\11: unknown 2
-;\12: sight range
-;\13: unknown 3
-;\14: unknown 4
+;\<10>: unknown 1
+;\<11>: unknown 2
+;\<12>: sight range
+;\<13>: unknown 3
+;\<14>: unknown 4
 	db \3, \2 + 4, \1 + 4, \4
 	dn \5, \6
-	db \7, \8
-	shift
-	db \8
-	shift
-	db \8, \9
-	shift
-	db \9
-	shift
-	db \9
-	shift
-	db \9
+	db \7, \8, \9, \<10>, \<11>, \<12>, \<13>, \<14>
 _NUM_OBJECT_EVENTS = _NUM_OBJECT_EVENTS + 1
 ENDM
