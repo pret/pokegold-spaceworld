@@ -5,6 +5,7 @@
 05:40D9 Function140d9
 05:40EA Function140ea
 05:40FB LoadUsedSpritesGfx ; TODO: maybe there's a better name
+05:4144 Function14144
 05:43B6 InitAllSRAMBanks
 05:43E0 Function143e0
 05:457A Function1457a
@@ -99,6 +100,7 @@
 14:4CD1 Function50cd1
 14:4ED9 Function50ed9
 
+23:4325 Function8c325
 23:42DC UpdateTimeOfDayPal
 23:42E3 _TimeOfDayPals
 23:4335 _UpdateTimePals
@@ -134,6 +136,22 @@
 
 38:4E5F Cursor_AnimateCursor
 38:4EA8 Cursor_InterpretJoypad
+
+; TODO shims
+3F:4CFC FieldDebug_CheckTile
+3F:578C FieldDebug_ClearEventFlags
+3F:4C85 FieldDebug_FieldCut
+3F:5176 FieldDebug_ItemTest
+3F:4DFC FieldDebug_MapViewer
+3F:56D1 FieldDebug_Minigames
+3F:4D68 FieldDebug_MoveToEntrance
+3F:537E FieldDebug_PCMenu
+3F:5389 FieldDebug_PokemartMenu
+3F:567C FieldDebug_Teleport
+3F:4C4D FieldDebug_ToggleNPCMovement
+3F:4DDC FieldDebug_TrainerGear
+3F:5786 FieldDebug_VRAMViewer
+3F:4BF4 Functionfcbf4
 
 ; SFX shims
 3C:43BE Sfx_01

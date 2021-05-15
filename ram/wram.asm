@@ -614,6 +614,7 @@ wWindowStackPointer:: dw
 wMenuJoypad:: db
 wMenuSelection:: db
 wMenuSelectionQuantity:: db
+wFieldDebugPage::
 wWhichIndexSet::
 wActiveBackpackPocket:: db
 wScrollingMenuCursorPosition:: db
@@ -676,11 +677,32 @@ wTitleSequenceOpeningType::
 wDefaultSpawnPoint::
 	db
 
+
+UNION
+
+wcc40:: ; XXX fix this to cc3a
 wMovementBufferCount:: db
+
+wcc41:: ; XXX fix this to cc3b
 wMovementBufferObject:: db
+
 	ptrba wMovementBufferPointer
+
 wMovementBuffer::
 	ds 55
+
+NEXTU
+
+wSpriteViewerMenuStartingItem:: db
+
+	ds 2
+
+wSpriteViewerSavedMenuPointerY:: db
+wSpriteViewerJumptableIndex:: db
+
+	ds 56
+
+ENDU
 
 SECTION "CC9A", WRAM0[$CC9A]
 
@@ -797,6 +819,7 @@ wStartmenuCursor:: db
 wcd40:: db
 wcd41:: db
 wcd42:: db
+wFieldDebugMenuCursorBuffer::
 wcd43:: db
 wRegularItemsScrollPosition:: db
 wBackpackAndKeyItemsScrollPosition:: db
@@ -1131,6 +1154,7 @@ wMap14Object::  map_object wMap14
 wMap15Object::  map_object wMap15
 wMapObjectsEnd::
 
+wd14f::
 wToolgearFlags:: db
 ; 76543210
 ; |    | \- show toolgear
@@ -1317,8 +1341,18 @@ SECTION "Used sprites", WRAM0[$D643]
 wBGMapAnchor::
 	dw
 
+UNION
+
 wUsedSprites::
 	dw ; This is for the player
+
+NEXTU
+
+	ds 1
+
+wd646:: db
+
+ENDU
 
 wUsedNPCSprites::
 	ds 2 * 5 ; This is for the NPCs

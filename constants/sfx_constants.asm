@@ -9,7 +9,11 @@ SFX_READ_TEXT_2                 EQU $05
 SFX_ESCAPE_ROPE                 EQU $0B ; player shrink
 SFX_WRONG                       EQU $14
 SFX_SWITCH_POKEMON              EQU $1B
+SFX_1E                          EQU $1E
 SFX_POKEFLUTE                   EQU $21
+SFX_22                          EQU $22
+SFX_24                          EQU $24
+SFX_25                          EQU $25
 SFX_POKEDEX_REGISTRATION        EQU $27
 SFX_TITLE_ENTRANCE              EQU $2D
 SFX_PAY_DAY                     EQU $30
