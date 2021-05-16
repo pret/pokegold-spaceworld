@@ -8,23 +8,23 @@ INCLUDE "constants.asm"
 SECTION "data/maps/sprite_sets.asm", ROMX
 
 MapGroupSpriteSets:
-	db $01
-	db $02
-	db $03
-	db $04
-	db $05
-	db $06
-	db $07
-	db $08
-	db $0e
-	db $09
-	db $0a
-	db $0b
-	db $0d
-	db $0c
-	db $0e
-	db $01
-	db $01
+	db $01 ; MAPGROUP_SILENT
+	db $02 ; MAPGROUP_OLD
+	db $03 ; MAPGROUP_WEST
+	db $04 ; MAPGROUP_HAITEKU
+	db $05 ; MAPGROUP_FONTO
+	db $06 ; MAPGROUP_BAADON
+	db $07 ; MAPGROUP_NEWTYPE
+	db $08 ; MAPGROUP_SUGAR
+	db $0e ; MAPGROUP_BULL
+	db $09 ; MAPGROUP_STAND
+	db $0a ; MAPGROUP_KANTO
+	db $0b ; MAPGROUP_PRINCE
+	db $0d ; MAPGROUP_MT_FUJI
+	db $0c ; MAPGROUP_SOUTH
+	db $0e ; MAPGROUP_NORTH
+	db $01 ; MAPGROUP_MISC
+	db $01 ; MAPGROUP_EMPTY
 	db $01
 	db $01
 	db $01
