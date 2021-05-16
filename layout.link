@@ -183,7 +183,7 @@ ROMX $05
 	org $4193
 	"data/maps/sprite_sets.asm"
 	org $423b
-	"engine/sprites/sprites.asm@OverworldSprites"
+	"data/overworld_sprites.asm"
 	org $477d
 	"engine/events/pokecenter_pc.asm"
 
