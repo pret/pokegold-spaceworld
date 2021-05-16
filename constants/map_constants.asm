@@ -1,5 +1,7 @@
 newgroup: MACRO
 const_value = const_value + 1
+CURRENT_NUM_MAPGROUP_MAPS EQUS "NUM_\1_MAPS"
+MAPGROUP_\1 EQU const_value
 __map_value__ = 1
 ENDM
 
@@ -14,11 +16,15 @@ __map_value__ = __map_value__ + 1
 \1_HEIGHT EQU \3
 ENDM
 
+endgroup: MACRO
+{CURRENT_NUM_MAPGROUP_MAPS} EQU __map_value__ - 1
+PURGE CURRENT_NUM_MAPGROUP_MAPS
+ENDM
+
 ; map ids
 	const_def
 
-	newgroup                                           ;  1
-
+	newgroup  SILENT                                   ;  1
 	map_const ROUTE_1_P1,                       15,  9 ;  1
 	map_const ROUTE_1_P2,                       10, 18 ;  2
 	map_const ROUTE_SILENT_EAST,                30,  9 ;  3
@@ -34,9 +40,9 @@ ENDM
 	map_const SILENT_HILL_LAB_BACK,              4,  4 ; 13
 	map_const UNUSED_MAP_13,                     4,  4 ; 14
 	map_const SHIZUKANA_OKA,                    25, 18 ; 15
+	endgroup
 
-	newgroup                                           ;  2
-
+	newgroup  OLD                                      ;  2
 	map_const ROUTE_2,                          15,  9 ;  1
 	map_const OLD_CITY,                         20, 18 ;  2
 	map_const ROUTE_2_GATE_1F,                   5,  4 ;  3
@@ -59,9 +65,9 @@ ENDM
 	map_const OLD_CITY_POKECENTER_TIME_MACHINE,  8,  4 ; 20
 	map_const OLD_CITY_KURTS_HOUSE,              8,  4 ; 21
 	map_const OLD_CITY_SCHOOL,                   4,  8 ; 22
+	endgroup
 
-	newgroup                                           ;  3
-
+	newgroup  WEST                                     ;  3
 	map_const WEST,                             20, 18 ;  1
 	map_const WEST_MART_1F,                      8,  4 ;  2
 	map_const WEST_MART_2F,                      8,  4 ;  3
@@ -81,9 +87,9 @@ ENDM
 	map_const WEST_GYM,                          5,  9 ; 17
 	map_const WEST_HOUSE_1,                      5,  4 ; 18
 	map_const WEST_HOUSE_2,                      5,  4 ; 19
+	endgroup
 
-	newgroup                                           ;  4
-
+	newgroup  HAITEKU                                  ;  4
 	map_const HAITEKU_WEST_ROUTE,               25,  9 ;  1
 	map_const HAITEKU_WEST_ROUTE_OCEAN,         10, 27 ;  2
 	map_const HAITEKU,                          20, 18 ;  3
@@ -98,9 +104,9 @@ ENDM
 	map_const HAITEKU_IMPOSTER_OAK_HOUSE,        5,  4 ; 12
 	map_const HAITEKU_AQUARIUM_1F,               8,  4 ; 13
 	map_const HAITEKU_AQUARIUM_2F,               8,  4 ; 14
+	endgroup
 
-	newgroup                                           ;  5
-
+	newgroup  FONTO                                    ;  5
 	map_const FONTO_ROUTE_1,                    35,  9 ;  1
 	map_const FONTO_ROUTE_2,                    10, 18 ;  2
 	map_const FONTO_ROUTE_3,                    25,  9 ;  3
@@ -117,9 +123,9 @@ ENDM
 	map_const FONTO_POKECENTER_1F,               8,  4 ; 14
 	map_const FONTO_POKECENTER_2F,               8,  4 ; 15
 	map_const FONTO_LAB,                         5,  4 ; 16
+	endgroup
 
-	newgroup                                           ;  6
-
+	newgroup  BAADON                                   ;  6
 	map_const BAADON_ROUTE_1,                   10, 27 ;  1
 	map_const BAADON_ROUTE_2,                   50,  9 ;  2
 	map_const BAADON_ROUTE_3,                   10, 18 ;  3
@@ -134,9 +140,9 @@ ENDM
 	map_const BAADON_HOUSE_2,                    5,  4 ; 12
 	map_const BAADON_LEAGUE_1F,                  4,  8 ; 13
 	map_const BAADON_LEAGUE_2F,                  5,  9 ; 14
+	endgroup
 
-	newgroup                                           ;  7
-
+	newgroup  NEWTYPE                                  ;  7
 	map_const ROUTE_15,                         15,  9 ;  1
 	map_const NEWTYPE_ROUTE,                    15,  9 ;  2
 	map_const ROUTE_18,                         10, 45 ;  3
@@ -157,9 +163,9 @@ ENDM
 	map_const NEWTYPE_DINER,                     4,  4 ; 18
 	map_const NEWTYPE_HOUSE_2,                   5,  4 ; 19
 	map_const NEWTYPE_HOUSE_3,                   5,  4 ; 20
+	endgroup
 
-	newgroup                                           ;  8
-
+	newgroup  SUGAR                                    ;  8
 	map_const SUGAR_ROUTE,                      10, 27 ;  1
 	map_const SUGAR,                            10,  9 ;  2
 	map_const SUGAR_ROUTE_GATE,                  5,  4 ;  3
@@ -168,9 +174,9 @@ ENDM
 	map_const SUGAR_MART,                        8,  4 ;  6
 	map_const SUGAR_POKECENTER_1F,               8,  4 ;  7
 	map_const SUGAR_POKECENTER_2F,               8,  4 ;  8
+	endgroup
 
-	newgroup                                           ;  9
-
+	newgroup  BULL                                     ;  9
 	map_const BULL_FOREST_ROUTE_1,              25,  9 ;  1
 	map_const BULL_FOREST_ROUTE_2,              10, 27 ;  2
 	map_const BULL_FOREST_ROUTE_3,              10, 27 ;  3
@@ -186,9 +192,9 @@ ENDM
 	map_const BULL_LEAGUE_1F,                    4,  8 ; 13
 	map_const BULL_LEAGUE_2F,                    5,  9 ; 14
 	map_const BULL_HOUSE_4,                      5,  4 ; 15
+	endgroup
 
-	newgroup                                           ; 10
-
+	newgroup  STAND                                    ; 10
 	map_const STAND_ROUTE,                      10, 27 ;  1
 	map_const STAND,                            20, 18 ;  2
 	map_const STAND_ROUTE_GATE_KANTO,            5,  4 ;  3
@@ -202,9 +208,9 @@ ENDM
 	map_const STAND_ROCKET_HOUSE_2F,             8,  4 ; 11
 	map_const STAND_LEAGUE_1F,                   4,  8 ; 12
 	map_const STAND_LEAGUE_2F,                   5,  9 ; 13
+	endgroup
 
-	newgroup                                           ; 11
-
+	newgroup  KANTO                                    ; 11
 	map_const KANTO_EAST_ROUTE,                 20,  9 ;  1
 	map_const KANTO,                            30, 27 ;  2
 	map_const KANTO_CERULEAN_HOUSE,              5,  4 ;  3
@@ -243,37 +249,37 @@ ENDM
 	map_const KANTO_LEAGUE_2_1F,                 4,  8 ; 36
 	map_const KANTO_LEAGUE_2_2F,                 5,  9 ; 37
 	map_const KANTO_FISHING_GURU,                5,  4 ; 38
+	endgroup
 
-	newgroup                                           ; 12
-
+	newgroup  PRINCE                                   ; 12
 	map_const PRINCE_ROUTE,                     10,  5 ;  1
 	map_const PRINCE,                           10,  9 ;  2
+	endgroup
 
-	newgroup                                           ; 13
-
+	newgroup  MT_FUJI                                  ; 13
 	map_const MT_FUJI_ROUTE,                    10,  5 ;  1
 	map_const MT_FUJI,                          10,  9 ;  2
+	endgroup
 
-	newgroup                                           ; 14
-
+	newgroup  SOUTH                                    ; 14
 	map_const SOUTH,                            20, 18 ;  1
 	map_const SOUTH_HOUSE_1,                     5,  4 ;  2
 	map_const SOUTH_POKECENTER_1F,               8,  4 ;  3
 	map_const SOUTH_POKECENTER_2F,               8,  4 ;  4
 	map_const SOUTH_MART,                        8,  4 ;  5
 	map_const SOUTH_HOUSE_2,                     5,  4 ;  6
+	endgroup
 
-	newgroup                                           ; 15
-
+	newgroup  NORTH                                    ; 15
 	map_const NORTH,                            10,  9 ;  1
 	map_const NORTH_HOUSE_1,                     5,  4 ;  2
 	map_const NORTH_MART,                        6,  4 ;  3
 	map_const NORTH_HOUSE_2,                     5,  4 ;  4
 	map_const NORTH_POKECENTER_1F,               8,  4 ;  5
 	map_const NORTH_POKECENTER_2F,               8,  4 ;  6
+	endgroup
 
-	newgroup                                           ; 16
-
+	newgroup  MISC                                     ; 16
 	map_const POWER_PLANT_1,                    10,  9 ;  1
 	map_const POWER_PLANT_2,                    10,  9 ;  2
 	map_const POWER_PLANT_3,                    15, 18 ;  3
@@ -292,5 +298,9 @@ ENDM
 	map_const OFFICE_3,                         10, 18 ; 16
 	map_const SLOWPOKE_WELL_ENTRANCE,           10,  9 ; 17
 	map_const SLOWPOKE_WELL_MAIN,               10, 18 ; 18
+	endgroup
 
-NUM_MAP_GROUPS EQU const_value ; 16
+	newgroup  EMPTY                                    ; 17
+	endgroup
+
+NUM_MAP_GROUPS EQU const_value
