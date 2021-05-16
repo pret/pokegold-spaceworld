@@ -1312,16 +1312,19 @@ SECTION "D637", WRAM0[$D637]
 wd637:: db ;OW battle state? $3 wild battle, $8 is trainer battle $4 is left battle, $B is load overworld? $0 is in overworld
 wd638:: db ;wd637's last written-to value
 
-SECTION "Used sprites", WRAM0[$D643]
-
+SECTION "Used sprites", WRAM0[$D642]
+wd642:: db
 wBGMapAnchor::
 	dw
 
 wUsedSprites::
-	dw ; This is for the player
+	ds 2
 
 wUsedNPCSprites::
-	ds 2 * 5 ; This is for the NPCs
+	ds 8
+
+wUsedStaticSprites::
+	ds 2
 
 wUsedSpritesEnd::
 

@@ -178,11 +178,9 @@ ROMX $04
 ROMX $05
 	org $4000
 	"engine/overworld/player_movement.asm@_RedrawPlayerSprite"
-	org $4150
-	"engine/sprites/sprites.asm@LoadOverworldSprite"
-	org $4193
+	org $4036
+	"engine/sprites/sprites.asm@RefreshSprites"
 	"data/maps/sprite_sets.asm"
-	org $423b
 	"data/overworld_sprites.asm"
 	org $477d
 	"engine/events/pokecenter_pc.asm"
