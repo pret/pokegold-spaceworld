@@ -1281,64 +1281,66 @@ Function91ef:
 
 SECTION "engine/dumps/bank02.asm@Function928b", ROMX
 
-Function928b:
+LoadSGBLayout:
 	ld a, b
 	cp $ff
-	jr nz, .sub_9293
+	jr nz, .not_ram
 	ld a, [wccd0]
-.sub_9293
+.not_ram
 	cp $fc
-	jp z, Function9604
+	jp z, SGB_ApplyPartyMenuHPPals
 	ld l, a
-	ld h, $00
+	ld h, 0
 	add hl, hl
-	ld de, Table92a8
+	ld de, .Jumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, Function955f
+	ld de, _LoadSGBLayout_ReturnFromJumpTable
 	push de
 	jp hl
 
-Table92a8:
-	dw Function92d4
-	dw Function92db
-	dw Function934b
-	dw Function9352
-	dw Function9382
-	dw Function93a6
-	dw Function93ad
-	dw Function93bb
-	dw Function93b4
-	dw Function93fe
-	dw Function937b
-	dw Function941a
-	dw Function93d8
-	dw Function9441
-	dw Function932b
-	dw Function93e4
-	dw Function939f
-	dw Function93eb
-	dw Function9448
-	dw Function948e
-	dw Function94ab
-	dw Function94c8
+.Jumptable:
+	dw SGB_BattleGrayscale
+	dw SGB_BattleColors
+	dw SGB_TownMap
+	dw SGB_StatsScreenHPPals
+	dw SGB_Pokedex
+	dw SGB_SlotMachine
+	dw SGB_TitleScreen
+	dw SGB_GSIntro
+	dw SGB_Diploma
+	dw SGB_MapPals
+	dw SGB_PartyMenu
+	dw SGB_Evolution
+	dw SGB_GFIntro
+	dw SGB_TrainerCard
+	dw SGB0e
+	dw SGB_PikachuMinigame
+	dw SGB_PokedexSelection
+	dw SGB_Poker
+	dw SGB12
+	dw SGB_TrainerGear
+	dw SGB_TrainerGearMap
+	dw SGB_TrainerGearRadio
 
-Function92d4:
-	ld hl, Data99ec
-	ld de, Data988c
+SGB_BattleGrayscale:
+	ld hl, PalPacket_BattleGrayscale
+	ld de, BlkPacket_Battle
 	ret
 
-Function92db:
-	ld hl, Data995c
+SGB_BattleColors:
+	ld hl, PalPacket_995c
 	ld de, wcce1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
+
 	ld a, [wca3f]
 	ld hl, wca02
 	call Function9567
 	jr c, .sub_92f7
+
 	ld e, $00
 	call Function9599
 .sub_92f7
@@ -1366,15 +1368,15 @@ Function92db:
 	ld a, c
 	ld [hl], a
 	ld hl, wcce1
-	ld de, Data988c
+	ld de, BlkPacket_Battle
 	ld a, $01
 	ld [wccd0], a
 	ret
 
-Function932b:
-	ld hl, Data995c
+SGB0e:
+	ld hl, PalPacket_995c
 	ld de, wcce1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld hl, wcce2
 	ld [hl], $10
@@ -1384,18 +1386,18 @@ Function932b:
 	add $23
 	ld [hl], a
 	ld hl, wcce1
-	ld de, Data98bc
+	ld de, BlkPacket_98bc
 	ret
 
-Function934b:
+SGB_TownMap:
 	ld hl, Data99fc
-	ld de, Data986c
+	ld de, BlkPacket_986c
 	ret
 
-Function9352:
-	ld hl, Data995c
+SGB_StatsScreenHPPals:
+	ld hl, PalPacket_995c
 	ld de, wcce1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld a, [wMonDexIndex]
 	call Function956d
@@ -1409,54 +1411,53 @@ Function9352:
 	pop af
 	ld [hl], a
 	ld hl, wcce1
-	ld de, Data98ac
+	ld de, BlkPacket_StatsScreen
 	ret
 
-Function937b:
-	ld hl, Data99dc
+SGB_PartyMenu:
+	ld hl, PalPacket_PartyMenu
 	ld de, wcce2
 	ret
 
-Function9382:
-	ld hl, Data9a0c
+SGB_Pokedex:
+	ld hl, PalPacket_Pokedex
 	ld de, wcce1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld a, [wMonDexIndex]
 	call Function956d
 	ld hl, wcce4
 	ld [hl], a
 	ld hl, wcce1
-	ld de, Data98cc
+	ld de, BlkPacket_Pokedex
 	ret
 
-Function939f:
-	ld hl, Data99bc
-	ld de, Data986c
+SGB_PokedexSelection:
+	ld hl, PalPacket_99bc
+	ld de, BlkPacket_986c
 	ret
 
-Function93a6:
-	ld hl, Data9a1c
-	ld de, Data98dc
+SGB_SlotMachine:
+	ld hl, PalPacket_SlotMachine
+	ld de, BlkPacket_SlotMachine
 	ret
 
-Function93ad:
-	ld hl, Data9a2c
-	ld de, Data993c
+SGB_TitleScreen:
+	ld hl, PalPacket_TitleScreen
+	ld de, BlkPacket_TitleScreen
 	ret
 
-Function93b4:
-	ld hl, Data9a3c
-	ld de, Data986c
+SGB_Diploma:
+	ld hl, PalPacket_9a3c
+	ld de, BlkPacket_986c
 	ret
 
-Function93bb:
-	ld b, $00
-	ld hl, Table93cc
+SGB_GSIntro:
+	ld b, 0
+	ld hl, .BlkPacketTable
+rept 4
 	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
+endr
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1466,55 +1467,50 @@ Function93bb:
 	ld l, a
 	ret
 
-Table93cc:
-	dw Data986c
-	dw Data996c
+.BlkPacketTable:
+	dw BlkPacket_986c, PalPacket_GSIntroShellderLapras
+	dw BlkPacket_GSIntroJigglypuffPikachu, PalPacket_GSIntroJigglypuffPikachu
+	dw BlkPacket_986c, PalPacket_GSIntroStartersTransition
 
-	dw Data987c
-	dw Data998c
-
-	dw Data986c
-	dw Data999c
-
-Function93d8:
-	ld hl, Data9a4c
-	ld de, Data986c
+SGB_GFIntro:
+	ld hl, PalPacket_GFIntro
+	ld de, BlkPacket_986c
 	ld a, $08
 	ld [wccd0], a
 	ret
 
-Function93e4:
-	ld hl, Data99cc
-	ld de, Data986c
+SGB_PikachuMinigame:
+	ld hl, PalPacket_PikachuMinigame
+	ld de, BlkPacket_986c
 	ret
 
-Function93eb:
-	ld hl, Data986c
+SGB_Poker:
+	ld hl, BlkPacket_986c
 	ld de, wc51a
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld hl, Data994c
-	ld de, Data986c
+	ld hl, PalPacket_Poker
+	ld de, BlkPacket_986c
 	ret
 
-Function93fe:
-	ld hl, Data995c
+SGB_MapPals:
+	ld hl, PalPacket_995c
 	ld de, wcce1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	call Function94e5
+	call GetMapPalsIndex
 	ld hl, wcce2
 	ld [hld], a
-	ld de, Data986c
+	ld de, BlkPacket_986c
 	ld a, $09
 	ld [wccd0], a
 	ret
 
-Function941a:
+SGB_Evolution:
 	push bc
-	ld hl, Data995c
+	ld hl, PalPacket_995c
 	ld de, wcce1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop bc
 	ld a, c
@@ -1527,24 +1523,24 @@ Function941a:
 .sub_9437
 	ld [wcce2], a
 	ld hl, wcce1
-	ld de, Data986c
+	ld de, BlkPacket_986c
 	ret
 
-Function9441:
-	ld hl, Data9a3c
-	ld de, Data986c
+SGB_TrainerCard:
+	ld hl, PalPacket_9a3c
+	ld de, BlkPacket_986c
 	ret
 
-Function9448:
-	ld hl, Data995c
+SGB12:
+	ld hl, PalPacket_995c
 	ld de, wcce1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld hl, Data986c
+	ld hl, BlkPacket_986c
 	ld de, wccf1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	call Function94e5
+	call GetMapPalsIndex
 	ld hl, wcce2
 	ld [hl], a
 	ld a, [wMonDexIndex]
@@ -1566,82 +1562,88 @@ Function9448:
 	ld de, wccf1
 	ret
 
-Function948e:
-	ld hl, Data995c
+SGB_TrainerGear:
+	ld hl, PalPacket_995c
 	ld de, wcce1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld a, $16
 	ld [wcce2], a
 	ld a, $30
 	ld [wcce4], a
 	ld hl, wcce1
-	ld de, Data992c
+	ld de, BlkPacket_TrainerGear
 	ret
 
-Function94ab:
-	ld hl, Data995c
+SGB_TrainerGearMap:
+	ld hl, PalPacket_995c
 	ld de, wcce1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld a, $16
 	ld [wcce2], a
 	ld a, $26
 	ld [wcce4], a
 	ld hl, wcce1
-	ld de, Data992c
+	ld de, BlkPacket_TrainerGear
 	ret
 
-Function94c8:
-	ld hl, Data995c
+SGB_TrainerGearRadio:
+	ld hl, PalPacket_995c
 	ld de, wcce1
-	ld bc, $0010
+	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld a, $16
 	ld [wcce2], a
 	ld a, $39
 	ld [wcce4], a
 	ld hl, wcce1
-	ld de, Data992c
+	ld de, BlkPacket_TrainerGear
 	ret
 
-Function94e5:
+GetMapPalsIndex:
 	ld a, [wMapPermissions]
-	cp $02
-	jr z, .sub_950e
-	cp $04
-	jr z, .sub_9516
-	cp $06
-	jr z, .sub_951e
-	cp $05
-	jr z, .sub_9521
-	cp $03
-	jr z, .sub_9505
+	cp ROUTE
+	jr z, .is_route
+	cp CAVE
+	jr z, .is_cave
+	cp GATE
+	jr z, .is_gate
+	cp ENVIRONMENT_5
+	jr z, .env5
+	cp INDOOR
+	jr z, .indoors
 	call Function9527
 	jr c, .sub_9524
 	call Function9543
 	ret
-.sub_9505
+
+.indoors
 	call Function9536
 	jr c, .sub_9524
 	call Function9543
 	ret
-.sub_950e
+
+.is_route
 	call Function9527
 	jr c, .sub_9524
 	ld a, $00
 	ret
-.sub_9516
+
+.is_cave
 	call Function9527
 	jr c, .sub_9524
 	ld a, $0c
 	ret
-.sub_951e
+
+.is_gate
 	ld a, $03
 	ret
-.sub_9521
+
+.env5
 	ld a, $04
 	ret
+
 .sub_9524
 	ld a, $0d
 	ret
@@ -1682,7 +1684,7 @@ Data954f:
 	db $01, $07, $0c, $03, $08, $06, $0b, $04
 	db $05, $0a, $02, $03, $02, $02, $09, $01
 
-Function955f:
+_LoadSGBLayout_ReturnFromJumpTable:
 	push de
 	call PushSGBPals
 	pop hl
@@ -1796,12 +1798,12 @@ Function95cc:
 	ret
 
 Function95f8:
-	ld hl, Data98fc
+	ld hl, BlkPacket_98fc
 	ld de, wcce2
 	ld bc, $0030
 	jp CopyBytes
 
-Function9604:
+SGB_ApplyPartyMenuHPPals:
 	ld hl, wccd3
 	ld a, [wcce1]
 	ld e, a
@@ -1828,19 +1830,19 @@ Function9604:
 	ret
 
 LoadMagikarpPalettes_Intro:
-	ld hl, Data997c
+	ld hl, PalPacket_MagikarpIntro
 	jp PushSGBPals
 
 LoadForestPalettes2_Intro:
-	ld hl, Data986c
+	ld hl, BlkPacket_986c
 	jp PushSGBPals
 
 LoadVenusaurPalettes_Intro:
-	ld hl, Data99ac
+	ld hl, PalPacket_VenusaurIntro
 	jp PushSGBPals
 
 LoadCharizardPalettes_Intro:
-	ld hl, Data99bc
+	ld hl, PalPacket_99bc
 	jp PushSGBPals
 
 Function9645:
@@ -2168,15 +2170,15 @@ SGBDelayCycles:
 	jr nz, .sub_9863
 	ret
 
-Data986c:
+BlkPacket_986c:
 	db $21, $01, $03, $00, $00, $00, $13, $11
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data987c:
+BlkPacket_GSIntroJigglypuffPikachu:
 	db $21, $01, $07, $05, $00, $0a, $13, $0d
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data988c:
+BlkPacket_Battle:
 	db $22, $05, $07, $0a, $00, $0c, $13, $11
 	db $03, $05, $01, $00, $0a, $03, $03, $00
 
@@ -2184,19 +2186,19 @@ Data989c:
 	db $0a, $08, $13, $0a, $03, $0a, $00, $04
 	db $08, $0b, $03, $0f, $0b, $00, $13, $07
 
-Data98ac:
+BlkPacket_StatsScreen:
 	db $21, $01, $07, $05, $00, $01, $07, $07
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data98bc:
+BlkPacket_98bc:
 	db $21, $01, $07, $05, $0b, $01, $13, $02
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data98cc:
+BlkPacket_Pokedex:
 	db $21, $01, $07, $05, $01, $01, $08, $08
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data98dc:
+BlkPacket_SlotMachine:
 	db $22, $05, $03, $05, $00, $00, $13, $0b
 	db $03, $0a, $00, $04, $13, $09, $02, $0f
 
@@ -2204,7 +2206,7 @@ Data98ec:
 	db $00, $06, $13, $07, $03, $00, $04, $04
 	db $0f, $09, $03, $00, $00, $0c, $13, $11
 
-Data98fc:
+BlkPacket_98fc:
 	db $23, $07, $07, $10, $00, $00, $02, $0c
 	db $02, $00, $0c, $00, $12, $01, $02, $00
 
@@ -2216,55 +2218,55 @@ Data991c:
 	db $02, $00, $0c, $08, $12, $09, $02, $00
 	db $0c, $0a, $12, $0b, $00, $00, $00, $00
 
-Data992c:
+BlkPacket_TrainerGear:
 	db $21, $01, $07, $10, $00, $00, $13, $02
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data993c:
+BlkPacket_TitleScreen:
 	db $21, $01, $07, $10, $00, $00, $13, $05
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data994c:
+PalPacket_Poker:
 	db $51, $35, $00, $36, $00, $37, $00, $38
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data995c:
+PalPacket_995c:
 	db $51, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data996c:
+PalPacket_GSIntroShellderLapras:
 	db $51, $2a, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data997c:
+PalPacket_MagikarpIntro:
 	db $51, $2b, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data998c:
+PalPacket_GSIntroJigglypuffPikachu:
 	db $51, $2c, $00, $2d, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data999c:
+PalPacket_GSIntroStartersTransition:
 	db $51, $2e, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99ac:
+PalPacket_VenusaurIntro:
 	db $51, $2f, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99bc:
+PalPacket_99bc:
 	db $51, $30, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99cc:
+PalPacket_PikachuMinigame:
 	db $51, $2d, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99dc:
+PalPacket_PartyMenu:
 	db $51, $22, $00, $23, $00, $24, $00, $25
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data99ec:
+PalPacket_BattleGrayscale:
 	db $51, $0e, $00, $0e, $00, $0e, $00, $0e
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
@@ -2272,23 +2274,23 @@ Data99fc:
 	db $51, $26, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a0c:
+PalPacket_Pokedex:
 	db $51, $30, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a1c:
+PalPacket_SlotMachine:
 	db $51, $31, $00, $32, $00, $33, $00, $34
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a2c:
+PalPacket_TitleScreen:
 	db $51, $27, $00, $28, $00, $0f, $00, $13
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a3c:
+PalPacket_9a3c:
 	db $51, $0f, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a4c:
+PalPacket_GFIntro:
 	db $51, $29, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 

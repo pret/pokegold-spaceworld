@@ -354,7 +354,7 @@ Function2420b:
 	call LoadMenuHeader
 	call MenuBox
 	call UpdateSprites
-	ld b, SGB_POKEPIC
+	ld b, SGB_12
 	call GetSGBLayout
 	xor a
 	ldh [hBGMapMode], a
