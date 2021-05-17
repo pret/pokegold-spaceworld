@@ -1684,9 +1684,9 @@ Data954f:
 
 Function955f:
 	push de
-	call Function964b
+	call PushSGBPals
 	pop hl
-	jp Function964b
+	jp PushSGBPals
 
 Function9567:
 	bit 3, a
@@ -1829,72 +1829,72 @@ Function9604:
 
 LoadMagikarpPalettes_Intro:
 	ld hl, Data997c
-	jp Function964b
+	jp PushSGBPals
 
 LoadForestPalettes2_Intro:
 	ld hl, Data986c
-	jp Function964b
+	jp PushSGBPals
 
 LoadVenusaurPalettes_Intro:
 	ld hl, Data99ac
-	jp Function964b
+	jp PushSGBPals
 
 LoadCharizardPalettes_Intro:
 	ld hl, Data99bc
-	jp Function964b
+	jp PushSGBPals
 
 Function9645:
 	ld hl, wc51a
-	jp Function964b
+	jp PushSGBPals
 
-Function964b:
+PushSGBPals:
 	ld a, [wJoypadFlags]
 	push af
 	set 7, a
 	ld [wJoypadFlags], a
-	call Function965c
+	call _PushSGBPals
 	pop af
 	ld [wJoypadFlags], a
 	ret
 
-Function965c:
+_PushSGBPals:
 	ld a, [hl]
-	and $07
+	and $7
 	ret z
 	ld b, a
-.sub_9661
+.loop
 	push bc
 	xor a
 	ldh [rJOYP], a
 	ld a, $30
 	ldh [rJOYP], a
 	ld b, $10
-.sub_966b
+.loop2
 	ld e, $08
 	ld a, [hli]
 	ld d, a
-.sub_966f
+.loop3
 	bit 0, d
 	ld a, $10
-	jr nz, .sub_9677
+	jr nz, .ok
 	ld a, $20
-.sub_9677
+.ok
 	ldh [rJOYP], a
 	ld a, $30
 	ldh [rJOYP], a
 	rr d
 	dec e
-	jr nz, .sub_966f
+	jr nz, .loop3
 	dec b
-	jr nz, .sub_966b
+	jr nz, .loop2
 	ld a, $20
 	ldh [rJOYP], a
 	ld a, $30
 	ldh [rJOYP], a
-	call Function9860
+	call SGBDelayCycles
 	pop bc
 	dec b
-	jr nz, .sub_9661
+	jr nz, .loop
 	ret
 
 CheckSGB:
@@ -1902,239 +1902,244 @@ CheckSGB:
 	push af
 	set 7, a
 	ld [wJoypadFlags], a
+
 	xor a
 	ldh [rJOYP], a
 	ld [wSGB], a
-	call Function9730
-	jr nc, .sub_96c0
-	ld a, $01
+	call PushSGBBorderPalsAndWait
+	jr nc, .skip
+	ld a, 1
 	ld [wSGB], a
-	call .sub_96c5
-	call Function9704
-	call Function979a
-	call Function9725
-	ld hl, Data9abc
-	call Function965c
-.sub_96c0
+	call _InitSGBBorderPals
+	call PushSGBBorder
+	call SGBBorder_PushBGPals
+	call SGB_ClearVRAM
+	ld hl, MaskEnCancelPacket
+	call _PushSGBPals
+.skip
 	pop af
 	ld [wJoypadFlags], a
 	ret
-.sub_96c5
-	ld hl, Table96d9
-	ld c, $09
-.sub_96ca
+
+_InitSGBBorderPals:
+	ld hl, .PacketPointerTable
+	ld c, 9
+
+.loop
 	push bc
 	ld a, [hli]
 	push hl
 	ld h, [hl]
 	ld l, a
-	call Function965c
+	call _PushSGBPals
 	pop hl
 	inc hl
 	pop bc
 	dec c
-	jr nz, .sub_96ca
+	jr nz, .loop
 	ret
 
-Table96d9:
-	dw Data9aac
-	dw Data9acc
-	dw Data9adc
-	dw Data9aec
-	dw Data9afc
-	dw Data9b0c
-	dw Data9b1c
-	dw Data9b2c
-	dw Data9b3c
+.PacketPointerTable:
+	dw MaskEnFreezePacket
+	dw DataSndPacket1
+	dw DataSndPacket2
+	dw DataSndPacket3
+	dw DataSndPacket4
+	dw DataSndPacket5
+	dw DataSndPacket6
+	dw DataSndPacket7
+	dw DataSndPacket8
 
-Function96eb:
+UpdateSGBBorder:
 	ld a, [wSGB]
 	ret z
 	di
 	xor a
 	ldh [rJOYP], a
-	ld hl, Data9aac
-	call Function965c
-	call Function9704
-	ld hl, Data9abc
-	call Function965c
+	ld hl, MaskEnFreezePacket
+	call _PushSGBPals
+	call PushSGBBorder
+	ld hl, MaskEnCancelPacket
+	call _PushSGBPals
 	ei
 	ret
 
-Function9704:
-	call Function9710
+PushSGBBorder:
+	call .LoadSGBBorderPointers
 	push de
-	call Function980a
+	call SGBBorder_YetMorePalPushing
 	pop hl
-	call Function97be
+	call SGBBorder_MorePalPushing
 	ret
 
-Function9710:
+.LoadSGBBorderPointers:
 	ld a, [wce5f]
 	bit 3, a
-	jr nz, .sub_971e
+	jr nz, .spaceworld_border
+
+; load alternate border
 	ld hl, UnusedSGBBorderGFX
-	ld de, Corrupted9e1cGFX
-	ret
-.sub_971e
-	ld hl, SGBBorderGFX
-	ld de, Corrupteda66cGFX
+	ld de, UnusedSGBBorderTilemap
 	ret
 
-Function9725:
+.spaceworld_border
+	ld hl, SGBBorderGFX
+	ld de, SGBBorderTilemap
+	ret
+
+SGB_ClearVRAM:
 	ld hl, vChars0
 	ld bc, $2000
 	xor a
 	call ByteFill
 	ret
 
-Function9730:
-	ld hl, Data9a7c
-	call Function965c
-	call Function9860
+PushSGBBorderPalsAndWait:
+	ld hl, MltReq2Packet
+	call _PushSGBPals
+	call SGBDelayCycles
 	ldh a, [rJOYP]
-	and $03
-	cp $03
-	jr nz, .sub_978c
+	and $3
+	cp $3
+	jr nz, .carry
 	ld a, $20
 	ldh [rJOYP], a
 	ldh a, [rJOYP]
 	ldh a, [rJOYP]
-	call Function9860
-	call Function9860
+	call SGBDelayCycles
+	call SGBDelayCycles
 	ld a, $30
 	ldh [rJOYP], a
-	call Function9860
-	call Function9860
+	call SGBDelayCycles
+	call SGBDelayCycles
 	ld a, $10
 	ldh [rJOYP], a
+rept 6
 	ldh a, [rJOYP]
-	ldh a, [rJOYP]
-	ldh a, [rJOYP]
-	ldh a, [rJOYP]
-	ldh a, [rJOYP]
-	ldh a, [rJOYP]
-	call Function9860
-	call Function9860
+endr
+	call SGBDelayCycles
+	call SGBDelayCycles
 	ld a, $30
 	ldh [rJOYP], a
 	ldh a, [rJOYP]
 	ldh a, [rJOYP]
 	ldh a, [rJOYP]
-	call Function9860
-	call Function9860
+	call SGBDelayCycles
+	call SGBDelayCycles
 	ldh a, [rJOYP]
-	and $03
-	cp $03
-	jr nz, .sub_978c
-	call .sub_9791
+	and $3
+	cp $3
+	jr nz, .carry
+	call .FinalPush
 	and a
 	ret
-.sub_978c
-	call .sub_9791
+
+.carry
+	call .FinalPush
 	scf
 	ret
-.sub_9791
-	ld hl, Data9a6c
-	call Function965c
-	jp Function9860
 
-Function979a:
+.FinalPush:
+	ld hl, MltReq1Packet
+	call _PushSGBPals
+	jp SGBDelayCycles
+
+SGBBorder_PushBGPals:
 	call DisableLCD
-	ld a, $e4
+	ld a, %11100100
 	ldh [rBGP], a
 	ld hl, SuperPalettes
 	ld de, vChars1
 	ld bc, $1000
-	call Function9838
-	call Function984a
+	call CopyData
+	call DrawDefaultTiles
 	ld a, $e3
 	ldh [rLCDC], a
-	ld hl, Data9a5c
-	call Function965c
+	ld hl, PalTrnPacket
+	call _PushSGBPals
 	xor a
 	ldh [rBGP], a
 	ret
 
-Function97be:
+SGBBorder_MorePalPushing:
 	call DisableLCD
-	ld a, $e4
+	ld a, %11100100
 	ldh [rBGP], a
 	ld de, vChars1
-	ld bc, $0140
-	call Function9838
-	ld b, $12
-.sub_97d0
+	ld bc, (6 + SCREEN_WIDTH + 6) * 5 * 2
+	call CopyData
+	ld b, SCREEN_HEIGHT
+.loop
 	push bc
-	ld bc, $000c
-	call Function9838
-	ld bc, $0028
-	call Function9841
-	ld bc, $000c
-	call Function9838
+	ld bc, 6 * 2
+	call CopyData
+	ld bc, SCREEN_WIDTH * 2
+	call ClearBytes
+	ld bc, 6 * 2
+	call CopyData
 	pop bc
 	dec b
-	jr nz, .sub_97d0
-	ld bc, $0140
-	call Function9838
-	ld bc, $0100
-	call Function9841
-	ld bc, $0080
-	call Function9838
-	call Function984a
+	jr nz, .loop
+	ld bc, (6 + SCREEN_WIDTH + 6) * 5 * 2
+	call CopyData
+	ld bc, $100
+	call ClearBytes
+	ld bc, $80
+	call CopyData
+	call DrawDefaultTiles
 	ld a, $e3
 	ldh [rLCDC], a
-	ld hl, Data9a9c
-	call Function965c
+	ld hl, PctTrnPacket
+	call _PushSGBPals
 	xor a
 	ldh [rBGP], a
 	ret
 
-Function980a:
+SGBBorder_YetMorePalPushing:
 	call DisableLCD
 	ld a, $e4
 	ldh [rBGP], a
 	ld de, vChars1
 	ld b, $80
-.sub_9816
+.loop
 	push bc
-	ld bc, $0010
-	call Function9838
-	ld bc, $0010
-	call Function9841
+	ld bc, $10
+	call CopyData
+	ld bc, $10
+	call ClearBytes
 	pop bc
 	dec b
-	jr nz, .sub_9816
-	call Function984a
+	jr nz, .loop
+	call DrawDefaultTiles
 	ld a, $e3
 	ldh [rLCDC], a
-	ld hl, Data9a8c
-	call Function965c
+	ld hl, ChrTrnPacket
+	call _PushSGBPals
 	xor a
 	ldh [rBGP], a
 	ret
 
-Function9838:
+CopyData:
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec bc
 	ld a, c
 	or b
-	jr nz, Function9838
+	jr nz, CopyData
 	ret
 
-Function9841:
+ClearBytes:
 	xor a
 	ld [de], a
 	inc de
 	dec bc
 	ld a, c
 	or b
-	jr nz, Function9841
+	jr nz, ClearBytes
 	ret
 
-Function984a:
+DrawDefaultTiles:
 	ld hl, vBGMap0
 	ld de, $000c
 	ld a, $80
@@ -2151,7 +2156,7 @@ Function984a:
 	jr nz, .sub_9854
 	ret
 
-Function9860:
+SGBDelayCycles:
 	ld de, $1b58
 .sub_9863
 	nop
@@ -2287,62 +2292,62 @@ Data9a4c:
 	db $51, $29, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a5c:
+PalTrnPacket:
 	db $59, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a6c:
+MltReq1Packet:
 	db $89, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a7c:
+MltReq2Packet:
 	db $89, $01, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a8c:
+ChrTrnPacket:
 	db $99, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9a9c:
+PctTrnPacket:
 	db $a1, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9aac:
+MaskEnFreezePacket:
 	db $b9, $01, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9abc:
+MaskEnCancelPacket:
 	db $b9, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 
-Data9acc:
+DataSndPacket1:
 	db $79, $5d, $08, $00, $0b, $8c, $d0, $f4
 	db $60, $00, $00, $00, $00, $00, $00, $00
 
-Data9adc:
+DataSndPacket2:
 	db $79, $52, $08, $00, $0b, $a9, $e7, $9f
 	db $01, $c0, $7e, $e8, $e8, $e8, $e8, $e0
 
-Data9aec:
+DataSndPacket3:
 	db $79, $47, $08, $00, $0b, $c4, $d0, $16
 	db $a5, $cb, $c9, $05, $d0, $10, $a2, $28
 
-Data9afc:
+DataSndPacket4:
 	db $79, $3c, $08, $00, $0b, $f0, $12, $a5
 	db $c9, $c9, $c8, $d0, $1c, $a5, $ca, $c9
 
-Data9b0c:
+DataSndPacket5:
 	db $79, $31, $08, $00, $0b, $0c, $a5, $ca
 	db $c9, $7e, $d0, $06, $a5, $cb, $c9, $7e
 
-Data9b1c:
+DataSndPacket6:
 	db $79, $26, $08, $00, $0b, $39, $cd, $48
 	db $0c, $d0, $34, $a5, $c9, $c9, $80, $d0
 
-Data9b2c:
+DataSndPacket7:
 	db $79, $1b, $08, $00, $0b, $ea, $ea, $ea
 	db $ea, $ea, $a9, $01, $cd, $4f, $0c, $d0
 
-Data9b3c:
+DataSndPacket8:
 	db $79, $10, $08, $00, $0b, $4c, $20, $08
 	db $ea, $ea, $ea, $ea, $ea, $60, $ea, $ea
