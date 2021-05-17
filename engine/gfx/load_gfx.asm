@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/gfx.asm", ROMX
+SECTION "engine/gfx/load_gfx.asm", ROMX
 
 LoadFontGraphics::
 	ld de, FontGFX

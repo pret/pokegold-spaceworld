@@ -127,9 +127,9 @@ ROMX $02
 	"engine/trainer_gear.asm@OpenTrainerGear"
 	"gfx.asm@Trainer Gear GFX"
 	"engine/trainer_gear.asm@TrainerGear_RadioText"
-	"engine/dumps/bank02.asm@SetTitleBGDecorationBorder"
+	"engine/gfx/set_title_decoration.asm"
 	"gfx.asm@Title Screen BG Decoration Border"
-	"engine/dumps/bank02.asm@Function928b"
+	"engine/gfx/sgb_layouts.asm"
 	"gfx.asm@SGB GFX"
 	"slack.asm@Unknownaebc"
 	"slack.asm@Corrupted SGB GFX"
@@ -940,7 +940,7 @@ ROMX $3c
 
 ROMX $3e
 	org $4000
-	"engine/gfx.asm"
+	"engine/gfx/load_gfx.asm"
 	"gfx.asm@Misc GFX"
 
 ROMX $3f
