@@ -2142,214 +2142,34 @@ ClearBytes:
 	ret
 
 DrawDefaultTiles:
-	ld hl, vBGMap0
-	ld de, $000c
+	hlbgcoord 0, 0
+	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
 	ld a, $80
-	ld c, $0d
-.sub_9854
-	ld b, $14
-.sub_9856
+	ld c, 12 + 1
+.line
+	ld b, SCREEN_WIDTH
+.tile
 	ld [hli], a
 	inc a
 	dec b
-	jr nz, .sub_9856
+	jr nz, .tile
 	add hl, de
 	dec c
-	jr nz, .sub_9854
+	jr nz, .line
 	ret
 
 SGBDelayCycles:
-	ld de, $1b58
-.sub_9863
+	ld de, 7000
+.wait
 	nop
 	nop
 	nop
 	dec de
 	ld a, d
 	or e
-	jr nz, .sub_9863
+	jr nz, .wait
 	ret
 
-BlkPacket_986c:
-	db $21, $01, $03, $00, $00, $00, $13, $11
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_GSIntroJigglypuffPikachu:
-	db $21, $01, $07, $05, $00, $0a, $13, $0d
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_Battle:
-	db $22, $05, $07, $0a, $00, $0c, $13, $11
-	db $03, $05, $01, $00, $0a, $03, $03, $00
-
-Data989c:
-	db $0a, $08, $13, $0a, $03, $0a, $00, $04
-	db $08, $0b, $03, $0f, $0b, $00, $13, $07
-
-BlkPacket_StatsScreen:
-	db $21, $01, $07, $05, $00, $01, $07, $07
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_98bc:
-	db $21, $01, $07, $05, $0b, $01, $13, $02
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_Pokedex:
-	db $21, $01, $07, $05, $01, $01, $08, $08
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_SlotMachine:
-	db $22, $05, $03, $05, $00, $00, $13, $0b
-	db $03, $0a, $00, $04, $13, $09, $02, $0f
-
-Data98ec:
-	db $00, $06, $13, $07, $03, $00, $04, $04
-	db $0f, $09, $03, $00, $00, $0c, $13, $11
-
-BlkPacket_98fc:
-	db $23, $07, $07, $10, $00, $00, $02, $0c
-	db $02, $00, $0c, $00, $12, $01, $02, $00
-
-Data990c:
-	db $0c, $02, $12, $03, $02, $00, $0c, $04
-	db $12, $05, $02, $00, $0c, $06, $12, $07
-
-Data991c:
-	db $02, $00, $0c, $08, $12, $09, $02, $00
-	db $0c, $0a, $12, $0b, $00, $00, $00, $00
-
-BlkPacket_TrainerGear:
-	db $21, $01, $07, $10, $00, $00, $13, $02
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_TitleScreen:
-	db $21, $01, $07, $10, $00, $00, $13, $05
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_Poker:
-	db $51, $35, $00, $36, $00, $37, $00, $38
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_995c:
-	db $51, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_GSIntroShellderLapras:
-	db $51, $2a, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_MagikarpIntro:
-	db $51, $2b, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_GSIntroJigglypuffPikachu:
-	db $51, $2c, $00, $2d, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_GSIntroStartersTransition:
-	db $51, $2e, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_VenusaurIntro:
-	db $51, $2f, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_99bc:
-	db $51, $30, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_PikachuMinigame:
-	db $51, $2d, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_PartyMenu:
-	db $51, $22, $00, $23, $00, $24, $00, $25
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_BattleGrayscale:
-	db $51, $0e, $00, $0e, $00, $0e, $00, $0e
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-Data99fc:
-	db $51, $26, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_Pokedex:
-	db $51, $30, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_SlotMachine:
-	db $51, $31, $00, $32, $00, $33, $00, $34
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_TitleScreen:
-	db $51, $27, $00, $28, $00, $0f, $00, $13
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9a3c:
-	db $51, $0f, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_GFIntro:
-	db $51, $29, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PalTrnPacket:
-	db $59, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-MltReq1Packet:
-	db $89, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-MltReq2Packet:
-	db $89, $01, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-ChrTrnPacket:
-	db $99, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-PctTrnPacket:
-	db $a1, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-MaskEnFreezePacket:
-	db $b9, $01, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-MaskEnCancelPacket:
-	db $b9, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
-
-DataSndPacket1:
-	db $79, $5d, $08, $00, $0b, $8c, $d0, $f4
-	db $60, $00, $00, $00, $00, $00, $00, $00
-
-DataSndPacket2:
-	db $79, $52, $08, $00, $0b, $a9, $e7, $9f
-	db $01, $c0, $7e, $e8, $e8, $e8, $e8, $e0
-
-DataSndPacket3:
-	db $79, $47, $08, $00, $0b, $c4, $d0, $16
-	db $a5, $cb, $c9, $05, $d0, $10, $a2, $28
-
-DataSndPacket4:
-	db $79, $3c, $08, $00, $0b, $f0, $12, $a5
-	db $c9, $c9, $c8, $d0, $1c, $a5, $ca, $c9
-
-DataSndPacket5:
-	db $79, $31, $08, $00, $0b, $0c, $a5, $ca
-	db $c9, $7e, $d0, $06, $a5, $cb, $c9, $7e
-
-DataSndPacket6:
-	db $79, $26, $08, $00, $0b, $39, $cd, $48
-	db $0c, $d0, $34, $a5, $c9, $c9, $80, $d0
-
-DataSndPacket7:
-	db $79, $1b, $08, $00, $0b, $ea, $ea, $ea
-	db $ea, $ea, $a9, $01, $cd, $4f, $0c, $d0
-
-DataSndPacket8:
-	db $79, $10, $08, $00, $0b, $4c, $20, $08
-	db $ea, $ea, $ea, $ea, $ea, $60, $ea, $ea
+INCLUDE "data/sgb/blk_packets.inc"
+INCLUDE "data/sgb/pal_packets.inc"
+INCLUDE "data/sgb/ctrl_packets.inc"
