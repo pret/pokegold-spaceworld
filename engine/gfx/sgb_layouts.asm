@@ -37,7 +37,7 @@ LoadSGBLayout:
 	dw SGB_Evolution
 	dw SGB_GFIntro
 	dw SGB_TrainerCard
-	dw SGB0e
+	dw SGB_MoveList
 	dw SGB_PikachuMinigame
 	dw SGB_PokedexSelection
 	dw SGB_Poker
@@ -94,7 +94,7 @@ SGB_BattleColors:
 	ld [wccd0], a
 	ret
 
-SGB0e:
+SGB_MoveList:
 	ld hl, PalPacket_995c
 	ld de, wcce1
 	ld bc, PALPACKET_LENGTH
@@ -107,7 +107,7 @@ SGB0e:
 	add $23
 	ld [hl], a
 	ld hl, wcce1
-	ld de, BlkPacket_98bc
+	ld de, BlkPacket_MoveList
 	ret
 
 SGB_TownMap:
