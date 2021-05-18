@@ -1,3 +1,4 @@
+; SuperPalettes indexes (see data/super_palettes.inc)
 	const_def
 	const PAL_ROUTE ; 00
 	const PAL_TOWN_01 ; 01
