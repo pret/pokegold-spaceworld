@@ -701,8 +701,8 @@ PushSGBBorder:
 	jr nz, .spaceworld_border
 
 ; load alternate border
-	ld hl, UnusedSGBBorderGFX
-	ld de, UnusedSGBBorderTilemap
+	ld hl, AlternateSGBBorderGFX
+	ld de, AlternateSGBBorderTilemap
 	ret
 
 .spaceworld_border

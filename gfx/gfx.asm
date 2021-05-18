@@ -35,16 +35,20 @@ SECTION "gfx.asm@SGB GFX", ROMX
 INCLUDE "data/pokemon/palettes.inc"
 INCLUDE "data/super_palettes.inc"
 
-UnusedSGBBorderTilemap:
+AlternateSGBBorderTilemap::
 INCBIN "gfx/sgb/sgb_border_alt.sgb.tilemap"
-INCBIN "slack/unknown_a24c.bin"
 
-UnusedSGBBorderGFX::
+AlternateSGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border_alt.pal"
+
+AlternateSGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
-SGBBorderTilemap:
+SGBBorderTilemap::
 INCBIN "gfx/sgb/sgb_border.sgb.tilemap"
-INCBIN "slack/unknown_aa9c.bin"
+
+SGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border.pal"
 
 SGBBorderGFX::
 if DEF(GOLD)
