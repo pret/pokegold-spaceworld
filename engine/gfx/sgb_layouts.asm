@@ -111,7 +111,7 @@ SGB_MoveList:
 	ret
 
 SGB_TownMap:
-	ld hl, Data99fc
+	ld hl, PalPacket_TownMap
 	ld de, BlkPacket_986c
 	ret
 
@@ -154,7 +154,7 @@ SGB_Pokedex:
 	ret
 
 SGB_PokedexSelection:
-	ld hl, PalPacket_99bc
+	ld hl, PalPacket_GSIntroCharizard
 	ld de, BlkPacket_986c
 	ret
 
@@ -191,7 +191,7 @@ endr
 .BlkPacketTable:
 	dw BlkPacket_986c, PalPacket_GSIntroShellderLapras
 	dw BlkPacket_GSIntroJigglypuffPikachu, PalPacket_GSIntroJigglypuffPikachu
-	dw BlkPacket_986c, PalPacket_GSIntroStartersTransition
+	dw BlkPacket_986c, PalPacket_GSIntroBlastoise
 
 SGB_GFIntro:
 	ld hl, PalPacket_GFIntro
@@ -559,11 +559,11 @@ LoadForestPalettes2_Intro:
 	jp PushSGBPals
 
 LoadVenusaurPalettes_Intro:
-	ld hl, PalPacket_VenusaurIntro
+	ld hl, PalPacket_GSIntroVenusaur
 	jp PushSGBPals
 
 LoadCharizardPalettes_Intro:
-	ld hl, PalPacket_99bc
+	ld hl, PalPacket_GSIntroCharizard
 	jp PushSGBPals
 
 Function9645:

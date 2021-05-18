@@ -1,68 +1,57 @@
+sgb_pal_set: MACRO
+	db (SGB_PAL_SET << 3) + 1
+	dw PAL_\1, PAL_\2, PAL_\3, PAL_\4
+	ds 7
+ENDM
+
 PalPacket_Poker:
-	db $51, $35, $00, $36, $00, $37, $00, $38
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set POKER_1, POKER_2, POKER_3, POKER_4
 
 PalPacket_995c:
-	db $51, $00, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set ROUTE, ROUTE, ROUTE, ROUTE
 
 PalPacket_GSIntroShellderLapras:
-	db $51, $2a, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set INTRO_WATER, ROUTE, ROUTE, ROUTE
 
 PalPacket_MagikarpIntro:
-	db $51, $2b, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set INTRO_LAPRAS, ROUTE, ROUTE, ROUTE
 
 PalPacket_GSIntroJigglypuffPikachu:
-	db $51, $2c, $00, $2d, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set INTRO_FOREST, INTRO_JIGGLYPUFF_PIKACHU, ROUTE, ROUTE
 
-PalPacket_GSIntroStartersTransition:
-	db $51, $2e, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+PalPacket_GSIntroBlastoise:
+	sgb_pal_set INTRO_BLASTOISE, ROUTE, ROUTE, ROUTE
 
-PalPacket_VenusaurIntro:
-	db $51, $2f, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+PalPacket_GSIntroVenusaur:
+	sgb_pal_set INTRO_VENUSAUR, ROUTE, ROUTE, ROUTE
 
-PalPacket_99bc:
-	db $51, $30, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+PalPacket_GSIntroCharizard:
+	sgb_pal_set INTRO_CHARIZARD, ROUTE, ROUTE, ROUTE
 
 PalPacket_PikachuMinigame:
-	db $51, $2d, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set INTRO_JIGGLYPUFF_PIKACHU, ROUTE, ROUTE, ROUTE
 
 PalPacket_PartyMenu:
-	db $51, $22, $00, $23, $00, $24, $00, $25
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set SHINY_GRAYMON, GREEN_BAR, YELLOW_BAR, RED_BAR
 
 PalPacket_BattleGrayscale:
-	db $51, $0e, $00, $0e, $00, $0e, $00, $0e
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set BLACK, BLACK, BLACK, BLACK
 
-Data99fc:
-	db $51, $26, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+PalPacket_TownMap:
+	sgb_pal_set TOWN_MAP, ROUTE, ROUTE, ROUTE
 
 PalPacket_Pokedex:
-	db $51, $30, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set INTRO_CHARIZARD, ROUTE, ROUTE, ROUTE
 
 PalPacket_SlotMachine:
-	db $51, $31, $00, $32, $00, $33, $00, $34
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set SLOTS_1, SLOTS_2, SLOTS_3, SLOTS_4
 
 PalPacket_TitleScreen:
-	db $51, $27, $00, $28, $00, $0f, $00, $13
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set LOGO_1, LOGO_2, MEWMON, PURPLEMON
 
 PalPacket_9a3c:
-	db $51, $0f, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set MEWMON, ROUTE, ROUTE, ROUTE
 
 PalPacket_GFIntro:
-	db $51, $29, $00, $00, $00, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal_set GAME_FREAK, ROUTE, ROUTE, ROUTE
 
