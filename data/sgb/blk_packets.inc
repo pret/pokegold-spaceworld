@@ -1,56 +1,73 @@
+attr_blk: MACRO
+	db (SGB_ATTR_BLK << 3) + ((\1 * 6) / 16 + 1)
+	db \1
+ENDM
+
+attr_blk_data: MACRO
+	db \1 ; which regions are affected
+	db \2 + (\3 << 2) + (\4 << 4) ; palette for each region
+	db \5, \6, \7, \8 ; x1, y1, x2, y2
+ENDM
+
 BlkPacket_986c:
-	db $21, $01, $03, $00, $00, $00, $13, $11
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	attr_blk 1
+	attr_blk_data %011, 0,0,0, 00,00, 19,17
+	ds 8
 
 BlkPacket_GSIntroJigglypuffPikachu:
-	db $21, $01, $07, $05, $00, $0a, $13, $0d
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	attr_blk 1
+	attr_blk_data %111, 1,1,0, 00,10, 19,13
+	ds 8
 
 BlkPacket_Battle:
-	db $22, $05, $07, $0a, $00, $0c, $13, $11
-	db $03, $05, $01, $00, $0a, $03, $03, $00
-
-Data989c:
-	db $0a, $08, $13, $0a, $03, $0a, $00, $04
-	db $08, $0b, $03, $0f, $0b, $00, $13, $07
+	attr_blk 5
+	attr_blk_data %111, 2,2,0, 00,12, 19,17
+	attr_blk_data %011, 1,1,0, 01,00, 10,03
+	attr_blk_data %011, 0,0,0, 10,08, 19,10
+	attr_blk_data %011, 2,2,0, 00,04, 08,11
+	attr_blk_data %011, 3,3,0, 11,00, 19,07
 
 BlkPacket_StatsScreen:
-	db $21, $01, $07, $05, $00, $01, $07, $07
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	attr_blk 1
+	attr_blk_data %111, 1,1,0, 00,01, 07,07
+	ds 8
 
-BlkPacket_98bc:
-	db $21, $01, $07, $05, $0b, $01, $13, $02
-	db $00, $00, $00, $00, $00, $00, $00, $00
+BlkPacket_MoveList:
+	attr_blk 1
+	attr_blk_data %111, 1,1,0, 11,01, 19,02
+	ds 8
 
 BlkPacket_Pokedex:
-	db $21, $01, $07, $05, $01, $01, $08, $08
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	attr_blk 1
+	attr_blk_data %111, 1,1,0, 01,01, 08,08
+	ds 8
 
 BlkPacket_SlotMachine:
-	db $22, $05, $03, $05, $00, $00, $13, $0b
-	db $03, $0a, $00, $04, $13, $09, $02, $0f
-
-Data98ec:
-	db $00, $06, $13, $07, $03, $00, $04, $04
-	db $0f, $09, $03, $00, $00, $0c, $13, $11
+	attr_blk 5
+	attr_blk_data %011, 1,1,0, 00,00, 19,11
+	attr_blk_data %011, 2,2,0, 00,04, 19,09
+	attr_blk_data %010, 3,3,0, 00,06, 19,07
+	attr_blk_data %011, 0,0,0, 04,04, 15,09
+	attr_blk_data %011, 0,0,0, 00,12, 19,17
 
 BlkPacket_98fc:
-	db $23, $07, $07, $10, $00, $00, $02, $0c
-	db $02, $00, $0c, $00, $12, $01, $02, $00
-
-Data990c:
-	db $0c, $02, $12, $03, $02, $00, $0c, $04
-	db $12, $05, $02, $00, $0c, $06, $12, $07
-
-Data991c:
-	db $02, $00, $0c, $08, $12, $09, $02, $00
-	db $0c, $0a, $12, $0b, $00, $00, $00, $00
+	attr_blk 7
+	attr_blk_data %111, 0,0,1, 00,00, 02,12
+	attr_blk_data %010, 0,0,0, 12,00, 18,01
+	attr_blk_data %010, 0,0,0, 12,02, 18,03
+	attr_blk_data %010, 0,0,0, 12,04, 18,05
+	attr_blk_data %010, 0,0,0, 12,06, 18,07
+	attr_blk_data %010, 0,0,0, 12,08, 18,09
+	attr_blk_data %010, 0,0,0, 12,10, 18,11
+	ds 4
 
 BlkPacket_TrainerGear:
-	db $21, $01, $07, $10, $00, $00, $13, $02
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	attr_blk 1
+	attr_blk_data %111, 0,0,1, 00,00, 19,02
+	ds 8
 
 BlkPacket_TitleScreen:
-	db $21, $01, $07, $10, $00, $00, $13, $05
-	db $00, $00, $00, $00, $00, $00, $00, $00
+	attr_blk 1
+	attr_blk_data %111, 0,0,1, 00,00, 19,05
+	ds 8
 
