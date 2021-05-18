@@ -33,7 +33,7 @@ INCBIN "gfx/title/titlebgdecoration.2bpp"
 SECTION "gfx.asm@SGB GFX", ROMX
 
 INCLUDE "data/pokemon/palettes.inc"
-INCLUDE "data/super_palettes.inc"
+INCLUDE "data/sgb/super_palettes.inc"
 
 AlternateSGBBorderTilemap::
 INCBIN "gfx/sgb/sgb_border_alt.sgb.tilemap"
