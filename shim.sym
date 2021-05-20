@@ -138,20 +138,15 @@
 38:4EA8 Cursor_InterpretJoypad
 
 ; TODO shims
-3F:4CFC FieldDebug_CheckTile
 3F:578C FieldDebug_ClearEventFlags
-3F:4C85 FieldDebug_FieldCut
 3F:5176 FieldDebug_ItemTest
-3F:4DFC FieldDebug_MapViewer
 3F:56D1 FieldDebug_Minigames
-3F:4D68 FieldDebug_MoveToEntrance
 3F:537E FieldDebug_PCMenu
 3F:5389 FieldDebug_PokemartMenu
 3F:567C FieldDebug_Teleport
-3F:4C4D FieldDebug_ToggleNPCMovement
-3F:4DDC FieldDebug_TrainerGear
 3F:5786 FieldDebug_VRAMViewer
-3F:4BF4 Functionfcbf4
+00:2F21 SUB_2f21
+
 
 ; SFX shims
 3C:43BE Sfx_01
@@ -304,7 +299,6 @@
 3C:5912 CryHeader_f1912
 
 3F:40E9 InGameDebugMenu
-3F:4C24 Functionfcc24
 3F:4E3E Functionfce3e
 3F:5B66 Functionfdb66
 3F:6255 Functionfe255

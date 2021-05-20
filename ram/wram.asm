@@ -930,7 +930,12 @@ wHPBarOldHP:: dw
 
 ENDU
 
+UNION
 wHPBarNewHP:: dw
+NEXTU
+wcdc7:: db
+wcdc8:: db
+ENDU
 wHPBarDelta::   db
 wcdca:: db
 wHPBarHPDifference:: dw
@@ -1154,7 +1159,6 @@ wMap14Object::  map_object wMap14
 wMap15Object::  map_object wMap15
 wMapObjectsEnd::
 
-wd14f::
 wToolgearFlags:: db
 ; 76543210
 ; |    | \- show toolgear
@@ -1170,7 +1174,7 @@ wTimeOfDayPal:: db
 wd153:: db
 ; 76543210
 ; |      \- show player coords in toolgear instead of time
-; \-------- switch overworld palettes according to seconds not hours
+; \-------- switch overworld palettes according to minutes not hours
 
 	ds 3 ; TODO
 wTimeOfDayPalFlags:: db

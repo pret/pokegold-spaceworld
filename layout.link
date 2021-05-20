@@ -949,12 +949,12 @@ ROMX $3f
 	"engine/menu/frame_type_dialog.asm"
 	"engine/menu/reset_dialog.asm"
 	"engine/menu/field_debug_menu.asm@FieldDebug_ChangeTileset"
-	org $4a57
 	"engine/landmarks.asm@1"
 	"data/maps/landmarks.asm"
 	"engine/landmarks.asm@2"
-	org $506f
+	"engine/menu/field_debug_menu.asm@FieldDebug_ShowWarpToText"
 	"gfx.asm@Town Map Cursor"
+	"engine/menu/field_debug_menu.asm@DisplayBGEventDetails"
 	org $6255
 	"engine/menu/debug_menu.asm@Sound Test"
 	org $67a1

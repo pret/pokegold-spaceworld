@@ -19,6 +19,7 @@ SFX_TITLE_ENTRANCE              EQU $2D
 SFX_PAY_DAY                     EQU $30
 SFX_GAME_FREAK_LOGO_RG          EQU $31
 
+SFX_SHINE                       EQU $62
 
 ; R/G/B/Y fanfares
 SFX_GET_ITEM_RG                 EQU $63
