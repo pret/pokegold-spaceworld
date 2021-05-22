@@ -34,15 +34,15 @@ INCLUDE "constants.asm"
 
 ; FieldDebugMenu.ReturnJumptable constants
 	const_def
-	const FIELDDEBUG_RETURN_REOPEN  ; 0
-	const FIELDDEBUG_RETURN_EXIT    ; 1
-	const FIELDDEBUG_RETURN_CLOSE   ; 2
-	const FIELDDEBUG_RETURN_CLEANUP ; 3
-	const FIELDDEBUG_RETURN_RETURN  ; 4 XXX awkward name
+	const FIELDDEBUG_RETURN_REOPEN     ; 0
+	const FIELDDEBUG_RETURN_WAIT_INPUT ; 1
+	const FIELDDEBUG_RETURN_CLOSE      ; 2
+	const FIELDDEBUG_RETURN_CLEANUP    ; 3
+	const FIELDDEBUG_RETURN_EXIT       ; 4
 
 FIELDDEBUG_NUM_PAGES equ 3
 
-; FieldDebug_DoSpriteViewer.Jumptable constants
+; .DoSpriteViewer.Jumptable constants
 	const_def
 	const SPRITEVIEWER_INIT_MENU             ; 0
 	const SPRITEVIEWER_UPDATE_MENU           ; 1
@@ -52,6 +52,15 @@ FIELDDEBUG_NUM_PAGES equ 3
 	const SPRITEVIEWER_FOLLOW_PROMPT         ; 5
 	const SPRITEVIEWER_EXIT                  ; 6
 	const SPRITEVIEWER_SET_FOLLOWING         ; 7
+
+; DebugMapViewer.Jumptable constants
+	const_def
+	const DEBUGMAPVIEWER_EMPTY                 ; 0
+	const DEBUGMAPVIEWER_INIT                  ; 1
+	const DEBUGMAPVIEWER_CONTROL_CURSOR        ; 2
+	const DEBUGMAPVIEWER_MOVE_CURSOR_TO_PLAYER ; 3
+	const DEBUGMAPVIEWER_WAIT_FINISHED_MOVING  ; 4
+	const DEBUGMAPVIEWER_CLEANUP               ; 5
 
 SECTION "engine/menu/field_debug_menu.asm@FieldDebugMenuHeader", ROMX
 
@@ -144,7 +153,7 @@ FieldDebug_Pages:
 	db FIELDDEBUG_CLOSE_MENU
 	db -1
 
-FieldDebug_Page2:
+.Page2:
 	db 7
 	db FIELDDEBUG_GO_TO_NEXT_PAGE
 	db FIELDDEBUG_POKEMART_MENU
@@ -155,7 +164,7 @@ FieldDebug_Page2:
 	db FIELDDEBUG_CLOSE_MENU
 	db -1
 
-FieldDebug_Page3:
+.Page3:
 	db 7
 	db FIELDDEBUG_GO_TO_NEXT_PAGE
 	db FIELDDEBUG_CLEAR_EVENT_FLAGS
@@ -166,7 +175,7 @@ FieldDebug_Page3:
 	db FIELDDEBUG_CLOSE_MENU
 	db -1
 
-FieldDebugMenu:
+FieldDebugMenu::
 	call RefreshScreen
 	ld de, SFX_MENU
 	call PlaySFX
@@ -183,7 +192,7 @@ FieldDebugMenu:
 	ld a, [wFieldDebugMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 	call OpenMenu
-	jr c, .Exit
+	jr c, .WaitInput
 	ld a, [wMenuCursorBuffer]
 	ld [wFieldDebugMenuCursorBuffer], a
 	call PlaceHollowCursor
@@ -206,16 +215,16 @@ FieldDebugMenu:
 
 .ReturnJumptable:
 	dw .Reopen
-	dw .Exit
+	dw .WaitInput
 	dw .Close
 	dw .Cleanup
-	dw .Return
+	dw .Exit
 
-.Exit:
+.WaitInput:
 	call GetJoypad
 	ldh a, [hJoyDown]
 	bit A_BUTTON_F, a
-	jr nz, .Exit
+	jr nz, .WaitInput
 	call LoadFontExtra
 
 .Close:
@@ -227,7 +236,7 @@ FieldDebugMenu:
 	pop af
 	ret
 
-.Return:
+.Exit:
 	call ExitMenu
 	ld a, -1
 	ldh [hStartmenuCloseAndSelectHookEnable], a
@@ -545,8 +554,8 @@ FieldDebug_SpriteViewer:
 	call HideSprites
 	ld hl, wVramState
 	res 0, [hl]
-	call Functionfc410
-	call FieldDebug_DoSpriteViewer
+	call .Init
+	call .DoSpriteViewer
 	push af
 	ld hl, wVramState
 	set 0, [hl]
@@ -557,7 +566,7 @@ FieldDebug_SpriteViewer:
 	pop af
 	ret
 
-Functionfc410:
+.Init:
 	ld a, $5b
 	ld [wMovementBufferObject], a
 	ld a, 1
@@ -577,7 +586,7 @@ Functionfc410:
 	ld a, 5
 	add [hl]
 	cp d
-	jr c, Functionfc44c
+	jr c, .skip
 	sub d
 	ld [wSpriteViewerSavedMenuPointerY], a
 	ld a, [wMovementBufferObject]
@@ -585,34 +594,33 @@ Functionfc410:
 	ld [wSpriteViewerMenuStartingItem], a
 	ret
 
-Functionfc44c:
+.skip
 	ld a, 1
 	ld [wSpriteViewerSavedMenuPointerY], a
 	ld a, [hl]
 	ld [wSpriteViewerMenuStartingItem], a
 	ret
 
-Functionfc456:
-	ld de, Datafc46f
+.SetMenuAttributes:
+	ld de, .MenuAttributes
 	call SetMenuAttributes
 	ld a, [wMovementBufferObject]
 	cp 5
-	jr c, Functionfc465
+	jr c, .apply
 	ld a, 5
-
-Functionfc465:
+.apply
 	ld [w2DMenuNumRows], a
 	ld a, [wSpriteViewerSavedMenuPointerY]
 	ld [wMenuCursorY], a
 	ret
 
-Datafc46f:
+.MenuAttributes:
 	db 3, 1
 	db 0, 1
 	db $F, 0
 	db $30, 3
 
-FieldDebug_DoSpriteViewer:
+.DoSpriteViewer:
 	ld a, 0
 	ld [wSpriteViewerJumptableIndex], a
 
@@ -649,7 +657,7 @@ FieldDebug_DoSpriteViewer:
 	ld a, -1
 	ld [wSpriteViewerJumptableIndex], a
 	scf
-	ld a, FIELDDEBUG_RETURN_RETURN
+	ld a, FIELDDEBUG_RETURN_EXIT
 	ret
 
 .InitMenu:
@@ -658,7 +666,7 @@ FieldDebug_DoSpriteViewer:
 	call HideSprites
 	call ClearPalettes
 	call ClearTileMap
-	call Functionfc456
+	call .SetMenuAttributes
 	call .DisplayMenu
 	call SetPalettes
 	call WaitBGMap
@@ -698,7 +706,7 @@ FieldDebug_DoSpriteViewer:
 	ret
 
 .UpdateMenu:
-	call Functionfc456
+	call .SetMenuAttributes
 .loop2
 	call Get2DMenuJoypad
 	ld a, [wMenuCursorY]
@@ -799,7 +807,6 @@ FieldDebug_DoSpriteViewer:
 	call .SetStartingPoint
 	call IsAnimatedSprite
 	jr c, .animated_sprite
-
 ; static sprite
 	ld a, SPRITEVIEWER_SETUP_STATIC_SPRITE
 	ld [wSpriteViewerJumptableIndex], a
@@ -991,184 +998,44 @@ Datafc6de:
 	dw Datafc78e
 
 Datafc6fe:
-	db $0
-	db $0
-	db $0
-	db $0
-	db $0
-	db $8
-	db $1
-	db $0
-	db $8
-	db $0
-	db $2
-	db $2
-	db $8
-	db $8
-	db $3
-	db $3
+	db 0, 0, 0, 0, 0, 8, 1, 0
+	db 8, 0, 2, 2, 8, 8, 3, 3
 
 Datafc70e:
-	db $0
-	db $0
-	db $c
-	db $0
-	db $0
-	db $8
-	db $d
-	db $0
-	db $8
-	db $0
-	db $e
-	db $2
-	db $8
-	db $8
-	db $f
-	db $3
+	db 0, 0, $c, 0, 0, 8, $d, 0
+	db 8, 0, $e, 2, 8, 8, $f, 3
 
 Datafc71e:
-	db $0
-	db $8
-	db $c
-	db $20
-	db $0
-	db $0
-	db $d
-	db $20
-	db $8
-	db $8
-	db $e
-	db $22
-	db $8
-	db $0
-	db $f
-	db $23
+	db 0, 8, $c, $20, 0, 0, $d, $20
+	db 8, 8, $e, $22, 8, 0, $f, $23
 
 Datafc72e:
-	db $0
-	db $0
-	db $4
-	db $0
-	db $0
-	db $8
-	db $5
-	db $0
-	db $8
-	db $0
-	db $6
-	db $2
-	db $8
-	db $8
-	db $7
-	db $3
+	db 0, 0, 4, 0, 0, 8, 5, 0
+	db 8, 0, 6, 2, 8, 8, 7, 3
 
 Datafc73e:
-	db $0
-	db $0
-	db $10
-	db $0
-	db $0
-	db $8
-	db $11
-	db $0
-	db $8
-	db $0
-	db $12
-	db $2
-	db $8
-	db $8
-	db $13
-	db $3
+	db 0, 0, $10, 0, 0, 8, $11, 0
+	db 8, 0, $12, 2, 8, 8, $13, 3
 
 Datafc74e:
-	db $0
-	db $8
-	db $10
-	db $20
-	db $0
-	db $0
-	db $11
-	db $20
-	db $8
-	db $8
-	db $12
-	db $22
-	db $8
-	db $0
-	db $13
-	db $23
+	db 0, 8, $10, $20, 0, 0, $11, $20
+	db 8, 8, $12, $22, 8, 0, $13, $23
 
 Datafc75e:
-	db $0
-	db $0
-	db $8
-	db $0
-	db $0
-	db $8
-	db $9
-	db $0
-	db $8
-	db $0
-	db $a
-	db $2
-	db $8
-	db $8
-	db $b
-	db $3
+	db 0, 0, 8, 0, 0, 8, 9, 0
+	db 8, 0, $a, 2, 8, 8, $b, 3
 
 Datafc76e:
-	db $0
-	db $8
-	db $8
-	db $20
-	db $0
-	db $0
-	db $9
-	db $20
-	db $8
-	db $8
-	db $a
-	db $22
-	db $8
-	db $0
-	db $b
-	db $23
+	db 0, 8, 8, $20, 0, 0, 9, $20
+	db 8, 8, $a, $22, 8, 0, $b, $23
 
 Datafc77e:
-	db $0
-	db $0
-	db $14
-	db $0
-	db $0
-	db $8
-	db $15
-	db $0
-	db $8
-	db $0
-	db $16
-	db $2
-	db $8
-	db $8
-	db $17
-	db $3
+	db 0, 0, $14, 0, 0, 8, $15, 0
+	db 8, 0, $16, 2, 8, 8, $17, 3
 
 Datafc78e:
-	db $0
-	db $8
-	db $14
-	db $20
-	db $0
-	db $0
-	db $15
-	db $20
-	db $8
-	db $8
-	db $16
-	db $22
-	db $8
-	db $0
-	db $17
-	db $23
+	db 0, 8, $14, $20, 0, 0, $15, $20
+	db 8, 8, $16, $22, 8, 0, $17, $23
 
 FieldDebug_NamePlayer:
 	call LoadStandardMenuHeader
@@ -1263,7 +1130,7 @@ OpenToolgearMenu:
 	ret nz
 	ld hl, wd153
 	bit TOOLGEAR_COORDS_F, [hl]
-	ld a, FIELDDEBUG_RETURN_EXIT
+	ld a, FIELDDEBUG_RETURN_WAIT_INPUT
 	ret nz
 	ld a, FIELDDEBUG_RETURN_CLOSE
 	ret
@@ -1307,7 +1174,7 @@ FieldDebug_NPCMovementTest:
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 .exit
-	ld a, FIELDDEBUG_RETURN_EXIT
+	ld a, FIELDDEBUG_RETURN_WAIT_INPUT
 	ret
 
 .NPCMovementTest:
@@ -1429,28 +1296,26 @@ FieldDebug_FollowNPCTest:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
 	call VerticalMenu
-	jr c, .asm_fc9a0
+	jr c, .close
 	ld a, [wMenuCursorY]
 	cp 1
-	jr nz, .asm_fc992
+	jr nz, .end
 	ld a, [wObjectFollow_Follower]
 	and a
-	jr nz, .asm_fc997
+	jr nz, .cannot_use
 	call .asm_fc9a5
 	call CloseWindow
 	scf
 	ret
 
-.asm_fc992:
+.end
 	call .asm_fc9c2
-	jr .asm_fc9a0
-
-.asm_fc997:
+	jr .close
+.cannot_use
 	ld hl, .CannotUseWithPokemonText
 	call MenuTextBox
 	call CloseWindow
-
-.asm_fc9a0:
+.close
 	call CloseWindow
 	and a
 	ret
@@ -1537,7 +1402,7 @@ FieldDebug_Warp:
 	ld de, SFX_22
 	call PlaySFX
 	call DelayFrame
-	ld a, FIELDDEBUG_RETURN_RETURN
+	ld a, FIELDDEBUG_RETURN_EXIT
 	ret
 
 SECTION "engine/menu/field_debug_menu.asm@FieldDebug_ShowWarpToText", ROMX
@@ -1802,7 +1667,7 @@ FieldDebug_MoveToEntrance:
 	ldh a, [hROMBank]
 	ld hl, .DoMove
 	call QueueScript
-	ld a, FIELDDEBUG_RETURN_RETURN
+	ld a, FIELDDEBUG_RETURN_EXIT
 	ret
 
 .cannot_use
@@ -1838,7 +1703,7 @@ FieldDebug_MoveToEntrance:
 
 FieldDebug_TrainerGear:
 	call .OpenTrainerGear
-	ld a, 0
+	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
 .OpenTrainerGear:
@@ -1852,7 +1717,7 @@ FieldDebug_TrainerGear:
 FieldDebug_OpenMapViewer:
 	call .DoOpen
 	jr c, .done
-	ld a, FIELDDEBUG_RETURN_RETURN
+	ld a, FIELDDEBUG_RETURN_EXIT
 	ret
 
 .done:
@@ -1881,8 +1746,8 @@ FieldDebug_OpenMapViewer:
 	call WriteIntod637
 	xor a
 	ldh [hJoypadSum], a
-	ld a, 1
-	ldh [hFF96], a
+	ld a, DEBUGMAPVIEWER_INIT
+	ldh [hDebugMapViewerJumptable], a
 	ret
 
 DebugMapViewer::
@@ -1916,11 +1781,9 @@ DebugMapViewer::
 	ld a, [wDebugFlags]
 	bit 1, a
 	ret z
-
-	ldh a, [hFF96]
+	ldh a, [hDebugMapViewerJumptable]
 	and a
 	ret z
-
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
@@ -1932,56 +1795,53 @@ DebugMapViewer::
 	jp hl
 
 .Jumptable:
-	dw asm_fce95
-	dw asm_fce96
-	dw asm_fceaa
-	dw asm_fced1
-	dw asm_fceed
-	dw asm_fcefa
+	dw .Empty
+	dw .Init
+	dw .ControlCursor
+	dw .MoveCursorToPlayer
+	dw .WaitFinishedMoving
+	dw .Cleanup
 
-asm_fce95:
+.Empty:
 	ret
 
-asm_fce96:
+.Init:
 	call Function18b4
-	call sub_fd053
-	call sub_fd024
+	call DebugMapViewer_LoadCursorSprite
+	call DebugMapViewer_ReplacePlayerObject
 	ld a, $2a
 	ld [wMovementObject], a
-	ld a, 2
-	ldh [hFF96], a
+	ld a, DEBUGMAPVIEWER_CONTROL_CURSOR
+	ldh [hDebugMapViewerJumptable], a
 	and a
 	ret
 
-asm_fceaa:
+.ControlCursor:
 	ldh a, [hJoypadSum]
 	ld b, a
 	xor a
 	ldh [hJoypadSum], a
 	ld a, b
-	and 8
-	jr nz, asm_fcec0
+	and START
+	jr nz, .start_pressed
 	ldh a, [hJoyState]
-	and 1
-	jr nz, asm_fcec7
-	call sub_fcfb7
-	jr asm_fcecc
-
-asm_fcec0:
-	call sub_fcf0c
+	and A_BUTTON
+	jr nz, .a_pressed
+	call DebugMapViewer_DoMovement
+	jr .apply_movement
+.start_pressed
+	call DebugMapViewer_ShowViewerPrompt
 	ld a, $2a
-	jr asm_fcecc
-
-asm_fcec7:
-	call sub_fcf3b
+	jr .apply_movement
+.a_pressed
+	call DebugMapViewer_ShowSelectedDetails
 	ld a, $2a
-
-asm_fcecc:
+.apply_movement
 	ld [wMovementObject], a
 	and a
 	ret
 
-asm_fced1:
+.MoveCursorToPlayer:
 	ld a, 1
 	ld hl, wMovementBuffer
 	call LoadMovementDataPointer
@@ -1989,43 +1849,42 @@ asm_fced1:
 	ld b, 1
 	ld c, 0
 	callab Function83a2
-	ld a, 4
-	ldh [hFF96], a
+	ld a, DEBUGMAPVIEWER_WAIT_FINISHED_MOVING
+	ldh [hDebugMapViewerJumptable], a
 	and a
 	ret
 
-asm_fceed:
+.WaitFinishedMoving:
 	ld hl, wVramState
 	bit 7, [hl]
-	jr nz, asm_fcef8
-	ld a, 5
-	ldh [hFF96], a
-
-asm_fcef8:
+	jr nz, .asm_fcef8
+	ld a, DEBUGMAPVIEWER_CLEANUP
+	ldh [hDebugMapViewerJumptable], a
+.asm_fcef8
 	and a
 	ret
 
-asm_fcefa:
+.Cleanup:
 	ld a, 1
 	call Function169f
 	call Function18cc
 	ld a, 0
 	call Function1908
 	xor a
-	ldh [hFF96], a
+	ldh [hDebugMapViewerJumptable], a
 	scf
 	ret
 
-sub_fcf0c:
+DebugMapViewer_ShowViewerPrompt:
 	call RefreshScreen
 	ld hl, .ChangeViewerPrompt
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
-	jr c, .skip
-	ld a, 3
-	ldh [hFF96], a
-.skip
+	jr c, .no
+	ld a, DEBUGMAPVIEWER_MOVE_CURSOR_TO_PLAYER
+	ldh [hDebugMapViewerJumptable], a
+.no
 	call Function1fea
 	ret
 
@@ -2034,21 +1893,21 @@ sub_fcf0c:
 	line "かいじょ　しますか？"
 	done
 
-sub_fcf3b:
+DebugMapViewer_ShowSelectedDetails:
 	ld a, 0
 	ldh [hTextBoxCursorBlinkInterval], a
 	ld bc, wObjectStructs
 	callab Function77a1
 	jr nc, .skip
 	call RefreshScreen
-	call DisplayActorCastID
+	call .DisplayActorCastID
 	call Function1fea
 	ret
 .skip
 	call DisplayBGEventDetails
 	ret
 
-DisplayActorCastID:
+.DisplayActorCastID:
 	ld hl, .ActorCastText
 	call MenuTextBox
 
@@ -2094,7 +1953,7 @@ DisplayActorCastID:
 .NoneText:
 	db "なし@"
 
-sub_fcfb7:
+DebugMapViewer_DoMovement:
 	ld bc, wObjectStructs
 	ldh a, [hJoyState]
 	ld d, a
@@ -2170,21 +2029,21 @@ sub_fcfb7:
 	ld a, $b
 	ret
 
-sub_fd024:
+DebugMapViewer_ReplacePlayerObject:
 	callab Function807b
 	ld a, 1
 	call Function15ed
 	ld a, 1
 	call Function1908
 	ld bc, wObjectStructs
-	ld hl, 4
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	set 3, [hl]
 	set 2, [hl]
 	set 1, [hl]
 	ret
 
-Unknownfd044:
+Datafd044:
 	db $1
 	db $0
 	db $0
@@ -2201,7 +2060,7 @@ Unknownfd044:
 	db $0
 	db $0
 
-sub_fd053:
+DebugMapViewer_LoadCursorSprite:
 	ldh a, [hBGMapMode]
 	push af
 	ldh a, [hMapAnims]
@@ -2223,17 +2082,17 @@ SECTION "engine/menu/field_debug_menu.asm@DisplayBGEventDetails", ROMX
 DisplayBGEventDetails:
 	call SUB_2f21
 	ret nc
-	call sub_fd0cc
+	call .Functionfd0cc
 	call RefreshScreen
-	ld hl, TableText
+	ld hl, .TableText
 	call MenuTextBox
-	call sub_fd0ef
-	call sub_fd12c
+	call .PrintTableDetails
+	call .WaitInput
 	call CloseWindow
 	call Function1fea
 	ret
 
-sub_fd0cc:
+.Functionfd0cc:
 	ld a, [hld]
 	ld [wFieldMoveScriptID], a
 	ld a, [hl]
@@ -2250,11 +2109,11 @@ sub_fd0cc:
 	ld [wHPBarNewHP], a
 	ret
 
-TableText:
+.TableText:
 	text "テーブル"
 	done
 
-sub_fd0ef:
+.PrintTableDetails:
 	ld hl, $c3c0
 	ld de, wMapBlocksAddress
 	call PrintHexByte
@@ -2277,10 +2136,10 @@ sub_fd0ef:
 	call PrintNumber
 	ret
 
-sub_fd12c:
+.WaitInput:
 	call GetJoypad
 	ldh a, [hJoyDown]
-	and $7
-	jr z, sub_fd12c
+	and A_BUTTON | B_BUTTON | SELECT
+	jr z, .WaitInput
 	ret
 
