@@ -2143,3 +2143,347 @@ DisplayBGEventDetails:
 	jr z, .WaitInput
 	ret
 
+ItemTest_BagMenu:
+	dw .MenuHeader
+	dw wRegularItemsCursor
+	dw wRegularItemsScrollPosition
+
+.MenuHeader:
+	db $40
+	db $1
+	db $4
+	db $a
+	db $13
+	dw .MenuData
+	db $1
+
+.MenuData:
+; Incorrectly configured; will cause the game to crash
+	db $2c
+	db $4
+	db $8
+	db $2
+	db $0
+	dw wItems
+	db BANK(PlaceMenuItemName)
+	call PlaceMenuItemName
+	db BANK(PlaceMenuItemQuantity)
+	call PlaceMenuItemQuantity
+	db BANK(UpdateItemDescription)
+	dw UpdateItemDescription
+
+ItemTest_PCMenu:
+	dw .MenuHeader
+	dw wBackpackAndKeyItemsCursor
+	dw wBackpackAndKeyItemsScrollPosition
+
+.MenuHeader:
+	db $40
+	db $1
+	db $4
+	db $a
+	db $13
+	dw .MenuData
+	db $1
+
+.MenuData:
+; Incorrectly configured; will cause the game to crash
+	db $2c
+	db $4
+	db $8
+	db $2
+	db $0
+	dw wNumKeyItems
+	db BANK(PlaceMenuItemName)
+	call PlaceMenuItemName
+	db BANK(PlaceMenuItemQuantity)
+	call PlaceMenuItemQuantity
+	db BANK(UpdateItemDescription)
+	dw UpdateItemDescription
+
+FieldDebug_ItemTest:
+	call ClearSprites
+	ld hl, wVramState
+	res 0, [hl]
+	call LoadStandardMenuHeader
+	call ClearTileMap
+	call UpdateSprites
+	call .DoItemTest
+	ld hl, wVramState
+	set 0, [hl]
+	call CloseWindow
+	ret
+	ld a, 0
+	ret
+
+.ClearTilemap:
+	ld hl, wTileMap
+	ld bc, $0168
+	ld a, $f1
+	call ByteFill
+	ret
+
+.DoItemTest:
+	call .ClearTilemap
+.bag_menu
+	ld hl, ItemTest_BagMenu
+	call Function3810
+	ld a, [wMenuJoypad]
+	cp 2
+	jr z, .b_pressed
+	cp $20
+	jr z, .pc_menu
+	cp $10
+	jr z, .pc_menu
+	jr .DecideAction
+
+.pc_menu
+	ld hl, ItemTest_PCMenu
+	call Function3810
+	ld a, [wMenuJoypad]
+	cp 2
+	jr z, .b_pressed
+	cp $20
+	jr z, .bag_menu
+	cp $10
+	jr z, .bag_menu
+	ld hl, .CannotUsePCToolsText
+	call MenuTextBox
+	call CloseWindow
+	jr .pc_menu
+
+.CannotUsePCToolsText:
+	text "パソコンの　どうぐ　は"
+	next "つかえません"
+	prompt
+
+.restart
+	jp .DoItemTest
+
+.b_pressed
+	ld a, 0
+	ret
+; unused
+	ld a, 0
+	ret
+
+.DecideAction:
+	ld a, [wScrollingMenuCursorPosition]
+	ld [wItemIndex], a
+	call .ClearMenu
+	call PlaceHollowCursor
+	ld hl, .UseOrTosswMenuHeader
+	call GetMenu2
+	jp c, .restart
+	ld a, [wMenuCursorY]
+	cp 2
+	jr z, .toss_item
+	jp .continue
+; unused
+	ld hl, .ItemPickedText
+	call FieldDebug_ShowTextboxAndExit
+	jp .restart
+
+.ItemPickedText:
+	text "アイテムを　えらんだ！"
+	done
+
+.ClearMenu:
+	call MenuBoxCoord2Tile
+	ld de, $14
+	add hl, de
+	ld de, $28
+	ld a, [wMenuDataItems]
+
+.clear_menu_loop:
+	ld [hl], "　"
+	add hl, de
+	dec a
+	jr nz, .clear_menu_loop
+	ret
+
+.UseOrTosswMenuHeader:
+	db $40
+	db $a
+	db $e
+	db $e
+	db $13
+	dw .UseOrTossMenuData
+	db $1
+
+.UseOrTossMenuData:
+	db $c0
+	db 2
+	db "つかう@"
+	db "すてる@"
+
+.toss_item
+	ld hl, wItems
+	call .DetermineItemTossable
+	jp .DoItemTest
+
+.DetermineItemTossable:
+	push hl
+	callab _CheckTossableItem
+	pop hl
+	ld a, [wItemAttributeParamBuffer]
+	and a
+	jr nz, .not_tossable
+	call .tossable
+	jr .done
+
+.not_tossable
+	ld hl, .CannotTossText
+	call MenuTextBox
+	call CloseWindow
+.done
+	ret
+
+.tossable
+	push hl
+	callab SelectQuantityToToss
+	jr c, .cancel_toss
+	call .sub_fd2b5
+	ld hl, .TossConfirmText
+	call MenuTextBox
+	call YesNoBox
+	call CloseWindow
+	jr c, .cancel_toss
+	ld a, [wItemIndex]
+	pop hl
+	call TossItem
+	call .sub_fd2b5
+
+	call .ItemTossedText
+	call MenuTextBox
+
+	call ExitMenu
+	call CloseWindow
+	and a
+	ret
+
+.cancel_toss:
+; Missing pop after push
+	call CloseWindow
+	scf
+	ret
+
+.sub_fd2b5
+	ld a, $55
+	call Predef
+	ret
+
+.TossConfirmText:
+	text_from_ram wStartDay
+	text "を　すてます"
+	line "ほんとに　よろしいですか？"
+	prompt
+
+.ItemTossedText:
+	text_from_ram wStringBuffer1
+	text "を"
+	line "すてました！"
+	prompt
+
+.CannotTossText:
+	text "それは　とても　たいせつなモノです"
+	line "すてることは　できません！"
+	prompt
+
+.continue:
+	ld a, $55
+	call Predef
+	ld a, [wCurItem]
+	cp $c4
+	jr nc, .use_item2
+	ld a, [wCurItem]
+	call .FindUsableItem2
+	jr c, .use_item
+	ld a, [wCurItem]
+	call .FindUsableItem
+	jr c, .use_item2
+	call UseItem
+	jp .restart
+
+.use_item
+	call UseItem
+	ld a, [wFieldMoveSucceeded]
+	and a
+	jp z, .restart
+	ld a, 1
+	ret
+
+.use_item2
+	call UseItem
+	call ClearBGPalettes
+	call Function360b
+	jp .restart
+
+.FindUsableItem:
+	ld hl, .UsableItems
+	ld de, 1
+	call FindItemInTable
+	ret
+
+.UsableItems:
+	db $a
+	db $b
+	db $c
+	db $d
+	db $e
+	db $f
+	db $10
+	db $11
+	db $12
+	db $13
+	db $14
+	db $20
+	db $21
+	db $22
+	db $23
+	db $24
+	db $25
+	db $26
+	db $27
+	db $28
+	db $2f
+	db $34
+	db $35
+	db $36
+	db $3c
+	db $3d
+	db $3e
+	db $41
+	db $42
+	db $43
+	db $44
+	db $4f
+	db $50
+	db $51
+	db $52
+	db $53
+	db -1
+
+.FindUsableItem2:
+	ld hl, .UsableItems2
+	ld de, 1
+	call FindItemInTable
+	ret
+
+.UsableItems2:
+	db $7
+	db $1d
+	db $47
+	db $49
+	db $4c
+	db $4d
+	db $4e
+	db -1
+
+FieldDebug_PCMenu:
+	ld hl, PokemonCenterPC
+	ld a, 5
+	call FarCall_hl
+	ld a, 0
+	ret
+
