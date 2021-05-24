@@ -368,7 +368,7 @@ FieldDebug_ChangeTransportation:
 
 .update_sprite
 	callab GetPlayerSprite
-	ld a, A_BUTTON | B_BUTTON | SELECT | START
+	ld a, BUTTONS
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
 	ld a, FIELDDEBUG_RETURN_CLEANUP
@@ -391,7 +391,7 @@ FieldDebug_ChangeTransportation:
 .cannot_surf
 	ld hl, .CannotSurfString
 	call MenuTextBox
-	ld a, A_BUTTON | B_BUTTON | SELECT | START
+	ld a, BUTTONS
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
 
@@ -1614,7 +1614,7 @@ FieldDebug_CheckTile:
 	call .ShowTileNumber
 	ld a, 10
 	call DelayFrames
-	ld a, A_BUTTON | B_BUTTON | SELECT | START
+	ld a, BUTTONS
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
 	ret
@@ -1857,10 +1857,10 @@ DebugMapViewer::
 .WaitFinishedMoving:
 	ld hl, wVramState
 	bit 7, [hl]
-	jr nz, .asm_fcef8
+	jr nz, .skip
 	ld a, DEBUGMAPVIEWER_CLEANUP
 	ldh [hDebugMapViewerJumptable], a
-.asm_fcef8
+.skip
 	and a
 	ret
 
@@ -1914,7 +1914,7 @@ DebugMapViewer_ShowSelectedDetails:
 ; Display index of selected object from map objects
 ; (referred to as "actor number")
 	ld de, hEventID
-	ld hl, $c3c2
+	hlcoord 10, 14
 	ld bc, $0102
 	call PrintNumber
 
@@ -1929,18 +1929,18 @@ DebugMapViewer_ShowSelectedDetails:
 	jr nc, .invalid_index
 	ld d, h
 	ld e, l
-	ld hl, $c3ea
+	hlcoord 10, 16
 	ld bc, $0102
 	call PrintNumber
 	jr .wait
 
 .invalid_index
-	ld hl, $c3ea
+	hlcoord 10, 16
 	ld de, .NoneText
 	call PlaceString
 
 .wait
-	ld a, A_BUTTON | B_BUTTON | SELECT | START
+	ld a, BUTTONS
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
 	ret
@@ -2114,26 +2114,32 @@ DisplayBGEventDetails:
 	done
 
 .PrintTableDetails:
-	ld hl, $c3c0
+	hlcoord 8, 14
 	ld de, wMapBlocksAddress
 	call PrintHexByte
-	ld hl, $c3c3
+
+	hlcoord 11, 14
 	ld de, wHPBarOldHP
 	call PrintHexByte
-	ld hl, $c3c6
+
+	hlcoord 14, 14
 	ld de, wcdc8
 	call PrintHexByte
-	ld hl, $c3c9
+
+	hlcoord 17, 14
 	ld de, wFieldMoveScriptID
 	ld bc, $8102
 	call PrintNumber
-	ld hl, $c3ee
+
+	hlcoord 14, 16
 	ld de, wReplacementBlock
 	call PrintHexByte
-	ld hl, $c3f1
+
+	hlcoord 17, 16
 	ld de, wHPBarNewHP
 	ld bc, $8102
 	call PrintNumber
+
 	ret
 
 .WaitInput:
@@ -2149,26 +2155,21 @@ ItemTest_BagMenu:
 	dw wRegularItemsScrollPosition
 
 .MenuHeader:
-	db $40
-	db $1
-	db $4
-	db $a
-	db $13
+	db MENU_BACKUP_TILES
+	menu_coords 4, 1, 19, 10
 	dw .MenuData
-	db $1
+	db 1
 
 .MenuData:
-; Incorrectly configured; will cause the game to crash
-	db $2c
-	db $4
-	db $8
-	db $2
-	db $0
-	dw wItems
-	db BANK(PlaceMenuItemName)
-	call PlaceMenuItemName
-	db BANK(PlaceMenuItemQuantity)
-	call PlaceMenuItemQuantity
+	db SCROLLINGMENU_ENABLE_LEFT | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_FUNCTION3
+	db 4, 8 ; rows, columns
+	db SCROLLINGMENU_ITEMS_QUANTITY
+	dbw 0, wItems
+; Incorrectly configured, will cause the game to crash
+	db BANK(PlaceMenuItemName), $cd
+	dw PlaceMenuItemName
+	db BANK(PlaceMenuItemQuantity), $cd
+	dw PlaceMenuItemQuantity
 	db BANK(UpdateItemDescription)
 	dw UpdateItemDescription
 
@@ -2178,26 +2179,21 @@ ItemTest_PCMenu:
 	dw wBackpackAndKeyItemsScrollPosition
 
 .MenuHeader:
-	db $40
-	db $1
-	db $4
-	db $a
-	db $13
+	db MENU_BACKUP_TILES
+	menu_coords 4, 1, 19, 10
 	dw .MenuData
-	db $1
+	db 1
 
 .MenuData:
-; Incorrectly configured; will cause the game to crash
-	db $2c
-	db $4
-	db $8
-	db $2
-	db $0
-	dw wNumKeyItems
-	db BANK(PlaceMenuItemName)
-	call PlaceMenuItemName
-	db BANK(PlaceMenuItemQuantity)
-	call PlaceMenuItemQuantity
+	db SCROLLINGMENU_ENABLE_LEFT | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_FUNCTION3
+	db 4, 8 ; rows, columns
+	db SCROLLINGMENU_ITEMS_QUANTITY
+	dbw 0, wNumKeyItems
+; Incorrectly configured, will cause the game to crash
+	db BANK(PlaceMenuItemName), $cd
+	dw PlaceMenuItemName
+	db BANK(PlaceMenuItemQuantity), $cd
+	dw PlaceMenuItemQuantity
 	db BANK(UpdateItemDescription)
 	dw UpdateItemDescription
 
@@ -2213,12 +2209,13 @@ FieldDebug_ItemTest:
 	set 0, [hl]
 	call CloseWindow
 	ret
-	ld a, 0
+; unused
+	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
 .ClearTilemap:
 	ld hl, wTileMap
-	ld bc, $0168
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $f1
 	call ByteFill
 	ret
@@ -2229,11 +2226,11 @@ FieldDebug_ItemTest:
 	ld hl, ItemTest_BagMenu
 	call Function3810
 	ld a, [wMenuJoypad]
-	cp 2
-	jr z, .b_pressed
-	cp $20
+	cp B_BUTTON
+	jr z, .exit_menu
+	cp D_LEFT
 	jr z, .pc_menu
-	cp $10
+	cp D_RIGHT
 	jr z, .pc_menu
 	jr .DecideAction
 
@@ -2241,11 +2238,11 @@ FieldDebug_ItemTest:
 	ld hl, ItemTest_PCMenu
 	call Function3810
 	ld a, [wMenuJoypad]
-	cp 2
-	jr z, .b_pressed
-	cp $20
+	cp B_BUTTON
+	jr z, .exit_menu
+	cp D_LEFT
 	jr z, .bag_menu
-	cp $10
+	cp D_RIGHT
 	jr z, .bag_menu
 	ld hl, .CannotUsePCToolsText
 	call MenuTextBox
@@ -2260,11 +2257,11 @@ FieldDebug_ItemTest:
 .restart
 	jp .DoItemTest
 
-.b_pressed
-	ld a, 0
+.exit_menu
+	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 ; unused
-	ld a, 0
+	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
 .DecideAction:
@@ -2294,8 +2291,7 @@ FieldDebug_ItemTest:
 	add hl, de
 	ld de, $28
 	ld a, [wMenuDataItems]
-
-.clear_menu_loop:
+.clear_menu_loop
 	ld [hl], "　"
 	add hl, de
 	dec a
@@ -2303,13 +2299,10 @@ FieldDebug_ItemTest:
 	ret
 
 .UseOrTosswMenuHeader:
-	db $40
-	db $a
-	db $e
-	db $e
-	db $13
+	db MENU_BACKUP_TILES
+	menu_coords 14, 10, 19, 14
 	dw .UseOrTossMenuData
-	db $1
+	db 1
 
 .UseOrTossMenuData:
 	db $c0
@@ -2343,7 +2336,7 @@ FieldDebug_ItemTest:
 	push hl
 	callab SelectQuantityToToss
 	jr c, .cancel_toss
-	call .sub_fd2b5
+	call .load_item
 	ld hl, .TossConfirmText
 	call MenuTextBox
 	call YesNoBox
@@ -2352,8 +2345,9 @@ FieldDebug_ItemTest:
 	ld a, [wItemIndex]
 	pop hl
 	call TossItem
-	call .sub_fd2b5
+	call .load_item
 
+; Crashes here; .ItemTossedText should be loaded to hl instead
 	call .ItemTossedText
 	call MenuTextBox
 
@@ -2362,19 +2356,19 @@ FieldDebug_ItemTest:
 	and a
 	ret
 
-.cancel_toss:
+.cancel_toss
 ; Missing pop after push
 	call CloseWindow
 	scf
 	ret
 
-.sub_fd2b5
-	ld a, $55
+.load_item
+	predef_id LoadItemData
 	call Predef
 	ret
 
 .TossConfirmText:
-	text_from_ram wStartDay
+	text_from_ram wStringBuffer2
 	text "を　すてます"
 	line "ほんとに　よろしいですか？"
 	prompt
@@ -2390,11 +2384,11 @@ FieldDebug_ItemTest:
 	line "すてることは　できません！"
 	prompt
 
-.continue:
-	ld a, $55
+.continue
+	predef_id LoadItemData
 	call Predef
 	ld a, [wCurItem]
-	cp $c4
+	cp ITEM_TM01
 	jr nc, .use_item2
 	ld a, [wCurItem]
 	call .FindUsableItem2
@@ -2410,7 +2404,7 @@ FieldDebug_ItemTest:
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jp z, .restart
-	ld a, 1
+	ld a, FIELDDEBUG_RETURN_WAIT_INPUT
 	ret
 
 .use_item2
@@ -2426,42 +2420,42 @@ FieldDebug_ItemTest:
 	ret
 
 .UsableItems:
-	db $a
-	db $b
-	db $c
-	db $d
-	db $e
-	db $f
-	db $10
-	db $11
-	db $12
-	db $13
-	db $14
-	db $20
-	db $21
-	db $22
-	db $23
-	db $24
-	db $25
-	db $26
-	db $27
-	db $28
-	db $2f
-	db $34
-	db $35
-	db $36
-	db $3c
-	db $3d
-	db $3e
-	db $41
-	db $42
-	db $43
-	db $44
-	db $4f
-	db $50
-	db $51
-	db $52
-	db $53
+	db ITEM_BURN_HEAL
+	db ITEM_ICE_HEAL
+	db ITEM_AWAKENING
+	db ITEM_PARLYZ_HEAL
+	db ITEM_FULL_RESTORE
+	db ITEM_MAX_POTION
+	db ITEM_HYPER_POTION
+	db ITEM_SUPER_POTION
+	db ITEM_POTION
+	db ITEM_ESCAPE_ROPE
+	db ITEM_REPEL
+	db ITEM_RARE_CANDY
+	db ITEM_X_ACCURACY
+	db ITEM_LEAF_STONE
+	db ITEM_23
+	db ITEM_NUGGET
+	db ITEM_POKE_DOLL
+	db ITEM_FULL_HEAL
+	db ITEM_REVIVE
+	db ITEM_MAX_REVIVE
+	db ITEM_SODA_POP
+	db ITEM_X_SPEED
+	db ITEM_X_SPECIAL
+	db ITEM_COIN_CASE
+	db ITEM_3C
+	db ITEM_SUPER_ROD
+	db ITEM_PP_UP
+	db ITEM_ELIXER
+	db ITEM_MYSTIC_PETAL
+	db ITEM_WHITE_FEATHER
+	db ITEM_CONFUSE_CLAW
+	db ITEM_SNAKESKIN
+	db ITEM_ELECTRIC_POUCH
+	db ITEM_TOXIC_NEEDLE
+	db ITEM_KINGS_ROCK
+	db ITEM_STRANGE_POWER
 	db -1
 
 .FindUsableItem2:
@@ -2471,19 +2465,17 @@ FieldDebug_ItemTest:
 	ret
 
 .UsableItems2:
-	db $7
-	db $1d
-	db $47
-	db $49
-	db $4c
-	db $4d
-	db $4e
+	db ITEM_BICYCLE
+	db ITEM_CARBOS
+	db ITEM_UP_GRADE
+	db ITEM_BIG_LEAF
+	db ITEM_SHARP_STONE
+	db ITEM_BLACK_FEATHER
+	db ITEM_SHARP_FANG
 	db -1
 
 FieldDebug_PCMenu:
-	ld hl, PokemonCenterPC
-	ld a, 5
-	call FarCall_hl
-	ld a, 0
+	callab PokemonCenterPC
+	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
