@@ -2173,7 +2173,7 @@ ItemTest_BagMenu:
 	db BANK(UpdateItemDescription)
 	dw UpdateItemDescription
 
-ItemTest_PCMenu:
+ItemTest_KeyItemMenu:
 	dw .MenuHeader
 	dw wBackpackAndKeyItemsCursor
 	dw wBackpackAndKeyItemsScrollPosition
@@ -2229,13 +2229,13 @@ FieldDebug_ItemTest:
 	cp B_BUTTON
 	jr z, .exit_menu
 	cp D_LEFT
-	jr z, .pc_menu
+	jr z, .key_item_menu
 	cp D_RIGHT
-	jr z, .pc_menu
+	jr z, .key_item_menu
 	jr .DecideAction
 
-.pc_menu
-	ld hl, ItemTest_PCMenu
+.key_item_menu
+	ld hl, ItemTest_KeyItemMenu
 	call Function3810
 	ld a, [wMenuJoypad]
 	cp B_BUTTON
@@ -2247,7 +2247,7 @@ FieldDebug_ItemTest:
 	ld hl, .CannotUsePCToolsText
 	call MenuTextBox
 	call CloseWindow
-	jr .pc_menu
+	jr .key_item_menu
 
 .CannotUsePCToolsText:
 	text "パソコンの　どうぐ　は"
