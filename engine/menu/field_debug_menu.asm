@@ -42,7 +42,7 @@ INCLUDE "constants.asm"
 
 FIELDDEBUG_NUM_PAGES equ 3
 
-; .DoSpriteViewer.Jumptable constants
+; FieldDebug_SpriteViewer.DoSpriteViewer.Jumptable constants
 	const_def
 	const SPRITEVIEWER_INIT_MENU             ; 0
 	const SPRITEVIEWER_UPDATE_MENU           ; 1
@@ -2477,5 +2477,880 @@ FieldDebug_ItemTest:
 FieldDebug_PCMenu:
 	callab PokemonCenterPC
 	ld a, FIELDDEBUG_RETURN_REOPEN
+	ret
+
+FieldDebug_PokemartMenu:
+	ld hl, .WelcomeText
+	call MenuTextBox
+	call ExitMenu
+	call .DoPokemartMenu
+	ld a, FIELDDEBUG_RETURN_REOPEN
+	ret
+
+.DoPokemartMenu:
+	call LoadStandardMenuHeader
+	callab asm_24860
+	ld hl, .PokemartMenuText
+	call PrintText
+	ld hl, .MenuHeader
+	call CopyMenuHeader
+	call VerticalMenu
+	push af
+	call ExitMenu
+	pop af
+	jr c, .exit_menu
+	ld a, [wMenuCursorY]
+	dec a
+	ld hl, .MenuJumptable
+	call CallJumptable
+	jr nc, .DoPokemartMenu
+	ret
+
+.exit_menu
+	ld hl, .GoodbyeText
+	call MenuTextBoxBackup
+	scf
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 10, 8
+	dw .MenuData
+	db 1 ; default
+
+.MenuData:
+	db STATICMENU_CURSOR
+	db 3 ; items
+	db "どうぐを　かう@"
+	db "どうぐを　うる@"
+	db "さようなら@"
+
+.MenuJumptable:
+	dw .Buy
+	dw .Sell
+	dw .exit_menu
+
+.BuyMenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 1, 3, 19, 11
+	dw .BuyMenuParams
+	db 1 ; default
+
+.BuyMenuParams:
+	db STATICMENU_WRAP
+	db 4, 8 ; rows, columns
+	db SCROLLINGMENU_ITEMS_NORMAL
+	dbw 0, wcd60
+	dba PlaceMenuItemName
+	dba .PrintAmount
+	dba UpdateItemDescription
+
+.PrintAmount:
+	ld a, [wScrollingMenuCursorPosition]
+	ld c, a
+	ld b, 0
+	ld hl, wcc40
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	push de
+	ld d, h
+	ld e, l
+	pop hl
+	ld c, $83
+	call PrintBCDNumber
+	ld [hl], "円"
+	ret
+
+.WelcomeText:
+	text "フレンドりーショップへ　"
+	line "ようこそ！"
+	prompt
+
+.PokemartMenuText:
+	text "なんになさいますか？"
+	done
+
+.GoodbyeText:
+	text "またのごりようを"
+	line "おまちしています"
+	prompt
+
+.Buy:
+	ld de, .ItemList
+	call .LoadItems
+	call LoadStandardMenuHeader
+	call ClearTileMap
+.buy_loop
+	call .BuyMenu
+	jr nc, .buy_loop
+	call ExitMenu
+	and a
+	ret
+
+.BuyMenu:
+	call UpdateSprites
+	ld hl, .BuyMenuHeader
+	call CopyMenuHeader
+	call ScrollingMenu
+	ld a, [wMenuJoypad]
+	cp B_BUTTON
+	jr z, .cancel_buy
+	cp A_BUTTON
+	jr z, .buy_item
+.buy_item
+	ld a, 99
+	ld [wItemQuantityBuffer], a
+	ld hl, .HowManyText
+	call PrintText
+	callab asm_24c64
+	call ExitMenu
+	jr c, .done
+	predef_id LoadItemData
+	call Predef
+	ld hl, .ConfirmPurchaseText
+	call PrintText
+	call YesNoBox
+	jr c, .done
+	ld hl, .UnderDevelopmentText
+	call MenuTextBoxBackup
+.done
+	and a
+	ret
+
+.cancel_buy
+	scf
+	ret
+
+.BuyPromptText: ; unreferenced?
+	text "なにを　おかいあげに"
+	line "なりますか"
+	done
+
+.HowManyText:
+	text "いくつ　おかいあげになりますか"
+	done
+
+.ConfirmPurchaseText:
+	text_from_ram wStringBuffer2
+	text "を　@"
+	deciram wItemQuantity, 1, $2
+	text "こで"
+	line "@"
+	deciram hFFCD, 3, $6
+	text "円　おかいあげですか？"
+	done
+
+.UnderDevelopmentText:
+	text "ごめんね"
+	line "かいはつちゅうなんだ"
+	prompt
+
+.ItemList:
+	db ITEM_BICYCLE
+	db ITEM_MOON_STONE
+	db ITEM_ANTIDOTE
+	db ITEM_BURN_HEAL
+	db ITEM_MAX_POTION
+	db ITEM_HYPER_POTION
+	db ITEM_SUPER_POTION
+	db ITEM_POTION
+	db -1
+
+.Sell:
+	call .ShowPlaceholderText
+	and a
+	ret
+
+; unused
+	callab CheckItemsQuantity
+	jp c, .no_items
+	call LoadStandardMenuHeader
+	xor a
+	ld [wActiveBackpackPocket], a
+.bag_loop
+	callab DrawBackpack
+	callab DebugBackpackLoop
+	jr c, .close_bag
+	call .DoBagFunctions
+	jr nc, .bag_loop
+.close_bag
+	call ClearBGPalettes
+	call CloseWindow
+	call UpdateTimePals
+	and a
+	ret
+
+.DoBagFunctions:
+	callab CheckItemMenu
+	ld a, [wItemAttributeParamBuffer]
+	ld hl, .BagJumptable
+	call CallJumptable
+	ret
+
+.BagJumptable:
+	dw .CheckSellableItem
+	dw .CannotSellItem
+	dw .BallPocket
+	dw .FlipPocket
+	dw .CheckSellableItem
+	dw .CheckSellableItem
+	dw .CheckSellableItem
+
+.FlipPocket:
+	callab FlipPocket2Status
+	xor a
+	ld [wSelectedSwapPosition], a
+	ret
+
+.CannotSellItem:
+	ld hl, .CannotSellText
+	call MenuTextBoxBackup
+	and a
+	ret
+
+.CannotSellText:
+	text "つかえないのだ！"
+	prompt
+
+.BallPocket:
+	callab BallPocket
+	jr nc, .CheckSellableItem
+	and a
+	ret
+
+.CheckSellableItem:
+	callab _CheckTossableItem
+	ld a, [wItemAttributeParamBuffer]
+	and a
+	jr nz, .not_sellable
+	jp .ItemQuantityPrompt
+
+.not_sellable
+	ld hl, .ImportantItemText
+	call MenuTextBoxBackup
+	and a
+	ret
+
+.ImportantItemText:
+	text "それは　だいじなものです"
+	line "うることは　できません！"
+	prompt
+
+.no_items
+	ld hl, .NoItemsText
+	call MenuTextBoxBackup
+	and a
+	ret
+
+.NoItemsText:
+	text "どうぐを　ひとつも"
+	next "もっていません！"
+	prompt
+
+.ItemQuantityPrompt:
+	ld hl, .HowManyItemsText
+	call PrintText
+	callab asm_24c64
+	jr c, .got_quantity
+	jr .CannotSellItem
+
+.got_quantity
+	and a
+	ret
+
+.HowManyItemsText:
+	text "いくつ　うりますか？"
+	done
+
+.LoadItems:
+	ld hl, wcd60
+.load_loop
+	ld a, [de]
+	inc de
+	ld [hli], a
+	cp -1
+	jr nz, .load_loop
+	ld hl, wcc40
+	ld de, wcd60 + 1
+.load_loop2
+	ld a, [de]
+	inc de
+	cp -1
+	jr z, .done_load
+	push de
+	call .GetPrice
+	pop de
+	jr .load_loop2
+
+.done_load
+	ret
+
+.GetPrice:
+	push hl
+	ld [wCurItem], a
+	callab GetItemPrice
+	ld a, d
+	ld [wcdc3], a
+	ld a, e
+	ld [wcdc3 + 1], a
+	ld hl, wStringBuffer1
+	ld de, wcdc3
+	ld bc, $8206
+	call PrintNumber
+	pop hl
+	ld de, wStringBuffer1
+	ld c, 3
+.print_price
+	call .PrintPaddedDigits
+	swap a
+	ld b, a
+	call .PrintPaddedDigits
+	or b
+	ld [hli], a
+	dec c
+	jr nz, .print_price
+	ret
+
+.PrintPaddedDigits:
+	ld a, [de]
+	inc de
+	cp "　"
+	jr nz, .to_digit
+	ld a, "０"
+.to_digit
+	sub "０"
+	ret
+
+.ShowPlaceholderText:
+	ld hl, .PlaceholderText
+	call MenuTextBox
+	call ExitMenu
+	ret
+
+.PlaceholderText:
+	text "かいはつちゅうです"
+	next "<PROMPT>"
+
+FieldDebug_Teleport:
+	call .DoTeleport
+	ld a, FIELDDEBUG_RETURN_REOPEN
+	ret
+
+.DoTeleport:
+	ld a, [wMapGroup]
+	ld d, a
+	ld a, [wMapId]
+	ld e, a
+	callab IsSpawnPoint
+	jr nc, .not_spawn_point
+	ld a, [wMapGroup]
+	ld [wLastSpawnMapGroup], a
+	ld a, [wMapId]
+	ld [wLastSpawnMapNumber], a
+	ld hl, .MapRegisteredText
+	call MenuTextBoxBackup
+	ret
+
+.not_spawn_point
+	ld hl, .CannotRegisterMapText
+	call MenuTextBoxBackup
+	ret
+
+.MapRegisteredText:
+	text "このばしょを　とうろくしました"
+	para "<DONE>"
+
+.CannotRegisterMapText:
+	text "ここは　とうろくできません！"
+	para "<DONE>"
+
+FieldDebug_Minigames:
+	call .DoMinigameSelection
+	ld a, FIELDDEBUG_RETURN_REOPEN
+	ret
+
+.DoMinigameSelection:
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	call VerticalMenu
+	push af
+	ld a, [wMenuCursorY]
+	dec a
+	call CopyNameFromMenu
+	ld a, [wMenuCursorY]
+	dec a
+	ld e, a
+	ld d, 0
+	ld hl, .MinigamePointers
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld [wQueuedScriptBank], a
+	ld a, [hli]
+	ld [wQueuedScriptAddr], a
+	ld a, [hl]
+	ld [wQueuedScriptAddr + 1], a
+	pop af
+	call CloseWindow
+	ret c
+
+	ld hl, .MinigameConfirmationText
+	call MenuTextBox
+	call YesNoBox
+	call CloseWindow
+	ret c
+
+	call LoadStandardMenuHeader
+	ldh a, [hMapAnims]
+	push af
+	xor a
+	ldh [hMapAnims], a
+	ld hl, wVramState
+	res 0, [hl]
+	call ClearSprites
+	call ClearTileMap
+	call WaitBGMap
+	ld hl, wQueuedScriptBank
+	call CallFar_atHL
+	call ClearPalettes
+	call Function3657
+	call LoadTilesetGFX
+	ld hl, wVramState
+	set 0, [hl]
+	call CloseWindow
+	pop af
+	ldh [hMapAnims], a
+	call GetMemSGBLayout
+	call WaitBGMap
+	call UpdateTimePals
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 10, 10
+	dw .MenuData
+	db 1
+
+.MenuData:
+	db STATICMENU_CURSOR
+	db 3
+	db "スロットマシン@"
+	db "ポーカーゲーム@"
+	db "ぺアゲーム@"
+
+.MinigamePointers:
+	dba SlotMachineGame
+	dba PokerMinigame
+	dba MemoryMinigame
+
+.MinigameConfirmationText:
+	text_from_ram wStringBuffer2
+	text "で　"
+	line "あそびますか？"
+	done
+
+FieldDebug_VRAMViewer:
+	call FieldDebug_DoVRAMViewer
+	ld a, FIELDDEBUG_RETURN_REOPEN
+	ret
+
+FieldDebug_ClearEventFlags:
+	call FieldDebug_DoClearEventFlags
+	ld a, FIELDDEBUG_RETURN_REOPEN
+	ret
+
+FieldDebug_UnusedFlagMenu: ; unused?
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	call VerticalMenu
+	call CloseWindow
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 7, 10
+	dw .MenuData
+	db 1
+
+.MenuData:
+	db STATICMENU_CURSOR
+	db 4
+	db "フラグ１@"
+	db "フラグ２@"
+	db "フラグ３@"
+	db "フラグ４@"
+
+	call LoadStandardMenuHeader
+	bccoord 0, 14
+	call .DoCheckFlags
+	call WaitBGMap
+	ld a, A_BUTTON | B_BUTTON
+	call FieldDebug_WaitJoypadInput
+	call CloseWindow
+	ld a, FIELDDEBUG_RETURN_REOPEN
+	ret
+
+.DoCheckFlags:
+unused_check_bit: macro
+	ld hl, \1
+	bit 0, [hl]
+	call .CheckBit
+	ld hl, \1
+	bit 1, [hl]
+	call .CheckBit
+	ld hl, \1
+	bit 2, [hl]
+	call .CheckBit
+	ld hl, \1
+	bit 3, [hl]
+	call .CheckBit
+	ld hl, \1
+	bit 4, [hl]
+	call .CheckBit
+	ld hl, \1
+	bit 5, [hl]
+	call .CheckBit
+	ld hl, \1
+	bit 6, [hl]
+	call .CheckBit
+	ld hl, \1
+	bit 7, [hl]
+	call .CheckBit
+endm
+
+	unused_check_bit wcdc3
+	unused_check_bit wcdc4
+	unused_check_bit wcdc5
+	unused_check_bit wcdc6
+	unused_check_bit wcdc7
+	ret
+
+.CheckBit:
+	ld a, "０"
+	jr z, .not_set
+	ld a, "１"
+.not_set
+	ld [bc], a
+	inc bc
+	ret
+
+Functionfd91e: ; unused?
+	call .asm_fd930
+	ld a, [wCountSetBitsResult]
+	ld [wMonDexIndex], a
+	callab Function2420b
+	ret
+
+.asm_fd930
+	call Random
+	cp 251
+	jr nc, .asm_fd930
+	inc a
+	ld [wCountSetBitsResult], a
+	ret
+
+FieldDebug_UnusedSetPriority:
+	ld hl, .MenuHeader
+	call GetMenu2
+	jr c, .done
+	ld a, [wMenuCursorY]
+	cp 1
+	jr nz, .skip
+	ld a, 0
+	call Function19aa
+	jr .done
+
+.skip
+	ld a, 0
+	call Function19b5
+.done
+	ld a, FIELDDEBUG_RETURN_REOPEN
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 8, 6
+	dw .MenuData
+	db 1
+
+.MenuData:
+	db STATICMENU_CURSOR
+	db 2
+	db "ゆうせん@"
+	db "ひゆうせん@"
+
+FieldDebug_DoVRAMViewer:
+	call LoadStandardMenuHeader
+	call ClearTileMap
+	call ClearSprites
+	ldh a, [hMapAnims]
+	push af
+	xor a
+	ldh [hMapAnims], a
+	ld a, 1
+	ld [wcdc3], a
+	call .GenerateTilemap
+	call WaitBGMap
+	call .DoViewer
+	pop af
+	ldh [hMapAnims], a
+	ld a, $e3
+	ldh [rLCDC], a
+	call .ReloadDefaultGFX
+	call CloseWindow
+	ld a, FIELDDEBUG_RETURN_REOPEN
+	ret
+
+.DoViewer:
+	ld a, [wcdc3]
+	dec a
+	ld hl, .Jumptable
+	call CallJumptable
+	call .GenerateTilemap
+	call .ScreenControl
+	jr nc, .DoViewer
+	ret
+
+.ScreenControl:
+	call WaitBGMap
+.wait_input
+	call GetJoypad
+	ldh a, [hJoyDown]
+	and A_BUTTON | B_BUTTON | START | D_RIGHT | D_LEFT
+	jr z, .wait_input
+	bit D_LEFT_F, a
+	jr nz, .next_page
+	bit D_RIGHT_F, a
+	jr nz, .previous_page
+	bit START_F, a
+	jr nz, .switch_tileset
+	bit A_BUTTON_F, a
+	ret nz
+	scf
+	ret
+
+.switch_tileset
+	ldh a, [rLCDC]
+	xor (1 << rLCDC_TILE_DATA)
+	ldh [rLCDC], a
+	and a
+	ret
+
+.next_page
+	ld hl, wcdc3
+	inc [hl]
+	ld a, [hl]
+	cp 8
+	jr c, .not_at_end
+	ld [hl], 1
+
+.not_at_end
+	and a
+	ret
+
+.previous_page
+	ld hl, wcdc3
+	dec [hl]
+	jr z, .not_at_start
+	and a
+	ret
+
+.not_at_start
+	ld [hl], 7
+	and a
+	ret
+
+.Jumptable:
+	dw .LoadTilesets1
+	dw .LoadBagGFX
+	dw .LoadTilesetsCommon
+	dw .LoadToolgearGFX
+	dw .ReloadDefaultGFX
+	dw .LoadStatsGFX
+	dw .LoadTilesets6
+
+.GenerateTilemap:
+	hlcoord 1, 1
+	ld de, 4
+	ld b, $10
+	xor a
+.generate_loop1
+	ld c, $10
+.generate_loop2
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .generate_loop2
+	add hl, de
+	dec b
+	jr nz, .generate_loop1
+	ret
+
+.ReloadDefaultGFX:
+	call .LoadTilesetsCommon
+	call LoadFont
+	ret
+
+.LoadBagGFX:
+	call .LoadTilesetsCommon
+	call DisableLCD
+	call LoadFont
+	callab LoadBackpackGraphics
+	call EnableLCD
+	ret
+
+.LoadToolgearGFX:
+	call .LoadTilesetsCommon
+	call LoadToolgearGraphics
+	ret
+
+.LoadTilesets1:
+	call .LoadTilesetsCommon
+	call DisableLCD
+	call LoadFontsBattleExtra
+	call LoadFont
+	call EnableLCD
+	ret
+
+.LoadStatsGFX:
+	call .LoadTilesetsCommon
+	call DisableLCD
+	call LoadFontsBattleExtra
+	call LoadFont
+	callab LoadPokemonStatsGraphics
+	xor a
+	ldh [hMapAnims], a
+	call EnableLCD
+	ld de, vTileset
+	call .LoadPokemon
+	ret
+
+.LoadTilesets6:
+	call DisableLCD
+	xor a
+	ld hl, vSprites
+	ld bc, $180 tiles
+	call ByteFill
+	call LoadFont
+	callab Function3e39f
+	xor a
+	ldh [hMapAnims], a
+	call EnableLCD
+	ld de, vTileset
+	call .LoadPokemon
+	ld de, $9310
+	ld a, 3
+	ld [wcdd8], a
+	predef_id Function3f04a
+	call Predef
+	ret
+
+.LoadPokemon:
+	ld a, 3
+	ld [wce37], a
+	ld [wMonDexIndex], a
+	call GetMonHeader
+	call LoadMonFrontSprite
+	ret
+
+.LoadTilesetsCommon:
+	call DisableLCD
+	xor a
+	ld hl, vSprites
+	ld bc, $180 tiles
+	call ByteFill
+	call LoadTilesetGFX
+	ld a, 1
+	ldh [hMapAnims], a
+	callab LoadUsedSpritesGfx
+	call LoadFontExtra
+	call EnableLCD
+	ret
+
+FieldDebug_DoClearEventFlags:
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	call VerticalMenu
+	call CloseWindow
+	ret c
+	call .CheckMapFlags
+	jr nc, .no_flags
+	ld a, [wMenuCursorY]
+	cp 1
+	ld a, 0
+	jr z, .done
+	ld a, $ff
+.done
+	ld [de], a
+	ret
+
+.no_flags
+	ld hl, .NoMapFlagsText
+	call MenuTextBoxBackup
+	ret
+
+.NoMapFlagsText:
+	text "このマップは　シーケンスの"
+	line "とうろくが　ありません"
+	prompt
+
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 12, 6
+	dw .MenuData
+	db 1
+
+.MenuData:
+	db STATICMENU_CURSOR
+	db 2
+	db "フラグを　クりア@"
+	db "フラグを　うめる@"
+
+.CheckMapFlags:
+	ld a, [wMapGroup]
+	ld b, a
+	ld a, [wMapId]
+	ld c, a
+	ld hl, UnknownMapBufferPointers
+.determine_loop
+	push hl
+	ld a, BANK(UnknownMapBufferPointers)
+	call GetFarByte
+	cp -1
+	jr z, .none_found
+	cp b
+	jr nz, .determine_loop2
+	inc hl
+	ld a, BANK(UnknownMapBufferPointers)
+	call GetFarByte
+	cp c
+	jr nz, .determine_loop2
+	jr .has_flags
+
+.determine_loop2
+	pop hl
+	ld de, 8
+	add hl, de
+	jr .determine_loop
+
+.has_flags
+	pop hl
+	ld de, 6
+	add hl, de
+	ld a, BANK(UnknownMapBufferPointers)
+	call GetFarByte
+	ld e, a
+	inc hl
+	ld a, BANK(UnknownMapBufferPointers)
+	call GetFarByte
+	ld d, a
+	scf
+	ret
+
+.none_found
+	pop hl
+	and a
 	ret
 

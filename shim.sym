@@ -137,12 +137,6 @@
 38:4E5F Cursor_AnimateCursor
 38:4EA8 Cursor_InterpretJoypad
 
-; TODO shims
-3F:578C FieldDebug_ClearEventFlags
-3F:56D1 FieldDebug_Minigames
-3F:5389 FieldDebug_PokemartMenu
-3F:567C FieldDebug_Teleport
-3F:5786 FieldDebug_VRAMViewer
 00:2F21 SUB_2f21
 
 

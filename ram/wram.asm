@@ -854,6 +854,7 @@ wVramState:: db
 wcd5d:: db
 	db
 wChosenStarter:: db
+wcd60:: db
 
 SECTION "CD70", WRAM0[$CD70]
 wcd70:: ds 1
@@ -927,6 +928,13 @@ NEXTU
 
 wHPBarMaxHP:: dw
 wHPBarOldHP:: dw
+
+NEXTU
+
+wcdc3:: db
+wcdc4:: db
+wcdc5:: db
+wcdc6:: db
 
 ENDU
 
