@@ -245,46 +245,6 @@
 3C:4598 Sfx_6b
 3C:45A1 Sfx_6c
 
-; Cry header shims
-3C:57C5 CryHeader_f17c5
-3C:57CE CryHeader_f17ce
-3C:57D7 CryHeader_f17d7
-3C:57E0 CryHeader_f17e0
-3C:57E9 CryHeader_f17e9
-3C:57F2 CryHeader_f17f2
-3C:57FB CryHeader_f17fb
-3C:5804 CryHeader_f1804
-3C:580D CryHeader_f180d
-3C:5816 CryHeader_f1816
-3C:581F CryHeader_f181f
-3C:5828 CryHeader_f1828
-3C:5831 CryHeader_f1831
-3C:583A CryHeader_f183a
-3C:5843 CryHeader_f1843
-3C:584C CryHeader_f184c
-3C:5855 CryHeader_f1855
-3C:585E CryHeader_f185e
-3C:5867 CryHeader_f1867
-3C:5870 CryHeader_f1870
-3C:5879 CryHeader_f1879
-3C:5882 CryHeader_f1882
-3C:588B CryHeader_f188b
-3C:5894 CryHeader_f1894
-3C:589D CryHeader_f189d
-3C:58A6 CryHeader_f18a6
-3C:58AF CryHeader_f18af
-3C:58B8 CryHeader_f18b8
-3C:58C1 CryHeader_f18c1
-3C:58CA CryHeader_f18ca
-3C:58D3 CryHeader_f18d3
-3C:58DC CryHeader_f18dc
-3C:58E5 CryHeader_f18e5
-3C:58EE CryHeader_f18ee
-3C:58F7 CryHeader_f18f7
-3C:5900 CryHeader_f1900
-3C:5909 CryHeader_f1909
-3C:5912 CryHeader_f1912
-
 3F:40E9 InGameDebugMenu
 3F:4C24 Functionfcc24
 3F:4E3E Functionfce3e

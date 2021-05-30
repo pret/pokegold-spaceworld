@@ -33,9 +33,9 @@ LoadCryHeader::
 	call GetCryIndex
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(CryHeaders)
+	ld a, BANK(Cries)
 	call Bankswitch
-	ld hl, CryHeaders
+	ld hl, Cries
 	add hl, bc
 	add hl, bc
 	add hl, bc

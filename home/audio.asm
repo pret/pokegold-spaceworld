@@ -82,10 +82,10 @@ PlayCryHeader::
 	ldh a, [hROMBank]
 	push af
 
-	ld a, BANK(CryHeaders)
+	ld a, BANK(Cries)
 	ld [MBC3RomBank], a ; Unsafe
 	ldh [hROMBank], a
-	ld hl, CryHeaders
+	ld hl, Cries
 rept 6
 	add hl, de
 endr
