@@ -948,13 +948,13 @@ ROMX $3f
 	"engine/menu/field_debug_menu.asm@FieldDebugMenuHeader"
 	"engine/menu/frame_type_dialog.asm"
 	"engine/menu/reset_dialog.asm"
-	"engine/menu/field_debug_menu.asm@FieldDebug_ChangeTileset"
+	"engine/debug/field/change_tileset.inc@FieldDebug_ChangeTileset"
 	"engine/landmarks.asm@1"
 	"data/maps/landmarks.asm"
 	"engine/landmarks.asm@2"
-	"engine/menu/field_debug_menu.asm@FieldDebug_ShowWarpToText"
+	"engine/debug/field/warp.inc@FieldDebug_ShowWarpToText"
 	"gfx.asm@Town Map Cursor"
-	"engine/menu/field_debug_menu.asm@DisplayBGEventDetails"
+	"engine/debug/field/map_viewer.inc@DisplayBGEventDetails"
 	org $6255
 	"engine/menu/debug_menu.asm@Sound Test"
 	org $67a1
