@@ -160,8 +160,7 @@ FieldDebug_DoVRAMViewer:
 	ld de, $9310
 	ld a, 3
 	ld [wcdd8], a
-	predef_id Function3f04a
-	call Predef
+	predef Function3f04a
 	ret
 
 .LoadPokemon:

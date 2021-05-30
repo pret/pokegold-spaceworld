@@ -125,8 +125,7 @@ FieldDebug_PokemartMenu:
 	callab asm_24c64
 	call ExitMenu
 	jr c, .done
-	predef_id LoadItemData
-	call Predef
+	predef LoadItemData
 	ld hl, .ConfirmPurchaseText
 	call PrintText
 	call YesNoBox

@@ -212,8 +212,7 @@ FieldDebug_ItemTest:
 	ret
 
 .load_item
-	predef_id LoadItemData
-	call Predef
+	predef LoadItemData
 	ret
 
 .TossConfirmText:
@@ -234,8 +233,7 @@ FieldDebug_ItemTest:
 	prompt
 
 .continue
-	predef_id LoadItemData
-	call Predef
+	predef LoadItemData
 	ld a, [wCurItem]
 	cp ITEM_TM01
 	jr nc, .use_item2
