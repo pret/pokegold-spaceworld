@@ -1665,7 +1665,7 @@ Function2b78::
 	ret
 
 Function2b79::
-	callab Functionfce3e
+	callab DebugMapViewer
 	ld a, $4
 	call WriteIntod637
 	ret
