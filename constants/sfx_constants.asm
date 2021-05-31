@@ -1,11 +1,11 @@
 ; TODO
-SFX_BOOT_PC                     EQU $0A
 
 SFX_POTION                      EQU $01
 SFX_FULL_HEAL                   EQU $02
 SFX_MENU                        EQU $03
 SFX_READ_TEXT                   EQU $04
 SFX_READ_TEXT_2                 EQU $05
+SFX_BOOT_PC                     EQU $0A
 SFX_ESCAPE_ROPE                 EQU $0B ; player shrink
 SFX_WRONG                       EQU $14
 SFX_SWITCH_POKEMON              EQU $1B
@@ -26,3 +26,4 @@ SFX_GET_KEY_ITEM_RG             EQU $68
 SFX_UNUSED_FANFARE_2            EQU $69
 SFX_CAUGHT_POKEMON_RG           EQU $6A
 SFX_UNUSED_FANFARE_3            EQU $6B
+

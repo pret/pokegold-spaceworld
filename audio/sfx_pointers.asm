@@ -4,17 +4,18 @@ SECTION "audio/sfx_pointers.asm", ROMX
 
 SFX::
 ; entries correspond to SFX_* constants
-	dba Sfx_01
-	dba Sfx_02
-	dba Sfx_03
-	dba Sfx_04
-	dba Sfx_05
-	dba Sfx_05
+	dba Sfx_00
+	dba Sfx_Potion
+	dba Sfx_FullHeal
+	dba Sfx_Menu
+	dba Sfx_ReadText
+	dba Sfx_ReadText
+	dba Sfx_06
 	dba Sfx_07
 	dba Sfx_08
 	dba Sfx_09
-	dba Sfx_0a
-	dba Sfx_0b
+	dba Sfx_BootPC
+	dba Sfx_EscapeRope
 	dba Sfx_0c
 	dba Sfx_0d
 	dba Sfx_0e
@@ -23,36 +24,36 @@ SFX::
 	dba Sfx_11
 	dba Sfx_12
 	dba Sfx_13
-	dba Sfx_14
+	dba Sfx_Wrong
 	dba Sfx_15
 	dba Sfx_16
 	dba Sfx_17
 	dba Sfx_18
 	dba Sfx_19
 	dba Sfx_1a
-	dba Sfx_1b
+	dba Sfx_SwitchPokemon
 	dba Sfx_1c
 	dba Sfx_1d
 	dba Sfx_1e
 	dba Sfx_1f
 	dba Sfx_20
-	dba Sfx_21
+	dba Sfx_Pokeflute
 	dba Sfx_22
 	dba Sfx_23
 	dba Sfx_24
 	dba Sfx_25
 	dba Sfx_26
-	dba Sfx_27
+	dba Sfx_PokedexRegistration
 	dba Sfx_28
 	dba Sfx_29
 	dba Sfx_2a
 	dba Sfx_2b
 	dba Sfx_2c
-	dba Sfx_2d
+	dba Sfx_TitleEntrance
 	dba Sfx_2e
 	dba Sfx_2f
-	dba Sfx_30
-	dba Sfx_31
+	dba Sfx_PayDay
+	dba Sfx_GameFreakLogoRG
 	dba Sfx_32
 	dba Sfx_33
 	dba Sfx_34
@@ -102,13 +103,12 @@ SFX::
 	dba Sfx_60
 	dba Sfx_61
 	dba Sfx_62
-	dba Sfx_63
-	dba Sfx_64
-	dba Sfx_65
-	dba Sfx_66
-	dba Sfx_67
-	dba Sfx_68
-	dba Sfx_69
-	dba Sfx_6a
-	dba Sfx_6b
-	dba Sfx_6c
+	dba Sfx_GetItemRG
+	dba Sfx_UnusedFanfare1
+	dba Sfx_PokedexEvaluationRG
+	dba Sfx_LevelUpRG
+	dba Sfx_EvolutionCompleteRG
+	dba Sfx_GetKeyItemRG
+	dba Sfx_UnusedFanfare2
+	dba Sfx_CaughtPokemonRG
+	dba Sfx_UnusedFanfare3
