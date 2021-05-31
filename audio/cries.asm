@@ -2,44 +2,44 @@ INCLUDE "constants.asm"
 
 SECTION "audio/cries.asm@Cry Header Pointers", ROMX
 CryHeaderPointers::
-	dba CryHeader_f17c5
-	dba CryHeader_f17ce
-	dba CryHeader_f17d7
-	dba CryHeader_f17e0
-	dba CryHeader_f17e9
-	dba CryHeader_f17f2
-	dba CryHeader_f17fb
-	dba CryHeader_f1804
-	dba CryHeader_f180d
-	dba CryHeader_f1816
-	dba CryHeader_f181f
-	dba CryHeader_f1828
-	dba CryHeader_f1831
-	dba CryHeader_f183a
-	dba CryHeader_f1843
-	dba CryHeader_f184c
-	dba CryHeader_f1855
-	dba CryHeader_f185e
-	dba CryHeader_f1867
-	dba CryHeader_f1870
-	dba CryHeader_f1879
-	dba CryHeader_f1882
-	dba CryHeader_f188b
-	dba CryHeader_f1894
-	dba CryHeader_f189d
-	dba CryHeader_f18a6
-	dba CryHeader_f18af
-	dba CryHeader_f18b8
-	dba CryHeader_f18c1
-	dba CryHeader_f18ca
-	dba CryHeader_f18d3
-	dba CryHeader_f18dc
-	dba CryHeader_f18e5
-	dba CryHeader_f18ee
-	dba CryHeader_f18f7
-	dba CryHeader_f1900
-	dba CryHeader_f1909
-	dba CryHeader_f1912
+	dba Cry_00
+	dba Cry_01
+	dba Cry_02
+	dba Cry_03
+	dba Cry_04
+	dba Cry_05
+	dba Cry_06
+	dba Cry_07
+	dba Cry_08
+	dba Cry_09
+	dba Cry_0a
+	dba Cry_0b
+	dba Cry_0c
+	dba Cry_0d
+	dba Cry_0e
+	dba Cry_0f
+	dba Cry_10
+	dba Cry_11
+	dba Cry_12
+	dba Cry_13
+	dba Cry_14
+	dba Cry_15
+	dba Cry_16
+	dba Cry_17
+	dba Cry_18
+	dba Cry_19
+	dba Cry_1a
+	dba Cry_1b
+	dba Cry_1c
+	dba Cry_1d
+	dba Cry_1e
+	dba Cry_1f
+	dba Cry_20
+	dba Cry_21
+	dba Cry_22
+	dba Cry_23
+	dba Cry_24
+	dba Cry_25
 
 SECTION "audio/cries.asm@Cries", ROMX
 mon_cry: MACRO
@@ -47,492 +47,492 @@ mon_cry: MACRO
 	dw \1, \2, \3
 ENDM
 Cries::
-	mon_cry    17,     0,   256
-	mon_cry     3,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry    25,   204,   129
-	mon_cry    16,     0,   256
-	mon_cry     6,   237,   256
-	mon_cry     9,     0,   256
-	mon_cry    31,     0,   256
-	mon_cry    15,    32,   256
-	mon_cry    13,     0,   256
-	mon_cry    12,     0,   256
-	mon_cry    11,     0,   256
-	mon_cry     5,     0,   256
-	mon_cry     7,     0,   383
-	mon_cry     1,     0,   256
-	mon_cry    10,     0,   256
-	mon_cry    25,     0,   256
-	mon_cry     4,     0,   256
-	mon_cry    27,     0,   256
-	mon_cry    21,     0,   256
-	mon_cry    30,   238,   383
-	mon_cry    23,     0,   256
-	mon_cry    24,     0,   256
-	mon_cry    26,     0,   256
-	mon_cry    28,     0,   256
-	mon_cry    22,     0,   256
-	mon_cry    30,     2,   160
-	mon_cry    19,     0,   256
-	mon_cry    20,     0,   256
-	mon_cry    18,     0,   256
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry    31,    32,   192
-	mon_cry    23,   255,   320
-	mon_cry    24,    64,   288
-	mon_cry    14,   223,   132
-	mon_cry     2,     0,   256
-	mon_cry    28,   168,   320
-	mon_cry    36,     0,   256
-	mon_cry    20,    10,   320
-	mon_cry    31,    72,   224
-	mon_cry    32,     8,   192
-	mon_cry    18,   128,   320
-	mon_cry    12,   238,   320
-	mon_cry    23,   224,   144
-	mon_cry    30,    66,   383
-	mon_cry    33,    32,   224
-	mon_cry    13,   136,   160
-	mon_cry    18,   224,   192
-	mon_cry     0,     0,     0
-	mon_cry     4,   255,   176
-	mon_cry     0,     0,     0
-	mon_cry     6,   143,   383
-	mon_cry    28,    32,   320
-	mon_cry    18,   230,   349
-	mon_cry     0,     0,     0
-	mon_cry    10,   221,   224
-	mon_cry    12,   136,   320
-	mon_cry    11,   170,   129
-	mon_cry    29,    17,   192
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry    16,   221,   129
-	mon_cry    26,    68,   192
-	mon_cry    15,    60,   320
-	mon_cry     0,   128,    16
-	mon_cry     0,     0,     0
-	mon_cry    29,   224,     0
-	mon_cry    11,   187,   129
-	mon_cry    14,   255,   383
-	mon_cry    13,   255,   383
-	mon_cry     9,   248,   192
-	mon_cry     9,   128,   192
-	mon_cry    24,   255,   256
-	mon_cry    14,   255,   383
-	mon_cry    25,   119,   144
-	mon_cry    32,    32,   352
-	mon_cry    34,   255,    64
-	mon_cry     0,     0,     0
-	mon_cry    14,   224,    96
-	mon_cry    36,    79,   144
-	mon_cry    36,   136,   224
-	mon_cry    15,   238,   129
-	mon_cry     9,   238,   136
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry    15,    96,   192
-	mon_cry    15,    64,   256
-	mon_cry    22,   187,   192
-	mon_cry    24,   238,   129
-	mon_cry    25,   153,   144
-	mon_cry    25,    60,   129
-	mon_cry    15,    64,   192
-	mon_cry    15,    32,   192
-	mon_cry     0,    32,   192
-	mon_cry     0,   255,   383
-	mon_cry    31,   240,   129
-	mon_cry    31,   255,   192
-	mon_cry    14,   255,   181
-	mon_cry    14,   104,   224
-	mon_cry    26,   136,   224
-	mon_cry    26,    16,   160
-	mon_cry    26,    61,   256
-	mon_cry    26,   170,   383
-	mon_cry    31,   238,   129
-	mon_cry    29,   224,   256
-	mon_cry    23,    18,   192
-	mon_cry    30,    32,   352
-	mon_cry    14,   119,   224
-	mon_cry    14,     0,   383
-	mon_cry    21,   238,   129
-	mon_cry    19,   255,   129
-	mon_cry    19,    96,   256
-	mon_cry     0,     0,     0
-	mon_cry    11,   153,   160
-	mon_cry    10,   175,   192
-	mon_cry    11,    42,   144
-	mon_cry    26,    41,   256
-	mon_cry    12,    35,   383
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry    22,   128,   160
-	mon_cry    28,   204,   129
-	mon_cry    22,   119,   192
-	mon_cry    31,     8,   320
-	mon_cry    17,    32,    16
-	mon_cry    33,   255,   192
-	mon_cry    13,   238,   192
-	mon_cry    29,   250,   256
-	mon_cry    30,   153,   383
-	mon_cry     5,    85,   129
-	mon_cry    23,   128,   128
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry     7,   239,   383
-	mon_cry    15,    64,     0
-	mon_cry    32,   238,   352
-	mon_cry    24,   111,   352
-	mon_cry     0,     0,     0
-	mon_cry     6,   168,   272
-	mon_cry    25,   170,   160
-	mon_cry    18,   255,   383
-	mon_cry    25,   153,   383
-	mon_cry     8,    79,   224
-	mon_cry     0,     0,     0
-	mon_cry    28,    48,   192
-	mon_cry    28,   192,   129
-	mon_cry    28,   152,   383
-	mon_cry    20,    40,   320
-	mon_cry    20,    17,   383
-	mon_cry    30,     0,   256
-	mon_cry    15,   128,   129
-	mon_cry    15,     0,   320
-	mon_cry    26,   238,   383
-	mon_cry     0,     0,     0
-	mon_cry    22,   128,   192
-	mon_cry    22,    16,   383
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry    37,     0,   256
-	mon_cry    37,    32,   320
-	mon_cry    34,     0,   256
-	mon_cry    34,    32,   383
-	mon_cry     0,    44,   320
-	mon_cry     1,    44,   352
-	mon_cry    36,   240,   144
-	mon_cry    37,   170,   383
-	mon_cry    35,    32,   368
-	mon_cry     0,     0,     0
-	mon_cry    28,   128,   224
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry     4,    96,   192
-	mon_cry    29,    96,   192
-	mon_cry     4,    32,   192
-	mon_cry    29,    32,   192
-	mon_cry     4,     0,   256
-	mon_cry    29,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry     0,     0,     0
-	mon_cry     8,   221,   129
-	mon_cry     8,   170,   192
-	mon_cry    35,    34,   383
-	mon_cry    33,    85,   129
-	mon_cry    37,    68,   160
-	mon_cry    37,   102,   332
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
-	mon_cry     0,     0,   256
+	mon_cry CRY_11,    0,  256 ; MON_RHYDON
+	mon_cry CRY_03,    0,  256 ; MON_KANGASKHAN
+	mon_cry CRY_00,    0,  256 ; MON_NIDORAN_M
+	mon_cry CRY_19,  204,  129 ; MON_CLEFAIRY
+	mon_cry CRY_10,    0,  256 ; MON_SPEAROW
+	mon_cry CRY_06,  237,  256 ; MON_VOLTORB
+	mon_cry CRY_09,    0,  256 ; MON_NIDOKING
+	mon_cry CRY_1F,    0,  256 ; MON_SLOWBRO
+	mon_cry CRY_0F,   32,  256 ; MON_IVYSAUR
+	mon_cry CRY_0D,    0,  256 ; MON_EXEGGUTOR
+	mon_cry CRY_0C,    0,  256 ; MON_LICKITUNG
+	mon_cry CRY_0B,    0,  256 ; MON_EXEGGCUTE
+	mon_cry CRY_05,    0,  256 ; MON_GRIMER
+	mon_cry CRY_07,    0,  383 ; MON_GENGAR
+	mon_cry CRY_01,    0,  256 ; MON_NIDORAN_F
+	mon_cry CRY_0A,    0,  256 ; MON_NIDOQUEEN
+	mon_cry CRY_19,    0,  256 ; MON_CUBONE
+	mon_cry CRY_04,    0,  256 ; MON_RHYHORN
+	mon_cry CRY_1B,    0,  256 ; MON_LAPRAS
+	mon_cry CRY_15,    0,  256 ; MON_ARCANINE
+	mon_cry CRY_1E,  238,  383 ; MON_MEW
+	mon_cry CRY_17,    0,  256 ; MON_GYARADOS
+	mon_cry CRY_18,    0,  256 ; MON_SHELLDER
+	mon_cry CRY_1A,    0,  256 ; MON_TENTACOOL
+	mon_cry CRY_1C,    0,  256 ; MON_GASTLY
+	mon_cry CRY_16,    0,  256 ; MON_SCYTHER
+	mon_cry CRY_1E,    2,  160 ; MON_STARYU
+	mon_cry CRY_13,    0,  256 ; MON_BLASTOISE
+	mon_cry CRY_14,    0,  256 ; MON_PINSIR
+	mon_cry CRY_12,    0,  256 ; MON_TANGELA
+	mon_cry CRY_00,    0,    0 ; MON_KAPOERER
+	mon_cry CRY_00,    0,    0 ; MON_PUDIE
+	mon_cry CRY_1F,   32,  192 ; MON_GROWLITHE
+	mon_cry CRY_17,  255,  320 ; MON_ONIX
+	mon_cry CRY_18,   64,  288 ; MON_FEAROW
+	mon_cry CRY_0E,  223,  132 ; MON_PIDGEY
+	mon_cry CRY_02,    0,  256 ; MON_SLOWPOKE
+	mon_cry CRY_1C,  168,  320 ; MON_KADABRA
+	mon_cry CRY_24,    0,  256 ; MON_GRAVELER
+	mon_cry CRY_14,   10,  320 ; MON_CHANSEY
+	mon_cry CRY_1F,   72,  224 ; MON_MACHOKE
+	mon_cry CRY_20,    8,  192 ; MON_MRMIME
+	mon_cry CRY_12,  128,  320 ; MON_HITMONLEE
+	mon_cry CRY_0C,  238,  320 ; MON_HITMONCHAN
+	mon_cry CRY_17,  224,  144 ; MON_ARBOK
+	mon_cry CRY_1E,   66,  383 ; MON_PARASECT
+	mon_cry CRY_21,   32,  224 ; MON_PSYDUCK
+	mon_cry CRY_0D,  136,  160 ; MON_DROWZEE
+	mon_cry CRY_12,  224,  192 ; MON_GOLEM
+	mon_cry CRY_00,    0,    0 ; MON_HANEKO
+	mon_cry CRY_04,  255,  176 ; MON_MAGMAR
+	mon_cry CRY_00,    0,    0 ; MON_TAIL
+	mon_cry CRY_06,  143,  383 ; MON_ELECTABUZZ
+	mon_cry CRY_1C,   32,  320 ; MON_MAGNETON
+	mon_cry CRY_12,  230,  349 ; MON_KOFFING
+	mon_cry CRY_00,    0,    0 ; MON_POPONEKO
+	mon_cry CRY_0A,  221,  224 ; MON_MANKEY
+	mon_cry CRY_0C,  136,  320 ; MON_SEEL
+	mon_cry CRY_0B,  170,  129 ; MON_DIGLETT
+	mon_cry CRY_1D,   17,  192 ; MON_TAUROS
+	mon_cry CRY_00,    0,    0 ; MON_WATANEKO
+	mon_cry CRY_00,    0,    0 ; MON_BARIRINA
+	mon_cry CRY_00,    0,    0 ; MON_LIP
+	mon_cry CRY_10,  221,  129 ; MON_FARFETCHD
+	mon_cry CRY_1A,   68,  192 ; MON_VENONAT
+	mon_cry CRY_0F,   60,  320 ; MON_DRAGONITE
+	mon_cry CRY_00,  128,   16 ; MON_ELEBABY
+	mon_cry CRY_00,    0,    0 ; MON_BOOBY
+	mon_cry CRY_1D,  224,    0 ; MON_KIREIHANA
+	mon_cry CRY_0B,  187,  129 ; MON_DODUO
+	mon_cry CRY_0E,  255,  383 ; MON_POLIWAG
+	mon_cry CRY_0D,  255,  383 ; MON_JYNX
+	mon_cry CRY_09,  248,  192 ; MON_MOLTRES
+	mon_cry CRY_09,  128,  192 ; MON_ARTICUNO
+	mon_cry CRY_18,  255,  256 ; MON_ZAPDOS
+	mon_cry CRY_0E,  255,  383 ; MON_DITTO
+	mon_cry CRY_19,  119,  144 ; MON_MEOWTH
+	mon_cry CRY_20,   32,  352 ; MON_KRABBY
+	mon_cry CRY_22,  255,   64 ; MON_TSUBOMITTO
+	mon_cry CRY_00,    0,    0 ; MON_MILTANK
+	mon_cry CRY_0E,  224,   96 ; MON_BOMBSEEKER
+	mon_cry CRY_24,   79,  144 ; MON_VULPIX
+	mon_cry CRY_24,  136,  224 ; MON_NINETALES
+	mon_cry CRY_0F,  238,  129 ; MON_PIKACHU
+	mon_cry CRY_09,  238,  136 ; MON_RAICHU
+	mon_cry CRY_00,    0,    0 ; MON_GIFT
+	mon_cry CRY_00,    0,    0 ; MON_KOTORA
+	mon_cry CRY_0F,   96,  192 ; MON_DRATINI
+	mon_cry CRY_0F,   64,  256 ; MON_DRAGONAIR
+	mon_cry CRY_16,  187,  192 ; MON_KABUTO
+	mon_cry CRY_18,  238,  129 ; MON_KABUTOPS
+	mon_cry CRY_19,  153,  144 ; MON_HORSEA
+	mon_cry CRY_19,   60,  129 ; MON_SEADRA
+	mon_cry CRY_0F,   64,  192 ; MON_RAITORA
+	mon_cry CRY_0F,   32,  192 ; MON_MADAME
+	mon_cry CRY_00,   32,  192 ; MON_SANDSHREW
+	mon_cry CRY_00,  255,  383 ; MON_SANDSLASH
+	mon_cry CRY_1F,  240,  129 ; MON_OMANYTE
+	mon_cry CRY_1F,  255,  192 ; MON_OMASTAR
+	mon_cry CRY_0E,  255,  181 ; MON_JIGGLYPUFF
+	mon_cry CRY_0E,  104,  224 ; MON_WIGGLYTUFF
+	mon_cry CRY_1A,  136,  224 ; MON_EEVEE
+	mon_cry CRY_1A,   16,  160 ; MON_FLAREON
+	mon_cry CRY_1A,   61,  256 ; MON_JOLTEON
+	mon_cry CRY_1A,  170,  383 ; MON_VAPOREON
+	mon_cry CRY_1F,  238,  129 ; MON_MACHOP
+	mon_cry CRY_1D,  224,  256 ; MON_ZUBAT
+	mon_cry CRY_17,   18,  192 ; MON_EKANS
+	mon_cry CRY_1E,   32,  352 ; MON_PARAS
+	mon_cry CRY_0E,  119,  224 ; MON_POLIWHIRL
+	mon_cry CRY_0E,    0,  383 ; MON_POLIWRATH
+	mon_cry CRY_15,  238,  129 ; MON_WEEDLE
+	mon_cry CRY_13,  255,  129 ; MON_KAKUNA
+	mon_cry CRY_13,   96,  256 ; MON_BEEDRILL
+	mon_cry CRY_00,    0,    0 ; MON_NOROWARA
+	mon_cry CRY_0B,  153,  160 ; MON_DODRIO
+	mon_cry CRY_0A,  175,  192 ; MON_PRIMEAPE
+	mon_cry CRY_0B,   42,  144 ; MON_DUGTRIO
+	mon_cry CRY_1A,   41,  256 ; MON_VENOMOTH
+	mon_cry CRY_0C,   35,  383 ; MON_DEWGONG
+	mon_cry CRY_00,    0,    0 ; MON_KYONPAN
+	mon_cry CRY_00,    0,    0 ; MON_YAMIKARASU
+	mon_cry CRY_16,  128,  160 ; MON_CATERPIE
+	mon_cry CRY_1C,  204,  129 ; MON_METAPOD
+	mon_cry CRY_16,  119,  192 ; MON_BUTTERFREE
+	mon_cry CRY_1F,    8,  320 ; MON_MACHAMP
+	mon_cry CRY_11,   32,   16 ; MON_HAPPI
+	mon_cry CRY_21,  255,  192 ; MON_GOLDUCK
+	mon_cry CRY_0D,  238,  192 ; MON_HYPNO
+	mon_cry CRY_1D,  250,  256 ; MON_GOLBAT
+	mon_cry CRY_1E,  153,  383 ; MON_MEWTWO
+	mon_cry CRY_05,   85,  129 ; MON_SNORLAX
+	mon_cry CRY_17,  128,  128 ; MON_MAGIKARP
+	mon_cry CRY_00,    0,    0 ; MON_SCISSORS
+	mon_cry CRY_00,    0,    0 ; MON_PURAKKUSU
+	mon_cry CRY_07,  239,  383 ; MON_MUK
+	mon_cry CRY_0F,   64,    0 ; MON_DEVIL
+	mon_cry CRY_20,  238,  352 ; MON_KINGLER
+	mon_cry CRY_18,  111,  352 ; MON_CLOYSTER
+	mon_cry CRY_00,    0,    0 ; MON_HELGAA
+	mon_cry CRY_06,  168,  272 ; MON_ELECTRODE
+	mon_cry CRY_19,  170,  160 ; MON_CLEFABLE
+	mon_cry CRY_12,  255,  383 ; MON_WEEZING
+	mon_cry CRY_19,  153,  383 ; MON_PERSIAN
+	mon_cry CRY_08,   79,  224 ; MON_MAROWAK
+	mon_cry CRY_00,    0,    0 ; MON_WOLFMAN
+	mon_cry CRY_1C,   48,  192 ; MON_HAUNTER
+	mon_cry CRY_1C,  192,  129 ; MON_ABRA
+	mon_cry CRY_1C,  152,  383 ; MON_ALAKAZAM
+	mon_cry CRY_14,   40,  320 ; MON_PIDGEOTTO
+	mon_cry CRY_14,   17,  383 ; MON_PIDGEOT
+	mon_cry CRY_1E,    0,  256 ; MON_STARMIE
+	mon_cry CRY_0F,  128,  129 ; MON_BULBASAUR
+	mon_cry CRY_0F,    0,  320 ; MON_VENUSAUR
+	mon_cry CRY_1A,  238,  383 ; MON_TENTACRUEL
+	mon_cry CRY_00,    0,    0 ; MON_WARWOLF
+	mon_cry CRY_16,  128,  192 ; MON_GOLDEEN
+	mon_cry CRY_16,   16,  383 ; MON_SEAKING
+	mon_cry CRY_00,    0,    0 ; MON_PORYGON2
+	mon_cry CRY_00,    0,    0 ; MON_NAMEIL
+	mon_cry CRY_00,    0,    0 ; MON_HAGANEIL
+	mon_cry CRY_00,    0,    0 ; MON_KINGDRA
+	mon_cry CRY_25,    0,  256 ; MON_PONYTA
+	mon_cry CRY_25,   32,  320 ; MON_RAPIDASH
+	mon_cry CRY_22,    0,  256 ; MON_RATTATA
+	mon_cry CRY_22,   32,  383 ; MON_RATICATE
+	mon_cry CRY_00,   44,  320 ; MON_NIDORINO
+	mon_cry CRY_01,   44,  352 ; MON_NIDORINA
+	mon_cry CRY_24,  240,  144 ; MON_GEODUDE
+	mon_cry CRY_25,  170,  383 ; MON_PORYGON
+	mon_cry CRY_23,   32,  368 ; MON_AERODACTYL
+	mon_cry CRY_00,    0,    0 ; MON_RAI
+	mon_cry CRY_1C,  128,  224 ; MON_MAGNEMITE
+	mon_cry CRY_00,    0,    0 ; MON_EN
+	mon_cry CRY_00,    0,    0 ; MON_SUI
+	mon_cry CRY_04,   96,  192 ; MON_CHARMANDER
+	mon_cry CRY_1D,   96,  192 ; MON_SQUIRTLE
+	mon_cry CRY_04,   32,  192 ; MON_CHARMELEON
+	mon_cry CRY_1D,   32,  192 ; MON_WARTORTLE
+	mon_cry CRY_04,    0,  256 ; MON_CHARIZARD
+	mon_cry CRY_1D,    0,    0 ; MON_NYULA
+	mon_cry CRY_00,    0,    0 ; MON_HOUOU
+	mon_cry CRY_00,    0,    0 ; MON_TOGEPY
+	mon_cry CRY_00,    0,    0 ; MON_BULU
+	mon_cry CRY_08,  221,  129 ; MON_ODDISH
+	mon_cry CRY_08,  170,  192 ; MON_GLOOM
+	mon_cry CRY_23,   34,  383 ; MON_VILEPLUME
+	mon_cry CRY_21,   85,  129 ; MON_BELLSPROUT
+	mon_cry CRY_25,   68,  160 ; MON_WEEPINBELL
+	mon_cry CRY_25,  102,  332 ; MON_VICTREEBEL
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256
 
 SECTION "audio/cries.asm@CryHeaders", ROMX
-CryHeader_f17c5:
+Cry_00:
 	channel_count 3
-	channel 5, cry_f1bbf
-	channel 6, cry_f1bce
-	channel 8, cry_f1bdd
+	channel 5, Cry_00_Ch5
+	channel 6, Cry_00_Ch6
+	channel 8, Cry_00_Ch8
 
-CryHeader_f17ce:
+Cry_01:
 	channel_count 3
-	channel 5, cry_f1dcf
-	channel 6, cry_f1de2
-	channel 8, cry_f1df5
+	channel 5, Cry_01_Ch5
+	channel 6, Cry_01_Ch6
+	channel 8, Cry_01_Ch8
 
-CryHeader_f17d7:
+Cry_02:
 	channel_count 3
-	channel 5, cry_f1d44
-	channel 6, cry_f1d53
-	channel 8, cry_f1d61
+	channel 5, Cry_02_Ch5
+	channel 6, Cry_02_Ch6
+	channel 8, Cry_02_Ch8
 
-CryHeader_f17e0:
+Cry_03:
 	channel_count 3
-	channel 5, cry_f1ade
-	channel 6, cry_f1afd
-	channel 8, cry_f1b1c
+	channel 5, Cry_03_Ch5
+	channel 6, Cry_03_Ch6
+	channel 8, Cry_03_Ch8
 
-CryHeader_f17e9:
+Cry_04:
 	channel_count 3
-	channel 5, cry_f1e8d
-	channel 6, cry_f1eac
-	channel 8, cry_f1ecb
+	channel 5, Cry_04_Ch5
+	channel 6, Cry_04_Ch6
+	channel 8, Cry_04_Ch8
 
-CryHeader_f17f2:
+Cry_05:
 	channel_count 3
-	channel 5, cry_f1c6d
-	channel 6, cry_f1c80
-	channel 8, cry_f1c92
+	channel 5, Cry_05_Ch5
+	channel 6, Cry_05_Ch6
+	channel 8, Cry_05_Ch8
 
-CryHeader_f17fb:
+Cry_06:
 	channel_count 3
-	channel 5, cry_f1c17
-	channel 6, cry_f1c31
-	channel 8, cry_f1c32
+	channel 5, Cry_06_Ch5
+	channel 6, Cry_06_Ch6
+	channel 8, Cry_06_Ch8
 
-CryHeader_f1804:
+Cry_07:
 	channel_count 3
-	channel 5, cry_f1c45
-	channel 6, cry_f1c54
-	channel 8, cry_f1c63
+	channel 5, Cry_07_Ch5
+	channel 6, Cry_07_Ch6
+	channel 8, Cry_07_Ch8
 
-CryHeader_f180d:
+Cry_08:
 	channel_count 3
-	channel 5, cry_f1e5d
-	channel 6, cry_f1e70
-	channel 8, cry_f1e83
+	channel 5, Cry_08_Ch5
+	channel 6, Cry_08_Ch6
+	channel 8, Cry_08_Ch8
 
-CryHeader_f1816:
+Cry_09:
 	channel_count 3
-	channel 5, cry_f1967
-	channel 6, cry_f1984
-	channel 8, cry_f19a5
+	channel 5, Cry_09_Ch5
+	channel 6, Cry_09_Ch6
+	channel 8, Cry_09_Ch8
 
-CryHeader_f181f:
+Cry_0a:
 	channel_count 3
-	channel 5, cry_f1e02
-	channel 6, cry_f1e21
-	channel 8, cry_f1e44
+	channel 5, Cry_0a_Ch5
+	channel 6, Cry_0a_Ch6
+	channel 8, Cry_0a_Ch8
 
-CryHeader_f1828:
+Cry_0b:
 	channel_count 3
-	channel 5, cry_f1c93
-	channel 6, cry_f1cbe
-	channel 8, cry_f1cdd
+	channel 5, Cry_0b_Ch5
+	channel 6, Cry_0b_Ch6
+	channel 8, Cry_0b_Ch8
 
-CryHeader_f1831:
+Cry_0c:
 	channel_count 3
-	channel 5, cry_f1cf6
-	channel 6, cry_f1d1d
-	channel 8, cry_f1d43
+	channel 5, Cry_0c_Ch5
+	channel 6, Cry_0c_Ch6
+	channel 8, Cry_0c_Ch8
 
-CryHeader_f183a:
+Cry_0d:
 	channel_count 3
-	channel 5, cry_f1d62
-	channel 6, cry_f1d81
-	channel 8, cry_f1db0
+	channel 5, Cry_0d_Ch5
+	channel 6, Cry_0d_Ch6
+	channel 8, Cry_0d_Ch8
 
-CryHeader_f1843:
+Cry_0e:
 	channel_count 3
-	channel 5, cry_f1be7
-	channel 6, cry_f1bfa
-	channel 8, cry_f1c0d
+	channel 5, Cry_0e_Ch5
+	channel 6, Cry_0e_Ch6
+	channel 8, Cry_0e_Ch8
 
-CryHeader_f184c:
+Cry_0f:
 	channel_count 3
-	channel 5, cry_f1b29
-	channel 6, cry_f1b44
-	channel 8, cry_f1b5f
+	channel 5, Cry_0f_Ch5
+	channel 6, Cry_0f_Ch6
+	channel 8, Cry_0f_Ch8
 
-CryHeader_f1855:
+Cry_10:
 	channel_count 3
-	channel 5, cry_f1b6f
-	channel 6, cry_f1b92
-	channel 8, cry_f1bb5
+	channel 5, Cry_10_Ch5
+	channel 6, Cry_10_Ch6
+	channel 8, Cry_10_Ch8
 
-CryHeader_f185e:
+Cry_11:
 	channel_count 3
-	channel 5, cry_f1a4b
-	channel 6, cry_f1a6a
-	channel 8, cry_f1a8d
+	channel 5, Cry_11_Ch5
+	channel 6, Cry_11_Ch6
+	channel 8, Cry_11_Ch8
 
-CryHeader_f1867:
+Cry_12:
 	channel_count 3
-	channel 5, cry_f1f63
-	channel 6, cry_f1f76
-	channel 8, cry_f1f89
+	channel 5, Cry_12_Ch5
+	channel 6, Cry_12_Ch6
+	channel 8, Cry_12_Ch8
 
-CryHeader_f1870:
+Cry_13:
 	channel_count 3
-	channel 5, cry_f1f96
-	channel 6, cry_f1fb1
-	channel 8, cry_f1fcc
+	channel 5, Cry_13_Ch5
+	channel 6, Cry_13_Ch6
+	channel 8, Cry_13_Ch8
 
-CryHeader_f1879:
+Cry_14:
 	channel_count 3
-	channel 5, cry_f1fdf
-	channel 6, cry_f1fee
-	channel 8, cry_f1ffd
+	channel 5, Cry_14_Ch5
+	channel 6, Cry_14_Ch6
+	channel 8, Cry_14_Ch8
 
-CryHeader_f1882:
+Cry_15:
 	channel_count 3
-	channel 5, cry_f206d
-	channel 6, cry_f2088
-	channel 8, cry_f20a3
+	channel 5, Cry_15_Ch5
+	channel 6, Cry_15_Ch6
+	channel 8, Cry_15_Ch8
 
-CryHeader_f188b:
+Cry_16:
 	channel_count 3
-	channel 5, cry_f1f00
-	channel 6, cry_f1f0f
-	channel 8, cry_f1f1e
+	channel 5, Cry_16_Ch5
+	channel 6, Cry_16_Ch6
+	channel 8, Cry_16_Ch8
 
-CryHeader_f1894:
+Cry_17:
 	channel_count 3
-	channel 5, cry_f20b6
-	channel 6, cry_f20c9
-	channel 8, cry_f20dc
+	channel 5, Cry_17_Ch5
+	channel 6, Cry_17_Ch6
+	channel 8, Cry_17_Ch8
 
-CryHeader_f189d:
+Cry_18:
 	channel_count 3
-	channel 5, cry_f21c6
-	channel 6, cry_f21e9
-	channel 8, cry_f220c
+	channel 5, Cry_18_Ch5
+	channel 6, Cry_18_Ch6
+	channel 8, Cry_18_Ch8
 
-CryHeader_f18a6:
+Cry_19:
 	channel_count 3
-	channel 5, cry_f1ede
-	channel 6, cry_f1eed
-	channel 8, cry_f1eff
+	channel 5, Cry_19_Ch5
+	channel 6, Cry_19_Ch6
+	channel 8, Cry_19_Ch8
 
-CryHeader_f18af:
+Cry_1a:
 	channel_count 3
-	channel 5, cry_f2137
-	channel 6, cry_f2152
-	channel 8, cry_f216d
+	channel 5, Cry_1a_Ch5
+	channel 6, Cry_1a_Ch6
+	channel 8, Cry_1a_Ch8
 
-CryHeader_f18b8:
+Cry_1b:
 	channel_count 3
-	channel 5, cry_f1f28
-	channel 6, cry_f1f3f
-	channel 8, cry_f1f56
+	channel 5, Cry_1b_Ch5
+	channel 6, Cry_1b_Ch6
+	channel 8, Cry_1b_Ch8
 
-CryHeader_f18c1:
+Cry_1c:
 	channel_count 3
-	channel 5, cry_f20e9
-	channel 6, cry_f210c
-	channel 8, cry_f2127
+	channel 5, Cry_1c_Ch5
+	channel 6, Cry_1c_Ch6
+	channel 8, Cry_1c_Ch8
 
-CryHeader_f18ca:
+Cry_1d:
 	channel_count 3
-	channel 5, cry_f2180
-	channel 6, cry_f219b
-	channel 8, cry_f21b6
+	channel 5, Cry_1d_Ch5
+	channel 6, Cry_1d_Ch6
+	channel 8, Cry_1d_Ch8
 
-CryHeader_f18d3:
+Cry_1e:
 	channel_count 3
-	channel 5, cry_f2007
-	channel 6, cry_f202a
-	channel 8, cry_f2051
+	channel 5, Cry_1e_Ch5
+	channel 6, Cry_1e_Ch6
+	channel 8, Cry_1e_Ch8
 
-CryHeader_f18dc:
+Cry_1f:
 	channel_count 3
-	channel 5, cry_f221f
-	channel 6, cry_f2232
-	channel 8, cry_f2245
+	channel 5, Cry_1f_Ch5
+	channel 6, Cry_1f_Ch6
+	channel 8, Cry_1f_Ch8
 
-CryHeader_f18e5:
+Cry_20:
 	channel_count 3
-	channel 5, cry_f2252
-	channel 6, cry_f2265
-	channel 8, cry_f2278
+	channel 5, Cry_20_Ch5
+	channel 6, Cry_20_Ch6
+	channel 8, Cry_20_Ch8
 
-CryHeader_f18ee:
+Cry_21:
 	channel_count 3
-	channel 5, cry_f2285
-	channel 6, cry_f22a8
-	channel 8, cry_f22ca
+	channel 5, Cry_21_Ch5
+	channel 6, Cry_21_Ch6
+	channel 8, Cry_21_Ch8
 
-CryHeader_f18f7:
+Cry_22:
 	channel_count 3
-	channel 5, cry_f22cb
-	channel 6, cry_f22de
-	channel 8, cry_f22f1
+	channel 5, Cry_22_Ch5
+	channel 6, Cry_22_Ch6
+	channel 8, Cry_22_Ch8
 
-CryHeader_f1900:
+Cry_23:
 	channel_count 3
-	channel 5, cry_f19be
-	channel 6, cry_f19d5
-	channel 8, cry_f19e8
+	channel 5, Cry_23_Ch5
+	channel 6, Cry_23_Ch6
+	channel 8, Cry_23_Ch8
 
-CryHeader_f1909:
+Cry_24:
 	channel_count 3
-	channel 5, cry_f19f5
-	channel 6, cry_f1a18
-	channel 8, cry_f1a3b
+	channel 5, Cry_24_Ch5
+	channel 6, Cry_24_Ch6
+	channel 8, Cry_24_Ch8
 
-CryHeader_f1912:
+Cry_25:
 	channel_count 3
-	channel 5, cry_f1aa3
-	channel 6, cry_f1aba
-	channel 8, cry_f1ad1
+	channel 5, Cry_25_Ch5
+	channel 6, Cry_25_Ch6
+	channel 8, Cry_25_Ch8
 
-cry_f191b: ; unreferenced
+Cry_Unreferenced_Ch5: ; unreferenced
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 15, 14, 0, 1920
 	square_note 15, 15, 0, 1924
@@ -542,7 +542,7 @@ cry_f191b: ; unreferenced
 	square_note 8, 7, 1, 1924
 	sound_ret
 
-cry_f1936: ; unreferenced
+Cry_Unreferenced_Ch6: ; unreferenced
 	duty_cycle_pattern 0, 0, 1, 1
 	square_note 15, 10, 0, 1857
 	square_note 15, 11, 0, 1859
@@ -552,7 +552,7 @@ cry_f1936: ; unreferenced
 	square_note 8, 3, 1, 1862
 	sound_ret
 
-cry_f1951: ; unreferenced
+Cry_Unreferenced_Ch8: ; unreferenced
 	noise_note 2, 15, 2, 76
 	noise_note 6, 14, 0, 58
 	noise_note 15, 13, 0, 58
@@ -562,7 +562,7 @@ cry_f1951: ; unreferenced
 	noise_note 15, 13, 3, 76
 	sound_ret
 
-cry_f1967:
+Cry_09_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 15, 15, 7, 1952
 	square_note 6, 14, 6, 1955
@@ -573,7 +573,7 @@ cry_f1967:
 	square_note 15, 15, 2, 2008
 	sound_ret
 
-cry_f1984:
+Cry_09_Ch6:
 	duty_cycle_pattern 0, 0, 1, 1
 	square_note 2, 0, 8, 0
 	square_note 15, 10, 7, 1697
@@ -585,7 +585,7 @@ cry_f1984:
 	square_note 15, 10, 2, 1751
 	sound_ret
 
-cry_f19a5:
+Cry_09_Ch8:
 	noise_note 2, 15, 2, 60
 	noise_note 8, 14, 4, 62
 	noise_note 15, 13, 7, 60
@@ -596,7 +596,7 @@ cry_f19a5:
 	noise_note 8, 12, 1, 59
 	sound_ret
 
-cry_f19be:
+Cry_23_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 15, 15, 7, 1984
 	square_note 6, 14, 4, 1985
@@ -605,7 +605,7 @@ cry_f19be:
 	square_note 8, 12, 1, 1984
 	sound_ret
 
-cry_f19d5:
+Cry_23_Ch6:
 	duty_cycle_pattern 1, 1, 3, 3
 	square_note 15, 9, 7, 1921
 	square_note 6, 8, 4, 1920
@@ -613,14 +613,14 @@ cry_f19d5:
 	square_note 15, 8, 3, 1921
 	sound_ret
 
-cry_f19e8:
+Cry_23_Ch8:
 	noise_note 3, 15, 2, 60
 	noise_note 13, 14, 6, 44
 	noise_note 15, 13, 7, 60
 	noise_note 8, 12, 1, 44
 	sound_ret
 
-cry_f19f5:
+Cry_24_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 15, 15, 7, 1664
 	square_note 10, 14, 6, 1668
@@ -632,7 +632,7 @@ cry_f19f5:
 	square_note 8, 12, 1, 1600
 	sound_ret
 
-cry_f1a18:
+Cry_24_Ch6:
 	duty_cycle_pattern 0, 0, 1, 1
 	square_note 15, 11, 7, 1601
 	square_note 10, 9, 6, 1602
@@ -644,7 +644,7 @@ cry_f1a18:
 	square_note 8, 7, 1, 1537
 	sound_ret
 
-cry_f1a3b:
+Cry_24_Ch8:
 	noise_note 15, 14, 4, 60
 	noise_note 10, 12, 7, 76
 	noise_note 10, 12, 7, 60
@@ -652,7 +652,7 @@ cry_f1a3b:
 	noise_note 15, 10, 2, 92
 	sound_ret
 
-cry_f1a4b:
+Cry_11_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 6, 15, 7, 1952
 	square_note 8, 14, 6, 1956
@@ -663,7 +663,7 @@ cry_f1a4b:
 	square_note 8, 11, 1, 1840
 	sound_ret
 
-cry_f1a6a:
+Cry_11_Ch6:
 	duty_cycle_pattern 0, 0, 2, 2
 	square_note 4, 0, 8, 0
 	square_note 6, 10, 7, 1857
@@ -675,7 +675,7 @@ cry_f1a6a:
 	square_note 8, 7, 1, 1752
 	sound_ret
 
-cry_f1a8d:
+Cry_11_Ch8:
 	noise_note 2, 15, 2, 76
 	noise_note 6, 14, 6, 58
 	noise_note 4, 13, 7, 58
@@ -685,7 +685,7 @@ cry_f1a8d:
 	noise_note 8, 13, 1, 44
 	sound_ret
 
-cry_f1aa3:
+Cry_25_Ch5:
 	duty_cycle_pattern 2, 2, 1, 1
 	square_note 6, 15, 4, 1856
 	square_note 15, 14, 3, 1840
@@ -694,7 +694,7 @@ cry_f1aa3:
 	square_note 8, 13, 1, 1872
 	sound_ret
 
-cry_f1aba:
+Cry_25_Ch6:
 	duty_cycle_pattern 1, 3, 1, 3
 	square_note 6, 12, 3, 1810
 	square_note 15, 11, 3, 1796
@@ -703,14 +703,14 @@ cry_f1aba:
 	square_note 8, 11, 1, 1842
 	sound_ret
 
-cry_f1ad1:
+Cry_25_Ch8:
 	noise_note 8, 13, 6, 44
 	noise_note 12, 12, 6, 60
 	noise_note 10, 11, 6, 44
 	noise_note 8, 9, 1, 28
 	sound_ret
 
-cry_f1ade:
+Cry_03_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 4, 15, 7, 1544
 	square_note 6, 14, 6, 1536
@@ -721,7 +721,7 @@ cry_f1ade:
 	square_note 8, 14, 1, 1408
 	sound_ret
 
-cry_f1afd:
+Cry_03_Ch6:
 	duty_cycle_pattern 0, 0, 2, 2
 	square_note 4, 12, 7, 1284
 	square_note 6, 10, 6, 1282
@@ -732,14 +732,14 @@ cry_f1afd:
 	square_note 8, 12, 1, 1154
 	sound_ret
 
-cry_f1b1c:
+Cry_03_Ch8:
 	noise_note 12, 14, 4, 76
 	noise_note 10, 12, 7, 92
 	noise_note 12, 11, 6, 76
 	noise_note 15, 10, 2, 92
 	sound_ret
 
-cry_f1b29:
+Cry_0f_Ch5:
 	duty_cycle_pattern 3, 3, 0, 1
 	square_note 4, 15, 7, 1984
 	square_note 12, 14, 6, 1986
@@ -749,7 +749,7 @@ cry_f1b29:
 	square_note 8, 12, 1, 1600
 	sound_ret
 
-cry_f1b44:
+Cry_0f_Ch6:
 	duty_cycle_pattern 3, 0, 3, 0
 	square_note 3, 12, 7, 1921
 	square_note 12, 11, 6, 1920
@@ -759,7 +759,7 @@ cry_f1b44:
 	square_note 8, 10, 1, 1538
 	sound_ret
 
-cry_f1b5f:
+Cry_0f_Ch8:
 	noise_note 3, 14, 4, 60
 	noise_note 12, 13, 6, 44
 	noise_note 4, 14, 4, 60
@@ -767,7 +767,7 @@ cry_f1b5f:
 	noise_note 15, 12, 2, 93
 	sound_ret
 
-cry_f1b6f:
+Cry_10_Ch5:
 	duty_cycle_pattern 3, 0, 2, 1
 	square_note 8, 15, 7, 1664
 	square_note 2, 15, 7, 1632
@@ -779,7 +779,7 @@ cry_f1b6f:
 	square_note 15, 9, 1, 1824
 	sound_ret
 
-cry_f1b92:
+Cry_10_Ch6:
 	duty_cycle_pattern 1, 3, 2, 1
 	square_note 10, 14, 7, 1666
 	square_note 2, 14, 7, 1634
@@ -791,33 +791,33 @@ cry_f1b92:
 	square_note 15, 8, 1, 1826
 	sound_ret
 
-cry_f1bb5:
+Cry_10_Ch8:
 	noise_note 4, 7, 4, 33
 	noise_note 4, 7, 4, 16
 	noise_note 4, 7, 1, 32
 	sound_ret
 
-cry_f1bbf:
+Cry_00_Ch5:
 	duty_cycle_pattern 3, 3, 1, 1
 	square_note 4, 15, 3, 1816
 	square_note 15, 14, 5, 1944
 	square_note 8, 9, 1, 1880
 	sound_ret
 
-cry_f1bce:
+Cry_00_Ch6:
 	duty_cycle_pattern 2, 2, 0, 0
 	square_note 5, 11, 3, 1800
 	square_note 15, 12, 5, 1928
 	square_note 8, 7, 1, 1864
 	sound_ret
 
-cry_f1bdd:
+Cry_00_Ch8:
 	noise_note 3, 10, 1, 28
 	noise_note 14, 9, 4, 44
 	noise_note 8, 8, 1, 28
 	sound_ret
 
-cry_f1be7:
+Cry_0e_Ch5:
 	duty_cycle_pattern 2, 2, 1, 1
 	square_note 4, 14, 1, 1792
 	square_note 4, 15, 2, 1920
@@ -825,7 +825,7 @@ cry_f1be7:
 	square_note 8, 14, 1, 1536
 	sound_ret
 
-cry_f1bfa:
+Cry_0e_Ch6:
 	duty_cycle_pattern 0, 0, 2, 2
 	square_note 4, 11, 1, 1761
 	square_note 3, 12, 2, 1761
@@ -833,13 +833,13 @@ cry_f1bfa:
 	square_note 8, 11, 1, 1505
 	sound_ret
 
-cry_f1c0d:
+Cry_0e_Ch8:
 	noise_note 2, 6, 1, 50
 	noise_note 2, 6, 1, 33
 	noise_note 8, 6, 1, 17
 	sound_ret
 
-cry_f1c17:
+Cry_06_Ch5:
 	duty_cycle_pattern 3, 3, 2, 2
 	square_note 6, 8, 3, 583
 	square_note 15, 6, 2, 550
@@ -848,10 +848,10 @@ cry_f1c17:
 	square_note 15, 8, 2, 549
 	square_note 15, 4, 2, 519
 
-cry_f1c31:
+Cry_06_Ch6:
 	sound_ret
 
-cry_f1c32:
+Cry_06_Ch8:
 	noise_note 8, 13, 4, 140
 	noise_note 4, 14, 2, 156
 	noise_note 15, 12, 6, 140
@@ -860,27 +860,27 @@ cry_f1c32:
 	noise_note 15, 15, 2, 172
 	sound_ret
 
-cry_f1c45:
+Cry_07_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 4, 15, 3, 1760
 	square_note 15, 14, 4, 1600
 	square_note 8, 12, 1, 1568
 	sound_ret
 
-cry_f1c54:
+Cry_07_Ch6:
 	duty_cycle_pattern 0, 0, 2, 2
 	square_note 3, 12, 3, 1667
 	square_note 14, 11, 4, 1538
 	square_note 8, 10, 1, 1537
 	sound_ret
 
-cry_f1c63:
+Cry_07_Ch8:
 	noise_note 4, 13, 3, 92
 	noise_note 15, 14, 6, 76
 	noise_note 8, 11, 1, 92
 	sound_ret
 
-cry_f1c6d:
+Cry_05_Ch5:
 	duty_cycle_pattern 0, 0, 2, 2
 	square_note 6, 14, 2, 1280
 	square_note 6, 14, 3, 1408
@@ -888,17 +888,17 @@ cry_f1c6d:
 	square_note 8, 10, 1, 1376
 	sound_ret
 
-cry_f1c80:
+Cry_05_Ch6:
 	duty_cycle_pattern 3, 3, 1, 1
 	square_note 6, 14, 2, 1154
 	square_note 6, 13, 3, 1281
 	square_note 6, 11, 2, 1250
 	square_note 8, 8, 1, 1217
 
-cry_f1c92:
+Cry_05_Ch8:
 	sound_ret
 
-cry_f1c93:
+Cry_0b_Ch5:
 	duty_cycle_pattern 3, 0, 3, 0
 	square_note 4, 15, 1, 1792
 	square_note 4, 14, 1, 1920
@@ -912,7 +912,7 @@ cry_f1c93:
 	square_note 8, 11, 1, 1857
 	sound_ret
 
-cry_f1cbe:
+Cry_0b_Ch6:
 	duty_cycle_pattern 1, 0, 1, 0
 	square_note 12, 0, 8, 0
 	square_note 4, 15, 1, 1793
@@ -923,7 +923,7 @@ cry_f1cbe:
 	square_note 8, 13, 1, 1793
 	sound_ret
 
-cry_f1cdd:
+Cry_0b_Ch8:
 	noise_note 15, 0, 8, 0
 	noise_note 4, 0, 8, 0
 	noise_note 4, 13, 1, 76
@@ -934,7 +934,7 @@ cry_f1cdd:
 	noise_note 8, 10, 1, 76
 	sound_ret
 
-cry_f1cf6:
+Cry_0c_Ch5:
 	duty_cycle_pattern 3, 0, 3, 0
 	square_note 8, 15, 5, 1536
 	square_note 2, 13, 2, 1592
@@ -947,7 +947,7 @@ cry_f1cf6:
 	square_note 8, 12, 1, 1568
 	sound_ret
 
-cry_f1d1d:
+Cry_0c_Ch6:
 	duty_cycle_pattern 1, 0, 1, 0
 	square_note 12, 12, 3, 1472
 	square_note 3, 11, 1, 1529
@@ -959,26 +959,27 @@ cry_f1d1d:
 	square_note 2, 9, 1, 1497
 	square_note 8, 9, 1, 1505
 
-cry_f1d43:
+Cry_0c_Ch8:
 	sound_ret
 
-cry_f1d44:
+Cry_02_Ch5:
 	duty_cycle_pattern 0, 0, 0, 0
 	square_note 8, 15, 5, 1152
 	square_note 2, 14, 1, 1504
 	square_note 8, 13, 1, 1500
 	sound_ret
 
-cry_f1d53:
+Cry_02_Ch6:
 	duty_cycle_pattern 2, 2, 1, 1
 	square_note 7, 9, 5, 1089
 	square_note 2, 8, 1, 1313
 	square_note 8, 6, 1, 1306
 
-cry_f1d61:
+Cry_02_Ch8:
 	sound_ret
 
-cry_f1d62:
+Cry_0d_Ch5:
+.loop
 	duty_cycle_pattern 2, 0, 2, 0
 	square_note 5, 15, 2, 1616
 	square_note 9, 13, 1, 1632
@@ -986,10 +987,10 @@ cry_f1d62:
 	square_note 9, 12, 1, 1570
 	square_note 5, 15, 2, 1552
 	square_note 6, 13, 1, 1568
-	sound_loop 2, cry_f1d62
+	sound_loop 2, .loop
 	sound_ret
 
-cry_f1d81:
+Cry_0d_Ch6:
 	duty_cycle_pattern 1, 0, 0, 0
 	square_note 4, 0, 8, 0
 	square_note 5, 15, 2, 1617
@@ -1004,7 +1005,7 @@ cry_f1d81:
 	square_note 4, 13, 1, 1569
 	sound_ret
 
-cry_f1db0:
+Cry_0d_Ch8:
 	noise_note 6, 13, 2, 28
 	noise_note 9, 11, 1, 44
 	noise_note 8, 12, 2, 44
@@ -1017,7 +1018,7 @@ cry_f1db0:
 	noise_note 4, 10, 1, 60
 	sound_ret
 
-cry_f1dcf:
+Cry_01_Ch5:
 	duty_cycle_pattern 2, 2, 0, 0
 	square_note 4, 15, 3, 1536
 	square_note 8, 13, 5, 1888
@@ -1025,7 +1026,7 @@ cry_f1dcf:
 	square_note 8, 13, 1, 1808
 	sound_ret
 
-cry_f1de2:
+Cry_01_Ch6:
 	duty_cycle_pattern 1, 1, 2, 2
 	square_note 5, 11, 3, 1777
 	square_note 7, 12, 5, 1874
@@ -1033,14 +1034,14 @@ cry_f1de2:
 	square_note 8, 11, 1, 1537
 	sound_ret
 
-cry_f1df5:
+Cry_01_Ch8:
 	noise_note 3, 10, 2, 60
 	noise_note 12, 9, 4, 44
 	noise_note 3, 8, 2, 28
 	noise_note 8, 7, 1, 44
 	sound_ret
 
-cry_f1e02:
+Cry_0a_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 8, 15, 7, 1760
 	square_note 6, 14, 6, 1765
@@ -1051,7 +1052,7 @@ cry_f1e02:
 	square_note 15, 10, 2, 1736
 	sound_ret
 
-cry_f1e21:
+Cry_0a_Ch6:
 	duty_cycle_pattern 0, 0, 1, 1
 	square_note 3, 0, 8, 0
 	square_note 8, 10, 7, 1697
@@ -1063,7 +1064,7 @@ cry_f1e21:
 	square_note 15, 7, 2, 1673
 	sound_ret
 
-cry_f1e44:
+Cry_0a_Ch8:
 	noise_note 2, 15, 2, 60
 	noise_note 8, 14, 4, 62
 	noise_note 8, 13, 7, 60
@@ -1074,7 +1075,7 @@ cry_f1e44:
 	noise_note 8, 9, 1, 60
 	sound_ret
 
-cry_f1e5d:
+Cry_08_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 15, 15, 6, 1381
 	square_note 10, 14, 4, 1404
@@ -1082,7 +1083,7 @@ cry_f1e5d:
 	square_note 15, 11, 2, 1340
 	sound_ret
 
-cry_f1e70:
+Cry_08_Ch6:
 	duty_cycle_pattern 1, 1, 2, 2
 	square_note 14, 13, 6, 1283
 	square_note 9, 11, 4, 1307
@@ -1090,13 +1091,13 @@ cry_f1e70:
 	square_note 15, 10, 2, 1243
 	sound_ret
 
-cry_f1e83:
+Cry_08_Ch8:
 	noise_note 12, 14, 6, 76
 	noise_note 11, 13, 7, 92
 	noise_note 15, 12, 2, 76
 	sound_ret
 
-cry_f1e8d:
+Cry_04_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 4, 15, 7, 1696
 	square_note 8, 14, 6, 1700
@@ -1107,7 +1108,7 @@ cry_f1e8d:
 	square_note 8, 11, 1, 1552
 	sound_ret
 
-cry_f1eac:
+Cry_04_Ch6:
 	duty_cycle_pattern 1, 1, 2, 2
 	square_note 4, 14, 7, 1537
 	square_note 8, 13, 6, 1539
@@ -1118,7 +1119,7 @@ cry_f1eac:
 	square_note 8, 10, 1, 1393
 	sound_ret
 
-cry_f1ecb:
+Cry_04_Ch8:
 	noise_note 7, 13, 6, 92
 	noise_note 8, 14, 6, 76
 	noise_note 4, 13, 4, 92
@@ -1127,44 +1128,44 @@ cry_f1ecb:
 	noise_note 8, 10, 1, 92
 	sound_ret
 
-cry_f1ede:
+Cry_19_Ch5:
 	duty_cycle_pattern 0, 1, 2, 3
 	square_note 7, 13, 2, 1856
 	square_note 15, 14, 5, 1888
 	square_note 24, 12, 1, 1840
 	sound_ret
 
-cry_f1eed:
+Cry_19_Ch6:
 	duty_cycle_pattern 2, 0, 0, 1
 	square_note 2, 12, 2, 1793
 	square_note 4, 12, 2, 1800
 	square_note 15, 13, 7, 1857
 	square_note 24, 10, 2, 1793
 
-cry_f1eff:
+Cry_19_Ch8:
 	sound_ret
 
-cry_f1f00:
+Cry_16_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 15, 13, 7, 1920
 	square_note 4, 14, 6, 1952
 	square_note 15, 13, 2, 1856
 	sound_ret
 
-cry_f1f0f:
+Cry_16_Ch6:
 	duty_cycle_pattern 1, 1, 2, 2
 	square_note 15, 12, 7, 1875
 	square_note 5, 11, 6, 1906
 	square_note 15, 12, 2, 1809
 	sound_ret
 
-cry_f1f1e:
+Cry_16_Ch8:
 	noise_note 13, 15, 6, 76
 	noise_note 4, 14, 6, 60
 	noise_note 15, 15, 2, 76
 	sound_ret
 
-cry_f1f28:
+Cry_1b_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 6, 15, 7, 1728
 	square_note 15, 14, 7, 1792
@@ -1173,7 +1174,7 @@ cry_f1f28:
 	square_note 8, 13, 1, 1744
 	sound_ret
 
-cry_f1f3f:
+Cry_1b_Ch6:
 	duty_cycle_pattern 0, 0, 2, 2
 	square_note 7, 14, 6, 1665
 	square_note 14, 13, 5, 1729
@@ -1182,14 +1183,14 @@ cry_f1f3f:
 	square_note 8, 12, 1, 1681
 	sound_ret
 
-cry_f1f56:
+Cry_1b_Ch8:
 	noise_note 10, 10, 6, 60
 	noise_note 14, 9, 4, 44
 	noise_note 5, 10, 3, 60
 	noise_note 8, 9, 1, 44
 	sound_ret
 
-cry_f1f63:
+Cry_12_Ch5:
 	duty_cycle_pattern 2, 2, 1, 1
 	square_note 12, 15, 2, 1088
 	square_note 15, 14, 3, 1184
@@ -1197,7 +1198,7 @@ cry_f1f63:
 	square_note 8, 13, 1, 1152
 	sound_ret
 
-cry_f1f76:
+Cry_12_Ch6:
 	duty_cycle_pattern 3, 2, 3, 2
 	square_note 11, 13, 2, 1080
 	square_note 14, 12, 6, 1176
@@ -1205,14 +1206,14 @@ cry_f1f76:
 	square_note 8, 11, 1, 1144
 	sound_ret
 
-cry_f1f89:
+Cry_12_Ch8:
 	noise_note 10, 14, 6, 108
 	noise_note 15, 13, 2, 92
 	noise_note 3, 12, 2, 108
 	noise_note 8, 13, 1, 92
 	sound_ret
 
-cry_f1f96:
+Cry_13_Ch5:
 	duty_cycle_pattern 0, 3, 0, 3
 	square_note 15, 15, 6, 1472
 	square_note 8, 14, 3, 1468
@@ -1222,7 +1223,7 @@ cry_f1f96:
 	square_note 8, 11, 1, 1536
 	sound_ret
 
-cry_f1fb1:
+Cry_13_Ch6:
 	duty_cycle_pattern 2, 1, 2, 1
 	square_note 14, 12, 6, 1201
 	square_note 7, 12, 3, 1197
@@ -1232,7 +1233,7 @@ cry_f1fb1:
 	square_note 8, 9, 1, 1265
 	sound_ret
 
-cry_f1fcc:
+Cry_13_Ch8:
 	noise_note 10, 14, 6, 92
 	noise_note 10, 13, 6, 108
 	noise_note 4, 12, 2, 76
@@ -1241,27 +1242,27 @@ cry_f1fcc:
 	noise_note 8, 10, 1, 92
 	sound_ret
 
-cry_f1fdf:
+Cry_14_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 8, 14, 4, 1936
 	square_note 15, 15, 5, 1984
 	square_note 8, 13, 1, 2008
 	sound_ret
 
-cry_f1fee:
+Cry_14_Ch6:
 	duty_cycle_pattern 2, 2, 1, 1
 	square_note 10, 12, 4, 1905
 	square_note 15, 11, 6, 1954
 	square_note 8, 10, 1, 1975
 	sound_ret
 
-cry_f1ffd:
+Cry_14_Ch8:
 	noise_note 8, 14, 4, 76
 	noise_note 14, 12, 4, 60
 	noise_note 8, 13, 1, 44
 	sound_ret
 
-cry_f2007:
+Cry_1e_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 6, 15, 2, 1536
 	square_note 6, 14, 2, 1600
@@ -1273,7 +1274,7 @@ cry_f2007:
 	square_note 8, 10, 1, 1984
 	sound_ret
 
-cry_f202a:
+Cry_1e_Ch6:
 	duty_cycle_pattern 0, 1, 0, 1
 	square_note 3, 0, 8, 1
 	square_note 6, 12, 2, 1473
@@ -1286,7 +1287,7 @@ cry_f202a:
 	square_note 8, 8, 1, 1921
 	sound_ret
 
-cry_f2051:
+Cry_1e_Ch8:
 	noise_note 6, 0, 8, 1
 	noise_note 5, 14, 2, 92
 	noise_note 5, 12, 2, 76
@@ -1298,7 +1299,7 @@ cry_f2051:
 	noise_note 8, 8, 1, 24
 	sound_ret
 
-cry_f206d:
+Cry_15_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 4, 15, 3, 1920
 	square_note 15, 14, 7, 1792
@@ -1308,7 +1309,7 @@ cry_f206d:
 	square_note 8, 12, 1, 1760
 	sound_ret
 
-cry_f2088:
+Cry_15_Ch6:
 	duty_cycle_pattern 1, 1, 2, 2
 	square_note 6, 12, 3, 1793
 	square_note 14, 11, 7, 1665
@@ -1318,7 +1319,7 @@ cry_f2088:
 	square_note 8, 10, 1, 1633
 	sound_ret
 
-cry_f20a3:
+Cry_15_Ch8:
 	noise_note 6, 14, 3, 92
 	noise_note 14, 13, 6, 76
 	noise_note 6, 12, 6, 60
@@ -1327,7 +1328,7 @@ cry_f20a3:
 	noise_note 8, 11, 1, 108
 	sound_ret
 
-cry_f20b6:
+Cry_17_Ch5:
 	duty_cycle_pattern 0, 0, 3, 3
 	square_note 15, 15, 7, 1280
 	square_note 15, 14, 7, 1288
@@ -1335,7 +1336,7 @@ cry_f20b6:
 	square_note 15, 10, 2, 1120
 	sound_ret
 
-cry_f20c9:
+Cry_17_Ch6:
 	duty_cycle_pattern 1, 0, 1, 0
 	square_note 14, 13, 7, 1153
 	square_note 14, 12, 7, 1161
@@ -1343,14 +1344,14 @@ cry_f20c9:
 	square_note 15, 12, 2, 993
 	sound_ret
 
-cry_f20dc:
+Cry_17_Ch8:
 	noise_note 14, 15, 7, 124
 	noise_note 12, 15, 6, 108
 	noise_note 9, 14, 4, 124
 	noise_note 15, 14, 2, 108
 	sound_ret
 
-cry_f20e9:
+Cry_1c_Ch5:
 	duty_cycle_pattern 3, 3, 1, 1
 	square_note 7, 13, 6, 2017
 	square_note 6, 12, 6, 2018
@@ -1362,7 +1363,7 @@ cry_f20e9:
 	square_note 8, 10, 1, 2015
 	sound_ret
 
-cry_f210c:
+Cry_1c_Ch6:
 	duty_cycle_pattern 1, 0, 1, 0
 	square_note 6, 12, 3, 1993
 	square_note 6, 11, 3, 1991
@@ -1372,7 +1373,7 @@ cry_f210c:
 	square_note 15, 10, 2, 1989
 	sound_ret
 
-cry_f2127:
+Cry_1c_Ch8:
 	noise_note 13, 1, -1, 124
 	noise_note 13, 15, 7, 140
 	noise_note 12, 13, 6, 124
@@ -1380,7 +1381,7 @@ cry_f2127:
 	noise_note 15, 11, 3, 92
 	sound_ret
 
-cry_f2137:
+Cry_1a_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 6, 15, 7, 1856
 	square_note 12, 14, 6, 1860
@@ -1390,7 +1391,7 @@ cry_f2137:
 	square_note 8, 13, 1, 1952
 	sound_ret
 
-cry_f2152:
+Cry_1a_Ch6:
 	duty_cycle_pattern 0, 0, 2, 2
 	square_note 6, 12, 7, 1793
 	square_note 11, 11, 6, 1794
@@ -1400,7 +1401,7 @@ cry_f2152:
 	square_note 8, 9, 1, 1890
 	sound_ret
 
-cry_f216d:
+Cry_1a_Ch8:
 	noise_note 3, 14, 2, 60
 	noise_note 8, 13, 6, 76
 	noise_note 5, 13, 4, 60
@@ -1409,7 +1410,7 @@ cry_f216d:
 	noise_note 8, 13, 1, 44
 	sound_ret
 
-cry_f2180:
+Cry_1d_Ch5:
 	duty_cycle_pattern 3, 3, 1, 0
 	square_note 15, 15, 0, 1797
 	square_note 10, 14, 0, 1792
@@ -1419,7 +1420,7 @@ cry_f2180:
 	square_note 8, 10, 1, 1572
 	sound_ret
 
-cry_f219b:
+Cry_1d_Ch6:
 	duty_cycle_pattern 0, 2, 0, 2
 	square_note 15, 11, 0, 1731
 	square_note 10, 10, 0, 1729
@@ -1429,7 +1430,7 @@ cry_f219b:
 	square_note 8, 6, 1, 1512
 	sound_ret
 
-cry_f21b6:
+Cry_1d_Ch8:
 	noise_note 6, 14, 6, 76
 	noise_note 15, 13, 6, 60
 	noise_note 10, 12, 5, 74
@@ -1437,7 +1438,7 @@ cry_f21b6:
 	noise_note 15, 12, 2, 76
 	sound_ret
 
-cry_f21c6:
+Cry_18_Ch5:
 	duty_cycle_pattern 1, 1, 0, 0
 	square_note 10, 15, 5, 1664
 	square_note 3, 14, 2, 1696
@@ -1449,7 +1450,7 @@ cry_f21c6:
 	square_note 8, 12, 1, 1696
 	sound_ret
 
-cry_f21e9:
+Cry_18_Ch6:
 	duty_cycle_pattern 0, 0, 3, 3
 	square_note 9, 13, 5, 1585
 	square_note 3, 13, 2, 1618
@@ -1461,7 +1462,7 @@ cry_f21e9:
 	square_note 8, 11, 1, 1617
 	sound_ret
 
-cry_f220c:
+Cry_18_Ch8:
 	noise_note 6, 14, 3, 76
 	noise_note 4, 12, 3, 60
 	noise_note 5, 13, 4, 60
@@ -1470,7 +1471,7 @@ cry_f220c:
 	noise_note 8, 12, 1, 44
 	sound_ret
 
-cry_f221f:
+Cry_1f_Ch5:
 	duty_cycle_pattern 2, 2, 1, 1
 	square_note 3, 15, 4, 1601
 	square_note 13, 13, 6, 1825
@@ -1478,7 +1479,7 @@ cry_f221f:
 	square_note 8, 12, 1, 1818
 	sound_ret
 
-cry_f2232:
+Cry_1f_Ch6:
 	duty_cycle_pattern 3, 0, 3, 0
 	square_note 4, 15, 4, 1408
 	square_note 14, 14, 6, 1760
@@ -1486,14 +1487,14 @@ cry_f2232:
 	square_note 8, 13, 1, 1756
 	sound_ret
 
-cry_f2245:
+Cry_1f_Ch8:
 	noise_note 5, 12, 4, 70
 	noise_note 13, 10, 5, 68
 	noise_note 8, 12, 4, 69
 	noise_note 8, 11, 1, 68
 	sound_ret
 
-cry_f2252:
+Cry_20_Ch5:
 	duty_cycle_pattern 3, 3, 0, 0
 	square_note 13, 15, 1, 1297
 	square_note 13, 14, 1, 1301
@@ -1501,7 +1502,7 @@ cry_f2252:
 	square_note 8, 13, 1, 1297
 	sound_ret
 
-cry_f2265:
+Cry_20_Ch6:
 	duty_cycle_pattern 0, 1, 1, 1
 	square_note 12, 14, 1, 1292
 	square_note 12, 13, 1, 1296
@@ -1509,14 +1510,14 @@ cry_f2265:
 	square_note 8, 12, 1, 1290
 	sound_ret
 
-cry_f2278:
+Cry_20_Ch8:
 	noise_note 14, 15, 2, 101
 	noise_note 13, 14, 2, 85
 	noise_note 14, 13, 2, 86
 	noise_note 8, 13, 1, 102
 	sound_ret
 
-cry_f2285:
+Cry_21_Ch5:
 	duty_cycle_pattern 0, 1, 2, 3
 	square_note 3, 15, 3, 1380
 	square_note 2, 14, 2, 1348
@@ -1528,7 +1529,7 @@ cry_f2285:
 	square_note 8, 13, 1, 1282
 	sound_ret
 
-cry_f22a8:
+Cry_21_Ch6:
 	duty_cycle_pattern 3, 0, 3, 0
 	square_note 3, 13, 3, 1376
 	square_note 2, 12, 2, 1344
@@ -1539,10 +1540,10 @@ cry_f22a8:
 	square_note 3, 12, 4, 1248
 	square_note 8, 12, 1, 1280
 
-cry_f22ca:
+Cry_21_Ch8:
 	sound_ret
 
-cry_f22cb:
+Cry_22_Ch5:
 	duty_cycle_pattern 0, 1, 0, 1
 	square_note 2, 3, -5, 897
 	square_note 7, 15, 5, 1537
@@ -1550,7 +1551,7 @@ cry_f22cb:
 	square_note 8, 9, 1, 897
 	sound_ret
 
-cry_f22de:
+Cry_22_Ch6:
 	duty_cycle_pattern 3, 2, 3, 2
 	square_note 2, 3, -6, 1456
 	square_note 7, 13, 5, 1885
@@ -1558,7 +1559,7 @@ cry_f22de:
 	square_note 8, 6, 1, 1456
 	sound_ret
 
-cry_f22f1:
+Cry_22_Ch8:
 	noise_note 2, 9, 2, 73
 	noise_note 7, 11, 5, 41
 	noise_note 1, 10, 2, 57
