@@ -933,7 +933,8 @@ ROMX $3b
 
 ROMX $3c
 	org $4000
-	org $51cb
+	org $43be
+	"audio/sfx.asm@SFX"
 	"audio/cries.asm@Cries"
 	"audio/cries.asm@CryHeaders"
 	"audio/songs/title.asm"
