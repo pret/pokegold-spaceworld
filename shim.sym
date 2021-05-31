@@ -137,9 +137,6 @@
 38:4E5F Cursor_AnimateCursor
 38:4EA8 Cursor_InterpretJoypad
 
-00:2F21 SUB_2f21
-
-
 ; SFX shims
 3C:43BE Sfx_01
 3C:43C1 Sfx_02

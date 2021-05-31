@@ -373,7 +373,7 @@ DebugMapViewer_LoadCursorSprite:
 SECTION "engine/debug/field/map_viewer.inc@DisplayBGEventDetails", ROMX
 
 DisplayBGEventDetails:
-	call SUB_2f21
+	call GetFacingSignpost.NoFacing
 	ret nc
 	call .Functionfd0cc
 	call RefreshScreen

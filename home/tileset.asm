@@ -357,6 +357,7 @@ GetBlockLocation::
 GetFacingSignpost::
 	call GetFacingTileCoord
 	ld b, a
+.NoFacing ; used by engine/debug/map_viewer.inc
 	ld a, d
 	sub $4
 	ld d, a
