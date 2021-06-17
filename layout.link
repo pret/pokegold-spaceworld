@@ -264,10 +264,11 @@ ROMX $0e
 
 ROMX $0f
 	org $4000
-	org $63da
+	"engine/dumps/bank0f.asm@Function3c000"
 	"engine/battle/core.asm"
-	org $6a3c
+	"engine/dumps/bank0f.asm@PlayMoveAnimation"
 	"data/wild.asm"
+	"engine/dumps/bank0f.asm@Function3ee3e"
 
 ROMX $10
 	org $4000

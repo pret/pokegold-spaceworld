@@ -37,26 +37,6 @@
 
 0D:7E3D Function37e3d
 
-0F:508C Function3d08c
-0F:55CE Function3d5ce
-0F:567C Function3d67c
-0F:5AA7 Function3daa7
-0F:6043 AddPokemonToBox
-0F:61A4 Function3e1a4
-0F:63A7 Function3e3a7
-0F:639F Function3e39f
-0F:65BF Function3e5bf
-0F:6874 Function3e874
-0F:691E Function3e91e
-0F:6963 Function3e963
-0F:69A9 _LoadWildMons
-0F:69DC Function3e9dc
-0F:6E3E Function3ee3e
-0F:6F19 Function3ef19
-0F:7019 PlaceGraphic
-0F:704A Function3f04a
-0F:7068 Function3f068
-
 10:4000 Function40000
 10:40A6 ShowPokedexMenu
 10:4AC7 Function40ac7
