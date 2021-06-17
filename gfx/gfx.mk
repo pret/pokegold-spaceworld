@@ -29,3 +29,5 @@ $(BUILD)/gfx/minigames/%.bin: gfx/minigames/%.bin
 
 $(BUILD)/gfx/battle_anims/attack_animations_1.2bpp: tools/gfx += --trim-whitespace
 $(BUILD)/gfx/battle_anims/attack_animations_2.2bpp: tools/gfx += --trim-whitespace
+
+$(BUILD)/gfx/title/title_logo.2bpp: tools/gfx += --trim-whitespace
