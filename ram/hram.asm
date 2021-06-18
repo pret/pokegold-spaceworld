@@ -109,7 +109,8 @@ ENDU
 hSpriteOffset::
 	db
 
-	db ; TODO
+hFFB2::
+	db
 
 UNION
 

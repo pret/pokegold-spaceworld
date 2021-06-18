@@ -46,7 +46,7 @@ GiveItemPredef::
 	add_predef PlaceGraphic
 	add_predef Function3f068 ; 20
 	add_predef Function3f04a
-	add_predef Function3d08c
+	add_predef AnyPartyAlive
 	add_predef Function3d67c
 	add_predef Function3e1a4
 	add_predef Function3ef19

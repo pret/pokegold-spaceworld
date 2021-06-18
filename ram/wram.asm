@@ -373,12 +373,20 @@ ENDU
 	ds $32
 wBattleAnimEnd::
 
-	ds $1aa ; TODO
+	ds $1a3 ; TODO
 
+wc9e8:: ds 1
+wc9e9:: ds 1
+wc9ea:: ds 1
+
+	ds 4
 
 wc9ef:: ds 1
+wc9f0:: ds 1
+wc9f1:: ds 1
+wc9f2:: ds 1
 
-	ds 6
+	ds 3
 
 wBattleMonNickname:: ds 6
 wEnemyMonNickname:: ds 6
@@ -393,7 +401,9 @@ wca08:: ds 1
 wca09:: ds 1
 wca0a:: ds 1
 
-	ds 5 ; TODO
+	ds 4
+
+wca0f:: ds 1
 
 wIntroJumptableIndex::
 wca10:: ds 1
@@ -412,15 +422,33 @@ wca13:: ds 1
 wca14:: ds 1
 ENDU
 
+UNION
 wIntroTilesPointer:: ds 2
-
 wIntroFrameCounter1:: ds 1
+NEXTU
+	ds 1
+
+wca16:: ds 1
+wca17:: ds 1
+
+ENDU
+
 wIntroFrameCounter2:: ds 1
 
 wIntroSpriteStateFlag:: ds 1
 
-	ds $1d ; TODO
-
+wca1a:: ds 1
+wca1b:: ds 1
+	ds 4
+wca20:: ds 1
+wca21:: ds 1
+wca22:: ds 1
+wca23:: ds 1
+wca24:: ds 1
+	ds 6
+wca2b:: ds 1
+	ds 10
+wca36:: ds 1
 wca37:: ds 1
 wca38:: ds 1
 wca39:: ds 1
@@ -439,8 +467,34 @@ wEnemySubStatus3:: db
 wca43:: db
 
 wca44:: db
+wca45:: db
 
-	ds $12
+	ds 1
+
+wca47:: db
+wca48:: db
+wca49:: db
+wca4a:: db
+wca4b:: db
+
+	ds 1
+
+wca4d:: db
+
+	ds 1
+
+wca4f:: db
+wca50:: db
+wca51:: db
+wca52:: db
+wca53:: db
+
+	ds 1
+
+wca55:: db
+
+	ds 1
+
 wTrainerClass::
 	db
 
@@ -450,11 +504,32 @@ wca5a:: ds 1
 wca5b:: ds 1
 wca5c:: ds 1
 
-	ds $5c
+	ds $36
+
+wca93:: ds 1
+
+	ds 10
+
+wca9e:: ds 1
+
+	ds $a
+
+wcaa9:: ds 1
+
+	ds 7
+
+wcab1:: ds 1
+
+	ds 7
 
 wcab9:: ds 1
+wcaba:: ds 1
 
-	ds 6
+	ds 3
+
+wcabe:: ds 1
+
+	ds 1
 
 wcac0:: ds 1
 wcac1:: ds 1
@@ -462,17 +537,46 @@ wcac2:: ds 1
 
 wLinkBattleRNCount:: db
 
-	ds 12
+wcac4:: ds 1
+
+	ds 2
+
+wcac7:: ds 1
+wcac8:: ds 1
+wcac9:: ds 1
+wcaca:: ds 1
+
+	ds 1
+
+wcacc:: ds 1
+wcacd:: ds 1
+wcace:: ds 1
+
+	ds 1
 
 wcad0:: ds 1
 
-	ds 9
+	ds 2
+
+wcad3:: ds 1
+wcad4:: ds 1
+wcad5:: ds 1
+wcad6:: ds 1
+wcad7:: ds 1
+wcad8:: ds 1
+
+	ds 1
 
 wcada:: ds 1
-
-	ds 6
-
+wcadb:: ds 1
+wcadc:: ds 1
+wcadd:: ds 1
+wcade:: ds 1
+wcadf:: ds 1
+wcae0:: ds 1
 wcae1:: ds 1
+wcae2:: ds 1
+wcae3:: ds 1
 
 ENDU
 
@@ -771,8 +875,13 @@ wHPBarTempHP:: dw
 NEXTU
 wStringBuffer2:: db ; How long is this?
 
-ENDU
+NEXTU
 
+wcd31:: db
+wcd32:: db
+wcd33:: db
+
+ENDU
 
 SECTION "CD3C", WRAM0[$CD3C]
 
@@ -843,8 +952,13 @@ wcd7f:: db
 wcd80:: db
 wcd81:: db
 
-SECTION "CD9E", WRAM0 [$CD9E]
+SECTION "CD94", WRAM0 [$CD94]
+wcd94:: db
+
+	ds 9
+
 wLoadedMonLevel:: db
+wcd9f:: db
 
 SECTION "CDAF", WRAM0 [$CDAF]
 wcdaf:: db
@@ -881,7 +995,7 @@ wNextMapGroup:: db
 wNextMapId:: db
 wPrevWarp:: db
 
-	ds 1
+wcdc2:: db
 
 UNION
 wFieldMoveScriptID:: db
@@ -903,16 +1017,32 @@ wcdc6:: db
 ENDU
 
 UNION
+
 wHPBarNewHP:: dw
+
 NEXTU
+
 wcdc7:: db
 wcdc8:: db
+
 ENDU
+
 wHPBarDelta::   db
 wcdca:: db
 wHPBarHPDifference:: dw
 
+UNION
+
 wLinkBattleRNs:: ds 10
+
+NEXTU
+
+	ds 7
+
+wcdd4: ds 1
+
+	ds 1
+ENDU
 
 wcdd7:: ds 1
 wcdd8:: ds 1
@@ -935,15 +1065,31 @@ wcde8:: ds 1
 wcde9:: ds 1
 wcdea:: ds 1
 wcdeb:: ds 1
+wcdec:: ds 1
+wcded:: ds 1
+wcdee:: ds 1
 
+	ds 2
 
-SECTION "CDFE", WRAM0[$CDFE]
+wcdf1:: ds 1
+wcdf2:: ds 1
+
+	ds 4
+
+wcdf7:: ds 1
+
+	ds 1
+
+wcdf9:: ds 1
+
+	ds 4
 
 wcdfe:: ds 1
 wcdff:: ds 1
 wBattleMode:: db
 wce01:: ds 1
 wce02:: ds 1
+wBattleType::
 wce03:: ds 1
 wce04:: ds 1
 wce05:: ds 1
@@ -1012,7 +1158,15 @@ wMonHLearnset::
 	flag_array 50 + 5 ; size = 7
 	ds 1
 
-SECTION "CE2D", WRAM0[$CE2D]
+SECTION "CE26", WRAM0[$CE26]
+wce26:: ds 1
+
+	ds 2
+
+wce29:: ds 1
+
+	ds 3
+
 wce2d:: ds 1
 wce2e:: ds 1
 wce2f:: ds 1
@@ -1028,6 +1182,9 @@ wNamedObjectIndexBuffer::
 wCountSetBitsResult::
 wce37::
 	db
+
+wce38:: ds 1
+wce39:: ds 1
 
 SECTION "CE3A", WRAM0[$CE3A]
 
@@ -1114,6 +1271,7 @@ for n, 1, NUM_OBJECTS
 wMap{d:n}Object:: map_object wMap{d:n}
 endr
 
+wd14f::
 wToolgearFlags:: db
 ; 76543210
 ; |    | \- show toolgear
@@ -1239,8 +1397,9 @@ wd41d:: db
 ;      \--- beat rival in the lab
 wd41e:: db
 
-SECTION "D4A9", WRAM0[$D4A9]
-
+SECTION "D4A9", WRAM0[$D4A7]
+wd4a7:: db
+	ds 1
 wd4a9:: db
 	ds 1 ; TODO
 wJoypadFlags:: db
@@ -1475,6 +1634,7 @@ wd8e4:: ds 1
 SECTION "D8FD", WRAM0[$D8FD]
 
 wd8fd:: ds 1
+wd8fe:: ds 1
 
 SECTION "D913", WRAM0[$D913]
 
@@ -1486,10 +1646,16 @@ UNION
 wWildMons::
 	ds 41
 NEXTU
-	ds 2
+	ds 1
+wd91c:: ds 1
 wd91d:: ds 1
-	ds 29
+wd91e:: ds 1
+	ds 27
+wd93a:: ds 1
 wd93b:: ds 1
+	ds 1
+wd93d:: ds 1
+wd93e:: ds 1
 ENDU
 
 SECTION "DA3B", WRAM0[$DA3B]

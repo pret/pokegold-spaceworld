@@ -45,7 +45,7 @@ asm_3c03f:
 	call BackUpTilesToBuffer
 
 asm_3c042:
-	call Function3d08c
+	call AnyPartyAlive
 	ld a, d
 	and a
 	jp z, asm_3cc56
@@ -74,7 +74,7 @@ asm_3c063:
 	ld a, [hl]
 	ld [wMonDexIndex], a
 	ld [wcdd8], a
-	ld hl, wc305
+	ld hl, $c305
 	ld a, 9
 	call sub_3cd3b
 	call BackUpTilesToBuffer
@@ -173,7 +173,7 @@ asm_3c14a:
 	call PlaySFX
 	xor a
 	ldh [hBattleTurn], a
-	callab Functioncc000
+	jpab Functioncc000
 
 WildPokemonFledText:
 	text "やせいの@"
@@ -380,9 +380,9 @@ asm_3c306:
 asm_3c311:
 	xor a
 	ldh [hBattleTurn], a
-	callba Function37e1d
+	callab Function37e1d
 	push bc
-	callba Function37e2d
+	callab Function37e2d
 	pop de
 	ld a, d
 	cp $4a
@@ -474,7 +474,7 @@ sub_3c3b8:
 	ld hl, Data418b7
 	ld bc, 7
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Data418b7)
 	jp GetFarByte
 
 asm_3c3c7:
@@ -729,22 +729,34 @@ asm_3c5a1:
 	ret
 
 Data3c5ae:
-	db "<NULL><USER>は<LINE>どくの　ダメージを　うけている！<PROMPT>"
+	text "<USER>は"
+	line "どくの　ダメージを　うけている！"
+	prompt
 
 Data3c5c3:
-	db "<NULL><USER>は<LINE>やけどの　ダメージを　うけている！<PROMPT>"
+	text "<USER>は"
+	line "やけどの　ダメージを　うけている！"
+	prompt
 
 Data3c5d9:
-	db "<NULL>やどりぎが　<USER>の<LINE>たいりょくを　うばう！<PROMPT>"
+	text "やどりぎが　<USER>の"
+	line "たいりょくを　うばう！"
+	prompt
 
 Data3c5ef:
-	db "<NULL><USER>は<LINE>あくむに　うなされている！<PROMPT>"
+	text "<USER>は"
+	line "あくむに　うなされている！"
+	prompt
 
 Data3c601:
-	db "<NULL><USER>は<LINE>のろわれている！<PROMPT>"
+	text "<USER>は"
+	line "のろわれている！"
+	prompt
 
 Data3c60e:
-	db "<NULL>すなあらしが　<USER>を<LINE>おそう！<PROMPT>"
+	text "すなあらしが　<USER>を"
+	line "おそう！"
+	prompt
 
 sub_3c61e:
 	ldh a, [hLinkPlayerNumber]
@@ -825,11 +837,10 @@ asm_3c682:
 	ret
 
 Data3c69d:
-	db "<NULL><USER>の　ほろびの<LINE>カウントが　@"
-	db $9
-	dw wCountSetBitsResult
-	db $11
-	db "<NULL>になった！<PROMPT>"
+	text "<USER>の　ほろびの<LINE>カウントが　@"
+	deciram wCountSetBitsResult, 1, 1
+	text "になった！"
+	prompt
 
 sub_3c6b8:
 	ld a, [wcadd]
@@ -897,16 +908,20 @@ Data3c72a:
 	dw Data3c750
 
 Data3c72e:
-	db "<NULL>あめが　ふりつずいている<PROMPT>"
+	text "あめが　ふりつずいている"
+	prompt
 
 Data3c73c:
-	db "<NULL>ひざしが　つよい<PROMPT>"
+	text "ひざしが　つよい"
+	prompt
 
 Data3c746:
-	db "<NULL>あめが　やんだ！<PROMPT>"
+	text "あめが　やんだ！"
+	prompt
 
 Data3c750:
-	db "<NULL>ひざしが　よわくなった！<PROMPT>"
+	text "ひざしが　よわくなった！"
+	prompt
 
 sub_3c75e:
 	ld hl, wca12
@@ -1077,12 +1092,12 @@ asm_3c846:
 	ret
 
 sub_3c854:
-	ld hl, wc35e
+	ld hl, $c35e
 	ldh a, [hBattleTurn]
 	and a
 	ld a, 1
 	jr z, asm_3c862
-	ld hl, wc2ca
+	ld hl, $c2ca
 	xor a
 
 asm_3c862:
@@ -1111,7 +1126,7 @@ asm_3c883:
 	xor a
 	ld [wcad5], a
 	call sub_3c8ca
-	call Function3d08c
+	call AnyPartyAlive
 	ld a, d
 	and a
 	jp z, asm_3cc56
@@ -1177,8 +1192,8 @@ asm_3c8e2:
 	ld hl, wcad6
 	ld [hli], a
 	ld [hl], a
-	ld hl, wc310
-	ld de, wc324
+	ld hl, $c310
+	ld de, $c324
 	call sub_3ccef
 	ld hl, $c2a1
 	ld bc, $040a
@@ -1214,7 +1229,7 @@ asm_3c93d:
 	call sub_3cb34
 
 asm_3c94d:
-	call Function3d08c
+	call AnyPartyAlive
 	ld a, d
 	and a
 	ret z
@@ -1260,10 +1275,10 @@ asm_3c989:
 
 
 Data3c996:
-	db "<NULL>てきの　@"
-	db $1
-	dw wBattleMonNickname
-	db "<NULL>は　たおれた！<PROMPT>"
+	text "てきの　@"
+	text_from_ram wBattleMonNickname
+	text "は　たおれた！"
+	prompt
 
 sub_3c9a8:
 	inc a
@@ -1390,22 +1405,24 @@ asm_3ca7d:
 	ret
 
 PlayerReceivedPrizeMoneyText:
-	db "<NULL><PLAYER>は　しょうきんとして<LINE>@"
-	db $9
-	dw wca59
-	db 3, 6
-	db "<NULL>円　てにいれた！<PROMPT>"
+	text "<PLAYER>は　しょうきんとして<LINE>@"
+	deciram wca59, 3, 6
+	text "円　てにいれた！"
+	prompt
 
 TrainerDefeatedText:
-	db $1
-	dw wca2b
-	db "<NULL>の　@"
-	db $1
-	dw wStringBuffer1
-	db "<NULL><LINE>との　しょうぶに　かった！<PROMPT>"
+	text_from_ram wca2b
+	text "の　@"
+	text_from_ram wStringBuffer1
+	text ""
+	line "との　しょうぶに　かった！"
+	prompt
 
 RivalLossText:
-	db "<NULL><RIVAL>『あれー？<LINE>おまえの　#に<CONT>すりゃあ　よかったのかなあ？<PROMPT>"
+	text "<RIVAL>『あれー？"
+	line "おまえの　#に"
+	cont "すりゃあ　よかったのかなあ？"
+	prompt
 
 sub_3cae1:
 	push de
@@ -1421,7 +1438,7 @@ asm_3caf3:
 	ld a, 1
 	ld [wcad5], a
 	call sub_3cb34
-	call Function3d08c
+	call AnyPartyAlive
 	ld a, d
 	and a
 	jp z, asm_3cc56
@@ -1474,8 +1491,8 @@ asm_3cb56:
 	ld hl, $c335
 	ld bc, $050b
 	call ClearBox
-	ld hl, wc369
-	ld de, wc37d
+	ld hl, $c369
+	ld de, $c37d
 	call sub_3ccef
 	ld a, 1
 	ld [wcd5d], a
@@ -1490,9 +1507,9 @@ asm_3cb56:
 	jp PrintText
 
 FaintedText:
-	db $1
-	dw wEnemyMonNickname
-	db "<NULL>は　たおれた！<PROMPT>"
+	text_from_ram wEnemyMonNickname
+	text "は　たおれた！"
+	prompt
 
 sub_3cb9d:
 	call PrintEmptyString
@@ -1506,7 +1523,7 @@ sub_3cb9d:
 
 asm_3cbaf:
 	ld bc, $0107
-	call SUB_1dd5
+	call asm_1dd5
 	ld a, [wMenuCursorY]
 	jr c, asm_3cbbc
 	and a
@@ -1521,7 +1538,8 @@ asm_3cbbc:
 	jp TryRunningFromBattle
 
 UseNextMonText:
-	db "<NULL>つぎの　#をつかいますか？<DONE>"
+	text "つぎの　#をつかいますか？"
+	done
 
 sub_3cbdb:
 	call LoadStandardMenuHeader
@@ -1614,15 +1632,22 @@ asm_3cc95:
 	ret
 
 RivalWinText:
-	db "<NULL><RIVAL>『やった！<LINE>いい#　えらんだかも！<PROMPT>"
+	text "<RIVAL>『やった！"
+	line "いい#　えらんだかも！"
+	prompt
 
 OutOfUsableMonsText:
-	db "<NULL><PLAYER>の　てもとには<LINE>たたかえる　#が　いない！<PARA><PLAYER>は<LINE>めのまえが　まっくらに　なった！<PROMPT>"
+	text "<PLAYER>の　てもとには"
+	line "たたかえる　#が　いない！"
+	para "<PLAYER>は"
+	line "めのまえが　まっくらに　なった！"
+	prompt
 
 Data3ccdd:
-	db $1
-	dw wca2b
-	db "<NULL>との<LINE>しょうぶに　まけた！<PROMPT>"
+	text_from_ram wca2b
+	text "との"
+	line "しょうぶに　まけた！"
+	prompt
 
 sub_3ccef:
 	ld a, [wJoypadFlags]
@@ -1744,7 +1769,7 @@ sub_3cd6e:
 	ld [wcac4], a
 	ld hl, wPlayerSubStatus3
 	res 5, [hl]
-	ld hl, wc2b2
+	ld hl, $c2b2
 	ld a, 8
 	call sub_3cd3b
 	call PrintEmptyString
@@ -1991,7 +2016,7 @@ asm_3cf17:
 	ld hl, TrainerAboutToUseText
 	call PrintText
 	ld bc, $0107
-	call SUB_1dd5
+	call asm_1dd5
 	ld a, [wMenuCursorY]
 	dec a
 	jr nz, EnemySendOutFirstMon
@@ -2197,16 +2222,16 @@ TryRunningFromBattle:
 	inc a
 	ld [wce39], a
 	ld a, [hli]
-	ldh [hFFB5], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
-	ldh [hFFB6], a
+	ldh [hMultiplicand + 2], a
 	ld a, [de]
 	inc de
 	ldh [hSpriteOffset], a
 	ld a, [de]
 	ldh [hFFB2], a
 	call ReloadTilesFromBuffer
-	ld de, wffb5
+	ld de, hMultiplicand + 1
 	ld hl, hSpriteOffset
 	ld c, 2
 	call memcmp
@@ -2216,9 +2241,9 @@ TryRunningFromBattle:
 	ld a, $20
 	ldh [hPrintNumDivisor], a
 	call Multiply
-	ldh a, [hFFB5]
+	ldh a, [hMultiplicand + 1]
 	ldh [hProduct], a
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	ldh [hQuotient], a
 	ldh a, [hSpriteOffset]
 	ld b, a
@@ -2232,7 +2257,7 @@ TryRunningFromBattle:
 	ldh [hPrintNumDivisor], a
 	ld b, 2
 	call Divide
-	ldh a, [hFFB5]
+	ldh a, [hMultiplicand + 1]
 	and a
 	jr nz, .can_escape
 	ld a, [wce39]
@@ -2241,16 +2266,16 @@ TryRunningFromBattle:
 	dec c
 	jr z, .asm_3d173
 	ld b, $1e
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	add b
-	ldh [hFFB6], a
+	ldh [hMultiplicand + 2], a
 	jr c, .can_escape
 	jr .asm_3d165
 
 .asm_3d173
 	call BattleRandom
 	ld b, a
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	cp b
 	jr nc, .can_escape
 	ld a, 1
@@ -2650,9 +2675,9 @@ asm_3d492:
 	ldh a, [hBattleTurn]
 	ld [wHPBarType], a
 	and a
-	ld hl, wc2ca
+	ld hl, $c2ca
 	jr z, asm_3d4ac
-	ld hl, wc35e
+	ld hl, $c35e
 
 asm_3d4ac:
 	ld [wHPBarType], a
@@ -2808,10 +2833,10 @@ Function3d5ce:
 	ld bc, $050b
 	call ClearBox
 	callab Function383cd
-	ld hl, wc366
+	ld hl, $c366
 	ld [hl], $73
 	ld de, wEnemyMonNickname
-	ld hl, wc34a
+	ld hl, $c34a
 	call sub_3d72f
 	call PlaceString
 	push bc
@@ -2839,18 +2864,18 @@ Function3d5ce:
 asm_3d626:
 	ld a, [wcd7f]
 	ld [wMonDexIndex], a
-	ld hl, wc35e
+	ld hl, $c35e
 	ld b, 1
 	ld a, $3c
 	call Predef
 	push de
 	ld a, [wcd41]
-	ld hl, wd6bc
+	ld hl, wPartyMon1Exp + 2
 	ld bc, $30
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, wc386
+	ld hl, $c386
 	ld a, [wLoadedMonLevel]
 	ld b, a
 	call Function3e874
@@ -2890,7 +2915,7 @@ Function3d67c:
 	call ClearBox
 	callab Function383fd
 	ld de, wBattleMonNickname
-	ld hl, wc2b6
+	ld hl, $c2b6
 	call sub_3d72f
 	call PlaceString
 	ld h, b
@@ -2909,9 +2934,9 @@ Function3d67c:
 asm_3d6b4:
 	ld hl, wcde9
 	ld a, [hli]
-	ldh [hFFB5], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hld]
-	ldh [hFFB6], a
+	ldh [hMultiplicand + 2], a
 	or [hl]
 	jr nz, asm_3d6c7
 	ld c, a
@@ -2939,26 +2964,26 @@ asm_3d6c7:
 	srl b
 	rr a
 	ldh [hPrintNumDivisor], a
-	ldh a, [hFFB5]
+	ldh a, [hMultiplicand + 1]
 	ld b, a
 	srl b
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	rr a
 	srl b
 	rr a
-	ldh [hFFB6], a
+	ldh [hMultiplicand + 2], a
 	ld a, b
-	ldh [hFFB5], a
+	ldh [hMultiplicand + 1], a
 
 asm_3d6fb:
-	ldh a, [hFFB5]
+	ldh a, [hMultiplicand + 1]
 	ldh [hProduct], a
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	ldh [hQuotient], a
 	ld a, 2
 	ld b, a
 	call Divide
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	ld e, a
 	ld a, 6
 	ld d, a
@@ -3016,7 +3041,7 @@ DisplayBattleMenu:
 	call BackUpTilesToBuffer
 
 .menu_loop:
-	callab Function24b06
+	callab asm_24b06
 	jr c, .menu_loop
 	ld a, [wStartmenuCursor]
 	cp 1
@@ -3364,6 +3389,7 @@ CantBringBackText:
 	text_from_ram wEnemyMonNickname
 	text "を　もどすことが"
 	line "できない！"
+	prompt
 
 Battle_PickedRun:
 	call ReloadTilesFromBuffer
@@ -3671,7 +3697,7 @@ sub_3dcb7:
 	ret nc
 	ld [wCountSetBitsResult], a
 	call Unreferenced_GetMoveName
-	ld hl, wc401
+	ld hl, $c401
 	jp PlaceString
 
 sub_3dce0:
@@ -4609,10 +4635,10 @@ asm_3e301:
 	xor a
 	ldh [hQuotient], a
 	ld a, [de]
-	ldh [hFFB5], a
+	ldh [hMultiplicand + 1], a
 	inc de
 	ld a, [de]
-	ldh [hFFB6], a
+	ldh [hMultiplicand + 2], a
 	ld a, [hli]
 	ldh [hPrintNumDivisor], a
 	call Multiply
@@ -4621,21 +4647,21 @@ asm_3e301:
 	ld b, 4
 	call Divide
 	pop hl
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	sub $e7
-	ldh a, [hFFB5]
+	ldh a, [hMultiplicand + 1]
 	sbc 3
 	jp c, asm_3e339
 	ld a, 3
-	ldh [hFFB5], a
+	ldh [hMultiplicand + 1], a
 	ld a, $e7
-	ldh [hFFB6], a
+	ldh [hMultiplicand + 2], a
 
 asm_3e339:
-	ldh a, [hFFB5]
+	ldh a, [hMultiplicand + 1]
 	ld [hli], a
 	ld b, a
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	ld [hl], a
 	or b
 	jr nz, asm_3e344
@@ -4646,26 +4672,19 @@ asm_3e344:
 	ret
 
 Data3e346:
-	dw asm_3e419
-	dw asm_3e41c
-	dw sub_3e421
-	dw asm_3e426
-	dw asm_3e430
-	dw asm_3e441
-	db $1
-	db $1
-	db $f
-	db $a
-	db $2
-	db $1
-	db $19
-	db $a
-	db $3
-	db $1
-	db $23
-	db $a
-	db $4
-	db $1
+	dw $6419
+	dw $641C
+	dw $6421
+	dw $6428
+	dw $6432
+	dw $6442
+	dw $0101
+	dw $0A0F
+	dw $0102
+	dw $0A19
+	dw $0103
+	dw $0A23
+	dw $0104
 
 sub_3e360:
 	ld a, [wLinkMode]
@@ -4714,10 +4733,10 @@ sub_3e37c:
 	ret
 
 Call_LoadBattleGraphics:
-	jpba LoadBattleGraphics
+	jpab LoadBattleGraphics
 
 Function3e3a7:
-	jpba Functionf80d6
+	jpab Functionf80d6
 
 	ld de, $4c22 ; pointing to code?
 	ld hl, $96c0
@@ -4824,9 +4843,9 @@ asm_3e471:
 asm_3e478:
 	xor a
 	ldh [hQuotient], a
-	ldh [hFFB5], a
+	ldh [hMultiplicand + 1], a
 	ld a, [wcdff]
-	ldh [hFFB6], a
+	ldh [hMultiplicand + 2], a
 	ld a, [wcde6]
 	ldh [hPrintNumDivisor], a
 	call Multiply
@@ -4858,12 +4877,12 @@ asm_3e4ac:
 	ld hl, $a
 	add hl, bc
 	ld d, [hl]
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	ld [wcd32], a
 	add d
 	ld [hld], a
 	ld d, [hl]
-	ldh a, [hFFB5]
+	ldh a, [hMultiplicand + 1]
 	ld [wStringBuffer2], a
 	adc d
 	ld [hl], a
@@ -4889,9 +4908,9 @@ asm_3e4ce:
 	push bc
 	ldh a, [hQuotient]
 	ld b, a
-	ldh a, [hFFB5]
+	ldh a, [hMultiplicand + 1]
 	ld c, a
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	ld d, a
 	ld a, [hld]
 	sub d
@@ -5091,7 +5110,7 @@ asm_3e667:
 	ldh [hPrintNumDivisor], a
 	ld b, 2
 	call Divide
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	ld [hli], a
 	dec c
 	jr nz, asm_3e667
@@ -5099,17 +5118,17 @@ asm_3e667:
 
 sub_3e67e:
 	push bc
-	ldh a, [hFFB5]
+	ldh a, [hMultiplicand + 1]
 	ld b, a
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	ld c, a
 	srl b
 	rr c
 	add c
-	ldh [hFFB6], a
-	ldh a, [hFFB5]
+	ldh [hMultiplicand + 2], a
+	ldh a, [hMultiplicand + 1]
 	adc b
-	ldh [hFFB5], a
+	ldh [hMultiplicand + 1], a
 	pop bc
 	ret
 
@@ -5170,10 +5189,10 @@ PrintSendOutMonMessage:
 	ld hl, wcde9
 	ld a, [hli]
 	ld [wcac8], a
-	ldh [hFFB5], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
 	ld [wcac9], a
-	ldh [hFFB6], a
+	ldh [hMultiplicand + 2], a
 	ld a, 25
 	ldh [hPrintNumDivisor], a
 	call Multiply
@@ -5192,7 +5211,7 @@ PrintSendOutMonMessage:
 
 ; (enemy's current HP * 25) / (enemy's max HP / 4)
 ; approximates current % of max HP
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 ; >= 70%
 	ld hl, GoText
 	cp 70
@@ -5253,12 +5272,12 @@ PlayerMon2Text:
 	dec hl
 	ld a, [de]
 	sub b
-	ldh [hFFB6], a
+	ldh [hMultiplicand + 2], a
 	dec de
 	ld b, [hl]
 	ld a, [de]
 	sbc b
-	ldh [hFFB5], a
+	ldh [hMultiplicand + 1], a
 	ld a, 25
 	ldh [hPrintNumDivisor], a
 	call Multiply
@@ -5275,7 +5294,7 @@ PlayerMon2Text:
 	call Divide
 	pop bc
 	pop de
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 ; HP stays the same
 	ld hl, EnoughText
 	and a
@@ -5293,17 +5312,17 @@ PlayerMon2Text:
 	ret
 
 EnoughText:
-	db "<NULL>もういい！@"
+	text "もういい！@"
 	start_asm
 	jr PrintComeBackText
 
 OKExclamationText:
-	db "<NULL>いいぞ！@"
+	text "いいぞ！@"
 	start_asm
 	jr PrintComeBackText
 
 GoodText:
-	db "<NULL>よくやった！@"
+	text "よくやった！@"
 	start_asm
 	jr PrintComeBackText
 
@@ -5312,7 +5331,9 @@ PrintComeBackText:
 	ret
 
 ComeBackText:
-	db "<NULL><LINE>もどれ！<DONE>"
+	text ""
+	line "もどれ！"
+	done
 
 sub_3e81b:
 	ld hl, wcace
@@ -5346,14 +5367,18 @@ asm_3e843:
 	jp PrintText
 
 Data3e84b:
-	db "<NULL>やせいの@"
+	text "やせいの@"
 	text_from_ram wBattleMonNickname
-	db "<NULL>は<LINE>エサを　たべてる！<PROMPT>"
+	text "は"
+	line "エサを　たべてる！"
+	prompt
 
 Data3e861:
-	db "<NULL>やせいの@"
+	text "やせいの@"
 	text_from_ram wBattleMonNickname
-	db "<NULL>は<LINE>おこってる！<PROMPT>"
+	text "は"
+	line "おこってる！"
+	prompt
 
 Function3e874:
 	push hl
@@ -5371,14 +5396,14 @@ Function3e874:
 	push af
 	inc d
 	callab Function50cd1
-	ld hl, wffb6
+	ld hl, hMultiplicand + 2
 	ld a, [hl]
 	ldh [hPrintNumTemp], a
 	pop bc
 	sub b
 	ld [hld], a
 	ld a, [hl]
-	ldh [hFFB9], a
+	ldh [hMathBuffer + 1], a
 	pop bc
 	sbc b
 	ld [hld], a
@@ -5388,7 +5413,7 @@ Function3e874:
 	sbc b
 	ld [hl], a
 	pop de
-	ld hl, wffb5
+	ld hl, hMultiplicand + 1
 	ld a, [hli]
 	push af
 	ld a, [hl]
@@ -5402,7 +5427,7 @@ Function3e874:
 	ld a, [de]
 	dec de
 	ld b, a
-	ldh a, [hFFB9]
+	ldh a, [hMathBuffer + 1]
 	sbc b
 	ld [hld], a
 	ld a, [de]
@@ -5444,7 +5469,7 @@ asm_3e8e9:
 	pop hl
 	ld bc, 7
 	add hl, bc
-	ldh a, [hFFB6]
+	ldh a, [hMultiplicand + 2]
 	ld b, a
 	ld a, $40
 	sub b
@@ -6192,7 +6217,7 @@ asm_3f15a:
 	set 0, [hl]
 	call WaitSFX
 	ld a, $e3
-	ldh [hFF40], a
+	ldh [rLCDC], a
 	ld hl, wd14f
 	res 7, [hl]
 	call ClearPalettes
@@ -6466,11 +6491,14 @@ LoadTrainerBackpicAsOAM:
 PlayerBacksprite:
 INCBIN "gfx/trainer/protagonist_back.pic"
 
+Unused_OldManBacksprite:
+INCBIN "gfx/trainer/oldman_back.pic"
+
 BattleStartMessage:
 	ld a, [wBattleMode]
 	dec a
 	jr z, .wild
-	ld de, SFX_SHINE
+	ld de, $62 ; SFX_SHINE
 	call PlaySFX
 	call WaitSFX
 	ld c, 20
@@ -6522,7 +6550,7 @@ WantsToBattleText:
 ShowLinkBattleParticipants:
 	call IsLinkBattle
 	jr nz, .ok
-	call .sub_3f60c
+	call sub_3f60c
 	call ClearTileMap
 .ok
 	call DelayFrame
@@ -6540,7 +6568,7 @@ ShowLinkBattleParticipants:
 	ldh [hMapAnims], a
 	ret
 
-.sub_3f60c:
+sub_3f60c:
 	call LoadFontExtra
 	ld hl, $c2f3
 	ld b, 7
