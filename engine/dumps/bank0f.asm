@@ -1,7 +1,7 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank0f.asm@Function3c000", ROMX
-Function3c000:
+SECTION "engine/dumps/bank0f.asm@StartBattle", ROMX
+StartBattle:
 	xor a
 	ld [wca37], a
 	ld [wcada], a
@@ -11,40 +11,34 @@ Function3c000:
 	ld hl, wd93d
 	ld bc, $2f
 	ld d, 3
-
-asm_3c016:
+.find_first_enemy_alive_loop
 	inc d
 	ld a, [hli]
 	or [hl]
-	jr nz, asm_3c01e
+	jr nz, .found_first_enemy_alive
 	add hl, bc
-	jr asm_3c016
-
-asm_3c01e:
+	jr .find_first_enemy_alive_loop
+.found_first_enemy_alive
 	ld a, d
 	ld [wOtherPlayerLinkAction], a
 	ld a, [wLinkMode]
 	and a
-	jr z, asm_3c02e
+	jr z, .asm_3c02e
 	ldh a, [hLinkPlayerNumber]
 	cp 2
-	jr z, asm_3c03f
-
-asm_3c02e:
+	jr z, .asm_3c03f
+.asm_3c02e
 	ld a, [wBattleMode]
 	dec a
-	jr z, asm_3c03a
+	jr z, .asm_3c03a
 	call sub_3cd6e
 	call sub_3d071
-
-asm_3c03a:
-	ld c, $28
+.asm_3c03a
+	ld c, 40
 	call DelayFrames
-
-asm_3c03f:
+.asm_3c03f
 	call BackUpTilesToBuffer
-
-asm_3c042:
+.check_any_alive
 	call AnyPartyAlive
 	ld a, d
 	and a
@@ -52,18 +46,16 @@ asm_3c042:
 	call ReloadTilesFromBuffer
 	ld a, [wBattleType]
 	and a
-	jp nz, asm_3c0d2
+	jp nz, .asm_3c0d2
 	xor a
 	ld [wWhichPokemon], a
-
-asm_3c058:
+.find_first_alive_loop
 	call HasMonFainted
-	jr nz, asm_3c063
+	jr nz, .found_first_alive
 	ld hl, wWhichPokemon
 	inc [hl]
-	jr asm_3c058
-
-asm_3c063:
+	jr .find_first_alive_loop
+.found_first_alive
 	ld a, [wWhichPokemon]
 	ld [wcd41], a
 	inc a
@@ -99,25 +91,24 @@ asm_3c063:
 	call Function3d3a2
 	ld a, [wLinkMode]
 	and a
-	jr z, asm_3c0cf
+	jr z, .to_battle
 	ldh a, [hLinkPlayerNumber]
 	cp 2
-	jr nz, asm_3c0cf
+	jr nz, .to_battle
 	call sub_3cd6e
 	call sub_3d071
 	ld a, 1
 	ldh [hBattleTurn], a
 	call Function3d3a2
-
-asm_3c0cf:
+.to_battle
 	jp asm_3c183
 
-asm_3c0d2:
+.asm_3c0d2
 	call DisplayBattleMenu
 	ret c
 	ld a, [wFieldMoveSucceeded]
 	and a
-	jr z, asm_3c0d2
+	jr z, .asm_3c0d2
 	call ReloadTilesFromBuffer
 	ld hl, SafariZonePAText
 	jp PrintText
@@ -129,22 +120,20 @@ asm_3c0d2:
 	jp c, asm_3c132
 	ld a, [wcace]
 	and a
-	jr z, asm_3c0fa
+	jr z, .asm_3c0fa
 	srl b
 	srl b
-
-asm_3c0fa:
+.asm_3c0fa
 	ld a, [wcacd]
 	and a
-	jr z, asm_3c106
+	jr z, .asm_3c106
 	sla b
-	jr nc, asm_3c106
+	jr nc, .asm_3c106
 	ld b, $ff
-
-asm_3c106:
+.asm_3c106
 	call BattleRandom
 	cp b
-	jp nc, asm_3c042
+	jp nc, .check_any_alive
 	jr asm_3c132
 
 SafariZonePAText:
@@ -471,10 +460,10 @@ asm_3c3b6:
 
 sub_3c3b8:
 	dec a
-	ld hl, Data418b7
+	ld hl, Moves + 1
 	ld bc, 7
 	call AddNTimes
-	ld a, BANK(Data418b7)
+	ld a, BANK(Moves)
 	jp GetFarByte
 
 asm_3c3c7:
@@ -581,11 +570,11 @@ asm_3c4a3:
 	ld a, [hl]
 	and $18
 	jr z, asm_3c4eb
-	ld hl, Data3c5ae
+	ld hl, HurtByPoisonText
 	ld de, $0106
 	and $10
 	jr z, asm_3c4b8
-	ld hl, Data3c5c3
+	ld hl, HurtByBurnText
 	ld de, $0105
 
 asm_3c4b8:
@@ -645,7 +634,7 @@ asm_3c4f6:
 	call sub_3c78b
 	call sub_3c75e
 	call sub_3c808
-	ld hl, Data3c5d9
+	ld hl, LeechSeedSapsText
 	call PrintText
 
 asm_3c51d:
@@ -664,7 +653,7 @@ asm_3c528:
 	call PlayMoveAnimation
 	call sub_3c7b0
 	call sub_3c75e
-	ld hl, Data3c5ef
+	ld hl, HasANightmareText
 	call PrintText
 
 asm_3c542:
@@ -683,7 +672,7 @@ asm_3c54d:
 	call PlayMoveAnimation
 	call sub_3c7b0
 	call sub_3c75e
-	ld hl, Data3c601
+	ld hl, HurtByCurseText
 	call PrintText
 
 asm_3c567:
@@ -708,7 +697,7 @@ asm_3c572:
 	ldh [hBattleTurn], a
 	call sub_3c78b
 	call sub_3c75e
-	ld hl, Data3c60e
+	ld hl, SandstormHitsText
 	call PrintText
 
 asm_3c596:
@@ -723,37 +712,37 @@ asm_3c5a1:
 	or [hl]
 	ret nz
 	call DrawHUDsAndHPBars
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	xor a
 	ret
 
-Data3c5ae:
+HurtByPoisonText:
 	text "<USER>は"
 	line "どくの　ダメージを　うけている！"
 	prompt
 
-Data3c5c3:
+HurtByBurnText:
 	text "<USER>は"
 	line "やけどの　ダメージを　うけている！"
 	prompt
 
-Data3c5d9:
+LeechSeedSapsText:
 	text "やどりぎが　<USER>の"
 	line "たいりょくを　うばう！"
 	prompt
 
-Data3c5ef:
+HasANightmareText:
 	text "<USER>は"
 	line "あくむに　うなされている！"
 	prompt
 
-Data3c601:
+HurtByCurseText:
 	text "<USER>は"
 	line "のろわれている！"
 	prompt
 
-Data3c60e:
+SandstormHitsText:
 	text "すなあらしが　<USER>を"
 	line "おそう！"
 	prompt
@@ -797,7 +786,7 @@ asm_3c651:
 	ld [wCountSetBitsResult], a
 	push af
 	push hl
-	ld hl, Data3c69d
+	ld hl, PerishCountText
 	call PrintText
 	pop hl
 	pop af
@@ -836,8 +825,9 @@ asm_3c682:
 	ld [hl], a
 	ret
 
-Data3c69d:
-	text "<USER>の　ほろびの<LINE>カウントが　@"
+PerishCountText:
+	text "<USER>の　ほろびの"
+	line "カウントが　@"
 	deciram wCountSetBitsResult, 1, 1
 	text "になった！"
 	prompt
@@ -883,11 +873,11 @@ sub_3c704:
 	ld c, a
 	ld hl, wcae3
 	dec [hl]
-	ld hl, Data3c726
+	ld hl, TextPointers3c726
 	jr nz, asm_3c71b
 	xor a
 	ld [wcae2], a
-	ld hl, Data3c72a
+	ld hl, TextPointers3c72a
 
 asm_3c71b:
 	ld b, 0
@@ -899,27 +889,27 @@ asm_3c71b:
 	call PrintText
 	ret
 
-Data3c726:
-	dw Data3c72e
-	dw Data3c73c
+TextPointers3c726:
+	dw RainingText
+	dw SunlightIsStrongText
 
-Data3c72a:
-	dw Data3c746
-	dw Data3c750
+TextPointers3c72a:
+	dw RainStoppedText
+	dw SunlightFadedText
 
-Data3c72e:
+RainingText:
 	text "あめが　ふりつずいている"
 	prompt
 
-Data3c73c:
+SunlightIsStrongText:
 	text "ひざしが　つよい"
 	prompt
 
-Data3c746:
+RainStoppedText:
 	text "あめが　やんだ！"
 	prompt
 
-Data3c750:
+SunlightFadedText:
 	text "ひざしが　よわくなった！"
 	prompt
 
@@ -1233,7 +1223,7 @@ asm_3c94d:
 	ld a, d
 	and a
 	ret z
-	ld hl, Data3c996
+	ld hl, EnemyMonFainted
 	call PrintText
 	call PrintEmptyString
 	call BackUpTilesToBuffer
@@ -1272,9 +1262,7 @@ asm_3c989:
 	ld [wca37], a
 	jp sub_3e421
 
-
-
-Data3c996:
+EnemyMonFainted:
 	text "てきの　@"
 	text_from_ram wBattleMonNickname
 	text "は　たおれた！"
@@ -1405,7 +1393,8 @@ asm_3ca7d:
 	ret
 
 PlayerReceivedPrizeMoneyText:
-	text "<PLAYER>は　しょうきんとして<LINE>@"
+	text "<PLAYER>は　しょうきんとして"
+	line "@"
 	deciram wca59, 3, 6
 	text "円　てにいれた！"
 	prompt
@@ -1776,33 +1765,32 @@ sub_3cd6e:
 	call LoadStandardMenuHeader
 	ld a, [wLinkMode]
 	and a
-	jr z, asm_3cdb6
+	jr z, FindMonInOTPartyToSwitchIntoBattle
 	ld a, [wOtherPlayerLinkAction]
 	sub 4
 	ld b, a
 	jp asm_3cefa
 
-asm_3cdb6:
+FindMonInOTPartyToSwitchIntoBattle:
 	ld a, [wce36]
 	and a
 	jp nz, asm_3ced8
-	ld b, $ff
+	ld b, -1
 	ld a, 1
-	ld [wHPBarMaxHP], a
-	ld [wMapBlocksAddress], a
-
-asm_3cdc7:
-	ld hl, wHPBarMaxHP
+	ld [wEnemyEffectivenessVsPlayerMons], a
+	ld [wPlayerEffectivenessVsEnemyMons], a
+.loop
+	ld hl, wEnemyEffectivenessVsPlayerMons
 	sla [hl]
 	inc hl
 	sla [hl]
 	inc b
 	ld a, [wd913]
 	cp b
-	jp z, asm_3cea3
+	jp z, ScoreMonTypeMatchups
 	ld a, [wca36]
 	cp b
-	jr z, asm_3cdf7
+	jr z, .discourage
 	ld hl, wd93d
 	push bc
 	ld a, b
@@ -1813,17 +1801,17 @@ asm_3cdc7:
 	ld a, [hl]
 	or c
 	pop bc
-	jr z, asm_3cdf7
-	call sub_3cdfe
-	call sub_3ce45
-	jr asm_3cdc7
+	jr z, .discourage
+	call LookUpTheEffectivenessOfEveryMove
+	call IsThePlayerMonTypesEffectiveAgainstOTMon
+	jr .loop
 
-asm_3cdf7:
-	ld hl, wMapBlocksAddress
+.discourage
+	ld hl, wPlayerEffectivenessVsEnemyMons
 	set 0, [hl]
-	jr asm_3cdc7
+	jr .loop
 
-sub_3cdfe:
+LookUpTheEffectivenessOfEveryMove:
 	push bc
 	ld hl, wd91d
 	ld a, b
@@ -1831,22 +1819,21 @@ sub_3cdfe:
 	call AddNTimes
 	pop bc
 	ld e, 5
-
-asm_3ce0c:
+.loop
 	dec e
-	jr z, asm_3ce44
+	jr z, .done
 	ld a, [hli]
 	and a
-	jr z, asm_3ce44
+	jr z, .done
 	push hl
 	push de
 	push bc
 	dec a
-	ld hl, $58b6 ; ???
+	ld hl, Moves
 	ld bc, 7
 	call AddNTimes
 	ld de, wc9e8
-	ld a, $10
+	ld a, BANK(Moves)
 	call FarCopyBytes
 	ld a, 1
 	ldh [hBattleTurn], a
@@ -1856,15 +1843,14 @@ asm_3ce0c:
 	pop hl
 	ld a, [wCountSetBitsResult]
 	cp $b
-	jr c, asm_3ce0c
-	ld hl, wHPBarMaxHP
+	jr c, .loop
+	ld hl, wEnemyEffectivenessVsPlayerMons
 	set 0, [hl]
 	ret
-
-asm_3ce44:
+.done
 	ret
 
-sub_3ce45:
+IsThePlayerMonTypesEffectiveAgainstOTMon:
 	push bc
 	ld hl, wd913
 	ld a, b
@@ -1888,68 +1874,66 @@ sub_3ce45:
 	callab Function34fff
 	ld a, [wCountSetBitsResult]
 	cp $b
-	jr nc, asm_3ce94
+	jr nc, .super_effective
 	ld a, [wca21]
 	ld [wc9f2], a
 	callab Function34fff
 	ld a, [wCountSetBitsResult]
 	cp $b
-	jr nc, asm_3ce94
+	jr nc, .super_effective
 	pop bc
 	ret
 
-asm_3ce94:
+.super_effective
 	pop bc
-	ld hl, wHPBarMaxHP
+	ld hl, wEnemyEffectivenessVsPlayerMons
 	bit 0, [hl]
-	jr nz, asm_3cea0
+	jr nz, .reset
 	inc hl
 	set 0, [hl]
 	ret
 
-asm_3cea0:
+.reset
 	res 0, [hl]
 	ret
 
-asm_3cea3:
-	ld hl, wHPBarMaxHP
+ScoreMonTypeMatchups:
+.loop1
+	ld hl, wEnemyEffectivenessVsPlayerMons
 	sla [hl]
 	inc hl
 	sla [hl]
-	jr nc, asm_3cea3
+	jr nc, .loop1
 	ld a, [wd913]
 	ld b, a
 	ld c, [hl]
-
-asm_3ceb2:
+.loop2
 	sla c
-	jr nc, asm_3cebb
+	jr nc, .okay
 	dec b
 	jr z, asm_3ced8
-	jr asm_3ceb2
+	jr .loop2
 
-asm_3cebb:
-	ld a, [wHPBarMaxHP]
+.okay
+	ld a, [wEnemyEffectivenessVsPlayerMons]
 	and a
-	jr z, asm_3cecb
-	ld b, $ff
+	jr z, .okay2
+	ld b, -1
 	ld c, a
-
-asm_3cec4:
+.loop3
 	inc b
 	sla c
-	jr nc, asm_3cec4
+	jr nc, .loop3
 	jr asm_3cefa
 
-asm_3cecb:
-	ld b, $ff
-	ld a, [wMapBlocksAddress]
+.okay2
+	ld b, -1
+	ld a, [wPlayerEffectivenessVsEnemyMons]
 	ld c, a
-
-asm_3ced1:
+.loop4
 	inc b
 	sla c
-	jr c, asm_3ced1
+	jr c, .loop4
 	jr asm_3cefa
 
 asm_3ced8:
@@ -5905,7 +5889,7 @@ _InitBattleCommon:
 	ld a, [wBattleMode]
 	cp 1
 	call z, Function3d67c
-	call Function3c000
+	call StartBattle
 	call sub_3f13e
 	pop af
 	ld [wTextBoxFlags], a

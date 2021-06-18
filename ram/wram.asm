@@ -1012,6 +1012,14 @@ NEXTU
 wcdc3:: db
 wcdc4:: db
 wcdc5:: db
+
+NEXTU
+
+wEnemyEffectivenessVsPlayerMons:: db
+wPlayerEffectivenessVsEnemyMons:: db
+	
+	ds 1
+
 wcdc6:: db
 
 ENDU

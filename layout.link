@@ -264,7 +264,7 @@ ROMX $0e
 
 ROMX $0f
 	org $4000
-	"engine/dumps/bank0f.asm@Function3c000"
+	"engine/dumps/bank0f.asm@StartBattle"
 	"engine/battle/core.asm"
 	"engine/dumps/bank0f.asm@PlayMoveAnimation"
 	"data/wild.asm"
