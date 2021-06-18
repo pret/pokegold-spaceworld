@@ -35,17 +35,6 @@
 ;0E:4BA0 LoadTrainerClassName.got_name
 0E:4BA9 LoadTrainerClass
 
-0D:4000 Function34000
-0D:401C Function3401c
-0D:4FFF Function34fff
-0D:51D0 Function351d0
-0D:60B1 Function360b1
-0D:65BF Function365bf
-0D:7E1D Function37e1d
-0D:7E2D Function37e2d
-0D:7E3D Function37e3d
-0D:7E60 Function37e60
-
 0E:4000 Function38000
 0E:4220 Function38220
 0E:4340 Function38340
