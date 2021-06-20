@@ -118,7 +118,7 @@ TitleSequenceInit::
 	ld a, "　"
 	call ByteFill
 
-	ld b, $06
+	ld b, SGB_TITLE_SCREEN
 	call GetSGBLayout
 	call EnableLCD
 	ld a, $01

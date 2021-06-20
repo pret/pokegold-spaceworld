@@ -33,16 +33,22 @@ INCBIN "gfx/title/titlebgdecoration.2bpp"
 SECTION "gfx.asm@SGB GFX", ROMX
 
 INCLUDE "data/pokemon/palettes.inc"
-INCLUDE "data/super_palettes.inc"
+INCLUDE "data/sgb/super_palettes.inc"
 
-Corrupted9e1cGFX:
-INCBIN "slack/corrupted_9e1c.2bpp"
+AlternateSGBBorderTilemap::
+INCBIN "gfx/sgb/sgb_border_alt.sgb.tilemap"
 
-UnusedSGBBorderGFX::
+AlternateSGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border_alt.pal"
+
+AlternateSGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
-Corrupteda66cGFX:
-INCBIN "slack/corrupted_a66c.2bpp"
+SGBBorderTilemap::
+INCBIN "gfx/sgb/sgb_border.sgb.tilemap"
+
+SGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border.pal"
 
 SGBBorderGFX::
 if DEF(GOLD)

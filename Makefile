@@ -124,6 +124,10 @@ $(BUILD)/%.1bpp: %.1bpp.png tools/gfx | $$(dir $$@)
 $(BUILD)/%.tilemap: %.png | $$(dir $$@)
 	$(RGBGFX) -t $@ $<
 
+.PRECIOUS: $(BUILD)/%.sgb.tilemap
+$(BUILD)/%.sgb.tilemap: %.bin | $$(dir $$@)
+	tr < $< -d '\000' > $@
+
 .PRECIOUS: %/
 %/:
 	mkdir -p $@

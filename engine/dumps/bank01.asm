@@ -3741,9 +3741,7 @@ Function78f0:
 	ld a, [hl]
 	xor $08
 	ld [hl], a
-	ld hl, Function96eb
-	ld a, BANK(Function96eb)
-	call FarCall_hl
+	callab UpdateSGBBorder
 	call LoadFont
 	call LoadFontExtra
 	ld c, $70
