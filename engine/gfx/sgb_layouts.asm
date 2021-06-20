@@ -8,7 +8,7 @@ LoadSGBLayout:
 	jr nz, .not_ram
 	ld a, [wccd0]
 .not_ram
-	cp $fc
+	cp SGB_PARTY_MENU_HP_PALS
 	jp z, SGB_ApplyPartyMenuHPPals
 	ld l, a
 	ld h, 0
