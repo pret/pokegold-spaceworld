@@ -1,10 +1,3 @@
-05:4036 RefreshSprites
-05:404C CheckInteriorMap
-05:405B AddIndoorSprites
-05:40AA AddOutdoorSprites
-05:40D9 Function140d9
-05:40EA Function140ea
-05:40FB LoadUsedSpritesGfx ; TODO: maybe there's a better name
 05:43B6 InitAllSRAMBanks
 05:43E0 Function143e0
 05:457A Function1457a
