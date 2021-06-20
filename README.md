@@ -1,4 +1,4 @@
-# Pokémon Gold and Silver: Space World 1997 Demo [![Build Status][travis-badge]][travis]
+# Pokémon Gold and Silver: Space World 1997 Demo [![Build Status][ci-badge]][ci]
 
 This is a work-in-progress disassembly of the Pokémon Gold and Pokémon Silver prototypes demoed at Space World 1997.
 
@@ -38,5 +38,5 @@ Other disassembly projects:
 [pokeemerald]: https://github.com/pret/pokeemerald
 [discord]: https://discord.gg/d5dubZ3
 [irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
-[travis]: https://travis-ci.org/pret/pokegold-spaceworld
-[travis-badge]: https://travis-ci.org/pret/pokegold-spaceworld.svg?branch=master
+[ci]: https://github.com/pret/pokegold-spaceworld/actions
+[ci-badge]: https://github.com/pret/pokegold-spaceworld/actions/workflows/main.yml/badge.svg
