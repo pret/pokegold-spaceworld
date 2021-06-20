@@ -33,9 +33,9 @@ LoadCryHeader::
 	call GetCryIndex
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(CryHeaders)
+	ld a, BANK(PokemonCries)
 	call Bankswitch
-	ld hl, CryHeaders
+	ld hl, PokemonCries
 	add hl, bc
 	add hl, bc
 	add hl, bc

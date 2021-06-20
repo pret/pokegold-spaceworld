@@ -2563,7 +2563,7 @@ _PlayCryHeader::
 	inc hl
 	ld [hl], d
 
-	ld hl, CryHeaderPointers
+	ld hl, Cries
 	add hl, de
 	add hl, de
 	add hl, de
@@ -2658,7 +2658,7 @@ _PlaySFX::
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, SFXPointers
+	ld hl, SFX
 ; three byte pointers
 	add hl, de
 	add hl, de
@@ -2696,7 +2696,7 @@ _PlaySFX::
 	inc hl
 	ld [hl], d
 
-	ld hl, SFXPointers
+	ld hl, SFX
 	add hl, de
 	add hl, de
 	add hl, de
@@ -2775,7 +2775,7 @@ _PlaySFX::
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, SFXPointers
+	ld hl, SFX
 	add hl, de
 	add hl, de
 	add hl, de
