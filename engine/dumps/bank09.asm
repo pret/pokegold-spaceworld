@@ -347,14 +347,14 @@ UpdateItemDescription::
 	callab ShowItemDescription
 	ret
 
-Function2420b:
+Pokepic:
 	ld a, $01
 	ldh [hBGMapMode], a
-	ld hl, .MenuHeader24262
+	ld hl, .PokepicMenuHeader
 	call LoadMenuHeader
 	call MenuBox
 	call UpdateSprites
-	ld b, SGB_12
+	ld b, SGB_POKEPIC
 	call GetSGBLayout
 	xor a
 	ldh [hBGMapMode], a
@@ -372,7 +372,7 @@ Function2420b:
 	call Coord2Tile
 	ld a, $80
 	ldh [hGraphicStartTile], a
-	ld bc, $0707
+	lb bc, 7, 7
 	predef PlaceGraphic
 	ld a, $01
 	ldh [hBGMapMode], a
@@ -384,7 +384,7 @@ Function2420b:
 	call LoadFont
 	ret
 
-.MenuHeader24262:
+.PokepicMenuHeader:
 	db MENU_BACKUP_TILES
 	menu_coords 6, 4, $e, $d
 	dw 0
