@@ -4,7 +4,7 @@ SECTION "engine/gfx/sgb_layouts.asm", ROMX
 
 LoadSGBLayout:
 	ld a, b
-	cp $ff
+	cp SGB_RAM
 	jr nz, .not_ram
 	ld a, [wccd0]
 .not_ram
@@ -894,4 +894,3 @@ SGBDelayCycles:
 INCLUDE "data/sgb/blk_packets.inc"
 INCLUDE "data/sgb/pal_packets.inc"
 INCLUDE "data/sgb/ctrl_packets.inc"
-
