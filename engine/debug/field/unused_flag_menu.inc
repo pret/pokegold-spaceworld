@@ -77,7 +77,7 @@ Functionfd91e: ; unused?
 	call .asm_fd930
 	ld a, [wCountSetBitsResult]
 	ld [wMonDexIndex], a
-	callab Function2420b
+	callab Pokepic
 	ret
 
 .asm_fd930
