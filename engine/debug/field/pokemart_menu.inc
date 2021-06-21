@@ -1,5 +1,5 @@
 FieldDebug_PokemartMenu:
-	ld hl, .WelcomeText
+	ld hl, DebugMart_WelcomeText
 	call MenuTextBox
 	call ExitMenu
 	call .DoPokemartMenu
@@ -9,7 +9,7 @@ FieldDebug_PokemartMenu:
 .DoPokemartMenu:
 	call LoadStandardMenuHeader
 	callab asm_24860
-	ld hl, .PokemartMenuText
+	ld hl, DebugMart_PokemartMenuText
 	call PrintText
 	ld hl, .MenuHeader
 	call CopyMenuHeader
@@ -26,7 +26,7 @@ FieldDebug_PokemartMenu:
 	ret
 
 .exit_menu
-	ld hl, .GoodbyeText
+	ld hl, DebugMart_GoodbyeText
 	call MenuTextBoxBackup
 	scf
 	ret
@@ -45,11 +45,11 @@ FieldDebug_PokemartMenu:
 	db "さようなら@"
 
 .MenuJumptable:
-	dw .Buy
-	dw .Sell
+	dw DebugMart_Buy
+	dw DebugMart_Sell
 	dw .exit_menu
 
-.BuyMenuHeader:
+DebugMart_BuyMenuHeader:
 	db MENU_BACKUP_TILES
 	menu_coords 1, 3, 19, 11
 	dw .BuyMenuParams
@@ -81,23 +81,23 @@ FieldDebug_PokemartMenu:
 	ld [hl], "円"
 	ret
 
-.WelcomeText:
+DebugMart_WelcomeText:
 	text "フレンドりーショップへ　"
 	line "ようこそ！"
 	prompt
 
-.PokemartMenuText:
+DebugMart_PokemartMenuText:
 	text "なんになさいますか？"
 	done
 
-.GoodbyeText:
+DebugMart_GoodbyeText:
 	text "またのごりようを"
 	line "おまちしています"
 	prompt
 
-.Buy:
-	ld de, .ItemList
-	call .LoadItems
+DebugMart_Buy:
+	ld de, DebugMart_ItemList
+	call DebugMart_LoadItems
 	call LoadStandardMenuHeader
 	call ClearTileMap
 .buy_loop
@@ -109,7 +109,7 @@ FieldDebug_PokemartMenu:
 
 .BuyMenu:
 	call UpdateSprites
-	ld hl, .BuyMenuHeader
+	ld hl, DebugMart_BuyMenuHeader
 	call CopyMenuHeader
 	call ScrollingMenu
 	ld a, [wMenuJoypad]
@@ -164,19 +164,10 @@ FieldDebug_PokemartMenu:
 	line "かいはつちゅうなんだ"
 	prompt
 
-.ItemList:
-	db ITEM_BICYCLE
-	db ITEM_MOON_STONE
-	db ITEM_ANTIDOTE
-	db ITEM_BURN_HEAL
-	db ITEM_MAX_POTION
-	db ITEM_HYPER_POTION
-	db ITEM_SUPER_POTION
-	db ITEM_POTION
-	db -1
+INCLUDE "data/field_debug_pokemart_items.inc"
 
-.Sell:
-	call .ShowPlaceholderText
+DebugMart_Sell:
+	call DebugMart_ShowPlaceholderText
 	and a
 	ret
 
@@ -281,7 +272,7 @@ FieldDebug_PokemartMenu:
 	text "いくつ　うりますか？"
 	done
 
-.LoadItems:
+DebugMart_LoadItems:
 	ld hl, wcd60
 .load_loop
 	ld a, [de]
@@ -340,7 +331,7 @@ FieldDebug_PokemartMenu:
 	sub "０"
 	ret
 
-.ShowPlaceholderText:
+DebugMart_ShowPlaceholderText:
 	ld hl, .PlaceholderText
 	call MenuTextBox
 	call ExitMenu

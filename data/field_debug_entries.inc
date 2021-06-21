@@ -92,7 +92,7 @@ FieldDebug_Jumptable:
 	dw FieldDebug_VRAMViewer
 	dw FieldDebug_TrainerGear
 
-FIELDDEBUG_NUM_PAGES equ 3
+FIELDDEBUG_NUM_PAGES EQU 3
 
 FieldDebug_Pages:
 ; page 1
@@ -107,7 +107,7 @@ FieldDebug_Pages:
 	db -1
 
 ; page 2
-	db 7
+	db 7    ; number of items
 	db FIELDDEBUG_GO_TO_NEXT_PAGE
 	db FIELDDEBUG_POKEMART_MENU
 	db FIELDDEBUG_HEAL_POKEMON
@@ -118,7 +118,7 @@ FieldDebug_Pages:
 	db -1
 
 ; page 3
-	db 7
+	db 7    ; number of items
 	db FIELDDEBUG_GO_TO_NEXT_PAGE
 	db FIELDDEBUG_CLEAR_EVENT_FLAGS
 	db FIELDDEBUG_VRAM_VIEWER

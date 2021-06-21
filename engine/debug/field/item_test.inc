@@ -238,10 +238,10 @@ FieldDebug_ItemTest:
 	cp ITEM_TM01
 	jr nc, .use_item2
 	ld a, [wCurItem]
-	call .FindUsableItem2
+	call ItemTest_FindUsableItem2
 	jr c, .use_item
 	ld a, [wCurItem]
-	call .FindUsableItem
+	call ItemTest_FindUsableItem
 	jr c, .use_item2
 	call UseItem
 	jp .restart
@@ -260,64 +260,18 @@ FieldDebug_ItemTest:
 	call Function360b
 	jp .restart
 
-.FindUsableItem:
-	ld hl, .UsableItems
+ItemTest_FindUsableItem:
+	ld hl, ItemTest_UsableItems
 	ld de, 1
 	call FindItemInTable
 	ret
 
-.UsableItems:
-	db ITEM_BURN_HEAL
-	db ITEM_ICE_HEAL
-	db ITEM_AWAKENING
-	db ITEM_PARLYZ_HEAL
-	db ITEM_FULL_RESTORE
-	db ITEM_MAX_POTION
-	db ITEM_HYPER_POTION
-	db ITEM_SUPER_POTION
-	db ITEM_POTION
-	db ITEM_ESCAPE_ROPE
-	db ITEM_REPEL
-	db ITEM_RARE_CANDY
-	db ITEM_X_ACCURACY
-	db ITEM_LEAF_STONE
-	db ITEM_23
-	db ITEM_NUGGET
-	db ITEM_POKE_DOLL
-	db ITEM_FULL_HEAL
-	db ITEM_REVIVE
-	db ITEM_MAX_REVIVE
-	db ITEM_SODA_POP
-	db ITEM_X_SPEED
-	db ITEM_X_SPECIAL
-	db ITEM_COIN_CASE
-	db ITEM_3C
-	db ITEM_SUPER_ROD
-	db ITEM_PP_UP
-	db ITEM_ELIXER
-	db ITEM_MYSTIC_PETAL
-	db ITEM_WHITE_FEATHER
-	db ITEM_CONFUSE_CLAW
-	db ITEM_SNAKESKIN
-	db ITEM_ELECTRIC_POUCH
-	db ITEM_TOXIC_NEEDLE
-	db ITEM_KINGS_ROCK
-	db ITEM_STRANGE_POWER
-	db -1
+INCLUDE "data/field_debug_usable_items_1.inc"
 
-.FindUsableItem2:
-	ld hl, .UsableItems2
+ItemTest_FindUsableItem2:
+	ld hl, ItemTest_UsableItems2
 	ld de, 1
 	call FindItemInTable
 	ret
 
-.UsableItems2:
-	db ITEM_BICYCLE
-	db ITEM_CARBOS
-	db ITEM_UP_GRADE
-	db ITEM_BIG_LEAF
-	db ITEM_SHARP_STONE
-	db ITEM_BLACK_FEATHER
-	db ITEM_SHARP_FANG
-	db -1
-
+INCLUDE "data/field_debug_usable_items_2.inc"

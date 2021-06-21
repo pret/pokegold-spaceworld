@@ -337,21 +337,9 @@ DebugMapViewer_ReplacePlayerObject:
 	ret
 
 Datafd044:
-	db $1
-	db $0
-	db $0
-	db $17
-	db $ee
-	db $0
-	db $0
-	db $0
-	db $0
-	db $0
-	db $0
-	db $0
-	db $0
-	db $0
-	db $0
+_NUM_OBJECT_EVENTS = 0
+	object_event -4, -4, SPRITE_GOLD, $17, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
+	ds 2
 
 DebugMapViewer_LoadCursorSprite:
 	ldh a, [hBGMapMode]
@@ -373,7 +361,7 @@ DebugMapViewer_LoadCursorSprite:
 SECTION "engine/debug/field/map_viewer.inc@DisplayBGEventDetails", ROMX
 
 DisplayBGEventDetails:
-	call GetFacingSignpost.NoFacing
+	call GetSignpost
 	ret nc
 	call .Functionfd0cc
 	call RefreshScreen
