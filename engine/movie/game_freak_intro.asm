@@ -23,7 +23,7 @@ GameFreakIntro::
 
 	ld c, 10
 	call DelayFrames
-	ld b, SGB_GS_TITLE_SCREEN
+	ld b, SGB_GF_INTRO
 	call GetSGBLayout
 
 	callab IntroCopyRightInfo

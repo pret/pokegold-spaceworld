@@ -36,7 +36,7 @@ PikachuMiniGame::
 
 .Init:
 	call DisableLCD
-	ld b, SGB_BETA_PIKACHU_MINIGAME
+	ld b, SGB_PIKACHU_MINIGAME
 	call GetSGBLayout
 	callab InitEffectObject
 	call PikachuMiniGame_ClearBothTilemaps

@@ -88,7 +88,7 @@ GiveItemPredef::
 	add_predef Function1457a
 	add_predef Function143e0
 	add_predef CheckSGB
-	add_predef Function928b
+	add_predef LoadSGBLayout
 	add_predef Function8786
 	add_predef DoBattleTransition
 	add_predef Function8c9c6

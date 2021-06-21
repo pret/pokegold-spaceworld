@@ -42,7 +42,7 @@ GetSGBLayout::
 	ld a, [wSGB]
 	and a
 	ret z
-	predef_jump Function928b
+	predef_jump LoadSGBLayout
 
 SetHPPal::
 	ld a, e

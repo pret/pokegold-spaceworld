@@ -82,10 +82,10 @@ PlayCryHeader::
 	ldh a, [hROMBank]
 	push af
 
-	ld a, BANK(CryHeaders)
+	ld a, BANK(PokemonCries)
 	ld [MBC3RomBank], a ; Unsafe
 	ldh [hROMBank], a
-	ld hl, CryHeaders
+	ld hl, PokemonCries
 rept 6
 	add hl, de
 endr

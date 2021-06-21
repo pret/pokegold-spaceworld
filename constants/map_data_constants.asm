@@ -72,3 +72,6 @@ NUM_SPAWNS EQU 18
 
 ; size of each spawn point data
 SPAWN_POINT_SIZE EQU 4
+
+; size of sprite sets (see data/maps/sprite_sets.asm)
+SPRITE_SET_LENGTH EQU 10

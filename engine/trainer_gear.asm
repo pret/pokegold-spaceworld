@@ -89,7 +89,7 @@ TrainerGear_Init:
 	call ClearBGPalettes
 	call DisableLCD
 	call ClearSprites
-	ld b, SGB_TRAINER_GEAR
+	ld b, SGB_TRAINERGEAR
 	call GetSGBLayout
 
 	ld hl, TrainerGearGFX
@@ -282,7 +282,7 @@ TrainerGear_Map:
 	call TrainerGear_Next
 	call TrainerGear_ClearView
 	call WaitForAutoBgMapTransfer
-	ld b, SGB_PACKPALS
+	ld b, SGB_TRAINERGEAR_MAP
 	call GetSGBLayout
 	ld de, TownMapGFX
 	ld hl, vTilesetEnd
@@ -312,7 +312,7 @@ TrainerGear_Radio:
 	call TrainerGear_Next
 	call TrainerGear_ClearView
 	call WaitForAutoBgMapTransfer
-	ld b, SGB_TRAINER_CARD
+	ld b, SGB_TRAINERGEAR_RADIO
 	call GetSGBLayout
 
 	ld de, RadioGFX
@@ -595,7 +595,7 @@ TrainerGear_Phone:
 	call TrainerGear_Next
 	call TrainerGear_ClearView
 	call WaitForAutoBgMapTransfer
-	ld b, SGB_TRAINER_GEAR
+	ld b, SGB_TRAINERGEAR
 	call GetSGBLayout
 	call LoadFontExtra
 	ld de, .OutOfRangeText

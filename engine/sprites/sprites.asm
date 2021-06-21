@@ -1,6 +1,195 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/sprites/sprites.asm@LoadOverworldSprite", ROMX
+SECTION "engine/sprites/sprites.asm@RefreshSprites", ROMX
+
+RefreshSprites:
+	call GetPlayerSprite
+	call CheckInteriorMap
+	jr c, .outdoor
+	call AddIndoorSprites
+	call LoadUsedSpritesGfx
+	ret
+.outdoor
+	call AddOutdoorSprites
+	call LoadUsedSpritesGfx
+	ret
+
+CheckInteriorMap:
+	call GetMapEnvironment
+	cp TOWN
+	jr z, .got_outdoor
+	cp ROUTE
+	jr z, .got_outdoor
+	xor a
+	ret
+.got_outdoor
+	scf
+	ret
+
+AddIndoorSprites:
+	ld hl, wUsedNPCSprites
+	ld bc, SPRITE_SET_LENGTH
+	xor a
+	call ByteFill
+	ld a, [wPlayerObjectSprite]
+	ld [wUsedSprites], a
+	ld hl, wMap2ObjectSprite
+	ld a, 2
+.asm_14070
+	push af
+	ld a, [hl]
+	and a
+	jr z, .asm_1408d
+	ld c, a
+	call IsAnimatedSprite
+	jr nc, .static_sprite
+	ld de, wUsedStaticSprites
+	ld b, 2
+	call Function14099
+	jr .asm_1408d
+.static_sprite
+	ld de, wUsedNPCSprites
+	ld b, 8
+	call Function14099
+.asm_1408d
+	ld de, $10
+	add hl, de
+	pop af
+	inc a
+	cp $10
+	jp nz, .asm_14070
+	ret
+
+Function14099:
+.loop
+	ld a, [de]
+	and a
+	jr z, .asm_140a5
+	cp c
+	ret z
+	dec b
+	jr z, .asm_140a8
+	inc de
+	jr .loop
+
+.asm_140a5
+	ld a, c
+	ld [de], a
+	ret
+
+.asm_140a8
+	scf
+	ret
+
+
+AddOutdoorSprites:
+	ld a, [wPlayerObjectSprite]
+	ld [wUsedSprites], a
+	ld a, [wMapGroup]
+	dec a
+	ld c, a
+	ld b, 0
+	ld hl, MapGroupSpriteSets
+	add hl, bc
+	ld a, [hl]
+	push af
+	dec a
+	ld hl, SpriteSets
+	ld bc, SPRITE_SET_LENGTH
+	call AddNTimes
+	ld de, wUsedNPCSprites
+	ld bc, SPRITE_SET_LENGTH
+	call CopyBytes
+	ld a, [wd642]
+	ld c, a
+	pop af
+	ld [wd642], a
+	ret
+
+Function140d9:
+	ld hl, wcdaf
+	ld a, [hl]
+	push af
+	res 7, [hl]
+	set 6, [hl]
+	call LoadUsedSpritesGfx
+	pop af
+	ld [wcdaf], a
+	ret
+
+Function140ea:
+	ld hl, wcdaf
+	ld a, [hl]
+	push af
+	set 7, [hl]
+	res 6, [hl]
+	call LoadUsedSpritesGfx
+	pop af
+	ld [wcdaf], a
+	ret
+
+LoadUsedSpritesGfx:
+	ld hl, vNPCSprites
+	ld de, wUsedSprites
+	ld b, SPRITE_SET_LENGTH
+	ld c, 0
+.asm_14105
+	push bc
+	push de
+	push hl
+	ld a, [de]
+	and a
+	jr z, .asm_1410f
+	call LoadOverworldSprite
+.asm_1410f
+	pop hl
+	ld bc, $c0
+	add hl, bc
+	pop de
+	inc de
+	pop bc
+	inc c
+	dec b
+	jr nz, .asm_14105
+	ld a, [de]
+	and a
+	jr z, .asm_14127
+	push de
+	ld hl, vNPCSprites + $780
+	call LoadOverworldSprite
+	pop de
+.asm_14127
+	inc de
+	ld a, [de]
+	and a
+	jr z, .asm_14132
+	ld hl, vNPCSprites + $7c0
+	call LoadOverworldSprite
+.asm_14132
+	ret
+
+Function14133:
+	swap b
+	ld a, b
+	and $f0
+	ld e, a
+	ld a, b
+	and $f
+	ld d, a
+	ld hl, vNPCSprites
+	add hl, de
+	ld a, c
+	jr LoadOverworldSprite
+
+Function14144:
+	ld a, c
+	ld hl, vNPCSprites
+	jr LoadOverworldSprite
+
+Function1414a:
+	ld a, c
+	ld hl, vNPCSprites + $c0
+	jr LoadOverworldSprite
 
 LoadOverworldSprite:
 	push af
@@ -52,104 +241,3 @@ GetOverworldSpriteData:
 	ld b, [hl]
 	pop hl
 	ret
-
-SECTION "engine/sprites/sprites.asm@OverworldSprites", ROMX
-
-overworld_sprite: MACRO
-; pointer, length, bank
-	dw \1
-	db \2 tiles, BANK(\1)
-ENDM
-
-OverworldSprites::
-	overworld_sprite GoldSpriteGFX, 12
-	overworld_sprite GoldBikeSpriteGFX, 12
-	overworld_sprite GoldSkateboardSpriteGFX, 12
-	overworld_sprite SilverSpriteGFX, 12
-	overworld_sprite OkidoSpriteGFX, 12
-	overworld_sprite RedSpriteGFX, 12
-	overworld_sprite BlueSpriteGFX, 12
-	overworld_sprite MasakiSpriteGFX, 12
-	overworld_sprite ElderSpriteGFX, 12
-	overworld_sprite SakakiSpriteGFX, 12
-	overworld_sprite GantetsuSpriteGFX, 12
-	overworld_sprite MomSpriteGFX, 12
-	overworld_sprite SilversMomSpriteGFX, 12
-	overworld_sprite RedsMomSpriteGFX, 12
-	overworld_sprite RedsMomSpriteGFX, 12
-	overworld_sprite NanamiSpriteGFX, 12
-	overworld_sprite EvilOkidoSpriteGFX, 12
-	overworld_sprite KikukoSpriteGFX, 12
-	overworld_sprite HayatoSpriteGFX, 12
-	overworld_sprite TsukushiSpriteGFX, 12
-	overworld_sprite TsukushiSpriteGFX, 12
-	overworld_sprite EnokiSpriteGFX, 12
-	overworld_sprite MikanSpriteGFX, 12
-	overworld_sprite MikanSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerMSpriteGFX, 12
-	overworld_sprite CooltrainerFSpriteGFX, 12
-	overworld_sprite BugCatcherBoySpriteGFX, 12
-	overworld_sprite TwinSpriteGFX, 12
-	overworld_sprite YoungsterSpriteGFX, 12
-	overworld_sprite LassSpriteGFX, 12
-	overworld_sprite TeacherSpriteGFX, 12
-	overworld_sprite GirlSpriteGFX, 12
-	overworld_sprite SuperNerdSpriteGFX, 12
-	overworld_sprite RockerSpriteGFX, 12
-	overworld_sprite PokefanMSpriteGFX, 12
-	overworld_sprite PokefanFSpriteGFX, 12
-	overworld_sprite GrampsSpriteGFX, 12
-	overworld_sprite GrannySpriteGFX, 12
-	overworld_sprite SwimmerMSpriteGFX, 12
-	overworld_sprite SwimmerFSpriteGFX, 12
-	overworld_sprite RocketMSpriteGFX, 12
-	overworld_sprite RocketMSpriteGFX, 12
-	overworld_sprite RocketMSpriteGFX, 12
-	overworld_sprite RocketFSpriteGFX, 12
-	overworld_sprite NurseSpriteGFX, 12
-	overworld_sprite LinkReceptionistSpriteGFX, 12
-	overworld_sprite ClerkSpriteGFX, 12
-	overworld_sprite FisherSpriteGFX, 12
-	overworld_sprite FishingGuruSpriteGFX, 12
-	overworld_sprite ScientistSpriteGFX, 12
-	overworld_sprite MediumSpriteGFX, 12
-	overworld_sprite SageSpriteGFX, 12
-	overworld_sprite FrowningManSpriteGFX, 12
-	overworld_sprite GentlemanSpriteGFX, 12
-	overworld_sprite BlackbeltSpriteGFX, 12
-	overworld_sprite ReceptionistSpriteGFX, 12
-	overworld_sprite OfficerSpriteGFX, 12
-	overworld_sprite CaptainSpriteGFX, 12
-	overworld_sprite CaptainSpriteGFX, 12
-	overworld_sprite CaptainSpriteGFX, 12
-	overworld_sprite MohawkSpriteGFX, 12
-	overworld_sprite GymGuySpriteGFX, 12
-	overworld_sprite SailorSpriteGFX, 12
-	overworld_sprite HelmetSpriteGFX, 12
-	overworld_sprite BurglarSpriteGFX, 12
-	overworld_sprite RhydonSpriteGFX, 12
-	overworld_sprite ClefairySpriteGFX, 12
-	overworld_sprite PidgeySpriteGFX, 12
-	overworld_sprite CharizardSpriteGFX, 12
-	overworld_sprite SnorlaxSpriteGFX, 4
-	overworld_sprite SeelSpriteGFX, 12
-	overworld_sprite PoliwrathSpriteGFX, 12
-	overworld_sprite LaprasSpriteGFX, 12
-	overworld_sprite PokeBallSpriteGFX, 4
-	overworld_sprite PokedexSpriteGFX, 4
-	overworld_sprite PaperSpriteGFX, 4
-	overworld_sprite OldLinkReceptionistSpriteGFX, 4
-	overworld_sprite OldLinkReceptionistSpriteGFX, 4
-	overworld_sprite EggSpriteGFX, 4
-	overworld_sprite BoulderSpriteGFX, 4
