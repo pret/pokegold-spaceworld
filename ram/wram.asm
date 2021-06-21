@@ -378,15 +378,19 @@ wBattleAnimEnd::
 wc9e8:: ds 1
 wc9e9:: ds 1
 wc9ea:: ds 1
-
-	ds 4
-
+wc9eb:: ds 1
+wc9ec:: ds 1
+wc9ed:: ds 1
+wc9ee:: ds 1
 wc9ef:: ds 1
 wc9f0:: ds 1
 wc9f1:: ds 1
 wc9f2:: ds 1
+wc9f3:: ds 1
 
-	ds 3
+	ds 1
+
+wc9f5:: ds 1
 
 wBattleMonNickname:: ds 6
 wEnemyMonNickname:: ds 6
@@ -394,15 +398,17 @@ wEnemyMonNickname:: ds 6
 wca02:: ds 1
 wca03:: ds 1
 wca04:: ds 1
+wca05:: ds 1
 
-	ds 3
+	ds 2
 
 wca08:: ds 1
 wca09:: ds 1
 wca0a:: ds 1
 
-	ds 4
+	ds 3
 
+wca0e:: ds 1
 wca0f:: ds 1
 
 wIntroJumptableIndex::
@@ -426,20 +432,24 @@ UNION
 wIntroTilesPointer:: ds 2
 wIntroFrameCounter1:: ds 1
 NEXTU
-	ds 1
 
+wca15:: ds 1
 wca16:: ds 1
 wca17:: ds 1
 
 ENDU
 
+wca18::
 wIntroFrameCounter2:: ds 1
 
 wIntroSpriteStateFlag:: ds 1
 
 wca1a:: ds 1
 wca1b:: ds 1
-	ds 4
+wca1c:: ds 1
+	ds 1
+wca1e:: ds 1
+	ds 1
 wca20:: ds 1
 wca21:: ds 1
 wca22:: ds 1
@@ -468,9 +478,7 @@ wca43:: db
 
 wca44:: db
 wca45:: db
-
-	ds 1
-
+wca46:: db
 wca47:: db
 wca48:: db
 wca49:: db
@@ -480,8 +488,7 @@ wca4b:: db
 	ds 1
 
 wca4d:: db
-
-	ds 1
+wca4e:: db
 
 wca4f:: db
 wca50:: db
@@ -492,8 +499,7 @@ wca53:: db
 	ds 1
 
 wca55:: db
-
-	ds 1
+wca56:: db
 
 wTrainerClass::
 	db
@@ -503,8 +509,15 @@ wca59:: ds 1
 wca5a:: ds 1
 wca5b:: ds 1
 wca5c:: ds 1
+wca5d:: ds 1
 
-	ds $36
+	ds $1d
+
+wca7b:: ds 1
+wca7c:: ds 1
+wca7d:: ds 1
+
+	ds $15
 
 wca93:: ds 1
 
@@ -516,17 +529,29 @@ wca9e:: ds 1
 
 wcaa9:: ds 1
 
-	ds 7
+	ds 4
+
+wcaae:: ds 1
+wcaaf:: ds 1
+
+	ds 1
 
 wcab1:: ds 1
 
-	ds 7
+	ds 4
+
+wcab6:: ds 1
+wcab7:: ds 1
+
+	ds 1
 
 wcab9:: ds 1
 wcaba:: ds 1
 
-	ds 3
+	ds 1
 
+wcabc:: ds 1
+wcabd:: ds 1
 wcabe:: ds 1
 
 	ds 1
@@ -555,18 +580,15 @@ wcace:: ds 1
 	ds 1
 
 wcad0:: ds 1
-
-	ds 2
-
+wcad1:: ds 1
+wcad2:: ds 1
 wcad3:: ds 1
 wcad4:: ds 1
 wcad5:: ds 1
 wcad6:: ds 1
 wcad7:: ds 1
 wcad8:: ds 1
-
-	ds 1
-
+wcad9:: ds 1
 wcada:: ds 1
 wcadb:: ds 1
 wcadc:: ds 1
@@ -952,7 +974,12 @@ wcd7f:: db
 wcd80:: db
 wcd81:: db
 
-SECTION "CD94", WRAM0 [$CD94]
+	ds 7
+
+wcd89:: db
+
+	ds 10
+
 wcd94:: db
 
 	ds 9
@@ -960,10 +987,10 @@ wcd94:: db
 wLoadedMonLevel:: db
 wcd9f:: db
 
-SECTION "CDAF", WRAM0 [$CDAF]
+	ds 15
+
 wcdaf:: db
 
-SECTION "CDB0", WRAM0 [$CDB0]
 wTalkingTargetType:: db
 ;bit 0 = has engaged NPC in dialogue
 ;bit 1 = has engaged sign in dialogue
@@ -971,13 +998,13 @@ wTalkingTargetType:: db
 wcdb1:: ds 1
 wcdb2:: ds 1
 
-ds 1
+	ds 1
 
 wcdb4:: ds 1
 wcdb5:: ds 1
 wcdb6:: ds 1
 
-SECTION "CDB9", WRAM0[$CDB9]
+	ds 2
 
 wcdb9:: ds 1
 
@@ -1076,13 +1103,19 @@ wcdeb:: ds 1
 wcdec:: ds 1
 wcded:: ds 1
 wcdee:: ds 1
+wcdef:: ds 1
 
-	ds 2
+	ds 1
 
 wcdf1:: ds 1
 wcdf2:: ds 1
+wcdf3:: ds 1
 
-	ds 4
+	ds 1
+
+wcdf5:: ds 1
+
+	ds 1
 
 wcdf7:: ds 1
 
@@ -1172,8 +1205,9 @@ wce26:: ds 1
 	ds 2
 
 wce29:: ds 1
+wce2a:: ds 1
 
-	ds 3
+	ds 2
 
 wce2d:: ds 1
 wce2e:: ds 1
@@ -1658,12 +1692,15 @@ NEXTU
 wd91c:: ds 1
 wd91d:: ds 1
 wd91e:: ds 1
-	ds 27
+	ds 19
+wd932:: ds 1
+	ds 7
 wd93a:: ds 1
 wd93b:: ds 1
 	ds 1
 wd93d:: ds 1
 wd93e:: ds 1
+wd93f:: ds 1
 ENDU
 
 SECTION "DA3B", WRAM0[$DA3B]

@@ -251,8 +251,6 @@ ROMX $0c
 ROMX $0d
 	org $4000
 	"engine/dumps/bank0d.asm@Function34000"
-	"data/types/type_matchups.asm"
-	"engine/dumps/bank0d.asm@asm_3519b"
 
 ROMX $0e
 	org $4000

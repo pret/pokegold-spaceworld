@@ -84,15 +84,15 @@ asm_34066:
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
-	ld [wcd55], a
+	ld [wPredefBC + 1], a
 	ld a, [hl]
-	ld [wcd54], a
+	ld [wPredefBC], a
 	pop bc
 	ld hl, asm_34066
 	push hl
-	ld a, [wcd55]
+	ld a, [wPredefBC + 1]
 	ld l, a
-	ld a, [wcd54]
+	ld a, [wPredefBC]
 	ld h, a
 	jp hl
 
@@ -1558,7 +1558,7 @@ asm_34682:
 	jr asm_346cd
 
 asm_346ba:
-	ld hl, Text349a7
+	ld hl, text_349a7
 	call PrintText
 	ld hl, Function3d5ce
 	call CallFromBank0F
@@ -1567,7 +1567,7 @@ asm_346ba:
 	jr asm_346e5
 
 asm_346cd:
-	ld hl, Text34997
+	ld hl, text_34997
 	call PrintText
 	ld a, [wcac1]
 	cp $ad
@@ -1587,7 +1587,7 @@ asm_346e5:
 	jr z, asm_34704
 	cp $dd
 	jr z, asm_34704
-	ld hl, Text349b3
+	ld hl, text_349b3
 	call PrintText
 	xor a
 	ld [wcad6], a
@@ -1600,7 +1600,7 @@ asm_34704:
 	ld a, [wcac1]
 	cp $e5
 	jp z, asm_3471d
-	ld hl, Text34a55
+	ld hl, text_34a55
 	call PrintText
 	jp asm_34991
 
@@ -1609,7 +1609,7 @@ asm_3471d:
 	bit 3, [hl]
 	jp z, asm_34730
 	res 3, [hl]
-	ld hl, Text349dc
+	ld hl, text_349dc
 	call PrintText
 	jp asm_34991
 
@@ -1618,7 +1618,7 @@ asm_34730:
 	bit 5, [hl]
 	jr z, asm_34742
 	res 5, [hl]
-	ld hl, Text349e6
+	ld hl, text_349e6
 	call PrintText
 	jp asm_34991
 
@@ -1633,7 +1633,7 @@ asm_34742:
 	jr nz, asm_34759
 	ld [hl], a
 	ld [wcad3], a
-	ld hl, Text349fd
+	ld hl, text_349fd
 	call PrintText
 
 asm_34759:
@@ -1645,12 +1645,12 @@ asm_34759:
 	jr nz, asm_34772
 	ld hl, wPlayerSubStatus3
 	res 7, [hl]
-	ld hl, Text34a32
+	ld hl, text_34a32
 	call PrintText
 	jr asm_34796
 
 asm_34772:
-	ld hl, Text34a0d
+	ld hl, text_34a0d
 	call PrintText
 	xor a
 	ld [wcccd], a
@@ -1670,7 +1670,7 @@ asm_34796:
 	ld a, [wca3b]
 	add a
 	jr nc, asm_347bc
-	ld hl, Text34aa8
+	ld hl, text_34aa8
 	call PrintText
 	xor a
 	ld [wcccd], a
@@ -1679,7 +1679,7 @@ asm_34796:
 	call BattleRandom
 	cp $80
 	jp c, asm_347bc
-	ld hl, Text34ab6
+	ld hl, text_34ab6
 	call PrintText
 	jr asm_347e2
 
@@ -1700,7 +1700,7 @@ asm_347ce:
 	call BattleRandom
 	cp $3f
 	jr nc, asm_34808
-	ld hl, Text349c8
+	ld hl, text_349c8
 	call PrintText
 
 asm_347e2:
@@ -1738,7 +1738,7 @@ asm_34809:
 	ld [wcde7], a
 	and a
 	jr z, asm_3482a
-	ld hl, Text34997
+	ld hl, text_34997
 	call PrintText
 	xor a
 	ld [wcccd], a
@@ -1747,7 +1747,7 @@ asm_34809:
 	jr asm_3483d
 
 asm_3482a:
-	ld hl, Text349a7
+	ld hl, text_349a7
 	call PrintText
 	ld hl, Function3d67c
 	call CallFromBank0F
@@ -1774,7 +1774,7 @@ asm_3484f:
 	jr z, asm_3486e
 	cp $dd
 	jr z, asm_3486e
-	ld hl, Text349b3
+	ld hl, text_349b3
 	call PrintText
 	xor a
 	ld [wcad7], a
@@ -1787,7 +1787,7 @@ asm_3486e:
 	ld a, [wcac2]
 	cp $e5
 	jp z, asm_34887
-	ld hl, Text34a55
+	ld hl, text_34a55
 	call PrintText
 	jp asm_34991
 
@@ -1796,7 +1796,7 @@ asm_34887:
 	bit 3, [hl]
 	jp z, asm_3489a
 	res 3, [hl]
-	ld hl, Text349dc
+	ld hl, text_349dc
 	call PrintText
 	jp asm_34991
 
@@ -1805,7 +1805,7 @@ asm_3489a:
 	bit 5, [hl]
 	jr z, asm_348ac
 	res 5, [hl]
-	ld hl, Text349e6
+	ld hl, text_349e6
 	call PrintText
 	jp asm_34991
 
@@ -1820,7 +1820,7 @@ asm_348ac:
 	jr nz, asm_348c3
 	ld [hl], a
 	ld [wcad4], a
-	ld hl, Text349fd
+	ld hl, text_349fd
 	call PrintText
 
 asm_348c3:
@@ -1832,12 +1832,12 @@ asm_348c3:
 	jr nz, asm_348de
 	ld hl, wEnemySubStatus3
 	res 7, [hl]
-	ld hl, Text34a32
+	ld hl, text_34a32
 	call PrintText
 	jp asm_3491d
 
 asm_348de:
-	ld hl, Text34a0d
+	ld hl, text_34a0d
 	call PrintText
 	xor a
 	ld [wcccd], a
@@ -1850,7 +1850,7 @@ asm_348de:
 	ld a, [hl]
 	and $80
 	ld [hl], a
-	ld hl, Text34a1b
+	ld hl, text_34a1b
 	call PrintText
 	call sub_35904
 	call sub_3599d
@@ -1868,7 +1868,7 @@ asm_3491d:
 	ld a, [wca40]
 	add a
 	jr nc, asm_34943
-	ld hl, Text34aa8
+	ld hl, text_34aa8
 	call PrintText
 	xor a
 	ld [wcccd], a
@@ -1877,7 +1877,7 @@ asm_3491d:
 	call BattleRandom
 	cp $80
 	jp c, asm_34943
-	ld hl, Text34ab6
+	ld hl, text_34ab6
 	call PrintText
 	jr asm_34969
 
@@ -1898,7 +1898,7 @@ asm_34955:
 	call BattleRandom
 	cp $3f
 	jr nc, asm_3498f
-	ld hl, Text349c8
+	ld hl, text_349c8
 	call PrintText
 
 asm_34969:
@@ -1933,356 +1933,66 @@ asm_34991:
 	ld [wca7d], a
 	ret
 
-Text34997:
-	db $0
-	db $5a
-	db $ca
-	db $4f
-	db $28
-	db $b3
-	db $28
-	db $b3
-	db $7f
-	db $c8
-	db $d1
-	db $df
-	db $c3
-	db $b2
-	db $d9
-	db $58
+text_34997:
+	text "<USER>は"
+	line "ぐうぐう　ねむっている"
+	prompt
 
-Text349a7:
-	db $0
-	db $5a
-	db $ca
-	db $7f
-	db $d2
-	db $dd
-	db $bb
-	db $cf
-	db $bc
-	db $c0
-	db $e7
-	db $58
+text_349a7:
+	text "<USER>は　めをさました！"
+	prompt
 
-Text349b3:
-	db $0
-	db $5a
-	db $ca
-	db $4f
-	db $ba
-	db $b5
-	db $df
-	db $c3
-	db $7f
-	db $bc
-	db $cf
-	db $df
-	db $c3
-	db $7f
-	db $b3
-	db $2a
-	db $b6
-	db $c5
-	db $b2
-	db $e7
-	db $58
+text_349b3:
+	text "<USER>は"
+	line "こおって　しまって　うごかない！"
+	prompt
 
-Text349c8:
-	db $0
-	db $5a
-	db $ca
-	db $4f
-	db $b6
-	db $d7
-	db $30
-	db $26
-	db $7f
-	db $bc
-	db $3b
-	db $da
-	db $c3
-	db $7f
-	db $b3
-	db $2a
-	db $b9
-	db $c5
-	db $b2
-	db $58
+text_349c8:
+	db "<NULL><USER>は<LINE>からだが　しびれて　うごけない<PROMPT>"
 
-Text349dc:
-	db $0
-	db $5a
-	db $ca
-	db $7f
-	db $cb
-	db $d9
-	db $de
-	db $30
-	db $e7
-	db $58
+text_349dc:
+	db "<NULL><USER>は　ひるんだ！<PROMPT>"
 
-Text349e6:
-	db $0
-	db $ba
-	db $b3
-	db $29
-	db $b7
-	db $c9
-	db $7f
-	db $ca
-	db $de
-	db $34
-	db $b3
-	db $33
-	db $4f
-	db $5a
-	db $ca
-	db $7f
-	db $b3
-	db $2a
-	db $b9
-	db $c5
-	db $b2
-	db $e7
-	db $58
+text_349e6:
+	db "<NULL>こうげきの　はんどうで<LINE><USER>は　うごけない！<PROMPT>"
 
-Text349fd:
-	db $0
-	db $5a
-	db $c9
-	db $4f
-	db $b6
-	db $c5
-	db $bc
-	db $3a
-	db $d8
-	db $26
-	db $7f
-	db $c4
-	db $b9
-	db $c0
-	db $e7
-	db $58
+text_349fd:
+	db "<NULL><USER>の<LINE>かなしばりが　とけた！<PROMPT>"
 
-Text34a0d:
-	db $0
-	db $5a
-	db $ca
-	db $4f
-	db $ba
-	db $de
-	db $d7
-	db $de
-	db $bc
-	db $c3
-	db $b2
-	db $d9
-	db $e7
-	db $58
+text_34a0d:
+	db "<NULL><USER>は<LINE>こんらんしている！<PROMPT>"
 
-Text34a1b:
-	db $0
-	db $dc
-	db $b9
-	db $d3
-	db $7f
-	db $dc
-	db $b6
-	db $d7
-	db $2d
-	db $4f
-	db $2c
-	db $3c
-	db $de
-	db $dd
-	db $7f
-	db $ba
-	db $b3
-	db $29
-	db $b7
-	db $bc
-	db $c0
-	db $e7
-	db $58
+text_34a1b:
+	db "<NULL>わけも　わからず<LINE>じぶんを　こうげきした！<PROMPT>"
 
-Text34a32:
-	db $0
-	db $5a
-	db $c9
-	db $4f
-	db $ba
-	db $de
-	db $d7
-	db $de
-	db $26
-	db $7f
-	db $c4
-	db $b9
-	db $c0
-	db $e7
-	db $58
+text_34a32:
+	db "<NULL><USER>の<LINE>こんらんが　とけた！<PROMPT>"
 
-Text34a41:
-	db $0
-	db $5a
-	db $c9
-	db $7f
-	db $ba
-	db $b3
-	db $29
-	db $b7
-	db $ca
-	db $4f
-	db $cf
-	db $30
-	db $7f
-	db $c2
-	db $32
-	db $b2
-	db $c3
-	db $b2
-	db $d9
-	db $57
+text_34a41:
+	db "<NULL><USER>の　こうげきは<LINE>まだ　つづいている<DONE>"
 
-Text34a55:
-	db $0
-	db $5a
-	db $ca
-	db $4f
-	db $d0
-	db $b3
-	db $2a
-	db $b7
-	db $26
-	db $7f
-	db $c4
-	db $da
-	db $c5
-	db $b2
-	db $e7
-	db $58
+text_34a55:
+	db "<NULL><USER>は<LINE>みうごきが　とれない！<PROMPT>"
 
-Text34a65:
-	db $0
-	db $5a
-	db $ca
-	db $7f
-	db $26
-	db $cf
-	db $de
-	db $bc
-	db $c3
-	db $b2
-	db $d9
-	db $58
+text_34a65:
+	db "<NULL><USER>は　がまんしている<PROMPT>"
 
-Text34a71:
-	db $0
-	db $5a
-	db $c9
-	db $4f
-	db $26
-	db $cf
-	db $de
-	db $26
-	db $7f
-	db $c4
-	db $b6
-	db $da
-	db $c0
-	db $e7
-	db $58
+text_34a71:
+	db "<NULL><USER>の<LINE>がまんが　とかれた！<PROMPT>"
 
-Text34a80:
-	db $0
-	db $59
-	db $ca
-	db $4f
-	db $50
-	db $1
-	db $26
-	db $cd
-	db $0
-	db $33
-	db $7f
-	db $d3
-	db $c1
-	db $ba
-	db $c0
-	db $b4
-	db $c0
-	db $e7
-	db $58
+text_34a80:
+	db "<NULL><TARGET>は<LINE>@"
+	text_from_ram wStringBuffer1
+	db "<NULL>で　もちこたえた！<PROMPT>"
 
-Text34a93:
-	db $0
-	db $59
-	db $ca
-	db $7f
-	db $b1
-	db $b2
-	db $c3
-	db $c9
-	db $4f
-	db $ba
-	db $b3
-	db $29
-	db $b7
-	db $dd
-	db $7f
-	db $ba
-	db $d7
-	db $b4
-	db $c0
-	db $e7
-	db $58
+text_34a93:
+	db "<NULL><TARGET>は　あいての<LINE>こうげきを　こらえた！<PROMPT>"
 
-Text34aa8:
-	db $0
-	db $5a
-	db $ca
-	db $4f
-	db $59
-	db $c6
-	db $7f
-	db $a0
-	db $a8
-	db $a0
-	db $a8
-	db $30
-	db $e7
-	db $58
+text_34aa8:
+	db "<NULL><USER>は<LINE><TARGET>に　メロメロだ！<PROMPT>"
 
-Text34ab6:
-	db $0
-	db $5a
-	db $ca
-	db $7f
-	db $a0
-	db $a8
-	db $a0
-	db $a8
-	db $33
-	db $4f
-	db $dc
-	db $2b
-	db $26
-	db $7f
-	db $30
-	db $be
-	db $c5
-	db $b6
-	db $df
-	db $c0
-	db $e7
-	db $58
-
-;:
-
-
-
-;:
+text_34ab6:
+	db "<NULL><USER>は　メロメロで<LINE>わざが　だせなかった！<PROMPT>"
 
 sub_34acc:
 	ld hl, wcac1
@@ -2300,40 +2010,18 @@ asm_34adb:
 	ld a, [hl]
 	ld [wCountSetBitsResult], a
 	call Unreferenced_GetMoveName
-	ld hl, Text34aec
+	ld hl, text_34aec
 	jp PrintText
 
-
-
-Text34aec:
-	db $0
-	db $5a
-	db $ca
-	db $7f
-	db $b6
-	db $c5
-	db $bc
-	db $3a
-	db $d8
-	db $33
-	db $4f
-	db $50
-	db $1
-	db $26
-	db $cd
-	db $0
-	db $26
-	db $30
-	db $be
-	db $c5
-	db $b2
-	db $e7
-
-Data34b02:
-	db $58
+text_34aec:
+	text "<USER>は　かなしばりで<LINE>@"
+	text_from_ram wStringBuffer1
+	text "がだせない！"
+text_34b02:
+	prompt
 
 sub_34b03:
-	ld hl, Text34a1b
+	ld hl, text_34a1b
 	call PrintText
 	xor a
 	ld [wca39], a
@@ -2350,8 +2038,6 @@ sub_34b03:
 	xor a
 	ldh [hBattleTurn], a
 	jp sub_35fc9
-
-
 
 asm_34b2c:
 	ldh a, [hBattleTurn]
@@ -2428,7 +2114,7 @@ asm_34b87:
 	jr c, asm_34baa
 	cp b
 	jr nc, asm_34bbc
-	ld hl, Text34c54
+	ld hl, text_34c54
 	call PrintText
 	call sub_34b03
 	jp asm_34c34
@@ -2440,22 +2126,22 @@ asm_34baa:
 	and 7
 	jr z, asm_34baa
 	ld [wca10], a
-	ld hl, Text34c44
+	ld hl, text_34c44
 	jr asm_34bd6
 
 asm_34bbc:
 	call BattleRandom
 	and 3
-	ld hl, Text34c37
+	ld hl, text_34c37
 	and a
 	jr z, asm_34bd6
-	ld hl, Text34c54
+	ld hl, text_34c54
 	dec a
 	jr z, asm_34bd6
-	ld hl, Text34c65
+	ld hl, text_34c65
 	dec a
 	jr z, asm_34bd6
-	ld hl, Text34c74
+	ld hl, text_34c74
 
 asm_34bd6:
 	call PrintText
@@ -2521,7 +2207,7 @@ asm_34c0a:
 asm_34c34:
 	jp asm_357a9
 
-Text34c37:
+text_34c37:
 	db $1
 	db $fc
 	db $c9
@@ -2536,7 +2222,7 @@ Text34c37:
 	db $d9
 	db $58
 
-Text34c44:
+text_34c44:
 	db $1
 	db $fc
 	db $c9
@@ -2554,7 +2240,7 @@ Text34c44:
 	db $e7
 	db $58
 
-Text34c54:
+text_34c54:
 	db $1
 	db $fc
 	db $c9
@@ -2573,7 +2259,7 @@ Text34c54:
 	db $b2
 	db $58
 
-Text34c65:
+text_34c65:
 	db $1
 	db $fc
 	db $c9
@@ -2590,7 +2276,7 @@ Text34c65:
 	db $c0
 	db $58
 
-Text34c74:
+text_34c74:
 	db $1
 	db $fc
 	db $c9
@@ -2608,12 +2294,10 @@ Text34c74:
 	db $58
 
 asm_34c83:
-	ld hl, Text34c89
+	ld hl, text_34c89
 	jp PrintText
 
-
-
-Text34c89:
+text_34c89:
 	db $0
 	db $5a
 	db $50
@@ -2903,12 +2587,12 @@ asm_34dd6:
 
 asm_34de2:
 	call sub_37f5f
-	ld hl, Text34dee
+	ld hl, text_34dee
 	call PrintText
 	ld b, 1
 	ret
 
-Text34dee:
+text_34dee:
 	db $0
 	db $bc
 	db $b6
@@ -3028,8 +2712,8 @@ asm_34e75:
 	ret
 
 Data34e86:
-	dw Data34b02
-	dw wa398
+	dw text_34b02
+	dw $a398
 	db $ff
 
 asm_34e8b:
@@ -3368,7 +3052,7 @@ asm_35048:
 asm_3506c:
 	ret
 
-SECTION "engine/dumps/bank0d.asm@asm_3519b", ROMX
+INCLUDE "data/types/type_matchups.inc"
 
 asm_3519b:
 	ld hl, wce29
@@ -3697,8 +3381,6 @@ asm_35380:
 	ld a, $a4
 	jp sub_37f23
 
-
-
 asm_35393:
 	ld a, [wca3a]
 	and a
@@ -3735,8 +3417,6 @@ asm_353cf:
 	ld e, c
 	ld d, 0
 	jp sub_35f53
-
-
 
 asm_353d5:
 	ld a, [wca5c]
@@ -3846,17 +3526,15 @@ asm_35483:
 	ret z
 	dec a
 	jr nz, asm_35490
-	ld hl, Text34a93
+	ld hl, text_34a93
 	jp PrintText
-
-
 
 asm_35490:
 	call Function37e2d
 	ld a, [hl]
 	ld [wCountSetBitsResult], a
 	call GetItemName
-	ld hl, Text34a80
+	ld hl, text_34a80
 	jp PrintText
 
 sub_354a0:
@@ -3921,9 +3599,9 @@ asm_354fb:
 	ld a, [hl]
 	and a
 	ld [hl], 2
-	ld hl, Text35570
+	ld hl, text_35570
 	jr z, asm_35507
-	ld hl, Text3557d
+	ld hl, text_3557d
 
 asm_35507:
 	call PrintText
@@ -3987,18 +3665,14 @@ asm_35556:
 	call Predef
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, Text35593
+	ld hl, text_35593
 	jp PrintText
-
-
 
 asm_3556a:
 	call sub_37f5f
 	jp Function37499
 
-
-
-Text35570:
+text_35570:
 	db $0
 	db $5a
 	db $ca
@@ -4013,7 +3687,7 @@ Text35570:
 	db $e7
 	db $57
 
-Text3557d:
+text_3557d:
 	db $0
 	db $5a
 	db $ca
@@ -4037,7 +3711,7 @@ Text3557d:
 	db $e7
 	db $57
 
-Text35593:
+text_35593:
 	db $0
 	db $5a
 	db $ca
@@ -4066,15 +3740,15 @@ sub_355a6:
 	ld de, wc9e9
 
 asm_355b1:
-	ld hl, Text35649
+	ld hl, text_35649
 	ld a, [wca38]
 	and $7f
 	jr z, asm_355c8
-	ld hl, Text35605
+	ld hl, text_35605
 	ld a, [wca39]
 	cp $ff
 	jr nz, asm_355c8
-	ld hl, Text35633
+	ld hl, text_35633
 
 asm_355c8:
 	push de
@@ -4103,7 +3777,7 @@ asm_355c8:
 	ld [hl], a
 
 asm_355ee:
-	ld hl, Text35619
+	ld hl, text_35619
 	call PrintText
 	ld a, 1
 	ld [wca5c], a
@@ -4113,9 +3787,7 @@ asm_355ee:
 	jp nz, sub_35f68
 	jp sub_35fc9
 
-
-
-Text35605:
+text_35605:
 	db $0
 	db $bc
 	db $b6
@@ -4137,7 +3809,7 @@ Text35605:
 	db $e7
 	db $58
 
-Text35619:
+text_35619:
 	db $0
 	db $b2
 	db $b7
@@ -4165,7 +3837,7 @@ Text35619:
 	db $e7
 	db $58
 
-Text35633:
+text_35633:
 	db $0
 	db $59
 	db $c6
@@ -4184,12 +3856,10 @@ Text35633:
 	db $58
 
 asm_35643:
-	ld hl, Text35649
+	ld hl, text_35649
 	jp PrintText
 
-
-
-Text35649:
+text_35649:
 	db $0
 	db $59
 	db $c6
@@ -4231,13 +3901,11 @@ asm_35675:
 	ld c, $14
 	jp DelayFrames
 
-
-
 Data3567a:
-	dw Text3567e
-	dw Text3568c
+	dw text_3567e
+	dw text_3568c
 
-Text3567e:
+text_3567e:
 	db $0
 	db $b7
 	db $e1
@@ -4253,7 +3921,7 @@ Text3567e:
 	db $e7
 	db $58
 
-Text3568c:
+text_3568c:
 	db $0
 	db $b2
 	db $c1
@@ -4272,16 +3940,14 @@ asm_35698:
 	and $7f
 	cp $a
 	ret z
-	ld hl, Text356ab
+	ld hl, text_356ab
 	jr nc, asm_356a8
-	ld hl, Text356b8
+	ld hl, text_356b8
 
 asm_356a8:
 	jp PrintText
 
-
-
-Text356ab:
+text_356ab:
 	db $0
 	db $ba
 	db $b3
@@ -4296,7 +3962,7 @@ Text356ab:
 	db $e7
 	db $58
 
-Text356b8:
+text_356b8:
 	db $0
 	db $ba
 	db $b3
@@ -4331,7 +3997,7 @@ asm_356da:
 	ld a, [de]
 	bit 6, a
 	jr z, asm_3573b
-	ld hl, Text3573e
+	ld hl, text_3573e
 	call PrintText
 	ldh a, [hBattleTurn]
 	and a
@@ -4380,7 +4046,7 @@ asm_356fd:
 asm_3573b:
 	jp asm_357a9
 
-Text3573e:
+text_3573e:
 	db $0
 	db $59
 	db $ca
@@ -4428,7 +4094,7 @@ asm_35769:
 	inc hl
 	ld [hl], $a
 	push hl
-	ld hl, Text35791
+	ld hl, text_35791
 	call PrintText
 	pop hl
 	xor a
@@ -4440,7 +4106,7 @@ asm_35769:
 	ldh [hBattleTurn], a
 	ret
 
-Text35791:
+text_35791:
 	db $0
 	db $5a
 	db $c9
@@ -4939,8 +4605,10 @@ asm_35a74:
 	ld a, 1
 	and a
 	ret
-	dw Data34b02
-	dw wa398
+
+unknown_35a78:
+	dw text_34b02
+	dw $a398
 	db $ff
 
 Data35a7d:
@@ -5197,16 +4865,14 @@ asm_35bd4:
 	inc a
 	ld [de], a
 	call sub_37f0f
-	ld hl, Text35bfb
+	ld hl, text_35bfb
 	jp PrintText
-
-
 
 asm_35bf5:
 	call sub_37f5f
 	jp asm_374b1
 
-Text35bfb:
+text_35bfb:
 	db $0
 	db $59
 	db $ca
@@ -5254,7 +4920,7 @@ asm_35c0b:
 	ld hl, wTileMap + 42
 	ld a, $17
 	call Predef
-	ld hl, Text35caf
+	ld hl, text_35caf
 	jp PrintText
 
 sub_35c59:
@@ -5316,7 +4982,7 @@ asm_35ca9:
 	call sub_37f5f
 	jp asm_374b1
 
-Text35caf:
+text_35caf:
 	db $0
 	db $b5
 	db $c0
@@ -5392,12 +5058,10 @@ asm_35d09:
 	ld [wCountSetBitsResult], a
 	ld a, $3e
 	call Predef
-	ld hl, Text35d19
+	ld hl, text_35d19
 	jp PrintText
 
-
-
-Text35d19:
+text_35d19:
 	db $0
 	db $59
 	db $c9
@@ -5437,16 +5101,14 @@ asm_35d3c:
 	jp nz, asm_35d53
 	set 5, [hl]
 	call sub_37f0f
-	ld hl, Text35d59
+	ld hl, text_35d59
 	jp PrintText
-
-
 
 asm_35d53:
 	call sub_37f5f
 	jp asm_374b1
 
-Text35d59:
+text_35d59:
 	db $0
 	db $59
 	db $dd
@@ -5480,16 +5142,14 @@ asm_35d66:
 	ld [wCountSetBitsResult], a
 	call Unreferenced_GetMoveName
 	call sub_37f0f
-	ld hl, Text35d9b
+	ld hl, text_35d9b
 	jp PrintText
-
-
 
 asm_35d95:
 	call sub_37f5f
 	jp asm_374b1
 
-Text35d9b:
+text_35d9b:
 	db $0
 	db $5a
 	db $ca
@@ -5605,8 +5265,6 @@ asm_35e3b:
 	ld hl, Data35e46
 	jp PrintText
 
-
-
 Data35e46:
 	db $0
 	db $5a
@@ -5697,16 +5355,14 @@ asm_35eaf:
 	add hl, bc
 	ld [hl], a
 	call sub_37f0f
-	ld hl, Text35eca
+	ld hl, text_35eca
 	jp PrintText
-
-
 
 asm_35ec4:
 	call sub_37f5f
 	jp asm_374b1
 
-Text35eca:
+text_35eca:
 	db $0
 	db $59
 	db $c9
@@ -5798,16 +5454,14 @@ asm_35f24:
 	res 0, a
 	ld [de], a
 	call sub_37f0f
-	ld hl, Text35f3e
+	ld hl, text_35f3e
 	jp PrintText
-
-
 
 asm_35f38:
 	call sub_37f5f
 	jp asm_3746a
 
-Text35f3e:
+text_35f3e:
 	db $0
 	db $5a
 	db $c9
@@ -5837,9 +5491,7 @@ sub_35f53:
 	ld [wccc1], a
 	ld c, 3
 	call DelayFrames
-	ld hl, PlayBattleAnim
-	ld a, $33
-	jp FarCall_hl
+	jpab PlayBattleAnim
 
 sub_35f68:
 	ld hl, wce29
@@ -5946,10 +5598,8 @@ asm_36024:
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-
-
 asm_3602a:
-	ld hl, Text36084
+	ld hl, text_36084
 	call PrintText
 	ld de, wcabd
 	ld bc, wca43
@@ -5973,7 +5623,7 @@ asm_3604c:
 	ld h, b
 	ld l, c
 	res 4, [hl]
-	ld hl, Text3609e
+	ld hl, text_3609e
 	call PrintText
 	ldh a, [hBattleTurn]
 	push af
@@ -6000,9 +5650,7 @@ asm_3607c:
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-
-
-Text36084:
+text_36084:
 	db $0
 	db $59
 	db $c6
@@ -6030,7 +5678,7 @@ Text36084:
 	db $e7
 	db $58
 
-Text3609e:
+text_3609e:
 	db $0
 	db $59
 	db $c9
@@ -6100,7 +5748,6 @@ asm_36101:
 	call Unreferenced_GetMoveName
 	jp CopyStringToStringBuffer2
 
-
 	ld de, wcde7
 	ld bc, wca43
 	ldh a, [hBattleTurn]
@@ -6140,7 +5787,7 @@ asm_3613b:
 	push de
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, Text36176
+	ld hl, text_36176
 	call PrintText
 	pop de
 	call Function37e2d
@@ -6163,9 +5810,7 @@ asm_36165:
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-
-
-Text36176:
+text_36176:
 	db $0
 	db $59
 	db $ca
@@ -6194,7 +5839,7 @@ asm_36196:
 	ld a, [wca38]
 	and $7f
 	cp $a
-	ld hl, Text35649
+	ld hl, text_35649
 	jr c, asm_36215
 	push bc
 	call Function37e2d
@@ -6205,15 +5850,15 @@ asm_36196:
 	ld a, [hl]
 	ld [wCountSetBitsResult], a
 	call GetItemName
-	ld hl, Text374f7
+	ld hl, text_374f7
 	jr asm_36215
 
 asm_361b8:
 	ld a, [de]
 	and 7
-	ld hl, Text3621b
+	ld hl, text_3621b
 	jr nz, asm_36215
-	ld hl, Text374b7
+	ld hl, text_374b7
 	ld a, [de]
 	and a
 	jr nz, asm_36215
@@ -6237,7 +5882,7 @@ asm_361da:
 	push de
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, Text36176
+	ld hl, text_36176
 	call PrintText
 	pop de
 	call Function37e2d
@@ -6260,15 +5905,11 @@ asm_36204:
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-
-
 asm_36215:
 	call sub_37f5f
 	jp PrintText
 
-
-
-Text3621b:
+text_3621b:
 	db $0
 	db $59
 	db $ca
@@ -6318,7 +5959,7 @@ asm_36235:
 	call sub_37f35
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, Text3628d
+	ld hl, text_3628d
 	call PrintText
 	pop de
 	call Function37e2d
@@ -6341,9 +5982,7 @@ asm_3627c:
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-
-
-Text3628d:
+text_3628d:
 	db $0
 	db $59
 	db $ca
@@ -6365,12 +6004,12 @@ asm_36299:
 	ld de, wca10
 
 asm_362a4:
-	ld hl, Text35649
+	ld hl, text_35649
 	ld a, [wca38]
 	and $7f
 	cp $a
 	jp c, asm_3634b
-	ld hl, Text36351
+	ld hl, text_36351
 	ld a, [de]
 	bit 3, a
 	jp nz, asm_3634b
@@ -6381,11 +6020,11 @@ asm_362a4:
 	ld a, [hl]
 	ld [wCountSetBitsResult], a
 	call GetItemName
-	ld hl, Text374f7
+	ld hl, text_374f7
 	jr asm_3634b
 
 asm_362ce:
-	ld hl, Text374b7
+	ld hl, text_374b7
 	and a
 	jr nz, asm_3634b
 	call sub_3750b
@@ -6400,7 +6039,7 @@ asm_362ce:
 	call sub_36331
 	jr z, asm_362f4
 	call sub_37eec
-	ld hl, Text3628d
+	ld hl, text_3628d
 	call PrintText
 	jr asm_36307
 
@@ -6411,7 +6050,7 @@ asm_362f4:
 	call sub_37eec
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, Text36363
+	ld hl, text_36363
 	call PrintText
 
 asm_36307:
@@ -6459,9 +6098,7 @@ asm_3634b:
 	call sub_37f5f
 	jp PrintText
 
-
-
-Text36351:
+text_36351:
 	db $0
 	db $59
 	db $ca
@@ -6481,7 +6118,7 @@ Text36351:
 	db $d9
 	db $58
 
-Text36363:
+text_36363:
 	db $0
 	db $59
 	db $ca
@@ -6499,12 +6136,10 @@ Text36363:
 
 asm_36371:
 	call sub_363a3
-	ld hl, Text3637a
+	ld hl, text_3637a
 	jp PrintText
 
-
-
-Text3637a:
+text_3637a:
 	db $0
 	db $59
 	db $b6
@@ -6527,12 +6162,10 @@ Text3637a:
 
 asm_3638d:
 	call sub_363a3
-	ld hl, Text36396
+	ld hl, text_36396
 	jp PrintText
 
-
-
-Text36396:
+text_36396:
 	db $0
 	db $59
 	db $c9
@@ -6636,8 +6269,6 @@ asm_3640e:
 	ld hl, sub_3d3f4
 	jp CallFromBank0F
 
-
-
 asm_36426:
 	xor a
 	ld [wcccd], a
@@ -6675,7 +6306,7 @@ asm_36439:
 	call sub_37f35
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, Text36495
+	ld hl, text_36495
 	call PrintText
 	call Function37e2d
 	ld a, b
@@ -6698,9 +6329,7 @@ asm_36484:
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-
-
-Text36495:
+text_36495:
 	db $0
 	db $59
 	db $ca
@@ -6734,12 +6363,10 @@ asm_364b9:
 	call AddNTimes
 	xor a
 	ld [hl], a
-	ld hl, Text364c7
+	ld hl, text_364c7
 	jp PrintText
 
-
-
-Text364c7:
+text_364c7:
 	db $0
 	db $ce
 	db $c9
@@ -6798,7 +6425,7 @@ asm_364ef:
 	call sub_37f35
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, Text36546
+	ld hl, text_36546
 	call PrintText
 	call Function37e2d
 	ld a, b
@@ -6821,9 +6448,7 @@ asm_36535:
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-
-
-Text36546:
+text_36546:
 	db $0
 	db $59
 	db $ca
@@ -7041,14 +6666,12 @@ asm_3668f:
 	and a
 	ld hl, sub_3e360
 	call z, CallFromBank0F
-	ld hl, Text366b2
+	ld hl, text_366b2
 	call PrintText
 	ld hl, sub_3e254
 	call CallFromBank0F
 	ld hl, asm_3e291
 	jp CallFromBank0F
-
-
 
 asm_366aa:
 	pop hl
@@ -7058,7 +6681,7 @@ asm_366ac:
 	call sub_37f5f
 	jp asm_3746a
 
-Text366b2:
+text_366b2:
 	db $0
 	db $5a
 	db $c9
@@ -7070,7 +6693,7 @@ Text366b2:
 	db $26
 	db $50
 	db $8
-	ld hl, Text366d3
+	ld hl, text_366d3
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wc9f0]
@@ -7080,10 +6703,10 @@ Text366b2:
 asm_366cc:
 	cp $12
 	ret nc
-	ld hl, Text366db
+	ld hl, text_366db
 	ret
 
-Text366d3:
+text_366d3:
 	db $a
 	db $0
 	db $4c
@@ -7093,7 +6716,7 @@ Text366d3:
 	db $c4
 	db $50
 
-Text366db:
+text_366db:
 	db $0
 	db $7f
 	db $b1
@@ -7258,14 +6881,12 @@ asm_367c8:
 	and a
 	ld hl, sub_3e360
 	call nz, CallFromBank0F
-	ld hl, Text367fa
+	ld hl, text_367fa
 	call PrintText
 	ld hl, sub_3e254
 	call nz, CallFromBank0F
 	ld hl, asm_3e291
 	jp CallFromBank0F
-
-
 
 asm_367e3:
 	pop de
@@ -7286,7 +6907,7 @@ asm_367f0:
 	call sub_37f5f
 	jp asm_37494
 
-Text367fa:
+text_367fa:
 	db $0
 	db $59
 	db $c9
@@ -7298,7 +6919,7 @@ Text367fa:
 	db $26
 	db $50
 	db $8
-	ld hl, Text36826
+	ld hl, text_36826
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wc9f0]
@@ -7310,10 +6931,10 @@ asm_36814:
 	ret c
 	cp $44
 	ret nc
-	ld hl, Text3681e
+	ld hl, text_3681e
 	ret
 
-Text3681e:
+text_3681e:
 	db $a
 	db $0
 	db $4c
@@ -7323,7 +6944,7 @@ Text3681e:
 	db $c4
 	db $50
 
-Text36826:
+text_36826:
 	db $0
 	db $7f
 	db $bb
@@ -7334,7 +6955,7 @@ Text36826:
 	db $58
 
 sub_3682e:
-	ld hl, Text36845
+	ld hl, text_36845
 	ld c, $50
 
 asm_36833:
@@ -7352,9 +6973,7 @@ asm_3683c:
 	ld bc, $a
 	jp CopyBytes
 
-
-
-Text36845:
+text_36845:
 	db $ba
 	db $b3
 	db $29
@@ -7462,7 +7081,7 @@ asm_368c8:
 	jr nz, asm_368ff
 	ld hl, wPlayerSubStatus3
 	res 0, [hl]
-	ld hl, Text34a71
+	ld hl, text_34a71
 	call PrintText
 	ld a, 1
 	ld [wc9f1], a
@@ -7489,7 +7108,7 @@ asm_368f2:
 	jp asm_37f6b
 
 asm_368ff:
-	ld hl, Text34a65
+	ld hl, text_34a65
 	call PrintText
 	jp asm_357a9
 
@@ -7601,8 +7220,6 @@ asm_3699d:
 	jp nz, asm_374b1
 	jp Function37499
 
-
-
 asm_369bc:
 	ld hl, sub_3d3f4
 	call CallFromBank0F
@@ -7617,13 +7234,11 @@ asm_369cf:
 	xor a
 	ld [wca5c], a
 	call sub_37f0f
-	ld hl, Text374c8
+	ld hl, text_374c8
 	ld a, [wc9ef]
 	cp $64
 	jp nz, PrintText
 	jp Function37499
-
-
 
 asm_369e4:
 	ld a, [wBattleMode]
@@ -7654,8 +7269,6 @@ asm_369f7:
 	jp nz, asm_374b1
 	jp Function37499
 
-
-
 asm_36a16:
 	ld hl, sub_3d3f4
 	call CallFromBank0F
@@ -7670,7 +7283,7 @@ asm_36a29:
 	xor a
 	ld [wca5c], a
 	call sub_37f0f
-	ld hl, Text374c8
+	ld hl, text_374c8
 	ld a, [wc9e8]
 	cp $64
 	jp nz, PrintText
@@ -7684,20 +7297,18 @@ asm_36a3e:
 	ld c, 20
 	call DelayFrames
 	pop af
-	ld hl, Text36a61
+	ld hl, text_36a61
 	cp $64
-	jr z, Text36a5e
-	ld hl, Text36a73
+	jr z, text_36a5e
+	ld hl, text_36a73
 	cp $2e
-	jr z, Text36a5e
-	ld hl, Text36a85
+	jr z, text_36a5e
+	ld hl, text_36a85
 
-Text36a5e:
+text_36a5e:
 	jp PrintText
 
-
-
-Text36a61:
+text_36a61:
 	db $0
 	db $5a
 	db $ca
@@ -7717,7 +7328,7 @@ Text36a61:
 	db $e7
 	db $58
 
-Text36a73:
+text_36a73:
 	db $0
 	db $59
 	db $ca
@@ -7737,7 +7348,7 @@ Text36a73:
 	db $e7
 	db $58
 
-Text36a85:
+text_36a85:
 	db $0
 	db $59
 	db $ca
@@ -7823,12 +7434,12 @@ asm_36af2:
 	jr nz, asm_36b14
 
 asm_36af7:
-	ld hl, Text36b2b
+	ld hl, text_36b2b
 	ld de, wPlayerSubStatus3
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36b08
-	ld hl, Text36b40
+	ld hl, text_36b40
 	ld de, wEnemySubStatus3
 
 asm_36b08:
@@ -7859,7 +7470,7 @@ asm_36b1c:
 	ld [wca7b], a
 	ret
 
-Text36b2b:
+text_36b2b:
 	db $0
 	db $b1
 	db $b2
@@ -7881,7 +7492,7 @@ Text36b2b:
 	db $e7
 	db $58
 
-Text36b40:
+text_36b40:
 	db $0
 	db $b1
 	db $b2
@@ -8039,38 +7650,38 @@ asm_36c27:
 asm_36c2e:
 	ld a, [de]
 	ld [wMovementBufferCount], a
-	ld hl, Text36c3b
+	ld hl, text_36c3b
 	call PrintText
 	jp asm_357a9
 
-Text36c3b:
+text_36c3b:
 	db $0
 	db $5a
 	db $50
 	db $8
 	ld a, [wMovementBufferCount]
 	cp $d
-	ld hl, Text36c6b
+	ld hl, text_36c6b
 	jr z, asm_36c6a
 	cp $4c
-	ld hl, Text36c80
+	ld hl, text_36c80
 	jr z, asm_36c6a
 	cp $82
-	ld hl, Text36c92
+	ld hl, text_36c92
 	jr z, asm_36c6a
 	cp $8f
-	ld hl, Text36ca0
+	ld hl, text_36ca0
 	jr z, asm_36c6a
 	cp $13
-	ld hl, Text36cb2
+	ld hl, text_36cb2
 	jr z, asm_36c6a
 	cp $5b
-	ld hl, Text36cc3
+	ld hl, text_36cc3
 
 asm_36c6a:
 	ret
 
-Text36c6b:
+text_36c6b:
 	db $0
 	db $c9
 	db $7f
@@ -8093,7 +7704,7 @@ Text36c6b:
 	db $e7
 	db $58
 
-Text36c80:
+text_36c80:
 	db $0
 	db $ca
 	db $4f
@@ -8113,7 +7724,7 @@ Text36c80:
 	db $e7
 	db $58
 
-Text36c92:
+text_36c92:
 	db $0
 	db $ca
 	db $4f
@@ -8129,7 +7740,7 @@ Text36c92:
 	db $e7
 	db $58
 
-Text36ca0:
+text_36ca0:
 	db $0
 	db $dd
 	db $4f
@@ -8149,7 +7760,7 @@ Text36ca0:
 	db $e7
 	db $58
 
-Text36cb2:
+text_36cb2:
 	db $0
 	db $ca
 	db $4f
@@ -8168,7 +7779,7 @@ Text36cb2:
 	db $e7
 	db $58
 
-Text36cc3:
+text_36cc3:
 	db $0
 	db $ca
 	db $4f
@@ -8250,7 +7861,7 @@ asm_36d2b:
 asm_36d2e:
 	push hl
 	push de
-	ld hl, Text34a41
+	ld hl, text_34a41
 	call PrintText
 	pop hl
 	dec [hl]
@@ -8271,17 +7882,13 @@ asm_36d48:
 	jr nz, asm_36d57
 	set 1, [hl]
 	call sub_37f0f
-	ld hl, Text36d5a
+	ld hl, text_36d5a
 	jp PrintText
-
-
 
 asm_36d57:
 	jp Function37499
 
-
-
-Text36d5a:
+text_36d5a:
 	db $0
 	db $5a
 	db $ca
@@ -8314,18 +7921,14 @@ asm_36d78:
 	jr nz, asm_36d87
 	set 2, [hl]
 	call sub_37f0f
-	ld hl, Text36d8d
+	ld hl, text_36d8d
 	jp PrintText
-
-
 
 asm_36d87:
 	call sub_37f5f
 	jp Function37499
 
-
-
-Text36d8d:
+text_36d8d:
 	db $a
 	db $0
 	db $5a
@@ -8408,12 +8011,10 @@ asm_36dfb:
 	ld [wHPBarType], a
 	ld a, $17
 	call Predef
-	ld hl, Text36e09
+	ld hl, text_36e09
 	jp PrintText
 
-
-
-Text36e09:
+text_36e09:
 	db $0
 	db $5a
 	db $ca
@@ -8454,10 +8055,8 @@ asm_36e2b:
 	ld [wCountSetBitsResult], a
 	call GetItemName
 	call sub_37f5f
-	ld hl, Text374f7
+	ld hl, text_374f7
 	jp PrintText
-
-
 
 asm_36e43:
 	call sub_3750b
@@ -8504,8 +8103,6 @@ asm_36e86:
 asm_36e8c:
 	ld hl, Data36e92
 	jp PrintText
-
-
 
 Data36e92:
 	db $0
@@ -8558,10 +8155,8 @@ asm_36ebf:
 	ld [wCountSetBitsResult], a
 	call GetItemName
 	call sub_37f5f
-	ld hl, Text374f7
+	ld hl, text_374f7
 	jp PrintText
-
-
 
 asm_36ee6:
 	ld a, [wca3a]
@@ -8597,8 +8192,6 @@ asm_36f18:
 	call Function37e60
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
-
-
 
 asm_36f29:
 	call sub_37f5f
@@ -8659,31 +8252,25 @@ asm_36f4f:
 	jr asm_36f91
 
 asm_36f89:
-	ld hl, Functioncc000_2
-	ld a, $33
-	call FarCall_hl
+	callab Functioncc000_2
 
 asm_36f91:
-	ld hl, Text36fa8
+	ld hl, text_36fa8
 	call PrintText
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-
-
 asm_36f9d:
-	ld hl, Text36fd8
+	ld hl, text_36fd8
 	jr asm_36fa5
 
 asm_36fa2:
-	ld hl, Text36fd0
+	ld hl, text_36fd0
 
 asm_36fa5:
 	jp PrintText
 
-
-
-Text36fa8:
+text_36fa8:
 	db $0
 	db $5a
 	db $c9
@@ -8701,7 +8288,7 @@ Text36fa8:
 	db $c0
 	db $58
 
-Text36fd8:
+text_36fd8:
 	db $0
 	db $bc
 	db $b6
@@ -8727,7 +8314,7 @@ Text36fd8:
 	db $e7
 	db $58
 
-Text36fd0:
+text_36fd0:
 	db $0
 	db $bc
 	db $b6
@@ -8823,17 +8410,13 @@ asm_3703e:
 	ld [wCountSetBitsResult], a
 	call Unreferenced_GetMoveName
 	call sub_37f0f
-	ld hl, Text37058
+	ld hl, text_37058
 	jp PrintText
-
-
 
 asm_37055:
 	jp Function37499
 
-
-
-Text37058:
+text_37058:
 	db $0
 	db $5a
 	db $ca
@@ -8875,19 +8458,15 @@ asm_37080:
 	jr nz, asm_3709a
 	set 7, [hl]
 	call sub_37f0f
-	ld hl, Text370a3
+	ld hl, text_370a3
 	jp PrintText
-
-
 
 asm_3709a:
 	call sub_37f5f
-	ld hl, Text370b2
+	ld hl, text_370b2
 	jp PrintText
 
-
-
-Text370a3:
+text_370a3:
 	db $0
 	db $59
 	db $c6
@@ -8904,7 +8483,7 @@ Text370a3:
 	db $e7
 	db $58
 
-Text370b2:
+text_370b2:
 	db $0
 	db $59
 	db $ca
@@ -8988,18 +8567,14 @@ asm_37125:
 	ld a, [wCountSetBitsResult]
 	ld [hl], a
 	call Unreferenced_GetMoveName
-	ld hl, Text37138
+	ld hl, text_37138
 	jp PrintText
-
-
 
 asm_37132:
 	call sub_37f5f
 	jp Function37499
 
-
-
-Text37138:
+text_37138:
 	db $0
 	db $59
 	db $c9
@@ -9034,17 +8609,15 @@ asm_3715b:
 	ld hl, wcacc
 	add [hl]
 	ld [hld], a
-	jr nc, Text3716e
+	jr nc, text_3716e
 	inc [hl]
 	dec hl
-	jr nz, Text3716e
+	jr nz, text_3716e
 	inc [hl]
 
-Text3716e:
+text_3716e:
 	ld hl, Data3716e
 	jp PrintText
-
-
 
 Data3716e:
 	db $0
@@ -9086,12 +8659,10 @@ asm_3718f:
 	ld a, [hl]
 	ld [de], a
 	call sub_37f0f
-	ld hl, Text371a2
+	ld hl, text_371a2
 	jp PrintText
 
-
-
-Text371a2:
+text_371a2:
 	db $0
 	db $59
 	db $c9
@@ -9116,8 +8687,6 @@ Text371a2:
 
 asm_371b7:
 	jp Function37499
-
-
 
 asm_371ba:
 	ld a, 7
@@ -9173,7 +8742,7 @@ asm_371f3:
 	and $f8
 	ld [hl], a
 	call sub_37f0f
-	ld hl, Text37234
+	ld hl, text_37234
 	jp PrintText
 
 sub_37224:
@@ -9196,7 +8765,7 @@ asm_3722d:
 	jr nz, asm_3722d
 	ret
 
-Text37234:
+text_37234:
 	db $0
 	db $bd
 	db $3d
@@ -9258,9 +8827,9 @@ asm_37282:
 	ld a, [hl]
 	and a
 	ld [hl], 2
-	ld hl, Text372cf
+	ld hl, text_372cf
 	jr z, asm_3728e
-	ld hl, Text372dc
+	ld hl, text_372dc
 
 asm_3728e:
 	call PrintText
@@ -9270,15 +8839,11 @@ asm_3728e:
 
 asm_37294:
 	jr z, asm_372a0
-	ld hl, asm_3c7d3
-	ld a, $f
-	call FarCall_hl
+	callab Function3c7d3
 	jr asm_372a8
 
 asm_372a0:
-	ld hl, asm_3c7f2
-	ld a, $f
-	call FarCall_hl
+	callab Function3c7f2
 
 asm_372a8:
 	call sub_37f0f
@@ -9286,25 +8851,19 @@ asm_372a8:
 	push af
 	xor 1
 	ldh [hBattleTurn], a
-	ld hl, sub_3c808
-	ld a, $f
-	call FarCall_hl
+	callab sub_3c808
 	pop af
 	ldh [hBattleTurn], a
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, Text372f2
+	ld hl, text_372f2
 	jp PrintText
-
-
 
 asm_372c9:
 	call sub_37f5f
 	jp Function37499
 
-
-
-Text372cf:
+text_372cf:
 	db $0
 	db $5a
 	db $ca
@@ -9319,7 +8878,7 @@ Text372cf:
 	db $e7
 	db $57
 
-Text372dc:
+text_372dc:
 	db $0
 	db $5a
 	db $ca
@@ -9343,7 +8902,7 @@ Text372dc:
 	db $e7
 	db $57
 
-Text372f2:
+text_372f2:
 	db $0
 	db $5a
 	db $ca
@@ -9406,9 +8965,7 @@ asm_37334:
 	jr asm_3735b
 
 asm_37353:
-	ld hl, Functioncc000_2
-	ld a, $33
-	call FarCall_hl
+	callab Functioncc000_2
 
 asm_3735b:
 	xor a
@@ -9461,7 +9018,7 @@ asm_3738f:
 	pop hl
 	ld bc, $c
 	call CopyBytes
-	ld bc, wffe2
+	ld bc, hFFE2
 	add hl, bc
 	push de
 	ld d, h
@@ -9494,7 +9051,7 @@ asm_373bf:
 	ld de, wcaa9
 	ld bc, 8
 	call sub_373e5
-	ld hl, Text373f4
+	ld hl, text_373f4
 	jp PrintText
 
 sub_373e5:
@@ -9509,14 +9066,10 @@ sub_373e5:
 asm_373ee:
 	jp CopyBytes
 
-
-
 asm_373f1:
 	jp Function37499
 
-
-
-Text373f4:
+text_373f4:
 	db $0
 	db $5a
 	db $ca
@@ -9552,14 +9105,14 @@ asm_37418:
 	bit 1, [hl]
 	jr nz, asm_37439
 	set 1, [hl]
-	ld hl, Text3743f
+	ld hl, text_3743f
 	jr asm_37431
 
 asm_37428:
 	bit 2, [hl]
 	jr nz, asm_37439
 	set 2, [hl]
-	ld hl, Text37455
+	ld hl, text_37455
 
 asm_37431:
 	push hl
@@ -9567,15 +9120,11 @@ asm_37431:
 	pop hl
 	jp PrintText
 
-
-
 asm_37439:
 	call sub_37f5f
 	jp Function37499
 
-
-
-Text3743f:
+text_3743f:
 	db $0
 	db $5a
 	db $ca
@@ -9599,7 +9148,7 @@ Text3743f:
 	db $e7
 	db $58
 
-Text37455:
+text_37455:
 	db $0
 	db $5a
 	db $ca
@@ -9623,12 +9172,10 @@ Text37455:
 	db $58
 
 asm_3746a:
-	ld hl, Text37470
+	ld hl, text_37470
 	jp PrintText
 
-
-
-Text37470:
+text_37470:
 	db $0
 	db $bc
 	db $b6
@@ -9647,12 +9194,10 @@ Text37470:
 	db $58
 
 asm_37480:
-	ld hl, Text37486
+	ld hl, text_37486
 	jp PrintText
 
-
-
-Text37486:
+text_37486:
 	db $0
 	db $bc
 	db $b6
@@ -9674,10 +9219,10 @@ asm_37494:
 	ret nz
 
 Function37499:
-	ld hl, Text3749f
+	ld hl, text_3749f
 	jp PrintText
 
-Text3749f:
+text_3749f:
 	db $0
 	db $bc
 	db $b6
@@ -9698,12 +9243,10 @@ Text3749f:
 	db $58
 
 asm_374b1:
-	ld hl, Text374b7
+	ld hl, text_374b7
 	jp PrintText
 
-
-
-Text374b7:
+text_374b7:
 	db $0
 	db $bc
 	db $b6
@@ -9722,7 +9265,7 @@ Text374b7:
 	db $e7
 	db $58
 
-Text374c8:
+text_374c8:
 	db $0
 	db $59
 	db $ca
@@ -9744,10 +9287,10 @@ Text374c8:
 	db $58
 
 sub_374db:
-	ld hl, Text374e1
+	ld hl, text_374e1
 	jp PrintText
 
-Text374e1:
+text_374e1:
 	db $0
 	db $59
 	db $ca
@@ -9771,7 +9314,7 @@ Text374e1:
 	db $e7
 	db $58
 
-Text374f7:
+text_374f7:
 	db $0
 	db $59
 	db $ca
@@ -9852,7 +9395,7 @@ asm_37560:
 	jr nz, asm_37570
 
 asm_37567:
-	ld hl, Text375a0
+	ld hl, text_375a0
 	call PrintText
 	jp asm_357a9
 
@@ -9879,7 +9422,7 @@ asm_3759a:
 	call Function34046
 	jp asm_357a9
 
-Text375a0:
+text_375a0:
 	db $0
 	db $bc
 	db $b6
@@ -9978,7 +9521,7 @@ asm_3760f:
 
 asm_3762d:
 	call GetItemName
-	ld hl, Text3765b
+	ld hl, text_3765b
 	call PrintText
 	ret
 
@@ -10002,7 +9545,7 @@ sub_37649:
 	ld hl, wcdda
 	ret
 
-Text3765b:
+text_3765b:
 	db $0
 	db $5a
 	db $ca
@@ -10040,12 +9583,10 @@ asm_3767d:
 	jr nz, asm_376a0
 	set 7, [hl]
 	call sub_37f0f
-	ld hl, Text37691
+	ld hl, text_37691
 	jp PrintText
 
-
-
-Text37691:
+text_37691:
 	db $0
 	db $59
 	db $ca
@@ -10066,8 +9607,6 @@ asm_376a0:
 	call sub_37f5f
 	jp Function37499
 
-
-
 asm_376a6:
 	ld hl, wca40
 	ld de, wcde7
@@ -10087,12 +9626,10 @@ asm_376b7:
 	jr nz, asm_376e0
 	set 0, [hl]
 	call sub_37f0f
-	ld hl, Text376d0
+	ld hl, text_376d0
 	jp PrintText
 
-
-
-Text376d0:
+text_376d0:
 	db $0
 	db $59
 	db $ca
@@ -10113,8 +9650,6 @@ Text376d0:
 asm_376e0:
 	call sub_37f5f
 	jp Function37499
-
-
 
 asm_376e6:
 	ld hl, wPartyMon1Status
@@ -10142,11 +9677,11 @@ asm_3770d:
 	ld a, [de]
 	res 5, a
 	ld [de], a
-	ld hl, Text3771d
+	ld hl, text_3771d
 	call PrintText
 	ret
 
-Text3771d:
+text_3771d:
 	db $0
 	db $5a
 	db $c9
@@ -10176,18 +9711,12 @@ asm_37736:
 	jr nz, asm_3777a
 	set 1, [hl]
 	call sub_37f0f
-	ld hl, sub_3c7b0
-	ld a, $f
-	call FarCall_hl
-	ld hl, sub_3c75e
-	ld a, $f
-	call FarCall_hl
-	ld hl, Text3775a
+	callab sub_3c7b0
+	callab sub_3c75e
+	ld hl, text_3775a
 	jp PrintText
 
-
-
-Text3775a:
+text_3775a:
 	db $0
 	db $5a
 	db $ca
@@ -10225,8 +9754,6 @@ asm_3777a:
 	call sub_37f5f
 	jp Function37499
 
-
-
 asm_37780:
 	ld hl, wca3b
 	ldh a, [hBattleTurn]
@@ -10237,12 +9764,10 @@ asm_37780:
 asm_3778b:
 	set 2, [hl]
 	call sub_37f0f
-	ld hl, Text37796
+	ld hl, text_37796
 	jp PrintText
 
-
-
-Text37796:
+text_37796:
 	db $0
 	db $5a
 	db $ca
@@ -10280,12 +9805,10 @@ asm_377b6:
 	jr nz, asm_377e2
 	set 0, [hl]
 	call sub_37f0f
-	ld hl, Text377cb
+	ld hl, text_377cb
 	jp PrintText
 
-
-
-Text377cb:
+text_377cb:
 	db $0
 	db $59
 	db $c9
@@ -10314,8 +9837,6 @@ asm_377e2:
 	call sub_37f5f
 	jp Function37499
 
-
-
 asm_377e8:
 	ld hl, wca40
 	ldh a, [hBattleTurn]
@@ -10333,12 +9854,10 @@ asm_377f3:
 	jr nz, asm_37822
 	set 3, [hl]
 	call sub_37f0f
-	ld hl, Text3780d
+	ld hl, text_3780d
 	jp PrintText
 
-
-
-Text3780d:
+text_3780d:
 	db $0
 	db $5a
 	db $ca
@@ -10364,8 +9883,6 @@ Text3780d:
 asm_37822:
 	call sub_37f5f
 	jp Function37499
-
-
 
 asm_37828:
 	ld hl, wca3b
@@ -10393,7 +9910,7 @@ asm_37842:
 
 asm_3784d:
 	call sub_37f0f
-	ld hl, Text3785d
+	ld hl, text_3785d
 	call PrintText
 	ret
 
@@ -10401,9 +9918,7 @@ asm_37857:
 	call sub_37f5f
 	jp Function37499
 
-
-
-Text3785d:
+text_3785d:
 	db $0
 	db $b5
 	db $c0
@@ -10445,12 +9960,10 @@ asm_37881:
 	jr nz, asm_378a9
 	set 1, [hl]
 	call sub_37f0f
-	ld hl, Text37896
+	ld hl, text_37896
 	jp PrintText
 
-
-
-Text37896:
+text_37896:
 	db $0
 	db $59
 	db $ca
@@ -10475,8 +9988,6 @@ asm_378a9:
 	call sub_37f5f
 	jp Function37499
 
-
-
 asm_378af:
 	ld hl, wca3b
 	ldh a, [hBattleTurn]
@@ -10487,12 +9998,10 @@ asm_378af:
 asm_378ba:
 	set 5, [hl]
 	call sub_37f0f
-	ld hl, Text378c5
+	ld hl, text_378c5
 	jp PrintText
 
-
-
-Text378c5:
+text_378c5:
 	db $0
 	db $5a
 	db $ca
@@ -10677,18 +10186,14 @@ asm_379a8:
 	call GetMonHeader
 	xor a
 	ld [wMonType], a
-	ld hl, Function5069e
-	ld a, $14
-	call FarCall_hl
+	callab Function5069e
 	push af
 	ld a, [wcdd9]
 	ld [wCurSpecies], a
 	call GetMonHeader
 	ld a, 3
 	ld [wMonType], a
-	ld hl, Function5069e
-	ld a, $14
-	call FarCall_hl
+	callab Function5069e
 	push af
 	pop bc
 	ld a, c
@@ -10709,12 +10214,10 @@ asm_379e8:
 	jr nz, asm_37a0b
 	set 7, [hl]
 	call sub_37f0f
-	ld hl, Text379fc
+	ld hl, text_379fc
 	jp PrintText
 
-
-
-Text379fc:
+text_379fc:
 	db $0
 	db $59
 	db $ca
@@ -10734,8 +10237,6 @@ Text379fc:
 asm_37a0b:
 	call sub_37f5f
 	jp Function37499
-
-
 
 asm_37a11:
 	push bc
@@ -10800,14 +10301,10 @@ asm_37a5f:
 	push af
 	xor 1
 	ldh [hBattleTurn], a
-	ld hl, sub_3c7b0
-	ld a, $f
-	call FarCall_hl
+	callab sub_3c7b0
 	pop af
 	ldh [hBattleTurn], a
-	ld hl, sub_3c808
-	ld a, $f
-	call FarCall_hl
+	callab sub_3c808
 	jp asm_357a9
 
 Data37a85:
@@ -10860,12 +10357,10 @@ asm_37ab7:
 	ld a, 5
 	ld [de], a
 	call sub_37f0f
-	ld hl, Text37acf
+	ld hl, text_37acf
 	jp PrintText
 
-
-
-Text37acf:
+text_37acf:
 	db $0
 	db $5a
 	db $ca
@@ -10915,12 +10410,10 @@ asm_37b02:
 	ld a, 1
 	ld [wca3a], a
 	call sub_37f5f
-	ld hl, Text37b13
+	ld hl, text_37b13
 	jp PrintText
 
-
-
-Text37b13:
+text_37b13:
 	db $0
 	db $59
 	db $ca
@@ -10965,13 +10458,13 @@ asm_37b39:
 	ld a, [hl]
 	ld [wCountSetBitsResult], a
 	call sub_37f5f
-	ld hl, Text37b4c
+	ld hl, text_37b4c
 	call PrintText
 	pop de
 	pop bc
 	ret
 
-Text37b4c:
+text_37b4c:
 	db $0
 	db $9d
 	db $7
@@ -11061,7 +10554,7 @@ asm_37bb1:
 	ld a, [wWhichPokemon]
 	cp [hl]
 	jr nz, asm_37bc9
-	ld hl, Text37c69
+	ld hl, text_37c69
 	call PrintText
 
 asm_37bc2:
@@ -11070,14 +10563,10 @@ asm_37bc2:
 	jr asm_37bb1
 
 asm_37bc9:
-	ld hl, HasMonFainted
-	ld a, $f
-	call FarCall_hl
+	callab HasMonFainted
 	jr z, asm_37bc2
 	call ClearPalettes
-	ld hl, Function3e3a7
-	ld a, $f
-	call FarCall_hl
+	callab Function3e3a7
 	call CloseWindow
 	call ClearSprites
 	ld hl, wTileMap + 1
@@ -11087,9 +10576,7 @@ asm_37bc9:
 	call GetSGBLayout
 	call SetPalettes
 	call sub_37c4c
-	ld hl, asm_3da1c
-	ld a, $f
-	call FarCall_hl
+	callab asm_3da1c
 	jr asm_37c4b
 
 asm_37c02:
@@ -11129,14 +10616,10 @@ asm_37c2c:
 	jr z, asm_37c63
 	call sub_37f0f
 	call sub_37c4c
-	ld hl, sub_3cd6e
-	ld a, $f
-	call FarCall_hl
+	callab sub_3cd6e
 	ld a, 1
 	ld [wCountSetBitsResult], a
-	ld hl, sub_3e2c6
-	ld a, $f
-	call FarCall_hl
+	callab sub_3e2c6
 
 asm_37c4b:
 	ret
@@ -11147,9 +10630,7 @@ sub_37c4c:
 	ret z
 	ld a, 1
 	ld [wFieldMoveSucceeded], a
-	ld hl, sub_3df8b
-	ld a, $f
-	call FarCall_hl
+	callab sub_3df8b
 	xor a
 	ld [wFieldMoveSucceeded], a
 	ret
@@ -11158,9 +10639,7 @@ asm_37c63:
 	call sub_37f5f
 	jp Function37499
 
-
-
-Text37c69:
+text_37c69:
 	db $1
 	dw wEnemyMonNickname
 	db $0
@@ -11188,11 +10667,11 @@ asm_37c82:
 	bit 5, [hl]
 	ret z
 	res 5, [hl]
-	ld hl, Text37c8e
+	ld hl, text_37c8e
 	call PrintText
 	ret
 
-Text37c8e:
+text_37c8e:
 	db $0
 	db $5a
 	db $ca
@@ -11230,9 +10709,7 @@ asm_37caf:
 
 asm_37cb2:
 	push de
-	ld hl, asm_3c7f2
-	ld a, $f
-	call FarCall_hl
+	callab Function3c7f2
 	pop de
 	ld a, [wTimeOfDay]
 	cp d
@@ -11240,9 +10717,7 @@ asm_37cb2:
 	ld a, [wTimeOfDay]
 	cp e
 	jr z, asm_37cd0
-	ld hl, asm_3c7d3
-	ld a, $f
-	call FarCall_hl
+	callab Function3c7d3
 
 asm_37cd0:
 	call BattleRandom
@@ -11268,16 +10743,14 @@ asm_37cd0:
 	push af
 	xor 1
 	ldh [hBattleTurn], a
-	ld hl, sub_3c808
-	ld a, $f
-	call FarCall_hl
+	callab sub_3c808
 	pop af
 	ldh [hBattleTurn], a
-	ld hl, Text37d0e
+	ld hl, text_37d0e
 	call PrintText
 	ret
 
-Text37d0e:
+text_37d0e:
 	db $0
 	db $5a
 	db $ca
@@ -11376,12 +10849,10 @@ asm_37d83:
 	ld a, 5
 	ld [wcae3], a
 	call sub_37f0f
-	ld hl, Text37d9c
+	ld hl, text_37d9c
 	jp PrintText
 
-
-
-Text37d9c:
+text_37d9c:
 	db $0
 	db $b5
 	db $b5
@@ -11399,8 +10870,6 @@ asm_37da8:
 	call sub_37f5f
 	jp Function37499
 
-
-
 asm_37dae:
 	ld a, [wca3a]
 	and a
@@ -11410,12 +10879,10 @@ asm_37dae:
 	ld a, 5
 	ld [wcae3], a
 	call sub_37f0f
-	ld hl, Text37dc7
+	ld hl, text_37dc7
 	jp PrintText
 
-
-
-Text37dc7:
+text_37dc7:
 	db $0
 	db $cb
 	db $2b
@@ -11617,14 +11084,14 @@ sub_37ec2:
 	push bc
 	ld [wCountSetBitsResult], a
 	call GetItemName
-	ld hl, Text37ed5
+	ld hl, text_37ed5
 	call PrintText
 	pop bc
 	pop de
 	pop hl
 	ret
 
-Text37ed5:
+text_37ed5:
 	db $0
 	db $bf
 	db $b3
@@ -11692,9 +11159,7 @@ asm_37f26:
 	push hl
 	push de
 	push bc
-	ld hl, PlayBattleAnim
-	ld a, $33
-	call FarCall_hl
+	callab PlayBattleAnim
 	pop bc
 	pop de
 	pop hl
@@ -11714,9 +11179,7 @@ sub_37f35:
 	push af
 	xor 1
 	ldh [hBattleTurn], a
-	ld hl, PlayBattleAnim
-	ld a, $33
-	call FarCall_hl
+	callab PlayBattleAnim
 	pop af
 	ldh [hBattleTurn], a
 	pop bc
@@ -11733,10 +11196,10 @@ sub_37f5f:
 	jp DelayFrames
 
 asm_37f64:
-	ld hl, Data37f6a
+	ld hl, .EmptyString
 	jp PrintText
 
-Data37f6a:
+.EmptyString:
 	db "@"
 
 asm_37f6b:

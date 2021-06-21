@@ -974,10 +974,9 @@ sub_3c7b0:
 	ld hl, wca14
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_3c7bb
+	jr z, .asm_3c7bb
 	ld hl, wcdeb
-
-asm_3c7bb:
+.asm_3c7bb
 	ld a, [hli]
 	ld [wMapBlocksAddress], a
 	ld b, a
@@ -990,18 +989,18 @@ asm_3c7bb:
 	rr c
 	ld a, c
 	and a
-	jr nz, asm_3c7d2
+	jr nz, .skip
 	inc c
-
-asm_3c7d2:
+.skip
 	ret
+
+Function3c7d3:
 	ld hl, wca14
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_3c7de
+	jr z, .asm_3c7de
 	ld hl, wcdeb
-
-asm_3c7de:
+.asm_3c7de
 	ld a, [hli]
 	ld [wMapBlocksAddress], a
 	ld b, a
@@ -1012,18 +1011,18 @@ asm_3c7de:
 	rr c
 	ld a, c
 	and a
-	jr nz, asm_3c7f1
+	jr nz, .skip
 	inc c
-
-asm_3c7f1:
+.skip
 	ret
+
+Function3c7f2:
 	ld hl, wca14
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_3c7fd
+	jr z, .asm_3c7fd
 	ld hl, wcdeb
-
-asm_3c7fd:
+.asm_3c7fd
 	ld a, [hli]
 	ld [wMapBlocksAddress], a
 	ld b, a

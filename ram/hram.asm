@@ -203,7 +203,9 @@ hBGMapTransferPosition::
 
 hBGMapAddress::
 	dw
-	db ; TODO
+
+hFFE2::
+	db
 
 hSPTemp::
 	dw
