@@ -42,3 +42,12 @@
 	const MOVEMENT_28       ; $28
 	const MOVEMENT_29       ; $29
 	const NO_MOVEMENT       ; $2a
+	const MOVEMENT_2B       ; $2b
+	const MOVEMENT_2C       ; $2c
+	const MOVEMENT_2D       ; $2d
+	const MOVEMENT_2E       ; $2e
+	const MOVEMENT_2F       ; $2f
+	const MOVEMENT_30       ; $30
+	const MOVEMENT_31       ; $31
+	const MOVEMENT_32       ; $32
+	const MOVEMENT_33       ; $33

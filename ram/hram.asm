@@ -11,7 +11,10 @@ hRTCSeconds:: db
 hRTCDays:: db
 	ds 2 ; TODO
 hRTCStatusFlags:: db
-	ds 3 ; TODO
+
+	ds 2 ; TODO
+
+hDebugMapViewerJumptable:: db
 
 hVBlankCounter::
 	db

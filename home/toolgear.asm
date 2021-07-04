@@ -47,14 +47,14 @@ newcharmap local
 
 EnableToolgear::
 	ld hl, wd153
-	res 0, [hl]
+	res TOOLGEAR_COORDS_F, [hl]
 	ld hl, wToolgearFlags
-	set 0, [hl]
+	set TOOLGEAR_COORDS_F, [hl]
 	ret
 
 DisableToolgear::
 	ld hl, wToolgearFlags
-	res 0, [hl]
+	res SHOW_TOOLGEAR_F, [hl]
 	xor a
 	ldh [hLCDCPointer], a
 	ret
@@ -63,10 +63,10 @@ InitToolgearBuffer::
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wToolgearFlags
-	bit 0, [hl]
+	bit SHOW_TOOLGEAR_F, [hl]
 	jr z, .hide_window
 
-	res 7, [hl]
+	res HIDE_TOOLGEAR_F, [hl]
 	call LoadToolgearGraphics
 
 	bgcoord hl, 0, 0, wToolgearBuffer
@@ -82,7 +82,7 @@ InitToolgearBuffer::
 	call UpdateToolgear
 
 	ld hl, vBGMap1
-	ld bc, $0004 ; 4 tiles = 2 rows
+	ld bc, $4 ; 4 tiles = 2 rows
 	bgcoord de, 0, 0, wToolgearBuffer
 	call Get2bpp
 
@@ -93,7 +93,7 @@ InitToolgearBuffer::
 	ldh [hWY], a
 	ret
 
-.hide_window:
+.hide_window
 	xor a
 	ldh [hLCDCPointer], a
 	ld a, $90
@@ -110,19 +110,20 @@ UpdateToolgear::
 	call ByteFill
 
 	ld hl, wd153
-	bit 0, [hl]
+	bit TOOLGEAR_COORDS_F, [hl]
 	jr z, .debug_show_time
+
 	ld hl, wXCoord
 	bgcoord de, 4, 1, wToolgearBuffer
-	ld c, $01
+	ld c, 1
 	call .printHex
 	ld hl, wYCoord
 	bgcoord de, 8, 1, wToolgearBuffer
-	ld c, $01
+	ld c, 1
 	call .printHex
 	ret
-.debug_show_time
 
+.debug_show_time
 	ld hl, hRTCHours
 	bgcoord de, 0, 1, wToolgearBuffer
 	call .printDec
@@ -140,7 +141,8 @@ UpdateToolgear::
 	ldh a, [hRTCSeconds]
 	and 1
 	ret z
-	ld a, $70 ; :
+
+	ld a, "："
 	ldbgcoord_a 2, 1, wToolgearBuffer
 	ret
 
@@ -180,7 +182,7 @@ UpdateToolgear::
 .printDigit::
 ; .printDigit
 ; print a hexadecimal digit for value in a to de
-	and $0f
+	and $f
 	add "０"
 	ld [de], a
 	inc de

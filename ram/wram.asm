@@ -614,6 +614,7 @@ wWindowStackPointer:: dw
 wMenuJoypad:: db
 wMenuSelection:: db
 wMenuSelectionQuantity:: db
+wFieldDebugPage::
 wWhichIndexSet::
 wActiveBackpackPocket:: db
 wScrollingMenuCursorPosition:: db
@@ -676,11 +677,32 @@ wTitleSequenceOpeningType::
 wDefaultSpawnPoint::
 	db
 
+
+UNION
+
+wcc40:: ; XXX fix this to cc3a
 wMovementBufferCount:: db
+
+wcc41:: ; XXX fix this to cc3b
 wMovementBufferObject:: db
+
 	ptrba wMovementBufferPointer
+
 wMovementBuffer::
 	ds 55
+
+NEXTU
+
+wSpriteViewerMenuStartingItem:: db
+
+	ds 2
+
+wSpriteViewerSavedMenuPointerY:: db
+wSpriteViewerJumptableIndex:: db
+
+	ds 56
+
+ENDU
 
 SECTION "CC9A", WRAM0[$CC9A]
 
@@ -797,6 +819,7 @@ wStartmenuCursor:: db
 wcd40:: db
 wcd41:: db
 wcd42:: db
+wFieldDebugMenuCursorBuffer::
 wcd43:: db
 wRegularItemsScrollPosition:: db
 wBackpackAndKeyItemsScrollPosition:: db
@@ -831,6 +854,7 @@ wVramState:: db
 wcd5d:: db
 	db
 wChosenStarter:: db
+wcd60:: db
 
 SECTION "CD70", WRAM0[$CD70]
 wcd70:: ds 1
@@ -905,9 +929,21 @@ NEXTU
 wHPBarMaxHP:: dw
 wHPBarOldHP:: dw
 
+NEXTU
+
+wcdc3:: db
+wcdc4:: db
+wcdc5:: db
+wcdc6:: db
+
 ENDU
 
+UNION
 wHPBarNewHP:: dw
+NEXTU
+wcdc7:: db
+wcdc8:: db
+ENDU
 wHPBarDelta::   db
 wcdca:: db
 wHPBarHPDifference:: dw
@@ -1146,7 +1182,7 @@ wTimeOfDayPal:: db
 wd153:: db
 ; 76543210
 ; |      \- show player coords in toolgear instead of time
-; \-------- switch overworld palettes according to seconds not hours
+; \-------- switch overworld palettes according to minutes not hours
 
 	ds 3 ; TODO
 wTimeOfDayPalFlags:: db
@@ -1317,8 +1353,18 @@ wd642:: db
 wBGMapAnchor::
 	dw
 
+UNION
+
 wUsedSprites::
 	ds 2
+
+NEXTU
+
+	ds 1
+
+wd646:: db
+
+ENDU
 
 wUsedNPCSprites::
 	ds 8

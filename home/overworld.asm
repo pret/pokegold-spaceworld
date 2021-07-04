@@ -13,7 +13,7 @@ OverworldStartButtonCheck::
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
 	ret z              ; debug disabled
-	callba InGameDebugMenu
+	callba FieldDebugMenu
 	jr CheckStartmenuSelectHook
 .regularMenu
 	callba DisplayStartMenu

@@ -946,16 +946,16 @@ ROMX $3e
 
 ROMX $3f
 	org $4000
-	org $4305
+	"engine/menu/field_debug_menu.asm@FieldDebugMenuHeader"
 	"engine/menu/frame_type_dialog.asm"
-	org $4362
 	"engine/menu/reset_dialog.asm"
-	org $4a57
+	"engine/debug/field/change_tileset.inc@FieldDebug_ChangeTileset"
 	"engine/landmarks.asm@1"
 	"data/maps/landmarks.asm"
 	"engine/landmarks.asm@2"
-	org $506f
+	"engine/debug/field/warp.inc@FieldDebug_ShowWarpToText"
 	"gfx.asm@Town Map Cursor"
+	"engine/debug/field/map_viewer.inc@DisplayBGEventDetails"
 	org $6255
 	"engine/menu/debug_menu.asm@Sound Test"
 	org $67a1

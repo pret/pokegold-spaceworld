@@ -92,6 +92,7 @@
 14:4CD1 Function50cd1
 14:4ED9 Function50ed9
 
+23:4325 Function8c325
 23:42DC UpdateTimeOfDayPal
 23:42E3 _TimeOfDayPals
 23:4335 _UpdateTimePals
@@ -128,11 +129,8 @@
 38:4E5F Cursor_AnimateCursor
 38:4EA8 Cursor_InterpretJoypad
 
-3F:40E9 InGameDebugMenu
-3F:4C24 Functionfcc24
 3F:4E3E Functionfce3e
 3F:5B66 Functionfdb66
-3F:6255 Functionfe255
 3F:64CE MonsterTest
 3F:654E PicTest
 3F:6750 PicTestMenu

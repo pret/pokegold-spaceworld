@@ -357,6 +357,7 @@ GetBlockLocation::
 GetFacingSignpost::
 	call GetFacingTileCoord
 	ld b, a
+GetSignpost::
 	ld a, d
 	sub $4
 	ld d, a
