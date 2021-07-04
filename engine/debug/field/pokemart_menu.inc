@@ -164,7 +164,7 @@ DebugMart_Buy:
 	line "かいはつちゅうなんだ"
 	prompt
 
-INCLUDE "data/field_debug_pokemart_items.inc"
+INCLUDE "data/debug/field_debug_pokemart_items.inc"
 
 DebugMart_Sell:
 	call DebugMart_ShowPlaceholderText

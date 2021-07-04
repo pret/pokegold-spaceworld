@@ -24,7 +24,7 @@ FieldDebugMenuHeader:
 	dw PlaceMenuStrings
 	dw FieldDebug_MenuStrings
 
-INCLUDE "data/field_debug_entries.inc"
+INCLUDE "data/debug/field_debug_entries.inc"
 
 FieldDebugMenu::
 	call RefreshScreen

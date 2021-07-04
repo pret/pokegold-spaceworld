@@ -127,4 +127,3 @@ FieldDebug_Pages:
 	db FIELDDEBUG_TOWN_MAP
 	db FIELDDEBUG_CLOSE_MENU
 	db -1
-

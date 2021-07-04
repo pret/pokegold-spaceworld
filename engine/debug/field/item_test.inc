@@ -266,7 +266,7 @@ ItemTest_FindUsableItem:
 	call FindItemInTable
 	ret
 
-INCLUDE "data/field_debug_usable_items_1.inc"
+INCLUDE "data/debug/field_debug_usable_items_1.inc"
 
 ItemTest_FindUsableItem2:
 	ld hl, ItemTest_UsableItems2
@@ -274,4 +274,4 @@ ItemTest_FindUsableItem2:
 	call FindItemInTable
 	ret
 
-INCLUDE "data/field_debug_usable_items_2.inc"
+INCLUDE "data/debug/field_debug_usable_items_2.inc"
