@@ -88,48 +88,48 @@ wMusicInitEnd::
 
 SECTION "OAM Buffer", WRAM0
 
-wVirtualOAM::
-wVirtualOAMSprite00:: sprite_oam_struct wVirtualOAMSprite00
-wVirtualOAMSprite01:: sprite_oam_struct wVirtualOAMSprite01
-wVirtualOAMSprite02:: sprite_oam_struct wVirtualOAMSprite02
-wVirtualOAMSprite03:: sprite_oam_struct wVirtualOAMSprite03
-wVirtualOAMSprite04:: sprite_oam_struct wVirtualOAMSprite04
-wVirtualOAMSprite05:: sprite_oam_struct wVirtualOAMSprite05
-wVirtualOAMSprite06:: sprite_oam_struct wVirtualOAMSprite06
-wVirtualOAMSprite07:: sprite_oam_struct wVirtualOAMSprite07
-wVirtualOAMSprite08:: sprite_oam_struct wVirtualOAMSprite08
-wVirtualOAMSprite09:: sprite_oam_struct wVirtualOAMSprite09
-wVirtualOAMSprite10:: sprite_oam_struct wVirtualOAMSprite10
-wVirtualOAMSprite11:: sprite_oam_struct wVirtualOAMSprite11
-wVirtualOAMSprite12:: sprite_oam_struct wVirtualOAMSprite12
-wVirtualOAMSprite13:: sprite_oam_struct wVirtualOAMSprite13
-wVirtualOAMSprite14:: sprite_oam_struct wVirtualOAMSprite14
-wVirtualOAMSprite15:: sprite_oam_struct wVirtualOAMSprite15
-wVirtualOAMSprite16:: sprite_oam_struct wVirtualOAMSprite16
-wVirtualOAMSprite17:: sprite_oam_struct wVirtualOAMSprite17
-wVirtualOAMSprite18:: sprite_oam_struct wVirtualOAMSprite18
-wVirtualOAMSprite19:: sprite_oam_struct wVirtualOAMSprite19
-wVirtualOAMSprite20:: sprite_oam_struct wVirtualOAMSprite20
-wVirtualOAMSprite21:: sprite_oam_struct wVirtualOAMSprite21
-wVirtualOAMSprite22:: sprite_oam_struct wVirtualOAMSprite22
-wVirtualOAMSprite23:: sprite_oam_struct wVirtualOAMSprite23
-wVirtualOAMSprite24:: sprite_oam_struct wVirtualOAMSprite24
-wVirtualOAMSprite25:: sprite_oam_struct wVirtualOAMSprite25
-wVirtualOAMSprite26:: sprite_oam_struct wVirtualOAMSprite26
-wVirtualOAMSprite27:: sprite_oam_struct wVirtualOAMSprite27
-wVirtualOAMSprite28:: sprite_oam_struct wVirtualOAMSprite28
-wVirtualOAMSprite29:: sprite_oam_struct wVirtualOAMSprite29
-wVirtualOAMSprite30:: sprite_oam_struct wVirtualOAMSprite30
-wVirtualOAMSprite31:: sprite_oam_struct wVirtualOAMSprite31
-wVirtualOAMSprite32:: sprite_oam_struct wVirtualOAMSprite32
-wVirtualOAMSprite33:: sprite_oam_struct wVirtualOAMSprite33
-wVirtualOAMSprite34:: sprite_oam_struct wVirtualOAMSprite34
-wVirtualOAMSprite35:: sprite_oam_struct wVirtualOAMSprite35
-wVirtualOAMSprite36:: sprite_oam_struct wVirtualOAMSprite36
-wVirtualOAMSprite37:: sprite_oam_struct wVirtualOAMSprite37
-wVirtualOAMSprite38:: sprite_oam_struct wVirtualOAMSprite38
-wVirtualOAMSprite39:: sprite_oam_struct wVirtualOAMSprite39
-wVirtualOAMEnd::
+wShadowOAM::
+wShadowOAMSprite00:: sprite_oam_struct wShadowOAMSprite00
+wShadowOAMSprite01:: sprite_oam_struct wShadowOAMSprite01
+wShadowOAMSprite02:: sprite_oam_struct wShadowOAMSprite02
+wShadowOAMSprite03:: sprite_oam_struct wShadowOAMSprite03
+wShadowOAMSprite04:: sprite_oam_struct wShadowOAMSprite04
+wShadowOAMSprite05:: sprite_oam_struct wShadowOAMSprite05
+wShadowOAMSprite06:: sprite_oam_struct wShadowOAMSprite06
+wShadowOAMSprite07:: sprite_oam_struct wShadowOAMSprite07
+wShadowOAMSprite08:: sprite_oam_struct wShadowOAMSprite08
+wShadowOAMSprite09:: sprite_oam_struct wShadowOAMSprite09
+wShadowOAMSprite10:: sprite_oam_struct wShadowOAMSprite10
+wShadowOAMSprite11:: sprite_oam_struct wShadowOAMSprite11
+wShadowOAMSprite12:: sprite_oam_struct wShadowOAMSprite12
+wShadowOAMSprite13:: sprite_oam_struct wShadowOAMSprite13
+wShadowOAMSprite14:: sprite_oam_struct wShadowOAMSprite14
+wShadowOAMSprite15:: sprite_oam_struct wShadowOAMSprite15
+wShadowOAMSprite16:: sprite_oam_struct wShadowOAMSprite16
+wShadowOAMSprite17:: sprite_oam_struct wShadowOAMSprite17
+wShadowOAMSprite18:: sprite_oam_struct wShadowOAMSprite18
+wShadowOAMSprite19:: sprite_oam_struct wShadowOAMSprite19
+wShadowOAMSprite20:: sprite_oam_struct wShadowOAMSprite20
+wShadowOAMSprite21:: sprite_oam_struct wShadowOAMSprite21
+wShadowOAMSprite22:: sprite_oam_struct wShadowOAMSprite22
+wShadowOAMSprite23:: sprite_oam_struct wShadowOAMSprite23
+wShadowOAMSprite24:: sprite_oam_struct wShadowOAMSprite24
+wShadowOAMSprite25:: sprite_oam_struct wShadowOAMSprite25
+wShadowOAMSprite26:: sprite_oam_struct wShadowOAMSprite26
+wShadowOAMSprite27:: sprite_oam_struct wShadowOAMSprite27
+wShadowOAMSprite28:: sprite_oam_struct wShadowOAMSprite28
+wShadowOAMSprite29:: sprite_oam_struct wShadowOAMSprite29
+wShadowOAMSprite30:: sprite_oam_struct wShadowOAMSprite30
+wShadowOAMSprite31:: sprite_oam_struct wShadowOAMSprite31
+wShadowOAMSprite32:: sprite_oam_struct wShadowOAMSprite32
+wShadowOAMSprite33:: sprite_oam_struct wShadowOAMSprite33
+wShadowOAMSprite34:: sprite_oam_struct wShadowOAMSprite34
+wShadowOAMSprite35:: sprite_oam_struct wShadowOAMSprite35
+wShadowOAMSprite36:: sprite_oam_struct wShadowOAMSprite36
+wShadowOAMSprite37:: sprite_oam_struct wShadowOAMSprite37
+wShadowOAMSprite38:: sprite_oam_struct wShadowOAMSprite38
+wShadowOAMSprite39:: sprite_oam_struct wShadowOAMSprite39
+wShadowOAMEnd::
 
 wTileMap::
 	ds SCREEN_HEIGHT * SCREEN_WIDTH

@@ -22,8 +22,8 @@ InitializeNewGameWRAM:
 
 	; Clear a lot of in-game WRAM.
 
-	ld hl, wVirtualOAM
-	ld bc, (wcd3f + 1) - wVirtualOAM
+	ld hl, wShadowOAM
+	ld bc, (wcd3f + 1) - wShadowOAM
 	xor a
 	call ByteFill
 

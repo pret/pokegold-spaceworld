@@ -496,7 +496,7 @@ SlotsAction_PayoutTextAndAnim:
 	ld bc, wReel3ReelAction
 	call Function907c8
 	call WaitBGMap
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	ld e, $60
 	xor a
 .loop
@@ -684,7 +684,7 @@ Slots_InitReelTiles:
 	ld bc, wReel1
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, wVirtualOAM
+	ld de, wShadowOAM
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -702,7 +702,7 @@ Slots_InitReelTiles:
 	ld bc, wReel2
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, wVirtualOAMSprite08
+	ld de, wShadowOAMSprite08
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -720,7 +720,7 @@ Slots_InitReelTiles:
 	ld bc, wReel3
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, wVirtualOAMSprite16
+	ld de, wShadowOAMSprite16
 	ld [hl], e
 	inc hl
 	ld [hl], d

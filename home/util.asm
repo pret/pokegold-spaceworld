@@ -85,7 +85,7 @@ memcmp:: ; TODO: rename
 
 Function3439::
 ; Place 2x2 sprite from *de into OAM at slot a
-	ld h, HIGH(wVirtualOAM)
+	ld h, HIGH(wShadowOAM)
 	swap a
 	ld l, a
 	call .Load

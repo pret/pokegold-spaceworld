@@ -286,7 +286,7 @@ FieldDebug_SpriteViewer:
 	ld a, $20
 	ld [wMovementBuffer + 1], a
 	ld hl, Datafc6de
-	ld de, wVirtualOAM
+	ld de, wShadowOAM
 	call Functionfc6bb
 	ld a, A_BUTTON | B_BUTTON
 	call FieldDebug_WaitJoypadInput
@@ -381,7 +381,7 @@ LoadUnderDevelopmentString:
 	db "かいはつちゅう@"
 
 Functionfc689:
-	ld de, wVirtualOAM
+	ld de, wShadowOAM
 	ld hl, Datafc6de
 	ld a, [wMovementBuffer + 2]
 	and 3

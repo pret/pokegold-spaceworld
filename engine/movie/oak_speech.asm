@@ -772,7 +772,7 @@ LoadStartingSprites:
 	lb bc, BANK(GoldSpriteGFX), $0C
 	ld hl, VRAM_Begin
 	call Request2bpp
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	ld de, GameStartSprites
 	ld c, $04
 .loop
