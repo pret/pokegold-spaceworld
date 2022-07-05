@@ -89,46 +89,10 @@ wMusicInitEnd::
 SECTION "OAM Buffer", WRAM0
 
 wShadowOAM::
-wShadowOAMSprite00:: sprite_oam_struct wShadowOAMSprite00
-wShadowOAMSprite01:: sprite_oam_struct wShadowOAMSprite01
-wShadowOAMSprite02:: sprite_oam_struct wShadowOAMSprite02
-wShadowOAMSprite03:: sprite_oam_struct wShadowOAMSprite03
-wShadowOAMSprite04:: sprite_oam_struct wShadowOAMSprite04
-wShadowOAMSprite05:: sprite_oam_struct wShadowOAMSprite05
-wShadowOAMSprite06:: sprite_oam_struct wShadowOAMSprite06
-wShadowOAMSprite07:: sprite_oam_struct wShadowOAMSprite07
-wShadowOAMSprite08:: sprite_oam_struct wShadowOAMSprite08
-wShadowOAMSprite09:: sprite_oam_struct wShadowOAMSprite09
-wShadowOAMSprite10:: sprite_oam_struct wShadowOAMSprite10
-wShadowOAMSprite11:: sprite_oam_struct wShadowOAMSprite11
-wShadowOAMSprite12:: sprite_oam_struct wShadowOAMSprite12
-wShadowOAMSprite13:: sprite_oam_struct wShadowOAMSprite13
-wShadowOAMSprite14:: sprite_oam_struct wShadowOAMSprite14
-wShadowOAMSprite15:: sprite_oam_struct wShadowOAMSprite15
-wShadowOAMSprite16:: sprite_oam_struct wShadowOAMSprite16
-wShadowOAMSprite17:: sprite_oam_struct wShadowOAMSprite17
-wShadowOAMSprite18:: sprite_oam_struct wShadowOAMSprite18
-wShadowOAMSprite19:: sprite_oam_struct wShadowOAMSprite19
-wShadowOAMSprite20:: sprite_oam_struct wShadowOAMSprite20
-wShadowOAMSprite21:: sprite_oam_struct wShadowOAMSprite21
-wShadowOAMSprite22:: sprite_oam_struct wShadowOAMSprite22
-wShadowOAMSprite23:: sprite_oam_struct wShadowOAMSprite23
-wShadowOAMSprite24:: sprite_oam_struct wShadowOAMSprite24
-wShadowOAMSprite25:: sprite_oam_struct wShadowOAMSprite25
-wShadowOAMSprite26:: sprite_oam_struct wShadowOAMSprite26
-wShadowOAMSprite27:: sprite_oam_struct wShadowOAMSprite27
-wShadowOAMSprite28:: sprite_oam_struct wShadowOAMSprite28
-wShadowOAMSprite29:: sprite_oam_struct wShadowOAMSprite29
-wShadowOAMSprite30:: sprite_oam_struct wShadowOAMSprite30
-wShadowOAMSprite31:: sprite_oam_struct wShadowOAMSprite31
-wShadowOAMSprite32:: sprite_oam_struct wShadowOAMSprite32
-wShadowOAMSprite33:: sprite_oam_struct wShadowOAMSprite33
-wShadowOAMSprite34:: sprite_oam_struct wShadowOAMSprite34
-wShadowOAMSprite35:: sprite_oam_struct wShadowOAMSprite35
-wShadowOAMSprite36:: sprite_oam_struct wShadowOAMSprite36
-wShadowOAMSprite37:: sprite_oam_struct wShadowOAMSprite37
-wShadowOAMSprite38:: sprite_oam_struct wShadowOAMSprite38
-wShadowOAMSprite39:: sprite_oam_struct wShadowOAMSprite39
+; wShadowOAMSprite00 - wShadowOAMSprite39
+for n, NUM_SPRITE_OAM_STRUCTS
+        wShadowOAMSprite{02d:n}:: sprite_oam_struct wShadowOAMSprite{02d:n}
+endr
 wShadowOAMEnd::
 
 wTileMap::
