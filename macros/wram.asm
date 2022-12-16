@@ -182,7 +182,7 @@ MACRO mailmsg
 \1Species:: ds 1
 \1Type:: ds 1
 \1End::
-endm
+ENDM
 
 MACRO hof_mon
 \1Species:: ds 1
@@ -191,7 +191,7 @@ MACRO hof_mon
 \1Level:: ds 1
 \1Nickname:: ds PKMN_NAME_LENGTH +- 1
 \1End::
-endm
+ENDM
 
 MACRO roam_struct
 \1Species::   db
@@ -206,7 +206,7 @@ MACRO bugcontestwinner
 \1PersonID:: ds 1
 \1Mon:: ds 1
 \1Score:: ds 2
-endm
+ENDM
 
 MACRO hall_of_fame
 \1::
@@ -240,7 +240,7 @@ MACRO move_struct
 \1Accuracy:: ds 1
 \1PP:: ds 1
 \1EffectChance:: ds 1
-endm
+ENDM
 
 MACRO slot_reel
 \1ReelAction::   db
@@ -257,7 +257,7 @@ MACRO slot_reel
 \1Field0d::      db
 \1Field0e::      db
 \1StopDelay::    db
-endm
+ENDM
 
 MACRO object_struct
 \1Sprite:: ds 1
@@ -311,7 +311,7 @@ MACRO map_object
 \1ObjectEventFlag:: ds 2
 \1ObjectUnused::
 	ds 2
-endm
+ENDM
 
 MACRO sprite_anim_struct
 \1Index:: ds 1          ; 0
@@ -358,14 +358,14 @@ MACRO battle_anim_struct
 \1_Anim15:: ds 1
 \1_Anim16:: ds 1
 \1_Anim17:: ds 1
-endm
+ENDM
 
 MACRO battle_bg_effect
 \1_Function:: ds 1
 \1_01:: ds 1
 \1_02:: ds 1
 \1_03:: ds 1
-endm
+ENDM
 
 MACRO sprite_oam_struct
 \1YCoord::     db
