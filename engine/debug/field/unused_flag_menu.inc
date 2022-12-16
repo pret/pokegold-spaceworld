@@ -30,7 +30,7 @@ FieldDebug_UnusedFlagMenu: ; unused?
 	ret
 
 .DoCheckFlags:
-unused_check_bit: macro
+MACRO unused_check_bit
 	ld hl, \1
 	bit 0, [hl]
 	call .CheckBit

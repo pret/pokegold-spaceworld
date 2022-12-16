@@ -842,7 +842,7 @@ BattleBGEffect_RunPicResizeScript:
 	dwcoord 14,  4
 
 .BGSquares:
-bgsquare: MACRO
+MACRO bgsquare
 	dn \1, \2
 	dw \3
 ENDM
@@ -1374,7 +1374,7 @@ Tackle_BGEffect25_2d_two:
 Functionc88a5:
 	push af
 .asm_c87ab:
-	ld a, [rLY]
+	ldh a, [rLY]
 	cp $60
 	jr c, .asm_c87ab
 	pop af
@@ -1475,7 +1475,7 @@ BattleBGEffect_26:
 .Functionc8836:
 	push af
 .loop
-	ld a, [rLY]
+	ldh a, [rLY]
 	cp $60
 	jr c, .loop
 	pop af
@@ -1541,7 +1541,7 @@ BattleBGEffect_2c:
 .Functionc8894:
 	push af
 .asm_c8895:
-	ld a, [rLY]
+	ldh a, [rLY]
 	cp $60
 	jr c, .asm_c8895
 	pop af
@@ -2102,7 +2102,7 @@ BGEffect_RapidCyclePals:
 .two_dmg
 	call BattleBGEffects_ResetVideoHRAM
 	ld a, %11100100
-	ld [rBGP], a
+	ldh [rBGP], a
 	call EndBattleBGEffect
 	ret
 

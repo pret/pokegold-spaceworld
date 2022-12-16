@@ -2,7 +2,7 @@ hlcoord EQUS "coord hl,"
 bccoord EQUS "coord bc,"
 decoord EQUS "coord de,"
 
-coord: MACRO
+MACRO coord
 ; register, x, y[, origin]
 	if _NARG < 4
 	ld \1, (\3) * SCREEN_WIDTH + (\2) + wTileMap
@@ -15,7 +15,7 @@ hlbgcoord EQUS "bgcoord hl,"
 bcbgcoord EQUS "bgcoord bc,"
 debgcoord EQUS "bgcoord de,"
 
-bgcoord: MACRO
+MACRO bgcoord
 ; register, x, y[, origin]
 	if _NARG < 4
 	ld \1, (\3) * BG_MAP_WIDTH + (\2) + vBGMap0
@@ -24,7 +24,7 @@ bgcoord: MACRO
 	endc
 ENDM
 
-dwcoord: MACRO
+MACRO dwcoord
 ; x, y
 rept _NARG / 2
 	dw (\2) * SCREEN_WIDTH + (\1) + wTileMap
@@ -33,7 +33,7 @@ rept _NARG / 2
 endr
 ENDM
 
-ldcoord_a: MACRO
+MACRO ldcoord_a
 ; x, y[, origin]
 	if _NARG < 3
 	ld [(\2) * SCREEN_WIDTH + (\1) + wTileMap], a
@@ -42,7 +42,7 @@ ldcoord_a: MACRO
 	endc
 ENDM
 
-ldbgcoord_a: MACRO
+MACRO ldbgcoord_a
 ; x, y[, origin]
 	if _NARG < 3
 	ld [(\2) * BG_MAP_WIDTH + (\1) + vBGMap0], a
@@ -51,7 +51,7 @@ ldbgcoord_a: MACRO
 	endc
 ENDM
 
-lda_coord: MACRO
+MACRO lda_coord
 ; x, y[, origin]
 	if _NARG < 3
 	ld a, [(\2) * SCREEN_WIDTH + (\1) + wTileMap]
@@ -60,7 +60,7 @@ lda_coord: MACRO
 	endc
 ENDM
 
-lda_bgcoord: MACRO
+MACRO lda_bgcoord
 ; x, y[, origin]
 	if _NARG < 3
 	ld a, [(\2) * BG_MAP_WIDTH + (\1) + vBGMap0]

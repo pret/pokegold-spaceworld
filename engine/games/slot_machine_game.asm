@@ -168,11 +168,11 @@ SlotMachineGame_Init:
 	call Slots_InitReelTiles
 
 	ld a, %11100100
-	ld [rBGP], a
-	ld [rOBP0], a
+	ldh [rBGP], a
+	ldh [rOBP0], a
 
 	ld a, %11000000
-	ld [rOBP1], a
+	ldh [rOBP1], a
 
 	ld a, SPRITE_ANIM_INDEX_28
 	ld hl, wSpriteAnimDict
@@ -216,16 +216,16 @@ Slots_FlashPaletteOnMatchingSevens:
 	and a
 	jr nz, .matching_sevens
 	ld a, %11100100
-	ld [rBGP], a
+	ldh [rBGP], a
 	ret
 
 .matching_sevens
 	ld a, [wVBlankJoyFrameCounter]
 	and 7
 	ret nz
-	ld a, [rBGP]
+	ldh a, [rBGP]
 	xor %1100
-	ld [rBGP], a
+	ldh [rBGP], a
 	ret
 
 Slots_PrintCoinsAndPayout:
@@ -463,14 +463,14 @@ SlotsAction_FlashScreen:
 	srl a
 	ret z
 
-	ld a, [rOBP0]
+	ldh a, [rOBP0]
 	xor $ff
-	ld [rOBP0], a
+	ldh [rOBP0], a
 	ret
 
 .done
 	ld a, %11100100
-	ld [rOBP0], a
+	ldh [rOBP0], a
 	call SlotsAction_Next
 	ret
 
@@ -479,7 +479,7 @@ SlotsAction_GiveEarnedCoins:
 	ld [wFirstTwoReelsMatching], a
 	ld [wFirstTwoReelsMatchingSevens], a
 	ld a, %11100100
-	ld [rBGP], a
+	ldh [rBGP], a
 	call Slots_GetPayout
 	xor a
 	ld [wSlotsDelay], a

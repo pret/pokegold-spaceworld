@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-map: MACRO
+MACRO map
 ;\1: map name: for the MapAttributes pointer (see data/maps/attributes.asm)
 ;\2: tileset: a TILESET_* constant
 ;\3: environment: TOWN, ROUTE, INDOOR, CAVE, ENVIRONMENT_5, GATE, or DUNGEON

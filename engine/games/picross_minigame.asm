@@ -69,18 +69,18 @@ PicrossMinigame:
 	xor a
 	ldh [hSCY], a
 	ldh [hSCX], a
-	ld [rWY], a
+	ldh [rWY], a
 	ld [wJumptableIndex], a
 
 	ld a, 1
 	ldh [hBGMapMode], a
 
 	ld a, %11100011
-	ld [rLCDC], a
+	ldh [rLCDC], a
 	ld a, %11100100
-	ld [rBGP], a
+	ldh [rBGP], a
 	ld a, %11010000
-	ld [rOBP0], a
+	ldh [rOBP0], a
 
 	xor a ; PICROSS_BLANK_CELL
 	ld [wPicrossCurrentCellType], a
@@ -1909,7 +1909,7 @@ Picross_LoadLayout:
 	call FarCopyData
 	ret
 
-picross_pattern: MACRO
+MACRO picross_pattern
 if _NARG > 2
 	db \1
 	dbw \2, \3

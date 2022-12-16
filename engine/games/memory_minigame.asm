@@ -62,16 +62,16 @@ MemoryMinigame:
 	xor a
 	ldh [hSCY], a
 	ldh [hSCX], a
-	ld [rWY], a
+	ldh [rWY], a
 	ld [wJumptableIndex], a
 	ld a, 1
 	ldh [hBGMapMode], a
 	ld a, %11100011
-	ld [rLCDC], a
+	ldh [rLCDC], a
 	ld a, %11100100
-	ld [rBGP], a
+	ldh [rBGP], a
 	ld a, %11100000
-	ld [rOBP0], a
+	ldh [rOBP0], a
 	ret
 
 .JumptableLoop:

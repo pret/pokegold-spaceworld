@@ -1224,7 +1224,7 @@ ApplyFlashlight::
 ; redraw_with_flashlight force
 ; force = 1, 2 or 3
 ; 0 and 4 have special handling, see above and below
-redraw_with_flashlight: MACRO
+MACRO redraw_with_flashlight
 	decoord \1 * 2, \1 * 2
 	ld bc, \1 * $32 ; TODO: constantify the $32
 	add hl, bc

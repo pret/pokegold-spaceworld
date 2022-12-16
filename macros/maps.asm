@@ -1,9 +1,9 @@
-map_id: MACRO
+MACRO map_id
 ;\1: map id
 	db GROUP_\1, MAP_\1
 ENDM
 
-map_attributes: MACRO
+MACRO map_attributes
 ;\1: map name
 ;\2: map id
 ;\3: connections: combo of NORTH, SOUTH, WEST, and/or EAST, or 0 for none
@@ -19,7 +19,7 @@ CURRENT_MAP_HEIGHT = \2_HEIGHT
 ENDM
 
 ; Connections go in order: north, south, west, east
-connection: MACRO
+MACRO connection
 ;\1: direction
 ;\2: map name
 ;\3: map id
@@ -97,7 +97,7 @@ endc
 endc
 ENDM
 
-def_warp_events: MACRO
+MACRO def_warp_events
 if DEF(_NUM_WARP_EVENTS)
 	PURGE _NUM_WARP_EVENTS
 endc
@@ -106,7 +106,7 @@ _NUM_WARP_EVENTS EQUS "_NUM_WARP_EVENTS_\@"
 _NUM_WARP_EVENTS = 0
 ENDM
 
-warp_event: MACRO
+MACRO warp_event
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
 ;\3: map id: from constants/map_constants.asm
@@ -118,7 +118,7 @@ warp_event: MACRO
 _NUM_WARP_EVENTS = _NUM_WARP_EVENTS + 1
 ENDM
 
-def_bg_events: MACRO
+MACRO def_bg_events
 if DEF(_NUM_BG_EVENTS)
 	PURGE _NUM_BG_EVENTS
 endc
@@ -127,7 +127,7 @@ _NUM_BG_EVENTS EQUS "_NUM_BG_EVENTS_\@"
 _NUM_BG_EVENTS = 0
 ENDM
 
-bg_event: MACRO
+MACRO bg_event
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
 ;\3: text index
@@ -135,7 +135,7 @@ bg_event: MACRO
 _NUM_BG_EVENTS = _NUM_BG_EVENTS + 1
 ENDM
 
-def_object_events: MACRO
+MACRO def_object_events
 if DEF(_NUM_OBJECT_EVENTS)
 	PURGE _NUM_OBJECT_EVENTS
 endc
@@ -144,7 +144,7 @@ _NUM_OBJECT_EVENTS EQUS "_NUM_OBJECT_EVENTS_\@"
 _NUM_OBJECT_EVENTS = 0
 ENDM
 
-object_event: MACRO
+MACRO object_event
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
 ;\3: sprite: a SPRITE_* constant

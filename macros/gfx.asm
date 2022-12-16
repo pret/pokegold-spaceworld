@@ -1,4 +1,4 @@
-RGB: MACRO
+MACRO RGB
 rept _NARG / 3
 	dw palred (\1) + palgreen (\2) + palblue (\3)
 	shift 3

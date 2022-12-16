@@ -1,16 +1,16 @@
-queue_ab: MACRO
+MACRO queue_ab
 	ld hl, \1
 	ldh a, [hROMBank]
 	call QueueScript
 ENDM
 
-queue_ba: MACRO
+MACRO queue_ba
 	ldh a, [hROMBank]
 	ld hl, \1
 	call QueueScript
 ENDM
 
-far_queue: MACRO
+MACRO far_queue
 	ld hl, \1
 	ld a, BANK(\1)
 	call QueueScript

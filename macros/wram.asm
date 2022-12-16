@@ -1,8 +1,8 @@
-flag_array: MACRO
+MACRO flag_array
 	ds ((\1) + 7) / 8
 ENDM
 
-box_struct: MACRO
+MACRO box_struct
 \1Species::        db
 \1Item::           db
 \1Moves::          ds NUM_MOVES
@@ -27,7 +27,7 @@ box_struct: MACRO
 \1End::
 ENDM
 
-party_struct: MACRO
+MACRO party_struct
 	box_struct \1
 \1Status::         db
 \1Unused::         db
@@ -42,7 +42,7 @@ party_struct: MACRO
 \1StatsEnd::
 ENDM
 
-red_box_struct: MACRO
+MACRO red_box_struct
 \1Species::    db
 \1HP::         dw
 \1BoxLevel::   db
@@ -63,7 +63,7 @@ red_box_struct: MACRO
 \1PP::         ds NUM_MOVES
 ENDM
 
-red_party_struct: MACRO
+MACRO red_party_struct
 	red_box_struct \1
 \1Level::      db
 \1Stats::
@@ -75,7 +75,7 @@ red_party_struct: MACRO
 ENDM
 
 
-battle_struct: MACRO
+MACRO battle_struct
 \1Species::   db
 \1Item::      db
 \1Moves::     ds NUM_MOVES
@@ -100,7 +100,7 @@ battle_struct: MACRO
 \1StructEnd::
 ENDM
 
-box: MACRO
+MACRO box
 \1::
 \1Count::           ds 1
 \1Species::         ds MONS_PER_BOX + 1
@@ -114,7 +114,7 @@ box: MACRO
 ENDM
 
 
-map_connection_struct: MACRO
+MACRO map_connection_struct
 \1ConnectedMapGroup::       db
 \1ConnectedMapNumber::      db
 \1ConnectionStripPointer::  dw
@@ -127,7 +127,7 @@ map_connection_struct: MACRO
 ENDM
 
 
-channel_struct: MACRO
+MACRO channel_struct
 ; TODO: CH1 isn't at C101, please rebase all of these
 ; Addreses are Channel1 (c101).
 \1MusicID::           dw
@@ -173,7 +173,7 @@ channel_struct: MACRO
                       ds 1
 ENDM
 
-mailmsg: MACRO
+MACRO mailmsg
 \1Message:: ds MAIL_MSG_LENGTH
 \1MessageEnd:: ds 1
 \1Author:: ds PLAYER_NAME_LENGTH
@@ -184,7 +184,7 @@ mailmsg: MACRO
 \1End::
 endm
 
-hof_mon: MACRO
+MACRO hof_mon
 \1Species:: ds 1
 \1ID:: ds 2
 \1DVs:: ds 2
@@ -193,7 +193,7 @@ hof_mon: MACRO
 \1End::
 endm
 
-roam_struct: MACRO
+MACRO roam_struct
 \1Species::   db
 \1Level::     db
 \1MapGroup::  db
@@ -202,13 +202,13 @@ roam_struct: MACRO
 \1DVs::       ds 2
 ENDM
 
-bugcontestwinner: macro
+MACRO bugcontestwinner
 \1PersonID:: ds 1
 \1Mon:: ds 1
 \1Score:: ds 2
 endm
 
-hall_of_fame: MACRO
+MACRO hall_of_fame
 \1::
 \1WinCount:: ds 1
 \1Mon1:: hof_mon \1Mon1
@@ -220,7 +220,7 @@ hall_of_fame: MACRO
 \1End:: ds 1
 ENDM
 
-trademon: MACRO
+MACRO trademon
 \1Species:: ds 1 ; wc6d0 | wc702
 \1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wc703
 \1Nickname:: ds PKMN_NAME_LENGTH ; wc6dc | wc70e
@@ -232,7 +232,7 @@ trademon: MACRO
 \1End::
 ENDM
 
-move_struct: MACRO
+MACRO move_struct
 \1Animation:: ds 1
 \1Effect:: ds 1
 \1Power:: ds 1
@@ -242,7 +242,7 @@ move_struct: MACRO
 \1EffectChance:: ds 1
 endm
 
-slot_reel: MACRO
+MACRO slot_reel
 \1ReelAction::   db
 \1TilemapAddr::  dw
 \1Position::     db
@@ -259,7 +259,7 @@ slot_reel: MACRO
 \1StopDelay::    db
 endm
 
-object_struct: MACRO
+MACRO object_struct
 \1Sprite:: ds 1
 \1MapObjectIndex:: ds 1
 \1SpriteTile:: ds 1
@@ -296,7 +296,7 @@ object_struct: MACRO
 \1StructEnd::
 ENDM
 
-map_object: MACRO
+MACRO map_object
 \1ObjectStructID::  ds 1
 \1ObjectSprite::    ds 1
 \1ObjectYCoord::    ds 1
@@ -313,7 +313,7 @@ map_object: MACRO
 	ds 2
 endm
 
-sprite_anim_struct: MACRO
+MACRO sprite_anim_struct
 \1Index:: ds 1          ; 0
 \1FramesetID:: ds 1     ; 1
 \1AnimSeqID:: ds 1      ; 2
@@ -332,7 +332,7 @@ sprite_anim_struct: MACRO
 \1Sprite0f:: ds 1
 ENDM
 
-battle_anim_struct: MACRO
+MACRO battle_anim_struct
 ; Placeholder until we can figure out what it all means
 \1_Index::  ds 1
 \1_Anim01:: ds 1
@@ -360,32 +360,32 @@ battle_anim_struct: MACRO
 \1_Anim17:: ds 1
 endm
 
-battle_bg_effect: MACRO
+MACRO battle_bg_effect
 \1_Function:: ds 1
 \1_01:: ds 1
 \1_02:: ds 1
 \1_03:: ds 1
 endm
 
-sprite_oam_struct: MACRO
+MACRO sprite_oam_struct
 \1YCoord::     db
 \1XCoord::     db
 \1TileID::     db
 \1Attributes:: db
 ENDM
 
-warp_struct: MACRO
+MACRO warp_struct
 \1WarpNumber:: ds 1
 \1MapGroup:: ds 1
 \1MapNumber:: ds 1
 ENDM
 
-ptrba: MACRO
+MACRO ptrba
 \1Bank:: db
 \1Addr:: dw
 ENDM
 
-ptrab: MACRO
+MACRO ptrab
 \1Addr:: dw
 \1Bank:: db
 ENDM

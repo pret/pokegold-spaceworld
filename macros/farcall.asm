@@ -1,17 +1,17 @@
 
-callba: MACRO ; bank, address
+MACRO callba ; bank, address
 	ld a, BANK(\1)
 	ld hl, \1
 	call FarCall_hl
 ENDM
 
-callab: MACRO ; address, bank
+MACRO callab ; address, bank
 	ld hl, \1
 	ld a, BANK(\1)
 	call FarCall_hl
 ENDM
 
-homecall: MACRO
+MACRO homecall
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(\1)
@@ -21,13 +21,13 @@ homecall: MACRO
 	call Bankswitch
 ENDM
 
-jpba: MACRO
+MACRO jpba
 	ld a, BANK(\1)
 	ld hl, \1
 	jp FarCall_hl
 ENDM
 
-jpab: MACRO
+MACRO jpab
 	ld hl, \1
 	ld a, BANK(\1)
 	jp FarCall_hl

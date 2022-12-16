@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/pokemon/cries.asm", ROMX
 
-mon_cry: MACRO
+MACRO mon_cry
 ; index, pitch, length
 	dw \1, \2, \3
 ENDM

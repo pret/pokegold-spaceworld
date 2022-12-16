@@ -34,24 +34,24 @@ Reset:
 Init:
 	di
 	xor a
-	ld [rIF], a
-	ld [rIE], a
-	ld [rSCX], a
-	ld [rSCY], a
-	ld [rSB], a
-	ld [rSC], a
-	ld [rWX], a
-	ld [rWY], a
-	ld [rBGP], a
-	ld [rOBP0], a
-	ld [rOBP1], a
-	ld [rTMA], a
-	ld [rTAC], a
+	ldh [rIF], a
+	ldh [rIE], a
+	ldh [rSCX], a
+	ldh [rSCY], a
+	ldh [rSB], a
+	ldh [rSC], a
+	ldh [rWX], a
+	ldh [rWY], a
+	ldh [rBGP], a
+	ldh [rOBP0], a
+	ldh [rOBP1], a
+	ldh [rTMA], a
+	ldh [rTAC], a
 	ld [wTitleSequenceOpeningType], a ; Useless, since WRAM gets cleared right after
 	ld a, 1 << rTAC_ON | rTAC_4096_HZ
-	ld [rTAC], a
+	ldh [rTAC], a
 	ld a, 1 << rLCDC_ENABLE
-	ld [rLCDC], a
+	ldh [rLCDC], a
 	call DisableLCD
 
 	ld sp, wStackBottom
@@ -82,13 +82,13 @@ Init:
 	ldh [hSCY], a
 	ldh [rJOYP], a
 	ld a, 1 << rSTAT_HBLANK
-	ld [rSTAT], a
+	ldh [rSTAT], a
 	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
-	ld [rWY], a
+	ldh [rWY], a
 	ld a, 7
 	ldh [hWX], a
-	ld [rWX], a
+	ldh [rWX], a
 
 	ld a, $ff
 	ldh [hLinkPlayerNumber], a
@@ -97,13 +97,13 @@ Init:
 	ld h, HIGH($9C00)
 	call BlankBGMap
 	ld a, LCDC_DEFAULT
-	ld [rLCDC], a
+	ldh [rLCDC], a
 
 	call DisableAudio
 	call _2007
 	predef CheckSGB
 	ld a, $1F
-	ld [rIE], a
+	ldh [rIE], a
 	ld a, HIGH($9C00)
 	ldh [hBGMapAddress + 1], a
 	xor a
@@ -112,7 +112,7 @@ Init:
 	call DisableLCD
 	call ClearVRAM
 	ld a, LCDC_DEFAULT
-	ld [rLCDC], a
+	ldh [rLCDC], a
 	ei
 
 	ld a, SRAM_ENABLE

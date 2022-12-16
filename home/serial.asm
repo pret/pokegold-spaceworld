@@ -11,37 +11,37 @@ Serial::
 	inc a
 	jr z, .init_player_number
 
-	ld a, [rSB]
+	ldh a, [rSB]
 	ldh [hSerialReceive], a
 	ldh a, [hSerialSend]
-	ld [rSB], a
+	ldh [rSB], a
 	ldh a, [hLinkPlayerNumber]
 	cp USING_INTERNAL_CLOCK
 	jr z, .done
 	ld a, 1 << rSC_ON
-	ld [rSC], a
+	ldh [rSC], a
 	jr .done
 
 .init_player_number
-	ld a, [rSB]
+	ldh a, [rSB]
 	ldh [hSerialReceive], a
 	ldh [hLinkPlayerNumber], a
 	cp USING_INTERNAL_CLOCK
 	jr z, .master
 	xor a
-	ld [rSB], a
+	ldh [rSB], a
 	ld a, 3
-	ld [rDIV], a
+	ldh [rDIV], a
 .wait
-	ld a, [rDIV]
+	ldh a, [rDIV]
 	bit 7, a
 	jr nz, .wait
 	ld a, 1 << rSC_ON
-	ld [rSC], a
+	ldh [rSC], a
 	jr .done
 .master
 	xor a
-	ld [rSB], a
+	ldh [rSB], a
 .done
 	ld a, TRUE
 	ldh [hSerialReceived], a
