@@ -55,7 +55,7 @@ MACRO unused_check_bit
 	ld hl, \1
 	bit 7, [hl]
 	call .CheckBit
-endm
+ENDM
 
 	unused_check_bit wcdc3
 	unused_check_bit wcdc4
