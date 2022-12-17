@@ -115,7 +115,7 @@ PlaceNextChar::
 	ret
 
 CheckDict::
-dict: MACRO
+MACRO dict
 if \1 == 0
 	and a
 else
@@ -234,7 +234,7 @@ NullChar::
 	text "エラー"
 	done
 
-print_name: MACRO
+MACRO print_name
 	push de
 	ld de, \1
 	jr PlaceCommandCharacter

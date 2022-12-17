@@ -1118,7 +1118,7 @@ endr
 	ret
 
 .charizard_data:
-intro_graphic_def: MACRO
+MACRO intro_graphic_def
 	db \1
 	db \2, \3
 	dwcoord \4, \5

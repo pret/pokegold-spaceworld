@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-item_attribute: MACRO
+MACRO item_attribute
 ; price, held effect, parameter, property, pocket, field menu, battle menu
 	dw \1
 	db \2, \3, \4, \5

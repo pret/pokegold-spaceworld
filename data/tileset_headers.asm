@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/tileset_headers.asm", ROMX
 
-tileset: MACRO
+MACRO tileset
 	db BANK(\1_GFX) ; shared bank
 	dw \1_Meta, \1_GFX, \1_Coll
 	db \2, \3, \4 ; counter tiles

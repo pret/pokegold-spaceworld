@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/overworld_sprites.asm", ROMX
 
-overworld_sprite: MACRO
+MACRO overworld_sprite
 ; pointer, length, bank
 	dw \1
 	db \2 tiles, BANK(\1)

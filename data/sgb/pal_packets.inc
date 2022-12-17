@@ -1,4 +1,4 @@
-sgb_pal_set: MACRO
+MACRO sgb_pal_set
 	db (SGB_PAL_SET << 3) + 1
 	dw PAL_\1, PAL_\2, PAL_\3, PAL_\4
 	ds 7

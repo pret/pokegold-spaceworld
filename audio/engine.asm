@@ -526,9 +526,9 @@ Functione82f0:
 	call FadeMusic
 	call DoSweepingFade
 	ld a, [wVolume]
-	ld [rNR50], a
+	ldh [rNR50], a
 	ld a, [wSoundOutput]
-	ld [rNR51], a
+	ldh [rNR51], a
 	ret
 
 PlayDanger:
@@ -561,15 +561,15 @@ PlayDanger:
 
 .applychannel
 	xor a
-	ld [rNR10], a
+	ldh [rNR10], a
 	ld a, [hli]
-	ld [rNR11], a
+	ldh [rNR11], a
 	ld a, [hli]
-	ld [rNR12], a
+	ldh [rNR12], a
 	ld a, [hli]
-	ld [rNR13], a
+	ldh [rNR13], a
 	ld a, [hli]
-	ld [rNR14], a
+	ldh [rNR14], a
 
 .increment
 	ld a, d

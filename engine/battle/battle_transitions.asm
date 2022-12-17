@@ -423,7 +423,7 @@ RIGHT_QUADRANT_F EQU 0 ; bit set in UPPER_RIGHT and LOWER_RIGHT
 LOWER_QUADRANT_F EQU 1 ; bit set in LOWER_LEFT and LOWER_RIGHT
 
 .spin_quadrants:
-spin_quadrant: MACRO
+MACRO spin_quadrant
 	db \1
 	dw \2
 	dwcoord \3, \4

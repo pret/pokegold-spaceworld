@@ -1,14 +1,14 @@
-init_script_table: MACRO
+MACRO init_script_table
 script_id = 0
 ENDM
 
-add_script: MACRO
+MACRO add_script
 	dw \1
 \1ScriptID = script_id
 script_id = script_id + 1
 ENDM
 
-set_script: MACRO
+MACRO set_script
 	ld a, \1ScriptID
 	ld [wFieldMoveScriptID], a
 ENDM

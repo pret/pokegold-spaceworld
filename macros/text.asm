@@ -10,127 +10,127 @@ prompt EQUS "db \"<PROMPT>\""  ; Prompt the player to end a text box (initiating
 	const_def 1
 
 	const TX_RAM ; $01
-text_from_ram: MACRO
+MACRO text_from_ram
 	db TX_RAM
 	dw \1    ; address
-endm
+ENDM
 
 	const TX_BCD ; $02
-text_bcd: macro
+MACRO text_bcd
 	db TX_BCD
 	dw \1    ; address
 	db \2    ; flags + digits, see PrintBCDNumber
-endm
+ENDM
 
 	const TX_MOVE ; $03
-text_move: macro
+MACRO text_move
 	db TX_MOVE
 	dw \1     ; address
-endm
+ENDM
 
 	const TX_BOX ; $04
-text_box: macro
+MACRO text_box
 	db TX_BOX
 	dw \1     ; address
 	db \2, \3 ; width, height
-endm
+ENDM
 
 	const TX_LOW ; $05
-text_low: macro
+MACRO text_low
 	db TX_LOW
-endm
+ENDM
 
 	const WAIT_BUTTON ; $06
-text_waitbutton: macro
+MACRO text_waitbutton
 	db WAIT_BUTTON
-endm
+ENDM
 
 	const TX_SCROLL ; $07
-text_scroll: macro
+MACRO text_scroll
 	db TX_SCROLL
-endm
+ENDM
 
 	const START_ASM ; $08
-start_asm: macro
+MACRO start_asm
 	db START_ASM
-endm
+ENDM
 
 	const TX_NUM ; $09
-deciram: macro
+MACRO deciram
 	db TX_NUM
 	dw \1     ; address
 	dn \2, \3 ; bytes, flags + digits
-endm
+ENDM
 
 	const TX_EXIT ; $0a
-text_exit: macro
+MACRO text_exit
 	db TX_EXIT
-endm
+ENDM
 
 	const TX_SOUND_0B ; $0b
-sound_dex_fanfare_50_79: macro
+MACRO sound_dex_fanfare_50_79
 	db TX_SOUND_0B
-endm
+ENDM
 
 	const TX_DOTS ; $0c
-text_dots: macro
+MACRO text_dots
 	db TX_DOTS
 	db \1
-endm
+ENDM
 
 	const TX_LINK_WAIT_BUTTON ; $0d
-link_wait_button: macro
+MACRO link_wait_button
 	db TX_LINK_WAIT_BUTTON
-endm
+ENDM
 
 	const TX_SOUND_0E ; $0e
-sound_dex_fanfare_20_49: macro
+MACRO sound_dex_fanfare_20_49
 	db TX_SOUND_0E
-endm
+ENDM
 
 	const TX_SOUND_0F ; $0f
-sound_item: macro
+MACRO sound_item
 	db TX_SOUND_0F
-endm
+ENDM
 
 	const TX_SOUND_10 ; $10
-sound_caught_mon: macro
+MACRO sound_caught_mon
 	db TX_SOUND_10
-endm
+ENDM
 
 	const TX_SOUND_11 ; $11
-sound_dex_fanfare_80_109: macro
+MACRO sound_dex_fanfare_80_109
 	db TX_SOUND_11
-endm
+ENDM
 
 	const TX_SOUND_12 ; $12
-sound_fanfare: macro
+MACRO sound_fanfare
 	db TX_SOUND_12
-endm
+ENDM
 
 	const TX_SOUND_13 ; $13
-sound_slot_machine_start: macro
+MACRO sound_slot_machine_start
 	db TX_SOUND_13
-endm
+ENDM
 
 	const TX_CRY_14 ; $14
-cry_nidorina: macro
+MACRO cry_nidorina
 	db TX_CRY_14
-endm
+ENDM
 
 	const TX_CRY_15 ; $15
-cry_pidgeot: macro
+MACRO cry_pidgeot
 	db TX_CRY_15
-endm
+ENDM
 
 	const TX_CRY_16 ; $16
-cry_dewgong: macro
+MACRO cry_dewgong
 	db TX_CRY_16
-endm
+ENDM
 
 	const_next $50
 
 	const TX_END ; $50
-text_end: macro
+MACRO text_end
 	db TX_END
-endm
+ENDM

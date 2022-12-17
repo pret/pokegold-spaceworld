@@ -569,7 +569,7 @@ TrainerGear_RadioAreas:
 	dw TrainerGear_RadioStations_Music
 	dw TrainerGear_RadioStations_Music
 
-radio_station: MACRO
+MACRO radio_station
 	; \1 = "frequency" (tuning knob's X position)
 	; \2 = parameter (loaded onto E)
 	; \3 = subroutine to call

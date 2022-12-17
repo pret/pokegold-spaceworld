@@ -23,11 +23,11 @@ SECTION "engine/palettes.asm@Palette fading, part 2?", ROMX
 ApplyPalettesAtHL::
 	push hl
 	ld a, [hli]
-	ld [rBGP], a
+	ldh [rBGP], a
 	ld a, [hli]
-	ld [rOBP0], a
+	ldh [rOBP0], a
 	ld a, [hli]
-	ld [rOBP1], a
+	ldh [rOBP1], a
 	pop hl
 	ret
 
