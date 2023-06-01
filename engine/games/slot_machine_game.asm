@@ -2,25 +2,25 @@ INCLUDE "constants.asm"
 
 SECTION "engine/games/slot_machine_game.asm", ROMX
 
-SLOTS_NO_BIAS        EQU -1
-SLOTS_NO_MATCH       EQU -1
+DEF SLOTS_NO_BIAS        EQU -1
+DEF SLOTS_NO_MATCH       EQU -1
 
-SLOTS_STARTING_COINS    EQU 256
+DEF SLOTS_STARTING_COINS    EQU 256
 
-SLOTS_GFX_BLANK_TILE          EQU $17
-SLOTS_GFX_ILLUMINATED_LIGHT   EQU $14
-SLOTS_GFX_DEILLUMINATED_LIGHT EQU $23
-SLOTS_GFX_SEVEN_TILE_1        EQU $25
-SLOTS_GFX_SEVEN_TILE_2        EQU $41
+DEF SLOTS_GFX_BLANK_TILE          EQU $17
+DEF SLOTS_GFX_ILLUMINATED_LIGHT   EQU $14
+DEF SLOTS_GFX_DEILLUMINATED_LIGHT EQU $23
+DEF SLOTS_GFX_SEVEN_TILE_1        EQU $25
+DEF SLOTS_GFX_SEVEN_TILE_2        EQU $41
 
-SLOTS_SEVEN    EQU $00
-SLOTS_POKEBALL EQU $04
-SLOTS_CHERRY   EQU $08
-SLOTS_PIKACHU  EQU $0c
-SLOTS_SQUIRTLE EQU $10
-SLOTS_STARYU   EQU $14
+DEF SLOTS_SEVEN    EQU $00
+DEF SLOTS_POKEBALL EQU $04
+DEF SLOTS_CHERRY   EQU $08
+DEF SLOTS_PIKACHU  EQU $0c
+DEF SLOTS_SQUIRTLE EQU $10
+DEF SLOTS_STARYU   EQU $14
 
-REEL_SIZE EQU 15
+DEF REEL_SIZE EQU 15
 
 ; SlotsJumptable constants
 	const_def
@@ -43,7 +43,7 @@ REEL_SIZE EQU 15
 	const SLOTS_PAYOUT_ANIM
 	const SLOTS_RESTART_OR_QUIT
 	const SLOTS_QUIT
-SLOTS_END_LOOP_F EQU 7
+DEF SLOTS_END_LOOP_F EQU 7
 
 ; ReelActionJumptable constants
 	const_def
@@ -74,17 +74,17 @@ SLOTS_END_LOOP_F EQU 7
 	const REEL_ACTION_DROP_REEL
 
 ; Constants for slot_reel offsets (see macros/wram.asm)
-REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
-REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
-REEL_POSITION      EQUS "(wReel1Position - wReel1)"
-REEL_SPIN_DISTANCE EQUS "(wReel1SpinDistance - wReel1)"
-REEL_SPIN_RATE     EQUS "(wReel1SpinRate - wReel1)"
-REEL_OAM_ADDR      EQUS "(wReel1OAMAddr - wReel1)"
-REEL_X_COORD       EQUS "(wReel1XCoord - wReel1)"
-REEL_MANIP_COUNTER EQUS "(wReel1ManipCounter - wReel1)"
-REEL_MANIP_DELAY   EQUS "(wReel1ManipDelay - wReel1)"
-REEL_FIELD_0B      EQUS "(wReel1Field0b - wReel1)"
-REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
+DEF REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
+DEF REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
+DEF REEL_POSITION      EQUS "(wReel1Position - wReel1)"
+DEF REEL_SPIN_DISTANCE EQUS "(wReel1SpinDistance - wReel1)"
+DEF REEL_SPIN_RATE     EQUS "(wReel1SpinRate - wReel1)"
+DEF REEL_OAM_ADDR      EQUS "(wReel1OAMAddr - wReel1)"
+DEF REEL_X_COORD       EQUS "(wReel1XCoord - wReel1)"
+DEF REEL_MANIP_COUNTER EQUS "(wReel1ManipCounter - wReel1)"
+DEF REEL_MANIP_DELAY   EQUS "(wReel1ManipDelay - wReel1)"
+DEF REEL_FIELD_0B      EQUS "(wReel1Field0b - wReel1)"
+DEF REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
 
 SlotMachineGame:
 ; Always start off with 256 coins

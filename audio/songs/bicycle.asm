@@ -654,7 +654,7 @@ Music_Bicycle_branch_ed7c9::
 	sound_loop 0, Music_Bicycle_branch_ed7c9
 
 Music_Bicycle_Ch4::
-    toggle_noise 1 
+    toggle_noise 1
 	drum_speed 12
 	rest 2
 

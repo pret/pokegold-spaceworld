@@ -252,7 +252,7 @@
 	const MOVE_BRIGHT_MOSS  ; f9 *ROCK_SMASH
 	const MOVE_WHIRLPOOL    ; fa
 	const MOVE_BOUNCE       ; fb *BEAT_UP
-NUM_ATTACKS EQU const_value - 1
+DEF NUM_ATTACKS EQU const_value - 1
 
 	const MOVE_OR_ANIM_FC ; fc
 	const MOVE_OR_ANIM_FD ; fd

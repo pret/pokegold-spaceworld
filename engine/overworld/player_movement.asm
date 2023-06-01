@@ -195,7 +195,7 @@ CheckMovementSkateboard::
 	call _CheckMovementSkateboard
 	jp SetPlayerMovement
 
-_CheckMovementSkateboard: 
+_CheckMovementSkateboard:
 	ld a, [wSkatingDirection]
 	cp STANDING
 	jp z, .not_moving
@@ -217,7 +217,7 @@ _CheckMovementSkateboard:
 	dw CheckSkateLeft
 	dw CheckSkateRight
 
-.not_moving 
+.not_moving
 	ld a, d
 	and D_PAD
 	jp z, .idle
@@ -236,7 +236,7 @@ _CheckMovementSkateboard:
 	ld a, NO_MOVEMENT
 	ret
 
-CheckSkateDown: 
+CheckSkateDown:
 	ld a, [wPlayerLastMapY]
 	inc a
 	ld [wPlayerNextMapY], a

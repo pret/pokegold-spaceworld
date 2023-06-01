@@ -2,9 +2,9 @@ INCLUDE "constants.asm"
 
 SECTION "engine/menu/text_entry.asm@naming", ROMX
 
-NAMINGSCREEN_UNDERSCORE EQU "♀"
-NAMINGSCREEN_HYPHEN     EQU "♂"
-NAMINGSCREEN_END        EQU $F0
+DEF NAMINGSCREEN_UNDERSCORE EQU "♀"
+DEF NAMINGSCREEN_HYPHEN     EQU "♂"
+DEF NAMINGSCREEN_END        EQU $F0
 
 NamingScreen:
 	ld hl, wNamingScreenDestinationPointer

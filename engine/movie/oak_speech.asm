@@ -247,7 +247,7 @@ GiveRandomPokemon::
 	jr nz, .loop
 	ret
 
-GiveRandomJohto:: 
+GiveRandomJohto::
 .loop
 	call Random
 	and $03

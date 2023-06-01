@@ -92,4 +92,4 @@
 	const SPRITE_EGG                   ; 5a
 	const SPRITE_BOULDER               ; 5b
 
-SPRITE_TILE_SIZE EQU 64
+DEF SPRITE_TILE_SIZE EQU 64

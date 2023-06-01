@@ -1,2 +1,2 @@
 ; Name Lists
-ITEM_NAME EQU 4
+DEF ITEM_NAME EQU 4

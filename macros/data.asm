@@ -1,6 +1,6 @@
 ; Value macros
 
-percent EQUS "* $ff / 100"
+DEF percent EQUS "* $ff / 100"
 
 
 ; Constant data (db, dw, dl) macros
@@ -45,10 +45,10 @@ endr
 ENDM
 
 MACRO dx
-x = 8 * ((\1) - 1)
+DEF x = 8 * ((\1) - 1)
 rept \1
 	db LOW((\2) >> x)
-x = x - 8
+DEF x = x - 8
 endr
 ENDM
 
@@ -117,9 +117,9 @@ ENDM
 
 MACRO sine_table
 ; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
-x = 0
+DEF x = 0
 rept \1
 	dw (sin(x) + LOW(sin(x))) >> 8 ; round up
-x = x + 32768 / \1 ; a circle has 65536 "degrees"
+DEF x = x + 32768 / \1 ; a circle has 65536 "degrees"
 endr
 ENDM

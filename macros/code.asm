@@ -16,8 +16,8 @@ else
 endc
 ENDM
 
-depixel EQUS "ldpixel de,"
-bcpixel EQUS "ldpixel bc,"
+DEF depixel EQUS "ldpixel de,"
+DEF bcpixel EQUS "ldpixel bc,"
 
 
 ; Design patterns
@@ -46,10 +46,10 @@ MACRO maskbits
 ; 	maskbits 26
 ; 	cp 26
 ; 	jr nc, .loop
-x = 1
+DEF x = 1
 rept 8
 if x + 1 < (\1)
-x = x << 1 | 1
+DEF x = x << 1 | 1
 endc
 endr
 if _NARG == 2

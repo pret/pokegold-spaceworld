@@ -337,7 +337,6 @@ DebugMapViewer_ReplacePlayerObject:
 	ret
 
 Datafd044:
-_NUM_OBJECT_EVENTS = 0
 	object_event -4, -4, SPRITE_GOLD, $17, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
 	ds 2
 

@@ -30,5 +30,5 @@ INCBIN "slack/sprites_corrupted.2bpp"
 SECTION "slack.asm@Unknowne7e9f", ROMX
 
 Unknowne7e9f:
-INCBIN "slack/unknown_e7e9f.bin" ; Loaded as corrupted graphics 
+INCBIN "slack/unknown_e7e9f.bin" ; Loaded as corrupted graphics
 

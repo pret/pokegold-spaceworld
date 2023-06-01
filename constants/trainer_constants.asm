@@ -1,9 +1,9 @@
-__trainer_class__ = 0
+DEF __trainer_class__ = 0
 
 MACRO trainerclass
-\1 EQU __trainer_class__
-__trainer_class__ = __trainer_class__ + 1
-const_value = 1
+DEF \1 EQU __trainer_class__
+DEF __trainer_class__ = __trainer_class__ + 1
+DEF const_value = 1
 ENDM
 
 ; trainer class ids
@@ -145,4 +145,4 @@ ENDM
 
 	trainerclass TRAINER_ELITE_FOUR_F ; 40
 
-NUM_TRAINER_CLASSES EQU __trainer_class__
+DEF NUM_TRAINER_CLASSES EQU __trainer_class__

@@ -3264,7 +3264,7 @@ Text6653:
 	ld hl, Text6661
 	ret
 
-Text6661: 
+Text6661:
 	text "　ポカン！"
 	text_end
 

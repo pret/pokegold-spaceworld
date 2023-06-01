@@ -1,7 +1,7 @@
-GROUP_N_A  EQU -1
-MAP_N_A    EQU -1
-GROUP_NONE EQU 0
-MAP_NONE   EQU 0
+DEF GROUP_N_A  EQU -1
+DEF MAP_N_A    EQU -1
+DEF GROUP_NONE EQU 0
+DEF MAP_NONE   EQU 0
 
 ; map struct members (see data/maps/maps.asm)
 	const_def
@@ -32,7 +32,7 @@ MAP_NONE   EQU 0
 	const PALETTE_NITE
 	const PALETTE_MORN
 	const PALETTE_DARK
-NUM_MAP_PALETTES EQU const_value
+DEF NUM_MAP_PALETTES EQU const_value
 
 ; FishGroups indexes (see data/wild/fish.asm)
 	const_def
@@ -66,12 +66,12 @@ NUM_MAP_PALETTES EQU const_value
 	shift_const NORTH
 
 ; SpawnPoints indexes (see data/maps/spawn_points.asm)
-const_value = -1
+DEF const_value = -1
 	const SPAWN_N_A
-NUM_SPAWNS EQU 18
+DEF NUM_SPAWNS EQU 18
 
 ; size of each spawn point data
-SPAWN_POINT_SIZE EQU 4
+DEF SPAWN_POINT_SIZE EQU 4
 
 ; size of sprite sets (see data/maps/sprite_sets.asm)
-SPRITE_SET_LENGTH EQU 10
+DEF SPRITE_SET_LENGTH EQU 10

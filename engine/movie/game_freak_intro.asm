@@ -191,7 +191,7 @@ GameFreakPresents_PlaceLogo:
 	call InitSpriteAnimStruct
 	call GameFreakPresents_NextScene
 
-; set timer for the next scene 
+; set timer for the next scene
 	ld a, 128
 	ld [wIntroSceneTimer], a
 	ret

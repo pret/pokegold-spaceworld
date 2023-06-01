@@ -1,6 +1,6 @@
 	const_def
 
-PHYSICAL_TYPES EQU const_value ; 00
+DEF PHYSICAL_TYPES EQU const_value ; 00
 	const TYPE_NORMAL   ; 00
 	const TYPE_FIGHTING ; 01
 	const TYPE_FLYING   ; 02
@@ -12,7 +12,7 @@ PHYSICAL_TYPES EQU const_value ; 00
 	const TYPE_GHOST    ; 08
 	const TYPE_METAL    ; 09 STEEL
 
-UNUSED_TYPES EQU const_value ; 0a
+DEF UNUSED_TYPES EQU const_value ; 0a
 	const TYPE_0A       ; 0a
 	const TYPE_0B       ; 0b
 	const TYPE_0C       ; 0c
@@ -23,9 +23,9 @@ UNUSED_TYPES EQU const_value ; 0a
 	const TYPE_11       ; 11
 	const TYPE_12       ; 12
 	const TYPE_UNKNOWN  ; 13 (used for Metronome, not Curse)
-UNUSED_TYPES_END EQU const_value ; 14
+DEF UNUSED_TYPES_END EQU const_value ; 14
 
-SPECIAL_TYPES EQU const_value ; 14
+DEF SPECIAL_TYPES EQU const_value ; 14
 	const TYPE_FIRE     ; 14
 	const TYPE_WATER    ; 15
 	const TYPE_GRASS    ; 16
@@ -34,6 +34,6 @@ SPECIAL_TYPES EQU const_value ; 14
 	const TYPE_ICE      ; 19
 	const TYPE_DRAGON   ; 1a
 	const TYPE_DARK     ; 1b
-TYPES_END EQU const_value ; 1c
+DEF TYPES_END EQU const_value ; 1c
 
-NUM_TYPES EQU TYPES_END + UNUSED_TYPES - UNUSED_TYPES_END ; 12
+DEF NUM_TYPES EQU TYPES_END + UNUSED_TYPES - UNUSED_TYPES_END ; 12

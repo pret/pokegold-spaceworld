@@ -1,11 +1,11 @@
 MACRO channel_count
-_num_channels = \1 - 1
+DEF _num_channels = \1 - 1
 ENDM
 
 MACRO channel
 	dn (_num_channels << 2), \1 - 1 ; channel id
 	dw \2 ; address
-_num_channels = 0
+DEF _num_channels = 0
 ENDM
 
 MACRO note
@@ -42,7 +42,7 @@ ENDM
 
 ; MusicCommands indexes (see audio/engine.asm)
 	const_def $d0
-FIRST_MUSIC_CMD EQU const_value
+DEF FIRST_MUSIC_CMD EQU const_value
 
 	const octave_cmd ; $d0
 MACRO octave

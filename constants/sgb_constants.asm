@@ -23,8 +23,8 @@
 	const SGB_TRAINERGEAR_MAP
 	const SGB_TRAINERGEAR_RADIO
 
-SGB_PARTY_MENU_HP_PALS  EQU -4
-SGB_RAM EQU -1
+DEF SGB_PARTY_MENU_HP_PALS  EQU -4
+DEF SGB_RAM EQU -1
 
 ; SGB system command codes
 ; http://gbdev.gg8.se/wiki/articles/SGB_Functions#SGB_System_Command_Table
@@ -55,4 +55,4 @@ SGB_RAM EQU -1
 	const SGB_MASK_EN
 	const SGB_OBJ_TRN
 
-PALPACKET_LENGTH EQU $10
+DEF PALPACKET_LENGTH EQU $10

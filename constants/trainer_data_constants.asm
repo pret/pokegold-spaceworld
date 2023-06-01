@@ -7,13 +7,13 @@
 	const TRNATTR_AI2             ; 4
 	const TRNATTR_AI_ITEM_SWITCH  ; 5
 	const TRNATTR_AI4             ; 6
-NUM_TRAINER_ATTRIBUTES EQU const_value
+DEF NUM_TRAINER_ATTRIBUTES EQU const_value
 
 ; TRNATTR_AI_MOVE_WEIGHTS bit flags (wEnemyTrainerAIFlags)
 ; AIScoringPointers indexes (see engine/battle/ai/move.asm)
 	const_def
 	const       NO_AI
-const_value = 0
+DEF const_value = 0
 	shift_const AI_BASIC
 	shift_const AI_SETUP
 	shift_const AI_TYPES
@@ -32,19 +32,19 @@ const_value = 0
 	shift_const AI_15
 
 ; TRNATTR_AI_ITEM_SWITCH bit flags
-CONTEXT_USE_F      EQU 6
-UNKNOWN_USE_F      EQU 5
-ALWAYS_USE_F       EQU 4
-SWITCH_SOMETIMES_F EQU 2
-SWITCH_RARELY_F    EQU 1
-SWITCH_OFTEN_F     EQU 0
+DEF CONTEXT_USE_F      EQU 6
+DEF UNKNOWN_USE_F      EQU 5
+DEF ALWAYS_USE_F       EQU 4
+DEF SWITCH_SOMETIMES_F EQU 2
+DEF SWITCH_RARELY_F    EQU 1
+DEF SWITCH_OFTEN_F     EQU 0
 
-CONTEXT_USE        EQU 1 << CONTEXT_USE_F
-UNKNOWN_USE        EQU 1 << UNKNOWN_USE_F
-ALWAYS_USE         EQU 1 << ALWAYS_USE_F
-SWITCH_SOMETIMES   EQU 1 << SWITCH_SOMETIMES_F
-SWITCH_RARELY      EQU 1 << SWITCH_RARELY_F
-SWITCH_OFTEN       EQU 1 << SWITCH_OFTEN_F
+DEF CONTEXT_USE        EQU 1 << CONTEXT_USE_F
+DEF UNKNOWN_USE        EQU 1 << UNKNOWN_USE_F
+DEF ALWAYS_USE         EQU 1 << ALWAYS_USE_F
+DEF SWITCH_SOMETIMES   EQU 1 << SWITCH_SOMETIMES_F
+DEF SWITCH_RARELY      EQU 1 << SWITCH_RARELY_F
+DEF SWITCH_OFTEN       EQU 1 << SWITCH_OFTEN_F
 
 ; TrainerTypes indexes (see engine/battle/read_trainer_party.asm)
 	const_def

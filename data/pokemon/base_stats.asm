@@ -4,17 +4,17 @@ SECTION "data/pokemon/base_stats.asm", ROMX
 
 MACRO tmhm
 ; used in data/pokemon/base_stats/*.asm
-tms1 = 0 ; TM01-TM24 (24)
-tms2 = 0 ; TM25-TM48 (24)
-tms3 = 0 ; TM49-TM50 + HM01-HM07 (9)
+DEF tms1 = 0 ; TM01-TM24 (24)
+DEF tms2 = 0 ; TM25-TM48 (24)
+DEF tms3 = 0 ; TM49-TM50 + HM01-HM07 (9)
 rept _NARG
 	if 0 < \1 && \1 <= (NUM_TM_HM + 7) / 8 * 8
 	if \1 < 24 + 1
-tms1 = tms1 | (1 << ((\1) - 1))
+DEF tms1 = tms1 | (1 << ((\1) - 1))
 	elif \1 < 48 + 1
-tms2 = tms2 | (1 << ((\1) - 1 - 24))
+DEF tms2 = tms2 | (1 << ((\1) - 1 - 24))
 	else
-tms3 = tms3 | (1 << ((\1) - 1 - 48))
+DEF tms3 = tms3 | (1 << ((\1) - 1 - 48))
 	endc
 	else
 		fail "\1 is not a TM/HM number"
@@ -23,15 +23,15 @@ tms3 = tms3 | (1 << ((\1) - 1 - 48))
 endr
 rept 3 ; TM01-TM24 (24/24)
 	db tms1 & $ff
-tms1 = tms1 >> 8
+DEF tms1 = tms1 >> 8
 endr
 rept 3 ; TM25-TM48 (24/24)
 	db tms2 & $ff
-tms2 = tms2 >> 8
+DEF tms2 = tms2 >> 8
 endr
 rept 2 ; TM49-TM50 + HM01-HM07 (9/16)
 	db tms3 & $ff
-tms3 = tms3 >> 8
+DEF tms3 = tms3 >> 8
 endr
 ENDM
 

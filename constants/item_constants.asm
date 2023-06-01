@@ -251,7 +251,7 @@
 	const ITEM_TM48             ; f5 *HM03
 	const ITEM_TM49             ; f6 *HM04
 	const ITEM_TM50             ; f7 *HM05
-NUM_TMS = const_value - ITEM_TM01 - 2 ; discount ITEM_C8 and ITEM_E1
+DEF NUM_TMS = const_value - ITEM_TM01 - 2 ; discount ITEM_C8 and ITEM_E1
 
 	const ITEM_HM01             ; f8 *HM06
 	const ITEM_HM02             ; f9 *HM07
@@ -260,12 +260,12 @@ NUM_TMS = const_value - ITEM_TM01 - 2 ; discount ITEM_C8 and ITEM_E1
 	const ITEM_HM05             ; fc *
 	const ITEM_HM06             ; fd *
 	const ITEM_HM07             ; fe *
-NUM_HMS = const_value - ITEM_HM01
+DEF NUM_HMS = const_value - ITEM_HM01
 
 	const ITEM_FF
 
-NUM_TM_HM = NUM_TMS + NUM_HMS
+DEF NUM_TM_HM = NUM_TMS + NUM_HMS
 
 ; leftovers from pokered
-ITEM_HM01_RED EQU $c4
-ITEM_TM01_RED EQU $c9
+DEF ITEM_HM01_RED EQU $c4
+DEF ITEM_TM01_RED EQU $c9

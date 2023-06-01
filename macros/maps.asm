@@ -7,8 +7,8 @@ MACRO map_attributes
 ;\1: map name
 ;\2: map id
 ;\3: connections: combo of NORTH, SOUTH, WEST, and/or EAST, or 0 for none
-CURRENT_MAP_WIDTH = \2_WIDTH
-CURRENT_MAP_HEIGHT = \2_HEIGHT
+DEF CURRENT_MAP_WIDTH = \2_WIDTH
+DEF CURRENT_MAP_HEIGHT = \2_HEIGHT
 \1_MapAttributes::
 	db CURRENT_MAP_HEIGHT, CURRENT_MAP_WIDTH
 	dw \1_Blocks
@@ -32,55 +32,55 @@ if _NARG == 6
 else
 
 ; Calculate tile offsets for source (current) and target maps
-_src = 0
-_tgt = (\4) + 3
+DEF _src = 0
+DEF _tgt = (\4) + 3
 if _tgt < 0
-_src = -_tgt
-_tgt = 0
+DEF _src = -_tgt
+DEF _tgt = 0
 endc
 
 if !STRCMP("\1", "north")
-_blk = \3_WIDTH * (\3_HEIGHT - 3) + _src
-_map = _tgt
-_win = (\3_WIDTH + 6) * \3_HEIGHT + 1
-_y = \3_HEIGHT * 2 - 1
-_x = (\4) * -2
-_len = CURRENT_MAP_WIDTH + 3 - (\4)
+DEF _blk = \3_WIDTH * (\3_HEIGHT - 3) + _src
+DEF _map = _tgt
+DEF _win = (\3_WIDTH + 6) * \3_HEIGHT + 1
+DEF _y = \3_HEIGHT * 2 - 1
+DEF _x = (\4) * -2
+DEF _len = CURRENT_MAP_WIDTH + 3 - (\4)
 if _len > \3_WIDTH
-_len = \3_WIDTH
+DEF _len = \3_WIDTH
 endc
 
 elif !STRCMP("\1", "south")
-_blk = _src
-_map = (CURRENT_MAP_WIDTH + 6) * (CURRENT_MAP_HEIGHT + 3) + _tgt
-_win = \3_WIDTH + 7
-_y = 0
-_x = (\4) * -2
-_len = CURRENT_MAP_WIDTH + 3 - (\4)
+DEF _blk = _src
+DEF _map = (CURRENT_MAP_WIDTH + 6) * (CURRENT_MAP_HEIGHT + 3) + _tgt
+DEF _win = \3_WIDTH + 7
+DEF _y = 0
+DEF _x = (\4) * -2
+DEF _len = CURRENT_MAP_WIDTH + 3 - (\4)
 if _len > \3_WIDTH
-_len = \3_WIDTH
+DEF _len = \3_WIDTH
 endc
 
 elif !STRCMP("\1", "west")
-_blk = (\3_WIDTH * _src) + \3_WIDTH - 3
-_map = (CURRENT_MAP_WIDTH + 6) * _tgt
-_win = (\3_WIDTH + 6) * 2 - 6
-_y = (\4) * -2
-_x = \3_WIDTH * 2 - 1
-_len = CURRENT_MAP_HEIGHT + 3 - (\4)
+DEF _blk = (\3_WIDTH * _src) + \3_WIDTH - 3
+DEF _map = (CURRENT_MAP_WIDTH + 6) * _tgt
+DEF _win = (\3_WIDTH + 6) * 2 - 6
+DEF _y = (\4) * -2
+DEF _x = \3_WIDTH * 2 - 1
+DEF _len = CURRENT_MAP_HEIGHT + 3 - (\4)
 if _len > \3_HEIGHT
-_len = \3_HEIGHT
+DEF _len = \3_HEIGHT
 endc
 
 elif !STRCMP("\1", "east")
-_blk = (\3_WIDTH * _src)
-_map = (CURRENT_MAP_WIDTH + 6) * _tgt + CURRENT_MAP_WIDTH + 3
-_win = \3_WIDTH + 7
-_y = (\4) * -2
-_x = 0
-_len = CURRENT_MAP_HEIGHT + 3 - (\4)
+DEF _blk = (\3_WIDTH * _src)
+DEF _map = (CURRENT_MAP_WIDTH + 6) * _tgt + CURRENT_MAP_WIDTH + 3
+DEF _win = \3_WIDTH + 7
+DEF _y = (\4) * -2
+DEF _x = 0
+DEF _len = CURRENT_MAP_HEIGHT + 3 - (\4)
 if _len > \3_HEIGHT
-_len = \3_HEIGHT
+DEF _len = \3_HEIGHT
 endc
 
 else
@@ -98,12 +98,9 @@ endc
 ENDM
 
 MACRO def_warp_events
-if DEF(_NUM_WARP_EVENTS)
-	PURGE _NUM_WARP_EVENTS
-endc
-_NUM_WARP_EVENTS EQUS "_NUM_WARP_EVENTS_\@"
-	db _NUM_WARP_EVENTS
-_NUM_WARP_EVENTS = 0
+	REDEF _NUM_WARP_EVENTS EQUS "_NUM_WARP_EVENTS_\@"
+	db {_NUM_WARP_EVENTS}
+	DEF {_NUM_WARP_EVENTS} = 0
 ENDM
 
 MACRO warp_event
@@ -115,16 +112,13 @@ MACRO warp_event
 	db \2, \1, \4
 	map_id \3
 	dw wOverworldMapBlocks + \5
-_NUM_WARP_EVENTS = _NUM_WARP_EVENTS + 1
+	DEF {_NUM_WARP_EVENTS} += 1
 ENDM
 
 MACRO def_bg_events
-if DEF(_NUM_BG_EVENTS)
-	PURGE _NUM_BG_EVENTS
-endc
-_NUM_BG_EVENTS EQUS "_NUM_BG_EVENTS_\@"
-	db _NUM_BG_EVENTS
-_NUM_BG_EVENTS = 0
+	REDEF _NUM_BG_EVENTS EQUS "_NUM_BG_EVENTS_\@"
+	db {_NUM_BG_EVENTS}
+	DEF {_NUM_BG_EVENTS} = 0
 ENDM
 
 MACRO bg_event
@@ -132,16 +126,13 @@ MACRO bg_event
 ;\2: y: top to bottom, starts at 0
 ;\3: text index
 	db \2, \1, 0, \3
-_NUM_BG_EVENTS = _NUM_BG_EVENTS + 1
+	DEF {_NUM_BG_EVENTS} += 1
 ENDM
 
 MACRO def_object_events
-if DEF(_NUM_OBJECT_EVENTS)
-	PURGE _NUM_OBJECT_EVENTS
-endc
-_NUM_OBJECT_EVENTS EQUS "_NUM_OBJECT_EVENTS_\@"
-	db _NUM_OBJECT_EVENTS
-_NUM_OBJECT_EVENTS = 0
+	REDEF _NUM_OBJECT_EVENTS EQUS "_NUM_OBJECT_EVENTS_\@"
+	db {_NUM_OBJECT_EVENTS}
+	DEF {_NUM_OBJECT_EVENTS} = 0
 ENDM
 
 MACRO object_event
@@ -165,5 +156,7 @@ MACRO object_event
 	db \3, \2 + 4, \1 + 4, \4
 	dn \5, \6
 	db \7, \8, \9, \<10>, \<11>, \<12>, \<13>, \<14>
-_NUM_OBJECT_EVENTS = _NUM_OBJECT_EVENTS + 1
+	if DEF(_NUM_OBJECT_EVENTS)
+		DEF {_NUM_OBJECT_EVENTS} += 1
+	endc
 ENDM

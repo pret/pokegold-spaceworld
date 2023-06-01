@@ -2,8 +2,8 @@ INCLUDE "constants.asm"
 
 SECTION "engine/menu/set_clock_dialog.asm", ROMX
 
-UP_ARROW      EQU $f0
-DOWN_ARROW    EQU $ee
+DEF UP_ARROW      EQU $f0
+DEF DOWN_ARROW    EQU $ee
 
 SetClockDialog:
 	call SetClockDialog_Init

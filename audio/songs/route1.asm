@@ -323,7 +323,7 @@ Music_Route1_branch_ec5dc::
 
 Music_Route1_Ch4::
 	toggle_noise 2
-	
+
 Music_Route1_branch_ec625:
 	drum_speed 12
 	rest 4

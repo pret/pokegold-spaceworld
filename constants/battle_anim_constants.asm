@@ -18,7 +18,7 @@
 	const BATTLEANIMSTRUCT_VAR1
 	const BATTLEANIMSTRUCT_VAR2
 	const_skip 7
-BATTLEANIMSTRUCT_LENGTH EQU const_value
+DEF BATTLEANIMSTRUCT_LENGTH EQU const_value
 
 ; BattleAnimObjects indexes (see data/battle_anims/objects.asm)
 	const_def
@@ -207,7 +207,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const ANIM_OBJ_FLOWER
 	const ANIM_OBJ_COTTON
 
-const_value = $b1
+DEF const_value = $b1
 	const ANIM_OBJ_PLAYERFEETFOLLOW
 	const ANIM_OBJ_ENEMYFEETFOLLOW
 	const ANIM_OBJ_PLAYERHEADFOLLOW
@@ -807,7 +807,7 @@ const_value = $b1
 	const BG_EFFECT_STRUCT_JT_INDEX
 	const BG_EFFECT_STRUCT_BATTLE_TURN
 	const BG_EFFECT_STRUCT_03
-BG_EFFECT_STRUCT_LENGTH EQU const_value
+DEF BG_EFFECT_STRUCT_LENGTH EQU const_value
 
 ; battle palettes
 	const_def

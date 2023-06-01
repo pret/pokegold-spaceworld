@@ -252,7 +252,7 @@
 	const DEX_BULU          ; f9 SNUBBULL
 	const DEX_TAIL          ; fa AIPOM
 	const DEX_LEAFY         ; fb LEAFEON (evolved EEVEE)
-NUM_POKEMON EQU const_value - 1
+DEF NUM_POKEMON EQU const_value - 1
 	const DEX_FC            ; fc
 	const DEX_EGG           ; fd EGG
 	const DEX_FE            ; fe
@@ -285,4 +285,4 @@ NUM_POKEMON EQU const_value - 1
 	const     ANNON_X         ; 24
 	const     ANNON_Y         ; 25
 	const     ANNON_Z         ; 26
-NUM_ANNON EQU const_value - 1 ; 26
+DEF NUM_ANNON EQU const_value - 1 ; 26
