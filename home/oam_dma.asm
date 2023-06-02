@@ -15,7 +15,7 @@ WriteOAMDMACodeToHRAM::
 	ret
 
 .OAMDMA
-	ld a, HIGH(wVirtualOAM)
+	ld a, HIGH(wShadowOAM)
 	ldh [rDMA], a
 	ld a, $28
 .wait

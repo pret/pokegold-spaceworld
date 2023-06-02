@@ -1071,7 +1071,7 @@ Function87ea:
 	and $10
 	jr z, .sub_881a
 	ld de, wTileMap
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 .sub_87f7
 	ld a, [de]
 	and a

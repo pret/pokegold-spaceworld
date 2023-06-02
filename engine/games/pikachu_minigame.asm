@@ -384,7 +384,7 @@ PikachuMiniGame_RunFrame:
 .Done:
 	callab InitEffectObject
 
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	ld c, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
 	xor a
 .clear_oam
