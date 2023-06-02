@@ -1132,15 +1132,10 @@ wObjectStructs::
 ; It might just be unused/a leftover.
 wUnkObjectStruct:: object_struct wUnkObject
 wPlayerStruct::   object_struct wPlayer
-wObject1Struct::  object_struct wObject1
-wObject2Struct::  object_struct wObject2
-wObject3Struct::  object_struct wObject3
-wObject4Struct::  object_struct wObject4
-wObject5Struct::  object_struct wObject5
-wObject6Struct::  object_struct wObject6
-wObject7Struct::  object_struct wObject7
-wObject8Struct::  object_struct wObject8
-wObjectStructsEnd::
+; wObjectStruct1 - wObjectStruct12
+for n, 1, NUM_OBJECT_STRUCTS - 1
+wObject{d:n}Struct:: object_struct wObject{d:n}
+endr
 
 wCmdQueue::
 wCmdQueueEntry1:: ds 16
@@ -1149,23 +1144,11 @@ wCmdQueueEntry3:: ds 16
 wCmdQueueEntry4:: ds 16
 
 wMapObjects::
-wPlayerObject:: map_object wPlayer
-wMap1Object::   map_object wMap1
-wMap2Object::   map_object wMap2
-wMap3Object::   map_object wMap3
-wMap4Object::   map_object wMap4
-wMap5Object::   map_object wMap5
-wMap6Object::   map_object wMap6
-wMap7Object::   map_object wMap7
-wMap8Object::   map_object wMap8
-wMap9Object::   map_object wMap9
-wMap10Object::  map_object wMap10
-wMap11Object::  map_object wMap11
-wMap12Object::  map_object wMap12
-wMap13Object::  map_object wMap13
-wMap14Object::  map_object wMap14
-wMap15Object::  map_object wMap15
-wMapObjectsEnd::
+wPlayerObject:: map_object wPlayer ; player is map object 0
+; wMap1Object - wMap15Object
+for n, 1, NUM_OBJECTS
+wMap{d:n}Object:: map_object wMap{d:n}
+endr
 
 wToolgearFlags:: db
 ; 76543210

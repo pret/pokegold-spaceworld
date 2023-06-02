@@ -4,10 +4,10 @@ SECTION "engine/overworld/object_collision.asm@GetSpritesNextTile", ROMX
 
 ; Get the tile that the sprite will walk onto next
 GetSpritesNextTile:
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	push bc
@@ -45,12 +45,12 @@ _CheckObjectCollision:
 	ld a, [hl]
 	and a
 	jr z, .next
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
 	jr nz, .check_last_position
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
@@ -61,12 +61,12 @@ _CheckObjectCollision:
 	cp l
 	jr nz, .collision
 .check_last_position
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_LAST_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
 	jr nz, .next
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_LAST_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
@@ -96,9 +96,9 @@ SECTION "engine/overworld/object_collision.asm@_CheckPlayerObjectCollision", ROM
 
 ; Sets the carry flag if the player will collide with another sprite's current or next position
 _CheckPlayerObjectCollision:
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	ld d, a
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	ld e, a
 	ld bc, wObjectStructs
 	xor a
@@ -110,12 +110,12 @@ _CheckPlayerObjectCollision:
 	ld a, [hl]
 	and a
 	jr z, .next
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .check_last_position
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
@@ -128,12 +128,12 @@ _CheckPlayerObjectCollision:
 	jr .collision
 
 .check_last_position
-	ld hl, OBJECT_MAP_Y
+	ld hl, OBJECT_LAST_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
 	jr nz, .next
-	ld hl, OBJECT_MAP_X
+	ld hl, OBJECT_LAST_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d

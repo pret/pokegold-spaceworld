@@ -8,7 +8,7 @@ Function15b5::
 
 GetMapObject::
 	ld hl, wMapObjects
-	ld bc, MAP_OBJECT_LENGTH
+	ld bc, MAPOBJECT_LENGTH
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -117,10 +117,10 @@ Function1668::
 Function1680::
 	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	ldh a, [hMapObjectIndexBuffer]
@@ -142,7 +142,7 @@ Function169f::
 	push af
 	ld [hl], $ff
 	inc hl
-	ld bc, MAP_OBJECT_LENGTH - 1
+	ld bc, MAPOBJECT_LENGTH - 1
 	xor a
 	call ByteFill
 	pop af
@@ -197,10 +197,10 @@ Function16fb::
 	ld a, [wMovementObject]
 	call CheckObjectVisibility
 	jr c, .asm_171f
-	ld hl, OBJECT_MOVEMENTTYPE
+	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
 	ld [hl], $19
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_DIRECTION
 	add hl, bc
 	ld [hl], $0
 .asm_171f:
@@ -212,14 +212,14 @@ CheckObjectVisibility::
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr z, .asm_1735
+	cp -1
+	jr z, .not_visible
 	ldh [hObjectStructIndexBuffer], a
 	call GetObjectStruct
 	and a
 	ret
 
-.asm_1735:
+.not_visible:
 	scf
 	ret
 
@@ -316,7 +316,7 @@ UpdateSprites::
 
 GetObjectStruct::
 ; Puts the start of the a'th object struct into bc
-	ld bc, $28
+	ld bc, OBJECT_LENGTH
 	ld hl, wObjectStructs
 	call AddNTimes
 	ld b, h
@@ -405,7 +405,7 @@ Function1828::
 	ld a, [hl]
 	and a
 	jr z, .asm_183b
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 5, [hl]
 .asm_183b:
@@ -430,7 +430,7 @@ Function1848::
 	ld a, [hl]
 	and a
 	jr z, .asm_185c
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 5, [hl]
 .asm_185c:
@@ -453,7 +453,7 @@ Function186a::
 	cp $ff
 	ret z
 	call GetObjectStruct
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 5, [hl]
 	ret
@@ -502,12 +502,12 @@ Function18a0::
 
 Function18b4::
 	ld bc, wPlayerStruct
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set 3, [hl]
 	set 2, [hl]
 	set 1, [hl]
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 5, [hl]
 	call Function18e5
@@ -527,7 +527,7 @@ Function18cc::
 	ret
 
 Function18e5::
-	ld hl, OBJECT_DIRECTION_WALKING
+	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld a, [hl]
 	srl a
@@ -538,10 +538,10 @@ Function18e5::
 	ld hl, .Data
 	add hl, de
 	ld a, [hl]
-	ld hl, OBJECT_MOVEMENTTYPE
+	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_DIRECTION
 	add hl, bc
 	ld [hl], $0
 	ret
@@ -555,7 +555,7 @@ Function1908::
 	push bc
 	call Function191d
 	pop bc
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set 7, [hl]
 	ldh a, [hObjectStructIndexBuffer]
@@ -567,7 +567,7 @@ Function191d::
 	cp $ff
 	ret z
 	call GetObjectStruct
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	res 7, [hl]
 	ld a, $ff
@@ -602,10 +602,10 @@ SetFollowerIfVisible::
 	pop af
 	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_MOVEMENTTYPE
+	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
 	ld [hl], $18
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_DIRECTION
 	add hl, bc
 	ld [hl], $0
 	ldh a, [hObjectStructIndexBuffer]
@@ -625,7 +625,7 @@ ResetFollower::
 Function197e::
 	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 0, [hl]
 	ret
@@ -633,7 +633,7 @@ Function197e::
 Function1989::
 	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 0, [hl]
 	ret
@@ -641,7 +641,7 @@ Function1989::
 Function1994::
 	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 4, [hl]
 	ret
@@ -649,7 +649,7 @@ Function1994::
 Function199f::
 	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 4, [hl]
 	ret
@@ -657,7 +657,7 @@ Function199f::
 Function19aa::
 	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 7, [hl]
 	ret
@@ -665,7 +665,7 @@ Function19aa::
 Function19b5::
 	call CheckObjectVisibility
 	ret c
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 7, [hl]
 	ret
@@ -680,7 +680,7 @@ SetObjectFacing::
 	add a
 	add a
 	and $c
-	ld hl, OBJECT_DIRECTION_WALKING
+	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], a
 	ret

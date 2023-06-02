@@ -50,7 +50,7 @@ RefreshPlayerCoords::
 	ld a, [wXCoord]
 	add a, 4
 	ld d, a
-	ld hl, wPlayerNextMapX
+	ld hl, wPlayerMapX
 	sub [hl]
 	ld [hl], d
 	ld hl, wPlayerObjectXCoord
@@ -61,7 +61,7 @@ RefreshPlayerCoords::
 	ld a, [wYCoord]
 	add a, 4
 	ld e, a
-	ld hl, wPlayerNextMapY
+	ld hl, wPlayerMapY
 	sub [hl]
 	ld [hl], e
 	ld hl, wPlayerObjectYCoord
@@ -210,18 +210,18 @@ SaveScreen::
 RefreshTiles::
 	call .left_right
 	call .up_down
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	ld d, a
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	ld e, a
 	call GetCoordTile
-	ld [wPlayerStandingTile], a
+	ld [wPlayerTile], a
 	ret
 
 .up_down
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	ld d, a
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	ld e, a
 	push de
 	inc e
@@ -234,9 +234,9 @@ RefreshTiles::
 	ret
 
 .left_right
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	ld d, a
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	ld e, a
 	push de
 	dec d
@@ -269,10 +269,10 @@ GetFacingTileCoord::
 	ld h, [hl]
 	ld l, a
 
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	add a, d
 	ld d, a
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	add a, e
 	ld e, a
 	ld a, [hl]

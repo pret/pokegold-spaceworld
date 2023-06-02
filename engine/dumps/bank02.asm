@@ -37,9 +37,9 @@ Function8047:
 	ld a, $01
 	ld hl, Data805d
 	call Function1656
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	ld [wMap1ObjectXCoord], a
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	dec a
 	ld [wMap1ObjectYCoord], a
 	ret
@@ -71,84 +71,95 @@ Data8089:
 
 _InitializeVisibleSprites:
 	ld bc, wMap2Object
-	ld a, $02
-.sub_809d
+	ld a, 2
+.loop
 	ldh [hConnectionStripLength], a
-	ld hl, $0001
+	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .sub_80dc
-	ld hl, $0000
+	jr z, .next
+
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr nz, .sub_80dc
+	cp -1
+	jr nz, .next
+
 	ld a, [wXCoord]
 	ld d, a
 	ld a, [wYCoord]
 	ld e, a
-	ld hl, $0003
+
+	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld a, [hl]
-	add $01
+	add 1
 	sub d
-	jr c, .sub_80dc
-	cp $0c
-	jr nc, .sub_80dc
-	ld hl, $0002
+	jr c, .next
+
+	cp MAPOBJECT_SCREEN_WIDTH
+	jr nc, .next
+
+	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld a, [hl]
-	add $01
+	add 1
 	sub e
-	jr c, .sub_80dc
-	cp $0b
-	jr nc, .sub_80dc
+	jr c, .next
+
+	cp MAPOBJECT_SCREEN_HEIGHT
+	jr nc, .next
+
 	push bc
 	call Function80eb
 	pop bc
-	jp c, Function80ea
-.sub_80dc
-	ld hl, $0010
+	jp c, .ret
+
+.next
+	ld hl, MAPOBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	ldh a, [hConnectionStripLength]
 	inc a
-	cp $10
-	jr nz, .sub_809d
+	cp NUM_OBJECTS
+	jr nz, .loop
 	ret
 
-Function80ea:
+.ret:
 	ret
 
 Function80eb:
 	call Function811a
 	and a
-	ret nz
+	ret nz ; masked
+
 	ld hl, wObject1StructEnd
 	ld a, $03
-	ld de, $0028
-.sub_80f8
+	ld de, OBJECT_LENGTH
+.loop
 	ldh [hConnectedMapWidth], a
 	ld a, [hl]
 	and a
-	jr z, .sub_8108
+	jr z, .done
 	add hl, de
 	ldh a, [hConnectedMapWidth]
 	inc a
-	cp $0a
-	jr nz, .sub_80f8
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	scf
-	ret
-.sub_8108
+	ret ; overflow
+
+.done
 	ld d, h
 	ld e, l
 	call Function813d
 	ld a, [wVramState]
 	bit 7, a
 	ret z
-	ld hl, $0005
+
+	ld hl, OBJECT_FLAGS2
 	add hl, de
 	set 5, [hl]
 	ret

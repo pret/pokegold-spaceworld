@@ -1,37 +1,38 @@
 	rsreset
-DEF OBJECT_SPRITE              rb 1 ; 00
-DEF OBJECT_MAP_OBJECT_INDEX    rb 1 ; 01
-DEF OBJECT_SPRITE_TILE         rb 1 ; 02
-DEF OBJECT_MOVEMENTTYPE        rb 1 ; 03
-DEF OBJECT_FLAGS               rw 1 ; 04
-DEF OBJECT_PALETTE             rb 1 ; 06
-DEF OBJECT_DIRECTION_WALKING   rb 1 ; 07
-DEF OBJECT_FACING              rb 1 ; 08
-DEF OBJECT_STEP_TYPE           rb 1 ; 09
-DEF OBJECT_STEP_DURATION       rb 1 ; 0a
-DEF OBJECT_ACTION              rb 1 ; 0b
-DEF OBJECT_STEP_FRAME          rb 1 ; 0c
-DEF OBJECT_FACING_STEP         rb 1 ; 0d
-DEF OBJECT_NEXT_TILE           rb 1 ; 0e
-DEF OBJECT_STANDING_TILE       rb 1 ; 0f
-DEF OBJECT_NEXT_MAP_X          rb 1 ; 10
-DEF OBJECT_NEXT_MAP_Y          rb 1 ; 11
-DEF OBJECT_MAP_X               rb 1 ; 12
-DEF OBJECT_MAP_Y               rb 1 ; 13
-DEF OBJECT_INIT_X              rb 1 ; 14
-DEF OBJECT_INIT_Y              rb 1 ; 15
-DEF OBJECT_RADIUS              rb 1 ; 16
-DEF OBJECT_SPRITE_X            rb 1 ; 17
-DEF OBJECT_SPRITE_Y            rb 1 ; 18
-DEF OBJECT_SPRITE_X_OFFSET     rb 1 ; 19
-DEF OBJECT_SPRITE_Y_OFFSET     rb 1 ; 1a
-DEF OBJECT_MOVEMENT_BYTE_INDEX rb 1 ; 1b
-DEF OBJECT_1C                  rb 1 ; 1c
-DEF OBJECT_1D                  rb 1 ; 1d
-DEF OBJECT_1E                  rb 1 ; 1e
-DEF OBJECT_1F                  rb 1 ; 1f
-DEF OBJECT_RANGE               rb 1 ; 20
-DEF OBJECT_DATA                rb 7 ; 21
+DEF OBJECT_SPRITE           rb ; 00
+DEF OBJECT_MAP_OBJECT_INDEX rb ; 01
+DEF OBJECT_SPRITE_TILE      rb ; 02
+DEF OBJECT_MOVEMENT_TYPE    rb ; 03
+DEF OBJECT_FLAGS1           rb ; 04
+DEF OBJECT_FLAGS2           rb ; 05
+DEF OBJECT_PALETTE          rb ; 06
+DEF OBJECT_WALKING          rb ; 07
+DEF OBJECT_DIRECTION        rb ; 08
+DEF OBJECT_STEP_TYPE        rb ; 09
+DEF OBJECT_STEP_DURATION    rb ; 0a
+DEF OBJECT_ACTION           rb ; 0b
+DEF OBJECT_STEP_FRAME       rb ; 0c
+DEF OBJECT_FACING           rb ; 0d
+DEF OBJECT_TILE             rb ; 0e
+DEF OBJECT_LAST_TILE        rb ; 0f
+DEF OBJECT_MAP_X            rb ; 10
+DEF OBJECT_MAP_Y            rb ; 11
+DEF OBJECT_LAST_MAP_X       rb ; 12
+DEF OBJECT_LAST_MAP_Y       rb ; 13
+DEF OBJECT_INIT_X           rb ; 14
+DEF OBJECT_INIT_Y           rb ; 15
+DEF OBJECT_RADIUS           rb ; 16
+DEF OBJECT_SPRITE_X         rb ; 17
+DEF OBJECT_SPRITE_Y         rb ; 18
+DEF OBJECT_SPRITE_X_OFFSET  rb ; 19
+DEF OBJECT_SPRITE_Y_OFFSET  rb ; 1a
+DEF OBJECT_MOVEMENT_INDEX   rb ; 1b
+DEF OBJECT_1C               rb ; 1c
+DEF OBJECT_1D               rb ; 1d
+DEF OBJECT_1E               rb ; 1e
+DEF OBJECT_1F               rb ; 1f
+DEF OBJECT_RANGE            rb ; 20
+                            rb_skip 7
 DEF OBJECT_LENGTH EQU _RS
 DEF NUM_OBJECT_STRUCTS EQU 10
 
@@ -40,22 +41,24 @@ DEF CMDQUEUE_UNK0 rb 16
 DEF CMDQUEUE_ENTRY_SIZE EQU _RS
 
 	rsreset
-DEF MAPOBJECT_OBJECT_STRUCT_ID rb 1 ; 0
-DEF MAPOBJECT_SPRITE           rb 1 ; 1
-DEF MAPOBJECT_Y_COORD          rb 1 ; 2
-DEF MAPOBJECT_X_COORD          rb 1 ; 3
-DEF MAPOBJECT_MOVEMENT         rb 1 ; 4
-DEF MAPOBJECT_RADIUS           rb 1 ; 5
-DEF MAPOBJECT_HOUR             rb 1 ; 6
-DEF MAPOBJECT_TIMEOFDAY        rb 1 ; 7
-DEF MAPOBJECT_COLOR            rb 1 ; 8
-DEF MAPOBJECT_RANGE            rb 1 ; 9
-DEF MAPOBJECT_SCRIPT_POINTER   rb 1 ; a
-DEF MAPOBJECT_POINTER_HI       rb 1 ; b
-DEF MAPOBJECT_EVENT_FLAG       rw 1
-DEF MAPOBJECT_E                rb 1 ; unused
-DEF MAPOBJECT_F                rb 1 ; unused
-DEF MAP_OBJECT_LENGTH EQU _RS
+DEF MAPOBJECT_OBJECT_STRUCT_ID rb ; 0
+DEF MAPOBJECT_SPRITE           rb ; 1
+DEF MAPOBJECT_Y_COORD          rb ; 2
+DEF MAPOBJECT_X_COORD          rb ; 3
+DEF MAPOBJECT_MOVEMENT         rb ; 4
+DEF MAPOBJECT_RADIUS           rb ; 5
+DEF MAPOBJECT_HOUR             rb ; 6
+DEF MAPOBJECT_TIMEOFDAY        rb ; 7
+DEF MAPOBJECT_PALETTE          rb ; 8
+DEF MAPOBJECT_SIGHT_RANGE      rb ; 9
+DEF MAPOBJECT_SCRIPT_POINTER   rw ; a
+DEF MAPOBJECT_EVENT_FLAG       rw
+                               rb_skip 2
+DEF MAPOBJECT_LENGTH EQU _RS
+DEF NUM_OBJECTS EQU 16
+
+DEF MAPOBJECT_SCREEN_WIDTH  EQU (SCREEN_WIDTH / 2) + 2
+DEF MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 
 	rsreset
 DEF MAPOBJECTTEMPLATE_SPRITE           rb 1 ; 0

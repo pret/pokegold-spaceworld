@@ -260,56 +260,55 @@ MACRO slot_reel
 ENDM
 
 MACRO object_struct
-\1Sprite:: ds 1
-\1MapObjectIndex:: ds 1
-\1SpriteTile:: ds 1
-\1MovementType:: ds 1
-\1Flags:: ds 2
-\1Palette:: ds 1
-\1Walking:: ds 1
-\1Direction:: ds 1
-\1StepType:: ds 1
-\1StepDuration:: ds 1
-\1Action:: ds 1
-\1ObjectStepFrame:: ds 1
-\1Facing:: ds 1
-\1StandingTile:: ds 1 ; collision
-\1LastTile:: ds 1     ; collision
-\1NextMapX:: ds 1
-\1NextMapY:: ds 1
-\1LastMapX:: ds 1
-\1LastMapY:: ds 1
-\1ObjectInitX:: ds 1
-\1ObjectInitY:: ds 1
-\1Radius:: ds 1
-\1SpriteX:: ds 1
-\1SpriteY:: ds 1
-\1SpriteXOffset:: ds 1
-\1SpriteYOffset:: ds 1
-\1MovementByteIndex:: ds 1
-\1Object28:: ds 1
-\1Object29:: ds 1
-\1Object30:: ds 1
-\1Object31:: ds 1
-\1Range:: ds 1
+\1Sprite::         db
+\1MapObjectIndex:: db
+\1SpriteTile::     db
+\1MovementType::   db
+\1Flags::          dw
+\1Palette::        db
+\1Walking::        db
+\1Direction::      db
+\1StepType::       db
+\1StepDuration::   db
+\1Action::         db
+\1StepFrame::      db
+\1Facing::         db
+\1Tile::           db ; collision
+\1LastTile::       db ; collision
+\1MapX::           db
+\1MapY::           db
+\1LastMapX::       db
+\1LastMapY::       db
+\1InitX::          db
+\1InitY::          db
+\1Radius::         db
+\1SpriteX::        db
+\1SpriteY::        db
+\1SpriteXOffset::  db
+\1SpriteYOffset::  db
+\1MovementIndex::  db
+\1Object28::       db
+\1Object29::       db
+\1Object30::       db
+\1Object31::       db
+\1Range::          db
 	ds 7
 \1StructEnd::
 ENDM
 
 MACRO map_object
-\1ObjectStructID::  ds 1
-\1ObjectSprite::    ds 1
-\1ObjectYCoord::    ds 1
-\1ObjectXCoord::    ds 1
-\1ObjectMovement::  ds 1
-\1ObjectRadius::    ds 1
-\1ObjectHour::      ds 1
-\1ObjectTimeOfDay:: ds 1
-\1ObjectColor::     ds 1
-\1ObjectRange::     ds 1
-\1ObjectScript::    ds 2
-\1ObjectEventFlag:: ds 2
-\1ObjectUnused::
+\1ObjectStructID::   db
+\1ObjectSprite::     db
+\1ObjectYCoord::     db
+\1ObjectXCoord::     db
+\1ObjectMovement::   db
+\1ObjectRadius::     db
+\1ObjectHour::       db
+\1ObjectTimeOfDay::  db
+\1ObjectPalette::    db
+\1ObjectSightRange:: db
+\1ObjectScript::     dw
+\1ObjectEventFlag::  dw
 	ds 2
 ENDM
 

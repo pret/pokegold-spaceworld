@@ -329,7 +329,7 @@ DebugMapViewer_ReplacePlayerObject:
 	ld a, 1
 	call Function1908
 	ld bc, wObjectStructs
-	ld hl, OBJECT_FLAGS
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set 3, [hl]
 	set 2, [hl]

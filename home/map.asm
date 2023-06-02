@@ -455,11 +455,11 @@ Function2407::
 	ld a, [wPlayerFacing]
 	and $c
 	ld [wPlayerFacing], a
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	and $f0
 	cp $70
 	ret nz
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	cp $72
 	ret z
 	cp $70
@@ -505,7 +505,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .down
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	sub 4
 	ld b, a
 	ld a, [wMapHeight]
@@ -516,7 +516,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .up
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -524,7 +524,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .left
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -532,7 +532,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .right
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	sub 4
 	ld b, a
 	ld a, [wMapWidth]
@@ -701,10 +701,10 @@ WarpCheck::
 	ret
 
 GetDestinationWarpPointer:
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	sub 4
 	ld d, a
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	sub 4
 	ld e, a
 	ld a, [wCurrMapWarpCount]
@@ -877,7 +877,7 @@ ReadObjectEvents::
 	push hl
 	ld a, $ff
 	ld [hli], a
-	ld b, wMap2ObjectUnused - wMap2ObjectSprite
+	ld b, OBJECT_EVENT_SIZE
 .copy
 	ld a, [de]
 	inc de
@@ -885,7 +885,7 @@ ReadObjectEvents::
 	dec b
 	jr nz, .copy
 	pop hl
-	ld bc, wMap3Object - wMap2Object
+	ld bc, MAPOBJECT_LENGTH
 	add hl, bc
 	pop bc
 	dec c
@@ -894,12 +894,13 @@ ReadObjectEvents::
 .skip
 	ld a, [wCurrMapObjectCount]
 	ld c, a
-	ld a, 16 ; 16 objects -- but this causes an overflow, since we only start from object 2
+	ld a, NUM_OBJECTS 
 	sub c
 	jr z, .finish
+
 	ld bc, 1
 	add hl, bc ; Very thorough optimization. Don't do this at home, kids.
-	ld bc, wMap3Object - wMap2Object
+	ld bc, MAPOBJECT_LENGTH
 .clear
 	ld [hl], 0
 	add hl, bc
@@ -915,7 +916,7 @@ ClearObjectStructs::
 	xor a
 	ld [wUnkObjectStruct], a ; TODO
 	ld hl, wObject2Struct
-	ld de, wObject2Struct - wObject1Struct
+	ld de, OBJECT_LENGTH
 	ld c, 7
 .clear_struct
 	ld [hl], a
@@ -923,15 +924,15 @@ ClearObjectStructs::
 	dec c
 	jr nz, .clear_struct
 
-	ld hl, $D00F ; TODO
-	ld de, 16
+	ld hl, wCmdQueue
+	ld de, CMDQUEUE_ENTRY_SIZE
 	ld c, 4
 	xor a
-.clear_unk ; TODO
+.clear_cmd_queue
 	ld [hl], a
 	add hl, de
 	dec c
-	jr nz, .clear_unk
+	jr nz, .clear_cmd_queue
 	ret
 
 

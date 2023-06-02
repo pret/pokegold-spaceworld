@@ -7,9 +7,9 @@ FieldDebug_CheckTile:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
 	call MenuBox
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	ld d, a
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	ld e, a
 	call GetBlockLocation
 	ld a, [hl]

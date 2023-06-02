@@ -236,7 +236,7 @@ TurnNPCTalkingTo::
 	jr c, .Jump
 	ld a, [wPlayerWalking]
 	xor 04
-	ld hl, OBJECT_DIRECTION_WALKING
+	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], a
 	push bc
@@ -261,7 +261,7 @@ CheckInlineTrainer::
 	call GetObjectStruct
 	call GetInlineMapObject
 	jr nc, .Escape
-	ld hl, MAPOBJECT_POINTER_HI
+	ld hl, MAPOBJECT_SCRIPT_POINTER + 1
 	add hl, de
 	ld a, [hl]
 	cp b
@@ -284,22 +284,22 @@ CheckInlineTrainer::
 
 GetInlineMapObject::
 	;bc is start of object struct. if c flag set, returns distance in B and direction in C
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	cp [hl]
 	jr z, .EqualX
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	cp [hl]
 	jr z, .EqualY
 	and a
 	ret
 .EqualX
-	ld hl, OBJECT_NEXT_MAP_Y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	sub [hl]
 	jr z, .Reset
 	jr nc, .SetDown
@@ -315,9 +315,9 @@ GetInlineMapObject::
 	scf
 	ret
 .EqualY
-	ld hl, OBJECT_NEXT_MAP_X
+	ld hl, OBJECT_MAP_X
 	add hl, bc
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	sub [hl]
 	jr z, .Reset ; (this condition is impossible to meet)
 	jr nc, .SetRight

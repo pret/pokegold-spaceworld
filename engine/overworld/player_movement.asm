@@ -32,9 +32,9 @@ SetPlayerIdle:
 SetPlayerMovement:
 	ld [wPlayerMovement], a
 	ld a, [wPlayerLastMapX]
-	ld [wPlayerNextMapX], a
+	ld [wPlayerMapX], a
 	ld a, [wPlayerLastMapY]
-	ld [wPlayerNextMapY], a
+	ld [wPlayerMapY], a
 	and a
 	ret
 
@@ -62,7 +62,7 @@ _CheckMovementWalkOrBike:
 .check_right
 	ld a, [wPlayerLastMapX]
 	inc a
-	ld [wPlayerNextMapX], a
+	ld [wPlayerMapX], a
 	call CheckPlayerObjectCollision
 	jr c, .face_right
 	call IsPlayerCollisionTileSolid
@@ -82,7 +82,7 @@ _CheckMovementWalkOrBike:
 .check_left:
 	ld a, [wPlayerLastMapX]
 	dec a
-	ld [wPlayerNextMapX], a
+	ld [wPlayerMapX], a
 	call CheckPlayerObjectCollision
 	jr c, .face_left
 	call IsPlayerCollisionTileSolid
@@ -102,7 +102,7 @@ _CheckMovementWalkOrBike:
 .check_down
 	ld a, [wPlayerLastMapY]
 	inc a
-	ld [wPlayerNextMapY], a
+	ld [wPlayerMapY], a
 	call CheckPlayerObjectCollision
 	jr c, .face_down
 	call IsPlayerCollisionTileSolid
@@ -125,7 +125,7 @@ _CheckMovementWalkOrBike:
 .check_up
 	ld a, [wPlayerLastMapY]
 	dec a
-	ld [wPlayerNextMapY], a
+	ld [wPlayerMapY], a
 	call CheckPlayerObjectCollision
 	jr c, .face_up
 	call IsPlayerCollisionTileSolid
@@ -239,7 +239,7 @@ _CheckMovementSkateboard:
 CheckSkateDown:
 	ld a, [wPlayerLastMapY]
 	inc a
-	ld [wPlayerNextMapY], a
+	ld [wPlayerMapY], a
 	ld a, DOWN
 	ld [wSkatingDirection], a
 	call CheckPlayerObjectCollision
@@ -274,7 +274,7 @@ CheckSkateDown:
 CheckSkateUp:
 	ld a, [wPlayerLastMapY]
 	dec a
-	ld [wPlayerNextMapY], a
+	ld [wPlayerMapY], a
 	ld a, UP
 	ld [wSkatingDirection], a
 	call CheckPlayerObjectCollision
@@ -305,7 +305,7 @@ CheckSkateUp:
 CheckSkateLeft:
 	ld a, [wPlayerLastMapX]
 	dec a
-	ld [wPlayerNextMapX], a
+	ld [wPlayerMapX], a
 	ld a, LEFT
 	ld [wSkatingDirection], a
 	call CheckPlayerObjectCollision
@@ -336,7 +336,7 @@ CheckSkateLeft:
 CheckSkateRight:
 	ld a, [wPlayerLastMapX]
 	inc a
-	ld [wPlayerNextMapX], a
+	ld [wPlayerMapX], a
 	ld a, RIGHT
 	ld [wSkatingDirection], a
 	call CheckPlayerObjectCollision
@@ -400,7 +400,7 @@ _OldCheckMovementSurf:
 .check_down
 	ld a, [wPlayerLastMapY]
 	inc a
-	ld [wPlayerNextMapY], a
+	ld [wPlayerMapY], a
 	call CheckPlayerObjectCollision
 	jr c, .face_down
 	call IsPlayerCollisionTileSolid
@@ -421,7 +421,7 @@ _OldCheckMovementSurf:
 .check_up
 	ld a, [wPlayerLastMapY]
 	dec a
-	ld [wPlayerNextMapY], a
+	ld [wPlayerMapY], a
 	call CheckPlayerObjectCollision
 	jr c, .face_up
 	call IsPlayerCollisionTileSolid
@@ -442,7 +442,7 @@ _OldCheckMovementSurf:
 .check_left
 	ld a, [wPlayerLastMapX]
 	dec a
-	ld [wPlayerNextMapX], a
+	ld [wPlayerMapX], a
 	call CheckPlayerObjectCollision
 	jr c, .face_left
 	call IsPlayerCollisionTileSolid
@@ -463,7 +463,7 @@ _OldCheckMovementSurf:
 .check_right
 	ld a, [wPlayerLastMapX]
 	inc a
-	ld [wPlayerNextMapX], a
+	ld [wPlayerMapX], a
 	call CheckPlayerObjectCollision
 	jr c, .face_right
 	call IsPlayerCollisionTileSolid
@@ -539,7 +539,7 @@ CheckCompanionObjectCollision::
 ; Result:
 ; nc - no collision
 ;  c - collision
-	ld hl, OBJECT_FLAGS + 1
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 1, [hl] ; mark object as having collided with player
 	ldh a, [hObjectStructIndexBuffer]
@@ -591,7 +591,7 @@ GetPlayerMovementByState:
 	jp CheckMovementWalk
 
 CheckMovementWalk::
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	swap a
 	and LOW((COLLISION_TYPE_MASK >> 4) | (COLLISION_TYPE_MASK << 4))
 	ld hl, .WalkingCollisionTable
@@ -623,7 +623,7 @@ CheckMovementWalkSolid::
 	jp CheckMovementWalkRegular
 
 CheckMovementWalkLand::
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	and COLLISION_SUBTYPE_MASK
 	jr nz, .force_movement
 	call CheckMovementWalkRegular
@@ -667,7 +667,7 @@ SlowDownMovementWalk:
 	ret
 
 CheckMovementWalkLand2::
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	and COLLISION_SUBTYPE_MASK
 	ld b, STEP_DOWN
 	cp (COLLISION_LAND2_S & COLLISION_SUBTYPE_MASK)
@@ -690,12 +690,12 @@ UnusedCheckMovementWalk60::
 	jp CheckMovementWalkRegular
 
 CheckMovementWalkWarp::
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	and COLLISION_SUBTYPE_MASK
 	jr z, .check_dpad
 	cp 1
 	jr z, .move_down
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	cp $7a
 	jr z, .move_down
 	jp CheckMovementWalkRegular
@@ -778,7 +778,7 @@ CheckMovementWalkJump:
 	jp NoWalkMovement
 
 .down
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_JUMP_S & COLLISION_SUBTYPE_MASK)
 	jr z, .jump_down
@@ -792,7 +792,7 @@ CheckMovementWalkJump:
 	ret
 
 .up
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_JUMP_N & COLLISION_SUBTYPE_MASK)
 	jr z, .jump_up
@@ -806,7 +806,7 @@ CheckMovementWalkJump:
 	ret
 
 .left
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_JUMP_W & COLLISION_SUBTYPE_MASK)
 	jr z, .jump_left
@@ -820,7 +820,7 @@ CheckMovementWalkJump:
 	ret
 
 .right
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_JUMP_E & COLLISION_SUBTYPE_MASK)
 	jr z, .jump_right
@@ -890,7 +890,7 @@ CheckWalkRight::
 	ret
 
 CheckMovementSurf::
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	swap a
 	and  LOW((COLLISION_TYPE_MASK >> 4) | (COLLISION_TYPE_MASK << 4))
 	ld hl, .SurfCollisionTable
@@ -927,7 +927,7 @@ CheckMovementSurfRegular::
 	jp NoWalkMovement
 
 CheckMovementSurfWater::
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	and COLLISION_SUBTYPE_MASK
 	cp (COLLISION_WATERFALL & COLLISION_SUBTYPE_MASK)
 	jr nz, CheckMovementSurfRegular
@@ -936,7 +936,7 @@ CheckMovementSurfWater::
 	ret
 
 CheckMovementSurfWater2::
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	and COLLISION_WATER_SUBTYPE_MASK
 	ld d, STEP_RIGHT
 	jr z, .finish ; COLLISION_WATER2_E
@@ -1034,10 +1034,10 @@ CheckObjectCollision::
 ; hObjectStructIndexBuffer - Event ID of colliding event
 	ld a, PLAYER_OBJECT_INDEX
 	ldh [hEventCollisionException], a
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	add d
 	ld d, a
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	add e
 	ld e, a
 	callab _CheckObjectCollision

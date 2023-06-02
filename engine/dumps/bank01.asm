@@ -1297,9 +1297,9 @@ Function48f5:
 	ret
 
 Function4930:
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	ld d, a
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	ld e, a
 	ld hl, $0010
 	add hl, bc
@@ -2961,7 +2961,7 @@ SECTION "engine/dumps/bank01.asm@ReanchorBGMap_NoOAMUpdate", ROMX
 ReanchorBGMap_NoOAMUpdate:
 	xor a
 	ldh [hLCDCPointer], a
-	ld hl, wMapObjectsEnd
+	ld hl, wToolgearFlags
 	set 7, [hl]
 	res 2, [hl]
 	ld a, $90
@@ -2970,7 +2970,7 @@ ReanchorBGMap_NoOAMUpdate:
 	ldh [hBGMapMode], a
 	xor a
 	ldh [hBGMapAddress], a
-	ld a, $9c
+	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress+1], a
 	call LoadMapPart
 	call WaitBGMap
@@ -2978,9 +2978,9 @@ ReanchorBGMap_NoOAMUpdate:
 	ldh [hBGMapMode], a
 	ldh [hWY], a
 	call .sub_6412
-	xor a
+	xor a ; LOW(vBGMap0)
 	ld [wBGMapAnchor], a
-	ld a, $98
+	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress+1], a
 	ld [wBGMapAnchor+1], a
 	xor a
@@ -3532,13 +3532,13 @@ Function776e:
 	cp $98
 	jr nz, .sub_7789
 .sub_7779
-	ld a, [wPlayerNextMapX]
+	ld a, [wPlayerMapX]
 	sub d
 	cpl
 	inc a
 	add d
 	ld d, a
-	ld a, [wPlayerNextMapY]
+	ld a, [wPlayerMapY]
 	sub e
 	cpl
 	inc a
