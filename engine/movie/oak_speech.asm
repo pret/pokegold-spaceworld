@@ -167,9 +167,9 @@ DebugSetUpPlayer::
 	ld [wd15e], a
 	ld a, $3F
 	ld [wd15f], a
-	ld a, $FF
-	ld [wd163], a
-	ld [wd164], a
+	ld a, $FF ; give all badges
+	ld [wJohtoBadges], a
+	ld [wKantoBadges], a
 	call GiveRandomJohto
 	ld a, $03
 	call AddRandomPokemonToBox

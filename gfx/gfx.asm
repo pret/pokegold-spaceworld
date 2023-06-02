@@ -5,18 +5,19 @@ PokedexNestIconGFX::
 INCBIN "gfx/trainer_gear/dexmap_nest_icon.1bpp"
 
 SECTION "gfx.asm@Bank 2 Misc GFX", ROMX
-UnknownBouncingOrbGFX::
-INCBIN "gfx/overworld/gfx_84bf.2bpp"
-JumpShadowGFX::
-INCBIN "gfx/overworld/shadow.2bpp"
-ShockEmoteGFX::
-INCBIN "gfx/overworld/shock.2bpp"
-QuestionEmoteGFX::
-INCBIN "gfx/overworld/question.2bpp"
-HappyEmoteGFX::
-INCBIN "gfx/overworld/happy.2bpp"
-UnknownBallGFX::
-INCBIN "gfx/overworld/gfx_85cf.2bpp"
+UnknownBouncingOrbGFX:: INCBIN "gfx/overworld/gfx_84bf.2bpp"
+.end:
+JumpShadowGFX::         INCBIN "gfx/overworld/shadow.2bpp"
+.end:
+EmoteGFX::
+ShockEmoteGFX::         INCBIN "gfx/overworld/shock.2bpp"
+.end:
+QuestionEmoteGFX::      INCBIN "gfx/overworld/question.2bpp"
+.end:
+HappyEmoteGFX::         INCBIN "gfx/overworld/happy.2bpp"
+.end:
+BoulderDustGFX::        INCBIN "gfx/overworld/boulder_dust.2bpp"
+.end:
 
 SECTION "gfx.asm@Trainer Gear GFX", ROMX
 TrainerGearGFX::
@@ -455,6 +456,7 @@ RockerSpriteGFX:: INCBIN "gfx/sprites/rocker.2bpp"
 PokefanMSpriteGFX:: INCBIN "gfx/sprites/pokefan_m.2bpp"
 PokefanFSpriteGFX:: INCBIN "gfx/sprites/pokefan_f.2bpp"
 GrampsSpriteGFX:: INCBIN "gfx/sprites/gramps.2bpp"
+.end:
 GrannySpriteGFX:: INCBIN "gfx/sprites/granny.2bpp"
 SwimmerMSpriteGFX:: INCBIN "gfx/sprites/swimmer_m.2bpp"
 SwimmerFSpriteGFX:: INCBIN "gfx/sprites/swimmer_f.2bpp"
@@ -483,6 +485,7 @@ HelmetSpriteGFX:: INCBIN "gfx/sprites/helmet.2bpp"
 BurglarSpriteGFX:: INCBIN "gfx/sprites/burglar.2bpp"
 RhydonSpriteGFX:: INCBIN "gfx/sprites/rhydon.2bpp"
 ClefairySpriteGFX:: INCBIN "gfx/sprites/clefairy.2bpp"
+.end:
 PidgeySpriteGFX:: INCBIN "gfx/sprites/pidgey.2bpp"
 CharizardSpriteGFX:: INCBIN "gfx/sprites/charizard.2bpp"
 SnorlaxSpriteGFX:: INCBIN "gfx/sprites/snorlax.2bpp"

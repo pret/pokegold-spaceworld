@@ -63,8 +63,8 @@ InitializeNewGameWRAM:
 
 	xor a
 	ld [wMonType], a
-	ld [wd163], a
-	ld [wd164], a
+	ld [wJohtoBadges], a
+	ld [wKantoBadges], a
 	ld [wCoins], a
 	ld [wd15c], a
 	ld [wd15d], a
@@ -252,8 +252,8 @@ DisplayContinueGameInfo::
 
 PrintNumBadges::
 	push hl
-	ld hl, wd163 ; badges?
-	ld b, $01
+	ld hl, wJohtoBadges
+	ld b, $01 ; only Johto Badges
 	call CountSetBits
 	pop hl
 	ld de, wCountSetBitsResult
