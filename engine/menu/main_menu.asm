@@ -253,7 +253,7 @@ DisplayContinueGameInfo::
 PrintNumBadges::
 	push hl
 	ld hl, wJohtoBadges
-	ld b, $01          ; only Johto Badges
+	ld b, $01 ; only Johto Badges
 	call CountSetBits
 	pop hl
 	ld de, wCountSetBitsResult
