@@ -943,7 +943,7 @@ SelectedPokemonSubmenu:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wd163]
+	ld a, [wJohtoBadges]
 	jp hl
 
 PartyJumpTable:
