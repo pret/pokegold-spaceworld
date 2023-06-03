@@ -534,7 +534,7 @@ CheckPlayerObjectCollision::
 CheckCompanionObjectCollision::
 ; Marks the object struct pointed to by hl
 ; as having collided with player object.
-; If object struct (as identified by hObjectStructIndexBuffer)
+; If object struct (as identified by hObjectStructIndex)
 ; is companion, cancel collision on 5th frames.
 ; Result:
 ; nc - no collision
@@ -542,7 +542,7 @@ CheckCompanionObjectCollision::
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	set 1, [hl] ; mark object as having collided with player
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	cp COMPANION_OBJECT_INDEX
 	jr z, .is_companion
 	xor a
@@ -1031,7 +1031,7 @@ CheckObjectCollision::
 ; Output:
 ; nc - no collision
 ;  c - collision
-; hObjectStructIndexBuffer - Event ID of colliding event
+; hObjectStructIndex - Event ID of colliding event
 	ld a, PLAYER_OBJECT_INDEX
 	ldh [hEventCollisionException], a
 	ld a, [wPlayerMapX]

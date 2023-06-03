@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "home/map_objects.asm", ROM0
 
 Function15b5::
-	callab Function8000
+	callab SpawnPlayer
 	ret
 
 GetMapObject::
@@ -21,39 +21,39 @@ GetMapObjectAttrPtr::
 	ret
 
 Function15d1::
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call GetMapObject
 	call Function40eb
 	ret
 
 Function15da::
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	callab Function8131
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	call GetMapObject
 	call Function40eb
 	ret
 
 Function15ed::
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call GetMapObject
 	ld a, $0
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	ld de, wObjectStructs
-	callab Function813d
+	callab CopyMapObjectToObjectStruct
 	ret
 
 Function1602::
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call GetMapObject
-	ld a, $2
-	ldh [hObjectStructIndexBuffer], a
+	ld a, FOLLOWER_STRUCT
+	ldh [hObjectStructIndex], a
 	ld de, wObject1Struct
-	callab Function813d
+	callab CopyMapObjectToObjectStruct
 	ret
 
 Function1617::
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
@@ -87,12 +87,12 @@ Function164a::
 	callab Function8125
 	ret
 
-Function1656::
+CopyPlayerObjectTemplate::
 	push hl
 	call GetMapObject
 	ld d, b
 	ld e, c
-	ld a, $ff
+	ld a, -1
 	ld [de], a
 	inc de
 	pop hl
@@ -100,7 +100,7 @@ Function1656::
 	call CopyBytes
 	ret
 
-Function1668::
+Spawn_ConvertCoords::
 	call GetMapObject
 	ld a, [wXCoord]
 	add $4
@@ -123,7 +123,7 @@ Function1680::
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	call GetMapObject
 	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
@@ -207,14 +207,14 @@ Function16fb::
 	ret
 
 CheckObjectVisibility::
-	ldh [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndex], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jr z, .not_visible
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	call GetObjectStruct
 	and a
 	ret
@@ -260,7 +260,7 @@ PushToCmdQueue::
 	ld hl, $f
 	add hl, bc
 	ld [hl], a
-	ldh a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndex]
 	inc a
 	ld hl, $0
 	add hl, bc
@@ -290,12 +290,12 @@ GetCmdQueueEmptySlot::
 	ld de, CMDQUEUE_ENTRY_SIZE
 	ld a, 1
 .asm_1796:
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	ld a, [hl]
 	and a
 	jr z, .asm_17a6
 	add hl, de
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	inc a
 	cp 4 + 1
 	jr nz, .asm_1796
@@ -558,7 +558,7 @@ Function1908::
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set 7, [hl]
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	ld [wCenteredObject], a
 	ret
 
@@ -587,7 +587,7 @@ StartFollow::
 SetLeaderIfVisible::
 	call CheckObjectVisibility
 	ret c
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	ld [wObjectFollow_Leader], a
 	ret
 
@@ -608,7 +608,7 @@ SetFollowerIfVisible::
 	ld hl, OBJECT_DIRECTION
 	add hl, bc
 	ld [hl], $0
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	ld [wObjectFollow_Follower], a
 	ret
 

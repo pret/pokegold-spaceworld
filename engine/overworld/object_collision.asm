@@ -39,7 +39,7 @@ _CheckObjectCollision:
 	ld bc, wObjectStructs
 	xor a
 .loop
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -57,7 +57,7 @@ _CheckObjectCollision:
 	jr nz, .check_last_position
 	ldh a, [hEventCollisionException]
 	ld l, a
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	cp l
 	jr nz, .collision
 .check_last_position
@@ -73,7 +73,7 @@ _CheckObjectCollision:
 	jr nz, .next
 	ldh a, [hEventCollisionException]
 	ld l, a
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	cp l
 	jr nz, .collision
 .next
@@ -81,7 +81,7 @@ _CheckObjectCollision:
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -104,7 +104,7 @@ _CheckPlayerObjectCollision:
 	xor a
 
 .loop
-	ldh [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndex], a
 	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -122,7 +122,7 @@ _CheckPlayerObjectCollision:
 	jr nz, .check_last_position
 
 ; skip the player sprite
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	cp PLAYER_OBJECT_INDEX
 	jr z, .next
 	jr .collision
@@ -145,7 +145,7 @@ _CheckPlayerObjectCollision:
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop

@@ -227,7 +227,7 @@ Function318f:
 
 TurnNPCTalkingTo::
 	; If an NPC is allowed to turn when talked to, turn it.
-	ldh a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndex]
 	call GetObjectStruct
 	ld hl, OBJECT_SPRITE
 	add hl, bc

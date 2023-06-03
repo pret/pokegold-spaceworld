@@ -1,42 +1,42 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank02.asm@Function8000", ROMX
+SECTION "engine/dumps/bank02.asm@SpawnPlayer", ROMX
 
-Function8000:
-	ld a, $00
-	ld hl, Data8022
-	call Function1656
-	call Function1668
-	ld a, $01
-	ldh [hConnectedMapWidth], a
-	ld de, wPlayerSprite
-	ld a, $00
-	ldh [hConnectionStripLength], a
+SpawnPlayer:
+	ld a, PLAYER
+	ld hl, PlayerObjectTemplate
+	call CopyPlayerObjectTemplate
+	call Spawn_ConvertCoords
+	ld a, PLAYER_STRUCT
+	ldh [hObjectStructIndex], a
+	ld de, wPlayerStruct
+	ld a, PLAYER_OBJECT
+	ldh [hMapObjectIndex], a
 	ld bc, wMapObjects
-	call Function813d
-	ld a, $00
+	call CopyMapObjectToObjectStruct
+	ld a, PLAYER_OBJECT
 	call Function1908
 	ret
 
-Data8022:
-	db $01, $00, $00, $10, $ee, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00
+PlayerObjectTemplate:
+	object_event -4, -4, SPRITE_GOLD, $10, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
+	db $00, $00
 
 Function8031:
-	call Function8047
+	call SpawnFollower
 	ld a, [wUsedSprites+1]
 	ld [wMap1ObjectSprite], a
 	ld a, $01
 	call Function1602
-	ld b, $00
-	ld c, $01
+	ld b, PLAYER
+	ld c, FOLLOWER
 	call StartFollow
 	ret
 
-Function8047:
-	ld a, $01
-	ld hl, Data805d
-	call Function1656
+SpawnFollower:
+	ld a, FOLLOWER
+	ld hl, FollowerObjectTemplate
+	call CopyPlayerObjectTemplate
 	ld a, [wPlayerMapX]
 	ld [wMap1ObjectXCoord], a
 	ld a, [wPlayerMapY]
@@ -44,9 +44,9 @@ Function8047:
 	ld [wMap1ObjectYCoord], a
 	ret
 
-Data805d:
-	db $4d, $00, $00, $18, $ff, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00
+FollowerObjectTemplate:
+	object_event -4, -4, SPRITE_RHYDON, $18, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0
+	db $00, $00
 
 Function806c:
 	ld a, $01
@@ -60,14 +60,14 @@ Function806c:
 Function807b:
 	ld a, $01
 	ld hl, Data8089
-	call Function1656
+	call CopyPlayerObjectTemplate
 	ld a, $01
-	call Function1668
+	call Spawn_ConvertCoords
 	ret
 
 Data8089:
-	db $01, $00, $00, $17, $ee, $00, $00, $00
-	db $00, $00, $00, $00, $00, $00, $00
+	object_event -4, -4, SPRITE_GOLD, $17, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
+	db $00, $00
 
 _InitializeVisibleSprites:
 	ld bc, wMap2Object
@@ -154,7 +154,7 @@ Function80eb:
 .done
 	ld d, h
 	ld e, l
-	call Function813d
+	call CopyMapObjectToObjectStruct
 	ld a, [wVramState]
 	bit 7, a
 	ret z
@@ -191,94 +191,109 @@ Function8131:
 	ld [hl], $00
 	ret
 
-Function813d:
-	ldh a, [hConnectionStripLength]
-	ld hl, $0001
+CopyMapObjectToObjectStruct:
+	ldh a, [hMapObjectIndex]
+	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, de
 	ld [hl], a
-	ldh a, [hConnectedMapWidth]
-	ld hl, $0000
+
+	ldh a, [hObjectStructIndex]
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld [hl], a
-	ld hl, $0008
+
+	ld hl, OBJECT_DIRECTION
 	add hl, de
 	ld [hl], $00
-	ld hl, $0002
+
+	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0015
+	ld hl, OBJECT_INIT_Y
 	add hl, de
 	ld [hl], a
-	ld hl, $0011
+
+	ld hl, OBJECT_MAP_Y
 	add hl, de
 	ld [hl], a
 	ld hl, wYCoord
 	sub [hl]
-	and $0f
+	and $f
 	swap a
-	ld hl, $0019
+	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, de
 	ld [hl], a
-	ld hl, $0003
+
+	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0014
+	ld hl, OBJECT_INIT_X
 	add hl, de
 	ld [hl], a
-	ld hl, $0010
+
+	ld hl, OBJECT_MAP_X
 	add hl, de
 	ld [hl], a
 	ld hl, wXCoord
 	sub [hl]
-	and $0f
+	and $f
 	swap a
-	ld hl, $0018
+	ld hl, OBJECT_SPRITE_Y
 	add hl, de
 	ld [hl], a
-	ld hl, $0004
+
+	ld hl, MAPOBJECT_MOVEMENT
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0003
+	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, de
 	ld [hl], a
-	call Function81ce
-	ld hl, $000d
+
+	call InitObjectFlags
+
+	ld hl, OBJECT_FACING
 	add hl, de
-	ld [hl], $ff
-	ld hl, $000a
+	ld [hl], -1
+
+	ld hl, OBJECT_STEP_DURATION
 	add hl, de
-	ld [hl], $00
-	ld hl, $0007
+	ld [hl], 0
+
+	ld hl, OBJECT_WALKING
 	add hl, de
-	ld [hl], $00
-	ld hl, $0001
+	ld [hl], 0
+
+	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0000
+	ld hl, OBJECT_SPRITE
 	add hl, de
 	ld [hl], a
+
 	call Function820d
-	ld hl, $0002
+	ld hl, OBJECT_SPRITE_TILE
 	add hl, de
 	ld [hl], a
-	ld hl, $0005
+
+	ld hl, MAPOBJECT_RADIUS
 	add hl, bc
 	ld a, [hl]
 	call Function81f8
-	ld hl, $000b
+
+	ld hl, MAPOBJECT_SCRIPT_POINTER + 1
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0021
+	ld hl, OBJECT_21
 	add hl, de
 	ld [hl], a
 	and a
 	ret
 
-Function81ce:
-	ld hl, $0004
+InitObjectFlags:
+	ld hl, OBJECT_FLAGS1
 	add hl, de
 	ld [hl], $70
-	ldh a, [hConnectedMapWidth]
+	ldh a, [hObjectStructIndex]
 	push hl
 	ld hl, wCenteredObject
 	cp [hl]
@@ -293,10 +308,10 @@ Function81ce:
 .sub_81e8
 	set 1, [hl]
 .sub_81ea
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS2
 	add hl, de
 	ld [hl], $00
-	ldh a, [hConnectedMapWidth]
+	ldh a, [hObjectStructIndex]
 	cp $01
 	ret z
 	set 4, [hl]
@@ -307,26 +322,26 @@ Function81f8:
 	swap a
 	and $0f
 	inc a
-	ld hl, $0016
+	ld hl, OBJECT_RADIUS
 	add hl, de
 	ld [hl], a
 	pop af
 	and $0f
 	inc a
-	ld hl, $0017
+	ld hl, OBJECT_SPRITE_X
 	add hl, de
 	ld [hl], a
 	ret
 
 Function820d:
 	push af
-	ldh a, [hConnectionStripLength]
-	cp $00
-	jr nz, .sub_8218
+	ldh a, [hMapObjectIndex]
+	cp PLAYER_OBJECT
+	jr nz, .not_player
 	pop af
 	ld a, $00
 	ret
-.sub_8218
+.not_player
 	cp $01
 	jr nz, .sub_8220
 	pop af

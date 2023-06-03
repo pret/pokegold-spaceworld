@@ -119,7 +119,7 @@ ROMX $01
 	"engine/dumps/bank01.asm@SettingsScreen"
 
 ROMX $02
-	"engine/dumps/bank02.asm@Function8000"
+	"engine/dumps/bank02.asm@SpawnPlayer"
 	"gfx.asm@Bank 2 Misc GFX"
 	"engine/dumps/bank02.asm@QueueFollowerFirstStep"
 	"gfx.asm@Mon Nest Icon"

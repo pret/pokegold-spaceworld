@@ -36,7 +36,7 @@ FieldDebug_FollowNPCTest:
 	ret
 
 .asm_fc9a5:
-	callab Function8047
+	callab SpawnFollower
 	ld a, 1
 	call Function15ed
 	ld a, 1

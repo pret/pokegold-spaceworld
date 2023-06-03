@@ -32,9 +32,12 @@ DEF OBJECT_1D               rb ; 1d
 DEF OBJECT_1E               rb ; 1e
 DEF OBJECT_1F               rb ; 1f
 DEF OBJECT_RANGE            rb ; 20
-                            rb_skip 7
+DEF OBJECT_21               rb ; 21
+                            rb_skip 6
 DEF OBJECT_LENGTH EQU _RS
 DEF NUM_OBJECT_STRUCTS EQU 10
+DEF PLAYER_STRUCT   EQU 1
+DEF FOLLOWER_STRUCT EQU 2
 
 	rsreset
 DEF CMDQUEUE_UNK0 rb 16
@@ -56,6 +59,7 @@ DEF MAPOBJECT_EVENT_FLAG       rw
                                rb_skip 2
 DEF MAPOBJECT_LENGTH EQU _RS
 DEF NUM_OBJECTS EQU 16
+DEF PLAYER_OBJECT EQU 0
 
 DEF MAPOBJECT_SCREEN_WIDTH  EQU (SCREEN_WIDTH / 2) + 2
 DEF MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2

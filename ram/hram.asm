@@ -101,8 +101,8 @@ hConnectedMapWidth:: db
 
 NEXTU
 
-hMapObjectIndexBuffer:: db
-hObjectStructIndexBuffer:: db
+hMapObjectIndex:: db
+hObjectStructIndex:: db
 
 ENDU
 
