@@ -141,7 +141,7 @@ ENDM
 	jp NextChar
 
 .asm_0eb6:
-	dict 0, NullChar
+	dict "<NULL>", NullChar
 	dict "<SCROLL>", _ContTextNoPause
 	dict "<_CONT>", _ContText
 	dict "<PARA>", Paragraph
@@ -221,10 +221,14 @@ NextChar::
 	inc de
 	jp PlaceNextChar
 
-NullChar::
+NullChar:: ; unused
 	ld b, h
 	ld c, l
 	pop hl
+	; A "<NULL>" character in a printed string
+	; displays an error message with the current
+	; value of hEventID in decimal format.
+	; This is a debugging leftover.
 	ld de, .Text
 	dec de
 	ret
