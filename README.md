@@ -12,31 +12,30 @@ You will need to provide a copy of Gold_debug.sgb renamed **baserom.gb** to buil
 
 ## See also
 
-- **Discord:** [pret][discord]
-- **IRC:** [libera#pret][irc]
+Other disassembly and/or decompilation projects:
+* [**Pokémon Red and Blue**](https://github.com/pret/pokered)
+* [**Pokémon Yellow**](https://github.com/pret/pokeyellow)
+* [**Pokémon Trading Card Game**](https://github.com/pret/poketcg)
+* [**Pokémon Pinball**](https://github.com/pret/pokepinball)
+* [**Pokémon Stadium**](https://github.com/pret/pokestadium)
+* [**Pokémon Gold and Silver**](https://github.com/pret/pokegold)
+* [**Pokémon Crystal**](https://github.com/pret/pokecrystal)
+* [**Pokémon Ruby and Sapphire**](https://github.com/pret/pokeruby)
+* [**Pokémon Pinball: Ruby & Sapphire**](https://github.com/pret/pokepinballrs)
+* [**Pokémon FireRed and LeafGreen**](https://github.com/pret/pokefirered)
+* [**Pokémon Emerald**](https://github.com/pret/pokeemerald)
+* [**Pokémon Mystery Dungeon: Red Rescue Team**](https://github.com/pret/pmd-red)
+* [**Pokémon Diamond and Pearl**](https://github.com/pret/pokediamond)
+* [**Pokémon Platinum**](https://github.com/pret/pokeplatinum) 
+* [**Pokémon HeartGold and SoulSilver**](https://github.com/pret/pokeheartgold)
+* [**Pokémon Mystery Dungeon: Explorers of Sky**](https://github.com/pret/pmd-sky)
 
-Other disassembly projects:
+## Contacts
 
-- [**Pokémon Red/Blue**][pokered]
-- [**Pokémon Yellow**][pokeyellow]
-- [**Pokémon Gold**][pokegold]
-- [**Pokémon Crystal**][pokecrystal]
-- [**Pokémon Pinball**][pokepinball]
-- [**Pokémon TCG**][poketcg]
-- [**Pokémon Ruby**][pokeruby]
-- [**Pokémon FireRed**][pokefirered]
-- [**Pokémon Emerald**][pokeemerald]
+You can find us on:
 
-[pokered]: https://github.com/pret/pokered
-[pokeyellow]: https://github.com/pret/pokeyellow
-[pokegold]: https://github.com/pret/pokegold
-[pokecrystal]: https://github.com/pret/pokecrystal
-[pokepinball]: https://github.com/pret/pokepinball
-[poketcg]: https://github.com/pret/poketcg
-[pokeruby]: https://github.com/pret/pokeruby
-[pokefirered]: https://github.com/pret/pokefirered
-[pokeemerald]: https://github.com/pret/pokeemerald
-[discord]: https://discord.gg/d5dubZ3
-[irc]: https://web.libera.chat/?#pret
+* [Discord (PRET, #prototypes-and-leaks)](https://discord.gg/d5dubZ3)
+* [IRC](https://web.libera.chat/?#pret)
+
 [ci]: https://github.com/pret/pokegold-spaceworld/actions
 [ci-badge]: https://github.com/pret/pokegold-spaceworld/actions/workflows/main.yml/badge.svg
