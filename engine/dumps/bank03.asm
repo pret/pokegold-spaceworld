@@ -2270,7 +2270,7 @@ _BillsPC:
 	ret
 
 Texte224:
-	text "なんに　するん？"
+	text "なんに　するん？" ; (lit. "What are you going to do?")
 	done
 
 Datae22e:
@@ -2285,19 +2285,19 @@ Datae236:
 	dw Texte23e
 
 Texte23e:
-	db "#の　ようすをみる@"
+	db "#の　ようすをみる@" ; (lit "look at Pokemon")
 
 Texte248:
-	db "#を　つれていく@"
+	db "#を　つれていく@" ; "Withdrawal (Pokemon)"
 
 Texte251:
-	db "#を　あずける@"
+	db "#を　あずける@" ; "Deposit (Pokemon)"
 
 Texte259:
-	db "#を　にがす@"
+	db "#を　にがす@" ; "Release (Pokemon)"
 
 Texte260:
-	db "ボックスを　かえる@"
+	db "ボックスを　かえる@" ; "Change Box"
 
 Texte26a:
 	db "さようなら@"
@@ -2305,9 +2305,9 @@ Texte26a:
 Tablee270:
 	dw Functione5c5
 	dw Functione31b
-	dw Functione2a6
-	dw Functione37b
-	dw Functione3c3
+	dw Functione2a6 ; Bill's PC > Deposit Pokemon menu item
+	dw Functione37b ; Bill's PC > Release Pokemon menu item
+	dw Functione3c3 ; Bill's PC > Box Change menu item
 	dw Functione2a4
 
 Datae27c:
@@ -2331,7 +2331,7 @@ Functione2a4:
 	scf
 	ret
 
-Functione2a6:
+Functione2a6: ; Bill's PC > Deposit Pokemon menu item
 	call Functione2b0
 	jr c, .sub_e2ae
 	call Functione2f0
@@ -2353,7 +2353,7 @@ Functione2b0:
 	scf
 	ret
 .sub_e2c4
-	ld hl, Texte2dc
+	ld hl, Texte2dc ; failed deposit last mon
 	call MenuTextBoxBackup
 	scf
 	ret
@@ -2362,15 +2362,15 @@ Texte2cc:
 	text "１ぴきも　もってへんやんか！"
 	prompt
 
-Texte2dc:
-	text "それ　あずけたら"
+Texte2dc: ; failed deposit last mon
+	text "それ　あずけたら" ; telling you that you can't deposit your last mon
 	line "こまるんとちゃう？"
 	prompt
 
 Functione2f0:
 	call LoadStandardMenuHeader
 	ld hl, Tablee6da
-	call Functione6a4
+	call Functione6a4 ; has something to do with releasing mon from PC
 	call CloseWindow
 	ret c
 	ld a, [wScrollingMenuCursorPosition]
@@ -2413,7 +2413,7 @@ Texte336:
 Functione350:
 	call LoadStandardMenuHeader
 	ld hl, Datae6f8
-	call Functione6a4
+	call Functione6a4 ; has something to do with releasing mon from PC
 	call CloseWindow
 	ret c
 	ld a, [wScrollingMenuCursorPosition]
@@ -2429,21 +2429,21 @@ Functione350:
 	call Functiondecd
 	ret
 
-Functione37b:
+Functione37b: ; Bill's PC > Release Pokemon menu item
 	call .sub_e380
 	and a
 	ret
 .sub_e380
 	call LoadStandardMenuHeader
 	ld hl, Datae6f8
-	call Functione6a4
+	call Functione6a4 ; has something to do with releasing mon from PC
 	call CloseWindow
 	ld a, [wScrollingMenuCursorPosition]
 	ld [wWhichPokemon], a
 	ld a, [wMenuSelection]
 	ld [wMonDexIndex], a
 	ret c
-	ld hl, Texte3af
+	ld hl, Texte3af ; confirm release of mon
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
@@ -2453,19 +2453,19 @@ Functione37b:
 	call Functiondecd
 	ret
 
-Texte3af:
+Texte3af: ; confirm release of mon
 	text_from_ram wStringBuffer1
-	text "　をほんとうに"
+	text "　をほんとうに" ; essentially confirming if you want to release the mon
 	next "にがしますか？"
 	done
 
-Functione3c3:
-	call Functione3c8
+Functione3c3: ; Bill's PC > Box Change menu item?
+	call Functione3c8 ; has something to do with dummy boxes in box change screen
 	and a
 	ret
 
-Functione3c8:
-	call Functione3ed
+Functione3c8: ; has something to do with dummy boxes in box change screen
+	call Functione3ed ; probably creating the 4 dummy boxes in change box screen but unsure
 	call LoadStandardMenuHeader
 	call ClearPalettes
 	call ClearTileMap
@@ -2476,18 +2476,18 @@ Functione3c8:
 	ld a, [wMenuJoypad]
 	cp $02
 	jr z, .sub_e3e9
-	call Functione505
+	call Functione505 ; box editing menu function
 	jr .sub_e3d4
 .sub_e3e9
 	call CloseWindow
 	ret
 
-Functione3ed:
+Functione3ed: ; probably creating the 4 dummy boxes in change box screen but unsure
 	ld hl, wd4b9
 	ld c, $00
 .sub_e3f2
 	push hl
-	ld de, Texte40c
+	ld de, Texte40c ; used for name of 4 dummy boxes (all clones of box 1)
 	call CopyString
 	ld a, $f6
 	add c
@@ -2503,8 +2503,8 @@ Functione3ed:
 	jr c, .sub_e3f2
 	ret
 
-Texte40c:
-	db "ダミーボックス@"
+Texte40c: ; used for name of 4 dummy boxes (all clones of box 1)
+	db "ダミーボックス@" ; "Dummy Box"
 
 Datae414:
 	db $40, $00, $00, $0c, $13, $1c, $64, $01
@@ -2603,17 +2603,17 @@ Datae4e7:
 	db $03, $d8, $af
 	db $03, $20, $b5
 
-Functione505:
-	ld hl, Datae5a5
+Functione505: ; box editing menu function
+	ld hl, Datae5a5 ; box editing menu list
 	call LoadMenuHeader
 	call VerticalMenu
 	call CloseWindow
 	ret c
 	ld a, [w2DMenuDataEnd]
 	cp $01
-	jr z, Functione53e
+	jr z, Functione53e ; box change function
 	cp $02
-	jr z, Functione57e
+	jr z, Functione57e ; box name change screen display function
 	and a
 	ret
 
@@ -2623,30 +2623,30 @@ Functione51f:
 	call CloseWindow
 	ret
 
-Texte529:
+Texte529: ; confirming box was changed successfully
 	text "バンクチェンジは"
 	next "かいはつちゅうです！"
 	prompt
 
-Functione53e:
-	ld hl, Texte551
+Functione53e: ; box change function
+	ld hl, Texte551 ; asking to save game data before box change
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
 	ret c
-	jr Functione51f
+	jr Functione51f ; confirming box was changed successfully
 
 Functione54d:
 	ld a, [wMenuSelection]
 	ret
 
-Texte551:
+Texte551: ; asking to save game data before box change
 	text "#　ボックスを　かえると"
 	line "どうじに　レポートが　かかれます"
 	para "<⋯⋯>　それでも　いいですか？"
 	done
 
-Functione57e:
+Functione57e: ; box name change screen display function
 	ld b, $04
 	ld de, wMovementBufferCount
 	ld a, BANK(NamingScreen)
@@ -2664,16 +2664,16 @@ Functione57e:
 	call CopyString
 	ret
 
-Datae5a5:
+Datae5a5: ; box editing menu list
 	db $40, $06, $00, $0e, $0e
-	dw Datae5ad
+	dw Datae5ad ; box editing menu list items
 	db $01
 
-Datae5ad:
+Datae5ad: ; box editing menu list items
 	db $80, $03
-	db "ボックスきりかえ@"
-	db "なまえを　かえる@"
-	db "やめる@"
+	db "ボックスきりかえ@" ; "Change Box"
+	db "なまえを　かえる@" ; " Change Name"
+	db "やめる@" ; (lit "stop")
 
 Functione5c5:
 	call LoadStandardMenuHeader
@@ -2769,7 +2769,7 @@ Texte697:
 	text "どの#が　みたいねん？"
 	done
 
-Functione6a4:
+Functione6a4: ; has something to do with releasing mon from PC
 	ld a, l
 	ld [wcd70], a
 	ld a, h
@@ -2782,11 +2782,11 @@ Functione6a4:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Function3810
+	call Function3810 ; in home/scrolling_menu.asm but likely calls the select mon choice for release
 	ld a, [wMenuJoypad]
 	cp $02
 	jr z, .sub_e6ce
-	ld hl, Texte6d0
+	ld hl, Texte6d0 ; text after selecting mon to release
 	call MenuTextBoxBackup
 	and a
 	ret
@@ -2794,8 +2794,8 @@ Functione6a4:
 	scf
 	ret
 
-Texte6d0:
-	text "#を　えらんだ！"
+Texte6d0: ; text after selecting mon to release
+	text "#を　えらんだ！" ; (lit. "I choose <mon name>")
 	prompt
 
 Tablee6da:
