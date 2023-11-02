@@ -2353,18 +2353,18 @@ Functione2b0:
 	scf
 	ret
 .sub_e2c4
-	ld hl, Texte2dc ; failed deposit last mon
+	ld hl, CantDepositLastMonText
 	call MenuTextBoxBackup
 	scf
 	ret
 
 Texte2cc:
-	text "１ぴきも　もってへんやんか！"
+	text "１ぴきも　もってへんやんか！" ; (lit: "I can't even have one!")
 	prompt
 
-Texte2dc: ; failed deposit last mon
-	text "それ　あずけたら" ; telling you that you can't deposit your last mon
-	line "こまるんとちゃう？"
+CantDepositLastMonText:
+	text "それ　あずけたら" ; "You can't deposit"
+	line "こまるんとちゃう？" ; "the last #MON!"
 	prompt
 
 Functione2f0:
@@ -2455,7 +2455,7 @@ Functione37b: ; Bill's PC > Release Pokemon menu item
 
 Texte3af: ; confirm release of mon
 	text_from_ram wStringBuffer1
-	text "　をほんとうに" ; essentially confirming if you want to release the mon
+	text "　をほんとうに" ; "Are you sure you want to release (MON)?"
 	next "にがしますか？"
 	done
 
