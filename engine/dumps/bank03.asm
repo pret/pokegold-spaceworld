@@ -2154,7 +2154,7 @@ Function60a0:
 	ld hl, wd41c
 	bit 4, [hl]
 	jr z, .sub_e10d
-	ld hl, Texte198
+	ld hl, _ItemUseBallText06
 	call PrintText
 	call ClearSprites
 	ld a, [wMonDexIndex]
@@ -2199,7 +2199,7 @@ Function60a0:
 	and a
 	ret z
 	ld hl, Texte168
-	ld hl, Texte181
+	ld hl, _ItemUseBallText08
 	call PrintText
 	ld b, $01
 	ret
@@ -2213,27 +2213,27 @@ Texte168:
 	line "てんそうされた！"
 	prompt
 
-Texte181:
+_ItemUseBallText08:
 	text_from_ram wStringBuffer1
-	text "は　だれかの　<PC>に"
-	line "てんそうされた！"
+	text "は　だれかの　<PC>に" ; "was transferred to"
+	line "てんそうされた！" ; "Someone's PC!"
 	prompt
 
-Texte198:
+_ItemUseBallText06:
 	text_from_ram wStringBuffer1
-	text "の　データが　あたらしく"
-	line "#ずかんに　セーブされます！@"
+	text "の　データが　あたらしく" ; "New Dex data will"
+	line "#ずかんに　セーブされます！@" ; "be added for (MON)!"
 
 Texte1b8:
 	db "ドギ@"
 
 Texte1bb:
-	text "ゲットした　@"
+	text "ゲットした　@" ; "Got it!"
 
 Texte1c3:
 	text_from_ram wStringBuffer1
-	text "に"
-	line "なまえを　つけますか？"
+	text "に" ; "Would you like to"
+	line "なまえを　つけますか？" ; "give it a name?"
 	done
 
 _BillsPC:
@@ -2288,7 +2288,7 @@ Texte23e:
 	db "#の　ようすをみる@" ; (lit "look at Pokemon")
 
 Texte248:
-	db "#を　つれていく@" ; "Withdrawal (Pokemon)"
+	db "#を　つれていく@" ; "Withdraw (Pokemon)"
 
 Texte251:
 	db "#を　あずける@" ; "Deposit (Pokemon)"
@@ -2307,8 +2307,8 @@ Tablee270:
 	dw Functione31b
 	dw Functione2a6 ; Bill's PC > Deposit Pokemon menu item
 	dw Functione37b ; Bill's PC > Release Pokemon menu item
-	dw Functione3c3 ; Bill's PC > Box Change menu item
-	dw Functione2a4
+	dw BillsPC_ChangeBoxMenu
+	dw BillsPC_SeeYa
 
 Datae27c:
 	db $05, $00, $01, $02, $03, $04, $05, $ff
@@ -2327,7 +2327,7 @@ Texte291:
 	line "おことわりや！"
 	prompt
 
-Functione2a4:
+BillsPC_SeeYa:
 	scf
 	ret
 
@@ -2443,7 +2443,7 @@ Functione37b: ; Bill's PC > Release Pokemon menu item
 	ld a, [wMenuSelection]
 	ld [wMonDexIndex], a
 	ret c
-	ld hl, Texte3af ; confirm release of mon
+	ld hl, _OnceReleasedText
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
@@ -2453,18 +2453,18 @@ Functione37b: ; Bill's PC > Release Pokemon menu item
 	call Functiondecd
 	ret
 
-Texte3af: ; confirm release of mon
+_OnceReleasedText:
 	text_from_ram wStringBuffer1
-	text "　をほんとうに" ; "Are you sure you want to release (MON)?"
-	next "にがしますか？"
+	text "　をほんとうに" ; "Are you sure you"
+	next "にがしますか？" ; "want to release (MON)?"
 	done
 
-Functione3c3: ; Bill's PC > Box Change menu item?
-	call Functione3c8 ; has something to do with dummy boxes in box change screen
+BillsPC_ChangeBoxMenu:
+	call _ChangeBox
 	and a
 	ret
 
-Functione3c8: ; has something to do with dummy boxes in box change screen
+_ChangeBox:
 	call Functione3ed ; probably creating the 4 dummy boxes in change box screen but unsure
 	call LoadStandardMenuHeader
 	call ClearPalettes
@@ -2760,13 +2760,13 @@ Functione5d3:
 	ret
 
 Texte679:
-	db "ボックス／いまの　ボックス@"
+	db "ボックス／いまの　ボックス@" ; "Box/Current Box (Name)"
 
 Texte687:
-	db "しゅるい　　なまえ　　　レべル@"
+	db "しゅるい　　なまえ　　　レべル@" ; "Species Name Level"
 
 Texte697:
-	text "どの#が　みたいねん？"
+	text "どの#が　みたいねん？" ; "Which would you like to see?"
 	done
 
 Functione6a4: ; has something to do with releasing mon from PC
@@ -2782,11 +2782,11 @@ Functione6a4: ; has something to do with releasing mon from PC
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Function3810 ; in home/scrolling_menu.asm but likely calls the select mon choice for release
+	call Function3810 ; in home/scrolling_menu.asm and appears to be related to the smaller mon selection box like G1 (still investigating)
 	ld a, [wMenuJoypad]
 	cp $02
 	jr z, .sub_e6ce
-	ld hl, Texte6d0 ; text after selecting mon to release
+	ld hl, _ReleaseMonSelectedText
 	call MenuTextBoxBackup
 	and a
 	ret
@@ -2794,8 +2794,8 @@ Functione6a4: ; has something to do with releasing mon from PC
 	scf
 	ret
 
-Texte6d0: ; text after selecting mon to release
-	text "#を　えらんだ！" ; (lit. "I choose <mon name>")
+_ReleaseMonSelectedText:
+	text "#を　えらんだ！" ; "(MON) selected!"
 	prompt
 
 Tablee6da:
