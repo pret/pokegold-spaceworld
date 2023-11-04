@@ -2786,7 +2786,7 @@ Functione6a4: ; has something to do with releasing mon from PC
 	ld a, [wMenuJoypad]
 	cp $02
 	jr z, .sub_e6ce
-	ld hl, _ReleaseMonSelectedText
+	ld hl, _MonSelectedText
 	call MenuTextBoxBackup
 	and a
 	ret
@@ -2794,7 +2794,7 @@ Functione6a4: ; has something to do with releasing mon from PC
 	scf
 	ret
 
-_ReleaseMonSelectedText:
+_MonSelectedText:
 	text "#を　えらんだ！" ; "(MON) selected!"
 	prompt
 
