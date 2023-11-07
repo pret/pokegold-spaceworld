@@ -317,21 +317,21 @@ Functiond41d:
 	scf
 	ret
 
-Textd46b:
+Textd46b: ; maybe _ThrewAwayText
 	text_from_ram wStringBuffer1
-	text "を"
-	line "すてました！"
+	text "を" ; "Threw away"
+	line "すてました！" ; "(item?)!"
 	prompt
 
 Textd478:
 	text_from_ram wStringBuffer2
-	text "を　すてます"
-	line "ほんとに　よろしいですか？"
+	text "を　すてます" ; "Are you sure you want"
+	line "ほんとに　よろしいですか？" ; "to throw (item?) away?"
 	prompt
 
 Textd491:
-	text "それは　とても　たいせつなモノです"
-	line "すてることは　できません！"
+	text "それは　とても　たいせつなモノです" ; "You can't throw away"
+	line "すてることは　できません！" ; "something that special!"
 	prompt
 
 Functiond4b2:
@@ -2300,7 +2300,7 @@ Texte260:
 	db "ボックスを　かえる@" ; "Change Box"
 
 Texte26a:
-	db "さようなら@"
+	db "さようなら@" ; "Goodbye"
 
 Tablee270:
 	dw Functione5c5
@@ -2548,7 +2548,7 @@ Texte461:
 	db "・．０９　@"
 	db "・．１０　@"
 
-Functione49d:
+Functione49d: ; change box screen items
 	ld h, d
 	ld l, e
 	ld de, Texte4bf
@@ -2566,14 +2566,14 @@ Functione49d:
 	call PlaceString
 	ret
 
-Texte4bf:
-	db "あずかっている#"
+Texte4bf: ; unfinished feature to show how many mon are in your box
+	db "あずかっている#" ; "Mon in my care"
 	next "　@"
 
-Texte4ca:
+Texte4ca: ; max mon per box
 	db "／３０@"
 
-Functione4ce:
+Functione4ce: ; counts available mon in highlighted box
 	ld a, [wMenuSelection]
 	dec a
 	ld c, a
@@ -2591,7 +2591,7 @@ Functione4ce:
 	call CloseSRAM
 	ret
 
-Datae4e7:
+Datae4e7: ; checks box slots for mon counting
 	db $02, $00, $a0
 	db $02, $48, $a5
 	db $02, $90, $aa
@@ -3220,16 +3220,16 @@ Functione8f9:
 	jr nz, .sub_ea29
 	ld a, [wMapBlocksAddress]
 	cp $01
-	ld hl, Texteb98
+	ld hl, _BallBrokeFreeText
 	jp z, .sub_eb59
 	cp $02
-	ld hl, Textebaf
+	ld hl, _BallAppearedCaughtText
 	jp z, .sub_eb59
 	cp $03
-	ld hl, Textebc3
+	ld hl, _BallAlmostHadItText
 	jp z, .sub_eb59
 	cp $04
-	ld hl, Textebdc
+	ld hl, _BallSoCloseText
 	jp z, .sub_eb59
 .sub_ea29
 	ld hl, wcde9
@@ -3390,38 +3390,38 @@ Functione8f9:
 	ld [wItemQuantity], a
 	jp TossItem
 
-Texteb6e:
-	text "よけられた！"
-	line "こいつは　つかまりそうにないぞ！"
+_BallDodgedText:
+	text "よけられた！" ; "It dodged the thrown BALL!"
+	line "こいつは　つかまりそうにないぞ！" ; "This MON can't be caught!"
 	prompt
 
-Texteb87:
-	text "#に"
-	line "うまく　あたらなかった！"
+_BallMissedText:
+	text "#に" ; "You missed the"
+	line "うまく　あたらなかった！" ; "(MON)!"
 	prompt
 
-Texteb98:
-	text "だめだ！　#が"
-	line "ボールから　でてしまった！"
+_BallBrokeFreeText:
+	text "だめだ！　#が" ; "Oh no! The (MON)"
+	line "ボールから　でてしまった！" ; "broke free!"
 	prompt
 
-Textebaf:
-	text "ああ！"
-	line "つかまえたと　おもったのに！"
+_BallAppearedCaughtText:
+	text "ああ！" ; "Aww! It appeared"
+	line "つかまえたと　おもったのに！" ; "to be caught!"
 	prompt
 
-Textebc3:
-	text "ざんねん！"
-	line "もうすこしで　つかまえられたのに！"
+_BallAlmostHadItText: ; _BallAppearedCaughtText
+	text "ざんねん！" ; "Aargh!"
+	line "もうすこしで　つかまえられたのに！" ; "Almost had it!"
 	prompt
 
-Textebdc:
-	text "おしい！"
-	line "あと　ちょっとの　ところだったのに！"
+_BallSoCloseText:
+	text "おしい！" ; "Shoot! It was so"
+	line "あと　ちょっとの　ところだったのに！" ; "close too!"
 	prompt
 
 Textebf5:
-	text "やったー！"
+	text "やったー！" ; "Gotcha"
 	line "@"
 
 Textebfd:
@@ -3441,14 +3441,14 @@ Textec0e:
 
 Textec27:
 	text_from_ram wdf17
-	text "は　だれかの　<PC>に"
-	line "てんそうされた！"
+	text "は　だれかの　<PC>に" ; "was transferred to"
+	line "てんそうされた！" ; "Someone's PC!"
 	prompt
 
 Textec3e:
 	text_from_ram wBattleMonNickname
-	text "の　データが　あたらしく"
-	line "#ずかんに　セーブされます！@"
+	text "の　データが　あたらしく" ; "New Dex data will"
+	line "#ずかんに　セーブされます！@" ; "be added for (MON)!"
 
 Textec5e:
 	sound_slot_machine_start
