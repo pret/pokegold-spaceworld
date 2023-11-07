@@ -2305,8 +2305,8 @@ Texte26a:
 Tablee270:
 	dw Functione5c5
 	dw Functione31b
-	dw Functione2a6 ; Bill's PC > Deposit Pokemon menu item
-	dw Functione37b ; Bill's PC > Release Pokemon menu item
+	dw BillsPC_DepositMon
+	dw BillsPC_ReleaseMon
 	dw BillsPC_ChangeBoxMenu
 	dw BillsPC_SeeYa
 
@@ -2331,7 +2331,7 @@ BillsPC_SeeYa:
 	scf
 	ret
 
-Functione2a6: ; Bill's PC > Deposit Pokemon menu item
+BillsPC_DepositMon:
 	call Functione2b0
 	jr c, .sub_e2ae
 	call Functione2f0
@@ -2370,7 +2370,7 @@ CantDepositLastMonText:
 Functione2f0:
 	call LoadStandardMenuHeader
 	ld hl, Tablee6da
-	call Functione6a4 ; has something to do with releasing mon from PC
+	call Functione6a4
 	call CloseWindow
 	ret c
 	ld a, [wScrollingMenuCursorPosition]
@@ -2413,7 +2413,7 @@ Texte336:
 Functione350:
 	call LoadStandardMenuHeader
 	ld hl, Datae6f8
-	call Functione6a4 ; has something to do with releasing mon from PC
+	call Functione6a4
 	call CloseWindow
 	ret c
 	ld a, [wScrollingMenuCursorPosition]
@@ -2429,14 +2429,14 @@ Functione350:
 	call Functiondecd
 	ret
 
-Functione37b: ; Bill's PC > Release Pokemon menu item
+BillsPC_ReleaseMon:
 	call .sub_e380
 	and a
 	ret
 .sub_e380
 	call LoadStandardMenuHeader
 	ld hl, Datae6f8
-	call Functione6a4 ; has something to do with releasing mon from PC
+	call Functione6a4
 	call CloseWindow
 	ld a, [wScrollingMenuCursorPosition]
 	ld [wWhichPokemon], a
@@ -2465,7 +2465,7 @@ BillsPC_ChangeBoxMenu:
 	ret
 
 _ChangeBox:
-	call Functione3ed ; probably creating the 4 dummy boxes in change box screen but unsure
+	call BoxSelectFunc
 	call LoadStandardMenuHeader
 	call ClearPalettes
 	call ClearTileMap
@@ -2476,18 +2476,18 @@ _ChangeBox:
 	ld a, [wMenuJoypad]
 	cp $02
 	jr z, .sub_e3e9
-	call Functione505 ; box editing menu function
+	call BoxEditMenu
 	jr .sub_e3d4
 .sub_e3e9
 	call CloseWindow
 	ret
 
-Functione3ed: ; probably creating the 4 dummy boxes in change box screen but unsure
+BoxSelectFunc:
 	ld hl, wd4b9
 	ld c, $00
 .sub_e3f2
 	push hl
-	ld de, Texte40c ; used for name of 4 dummy boxes (all clones of box 1)
+	ld de, _DummyBoxText
 	call CopyString
 	ld a, $f6
 	add c
@@ -2503,7 +2503,7 @@ Functione3ed: ; probably creating the 4 dummy boxes in change box screen but uns
 	jr c, .sub_e3f2
 	ret
 
-Texte40c: ; used for name of 4 dummy boxes (all clones of box 1)
+_DummyBoxText:
 	db "ダミーボックス@" ; "Dummy Box"
 
 Datae414:
@@ -2603,50 +2603,50 @@ Datae4e7:
 	db $03, $d8, $af
 	db $03, $20, $b5
 
-Functione505: ; box editing menu function
-	ld hl, Datae5a5 ; box editing menu list
+BoxEditMenu:
+	ld hl, BoxEditMenuList
 	call LoadMenuHeader
 	call VerticalMenu
 	call CloseWindow
 	ret c
 	ld a, [w2DMenuDataEnd]
 	cp $01
-	jr z, Functione53e ; box change function
+	jr z, WhenYouChangeBoxTextFunc
 	cp $02
-	jr z, Functione57e ; box name change screen display function
+	jr z, BoxNameChangeFunc
 	and a
 	ret
 
-Functione51f:
-	ld hl, Texte529
+BoxChangeUnderDevTextFunc:
+	ld hl, _BoxChangeUnderDevText
 	call MenuTextBox
 	call CloseWindow
 	ret
 
-Texte529: ; confirming box was changed successfully
-	text "バンクチェンジは"
-	next "かいはつちゅうです！"
+_BoxChangeUnderDevText:
+	text "バンクチェンジは" ; "Box change is"
+	next "かいはつちゅうです！" ; "under development!"
 	prompt
 
-Functione53e: ; box change function
-	ld hl, Texte551 ; asking to save game data before box change
+WhenYouChangeBoxTextFunc:
+	ld hl, _WhenYouChangeBoxText
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
 	ret c
-	jr Functione51f ; confirming box was changed successfully
+	jr BoxChangeUnderDevTextFunc
 
 Functione54d:
 	ld a, [wMenuSelection]
 	ret
 
-Texte551: ; asking to save game data before box change
-	text "#　ボックスを　かえると"
-	line "どうじに　レポートが　かかれます"
-	para "<⋯⋯>　それでも　いいですか？"
+_WhenYouChangeBoxText:
+	text "#　ボックスを　かえると" ; "When you change a box"
+	line "どうじに　レポートが　かかれます" ; "data will be saved."
+	para "<⋯⋯>　それでも　いいですか？" ; "Is that okay?"
 	done
 
-Functione57e: ; box name change screen display function
+BoxNameChangeFunc:
 	ld b, $04
 	ld de, wMovementBufferCount
 	ld a, BANK(NamingScreen)
@@ -2664,12 +2664,12 @@ Functione57e: ; box name change screen display function
 	call CopyString
 	ret
 
-Datae5a5: ; box editing menu list
+BoxEditMenuList:
 	db $40, $06, $00, $0e, $0e
-	dw Datae5ad ; box editing menu list items
+	dw BoxEditMenuListItems
 	db $01
 
-Datae5ad: ; box editing menu list items
+BoxEditMenuListItems:
 	db $80, $03
 	db "ボックスきりかえ@" ; "Change Box"
 	db "なまえを　かえる@" ; " Change Name"
