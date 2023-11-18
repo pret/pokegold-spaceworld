@@ -1579,10 +1579,10 @@ PartySelectionInputs:
 	predef Function500a0
 	ld a, [wCurSpecies]
 	dec a
-	ld hl, Data4a8b8
-	ld bc, $0007
+	ld hl, Data418b8
+	ld bc, $7
 	call AddNTimes
-	ld a, BANK(Data4a8b8)
+	ld a, BANK(Data418b8)
 	call GetFarByte
 	hlcoord 15, 12
 	cp 2
