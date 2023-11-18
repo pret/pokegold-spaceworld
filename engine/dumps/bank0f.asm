@@ -4673,7 +4673,7 @@ sub_3e360:
 	ld a, [wLinkMode]
 	cp 3
 	ret z
-	ld a, [wd163]
+	ld a, [wBadges]
 	ld b, a
 	ld hl, wca16
 	ld c, 4
@@ -5761,7 +5761,7 @@ asm_3eec1:
 	ret
 
 sub_3eec8:
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	ld hl, Data3eed5
 	ld de, 1
 	call FindItemInTable
@@ -6386,7 +6386,7 @@ BattleIntroSlidingPics:
 
 .Subfunction1:
 	push bc
-	ld hl, wVirtualOAMSprite00XCoord
+	ld hl, wShadowOAMSprite00XCoord
 	ld c, $12
 	ld de, 4
 .loop2
@@ -6436,7 +6436,7 @@ InitBackPic:
 	ret
 
 LoadTrainerBackpicAsOAM:
-	ld hl, wVirtualOAMSprite00
+	ld hl, wShadowOAMSprite00
 	xor a
 	ldh [hTextBoxCursorBlinkInterval], a
 	ld b, 6

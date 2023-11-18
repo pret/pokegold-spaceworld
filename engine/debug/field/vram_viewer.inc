@@ -151,7 +151,7 @@ FieldDebug_DoVRAMViewer:
 	ld bc, $180 tiles
 	call ByteFill
 	call LoadFont
-	callab Function3e39f
+	callab Call_LoadBattleGraphics
 	xor a
 	ldh [hMapAnims], a
 	call EnableLCD

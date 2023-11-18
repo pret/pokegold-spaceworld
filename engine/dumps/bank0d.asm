@@ -2061,7 +2061,7 @@ asm_34b2c:
 	ret z
 
 asm_34b51:
-	ld hl, wd163
+	ld hl, wBadges
 	bit 7, [hl]
 	ld a, $65
 	jr nz, asm_34b6e
