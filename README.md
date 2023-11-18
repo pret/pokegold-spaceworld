@@ -12,30 +12,9 @@ You will need to provide a copy of Gold_debug.sgb renamed **baserom.gb** to buil
 
 ## See also
 
-Other disassembly and/or decompilation projects:
-* [**Pokémon Red and Blue**](https://github.com/pret/pokered)
-* [**Pokémon Yellow**](https://github.com/pret/pokeyellow)
-* [**Pokémon Trading Card Game**](https://github.com/pret/poketcg)
-* [**Pokémon Pinball**](https://github.com/pret/pokepinball)
-* [**Pokémon Stadium**](https://github.com/pret/pokestadium)
-* [**Pokémon Gold and Silver**](https://github.com/pret/pokegold)
-* [**Pokémon Crystal**](https://github.com/pret/pokecrystal)
-* [**Pokémon Ruby and Sapphire**](https://github.com/pret/pokeruby)
-* [**Pokémon Pinball: Ruby & Sapphire**](https://github.com/pret/pokepinballrs)
-* [**Pokémon FireRed and LeafGreen**](https://github.com/pret/pokefirered)
-* [**Pokémon Emerald**](https://github.com/pret/pokeemerald)
-* [**Pokémon Mystery Dungeon: Red Rescue Team**](https://github.com/pret/pmd-red)
-* [**Pokémon Diamond and Pearl**](https://github.com/pret/pokediamond)
-* [**Pokémon Platinum**](https://github.com/pret/pokeplatinum) 
-* [**Pokémon HeartGold and SoulSilver**](https://github.com/pret/pokeheartgold)
-* [**Pokémon Mystery Dungeon: Explorers of Sky**](https://github.com/pret/pmd-sky)
+You can find us on [Discord (pret, #prototypes-and-leaks)](https://discord.gg/d5dubZ3).
 
-## Contacts
-
-You can find us on:
-
-* [Discord (PRET, #prototypes-and-leaks)](https://discord.gg/d5dubZ3)
-* [IRC](https://web.libera.chat/?#pret)
+For other pret projects, see [pret.github.io](https://pret.github.io/).
 
 [ci]: https://github.com/pret/pokegold-spaceworld/actions
 [ci-badge]: https://github.com/pret/pokegold-spaceworld/actions/workflows/main.yml/badge.svg
