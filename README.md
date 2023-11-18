@@ -9,7 +9,12 @@ It builds the following ROMs:
 
 You will need to provide a copy of Gold_debug.sgb renamed **baserom.gb** to build the ROMs.
 
-For contacts and other pret projects, see [pret.github.io](https://pret.github.io/).
+
+## See also
+
+You can find us on [Discord (pret, #prototypes-and-leaks)](https://discord.gg/d5dubZ3).
+
+For other pret projects, see [pret.github.io](https://pret.github.io/).
 
 [ci]: https://github.com/pret/pokegold-spaceworld/actions
 [ci-badge]: https://github.com/pret/pokegold-spaceworld/actions/workflows/main.yml/badge.svg
