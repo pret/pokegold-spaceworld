@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/types/type_matchups.asm", ROMX
-
 TypeMatchups:
 	;  attacker,  defender,  *=
 	db TYPE_NORMAL,   TYPE_ROCK,     NOT_VERY_EFFECTIVE

@@ -226,10 +226,10 @@ asm_2d4a3:
 	call PlaceString
 	ld a, [wCurSpecies]
 	dec a
-	ld hl, Data4a8b8
+	ld hl, Data418b8
 	ld bc, $7
 	call AddNTimes
-	ld a, BANK(Data4a8b8)
+	ld a, BANK(Data418b8)
 	call GetFarByte
 	ld hl, $c3a0
 	cp $2

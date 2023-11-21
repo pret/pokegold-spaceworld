@@ -109,7 +109,8 @@ ENDU
 hSpriteOffset::
 	db
 
-	db ; TODO
+hFFB2::
+	db
 
 UNION
 
@@ -202,7 +203,9 @@ hBGMapTransferPosition::
 
 hBGMapAddress::
 	dw
-	db ; TODO
+
+hFFE2::
+	db
 
 hSPTemp::
 	dw

@@ -99,6 +99,7 @@ CopyNameFromMenu::
 
 YesNoBox::
 	lb bc, 14, 7
+asm_1dd5::
 	jr asm_1ddc
 
 PlaceGenericTwoOptionBox::

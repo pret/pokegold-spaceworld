@@ -3466,8 +3466,8 @@ Textec69:
 
 Functionec7a:
 	call ClearPalettes
-	ld hl, Function3e39f
-	ld a, BANK(Function3e39f)
+	ld hl, Call_LoadBattleGraphics
+	ld a, BANK(Call_LoadBattleGraphics)
 	call FarCall_hl
 	call GetMemSGBLayout
 	call CloseWindow
@@ -4424,8 +4424,9 @@ Functionf318:
 	call WaitBGMap
 	xor a
 	ldh [hBattleTurn], a
-	ld a, BANK(Function3e5bf)
-	ld hl, Function3e5bf
+; wrong bank
+	ld a, $f
+	ld hl, Function365bf
 	call FarCall_hl
 	pop hl
 	pop af

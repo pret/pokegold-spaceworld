@@ -250,8 +250,7 @@ ROMX $0c
 
 ROMX $0d
 	org $4000
-	org $506d
-	"data/types/type_matchups.asm"
+	"engine/dumps/bank0d.asm@Function34000"
 
 ROMX $0e
 	org $4000
@@ -264,10 +263,11 @@ ROMX $0e
 
 ROMX $0f
 	org $4000
-	org $63da
+	"engine/dumps/bank0f.asm@StartBattle"
 	"engine/battle/core.asm"
-	org $6a3c
+	"engine/dumps/bank0f.asm@PlayMoveAnimation"
 	"data/wild.asm"
+	"engine/dumps/bank0f.asm@Function3ee3e"
 
 ROMX $10
 	org $4000

@@ -35,27 +35,16 @@
 ;0E:4BA0 LoadTrainerClassName.got_name
 0E:4BA9 LoadTrainerClass
 
-0D:7E3D Function37e3d
-
-0F:508C Function3d08c
-0F:55CE Function3d5ce
-0F:567C Function3d67c
-0F:5AA7 Function3daa7
-0F:6043 AddPokemonToBox
-0F:61A4 Function3e1a4
-0F:63A7 Function3e3a7
-0F:639F Function3e39f
-0F:65BF Function3e5bf
-0F:6874 Function3e874
-0F:691E Function3e91e
-0F:6963 Function3e963
-0F:69A9 _LoadWildMons
-0F:69DC Function3e9dc
-0F:6E3E Function3ee3e
-0F:6F19 Function3ef19
-0F:7019 PlaceGraphic
-0F:704A Function3f04a
-0F:7068 Function3f068
+0E:4000 Function38000
+0E:4220 Function38220
+0E:4340 Function38340
+0E:434E Function3834e
+0E:43CD Function383cd
+0E:43FD Function383fd
+0E:4431 Function38431
+0E:44D4 Function384d4
+0E:4F45 Function38f45
+0E:50E9 Function390e9
 
 10:4000 Function40000
 10:40A6 ShowPokedexMenu
@@ -63,11 +52,11 @@
 10:4B07 Function40b07
 10:4B45 Function40b45
 10:4B5C Function40b5c
-10:58B8 Data4a8b8
 10:5F93 Function4af93
 10:5FA1 Function41fa1
 10:61F8 Function421f8
 10:6252 Function42252
+10:58B8 Data418b8
 
 14:4000 Function50000
 14:4073 Function50073
@@ -119,6 +108,8 @@
 33:4000 Functioncc000
 33:4000 Functioncc000_2
 33:4001 PlayBattleAnim
+33:444F Functioncc44f
+33:44D4 Functioncc4d4
 33:467B QueueBattleAnimation
 33:625D BattleAnim_Sine_e
 33:6263 BattleAnim_Cosine_e
@@ -129,8 +120,53 @@
 38:4E5F Cursor_AnimateCursor
 38:4EA8 Cursor_InterpretJoypad
 
+
+; Cry header shims
+3C:57C5 CryHeader_f17c5
+3C:57CE CryHeader_f17ce
+3C:57D7 CryHeader_f17d7
+3C:57E0 CryHeader_f17e0
+3C:57E9 CryHeader_f17e9
+3C:57F2 CryHeader_f17f2
+3C:57FB CryHeader_f17fb
+3C:5804 CryHeader_f1804
+3C:580D CryHeader_f180d
+3C:5816 CryHeader_f1816
+3C:581F CryHeader_f181f
+3C:5828 CryHeader_f1828
+3C:5831 CryHeader_f1831
+3C:583A CryHeader_f183a
+3C:5843 CryHeader_f1843
+3C:584C CryHeader_f184c
+3C:5855 CryHeader_f1855
+3C:585E CryHeader_f185e
+3C:5867 CryHeader_f1867
+3C:5870 CryHeader_f1870
+3C:5879 CryHeader_f1879
+3C:5882 CryHeader_f1882
+3C:588B CryHeader_f188b
+3C:5894 CryHeader_f1894
+3C:589D CryHeader_f189d
+3C:58A6 CryHeader_f18a6
+3C:58AF CryHeader_f18af
+3C:58B8 CryHeader_f18b8
+3C:58C1 CryHeader_f18c1
+3C:58CA CryHeader_f18ca
+3C:58D3 CryHeader_f18d3
+3C:58DC CryHeader_f18dc
+3C:58E5 CryHeader_f18e5
+3C:58EE CryHeader_f18ee
+3C:58F7 CryHeader_f18f7
+3C:5900 CryHeader_f1900
+3C:5909 CryHeader_f1909
+3C:5912 CryHeader_f1912
+
+3E:40D6 Functionf80d6
+
+3F:40E9 InGameDebugMenu
 3F:4E3E Functionfce3e
 3F:5B66 Functionfdb66
 3F:64CE MonsterTest
 3F:654E PicTest
 3F:6750 PicTestMenu
+
