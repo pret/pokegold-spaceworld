@@ -2154,7 +2154,7 @@ Function60a0:
 	ld hl, wd41c
 	bit 4, [hl]
 	jr z, .sub_e10d
-	ld hl, _ItemUseBallText06
+	ld hl, Texte198
 	call PrintText
 	call ClearSprites
 	ld a, [wMonDexIndex]
@@ -2199,7 +2199,7 @@ Function60a0:
 	and a
 	ret z
 	ld hl, Texte168
-	ld hl, _ItemUseBallText08
+	ld hl, Texte181
 	call PrintText
 	ld b, $01
 	ret
@@ -2213,13 +2213,13 @@ Texte168:
 	line "てんそうされた！"
 	prompt
 
-_ItemUseBallText08:
+Texte181:
 	text_from_ram wStringBuffer1
 	text "は　だれかの　<PC>に" ; "was transferred to"
 	line "てんそうされた！" ; "Someone's PC!"
 	prompt
 
-_ItemUseBallText06:
+Texte198:
 	text_from_ram wStringBuffer1
 	text "の　データが　あたらしく" ; "New Dex data will"
 	line "#ずかんに　セーブされます！@" ; "be added for (MON)!"
