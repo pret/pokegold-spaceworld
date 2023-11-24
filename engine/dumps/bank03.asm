@@ -291,7 +291,7 @@ Functiond41d:
 	ld [wce37], a
 	call GetItemName
 	call CopyStringToStringBuffer2
-	ld hl, Textd478
+	ld hl, ItemsThrowAwayText
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
@@ -303,13 +303,13 @@ Functiond41d:
 	ld [wce37], a
 	call GetItemName
 	call CopyStringToStringBuffer2
-	ld hl, Textd46b
+	ld hl, ItemsDiscardedText
 	call MenuTextBox
 	call CloseWindow
 	and a
 	ret
 .sub_d45f
-	ld hl, Textd491
+	ld hl, ItemsThrowAwayText
 	call MenuTextBox
 	call CloseWindow
 .sub_d468
@@ -317,19 +317,19 @@ Functiond41d:
 	scf
 	ret
 
-Textd46b: ; maybe _ThrewAwayText
+ItemsDiscardedText:
 	text_from_ram wStringBuffer1
 	text "を" ; "Threw away"
 	line "すてました！" ; "(item?)!"
 	prompt
 
-Textd478:
+ItemsThrowAwayText:
 	text_from_ram wStringBuffer2
 	text "を　すてます" ; "Are you sure you want"
 	line "ほんとに　よろしいですか？" ; "to throw (item?) away?"
 	prompt
 
-Textd491:
+ItemsThrowAwayText:
 	text "それは　とても　たいせつなモノです" ; "You can't throw away"
 	line "すてることは　できません！" ; "something that special!"
 	prompt
@@ -2154,7 +2154,7 @@ Function60a0:
 	ld hl, wd41c
 	bit 4, [hl]
 	jr z, .sub_e10d
-	ld hl, Texte198
+	ld hl, NewDexDataText
 	call PrintText
 	call ClearSprites
 	ld a, [wMonDexIndex]
@@ -2163,7 +2163,7 @@ Function60a0:
 	call Predef
 	call LoadTilesetGFX_LCDOff
 .sub_e10d
-	ld hl, Texte1bb
+	ld hl, GotItText
 	call PrintText
 	call YesNoBox
 	pop de
@@ -2198,8 +2198,8 @@ Function60a0:
 	ld a, b
 	and a
 	ret z
-	ld hl, Texte168
-	ld hl, Texte181
+	ld hl, BallSentToPCText
+	ld hl, BallSentToSomeonesPCText
 	call PrintText
 	ld b, $01
 	ret
@@ -2207,19 +2207,19 @@ Function60a0:
 	ld b, $02
 	ret
 
-Texte168:
+BallSentToPCText:
 	text_from_ram wStringBuffer1
 	text "は　マサキの　ところへ"
 	line "てんそうされた！"
 	prompt
 
-Texte181:
+BallSentToSomeonesPCText:
 	text_from_ram wStringBuffer1
 	text "は　だれかの　<PC>に" ; "was transferred to"
 	line "てんそうされた！" ; "Someone's PC!"
 	prompt
 
-Texte198:
+NewDexDataText:
 	text_from_ram wStringBuffer1
 	text "の　データが　あたらしく" ; "New Dex data will"
 	line "#ずかんに　セーブされます！@" ; "be added for (MON)!"
@@ -2227,10 +2227,10 @@ Texte198:
 Texte1b8:
 	db "ドギ@"
 
-Texte1bb:
+GotItText:
 	text "ゲットした　@" ; "Got it!"
 
-Texte1c3:
+AskGiveNicknameText:
 	text_from_ram wStringBuffer1
 	text "に" ; "Would you like to"
 	line "なまえを　つけますか？" ; "give it a name?"
@@ -2246,7 +2246,7 @@ _BillsPC:
 	ld de, PokeBallsGFX
 	lb bc, BANK(PokeBallsGFX), $01
 	call Request2bpp
-	ld hl, Texte224
+	ld hl, WhatAreYouGoingToDoText
 	call MenuTextBox
 	ld hl, Datae22e
 	call LoadMenuHeader
@@ -2269,7 +2269,7 @@ _BillsPC:
 	call CloseWindow
 	ret
 
-Texte224:
+WhatAreYouGoingToDoText:
 	text "なんに　するん？" ; (lit. "What are you going to do?")
 	done
 
@@ -2282,24 +2282,24 @@ Datae236:
 	db $80, $00
 	dw Datae27c
 	db $8a, $1f
-	dw Texte23e
+	dw LookAtPokemonText
 
-Texte23e:
+LookAtPokemonText:
 	db "#の　ようすをみる@" ; (lit "look at Pokemon")
 
-Texte248:
+WithdrawMonText:
 	db "#を　つれていく@" ; "Withdraw (Pokemon)"
 
-Texte251:
+DepositMonText:
 	db "#を　あずける@" ; "Deposit (Pokemon)"
 
-Texte259:
+ReleaseMonText:
 	db "#を　にがす@" ; "Release (Pokemon)"
 
-Texte260:
+ChangeBoxText:
 	db "ボックスを　かえる@" ; "Change Box"
 
-Texte26a:
+GoodbyeText:
 	db "さようなら@" ; "Goodbye"
 
 Tablee270:
@@ -2348,7 +2348,7 @@ Functione2b0:
 	and a
 	ret
 .sub_e2bc
-	ld hl, Texte2cc
+	ld hl, YouDontEventHaveOnePokemonText
 	call MenuTextBoxBackup
 	scf
 	ret
@@ -2358,7 +2358,7 @@ Functione2b0:
 	scf
 	ret
 
-Texte2cc:
+YouDontEventHaveOnePokemonText:
 	text "１ぴきも　もってへんやんか！" ; (lit: "I can't even have one!")
 	prompt
 
@@ -2443,7 +2443,7 @@ BillsPC_ReleaseMon:
 	ld a, [wMenuSelection]
 	ld [wMonDexIndex], a
 	ret c
-	ld hl, _OnceReleasedText
+	ld hl, OnceReleasedText
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
@@ -2453,7 +2453,7 @@ BillsPC_ReleaseMon:
 	call Functiondecd
 	ret
 
-_OnceReleasedText:
+OnceReleasedText:
 	text_from_ram wStringBuffer1
 	text "　をほんとうに" ; "Are you sure you"
 	next "にがしますか？" ; "want to release (MON)?"
@@ -2487,7 +2487,7 @@ BoxSelectFunc:
 	ld c, $00
 .sub_e3f2
 	push hl
-	ld de, _DummyBoxText
+	ld de, DummyBoxText
 	call CopyString
 	ld a, $f6
 	add c
@@ -2503,7 +2503,7 @@ BoxSelectFunc:
 	jr c, .sub_e3f2
 	ret
 
-_DummyBoxText:
+DummyBoxText:
 	db "ダミーボックス@" ; "Dummy Box"
 
 Datae414:
@@ -2618,18 +2618,18 @@ BoxEditMenu:
 	ret
 
 BoxChangeUnderDevTextFunc:
-	ld hl, _BoxChangeUnderDevText
+	ld hl, BoxChangeUnderDevText
 	call MenuTextBox
 	call CloseWindow
 	ret
 
-_BoxChangeUnderDevText:
+BoxChangeUnderDevText:
 	text "バンクチェンジは" ; "Box change is"
 	next "かいはつちゅうです！" ; "under development!"
 	prompt
 
 WhenYouChangeBoxTextFunc:
-	ld hl, _WhenYouChangeBoxText
+	ld hl, WhenYouChangeBoxText
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
@@ -2640,7 +2640,7 @@ Functione54d:
 	ld a, [wMenuSelection]
 	ret
 
-_WhenYouChangeBoxText:
+WhenYouChangeBoxText:
 	text "#　ボックスを　かえると" ; "When you change a box"
 	line "どうじに　レポートが　かかれます" ; "data will be saved."
 	para "<⋯⋯>　それでも　いいですか？" ; "Is that okay?"
@@ -2786,7 +2786,7 @@ Functione6a4: ; has something to do with releasing mon from PC
 	ld a, [wMenuJoypad]
 	cp $02
 	jr z, .sub_e6ce
-	ld hl, _MonSelectedText
+	ld hl, MonSelectedText
 	call MenuTextBoxBackup
 	and a
 	ret
@@ -2794,7 +2794,7 @@ Functione6a4: ; has something to do with releasing mon from PC
 	scf
 	ret
 
-_MonSelectedText:
+MonSelectedText:
 	text "#を　えらんだ！" ; "(MON) selected!"
 	prompt
 
@@ -3220,16 +3220,16 @@ Functione8f9:
 	jr nz, .sub_ea29
 	ld a, [wMapBlocksAddress]
 	cp $01
-	ld hl, _BallBrokeFreeText
+	ld hl, BallBrokeFreeText
 	jp z, .sub_eb59
 	cp $02
-	ld hl, _BallAppearedCaughtText
+	ld hl, BallAppearedCaughtText
 	jp z, .sub_eb59
 	cp $03
-	ld hl, _BallAlmostHadItText
+	ld hl, BallAlmostHadItText
 	jp z, .sub_eb59
 	cp $04
-	ld hl, _BallSoCloseText
+	ld hl, BallSoCloseText
 	jp z, .sub_eb59
 .sub_ea29
 	ld hl, wcde9
@@ -3284,7 +3284,7 @@ Functione8f9:
 	ld a, [wce03]
 	dec a
 	jp z, .sub_eb56
-	ld hl, Textebf5
+	ld hl, GotchaText
 	call PrintText
 	call ClearSprites
 	ld a, [wce37]
@@ -3306,7 +3306,7 @@ Functione8f9:
 	pop af
 	and a
 	jr nz, .sub_eac7
-	ld hl, Textec3e
+	ld hl, NewDexDataText_2
 	call PrintText
 	call ClearSprites
 	ld a, [wcdd9]
@@ -3372,12 +3372,12 @@ Functione8f9:
 	ld hl, Textec0e
 	bit 0, a
 	jr nz, .sub_eb51
-	ld hl, Textec27
+	ld hl, BallSentToSomeonesPCText_2
 .sub_eb51
 	call PrintText
 	jr .sub_eb5f
 .sub_eb56
-	ld hl, Textebf5
+	ld hl, GotchaText
 .sub_eb59
 	call PrintText
 	call ClearSprites
@@ -3390,37 +3390,37 @@ Functione8f9:
 	ld [wItemQuantity], a
 	jp TossItem
 
-_BallDodgedText:
+BallDodgedText:
 	text "よけられた！" ; "It dodged the thrown BALL!"
 	line "こいつは　つかまりそうにないぞ！" ; "This MON can't be caught!"
 	prompt
 
-_BallMissedText:
+BallMissedText:
 	text "#に" ; "You missed the"
 	line "うまく　あたらなかった！" ; "(MON)!"
 	prompt
 
-_BallBrokeFreeText:
+BallBrokeFreeText:
 	text "だめだ！　#が" ; "Oh no! The (MON)"
 	line "ボールから　でてしまった！" ; "broke free!"
 	prompt
 
-_BallAppearedCaughtText:
+BallAppearedCaughtText:
 	text "ああ！" ; "Aww! It appeared"
 	line "つかまえたと　おもったのに！" ; "to be caught!"
 	prompt
 
-_BallAlmostHadItText: ; _BallAppearedCaughtText
+BallAlmostHadItText:BallSoCloseText
 	text "ざんねん！" ; "Aargh!"
 	line "もうすこしで　つかまえられたのに！" ; "Almost had it!"
 	prompt
 
-_BallSoCloseText:
+BallSoCloseText:
 	text "おしい！" ; "Shoot! It was so"
 	line "あと　ちょっとの　ところだったのに！" ; "close too!"
 	prompt
 
-Textebf5:
+GotchaText:
 	text "やったー！" ; "Gotcha"
 	line "@"
 
@@ -3439,13 +3439,13 @@ Textec0e:
 	line "てんそうされた！"
 	prompt
 
-Textec27:
+BallSentToSomeonesPCText_2:
 	text_from_ram wdf17
 	text "は　だれかの　<PC>に" ; "was transferred to"
 	line "てんそうされた！" ; "Someone's PC!"
 	prompt
 
-Textec3e:
+NewDexDataText_2:
 	text_from_ram wBattleMonNickname
 	text "の　データが　あたらしく" ; "New Dex data will"
 	line "#ずかんに　セーブされます！@" ; "be added for (MON)!"
