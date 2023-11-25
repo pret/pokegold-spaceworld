@@ -309,7 +309,7 @@ Functiond41d:
 	and a
 	ret
 .sub_d45f
-	ld hl, ItemsThrowAwayText
+	ld hl, ItemsTooImportantText
 	call MenuTextBox
 	call CloseWindow
 .sub_d468
@@ -329,7 +329,7 @@ ItemsThrowAwayText:
 	line "ほんとに　よろしいですか？" ; "to throw (item?) away?"
 	prompt
 
-ItemsThrowAwayText:
+ItemsTooImportantText:
 	text "それは　とても　たいせつなモノです" ; "You can't throw away"
 	line "すてることは　できません！" ; "something that special!"
 	prompt
@@ -2551,7 +2551,7 @@ Texte461:
 Functione49d: ; change box screen items
 	ld h, d
 	ld l, e
-	ld de, Texte4bf
+	ld de, MonInMyCareText
 	call PlaceString
 	ld hl, $0003
 	add hl, bc
@@ -2562,15 +2562,15 @@ Functione49d: ; change box screen items
 	ld [de], a
 	ld bc, $0102
 	call PrintNumber
-	ld de, Texte4ca
+	ld de, OutOfThirtyText
 	call PlaceString
 	ret
 
-Texte4bf: ; unfinished feature to show how many mon are in your box
+MonInMyCareText: ; unfinished feature to show how many mon are in your box
 	db "あずかっている#" ; "Mon in my care"
 	next "　@"
 
-Texte4ca: ; max mon per box
+OutOfThirtyText: ; max mon per box
 	db "／３０@"
 
 Functione4ce: ; counts available mon in highlighted box
@@ -2611,13 +2611,13 @@ BoxEditMenu:
 	ret c
 	ld a, [w2DMenuDataEnd]
 	cp $01
-	jr z, WhenYouChangeBoxTextFunc
+	jr z, PromptChangeBoxWillYouSave
 	cp $02
-	jr z, BoxNameChangeFunc
+	jr z, ChangeBoxName
 	and a
 	ret
 
-BoxChangeUnderDevTextFunc:
+PrintBoxChangeUnderDev:
 	ld hl, BoxChangeUnderDevText
 	call MenuTextBox
 	call CloseWindow
@@ -2628,13 +2628,13 @@ BoxChangeUnderDevText:
 	next "かいはつちゅうです！" ; "under development!"
 	prompt
 
-WhenYouChangeBoxTextFunc:
+PromptChangeBoxWillYouSave:
 	ld hl, WhenYouChangeBoxText
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
 	ret c
-	jr BoxChangeUnderDevTextFunc
+	jr PrintBoxChangeUnderDev
 
 Functione54d:
 	ld a, [wMenuSelection]
@@ -2646,7 +2646,7 @@ WhenYouChangeBoxText:
 	para "<⋯⋯>　それでも　いいですか？" ; "Is that okay?"
 	done
 
-BoxNameChangeFunc:
+ChangeBoxName:
 	ld b, $04
 	ld de, wMovementBufferCount
 	ld a, BANK(NamingScreen)
@@ -2731,7 +2731,7 @@ Functione5d3:
 	ld d, h
 	ld e, l
 	coord hl, 1, 1
-	ld de, Texte679
+	ld de, CurrentBoxText
 	call PlaceString
 	coord hl, 0, 3
 	ld a, $79
@@ -2751,21 +2751,21 @@ Functione5d3:
 	dec c
 	jr nz, .sub_e660
 	coord hl, 2, 3
-	ld de, Texte687
+	ld de, SpeciesNameLevelText
 	call PlaceString
-	ld hl, Texte697
+	ld hl, WhichOneWouldYouLikeToSeeText
 	call PrintText
 	pop af
 	ld [wce5f], a
 	ret
 
-Texte679:
+CurrentBoxText:
 	db "ボックス／いまの　ボックス@" ; "Box/Current Box (Name)"
 
-Texte687:
+SpeciesNameLevelText:
 	db "しゅるい　　なまえ　　　レべル@" ; "Species Name Level"
 
-Texte697:
+WhichOneWouldYouLikeToSeeText:
 	text "どの#が　みたいねん？" ; "Which would you like to see?"
 	done
 
@@ -3410,7 +3410,7 @@ BallAppearedCaughtText:
 	line "つかまえたと　おもったのに！" ; "to be caught!"
 	prompt
 
-BallAlmostHadItText:BallSoCloseText
+BallAlmostHadItText:
 	text "ざんねん！" ; "Aargh!"
 	line "もうすこしで　つかまえられたのに！" ; "Almost had it!"
 	prompt
