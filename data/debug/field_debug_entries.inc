@@ -92,7 +92,7 @@ FieldDebug_Jumptable:
 	dw FieldDebug_VRAMViewer
 	dw FieldDebug_TrainerGear
 
-FIELDDEBUG_NUM_PAGES EQU 3
+DEF FIELDDEBUG_NUM_PAGES EQU 3
 
 FieldDebug_Pages:
 ; page 1

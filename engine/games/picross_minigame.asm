@@ -27,7 +27,7 @@ DEF PICROSS_GFX_GROUNDTILE EQU $83
 
 DEF PICROSS_GFX_COLUMNS EQU $84
 DEF PICROSS_GFX_ROWS EQU $b4
-PICROSS_GFX_TABLESTART equ $f0
+DEF PICROSS_GFX_TABLESTART equ $f0
 
 ; The Picross game area is referred as the "table" here.
 ; The table consists of 256 cells, divided into 4x4 "grids" of 16 cells each.

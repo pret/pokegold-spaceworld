@@ -29,7 +29,7 @@ RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
 RGBLINK ?= $(RGBDS)rgblink
 
-RGBASMFLAGS := -h -E -i $(BUILD)/ -DGOLD
+RGBASMFLAGS := -E -i $(BUILD)/ -DGOLD
 
 SCAN_INCLUDES := tools/scan_includes
 MAKE_SHIM := tools/make_shim.py
