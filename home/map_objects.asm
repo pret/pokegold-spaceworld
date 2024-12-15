@@ -134,7 +134,7 @@ Function1680::
 	and a
 	ret
 
-Function169f::
+DeleteMapObject::
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc

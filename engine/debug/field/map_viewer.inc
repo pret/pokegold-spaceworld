@@ -159,7 +159,7 @@ DebugMapViewer::
 
 .Cleanup:
 	ld a, 1
-	call Function169f
+	call DeleteMapObject
 	call Function18cc
 	ld a, 0
 	call Function1908
@@ -323,7 +323,7 @@ DebugMapViewer_DoMovement:
 	ret
 
 DebugMapViewer_ReplacePlayerObject:
-	callab Function807b
+	callab DebugMapViewer_SetupCursor
 	ld a, 1
 	call Function15ed
 	ld a, 1

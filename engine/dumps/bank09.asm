@@ -1259,7 +1259,7 @@ asm_4831:
 	call MenuBoxCoord2Tile
 	ld de, $0015
 	add hl, de
-	ld de, wd15d
+	ld de, wMoney
 	ld bc, $4306
 	call PrintNumber
 	ret
@@ -1290,7 +1290,7 @@ asm_24872:
 	call MenuBoxCoord2Tile
 	ld de, $0015
 	add hl, de
-	ld de, wd15d
+	ld de, wMoney
 	ld bc, $4306
 	call PrintNumber
 	ld [hl], $f0

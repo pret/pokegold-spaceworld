@@ -66,12 +66,12 @@ OldCityPokecenter2FText4:
 	callab Function29a1f
 	jr c, .asm_9480c
 	ld a, $05
-	call Function169f ; something related to follow
+	call DeleteMapObject
 	jr .asm_9480c
 ; unreferenced?
 	ld hl, Data14824
 	ld a, $5
-	call Function16fb
+	call Function16fb ; something related to follow
 	ld hl, $0000
 	nop
 .asm_9480c

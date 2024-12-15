@@ -1,118 +1,21 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank03.asm@Functionc77d", ROMX
+SECTION "engine/dumps/bank03.asm@GetFlyPointMapLocation", ROMX
 
-Functionc77d:
+GetFlyPointMapLocation:
 	ld a, [wFlyDestination]
 	ld l, a
 	ld h, $00
 	add hl, hl
 	add hl, hl
-	ld de, SpawnPoints
+	ld de, SpawnPoints		
 	add hl, de
-	ld b, [hl]
+	ld b, [hl]					; SpawnPoints + (wFlyDestination * 4)
 	inc hl
 	ld c, [hl]
 	call GetWorldMapLocation
 	ld e, a
 	ret
-
-SECTION "engine/dumps/bank03.asm@SpawnPoints", ROMX
-; Map, Warp ID
-SpawnPoints:
-	db $01, $04
-	db $05, $05
-	db $02, $02
-	db $1b, $1d
-	db $03, $01
-	db $19, $0f
-	db $04, $03
-	db $1f, $0b
-	db $05, $07
-	db $03, $0d
-	db $06, $04
-	db $0f, $05
-	db $07, $04
-	db $07, $09
-	db $08, $02
-	db $09, $0b
-	db $09, $04
-	db $0d, $13
-	db $0a, $02
-	db $21, $15
-	db $0b, $02
-	db $31, $1f
-	db $0c, $02
-	db $05, $05
-	db $0d, $02
-	db $05, $05
-	db $0e, $01
-	db $21, $0f
-	db $0f, $01
-	db $0d, $0b
-	db $07, $01
-	db $09, $0b
-	db $07, $03
-	db $0d, $1d
-	db $10, $01
-	db $06, $06
-	db $10, $02
-	db $06, $06
-	db $10, $03
-	db $04, $10
-	db $10, $04
-	db $06, $06
-	db $10, $05
-	db $09, $0d
-	db $10, $06
-	db $17, $2f
-	db $10, $07
-	db $06, $0a
-	db $10, $08
-	db $06, $06
-	db $10, $09
-	db $06, $06
-	db $10, $0a
-	db $06, $06
-	db $10, $0b
-	db $06, $06
-	db $10, $0c
-	db $06, $06
-	db $10, $0d
-	db $06, $06
-	db $10, $0e
-	db $10, $0d
-	db $10, $0f
-	db $08, $08
-	db $10, $10
-	db $08, $08
-	db $10, $11
-	db $09, $0b
-	db $10, $12
-	db $09, $23
-	db $02, $07
-	db $06, $06
-	db $03, $11
-	db $06, $06
-	db $04, $08
-	db $06, $06
-	db $06, $0e
-	db $06, $06
-	db $07, $0d
-	db $06, $06
-	db $09, $0e
-	db $06, $06
-	db $0a, $0d
-	db $06, $06
-	db $0b, $07
-	db $06, $06
-	db $0b, $25
-	db $06, $06
-	db $01, $0f
-	db $10, $10
-	db $ff, $ff
-	db $ff, $ff
-
 
 SECTION "engine/dumps/bank03.asm@Functionc9c1", ROMX
 

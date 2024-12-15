@@ -8567,32 +8567,19 @@ asm_37125:
 	ld a, [wCountSetBitsResult]
 	ld [hl], a
 	call Unreferenced_GetMoveName
-	ld hl, text_37138
+	ld hl, MoveDisabledText
 	jp PrintText
 
 asm_37132:
 	call sub_37f5f
 	jp Function37499
 
-text_37138:
-	db $0
-	db $59
-	db $c9
-	db $4f
-	db $50
-	db $1
-	dw wStringBuffer1
-	db $0
-	db $dd
-	db $7f
-	db $cc
-	db $b3
-	db $2c
-	db $ba
-	db $d2
-	db $c0
-	db $e7
-	db $58
+MoveDisabledText:
+	text "<TARGET>の"
+	line "@"
+	text_from_ram wStringBuffer1
+	text "を　ふうじこめた！"
+	prompt
 
 asm_3714b:
 	xor a
@@ -8606,38 +8593,23 @@ asm_3714b:
 
 asm_3715b:
 	add a
-	ld hl, wcacc
+	ld hl, wPayDayMoney + 2
 	add [hl]
 	ld [hld], a
-	jr nc, text_3716e
+	jr nc, PrintCoinsScatteredText
 	inc [hl]
 	dec hl
-	jr nz, text_3716e
+	jr nz, PrintCoinsScatteredText
 	inc [hl]
 
-text_3716e:
-	ld hl, Data3716e
+PrintCoinsScatteredText:
+	ld hl, CoinsScatteredText
 	jp PrintText
 
-Data3716e:
-	db $0
-	db $ba
-	db $3a
-	db $de
-	db $26
-	db $7f
-	db $b1
-	db $c0
-	db $d8
-	db $c6
-	db $7f
-	db $c1
-	db $d7
-	db $3a
-	db $df
-	db $c0
-	db $e7
-	db $58
+CoinsScatteredText:
+	text "こばんが　あたりに　ちらばった！"
+	prompt
+
 
 asm_37180:
 	ld hl, wcdf7

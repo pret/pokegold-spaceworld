@@ -2114,7 +2114,7 @@ DrawTrainerCardMainPage:
 	lb bc, 2, 5
 	call PrintNumber
 	hlcoord 7, 6
-	ld de, wd15d
+	ld de, wMoney
 	lb bc, 3, 6
 	call PrintNumber
 	ld [hl], $F0

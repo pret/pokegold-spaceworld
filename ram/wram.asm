@@ -409,7 +409,7 @@ wca0a:: ds 1
 	ds 3
 
 wca0e:: ds 1
-wca0f:: ds 1
+wca0f:: ds 1	; Enemy's level
 
 wIntroJumptableIndex::
 wca10:: ds 1
@@ -569,11 +569,14 @@ wcac4:: ds 1
 wcac7:: ds 1
 wcac8:: ds 1
 wcac9:: ds 1
-wcaca:: ds 1
 
-	ds 1
+wPayDayMoney:: ds 3
 
-wcacc:: ds 1
+;wcaca:: ds 1	;
+				;
+;	ds 1		; Pay day amount
+				;
+;wcacc:: ds 1	;
 wcacd:: ds 1
 wcace:: ds 1
 
@@ -1095,7 +1098,7 @@ wcde3:: ds 1
 wcde4:: ds 1
 wcde5:: ds 1
 wcde6:: ds 1
-wcde7:: ds 1
+wcde7:: ds 1	; Level?
 wcde8:: ds 1
 wcde9:: ds 1
 wcdea:: ds 1
@@ -1352,11 +1355,13 @@ wCoins:: db
 
 wd15c:: db
 
-wd15d:: db
+wMoney:: ds 3
 
-wd15e:: db
+;wd15d:: db
 
-wd15f:: db
+;wd15e:: db
+
+;wd15f:: db
 
 SECTION "D163", WRAM0[$D163]
 
