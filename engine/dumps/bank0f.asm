@@ -1374,7 +1374,7 @@ asm_3ca51:
 	ld [hl], a
 
 asm_3ca74:
-	ld de, wd15f
+	ld de, wMoney + 2
 	ld hl, wca5b
 	ld c, 3
 	and a
@@ -6207,7 +6207,7 @@ asm_3f15a:
 	ret
 
 sub_3f19e:
-	ld hl, wcaca
+	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
 	inc hl
@@ -6219,7 +6219,7 @@ sub_3f19e:
 	ld a, b
 	cp $4c
 	jr nz, AddBattleMoneyToAccount
-	ld hl, wcacc
+	ld hl, wPayDayMoney + 2
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -6232,8 +6232,8 @@ sub_3f19e:
 	ld [hl], a
 
 AddBattleMoneyToAccount:
-	ld hl, wcacc
-	ld de, wd15f
+	ld hl, wPayDayMoney + 2
+	ld de, wMoney + 2
 	ld c, 3
 	and a
 .loop
@@ -6250,7 +6250,7 @@ AddBattleMoneyToAccount:
 
 GotMoneyForWinningText:
 	text "<PLAYER>は　@"
-	deciram wcaca, 3, 6
+	deciram wPayDayMoney, 3, 6
 	text "円"
 	line "ひろった！"
 	prompt

@@ -162,11 +162,11 @@ GameStartPlacement::
 DebugSetUpPlayer::
 	call SetPlayerNamesDebug
 	ld a, $0F
-	ld [wd15d], a
+	ld [wMoney], a
 	ld a, $42
-	ld [wd15e], a
+	ld [wMoney + 1], a
 	ld a, $3F
-	ld [wd15f], a
+	ld [wMoney + 2], a
 	ld a, $FF ; give all badges
 	ld [wJohtoBadges], a
 	ld [wKantoBadges], a

@@ -67,13 +67,13 @@ InitializeNewGameWRAM:
 	ld [wKantoBadges], a
 	ld [wCoins], a
 	ld [wd15c], a
-	ld [wd15d], a
+	ld [wMoney], a
 
 	ld a, $0B
-	ld [wd15e], a
+	ld [wMoney + 1], a
 
 	ld a, $B8
-	ld [wd15f], a
+	ld [wMoney + 2], a
 
 	ld hl, wUnknownListLengthd1ea
 	ld a, ITEM_REPEL

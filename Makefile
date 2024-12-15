@@ -125,6 +125,7 @@ $(BUILD)/%.tilemap: %.png | $$(dir $$@)
 	$(RGBGFX) -t $@ $<
 
 .PRECIOUS: $(BUILD)/%.sgb.tilemap
+export LC_ALL=C
 $(BUILD)/%.sgb.tilemap: %.bin | $$(dir $$@)
 	tr < $< -d '\000' > $@
 

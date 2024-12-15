@@ -348,7 +348,7 @@ MapSetup_Continue::
 	ld b, 9 ; TODO: constantify this
 	call GetSGBLayout
 	call LoadWildMons
-	call $242C ; TODO
+	call Function242c ; TODO
 	call FadeIn
 	ret
 
@@ -466,6 +466,7 @@ Function2407::
 	ret z
 	cp $78
 	ret z
+Function242c::
 	ld a, $0
 	ld [wPlayerFacing], a
 	ld a, $0

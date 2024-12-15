@@ -22,18 +22,18 @@ PlayerObjectTemplate:
 	object_event -4, -4, SPRITE_GOLD, $10, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
 	db $00, $00
 
-Function8031:
-	call SpawnFollower
+SpawnFollower:
+	call SetFollowerDefaultAttributes
 	ld a, [wUsedSprites+1]
 	ld [wMap1ObjectSprite], a
-	ld a, $01
+	ld a, FOLLOWER
 	call Function1602
 	ld b, PLAYER
 	ld c, FOLLOWER
 	call StartFollow
 	ret
 
-SpawnFollower:
+SetFollowerDefaultAttributes:
 	ld a, FOLLOWER
 	ld hl, FollowerObjectTemplate
 	call CopyPlayerObjectTemplate
@@ -48,16 +48,16 @@ FollowerObjectTemplate:
 	object_event -4, -4, SPRITE_RHYDON, $18, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0
 	db $00, $00
 
-Function806c:
-	ld a, $01
-	call Function169f
+DeleteFollower:
+	ld a, FOLLOWER
+	call DeleteMapObject
 	xor a
 	ld [wObjectFollow_Follower], a
 	ld a, $ff
 	ld [wObjectFollow_Leader], a
 	ret
 
-Function807b:
+DebugMapViewer_SetupCursor:
 	ld a, $01
 	ld hl, Data8089
 	call CopyPlayerObjectTemplate
@@ -183,7 +183,7 @@ Function8125:
 	ret
 
 Function8131:
-	ldh a, [hConnectionStripLength]
+	ldh a, [hMapObjectIndex]
 	ld e, a
 	ld d, $00
 	ld hl, wUnknownWordcc9c
@@ -961,9 +961,9 @@ FlyMap:
 .sub_86fc
 	call DelayFrame
 	call GetJoypadDebounced
-	ld hl, EffectObjectJumpNoDelay
-	ld a, BANK(EffectObjectJumpNoDelay)
-	call FarCall_hl
+
+	callab EffectObjectJumpNoDelay
+
 	ld hl, hJoyDown
 	ld a, [hl]
 	and $02
@@ -972,11 +972,11 @@ FlyMap:
 	and $01
 	jr nz, .sub_8743
 	call Function8747
-	ld hl, Functionc77d
-	ld a, BANK(Functionc77d)
-	call FarCall_hl
+	
+	callab GetFlyPointMapLocation
+
 	ld d, $00
-	ld hl, Data8a53
+	ld hl, LandmarkPositions
 	add hl, de
 	add hl, de
 	ld d, [hl]
@@ -1001,29 +1001,29 @@ FlyMap:
 	ldh [hJoyDebounceSrc], a
 	ret
 
-Function8747:
+Function8747:				; Choose fly destination based on D-Pad input
 	ld a, [wFlyDestination]
 	ld l, a
 	ld h, $00
 	add hl, hl
 	add hl, hl
-	ld de, Data8a17
+	ld de, FlyPointPaths
 	add hl, de
 	ld de, hJoySum
 	ld a, [de]
-	and $40
+	and D_UP			
 	jr nz, .sub_876e
 	inc hl
 	ld a, [de]
-	and $80
+	and D_DOWN
 	jr nz, .sub_876e
 	inc hl
 	ld a, [de]
-	and $20
+	and D_LEFT
 	jr nz, .sub_876e
 	inc hl
 	ld a, [de]
-	and $10
+	and D_RIGHT
 	jr nz, .sub_876e
 	ret
 .sub_876e
@@ -1095,7 +1095,7 @@ Function87ea:
 	push hl
 	ld e, a
 	ld d, $00
-	ld hl, Data8a53
+	ld hl, LandmarkPositions
 	add hl, de
 	add hl, de
 	ld e, l
@@ -1167,7 +1167,7 @@ PlaceGoldInMap:
 	ld hl, vChars0
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
-	ld de, GoldSpriteGFX + $c0
+	ld de, GoldSpriteGFX + LEN_2BPP_TILE * 12	; Gold's front-facing walking sprite
 	ld hl, vChars0 + $40
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
@@ -1185,7 +1185,7 @@ PlaceGoldInMap:
 	call GetWorldMapLocation
 	ld e, a
 	ld d, $00
-	ld hl, Data8a53
+	ld hl, LandmarkPositions
 	add hl, de
 	add hl, de
 	ld d, [hl]
@@ -1219,57 +1219,3 @@ Function88b3:
 
 TownMapTilemap:
 INCBIN "gfx/trainer_gear/town_map.tilemap.rle"
-
-SECTION "engine/dumps/bank02.asm@Data8a17", ROMX
-
-Data8a17:
-	db $0b
-	db $ff
-
-	db $01, $0a, $03, $00, $02, $00, $05, $01, $03, $01, $04, $02, $0d, $02
-	db $0d, $03, $0d, $05, $04, $02, $04, $06, $07
-	db $ff
-
-	db $05, $08
-	db $ff
-
-	db $06
-	db $ff
-
-	db $ff
-
-	db $0e, $09, $06, $0e, $08, $0a, $0a
-	db $08, $09, $00, $00, $09, $0c, $00
-	db $ff
-
-	db $ff
-
-	db $ff
-
-	db $0b
-	db $ff
-
-	db $ff
-
-	db $04, $03
-	db $ff
-
-	db $04
-	db $ff
-
-	db $08, $08
-	db $ff
-
-Data8a53:
-	db $00, $00, $1c, $9c, $28, $9c, $34, $9c
-	db $40, $9c, $4c, $9c, $5c, $9c, $6c, $94
-	db $6c, $84, $6c, $78, $6c, $6c, $64, $6c
-	db $5c, $6c, $6c, $64, $6c, $5c, $5c, $5c
-	db $5c, $50, $5c, $44, $50, $44, $44, $44
-	db $44, $5c, $44, $6c, $4c, $74, $4c, $7c
-	db $40, $7c, $34, $7c, $4c, $84, $3c, $8c
-	db $34, $94, $5c, $80, $54, $68, $3c, $38
-	db $3c, $2c, $34, $2c, $2c, $20, $34, $14
-	db $3c, $14, $3c, $20, $48, $14, $54, $1c
-	db $54, $2c, $54, $38, $3c, $44, $48, $2c
-

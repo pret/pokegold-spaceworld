@@ -110,8 +110,8 @@ FieldDebug_SpriteViewer:
 	ret
 
 .SetFollowing:
-	ld hl, Function8031
-	ld a, BANK(Function8031)
+	ld hl, SpawnFollower
+	ld a, BANK(SpawnFollower)
 	call QueueScript
 
 ; Exits immediately after setting sprite to follow the player
