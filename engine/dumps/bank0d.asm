@@ -2360,7 +2360,7 @@ MoveNameText:
 EndUsedMove1Text:
 	text "を　つかった！"
 	done
-	
+
 
 EndUsedMove2Text:
 	text "を　した！"
@@ -2513,7 +2513,7 @@ asm_34d96:
 	ld a, [de]
 	and 7
 	ret nz
-	
+
 	inc de
 	ld a, [de]
 	bit 6, a
@@ -2570,7 +2570,7 @@ NoPPLeftText:
 	text "しかし　わざの　ポイントが"
 	line "なかった！"
 	prompt
-	
+
 
 asm_34e03:
 	xor a
@@ -10545,7 +10545,7 @@ BattleText_MonIsAlreadyOut:
 	text_from_ram wBattleMonNickname
 	text "はもうでています"
 	prompt
-	
+
 
 asm_37c76:
 	ret

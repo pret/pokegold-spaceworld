@@ -19,7 +19,7 @@ LandmarkPositions:
 	db 76, 156			; LANDMARK_STAND
 	db 92, 156			; LANDMARK_STAND_ROUTE
 	db 108, 148			; LANDMARK_KANTO_EAST_ROUTE
-	db 108, 132			; LANDMARK_KANTO 
+	db 108, 132			; LANDMARK_KANTO
 	db 108, 120			; LANDMARK_ROUTE_SILENT_EAST
 	db 108, 108			; LANDMARK_SILENT_HILL
 	db 100, 108			; LANDMARK_PRINCE
@@ -58,7 +58,7 @@ LandmarkPositions:
 
 SECTION "data/maps/landmarks.asm@LandmarkNames", ROMX
 
-LandmarkNames::		
+LandmarkNames::
 	db "サイレント@" ; SILENT
 	db "オールド@" ; OLD
 	db "ウエスト@" ; WEST

@@ -895,7 +895,7 @@ ReadObjectEvents::
 .skip
 	ld a, [wCurrMapObjectCount]
 	ld c, a
-	ld a, NUM_OBJECTS 
+	ld a, NUM_OBJECTS
 	sub c
 	jr z, .finish
 

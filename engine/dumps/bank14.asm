@@ -63,7 +63,7 @@ Function50045::
     ld a, [hl]
 .asm_5006f
     ld [wMonDexIndex], a
-    ret 
+    ret
 
 Function50073::
     push hl
@@ -379,7 +379,7 @@ Function502b5::
     call ClearBGPalettes
     pop af
     ldh [hMapAnims], a
-    ret 
+    ret
 
 .data_5033a
     dw Function50340, Function504e5, Function50562
@@ -581,7 +581,7 @@ Function50491::
     ldh a, [hQuotient]
     sbc a, [hl]
     ld [wcdc3], a
-    ret 
+    ret
 
 .asm_504b8
     ld hl, wcdc3
@@ -612,7 +612,7 @@ StatusText_Ato:
 
 StatusText_De:
     db "で@"
-    
+
 Function504e5::
     call WaitBGMap
     xor a
@@ -1122,7 +1122,7 @@ Function5081f::
     ldh [hEventID], a
     push hl
     push de
-    
+
     ld hl, Function8f0e3
     ld a, BANK(Function8f0e3)   ; ...What macro do I use here?
     ld e, 0
@@ -1176,7 +1176,7 @@ Function5087e::
     pop af
     ld [wWhichPokemon], a
     jp Function509d8
-    
+
 Function508c4::
     push bc
     push hl
@@ -1737,7 +1737,7 @@ Function50caa::
     pop hl
     jr nc, .asm_50cb5
     dec d
-    ret 
+    ret
 
 Function50cd1::
     ld a, [wMonHGrowthRate]
@@ -1748,7 +1748,7 @@ Function50cd1::
     ld hl, Data50d84
     add hl, bc
     call Function50d77
-    
+
     ld a, d
     ldh [hPrintNumDivisor], a
     call Multiply
@@ -1855,7 +1855,7 @@ Function50cd1::
     adc b
     ldh [hQuotient], a
 
-    ret 
+    ret
 
 Function50d77::
     xor a
@@ -2023,7 +2023,7 @@ Function50dec::
     pop bc
     pop de
     pop hl
-    ret 
+    ret
 
 .asm_50ec0
     ld de, wcc3a
@@ -2078,4 +2078,3 @@ Function50ed9::
     inc a
     ld [wAnnonID], a    ; $d874
     ret
-    

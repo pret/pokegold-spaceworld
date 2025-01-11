@@ -5,13 +5,13 @@ DEF OBJECT_SPRITE_TILE      rb ; 02
 DEF OBJECT_MOVEMENT_TYPE    rb ; 03
 DEF OBJECT_FLAGS1           rb ; 04
 DEF OBJECT_FLAGS2           rb ; 05
-DEF OBJECT_WALKING          rb ; 06 
+DEF OBJECT_WALKING          rb ; 06
 DEF OBJECT_DIRECTION        rb ; 07
 DEF OBJECT_STEP_TYPE        rb ; 08
 DEF OBJECT_STEP_DURATION    rb ; 09
 DEF OBJECT_ACTION           rb ; 0a
 DEF OBJECT_STEP_FRAME       rb ; 0b
-DEF OBJECT_0C               rb ; 0c 
+DEF OBJECT_0C               rb ; 0c
 DEF OBJECT_FACING           rb ; 0d
 DEF OBJECT_TILE             rb ; 0e
 DEF OBJECT_LAST_TILE        rb ; 0f

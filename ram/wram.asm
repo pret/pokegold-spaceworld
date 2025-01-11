@@ -582,8 +582,8 @@ wcac9:: ds 1
 UNION
 wPayDayMoney:: ds 3
 NEXTU
-wcaca:: ds 1		
-wcacb:: ds 1		
+wcaca:: ds 1
+wcacb:: ds 1
 wcacc:: ds 1
 ENDU
 
@@ -1087,7 +1087,7 @@ NEXTU
 
 wEnemyEffectivenessVsPlayerMons:: db
 wPlayerEffectivenessVsEnemyMons:: db
-	
+
 	ds 1
 
 wcdc6:: db

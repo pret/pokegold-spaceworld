@@ -301,6 +301,6 @@
 
 	charmap "<DO>",      $70 ; hiragana small do, unused
 	charmap "◀",         $71
-	
+
 	charmap "<ID>",      $73
 	charmap "№",         $74

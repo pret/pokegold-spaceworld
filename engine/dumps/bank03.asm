@@ -8,7 +8,7 @@ GetFlyPointMapLocation:
 	ld h, $00
 	add hl, hl
 	add hl, hl
-	ld de, SpawnPoints		
+	ld de, SpawnPoints
 	add hl, de
 	ld b, [hl]					; SpawnPoints + (wFlyDestination * 4)
 	inc hl

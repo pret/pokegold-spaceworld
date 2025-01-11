@@ -1,6 +1,6 @@
 ; Spawn point indexes (see data/maps/landmarks.asm)
     const_def
-	
+
     const SPAWN_POINT_NONE
     const SPAWN_POINT_SILENT
 	const SPAWN_POINT_OLD

@@ -972,7 +972,7 @@ FlyMap:
 	and $01
 	jr nz, .sub_8743
 	call Function8747
-	
+
 	callfar GetFlyPointMapLocation
 
 	ld d, $00
@@ -1011,7 +1011,7 @@ Function8747:				; Choose fly destination based on D-Pad input
 	add hl, de
 	ld de, hJoySum
 	ld a, [de]
-	and D_UP			
+	and D_UP
 	jr nz, .sub_876e
 	inc hl
 	ld a, [de]

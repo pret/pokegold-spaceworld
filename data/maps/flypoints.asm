@@ -5,12 +5,12 @@ SECTION "data/maps/flypoints.asm", ROMX
 ;
 ; Table that the game reads for determining which Fly point to move to depending on D-Pad input.
 ; Each row corresponds to the index of a Fly point.
-; 
+;
 ;   db UP, DOWN, LEFT, RIGHT
 ;
 FlyPointPaths:
 
-	db FLY_POINT_PRINCE, FLY_POINT_N_A, FLY_POINT_OLD, FLY_POINT_KANTO                  ; FLY_POINT_SILENT_HILL    
+	db FLY_POINT_PRINCE, FLY_POINT_N_A, FLY_POINT_OLD, FLY_POINT_KANTO                  ; FLY_POINT_SILENT_HILL
 	db FLY_POINT_HAITEKU, FLY_POINT_SILENT_HILL, FLY_POINT_WEST, FLY_POINT_SILENT_HILL  ; FLY_POINT_OLD
 	db FLY_POINT_BAADON, FLY_POINT_OLD, FLY_POINT_HAITEKU, FLY_POINT_OLD                ; FLY_POINT_WEST
 	db FLY_POINT_FONTO, FLY_POINT_WEST, FLY_POINT_SOUTH, FLY_POINT_WEST                 ; FLY_POINT_HAITEKU
