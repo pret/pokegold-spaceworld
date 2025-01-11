@@ -291,7 +291,7 @@ Functiond41d:
 	ld [wce37], a
 	call GetItemName
 	call CopyStringToStringBuffer2
-	ld hl, Textd478
+	ld hl, ItemsThrowAwayText
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
@@ -303,13 +303,13 @@ Functiond41d:
 	ld [wce37], a
 	call GetItemName
 	call CopyStringToStringBuffer2
-	ld hl, Textd46b
+	ld hl, ItemsDiscardedText
 	call MenuTextBox
 	call CloseWindow
 	and a
 	ret
 .sub_d45f
-	ld hl, Textd491
+	ld hl, ItemsTooImportantText
 	call MenuTextBox
 	call CloseWindow
 .sub_d468
@@ -317,21 +317,21 @@ Functiond41d:
 	scf
 	ret
 
-Textd46b:
+ItemsDiscardedText:
 	text_from_ram wStringBuffer1
-	text "を"
-	line "すてました！"
+	text "を" ; "Threw away"
+	line "すてました！" ; "(item?)!"
 	prompt
 
-Textd478:
+ItemsThrowAwayText:
 	text_from_ram wStringBuffer2
-	text "を　すてます"
-	line "ほんとに　よろしいですか？"
+	text "を　すてます" ; "Are you sure you want"
+	line "ほんとに　よろしいですか？" ; "to throw (item?) away?"
 	prompt
 
-Textd491:
-	text "それは　とても　たいせつなモノです"
-	line "すてることは　できません！"
+ItemsTooImportantText:
+	text "それは　とても　たいせつなモノです" ; "You can't throw away"
+	line "すてることは　できません！" ; "something that special!"
 	prompt
 
 Functiond4b2:
@@ -2154,7 +2154,7 @@ Function60a0:
 	ld hl, wd41c
 	bit 4, [hl]
 	jr z, .sub_e10d
-	ld hl, Texte198
+	ld hl, NewDexDataText
 	call PrintText
 	call ClearSprites
 	ld a, [wMonDexIndex]
@@ -2163,7 +2163,7 @@ Function60a0:
 	call Predef
 	call LoadTilesetGFX_LCDOff
 .sub_e10d
-	ld hl, Texte1bb
+	ld hl, GotItText
 	call PrintText
 	call YesNoBox
 	pop de
@@ -2198,8 +2198,8 @@ Function60a0:
 	ld a, b
 	and a
 	ret z
-	ld hl, Texte168
-	ld hl, Texte181
+	ld hl, BallSentToPCText
+	ld hl, BallSentToSomeonesPCText
 	call PrintText
 	ld b, $01
 	ret
@@ -2207,33 +2207,33 @@ Function60a0:
 	ld b, $02
 	ret
 
-Texte168:
+BallSentToPCText:
 	text_from_ram wStringBuffer1
 	text "は　マサキの　ところへ"
 	line "てんそうされた！"
 	prompt
 
-Texte181:
+BallSentToSomeonesPCText:
 	text_from_ram wStringBuffer1
-	text "は　だれかの　<PC>に"
-	line "てんそうされた！"
+	text "は　だれかの　<PC>に" ; "was transferred to"
+	line "てんそうされた！" ; "Someone's PC!"
 	prompt
 
-Texte198:
+NewDexDataText:
 	text_from_ram wStringBuffer1
-	text "の　データが　あたらしく"
-	line "#ずかんに　セーブされます！@"
+	text "の　データが　あたらしく" ; "New Dex data will"
+	line "#ずかんに　セーブされます！@" ; "be added for (MON)!"
 
 Texte1b8:
 	db "ドギ@"
 
-Texte1bb:
-	text "ゲットした　@"
+GotItText:
+	text "ゲットした　@" ; "Got it!"
 
-Texte1c3:
+AskGiveNicknameText:
 	text_from_ram wStringBuffer1
-	text "に"
-	line "なまえを　つけますか？"
+	text "に" ; "Would you like to"
+	line "なまえを　つけますか？" ; "give it a name?"
 	done
 
 _BillsPC:
@@ -2246,7 +2246,7 @@ _BillsPC:
 	ld de, PokeBallsGFX
 	lb bc, BANK(PokeBallsGFX), $01
 	call Request2bpp
-	ld hl, Texte224
+	ld hl, WhatAreYouGoingToDoText
 	call MenuTextBox
 	ld hl, Datae22e
 	call LoadMenuHeader
@@ -2269,8 +2269,8 @@ _BillsPC:
 	call CloseWindow
 	ret
 
-Texte224:
-	text "なんに　するん？"
+WhatAreYouGoingToDoText:
+	text "なんに　するん？" ; (lit. "What are you going to do?")
 	done
 
 Datae22e:
@@ -2282,33 +2282,33 @@ Datae236:
 	db $80, $00
 	dw Datae27c
 	db $8a, $1f
-	dw Texte23e
+	dw LookAtPokemonText
 
-Texte23e:
-	db "#の　ようすをみる@"
+LookAtPokemonText:
+	db "#の　ようすをみる@" ; (lit "look at Pokemon")
 
-Texte248:
-	db "#を　つれていく@"
+WithdrawMonText:
+	db "#を　つれていく@" ; "Withdraw (Pokemon)"
 
-Texte251:
-	db "#を　あずける@"
+DepositMonText:
+	db "#を　あずける@" ; "Deposit (Pokemon)"
 
-Texte259:
-	db "#を　にがす@"
+ReleaseMonText:
+	db "#を　にがす@" ; "Release (Pokemon)"
 
-Texte260:
-	db "ボックスを　かえる@"
+ChangeBoxText:
+	db "ボックスを　かえる@" ; "Change Box"
 
-Texte26a:
-	db "さようなら@"
+GoodbyeText:
+	db "さようなら@" ; "Goodbye"
 
 Tablee270:
 	dw Functione5c5
 	dw Functione31b
-	dw Functione2a6
-	dw Functione37b
-	dw Functione3c3
-	dw Functione2a4
+	dw BillsPC_DepositMon
+	dw BillsPC_ReleaseMon
+	dw BillsPC_ChangeBoxMenu
+	dw BillsPC_SeeYa
 
 Datae27c:
 	db $05, $00, $01, $02, $03, $04, $05, $ff
@@ -2327,11 +2327,11 @@ Texte291:
 	line "おことわりや！"
 	prompt
 
-Functione2a4:
+BillsPC_SeeYa:
 	scf
 	ret
 
-Functione2a6:
+BillsPC_DepositMon:
 	call Functione2b0
 	jr c, .sub_e2ae
 	call Functione2f0
@@ -2348,23 +2348,23 @@ Functione2b0:
 	and a
 	ret
 .sub_e2bc
-	ld hl, Texte2cc
+	ld hl, YouDontEventHaveOnePokemonText
 	call MenuTextBoxBackup
 	scf
 	ret
 .sub_e2c4
-	ld hl, Texte2dc
+	ld hl, CantDepositLastMonText
 	call MenuTextBoxBackup
 	scf
 	ret
 
-Texte2cc:
-	text "１ぴきも　もってへんやんか！"
+YouDontEventHaveOnePokemonText:
+	text "１ぴきも　もってへんやんか！" ; (lit: "I can't even have one!")
 	prompt
 
-Texte2dc:
-	text "それ　あずけたら"
-	line "こまるんとちゃう？"
+CantDepositLastMonText:
+	text "それ　あずけたら" ; "You can't deposit"
+	line "こまるんとちゃう？" ; "the last #MON!"
 	prompt
 
 Functione2f0:
@@ -2429,7 +2429,7 @@ Functione350:
 	call Functiondecd
 	ret
 
-Functione37b:
+BillsPC_ReleaseMon:
 	call .sub_e380
 	and a
 	ret
@@ -2443,7 +2443,7 @@ Functione37b:
 	ld a, [wMenuSelection]
 	ld [wMonDexIndex], a
 	ret c
-	ld hl, Texte3af
+	ld hl, OnceReleasedText
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
@@ -2453,19 +2453,19 @@ Functione37b:
 	call Functiondecd
 	ret
 
-Texte3af:
+OnceReleasedText:
 	text_from_ram wStringBuffer1
-	text "　をほんとうに"
-	next "にがしますか？"
+	text "　をほんとうに" ; "Are you sure you"
+	next "にがしますか？" ; "want to release (MON)?"
 	done
 
-Functione3c3:
-	call Functione3c8
+BillsPC_ChangeBoxMenu:
+	call _ChangeBox
 	and a
 	ret
 
-Functione3c8:
-	call Functione3ed
+_ChangeBox:
+	call BoxSelectFunc
 	call LoadStandardMenuHeader
 	call ClearPalettes
 	call ClearTileMap
@@ -2476,18 +2476,18 @@ Functione3c8:
 	ld a, [wMenuJoypad]
 	cp $02
 	jr z, .sub_e3e9
-	call Functione505
+	call BoxEditMenu
 	jr .sub_e3d4
 .sub_e3e9
 	call CloseWindow
 	ret
 
-Functione3ed:
+BoxSelectFunc:
 	ld hl, wd4b9
 	ld c, $00
 .sub_e3f2
 	push hl
-	ld de, Texte40c
+	ld de, DummyBoxText
 	call CopyString
 	ld a, $f6
 	add c
@@ -2503,8 +2503,8 @@ Functione3ed:
 	jr c, .sub_e3f2
 	ret
 
-Texte40c:
-	db "ダミーボックス@"
+DummyBoxText:
+	db "ダミーボックス@" ; "Dummy Box"
 
 Datae414:
 	db $40, $00, $00, $0c, $13, $1c, $64, $01
@@ -2548,10 +2548,10 @@ Texte461:
 	db "・．０９　@"
 	db "・．１０　@"
 
-Functione49d:
+Functione49d: ; change box screen items
 	ld h, d
 	ld l, e
-	ld de, Texte4bf
+	ld de, MonInMyCareText
 	call PlaceString
 	ld hl, $0003
 	add hl, bc
@@ -2562,18 +2562,18 @@ Functione49d:
 	ld [de], a
 	ld bc, $0102
 	call PrintNumber
-	ld de, Texte4ca
+	ld de, OutOfThirtyText
 	call PlaceString
 	ret
 
-Texte4bf:
-	db "あずかっている#"
+MonInMyCareText: ; unfinished feature to show how many mon are in your box
+	db "あずかっている#" ; "Mon in my care"
 	next "　@"
 
-Texte4ca:
+OutOfThirtyText: ; max mon per box
 	db "／３０@"
 
-Functione4ce:
+Functione4ce: ; counts available mon in highlighted box
 	ld a, [wMenuSelection]
 	dec a
 	ld c, a
@@ -2591,7 +2591,7 @@ Functione4ce:
 	call CloseSRAM
 	ret
 
-Datae4e7:
+Datae4e7: ; checks box slots for mon counting
 	db $02, $00, $a0
 	db $02, $48, $a5
 	db $02, $90, $aa
@@ -2603,50 +2603,50 @@ Datae4e7:
 	db $03, $d8, $af
 	db $03, $20, $b5
 
-Functione505:
-	ld hl, Datae5a5
+BoxEditMenu:
+	ld hl, BoxEditMenuList
 	call LoadMenuHeader
 	call VerticalMenu
 	call CloseWindow
 	ret c
 	ld a, [w2DMenuDataEnd]
 	cp $01
-	jr z, Functione53e
+	jr z, PromptChangeBoxWillYouSave
 	cp $02
-	jr z, Functione57e
+	jr z, ChangeBoxName
 	and a
 	ret
 
-Functione51f:
-	ld hl, Texte529
+PrintBoxChangeUnderDev:
+	ld hl, BoxChangeUnderDevText
 	call MenuTextBox
 	call CloseWindow
 	ret
 
-Texte529:
-	text "バンクチェンジは"
-	next "かいはつちゅうです！"
+BoxChangeUnderDevText:
+	text "バンクチェンジは" ; "Box change is"
+	next "かいはつちゅうです！" ; "under development!"
 	prompt
 
-Functione53e:
-	ld hl, Texte551
+PromptChangeBoxWillYouSave:
+	ld hl, WhenYouChangeBoxText
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
 	ret c
-	jr Functione51f
+	jr PrintBoxChangeUnderDev
 
 Functione54d:
 	ld a, [wMenuSelection]
 	ret
 
-Texte551:
-	text "#　ボックスを　かえると"
-	line "どうじに　レポートが　かかれます"
-	para "<⋯⋯>　それでも　いいですか？"
+WhenYouChangeBoxText:
+	text "#　ボックスを　かえると" ; "When you change a box"
+	line "どうじに　レポートが　かかれます" ; "data will be saved."
+	para "<⋯⋯>　それでも　いいですか？" ; "Is that okay?"
 	done
 
-Functione57e:
+ChangeBoxName:
 	ld b, $04
 	ld de, wMovementBufferCount
 	ld a, BANK(NamingScreen)
@@ -2664,16 +2664,16 @@ Functione57e:
 	call CopyString
 	ret
 
-Datae5a5:
+BoxEditMenuList:
 	db $40, $06, $00, $0e, $0e
-	dw Datae5ad
+	dw BoxEditMenuListItems
 	db $01
 
-Datae5ad:
+BoxEditMenuListItems:
 	db $80, $03
-	db "ボックスきりかえ@"
-	db "なまえを　かえる@"
-	db "やめる@"
+	db "ボックスきりかえ@" ; "Change Box"
+	db "なまえを　かえる@" ; " Change Name"
+	db "やめる@" ; (lit "stop")
 
 Functione5c5:
 	call LoadStandardMenuHeader
@@ -2731,7 +2731,7 @@ Functione5d3:
 	ld d, h
 	ld e, l
 	coord hl, 1, 1
-	ld de, Texte679
+	ld de, CurrentBoxText
 	call PlaceString
 	coord hl, 0, 3
 	ld a, $79
@@ -2751,25 +2751,25 @@ Functione5d3:
 	dec c
 	jr nz, .sub_e660
 	coord hl, 2, 3
-	ld de, Texte687
+	ld de, SpeciesNameLevelText
 	call PlaceString
-	ld hl, Texte697
+	ld hl, WhichOneWouldYouLikeToSeeText
 	call PrintText
 	pop af
 	ld [wce5f], a
 	ret
 
-Texte679:
-	db "ボックス／いまの　ボックス@"
+CurrentBoxText:
+	db "ボックス／いまの　ボックス@" ; "Box/Current Box (Name)"
 
-Texte687:
-	db "しゅるい　　なまえ　　　レべル@"
+SpeciesNameLevelText:
+	db "しゅるい　　なまえ　　　レべル@" ; "Species Name Level"
 
-Texte697:
-	text "どの#が　みたいねん？"
+WhichOneWouldYouLikeToSeeText:
+	text "どの#が　みたいねん？" ; "Which would you like to see?"
 	done
 
-Functione6a4:
+Functione6a4: ; has something to do with releasing mon from PC
 	ld a, l
 	ld [wcd70], a
 	ld a, h
@@ -2782,11 +2782,11 @@ Functione6a4:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Function3810
+	call Function3810 ; in home/scrolling_menu.asm and appears to be related to the smaller mon selection box like G1 (still investigating)
 	ld a, [wMenuJoypad]
 	cp $02
 	jr z, .sub_e6ce
-	ld hl, Texte6d0
+	ld hl, MonSelectedText
 	call MenuTextBoxBackup
 	and a
 	ret
@@ -2794,8 +2794,8 @@ Functione6a4:
 	scf
 	ret
 
-Texte6d0:
-	text "#を　えらんだ！"
+MonSelectedText:
+	text "#を　えらんだ！" ; "(MON) selected!"
 	prompt
 
 Tablee6da:
@@ -3220,16 +3220,16 @@ Functione8f9:
 	jr nz, .sub_ea29
 	ld a, [wMapBlocksAddress]
 	cp $01
-	ld hl, Texteb98
+	ld hl, BallBrokeFreeText
 	jp z, .sub_eb59
 	cp $02
-	ld hl, Textebaf
+	ld hl, BallAppearedCaughtText
 	jp z, .sub_eb59
 	cp $03
-	ld hl, Textebc3
+	ld hl, BallAlmostHadItText
 	jp z, .sub_eb59
 	cp $04
-	ld hl, Textebdc
+	ld hl, BallSoCloseText
 	jp z, .sub_eb59
 .sub_ea29
 	ld hl, wcde9
@@ -3284,7 +3284,7 @@ Functione8f9:
 	ld a, [wce03]
 	dec a
 	jp z, .sub_eb56
-	ld hl, Textebf5
+	ld hl, GotchaText
 	call PrintText
 	call ClearSprites
 	ld a, [wce37]
@@ -3306,7 +3306,7 @@ Functione8f9:
 	pop af
 	and a
 	jr nz, .sub_eac7
-	ld hl, Textec3e
+	ld hl, NewDexDataText_2
 	call PrintText
 	call ClearSprites
 	ld a, [wcdd9]
@@ -3372,12 +3372,12 @@ Functione8f9:
 	ld hl, Textec0e
 	bit 0, a
 	jr nz, .sub_eb51
-	ld hl, Textec27
+	ld hl, BallSentToSomeonesPCText_2
 .sub_eb51
 	call PrintText
 	jr .sub_eb5f
 .sub_eb56
-	ld hl, Textebf5
+	ld hl, GotchaText
 .sub_eb59
 	call PrintText
 	call ClearSprites
@@ -3390,38 +3390,38 @@ Functione8f9:
 	ld [wItemQuantity], a
 	jp TossItem
 
-Texteb6e:
-	text "よけられた！"
-	line "こいつは　つかまりそうにないぞ！"
+BallDodgedText:
+	text "よけられた！" ; "It dodged the thrown BALL!"
+	line "こいつは　つかまりそうにないぞ！" ; "This MON can't be caught!"
 	prompt
 
-Texteb87:
-	text "#に"
-	line "うまく　あたらなかった！"
+BallMissedText:
+	text "#に" ; "You missed the"
+	line "うまく　あたらなかった！" ; "(MON)!"
 	prompt
 
-Texteb98:
-	text "だめだ！　#が"
-	line "ボールから　でてしまった！"
+BallBrokeFreeText:
+	text "だめだ！　#が" ; "Oh no! The (MON)"
+	line "ボールから　でてしまった！" ; "broke free!"
 	prompt
 
-Textebaf:
-	text "ああ！"
-	line "つかまえたと　おもったのに！"
+BallAppearedCaughtText:
+	text "ああ！" ; "Aww! It appeared"
+	line "つかまえたと　おもったのに！" ; "to be caught!"
 	prompt
 
-Textebc3:
-	text "ざんねん！"
-	line "もうすこしで　つかまえられたのに！"
+BallAlmostHadItText:
+	text "ざんねん！" ; "Aargh!"
+	line "もうすこしで　つかまえられたのに！" ; "Almost had it!"
 	prompt
 
-Textebdc:
-	text "おしい！"
-	line "あと　ちょっとの　ところだったのに！"
+BallSoCloseText:
+	text "おしい！" ; "Shoot! It was so"
+	line "あと　ちょっとの　ところだったのに！" ; "close too!"
 	prompt
 
-Textebf5:
-	text "やったー！"
+GotchaText:
+	text "やったー！" ; "Gotcha"
 	line "@"
 
 Textebfd:
@@ -3439,16 +3439,16 @@ Textec0e:
 	line "てんそうされた！"
 	prompt
 
-Textec27:
+BallSentToSomeonesPCText_2:
 	text_from_ram wdf17
-	text "は　だれかの　<PC>に"
-	line "てんそうされた！"
+	text "は　だれかの　<PC>に" ; "was transferred to"
+	line "てんそうされた！" ; "Someone's PC!"
 	prompt
 
-Textec3e:
+NewDexDataText_2:
 	text_from_ram wBattleMonNickname
-	text "の　データが　あたらしく"
-	line "#ずかんに　セーブされます！@"
+	text "の　データが　あたらしく" ; "New Dex data will"
+	line "#ずかんに　セーブされます！@" ; "be added for (MON)!"
 
 Textec5e:
 	sound_slot_machine_start
