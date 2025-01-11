@@ -5,10 +5,10 @@ SECTION "engine/dumps/bank14.asm@Function50000", ROMX
 Function50000::
 	ld a, [wWhichPokemon]
 	ld e, a
-	call Function50045
+	call GetMonSpecies
 	ld a, [wMonDexIndex]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, [wMonType]
 	ld hl, wPartyMon1Species
 	ld bc, (wPartyMon2 - wPartyMon1)
@@ -34,78 +34,94 @@ Function50000::
 	call CopyBytes
 	ret
 
-Function50045::
+GetMonSpecies::
 	ld a, [wMonType]
-	and a
-	jr z, .asm_50057
-	cp 1
-	jr z, .asm_5005c
-	cp 2
-	jr z, .asm_50061
-	cp 3
-	jr z, .asm_50066
-.asm_50057
-	ld hl, wPartySpecies
-	jr .asm_5006b
-.asm_5005c
-	ld hl, wd914
-	jr .asm_5006b
-.asm_50061
-	ld hl, wBoxList
-	jr .asm_5006b
-.asm_50066
-	ld a, [wd882]
-	jr .asm_5006f
+	and a ; PARTYMON
+	jr z, .partymon
+	cp OTPARTYMON
+	jr z, .otpartymon
+	cp BOXMON
+	jr z, .boxmon
+	cp TEMPMON
+	jr z, .breedmon
+	; WILDMON
 
-.asm_5006b
+.partymon
+	ld hl, wPartySpecies
+	jr .done
+
+.otpartymon
+	ld hl, wd914
+	jr .done
+
+.boxmon
+	ld hl, wBoxList
+	jr .done
+
+.breedmon
+	ld a, [wd882]
+	jr .done2
+
+.done
 	ld d, 0
 	add hl, de
 	ld a, [hl]
-.asm_5006f
+
+.done2
 	ld [wMonDexIndex], a
 	ret
 
-Function50073::
+PrintMonTypes::
+; Print one or both types of [wCurSpecies]
+; on the stats screen at hl.
+
 	push hl
-	call GetMonHeader
+	call GetBaseData
 	pop hl
+
 	push hl
 	ld a, [wMonHType1]
-	call .asm_5008e
+	call .Print
+
 	ld a, [wMonHType1]
 	ld b, a
 	ld a, [wMonHType2]
 	cp b
 	pop hl
-	jr z, .asm_50091
-	ld bc, $0028
+	jr z, .hide_type_2
+	ld bc, SCREEN_WIDTH * 2
 	add hl, bc
-.asm_5008e
-	push hl
-	jr Function500b7
 
-.asm_50091
-	ld a, $7f
-	ld bc, $0011
+.Print
+	push hl
+	jr PrintType
+
+.hide_type_2
+	ld a, "　"
+	ld bc, SCREEN_WIDTH - 3
 	add hl, bc
 	ld [hl], a
 	inc bc
 	add hl, bc
-	ld bc, $0005
+	ld bc, PLAYER_NAME_LENGTH - 1
 	jp ByteFill
 
-Function500a0::
+PrintMoveType::
+; Print the type of move b at hl.
+
 	push hl
 	ld a, b
 	dec a
-	ld bc, $0007
+	ld bc, MOVE_LENGTH
 	ld hl, Moves
 	call AddNTimes
 	ld de, wStringBuffer1
 	ld a, BANK(Moves)
 	call FarCopyBytes
-	ld a, [wcd29]
-Function500b7::
+	ld a, [wStringBuffer1 + MOVE_TYPE]
+
+PrintType::
+; Print type a to stack pointer.
 	add a
 	ld hl, TypeNames
 	ld e, a
@@ -115,9 +131,12 @@ Function500b7::
 	ld e, a
 	ld d, [hl]
 	pop hl
+
 	jp PlaceString
 
-Function500c6::
+GetTypeName::
+; Copy the name of type [wMoveGrammar] to wStringBuffer1.
+
 	ld a, [wMoveGrammar]
 	ld hl, TypeNames
 	ld e, a
@@ -128,7 +147,7 @@ Function500c6::
 	ld h, [hl]
 	ld l, a
 	ld de, wStringBuffer1
-	ld bc, 5
+	ld bc, MOVE_NAME_LENGTH
 	jp CopyBytes
 
 SECTION "engine/dumps/bank14.asm@GetTrainerClassName_Old", ROMX
@@ -234,47 +253,57 @@ GetTrainerClassName_Old::
 .cooltrainer_female
 	db "エりート♀@"
 
-Function50244::
+DrawPlayerHP::
 	ld a, 1
-	jr .asm_5024a
-.asm_50248
+	jr DrawHP
+
+DrawEnemyHP:
 	ld a, 2
-.asm_5024a
+
+DrawHP:
 	ld [wHPBarType], a
 	push hl
 	push bc
+	; box mons have full HP
 	ld a, [wMonType]
-	cp 2
-	jr z, .asm_5026a
+	cp BOXMON
+	jr z, .at_least_1_hp
+
 	ld a, [wcda1]
 	ld b, a
 	ld a, [wcda2]
 	ld c, a
+
+; Any HP?
 	or b
-	jr nz, .asm_5026a
+	jr nz, .at_least_1_hp
+
 	xor a
 	ld c, a
 	ld e, a
 	ld a, 6
 	ld d, a
-	jp .asm_50284
-.asm_5026a
+	jp .fainted
+
+.at_least_1_hp
 	ld a, [wcda3]
 	ld d, a
 	ld a, [wcda4]
 	ld e, a
 	ld a, [wMonType]
-	cp 2
-	jr nz, .asm_5027b
+	cp BOXMON
+	jr nz, .not_boxmon
+
 	ld b, d
 	ld c, e
-.asm_5027b
-	ld a, $e
-	call Predef
+
+.not_boxmon
+	predef ComputeHPBarPixels
 	ld a, 6
 	ld d, a
 	ld c, a
-.asm_50284
+
+.fainted
 	ld a, c
 	pop bc
 	ld c, a
@@ -284,20 +313,25 @@ Function50244::
 	push hl
 	call DrawBattleHPBar
 	pop hl
-	ld bc, $0015
+
+; Print HP
+	bccoord 1, 1, 0
 	add hl, bc
 	ld de, wcda1
 	ld a, [wMonType]
-	cp 2
-	jr nz, .asm_502a0
+	cp BOXMON
+	jr nz, .not_boxmon_2
 	ld de, wcda3
-.asm_502a0
-	ld bc, $0203
+.not_boxmon_2
+	lb bc, 2, 3
 	call PrintNumber
+
 	ld a, "／"  ; $f3
 	ld [hli], a
+
+; Print max HP
 	ld de, wcda3
-	ld bc, $0203
+	lb bc, 2, 3
 	call PrintNumber
 	pop hl
 	pop de
@@ -414,7 +448,7 @@ Function50340::
 	hlcoord 1, 10
 	call PlaceString
 	push bc
-	call Function5069e
+	call GetGender
 	ld a, "♂"
 	jr c, .asm_50384
 	ld a, "♀"
@@ -459,7 +493,7 @@ Function50340::
 
 	hlcoord 10, 1
 	ld b, 0
-	call Function50244
+	call DrawPlayerHP
 
 	hlcoord 18, 1
 	ld [hl], $41
@@ -485,7 +519,7 @@ Function50340::
 	ld de, StatusText_OK
 	call z, PlaceString
 	hlcoord 14, 6
-	call Function50073
+	call PrintMonTypes
 
 	hlcoord 8, 10
 	ld b, 6
@@ -514,7 +548,7 @@ Function50340::
 	ld bc, $0307
 	call PrintNumber
 
-	call Function50491
+	call .CalcExpToNextLevel
 	ld de, wcdc3
 	hlcoord 10, 13
 	ld bc, $0307
@@ -557,33 +591,29 @@ Function50340::
 	call PlayCry
 	ret
 
-Function50491::
+.CalcExpToNextLevel::
 	ld a, [wLoadedMonLevel]
-	cp 100
-	jr z, .asm_504b8
-
+	cp MAX_LEVEL
+	jr z, .AlreadyAtMaxLevel
 	inc a
 	ld d, a
-	call Function50cd1
-
+	call CalcExpAtLevel
 	ld hl, wcd89
 	ld hl, wcd89    ; Seemingly an unnecessary duplicate line
 	ldh a, [hQuotient + 2]
 	sub [hl]
 	dec hl
 	ld [wcdc5], a
-
 	ldh a, [hQuotient + 1]
 	sbc [hl]
 	dec hl
 	ld [wcdc4], a
-
 	ldh a, [hQuotient]
-	sbc a, [hl]
+	sbc [hl]
 	ld [wcdc3], a
 	ret
 
-.asm_504b8
+.AlreadyAtMaxLevel
 	ld hl, wcdc3
 	xor a
 	ld [hli], a
@@ -660,7 +690,7 @@ Function504e5::
 	hlcoord 11, 7
 	ld a, $3c
 	ld [wcdc3], a
-	call Function506d4
+	call ListMovePP
 
 	call WaitBGMap
 	ld a, 1
@@ -847,63 +877,74 @@ Data_50684:
 	next "すばやさ"
 	next "@"
 
-Function5069e::
+GetGender::
+
+; 0: PartyMon
 	ld hl, wPartyMon1DVs
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wMonType]
 	and a
-	jr z, .asm_506be
+	jr z, .PartyMon
 
+; 1: OTPartyMon
 	ld hl, wd930
 	dec a
-	jr z, .asm_506be
+	jr z, .PartyMon
 
+; 2: sBoxMon
 	ld hl, wdab8
-	ld bc, $0020
+	ld bc, BOXMON_STRUCT_LENGTH
 	dec a
-	jr z, .asm_506be
-	ld hl, wcddf
-	jr .asm_506c4
+	jr z, .sBoxMon
 
-.asm_506be
+; else: WildMon
+	ld hl, wcddf
+	jr .DVs
+
+.PartyMon
+.sBoxMon
 	ld a, [wWhichPokemon]
 	call AddNTimes
 
-.asm_506c4
+.DVs
+; Attack DV
 	ld a, [hli]
 	and $f0
 	ld b, a
+; Speed DV
 	ld a, [hl]
 	and $f0
 	swap a
+
+; Put our DVs together.
 	or b
 	ld b, a
+
 	ld a, [wMonHGenderRatio]
 	cp b
 	ret
 
-Function506d4::
+ListMovePP::
 	ld a, [wcd57]
 	inc a
 	ld c, a
-	ld a, 4
+	ld a, NUM_MOVES
 	sub c
 	ld b, a
 	push hl
 	ld a, [wcdc3]
 	ld e, a
 	ld d, 0
-	ld a, $3e
-	call .asm_5074f
-
+	ld a, $3e ; P
+	call .load_loop
 	ld a, b
 	and a
-	jr z, .asm_506f3
+	jr z, .skip
 	ld c, a
-	ld a, $e3
-	call .asm_5074f
+	ld a, "ー"
+	call .load_loop
 
-.asm_506f3
+.skip
 	pop hl
 	inc hl
 	inc hl
@@ -912,11 +953,10 @@ Function506d4::
 	ld e, l
 	ld hl, wcd81
 	ld b, 0
-.asm_506fe
+.loop
 	ld a, [hli]
 	and a
-	jr z, .asm_5074e
-
+	jr z, .done
 	push bc
 	push hl
 	push de
@@ -925,8 +965,7 @@ Function506d4::
 	push af
 	ld [hl], b
 	push hl
-	callfar Functionf960
-
+	callfar GetMaxPPOfMove
 	pop hl
 	pop af
 	ld [hl], a
@@ -936,23 +975,19 @@ Function506d4::
 	ld bc, $0014
 	add hl, bc
 	ld a, [hl]
-
 	and $3f
-	ld [wcd2a], a
+	ld [wStringBuffer1 + 4], a
 	ld h, d
 	ld l, e
 	push hl
-
-	ld de, wcd2a
-	ld bc, $0102
+	ld de, wStringBuffer1 + 4
+	lb bc, 1, 2
 	call PrintNumber
-
 	ld a, "／"
 	ld [hli], a
 	ld de, wNamedObjectIndexBuffer
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNumber
-
 	pop hl
 	ld a, [wcdc3]
 	ld e, a
@@ -964,17 +999,17 @@ Function506d4::
 	pop bc
 	inc b
 	ld a, b
-	cp 4
-	jr nz, .asm_506fe
-.asm_5074e
+	cp NUM_MOVES
+	jr nz, .loop
+.done
 	ret
 
-.asm_5074f::
+.load_loop::
 	ld [hli], a
 	ld [hld], a
 	add hl, de
 	dec c
-	jr nz, .asm_5074f
+	jr nz, .load_loop
 	ret
 
 SECTION "engine/dumps/bank14.asm@Party Menu Routines", ROMX
@@ -1224,7 +1259,7 @@ Function508c4::
 	ld bc, hCurMapTextSubroutinePtr + 1
 	add hl, bc
 	ld b, $00
-	call Function50244.asm_50248
+	call DrawEnemyHP
 	push de
 	call Function50b66
 	pop de
@@ -1324,12 +1359,12 @@ Function508c4::
 	xor a
 	ld [wMonType], a
 	push hl
-	call Function5069e
+	call GetGender
 	pop hl
 	ld de, .male
-	jr c, .asm_509c6
+	jr c, .got_gender
 	ld de, .female
-.asm_509c6
+.got_gender
 	push hl
 	ld bc, $0009
 	add hl, bc
@@ -1715,11 +1750,11 @@ Function50c48::
 Function50caa::
 	ld a, [wcd7f]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld d, $01
 .asm_50cb5
 	inc d
-	call Function50cd1
+	call CalcExpAtLevel
 	push hl
 	ld hl, wcd89
 	ldh a, [hQuotient + 2]
@@ -1729,148 +1764,163 @@ Function50caa::
 	ldh a, [hQuotient + 1]
 	ld c, a
 	ld a, [hld]
-	sbc a, c
+	sbc c
 	ldh a, [hQuotient]
 	ld c, a
 	ld a, [hl]
-	sbc a, c
+	sbc c
 	pop hl
 	jr nc, .asm_50cb5
 	dec d
 	ret
 
-Function50cd1::
+CalcExpAtLevel::
 	ld a, [wMonHGrowthRate]
 	add a
 	add a
 	ld c, a
-	ld b, $00
-	ld hl, Data50d84
+	ld b, 0
+	ld hl, GrowthRates
 	add hl, bc
-	call Function50d77
-
+; Cube the level
+	call .LevelSquared
 	ld a, d
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 
+; Multiply by a
 	ld a, [hl]
 	and $f0
 	swap a
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
-
+; Divide by b
 	ld a, [hli]
-	and $0f
-	ldh [hPrintNumDivisor], a
-	ld b, $04
+	and $f
+	ldh [hDivisor], a
+	ld b, 4
 	call Divide
-
+; Push the cubic term to the stack
 	ldh a, [hQuotient]
 	push af
 	ldh a, [hQuotient + 1]
 	push af
 	ldh a, [hQuotient + 2]
 	push af
-	call Function50d77
-
+; Square the level and multiply by the lower 7 bits of c
+	call .LevelSquared
 	ld a, [hl]
 	and $7f
 	ldh [hPrintNumDivisor], a
 	call Multiply
-
-	ldh a, [hQuotient]
+; Push the absolute value of hte quadratic term to the stack
+	ldh a, [hProduct + 1]
 	push af
-	ldh a, [hQuotient + 1]
+	ldh a, [hProduct + 2]
 	push af
-	ldh a, [hQuotient + 2]
+	ldh a, [hProduct + 3]
 	push af
-
 	ld a, [hli]
 	push af
+; Multiply the level by d
 	xor a
-	ldh [hQuotient], a
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 0], a
+	ldh [hMultiplicand + 1], a
 	ld a, d
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, [hli]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
-
+; Subtract e
 	ld b, [hl]
-	ldh a, [hQuotient + 2]
+	ldh a, [hProduct + 3]
 	sub b
-	ldh [hQuotient + 2], a
-	ld b, $00
-	ldh a, [hQuotient + 1]
-	sbc a, b
-	ldh [hQuotient + 1], a
-	ldh a, [hQuotient]
-	sbc a, b
-	ldh [hQuotient], a
+	ldh [hMultiplicand + 2], a
+	ld b, 0
+	ldh a, [hProduct + 2]
+	sbc b
+	ldh [hMultiplicand + 1], a
+	ldh a, [hProduct + 1]
+	sbc b
+	ldh [hMultiplicand], a
+; If bit 7 of c is set, c is negative; otherwise, it's positive
 	pop af
 	and $80
-	jr nz, .asm_50d52
+	jr nz, .subtract
+; Add c*n**2 to (d*n - e)
 	pop bc
-	ldh a, [hQuotient + 2]
+	ldh a, [hProduct + 3]
 	add b
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	pop bc
-	ldh a, [hQuotient + 1]
+	ldh a, [hProduct + 2]
 	adc b
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	pop bc
-	ldh a, [hQuotient]
+	ldh a, [hProduct + 1]
 	adc b
-	ldh [hQuotient], a
-	jr .asm_50d64
+	ldh [hMultiplicand], a
+	jr .done_quadratic
 
-.asm_50d52
+.subtract
+; Subtract c*n**2 from (d*n - e)
 	pop bc
-	ldh a, [hQuotient + 2]
+	ldh a, [hProduct + 3]
 	sub b
-	ldh [hQuotient + 2], a
-
+	ldh [hMultiplicand + 2], a
 	pop bc
-	ldh a, [hQuotient + 1]
+	ldh a, [hProduct + 2]
 	sbc b
-	ldh [hQuotient + 1], a
-
+	ldh [hMultiplicand + 1], a
 	pop bc
-	ldh a, [hQuotient]
+	ldh a, [hProduct + 1]
 	sbc b
-	ldh [hQuotient], a
-.asm_50d64
+	ldh [hMultiplicand], a
+
+.done_quadratic
+; Add (a/b)*n**3 to (d*n - e +/- c*n**2)
 	pop bc
-	ldh a, [hQuotient + 2]
+	ldh a, [hProduct + 3]
 	add b
-	ldh [hQuotient + 2], a
-
+	ldh [hMultiplicand + 2], a
 	pop bc
-	ldh a, [hQuotient + 1]
+	ldh a, [hProduct + 2]
 	adc b
-	ldh [hQuotient + 1], a
-
+	ldh [hMultiplicand + 1], a
 	pop bc
-	ldh a, [hQuotient]
+	ldh a, [hProduct + 1]
 	adc b
-	ldh [hQuotient], a
-
+	ldh [hMultiplicand], a
 	ret
 
-Function50d77::
+.LevelSquared::
 	xor a
-	ldh [hQuotient], a
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 0], a
+	ldh [hMultiplicand + 1], a
 	ld a, d
-	ldh [hQuotient + 2], a
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplicand + 2], a
+	ldh [hMultiplier], a
 	jp Multiply
 
-Data50d84:
-	; Seems to have something to do with growth rates
-	db $11, $00, $00, $00, $34, $0a, $00, $1e
-	db $34, $14, $00, $46, $65, $8f, $64, $8c
-	db $45, $00, $00, $00, $54, $00, $00, $00
+MACRO growth_rate
+; [1]/[2]*n**3 + [3]*n**2 + [4]*n - [5]
+	dn \1, \2
+	if \3 < 0
+		db -\3 | $80 ; signed magnitude
+	else
+		db \3
+	endc
+	db \4, \5
+ENDM
+
+GrowthRates:
+; entries correspond to GROWTH_* (see constants/pokemon_data_constants.asm)
+	growth_rate 1, 1,   0,   0,   0 ; Medium Fast
+	growth_rate 3, 4,  10,   0,  30 ; Slightly Fast
+	growth_rate 3, 4,  20,   0,  70 ; Slightly Slow
+	growth_rate 6, 5, -15, 100, 140 ; Medium Slow
+	growth_rate 4, 5,   0,   0,   0 ; Fast
+	growth_rate 5, 4,   0,   0,   0 ; Slow
 
 Function50d9c::
 	; replace instances of wHPBarOldHP with wcdc5, perhaps?

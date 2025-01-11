@@ -2583,7 +2583,7 @@ asm_34e03:
 
 asm_34e12:
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld c, 6
 	ld hl, wPlayerMoveStructPower
 	ld de, wca3e
@@ -4389,7 +4389,7 @@ asm_35976:
 	ld [wCurPartyLevel], a
 	ld a, [wcdd9]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld hl, wcddf
 	ld de, wcd94
 	ld a, [hli]
@@ -5008,7 +5008,7 @@ asm_35d09:
 	ld [hld], a
 	ld [hl], a
 	ld [wNumSetBits], a
-	predef Function500c6
+	predef GetTypeName
 	ld hl, text_35d19
 	jp PrintText
 
@@ -10100,17 +10100,17 @@ asm_379a4:
 asm_379a8:
 	ld a, [wca02]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	xor a
 	ld [wMonType], a
-	callfar Function5069e
+	callfar GetGender
 	push af
 	ld a, [wcdd9]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, 3
 	ld [wMonType], a
-	callfar Function5069e
+	callfar GetGender
 	push af
 	pop bc
 	ld a, c

@@ -158,7 +158,7 @@ ROMX $03
 	"engine/items/inventory.asm@_CheckTossableItem"
 	"engine/dumps/bank03.asm@Functiond41d"
 	"engine/items/item_effects.asm"
-	"engine/dumps/bank03.asm@Functionf960"
+	"engine/dumps/bank03.asm@GetMaxPPOfMove"
 
 ROMX $04
 	org $4000

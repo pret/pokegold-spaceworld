@@ -69,14 +69,14 @@ GiveItemPredef::
 	add_predef PartyMenuInBattle_Setup
 	add_predef PartyMenuInBattle
 	add_predef Function5081f ; 38
-	add_predef Function506d4
-	add_predef Function5069e
+	add_predef ListMovePP
+	add_predef GetGender
 	add_predef Function502b5
-	add_predef Function50244
-	add_predef Function50244.asm_50248
-	add_predef Function500c6
-	add_predef Function500a0
-	add_predef Function50073 ; 40
+	add_predef DrawPlayerHP
+	add_predef DrawEnemyHP
+	add_predef GetTypeName
+	add_predef PrintMoveType
+	add_predef PrintMonTypes ; 40
 	add_predef Function50ed9
 	add_predef Functioncb6ff
 	add_predef Functioncb710

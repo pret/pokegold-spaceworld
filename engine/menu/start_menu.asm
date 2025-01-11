@@ -1432,7 +1432,7 @@ PartyCalculateHealth:
 	sub [hl]
 	dec hl
 	ldh a, [hQuotient + 1]
-	sbc a, [hl]
+	sbc [hl]
 	jp nc, PrintNotHealthyEnoughText
 	callfar Functionf218
 	jp HandleSelectedPokemon
@@ -1532,7 +1532,7 @@ SummaryDrawPoke:
 	hlcoord 2, 3
 	predef Function50bfe
 	hlcoord 11, 3
-	predef Function506d4
+	predef ListMovePP
 	call WaitBGMap
 	call SetPalettes
 	ld a, [wcd57]
@@ -1579,7 +1579,7 @@ PartySelectionInputs:
 	ld a, [wCurSpecies]
 	ld b, a
 	hlcoord 5, 12
-	predef Function500a0
+	predef PrintMoveType
 	ld a, [wCurSpecies]
 	dec a
 	ld hl, Data418b8

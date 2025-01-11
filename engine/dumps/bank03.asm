@@ -872,7 +872,7 @@ Functiond8b6:
 	push hl
 	ld a, [wMonDexIndex]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, [wMonHeader]
 	ld [de], a
 	inc de
@@ -901,8 +901,8 @@ Functiond8b6:
 	push de
 	ld a, [wCurPartyLevel]
 	ld d, a
-	ld hl, Function50cd1
-	ld a, BANK(Function50cd1)
+	ld hl, CalcExpAtLevel
+	ld a, BANK(CalcExpAtLevel)
 	call FarCall_hl
 	pop de
 	ldh a, [hMultiplicand]
@@ -1387,7 +1387,7 @@ Functiondc16:
 	pop hl
 	ld bc, $0020
 	call CopyBytes
-	call GetMonHeader
+	call GetBaseData
 	ld h, d
 	ld l, e
 	dec hl
@@ -1506,7 +1506,7 @@ Functiondd5c:
 	ld [de], a
 	cp $ff
 	jr nz, .sub_dd6c
-	call GetMonHeader
+	call GetBaseData
 	ld hl, wBoxMonOT
 	ld bc, $0006
 	ld a, [wBoxListLength]
@@ -1622,8 +1622,8 @@ Functiondd5c:
 	push de
 	ld a, [wCurPartyLevel]
 	ld d, a
-	ld hl, Function50cd1
-	ld a, BANK(Function50cd1)
+	ld hl, CalcExpAtLevel
+	ld a, BANK(CalcExpAtLevel)
 	call FarCall_hl
 	pop de
 	ldh a, [hMultiplicand]
@@ -3470,7 +3470,7 @@ Functioned37:
 	add hl, bc
 	ld a, [hl]
 	ld [wCurPartyLevel], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicknames
 	call GetNick
@@ -3604,7 +3604,7 @@ Functionee42:
 	add hl, bc
 	ld a, [hl]
 	ld [wCurPartyLevel], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicknames
 	call GetNick
@@ -3620,8 +3620,8 @@ Functionee42:
 	ld [wCurPartyLevel], a
 	push de
 	ld d, a
-	ld hl, Function50cd1
-	ld a, BANK(Function50cd1)
+	ld hl, CalcExpAtLevel
+	ld a, BANK(CalcExpAtLevel)
 	call FarCall_hl
 	pop de
 	pop hl
@@ -4544,7 +4544,7 @@ Functionf4d1:
 	jr nz, .sub_f4d7
 	ld hl, wPartyMon1Moves
 	ld bc, $0030
-	call Functionf9c9
+	call GetMthMoveOfNthPartymon
 	push hl
 	ld a, [hl]
 	ld [wce37], a
@@ -4607,10 +4607,10 @@ Functionf580:
 Functionf588:
 	xor a
 	ld [wMonType], a
-	call Functionf960
+	call GetMaxPPOfMove
 	ld hl, wPartyMon1Moves
 	ld bc, $0030
-	call Functionf9c9
+	call GetMthMoveOfNthPartymon
 	ld bc, $0015
 	add hl, bc
 	ld a, [wce37]
@@ -4651,7 +4651,7 @@ Functionf5bd:
 	push bc
 	ld hl, wPartyMon1Moves
 	ld bc, $0030
-	call Functionf9c9
+	call GetMthMoveOfNthPartymon
 	ld a, [hl]
 	and a
 	jr z, .sub_f5e1
@@ -4969,33 +4969,42 @@ Textf8ea:
 	text "から　おりた"
 	prompt
 
-SECTION "engine/dumps/bank03.asm@Functionf960", ROMX
+SECTION "engine/dumps/bank03.asm@GetMaxPPOfMove", ROMX
 
-Functionf960:
+GetMaxPPOfMove:
 	ld a, [wMonType]
 	and a
+
 	ld hl, wPartyMon1Moves
-	ld bc, $0030
-	jr z, .sub_f989
+	ld bc, PARTYMON_STRUCT_LENGTH
+	jr z, .got_partymon ; PARTYMON
+
 	ld hl, wd91d
 	dec a
-	jr z, .sub_f989
+	jr z, .got_partymon ; OTPARTYMON
+
 	ld hl, wdaa5
-	ld bc, $0020
+	ld bc, BOXMON_STRUCT_LENGTH
 	dec a
-	jr z, .sub_f989
+	jr z, .got_partymon ; BOXMON
+
 	ld hl, wd884
 	dec a
-	jr z, .sub_f984
-	ld hl, wca04
-.sub_f984
-	call Functionf9cf
-	jr .sub_f98c
-.sub_f989
-	call Functionf9c9
-.sub_f98c
+	jr z, .got_nonpartymon ; TEMPMON
+
+	ld hl, wca04 ; WILDMON
+
+.got_nonpartymon ; TEMPMON, WILDMON
+	call GetMthMoveOfCurrentMon
+	jr .gotdatmove
+
+.got_partymon ; PARTYMON, OTPARTYMON, BOXMON
+	call GetMthMoveOfNthPartymon
+
+.gotdatmove
 	ld a, [hl]
 	dec a
+
 	push hl
 	ld hl, Moves + MOVE_PP
 	ld bc, MOVE_LENGTH
@@ -5006,33 +5015,35 @@ Functionf960:
 	ld de, wStringBuffer1
 	ld [de], a
 	pop hl
+
 	push bc
-	ld bc, $0015
+	ld bc, MON_PP - MON_MOVES
 	ld a, [wMonType]
-	cp $04
-	jr nz, .sub_f9b1
+	cp WILDMON
+	jr nz, .notwild
 	ld bc, $0006
-.sub_f9b1
+.notwild
 	add hl, bc
 	ld a, [hl]
-	and $c0
+	and PP_UP_MASK
 	pop bc
+
 	or b
-	ld hl, wcd27
+	ld hl, wStringBuffer1 + 1
 	ld [hl], a
 	xor a
 	ld [wce37], a
 	call ComputeMaxPP
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	ld [wce37], a
 	ret
 
-Functionf9c9:
+GetMthMoveOfNthPartymon:
 	ld a, [wWhichPokemon]
 	call AddNTimes
 
-Functionf9cf:
+GetMthMoveOfCurrentMon:
 	ld a, [w2DMenuDataEnd]
 	ld c, a
 	ld b, $00
@@ -5218,10 +5229,10 @@ Functionfaba:
 	jp c, Functionfbde
 	ld a, [wMonDexIndex]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	xor a
 	ld [wMonType], a
-	predef Function5069e
+	predef GetGender
 	ld a, [wd8fd]
 	rla
 	ld [wd8fd], a

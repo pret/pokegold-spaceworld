@@ -2047,7 +2047,7 @@ EnemySendOutFirstMon:
 	ld a, [wcdd7]
 	ld [wMonDexIndex], a
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, 1
 	ld [wMonType], a
 	predef Function50000
@@ -2350,7 +2350,7 @@ LoadBattleMonFromParty:
 	call CopyBytes
 	ld a, [wcdd8]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, [wMonHType1]
 	ld [wca20], a
 	ld a, [wMonHType2]
@@ -2403,7 +2403,7 @@ LoadEnemyMonFromParty:
 	call CopyBytes
 	ld a, [wcdd9]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld hl, wOTPartyMonNicknames
 	ld a, [wWhichPokemon]
 	call SkipNames
@@ -2831,7 +2831,7 @@ Function3d5ce:
 	call CopyBytes
 	ld a, [wcd7f]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	pop hl
 	push hl
 	inc hl
@@ -2846,7 +2846,7 @@ asm_3d626:
 	ld [wMonDexIndex], a
 	ld hl, $c35e
 	ld b, 1
-	predef Function50244
+	predef DrawPlayerHP
 	push de
 	ld a, [wCurBattleMon]
 	ld hl, wPartyMon1Exp + 2
@@ -3844,7 +3844,7 @@ asm_3dde3:
 	ld [wWhichPokemon], a
 	ld a, 4
 	ld [wMonType], a
-	callfar Functionf960
+	callfar GetMaxPPOfMove
 	ld hl, wMenuCursorY
 	ld c, [hl]
 	inc [hl]
@@ -3876,7 +3876,7 @@ asm_3dde3:
 	ld a, [wPlayerMoveStruct]
 	ld b, a
 	ld hl, $c3ef
-	predef Function500a0
+	predef PrintMoveType
 
 asm_3de5b:
 	jp WaitBGMap
@@ -4162,7 +4162,7 @@ AddPokemonToBox:
 	ld [wcdd9], a
 	ld [wCurSpecies], a
 	ld [wMonDexIndex], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, [wBattleMode]
 	cp 2
 	jr nz, asm_3e06f
@@ -4872,10 +4872,10 @@ asm_3e4ce:
 	add hl, de
 	ld a, [hl]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	push bc
 	ld d, $64
-	callfar Function50cd1
+	callfar CalcExpAtLevel
 	pop bc
 	ld hl, $a
 	add hl, bc
@@ -4926,7 +4926,7 @@ asm_3e507:
 	ld a, [hl]
 	ld [wCurSpecies], a
 	ld [wNumSetBits], a
-	call GetMonHeader
+	call GetBaseData
 	ld hl, $25
 	add hl, bc
 	ld a, [hld]
@@ -5326,7 +5326,7 @@ asm_3e828:
 	push hl
 	ld a, [wcdd9]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, [wMonHCatchRate]
 	ld [wcdfe], a
 	pop hl
@@ -5356,7 +5356,7 @@ Function3e874:
 	push de
 	ld d, b
 	push de
-	callfar Function50cd1
+	callfar CalcExpAtLevel
 	pop de
 	ld hl, hQuotient
 	ld a, [hli]
@@ -5366,7 +5366,7 @@ Function3e874:
 	ld a, [hl]
 	push af
 	inc d
-	callfar Function50cd1
+	callfar CalcExpAtLevel
 	ld hl, hMultiplicand + 2
 	ld a, [hl]
 	ldh [hPrintNumTemp], a
@@ -5490,7 +5490,7 @@ Function3e91e:
 	ld a, [wca02]
 	ld [wCurSpecies], a
 	ld [wMonDexIndex], a
-	call GetMonHeader
+	call GetBaseData
 	ld hl, $14
 	call UncompressMonSprite
 	ld hl, $9310
@@ -5524,7 +5524,7 @@ Function3e963:
 	ld a, [wcdd9]
 	ld [wCurSpecies], a
 	ld [wMonDexIndex], a
-	call GetMonHeader
+	call GetBaseData
 	ld hl, wcddf
 	predef Function50ed9
 	ld de, vFrontPic

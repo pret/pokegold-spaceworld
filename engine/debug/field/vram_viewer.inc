@@ -167,7 +167,7 @@ FieldDebug_DoVRAMViewer:
 	ld a, 3
 	ld [wce37], a
 	ld [wMonDexIndex], a
-	call GetMonHeader
+	call GetBaseData
 	call LoadMonFrontSprite
 	ret
 

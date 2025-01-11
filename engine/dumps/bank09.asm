@@ -360,7 +360,7 @@ Pokepic:
 	ldh [hBGMapMode], a
 	ld a, [wMonDexIndex]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld de, vFont
 	call LoadMonFrontSprite
 	ld a, [wMenuBorderTopCoord]
@@ -1241,7 +1241,7 @@ asm_247d8:
 	ld de, 3
 	add hl, de
 	push hl
-	callfar Function5069e
+	callfar GetGender
 	ld a, $ef
 	jr c, .asm_2482e
 	ld a, $f5

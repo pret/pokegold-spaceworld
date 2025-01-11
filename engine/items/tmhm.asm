@@ -13,7 +13,7 @@ CanLearnTMHMMove:
 
 	ld a, [wMonDexIndex]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld hl, wMonHLearnset
 	push hl
 

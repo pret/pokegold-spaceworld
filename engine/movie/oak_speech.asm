@@ -32,7 +32,7 @@ GameStart::
 	ld a, DEX_YADOKING
 	ld [wCurSpecies], a
 	ld [wMonDexIndex], a
-	call GetMonHeader
+	call GetBaseData
 	hlcoord 6, 4
 	hlcoord 6, 4
 	call PrepMonFrontpic
