@@ -828,21 +828,21 @@ wUnknownBuffercc9e::
 	ds 14
 
 
-wSpriteCurPosX          : ds 1
-wSpriteCurPosY          : ds 1
-wSpriteWidth            : ds 1
-wSpriteHeight           : ds 1
-wSpriteInputCurByte     : ds 1
-wSpriteInputBitCounter  : ds 1
-wSpriteOutputBitOffset  : ds 1
-wSpriteLoadFlags        : ds 1
-wSpriteUnpackMode       : ds 1
-wSpriteFlipped          : ds 1
-wSpriteInputPtr         : ds 2
-wSpriteOutputPtr        : ds 2
-wSpriteOutputPtrCached  : ds 2
-wSpriteDecodeTable0Ptr  : ds 2
-wSpriteDecodeTable1Ptr  : ds 2
+wSpriteCurPosX::         ds 1
+wSpriteCurPosY::         ds 1
+wSpriteWidth::           ds 1
+wSpriteHeight::          ds 1
+wSpriteInputCurByte::    ds 1
+wSpriteInputBitCounter:: ds 1
+wSpriteOutputBitOffset:: ds 1
+wSpriteLoadFlags::       ds 1
+wSpriteUnpackMode::      ds 1
+wSpriteFlipped::         ds 1
+wSpriteInputPtr::        ds 2
+wSpriteOutputPtr::       ds 2
+wSpriteOutputPtrCached:: ds 2
+wSpriteDecodeTable0Ptr:: ds 2
+wSpriteDecodeTable1Ptr:: ds 2
 
 wccc0:: ds 1
 wccc1:: ds 1
