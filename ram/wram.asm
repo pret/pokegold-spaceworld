@@ -91,7 +91,7 @@ SECTION "OAM Buffer", WRAM0
 wShadowOAM::
 ; wShadowOAMSprite00 - wShadowOAMSprite39
 for n, NUM_SPRITE_OAM_STRUCTS
-        wShadowOAMSprite{02d:n}:: sprite_oam_struct wShadowOAMSprite{02d:n}
+wShadowOAMSprite{02d:n}:: sprite_oam_struct wShadowOAMSprite{02d:n}
 endr
 wShadowOAMEnd::
 

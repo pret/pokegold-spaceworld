@@ -241,7 +241,7 @@ Music_NidorinoIntro_Ch3::
 
 
 Music_NidorinoIntro_Ch4::
-    toggle_noise 2
+	toggle_noise 2
 	drum_speed 6
 	drum_note 4, 1
 	drum_note 4, 1
