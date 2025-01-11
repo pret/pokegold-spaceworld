@@ -33,7 +33,7 @@ GiveMonToPlayer::
 	ld [wCurPartyLevel], a
 	xor a
 	ld [wMonType], a
-	jpba Function1130a
+	farjp Function1130a
 
 WaitPressedAny::
 ; Waits for one of the buttons in d to be pressed.
@@ -70,7 +70,7 @@ WaitPressedAny::
 
 CountSetBits::
 ; Count the number of bits set in b bytes at hl.
-; Return to a, c, and wCountSetBitsResult.
+; Return to a, c, and wNumSetBits.
 	ld c, $0
 .asm_36b3:
 	ld a, [hli]
@@ -86,5 +86,5 @@ CountSetBits::
 	dec b
 	jr nz, .asm_36b3
 	ld a, c
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	ret

@@ -537,7 +537,7 @@ BattleBGEffect_HeadFollow:
 	ret
 
 _QueueBattleAnimation:
-	callab QueueBattleAnimation
+	callfar QueueBattleAnimation
 	ret
 
 BattleBGEffect_27:
@@ -2340,12 +2340,12 @@ BattleBGEffects_CheckSGB:
 
 BattleBGEffects_Sine:
 	ld e, a
-	callab BattleAnim_Sine_e
+	callfar BattleAnim_Sine_e
 	ld a, e
 	ret
 
 BattleBGEffects_Cosine:
 	ld e, a
-	callab BattleAnim_Cosine_e
+	callfar BattleAnim_Cosine_e
 	ld a, e
 	ret

@@ -87,7 +87,7 @@ asm_2d36c:
 	jr asm_2d33e
 
 asm_2d390:
-	callab Functionfdab
+	callfar Functionfdab
 	jr c, asm_2d33e
 	ld a, $0
 	call Predef

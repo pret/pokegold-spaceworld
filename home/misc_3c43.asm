@@ -16,13 +16,13 @@ GetPartyParamLocation::
 	ret
 
 UseItem::
-	jpba _UseItem
+	farjp _UseItem
 
 CheckTossableItem::
 	push hl
 	push de
 	push bc
-	callab _CheckTossableItem
+	callfar _CheckTossableItem
 	pop bc
 	pop de
 	pop hl

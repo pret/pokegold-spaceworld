@@ -43,7 +43,7 @@ PicrossMinigame:
 
 .Init:
 	call DisableLCD
-	callba InitEffectObject
+	farcall InitEffectObject
 	call .InitGFX
 	call .PlacePlayerBG
 	call .InitRAM
@@ -265,7 +265,7 @@ PicrossMinigame:
 	jr nz, .quit
 
 	call .ExecuteJumptable
-	callba EffectObjectJumpNoDelay
+	farcall EffectObjectJumpNoDelay
 	call DelayFrame
 	and a
 	ret

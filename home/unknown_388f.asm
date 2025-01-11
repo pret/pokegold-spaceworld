@@ -6,35 +6,35 @@ Function388f::
 	ret
 
 Function3890::
-	callba Function14cac
+	farcall Function14cac
 	ret
 
 Function3899::
-	callba Function14dac
+	farcall Function14dac
 	ret
 
 Function38a2::
-	callba Function14dc4
+	farcall Function14dc4
 	ret
 
 Function38ab::
-	callba Function14ddd
+	farcall Function14ddd
 	ret
 
 Function38b4::
-	callba Function14e00
+	farcall Function14e00
 	ret
 
 Function38bd::
-	callba Function14e5f
+	farcall Function14e5f
 	ret
 
 Function38c6::
-	callba Function14e27
+	farcall Function14e27
 	ret
 
 Function38cf::
-	callba Function14e4a
+	farcall Function14e4a
 	ret
 
 Function38d8::
@@ -50,7 +50,7 @@ TestWildBattleStart::
 	ret z ; if no directions are down, don't try and trigger a wild encounter
 	call CheckBPressedDebug
 	jp nz, ClearAccumulator ; if b button is down, clear acc
-	callab Function3ee3e
+	callfar Function3ee3e
 	ld a, [wBattleMode]
 	and a
 	ret z ; if no battle, return

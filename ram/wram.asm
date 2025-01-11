@@ -375,25 +375,28 @@ wBattleAnimEnd::
 
 	ds $1a3 ; TODO
 
-wc9e8:: ds 1
-wc9e9:: ds 1
-wc9ea:: ds 1
-wc9eb:: ds 1
-wc9ec:: ds 1
-wc9ed:: ds 1
-wc9ee:: ds 1
-wc9ef:: ds 1
-wc9f0:: ds 1
-wc9f1:: ds 1
-wc9f2:: ds 1
-wc9f3:: ds 1
+;wEnemyMoveStruct:: ds 1
+;wEnemyMoveStructEffect:: ds 1
+;wEnemyMoveStructPower:: ds 1
+;wEnemyMoveStructType:: ds 1
+;wEnemyMoveStructAccuracy:: ds 1
+;wEnemyMoveStructPP:: ds 1
+;wEnemyMoveStructEffectChance:: ds 1
 
-	ds 1
+wBattle::
+wEnemyMoveStruct:: move_struct wEnemyMoveStruct
+wPlayerMoveStruct:: move_struct wPlayerMoveStruct
 
-wc9f5:: ds 1
+;wPlayerMoveStruct:: ds 1
+;wPlayerMoveStructEffect:: ds 1
+;wPlayerMoveStructPower:: ds 1
+;wPlayerMoveStructType:: ds 1
+;wPlayerMoveStructAccuracy:: ds 1
+;wPlayerMoveStructPP:: ds 1
+;wPlayerMoveStructEffectChance:: ds 1
 
-wBattleMonNickname:: ds 6
 wEnemyMonNickname:: ds 6
+wBattleMonNickname:: ds 6
 
 wca02:: ds 1
 wca03:: ds 1
@@ -409,7 +412,9 @@ wca0a:: ds 1
 	ds 3
 
 wca0e:: ds 1
-wca0f:: ds 1	; Enemy's level
+
+wBattleMonLevel::
+wca0f:: ds 1 ; Player's mon level
 
 wIntroJumptableIndex::
 wca10:: ds 1
@@ -557,7 +562,11 @@ wcabe:: ds 1
 	ds 1
 
 wcac0:: ds 1
+
+wCurPlayerSelectedMove::
 wcac1:: ds 1
+
+wCurEnemySelectedMove::
 wcac2:: ds 1
 
 wLinkBattleRNCount:: db
@@ -570,13 +579,14 @@ wcac7:: ds 1
 wcac8:: ds 1
 wcac9:: ds 1
 
+UNION
 wPayDayMoney:: ds 3
+NEXTU
+wcaca:: ds 1		
+wcacb:: ds 1		
+wcacc:: ds 1
+ENDU
 
-;wcaca:: ds 1	;
-				;
-;	ds 1		; Pay day amount
-				;
-;wcacc:: ds 1	;
 wcacd:: ds 1
 wcace:: ds 1
 
@@ -584,12 +594,21 @@ wcace:: ds 1
 
 wcad0:: ds 1
 wcad1:: ds 1
+
+wAlreadyDisobeyed::
 wcad2:: ds 1
+
 wcad3:: ds 1
 wcad4:: ds 1
 wcad5:: ds 1
+
+UNION
+wCurPlayerMove:: ds 1
+wCurEnemyMove:: ds 1
+NEXTU
 wcad6:: ds 1
 wcad7:: ds 1
+ENDU
 wcad8:: ds 1
 wcad9:: ds 1
 wcada:: ds 1
@@ -773,10 +792,10 @@ wDefaultSpawnPoint::
 
 UNION
 
-wcc40:: ; XXX fix this to cc3a
+wcc3a::
 wMovementBufferCount:: db
 
-wcc41:: ; XXX fix this to cc3b
+wcc3b::
 wMovementBufferObject:: db
 
 	ptrba wMovementBufferPointer
@@ -887,6 +906,11 @@ wcd1d:: ds 8
 
 wStringBuffer1:: ds 1 ; How long is this?
 wcd27:: ds 1
+
+	ds 1
+
+wcd29:: ds 1
+wcd2a:: ds 1
 SECTION "CD31", WRAM0[$CD31]
 
 UNION
@@ -915,6 +939,7 @@ wRegularItemsCursor:: db
 wBackpackAndKeyItemsCursor:: db
 wStartmenuCursor:: db
 wcd40:: db
+wCurBattleMon::
 wcd41:: db
 wcd42:: db
 wFieldDebugMenuCursorBuffer::
@@ -977,8 +1002,12 @@ wcd7f:: db
 wcd80:: db
 wcd81:: db
 
-	ds 7
+	ds 3
 
+wcd85:: db
+	ds 1
+wcd87:: db
+	ds 1
 wcd89:: db
 
 	ds 10
@@ -990,7 +1019,18 @@ wcd94:: db
 wLoadedMonLevel:: db
 wcd9f:: db
 
-	ds 15
+	ds 1
+
+wcda1:: db
+wcda2:: db
+wcda3:: db
+wcda4:: db
+
+wcda5:: dw
+wcda7:: dw
+wcda9:: dw
+wcdab:: dw
+wcdad:: dw
 
 wcdaf:: db
 
@@ -1224,7 +1264,9 @@ wce35:: ds 1
 wce36:: ds 1
 
 wNamedObjectIndexBuffer::
-wCountSetBitsResult::
+wNumSetBits::
+wMoveGrammar::
+wTempByteValue::
 wce37::
 	db
 
@@ -1278,8 +1320,12 @@ wMomsName:: ds 6
 
 SECTION "CE73", WRAM0[$CE73]
 
+UNION
+wPlayerID:: dw
+NEXTU
 wce73: ds 1
 wce74: ds 1
+ENDU
 wce75: ds 1
 
 wObjectFollow_Leader::
@@ -1629,10 +1675,13 @@ wAnnonDex:: ds 26
 wAnnonID:: ds 1
 
 wd875:: ds 1
+
+wBufferMonNickname::
 wd876:: ds 1
 
 	ds 5
 
+wBufferMonOT::
 wd87c:: ds 1
 
 	ds 5
@@ -1686,6 +1735,7 @@ wd8fe:: ds 1
 SECTION "D913", WRAM0[$D913]
 
 wd913:: ds 1
+wd914:: ds 1
 
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
@@ -1697,7 +1747,9 @@ NEXTU
 wd91c:: ds 1
 wd91d:: ds 1
 wd91e:: ds 1
-	ds 19
+	ds 17
+wd930:: ds 1
+	ds 1
 wd932:: ds 1
 	ds 7
 wd93a:: ds 1
@@ -1714,6 +1766,7 @@ wOTPartyMonOT:: db
 
 SECTION "DA5F", WRAM0[$DA5F]
 
+wOTPartyMonNicknames::
 wda5f:: db
 
 SECTION "DA83", WRAM0[$DA83]
@@ -1726,12 +1779,16 @@ SECTION "DAA3", WRAM0[$DAA3]
 wdaa3:: db
 wdaa4:: db
 wdaa5:: db
+	ds 18
+wdab8:: db
 
 SECTION "DE63", WRAM0[$DE63]
 
+wBoxMonOT::
 wde63:: db
 
 SECTION "DF17", WRAM0[$DF17]
+wBoxMonNicknames::
 wdf17:: ds 1
 
 SECTION "DFCB", WRAM0[$DFCB]

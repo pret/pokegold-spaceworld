@@ -69,7 +69,7 @@ GameStart::
 	call FadeInIntroPic
 	ld hl, OakSpeech6
 	call PrintText
-	callba SetClockDialog
+	farcall SetClockDialog
 	call Function04ac
 	call GBFadeOutToWhite
 	call ClearTileMap
@@ -294,10 +294,10 @@ AddRandomPokemonToBox:
 	ld [wcdd7], a
 	ld a, $05
 	ld [wCurPartyLevel], a
-	callab AddPokemonToBox
+	callfar AddPokemonToBox
 	ld a, [wcdd7]
 	ld [wMonDexIndex], a
-	callab Functiondd5c
+	callfar Functiondd5c
 	pop af
 	dec a
 	jr nz, .loop
@@ -494,7 +494,7 @@ ChoosePlayerName::
 .loop
 	ld b, $01
 	ld de, wPlayerName
-	callba NamingScreen
+	farcall NamingScreen
 	ld a, [wPlayerName]
 	cp "@"
 	jr z, .loop
@@ -547,7 +547,7 @@ ChooseRivalName::
 .loop
 	ld b, $02
 	ld de, wRivalName
-	callba NamingScreen
+	farcall NamingScreen
 	ld a, [wRivalName]
 	cp "@"
 	jr z, .loop
@@ -599,14 +599,14 @@ MomNamePrompt::
 .loop
 	ld b, $03
 	ld de, wMomsName
-	callba NamingScreen
+	farcall NamingScreen
 	ld a, [wMomsName]
 	cp "@"
 	jr z, .loop
 
 	call ClearPalettes
 	call ClearTileMap
-	callab Function140d9
+	callfar Function140d9
 	call LoadFontExtra
 	call GetMemSGBLayout
 	call WaitBGMap

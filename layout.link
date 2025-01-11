@@ -310,8 +310,13 @@ ROMX $13
 
 ROMX $14
 	org $4000
+	"engine/dumps/bank14.asm@Function50000"
 	org $40dd
 	"data/types/names.asm"
+	org $4162
+	"engine/dumps/bank14.asm@GetTrainerClassName_Old"
+	org $4756
+	"engine/dumps/bank14.asm@Party Menu Routines"
 	org $4f10
 	"data/pokemon/base_stats.asm"
 	"data/pokemon/names.asm"

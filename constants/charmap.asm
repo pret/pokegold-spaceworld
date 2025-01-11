@@ -294,3 +294,13 @@
 	charmap "７", $fd
 	charmap "８", $fe
 	charmap "９", $ff
+
+; Actual characters (from gfx/font/font_battle_extra.png)
+
+	charmap "<LV>",      $6e
+
+	charmap "<DO>",      $70 ; hiragana small do, unused
+	charmap "◀",         $71
+	
+	charmap "<ID>",      $73
+	charmap "№",         $74

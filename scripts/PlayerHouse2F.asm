@@ -120,7 +120,7 @@ PlayerHouse2FComputerText:
 
 .jump
 	call RefreshScreen
-	callab PokemonCenterPC
+	callfar PokemonCenterPC
 	call Function1fea
 	ret
 

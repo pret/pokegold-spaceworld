@@ -250,7 +250,7 @@ RefreshTiles::
 
 
 GetFacingTileCoord::
-	ld a, [wPlayerWalking] ; TODO: wPlayerDirection in Crystal. Not here?
+	ld a, [wPlayerDirection] ; TODO: wPlayerDirection in Crystal. Not here?
 	and %1100
 	srl a
 	srl a

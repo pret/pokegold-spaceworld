@@ -64,7 +64,7 @@ GetCryIndex::
 	push af
 	ld a, d
 	ld [wce37], a
-	callba Function40b45
+	farcall Function40b45
 	ld a, [wce37]
 	dec a
 	ld c, a

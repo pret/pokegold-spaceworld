@@ -344,7 +344,7 @@ UpdateItemDescription::
 	ld c, $12
 	call DrawTextBox
 	decoord 1, 14
-	callab ShowItemDescription
+	callfar ShowItemDescription
 	ret
 
 Pokepic:
@@ -868,7 +868,7 @@ asm_2459b:
 	push bc
 	push hl
 	ld c, d
-	callab GetBallByIndex
+	callfar GetBallByIndex
 	ld d, c
 	pop hl
 	pop bc
@@ -1125,7 +1125,7 @@ Function2473b::
 	cp $ff
 	jr z, .asm_24762
 	push de
-	callab CheckItemMenu
+	callfar CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld e, a
 	ld d, $00
@@ -1163,7 +1163,7 @@ PlaceMenuItemQuantity::
 	push de
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
-	callab _CheckTossableItem
+	callfar _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	pop hl
 	and a
@@ -1179,7 +1179,7 @@ PlaceMenuItemQuantity::
 asm_247a6:
 	ld hl, wPartyMonOTEnd
 	jr .asm_247ae
-	ld hl, wdf17
+	ld hl, wBoxMonNicknames
 .asm_247ae
 	push de
 	ld a, [wScrollingMenuCursorPosition]
@@ -1222,7 +1222,7 @@ asm_247d8:
 	add hl, de
 	push hl
 	ld a, [wScrollingMenuCursorPosition]
-	ld hl, wdf17
+	ld hl, wBoxMonNicknames
 	call GetNick
 	pop hl
 	call PlaceString
@@ -1233,8 +1233,7 @@ asm_247d8:
 	ld [wWhichPokemon], a
 	ld a, $02
 	ld [wMonType], a
-	ld a, $31
-	call Predef
+	predef Function50000
 	pop hl
 	push hl
 	call PrintLevel
@@ -1242,7 +1241,7 @@ asm_247d8:
 	ld de, 3
 	add hl, de
 	push hl
-	callab Function5069e
+	callfar Function5069e
 	ld a, $ef
 	jr c, .asm_2482e
 	ld a, $f5
@@ -1375,7 +1374,7 @@ Function24955::
 	xor a
 	ldh [hBGMapMode], a
 	call asm_24a0c
-	callab Function_8f1cb
+	callfar Function_8f1cb
 	ld hl, .MenuHeader2497d
 	call LoadMenuHeader
 	call asm_24985
@@ -1838,7 +1837,7 @@ SelectQuantityToToss::
 	ret
 
 asm_24c64:
-	callab GetItemPrice
+	callfar GetItemPrice
 	ld a, d
 	ld [wFieldMoveScriptID], a
 	ld a, e

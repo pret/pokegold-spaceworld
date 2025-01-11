@@ -16,7 +16,7 @@ Function1130b:
 	ld [wca44], a
 	ld a, [wMonDexIndex]
 	ld [wcdd7], a
-	callab AddPokemonToBox
+	callfar AddPokemonToBox
 	call RecievePokemon
 	predef Functiondd5c
 	and $7F

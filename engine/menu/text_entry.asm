@@ -247,7 +247,7 @@ NamingScreenJoypadLoop:
 	bit 7, a
 	jr nz, .leap
 	call .RunJumpTable
-	callba PlaySpriteAnimationsAndDelayFrame
+	farcall PlaySpriteAnimationsAndDelayFrame
 	call .UpdateStringEntry
 	call DelayFrame
 	and a
@@ -255,7 +255,7 @@ NamingScreenJoypadLoop:
 
 .leap
 ; kills sprites and resets screen position
-	callab InitEffectObject
+	callfar InitEffectObject
 	call ClearSprites
 	xor a
 	ldh [hSCX], a
@@ -620,7 +620,7 @@ NamingScreenGetLastCharacter:
 
 LoadNamingScreenGFX:
 	call ClearSprites
-	callab InitEffectObject
+	callfar InitEffectObject
 	call LoadFont
 
 	ld de, TextScreenGFX_End
@@ -811,14 +811,14 @@ DoMailEntry:
 	bit 7, a
 	jr nz, .exit_mail
 	call .DoJumpTable
-	callba PlaySpriteAnimationsAndDelayFrame
+	farcall PlaySpriteAnimationsAndDelayFrame
 	call .Update
 	call DelayFrame
 	and a
 	ret
 
 .exit_mail
-	callab InitEffectObject
+	callfar InitEffectObject
 	call ClearSprites
 	xor a
 	ldh [hSCX], a

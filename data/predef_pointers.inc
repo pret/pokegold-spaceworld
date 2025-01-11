@@ -66,14 +66,14 @@ GiveItemPredef::
 	add_predef Function50bcd
 	add_predef Function50b92
 	add_predef Function508c4
-	add_predef Function50771
-	add_predef Function50774
+	add_predef PartyMenuInBattle_Setup
+	add_predef PartyMenuInBattle
 	add_predef Function5081f ; 38
 	add_predef Function506d4
 	add_predef Function5069e
 	add_predef Function502b5
 	add_predef Function50244
-	add_predef Function50248
+	add_predef Function50244.asm_50248
 	add_predef Function500c6
 	add_predef Function500a0
 	add_predef Function50073 ; 40

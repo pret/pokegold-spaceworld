@@ -166,7 +166,7 @@ FieldDebug_ItemTest:
 
 .DetermineItemTossable:
 	push hl
-	callab _CheckTossableItem
+	callfar _CheckTossableItem
 	pop hl
 	ld a, [wItemAttributeParamBuffer]
 	and a
@@ -183,7 +183,7 @@ FieldDebug_ItemTest:
 
 .tossable
 	push hl
-	callab SelectQuantityToToss
+	callfar SelectQuantityToToss
 	jr c, .cancel_toss
 	call .load_item
 	ld hl, .TossConfirmText

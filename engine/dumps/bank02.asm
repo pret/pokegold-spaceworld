@@ -202,7 +202,7 @@ CopyMapObjectToObjectStruct:
 	add hl, bc
 	ld [hl], a
 
-	ld hl, OBJECT_DIRECTION
+	ld hl, OBJECT_STEP_TYPE
 	add hl, de
 	ld [hl], $00
 
@@ -220,7 +220,7 @@ CopyMapObjectToObjectStruct:
 	sub [hl]
 	and $f
 	swap a
-	ld hl, OBJECT_SPRITE_X_OFFSET
+	ld hl, OBJECT_SPRITE_Y
 	add hl, de
 	ld [hl], a
 
@@ -238,7 +238,7 @@ CopyMapObjectToObjectStruct:
 	sub [hl]
 	and $f
 	swap a
-	ld hl, OBJECT_SPRITE_Y
+	ld hl, OBJECT_SPRITE_X
 	add hl, de
 	ld [hl], a
 
@@ -255,11 +255,11 @@ CopyMapObjectToObjectStruct:
 	add hl, de
 	ld [hl], -1
 
-	ld hl, OBJECT_STEP_DURATION
+	ld hl, OBJECT_ACTION
 	add hl, de
 	ld [hl], 0
 
-	ld hl, OBJECT_WALKING
+	ld hl, OBJECT_DIRECTION
 	add hl, de
 	ld [hl], 0
 
@@ -278,7 +278,7 @@ CopyMapObjectToObjectStruct:
 	ld hl, MAPOBJECT_RADIUS
 	add hl, bc
 	ld a, [hl]
-	call Function81f8
+	call CopyMapObject_Radius
 
 	ld hl, MAPOBJECT_SCRIPT_POINTER + 1
 	add hl, bc
@@ -317,18 +317,18 @@ InitObjectFlags:
 	set 4, [hl]
 	ret
 
-Function81f8:
+CopyMapObject_Radius:
 	push af
 	swap a
 	and $0f
 	inc a
-	ld hl, OBJECT_RADIUS
+	ld hl, OBJECT_RADIUS_X
 	add hl, de
 	ld [hl], a
 	pop af
 	and $0f
 	inc a
-	ld hl, OBJECT_SPRITE_X
+	ld hl, OBJECT_RADIUS_Y
 	add hl, de
 	ld [hl], a
 	ret
@@ -962,7 +962,7 @@ FlyMap:
 	call DelayFrame
 	call GetJoypadDebounced
 
-	callab EffectObjectJumpNoDelay
+	callfar EffectObjectJumpNoDelay
 
 	ld hl, hJoyDown
 	ld a, [hl]
@@ -973,7 +973,7 @@ FlyMap:
 	jr nz, .sub_8743
 	call Function8747
 	
-	callab GetFlyPointMapLocation
+	callfar GetFlyPointMapLocation
 
 	ld d, $00
 	ld hl, LandmarkPositions

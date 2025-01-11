@@ -174,14 +174,17 @@ StartMenu_Exit:
 	ret
 
 StartMenu_SetFrame:
-	callab FrameTypeDialog
+	callfar FrameTypeDialog
 	ld a, 0
 	ret
 
 StartMenu_Reset:
+; This SHOULD be the setup for a FarCall_hl to DisplayResetDialog.
+; Instead, it mistakenly calls DisplayResetDialog prior to loading its bank.
+; This causes it to read data as code, specifically from the middle of MapGroup_Newtype in vanilla.
 	ld hl, DisplayResetDialog
 	ld a, BANK(DisplayResetDialog)
-	call DisplayResetDialog ; should be farcall
+	call DisplayResetDialog 		; the problematic line
 	ld a, 0
 	ret
 
@@ -197,7 +200,7 @@ StartMenu_Settings:
 	ldh [hBGMapMode], a
 	call ClearTileMap
 	call UpdateSprites
-	callab MenuCallSettings
+	callfar MenuCallSettings
 	call ClearPalettes
 	call Call_ExitMenu
 	call LoadTilesetGFX
@@ -219,7 +222,7 @@ _TrainerCard:
 	push af
 	xor a
 	ldh [hMapAnims], a
-	callab TrainerCardLoop
+	callfar TrainerCardLoop
 	call ClearPalettes
 	call LoadFont
 	call ReloadFontAndTileset
@@ -338,7 +341,7 @@ DrawBackpack:
 	res 0, [hl]
 	call ClearSprites
 	call ClearTileMap
-	callab LoadBackpackGraphics
+	callfar LoadBackpackGraphics
 	hlcoord 2, 2
 	ld b, 08
 	ld c, $0F
@@ -476,7 +479,7 @@ HandleBackpackInput:
 	jp .exit
 
 .BackpackSelect
-	callab SwitchItemsInBag
+	callfar SwitchItemsInBag
 	jp .exit
 
 .exit
@@ -496,10 +499,10 @@ HandleBackpackInput:
 	ret
 
 BackpackSelected:
-	callab ScrollingMenu_ClearLeftColumn
+	callfar ScrollingMenu_ClearLeftColumn
 	call PlaceHollowCursor
 	call LoadItemData
-	callab CheckItemMenu
+	callfar CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld hl, .BagSelectJumptable
 	jp CallJumptable
@@ -522,7 +525,7 @@ BackpackSelected:
 
 .UnknownSelection
 	call LoadStandardMenuHeader
-	callab Function2d2fc
+	callfar Function2d2fc
 	call ExitMenu
 	call DrawBackpack
 	and a
@@ -607,7 +610,7 @@ RegisterItemSelection:
 	ret
 
 UseItemSelection:
-	callab CheckItemMenu
+	callfar CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld hl, .UseItemJumptable
 	jp CallJumptable
@@ -658,13 +661,13 @@ UseItemSelection:
 TryTossItem:
 	push de
 	call LoadItemData
-	callab _CheckTossableItem
+	callfar _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
 	jr nz, .TossFail
 	ld hl, .TossedText
 	call MenuTextBox
-	callab SelectQuantityToToss
+	callfar SelectQuantityToToss
 	push af
 	call CloseWindow
 	call ExitMenu
@@ -823,7 +826,7 @@ StartMenuLoadSprites:
 	call DisableLCD
 	ld a, 6
 	call UpdateSoundNTimes
-	callab Function140d9
+	callfar Function140d9
 	call LoadTilesetGFX
 	call LoadFontExtra
 	call ClearSprites
@@ -835,7 +838,7 @@ StartMenuLoadSprites:
 	ret
 
 TryRegisterItem:
-	callab CheckItemMenu
+	callfar CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld hl, .RegisterItemJumptable
 	jp CallJumptable
@@ -892,23 +895,23 @@ StartMenu_Party:
 	ret
 .partynonzero
 	call LoadStandardMenuHeader
-	callab Function50756
+	callfar ClearGraphicsForPartyMenu
 
 HandleSelectedPokemon:
 	xor a
 	ld [wcdb9], a
 	ld [wSelectedSwapPosition], a
-	predef Function50774
+	predef PartyMenuInBattle
 	jr PartyPrompt.partypromptreturn
 
 PartyPrompt:
 	ld a, [wWhichPokemon]
 	inc a
 	ld [wSelectedSwapPosition], a
-	callab Function8f1f2
+	callfar Function8f1f2
 	ld a, 4
 	ld [wcdb9], a
-	predef Function50774
+	predef PartyMenuInBattle
 .partypromptreturn
 	jr c, .return
 	jp SelectedPokemonSubmenu
@@ -932,7 +935,7 @@ SelectedPokemonSubmenu:
 	hlcoord 1, 13
 	lb bc, 4, $12
 	call ClearBox
-	callab Function24955
+	callfar Function24955
 	call GetCurNick
 	ld a, [wMenuSelection]
 	ld hl, PartyJumpTable
@@ -972,7 +975,7 @@ PartyCheckLessThanTwo:
 	jp PartyPrompt
 
 PartyHeldItem:
-	callab Function_8f1cb
+	callfar Function_8f1cb
 	ld hl, .HoldItemMenu
 	call LoadMenuHeader
 	call VerticalMenu
@@ -1198,7 +1201,7 @@ PartyRecieveItem:
 	ret
 
 UnusedHandleItemJumptable:
-	callab CheckItemMenu
+	callfar CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld hl, UnusedItemJumptable
 	jp CallJumptable
@@ -1233,7 +1236,7 @@ PartyBallPocket:
 PartyGiveMail:
 	call LoadStandardMenuHeader
 	ld de, wMovementBufferCount
-	callab ComposeMailMessage
+	callfar ComposeMailMessage
 	xor a
 	ldh [hBGMapMode], a
 	call LoadFontsBattleExtra
@@ -1365,7 +1368,7 @@ PartyPokemonSummary:
 	jp HandleSelectedPokemon
 
 PartyTryCut:
-	callab CutFunction
+	callfar CutFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $F
 	jp nz, HandleSelectedPokemon
@@ -1375,7 +1378,7 @@ PartyTryCut:
 PartyTryFly:
 	bit 2, a
 	jp z, PrintNeedNewBadgeText
-	callab FlyFunction
+	callfar FlyFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $F
 	jp nz, HandleSelectedPokemon
@@ -1387,7 +1390,7 @@ PartyCantUseMove:
 	jp HandleSelectedPokemon
 
 PartyTryTeleport:
-	callab TeleportFunction
+	callfar TeleportFunction
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jp z, HandleSelectedPokemon
@@ -1397,7 +1400,7 @@ PartyTryTeleport:
 PartyTrySurf:
 	bit 4, a
 	jp z, PrintNeedNewBadgeText
-	callab SurfFunction
+	callfar SurfFunction
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jp z, HandleSelectedPokemon
@@ -1405,7 +1408,7 @@ PartyTrySurf:
 	jp PartyPromptExit
 
 PartyTryDig:
-	callab DigFunction
+	callfar DigFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $F
 	jp nz, HandleSelectedPokemon
@@ -1431,7 +1434,7 @@ PartyCalculateHealth:
 	ldh a, [hQuotient + 1]
 	sbc a, [hl]
 	jp nc, PrintNotHealthyEnoughText
-	callab Functionf218
+	callfar Functionf218
 	jp HandleSelectedPokemon
 
 PrintNotHealthyEnoughText:
@@ -1468,8 +1471,8 @@ PokeSummary:
 	call ClearSprites
 	xor a
 	ldh [hBGMapMode], a
-	callab LoadOnlyPokemonStatsGraphics
-	callab Function8f0cc
+	callfar LoadOnlyPokemonStatsGraphics
+	callfar Function8f0cc
 	ld a, [wWhichPokemon]
 	ld e, a
 	ld d, 0
@@ -1792,7 +1795,7 @@ GetRegisteredItemID:
 	ret
 
 UseRegisteredItem:
-	callab CheckItemMenu
+	callfar CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld hl, .RegisteredItemJumptable
 	jp CallJumptable
@@ -2110,7 +2113,7 @@ DrawTrainerCardMainPage:
 	ld de, wPlayerName
 	call PlaceString
 	hlcoord 5, 4
-	ld de, wce73
+	ld de, wPlayerID
 	lb bc, 2, 5
 	call PrintNumber
 	hlcoord 7, 6

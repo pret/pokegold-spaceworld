@@ -3075,7 +3075,7 @@ Function6445:
 	jp z, .sub_64eb
 	ld a, [wWhichPokemon]
 	ld b, a
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	cp b
 	jp nz, .sub_64eb
 	ld h, d
@@ -3390,9 +3390,7 @@ Function6713:
 	call Function3657
 	jr .sub_6773
 .sub_676b
-	ld hl, Function3e3a7
-	ld a, BANK(Function3e3a7)
-	call FarCall_hl
+	callfar Function3e3a7
 .sub_6773
 	pop hl
 	ld a, [hl]
@@ -3741,7 +3739,7 @@ Function78f0:
 	ld a, [hl]
 	xor $08
 	ld [hl], a
-	callab UpdateSGBBorder
+	callfar UpdateSGBBorder
 	call LoadFont
 	call LoadFontExtra
 	ld c, $70

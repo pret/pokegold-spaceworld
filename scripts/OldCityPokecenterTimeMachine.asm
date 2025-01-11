@@ -31,5 +31,5 @@ OldCityPokecenterTimeMachine_TextPointers:
 OldCityPokecenterTimeMachineText1:
 	xor a
 	ld [wce37], a
-	callab Function29abf
+	callfar Function29abf
 	ret

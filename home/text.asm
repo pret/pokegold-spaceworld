@@ -267,7 +267,7 @@ asm_0fbb:
 	push de
 	and a
 	jr nz, .asm_0fc4
-	ld de, wEnemyMonNickname
+	ld de, wBattleMonNickname
 	jr PlaceCommandCharacter
 
 .asm_0fc4:
@@ -275,7 +275,7 @@ asm_0fbb:
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld de, wBattleMonNickname
+	ld de, wEnemyMonNickname
 PlaceCommandCharacter:
 	call PlaceString
 	ld h, b

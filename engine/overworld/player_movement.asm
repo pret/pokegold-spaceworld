@@ -8,7 +8,7 @@ OverworldMovementCheck::
 UnusedOverworldMovementCheck::
 	ld a, PLAYER_OBJECT_INDEX
 	ldh [hEventCollisionException], a
-	ld a, [wPlayerDirection]
+	ld a, [wPlayerStepType]
 	and a
 	jr z, SetPlayerIdle ; player movement is disabled
 	ldh a, [hJoyState]
@@ -514,7 +514,7 @@ IsPlayerCollisionTileSolid::
 ;  c - solid/sometimes solid
 	push de
 	ld bc, wPlayerStruct
-	callab _IsObjectCollisionTileSolid
+	callfar _IsObjectCollisionTileSolid
 	ld a, e
 	pop de
 	ret
@@ -526,7 +526,7 @@ CheckPlayerObjectCollision::
 ; nc - no collision
 ;  c - collision
 	push de
-	callab _CheckPlayerObjectCollision
+	callfar _CheckPlayerObjectCollision
 	pop de
 	ret nc
 	jp CheckCompanionObjectCollision
@@ -565,7 +565,7 @@ CheckCompanionObjectCollision::
 _OverworldMovementCheck::
 	ld a, PLAYER_OBJECT_INDEX
 	ldh [hEventCollisionException], a
-	ld a, [wPlayerDirection]
+	ld a, [wPlayerStepType]
 	and a
 	jp z, SetPlayerIdle
 	ldh a, [hJoyState]
@@ -1040,7 +1040,7 @@ CheckObjectCollision::
 	ld a, [wPlayerMapY]
 	add e
 	ld e, a
-	callab _CheckObjectCollision
+	callfar _CheckObjectCollision
 	ret nc
 	jp CheckCompanionObjectCollision
 

@@ -3,22 +3,22 @@ INCLUDE "constants.asm"
 SECTION "engine/movie/title.asm@Title screen", ROMX
 
 IntroSequence::
-	callab GameFreakIntro
+	callfar GameFreakIntro
 	jr c, TitleSequenceStart
 	ld a, [wTitleSequenceOpeningType]
 	and a
 	jr z, .opening_sequence
 
 .pikachu_minigame
-	callab PikachuMiniGame
+	callfar PikachuMiniGame
 	jr TitleSequenceStart
 
 .opening_sequence
-	callab OpeningCutscene
+	callfar OpeningCutscene
 
 TitleSequenceStart::
 	call TitleSequenceInit
-	callab SetTitleBGDecorationBorder
+	callfar SetTitleBGDecorationBorder
 
 .loop
 	call TitleScreenMain
@@ -64,7 +64,7 @@ TitleSequenceInit::
 	call DisableLCD
 	call ClearSprites
 
-	callba InitEffectObject
+	farcall InitEffectObject
 	ld hl, vChars0
 	ld bc, vBGMap0 - vChars0
 
@@ -176,7 +176,7 @@ TitleScreenMain::
 	bit 7, a
 	jr nz, .exit
 	call TitleScreenSequence
-	callba EffectObjectJumpNoDelay
+	farcall EffectObjectJumpNoDelay
 	call DelayFrame
 	and a
 	ret
@@ -540,7 +540,7 @@ SRAMClearMenu::
 	cp $01
 	jp z, Init
 
-	callab InitAllSRAMBanks
+	callfar InitAllSRAMBanks
 	jp Init
 
 SRAMClear_Message::

@@ -84,7 +84,7 @@ DebugMenuOptionFight::
 	ret
 
 DebugMenuOptionSubGames::
-	callab CallSubGameMenu
+	callfar CallSubGameMenu
 	jp DebugMenu
 
 DebugMenuOptionMonsterTest::
@@ -101,7 +101,7 @@ DebugMenuOptionMonsterTest::
 	ld a, (1 << ((NUM_POKEMON - 1) % 8)) - 1 ; discount #251
 	ld [hl], a
 	ld [de], a
-	callab MonsterTest
+	callfar MonsterTest
 	ld a, %11100100
 	ldh [rBGP], a
 
@@ -109,7 +109,7 @@ Function40eb::
 	jp DebugMenu
 
 DebugMenuOptionName::
-	callab OpenTrainerGear
+	callfar OpenTrainerGear
 	ld a, %11100100
 	ldh [rBGP], a
 	jp DebugMenu
@@ -292,22 +292,22 @@ CallSubGameMenu:
 	db "スロット@"
 
 SubGameMenu_PokerGame:
-	callab PokerMinigame
+	callfar PokerMinigame
 	ret
 
 SubGameMenu_PuzzleGame:
-	callab FifteenPuzzleMinigame
+	callfar FifteenPuzzleMinigame
 	ret
 
 SubGameMenu_CardFlipGame:
-	callab MemoryMinigame
+	callfar MemoryMinigame
 	ret
 
 SubGameMenu_PicrossGame:
-	callab PicrossMinigame
+	callfar PicrossMinigame
 	ret
 
 SubGameMenu_SlotMachineGame:
-	callab SlotMachineGame
+	callfar SlotMachineGame
 	ret
 

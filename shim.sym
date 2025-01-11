@@ -58,28 +58,7 @@
 10:6252 Function42252
 10:58B8 Data418b8
 
-14:4000 Function50000
-14:4073 Function50073
-14:40A0 Function500a0
-14:40C6 Function500c6
-14:4244 Function50244
-14:4248 Function50248
-14:42B5 Function502b5 ; Pokemon Summary routine?
-14:4628 Function50628
-14:469E Function5069e
-14:46D4 Function506d4
-14:4756 Function50756
-14:4771 Function50771
-14:4774 Function50774
-14:481F Function5081f
-14:487E Function5087e
-14:48C4 Function508c4
-14:4B92 Function50b92
-14:4BCD Function50bcd
-14:4BFE Function50bfe
-14:4CAA Function50caa
-14:4CD1 Function50cd1
-14:4ED9 Function50ed9
+14:7274 Unknown53274
 
 23:4325 Function8c325
 23:42DC UpdateTimeOfDayPal

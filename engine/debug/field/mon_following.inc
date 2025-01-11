@@ -18,7 +18,7 @@ FieldDebug_PokemonFollowing:
 	ld a, [wPlayerStructEnd]
 	and a
 	jr nz, .ShowUnableText
-	callab SpawnFollower
+	callfar SpawnFollower
 	ld de, SFX_24
 	call PlaySFX
 	call CloseWindow
@@ -27,7 +27,7 @@ FieldDebug_PokemonFollowing:
 	ret
 
 .remove
-	callab DeleteFollower
+	callfar DeleteFollower
 	ld de, SFX_25
 	call PlaySFX
 	jr .done

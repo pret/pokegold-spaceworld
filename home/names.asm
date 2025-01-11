@@ -258,7 +258,7 @@ GetNick:
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop de
-	callab CorrectNickErrors
+	callfar CorrectNickErrors
 	pop bc
 	pop hl
 	ret

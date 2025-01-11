@@ -237,7 +237,7 @@ Serial_ExchangeLinkMenuSelection::
 
 Serial_PrintWaitingTextAndSyncAndExchangeNybble::
 	call BackUpTilesToBuffer
-	callab PlaceWaitingText
+	callfar PlaceWaitingText
 	call WaitLinkTransfer
 	jp ReloadTilesFromBuffer
 

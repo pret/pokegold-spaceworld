@@ -37,7 +37,7 @@ FieldDebug_ChangeTransportation:
 	call MenuTextBox
 
 .update_sprite
-	callab GetPlayerSprite
+	callfar GetPlayerSprite
 	ld a, BUTTONS
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
@@ -149,7 +149,7 @@ FieldDebug_CheckFacingSurfable:
 	ret
 
 FieldDebug_SetSurfDirection:
-	ld a, [wPlayerWalking]
+	ld a, [wPlayerDirection]
 	srl a
 	srl a
 	ld e, a
