@@ -168,7 +168,7 @@ FieldDebug_ItemTest:
 	push hl
 	callfar _CheckTossableItem
 	pop hl
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	and a
 	jr nz, .not_tossable
 	call .tossable

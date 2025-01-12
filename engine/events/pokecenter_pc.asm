@@ -242,7 +242,7 @@ PlayerWithdrawItemMenu:
 
 .Submenu:
 	callfar _CheckTossableItem
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	and a
 	jr z, .AskQuantity
 	ld a, 1
@@ -356,7 +356,7 @@ PlayerDepositItemMenu:
 
 .TryDepositItem:
 	callfar CheckItemMenu
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	ld hl, .Jumptable
 	jp CallJumptable
 
@@ -401,7 +401,7 @@ PlayerDepositItemMenu:
 
 .DepositItem:
 	callfar _CheckTossableItem
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	and a
 	jr z, .AskQuantity
 	ld a, 1

@@ -31,7 +31,7 @@ GameStart::
 	call ClearTileMap
 	ld a, DEX_YADOKING
 	ld [wCurSpecies], a
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	call GetBaseData
 	hlcoord 6, 4
 	hlcoord 6, 4
@@ -176,11 +176,11 @@ DebugSetUpPlayer::
 	call FillTMs
 	ld de, DebugBagItems
 	call FillBagWithList
-	ld hl, wPokedexOwned
+	ld hl, wPokedexCaught
 	call DebugFillPokedex
 	ld hl, wPokedexSeen
 	call DebugFillPokedex
-	ld hl, wAnnonDex
+	ld hl, wUnownDex
 	ld [hl], $01
 	call Function40fd
 	ret
@@ -276,7 +276,7 @@ GiveKantoStarters::
 	ret
 
 GivePokemon::
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld a, b
 	ld [wCurPartyLevel], a
 	ld a, $10
@@ -296,7 +296,7 @@ AddRandomPokemonToBox:
 	ld [wCurPartyLevel], a
 	callfar AddPokemonToBox
 	ld a, [wcdd7]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	callfar Functiondd5c
 	pop af
 	dec a

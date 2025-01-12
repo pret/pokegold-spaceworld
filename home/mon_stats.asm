@@ -53,7 +53,7 @@ PrepMonFrontpic::
 	ld a, $1
 	ld [wSpriteFlipped], a
 _PrepMonFrontpic::
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	and a
 	jr z, .asm_39a8
 	cp NUM_POKEMON + 1
@@ -74,5 +74,5 @@ _PrepMonFrontpic::
 	xor a
 	ld [wSpriteFlipped], a
 	inc a
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ret

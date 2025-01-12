@@ -503,7 +503,7 @@ BackpackSelected:
 	call PlaceHollowCursor
 	call LoadItemData
 	callfar CheckItemMenu
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	ld hl, .BagSelectJumptable
 	jp CallJumptable
 
@@ -611,7 +611,7 @@ RegisterItemSelection:
 
 UseItemSelection:
 	callfar CheckItemMenu
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	ld hl, .UseItemJumptable
 	jp CallJumptable
 
@@ -662,7 +662,7 @@ TryTossItem:
 	push de
 	call LoadItemData
 	callfar _CheckTossableItem
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	and a
 	jr nz, .TossFail
 	ld hl, .TossedText
@@ -839,7 +839,7 @@ StartMenuLoadSprites:
 
 TryRegisterItem:
 	callfar CheckItemMenu
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	ld hl, .RegisterItemJumptable
 	jp CallJumptable
 
@@ -905,7 +905,7 @@ HandleSelectedPokemon:
 	jr PartyPrompt.partypromptreturn
 
 PartyPrompt:
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	inc a
 	ld [wSelectedSwapPosition], a
 	callfar Function8f1f2
@@ -1012,7 +1012,7 @@ PartyHeldItem:
 	call SpeechTextBox
 	call LoadItemData
 	call CheckTossableItem
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	and a
 	jp nz, .CantGive
 	call GetPartyItemOffset
@@ -1202,7 +1202,7 @@ PartyRecieveItem:
 
 UnusedHandleItemJumptable:
 	callfar CheckItemMenu
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	ld hl, UnusedItemJumptable
 	jp CallJumptable
 
@@ -1242,7 +1242,7 @@ PartyGiveMail:
 	call LoadFontsBattleExtra
 	call Call_ExitMenu
 	call WaitBGMap
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, $BA68
 	ld bc, $0028
 	call AddNTimes
@@ -1272,7 +1272,7 @@ PartyMailMenu:
 	call YesNoBox
 	call CloseWindow
 	jp c, .exit
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1 + MON_ITEM
 	ld bc, $0030
 	call AddNTimes
@@ -1292,7 +1292,7 @@ PartyMailMenu:
 	call MenuTextBoxBackup
 	jr .exit
 .GiveMail
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, $BA68
 	ld bc, $0028
 	call AddNTimes
@@ -1473,7 +1473,7 @@ PokeSummary:
 	ldh [hBGMapMode], a
 	callfar LoadOnlyPokemonStatsGraphics
 	callfar Function8f0cc
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld e, a
 	ld d, 0
 	ld hl, wPartySpecies
@@ -1501,7 +1501,7 @@ PokeSummary:
 	lb bc, 1, 9
 	call ClearBox
 	hlcoord 16, 0
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	and a
 	jr z, .FirstPokeChosen
 	ld [hl], "」"
@@ -1522,8 +1522,8 @@ SummaryDrawPoke:
 	ldh [hBGMapMode], a
 	ld [wSelectedSwapPosition], a
 	ld [wMonType], a
-	predef Function50000
-	ld hl, wcd81
+	predef CopyMonToTempMon
+	ld hl, wTempMonMoves
 	ld de, wce2e
 	ld bc, $0004
 	call CopyBytes
@@ -1558,7 +1558,7 @@ PartySelectionInputs:
 .PartySelectSkipInputs
 	ld hl, wPartyMon1 + MON_MOVES
 	lb bc, 0, $30
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld a, [wMenuCursorY]
 	dec a
@@ -1613,7 +1613,7 @@ PartySelectionInputs:
 	jp PartySelectionInputs
 
 .PartyPokeDetailsAdvancePage
-	ld hl, wWhichPokemon
+	ld hl, wCurPartyMon
 	inc [hl]
 	ld a, [wPartyCount]
 	cp [hl]
@@ -1622,7 +1622,7 @@ PartySelectionInputs:
 	jp PartySelectionInputs
 
 .PartyPokeDetailsBackPage
-	ld hl, wWhichPokemon
+	ld hl, wCurPartyMon
 	ld a, [hl]
 	and a
 	jp z, PartySelectionInputs
@@ -1640,7 +1640,7 @@ PartySelectionInputs:
 .swap
 	ld hl, wPartyMon1 + MON_MOVES
 	ld bc, $0030
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	push hl
 	call SwapEntries
@@ -1652,7 +1652,7 @@ PartySelectionInputs:
 	jr z, .NotInBattle
 	ld hl, wca04
 	ld bc, $0020
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	push hl
 	call SwapEntries
@@ -1796,7 +1796,7 @@ GetRegisteredItemID:
 
 UseRegisteredItem:
 	callfar CheckItemMenu
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	ld hl, .RegisteredItemJumptable
 	jp CallJumptable
 
@@ -2121,7 +2121,7 @@ DrawTrainerCardMainPage:
 	lb bc, 3, 6
 	call PrintNumber
 	ld [hl], $F0
-	ld hl, wPokedexOwned
+	ld hl, wPokedexCaught
 	ld b, $1C
 	call CountSetBits
 	ld de, wce37

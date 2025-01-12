@@ -3617,7 +3617,7 @@ asm_35545:
 	xor a
 
 asm_35556:
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	predef UpdateHPBar
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
@@ -3966,7 +3966,7 @@ asm_356da:
 	ld a, 1
 
 asm_356fd:
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	ld a, [hld]
 	ld [wHPBarMaxHP], a
 	ld a, [hld]
@@ -4391,7 +4391,7 @@ asm_35976:
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld hl, wcddf
-	ld de, wcd94
+	ld de, wTempMonDVs
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -4399,7 +4399,7 @@ asm_35976:
 	ld [de], a
 	pop bc
 	ld b, 0
-	ld hl, wcd89
+	ld hl, wTempMonExp + 2
 	predef Functiondf91
 	pop de
 	ret
@@ -4855,7 +4855,7 @@ asm_35c0b:
 	ld de, wcdec
 	call sub_35c59
 	ld a, 1
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	ld hl, wTileMap + 190
 	predef UpdateHPBar
 	ld hl, wcde9
@@ -4869,7 +4869,7 @@ asm_35c0b:
 	ld [wHPBarMaxHP], a
 	call sub_35c88
 	xor a
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	ld hl, wTileMap + 42
 	predef UpdateHPBar
 	ld hl, text_35caf
@@ -5489,7 +5489,7 @@ asm_35fa1:
 	ld [wHPBarNewHP], a
 	ld hl, wTileMap + 42
 	xor a
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	predef UpdateHPBar
 
 asm_35fc3:
@@ -5540,7 +5540,7 @@ asm_3600c:
 	ld [wHPBarMaxHP], a
 	ld hl, wTileMap + 190
 	ld a, 1
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	predef UpdateHPBar
 
 asm_36024:
@@ -6208,7 +6208,7 @@ asm_36400:
 	xor a
 
 asm_3640e:
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	predef UpdateHPBar
 	predef Function3d5ce
 	predef Function3d67c
@@ -7954,7 +7954,7 @@ asm_36ded:
 	xor a
 
 asm_36dfb:
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	predef UpdateHPBar
 	ld hl, text_36e09
 	jp PrintText
@@ -10454,7 +10454,7 @@ asm_37b9c:
 asm_37bb1:
 	jr c, asm_37bc2
 	ld hl, wCurBattleMon
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	cp [hl]
 	jr nz, asm_37bc9
 	ld hl, BattleText_MonIsAlreadyOut

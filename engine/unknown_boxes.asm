@@ -14,7 +14,7 @@ Function1130b:
 	jr nc, .fullbox
 	xor a
 	ld [wca44], a
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wcdd7], a
 	callfar AddPokemonToBox
 	call RecievePokemon
@@ -40,12 +40,12 @@ Function1130b:
 	ret
 
 RecievePokemon:
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	push af
 	ld [wNamedObjectIndexBuffer], a
 	dec a
 	ld c, a
-	ld hl, wPokedexOwned
+	ld hl, wPokedexCaught
 	ld b, 01 ;SET_FLAG
 	predef SmallFarFlagAction
 	pop af

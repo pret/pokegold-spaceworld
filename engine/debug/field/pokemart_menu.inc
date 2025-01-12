@@ -192,7 +192,7 @@ DebugMart_Sell:
 
 .DoBagFunctions:
 	callfar CheckItemMenu
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	ld hl, .BagJumptable
 	call CallJumptable
 	ret
@@ -230,7 +230,7 @@ DebugMart_Sell:
 
 .CheckSellableItem:
 	callfar _CheckTossableItem
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	and a
 	jr nz, .not_sellable
 	jp .ItemQuantityPrompt

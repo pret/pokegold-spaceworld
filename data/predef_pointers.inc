@@ -61,7 +61,7 @@ GiveItemPredef::
 	add_predef Function40ac7
 	add_predef Function40000
 	add_predef Function40b5c ; 30
-	add_predef Function50000
+	add_predef CopyMonToTempMon
 	add_predef Function50bfe
 	add_predef Function50bcd
 	add_predef Function50b92
@@ -77,7 +77,7 @@ GiveItemPredef::
 	add_predef GetTypeName
 	add_predef PrintMoveType
 	add_predef PrintMonTypes ; 40
-	add_predef Function50ed9
+	add_predef GetUnownLetter
 	add_predef Functioncb6ff
 	add_predef Functioncb710
 	add_predef Functioncb733

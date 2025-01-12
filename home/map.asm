@@ -360,7 +360,7 @@ MapSetup_Warp::
 	ld [wWarpNumber], a
 	ld a, [wNextMapGroup]
 	ld [wMapGroup], a
-	ld a, [wNextMapId]
+	ld a, [wNextMapNumber]
 	ld [wMapId], a
 	call CopyMapPartialAndAttributes
 	call SetUpMapBuffer
@@ -693,7 +693,7 @@ WarpCheck::
 	ld a, [hli]
 	ld [wNextMapGroup], a
 	ld a, [hli]
-	ld [wNextMapId], a
+	ld [wNextMapNumber], a
 	ld a, c
 	ld [wPrevWarp], a
 	ld a, MAPSETUP_WARP
@@ -1093,7 +1093,7 @@ Function27C7:: ; TODO
 .interior
 	ld a, [wNextMapGroup]
 	ld b, a
-	ld a, [wNextMapId]
+	ld a, [wNextMapNumber]
 	ld c, a
 	call GetAnyMapEnvironment
 	cp 3

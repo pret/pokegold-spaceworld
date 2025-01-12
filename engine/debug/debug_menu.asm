@@ -88,7 +88,7 @@ DebugMenuOptionSubGames::
 	jp DebugMenu
 
 DebugMenuOptionMonsterTest::
-	ld hl, wPokedexOwned
+	ld hl, wPokedexCaught
 	ld de, wPokedexSeen
 	ld b, NUM_POKEMON / 8
 	ld a, %11111111

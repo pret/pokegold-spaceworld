@@ -988,51 +988,20 @@ wcd75:: db
 
 wCurItem:: db
 wItemIndex:: db
-wMonDexIndex: db
-wWhichPokemon: db
+wCurPartySpecies: db
+wCurPartyMon: db
 
 SECTION "CD7B", WRAM0[$CD7B]
 
-wHPBarType:: db
-wcd7c:: ds 1
+wWhichHPBar:: db
+wPokemonWithdrawDepositParameter:: ds 1
 
 wItemQuantity:: db
 wItemQuantityBuffer:: db
-wcd7f:: db
-wcd80:: db
-wcd81:: db
 
-	ds 3
+wTempMon:: party_struct wTempMon
 
-wcd85:: db
-	ds 1
-wcd87:: db
-	ds 1
-wcd89:: db
-
-	ds 10
-
-wcd94:: db
-
-	ds 9
-
-wLoadedMonLevel:: db
-wcd9f:: db
-
-	ds 1
-
-wcda1:: db
-wcda2:: db
-wcda3:: db
-wcda4:: db
-
-wcda5:: dw
-wcda7:: dw
-wcda9:: dw
-wcdab:: dw
-wcdad:: dw
-
-wcdaf:: db
+wSpriteFlags:: db
 
 wTalkingTargetType:: db
 ;bit 0 = has engaged NPC in dialogue
@@ -1051,9 +1020,12 @@ wcdb6:: ds 1
 
 wcdb9:: ds 1
 
-wItemAttributeParamBuffer:: db
+wItemAttributeValue:: db
+
 wCurPartyLevel:: db
-wcdbc:: db
+
+wScrollingMenuListSize:: db
+
 wLinkMode:: db
 ; 00 -
 ; 01 -
@@ -1062,7 +1034,7 @@ wLinkMode:: db
 
 wNextWarp:: db
 wNextMapGroup:: db
-wNextMapId:: db
+wNextMapNumber:: db
 wPrevWarp:: db
 
 wcdc2:: db
@@ -1641,36 +1613,37 @@ wTilesetAnim::
 	ds 2 ; TODO
 wTilesetEnd::
 
+wPokemonData::
 wPartyCount:: db
 wPartySpecies:: ds PARTY_LENGTH
 wPartyEnd:: db
 
 wPartyMons::
-wPartyMon1:: party_struct wPartyMon1
-wPartyMon2:: party_struct wPartyMon2
-wPartyMon3:: party_struct wPartyMon3
-wPartyMon4:: party_struct wPartyMon4
-wPartyMon5:: party_struct wPartyMon5
-wPartyMon6:: party_struct wPartyMon6
-wPlayerPartyEnd::
+; wPartyMon1 - wPartyMon6
+for n, 1, PARTY_LENGTH + 1
+wPartyMon{d:n}:: party_struct wPartyMon{d:n}
+endr
 
-wPartyMonOT::
-	ds PARTY_LENGTH * 6
-wPartyMonOTEnd::
+wPartyMonOTs::
+; wPartyMon1OT - wPartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wPartyMon{d:n}OT:: ds PLAYER_NAME_LENGTH
+endr
 
 wPartyMonNicknames::
-	ds PARTY_LENGTH * MON_NAME_LENGTH ; = $24
+; wPartyMon1Nickname - wPartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
 wPartyMonNicknamesEnd::
 
-wPokedexOwned::
-	flag_array NUM_POKEMON
-wPokedexOwnedEnd::
+wPokedexCaught:: flag_array NUM_POKEMON
+wEndPokedexCaught::
 
-wPokedexSeen::
-	flag_array NUM_POKEMON
-wPokedexSeenEnd::
+wPokedexSeen:: flag_array NUM_POKEMON
+wEndPokedexSeen::
 
-wAnnonDex:: ds 26
+wUnownDex:: ds NUM_UNOWN
 
 wAnnonID:: ds 1
 

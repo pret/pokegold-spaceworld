@@ -63,7 +63,7 @@ UncompressMonSprite::
 ; Uncompresses the front or back sprite of the specified mon
 ; assumes the corresponding mon header is already loaded
 ; hl contains offset to sprite pointer ($b for front or $d for back)
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	and a
 	ret z
 	ld bc, wMonHeader
@@ -75,7 +75,7 @@ UncompressMonSprite::
 	ld a, [hl]
 	ld [wSpriteInputPtr + 1], a
 	ld hl, MonSpriteBankList
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld b, a
 	; get Pokémon picture bank pointer from list
 .loop

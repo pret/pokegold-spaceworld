@@ -262,7 +262,7 @@ PrintNumBadges::
 
 PrintNumOwnedMons::
 	push hl
-	ld hl, wPokedexOwned
+	ld hl, wPokedexCaught
 	ld b, $20 ; flag_array NUM_POKEMON?
 	call CountSetBits
 	pop hl

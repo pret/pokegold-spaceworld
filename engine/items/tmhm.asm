@@ -4,14 +4,14 @@ SECTION "engine/items/tmhm.asm", ROMX
 
 CanLearnTMHMMove:
 ; Gets the index of TM or HM with move ID wce32,
-; then checks the corresponding flag in wMonDexIndex's learnset.
+; then checks the corresponding flag in wCurPartySpecies's learnset.
 ; Sets register c to 1 if TM/HM is in learnset OR if debug is enabled.
 	ld a, [wDebugFlags]
 	ld c, 01
 	bit 1, a
 	ret nz
 
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld hl, wMonHLearnset

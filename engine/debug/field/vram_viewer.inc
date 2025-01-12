@@ -166,7 +166,7 @@ FieldDebug_DoVRAMViewer:
 .LoadPokemon:
 	ld a, 3
 	ld [wce37], a
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	call GetBaseData
 	call LoadMonFrontSprite
 	ret

@@ -80,7 +80,7 @@ HealParty:
 
 .party_done
 	xor a
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld [wce37], a
 	ld a, [wPartyCount]
 	ld b, a
@@ -89,7 +89,7 @@ HealParty:
 	push bc
 	call ApplyPPUp
 	pop bc
-	ld hl, wWhichPokemon
+	ld hl, wCurPartyMon
 	inc [hl]
 	dec b
 	jr nz, .pp_up
@@ -236,7 +236,7 @@ UpdateHPBar_AnimateHPBar:
 	push af
 	push de
 	ld d, HP_BAR_LENGTH
-	ld a, [wHPBarType]
+	ld a, [wWhichHPBar]
 	and BATTLE_HP_BAR
 	ld b, a
 	call DrawBattleHPBar
@@ -300,7 +300,7 @@ UpdateHPBar_CalcHPDifference:
 UpdateHPBar_PrintHPNumber:
 	push af
 	push de
-	ld a, [wHPBarType]
+	ld a, [wWhichHPBar]
 	and a
 	jr z, .done
 	ld a, [wHPBarOldHP]

@@ -71,7 +71,7 @@ asm_2d36c:
 	ld a, $1a
 	call Predef
 	push bc
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	pop bc

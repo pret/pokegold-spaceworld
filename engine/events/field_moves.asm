@@ -152,7 +152,7 @@ CutScript:
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
 	ld [wMonType], a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call GetNick
 	call CopyStringToStringBuffer2
 	ld hl, Text_CutItDown
@@ -242,7 +242,7 @@ SurfScript:
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
 	ld [wMonType], a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call GetNick
 	call CopyStringToStringBuffer2
 	ld hl, Text_UsedSurf

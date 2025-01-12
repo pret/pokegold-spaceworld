@@ -219,7 +219,7 @@ ConfirmPokemonSelection:
 	ld hl, wJoypadFlags
 	set 5, [hl]
 	ld a, [wd265]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld a, 5
 	ld [wCurPartyLevel], a
 	callfar Function60a0

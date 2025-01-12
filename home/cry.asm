@@ -77,7 +77,7 @@ PrintLevel::
 	ld a, $6e ; ":L"
 	ld [hli], a
 	ld c, 2
-	ld a, [wLoadedMonLevel]
+	ld a, [wTempMonLevel]
 	cp 100
 	jr c, _PrintLevelCommon
 	dec hl
@@ -88,7 +88,7 @@ PrintLevelFullWidth::
 	ld a, $6e ; ":L"
 	ld [hli], a
 	ld c, 3
-	ld a, [wLoadedMonLevel]
+	ld a, [wTempMonLevel]
 _PrintLevelCommon:
 	ld [wce37], a
 	ld de, wce37

@@ -1,36 +1,37 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank14.asm@Function50000", ROMX
+SECTION "engine/dumps/bank14.asm@CopyMonToTempMon", ROMX
 
-Function50000::
-	ld a, [wWhichPokemon]
+CopyMonToTempMon::
+	ld a, [wCurPartyMon]
 	ld e, a
 	call GetMonSpecies
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
+
 	ld a, [wMonType]
 	ld hl, wPartyMon1Species
-	ld bc, (wPartyMon2 - wPartyMon1)
+	ld bc, PARTYMON_STRUCT_LENGTH
 	and a
-	jr z, .asm_50035
+	jr z, .copywholestruct
 	ld hl, wWildMons
-	ld bc, (wPartyMon2 - wPartyMon1)
-	cp 1
-	jr z, .asm_50035
+	ld bc, PARTYMON_STRUCT_LENGTH
+	cp OTPARTYMON
+	jr z, .copywholestruct
 	ld hl, wdaa3
-	ld bc, $0020
-	cp 2
-	jr z, .asm_50035
+	ld bc, BOXMON_STRUCT_LENGTH
+	cp BOXMON
+	jr z, .copywholestruct
 	ld hl, wd882
 	jr .asm_5003b
 
-.asm_50035
-	ld a, [wWhichPokemon]
+.copywholestruct
+	ld a, [wCurPartyMon]
 	call AddNTimes
 .asm_5003b
-	ld de, wcd7f
-	ld bc, (wPartyMon2 - wPartyMon1)
+	ld de, wTempMon
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ret
 
@@ -68,7 +69,7 @@ GetMonSpecies::
 	ld a, [hl]
 
 .done2
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ret
 
 PrintMonTypes::
@@ -261,7 +262,7 @@ DrawEnemyHP:
 	ld a, 2
 
 DrawHP:
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	push hl
 	push bc
 	; box mons have full HP
@@ -269,9 +270,9 @@ DrawHP:
 	cp BOXMON
 	jr z, .at_least_1_hp
 
-	ld a, [wcda1]
+	ld a, [wTempMonHP]
 	ld b, a
-	ld a, [wcda2]
+	ld a, [wTempMonHP + 1]
 	ld c, a
 
 ; Any HP?
@@ -286,9 +287,9 @@ DrawHP:
 	jp .fainted
 
 .at_least_1_hp
-	ld a, [wcda3]
+	ld a, [wTempMonMaxHP]
 	ld d, a
-	ld a, [wcda4]
+	ld a, [wTempMonMaxHP + 1]
 	ld e, a
 	ld a, [wMonType]
 	cp BOXMON
@@ -317,11 +318,11 @@ DrawHP:
 ; Print HP
 	bccoord 1, 1, 0
 	add hl, bc
-	ld de, wcda1
+	ld de, wTempMonHP
 	ld a, [wMonType]
 	cp BOXMON
 	jr nz, .not_boxmon_2
-	ld de, wcda3
+	ld de, wTempMonMaxHP
 .not_boxmon_2
 	lb bc, 2, 3
 	call PrintNumber
@@ -330,7 +331,7 @@ DrawHP:
 	ld [hli], a
 
 ; Print max HP
-	ld de, wcda3
+	ld de, wTempMonMaxHP
 	lb bc, 2, 3
 	call PrintNumber
 	pop hl
@@ -338,19 +339,19 @@ DrawHP:
 	ret
 
 Function502b5::
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	cp DEX_EGG
 	jr z, .asm_502d9
 
-	call Function50000
+	call CopyMonToTempMon
 	ld a, [wMonType]
 	cp 2
 	jr c, .asm_502d9
 
-	ld a, [wLoadedMonLevel]
+	ld a, [wTempMonLevel]
 	ld [wCurPartyLevel], a
-	ld hl, wcd89
-	ld de, wcda3
+	ld hl, wTempMonExp + 2
+	ld de, wTempMonMaxHP
 	ld b, 1
 	predef Functiondf7d
 .asm_502d9
@@ -442,7 +443,7 @@ Function50340::
 	call PrintLevel
 
 	ld hl, NicknamePointers
-	call Function50611
+	call GetNicknamePointer
 	ld d, h
 	ld e, l
 	hlcoord 1, 10
@@ -512,7 +513,7 @@ Function50340::
 	cp 2
 	jr z, .asm_503f5
 	push hl
-	ld de, wcd9f
+	ld de, wTempMonStatus
 	call Function50b7d
 	pop hl
 .asm_503f5
@@ -530,20 +531,20 @@ Function50340::
 	ld de, StatusText_ExpPoints
 	call PlaceString
 
-	ld a, [wLoadedMonLevel]
+	ld a, [wTempMonLevel]
 	push af
 	cp 100
 	jr z, .asm_50420
 
 	inc a
-	ld [wLoadedMonLevel], a
+	ld [wTempMonLevel], a
 .asm_50420
 	hlcoord 16, 14
 	call PrintLevel
 
 	pop af
-	ld [wLoadedMonLevel], a
-	ld de, wcd87
+	ld [wTempMonLevel], a
+	ld de, wTempMonExp
 	hlcoord 12, 11
 	ld bc, $0307
 	call PrintNumber
@@ -562,9 +563,9 @@ Function50340::
 	ld de, StatusText_De
 	call PlaceString
 
-	ld a, [wLoadedMonLevel]
+	ld a, [wTempMonLevel]
 	ld b, a
-	ld de, wcd89
+	ld de, wTempMonExp + 2
 	hlcoord 10, 16
 	predef Function3e874
 
@@ -582,24 +583,24 @@ Function50340::
 	ret nz
 
 	call SetPalettes
-	ld hl, wcd94
-	call Function50ed9
+	ld hl, wTempMonDVs
+	call GetUnownLetter
 
 	hlcoord 0, 1
 	call PrepMonFrontpic
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	call PlayCry
 	ret
 
 .CalcExpToNextLevel::
-	ld a, [wLoadedMonLevel]
+	ld a, [wTempMonLevel]
 	cp MAX_LEVEL
 	jr z, .AlreadyAtMaxLevel
 	inc a
 	ld d, a
 	call CalcExpAtLevel
-	ld hl, wcd89
-	ld hl, wcd89    ; Seemingly an unnecessary duplicate line
+	ld hl, wTempMonExp + 2
+	ld hl, wTempMonExp + 2    ; Seemingly an unnecessary duplicate line
 	ldh a, [hQuotient + 2]
 	sub [hl]
 	dec hl
@@ -658,7 +659,7 @@ Function504e5::
 	ld de, .Item
 	call PlaceString
 
-	ld a, [wcd80]
+	ld a, [wTempMonItem]
 	and a
 	ld de, .NoItem
 	jr z, .asm_50511
@@ -668,7 +669,7 @@ Function504e5::
 	hlcoord 11, 2
 	call PlaceString
 
-	ld hl, wcd81
+	ld hl, wTempMonMoves
 	ld de, wce2e
 	ld bc, $0004
 	call CopyBytes
@@ -722,12 +723,12 @@ Function50562::
 	call PlaceString
 
 	hlcoord 12, 1
-	ld de, wcd85
+	ld de, wTempMonID
 	ld bc, $8205
 	call PrintNumber
 
 	ld hl, .OTPointers
-	call Function50611
+	call GetNicknamePointer
 
 	ld de, wStringBuffer1
 	push de
@@ -759,37 +760,35 @@ Function50562::
 	db "　パラメータ　@"
 
 .OTPointers
-	dw wPartyMonOT, wOTPartyMonOT, wBoxMonOT, wBufferMonOT
+	dw wPartyMonOTs
+	dw wOTPartyMonOT
+	dw wBoxMonOT
+	dw wBufferMonOT
 
 Function505d9::
 	hlcoord 1, 14
 	ld a, $36
-	call .asm_50603
-
+	call .load_square
 	hlcoord 3, 14
 	ld a, $36
-	call .asm_50603
-
+	call .load_square
 	hlcoord 5, 14
 	ld a, $36
-	call .asm_50603
-
+	call .load_square
 	ld a, b
 	cp 2
 	ld a, $3a
-
 	hlcoord 3, 14
-	jr c, .asm_50603
+	jr c, .load_square
 	hlcoord 5, 14
-	jr z, .asm_50603
+	jr z, .load_square
 	hlcoord 1, 14
-
-.asm_50603
+.load_square
 	ld [hli], a
 	inc a
 	ld [hld], a
 	push bc
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	inc a
@@ -798,7 +797,7 @@ Function505d9::
 	ld [hl], a
 	ret
 
-Function50611::
+GetNicknamePointer::
 	ld a, [wMonType]
 	add a
 	ld c, a
@@ -810,7 +809,7 @@ Function50611::
 	ld a, [wMonType]
 	cp 3
 	ret z
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	jp SkipNames
 
 Function50628::
@@ -844,20 +843,20 @@ Function50628::
 	pop hl
 	pop bc
 	add hl, bc
-	ld de, wcda5
+	ld de, wTempMonAttack
 	ld bc, $0203
 	call .asm_5067a
 
-	ld de, wcda7
+	ld de, wTempMonDefense
 	call .asm_5067a
 
-	ld de, wcdab
+	ld de, wTempMonSpclAtk
 	call .asm_5067a
 
-	ld de, wcdad
+	ld de, wTempMonSpclDef
 	call .asm_5067a
 
-	ld de, wcda9
+	ld de, wTempMonSpeed
 	jp PrintNumber
 
 .asm_5067a
@@ -903,7 +902,7 @@ GetGender::
 
 .PartyMon
 .sBoxMon
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 
 .DVs
@@ -951,7 +950,7 @@ ListMovePP::
 	inc hl
 	ld d, h
 	ld e, l
-	ld hl, wcd81
+	ld hl, wTempMonMoves
 	ld b, 0
 .loop
 	ld a, [hli]
@@ -1105,14 +1104,14 @@ Function507cf::
 
 	ld a, [wMenuCursorY]
 	dec a
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 
 	ld c, a
 	ld b, $00
 	ld hl, wPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld [wcdd8], a
 	and a
 	ret
@@ -1123,7 +1122,7 @@ Function507cf::
 .asm_50808
 	bit 1, b
 	jr nz, .asm_5080f
-	call Function50d9c
+	call _SwitchPartyMons
 .asm_5080f
 	call Function50eca
 	xor a
@@ -1141,10 +1140,10 @@ Function5081f::
 	callfar Function95f8
 	hlcoord 3, 1
 	ld de, wPartySpecies
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	push af
 	xor a
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld [wcce1], a
 .asm_5084b
 	ld a, [de]
@@ -1153,7 +1152,7 @@ Function5081f::
 	push de
 	call Function508c4
 	pop de
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ldh [hEventID], a
 	push hl
 	push de
@@ -1168,15 +1167,15 @@ Function5081f::
 	pop hl
 	ld bc, $0028
 	add hl, bc
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	inc a
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 
 	jr .asm_5084b
 
 .asm_50877
 	pop af
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	jp Function509d8
 
 Function5087e::
@@ -1186,10 +1185,10 @@ Function5087e::
 	callfar Function95f8
 	ld hl, $c2b7
 	ld de, wPartySpecies
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	push af
 	xor a
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld [wcce1], a
 .asm_5089f
 	ld a, [de]
@@ -1198,18 +1197,18 @@ Function5087e::
 	push de
 	call Function508c4
 	pop de
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ldh [hEventID], a
 	inc de
 	ld bc, $0028
 	add hl, bc
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	inc a
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	jr .asm_5089f
 .asm_508bd
 	pop af
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	jp Function509d8
 
 Function508c4::
@@ -1217,11 +1216,11 @@ Function508c4::
 	push hl
 	push hl
 	ld hl, wPartyMonNicknames
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call GetNick
 	pop hl
 	call PlaceString
-	call Function50000
+	call CopyMonToTempMon
 	pop hl
 	push hl
 	ld a, [wSelectedSwapPosition]
@@ -1229,7 +1228,7 @@ Function508c4::
 	jr z, .asm_508ef
 	dec a
 	ld b, a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	cp b
 	jr nz, .asm_508ef
 	dec hl
@@ -1252,7 +1251,7 @@ Function508c4::
 	push hl
 	ld bc, hRTCRandom
 	add hl, bc
-	ld de, wcd9f
+	ld de, wTempMonStatus
 	call Function50b7d
 	pop hl
 	push hl
@@ -1303,7 +1302,7 @@ Function508c4::
 .DetermineCompatibility:
 	push hl
 	ld hl, EvosAttacksPointers
-	ld a, [wcd7f]   ; Species of selected pokemon?
+	ld a, [wTempMonSpecies]   ; Species of selected pokemon?
 	dec a
 	ld c, a
 	ld b, $00
@@ -1412,7 +1411,7 @@ Function509dd::
 	ld h, [hl]
 	ld l, a
 	push hl
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	pop hl
@@ -1702,7 +1701,7 @@ Function50c48::
 	cp $04
 	jr nz, .asm_50c67
 	ld hl, wPartyCount
-	ld de, wPartyMonOT
+	ld de, wPartyMonOTs
 	ld a, $05
 	jr .asm_50c8b
 
@@ -1748,7 +1747,7 @@ Function50c48::
 	ret
 
 Function50caa::
-	ld a, [wcd7f]
+	ld a, [wTempMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld d, $01
@@ -1756,7 +1755,7 @@ Function50caa::
 	inc d
 	call CalcExpAtLevel
 	push hl
-	ld hl, wcd89
+	ld hl, wTempMonExp + 2
 	ldh a, [hQuotient + 2]
 	ld c, a
 	ld a, [hld]
@@ -1922,7 +1921,7 @@ GrowthRates:
 	growth_rate 4, 5,   0,   0,   0 ; Fast
 	growth_rate 5, 4,   0,   0,   0 ; Slow
 
-Function50d9c::
+_SwitchPartyMons::
 	; replace instances of wHPBarOldHP with wcdc5, perhaps?
 	ld a, [wSelectedSwapPosition]
 	dec a
@@ -1932,52 +1931,52 @@ Function50d9c::
 	dec a
 	ld [wcdc4], a
 	cp b
-	jr z, .asm_50dbd
-	call Function50dec
+	jr z, .skip
+	call .SwapMonAndMail
 	ld a, [wcdc5]
-	call Function50dbe
+	call .ClearSprite
 	ld a, [wcdc4]
-	call Function50dbe
-.asm_50dbd
+	call .ClearSprite
+.skip
 	ret
 
-Function50dbe::
+.ClearSprite:
 	push af
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH*2
+	ld bc, 2 * SCREEN_WIDTH
 	call AddNTimes
-	ld bc, SCREEN_WIDTH*2
+	ld bc, 2 * SCREEN_WIDTH
 	ld a, "　"
 	call ByteFill
 	pop af
 	ld hl, wShadowOAMSprite00
-	ld bc, $0010
+	ld bc, 4 * SPRITEOAMSTRUCT_LENGTH
 	call AddNTimes
 	ld de, SPRITEOAMSTRUCT_LENGTH
-	ld c, $04
-.asm_50ddf
-	ld [hl], $a0
+	ld c, 4
+.gfx_loop
+	ld [hl], OAM_YCOORD_HIDDEN
 	add hl, de
 	dec c
-	jr nz, .asm_50ddf
-	ld de, $001b
+	jr nz, .gfx_loop
+	ld de, SFX_SWITCH_POKEMON
 	call WaitPlaySFX
 	ret
 
-Function50dec::
+.SwapMonAndMail::
 	push hl
 	push de
 	push bc
 	ld bc, wPartySpecies
 	ld a, [wcdc4]
 	ld l, a
-	ld h, $00
+	ld h, 0
 	add hl, bc
 	ld d, h
 	ld e, l
 	ld a, [wcdc5]
 	ld l, a
-	ld h, $00
+	ld h, 0
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -1985,67 +1984,54 @@ Function50dec::
 	ld [hl], a
 	pop af
 	ld [de], a
-	; Copy first pokemon?
 	ld a, [wcdc4]
-	ld hl, wPartyMon1
-	ld bc, (wPartyMon2 - wPartyMon1)
+	ld hl, wPartyMon1Species
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
 	ld de, wcc3a
-	ld bc, (wPartyMon2 - wPartyMon1)
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	; Copy second pokemon to first pokemon's slot?
 	ld a, [wcdc5]
 	ld hl, wPartyMon1
-	ld bc, (wPartyMon2 - wPartyMon1)
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop de
 	push hl
-	ld bc, (wPartyMon2 - wPartyMon1)
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	; Copy backed-up first pokemon to new slot?
 	pop de
 	ld hl, wcc3a
-	ld bc, (wPartyMon2 - wPartyMon1)
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-
 	ld a, [wcdc4]
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call SkipNames
 	push hl
-	call .asm_50ec0
-
+	call .CopyNameToSwitchMonBuffer
 	ld a, [wcdc5]
-	ld hl, wPartyMonOT
+	ld hl, wPartyMonOTs
 	call SkipNames
 	pop de
 	push hl
-	call .asm_50ec3
-
-
+	call .CopyName
 	pop de
 	ld hl, wcc3a
-	call .asm_50ec3
-
+	call .CopyName
 	ld hl, wPartyMonNicknames
 	ld a, [wcdc4]
 	call SkipNames
-
 	push hl
-	call .asm_50ec0
-
+	call .CopyNameToSwitchMonBuffer
 	ld hl, wPartyMonNicknames
 	ld a, [wcdc5]
 	call SkipNames
-
 	pop de
 	push hl
-	call .asm_50ec3
-
+	call .CopyName
 	pop de
 	ld hl, wcc3a
-	call .asm_50ec3
-
+	call .CopyName
 	ld hl, $ba68    ; Buffer somewhere in SRAM. Needs investigation
 	ld a, [wcdc4]
 	ld bc, $0028    ; todo: Constantify this
@@ -2060,7 +2046,6 @@ Function50dec::
 	ld a, [wcdc5]
 	ld bc, $0028
 	call AddNTimes
-
 	pop de
 	push hl
 	ld bc, $0028
@@ -2075,11 +2060,11 @@ Function50dec::
 	pop hl
 	ret
 
-.asm_50ec0
+.CopyNameToSwitchMonBuffer
 	ld de, wcc3a
-	; fallthrough
-.asm_50ec3
-	ld bc, $0006
+
+.CopyName
+	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 	ret
 
@@ -2094,36 +2079,51 @@ Function50eca::
 	jr nz, .asm_50ed2
 	ret
 
-Function50ed9::
+GetUnownLetter::
+; Return Unown letter in wUnownLetter based on DVs at hl
+
+; Take the middle 2 bits of each DV and place them in order:
+;	atk  def  spd  spc
+;	.ww..xx.  .yy..zz.
+
+	; atk
 	ld a, [hl]
-	and $60
+	and %01100000
 	sla a
 	ld b, a
+	; def
 	ld a, [hli]
-	and $06
+	and %00000110
 	swap a
 	srl a
 	or b
 	ld b, a
+
+	; spd
 	ld a, [hl]
-	and $60
+	and %01100000
 	swap a
 	sla a
 	or b
 	ld b, a
+	; spc
 	ld a, [hl]
-	and $06
+	and %00000110
 	srl a
 	or b
-	ldh [hQuotient + 2], a
+
+; Divide by 10 to get 0-25
+	ldh [hDividend + 3], a
 	xor a
-	ldh [hProduct], a
-	ldh [hQuotient], a
-	ldh [hQuotient + 1], a
+	ldh [hDividend], a
+	ldh [hDividend + 1], a
+	ldh [hDividend + 2], a
 	ld a, $0a
-	ldh [hPrintNumDivisor], a
-	ld b, $04
+	ldh [hDivisor], a
+	ld b, 4
 	call Divide
+
+; Increment to get 1-26
 	ldh a, [hQuotient + 2]
 	inc a
 	ld [wAnnonID], a    ; $d874

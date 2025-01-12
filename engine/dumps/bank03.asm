@@ -187,7 +187,7 @@ SECTION "engine/dumps/bank03.asm@Functiond41d", ROMX
 Functiond41d:
 	push hl
 	call Functiond4b2
-	ld a, [wItemAttributeParamBuffer]
+	ld a, [wItemAttributeValue]
 	and a
 	jr nz, .sub_d45f
 	ld a, [wCurItem]
@@ -241,7 +241,7 @@ Functiond4b2:
 	push hl
 	push bc
 	ld a, $01
-	ld [wItemAttributeParamBuffer], a
+	ld [wItemAttributeValue], a
 	ld a, [wCurItem]
 	cp $c4
 	jr nc, .sub_d4d7
@@ -265,7 +265,7 @@ Functiond4b2:
 	jr c, .sub_d4e3
 .sub_d4df
 	xor a
-	ld [wItemAttributeParamBuffer], a
+	ld [wItemAttributeValue], a
 .sub_d4e3
 	pop bc
 	pop hl
@@ -821,7 +821,7 @@ Functiond886:
 	jr nc, .sub_d8a1
 	inc d
 .sub_d8a1
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [de], a
 	inc de
 	ld a, $ff
@@ -844,7 +844,7 @@ Functiond8b6:
 	ld a, [wMonType]
 	and a
 	jr nz, .sub_d8ea
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wce37], a
 	call GetPokemonName
 	ld hl, wPartyMonNicknames
@@ -870,7 +870,7 @@ Functiond8b6:
 	ld e, l
 	ld d, h
 	push hl
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, [wMonHeader]
@@ -928,7 +928,7 @@ Functiond8b6:
 	ld a, $98
 	ld b, $88
 	jr nz, .sub_d99a
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wce37], a
 	dec a
 	ld c, a
@@ -946,7 +946,7 @@ Functiond8b6:
 	push bc
 	call SmallFarFlagAction
 	pop bc
-	ld hl, wPokedexOwnedEnd
+	ld hl, wEndPokedexCaught
 	call SmallFarFlagAction
 	pop hl
 	push hl
@@ -1097,7 +1097,7 @@ Functionda4f:
 	ld c, a
 	ld b, $00
 	add hl, bc
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [hli], a
 	ld [hl], $ff
 	ld hl, wPartyMon1
@@ -1107,7 +1107,7 @@ Functionda4f:
 	call AddNTimes
 	ld e, l
 	ld d, h
-	ld hl, wcd7f
+	ld hl, wTempMon
 	call CopyBytes
 	ld hl, wPartyMon6StatsEnd
 	ld a, [wPartyCount]
@@ -1116,7 +1116,7 @@ Functionda4f:
 	ld d, h
 	ld e, l
 	ld hl, wOTPartyMonOT
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call SkipNames
 	ld bc, $0006
 	call CopyBytes
@@ -1127,11 +1127,11 @@ Functionda4f:
 	ld d, h
 	ld e, l
 	ld hl, wOTPartyMonNicknames
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call SkipNames
 	ld bc, $0006
 	call CopyBytes
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wce37], a
 	dec a
 	ld c, a
@@ -1140,13 +1140,13 @@ Functionda4f:
 	push bc
 	call SmallFarFlagAction
 	pop bc
-	ld hl, wPokedexOwnedEnd
+	ld hl, wEndPokedexCaught
 	call SmallFarFlagAction
 	and a
 	ret
 
 Functiondac8:
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_dae3
 	cp $02
@@ -1173,15 +1173,15 @@ Functiondac8:
 	ld c, a
 	ld b, $00
 	add hl, bc
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	cp $02
 	ld a, [wd882]
 	jr z, .sub_db00
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 .sub_db00
 	ld [hli], a
 	ld [hl], $ff
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	dec a
 	ld hl, wPartyMon1
 	ld bc, $0030
@@ -1197,7 +1197,7 @@ Functiondac8:
 	push hl
 	ld e, l
 	ld d, h
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	ld hl, wdaa3
 	ld bc, $0020
@@ -1208,12 +1208,12 @@ Functiondac8:
 	ld hl, wPartyMon1
 	ld bc, $0030
 .sub_db3b
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 .sub_db41
 	ld bc, $0020
 	call CopyBytes
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	cp $03
 	ld de, wBufferMonOT
 	jr z, .sub_db66
@@ -1230,7 +1230,7 @@ Functiondac8:
 	ld e, l
 .sub_db66
 	ld hl, wBoxMonOT
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_db79
 	ld hl, wBufferMonOT
@@ -1238,12 +1238,12 @@ Functiondac8:
 	jr z, .sub_db7f
 	ld hl, wPartyMon6StatsEnd
 .sub_db79
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call SkipNames
 .sub_db7f
 	ld bc, $0006
 	call CopyBytes
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	cp $03
 	ld de, wBufferMonNickname
 	jr z, .sub_dba4
@@ -1260,7 +1260,7 @@ Functiondac8:
 	ld e, l
 .sub_dba4
 	ld hl, wBoxMonNicknames
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_dbb7
 	ld hl, wBufferMonNickname
@@ -1268,13 +1268,13 @@ Functiondac8:
 	jr z, .sub_dbbd
 	ld hl, wPartyMonNicknames
 .sub_dbb7
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call SkipNames
 .sub_dbbd
 	ld bc, $0006
 	call CopyBytes
 	pop hl
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	cp $01
 	jr z, .sub_dc14
 	cp $03
@@ -1283,7 +1283,7 @@ Functiondac8:
 	srl a
 	add $02
 	ld [wMonType], a
-	predef Function50000
+	predef CopyMonToTempMon
 	ld a, BANK(Function50caa)
 	ld hl, Function50caa
 	call FarCall_hl
@@ -1305,7 +1305,7 @@ Functiondac8:
 	ld b, $01
 	call Functiondf7d
 	pop bc
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr nz, .sub_dc14
 	ld hl, $0022
@@ -1342,7 +1342,7 @@ Functiondc16:
 	ld c, a
 	ld b, $00
 	add hl, bc
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	ld a, [wd882]
 	ld de, wBufferMonNickname
@@ -1441,7 +1441,7 @@ Functiondc16:
 	ld bc, $0020
 	call CopyBytes
 .sub_dce9
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	ret z
 	ld hl, wd8d1
@@ -1452,7 +1452,7 @@ Functiondc16:
 	ret
 
 Functiondcfc:
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	ld de, wBufferMonNickname
 	and a
 	jr z, .sub_dd2c
@@ -1470,17 +1470,17 @@ Functiondcfc:
 	call CopyBytes
 	ld de, wd8a5
 .sub_dd2c
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	ld bc, $0006
 	call AddNTimes
 	call CopyBytes
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMon6StatsEnd
 	ld bc, $0006
 	call AddNTimes
 	call CopyBytes
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1
 	ld bc, $0030
 	call AddNTimes
@@ -1494,7 +1494,7 @@ Functiondd5c:
 	ret nc
 	inc a
 	ld [de], a
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	ld c, a
 .sub_dd6c
@@ -1571,7 +1571,7 @@ Functiondd5c:
 	dec b
 	jr nz, .sub_ddd2
 .sub_dde5
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wce37], a
 	call GetPokemonName
 	ld de, wBoxMonNicknames
@@ -1675,7 +1675,7 @@ Functionde79:
 	cp $1e
 	scf
 	ret z
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wcdd7], a
 	xor a
 	ld [wca44], a
@@ -1711,7 +1711,7 @@ Functionde79:
 
 Functiondecd:
 	ld hl, wPartyCount
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_ded9
 	ld hl, wBoxListLength
@@ -1719,7 +1719,7 @@ Functiondecd:
 	ld a, [hl]
 	dec a
 	ld [hli], a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld c, a
 	ld b, $00
 	add hl, bc
@@ -1734,15 +1734,15 @@ Functiondecd:
 	jr nz, .sub_dee6
 	ld hl, wPartyMon6StatsEnd
 	ld d, $05
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_defc
 	ld hl, wBoxMonOT
 	ld d, $1d
 .sub_defc
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call SkipNames
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	cp d
 	jr nz, .sub_df0b
 	ld [hl], $ff
@@ -1753,7 +1753,7 @@ Functiondecd:
 	ld bc, $0006
 	add hl, bc
 	ld bc, wPartyMonNicknames
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_df1d
 	ld bc, wBoxMonNicknames
@@ -1761,17 +1761,17 @@ Functiondecd:
 	call CopyDataUntil
 	ld hl, wPartyMon1
 	ld bc, $0030
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_df32
 	ld hl, wdaa3
 	ld bc, $0020
 .sub_df32
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_df49
 	ld bc, $0020
@@ -1785,20 +1785,20 @@ Functiondecd:
 .sub_df50
 	call CopyDataUntil
 	ld hl, wPartyMonNicknames
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_df5f
 	ld hl, wBoxMonNicknames
 .sub_df5f
 	ld bc, $0006
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld bc, $0006
 	add hl, bc
 	ld bc, wPartyMonNicknamesEnd
-	ld a, [wcd7c]
+	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_df7a
 	ld bc, wdfcb
@@ -2009,7 +2009,7 @@ Functiondf91:
 	ret
 
 Function60a0:
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	dec a
 	ld c, a
 	ld d, $00
@@ -2045,7 +2045,7 @@ Function60a0:
 	push de
 .sub_e0e1
 	push af
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wce37], a
 	call GetPokemonName
 	pop af
@@ -2057,7 +2057,7 @@ Function60a0:
 	ld hl, NewDexDataText
 	call PrintText
 	call ClearSprites
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wce37], a
 	predef Function40ac7
 	call LoadTilesetGFX_LCDOff
@@ -2079,14 +2079,14 @@ Function60a0:
 	call CopyBytes
 .sub_e133
 	call ClearBGPalettes
-	ld hl, wcdaf
+	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
 	res 7, [hl]
 	set 6, [hl]
 	call RedrawPlayerSprite
 	pop af
-	ld [wcdaf], a
+	ld [wSpriteFlags], a
 	call LoadFontExtra
 	call LoadMapPart
 	call GetMemSGBLayout
@@ -2273,14 +2273,14 @@ Functione2f0:
 	call CloseWindow
 	ret c
 	ld a, [wScrollingMenuCursorPosition]
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld a, [wMenuSelection]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld a, $01
-	ld [wcd7c], a
+	ld [wPokemonWithdrawDepositParameter], a
 	predef Functiondac8
 	xor a
-	ld [wcd7c], a
+	ld [wPokemonWithdrawDepositParameter], a
 	call Functiondecd
 	ret
 
@@ -2315,14 +2315,14 @@ Functione350:
 	call CloseWindow
 	ret c
 	ld a, [wScrollingMenuCursorPosition]
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld a, [wMenuSelection]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	xor a
-	ld [wcd7c], a
+	ld [wPokemonWithdrawDepositParameter], a
 	predef Functiondac8
 	ld a, $01
-	ld [wcd7c], a
+	ld [wPokemonWithdrawDepositParameter], a
 	call Functiondecd
 	ret
 
@@ -2336,9 +2336,9 @@ BillsPC_ReleaseMon:
 	call Functione6a4
 	call CloseWindow
 	ld a, [wScrollingMenuCursorPosition]
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld a, [wMenuSelection]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ret c
 	ld hl, OnceReleasedText
 	call MenuTextBox
@@ -2346,7 +2346,7 @@ BillsPC_ReleaseMon:
 	call CloseWindow
 	ret c
 	ld a, $01
-	ld [wcd7c], a
+	ld [wPokemonWithdrawDepositParameter], a
 	call Functiondecd
 	ret
 
@@ -2605,7 +2605,7 @@ Functione5d3:
 	ret
 .sub_e60d
 	ld a, [wScrollingMenuCursorPosition]
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld a, $02
 	ld [wMonType], a
 	call LoadStandardMenuHeader
@@ -3155,7 +3155,7 @@ Functione8f9:
 	ld [hl], a
 .sub_ea55
 	ld a, [wcdd7]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld a, [wcde6]
 	ld [wCurPartyLevel], a
 	ld hl, AddPokemonToBox
@@ -3174,7 +3174,7 @@ Functione8f9:
 	ld [hl], a
 	ld a, [wcdd9]
 	ld [wce35], a
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld [wce37], a
 	ld a, [wce03]
 	dec a
@@ -3463,7 +3463,7 @@ Functioned37:
 	ld a, $00
 	call GetPartyParamLocation
 	push hl
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	ld [wce37], a
 	ld bc, $001f
@@ -3471,7 +3471,7 @@ Functioned37:
 	ld a, [hl]
 	ld [wCurPartyLevel], a
 	call GetBaseData
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	call Functionee26
@@ -3596,7 +3596,7 @@ Functionee42:
 	jp c, Functionedbe
 	ld a, $00
 	call GetPartyParamLocation
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	ld [wce37], a
 	push hl
@@ -3605,7 +3605,7 @@ Functionee42:
 	ld a, [hl]
 	ld [wCurPartyLevel], a
 	call GetBaseData
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	pop hl
@@ -3667,7 +3667,7 @@ Functionee42:
 	callfar Function5087e
 	xor a
 	ld [wMonType], a
-	predef Function50000
+	predef CopyMonToTempMon
 	ld d, $01
 	ld hl, Function50628
 	ld a, BANK(Function50628)
@@ -3675,7 +3675,7 @@ Functionee42:
 	call TextboxWaitPressAorB_BlinkCursor
 	xor a
 	ld [wMonType], a
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wce37], a
 	predef Function421f8
 	xor a
@@ -3692,7 +3692,7 @@ Functionef02:
 	ld a, $01
 	call Functionf0cf
 	jp c, Functionf100
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 
 Functionef17:
@@ -3767,7 +3767,7 @@ Functionef8c:
 	ld a, [wBattleMode]
 	and a
 	jr z, .sub_efc9
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld c, a
 	ld d, $00
 	ld hl, wcada
@@ -3776,7 +3776,7 @@ Functionef8c:
 	ld a, c
 	and a
 	jr z, .sub_efc9
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld c, a
 	ld hl, wca37
 	ld b, $01
@@ -3901,12 +3901,12 @@ Functionf0b0:
 	ld de, SFX_POTION
 	call WaitPlaySFX
 	pop de
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	coord hl, 11, 0
 	ld bc, $0028
 	call AddNTimes
 	ld a, $02
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	predef UpdateHPBar
 	ret
 
@@ -3951,7 +3951,7 @@ Functionf113:
 	ld a, [wBattleMode]
 	and a
 	ret z
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	push hl
 	ld hl, wCurBattleMon
 	cp [hl]
@@ -4152,7 +4152,7 @@ Functionf218:
 	jr z, .sub_f21d
 	push bc
 	ld a, c
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	call Functionf165
 	jr z, .sub_f292
 	call Functionf171
@@ -4160,7 +4160,7 @@ Functionf218:
 	pop bc
 	push bc
 	ld a, b
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	call Functionf165
 	call Functionf1ce
 	push de
@@ -4181,7 +4181,7 @@ Functionf218:
 	push bc
 	push de
 	ld a, c
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	call Functionf165
 	pop de
 	call Functionf13f
@@ -4581,7 +4581,7 @@ Functionf550:
 	ld a, [wBattleMode]
 	and a
 	jr z, .sub_f572
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld b, a
 	ld a, [wCurBattleMon]
 	cp b
@@ -4780,7 +4780,7 @@ Functionf678:
 .sub_f6ea
 	predef CanLearnTMHMMove
 	push bc
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	pop bc
@@ -5040,7 +5040,7 @@ GetMaxPPOfMove:
 	ret
 
 GetMthMoveOfNthPartymon:
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 
 GetMthMoveOfCurrentMon:
@@ -5205,7 +5205,7 @@ Functionfaba:
 	jp Functionfbde
 .sub_fb22
 	ld a, $01
-	ld [wcd7c], a
+	ld [wPokemonWithdrawDepositParameter], a
 	predef Functiondc16
 	jp c, Functionfbea
 	ld a, [wd8a2]
@@ -5227,7 +5227,7 @@ Functionfaba:
 	add $06
 	call Functionf0cf
 	jp c, Functionfbde
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	xor a
@@ -5236,18 +5236,18 @@ Functionfaba:
 	ld a, [wd8fd]
 	rla
 	ld [wd8fd], a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ld a, $01
-	ld [wcd7c], a
+	ld [wPokemonWithdrawDepositParameter], a
 	predef Functiondcfc
 	xor a
-	ld [wcd7c], a
+	ld [wPokemonWithdrawDepositParameter], a
 	ld hl, Functiondecd
 	ld a, BANK(Functiondecd)
 	call FarCall_hl
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	call PlayCry
 	ld hl, Breeder_DepositedText
 	call PrintText
@@ -5384,7 +5384,7 @@ Functionfd03:
 	ld a, $04
 	ld [wd8a2], a
 	ld a, [wd8b1]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	call PlayCry
 	xor a
 	ld [wMonType], a

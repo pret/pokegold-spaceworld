@@ -28,7 +28,7 @@ SECTION "home/misc_32c8.asm@Unknown 3686", ROM0
 GiveMonToPlayer::
 ; Give to the player Pokemon of species b at level c.
 	ld a, b
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld a, c
 	ld [wCurPartyLevel], a
 	xor a

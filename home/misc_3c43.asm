@@ -10,7 +10,7 @@ GetPartyParamLocation::
 	ld b, 0
 	add hl, bc
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	pop bc
 	ret
