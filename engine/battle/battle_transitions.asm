@@ -40,7 +40,7 @@ DoBattleTransition:
 	ret
 
 .InitGFX:
-	callba ReanchorBGMap_NoOAMUpdate
+	farcall ReanchorBGMap_NoOAMUpdate
 	call UpdateSprites
 	call ConvertTrainerBattlePokeballTilesTo2bpp
 	call WaitBGMap

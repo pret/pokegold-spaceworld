@@ -32,7 +32,7 @@ FieldDebug_MoveToRoute1Entrance:
 	ld e, $d
 	ld b, 0
 	ld c, 1
-	callab Function833a
+	callfar Function833a
 	ld a, 0
 	ld hl, wMovementBuffer
 	call LoadMovementDataPointer

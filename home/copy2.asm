@@ -3,19 +3,19 @@ INCLUDE "constants.asm"
 SECTION "home/copy2.asm", ROM0
 
 RedrawPlayerSprite::
-	jpab _RedrawPlayerSprite
+	jpfar _RedrawPlayerSprite
 
 LoadFont::
-	jpab LoadFontGraphics
+	jpfar LoadFontGraphics
 
 LoadFontsBattleExtra::
-	jpab LoadPokemonMenuGraphics
+	jpfar LoadPokemonMenuGraphics
 
 LoadFontExtra::
-	jpab LoadFontExtraGraphicsWithCursor
+	jpfar LoadFontExtraGraphicsWithCursor
 
 LoadToolgearGraphics::
-	jpab LoadToolgearGraphicsDebug
+	jpfar LoadToolgearGraphicsDebug
 
 FarCopyData:
 ; Identical to FarCopyBytes except for tail call optimization.

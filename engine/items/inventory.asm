@@ -6,8 +6,8 @@ _ReceiveItem:
 	call DoesHLEqualwNumBagItems
 	jp nz, PutItemInPocket
 	push hl
-	callab CheckItemPocket
-	ld a, [wItemAttributeParamBuffer]
+	callfar CheckItemPocket
+	ld a, [wItemAttributeValue]
 	dec a
 	ld hl, .Pockets
 	jp CallJumptable
@@ -45,8 +45,8 @@ _TossItem:
 	call DoesHLEqualwNumBagItems
 	jr nz, .remove_item
 	push hl
-	callab CheckItemPocket
-	ld a, [wItemAttributeParamBuffer]
+	callfar CheckItemPocket
+	ld a, [wItemAttributeValue]
 	dec a
 	ld hl, .Pockets
 	jp CallJumptable
@@ -86,8 +86,8 @@ _CheckItem:
 	call DoesHLEqualwNumBagItems
 	jr nz, .not_bag
 	push hl
-	callab CheckItemPocket
-	ld a, [wItemAttributeParamBuffer]
+	callfar CheckItemPocket
+	ld a, [wItemAttributeValue]
 	dec a
 	ld hl, .Pockets
 	jp CallJumptable
@@ -636,7 +636,7 @@ CheckAmountInKeyItems:
 
 SECTION "engine/items/inventory.asm@_CheckTossableItem", ROMX
 
-; Return 1 in wItemAttributeParamBuffer and
+; Return 1 in wItemAttributeValue and
 ; carry if wCurItem can't be removed from the bag.
 _CheckTossableItem:
 	ld a, ITEMATTR_PERMISSIONS
@@ -646,7 +646,7 @@ _CheckTossableItem:
 	and a
 	ret
 
-; Return 1 in wItemAttributeParamBuffer
+; Return 1 in wItemAttributeValue
 ; and carry if wCurItem can't be selected.
 CheckSelectableItem:
 	ld a, ITEMATTR_PERMISSIONS
@@ -656,29 +656,29 @@ CheckSelectableItem:
 	and a
 	ret
 
-; Return the pocket for wCurItem in wItemAttributeParamBuffer.
+; Return the pocket for wCurItem in wItemAttributeValue.
 CheckItemPocket:
 	ld a, ITEMATTR_POCKET
 	call GetItemAttr
 	and $f
-	ld [wItemAttributeParamBuffer], a
+	ld [wItemAttributeValue], a
 	ret
 
-; Return the context for wCurItem in wItemAttributeParamBuffer.
+; Return the context for wCurItem in wItemAttributeValue.
 CheckItemContext:
 	ld a, ITEMATTR_HELP
 	call GetItemAttr
 	and $f
-	ld [wItemAttributeParamBuffer], a
+	ld [wItemAttributeValue], a
 	ret
 
-; Return the menu for wCurItem in wItemAttributeParamBuffer.
+; Return the menu for wCurItem in wItemAttributeValue.
 CheckItemMenu:
 	ld a, ITEMATTR_HELP
 	call GetItemAttr
 	swap a
 	and $f
-	ld [wItemAttributeParamBuffer], a
+	ld [wItemAttributeValue], a
 	ret
 
 ; Get attribute a of wCurItem.
@@ -690,7 +690,7 @@ GetItemAttr:
 	ld b, 0
 	add hl, bc
 	xor a
-	ld [wItemAttributeParamBuffer], a
+	ld [wItemAttributeValue], a
 	ld a, [wCurItem]
 	dec a
 	ld c, a
@@ -704,7 +704,7 @@ GetItemAttr:
 
 ItemAttr_ReturnCarry:
 	ld a, 1
-	ld [wItemAttributeParamBuffer], a
+	ld [wItemAttributeValue], a
 	scf
 	ret
 

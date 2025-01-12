@@ -344,7 +344,7 @@ UpdateItemDescription::
 	ld c, $12
 	call DrawTextBox
 	decoord 1, 14
-	callab ShowItemDescription
+	callfar ShowItemDescription
 	ret
 
 Pokepic:
@@ -358,9 +358,9 @@ Pokepic:
 	call GetSGBLayout
 	xor a
 	ldh [hBGMapMode], a
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld de, vFont
 	call LoadMonFrontSprite
 	ld a, [wMenuBorderTopCoord]
@@ -551,7 +551,7 @@ asm_2438a:
 	ld a, [wMenuDataItems]
 	add [hl]
 	ld b, a
-	ld a, [wcdbc]
+	ld a, [wScrollingMenuListSize]
 	cp b
 	jp c, ClearAccumulator
 	inc [hl]
@@ -585,13 +585,13 @@ asm_243c3:
 	ld l, a
 	ld a, [wMenuDataDisplayFunctionPointer]
 	call GetFarByte
-	ld [wcdbc], a
+	ld [wScrollingMenuListSize], a
 	ld a, [wMenuScrollPosition]
 	ld c, a
 	ld a, [wMenuCursorBuffer]
 	add c
 	ld b, a
-	ld a, [wcdbc]
+	ld a, [wScrollingMenuListSize]
 	inc a
 	cp b
 	jr c, .asm_243f2
@@ -600,7 +600,7 @@ asm_243c3:
 	ld a, [wMenuDataItems]
 	add c
 	ld b, a
-	ld a, [wcdbc]
+	ld a, [wScrollingMenuListSize]
 	inc a
 	cp b
 	jr nc, .asm_243fb
@@ -615,7 +615,7 @@ asm_243c3:
 asm_243fc:
 	ld a, [wMenuDataHeaderEnd]
 	ld c, a
-	ld a, [wcdbc]
+	ld a, [wScrollingMenuListSize]
 	ld b, a
 	ld a, [wMenuBorderTopCoord]
 	add $01
@@ -849,7 +849,7 @@ asm_24576:
 	ret
 
 asm_24590:
-	ld a, [wcdbc]
+	ld a, [wScrollingMenuListSize]
 	ld d, a
 	ld a, e
 	cp d
@@ -868,7 +868,7 @@ asm_2459b:
 	push bc
 	push hl
 	ld c, d
-	callab GetBallByIndex
+	callfar GetBallByIndex
 	ld d, c
 	pop hl
 	pop bc
@@ -1125,8 +1125,8 @@ Function2473b::
 	cp $ff
 	jr z, .asm_24762
 	push de
-	callab CheckItemMenu
-	ld a, [wItemAttributeParamBuffer]
+	callfar CheckItemMenu
+	ld a, [wItemAttributeValue]
 	ld e, a
 	ld d, $00
 	ld hl, .data_2475b
@@ -1163,8 +1163,8 @@ PlaceMenuItemQuantity::
 	push de
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
-	callab _CheckTossableItem
-	ld a, [wItemAttributeParamBuffer]
+	callfar _CheckTossableItem
+	ld a, [wItemAttributeValue]
 	pop hl
 	and a
 	jr nz, .done
@@ -1177,9 +1177,9 @@ PlaceMenuItemQuantity::
 	ret
 
 asm_247a6:
-	ld hl, wPartyMonOTEnd
+	ld hl, wPartyMonNicknames
 	jr .asm_247ae
-	ld hl, wdf17
+	ld hl, wBoxMonNicknames
 .asm_247ae
 	push de
 	ld a, [wScrollingMenuCursorPosition]
@@ -1197,8 +1197,8 @@ asm_247ba:
 .asm_247c6
 	push de
 	ld a, [wScrollingMenuCursorPosition]
-	ld [wWhichPokemon], a
-	predef Function50000
+	ld [wCurPartyMon], a
+	predef CopyMonToTempMon
 	pop hl
 	call PrintLevel
 	ret
@@ -1222,7 +1222,7 @@ asm_247d8:
 	add hl, de
 	push hl
 	ld a, [wScrollingMenuCursorPosition]
-	ld hl, wdf17
+	ld hl, wBoxMonNicknames
 	call GetNick
 	pop hl
 	call PlaceString
@@ -1230,11 +1230,10 @@ asm_247d8:
 	add hl, de
 	push hl
 	ld a, [wScrollingMenuCursorPosition]
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld a, $02
 	ld [wMonType], a
-	ld a, $31
-	call Predef
+	predef CopyMonToTempMon
 	pop hl
 	push hl
 	call PrintLevel
@@ -1242,7 +1241,7 @@ asm_247d8:
 	ld de, 3
 	add hl, de
 	push hl
-	callab Function5069e
+	callfar GetGender
 	ld a, $ef
 	jr c, .asm_2482e
 	ld a, $f5
@@ -1259,7 +1258,7 @@ asm_4831:
 	call MenuBoxCoord2Tile
 	ld de, $0015
 	add hl, de
-	ld de, wd15d
+	ld de, wMoney
 	ld bc, $4306
 	call PrintNumber
 	ret
@@ -1290,7 +1289,7 @@ asm_24872:
 	call MenuBoxCoord2Tile
 	ld de, $0015
 	add hl, de
-	ld de, wd15d
+	ld de, wMoney
 	ld bc, $4306
 	call PrintNumber
 	ld [hl], $f0
@@ -1375,7 +1374,7 @@ Function24955::
 	xor a
 	ldh [hBGMapMode], a
 	call asm_24a0c
-	callab Function_8f1cb
+	callfar Function_8f1cb
 	ld hl, .MenuHeader2497d
 	call LoadMenuHeader
 	call asm_24985
@@ -1838,7 +1837,7 @@ SelectQuantityToToss::
 	ret
 
 asm_24c64:
-	callab GetItemPrice
+	callfar GetItemPrice
 	ld a, d
 	ld [wFieldMoveScriptID], a
 	ld a, e

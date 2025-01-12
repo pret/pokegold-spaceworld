@@ -219,10 +219,10 @@ ConfirmPokemonSelection:
 	ld hl, wJoypadFlags
 	set 5, [hl]
 	ld a, [wd265]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld a, 5
 	ld [wCurPartyLevel], a
-	callab Function60a0
+	callfar Function60a0
 	xor a
 	ld [wPartyMon1 + 1], a
 	ld a, 3
@@ -311,7 +311,7 @@ SilentHillLabBackFunc4:
 	ld [wd265], a
 	push hl
 	ld [wNamedObjectIndexBuffer], a
-	callba Function6734
+	farcall Function6734
 	ld a, [wd265]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName

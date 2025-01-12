@@ -9,7 +9,7 @@ NamesPointers::
 	dba MoveNames          ; MOVE_NAME
 	dbw 0, 0               ; DUMMY_NAME
 	dba ItemNames          ; ITEM_NAME
-	dbw $00, wPartyMonOT   ; PARTY_OT_NAME
+	dbw $00, wPartyMonOTs  ; PARTY_OT_NAME
 	dbw $00, wOTPartyMonOT ; ENEMY_OT_NAME
 	dba TrainerClassNames  ; TRAINER_NAME
 	dbw $04, $5677         ; MOVE_DESC_NAME_BROKEN (wrong bank..?)
@@ -245,7 +245,7 @@ Unreferenced_GetMoveName::
 SECTION "home/names.asm@GetNick", ROM0
 
 GetCurNick::
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 
 GetNick:
@@ -258,7 +258,7 @@ GetNick:
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop de
-	callab CorrectNickErrors
+	callfar CorrectNickErrors
 	pop bc
 	pop hl
 	ret

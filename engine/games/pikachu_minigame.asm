@@ -38,7 +38,7 @@ PikachuMiniGame::
 	call DisableLCD
 	ld b, SGB_PIKACHU_MINIGAME
 	call GetSGBLayout
-	callab InitEffectObject
+	callfar InitEffectObject
 	call PikachuMiniGame_ClearBothTilemaps
 
 	ld hl, IntroForestGFX
@@ -362,7 +362,7 @@ PikachuMiniGame_RunFrame:
 
 .skip_playing_sfx
 	call PikachuMiniGame_PerformGameFunction
-	callba EffectObjectJumpNoDelay
+	farcall EffectObjectJumpNoDelay
 
 	ld a, 1
 	ldh [hBGMapMode], a
@@ -382,7 +382,7 @@ PikachuMiniGame_RunFrame:
 	ret
 
 .Done:
-	callab InitEffectObject
+	callfar InitEffectObject
 
 	ld hl, wShadowOAM
 	ld c, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
@@ -857,7 +857,7 @@ MinigamePikachuDoMovement::
 	dec [hl]
 	ld d, $30
 	ld e, a
-	callba BattleAnim_Sine_e
+	farcall BattleAnim_Sine_e
 	ld a, e
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc

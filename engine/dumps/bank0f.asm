@@ -48,29 +48,29 @@ StartBattle:
 	and a
 	jp nz, .asm_3c0d2
 	xor a
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 .find_first_alive_loop
 	call HasMonFainted
 	jr nz, .found_first_alive
-	ld hl, wWhichPokemon
+	ld hl, wCurPartyMon
 	inc [hl]
 	jr .find_first_alive_loop
 .found_first_alive
-	ld a, [wWhichPokemon]
-	ld [wcd41], a
+	ld a, [wCurPartyMon]
+	ld [wCurBattleMon], a
 	inc a
 	ld hl, wPartyCount
 	ld c, a
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld [wcdd8], a
 	ld hl, $c305
 	ld a, 9
 	call sub_3cd3b
 	call BackUpTilesToBuffer
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld c, a
 	ld b, 1
 	push bc
@@ -162,17 +162,17 @@ asm_3c14a:
 	call PlaySFX
 	xor a
 	ldh [hBattleTurn], a
-	jpab Functioncc000
+	jpfar Functioncc000
 
 WildPokemonFledText:
 	text "やせいの@"
-	text_from_ram wBattleMonNickname
+	text_from_ram wEnemyMonNickname
 	text "は　にげだした！"
 	prompt
 
 EnemyPokemonFledText:
 	text "てきの@"
-	text_from_ram wBattleMonNickname
+	text_from_ram wEnemyMonNickname
 	text "は　にげだした！"
 	prompt
 
@@ -247,12 +247,12 @@ asm_3c219:
 	res 4, [hl]
 	xor a
 	ldh [hBattleTurn], a
-	ld hl, Data3dfdd
+	ld hl, BattleText_TargetsEncoreEnded
 	call PrintText
 	jr asm_3c246
 
 asm_3c229:
-	ld a, [wcad6]
+	ld a, [wCurPlayerMove]
 	and a
 	jr z, asm_3c219
 	ld a, [wcd40]
@@ -261,10 +261,10 @@ asm_3c229:
 	ld hl, wca0a
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and $3f		; Power points?
 	jr z, asm_3c219
-	ld a, [wcad6]
-	ld [wcac1], a
+	ld a, [wCurPlayerMove]
+	ld [wCurPlayerSelectedMove], a
 	jr asm_3c269
 
 asm_3c246:
@@ -288,8 +288,8 @@ asm_3c246:
 asm_3c269:
 	xor a
 	ldh [hBattleTurn], a
-	callab Function360b1
-	ld a, [wc9f0]
+	callfar Function360b1
+	ld a, [wPlayerMoveStructEffect]
 	cp $77
 	jr z, asm_3c285
 	xor a
@@ -325,43 +325,43 @@ asm_3c285:
 	ld a, [hl]
 	cp $76
 	jr nz, asm_3c2bb
-	ld [wcac1], a
+	ld [wCurPlayerSelectedMove], a
 
 asm_3c2bb:
-	callab Function38220
+	callfar Function38220
 	ld a, 1
 	ldh [hBattleTurn], a
 	call Function3d3a2
 	jp asm_3c3c7
 
 asm_3c2cd:
-	ld a, [wcac1]
+	ld a, [wCurPlayerSelectedMove]
 	call sub_3c3b8
 	cp $67
 	jr nz, asm_3c2e4
-	ld a, [wcac2]
+	ld a, [wCurEnemySelectedMove]
 	call sub_3c3b8
 	cp $67
 	jr z, asm_3c311
 	jp asm_3c41d
 
 asm_3c2e4:
-	ld a, [wcac2]
+	ld a, [wCurEnemySelectedMove]
 	call sub_3c3b8
 	cp $67
 	jp z, asm_3c3c7
-	ld a, [wcac1]
+	ld a, [wCurPlayerSelectedMove]
 	call sub_3c3b8
 	cp $59
 	jr nz, asm_3c306
-	ld a, [wcac2]
+	ld a, [wCurEnemySelectedMove]
 	call sub_3c3b8
 	cp $59
 	jr z, asm_3c311
 	jp asm_3c3c7
 
 asm_3c306:
-	ld a, [wcac2]
+	ld a, [wCurEnemySelectedMove]
 	call sub_3c3b8
 	cp $59
 	jp z, asm_3c41d
@@ -369,9 +369,9 @@ asm_3c306:
 asm_3c311:
 	xor a
 	ldh [hBattleTurn], a
-	callab Function37e1d
+	callfar Function37e1d
 	push bc
-	callab Function37e2d
+	callfar Function37e2d
 	pop de
 	ld a, d
 	cp $4a
@@ -469,9 +469,9 @@ sub_3c3b8:
 asm_3c3c7:
 	ld a, 1
 	ldh [hBattleTurn], a
-	callab Function38000
+	callfar Function38000
 	jr c, asm_3c3eb
-	callab Function3401c
+	callfar Function3401c
 	call sub_3c473
 	ld a, [wce06]
 	and a
@@ -483,7 +483,7 @@ asm_3c3eb:
 	call sub_3c498
 	jp z, asm_3c883
 	call DrawHUDsAndHPBars
-	callab Function34000
+	callfar Function34000
 	call sub_3c473
 	ld a, [wce06]
 	and a
@@ -499,7 +499,7 @@ asm_3c3eb:
 	jp asm_3c183
 
 asm_3c41d:
-	callab Function34000
+	callfar Function34000
 	call sub_3c473
 	ld a, [wce06]
 	and a
@@ -511,9 +511,9 @@ asm_3c41d:
 	call DrawHUDsAndHPBars
 	ld a, 1
 	ldh [hBattleTurn], a
-	callab Function38000
+	callfar Function38000
 	jr c, asm_3c460
-	callab Function3401c
+	callfar Function3401c
 	call sub_3c473
 	ld a, [wce06]
 	and a
@@ -783,7 +783,7 @@ asm_3c651:
 	ld a, [de]
 	dec a
 	ld [de], a
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	push af
 	push hl
 	ld hl, PerishCountText
@@ -800,7 +800,7 @@ asm_3c651:
 	ld [hli], a
 	ld [hl], a
 	ld hl, wPartyMon1HP
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	ld bc, $30
 	call AddNTimes
 	xor a
@@ -828,7 +828,7 @@ asm_3c682:
 PerishCountText:
 	text "<USER>の　ほろびの"
 	line "カウントが　@"
-	deciram wCountSetBitsResult, 1, 1
+	deciram wNumSetBits, 1, 1
 	text "になった！"
 	prompt
 
@@ -1091,7 +1091,7 @@ sub_3c854:
 
 asm_3c862:
 	push bc
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	predef UpdateHPBar
 	pop bc
 	ret
@@ -1178,7 +1178,7 @@ asm_3c8e2:
 	ld [wca50], a
 	ld [wcad4], a
 	ld [wcad8], a
-	ld hl, wcad6
+	ld hl, wCurPlayerMove
 	ld [hli], a
 	ld [hl], a
 	ld hl, $c310
@@ -1263,7 +1263,7 @@ asm_3c989:
 
 EnemyMonFainted:
 	text "てきの　@"
-	text_from_ram wBattleMonNickname
+	text_from_ram wEnemyMonNickname
 	text "は　たおれた！"
 	prompt
 
@@ -1294,7 +1294,7 @@ sub_3c9c2:
 	ld hl, wccd2
 	ld e, $30
 	call sub_3d723
-	callab Function3834e
+	callfar Function3834e
 	ld a, [wLinkMode]
 	and a
 	jr z, asm_3c9e4
@@ -1311,7 +1311,7 @@ asm_3c9e4:
 	ldh [hBattleTurn], a
 	call Function3d3a2
 	xor a
-	ld [wc9e8], a
+	ld [wEnemyMoveStruct], a
 	ld [wFieldMoveSucceeded], a
 	ld [wcaba], a
 	inc a
@@ -1338,7 +1338,7 @@ asm_3ca18:
 	and a
 	ld a, b
 	call z, sub_3cae1
-	callab Function390e9
+	callfar Function390e9
 	ld hl, TrainerDefeatedText
 	call PrintText
 	ld a, [wLinkMode]
@@ -1352,12 +1352,12 @@ asm_3ca18:
 	jr nz, asm_3ca51
 	ld hl, RivalLossText
 	call PrintText
-	callab HealParty
+	callfar HealParty
 
 asm_3ca51:
 	ld a, [wca03]
 	ld b, a
-	callab Function37e3d
+	callfar Function37e3d
 	ld a, b
 	cp $4c
 	jr nz, asm_3ca74
@@ -1374,7 +1374,7 @@ asm_3ca51:
 	ld [hl], a
 
 asm_3ca74:
-	ld de, wd15f
+	ld de, wMoney + 2
 	ld hl, wca5b
 	ld c, 3
 	and a
@@ -1455,7 +1455,7 @@ asm_3cb18:
 	jp asm_3c183
 
 sub_3cb34:
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	ld c, a
 	ld hl, wca37
 	ld b, 0
@@ -1495,7 +1495,7 @@ asm_3cb56:
 	jp PrintText
 
 FaintedText:
-	text_from_ram wEnemyMonNickname
+	text_from_ram wBattleMonNickname
 	text "は　たおれた！"
 	prompt
 
@@ -1533,13 +1533,13 @@ sub_3cbdb:
 	call LoadStandardMenuHeader
 	ld a, 2
 	ld [wcdb9], a
-	predef Function50771
+	predef PartyMenuInBattle_Setup
 
 asm_3cbe8:
 	jr nc, asm_3cbf1
 
 asm_3cbea:
-	predef Function50774
+	predef PartyMenuInBattle
 	jr asm_3cbe8
 
 asm_3cbf1:
@@ -1556,8 +1556,8 @@ asm_3cc04:
 	xor a
 	ld [wFieldMoveSucceeded], a
 	call ClearSprites
-	ld a, [wWhichPokemon]
-	ld [wcd41], a
+	ld a, [wCurPartyMon]
+	ld [wCurBattleMon], a
 	ld c, a
 	ld hl, wca37
 	ld b, 1
@@ -1601,7 +1601,7 @@ asm_3cc56:
 	call DelayFrames
 	ld hl, RivalWinText
 	call PrintText
-	callab HealParty
+	callfar HealParty
 	ret
 
 asm_3cc83:
@@ -1739,7 +1739,7 @@ sub_3cd6e:
 	ld hl, wca37
 	xor a
 	ld [hl], a
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	ld c, a
 	ld b, 1
 	push bc
@@ -1750,7 +1750,7 @@ sub_3cd6e:
 	pop bc
 	predef SmallFarFlagAction
 	xor a
-	ld hl, wcad6
+	ld hl, wCurPlayerMove
 	ld [hli], a
 	ld [hl], a
 	dec a
@@ -1831,16 +1831,16 @@ LookUpTheEffectivenessOfEveryMove:
 	ld hl, Moves
 	ld bc, 7
 	call AddNTimes
-	ld de, wc9e8
+	ld de, wEnemyMoveStruct
 	ld a, BANK(Moves)
 	call FarCopyBytes
 	ld a, 1
 	ldh [hBattleTurn], a
-	callab Function34fff
+	callfar Function34fff
 	pop bc
 	pop de
 	pop hl
-	ld a, [wCountSetBitsResult]
+	ld a, [wNumSetBits]
 	cp $b
 	jr c, .loop
 	ld hl, wEnemyEffectivenessVsPlayerMons
@@ -1867,17 +1867,17 @@ IsThePlayerMonTypesEffectiveAgainstOTMon:
 	ld a, $14
 	call FarCopyBytes
 	ld a, [wca20]
-	ld [wc9f2], a
+	ld [wPlayerMoveStructType], a
 	xor a
 	ldh [hBattleTurn], a
-	callab Function34fff
-	ld a, [wCountSetBitsResult]
+	callfar Function34fff
+	ld a, [wNumSetBits]
 	cp $b
 	jr nc, .super_effective
 	ld a, [wca21]
-	ld [wc9f2], a
-	callab Function34fff
-	ld a, [wCountSetBitsResult]
+	ld [wPlayerMoveStructType], a
+	callfar Function34fff
+	ld a, [wNumSetBits]
 	cp $b
 	jr nc, .super_effective
 	pop bc
@@ -1958,13 +1958,13 @@ asm_3ced8:
 
 asm_3cefa:
 	ld a, b
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld hl, wd93a
 	ld bc, $30
 	call AddNTimes
 	ld a, [hl]
 	ld [wCurPartyLevel], a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	inc a
 	ld hl, wd913
 	ld c, a
@@ -1974,7 +1974,7 @@ asm_3cefa:
 
 asm_3cf17:
 	ld [wcdd7], a
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	call AddPokemonToBox
 	ld hl, wcde9
 	ld a, [hli]
@@ -1995,7 +1995,7 @@ asm_3cf17:
 	ld a, [wce5f]
 	bit 6, a
 	jr nz, EnemySendOutFirstMon
-	callab Function390e9
+	callfar Function390e9
 	ld hl, TrainerAboutToUseText
 	call PrintText
 	ld bc, $0107
@@ -2005,21 +2005,21 @@ asm_3cf17:
 	jr nz, EnemySendOutFirstMon
 	ld a, 2
 	ld [wcdb9], a
-	predef Function50771
+	predef PartyMenuInBattle_Setup
 
 asm_3cf6d:
 	ld a, 1
 	ld [wMenuCursorY], a
 	jr c, asm_3cf93
-	ld hl, wcd41
-	ld a, [wWhichPokemon]
+	ld hl, wCurBattleMon
+	ld a, [wCurPartyMon]
 	cp [hl]
 	jr nz, asm_3cf8a
 	ld hl, IsAlreadyOutText
 	call PrintText
 
 asm_3cf83:
-	predef Function50774
+	predef PartyMenuInBattle
 	jr asm_3cf6d
 
 asm_3cf8a:
@@ -2041,18 +2041,18 @@ EnemySendOutFirstMon:
 	ld b, 1
 	call GetSGBLayout
 	call SetPalettes
-	callab Function390e9
+	callfar Function390e9
 	ld hl, TrainerSentOutText
 	call PrintText
 	ld a, [wcdd7]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, 1
 	ld [wMonType], a
-	predef Function50000
-	ld hl, wcd94
-	predef Function50ed9
+	predef CopyMonToTempMon
+	ld hl, wTempMonDVs
+	predef GetUnownLetter
 	ld de, vFrontPic
 	call LoadMonFrontSprite
 	xor a
@@ -2062,7 +2062,7 @@ EnemySendOutFirstMon:
 
 ; Play shiny animation for Sunflora and Pikachu
 	ld b, 1
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	cp DEX_SUNNY
 	jr z, .apply_animation
 	cp DEX_PIKACHU
@@ -2100,7 +2100,7 @@ TrainerAboutToUseText:
 	text "の　@"
 	text_from_ram wStringBuffer1
 	text "は<LINE>"
-	text_from_ram wBattleMonNickname
+	text_from_ram wEnemyMonNickname
 	text "を　くりだそうと　している"
 
 	para "<PLAYER>も　#を"
@@ -2113,13 +2113,13 @@ TrainerSentOutText:
 	text_from_ram wStringBuffer1
 	text "は"
 	line "@"
-	text_from_ram wBattleMonNickname
+	text_from_ram wEnemyMonNickname
 	text "を　くりだした！"
 	done
 
 sub_3d071:
 	xor a
-	ld hl, wcad7
+	ld hl, wCurEnemyMove
 	ld [hli], a
 	ld [hl], a
 	ld hl, wca40
@@ -2151,9 +2151,9 @@ AnyPartyAlive:
 	ret
 
 HasMonFainted:
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1HP
-	ld bc, $30
+	ld bc, (wPartyMon2 - wPartyMon1)
 	call AddNTimes
 	ld a, [hli]
 	or [hl]
@@ -2161,13 +2161,13 @@ HasMonFainted:
 	ld a, [wce36]
 	and a
 	jr nz, .has_hp
-	ld hl, NoWillText
+	ld hl, BattleText_TheresNoWillToBattle
 	call PrintText
 .has_hp
 	xor a
 	ret
 
-NoWillText:
+BattleText_TheresNoWillToBattle:
 	text "たたかう　きりょくが　ない！"
 	prompt
 
@@ -2187,9 +2187,9 @@ TryRunningFromBattle:
 	push hl
 	push de
 	ld a, [wca03]
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	ld b, a
-	callab Function37e3d
+	callfar Function37e3d
 	ld a, b
 	cp $48
 	pop de
@@ -2330,7 +2330,7 @@ EscapedUsingItemText:
 	prompt
 
 LoadBattleMonFromParty:
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld bc, $30
 	ld hl, wPartyMon1Species
 	call AddNTimes
@@ -2345,20 +2345,20 @@ LoadBattleMonFromParty:
 	inc hl
 	inc hl
 	inc hl
-	ld de, wca0f
+	ld de, wBattleMonLevel
 	ld bc, $11
 	call CopyBytes
 	ld a, [wcdd8]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, [wMonHType1]
 	ld [wca20], a
 	ld a, [wMonHType2]
 	ld [wca21], a
 	ld hl, wPartyMonNicknames
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	call SkipNames
-	ld de, wEnemyMonNickname
+	ld de, wBattleMonNickname
 	ld bc, 6
 	call CopyBytes
 	ld hl, wca16
@@ -2369,7 +2369,7 @@ LoadBattleMonFromParty:
 	call sub_3e360
 	xor a
 	ldh [hBattleTurn], a
-	callab Function95cc
+	callfar Function95cc
 	ret
 
 ApplyStatMods:
@@ -2383,7 +2383,7 @@ ApplyStatMods:
 	ret
 
 LoadEnemyMonFromParty:
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld bc, $30
 	ld hl, wWildMons
 	call AddNTimes
@@ -2403,11 +2403,11 @@ LoadEnemyMonFromParty:
 	call CopyBytes
 	ld a, [wcdd9]
 	ld [wCurSpecies], a
-	call GetMonHeader
-	ld hl, wda5f
-	ld a, [wWhichPokemon]
+	call GetBaseData
+	ld hl, wOTPartyMonNicknames
+	ld a, [wCurPartyMon]
 	call SkipNames
-	ld de, wBattleMonNickname
+	ld de, wEnemyMonNickname
 	ld bc, 6
 	call CopyBytes
 	ld hl, wcded
@@ -2438,22 +2438,21 @@ LoadEnemyMonFromParty:
 	ld [hli], a
 	dec b
 	jr nz, .stat_mod_loop
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld [wca36], a
 	ret
 
 Function3d32e:
 	ld hl, wca08
-	predef Function50ed9
-	ld a, $21
-	call Predef
+	predef GetUnownLetter
+	predef Function3f04a
 	xor a
 	ldh [hGraphicStartTile], a
 	ld hl, wStartmenuCursor
 	ld [hli], a
 	ld [hl], a
 	ld [wca38], a
-	ld [wc9ef], a
+	ld [wPlayerMoveStruct], a
 	ld b, 1
 	call GetSGBLayout
 	ld hl, wEnemySubStatus3
@@ -2464,7 +2463,7 @@ Function3d32e:
 
 ; Play shiny animation for Sunflora and Pikachu
 	ld b, 1
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	cp DEX_SUNNY
 	jr z, .apply_animation
 	cp DEX_PIKACHU
@@ -2487,14 +2486,14 @@ Function3d32e:
 ; mon on the left side
 	ld a, $f0
 	ld [wCryTracks], a
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	call PlayStereoCry
 	call Function3d5ce
 	ret
 
 sub_3d387:
 	xor a
-	ld hl, wcad6
+	ld hl, wCurPlayerMove
 	ld [hli], a
 	ld [hl], a
 	ld hl, wca3b
@@ -2552,13 +2551,13 @@ sub_3d3e1:
 	ret
 
 sub_3d3f4:
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	ld hl, wPartyMon1Level
 	ld bc, $30
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, wca0f
+	ld hl, wBattleMonLevel
 	ld bc, 5
 	jp CopyBytes
 
@@ -2594,7 +2593,7 @@ sub_3d42d:
 	ret
 
 sub_3d43b:
-	callab Function37e2d
+	callfar Function37e2d
 	ld a, b
 	cp 1
 	ret nz
@@ -2656,21 +2655,21 @@ asm_3d492:
 	ld [de], a
 	call sub_3d4d4
 	ldh a, [hBattleTurn]
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	and a
 	ld hl, $c2ca
 	jr z, asm_3d4ac
 	ld hl, $c35e
 
 asm_3d4ac:
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	predef UpdateHPBar
 	call DrawHUDsAndHPBars
-	callab Function37e2d
+	callfar Function37e2d
 	ld a, [hl]
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	call GetItemName
-	callab Function37e60
+	callfar Function37e60
 	ld hl, RecoveredWithItemText
 	jp PrintText
 
@@ -2684,8 +2683,7 @@ sub_3d4d4:
 	xor a
 	ld [wcccd], a
 	ld [wccc1], a
-	ld a, $51
-	call Predef
+	predef PlayBattleAnim
 	pop af
 	ldh [hBattleTurn], a
 	ret
@@ -2712,11 +2710,11 @@ asm_3d518:
 
 sub_3d51f:
 	ld hl, wPartyMon1Item
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	ld bc, $30
 	call AddNTimes
 	ld bc, wca03
-	ld de, wc9ef
+	ld de, wPlayerMoveStruct
 	ld a, 0
 	call sub_3d54f
 	ret
@@ -2727,7 +2725,7 @@ sub_3d537:
 	ld bc, $30
 	call AddNTimes
 	ld bc, wcdda
-	ld de, wc9e8
+	ld de, wEnemyMoveStruct
 	ld a, 1
 	call sub_3d54f
 	ret
@@ -2738,7 +2736,7 @@ sub_3d54f:
 	push bc
 	ld a, [bc]
 	ld b, a
-	callab Function37e3d
+	callfar Function37e3d
 	ld hl, Data3d59f
 
 asm_3d560:
@@ -2750,7 +2748,7 @@ asm_3d560:
 	jr nz, asm_3d560
 	pop bc
 	ld a, [bc]
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	xor a
 	ld [bc], a
 	dec hl
@@ -2774,7 +2772,7 @@ asm_3d560:
 	push de
 	ld a, b
 	ld [de], a
-	callab Function365bf
+	callfar Function365bf
 	pop de
 	pop af
 	ld [de], a
@@ -2815,51 +2813,49 @@ Function3d5ce:
 	ld hl, $c335
 	ld bc, $050b
 	call ClearBox
-	callab Function383cd
+	callfar Function383cd
 	ld hl, $c366
 	ld [hl], $73
-	ld de, wEnemyMonNickname
+	ld de, wBattleMonNickname
 	ld hl, $c34a
 	call sub_3d72f
 	call PlaceString
 	push bc
 	ld hl, wca02
-	ld de, wcd7f
+	ld de, wTempMon
 	ld bc, 6
 	call CopyBytes
-	ld hl, wca0f
-	ld de, wLoadedMonLevel
+	ld hl, wBattleMonLevel
+	ld de, wTempMonLevel
 	ld bc, $11
 	call CopyBytes
-	ld a, [wcd7f]
+	ld a, [wTempMonSpecies]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	pop hl
 	push hl
 	inc hl
-	ld de, wcd9f
-	ld a, $34
-	call Predef
+	ld de, wTempMonStatus
+	predef Function50b92
 	pop hl
 	jr nz, asm_3d626
 	call PrintLevel
 
 asm_3d626:
-	ld a, [wcd7f]
-	ld [wMonDexIndex], a
+	ld a, [wTempMonSpecies]
+	ld [wCurPartySpecies], a
 	ld hl, $c35e
 	ld b, 1
-	ld a, $3c
-	call Predef
+	predef DrawPlayerHP
 	push de
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	ld hl, wPartyMon1Exp + 2
 	ld bc, $30
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, $c386
-	ld a, [wLoadedMonLevel]
+	ld a, [wTempMonLevel]
 	ld b, a
 	call Function3e874
 	ld a, 1
@@ -2896,8 +2892,8 @@ Function3d67c:
 	ld hl, $c2a1
 	ld bc, $040b
 	call ClearBox
-	callab Function383fd
-	ld de, wBattleMonNickname
+	callfar Function383fd
+	ld de, wEnemyMonNickname
 	ld hl, $c2b6
 	call sub_3d72f
 	call PlaceString
@@ -2906,12 +2902,11 @@ Function3d67c:
 	push hl
 	inc hl
 	ld de, wcde7
-	ld a, $34
-	call Predef
+	predef Function50b92
 	pop hl
 	jr nz, asm_3d6b4
 	ld a, [wcde6]
-	ld [wLoadedMonLevel], a
+	ld [wTempMonLevel], a
 	call PrintLevel
 
 asm_3d6b4:
@@ -2974,7 +2969,7 @@ asm_3d6fb:
 
 asm_3d710:
 	xor a
-	ld [wHPBarType], a
+	ld [wWhichHPBar], a
 	ld hl, $c2ca
 	ld b, 0
 	call DrawBattleHPBar
@@ -3024,7 +3019,7 @@ DisplayBattleMenu:
 	call BackUpTilesToBuffer
 
 .menu_loop:
-	callab asm_24b06
+	callfar asm_24b06
 	jr c, .menu_loop
 	ld a, [wStartmenuCursor]
 	cp 1
@@ -3049,11 +3044,11 @@ DisplayBattleMenu:
 	and a
 	jp nz, .cant_use_gear
 	call LoadStandardMenuHeader
-	callab GetPocket2Status
+	callfar GetPocket2Status
 	xor a
 	ld [wSelectedSwapPosition], a
 	call ClearPalettes
-	callab DrawBackpack
+	callfar DrawBackpack
 
 .item_menu_loop
 	xor a
@@ -3128,15 +3123,15 @@ sub_3d832:
 	ret
 
 Call_DebugBackpackLoop:
-	callab DebugBackpackLoop
+	callfar DebugBackpackLoop
 	ret
 
 sub_3d84e:
-	callab ScrollingMenu_ClearLeftColumn
+	callfar ScrollingMenu_ClearLeftColumn
 	call PlaceHollowCursor
 	predef LoadItemData
-	callab CheckItemContext
-	ld a, [wItemAttributeParamBuffer]
+	callfar CheckItemContext
+	ld a, [wItemAttributeValue]
 	ld hl, Data3d870
 	call CallJumptable
 	ret
@@ -3151,20 +3146,20 @@ Data3d870:
 	dw asm_3d8b9
 
 asm_3d87e:
-	callab PrintCantUseText
+	callfar PrintCantUseText
 	xor a
 	ld [wFieldMoveSucceeded], a
 	ret
 
 asm_3d88b:
-	callab BallPocket
+	callfar BallPocket
 	jr nc, asm_3d8b9
 	xor a
 	ld [wFieldMoveSucceeded], a
 	ret
 
 asm_3d89a:
-	callab FlipPocket2Status
+	callfar FlipPocket2Status
 	xor a
 	ld [wSelectedSwapPosition], a
 	ld [wFieldMoveSucceeded], a
@@ -3173,7 +3168,7 @@ asm_3d89a:
 asm_3d8aa:
 	call UseItem
 	call ClearPalettes
-	callab DrawBackpack
+	callfar DrawBackpack
 	ret
 
 asm_3d8b9:
@@ -3188,7 +3183,7 @@ asm_3d8c0:
 	call LoadStandardMenuHeader
 	xor a
 	ld [wcdb9], a
-	predef Function50771
+	predef PartyMenuInBattle_Setup
 	jp c, asm_3d918
 	jp asm_3d8eb
 
@@ -3199,12 +3194,12 @@ asm_3d8d5:
 	call ByteFill
 	xor a
 	ld [wcdb9], a
-	predef Function50774
+	predef PartyMenuInBattle
 	jr c, asm_3d918
 
 asm_3d8eb:
-	callab Function_8f1cb
-	callab asm_24aa9
+	callfar Function_8f1cb
+	callfar asm_24aa9
 	jr c, asm_3d8d5
 	call PlaceHollowCursor
 	ld a, [wMenuCursorY]
@@ -3269,9 +3264,9 @@ asm_3d982:
 	jp asm_3d8d5
 
 asm_3d992:
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	ld d, a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	cp d
 	jr nz, asm_3d9a5
 	ld hl, IsAlreadyOutText
@@ -3304,8 +3299,8 @@ asm_3d9cb:
 	ld hl, $c335
 	ld bc, $050b
 	call ClearBox
-	ld a, [wWhichPokemon]
-	ld [wcd41], a
+	ld a, [wCurPartyMon]
+	ld [wCurBattleMon], a
 	ld c, a
 	ld b, 1
 	push bc
@@ -3341,8 +3336,8 @@ asm_3da2a:
 	ld hl, $c335
 	ld bc, $050b
 	call ClearBox
-	ld a, [wWhichPokemon]
-	ld [wcd41], a
+	ld a, [wCurPartyMon]
+	ld [wCurBattleMon], a
 	ld c, a
 	ld b, 1
 	push bc
@@ -3353,7 +3348,7 @@ asm_3da2a:
 	predef SmallFarFlagAction
 	call LoadBattleMonFromParty
 	xor a
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	call sub_3e2c6
 	call Function3d32e
 	call PrintEmptyString
@@ -3364,12 +3359,12 @@ asm_3da2a:
 	ret
 
 IsAlreadyOutText:
-	text_from_ram wEnemyMonNickname
+	text_from_ram wBattleMonNickname
 	text "はもうでています"
 	prompt
 
 CantBringBackText:
-	text_from_ram wEnemyMonNickname
+	text_from_ram wBattleMonNickname
 	text "を　もどすことが"
 	line "できない！"
 	prompt
@@ -3402,7 +3397,7 @@ Function3daa7:
 	jr asm_3dac8
 
 asm_3dabc:
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Moves
 	ld bc, $30
 	call AddNTimes
@@ -3434,8 +3429,7 @@ asm_3dae9:
 asm_3daf9:
 	ld a, $28
 	ld [wHPBarMaxHP], a
-	ld a, $32
-	call Predef
+	predef Function50bfe
 	ld b, 1
 	ld a, [wcac0]
 	cp 2
@@ -3582,7 +3576,7 @@ asm_3dc05:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	ld [wcac1], a
+	ld [wCurPlayerSelectedMove], a
 	xor a
 	ret
 
@@ -3647,8 +3641,7 @@ asm_3dc83:
 	xor a
 	ld [wcccd], a
 	ld [wccc1], a
-	ld a, $51
-	call Predef
+	predef PlayBattleAnim
 	jp Function3daa7
 
 asm_3dca4:
@@ -3678,14 +3671,14 @@ sub_3dcb7:
 	ret z
 	cp $fc
 	ret nc
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	call Unreferenced_GetMoveName
 	ld hl, $c401
 	jp PlaceString
 
 sub_3dce0:
 	ld a, $a5
-	ld [wcac1], a
+	ld [wCurPlayerSelectedMove], a
 	ld a, [wca48]
 	and a
 	ld hl, wca0a
@@ -3729,7 +3722,7 @@ asm_3dd0c:
 	ret
 
 Data3dd19:
-	text_from_ram wEnemyMonNickname
+	text_from_ram wBattleMonNickname
 	text "は　だすことの　できる<LINE>わざが　ない！<DONE>"
 
 asm_3dd31:
@@ -3774,7 +3767,7 @@ asm_3dd67:
 
 asm_3dd78:
 	ld hl, wPartyMon1Moves
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	ld bc, $30
 	call AddNTimes
 	push hl
@@ -3846,12 +3839,12 @@ asm_3dde3:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	ld [wcac1], a
-	ld a, [wcd41]
-	ld [wWhichPokemon], a
+	ld [wCurPlayerSelectedMove], a
+	ld a, [wCurBattleMon]
+	ld [wCurPartyMon], a
 	ld a, 4
 	ld [wMonType], a
-	callab Functionf960
+	callfar GetMaxPPOfMove
 	ld hl, wMenuCursorY
 	ld c, [hl]
 	inc [hl]
@@ -3861,27 +3854,29 @@ asm_3dde3:
 	ld a, [hl]
 	and $3f
 	ld [wStringBuffer1], a
+
+	; Untranslated references to VRAM! Hooray?
+
 	ld hl, $c3d6
 	ld de, MoveTypeText
 	call PlaceString
 	ld hl, $c3b4
-	ld [hl], $f3
+	ld [hl], "／"
 	ld hl, $c3ee
-	ld [hl], $f3
+	ld [hl], "／"
 	ld hl, $c3b2
 	ld de, wStringBuffer1
 	ld bc, $0102
 	call PrintNumber
 	ld hl, $c3b5
-	ld de, wCountSetBitsResult
+	ld de, wNumSetBits
 	ld bc, $0102
 	call PrintNumber
-	callab Function360b1
-	ld a, [wc9ef]
+	callfar Function360b1
+	ld a, [wPlayerMoveStruct]
 	ld b, a
 	ld hl, $c3ef
-	ld a, $3f
-	call Predef
+	predef PrintMoveType
 
 asm_3de5b:
 	jp WaitBGMap
@@ -3930,12 +3925,12 @@ asm_3deb0:
 	res 4, [hl]
 	ld a, 1
 	ldh [hBattleTurn], a
-	ld hl, Data3dfdd
+	ld hl, BattleText_TargetsEncoreEnded
 	call PrintText
 	jr asm_3dedc
 
 asm_3dec1:
-	ld a, [wcad7]
+	ld a, [wCurEnemyMove]
 	and a
 	jr z, asm_3deb0
 	ld hl, wcde1
@@ -3946,7 +3941,7 @@ asm_3dec1:
 	ld a, [hl]
 	and $3f
 	jr z, asm_3deb0
-	ld a, [wcad7]
+	ld a, [wCurEnemyMove]
 	jp asm_3df68
 
 asm_3dedc:
@@ -4000,7 +3995,7 @@ asm_3df26:
 	jr z, asm_3df3f
 	ld a, 1
 	ld [wca22], a
-	callab Function384d4
+	callfar Function384d4
 	jr asm_3df6b
 
 asm_3df3f:
@@ -4030,13 +4025,13 @@ asm_3df3f:
 	ld a, b
 
 asm_3df68:
-	ld [wcac2], a
+	ld [wCurEnemySelectedMove], a
 
 asm_3df6b:
 	ld a, 1
 	ldh [hBattleTurn], a
-	callab Function360b1
-	ld a, [wc9e9]
+	callfar Function360b1
+	ld a, [wEnemyMoveStructEffect]
 	cp $77
 	ret z
 	xor a
@@ -4058,7 +4053,7 @@ sub_3df8b:
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jr nz, asm_3dfa8
-	ld a, [wcac1]
+	ld a, [wCurPlayerSelectedMove]
 	cp $a5
 	ld b, $e
 	jr z, asm_3dfae
@@ -4069,7 +4064,7 @@ sub_3df8b:
 	jr asm_3dfaf
 
 asm_3dfa8:
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	add 4
 	ld b, a
 
@@ -4078,7 +4073,7 @@ asm_3dfae:
 
 asm_3dfaf:
 	ld [wPlayerLinkAction], a
-	callab PlaceWaitingText
+	callfar PlaceWaitingText
 
 asm_3dfba:
 	call LinkTransfer
@@ -4102,19 +4097,19 @@ asm_3dfd3:
 	jr nz, asm_3dfd3
 	ret
 
-Data3dfdd:
+BattleText_TargetsEncoreEnded:
 	text "<TARGET>の<LINE>アンコールじょうたいが　とけた！<PROMPT>"
 
 asm_3dff2:
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wcac2
-	ld de, wc9ea
-	ld a, [wcac1]
+	ld hl, wCurEnemySelectedMove
+	ld de, wEnemyMoveStructPower
+	ld a, [wCurPlayerSelectedMove]
 	jr z, asm_3e009
-	ld hl, wcac1
-	ld de, wc9f1
-	ld a, [wcac2]
+	ld hl, wCurPlayerSelectedMove
+	ld de, wPlayerMoveStructPower
+	ld a, [wCurEnemySelectedMove]
 
 asm_3e009:
 	cp $44
@@ -4155,7 +4150,7 @@ asm_3e023:
 asm_3e035:
 	xor a
 	ld [wca3a], a
-	callab Function351d0
+	callfar Function351d0
 	xor a
 	ret
 
@@ -4166,12 +4161,12 @@ AddPokemonToBox:
 	ld a, [wcdd7]
 	ld [wcdd9], a
 	ld [wCurSpecies], a
-	ld [wMonDexIndex], a
-	call GetMonHeader
+	ld [wCurPartySpecies], a
+	call GetBaseData
 	ld a, [wBattleMode]
 	cp 2
 	jr nz, asm_3e06f
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wd91c
 	ld bc, $30
 	call AddNTimes
@@ -4211,8 +4206,7 @@ asm_3e09c:
 	ld de, wcdeb
 	ld b, 0
 	ld hl, wcdd4
-	ld a, $18
-	call Predef
+	predef Functiondf7d
 	ld a, [wBattleMode]
 	cp 2
 	jr z, asm_3e0d2
@@ -4231,14 +4225,14 @@ asm_3e09c:
 
 asm_3e0d2:
 	ld hl, wd93e
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld bc, $30
 	call AddNTimes
 	ld a, [hld]
 	ld [wcdea], a
 	ld a, [hld]
 	ld [wcde9], a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld [wca36], a
 	dec hl
 	ld a, [hl]
@@ -4257,7 +4251,7 @@ asm_3e0f1:
 	cp 2
 	jr nz, asm_3e11a
 	ld hl, wd91d
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld bc, $30
 	call AddNTimes
 	ld bc, 4
@@ -4273,14 +4267,12 @@ asm_3e11a:
 	ld [hli], a
 	ld [hl], a
 	ld [wHPBarMaxHP], a
-	ld a, $2a
-	call Predef
+	predef Function42252
 
 asm_3e129:
 	ld hl, wcddb
 	ld de, wcde1
-	ld a, $f
-	call Predef
+	predef FillPP
 	ld hl, wMonHBaseStats
 	ld de, wcdf9
 	ld b, 5
@@ -4297,17 +4289,17 @@ asm_3e13c:
 	ld a, [wMonHBaseEXP]
 	ld [de], a
 	ld a, [wcdd7]
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
-	ld de, wBattleMonNickname
+	ld de, wEnemyMonNickname
 	ld bc, 6
 	call CopyBytes
 	ld a, [wcdd7]
 	dec a
 	ld c, a
 	ld b, 1
-	ld hl, wPokedexOwnedEnd
+	ld hl, wEndPokedexCaught
 	predef SmallFarFlagAction
 	ld hl, wcded
 	ld de, wca9e
@@ -4323,15 +4315,15 @@ asm_3e182:
 	jr nz, asm_3e182
 	ld a, 1
 	ldh [hBattleTurn], a
-	callab Function95cc
+	callfar Function95cc
 	ret
 
 asm_3e193:
 	push bc
-	ld a, [wca0f]
+	ld a, [wBattleMonLevel]
 	ld b, a
 	ld a, [wcde6]
-	ld [wca0f], a
+	ld [wBattleMonLevel], a
 	ld a, b
 	ld [wcde6], a
 	pop bc
@@ -4417,7 +4409,7 @@ sub_3e201:
 	ld b, 1
 	call GetSGBLayout
 ; Should be a call instead
-	callab sub_3f003
+	callfar sub_3f003
 	ld hl, $c2b3
 	ld c, 0
 
@@ -4575,7 +4567,7 @@ asm_3e2c8:
 sub_3e2d2:
 	push bc
 	push bc
-	ld a, [wCountSetBitsResult]
+	ld a, [wNumSetBits]
 	and a
 	ld a, c
 	ld hl, wca16
@@ -4716,24 +4708,24 @@ sub_3e37c:
 	ret
 
 Call_LoadBattleGraphics:
-	jpab LoadBattleGraphics
+	jpfar LoadBattleGraphics
 
 Function3e3a7:
-	jpab Functionf80d6
+	jpfar Functionf80d6
 
-	ld de, $4c22 ; pointing to code?
-	ld hl, $96c0
-	ld bc, $3e04
+	ld de, HpExpBarParts0GFX
+	ld hl, vChars2 tile $6c
+	lb bc, BANK(HpExpBarParts0GFX), 04
 	call Get1bpp
 
-	ld de, $4c42 ; pointing to code?
-	ld hl, $9730
-	ld bc, $3e06
+	ld de, HpExpBarParts1GFX
+	ld hl, vChars2 tile $73
+	lb bc, BANK(HpExpBarParts1GFX), 06
 	call Get1bpp
 
-	ld de, $4c72 ; pointing to code?
-	ld hl, $9550
-	ld bc, $3e08
+	ld de, ExpBarGFX
+	ld hl, vChars2 tile $55
+	lb bc, BANK(ExpBarGFX), 08
 	jp Get2bpp
 
 PrintEmptyString:
@@ -4754,8 +4746,7 @@ asm_3e419:
 	call WaitBGMap
 
 asm_3e41c:
-	ld a, $51
-	jp Predef
+	predef_jump PlayBattleAnim
 
 sub_3e421:
 	ld a, [wLinkMode]
@@ -4765,7 +4756,7 @@ sub_3e421:
 asm_3e426:
 	call sub_3e64b
 	xor a
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld bc, wPartyMon1Species
 
 asm_3e430:
@@ -4776,7 +4767,7 @@ asm_3e430:
 	jp z, asm_3e613
 	push bc
 	ld hl, wca37
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld c, a
 
 asm_3e441:
@@ -4839,11 +4830,11 @@ asm_3e478:
 	pop bc
 	ld hl, 6
 	add hl, bc
-	ld a, [wce73]
+	ld a, [wPlayerID]
 	cp [hl]
 	jr nz, asm_3e4a7
 	inc hl
-	ld a, [wce74]
+	ld a, [wPlayerID + 1]
 	cp [hl]
 	ld a, 0
 	jr z, asm_3e4ac
@@ -4874,17 +4865,17 @@ asm_3e4ac:
 	inc [hl]
 
 asm_3e4ce:
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld e, a
 	ld d, 0
 	ld hl, wPartySpecies
 	add hl, de
 	ld a, [hl]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	push bc
 	ld d, $64
-	callab Function50cd1
+	callfar CalcExpAtLevel
 	pop bc
 	ld hl, $a
 	add hl, bc
@@ -4910,15 +4901,15 @@ asm_3e4ce:
 	ld [hld], a
 
 asm_3e507:
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ld hl, BoostedExpPointsText
 	call PrintText
 	xor a
 	ld [wMonType], a
-	predef Function50000
-	callba Function50caa
+	predef CopyMonToTempMon
+	farcall Function50caa
 	pop bc
 	ld hl, $1f
 	add hl, bc
@@ -4934,8 +4925,8 @@ asm_3e507:
 	add hl, bc
 	ld a, [hl]
 	ld [wCurSpecies], a
-	ld [wCountSetBitsResult], a
-	call GetMonHeader
+	ld [wNumSetBits], a
+	call GetBaseData
 	ld hl, $25
 	add hl, bc
 	ld a, [hld]
@@ -4950,8 +4941,7 @@ asm_3e507:
 	add hl, bc
 	push bc
 	ld b, 1
-	ld a, $18
-	call Predef
+	predef Functiondf7d
 	pop bc
 	pop de
 	ld hl, $25
@@ -4969,9 +4959,9 @@ asm_3e507:
 	ld a, [hl]
 	adc d
 	ld [hl], a
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	ld d, a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	cp d
 	jr nz, asm_3e5d3
 	ld de, wca12
@@ -4988,7 +4978,7 @@ asm_3e507:
 	ld hl, $1f
 	add hl, bc
 	ld a, [hl]
-	ld [wca0f], a
+	ld [wBattleMonLevel], a
 	ld a, [wca3f]
 	bit 3, a
 	jr nz, asm_3e5ae
@@ -5000,12 +4990,12 @@ asm_3e507:
 
 asm_3e5ae:
 	xor a
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	call sub_3e2c6
 ; these three calls should be regular calls
-	callab sub_3e247
-	callab sub_3e360
-	callab Function3d5ce
+	callfar sub_3e247
+	callfar sub_3e360
+	callfar Function3d5ce
 	call PrintEmptyString
 	call BackUpTilesToBuffer
 
@@ -5014,19 +5004,18 @@ asm_3e5d3:
 	call PrintText
 	xor a
 	ld [wMonType], a
-	predef Function50000
+	predef CopyMonToTempMon
 	ld d, 1
-	callab Function50628
+	callfar Function50628
 	call TextboxWaitPressAorB_BlinkCursor
 	call ReloadTilesFromBuffer
 	xor a
 	ld [wMonType], a
 	ld a, [wCurSpecies]
-	ld [wCountSetBitsResult], a
-	ld a, $29
-	call Predef
+	ld [wNumSetBits], a
+	predef Function421f8
 	ld hl, wcdc2
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld c, a
 	ld b, 1
 	predef SmallFarFlagAction
@@ -5036,11 +5025,11 @@ asm_3e5d3:
 asm_3e613:
 	ld a, [wPartyCount]
 	ld b, a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	inc a
 	cp b
 	jr z, asm_3e62f
-	ld [wWhichPokemon], a
+	ld [wCurPartyMon], a
 	ld bc, $30
 	ld hl, wPartyMon1Species
 	call AddNTimes
@@ -5052,7 +5041,7 @@ asm_3e62f:
 	ld hl, wca37
 	xor a
 	ld [hl], a
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	ld c, a
 	ld b, 1
 	push bc
@@ -5061,8 +5050,7 @@ asm_3e62f:
 	xor a
 	ld [hl], a
 	pop bc
-	ld a, $c
-	jp Predef
+	predef_jump SmallFarFlagAction
 
 sub_3e64b:
 	ld a, [wca37]
@@ -5080,7 +5068,7 @@ asm_3e654:
 	jr nz, asm_3e654
 	cp 2
 	ret c
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	ld hl, wcdf9
 	ld c, 7
 
@@ -5089,7 +5077,7 @@ asm_3e667:
 	ldh [hProduct], a
 	ld a, [hl]
 	ldh [hQuotient], a
-	ld a, [wCountSetBitsResult]
+	ld a, [wNumSetBits]
 	ldh [hPrintNumDivisor], a
 	ld b, 2
 	call Divide
@@ -5236,7 +5224,7 @@ PrintPlayerMon1Text:
 	ld hl, .Text
 	ret
 .Text:
-	text_from_ram wEnemyMonNickname
+	text_from_ram wBattleMonNickname
 	text "！<DONE>"
 
 RetreatMon:
@@ -5244,7 +5232,7 @@ RetreatMon:
 	jp PrintText
 
 PlayerMon2Text:
-	text_from_ram wEnemyMonNickname
+	text_from_ram wBattleMonNickname
 	text "　@"
 	start_asm
 	push de
@@ -5338,7 +5326,7 @@ asm_3e828:
 	push hl
 	ld a, [wcdd9]
 	ld [wCurSpecies], a
-	call GetMonHeader
+	call GetBaseData
 	ld a, [wMonHCatchRate]
 	ld [wcdfe], a
 	pop hl
@@ -5351,14 +5339,14 @@ asm_3e843:
 
 Data3e84b:
 	text "やせいの@"
-	text_from_ram wBattleMonNickname
+	text_from_ram wEnemyMonNickname
 	text "は"
 	line "エサを　たべてる！"
 	prompt
 
 Data3e861:
 	text "やせいの@"
-	text_from_ram wBattleMonNickname
+	text_from_ram wEnemyMonNickname
 	text "は"
 	line "おこってる！"
 	prompt
@@ -5368,7 +5356,7 @@ Function3e874:
 	push de
 	ld d, b
 	push de
-	callab Function50cd1
+	callfar CalcExpAtLevel
 	pop de
 	ld hl, hQuotient
 	ld a, [hli]
@@ -5378,7 +5366,7 @@ Function3e874:
 	ld a, [hl]
 	push af
 	inc d
-	callab Function50cd1
+	callfar CalcExpAtLevel
 	ld hl, hMultiplicand + 2
 	ld a, [hl]
 	ldh [hPrintNumTemp], a
@@ -5497,19 +5485,18 @@ Function3e91e:
 	and a
 	ld hl, Functioncc4d4
 	jr nz, asm_3e954
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	push af
 	ld a, [wca02]
 	ld [wCurSpecies], a
-	ld [wMonDexIndex], a
-	call GetMonHeader
+	ld [wCurPartySpecies], a
+	call GetBaseData
 	ld hl, $14
 	call UncompressMonSprite
 	ld hl, $9310
-	ld a, $33
-	call Predef
+	predef Function50bcd
 	pop af
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ret
 
 asm_3e954:
@@ -5532,18 +5519,18 @@ Function3e963:
 	and a
 	ld hl, Functioncc4d4
 	jr nz, asm_3e999
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	push af
 	ld a, [wcdd9]
 	ld [wCurSpecies], a
-	ld [wMonDexIndex], a
-	call GetMonHeader
+	ld [wCurPartySpecies], a
+	call GetBaseData
 	ld hl, wcddf
-	predef Function50ed9
+	predef GetUnownLetter
 	ld de, vFrontPic
 	call LoadMonFrontSprite
 	pop af
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ret
 
 asm_3e999:
@@ -5634,7 +5621,7 @@ sub_3ea0e:
 
 asm_3ea15:
 	push af
-	ld a, [wCountSetBitsResult]
+	ld a, [wNumSetBits]
 	cp [hl]
 	jr z, asm_3ea24
 	inc hl
@@ -5734,7 +5721,7 @@ asm_3ee91:
 	ld a, [hl]
 	call sub_3ef03
 	jr c, asm_3eebd
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld [wcdd7], a
 	ld a, [wce2d]
 	and a
@@ -5845,7 +5832,7 @@ Function3ef19:
 	ld a, [wce01]
 	and a
 	jr z, InitBattleCommon
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld [wcdd7], a
 
 InitBattleCommon:
@@ -5901,8 +5888,8 @@ _InitBattleCommon:
 
 sub_3ef9a:
 	ld [wca22], a
-	callab LoadTrainerClass
-	callab Function38f45
+	callfar LoadTrainerClass
+	callfar Function38f45
 	ld a, [wca22]
 	cp 9
 	jr nz, asm_3efb8
@@ -5930,7 +5917,7 @@ sub_3efdb:
 	ld [wBattleMode], a
 	call AddPokemonToBox
 	ld hl, wcddf
-	predef Function50ed9
+	predef GetUnownLetter
 	ld de, vFrontPic
 	call LoadMonFrontSprite
 	xor a
@@ -6004,7 +5991,7 @@ asm_3f03d:
 
 Function3f04a:
 	ld a, [wcdd8]
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld hl, $c305
 	ld b, 7
 	ld c, 8
@@ -6012,8 +5999,7 @@ Function3f04a:
 	ld hl, $14
 	call UncompressMonSprite
 	ld hl, $9310
-	ld a, $33
-	jp Predef
+	predef_jump Function50bcd
 
 Function3f068:
 	ld de, $a203
@@ -6121,7 +6107,7 @@ InitBattleVariables:
 	ld [wca39], a
 	ld [wca02], a
 	ld [wca37], a
-	ld [wcd41], a
+	ld [wCurBattleMon], a
 	ld [wce06], a
 	ld [wTimeOfDayPal], a
 	ld [wcaba], a
@@ -6134,7 +6120,7 @@ InitBattleVariables:
 	ld hl, wcddf
 	ld [hli], a
 	ld [hl], a
-	ld hl, wc9e8
+	ld hl, wEnemyMoveStruct
 	ld bc, $012c
 	xor a
 	call ByteFill
@@ -6170,8 +6156,7 @@ asm_3f148:
 asm_3f151:
 	xor a
 	ld [wcab9], a
-	ld a, $2b
-	call Predef
+	predef Function41fa1
 
 asm_3f15a:
 	xor a
@@ -6207,7 +6192,7 @@ asm_3f15a:
 	ret
 
 sub_3f19e:
-	ld hl, wcaca
+	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
 	inc hl
@@ -6215,11 +6200,11 @@ sub_3f19e:
 	ret z
 	ld a, [wca03]
 	ld b, a
-	callab Function37e3d
+	callfar Function37e3d
 	ld a, b
 	cp $4c
 	jr nz, AddBattleMoneyToAccount
-	ld hl, wcacc
+	ld hl, wPayDayMoney + 2
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -6232,8 +6217,8 @@ sub_3f19e:
 	ld [hl], a
 
 AddBattleMoneyToAccount:
-	ld hl, wcacc
-	ld de, wd15f
+	ld hl, wPayDayMoney + 2
+	ld de, wMoney + 2
 	ld c, 3
 	and a
 .loop
@@ -6250,7 +6235,7 @@ AddBattleMoneyToAccount:
 
 GotMoneyForWinningText:
 	text "<PLAYER>は　@"
-	deciram wcaca, 3, 6
+	deciram wPayDayMoney, 3, 6
 	text "円"
 	line "ひろった！"
 	prompt
@@ -6416,8 +6401,7 @@ InitBackPic:
 	ld a, BANK(PlayerBacksprite)
 	call UncompressSpriteFromDE
 	ld hl, vTitleLogo2
-	ld a, $33
-	call Predef
+	predef Function50bcd
 	ld a, 0
 	call OpenSRAM
 	ld hl, vSprites
@@ -6486,7 +6470,7 @@ BattleStartMessage:
 	call WaitSFX
 	ld c, 20
 	call DelayFrames
-	callab Function390e9
+	callfar Function390e9
 	ld hl, WantsToBattleText
 	jr .PlaceBattleStartText
 
@@ -6503,7 +6487,7 @@ BattleStartMessage:
 
 .PlaceBattleStartText:
 	push hl
-	callab Function38340
+	callfar Function38340
 	pop hl
 	call PrintText
 	ret
@@ -6511,13 +6495,13 @@ BattleStartMessage:
 WildPokemonAppearedText:
 	text "あ！　やせいの"
 	line "@"
-	text_from_ram wBattleMonNickname
+	text_from_ram wEnemyMonNickname
 	text "が　とびだしてきた！"
 	prompt
 
 HookedPokemonAttackedText:
 	text "つりあげた　@"
-	text_from_ram wBattleMonNickname
+	text_from_ram wEnemyMonNickname
 	text "が"
 	line "とびかかってきた！"
 	prompt
@@ -6537,8 +6521,7 @@ ShowLinkBattleParticipants:
 	call ClearTileMap
 .ok
 	call DelayFrame
-	ld a, $4e
-	call Predef
+	predef DoBattleTransition
 	call Call_LoadBattleGraphics
 	ld a, 1
 	ldh [hBGMapMode], a
@@ -6567,7 +6550,7 @@ sub_3f60c:
 	ld a, $69
 	ld [hli], a
 	ld [hl], $6a
-	callab Function38431
+	callfar Function38431
 	ld c, 150
 	jp DelayFrames
 

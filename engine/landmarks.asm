@@ -36,7 +36,7 @@ DebugMenu_WarpMenuHeader::
 	db 4 ; items
 	dw $0100 ; ???
 
-	dba Data_3f_4bc6
+	dba WarpMenuOptions
 	dba PlaceSelectedMapName
 
 	db $00, $00, $00 ; ???
@@ -60,51 +60,58 @@ GetLandmarkName::
 
 SECTION "engine/landmarks.asm@2", ROMX
 
-Data_3f_4bc6::
-	db 16 ; #
-	db $01
-	db $02
-	db $03
-	db $04
-	db $05
-	db $06
-	db $07
-	db $08
-	db $09
-	db $0a
-	db $0b
-	db $0e
-	db $0f
-	db $10
-	db $11
-	db $2d
+WarpMenuOptions::
+
+	db 16 ; Number of options in the menu - 43 total stored in data, but most are unused
+
+	db SPAWN_POINT_SILENT
+	db SPAWN_POINT_OLD
+	db SPAWN_POINT_WEST
+	db SPAWN_POINT_HIGH_TECH
+	db SPAWN_POINT_FOUNT
+	db SPAWN_POINT_BIRDON
+	db SPAWN_POINT_NEW_TYPE
+	db SPAWN_POINT_SUGAR
+	db SPAWN_POINT_BLUE_FOREST
+	db SPAWN_POINT_STAND
+	db SPAWN_POINT_KANTO
+
+	; PRINCE and MT_FUJI are skipped in the menu
+
+	db SPAWN_POINT_SOUTH
+	db SPAWN_POINT_NORTH
+	db SPAWN_POINT_ROUTE_15
+	db SPAWN_POINT_ROUTE_18
+	db SPAWN_POINT_SILENT_HILL
 	db $ff
 
-	db $12
-	db $13
-	db $14
-	db $15
-	db $16
-	db $17
-	db $18
-	db $19
-	db $1a
-	db $1b
-	db $1c
-	db $1d
-	db $1e
-	db $1f
-	db $20
-	db $21
-	db $22
-	db $23
-	db $24
-	db $25
-	db $26
-	db $27
-	db $28
-	db $29
-	db $2a
-	db $2b
-	db $2c
+	; The demo's options stop here, but the spawn points included actually extend far beyond what is available
+
+	db SPAWN_POINT_POWER_PLANT_1
+	db SPAWN_POINT_POWER_PLANT_2
+	db SPAWN_POINT_POWER_PLANT_3
+	db SPAWN_POINT_POWER_PLANT_4
+	db SPAWN_POINT_RUINS_1
+	db SPAWN_POINT_RUINS_2
+	db SPAWN_POINT_MINES_1
+	db SPAWN_POINT_MINES_2
+	db SPAWN_POINT_MINES_3
+	db SPAWN_POINT_MINES_4
+	db SPAWN_POINT_MINES_5
+	db SPAWN_POINT_MINES_6
+	db SPAWN_POINT_MINES_7
+	db SPAWN_POINT_HIDEOUT_1
+	db SPAWN_POINT_HIDEOUT_2
+	db SPAWN_POINT_HIDEOUT_3
+	db SPAWN_POINT_SLOWPOKE_WELL_1
+	db SPAWN_POINT_SLOWPOKE_WELL_2
+	db SPAWN_POINT_POKEMON_LEAGUE_1
+	db SPAWN_POINT_POKEMON_LEAGUE_1_2
+	db SPAWN_POINT_POKEMON_LEAGUE_2
+	db SPAWN_POINT_POKEMON_LEAGUE_3
+	db SPAWN_POINT_POKEMON_LEAGUE_4
+	db SPAWN_POINT_POKEMON_LEAGUE_5
+	db SPAWN_POINT_POKEMON_LEAGUE_6
+	db SPAWN_POINT_POKEMON_LEAGUE_7
+	db SPAWN_POINT_POKEMON_LEAGUE_7_2
 	db $ff

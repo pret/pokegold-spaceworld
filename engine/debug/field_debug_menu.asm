@@ -174,7 +174,7 @@ FieldDebug_Reset:
 	ret
 
 FieldDebug_ShowTrainerCard: ; unreferenced?
-	callab _TrainerCard
+	callfar _TrainerCard
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
@@ -185,7 +185,7 @@ INCLUDE "engine/debug/field/change_tileset.inc"
 FieldDebug_TownMap:
 	call LoadStandardMenuHeader
 	call ClearSprites
-	callab FlyMap
+	callfar FlyMap
 	call ClearPalettes
 	call Function3657
 	call LoadFontExtra
@@ -201,7 +201,7 @@ FieldDebug_NamePlayer:
 	call LoadStandardMenuHeader
 	ld de, wPlayerName
 	ld b, 1
-	callab NamingScreen
+	callfar NamingScreen
 	call ClearBGPalettes
 	call ClearTileMap
 	call CloseWindow
@@ -229,7 +229,7 @@ FieldDebug_HealPokemon:
 	prompt
 
 FieldDebug_CableClub:
-	callab Function29abf
+	callfar Function29abf
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
@@ -256,9 +256,9 @@ FieldDebug_TrainerGear:
 
 .OpenTrainerGear:
 	call LoadStandardMenuHeader
-	callab OpenTrainerGear
+	callfar OpenTrainerGear
 	call ClearPalettes
-	callab StartMenuLoadSprites
+	callfar StartMenuLoadSprites
 	call CloseWindow
 	ret
 
@@ -267,7 +267,7 @@ INCLUDE "engine/debug/field/map_viewer.inc"
 INCLUDE "engine/debug/field/item_test.inc"
 
 FieldDebug_PCMenu:
-	callab PokemonCenterPC
+	callfar PokemonCenterPC
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 

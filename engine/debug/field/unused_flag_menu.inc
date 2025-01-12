@@ -75,9 +75,9 @@ ENDM
 
 Functionfd91e: ; unused?
 	call .asm_fd930
-	ld a, [wCountSetBitsResult]
-	ld [wMonDexIndex], a
-	callab Pokepic
+	ld a, [wNumSetBits]
+	ld [wCurPartySpecies], a
+	callfar Pokepic
 	ret
 
 .asm_fd930
@@ -85,6 +85,6 @@ Functionfd91e: ; unused?
 	cp 251
 	jr nc, .asm_fd930
 	inc a
-	ld [wCountSetBitsResult], a
+	ld [wNumSetBits], a
 	ret
 

@@ -36,7 +36,7 @@ FieldDebug_SpriteViewer:
 	ld [wSpriteViewerMenuStartingItem], a
 	ld a, 1
 	ldh [hTextBoxCursorBlinkInterval], a
-	callab Function77ad
+	callfar Function77ad
 	ret nc
 	ldh a, [hEventID]
 	call GetObjectStruct
@@ -110,8 +110,8 @@ FieldDebug_SpriteViewer:
 	ret
 
 .SetFollowing:
-	ld hl, Function8031
-	ld a, BANK(Function8031)
+	ld hl, SpawnFollower
+	ld a, BANK(SpawnFollower)
 	call QueueScript
 
 ; Exits immediately after setting sprite to follow the player
@@ -259,7 +259,7 @@ FieldDebug_SpriteViewer:
 	call PlaceString
 	call .SetStartingPoint
 	ld c, a
-	callab Function14144
+	callfar Function14144
 	ld hl, vSprites + $c0
 	ld de, vFont
 	ld bc, 12

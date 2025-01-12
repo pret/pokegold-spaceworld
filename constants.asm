@@ -58,3 +58,6 @@ INCLUDE "constants/sgb_constants.asm"
 INCLUDE "constants/map_object_constants.asm"
 INCLUDE "constants/start_menu_constants.asm"
 INCLUDE "constants/movement_constants.asm"
+
+INCLUDE "constants/flypoint_constants.asm"
+INCLUDE "constants/spawnpoint_constants.asm"

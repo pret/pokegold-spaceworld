@@ -265,13 +265,13 @@ MACRO object_struct
 \1SpriteTile::     db
 \1MovementType::   db
 \1Flags::          dw
-\1Palette::        db
 \1Walking::        db
 \1Direction::      db
 \1StepType::       db
 \1StepDuration::   db
 \1Action::         db
 \1StepFrame::      db
+\1Object12::       db
 \1Facing::         db
 \1Tile::           db ; collision
 \1LastTile::       db ; collision
@@ -281,13 +281,13 @@ MACRO object_struct
 \1LastMapY::       db
 \1InitX::          db
 \1InitY::          db
-\1Radius::         db
+\1RadiusX::        db
+\1RadiusY::        db
 \1SpriteX::        db
 \1SpriteY::        db
 \1SpriteXOffset::  db
 \1SpriteYOffset::  db
 \1MovementIndex::  db
-\1Object28::       db
 \1Object29::       db
 \1Object30::       db
 \1Object31::       db
@@ -305,7 +305,7 @@ MACRO map_object
 \1ObjectRadius::     db
 \1ObjectHour::       db
 \1ObjectTimeOfDay::  db
-\1ObjectPalette::    db
+\1ObjectPalette::    db ; ...Questionable. Needs investigation
 \1ObjectSightRange:: db
 \1ObjectScript::     dw
 \1ObjectEventFlag::  dw

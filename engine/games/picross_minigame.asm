@@ -43,7 +43,7 @@ PicrossMinigame:
 
 .Init:
 	call DisableLCD
-	callba InitEffectObject
+	farcall InitEffectObject
 	call .InitGFX
 	call .PlacePlayerBG
 	call .InitRAM
@@ -203,13 +203,13 @@ PicrossMinigame:
 
 ; load Gold sprites
 	ld de, vSprites + $100
-	ld hl, GoldSpriteGFX + $40
+	ld hl, GoldSpriteGFX + LEN_2BPP_TILE * 4	; Gold's back-facing standing sprite
 	ld bc, 4 tiles
 	ld a, BANK(GoldSpriteGFX)
 	call FarCopyData
 
 	ld de, vSprites + $140
-	ld hl, GoldSpriteGFX + $100
+	ld hl, GoldSpriteGFX + LEN_2BPP_TILE * 16	; Gold's back-facing walking sprite
 	ld bc, 4 tiles
 	ld a, BANK(GoldSpriteGFX)
 	call FarCopyData
@@ -265,7 +265,7 @@ PicrossMinigame:
 	jr nz, .quit
 
 	call .ExecuteJumptable
-	callba EffectObjectJumpNoDelay
+	farcall EffectObjectJumpNoDelay
 	call DelayFrame
 	and a
 	ret

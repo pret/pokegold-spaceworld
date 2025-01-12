@@ -107,25 +107,25 @@ AddOutdoorSprites:
 	ret
 
 Function140d9:
-	ld hl, wcdaf
+	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
 	res 7, [hl]
 	set 6, [hl]
 	call LoadUsedSpritesGfx
 	pop af
-	ld [wcdaf], a
+	ld [wSpriteFlags], a
 	ret
 
 Function140ea:
-	ld hl, wcdaf
+	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
 	set 7, [hl]
 	res 6, [hl]
 	call LoadUsedSpritesGfx
 	pop af
-	ld [wcdaf], a
+	ld [wSpriteFlags], a
 	ret
 
 LoadUsedSpritesGfx:
@@ -197,7 +197,7 @@ LoadOverworldSprite:
 	push bc
 	push hl
 	push de
-	ld a, [wcdaf]
+	ld a, [wSpriteFlags]
 	bit 7, a
 	jr nz, .dont_copy
 	call Get2bpp
@@ -214,7 +214,7 @@ LoadOverworldSprite:
 	pop af
 	call IsAnimatedSprite
 	ret c
-	ld a, [wcdaf]
+	ld a, [wSpriteFlags]
 	bit 6, a
 	ret nz
 	call Get2bpp

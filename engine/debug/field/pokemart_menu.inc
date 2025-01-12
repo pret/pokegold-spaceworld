@@ -8,7 +8,7 @@ FieldDebug_PokemartMenu:
 
 .DoPokemartMenu:
 	call LoadStandardMenuHeader
-	callab asm_24860
+	callfar asm_24860
 	ld hl, DebugMart_PokemartMenuText
 	call PrintText
 	ld hl, .MenuHeader
@@ -68,7 +68,7 @@ DebugMart_BuyMenuHeader:
 	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
 	ld b, 0
-	ld hl, wcc40
+	ld hl, wcc3a
 	add hl, bc
 	add hl, bc
 	add hl, bc
@@ -122,7 +122,7 @@ DebugMart_Buy:
 	ld [wItemQuantityBuffer], a
 	ld hl, .HowManyText
 	call PrintText
-	callab asm_24c64
+	callfar asm_24c64
 	call ExitMenu
 	jr c, .done
 	predef LoadItemData
@@ -172,14 +172,14 @@ DebugMart_Sell:
 	ret
 
 ; unused
-	callab CheckItemsQuantity
+	callfar CheckItemsQuantity
 	jp c, .no_items
 	call LoadStandardMenuHeader
 	xor a
 	ld [wActiveBackpackPocket], a
 .bag_loop
-	callab DrawBackpack
-	callab DebugBackpackLoop
+	callfar DrawBackpack
+	callfar DebugBackpackLoop
 	jr c, .close_bag
 	call .DoBagFunctions
 	jr nc, .bag_loop
@@ -191,8 +191,8 @@ DebugMart_Sell:
 	ret
 
 .DoBagFunctions:
-	callab CheckItemMenu
-	ld a, [wItemAttributeParamBuffer]
+	callfar CheckItemMenu
+	ld a, [wItemAttributeValue]
 	ld hl, .BagJumptable
 	call CallJumptable
 	ret
@@ -207,7 +207,7 @@ DebugMart_Sell:
 	dw .CheckSellableItem
 
 .FlipPocket:
-	callab FlipPocket2Status
+	callfar FlipPocket2Status
 	xor a
 	ld [wSelectedSwapPosition], a
 	ret
@@ -223,14 +223,14 @@ DebugMart_Sell:
 	prompt
 
 .BallPocket:
-	callab BallPocket
+	callfar BallPocket
 	jr nc, .CheckSellableItem
 	and a
 	ret
 
 .CheckSellableItem:
-	callab _CheckTossableItem
-	ld a, [wItemAttributeParamBuffer]
+	callfar _CheckTossableItem
+	ld a, [wItemAttributeValue]
 	and a
 	jr nz, .not_sellable
 	jp .ItemQuantityPrompt
@@ -260,7 +260,7 @@ DebugMart_Sell:
 .ItemQuantityPrompt:
 	ld hl, .HowManyItemsText
 	call PrintText
-	callab asm_24c64
+	callfar asm_24c64
 	jr c, .got_quantity
 	jr .CannotSellItem
 
@@ -280,7 +280,7 @@ DebugMart_LoadItems:
 	ld [hli], a
 	cp -1
 	jr nz, .load_loop
-	ld hl, wcc40
+	ld hl, wcc3a
 	ld de, wcd60 + 1
 .load_loop2
 	ld a, [de]
@@ -298,7 +298,7 @@ DebugMart_LoadItems:
 .GetPrice:
 	push hl
 	ld [wCurItem], a
-	callab GetItemPrice
+	callfar GetItemPrice
 	ld a, d
 	ld [wcdc3], a
 	ld a, e

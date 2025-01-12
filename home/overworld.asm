@@ -13,13 +13,13 @@ OverworldStartButtonCheck::
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
 	ret z              ; debug disabled
-	callba FieldDebugMenu
+	farcall FieldDebugMenu
 	jr CheckStartmenuSelectHook
 .regularMenu
-	callba DisplayStartMenu
+	farcall DisplayStartMenu
 	jr CheckStartmenuSelectHook
 SelectButtonFunction::
-	callab CheckRegisteredItem
+	callfar CheckRegisteredItem
 CheckStartmenuSelectHook:
 	ldh a, [hStartmenuCloseAndSelectHookEnable]
 	and a

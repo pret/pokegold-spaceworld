@@ -8,7 +8,7 @@ FieldDebug_Teleport:
 	ld d, a
 	ld a, [wMapId]
 	ld e, a
-	callab IsSpawnPoint
+	callfar IsSpawnPoint
 	jr nc, .not_spawn_point
 	ld a, [wMapGroup]
 	ld [wLastSpawnMapGroup], a

@@ -3020,7 +3020,7 @@ LoadFonts_NoOAMUpdate:
 
 Function6445:
 	call BackUpTilesToBuffer
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ld hl, wStringBuffer1
@@ -3030,7 +3030,7 @@ Function6445:
 .sub_645d
 	ld hl, wPartyMon1Moves
 	ld bc, $0030
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -3073,9 +3073,9 @@ Function6445:
 	ld a, [wBattleMode]
 	and a
 	jp z, .sub_64eb
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld b, a
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	cp b
 	jp nz, .sub_64eb
 	ld h, d
@@ -3359,7 +3359,7 @@ Function6713:
 	ld b, $04
 	ld c, $0a
 	call z, ClearBox
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wce37], a
 	call GetPokemonName
 	ld a, [wDebugFlags]
@@ -3390,9 +3390,7 @@ Function6713:
 	call Function3657
 	jr .sub_6773
 .sub_676b
-	ld hl, Function3e3a7
-	ld a, BANK(Function3e3a7)
-	call FarCall_hl
+	callfar Function3e3a7
 .sub_6773
 	pop hl
 	ld a, [hl]
@@ -3430,7 +3428,7 @@ Function679d:
 	jr z, .sub_67d3
 	ld hl, wPartyMonNicknames
 	ld bc, $0006
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -3741,7 +3739,7 @@ Function78f0:
 	ld a, [hl]
 	xor $08
 	ld [hl], a
-	callab UpdateSGBBorder
+	callfar UpdateSGBBorder
 	call LoadFont
 	call LoadFontExtra
 	ld c, $70

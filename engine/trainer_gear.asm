@@ -169,13 +169,13 @@ TrainerGear_Loop:
 	bit TRAINERGEAR_END_LOOP_F, a
 	jr nz, .done
 	call TrainerGear_Jumptable
-	callba EffectObjectJumpNoDelay
+	farcall EffectObjectJumpNoDelay
 	call TrainerGear_UpdateTime
 	call DelayFrame
 	and a
 	ret
 .done
-	callab InitEffectObject
+	callfar InitEffectObject
 	call ClearSprites
 	xor a
 	ldh [hSCX], a
@@ -224,7 +224,7 @@ TrainerGear_Next:
 	ret
 
 TrainerGear_InitPointerSprite:
-	callab InitEffectObject
+	callfar InitEffectObject
 	ld de, PointerGFX
 	ld hl, vChars0 tile TRAINERGEAR_GFX_POINTER
 	lb bc, BANK(PointerGFX), 4
@@ -623,7 +623,7 @@ TrainerGear_PhoneJoypad:
 	ret
 
 TrainerGear_ClearView:
-	callab InitEffectObject
+	callfar InitEffectObject
 	call ClearSprites
 	call WaitForAutoBgMapTransfer
 	coord hl, 0, 3

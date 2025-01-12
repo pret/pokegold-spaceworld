@@ -337,7 +337,7 @@ Music_OakIntro_branch_ec77c::
 	sound_ret
 
 Music_OakIntro_Ch4::
-    toggle_noise 0
+	toggle_noise 0
 
 Music_OakIntro_branch_ec7e9::
 	drum_speed 12

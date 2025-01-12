@@ -34,7 +34,7 @@ OldCityPokecenterTradeText1:
 	call OpenTextbox
 	ld hl, wJoypadFlags
 	res 5, [hl]
-	callab Function28000
+	callfar Function28000
 	ret
 
 OldCityPokecenterTradeTextString1:

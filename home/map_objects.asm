@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "home/map_objects.asm", ROM0
 
 Function15b5::
-	callab SpawnPlayer
+	callfar SpawnPlayer
 	ret
 
 GetMapObject::
@@ -28,7 +28,7 @@ Function15d1::
 
 Function15da::
 	ldh [hMapObjectIndex], a
-	callab Function8131
+	callfar Function8131
 	ldh a, [hMapObjectIndex]
 	call GetMapObject
 	call Function40eb
@@ -40,7 +40,7 @@ Function15ed::
 	ld a, $0
 	ldh [hObjectStructIndex], a
 	ld de, wObjectStructs
-	callab CopyMapObjectToObjectStruct
+	callfar CopyMapObjectToObjectStruct
 	ret
 
 Function1602::
@@ -49,7 +49,7 @@ Function1602::
 	ld a, FOLLOWER_STRUCT
 	ldh [hObjectStructIndex], a
 	ld de, wObject1Struct
-	callab CopyMapObjectToObjectStruct
+	callfar CopyMapObjectToObjectStruct
 	ret
 
 Function1617::
@@ -84,7 +84,7 @@ Function1617::
 
 Function164a::
 	call Function1617
-	callab Function8125
+	callfar Function8125
 	ret
 
 CopyPlayerObjectTemplate::
@@ -134,7 +134,7 @@ Function1680::
 	and a
 	ret
 
-Function169f::
+DeleteMapObject::
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
@@ -200,7 +200,7 @@ Function16fb::
 	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
 	ld [hl], $19
-	ld hl, OBJECT_DIRECTION
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], $0
 .asm_171f:
@@ -310,8 +310,8 @@ UpdateSprites::
 	ld a, [wVramState]
 	bit 0, a
 	ret z
-	callab Function5007
-	callab _UpdateSprites
+	callfar Function5007
+	callfar _UpdateSprites
 	ret
 
 GetObjectStruct::
@@ -522,12 +522,12 @@ Function18cc::
 	res 5, [hl]
 	ld hl, wPlayerMovementType
 	ld [hl], $10
-	ld hl, wPlayerDirection
+	ld hl, wPlayerStepType
 	ld [hl], $0
 	ret
 
 Function18e5::
-	ld hl, OBJECT_WALKING
+	ld hl, OBJECT_DIRECTION
 	add hl, bc
 	ld a, [hl]
 	srl a
@@ -541,7 +541,7 @@ Function18e5::
 	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_DIRECTION
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], $0
 	ret
@@ -581,7 +581,7 @@ StartFollow::
 	pop bc
 	ld a, c
 	call SetFollowerIfVisible
-	callab QueueFollowerFirstStep
+	callfar QueueFollowerFirstStep
 	ret
 
 SetLeaderIfVisible::
@@ -605,7 +605,7 @@ SetFollowerIfVisible::
 	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
 	ld [hl], $18
-	ld hl, OBJECT_DIRECTION
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], $0
 	ldh a, [hObjectStructIndex]
@@ -680,7 +680,7 @@ SetObjectFacing::
 	add a
 	add a
 	and $c
-	ld hl, OBJECT_WALKING
+	ld hl, OBJECT_DIRECTION
 	add hl, bc
 	ld [hl], a
 	ret

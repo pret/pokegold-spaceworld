@@ -69,7 +69,7 @@ Menu_WasButtonPressed::
 	ld a, [w2DMenuFlags]
 	bit 6, a
 	jr z, .asm_1ad6
-	callba PlaySpriteAnimationsAndDelayFrame
+	farcall PlaySpriteAnimationsAndDelayFrame
 .asm_1ad6:
 	call GetJoypadDebounced
 	ldh a, [hJoySum]
@@ -285,7 +285,7 @@ PushWindow::
 
 ExitMenu::
 	push af
-	callab _ExitMenu
+	callfar _ExitMenu
 	call Function1c0a
 	pop af
 	ret
@@ -327,7 +327,7 @@ Function1c0a::
 	ret
 
 InitVerticalMenuCursor::
-	jpab _InitVerticalMenuCursor
+	jpfar _InitVerticalMenuCursor
 
 CloseWindow::
 	push af
@@ -338,7 +338,7 @@ CloseWindow::
 	ret
 
 Function1c58::
-	jpab Function24185
+	jpfar Function24185
 
 RestoreTileBackup::
 	call MenuBoxCoord2Tile

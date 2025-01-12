@@ -29,10 +29,10 @@ FieldDebug_Toolgear:
 	jr .UpdateDayNightCycle
 
 .ChangeRTC:
-	callab SetTime
+	callfar SetTime
 
 .UpdateDayNightCycle:
-	callab Function8c325
+	callfar Function8c325
 	call UpdateTimePals
 	ld a, FIELDDEBUG_RETURN_CLOSE
 	ret

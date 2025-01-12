@@ -590,7 +590,7 @@ Music_ViridianCity_branch_ec441::
 	sound_ret
 
 Music_ViridianCity_Ch4::
-    toggle_noise 0
+	toggle_noise 0
 
 Music_ViridianCity_branch_ec464::
 	drum_speed 12

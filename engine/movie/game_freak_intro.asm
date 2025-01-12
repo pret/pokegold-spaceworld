@@ -26,7 +26,7 @@ GameFreakIntro::
 	ld b, SGB_GF_INTRO
 	call GetSGBLayout
 
-	callab IntroCopyRightInfo
+	callfar IntroCopyRightInfo
 
 	ld a, 1
 	ldh [hBGMapMode], a
@@ -77,7 +77,7 @@ GameFreakIntro::
 	ld a, BANK(GameFreakLogoSparkleGFX)
 	call FarCopyData
 
-	callba InitEffectObject
+	farcall InitEffectObject
 
 	ld hl, wSpriteAnimDict
 	ld a, SPRITE_ANIM_DICT_GS_SPLASH
@@ -119,7 +119,7 @@ GameFreakIntro::
 	bit 7, a
 	jr nz, .Finished
 
-	callba EffectObjectJumpNoDelay
+	farcall EffectObjectJumpNoDelay
 
 	call GameFreakPresentsScene
 	call DelayFrame
@@ -131,7 +131,7 @@ GameFreakIntro::
 	set 6, [hl]
 
 .Finished:
-	callab InitEffectObject
+	callfar InitEffectObject
 	call ClearTileMap
 	call ClearSprites
 

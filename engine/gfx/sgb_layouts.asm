@@ -120,7 +120,7 @@ SGB_StatsScreenHPPals:
 	ld de, wcce1
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	call Function956d
 	call Function957e
 	push af
@@ -145,7 +145,7 @@ SGB_Pokedex:
 	ld de, wcce1
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	call Function956d
 	ld hl, wcce4
 	ld [hl], a
@@ -264,7 +264,7 @@ SGB12:
 	call GetMapPalsIndex
 	ld hl, wcce2
 	ld [hl], a
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	call Function956d
 	ld hl, wcce4
 	ld [hl], a
@@ -436,7 +436,7 @@ Function957e:
 	push bc
 	push af
 	ld hl, wPartyMon1DVs
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld bc, $0030
 	call AddNTimes
 	call Function95b0

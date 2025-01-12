@@ -42,13 +42,13 @@ InitializeNewGameWRAM:
 	call DelayFrame
 
 	ldh a, [hRandomSub]
-	ld [wce73], a
+	ld [wPlayerID], a
 	ldh a, [rLY]
 	ldh [hRTCRandom], a
 	call DelayFrame
 
 	ldh a, [hRandomAdd]
-	ld [wce74], a
+	ld [wPlayerID + 1], a
 
 	ld hl, wPartyCount
 	call InitializeByteList
@@ -67,13 +67,13 @@ InitializeNewGameWRAM:
 	ld [wKantoBadges], a
 	ld [wCoins], a
 	ld [wd15c], a
-	ld [wd15d], a
+	ld [wMoney], a
 
 	ld a, $0B
-	ld [wd15e], a
+	ld [wMoney + 1], a
 
 	ld a, $B8
-	ld [wd15f], a
+	ld [wMoney + 2], a
 
 	ld hl, wUnknownListLengthd1ea
 	ld a, ITEM_REPEL
@@ -192,11 +192,11 @@ PlayPokemonSetTimeMenu:
 	db -1
 
 MainMenuOptionSetTime::
-	callab SetTime
+	callfar SetTime
 	ret
 
 MainMenuOptionContinue::
-	callab Function14624
+	callfar Function14624
 	call DisplayContinueGameInfo
 .loop
 	call ClearJoypad
@@ -256,17 +256,17 @@ PrintNumBadges::
 	ld b, $01 ; only Johto Badges
 	call CountSetBits
 	pop hl
-	ld de, wCountSetBitsResult
+	ld de, wNumSetBits
 	ld bc, $0102 ; flags and constants for this? 1 byte source, 2 digit display
 	jp PrintNumber
 
 PrintNumOwnedMons::
 	push hl
-	ld hl, wPokedexOwned
+	ld hl, wPokedexCaught
 	ld b, $20 ; flag_array NUM_POKEMON?
 	call CountSetBits
 	pop hl
-	ld de, wCountSetBitsResult
+	ld de, wNumSetBits
 	ld bc, $0103 ; 1 byte, 3 digit
 	jp PrintNumber
 
@@ -295,7 +295,7 @@ StartNewGame::
 	call LoadFontExtra
 	xor a
 	ldh [hBGMapMode], a
-	callba InitializeNewGameWRAM
+	farcall InitializeNewGameWRAM
 	call ClearTileMap
 	call ClearWindowData
 	xor a

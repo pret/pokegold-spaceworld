@@ -111,7 +111,7 @@ SlotMachineGame_Init:
 	call DisableLCD
 	ld b, SGB_SLOT_MACHINE
 	call GetSGBLayout
-	callab InitEffectObject
+	callfar InitEffectObject
 	ld hl, wSlots
 	ld bc, wSlotsDataEnd - wSlots
 	xor a
@@ -193,7 +193,7 @@ SlotsLoop:
 	call Slots_SpinReels
 	ld a, $60
 	ld [wc4bd], a
-	callab DoNextFrameForFirst16Sprites
+	callfar DoNextFrameForFirst16Sprites
 	call Slots_PrintCoinsAndPayout
 	call Slots_FlashPaletteOnMatchingSevens
 	call Slots_AnimateReelSpritesAfterSpin
@@ -2030,7 +2030,7 @@ Slots_AnimateGolem:
 	dec [hl]
 	ld e, a
 	ld d, 14 * 8
-	callba BattleAnim_Sine_e
+	farcall BattleAnim_Sine_e
 	ld a, e
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
