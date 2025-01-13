@@ -969,6 +969,7 @@ wFarCallBCBuffer::
 	dw
 
 wcd56:: ds 1
+wNumMoves::
 wcd57:: ds 1
 wFieldMoveSucceeded:: db
 wVramState:: db
@@ -1040,6 +1041,7 @@ wPrevWarp:: db
 wcdc2:: db
 
 UNION
+wListMovesLineSpacing::
 wFieldMoveScriptID:: db
 wMapBlocksAddress:: dw
 wReplacementBlock:: db
@@ -1225,10 +1227,8 @@ wce2a:: ds 1
 	ds 2
 
 wce2d:: ds 1
-wce2e:: ds 1
-wce2f:: ds 1
-wce30:: ds 1
-wce31:: ds 1
+
+wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wce32:: ds 1
 wce33:: ds 1
 wce34:: ds 1
@@ -1668,37 +1668,14 @@ SECTION "D8A2", WRAM0[$D8A2]
 wd8a2:: ds 1
 wd8a3:: ds 1
 wd8a4:: ds 1
-wd8a5:: ds 1
 
-	ds 5
+wBreedMon1Nickname:: ds MON_NAME_LENGTH
+wBreedMon1OT:: ds PLAYER_NAME_LENGTH
+wBreedMon1:: box_struct wBreedMon1
 
-wd8ab:: ds 1
-
-SECTION "wd8b1", WRAM0[$D8B1]
-
-wd8b1:: ds 1
-
-	ds 5
-
-wd8b7:: ds 1
-wd8b8:: ds 1
-
-SECTION "D8D1", WRAM0[$D8D1]
-
-wd8d1:: ds 1
-
-	ds 5
-
-wd8d7:: ds 1
-
-	ds 5
-
-wd8dd:: ds 1
-
-SECTION "D8E3", WRAM0[$D8E3]
-
-wd8e3:: ds 1
-wd8e4:: ds 1
+wBreedMon2Nickname:: ds MON_NAME_LENGTH
+wBreedMon2OT:: ds PLAYER_NAME_LENGTH
+wBreedMon2:: box_struct wBreedMon2
 
 SECTION "D8FD", WRAM0[$D8FD]
 
@@ -1707,8 +1684,9 @@ wd8fe:: ds 1
 
 SECTION "D913", WRAM0[$D913]
 
-wd913:: ds 1
-wd914:: ds 1
+wOTPartyCount:: db
+wOTPartySpecies:: ds PARTY_LENGTH
+wOTPartySpeciesEnd:: db
 
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
@@ -1716,55 +1694,57 @@ UNION
 wWildMons::
 	ds 41
 NEXTU
-	ds 1
-wd91c:: ds 1
-wd91d:: ds 1
-wd91e:: ds 1
-	ds 17
-wd930:: ds 1
-	ds 1
-wd932:: ds 1
-	ds 7
-wd93a:: ds 1
-wd93b:: ds 1
-	ds 1
-wd93d:: ds 1
-wd93e:: ds 1
-wd93f:: ds 1
-ENDU
+wOTPartyMons::
+; wOTPartyMon1 - wOTPartyMon6
+for n, 1, PARTY_LENGTH + 1
+wOTPartyMon{d:n}:: party_struct wOTPartyMon{d:n}
+endr
 
-SECTION "DA3B", WRAM0[$DA3B]
-
-wOTPartyMonOT:: db
-
-SECTION "DA5F", WRAM0[$DA5F]
+wOTPartyMonOT::
+; wOTPartyMon1OT - wOTPartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wOTPartyMon{d:n}OT:: ds PLAYER_NAME_LENGTH
+endr
 
 wOTPartyMonNicknames::
-wda5f:: db
+; wOTPartyMon1Nickname - wOTPartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wOTPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
+wOTPartyDataEnd::
+ENDU
 
 SECTION "DA83", WRAM0[$DA83]
 
 wBoxListLength:: db
 wBoxList:: ds MONS_PER_BOX
+wBoxListEnd:: db
 
 SECTION "DAA3", WRAM0[$DAA3]
 
-wdaa3:: db
-wdaa4:: db
-wdaa5:: db
-	ds 18
-wdab8:: db
+wBoxMons::
+; wBoxMon1 - wBoxMon30
+for n, 1, MONS_PER_BOX + 1
+wBoxMon{d:n}:: box_struct wBoxMon{d:n}
+endr
+
+wBoxDataEnd::
 
 SECTION "DE63", WRAM0[$DE63]
 
 wBoxMonOT::
-wde63:: db
+; wBoxMon1OT - wBoxMon30OT
+for n, 1, MONS_PER_BOX + 1
+wBoxMon{d:n}OT:: ds PLAYER_NAME_LENGTH
+endr
+wBoxMonOTEnd::
 
-SECTION "DF17", WRAM0[$DF17]
 wBoxMonNicknames::
-wdf17:: ds 1
-
-SECTION "DFCB", WRAM0[$DFCB]
+; wBoxMon1Nick - wBoxMon30Nick
+for n, 1, MONS_PER_BOX + 1
+wBoxMon{d:n}Nick:: ds MON_NAME_LENGTH
+endr
+wBoxMonNicknamesEnd::
 wdfcb:: ds 1
 
 SECTION "Stack Bottom", WRAM0

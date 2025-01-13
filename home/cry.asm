@@ -95,8 +95,8 @@ _PrintLevelCommon:
 	ld b, PRINTNUM_RIGHTALIGN | 1
 	jp PrintNumber
 
-Function3a42::
-	ld hl, wce2e
+GetNthMove:: ; unreferenced?
+	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
 	ld b, 0
 	add hl, bc

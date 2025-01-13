@@ -807,7 +807,7 @@ Functiond886:
 	ld a, [wMonType]
 	and $0f
 	jr z, .sub_d893
-	ld de, wd913
+	ld de, wOTPartyCount
 .sub_d893
 	ld a, [de]
 	inc a
@@ -1187,7 +1187,7 @@ Functiondac8:
 	ld bc, $0030
 	ld a, [wPartyCount]
 	jr nz, .sub_db1b
-	ld hl, wdaa3
+	ld hl, wBoxMon1
 	ld bc, $0020
 	ld a, [wBoxListLength]
 .sub_db1b
@@ -1199,19 +1199,19 @@ Functiondac8:
 	ld d, h
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	ld hl, wdaa3
-	ld bc, $0020
+	ld hl, wBoxMon1
+	ld bc, BOXMON_STRUCT_LENGTH
 	jr z, .sub_db3b
 	cp $02
 	ld hl, wd882
 	jr z, .sub_db41
 	ld hl, wPartyMon1
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 .sub_db3b
 	ld a, [wCurPartyMon]
 	call AddNTimes
 .sub_db41
-	ld bc, $0020
+	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [wPokemonWithdrawDepositParameter]
 	cp $03
@@ -1241,7 +1241,7 @@ Functiondac8:
 	ld a, [wCurPartyMon]
 	call SkipNames
 .sub_db7f
-	ld bc, $0006
+	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 	ld a, [wPokemonWithdrawDepositParameter]
 	cp $03
@@ -1347,8 +1347,8 @@ Functiondc16:
 	ld a, [wd882]
 	ld de, wBufferMonNickname
 	jr z, .sub_dc42
-	ld a, [wd8b1]
-	ld de, wd8a5
+	ld a, [wBreedMon1Species]
+	ld de, wBreedMon1Nickname
 .sub_dc42
 	ld [hli], a
 	ld [wCurSpecies], a
@@ -1431,7 +1431,7 @@ Functiondc16:
 	pop hl
 	call CopyBytes
 	push hl
-	ld hl, wdaa3
+	ld hl, wBoxMon1
 	ld a, [wBoxListLength]
 	ld bc, $0030
 	call AddNTimes
@@ -1444,8 +1444,8 @@ Functiondc16:
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	ret z
-	ld hl, wd8d1
-	ld de, wd8a5
+	ld hl, wBreedMon2Nickname
+	ld de, wBreedMon1Nickname
 	ld bc, $002c
 	call CopyBytes
 	and a
@@ -1456,19 +1456,19 @@ Functiondcfc:
 	ld de, wBufferMonNickname
 	and a
 	jr z, .sub_dd2c
-	ld hl, wd8a5
-	ld de, wd8d1
+	ld hl, wBreedMon1Nickname
+	ld de, wBreedMon2Nickname
 	ld bc, $0006
 	call CopyBytes
-	ld hl, wd8ab
-	ld de, wd8d7
+	ld hl, wBreedMon1OT
+	ld de, wBreedMon2OT
 	ld bc, $0006
 	call CopyBytes
-	ld hl, wd8b1
-	ld de, wd8dd
+	ld hl, wBreedMon1
+	ld de, wBreedMon2
 	ld bc, $0020
 	call CopyBytes
-	ld de, wd8a5
+	ld de, wBreedMon1Nickname
 .sub_dd2c
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
@@ -1490,7 +1490,7 @@ Functiondcfc:
 Functiondd5c:
 	ld de, wBoxListLength
 	ld a, [de]
-	cp $1e
+	cp MONS_PER_BOX
 	ret nc
 	inc a
 	ld [de], a
@@ -1508,7 +1508,7 @@ Functiondd5c:
 	jr nz, .sub_dd6c
 	call GetBaseData
 	ld hl, wBoxMonOT
-	ld bc, $0006
+	ld bc, PLAYER_NAME_LENGTH
 	ld a, [wBoxListLength]
 	dec a
 	jr z, .sub_dda9
@@ -1581,7 +1581,7 @@ Functiondd5c:
 	ld a, [wBoxListLength]
 	dec a
 	jr z, .sub_de2a
-	ld hl, wdaa3
+	ld hl, wBoxMon1
 	ld bc, $0020
 	dec a
 	call AddNTimes
@@ -1609,7 +1609,7 @@ Functiondd5c:
 	jr nz, .sub_de17
 .sub_de2a
 	ld hl, wcdd9
-	ld de, wdaa3
+	ld de, wBoxMon1
 	ld bc, $0006
 	call CopyBytes
 	ld hl, wPlayerID
@@ -1764,7 +1764,7 @@ Functiondecd:
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_df32
-	ld hl, wdaa3
+	ld hl, wBoxMon1
 	ld bc, $0020
 .sub_df32
 	ld a, [wCurPartyMon]
@@ -1801,7 +1801,7 @@ Functiondecd:
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .sub_df7a
-	ld bc, wdfcb
+	ld bc, wBoxMonNicknamesEnd
 .sub_df7a
 	jp CopyDataUntil
 
@@ -4323,7 +4323,7 @@ Functionf355:
 	ld a, [wBattleMode]
 	cp $01
 	jr z, .sub_f36e
-	ld hl, wd93b
+	ld hl, wOTPartyMon1Status
 	call Functionf397
 .sub_f36e
 	ld hl, wca10
@@ -4979,11 +4979,11 @@ GetMaxPPOfMove:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	jr z, .got_partymon ; PARTYMON
 
-	ld hl, wd91d
+	ld hl, wOTPartyMon1Moves
 	dec a
 	jr z, .got_partymon ; OTPARTYMON
 
-	ld hl, wdaa5
+	ld hl, wBoxMon1Moves
 	ld bc, BOXMON_STRUCT_LENGTH
 	dec a
 	jr z, .got_partymon ; BOXMON
@@ -5294,14 +5294,14 @@ Functionfbf0:
 	xor b
 	and $01
 	jr z, .sub_fc15
-	ld a, [wd8b7]
+	ld a, [wBreedMon1ID]
 	ld b, a
-	ld a, [wd8e3]
+	ld a, [wBreedMon2ID]
 	cp b
 	jr nz, .sub_fc13
-	ld a, [wd8b8]
+	ld a, [wBreedMon1ID + 1]
 	ld b, a
-	ld a, [wd8e4]
+	ld a, [wBreedMon2ID + 1]
 	cp b
 	jr nz, .sub_fc13
 	ld a, $14
@@ -5383,7 +5383,7 @@ Functionfd03:
 	jp c, Functionfbde
 	ld a, $04
 	ld [wd8a2], a
-	ld a, [wd8b1]
+	ld a, [wBreedMon1Species]
 	ld [wCurPartySpecies], a
 	call PlayCry
 	xor a

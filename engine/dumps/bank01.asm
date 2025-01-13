@@ -3043,7 +3043,7 @@ Function6445:
 	dec b
 	jr nz, .sub_646d
 	push de
-	call .sub_64f4
+	call ForgetMove
 	pop de
 	jp c, .sub_64d6
 	push hl
@@ -3103,38 +3103,38 @@ Function6445:
 	call PrintText
 	ld b, $01
 	ret
-.sub_64f4
+
+ForgetMove::
 	push hl
-	ld hl, Text65f0
+	ld hl, AskForgetMoveText
 	call PrintText
 	call YesNoBox
 	pop hl
 	ret c
-	ld bc, $fffc
+	ld bc, -NUM_MOVES
 	add hl, bc
 	push hl
-	ld de, wce2e
-	ld bc, $0004
+	ld de, wListMoves_MoveIndicesBuffer
+	ld bc, NUM_MOVES
 	call CopyBytes
 	pop hl
 .sub_650f
 	push hl
-	ld hl, Text65a8
+	ld hl, MoveAskForgetText
 	call PrintText
 	coord hl, 10, 8
 	ld b, $08
 	ld c, $08
 	call DrawTextBox
 	coord hl, 12, 10
-	ld a, $28
-	ld [wFieldMoveScriptID], a
-	ld a, $32
-	call Predef
+	ld a, SCREEN_WIDTH*2
+	ld [wListMovesLineSpacing], a
+	predef ListMoves
 	ld a, $0a
 	ld [w2DMenuCursorInitY], a
 	ld a, $0b
 	ld [w2DMenuCursorInitX], a
-	ld a, [wcd57]
+	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
 	ld a, $01
@@ -3199,7 +3199,7 @@ Text65a5:
 	text_waitbutton
 	text_end
 
-Text65a8:
+MoveAskForgetText:
 	text "どの　わざを"
 	next "わすれさせたい？"
 	done
@@ -3225,26 +3225,20 @@ Text65de:
 	line "おぼえずに　おわった！"
 	prompt
 
-Text65f0:
+AskForgetMoveText:
 	text_from_ram wcd11
 	text "は　あたらしく"
 	line ""
 	text_end
-
-Text65fd:
 	text_from_ram wStringBuffer2
 	text "を　おぼえたい<⋯⋯>！"
 	para "しかし　"
 	text_end
-
-Text6610:
 	text_from_ram wcd11
 	text "は　わざを　４つ"
 	line "おぼえるので　せいいっぱいだ！"
 	para ""
 	text_end
-
-Text662e:
 	text_from_ram wStringBuffer2
 	text "の　かわりに"
 	line "ほかの　わざを　わすれさせますか？"

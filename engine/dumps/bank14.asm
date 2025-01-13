@@ -11,25 +11,25 @@ CopyMonToTempMon::
 	call GetBaseData
 
 	ld a, [wMonType]
-	ld hl, wPartyMon1Species
+	ld hl, wPartyMons
 	ld bc, PARTYMON_STRUCT_LENGTH
 	and a
-	jr z, .copywholestruct
-	ld hl, wWildMons
+	jr z, .getmonaddress
+	ld hl, wOTPartyMons
 	ld bc, PARTYMON_STRUCT_LENGTH
 	cp OTPARTYMON
-	jr z, .copywholestruct
-	ld hl, wdaa3
+	jr z, .getmonaddress
+	ld hl, wBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
 	cp BOXMON
-	jr z, .copywholestruct
+	jr z, .getmonaddress
 	ld hl, wd882
-	jr .asm_5003b
+	jr .copywholestruct
 
-.copywholestruct
+.getmonaddress
 	ld a, [wCurPartyMon]
 	call AddNTimes
-.asm_5003b
+.copywholestruct
 	ld de, wTempMon
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
@@ -52,7 +52,7 @@ GetMonSpecies::
 	jr .done
 
 .otpartymon
-	ld hl, wd914
+	ld hl, wOTPartySpecies
 	jr .done
 
 .boxmon
@@ -670,7 +670,7 @@ Function504e5::
 	call PlaceString
 
 	ld hl, wTempMonMoves
-	ld de, wce2e
+	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, $0004
 	call CopyBytes
 
@@ -686,7 +686,7 @@ Function504e5::
 	hlcoord 9, 6
 	ld a, $3c
 	ld [wcdc3], a
-	call Function50bfe
+	call ListMoves
 
 	hlcoord 11, 7
 	ld a, $3c
@@ -886,22 +886,22 @@ GetGender::
 	jr z, .PartyMon
 
 ; 1: OTPartyMon
-	ld hl, wd930
+	ld hl, wOTPartyMon1DVs
 	dec a
 	jr z, .PartyMon
 
-; 2: sBoxMon
-	ld hl, wdab8
+; 2: wBoxMon
+	ld hl, wBoxMon1DVs
 	ld bc, BOXMON_STRUCT_LENGTH
 	dec a
-	jr z, .sBoxMon
+	jr z, .wBoxMon
 
 ; else: WildMon
 	ld hl, wcddf
 	jr .DVs
 
 .PartyMon
-.sBoxMon
+.wBoxMon
 	ld a, [wCurPartyMon]
 	call AddNTimes
 
@@ -924,7 +924,7 @@ GetGender::
 	ret
 
 ListMovePP::
-	ld a, [wcd57]
+	ld a, [wNumMoves]
 	inc a
 	ld c, a
 	ld a, NUM_MOVES
@@ -1635,8 +1635,8 @@ Function50bcd::
 	call CloseSRAM
 	ret
 
-Function50bfe::
-	ld de, wce2e
+ListMoves::
+	ld de, wListMoves_MoveIndicesBuffer
 	ld b, $00
 .asm_50c03
 	ld a, [de]
@@ -1647,7 +1647,7 @@ Function50bfe::
 	push hl
 	push hl
 	ld [wCurSpecies], a
-	ld a, $02
+	ld a, MOVE_NAME
 	ld [wNamedObjectTypeBuffer], a
 	call GetName
 	ld de, wStringBuffer1
@@ -1656,7 +1656,7 @@ Function50bfe::
 	call PlaceString
 	pop bc
 	ld a, b
-	ld [wcd57], a
+	ld [wNumMoves], a
 	inc b
 	pop hl
 	push bc
@@ -1691,7 +1691,7 @@ Function50c48::
 	ld a, [wce34]
 	cp $01
 	jr nz, .asm_50c59
-	ld hl, wd913
+	ld hl, wOTPartyCount
 	ld de, wOTPartyMonOT
 	ld a, $06
 	jr .asm_50c8b

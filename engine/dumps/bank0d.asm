@@ -2534,7 +2534,7 @@ asm_34d96:
 	ld a, [wBattleMode]
 	dec a
 	ret z
-	ld hl, wd932
+	ld hl, wOTPartyMon1PP
 	ld a, [wca36]
 
 asm_34dc5:
@@ -4368,7 +4368,7 @@ sub_35952:
 	ld a, [wLinkMode]
 	cp 3
 	jr nz, asm_35976
-	ld hl, wd93f
+	ld hl, wOTPartyMon1MaxHP
 	dec c
 	sla c
 	ld b, 0
@@ -5249,7 +5249,7 @@ asm_35e5e:
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wcddb
-	ld de, wd932
+	ld de, wOTPartyMon1PP
 	ld a, [wCurEnemyMove]
 	jr z, asm_35e7b
 	ld hl, wca04
@@ -6299,7 +6299,7 @@ sub_364a2:
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wca36]
-	ld hl, wd93b
+	ld hl, wOTPartyMon1Status
 	jr z, asm_364b9
 	ld hl, wPartyMon1Status
 	ld a, [wCurBattleMon]
@@ -9453,7 +9453,7 @@ sub_37637:
 	ret
 
 sub_37649:
-	ld hl, wd91c
+	ld hl, wOTPartyMon1Item
 	ld a, [wca36]
 	ld bc, $30
 	call AddNTimes
@@ -9579,7 +9579,7 @@ asm_376e6:
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3770d
-	ld hl, wd93b
+	ld hl, wOTPartyMon1Status
 	ld a, [wca36]
 	ld bc, $30
 	call AddNTimes
@@ -10485,8 +10485,8 @@ asm_37c02:
 	ld a, [wBattleMode]
 	dec a
 	jr z, asm_37c63
-	ld de, wd913 + 1
-	ld hl, wd93d
+	ld de, wOTPartySpecies
+	ld hl, wOTPartyMon1HP
 	ld bc, 0
 
 asm_37c11:
@@ -10785,7 +10785,7 @@ sub_37ddb:
 	ld a, [wcd40]
 	jr z, asm_37df2
 	ld hl, wcde1
-	ld de, wd932
+	ld de, wOTPartyMon1PP
 	ld a, [wcac7]
 
 asm_37df2:
@@ -10877,7 +10877,7 @@ Function37e60:
 	push bc
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wd91c
+	ld hl, wOTPartyMon1Item
 	ld de, wcdda
 	ld a, [wca36]
 	jr z, asm_37e7a

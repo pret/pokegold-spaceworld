@@ -1524,18 +1524,18 @@ SummaryDrawPoke:
 	ld [wMonType], a
 	predef CopyMonToTempMon
 	ld hl, wTempMonMoves
-	ld de, wce2e
+	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, $0004
 	call CopyBytes
 	ld a, $28
 	ld [wHPBarMaxHP], a
 	hlcoord 2, 3
-	predef Function50bfe
+	predef ListMoves
 	hlcoord 11, 3
 	predef ListMovePP
 	call WaitBGMap
 	call SetPalettes
-	ld a, [wcd57]
+	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
 	hlcoord 0, 10

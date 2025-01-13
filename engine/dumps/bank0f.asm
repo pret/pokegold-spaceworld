@@ -8,7 +8,7 @@ StartBattle:
 	ld [wFieldMoveSucceeded], a
 	inc a
 	ld [wce36], a
-	ld hl, wd93d
+	ld hl, wOTPartyMon1HP
 	ld bc, $2f
 	ld d, 3
 .find_first_enemy_alive_loop
@@ -816,7 +816,7 @@ asm_3c682:
 	ld a, [wBattleMode]
 	dec a
 	ret z
-	ld hl, wd93d
+	ld hl, wOTPartyMon1HP
 	ld a, [wca36]
 	ld bc, $30
 	call AddNTimes
@@ -1153,7 +1153,7 @@ sub_3c8ca:
 	dec a
 	jr z, asm_3c8e2
 	ld a, [wca36]
-	ld hl, wd93d
+	ld hl, wOTPartyMon1HP
 	ld bc, $30
 	call AddNTimes
 	xor a
@@ -1273,10 +1273,10 @@ sub_3c9a8:
 	ret
 
 sub_3c9ad:
-	ld a, [wd913]
+	ld a, [wOTPartyCount]
 	ld b, a
 	xor a
-	ld hl, wd93d
+	ld hl, wOTPartyMon1HP
 	ld de, $30
 
 asm_3c9b8:
@@ -1784,13 +1784,13 @@ FindMonInOTPartyToSwitchIntoBattle:
 	inc hl
 	sla [hl]
 	inc b
-	ld a, [wd913]
+	ld a, [wOTPartyCount]
 	cp b
 	jp z, ScoreMonTypeMatchups
 	ld a, [wca36]
 	cp b
 	jr z, .discourage
-	ld hl, wd93d
+	ld hl, wOTPartyMon1HP
 	push bc
 	ld a, b
 	ld bc, $30
@@ -1812,7 +1812,7 @@ FindMonInOTPartyToSwitchIntoBattle:
 
 LookUpTheEffectivenessOfEveryMove:
 	push bc
-	ld hl, wd91d
+	ld hl, wOTPartyMon1Moves
 	ld a, b
 	ld bc, $30
 	call AddNTimes
@@ -1851,7 +1851,7 @@ LookUpTheEffectivenessOfEveryMove:
 
 IsThePlayerMonTypesEffectiveAgainstOTMon:
 	push bc
-	ld hl, wd913
+	ld hl, wOTPartyCount
 	ld a, b
 	inc a
 	ld c, a
@@ -1903,7 +1903,7 @@ ScoreMonTypeMatchups:
 	inc hl
 	sla [hl]
 	jr nc, .loop1
-	ld a, [wd913]
+	ld a, [wOTPartyCount]
 	ld b, a
 	ld c, [hl]
 .loop2
@@ -1944,7 +1944,7 @@ asm_3ced8:
 	ld a, [wca36]
 	cp b
 	jr z, asm_3ced8
-	ld hl, wd93d
+	ld hl, wOTPartyMon1HP
 	push bc
 	ld a, b
 	ld bc, $30
@@ -1959,14 +1959,14 @@ asm_3ced8:
 asm_3cefa:
 	ld a, b
 	ld [wCurPartyMon], a
-	ld hl, wd93a
+	ld hl, wOTPartyMon1Level
 	ld bc, $30
 	call AddNTimes
 	ld a, [hl]
 	ld [wCurPartyLevel], a
 	ld a, [wCurPartyMon]
 	inc a
-	ld hl, wd913
+	ld hl, wOTPartyCount
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -2720,7 +2720,7 @@ sub_3d51f:
 	ret
 
 sub_3d537:
-	ld hl, wd91c
+	ld hl, wOTPartyMon1Item
 	ld a, [wca36]
 	ld bc, $30
 	call AddNTimes
@@ -3399,11 +3399,11 @@ Function3daa7:
 asm_3dabc:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Moves
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 
 asm_3dac8:
-	ld de, wce2e
+	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, 4
 	call CopyBytes
 	xor a
@@ -3429,7 +3429,7 @@ asm_3dae9:
 asm_3daf9:
 	ld a, $28
 	ld [wHPBarMaxHP], a
-	predef Function50bfe
+	predef ListMoves
 	ld b, 1
 	ld a, [wcac0]
 	cp 2
@@ -3451,7 +3451,7 @@ asm_3db22:
 	ld [wMenuCursorY], a
 	ld a, 1
 	ld [wMenuCursorX], a
-	ld a, [wcd57]
+	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
 	ld a, 1
@@ -3607,7 +3607,7 @@ asm_3dc55:
 	ld a, [wMenuCursorY]
 	and a
 	jp nz, asm_3db6a
-	ld a, [wcd57]
+	ld a, [wNumMoves]
 	inc a
 	ld [wMenuCursorY], a
 	jp asm_3db6a
@@ -3615,7 +3615,7 @@ asm_3dc55:
 asm_3dc66:
 	ld a, [wMenuCursorY]
 	ld b, a
-	ld a, [wcd57]
+	ld a, [wNumMoves]
 	inc a
 	inc a
 	cp b
@@ -4167,7 +4167,7 @@ AddPokemonToBox:
 	cp 2
 	jr nz, asm_3e06f
 	ld a, [wCurPartyMon]
-	ld hl, wd91c
+	ld hl, wOTPartyMon1Item
 	ld bc, $30
 	call AddNTimes
 	ld a, [hl]
@@ -4224,7 +4224,7 @@ asm_3e09c:
 	jr asm_3e0f1
 
 asm_3e0d2:
-	ld hl, wd93e
+	ld hl, wOTPartyMon1HP + 1
 	ld a, [wCurPartyMon]
 	ld bc, $30
 	call AddNTimes
@@ -4250,7 +4250,7 @@ asm_3e0f1:
 	ld a, [wBattleMode]
 	cp 2
 	jr nz, asm_3e11a
-	ld hl, wd91d
+	ld hl, wOTPartyMon1Moves
 	ld a, [wCurPartyMon]
 	ld bc, $30
 	call AddNTimes
@@ -5714,7 +5714,7 @@ asm_3ee88:
 asm_3ee91:
 	ld c, [hl]
 	ld b, 0
-	ld hl, wd91e
+	ld hl, wOTPartyMon1Moves + 1
 	add hl, bc
 	ld a, [hli]
 	ld [wCurPartyLevel], a
@@ -5894,7 +5894,7 @@ sub_3ef9a:
 	cp 9
 	jr nz, asm_3efb8
 	xor a
-	ld [wd91c], a
+	ld [wOTPartyMon1Item], a
 
 asm_3efb8:
 	call sub_3f003
@@ -6242,7 +6242,7 @@ GotMoneyForWinningText:
 
 sub_3f1f3:
 	ld a, [wca36]
-	ld hl, wd93b
+	ld hl, wOTPartyMon1Status
 	ld bc, $30
 	call AddNTimes
 	ld a, [wcde7]
