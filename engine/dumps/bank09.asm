@@ -1256,7 +1256,7 @@ asm_4831:
 	call MenuBox
 	call PlaceVerticalMenuItems
 	call MenuBoxCoord2Tile
-	ld de, $0015
+	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	ld de, wMoney
 	ld bc, $4306
@@ -1287,7 +1287,7 @@ asm_24868:
 asm_24872:
 	call MenuBox
 	call MenuBoxCoord2Tile
-	ld de, $0015
+	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	ld de, wMoney
 	ld bc, $4306
@@ -1301,99 +1301,115 @@ MenuHeader24888:
 	dw 0
 	db 1
 
-asm_24890:
-	ld hl, .MenuHeader2489a
+UnreferencedMenu_24890:
+; An unreferenced, nonfunctional menu that resembles the field debug menu.
+	ld hl, .MenuData
 	call LoadMenuHeader
 	call VerticalMenu
 	ret
 
-.MenuHeader2489a:
+.MenuData:
 	db MENU_BACKUP_TILES
 	menu_coords 0, 0, 6, 10
-	dw .text_248a2
+	dw .MenuText
 	db 1
 
-.text_248a2:
-	db "たエ゛うる@"
-	db "かう@"
-	db "やめる@"
-	db "くさかり@"
-	db "とんでけ@"
-	db "どんぶらこ@"
-	db "フルパワー@"
-	db "ひかりゴケ@"
-	db "うずしお@"
-	db "とびはねる@"
-	db "あなをほる@"
-	db "テレポート@"
-	db "タマゴうみ@"
+.MenuText:
+	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
+	db 3	; amount of options
+	db "うる@"			; Switch
+	db "かう@"			; Buy
+	db "やめる@"		; Cancel
+	db "くさかり@"		; "Mower"? (replaced by Uproot)
+	db "とんでけ@"		; "Flight"? (replaced by Wind Ride)
+	db "どんぶらこ@"	; "Splash"? (replaced by Water Sport)
+	db "フルパワー@"	; "Full Power" (replaced by Strong Arm)
+	db "ひかりゴケ@"	; Bright Moss
+	db "うずしお@"		; Whirlpool
+	db "とびはねる@"	; Bounce
+	db "あなをほる@"	; Dig
+	db "テレポート@"	; Teleport
+	db "タマゴうみ@"	; Softboiled
 
-Text248e7:
-	db "つよさをみる@"
-	db "ならびかえ@"
-	db "そうび@"
-	db "キャンセル@"
-	db "もちわざ@"
-	db "メール@"
-	db "エラー！@"
+; MonMenuOptionStrings indexes
+	const_def 1
+	const MONMENUVALUE_STATS  ; 1
+	const MONMENUVALUE_SWITCH ; 2
+	const MONMENUVALUE_ITEM   ; 3
+	const MONMENUVALUE_CANCEL ; 4
+	const MONMENUVALUE_MOVE   ; 5
+	const MONMENUVALUE_MAIL   ; 6
+	const MONMENUVALUE_ERROR  ; 7
+DEF NUM_MONMENUVALUES EQU const_value - 1
 
-Data2490c:
-	db $f5, $01
-	db $f6, $02
-	db $f7, $03
-	db $f8, $04
-	db $f9, $05
-	db $fa, $06
-	db $fb, $07
-	db $5b, $08
-	db $64, $09
-	db $87, $0a
-	db $ff
+MonMenuOptionStrings:
+	db "つよさをみる@"	; Stats
+	db "ならびかえ@"	; Switch
+	db "そうび@"		; Item
+	db "キャンセル@"	; Cancel
+	db "もちわざ@"		; Moves
+	db "メール@"		; Mail
+	db "エラー！@"		; Error!
 
-Data24921:
-	db $01, $01, $f5
-	db $01, $02, $f6
-	db $01, $03, $f7
-	db $01, $04, $f8
-	db $01, $05, $f9
-	db $01, $06, $fa
-	db $01, $07, $fb
-	db $01, $08, $5b
-	db $01, $09, $64
-	db $01, $0a, $87
-	db $00, $0b, $01
-	db $00, $0c, $02
-	db $00, $0d, $03
-	db $00, $0e, $04
-	db $00, $0f, $05
-	db $00, $10, $06
-	db $00, $11, $07
-	db $ff
+Unreferenced_FieldMoveList:
+; Possibly how the 
+	db MOVE_UPROOT, MONMENUITEM_CUT
+	db MOVE_WIND_RIDE, MONMENUITEM_FLY
+	db MOVE_WATER_SPORT, MONMENUITEM_SURF
+	db MOVE_STRONG_ARM, MONMENUITEM_STRENGTH
+	db MOVE_BRIGHT_MOSS, MONMENUITEM_FLASH
+	db MOVE_WHIRLPOOL, MONMENUITEM_WHIRLPOOL
+	db MOVE_BOUNCE, MONMENUITEM_BOUNCE
+	db MOVE_DIG, MONMENUITEM_DIG
+	db MOVE_TELEPORT, MONMENUITEM_TELEPORT
+	db MOVE_SOFTBOILED, MONMENUITEM_SOFTBOILED
+	db -1
 
-Function24955::
+MonMenuOptions:
+	db MONMENU_FIELD_MOVE, MONMENUITEM_CUT, MOVE_UPROOT
+	db MONMENU_FIELD_MOVE, MONMENUITEM_FLY, MOVE_WIND_RIDE
+	db MONMENU_FIELD_MOVE, MONMENUITEM_SURF, MOVE_WATER_SPORT
+	db MONMENU_FIELD_MOVE, MONMENUITEM_STRENGTH, MOVE_STRONG_ARM
+	db MONMENU_FIELD_MOVE, MONMENUITEM_FLASH, MOVE_BRIGHT_MOSS
+	db MONMENU_FIELD_MOVE, MONMENUITEM_WHIRLPOOL, MOVE_WHIRLPOOL
+	db MONMENU_FIELD_MOVE, MONMENUITEM_BOUNCE, MOVE_BOUNCE
+	db MONMENU_FIELD_MOVE, MONMENUITEM_DIG, MOVE_DIG
+	db MONMENU_FIELD_MOVE, MONMENUITEM_TELEPORT, MOVE_TELEPORT
+	db MONMENU_FIELD_MOVE, MONMENUITEM_SOFTBOILED, MOVE_SOFTBOILED
+	db MONMENU_MENUOPTION, MONMENUITEM_STATS, MONMENUVALUE_STATS
+	db MONMENU_MENUOPTION, MONMENUITEM_SWITCH, MONMENUVALUE_SWITCH
+	db MONMENU_MENUOPTION, MONMENUITEM_ITEM, MONMENUVALUE_ITEM
+	db MONMENU_MENUOPTION, MONMENUITEM_CANCEL, MONMENUVALUE_CANCEL
+	db MONMENU_MENUOPTION, MONMENUITEM_MOVE, MONMENUVALUE_MOVE
+	db MONMENU_MENUOPTION, MONMENUITEM_MAIL, MONMENUVALUE_MAIL
+	db MONMENU_MENUOPTION, MONMENUITEM_ERROR, MONMENUVALUE_ERROR
+	db -1
+
+MonSubmenu::
 	xor a
 	ldh [hBGMapMode], a
-	call asm_24a0c
-	callfar Function_8f1cb
-	ld hl, .MenuHeader2497d
+	call GetMonSubmenuItems
+	callfar FreezeMonIcons
+	ld hl, .MenuHeader
 	call LoadMenuHeader
-	call asm_24985
-	call asm_249c9
+	call .GetTopCoord
+	call PopulateMonMenu
+	
 	ld a, 1
 	ldh [hBGMapMode], a
-	call asm_24997
+	call MonMenuLoop
 	ld [wMenuSelection], a
 	call CloseWindow
 	ret
 
-.MenuHeader2497d:
-	db $40
-	menu_coords 11, 0, $13, $11
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 11, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw 0
-	db 1
+	db 1 ; default option
 
-asm_24985:
-	ld a, [wFieldMoveScriptID]
+.GetTopCoord:
+	ld a, [wMonSubmenuCount]
 	inc a
 	add a
 	ld b, a
@@ -1404,179 +1420,193 @@ asm_24985:
 	call MenuBox
 	ret
 
-asm_24997:
-	ld a, $a0
-	ld [wMenuDataHeaderEnd], a
-	ld a, [wFieldMoveScriptID]
+MonMenuLoop:
+	ld a, (STATICMENU_CURSOR | STATICMENU_WRAP)
+	ld [wMenuDataFlags], a
+	ld a, [wMonSubmenuCount]
 	ld [wMenuDataItems], a
 	call InitVerticalMenuCursor
+
 	ld hl, w2DMenuFlags
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
+
 	call Get2DMenuJoypad
 	ldh a, [hJoyDown]
-	bit 0, a
-	jr nz, asm_249bc
-	bit 1, a
-	jr nz, asm_249b9
-	jr asm_24997
-asm_249b9:
-	ld a, $0e
+	bit A_BUTTON_F, a
+	jr nz, .select
+	bit B_BUTTON_F, a
+	jr nz, .cancel
+	jr MonMenuLoop
+
+.cancel:
+	ld a, MONMENUITEM_CANCEL
 	ret
 
-asm_249bc:
-	ld a, [w2DMenuDataEnd]
+.select:
+	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
-	ld b, $00
-	ld hl, wMapBlocksAddress
+	ld b, 0
+	ld hl, wMonSubmenuItems
 	add hl, bc
 	ld a, [hl]
 	ret
 
-asm_249c9:
+PopulateMonMenu:
 	call MenuBoxCoord2Tile
-	ld bc, $002a
+	ld bc, 2*SCREEN_WIDTH + 2
 	add hl, bc
-	ld de, wMapBlocksAddress
-asm_249d3:
+	ld de, wMonSubmenuItems
+.loop
 	ld a, [de]
 	inc de
 	cp $ff
 	ret z
 	push de
 	push hl
-	call asm_249e8
+	call GetMonMenuString
 	pop hl
 	call PlaceString
-	ld bc, $0028
+	ld bc, 2*SCREEN_WIDTH
 	add hl, bc
 	pop de
-	jr asm_249d3
-asm_249e8:
+	jr .loop
+
+GetMonMenuString:
 	dec a
 	ld b, a
 	add a
 	add b
 	ld c, a
 	ld b, $00
-	ld hl, Data24921
+	ld hl, MonMenuOptions
 	add hl, bc
 	ld a, [hli]
-	and a
-	jr z, asm_24a00
+	and a	; if MONMENU_MENUOPTION
+	jr z, .NotMove
 	inc hl
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call Unreferenced_GetMoveName
 	ret
 
-asm_24a00:
+.NotMove:
 	inc hl
 	ld a, [hl]
 	dec a
-	ld hl, Text248e7
+	ld hl, MonMenuOptionStrings
 	call GetNthString
 	ld d, h
 	ld e, l
 	ret
 
-asm_24a0c:
-	call asm_24a78
-	ld a, $02
+GetMonSubmenuItems:
+	call ResetMonSubmenu
+	ld a, MON_MOVES
 	call GetPartyParamLocation
 	ld d, h
 	ld e, l
-	ld hl, wMapBlocksAddress
-	ld c, $04
-asm_24a1b:
+	ld hl, wMonSubmenuItems
+	ld c, NUM_MOVES
+
+.loop
 	push bc
 	push de
 	ld a, [de]
-	and a
-	jr z, asm_24a2b
+	and a	; no move in this slot
+	jr z, .next
+
 	push hl
-	call asm_24a63
+	call IsFieldMove
+
 	pop hl
-	jr nc, asm_24a2b
-	call asm_24a93
-asm_24a2b:
+	jr nc, .next
+	call AddMonMenuItem
+
+.next
 	pop de
 	inc de
 	pop bc
 	dec c
-	jr nz, asm_24a1b
-	ld a, $0b
-	call asm_24a93
-	ld a, $0c
-	call asm_24a93
-	ld a, $0f
-	call asm_24a93
+	jr nz, .loop
+
+	ld a, MONMENUITEM_STATS
+	call AddMonMenuItem
+	ld a, MONMENUITEM_SWITCH
+	call AddMonMenuItem
+	ld a, MONMENUITEM_MOVE
+	call AddMonMenuItem
+
 	push hl
-	ld a, $01
+	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld a, [hl]
 	pop hl
-	cp $9e
-	ld a, $0d
-	jr nz, asm_24a50
-	ld a, $10
-asm_24a50:
-	call asm_24a93
-	ld a, [wFieldMoveScriptID]
-	cp $08
-	jr z, asm_24a5f
-	ld a, $0e
-	call asm_24a93
-asm_24a5f:
-	call asm_24a86
+	cp ITEM_MAIL
+	ld a, MONMENUITEM_ITEM
+	jr nz, .notmail
+	ld a, MONMENUITEM_MAIL
+
+.notmail
+	call AddMonMenuItem
+	ld a, [wMonSubmenuCount]
+	cp NUM_MONMENU_ITEMS
+	jr z, .maxitems
+
+	ld a, MONMENUITEM_CANCEL
+	call AddMonMenuItem
+
+.maxitems
+	call TerminateMonSubmenu
 	ret
 
-asm_24a63:
+IsFieldMove:
 	ld b, a
-	ld hl, Data24921
-asm_24a67:
+	ld hl, MonMenuOptions
+.next
 	ld a, [hli]
-	cp $ff
-	jr z, asm_24a77
-	and a
-	jr z, asm_24a77
+	cp -1
+	jr z, .nope
+	and a	; MONMENU_MENUOPTION
+	jr z, .nope
 	ld d, [hl]
 	inc hl
 	ld a, [hli]
 	cp b
-	jr nz, asm_24a67
+	jr nz, .next
 	ld a, d
 	scf
-asm_24a77:
+
+.nope
 	ret
 
-asm_24a78:
+ResetMonSubmenu:
 	xor a
-	ld [wFieldMoveScriptID], a
-	ld hl, wMapBlocksAddress
-	ld bc, $9
+	ld [wMonSubmenuCount], a
+	ld hl, wMonSubmenuItems
+	ld bc, NUM_MONMENU_ITEMS + 1
 	call ByteFill
 	ret
 
-asm_24a86:
-	ld a, [wFieldMoveScriptID]
+TerminateMonSubmenu:
+	ld a, [wMonSubmenuCount]
 	ld e, a
-	ld d, $00
-	ld hl, wMapBlocksAddress
+	ld d, 0
+	ld hl, wMonSubmenuItems
 	add hl, de
-	ld [hl], $ff
+	ld [hl], -1
 	ret
 
-asm_24a93:
+AddMonMenuItem:
 	push hl
 	push de
 	push af
-	ld a, [wFieldMoveScriptID]
+	ld a, [wMonSubmenuCount]
 	ld e, a
 	inc a
-	ld [wFieldMoveScriptID], a
+	ld [wMonSubmenuCount], a
 	ld d, $00
-	ld hl, wMapBlocksAddress
+	ld hl, wMonSubmenuItems
 	add hl, de
 	pop af
 	ld [hl], a
@@ -1584,8 +1614,8 @@ asm_24a93:
 	pop hl
 	ret
 
-asm_24aa9:
-	ld hl, .MenuHeader24ae9
+BattleMonMenu:
+	ld hl, .MenuHeader
 	call CopyMenuHeader
 	xor a
 	ldh [hBGMapMode], a
@@ -1593,45 +1623,50 @@ asm_24aa9:
 	call UpdateSprites
 	call PlaceVerticalMenuItems
 	call WaitBGMap
+
 	ld hl, wMenuDataPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wMenuDataHeaderEnd
-	ld bc, $8
+	ld de, wMenuData2
+	ld bc, $8	; TODO: constantify
 	call CopyBytes
-	ld a, [wMenuDataHeaderEnd]
-	bit 7, a
-	jr z, .asm_24ae4
+
+	ld a, [wMenuDataFlags]
+	bit STATICMENU_CURSOR_F, a
+	jr z, .set_carry
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call Get2DMenuJoypad
-	bit 1, a
-	jr z, .asm_24ae6
+	bit B_BUTTON_F, a
+	jr z, .clear_carry
 	ret z
-.asm_24ae4:
+
+.set_carry:
 	scf
 	ret
 
-.asm_24ae6:
+.clear_carry:
 	and a
 	ret
 
 	ret
 
-.MenuHeader24ae9:
-	db 0
-	menu_coords 11, 11, $13, $11
-	dw .text_24af1
-	db 1
+.MenuHeader:
+	db 0 ; flags
+	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw .MenuText
+	db 1 ; default option
 
-.text_24af1:
-	db "たエ゛とりかえる@"
-	db "つよさをみる@"
-	db "キャンセル@"
+.MenuText:
+	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
+	db 3
+	db "とりかえる@"	; Switch
+	db "つよさをみる@"		; Stats
+	db "キャンセル@"		; Cancel
 
-asm_24b06:
+LoadBattleMenu:
 	ld hl, MenuHeader24b24
 	jr asm_24b0e
 
@@ -1654,10 +1689,13 @@ MenuHeader24b24:
 	db 1
 
 .text_24b2c:
-	db "ア<TA!>ガたたかう@"
-	db "どうぐ@"
-	db "#@"
-	db "にげる@"
+	db STATICMENU_CURSOR
+	dn 2, 2
+	db 5
+	db "たたかう@"	; "FIGHT"
+	db "どうぐ@"	; "ITEM"
+	db "#@"			; "<PK><MN>"
+	db "にげる@"	; "RUN"
 
 MenuHeader24b3e:
 	db MENU_BACKUP_TILES
@@ -1666,10 +1704,13 @@ MenuHeader24b3e:
 	db 1
 
 .text_24b46:
-	db "ア<TA!>ジサファりボール×　　　@"
-	db "エサをなげる@"
-	db "いしをなげる@"
-	db "にげる@"
+	db STATICMENU_CURSOR
+	dn 2, 2
+	db 11
+	db "サファりボール×　　　@"	; "SAFARI BALL×   @"
+	db "エサをなげる@"			; "BAIT"
+	db "いしをなげる@"			; "THROW ROCK"
+	db "にげる@"				; "RUN"
 
 asm_24b67:
 	call CopyMenuData

@@ -398,65 +398,18 @@ wPlayerMoveStruct:: move_struct wPlayerMoveStruct
 wEnemyMonNickname:: ds 6
 wBattleMonNickname:: ds 6
 
-wca02:: ds 1
-wca03:: ds 1
-wca04:: ds 1
-wca05:: ds 1
-
-	ds 2
-
-wca08:: ds 1
-wca09:: ds 1
-wca0a:: ds 1
-
-	ds 3
-
-wca0e:: ds 1
-
-wBattleMonLevel::
-wca0f:: ds 1 ; Player's mon level
-
-wIntroJumptableIndex::
-wca10:: ds 1
-
 UNION
+wBattleMon:: battle_struct wBattleMon
+NEXTU
+	ds 14
+wIntroJumptableIndex:: db
 wIntroBGMapPointer:: ds 2
-NEXTU
-wca11:: ds 1
-wca12:: ds 1
-ENDU
-
-UNION
 wIntroTilemapPointer:: ds 2
-NEXTU
-wca13:: ds 1
-wca14:: ds 1
-ENDU
-
-UNION
 wIntroTilesPointer:: ds 2
 wIntroFrameCounter1:: ds 1
-NEXTU
-
-wca15:: ds 1
-wca16:: ds 1
-wca17:: ds 1
-
-ENDU
-
-wca18::
 wIntroFrameCounter2:: ds 1
-
 wIntroSpriteStateFlag:: ds 1
-
-wca1a:: ds 1
-wca1b:: ds 1
-wca1c:: ds 1
-	ds 1
-wca1e:: ds 1
-	ds 1
-wca20:: ds 1
-wca21:: ds 1
+ENDU
 wca22:: ds 1
 wca23:: ds 1
 wca24:: ds 1
@@ -513,7 +466,10 @@ wca58:: ds 1
 wca59:: ds 1
 wca5a:: ds 1
 wca5b:: ds 1
+
+wBattleAnimParam::
 wca5c:: ds 1
+
 wca5d:: ds 1
 
 	ds $1d
@@ -844,8 +800,8 @@ wSpriteOutputPtrCached:: ds 2
 wSpriteDecodeTable0Ptr:: ds 2
 wSpriteDecodeTable1Ptr:: ds 2
 
-wccc0:: ds 1
-wccc1:: ds 1
+wFXAnimID:: dw
+;wccc1:: ds 1
 wccc2:: ds 1
 wccc3:: ds 1
 wccc4:: ds 1
@@ -860,7 +816,7 @@ wBGP:: db
 wOBP0:: db
 wOBP1:: db
 
-wcccd:: ds 1
+wNumHits:: db
 
 wDisableVBlankWYUpdate:: db
 wSGB:: db
@@ -937,6 +893,7 @@ SECTION "CD3C", WRAM0[$CD3C]
 wcd3c:: db
 wRegularItemsCursor:: db
 wBackpackAndKeyItemsCursor:: db
+wBattleMenuCursorPosition::
 wStartmenuCursor:: db
 wcd40:: db
 wCurBattleMon::
@@ -971,6 +928,9 @@ wFarCallBCBuffer::
 wcd56:: ds 1
 wNumMoves::
 wcd57:: ds 1
+
+wItemEffectSucceeded::
+wBattlePlayerAction::
 wFieldMoveSucceeded:: db
 wVramState:: db
 
@@ -1047,9 +1007,15 @@ wMapBlocksAddress:: dw
 wReplacementBlock:: db
 
 NEXTU
+wMonSubmenuCount:: db
+wMonSubmenuItems:: ds NUM_MONMENU_ITEMS + 1
+NEXTU
 
 wHPBarMaxHP:: dw
 wHPBarOldHP:: dw
+wHPBarNewHP:: dw
+wHPBarDelta:: dw
+wHPBarHPDifference:: dw
 
 NEXTU
 
@@ -1065,23 +1031,16 @@ wPlayerEffectivenessVsEnemyMons:: db
 	ds 1
 
 wcdc6:: db
-
-ENDU
-
-UNION
-
-wHPBarNewHP:: dw
-
-NEXTU
-
 wcdc7:: db
 wcdc8:: db
+	ds 1
+wcdca:: db
 
 ENDU
 
-wHPBarDelta::   db
-wcdca:: db
-wHPBarHPDifference:: dw
+
+
+
 
 UNION
 
@@ -1096,53 +1055,14 @@ wcdd4: ds 1
 	ds 1
 ENDU
 
-wcdd7:: ds 1
-wcdd8:: ds 1
-wcdd9:: ds 1
-wcdda:: ds 1
-wcddb:: ds 1
-wcddc:: ds 1
-wcddd:: ds 1
-wcdde:: ds 1
-wcddf:: ds 1
-wcde0:: ds 1
-wcde1:: ds 1
-wcde2:: ds 1
-wcde3:: ds 1
-wcde4:: ds 1
-wcde5:: ds 1
-wcde6:: ds 1
-wcde7:: ds 1	; Level?
-wcde8:: ds 1
-wcde9:: ds 1
-wcdea:: ds 1
-wcdeb:: ds 1
-wcdec:: ds 1
-wcded:: ds 1
-wcdee:: ds 1
-wcdef:: ds 1
+wTempEnemyMonSpecies:: ds 1
+wTempBattleMonSpecies:: ds 1
 
-	ds 1
 
-wcdf1:: ds 1
-wcdf2:: ds 1
-wcdf3:: ds 1
+wEnemyMon:: battle_struct wEnemyMon
+wEnemyMonBaseStats:: ds NUM_EXP_STATS
 
-	ds 1
-
-wcdf5:: ds 1
-
-	ds 1
-
-wcdf7:: ds 1
-
-	ds 1
-
-wcdf9:: ds 1
-
-	ds 4
-
-wcdfe:: ds 1
+wEnemyMonCatchRate:: db
 wcdff:: ds 1
 wBattleMode:: db
 wce01:: ds 1
@@ -1243,6 +1163,8 @@ wce37::
 	db
 
 wce38:: ds 1
+
+wNumFleeAttempts::
 wce39:: ds 1
 
 SECTION "CE3A", WRAM0[$CE3A]

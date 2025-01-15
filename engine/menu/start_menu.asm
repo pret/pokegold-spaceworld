@@ -580,7 +580,7 @@ DebugSelectedItemMenu:
 	db 01
 
 .DebugSelectedItemMenuText
-	db $C0
+	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
 	db 3
 	db "つかう@" ; use
 	db "すてる@" ; toss
@@ -593,7 +593,7 @@ SelectedItemMenu:
 	db 01
 
 .SelectedItemMenuText
-	db $C0
+	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
 	db 2
 	db "つかう@" ; use
 	db "すてる@" ; toss
@@ -935,7 +935,7 @@ SelectedPokemonSubmenu:
 	hlcoord 1, 13
 	lb bc, 4, $12
 	call ClearBox
-	callfar Function24955
+	callfar MonSubmenu
 	call GetCurNick
 	ld a, [wMenuSelection]
 	ld hl, PartyJumpTable
@@ -975,7 +975,7 @@ PartyCheckLessThanTwo:
 	jp PartyPrompt
 
 PartyHeldItem:
-	callfar Function_8f1cb
+	callfar FreezeMonIcons
 	ld hl, .HoldItemMenu
 	call LoadMenuHeader
 	call VerticalMenu
@@ -1582,10 +1582,10 @@ PartySelectionInputs:
 	predef PrintMoveType
 	ld a, [wCurSpecies]
 	dec a
-	ld hl, Data418b8
-	ld bc, $7
+	ld hl, Moves + MOVE_POWER
+	ld bc, MOVE_LENGTH
 	call AddNTimes
-	ld a, BANK(Data418b8)
+	ld a, BANK(Moves)
 	call GetFarByte
 	hlcoord 15, 12
 	cp 2
@@ -1650,7 +1650,7 @@ PartySelectionInputs:
 	call SwapEntries
 	ld a, [wBattleMode]
 	jr z, .NotInBattle
-	ld hl, wca04
+	ld hl, wBattleMonMoves
 	ld bc, $0020
 	ld a, [wCurPartyMon]
 	call AddNTimes

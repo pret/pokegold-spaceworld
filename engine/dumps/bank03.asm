@@ -879,7 +879,7 @@ Functiond8b6:
 	ld a, [wBattleMode]
 	and a
 	jr z, .sub_d91b
-	ld a, [wcdda]
+	ld a, [wEnemyMonItem]
 	ld [de], a
 .sub_d91b
 	inc de
@@ -1002,14 +1002,14 @@ Functiond8b6:
 	inc de
 	jr .sub_da0a
 .sub_d9d3
-	ld a, [wcddf]
+	ld a, [wEnemyMonDVs]
 	ld [de], a
 	inc de
-	ld a, [wcde0]
+	ld a, [wEnemyMonDVs + 1]
 	ld [de], a
 	inc de
 	push hl
-	ld hl, wcde1
+	ld hl, wEnemyMonPP
 	ld b, $04
 .sub_d9e3
 	ld a, [hli]
@@ -1027,23 +1027,23 @@ Functiond8b6:
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	inc de
-	ld a, [wcde7]
+	ld a, [wEnemyMonStatus]
 	ld [de], a
 	inc de
-	ld a, [wcde8]
+	ld a, [wEnemyMonStatus + 1]
 	ld [de], a
 	inc de
-	ld a, [wcde9]
+	ld a, [wEnemyMonHP]
 	ld [de], a
 	inc de
-	ld a, [wcdea]
+	ld a, [wEnemyMonHP + 1]
 	ld [de], a
 	inc de
 .sub_da0a
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .sub_da1c
-	ld hl, wcdeb
+	ld hl, wEnemyMonMaxHP
 	ld bc, $000c
 	call CopyBytes
 	pop hl
@@ -1608,7 +1608,7 @@ Functiondd5c:
 	dec b
 	jr nz, .sub_de17
 .sub_de2a
-	ld hl, wcdd9
+	ld hl, wEnemyMon
 	ld de, wBoxMon1
 	ld bc, $0006
 	call CopyBytes
@@ -1642,7 +1642,7 @@ Functiondd5c:
 	inc de
 	dec b
 	jr nz, .sub_de5c
-	ld hl, wcddf
+	ld hl, wEnemyMonDVs
 	ld b, $07
 .sub_de66
 	ld a, [hli]
@@ -1676,7 +1676,7 @@ Functionde79:
 	scf
 	ret z
 	ld a, [wCurPartySpecies]
-	ld [wcdd7], a
+	ld [wTempEnemyMonSpecies], a
 	xor a
 	ld [wca44], a
 	ld hl, AddPokemonToBox
@@ -2769,11 +2769,11 @@ Function6734:
 
 _UseItem:
 	ld a, [wCurItem]
-	ld [wce37], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	call CopyStringToStringBuffer2
 	ld a, $01
-	ld [wFieldMoveSucceeded], a
+	ld [wItemEffectSucceeded], a
 	ld a, [wCurItem]
 	cp $c4
 	jp nc, Functionf678
@@ -2789,11 +2789,11 @@ _UseItem:
 	jp hl
 
 Tablee7a5:
-	dw Functione8f9
-	dw Functione8f9
+	dw PokeBallEffect	; ITEM_MASTER_BALL
+	dw PokeBallEffect	; ITEM_ULTRA_BALL
 	dw Functionf66f
-	dw Functione8f9
-	dw Functione8f9
+	dw PokeBallEffect	; ITEM_GREAT_BALL
+	dw PokeBallEffect	; ITEM_POKE_BALL
 	dw Functionec95
 	dw Functioneca4
 	dw Functioned00
@@ -2960,50 +2960,64 @@ Tablee7a5:
 	dw Functionf672
 	dw Functionf672
 
-Functione8f9:
+PokeBallEffect:
 	ld a, [wBattleMode]
 	and a
-	jp z, Functionf7dd
+	jp z, IsntTheTimeMessage
 	dec a
-	jp nz, Functionf7ae
+	jp nz, UseBallInTrainerBattle
+
 	ld a, [wPartyCount]
-	cp $06
-	jr nz, .sub_e913
+	cp PARTY_LENGTH
+	jr nz, .room_in_party
+
 	ld a, [wBoxListLength]
-	cp $1e
-	jp z, Functionf7d8
-.sub_e913
+	cp MONS_PER_BOX
+	jp z, Ball_BoxIsFullMessage
+
+.room_in_party
 	xor a
 	ld [wce35], a
-	call Functionec7a
+	call ReturnToBattle_UseBall
+
 	ld hl, ItemUsedText
 	call PrintText
-	ld a, [wcdfe]
+
+	ld a, [wEnemyMonCatchRate]
 	ld b, a
 	ld a, [wCurItem]
-	cp $01
+	cp ITEM_MASTER_BALL
 	jp z, .sub_e9d6
-	cp $02
-	jr z, .sub_e941
-	cp $04
-	jr z, .sub_e936
-	jr .sub_e947
-.sub_e936
+
+	cp ITEM_ULTRA_BALL
+	jr z, .ultra_ball_modifier
+
+	cp ITEM_GREAT_BALL
+	jr z, .great_ball_modifier
+
+	; POKE_BALL
+	jr .regular_ball
+
+; 1.5x modifier
+.great_ball_modifier
 	ld a, b
 	srl a
 	add b
 	ld b, a
-	jr nc, .sub_e947
+	jr nc, .regular_ball
 	ld b, $ff
-	jr .sub_e947
-.sub_e941
+	jr .regular_ball
+
+; 2.0x modifier
+.ultra_ball_modifier
 	sla b
-	jr nc, .sub_e947
+	jr nc, .regular_ball
 	ld b, $ff
-.sub_e947
+
+.regular_ball
 	ld a, b
-	ldh [hQuotient+2], a
-	ld hl, wcde9
+	ldh [hMultiplicand + 2], a
+	ld hl, wEnemyMonHP
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
@@ -3056,7 +3070,7 @@ Functione8f9:
 	ld a, $01
 .sub_e998
 	ld b, a
-	ld a, [wcde7]
+	ld a, [wEnemyMonStatus]
 	and $27
 	ld c, $0a
 	jr nz, .sub_e9a9
@@ -3072,7 +3086,7 @@ Functione8f9:
 .sub_e9af
 	ld d, a
 	push de
-	ld a, [wca03]
+	ld a, [wBattleMonItem]
 	ld hl, Function37e3d
 	ld a, BANK(Function37e3d)
 	call FarCall_hl
@@ -3093,22 +3107,22 @@ Functione8f9:
 	jr z, .sub_e9d6
 	jr nc, .sub_e9d9
 .sub_e9d6
-	ld a, [wcdd9]
+	ld a, [wEnemyMonSpecies]
 .sub_e9d9
 	ld [wce35], a
 	ld c, $14
 	call DelayFrames
 	ld a, [wCurItem]
-	ld [wca5c], a
-	ld de, $0100
+	ld [wBattleAnimParam], a
+	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
-	ld [wccc0], a
+	ld [wFXAnimID], a
 	ld a, d
-	ld [wccc1], a
+	ld [wFXAnimID + 1], a
 	xor a
 	ldh [hBattleTurn], a
 	ld [wMapBlocksAddress], a
-	ld [wcccd], a
+	ld [wNumHits], a
 	predef PlayBattleAnim
 	ld a, [wce35]
 	and a
@@ -3127,7 +3141,7 @@ Functione8f9:
 	ld hl, BallSoCloseText
 	jp z, .sub_eb59
 .sub_ea29
-	ld hl, wcde9
+	ld hl, wEnemyMonHP
 	ld a, [hli]
 	push af
 	ld a, [hli]
@@ -3136,7 +3150,7 @@ Functione8f9:
 	ld a, [hl]
 	push af
 	push hl
-	ld hl, wcdda
+	ld hl, wEnemyMonItem
 	ld a, [hl]
 	push af
 	push hl
@@ -3144,19 +3158,19 @@ Functione8f9:
 	bit 3, [hl]
 	jr z, .sub_ea48
 	ld a, $84
-	ld [wcdd7], a
+	ld [wTempEnemyMonSpecies], a
 	jr .sub_ea55
 .sub_ea48
 	set 3, [hl]
 	ld hl, wcad0
-	ld a, [wcddf]
+	ld a, [wEnemyMonDVs]
 	ld [hli], a
-	ld a, [wcde0]
+	ld a, [wEnemyMonDVs + 1]
 	ld [hl], a
 .sub_ea55
-	ld a, [wcdd7]
+	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a
-	ld a, [wcde6]
+	ld a, [wEnemyMonLevel]
 	ld [wCurPartyLevel], a
 	ld hl, AddPokemonToBox
 	ld a, BANK(AddPokemonToBox)
@@ -3172,7 +3186,7 @@ Functione8f9:
 	ld [hld], a
 	pop af
 	ld [hl], a
-	ld a, [wcdd9]
+	ld a, [wEnemyMonSpecies]
 	ld [wce35], a
 	ld [wCurPartySpecies], a
 	ld [wce37], a
@@ -3202,7 +3216,7 @@ Functione8f9:
 	ld hl, NewDexDataText_2
 	call PrintText
 	call ClearSprites
-	ld a, [wcdd9]
+	ld a, [wEnemyMonSpecies]
 	ld [wce37], a
 	predef Function40ac7
 .sub_eac7
@@ -3354,7 +3368,7 @@ Textec69:
 	line "なまえを　つけますか"
 	done
 
-Functionec7a:
+ReturnToBattle_UseBall:
 	call ClearPalettes
 	ld hl, Call_LoadBattleGraphics
 	ld a, BANK(Call_LoadBattleGraphics)
@@ -3369,7 +3383,7 @@ Functionec7a:
 Functionec95:
 	ld a, [wBattleMode]
 	and a
-	jp nz, Functionf7dd
+	jp nz, IsntTheTimeMessage
 	ld a, BANK(Function86a0)
 	ld hl, Function86a0
 	jp FarCall_hl
@@ -3428,7 +3442,7 @@ Functionecd5:
 Functioned00:
 	ld a, [wBattleMode]
 	and a
-	jp nz, Functionf7dd
+	jp nz, IsntTheTimeMessage
 	ld a, $05
 	call Functionf0cf
 	jr c, .sub_ed32
@@ -3447,7 +3461,7 @@ Functioned00:
 	jr z, .sub_ed2f
 	jp Functionf7a2
 .sub_ed2f
-	call Functionf7e2
+	call WontHaveAnyEffectMessage
 .sub_ed32
 	xor a
 	ld [wFieldMoveSucceeded], a
@@ -3456,7 +3470,7 @@ Functioned00:
 Functioned37:
 	ld a, [wBattleMode]
 	and a
-	jp nz, Functionf7dd
+	jp nz, IsntTheTimeMessage
 	ld a, $01
 	call Functionf0cf
 	jp c, Functionedbe
@@ -3590,7 +3604,7 @@ Dataee38:
 Functionee42:
 	ld a, [wBattleMode]
 	and a
-	jp nz, Functionf7dd
+	jp nz, IsntTheTimeMessage
 	ld a, $01
 	call Functionf0cf
 	jp c, Functionedbe
@@ -3688,7 +3702,7 @@ Functionee42:
 Functionef02:
 	ld a, [wPartyCount]
 	and a
-	jp z, Functionf7dd
+	jp z, IsntTheTimeMessage
 	ld a, $01
 	call Functionf0cf
 	jp c, Functionf100
@@ -3709,14 +3723,14 @@ Functionef17:
 	call Functionf113
 	jr nc, .sub_ef50
 	xor a
-	ld [wca10], a
+	ld [wBattleMonStatus], a
 	ld hl, wca3f
 	res 0, [hl]
 	ld hl, wca3b
 	res 0, [hl]
 	ld a, $24
 	call GetPartyParamLocation
-	ld de, wca14
+	ld de, wBattleMonMaxHP
 	ld bc, $000a
 	call CopyBytes
 	predef Function3e1a4
@@ -3758,7 +3772,7 @@ Dataef77:
 Functionef8c:
 	ld a, [wPartyCount]
 	and a
-	jp z, Functionf7dd
+	jp z, IsntTheTimeMessage
 	ld a, $01
 	call Functionf0cf
 	jp c, Functionf100
@@ -3805,7 +3819,7 @@ Functionefed:
 Functionefee:
 	ld a, [wPartyCount]
 	and a
-	jp z, Functionf7dd
+	jp z, IsntTheTimeMessage
 	ld a, $01
 	call Functionf0cf
 	jp c, Functionf100
@@ -3837,13 +3851,13 @@ Functionefee:
 	ld hl, wca3b
 	res 0, [hl]
 	xor a
-	ld [wca10], a
+	ld [wBattleMonStatus], a
 	ld a, $22
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [wca12], a
+	ld [wBattleMonHP], a
 	ld a, [hld]
-	ld [wca13], a
+	ld [wBattleMonHP + 1], a
 .sub_f049
 	call Functionf0b0
 	ld a, $f5
@@ -3858,7 +3872,7 @@ Functionf05a:
 Functionf05b:
 	ld a, [wPartyCount]
 	and a
-	jp z, Functionf7dd
+	jp z, IsntTheTimeMessage
 	ld a, $01
 	call Functionf0cf
 	jp c, Functionf100
@@ -3882,9 +3896,9 @@ Functionf05b:
 	ld a, $22
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [wca12], a
+	ld [wBattleMonHP], a
 	ld a, [hld]
-	ld [wca13], a
+	ld [wBattleMonHP + 1], a
 .sub_f09e
 	call Functionf0b0
 	ld a, $f5
@@ -3931,7 +3945,7 @@ Functionf0d8:
 	ret
 
 Functionf0fb:
-	call Functionf7e2
+	call WontHaveAnyEffectMessage
 	jr Functionf104
 
 Functionf100:
@@ -4238,7 +4252,7 @@ Functionf2cc:
 Functionf2ce:
 	ld a, [wBattleMode]
 	and a
-	jp nz, Functionf7dd
+	jp nz, IsntTheTimeMessage
 	ld a, b
 	ld [wce2d], a
 	jp Functionf793
@@ -4246,7 +4260,7 @@ Functionf2ce:
 Functionf2dc:
 	ld a, [wBattleMode]
 	and a
-	jp z, Functionf7dd
+	jp z, IsntTheTimeMessage
 	ld hl, wca3e
 	set 0, [hl]
 	jp Functionf793
@@ -4254,7 +4268,7 @@ Functionf2dc:
 Functionf2eb:
 	ld a, [wBattleMode]
 	dec a
-	jp nz, Functionf7dd
+	jp nz, IsntTheTimeMessage
 	ld a, $01
 	ld [wce06], a
 	jp Functionf793
@@ -4262,7 +4276,7 @@ Functionf2eb:
 Functionf2fa:
 	ld a, [wBattleMode]
 	and a
-	jp z, Functionf7dd
+	jp z, IsntTheTimeMessage
 	ld hl, wca3e
 	set 1, [hl]
 	jp Functionf793
@@ -4270,7 +4284,7 @@ Functionf2fa:
 Functionf309:
 	ld a, [wBattleMode]
 	and a
-	jp z, Functionf7dd
+	jp z, IsntTheTimeMessage
 	ld hl, wca3e
 	set 2, [hl]
 	jp Functionf793
@@ -4279,7 +4293,7 @@ Functionf318:
 	ld a, [wBattleMode]
 	and a
 	jr nz, .sub_f327
-	call Functionf7dd
+	call IsntTheTimeMessage
 	ld a, $02
 	ld [wFieldMoveSucceeded], a
 	ret
@@ -4326,11 +4340,11 @@ Functionf355:
 	ld hl, wOTPartyMon1Status
 	call Functionf397
 .sub_f36e
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	ld a, [hl]
 	and b
 	ld [hl], a
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 	ld a, [hl]
 	and b
 	ld [hl], a
@@ -4409,7 +4423,7 @@ Functionf3fd:
 Functionf413:
 	ld a, [wBattleMode]
 	and a
-	jp nz, Functionf7dd
+	jp nz, IsntTheTimeMessage
 	ld hl, Textf424
 	call MenuTextBox
 	call CloseWindow
@@ -4426,14 +4440,14 @@ Textf42f:
 
 Functionf437:
 	call Functionf49f
-	jp c, Functionf7dd
+	jp c, IsntTheTimeMessage
 	ld bc, $0585
 	ld a, $01
 	jr Functionf478
 
 Functionf444:
 	call Functionf49f
-	jp c, Functionf7dd
+	jp c, IsntTheTimeMessage
 .sub_f44a
 	call Random
 	srl a
@@ -4461,7 +4475,7 @@ Dataf46a:
 
 Functionf46e:
 	call Functionf49f
-	jp c, Functionf7dd
+	jp c, IsntTheTimeMessage
 	call Functionf9d9
 	ld a, e
 
@@ -4517,7 +4531,7 @@ Functionf49f:
 Functionf4ca:
 	ld a, [wBattleMode]
 	and a
-	jp nz, Functionf7dd
+	jp nz, IsntTheTimeMessage
 
 Functionf4d1:
 	ld a, [wCurItem]
@@ -4589,7 +4603,7 @@ Functionf550:
 	ld hl, wPartyMon1PP
 	ld bc, $0030
 	call AddNTimes
-	ld de, wca0a
+	ld de, wBattleMonPP
 	ld bc, $0004
 	call CopyBytes
 .sub_f572
@@ -4609,7 +4623,7 @@ Functionf588:
 	ld [wMonType], a
 	call GetMaxPPOfMove
 	ld hl, wPartyMon1Moves
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call GetMthMoveOfNthPartymon
 	ld bc, $0015
 	add hl, bc
@@ -4650,7 +4664,7 @@ Functionf5bd:
 .sub_f5ca
 	push bc
 	ld hl, wPartyMon1Moves
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call GetMthMoveOfNthPartymon
 	ld a, [hl]
 	and a
@@ -4670,7 +4684,7 @@ Functionf5bd:
 	jp nz, Functionf550
 
 Functionf5f0:
-	call Functionf7e2
+	call WontHaveAnyEffectMessage
 
 Functionf5f3:
 	call ClearPalettes
@@ -4710,19 +4724,19 @@ Textf64c:
 Functionf65d:
 	ld a, [wBattleMode]
 	and a
-	jp nz, Functionf7dd
+	jp nz, IsntTheTimeMessage
 	ld hl, TryTeleport
 	ld a, $0b
 	jp FarCall_hl
 
 Functionf66c:
-	jp Functionf7dd
+	jp IsntTheTimeMessage
 
 Functionf66f:
-	jp Functionf7dd
+	jp IsntTheTimeMessage
 
 Functionf672:
-	jp Functionf7dd
+	jp IsntTheTimeMessage
 
 Functionf675:
 	jp Functionfaba
@@ -4730,7 +4744,7 @@ Functionf675:
 Functionf678:
 	ld a, [wBattleMode]
 	and a
-	jp nz, Functionf7dd
+	jp nz, IsntTheTimeMessage
 	ld a, [wCurItem]
 	sub $c9
 	push af
@@ -4855,17 +4869,17 @@ Functionf7a2:
 	call TossItem
 	ret
 
-Functionf7ae:
-	call Functionec7a
-	ld de, $0100
+UseBallInTrainerBattle:
+	call ReturnToBattle_UseBall
+	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
-	ld [wccc0], a
+	ld [wFXAnimID], a
 	ld a, d
-	ld [wccc1], a
+	ld [wFXAnimID + 1], a
 	xor a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	ldh [hBattleTurn], a
-	ld [wcccd], a
+	ld [wNumHits], a
 	predef PlayBattleAnim
 	ld hl, BallBlockedText
 	call PrintText
@@ -4873,32 +4887,32 @@ Functionf7ae:
 	call PrintText
 	jr Functionf7a2
 
-Functionf7d8:
+Ball_BoxIsFullMessage:
 	ld hl, BallBoxFullText
-	jr Functionf7f4
+	jr CantUseItemMessage
 
-Functionf7dd:
+IsntTheTimeMessage:
 	ld hl, ItemOakWarningText
-	jr Functionf7f4
+	jr CantUseItemMessage
 
-Functionf7e2:
+WontHaveAnyEffectMessage:
 	ld hl, ItemWontHaveAnyEffectText
-	jr Functionf7f4
+	jr CantUseItemMessage
 
-Functionf7e7:
+BelongsToSomeoneElseMessage:	; unreferenced
 	ld hl, ItemBelongsToSomeoneElseText
-	jr Functionf7f4
+	jr CantUseItemMessage
 
-Functionf7ec:
+CyclingIsntAllowedMessage:	; unreferenced
 	ld hl, NoCyclingText
-	jr Functionf7f4
+	jr CantUseItemMessage
 
-Functionf7f1:
+CantGetOnYourBikeMessage:	; unreferenced
 	ld hl, ItemCantGetOnText
 
-Functionf7f4:
+CantUseItemMessage:
 	xor a
-	ld [wFieldMoveSucceeded], a
+	ld [wItemEffectSucceeded], a
 	jp PrintText
 
 ItemOakWarningText:
@@ -4992,7 +5006,7 @@ GetMaxPPOfMove:
 	dec a
 	jr z, .got_nonpartymon ; TEMPMON
 
-	ld hl, wca04 ; WILDMON
+	ld hl, wBattleMonMoves ; WILDMON
 
 .got_nonpartymon ; TEMPMON, WILDMON
 	call GetMthMoveOfCurrentMon

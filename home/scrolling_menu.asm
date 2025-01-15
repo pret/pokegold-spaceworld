@@ -59,7 +59,7 @@ Function385a::
 	jr asm_3865
 
 Function385d::
-	callfar Function_8f1cb
+	callfar FreezeMonIcons
 asm_3865:
 	pop hl
 	call MenuTextBox

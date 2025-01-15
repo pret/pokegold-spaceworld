@@ -291,11 +291,11 @@ AddRandomPokemonToBox:
 	xor a
 	ld [wca44], a
 	call RandomUnder246
-	ld [wcdd7], a
+	ld [wTempEnemyMonSpecies], a
 	ld a, $05
 	ld [wCurPartyLevel], a
 	callfar AddPokemonToBox
-	ld a, [wcdd7]
+	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a
 	callfar Functiondd5c
 	pop af

@@ -897,7 +897,7 @@ GetGender::
 	jr z, .wBoxMon
 
 ; else: WildMon
-	ld hl, wcddf
+	ld hl, wEnemyMonDVs
 	jr .DVs
 
 .PartyMon
@@ -1112,7 +1112,7 @@ Function507cf::
 	add hl, bc
 	ld a, [hl]
 	ld [wCurPartySpecies], a
-	ld [wcdd8], a
+	ld [wTempBattleMonSpecies], a
 	and a
 	ret
 

@@ -1506,10 +1506,10 @@ Data34599:
 	dw asm_37936
 	dw asm_3796e
 	dw asm_379a8
-	dw asm_37a11
+	dw BattleCommand_HappinessPower
 	dw asm_37a3a
 	dw sub_3599d
-	dw asm_37a8c
+	dw BattleCommand_FrustrationPower
 	dw asm_37aa6
 	dw asm_37af7
 	dw asm_37b29
@@ -1535,7 +1535,7 @@ asm_34682:
 	jp z, asm_34991
 	xor a
 	ld [wca3a], a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	ld [wAlreadyDisobeyed], a
 	ld [wcad9], a
 	ld a, $a
@@ -1543,16 +1543,16 @@ asm_34682:
 	ldh a, [hBattleTurn]
 	and a
 	jp nz, asm_34809
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	ld a, [hl]
 	and 7
 	jr z, asm_346e5
 	dec a
-	ld [wca10], a
+	ld [wBattleMonStatus], a
 	and 7
 	jr z, asm_346ba
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	ld de, $0104
 	call sub_35f53
 	jr asm_346cd
@@ -1579,7 +1579,7 @@ asm_346cd:
 	jp asm_34991
 
 asm_346e5:
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	bit 5, [hl]
 	jr z, asm_34704
 	ld a, [wCurPlayerSelectedMove]
@@ -1653,7 +1653,7 @@ asm_34772:
 	ld hl, IsConfusedText
 	call PrintText
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	ld de, $0103
 	call sub_35f53
 	call BattleRandom
@@ -1673,7 +1673,7 @@ asm_34796:
 	ld hl, InLoveWithText
 	call PrintText
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	ld de, $010a
 	call sub_35f53
 	call BattleRandom
@@ -1694,7 +1694,7 @@ asm_347bc:
 	jp asm_34991
 
 asm_347ce:
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	bit 6, [hl]
 	jr z, asm_34808
 	call BattleRandom
@@ -1720,7 +1720,7 @@ asm_347e2:
 asm_347fb:
 	res 6, [hl]
 	ld a, 2
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 
 asm_34805:
@@ -1730,18 +1730,18 @@ asm_34808:
 	ret
 
 asm_34809:
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 	ld a, [hl]
 	and 7
 	jr z, asm_3484f
 	dec a
-	ld [wcde7], a
+	ld [wEnemyMonStatus], a
 	and a
 	jr z, asm_3482a
 	ld hl, FastAsleepText
 	call PrintText
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	ld de, $0104
 	call sub_35f53
 	jr asm_3483d
@@ -1766,7 +1766,7 @@ asm_3483d:
 	jp asm_34991
 
 asm_3484f:
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 	bit 5, [hl]
 	jr z, asm_3486e
 	ld a, [wCurEnemySelectedMove]
@@ -1840,7 +1840,7 @@ asm_348de:
 	ld hl, IsConfusedText
 	call PrintText
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	ld de, $0103
 	call sub_35f53
 	call BattleRandom
@@ -1855,7 +1855,7 @@ asm_348de:
 	call sub_35904
 	call sub_3599d
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	ldh [hBattleTurn], a
 	ld de, 1
 	call sub_35f53
@@ -1871,7 +1871,7 @@ asm_3491d:
 	ld hl, InLoveWithText
 	call PrintText
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	ld de, $010a
 	call sub_35f53
 	call BattleRandom
@@ -1892,7 +1892,7 @@ asm_34943:
 	jp asm_34991
 
 asm_34955:
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 	bit 6, [hl]
 	jr z, asm_3498f
 	call BattleRandom
@@ -1918,7 +1918,7 @@ asm_34969:
 asm_34982:
 	res 6, [hl]
 	ld a, 2
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 
 asm_3498c:
@@ -2055,7 +2055,7 @@ sub_34b03:
 	call sub_35904
 	call sub_3599d
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	inc a
 	ldh [hBattleTurn], a
 	ld de, 1
@@ -2162,7 +2162,7 @@ asm_34baa:
 	swap a
 	and 7
 	jr z, asm_34baa
-	ld [wca10], a
+	ld [wBattleMonStatus], a
 	ld hl, BeganToNapText
 	jr asm_34bd6
 
@@ -2185,10 +2185,10 @@ asm_34bd6:
 	jr asm_34c34
 
 asm_34bdb:
-	ld a, [wca05]
+	ld a, [wBattleMonMoves + 1]
 	and a
 	jr z, asm_34bbc
-	ld hl, wca0a
+	ld hl, wBattleMonPP
 	push hl
 	ld a, [hli]
 	ld b, [hl]
@@ -2225,7 +2225,7 @@ asm_34c0a:
 	cp c
 	jr z, asm_34c0a
 	ld [wcd40], a
-	ld hl, wca0a
+	ld hl, wBattleMonPP
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -2235,7 +2235,7 @@ asm_34c0a:
 	ld a, [wcd40]
 	ld c, a
 	ld b, 0
-	ld hl, wca04
+	ld hl, wBattleMonMoves
 	add hl, bc
 	ld a, [hl]
 	ld [wCurPlayerSelectedMove], a
@@ -2497,11 +2497,11 @@ BattleCommand_DoTurn:
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wCurPlayerSelectedMove]
-	ld hl, wca0a
+	ld hl, wBattleMonPP
 	ld de, wPlayerSubStatus3
 	jr z, asm_34d96
 	ld a, [wCurEnemySelectedMove]
-	ld hl, wcde1
+	ld hl, wEnemyMonPP
 	ld de, wEnemySubStatus3
 
 asm_34d96:
@@ -2577,9 +2577,9 @@ asm_34e03:
 	ld [wca39], a
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wcdd9]
+	ld a, [wEnemyMonSpecies]
 	jr nz, asm_34e12
-	ld a, [wca02]
+	ld a, [wBattleMonSpecies]
 
 asm_34e12:
 	ld [wCurSpecies], a
@@ -2687,7 +2687,7 @@ asm_34e98:
 	ret
 
 asm_34e99:
-	ld a, [wca5c]
+	ld a, [wBattleAnimParam]
 	ld b, a
 	inc b
 	ld a, [wce2a]
@@ -2711,17 +2711,17 @@ asm_34ea6:
 	ret
 
 asm_34ec1:
-	ld a, [wca5c]
+	ld a, [wBattleAnimParam]
 	inc a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	ret
 
 asm_34ec9:
-	ld hl, wca20
+	ld hl, wBattleMonType
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, wcdf7
+	ld hl, wEnemyMonType
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
@@ -2730,11 +2730,11 @@ asm_34ec9:
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_34ef2
-	ld hl, wcdf7
+	ld hl, wEnemyMonType
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, wca20
+	ld hl, wBattleMonType
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
@@ -2935,10 +2935,10 @@ Data34ff2:
 Function34fff:
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wcdf7
+	ld hl, wEnemyMonType
 	ld a, [wPlayerMoveStructType]
 	jr z, asm_35010
-	ld hl, wca20
+	ld hl, wBattleMonType
 	ld a, [wEnemyMoveStructType]
 
 asm_35010:
@@ -3050,13 +3050,13 @@ asm_351b0:
 Function351d0:
 	ld hl, wca40
 	ld de, wPlayerMoveStructEffect
-	ld bc, wcde7
+	ld bc, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_351e7
 	ld hl, wca3b
 	ld de, wEnemyMoveStructEffect
-	ld bc, wca10
+	ld bc, wBattleMonStatus
 
 asm_351e7:
 	ld a, [de]
@@ -3331,10 +3331,10 @@ asm_35380:
 	bit 4, a
 	ret z
 	xor a
-	ld [wcccd], a
-	ld [wccc1], a
+	ld [wNumHits], a
+	ld [wFXAnimID + 1], a
 	inc a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	ld a, $a4
 	jp sub_37f23
 
@@ -3343,7 +3343,7 @@ asm_35393:
 	and a
 	jp nz, sub_37f5f
 	inc a
-	ld [wcccd], a
+	ld [wNumHits], a
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStruct]
@@ -3368,7 +3368,7 @@ asm_353b7:
 	cp $68
 	jr z, asm_353cf
 	xor a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 
 asm_353cf:
 	ld e, c
@@ -3376,17 +3376,17 @@ asm_353cf:
 	jp sub_35f53
 
 asm_353d5:
-	ld a, [wca5c]
+	ld a, [wBattleAnimParam]
 	and 1
 	xor 1
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	ld a, [de]
 	cp 1
 	ld e, c
 	ld d, 0
 	jp z, sub_35f53
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	jp sub_35f53
 
 sub_353ef:
@@ -3400,10 +3400,10 @@ asm_353fa:
 	bit 4, a
 	ret z
 	xor a
-	ld [wcccd], a
-	ld [wccc1], a
+	ld [wNumHits], a
+	ld [wFXAnimID + 1], a
 	ld a, 2
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	ld a, $a4
 	jp sub_37f23
 
@@ -3430,7 +3430,7 @@ asm_35427:
 asm_35432:
 	res 6, [hl]
 	ld a, 2
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 	jp asm_357a9
 
@@ -3522,12 +3522,12 @@ asm_354ab:
 	call Function37e2d
 	ldh a, [hBattleTurn]
 	and a
-	ld de, wca12
-	ld hl, wca14
+	ld de, wBattleMonHP
+	ld hl, wBattleMonMaxHP
 	ld a, [wPlayerMoveStruct]
 	jr z, asm_354db
-	ld de, wcde9
-	ld hl, wcdeb
+	ld de, wEnemyMonHP
+	ld hl, wEnemyMonMaxHP
 	ld a, [wEnemyMoveStruct]
 
 asm_354db:
@@ -3546,11 +3546,11 @@ asm_354db:
 	push de
 	push af
 	call sub_37f5f
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_354fb
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 
 asm_354fb:
 	ld a, [hl]
@@ -3736,7 +3736,7 @@ asm_355ee:
 	ld hl, text_35619
 	call PrintText
 	ld a, 1
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 	ldh a, [hBattleTurn]
 	and a
@@ -3938,12 +3938,12 @@ text_356b8:
 	db $58
 
 asm_356c9:
-	ld hl, wcde9
+	ld hl, wEnemyMonHP
 	ld de, wca44
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_356da
-	ld hl, wca12
+	ld hl, wBattleMonHP
 	ld de, wca3f
 
 asm_356da:
@@ -3957,11 +3957,11 @@ asm_356da:
 	call PrintText
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wcdec
+	ld hl, wEnemyMonMaxHP + 1
 	ld bc, wTileMap + 42
 	ld a, 0
 	jr nz, asm_356fd
-	ld hl, wca15
+	ld hl, wBattleMonMaxHP + 1
 	ld bc, wTileMap + 190
 	ld a, 1
 
@@ -3989,10 +3989,10 @@ asm_356fd:
 	xor 1
 	ldh [hBattleTurn], a
 	xor a
-	ld [wcccd], a
-	ld [wccc1], a
+	ld [wNumHits], a
+	ld [wFXAnimID + 1], a
 	inc a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	ld a, $c2
 	call sub_37f23
 	pop af
@@ -4111,7 +4111,7 @@ Function357b7:
 	ld a, [hl]
 	cp $14
 	jr nc, asm_357fe
-	ld hl, wcdef
+	ld hl, wEnemyMonDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -4122,7 +4122,7 @@ Function357b7:
 	rl b
 
 asm_357da:
-	ld hl, wca16
+	ld hl, wBattleMonStats
 	ld a, [wca39]
 	and a
 	jr z, asm_35831
@@ -4141,7 +4141,7 @@ asm_357da:
 	jr asm_35831
 
 asm_357fe:
-	ld hl, wcdf5
+	ld hl, wEnemyMonSpclDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -4152,7 +4152,7 @@ asm_357fe:
 	rl b
 
 asm_3580f:
-	ld hl, wca1c
+	ld hl, wBattleMonSpclAtk
 	ld a, [wca39]
 	and a
 	jr z, asm_35831
@@ -4215,7 +4215,7 @@ sub_3585d:
 	ld a, [hl]
 	cp $14
 	jr nc, asm_358a4
-	ld hl, wca18
+	ld hl, wBattleMonDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -4226,13 +4226,13 @@ sub_3585d:
 	rl b
 
 asm_35880:
-	ld hl, wcded
+	ld hl, wEnemyMonAttack
 	ld a, [wca39]
 	and a
 	jr z, asm_358d7
 	ld hl, wPartyMon1Defense
 	ld a, [wCurBattleMon]
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hli]
 	ld b, a
@@ -4245,7 +4245,7 @@ asm_35880:
 	jr asm_358d7
 
 asm_358a4:
-	ld hl, wca1e
+	ld hl, wBattleMonSpclDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -4256,7 +4256,7 @@ asm_358a4:
 	rl b
 
 asm_358b5:
-	ld hl, wcdf3
+	ld hl, wEnemyMonSpclAtk
 	ld a, [wca39]
 	and a
 	jr z, asm_358d7
@@ -4294,7 +4294,7 @@ asm_358d7:
 
 asm_358f2:
 	ld b, l
-	ld a, [wcde6]
+	ld a, [wEnemyMonLevel]
 	ld e, a
 	ld a, [wca39]
 	and a
@@ -4314,13 +4314,13 @@ sub_35904:
 	ld [hl], a
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wca18
+	ld hl, wBattleMonDefense
 	ld de, wca3f
 	ld a, [wBattleMonLevel]
 	jr z, asm_35921
-	ld hl, wcdef
+	ld hl, wEnemyMonDefense
 	ld de, wca44
-	ld a, [wcde6]
+	ld a, [wEnemyMonLevel]
 
 asm_35921:
 	push af
@@ -4385,12 +4385,12 @@ sub_35952:
 	ret
 
 asm_35976:
-	ld a, [wcde6]
+	ld a, [wEnemyMonLevel]
 	ld [wCurPartyLevel], a
-	ld a, [wcdd9]
+	ld a, [wEnemyMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld hl, wcddf
+	ld hl, wEnemyMonDVs
 	ld de, wTempMonDVs
 	ld a, [hli]
 	ld [de], a
@@ -4589,7 +4589,7 @@ asm_35a9c:
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35aad
-	ld hl, wcde6
+	ld hl, wEnemyMonLevel
 	ld de, wEnemyMoveStructEffect
 
 asm_35aad:
@@ -4628,11 +4628,11 @@ asm_35ace:
 	jr asm_35afd
 
 asm_35adc:
-	ld hl, wcde9
+	ld hl, wEnemyMonHP
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35ae7
-	ld hl, wca12
+	ld hl, wBattleMonHP
 
 asm_35ae7:
 	ld a, [hli]
@@ -4658,11 +4658,11 @@ asm_35afd:
 	ret
 
 asm_35b03:
-	ld hl, wca12
+	ld hl, wBattleMonHP
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35b0e
-	ld hl, wcde9
+	ld hl, wEnemyMonHP
 
 asm_35b0e:
 	xor a
@@ -4851,14 +4851,14 @@ asm_35c0b:
 	call sub_3750b
 	jp nz, asm_35ca9
 	call sub_37f0f
-	ld hl, wca15
-	ld de, wcdec
+	ld hl, wBattleMonMaxHP + 1
+	ld de, wEnemyMonMaxHP + 1
 	call sub_35c59
 	ld a, 1
 	ld [wWhichHPBar], a
 	ld hl, wTileMap + 190
 	predef UpdateHPBar
-	ld hl, wcde9
+	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ld [wcdc6], a
 	ld a, [hli]
@@ -4959,11 +4959,11 @@ text_35caf:
 	db $58
 
 asm_35cc5:
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35cd0
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 
 asm_35cd0:
 	ld a, [hl]
@@ -4974,11 +4974,11 @@ asm_35cd0:
 	ret
 
 asm_35cd9:
-	ld hl, wcdf7
+	ld hl, wEnemyMonType
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35ce4
-	ld hl, wca20
+	ld hl, wBattleMonType
 
 asm_35ce4:
 	ld a, [wca3a]
@@ -5080,7 +5080,7 @@ asm_35d66:
 	jr z, asm_35d95
 	call sub_3750b
 	jp nz, asm_35d95
-	ld hl, wca04
+	ld hl, wBattleMonMoves
 	ld a, [wcd40]
 	ld c, a
 	ld b, 0
@@ -5123,12 +5123,12 @@ text_35d9b:
 asm_35dae:
 	call sub_37f0f
 	ld hl, wPlayerMoveStructEffect
-	ld de, wcde7
+	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35dc2
 	ld hl, wEnemyMoveStructEffect
-	ld de, wca10
+	ld de, wBattleMonStatus
 
 asm_35dc2:
 	push hl
@@ -5148,15 +5148,15 @@ asm_35dc2:
 asm_35dd4:
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wca05
+	ld hl, wBattleMonMoves + 1
 	ld de, wCurPlayerSelectedMove
 	ld bc, wPlayerMoveStruct
-	ld a, [wca10]
+	ld a, [wBattleMonStatus]
 	jr z, asm_35df1
-	ld hl, wcddc
+	ld hl, wEnemyMonMoves + 1
 	ld de, wCurEnemySelectedMove
 	ld bc, wEnemyMoveStruct
-	ld a, [wcde7]
+	ld a, [wEnemyMonStatus]
 
 asm_35df1:
 	and 7
@@ -5248,11 +5248,11 @@ asm_35e5e:
 	jr nz, asm_35ec4
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wcddb
+	ld hl, wEnemyMonMoves
 	ld de, wOTPartyMon1PP
 	ld a, [wCurEnemyMove]
 	jr z, asm_35e7b
-	ld hl, wca04
+	ld hl, wBattleMonMoves
 	ld de, wPartyMon1PP
 	ld a, [wCurPlayerMove]
 
@@ -5337,11 +5337,11 @@ text_35eca:
 	db $58
 
 sub_35ee1:
-	ld de, wcdea
+	ld de, wEnemyMonHP + 1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35eec
-	ld de, wca13
+	ld de, wBattleMonHP + 1
 
 asm_35eec:
 	ld hl, wce2a
@@ -5386,12 +5386,12 @@ asm_35f11:
 	ret
 
 asm_35f13:
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	ld de, wca3b
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35f24
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 	ld de, wca40
 
 asm_35f24:
@@ -5437,9 +5437,9 @@ text_35f3e:
 
 sub_35f53:
 	ld a, e
-	ld [wccc0], a
+	ld [wFXAnimID], a
 	ld a, d
-	ld [wccc1], a
+	ld [wFXAnimID + 1], a
 	ld c, 3
 	call DelayFrames
 	jpfar PlayBattleAnim
@@ -5456,33 +5456,33 @@ sub_35f68:
 	jp nz, asm_3602a
 	ld a, [hld]
 	ld b, a
-	ld a, [wcdea]
+	ld a, [wEnemyMonHP + 1]
 	ld [wHPBarOldHP], a
 	sub b
-	ld [wcdea], a
+	ld [wEnemyMonHP + 1], a
 	ld a, [hl]
 	ld b, a
-	ld a, [wcde9]
+	ld a, [wEnemyMonHP]
 	ld [wcdc6], a
 	sbc b
-	ld [wcde9], a
+	ld [wEnemyMonHP], a
 	jr nc, asm_35fa1
 	ld a, [wcdc6]
 	ld [hli], a
 	ld a, [wHPBarOldHP]
 	ld [hl], a
 	xor a
-	ld hl, wcde9
+	ld hl, wEnemyMonHP
 	ld [hli], a
 	ld [hl], a
 
 asm_35fa1:
-	ld hl, wcdeb
+	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
 	ld [wPlayerEffectivenessVsEnemyMons], a
 	ld a, [hl]
 	ld [wHPBarMaxHP], a
-	ld hl, wcde9
+	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ld [wcdc8], a
 	ld a, [hl]
@@ -5508,16 +5508,16 @@ sub_35fc9:
 	jp nz, asm_3602a
 	ld a, [hld]
 	ld b, a
-	ld a, [wca13]
+	ld a, [wBattleMonHP + 1]
 	ld [wHPBarOldHP], a
 	sub b
-	ld [wca13], a
+	ld [wBattleMonHP + 1], a
 	ld [wHPBarNewHP], a
 	ld b, [hl]
-	ld a, [wca12]
+	ld a, [wBattleMonHP]
 	ld [wcdc6], a
 	sbc b
-	ld [wca12], a
+	ld [wBattleMonHP], a
 	ld [wcdc8], a
 	jr nc, asm_3600c
 	ld a, [wcdc6]
@@ -5525,7 +5525,7 @@ sub_35fc9:
 	ld a, [wHPBarOldHP]
 	ld [hl], a
 	xor a
-	ld hl, wca12
+	ld hl, wBattleMonHP
 	ld [hli], a
 	ld [hl], a
 	ld hl, wHPBarNewHP
@@ -5533,7 +5533,7 @@ sub_35fc9:
 	ld [hl], a
 
 asm_3600c:
-	ld hl, wca14
+	ld hl, wBattleMonMaxHP
 	ld a, [hli]
 	ld [wPlayerEffectivenessVsEnemyMons], a
 	ld a, [hl]
@@ -5579,10 +5579,10 @@ asm_3604c:
 	xor 1
 	ldh [hBattleTurn], a
 	xor a
-	ld [wcccd], a
-	ld [wccc1], a
+	ld [wNumHits], a
+	ld [wFXAnimID + 1], a
 	ld a, 3
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	ld a, $a4
 	call sub_37f23
 	pop af
@@ -5697,12 +5697,12 @@ asm_36101:
 	call Unreferenced_GetMoveName
 	jp CopyStringToStringBuffer2
 
-	ld de, wcde7
+	ld de, wEnemyMonStatus
 	ld bc, wca43
 	ldh a, [hBattleTurn]
 	and a
 	jp z, asm_36119
-	ld de, wca10
+	ld de, wBattleMonStatus
 	ld bc, wca3e
 
 asm_36119:
@@ -5776,12 +5776,12 @@ text_36176:
 	db $58
 
 asm_36184:
-	ld de, wcde7
+	ld de, wEnemyMonStatus
 	ld bc, wca43
 	ldh a, [hBattleTurn]
 	and a
 	jp z, asm_36196
-	ld de, wca10
+	ld de, wBattleMonStatus
 	ld bc, wca3e
 
 asm_36196:
@@ -5876,11 +5876,11 @@ text_3621b:
 	db $58
 
 asm_3622a:
-	ld de, wcde7
+	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36235
-	ld de, wca10
+	ld de, wBattleMonStatus
 
 asm_36235:
 	call sub_3750b
@@ -5946,11 +5946,11 @@ text_3628d:
 	db $58
 
 asm_36299:
-	ld de, wcde7
+	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_362a4
-	ld de, wca10
+	ld de, wBattleMonStatus
 
 asm_362a4:
 	ld hl, text_35649
@@ -6143,13 +6143,13 @@ sub_363a3:
 	inc [hl]
 
 asm_363b3:
-	ld hl, wca12
-	ld de, wca14
+	ld hl, wBattleMonHP
+	ld de, wBattleMonMaxHP
 	ldh a, [hBattleTurn]
 	and a
 	jp z, asm_363c5
-	ld hl, wcde9
-	ld de, wcdeb
+	ld hl, wEnemyMonHP
+	ld de, wEnemyMonMaxHP
 
 asm_363c5:
 	ld bc, wcdc6
@@ -6217,14 +6217,14 @@ asm_3640e:
 
 asm_36426:
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	call sub_3750b
 	ret nz
-	ld de, wcde7
+	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36439
-	ld de, wca10
+	ld de, wBattleMonStatus
 
 asm_36439:
 	ld a, [de]
@@ -6337,14 +6337,14 @@ text_364c7:
 
 asm_364dc:
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	call sub_3750b
 	ret nz
-	ld de, wcde7
+	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_364ef
-	ld de, wca10
+	ld de, wBattleMonStatus
 
 asm_364ef:
 	ld a, [de]
@@ -6413,14 +6413,14 @@ text_36546:
 
 asm_36555:
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	call sub_3750b
 	ret nz
-	ld de, wcde7
+	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36568
-	ld de, wca10
+	ld de, wBattleMonStatus
 
 asm_36568:
 	ld a, [de]
@@ -6510,12 +6510,12 @@ asm_365f1:
 	cp 4
 	jr nc, asm_36661
 	push hl
-	ld hl, wca17
+	ld hl, wBattleMonAttack + 1
 	ld de, wca93
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36609
-	ld hl, wcdee
+	ld hl, wEnemyMonAttack + 1
 	ld de, wca9e
 
 asm_36609:
@@ -6739,12 +6739,12 @@ asm_3674c:
 	jr nc, asm_367b9
 	push hl
 	push de
-	ld hl, wcdee
+	ld hl, wEnemyMonAttack + 1
 	ld de, wca9e
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36765
-	ld hl, wca17
+	ld hl, wBattleMonAttack + 1
 	ld de, wca93
 
 asm_36765:
@@ -7083,7 +7083,7 @@ asm_3691f:
 	inc a
 	ld [bc], a
 	ld a, 1
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37eec
 	jp asm_357a9
 
@@ -7159,7 +7159,7 @@ asm_3699d:
 	cp b
 	jr nc, asm_369bc
 	xor a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 	ld a, [wPlayerMoveStruct]
 	cp $64
@@ -7170,7 +7170,7 @@ asm_369bc:
 	ld hl, sub_3d3f4
 	call CallFromBank0F
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	inc a
 	ld [wce06], a
 	ld a, [wPlayerMoveStruct]
@@ -7178,7 +7178,7 @@ asm_369bc:
 
 asm_369cf:
 	xor a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 	ld hl, text_374c8
 	ld a, [wPlayerMoveStruct]
@@ -7208,7 +7208,7 @@ asm_369f7:
 	cp b
 	jr nc, asm_36a16
 	xor a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 	ld a, [wEnemyMoveStruct]
 	cp $64
@@ -7219,7 +7219,7 @@ asm_36a16:
 	ld hl, sub_3d3f4
 	call CallFromBank0F
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	inc a
 	ld [wce06], a
 	ld a, [wEnemyMoveStruct]
@@ -7227,7 +7227,7 @@ asm_36a16:
 
 asm_36a29:
 	xor a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 	ld hl, text_374c8
 	ld a, [wEnemyMoveStruct]
@@ -7238,7 +7238,7 @@ asm_36a29:
 asm_36a3e:
 	push af
 	ld a, 1
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 	ld c, 20
 	call DelayFrames
@@ -7513,13 +7513,13 @@ asm_36ba0:
 	and $7f
 	cp $a
 	jr c, asm_36be0
-	ld hl, wca1b
-	ld de, wcdf2
+	ld hl, wBattleMonSpeed + 1
+	ld de, wEnemyMonSpeed + 1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36bc0
-	ld hl, wcdf2
-	ld de, wca1b
+	ld hl, wEnemyMonSpeed + 1
+	ld de, wBattleMonSpeed + 1
 
 asm_36bc0:
 	ld a, [de]
@@ -7568,9 +7568,9 @@ asm_36bf6:
 
 asm_36c02:
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	inc a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 	ld hl, wPlayerSubStatus3
 	ld de, wPlayerMoveStruct
@@ -7894,10 +7894,10 @@ asm_36d9b:
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStruct]
-	ld hl, wca14
+	ld hl, wBattleMonMaxHP
 	jr z, asm_36dac
 	ld a, [wEnemyMoveStruct]
-	ld hl, wcdeb
+	ld hl, wEnemyMonMaxHP
 
 asm_36dac:
 	ld d, a
@@ -8074,12 +8074,12 @@ asm_36e9e:
 	jp asm_37494
 
 asm_36ead:
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 	ld de, wPlayerMoveStructType
 	ldh a, [hBattleTurn]
 	and a
 	jp z, asm_36ebf
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	ld de, wEnemyMoveStructType
 
 asm_36ebf:
@@ -8148,13 +8148,13 @@ asm_36f2f:
 
 asm_36f35:
 	call sub_37f5f
-	ld hl, wca14
+	ld hl, wBattleMonMaxHP
 	ld de, wcabc
 	ld bc, wca3e
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36f4f
-	ld hl, wcdeb
+	ld hl, wEnemyMonMaxHP
 	ld de, wcabd
 	ld bc, wca43
 
@@ -8189,9 +8189,9 @@ asm_36f4f:
 	add a
 	jr c, asm_36f89
 	xor a
-	ld [wcccd], a
-	ld [wccc1], a
-	ld [wca5c], a
+	ld [wNumHits], a
+	ld [wFXAnimID + 1], a
+	ld [wBattleAnimParam], a
 	ld a, $a4
 	call sub_37f23
 	jr asm_36f91
@@ -8330,12 +8330,12 @@ asm_3701b:
 	ld a, [wca3a]
 	and a
 	jr nz, asm_37055
-	ld hl, wca04
+	ld hl, wBattleMonMoves
 	ld de, wCurEnemyMove
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_37035
-	ld hl, wcddb
+	ld hl, wEnemyMonMoves
 	ld de, wCurPlayerMove
 
 asm_37035:
@@ -8384,12 +8384,12 @@ asm_37069:
 	and a
 	jr nz, asm_3709a
 	ld hl, wca43
-	ld de, wcde9
+	ld de, wEnemyMonHP
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_37080
 	ld hl, wca3e
-	ld de, wca12
+	ld de, wBattleMonHP
 
 asm_37080:
 	ld a, [de]
@@ -8455,13 +8455,13 @@ asm_370c8:
 	and a
 	jr nz, asm_37132
 	ld de, wca50
-	ld hl, wcddb
+	ld hl, wEnemyMonMoves
 	ld bc, wCurEnemyMove
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_370e5
 	ld de, wca48
-	ld hl, wca04
+	ld hl, wBattleMonMoves
 	ld bc, wCurPlayerMove
 
 asm_370e5:
@@ -8484,9 +8484,9 @@ asm_370f7:
 	jr nz, asm_370f7
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wcde1
+	ld hl, wEnemyMonPP
 	jr z, asm_37107
-	ld hl, wca0a
+	ld hl, wBattleMonPP
 
 asm_37107:
 	ld b, 0
@@ -8534,7 +8534,7 @@ BattleCommand_PayDay:
 	and a
 	ld a, [wBattleMonLevel]
 	jr z, .ok
-	ld a, [wcde6]
+	ld a, [wEnemyMonLevel]
 
 .ok:
 	add a
@@ -8557,8 +8557,8 @@ CoinsScatteredText:
 
 
 asm_37180:
-	ld hl, wcdf7
-	ld de, wca20
+	ld hl, wEnemyMonType
+	ld de, wBattleMonType
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3718f
@@ -8612,17 +8612,17 @@ asm_371ba:
 	ld hl, wcab1
 	call sub_37224
 	ld hl, wca93
-	ld de, wca16
+	ld de, wBattleMonAttack
 	call sub_3722b
 	ld hl, wca9e
-	ld de, wcded
+	ld de, wEnemyMonAttack
 	call sub_3722b
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 	ld de, wCurEnemySelectedMove
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_371e9
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	dec de
 
 asm_371e9:
@@ -8710,12 +8710,12 @@ text_37234:
 asm_3724b:
 	ldh a, [hBattleTurn]
 	and a
-	ld de, wca12
-	ld hl, wca14
+	ld de, wBattleMonHP
+	ld hl, wBattleMonMaxHP
 	ld a, [wPlayerMoveStruct]
 	jr z, asm_37262
-	ld de, wcde9
-	ld hl, wcdeb
+	ld de, wEnemyMonHP
+	ld hl, wEnemyMonMaxHP
 	ld a, [wEnemyMoveStruct]
 
 asm_37262:
@@ -8734,11 +8734,11 @@ asm_37262:
 	push de
 	push af
 	call sub_37f5f
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_37282
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 
 asm_37282:
 	ld a, [hl]
@@ -8841,14 +8841,14 @@ text_372f2:
 	db $58
 
 asm_37305:
-	ld hl, wca02
-	ld de, wcdd9
+	ld hl, wBattleMon
+	ld de, wEnemyMon
 	ld bc, wca44
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, asm_37320
-	ld hl, wcdd9
-	ld de, wca02
+	ld hl, wEnemyMon
+	ld de, wBattleMon
 	ld bc, wca3f
 	xor a
 	ld [wcd40], a
@@ -8867,10 +8867,10 @@ asm_37320:
 
 asm_37334:
 	xor a
-	ld [wcccd], a
-	ld [wccc1], a
+	ld [wNumHits], a
+	ld [wFXAnimID + 1], a
 	ld a, 1
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	bit 4, [hl]
 	push af
 	ld a, $a4
@@ -8886,10 +8886,10 @@ asm_37353:
 
 asm_3735b:
 	xor a
-	ld [wcccd], a
-	ld [wccc1], a
+	ld [wNumHits], a
+	ld [wFXAnimID + 1], a
 	ld a, 2
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	pop af
 	ld a, $a4
 	call nz, sub_37f23
@@ -9268,18 +9268,18 @@ asm_37517:
 
 asm_3751b:
 	ld a, 5
-	ld [wcccd], a
+	ld [wNumHits], a
 	ld c, 3
 	call DelayFrames
 	ld a, 1
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	ld de, wca3e
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3753e
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 	ld de, wca43
 
 asm_3753e:
@@ -9449,7 +9449,7 @@ sub_37637:
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, wca03
+	ld hl, wBattleMonItem
 	ret
 
 sub_37649:
@@ -9459,7 +9459,7 @@ sub_37649:
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, wcdda
+	ld hl, wEnemyMonItem
 	ret
 
 text_3765b:
@@ -9526,12 +9526,12 @@ asm_376a0:
 
 asm_376a6:
 	ld hl, wca40
-	ld de, wcde7
+	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_376b7
 	ld hl, wca3b
-	ld de, wca10
+	ld de, wBattleMonStatus
 
 asm_376b7:
 	call sub_37e0d
@@ -9575,7 +9575,7 @@ asm_376e6:
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, wca10
+	ld hl, wBattleMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3770d
@@ -9585,7 +9585,7 @@ asm_376e6:
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, wcde7
+	ld hl, wEnemyMonStatus
 
 asm_3770d:
 	bit 5, [hl]
@@ -10098,14 +10098,14 @@ asm_379a4:
 	ret
 
 asm_379a8:
-	ld a, [wca02]
+	ld a, [wBattleMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	xor a
 	ld [wMonType], a
 	callfar GetGender
 	push af
-	ld a, [wcdd9]
+	ld a, [wEnemyMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, 3
@@ -10155,27 +10155,29 @@ asm_37a0b:
 	call sub_37f5f
 	jp Function37499
 
-asm_37a11:
+BattleCommand_HappinessPower::
 	push bc
-	ld hl, wca0e
+	ld hl, wBattleMonHappiness
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_37a1d
-	ld hl, wcde5
+	jr z, .got_happiness
+	ld hl, wEnemyMonHappiness
 
-asm_37a1d:
+.got_happiness:
 	xor a
-	ldh [hQuotient], a
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
-	ldh [hQuotient + 2], a
-	ld a, $a
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplicand + 2], a
+	ld a, 10
+	ldh [hMultiplier], a
 	call Multiply
-	ld a, $19
-	ldh [hPrintNumDivisor], a
+
+	ld a, 25
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
+
 	ldh a, [hQuotient + 2]
 	ld d, a
 	pop bc
@@ -10203,7 +10205,7 @@ asm_37a49:
 
 asm_37a55:
 	xor a
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 	ld d, [hl]
 	pop bc
@@ -10212,7 +10214,7 @@ asm_37a55:
 asm_37a5f:
 	pop bc
 	ld a, 1
-	ld [wca5c], a
+	ld [wBattleAnimParam], a
 	call sub_37f0f
 	ldh a, [hBattleTurn]
 	push af
@@ -10233,25 +10235,25 @@ Data37a85:
 	db $78
 	db $ff
 
-asm_37a8c:
+BattleCommand_FrustrationPower::
 	push bc
-	ld hl, wca0e
+	ld hl, wBattleMonHappiness
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_37a98
-	ld hl, wcde5
+	jr z, .got_happiness
+	ld hl, wEnemyMonHappiness
 
-asm_37a98:
+.got_happiness:
 	ld a, [hl]
-	cp $46
-	ld d, $1e
-	jr nc, asm_37aa4
+	cp 70
+	ld d, 30
+	jr nc, .happiness_higher_than_70
 	ld b, a
-	ld a, $64
+	ld a, 100
 	sub b
 	ld d, a
 
-asm_37aa4:
+.happiness_higher_than_70:
 	pop bc
 	ret
 
@@ -10651,12 +10653,12 @@ asm_37d21:
 	and a
 	ret nz
 	push bc
-	ld hl, wca08
+	ld hl, wBattleMonDVs
 	ld bc, wPlayerMoveStructType
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_37d38
-	ld hl, wcddf
+	ld hl, wEnemyMonDVs
 	ld bc, wEnemyMoveStructType
 
 asm_37d38:
@@ -10780,11 +10782,11 @@ asm_37dd5:
 sub_37ddb:
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wca0a
+	ld hl, wBattleMonPP
 	ld de, wPartyMon1PP
 	ld a, [wcd40]
 	jr z, asm_37df2
-	ld hl, wcde1
+	ld hl, wEnemyMonPP
 	ld de, wOTPartyMon1PP
 	ld a, [wcac7]
 
@@ -10800,7 +10802,7 @@ asm_37df2:
 	and a
 	ld a, [wCurBattleMon]
 	jr z, asm_37e05
-	ld a, [wcde7]
+	ld a, [wEnemyMonStatus]
 
 asm_37e05:
 	ld bc, $30
@@ -10822,22 +10824,22 @@ asm_37e19:
 	ret
 
 Function37e1d:
-	ld hl, wca03
+	ld hl, wBattleMonItem
 	ldh a, [hBattleTurn]
 	and a
 	jp z, asm_37e29
-	ld hl, wcdda
+	ld hl, wEnemyMonItem
 
 asm_37e29:
 	ld b, [hl]
 	jp Function37e3d
 
 Function37e2d:
-	ld hl, wcdda
+	ld hl, wEnemyMonItem
 	ldh a, [hBattleTurn]
 	and a
 	jp z, asm_37e39
-	ld hl, wca03
+	ld hl, wBattleMonItem
 
 asm_37e39:
 	ld b, [hl]
@@ -10849,7 +10851,7 @@ Function37e3d:
 	ret z
 	push hl
 	push bc
-	ld hl, ItemAttributes + 3
+	ld hl, ItemAttributes + ITEMATTR_PARAM
 	dec a
 	ld c, a
 	ld b, 0
@@ -10878,11 +10880,11 @@ Function37e60:
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wOTPartyMon1Item
-	ld de, wcdda
+	ld de, wEnemyMonItem
 	ld a, [wca36]
 	jr z, asm_37e7a
 	ld hl, wPartyMon1Item
-	ld de, wca03
+	ld de, wBattleMonItem
 	ld a, [wCurBattleMon]
 
 asm_37e7a:
@@ -10992,7 +10994,7 @@ text_37ed5:
 
 sub_37eec:
 	xor a
-	ld [wccc1], a
+	ld [wFXAnimID + 1], a
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStruct]
@@ -11002,7 +11004,7 @@ sub_37eec:
 asm_37efb:
 	and a
 	ret z
-	ld [wccc0], a
+	ld [wFXAnimID], a
 	ldh a, [hBattleTurn]
 	and a
 	ld a, 6
@@ -11010,13 +11012,13 @@ asm_37efb:
 	ld a, 3
 
 asm_37f09:
-	ld [wcccd], a
+	ld [wNumHits], a
 	jp asm_37f26
 
 sub_37f0f:
 	xor a
-	ld [wcccd], a
-	ld [wccc1], a
+	ld [wNumHits], a
+	ld [wFXAnimID + 1], a
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStruct]
@@ -11028,7 +11030,7 @@ asm_37f21:
 	ret z
 
 sub_37f23:
-	ld [wccc0], a
+	ld [wFXAnimID], a
 
 asm_37f26:
 	push hl
@@ -11042,11 +11044,11 @@ asm_37f26:
 
 sub_37f35:
 	ld a, e
-	ld [wccc0], a
+	ld [wFXAnimID], a
 	ld a, d
-	ld [wccc1], a
+	ld [wFXAnimID + 1], a
 	xor a
-	ld [wcccd], a
+	ld [wNumHits], a
 	push hl
 	push de
 	push bc

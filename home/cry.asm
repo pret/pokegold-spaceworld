@@ -64,7 +64,7 @@ GetCryIndex::
 	push af
 	ld a, d
 	ld [wce37], a
-	farcall Function40b45
+	farcall ConvertMon_2to1
 	ld a, [wce37]
 	dec a
 	ld c, a

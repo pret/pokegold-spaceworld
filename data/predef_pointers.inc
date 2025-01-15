@@ -60,7 +60,7 @@ GiveItemPredef::
 	add_predef Function28d6e
 	add_predef Function40ac7
 	add_predef Function40000
-	add_predef Function40b5c ; 30
+	add_predef ConvertMon_1to2 ; 30
 	add_predef CopyMonToTempMon
 	add_predef ListMoves
 	add_predef Function50bcd

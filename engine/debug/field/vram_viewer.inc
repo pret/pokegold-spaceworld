@@ -159,7 +159,7 @@ FieldDebug_DoVRAMViewer:
 	call .LoadPokemon
 	ld de, $9310
 	ld a, 3
-	ld [wcdd8], a
+	ld [wTempBattleMonSpecies], a
 	predef Function3f04a
 	ret
 

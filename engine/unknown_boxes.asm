@@ -10,12 +10,12 @@ Function1130b:
 	cp PARTY_LENGTH
 	jr c, .bigjump
 	ld a, [wBoxListLength]
-	cp $1E
+	cp MONS_PER_BOX
 	jr nc, .fullbox
 	xor a
 	ld [wca44], a
 	ld a, [wCurPartySpecies]
-	ld [wcdd7], a
+	ld [wTempEnemyMonSpecies], a
 	callfar AddPokemonToBox
 	call RecievePokemon
 	predef Functiondd5c

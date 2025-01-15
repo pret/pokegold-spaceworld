@@ -217,8 +217,7 @@ asm_2d4a3:
 	ld [wCurSpecies], a
 	ld b, a
 	ld hl, $c395
-	ld a, $3f
-	call Predef
+	predef PrintMoveType
 	ld hl, $c3b9
 	call Function2d663
 	ld hl, $c39b
@@ -226,10 +225,10 @@ asm_2d4a3:
 	call PlaceString
 	ld a, [wCurSpecies]
 	dec a
-	ld hl, Data418b8
-	ld bc, $7
+	ld hl, Moves + MOVE_POWER
+	ld bc, MOVE_LENGTH
 	call AddNTimes
-	ld a, BANK(Data418b8)
+	ld a, BANK(Moves)
 	call GetFarByte
 	ld hl, $c3a0
 	cp $2

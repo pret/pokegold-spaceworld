@@ -51,14 +51,7 @@ DEF NUM_MAP_PALETTES EQU const_value
 	const FISHGROUP_REMORAID
 	const FISHGROUP_QWILFISH_NO_SWARM
 
-; connection directions (see data/maps/data.asm)
-	const_def
-	const EAST_F
-	const WEST_F
-	const SOUTH_F
-	const NORTH_F
-
-; wMapConnections
+; wMapConnections / connection directions (see data/maps/data.asm)
 	const_def
 	shift_const EAST
 	shift_const WEST

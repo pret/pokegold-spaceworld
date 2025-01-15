@@ -3029,7 +3029,7 @@ Function6445:
 	call CopyBytes
 .sub_645d
 	ld hl, wPartyMon1Moves
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, h
@@ -3080,12 +3080,12 @@ Function6445:
 	jp nz, .sub_64eb
 	ld h, d
 	ld l, e
-	ld de, wca04
+	ld de, wBattleMonMoves
 	ld bc, $0004
 	call CopyBytes
 	ld bc, $0011
 	add hl, bc
-	ld de, wca0a
+	ld de, wBattleMonPP
 	ld bc, $0004
 	call CopyBytes
 	jp .sub_64eb
