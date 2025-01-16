@@ -52,16 +52,16 @@
 ; used by PokemonActionSubmenu (see engine/menus/start_menu.asm)
 	const_def 1
 	; moves
-	const MONMENUITEM_CUT        ; 1
-	const MONMENUITEM_FLY        ; 2
-	const MONMENUITEM_SURF       ; 3
-	const MONMENUITEM_STRENGTH   ; 4
-	const MONMENUITEM_FLASH		 ; 5
-	const MONMENUITEM_WHIRLPOOL  ; 6
-	const MONMENUITEM_BOUNCE	 ; 7
-	const MONMENUITEM_DIG        ; 8
-	const MONMENUITEM_TELEPORT   ; 9
-	const MONMENUITEM_SOFTBOILED ; 10
+	const MONMENUITEM_CUT			; 1
+	const MONMENUITEM_FLY			; 2
+	const MONMENUITEM_SURF			; 3
+	const MONMENUITEM_STRENGTH		; 4
+	const MONMENUITEM_FLASH			; 5
+	const MONMENUITEM_WHIRLPOOL		; 6
+	const MONMENUITEM_BOUNCE		; 7
+	const MONMENUITEM_DIG			; 8
+	const MONMENUITEM_TELEPORT		; 9
+	const MONMENUITEM_SOFTBOILED	; 10
 	; options
 	const MONMENUITEM_STATS      ; 11
 	const MONMENUITEM_SWITCH     ; 12

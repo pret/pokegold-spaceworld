@@ -125,7 +125,7 @@ ROMX $02
 	"gfx.asm@Mon Nest Icon"
 
 	"data/maps/flypoints.asm"
-	"data/maps/landmarks.asm@LandmarkPositions"
+	"data/maps/landmarks.asm"
 
 	"engine/trainer_gear.asm@OpenTrainerGear"
 	"gfx.asm@Trainer Gear GFX"

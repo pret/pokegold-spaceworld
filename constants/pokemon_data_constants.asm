@@ -103,9 +103,6 @@ DEF PARTY_LENGTH EQU 6
 ; The Japanese version fits more Pokémon into the boxes, but has less boxes total
 DEF MONS_PER_BOX EQU 30
 DEF NUM_BOXES EQU 10
-; English version:
-;DEF MONS_PER_BOX EQU 20
-;DEF NUM_BOXES    EQU 14
 
 ; hall of fame
 DEF HOF_MON_LENGTH EQUS "(wHallOfFamePokemonListMon1End - wHallOfFamePokemonListMon1)"

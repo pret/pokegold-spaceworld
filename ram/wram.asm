@@ -375,25 +375,9 @@ wBattleAnimEnd::
 
 	ds $1a3 ; TODO
 
-;wEnemyMoveStruct:: ds 1
-;wEnemyMoveStructEffect:: ds 1
-;wEnemyMoveStructPower:: ds 1
-;wEnemyMoveStructType:: ds 1
-;wEnemyMoveStructAccuracy:: ds 1
-;wEnemyMoveStructPP:: ds 1
-;wEnemyMoveStructEffectChance:: ds 1
-
 wBattle::
 wEnemyMoveStruct:: move_struct wEnemyMoveStruct
 wPlayerMoveStruct:: move_struct wPlayerMoveStruct
-
-;wPlayerMoveStruct:: ds 1
-;wPlayerMoveStructEffect:: ds 1
-;wPlayerMoveStructPower:: ds 1
-;wPlayerMoveStructType:: ds 1
-;wPlayerMoveStructAccuracy:: ds 1
-;wPlayerMoveStructPP:: ds 1
-;wPlayerMoveStructEffectChance:: ds 1
 
 wEnemyMonNickname:: ds 6
 wBattleMonNickname:: ds 6
@@ -801,7 +785,7 @@ wSpriteDecodeTable0Ptr:: ds 2
 wSpriteDecodeTable1Ptr:: ds 2
 
 wFXAnimID:: dw
-;wccc1:: ds 1
+
 wccc2:: ds 1
 wccc3:: ds 1
 wccc4:: ds 1
