@@ -152,7 +152,7 @@ CutScript:
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
 	ld [wMonType], a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call GetNick
 	call CopyStringToStringBuffer2
 	ld hl, Text_CutItDown
@@ -242,7 +242,7 @@ SurfScript:
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
 	ld [wMonType], a
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call GetNick
 	call CopyStringToStringBuffer2
 	ld hl, Text_UsedSurf
@@ -273,7 +273,7 @@ MovePlayerIntoWater:
 	ld hl, wMovementBuffer
 	call LoadMovementDataPointer
 .get_movement_direction
-	ld a, [wPlayerWalking]
+	ld a, [wPlayerDirection]
 	srl a
 	srl a
 	ld e, a
@@ -328,7 +328,7 @@ TryFly:
 ShowFlyMap:
 	call LoadStandardMenuHeader
 	call ClearSprites
-	callab FlyMap
+	callfar FlyMap
 	call ClearPalettes
 	call GetMemSGBLayout
 	call ExitMenu
@@ -375,7 +375,7 @@ Text_CantUseFlyHere:
 FlyScript:
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
-	jpab Functionfcc24
+	jpfar Functionfcc24
 
 
 DigFunction:
@@ -441,7 +441,7 @@ DigScript:
 	call CopyBytes
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
-	jpab Functionfcc24
+	jpfar Functionfcc24
 
 EmptyFunctiond2da:
 	ret
@@ -487,7 +487,7 @@ CheckIfSpawnPoint:
 	ld d, a
 	ld a, [wLastSpawnMapNumber]
 	ld e, a
-	callab IsSpawnPoint
+	callfar IsSpawnPoint
 	jr c, .not_spawn
 	ld hl, Text_CantFindDestination
 	call MenuTextBoxBackup
@@ -534,7 +534,7 @@ TeleportScript:
 	call Function1fea
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
-	jpab Functionfcc24
+	jpfar Functionfcc24
 
 Text_ReturnToLastMonCenter:
 	text "さいごに　たちよった"

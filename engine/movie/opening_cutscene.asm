@@ -10,7 +10,7 @@ OpeningCutscene::
 	ret
 
 .Init:
-	callba InitEffectObject
+	farcall InitEffectObject
 	xor a
 	ld [wIntroJumptableIndex], a
 	ldh [hBGMapMode], a
@@ -27,14 +27,14 @@ OpeningCutscene::
 	bit 7, a
 	jr nz, .Finish
 
-	callba EffectObjectJumpNoDelay
+	farcall EffectObjectJumpNoDelay
 	call IntroSceneJumper
 	call DelayFrame
 	and a
 	ret
 
 .Finish:
-	callab InitEffectObject
+	callfar InitEffectObject
 	call ClearSprites
 	call DelayFrame
 	xor a
@@ -80,7 +80,7 @@ IntroScene1:
 	ld c, 0
 	call GetSGBLayout
 
-	callab InitEffectObject
+	callfar InitEffectObject
 
 	call Intro_ResetLYOverrides
 
@@ -330,7 +330,7 @@ IntroScene3_Jumper:
 	call Intro_InitMagikarps
 	ret
 .load_palettes
-	callab LoadMagikarpPalettes_Intro
+	callfar LoadMagikarpPalettes_Intro
 	ret
 
 .scene3_5:
@@ -547,7 +547,7 @@ Intro_InitSineLYOverrides:
 .loop
 	push af
 	push de
-	callba BattleAnim_Sine_e
+	farcall BattleAnim_Sine_e
 	ld a, e
 	ld [bc], a
 	inc bc
@@ -602,7 +602,7 @@ IntroScene6:
 	ld b, SGB_GS_INTRO
 	ld c, 1
 	call GetSGBLayout
-	callab InitEffectObject
+	callfar InitEffectObject
 	call Intro_ResetLYOverrides
 	ld hl, vChars2
 	ld de, IntroForestGFX
@@ -700,7 +700,7 @@ IntroScene8:
 	ld [wIntroFrameCounter1], a
 	ld hl, wIntroJumptableIndex
 	inc [hl]
-	callab LoadForestPalettes2_Intro
+	callfar LoadForestPalettes2_Intro
 	ret
 
 IntroScene9:
@@ -791,7 +791,7 @@ IntroScene10:
 	ld b, SGB_GS_INTRO
 	ld c, 2
 	call GetSGBLayout
-	callab InitEffectObject
+	callfar InitEffectObject
 	call Intro_ResetLYOverrides
 	call Intro_BlankTilemapAndBGMap
 
@@ -1057,11 +1057,11 @@ Intro_FlashSilhouette:
 	ret
 
 Intro_LoadVenusaurPalette:
-	callab LoadVenusaurPalettes_Intro
+	callfar LoadVenusaurPalettes_Intro
 	ret
 
 Intro_LoadCharizardPalette:
-	callab LoadCharizardPalettes_Intro
+	callfar LoadCharizardPalettes_Intro
 	ret
 
 DrawIntroCharizardGraphic:

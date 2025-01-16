@@ -58,7 +58,7 @@ SGB_BattleColors:
 	call CopyBytes
 
 	ld a, [wca3f]
-	ld hl, wca02
+	ld hl, wBattleMon
 	call Function9567
 	jr c, .sub_92f7
 
@@ -67,7 +67,7 @@ SGB_BattleColors:
 .sub_92f7
 	ld b, a
 	ld a, [wca44]
-	ld hl, wcdd7
+	ld hl, wTempEnemyMonSpecies
 	call Function9567
 	jr c, .sub_9308
 	ld e, $01
@@ -120,7 +120,7 @@ SGB_StatsScreenHPPals:
 	ld de, wcce1
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	call Function956d
 	call Function957e
 	push af
@@ -145,7 +145,7 @@ SGB_Pokedex:
 	ld de, wcce1
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	call Function956d
 	ld hl, wcce4
 	ld [hl], a
@@ -264,7 +264,7 @@ SGB12:
 	call GetMapPalsIndex
 	ld hl, wcce2
 	ld [hl], a
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	call Function956d
 	ld hl, wcce4
 	ld [hl], a
@@ -436,7 +436,7 @@ Function957e:
 	push bc
 	push af
 	ld hl, wPartyMon1DVs
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld bc, $0030
 	call AddNTimes
 	call Function95b0
@@ -490,11 +490,11 @@ Function95b0:
 	ret
 
 Function95cc:
-	ld hl, wcddf
+	ld hl, wEnemyMonDVs
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .sub_95d7
-	ld hl, wca08
+	ld hl, wBattleMonDVs
 .sub_95d7
 	call Function95b0
 	ld hl, wcae1

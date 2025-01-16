@@ -59,7 +59,7 @@ Function385a::
 	jr asm_3865
 
 Function385d::
-	callab Function_8f1cb
+	callfar FreezeMonIcons
 asm_3865:
 	pop hl
 	call MenuTextBox
@@ -73,7 +73,7 @@ Function3872::
 	jr asm_387d
 
 Function3875::
-	callab PlaySpriteAnimationsAndDelayFrame
+	callfar PlaySpriteAnimationsAndDelayFrame
 asm_387d:
 	pop bc
 	call GetJoypad

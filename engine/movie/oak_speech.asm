@@ -31,8 +31,8 @@ GameStart::
 	call ClearTileMap
 	ld a, DEX_YADOKING
 	ld [wCurSpecies], a
-	ld [wMonDexIndex], a
-	call GetMonHeader
+	ld [wCurPartySpecies], a
+	call GetBaseData
 	hlcoord 6, 4
 	hlcoord 6, 4
 	call PrepMonFrontpic
@@ -69,7 +69,7 @@ GameStart::
 	call FadeInIntroPic
 	ld hl, OakSpeech6
 	call PrintText
-	callba SetClockDialog
+	farcall SetClockDialog
 	call Function04ac
 	call GBFadeOutToWhite
 	call ClearTileMap
@@ -162,11 +162,11 @@ GameStartPlacement::
 DebugSetUpPlayer::
 	call SetPlayerNamesDebug
 	ld a, $0F
-	ld [wd15d], a
+	ld [wMoney], a
 	ld a, $42
-	ld [wd15e], a
+	ld [wMoney + 1], a
 	ld a, $3F
-	ld [wd15f], a
+	ld [wMoney + 2], a
 	ld a, $FF ; give all badges
 	ld [wJohtoBadges], a
 	ld [wKantoBadges], a
@@ -176,11 +176,11 @@ DebugSetUpPlayer::
 	call FillTMs
 	ld de, DebugBagItems
 	call FillBagWithList
-	ld hl, wPokedexOwned
+	ld hl, wPokedexCaught
 	call DebugFillPokedex
 	ld hl, wPokedexSeen
 	call DebugFillPokedex
-	ld hl, wAnnonDex
+	ld hl, wUnownDex
 	ld [hl], $01
 	call Function40fd
 	ret
@@ -276,7 +276,7 @@ GiveKantoStarters::
 	ret
 
 GivePokemon::
-	ld [wMonDexIndex], a
+	ld [wCurPartySpecies], a
 	ld a, b
 	ld [wCurPartyLevel], a
 	ld a, $10
@@ -291,13 +291,13 @@ AddRandomPokemonToBox:
 	xor a
 	ld [wca44], a
 	call RandomUnder246
-	ld [wcdd7], a
+	ld [wTempEnemyMonSpecies], a
 	ld a, $05
 	ld [wCurPartyLevel], a
-	callab AddPokemonToBox
-	ld a, [wcdd7]
-	ld [wMonDexIndex], a
-	callab Functiondd5c
+	callfar AddPokemonToBox
+	ld a, [wTempEnemyMonSpecies]
+	ld [wCurPartySpecies], a
+	callfar Functiondd5c
 	pop af
 	dec a
 	jr nz, .loop
@@ -494,7 +494,7 @@ ChoosePlayerName::
 .loop
 	ld b, $01
 	ld de, wPlayerName
-	callba NamingScreen
+	farcall NamingScreen
 	ld a, [wPlayerName]
 	cp "@"
 	jr z, .loop
@@ -547,7 +547,7 @@ ChooseRivalName::
 .loop
 	ld b, $02
 	ld de, wRivalName
-	callba NamingScreen
+	farcall NamingScreen
 	ld a, [wRivalName]
 	cp "@"
 	jr z, .loop
@@ -599,14 +599,14 @@ MomNamePrompt::
 .loop
 	ld b, $03
 	ld de, wMomsName
-	callba NamingScreen
+	farcall NamingScreen
 	ld a, [wMomsName]
 	cp "@"
 	jr z, .loop
 
 	call ClearPalettes
 	call ClearTileMap
-	callab Function140d9
+	callfar Function140d9
 	call LoadFontExtra
 	call GetMemSGBLayout
 	call WaitBGMap

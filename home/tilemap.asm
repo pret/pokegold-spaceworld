@@ -59,7 +59,7 @@ SetHPPal::
 
 Function3657::
 	call DisableLCD
-	callab Function140d9
+	callfar Function140d9
 	call LoadFont
 	call UpdateSprites
 	call EnableLCD

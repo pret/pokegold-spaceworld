@@ -325,13 +325,13 @@ MapSetup_22af::
 	ret
 
 MapSetup_22de::
-	callab OverworldFadeOut
+	callfar OverworldFadeOut
 
 MapSetup_Continue::
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
-	callab LoadSpawnPoint
+	callfar LoadSpawnPoint
 	call CopyMapPartialAndAttributes
 	call SetUpMapBuffer
 	call InitUnknownBuffercc9e
@@ -348,19 +348,19 @@ MapSetup_Continue::
 	ld b, 9 ; TODO: constantify this
 	call GetSGBLayout
 	call LoadWildMons
-	call $242C ; TODO
+	call Function242c ; TODO
 	call FadeIn
 	ret
 
 MapSetup_Warp::
-	callab OverworldFadeOut
+	callfar OverworldFadeOut
 	call DisableLCD
 	call Function27C7 ; TODO
 	ld a, [wNextWarp]
 	ld [wWarpNumber], a
 	ld a, [wNextMapGroup]
 	ld [wMapGroup], a
-	ld a, [wNextMapId]
+	ld a, [wNextMapNumber]
 	ld [wMapId], a
 	call CopyMapPartialAndAttributes
 	call SetUpMapBuffer
@@ -381,7 +381,7 @@ MapSetup_Warp::
 	ret
 
 LoadMapTimeOfDay::
-	callab ReplaceTimeOfDayPals
+	callfar ReplaceTimeOfDayPals
 	call LoadMapPart
 	call .ClearBGMap
 	call .PushAttrMap
@@ -422,18 +422,18 @@ LoadMapTimeOfDay::
 	ret
 
 LoadWildMons::
-	callab _LoadWildMons
+	callfar _LoadWildMons
 	ret
 
 LoadGraphics::
 	call LoadTileset
 	call LoadTilesetGFX
-	callba RefreshSprites
+	farcall RefreshSprites
 	call LoadFontExtra
 	ret
 
 InitializeVisibleSprites::
-	callab _InitializeVisibleSprites
+	callfar _InitializeVisibleSprites
 	ret
 
 FadeIn:: ; This is not OverworldFadeIn, but I don't know what it is
@@ -442,16 +442,16 @@ FadeIn:: ; This is not OverworldFadeIn, but I don't know what it is
 	ld hl, wVramState
 	set 0, [hl]
 	call Function2407
-	callab _UpdateSprites
+	callfar _UpdateSprites
 	call DelayFrame
-	callab OverworldFadeIn
+	callfar OverworldFadeIn
 	ret
 
 Function2407::
 	ld a, NO_MOVEMENT
 	ld [wPlayerMovement], a
 	xor a
-	ld [wPlayerAction], a
+	ld [wPlayerStepFrame], a
 	ld a, [wPlayerFacing]
 	and $c
 	ld [wPlayerFacing], a
@@ -466,6 +466,7 @@ Function2407::
 	ret z
 	cp $78
 	ret z
+Function242c::
 	ld a, $0
 	ld [wPlayerFacing], a
 	ld a, $0
@@ -692,7 +693,7 @@ WarpCheck::
 	ld a, [hli]
 	ld [wNextMapGroup], a
 	ld a, [hli]
-	ld [wNextMapId], a
+	ld [wNextMapNumber], a
 	ld a, c
 	ld [wPrevWarp], a
 	ld a, MAPSETUP_WARP
@@ -894,7 +895,7 @@ ReadObjectEvents::
 .skip
 	ld a, [wCurrMapObjectCount]
 	ld c, a
-	ld a, NUM_OBJECTS 
+	ld a, NUM_OBJECTS
 	sub c
 	jr z, .finish
 
@@ -1092,7 +1093,7 @@ Function27C7:: ; TODO
 .interior
 	ld a, [wNextMapGroup]
 	ld b, a
-	ld a, [wNextMapId]
+	ld a, [wNextMapNumber]
 	ld c, a
 	call GetAnyMapEnvironment
 	cp 3
@@ -1114,7 +1115,7 @@ Function27C7:: ; TODO
 	ret
 
 LoadMapPart::
-	callab UpdateTimeOfDayPal
+	callfar UpdateTimeOfDayPal
 
 	ldh a, [hROMBank]
 	push af
@@ -1612,13 +1613,13 @@ Function2ae5::
 	ret nz
 	call OverworldStartButtonCheck
 	ret nz
-	callab OverworldMovementCheck
+	callfar OverworldMovementCheck
 	ldh a, [hMapEntryMethod]
 	and a
 	ret nz
 	call Function2c4a
 	jr nc, .loop
-	callba Function824c
+	farcall Function824c
 	ld a, [wc5ed]
 	bit 6, a
 	jr nz, .loop
@@ -1652,7 +1653,7 @@ Function2b52::
 	ret nz
 	call Function2c4a
 	jr nc, .asm_2b52
-	callba Function824c
+	farcall Function824c
 	call CheckMovingOffEdgeOfMap
 	ret c
 	call WarpCheck
@@ -1666,7 +1667,7 @@ Function2b78::
 	ret
 
 Function2b79::
-	callab DebugMapViewer
+	callfar DebugMapViewer
 	ld a, $4
 	call WriteIntod637
 	ret
@@ -1677,10 +1678,10 @@ Function2b87::
 	call GetJoypad
 	call OverworldStartButtonCheck
 	ret nz
-	callab OverworldMovementCheck
+	callfar OverworldMovementCheck
 	call Function2ba8
 	jr nc, .asm_2b87
-	callba Function824c
+	farcall Function824c
 	jr .asm_2b87
 
 Function2ba8::

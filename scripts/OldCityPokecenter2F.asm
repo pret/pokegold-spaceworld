@@ -36,7 +36,7 @@ OldCityPokecenter2FText1:
 	ld [wce37], a
 	ld hl, wJoypadFlags
 	set 5, [hl]
-	callab Function29abf
+	callfar Function29abf
 	ld hl, wJoypadFlags
 	res 5, [hl]
 	ret
@@ -46,7 +46,7 @@ OldCityPokecenter2FText2:
 	ld [wce37], a
 	ld hl, wJoypadFlags
 	set 5, [hl]
-	callab Function29abf
+	callfar Function29abf
 	ld hl, wJoypadFlags
 	res 5, [hl]
 	ret
@@ -63,15 +63,15 @@ Text947e3:
 OldCityPokecenter2FText4:
 	ld hl, OldCityPokecenter2FTextString4
 	call OpenTextbox
-	callab Function29a1f
+	callfar Function29a1f
 	jr c, .asm_9480c
 	ld a, $05
-	call Function169f ; something related to follow
+	call DeleteMapObject
 	jr .asm_9480c
 ; unreferenced?
 	ld hl, Data14824
 	ld a, $5
-	call Function16fb
+	call Function16fb ; something related to follow
 	ld hl, $0000
 	nop
 .asm_9480c

@@ -91,7 +91,7 @@ SECTION "OAM Buffer", WRAM0
 wShadowOAM::
 ; wShadowOAMSprite00 - wShadowOAMSprite39
 for n, NUM_SPRITE_OAM_STRUCTS
-        wShadowOAMSprite{02d:n}:: sprite_oam_struct wShadowOAMSprite{02d:n}
+wShadowOAMSprite{02d:n}:: sprite_oam_struct wShadowOAMSprite{02d:n}
 endr
 wShadowOAMEnd::
 
@@ -375,83 +375,25 @@ wBattleAnimEnd::
 
 	ds $1a3 ; TODO
 
-wc9e8:: ds 1
-wc9e9:: ds 1
-wc9ea:: ds 1
-wc9eb:: ds 1
-wc9ec:: ds 1
-wc9ed:: ds 1
-wc9ee:: ds 1
-wc9ef:: ds 1
-wc9f0:: ds 1
-wc9f1:: ds 1
-wc9f2:: ds 1
-wc9f3:: ds 1
+wBattle::
+wEnemyMoveStruct:: move_struct wEnemyMoveStruct
+wPlayerMoveStruct:: move_struct wPlayerMoveStruct
 
-	ds 1
-
-wc9f5:: ds 1
-
-wBattleMonNickname:: ds 6
 wEnemyMonNickname:: ds 6
-
-wca02:: ds 1
-wca03:: ds 1
-wca04:: ds 1
-wca05:: ds 1
-
-	ds 2
-
-wca08:: ds 1
-wca09:: ds 1
-wca0a:: ds 1
-
-	ds 3
-
-wca0e:: ds 1
-wca0f:: ds 1
-
-wIntroJumptableIndex::
-wca10:: ds 1
+wBattleMonNickname:: ds 6
 
 UNION
+wBattleMon:: battle_struct wBattleMon
+NEXTU
+	ds 14
+wIntroJumptableIndex:: db
 wIntroBGMapPointer:: ds 2
-NEXTU
-wca11:: ds 1
-wca12:: ds 1
-ENDU
-
-UNION
 wIntroTilemapPointer:: ds 2
-NEXTU
-wca13:: ds 1
-wca14:: ds 1
-ENDU
-
-UNION
 wIntroTilesPointer:: ds 2
 wIntroFrameCounter1:: ds 1
-NEXTU
-
-wca15:: ds 1
-wca16:: ds 1
-wca17:: ds 1
-
-ENDU
-
-wca18::
 wIntroFrameCounter2:: ds 1
-
 wIntroSpriteStateFlag:: ds 1
-
-wca1a:: ds 1
-wca1b:: ds 1
-wca1c:: ds 1
-	ds 1
-wca1e:: ds 1
-	ds 1
-wca20:: ds 1
-wca21:: ds 1
+ENDU
 wca22:: ds 1
 wca23:: ds 1
 wca24:: ds 1
@@ -508,7 +450,10 @@ wca58:: ds 1
 wca59:: ds 1
 wca5a:: ds 1
 wca5b:: ds 1
+
+wBattleAnimParam::
 wca5c:: ds 1
+
 wca5d:: ds 1
 
 	ds $1d
@@ -557,7 +502,11 @@ wcabe:: ds 1
 	ds 1
 
 wcac0:: ds 1
+
+wCurPlayerSelectedMove::
 wcac1:: ds 1
+
+wCurEnemySelectedMove::
 wcac2:: ds 1
 
 wLinkBattleRNCount:: db
@@ -569,11 +518,15 @@ wcac4:: ds 1
 wcac7:: ds 1
 wcac8:: ds 1
 wcac9:: ds 1
+
+UNION
+wPayDayMoney:: ds 3
+NEXTU
 wcaca:: ds 1
-
-	ds 1
-
+wcacb:: ds 1
 wcacc:: ds 1
+ENDU
+
 wcacd:: ds 1
 wcace:: ds 1
 
@@ -581,12 +534,21 @@ wcace:: ds 1
 
 wcad0:: ds 1
 wcad1:: ds 1
+
+wAlreadyDisobeyed::
 wcad2:: ds 1
+
 wcad3:: ds 1
 wcad4:: ds 1
 wcad5:: ds 1
+
+UNION
+wCurPlayerMove:: ds 1
+wCurEnemyMove:: ds 1
+NEXTU
 wcad6:: ds 1
 wcad7:: ds 1
+ENDU
 wcad8:: ds 1
 wcad9:: ds 1
 wcada:: ds 1
@@ -770,10 +732,10 @@ wDefaultSpawnPoint::
 
 UNION
 
-wcc40:: ; XXX fix this to cc3a
+wcc3a::
 wMovementBufferCount:: db
 
-wcc41:: ; XXX fix this to cc3b
+wcc3b::
 wMovementBufferObject:: db
 
 	ptrba wMovementBufferPointer
@@ -822,8 +784,8 @@ wSpriteOutputPtrCached:: ds 2
 wSpriteDecodeTable0Ptr:: ds 2
 wSpriteDecodeTable1Ptr:: ds 2
 
-wccc0:: ds 1
-wccc1:: ds 1
+wFXAnimID:: dw
+
 wccc2:: ds 1
 wccc3:: ds 1
 wccc4:: ds 1
@@ -838,7 +800,7 @@ wBGP:: db
 wOBP0:: db
 wOBP1:: db
 
-wcccd:: ds 1
+wNumHits:: db
 
 wDisableVBlankWYUpdate:: db
 wSGB:: db
@@ -884,6 +846,11 @@ wcd1d:: ds 8
 
 wStringBuffer1:: ds 1 ; How long is this?
 wcd27:: ds 1
+
+	ds 1
+
+wcd29:: ds 1
+wcd2a:: ds 1
 SECTION "CD31", WRAM0[$CD31]
 
 UNION
@@ -910,8 +877,10 @@ SECTION "CD3C", WRAM0[$CD3C]
 wcd3c:: db
 wRegularItemsCursor:: db
 wBackpackAndKeyItemsCursor:: db
+wBattleMenuCursorPosition::
 wStartmenuCursor:: db
 wcd40:: db
+wCurBattleMon::
 wcd41:: db
 wcd42:: db
 wFieldDebugMenuCursorBuffer::
@@ -941,7 +910,11 @@ wFarCallBCBuffer::
 	dw
 
 wcd56:: ds 1
+wNumMoves::
 wcd57:: ds 1
+
+wItemEffectSucceeded::
+wBattlePlayerAction::
 wFieldMoveSucceeded:: db
 wVramState:: db
 
@@ -960,36 +933,20 @@ wcd75:: db
 
 wCurItem:: db
 wItemIndex:: db
-wMonDexIndex: db
-wWhichPokemon: db
+wCurPartySpecies: db
+wCurPartyMon: db
 
 SECTION "CD7B", WRAM0[$CD7B]
 
-wHPBarType:: db
-wcd7c:: ds 1
+wWhichHPBar:: db
+wPokemonWithdrawDepositParameter:: ds 1
 
 wItemQuantity:: db
 wItemQuantityBuffer:: db
-wcd7f:: db
-wcd80:: db
-wcd81:: db
 
-	ds 7
+wTempMon:: party_struct wTempMon
 
-wcd89:: db
-
-	ds 10
-
-wcd94:: db
-
-	ds 9
-
-wLoadedMonLevel:: db
-wcd9f:: db
-
-	ds 15
-
-wcdaf:: db
+wSpriteFlags:: db
 
 wTalkingTargetType:: db
 ;bit 0 = has engaged NPC in dialogue
@@ -1008,9 +965,12 @@ wcdb6:: ds 1
 
 wcdb9:: ds 1
 
-wItemAttributeParamBuffer:: db
+wItemAttributeValue:: db
+
 wCurPartyLevel:: db
-wcdbc:: db
+
+wScrollingMenuListSize:: db
+
 wLinkMode:: db
 ; 00 -
 ; 01 -
@@ -1019,20 +979,27 @@ wLinkMode:: db
 
 wNextWarp:: db
 wNextMapGroup:: db
-wNextMapId:: db
+wNextMapNumber:: db
 wPrevWarp:: db
 
 wcdc2:: db
 
 UNION
+wListMovesLineSpacing::
 wFieldMoveScriptID:: db
 wMapBlocksAddress:: dw
 wReplacementBlock:: db
 
 NEXTU
+wMonSubmenuCount:: db
+wMonSubmenuItems:: ds NUM_MONMENU_ITEMS + 1
+NEXTU
 
 wHPBarMaxHP:: dw
 wHPBarOldHP:: dw
+wHPBarNewHP:: dw
+wHPBarDelta:: dw
+wHPBarHPDifference:: dw
 
 NEXTU
 
@@ -1044,27 +1011,20 @@ NEXTU
 
 wEnemyEffectivenessVsPlayerMons:: db
 wPlayerEffectivenessVsEnemyMons:: db
-	
+
 	ds 1
 
 wcdc6:: db
-
-ENDU
-
-UNION
-
-wHPBarNewHP:: dw
-
-NEXTU
-
 wcdc7:: db
 wcdc8:: db
+	ds 1
+wcdca:: db
 
 ENDU
 
-wHPBarDelta::   db
-wcdca:: db
-wHPBarHPDifference:: dw
+
+
+
 
 UNION
 
@@ -1079,53 +1039,14 @@ wcdd4: ds 1
 	ds 1
 ENDU
 
-wcdd7:: ds 1
-wcdd8:: ds 1
-wcdd9:: ds 1
-wcdda:: ds 1
-wcddb:: ds 1
-wcddc:: ds 1
-wcddd:: ds 1
-wcdde:: ds 1
-wcddf:: ds 1
-wcde0:: ds 1
-wcde1:: ds 1
-wcde2:: ds 1
-wcde3:: ds 1
-wcde4:: ds 1
-wcde5:: ds 1
-wcde6:: ds 1
-wcde7:: ds 1
-wcde8:: ds 1
-wcde9:: ds 1
-wcdea:: ds 1
-wcdeb:: ds 1
-wcdec:: ds 1
-wcded:: ds 1
-wcdee:: ds 1
-wcdef:: ds 1
+wTempEnemyMonSpecies:: ds 1
+wTempBattleMonSpecies:: ds 1
 
-	ds 1
 
-wcdf1:: ds 1
-wcdf2:: ds 1
-wcdf3:: ds 1
+wEnemyMon:: battle_struct wEnemyMon
+wEnemyMonBaseStats:: ds NUM_EXP_STATS
 
-	ds 1
-
-wcdf5:: ds 1
-
-	ds 1
-
-wcdf7:: ds 1
-
-	ds 1
-
-wcdf9:: ds 1
-
-	ds 4
-
-wcdfe:: ds 1
+wEnemyMonCatchRate:: db
 wcdff:: ds 1
 wBattleMode:: db
 wce01:: ds 1
@@ -1210,10 +1131,8 @@ wce2a:: ds 1
 	ds 2
 
 wce2d:: ds 1
-wce2e:: ds 1
-wce2f:: ds 1
-wce30:: ds 1
-wce31:: ds 1
+
+wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wce32:: ds 1
 wce33:: ds 1
 wce34:: ds 1
@@ -1221,11 +1140,15 @@ wce35:: ds 1
 wce36:: ds 1
 
 wNamedObjectIndexBuffer::
-wCountSetBitsResult::
+wNumSetBits::
+wMoveGrammar::
+wTempByteValue::
 wce37::
 	db
 
 wce38:: ds 1
+
+wNumFleeAttempts::
 wce39:: ds 1
 
 SECTION "CE3A", WRAM0[$CE3A]
@@ -1275,8 +1198,12 @@ wMomsName:: ds 6
 
 SECTION "CE73", WRAM0[$CE73]
 
+UNION
+wPlayerID:: dw
+NEXTU
 wce73: ds 1
 wce74: ds 1
+ENDU
 wce75: ds 1
 
 wObjectFollow_Leader::
@@ -1352,11 +1279,13 @@ wCoins:: db
 
 wd15c:: db
 
-wd15d:: db
+wMoney:: ds 3
 
-wd15e:: db
+;wd15d:: db
 
-wd15f:: db
+;wd15e:: db
+
+;wd15f:: db
 
 SECTION "D163", WRAM0[$D163]
 
@@ -1590,44 +1519,48 @@ wTilesetAnim::
 	ds 2 ; TODO
 wTilesetEnd::
 
+wPokemonData::
 wPartyCount:: db
 wPartySpecies:: ds PARTY_LENGTH
 wPartyEnd:: db
 
 wPartyMons::
-wPartyMon1:: party_struct wPartyMon1
-wPartyMon2:: party_struct wPartyMon2
-wPartyMon3:: party_struct wPartyMon3
-wPartyMon4:: party_struct wPartyMon4
-wPartyMon5:: party_struct wPartyMon5
-wPartyMon6:: party_struct wPartyMon6
-wPlayerPartyEnd::
+; wPartyMon1 - wPartyMon6
+for n, 1, PARTY_LENGTH + 1
+wPartyMon{d:n}:: party_struct wPartyMon{d:n}
+endr
 
-wPartyMonOT::
-	ds PARTY_LENGTH * 6
-wPartyMonOTEnd::
+wPartyMonOTs::
+; wPartyMon1OT - wPartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wPartyMon{d:n}OT:: ds PLAYER_NAME_LENGTH
+endr
 
 wPartyMonNicknames::
-	ds PARTY_LENGTH * MON_NAME_LENGTH ; = $24
+; wPartyMon1Nickname - wPartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
 wPartyMonNicknamesEnd::
 
-wPokedexOwned::
-	flag_array NUM_POKEMON
-wPokedexOwnedEnd::
+wPokedexCaught:: flag_array NUM_POKEMON
+wEndPokedexCaught::
 
-wPokedexSeen::
-	flag_array NUM_POKEMON
-wPokedexSeenEnd::
+wPokedexSeen:: flag_array NUM_POKEMON
+wEndPokedexSeen::
 
-wAnnonDex:: ds 26
+wUnownDex:: ds NUM_UNOWN
 
 wAnnonID:: ds 1
 
 wd875:: ds 1
+
+wBufferMonNickname::
 wd876:: ds 1
 
 	ds 5
 
+wBufferMonOT::
 wd87c:: ds 1
 
 	ds 5
@@ -1641,37 +1574,14 @@ SECTION "D8A2", WRAM0[$D8A2]
 wd8a2:: ds 1
 wd8a3:: ds 1
 wd8a4:: ds 1
-wd8a5:: ds 1
 
-	ds 5
+wBreedMon1Nickname:: ds MON_NAME_LENGTH
+wBreedMon1OT:: ds PLAYER_NAME_LENGTH
+wBreedMon1:: box_struct wBreedMon1
 
-wd8ab:: ds 1
-
-SECTION "wd8b1", WRAM0[$D8B1]
-
-wd8b1:: ds 1
-
-	ds 5
-
-wd8b7:: ds 1
-wd8b8:: ds 1
-
-SECTION "D8D1", WRAM0[$D8D1]
-
-wd8d1:: ds 1
-
-	ds 5
-
-wd8d7:: ds 1
-
-	ds 5
-
-wd8dd:: ds 1
-
-SECTION "D8E3", WRAM0[$D8E3]
-
-wd8e3:: ds 1
-wd8e4:: ds 1
+wBreedMon2Nickname:: ds MON_NAME_LENGTH
+wBreedMon2OT:: ds PLAYER_NAME_LENGTH
+wBreedMon2:: box_struct wBreedMon2
 
 SECTION "D8FD", WRAM0[$D8FD]
 
@@ -1680,7 +1590,9 @@ wd8fe:: ds 1
 
 SECTION "D913", WRAM0[$D913]
 
-wd913:: ds 1
+wOTPartyCount:: db
+wOTPartySpecies:: ds PARTY_LENGTH
+wOTPartySpeciesEnd:: db
 
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
@@ -1688,48 +1600,57 @@ UNION
 wWildMons::
 	ds 41
 NEXTU
-	ds 1
-wd91c:: ds 1
-wd91d:: ds 1
-wd91e:: ds 1
-	ds 19
-wd932:: ds 1
-	ds 7
-wd93a:: ds 1
-wd93b:: ds 1
-	ds 1
-wd93d:: ds 1
-wd93e:: ds 1
-wd93f:: ds 1
+wOTPartyMons::
+; wOTPartyMon1 - wOTPartyMon6
+for n, 1, PARTY_LENGTH + 1
+wOTPartyMon{d:n}:: party_struct wOTPartyMon{d:n}
+endr
+
+wOTPartyMonOT::
+; wOTPartyMon1OT - wOTPartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wOTPartyMon{d:n}OT:: ds PLAYER_NAME_LENGTH
+endr
+
+wOTPartyMonNicknames::
+; wOTPartyMon1Nickname - wOTPartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wOTPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
+wOTPartyDataEnd::
 ENDU
-
-SECTION "DA3B", WRAM0[$DA3B]
-
-wOTPartyMonOT:: db
-
-SECTION "DA5F", WRAM0[$DA5F]
-
-wda5f:: db
 
 SECTION "DA83", WRAM0[$DA83]
 
 wBoxListLength:: db
 wBoxList:: ds MONS_PER_BOX
+wBoxListEnd:: db
 
 SECTION "DAA3", WRAM0[$DAA3]
 
-wdaa3:: db
-wdaa4:: db
-wdaa5:: db
+wBoxMons::
+; wBoxMon1 - wBoxMon30
+for n, 1, MONS_PER_BOX + 1
+wBoxMon{d:n}:: box_struct wBoxMon{d:n}
+endr
+
+wBoxDataEnd::
 
 SECTION "DE63", WRAM0[$DE63]
 
-wde63:: db
+wBoxMonOT::
+; wBoxMon1OT - wBoxMon30OT
+for n, 1, MONS_PER_BOX + 1
+wBoxMon{d:n}OT:: ds PLAYER_NAME_LENGTH
+endr
+wBoxMonOTEnd::
 
-SECTION "DF17", WRAM0[$DF17]
-wdf17:: ds 1
-
-SECTION "DFCB", WRAM0[$DFCB]
+wBoxMonNicknames::
+; wBoxMon1Nick - wBoxMon30Nick
+for n, 1, MONS_PER_BOX + 1
+wBoxMon{d:n}Nick:: ds MON_NAME_LENGTH
+endr
+wBoxMonNicknamesEnd::
 wdfcb:: ds 1
 
 SECTION "Stack Bottom", WRAM0

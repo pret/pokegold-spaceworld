@@ -147,7 +147,7 @@ Function30e8::
 	ret
 
 GetFacingPersonText::
-	callba Function776e
+	farcall Function776e
 	ret nc
 	call TurnNPCTalkingTo
 	scf
@@ -208,7 +208,7 @@ PrepareTextbox::
 	ret
 
 TextboxCleanup:
-	callab ReanchorBGMap_NoOAMUpdate
+	callfar ReanchorBGMap_NoOAMUpdate
 	call UpdateSprites
 	xor a
 	ldh [hBGMapMode], a
@@ -221,7 +221,7 @@ TextboxCleanup:
 	ret
 
 Function318f:
-	callab Function140ea
+	callfar Function140ea
 	call RedrawPlayerSprite
 	ret
 
@@ -234,9 +234,9 @@ TurnNPCTalkingTo::
 	ld a, [hl]
 	call IsAnimatedSprite
 	jr c, .Jump
-	ld a, [wPlayerWalking]
+	ld a, [wPlayerDirection]
 	xor 04
-	ld hl, OBJECT_WALKING
+	ld hl, OBJECT_DIRECTION
 	add hl, bc
 	ld [hl], a
 	push bc

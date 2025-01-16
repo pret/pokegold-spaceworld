@@ -64,7 +64,7 @@ GetCryIndex::
 	push af
 	ld a, d
 	ld [wce37], a
-	callba Function40b45
+	farcall ConvertMon_2to1
 	ld a, [wce37]
 	dec a
 	ld c, a
@@ -77,7 +77,7 @@ PrintLevel::
 	ld a, $6e ; ":L"
 	ld [hli], a
 	ld c, 2
-	ld a, [wLoadedMonLevel]
+	ld a, [wTempMonLevel]
 	cp 100
 	jr c, _PrintLevelCommon
 	dec hl
@@ -88,15 +88,15 @@ PrintLevelFullWidth::
 	ld a, $6e ; ":L"
 	ld [hli], a
 	ld c, 3
-	ld a, [wLoadedMonLevel]
+	ld a, [wTempMonLevel]
 _PrintLevelCommon:
 	ld [wce37], a
 	ld de, wce37
 	ld b, PRINTNUM_RIGHTALIGN | 1
 	jp PrintNumber
 
-Function3a42::
-	ld hl, wce2e
+GetNthMove:: ; unreferenced?
+	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
 	ld b, 0
 	add hl, bc

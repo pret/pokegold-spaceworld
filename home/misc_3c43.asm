@@ -10,19 +10,19 @@ GetPartyParamLocation::
 	ld b, 0
 	add hl, bc
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	pop bc
 	ret
 
 UseItem::
-	jpba _UseItem
+	farjp _UseItem
 
 CheckTossableItem::
 	push hl
 	push de
 	push bc
-	callab _CheckTossableItem
+	callfar _CheckTossableItem
 	pop bc
 	pop de
 	pop hl

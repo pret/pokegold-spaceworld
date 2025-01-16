@@ -123,7 +123,10 @@ ROMX $02
 	"gfx.asm@Bank 2 Misc GFX"
 	"engine/dumps/bank02.asm@QueueFollowerFirstStep"
 	"gfx.asm@Mon Nest Icon"
-	"engine/dumps/bank02.asm@Data8a17"
+
+	"data/maps/flypoints.asm"
+	"data/maps/landmarks.asm"
+
 	"engine/trainer_gear.asm@OpenTrainerGear"
 	"gfx.asm@Trainer Gear GFX"
 	"engine/trainer_gear.asm@TrainerGear_RadioText"
@@ -140,9 +143,9 @@ ROMX $03
 	"engine/overworld/player_movement.asm@Player Movement"
 	"data/collision/collision_type_table.asm"
 	"engine/overworld/player_movement.asm@Rest of Player Movement"
-	"engine/dumps/bank03.asm@Functionc77d"
+	"engine/dumps/bank03.asm@GetFlyPointMapLocation"
 	"engine/overworld/spawn_points.asm"
-	"engine/dumps/bank03.asm@SpawnPoints"
+	"data/maps/spawn_points.asm"
 	"data/tileset_headers.asm"
 	"engine/dumps/bank03.asm@Functionc9c1"
 	"engine/items/inventory.asm@Inventory"
@@ -155,7 +158,7 @@ ROMX $03
 	"engine/items/inventory.asm@_CheckTossableItem"
 	"engine/dumps/bank03.asm@Functiond41d"
 	"engine/items/item_effects.asm"
-	"engine/dumps/bank03.asm@Functionf960"
+	"engine/dumps/bank03.asm@GetMaxPPOfMove"
 
 ROMX $04
 	org $4000
@@ -307,8 +310,13 @@ ROMX $13
 
 ROMX $14
 	org $4000
+	"engine/dumps/bank14.asm@CopyMonToTempMon"
 	org $40dd
 	"data/types/names.asm"
+	org $4162
+	"engine/dumps/bank14.asm@GetTrainerClassName_Old"
+	org $4756
+	"engine/dumps/bank14.asm@Party Menu Routines"
 	org $4f10
 	"data/pokemon/base_stats.asm"
 	"data/pokemon/names.asm"
@@ -951,7 +959,7 @@ ROMX $3f
 	"engine/menu/reset_dialog.asm"
 	"engine/debug/field/change_tileset.inc@FieldDebug_ChangeTileset"
 	"engine/landmarks.asm@1"
-	"data/maps/landmarks.asm"
+	"data/maps/landmarks.asm@LandmarkNames"
 	"engine/landmarks.asm@2"
 	"engine/debug/field/warp.inc@FieldDebug_ShowWarpToText"
 	"gfx.asm@Town Map Cursor"

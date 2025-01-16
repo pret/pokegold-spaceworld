@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 
 SECTION "home/pokemon.asm@3A4B", ROM0
 
-GetMonHeader::
+GetBaseData::
 ; copies the base stat data of a pokemon to wMonHeader
 ; INPUT:
 ; [wCurSpecies] = pokemon ID in dex order
@@ -14,9 +14,13 @@ GetMonHeader::
 	push af
 	ld a, BANK(BaseData)
 	call Bankswitch
+
+; Egg doesn't have BaseData
 	ld a, [wCurSpecies]
 	cp DEX_EGG
 	jr z, .egg
+
+; Get BaseData
 	dec a
 	ld bc, BaseData.FirstEntryEnd - BaseData
 	ld hl, BaseData
@@ -24,20 +28,27 @@ GetMonHeader::
 	ld de, wMonHeader
 	ld bc, BaseData.FirstEntryEnd - BaseData
 	call CopyBytes
-	jr .done
+	jr .end
+
 .egg
 	ld de, EggPicFront
+
+; Sprite dimensions
 	ln b, 5, 5 ; egg sprite dimension
 	ld hl, wMonHSpriteDim
 	ld [hl], b
+
+; front sprite
 	ld hl, wMonHFrontSprite
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	jr .done ; useless
-.done
+	jr .end ; useless
+
+.end
 	ld a, [wCurSpecies]
 	ld [wMonHIndex], a
+
 	pop af
 	call Bankswitch
 	pop hl
@@ -52,7 +63,7 @@ UncompressMonSprite::
 ; Uncompresses the front or back sprite of the specified mon
 ; assumes the corresponding mon header is already loaded
 ; hl contains offset to sprite pointer ($b for front or $d for back)
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	and a
 	ret z
 	ld bc, wMonHeader
@@ -64,7 +75,7 @@ UncompressMonSprite::
 	ld a, [hl]
 	ld [wSpriteInputPtr + 1], a
 	ld hl, MonSpriteBankList
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld b, a
 	; get Pokémon picture bank pointer from list
 .loop

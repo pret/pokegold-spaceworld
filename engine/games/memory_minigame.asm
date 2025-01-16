@@ -35,7 +35,7 @@ MemoryMinigame:
 	call DisableLCD
 	ld b, SGB_DIPLOMA
 	call GetSGBLayout
-	callab InitEffectObject
+	callfar InitEffectObject
 
 	ld hl, MemoryGameGFX
 	ld de, vChars2
@@ -79,7 +79,7 @@ MemoryMinigame:
 	bit MEMORYGAME_END_LOOP_F, a
 	jr nz, .quit
 	call .ExecuteJumptable
-	callab EffectObjectJumpNoDelay
+	callfar EffectObjectJumpNoDelay
 	call DelayFrame
 	and a
 	ret

@@ -343,7 +343,7 @@ SilentHillTextRival1:
 
 LoadMomNamePromptUnused:
 	call LoadStandardMenuHeader
-	callab MomNamePrompt
+	callfar MomNamePrompt
 	call CloseWindow
 	call GetMemSGBLayout
 	call UpdateSprites

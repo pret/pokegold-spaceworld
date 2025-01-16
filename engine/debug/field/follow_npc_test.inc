@@ -36,7 +36,7 @@ FieldDebug_FollowNPCTest:
 	ret
 
 .asm_fc9a5:
-	callab SpawnFollower
+	callfar SetFollowerDefaultAttributes
 	ld a, 1
 	call Function15ed
 	ld a, 1
@@ -50,7 +50,7 @@ FieldDebug_FollowNPCTest:
 .asm_fc9c2:
 	call Function18cc
 	ld a, 1
-	call Function169f
+	call DeleteMapObject
 	ret
 
 .MenuHeader:

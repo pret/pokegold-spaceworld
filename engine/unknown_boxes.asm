@@ -10,13 +10,13 @@ Function1130b:
 	cp PARTY_LENGTH
 	jr c, .bigjump
 	ld a, [wBoxListLength]
-	cp $1E
+	cp MONS_PER_BOX
 	jr nc, .fullbox
 	xor a
 	ld [wca44], a
-	ld a, [wMonDexIndex]
-	ld [wcdd7], a
-	callab AddPokemonToBox
+	ld a, [wCurPartySpecies]
+	ld [wTempEnemyMonSpecies], a
+	callfar AddPokemonToBox
 	call RecievePokemon
 	predef Functiondd5c
 	and $7F
@@ -40,12 +40,12 @@ Function1130b:
 	ret
 
 RecievePokemon:
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	push af
 	ld [wNamedObjectIndexBuffer], a
 	dec a
 	ld c, a
-	ld hl, wPokedexOwned
+	ld hl, wPokedexCaught
 	ld b, 01 ;SET_FLAG
 	predef SmallFarFlagAction
 	pop af

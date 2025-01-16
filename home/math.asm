@@ -5,7 +5,7 @@ SECTION "home/math.asm", ROM0
 Multiply::
 	push hl
 	push bc
-	callab _Multiply
+	callfar _Multiply
 	pop bc
 	pop hl
 	ret

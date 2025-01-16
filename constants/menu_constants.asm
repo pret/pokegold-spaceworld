@@ -1,11 +1,10 @@
 ; MenuHeader flags
 	const_def
 	shift_const MENU_RESTORE_TILES ; Will be set if MENU_BACKUP_TILES(_2) is set.
-	shift_const MENU_UNUSED_1
-	shift_const MENU_UNUSED_2
+	const_skip 2
 	shift_const MENU_NO_CLICK_SFX
 	shift_const MENU_SPRITE_ANIMS
-	shift_const MENU_UNUSED_3
+	shift_const MENU_UNUSED
 	shift_const MENU_BACKUP_TILES
 	shift_const MENU_BACKUP_TILES_2
 
@@ -32,37 +31,49 @@
 	shift_const SCROLLINGMENU_ENABLE_START
 	shift_const SCROLLINGMENU_ENABLE_SELECT
 
+; _2DMenu more flags
+	const_def
+	shift_const _2DMENU_EXIT_RIGHT            ; 0
+	shift_const _2DMENU_EXIT_LEFT             ; 1
+	shift_const _2DMENU_EXIT_UP               ; 2
+	shift_const _2DMENU_EXIT_DOWN             ; 3
+	shift_const _2DMENU_WRAP_LEFT_RIGHT       ; 4
+	shift_const _2DMENU_WRAP_UP_DOWN          ; 5
+	shift_const _2DMENU_ENABLE_SPRITE_ANIMS   ; 6
+	shift_const _2DMENU_DISABLE_JOYPAD_FILTER ; 7
+
+; _2DMenu more flags 2
+	const_def
+	const_skip 7
+	shift_const _2DMENU_EXITING ; 7
+
 
 ; MonMenuOptions indexes (see data/mon_menu.asm)
 ; used by PokemonActionSubmenu (see engine/menus/start_menu.asm)
 	const_def 1
 	; moves
-	const MONMENUITEM_CUT        ; 1
-	const MONMENUITEM_FLY        ; 2
-	const MONMENUITEM_SURF       ; 3
-	const MONMENUITEM_STRENGTH   ; 4
-	const MONMENUITEM_WATERFALL  ; 5
-	const MONMENUITEM_FLASH      ; 6
-	const MONMENUITEM_WHIRLPOOL  ; 7
-	const MONMENUITEM_DIG        ; 8
-	const MONMENUITEM_TELEPORT   ; 9
-	const MONMENUITEM_SOFTBOILED ; 10
-	const MONMENUITEM_HEADBUTT   ; 11
-	const MONMENUITEM_ROCKSMASH  ; 12
-	const MONMENUITEM_MILKDRINK  ; 13
-	const MONMENUITEM_SWEETSCENT ; 14
+	const MONMENUITEM_CUT			; 1
+	const MONMENUITEM_FLY			; 2
+	const MONMENUITEM_SURF			; 3
+	const MONMENUITEM_STRENGTH		; 4
+	const MONMENUITEM_FLASH			; 5
+	const MONMENUITEM_WHIRLPOOL		; 6
+	const MONMENUITEM_BOUNCE		; 7
+	const MONMENUITEM_DIG			; 8
+	const MONMENUITEM_TELEPORT		; 9
+	const MONMENUITEM_SOFTBOILED	; 10
 	; options
-	const MONMENUITEM_STATS      ; 15
-	const MONMENUITEM_SWITCH     ; 16
-	const MONMENUITEM_ITEM       ; 17
-	const MONMENUITEM_CANCEL     ; 18
-	const MONMENUITEM_MOVE       ; 19
-	const MONMENUITEM_MAIL       ; 20
-	const MONMENUITEM_ERROR      ; 21
+	const MONMENUITEM_STATS      ; 11
+	const MONMENUITEM_SWITCH     ; 12
+	const MONMENUITEM_ITEM       ; 13
+	const MONMENUITEM_CANCEL     ; 14
+	const MONMENUITEM_MOVE       ; 15
+	const MONMENUITEM_MAIL       ; 16
+	const MONMENUITEM_ERROR      ; 17
 
 ; MonMenuOptions categories
-DEF MONMENU_FIELD_MOVE EQU 0
-DEF MONMENU_MENUOPTION EQU 1
+DEF MONMENU_MENUOPTION EQU 0
+DEF MONMENU_FIELD_MOVE EQU 1
 
 DEF NUM_MONMENU_ITEMS EQU 8
 

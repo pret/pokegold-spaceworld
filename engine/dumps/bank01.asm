@@ -3020,7 +3020,7 @@ LoadFonts_NoOAMUpdate:
 
 Function6445:
 	call BackUpTilesToBuffer
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ld hl, wStringBuffer1
@@ -3029,8 +3029,8 @@ Function6445:
 	call CopyBytes
 .sub_645d
 	ld hl, wPartyMon1Moves
-	ld bc, $0030
-	ld a, [wWhichPokemon]
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -3043,7 +3043,7 @@ Function6445:
 	dec b
 	jr nz, .sub_646d
 	push de
-	call .sub_64f4
+	call ForgetMove
 	pop de
 	jp c, .sub_64d6
 	push hl
@@ -3073,19 +3073,19 @@ Function6445:
 	ld a, [wBattleMode]
 	and a
 	jp z, .sub_64eb
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	ld b, a
-	ld a, [wcd41]
+	ld a, [wCurBattleMon]
 	cp b
 	jp nz, .sub_64eb
 	ld h, d
 	ld l, e
-	ld de, wca04
+	ld de, wBattleMonMoves
 	ld bc, $0004
 	call CopyBytes
 	ld bc, $0011
 	add hl, bc
-	ld de, wca0a
+	ld de, wBattleMonPP
 	ld bc, $0004
 	call CopyBytes
 	jp .sub_64eb
@@ -3103,38 +3103,38 @@ Function6445:
 	call PrintText
 	ld b, $01
 	ret
-.sub_64f4
+
+ForgetMove::
 	push hl
-	ld hl, Text65f0
+	ld hl, AskForgetMoveText
 	call PrintText
 	call YesNoBox
 	pop hl
 	ret c
-	ld bc, $fffc
+	ld bc, -NUM_MOVES
 	add hl, bc
 	push hl
-	ld de, wce2e
-	ld bc, $0004
+	ld de, wListMoves_MoveIndicesBuffer
+	ld bc, NUM_MOVES
 	call CopyBytes
 	pop hl
 .sub_650f
 	push hl
-	ld hl, Text65a8
+	ld hl, MoveAskForgetText
 	call PrintText
 	coord hl, 10, 8
 	ld b, $08
 	ld c, $08
 	call DrawTextBox
 	coord hl, 12, 10
-	ld a, $28
-	ld [wFieldMoveScriptID], a
-	ld a, $32
-	call Predef
+	ld a, SCREEN_WIDTH*2
+	ld [wListMovesLineSpacing], a
+	predef ListMoves
 	ld a, $0a
 	ld [w2DMenuCursorInitY], a
 	ld a, $0b
 	ld [w2DMenuCursorInitX], a
-	ld a, [wcd57]
+	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
 	ld a, $01
@@ -3199,7 +3199,7 @@ Text65a5:
 	text_waitbutton
 	text_end
 
-Text65a8:
+MoveAskForgetText:
 	text "どの　わざを"
 	next "わすれさせたい？"
 	done
@@ -3225,26 +3225,20 @@ Text65de:
 	line "おぼえずに　おわった！"
 	prompt
 
-Text65f0:
+AskForgetMoveText:
 	text_from_ram wcd11
 	text "は　あたらしく"
 	line ""
 	text_end
-
-Text65fd:
 	text_from_ram wStringBuffer2
 	text "を　おぼえたい<⋯⋯>！"
 	para "しかし　"
 	text_end
-
-Text6610:
 	text_from_ram wcd11
 	text "は　わざを　４つ"
 	line "おぼえるので　せいいっぱいだ！"
 	para ""
 	text_end
-
-Text662e:
 	text_from_ram wStringBuffer2
 	text "の　かわりに"
 	line "ほかの　わざを　わすれさせますか？"
@@ -3359,7 +3353,7 @@ Function6713:
 	ld b, $04
 	ld c, $0a
 	call z, ClearBox
-	ld a, [wMonDexIndex]
+	ld a, [wCurPartySpecies]
 	ld [wce37], a
 	call GetPokemonName
 	ld a, [wDebugFlags]
@@ -3390,9 +3384,7 @@ Function6713:
 	call Function3657
 	jr .sub_6773
 .sub_676b
-	ld hl, Function3e3a7
-	ld a, BANK(Function3e3a7)
-	call FarCall_hl
+	callfar Function3e3a7
 .sub_6773
 	pop hl
 	ld a, [hl]
@@ -3430,7 +3422,7 @@ Function679d:
 	jr z, .sub_67d3
 	ld hl, wPartyMonNicknames
 	ld bc, $0006
-	ld a, [wWhichPokemon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -3741,7 +3733,7 @@ Function78f0:
 	ld a, [hl]
 	xor $08
 	ld [hl], a
-	callab UpdateSGBBorder
+	callfar UpdateSGBBorder
 	call LoadFont
 	call LoadFontExtra
 	ld c, $70

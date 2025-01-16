@@ -57,7 +57,7 @@ DebugMapViewer::
 	jr c, .continue
 	call Function2c4a
 	jr nc, .loop
-	callab Function824c
+	callfar Function824c
 	jr .loop
 
 .continue
@@ -141,7 +141,7 @@ DebugMapViewer::
 	ld d, 2
 	ld b, 1
 	ld c, 0
-	callab Function83a2
+	callfar Function83a2
 	ld a, DEBUGMAPVIEWER_WAIT_FINISHED_MOVING
 	ldh [hDebugMapViewerJumptable], a
 	and a
@@ -159,7 +159,7 @@ DebugMapViewer::
 
 .Cleanup:
 	ld a, 1
-	call Function169f
+	call DeleteMapObject
 	call Function18cc
 	ld a, 0
 	call Function1908
@@ -190,7 +190,7 @@ DebugMapViewer_ShowSelectedDetails:
 	ld a, 0
 	ldh [hTextBoxCursorBlinkInterval], a
 	ld bc, wObjectStructs
-	callab Function77a1
+	callfar Function77a1
 	jr nc, .skip
 	call RefreshScreen
 	call .DisplayActorCastID
@@ -323,7 +323,7 @@ DebugMapViewer_DoMovement:
 	ret
 
 DebugMapViewer_ReplacePlayerObject:
-	callab Function807b
+	callfar DebugMapViewer_SetupCursor
 	ld a, 1
 	call Function15ed
 	ld a, 1

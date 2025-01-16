@@ -114,7 +114,7 @@ FieldDebug_DoVRAMViewer:
 	call .LoadTilesetsCommon
 	call DisableLCD
 	call LoadFont
-	callab LoadBackpackGraphics
+	callfar LoadBackpackGraphics
 	call EnableLCD
 	ret
 
@@ -136,7 +136,7 @@ FieldDebug_DoVRAMViewer:
 	call DisableLCD
 	call LoadFontsBattleExtra
 	call LoadFont
-	callab LoadPokemonStatsGraphics
+	callfar LoadPokemonStatsGraphics
 	xor a
 	ldh [hMapAnims], a
 	call EnableLCD
@@ -151,7 +151,7 @@ FieldDebug_DoVRAMViewer:
 	ld bc, $180 tiles
 	call ByteFill
 	call LoadFont
-	callab Call_LoadBattleGraphics
+	callfar Call_LoadBattleGraphics
 	xor a
 	ldh [hMapAnims], a
 	call EnableLCD
@@ -159,15 +159,15 @@ FieldDebug_DoVRAMViewer:
 	call .LoadPokemon
 	ld de, $9310
 	ld a, 3
-	ld [wcdd8], a
+	ld [wTempBattleMonSpecies], a
 	predef Function3f04a
 	ret
 
 .LoadPokemon:
 	ld a, 3
 	ld [wce37], a
-	ld [wMonDexIndex], a
-	call GetMonHeader
+	ld [wCurPartySpecies], a
+	call GetBaseData
 	call LoadMonFrontSprite
 	ret
 
@@ -180,7 +180,7 @@ FieldDebug_DoVRAMViewer:
 	call LoadTilesetGFX
 	ld a, 1
 	ldh [hMapAnims], a
-	callab LoadUsedSpritesGfx
+	callfar LoadUsedSpritesGfx
 	call LoadFontExtra
 	call EnableLCD
 	ret

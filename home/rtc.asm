@@ -9,9 +9,9 @@ UpdateTimeOfDayPalettes:
 	; fallthrough
 
 TimeOfDayPals::
-	callab _TimeOfDayPals
+	callfar _TimeOfDayPals
 	ret
 
 UpdateTimePals::
-	callab _UpdateTimePals
+	callfar _UpdateTimePals
 	ret
