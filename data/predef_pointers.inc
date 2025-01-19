@@ -36,8 +36,8 @@ GiveItemPredef::
 	add_predef Functiondd5c
 	add_predef Functionde79
 	add_predef UpdateHPBar
-	add_predef Functiondf7d ; 18
-	add_predef Functiondf91
+	add_predef CalcMonStats ; 18
+	add_predef CalcMonStatC
 	add_predef CanLearnTMHMMove
 	add_predef GetTMHMMove
 	add_predef LinkTextboxAtHL

@@ -353,7 +353,7 @@ Function502b5::
 	ld hl, wTempMonExp + 2
 	ld de, wTempMonMaxHP
 	ld b, 1
-	predef Functiondf7d
+	predef CalcMonStats
 .asm_502d9
 	ld hl, wd4a7
 	set 1, [hl]

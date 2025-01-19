@@ -400,25 +400,36 @@ wca24:: ds 1
 	ds 6
 wca2b:: ds 1
 	ds 10
-wca36:: ds 1
+wCurOTMon:: db
 wca37:: ds 1
-wca38:: ds 1
-wca39:: ds 1
+
+wTypeModifier::
+; >10: super-effective
+;  10: normal
+; <10: not very effective
+; bit 7: stab
+	db
+
+wCriticalHit::
+; 0 if not critical
+; 1 for a critical hit
+; 2 for a OHKO
+	db
+	
 wca3a:: ds 1
-wca3b:: ds 1
-wca3c:: ds 1
+
+wPlayerSubStatus1:: db
+wPlayerSubStatus2:: db
 wPlayerSubStatus3:: db
+wPlayerSubStatus4:: db
+wPlayerSubStatus5:: db
 
-wca3e:: ds 1
-wca3f:: ds 1
-wca40:: ds 1
-wca41:: ds 1
-
+wEnemySubStatus1:: db
+wEnemySubStatus2:: db
 wEnemySubStatus3:: db
+wEnemySubStatus4:: db
+wEnemySubStatus5:: db
 
-wca43:: db
-
-wca44:: db
 wca45:: db
 wca46:: db
 wca47:: db
@@ -460,7 +471,7 @@ wca5d:: ds 1
 
 wca7b:: ds 1
 wca7c:: ds 1
-wca7d:: ds 1
+wTurnEnded:: db
 
 	ds $15
 
@@ -554,8 +565,13 @@ wcad9:: ds 1
 wcada:: ds 1
 wcadb:: ds 1
 wcadc:: ds 1
+
+wPlayerScreens::
 wcadd:: ds 1
+
+wEnemyScreens::
 wcade:: ds 1
+
 wcadf:: ds 1
 wcae0:: ds 1
 wcae1:: ds 1
@@ -877,11 +893,15 @@ SECTION "CD3C", WRAM0[$CD3C]
 wcd3c:: db
 wRegularItemsCursor:: db
 wBackpackAndKeyItemsCursor:: db
+
 wBattleMenuCursorPosition::
 wStartmenuCursor:: db
+
 wcd40:: db
+
 wCurBattleMon::
 wcd41:: db
+
 wcd42:: db
 wFieldDebugMenuCursorBuffer::
 wcd43:: db
@@ -914,8 +934,12 @@ wNumMoves::
 wcd57:: ds 1
 
 wItemEffectSucceeded::
-wBattlePlayerAction::
-wFieldMoveSucceeded:: db
+wFieldMoveSucceeded::
+; 0 - use move
+; 1 - use item
+; 2 - switch
+wBattlePlayerAction:: db
+
 wVramState:: db
 
 	ds 3 ; TODO
@@ -1125,8 +1149,8 @@ wce26:: ds 1
 
 	ds 2
 
-wce29:: ds 1
-wce2a:: ds 1
+wCurDamage:: dw
+;wce2a:: ds 1
 
 	ds 2
 

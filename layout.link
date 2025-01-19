@@ -253,7 +253,7 @@ ROMX $0c
 
 ROMX $0d
 	org $4000
-	"engine/dumps/bank0d.asm@Function34000"
+	"engine/dumps/bank0d.asm@DoPlayerTurn"
 
 ROMX $0e
 	org $4000
