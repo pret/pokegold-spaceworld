@@ -2840,24 +2840,24 @@ asm_34f49:
 	xor a
 
 asm_34f5b:
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	add b
 	ld [wTypeModifier], a
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld hl, wCurDamage
 	ld a, [hli]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hld]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	call Multiply
 	ld a, $a
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 1]
-	ld [hli], a
 	ldh a, [hQuotient + 2]
+	ld [hli], a
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	pop bc
 	pop hl
@@ -2904,26 +2904,26 @@ asm_34fb1:
 
 asm_34fb5:
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, [wCurDamage]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, [wCurDamage + 1]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	inc hl
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, $a
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient]
+	ldh a, [hQuotient + 1]
 	and a
 	ld bc, $ffff
 	jr nz, asm_34fe6
-	ldh a, [hQuotient + 1]
-	ld b, a
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	ld c, a
 	or b
 	jr nz, asm_34fe6
@@ -3013,20 +3013,20 @@ asm_35045:
 asm_35048:
 	xor a
 	ldh [hProduct], a
-	ldh [hQuotient], a
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hli]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, [wNumSetBits]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, $a
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	push bc
 	ld b, 4
 	call Divide
 	pop bc
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld [wNumSetBits], a
 	jr asm_3501c
 
@@ -3046,28 +3046,28 @@ asm_3519b:
 
 asm_351a6:
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	dec hl
 	ld a, [hli]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 
 asm_351b0:
 	call BattleRandom
 	rrca
 	cp $d9
 	jr c, asm_351b0
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, $ff
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	ld hl, wCurDamage
 	ld [hli], a
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	ret
 
@@ -3262,10 +3262,10 @@ asm_352fa:
 	sub c
 	ld c, a
 	xor a
-	ldh [hQuotient], a
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	push hl
 	ld d, 2
 
@@ -3279,28 +3279,28 @@ asm_35309:
 	add hl, bc
 	pop bc
 	ld a, [hli]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hl]
 	ldh [hPrintNumDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld b, a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	or b
 	jp nz, asm_35332
-	ldh [hQuotient + 1], a
-	ld a, 1
 	ldh [hQuotient + 2], a
+	ld a, 1
+	ldh [hQuotient + 3], a
 
 asm_35332:
 	ld b, c
 	dec d
 	jr nz, asm_35309
-	ldh a, [hQuotient + 1]
-	and a
 	ldh a, [hQuotient + 2]
+	and a
+	ldh a, [hQuotient + 3]
 	jr z, asm_3533f
 	ld a, $ff
 
@@ -3963,9 +3963,9 @@ PlayerAttackDamage:
 	ld c, STAT_DEF
 	call sub_35952
 
-	ldh a, [hQuotient + 1]
-	ld b, a
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	ld c, a
 	push bc
 	ld hl, wPartyMon1Attack
@@ -3995,9 +3995,9 @@ PlayerAttackDamage:
 	ld c, 6
 	call sub_35952
 
-	ldh a, [hQuotient + 1]
-	ld b, a
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	ld c, a
 	push bc
 	ld hl, wPartyMon1SpclAtk
@@ -4077,7 +4077,7 @@ asm_35880:
 	push bc
 	ld c, 2
 	call sub_35952
-	ld hl, hQuotient + 1
+	ld hl, hQuotient + 2
 	pop bc
 	jr asm_358d7
 
@@ -4099,7 +4099,7 @@ asm_358b5:
 	jr z, asm_358d7
 	ld hl, wPartyMon1SpclDef
 	ld a, [wCurBattleMon]
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hli]
 	ld b, a
@@ -4107,7 +4107,7 @@ asm_358b5:
 	push bc
 	ld c, 5
 	call sub_35952
-	ld hl, hQuotient + 1
+	ld hl, hQuotient + 2
 	pop bc
 
 asm_358d7:
@@ -4334,38 +4334,38 @@ asm_35a0b:
 asm_35a1f:
 	ld hl, wCurDamage
 	ld b, [hl]
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	add b
-	ldh [hQuotient + 2], a
+	ldh [hQuotient + 3], a
 	jr nc, asm_35a32
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	inc a
-	ldh [hQuotient + 1], a
+	ldh [hQuotient + 2], a
 	and a
 	jr z, asm_35a66
 
 asm_35a32:
-	ldh a, [hProduct]
-	ld b, a
 	ldh a, [hQuotient]
+	ld b, a
+	ldh a, [hQuotient + 1]
 	or a
 	jr nz, asm_35a66
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	cp 3
 	jr c, asm_35a4a
 	cp 4
 	jr nc, asm_35a66
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	cp $e6
 	jr nc, asm_35a66
 
 asm_35a4a:
 	inc hl
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld b, [hl]
 	add b
 	ld [hld], a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	ld b, [hl]
 	adc b
 	ld [hl], a
@@ -4508,42 +4508,42 @@ asm_35b03:
 asm_35b0e:
 	xor a
 	ldh [hProduct], a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, [hli]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hli]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, $30
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld a, b
 	and a
 	jr z, asm_35b47
-	ldh a, [hPrintNumDivisor]
+	ldh a, [hDivisor]
 	srl b
 	rr a
 	srl b
 	rr a
-	ldh [hPrintNumDivisor], a
-	ldh a, [hQuotient + 1]
+	ldh [hDivisor], a
+	ldh a, [hDividend + 2]
 	ld b, a
 	srl b
-	ldh a, [hQuotient + 2]
+	ldh a, [hDividend + 3]
 	rr a
 	srl b
 	rr a
-	ldh [hQuotient + 2], a
+	ldh [hDividend + 3], a
 	ld a, b
-	ldh [hQuotient + 1], a
+	ldh [hDividend + 2], a
 
 asm_35b47:
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld b, a
 	ld hl, Data35b78
 
@@ -6287,34 +6287,34 @@ asm_36621:
 	add hl, bc
 	pop bc
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, [de]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	inc de
 	ld a, [de]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, [hli]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
 	pop hl
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	sub $e7
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	sbc 3
 	jp c, asm_3665a
 	ld a, 3
-	ldh [hQuotient + 1], a
-	ld a, $e7
 	ldh [hQuotient + 2], a
+	ld a, $e7
+	ldh [hQuotient + 3], a
 
 asm_3665a:
-	ldh a, [hQuotient + 1]
-	ld [hli], a
 	ldh a, [hQuotient + 2]
+	ld [hli], a
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	pop hl
 
@@ -6516,33 +6516,33 @@ asm_3677c:
 	add hl, bc
 	pop bc
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, [de]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	inc de
 	ld a, [de]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, [hli]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
 	pop hl
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld b, a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	or b
 	jp nz, asm_367b1
-	ldh [hQuotient + 1], a
-	ld a, 1
 	ldh [hQuotient + 2], a
+	ld a, 1
+	ldh [hQuotient + 3], a
 
 asm_367b1:
-	ldh a, [hQuotient + 1]
-	ld [hli], a
 	ldh a, [hQuotient + 2]
+	ld [hli], a
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	pop de
 	pop hl
@@ -9875,7 +9875,7 @@ BattleCommand_HappinessPower::
 	ld b, 4
 	call Divide
 
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld d, a
 	pop bc
 	ret
@@ -10296,21 +10296,21 @@ asm_37cb2:
 asm_37cd0:
 	call BattleRandom
 	set 7, a
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, b
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, c
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	call Multiply
 	ld a, $ff
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 1]
-	ld b, a
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	ld c, a
 	call LoadMoveAnim
 	ldh a, [hBattleTurn]

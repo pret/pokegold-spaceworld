@@ -2182,62 +2182,66 @@ TryRunningFromBattle:
 	dec a
 	jp nz, .trainer_battle
 	ld a, [wPlayerSubStatus5]
-	bit 7, a
+	bit SUBSTATUS_CANT_RUN, a
 	jp nz, .cannot_escape
+
 	push hl
 	push de
 	ld a, [wBattleMonItem]
-	ld [wNumSetBits], a
+	ld [wNamedObjectIndexBuffer], a
 	ld b, a
 	callfar GetItemHeldEffect
+
 	ld a, b
-	cp $48
+	cp HELD_ESCAPE
 	pop de
 	pop hl
-	jr nz, .asm_3d10f
+	jr nz, .no_flee_item
+
 	call GetItemName
 	ld hl, EscapedUsingItemText
 	call PrintText
 	jp .can_escape
 
-.asm_3d10f
-	ld a, [wce39]
+.no_flee_item
+	ld a, [wNumFleeAttempts]
 	inc a
-	ld [wce39], a
+	ld [wNumFleeAttempts], a
 	ld a, [hli]
 	ldh [hMultiplicand + 1], a
 	ld a, [hl]
 	ldh [hMultiplicand + 2], a
 	ld a, [de]
 	inc de
-	ldh [hSpriteOffset], a
+	ldh [hEnemyMonSpeed], a
 	ld a, [de]
-	ldh [hFFB2], a
+	ldh [hEnemyMonSpeed + 1], a
 	call ReloadTilesFromBuffer
 	ld de, hMultiplicand + 1
-	ld hl, hSpriteOffset
+	ld hl, hEnemyMonSpeed
 	ld c, 2
 	call memcmp
 	jr nc, .can_escape
+	
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, $20
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
-	ldh a, [hMultiplicand + 1]
-	ldh [hProduct], a
-	ldh a, [hMultiplicand + 2]
-	ldh [hQuotient], a
-	ldh a, [hSpriteOffset]
+	ldh a, [hProduct + 2]
+	ldh [hDividend], a
+	ldh a, [hProduct + 3]
+	ldh [hDividend + 1], a
+	ldh a, [hEnemyMonSpeed]
 	ld b, a
-	ldh a, [hFFB2]
+	ldh a, [hEnemyMonSpeed + 1]
 	srl b
 	rr a
 	srl b
 	rr a
 	and a
 	jr z, .can_escape
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
 	ldh a, [hMultiplicand + 1]
@@ -2929,44 +2933,44 @@ asm_3d6b4:
 
 asm_3d6c7:
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, $30
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld a, b
 	and a
 	jr z, asm_3d6fb
-	ldh a, [hPrintNumDivisor]
+	ldh a, [hDivisor]
 	srl b
 	rr a
 	srl b
 	rr a
-	ldh [hPrintNumDivisor], a
-	ldh a, [hMultiplicand + 1]
+	ldh [hDivisor], a
+	ldh a, [hProduct + 2]
 	ld b, a
 	srl b
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hProduct + 3]
 	rr a
 	srl b
 	rr a
-	ldh [hMultiplicand + 2], a
+	ldh [hDividend + 3], a
 	ld a, b
-	ldh [hMultiplicand + 1], a
+	ldh [hDividend + 2], a
 
 asm_3d6fb:
-	ldh a, [hMultiplicand + 1]
-	ldh [hProduct], a
-	ldh a, [hMultiplicand + 2]
-	ldh [hQuotient], a
+	ldh a, [hDividend + 2]
+	ldh [hDividend], a
+	ldh a, [hDividend + 3]
+	ldh [hDividend + 1], a
 	ld a, 2
 	ld b, a
 	call Divide
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	ld e, a
 	ld a, 6
 	ld d, a
@@ -4613,35 +4617,35 @@ asm_3e301:
 	ld b, 0
 	add hl, bc
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, [de]
 	ldh [hMultiplicand + 1], a
 	inc de
 	ld a, [de]
 	ldh [hMultiplicand + 2], a
 	ld a, [hli]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
 	pop hl
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	sub $e7
-	ldh a, [hMultiplicand + 1]
+	ldh a, [hQuotient + 2]
 	sbc 3
 	jp c, asm_3e339
 	ld a, 3
-	ldh [hMultiplicand + 1], a
+	ldh [hQuotient + 2], a
 	ld a, $e7
-	ldh [hMultiplicand + 2], a
+	ldh [hQuotient + 3], a
 
 asm_3e339:
-	ldh a, [hMultiplicand + 1]
+	ldh a, [hQuotient + 2]
 	ld [hli], a
 	ld b, a
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	or b
 	jr nz, asm_3e344
@@ -4821,15 +4825,15 @@ asm_3e471:
 
 asm_3e478:
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ldh [hMultiplicand + 1], a
 	ld a, [wcdff]
 	ldh [hMultiplicand + 2], a
 	ld a, [wEnemyMonLevel]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, 7
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
 	pop bc
@@ -4856,12 +4860,12 @@ asm_3e4ac:
 	ld hl, $a
 	add hl, bc
 	ld d, [hl]
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	ld [wcd32], a
 	add d
 	ld [hld], a
 	ld d, [hl]
-	ldh a, [hMultiplicand + 1]
+	ldh a, [hQuotient + 2]
 	ld [wStringBuffer2], a
 	adc d
 	ld [hl], a
@@ -4879,13 +4883,13 @@ asm_3e4ce:
 	ld [wCurSpecies], a
 	call GetBaseData
 	push bc
-	ld d, $64
+	ld d, MAX_LEVEL
 	callfar CalcExpAtLevel
 	pop bc
 	ld hl, $a
 	add hl, bc
 	push bc
-	ldh a, [hQuotient]
+	ldh a, [hMultiplicand]
 	ld b, a
 	ldh a, [hMultiplicand + 1]
 	ld c, a
@@ -5079,14 +5083,14 @@ asm_3e654:
 
 asm_3e667:
 	xor a
-	ldh [hProduct], a
+	ldh [hDividend], a
 	ld a, [hl]
-	ldh [hQuotient], a
+	ldh [hDividend + 1], a
 	ld a, [wNumSetBits]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	ld [hli], a
 	dec c
 	jr nz, asm_3e667
@@ -5094,17 +5098,17 @@ asm_3e667:
 
 sub_3e67e:
 	push bc
-	ldh a, [hMultiplicand + 1]
+	ldh a, [hQuotient + 2]
 	ld b, a
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	ld c, a
 	srl b
 	rr c
 	add c
-	ldh [hMultiplicand + 2], a
-	ldh a, [hMultiplicand + 1]
+	ldh [hQuotient + 3], a
+	ldh a, [hQuotient + 2]
 	adc b
-	ldh [hMultiplicand + 1], a
+	ldh [hQuotient + 2], a
 	pop bc
 	ret
 
@@ -5160,7 +5164,7 @@ PrintSendOutMonMessage:
 	ld hl, GoText
 	jr z, .print_text
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 ; enemy mon current HP * 25
 	ld hl, wEnemyMonHP
 	ld a, [hli]
@@ -5182,12 +5186,12 @@ PrintSendOutMonMessage:
 	ld a, b
 ; enemy mon max HP divided by 4
 	ld b, 4
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	call Divide
 
 ; (enemy's current HP * 25) / (enemy's max HP / 4)
 ; approximates current % of max HP
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 ; >= 70%
 	ld hl, GoText
 	cp 70
@@ -5255,7 +5259,7 @@ PlayerMon2Text:
 	sbc b
 	ldh [hMultiplicand + 1], a
 	ld a, 25
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
@@ -5266,11 +5270,11 @@ PlayerMon2Text:
 	rr b
 	ld a, b
 	ld b, 4
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	call Divide
 	pop bc
 	pop de
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 ; HP stays the same
 	ld hl, EnoughText
 	and a
@@ -5363,7 +5367,7 @@ Function3e874:
 	push de
 	callfar CalcExpAtLevel
 	pop de
-	ld hl, hQuotient
+	ld hl, hMultiplicand
 	ld a, [hli]
 	push af
 	ld a, [hli]
@@ -5372,7 +5376,7 @@ Function3e874:
 	push af
 	inc d
 	callfar CalcExpAtLevel
-	ld hl, hMultiplicand + 2
+	ld hl, hProduct + 3
 	ld a, [hl]
 	ldh [hPrintNumTemp], a
 	pop bc

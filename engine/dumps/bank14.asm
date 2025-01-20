@@ -601,15 +601,15 @@ Function50340::
 	call CalcExpAtLevel
 	ld hl, wTempMonExp + 2
 	ld hl, wTempMonExp + 2    ; Seemingly an unnecessary duplicate line
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	sub [hl]
 	dec hl
 	ld [wcdc5], a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	sbc [hl]
 	dec hl
 	ld [wcdc4], a
-	ldh a, [hQuotient]
+	ldh a, [hQuotient + 1]
 	sbc [hl]
 	ld [wcdc3], a
 	ret
@@ -1756,15 +1756,15 @@ Function50caa::
 	call CalcExpAtLevel
 	push hl
 	ld hl, wTempMonExp + 2
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld c, a
 	ld a, [hld]
 	sub c
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	ld c, a
 	ld a, [hld]
 	sbc c
-	ldh a, [hQuotient]
+	ldh a, [hQuotient + 1]
 	ld c, a
 	ld a, [hl]
 	sbc c
@@ -1800,11 +1800,11 @@ CalcExpAtLevel::
 	ld b, 4
 	call Divide
 ; Push the cubic term to the stack
-	ldh a, [hQuotient]
-	push af
 	ldh a, [hQuotient + 1]
 	push af
 	ldh a, [hQuotient + 2]
+	push af
+	ldh a, [hQuotient + 3]
 	push af
 ; Square the level and multiply by the lower 7 bits of c
 	call .LevelSquared
@@ -2124,7 +2124,7 @@ GetUnownLetter::
 	call Divide
 
 ; Increment to get 1-26
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	inc a
 	ld [wAnnonID], a    ; $d874
 	ret

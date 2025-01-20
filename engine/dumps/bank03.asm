@@ -3076,16 +3076,16 @@ PokeBallEffect:
 	sub c
 	ldh [hDivisor], a
 	xor a
-	ldh [hDividend], a
-	ldh [hMultiplicand], a
-	ldh [hQuotient+1], a
+	ldh [hQuotient], a
+	ldh [hQuotient + 1], a
+	ldh [hQuotient + 2], a
 	call Multiply
 	pop bc
 	ld a, b
 	ldh [hDivisor], a
 	ld b, $04
 	call Divide
-	ldh a, [hQuotient+2]
+	ldh a, [hQuotient + 3]
 	and a
 	jr nz, .sub_e998
 	ld a, $01
@@ -3663,11 +3663,11 @@ Functionee42:
 	push hl
 	ld bc, $0008
 	add hl, bc
-	ldh a, [hMultiplicand]
+	ldh a, [hQuotient + 1]
 	ld [hli], a
-	ldh a, [hQuotient+1]
+	ldh a, [hQuotient + 2]
 	ld [hli], a
-	ldh a, [hQuotient+2]
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	pop hl
 	push hl
@@ -4120,19 +4120,19 @@ Functionf1c5:
 	ret
 
 Functionf1ce:
-	ld a, $24
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ldh [hDividend], a
 	ld a, [hl]
-	ldh [hQuotient], a
+	ldh [hDividend + 1], a
 	ld a, $05
-	ldh [hMultiplier], a
+	ldh [hDivisor], a
 	ld b, $02
 	call Divide
-	ldh a, [hQuotient+1]
+	ldh a, [hQuotient + 2]
 	ld d, a
-	ldh a, [hQuotient+2]
+	ldh a, [hQuotient + 3]
 	ld e, a
 	ret
 
