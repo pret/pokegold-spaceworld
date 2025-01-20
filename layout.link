@@ -276,6 +276,8 @@ ROMX $10
 	org $4000
 	org $4943
 	"data/pokemon/dex_order_alpha.asm"
+	org $4b45
+	"engine/dumps/bank10.asm@ConvertMon_2to1"
 	org $4ecc
 	"data/types/search_strings.asm"
 	org $5068
