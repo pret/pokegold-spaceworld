@@ -42,12 +42,12 @@ GiveItemPredef::
 	add_predef GetTMHMMove
 	add_predef LinkTextboxAtHL
 	add_predef Function2d663
-	add_predef Function3d5ce
+	add_predef UpdatePlayerHUD
 	add_predef PlaceGraphic
 	add_predef Function3f068 ; 20
 	add_predef Function3f04a
 	add_predef AnyPartyAlive
-	add_predef Function3d67c
+	add_predef UpdateEnemyHUD
 	add_predef Function3e1a4
 	add_predef Function3ef19
 	add_predef Function3e874
@@ -64,7 +64,7 @@ GiveItemPredef::
 	add_predef CopyMonToTempMon
 	add_predef ListMoves
 	add_predef Function50bcd
-	add_predef Function50b92
+	add_predef PlaceNonFaintStatus
 	add_predef Function508c4
 	add_predef PartyMenuInBattle_Setup
 	add_predef PartyMenuInBattle

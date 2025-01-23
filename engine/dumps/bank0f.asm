@@ -866,7 +866,7 @@ EndPsychicVeilText:
 	prompt
 
 sub_3c704:
-	ld a, [wcae2]
+	ld a, [wBattleWeather]
 	and a
 	ret z
 	dec a
@@ -876,7 +876,7 @@ sub_3c704:
 	ld hl, TextPointers3c726
 	jr nz, asm_3c71b
 	xor a
-	ld [wcae2], a
+	ld [wBattleWeather], a
 	ld hl, TextPointers3c72a
 
 asm_3c71b:
@@ -1097,14 +1097,14 @@ asm_3c862:
 	ret
 
 sub_3c86d:
-	ld a, [wca45]
+	ld a, [wPlayerRolloutCount]
 	and a
 	jr nz, asm_3c878
 	ld hl, wPlayerSubStatus3
 	res 5, [hl]
 
 asm_3c878:
-	ld a, [wca4d]
+	ld a, [wEnemyRolloutCount]
 	and a
 	ret nz
 	ld hl, wEnemySubStatus3
@@ -1122,7 +1122,7 @@ asm_3c883:
 	ld hl, wBattleMonHP
 	ld a, [hli]
 	or [hl]
-	call nz, Function3d5ce
+	call nz, UpdatePlayerHUD
 	ld c, $3c
 	call DelayFrames
 	ld a, [wBattleMode]
@@ -1339,13 +1339,13 @@ asm_3ca18:
 	ld a, b
 	call z, sub_3cae1
 	callfar Function390e9
-	ld hl, TrainerDefeatedText
+	ld hl, BattleText_EnemyWasDefeated
 	call PrintText
 	ld a, [wLinkMode]
 	cp 3
 	ret z
 	call sub_3e201
-	ld c, $28
+	ld c, 40
 	call DelayFrames
 	ld a, [wce02]
 	cp 9
@@ -1359,9 +1359,9 @@ asm_3ca51:
 	ld b, a
 	callfar GetItemHeldEffect
 	ld a, b
-	cp $4c
+	cp HELD_AMULET_COIN
 	jr nz, asm_3ca74
-	ld hl, wca5b
+	ld hl, wBattleReward + 2
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -1375,7 +1375,7 @@ asm_3ca51:
 
 asm_3ca74:
 	ld de, wMoney + 2
-	ld hl, wca5b
+	ld hl, wBattleReward + 2
 	ld c, 3
 	and a
 
@@ -1387,18 +1387,18 @@ asm_3ca7d:
 	dec hl
 	dec c
 	jr nz, asm_3ca7d
-	ld hl, PlayerReceivedPrizeMoneyText
+	ld hl, GotMoneyForWinningText
 	call PrintText
 	ret
 
-PlayerReceivedPrizeMoneyText:
+GotMoneyForWinningText:
 	text "<PLAYER>は　しょうきんとして"
 	line "@"
-	deciram wca59, 3, 6
+	deciram wBattleReward, 3, 6
 	text "円　てにいれた！"
 	prompt
 
-TrainerDefeatedText:
+BattleText_EnemyWasDefeated:
 	text_from_ram wca2b
 	text "の　@"
 	text_from_ram wStringBuffer1
@@ -1461,7 +1461,7 @@ sub_3cb34:
 	ld b, 0
 	predef SmallFarFlagAction
 	ld hl, wEnemySubStatus3
-	res 2, [hl]
+	res SUBSTATUS_IN_LOOP, [hl]
 	ld a, [wccc4]
 	bit 7, a
 	jr z, asm_3cb56
@@ -1470,7 +1470,7 @@ sub_3cb34:
 	call WaitSFX
 
 asm_3cb56:
-	ld hl, wTrainerClass
+	ld hl, wPlayerDamageTaken + 1
 	ld [hli], a
 	ld [hl], a
 	ld [wBattleMonStatus], a
@@ -1836,7 +1836,7 @@ LookUpTheEffectivenessOfEveryMove:
 	call FarCopyBytes
 	ld a, 1
 	ldh [hBattleTurn], a
-	callfar Function34fff
+	callfar BattleCheckTypeMatchup
 	pop bc
 	pop de
 	pop hl
@@ -1870,13 +1870,13 @@ IsThePlayerMonTypesEffectiveAgainstOTMon:
 	ld [wPlayerMoveStructType], a
 	xor a
 	ldh [hBattleTurn], a
-	callfar Function34fff
+	callfar BattleCheckTypeMatchup
 	ld a, [wNumSetBits]
 	cp $b
 	jr nc, .super_effective
 	ld a, [wBattleMonType2]
 	ld [wPlayerMoveStructType], a
-	callfar Function34fff
+	callfar BattleCheckTypeMatchup
 	ld a, [wNumSetBits]
 	cp $b
 	jr nc, .super_effective
@@ -2085,7 +2085,7 @@ EnemySendOutFirstMon:
 	ld [wCryTracks], a
 	ld a, [wTempEnemyMonSpecies]
 	call PlayStereoCry
-	call Function3d67c
+	call UpdateEnemyHUD
 	ld a, [wMenuCursorY]
 	and a
 	ret nz
@@ -2497,7 +2497,7 @@ Function3d32e:
 	ld [wCryTracks], a
 	ld a, [wCurPartySpecies]
 	call PlayStereoCry
-	call Function3d5ce
+	call UpdatePlayerHUD
 	ret
 
 sub_3d387:
@@ -2813,16 +2813,17 @@ UseItemFailedText:
 	prompt
 
 DrawHUDsAndHPBars:
-	call Function3d5ce
-	jp Function3d67c
+	call UpdatePlayerHUD
+	jp UpdateEnemyHUD
 
-Function3d5ce:
+UpdatePlayerHUD:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 9, 7
-	ld bc, $050b
+	lb bc, 5, 11
 	call ClearBox
-	callfar Function383cd
+	callfar DrawPlayerHUDBorder
+
 	hlcoord 18, 9
 	ld [hl], $73
 	ld de, wBattleMonNickname
@@ -2845,7 +2846,7 @@ Function3d5ce:
 	push hl
 	inc hl
 	ld de, wTempMonStatus
-	predef Function50b92
+	predef PlaceNonFaintStatus
 	pop hl
 	jr nz, asm_3d626
 	call PrintLevel
@@ -2895,13 +2896,13 @@ asm_3d676:
 	set 7, [hl]
 	ret
 
-Function3d67c:
+UpdateEnemyHUD:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 1, 0
 	ld bc, $040b
 	call ClearBox
-	callfar Function383fd
+	callfar DrawEnemyHUDBorder
 	ld de, wEnemyMonNickname
 	hlcoord 2, 1
 	call sub_3d72f
@@ -2911,7 +2912,7 @@ Function3d67c:
 	push hl
 	inc hl
 	ld de, wEnemyMonStatus
-	predef Function50b92
+	predef PlaceNonFaintStatus
 	pop hl
 	jr nz, asm_3d6b4
 	ld a, [wEnemyMonLevel]
@@ -3123,7 +3124,7 @@ sub_3d832:
 	ld a, [wPlayerSubStatus3]
 	bit 5, a
 	jr z, .ok
-	ld hl, wca45
+	ld hl, wPlayerRolloutCount
 	dec [hl]
 	jr nz, .ok
 	ld hl, wPlayerSubStatus3
@@ -4124,7 +4125,7 @@ asm_3e009:
 	cp MOVE_COUNTER
 	ret nz
 	ld a, 1
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	ld a, [hl]
 	cp MOVE_COUNTER
 	ret z
@@ -4158,8 +4159,8 @@ asm_3e023:
 
 asm_3e035:
 	xor a
-	ld [wca3a], a
-	callfar Function351d0
+	ld [wAttackMissed], a
+	callfar BattleCommand_CheckHit
 	xor a
 	ret
 
@@ -5004,7 +5005,7 @@ asm_3e5ae:
 ; these three calls should be regular calls
 	callfar sub_3e247
 	callfar sub_3e360
-	callfar Function3d5ce
+	callfar UpdatePlayerHUD
 	call PrintEmptyString
 	call BackUpTilesToBuffer
 
@@ -5883,7 +5884,7 @@ _InitBattleCommon:
 	call ClearSprites
 	ld a, [wBattleMode]
 	cp 1
-	call z, Function3d67c
+	call z, UpdateEnemyHUD
 	call StartBattle
 	call sub_3f13e
 	pop af
@@ -6172,7 +6173,7 @@ asm_3f15a:
 	ld [wccc4], a
 	ld [wBattleMode], a
 	ld [wBattleType], a
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	ld [wce01], a
 	ld [wce02], a
 	ld [wce38], a
@@ -6238,11 +6239,11 @@ AddBattleMoneyToAccount:
 	dec hl
 	dec c
 	jr nz, .loop
-	ld hl, GotMoneyForWinningText
+	ld hl, BattleText_PlayerPickedUpPayDayMoney
 	call PrintText
 	ret
 
-GotMoneyForWinningText:
+	BattleText_PlayerPickedUpPayDayMoney:
 	text "<PLAYER>は　@"
 	deciram wPayDayMoney, 3, 6
 	text "円"
@@ -6489,7 +6490,7 @@ BattleStartMessage:
 	ld a, [wTempEnemyMonSpecies]
 	call PlayStereoCry
 	ld hl, WildPokemonAppearedText
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr z, .PlaceBattleStartText
 	ld hl, HookedPokemonAttackedText

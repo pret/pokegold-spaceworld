@@ -1850,12 +1850,14 @@ CalcMonStatC:
 	jr nz, .not_spdef
 	dec hl
 	dec hl
+	
 .not_spdef
 	sla c
 	ld a, d
 	and a
 	jr z, .no_stat_exp
 	add hl, bc
+
 .sqrt_loop
 	xor a
 	ldh [hMultiplicand], a
@@ -1923,6 +1925,7 @@ CalcMonStatC:
 	add b
 	pop bc
 	jr .GotDV
+
 .Attack
 	ld a, [hl]
 	swap a
@@ -1952,6 +1955,7 @@ CalcMonStatC:
 	ld e, a
 	jr nc, .no_overflow_1
 	inc d
+
 .no_overflow_1
 	sla e
 	rl d
@@ -1961,6 +1965,7 @@ CalcMonStatC:
 	add e
 	jr nc, .no_overflow_2
 	inc d
+	
 .no_overflow_2
 	ldh [hMultiplicand + 2], a
 	ld a, d
@@ -2009,21 +2014,24 @@ CalcMonStatC:
 	ldh a, [hDividend+2]
 	inc a
 	ldh [hDividend+2], a
+
 .no_overflow_4
 	ldh a, [hDividend+2]
 	cp HIGH(MAX_STAT_VALUE + 1) + 1
-	jr nc, .sub_e094
+	jr nc, .max_stat
 	cp HIGH(MAX_STAT_VALUE + 1)
-	jr c, .sub_e09c
+	jr c, .stat_value_okay
 	ldh a, [hDividend+3]
 	cp LOW(MAX_STAT_VALUE + 1)
-	jr c, .sub_e09c
-.sub_e094
+	jr c, .stat_value_okay
+
+.max_stat
 	ld a, HIGH(MAX_STAT_VALUE)
 	ldh [hDividend+2], a
 	ld a, LOW(MAX_STAT_VALUE)
 	ldh [hDividend+3], a
-.sub_e09c
+
+.stat_value_okay
 	pop bc
 	pop de
 	pop hl

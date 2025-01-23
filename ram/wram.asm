@@ -416,7 +416,9 @@ wCriticalHit::
 ; 2 for a OHKO
 	db
 	
-wca3a:: ds 1
+wAttackMissed::
+; nonzero for a miss
+wca3a:: db
 
 wPlayerSubStatus1:: db
 wPlayerSubStatus2:: db
@@ -430,7 +432,7 @@ wEnemySubStatus3:: db
 wEnemySubStatus4:: db
 wEnemySubStatus5:: db
 
-wca45:: db
+wPlayerRolloutCount:: db
 wca46:: db
 wca47:: db
 wca48:: db
@@ -440,7 +442,7 @@ wca4b:: db
 
 	ds 1
 
-wca4d:: db
+wEnemyRolloutCount:: db
 wca4e:: db
 
 wca4f:: db
@@ -452,15 +454,17 @@ wca53:: db
 	ds 1
 
 wca55:: db
-wca56:: db
 
-wTrainerClass::
-	db
-
-wca58:: ds 1
+UNION
+wPlayerDamageTaken:: dw
+wEnemyDamageTaken:: dw
+NEXTU
+	ds 3
+wBattleReward:: ds 3
+NEXTU
+	ds 3
 wca59:: ds 1
-wca5a:: ds 1
-wca5b:: ds 1
+ENDU
 
 wBattleAnimParam::
 wca5c:: ds 1
@@ -469,8 +473,8 @@ wca5d:: ds 1
 
 	ds $1d
 
-wca7b:: ds 1
-wca7c:: ds 1
+wBattleScriptBufferAddress:: dw
+
 wTurnEnded:: db
 
 	ds $15
@@ -483,21 +487,30 @@ wca9e:: ds 1
 
 	ds $a
 
+wPlayerStatLevels::
+wPlayerAtkLevel::
 wcaa9:: ds 1
 
-	ds 4
-
-wcaae:: ds 1
-wcaaf:: ds 1
+wPlayerDefLevel::  db
+wPlayerSpdLevel::  db
+wPlayerSAtkLevel:: db
+wPlayerSDefLevel:: db
+wPlayerAccLevel:: db
+wPlayerEvaLevel:: db
 
 	ds 1
 
+
+wEnemyStatLevels::
+wEnemyAtkLevel::
 wcab1:: ds 1
 
-	ds 4
-
-wcab6:: ds 1
-wcab7:: ds 1
+wEnemyDefLevel::  db
+wEnemySpdLevel::  db
+wEnemySAtkLevel:: db
+wEnemySDefLevel:: db
+wEnemyAccLevel:: db
+wEnemyEvaLevel:: db
 
 	ds 1
 
@@ -506,8 +519,8 @@ wcaba:: ds 1
 
 	ds 1
 
-wcabc:: ds 1
-wcabd:: ds 1
+wPlayerSubstituteHP:: ds 1
+wEnemySubstituteHP:: ds 1
 wcabe:: ds 1
 
 	ds 1
@@ -569,13 +582,13 @@ wcadc:: ds 1
 wPlayerScreens::
 wcadd:: ds 1
 
-wEnemyScreens::
+wEnemySafeguardCount::
 wcade:: ds 1
 
 wcadf:: ds 1
 wcae0:: ds 1
 wcae1:: ds 1
-wcae2:: ds 1
+wBattleWeather:: ds 1
 wcae3:: ds 1
 
 ENDU
@@ -770,6 +783,12 @@ wSpriteViewerJumptableIndex:: db
 
 	ds 56
 
+NEXTU
+; trainer HUD data
+	ds 1
+wPlaceBallsDirection:: db
+wTrainerHUDTiles:: ds 4
+
 ENDU
 
 SECTION "CC9A", WRAM0[$CC9A]
@@ -802,8 +821,8 @@ wSpriteDecodeTable1Ptr:: ds 2
 
 wFXAnimID:: dw
 
-wccc2:: ds 1
-wccc3:: ds 1
+wPlaceBallsX:: db
+wPlaceBallsY:: db
 wccc4:: ds 1
 
 SECTION "CCC7", WRAM0[$CCC7]
@@ -1044,6 +1063,10 @@ wcdc8:: db
 	ds 1
 wcdca:: db
 
+NEXTU
+; battle HUD
+wBattleHUDTiles:: ds PARTY_LENGTH
+
 ENDU
 
 
@@ -1166,6 +1189,8 @@ wce36:: ds 1
 wNamedObjectIndexBuffer::
 wNumSetBits::
 wMoveGrammar::
+wTypeMatchup::
+wCurType::
 wTempByteValue::
 wce37::
 	db

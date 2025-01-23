@@ -299,7 +299,7 @@
 
 	charmap "<LV>",      $6e
 
-	charmap "<DO>",      $70 ; hiragana small do, unused
+	charmap "<DO>",      $70 ; hiragana small do
 	charmap "◀",         $71
 
 	charmap "<ID>",      $73

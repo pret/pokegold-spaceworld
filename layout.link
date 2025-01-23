@@ -257,6 +257,8 @@ ROMX $0d
 
 ROMX $0e
 	org $4000
+	org $43cd
+	"engine/dumps/bank0e.asm"
 	org $4494
 	"gfx.asm@PokeBalls GFX"
 	org $4d90

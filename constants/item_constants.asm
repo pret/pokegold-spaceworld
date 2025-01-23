@@ -120,7 +120,7 @@
 	const ITEM_STIMULUS_ORB     ; 74 *BLUE_CARD
 	const ITEM_CALM_BERRY       ; 75 *MIRACLE_SEED
 	const ITEM_THICK_CLUB       ; 76
-	const ITEM_FOCUS_ORB        ; 77 FOCUS_BAND
+	const ITEM_FOCUS_ORB        ; 77 FOCUS_ORB
 	const ITEM_78               ; 78
 	const ITEM_DETECT_ORB       ; 79 *ENERGYPOWDER
 	const ITEM_LONG_TONGUE      ; 7a *ENERGY_ROOT

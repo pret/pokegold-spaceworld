@@ -514,7 +514,7 @@ Function50340::
 	jr z, .asm_503f5
 	push hl
 	ld de, wTempMonStatus
-	call Function50b7d
+	call PlaceStatusString
 	pop hl
 .asm_503f5
 	ld de, StatusText_OK
@@ -1252,7 +1252,7 @@ Function508c4::
 	ld bc, hRTCRandom
 	add hl, bc
 	ld de, wTempMonStatus
-	call Function50b7d
+	call PlaceStatusString
 	pop hl
 	push hl
 	ld bc, hCurMapTextSubroutinePtr + 1
@@ -1293,11 +1293,9 @@ Function508c4::
 
 .text_50948:
 	db "おぼえられる@"
-	;db $b5, $3e, $b4, $d7, $da, $d9, $50
 
 .text_5094f:
 	db "おぼえられない@"
-	;db $b5, $3e, $b4, $d7, $da, $c5, $b2, $50
 
 .DetermineCompatibility:
 	push hl
@@ -1547,7 +1545,7 @@ Function50b66::
 	inc [hl]
 	ret
 
-Function50b7d::
+PlaceStatusString::
 	push de
 	inc de
 	inc de
@@ -1557,60 +1555,62 @@ Function50b7d::
 	ld a, [de]
 	or b
 	pop de
-	jr nz, Function50b92
-	ld a, $cb
+	jr nz, PlaceNonFaintStatus
+	; "FNT" equivalent string
+	ld a, "ひ"
 	ld [hli], a
-	ld a, $de
+	ld a, "ん"
 	ld [hli], a
-	ld [hl], $bc
+	ld [hl], "し"
 	and a
 	ret
 
-Function50b92::
+PlaceNonFaintStatus::
 	ld a, [de]
-	bit 3, a
-	jr nz, .asm_50baf
-	bit 4, a
-	jr nz, .asm_50bb5
-	bit 5, a
-	jr nz, .asm_50bbe
-	bit 6, a
-	jr nz, .asm_50bc7
-	and %111
+	bit PSN, a
+	jr nz, .PsnString
+	bit BRN, a
+	jr nz, .BrnString
+	bit FRZ, a
+	jr nz, .FrzString
+	bit PAR, a
+	jr nz, .ParString
+	and SLP
 	ret z
-	ld a, $c8
+	; "SLP" equivalent string
+	ld a, "ね"
 	ld [hli], a
-	ld a, $d1
+	ld a, "む"
 	ld [hli], a
-	ld [hl], $d8
+	ld [hl], "り"
 	ret
 
-.asm_50baf
-	ld a, $70
+.PsnString
+	ld a, "<DO>"
 	ld [hli], a
-	ld [hl], $b8
+	ld [hl], "く"
 	ret
 
-.asm_50bb5
-	ld a, $d4
+.BrnString
+	ld a, "や"
 	ld [hli], a
-	ld a, $b9
+	ld a, "け"
 	ld [hli], a
-	ld [hl], $70
+	ld [hl], "<DO>"
 	ret
 
-.asm_50bbe
-	ld a, $ba
+.FrzString
+	ld a, "こ"
 	ld [hli], a
-	ld a, $b5
+	ld a, "お"
 	ld [hli], a
-	ld [hl], $d8
+	ld [hl], "り"
 	ret
 
-.asm_50bc7
-	ld a, $cf
+.ParString
+	ld a, "ま"
 	ld [hli], a
-	ld [hl], $cb
+	ld [hl], "ひ"
 	ret
 
 Function50bcd::

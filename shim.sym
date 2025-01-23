@@ -39,9 +39,10 @@
 0E:4220 Function38220
 0E:4340 Function38340
 0E:434E Function3834e
-0E:43CD Function383cd
-0E:43FD Function383fd
-0E:4431 Function38431
+;0E:43CD DrawPlayerHUDBorder
+;0E:43FD DrawEnemyHUDBorder
+;0E:4415 PlaceHUDBorderTiles
+;0E:4431 Function38431
 0E:44D4 Function384d4
 0E:4F45 Function38f45
 0E:50E9 Function390e9

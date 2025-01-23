@@ -27,6 +27,11 @@ DEF EFFECTIVE          EQU 10
 DEF NOT_VERY_EFFECTIVE EQU 05
 DEF NO_EFFECT          EQU 00
 
+; wTypeModifier
+DEF EFFECTIVENESS_MASK EQU %01111111
+	const_def 7
+	shift_const STAB_DAMAGE
+
 ; wPlayerStatLevels and wEnemyStatLevels indexes (see wram.asm)
 ; GetStatName arguments (see data/battle/stat_names.asm)
 	const_def
@@ -181,8 +186,8 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 	const SUBSTATUS_IN_LOOP
 	const SUBSTATUS_FLINCHED
 	const SUBSTATUS_CHARGED
-	const SUBSTATUS_UNDERGROUND
-	const SUBSTATUS_FLYING
+	const SUBSTATUS_WRAPPING_MOVE
+	const SUBSTATUS_INVULNERABLE
 	const SUBSTATUS_CONFUSED
 
 ; wPlayerSubStatus4 or wEnemySubStatus4 bit flags
@@ -207,7 +212,7 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 	const SUBSTATUS_DESTINY_BOND
 	const SUBSTATUS_CANT_RUN
 
-; wPlayerScreens or wEnemyScreens bit flags
+; wPlayerScreens or wEnemySafeguardCount bit flags
 	const_def
 	const SCREENS_SPIKES
 	const_skip
