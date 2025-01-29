@@ -214,7 +214,7 @@ asm_3c1c4:
 	jp c, asm_3c132
 	xor a
 	ld [wce36], a
-	ld a, [wca3e]
+	ld a, [wPlayerSubStatus4]
 	and $60
 	jp nz, asm_3c281
 	ld hl, wEnemySubStatus3
@@ -224,7 +224,7 @@ asm_3c1c4:
 	ld a, [hl]
 	and $12
 	jp nz, asm_3c281
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	bit 6, [hl]
 	jp nz, asm_3c281
 
@@ -234,7 +234,7 @@ asm_3c200:
 	ld a, [wce06]
 	and a
 	ret nz
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 	bit 4, [hl]
 	jr z, asm_3c246
 	ld a, [wca49]
@@ -243,7 +243,7 @@ asm_3c200:
 	jr nz, asm_3c229
 
 asm_3c219:
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 	res 4, [hl]
 	xor a
 	ldh [hBattleTurn], a
@@ -288,7 +288,7 @@ asm_3c246:
 asm_3c269:
 	xor a
 	ldh [hBattleTurn], a
-	callfar Function360b1
+	callfar UpdateMoveData
 	ld a, [wPlayerMoveStructEffect]
 	cp $77
 	jr z, asm_3c285
@@ -369,9 +369,9 @@ asm_3c306:
 asm_3c311:
 	xor a
 	ldh [hBattleTurn], a
-	callfar Function37e1d
+	callfar GetUserItem
 	push bc
-	callfar Function37e2d
+	callfar GetOpponentItem
 	pop de
 	ld a, d
 	cp $4a
@@ -445,7 +445,7 @@ sub_3c399:
 	ld a, [wDebugFlags]
 	bit 0, a
 	jr nz, asm_3c3b6
-	ld a, [wca44]
+	ld a, [wEnemySubStatus5]
 	bit 7, a
 	jr nz, asm_3c3b6
 	call BattleRandom
@@ -471,7 +471,7 @@ asm_3c3c7:
 	ldh [hBattleTurn], a
 	callfar Function38000
 	jr c, asm_3c3eb
-	callfar Function3401c
+	callfar DoEnemyTurn
 	call sub_3c473
 	ld a, [wce06]
 	and a
@@ -483,7 +483,7 @@ asm_3c3eb:
 	call sub_3c498
 	jp z, asm_3c883
 	call DrawHUDsAndHPBars
-	callfar Function34000
+	callfar DoPlayerTurn
 	call sub_3c473
 	ld a, [wce06]
 	and a
@@ -499,7 +499,7 @@ asm_3c3eb:
 	jp asm_3c183
 
 asm_3c41d:
-	callfar Function34000
+	callfar DoPlayerTurn
 	call sub_3c473
 	ld a, [wce06]
 	and a
@@ -513,7 +513,7 @@ asm_3c41d:
 	ldh [hBattleTurn], a
 	callfar Function38000
 	jr c, asm_3c460
-	callfar Function3401c
+	callfar DoEnemyTurn
 	call sub_3c473
 	ld a, [wce06]
 	and a
@@ -531,13 +531,13 @@ asm_3c460:
 	jp asm_3c183
 
 sub_3c473:
-	ld hl, wca44
-	ld de, wca40
+	ld hl, wEnemySubStatus5
+	ld de, wEnemySubStatus1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3c484
-	ld hl, wca3f
-	ld de, wca3b
+	ld hl, wPlayerSubStatus5
+	ld de, wPlayerSubStatus1
 
 asm_3c484:
 	res 6, [hl]
@@ -585,12 +585,12 @@ asm_3c4b8:
 	ld [wNumHits], a
 	call PlayMoveAnimation
 	call sub_3c78b
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 	ld de, wca47
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3c4d8
-	ld hl, wca44
+	ld hl, wEnemySubStatus5
 	ld de, wca4f
 
 asm_3c4d8:
@@ -612,11 +612,11 @@ asm_3c4e8:
 	call sub_3c75e
 
 asm_3c4eb:
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3c4f6
-	ld hl, wca43
+	ld hl, wEnemySubStatus4
 
 asm_3c4f6:
 	bit 7, [hl]
@@ -638,11 +638,11 @@ asm_3c4f6:
 	call PrintText
 
 asm_3c51d:
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3c528
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 
 asm_3c528:
 	bit 0, [hl]
@@ -657,11 +657,11 @@ asm_3c528:
 	call PrintText
 
 asm_3c542:
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3c54d
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 
 asm_3c54d:
 	bit 1, [hl]
@@ -769,12 +769,12 @@ asm_3c632:
 	ret
 
 sub_3c640:
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	ld de, wca4a
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3c651
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	ld de, wca52
 
 asm_3c651:
@@ -817,7 +817,7 @@ asm_3c682:
 	dec a
 	ret z
 	ld hl, wOTPartyMon1HP
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 	ld bc, $30
 	call AddNTimes
 	xor a
@@ -866,7 +866,7 @@ EndPsychicVeilText:
 	prompt
 
 sub_3c704:
-	ld a, [wcae2]
+	ld a, [wBattleWeather]
 	and a
 	ret z
 	dec a
@@ -876,7 +876,7 @@ sub_3c704:
 	ld hl, TextPointers3c726
 	jr nz, asm_3c71b
 	xor a
-	ld [wcae2], a
+	ld [wBattleWeather], a
 	ld hl, TextPointers3c72a
 
 asm_3c71b:
@@ -1097,14 +1097,14 @@ asm_3c862:
 	ret
 
 sub_3c86d:
-	ld a, [wca45]
+	ld a, [wPlayerRolloutCount]
 	and a
 	jr nz, asm_3c878
 	ld hl, wPlayerSubStatus3
 	res 5, [hl]
 
 asm_3c878:
-	ld a, [wca4d]
+	ld a, [wEnemyRolloutCount]
 	and a
 	ret nz
 	ld hl, wEnemySubStatus3
@@ -1122,7 +1122,7 @@ asm_3c883:
 	ld hl, wBattleMonHP
 	ld a, [hli]
 	or [hl]
-	call nz, Function3d5ce
+	call nz, UpdatePlayerHUD
 	ld c, $3c
 	call DelayFrames
 	ld a, [wBattleMode]
@@ -1152,7 +1152,7 @@ sub_3c8ca:
 	ld a, [wBattleMode]
 	dec a
 	jr z, asm_3c8e2
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1HP
 	ld bc, $30
 	call AddNTimes
@@ -1169,7 +1169,7 @@ asm_3c8e2:
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -1339,13 +1339,13 @@ asm_3ca18:
 	ld a, b
 	call z, sub_3cae1
 	callfar Function390e9
-	ld hl, TrainerDefeatedText
+	ld hl, BattleText_EnemyWasDefeated
 	call PrintText
 	ld a, [wLinkMode]
 	cp 3
 	ret z
 	call sub_3e201
-	ld c, $28
+	ld c, 40
 	call DelayFrames
 	ld a, [wce02]
 	cp 9
@@ -1357,11 +1357,11 @@ asm_3ca18:
 asm_3ca51:
 	ld a, [wBattleMonItem]
 	ld b, a
-	callfar Function37e3d
+	callfar GetItemHeldEffect
 	ld a, b
-	cp $4c
+	cp HELD_AMULET_COIN
 	jr nz, asm_3ca74
-	ld hl, wca5b
+	ld hl, wBattleReward + 2
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -1375,7 +1375,7 @@ asm_3ca51:
 
 asm_3ca74:
 	ld de, wMoney + 2
-	ld hl, wca5b
+	ld hl, wBattleReward + 2
 	ld c, 3
 	and a
 
@@ -1387,18 +1387,18 @@ asm_3ca7d:
 	dec hl
 	dec c
 	jr nz, asm_3ca7d
-	ld hl, PlayerReceivedPrizeMoneyText
+	ld hl, GotMoneyForWinningText
 	call PrintText
 	ret
 
-PlayerReceivedPrizeMoneyText:
+GotMoneyForWinningText:
 	text "<PLAYER>は　しょうきんとして"
 	line "@"
-	deciram wca59, 3, 6
+	deciram wBattleReward, 3, 6
 	text "円　てにいれた！"
 	prompt
 
-TrainerDefeatedText:
+BattleText_EnemyWasDefeated:
 	text_from_ram wca2b
 	text "の　@"
 	text_from_ram wStringBuffer1
@@ -1461,7 +1461,7 @@ sub_3cb34:
 	ld b, 0
 	predef SmallFarFlagAction
 	ld hl, wEnemySubStatus3
-	res 2, [hl]
+	res SUBSTATUS_IN_LOOP, [hl]
 	ld a, [wccc4]
 	bit 7, a
 	jr z, asm_3cb56
@@ -1470,7 +1470,7 @@ sub_3cb34:
 	call WaitSFX
 
 asm_3cb56:
-	ld hl, wTrainerClass
+	ld hl, wPlayerDamageTaken + 1
 	ld [hli], a
 	ld [hl], a
 	ld [wBattleMonStatus], a
@@ -1787,7 +1787,7 @@ FindMonInOTPartyToSwitchIntoBattle:
 	ld a, [wOTPartyCount]
 	cp b
 	jp z, ScoreMonTypeMatchups
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 	cp b
 	jr z, .discourage
 	ld hl, wOTPartyMon1HP
@@ -1836,7 +1836,7 @@ LookUpTheEffectivenessOfEveryMove:
 	call FarCopyBytes
 	ld a, 1
 	ldh [hBattleTurn], a
-	callfar Function34fff
+	callfar BattleCheckTypeMatchup
 	pop bc
 	pop de
 	pop hl
@@ -1870,13 +1870,13 @@ IsThePlayerMonTypesEffectiveAgainstOTMon:
 	ld [wPlayerMoveStructType], a
 	xor a
 	ldh [hBattleTurn], a
-	callfar Function34fff
+	callfar BattleCheckTypeMatchup
 	ld a, [wNumSetBits]
 	cp $b
 	jr nc, .super_effective
 	ld a, [wBattleMonType2]
 	ld [wPlayerMoveStructType], a
-	callfar Function34fff
+	callfar BattleCheckTypeMatchup
 	ld a, [wNumSetBits]
 	cp $b
 	jr nc, .super_effective
@@ -1941,7 +1941,7 @@ asm_3ced8:
 	cp 6
 	jr nc, asm_3ced8
 	ld b, a
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 	cp b
 	jr z, asm_3ced8
 	ld hl, wOTPartyMon1HP
@@ -2085,7 +2085,7 @@ EnemySendOutFirstMon:
 	ld [wCryTracks], a
 	ld a, [wTempEnemyMonSpecies]
 	call PlayStereoCry
-	call Function3d67c
+	call UpdateEnemyHUD
 	ld a, [wMenuCursorY]
 	and a
 	ret nz
@@ -2122,7 +2122,7 @@ sub_3d071:
 	ld hl, wCurEnemyMove
 	ld [hli], a
 	ld [hl], a
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -2181,63 +2181,67 @@ TryRunningFromBattle:
 	ld a, [wBattleMode]
 	dec a
 	jp nz, .trainer_battle
-	ld a, [wca3f]
-	bit 7, a
+	ld a, [wPlayerSubStatus5]
+	bit SUBSTATUS_CANT_RUN, a
 	jp nz, .cannot_escape
+
 	push hl
 	push de
 	ld a, [wBattleMonItem]
-	ld [wNumSetBits], a
+	ld [wNamedObjectIndexBuffer], a
 	ld b, a
-	callfar Function37e3d
+	callfar GetItemHeldEffect
+
 	ld a, b
-	cp $48
+	cp HELD_ESCAPE
 	pop de
 	pop hl
-	jr nz, .asm_3d10f
+	jr nz, .no_flee_item
+
 	call GetItemName
 	ld hl, EscapedUsingItemText
 	call PrintText
 	jp .can_escape
 
-.asm_3d10f
-	ld a, [wce39]
+.no_flee_item
+	ld a, [wNumFleeAttempts]
 	inc a
-	ld [wce39], a
+	ld [wNumFleeAttempts], a
 	ld a, [hli]
 	ldh [hMultiplicand + 1], a
 	ld a, [hl]
 	ldh [hMultiplicand + 2], a
 	ld a, [de]
 	inc de
-	ldh [hSpriteOffset], a
+	ldh [hEnemyMonSpeed], a
 	ld a, [de]
-	ldh [hFFB2], a
+	ldh [hEnemyMonSpeed + 1], a
 	call ReloadTilesFromBuffer
 	ld de, hMultiplicand + 1
-	ld hl, hSpriteOffset
+	ld hl, hEnemyMonSpeed
 	ld c, 2
 	call memcmp
 	jr nc, .can_escape
+	
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, $20
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
-	ldh a, [hMultiplicand + 1]
-	ldh [hProduct], a
-	ldh a, [hMultiplicand + 2]
-	ldh [hQuotient], a
-	ldh a, [hSpriteOffset]
+	ldh a, [hProduct + 2]
+	ldh [hDividend], a
+	ldh a, [hProduct + 3]
+	ldh [hDividend + 1], a
+	ldh a, [hEnemyMonSpeed]
 	ld b, a
-	ldh a, [hFFB2]
+	ldh a, [hEnemyMonSpeed + 1]
 	srl b
 	rr a
 	srl b
 	rr a
 	and a
 	jr z, .can_escape
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
 	ldh a, [hMultiplicand + 1]
@@ -2444,7 +2448,7 @@ LoadEnemyMonFromParty:
 	dec b
 	jr nz, .stat_mod_loop
 	ld a, [wCurPartyMon]
-	ld [wca36], a
+	ld [wCurOTMon], a
 	ret
 
 Function3d32e:
@@ -2456,7 +2460,7 @@ Function3d32e:
 	ld hl, wStartmenuCursor
 	ld [hli], a
 	ld [hl], a
-	ld [wca38], a
+	ld [wTypeModifier], a
 	ld [wPlayerMoveStruct], a
 	ld b, 1
 	call GetSGBLayout
@@ -2493,7 +2497,7 @@ Function3d32e:
 	ld [wCryTracks], a
 	ld a, [wCurPartySpecies]
 	call PlayStereoCry
-	call Function3d5ce
+	call UpdatePlayerHUD
 	ret
 
 sub_3d387:
@@ -2501,7 +2505,7 @@ sub_3d387:
 	ld hl, wCurPlayerMove
 	ld [hli], a
 	ld [hl], a
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -2598,7 +2602,7 @@ sub_3d42d:
 	ret
 
 sub_3d43b:
-	callfar Function37e2d
+	callfar GetOpponentItem
 	ld a, b
 	cp 1
 	ret nz
@@ -2670,11 +2674,11 @@ asm_3d4ac:
 	ld [wWhichHPBar], a
 	predef UpdateHPBar
 	call DrawHUDsAndHPBars
-	callfar Function37e2d
+	callfar GetOpponentItem
 	ld a, [hl]
 	ld [wNumSetBits], a
 	call GetItemName
-	callfar Function37e60
+	callfar ConsumeHeldItem
 	ld hl, RecoveredWithItemText
 	jp PrintText
 
@@ -2726,7 +2730,7 @@ sub_3d51f:
 
 sub_3d537:
 	ld hl, wOTPartyMon1Item
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 	ld bc, $30
 	call AddNTimes
 	ld bc, wEnemyMonItem
@@ -2741,7 +2745,7 @@ sub_3d54f:
 	push bc
 	ld a, [bc]
 	ld b, a
-	callfar Function37e3d
+	callfar GetItemHeldEffect
 	ld hl, Data3d59f
 
 asm_3d560:
@@ -2809,16 +2813,17 @@ UseItemFailedText:
 	prompt
 
 DrawHUDsAndHPBars:
-	call Function3d5ce
-	jp Function3d67c
+	call UpdatePlayerHUD
+	jp UpdateEnemyHUD
 
-Function3d5ce:
+UpdatePlayerHUD:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 9, 7
-	ld bc, $050b
+	lb bc, 5, 11
 	call ClearBox
-	callfar Function383cd
+	callfar DrawPlayerHUDBorder
+
 	hlcoord 18, 9
 	ld [hl], $73
 	ld de, wBattleMonNickname
@@ -2841,7 +2846,7 @@ Function3d5ce:
 	push hl
 	inc hl
 	ld de, wTempMonStatus
-	predef Function50b92
+	predef PlaceNonFaintStatus
 	pop hl
 	jr nz, asm_3d626
 	call PrintLevel
@@ -2891,13 +2896,13 @@ asm_3d676:
 	set 7, [hl]
 	ret
 
-Function3d67c:
+UpdateEnemyHUD:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 1, 0
 	ld bc, $040b
 	call ClearBox
-	callfar Function383fd
+	callfar DrawEnemyHUDBorder
 	ld de, wEnemyMonNickname
 	hlcoord 2, 1
 	call sub_3d72f
@@ -2907,7 +2912,7 @@ Function3d67c:
 	push hl
 	inc hl
 	ld de, wEnemyMonStatus
-	predef Function50b92
+	predef PlaceNonFaintStatus
 	pop hl
 	jr nz, asm_3d6b4
 	ld a, [wEnemyMonLevel]
@@ -2929,44 +2934,44 @@ asm_3d6b4:
 
 asm_3d6c7:
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, $30
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld a, b
 	and a
 	jr z, asm_3d6fb
-	ldh a, [hPrintNumDivisor]
+	ldh a, [hDivisor]
 	srl b
 	rr a
 	srl b
 	rr a
-	ldh [hPrintNumDivisor], a
-	ldh a, [hMultiplicand + 1]
+	ldh [hDivisor], a
+	ldh a, [hProduct + 2]
 	ld b, a
 	srl b
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hProduct + 3]
 	rr a
 	srl b
 	rr a
-	ldh [hMultiplicand + 2], a
+	ldh [hDividend + 3], a
 	ld a, b
-	ldh [hMultiplicand + 1], a
+	ldh [hDividend + 2], a
 
 asm_3d6fb:
-	ldh a, [hMultiplicand + 1]
-	ldh [hProduct], a
-	ldh a, [hMultiplicand + 2]
-	ldh [hQuotient], a
+	ldh a, [hDividend + 2]
+	ldh [hDividend], a
+	ldh a, [hDividend + 3]
+	ldh [hDividend + 1], a
 	ld a, 2
 	ld b, a
 	call Divide
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	ld e, a
 	ld a, 6
 	ld d, a
@@ -3119,7 +3124,7 @@ sub_3d832:
 	ld a, [wPlayerSubStatus3]
 	bit 5, a
 	jr z, .ok
-	ld hl, wca45
+	ld hl, wPlayerRolloutCount
 	dec [hl]
 	jr nz, .ok
 	ld hl, wPlayerSubStatus3
@@ -3261,7 +3266,7 @@ sub_3d930:
 	ret
 
 asm_3d982:
-	ld a, [wca3f]
+	ld a, [wPlayerSubStatus5]
 	bit 7, a
 	jr z, asm_3d992
 	ld hl, CantBringBackText
@@ -3570,7 +3575,7 @@ asm_3dbe2:
 	dec a
 	cp c
 	jr z, asm_3dc15
-	ld a, [wca3f]
+	ld a, [wPlayerSubStatus5]
 	bit 3, a
 	jr nz, asm_3dc05
 
@@ -3877,7 +3882,7 @@ asm_3dde3:
 	ld de, wNumSetBits
 	ld bc, $0102
 	call PrintNumber
-	callfar Function360b1
+	callfar UpdateMoveData
 	ld a, [wPlayerMoveStruct]
 	ld b, a
 	ld hl, $c3ef
@@ -3917,7 +3922,7 @@ sub_3de6e:
 	jp asm_3df68
 
 asm_3dea0:
-	ld hl, wca44
+	ld hl, wEnemySubStatus5
 	bit 4, [hl]
 	jr z, asm_3dedc
 	ld a, [wca51]
@@ -3926,7 +3931,7 @@ asm_3dea0:
 	jr nz, asm_3dec1
 
 asm_3deb0:
-	ld hl, wca44
+	ld hl, wEnemySubStatus5
 	res 4, [hl]
 	ld a, 1
 	ldh [hBattleTurn], a
@@ -3950,14 +3955,14 @@ asm_3dec1:
 	jp asm_3df68
 
 asm_3dedc:
-	ld a, [wca43]
+	ld a, [wEnemySubStatus4]
 	and $60
 	jp nz, asm_3df86
 	ld hl, wEnemySubStatus3
 	ld a, [hl]
 	and $12
 	jp nz, asm_3df86
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	bit 6, [hl]
 	jp nz, asm_3df86
 	ld a, [wEnemySubStatus3]
@@ -4035,7 +4040,7 @@ asm_3df68:
 asm_3df6b:
 	ld a, 1
 	ldh [hBattleTurn], a
-	callfar Function360b1
+	callfar UpdateMoveData
 	ld a, [wEnemyMoveStructEffect]
 	cp $77
 	ret z
@@ -4117,12 +4122,12 @@ asm_3dff2:
 	ld a, [wCurEnemySelectedMove]
 
 asm_3e009:
-	cp $44
+	cp MOVE_COUNTER
 	ret nz
 	ld a, 1
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	ld a, [hl]
-	cp $44
+	cp MOVE_COUNTER
 	ret z
 	ld a, [de]
 	and a
@@ -4137,7 +4142,7 @@ asm_3e009:
 	ret
 
 asm_3e023:
-	ld hl, wce29
+	ld hl, wCurDamage
 	ld a, [hli]
 	or [hl]
 	ret z
@@ -4154,8 +4159,8 @@ asm_3e023:
 
 asm_3e035:
 	xor a
-	ld [wca3a], a
-	callfar Function351d0
+	ld [wAttackMissed], a
+	callfar BattleCommand_CheckHit
 	xor a
 	ret
 
@@ -4187,7 +4192,7 @@ asm_3e06f:
 
 asm_3e07b:
 	ld [wEnemyMonItem], a
-	ld a, [wca44]
+	ld a, [wEnemySubStatus5]
 	bit 3, a
 	ld hl, wcad0
 	ld a, [hli]
@@ -4211,11 +4216,11 @@ asm_3e09c:
 	ld de, wEnemyMonMaxHP
 	ld b, 0
 	ld hl, wcdd4
-	predef Functiondf7d
+	predef CalcMonStats
 	ld a, [wBattleMode]
 	cp 2
 	jr z, asm_3e0d2
-	ld a, [wca44]
+	ld a, [wEnemySubStatus5]
 	bit 3, a
 	jr nz, asm_3e0f1
 	ld hl, wEnemyMonStatus
@@ -4238,7 +4243,7 @@ asm_3e0d2:
 	ld a, [hld]
 	ld [wEnemyMonHP], a
 	ld a, [wCurPartyMon]
-	ld [wca36], a
+	ld [wCurOTMon], a
 	dec hl
 	ld a, [hl]
 	ld [wEnemyMonStatus], a
@@ -4341,10 +4346,10 @@ Function3e1a4:
 Function3e1aa:
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wca3b]
+	ld a, [wPlayerSubStatus1]
 	ld hl, wBattleMonAttack + 1
 	jr z, asm_3e1bb
-	ld a, [wca40]
+	ld a, [wEnemySubStatus1]
 	ld hl, wEnemyMonAttack + 1
 
 asm_3e1bb:
@@ -4372,10 +4377,10 @@ sub_3e1c9:
 asm_3e1d1:
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wca3c]
+	ld a, [wPlayerSubStatus2]
 	ld hl, wBattleMonAttack
 	jr z, asm_3e1e2
-	ld a, [wca41]
+	ld a, [wEnemySubStatus2]
 	ld hl, wEnemyMonAttack
 
 asm_3e1e2:
@@ -4613,35 +4618,35 @@ asm_3e301:
 	ld b, 0
 	add hl, bc
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, [de]
 	ldh [hMultiplicand + 1], a
 	inc de
 	ld a, [de]
 	ldh [hMultiplicand + 2], a
 	ld a, [hli]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
 	pop hl
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	sub $e7
-	ldh a, [hMultiplicand + 1]
+	ldh a, [hQuotient + 2]
 	sbc 3
 	jp c, asm_3e339
 	ld a, 3
-	ldh [hMultiplicand + 1], a
+	ldh [hQuotient + 2], a
 	ld a, $e7
-	ldh [hMultiplicand + 2], a
+	ldh [hQuotient + 3], a
 
 asm_3e339:
-	ldh a, [hMultiplicand + 1]
+	ldh a, [hQuotient + 2]
 	ld [hli], a
 	ld b, a
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	or b
 	jr nz, asm_3e344
@@ -4821,15 +4826,15 @@ asm_3e471:
 
 asm_3e478:
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ldh [hMultiplicand + 1], a
 	ld a, [wcdff]
 	ldh [hMultiplicand + 2], a
 	ld a, [wEnemyMonLevel]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, 7
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
 	pop bc
@@ -4856,12 +4861,12 @@ asm_3e4ac:
 	ld hl, $a
 	add hl, bc
 	ld d, [hl]
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	ld [wcd32], a
 	add d
 	ld [hld], a
 	ld d, [hl]
-	ldh a, [hMultiplicand + 1]
+	ldh a, [hQuotient + 2]
 	ld [wStringBuffer2], a
 	adc d
 	ld [hl], a
@@ -4879,13 +4884,13 @@ asm_3e4ce:
 	ld [wCurSpecies], a
 	call GetBaseData
 	push bc
-	ld d, $64
+	ld d, MAX_LEVEL
 	callfar CalcExpAtLevel
 	pop bc
 	ld hl, $a
 	add hl, bc
 	push bc
-	ldh a, [hQuotient]
+	ldh a, [hMultiplicand]
 	ld b, a
 	ldh a, [hMultiplicand + 1]
 	ld c, a
@@ -4946,7 +4951,7 @@ asm_3e507:
 	add hl, bc
 	push bc
 	ld b, 1
-	predef Functiondf7d
+	predef CalcMonStats
 	pop bc
 	pop de
 	ld hl, $25
@@ -4984,7 +4989,7 @@ asm_3e507:
 	add hl, bc
 	ld a, [hl]
 	ld [wBattleMonLevel], a
-	ld a, [wca3f]
+	ld a, [wPlayerSubStatus5]
 	bit 3, a
 	jr nz, asm_3e5ae
 	ld hl, $26
@@ -5000,7 +5005,7 @@ asm_3e5ae:
 ; these three calls should be regular calls
 	callfar sub_3e247
 	callfar sub_3e360
-	callfar Function3d5ce
+	callfar UpdatePlayerHUD
 	call PrintEmptyString
 	call BackUpTilesToBuffer
 
@@ -5079,14 +5084,14 @@ asm_3e654:
 
 asm_3e667:
 	xor a
-	ldh [hProduct], a
+	ldh [hDividend], a
 	ld a, [hl]
-	ldh [hQuotient], a
+	ldh [hDividend + 1], a
 	ld a, [wNumSetBits]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	ld [hli], a
 	dec c
 	jr nz, asm_3e667
@@ -5094,17 +5099,17 @@ asm_3e667:
 
 sub_3e67e:
 	push bc
-	ldh a, [hMultiplicand + 1]
+	ldh a, [hQuotient + 2]
 	ld b, a
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 	ld c, a
 	srl b
 	rr c
 	add c
-	ldh [hMultiplicand + 2], a
-	ldh a, [hMultiplicand + 1]
+	ldh [hQuotient + 3], a
+	ldh a, [hQuotient + 2]
 	adc b
-	ldh [hMultiplicand + 1], a
+	ldh [hQuotient + 2], a
 	pop bc
 	ret
 
@@ -5160,7 +5165,7 @@ PrintSendOutMonMessage:
 	ld hl, GoText
 	jr z, .print_text
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 ; enemy mon current HP * 25
 	ld hl, wEnemyMonHP
 	ld a, [hli]
@@ -5182,12 +5187,12 @@ PrintSendOutMonMessage:
 	ld a, b
 ; enemy mon max HP divided by 4
 	ld b, 4
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	call Divide
 
 ; (enemy's current HP * 25) / (enemy's max HP / 4)
 ; approximates current % of max HP
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 ; >= 70%
 	ld hl, GoText
 	cp 70
@@ -5255,7 +5260,7 @@ PlayerMon2Text:
 	sbc b
 	ldh [hMultiplicand + 1], a
 	ld a, 25
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
@@ -5266,11 +5271,11 @@ PlayerMon2Text:
 	rr b
 	ld a, b
 	ld b, 4
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	call Divide
 	pop bc
 	pop de
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hQuotient + 3]
 ; HP stays the same
 	ld hl, EnoughText
 	and a
@@ -5363,7 +5368,7 @@ Function3e874:
 	push de
 	callfar CalcExpAtLevel
 	pop de
-	ld hl, hQuotient
+	ld hl, hMultiplicand
 	ld a, [hli]
 	push af
 	ld a, [hli]
@@ -5372,7 +5377,7 @@ Function3e874:
 	push af
 	inc d
 	callfar CalcExpAtLevel
-	ld hl, hMultiplicand + 2
+	ld hl, hProduct + 3
 	ld a, [hl]
 	ldh [hPrintNumTemp], a
 	pop bc
@@ -5482,7 +5487,7 @@ asm_3e91d:
 	ret
 
 Function3e91e:
-	ld a, [wca3e]
+	ld a, [wPlayerSubStatus4]
 	bit 4, a
 	ld hl, Functioncc44f
 	jr nz, asm_3e954
@@ -5516,7 +5521,7 @@ asm_3e954:
 	ret
 
 Function3e963:
-	ld a, [wca43]
+	ld a, [wEnemySubStatus4]
 	bit 4, a
 	ld hl, Functioncc44f
 	jr nz, asm_3e999
@@ -5879,7 +5884,7 @@ _InitBattleCommon:
 	call ClearSprites
 	ld a, [wBattleMode]
 	cp 1
-	call z, Function3d67c
+	call z, UpdateEnemyHUD
 	call StartBattle
 	call sub_3f13e
 	pop af
@@ -5912,7 +5917,7 @@ asm_3efb8:
 	ld bc, $0707
 	predef PlaceGraphic
 	ld a, $ff
-	ld [wca36], a
+	ld [wCurOTMon], a
 	ld a, 2
 	ld [wBattleMode], a
 	ret
@@ -6109,7 +6114,7 @@ InitBattleVariables:
 	ld [hli], a
 	ld [hl], a
 	ld [wMenuScrollPosition], a
-	ld [wca39], a
+	ld [wCriticalHit], a
 	ld [wBattleMonSpecies], a
 	ld [wca37], a
 	ld [wCurBattleMon], a
@@ -6168,7 +6173,7 @@ asm_3f15a:
 	ld [wccc4], a
 	ld [wBattleMode], a
 	ld [wBattleType], a
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	ld [wce01], a
 	ld [wce02], a
 	ld [wce38], a
@@ -6180,7 +6185,7 @@ asm_3f15a:
 	ld [hli], a
 	ld [hl], a
 	ld [wMenuScrollPosition], a
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	ld b, $18
 .clear
 	ld [hli], a
@@ -6205,7 +6210,7 @@ sub_3f19e:
 	ret z
 	ld a, [wBattleMonItem]
 	ld b, a
-	callfar Function37e3d
+	callfar GetItemHeldEffect
 	ld a, b
 	cp $4c
 	jr nz, AddBattleMoneyToAccount
@@ -6234,11 +6239,11 @@ AddBattleMoneyToAccount:
 	dec hl
 	dec c
 	jr nz, .loop
-	ld hl, GotMoneyForWinningText
+	ld hl, BattleText_PlayerPickedUpPayDayMoney
 	call PrintText
 	ret
 
-GotMoneyForWinningText:
+	BattleText_PlayerPickedUpPayDayMoney:
 	text "<PLAYER>は　@"
 	deciram wPayDayMoney, 3, 6
 	text "円"
@@ -6246,7 +6251,7 @@ GotMoneyForWinningText:
 	prompt
 
 sub_3f1f3:
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
 	ld bc, $30
 	call AddNTimes
@@ -6485,7 +6490,7 @@ BattleStartMessage:
 	ld a, [wTempEnemyMonSpecies]
 	call PlayStereoCry
 	ld hl, WildPokemonAppearedText
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr z, .PlaceBattleStartText
 	ld hl, HookedPokemonAttackedText

@@ -400,26 +400,39 @@ wca24:: ds 1
 	ds 6
 wca2b:: ds 1
 	ds 10
-wca36:: ds 1
+wCurOTMon:: db
 wca37:: ds 1
-wca38:: ds 1
-wca39:: ds 1
-wca3a:: ds 1
-wca3b:: ds 1
-wca3c:: ds 1
+
+wTypeModifier::
+; >10: super-effective
+;  10: normal
+; <10: not very effective
+; bit 7: stab
+	db
+
+wCriticalHit::
+; 0 if not critical
+; 1 for a critical hit
+; 2 for a OHKO
+	db
+	
+wAttackMissed::
+; nonzero for a miss
+wca3a:: db
+
+wPlayerSubStatus1:: db
+wPlayerSubStatus2:: db
 wPlayerSubStatus3:: db
+wPlayerSubStatus4:: db
+wPlayerSubStatus5:: db
 
-wca3e:: ds 1
-wca3f:: ds 1
-wca40:: ds 1
-wca41:: ds 1
-
+wEnemySubStatus1:: db
+wEnemySubStatus2:: db
 wEnemySubStatus3:: db
+wEnemySubStatus4:: db
+wEnemySubStatus5:: db
 
-wca43:: db
-
-wca44:: db
-wca45:: db
+wPlayerRolloutCount:: db
 wca46:: db
 wca47:: db
 wca48:: db
@@ -429,7 +442,7 @@ wca4b:: db
 
 	ds 1
 
-wca4d:: db
+wEnemyRolloutCount:: db
 wca4e:: db
 
 wca4f:: db
@@ -441,15 +454,17 @@ wca53:: db
 	ds 1
 
 wca55:: db
-wca56:: db
 
-wTrainerClass::
-	db
-
-wca58:: ds 1
+UNION
+wPlayerDamageTaken:: dw
+wEnemyDamageTaken:: dw
+NEXTU
+	ds 3
+wBattleReward:: ds 3
+NEXTU
+	ds 3
 wca59:: ds 1
-wca5a:: ds 1
-wca5b:: ds 1
+ENDU
 
 wBattleAnimParam::
 wca5c:: ds 1
@@ -458,9 +473,9 @@ wca5d:: ds 1
 
 	ds $1d
 
-wca7b:: ds 1
-wca7c:: ds 1
-wca7d:: ds 1
+wBattleScriptBufferAddress:: dw
+
+wTurnEnded:: db
 
 	ds $15
 
@@ -472,21 +487,30 @@ wca9e:: ds 1
 
 	ds $a
 
+wPlayerStatLevels::
+wPlayerAtkLevel::
 wcaa9:: ds 1
 
-	ds 4
-
-wcaae:: ds 1
-wcaaf:: ds 1
+wPlayerDefLevel::  db
+wPlayerSpdLevel::  db
+wPlayerSAtkLevel:: db
+wPlayerSDefLevel:: db
+wPlayerAccLevel:: db
+wPlayerEvaLevel:: db
 
 	ds 1
 
+
+wEnemyStatLevels::
+wEnemyAtkLevel::
 wcab1:: ds 1
 
-	ds 4
-
-wcab6:: ds 1
-wcab7:: ds 1
+wEnemyDefLevel::  db
+wEnemySpdLevel::  db
+wEnemySAtkLevel:: db
+wEnemySDefLevel:: db
+wEnemyAccLevel:: db
+wEnemyEvaLevel:: db
 
 	ds 1
 
@@ -495,8 +519,8 @@ wcaba:: ds 1
 
 	ds 1
 
-wcabc:: ds 1
-wcabd:: ds 1
+wPlayerSubstituteHP:: ds 1
+wEnemySubstituteHP:: ds 1
 wcabe:: ds 1
 
 	ds 1
@@ -554,12 +578,17 @@ wcad9:: ds 1
 wcada:: ds 1
 wcadb:: ds 1
 wcadc:: ds 1
+
+wPlayerScreens::
 wcadd:: ds 1
+
+wEnemySafeguardCount::
 wcade:: ds 1
+
 wcadf:: ds 1
 wcae0:: ds 1
 wcae1:: ds 1
-wcae2:: ds 1
+wBattleWeather:: ds 1
 wcae3:: ds 1
 
 ENDU
@@ -754,6 +783,12 @@ wSpriteViewerJumptableIndex:: db
 
 	ds 56
 
+NEXTU
+; trainer HUD data
+	ds 1
+wPlaceBallsDirection:: db
+wTrainerHUDTiles:: ds 4
+
 ENDU
 
 SECTION "CC9A", WRAM0[$CC9A]
@@ -786,8 +821,8 @@ wSpriteDecodeTable1Ptr:: ds 2
 
 wFXAnimID:: dw
 
-wccc2:: ds 1
-wccc3:: ds 1
+wPlaceBallsX:: db
+wPlaceBallsY:: db
 wccc4:: ds 1
 
 SECTION "CCC7", WRAM0[$CCC7]
@@ -877,11 +912,15 @@ SECTION "CD3C", WRAM0[$CD3C]
 wcd3c:: db
 wRegularItemsCursor:: db
 wBackpackAndKeyItemsCursor:: db
+
 wBattleMenuCursorPosition::
 wStartmenuCursor:: db
+
 wcd40:: db
+
 wCurBattleMon::
 wcd41:: db
+
 wcd42:: db
 wFieldDebugMenuCursorBuffer::
 wcd43:: db
@@ -914,8 +953,12 @@ wNumMoves::
 wcd57:: ds 1
 
 wItemEffectSucceeded::
-wBattlePlayerAction::
-wFieldMoveSucceeded:: db
+wFieldMoveSucceeded::
+; 0 - use move
+; 1 - use item
+; 2 - switch
+wBattlePlayerAction:: db
+
 wVramState:: db
 
 	ds 3 ; TODO
@@ -1019,6 +1062,10 @@ wcdc7:: db
 wcdc8:: db
 	ds 1
 wcdca:: db
+
+NEXTU
+; battle HUD
+wBattleHUDTiles:: ds PARTY_LENGTH
 
 ENDU
 
@@ -1125,8 +1172,8 @@ wce26:: ds 1
 
 	ds 2
 
-wce29:: ds 1
-wce2a:: ds 1
+wCurDamage:: dw
+;wce2a:: ds 1
 
 	ds 2
 
@@ -1142,6 +1189,8 @@ wce36:: ds 1
 wNamedObjectIndexBuffer::
 wNumSetBits::
 wMoveGrammar::
+wTypeMatchup::
+wCurType::
 wTempByteValue::
 wce37::
 	db

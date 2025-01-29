@@ -61,7 +61,7 @@ ComputeMaxPP:
 	; Since this would overflow into bit 6, we prevent that from happening
 	; by decreasing the extra amount of PP each PP Up provides, resulting
 	; in a maximum of 61.
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	cp $8
 	jr c, .okay
 	ld a, $7

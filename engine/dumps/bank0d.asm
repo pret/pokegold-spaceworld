@@ -1,83 +1,97 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank0d.asm@Function34000", ROMX
-Function34000:
+SECTION "engine/dumps/bank0d.asm@DoPlayerTurn", ROMX
+DoPlayerTurn:
 	xor a
 	ldh [hBattleTurn], a
-	ld a, [wFieldMoveSucceeded]
-	and a
-	ret nz
-	xor a
-	ld [wca7d], a
-	call sub_34677
-	ld a, [wca7d]
-	and a
-	ret nz
-	call Function360b1
-	ld a, [wPlayerMoveStructEffect]
-	jr Function34046
 
-Function3401c:
+	ld a, [wBattlePlayerAction]
+	and a
+	ret nz
+
+	xor a
+	ld [wTurnEnded], a
+	call sub_34677
+
+	ld a, [wTurnEnded]
+	and a
+	ret nz
+
+	call UpdateMoveData
+	ld a, [wPlayerMoveStructEffect]
+	jr DoMove
+
+DoEnemyTurn:
 	ld a, 1
 	ldh [hBattleTurn], a
 	ld a, [wLinkMode]
 	and a
-	jr z, asm_34030
+	jr z, .do_it
+
 	ld a, [wOtherPlayerLinkAction]
-	cp $e
-	jr z, asm_34030
-	cp 4
+	cp BATTLEACTION_STRUGGLE
+	jr z, .do_it
+	cp BATTLEACTION_SWITCH1
 	ret nc
 
-asm_34030:
+.do_it:
 	xor a
-	ld [wca7d], a
+	ld [wTurnEnded], a
 	call sub_34677
-	ld a, [wca7d]
+
+	ld a, [wTurnEnded]
 	and a
 	ret nz
+
 	ld hl, wcaba
 	inc [hl]
-	call Function360b1
-	ld a, [wEnemyMoveStructEffect]
 
-Function34046:
+	call UpdateMoveData
+	ld a, [wEnemyMoveStructEffect]
+	; fallthrough
+
+DoMove:
 	ld b, 0
 	ld c, a
-	ld hl, Data3409d
+	ld hl, MoveEffectsPointers
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	ld de, wca5d
 
-asm_34054:
+.GetMoveEffect:
 	ld a, [hli]
 	ld [de], a
 	inc de
 	cp $ff
-	jr nz, asm_34054
+	jr nz, .GetMoveEffect
+
 	ld hl, wca5d
 	ld a, l
-	ld [wca7b], a
+	ld [wBattleScriptBufferAddress], a
 	ld a, h
-	ld [wca7c], a
+	ld [wBattleScriptBufferAddress + 1], a
 
-asm_34066:
+.ReadMoveEffectCommand:
 	push bc
-	ld a, [wca7b]
+	ld a, [wBattleScriptBufferAddress]
 	ld l, a
-	ld a, [wca7c]
+	ld a, [wBattleScriptBufferAddress + 1]
 	ld h, a
+
 	ld a, [hli]
+
 	ld c, a
 	cp $ff
 	ld a, l
-	ld [wca7b], a
+	ld [wBattleScriptBufferAddress], a
 	ld a, h
-	ld [wca7c], a
-	jr z, asm_3409b
+	ld [wBattleScriptBufferAddress + 1], a
+	jr z, .end
+
 	dec c
 	ld b, 0
 	ld hl, Data34599
@@ -88,7 +102,7 @@ asm_34066:
 	ld a, [hl]
 	ld [wPredefBC], a
 	pop bc
-	ld hl, asm_34066
+	ld hl, .ReadMoveEffectCommand
 	push hl
 	ld a, [wPredefBC + 1]
 	ld l, a
@@ -96,12 +110,12 @@ asm_34066:
 	ld h, a
 	jp hl
 
-asm_3409b:
+.end:
 	pop bc
 	ret
 
-Data3409d:
-	dw Data341b5
+MoveEffectsPointers:
+	dw NormalHit
 	dw Data341c9
 	dw Data341d1
 	dw Data341e5
@@ -118,7 +132,7 @@ Data3409d:
 	dw Data34261
 	dw Data34261
 	dw Data34261
-	dw Data341b5
+	dw NormalHit
 	dw Data34266
 	dw Data34266
 	dw Data34266
@@ -137,7 +151,7 @@ Data3409d:
 	dw Data34348
 	dw Data3427f
 	dw Data34343
-	dw Data341b5
+	dw NormalHit
 	dw Data342dc
 	dw Data342f0
 	dw Data3438e
@@ -146,7 +160,7 @@ Data3409d:
 	dw Data343a4
 	dw Data3438e
 	dw Data342c6
-	dw Data341b5
+	dw NormalHit
 	dw Data34314
 	dw Data34319
 	dw Data342ff
@@ -176,13 +190,13 @@ Data3409d:
 	dw Data3426b
 	dw Data3426b
 	dw Data3426b
-	dw Data341b5
+	dw NormalHit
 	dw Data34325
 	dw Data342c6
-	dw Data341b5
+	dw NormalHit
 	dw Data34358
 	dw Data3435d
-	dw Data341b5
+	dw NormalHit
 	dw Data34371
 	dw Data34377
 	dw Data3437d
@@ -204,14 +218,14 @@ Data3409d:
 	dw Data34417
 	dw Data3441d
 	dw Data34432
-	dw Data341b5
+	dw NormalHit
 	dw Data34437
 	dw Data3444f
 	dw Data34464
 	dw Data34469
 	dw Data3446e
 	dw Data34483
-	dw Data341b5
+	dw NormalHit
 	dw Data34488
 	dw Data3448d
 	dw Data34493
@@ -231,38 +245,38 @@ Data3409d:
 	dw Data3454e
 	dw Data34553
 	dw Data34554
-	dw Data341b5
-	dw Data341b5
+	dw NormalHit
+	dw NormalHit
 	dw Data34569
 	dw Data3456e
 	dw Data34573
 	dw Data34578
 	dw Data3458d
 	dw Data34593
-	dw Data341b5
-	dw Data341b5
+	dw NormalHit
+	dw NormalHit
 
-Data341b5:
-	db $2
-	db $3
-	db $4
-	db $5
-	db $6
-	db $62
-	db $7
-	db $8
-	db $9
-	db $a
-	db $b
-	db $c
-	db $d
-	db $e
-	db $f
-	db $10
-	db $11
-	db $12
+NormalHit:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	lowersub
+	moveanimnosub
+	raisesub
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	checkfaint
+	buildopponentrage
 	db $4d
-	db $ff
+	endmove
 
 Data341c9:
 	db $2
@@ -1415,24 +1429,24 @@ Data34599:
 	dw BattleCommand_CheckObedience
 	dw BattleCommand_UsedMoveText
 	dw BattleCommand_DoTurn
-	dw asm_34e03
-	dw asm_34e8b
-	dw asm_34ec9
-	dw asm_3519b
-	dw Function351d0
-	dw sub_35375
-	dw asm_35393
-	dw sub_353ef
-	dw asm_3540e
-	dw asm_3543f
-	dw asm_3565c
-	dw asm_35698
-	dw asm_356c9
-	dw asm_3574f
-	dw asm_3622a
-	dw asm_36184
-	dw asm_36371
-	dw asm_3638d
+	dw BattleCommand_Critical
+	dw BattleCommand_DamageStats
+	dw BattleCommand_Stab
+	dw BattleCommand_DamageVariation
+	dw BattleCommand_CheckHit
+	dw BattleCommand_LowerSub
+	dw BattleCommand_MoveAnim
+	dw BattleCommand_RaiseSub
+	dw BattleCommand_FailureText
+	dw BattleCommand_ApplyDamage
+	dw BattleCommand_CriticalText
+	dw BattleCommand_SuperEffectiveText
+	dw BattleCommand_CheckFaint
+	dw BattleCommand_BuildOpponentRage
+	dw BattleCommand_PoisonTarget
+	dw BattleCommand_SleepTarget
+	dw BattleCommand_DrainTarget
+	dw BattleCommand_EatDream
 	dw asm_36426
 	dw asm_364dc
 	dw asm_36555
@@ -1466,7 +1480,7 @@ Data34599:
 	dw asm_37069
 	dw asm_370c2
 	dw asm_370c8
-	dw asm_37f64
+	dw BattleCommand_ClearText
 	dw asm_36c02
 	dw asm_36beb
 	dw asm_36cfe
@@ -1485,7 +1499,7 @@ Data34599:
 	dw asm_35dd4
 	dw asm_35e30
 	dw asm_35e5e
-	dw sub_35ee1
+	dw BattleCommand_FalseSwipe
 	dw asm_35f13
 	dw asm_36b74
 	dw asm_34e99
@@ -1508,7 +1522,7 @@ Data34599:
 	dw asm_379a8
 	dw BattleCommand_HappinessPower
 	dw asm_37a3a
-	dw sub_3599d
+	dw BattleCommand_DamageCalc
 	dw BattleCommand_FrustrationPower
 	dw asm_37aa6
 	dw asm_37af7
@@ -1534,12 +1548,12 @@ asm_34682:
 	inc a
 	jp z, asm_34991
 	xor a
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	ld [wBattleAnimParam], a
 	ld [wAlreadyDisobeyed], a
 	ld [wcad9], a
 	ld a, $a
-	ld [wca38], a
+	ld [wTypeModifier], a
 	ldh a, [hBattleTurn]
 	and a
 	jp nz, asm_34809
@@ -1554,15 +1568,15 @@ asm_34682:
 	xor a
 	ld [wNumHits], a
 	ld de, $0104
-	call sub_35f53
+	call PlayFXAnimID
 	jr asm_346cd
 
 asm_346ba:
 	ld hl, WokeUpText
 	call PrintText
-	ld hl, Function3d5ce
+	ld hl, UpdatePlayerHUD
 	call CallFromBank0F
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	res 0, [hl]
 	jr asm_346e5
 
@@ -1614,7 +1628,7 @@ asm_3471d:
 	jp asm_34991
 
 asm_34730:
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	bit 5, [hl]
 	jr z, asm_34742
 	res 5, [hl]
@@ -1655,7 +1669,7 @@ asm_34772:
 	xor a
 	ld [wNumHits], a
 	ld de, $0103
-	call sub_35f53
+	call PlayFXAnimID
 	call BattleRandom
 	cp $80
 	jp c, asm_34796
@@ -1667,7 +1681,7 @@ asm_34772:
 	jr asm_347e2
 
 asm_34796:
-	ld a, [wca3b]
+	ld a, [wPlayerSubStatus1]
 	add a
 	jr nc, asm_347bc
 	ld hl, InLoveWithText
@@ -1675,7 +1689,7 @@ asm_34796:
 	xor a
 	ld [wNumHits], a
 	ld de, $010a
-	call sub_35f53
+	call PlayFXAnimID
 	call BattleRandom
 	cp $80
 	jp c, asm_347bc
@@ -1708,7 +1722,7 @@ asm_347e2:
 	ld a, [hl]
 	and $cc
 	ld [hl], a
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	res 6, [hl]
 	ld a, [wPlayerMoveStruct]
 	cp $13
@@ -1721,7 +1735,7 @@ asm_347fb:
 	res 6, [hl]
 	ld a, 2
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 
 asm_34805:
 	jp asm_34991
@@ -1743,15 +1757,15 @@ asm_34809:
 	xor a
 	ld [wNumHits], a
 	ld de, $0104
-	call sub_35f53
+	call PlayFXAnimID
 	jr asm_3483d
 
 asm_3482a:
 	ld hl, WokeUpText
 	call PrintText
-	ld hl, Function3d67c
+	ld hl, UpdateEnemyHUD
 	call CallFromBank0F
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	res 0, [hl]
 	jr asm_3484f
 
@@ -1801,7 +1815,7 @@ asm_34887:
 	jp asm_34991
 
 asm_3489a:
-	ld hl, wca43
+	ld hl, wEnemySubStatus4
 	bit 5, [hl]
 	jr z, asm_348ac
 	res 5, [hl]
@@ -1842,7 +1856,7 @@ asm_348de:
 	xor a
 	ld [wNumHits], a
 	ld de, $0103
-	call sub_35f53
+	call PlayFXAnimID
 	call BattleRandom
 	cp $80
 	jr c, asm_3491d
@@ -1853,19 +1867,19 @@ asm_348de:
 	ld hl, HurtItselfText
 	call PrintText
 	call sub_35904
-	call sub_3599d
+	call BattleCommand_DamageCalc
 	xor a
 	ld [wNumHits], a
 	ldh [hBattleTurn], a
 	ld de, 1
-	call sub_35f53
+	call PlayFXAnimID
 	ld a, 1
 	ldh [hBattleTurn], a
-	call sub_35f68
+	call DoEnemyDamage
 	jr asm_34969
 
 asm_3491d:
-	ld a, [wca40]
+	ld a, [wEnemySubStatus1]
 	add a
 	jr nc, asm_34943
 	ld hl, InLoveWithText
@@ -1873,7 +1887,7 @@ asm_3491d:
 	xor a
 	ld [wNumHits], a
 	ld de, $010a
-	call sub_35f53
+	call PlayFXAnimID
 	call BattleRandom
 	cp $80
 	jp c, asm_34943
@@ -1906,7 +1920,7 @@ asm_34969:
 	ld a, [hl]
 	and $cc
 	ld [hl], a
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	res 6, [hl]
 	ld a, [wEnemyMoveStruct]
 	cp MOVE_FLY
@@ -1919,7 +1933,7 @@ asm_34982:
 	res 6, [hl]
 	ld a, 2
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 
 asm_3498c:
 	jp asm_34991
@@ -1930,7 +1944,7 @@ asm_3498f:
 
 asm_34991:
 	ld a, 1
-	ld [wca7d], a
+	ld [wTurnEnded], a
 	ret
 
 FastAsleepText:
@@ -2026,7 +2040,7 @@ sub_34acc:
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_34adb
-	inc hl
+	inc hl ; wCurEnemySelectedMove
 	ld de, wEnemySubStatus3
 
 asm_34adb:
@@ -2036,35 +2050,34 @@ asm_34adb:
 	ld a, [hl]
 	ld [wNumSetBits], a
 	call Unreferenced_GetMoveName
-	ld hl, text_34aec
+	ld hl, ScaredText
 	jp PrintText
 
-text_34aec:
+ScaredText:
 	text "<USER>は　かなしばりで"
 	line "@"
 	text_from_ram wStringBuffer1
 	text "がだせない！"
-text_34b02:
 	prompt
 
 sub_34b03:
 	ld hl, HurtItselfText
 	call PrintText
 	xor a
-	ld [wca39], a
+	ld [wCriticalHit], a
 	call sub_35904
-	call sub_3599d
+	call BattleCommand_DamageCalc
 	xor a
 	ld [wNumHits], a
 	inc a
 	ldh [hBattleTurn], a
 	ld de, 1
-	call sub_35f53
-	ld hl, Function3d5ce
+	call PlayFXAnimID
+	ld hl, UpdatePlayerHUD
 	call CallFromBank0F
 	xor a
 	ldh [hBattleTurn], a
-	jp sub_35fc9
+	jp DoPlayerDamage
 
 BattleCommand_CheckObedience:
 	ldh a, [hBattleTurn]
@@ -2076,7 +2089,7 @@ BattleCommand_CheckObedience:
 	and a
 	ret nz
 	ld hl, wPartyMon1ID
-	ld bc, (wPartyMon2 - wPartyMon1)
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurBattleMon]
 	call AddNTimes
 	ld a, [wPlayerID]
@@ -2239,10 +2252,10 @@ asm_34c0a:
 	add hl, bc
 	ld a, [hl]
 	ld [wCurPlayerSelectedMove], a
-	call Function360b1
+	call UpdateMoveData
 
 asm_34c34:
-	jp asm_357a9
+	jp EndMoveEffect
 
 LoafingAroundText:
 	text_from_ram wBattleMonNickname
@@ -2521,7 +2534,7 @@ asm_34d96:
 	call sub_34dcb
 	ld a, b
 	and a
-	jp nz, asm_357a9
+	jp nz, EndMoveEffect
 	inc de
 	ld a, [de]
 	bit 3, a
@@ -2535,7 +2548,7 @@ asm_34d96:
 	dec a
 	ret z
 	ld hl, wOTPartyMon1PP
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 
 asm_34dc5:
 	ld bc, (wPartyMon2 - wPartyMon1)
@@ -2560,7 +2573,7 @@ asm_34dd6:
 	ret
 
 asm_34de2:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	ld hl, NoPPLeftText
 	call PrintText
 	ld b, 1
@@ -2572,56 +2585,58 @@ NoPPLeftText:
 	prompt
 
 
-asm_34e03:
+BattleCommand_Critical:
 	xor a
-	ld [wca39], a
+	ld [wCriticalHit], a
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wEnemyMonSpecies]
-	jr nz, asm_34e12
+	jr nz, .go
 	ld a, [wBattleMonSpecies]
 
-asm_34e12:
+.go:
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld c, 6
 	ld hl, wPlayerMoveStructPower
-	ld de, wca3e
+	ld de, wPlayerSubStatus4
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_34e2b
+	jr z, .player
 	ld hl, wEnemyMoveStructPower
-	ld de, wca43
+	ld de, wEnemySubStatus4
 
-asm_34e2b:
+.player:
 	ld a, [hld]
 	and a
 	ret z
+
 	ld a, [de]
-	bit 2, a
-	jr z, asm_34e36
+	bit SUBSTATUS_FOCUS_ENERGY, a
+	jr z, .not_focus_energy
 	dec c
 	dec c
 	dec c
 
-asm_34e36:
+.not_focus_energy:
 	dec hl
 	ld b, [hl]
-	ld hl, Data34e86
+	ld hl, CriticalHitMoves
 
-asm_34e3b:
+.CheckCritical:
 	ld a, [hli]
 	cp b
-	jr z, asm_34e44
+	jr z, .critical_hit_move
 	inc a
-	jr nz, asm_34e3b
-	jr asm_34e46
+	jr nz, .CheckCritical
+	jr .CalcCritChance
 
-asm_34e44:
+.critical_hit_move:
 	dec c
 	dec c
 
-asm_34e46:
+; de = Base Speed * 4
+.CalcCritChance:
 	ld a, [wMonHBaseSpeed]
 	ld e, a
 	ld d, 0
@@ -2630,84 +2645,93 @@ asm_34e46:
 	sla e
 	rl d
 
-asm_34e54:
+.half_crit_chance:
 	dec c
-	jr z, asm_34e5d
+	jr z, .CheckForCritGuarantee
 	srl d
 	rr e
-	jr asm_34e54
+	jr .half_crit_chance
 
-asm_34e5d:
+.CheckForCritGuarantee:
 	ld b, e
 	ld a, d
 	and a
-	jr z, asm_34e64
+	jr z, .SharpScythe
 	ld b, $ff
 
-asm_34e64:
+.SharpScythe:
 	push bc
-	call Function37e1d
+	call GetUserItem
 	ld a, b
-	cp $49
+	cp HELD_CRITICAL_UP
+
 	ld a, c
 	pop bc
-	jr nz, asm_34e75
+	jr nz, .Tally
+
+	; Old crit chance + held item parameter = New crit chance
 	add b
 	ld b, a
-	jr nc, asm_34e75
+	jr nc, .Tally
 	ld b, $ff
 
-asm_34e75:
+; Roll random number, return if less than or equal to b.
+.Tally:
+; Bug: 1/256 chance to not get a crit even when b is the max possible value.
 	call BattleRandom
 	rlc a
 	rlc a
 	rlc a
 	cp b
 	ret nc
+
 	ld a, 1
-	ld [wca39], a
+	ld [wCriticalHit], a
 	ret
 
-Data34e86:
-	dw text_34b02
-	dw $a398
-	db $ff
+CriticalHitMoves:
+	db MOVE_KARATE_CHOP
+	db MOVE_RAZOR_LEAF
+	db MOVE_CRABHAMMER
+	db MOVE_SLASH
+	db -1
 
-asm_34e8b:
+BattleCommand_DamageStats:
 	ldh a, [hBattleTurn]
 	and a
-	jr nz, asm_34e95
-	call Function357b7
-	jr asm_34e98
+	jr nz, .enemy
 
-asm_34e95:
-	call sub_3585d
+	call PlayerAttackDamage
+	jr .return
 
-asm_34e98:
+.enemy:
+	call EnemyAttackDamage
+
+.return:
 	ret
 
 asm_34e99:
 	ld a, [wBattleAnimParam]
 	ld b, a
 	inc b
-	ld a, [wce2a]
+	ld a, [wCurDamage + 1]
 	ld e, a
-	ld a, [wce29]
+	ld a, [wCurDamage]
 	ld d, a
 
 asm_34ea6:
 	dec b
 	ret z
-	ld a, [wce2a]
+	ld a, [wCurDamage + 1]
 	add e
-	ld [wce2a], a
-	ld a, [wce29]
+	ld [wCurDamage + 1], a
+	ld a, [wCurDamage]
 	adc d
-	ld [wce29], a
+	ld [wCurDamage], a
 	jr nc, asm_34ea6
 	ld a, $ff
-	ld [wce29], a
-	ld [wce2a], a
+	ld [wCurDamage], a
+	ld [wCurDamage + 1], a
 	ret
 
 asm_34ec1:
@@ -2716,7 +2740,8 @@ asm_34ec1:
 	ld [wBattleAnimParam], a
 	ret
 
-asm_34ec9:
+BattleCommand_Stab:
+; STAB = Same Type Attack Bonus
 	ld hl, wBattleMonType
 	ld a, [hli]
 	ld b, a
@@ -2727,9 +2752,11 @@ asm_34ec9:
 	ld e, [hl]
 	ld a, [wPlayerMoveStructType]
 	ld [wNumSetBits], a
+
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_34ef2
+	jr z, .go
+
 	ld hl, wEnemyMonType
 	ld a, [hli]
 	ld b, a
@@ -2739,643 +2766,699 @@ asm_34ec9:
 	ld d, a
 	ld e, [hl]
 	ld a, [wEnemyMoveStructType]
-	ld [wNumSetBits], a
+	ld [wCurType], a
 
-asm_34ef2:
-	call sub_34f97
-	ld a, [wNumSetBits]
+.go:
+	call DoWeatherModifiers
+
+	ld a, [wCurType]
 	cp b
-	jr z, asm_34f00
+	jr z, .stab
 	cp c
-	jr z, asm_34f00
-	jr asm_34f1a
+	jr z, .stab
 
-asm_34f00:
-	ld hl, wce2a
+	jr .SkipStab
+
+.stab:
+	ld hl, wCurDamage + 1
 	ld a, [hld]
 	ld h, [hl]
 	ld l, a
+
 	ld b, h
 	ld c, l
 	srl b
 	rr c
 	add hl, bc
-	ld a, h
-	ld [wce29], a
-	ld a, l
-	ld [wce2a], a
-	ld hl, wca38
-	set 7, [hl]
 
-asm_34f1a:
-	ld a, [wNumSetBits]
+	ld a, h
+	ld [wCurDamage], a
+	ld a, l
+	ld [wCurDamage + 1], a
+	ld hl, wTypeModifier
+	set STAB_DAMAGE_F, [hl]
+
+.SkipStab:
+	ld a, [wCurType]
 	ld b, a
 	ld hl, TypeMatchups
 
-asm_34f21:
+.TypesLoop:
 	ld a, [hli]
-	cp $ff
-	jr z, asm_34f86
-	cp $fe
-	jr nz, asm_34f3d
+	cp -1
+	jr z, .end
+
+	; foresight
+	cp -2
+	jr nz, .SkipForesightCheck
+
 	push hl
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_34f36
-	ld hl, wca3b
+	jr z, .foresight_check
+	ld hl, wPlayerSubStatus1
 
-asm_34f36:
-	bit 3, [hl]
+.foresight_check:
+	bit SUBSTATUS_IDENTIFIED, [hl]
 	pop hl
-	jr nz, asm_34f86
-	jr asm_34f21
+	jr nz, .end
+	jr .TypesLoop
 
-asm_34f3d:
+.SkipForesightCheck:
 	cp b
-	jr nz, asm_34f81
+	jr nz, .SkipType
 	ld a, [hl]
 	cp d
-	jr z, asm_34f49
+	jr z, .GotMatchup
 	cp e
-	jr z, asm_34f49
-	jr asm_34f81
+	jr z, .GotMatchup
+	jr .SkipType
 
-asm_34f49:
+.GotMatchup:
 	push hl
 	push bc
 	inc hl
-	ld a, [wca38]
-	and $80
+	ld a, [wTypeModifier]
+	and STAB_DAMAGE
 	ld b, a
 	ld a, [hl]
 	and a
-	jr nz, asm_34f5b
+	jr nz, .NotImmune
 	inc a
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	xor a
 
-asm_34f5b:
-	ldh [hPrintNumDivisor], a
+.NotImmune:
+	ldh [hMultiplier], a
 	add b
-	ld [wca38], a
+	ld [wTypeModifier], a
+
 	xor a
-	ldh [hQuotient], a
-	ld hl, wce29
+	ldh [hMultiplicand], a
+
+	ld hl, wCurDamage
 	ld a, [hli]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hld]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
+
 	call Multiply
-	ld a, $a
-	ldh [hPrintNumDivisor], a
+
+	ld a, 10
+	ldh [hDivisor], a
 	ld b, 4
+
 	call Divide
-	ldh a, [hQuotient + 1]
-	ld [hli], a
+
 	ldh a, [hQuotient + 2]
+	ld [hli], a
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	pop bc
 	pop hl
 
-asm_34f81:
+.SkipType:
 	inc hl
 	inc hl
-	jp asm_34f21
+	jp .TypesLoop
 
-asm_34f86:
-	call Function34fff
+.end:
+	call BattleCheckTypeMatchup
 	ld a, [wNumSetBits]
 	ld b, a
-	ld a, [wca38]
-	and $80
+	ld a, [wTypeModifier]
+	and STAB_DAMAGE
 	or b
-	ld [wca38], a
+	ld [wTypeModifier], a
 	ret
 
-sub_34f97:
+DoWeatherModifiers:
 	push hl
 	push de
 	push bc
-	ld hl, Data34ff2
-	ld a, [wcae2]
+	ld hl, WeatherTypeModifiers
+	ld a, [wBattleWeather]
 	ld b, a
-	ld a, [wNumSetBits]
+	ld a, [wCurType]
 	ld c, a
 
-asm_34fa5:
+.CheckWeatherType:
 	ld a, [hli]
-	cp $ff
-	jr z, asm_34fee
+	cp -1
+	jr z, .done
+
 	cp b
-	jr nz, asm_34fb1
+	jr nz, .NextWeatherType
 	ld a, [hl]
 	cp c
-	jr z, asm_34fb5
+	jr z, .ApplyModifier
 
-asm_34fb1:
+.NextWeatherType:
 	inc hl
 	inc hl
-	jr asm_34fa5
+	jr .CheckWeatherType
 
-asm_34fb5:
+.ApplyModifier:
 	xor a
-	ldh [hQuotient], a
-	ld a, [wce29]
-	ldh [hQuotient + 1], a
-	ld a, [wce2a]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand], a
+	ld a, [wCurDamage]
+	ldh [hMultiplicand + 1], a
+	ld a, [wCurDamage + 1]
+	ldh [hMultiplicand + 2], a
+
 	inc hl
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
-	ld a, $a
-	ldh [hPrintNumDivisor], a
+
+	ld a, 10
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient]
+
+	ldh a, [hQuotient + 1]
 	and a
 	ld bc, $ffff
-	jr nz, asm_34fe6
-	ldh a, [hQuotient + 1]
-	ld b, a
+	jr nz, .Update
+
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	ld c, a
 	or b
-	jr nz, asm_34fe6
+	jr nz, .Update
+
 	ld bc, 1
 
-asm_34fe6:
+.Update:
 	ld a, b
-	ld [wce29], a
+	ld [wCurDamage], a
 	ld a, c
-	ld [wce2a], a
+	ld [wCurDamage + 1], a
 
-asm_34fee:
+.done:
 	pop bc
 	pop de
 	pop hl
 	ret
 
-Data34ff2:
-	db $1
-	db $15
-	db $14
-	db $1
-	db $14
-	db $5
-	db $2
-	db $14
-	db $14
-	db $2
-	db $15
-	db $5
-	db $ff
+WeatherTypeModifiers:
+	db WEATHER_RAIN, TYPE_WATER, SUPER_EFFECTIVE
+	db WEATHER_RAIN, TYPE_FIRE,  NOT_VERY_EFFECTIVE
+	db WEATHER_SUN,  TYPE_FIRE,  SUPER_EFFECTIVE
+	db WEATHER_SUN,  TYPE_WATER, NOT_VERY_EFFECTIVE
+	db -1 ; end
 
-Function34fff:
+BattleCheckTypeMatchup:
 	ldh a, [hBattleTurn]
 	and a
+
 	ld hl, wEnemyMonType
 	ld a, [wPlayerMoveStructType]
-	jr z, asm_35010
+	jr z, CheckTypeMatchup
+
 	ld hl, wBattleMonType
 	ld a, [wEnemyMoveStructType]
 
-asm_35010:
+CheckTypeMatchup:
 	ld d, a
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
-	ld a, $a
-	ld [wNumSetBits], a
+	ld a, EFFECTIVE
+	ld [wTypeMatchup], a
 	ld hl, TypeMatchups
-
-asm_3501c:
+.TypesLoop:
 	ld a, [hli]
-	cp $ff
-	jr z, asm_3506c
-	cp $fe
-	jr nz, asm_35038
+	cp -1
+	jr z, .End
+	cp -2
+	jr nz, .Next
 	push hl
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_35031
-	ld hl, wca3b
+	jr z, .do_foresight_check
+	ld hl, wPlayerSubStatus1
 
-asm_35031:
-	bit 3, [hl]
+.do_foresight_check:
+	bit SUBSTATUS_IDENTIFIED, [hl]
 	pop hl
-	jr nz, asm_3506c
-	jr asm_3501c
+	jr nz, .End
+	jr .TypesLoop
 
-asm_35038:
+.Next:
 	cp d
-	jr nz, asm_35044
+	jr nz, .Nope
 	ld a, [hli]
 	cp b
-	jr z, asm_35048
+	jr z, .Yup
 	cp c
-	jr z, asm_35048
-	jr asm_35045
+	jr z, .Yup
+	jr .Nope2
 
-asm_35044:
+.Nope:
 	inc hl
-
-asm_35045:
+.Nope2:
 	inc hl
-	jr asm_3501c
+	jr .TypesLoop
 
-asm_35048:
+.Yup:
 	xor a
 	ldh [hProduct], a
-	ldh [hQuotient], a
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hli]
-	ldh [hQuotient + 2], a
-	ld a, [wNumSetBits]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplicand + 2], a
+	ld a, [wTypeMatchup]
+	ldh [hMultiplier], a
 	call Multiply
-	ld a, $a
-	ldh [hPrintNumDivisor], a
+	ld a, 10
+	ldh [hDivisor], a
 	push bc
 	ld b, 4
 	call Divide
 	pop bc
-	ldh a, [hQuotient + 2]
-	ld [wNumSetBits], a
-	jr asm_3501c
+	ldh a, [hQuotient + 3]
+	ld [wTypeMatchup], a
+	jr .TypesLoop
 
-asm_3506c:
+.End:
 	ret
 
 INCLUDE "data/types/type_matchups.inc"
 
-asm_3519b:
-	ld hl, wce29
+BattleCommand_DamageVariation:
+; Modify the damage spread between 85% and 100%.
+
+; Because of the method of division the probability distribution
+; is not consistent. This makes the highest damage multipliers
+; rarer than normal.
+
+; No point in reducing 1 or 0 damage.
+	ld hl, wCurDamage
 	ld a, [hli]
 	and a
-	jr nz, asm_351a6
+	jr nz, .go
 	ld a, [hl]
 	cp 2
 	ret c
 
-asm_351a6:
+.go:
+; Start with the maximum damage.
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	dec hl
 	ld a, [hli]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 
-asm_351b0:
+; Multiply by 85-100%...
+.loop:
 	call BattleRandom
 	rrca
 	cp $d9
-	jr c, asm_351b0
-	ldh [hPrintNumDivisor], a
+	jr c, .loop
+	ldh [hMultiplier], a
 	call Multiply
-	ld a, $ff
-	ldh [hPrintNumDivisor], a
+
+; ...divide by 100%...
+	ld a, 100 percent
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 1]
-	ld hl, wce29
-	ld [hli], a
+
+; ...to get .85-1.00x damage.
 	ldh a, [hQuotient + 2]
+	ld hl, wCurDamage
+	ld [hli], a
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	ret
 
-Function351d0:
-	ld hl, wca40
+BattleCommand_CheckHit:
+	ld hl, wEnemySubStatus1
 	ld de, wPlayerMoveStructEffect
 	ld bc, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_351e7
-	ld hl, wca3b
+	jr z, .DreamEater
+	ld hl, wPlayerSubStatus1
 	ld de, wEnemyMoveStructEffect
 	ld bc, wBattleMonStatus
 
-asm_351e7:
+.DreamEater:
+; Return z if we're trying to eat the dream of
+; a monster that isn't sleeping.
 	ld a, [de]
-	cp 8
-	jr nz, asm_351f2
+	cp EFFECT_DREAM_EATER
+	jr nz, .Protect
 	ld a, [bc]
-	and 7
-	jp z, asm_352c4
+	and SLP
+	jp z, .Miss
 
-asm_351f2:
-	bit 2, [hl]
-	jp nz, asm_352c4
+.Protect:
+	bit SUBSTATUS_PROTECT, [hl]
+	jp nz, .Miss
 	ld a, [de]
-	cp $11
+	cp EFFECT_SWIFT
 	ret z
-	inc hl
-	inc hl
-	inc hl
-	inc hl
-	bit 5, [hl]
-	res 5, [hl]
-	ret nz
-	call sub_3750b
-	jr z, asm_35213
-	cp 3
-	jp z, asm_352c4
-	cp 8
-	jp z, asm_352c4
 
-asm_35213:
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	bit SUBSTATUS_LOCK_ON, [hl]
+	res SUBSTATUS_LOCK_ON, [hl]
+	ret nz
+
+; Bug: Supposed to return z if using an HP drain move on a substitute.
+; Register a is expected to contain the move struct effect.
+; However, it is overwritten to either 0 or 1 by calling CheckSubstituteOpp.
+	call CheckSubstituteOpp
+
+	jr z, .FlyDigMoves
+	cp EFFECT_LEECH_HIT
+	jp z, .Miss
+	cp EFFECT_DREAM_EATER
+	jp z, .Miss
+
+.FlyDigMoves:
+; Check for moves that can hit underground/flying opponents.
+; Return z if the current move can hit the opponent.
 	dec hl
 	dec hl
-	bit 6, [hl]
-	jp z, asm_3524d
+	bit SUBSTATUS_INVULNERABLE, [hl]
+	jp z, .EnemyMonMist
+	
 	ld hl, wCurEnemyMove
 	ld de, wPlayerMoveStruct
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_3522b
+	jr z, .fly_moves
 	ld hl, wCurPlayerMove
 	ld de, wEnemyMoveStruct
 
-asm_3522b:
+.fly_moves:
 	ld a, [hl]
 	cp MOVE_FLY
-	jr nz, asm_3523c
+	jr nz, .dig_moves
+
+; Final game adds Gust to this list
 	ld a, [de]
 	cp MOVE_WHIRLWIND
-	jr z, asm_3524d
+	jr z, .EnemyMonMist
 	cp MOVE_THUNDER
-	jr z, asm_3524d
-	jp asm_352c4
+	jr z, .EnemyMonMist
+	jp .Miss
 
-asm_3523c:
+.dig_moves:
 	cp MOVE_DIG
-	jp nz, asm_352c4
+	jp nz, .Miss
+
+; Final game adds Magnitude to this list
 	ld a, [de]
 	cp MOVE_EARTHQUAKE
-	jr z, asm_3524d
+	jr z, .EnemyMonMist
 	cp MOVE_FISSURE
-	jr z, asm_3524d
-	jp asm_352c4
+	jr z, .EnemyMonMist
+	jp .Miss
 
-asm_3524d:
+.EnemyMonMist:
 	ldh a, [hBattleTurn]
 	and a
-	jr nz, asm_35277
+	jr nz, .PlayerMonMist
 	ld a, [wPlayerMoveStructEffect]
-	cp $12
-	jr c, asm_3526f
-	cp $1a
-	jr c, asm_35267
-	cp $3a
-	jr c, asm_3526f
-	cp $42
-	jr c, asm_35267
-	jr asm_3526f
+	cp EFFECT_ATTACK_DOWN
+	jr c, .skip_enemy_mist_check
+	cp EFFECT_RESET_STATS + 1
+	jr c, .enemy_mist_check
+	cp EFFECT_ATTACK_DOWN_2
+	jr c, .skip_enemy_mist_check
+	cp EFFECT_REFLECT + 1
+	jr c, .enemy_mist_check
+	jr .skip_enemy_mist_check
 
-asm_35267:
-	ld a, [wca43]
-	bit 1, a
-	jp nz, asm_352c4
+.enemy_mist_check:
+	ld a, [wEnemySubStatus4]
+	bit SUBSTATUS_MIST, a
+	jp nz, .Miss
 
-asm_3526f:
-	ld a, [wca3e]
-	bit 0, a
+.skip_enemy_mist_check:
+	ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_X_ACCURACY, a
 	ret nz
-	jr asm_3529a
+	jr .calc_hit_chance
 
-asm_35277:
+.PlayerMonMist:
 	ld a, [wEnemyMoveStructEffect]
-	cp $12
-	jr c, asm_35294
-	cp $1a
-	jr c, asm_3528c
-	cp $3a
-	jr c, asm_35294
-	cp $42
-	jr c, asm_3528c
-	jr asm_35294
+	cp EFFECT_ATTACK_DOWN
+	jr c, .skip_player_mist_check
+	cp EFFECT_RESET_STATS + 1
+	jr c, .player_mist_check
+	cp EFFECT_ATTACK_DOWN_2
+	jr c, .skip_player_mist_check
+	cp EFFECT_REFLECT + 1
+	jr c, .player_mist_check
+	jr .skip_player_mist_check
 
-asm_3528c:
-	ld a, [wca3e]
-	bit 1, a
-	jp nz, asm_352c4
+.player_mist_check:
+	ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_MIST, a
+	jp nz, .Miss
 
-asm_35294:
-	ld a, [wca43]
-	bit 0, a
+.skip_player_mist_check:
+	ld a, [wEnemySubStatus4]
+	bit SUBSTATUS_X_ACCURACY, a
 	ret nz
 
-asm_3529a:
-	call sub_352df
+.calc_hit_chance:
+	call .StatModifiers
 	ld a, [wPlayerMoveStructAccuracy]
 	ld b, a
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_352aa
+	jr z, .StrangeThread
 	ld a, [wEnemyMoveStructAccuracy]
 	ld b, a
 
-asm_352aa:
+.StrangeThread:
 	push bc
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
-	cp $4d
+	cp HELD_STRANGE_THREAD
 	ld a, c
 	pop bc
-	jr nz, asm_352bd
+	jr nz, .skip_strange_thread
+
 	ld c, a
 	ld a, b
 	sub c
 	ld b, a
-	jr nc, asm_352bd
+	jr nc, .skip_strange_thread
 	ld b, 0
 
-asm_352bd:
+.skip_strange_thread:
 	call BattleRandom
 	cp b
-	jr nc, asm_352c4
+	jr nc, .Miss
 	ret
 
-asm_352c4:
+.Miss:
 	xor a
-	ld hl, wce29
+	ld hl, wCurDamage
 	ld [hli], a
 	ld [hl], a
 	inc a
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_352d9
+	jr z, .player_wrapping
 	ld hl, wEnemySubStatus3
-	res 5, [hl]
+	res SUBSTATUS_WRAPPING_MOVE, [hl]
 	ret
 
-asm_352d9:
+.player_wrapping:
 	ld hl, wPlayerSubStatus3
-	res 5, [hl]
+	res SUBSTATUS_WRAPPING_MOVE, [hl]
 	ret
 
-sub_352df:
+.StatModifiers:
 	ldh a, [hBattleTurn]
 	and a
+
 	ld hl, wPlayerMoveStructAccuracy
-	ld a, [wcaae]
+	ld a, [wPlayerAccLevel]
 	ld b, a
-	ld a, [wcab7]
+	ld a, [wEnemyEvaLevel]
 	ld c, a
-	jr z, asm_352fa
+	jr z, .got_acc_eva
+
+
 	ld hl, wEnemyMoveStructAccuracy
-	ld a, [wcab6]
+	ld a, [wEnemyAccLevel]
 	ld b, a
-	ld a, [wcaaf]
+	ld a, [wPlayerEvaLevel]
 	ld c, a
 
-asm_352fa:
+.got_acc_eva:
+; c = 14 - Evasion Level
 	ld a, $e
 	sub c
 	ld c, a
+
 	xor a
-	ldh [hQuotient], a
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	push hl
 	ld d, 2
 
-asm_35309:
+.accuracy_loop:
+	; look up the multiplier from the table
 	push bc
-	ld hl, Data35342
+	ld hl, AccuracyLevelMultipliers
 	dec b
 	sla b
 	ld c, b
 	ld b, 0
 	add hl, bc
 	pop bc
+	; multiply by the first byte in that row...
 	ld a, [hli]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
+	; ... and divide by the second byte
 	ld a, [hl]
 	ldh [hPrintNumDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 2]
+	; minimum accuracy is $0001
+	ldh a, [hQuotient + 3]
 	ld b, a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	or b
-	jp nz, asm_35332
-	ldh [hQuotient + 1], a
-	ld a, 1
-	ldh [hQuotient + 2], a
+	jp nz, .min_accuracy
 
-asm_35332:
+	ldh [hQuotient + 2], a
+	ld a, 1
+	ldh [hQuotient + 3], a
+
+.min_accuracy:
+	; do the same thing to the target's evasion
 	ld b, c
 	dec d
-	jr nz, asm_35309
-	ldh a, [hQuotient + 1]
-	and a
+	jr nz, .accuracy_loop
+
+	; if the result is more than 2 bytes, max out at 100%
 	ldh a, [hQuotient + 2]
-	jr z, asm_3533f
+	and a
+	ldh a, [hQuotient + 3]
+	jr z, .finish_accuracy
 	ld a, $ff
 
-asm_3533f:
+.finish_accuracy:
 	pop hl
 	ld [hl], a
 	ret
 
-Data35342:
-	dw $6419
-	dw $641c
-	dw $6421
-	dw $6428
-	dw $6432
-	dw $6442
-	dw $101
-	dw $a0f
-	dw $102
-	dw $a19
-	dw $103
-	dw $a23
-	dw $104
+AccuracyLevelMultipliers:
+	db 25, 100 ; -6 = 25%
+	db 28, 100 ; -5 = 28%
+	db 33, 100 ; -4 = 33%
+	db 40, 100 ; -3 = 40%
+	db 50, 100 ; -2 = 50%
+	db 66, 100 ; -1 = 66%
+	db 1, 1    ;  0 = 100%
+	db 15, 10  ;  1 = 150%
+	db 2, 1    ;  2 = 200%
+	db 25, 10  ;  3 = 250%
+	db 3, 1    ;  4 = 300%
+	db 35, 10  ;  5 = 350%
+	db 4, 1    ;  6 = 400%
 
-Function3535c:
-	call sub_3750b
-	jr nz, asm_35373
+BattleCommand_EffectChance:
+	; final game clears out wEffectFailed here
+	call CheckSubstituteOpp
+	jr nz, .failed
 	push hl
 	ld hl, wPlayerMoveStructEffectChance
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_3536d
+	jr z, .got_move_chance
 	ld hl, wEnemyMoveStructEffectChance
 
-asm_3536d:
+.got_move_chance
 	call BattleRandom
 	cp [hl]
 	pop hl
 	ret
 
-asm_35373:
+.failed:
 	and a
 	ret
 
-sub_35375:
+BattleCommand_LowerSub:
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wca3e]
-	jr z, asm_35380
-	ld a, [wca43]
+	ld a, [wPlayerSubStatus4]
+	jr z, .go
+	ld a, [wEnemySubStatus4]
 
-asm_35380:
-	bit 4, a
+.go:
+	bit SUBSTATUS_SUBSTITUTE, a
 	ret z
 	xor a
 	ld [wNumHits], a
 	ld [wFXAnimID + 1], a
 	inc a
 	ld [wBattleAnimParam], a
-	ld a, $a4
-	jp sub_37f23
+	ld a, MOVE_SUBSTITUTE
+	jp LoadBattleAnim
 
-asm_35393:
-	ld a, [wca3a]
+BattleCommand_MoveAnim:
+	ld a, [wAttackMissed]
 	and a
-	jp nz, sub_37f5f
+	jp nz, BattleCommand_MoveDelay
+
 	inc a
 	ld [wNumHits], a
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStruct]
 	ld c, a
-	ld de, wca45
+	ld de, wPlayerRolloutCount
 	ld a, [wPlayerMoveStructEffect]
-	jr z, asm_353b7
+	jr z, .got_rollout_count
+
 	ld a, [wEnemyMoveStruct]
 	ld c, a
-	ld de, wca4d
+	ld de, wEnemyRolloutCount
 	ld a, [wEnemyMoveStructEffect]
 
-asm_353b7:
-	cp $1d
-	jr z, asm_353d5
-	cp $1e
-	jr z, asm_353d5
-	cp $2c
-	jr z, asm_353d5
-	cp $4d
-	jr z, asm_353d5
-	cp $68
-	jr z, asm_353cf
+.got_rollout_count:
+	cp EFFECT_MULTI_HIT
+	jr z, .alternate_anim
+	cp EFFECT_CONVERSION
+	jr z, .alternate_anim
+	cp EFFECT_DOUBLE_HIT
+	jr z, .alternate_anim
+	cp EFFECT_POISON_MULTI_HIT
+	jr z, .alternate_anim
+	cp EFFECT_TRIPLE_KICK
+	jr z, .triplekick
 	xor a
 	ld [wBattleAnimParam], a
 
-asm_353cf:
+.triplekick:
 	ld e, c
 	ld d, 0
-	jp sub_35f53
+	jp PlayFXAnimID
 
-asm_353d5:
+.alternate_anim:
 	ld a, [wBattleAnimParam]
 	and 1
 	xor 1
@@ -3384,131 +3467,135 @@ asm_353d5:
 	cp 1
 	ld e, c
 	ld d, 0
-	jp z, sub_35f53
+	jp z, PlayFXAnimID
 	xor a
 	ld [wNumHits], a
-	jp sub_35f53
+	jp PlayFXAnimID
 
-sub_353ef:
+BattleCommand_RaiseSub:
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wca3e]
-	jr z, asm_353fa
-	ld a, [wca43]
+	ld a, [wPlayerSubStatus4]
+	jr z, .got_substatus
+	ld a, [wEnemySubStatus4]
 
-asm_353fa:
-	bit 4, a
+.got_substatus:
+	bit SUBSTATUS_SUBSTITUTE, a
 	ret z
+
 	xor a
 	ld [wNumHits], a
 	ld [wFXAnimID + 1], a
 	ld a, 2
 	ld [wBattleAnimParam], a
-	ld a, $a4
-	jp sub_37f23
+	ld a, MOVE_SUBSTITUTE
+	jp LoadBattleAnim
 
-asm_3540e:
-	ld a, [wca3a]
+BattleCommand_FailureText:
+	ld a, [wAttackMissed]
 	and a
 	ret z
-	call sub_355a6
+	call GetFailureResultText
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStruct]
 	ld hl, wPlayerSubStatus3
-	jr z, asm_35427
+	jr z, .check_fly_dig
+
 	ld a, [wEnemyMoveStruct]
 	ld hl, wEnemySubStatus3
 
-asm_35427:
-	cp $13
-	jr z, asm_35432
-	cp $5b
-	jr z, asm_35432
-	jp asm_357a9
+.check_fly_dig:
+	cp MOVE_FLY
+	jr z, .fly_dig
+	cp MOVE_DIG
+	jr z, .fly_dig
+	jp EndMoveEffect
 
-asm_35432:
-	res 6, [hl]
+.fly_dig:
+	res SUBSTATUS_INVULNERABLE, [hl]
 	ld a, 2
 	ld [wBattleAnimParam], a
-	call sub_37f0f
-	jp asm_357a9
+	call LoadMoveAnim
+	jp EndMoveEffect
 
-asm_3543f:
-	ld hl, wca40
+BattleCommand_ApplyDamage:
+	ld hl, wEnemySubStatus1
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_3544a
-	ld hl, wca3b
+	jr z, .got_substatus_1
+	ld hl, wPlayerSubStatus1
 
-asm_3544a:
-	bit 5, [hl]
-	jr z, asm_35459
-	call sub_35ee1
+.got_substatus_1:
+	bit SUBSTATUS_ENDURE, [hl]
+	jr z, .focus_orb
+	call BattleCommand_FalseSwipe
 	ld b, 0
-	jr nc, asm_35472
+	jr nc, .damage
 	ld b, 1
-	jr asm_35472
+	jr .damage
 
-asm_35459:
-	call Function37e2d
+.focus_orb:
+	call GetOpponentItem
 	ld a, b
-	cp $4f
+	cp HELD_FOCUS_ORB
 	ld b, 0
-	jr nz, asm_35472
+	jr nz, .damage
+
 	call BattleRandom
 	cp c
-	jr nc, asm_35472
-	call sub_35ee1
+	jr nc, .damage
+	call BattleCommand_FalseSwipe
 	ld b, 0
-	jr nc, asm_35472
+	jr nc, .damage
 	ld b, 2
 
-asm_35472:
+.damage:
 	push bc
-	call sub_354a0
+	call .update_damage_taken
 	ldh a, [hBattleTurn]
 	and a
-	jr nz, asm_35480
-	call sub_35f68
-	jr asm_35483
+	jr nz, .damage_player
+	call DoEnemyDamage
+	jr .done_damage
 
-asm_35480:
-	call sub_35fc9
+.damage_player:
+	call DoPlayerDamage
 
-asm_35483:
+.done_damage:
 	pop bc
 	ld a, b
 	and a
 	ret z
+
 	dec a
-	jr nz, asm_35490
+	jr nz, .focus_orb_text
 	ld hl, EnduredText
 	jp PrintText
 
-asm_35490:
-	call Function37e2d
+.focus_orb_text:
+	call GetOpponentItem
 	ld a, [hl]
 	ld [wNumSetBits], a
 	call GetItemName
 	ld hl, HungOnText
 	jp PrintText
 
-sub_354a0:
-	ld de, wca56
+.update_damage_taken:
+	ld de, wPlayerDamageTaken
 	ldh a, [hBattleTurn]
 	and a
-	jr nz, asm_354ab
-	ld de, wca58
+	jr nz, .got_damage_taken
+	ld de, wEnemyDamageTaken
 
-asm_354ab:
-	ld a, [wce2a]
+.got_damage_taken:
+	ld a, [wCurDamage + 1]
 	ld b, a
 	ld a, [de]
 	add b
 	ld [de], a
 	dec de
-	ld a, [wce29]
+	ld a, [wCurDamage]
 	ld b, a
 	ld a, [de]
 	adc b
@@ -3519,65 +3606,70 @@ asm_354ab:
 	inc de
 	ld [de], a
 	ret
-	call Function37e2d
+
+Unreferenced_Gen1HealEffect:
+	call GetOpponentItem
 	ldh a, [hBattleTurn]
 	and a
 	ld de, wBattleMonHP
 	ld hl, wBattleMonMaxHP
 	ld a, [wPlayerMoveStruct]
-	jr z, asm_354db
+	jr z, .healEffect
 	ld de, wEnemyMonHP
 	ld hl, wEnemyMonMaxHP
 	ld a, [wEnemyMoveStruct]
 
-asm_354db:
+.healEffect:
 	ld b, a
 	ld a, [de]
 	cp [hl]
+; BUG: The previous comparison is ignored.
+; This made healing moves in Gen 1 fail when user's HP is 255/511 points lower than max HP.
 	inc de
 	inc hl
 	ld a, [de]
 	sbc [hl]
-	jp z, asm_3556a
+	jp z, .failed
 	ld a, b
-	cp $9c
-	jr nz, asm_3550d
+	cp MOVE_REST
+	jr nz, .healHP
 	push hl
 	push de
 	push af
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	ld hl, wBattleMonStatus
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_354fb
+	jr z, .restEffect
 	ld hl, wEnemyMonStatus
 
-asm_354fb:
+.restEffect:
 	ld a, [hl]
 	and a
 	ld [hl], 2
-	ld hl, text_35570
-	jr z, asm_35507
-	ld hl, text_3557d
+	ld hl, WentToSleepText
+	jr z, .printRestText
+	ld hl, RestedText
 
-asm_35507:
+.printRestText:
 	call PrintText
 	pop af
 	pop de
 	pop hl
 
-asm_3550d:
+.healHP:
 	ld a, [hld]
 	ld [wHPBarMaxHP], a
 	ld c, a
 	ld a, [hl]
-	ld [wPlayerEffectivenessVsEnemyMons], a
+	ld [wHPBarMaxHP + 1], a
 	ld b, a
-	jr z, asm_3551d
+	jr z, .gotHPAmountToHeal
+; Recover and Softboiled only heal for half the mon's max HP
 	srl b
 	rr c
 
-asm_3551d:
+.gotHPAmountToHeal:
 	ld a, [de]
 	ld [wHPBarOldHP], a
 	add c
@@ -3585,10 +3677,10 @@ asm_3551d:
 	ld [wHPBarNewHP], a
 	dec de
 	ld a, [de]
-	ld [wcdc6], a
+	ld [wHPBarOldHP + 1], a
 	adc b
 	ld [de], a
-	ld [wcdc8], a
+	ld [wHPBarNewHP + 1], a
 	inc hl
 	inc de
 	ld a, [de]
@@ -3597,252 +3689,144 @@ asm_3551d:
 	dec hl
 	ld a, [de]
 	sbc [hl]
-	jr c, asm_35545
+	jr c, .playAnim
+; copy max HP to current HP if an overflow occurred
 	ld a, [hli]
 	ld [de], a
-	ld [wcdc8], a
+	ld [wHPBarNewHP + 1], a
 	inc de
 	ld a, [hl]
 	ld [de], a
 	ld [wHPBarNewHP], a
 
-asm_35545:
-	call sub_37f0f
+.playAnim:
+	call LoadMoveAnim
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wTileMap + 190
 	ld a, 1
-	jr z, asm_35556
+	jr z, .updateHPBar
 	ld hl, wTileMap + 42
 	xor a
 
-asm_35556:
+.updateHPBar:
 	ld [wWhichHPBar], a
 	predef UpdateHPBar
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, text_35593
+	ld hl, RegainedHealthText
 	jp PrintText
 
-asm_3556a:
-	call sub_37f5f
-	jp Function37499
+.failed:
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
-text_35570:
-	db $0
-	db $5a
-	db $ca
-	db $4f
-	db $c8
-	db $d1
-	db $d8
-	db $ca
-	db $2c
-	db $d2
-	db $c0
-	db $e7
-	db $57
+WentToSleepText:
+	text "<USER>は"
+	line "ねむりはじめた！"
+	done
 
-text_3557d:
-	db $0
-	db $5a
-	db $ca
-	db $7f
-	db $b9
-	db $de
-	db $ba
-	db $b3
-	db $c6
-	db $c5
-	db $df
-	db $c3
-	db $4f
-	db $c8
-	db $d1
-	db $d8
-	db $ca
-	db $2c
-	db $d2
-	db $c0
-	db $e7
-	db $57
+RestedText:
+	text "<USER>は　けんこうになって"
+	line "ねむりはじめた！"
+	done
 
-text_35593:
-	db $0
-	db $5a
-	db $ca
-	db $7f
-	db $c0
-	db $b2
-	db $d8
-	db $e2
-	db $b8
-	db $dd
-	db $4f
-	db $b6
-	db $b2
-	db $cc
-	db $b8
-	db $bc
-	db $c0
-	db $e7
-	db $58
+RegainedHealthText:
+	text "<USER>は　たいりょくを"
+	line "かいふくした！"
+	prompt
 
-sub_355a6:
+GetFailureResultText:
 	ld de, wPlayerMoveStructEffect
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_355b1
+	jr z, .go
 	ld de, wEnemyMoveStructEffect
 
-asm_355b1:
-	ld hl, text_35649
-	ld a, [wca38]
-	and $7f
-	jr z, asm_355c8
-	ld hl, text_35605
-	ld a, [wca39]
-	cp $ff
-	jr nz, asm_355c8
-	ld hl, text_35633
+.go:
+	ld hl, DoesntAffectText
+	ld a, [wTypeModifier]
+	and EFFECTIVENESS_MASK
+	jr z, .got_text
+	ld hl, AttackMissedText
+	ld a, [wCriticalHit]
+	cp -1
+	jr nz, .got_text
+	ld hl, UnaffectedText
 
-asm_355c8:
+.got_text:
 	push de
 	call PrintText
 	xor a
-	ld [wca39], a
+	ld [wCriticalHit], a
+
+; Take 1/4 of wCurDamage if using Jump Kick/High Jump Kick
 	pop de
 	ld a, [de]
-	cp $2d
+	cp EFFECT_JUMP_KICK
 	ret nz
-	ld hl, wce29
+	ld hl, wCurDamage
 	ld a, [hli]
 	ld b, [hl]
+rept 3
 	srl a
 	rr b
-	srl a
-	rr b
-	srl a
-	rr b
+endr
 	ld [hl], b
 	dec hl
 	ld [hli], a
 	or b
-	jr nz, asm_355ee
+	jr nz, .do_at_least_one_damage
 	inc a
 	ld [hl], a
 
-asm_355ee:
-	ld hl, text_35619
+.do_at_least_one_damage:
+	ld hl, CrashedText
 	call PrintText
 	ld a, 1
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ldh a, [hBattleTurn]
 	and a
-	jp nz, sub_35f68
-	jp sub_35fc9
+	jp nz, DoEnemyDamage
+	jp DoPlayerDamage
 
-text_35605:
-	db $0
-	db $bc
-	db $b6
-	db $bc
-	db $7f
-	db $5a
-	db $c9
-	db $4f
-	db $ba
-	db $b3
-	db $29
-	db $b7
-	db $ca
-	db $7f
-	db $ca
-	db $2d
-	db $da
-	db $c0
-	db $e7
-	db $58
+AttackMissedText:
+	text "しかし　<USER>の"
+	line "こうげきは　はずれた！"
+	prompt
 
-text_35619:
-	db $0
-	db $b2
-	db $b7
-	db $b5
-	db $b2
-	db $7f
-	db $b1
-	db $cf
-	db $df
-	db $c3
-	db $4f
-	db $5a
-	db $ca
-	db $55
-	db $2c
-	db $d2
-	db $de
-	db $c6
-	db $7f
-	db $3c
-	db $c2
-	db $b6
-	db $df
-	db $c0
-	db $e7
-	db $58
+CrashedText:
+	text "いきおい　あまって"
+	line "<USER>は"
+	cont "じめんに　ぶつかった！"
+	prompt
 
-text_35633:
-	db $0
-	db $59
-	db $c6
-	db $ca
-	db $4f
-	db $2e
-	db $de
-	db $2e
-	db $de
-	db $b7
-	db $b2
-	db $c3
-	db $c5
-	db $b2
-	db $e7
-	db $58
+UnaffectedText:
+	text "<TARGET>には"
+	line "ぜんぜんきいてない！"
+	prompt
 
-asm_35643:
-	ld hl, text_35649
+PrintDoesntAffect:
+	ld hl, DoesntAffectText
 	jp PrintText
 
-text_35649:
-	db $0
-	db $59
-	db $c6
-	db $ca
-	db $4f
-	db $ba
-	db $b3
-	db $b6
-	db $26
-	db $7f
-	db $c5
-	db $b2
-	db $7f
-	db $d0
-	db $c0
-	db $b2
-	db $30
-	db $56
-	db $58
+DoesntAffectText:
+	text "<TARGET>には"
+	line "こうかが　ない　みたいだ<⋯⋯>"
+	prompt
 
-asm_3565c:
-	ld a, [wca39]
+; Prints the message for critical hits or one-hit KOs.
+
+; If there is no message to be printed, wait 20 frames.
+BattleCommand_CriticalText:
+	ld a, [wCriticalHit]
 	and a
-	jr z, asm_35675
+	jr z, .wait
+
 	dec a
 	add a
-	ld hl, Data3567a
+	ld hl, .texts
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -3850,331 +3834,277 @@ asm_3565c:
 	ld h, [hl]
 	ld l, a
 	call PrintText
-	xor a
-	ld [wca39], a
 
-asm_35675:
-	ld c, $14
+	xor a
+	ld [wCriticalHit], a
+
+.wait:
+	ld c, 20
 	jp DelayFrames
 
-Data3567a:
-	dw text_3567e
-	dw text_3568c
+.texts:
+	dw CriticalHitText
+	dw OneHitKOText
 
-text_3567e:
-	db $0
-	db $b7
-	db $e1
-	db $b3
-	db $bc
-	db $e2
-	db $c6
-	db $7f
-	db $b1
-	db $c0
-	db $df
-	db $c0
-	db $e7
-	db $58
+CriticalHitText:
+	text "きゅうしょに　あたった！"
+	prompt
 
-text_3568c:
-	db $0
-	db $b2
-	db $c1
-	db $29
-	db $b7
-	db $7f
-	db $cb
-	db $df
-	db $bb
-	db $c2
-	db $e7
-	db $58
+OneHitKOText:
+	text "いちげき　ひっさつ！"
+	prompt
 
-asm_35698:
-	ld a, [wca38]
-	and $7f
-	cp $a
+BattleCommand_SuperEffectiveText:
+	ld a, [wTypeModifier]
+	and EFFECTIVENESS_MASK
+	cp EFFECTIVE
 	ret z
-	ld hl, text_356ab
-	jr nc, asm_356a8
-	ld hl, text_356b8
-
-asm_356a8:
+	ld hl, SuperEffectiveText
+	jr nc, .print
+	ld hl, NotVeryEffectiveText
+.print:
 	jp PrintText
 
-text_356ab:
-	db $0
-	db $ba
-	db $b3
-	db $b6
-	db $ca
-	db $7f
-	db $3a
-	db $c2
-	db $28
-	db $de
-	db $30
-	db $e7
-	db $58
+SuperEffectiveText:
+	text "こうかは　ばつぐんだ！"
+	prompt
 
-text_356b8:
-	db $0
-	db $ba
-	db $b3
-	db $b6
-	db $ca
-	db $7f
-	db $b2
-	db $cf
-	db $cb
-	db $c4
-	db $c2
-	db $c9
-	db $7f
-	db $d6
-	db $b3
-	db $30
-	db $58
+NotVeryEffectiveText:
+	text "こうかは　いまひとつの　ようだ"
+	prompt
 
-asm_356c9:
+BattleCommand_CheckFaint:
 	ld hl, wEnemyMonHP
-	ld de, wca44
+	ld de, wEnemySubStatus5
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_356da
+	jr z, .got_hp
 	ld hl, wBattleMonHP
-	ld de, wca3f
+	ld de, wPlayerSubStatus5
 
-asm_356da:
+.got_hp:
 	ld a, [hli]
 	or [hl]
 	ret nz
+
 	ld a, [de]
-	bit 6, a
-	jr z, asm_3573b
-	ld hl, text_3573e
+	bit SUBSTATUS_DESTINY_BOND, a
+	jr z, .no_dbond
+
+	ld hl, TookDownWithItText
 	call PrintText
+
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wEnemyMonMaxHP + 1
-	ld bc, wTileMap + 42
+	bccoord 2, 2
 	ld a, 0
-	jr nz, asm_356fd
+	jr nz, .got_max_hp
 	ld hl, wBattleMonMaxHP + 1
-	ld bc, wTileMap + 190
+	bccoord 10, 9
 	ld a, 1
 
-asm_356fd:
+.got_max_hp:
 	ld [wWhichHPBar], a
 	ld a, [hld]
 	ld [wHPBarMaxHP], a
 	ld a, [hld]
-	ld [wPlayerEffectivenessVsEnemyMons], a
+	ld [wHPBarMaxHP + 1], a
+; Back up current HP and set it to 0
 	ld a, [hl]
 	ld [wHPBarOldHP], a
 	xor a
 	ld [hld], a
 	ld a, [hl]
-	ld [wcdc6], a
+	ld [wHPBarOldHP + 1], a
 	xor a
 	ld [hl], a
+
 	ld [wHPBarNewHP], a
-	ld [wcdc8], a
+	ld [wHPBarNewHP + 1], a
 	ld h, b
 	ld l, c
 	predef UpdateHPBar
+
 	ldh a, [hBattleTurn]
 	push af
 	xor 1
 	ldh [hBattleTurn], a
+
 	xor a
 	ld [wNumHits], a
 	ld [wFXAnimID + 1], a
 	inc a
 	ld [wBattleAnimParam], a
-	ld a, $c2
-	call sub_37f23
+	ld a, MOVE_DESTINY_BOND
+	call LoadBattleAnim
 	pop af
 	ldh [hBattleTurn], a
 
-asm_3573b:
-	jp asm_357a9
+.no_dbond:
+	jp EndMoveEffect
 
-text_3573e:
-	db $0
-	db $59
-	db $ca
-	db $7f
-	db $5a
-	db $dd
-	db $4f
-	db $d0
-	db $c1
-	db $2d
-	db $da
-	db $c6
-	db $7f
-	db $bc
-	db $c0
-	db $e7
-	db $58
+TookDownWithItText:
+	text "<TARGET>は　<USER>を"
+	line "みちずれに　した！"
+	prompt
 
-asm_3574f:
-	jp asm_35752
+; Used to handle hitting the opponent when they have SUBSTATUS_RAGE.
+; However, Rage itself doesn't actually initiate the effect in this build, so this interaction is unseen.
+BattleCommand_BuildOpponentRage:
+; This jump really wasn't necessary.
+	jp .start
 
-asm_35752:
-	ld hl, wca43
-	ld de, wcab1
+.start:
+	ld hl, wEnemySubStatus4
+	ld de, wEnemyAtkLevel
 	ld bc, wEnemyMoveStruct
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_35769
-	ld hl, wca3e
-	ld de, wcaa9
+	jr z, .player
+	ld hl, wPlayerSubStatus4
+	ld de, wPlayerAtkLevel
 	ld bc, wPlayerMoveStruct
 
-asm_35769:
-	bit 6, [hl]
+.player:
+	bit SUBSTATUS_RAGE, [hl]
 	ret z
+
 	ld a, [de]
 	cp $d
 	ret z
+
 	ldh a, [hBattleTurn]
 	xor 1
 	ldh [hBattleTurn], a
+; Temporarily replaces target's current move with NULL that raises attack.
 	ld h, b
 	ld l, c
 	ld [hl], 0
 	inc hl
-	ld [hl], $a
+	ld [hl], EFFECT_ATTACK_UP
 	push hl
-	ld hl, text_35791
+	ld hl, RageBuildingText
 	call PrintText
+; This is where the line that actually raises the target's attack stat WAS... in Gen I.
+; In this prototype, the stat-raising call is strangely absent, meaning the prior setup was all for nothing!
+
+; This also means the "rage building" effect is purely visual in this build and doesn't indicate anything.
+
 	pop hl
 	xor a
 	ld [hld], a
-	ld a, $63
+	ld a, MOVE_RAGE
 	ld [hl], a
+
 	ldh a, [hBattleTurn]
 	xor 1
 	ldh [hBattleTurn], a
 	ret
 
-text_35791:
-	db $0
-	db $5a
-	db $c9
-	db $7f
-	db $b2
-	db $b6
-	db $d8
-	db $c9
-	db $4f
-	db $1c
-	db $a6
-	db $92
-	db $e3
-	db $b
-	db $26
-	db $7f
-	db $b1
-	db $26
-	db $df
-	db $c3
-	db $b2
-	db $b8
-	db $e7
-	db $58
+RageBuildingText:
+	text "<USER>の　いかりの"
+	line "ボルテージが　あがっていく！"
+	prompt
 
-asm_357a9:
-	ld a, [wca7b]
+EndMoveEffect:
+	ld a, [wBattleScriptBufferAddress]
 	ld l, a
-	ld a, [wca7c]
+	ld a, [wBattleScriptBufferAddress + 1]
 	ld h, a
-	ld a, $ff
+	ld a, endmove_command
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
 	ret
 
-Function357b7:
+PlayerAttackDamage:
 	xor a
-	ld hl, wce29
+	ld hl, wCurDamage
 	ld [hli], a
 	ld [hl], a
+	
 	ld hl, wPlayerMoveStructPower
 	ld a, [hli]
 	and a
 	ld d, a
 	ret z
+
 	ld a, [hl]
-	cp $14
-	jr nc, asm_357fe
+	cp SPECIAL_TYPES
+	jr nc, .special
+
+; physical
 	ld hl, wEnemyMonDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld a, [wca44]
+	ld a, [wEnemySubStatus5]
 	bit 2, a
-	jr z, asm_357da
+	jr z, .physicalcrit
+
 	sla c
 	rl b
 
-asm_357da:
-	ld hl, wBattleMonStats
-	ld a, [wca39]
+.physicalcrit:
+	ld hl, wBattleMonAttack
+	ld a, [wCriticalHit]
 	and a
-	jr z, asm_35831
-	ld c, 3
-	call sub_35952
-	ldh a, [hQuotient + 1]
-	ld b, a
+	jr z, .TruncateHL_BC
+
+	ld c, STAT_DEF
+	call GetEnemyMonStat
+
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	ld c, a
 	push bc
-	ld hl, wPartyMon1Stats
+	ld hl, wPartyMon1Attack
 	ld a, [wCurBattleMon]
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
-	jr asm_35831
+	jr .TruncateHL_BC
 
-asm_357fe:
+.special:
 	ld hl, wEnemyMonSpclDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld a, [wca44]
+	ld a, [wEnemySubStatus5]
 	bit 1, a
-	jr z, asm_3580f
+	jr z, .specialcrit
 	sla c
 	rl b
 
-asm_3580f:
+.specialcrit:
 	ld hl, wBattleMonSpclAtk
-	ld a, [wca39]
+	ld a, [wCriticalHit]
 	and a
-	jr z, asm_35831
-	ld c, 6
-	call sub_35952
-	ldh a, [hQuotient + 1]
-	ld b, a
+	jr z, .TruncateHL_BC
+
+	ld c, STAT_SDEF
+	call GetEnemyMonStat
+
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	ld c, a
 	push bc
 	ld hl, wPartyMon1SpclAtk
 	ld a, [wCurBattleMon]
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
 
-asm_35831:
+.TruncateHL_BC:
 	ld a, [hli]
 	ld l, [hl]
 	ld h, a
 	or b
-	jr z, asm_3584c
+	jr z, .done
+
 	srl b
 	rr c
 	srl b
@@ -4183,27 +4113,30 @@ asm_35831:
 	rr l
 	srl h
 	rr l
+
 	ld a, l
 	or h
-	jr nz, asm_3584c
+	jr nz, .done
+
 	inc l
 
-asm_3584c:
+.done:
 	ld b, l
 	ld a, [wBattleMonLevel]
 	ld e, a
-	ld a, [wca39]
+	ld a, [wCriticalHit]
 	and a
-	jr z, asm_35859
+	jr z, .return
+
 	sla e
 
-asm_35859:
+.return:
 	ld a, 1
 	and a
 	ret
 
-sub_3585d:
-	ld hl, wce29
+EnemyAttackDamage:
+	ld hl, wCurDamage
 	xor a
 	ld [hli], a
 	ld [hl], a
@@ -4213,23 +4146,24 @@ sub_3585d:
 	and a
 	ret z
 	ld a, [hl]
-	cp $14
-	jr nc, asm_358a4
+	cp SPECIAL_TYPES
+	jr nc, .special
+
 	ld hl, wBattleMonDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld a, [wca3f]
+	ld a, [wPlayerSubStatus5]
 	bit 2, a
-	jr z, asm_35880
+	jr z, .physicalcrit
 	sla c
 	rl b
 
-asm_35880:
+.physicalcrit:
 	ld hl, wEnemyMonAttack
-	ld a, [wca39]
+	ld a, [wCriticalHit]
 	and a
-	jr z, asm_358d7
+	jr z, .TruncateHL_BC
 	ld hl, wPartyMon1Defense
 	ld a, [wCurBattleMon]
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -4238,47 +4172,48 @@ asm_35880:
 	ld b, a
 	ld c, [hl]
 	push bc
-	ld c, 2
-	call sub_35952
-	ld hl, hQuotient + 1
+	ld c, STAT_ATK
+	call GetEnemyMonStat
+	ld hl, hQuotient + 2
 	pop bc
-	jr asm_358d7
+	jr .TruncateHL_BC
 
-asm_358a4:
+.special:
 	ld hl, wBattleMonSpclDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld a, [wca3f]
+	ld a, [wPlayerSubStatus5]
 	bit 1, a
-	jr z, asm_358b5
+	jr z, .specialcrit
 	sla c
 	rl b
 
-asm_358b5:
+.specialcrit:
 	ld hl, wEnemyMonSpclAtk
-	ld a, [wca39]
+	ld a, [wCriticalHit]
 	and a
-	jr z, asm_358d7
+	jr z, .TruncateHL_BC
 	ld hl, wPartyMon1SpclDef
 	ld a, [wCurBattleMon]
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	push bc
-	ld c, 5
-	call sub_35952
-	ld hl, hQuotient + 1
+	ld c, STAT_SATK
+	call GetEnemyMonStat
+	ld hl, hQuotient + 2
 	pop bc
 
-asm_358d7:
+.TruncateHL_BC:
 	ld a, [hli]
 	ld l, [hl]
 	ld h, a
 	or b
-	jr z, asm_358f2
+	jr z, .done
+
 	srl b
 	rr c
 	srl b
@@ -4287,21 +4222,23 @@ asm_358d7:
 	rr l
 	srl h
 	rr l
+
 	ld a, l
 	or h
-	jr nz, asm_358f2
+	jr nz, .done
 	inc l
 
-asm_358f2:
+.done:
 	ld b, l
 	ld a, [wEnemyMonLevel]
 	ld e, a
-	ld a, [wca39]
+	ld a, [wCriticalHit]
 	and a
-	jr z, asm_358ff
+	jr z, .return
+
 	sla e
 
-asm_358ff:
+.return:
 	ld a, 1
 	and a
 	and a
@@ -4309,17 +4246,17 @@ asm_358ff:
 
 sub_35904:
 	xor a
-	ld hl, wce29
+	ld hl, wCurDamage
 	ld [hli], a
 	ld [hl], a
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wBattleMonDefense
-	ld de, wca3f
+	ld de, wPlayerSubStatus5
 	ld a, [wBattleMonLevel]
 	jr z, asm_35921
 	ld hl, wEnemyMonDefense
-	ld de, wca44
+	ld de, wEnemySubStatus5
 	ld a, [wEnemyMonLevel]
 
 asm_35921:
@@ -4362,29 +4299,31 @@ asm_3594c:
 	ld e, a
 	ret
 
-sub_35952:
+GetEnemyMonStat:
 	push de
 	push bc
 	ld a, [wLinkMode]
-	cp 3
-	jr nz, asm_35976
+	cp 3 ; LINK_COLOSSEUM
+	jr nz, .notLinkBattle
+
 	ld hl, wOTPartyMon1MaxHP
 	dec c
 	sla c
 	ld b, 0
 	add hl, bc
-	ld a, [wca36]
-	ld bc, $30
+	ld a, [wCurOTMon]
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
+
 	ld a, [hli]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	pop bc
 	pop de
 	ret
 
-asm_35976:
+.notLinkBattle:
 	ld a, [wEnemyMonLevel]
 	ld [wCurPartyLevel], a
 	ld a, [wEnemyMonSpecies]
@@ -4399,189 +4338,222 @@ asm_35976:
 	ld [de], a
 	pop bc
 	ld b, 0
-	ld hl, wTempMonExp + 2
-	predef Functiondf91
+	ld hl, wTempMonSpcExp - $9
+	predef CalcMonStatC
 	pop de
 	ret
 
-sub_3599d:
+; Return a damage value for move power d, player level e, enemy defense c and player attack b.
+; Return 1 if successful, else 0.
+BattleCommand_DamageCalc:
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStructEffect]
-	jr z, asm_359a8
+	jr z, .player
 	ld a, [wEnemyMoveStructEffect]
 
-asm_359a8:
-	cp 7
-	jr nz, asm_359b1
+.player:
+; Selfdestruct and Explosion halve defense.
+	cp EFFECT_SELFDESTRUCT
+	jr nz, .dont_selfdestruct
 	srl c
-	jr nz, asm_359b1
+	jr nz, .dont_selfdestruct
 	inc c
 
-asm_359b1:
-	cp $1d
-	jr z, asm_359bc
+.dont_selfdestruct:
+; Variable-hit moves and Conversion can have a power of 0.
+	cp EFFECT_MULTI_HIT
+	jr z, .skip_zero_damage_check
 	cp $1e
-	jr z, asm_359bc
+	jr z, .skip_zero_damage_check
+
+; No damage if move power is 0.
 	ld a, d
 	and a
 	ret z
 
-asm_359bc:
+.skip_zero_damage_check:
+; No checks for a defense value of 0, unlike in the final game.
 	xor a
-	ld hl, hProduct
+	ld hl, hDividend
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
+
+; Level * 2
 	ld a, e
 	add a
-	jr nc, asm_359cc
+	jr nc, .level_not_overflowing
 	push af
 	ld a, 1
 	ld [hl], a
 	pop af
 
-asm_359cc:
+.level_not_overflowing:
 	inc hl
 	ld [hli], a
+
+; / 5
 	ld a, 5
 	ld [hld], a
 	push bc
 	ld b, 4
 	call Divide
 	pop bc
+
+; + 2
 	inc [hl]
 	inc [hl]
+
+; * bp
 	inc hl
 	ld [hl], d
 	call Multiply
+
+; * Attack
 	ld [hl], b
 	call Multiply
+
+; / Defense
 	ld [hl], c
 	ld b, 4
 	call Divide
-	ld [hl], $32
+
+; / 50
+	ld [hl], 50
 	ld b, 4
 	call Divide
-	call Function37e1d
-	ld hl, Data35a7d
+	
+; Item boosts
+	call GetUserItem
+	ld hl, TypeBoostItems
 
-asm_359f6:
+.NextItem:
 	ld a, [hli]
-	cp $ff
-	jr z, asm_35a1f
+	cp -1
+	jr z, .DoneItem
+
+; Item effect
 	cp b
 	ld a, [hli]
-	jr nz, asm_359f6
+	jr nz, .NextItem
+
+; Type
 	ld b, a
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStructType]
-	jr z, asm_35a0b
+	jr z, .player_move_type
 	ld a, [wEnemyMoveStructType]
-
-asm_35a0b:
+.player_move_type:
 	cp b
-	jr nz, asm_35a1f
+	jr nz, .DoneItem
+
+; * 100 + item effect amount
 	ld a, c
-	add $64
+	add 100
 	ldh [hMultiplier], a
 	call Multiply
-	ld a, $64
-	ldh [hMultiplier], a
+
+; / 100
+	ld a, 100
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
 
-asm_35a1f:
-	ld hl, wce29
+.DoneItem:
+; Update wCurDamage. Max 999 (capped at 997, then add 2).
+DEF MAX_DAMAGE EQU 999
+DEF MIN_DAMAGE EQU 2
+DEF DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
+
+	ld hl, wCurDamage
 	ld b, [hl]
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	add b
-	ldh [hQuotient + 2], a
-	jr nc, asm_35a32
-	ldh a, [hQuotient + 1]
+	ldh [hQuotient + 3], a
+	jr nc, .dont_cap_1
+
+	ldh a, [hQuotient + 2]
 	inc a
-	ldh [hQuotient + 1], a
+	ldh [hQuotient + 2], a
 	and a
-	jr z, asm_35a66
+	jr z, .Cap
 
-asm_35a32:
-	ldh a, [hProduct]
-	ld b, a
+.dont_cap_1:
 	ldh a, [hQuotient]
-	or a
-	jr nz, asm_35a66
+	ld b, a
 	ldh a, [hQuotient + 1]
-	cp 3
-	jr c, asm_35a4a
-	cp 4
-	jr nc, asm_35a66
-	ldh a, [hQuotient + 2]
-	cp $e6
-	jr nc, asm_35a66
+	or a
+	jr nz, .Cap
 
-asm_35a4a:
-	inc hl
 	ldh a, [hQuotient + 2]
+	cp HIGH(DAMAGE_CAP + 1)
+	jr c, .dont_cap_2
+
+	cp HIGH(DAMAGE_CAP + 1) + 1
+	jr nc, .Cap
+
+	ldh a, [hQuotient + 3]
+	cp LOW(DAMAGE_CAP + 1)
+	jr nc, .Cap
+
+.dont_cap_2:
+	inc hl
+
+	ldh a, [hQuotient + 3]
 	ld b, [hl]
 	add b
 	ld [hld], a
-	ldh a, [hQuotient + 1]
+
+	ldh a, [hQuotient + 2]
 	ld b, [hl]
 	adc b
 	ld [hl], a
-	jr c, asm_35a66
+	jr c, .Cap
+
 	ld a, [hl]
-	cp 3
-	jr c, asm_35a6c
-	cp 4
-	jr nc, asm_35a66
+	cp HIGH(DAMAGE_CAP + 1)
+	jr c, .dont_cap_3
+
+	cp HIGH(DAMAGE_CAP + 1) + 1
+	jr nc, .Cap
+
 	inc hl
 	ld a, [hld]
-	cp $e6
-	jr c, asm_35a6c
+	cp LOW(DAMAGE_CAP + 1)
+	jr c, .dont_cap_3
 
-asm_35a66:
-	ld a, 3
+.Cap:
+	ld a, HIGH(DAMAGE_CAP)
 	ld [hli], a
-	ld a, $e5
+	ld a, LOW(DAMAGE_CAP)
 	ld [hld], a
 
-asm_35a6c:
+.dont_cap_3:
+; Add back MIN_DAMAGE (capping at 999).
 	inc hl
 	ld a, [hl]
-	add 2
+	add MIN_DAMAGE
 	ld [hld], a
-	jr nc, asm_35a74
+	jr nc, .dont_floor
 	inc [hl]
+.dont_floor:
 
-asm_35a74:
+; Returns nz and nc.
 	ld a, 1
 	and a
 	ret
 
 unknown_35a78:
-	dw text_34b02
-	dw $a398
-	db $ff
+	db MOVE_KARATE_CHOP
+	db MOVE_RAZOR_LEAF
+	db MOVE_CRABHAMMER
+	db MOVE_SLASH
+	db -1
 
-Data35a7d:
-	dw $32
-	dw $133
-	dw $234
-	dw $335
-	dw $436
-	dw $537
-	dw $738
-	dw $839
-	dw $143a
-	dw $153b
-	dw $163c
-	dw $173d
-	dw $183e
-	dw $193f
-	dw $1a40
-	db $ff
+
+INCLUDE "data/types/type_boost_items.inc"
 
 asm_35a9c:
 	ld hl, wBattleMonLevel
@@ -4652,7 +4624,7 @@ asm_35ae7:
 	jr asm_35afd
 
 asm_35afd:
-	ld hl, wce29
+	ld hl, wCurDamage
 	ld [hli], a
 	ld [hl], b
 	ret
@@ -4667,42 +4639,42 @@ asm_35b03:
 asm_35b0e:
 	xor a
 	ldh [hProduct], a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, [hli]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hli]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, $30
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld a, b
 	and a
 	jr z, asm_35b47
-	ldh a, [hPrintNumDivisor]
+	ldh a, [hDivisor]
 	srl b
 	rr a
 	srl b
 	rr a
-	ldh [hPrintNumDivisor], a
-	ldh a, [hQuotient + 1]
+	ldh [hDivisor], a
+	ldh a, [hDividend + 2]
 	ld b, a
 	srl b
-	ldh a, [hQuotient + 2]
+	ldh a, [hDividend + 3]
 	rr a
 	srl b
 	rr a
-	ldh [hQuotient + 2], a
+	ldh [hDividend + 3], a
 	ld a, b
-	ldh [hQuotient + 1], a
+	ldh [hDividend + 2], a
 
 asm_35b47:
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld b, a
 	ld hl, Data35b78
 
@@ -4721,17 +4693,17 @@ asm_35b59:
 	ld hl, wPlayerMoveStructPower
 	ld [hl], a
 	push hl
-	call Function357b7
+	call PlayerAttackDamage
 	jr asm_35b71
 
 asm_35b69:
 	ld hl, wEnemyMoveStructPower
 	ld [hl], a
 	push hl
-	call sub_3585d
+	call EnemyAttackDamage
 
 asm_35b71:
-	call sub_3599d
+	call BattleCommand_DamageCalc
 	pop hl
 	ld [hl], 1
 	ret
@@ -4761,7 +4733,7 @@ asm_35b84:
 
 asm_35b95:
 	ld a, 1
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	ld a, [hl]
 	cp $44
 	ret z
@@ -4772,7 +4744,7 @@ asm_35b95:
 	ld a, [de]
 	cp $14
 	ret nc
-	ld hl, wce29
+	ld hl, wCurDamage
 	ld a, [hli]
 	or [hl]
 	ret z
@@ -4789,17 +4761,17 @@ asm_35b95:
 
 asm_35bb8:
 	xor a
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	ret
 
 asm_35bbd:
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wca44
+	ld hl, wEnemySubStatus5
 	ld de, wca51
 	ld a, [wCurEnemyMove]
 	jr z, asm_35bd4
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 	ld de, wca49
 	ld a, [wCurPlayerMove]
 
@@ -4808,7 +4780,7 @@ asm_35bd4:
 	jr z, asm_35bf5
 	bit 4, [hl]
 	jr nz, asm_35bf5
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_35bf5
 	set 4, [hl]
@@ -4818,39 +4790,26 @@ asm_35bd4:
 	inc a
 	inc a
 	ld [de], a
-	call sub_37f0f
-	ld hl, text_35bfb
+	call LoadMoveAnim
+	ld hl, GotAnEncoreText
 	jp PrintText
 
 asm_35bf5:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_374b1
 
-text_35bfb:
-	db $0
-	db $59
-	db $ca
-	db $4f
-	db $80
-	db $ab
-	db $89
-	db $e3
-	db $a6
-	db $dd
-	db $7f
-	db $b3
-	db $b9
-	db $c0
-	db $e7
-	db $58
+GotAnEncoreText:
+	text "<TARGET>は"
+	line "アンコールを　うけた！"
+	prompt
 
 asm_35c0b:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, asm_35ca9
-	call sub_3750b
+	call CheckSubstituteOpp
 	jp nz, asm_35ca9
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, wBattleMonMaxHP + 1
 	ld de, wEnemyMonMaxHP + 1
 	call sub_35c59
@@ -4872,7 +4831,7 @@ asm_35c0b:
 	ld [wWhichHPBar], a
 	ld hl, wTileMap + 42
 	predef UpdateHPBar
-	ld hl, text_35caf
+	ld hl, SharedPainText
 	jp PrintText
 
 sub_35c59:
@@ -4890,15 +4849,15 @@ sub_35c59:
 	ld a, [de]
 	dec de
 	add b
-	ld [wce2a], a
+	ld [wCurDamage + 1], a
 	ld b, [hl]
 	ld a, [de]
 	adc b
 	srl a
-	ld [wce29], a
-	ld a, [wce2a]
+	ld [wCurDamage], a
+	ld a, [wCurDamage + 1]
 	rr a
-	ld [wce2a], a
+	ld [wCurDamage + 1], a
 	inc hl
 	inc hl
 	inc hl
@@ -4909,16 +4868,16 @@ sub_35c59:
 sub_35c88:
 	ld c, [hl]
 	dec hl
-	ld a, [wce2a]
+	ld a, [wCurDamage + 1]
 	sub c
 	ld b, [hl]
 	dec hl
-	ld a, [wce29]
+	ld a, [wCurDamage]
 	sbc b
 	jr nc, asm_35c9e
-	ld a, [wce29]
+	ld a, [wCurDamage]
 	ld b, a
-	ld a, [wce2a]
+	ld a, [wCurDamage + 1]
 	ld c, a
 
 asm_35c9e:
@@ -4931,32 +4890,13 @@ asm_35c9e:
 	ret
 
 asm_35ca9:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_374b1
 
-text_35caf:
-	db $0
-	db $b5
-	db $c0
-	db $26
-	db $b2
-	db $c9
-	db $7f
-	db $c0
-	db $b2
-	db $d8
-	db $e2
-	db $b8
-	db $dd
-	db $4f
-	db $dc
-	db $b6
-	db $c1
-	db $b1
-	db $df
-	db $c0
-	db $e7
-	db $58
+SharedPainText:
+	text "おたがいの　たいりょくを"
+	line "わかちあった！"
+	prompt
 
 asm_35cc5:
 	ld hl, wBattleMonStatus
@@ -4970,7 +4910,7 @@ asm_35cd0:
 	and 7
 	ret nz
 	inc a
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	ret
 
 asm_35cd9:
@@ -4981,10 +4921,10 @@ asm_35cd9:
 	ld hl, wBattleMonType
 
 asm_35ce4:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_35d2e
-	call sub_37f0f
+	call LoadMoveAnim
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -5009,76 +4949,51 @@ asm_35d09:
 	ld [hl], a
 	ld [wNumSetBits], a
 	predef GetTypeName
-	ld hl, text_35d19
+	ld hl, TransformedTypeText
 	jp PrintText
 
-text_35d19:
-	db $0
-	db $59
-	db $c9
-	db $7f
-	db $8f
-	db $81
-	db $42
-	db $dd
-	db $4f
-	db $50
-	db $1
-	dw wStringBuffer1
-	db $0
-	db $c6
-	db $7f
-	db $b6
-	db $b4
-	db $c0
-	db $e7
-	db $58
+TransformedTypeText:
+	text "<TARGET>の　タイプを"
+	line "@"
+	text_from_ram wStringBuffer1
+	text "に　かえた！"
+	prompt
 
 asm_35d2e:
 	jp asm_374b1
 
 asm_35d31:
-	ld hl, wca44
+	ld hl, wEnemySubStatus5
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35d3c
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 
 asm_35d3c:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_35d53
-	call sub_3750b
+	call CheckSubstituteOpp
 	jp nz, asm_35d53
 	set 5, [hl]
-	call sub_37f0f
-	ld hl, text_35d59
+	call LoadMoveAnim
+	ld hl, TookAimText
 	jp PrintText
 
 asm_35d53:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_374b1
 
-text_35d59:
-	db $0
-	db $59
-	db $dd
-	db $4f
-	db $a8
-	db $ac
-	db $87
-	db $84
-	db $ab
-	db $bc
-	db $c0
-	db $e7
-	db $58
+TookAimText:
+	text "<TARGET>を"
+	line "ロックオンした！"
+	prompt
 
 asm_35d66:
 	ld a, [wLinkMode]
 	cp 3
 	jr z, asm_35d95
-	call sub_3750b
+	call CheckSubstituteOpp
 	jp nz, asm_35d95
 	ld hl, wBattleMonMoves
 	ld a, [wcd40]
@@ -5092,36 +5007,23 @@ asm_35d66:
 	ld [hl], a
 	ld [wNumSetBits], a
 	call Unreferenced_GetMoveName
-	call sub_37f0f
-	ld hl, text_35d9b
+	call LoadMoveAnim
+	ld hl, SketchedText
 	jp PrintText
 
 asm_35d95:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_374b1
 
-text_35d9b:
-	db $0
-	db $5a
-	db $ca
-	db $4f
-	db $50
-	db $1
-	dw wStringBuffer1
-	db $0
-	db $dd
-	db $7f
-	db $f
-	db $1a
-	db $ab
-	db $7
-	db $bc
-	db $c0
-	db $e7
-	db $58
+SketchedText:
+	text "<USER>は"
+	line "@"
+	text_from_ram wStringBuffer1
+	text "を　ダビングした！"
+	prompt
 
 asm_35dae:
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, wPlayerMoveStructEffect
 	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
@@ -5161,7 +5063,7 @@ asm_35dd4:
 asm_35df1:
 	and 7
 	jr z, asm_35e2a
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_35e2a
 	ld a, [hl]
@@ -5190,60 +5092,39 @@ asm_35e00:
 	pop de
 	jr z, asm_35e00
 	ld [de], a
-	call sub_37f0f
+	call LoadMoveAnim
 	push bc
-	call Function360b1
+	call UpdateMoveData
 	pop bc
 	inc bc
 	ld a, [bc]
-	call Function34046
-	jp asm_357a9
+	call DoMove
+	jp EndMoveEffect
 
 asm_35e2a:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_374b1
 
 asm_35e30:
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35e3b
-	ld hl, wca44
+	ld hl, wEnemySubStatus5
 
 asm_35e3b:
 	set 6, [hl]
-	call sub_37f0f
-	ld hl, Data35e46
+	call LoadMoveAnim
+	ld hl, DestinyBondEffectText
 	jp PrintText
 
-Data35e46:
-	db $0
-	db $5a
-	db $ca
-	db $7f
-	db $b1
-	db $b2
-	db $c3
-	db $dd
-	db $4f
-	db $d0
-	db $c1
-	db $2d
-	db $da
-	db $c6
-	db $7f
-	db $bc
-	db $d6
-	db $b3
-	db $c4
-	db $bc
-	db $c3
-	db $b2
-	db $d9
-	db $58
+DestinyBondEffectText:
+	text "<USER>は　あいてを"
+	line "みちずれに　しようとしている"
+	prompt
 
 asm_35e5e:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_35ec4
 	ldh a, [hBattleTurn]
@@ -5305,66 +5186,54 @@ asm_35eaf:
 	pop bc
 	add hl, bc
 	ld [hl], a
-	call sub_37f0f
-	ld hl, text_35eca
+	call LoadMoveAnim
+	ld hl, SpiteEffectText
 	jp PrintText
 
 asm_35ec4:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_374b1
 
-text_35eca:
-	db $0
-	db $59
-	db $c9
-	db $4f
-	db $50
-	db $1
-	dw wStringBuffer1
-	db $0
-	db $dd
-	db $7f
-	db $50
-	db $9
-	dw wNumSetBits
-	db $11
-	db $0
-	db $b9
-	db $2d
-	db $df
-	db $c0
-	db $e7
-	db $58
+SpiteEffectText:
+	text "<TARGET>の"
+	line "@"
+	text_from_ram wStringBuffer1
+	text "を　@"
+	deciram wTempByteValue, 1, 1
+	text "けずった！"
+	prompt
 
-sub_35ee1:
+BattleCommand_FalseSwipe:
+; Makes sure wCurDamage < MonHP
 	ld de, wEnemyMonHP + 1
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_35eec
+	jr z, .got_hp
 	ld de, wBattleMonHP + 1
 
-asm_35eec:
-	ld hl, wce2a
+.got_hp:
+	ld hl, wCurDamage + 1
 	ld a, [de]
 	dec de
 	sub [hl]
 	dec hl
 	ld a, [de]
 	sbc [hl]
-	jr z, asm_35efb
-	jr c, asm_35f03
-	jr asm_35f11
+	jr z, .hp_under_256
+	jr c, .hp_underflow
+	jr .done
 
-asm_35efb:
+.hp_under_256:
+; If HP is a multiple of 256, continue
 	inc hl
 	inc de
 	ld a, [de]
 	cp [hl]
-	jr nz, asm_35f11
+	jr nz, .done
 	dec hl
 	dec de
 
-asm_35f03:
+.hp_underflow:
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -5373,26 +5242,26 @@ asm_35f03:
 	dec [hl]
 	ld a, [hl]
 	inc a
-	jr nz, asm_35f0f
+	jr nz, .set_carry_flag
 	dec hl
 	dec [hl]
 
-asm_35f0f:
+.set_carry_flag:
 	scf
 	ret
 
-asm_35f11:
+.done:
 	and a
 	ret
 
 asm_35f13:
 	ld hl, wBattleMonStatus
-	ld de, wca3b
+	ld de, wPlayerSubStatus1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_35f24
 	ld hl, wEnemyMonStatus
-	ld de, wca40
+	ld de, wEnemySubStatus1
 
 asm_35f24:
 	ld a, [hli]
@@ -5404,12 +5273,12 @@ asm_35f24:
 	ld a, [de]
 	res 0, a
 	ld [de], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_35f3e
 	jp PrintText
 
 asm_35f38:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_3746a
 
 text_35f3e:
@@ -5435,25 +5304,28 @@ text_35f3e:
 	db $e7
 	db $58
 
-sub_35f53:
+PlayFXAnimID:
 	ld a, e
 	ld [wFXAnimID], a
 	ld a, d
 	ld [wFXAnimID + 1], a
+
 	ld c, 3
 	call DelayFrames
 	jpfar PlayBattleAnim
 
-sub_35f68:
-	ld hl, wce29
+DoEnemyDamage:
+	ld hl, wCurDamage
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
 	or b
-	jr z, asm_35fc3
-	ld a, [wca43]
-	bit 4, a
-	jp nz, asm_3602a
+	jr z, .did_no_damage
+
+	ld a, [wEnemySubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a
+	jp nz, DoSubstituteDamage
+
 	ld a, [hld]
 	ld b, a
 	ld a, [wEnemyMonHP + 1]
@@ -5463,11 +5335,12 @@ sub_35f68:
 	ld a, [hl]
 	ld b, a
 	ld a, [wEnemyMonHP]
-	ld [wcdc6], a
+	ld [wHPBarOldHP + 1], a
 	sbc b
 	ld [wEnemyMonHP], a
-	jr nc, asm_35fa1
-	ld a, [wcdc6]
+	jr nc, .no_underflow
+	
+	ld a, [wHPBarOldHP + 1]
 	ld [hli], a
 	ld a, [wHPBarOldHP]
 	ld [hl], a
@@ -5476,36 +5349,38 @@ sub_35f68:
 	ld [hli], a
 	ld [hl], a
 
-asm_35fa1:
+.no_underflow:
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
-	ld [wPlayerEffectivenessVsEnemyMons], a
+	ld [wHPBarMaxHP + 1], a
 	ld a, [hl]
 	ld [wHPBarMaxHP], a
 	ld hl, wEnemyMonHP
 	ld a, [hli]
-	ld [wcdc8], a
+	ld [wHPBarNewHP + 1], a
 	ld a, [hl]
 	ld [wHPBarNewHP], a
-	ld hl, wTileMap + 42
+
+	hlcoord 2, 2
 	xor a
 	ld [wWhichHPBar], a
 	predef UpdateHPBar
-
-asm_35fc3:
+.did_no_damage:
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-sub_35fc9:
-	ld hl, wce29
+DoPlayerDamage:
+	ld hl, wCurDamage
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
 	or b
-	jr z, asm_36024
-	ld a, [wca3e]
-	bit 4, a
-	jp nz, asm_3602a
+	jr z, .did_no_damage
+
+	ld a, [wPlayerSubStatus4]
+	bit SUBSTATUS_SUBSTITUTE, a
+	jp nz, DoSubstituteDamage
+
 	ld a, [hld]
 	ld b, a
 	ld a, [wBattleMonHP + 1]
@@ -5515,12 +5390,13 @@ sub_35fc9:
 	ld [wHPBarNewHP], a
 	ld b, [hl]
 	ld a, [wBattleMonHP]
-	ld [wcdc6], a
+	ld [wHPBarOldHP + 1], a
 	sbc b
 	ld [wBattleMonHP], a
-	ld [wcdc8], a
-	jr nc, asm_3600c
-	ld a, [wcdc6]
+	ld [wHPBarNewHP + 1], a
+	jr nc, .no_underflow
+
+	ld a, [wHPBarOldHP + 1]
 	ld [hli], a
 	ld a, [wHPBarOldHP]
 	ld [hl], a
@@ -5532,136 +5408,103 @@ sub_35fc9:
 	ld [hli], a
 	ld [hl], a
 
-asm_3600c:
+.no_underflow:
 	ld hl, wBattleMonMaxHP
 	ld a, [hli]
-	ld [wPlayerEffectivenessVsEnemyMons], a
+	ld [wHPBarMaxHP + 1], a
 	ld a, [hl]
 	ld [wHPBarMaxHP], a
-	ld hl, wTileMap + 190
+
+	hlcoord 10, 9
 	ld a, 1
 	ld [wWhichHPBar], a
 	predef UpdateHPBar
 
-asm_36024:
+.did_no_damage:
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-asm_3602a:
-	ld hl, text_36084
+DoSubstituteDamage:
+	ld hl, SubTookDamageText
 	call PrintText
-	ld de, wcabd
-	ld bc, wca43
+	ld de, wEnemySubstituteHP
+	ld bc, wEnemySubStatus4
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_36041
-	ld de, wcabc
-	ld bc, wca3e
+	jr z, .got_hp
+	ld de, wPlayerSubstituteHP
+	ld bc, wPlayerSubStatus4
 
-asm_36041:
-	ld hl, wce29
+.got_hp:
+	ld hl, wCurDamage
 	ld a, [hli]
 	and a
-	jr nz, asm_3604c
+	jr nz, .broke
 	ld a, [de]
 	sub [hl]
 	ld [de], a
 	ret nc
 
-asm_3604c:
+.broke:
 	ld h, b
 	ld l, c
-	res 4, [hl]
-	ld hl, text_3609e
+	res SUBSTATUS_SUBSTITUTE, [hl]
+	ld hl, SubFadedText
 	call PrintText
+
 	ldh a, [hBattleTurn]
 	push af
 	xor 1
 	ldh [hBattleTurn], a
+
 	xor a
 	ld [wNumHits], a
 	ld [wFXAnimID + 1], a
+
 	ld a, 3
 	ld [wBattleAnimParam], a
-	ld a, $a4
-	call sub_37f23
+	ld a, MOVE_SUBSTITUTE
+	call LoadBattleAnim
 	pop af
 	ldh [hBattleTurn], a
 	ldh a, [hBattleTurn]
 	ld hl, wPlayerMoveStructEffect
 	and a
-	jr z, asm_3607c
+	jr z, .got_move_effect
 	ld hl, wEnemyMoveStructEffect
 
-asm_3607c:
+; Cancel move effect
+.got_move_effect:
 	xor a
 	ld [hl], a
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-text_36084:
-	db $0
-	db $59
-	db $c6
-	db $7f
-	db $b6
-	db $dc
-	db $df
-	db $c3
-	db $4f
-	db $3c
-	db $de
-	db $bc
-	db $de
-	db $26
-	db $7f
-	db $ba
-	db $b3
-	db $29
-	db $b7
-	db $dd
-	db $7f
-	db $b3
-	db $b9
-	db $c0
-	db $e7
-	db $58
+SubTookDamageText:
+	text "<TARGET>に　かわって"
+	line "ぶんしんが　こうげきを　うけた！"
+	prompt
 
-text_3609e:
-	db $0
-	db $59
-	db $c9
-	db $7f
-	db $3c
-	db $de
-	db $bc
-	db $de
-	db $ca
-	db $4f
-	db $b7
-	db $b4
-	db $c3
-	db $bc
-	db $cf
-	db $df
-	db $c0
-	db $56
-	db $58
+SubFadedText:
+	text "<TARGET>の　ぶんしんは"
+	line "きえてしまった<⋯⋯>"
+	prompt
 
-Function360b1:
+UpdateMoveData:
 	ldh a, [hBattleTurn]
 	and a
-	jp z, asm_360c7
-	ld hl, wca44
+	jp z, .player
+
+	ld hl, wEnemySubStatus5
 	ld de, wEnemyMoveStruct
 	ld bc, wCurEnemyMove
 	push bc
 	ld a, [wCurEnemySelectedMove]
 	ld b, a
-	jr asm_360dc
+	jr .get_move_data
 
-asm_360c7:
-	ld hl, wca3f
+.player:
+	ld hl, wPlayerSubStatus5
 	ld de, wPlayerMoveStruct
 	ld bc, wCurPlayerMove
 	push bc
@@ -5669,281 +5512,278 @@ asm_360c7:
 	ld b, a
 	ld a, [wcabe]
 	and a
-	jr z, asm_360dc
+	jr z, .get_move_data
 	ld b, a
 
-asm_360dc:
+.get_move_data:
 	ld a, b
 	pop bc
 	and a
-	bit 4, [hl]
-	jr nz, asm_360fa
+	bit SUBSTATUS_ENCORED, [hl]
+	jr nz, .encored
+
 	ld [wCurSpecies], a
-	ld [wNumSetBits], a
+	ld [wNamedObjectIndexBuffer], a
 	dec a
 	ld hl, Moves
-	ld bc, 7
+	ld bc, MOVE_LENGTH
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Moves)
 	call FarCopyBytes
-	jr asm_36101
+	jr .get_move_name
 
-asm_360fa:
+.encored:
 	ld a, [bc]
 	ld [wCurSpecies], a
-	ld [wNumSetBits], a
+	ld [wNamedObjectIndexBuffer], a
 
-asm_36101:
+.get_move_name:
 	call Unreferenced_GetMoveName
 	jp CopyStringToStringBuffer2
 
+; Unreferenced. Seems to be early sleep code leftover from Gen 1.
+; It was used at SOME point, seeing as compatibility with held items was added.
+Unreferenced_OldSleepTarget:
 	ld de, wEnemyMonStatus
-	ld bc, wca43
+	ld bc, wEnemySubStatus4
 	ldh a, [hBattleTurn]
 	and a
-	jp z, asm_36119
+	jp z, .player
 	ld de, wBattleMonStatus
-	ld bc, wca3e
+	ld bc, wPlayerSubStatus4
 
-asm_36119:
+.player:
 	ld a, [bc]
-	bit 5, a
-	res 5, a
+	bit SUBSTATUS_RECHARGE, a
+	res SUBSTATUS_RECHARGE, a
 	ld [bc], a
-	jr nz, asm_3613b
+	jr nz, .set_sleep_counter
+	; Return if it already has a status effect
 	ld a, [de]
 	and a
 	ret nz
-	ld a, [wca38]
+	; Return if the move would be not very effective
+	ld a, [wTypeModifier]
 	and $7f
-	cp $a
+	cp EFFECTIVE
 	ret c
-	call Function37e2d
+	; Check held item effect and return if it prevents sleep
+	call GetOpponentItem
 	ld a, b
-	cp $17
+	cp HELD_PREVENT_SLEEP
 	ret z
-	call Function3535c
+	; Return if effect chance isn't met
+	call BattleCommand_EffectChance
 	ret nc
-	call sub_37ae9
+	; Return if Safeguard is protecting the target
+	call SafeCheckSafeguard
 	ret nz
 
-asm_3613b:
+.set_sleep_counter:
+	; Set sleep counter to between 1 and 7
 	call BattleRandom
 	and 7
-	jr z, asm_3613b
+	jr z, .set_sleep_counter
+
 	ld [de], a
-	call sub_37eec
+	call PlayDamageAnim
 	push de
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, text_36176
+
+	ld hl, FellAsleepText
 	call PrintText
 	pop de
-	call Function37e2d
+
+	; Check for held items. If it has one of the below effects, the item is used.
+
+	call GetOpponentItem
 	ld a, b
-	cp $d
-	jr z, asm_36165
-	cp $f
-	jr z, asm_36165
-	cp 2
-	jr z, asm_36165
+	cp HELD_HEAL_SLEEP
+	jr z, .cure_sleep
+	cp HELD_HEAL_STATUS
+	jr z, .cure_sleep
+	cp HELD_2
+	jr z, .cure_sleep
 	ret
 
-asm_36165:
+.cure_sleep:
 	ld a, [de]
-	and $f8
+	and ~SLP
 	ld [de], a
 	ld a, [hl]
-	call sub_37ec2
-	call Function37e60
+	call PrintRecoveredUsingItem
+	call ConsumeHeldItem
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-text_36176:
-	db $0
-	db $59
-	db $ca
-	db $4f
-	db $c8
-	db $d1
-	db $df
-	db $c3
-	db $bc
-	db $cf
-	db $df
-	db $c0
-	db $e7
-	db $58
+FellAsleepText:
+	text "<TARGET>は"
+	line "ねむってしまった！"
+	prompt
 
-asm_36184:
+BattleCommand_SleepTarget:
 	ld de, wEnemyMonStatus
-	ld bc, wca43
+	ld bc, wEnemySubStatus4
 	ldh a, [hBattleTurn]
 	and a
-	jp z, asm_36196
+	jp z, .player
 	ld de, wBattleMonStatus
-	ld bc, wca3e
+	ld bc, wPlayerSubStatus4
 
-asm_36196:
-	ld a, [wca38]
-	and $7f
-	cp $a
-	ld hl, text_35649
-	jr c, asm_36215
+.player:
+	ld a, [wTypeModifier]
+	and EFFECTIVENESS_MASK
+	cp EFFECTIVE
+	ld hl, DoesntAffectText
+	jr c, .fail
+	
 	push bc
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	pop bc
-	cp $17
-	jr nz, asm_361b8
+	cp HELD_PREVENT_SLEEP
+	jr nz, .not_protected_by_item
+
 	ld a, [hl]
-	ld [wNumSetBits], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-	ld hl, text_374f7
-	jr asm_36215
+	ld hl, ProtectedByText
+	jr .fail
 
-asm_361b8:
+.not_protected_by_item:
 	ld a, [de]
-	and 7
-	ld hl, text_3621b
-	jr nz, asm_36215
-	ld hl, text_374b7
+	and SLP
+	ld hl, AlreadyAsleepText
+	jr nz, .fail
+
+	ld hl, DidntAffectText
 	ld a, [de]
 	and a
-	jr nz, asm_36215
-	call sub_3750b
-	jr nz, asm_36215
+	jr nz, .fail
+
+	call CheckSubstituteOpp
+	jr nz, .fail
+
 	ld a, [bc]
-	bit 5, a
-	res 5, a
+	bit SUBSTATUS_RECHARGE, a
+	res SUBSTATUS_RECHARGE, a
 	ld [bc], a
-	jr nz, asm_361da
-	ld a, [wca3a]
+	jr nz, .random_loop
+	
+	ld a, [wAttackMissed]
 	and a
-	jr nz, asm_36215
+	jr nz, .fail
 
-asm_361da:
+.random_loop:
 	call BattleRandom
 	and 7
-	jr z, asm_361da
+	jr z, .random_loop
+
 	ld [de], a
-	call sub_37eec
+	call PlayDamageAnim
 	push de
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, text_36176
+
+	ld hl, FellAsleepText
 	call PrintText
+
 	pop de
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
-	cp $d
-	jr z, asm_36204
-	cp $f
-	jr z, asm_36204
-	cp 2
-	jr z, asm_36204
+	cp HELD_HEAL_SLEEP
+	jr z, .use_item
+	cp HELD_HEAL_STATUS
+	jr z, .use_item
+	cp HELD_2
+	jr z, .use_item
 	ret
 
-asm_36204:
+.use_item:
 	ld a, [de]
-	and $f8
+	and ~SLP
 	ld [de], a
 	ld a, [hl]
-	call sub_37ec2
-	call Function37e60
+	call PrintRecoveredUsingItem
+	call ConsumeHeldItem
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-asm_36215:
-	call sub_37f5f
+.fail:
+	call BattleCommand_MoveDelay
 	jp PrintText
 
-text_3621b:
-	db $0
-	db $59
-	db $ca
-	db $7f
-	db $bd
-	db $33
-	db $c6
-	db $4f
-	db $c8
-	db $d1
-	db $df
-	db $c3
-	db $b2
-	db $d9
-	db $58
+AlreadyAsleepText:
+	text "<TARGET>は　すでに"
+	line "ねむっている"
+	prompt
 
-asm_3622a:
+BattleCommand_PoisonTarget:
 	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_36235
+	jr z, .got_status
 	ld de, wBattleMonStatus
 
-asm_36235:
-	call sub_3750b
+.got_status:
+	call CheckSubstituteOpp
 	ret nz
 	ld a, [de]
 	and a
 	ret nz
-	ld a, [wca38]
-	and $7f
-	cp $a
+
+	ld a, [wTypeModifier]
+	and EFFECTIVENESS_MASK
+	cp EFFECTIVE
 	ret c
-	call Function37e2d
+
+	call GetOpponentItem
 	ld a, b
-	cp $14
+	cp HELD_PREVENT_POISON
 	ret z
-	call Function3535c
+
+	call BattleCommand_EffectChance
 	ret nc
-	call sub_37ae9
+	call SafeCheckSafeguard
 	ret nz
+
 	ld a, [de]
-	set 3, a
+	set PSN, a
 	ld [de], a
+
 	push de
-	ld de, $0106
-	call sub_37f35
+	ld de, ANIM_PSN
+	call PlayOpponentBattleAnim
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
-	ld hl, text_3628d
+	ld hl, WasPoisonedText
 	call PrintText
+
 	pop de
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
-	cp $a
-	jr z, asm_3627c
-	cp $f
-	jr z, asm_3627c
-	cp 2
-	jr z, asm_3627c
+	cp HELD_HEAL_POISON
+	jr z, .use_item
+	cp $f	; unused held item effect? Possibly early HELD_HEAL_STATUS, given its placement
+	jr z, .use_item
+	cp HELD_2
+	jr z, .use_item
 	ret
 
-asm_3627c:
+.use_item:
 	ld a, [de]
-	res 3, a
+	res PSN, a
 	ld [de], a
 	ld a, [hl]
-	call sub_37ec2
-	call Function37e60
+	call PrintRecoveredUsingItem
+	call ConsumeHeldItem
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
-text_3628d:
-	db $0
-	db $59
-	db $ca
-	db $7f
-	db $34
-	db $b8
-	db $dd
-	db $b1
-	db $3b
-	db $c0
-	db $e7
-	db $58
+WasPoisonedText:
+	text "<TARGET>は　どくをあびた！"
+	prompt
 
 asm_36299:
 	ld de, wEnemyMonStatus
@@ -5953,8 +5793,8 @@ asm_36299:
 	ld de, wBattleMonStatus
 
 asm_362a4:
-	ld hl, text_35649
-	ld a, [wca38]
+	ld hl, DoesntAffectText
+	ld a, [wTypeModifier]
 	and $7f
 	cp $a
 	jp c, asm_3634b
@@ -5962,23 +5802,23 @@ asm_362a4:
 	ld a, [de]
 	bit 3, a
 	jp nz, asm_3634b
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	cp $14
 	jr nz, asm_362ce
 	ld a, [hl]
 	ld [wNumSetBits], a
 	call GetItemName
-	ld hl, text_374f7
+	ld hl, ProtectedByText
 	jr asm_3634b
 
 asm_362ce:
-	ld hl, text_374b7
+	ld hl, DidntAffectText
 	and a
 	jr nz, asm_3634b
-	call sub_3750b
+	call CheckSubstituteOpp
 	jr nz, asm_3634b
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_3634b
 	ld a, [de]
@@ -5987,8 +5827,8 @@ asm_362ce:
 	push de
 	call sub_36331
 	jr z, asm_362f4
-	call sub_37eec
-	ld hl, text_3628d
+	call PlayDamageAnim
+	ld hl, WasPoisonedText
 	call PrintText
 	jr asm_36307
 
@@ -5996,7 +5836,7 @@ asm_362f4:
 	set 0, [hl]
 	xor a
 	ld [de], a
-	call sub_37eec
+	call PlayDamageAnim
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
 	ld hl, text_36363
@@ -6004,7 +5844,7 @@ asm_362f4:
 
 asm_36307:
 	pop de
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	cp $a
 	jr z, asm_36319
@@ -6019,8 +5859,8 @@ asm_36319:
 	res 3, a
 	ld [de], a
 	ld a, [hl]
-	call sub_37ec2
-	call Function37e60
+	call PrintRecoveredUsingItem
+	call ConsumeHeldItem
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
 	call sub_36331
@@ -6032,11 +5872,11 @@ sub_36331:
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStructEffect]
-	ld hl, wca44
+	ld hl, wEnemySubStatus5
 	ld de, wca4f
 	jr z, asm_36348
 	ld a, [wEnemyMoveStructEffect]
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 	ld de, wca47
 
 asm_36348:
@@ -6044,7 +5884,7 @@ asm_36348:
 	ret
 
 asm_3634b:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp PrintText
 
 text_36351:
@@ -6083,54 +5923,29 @@ text_36363:
 	db $e7
 	db $58
 
-asm_36371:
-	call sub_363a3
-	ld hl, text_3637a
+BattleCommand_DrainTarget:
+	call SapHealth
+	ld hl, SuckedHealthText
 	jp PrintText
 
-text_3637a:
-	db $0
-	db $59
-	db $b6
-	db $d7
-	db $4f
-	db $c0
-	db $b2
-	db $d8
-	db $e2
-	db $b8
-	db $dd
-	db $7f
-	db $bd
-	db $b2
-	db $c4
-	db $df
-	db $c0
-	db $e7
-	db $58
+SuckedHealthText:
+	text "<TARGET>から"
+	line "たいりょくを　すいとった！"
+	prompt
 
-asm_3638d:
-	call sub_363a3
-	ld hl, text_36396
+BattleCommand_EatDream:
+	call SapHealth
+	ld hl, DreamEatenText
 	jp PrintText
 
-text_36396:
-	db $0
-	db $59
-	db $c9
-	db $4f
-	db $d5
-	db $d2
-	db $dd
-	db $7f
-	db $b8
-	db $df
-	db $c0
-	db $e7
-	db $58
+DreamEatenText:
+	text "<TARGET>の"
+	line "ゆめを　くった！"
+	prompt
 
-sub_363a3:
-	ld hl, wce29
+SapHealth:
+	; Divide damage by two
+	ld hl, wCurDamage
 	ld a, [hl]
 	srl a
 	ld [hli], a
@@ -6138,26 +5953,29 @@ sub_363a3:
 	rr a
 	ld [hld], a
 	or [hl]
-	jr nz, asm_363b3
+	jr nz, .at_least_one
 	inc hl
 	inc [hl]
 
-asm_363b3:
+.at_least_one:
 	ld hl, wBattleMonHP
 	ld de, wBattleMonMaxHP
 	ldh a, [hBattleTurn]
 	and a
-	jp z, asm_363c5
+	jp z, .battlemonhp
 	ld hl, wEnemyMonHP
 	ld de, wEnemyMonMaxHP
 
-asm_363c5:
-	ld bc, wcdc6
+.battlemonhp:
+	; Store current HP in little endian wHPBarOldHP
+	ld bc, wHPBarOldHP + 1
 	ld a, [hli]
 	ld [bc], a
 	ld a, [hl]
 	dec bc
 	ld [bc], a
+
+	; Store max HP in little endian wHPBarMaxHP
 	ld a, [de]
 	dec bc
 	ld [bc], a
@@ -6165,17 +5983,21 @@ asm_363c5:
 	ld a, [de]
 	dec bc
 	ld [bc], a
-	ld a, [wce2a]
+
+	; Add wCurDamage to current HP and copy it to little endian wHPBarNewHP
+	ld a, [wCurDamage + 1]
 	ld b, [hl]
 	add b
 	ld [hld], a
 	ld [wHPBarNewHP], a
-	ld a, [wce29]
+	ld a, [wCurDamage]
 	ld b, [hl]
 	adc b
 	ld [hli], a
-	ld [wcdc8], a
-	jr c, asm_363f4
+	ld [wHPBarNewHP + 1], a
+	jr c, .max_hp
+
+	; Subtract current HP from max HP (to see if we have more than max HP)
 	ld a, [hld]
 	ld b, a
 	ld a, [de]
@@ -6186,39 +6008,39 @@ asm_363c5:
 	ld a, [de]
 	inc de
 	sbc b
-	jr nc, asm_36400
+	jr nc, .finish
 
-asm_363f4:
+.max_hp:
 	ld a, [de]
 	ld [hld], a
 	ld [wHPBarNewHP], a
 	dec de
 	ld a, [de]
 	ld [hli], a
-	ld [wcdc8], a
+	ld [wHPBarNewHP + 1], a
 	inc de
 
-asm_36400:
+.finish:
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wTileMap + 190
+	hlcoord 10, 9
 	ld a, 1
-	jr z, asm_3640e
-	ld hl, wTileMap + 42
+	jr z, .hp_bar
+	hlcoord 2, 2
 	xor a
 
-asm_3640e:
+.hp_bar:
 	ld [wWhichHPBar], a
 	predef UpdateHPBar
-	predef Function3d5ce
-	predef Function3d67c
+	predef UpdatePlayerHUD
+	predef UpdateEnemyHUD
 	ld hl, sub_3d3f4
 	jp CallFromBank0F
 
 asm_36426:
 	xor a
 	ld [wNumHits], a
-	call sub_3750b
+	call CheckSubstituteOpp
 	ret nz
 	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
@@ -6230,17 +6052,17 @@ asm_36439:
 	ld a, [de]
 	and a
 	jp nz, sub_364a2
-	ld a, [wca38]
-	and $7f
+	ld a, [wTypeModifier]
+	and EFFECTIVENESS_MASK
 	cp $a
 	ret c
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	cp $15
 	ret z
-	call Function3535c
+	call BattleCommand_EffectChance
 	ret nc
-	call sub_37ae9
+	call SafeCheckSafeguard
 	ret nz
 	ld a, [de]
 	set 4, a
@@ -6249,12 +6071,12 @@ asm_36439:
 	ld hl, asm_3e291
 	call CallFromBank0F
 	ld de, $0105
-	call sub_37f35
+	call PlayOpponentBattleAnim
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
 	ld hl, text_36495
 	call PrintText
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	pop de
 	cp $b
@@ -6270,8 +6092,8 @@ asm_36484:
 	res 4, a
 	ld [de], a
 	ld a, [hl]
-	call sub_37ec2
-	call Function37e60
+	call PrintRecoveredUsingItem
+	call ConsumeHeldItem
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
@@ -6298,7 +6120,7 @@ sub_364a2:
 	ld [de], a
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
 	jr z, asm_364b9
 	ld hl, wPartyMon1Status
@@ -6338,7 +6160,7 @@ text_364c7:
 asm_364dc:
 	xor a
 	ld [wNumHits], a
-	call sub_3750b
+	call CheckSubstituteOpp
 	ret nz
 	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
@@ -6350,17 +6172,17 @@ asm_364ef:
 	ld a, [de]
 	and a
 	ret nz
-	ld a, [wca38]
+	ld a, [wTypeModifier]
 	and $7f
 	cp $a
 	ret c
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	cp $16
 	ret z
-	call Function3535c
+	call BattleCommand_EffectChance
 	ret nc
-	call sub_37ae9
+	call SafeCheckSafeguard
 	ret nz
 	ld a, [de]
 	set 5, a
@@ -6368,12 +6190,12 @@ asm_364ef:
 	push de
 	call sub_36ffd
 	ld de, $0108
-	call sub_37f35
+	call PlayOpponentBattleAnim
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
 	ld hl, text_36546
 	call PrintText
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	pop de
 	cp $c
@@ -6389,8 +6211,8 @@ asm_36535:
 	res 5, a
 	ld [de], a
 	ld a, [hl]
-	call sub_37ec2
-	call Function37e60
+	call PrintRecoveredUsingItem
+	call ConsumeHeldItem
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
@@ -6414,7 +6236,7 @@ text_36546:
 asm_36555:
 	xor a
 	ld [wNumHits], a
-	call sub_3750b
+	call CheckSubstituteOpp
 	ret nz
 	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
@@ -6426,17 +6248,17 @@ asm_36568:
 	ld a, [de]
 	and a
 	ret nz
-	ld a, [wca38]
+	ld a, [wTypeModifier]
 	and $7f
 	cp $a
 	ret c
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	cp $18
 	ret z
-	call Function3535c
+	call BattleCommand_EffectChance
 	ret nc
-	call sub_37ae9
+	call SafeCheckSafeguard
 	ret nz
 	ld a, [de]
 	set 6, a
@@ -6445,11 +6267,11 @@ asm_36568:
 	ld hl, sub_3e254
 	call CallFromBank0F
 	ld de, $0109
-	call sub_37f35
+	call PlayOpponentBattleAnim
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
 	call sub_374db
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	pop de
 	cp $e
@@ -6465,8 +6287,8 @@ asm_365ae:
 	res 6, a
 	ld [de], a
 	ld a, [hl]
-	call sub_37ec2
-	call Function37e60
+	call PrintRecoveredUsingItem
+	call ConsumeHeldItem
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
@@ -6549,34 +6371,34 @@ asm_36621:
 	add hl, bc
 	pop bc
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, [de]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	inc de
 	ld a, [de]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, [hli]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
 	pop hl
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	sub $e7
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	sbc 3
 	jp c, asm_3665a
 	ld a, 3
-	ldh [hQuotient + 1], a
-	ld a, $e7
 	ldh [hQuotient + 2], a
+	ld a, $e7
+	ldh [hQuotient + 3], a
 
 asm_3665a:
-	ldh a, [hQuotient + 1]
-	ld [hli], a
 	ldh a, [hQuotient + 2]
+	ld [hli], a
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	pop hl
 
@@ -6586,20 +6408,20 @@ asm_36661:
 	call sub_3682e
 
 asm_36666:
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	ld de, wPlayerMoveStruct
 	ld bc, wcadc
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3667d
-	ld hl, wca43
+	ld hl, wEnemySubStatus4
 	ld de, wEnemyMoveStruct
 	ld bc, wcad8
 
 asm_3667d:
-	call sub_35375
-	call sub_37f0f
-	call sub_353ef
+	call BattleCommand_LowerSub
+	call LoadMoveAnim
+	call BattleCommand_RaiseSub
 	ld a, [de]
 	cp $6b
 	jr nz, asm_3668f
@@ -6624,7 +6446,7 @@ asm_366aa:
 	dec [hl]
 
 asm_366ac:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_3746a
 
 text_366b2:
@@ -6688,12 +6510,12 @@ asm_366e3:
 	jp c, asm_367f0
 
 asm_36703:
-	call sub_3750b
+	call CheckSubstituteOpp
 	jp nz, asm_367f0
 	ld a, [de]
 	cp $44
 	jr c, asm_36719
-	call Function3535c
+	call BattleCommand_EffectChance
 	jp nc, asm_367e6
 	ld a, [de]
 	sub $44
@@ -6702,10 +6524,10 @@ asm_36703:
 asm_36719:
 	push hl
 	push de
-	call Function351d0
+	call BattleCommand_CheckHit
 	pop de
 	pop hl
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, asm_367f0
 	call sub_37e0d
@@ -6778,33 +6600,33 @@ asm_3677c:
 	add hl, bc
 	pop bc
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, [de]
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	inc de
 	ld a, [de]
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, [hli]
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hl]
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
 	pop hl
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld b, a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	or b
 	jp nz, asm_367b1
-	ldh [hQuotient + 1], a
-	ld a, 1
 	ldh [hQuotient + 2], a
+	ld a, 1
+	ldh [hQuotient + 3], a
 
 asm_367b1:
-	ldh a, [hQuotient + 1]
-	ld [hli], a
 	ldh a, [hQuotient + 2]
+	ld [hli], a
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	pop de
 	pop hl
@@ -6820,7 +6642,7 @@ asm_367bf:
 	ld a, [de]
 	cp $44
 	jr nc, asm_367c8
-	call sub_37eec
+	call PlayDamageAnim
 
 asm_367c8:
 	ldh a, [hBattleTurn]
@@ -6843,14 +6665,14 @@ asm_367e6:
 	ld a, [de]
 	cp $44
 	ret nc
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_3746a
 
 asm_367f0:
 	ld a, [de]
 	cp $44
 	ret nc
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_37494
 
 text_367fa:
@@ -6992,20 +6814,20 @@ Data3687a:
 asm_36894:
 	ld bc, wPlayerSubStatus3
 	ld de, wPlayerMoveStruct
-	ld hl, wca56
+	ld hl, wPlayerDamageTaken
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_368ab
 	ld bc, wEnemySubStatus3
 	ld de, wEnemyMoveStruct
-	ld hl, wca58
+	ld hl, wEnemyDamageTaken
 
 asm_368ab:
 	ld a, [bc]
 	bit 0, a
 	ret z
 	push hl
-	ld hl, wce29
+	ld hl, wCurDamage
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -7016,11 +6838,11 @@ asm_368ab:
 	ld a, [hl]
 	adc b
 	ld [hl], a
-	ld hl, wca45
+	ld hl, wPlayerRolloutCount
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_368c8
-	ld hl, wca4d
+	ld hl, wEnemyRolloutCount
 
 asm_368c8:
 	dec [hl]
@@ -7031,18 +6853,18 @@ asm_368c8:
 	call PrintText
 	ld a, 1
 	ld [wPlayerMoveStructPower], a
-	ld hl, wca56
+	ld hl, wPlayerDamageTaken
 	ld a, [hld]
 	add a
 	ld b, a
-	ld [wce2a], a
+	ld [wCurDamage + 1], a
 	ld a, [hl]
 	rl a
-	ld [wce29], a
+	ld [wCurDamage], a
 	or b
 	jr nz, asm_368f2
 	ld a, 1
-	ld [wca3a], a
+	ld [wAttackMissed], a
 
 asm_368f2:
 	xor a
@@ -7051,23 +6873,23 @@ asm_368f2:
 	ld a, MOVE_BIDE
 	ld [wPlayerMoveStruct], a
 	ld b, $22
-	jp asm_37f6b
+	jp SkipToBattleCommand
 
 asm_368ff:
 	ld hl, StoringEnergyText
 	call PrintText
-	jp asm_357a9
+	jp EndMoveEffect
 
 asm_36908:
 	ld hl, wPlayerSubStatus3
 	ld de, wca55
-	ld bc, wca45
+	ld bc, wPlayerRolloutCount
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3691f
 	ld hl, wEnemySubStatus3
-	ld de, wTrainerClass
-	ld bc, wca4d
+	ld de, wPlayerDamageTaken + 1
+	ld bc, wEnemyRolloutCount
 
 asm_3691f:
 	set 0, [hl]
@@ -7084,17 +6906,17 @@ asm_3691f:
 	ld [bc], a
 	ld a, 1
 	ld [wBattleAnimParam], a
-	call sub_37eec
-	jp asm_357a9
+	call PlayDamageAnim
+	jp EndMoveEffect
 
 asm_3693e:
 	ld hl, wPlayerSubStatus3
-	ld de, wca45
+	ld de, wPlayerRolloutCount
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3694f
 	ld hl, wEnemySubStatus3
-	ld de, wca4d
+	ld de, wEnemyRolloutCount
 
 asm_3694f:
 	bit 1, [hl]
@@ -7114,16 +6936,16 @@ asm_3694f:
 
 asm_36964:
 	ld b, $3d
-	jp asm_37f6b
+	jp SkipToBattleCommand
 
 asm_36969:
 	ld hl, wPlayerSubStatus3
-	ld de, wca45
+	ld de, wPlayerRolloutCount
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3697a
 	ld hl, wEnemySubStatus3
-	ld de, wca4d
+	ld de, wEnemyRolloutCount
 
 asm_3697a:
 	set 1, [hl]
@@ -7160,11 +6982,11 @@ asm_3699d:
 	jr nc, asm_369bc
 	xor a
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld a, [wPlayerMoveStruct]
 	cp $64
 	jp nz, asm_374b1
-	jp Function37499
+	jp PrintButItFailed
 
 asm_369bc:
 	ld hl, sub_3d3f4
@@ -7179,12 +7001,12 @@ asm_369bc:
 asm_369cf:
 	xor a
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_374c8
 	ld a, [wPlayerMoveStruct]
 	cp $64
 	jp nz, PrintText
-	jp Function37499
+	jp PrintButItFailed
 
 asm_369e4:
 	ld a, [wBattleMode]
@@ -7209,11 +7031,11 @@ asm_369f7:
 	jr nc, asm_36a16
 	xor a
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld a, [wEnemyMoveStruct]
 	cp $64
 	jp nz, asm_374b1
-	jp Function37499
+	jp PrintButItFailed
 
 asm_36a16:
 	ld hl, sub_3d3f4
@@ -7228,7 +7050,7 @@ asm_36a16:
 asm_36a29:
 	xor a
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_374c8
 	ld a, [wEnemyMoveStruct]
 	cp $64
@@ -7239,7 +7061,7 @@ asm_36a3e:
 	push af
 	ld a, 1
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld c, 20
 	call DelayFrames
 	pop af
@@ -7311,14 +7133,14 @@ text_36a85:
 
 asm_36a92:
 	ld hl, wPlayerSubStatus3
-	ld de, wca45
+	ld de, wPlayerRolloutCount
 	ld bc, wca55
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36aa9
 	ld hl, wEnemySubStatus3
-	ld de, wca4d
-	ld bc, wTrainerClass
+	ld de, wEnemyRolloutCount
+	ld bc, wPlayerDamageTaken + 1
 
 asm_36aa9:
 	bit 2, [hl]
@@ -7400,9 +7222,9 @@ asm_36b08:
 	ret
 
 asm_36b14:
-	ld a, [wca7c]
+	ld a, [wBattleScriptBufferAddress + 1]
 	ld h, a
-	ld a, [wca7b]
+	ld a, [wBattleScriptBufferAddress]
 	ld l, a
 
 asm_36b1c:
@@ -7411,9 +7233,9 @@ asm_36b1c:
 	jr nz, asm_36b1c
 	inc hl
 	ld a, h
-	ld [wca7c], a
+	ld [wBattleScriptBufferAddress + 1], a
 	ld a, l
-	ld [wca7b], a
+	ld [wBattleScriptBufferAddress], a
 	ret
 
 text_36b2b:
@@ -7447,7 +7269,7 @@ text_36b40:
 	db $7f
 	db $50
 	db $9
-	dw wTrainerClass
+	dw wPlayerDamageTaken + 1
 	db $11
 	db $0
 	db $b6
@@ -7461,7 +7283,7 @@ text_36b40:
 	db $58
 
 asm_36b55:
-	call sub_3750b
+	call CheckSubstituteOpp
 	ret nz
 	ld hl, wEnemySubStatus3
 	ld de, wPlayerMoveStructEffect
@@ -7473,17 +7295,17 @@ asm_36b55:
 
 asm_36b6a:
 	call sub_36ffd
-	call Function3535c
+	call BattleCommand_EffectChance
 	ret nc
 	set 3, [hl]
 	ret
 
 asm_36b74:
-	call Function37e1d
+	call GetUserItem
 	ld a, b
 	cp $4b
 	ret nz
-	call sub_3750b
+	call CheckSubstituteOpp
 	ret nz
 	ld hl, wEnemySubStatus3
 	ld de, wPlayerMoveStructEffect
@@ -7496,7 +7318,7 @@ asm_36b74:
 asm_36b90:
 	push hl
 	call sub_36ffd
-	call Function37e1d
+	call GetUserItem
 	pop hl
 	call BattleRandom
 	cp c
@@ -7505,11 +7327,11 @@ asm_36b90:
 	ret
 
 asm_36ba0:
-	ld hl, wce29
+	ld hl, wCurDamage
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld a, [wca38]
+	ld a, [wTypeModifier]
 	and $7f
 	cp $a
 	jr c, asm_36be0
@@ -7532,23 +7354,23 @@ asm_36bc0:
 	ld a, [hl]
 	sbc b
 	jr c, asm_36be0
-	call Function351d0
-	ld a, [wca3a]
+	call BattleCommand_CheckHit
+	ld a, [wAttackMissed]
 	and a
 	ret nz
-	ld hl, wce29
+	ld hl, wCurDamage
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a
 	ld a, 2
-	ld [wca39], a
+	ld [wCriticalHit], a
 	ret
 
 asm_36be0:
 	ld a, $ff
-	ld [wca39], a
+	ld [wCriticalHit], a
 	ld a, 1
-	ld [wca3a], a
+	ld [wAttackMissed], a
 	ret
 
 asm_36beb:
@@ -7564,14 +7386,14 @@ asm_36bf6:
 	res 4, [hl]
 	res 6, [hl]
 	ld b, $39
-	jp asm_37f6b
+	jp SkipToBattleCommand
 
 asm_36c02:
 	xor a
 	ld [wNumHits], a
 	inc a
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, wPlayerSubStatus3
 	ld de, wPlayerMoveStruct
 	ldh a, [hBattleTurn]
@@ -7598,7 +7420,7 @@ asm_36c2e:
 	ld [wMovementBufferCount], a
 	ld hl, text_36c3b
 	call PrintText
-	jp asm_357a9
+	jp EndMoveEffect
 
 text_36c3b:
 	db $0
@@ -7759,9 +7581,9 @@ asm_36cd9:
 asm_36ce4:
 	bit 5, [hl]
 	ret z
-	ld a, [wca7c]
+	ld a, [wBattleScriptBufferAddress + 1]
 	ld h, a
-	ld a, [wca7b]
+	ld a, [wBattleScriptBufferAddress]
 	ld l, a
 
 asm_36cef:
@@ -7770,22 +7592,22 @@ asm_36cef:
 	jr nz, asm_36cef
 	dec hl
 	ld a, h
-	ld [wca7c], a
+	ld [wBattleScriptBufferAddress + 1], a
 	ld a, l
-	ld [wca7b], a
+	ld [wBattleScriptBufferAddress], a
 	ret
 
 asm_36cfe:
 	ld hl, wPlayerSubStatus3
-	ld de, wca45
+	ld de, wPlayerRolloutCount
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36d0f
 	ld hl, wEnemySubStatus3
-	ld de, wca4d
+	ld de, wEnemyRolloutCount
 
 asm_36d0f:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	ret nz
 	bit 5, [hl]
@@ -7817,22 +7639,22 @@ asm_36d2e:
 	ret
 
 asm_36d3d:
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36d48
-	ld hl, wca43
+	ld hl, wEnemySubStatus4
 
 asm_36d48:
 	bit 1, [hl]
 	jr nz, asm_36d57
 	set 1, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_36d5a
 	jp PrintText
 
 asm_36d57:
-	jp Function37499
+	jp PrintButItFailed
 
 text_36d5a:
 	db $0
@@ -7856,23 +7678,23 @@ text_36d5a:
 	db $58
 
 asm_36d6d:
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36d78
-	ld hl, wca43
+	ld hl, wEnemySubStatus4
 
 asm_36d78:
 	bit 2, [hl]
 	jr nz, asm_36d87
 	set 2, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_36d8d
 	jp PrintText
 
 asm_36d87:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 text_36d8d:
 	db $a
@@ -7901,9 +7723,9 @@ asm_36d9b:
 
 asm_36dac:
 	ld d, a
-	ld a, [wce29]
+	ld a, [wCurDamage]
 	ld b, a
-	ld a, [wce2a]
+	ld a, [wCurDamage + 1]
 	ld c, a
 	srl b
 	rr c
@@ -7983,30 +7805,30 @@ text_36e09:
 	db $58
 
 asm_36e1e:
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	cp $19
 	ret z
-	call Function3535c
+	call BattleCommand_EffectChance
 	ret nc
 	jr asm_36e4e
 
 asm_36e2b:
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	cp $19
 	jr nz, asm_36e43
 	ld a, [hl]
 	ld [wNumSetBits], a
 	call GetItemName
-	call sub_37f5f
-	ld hl, text_374f7
+	call BattleCommand_MoveDelay
+	ld hl, ProtectedByText
 	jp PrintText
 
 asm_36e43:
-	call sub_3750b
+	call CheckSubstituteOpp
 	jr nz, asm_36e9e
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_36e9e
 
@@ -8038,12 +7860,12 @@ asm_36e65:
 	jr z, asm_36e86
 	cp $76
 	jr z, asm_36e86
-	call sub_37f0f
+	call LoadMoveAnim
 	jr asm_36e8c
 
 asm_36e86:
 	ld de, $0103
-	call sub_37f35
+	call PlayOpponentBattleAnim
 
 asm_36e8c:
 	ld hl, Data36e92
@@ -8070,7 +7892,7 @@ asm_36e9e:
 	ret z
 	cp $76
 	ret z
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_37494
 
 asm_36ead:
@@ -8083,7 +7905,7 @@ asm_36ead:
 	ld de, wEnemyMoveStructType
 
 asm_36ebf:
-	ld a, [wca38]
+	ld a, [wTypeModifier]
 	and $7f
 	cp $a
 	jr c, asm_36f2f
@@ -8091,7 +7913,7 @@ asm_36ebf:
 	and a
 	jr nz, asm_36f29
 	push hl
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	cp $18
 	ld a, [hl]
@@ -8099,12 +7921,12 @@ asm_36ebf:
 	jr nz, asm_36ee6
 	ld [wNumSetBits], a
 	call GetItemName
-	call sub_37f5f
-	ld hl, text_374f7
+	call BattleCommand_MoveDelay
+	ld hl, ProtectedByText
 	jp PrintText
 
 asm_36ee6:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_36f29
 	set 6, [hl]
@@ -8113,11 +7935,11 @@ asm_36ee6:
 	call CallFromBank0F
 	ld c, 30
 	call DelayFrames
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, DrawHUDsAndHPBars
 	call CallFromBank0F
 	call sub_374db
-	call Function37e2d
+	call GetOpponentItem
 	ld a, b
 	pop de
 	cp $e
@@ -8133,34 +7955,34 @@ asm_36f18:
 	res 6, a
 	ld [de], a
 	ld a, [hl]
-	call sub_37ec2
-	call Function37e60
+	call PrintRecoveredUsingItem
+	call ConsumeHeldItem
 	ld hl, DrawHUDsAndHPBars
 	jp CallFromBank0F
 
 asm_36f29:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	jp asm_374b1
 
 asm_36f2f:
-	call sub_37f5f
-	jp asm_35643
+	call BattleCommand_MoveDelay
+	jp PrintDoesntAffect
 
 asm_36f35:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	ld hl, wBattleMonMaxHP
-	ld de, wcabc
-	ld bc, wca3e
+	ld de, wPlayerSubstituteHP
+	ld bc, wPlayerSubStatus4
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36f4f
 	ld hl, wEnemyMonMaxHP
-	ld de, wcabd
-	ld bc, wca43
+	ld de, wEnemySubstituteHP
+	ld bc, wEnemySubStatus4
 
 asm_36f4f:
 	ld a, [bc]
-	bit 4, a
+	bit SUBSTATUS_SUBSTITUTE, a
 	jr nz, asm_36f9d
 	push bc
 	ld a, [hli]
@@ -8193,7 +8015,7 @@ asm_36f4f:
 	ld [wFXAnimID + 1], a
 	ld [wBattleAnimParam], a
 	ld a, $a4
-	call sub_37f23
+	call LoadBattleAnim
 	jr asm_36f91
 
 asm_36f89:
@@ -8293,11 +8115,11 @@ text_36fd0:
 	db $58
 
 asm_36fef:
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_36ffa
-	ld hl, wca43
+	ld hl, wEnemySubStatus4
 
 asm_36ffa:
 	set 5, [hl]
@@ -8305,29 +8127,29 @@ asm_36ffa:
 
 sub_36ffd:
 	push hl
-	ld hl, wca43
+	ld hl, wEnemySubStatus4
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_37009
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 
 asm_37009:
 	res 5, [hl]
 	pop hl
 	ret
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_37018
-	ld hl, wca43
+	ld hl, wEnemySubStatus4
 
 asm_37018:
 	set 6, [hl]
 	ret
 
 asm_3701b:
-	call sub_37f5f
-	ld a, [wca3a]
+	call BattleCommand_MoveDelay
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_37055
 	ld hl, wBattleMonMoves
@@ -8354,12 +8176,12 @@ asm_3703e:
 	ld [hl], a
 	ld [wNumSetBits], a
 	call Unreferenced_GetMoveName
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_37058
 	jp PrintText
 
 asm_37055:
-	jp Function37499
+	jp PrintButItFailed
 
 text_37058:
 	db $0
@@ -8380,15 +8202,15 @@ text_37058:
 	db $58
 
 asm_37069:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_3709a
-	ld hl, wca43
+	ld hl, wEnemySubStatus4
 	ld de, wEnemyMonHP
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_37080
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	ld de, wBattleMonHP
 
 asm_37080:
@@ -8402,12 +8224,12 @@ asm_37080:
 	bit 7, [hl]
 	jr nz, asm_3709a
 	set 7, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_370a3
 	jp PrintText
 
 asm_3709a:
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	ld hl, text_370b2
 	jp PrintText
 
@@ -8447,11 +8269,11 @@ text_370b2:
 	db $58
 
 asm_370c2:
-	call sub_37f0f
+	call LoadMoveAnim
 	jp asm_37480
 
 asm_370c8:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_37132
 	ld de, wca50
@@ -8501,7 +8323,7 @@ asm_37107:
 	swap c
 	add c
 	ld [de], a
-	call sub_37eec
+	call PlayDamageAnim
 	ld hl, wcad3
 	ldh a, [hBattleTurn]
 	and a
@@ -8516,8 +8338,8 @@ asm_37125:
 	jp PrintText
 
 asm_37132:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 MoveDisabledText:
 	text "<TARGET>の"
@@ -8575,7 +8397,7 @@ asm_3718f:
 	inc de
 	ld a, [hl]
 	ld [de], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_371a2
 	jp PrintText
 
@@ -8603,7 +8425,7 @@ text_371a2:
 	db $58
 
 asm_371b7:
-	jp Function37499
+	jp PrintButItFailed
 
 asm_371ba:
 	ld a, 7
@@ -8658,7 +8480,7 @@ asm_371f3:
 	ld a, [hl]
 	and $f8
 	ld [hl], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_37234
 	jp PrintText
 
@@ -8733,7 +8555,7 @@ asm_37262:
 	push hl
 	push de
 	push af
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	ld hl, wBattleMonStatus
 	ldh a, [hBattleTurn]
 	and a
@@ -8763,7 +8585,7 @@ asm_372a0:
 	callfar Function3c7f2
 
 asm_372a8:
-	call sub_37f0f
+	call LoadMoveAnim
 	ldh a, [hBattleTurn]
 	push af
 	xor 1
@@ -8777,8 +8599,8 @@ asm_372a8:
 	jp PrintText
 
 asm_372c9:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 text_372cf:
 	db $0
@@ -8843,13 +8665,13 @@ text_372f2:
 asm_37305:
 	ld hl, wBattleMon
 	ld de, wEnemyMon
-	ld bc, wca44
+	ld bc, wEnemySubStatus5
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, asm_37320
 	ld hl, wEnemyMon
 	ld de, wBattleMon
-	ld bc, wca3f
+	ld bc, wPlayerSubStatus5
 	xor a
 	ld [wcd40], a
 
@@ -8874,11 +8696,11 @@ asm_37334:
 	bit 4, [hl]
 	push af
 	ld a, $a4
-	call nz, sub_37f23
+	call nz, LoadBattleAnim
 	ld a, [wce5f]
 	add a
 	jr c, asm_37353
-	call sub_37f0f
+	call LoadMoveAnim
 	jr asm_3735b
 
 asm_37353:
@@ -8892,7 +8714,7 @@ asm_3735b:
 	ld [wBattleAnimParam], a
 	pop af
 	ld a, $a4
-	call nz, sub_37f23
+	call nz, LoadBattleAnim
 	pop bc
 	ld a, [bc]
 	set 3, a
@@ -8984,7 +8806,7 @@ asm_373ee:
 	jp CopyBytes
 
 asm_373f1:
-	jp Function37499
+	jp PrintButItFailed
 
 text_373f4:
 	db $0
@@ -9007,12 +8829,12 @@ text_373f4:
 	db $58
 
 asm_37407:
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 	ld de, wPlayerMoveStructEffect
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_37418
-	ld hl, wca44
+	ld hl, wEnemySubStatus5
 	ld de, wEnemyMoveStructEffect
 
 asm_37418:
@@ -9033,13 +8855,13 @@ asm_37428:
 
 asm_37431:
 	push hl
-	call sub_37f0f
+	call LoadMoveAnim
 	pop hl
 	jp PrintText
 
 asm_37439:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 text_3743f:
 	db $0
@@ -9135,52 +8957,22 @@ asm_37494:
 	and a
 	ret nz
 
-Function37499:
-	ld hl, text_3749f
+PrintButItFailed:
+	ld hl, ButItFailedText
 	jp PrintText
 
-text_3749f:
-	db $0
-	db $bc
-	db $b6
-	db $bc
-	db $7f
-	db $b3
-	db $cf
-	db $b8
-	db $7f
-	db $b7
-	db $cf
-	db $d7
-	db $c5
-	db $b6
-	db $df
-	db $c0
-	db $e7
-	db $58
+ButItFailedText:
+	text "しかし　うまく　きまらなかった！"
+	prompt
 
 asm_374b1:
-	ld hl, text_374b7
+	ld hl, DidntAffectText
 	jp PrintText
 
-text_374b7:
-	db $0
-	db $bc
-	db $b6
-	db $bc
-	db $7f
-	db $59
-	db $c6
-	db $ca
-	db $4f
-	db $b7
-	db $b6
-	db $c5
-	db $b6
-	db $df
-	db $c0
-	db $e7
-	db $58
+DidntAffectText:
+	text "しかし　<TARGET>には"
+	line "きかなかった！"
+	prompt
 
 text_374c8:
 	db $0
@@ -9231,38 +9023,23 @@ text_374e1:
 	db $e7
 	db $58
 
-text_374f7:
-	db $0
-	db $59
-	db $ca
-	db $7f
-	db $4f
-	db $50
-	db $1
-	db $26
-	db $cd
-	db $0
-	db $33
-	db $7f
-	db $cf
-	db $d3
-	db $d7
-	db $da
-	db $c3
-	db $d9
-	db $e7
-	db $58
+ProtectedByText:
+	text "<TARGET>は　"
+	line "@"
+	text_from_ram wStringBuffer1
+	text "で　まもられてる！"
+	prompt
 
-sub_3750b:
+CheckSubstituteOpp:
 	push hl
-	ld hl, wca43
+	ld hl, wEnemySubStatus4
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_37517
-	ld hl, wca3e
+	jr z, .player_turn
+	ld hl, wPlayerSubStatus4
 
-asm_37517:
-	bit 4, [hl]
+.player_turn:
+	bit SUBSTATUS_SUBSTITUTE, [hl]
 	pop hl
 	ret
 
@@ -9273,14 +9050,14 @@ asm_3751b:
 	call DelayFrames
 	ld a, 1
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, wBattleMonStatus
-	ld de, wca3e
+	ld de, wPlayerSubStatus4
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3753e
 	ld hl, wEnemyMonStatus
-	ld de, wca43
+	ld de, wEnemySubStatus4
 
 asm_3753e:
 	xor a
@@ -9314,7 +9091,7 @@ asm_37560:
 asm_37567:
 	ld hl, text_375a0
 	call PrintText
-	jp asm_357a9
+	jp EndMoveEffect
 
 asm_37570:
 	ld [hl], a
@@ -9328,7 +9105,7 @@ asm_37570:
 	call sub_37ddb
 	call Unreferenced_GetMoveName
 	call CopyStringToStringBuffer2
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStructEffect]
@@ -9336,8 +9113,8 @@ asm_37570:
 	ld a, [wEnemyMoveStructEffect]
 
 asm_3759a:
-	call Function34046
-	jp asm_357a9
+	call DoMove
+	jp EndMoveEffect
 
 text_375a0:
 	db $0
@@ -9366,7 +9143,7 @@ text_375a0:
 	db $58
 
 asm_375b8:
-	call sub_37f0f
+	call LoadMoveAnim
 	ld de, wPlayerMoveStructEffect
 	ld hl, wCurPlayerSelectedMove
 	ldh a, [hBattleTurn]
@@ -9386,11 +9163,11 @@ asm_375cc:
 	ld [hl], a
 	push de
 	call sub_37ddb
-	call Function360b1
+	call UpdateMoveData
 	pop de
 	ld a, [de]
-	call Function34046
-	jp asm_357a9
+	call DoMove
+	jp EndMoveEffect
 
 asm_375ea:
 	ldh a, [hBattleTurn]
@@ -9405,7 +9182,7 @@ asm_375ea:
 	and a
 	ret z
 	ld [wNumSetBits], a
-	call Function3535c
+	call BattleCommand_EffectChance
 	ret nc
 	xor a
 	ld [hl], a
@@ -9426,7 +9203,7 @@ asm_3760f:
 	and a
 	ret z
 	ld [wNumSetBits], a
-	call Function3535c
+	call BattleCommand_EffectChance
 	ret nc
 	xor a
 	ld [hl], a
@@ -9454,7 +9231,7 @@ sub_37637:
 
 sub_37649:
 	ld hl, wOTPartyMon1Item
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 	ld bc, $30
 	call AddNTimes
 	ld d, h
@@ -9487,11 +9264,11 @@ text_3765b:
 	db $58
 
 asm_37672:
-	ld hl, wca44
+	ld hl, wEnemySubStatus5
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3767d
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 
 asm_3767d:
 	call sub_37e0d
@@ -9499,7 +9276,7 @@ asm_3767d:
 	bit 7, [hl]
 	jr nz, asm_376a0
 	set 7, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_37691
 	jp PrintText
 
@@ -9521,16 +9298,16 @@ text_37691:
 	db $58
 
 asm_376a0:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 asm_376a6:
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	ld de, wEnemyMonStatus
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_376b7
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	ld de, wBattleMonStatus
 
 asm_376b7:
@@ -9542,7 +9319,7 @@ asm_376b7:
 	bit 0, [hl]
 	jr nz, asm_376e0
 	set 0, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_376d0
 	jp PrintText
 
@@ -9565,8 +9342,8 @@ text_376d0:
 	db $58
 
 asm_376e0:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 asm_376e6:
 	ld hl, wPartyMon1Status
@@ -9580,7 +9357,7 @@ asm_376e6:
 	and a
 	jr z, asm_3770d
 	ld hl, wOTPartyMon1Status
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 	ld bc, $30
 	call AddNTimes
 	ld d, h
@@ -9615,11 +9392,11 @@ text_3771d:
 	db $58
 
 asm_3772b:
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_37736
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 
 asm_37736:
 	call sub_37e0d
@@ -9627,7 +9404,7 @@ asm_37736:
 	bit 1, [hl]
 	jr nz, asm_3777a
 	set 1, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	callfar sub_3c7b0
 	callfar sub_3c75e
 	ld hl, text_3775a
@@ -9668,19 +9445,19 @@ text_3775a:
 	db $58
 
 asm_3777a:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 asm_37780:
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_3778b
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 
 asm_3778b:
 	set 2, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_37796
 	jp PrintText
 
@@ -9715,13 +9492,13 @@ asm_377ab:
 	ld hl, wcadd
 
 asm_377b6:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_377e2
 	bit 0, [hl]
 	jr nz, asm_377e2
 	set 0, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_377cb
 	jp PrintText
 
@@ -9751,18 +9528,18 @@ text_377cb:
 	db $58
 
 asm_377e2:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 asm_377e8:
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_377f3
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 
 asm_377f3:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_37822
 	call sub_37e0d
@@ -9770,7 +9547,7 @@ asm_377f3:
 	bit 3, [hl]
 	jr nz, asm_37822
 	set 3, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_3780d
 	jp PrintText
 
@@ -9798,12 +9575,12 @@ text_3780d:
 	db $58
 
 asm_37822:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 asm_37828:
-	ld hl, wca3b
-	ld de, wca40
+	ld hl, wPlayerSubStatus1
+	ld de, wEnemySubStatus1
 	bit 4, [hl]
 	jr z, asm_37837
 	ld a, [de]
@@ -9826,14 +9603,14 @@ asm_37842:
 	ld [wca52], a
 
 asm_3784d:
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_3785d
 	call PrintText
 	ret
 
 asm_37857:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 text_3785d:
 	db $0
@@ -9870,13 +9647,13 @@ asm_37876:
 	ld hl, wcadd
 
 asm_37881:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_378a9
 	bit 1, [hl]
 	jr nz, asm_378a9
 	set 1, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_37896
 	jp PrintText
 
@@ -9902,19 +9679,19 @@ text_37896:
 	db $58
 
 asm_378a9:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 asm_378af:
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_378ba
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 
 asm_378ba:
 	set 5, [hl]
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_378c5
 	jp PrintText
 
@@ -9942,19 +9719,19 @@ text_378c5:
 	db $58
 
 asm_378da:
-	ld hl, wca3b
-	ld de, wca45
+	ld hl, wPlayerSubStatus1
+	ld de, wPlayerRolloutCount
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_378eb
-	ld hl, wca40
-	ld de, wca4d
+	ld hl, wEnemySubStatus1
+	ld de, wEnemyRolloutCount
 
 asm_378eb:
 	bit 6, [hl]
 	jr z, asm_378f4
 	ld b, 4
-	jp asm_37f6b
+	jp SkipToBattleCommand
 
 asm_378f4:
 	xor a
@@ -9962,16 +9739,16 @@ asm_378f4:
 	ret
 
 asm_378f7:
-	ld hl, wca45
-	ld de, wca3b
+	ld hl, wPlayerRolloutCount
+	ld de, wPlayerSubStatus1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_37908
-	ld hl, wca4d
-	ld de, wca40
+	ld hl, wEnemyRolloutCount
+	ld de, wEnemySubStatus1
 
 asm_37908:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr z, asm_37913
 	ld a, [de]
@@ -9998,7 +9775,7 @@ asm_37920:
 asm_37924:
 	dec b
 	jr z, asm_37935
-	ld hl, wce2a
+	ld hl, wCurDamage + 1
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -10011,10 +9788,10 @@ asm_37935:
 	ret
 
 asm_37936:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_37965
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, wEnemyMoveStruct
 	ldh a, [hBattleTurn]
 	and a
@@ -10045,9 +9822,9 @@ asm_3794a:
 	ret
 
 asm_37965:
-	call sub_37f5f
-	call Function37499
-	jp asm_357a9
+	call BattleCommand_MoveDelay
+	call PrintButItFailed
+	jp EndMoveEffect
 
 asm_3796e:
 	ld hl, wca4b
@@ -10057,7 +9834,7 @@ asm_3796e:
 	ld hl, wca53
 
 asm_37979:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr z, asm_37983
 	call sub_37998
@@ -10071,7 +9848,7 @@ asm_37983:
 asm_37986:
 	dec b
 	jr z, asm_37997
-	ld hl, wce2a
+	ld hl, wCurDamage + 1
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -10108,7 +9885,7 @@ asm_379a8:
 	ld a, [wEnemyMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld a, 3
+	ld a, TEMPMON
 	ld [wMonType], a
 	callfar GetGender
 	push af
@@ -10118,11 +9895,11 @@ asm_379a8:
 	xor c
 	bit 4, a
 	jr z, asm_37a0b
-	ld hl, wca40
+	ld hl, wEnemySubStatus1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, asm_379e8
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 
 asm_379e8:
 	call sub_37e0d
@@ -10130,30 +9907,18 @@ asm_379e8:
 	bit 7, [hl]
 	jr nz, asm_37a0b
 	set 7, [hl]
-	call sub_37f0f
-	ld hl, text_379fc
+	call LoadMoveAnim
+	ld hl, FellInLoveText
 	jp PrintText
 
-text_379fc:
-	db $0
-	db $59
-	db $ca
-	db $4f
-	db $a0
-	db $a8
-	db $a0
-	db $a8
-	db $c6
-	db $7f
-	db $c5
-	db $df
-	db $c0
-	db $e7
-	db $58
+FellInLoveText:
+	text "<TARGET>は"
+	line "メロメロに　なった！"
+	prompt
 
 asm_37a0b:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 BattleCommand_HappinessPower::
 	push bc
@@ -10178,13 +9943,13 @@ BattleCommand_HappinessPower::
 	ld b, 4
 	call Divide
 
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld d, a
 	pop bc
 	ret
 
 asm_37a3a:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	ret nz
 	push bc
@@ -10206,7 +9971,7 @@ asm_37a49:
 asm_37a55:
 	xor a
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld d, [hl]
 	pop bc
 	ret
@@ -10215,7 +9980,7 @@ asm_37a5f:
 	pop bc
 	ld a, 1
 	ld [wBattleAnimParam], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ldh a, [hBattleTurn]
 	push af
 	xor 1
@@ -10224,7 +9989,7 @@ asm_37a5f:
 	pop af
 	ldh [hBattleTurn], a
 	callfar sub_3c808
-	jp asm_357a9
+	jp EndMoveEffect
 
 Data37a85:
 	db $66
@@ -10267,7 +10032,7 @@ asm_37aa6:
 	ld de, wcae0
 
 asm_37ab7:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_37ae3
 	bit 2, [hl]
@@ -10275,7 +10040,7 @@ asm_37ab7:
 	set 2, [hl]
 	ld a, 5
 	ld [de], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_37acf
 	jp PrintText
 
@@ -10302,18 +10067,18 @@ text_37acf:
 	db $58
 
 asm_37ae3:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
-sub_37ae9:
-	ld hl, wcade
+SafeCheckSafeguard:
+	ld hl, wEnemySafeguardCount
 	ldh a, [hBattleTurn]
 	and a
-	jr z, asm_37af4
-	ld hl, wcadd
+	jr z, .got_turn
+	ld hl, wPlayerScreens
 
-asm_37af4:
-	bit 2, [hl]
+.got_turn:
+	bit SCREENS_SAFEGUARD, [hl]
 	ret
 
 asm_37af7:
@@ -10327,8 +10092,8 @@ asm_37b02:
 	bit 2, [hl]
 	ret z
 	ld a, 1
-	ld [wca3a], a
-	call sub_37f5f
+	ld [wAttackMissed], a
+	call BattleCommand_MoveDelay
 	ld hl, text_37b13
 	jp PrintText
 
@@ -10376,7 +10141,7 @@ asm_37b39:
 	inc hl
 	ld a, [hl]
 	ld [wNumSetBits], a
-	call sub_37f5f
+	call BattleCommand_MoveDelay
 	ld hl, MagnitudeText
 	call PrintText
 	pop de
@@ -10447,7 +10212,7 @@ asm_37b9c:
 	ld a, b
 	and a
 	jp z, asm_37c63
-	call sub_37f0f
+	call LoadMoveAnim
 	call LoadStandardMenuHeader
 	ld a, 2
 	ld [wcdb9], a
@@ -10496,7 +10261,7 @@ asm_37c11:
 	inc de
 	cp $ff
 	jr z, asm_37c2c
-	ld a, [wca36]
+	ld a, [wCurOTMon]
 	cp c
 	jr z, asm_37c23
 	ld a, [hli]
@@ -10518,7 +10283,7 @@ asm_37c2c:
 	ld a, b
 	and a
 	jr z, asm_37c63
-	call sub_37f0f
+	call LoadMoveAnim
 	call sub_37c4c
 	callfar sub_3cd6e
 	ld a, 1
@@ -10540,8 +10305,8 @@ sub_37c4c:
 	ret
 
 asm_37c63:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 BattleText_MonIsAlreadyOut:
 	text_from_ram wBattleMonNickname
@@ -10599,23 +10364,23 @@ asm_37cb2:
 asm_37cd0:
 	call BattleRandom
 	set 7, a
-	ldh [hPrintNumDivisor], a
+	ldh [hMultiplier], a
 	xor a
-	ldh [hQuotient], a
+	ldh [hMultiplicand], a
 	ld a, b
-	ldh [hQuotient + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, c
-	ldh [hQuotient + 2], a
+	ldh [hMultiplicand + 2], a
 	call Multiply
 	ld a, $ff
-	ldh [hPrintNumDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 1]
-	ld b, a
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	ld c, a
-	call sub_37f0f
+	call LoadMoveAnim
 	ldh a, [hBattleTurn]
 	push af
 	xor 1
@@ -10649,7 +10414,7 @@ text_37d0e:
 	db $58
 
 asm_37d21:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	ret nz
 	push bc
@@ -10718,14 +10483,14 @@ asm_37d7f:
 	ret
 
 asm_37d83:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_37da8
 	ld a, 1
-	ld [wcae2], a
+	ld [wBattleWeather], a
 	ld a, 5
 	ld [wcae3], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_37d9c
 	jp PrintText
 
@@ -10744,18 +10509,18 @@ text_37d9c:
 	db $58
 
 asm_37da8:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 asm_37dae:
-	ld a, [wca3a]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, asm_37dd5
 	ld a, 2
-	ld [wcae2], a
+	ld [wBattleWeather], a
 	ld a, 5
 	ld [wcae3], a
-	call sub_37f0f
+	call LoadMoveAnim
 	ld hl, text_37dc7
 	jp PrintText
 
@@ -10776,8 +10541,8 @@ text_37dc7:
 	db $58
 
 asm_37dd5:
-	call sub_37f5f
-	jp Function37499
+	call BattleCommand_MoveDelay
+	jp PrintButItFailed
 
 sub_37ddb:
 	ldh a, [hBattleTurn]
@@ -10823,35 +10588,38 @@ asm_37e19:
 	pop hl
 	ret
 
-Function37e1d:
+GetUserItem:
 	ld hl, wBattleMonItem
 	ldh a, [hBattleTurn]
 	and a
-	jp z, asm_37e29
+	jp z, .go
 	ld hl, wEnemyMonItem
 
-asm_37e29:
+.go
 	ld b, [hl]
-	jp Function37e3d
+	jp GetItemHeldEffect
 
-Function37e2d:
+GetOpponentItem:
 	ld hl, wEnemyMonItem
 	ldh a, [hBattleTurn]
 	and a
-	jp z, asm_37e39
+	jp z, .go
 	ld hl, wBattleMonItem
 
-asm_37e39:
+.go
 	ld b, [hl]
-	jp Function37e3d
+	jp GetItemHeldEffect
+	; jump is redundant in current arrangement, falls through
 
-Function37e3d:
+GetItemHeldEffect:
 	ld a, b
 	and a
 	ret z
+
 	push hl
 	push bc
 	ld hl, ItemAttributes + ITEMATTR_PARAM
+
 	dec a
 	ld c, a
 	ld b, 0
@@ -10862,18 +10630,21 @@ Function37e3d:
 	add hl, bc
 	add hl, bc
 	add hl, bc
-	ld a, 1
+
+	ld a, BANK(ItemAttributes)
 	call GetFarByte
+
 	pop bc
 	ld c, a
 	dec hl
-	ld a, 1
+	ld a, BANK(ItemAttributes)
 	call GetFarByte
+
 	ld b, a
 	pop hl
 	ret
 
-Function37e60:
+ConsumeHeldItem:
 	push hl
 	push de
 	push bc
@@ -10881,26 +10652,25 @@ Function37e60:
 	and a
 	ld hl, wOTPartyMon1Item
 	ld de, wEnemyMonItem
-	ld a, [wca36]
-	jr z, asm_37e7a
+	ld a, [wCurOTMon]
+	jr z, .their_turn
 	ld hl, wPartyMon1Item
 	ld de, wBattleMonItem
 	ld a, [wCurBattleMon]
 
-asm_37e7a:
+.their_turn
 	push hl
 	push af
 	ld a, [de]
 	ld b, a
-	call Function37e3d
-	ld hl, Data37eac
-
-asm_37e84:
+	call GetItemHeldEffect
+	ld hl, ConsumableEffects
+.loop
 	ld a, [hli]
 	cp b
-	jr z, asm_37e91
+	jr z, .ok
 	inc a
-	jr nz, asm_37e84
+	jr nz, .loop
 	pop af
 	pop hl
 	pop bc
@@ -10908,131 +10678,116 @@ asm_37e84:
 	pop hl
 	ret
 
-asm_37e91:
+.ok
 	xor a
 	ld [de], a
 	pop af
 	pop hl
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ldh a, [hBattleTurn]
 	and a
-	jr nz, asm_37ea6
+	jr nz, .ourturn
 	ld a, [wBattleMode]
 	dec a
-	jr z, asm_37ea8
+	jr z, .done
 
-asm_37ea6:
+.ourturn
 	ld [hl], 0
 
-asm_37ea8:
+.done
 	pop bc
 	pop de
 	pop hl
 	ret
 
-Data37eac:
-	db $1
-	db $2
-	db $5
-	db $a
-	db $b
-	db $c
-	db $d
-	db $e
-	db $f
-	db $1e
-	db $1f
-	db $20
-	db $21
-	db $22
-	db $23
-	db $24
-	db $25
-	db $26
-	db $47
-	db $48
-	db $49
-	db $ff
+ConsumableEffects:
+	db HELD_BERRY
+	db HELD_2
+	db HELD_5
 
-sub_37ec2:
+	db HELD_HEAL_POISON
+	db HELD_HEAL_FREEZE
+	db HELD_HEAL_BURN
+	db HELD_HEAL_SLEEP
+	db HELD_HEAL_PARALYZE
+	db HELD_HEAL_STATUS
+
+	db HELD_30
+	db HELD_ATTACK_UP
+	db HELD_DEFENSE_UP
+	db HELD_SPEED_UP
+	db HELD_SP_ATTACK_UP
+	db HELD_SP_DEFENSE_UP
+	db HELD_ACCURACY_UP
+	db HELD_EVASION_UP
+	db HELD_38
+
+	db HELD_71
+	db HELD_ESCAPE
+	db HELD_CRITICAL_UP
+	db -1
+
+PrintRecoveredUsingItem:
 	push hl
 	push de
 	push bc
-	ld [wNumSetBits], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-	ld hl, text_37ed5
+	ld hl, RecoveredUsingText
 	call PrintText
 	pop bc
 	pop de
 	pop hl
 	ret
 
-text_37ed5:
-	db $0
-	db $bf
-	db $b3
-	db $3b
-	db $bc
-	db $c3
-	db $b2
-	db $c0
-	db $4f
-	db $50
-	db $1
-	dw wStringBuffer1
-	db $0
-	db $26
-	db $7f
-	db $bb
-	db $34
-	db $b3
-	db $bc
-	db $c0
-	db $e7
-	db $58
+RecoveredUsingText:
+	text "そうびしていた"
+	line "@"
+	text_from_ram wStringBuffer1
+	text "が　さどうした！"
+	prompt
 
-sub_37eec:
+PlayDamageAnim:
 	xor a
 	ld [wFXAnimID + 1], a
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wPlayerMoveStruct]
-	jr z, asm_37efb
-	ld a, [wEnemyMoveStruct]
+	ld a, [wPlayerMoveStructAnimation]
+	jr z, .player
+	ld a, [wEnemyMoveStructAnimation]
 
-asm_37efb:
+.player:
 	and a
 	ret z
 	ld [wFXAnimID], a
 	ldh a, [hBattleTurn]
 	and a
-	ld a, 6
-	jr z, asm_37f09
-	ld a, 3
+	ld a, 6 ; BATTLEANIM_ENEMY_DAMAGE
+	jr z, .player_damage
+	ld a, 3 ; BATTLEANIM_PLAYER_DAMAGE
 
-asm_37f09:
+.player_damage:
 	ld [wNumHits], a
-	jp asm_37f26
+	jp PlayUserBattleAnim
 
-sub_37f0f:
+LoadMoveAnim:
 	xor a
 	ld [wNumHits], a
 	ld [wFXAnimID + 1], a
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wPlayerMoveStruct]
-	jr z, asm_37f21
-	ld a, [wEnemyMoveStruct]
-
-asm_37f21:
+	ld a, [wPlayerMoveStructAnimation]
+	jr z, .not_enemy_turn
+	ld a, [wEnemyMoveStructAnimation]
+.not_enemy_turn
 	and a
 	ret z
-
-sub_37f23:
+	; Fallthrough
+LoadBattleAnim:
 	ld [wFXAnimID], a
-
-asm_37f26:
+	; Fallthrough
+PlayUserBattleAnim:
 	push hl
 	push de
 	push bc
@@ -11042,13 +10797,14 @@ asm_37f26:
 	pop hl
 	ret
 
-sub_37f35:
+PlayOpponentBattleAnim:
 	ld a, e
 	ld [wFXAnimID], a
 	ld a, d
 	ld [wFXAnimID + 1], a
 	xor a
 	ld [wNumHits], a
+
 	push hl
 	push de
 	push bc
@@ -11057,6 +10813,7 @@ sub_37f35:
 	xor 1
 	ldh [hBattleTurn], a
 	callfar PlayBattleAnim
+
 	pop af
 	ldh [hBattleTurn], a
 	pop bc
@@ -11068,30 +10825,29 @@ CallFromBank0F:
 	ld a, $f
 	jp FarCall_hl
 
-sub_37f5f:
+BattleCommand_MoveDelay:
 	ld c, 50
 	jp DelayFrames
 
-asm_37f64:
-	ld hl, .EmptyString
+BattleCommand_ClearText:
+	ld hl, .text
 	jp PrintText
 
-.EmptyString:
-	db "@"
+.text:
+	text_end
 
-asm_37f6b:
-	ld a, [wca7c]
+SkipToBattleCommand:
+	ld a, [wBattleScriptBufferAddress + 1]
 	ld h, a
-	ld a, [wca7b]
+	ld a, [wBattleScriptBufferAddress]
 	ld l, a
-
-asm_37f73:
+.loop
 	ld a, [hli]
 	cp b
-	jr nz, asm_37f73
+	jr nz, .loop
 	ld a, h
-	ld [wca7c], a
+	ld [wBattleScriptBufferAddress + 1], a
 	ld a, l
-	ld [wca7b], a
+	ld [wBattleScriptBufferAddress], a
 	ret
 

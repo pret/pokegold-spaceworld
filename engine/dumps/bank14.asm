@@ -353,7 +353,7 @@ Function502b5::
 	ld hl, wTempMonExp + 2
 	ld de, wTempMonMaxHP
 	ld b, 1
-	predef Functiondf7d
+	predef CalcMonStats
 .asm_502d9
 	ld hl, wd4a7
 	set 1, [hl]
@@ -514,7 +514,7 @@ Function50340::
 	jr z, .asm_503f5
 	push hl
 	ld de, wTempMonStatus
-	call Function50b7d
+	call PlaceStatusString
 	pop hl
 .asm_503f5
 	ld de, StatusText_OK
@@ -601,15 +601,15 @@ Function50340::
 	call CalcExpAtLevel
 	ld hl, wTempMonExp + 2
 	ld hl, wTempMonExp + 2    ; Seemingly an unnecessary duplicate line
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	sub [hl]
 	dec hl
 	ld [wcdc5], a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	sbc [hl]
 	dec hl
 	ld [wcdc4], a
-	ldh a, [hQuotient]
+	ldh a, [hQuotient + 1]
 	sbc [hl]
 	ld [wcdc3], a
 	ret
@@ -1252,7 +1252,7 @@ Function508c4::
 	ld bc, hRTCRandom
 	add hl, bc
 	ld de, wTempMonStatus
-	call Function50b7d
+	call PlaceStatusString
 	pop hl
 	push hl
 	ld bc, hCurMapTextSubroutinePtr + 1
@@ -1293,11 +1293,9 @@ Function508c4::
 
 .text_50948:
 	db "おぼえられる@"
-	;db $b5, $3e, $b4, $d7, $da, $d9, $50
 
 .text_5094f:
 	db "おぼえられない@"
-	;db $b5, $3e, $b4, $d7, $da, $c5, $b2, $50
 
 .DetermineCompatibility:
 	push hl
@@ -1547,7 +1545,7 @@ Function50b66::
 	inc [hl]
 	ret
 
-Function50b7d::
+PlaceStatusString::
 	push de
 	inc de
 	inc de
@@ -1557,60 +1555,62 @@ Function50b7d::
 	ld a, [de]
 	or b
 	pop de
-	jr nz, Function50b92
-	ld a, $cb
+	jr nz, PlaceNonFaintStatus
+	; "FNT" equivalent string
+	ld a, "ひ"
 	ld [hli], a
-	ld a, $de
+	ld a, "ん"
 	ld [hli], a
-	ld [hl], $bc
+	ld [hl], "し"
 	and a
 	ret
 
-Function50b92::
+PlaceNonFaintStatus::
 	ld a, [de]
-	bit 3, a
-	jr nz, .asm_50baf
-	bit 4, a
-	jr nz, .asm_50bb5
-	bit 5, a
-	jr nz, .asm_50bbe
-	bit 6, a
-	jr nz, .asm_50bc7
-	and %111
+	bit PSN, a
+	jr nz, .PsnString
+	bit BRN, a
+	jr nz, .BrnString
+	bit FRZ, a
+	jr nz, .FrzString
+	bit PAR, a
+	jr nz, .ParString
+	and SLP
 	ret z
-	ld a, $c8
+	; "SLP" equivalent string
+	ld a, "ね"
 	ld [hli], a
-	ld a, $d1
+	ld a, "む"
 	ld [hli], a
-	ld [hl], $d8
+	ld [hl], "り"
 	ret
 
-.asm_50baf
-	ld a, $70
+.PsnString
+	ld a, "<DO>"
 	ld [hli], a
-	ld [hl], $b8
+	ld [hl], "く"
 	ret
 
-.asm_50bb5
-	ld a, $d4
+.BrnString
+	ld a, "や"
 	ld [hli], a
-	ld a, $b9
+	ld a, "け"
 	ld [hli], a
-	ld [hl], $70
+	ld [hl], "<DO>"
 	ret
 
-.asm_50bbe
-	ld a, $ba
+.FrzString
+	ld a, "こ"
 	ld [hli], a
-	ld a, $b5
+	ld a, "お"
 	ld [hli], a
-	ld [hl], $d8
+	ld [hl], "り"
 	ret
 
-.asm_50bc7
-	ld a, $cf
+.ParString
+	ld a, "ま"
 	ld [hli], a
-	ld [hl], $cb
+	ld [hl], "ひ"
 	ret
 
 Function50bcd::
@@ -1756,15 +1756,15 @@ Function50caa::
 	call CalcExpAtLevel
 	push hl
 	ld hl, wTempMonExp + 2
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld c, a
 	ld a, [hld]
 	sub c
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	ld c, a
 	ld a, [hld]
 	sbc c
-	ldh a, [hQuotient]
+	ldh a, [hQuotient + 1]
 	ld c, a
 	ld a, [hl]
 	sbc c
@@ -1800,11 +1800,11 @@ CalcExpAtLevel::
 	ld b, 4
 	call Divide
 ; Push the cubic term to the stack
-	ldh a, [hQuotient]
-	push af
 	ldh a, [hQuotient + 1]
 	push af
 	ldh a, [hQuotient + 2]
+	push af
+	ldh a, [hQuotient + 3]
 	push af
 ; Square the level and multiply by the lower 7 bits of c
 	call .LevelSquared
@@ -2124,7 +2124,7 @@ GetUnownLetter::
 	call Divide
 
 ; Increment to get 1-26
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	inc a
 	ld [wAnnonID], a    ; $d874
 	ret

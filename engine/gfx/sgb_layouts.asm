@@ -57,7 +57,7 @@ SGB_BattleColors:
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 
-	ld a, [wca3f]
+	ld a, [wPlayerSubStatus5]
 	ld hl, wBattleMon
 	call Function9567
 	jr c, .sub_92f7
@@ -66,7 +66,7 @@ SGB_BattleColors:
 	call Function9599
 .sub_92f7
 	ld b, a
-	ld a, [wca44]
+	ld a, [wEnemySubStatus5]
 	ld hl, wTempEnemyMonSpecies
 	call Function9567
 	jr c, .sub_9308

@@ -253,10 +253,12 @@ ROMX $0c
 
 ROMX $0d
 	org $4000
-	"engine/dumps/bank0d.asm@Function34000"
+	"engine/dumps/bank0d.asm@DoPlayerTurn"
 
 ROMX $0e
 	org $4000
+	org $43cd
+	"engine/dumps/bank0e.asm"
 	org $4494
 	"gfx.asm@PokeBalls GFX"
 	org $4d90
@@ -276,6 +278,8 @@ ROMX $10
 	org $4000
 	org $4943
 	"data/pokemon/dex_order_alpha.asm"
+	org $4b45
+	"engine/dumps/bank10.asm@ConvertMon_2to1"
 	org $4ecc
 	"data/types/search_strings.asm"
 	org $5068

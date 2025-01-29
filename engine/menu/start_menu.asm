@@ -1421,17 +1421,17 @@ PartyCalculateHealth:
 	ld a, [hli]
 	ldh [hDividend], a
 	ld a, [hl]
-	ldh [hQuotient], a
+	ldh [hDividend + 1], a
 	ld a, 5
 	ldh [hDivisor], a
 	ld b, 2
 	call Divide
 	ld a, MON_HP + 1 ; might be wrong, was $23
 	call GetPartyParamLocation
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	sub [hl]
 	dec hl
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	sbc [hl]
 	jp nc, PrintNotHealthyEnoughText
 	callfar Functionf218
