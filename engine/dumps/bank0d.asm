@@ -4553,7 +4553,7 @@ unknown_35a78:
 	db -1
 
 
-INCLUDE "data/types/type_boost_items.asm"
+INCLUDE "data/types/type_boost_items.inc"
 
 asm_35a9c:
 	ld hl, wBattleMonLevel
