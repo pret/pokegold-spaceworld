@@ -458,9 +458,9 @@ GetLabPokemon:
 	cp b
 	jr nz, .jump
 	ld a, [hl]
-	ld [wce05], a
+	ld [wOtherTrainerID], a
 	ld a, 9
-	ld [wce02], a
+	ld [wOtherTrainerClass], a
 	ret
 .jump
 	inc hl

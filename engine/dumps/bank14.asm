@@ -567,7 +567,7 @@ Function50340::
 	ld b, a
 	ld de, wTempMonExp + 2
 	hlcoord 10, 16
-	predef Function3e874
+	predef CalcAndPlaceExpBar
 
 	hlcoord 9, 16
 	ld [hl], $40
@@ -919,6 +919,13 @@ GetGender::
 	or b
 	ld b, a
 
+; BUG: No handling for genderless Pokémon, despite already being defined in base stats.
+; As a result, they're always considered as female here.
+
+; Also, due to GENDER_FEMALE not truly being 100%, an always-female
+; Pokémon can be male if it has max Attack and Speed DVs.
+; Final game adds a check to guarantee that those Pokémon will be female.
+
 	ld a, [wMonHGenderRatio]
 	cp b
 	ret
@@ -1037,15 +1044,15 @@ PartyMenuInBattle::
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ld hl, wce5f
-	set 4, [hl]
+	ld hl, wOptions
+	set NO_TEXT_SCROLL, [hl]
 
 	call PartyMenuInBattle_SetMenuAttributes
 	call Function5081f
 	call Function507cf
 
-	ld hl, wce5f
-	res 4, [hl]
+	ld hl, wOptions
+	res NO_TEXT_SCROLL, [hl]
 	pop bc
 	ld a, b
 	ldh [hMapAnims], a
@@ -1127,13 +1134,13 @@ Function507cf::
 	call Function50eca
 	xor a
 	ld [wSelectedSwapPosition], a
-	ld [wcdb9], a
+	ld [wPartyMenuActionText], a
 	call Function5081f
 	jp Function507cf
 
 Function5081f::
-	ld a, [wcdb9]
-	cp $04
+	ld a, [wPartyMenuActionText]
+	cp PARTYMENUACTION_MOVE
 	jp z, Function509dd
 	callfar Function8f0cc
 	call Function50eca
@@ -1179,8 +1186,8 @@ Function5081f::
 	jp Function509d8
 
 Function5087e::
-	ld a, [wcdb9]
-	cp $04
+	ld a, [wPartyMenuActionText]
+	cp PARTYMENUACTION_MOVE
 	jp z, Function509dd
 	callfar Function95f8
 	ld hl, $c2b7
@@ -1239,14 +1246,14 @@ Function508c4::
 	inc hl
 	inc hl
 .asm_508ef
-	ld a, [wcdb9]
-	cp $03
+	ld a, [wPartyMenuActionText]
+	cp PARTYMENUACTION_TEACH_TMHM
 	jr z, .asm_50922
-	cp $05
+	cp PARTYMENUACTION_EVO_STONE
 	jr z, .DetermineCompatibility
-	cp $06
+	cp PARTYMENUACTION_GIVE_MON
 	jp z, .asm_509b5
-	cp $07
+	cp PARTYMENUACTION_GIVE_MON_FEMALE
 	jp z, .asm_509b5
 	push hl
 	ld bc, hRTCRandom
@@ -1384,8 +1391,8 @@ Function509dd::
 	push af
 	push hl
 	set 4, [hl]
-	ld a, [wcdb9]
-	cp $f0
+	ld a, [wPartyMenuActionText]
+	cp PARTYMENUTEXT_HEAL_PSN
 	jr nc, .asm_509fc
 	add a
 	ld c, a
@@ -1617,18 +1624,21 @@ Function50bcd::
 	ld a, $00
 	call OpenSRAM
 	push hl
-	ld hl, $a188 ; SRAM_188
-	ld de, $a000 ; SRAM_0
-	ld bc, $0188
+	ld hl, sSpriteBuffer1
+	ld de, sSpriteBuffer0
+	ld bc, SPRITEBUFFERSIZE
 	call CopyBytes
-	ld hl, $a310 ; SRAM_310
-	ld de, $a188 ; SRAM_188
-	ld bc, $0188
+
+	ld hl, sSpriteBuffer2
+	ld de, sSpriteBuffer1
+	ld bc, SPRITEBUFFERSIZE
 	call CopyBytes
+	
 	call _InterlaceMergeSpriteBuffers
+	
 	pop hl
-	ld de, $a188 ; SRAM_188
-	ld c, $24
+	ld de, sSpriteBuffer1
+	ld c, 6 * 6
 	ldh a, [hROMBank]
 	ld b, a
 	call Get2bpp

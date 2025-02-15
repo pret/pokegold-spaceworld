@@ -16,7 +16,7 @@ Function1130b:
 	ld [wEnemySubStatus5], a
 	ld a, [wCurPartySpecies]
 	ld [wTempEnemyMonSpecies], a
-	callfar AddPokemonToBox
+	callfar LoadEnemyMon
 	call RecievePokemon
 	predef Functiondd5c
 	and $7F

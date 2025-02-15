@@ -2,6 +2,8 @@
 DEF PLAYER   EQU 0
 DEF FOLLOWER EQU 1
 
+DEF STRING_BUFFER_LENGTH EQU 10
+
 ; Script IDs
 	const_def
 	const SCRIPT_ID_00   ; 00

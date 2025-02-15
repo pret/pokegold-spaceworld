@@ -3384,7 +3384,7 @@ Function6713:
 	call Function3657
 	jr .sub_6773
 .sub_676b
-	callfar Function3e3a7
+	callfar _LoadHPBar
 .sub_6773
 	pop hl
 	ld a, [hl]

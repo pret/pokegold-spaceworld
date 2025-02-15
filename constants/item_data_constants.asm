@@ -50,18 +50,18 @@ DEF MAX_PC_ITEMS  EQU 50
 	const_def
 	const HELD_NONE
 	const HELD_BERRY
-	const HELD_2
+	const HELD_FULL_RESTORE
 	const HELD_LEFTOVERS
 	const HELD_4
-	const HELD_5
+	const HELD_REVIVE
 	const HELD_RESTORE_PP
 	const HELD_RESTORE_ALL_PP
 	const HELD_CLEANSE_TAG
 
 	const_next 10
 	const HELD_HEAL_POISON
-	const HELD_HEAL_FREEZE
 	const HELD_HEAL_BURN
+	const HELD_HEAL_FREEZE
 	const HELD_HEAL_SLEEP
 	const HELD_HEAL_PARALYZE
 	const HELD_HEAL_STATUS

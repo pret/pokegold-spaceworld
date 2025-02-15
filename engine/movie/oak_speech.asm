@@ -294,7 +294,7 @@ AddRandomPokemonToBox:
 	ld [wTempEnemyMonSpecies], a
 	ld a, $05
 	ld [wCurPartyLevel], a
-	callfar AddPokemonToBox
+	callfar LoadEnemyMon
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a
 	callfar Functiondd5c

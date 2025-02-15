@@ -98,19 +98,21 @@ CopyNameFromMenu::
 	ret
 
 YesNoBox::
-	lb bc, 14, 7
-asm_1dd5::
-	jr asm_1ddc
+	lb bc, SCREEN_WIDTH - 6, 7
+PlaceYesNoBox::
+	jr _YesNoBox
 
 PlaceGenericTwoOptionBox::
 	call LoadMenuHeader
-	jr asm_1df9
+	jr InterpretTwoOptionMenu
 
-asm_1ddc:
+; Return nc (yes) or c (no).
+_YesNoBox::
 	push bc
 	ld hl, YesNoMenuHeader
 	call CopyMenuHeader
 	pop bc
+
 	ld a, b
 	ld [wMenuBorderLeftCoord], a
 	add 5
@@ -120,21 +122,23 @@ asm_1ddc:
 	add 4
 	ld [wMenuBorderBottomCoord], a
 	call PushWindow
-asm_1df9:
+
+InterpretTwoOptionMenu::
 	call VerticalMenu
 	push af
 	ld c, 15
 	call DelayFrames
+	
 	call CloseWindow
 	pop af
-	jr c, .asm_1e11
+	jr c, .no
 	ld a, [wMenuCursorY]
-	cp $2
-	jr z, .asm_1e11
+	cp 2 ; no
+	jr z, .no
 	and a
 	ret
 
-.asm_1e11:
+.no
 	ld a, 2
 	ld [wMenuCursorY], a
 	scf

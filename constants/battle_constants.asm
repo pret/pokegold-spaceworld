@@ -68,7 +68,7 @@ DEF MOVE_LENGTH EQU const_value
 	const STAT_SATK
 DEF NUM_EXP_STATS EQU const_value - 1
 	const STAT_SDEF
-DEF NUM_STATS EQU const_value
+DEF NUM_STATS EQU const_value - 1
 DEF NUM_BATTLE_STATS EQU NUM_STATS - 1 ; don't count HP
 DEF STAT_SPC EQU STAT_SATK
 
@@ -186,7 +186,7 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 	const SUBSTATUS_IN_LOOP
 	const SUBSTATUS_FLINCHED
 	const SUBSTATUS_CHARGED
-	const SUBSTATUS_WRAPPING_MOVE
+	const SUBSTATUS_USING_TRAPPING_MOVE
 	const SUBSTATUS_INVULNERABLE
 	const SUBSTATUS_CONFUSED
 
@@ -204,18 +204,18 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 ; wPlayerSubStatus5 or wEnemySubStatus5 bit flags
 	const_def
 	const SUBSTATUS_TOXIC
-	const_skip
-	const_skip
+	const SUBSTATUS_LIGHT_SCREEN
+	const SUBSTATUS_REFLECT
 	const SUBSTATUS_TRANSFORMED
 	const SUBSTATUS_ENCORED
 	const SUBSTATUS_LOCK_ON
 	const SUBSTATUS_DESTINY_BOND
 	const SUBSTATUS_CANT_RUN
 
-; wPlayerScreens or wEnemySafeguardCount bit flags
+; wPlayerScreens or wEnemyScreens bit flags
 	const_def
 	const SCREENS_SPIKES
-	const_skip
+	const SCREENS_SANDSTORM
 	const SCREENS_SAFEGUARD
 	const SCREENS_LIGHT_SCREEN
 	const SCREENS_REFLECT
@@ -225,10 +225,6 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 	const WEATHER_NONE
 	const WEATHER_RAIN
 	const WEATHER_SUN
-	const WEATHER_SANDSTORM
-	const WEATHER_RAIN_END
-	const WEATHER_SUN_END
-	const WEATHER_SANDSTORM_END
 
 ; wBattleAction
 	const_def
@@ -251,9 +247,9 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 
 ; wBattleResult
 	const_def
-	const WIN
-	const LOSE
 	const DRAW
+	const LOSE
+	const WIN
 
 DEF BATTLERESULT_BOX_FULL EQU 7
 DEF BATTLERESULT_BITMASK EQU (1 << BATTLERESULT_BOX_FULL)

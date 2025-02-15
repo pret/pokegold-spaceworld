@@ -24,6 +24,8 @@ vFont::
 
 vFrontPic::
 	ds 7 * 7 tiles
+vBackPic::
+	ds 7 * 7 tiles
 
 NEXTU
 

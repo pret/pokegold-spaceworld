@@ -401,7 +401,14 @@ wca24:: ds 1
 wca2b:: ds 1
 	ds 10
 wCurOTMon:: db
-wca37:: ds 1
+
+wBattleParticipantsNotFainted::
+; Bit array.  Bits 0 - 5 correspond to party members 1 - 6.
+; Bit set if the mon appears in battle.
+; Bit cleared if the mon faints.
+; Backed up if the enemy switches.
+; All bits cleared if the enemy faints.
+	db
 
 wTypeModifier::
 ; >10: super-effective
@@ -433,59 +440,60 @@ wEnemySubStatus4:: db
 wEnemySubStatus5:: db
 
 wPlayerRolloutCount:: db
-wca46:: db
-wca47:: db
-wca48:: db
-wca49:: db
-wca4a:: db
-wca4b:: db
+wPlayerConfuseCount:: db
+wPlayerToxicCount:: db
+wPlayerDisableCount:: db
+wPlayerEncoreCount:: db
+wPlayerPerishCount:: db
+wPlayerFuryCutterCount:: db
 
 	ds 1
 
 wEnemyRolloutCount:: db
-wca4e:: db
-
-wca4f:: db
-wca50:: db
-wca51:: db
-wca52:: db
-wca53:: db
+wEnemyConfuseCount:: db
+wEnemyToxicCount:: db
+wEnemyDisableCount:: db
+wEnemyEncoreCount:: db
+wEnemyPerishCount:: db
+wEnemyFuryCutterCount:: db
 
 	ds 1
 
-wca55:: db
 
-UNION
 wPlayerDamageTaken:: dw
 wEnemyDamageTaken:: dw
-NEXTU
-	ds 3
+
+UNION
 wBattleReward:: ds 3
 NEXTU
-	ds 3
 wca59:: ds 1
 ENDU
 
 wBattleAnimParam::
 wca5c:: ds 1
 
-wca5d:: ds 1
-
-	ds $1d
+wBattleScriptBuffer:: ds 30
 
 wBattleScriptBufferAddress:: dw
-
 wTurnEnded:: db
 
 	ds $15
 
-wca93:: ds 1
+wPlayerStats::
+wPlayerAttack::  dw
+wPlayerDefense:: dw
+wPlayerSpeed::   dw
+wPlayerSpAtk::   dw
+wPlayerSpDef::   dw
+	ds 1
 
-	ds 10
-
-wca9e:: ds 1
-
-	ds $a
+wEnemyStats::
+wEnemyAttack::  dw
+wEnemyDefense:: dw
+wEnemySpeed::   dw
+wEnemySpAtk::   dw
+wEnemySpDef::   dw
+	ds 1
 
 wPlayerStatLevels::
 wPlayerAtkLevel::
@@ -527,21 +535,17 @@ wcabe:: ds 1
 
 wcac0:: ds 1
 
-wCurPlayerSelectedMove::
-wcac1:: ds 1
-
-wCurEnemySelectedMove::
-wcac2:: ds 1
+wCurPlayerSelectedMove:: db
+wCurEnemySelectedMove:: db
 
 wLinkBattleRNCount:: db
 
-wcac4:: ds 1
+wEnemyItemState:: db
 
 	ds 2
 
-wcac7:: ds 1
-wcac8:: ds 1
-wcac9:: ds 1
+wCurEnemyMoveNum:: db
+wEnemyHPAtTimeOfPlayerSwitch:: dw
 
 UNION
 wPayDayMoney:: ds 3
@@ -556,14 +560,13 @@ wcace:: ds 1
 
 	ds 1
 
-wcad0:: ds 1
-wcad1:: ds 1
+wEnemyBackupDVs:: dw
 
 wAlreadyDisobeyed::
 wcad2:: ds 1
 
-wcad3:: ds 1
-wcad4:: ds 1
+wDisabledMove:: ds 1
+wEnemyDisabledMove:: ds 1
 wcad5:: ds 1
 
 UNION
@@ -573,26 +576,30 @@ NEXTU
 wcad6:: ds 1
 wcad7:: ds 1
 ENDU
-wcad8:: ds 1
-wcad9:: ds 1
-wcada:: ds 1
-wcadb:: ds 1
-wcadc:: ds 1
+
+wEnemyMinimized:: db
+wAlreadyFailed:: db
+
+wBattleParticipantsIncludingFainted:: db
+wBattleLowHealthAlarm:: db
+wPlayerMinimized:: db
 
 wPlayerScreens::
-wcadd:: ds 1
+wcadd:: db
 
-wEnemySafeguardCount::
-wcade:: ds 1
+wEnemyScreens::
+wcade:: db
 
-wcadf:: ds 1
-wcae0:: ds 1
-wcae1:: ds 1
-wBattleWeather:: ds 1
-wcae3:: ds 1
+wPlayerSafeguardCount:: db
+wEnemySafeguardCount:: db
+
+; There's got to be a better name for this...
+wMonSGBPaletteFlagsBuffer:: db
+
+wBattleWeather:: db
+wWeatherCount:: db
 
 ENDU
-
 
 
 
@@ -762,6 +769,7 @@ wDefaultSpawnPoint::
 UNION
 
 wcc3a::
+wChargeMoveNum::
 wMovementBufferCount:: db
 
 wcc3b::
@@ -823,7 +831,10 @@ wFXAnimID:: dw
 
 wPlaceBallsX:: db
 wPlaceBallsY:: db
-wccc4:: ds 1
+
+; Both RBY and final GSC write directly to wLowHealth, this prototype writes it here.
+; TODO: Investigate how it actually functions.
+wLowHealthAlarmBuffer:: db
 
 SECTION "CCC7", WRAM0[$CCC7]
 
@@ -843,8 +854,8 @@ wSGB:: db
 SECTION "CCD0", WRAM0[$CCD0]
 
 wccd0:: ds 1
-wccd1:: ds 1
-wccd2:: ds 1
+wPlayerHPPal:: ds 1
+wEnemyHPPal:: ds 1
 wccd3:: ds 1
 
 	ds 5
@@ -852,7 +863,8 @@ wccd3:: ds 1
 wccd9:: ds 1
 
 SECTION "CCE1", WRAM0[$CCE1]
-
+; Todo: Replace instances of wcce1-f4 with "wSGBPals + #"
+wSGBPals:: ; ds PALPACKET_LENGTH * 3
 wcce1:: ds 1
 wcce2:: ds 1
 wcce3:: ds 1
@@ -879,13 +891,17 @@ wcd1d:: ds 8
 
 	ds 1
 
-wStringBuffer1:: ds 1 ; How long is this?
+UNION
+wStringBuffer1:: ds STRING_BUFFER_LENGTH
+NEXTU
+	ds 1
 wcd27:: ds 1
 
 	ds 1
 
 wcd29:: ds 1
 wcd2a:: ds 1
+ENDU
 SECTION "CD31", WRAM0[$CD31]
 
 UNION
@@ -897,7 +913,7 @@ NEXTU
 wHPBarTempHP:: dw
 
 NEXTU
-wStringBuffer2:: db ; How long is this?
+wStringBuffer2:: ds STRING_BUFFER_LENGTH
 
 NEXTU
 
@@ -916,7 +932,7 @@ wBackpackAndKeyItemsCursor:: db
 wBattleMenuCursorPosition::
 wStartmenuCursor:: db
 
-wcd40:: db
+wCurMoveNum:: db
 
 wCurBattleMon::
 wcd41:: db
@@ -1006,7 +1022,7 @@ wcdb6:: ds 1
 
 	ds 2
 
-wcdb9:: ds 1
+wPartyMenuActionText:: ds 1
 
 wItemAttributeValue:: db
 
@@ -1028,6 +1044,7 @@ wPrevWarp:: db
 wcdc2:: db
 
 UNION
+wSkipMovesBeforeLevelUp::
 wListMovesLineSpacing::
 wFieldMoveScriptID:: db
 wMapBlocksAddress:: dw
@@ -1045,17 +1062,15 @@ wHPBarDelta:: dw
 wHPBarHPDifference:: dw
 
 NEXTU
+; switch AI
+wEnemyEffectivenessVsPlayerMons:: flag_array PARTY_LENGTH
+wPlayerEffectivenessVsEnemyMons:: flag_array PARTY_LENGTH	
+
+NEXTU
 
 wcdc3:: db
 wcdc4:: db
 wcdc5:: db
-
-NEXTU
-
-wEnemyEffectivenessVsPlayerMons:: db
-wPlayerEffectivenessVsEnemyMons:: db
-
-	ds 1
 
 wcdc6:: db
 wcdc7:: db
@@ -1069,22 +1084,7 @@ wBattleHUDTiles:: ds PARTY_LENGTH
 
 ENDU
 
-
-
-
-
-UNION
-
 wLinkBattleRNs:: ds 10
-
-NEXTU
-
-	ds 7
-
-wcdd4: ds 1
-
-	ds 1
-ENDU
 
 wTempEnemyMonSpecies:: ds 1
 wTempBattleMonSpecies:: ds 1
@@ -1097,12 +1097,12 @@ wEnemyMonCatchRate:: db
 wcdff:: ds 1
 wBattleMode:: db
 wce01:: ds 1
-wce02:: ds 1
+wOtherTrainerClass:: ds 1
 wBattleType::
 wce03:: ds 1
 wce04:: ds 1
-wce05:: ds 1
-wce06:: ds 1
+wOtherTrainerID:: ds 1
+wBattleResult:: ds 1
 
 wMonHeader::
 
@@ -1166,6 +1166,7 @@ wMonHLearnset::
 ; bit field
 	flag_array 50 + 5 ; size = 7
 	ds 1
+wMonHeaderEnd::
 
 SECTION "CE26", WRAM0[$CE26]
 wce26:: ds 1
@@ -1173,7 +1174,6 @@ wce26:: ds 1
 	ds 2
 
 wCurDamage:: dw
-;wce2a:: ds 1
 
 	ds 2
 
@@ -1184,14 +1184,16 @@ wce32:: ds 1
 wce33:: ds 1
 wce34:: ds 1
 wce35:: ds 1
-wce36:: ds 1
+wBattleHasJustStarted:: db
 
 wNamedObjectIndexBuffer::
 wNumSetBits::
+wTextDecimalByte::
 wMoveGrammar::
 wTypeMatchup::
 wCurType::
 wTempByteValue::
+wApplyStatLevelMultipliersToEnemy::
 wce37::
 	db
 
@@ -1223,6 +1225,14 @@ wcd3f: ds 1
 SECTION "CE5F", WRAM0[$CE5F]
 
 wce5f:: ; debug menu writes $41 to it
+wOptions::
+; bit 0-2: number of frames to delay when printing text
+;   fast 1; mid 3; slow 5
+; bit 3: ?
+; bit 4: no text delay
+; bit 5: stereo off/on
+; bit 6: battle style shift/set
+; bit 7: battle scene off/on
 	db
 
 wce60::
@@ -1392,7 +1402,7 @@ wd29e::	db
 wd2a0:: db
 
 SECTION "D35F", WRAM0[$D35F]
-wOptions:: db
+wd35f:: db
 
 SECTION "D39D", WRAM0[$D39D]
 wd39d:: db

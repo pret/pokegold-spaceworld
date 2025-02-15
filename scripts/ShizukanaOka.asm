@@ -53,9 +53,9 @@ ShizukanaOkaTrainer2:
 	ld hl, wd3a5
 	set 1, [hl]
 	ld a, TRAINER_SCHOOLBOY
-	ld [wce02], a
+	ld [wOtherTrainerClass], a
 	ld a, SCHOOLBOY_TETSUYA
-	ld [wce05], a
+	ld [wOtherTrainerID], a
 	call Function38d8
 	ret
 .Trainer2Won ;Already won
@@ -72,9 +72,9 @@ ShizukanaOkaTrainer3:
 	ld hl, wd3a5
 	set 2, [hl]
 	ld a, TRAINER_BUG_CATCHER_BOY
-	ld [wce02], a
+	ld [wOtherTrainerClass], a
 	ld a, BUG_CATCHER_BOY_JUNICHI
-	ld [wce05], a
+	ld [wOtherTrainerID], a
 	call Function38d8
 	ret
 .Trainer3Won ;Already won
@@ -91,9 +91,9 @@ ShizukanaOkaTrainer4:
 	ld hl, wd3a5
 	set 3, [hl]
 	ld a, TRAINER_FIREBREATHER
-	ld [wce02], a
+	ld [wOtherTrainerClass], a
 	ld a, FIREBREATHER_AKITO
-	ld [wce05], a
+	ld [wOtherTrainerID], a
 	call Function38d8
 	ret
 .Trainer4Won ;Already won
@@ -110,9 +110,9 @@ ShizukanaOkaTrainer5:
 	ld hl, wd3a5
 	set 4, [hl]
 	ld a, TRAINER_BEAUTY
-	ld [wce02], a
+	ld [wOtherTrainerClass], a
 	ld a, BEAUTY_MEGUMI
-	ld [wce05], a
+	ld [wOtherTrainerID], a
 	call Function38d8
 	ret
 .Trainer5Won ;Already won
@@ -129,9 +129,9 @@ ShizukanaOkaTrainer6:
 	ld hl, wd3a5
 	set 5, [hl]
 	ld a, TRAINER_BUG_CATCHER_BOY
-	ld [wce02], a
+	ld [wOtherTrainerClass], a
 	ld a, BUG_CATCHER_BOY_SOUSUKE
-	ld [wce05], a
+	ld [wOtherTrainerID], a
 	call Function38d8
 	ret
 .Trainer6Won ;Already won

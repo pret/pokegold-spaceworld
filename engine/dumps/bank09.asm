@@ -1352,7 +1352,6 @@ MonMenuOptionStrings:
 	db "エラー！@"		; Error!
 
 Unreferenced_FieldMoveList:
-; Possibly how the 
 	db MOVE_UPROOT, MONMENUITEM_CUT
 	db MOVE_WIND_RIDE, MONMENUITEM_FLY
 	db MOVE_WATER_SPORT, MONMENUITEM_SURF

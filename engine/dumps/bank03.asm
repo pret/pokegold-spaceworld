@@ -886,7 +886,7 @@ Functiond8b6:
 	push de
 	xor a
 	ld [wFieldMoveScriptID], a
-	predef Function42252
+	predef FillMoves
 	pop de
 	inc de
 	inc de
@@ -1679,8 +1679,8 @@ Functionde79:
 	ld [wTempEnemyMonSpecies], a
 	xor a
 	ld [wEnemySubStatus5], a
-	ld hl, AddPokemonToBox
-	ld a, BANK(AddPokemonToBox)
+	ld hl, LoadEnemyMon
+	ld a, BANK(LoadEnemyMon)
 	call FarCall_hl
 	call Functiondd5c
 	ld de, wBoxMonNicknames
@@ -3191,7 +3191,7 @@ PokeBallEffect:
 	jr .sub_ea55
 .sub_ea48
 	set 3, [hl]
-	ld hl, wcad0
+	ld hl, wEnemyBackupDVs
 	ld a, [wEnemyMonDVs]
 	ld [hli], a
 	ld a, [wEnemyMonDVs + 1]
@@ -3201,8 +3201,8 @@ PokeBallEffect:
 	ld [wCurPartySpecies], a
 	ld a, [wEnemyMonLevel]
 	ld [wCurPartyLevel], a
-	ld hl, AddPokemonToBox
-	ld a, BANK(AddPokemonToBox)
+	ld hl, LoadEnemyMon
+	ld a, BANK(LoadEnemyMon)
 	call FarCall_hl
 	pop hl
 	pop af
@@ -3399,8 +3399,8 @@ Textec69:
 
 ReturnToBattle_UseBall:
 	call ClearPalettes
-	ld hl, Call_LoadBattleGraphics
-	ld a, BANK(Call_LoadBattleGraphics)
+	ld hl, Call_LoadBattleFontsHPBar
+	ld a, BANK(Call_LoadBattleFontsHPBar)
 	call FarCall_hl
 	call GetMemSGBLayout
 	call CloseWindow
@@ -3472,7 +3472,7 @@ Functioned00:
 	ld a, [wBattleMode]
 	and a
 	jp nz, IsntTheTimeMessage
-	ld a, $05
+	ld a, PARTYMENUACTION_EVO_STONE
 	call Functionf0cf
 	jr c, .sub_ed32
 	ld a, $01
@@ -3500,7 +3500,7 @@ Functioned37:
 	ld a, [wBattleMode]
 	and a
 	jp nz, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionedbe
 	ld a, $00
@@ -3634,7 +3634,7 @@ Functionee42:
 	ld a, [wBattleMode]
 	and a
 	jp nz, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionedbe
 	ld a, $00
@@ -3705,8 +3705,8 @@ Functionee42:
 	ld a, [hl]
 	adc b
 	ld [hl], a
-	ld a, $f8
-	ld [wcdb9], a
+	ld a, PARTYMENUTEXT_LEVEL_UP
+	ld [wPartyMenuActionText], a
 	callfar Function5087e
 	xor a
 	ld [wMonType], a
@@ -3732,7 +3732,7 @@ Functionef02:
 	ld a, [wPartyCount]
 	and a
 	jp z, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionf100
 	ld a, [wCurPartySpecies]
@@ -3748,7 +3748,7 @@ Functionef17:
 	xor a
 	ld [hl], a
 	ld a, b
-	ld [wcdb9], a
+	ld [wPartyMenuActionText], a
 	call Functionf113
 	jr nc, .sub_ef50
 	xor a
@@ -3802,7 +3802,7 @@ Functionef8c:
 	ld a, [wPartyCount]
 	and a
 	jp z, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionf100
 	call Functionf165
@@ -3813,7 +3813,7 @@ Functionef8c:
 	ld a, [wCurPartyMon]
 	ld c, a
 	ld d, $00
-	ld hl, wcada
+	ld hl, wBattleParticipantsIncludingFainted
 	ld b, $02
 	predef SmallFarFlagAction
 	ld a, c
@@ -3821,12 +3821,12 @@ Functionef8c:
 	jr z, .sub_efc9
 	ld a, [wCurPartyMon]
 	ld c, a
-	ld hl, wca37
+	ld hl, wBattleParticipantsNotFainted
 	ld b, $01
 	predef SmallFarFlagAction
 .sub_efc9
 	xor a
-	ld [wccc4], a
+	ld [wLowHealthAlarmBuffer], a
 	ld a, [wCurItem]
 	cp $27
 	jr z, .sub_efd9
@@ -3836,8 +3836,8 @@ Functionef8c:
 	call Functionf127
 .sub_efdc
 	call Functionf0b0
-	ld a, $f7
-	ld [wcdb9], a
+	ld a, PARTYMENUTEXT_REVIVE
+	ld [wPartyMenuActionText], a
 	call Functionf0d8
 	call Functionf7a2
 	jp Functionf104
@@ -3849,7 +3849,7 @@ Functionefee:
 	ld a, [wPartyCount]
 	and a
 	jp z, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionf100
 	call Functionf165
@@ -3866,7 +3866,7 @@ Functionefee:
 	jp Functionef17
 .sub_f01a
 	xor a
-	ld [wccc4], a
+	ld [wLowHealthAlarmBuffer], a
 	call Functionf130
 	ld a, $20
 	call GetPartyParamLocation
@@ -3889,8 +3889,8 @@ Functionefee:
 	ld [wBattleMonHP + 1], a
 .sub_f049
 	call Functionf0b0
-	ld a, $f5
-	ld [wcdb9], a
+	ld a, PARTYMENUTEXT_HEAL_HP
+	ld [wPartyMenuActionText], a
 	call Functionf0d8
 	call Functionf7a2
 	jp Functionf104
@@ -3902,7 +3902,7 @@ Functionf05b:
 	ld a, [wPartyCount]
 	and a
 	jp z, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionf100
 	call Functionf165
@@ -3910,7 +3910,7 @@ Functionf05b:
 	call Functionf171
 	jp nc, Functionf0fb
 	xor a
-	ld [wccc4], a
+	ld [wLowHealthAlarmBuffer], a
 	ld a, [wCurItem]
 	cp $0f
 	jr nz, .sub_f086
@@ -3930,8 +3930,8 @@ Functionf05b:
 	ld [wBattleMonHP + 1], a
 .sub_f09e
 	call Functionf0b0
-	ld a, $f5
-	ld [wcdb9], a
+	ld a, PARTYMENUTEXT_HEAL_HP
+	ld [wPartyMenuActionText], a
 	call Functionf0d8
 	call Functionf7a2
 	jp Functionf104
@@ -3954,7 +3954,7 @@ Functionf0b0:
 	ret
 
 Functionf0cf:
-	ld [wcdb9], a
+	ld [wPartyMenuActionText], a
 	predef PartyMenuInBattle_Setup
 	ret
 
@@ -4182,8 +4182,8 @@ Functionf218:
 	ld b, a
 .sub_f21d
 	push bc
-	ld a, $01
-	ld [wcdb9], a
+	ld a, PARTYMENUACTION_HEALING_ITEM
+	ld [wPartyMenuActionText], a
 	predef PartyMenuInBattle
 	pop bc
 	jr c, .sub_f28c
@@ -4232,8 +4232,8 @@ Functionf218:
 	xor a
 	ldh [hBGMapMode], a
 	call ClearTileMap
-	ld a, $f5
-	ld [wcdb9], a
+	ld a, PARTYMENUTEXT_HEAL_HP
+	ld [wPartyMenuActionText], a
 	predef Function5081f
 	ld c, $c8
 	call Function3872
@@ -4298,8 +4298,8 @@ Functionf2eb:
 	ld a, [wBattleMode]
 	dec a
 	jp nz, IsntTheTimeMessage
-	ld a, $01
-	ld [wce06], a
+	ld a, LOSE
+	ld [wBattleResult], a
 	jp Functionf793
 
 Functionf2fa:
@@ -4345,7 +4345,7 @@ Functionf318:
 	ldh [hBattleTurn], a
 ; wrong bank
 	ld a, $f
-	ld hl, Function365bf
+	ld hl, BattleCommand_StatUp
 	call FarCall_hl
 	pop hl
 	pop af
@@ -4383,7 +4383,7 @@ Functionf355:
 	jp z, PrintText
 	ld hl, Textf3ec
 	call PrintText
-	ld a, [wccc4]
+	ld a, [wLowHealthAlarmBuffer]
 	and $80
 	jr nz, .sub_f391
 .sub_f391
@@ -4566,7 +4566,7 @@ Functionf4d1:
 	ld a, [wCurItem]
 	ld [wMovementBufferCount], a
 .sub_f4d7
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jr nc, .sub_f4e1
 	jp Functionf5f3
@@ -4805,7 +4805,7 @@ Functionf678:
 	ld de, wcd11
 	ld bc, $0008
 	call CopyBytes
-	ld a, $03
+	ld a, PARTYMENUACTION_TEACH_TMHM
 	call Functionf0cf
 	push af
 	ld hl, wcd11
@@ -5267,7 +5267,7 @@ Functionfaba:
 	ld a, [wd8a2]
 	cp $02
 	jp nc, .sub_fbd6
-	add $06
+	add PARTYMENUACTION_GIVE_MON
 	call Functionf0cf
 	jp c, Functionfbde
 	ld a, [wCurPartySpecies]

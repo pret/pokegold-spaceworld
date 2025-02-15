@@ -899,7 +899,7 @@ StartMenu_Party:
 
 HandleSelectedPokemon:
 	xor a
-	ld [wcdb9], a
+	ld [wPartyMenuActionText], a
 	ld [wSelectedSwapPosition], a
 	predef PartyMenuInBattle
 	jr PartyPrompt.partypromptreturn
@@ -909,8 +909,8 @@ PartyPrompt:
 	inc a
 	ld [wSelectedSwapPosition], a
 	callfar Function8f1f2
-	ld a, 4
-	ld [wcdb9], a
+	ld a, PARTYMENUACTION_MOVE
+	ld [wPartyMenuActionText], a
 	predef PartyMenuInBattle
 .partypromptreturn
 	jr c, .return
@@ -1493,7 +1493,7 @@ PokeSummary:
 	call ClearBox
 	hlcoord 3, 1
 	predef Function508c4
-	ld hl, wccd1
+	ld hl, wPlayerHPPal
 	call SetHPPal
 	ld b, $0E
 	call GetSGBLayout
