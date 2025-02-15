@@ -13,10 +13,10 @@ Function1130b:
 	cp MONS_PER_BOX
 	jr nc, .fullbox
 	xor a
-	ld [wca44], a
+	ld [wEnemySubStatus5], a
 	ld a, [wCurPartySpecies]
 	ld [wTempEnemyMonSpecies], a
-	callfar AddPokemonToBox
+	callfar LoadEnemyMon
 	call RecievePokemon
 	predef Functiondd5c
 	and $7F

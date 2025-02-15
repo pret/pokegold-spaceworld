@@ -55,7 +55,7 @@ asm_2d33e:
 	ld hl, wVramState
 	res 0, [hl]
 	ld a, $3
-	ld [wcdb9], a
+	ld [wPartyMenuActionText], a
 	ld a, $36
 	call Predef
 	push af

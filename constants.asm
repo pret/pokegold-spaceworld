@@ -14,6 +14,9 @@ INCLUDE "macros/scripts.asm"
 INCLUDE "macros/queue.asm"
 INCLUDE "macros/maps.asm"
 
+INCLUDE "macros/battle_commands.asm"
+INCLUDE "macros/asserts.asm"
+
 INCLUDE "constants/audio_constants.asm"
 INCLUDE "constants/gfx_constants.asm"
 INCLUDE "constants/hardware_constants.asm"

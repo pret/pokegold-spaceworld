@@ -39,23 +39,24 @@
 0E:4220 Function38220
 0E:4340 Function38340
 0E:434E Function3834e
-0E:43CD Function383cd
-0E:43FD Function383fd
-0E:4431 Function38431
+;0E:43CD DrawPlayerHUDBorder
+;0E:43FD DrawEnemyHUDBorder
+;0E:4415 PlaceHUDBorderTiles
+;0E:4431 Function38431
 0E:44D4 Function384d4
 0E:4F45 Function38f45
-0E:50E9 Function390e9
+0E:50E9 Battle_GetTrainerName
 
 10:4000 Function40000
 10:40A6 ShowPokedexMenu
 10:4AC7 Function40ac7
 10:4B07 Function40b07
-10:4B45 ConvertMon_2to1
-10:4B5C ConvertMon_1to2
+;10:4B45 ConvertMon_2to1
+;10:4B5C ConvertMon_1to2
 10:5F93 Function4af93
 10:5FA1 Function41fa1
 10:61F8 Function421f8
-10:6252 Function42252
+10:6252 FillMoves
 10:58B8 Data418b8
 
 14:7274 Unknown53274
@@ -140,7 +141,7 @@
 3C:5909 CryHeader_f1909
 3C:5912 CryHeader_f1912
 
-3E:40D6 Functionf80d6
+;3E:40D6 LoadHPBarr
 
 3F:40E9 InGameDebugMenu
 3F:4E3E Functionfce3e

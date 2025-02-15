@@ -1,3 +1,35 @@
+DEF TEXT_DELAY_MASK EQU %111
+	const_def 3
+	const SGB_BORDER     ; 3
+	const NO_TEXT_SCROLL ; 4
+	const STEREO         ; 5
+	const BATTLE_SHIFT   ; 6
+	const BATTLE_SCENE   ; 7
+
+DEF TEXT_DELAY_FAST EQU %001 ; 1
+DEF TEXT_DELAY_MED  EQU %011 ; 3
+DEF TEXT_DELAY_SLOW EQU %101 ; 5
+
+; wTextboxFrame::
+	const_def
+	const FRAME_1 ; 0
+	const FRAME_2 ; 1
+	const FRAME_3 ; 2
+	const FRAME_4 ; 3
+	const FRAME_5 ; 4
+	const FRAME_6 ; 5
+	const FRAME_7 ; 6
+	const FRAME_8 ; 7
+DEF NUM_FRAMES EQU const_value
+
+; wMonType::
+	const_def
+	const PARTYMON   ; 0
+	const OTPARTYMON ; 1
+	const BOXMON     ; 2
+	const TEMPMON    ; 3
+	const WILDMON    ; 4
+
 ; wWalkingDirection::
 	const_def -1
 	const STANDING ; -1
@@ -7,13 +39,10 @@
 	const RIGHT    ; 3
 DEF NUM_DIRECTIONS EQU const_value
 
-; wMonType::
-	const_def
-	const PARTYMON   ; 0
-	const OTPARTYMON ; 1
-	const BOXMON     ; 2
-	const TEMPMON    ; 3
-	const WILDMON    ; 4
+DEF DOWN_MASK  EQU 1 << DOWN
+DEF UP_MASK    EQU 1 << UP
+DEF LEFT_MASK  EQU 1 << LEFT
+DEF RIGHT_MASK EQU 1 << RIGHT
 
 ; wJohtoBadges:: ; d163
 	const_def

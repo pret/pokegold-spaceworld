@@ -886,7 +886,7 @@ Functiond8b6:
 	push de
 	xor a
 	ld [wFieldMoveScriptID], a
-	predef Function42252
+	predef FillMoves
 	pop de
 	inc de
 	inc de
@@ -993,7 +993,7 @@ Functiond8b6:
 	ld c, a
 	xor a
 	ld b, a
-	call Functiondf91
+	call CalcMonStatC
 	ldh a, [hDividend+2]
 	ld [de], a
 	inc de
@@ -1053,7 +1053,7 @@ Functiond8b6:
 	ld bc, $000a
 	add hl, bc
 	ld b, $00
-	call Functiondf7d
+	call CalcMonStats
 .sub_da26
 	scf
 	ret
@@ -1303,7 +1303,7 @@ Functiondac8:
 	add hl, bc
 	push bc
 	ld b, $01
-	call Functiondf7d
+	call CalcMonStats
 	pop bc
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
@@ -1402,7 +1402,7 @@ Functiondc16:
 	ld bc, hFFEB
 	add hl, bc
 	ld b, $01
-	call Functiondf7d
+	call CalcMonStats
 	pop hl
 	pop de
 	ld a, [hli]
@@ -1678,9 +1678,9 @@ Functionde79:
 	ld a, [wCurPartySpecies]
 	ld [wTempEnemyMonSpecies], a
 	xor a
-	ld [wca44], a
-	ld hl, AddPokemonToBox
-	ld a, BANK(AddPokemonToBox)
+	ld [wEnemySubStatus5], a
+	ld hl, LoadEnemyMon
+	ld a, BANK(LoadEnemyMon)
 	call FarCall_hl
 	call Functiondd5c
 	ld de, wBoxMonNicknames
@@ -1805,86 +1805,101 @@ Functiondecd:
 .sub_df7a
 	jp CopyDataUntil
 
-Functiondf7d:
+CalcMonStats:
 	ld c, $00
-.sub_df7f
+.loop
 	inc c
-	call Functiondf91
-	ldh a, [hDividend+2]
+	call CalcMonStatC
+	ldh a, [hMultiplicand + 1]
 	ld [de], a
 	inc de
-	ldh a, [hDividend+3]
+	ldh a, [hMultiplicand + 2]
 	ld [de], a
 	inc de
 	ld a, c
-	cp $06
-	jr nz, .sub_df7f
+	cp STAT_SDEF
+	jr nz, .loop
 	ret
 
-Functiondf91:
+CalcMonStatC:
+; 'c' is 1-6 and points to the BaseStat
+; 1: HP
+; 2: Attack
+; 3: Defense
+; 4: Speed
+; 5: SpAtk
+; 6: SpDef
 	push hl
 	push de
 	push bc
 	ld a, b
 	ld d, a
+
 	push hl
-	ld hl, wMonHBaseHP
+	ld hl, wMonHBaseStats
 	dec hl
-	ld b, $00
+	ld b, $0
 	add hl, bc
 	ld a, [hl]
 	ld e, a
 	pop hl
 	push hl
 	ld a, c
-	cp $06
-	jr nz, .sub_dfa9
+; Special defense shares stat exp with special attack
+	cp STAT_SDEF
+	jr nz, .not_spdef
 	dec hl
 	dec hl
-.sub_dfa9
+	
+.not_spdef
 	sla c
 	ld a, d
 	and a
-	jr z, .sub_dfce
+	jr z, .no_stat_exp
 	add hl, bc
-.sub_dfb0
+
+.sqrt_loop
 	xor a
 	ldh [hMultiplicand], a
-	ldh [hDividend+2], a
+	ldh [hMultiplicand + 1], a
 	inc b
 	ld a, b
-	cp $ff
-	jr z, .sub_dfce
-	ldh [hDividend+3], a
-	ldh [hDivisor], a
+	cp -1
+	jr z, .no_stat_exp
+
+	ldh [hMultiplicand + 2], a
+	ldh [hMultiplier], a
 	call Multiply
+
 	ld a, [hld]
 	ld d, a
-	ldh a, [hDividend+3]
+	ldh a, [hProduct + 3]
 	sub d
 	ld a, [hli]
 	ld d, a
-	ldh a, [hDividend+2]
+	ldh a, [hProduct + 2]
 	sbc d
-	jr c, .sub_dfb0
-.sub_dfce
+	jr c, .sqrt_loop
+
+.no_stat_exp
 	srl c
 	pop hl
 	push bc
-	ld bc, $000b
+	ld bc, MON_DVS - MON_HP_EXP + 1
 	add hl, bc
 	pop bc
 	ld a, c
-	cp $02
-	jr z, .sub_e00c
-	cp $03
-	jr z, .sub_e013
-	cp $04
-	jr z, .sub_e018
-	cp $05
-	jr z, .sub_e020
-	cp $06
-	jr z, .sub_e020
+	cp STAT_ATK
+	jr z, .Attack
+	cp STAT_DEF
+	jr z, .Defense
+	cp STAT_SPD
+	jr z, .Speed
+	cp STAT_SATK
+	jr z, .Special
+	cp STAT_SDEF
+	jr z, .Special
+; DV_HP = (DV_ATK & 1) << 3 | (DV_DEF & 1) << 2 | (DV_SPD & 1) << 1 | (DV_SPC & 1)
 	push bc
 	ld a, [hl]
 	swap a
@@ -1909,100 +1924,114 @@ Functiondf91:
 	and $01
 	add b
 	pop bc
-	jr .sub_e024
-.sub_e00c
+	jr .GotDV
+
+.Attack
 	ld a, [hl]
 	swap a
-	and $0f
-	jr .sub_e024
-.sub_e013
+	and $f
+	jr .GotDV
+
+.Defense
 	ld a, [hl]
-	and $0f
-	jr .sub_e024
-.sub_e018
+	and $f
+	jr .GotDV
+
+.Speed
 	inc hl
 	ld a, [hl]
 	swap a
-	and $0f
-	jr .sub_e024
-.sub_e020
+	and $f
+	jr .GotDV
+
+.Special
 	inc hl
 	ld a, [hl]
-	and $0f
-.sub_e024
+	and $f
+
+.GotDV
 	ld d, $00
 	add e
 	ld e, a
-	jr nc, .sub_e02b
+	jr nc, .no_overflow_1
 	inc d
-.sub_e02b
+
+.no_overflow_1
 	sla e
 	rl d
 	srl b
 	srl b
 	ld a, b
 	add e
-	jr nc, .sub_e038
+	jr nc, .no_overflow_2
 	inc d
-.sub_e038
-	ldh [hDividend+3], a
+	
+.no_overflow_2
+	ldh [hMultiplicand + 2], a
 	ld a, d
-	ldh [hDividend+2], a
+	ldh [hMultiplicand + 1], a
 	xor a
 	ldh [hMultiplicand], a
 	ld a, [wCurPartyLevel]
-	ldh [hDivisor], a
+	ldh [hMultiplier], a
 	call Multiply
-	ldh a, [hMultiplicand]
+
+	ldh a, [hProduct + 1]
 	ldh [hDividend], a
-	ldh a, [hDividend+2]
-	ldh [hMultiplicand], a
-	ldh a, [hDividend+3]
-	ldh [hDividend+2], a
-	ld a, $64
+	ldh a, [hMultiplicand + 1]
+	ldh [hDividend + 1], a
+	ldh a, [hMultiplicand + 2]
+	ldh [hDividend + 2], a
+	ld a, MAX_LEVEL
 	ldh [hDivisor], a
-	ld a, $03
+	ld a, 3
 	ld b, a
 	call Divide
+
 	ld a, c
-	cp $01
-	ld a, $05
-	jr nz, .sub_e077
+	cp STAT_HP
+	ld a, STAT_MIN_NORMAL
+	jr nz, .not_hp
 	ld a, [wCurPartyLevel]
 	ld b, a
 	ldh a, [hDividend+3]
 	add b
 	ldh [hDividend+3], a
-	jr nc, .sub_e075
+	jr nc, .no_overflow_3
 	ldh a, [hDividend+2]
 	inc a
 	ldh [hDividend+2], a
-.sub_e075
-	ld a, $0a
-.sub_e077
+
+.no_overflow_3
+	ld a, STAT_MIN_HP
+
+.not_hp
 	ld b, a
 	ldh a, [hDividend+3]
 	add b
 	ldh [hDividend+3], a
-	jr nc, .sub_e084
+	jr nc, .no_overflow_4
 	ldh a, [hDividend+2]
 	inc a
 	ldh [hDividend+2], a
-.sub_e084
+
+.no_overflow_4
 	ldh a, [hDividend+2]
-	cp $04
-	jr nc, .sub_e094
-	cp $03
-	jr c, .sub_e09c
+	cp HIGH(MAX_STAT_VALUE + 1) + 1
+	jr nc, .max_stat
+	cp HIGH(MAX_STAT_VALUE + 1)
+	jr c, .stat_value_okay
 	ldh a, [hDividend+3]
-	cp $e8
-	jr c, .sub_e09c
-.sub_e094
-	ld a, $03
+	cp LOW(MAX_STAT_VALUE + 1)
+	jr c, .stat_value_okay
+
+.max_stat
+	ld a, HIGH(MAX_STAT_VALUE)
 	ldh [hDividend+2], a
-	ld a, $e7
+	ld a, LOW(MAX_STAT_VALUE)
 	ldh [hDividend+3], a
-.sub_e09c
+
+.stat_value_okay
 	pop bc
 	pop de
 	pop hl
@@ -3055,16 +3084,16 @@ PokeBallEffect:
 	sub c
 	ldh [hDivisor], a
 	xor a
-	ldh [hDividend], a
-	ldh [hMultiplicand], a
-	ldh [hQuotient+1], a
+	ldh [hQuotient], a
+	ldh [hQuotient + 1], a
+	ldh [hQuotient + 2], a
 	call Multiply
 	pop bc
 	ld a, b
 	ldh [hDivisor], a
 	ld b, $04
 	call Divide
-	ldh a, [hQuotient+2]
+	ldh a, [hQuotient + 3]
 	and a
 	jr nz, .sub_e998
 	ld a, $01
@@ -3087,8 +3116,8 @@ PokeBallEffect:
 	ld d, a
 	push de
 	ld a, [wBattleMonItem]
-	ld hl, Function37e3d
-	ld a, BANK(Function37e3d)
+	ld hl, GetItemHeldEffect
+	ld a, BANK(GetItemHeldEffect)
 	call FarCall_hl
 	ld a, b
 	cp $46
@@ -3154,7 +3183,7 @@ PokeBallEffect:
 	ld a, [hl]
 	push af
 	push hl
-	ld hl, wca44
+	ld hl, wEnemySubStatus5
 	bit 3, [hl]
 	jr z, .sub_ea48
 	ld a, $84
@@ -3162,7 +3191,7 @@ PokeBallEffect:
 	jr .sub_ea55
 .sub_ea48
 	set 3, [hl]
-	ld hl, wcad0
+	ld hl, wEnemyBackupDVs
 	ld a, [wEnemyMonDVs]
 	ld [hli], a
 	ld a, [wEnemyMonDVs + 1]
@@ -3172,8 +3201,8 @@ PokeBallEffect:
 	ld [wCurPartySpecies], a
 	ld a, [wEnemyMonLevel]
 	ld [wCurPartyLevel], a
-	ld hl, AddPokemonToBox
-	ld a, BANK(AddPokemonToBox)
+	ld hl, LoadEnemyMon
+	ld a, BANK(LoadEnemyMon)
 	call FarCall_hl
 	pop hl
 	pop af
@@ -3370,8 +3399,8 @@ Textec69:
 
 ReturnToBattle_UseBall:
 	call ClearPalettes
-	ld hl, Call_LoadBattleGraphics
-	ld a, BANK(Call_LoadBattleGraphics)
+	ld hl, Call_LoadBattleFontsHPBar
+	ld a, BANK(Call_LoadBattleFontsHPBar)
 	call FarCall_hl
 	call GetMemSGBLayout
 	call CloseWindow
@@ -3443,7 +3472,7 @@ Functioned00:
 	ld a, [wBattleMode]
 	and a
 	jp nz, IsntTheTimeMessage
-	ld a, $05
+	ld a, PARTYMENUACTION_EVO_STONE
 	call Functionf0cf
 	jr c, .sub_ed32
 	ld a, $01
@@ -3471,7 +3500,7 @@ Functioned37:
 	ld a, [wBattleMode]
 	and a
 	jp nz, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionedbe
 	ld a, $00
@@ -3532,7 +3561,7 @@ Functionedab:
 	ld bc, $000a
 	add hl, bc
 	ld b, $01
-	predef_jump Functiondf7d
+	predef_jump CalcMonStats
 
 Functionedbe:
 	xor a
@@ -3605,7 +3634,7 @@ Functionee42:
 	ld a, [wBattleMode]
 	and a
 	jp nz, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionedbe
 	ld a, $00
@@ -3642,11 +3671,11 @@ Functionee42:
 	push hl
 	ld bc, $0008
 	add hl, bc
-	ldh a, [hMultiplicand]
+	ldh a, [hQuotient + 1]
 	ld [hli], a
-	ldh a, [hQuotient+1]
+	ldh a, [hQuotient + 2]
 	ld [hli], a
-	ldh a, [hQuotient+2]
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	pop hl
 	push hl
@@ -3676,8 +3705,8 @@ Functionee42:
 	ld a, [hl]
 	adc b
 	ld [hl], a
-	ld a, $f8
-	ld [wcdb9], a
+	ld a, PARTYMENUTEXT_LEVEL_UP
+	ld [wPartyMenuActionText], a
 	callfar Function5087e
 	xor a
 	ld [wMonType], a
@@ -3703,7 +3732,7 @@ Functionef02:
 	ld a, [wPartyCount]
 	and a
 	jp z, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionf100
 	ld a, [wCurPartySpecies]
@@ -3719,14 +3748,14 @@ Functionef17:
 	xor a
 	ld [hl], a
 	ld a, b
-	ld [wcdb9], a
+	ld [wPartyMenuActionText], a
 	call Functionf113
 	jr nc, .sub_ef50
 	xor a
 	ld [wBattleMonStatus], a
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 	res 0, [hl]
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	res 0, [hl]
 	ld a, $24
 	call GetPartyParamLocation
@@ -3773,7 +3802,7 @@ Functionef8c:
 	ld a, [wPartyCount]
 	and a
 	jp z, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionf100
 	call Functionf165
@@ -3784,7 +3813,7 @@ Functionef8c:
 	ld a, [wCurPartyMon]
 	ld c, a
 	ld d, $00
-	ld hl, wcada
+	ld hl, wBattleParticipantsIncludingFainted
 	ld b, $02
 	predef SmallFarFlagAction
 	ld a, c
@@ -3792,12 +3821,12 @@ Functionef8c:
 	jr z, .sub_efc9
 	ld a, [wCurPartyMon]
 	ld c, a
-	ld hl, wca37
+	ld hl, wBattleParticipantsNotFainted
 	ld b, $01
 	predef SmallFarFlagAction
 .sub_efc9
 	xor a
-	ld [wccc4], a
+	ld [wLowHealthAlarmBuffer], a
 	ld a, [wCurItem]
 	cp $27
 	jr z, .sub_efd9
@@ -3807,8 +3836,8 @@ Functionef8c:
 	call Functionf127
 .sub_efdc
 	call Functionf0b0
-	ld a, $f7
-	ld [wcdb9], a
+	ld a, PARTYMENUTEXT_REVIVE
+	ld [wPartyMenuActionText], a
 	call Functionf0d8
 	call Functionf7a2
 	jp Functionf104
@@ -3820,7 +3849,7 @@ Functionefee:
 	ld a, [wPartyCount]
 	and a
 	jp z, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionf100
 	call Functionf165
@@ -3837,7 +3866,7 @@ Functionefee:
 	jp Functionef17
 .sub_f01a
 	xor a
-	ld [wccc4], a
+	ld [wLowHealthAlarmBuffer], a
 	call Functionf130
 	ld a, $20
 	call GetPartyParamLocation
@@ -3846,9 +3875,9 @@ Functionefee:
 	ld [hl], a
 	call Functionf113
 	jr nc, .sub_f049
-	ld hl, wca3f
+	ld hl, wPlayerSubStatus5
 	res 0, [hl]
-	ld hl, wca3b
+	ld hl, wPlayerSubStatus1
 	res 0, [hl]
 	xor a
 	ld [wBattleMonStatus], a
@@ -3860,8 +3889,8 @@ Functionefee:
 	ld [wBattleMonHP + 1], a
 .sub_f049
 	call Functionf0b0
-	ld a, $f5
-	ld [wcdb9], a
+	ld a, PARTYMENUTEXT_HEAL_HP
+	ld [wPartyMenuActionText], a
 	call Functionf0d8
 	call Functionf7a2
 	jp Functionf104
@@ -3873,7 +3902,7 @@ Functionf05b:
 	ld a, [wPartyCount]
 	and a
 	jp z, IsntTheTimeMessage
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jp c, Functionf100
 	call Functionf165
@@ -3881,7 +3910,7 @@ Functionf05b:
 	call Functionf171
 	jp nc, Functionf0fb
 	xor a
-	ld [wccc4], a
+	ld [wLowHealthAlarmBuffer], a
 	ld a, [wCurItem]
 	cp $0f
 	jr nz, .sub_f086
@@ -3901,8 +3930,8 @@ Functionf05b:
 	ld [wBattleMonHP + 1], a
 .sub_f09e
 	call Functionf0b0
-	ld a, $f5
-	ld [wcdb9], a
+	ld a, PARTYMENUTEXT_HEAL_HP
+	ld [wPartyMenuActionText], a
 	call Functionf0d8
 	call Functionf7a2
 	jp Functionf104
@@ -3925,7 +3954,7 @@ Functionf0b0:
 	ret
 
 Functionf0cf:
-	ld [wcdb9], a
+	ld [wPartyMenuActionText], a
 	predef PartyMenuInBattle_Setup
 	ret
 
@@ -4099,19 +4128,19 @@ Functionf1c5:
 	ret
 
 Functionf1ce:
-	ld a, $24
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ldh [hDividend], a
 	ld a, [hl]
-	ldh [hQuotient], a
+	ldh [hDividend + 1], a
 	ld a, $05
-	ldh [hMultiplier], a
+	ldh [hDivisor], a
 	ld b, $02
 	call Divide
-	ldh a, [hQuotient+1]
+	ldh a, [hQuotient + 2]
 	ld d, a
-	ldh a, [hQuotient+2]
+	ldh a, [hQuotient + 3]
 	ld e, a
 	ret
 
@@ -4153,8 +4182,8 @@ Functionf218:
 	ld b, a
 .sub_f21d
 	push bc
-	ld a, $01
-	ld [wcdb9], a
+	ld a, PARTYMENUACTION_HEALING_ITEM
+	ld [wPartyMenuActionText], a
 	predef PartyMenuInBattle
 	pop bc
 	jr c, .sub_f28c
@@ -4203,8 +4232,8 @@ Functionf218:
 	xor a
 	ldh [hBGMapMode], a
 	call ClearTileMap
-	ld a, $f5
-	ld [wcdb9], a
+	ld a, PARTYMENUTEXT_HEAL_HP
+	ld [wPartyMenuActionText], a
 	predef Function5081f
 	ld c, $c8
 	call Function3872
@@ -4261,7 +4290,7 @@ Functionf2dc:
 	ld a, [wBattleMode]
 	and a
 	jp z, IsntTheTimeMessage
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	set 0, [hl]
 	jp Functionf793
 
@@ -4269,15 +4298,15 @@ Functionf2eb:
 	ld a, [wBattleMode]
 	dec a
 	jp nz, IsntTheTimeMessage
-	ld a, $01
-	ld [wce06], a
+	ld a, LOSE
+	ld [wBattleResult], a
 	jp Functionf793
 
 Functionf2fa:
 	ld a, [wBattleMode]
 	and a
 	jp z, IsntTheTimeMessage
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	set 1, [hl]
 	jp Functionf793
 
@@ -4285,7 +4314,7 @@ Functionf309:
 	ld a, [wBattleMode]
 	and a
 	jp z, IsntTheTimeMessage
-	ld hl, wca3e
+	ld hl, wPlayerSubStatus4
 	set 2, [hl]
 	jp Functionf793
 
@@ -4316,7 +4345,7 @@ Functionf318:
 	ldh [hBattleTurn], a
 ; wrong bank
 	ld a, $f
-	ld hl, Function365bf
+	ld hl, BattleCommand_StatUp
 	call FarCall_hl
 	pop hl
 	pop af
@@ -4354,7 +4383,7 @@ Functionf355:
 	jp z, PrintText
 	ld hl, Textf3ec
 	call PrintText
-	ld a, [wccc4]
+	ld a, [wLowHealthAlarmBuffer]
 	and $80
 	jr nz, .sub_f391
 .sub_f391
@@ -4537,7 +4566,7 @@ Functionf4d1:
 	ld a, [wCurItem]
 	ld [wMovementBufferCount], a
 .sub_f4d7
-	ld a, $01
+	ld a, PARTYMENUACTION_HEALING_ITEM
 	call Functionf0cf
 	jr nc, .sub_f4e1
 	jp Functionf5f3
@@ -4776,7 +4805,7 @@ Functionf678:
 	ld de, wcd11
 	ld bc, $0008
 	call CopyBytes
-	ld a, $03
+	ld a, PARTYMENUACTION_TEACH_TMHM
 	call Functionf0cf
 	push af
 	ld hl, wcd11
@@ -5238,7 +5267,7 @@ Functionfaba:
 	ld a, [wd8a2]
 	cp $02
 	jp nc, .sub_fbd6
-	add $06
+	add PARTYMENUACTION_GIVE_MON
 	call Functionf0cf
 	jp c, Functionfbde
 	ld a, [wCurPartySpecies]

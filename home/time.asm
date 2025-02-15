@@ -13,74 +13,83 @@ UpdateTime::
 	ldh a, [hRTCStatusFlags]
 	bit 0, a
 	ret nz
+
+; enable clock r/w
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
+
+; clock data is 'backwards' in hram
 	call LatchClock
 	ld a, RTC_S
 	ld [MBC3SRamBank], a
 	ld a, [MBC3RTC]
 	and $7f
 	ldh [hRTCSeconds], a
+
 	ld a, RTC_M
 	ld [MBC3SRamBank], a
 	ld a, [MBC3RTC]
 	and $7f
 	ldh [hRTCMinutes], a
+
 	ld a, RTC_H
 	ld [MBC3SRamBank], a
 	ld a, [MBC3RTC]
 	and $1f
 	ldh [hRTCHours], a
 	call CloseSRAM
+
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
-	jr z, .asm_0478
+	jr z, .get_time_of_day
+
 	ld a, [wd153]
-	bit 7, a
-	jr nz, .asm_048a
-.asm_0478
+	bit OVERWORLD_MINUTE_TIME_F, a
+	jr nz, .get_time_with_seconds
+
+.get_time_of_day
 	ldh a, [hRTCHours]
 	ld b, a
-	ld hl, .Data_049c
-.asm_047e
+	ld hl, .TimesOfDay
+.loop1
 	ld a, [hli]
 	cp b
-	jr nc, .asm_0485
+	jr nc, .got_time
 	inc hl
-	jr .asm_047e
+	jr .loop1
 
-.asm_0485
+.got_time
 	ld a, [hl]
 	ld [wTimeOfDay], a
 	ret
 
-.asm_048a
+.get_time_with_seconds
 	ldh a, [hRTCSeconds]
 	ld b, a
-	ld hl, .Data_04a4
-.asm_0490
+	ld hl, .TimesOfDay_Debug
+.loop2
 	ld a, [hli]
 	cp b
-	jr nc, .asm_0497
+	jr nc, .got_time_2
 	inc hl
-	jr .asm_0490
+	jr .loop2
 
-.asm_0497
+.got_time_2
 	ld a, [hl]
 	ld [wTimeOfDay], a
 	ret
 
-.Data_049c:
-	db $06, $01
-	db $09, $03
-	db $0f, $00
-	db $18, $01
+.TimesOfDay:
+	db MORN_HOUR, NITE_F
+	db DAY_HOUR, MORN_F
+	db NITE_HOUR, DAY_F
+	db MAX_HOUR, NITE_F
 
-.Data_04a4:
-	db $1e, $00
-	db $23, $01
-	db $32, $02
-	db $3b, $03
+.TimesOfDay_Debug:
+	db 30, DAY_F
+	db 35, NITE_F
+	db 50, DARKNESS_F
+	db 59, MORN_F
 
 Function04ac::
 	ld hl, hRTCStatusFlags

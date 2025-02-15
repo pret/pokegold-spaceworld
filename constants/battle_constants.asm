@@ -27,6 +27,11 @@ DEF EFFECTIVE          EQU 10
 DEF NOT_VERY_EFFECTIVE EQU 05
 DEF NO_EFFECT          EQU 00
 
+; wTypeModifier
+DEF EFFECTIVENESS_MASK EQU %01111111
+	const_def 7
+	shift_const STAB_DAMAGE
+
 ; wPlayerStatLevels and wEnemyStatLevels indexes (see wram.asm)
 ; GetStatName arguments (see data/battle/stat_names.asm)
 	const_def
@@ -63,7 +68,7 @@ DEF MOVE_LENGTH EQU const_value
 	const STAT_SATK
 DEF NUM_EXP_STATS EQU const_value - 1
 	const STAT_SDEF
-DEF NUM_STATS EQU const_value
+DEF NUM_STATS EQU const_value - 1
 DEF NUM_BATTLE_STATS EQU NUM_STATS - 1 ; don't count HP
 DEF STAT_SPC EQU STAT_SATK
 
@@ -181,8 +186,8 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 	const SUBSTATUS_IN_LOOP
 	const SUBSTATUS_FLINCHED
 	const SUBSTATUS_CHARGED
-	const SUBSTATUS_UNDERGROUND
-	const SUBSTATUS_FLYING
+	const SUBSTATUS_USING_TRAPPING_MOVE
+	const SUBSTATUS_INVULNERABLE
 	const SUBSTATUS_CONFUSED
 
 ; wPlayerSubStatus4 or wEnemySubStatus4 bit flags
@@ -199,8 +204,8 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 ; wPlayerSubStatus5 or wEnemySubStatus5 bit flags
 	const_def
 	const SUBSTATUS_TOXIC
-	const_skip
-	const_skip
+	const SUBSTATUS_LIGHT_SCREEN
+	const SUBSTATUS_REFLECT
 	const SUBSTATUS_TRANSFORMED
 	const SUBSTATUS_ENCORED
 	const SUBSTATUS_LOCK_ON
@@ -210,7 +215,7 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 ; wPlayerScreens or wEnemyScreens bit flags
 	const_def
 	const SCREENS_SPIKES
-	const_skip
+	const SCREENS_SANDSTORM
 	const SCREENS_SAFEGUARD
 	const SCREENS_LIGHT_SCREEN
 	const SCREENS_REFLECT
@@ -220,10 +225,6 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 	const WEATHER_NONE
 	const WEATHER_RAIN
 	const WEATHER_SUN
-	const WEATHER_SANDSTORM
-	const WEATHER_RAIN_END
-	const WEATHER_SUN_END
-	const WEATHER_SANDSTORM_END
 
 ; wBattleAction
 	const_def
@@ -241,14 +242,14 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 	const BATTLEACTION_B
 	const BATTLEACTION_C
 	const BATTLEACTION_D
-	const BATTLEACTION_E
+	const BATTLEACTION_STRUGGLE
 	const BATTLEACTION_FORFEIT
 
 ; wBattleResult
 	const_def
-	const WIN
-	const LOSE
 	const DRAW
+	const LOSE
+	const WIN
 
 DEF BATTLERESULT_BOX_FULL EQU 7
 DEF BATTLERESULT_BITMASK EQU (1 << BATTLERESULT_BOX_FULL)

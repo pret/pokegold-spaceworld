@@ -36,25 +36,25 @@ GiveItemPredef::
 	add_predef Functiondd5c
 	add_predef Functionde79
 	add_predef UpdateHPBar
-	add_predef Functiondf7d ; 18
-	add_predef Functiondf91
+	add_predef CalcMonStats ; 18
+	add_predef CalcMonStatC
 	add_predef CanLearnTMHMMove
 	add_predef GetTMHMMove
 	add_predef LinkTextboxAtHL
 	add_predef Function2d663
-	add_predef Function3d5ce
+	add_predef UpdatePlayerHUD
 	add_predef PlaceGraphic
 	add_predef Function3f068 ; 20
-	add_predef Function3f04a
+	add_predef LoadMonBackPic
 	add_predef AnyPartyAlive
-	add_predef Function3d67c
+	add_predef UpdateEnemyHUD
 	add_predef Function3e1a4
 	add_predef Function3ef19
-	add_predef Function3e874
+	add_predef CalcAndPlaceExpBar
 	add_predef Function3e91e
 	add_predef Function3e963 ; 28
 	add_predef Function421f8
-	add_predef Function42252
+	add_predef FillMoves
 	add_predef Function41fa1
 	add_predef Function28da4
 	add_predef Function28d6e
@@ -64,7 +64,7 @@ GiveItemPredef::
 	add_predef CopyMonToTempMon
 	add_predef ListMoves
 	add_predef Function50bcd
-	add_predef Function50b92
+	add_predef PlaceNonFaintStatus
 	add_predef Function508c4
 	add_predef PartyMenuInBattle_Setup
 	add_predef PartyMenuInBattle

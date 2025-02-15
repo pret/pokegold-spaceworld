@@ -151,16 +151,16 @@ FieldDebug_DoVRAMViewer:
 	ld bc, $180 tiles
 	call ByteFill
 	call LoadFont
-	callfar Call_LoadBattleGraphics
+	callfar Call_LoadBattleFontsHPBar
 	xor a
 	ldh [hMapAnims], a
 	call EnableLCD
 	ld de, vTileset
 	call .LoadPokemon
-	ld de, $9310
+	ld de, vBackPic
 	ld a, 3
 	ld [wTempBattleMonSpecies], a
-	predef Function3f04a
+	predef LoadMonBackPic
 	ret
 
 .LoadPokemon:

@@ -76,7 +76,7 @@ LoadPokeDexGraphics::
 	ld hl, $9720
 	lb bc, BANK(PokeBallsGFX), 1 ; 1 of 4 tiles
 	jp Get2bpp
-LoadBattleGraphics::
+LoadBattleFontsHPBar::
 	ld de, BattleHPBarGFX
 	ld hl, $9600
 	lb bc, BANK(BattleHPBarGFX), ((BattleHPBarGFX.End - BattleHPBarGFX) / LEN_2BPP_TILE)
@@ -86,6 +86,8 @@ LoadBattleGraphics::
 	lb bc, BANK(BattleMarkersGFX), ((BattleMarkersGFX.End - BattleMarkersGFX) / LEN_2BPP_TILE)
 	call Get2bpp
 	call LoadActiveFrameGraphics
+	; Fallthrough
+LoadHPBar::
 	ld de, HpExpBarParts0GFX
 	ld hl, $96c0
 	lb bc, BANK(HpExpBarParts0GFX), ((HpExpBarParts0GFX.End - HpExpBarParts0GFX) / LEN_1BPP_TILE)

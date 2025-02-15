@@ -353,7 +353,7 @@ Function502b5::
 	ld hl, wTempMonExp + 2
 	ld de, wTempMonMaxHP
 	ld b, 1
-	predef Functiondf7d
+	predef CalcMonStats
 .asm_502d9
 	ld hl, wd4a7
 	set 1, [hl]
@@ -514,7 +514,7 @@ Function50340::
 	jr z, .asm_503f5
 	push hl
 	ld de, wTempMonStatus
-	call Function50b7d
+	call PlaceStatusString
 	pop hl
 .asm_503f5
 	ld de, StatusText_OK
@@ -567,7 +567,7 @@ Function50340::
 	ld b, a
 	ld de, wTempMonExp + 2
 	hlcoord 10, 16
-	predef Function3e874
+	predef CalcAndPlaceExpBar
 
 	hlcoord 9, 16
 	ld [hl], $40
@@ -601,15 +601,15 @@ Function50340::
 	call CalcExpAtLevel
 	ld hl, wTempMonExp + 2
 	ld hl, wTempMonExp + 2    ; Seemingly an unnecessary duplicate line
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	sub [hl]
 	dec hl
 	ld [wcdc5], a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	sbc [hl]
 	dec hl
 	ld [wcdc4], a
-	ldh a, [hQuotient]
+	ldh a, [hQuotient + 1]
 	sbc [hl]
 	ld [wcdc3], a
 	ret
@@ -919,6 +919,13 @@ GetGender::
 	or b
 	ld b, a
 
+; BUG: No handling for genderless Pokémon, despite already being defined in base stats.
+; As a result, they're always considered as female here.
+
+; Also, due to GENDER_FEMALE not truly being 100%, an always-female
+; Pokémon can be male if it has max Attack and Speed DVs.
+; Final game adds a check to guarantee that those Pokémon will be female.
+
 	ld a, [wMonHGenderRatio]
 	cp b
 	ret
@@ -1037,15 +1044,15 @@ PartyMenuInBattle::
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ld hl, wce5f
-	set 4, [hl]
+	ld hl, wOptions
+	set NO_TEXT_SCROLL, [hl]
 
 	call PartyMenuInBattle_SetMenuAttributes
 	call Function5081f
 	call Function507cf
 
-	ld hl, wce5f
-	res 4, [hl]
+	ld hl, wOptions
+	res NO_TEXT_SCROLL, [hl]
 	pop bc
 	ld a, b
 	ldh [hMapAnims], a
@@ -1127,13 +1134,13 @@ Function507cf::
 	call Function50eca
 	xor a
 	ld [wSelectedSwapPosition], a
-	ld [wcdb9], a
+	ld [wPartyMenuActionText], a
 	call Function5081f
 	jp Function507cf
 
 Function5081f::
-	ld a, [wcdb9]
-	cp $04
+	ld a, [wPartyMenuActionText]
+	cp PARTYMENUACTION_MOVE
 	jp z, Function509dd
 	callfar Function8f0cc
 	call Function50eca
@@ -1179,8 +1186,8 @@ Function5081f::
 	jp Function509d8
 
 Function5087e::
-	ld a, [wcdb9]
-	cp $04
+	ld a, [wPartyMenuActionText]
+	cp PARTYMENUACTION_MOVE
 	jp z, Function509dd
 	callfar Function95f8
 	ld hl, $c2b7
@@ -1239,20 +1246,20 @@ Function508c4::
 	inc hl
 	inc hl
 .asm_508ef
-	ld a, [wcdb9]
-	cp $03
+	ld a, [wPartyMenuActionText]
+	cp PARTYMENUACTION_TEACH_TMHM
 	jr z, .asm_50922
-	cp $05
+	cp PARTYMENUACTION_EVO_STONE
 	jr z, .DetermineCompatibility
-	cp $06
+	cp PARTYMENUACTION_GIVE_MON
 	jp z, .asm_509b5
-	cp $07
+	cp PARTYMENUACTION_GIVE_MON_FEMALE
 	jp z, .asm_509b5
 	push hl
 	ld bc, hRTCRandom
 	add hl, bc
 	ld de, wTempMonStatus
-	call Function50b7d
+	call PlaceStatusString
 	pop hl
 	push hl
 	ld bc, hCurMapTextSubroutinePtr + 1
@@ -1293,11 +1300,9 @@ Function508c4::
 
 .text_50948:
 	db "おぼえられる@"
-	;db $b5, $3e, $b4, $d7, $da, $d9, $50
 
 .text_5094f:
 	db "おぼえられない@"
-	;db $b5, $3e, $b4, $d7, $da, $c5, $b2, $50
 
 .DetermineCompatibility:
 	push hl
@@ -1386,8 +1391,8 @@ Function509dd::
 	push af
 	push hl
 	set 4, [hl]
-	ld a, [wcdb9]
-	cp $f0
+	ld a, [wPartyMenuActionText]
+	cp PARTYMENUTEXT_HEAL_PSN
 	jr nc, .asm_509fc
 	add a
 	ld c, a
@@ -1547,7 +1552,7 @@ Function50b66::
 	inc [hl]
 	ret
 
-Function50b7d::
+PlaceStatusString::
 	push de
 	inc de
 	inc de
@@ -1557,78 +1562,83 @@ Function50b7d::
 	ld a, [de]
 	or b
 	pop de
-	jr nz, Function50b92
-	ld a, $cb
+	jr nz, PlaceNonFaintStatus
+	; "FNT" equivalent string
+	ld a, "ひ"
 	ld [hli], a
-	ld a, $de
+	ld a, "ん"
 	ld [hli], a
-	ld [hl], $bc
+	ld [hl], "し"
 	and a
 	ret
 
-Function50b92::
+PlaceNonFaintStatus::
 	ld a, [de]
-	bit 3, a
-	jr nz, .asm_50baf
-	bit 4, a
-	jr nz, .asm_50bb5
-	bit 5, a
-	jr nz, .asm_50bbe
-	bit 6, a
-	jr nz, .asm_50bc7
-	and %111
+	bit PSN, a
+	jr nz, .PsnString
+	bit BRN, a
+	jr nz, .BrnString
+	bit FRZ, a
+	jr nz, .FrzString
+	bit PAR, a
+	jr nz, .ParString
+	and SLP
 	ret z
-	ld a, $c8
+	; "SLP" equivalent string
+	ld a, "ね"
 	ld [hli], a
-	ld a, $d1
+	ld a, "む"
 	ld [hli], a
-	ld [hl], $d8
+	ld [hl], "り"
 	ret
 
-.asm_50baf
-	ld a, $70
+.PsnString
+	ld a, "<DO>"
 	ld [hli], a
-	ld [hl], $b8
+	ld [hl], "く"
 	ret
 
-.asm_50bb5
-	ld a, $d4
+.BrnString
+	ld a, "や"
 	ld [hli], a
-	ld a, $b9
+	ld a, "け"
 	ld [hli], a
-	ld [hl], $70
+	ld [hl], "<DO>"
 	ret
 
-.asm_50bbe
-	ld a, $ba
+.FrzString
+	ld a, "こ"
 	ld [hli], a
-	ld a, $b5
+	ld a, "お"
 	ld [hli], a
-	ld [hl], $d8
+	ld [hl], "り"
 	ret
 
-.asm_50bc7
-	ld a, $cf
+.ParString
+	ld a, "ま"
 	ld [hli], a
-	ld [hl], $cb
+	ld [hl], "ひ"
 	ret
 
 Function50bcd::
 	ld a, $00
 	call OpenSRAM
 	push hl
-	ld hl, $a188 ; SRAM_188
-	ld de, $a000 ; SRAM_0
-	ld bc, $0188
+	ld hl, sSpriteBuffer1
+	ld de, sSpriteBuffer0
+	ld bc, SPRITEBUFFERSIZE
 	call CopyBytes
-	ld hl, $a310 ; SRAM_310
-	ld de, $a188 ; SRAM_188
-	ld bc, $0188
+
+	ld hl, sSpriteBuffer2
+	ld de, sSpriteBuffer1
+	ld bc, SPRITEBUFFERSIZE
 	call CopyBytes
+	
 	call _InterlaceMergeSpriteBuffers
+	
 	pop hl
-	ld de, $a188 ; SRAM_188
-	ld c, $24
+	ld de, sSpriteBuffer1
+	ld c, 6 * 6
 	ldh a, [hROMBank]
 	ld b, a
 	call Get2bpp
@@ -1756,15 +1766,15 @@ Function50caa::
 	call CalcExpAtLevel
 	push hl
 	ld hl, wTempMonExp + 2
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld c, a
 	ld a, [hld]
 	sub c
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	ld c, a
 	ld a, [hld]
 	sbc c
-	ldh a, [hQuotient]
+	ldh a, [hQuotient + 1]
 	ld c, a
 	ld a, [hl]
 	sbc c
@@ -1800,11 +1810,11 @@ CalcExpAtLevel::
 	ld b, 4
 	call Divide
 ; Push the cubic term to the stack
-	ldh a, [hQuotient]
-	push af
 	ldh a, [hQuotient + 1]
 	push af
 	ldh a, [hQuotient + 2]
+	push af
+	ldh a, [hQuotient + 3]
 	push af
 ; Square the level and multiply by the lower 7 bits of c
 	call .LevelSquared
@@ -2124,7 +2134,7 @@ GetUnownLetter::
 	call Divide
 
 ; Increment to get 1-26
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	inc a
 	ld [wAnnonID], a    ; $d874
 	ret

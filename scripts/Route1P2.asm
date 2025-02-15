@@ -60,9 +60,9 @@ Route1P2Text2:
 	ld hl, $D3A2
 	set 1, [hl]
 	ld a, $3C
-	ld [wce02], a
+	ld [wOtherTrainerClass], a
 	ld a, $02
-	ld [wce05], a
+	ld [wOtherTrainerID], a
 	ld hl, wc5ed
 	set 7, [hl]
 	ld a, $08

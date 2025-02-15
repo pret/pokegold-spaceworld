@@ -289,12 +289,12 @@ AddRandomPokemonToBox:
 .loop
 	push af
 	xor a
-	ld [wca44], a
+	ld [wEnemySubStatus5], a
 	call RandomUnder246
 	ld [wTempEnemyMonSpecies], a
 	ld a, $05
 	ld [wCurPartyLevel], a
-	callfar AddPokemonToBox
+	callfar LoadEnemyMon
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a
 	callfar Functiondd5c
