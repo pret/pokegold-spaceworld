@@ -192,6 +192,66 @@
 	const MON_BELLSPROUT    ; bc
 	const MON_WEEPINBELL    ; bd
 	const MON_VICTREEBEL    ; be
+	const MON_HAPPA         ; bf CHIKORITA
+	const MON_HANAMOGURA    ; c0 BAYLEEF
+	const MON_HANARYU       ; c1 MEGANIUM
+	const MON_HONOGUMA      ; c2
+	const MON_VOLBEAR       ; c3
+	const MON_DYNABEAR      ; c4
+	const MON_KURUSU        ; c5
+	const MON_AQUA          ; c6
+	const MON_AQUARIA       ; c7
+	const MON_HOHO          ; c8 HOOTHOOT
+	const MON_BOBO          ; c9 NOCTOWL
+	const MON_PACHIMEE      ; ca MAREEP
+	const MON_MOKOKO        ; cb FLAAFY
+	const MON_DENRYU        ; cc AMPHAROS
+	const MON_MIKON         ; cd (baby VULPIX)
+	const MON_MONJA         ; ce (baby TANGELA)
+	const MON_JARANJA       ; cf TANGROWTH (evolved TANGELA)
+	const MON_HANEEI        ; d0 MANTINE
+	const MON_PUKU          ; d1 QWILFISH
+	const MON_SHIBIREFUGU   ; d2 (evolved QWILFISH)
+	const MON_PICHU         ; d3
+	const MON_PY            ; d4 CLEFFA
+	const MON_PUPURIN       ; d5 IGGLYBUFF
+	const MON_MIZUUO        ; d6 QUAGSIRE
+	const MON_NATY          ; d7 NATU
+	const MON_NATIO         ; d8 XATU
+	const MON_GYOPIN        ; d9 (baby GOLDEEN)
+	const MON_MARIL         ; da MARILL
+	const MON_MANBO1        ; db
+	const MON_IKARI         ; dc
+	const MON_GROTESS       ; dd
+	const MON_EKSING        ; de CROBAT
+	const MON_PARA          ; df (baby PARAS)
+	const MON_KOKUMO        ; e0 SPINARAK
+	const MON_TWOHEAD       ; e1 ARIADOS
+	const MON_YOROIDORI     ; e2 SKARMORY
+	const MON_ANIMON        ; e3 (evolved DITTO)
+	const MON_HINAZU        ; e4 (baby DODUO)
+	const MON_SUNNY         ; e5 SUNFLORA
+	const MON_PAON          ; e6 PHANPHY
+	const MON_DONPHAN       ; e7
+	const MON_TWINZ         ; e8 (baby GIRAFARIG)
+	const MON_KIRINRIKI     ; e9 GIRAFARIG
+	const MON_PAINTER       ; ea SMEARGLE
+	const MON_KOUNYA        ; eb (baby MEOWTH)
+	const MON_RINRIN        ; ec
+	const MON_BERURUN       ; ed
+	const MON_NYOROTONO     ; ee POLITOED
+	const MON_YADOKING      ; ef SLOWKING
+	const MON_ANNON         ; f0 UNOWN
+	const MON_REDIBA        ; f1 LEDYBA
+	const MON_MITSUBOSHI    ; f2 LEDIAN
+	const MON_PUCHICORN     ; f3 (baby PONYTA)
+	const MON_EIFIE         ; f4 ESPEON
+	const MON_BLACKY        ; f5 UMBREON
+	const MON_TURBAN        ; f6
+	const MON_BETBABY       ; f7 (baby GRIMER)
+	const MON_TEPPOUO       ; f8 REMORAID
+	const MON_OKUTANK       ; f9 OCTILLERY
+	const MON_GONGU         ; fa TYROGUE
 
 ; Unown forms
 	const_def 1

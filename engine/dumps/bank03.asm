@@ -2088,7 +2088,7 @@ Function60a0:
 	call ClearSprites
 	ld a, [wCurPartySpecies]
 	ld [wce37], a
-	predef Function40ac7
+	predef NewPokedexEntry
 	call LoadTilesetGFX_LCDOff
 .sub_e10d
 	ld hl, GotItText
@@ -2780,8 +2780,8 @@ Function6734:
 	ld a, BANK(LoadPokeDexGraphics)
 	call FarCall_hl
 	call ClearTileMap
-	ld hl, Function40b07
-	ld a, BANK(Function40b07)
+	ld hl, _NewPokedexEntry
+	ld a, BANK(_NewPokedexEntry)
 	call FarCall_hl
 	call ClearBGPalettes
 	ld hl, wVramState
@@ -3247,7 +3247,7 @@ PokeBallEffect:
 	call ClearSprites
 	ld a, [wEnemyMonSpecies]
 	ld [wce37], a
-	predef Function40ac7
+	predef NewPokedexEntry
 .sub_eac7
 	ld a, [wPartyCount]
 	cp $06

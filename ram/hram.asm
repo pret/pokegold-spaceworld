@@ -52,7 +52,7 @@ hJoyDown:: db
 hJoyState:: db
 hJoySum:: db
 
-hJoyDebounceSrc:: db
+hInMenu:: db
 ; hJoySum will be updated from
 ; 00 - hJoyDown
 ; <> - hJoyState

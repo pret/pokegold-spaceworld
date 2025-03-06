@@ -236,7 +236,7 @@ _TrainerCard:
 
 StartMenu_Pokedex:
 	call LoadStandardMenuHeader
-	predef Function40000
+	predef Pokedex
 	call ClearPalettes
 	call Function360b
 	call ReloadFontAndTileset

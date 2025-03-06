@@ -35,7 +35,7 @@ MemoryMinigame:
 	call DisableLCD
 	ld b, SGB_DIPLOMA
 	call GetSGBLayout
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 
 	ld hl, MemoryGameGFX
 	ld de, vChars2
@@ -49,7 +49,7 @@ MemoryMinigame:
 	ld a, BANK(PointerGFX)
 	call FarCopyData
 
-	ld a, SPRITE_ANIM_DICT_29
+	ld a, SPRITE_ANIM_DICT_ARROW_CURSOR
 	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], 0
@@ -79,7 +79,7 @@ MemoryMinigame:
 	bit MEMORYGAME_END_LOOP_F, a
 	jr nz, .quit
 	call .ExecuteJumptable
-	callfar EffectObjectJumpNoDelay
+	callfar PlaySpriteAnimations
 	call DelayFrame
 	and a
 	ret
@@ -142,7 +142,7 @@ endr
 
 .spawn_object
 	depixel 6, 3, 4, 4
-	ld a, SPRITE_ANIM_INDEX_MEMORY_GAME_CURSOR
+	ld a, SPRITE_ANIM_OBJ_MEMORY_GAME_CURSOR
 	call InitSpriteAnimStruct
 	ld a, 5
 	ld [wMemoryGameNumberTriesRemaining], a
@@ -531,7 +531,8 @@ MemoryGame_Card2Coord:
 	add hl, de
 	ret
 
-MemoryGame_AnimateCursor:		; Called from sprite animation routine?
+; Called from sprite animation routine?
+MemoryGame_AnimateCursor:
 	ld a, [wJumptableIndex]
 	cp MEMORYGAME_REVEAL_ALL
 	jr nc, .quit
@@ -561,7 +562,7 @@ MemoryGame_AnimateCursor:		; Called from sprite animation routine?
 	ret
 
 .pressed_a
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	inc a
@@ -576,7 +577,7 @@ MemoryGame_AnimateCursor:		; Called from sprite animation routine?
 	ret z
 	sub 1 tiles
 	ld [hl], a
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	dec [hl]
 	ret
@@ -589,7 +590,7 @@ MemoryGame_AnimateCursor:		; Called from sprite animation routine?
 	ret z
 	add 1 tiles
 	ld [hl], a
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
 	ret
@@ -602,7 +603,7 @@ MemoryGame_AnimateCursor:		; Called from sprite animation routine?
 	ret z
 	sub 1 tiles
 	ld [hl], a
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	sub 9
@@ -617,7 +618,7 @@ MemoryGame_AnimateCursor:		; Called from sprite animation routine?
 	ret z
 	add a, $10
 	ld [hl], a
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	add a, 9

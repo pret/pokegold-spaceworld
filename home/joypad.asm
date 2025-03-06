@@ -136,12 +136,12 @@ JoyTitleScreenInput::
 
 GetJoypadDebounced::
 ; Update hJoySum joypad input from either hJoyDown or
-; hJoyState depending on hJoyDebounceSrc.
+; hJoyState depending on hInMenu.
 ; hJoyState is only updated every 5 frames and
 ; the update is delayed by 15 frames after any button
 ; press.
 	call GetJoypad
-	ldh a, [hJoyDebounceSrc]
+	ldh a, [hInMenu]
 	and a
 	ldh a, [hJoyDown]
 	jr z, .joyDownSrc

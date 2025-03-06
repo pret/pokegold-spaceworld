@@ -17,6 +17,12 @@ const_def
 	shift_const MORN     ; 3
 DEF NUM_DAYTIMES EQU const_value
 
+; FlagAction arguments (see home/flag.asm)
+const_def
+const RESET_FLAG
+const SET_FLAG
+const CHECK_FLAG
+
 ; RedrawRowOrColumn functions
 DEF REDRAW_COL EQU 1
 DEF REDRAW_ROW EQU 2

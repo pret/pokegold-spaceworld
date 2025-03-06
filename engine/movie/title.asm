@@ -64,7 +64,7 @@ TitleSequenceInit::
 	call DisableLCD
 	call ClearSprites
 
-	farcall InitEffectObject
+	farcall ClearSpriteAnims
 	ld hl, vChars0
 	ld bc, vBGMap0 - vChars0
 
@@ -152,7 +152,7 @@ TitleSequenceInit::
 	ld d, [hl]
 	inc hl
 	push hl
-	ld a, SPRITE_ANIM_INDEX_GS_TITLE_FLAME_NOTE
+	ld a, SPRITE_ANIM_OBJ_GS_TITLE_FLAME_NOTE
 	call InitSpriteAnimStruct
 	pop hl
 	pop bc
@@ -176,7 +176,7 @@ TitleScreenMain::
 	bit 7, a
 	jr nz, .exit
 	call TitleScreenSequence
-	farcall EffectObjectJumpNoDelay
+	farcall PlaySpriteAnimations
 	call DelayFrame
 	and a
 	ret

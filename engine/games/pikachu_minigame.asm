@@ -38,7 +38,7 @@ PikachuMiniGame::
 	call DisableLCD
 	ld b, SGB_PIKACHU_MINIGAME
 	call GetSGBLayout
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	call PikachuMiniGame_ClearBothTilemaps
 
 	ld hl, IntroForestGFX
@@ -75,9 +75,9 @@ PikachuMiniGame::
 	call PikachuMiniGame_DrawBackground
 
 	ld hl, wSpriteAnimDict
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_OMANYTE
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_OMANYTE
 	ld [hli], a
-	ld a, SPRITE_ANIM_DICT_DEFAULT
+	ld a, SPRITE_ANIM_DICT_NULL
 	ld [hli], a
 	call PikachuMiniGame_LoadFont
 
@@ -136,7 +136,7 @@ PikachuMiniGame::
 
 .load_pikachu
 	depixel 14, 11
-	ld a, SPRITE_ANIM_INDEX_MINIGAME_PIKACHU
+	ld a, SPRITE_ANIM_OBJ_MINIGAME_PIKACHU
 	call InitSpriteAnimStruct
 
 ; Save pointer to the newly initialized Pikachu object
@@ -147,7 +147,7 @@ PikachuMiniGame::
 
 ; load Pikachu's tail object
 	depixel 14, 11
-	ld a, SPRITE_ANIM_INDEX_MINIGAME_PIKACHU_TAIL
+	ld a, SPRITE_ANIM_OBJ_MINIGAME_PIKACHU_TAIL
 	call InitSpriteAnimStruct
 
 	ld a, c
@@ -362,7 +362,7 @@ PikachuMiniGame_RunFrame:
 
 .skip_playing_sfx
 	call PikachuMiniGame_PerformGameFunction
-	farcall EffectObjectJumpNoDelay
+	farcall PlaySpriteAnimations
 
 	ld a, 1
 	ldh [hBGMapMode], a
@@ -382,7 +382,7 @@ PikachuMiniGame_RunFrame:
 	ret
 
 .Done:
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 
 	ld hl, wShadowOAM
 	ld c, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
@@ -584,7 +584,7 @@ PikachuMiniGame_WaitAndGotoNextScene:
 
 PikachuMiniGame_ShowJigglypuff:
 	depixel 14, 24
-	ld a, SPRITE_ANIM_INDEX_MINIGAME_JIGGLYPUFF
+	ld a, SPRITE_ANIM_OBJ_MINIGAME_JIGGLYPUFF
 	call InitSpriteAnimStruct
 
 	xor a
@@ -687,7 +687,7 @@ PikachuMiniGame_NoteSpawner:
 	ld a, 3
 	ld [wSpriteAnimCount], a
 
-	ld a, SPRITE_ANIM_INDEX_MINIGAME_NOTE
+	ld a, SPRITE_ANIM_OBJ_MINIGAME_NOTE
 	call InitSpriteAnimStruct
 
 ; add one to the note counter

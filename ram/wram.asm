@@ -109,8 +109,12 @@ wc408:: db
 wc409:: db
 
 NEXTU
-
-wSpriteAnimDict:: ds NUM_SPRITEANIMDICT_ENTRIES * 2
+wSpriteAnimData::
+; wSpriteAnimDict pairs keys with values
+; keys: SPRITE_ANIM_DICT_* indexes (taken from SpriteAnimObjects)
+; values: vTiles0 offsets
+wSpriteAnimDict::
+	ds NUM_SPRITEANIMDICT_ENTRIES * 2
 
 wSpriteAnimationStructs::
 ; field  0:   index
@@ -157,17 +161,23 @@ wHourBuffer:: db
 wMinuteBuffer:: db
 	ds 150
 
-wc4bd:: db
-	ds 2
-wSpriteAnimIDBuffer:: db
+wCurSpriteOAMAddr:: dw
+	ds 1
+UNION
+wCurSpriteOAMFlags:: db
+NEXTU
+wSpriteAnimAddrBackup:: dw
+ENDU
 
-	ds 6
+wCurAnimVTile:: db
 
-wGlobalAnimYOffset::
-wc4c7:: db
+wCurAnimXCoord:: db
+wCurAnimYCoord:: db
+wCurAnimXOffset:: db
+wCurAnimYOffset:: db
 
-wGlobalAnimXOffset::
-wc4c8:: db
+wGlobalAnimYOffset:: db
+wGlobalAnimXOffset:: db
 
 	ds 7
 
@@ -224,8 +234,45 @@ wMemoryGameLastMatches:: ds 5
 wMemoryGameCounter:: db
 wMemoryGameNumCardsMatched:: db
 
-ENDU
+NEXTU
 
+	ds 200
+
+wPokedexOrder:: ds $100
+wPokedexOrderEnd::
+
+wDexListingScrollOffset:: db
+wPokedexHandCursorPosIndex:: db
+wCurDexMode:: db
+wPokedexInputFlags:: db
+wPokedexHandCursorStructAddress:: dw
+
+wPokedexCursorStructAddress:: dw
+wPokedexSlowpokeAnimStructAddress:: dw
+
+wDexListingEnd:: db
+wDexTempCursorY:: db
+wDexTempListingScrollOffset:: db
+wDexListingCursor:: db
+
+wDexUnownCount::
+wDexSearchMonType1:: db
+
+wDexUnownModeListLength::
+wDexSearchMonType2:: db
+wDexArrowCursorPosIndex:: db
+
+wDexCurUnownIndex::
+wDexConvertedMonType:: db
+
+wDexSearchResultCount:: db
+wc5e3:: db
+wc5e4:: db
+wc5e5:: db
+wc5e6:: db
+wDexPlaySlowpokeAnimation:: db
+
+ENDU
 
 SECTION "Map Buffer", WRAM0
 
@@ -311,8 +358,9 @@ wPicrossCurrentGridNumber:: ds 1
 wPicrossCurrentCellNumber:: ds 1
 wPicrossCurrentCellType:: ds 1
 wPicrossJoypadAction:: ds 1
-	ds 1
-wc607:: ds 1
+wPicrossJoyStateBuffer:: ds 1
+
+wPicrossCursorMovementDelay:: ds 1
 wPicrossMarkedCells:: ds 4*4*4*4
 	ds 1
 wPicrossLayoutBuffer:: ds $20
@@ -466,7 +514,7 @@ wEnemyDamageTaken:: dw
 UNION
 wBattleReward:: ds 3
 NEXTU
-wca59:: ds 1
+wPicrossAnimateDust:: ds 1
 ENDU
 
 wBattleAnimParam::
@@ -645,6 +693,8 @@ wMemoryGameCardChoice::
 wFlyDestination::
 wIntroSceneFrameCounter::
 wTrainerGearPointerPosition::
+wPokedexSlowpokeNumSearchEntries::
+wNestIconBlinkCounter::
 wBattleTransitionCounter:: db
 
 wBattleTransitionSineWaveOffset::
@@ -1189,6 +1239,7 @@ wBattleHasJustStarted:: db
 wNamedObjectIndexBuffer::
 wNumSetBits::
 wTextDecimalByte::
+wTempSpecies::
 wMoveGrammar::
 wTypeMatchup::
 wCurType::

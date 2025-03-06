@@ -1,5 +1,5 @@
 INCLUDE "data/moves/effects_pointers.inc"
-;;;; Currently on: $10 ;;;;
+
 NormalHit:
 	checkobedience
 	usedmovetext

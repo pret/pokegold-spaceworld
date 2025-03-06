@@ -917,9 +917,9 @@ Data8660:
 	dw $19
 
 Function86a0:
-	call Function881e
-	ld hl, InitEffectObject
-	ld a, BANK(InitEffectObject)
+	call InitTownMap
+	ld hl, ClearSpriteAnims
+	ld a, BANK(ClearSpriteAnims)
 	call FarCall_hl
 	call PlaceGoldInMap
 	call WaitBGMap
@@ -927,8 +927,8 @@ Function86a0:
 .sub_86b4
 	call DelayFrame
 	call GetJoypadDebounced
-	ld hl, EffectObjectJumpNoDelay
-	ld a, BANK(EffectObjectJumpNoDelay)
+	ld hl, PlaySpriteAnimations
+	ld a, BANK(PlaySpriteAnimations)
 	call FarCall_hl
 	ld hl, hJoyDown
 	ld a, [hl]
@@ -937,13 +937,13 @@ Function86a0:
 	ret
 
 FlyMap:
-	ld hl, hJoyDebounceSrc
+	ld hl, hInMenu
 	ld a, [hl]
 	push af
 	ld [hl], $01
-	call Function881e
-	ld hl, InitEffectObject
-	ld a, BANK(InitEffectObject)
+	call InitTownMap
+	ld hl, ClearSpriteAnims
+	ld a, BANK(ClearSpriteAnims)
 	call FarCall_hl
 	call PlaceGoldInMap
 	call Function88b3
@@ -962,7 +962,7 @@ FlyMap:
 	call DelayFrame
 	call GetJoypadDebounced
 
-	callfar EffectObjectJumpNoDelay
+	callfar PlaySpriteAnimations
 
 	ld hl, hJoyDown
 	ld a, [hl]
@@ -998,10 +998,11 @@ FlyMap:
 	ld [wFlyDestination], a
 .sub_8743
 	pop af
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	ret
 
-Function8747:				; Choose fly destination based on D-Pad input
+; Choose fly destination based on D-Pad input
+Function8747:
 	ld a, [wFlyDestination]
 	ld l, a
 	ld h, $00
@@ -1036,61 +1037,66 @@ Function8747:				; Choose fly destination based on D-Pad input
 Text8776:
 	db "とびさき　を　えらんでください@"
 
-Function8786:
-	ld a, [wFlyDestination]
+Pokedex_GetArea:
+	ld a, [wNestIconBlinkCounter]
 	push af
 	xor a
-	ld [wFlyDestination], a
-	call Function881e
+	ld [wNestIconBlinkCounter], a
+
+	call InitTownMap
 	ld de, PokedexNestIconGFX
-	ld hl, vChars0 + $7f0
-	lb bc, BANK(PokedexNestIconGFX), $01
+	ld hl, vChars0 + 127 tiles
+	lb bc, BANK(PokedexNestIconGFX), 1
 	call Request1bpp
+
 	call GetPokemonName
-	coord hl, 4, 15
+	hlcoord 4, 15
 	call PlaceString
-	coord hl, 9, 15
-	ld de, Text87e4
+
+	hlcoord 9, 15
+	ld de, .String_SNest
 	call PlaceString
+
 	call WaitBGMap
 	call SetPalettes
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wTileMap
-	ld bc, $0168
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
-	ld hl, Function3e9dc
-	ld a, BANK(Function3e9dc)
-	call FarCall_hl
-.sub_87ca
-	call Function87ea
+	callfar FindNest
+.loop
+	call .PlaceNest
 	call GetJoypadDebounced
 	ldh a, [hJoyDown]
-	and $03
-	jr nz, .sub_87df
-	ld hl, wFlyDestination
+	and A_BUTTON | B_BUTTON
+	jr nz, .done
+
+	ld hl, wNestIconBlinkCounter
 	inc [hl]
 	call DelayFrame
-	jr .sub_87ca
-.sub_87df
+	jr .loop
+.done
 	pop af
-	ld [wFlyDestination], a
+	ld [wNestIconBlinkCounter], a
 	ret
 
-Text87e4:
+.String_SNest:
 	db "の　すみか@"
 
-Function87ea:
-	ld a, [wFlyDestination]
+.PlaceNest:
+	ld a, [wNestIconBlinkCounter]
 	and $10
-	jr z, .sub_881a
+	jr z, .done_nest
+
 	ld de, wTileMap
-	ld hl, wShadowOAM
-.sub_87f7
+	ld hl, wShadowOAMSprite00
+.nestloop
 	ld a, [de]
 	and a
 	ret z
+	
 	push de
 	push hl
 	ld e, a
@@ -1100,89 +1106,105 @@ Function87ea:
 	add hl, de
 	ld e, l
 	ld d, h
+
+	; load into OAM
 	pop hl
+; X position
 	ld a, [de]
 	inc de
-	sub $04
+	sub 4
 	ld [hli], a
+; Y position
 	ld a, [de]
 	inc de
-	sub $04
+	sub 4
 	ld [hli], a
+; Nest icon -> Tile ID
 	ld a, $7f
 	ld [hli], a
+; Blank out attributes
 	xor a
 	ld [hli], a
+	
 	pop de
 	inc de
-	jr .sub_87f7
-.sub_881a
+	jr .nestloop
+.done_nest
 	call ClearSprites
 	ret
 
-Function881e:
+InitTownMap:
 	call ClearBGPalettes
 	call ClearTileMap
 	call UpdateSprites
 	call DisableLCD
+
 	ld hl, TownMapGFX
 	ld de, vTilesetEnd
 	ld bc, TownMapGFX.End - TownMapGFX
 	ld a, BANK(TownMapGFX)
 	call FarCopyData
+
 	ld hl, wTileMap
 	call DecompTownMapTilemap
-	coord hl, 0, 13
-	ld b, $03
-	ld c, $12
+	hlcoord 0, 13
+	ld b, 3
+	ld c, 18
 	call DrawTextBox
-	ld a, $03
+
+	ld a, 3
 	call UpdateSoundNTimes
 	call EnableLCD
-	ld b, $02
+	ld b, SGB_TOWN_MAP
 	call GetSGBLayout
 	ret
 
 DecompTownMapTilemap:
 	ld de, TownMapTilemap
-.sub_8859
+.loop
 	ld a, [de]
 	and a
 	ret z
+
 	ld b, a
 	inc de
 	ld a, [de]
 	ld c, a
 	ld a, b
 	add $60
-.sub_8863
+.keep_placing_tile
 	ld [hli], a
 	dec c
-	jr nz, .sub_8863
+	jr nz, .keep_placing_tile
 	inc de
-	jr .sub_8859
+	jr .loop
 
 PlaceGoldInMap:
 	ld de, GoldSpriteGFX
 	ld hl, vChars0
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
-	ld de, GoldSpriteGFX + LEN_2BPP_TILE * 12	; Gold's front-facing walking sprite
+
+	ld de, GoldSpriteGFX + 12 tiles
 	ld hl, vChars0 + $40
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
+
 	depixel 0, 0
-	ld a, SPRITE_ANIM_INDEX_41
+	ld a, SPRITE_ANIM_OBJ_MAP_CHARACTER_ICON
 	call InitSpriteAnimStruct
-	ld hl, $0003
+
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $00
+
 	push bc
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapId]
 	ld c, a
 	call GetWorldMapLocation
+
 	ld e, a
 	ld d, $00
 	ld hl, LandmarkPositions
@@ -1192,29 +1214,32 @@ PlaceGoldInMap:
 	inc hl
 	ld e, [hl]
 	pop bc
-	ld hl, $0004
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], e
-	ld hl, $0005
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld [hl], d
 	ret
 
 Function88b3:
 	ld de, PidgeySpriteGFX
-	ld hl, vChars0 + $80
-	lb bc, BANK(PidgeySpriteGFX), $04
+	ld hl, vChars0 + 8 tiles
+	lb bc, BANK(PidgeySpriteGFX), 4
 	call Request2bpp
-	ld de, PidgeySpriteGFX + $c0
-	ld hl, vChars0 + $c0
-	lb bc, BANK(PidgeySpriteGFX), $04
+	
+	ld de, PidgeySpriteGFX + 12 tiles
+	ld hl, vChars0 + 12 tiles
+	lb bc, BANK(PidgeySpriteGFX), 4
 	call Request2bpp
+
 	depixel 0, 0
-	ld a, SPRITE_ANIM_INDEX_41
+	ld a, SPRITE_ANIM_OBJ_MAP_CHARACTER_ICON
 	call InitSpriteAnimStruct
-	ld hl, $0003
+
+	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $08
+	ld [hl], 8
 	ret
 
 TownMapTilemap:

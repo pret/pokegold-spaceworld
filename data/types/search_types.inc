@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/types/search_types.asm", ROMX
-
 PokedexTypeSearchConversionTable::
 	db TYPE_NORMAL
 	db TYPE_FIRE

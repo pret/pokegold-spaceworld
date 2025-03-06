@@ -21,10 +21,10 @@ INCLUDE "data/items/descriptions.inc"
 
 Function2d2fc:
 	ld a, $1
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	call sub_2d436
 	ld a, $0
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	ret nc
 	call PlaceHollowCursor
 	call WaitBGMap

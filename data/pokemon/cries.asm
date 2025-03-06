@@ -198,69 +198,69 @@ PokemonCries::
 	mon_cry CRY_21,   85,  129 ; MON_BELLSPROUT
 	mon_cry CRY_25,   68,  160 ; MON_WEEPINBELL
 	mon_cry CRY_25,  102,  332 ; MON_VICTREEBEL
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
-	mon_cry CRY_00,    0,  256
+	mon_cry CRY_00,    0,  256 ; MON_HAPPA
+	mon_cry CRY_00,    0,  256 ; MON_HANAMOGURA
+	mon_cry CRY_00,    0,  256 ; MON_HANARYU
+	mon_cry CRY_00,    0,  256 ; MON_HONOGUMA
+	mon_cry CRY_00,    0,  256 ; MON_VOLBEAR
+	mon_cry CRY_00,    0,  256 ; MON_DYNABEAR
+	mon_cry CRY_00,    0,  256 ; MON_KURUSU
+	mon_cry CRY_00,    0,  256 ; MON_AQUA
+	mon_cry CRY_00,    0,  256 ; MON_AQUARIA
+	mon_cry CRY_00,    0,  256 ; MON_HOHO
+	mon_cry CRY_00,    0,  256 ; MON_BOBO
+	mon_cry CRY_00,    0,  256 ; MON_PACHIMEE
+	mon_cry CRY_00,    0,  256 ; MON_MOKOKO
+	mon_cry CRY_00,    0,  256 ; MON_DENRYU
+	mon_cry CRY_00,    0,  256 ; MON_MIKON
+	mon_cry CRY_00,    0,  256 ; MON_MONJA
+	mon_cry CRY_00,    0,  256 ; MON_JARANJA
+	mon_cry CRY_00,    0,  256 ; MON_HANEEI
+	mon_cry CRY_00,    0,  256 ; MON_PUKU
+	mon_cry CRY_00,    0,  256 ; MON_SHIBIREFUGU
+	mon_cry CRY_00,    0,  256 ; MON_PICHU
+	mon_cry CRY_00,    0,  256 ; MON_PY
+	mon_cry CRY_00,    0,  256 ; MON_PUPURIN
+	mon_cry CRY_00,    0,  256 ; MON_MIZUUO
+	mon_cry CRY_00,    0,  256 ; MON_NATY
+	mon_cry CRY_00,    0,  256 ; MON_NATIO
+	mon_cry CRY_00,    0,  256 ; MON_GYOPIN
+	mon_cry CRY_00,    0,  256 ; MON_MARIL
+	mon_cry CRY_00,    0,  256 ; MON_MANBO1
+	mon_cry CRY_00,    0,  256 ; MON_IKARI
+	mon_cry CRY_00,    0,  256 ; MON_GROTESS
+	mon_cry CRY_00,    0,  256 ; MON_EKSING
+	mon_cry CRY_00,    0,  256 ; MON_PARA
+	mon_cry CRY_00,    0,  256 ; MON_KOKUMO
+	mon_cry CRY_00,    0,  256 ; MON_TWOHEAD
+	mon_cry CRY_00,    0,  256 ; MON_YOROIDORI
+	mon_cry CRY_00,    0,  256 ; MON_ANIMON
+	mon_cry CRY_00,    0,  256 ; MON_HINAZU
+	mon_cry CRY_00,    0,  256 ; MON_SUNNY
+	mon_cry CRY_00,    0,  256 ; MON_PAON
+	mon_cry CRY_00,    0,  256 ; MON_DONPHAN
+	mon_cry CRY_00,    0,  256 ; MON_TWINZ
+	mon_cry CRY_00,    0,  256 ; MON_KIRINRIKI
+	mon_cry CRY_00,    0,  256 ; MON_PAINTER
+	mon_cry CRY_00,    0,  256 ; MON_KOUNYA
+	mon_cry CRY_00,    0,  256 ; MON_RINRIN
+	mon_cry CRY_00,    0,  256 ; MON_BERURUN
+	mon_cry CRY_00,    0,  256 ; MON_NYOROTONO
+	mon_cry CRY_00,    0,  256 ; MON_YADOKING
+	mon_cry CRY_00,    0,  256 ; MON_ANNON
+	mon_cry CRY_00,    0,  256 ; MON_REDIBA
+	mon_cry CRY_00,    0,  256 ; MON_MITSUBOSHI
+	mon_cry CRY_00,    0,  256 ; MON_PUCHICORN
+	mon_cry CRY_00,    0,  256 ; MON_EIFIE
+	mon_cry CRY_00,    0,  256 ; MON_BLACKY
+	mon_cry CRY_00,    0,  256 ; MON_TURBAN
+	mon_cry CRY_00,    0,  256 ; MON_BETBABY
+	mon_cry CRY_00,    0,  256 ; MON_TEPPOUO
+	mon_cry CRY_00,    0,  256 ; MON_OKUTANK
+	mon_cry CRY_00,    0,  256 ; MON_GONGU
+	mon_cry CRY_00,    0,  256 ; fb
+	mon_cry CRY_00,    0,  256 ; fc
+	mon_cry CRY_00,    0,  256 ; fd
+	mon_cry CRY_00,    0,  256 ; fe
+	mon_cry CRY_00,    0,  256 ; ff
 

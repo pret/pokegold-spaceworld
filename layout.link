@@ -174,7 +174,6 @@ ROMX $04
 	"engine/menu/text_entry.asm@mail"
 	"gfx.asm@Mail Icon GFX"
 	"engine/menu/text_entry.asm@mail2"
-	"engine/unknown11d32.asm"
 	"engine/menu/start_menu.asm"
 	"gfx.asm@Trainer Card GFX"
 
@@ -257,7 +256,7 @@ ROMX $0d
 
 ROMX $0e
 	org $4000
-	org $43cd
+	org $4391
 	"engine/dumps/bank0e.asm"
 	org $4494
 	"gfx.asm@PokeBalls GFX"
@@ -276,14 +275,7 @@ ROMX $0f
 
 ROMX $10
 	org $4000
-	org $4943
-	"data/pokemon/dex_order_alpha.asm"
-	org $4b45
-	"engine/dumps/bank10.asm@ConvertMon_2to1"
-	org $4ecc
-	"data/types/search_strings.asm"
-	org $5068
-	"data/types/search_types.asm"
+	"engine/dumps/bank10.asm"
 	org $52a1
 	"data/moves/names.asm"
 	org $58b6
@@ -379,12 +371,14 @@ ROMX $21
 ROMX $23
 	org $4000
 	"engine/dumps/bank23.asm@AnimateTilesetImpl"
-	org $433e
-	"engine/palettes.asm@Overworld fade"
-	org $43d1
-	"engine/palettes.asm@Palette fading, part 2?"
+	org $42dc
+	"engine/palettes.asm"
+	org $446d
+	"engine/dumps/bank23.asm@RestoreOverworldMapTiles"
 	org $44be
 	"engine/battle/battle_transitions.asm"
+	org $4cfd
+	"engine/dumps/bank23.asm@ClearSpriteAnims"
 	org $60cc
 	"gfx.asm@Pokemon Party Sprites"
 	org $722a
