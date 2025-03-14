@@ -5755,12 +5755,12 @@ _LoadWildMons:
 
 ; Load nest landmarks into wTilemap[0,0]
 FindNest:
-	ld hl, wTileMap
+	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
 	ld hl, GrassWildMons
-	ld de, wTileMap
+	decoord 0, 0
 
 .FindGrass:
 	ld a, [hl]

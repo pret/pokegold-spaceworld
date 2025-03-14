@@ -3,8 +3,7 @@ INCLUDE "constants.asm"
 SECTION "Sprite Buffers", SRAM
 
 UNION
-; TODO: How big is this exactly?
-sScratch:: ds SPRITEBUFFERSIZE * 3
+sScratch:: ds  SCREEN_WIDTH * SCREEN_HEIGHT
 NEXTU
 sSpriteBuffer0:: ds SPRITEBUFFERSIZE
 sSpriteBuffer1:: ds SPRITEBUFFERSIZE
