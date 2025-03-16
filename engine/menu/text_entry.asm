@@ -84,9 +84,9 @@ GetNamingScreenSetup:
 	dw .Pokemon
 
 .Pokemon:
-	ld hl, Function8f0e3
-	ld a, BANK(Function8f0e3)
-	ld e, 1
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)
+	ld e, MONICON_NAMINGSCREEN
 	call FarCall_hl
 	call GetPokemonName
 	hlcoord 5, 2

@@ -381,8 +381,8 @@ ROMX $23
 	"engine/dumps/bank23.asm@ClearSpriteAnims"
 	org $60cc
 	"gfx.asm@Pokemon Party Sprites"
-	org $722a
-	"data/pokemon/menu_icons.asm"
+	org $70cc
+	"engine/gfx/mon_icons.asm"
 
 ROMX $24
 	org $4000

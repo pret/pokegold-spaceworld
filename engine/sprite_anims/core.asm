@@ -4,7 +4,7 @@ SECTION "engine/dumps/bank23.asm@ClearSpriteAnims", ROMX
 
 ClearSpriteAnims::
 	ld hl, wSpriteAnimData
-	ld bc, $00C1 ; wSpriteAnimDataEnd - wSpriteAnimData
+	ld bc, wSpriteAnimDataEnd - wSpriteAnimData
 .loop
 	ld [hl], 0
 	inc hl
@@ -455,14 +455,14 @@ GetFrameOAMPointer:
 	add hl, de
 	ret
 
-; Unreferenced
-UnusedLoadSpriteAnimGFX:
+; Unreferenced in final game
+LoadSpriteAnimGFX::
 	push hl
 	ld l, a
 	ld h, $00
 	add hl, hl
 	add hl, hl
-	ld de, UnusedSpriteAnimGFX
+	ld de, SpriteAnimGFX
 	add hl, de
 	ld c, [hl]
 	inc hl
@@ -481,7 +481,7 @@ INCLUDE "data/sprite_anims/objects.inc"
 INCLUDE "engine/sprite_anims/functions.inc"
 INCLUDE "data/sprite_anims/framesets.inc"
 INCLUDE "data/sprite_anims/oam.inc"
-INCLUDE "data/sprite_anims/unused_gfx.inc"
+INCLUDE "data/sprite_anims/gfx.inc"
 
 Sprites_Cosine:
 ; a = d * cos(a * pi/32)

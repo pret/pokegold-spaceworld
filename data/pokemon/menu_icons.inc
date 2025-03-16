@@ -1,6 +1,4 @@
-INCLUDE "constants.asm"
-
-SECTION "data/pokemon/menu_icons.asm", ROMX
+; party menu icons
 
 MonMenuIcons::
 	db ICON_BULBASAUR  ; 01 BULBASAUR

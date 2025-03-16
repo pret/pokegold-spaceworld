@@ -125,7 +125,7 @@ SGB_StatsScreenHPPals:
 	call Function957e
 	push af
 	ld hl, wcce2
-	ld a, [wccd9]
+	ld a, [wCurHPPal]
 	add $23
 	ld [hli], a
 	inc hl
@@ -540,7 +540,7 @@ Function95f8:
 	jp CopyBytes
 
 SGB_ApplyPartyMenuHPPals:
-	ld hl, wccd3
+	ld hl, wHPPals
 	ld a, [wcce1]
 	ld e, a
 	ld d, $00
