@@ -5,10 +5,10 @@ MACRO sprite_anim_obj_gfx
 ENDM
 
 ; entries correspond to SPRITE_ANIM_DICT_* constants
-UnusedSpriteAnimGFX:
+SpriteAnimGFX:
 	; # tiles, gfx bank, gfx pointer
-	; (good chunk of pointers were dummied out to either .DeletedGFX or MenuMonIconGfx)
-	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGfx 
+	; (good chunk of pointers were dummied out to either .DeletedGFX or MenuMonIconGFX)
+	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGFX 
 	sprite_anim_obj_gfx   8, BANK(PoliwagIcon),    PoliwagIcon    ; SPRITE_ANIM_DICT_POLIWAG_ICON
 	sprite_anim_obj_gfx   8, BANK(JigglypuffIcon), JigglypuffIcon ; SPRITE_ANIM_DICT_JIGGLYPUFF_ICON
 	sprite_anim_obj_gfx   8, BANK(DiglettIcon),    DiglettIcon    ; SPRITE_ANIM_DICT_DIGLETT_ICON
@@ -41,19 +41,21 @@ UnusedSpriteAnimGFX:
 	sprite_anim_obj_gfx   8, BANK(ButterfreeIcon), ButterfreeIcon ; SPRITE_ANIM_DICT_BUTTERFREE_ICON
 	sprite_anim_obj_gfx   8, BANK(ZubatIcon),      ZubatIcon      ; SPRITE_ANIM_DICT_ZUBAT_ICON
 	sprite_anim_obj_gfx   8, BANK(SnorlaxIcon),    SnorlaxIcon    ; SPRITE_ANIM_DICT_SNORLAX_ICON
-	sprite_anim_obj_gfx 128, $01,                  .DeletedGFX
-	sprite_anim_obj_gfx 128, $01,                  .DeletedGFX
-	sprite_anim_obj_gfx 128, $01,                  .DeletedGFX
-	sprite_anim_obj_gfx 128, $01,                  .DeletedGFX
+	sprite_anim_obj_gfx 128, $01,                  .DeletedGFX    ; SPRITE_ANIM_DICT_GS_INTRO
+	sprite_anim_obj_gfx 128, $01,                  .DeletedGFX    ; SPRITE_ANIM_DICT_GS_INTRO_2
+	sprite_anim_obj_gfx 128, $01,                  .DeletedGFX    ; SPRITE_ANIM_DICT_GS_INTRO_3
+	sprite_anim_obj_gfx 128, $01,                  .DeletedGFX    ; SPRITE_ANIM_DICT_TITLE_FLAME_NOTE
 	sprite_anim_obj_gfx  16, $37,                  .DeletedGFX    ; SPRITE_ANIM_DICT_MINIGAME_PICROSS
-	sprite_anim_obj_gfx  16, $11,                  .DeletedGFX
-	sprite_anim_obj_gfx  16, $39,                  .DeletedGFX
-	sprite_anim_obj_gfx  16, $24,                  .DeletedGFX
-	sprite_anim_obj_gfx  16, $21,                  .DeletedGFX
-	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGfx
-	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGfx
-	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGfx
-	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGfx
-	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGfx
+	sprite_anim_obj_gfx  16, $11,                  .DeletedGFX    ; SPRITE_ANIM_DICT_TEXT_CURSOR
+	sprite_anim_obj_gfx  16, $39,                  .DeletedGFX    ; SPRITE_ANIM_DICT_GS_SPLASH
+	sprite_anim_obj_gfx  16, $24,                  .DeletedGFX    ; SPRITE_ANIM_DICT_SLOTS
+	sprite_anim_obj_gfx  16, $21,                  .DeletedGFX    ; SPRITE_ANIM_DICT_ARROW_CURSOR
+
+	; Unused placeholders
+	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGFX
+	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGFX
+	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGFX
+	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGFX
+	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGFX
 
 .DeletedGFX

@@ -161,8 +161,14 @@ wHourBuffer:: db
 wMinuteBuffer:: db
 	ds 150
 
-wCurSpriteOAMAddr:: dw
+UNION
+	wCurSpriteOAMAddr:: dw
+NEXTU
 	ds 1
+	wCurIcon:: db
+ENDU
+	wCurIconTile:: db
+
 UNION
 wCurSpriteOAMFlags:: db
 NEXTU
@@ -178,6 +184,8 @@ wCurAnimYOffset:: db
 
 wGlobalAnimYOffset:: db
 wGlobalAnimXOffset:: db
+
+wSpriteAnimDataEnd::
 
 	ds 7
 
@@ -906,13 +914,12 @@ SECTION "CCD0", WRAM0[$CCD0]
 wccd0:: ds 1
 wPlayerHPPal:: ds 1
 wEnemyHPPal:: ds 1
-wccd3:: ds 1
 
-	ds 5
+wHPPals:: ds PARTY_LENGTH
+wCurHPPal:: db
 
-wccd9:: ds 1
+	ds 7
 
-SECTION "CCE1", WRAM0[$CCE1]
 ; Todo: Replace instances of wcce1-f4 with "wSGBPals + #"
 wSGBPals:: ; ds PALPACKET_LENGTH * 3
 wcce1:: ds 1
@@ -1239,6 +1246,7 @@ wBattleHasJustStarted:: db
 wNamedObjectIndexBuffer::
 wNumSetBits::
 wTextDecimalByte::
+wTempIconSpecies::
 wTempSpecies::
 wMoveGrammar::
 wTypeMatchup::

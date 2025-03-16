@@ -499,7 +499,7 @@ Function50340::
 	hlcoord 18, 1
 	ld [hl], $41
 
-	ld hl, wccd9
+	ld hl, wCurHPPal
 	call SetHPPal
 	ld b, SGB_STATS_SCREEN_HP_PALS
 	call GetSGBLayout
@@ -1142,7 +1142,7 @@ Function5081f::
 	ld a, [wPartyMenuActionText]
 	cp PARTYMENUACTION_MOVE
 	jp z, Function509dd
-	callfar Function8f0cc
+	callfar LoadOverworldMonIcon
 	call Function50eca
 	callfar Function95f8
 	hlcoord 3, 1
@@ -1160,13 +1160,13 @@ Function5081f::
 	call Function508c4
 	pop de
 	ld a, [wCurPartyMon]
-	ldh [hEventID], a
+	ldh [hObjectStructIndex], a
 	push hl
 	push de
 
-	ld hl, Function8f0e3
-	ld a, BANK(Function8f0e3)   ; ...What macro do I use here?
-	ld e, 0
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)   ; ...What macro do I use here?
+	ld e, MONICON_PARTYMENU
 	call FarCall_hl
 
 	pop de
@@ -1540,7 +1540,7 @@ Text_50b4e: ; leveled up
 	db "@"
 
 Function50b66::
-	ld hl, wccd3
+	ld hl, wHPPals
 	ld a, [wcce1]
 	ld c, a
 	ld b, $00
