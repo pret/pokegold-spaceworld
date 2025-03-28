@@ -30,7 +30,7 @@ CanLearnTMHMMove:
 
 .jump
 	pop hl
-	ld b, 2 ;CHECK_FLAG
+	ld b, CHECK_FLAG
 	push de
 	ld d, 0
 	predef SmallFarFlagAction

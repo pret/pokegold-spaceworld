@@ -39,7 +39,7 @@ LoadSGBLayout:
 	dw SGB_TrainerCard
 	dw SGB_MoveList
 	dw SGB_PikachuMinigame
-	dw SGB_PokedexSelection
+	dw SGB_Pokedex_WaitBGMap
 	dw SGB_Poker
 	dw SGB12
 	dw SGB_TrainerGear
@@ -125,7 +125,7 @@ SGB_StatsScreenHPPals:
 	call Function957e
 	push af
 	ld hl, wcce2
-	ld a, [wccd9]
+	ld a, [wCurHPPal]
 	add $23
 	ld [hli], a
 	inc hl
@@ -153,7 +153,7 @@ SGB_Pokedex:
 	ld de, BlkPacket_Pokedex
 	ret
 
-SGB_PokedexSelection:
+SGB_Pokedex_WaitBGMap:
 	ld hl, PalPacket_GSIntroCharizard
 	ld de, BlkPacket_986c
 	ret
@@ -540,7 +540,7 @@ Function95f8:
 	jp CopyBytes
 
 SGB_ApplyPartyMenuHPPals:
-	ld hl, wccd3
+	ld hl, wHPPals
 	ld a, [wcce1]
 	ld e, a
 	ld d, $00

@@ -21,10 +21,10 @@ NamingScreen:
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ldh a, [hJoyDebounceSrc]
+	ldh a, [hInMenu]
 	push af
 	ld a, $01
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	call .SetUpNamingScreen
 	call DelayFrame
 .loop
@@ -32,7 +32,7 @@ NamingScreen:
 	jr nc, .loop
 
 	pop af
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	pop af
 	ldh [hMapAnims], a
 	pop af
@@ -84,9 +84,9 @@ GetNamingScreenSetup:
 	dw .Pokemon
 
 .Pokemon:
-	ld hl, Function8f0e3
-	ld a, BANK(Function8f0e3)
-	ld e, 1
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)
+	ld e, MONICON_NAMINGSCREEN
 	call FarCall_hl
 	call GetPokemonName
 	hlcoord 5, 2
@@ -148,7 +148,7 @@ GetNamingScreenSetup:
 	ld [hl+], a
 	ld [hl], $00
 	depixel 4, 4, 4, 0
-	ld a, SPRITE_ANIM_INDEX_41
+	ld a, SPRITE_ANIM_OBJ_MAP_CHARACTER_ICON
 	call InitSpriteAnimStruct
 	ld hl, $0001
 	add hl, bc
@@ -181,7 +181,7 @@ GetNamingScreenSetup:
 	ld [hli], a
 	ld [hl], $00
 	depixel 4, 4, 4, 0
-	ld a, SPRITE_ANIM_INDEX_41
+	ld a, SPRITE_ANIM_OBJ_MAP_CHARACTER_ICON
 	call InitSpriteAnimStruct
 	ret
 
@@ -255,7 +255,7 @@ NamingScreenJoypadLoop:
 
 .leap
 ; kills sprites and resets screen position
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	call ClearSprites
 	xor a
 	ldh [hSCX], a
@@ -302,7 +302,7 @@ NamingScreenJoypadLoop:
 
 .InitCursor:
 	depixel 11, 3, 0, 0
-	ld a, SPRITE_ANIM_INDEX_39
+	ld a, SPRITE_ANIM_OBJ_NAMING_SCREEN_CURSOR
 	call InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a
@@ -347,7 +347,7 @@ NamingScreenJoypadLoop:
 	set 7, [hl]
 	ret
 
-.GetDPad:
+NamingScreen_AnimateCursor:
 	ld hl, hJoySum
 	ld a, [hl]
 	and D_UP
@@ -620,7 +620,7 @@ NamingScreenGetLastCharacter:
 
 LoadNamingScreenGFX:
 	call ClearSprites
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	call LoadFont
 
 	ld de, TextScreenGFX_End
@@ -656,9 +656,9 @@ LoadNamingScreenGFX:
 	ld [hl], $7F
 	xor a
 	ldh [hSCY], a
-	ld [wc4c7], a
+	ld [wGlobalAnimYOffset], a
 	ldh [hSCX], a
-	ld [wc4c8], a
+	ld [wGlobalAnimXOffset], a
 	ld [wJumptableIndex], a
 	ldh [hBGMapMode], a
 	ld [wNamingScreenCurNameLength], a
@@ -678,10 +678,10 @@ ComposeMailMessage:
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ldh a, [hJoyDebounceSrc]
+	ldh a, [hInMenu]
 	push af
 	ld a, 1
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	xor a
 	ld [wFlyDestination], a
 .outerloop
@@ -696,7 +696,7 @@ ComposeMailMessage:
 	jr nz, .outerloop
 
 	pop af
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	pop af
 	ldh [hMapAnims], a
 	ret
@@ -729,20 +729,20 @@ ComposeMailMessage:
 	ld [hli], a
 	ld [hl], 0
 	depixel 4, 4, 4, 0
-	ld a, SPRITE_ANIM_INDEX_08
+	ld a, SPRITE_ANIM_OBJ_RHYDON_ICON
 	call InitSpriteAnimStruct
 	ld hl, $0002
 	add hl, bc
 	ld [hl], 0
 	depixel 11, 3, 0, 0
-	ld a, SPRITE_ANIM_INDEX_39
+	ld a, SPRITE_ANIM_OBJ_NAMING_SCREEN_CURSOR
 	call InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a
 	ld a, b
 	ld [wNamingScreenCursorObjectPointer + 1], a
 	call InitCharSet
-	ld a, $E3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	call InitMailText
 	call WaitBGMap
@@ -818,7 +818,7 @@ DoMailEntry:
 	ret
 
 .exit_mail
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	call ClearSprites
 	xor a
 	ldh [hSCX], a
@@ -946,20 +946,20 @@ SetupMail:
 	ld [hli], a
 	ld [hl], 0
 	depixel 4, 4, 4, 0
-	ld a, SPRITE_ANIM_INDEX_08
+	ld a, SPRITE_ANIM_OBJ_RHYDON_ICON
 	call InitSpriteAnimStruct
-	ld hl, $0002
+	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], 0
 	depixel 12, 3, 0, 0
-	ld a, SPRITE_ANIM_INDEX_40
+	ld a, SPRITE_ANIM_OBJ_MAIL_WRITING_CURSOR
 	call InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a
 	ld a, b
 	ld [wNamingScreenCursorObjectPointer + 1], a
 	call DrawMail
-	ld a, $E3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	call DrawMailLoadedText
 	call WaitBGMap
@@ -1047,3 +1047,95 @@ DrawMailTextExtra:
 
 MailTextExtra:
 	db "？！１２３４５　　６７８９０ー円"
+
+ComposeMail_AnimateCursor:
+	ld hl, hJoySum
+	ld a, [hl]
+	and D_UP
+	jr nz, .upJump
+	ld a, [hl]
+	and D_DOWN
+	jr nz, .downJump
+	ld a, [hl]
+	and D_LEFT
+	jr nz, .leftJump
+	ld a, [hl]
+	and D_RIGHT
+	jr nz, .rightJump
+	ret
+
+.rightJump
+	ld hl, SPRITEANIMSTRUCT_VAR1
+	add hl, bc
+	ld a, [hl]
+	cp 13
+	jr nc, .skip
+	inc [hl]
+	jr .UpdatePositionOffset
+.skip
+	ld [hl], 0
+	jr .UpdatePositionOffset
+.leftJump
+	ld hl, SPRITEANIMSTRUCT_VAR1
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .skip2
+	dec [hl]
+	jr .UpdatePositionOffset
+.skip2
+	ld [hl], 13
+	jr .UpdatePositionOffset
+.downJump
+	ld hl, SPRITEANIMSTRUCT_VAR2
+	add hl, bc
+	ld a, [hl]
+	cp 4
+	jr nc, .skip3
+	inc [hl]
+	jr .UpdatePositionOffset
+.skip3
+	ld [hl], 00
+	jr .UpdatePositionOffset
+.upJump
+	ld hl, SPRITEANIMSTRUCT_VAR2
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .skip4
+	dec [hl]
+	jr .UpdatePositionOffset
+.skip4
+	ld [hl], 4
+	jr .UpdatePositionOffset
+
+.UpdatePositionOffset
+	ld hl, SPRITEANIMSTRUCT_VAR1
+	add hl, bc
+	ld e, [hl]
+	ld d, 0
+	ld hl, .XOffsets
+	add hl, de
+	ld a, [hl]
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
+	add hl, bc
+	ld [hl], a
+
+	ld hl, SPRITEANIMSTRUCT_VAR2
+	add hl, bc
+	ld e, [hl]
+	ld d, 0
+	ld hl, .YOffsets
+	add hl, de
+	ld a, [hl]
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], a
+	ret
+
+.XOffsets:
+	db $00, $08, $10, $18, $20, $28, $30, $48, $50, $58, $60, $68, $70, $78
+
+.YOffsets:
+	db $00, $08, $18, $20, $30
+

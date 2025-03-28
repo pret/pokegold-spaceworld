@@ -169,13 +169,13 @@ TrainerGear_Loop:
 	bit TRAINERGEAR_END_LOOP_F, a
 	jr nz, .done
 	call TrainerGear_Jumptable
-	farcall EffectObjectJumpNoDelay
+	farcall PlaySpriteAnimations
 	call TrainerGear_UpdateTime
 	call DelayFrame
 	and a
 	ret
 .done
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	call ClearSprites
 	xor a
 	ldh [hSCX], a
@@ -224,17 +224,17 @@ TrainerGear_Next:
 	ret
 
 TrainerGear_InitPointerSprite:
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	ld de, PointerGFX
 	ld hl, vChars0 tile TRAINERGEAR_GFX_POINTER
 	lb bc, BANK(PointerGFX), 4
 	call Request2bpp
-	ld a, SPRITE_ANIM_DICT_29
+	ld a, SPRITE_ANIM_DICT_ARROW_CURSOR
 	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], TRAINERGEAR_GFX_POINTER
 	depixel 4, 3, 4, 4
-	ld a, SPRITE_ANIM_INDEX_TRAINERGEAR_POINTER
+	ld a, SPRITE_ANIM_OBJ_TRAINERGEAR_POINTER
 	call InitSpriteAnimStruct
 	call TrainerGear_Next
 	ret
@@ -373,7 +373,7 @@ TrainerGear_Radio:
 	call WaitBGMap
 
 	depixel 9, 4, 4, 3
-	ld a, SPRITE_ANIM_INDEX_TRAINERGEAR_POINTER
+	ld a, SPRITE_ANIM_OBJ_TRAINERGEAR_POINTER
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
@@ -382,7 +382,7 @@ TrainerGear_Radio:
 	add hl, bc
 	ld [hl], TRAINERGEAR_GFX_POINTER
 	depixel 8, 6
-	ld a, SPRITE_ANIM_INDEX_RADIO_TUNING_KNOB
+	ld a, SPRITE_ANIM_OBJ_RADIO_FREQUENCY_METER
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -428,7 +428,7 @@ TrainerGear_RadioJumptable:
 	ret
 
 .AdvanceDial:
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -457,7 +457,7 @@ TrainerGear_RadioJumptable:
 	ret
 
 .TurnBackDial:
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -487,14 +487,14 @@ TrainerGear_RadioJumptable:
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld d, [hl]
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld e, [hl]
 	pop hl
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], e
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
@@ -623,7 +623,7 @@ TrainerGear_PhoneJoypad:
 	ret
 
 TrainerGear_ClearView:
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	call ClearSprites
 	call WaitForAutoBgMapTransfer
 	coord hl, 0, 3

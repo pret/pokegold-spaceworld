@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/pokemon/dex_order_alpha.asm", ROMX
-
 ; Every Pokémon sorted alphabetically by name (gojūon order).
 
 AlphabeticalPokedexOrder:

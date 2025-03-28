@@ -395,7 +395,7 @@ _InitScrollingMenu::
 	ld [wMenuJoypad], a
 	ldh [hBGMapMode], a
 	inc a
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	ld hl, wce5f
 	set 4, [hl]
 	call asm_243c3
@@ -415,7 +415,7 @@ _ScrollingMenu::
 .asm_24296
 	ld [wMenuJoypad], a
 	ld a, $00
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	ld hl, wce5f
 	res 4, [hl]
 	ret
@@ -1910,13 +1910,13 @@ asm_24ca0:
 
 asm_24ca2:
 	call DelayFrame
-	ldh a, [hJoyDebounceSrc]
+	ldh a, [hInMenu]
 	push af
 	ld a, $01
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	call GetJoypadDebounced
 	pop af
-	ldh [hJoyDebounceSrc], a
+	ldh [hInMenu], a
 	ldh a, [hJoyDown]
 	bit 1, a
 	jr nz, asm_24cd0

@@ -82,6 +82,15 @@ DEF PLAYER_SURF_PIKA EQU 8
 	const DEBUG_FIELD_F
 	const CONTINUED_F
 
+; wJumptableIndex::
+DEF JUMPTABLE_INDEX_MASK EQU %01111111
+	const_def 7
+	shift_const JUMPTABLE_EXIT
+
+; wCurDexMode::
+	const_def
+	const DEXMODE_NUMBERED
+	const DEXMODE_ABC
 
 ; wToolgearFlags::
 DEF SHOW_TOOLGEAR_F      EQU 0
@@ -91,3 +100,6 @@ DEF HIDE_TOOLGEAR_F      EQU 7
 ; wd153::
 DEF TOOLGEAR_COORDS_F       EQU 0
 DEF OVERWORLD_MINUTE_TIME_F EQU 7
+
+; wTimeOfDayPalFlags::
+DEF CLEAR_PALSET_F EQU 7

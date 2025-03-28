@@ -5724,13 +5724,13 @@ asm_3e999:
 _LoadWildMons:
 	xor a
 	ld hl, wWildMons
-	ld bc, $29
+	ld bc, GRASS_WILDDATA_LENGTH
 	call ByteFill
 	ld a, [wMapGroup]
 	ld d, a
 	ld a, [wMapId]
 	ld e, a
-	ld bc, $29
+	ld bc, GRASS_WILDDATA_LENGTH
 	ld hl, GrassWildMons
 .find
 	ld a, [hl]
@@ -5750,88 +5750,90 @@ _LoadWildMons:
 	inc hl
 	inc hl
 	ld de, wWildMons
-	ld bc, $27
+	ld bc, GRASS_WILDDATA_LENGTH - 2
 	jp CopyBytes
 
-Function3e9dc:
-	ld hl, wTileMap
-	ld bc, $0168
+; Load nest landmarks into wTilemap[0,0]
+FindNest:
+	hlcoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
 	ld hl, GrassWildMons
-	ld de, wTileMap
+	decoord 0, 0
 
-asm_3e9ec:
+.FindGrass:
 	ld a, [hl]
-	cp $ff
-	jr z, asm_3ea0d
+	cp -1
+	jr z, .done
+
 	push hl
 	ld b, a
 	inc hl
 	ld c, [hl]
-	call sub_3ea0e
-	jr nc, asm_3ea06
+	call .SearchMapForMon
+	jr nc, .next_grass
+
 	push de
 	call GetWorldMapLocation
-	call sub_3ea27
+	call .AppendNest
 	pop de
-	jr c, asm_3ea06
+	jr c, .next_grass
 	ld [de], a
 	inc de
 
-asm_3ea06:
+.next_grass
 	pop hl
-	ld bc, $29
+	ld bc, GRASS_WILDDATA_LENGTH
 	add hl, bc
-	jr asm_3e9ec
+	jr .FindGrass
 
-asm_3ea0d:
+.done:
 	ret
 
-sub_3ea0e:
+.SearchMapForMon:
+rept 5
 	inc hl
-	inc hl
-	inc hl
-	inc hl
-	inc hl
-	ld a, $12
+endr
+	ld a, NUM_GRASSMON * 3
 
-asm_3ea15:
+.ScanMapLoop:
 	push af
-	ld a, [wNumSetBits]
+	ld a, [wNamedObjectIndexBuffer]
 	cp [hl]
-	jr z, asm_3ea24
+	jr z, .found
 	inc hl
 	inc hl
 	pop af
 	dec a
-	jr nz, asm_3ea15
+	jr nz, .ScanMapLoop
 	and a
 	ret
 
-asm_3ea24:
+.found
 	pop af
 	scf
 	ret
 
-sub_3ea27:
+.AppendNest:
 	ld c, a
 	ld hl, wTileMap
-	ld de, $0168
-
-asm_3ea2e:
+	ld de, SCREEN_WIDTH * SCREEN_HEIGHT
+.AppendNestLoop:
 	ld a, [hli]
 	cp c
-	jr z, asm_3ea3a
+	jr z, .found_nest
+
 	dec de
 	ld a, e
 	or d
-	jr nz, asm_3ea2e
+	jr nz, .AppendNestLoop
+
 	ld a, c
 	and a
 	ret
 
-asm_3ea3a:
+.found_nest
 	scf
 	ret
 
@@ -6727,7 +6729,7 @@ sub_3f60c:
 	ld a, $69
 	ld [hli], a
 	ld [hl], $6a
-	callfar Function38431
+	callfar LinkBattle_TrainerHuds
 	ld c, 150
 	jp DelayFrames
 

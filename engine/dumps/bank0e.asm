@@ -2,6 +2,59 @@ INCLUDE "constants.asm"
 
 SECTION "engine/dumps/bank0e.asm", ROMX
 
+StageBallTilesData:
+	ld a, [de]
+	push af
+	ld de, wBattleHUDTiles
+	ld c, PARTY_LENGTH
+	ld a, $34 ; empty slot
+.loop1
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop1
+	pop af
+
+	ld de, wBattleHUDTiles
+.loop2
+	push af
+	call .GetHUDTile
+	inc de
+	pop af
+	dec a
+	jr nz, .loop2
+	ret
+
+.GetHUDTile:
+	ld a, [hli]
+	and a
+	jr nz, .got_hp
+	ld a, [hl]
+	and a
+	ld b, $33 ; fainted
+	jr z, .fainted
+.got_hp
+	dec hl
+	dec hl
+	dec hl
+	ld a, [hl]
+	and a
+	ld b, $32 ; statused
+	jr nz, .load
+	dec b
+	jr .load
+
+.fainted
+	dec hl
+	dec hl
+	dec hl
+.load
+	ld a, b
+	ld [de], a
+	ld bc, PARTYMON_STRUCT_LENGTH + MON_HP - MON_STATUS
+	add hl, bc
+	ret
+
 DrawPlayerHUDBorder::
 	ld hl, .tiles
 	ld de, wTrainerHUDTiles
@@ -69,11 +122,11 @@ PlaceHUDBorderTiles::
 	ld [hl], a
 	ret
 
-Function38431::
-	call $4488
+LinkBattle_TrainerHuds::
+	call LoadBallIconGFX
 	ld hl, wPartyMon1HP
 	ld de, wPartyCount
-	call $4391
+	call StageBallTilesData
 	ld hl, wPlaceBallsX
 	ld a, 10 * TILE_WIDTH
 	ld [hli], a
@@ -81,11 +134,11 @@ Function38431::
 	ld a, TILE_WIDTH
 	ld [wPlaceBallsDirection], a
 	ld hl, wShadowOAMSprite00
-	call $4467
+	call LoadTrainerHudOAM
 
 	ld hl, wOTPartyMon1HP
 	ld de, wOTPartyCount
-	call $4391
+	call StageBallTilesData
 
 	ld hl, wPlaceBallsX
 	ld a, 10 * TILE_WIDTH
@@ -115,3 +168,9 @@ LoadTrainerHudOAM:
 	dec c
 	jr nz, .loop
 	ret
+
+LoadBallIconGFX:
+	ld de, PokeBallsGFX
+	ld hl, vChars0 + 49 tiles
+	lb bc, 14, 4
+	jp Request2bpp

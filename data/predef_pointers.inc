@@ -58,8 +58,8 @@ GiveItemPredef::
 	add_predef Function41fa1
 	add_predef Function28da4
 	add_predef Function28d6e
-	add_predef Function40ac7
-	add_predef Function40000
+	add_predef NewPokedexEntry
+	add_predef Pokedex
 	add_predef ConvertMon_1to2 ; 30
 	add_predef CopyMonToTempMon
 	add_predef ListMoves
@@ -89,7 +89,7 @@ GiveItemPredef::
 	add_predef Function143e0
 	add_predef CheckSGB
 	add_predef LoadSGBLayout
-	add_predef Function8786
+	add_predef Pokedex_GetArea
 	add_predef DoBattleTransition
 	add_predef Function8c9c6
 	add_predef Function8c940 ; 50

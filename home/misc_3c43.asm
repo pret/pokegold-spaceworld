@@ -76,12 +76,12 @@ GetBattleAnimByte::
 	ret
 
 InitSpriteAnimStruct::
-	ld [wSpriteAnimIDBuffer], a
+	ld [wSpriteAnimAddrBackup], a
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_InitSpriteAnimStruct)
 	call Bankswitch
-	ld a, [wSpriteAnimIDBuffer]
+	ld a, [wSpriteAnimAddrBackup]
 	call _InitSpriteAnimStruct
 	pop af
 	call Bankswitch

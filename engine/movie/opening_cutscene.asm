@@ -10,7 +10,7 @@ OpeningCutscene::
 	ret
 
 .Init:
-	farcall InitEffectObject
+	farcall ClearSpriteAnims
 	xor a
 	ld [wIntroJumptableIndex], a
 	ldh [hBGMapMode], a
@@ -27,14 +27,14 @@ OpeningCutscene::
 	bit 7, a
 	jr nz, .Finish
 
-	farcall EffectObjectJumpNoDelay
+	farcall PlaySpriteAnimations
 	call IntroSceneJumper
 	call DelayFrame
 	and a
 	ret
 
 .Finish:
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	call ClearSprites
 	call DelayFrame
 	xor a
@@ -80,7 +80,7 @@ IntroScene1:
 	ld c, 0
 	call GetSGBLayout
 
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 
 	call Intro_ResetLYOverrides
 
@@ -123,9 +123,9 @@ IntroScene1:
 	jr nz, .draw_gfx
 
 	ld hl, wSpriteAnimDict
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_BUBBLE
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_BUBBLE
 	ld [hli], a
-	ld a, SPRITE_ANIM_DICT_DEFAULT
+	ld a, SPRITE_ANIM_DICT_NULL
 	ld [hli], a
 
 	xor a
@@ -359,7 +359,7 @@ Intro_InitBubble:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_BUBBLE
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_BUBBLE
 	call InitSpriteAnimStruct
 	ret
 
@@ -409,7 +409,7 @@ Intro_InitMagikarps:
 	ret
 
 .PlaceMagikarp:
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_MAGIKARP
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_MAGIKARP
 	call InitSpriteAnimStruct
 	ret
 
@@ -422,7 +422,7 @@ Intro_InitOmanyte:
 ; fallthrough
 
 .PlaceOmanyte:
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_OMANYTE
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_OMANYTE
 	call InitSpriteAnimStruct
 	ret
 
@@ -431,13 +431,13 @@ Intro_InitLapras:
 	and %00011111
 	ret nz
 	depixel 16, 24
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_LAPRAS
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_LAPRAS
 	call InitSpriteAnimStruct
 	ret
 
 Intro_UnusedInitAerodactyl:	; unreferenced
 	depixel 2, 0
-	ld a, SPRITE_ANIM_INDEX_UNUSED_INTRO_AERODACTYL
+	ld a, SPRITE_ANIM_OBJ_UNUSED_INTRO_AERODACTYL
 	call InitSpriteAnimStruct
 	ret
 
@@ -602,7 +602,7 @@ IntroScene6:
 	ld b, SGB_GS_INTRO
 	ld c, 1
 	call GetSGBLayout
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	call Intro_ResetLYOverrides
 	ld hl, vChars2
 	ld de, IntroForestGFX
@@ -636,9 +636,9 @@ IntroScene6:
 	jr nz, .load
 
 	ld hl, wSpriteAnimDict
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_OMANYTE
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_OMANYTE
 	ld [hli], a
-	ld a, SPRITE_ANIM_DICT_DEFAULT
+	ld a, SPRITE_ANIM_DICT_NULL
 	ld [hli], a
 	xor a
 	ldh [hSCY], a
@@ -759,28 +759,28 @@ Intro_InitNote:
 	jr z, .SmallerNote
 
 	depixel 11, 6, 4, 0
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_NOTE
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_NOTE
 	call InitSpriteAnimStruct
 	ret
 
 .SmallerNote:
 	depixel 10, 6, 4, 0
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_SMALLER_NOTE
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_SMALLER_NOTE
 	call InitSpriteAnimStruct
 	ret
 
 Intro_InitJigglypuff:
 	depixel 14, 6
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_JIGGLYPUFF
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_JIGGLYPUFF
 	call InitSpriteAnimStruct
 	ret
 
 Intro_InitPikachu:
 	depixel 14, 24
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_PIKACHU
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_PIKACHU
 	call InitSpriteAnimStruct
 	depixel 14, 24
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_PIKACHU_TAIL
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_PIKACHU_TAIL
 	call InitSpriteAnimStruct
 	ret
 
@@ -791,7 +791,7 @@ IntroScene10:
 	ld b, SGB_GS_INTRO
 	ld c, 2
 	call GetSGBLayout
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	call Intro_ResetLYOverrides
 	call Intro_BlankTilemapAndBGMap
 
@@ -811,9 +811,9 @@ IntroScene10:
 	call Request2bpp
 
 	ld hl, wSpriteAnimDict
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_OMANYTE
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_OMANYTE
 	ld [hli], a
-	ld a, SPRITE_ANIM_DICT_DEFAULT
+	ld a, SPRITE_ANIM_DICT_NULL
 	ld [hli], a
 
 	ld a, 0
@@ -1134,7 +1134,7 @@ Intro_AnimateFireball:
 	and 3
 	ret nz
 	depixel 12, 10, 4, 4
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_FIREBALL
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_FIREBALL
 	call InitSpriteAnimStruct
 	ld hl, hSCX
 	dec [hl]
@@ -1144,13 +1144,13 @@ Intro_AnimateFireball:
 
 Intro_LoadBlastoiseObject:
 	depixel 22, 1
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_BLASTOISE
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_BLASTOISE
 	call InitSpriteAnimStruct
 	ret
 
 Intro_LoadVenusaurObject:
 	depixel 22, 20
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_VENUSAUR
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_VENUSAUR
 	call InitSpriteAnimStruct
 	ret
 

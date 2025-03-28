@@ -379,6 +379,7 @@ INCBIN "gfx/battle_anims/pointer.2bpp"
 INCBIN "gfx/battle_anims/attack_animations_2.2bpp"
 
 SECTION "gfx.asm@Pokemon Party Sprites", ROMX
+MenuMonIconGFX::
 PoliwagIcon:: INCBIN "gfx/icons/poliwag.2bpp"
 JigglypuffIcon:: INCBIN "gfx/icons/jigglypuff.2bpp"
 DiglettIcon:: INCBIN "gfx/icons/diglett.2bpp"

@@ -236,7 +236,7 @@ _TrainerCard:
 
 StartMenu_Pokedex:
 	call LoadStandardMenuHeader
-	predef Function40000
+	predef Pokedex
 	call ClearPalettes
 	call Function360b
 	call ReloadFontAndTileset
@@ -908,7 +908,7 @@ PartyPrompt:
 	ld a, [wCurPartyMon]
 	inc a
 	ld [wSelectedSwapPosition], a
-	callfar Function8f1f2
+	callfar UnfreezeMonIcons
 	ld a, PARTYMENUACTION_MOVE
 	ld [wPartyMenuActionText], a
 	predef PartyMenuInBattle
@@ -1472,17 +1472,17 @@ PokeSummary:
 	xor a
 	ldh [hBGMapMode], a
 	callfar LoadOnlyPokemonStatsGraphics
-	callfar Function8f0cc
+	callfar LoadOverworldMonIcon
 	ld a, [wCurPartyMon]
 	ld e, a
 	ld d, 0
 	ld hl, wPartySpecies
 	add hl, de
 	ld a, [hl]
-	ld [wce37], a
-	ld hl, Function8f0e3
-	ld a, BANK(Function8f0e3)
-	ld e, 2
+	ld [wTempIconSpecies], a
+	ld hl, LoadMenuMonIcon
+	ld a, BANK(LoadMenuMonIcon)
+	ld e, MONICON_MOVES
 	call FarCall_hl
 	hlcoord 0, 1
 	ld b, 8

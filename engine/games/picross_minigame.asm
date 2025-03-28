@@ -43,13 +43,13 @@ PicrossMinigame:
 
 .Init:
 	call DisableLCD
-	farcall InitEffectObject
+	farcall ClearSpriteAnims
 	call .InitGFX
 	call .PlacePlayerBG
 	call .InitRAM
 
 	depixel 8, 8, 0, 0
-	ld a, SPRITE_ANIM_INDEX_MINIGAME_PICROSS_CURSOR
+	ld a, SPRITE_ANIM_OBJ_MINIGAME_PICROSS_CURSOR
 	call InitSpriteAnimStruct
 
 	ld a, c
@@ -58,7 +58,7 @@ PicrossMinigame:
 	ld [wPicrossCursorSpritePointer+1], a
 
 	depixel 5, 4, 4, 4
-	ld a, SPRITE_ANIM_INDEX_MINIGAME_PICROSS_GOLD
+	ld a, SPRITE_ANIM_OBJ_MINIGAME_PICROSS_GOLD
 	call InitSpriteAnimStruct
 
 	ld a, -1
@@ -214,14 +214,14 @@ PicrossMinigame:
 	ld a, BANK(GoldSpriteGFX)
 	call FarCopyData
 
-	ld a, SPRITE_ANIM_DICT_25
+	ld a, SPRITE_ANIM_DICT_MINIGAME_PICROSS
 	ld hl, wSpriteAnimDict
 	ld [hli], a
-	ld [hl], SPRITE_ANIM_DICT_DEFAULT
+	ld [hl], SPRITE_ANIM_DICT_NULL
 	inc hl
-	ld a, SPRITE_ANIM_DICT_22
+	ld a, SPRITE_ANIM_DICT_GS_INTRO_2
 	ld [hli], a
-	ld [hl], SPRITE_ANIM_DICT_10
+	ld [hl], SPRITE_ANIM_DICT_TAUROS_ICON
 	ret
 
 .PlacePlayerBG:
@@ -265,7 +265,7 @@ PicrossMinigame:
 	jr nz, .quit
 
 	call .ExecuteJumptable
-	farcall EffectObjectJumpNoDelay
+	farcall PlaySpriteAnimations
 	call DelayFrame
 	and a
 	ret
@@ -277,14 +277,14 @@ PicrossMinigame:
 .GetJoypadState:
 	call GetJoypadDebounced
 	ldh a, [hJoyState]
-	ld [wc606], a
-	ld hl, wc607
+	ld [wPicrossJoyStateBuffer], a
+	ld hl, wPicrossCursorMovementDelay
 	ld a, [hl]
 	and a
 	ret z
 	dec [hl]
 	xor a
-	ld [wc606], a
+	ld [wPicrossJoyStateBuffer], a
 	ret
 
 .ExecuteJumptable:
@@ -555,7 +555,7 @@ Picross_ProcessJoypad:
 .mark_cell
 	ld [wPicrossJoypadAction], a
 	ld a, 1
-	ld [wca59], a
+	ld [wPicrossAnimateDust], a
 	call Picross_DetermineGridCoord
 	call Picross_MarkCell
 	call Picross_InitDustObject
@@ -582,7 +582,7 @@ Picross_InitDustObject:
 	ret nz
 
 ; Make dust object only if we are marking a cell
-	ld a, SPRITE_ANIM_INDEX_MINIGAME_PICROSS_DUST
+	ld a, SPRITE_ANIM_OBJ_MINIGAME_PICROSS_DUST
 	call InitSpriteAnimStruct
 	ret
 

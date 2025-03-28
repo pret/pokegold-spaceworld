@@ -1,6 +1,60 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/palettes.asm@Overworld fade", ROMX
+SECTION "engine/palettes.asm", ROMX
+
+UpdateTimeOfDayPal:
+	call UpdateTime
+	call GetTimePalette
+	ret
+
+_TimeOfDayPals:
+	ld hl, wTimeOfDayPalFlags
+	bit CLEAR_PALSET_F, [hl]
+	ret nz
+
+	ld a, [wTimeOfDay]
+	ld hl, wCurTimeOfDay
+	cp [hl]
+	ret z
+
+	call OverworldFadeOut
+	call GetTimePalette
+	call RestoreOverworldMapTiles
+	call OverworldFadeIn
+	ret
+
+_LABEL_8C2FE_:
+	ld hl, wTimeOfDayPalFlags
+	res CLEAR_PALSET_F, [hl]
+	call OverworldFadeOut
+	call UpdateTime
+	call GetTimePalette
+	call RestoreOverworldMapTiles
+	call OverworldFadeIn
+	ret
+
+_LABEL_8C313_:
+	ld hl, wTimeOfDayPalFlags
+	set CLEAR_PALSET_F, [hl]
+	call OverworldFadeOut
+	call GetTimePalette
+	call RestoreOverworldMapTiles
+	call OverworldFadeIn
+	ret
+
+Function8c325:
+	call OverworldFadeOut
+	call UpdateTime
+	call GetTimePalette
+	call RestoreOverworldMapTiles
+	call OverworldFadeIn
+	ret
+
+_UpdateTimePals:
+	ld c, $09
+	call GetFadeStep
+	call ApplyPalettesAtHL
+	ret
 
 OverworldFadeIn::
 	ld c, 0
@@ -16,9 +70,91 @@ OverworldFadeOut::
 	call FadeTowardsBlack
 	ret
 
+ReplaceTimeOfDayPals::
+	ld hl, TimeOfDayPalsets
+	ld a, [wMapPermissions]	; wMapPermissions = $D661
+	cp TOWN
+	jr z, .get_palset
 
-; TODO: merge this
-SECTION "engine/palettes.asm@Palette fading, part 2?", ROMX
+	cp ROUTE
+	jr z, .get_palset
+
+	inc hl
+	cp CAVE
+	jr z, .get_palset
+
+	; INDOOR, ENVIRONMENT_5, GATE, DUNGEON
+	inc hl
+.get_palset
+	ld a, [hl]
+	ld [wTimeOfDayPalset], a
+	ret
+
+TimeOfDayPalsets:
+db %11100100, %11100100, %01100000
+
+GetTimePalette::
+	ld hl, wTimeOfDayPalFlags
+	bit CLEAR_PALSET_F, [hl]
+	jr nz, .ClearPalset
+
+	ld a, [wTimeOfDay]
+	ld [wCurTimeOfDay], a
+	ld e, a
+	ld d, $00
+	ld hl, .Jumptable
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+.Jumptable:
+dw .Day, .Night, .Darkness, .Morning
+
+.Day:
+	xor a
+	ldh [hOverworldFlashlightEffect], a
+	ld a, [wTimeOfDayPalset]
+	and %00000011
+	ld [wTimeOfDayPal], a
+	ret
+
+.Night:
+	xor a
+	ldh [hOverworldFlashlightEffect], a
+	ld a, [wTimeOfDayPalset]
+	and %00001100
+	srl a
+	srl a
+	ld [wTimeOfDayPal], a
+	ret
+
+.Darkness:
+	ld a, $03
+	ldh [hOverworldFlashlightEffect], a
+	ld a, [wTimeOfDayPalset]
+	and %00110000
+	swap a
+	ld [wTimeOfDayPal], a
+	ret
+
+.Morning:
+	xor a
+	ldh [hOverworldFlashlightEffect], a
+	ld a, [wTimeOfDayPalset]
+	and %11000000
+	rlca
+	rlca
+	ld [wTimeOfDayPal], a
+	ret
+
+.ClearPalset:
+	xor a
+	ldh [hOverworldFlashlightEffect], a
+	ld [wTimeOfDayPal], a
+	ret
 
 ApplyPalettesAtHL::
 	push hl

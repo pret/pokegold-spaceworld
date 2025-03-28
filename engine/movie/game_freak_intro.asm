@@ -77,7 +77,7 @@ GameFreakIntro::
 	ld a, BANK(GameFreakLogoSparkleGFX)
 	call FarCopyData
 
-	farcall InitEffectObject
+	farcall ClearSpriteAnims
 
 	ld hl, wSpriteAnimDict
 	ld a, SPRITE_ANIM_DICT_GS_SPLASH
@@ -119,7 +119,7 @@ GameFreakIntro::
 	bit 7, a
 	jr nz, .Finished
 
-	farcall EffectObjectJumpNoDelay
+	farcall PlaySpriteAnimations
 
 	call GameFreakPresentsScene
 	call DelayFrame
@@ -131,7 +131,7 @@ GameFreakIntro::
 	set 6, [hl]
 
 .Finished:
-	callfar InitEffectObject
+	callfar ClearSpriteAnims
 	call ClearTileMap
 	call ClearSprites
 
@@ -169,10 +169,10 @@ GameFreakPresents_Star:
 	xor a
 	ld [wIntroSceneFrameCounter], a
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_STAR
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_STAR
 	call InitSpriteAnimStruct
 
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $a0	; star path radius
 
@@ -187,7 +187,7 @@ GameFreakPresents_PlaceLogo:
 	ret z
 
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_GAMEFREAK_LOGO
+	ld a, SPRITE_ANIM_OBJ_GAMEFREAK_LOGO
 	call InitSpriteAnimStruct
 	call GameFreakPresents_NextScene
 
@@ -293,7 +293,7 @@ GameFreakPresents_Sparkle:
 ; set up a new sparkle sprite
 	push af
 	depixel 11, 11
-	ld a, SPRITE_ANIM_INDEX_GS_INTRO_SPARKLE
+	ld a, SPRITE_ANIM_OBJ_GS_INTRO_SPARKLE
 	call InitSpriteAnimStruct
 	pop af
 
@@ -314,10 +314,10 @@ GameFreakPresents_Sparkle:
 	ld a, [de]
 	ld [hl], a ; angle
 	inc de
-	ld hl, SPRITEANIMSTRUCT_0C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], 0
-	inc hl ; SPRITEANIMSTRUCT_0D
+	inc hl ; SPRITEANIMSTRUCT_VAR2
 	ld a, [de]
 	ld [hl], a ; distance
 	ret
