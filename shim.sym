@@ -66,14 +66,35 @@
 32:7733 Functioncb733
 32:7FFF BattleAnimationsBankRef
 
-33:4000 Functioncc000
-33:4000 Functioncc000_2
-33:4001 PlayBattleAnim
-33:444F Functioncc44f
-33:44D4 Functioncc4d4
-33:467B QueueBattleAnimation
+;33:4000 Functioncc000
+;33:4000 Functioncc000_2
+;33:4001 PlayBattleAnim
+
+;33:4022 RunBattleAnimScript_User
+;33:4055 RunBattleAnimScript_Target
+;33:40d5 BattleAnimCommands
+33:4cfe BattleAnimations
+
+;33:444F BattleAnimCmd_RaiseSub
+;33:44D4 BattleAnimCmd_MinimizeOpp
+;33:467B QueueBattleAnimation
+
+;33:462d BattleAnim_SetPals
+;33:4648 BattleAnim_UpdateOAM_All
+;33:469e InitBattleAnimation
+;33:46df BattleAnimOAMUpdate
+;33:4783 InitBattleAnimBuffer
+;33:47e6 GetBattleAnimTileOffset
+;33:47fd _ExecuteBGEffects
+33:480f BattleAnimObjects
+33:4b98 DoBattleAnimFrame
+
+33:62bb GetBattleAnimFrame
 33:625D BattleAnim_Sine_e
 33:6263 BattleAnim_Cosine_e
+33:6326 GetBattleAnimOAMPointer
+33:6330 LoadBattleAnimGFX
+
 
 38:48A2 PokerMinigame
 38:5AE3 FifteenPuzzleMinigame

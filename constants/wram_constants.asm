@@ -103,3 +103,10 @@ DEF OVERWORLD_MINUTE_TIME_F EQU 7
 
 ; wTimeOfDayPalFlags::
 DEF CLEAR_PALSET_F EQU 7
+
+; wBattleAnimFlags::
+const_def
+const BATTLEANIM_STOP_F          ; 0
+const BATTLEANIM_IN_SUBROUTINE_F ; 1
+const BATTLEANIM_IN_LOOP_F       ; 2
+const BATTLEANIM_KEEPSPRITES_F   ; 3

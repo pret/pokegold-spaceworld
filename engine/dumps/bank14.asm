@@ -1620,7 +1620,7 @@ PlaceNonFaintStatus::
 	ld [hl], "ひ"
 	ret
 
-Function50bcd::
+GetMonBackpic::
 	ld a, $00
 	call OpenSRAM
 	push hl

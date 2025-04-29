@@ -51,8 +51,8 @@ GiveItemPredef::
 	add_predef Function3e1a4
 	add_predef Function3ef19
 	add_predef CalcAndPlaceExpBar
-	add_predef Function3e91e
-	add_predef Function3e963 ; 28
+	add_predef GetBattleMonBackpic
+	add_predef GetEnemyMonFrontpic ; 28
 	add_predef Function421f8
 	add_predef FillMoves
 	add_predef Function41fa1
@@ -63,7 +63,7 @@ GiveItemPredef::
 	add_predef ConvertMon_1to2 ; 30
 	add_predef CopyMonToTempMon
 	add_predef ListMoves
-	add_predef Function50bcd
+	add_predef GetMonBackpic
 	add_predef PlaceNonFaintStatus
 	add_predef Function508c4
 	add_predef PartyMenuInBattle_Setup

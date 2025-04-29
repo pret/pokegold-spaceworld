@@ -775,6 +775,7 @@ ROMX $32
 
 ROMX $33
 	org $4000
+	"engine/dumps/bank33.asm"
 
 ROMX $34
 	org $4000

@@ -3006,7 +3006,7 @@ PokeBallEffect:
 
 .room_in_party
 	xor a
-	ld [wce35], a
+	ld [wWildMon], a
 	call ReturnToBattle_UseBall
 
 	ld hl, ItemUsedText
@@ -3138,7 +3138,7 @@ PokeBallEffect:
 .sub_e9d6
 	ld a, [wEnemyMonSpecies]
 .sub_e9d9
-	ld [wce35], a
+	ld [wWildMon], a
 	ld c, $14
 	call DelayFrames
 	ld a, [wCurItem]
@@ -3153,7 +3153,7 @@ PokeBallEffect:
 	ld [wMapBlocksAddress], a
 	ld [wNumHits], a
 	predef PlayBattleAnim
-	ld a, [wce35]
+	ld a, [wWildMon]
 	and a
 	jr nz, .sub_ea29
 	ld a, [wMapBlocksAddress]
@@ -3216,7 +3216,7 @@ PokeBallEffect:
 	pop af
 	ld [hl], a
 	ld a, [wEnemyMonSpecies]
-	ld [wce35], a
+	ld [wWildMon], a
 	ld [wCurPartySpecies], a
 	ld [wce37], a
 	ld a, [wce03]
@@ -5444,66 +5444,74 @@ Breeder_EggLaidText:
 Functionfd45:
 	ret
 
-Functionfd46:
-	ld a, [wMapBlocksAddress]
+GetPokeBallWobble:
+; Returns whether a Poke Ball will wobble in the catch animation.
+; Whether a Pokemon is caught is determined beforehand.
+
+	ld a, [wThrownBallWobbleCount]
 	inc a
-	ld [wMapBlocksAddress], a
-	cp $04
-	jr z, .sub_fd71
-	ld a, [wce35]
+	ld [wThrownBallWobbleCount], a
+
+; Wobble up to 3 times.
+	cp 3 + 1
+	jr z, .finished
+	ld a, [wWildMon]
 	and a
-	ld c, $00
+	ld c, 0 ; next
 	ret nz
-	ld hl, Datafd7b
-	ld a, [wFieldMoveScriptID]
+	ld hl, WobbleProbabilities
+	ld a, [wFinalCatchRate]
 	ld b, a
-.sub_fd5f
+.loop
 	ld a, [hli]
 	cp b
-	jr nc, .sub_fd66
+	jr nc, .checkwobble
 	inc hl
-	jr .sub_fd5f
-.sub_fd66
+	jr .loop
+.checkwobble
 	ld b, [hl]
 	call Random
 	cp b
-	ld c, $00
+	ld c, 0 ; next
 	ret c
-	ld c, $02
-	ret
-.sub_fd71
-	ld a, [wce35]
-	and a
-	ld c, $01
-	ret nz
-	ld c, $02
+	ld c, 2 ; escaped
 	ret
 
-Datafd7b:
-	db $01, $3f
-	db $02, $4b
-	db $03, $54
-	db $04, $5a
-	db $05, $5f
-	db $07, $67
-	db $0a, $71
-	db $0f, $7e
-	db $14, $86
-	db $1e, $95
-	db $28, $a0
-	db $32, $a9
-	db $3c, $b1
-	db $50, $bf
-	db $64, $c9
-	db $78, $d3
-	db $8c, $dc
-	db $a0, $e3
-	db $b4, $ea
-	db $c8, $f0
-	db $dc, $f6
-	db $f0, $fb
-	db $fe, $fd
-	db $ff, $ff
+.finished
+	ld a, [wWildMon]
+	and a
+	ld c, 1 ; caught
+	ret nz
+	ld c, 2 ; escaped
+	ret
+
+WobbleProbabilities:
+; catch rate, chance of wobbling / 255
+; nLeft/255 = (nRight/255) ** 4
+	db   1,  63
+	db   2,  75
+	db   3,  84
+	db   4,  90
+	db   5,  95
+	db   7, 103
+	db  10, 113
+	db  15, 126
+	db  20, 134
+	db  30, 149
+	db  40, 160
+	db  50, 169
+	db  60, 177
+	db  80, 191
+	db 100, 201
+	db 120, 211
+	db 140, 220
+	db 160, 227
+	db 180, 234
+	db 200, 240
+	db 220, 246
+	db 240, 251
+	db 254, 253
+	db 255, 255
 
 Functionfdab:
 	ld a, $02
