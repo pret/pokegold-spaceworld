@@ -16,6 +16,7 @@ INCLUDE "macros/maps.asm"
 
 INCLUDE "macros/battle_commands.asm"
 INCLUDE "macros/oam_anims.asm"
+INCLUDE "macros/battle_anims.asm"
 INCLUDE "macros/asserts.asm"
 
 INCLUDE "constants/audio_constants.asm"

@@ -775,7 +775,11 @@ ROMX $32
 
 ROMX $33
 	org $4000
+	"engine/battle_anims/anim_commands.asm"
 	"engine/dumps/bank33.asm"
+	org $4b98
+	"engine/battle_anims/functions.asm"
+
 
 ROMX $34
 	org $4000
