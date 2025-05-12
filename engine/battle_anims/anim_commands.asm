@@ -606,11 +606,11 @@ BattleAnimCmd_BattlerGFX_1Row:
 	jr .loop
 
 .okay
-	ld a, $26 ; BATTLE_ANIM_GFX_PLAYERHEAD
+	ld a, BATTLE_ANIM_GFX_PLAYERHEAD
 	ld [hli], a
 	ld a, ($80 - 6 - 7) - BATTLEANIM_BASE_TILE
 	ld [hli], a
-	ld a, $27 ; BATTLE_ANIM_GFX_ENEMYFEET
+	ld a, BATTLE_ANIM_GFX_ENEMYFEET
 	ld [hli], a
 	ld a, ($80 - 6) - BATTLEANIM_BASE_TILE
 	ld [hl], a
@@ -660,11 +660,11 @@ BattleAnimCmd_BattlerGFX_2Row:
 	jr .loop
 
 .okay
-	ld a, $26 ;BATTLE_ANIM_GFX_PLAYERHEAD
+	ld a, BATTLE_ANIM_GFX_PLAYERHEAD
 	ld [hli], a
 	ld a, ($80 - 6 * 2 - 7 * 2) - BATTLEANIM_BASE_TILE
 	ld [hli], a
-	ld a, $27 ;BATTLE_ANIM_GFX_ENEMYFEET
+	ld a, BATTLE_ANIM_GFX_ENEMYFEET
 	ld [hli], a
 	ld a, ($80 - 6 * 2) - BATTLEANIM_BASE_TILE
 	ld [hl], a

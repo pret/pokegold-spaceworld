@@ -4158,8 +4158,9 @@ BattleAnim_StepToTarget:
 	jr nz, .loop
 	ret
 
+; Changed in the final version to pop the return address instead of directly accessing it,
+; and also to make it so that they didn't have to put "jp hl" after EVERY call to this function.
 BattleAnim_AnonJumptable:
-; All of this was optimized to "pop de" in the final version.
 	ld hl, sp+0
 	ld e, [hl]
 	inc hl
@@ -4175,7 +4176,6 @@ BattleAnim_AnonJumptable:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-; The final game replaces this with "jp hl" to avoid having to put that after every single call for this function.
 	ret
 
 BattleAnim_IncAnonJumptableIndex:

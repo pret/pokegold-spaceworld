@@ -76,12 +76,15 @@
 ;33:6224 BattleAnim_IncAnonJumptableIndex
 ;33:622a BattleAnim_Cosine
 ;33:622c BattleAnim_Sine
-33:62a9 ReinitBattleAnimFrameset
-33:62bb GetBattleAnimFrame
+;33:62a9 ReinitBattleAnimFrameset
+;33:62bb GetBattleAnimFrame
 ;33:625D BattleAnim_Sine_e
 ;33:6263 BattleAnim_Cosine_e
-33:6326 GetBattleAnimOAMPointer
-33:6330 LoadBattleAnimGFX
+;33:6326 GetBattleAnimOAMPointer
+;33:6330 LoadBattleAnimGFX
+;33:697C BattleAnimOAMData
+;33:6CC8 OAMData
+;33:7780 AnimObjGFX
 
 
 38:48A2 PokerMinigame

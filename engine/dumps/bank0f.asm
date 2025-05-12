@@ -6416,7 +6416,7 @@ AddBattleMoneyToAccount:
 	call PrintText
 	ret
 
-	BattleText_PlayerPickedUpPayDayMoney:
+BattleText_PlayerPickedUpPayDayMoney:
 	text "<PLAYER>は　@"
 	deciram wPayDayMoney, 3, 6
 	text "円"
