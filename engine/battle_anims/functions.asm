@@ -1,7 +1,7 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/battle_anims/functions.asm", ROMX
 
+SECTION "engine/battle_anims/functions.asm", ROMX
 ; TODO: Uncomment the asserts once we have all the framesets labelled
 
 DoBattleAnimFrame:
