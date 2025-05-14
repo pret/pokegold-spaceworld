@@ -779,15 +779,6 @@ ROMX $33
 	"engine/dumps/bank33.asm"
 	"engine/battle_anims/functions.asm"
 	"engine/battle_anims/helper.asm"
-	;org $4b98
-	;"engine/battle_anims/functions.asm"
-	;"engine/dumps/bank33.asm@ReinitBattleAnimFrameset"
-	;org $64b6
-	;"engine/dumps/bank33.asm@Frames"
-	;org $697c
-	;"engine/dumps/bank33.asm@BattleAnimOamData"
-	;org $6cc8
-	;"engine/dumps/bank33.asm@OamData"
 
 
 ROMX $34

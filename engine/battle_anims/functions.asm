@@ -84,7 +84,7 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_SafeguardProtect
 	dw BattleAnimFunction_LockOnMindReader
 	dw BattleAnimFunction_Spikes
-	dw BattleAnimFunction_HealBellNotes
+	dw BattleAnimFunction_BellChimeNotes
 	dw BattleAnimFunction_BatonPass
 	dw BattleAnimFunction_Conversion
 	dw BattleAnimFunction_EncoreBellyDrum
@@ -3733,7 +3733,7 @@ BattleAnimFunction_LockOnMindReader:
 
 ; Object moves horizontally in a sine wave, while also moving left every other frame and downwards for $38 frames after which it disappears.
 ; Obj Param: Defines a frameset offset from BATTLE_ANIM_FRAMESET_MUSIC_NOTE_1.
-BattleAnimFunction_HealBellNotes:
+BattleAnimFunction_BellChimeNotes:
 	call BattleAnim_AnonJumptable
 	jp hl
 .anon_dw

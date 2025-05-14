@@ -142,7 +142,7 @@ BattleAnimFrameData:
 	dw .Frameset_MilkBottle          ; BATTLE_ANIM_FRAMESET_MILK_BOTTLE
 	dw .Frameset_Spike               ; BATTLE_ANIM_FRAMESET_SPIKE
 	dw .Frameset_AngerVein           ; BATTLE_ANIM_FRAMESET_ANGER_VEIN
-	dw .Frameset_HealBell            ; BATTLE_ANIM_FRAMESET_HEAL_BELL
+	dw .Frameset_BellChime           ; BATTLE_ANIM_FRAMESET_BELL_CHIME
 	dw .Frameset_BatonPass           ; BATTLE_ANIM_FRAMESET_BATON_PASS
 	dw .Frameset_LockOn1             ; BATTLE_ANIM_FRAMESET_LOCK_ON_1
 	dw .Frameset_LockOn2             ; BATTLE_ANIM_FRAMESET_LOCK_ON_2
@@ -170,7 +170,7 @@ BattleAnimFrameData:
 	dw .Frameset_CrossCutter1        ; BATTLE_ANIM_FRAMESET_CROSS_CUTTER_1
 	dw .Frameset_CrossCutter2        ; BATTLE_ANIM_FRAMESET_CROSS_CUTTER_2
 	dw .Frameset_ZapCannon           ; BATTLE_ANIM_FRAMESET_ZAP_CANNON
-	dw .Frameset_CurseNail           ; BATTLE_ANIM_FRAMESET_CURSE_NAIL
+	dw .Frameset_CurseNail           ; BATTLE_ANIM_FRAMESET_NAIL_DOWN
 	dw .Frameset_ForesightShine      ; BATTLE_ANIM_FRAMESET_FORESIGHT_SHINE
 	dw .Frameset_RapidSpin           ; BATTLE_ANIM_FRAMESET_RAPID_SPIN
 	dw .Frameset_Swagger             ; BATTLE_ANIM_FRAMESET_SWAGGER
@@ -1045,7 +1045,7 @@ BattleAnimFrameData:
 	oamframe BATTLE_ANIM_OAMSET_B0, 32
 	oamdelete
 
-.Frameset_HealBell:
+.Frameset_BellChime:
 	oamframe BATTLE_ANIM_OAMSET_B1,  7
 	oamframe BATTLE_ANIM_OAMSET_B1,  7, OAM_X_FLIP
 	oamrestart

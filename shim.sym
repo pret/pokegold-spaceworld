@@ -66,8 +66,8 @@
 32:7733 Functioncb733
 32:7FFF BattleAnimationsBankRef
 
-33:4cfe BattleAnimations
-33:480f BattleAnimObjects
+32:4cfe BattleAnimations
+;33:480f BattleAnimObjects
 ;33:4b98 DoBattleAnimFrame
 
 ;33:5081 BattleAnim_ScatterHorizontal
