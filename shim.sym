@@ -67,6 +67,16 @@
 32:7FFF BattleAnimationsBankRef
 
 32:4cfe BattleAnimations
+32:5b8d BattleAnim_FocusEnergy
+32:7573 BattleAnimSub_WarpAway
+32:759a BattleAnimSub_Beam
+32:75c3 BattleAnimSub_Explosion1
+32:75f0 BattleAnimSub_Explosion2
+32:762d BattleAnimSub_Fire
+32:7640 BattleAnimSub_Ice
+32:7696 BattleAnimSub_Acid
+32:76cb BattleAnim_TargetObj_1Row
+32:76db BattleAnim_ShowMon_0
 ;33:480f BattleAnimObjects
 ;33:4b98 DoBattleAnimFrame
 

@@ -289,7 +289,7 @@ DEF NUM_BATTLE_ANIM_OBJS EQU const_value
 	const BATTLE_ANIM_FUNC_PERISH_SONG               ; 47
 	const BATTLE_ANIM_FUNC_RAPID_SPIN                ; 48
 	const BATTLE_ANIM_FUNC_BETA_PURSUIT              ; 49
-	const BATTLE_ANIM_FUNC_RAIN_SANDSTORM            ; 4a
+	const BATTLE_ANIM_FUNC_RAIN            ; 4a
 DEF NUM_BATTLE_ANIM_FUNCS EQU const_value
 
 ; BattleAnimFrameData indexes (see data/battle_anims/framesets.asm)
@@ -696,53 +696,51 @@ DEF NUM_BATTLE_ANIM_OAMSETS EQU const_value
 
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1
-	const ANIM_BG_FLASH_INVERTED
-	const ANIM_BG_FLASH_WHITE
-	const ANIM_BG_WHITE_HUES
-	const ANIM_BG_BLACK_HUES
-	const ANIM_BG_ALTERNATE_HUES
-	const ANIM_BG_06
-	const ANIM_BG_07
-	const ANIM_BG_08
-	const ANIM_BG_HIDE_MON
-	const ANIM_BG_SHOW_MON
-	const ANIM_BG_ENTER_MON
-	const ANIM_BG_RETURN_MON
-	const ANIM_BG_SURF
-	;const ANIM_BG_WHIRLPOOL
-	const ANIM_BG_TELEPORT
-	const ANIM_BG_NIGHT_SHADE
-	const ANIM_BG_FEET_FOLLOW
-	const ANIM_BG_HEAD_FOLLOW
-	const ANIM_BG_DOUBLE_TEAM
-	const ANIM_BG_ACID_ARMOR
-	const ANIM_BG_RAPID_FLASH
-	const ANIM_BG_16
-	const ANIM_BG_17
-	const ANIM_BG_18
+	const BATTLE_BG_EFFECT_FLASH_INVERTED                   ; 01
+	const BATTLE_BG_EFFECT_FLASH_WHITE                      ; 02
+	const BATTLE_BG_EFFECT_WHITE_HUES                       ; 03
+	const BATTLE_BG_EFFECT_BLACK_HUES                       ; 04
+	const BATTLE_BG_EFFECT_ALTERNATE_HUES                   ; 05
+	const BATTLE_BG_EFFECT_CYCLE_OBPALS                     ; 06
+	const BATTLE_BG_EFFECT_CYCLE_MID_OBPALS_GRAY_AND_YELLOW ; 07
+	const BATTLE_BG_EFFECT_CYCLE_BGPALS_INVERTED            ; 08
+	const BATTLE_BG_EFFECT_HIDE_MON                         ; 09
+	const BATTLE_BG_EFFECT_SHOW_MON                         ; 0a
+	const BATTLE_BG_EFFECT_ENTER_MON                        ; 0b
+	const BATTLE_BG_EFFECT_RETURN_MON                       ; 0c
+	const BATTLE_BG_EFFECT_SURF                             ; 0d
+	const BATTLE_BG_EFFECT_TELEPORT                         ; 0e
+	const BATTLE_BG_EFFECT_NIGHT_SHADE                      ; 0f
+	const BATTLE_BG_EFFECT_BATTLEROBJ_1ROW                  ; 10
+	const BATTLE_BG_EFFECT_BATTLEROBJ_2ROW                  ; 11
+	const BATTLE_BG_EFFECT_DOUBLE_TEAM                      ; 12
+	const BATTLE_BG_EFFECT_ACID_ARMOR                       ; 13
+	const BATTLE_BG_EFFECT_RAPID_FLASH                      ; 14
+	const BATTLE_BG_EFFECT_FADE_MON_TO_LIGHT                ; 15
+	const BATTLE_BG_EFFECT_FADE_MON_TO_BLACK                ; 16
+	const BATTLE_BG_EFFECT_FADE_MON_TO_LIGHT_REPEATING      ; 17
+	const BATTLE_BG_EFFECT_FADE_MON_TO_BLACK_REPEATING      ; 18
 	const ANIM_BG_19
 	const ANIM_BG_1A
 	const ANIM_BG_1B
 	const ANIM_BG_1C
 	const ANIM_BG_1D
-	const ANIM_BG_1E
-	const ANIM_BG_1F
+	const BATTLE_BG_EFFECT_SHAKE_SCREEN_X                   ; 1e
+	const BATTLE_BG_EFFECT_SHAKE_SCREEN_Y                   ; 1f
 	const ANIM_BG_20
 	const ANIM_BG_WITHDRAW
 	const ANIM_BG_BOUNCE_DOWN
 	const ANIM_BG_DIG
 	const ANIM_BG_TACKLE
-	;const ANIM_BG_25
-	const ANIM_BG_26
-	const ANIM_BG_27
-	const ANIM_BG_WAVE_DEFORM_USER
-	const ANIM_BG_PSYCHIC
+	const ANIM_BG_25
+	const BATTLE_BG_EFFECT_WAVE_DEFORM_MON                  ; 26
+	const BATTLE_BG_EFFECT_PSYCHIC                          ; 27
+	const BATTLE_BG_EFFECT_BETA_SEND_OUT_MON1               ; 28
+	const BATTLE_BG_EFFECT_BETA_SEND_OUT_MON2               ; 29
 	const ANIM_BG_2A
 	const ANIM_BG_2B
 	const ANIM_BG_2C
 	const ANIM_BG_2D
-	const ANIM_BG_2E
-	const ANIM_BG_2F
 	;const ANIM_BG_30
 	;const ANIM_BG_31
 	;const ANIM_BG_32
@@ -802,6 +800,11 @@ DEF NUM_BATTLE_ANIM_GFX EQU const_value - 1
 	const BG_EFFECT_STRUCT_PARAM
 DEF BG_EFFECT_STRUCT_LENGTH EQU const_value
 DEF NUM_BG_EFFECTS EQU 5 ; see wActiveBGEffects
+
+; anim_bgeffect battle turn values for some effects
+	const_def
+	const BG_EFFECT_TARGET ; 0
+	const BG_EFFECT_USER   ; 1
 
 ; battle palettes
 	const_def

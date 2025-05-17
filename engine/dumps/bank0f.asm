@@ -571,11 +571,11 @@ asm_3c4a3:
 	and $18
 	jr z, asm_3c4eb
 	ld hl, HurtByPoisonText
-	ld de, $0106
+	ld de, ANIM_PSN
 	and $10
 	jr z, asm_3c4b8
 	ld hl, HurtByBurnText
-	ld de, $0105
+	ld de, ANIM_BRN
 
 asm_3c4b8:
 	push de
@@ -627,7 +627,7 @@ asm_3c4f6:
 	ldh [hBattleTurn], a
 	xor a
 	ld [wNumHits], a
-	ld de, $0107
+	ld de, ANIM_SAP
 	call PlayMoveAnimation
 	pop af
 	ldh [hBattleTurn], a
@@ -649,7 +649,7 @@ asm_3c528:
 	jr z, asm_3c542
 	xor a
 	ld [wNumHits], a
-	ld de, $010c
+	ld de, ANIM_IN_NIGHTMARE
 	call PlayMoveAnimation
 	call GetQuarterMaxHP
 	call SubtractHPFromUser
@@ -668,7 +668,7 @@ asm_3c54d:
 	jr z, asm_3c567
 	xor a
 	ld [wNumHits], a
-	ld de, $010c
+	ld de, ANIM_IN_NIGHTMARE
 	call PlayMoveAnimation
 	call GetQuarterMaxHP
 	call SubtractHPFromUser
@@ -691,7 +691,7 @@ asm_3c572:
 	ldh [hBattleTurn], a
 	xor a
 	ld [wNumHits], a
-	ld de, $010b
+	ld de, ANIM_IN_SANDSTORM
 	call PlayMoveAnimation
 	pop af
 	ldh [hBattleTurn], a

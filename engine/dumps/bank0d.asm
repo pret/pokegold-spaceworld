@@ -2261,6 +2261,7 @@ BattleCommand_MoveAnim:
 	and a
 	jp nz, BattleCommand_MoveDelay
 
+	assert BATTLEANIM_NONE + 1 == BATTLEANIM_DAMAGE
 	inc a
 	ld [wNumHits], a
 	ldh a, [hBattleTurn]
