@@ -78,9 +78,9 @@ GiveItemPredef::
 	add_predef PrintMoveType
 	add_predef PrintMonTypes ; 40
 	add_predef GetUnownLetter
-	add_predef Functioncb6ff
-	add_predef Functioncb710
-	add_predef Functioncb733
+	add_predef ChangeBGPalColor0_4Frames
+	add_predef PredefShakeScreenVertically
+	add_predef PredefShakeScreenHorizontally
 	add_predef Function145b8
 	add_predef Function146dc
 	add_predef Function145de

@@ -150,6 +150,11 @@ hPrintNumDividend:: ds 3 ; big-endian
 hPrintNumDivisor:: ds 3 ; big-endian
 hPrintNumTemp:: ds 3 ; big-endian
 
+NEXTU
+	ds 1
+hMutateWY:: db
+hMutateWX:: db
+
 ENDU
 
 	ds 3 ; TODO

@@ -9,9 +9,12 @@ DEF SFX_READ_TEXT_2                 EQU $05
 DEF SFX_POISON                      EQU $06
 DEF SFX_BOOT_PC                     EQU $0A
 DEF SFX_ESCAPE_ROPE                 EQU $0B ; player shrink
+DEF SFX_WARP_TO                     EQU $0E
 DEF SFX_WRONG                       EQU $14
 DEF SFX_STRENGTH                    EQU $16
+DEF SFX_MEGAPHONE                   EQU $17
 DEF SFX_SWITCH_POKEMON              EQU $1B
+DEF SFX_BELLY_DRUM                  EQU $1C
 DEF SFX_1E                          EQU $1E
 DEF SFX_POKEFLUTE                   EQU $21
 DEF SFX_22                          EQU $22
@@ -22,9 +25,11 @@ DEF SFX_POKEDEX_REGISTRATION        EQU $27
 DEF SFX_TITLE_ENTRANCE              EQU $2D
 DEF SFX_PAY_DAY                     EQU $30
 DEF SFX_GAME_FREAK_LOGO_RG          EQU $31
+DEF SFX_PECK                        EQU $32
 DEF SFX_KINESIS                     EQU $33
 DEF SFX_LICK                        EQU $34
 DEF SFX_POUND                       EQU $35
+DEF SFX_MOVE_PUZZLE_PIECE           EQU $36
 DEF SFX_COMET_PUNCH                 EQU $37
 DEF SFX_MEGA_PUNCH                  EQU $38
 DEF SFX_SCRATCH                     EQU $39
@@ -32,9 +37,15 @@ DEF SFX_VICEGRIP                    EQU $3A
 DEF SFX_RAZOR_WIND                  EQU $3B
 DEF SFX_CUT                         EQU $3C
 DEF SFX_WING_ATTACK                 EQU $3D
+DEF SFX_WHIRLWIND                   EQU $3E
+DEF SFX_BIND                        EQU $3F
 DEF SFX_VINE_WHIP                   EQU $40
 DEF SFX_DOUBLE_KICK                 EQU $41
 DEF SFX_MEGA_KICK                   EQU $42
+DEF SFX_HEADBUTT                    EQU $43
+DEF SFX_HORN_ATTACK                 EQU $44
+DEF SFX_TACKLE                      EQU $45
+DEF SFX_POISON_STING                EQU $46
 DEF SFX_POWDER                      EQU $47
 DEF SFX_DOUBLESLAP                  EQU $48
 DEF SFX_BITE                        EQU $49
@@ -42,9 +53,13 @@ DEF SFX_JUMP_KICK                   EQU $4A
 DEF SFX_STOMP                       EQU $4B
 DEF SFX_TAIL_WHIP                   EQU $4C
 DEF SFX_KARATE_CHOP                 EQU $4D
+DEF SFX_SUBMISSION                  EQU $4E
 DEF SFX_WATER_GUN                   EQU $4F
+DEF SFX_SWORDS_DANCE                EQU $50
 
 DEF SFX_THUNDER                     EQU $51
+DEF SFX_SUPERSONIC                  EQU $52
+DEF SFX_LEER                        EQU $53
 DEF SFX_EMBER                       EQU $54
 DEF SFX_BUBBLEBEAM                  EQU $55
 DEF SFX_HYDRO_PUMP                  EQU $56
@@ -52,7 +67,13 @@ DEF SFX_SURF                        EQU $57
 DEF SFX_PSYBEAM                     EQU $58
 DEF SFX_CHARGE                      EQU $59
 DEF SFX_THUNDERSHOCK                EQU $5A
+DEF SFX_PSYCHIC                     EQU $5B
+DEF SFX_SCREECH                     EQU $5C
+DEF SFX_BONE_CLUB                   EQU $5D
+DEF SFX_SHARPEN                     EQU $5E
+DEF SFX_EGG_BOMB                    EQU $5F
 DEF SFX_SING                        EQU $60
+DEF SFX_HYPER_BEAM                  EQU $61
 DEF SFX_SHINE                       EQU $62
 
 ; R/G/B/Y fanfares

@@ -29,7 +29,7 @@ CheckTossableItem::
 	ret
 
 GetBattleAnimPointer::
-	ld a, BANK(BattleAnimationsBankRef)
+	ld a, BANK(BattleAnimations)
 	ld [MBC3RomBank], a
 	ldh [hROMBank], a
 
@@ -53,7 +53,7 @@ GetBattleAnimByte::
 	inc hl
 	ld d, [hl]
 
-	ld a, BANK(BattleAnimationsBankRef)
+	ld a, BANK(BattleAnimations)
 	ld [MBC3RomBank], a
 	ldh [hROMBank], a
 

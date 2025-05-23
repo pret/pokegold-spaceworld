@@ -61,22 +61,29 @@
 23:4940 Function8c940
 23:49C6 Function8c9c6
 
-32:76FF Functioncb6ff
-32:7710 Functioncb710
-32:7733 Functioncb733
 32:7FFF BattleAnimationsBankRef
 
-32:4cfe BattleAnimations
-32:5b8d BattleAnim_FocusEnergy
-32:7573 BattleAnimSub_WarpAway
-32:759a BattleAnimSub_Beam
-32:75c3 BattleAnimSub_Explosion1
-32:75f0 BattleAnimSub_Explosion2
-32:762d BattleAnimSub_Fire
-32:7640 BattleAnimSub_Ice
-32:7696 BattleAnimSub_Acid
-32:76cb BattleAnim_TargetObj_1Row
-32:76db BattleAnim_ShowMon_0
+;32:4cfe BattleAnimations
+;32:5b8d BattleAnim_FocusEnergy
+;32:7511 BattleAnimSub_Drain
+;32:753d BattleAnimSub_EyeBeams
+;32:7573 BattleAnimSub_WarpAway
+;32:759a BattleAnimSub_Beam
+;32:75c3 BattleAnimSub_Explosion1
+;32:75f0 BattleAnimSub_Explosion2
+;32:761d BattleAnimSub_Sound
+;32:762d BattleAnimSub_Fire
+;32:7640 BattleAnimSub_Ice
+;32:7676 BattleAnimSub_Sludge
+;32:7696 BattleAnimSub_Acid
+;32:76a4 BattleAnimSub_Metallic
+;32:76bc BattleAnimSub_SandOrMud
+;32:76cb BattleAnim_TargetObj_1Row
+;32:76d3 BattleAnim_TargetObj_2Row
+;32:76db BattleAnim_ShowMon_0
+;32:76e5 BattleAnim_UserObj_1Row
+;32:76ed BattleAnim_UserObj_2Row
+;32:76f5 BattleAnim_ShowMon_1
 ;33:480f BattleAnimObjects
 ;33:4b98 DoBattleAnimFrame
 

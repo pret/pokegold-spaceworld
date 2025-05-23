@@ -145,7 +145,7 @@ DEF BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLE_ANIM_OBJ_WITHDRAW            ; 70
 	const BATTLE_ANIM_OBJ_DRAIN               ; 71
 	const BATTLE_ANIM_OBJ_GROWTH              ; 72
-	const BATTLE_ANIM_OBJ_CONVERSION2         ; 73
+	const BATTLE_ANIM_OBJ_CONVERSION          ; 73
 	const BATTLE_ANIM_OBJ_SMOKE               ; 74
 	const BATTLE_ANIM_OBJ_SMOKESCREEN         ; 75
 	const BATTLE_ANIM_OBJ_SWORDS_DANCE        ; 76
@@ -176,7 +176,7 @@ DEF BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLE_ANIM_OBJ_SPIKES              ; 8f
 	const BATTLE_ANIM_OBJ_POWDER_SNOW         ; 90
 	const BATTLE_ANIM_OBJ_DRAGONBREATH        ; 91
-	const BATTLE_ANIM_OBJ_CONVERSION          ; 92
+	const BATTLE_ANIM_OBJ_CONVERSION2         ; 92
 	const BATTLE_ANIM_OBJ_SPIDER_WEB          ; 93
 	const BATTLE_ANIM_OBJ_CAKE_TEMPT          ; 94
 	const BATTLE_ANIM_OBJ_NIGHTMARE           ; 95
@@ -196,7 +196,7 @@ DEF BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLE_ANIM_OBJ_SANDSTORM           ; a3
 	const BATTLE_ANIM_OBJ_ZAP_CANNON          ; a4
 	const BATTLE_ANIM_OBJ_SPITE               ; a5
-	const BATTLE_ANIM_OBJ_CURSE               ; a6
+	const BATTLE_ANIM_OBJ_NAIL_DOWN           ; a6
 	const BATTLE_ANIM_OBJ_PERISH_SONG         ; a7
 	const BATTLE_ANIM_OBJ_FORESIGHT           ; a8
 	const BATTLE_ANIM_OBJ_RAPID_SPIN          ; a9
@@ -281,7 +281,7 @@ DEF NUM_BATTLE_ANIM_OBJS EQU const_value
 	const BATTLE_ANIM_FUNC_SPIKES                    ; 3f
 	const BATTLE_ANIM_FUNC_BELL_CHIME_NOTES          ; 40
 	const BATTLE_ANIM_FUNC_BATON_PASS                ; 41
-	const BATTLE_ANIM_FUNC_CONVERSION                ; 42
+	const BATTLE_ANIM_FUNC_CONVERSION2               ; 42
 	const BATTLE_ANIM_FUNC_ENCORE_BELLY_DRUM         ; 43
 	const BATTLE_ANIM_FUNC_SWAGGER_MORNING_SUN       ; 44
 	const BATTLE_ANIM_FUNC_HIDDEN_POWER              ; 45
@@ -702,7 +702,7 @@ DEF NUM_BATTLE_ANIM_OAMSETS EQU const_value
 	const BATTLE_BG_EFFECT_BLACK_HUES                       ; 04
 	const BATTLE_BG_EFFECT_ALTERNATE_HUES                   ; 05
 	const BATTLE_BG_EFFECT_CYCLE_OBPALS                     ; 06
-	const BATTLE_BG_EFFECT_CYCLE_MID_OBPALS_GRAY_AND_YELLOW ; 07
+	const BATTLE_BG_EFFECT_CYCLE_MID_OBPALS                 ; 07
 	const BATTLE_BG_EFFECT_CYCLE_BGPALS_INVERTED            ; 08
 	const BATTLE_BG_EFFECT_HIDE_MON                         ; 09
 	const BATTLE_BG_EFFECT_SHOW_MON                         ; 0a
@@ -720,27 +720,27 @@ DEF NUM_BATTLE_ANIM_OAMSETS EQU const_value
 	const BATTLE_BG_EFFECT_FADE_MON_TO_BLACK                ; 16
 	const BATTLE_BG_EFFECT_FADE_MON_TO_LIGHT_REPEATING      ; 17
 	const BATTLE_BG_EFFECT_FADE_MON_TO_BLACK_REPEATING      ; 18
-	const ANIM_BG_19
-	const ANIM_BG_1A
-	const ANIM_BG_1B
-	const ANIM_BG_1C
-	const ANIM_BG_1D
+	const BATTLE_BG_EFFECT_CYCLE_MON_LIGHT_DARK_REPEATING   ; 19
+	const BATTLE_BG_EFFECT_FLASH_MON_REPEATING              ; 1a
+	const BATTLE_BG_EFFECT_FADE_MONS_TO_BLACK_REPEATING     ; 1b
+	const BATTLE_BG_EFFECT_FADE_MON_TO_WHITE_WAIT_FADE_BACK ; 1c
+	const BATTLE_BG_EFFECT_FADE_MON_FROM_WHITE              ; 1d
 	const BATTLE_BG_EFFECT_SHAKE_SCREEN_X                   ; 1e
 	const BATTLE_BG_EFFECT_SHAKE_SCREEN_Y                   ; 1f
-	const ANIM_BG_20
-	const ANIM_BG_WITHDRAW
-	const ANIM_BG_BOUNCE_DOWN
-	const ANIM_BG_DIG
-	const ANIM_BG_TACKLE
-	const ANIM_BG_25
+	const BATTLE_BG_EFFECT_WITHDRAW                         ; 20
+	const BATTLE_BG_EFFECT_BOUNCE_DOWN                      ; 21
+	const BATTLE_BG_EFFECT_DIG                              ; 22
+	const BATTLE_BG_EFFECT_TACKLE                           ; 23
+	const BATTLE_BG_EFFECT_WOBBLE_MON                       ; 24
+	const BATTLE_BG_EFFECT_REMOVE_MON                       ; 25
 	const BATTLE_BG_EFFECT_WAVE_DEFORM_MON                  ; 26
 	const BATTLE_BG_EFFECT_PSYCHIC                          ; 27
 	const BATTLE_BG_EFFECT_BETA_SEND_OUT_MON1               ; 28
 	const BATTLE_BG_EFFECT_BETA_SEND_OUT_MON2               ; 29
-	const ANIM_BG_2A
-	const ANIM_BG_2B
-	const ANIM_BG_2C
-	const ANIM_BG_2D
+	const BATTLE_BG_EFFECT_FLAIL                            ; 2a
+	const BATTLE_BG_EFFECT_BETA_PURSUIT                     ; 2b
+	const BATTLE_BG_EFFECT_ROLLOUT                          ; 2c
+	const BATTLE_BG_EFFECT_VITAL_THROW                      ; 2d
 	;const ANIM_BG_30
 	;const ANIM_BG_31
 	;const ANIM_BG_32

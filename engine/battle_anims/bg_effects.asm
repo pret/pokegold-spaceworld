@@ -120,14 +120,14 @@ BattleBGEffects:
 	dw BattleBGEffect_Dig
 	dw BattleBGEffect_Tackle
 
-	dw BattleBGEffect_26
+	dw BattleBGEffect_WobbleMon
 	dw BattleBGEffect_27
 	dw BattleBGEffect_WaveDeformMon
 	dw BattleBGEffect_Psychic
 	dw BattleBGEffect_BetaSendOutMon1
 	dw BattleBGEffect_BetaSendOutMon2
 	dw BattleBGEffect_2c
-	dw BattleBGEffect_2d
+	dw BattleBGEffect_VitalThrow
 	dw BattleBGEffect_Rollout
 	dw BattleBGEffect_2f
 	;dw BattleBGEffect_30
@@ -1298,8 +1298,8 @@ BattleBGEffect_Tackle:
 	jp hl
 .anon_dw
 	dw .zero
-	dw Tackle_BGEffect25_2d_one
-	dw Tackle_BGEffect25_2d_two
+	dw Tackle_MoveForward
+	dw Tackle_ReturnMove
 	dw .three
 
 
@@ -1329,7 +1329,7 @@ BattleBGEffect_Tackle:
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
-Tackle_BGEffect25_2d_one:
+Tackle_MoveForward:
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
@@ -1340,7 +1340,7 @@ Tackle_BGEffect25_2d_one:
 .reached_limit
 	call BattleBGEffects_IncrementJumptable
 .finish
-	call Functionc88a5
+	call Rollout_FillLYOverridesBackup
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
@@ -1350,15 +1350,15 @@ Tackle_BGEffect25_2d_one:
 	ld [hl], a
 	ret
 
-Tackle_BGEffect25_2d_two:
+Tackle_ReturnMove:
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .asm_c8893
+	jr nz, .move_back
 	call BattleBGEffects_IncrementJumptable
-.asm_c8893
-	call Functionc88a5
+.move_back
+	call Rollout_FillLYOverridesBackup
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
@@ -1370,23 +1370,23 @@ Tackle_BGEffect25_2d_two:
 	ld [hl], a
 	ret
 
-Functionc88a5:
+Rollout_FillLYOverridesBackup:
 	push af
-.asm_c87ab:
+.wait
 	ldh a, [rLY]
 	cp $60
-	jr c, .asm_c87ab
+	jr c, .wait
 	pop af
 	call BGEffect_FillLYOverridesBackup
 	ret
 
-BattleBGEffect_2d:
+BattleBGEffect_VitalThrow:
 	call BattleBGEffects_AnonJumptable
 	jp hl
 .anon_dw
-	dw BGEffect2d_2f_zero
-	dw Tackle_BGEffect25_2d_one
-	dw Tackle_BGEffect25_2d_two
+	dw VitalThrow_MoveBackwards
+	dw Tackle_MoveForward
+	dw Tackle_ReturnMove
 	dw .three
 
 
@@ -1394,7 +1394,7 @@ BattleBGEffect_2d:
 	call BattleAnim_ResetLCDStatCustom
 	ret
 
-BGEffect2d_2f_zero:
+VitalThrow_MoveBackwards:
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
 	ld a, LOW(rSCX)
@@ -1420,10 +1420,10 @@ BattleBGEffect_2f:
 	call BattleBGEffects_AnonJumptable
 	jp hl
 .anon_dw
-	dw BGEffect2d_2f_zero
-	dw Tackle_BGEffect25_2d_one
+	dw VitalThrow_MoveBackwards
+	dw Tackle_MoveForward
 	dw .two
-	dw Tackle_BGEffect25_2d_two
+	dw Tackle_ReturnMove
 	dw .four
 
 .four
@@ -1431,7 +1431,7 @@ BattleBGEffect_2f:
 .two
 	ret
 
-BattleBGEffect_26:
+BattleBGEffect_WobbleMon:
 	call BattleBGEffects_AnonJumptable
 	jp hl
 .anon_dw
