@@ -158,7 +158,7 @@ asm_3c132:
 
 asm_3c14a:
 	call PrintText
-	ld de, $26
+	ld de, SFX_RUN
 	call PlaySFX
 	xor a
 	ldh [hBattleTurn], a
@@ -1212,12 +1212,12 @@ asm_3c8e2:
 	dec a
 	jr z, asm_3c935
 	push de
-	ld de, $33
+	ld de, SFX_KINESIS
 	call PlaySFX
 	call WaitSFX
 	pop de
 	push de
-	ld de, $25
+	ld de, SFX_FAINT
 	call PlaySFX
 	call WaitSFX
 	pop de
@@ -2356,7 +2356,7 @@ TryRunningFromBattle:
 .play_sound
 	ld [wcd5d], a
 	push de
-	ld de, $26
+	ld de, SFX_RUN
 	call WaitPlaySFX
 	pop de
 	call WaitSFX
@@ -6648,7 +6648,7 @@ BattleStartMessage:
 	ld a, [wBattleMode]
 	dec a
 	jr z, .wild
-	ld de, $62 ; SFX_SHINE
+	ld de, SFX_SHINE
 	call PlaySFX
 	call WaitSFX
 	ld c, 20

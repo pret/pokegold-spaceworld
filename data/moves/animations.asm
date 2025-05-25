@@ -2375,7 +2375,7 @@ BattleAnim_Bonemerang:
 	anim_sound 6, 2, SFX_HYDRO_PUMP
 	anim_obj BATTLE_ANIM_OBJ_BONEMERANG, 88, 56, $1c
 	anim_wait 24
-	anim_sound 0, 1, SFX_MOVE_PUZZLE_PIECE
+	anim_sound 0, 1, SFX_THRASH
 	anim_obj BATTLE_ANIM_OBJ_HIT_YFIX, 136, 56, $0
 	anim_wait 24
 	anim_ret
@@ -2684,7 +2684,7 @@ BattleAnim_Thrash:
 	anim_obj BATTLE_ANIM_OBJ_PALM, 120, 72, $0
 	anim_obj BATTLE_ANIM_OBJ_HIT_BIG_YFIX, 120, 72, $0
 	anim_wait 6
-	anim_sound 0, 1, SFX_MOVE_PUZZLE_PIECE
+	anim_sound 0, 1, SFX_THRASH
 	anim_obj BATTLE_ANIM_OBJ_PUNCH, 136, 56, $0
 	anim_obj BATTLE_ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
 	anim_wait 6
@@ -2840,7 +2840,7 @@ BattleAnim_Rage:
 	anim_wait 72
 	anim_incbgeffect BATTLE_BG_EFFECT_CYCLE_MON_LIGHT_DARK_REPEATING
 	anim_call BattleAnim_ShowMon_0
-	anim_sound 0, 1, SFX_MOVE_PUZZLE_PIECE
+	anim_sound 0, 1, SFX_THRASH
 	anim_obj BATTLE_ANIM_OBJ_HIT_BIG_YFIX, 120, 72, $0
 	anim_wait 6
 	anim_sound 0, 1, SFX_COMET_PUNCH
@@ -3610,7 +3610,7 @@ BattleAnim_Outrage:
 	anim_incbgeffect BATTLE_BG_EFFECT_CYCLE_MON_LIGHT_DARK_REPEATING
 	anim_call BattleAnim_ShowMon_0
 	anim_bgeffect BATTLE_BG_EFFECT_FLASH_INVERTED, $0, $2, $6
-	anim_sound 0, 1, SFX_MOVE_PUZZLE_PIECE
+	anim_sound 0, 1, SFX_THRASH
 	anim_obj BATTLE_ANIM_OBJ_HIT_BIG_YFIX, 120, 72, $0
 	anim_wait 6
 	anim_sound 0, 1, SFX_COMET_PUNCH

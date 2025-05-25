@@ -28,7 +28,7 @@ FieldDebug_PokemonFollowing:
 
 .remove
 	callfar DeleteFollower
-	ld de, SFX_25
+	ld de, SFX_FAINT
 	call PlaySFX
 	jr .done
 

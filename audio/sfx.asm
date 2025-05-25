@@ -2,9 +2,9 @@ INCLUDE "constants.asm"
 
 SECTION "audio/sfx.asm", ROMX
 
-Sfx_00:
+Sfx_BallWobble:
 	channel_count 1
-	channel 5, Sfx_00_Ch5
+	channel 5, Sfx_BallWobble_Ch5
 
 Sfx_Potion:
 	channel_count 1
@@ -22,183 +22,183 @@ Sfx_ReadText:
 	channel_count 1
 	channel 5, Sfx_ReadText_Ch5
 
-Sfx_06:
+Sfx_Poison:
 	channel_count 1
-	channel 5, Sfx_06_Ch5
+	channel 5, Sfx_Poison_Ch5
 
-Sfx_07:
+Sfx_TradeMachine:
 	channel_count 1
-	channel 5, Sfx_07_Ch5
-
-Sfx_08:
-	channel_count 1
-	channel 5, Sfx_08_Ch5
-
-Sfx_09:
-	channel_count 1
-	channel 5, Sfx_09_Ch5
+	channel 5, Sfx_TradeMachine_Ch5
 
 Sfx_BootPC:
 	channel_count 1
 	channel 5, Sfx_BootPC_Ch5
 
+Sfx_ShutDownPC:
+	channel_count 1
+	channel 5, Sfx_ShutDownPC_Ch5
+
+Sfx_ChoosePCOption:
+	channel_count 1
+	channel 5, Sfx_ChoosePCOption_Ch5
+
 Sfx_EscapeRope:
 	channel_count 1
 	channel 5, Sfx_EscapeRope_Ch5
 
-Sfx_0c:
+Sfx_PressSwitch:
 	channel_count 1
-	channel 5, Sfx_0c_Ch5
+	channel 5, Sfx_PressSwitch_Ch5
 
-Sfx_0d:
+Sfx_HealingMachine:
 	channel_count 1
-	channel 5, Sfx_0d_Ch5
+	channel 5, Sfx_HealingMachine_Ch5
 
-Sfx_0e:
+Sfx_WarpTo:
 	channel_count 1
-	channel 5, Sfx_0e_Ch5
+	channel 5, Sfx_WarpTo_Ch5
 
-Sfx_0f:
+Sfx_TeleportEnter1:
 	channel_count 1
-	channel 5, Sfx_0f_Ch5
+	channel 5, Sfx_TeleportEnter1_Ch5
 
-Sfx_10:
+Sfx_TeleportExit2:
 	channel_count 1
-	channel 5, Sfx_10_Ch5
+	channel 5, Sfx_TeleportExit2_Ch5
 
-Sfx_11:
+Sfx_JumpOverLedge:
 	channel_count 1
-	channel 5, Sfx_11_Ch5
+	channel 5, Sfx_JumpOverLedge_Ch5
 
-Sfx_12:
+Sfx_TeleportEnter2:
 	channel_count 1
-	channel 8, Sfx_12_Ch8
+	channel 8, Sfx_TeleportEnter2_Ch8
 
-Sfx_13:
+Sfx_Fly:
 	channel_count 1
-	channel 8, Sfx_13_Ch8
+	channel 8, Sfx_Fly_Ch8
 
 Sfx_Wrong:
 	channel_count 2
 	channel 5, Sfx_Wrong_Ch5
 	channel 6, Sfx_Wrong_Ch6
 
-Sfx_15:
+Sfx_ArrowTiles:
 	channel_count 1
-	channel 5, Sfx_15_Ch5
+	channel 5, Sfx_ArrowTiles_Ch5
 
-Sfx_16:
+Sfx_Strength:
 	channel_count 1
-	channel 8, Sfx_16_Ch8
+	channel 8, Sfx_Strength_Ch8
 
-Sfx_17:
+Sfx_Megaphone:
 	channel_count 2
-	channel 5, Sfx_17_Ch5
-	channel 6, Sfx_17_Ch6
+	channel 5, Sfx_Megaphone_Ch5
+	channel 6, Sfx_Megaphone_Ch6
 
-Sfx_18:
+Sfx_WithdrawDeposit:
 	channel_count 1
-	channel 5, Sfx_18_Ch5
+	channel 5, Sfx_WithdrawDeposit_Ch5
 
-Sfx_19:
+Sfx_CutRG:
 	channel_count 1
-	channel 8, Sfx_19_Ch8
+	channel 8, Sfx_CutRG_Ch8
 
-Sfx_1a:
+Sfx_GoInside:
 	channel_count 1
-	channel 8, Sfx_1a_Ch8
+	channel 8, Sfx_GoInside_Ch8
 
 Sfx_SwitchPokemon:
 	channel_count 2
 	channel 5, Sfx_SwitchPokemon_Ch5
 	channel 6, Sfx_SwitchPokemon_Ch6
 
-Sfx_1c:
+Sfx_BellyDrum:
 	channel_count 2
-	channel 5, Sfx_1c_Ch5
-	channel 6, Sfx_1c_Ch6
+	channel 5, Sfx_BellyDrum_Ch5
+	channel 6, Sfx_BellyDrum_Ch6
 
-Sfx_1d:
+Sfx_Purchase:
 	channel_count 2
-	channel 5, Sfx_1d_Ch5
-	channel 6, Sfx_1d_Ch6
+	channel 5, Sfx_Purchase_Ch5
+	channel 6, Sfx_Purchase_Ch6
 
-Sfx_1e:
+Sfx_Collision:
 	channel_count 1
-	channel 5, Sfx_1e_Ch5
+	channel 5, Sfx_Collision_Ch5
 
-Sfx_1f:
+Sfx_GoOutside:
 	channel_count 1
-	channel 8, Sfx_1f_Ch8
+	channel 8, Sfx_GoOutside_Ch8
 
-Sfx_20:
+Sfx_Save:
 	channel_count 2
-	channel 5, Sfx_20_Ch5
-	channel 6, Sfx_20_Ch6
+	channel 5, Sfx_Save_Ch5
+	channel 6, Sfx_Save_Ch6
 
 Sfx_Pokeflute:
 	channel_count 1
 	channel 7, Sfx_Pokeflute_Ch7
 
-Sfx_22:
+Sfx_SafariZonePA:
 	channel_count 1
-	channel 5, Sfx_22_Ch5
+	channel 5, Sfx_SafariZonePA_Ch5
 
-Sfx_23:
+Sfx_ThrowBall:
 	channel_count 2
-	channel 5, Sfx_23_Ch5
-	channel 6, Sfx_23_Ch6
+	channel 5, Sfx_ThrowBall_Ch5
+	channel 6, Sfx_ThrowBall_Ch6
 
-Sfx_24:
+Sfx_BallPoof:
 	channel_count 2
-	channel 5, Sfx_24_Ch5
-	channel 8, Sfx_24_Ch8
+	channel 5, Sfx_BallPoof_Ch5
+	channel 8, Sfx_BallPoof_Ch8
 
-Sfx_25:
+Sfx_Faint:
 	channel_count 2
-	channel 5, Sfx_25_Ch5
-	channel 8, Sfx_25_Ch8
+	channel 5, Sfx_Faint_Ch5
+	channel 8, Sfx_Faint_Ch8
 
-Sfx_26:
+Sfx_Run:
 	channel_count 1
-	channel 8, Sfx_26_Ch8
+	channel 8, Sfx_Run_Ch8
 
 Sfx_PokedexRegistration:
 	channel_count 2
 	channel 5, Sfx_PokedexRegistration_Ch5
 	channel 6, Sfx_PokedexRegistration_Ch6
 
-Sfx_28:
+Sfx_IntroLungeRG:
 	channel_count 1
-	channel 8, Sfx_28_Ch8
+	channel 8, Sfx_IntroLungeRG_Ch8
 
-Sfx_29:
+Sfx_Unknown29:
 	channel_count 1
-	channel 8, Sfx_29_Ch8
+	channel 8, Sfx_Unknown29_Ch8
 
-Sfx_2a:
+Sfx_Unknown2a:
 	channel_count 1
-	channel 8, Sfx_2a_Ch8
+	channel 8, Sfx_Unknown2a_Ch8
 
-Sfx_2b:
+Sfx_IntroRaiseRG:
 	channel_count 1
-	channel 8, Sfx_2b_Ch8
+	channel 8, Sfx_IntroRaiseRG_Ch8
 
-Sfx_2c:
+Sfx_IntroCrashRG:
 	channel_count 1
-	channel 8, Sfx_2c_Ch8
+	channel 8, Sfx_IntroCrashRG_Ch8
 
 Sfx_TitleEntrance:
 	channel_count 1
 	channel 8, Sfx_TitleEntrance_Ch8
 
-Sfx_2e:
+Sfx_SlotsStopWheel:
 	channel_count 1
-	channel 5, Sfx_2e_Ch5
+	channel 5, Sfx_SlotsStopWheel_Ch5
 
-Sfx_2f:
+Sfx_SlotsReward:
 	channel_count 1
-	channel 5, Sfx_2f_Ch5
+	channel 5, Sfx_SlotsReward_Ch5
 
 Sfx_PayDay:
 	channel_count 2
@@ -209,229 +209,229 @@ Sfx_GameFreakLogoRG:
 	channel_count 1
 	channel 5, Sfx_GameFreakLogoRG_Ch5
 
-Sfx_32:
+Sfx_Peck:
 	channel_count 1
-	channel 8, Sfx_32_Ch8
+	channel 8, Sfx_Peck_Ch8
 
-Sfx_33:
+Sfx_Kinesis:
 	channel_count 1
-	channel 5, Sfx_33_Ch5
+	channel 5, Sfx_Kinesis_Ch5
 
-Sfx_34:
+Sfx_Lick:
 	channel_count 1
-	channel 5, Sfx_34_Ch5
+	channel 5, Sfx_Lick_Ch5
 
-Sfx_35:
+Sfx_Pound:
 	channel_count 1
-	channel 8, Sfx_35_Ch8
+	channel 8, Sfx_Pound_Ch8
 
-Sfx_36:
+Sfx_Thrash:
 	channel_count 1
-	channel 8, Sfx_36_Ch8
+	channel 8, Sfx_Thrash_Ch8
 
-Sfx_37:
+Sfx_CometPunch:
 	channel_count 1
-	channel 8, Sfx_37_Ch8
+	channel 8, Sfx_CometPunch_Ch8
 
-Sfx_38:
+Sfx_MegaPunch:
 	channel_count 1
-	channel 8, Sfx_38_Ch8
+	channel 8, Sfx_MegaPunch_Ch8
 
-Sfx_39:
+Sfx_Scratch:
 	channel_count 1
-	channel 8, Sfx_39_Ch8
+	channel 8, Sfx_Scratch_Ch8
 
-Sfx_3a:
+Sfx_ViceGrip:
 	channel_count 1
-	channel 8, Sfx_3a_Ch8
+	channel 8, Sfx_ViceGrip_Ch8
 
-Sfx_3b:
+Sfx_RazorWind:
 	channel_count 1
-	channel 8, Sfx_3b_Ch8
+	channel 8, Sfx_RazorWind_Ch8
 
-Sfx_3c:
+Sfx_Cut:
 	channel_count 1
-	channel 8, Sfx_3c_Ch8
+	channel 8, Sfx_Cut_Ch8
 
-Sfx_3d:
+Sfx_WingAttack:
 	channel_count 1
-	channel 8, Sfx_3d_Ch8
+	channel 8, Sfx_WingAttack_Ch8
 
-Sfx_3e:
+Sfx_Whirlwind:
 	channel_count 1
-	channel 8, Sfx_3e_Ch8
+	channel 8, Sfx_Whirlwind_Ch8
 
-Sfx_3f:
+Sfx_Bind:
 	channel_count 1
-	channel 8, Sfx_3f_Ch8
+	channel 8, Sfx_Bind_Ch8
 
-Sfx_40:
+Sfx_VineWhip:
 	channel_count 1
-	channel 8, Sfx_40_Ch8
+	channel 8, Sfx_VineWhip_Ch8
 
-Sfx_41:
+Sfx_DoubleKick:
 	channel_count 1
-	channel 8, Sfx_41_Ch8
+	channel 8, Sfx_DoubleKick_Ch8
 
-Sfx_42:
+Sfx_MegaKick:
 	channel_count 1
-	channel 8, Sfx_42_Ch8
+	channel 8, Sfx_MegaKick_Ch8
 
-Sfx_43:
+Sfx_Headbutt:
 	channel_count 1
-	channel 8, Sfx_43_Ch8
+	channel 8, Sfx_Headbutt_Ch8
 
-Sfx_44:
+Sfx_HornAttack:
 	channel_count 1
-	channel 8, Sfx_44_Ch8
+	channel 8, Sfx_HornAttack_Ch8
 
-Sfx_45:
+Sfx_Tackle:
 	channel_count 1
-	channel 8, Sfx_45_Ch8
+	channel 8, Sfx_Tackle_Ch8
 
-Sfx_46:
+Sfx_PoisonSting:
 	channel_count 1
-	channel 8, Sfx_46_Ch8
+	channel 8, Sfx_PoisonSting_Ch8
 
-Sfx_47:
+Sfx_Powder:
 	channel_count 1
-	channel 8, Sfx_47_Ch8
+	channel 8, Sfx_Powder_Ch8
 
-Sfx_48:
+Sfx_Doubleslap:
 	channel_count 1
-	channel 8, Sfx_48_Ch8
+	channel 8, Sfx_Doubleslap_Ch8
 
-Sfx_49:
+Sfx_Bite:
 	channel_count 2
-	channel 5, Sfx_49_Ch5
-	channel 8, Sfx_49_Ch8
+	channel 5, Sfx_Bite_Ch5
+	channel 8, Sfx_Bite_Ch8
 
-Sfx_4a:
+Sfx_JumpKick:
 	channel_count 1
-	channel 8, Sfx_4a_Ch8
+	channel 8, Sfx_JumpKick_Ch8
 
-Sfx_4b:
+Sfx_Stomp:
 	channel_count 1
-	channel 8, Sfx_4b_Ch8
+	channel 8, Sfx_Stomp_Ch8
 
-Sfx_4c:
+Sfx_TailWhip:
 	channel_count 1
-	channel 8, Sfx_4c_Ch8
+	channel 8, Sfx_TailWhip_Ch8
 
-Sfx_4d:
+Sfx_KarateChop:
 	channel_count 1
-	channel 8, Sfx_4d_Ch8
+	channel 8, Sfx_KarateChop_Ch8
 
-Sfx_4e:
+Sfx_Submission:
 	channel_count 1
-	channel 8, Sfx_4e_Ch8
+	channel 8, Sfx_Submission_Ch8
 
-Sfx_4f:
+Sfx_WaterGun:
 	channel_count 2
-	channel 5, Sfx_4f_Ch5
-	channel 8, Sfx_4f_Ch8
+	channel 5, Sfx_WaterGun_Ch5
+	channel 8, Sfx_WaterGun_Ch8
 
-Sfx_50:
+Sfx_SwordsDance:
 	channel_count 1
-	channel 8, Sfx_50_Ch8
+	channel 8, Sfx_SwordsDance_Ch8
 
-Sfx_51:
+Sfx_Thunder:
 	channel_count 1
-	channel 8, Sfx_51_Ch8
+	channel 8, Sfx_Thunder_Ch8
 
-Sfx_52:
+Sfx_Supersonic:
 	channel_count 3
-	channel 5, Sfx_52_Ch5
-	channel 6, Sfx_52_Ch6
-	channel 8, Sfx_52_Ch8
+	channel 5, Sfx_Supersonic_Ch5
+	channel 6, Sfx_Supersonic_Ch6
+	channel 8, Sfx_Supersonic_Ch8
 
-Sfx_53:
+Sfx_Leer:
 	channel_count 3
-	channel 5, Sfx_53_Ch5
-	channel 6, Sfx_53_Ch6
-	channel 8, Sfx_53_Ch8
+	channel 5, Sfx_Leer_Ch5
+	channel 6, Sfx_Leer_Ch6
+	channel 8, Sfx_Leer_Ch8
 
-Sfx_54:
+Sfx_Ember:
 	channel_count 2
-	channel 5, Sfx_54_Ch5
-	channel 8, Sfx_54_Ch8
+	channel 5, Sfx_Ember_Ch5
+	channel 8, Sfx_Ember_Ch8
 
-Sfx_55:
+Sfx_Bubblebeam:
 	channel_count 3
-	channel 5, Sfx_55_Ch5
-	channel 6, Sfx_55_Ch6
-	channel 8, Sfx_55_Ch8
+	channel 5, Sfx_Bubblebeam_Ch5
+	channel 6, Sfx_Bubblebeam_Ch6
+	channel 8, Sfx_Bubblebeam_Ch8
 
-Sfx_56:
+Sfx_HydroPump:
 	channel_count 2
-	channel 5, Sfx_56_Ch5
-	channel 8, Sfx_56_Ch8
+	channel 5, Sfx_HydroPump_Ch5
+	channel 8, Sfx_HydroPump_Ch8
 
-Sfx_57:
+Sfx_Surf:
 	channel_count 3
-	channel 5, Sfx_57_Ch5
-	channel 6, Sfx_57_Ch6
-	channel 8, Sfx_57_Ch8
+	channel 5, Sfx_Surf_Ch5
+	channel 6, Sfx_Surf_Ch6
+	channel 8, Sfx_Surf_Ch8
 
-Sfx_58:
+Sfx_Psybeam:
 	channel_count 3
-	channel 5, Sfx_58_Ch5
-	channel 6, Sfx_58_Ch6
-	channel 8, Sfx_58_Ch8
+	channel 5, Sfx_Psybeam_Ch5
+	channel 6, Sfx_Psybeam_Ch6
+	channel 8, Sfx_Psybeam_Ch8
 
-Sfx_59:
+Sfx_Charge:
 	channel_count 3
-	channel 5, Sfx_59_Ch5
-	channel 6, Sfx_59_Ch6
-	channel 8, Sfx_59_Ch8
+	channel 5, Sfx_Charge_Ch5
+	channel 6, Sfx_Charge_Ch6
+	channel 8, Sfx_Charge_Ch8
 
-Sfx_5a:
+Sfx_Thundershock:
 	channel_count 3
-	channel 5, Sfx_5a_Ch5
-	channel 6, Sfx_5a_Ch6
-	channel 8, Sfx_5a_Ch8
+	channel 5, Sfx_Thundershock_Ch5
+	channel 6, Sfx_Thundershock_Ch6
+	channel 8, Sfx_Thundershock_Ch8
 
-Sfx_5b:
+Sfx_Psychic:
 	channel_count 3
-	channel 5, Sfx_5b_Ch5
-	channel 6, Sfx_5b_Ch6
-	channel 8, Sfx_5b_Ch8
+	channel 5, Sfx_Psychic_Ch5
+	channel 6, Sfx_Psychic_Ch6
+	channel 8, Sfx_Psychic_Ch8
 
-Sfx_5c:
+Sfx_Screech:
 	channel_count 2
-	channel 5, Sfx_5c_Ch5
-	channel 6, Sfx_5c_Ch6
+	channel 5, Sfx_Screech_Ch5
+	channel 6, Sfx_Screech_Ch6
 
-Sfx_5d:
+Sfx_BoneClub:
 	channel_count 2
-	channel 5, Sfx_5d_Ch5
-	channel 6, Sfx_5d_Ch6
+	channel 5, Sfx_BoneClub_Ch5
+	channel 6, Sfx_BoneClub_Ch6
 
-Sfx_5e:
+Sfx_Sharpen:
 	channel_count 2
-	channel 5, Sfx_5e_Ch5
-	channel 6, Sfx_5e_Ch6
+	channel 5, Sfx_Sharpen_Ch5
+	channel 6, Sfx_Sharpen_Ch6
 
-Sfx_5f:
+Sfx_EggBomb:
 	channel_count 3
-	channel 5, Sfx_5f_Ch5
-	channel 6, Sfx_5f_Ch6
-	channel 8, Sfx_5f_Ch8
+	channel 5, Sfx_EggBomb_Ch5
+	channel 6, Sfx_EggBomb_Ch6
+	channel 8, Sfx_EggBomb_Ch8
 
-Sfx_60:
+Sfx_Sing:
 	channel_count 2
-	channel 5, Sfx_60_Ch5
-	channel 6, Sfx_60_Ch6
+	channel 5, Sfx_Sing_Ch5
+	channel 6, Sfx_Sing_Ch6
 
-Sfx_61:
+Sfx_HyperBeam:
 	channel_count 3
-	channel 5, Sfx_61_Ch5
-	channel 6, Sfx_61_Ch6
-	channel 8, Sfx_61_Ch8
+	channel 5, Sfx_HyperBeam_Ch5
+	channel 6, Sfx_HyperBeam_Ch6
+	channel 8, Sfx_HyperBeam_Ch8
 
-Sfx_62:
+Sfx_Shine:
 	channel_count 1
-	channel 5, Sfx_62_Ch5
+	channel 5, Sfx_Shine_Ch5
 
 Sfx_GetItemRG:
 	channel_count 3
@@ -517,7 +517,7 @@ Sfx_Pokeflute_Ch7:
 	rest 12
 	sound_ret
 
-Sfx_19_Ch8:
+Sfx_CutRG_Ch8:
 	noise_note 2, 15, 7, 36
 	noise_note 2, 15, 7, 52
 	noise_note 4, 15, 7, 68
@@ -525,7 +525,7 @@ Sfx_19_Ch8:
 	noise_note 8, 15, 1, 68
 	sound_ret
 
-Sfx_1a_Ch8:
+Sfx_GoInside_Ch8:
 	noise_note 9, 15, 1, 68
 	noise_note 8, 13, 1, 67
 	sound_ret
@@ -541,7 +541,7 @@ Sfx_SwitchPokemon_Ch6:
 	square_note 8, 11, 1, 1857
 	sound_ret
 
-Sfx_00_Ch5:
+Sfx_BallWobble_Ch5:
 	duty_cycle 2
 	pitch_sweep 3, -2
 	square_note 4, 15, 2, 512
@@ -550,38 +550,38 @@ Sfx_00_Ch5:
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_1c_Ch5:
+Sfx_BellyDrum_Ch5:
 	duty_cycle 2
 	square_note 4, 15, 1, 1920
 	sound_ret
 
-Sfx_1c_Ch6:
+Sfx_BellyDrum_Ch6:
 	duty_cycle 2
 	square_note 1, 0, 8, 0
 	square_note 4, 10, 1, 1889
 	sound_ret
 
-Sfx_1d_Ch5:
+Sfx_Purchase_Ch5:
 	duty_cycle 2
 	square_note 4, 14, 1, 1792
 	square_note 8, 15, 2, 2016
 	sound_ret
 
-Sfx_1d_Ch6:
+Sfx_Purchase_Ch6:
 	duty_cycle 2
 	square_note 1, 0, 8, 0
 	square_note 4, 9, 1, 1729
 	square_note 8, 10, 2, 1953
 	sound_ret
 
-Sfx_1e_Ch5:
+Sfx_Collision_Ch5:
 	duty_cycle 2
 	pitch_sweep 5, -2
 	square_note 15, 15, 1, 768
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_1f_Ch8:
+Sfx_GoOutside_Ch8:
 	noise_note 2, 15, 1, 84
 	noise_note 12, 7, 1, 35
 	noise_note 2, 11, 1, 84
@@ -597,7 +597,7 @@ Sfx_ReadText_Ch5:
 	square_note 12, 10, 1, 2000
 	sound_ret
 
-Sfx_20_Ch5:
+Sfx_Save_Ch5:
 	duty_cycle 2
 	square_note 2, 15, 4, 1792
 	square_note 2, 14, 4, 1536
@@ -608,7 +608,7 @@ Sfx_20_Ch5:
 	square_note 15, 15, 2, 2016
 	sound_ret
 
-Sfx_20_Ch6:
+Sfx_Save_Ch6:
 	duty_cycle 2
 	square_note 2, 0, 8, 0
 	square_note 2, 13, 4, 1793
@@ -628,7 +628,7 @@ Sfx_Potion_Ch5:
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_06_Ch5:
+Sfx_Poison_Ch5:
 .loop
 	duty_cycle 0
 	pitch_sweep 1, 4
@@ -648,7 +648,7 @@ Sfx_FullHeal_Ch5:
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_07_Ch5:
+Sfx_TradeMachine_Ch5:
 	duty_cycle 2
 	pitch_sweep 1, 5
 	square_note 15, 15, 0, 1264
@@ -656,7 +656,7 @@ Sfx_07_Ch5:
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_08_Ch5:
+Sfx_BootPC_Ch5:
 	duty_cycle 2
 	square_note 15, 15, 2, 1984
 	square_note 15, 0, 0, 0
@@ -670,7 +670,7 @@ Sfx_08_Ch5:
 	square_note 8, 10, 1, 1792
 	sound_ret
 
-Sfx_09_Ch5:
+Sfx_ShutDownPC_Ch5:
 	duty_cycle 2
 	square_note 4, 15, 0, 1536
 	square_note 4, 15, 0, 1024
@@ -678,7 +678,7 @@ Sfx_09_Ch5:
 	square_note 1, 0, 0, 0
 	sound_ret
 
-Sfx_BootPC_Ch5:
+Sfx_ChoosePCOption_Ch5:
 	duty_cycle 2
 	square_note 6, 15, 0, 1792
 	square_note 4, 0, 0, 0
@@ -697,7 +697,7 @@ Sfx_EscapeRope_Ch5:
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_0c_Ch5:
+Sfx_PressSwitch_Ch5:
 	duty_cycle 2
 	square_note 4, 0, 0, 0
 	square_note 2, 15, 1, 1664
@@ -706,7 +706,7 @@ Sfx_0c_Ch5:
 	square_note 4, 0, 0, 0
 	sound_ret
 
-Sfx_0d_Ch5:
+Sfx_HealingMachine_Ch5:
 	duty_cycle 2
 	pitch_sweep 2, -4
 	square_note 4, 15, 2, 1280
@@ -716,7 +716,7 @@ Sfx_0d_Ch5:
 	square_note 1, 0, 0, 0
 	sound_ret
 
-Sfx_0e_Ch5:
+Sfx_WarpTo_Ch5:
 	duty_cycle 1
 	pitch_sweep 1, 7
 	square_note 15, 13, 7, 1280
@@ -727,7 +727,7 @@ Sfx_0e_Ch5:
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_0f_Ch5:
+Sfx_TeleportEnter1_Ch5:
 	duty_cycle 1
 	pitch_sweep 1, 7
 	square_note 15, 13, 7, 1792
@@ -738,28 +738,28 @@ Sfx_0f_Ch5:
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_10_Ch5:
+Sfx_TeleportExit2_Ch5:
 	duty_cycle 1
 	pitch_sweep 1, 6
 	square_note 15, 13, 2, 1280
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_11_Ch5:
+Sfx_JumpOverLedge_Ch5:
 	duty_cycle 2
 	pitch_sweep 9, 5
 	square_note 15, 15, 2, 1024
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_12_Ch8:
+Sfx_TeleportEnter2_Ch8:
 	noise_note 2, 15, 1, 50
 	noise_note 2, 0, 0, 0
 	noise_note 2, 15, 1, 34
 	noise_note 1, 0, 0, 0
 	sound_ret
 
-Sfx_13_Ch8:
+Sfx_Fly_Ch8:
 	noise_note 2, 15, 1, 18
 	noise_note 2, 0, 0, 0
 	noise_note 2, 10, 1, 18
@@ -796,14 +796,14 @@ Sfx_Wrong_Ch6:
 	square_note 1, 0, 0, 0
 	sound_ret
 
-Sfx_15_Ch5:
+Sfx_ArrowTiles_Ch5:
 	duty_cycle 0
 	pitch_sweep 1, 7
 	square_note 15, 13, 2, 1792
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_16_Ch8:
+Sfx_Strength_Ch8:
 	noise_note 4, 10, 2, 35
 	noise_note 8, 15, 1, 52
 	noise_note 15, 0, 0, 0
@@ -814,7 +814,7 @@ Sfx_16_Ch8:
 	noise_note 8, 15, 1, 68
 	sound_ret
 
-Sfx_17_Ch5:
+Sfx_Megaphone_Ch5:
 	duty_cycle 2
 	square_note 15, 15, 0, 1280
 	square_note 4, 0, 0, 0
@@ -825,7 +825,7 @@ Sfx_17_Ch5:
 	square_note 15, 15, 2, 1280
 	sound_ret
 
-Sfx_17_Ch6:
+Sfx_Megaphone_Ch6:
 	duty_cycle 3
 	square_note 15, 15, 0, 1154
 	square_note 4, 0, 0, 0
@@ -836,7 +836,7 @@ Sfx_17_Ch6:
 	square_note 15, 15, 2, 1154
 	sound_ret
 
-Sfx_18_Ch5:
+Sfx_WithdrawDeposit_Ch5:
 	duty_cycle 1
 	pitch_sweep 3, -2
 	square_note 4, 15, 2, 1280
@@ -849,7 +849,7 @@ Sfx_18_Ch5:
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_22_Ch5:
+Sfx_SafariZonePA_Ch5:
 	duty_cycle 2
 	square_note 15, 15, 3, 1840
 	square_note 8, 6, 5, 1840
@@ -859,18 +859,18 @@ Sfx_22_Ch5:
 	square_note 15, 2, 4, 1792
 	sound_ret
 
-Sfx_23_Ch5:
+Sfx_ThrowBall_Ch5:
 	duty_cycle 2
 	pitch_sweep 2, -7
 	square_note 15, 15, 2, 1920
 	sound_ret
 
-Sfx_23_Ch6:
+Sfx_ThrowBall_Ch6:
 	duty_cycle 2
 	square_note 15, 12, 2, 1922
 	sound_ret
 
-Sfx_62_Ch5:
+Sfx_Shine_Ch5:
 	duty_cycle 0
 	square_note 0, 13, 2, 1792
 	square_note 0, 13, 2, 1856
@@ -880,29 +880,29 @@ Sfx_62_Ch5:
 	square_note 1, 0, 0, 0
 	sound_ret
 
-Sfx_24_Ch5:
+Sfx_BallPoof_Ch5:
 	duty_cycle 2
 	pitch_sweep 1, 6
 	square_note 15, 15, 2, 1024
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_24_Ch8:
+Sfx_BallPoof_Ch8:
 	noise_note 15, 10, 2, 34
 	sound_ret
 
-Sfx_25_Ch5:
+Sfx_Faint_Ch5:
 	square_note 15, 13, 1, 512
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_25_Ch8:
+Sfx_Faint_Ch8:
 	noise_note 4, 15, 5, 51
 	noise_note 8, 15, 4, 34
 	noise_note 15, 15, 2, 33
 	sound_ret
 
-Sfx_26_Ch8:
+Sfx_Run_Ch8:
 	noise_note 2, 6, 1, 35
 	noise_note 2, 10, 1, 51
 	noise_note 2, 12, 1, 51
@@ -931,70 +931,70 @@ Sfx_PokedexRegistration_Ch6:
 	square_note 15, 9, 2, 1922
 	sound_ret
 
-Sfx_32_Ch8:
+Sfx_Peck_Ch8:
 	noise_note 2, 10, 1, 18
 	sound_ret
 
-Sfx_33_Ch5:
+Sfx_Kinesis_Ch5:
 	duty_cycle 1
 	pitch_sweep 10, -7
 	square_note 15, 15, 2, 1920
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_34_Ch5:
+Sfx_Lick_Ch5:
 	duty_cycle 1
 	pitch_sweep 9, 7
 	square_note 15, 15, 2, 1280
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_35_Ch8:
+Sfx_Pound_Ch8:
 	noise_note 2, 10, 1, 34
 	sound_ret
 
-Sfx_36_Ch8:
+Sfx_Thrash_Ch8:
 	noise_note 8, 15, 1, 84
 	sound_ret
 
-Sfx_37_Ch8:
+Sfx_CometPunch_Ch8:
 	noise_note 15, 8, -7, 17
 	noise_note 4, 15, -7, 18
 	noise_note 10, 15, 1, 85
 	sound_ret
 
-Sfx_38_Ch8:
+Sfx_MegaPunch_Ch8:
 	noise_note 15, 8, -7, 52
 	noise_note 8, 15, 2, 53
 	noise_note 10, 15, 1, 85
 	sound_ret
 
-Sfx_39_Ch8:
+Sfx_Scratch_Ch8:
 	noise_note 15, 9, -7, 35
 	noise_note 8, 15, 1, 33
 	sound_ret
 
-Sfx_3a_Ch8:
+Sfx_ViceGrip_Ch8:
 	noise_note 2, 14, 1, 75
 	noise_note 10, 15, 1, 68
 	noise_note 2, 14, 1, 58
 	noise_note 6, 15, 1, 52
 	sound_ret
 
-Sfx_3b_Ch8:
+Sfx_RazorWind_Ch8:
 	noise_note 2, 15, 4, 68
 	noise_note 2, 15, 4, 20
 	noise_note 15, 15, 1, 50
 	sound_ret
 
-Sfx_3c_Ch8:
+Sfx_Cut_Ch8:
 	noise_note 4, 8, -7, 85
 	noise_note 2, 15, 4, 68
 	noise_note 8, 15, 4, 34
 	noise_note 15, 15, 2, 33
 	sound_ret
 
-Sfx_3d_Ch8:
+Sfx_WingAttack_Ch8:
 .loop
 	noise_note 8, 4, -7, 35
 	noise_note 4, 12, 4, 34
@@ -1002,21 +1002,21 @@ Sfx_3d_Ch8:
 	sound_loop 4, .loop
 	sound_ret
 
-Sfx_3e_Ch8:
+Sfx_Whirlwind_Ch8:
 	noise_note 8, 4, -7, 51
 	noise_note 4, 12, 4, 34
 	noise_note 6, 15, 2, 35
 	noise_note 15, 15, 2, 34
 	sound_ret
 
-Sfx_3f_Ch8:
+Sfx_Bind_Ch8:
 	noise_note 8, 15, -7, 50
 	noise_note 8, 15, 4, 67
 	noise_note 8, 15, 2, 84
 	noise_note 8, 15, 1, 101
 	sound_ret
 
-Sfx_40_Ch8:
+Sfx_VineWhip_Ch8:
 	noise_note 1, 12, 2, 51
 	noise_note 2, 15, 2, 33
 	noise_note 1, 14, 2, 51
@@ -1027,52 +1027,52 @@ Sfx_40_Ch8:
 	noise_note 8, 15, 2, 65
 	sound_ret
 
-Sfx_41_Ch8:
+Sfx_DoubleKick_Ch8:
 	noise_note 1, 9, 4, 35
 	noise_note 1, 11, 4, 34
 	noise_note 8, 15, 1, 68
 	sound_ret
 
-Sfx_42_Ch8:
+Sfx_MegaKick_Ch8:
 	noise_note 2, 9, 4, 51
 	noise_note 4, 11, 4, 34
 	noise_note 4, 15, 1, 68
 	noise_note 8, 15, 1, 85
 	sound_ret
 
-Sfx_43_Ch8:
+Sfx_Headbutt_Ch8:
 	noise_note 4, 15, -7, 85
 	noise_note 8, 15, 1, 101
 	sound_ret
 
-Sfx_44_Ch8:
+Sfx_HornAttack_Ch8:
 	noise_note 2, 8, 4, 67
 	noise_note 2, 12, 4, 34
 	noise_note 8, 15, 2, 52
 	sound_ret
 
-Sfx_45_Ch8:
+Sfx_Tackle_Ch8:
 	noise_note 4, 15, 1, 52
 	noise_note 15, 15, 2, 100
 	sound_ret
 
-Sfx_46_Ch8:
+Sfx_PoisonSting_Ch8:
 	noise_note 2, 15, 1, 34
 	noise_note 15, 15, 2, 18
 	sound_ret
 
-Sfx_47_Ch8:
+Sfx_Powder_Ch8:
 	noise_note 2, 12, 2, 1
 	noise_note 15, 15, 4, 1
 	noise_note 15, 15, 2, 1
 	sound_ret
 
-Sfx_48_Ch8:
+Sfx_Doubleslap_Ch8:
 	noise_note 8, 15, 1, 50
 	noise_note 8, 15, 1, 51
 	sound_ret
 
-Sfx_49_Ch5:
+Sfx_Bite_Ch5:
 	duty_cycle 0
 	pitch_sweep 3, -2
 	square_note 4, 15, 2, 512
@@ -1081,26 +1081,26 @@ Sfx_49_Ch5:
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_49_Ch8:
+Sfx_Bite_Ch8:
 	noise_note 0, 13, 1, 66
 	noise_note 4, 10, 1, 50
 	noise_note 0, 13, 1, 34
 	noise_note 6, 10, 1, 50
 	sound_ret
 
-Sfx_4a_Ch8:
+Sfx_JumpKick_Ch8:
 	noise_note 3, 9, 2, 49
 	noise_note 3, 11, 2, 50
 	noise_note 3, 12, 2, 51
 	noise_note 8, 15, 1, 84
 	sound_ret
 
-Sfx_4b_Ch8:
+Sfx_Stomp_Ch8:
 	noise_note 12, 15, 1, 84
 	noise_note 8, 15, 1, 100
 	sound_ret
 
-Sfx_4c_Ch8:
+Sfx_TailWhip_Ch8:
 	noise_note 2, 15, 1, 51
 	noise_note 2, 12, 1, 50
 	noise_note 2, 10, 1, 49
@@ -1108,12 +1108,12 @@ Sfx_4c_Ch8:
 	noise_note 8, 15, 1, 52
 	sound_ret
 
-Sfx_4d_Ch8:
+Sfx_KarateChop_Ch8:
 	noise_note 2, 13, 2, 50
 	noise_note 15, 15, 2, 67
 	sound_ret
 
-Sfx_4e_Ch8:
+Sfx_Submission_Ch8:
 	noise_note 2, 15, 2, 67
 	noise_note 4, 11, 5, 50
 	noise_note 9, 8, 6, 49
@@ -1121,19 +1121,19 @@ Sfx_4e_Ch8:
 	noise_note 15, 15, 2, 85
 	sound_ret
 
-Sfx_4f_Ch5:
+Sfx_WaterGun_Ch5:
 	duty_cycle 1
 	pitch_sweep 9, 7
 	square_note 15, 15, 2, 1792
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_4f_Ch8:
+Sfx_WaterGun_Ch8:
 	noise_note 15, 3, -7, 34
 	noise_note 15, 15, 2, 33
 	sound_ret
 
-Sfx_50_Ch8:
+Sfx_SwordsDance_Ch8:
 	noise_note 15, 4, -7, 65
 	noise_note 8, 8, -7, 65
 	noise_note 8, 12, -7, 65
@@ -1141,7 +1141,7 @@ Sfx_50_Ch8:
 	noise_note 15, 15, 2, 65
 	sound_ret
 
-Sfx_51_Ch8:
+Sfx_Thunder_Ch8:
 	noise_note 10, 15, -7, 80
 	noise_note 15, 15, -7, 81
 	noise_note 8, 15, 2, 81
@@ -1151,7 +1151,7 @@ Sfx_51_Ch8:
 	noise_note 15, 15, 2, 84
 	sound_ret
 
-Sfx_52_Ch5:
+Sfx_Supersonic_Ch5:
 	duty_cycle 2
 	square_note 15, 3, -7, 1984
 .loop
@@ -1160,7 +1160,7 @@ Sfx_52_Ch5:
 	square_note 15, 13, 1, 1984
 	sound_ret
 
-Sfx_52_Ch6:
+Sfx_Supersonic_Ch6:
 	duty_cycle_pattern 2, 3, 0, 3
 	square_note 15, 2, -7, 1992
 .loop
@@ -1169,14 +1169,14 @@ Sfx_52_Ch6:
 	square_note 15, 12, 1, 1992
 	sound_ret
 
-Sfx_52_Ch8:
+Sfx_Supersonic_Ch8:
 .loop
 	noise_note 3, 9, 7, 18
 	noise_note 3, 10, 1, 17
 	sound_loop 10, .loop
 	sound_ret
 
-Sfx_53_Ch5:
+Sfx_Leer_Ch5:
 .loop
 	duty_cycle 0
 	square_note 0, 15, 1, 1984
@@ -1184,7 +1184,7 @@ Sfx_53_Ch5:
 	sound_loop 12, .loop
 	sound_ret
 
-Sfx_53_Ch6:
+Sfx_Leer_Ch6:
 .loop
 	duty_cycle_pattern 2, 3, 0, 3
 	square_note 0, 14, 1, 1985
@@ -1192,14 +1192,14 @@ Sfx_53_Ch6:
 	sound_loop 12, .loop
 	sound_ret
 
-Sfx_53_Ch8:
+Sfx_Leer_Ch8:
 .loop
 	noise_note 1, 13, 1, 73
 	noise_note 1, 13, 1, 41
 	sound_loop 6, .loop
 	sound_ret
 
-Sfx_54_Ch5:
+Sfx_Ember_Ch5:
 .loop
 	duty_cycle_pattern 3, 0, 2, 1
 	square_note 11, 15, 3, 288
@@ -1209,7 +1209,7 @@ Sfx_54_Ch5:
 	square_note 15, 12, 2, 272
 	sound_ret
 
-Sfx_54_Ch8:
+Sfx_Ember_Ch8:
 .loop
 	noise_note 10, 15, 3, 53
 	noise_note 14, 15, 6, 69
@@ -1219,7 +1219,7 @@ Sfx_54_Ch8:
 	noise_note 15, 15, 4, 172
 	sound_ret
 
-Sfx_55_Ch5:
+Sfx_Bubblebeam_Ch5:
 .loop
 	duty_cycle_pattern 0, 3, 2, 1
 	square_note 4, 15, 4, 1536
@@ -1230,7 +1230,7 @@ Sfx_55_Ch5:
 	square_note 8, 13, 1, 1536
 	sound_ret
 
-Sfx_55_Ch6:
+Sfx_Bubblebeam_Ch6:
 .loop
 	duty_cycle_pattern 2, 0, 3, 1
 	square_note 5, 14, 4, 1504
@@ -1240,7 +1240,7 @@ Sfx_55_Ch6:
 	sound_loop 3, .loop
 	sound_ret
 
-Sfx_55_Ch8:
+Sfx_Bubblebeam_Ch8:
 .loop
 	noise_note 5, 12, 3, 51
 	noise_note 3, 9, 2, 67
@@ -1249,7 +1249,7 @@ Sfx_55_Ch8:
 	sound_loop 2, .loop
 	sound_ret
 
-Sfx_56_Ch5:
+Sfx_HydroPump_Ch5:
 .loop
 	duty_cycle_pattern 3, 1, 0, 2
 	square_note 3, 8, 1, 768
@@ -1261,7 +1261,7 @@ Sfx_56_Ch5:
 	square_note 8, 8, 1, 1024
 	sound_ret
 
-Sfx_56_Ch8:
+Sfx_HydroPump_Ch8:
 .loop
 	noise_note 3, 6, 2, 34
 	noise_note 3, 10, 2, 50
@@ -1272,7 +1272,7 @@ Sfx_56_Ch8:
 	noise_note 8, 8, 1, 18
 	sound_ret
 
-Sfx_57_Ch5:
+Sfx_Surf_Ch5:
 .loop
 	duty_cycle_pattern 0, 3, 2, 1
 	square_note 15, 15, 4, 1280
@@ -1281,7 +1281,7 @@ Sfx_57_Ch5:
 	sound_loop 3, .loop
 	sound_ret
 
-Sfx_57_Ch6:
+Sfx_Surf_Ch6:
 .loop
 	duty_cycle_pattern 2, 0, 3, 1
 	square_note 7, 14, 4, 1072
@@ -1290,7 +1290,7 @@ Sfx_57_Ch6:
 	sound_loop 4, .loop
 	sound_ret
 
-Sfx_57_Ch8:
+Sfx_Surf_Ch8:
 .loop
 	noise_note 9, 15, 4, 68
 	noise_note 9, 15, 2, 67
@@ -1299,7 +1299,7 @@ Sfx_57_Ch8:
 	sound_loop 3, .loop
 	sound_ret
 
-Sfx_58_Ch5:
+Sfx_Psybeam_Ch5:
 .loop
 	duty_cycle_pattern 2, 2, 0, 1
 	square_note 10, 15, 1, 1600
@@ -1309,7 +1309,7 @@ Sfx_58_Ch5:
 	square_note 10, 15, 1, 1600
 	sound_ret
 
-Sfx_58_Ch6:
+Sfx_Psybeam_Ch6:
 .loop
 	duty_cycle_pattern 2, 3, 0, 3
 	square_note 10, 15, 3, 1393
@@ -1319,14 +1319,14 @@ Sfx_58_Ch6:
 	square_note 10, 15, 1, 1393
 	sound_ret
 
-Sfx_58_Ch8:
+Sfx_Psybeam_Ch8:
 .loop
 	noise_note 2, 13, 1, 74
 	noise_note 2, 13, 2, 42
 	sound_loop 21, .loop
 	sound_ret
 
-Sfx_59_Ch5:
+Sfx_Charge_Ch5:
 .loop
 	duty_cycle 0
 	square_note 2, 15, 1, 512
@@ -1336,7 +1336,7 @@ Sfx_59_Ch5:
 	sound_loop 8, .loop
 	sound_ret
 
-Sfx_59_Ch6:
+Sfx_Charge_Ch6:
 .loop
 	duty_cycle_pattern 2, 3, 0, 3
 	square_note 2, 14, 1, 770
@@ -1346,7 +1346,7 @@ Sfx_59_Ch6:
 	sound_loop 8, .loop
 	sound_ret
 
-Sfx_59_Ch8:
+Sfx_Charge_Ch8:
 .loop
 	noise_note 2, 13, 3, 16
 	noise_note 3, 13, 3, 17
@@ -1355,7 +1355,7 @@ Sfx_59_Ch8:
 	sound_loop 9, .loop
 	sound_ret
 
-Sfx_5a_Ch5:
+Sfx_Thundershock_Ch5:
 .loop
 	duty_cycle_pattern 0, 2, 2, 3
 	square_note 3, 15, 1, 2032
@@ -1363,7 +1363,7 @@ Sfx_5a_Ch5:
 	sound_loop 8, .loop
 	sound_ret
 
-Sfx_5a_Ch6:
+Sfx_Thundershock_Ch6:
 .loop
 	duty_cycle_pattern 2, 3, 0, 3
 	square_note 4, 14, 2, 514
@@ -1371,14 +1371,14 @@ Sfx_5a_Ch6:
 	sound_loop 9, .loop
 	sound_ret
 
-Sfx_5a_Ch8:
+Sfx_Thundershock_Ch8:
 .loop
 	noise_note 4, 15, -7, 67
 	noise_note 4, 15, 2, 68
 	sound_loop 9, .loop
 	sound_ret
 
-Sfx_5b_Ch5:
+Sfx_Psychic_Ch5:
 	duty_cycle 2
 	pitch_sweep 15, 7
 	square_note 8, 12, 4, 1981
@@ -1390,7 +1390,7 @@ Sfx_5b_Ch5:
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_5b_Ch6:
+Sfx_Psychic_Ch6:
 	duty_cycle 2
 	square_note 8, 12, 4, 1904
 	square_note 8, 12, 4, 1889
@@ -1400,7 +1400,7 @@ Sfx_5b_Ch6:
 	square_note 15, 15, 2, 1892
 	sound_ret
 
-Sfx_5b_Ch8:
+Sfx_Psychic_Ch8:
 	noise_note 15, 3, -7, 20
 	noise_note 15, 12, -7, 19
 	noise_note 15, 12, -7, 18
@@ -1409,7 +1409,7 @@ Sfx_5b_Ch8:
 	noise_note 15, 12, 2, 16
 	sound_ret
 
-Sfx_5c_Ch5:
+Sfx_Screech_Ch5:
 	duty_cycle 2
 	square_note 15, 15, -7, 2016
 	square_note 15, 15, -7, 2016
@@ -1418,7 +1418,7 @@ Sfx_5c_Ch5:
 	square_note 15, 15, 2, 2016
 	sound_ret
 
-Sfx_5c_Ch6:
+Sfx_Screech_Ch6:
 	duty_cycle 3
 	square_note 15, 15, -7, 2018
 	square_note 15, 15, -7, 2017
@@ -1427,19 +1427,19 @@ Sfx_5c_Ch6:
 	square_note 15, 15, 2, 2018
 	sound_ret
 
-Sfx_5d_Ch5:
+Sfx_BoneClub_Ch5:
 	duty_cycle 2
 	pitch_sweep 10, -7
 	square_note 8, 15, 1, 1792
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_5d_Ch6:
+Sfx_BoneClub_Ch6:
 	duty_cycle 3
 	square_note 8, 15, 1, 1793
 	sound_ret
 
-Sfx_5e_Ch5:
+Sfx_Sharpen_Ch5:
 	duty_cycle 2
 	square_note 6, 15, 1, 1280
 	square_note 6, 15, 1, 1408
@@ -1448,7 +1448,7 @@ Sfx_5e_Ch5:
 	square_note 8, 15, 1, 1792
 	sound_ret
 
-Sfx_5e_Ch6:
+Sfx_Sharpen_Ch6:
 	duty_cycle 3
 	square_note 6, 14, 1, 1296
 	square_note 6, 14, 1, 1424
@@ -1457,28 +1457,28 @@ Sfx_5e_Ch6:
 	square_note 8, 14, 1, 1808
 	sound_ret
 
-Sfx_5f_Ch5:
+Sfx_EggBomb_Ch5:
 	duty_cycle_pattern 3, 2, 3, 1
 	square_note 8, 15, -7, 1016
 	square_note 15, 15, -7, 1024
 	square_note 15, 15, 3, 1024
 	sound_ret
 
-Sfx_5f_Ch6:
+Sfx_EggBomb_Ch6:
 	duty_cycle_pattern 2, 3, 1, 0
 	square_note 8, 14, -7, 960
 	square_note 15, 14, -7, 960
 	square_note 15, 14, 3, 960
 	sound_ret
 
-Sfx_5f_Ch8:
+Sfx_EggBomb_Ch8:
 	noise_note 4, 15, -7, 81
 	noise_note 8, 15, -7, 84
 	noise_note 15, 15, -7, 85
 	noise_note 15, 15, 3, 86
 	sound_ret
 
-Sfx_60_Ch5:
+Sfx_Sing_Ch5:
 	toggle_sfx
 	vibrato 10, 2, 4
 	duty_cycle 2
@@ -1492,7 +1492,7 @@ Sfx_60_Ch5:
 	note G_, 8
 	sound_ret
 
-Sfx_60_Ch6:
+Sfx_Sing_Ch6:
 	toggle_sfx
 	vibrato 10, 2, 3
 	duty_cycle 2
@@ -1507,7 +1507,7 @@ Sfx_60_Ch6:
 	note G_, 8
 	sound_ret
 
-Sfx_61_Ch5:
+Sfx_HyperBeam_Ch5:
 	duty_cycle 0
 	square_note 2, 15, 1, 1920
 	square_note 2, 15, 1, 1792
@@ -1527,7 +1527,7 @@ Sfx_61_Ch5:
 	square_note 15, 15, 1, 1792
 	sound_ret
 
-Sfx_61_Ch6:
+Sfx_HyperBeam_Ch6:
 	duty_cycle_pattern 2, 3, 0, 3
 	square_note 2, 15, 1, 1921
 	square_note 2, 15, 1, 1793
@@ -1547,14 +1547,14 @@ Sfx_61_Ch6:
 	square_note 15, 15, 1, 1793
 	sound_ret
 
-Sfx_61_Ch8:
+Sfx_HyperBeam_Ch8:
 .loop
 	noise_note 1, 13, 1, 73
 	noise_note 1, 13, 1, 41
 	sound_loop 26, .loop
 	sound_ret
 
-Sfx_28_Ch8:
+Sfx_IntroLungeRG_Ch8:
 	noise_note 6, 2, 0, 16
 	noise_note 6, 2, -7, 64
 	noise_note 6, 4, -7, 65
@@ -1565,21 +1565,21 @@ Sfx_28_Ch8:
 	noise_note 15, 15, 2, 67
 	sound_ret
 
-Sfx_29_Ch8:
+Sfx_Unknown29_Ch8:
 	noise_note 4, 13, 1, 65
 	sound_ret
 
-Sfx_2a_Ch8:
+Sfx_Unknown2a_Ch8:
 	noise_note 4, 12, 1, 66
 	sound_ret
 
-Sfx_2b_Ch8:
+Sfx_IntroRaiseRG_Ch8:
 	noise_note 2, 6, -7, 33
 	noise_note 2, 10, -7, 49
 	noise_note 15, 15, 2, 65
 	sound_ret
 
-Sfx_2c_Ch8:
+Sfx_IntroCrashRG_Ch8:
 	noise_note 2, 13, 2, 50
 	noise_note 15, 15, 2, 67
 	sound_ret
@@ -1592,14 +1592,14 @@ Sfx_TitleEntrance_Ch8:
 	noise_note 15, 13, 2, 35
 	sound_ret
 
-Sfx_2e_Ch5:
+Sfx_SlotsStopWheel_Ch5:
 	duty_cycle 2
 	square_note 1, 15, 2, 1696
 	square_note 1, 15, 2, 1760
 	square_note 8, 15, 1, 1792
 	sound_ret
 
-Sfx_2f_Ch5:
+Sfx_SlotsReward_Ch5:
 	duty_cycle 2
 	square_note 2, 15, 1, 1792
 	square_note 8, 8, 1, 2016
