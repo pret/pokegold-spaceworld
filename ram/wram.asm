@@ -432,11 +432,10 @@ wBattleBGEffectTempTurn:: db
 wBattleBGEffectTempParam:: db
 
 NEXTU
-; unidentified
-wBattleAnimTemp0:: db
-wBattleAnimTemp1:: db
-wBattleAnimTemp2:: db
-wBattleAnimTemp3:: db
+wBattleSineWaveTempProgress:: db
+wBattleSineWaveTempOffset:: db
+wBattleSineWaveTempAmplitude:: db
+wBattleSineWaveTempTimer:: db
 
 NEXTU
 wBattleAnimTempOAMFlags:: db
@@ -452,6 +451,7 @@ wBattleAnimTempPalette:: db
 NEXTU
 wBattleAnimGFXTempTileID::
 wBattleAnimGFXTempPicHeight:: db
+wBattlePicResizeTempPointer:: dw
 
 ENDU
 
