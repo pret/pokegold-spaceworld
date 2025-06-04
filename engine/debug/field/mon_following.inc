@@ -19,7 +19,7 @@ FieldDebug_PokemonFollowing:
 	and a
 	jr nz, .ShowUnableText
 	callfar SpawnFollower
-	ld de, SFX_24
+	ld de, SFX_BALL_POOF
 	call PlaySFX
 	call CloseWindow
 	call UpdateSprites
@@ -28,7 +28,7 @@ FieldDebug_PokemonFollowing:
 
 .remove
 	callfar DeleteFollower
-	ld de, SFX_25
+	ld de, SFX_FAINT
 	call PlaySFX
 	jr .done
 

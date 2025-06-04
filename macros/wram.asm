@@ -332,38 +332,29 @@ MACRO sprite_anim_struct
 ENDM
 
 MACRO battle_anim_struct
-; Placeholder until we can figure out what it all means
-\1_Index::  ds 1
-\1_Anim01:: ds 1
-\1_Anim02:: ds 1
-\1_FramesetIndex:: ds 1
-\1_FunctionIndex:: ds 1
-\1_Anim05:: ds 1
-\1_TileID:: ds 1
-\1_XCoord:: ds 1
-\1_YCoord:: ds 1
-\1_XOffset:: ds 1
-\1_YOffset:: ds 1
-\1_Anim0b:: ds 1
-\1_Anim0c:: ds 1
-\1_Anim0d:: ds 1
-\1_AnonJumptableIndex:: ds 1
-\1_Anim0f:: ds 1
-\1_Anim10:: ds 1
-\1_Anim11:: ds 1
-\1_Anim12:: ds 1
-\1_Anim13:: ds 1
-\1_Anim14:: ds 1
-\1_Anim15:: ds 1
-\1_Anim16:: ds 1
-\1_Anim17:: ds 1
+\1Index::          db
+\1OAMFlags::       db
+\1FixY::           db
+\1FramesetID::     db
+\1Function::       db
+\1TileID::         db
+\1XCoord::         db
+\1YCoord::         db
+\1XOffset::        db
+\1YOffset::        db
+\1Param::          db
+\1Duration::       db
+\1Frame::          db
+\1JumptableIndex:: db
+\1Var1::           db
+\1Var2::           db
 ENDM
 
 MACRO battle_bg_effect
-\1_Function:: ds 1
-\1_01:: ds 1
-\1_02:: ds 1
-\1_03:: ds 1
+\1Function::       db
+\1JumptableIndex:: db
+\1BattleTurn::     db
+\1Param::          db
 ENDM
 
 MACRO sprite_oam_struct

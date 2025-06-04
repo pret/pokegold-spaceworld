@@ -470,7 +470,7 @@ Intro_UpdateTilemapAndBGMap:
 	ld e, a
 	ld a, [wIntroBGMapPointer + 1]
 	ld d, a
-	ld hl, hCurSpriteYCoord
+	ld hl, -2 * BG_MAP_WIDTH
 	add hl, de
 	ld a, l
 	ld [wIntroBGMapPointer + 0], a

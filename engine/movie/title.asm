@@ -273,7 +273,7 @@ TitleSeq_Start::
 	ld a, $80
 	ld [wJumptableIndex + 2], a
 	call SetLYOverrides
-	ld a, $43
+	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
 	ret
 

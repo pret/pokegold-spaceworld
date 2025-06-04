@@ -2687,6 +2687,7 @@ _PlaySFX::
 	jr nz, .start_channels
 	ret
 
+PlayStereoSFX::
 	ld a, [wce5f]
 	bit 5, a	; Stereo flag?
 	jr z, _PlaySFX

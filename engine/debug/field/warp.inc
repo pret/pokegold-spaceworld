@@ -12,7 +12,7 @@ FieldDebug_Warp:
 	ldh a, [hROMBank]
 	ld hl, FieldDebug_ShowWarpToText
 	call QueueScript
-	ld de, SFX_22
+	ld de, SFX_SAFARI_ZONE_PA
 	call PlaySFX
 	call DelayFrame
 	ld a, FIELDDEBUG_RETURN_EXIT

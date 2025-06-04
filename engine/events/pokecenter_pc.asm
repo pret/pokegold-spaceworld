@@ -100,7 +100,7 @@ PC_PlayBootSound:
 ; Don't play the bootup sound if player has at least one mon
 	ret nz
 
-	ld de, SFX_BOOT_PC
+	ld de, SFX_CHOOSE_PC_OPTION
 	call PlaySFX
 	ld hl, .NoPokemonText
 	call OpenTextbox
@@ -117,7 +117,7 @@ PC_PlayBootSound:
 	text_end
 
 PC_Demo:
-	ld de, SFX_BOOT_PC
+	ld de, SFX_CHOOSE_PC_OPTION
 	call PlaySFX
 	ld hl, .SkarmoryText
 	call PrintText

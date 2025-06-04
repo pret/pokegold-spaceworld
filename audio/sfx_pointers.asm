@@ -4,105 +4,105 @@ SECTION "audio/sfx_pointers.asm", ROMX
 
 SFX::
 ; entries correspond to SFX_* constants
-	dba Sfx_00
+	dba Sfx_BallWobble
 	dba Sfx_Potion
 	dba Sfx_FullHeal
 	dba Sfx_Menu
 	dba Sfx_ReadText
 	dba Sfx_ReadText
-	dba Sfx_06
-	dba Sfx_07
-	dba Sfx_08
-	dba Sfx_09
+	dba Sfx_Poison
+	dba Sfx_TradeMachine
 	dba Sfx_BootPC
+	dba Sfx_ShutDownPC
+	dba Sfx_ChoosePCOption
 	dba Sfx_EscapeRope
-	dba Sfx_0c
-	dba Sfx_0d
-	dba Sfx_0e
-	dba Sfx_0f
-	dba Sfx_10
-	dba Sfx_11
-	dba Sfx_12
-	dba Sfx_13
+	dba Sfx_PressSwitch
+	dba Sfx_HealingMachine
+	dba Sfx_WarpTo
+	dba Sfx_TeleportEnter1
+	dba Sfx_TeleportExit2
+	dba Sfx_JumpOverLedge
+	dba Sfx_TeleportEnter2
+	dba Sfx_Fly
 	dba Sfx_Wrong
-	dba Sfx_15
-	dba Sfx_16
-	dba Sfx_17
-	dba Sfx_18
-	dba Sfx_19
-	dba Sfx_1a
+	dba Sfx_ArrowTiles
+	dba Sfx_Strength
+	dba Sfx_Megaphone
+	dba Sfx_WithdrawDeposit
+	dba Sfx_CutRG
+	dba Sfx_GoInside
 	dba Sfx_SwitchPokemon
-	dba Sfx_1c
-	dba Sfx_1d
-	dba Sfx_1e
-	dba Sfx_1f
-	dba Sfx_20
+	dba Sfx_BellyDrum
+	dba Sfx_Purchase
+	dba Sfx_Collision
+	dba Sfx_GoOutside
+	dba Sfx_Save
 	dba Sfx_Pokeflute
-	dba Sfx_22
-	dba Sfx_23
-	dba Sfx_24
-	dba Sfx_25
-	dba Sfx_26
+	dba Sfx_SafariZonePA
+	dba Sfx_ThrowBall
+	dba Sfx_BallPoof
+	dba Sfx_Faint
+	dba Sfx_Run
 	dba Sfx_PokedexRegistration
-	dba Sfx_28
-	dba Sfx_29
-	dba Sfx_2a
-	dba Sfx_2b
-	dba Sfx_2c
+	dba Sfx_IntroLungeRG
+	dba Sfx_Unknown29
+	dba Sfx_Unknown2a
+	dba Sfx_IntroRaiseRG
+	dba Sfx_IntroCrashRG
 	dba Sfx_TitleEntrance
-	dba Sfx_2e
-	dba Sfx_2f
+	dba Sfx_SlotsStopWheel
+	dba Sfx_SlotsReward
 	dba Sfx_PayDay
 	dba Sfx_GameFreakLogoRG
-	dba Sfx_32
-	dba Sfx_33
-	dba Sfx_34
-	dba Sfx_35
-	dba Sfx_36
-	dba Sfx_37
-	dba Sfx_38
-	dba Sfx_39
-	dba Sfx_3a
-	dba Sfx_3b
-	dba Sfx_3c
-	dba Sfx_3d
-	dba Sfx_3e
-	dba Sfx_3f
-	dba Sfx_40
-	dba Sfx_41
-	dba Sfx_42
-	dba Sfx_43
-	dba Sfx_44
-	dba Sfx_45
-	dba Sfx_46
-	dba Sfx_47
-	dba Sfx_48
-	dba Sfx_49
-	dba Sfx_4a
-	dba Sfx_4b
-	dba Sfx_4c
-	dba Sfx_4d
-	dba Sfx_4e
-	dba Sfx_4f
-	dba Sfx_50
-	dba Sfx_51
-	dba Sfx_52
-	dba Sfx_53
-	dba Sfx_54
-	dba Sfx_55
-	dba Sfx_56
-	dba Sfx_57
-	dba Sfx_58
-	dba Sfx_59
-	dba Sfx_5a
-	dba Sfx_5b
-	dba Sfx_5c
-	dba Sfx_5d
-	dba Sfx_5e
-	dba Sfx_5f
-	dba Sfx_60
-	dba Sfx_61
-	dba Sfx_62
+	dba Sfx_Peck
+	dba Sfx_Kinesis
+	dba Sfx_Lick
+	dba Sfx_Pound
+	dba Sfx_Thrash
+	dba Sfx_CometPunch
+	dba Sfx_MegaPunch
+	dba Sfx_Scratch
+	dba Sfx_ViceGrip
+	dba Sfx_RazorWind
+	dba Sfx_Cut
+	dba Sfx_WingAttack
+	dba Sfx_Whirlwind
+	dba Sfx_Bind
+	dba Sfx_VineWhip
+	dba Sfx_DoubleKick
+	dba Sfx_MegaKick
+	dba Sfx_Headbutt
+	dba Sfx_HornAttack
+	dba Sfx_Tackle
+	dba Sfx_PoisonSting
+	dba Sfx_Powder
+	dba Sfx_Doubleslap
+	dba Sfx_Bite
+	dba Sfx_JumpKick
+	dba Sfx_Stomp
+	dba Sfx_TailWhip
+	dba Sfx_KarateChop
+	dba Sfx_Submission
+	dba Sfx_WaterGun
+	dba Sfx_SwordsDance
+	dba Sfx_Thunder
+	dba Sfx_Supersonic
+	dba Sfx_Leer
+	dba Sfx_Ember
+	dba Sfx_Bubblebeam
+	dba Sfx_HydroPump
+	dba Sfx_Surf
+	dba Sfx_Psybeam
+	dba Sfx_Charge
+	dba Sfx_Thundershock
+	dba Sfx_Psychic
+	dba Sfx_Screech
+	dba Sfx_BoneClub
+	dba Sfx_Sharpen
+	dba Sfx_EggBomb
+	dba Sfx_Sing
+	dba Sfx_HyperBeam
+	dba Sfx_Shine
 	dba Sfx_GetItemRG
 	dba Sfx_UnusedFanfare1
 	dba Sfx_PokedexEvaluationRG

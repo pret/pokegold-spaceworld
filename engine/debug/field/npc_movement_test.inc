@@ -17,7 +17,7 @@ FieldDebug_NPCMovementTest:
 	ld a, 2
 	ld hl, .MovementData
 	call LoadMovementDataPointer
-	ld de, SFX_22
+	ld de, SFX_SAFARI_ZONE_PA
 	call PlaySFX
 	scf
 	ret
@@ -42,7 +42,7 @@ FieldDebug_NPCMovementTest:
 	db MOVEMENT_32
 
 .not_here
-	ld de, SFX_1E
+	ld de, SFX_COLLISION
 	call PlaySFX
 	ld hl, .NotHereText
 	call FieldDebug_ShowTextboxAndExit

@@ -51,8 +51,8 @@ GiveItemPredef::
 	add_predef Function3e1a4
 	add_predef Function3ef19
 	add_predef CalcAndPlaceExpBar
-	add_predef Function3e91e
-	add_predef Function3e963 ; 28
+	add_predef GetBattleMonBackpic
+	add_predef GetEnemyMonFrontpic ; 28
 	add_predef Function421f8
 	add_predef FillMoves
 	add_predef Function41fa1
@@ -63,7 +63,7 @@ GiveItemPredef::
 	add_predef ConvertMon_1to2 ; 30
 	add_predef CopyMonToTempMon
 	add_predef ListMoves
-	add_predef Function50bcd
+	add_predef GetMonBackpic
 	add_predef PlaceNonFaintStatus
 	add_predef Function508c4
 	add_predef PartyMenuInBattle_Setup
@@ -78,9 +78,9 @@ GiveItemPredef::
 	add_predef PrintMoveType
 	add_predef PrintMonTypes ; 40
 	add_predef GetUnownLetter
-	add_predef Functioncb6ff
-	add_predef Functioncb710
-	add_predef Functioncb733
+	add_predef ChangeBGPalColor0_4Frames
+	add_predef PredefShakeScreenVertically
+	add_predef PredefShakeScreenHorizontally
 	add_predef Function145b8
 	add_predef Function146dc
 	add_predef Function145de

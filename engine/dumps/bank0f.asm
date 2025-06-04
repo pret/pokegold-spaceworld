@@ -158,7 +158,7 @@ asm_3c132:
 
 asm_3c14a:
 	call PrintText
-	ld de, $26
+	ld de, SFX_RUN
 	call PlaySFX
 	xor a
 	ldh [hBattleTurn], a
@@ -571,11 +571,11 @@ asm_3c4a3:
 	and $18
 	jr z, asm_3c4eb
 	ld hl, HurtByPoisonText
-	ld de, $0106
+	ld de, ANIM_PSN
 	and $10
 	jr z, asm_3c4b8
 	ld hl, HurtByBurnText
-	ld de, $0105
+	ld de, ANIM_BRN
 
 asm_3c4b8:
 	push de
@@ -627,7 +627,7 @@ asm_3c4f6:
 	ldh [hBattleTurn], a
 	xor a
 	ld [wNumHits], a
-	ld de, $0107
+	ld de, ANIM_SAP
 	call PlayMoveAnimation
 	pop af
 	ldh [hBattleTurn], a
@@ -649,7 +649,7 @@ asm_3c528:
 	jr z, asm_3c542
 	xor a
 	ld [wNumHits], a
-	ld de, $010c
+	ld de, ANIM_IN_NIGHTMARE
 	call PlayMoveAnimation
 	call GetQuarterMaxHP
 	call SubtractHPFromUser
@@ -668,7 +668,7 @@ asm_3c54d:
 	jr z, asm_3c567
 	xor a
 	ld [wNumHits], a
-	ld de, $010c
+	ld de, ANIM_IN_NIGHTMARE
 	call PlayMoveAnimation
 	call GetQuarterMaxHP
 	call SubtractHPFromUser
@@ -691,7 +691,7 @@ asm_3c572:
 	ldh [hBattleTurn], a
 	xor a
 	ld [wNumHits], a
-	ld de, $010b
+	ld de, ANIM_IN_SANDSTORM
 	call PlayMoveAnimation
 	pop af
 	ldh [hBattleTurn], a
@@ -1212,12 +1212,12 @@ asm_3c8e2:
 	dec a
 	jr z, asm_3c935
 	push de
-	ld de, $33
+	ld de, SFX_KINESIS
 	call PlaySFX
 	call WaitSFX
 	pop de
 	push de
-	ld de, $25
+	ld de, SFX_FAINT
 	call PlaySFX
 	call WaitSFX
 	pop de
@@ -2356,7 +2356,7 @@ TryRunningFromBattle:
 .play_sound
 	ld [wcd5d], a
 	push de
-	ld de, $26
+	ld de, SFX_RUN
 	call WaitPlaySFX
 	pop de
 	call WaitSFX
@@ -3175,7 +3175,7 @@ BattleMenu_Pack:
 	ld a, 1
 	ld [wMenuCursorY], a
 	call sub_3d832
-	ld a, [wce35]
+	ld a, [wWildMon]
 	and a
 	jr nz, .asm_3d7eb
 	call CloseWindow
@@ -3189,7 +3189,7 @@ BattleMenu_Pack:
 
 .asm_3d7eb
 	xor a
-	ld [wce35], a
+	ld [wWildMon], a
 	ld a, 2
 	ld [wcd5d], a
 	call ClearWindowData
@@ -5653,15 +5653,17 @@ CalcAndPlaceExpBar:
 .finish
 	ret
 
-Function3e91e:
+GetBattleMonBackpic:
 	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	ld hl, Functioncc44f
-	jr nz, asm_3e954
+	ld hl, BattleAnimCmd_RaiseSub
+	jr nz, GetBattleMonBackpic_DoAnim
+
+DropPlayerSub:
 	ld a, [wPlayerMinimized]
 	and a
-	ld hl, Functioncc4d4
-	jr nz, asm_3e954
+	ld hl, BattleAnimCmd_MinimizeOpp
+	jr nz, GetBattleMonBackpic_DoAnim
 	ld a, [wCurPartySpecies]
 	push af
 	ld a, [wBattleMonSpecies]
@@ -5670,32 +5672,34 @@ Function3e91e:
 	call GetBaseData
 	ld hl, wMonHBackSprite - wMonHeader
 	call UncompressMonSprite
-	ld hl, $9310
-	predef Function50bcd
+	ld hl, vBackPic
+	predef GetMonBackpic
 	pop af
 	ld [wCurPartySpecies], a
 	ret
 
-asm_3e954:
+GetBattleMonBackpic_DoAnim:
 	ldh a, [hBattleTurn]
 	push af
 	xor a
 	ldh [hBattleTurn], a
-	ld a, BANK(Functioncc44f)
+	ld a, BANK(BattleAnimCmd_RaiseSub)
 	call FarCall_hl
 	pop af
 	ldh [hBattleTurn], a
 	ret
 
-Function3e963:
+GetEnemyMonFrontpic:
 	ld a, [wEnemySubStatus4]
-	bit 4, a
-	ld hl, Functioncc44f
-	jr nz, asm_3e999
+	bit SUBSTATUS_SUBSTITUTE, a
+	ld hl, BattleAnimCmd_RaiseSub
+	jr nz, GetEnemyMonFrontpic_DoAnim
+
+DropEnemySub:
 	ld a, [wEnemyMinimized]
 	and a
-	ld hl, Functioncc4d4
-	jr nz, asm_3e999
+	ld hl, BattleAnimCmd_MinimizeOpp
+	jr nz, GetEnemyMonFrontpic_DoAnim
 	ld a, [wCurPartySpecies]
 	push af
 	ld a, [wEnemyMonSpecies]
@@ -5710,12 +5714,12 @@ Function3e963:
 	ld [wCurPartySpecies], a
 	ret
 
-asm_3e999:
+GetEnemyMonFrontpic_DoAnim:
 	ldh a, [hBattleTurn]
 	push af
 	ld a, 1
 	ldh [hBattleTurn], a
-	ld a, BANK(Functioncc44f)
+	ld a, BANK(BattleAnimCmd_RaiseSub)
 	call FarCall_hl
 	pop af
 	ldh [hBattleTurn], a
@@ -6178,7 +6182,7 @@ LoadMonBackPic:
 	ld hl, wMonHBackSprite - wMonHeader
 	call UncompressMonSprite
 	ld hl, vBackPic
-	predef_jump Function50bcd
+	predef_jump GetMonBackpic
 
 Function3f068:
 	ld de, $a203
@@ -6412,7 +6416,7 @@ AddBattleMoneyToAccount:
 	call PrintText
 	ret
 
-	BattleText_PlayerPickedUpPayDayMoney:
+BattleText_PlayerPickedUpPayDayMoney:
 	text "<PLAYER>は　@"
 	deciram wPayDayMoney, 3, 6
 	text "円"
@@ -6580,7 +6584,7 @@ InitBackPic:
 	ld a, BANK(PlayerBacksprite)
 	call UncompressSpriteFromDE
 	ld hl, vTitleLogo2
-	predef Function50bcd
+	predef GetMonBackpic
 	ld a, 0
 	call OpenSRAM
 	ld hl, vSprites
@@ -6644,7 +6648,7 @@ BattleStartMessage:
 	ld a, [wBattleMode]
 	dec a
 	jr z, .wild
-	ld de, $62 ; SFX_SHINE
+	ld de, SFX_SHINE
 	call PlaySFX
 	call WaitSFX
 	ld c, 20

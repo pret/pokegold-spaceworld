@@ -772,9 +772,16 @@ ROMX $31
 ROMX $32
 	org $4000
 	"engine/battle_anims/bg_effects.asm"
+	"data/moves/animations.asm"
+	"engine/gfx/screen_effects.asm"
 
 ROMX $33
 	org $4000
+	"engine/battle_anims/anim_commands.asm"
+	"engine/dumps/bank33.asm"
+	"engine/battle_anims/functions.asm"
+	"engine/battle_anims/helper.asm"
+
 
 ROMX $34
 	org $4000

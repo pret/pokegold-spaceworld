@@ -385,7 +385,19 @@ wPicrossErrorCheck:: ds 1
 	ds 1
 NEXTU
 ; Battle-related
-	ds $1ea
+	ds $140
+
+wBattleAnimTileDict::
+; wBattleAnimTileDict pairs keys with values
+; keys: BATTLE_ANIM_GFX_* indexes (taken from anim_*gfx arguments)
+; values: vTiles0 offsets
+	ds NUM_BATTLEANIMTILEDICT_ENTRIES * 2
+
+wActiveAnimObjects::
+; wAnimObject1 - wAnimObject10
+for n, 1, NUM_BATTLE_ANIM_STRUCTS + 1
+wAnimObject{d:n}:: battle_anim_struct wAnimObject{d:n}
+endr
 
 wActiveBGEffects::
 wBGEffect1:: battle_bg_effect wBGEffect1
@@ -395,7 +407,7 @@ wBGEffect4:: battle_bg_effect wBGEffect4
 wBGEffect5:: battle_bg_effect wBGEffect5
 wActiveBGEffectsEnd::
 
-wNumActiveBattleAnims:: db
+wLastAnimObjectIndex:: db
 
 wBattleAnimFlags:: db
 wBattleAnimAddress:: dw
@@ -408,22 +420,39 @@ wBattleAnimOAMPointerLo:: db
 	db
 
 UNION
-; unidentified
-wBattleAnimTemp0:: db
-wBattleAnimTemp1:: db
-wBattleAnimTemp2:: db
-wBattleAnimTemp3:: db
+wBattleObjectTempID:: db
+wBattleObjectTempXCoord:: db
+wBattleObjectTempYCoord:: db
+wBattleObjectTempParam:: db
+
+NEXTU
+wBattleBGEffectTempID:: db
+wBattleBGEffectTempJumptableIndex:: db
+wBattleBGEffectTempTurn:: db
+wBattleBGEffectTempParam:: db
+
+NEXTU
+wBattleSineWaveTempProgress:: db
+wBattleSineWaveTempOffset:: db
+wBattleSineWaveTempAmplitude:: db
+wBattleSineWaveTempTimer:: db
 
 NEXTU
 wBattleAnimTempOAMFlags:: db
-wBattleAnimTempField02:: db
+wBattleAnimTempFixY:: db
 wBattleAnimTempTileID:: db
 wBattleAnimTempXCoord:: db
 wBattleAnimTempYCoord:: db
 wBattleAnimTempXOffset:: db
 wBattleAnimTempYOffset:: db
-wBattleAnimTempAddSubFlags:: db
+wBattleAnimTempFrameOAMFlags:: db
 wBattleAnimTempPalette:: db
+
+NEXTU
+wBattleAnimGFXTempTileID::
+wBattleAnimGFXTempPicHeight:: db
+wBattlePicResizeTempPointer:: dw
+
 ENDU
 
 	ds $32
@@ -1139,6 +1168,11 @@ NEXTU
 ; battle HUD
 wBattleHUDTiles:: ds PARTY_LENGTH
 
+NEXTU
+; thrown ball data
+wFinalCatchRate:: db
+wThrownBallWobbleCount:: db
+
 ENDU
 
 wLinkBattleRNs:: ds 10
@@ -1240,7 +1274,7 @@ wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wce32:: ds 1
 wce33:: ds 1
 wce34:: ds 1
-wce35:: ds 1
+wWildMon:: db
 wBattleHasJustStarted:: db
 
 wNamedObjectIndexBuffer::

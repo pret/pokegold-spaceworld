@@ -2261,6 +2261,7 @@ BattleCommand_MoveAnim:
 	and a
 	jp nz, BattleCommand_MoveDelay
 
+	assert BATTLEANIM_NONE + 1 == BATTLEANIM_DAMAGE
 	inc a
 	ld [wNumHits], a
 	ldh a, [hBattleTurn]
@@ -7435,9 +7436,11 @@ BattleCommand_Selfdestruct:
 	ld de, wEnemySubStatus4
 
 .ok
+; BUG: hl is increased one too many times, causing only the lower byte of the user's current HP to be zeroed out,
+; and incorrectly zeroing the high byte of the user's max HP.
 	xor a
 	ld [hli], a
-	ld [hli], a
+	ld [hli], a ; Without this line, the bug wouldn't happen. This byte isn't even used in normal gameplay (wPartyMon#Unused)
 	inc hl
 	ld [hli], a
 	ld [hl], a
