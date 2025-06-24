@@ -177,7 +177,8 @@ SilentHillLabFrontMoveDown:
 	ret
 
 SilentHillLabFrontMovement1:
-	db $06, $32
+	slow_step LEFT
+	step_end
 
 SilentHillLabFrontScript2:
 	ld a, 2
@@ -204,7 +205,19 @@ SilentHillLabFrontScript3:
 	ret
 
 SilentHillLabFrontMovement2:
-	db 09, 09, 09, 09, 09, 09, 09, 09, 09, 05, 07, 01, $32
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	slow_step UP
+	slow_step RIGHT
+	turn_head UP
+	step_end
 
 SilentHillLabFrontScript4:
 	call Function1828
@@ -254,7 +267,9 @@ SilentHillLabFrontScript5:
 	ret
 
 SilentHillLabFrontMovement3:
-	db 9, 5, $33
+	step UP
+	slow_step UP
+	remove_object
 
 SilentHillLabFrontScript6:
 	ld hl, wJoypadFlags
@@ -273,7 +288,12 @@ SilentHillLabFrontScript6:
 	ret
 
 SilentHillLabFrontMovement4:
-	db $0D, $0D, $0F, $0D, $0D, $33
+	big_step UP
+	big_step UP
+	big_step RIGHT
+	big_step UP
+	big_step UP
+	remove_object
 
 SilentHillLabFrontScript7:
 	ld hl, wJoypadFlags
@@ -292,7 +312,11 @@ SilentHillLabFrontScript7:
 	ret
 
 SilentHillLabFrontMovement5:
-	db 09, 09, 09, 05, $32
+	step UP
+	step UP
+	step UP
+	slow_step UP
+	step_end
 
 SilentHillLabFrontScript8:
 	ld a, 3
@@ -315,7 +339,12 @@ SilentHillLabFrontScript8:
 	ret
 
 SilentHillLabFrontMovement6:
-	db 8, 8, 8, $0A, 6, $32
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
+	slow_step LEFT
+	step_end
 
 SilentHillLabFrontScript9:
 	ld hl, wJoypadFlags
@@ -336,7 +365,13 @@ SilentHillLabFrontScript9:
 	ret
 
 SilentHillLabFrontMovement7:
-	db $08, $08, $08, $08, $0A, $06, $32
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
+	slow_step LEFT
+	step_end
 
 SilentHillLabFrontScript10:
 	ld a, 5
@@ -368,7 +403,9 @@ SilentHillLabFrontScript10:
 	ret
 
 SilentHillLabFrontMovement8:
-	db $08, $04, $32
+	step DOWN
+	slow_step DOWN
+	step_end
 
 SilentHillLabFrontScript11:
 	ld hl, SilentHillLabFrontTextString8
@@ -431,10 +468,21 @@ SilentHillLabFrontRivalMovePokemon:
 	ret
 
 SilentHillLabFrontMovement9:
-	db $08, $0B, $0B, $08, $08, $04, $32
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	slow_step DOWN
+	step_end
 
 SilentHillLabFrontMovement10:
-	db $08, $0B, $08, $08, $04, $32
+	step DOWN
+	step RIGHT
+	step DOWN
+	step DOWN
+	slow_step DOWN
+	step_end
 
 SilentHillLabFrontScript13:
 	ld hl, SilentHillLabFrontTextString17
@@ -498,7 +546,11 @@ SilentHillLabFrontScript14:
 	ret
 
 SilentHillLabFrontMovement11:
-	db $04, $08, $08, $08, $33
+	slow_step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	remove_object
 
 SilentHillLabFrontScript15:
 	call Function20f8
@@ -547,7 +599,11 @@ SilentHillLabFrontMoveRivalLeave:
 	ret
 
 Movememt12:
-	db $07, $07, $07, $05, $32
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step UP
+	step_end
 
 SilentHillLabFrontScript17:
 	ld hl, SilentHillLabFrontTextString23

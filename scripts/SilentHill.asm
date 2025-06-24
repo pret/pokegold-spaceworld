@@ -76,13 +76,13 @@ SilentHillScript1:
 	ret
 
 SilentHillMovement1:
-	db $0D
-	db $0D
-	db $0D
-	db $09
-	db $05
-	db $02
-	db $32
+	big_step UP
+	big_step UP
+	big_step UP
+	step UP
+	slow_step UP
+	turn_head LEFT
+	step_end
 
 SilentHillScript2:
 	ld a, 0
@@ -106,7 +106,13 @@ SilentHillScript2:
 	ret
 
 SilentHillMovement2:
-	db $00, $04, $08, $0C, $0C, $0C, $33
+	turn_head DOWN
+	slow_step DOWN
+	step DOWN
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	remove_object
 
 SilentHillScript3:
 	call Function1848
@@ -167,10 +173,23 @@ Function776a:
 	ret
 
 SilentHillMovement3:
-	db $0A, $0A, $0A, $09, $0A, $06, $02, $32
+	step LEFT
+	step LEFT
+	step LEFT
+	step UP
+	step LEFT
+	slow_step LEFT
+	turn_head LEFT
+	step_end
 
 SilentHillMovement4:
-	db $0A, $0A, $0A, $0A, $06, $02, $32
+	step LEFT
+	step LEFT
+	step LEFT
+	step LEFT
+	slow_step LEFT
+	turn_head LEFT
+	step_end
 
 SilentHillScript5:
 	ld a, 0
@@ -206,10 +225,47 @@ SilentHillScript5:
 	ret
 
 SilentHillMovement5:
-	db $0B, $0B, $0B, $0B, $0B, $0B, $08, $08, $08, $08, $0B, $0B, $0B, $0B, $0B, $0B, $0B, $0B, $05, $33
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	slow_step UP
+	remove_object
 
 SilentHillMovement6:
-	db $0B, $0B, $0B, $0B, $0B, $0B, $08, $08, $08, $0B, $0B, $0B, $0B, $0B, $0B, $0B, $0B, $05, $33
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	slow_step UP
+	remove_object
 
 SilentHillScript6:
 	ld hl, SilentHillNPCIDs2
@@ -272,7 +328,8 @@ SilentHillTextString1:
 	done
 
 SilentHillMovement7:
-	db $04, $32
+	slow_step DOWN
+	step_end
 
 SilentHillSignPointers::
 	dw SilentHillPlayerHouseText

@@ -71,20 +71,20 @@ FieldDebug_FollowNPCTest:
 	prompt
 
 .MovementData:
-	db FACE_UP
-	db SLOW_STEP_UP
-	db STEP_UP
-	db STEP_RIGHT
-	db FAST_STEP_RIGHT
-	db JUMP_DOWN
-	db FAST_STEP_DOWN
-	db FAST_STEP_DOWN
-	db STEP_DOWN
-	db STEP_LEFT
-	db STEP_LEFT
-	db JUMP_UP
-	db SLOW_STEP_UP
-	db MOVEMENT_33
+	turn_head UP
+	slow_step UP
+	step UP
+	step RIGHT
+	big_step RIGHT
+	jump_step DOWN
+	big_step DOWN
+	big_step DOWN
+	step DOWN
+	step LEFT
+	step LEFT
+	jump_step UP
+	slow_step UP
+	remove_object
 
 MenuHeaderfca01:	; unreferenced?
 	db MENU_BACKUP_TILES

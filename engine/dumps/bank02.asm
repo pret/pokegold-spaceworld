@@ -557,7 +557,7 @@ Function833a:
 	ld a, c
 	push af
 	call InitMovementBuffer
-	ld a, MOVEMENT_29
+	ld a, movement_hide_object
 	call AppendToMovementBuffer
 	ld a, b
 	call GetMapObject

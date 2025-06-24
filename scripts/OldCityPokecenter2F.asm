@@ -69,7 +69,7 @@ OldCityPokecenter2FText4:
 	call DeleteMapObject
 	jr .asm_9480c
 ; unreferenced?
-	ld hl, Data14824
+	ld hl, OldCityPokecenter2FMovement1
 	ld a, $5
 	call Function16fb ; something related to follow
 	ld hl, $0000
@@ -82,7 +82,15 @@ OldCityPokecenter2FTextString4:
 	line "タイムマシンです"
 	done
 
-	db $05, $25, $24, $48
+; TODO?: APPEARS to be movement data. These bytes including a set/remove sliding command makes sense
+; considering that the Link Cable nurse has no proper walking sprites.
+; The stray '$48' byte doesn't correspond to any command, though, so it's hard to be certain.
+OldCityPokecenter2FMovement_Unreferenced:
+	slow_step UP
+	set_sliding
+	remove_sliding
+	db $48
 
-Data14824: ; movement data
-	db $07, $32
+OldCityPokecenter2FMovement1:
+	slow_step RIGHT
+	step_end

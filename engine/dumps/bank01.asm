@@ -1351,7 +1351,7 @@ MovementPointers:
 	dw Movement_step_sleep_6 ; 2f
 	dw Movement_step_sleep_7 ; 30
 	dw Movement_step_sleep_8 ; 31
-	dw Movement_step_wait_end ; 32
+	dw Movement_step_end ; 32
 	dw Movement_remove_object ; 33
 	dw Movement_step_loop ; 34
 	dw Movement_step_stop ; 35
@@ -1364,7 +1364,7 @@ Movement_step_loop:
 	ld [hl], 0
 	jp StepFunction_FromMovement
 
-Movement_step_wait_end:
+Movement_step_end:
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
@@ -1878,7 +1878,7 @@ ApplyMovementToFollower:
 	cp movement_turn_head | RIGHT
 	ret z
 
-	cp movement_step_wait_end
+	cp movement_step_end
 	ret z
 	cp movement_step_stop
 	ret z
@@ -1942,7 +1942,7 @@ GetFollowerNextMovementIndex:
 .nope
 	xor a
 	ld [wObjectFollow_Follower], a
-	ld a, movement_step_wait_end
+	ld a, movement_step_end
 	scf
 	ret
 

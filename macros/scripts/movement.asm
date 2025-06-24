@@ -94,10 +94,9 @@ ENDM
 
 	const_skip 7 ; all step_sleep values
 
-	const movement_step_wait_end ; $32
-MACRO step_wait_end
-	db movement_step_wait_end
-	db \1 ; length
+	const movement_step_end ; $32
+MACRO step_end
+	db movement_step_end
 ENDM
 
 	const movement_remove_object ; $33

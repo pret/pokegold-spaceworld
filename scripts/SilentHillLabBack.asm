@@ -59,7 +59,10 @@ SilentHillLabBackScript1:
 	ret
 
 SilentHillLabBackMovement1:
-	db 09, 09, 05, $32
+	step UP
+	step UP
+	slow_step UP
+	step_end
 
 SilentHillLabBackScript2:
 	ld hl, wc5ed
@@ -114,7 +117,12 @@ SilentHillLabBackMovementPointers:
 	dw SilentHillLabBackMovement2+2
 
 SilentHillLabBackMovement2:
-	db $0B, $0B, $0B, $0B, $05, $32
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	slow_step UP
+	step_end
 
 SilentHillLabBackScript5:
 	ld hl, SilentHillLabBackTextString12

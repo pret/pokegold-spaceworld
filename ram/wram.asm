@@ -288,6 +288,7 @@ wMapBuffer::
 wMapScriptNumber:: db
 wMapScriptNumberLocation:: dw
 wUnknownMapPointer:: dw ; TODO
+; setting bit 7 seems to disable overworld updates and player control?
 wc5ed:: db
 	ds 18
 wMapBufferEnd::

@@ -161,8 +161,8 @@ FieldDebug_SetSurfDirection:
 	ret
 
 .Directions:
-	db SLOW_STEP_DOWN
-	db SLOW_STEP_UP
-	db SLOW_STEP_LEFT
-	db SLOW_STEP_RIGHT
+	slow_step DOWN
+	slow_step UP
+	slow_step LEFT
+	slow_step RIGHT
 

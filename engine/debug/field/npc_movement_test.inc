@@ -23,23 +23,23 @@ FieldDebug_NPCMovementTest:
 	ret
 
 .MovementData:
-	db FACE_UP
-	db MOVEMENT_2F
-	db SLOW_STEP_UP
-	db SLOW_STEP_RIGHT
-	db SLOW_JUMP_RIGHT
-	db SLOW_STEP_RIGHT
-	db STEP_DOWN
-	db STEP_DOWN
-	db STEP_DOWN
-	db STEP_DOWN
-	db STEP_LEFT
-	db SLOW_JUMP_LEFT
-	db STEP_LEFT
-	db SLOW_STEP_UP
-	db SLOW_STEP_UP
-	db SLOW_STEP_UP
-	db MOVEMENT_32
+	turn_head UP
+	step_sleep 6
+	slow_step UP
+	slow_step RIGHT
+	slow_jump_step RIGHT
+	slow_step RIGHT
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
+	slow_jump_step LEFT
+	step LEFT
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	step_end
 
 .not_here
 	ld de, SFX_COLLISION

@@ -448,7 +448,7 @@ FadeIn:: ; This is not OverworldFadeIn, but I don't know what it is
 	ret
 
 Function2407::
-	ld a, NO_MOVEMENT
+	ld a, movement_step_sleep
 	ld [wPlayerMovement], a
 	xor a
 	ld [wPlayerStepFrame], a

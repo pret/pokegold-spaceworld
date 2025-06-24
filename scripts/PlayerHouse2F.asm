@@ -75,9 +75,9 @@ PlayerHouse2FMovePlayer:
 	ret
 
 Movement:
-	db $08
-	db $04
-	db $32
+	step DOWN
+	slow_step DOWN
+	step_end
 
 PlayerHouse2FScript2:
 	ld hl, PlayerHouse2FNPCIDs2
