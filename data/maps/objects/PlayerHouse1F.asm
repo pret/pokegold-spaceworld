@@ -20,7 +20,7 @@ PlayerHouse1F_MapEvents::
 	bg_event  5,  1, 5
 
 	def_object_events
-	object_event  7,  3, SPRITE_MOM, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  3, SPRITE_MOM, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 PlayerHouse1F_Blocks::
 INCBIN "maps/PlayerHouse1F.blk"

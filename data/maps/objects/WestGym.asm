@@ -16,12 +16,12 @@ WestGym_MapEvents::
 	bg_event  6, 15, 1
 
 	def_object_events
-	object_event  4,  4, SPRITE_TSUKUSHI, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  9,  7, SPRITE_LASS, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0
-	object_event  3, 11, SPRITE_COOLTRAINER_F, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0
-	object_event  5,  9, SPRITE_LASS, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
-	object_event  4,  6, SPRITE_TWIN, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
-	object_event  7, 15, SPRITE_GYM_GUY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  4, SPRITE_TSUKUSHI, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  7, SPRITE_LASS, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0
+	object_event  3, 11, SPRITE_COOLTRAINER_F, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0
+	object_event  5,  9, SPRITE_LASS, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
+	object_event  4,  6, SPRITE_TWIN, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
+	object_event  7, 15, SPRITE_GYM_GUY, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestGym_Blocks::
 INCBIN "maps/WestGym.blk"

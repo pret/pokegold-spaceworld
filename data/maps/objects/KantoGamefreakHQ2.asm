@@ -16,7 +16,7 @@ KantoGamefreakHQ2_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  2,  4, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  4, SPRITE_CLERK, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoGamefreakHQ2_Blocks::
 INCBIN "maps/KantoGamefreakHQ2.blk"

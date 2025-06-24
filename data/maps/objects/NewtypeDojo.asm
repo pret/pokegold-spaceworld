@@ -14,11 +14,11 @@ NewtypeDojo_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  3,  2, SPRITE_BLACKBELT, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  2,  6, SPRITE_BLACKBELT, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  5,  6, SPRITE_BLACKBELT, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  3, 10, SPRITE_BLACKBELT, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6, 10, SPRITE_BLACKBELT, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  2, SPRITE_BLACKBELT, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  6, SPRITE_BLACKBELT, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5,  6, SPRITE_BLACKBELT, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3, 10, SPRITE_BLACKBELT, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6, 10, SPRITE_BLACKBELT, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NewtypeDojo_Blocks::
 INCBIN "maps/NewtypeDojo.blk"

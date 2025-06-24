@@ -14,8 +14,8 @@ KantoRedsHouse_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  7,  3, SPRITE_SUPER_NERD, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  1,  5, SPRITE_TEACHER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  3, SPRITE_SUPER_NERD, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  5, SPRITE_TEACHER, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoRedsHouse_Blocks::
 INCBIN "maps/KantoRedsHouse.blk"

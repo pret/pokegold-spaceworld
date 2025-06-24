@@ -18,8 +18,8 @@ PlayerHouse2F_MapEvents::
 	bg_event  7,  2, 5
 
 	def_object_events
-	object_event  8,  1, SPRITE_ROCKER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6,  1, SPRITE_CLEFAIRY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  8,  1, SPRITE_ROCKER, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  1, SPRITE_CLEFAIRY, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 PlayerHouse2F_Blocks::
 INCBIN "maps/PlayerHouse2F.blk"

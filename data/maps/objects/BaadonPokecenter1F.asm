@@ -15,9 +15,9 @@ BaadonPokecenter1F_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event 14,  6, SPRITE_FISHER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  2,  5, SPRITE_GENTLEMAN, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 10,  1, SPRITE_POKEFAN_M, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 14,  6, SPRITE_FISHER, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  5, SPRITE_GENTLEMAN, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10,  1, SPRITE_POKEFAN_M, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BaadonPokecenter1F_Blocks::
 INCBIN "maps/BaadonPokecenter1F.blk"

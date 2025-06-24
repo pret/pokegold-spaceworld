@@ -17,8 +17,8 @@ Route2Gate1F_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  8,  3, SPRITE_BUG_CATCHER_BOY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  0,  1, SPRITE_YOUNGSTER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  8,  3, SPRITE_BUG_CATCHER_BOY, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  0,  1, SPRITE_YOUNGSTER, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Route2Gate1F_Blocks::
 INCBIN "maps/Route2Gate1F.blk"

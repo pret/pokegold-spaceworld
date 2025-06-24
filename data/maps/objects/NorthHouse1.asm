@@ -14,7 +14,7 @@ NorthHouse1_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  2,  3, SPRITE_TWIN, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  3, SPRITE_TWIN, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NorthHouse1_Blocks::
 INCBIN "maps/NorthHouse1.blk"

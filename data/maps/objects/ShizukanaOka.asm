@@ -24,12 +24,12 @@ ShizukanaOka_MapEvents::
 	bg_event 47, 28, 2
 
 	def_object_events
-	object_event 41, 28, SPRITE_ROCKER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  9,  7, SPRITE_YOUNGSTER, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0
-	object_event 41, 19, SPRITE_YOUNGSTER, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 4, 0, 0
-	object_event 27, 14, SPRITE_FISHER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
-	object_event 36, 16, SPRITE_TEACHER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0
-	object_event  9, 25, SPRITE_YOUNGSTER, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 4, 0, 0
+	object_event 41, 28, SPRITE_ROCKER, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  7, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0
+	object_event 41, 19, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 4, 0, 0
+	object_event 27, 14, SPRITE_FISHER, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
+	object_event 36, 16, SPRITE_TEACHER, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0
+	object_event  9, 25, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 4, 0, 0
 
 ShizukanaOka_Blocks::
 INCBIN "maps/ShizukanaOka.blk"

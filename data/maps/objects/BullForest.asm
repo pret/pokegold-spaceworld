@@ -26,11 +26,11 @@ BullForest_MapEvents::
 	bg_event 14, 18, 3
 
 	def_object_events
-	object_event 21,  9, SPRITE_TWIN, SLOW_STEP_DOWN, 3, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 11, 12, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  7, 16, SPRITE_GRANNY, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 20, 19, SPRITE_TEACHER, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 20, 29, SPRITE_BUG_CATCHER_BOY, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 21,  9, SPRITE_TWIN, SPRITEMOVEFN_RANDOM_WALK_X, 3, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 11, 12, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7, 16, SPRITE_GRANNY, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 20, 19, SPRITE_TEACHER, SPRITEMOVEFN_RANDOM_WALK_XY, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 20, 29, SPRITE_BUG_CATCHER_BOY, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
 BullForest_Blocks::
 INCBIN "maps/BullForest.blk"

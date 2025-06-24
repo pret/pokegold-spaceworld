@@ -29,9 +29,9 @@ WestMart4F_MapEvents::
 	bg_event  9,  1, 3
 
 	def_object_events
-	object_event 13,  5, SPRITE_CLERK, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  8,  6, SPRITE_24, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  7,  2, SPRITE_ROCKER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 13,  5, SPRITE_CLERK, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  8,  6, SPRITE_24, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  2, SPRITE_ROCKER, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestMart4F_Blocks::
 INCBIN "maps/WestMart4F.blk"

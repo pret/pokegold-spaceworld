@@ -15,7 +15,7 @@ StandRocketHouse1F_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event 11,  4, SPRITE_36, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 11,  4, SPRITE_36, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 StandRocketHouse1F_Blocks::
 INCBIN "maps/StandRocketHouse1F.blk"

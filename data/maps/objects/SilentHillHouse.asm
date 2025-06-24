@@ -20,8 +20,8 @@ SilentHillHouse_MapEvents::
 	bg_event  2,  0, 6
 
 	def_object_events
-	object_event  5,  3, SPRITE_SILVERS_MOM, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  5,  4, SPRITE_ROCKER, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5,  3, SPRITE_SILVERS_MOM, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5,  4, SPRITE_ROCKER, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SilentHillHouse_Blocks::
 INCBIN "maps/SilentHillHouse.blk"

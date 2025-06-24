@@ -14,7 +14,7 @@ BaadonHouse2_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  7,  5, SPRITE_GRANNY, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  5, SPRITE_GRANNY, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BaadonHouse2_Blocks::
 INCBIN "maps/BaadonHouse2.blk"

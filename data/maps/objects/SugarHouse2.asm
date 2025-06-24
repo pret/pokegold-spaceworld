@@ -14,7 +14,7 @@ SugarHouse2_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  2,  3, SPRITE_FISHING_GURU, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  3, SPRITE_FISHING_GURU, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SugarHouse2_Blocks::
 INCBIN "maps/SugarHouse2.blk"

@@ -14,7 +14,7 @@ SouthHouse2_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  1,  2, SPRITE_FISHER, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  2, SPRITE_FISHER, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SouthHouse2_Blocks::
 INCBIN "maps/SouthHouse2.blk"

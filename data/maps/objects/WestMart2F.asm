@@ -31,10 +31,10 @@ WestMart2F_MapEvents::
 	bg_event  9,  1, 3
 
 	def_object_events
-	object_event 14,  5, SPRITE_CLERK, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  5,  6, SPRITE_LASS, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  1,  5, SPRITE_BURGLAR, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  9,  2, SPRITE_ROCKET_M, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 14,  5, SPRITE_CLERK, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5,  6, SPRITE_LASS, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  5, SPRITE_BURGLAR, SPRITEMOVEFN_RANDOM_WALK_XY, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  2, SPRITE_ROCKET_M, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestMart2F_Blocks::
 INCBIN "maps/WestMart2F.blk"

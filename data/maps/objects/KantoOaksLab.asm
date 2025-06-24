@@ -14,7 +14,7 @@ KantoOaksLab_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  3,  2, SPRITE_NANAMI, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  2, SPRITE_NANAMI, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoOaksLab_Blocks::
 INCBIN "maps/KantoOaksLab.blk"

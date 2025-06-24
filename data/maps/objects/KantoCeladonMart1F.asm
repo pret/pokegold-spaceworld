@@ -16,7 +16,7 @@ KantoCeladonMart1F_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  7,  1, SPRITE_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  1, SPRITE_RECEPTIONIST, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoCeladonMart1F_Blocks::
 INCBIN "maps/KantoCeladonMart1F.blk"

@@ -16,10 +16,10 @@ OldCityTower2F_MapEvents::
 	bg_event  4,  1, 2
 
 	def_object_events
-	object_event  2,  3, SPRITE_MEDIUM, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
-	object_event  5,  3, SPRITE_MEDIUM, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
-	object_event  2,  6, SPRITE_MEDIUM, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
-	object_event  5,  6, SPRITE_MEDIUM, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
+	object_event  2,  3, SPRITE_MEDIUM, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
+	object_event  5,  3, SPRITE_MEDIUM, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
+	object_event  2,  6, SPRITE_MEDIUM, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
+	object_event  5,  6, SPRITE_MEDIUM, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
 
 OldCityTower2F_Blocks::
 INCBIN "maps/OldCityTower2F.blk"
