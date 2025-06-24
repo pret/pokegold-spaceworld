@@ -57,7 +57,7 @@ DebugMapViewer::
 	jr c, .continue
 	call Function2c4a
 	jr nc, .loop
-	callfar Function824c
+	callfar CheckObjectEnteringVisibleRange
 	jr .loop
 
 .continue
@@ -190,7 +190,7 @@ DebugMapViewer_ShowSelectedDetails:
 	ld a, 0
 	ldh [hTextBoxCursorBlinkInterval], a
 	ld bc, wObjectStructs
-	callfar Function77a1
+	callfar WillObjectBumpIntoSomeoneElse
 	jr nc, .skip
 	call RefreshScreen
 	call .DisplayActorCastID

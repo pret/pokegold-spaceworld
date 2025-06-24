@@ -112,7 +112,7 @@ SilentHillScript3:
 	call Function1848
 	ld a, 3
 	ld [wMapScriptNumber], a
-	call InitUnknownBuffercc9e
+	call InitObjectMasks
 	ret
 
 SilentHillScript4:

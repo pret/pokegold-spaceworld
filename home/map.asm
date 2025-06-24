@@ -311,7 +311,7 @@ MapSetup_22af::
 	call VolumeOff
 	call SwitchToMapBank
 	call SetUpMapBuffer
-	call InitUnknownBuffercc9e
+	call InitObjectMasks
 	call LoadGraphics
 	call ChangeMap
 	call LoadMapTimeOfDay
@@ -334,7 +334,7 @@ MapSetup_Continue::
 	callfar LoadSpawnPoint
 	call CopyMapPartialAndAttributes
 	call SetUpMapBuffer
-	call InitUnknownBuffercc9e
+	call InitObjectMasks
 	call RefreshPlayerCoords
 	call GetCoordOfUpperLeftCorner
 	call LoadGraphics
@@ -364,7 +364,7 @@ MapSetup_Warp::
 	ld [wMapId], a
 	call CopyMapPartialAndAttributes
 	call SetUpMapBuffer
-	call InitUnknownBuffercc9e
+	call InitObjectMasks
 	call RestoreFacingAfterWarp
 	call RefreshPlayerCoords
 	call LoadGraphics
@@ -442,7 +442,7 @@ FadeIn:: ; This is not OverworldFadeIn, but I don't know what it is
 	ld hl, wVramState
 	set 0, [hl]
 	call Function2407
-	callfar _UpdateSprites
+	callfar InitSprites
 	call DelayFrame
 	callfar OverworldFadeIn
 	ret
@@ -453,16 +453,16 @@ Function2407::
 	xor a
 	ld [wPlayerStepFrame], a
 	ld a, [wPlayerFacing]
-	and $c
+	and %00001100
 	ld [wPlayerFacing], a
 	ld a, [wPlayerTile]
-	and $f0
-	cp $70
+	and COLLISION_TYPE_MASK
+	cp HI_NYBBLE_WARPS
 	ret nz
 	ld a, [wPlayerTile]
-	cp $72
+	cp COLLISION_STEPS
 	ret z
-	cp $70
+	cp COLLISION_CARPET
 	ret z
 	cp $78
 	ret z
@@ -478,7 +478,7 @@ MapSetup_Connection::
 	call EnterMapConnection
 	call CopyMapPartialAndAttributes
 	call SetUpMapBuffer
-	call InitUnknownBuffercc9e
+	call InitObjectMasks
 	call RefreshPlayerCoords
 	call InitializeVisibleSprites
 	call ChangeMap
@@ -925,8 +925,8 @@ ClearObjectStructs::
 	dec c
 	jr nz, .clear_struct
 
-	ld hl, wCmdQueue
-	ld de, CMDQUEUE_ENTRY_SIZE
+	ld hl, wMinorObjects
+	ld de, MINOR_OBJECT_LENGTH
 	ld c, 4
 	xor a
 .clear_cmd_queue
@@ -945,13 +945,14 @@ ReadWord:: ; TODO: is this used?
 	ret
 
 
-InitUnknownBuffercc9e::
+; Initializes all object masks except the first two entries: the player and follower.
+InitObjectMasks::
 	xor a
-	ld hl, wUnknownWordcc9c
+	ld hl, wObjectMasks
 	ld [hli], a
 	ld [hli], a
-	ld hl, wUnknownBuffercc9e ; useless
-	ld bc, 14 ; TODO: constantify this
+	ld hl, wObjectMasks + 2
+	ld bc, NUM_OBJECTS - 2
 	ld a, $ff
 	call ByteFill
 	ld hl, wUnknownMapPointer
@@ -973,7 +974,7 @@ InitUnknownBuffercc9e::
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld de, wUnknownBuffercc9e - 2
+	ld de, wObjectMasks
 .next
 	ld a, [bc]
 	inc bc
@@ -989,8 +990,8 @@ InitUnknownBuffercc9e::
 	jr .next
 
 .null
-	ld hl, wUnknownBuffercc9e
-	ld bc, 14 ; TODO: constantify this
+	ld hl, wObjectMasks + 2
+	ld bc, NUM_OBJECTS - 2
 	xor a
 	call ByteFill
 .done
@@ -1619,7 +1620,7 @@ Function2ae5::
 	ret nz
 	call Function2c4a
 	jr nc, .loop
-	farcall Function824c
+	farcall CheckObjectEnteringVisibleRange
 	ld a, [wc5ed]
 	bit 6, a
 	jr nz, .loop
@@ -1653,7 +1654,7 @@ Function2b52::
 	ret nz
 	call Function2c4a
 	jr nc, .asm_2b52
-	farcall Function824c
+	farcall CheckObjectEnteringVisibleRange
 	call CheckMovingOffEdgeOfMap
 	ret c
 	call WarpCheck
@@ -1681,22 +1682,22 @@ Function2b87::
 	callfar OverworldMovementCheck
 	call Function2ba8
 	jr nc, .asm_2b87
-	farcall Function824c
+	farcall CheckObjectEnteringVisibleRange
 	jr .asm_2b87
 
 Function2ba8::
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(Function50b9)
+	ld a, BANK(HandleNPCStep)
 	call Bankswitch
-	call Function50b9
+	call HandleNPCStep
 	call Function18a0
 	ld a, BANK(Functiond6e4)
 	call Bankswitch
 	call Functiond6e4
-	ld a, BANK(_UpdateSprites)
+	ld a, BANK(InitSprites)
 	call Bankswitch
-	call _UpdateSprites
+	call InitSprites
 	call DelayFrame
 	call UpdateToolgear
 	ld hl, wToolgearFlags
@@ -1705,7 +1706,7 @@ Function2ba8::
 	pop af
 	call Bankswitch
 	and a
-	ld a, [wcb6e]
+	ld a, [wPlayerStepFlags]
 	bit 5, a
 	ret z
 	bit 6, a

@@ -214,7 +214,7 @@ RefreshTiles::
 	ld d, a
 	ld a, [wPlayerMapY]
 	ld e, a
-	call GetCoordTile
+	call GetCoordTileCollision
 	ld [wPlayerTile], a
 	ret
 
@@ -225,11 +225,11 @@ RefreshTiles::
 	ld e, a
 	push de
 	inc e
-	call GetCoordTile
+	call GetCoordTileCollision
 	ld [wTileDown], a
 	pop de
 	dec e
-	call GetCoordTile
+	call GetCoordTileCollision
 	ld [wTileUp], a
 	ret
 
@@ -240,11 +240,11 @@ RefreshTiles::
 	ld e, a
 	push de
 	dec d
-	call GetCoordTile
+	call GetCoordTileCollision
 	ld [wTileLeft], a
 	pop de
 	inc d
-	call GetCoordTile
+	call GetCoordTileCollision
 	ld [wTileRight], a
 	ret
 
@@ -291,7 +291,7 @@ GetFacingTileCoord::
 	db 1, 0
 	dw wTileRight
 
-GetCoordTile::
+GetCoordTileCollision::
 ; Get the collision byte for tile d, e
 	call GetBlockLocation
 	ld a, [hl]

@@ -159,17 +159,23 @@ ENDU
 
 	ds 3 ; TODO
 
-hCurSpriteYCoord::
 hFFC0:: ds 1
 
 	ds 6
 
-hFFC7:: db
-hFFC8:: db
-hFFC9:: db
-hFFCA:: db
-hFFCB:: db
-hFFCC:: db
+UNION
+hUsedSpriteIndex:: db
+hUsedSpriteTile:: db
+hCurSpriteHorizTilesOccupied:: db
+NEXTU
+hCurSpriteXCoord:: db
+hCurSpriteYCoord:: db
+hCurSpriteXPixel:: db
+hCurSpriteYPixel:: db
+hCurSpriteTile:: db
+hCurSpriteOAMFlags:: db
+ENDU
+
 hFFCD:: db
 	ds 2 ; TODO
 

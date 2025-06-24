@@ -749,14 +749,14 @@ wVBCopyDst:: ds 2
 wVBCopyDoubleSize:: ds 1
 wVBCopyDoubleSrc:: ds 2
 wVBCopyDoubleDst:: ds 2
-wcb6c:: db
-wcb6d:: db
-wcb6e:: db
+wPlayerStepVectorX:: db
+wPlayerStepVectorY:: db
+wPlayerStepFlags:: db
 wPlayerStepDirection:: db
 
 SECTION "CB71", WRAM0[$CB70]
 
-wcb70:: db
+wQueuedMinorObjectGFX:: db
 
 wVBCopyFarSize:: ds 1
 wVBCopyFarSrc:: ds 2
@@ -766,7 +766,7 @@ wPlayerMovement:: db
 wMovementObject:: db
 	ptrba wMovementData
 
-wcb7c:: ds 1
+wIndexedMovement2Pointer:: dw
 
 SECTION "Collision buffer", WRAM0[$CB90]
 
@@ -858,8 +858,6 @@ UNION
 wcc3a::
 wChargeMoveNum::
 wMovementBufferCount:: db
-
-wcc3b::
 wMovementBufferObject:: db
 
 	ptrba wMovementBufferPointer
@@ -876,8 +874,6 @@ wSpriteViewerMenuStartingItem:: db
 wSpriteViewerSavedMenuPointerY:: db
 wSpriteViewerJumptableIndex:: db
 
-	ds 56
-
 NEXTU
 ; trainer HUD data
 	ds 1
@@ -891,11 +887,8 @@ SECTION "CC9A", WRAM0[$CC9A]
 wSkatingDirection:: db
 wCompanionCollisionFrameCounter:: db
 
-wUnknownWordcc9c::
-	dw
-
-wUnknownBuffercc9e::
-	ds 14
+wObjectMasks::
+	ds NUM_OBJECTS
 
 
 wSpriteCurPosX::         ds 1
@@ -1313,6 +1306,7 @@ wTimeOfDay:: db
 ; 02 - Cave                35--50s
 ; 03 - Morning  06--09h    50--59s
 
+wcd3e: ds 1
 wcd3f: ds 1
 
 SECTION "CE5F", WRAM0[$CE5F]
@@ -1328,8 +1322,9 @@ wOptions::
 ; bit 7: battle scene off/on
 	db
 
-wce60::
-	db ; main menu checks this, maybe states if there's a save present?
+; A buffer for sOptions that is used to check if a save file exists.
+; Only checks the bottom bit, for whatever reason.
+wSaveFileExists:: db
 
 wActiveFrame:: db
 
@@ -1379,11 +1374,10 @@ for n, 1, NUM_OBJECT_STRUCTS - 1
 wObject{d:n}Struct:: object_struct wObject{d:n}
 endr
 
-wCmdQueue::
-wCmdQueueEntry1:: ds 16
-wCmdQueueEntry2:: ds 16
-wCmdQueueEntry3:: ds 16
-wCmdQueueEntry4:: ds 16
+wMinorObjects::
+for n, 0, NUM_MINOR_OBJECTS
+wMinorObject{d:n}Struct:: minor_object wMinorObject{d:n}
+endr
 
 wMapObjects::
 wPlayerObject:: map_object wPlayer ; player is map object 0
@@ -1584,18 +1578,8 @@ wd642:: db
 wBGMapAnchor::
 	dw
 
-UNION
-
 wUsedSprites::
 	ds 2
-
-NEXTU
-
-	ds 1
-
-wd646:: db
-
-ENDU
 
 wUsedNPCSprites::
 	ds 8

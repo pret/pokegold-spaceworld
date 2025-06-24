@@ -36,7 +36,7 @@ FieldDebug_SpriteViewer:
 	ld [wSpriteViewerMenuStartingItem], a
 	ld a, 1
 	ldh [hTextBoxCursorBlinkInterval], a
-	callfar Function77ad
+	callfar IsObjectFacingSomeoneElse
 	ret nc
 	ldh a, [hEventID]
 	call GetObjectStruct
@@ -355,7 +355,7 @@ FieldDebug_SpriteViewer:
 	ret
 .set_following
 	call .SetStartingPoint
-	ld [wd646], a
+	ld [wUsedSprites + FOLLOWER], a
 	ld a, SPRITEVIEWER_SET_FOLLOWING
 	ld [wSpriteViewerJumptableIndex], a
 	ret

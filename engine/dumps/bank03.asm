@@ -272,7 +272,7 @@ Functiond4b2:
 	ret
 
 Functiond4e6:
-	ld a, [wcb6e]
+	ld a, [wPlayerStepFlags]
 	and a
 	ret z
 	bit 7, a
@@ -335,9 +335,9 @@ Functiond51e:
 
 Functiond543:
 	call .sub_d5bf
-	ld a, [wcb6c]
+	ld a, [wPlayerStepVectorX]
 	ld d, a
-	ld a, [wcb6d]
+	ld a, [wPlayerStepVectorY]
 	ld e, a
 	call .sub_d55f
 	call .sub_d591
@@ -383,7 +383,7 @@ Functiond543:
 	jr nz, .sub_d563
 	ret
 .sub_d591
-	ld bc, wCmdQueue
+	ld bc, wMinorObjects
 	ld a, $01
 .sub_d596
 	ldh [hConnectionStripLength], a
@@ -603,7 +603,7 @@ Functiond6bb:
 	ret
 
 Functiond6e4:
-	ld a, [wcb6e]
+	ld a, [wPlayerStepFlags]
 	and a
 	ret z
 	bit 7, a

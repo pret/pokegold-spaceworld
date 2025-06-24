@@ -23,7 +23,7 @@ Joypad::
 ; hJoypadDown: pressed this frame (delta)
 ; hJoypadState: currently pressed
 ; hJoypadSum: pressed so far
-	ld a, [$d4ab]
+	ld a, [wJoypadFlags]
 	and $d0
 	ret nz
 	ld a, 1 << 5 ; select direction keys

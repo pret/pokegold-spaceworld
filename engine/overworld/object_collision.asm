@@ -11,7 +11,7 @@ GetSpritesNextTile:
 	add hl, bc
 	ld e, [hl]
 	push bc
-	call GetCoordTile
+	call GetCoordTileCollision
 	pop bc
 	ret
 

@@ -43,7 +43,7 @@ Function2c4a:
 .loop
 	call Function2c5a
 	and a
-	ld a, [$cb6e]
+	ld a, [wPlayerStepFlags]
 	bit 5, a
 	ret z
 	bit 6, a
@@ -54,16 +54,16 @@ Function2c4a:
 Function2c5a:
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(Function50b9)
+	ld a, BANK(HandleNPCStep)
 	call Bankswitch
-	call Function50b9
+	call HandleNPCStep
 	call Function18a0
 	ld a, BANK(Functiond4e6)
 	call Bankswitch
 	call Functiond4e6
-	ld a, BANK(_UpdateSprites)
+	ld a, BANK(InitSprites)
 	call Bankswitch
-	call _UpdateSprites
+	call InitSprites
 	call DelayFrame
 	call UpdateToolgear
 	ld hl, wToolgearFlags

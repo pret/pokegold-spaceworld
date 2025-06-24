@@ -12,7 +12,12 @@ ENDU
 
 SECTION "Unknown, bank 0", SRAM
 
+UNION
+sOptions:: ds 4
+NEXTU
 s0_a600:: ds 7 ; TODO: properly label this and figure out exact size
+ENDU
+
 
 SECTION "Window Stack Top", SRAM
 sWindowStackTop:: dw

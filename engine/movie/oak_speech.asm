@@ -182,7 +182,7 @@ DebugSetUpPlayer::
 	call DebugFillPokedex
 	ld hl, wUnownDex
 	ld [hl], $01
-	call Function40fd
+	call SetDemoEventFlags
 	ret
 
 DebugFillPokedex::
@@ -351,7 +351,7 @@ DemoSetUpPlayer::
 	ld hl, wRivalName
 	ld de, DemoRivalName
 	call CopyString
-	call Function40fd
+	call SetDemoEventFlags
 	ld de, DemoItemList
 	call FillBagWithList
 	call GiveRandomJohto

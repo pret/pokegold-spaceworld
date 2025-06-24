@@ -28,7 +28,7 @@ Function15d1::
 
 Function15da::
 	ldh [hMapObjectIndex], a
-	callfar Function8131
+	callfar UnmaskObject
 	ldh a, [hMapObjectIndex]
 	call GetMapObject
 	call Function40eb
@@ -84,7 +84,7 @@ Function1617::
 
 Function164a::
 	call Function1617
-	callfar Function8125
+	callfar MaskObject
 	ret
 
 CopyPlayerObjectTemplate::
@@ -140,23 +140,23 @@ DeleteMapObject::
 	add hl, bc
 	ld a, [hl]
 	push af
-	ld [hl], $ff
+	ld [hl], -1
 	inc hl
 	ld bc, MAPOBJECT_LENGTH - 1
 	xor a
 	call ByteFill
 	pop af
-	cp $ff
+	cp -1
 	ret z
-	cp $a
+	cp NUM_OBJECT_STRUCTS
 	ret nc
 	ld b, a
 	ld a, [wObjectFollow_Leader]
 	cp b
-	jr nz, .asm_16c5
-	ld a, $ff
+	jr nz, .not_leader
+	ld a, -1
 	ld [wObjectFollow_Leader], a
-.asm_16c5:
+.not_leader:
 	ld a, b
 	call GetObjectStruct
 	ld bc, OBJECT_LENGTH
@@ -175,14 +175,14 @@ LoadMovementDataPointer::
 	ld a, [wMovementObject]
 	call CheckObjectVisibility
 	ret c
-	ld hl, $3
+	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
-	ld [hl], $19
-	ld hl, $8
+	ld [hl], SPRITEMOVEFN_SCRIPTED
+	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $0
+	ld [hl], STEP_TYPE_RESET
 	ld hl, wVramState
-	set 7, [hl]
+	set SCRIPTED_MOVEMENT_STATE_F, [hl]
 	and a
 	ret
 
@@ -196,14 +196,16 @@ Function16fb::
 	ld [wMovementDataAddr + 1], a
 	ld a, [wMovementObject]
 	call CheckObjectVisibility
-	jr c, .asm_171f
+	jr c, .return
+
 	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
-	ld [hl], $19
+	ld [hl], SPRITEMOVEFN_SCRIPTED
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $0
-.asm_171f:
+	ld [hl], STEP_TYPE_RESET
+
+.return
 	ret
 
 CheckObjectVisibility::
@@ -223,46 +225,49 @@ CheckObjectVisibility::
 	scf
 	ret
 
-PushToCmdQueue::
+; Spawns a minor object attached to the object currently in hMapObjectIndex.
+; 'de' is a table containing initialization values in the following order:
+; Type, animation, vTiles offset, variables 1-3.
+SpawnMinorObject::
 	push de
-	call GetCmdQueueEmptySlot
+	call GetMinorObjectEmptySlot
 	pop de
 	ret c
 	ld b, h
 	ld c, l
 	ld a, [de]
 	inc de
-	ld hl, $1
+	ld hl, MINOR_OBJECT_TYPE
 	add hl, bc
 	ld [hl], a
 	ld a, [de]
 	inc de
-	ld hl, $2
+	ld hl, MINOR_OBJECT_ANIM
 	add hl, bc
 	ld [hl], a
 	ld a, [de]
 	inc de
-	ld hl, $3
+	ld hl, MINOR_OBJECT_SPRITE_TILE
 	add hl, bc
 	ld [hl], a
 	ld a, [de]
 	inc de
-	ld hl, $d
+	ld hl, MINOR_OBJECT_VAR1
 	add hl, bc
 	ld [hl], a
 	ld a, [de]
 	inc de
-	ld hl, $e
+	ld hl, MINOR_OBJECT_VAR2
 	add hl, bc
 	ld [hl], a
 	ld a, [de]
 	inc de
-	ld hl, $f
+	ld hl, MINOR_OBJECT_VAR3
 	add hl, bc
 	ld [hl], a
 	ldh a, [hMapObjectIndex]
 	inc a
-	ld hl, $0
+	ld hl, MINOR_OBJECT_PARENT_OBJECT
 	add hl, bc
 	ld [hl], a
 	push bc
@@ -271,47 +276,47 @@ PushToCmdQueue::
 	ld d, b
 	ld e, c
 	pop bc
-	ld hl, $18
+	ld hl, OBJECT_SPRITE_X
 	add hl, de
 	ld a, [hl]
-	ld hl, $4
+	ld hl, MINOR_OBJECT_X_POS
 	add hl, bc
 	ld [hl], a
-	ld hl, $19
+	ld hl, OBJECT_SPRITE_Y
 	add hl, de
 	ld a, [hl]
-	ld hl, $5
+	ld hl, MINOR_OBJECT_Y_POS
 	add hl, bc
 	ld [hl], a
 	ret
 
-GetCmdQueueEmptySlot::
-	ld hl, wCmdQueue
-	ld de, CMDQUEUE_ENTRY_SIZE
+GetMinorObjectEmptySlot::
+	ld hl, wMinorObjects
+	ld de, MINOR_OBJECT_LENGTH
 	ld a, 1
-.asm_1796:
+.loop
 	ldh [hObjectStructIndex], a
 	ld a, [hl]
 	and a
-	jr z, .asm_17a6
+	jr z, .done
 	add hl, de
 	ldh a, [hObjectStructIndex]
 	inc a
-	cp 4 + 1
-	jr nz, .asm_1796
+	cp NUM_MINOR_OBJECTS + 1
+	jr nz, .loop
 	scf
 	ret
 
-.asm_17a6:
+.done
 	xor a
 	ret
 
 UpdateSprites::
 	ld a, [wVramState]
-	bit 0, a
+	bit SPRITE_UPDATES_DISABLED_F, a
 	ret z
-	callfar Function5007
-	callfar _UpdateSprites
+	callfar UpdateAllObjectsFrozen
+	callfar InitSprites
 	ret
 
 GetObjectStruct::
@@ -323,18 +328,14 @@ GetObjectStruct::
 	ld c, l
 	ret
 
-Function17cb::
-	add $10
-
-Function17cd::
+; Unreferenced
+Cosine::
+; a = d * cos(a * pi/32)
+	add %010000 ; cos(x) = sin(x + pi/2)
+	; fallthrough
+Sine::
 	ld e, a
-	ldh a, [hROMBank]
-	push af
-	ld a, BANK(Function862e)
-	call Bankswitch
-	call Function862e
-	pop af
-	call Bankswitch
+	homecall _Sine
 	ret
 
 ; sets carry flag if the sprite data includes "in-motion" sprites
@@ -488,14 +489,14 @@ Function187f::
 	jp hl
 
 Function18a0::
-	ld a, [wcb70]
+	ld a, [wQueuedMinorObjectGFX]
 	and a
 	ret z
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(Function83e8)
+	ld a, BANK(LoadMinorObjectGFX)
 	call Bankswitch
-	call Function83e8
+	call LoadMinorObjectGFX
 	pop af
 	call Bankswitch
 	ret

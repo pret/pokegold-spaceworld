@@ -388,7 +388,7 @@ SilentHillLabFrontScript11:
 	call Function20f8
 	ld a, $0B
 	ld [wMapScriptNumber], a
-	call InitUnknownBuffercc9e
+	call InitObjectMasks
 	ret
 
 SilentHillLabFrontScript12:
@@ -446,7 +446,7 @@ SilentHillLabFrontScript13:
 	ld [wd637], a
 	ld a, $0D
 	ld [wMapScriptNumber], a
-	call InitUnknownBuffercc9e
+	call InitObjectMasks
 	ret
 
 GetLabPokemon:
@@ -504,7 +504,7 @@ SilentHillLabFrontScript15:
 	call Function20f8
 	ld a, $0F
 	ld [wMapScriptNumber], a
-	call InitUnknownBuffercc9e
+	call InitObjectMasks
 	ret
 
 SilentHillLabFrontScript16:

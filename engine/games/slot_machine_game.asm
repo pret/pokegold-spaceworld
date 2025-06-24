@@ -1711,7 +1711,7 @@ Slots_InitBias:
 
 .done
 	ld a, [hl]
-	ld [$C509], a
+	ld [wSlotBias], a
 	ret
 
 .Biases:
@@ -1792,7 +1792,7 @@ Slots_AskBet:
 	jr .loop
 
 .Start:
-	ld hl,	wCoins+1
+	ld hl, wCoins + 1
 	ld a, [hl]
 	sub c
 	ld [hld], a

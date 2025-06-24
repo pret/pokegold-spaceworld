@@ -135,9 +135,9 @@ FieldDebug_CheckFacingSurfable:
 	push af
 	call GetFacingTileCoord
 	and COLLISION_TYPE_MASK
-	cp OLD_COLLISION_TYPE_WATER ; happens to match COLLISION_TYPE_WATER
+	cp OLD_HI_NYBBLE_WATER ; happens to match HI_NYBBLE_WATER
 	jr z, .surfable
-	cp OLD_COLLISION_TYPE_WATER2
+	cp OLD_HI_NYBBLE_WATER_ALT
 	jr z, .surfable
 ; not surfable
 	pop af

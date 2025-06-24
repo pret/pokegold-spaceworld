@@ -489,9 +489,9 @@ OldIsTileCollisionWater::
 ;  c - water
 ; nc - not water
 	and COLLISION_TYPE_MASK
-	cp OLD_COLLISION_TYPE_WATER
+	cp OLD_HI_NYBBLE_WATER
 	ret z
-	cp OLD_COLLISION_TYPE_WATER2
+	cp OLD_HI_NYBBLE_WATER_ALT
 	ret z
 	scf
 	ret
@@ -543,7 +543,7 @@ CheckCompanionObjectCollision::
 	add hl, bc
 	set 1, [hl] ; mark object as having collided with player
 	ldh a, [hObjectStructIndex]
-	cp COMPANION_OBJECT_INDEX
+	cp FOLLOWER_OBJECT_INDEX
 	jr z, .is_companion
 	xor a
 	ld [wCompanionCollisionFrameCounter], a
@@ -593,7 +593,7 @@ GetPlayerMovementByState:
 CheckMovementWalk::
 	ld a, [wPlayerTile]
 	swap a
-	and LOW((COLLISION_TYPE_MASK >> 4) | (COLLISION_TYPE_MASK << 4))
+	and COLLISION_TYPE_MASK >> 4
 	ld hl, .WalkingCollisionTable
 	jp CallJumptable
 
@@ -892,7 +892,7 @@ CheckWalkRight::
 CheckMovementSurf::
 	ld a, [wPlayerTile]
 	swap a
-	and  LOW((COLLISION_TYPE_MASK >> 4) | (COLLISION_TYPE_MASK << 4))
+	and COLLISION_TYPE_MASK >> 4
 	ld hl, .SurfCollisionTable
 	jp CallJumptable
 

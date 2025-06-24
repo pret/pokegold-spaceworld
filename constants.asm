@@ -18,6 +18,7 @@ INCLUDE "macros/battle_commands.asm"
 INCLUDE "macros/oam_anims.asm"
 INCLUDE "macros/battle_anims.asm"
 INCLUDE "macros/asserts.asm"
+INCLUDE "macros/scripts/movement.asm"
 
 INCLUDE "constants/audio_constants.asm"
 INCLUDE "constants/gfx_constants.asm"
