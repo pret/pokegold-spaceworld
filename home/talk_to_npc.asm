@@ -221,7 +221,7 @@ TextboxCleanup:
 	ret
 
 Function318f:
-	callfar Function140ea
+	callfar LoadWalkingSpritesGFX
 	call RedrawPlayerSprite
 	ret
 

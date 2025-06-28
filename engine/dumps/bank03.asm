@@ -2097,7 +2097,7 @@ Function60a0:
 	pop de
 	jr c, .sub_e155
 	push de
-	ld b, $00
+	ld b, NAME_MON
 	farcall NamingScreen
 	pop de
 	ld a, [de]
@@ -2111,8 +2111,8 @@ Function60a0:
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
-	res 7, [hl]
-	set 6, [hl]
+	res SPRITES_SKIP_STANDING_GFX_F, [hl]
+	set SPRITES_SKIP_WALKING_GFX_F, [hl]
 	call RedrawPlayerSprite
 	pop af
 	ld [wSpriteFlags], a
@@ -2192,7 +2192,7 @@ _BillsPC:
 	call CloseWindow
 	call CloseWindow
 	call LoadTilesetGFX
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call LoadFontExtra
 	call CloseWindow
 	ret
@@ -2573,7 +2573,7 @@ WhenYouChangeBoxText:
 	done
 
 ChangeBoxName:
-	ld b, $04
+	ld b, NAME_BOX
 	ld de, wMovementBufferCount
 	ld a, BANK(NamingScreen)
 	ld hl, NamingScreen
@@ -2644,7 +2644,7 @@ Functione5d3:
 	call ExitMenu
 	ret
 .sub_e62a
-	ld hl, wce5f
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set 4, [hl]
@@ -2681,7 +2681,7 @@ Functione5d3:
 	ld hl, WhichOneWouldYouLikeToSeeText
 	call PrintText
 	pop af
-	ld [wce5f], a
+	ld [wOptions], a
 	ret
 
 CurrentBoxText:
@@ -2696,14 +2696,14 @@ WhichOneWouldYouLikeToSeeText:
 
 Functione6a4: ; has something to do with releasing mon from PC
 	ld a, l
-	ld [wcd70], a
+	ld [wListPointer], a
 	ld a, h
-	ld [wcd71], a
+	ld [wListPointer + 1], a
 	coord hl, 4, 2
 	ld b, $09
 	ld c, $0e
 	call DrawTextBox
-	ld hl, wcd70
+	ld hl, wListPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2788,7 +2788,7 @@ Function6734:
 	set 0, [hl]
 	call ExitMenu
 	call LoadTilesetGFX_LCDOff
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call UpdateTimePals
 	pop af
 	ldh [hMapAnims], a
@@ -3263,11 +3263,11 @@ PokeBallEffect:
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMonNicknames
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld b, $00
+	ld b, NAME_MON
 	ld a, BANK(NamingScreen)
 	ld hl, NamingScreen
 	push de
@@ -3275,10 +3275,10 @@ PokeBallEffect:
 	call GBFadeOutToWhite
 	pop de
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr nz, .sub_eb5f
 	ld hl, wStringBuffer1
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	jr .sub_eb5f
 .sub_eb13
@@ -3289,17 +3289,17 @@ PokeBallEffect:
 	call YesNoBox
 	jr c, .sub_eb47
 	ld de, wBoxMonNicknames
-	ld b, $00
+	ld b, NAME_MON
 	ld a, BANK(NamingScreen)
 	ld hl, NamingScreen
 	call FarCall_hl
 	call GBFadeOutToWhite
 	ld de, wBoxMonNicknames
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr nz, .sub_eb47
 	ld hl, wStringBuffer1
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 .sub_eb47
 	ld hl, Textec0e
@@ -4591,7 +4591,7 @@ Functionf4d1:
 	push hl
 	ld a, [hl]
 	ld [wce37], a
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	call CopyStringToStringBuffer2
 	pop hl
 	ld a, [wMovementBufferCount]
@@ -4784,8 +4784,8 @@ Functionf678:
 	ld [wce37], a
 	predef GetTMHMMove
 	ld a, [wce37]
-	ld [wce32], a
-	call Unreferenced_GetMoveName
+	ld [wPutativeTMHMMove], a
+	call GetMoveName
 	call CopyStringToStringBuffer2
 	pop af
 	ld hl, Textf723
@@ -4802,13 +4802,13 @@ Functionf678:
 	ret
 .sub_f6bb
 	ld hl, wHPBarTempHP
-	ld de, wcd11
+	ld de, wMonOrItemNameBuffer
 	ld bc, $0008
 	call CopyBytes
 	ld a, PARTYMENUACTION_TEACH_TMHM
 	call Functionf0cf
 	push af
-	ld hl, wcd11
+	ld hl, wMonOrItemNameBuffer
 	ld de, wHPBarTempHP
 	ld bc, $0008
 	call CopyBytes
@@ -4838,7 +4838,7 @@ Functionf678:
 .sub_f70c
 	call Functionfdab
 	jr c, .sub_f6bb
-	predef Function6445
+	predef LearnMove
 	ld a, b
 	and a
 	ret z
@@ -5322,7 +5322,7 @@ Functionfaba:
 
 Functionfbde:
 	call ClearBGPalettes
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call GetMemSGBLayout
 	jp ReloadFontAndTileset
 
@@ -5516,7 +5516,7 @@ WobbleProbabilities:
 Functionfdab:
 	ld a, $02
 	call GetPartyParamLocation
-	ld a, [wce32]
+	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, $04
 .sub_fdb6
@@ -5556,7 +5556,7 @@ Datafdf1:
 	db $28, $3c
 
 Functionfdf3:
-	ld a, [wce32]
+	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, $04
 .sub_fdf9

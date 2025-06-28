@@ -37,8 +37,8 @@ Function2d2fc:
 	ld a, $1b
 	call Predef
 	ld a, [wce37]
-	ld [wce32], a
-	call Unreferenced_GetMoveName
+	ld [wPutativeTMHMMove], a
+	call GetMoveName
 	call CopyStringToStringBuffer2
 	ld hl, text_2d3bf
 	call PrintText
@@ -106,7 +106,7 @@ asm_2d3ad:
 	call ClearSprites
 	ld hl, wVramState
 	set 0, [hl]
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call GetMemSGBLayout
 	ret
 
@@ -160,9 +160,9 @@ sub_2d436:
 asm_2d454:
 	ld [w2DMenuNumRows], a
 	ld a, $c
-	ld [w2DMenuFlags], a
+	ld [w2DMenuFlags1], a
 	xor a
-	ld [w2DMenuFlags + 1], a
+	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
 	ld a, $c3
@@ -188,7 +188,7 @@ asm_2d47b:
 	ld [wcd42], a
 	xor a
 	ldh [hBGMapMode], a
-	ld a, [w2DMenuFlags + 1]
+	ld a, [w2DMenuFlags2]
 	bit 7, a
 	jp nz, asm_2d537
 	ld a, b
@@ -340,8 +340,8 @@ asm_2d586:
 	ld a, $1b
 	call Predef
 	ld a, [wce37]
-	ld [wce32], a
-	call Unreferenced_GetMoveName
+	ld [wPutativeTMHMMove], a
+	call GetMoveName
 	pop hl
 	ld bc, $3
 	add hl, bc

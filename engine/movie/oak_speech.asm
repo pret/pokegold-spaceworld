@@ -492,7 +492,7 @@ ChoosePlayerName::
 	jr .farjump
 
 .loop
-	ld b, $01
+	ld b, NAME_PLAYER
 	ld de, wPlayerName
 	farcall NamingScreen
 	ld a, [wPlayerName]
@@ -545,7 +545,7 @@ ChooseRivalName::
 	jr .farjump
 
 .loop
-	ld b, $02
+	ld b, NAME_RIVAL
 	ld de, wRivalName
 	farcall NamingScreen
 	ld a, [wRivalName]
@@ -597,7 +597,7 @@ MomNamePrompt::
 	jr .escape
 
 .loop
-	ld b, $03
+	ld b, NAME_MOM
 	ld de, wMomsName
 	farcall NamingScreen
 	ld a, [wMomsName]
@@ -606,7 +606,7 @@ MomNamePrompt::
 
 	call ClearPalettes
 	call ClearTileMap
-	callfar Function140d9
+	callfar LoadStandingSpritesGFX
 	call LoadFontExtra
 	call GetMemSGBLayout
 	call WaitBGMap
@@ -699,7 +699,7 @@ PanPortraitLeft::
 	ret
 
 MenuCallSettings::
-	call SettingsScreen
+	call OptionsMenu
 	ret
 
 FadeInIntroPic:

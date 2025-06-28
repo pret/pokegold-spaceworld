@@ -2532,47 +2532,55 @@ LoadFonts_NoOAMUpdate:
 	ret
 
 
-Function6445:
+LearnMove:
 	call BackUpTilesToBuffer
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ld hl, wStringBuffer1
-	ld de, wcd11
-	ld bc, $0006
+	ld de, wMonOrItemNameBuffer
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-.sub_645d
+
+.loop
 	ld hl, wPartyMon1Moves
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld b, $04
-.sub_646d
+	ld b, NUM_MOVES
+; Get the first empty move slot.  This routine also serves to
+; determine whether the Pokemon learning the moves already has
+; all four slots occupied, in which case one would need to be
+; deleted.
+.next
 	ld a, [hl]
 	and a
-	jr z, .sub_648d
+	jr z, .learn
 	inc hl
 	dec b
-	jr nz, .sub_646d
+	jr nz, .next
+; If we're here, we enter the routine for forgetting a move
+; to make room for the new move we're trying to learn.
 	push de
 	call ForgetMove
 	pop de
-	jp c, .sub_64d6
+	jp c, .cancel
 	push hl
 	push de
-	ld [wce37], a
-	call Unreferenced_GetMoveName
-	ld hl, Text664b
+	ld [wNamedObjectIndexBuffer], a
+	call GetMoveName
+	ld hl, Text_1_2_and_Poof
 	call PrintText
 	pop de
 	pop hl
-.sub_648d
-	ld a, [wce32]
+.learn
+	ld a, [wPutativeTMHMMove]
 	ld [hl], a
-	ld bc, $0015
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
+
 	push hl
 	push de
 	dec a
@@ -2583,39 +2591,44 @@ Function6445:
 	call GetFarByte
 	pop de
 	pop hl
+
 	ld [hl], a
+
 	ld a, [wBattleMode]
 	and a
-	jp z, .sub_64eb
+	jp z, .learned
+
 	ld a, [wCurPartyMon]
 	ld b, a
 	ld a, [wCurBattleMon]
 	cp b
-	jp nz, .sub_64eb
+	jp nz, .learned
+
 	ld h, d
 	ld l, e
 	ld de, wBattleMonMoves
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
-	ld bc, $0011
+	ld bc, wPartyMon1PP - (wPartyMon1Moves + NUM_MOVES)
 	add hl, bc
 	ld de, wBattleMonPP
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
-	jp .sub_64eb
-.sub_64d6
-	ld hl, Text65b9
+	jp .learned
+
+.cancel
+	ld hl, StopLearningMoveText
 	call PrintText
 	call YesNoBox
-	jp c, .sub_645d
-	ld hl, Text65d7
+	jp c, .loop
+	ld hl, DidNotLearnMoveText
 	call PrintText
-	ld b, $00
+	ld b, 0
 	ret
-.sub_64eb
-	ld hl, Text658c
+.learned
+	ld hl, LearnedMoveText
 	call PrintText
-	ld b, $01
+	ld b, 1
 	ret
 
 ForgetMove::
@@ -2632,35 +2645,36 @@ ForgetMove::
 	ld bc, NUM_MOVES
 	call CopyBytes
 	pop hl
-.sub_650f
+.loop
 	push hl
 	ld hl, MoveAskForgetText
 	call PrintText
-	coord hl, 10, 8
-	ld b, $08
-	ld c, $08
+	hlcoord 10, 8
+	ld b, NUM_MOVES * 2
+	ld c, MOVE_NAME_LENGTH + 3
 	call DrawTextBox
-	coord hl, 12, 10
-	ld a, SCREEN_WIDTH*2
+	hlcoord 12, 10
+	ld a, SCREEN_WIDTH * 2
 	ld [wListMovesLineSpacing], a
 	predef ListMoves
-	ld a, $0a
+	; w2DMenuData
+	ld a, $a
 	ld [w2DMenuCursorInitY], a
-	ld a, $0b
+	ld a, $b
 	ld [w2DMenuCursorInitX], a
 	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
-	ld a, $01
+	ld a, 1
 	ld [w2DMenuNumCols], a
 	ld [w2DMenuDataEnd], a
 	ld [wMenuCursorX], a
-	ld a, $03
+	ld a, A_BUTTON | B_BUTTON
 	ld [wMenuJoypadFilter], a
-	ld a, $20
-	ld [w2DMenuFlags], a
+	ld a, $20 ; enable sprite animations
+	ld [w2DMenuFlags1], a
 	xor a
-	ld [w2DMenuFlags+1], a
+	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
 	call Get2DMenuJoypad
@@ -2668,13 +2682,13 @@ ForgetMove::
 	call ReloadTilesFromBuffer
 	pop af
 	pop hl
-	bit 1, a
-	jr nz, .sub_658a
+	bit B_BUTTON_F, a
+	jr nz, .cancel
 	push hl
 	ld a, [w2DMenuDataEnd]
 	dec a
 	ld c, a
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -2683,32 +2697,27 @@ ForgetMove::
 	pop bc
 	pop de
 	ld a, d
-	jr c, .sub_6581
+	jr c, .hmmove
 	pop hl
 	add hl, bc
 	and a
 	ret
-.sub_6581
-	ld hl, Text6691
+
+.hmmove
+	ld hl, MoveCantForgetHMText
 	call PrintText
 	pop hl
-	jr .sub_650f
-.sub_658a
+	jr .loop
+.cancel
 	scf
 	ret
 
-Text658c:
-	text_from_ram wcd11
+LearnedMoveText:
+	text_from_ram wMonOrItemNameBuffer
 	text "は　あたらしく"
-	line ""
-	text_end
-
-Text6599:
+	line "@"
 	text_from_ram wStringBuffer2
-	text "を　おぼえた！"
-	text_end
-
-Text65a5:
+	text "を　おぼえた！@"
 	sound_dex_fanfare_50_79
 	text_waitbutton
 	text_end
@@ -2718,172 +2727,208 @@ MoveAskForgetText:
 	next "わすれさせたい？"
 	done
 
-Text65b9:
-	text "それでは<⋯⋯>　"
-	text_end
-
-Text65c1:
+StopLearningMoveText:
+	text "それでは<⋯⋯>　@"
 	text_from_ram wStringBuffer2
 	text "を"
 	line "おぼえるのを　あきらめますか？"
 	done
 
-Text65d7:
-	text_from_ram wcd11
-	text "は　"
-	text_end
-
-Text65de:
+DidNotLearnMoveText:
+	text_from_ram wMonOrItemNameBuffer
+	text "は　@"
 	text_from_ram wStringBuffer2
 	text "を"
 	line "おぼえずに　おわった！"
 	prompt
 
 AskForgetMoveText:
-	text_from_ram wcd11
+	text_from_ram wMonOrItemNameBuffer
 	text "は　あたらしく"
-	line ""
-	text_end
+	line "@"
 	text_from_ram wStringBuffer2
 	text "を　おぼえたい<⋯⋯>！"
-	para "しかし　"
-	text_end
-	text_from_ram wcd11
+	para "しかし　@"
+	text_from_ram wMonOrItemNameBuffer
 	text "は　わざを　４つ"
 	line "おぼえるので　せいいっぱいだ！"
-	para ""
-	text_end
+	para "@"
 	text_from_ram wStringBuffer2
 	text "の　かわりに"
 	line "ほかの　わざを　わすれさせますか？"
 	done
 
-Text664b:
-	text "１　２の　<⋯⋯>"
-	text_end
-
-Text6653:
+Text_1_2_and_Poof:
+	text "１　２の　<⋯⋯>@"
 	text_exit
 	start_asm
 	push de
 	ld de, SFX_SWITCH_POKEMON
 	call PlaySFX
 	pop de
-	ld hl, Text6661
+	ld hl, MoveForgotText
 	ret
 
-Text6661:
-	text "　ポカン！"
-	text_end
-
-Text6668:
+MoveForgotText:
+	text "　ポカン！@"
 	text_exit
 	text ""
-	para ""
-	text_end
-
-Text666c:
-	text_from_ram wcd11
-	text "は　"
-	text_end
-
-Text6673:
+	para "@"
+	text_from_ram wMonOrItemNameBuffer
+	text "は　@"
 	text_from_ram wStringBuffer1
 	text "の"
 	line "つかいかたを　きれいに　わすれた！"
 	para "そして<⋯⋯>！"
 	prompt
 
-Text6691:
+MoveCantForgetHMText:
 	text "それは　たいせつなわざです"
 	line "わすれさせることは　できません！"
 	prompt
 
-Function66b1:
-	ld hl, wcd74
+; This function is wildly out of date. It assumes wItemAttributesPointer uses either an early layout,
+; or an updated version of Generation I's ItemPrices. The final game stores prices with the rest of
+; the ItemAttributes anyway, so this function is pointless now.
+; Stores item's price as BCD at hItemPrice (3 bytes).
+; Input: [wCurItem] = item id.
+GetItemPrice_Old::
+	ld hl, wItemAttributesPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wCurItem]
-	cp $c4
-	jr nc, .sub_66d2
+	cp ITEM_HM01_RED
+	jr nc, .get_tm_price
+
 	dec a
 	ld c, a
-	ld b, $00
+	ld b, 0
+rept 4 ; Appears to be an earlier length for ItemAttributes?
 	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
+endr
 	inc hl
 	ld a, [hld]
-	ldh [hSpriteOffset], a
+	ldh [hItemPrice + 2], a
 	ld a, [hld]
-	ldh [hConnectedMapWidth], a
+	ldh [hItemPrice + 1], a
 	ld a, [hl]
-	ldh [hConnectionStripLength], a
-	jr .sub_66d5
-.sub_66d2
-	call .sub_66d9
-.sub_66d5
-	ld de, hConnectionStripLength
+	ldh [hItemPrice], a
+	jr .done
+
+.get_tm_price
+	call GetMachinePrice_Old
+.done
+	ld de, hItemPrice
 	ret
-.sub_66d9
+
+GetMachinePrice_Old:
 	ld a, [wCurItem]
-	sub $c9
-	ret c
+	sub ITEM_TM01_RED
+	ret c ; HMs are priceless
 	ld d, a
-	ld hl, Table66fa
+	ld hl, TechnicalMachinePrices_Old
 	srl a
 	ld c, a
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	srl d
-	jr nc, .sub_66f0
+	jr nc, .odd_numbered_machine
 	swap a
-.sub_66f0
+.odd_numbered_machine
 	and $f0
-	ldh [hConnectedMapWidth], a
+	ldh [hItemPrice + 1], a
 	xor a
-	ldh [hConnectionStripLength], a
-	ldh [hSpriteOffset], a
+	ldh [hItemPrice], a
+	ldh [hItemPrice + 2], a
 	ret
 
-Table66fa:
-	db $32, $21, $34, $24
-	db $34, $21, $45, $55
-	db $32, $32, $55, $52
-	db $54, $52, $41, $21
-	db $12, $42, $25, $24
-	db $22, $52, $24, $34
-	db $42
+; In thousands (nybbles).
+TechnicalMachinePrices_Old:
+	nybble_array
+	nybble 3 ; TM01
+	nybble 2 ; TM02
+	nybble 2 ; TM03
+	nybble 1 ; TM04
+	nybble 3 ; TM05
+	nybble 4 ; TM06
+	nybble 2 ; TM07
+	nybble 4 ; TM08
+	nybble 3 ; TM09
+	nybble 4 ; TM10
+	nybble 2 ; TM11
+	nybble 1 ; TM12
+	nybble 4 ; TM13
+	nybble 5 ; TM14
+	nybble 5 ; TM15
+	nybble 5 ; TM16
+	nybble 3 ; TM17
+	nybble 2 ; TM18
+	nybble 3 ; TM19
+	nybble 2 ; TM20
+	nybble 5 ; TM21
+	nybble 5 ; TM22
+	nybble 5 ; TM23
+	nybble 2 ; TM24
+	nybble 5 ; TM25
+	nybble 4 ; TM26
+	nybble 5 ; TM27
+	nybble 2 ; TM28
+	nybble 4 ; TM29
+	nybble 1 ; TM30
+	nybble 2 ; TM31
+	nybble 1 ; TM32
+	nybble 1 ; TM33
+	nybble 2 ; TM34
+	nybble 4 ; TM35
+	nybble 2 ; TM36
+	nybble 2 ; TM37
+	nybble 5 ; TM38
+	nybble 2 ; TM39
+	nybble 4 ; TM40
+	nybble 2 ; TM41
+	nybble 2 ; TM42
+	nybble 5 ; TM43
+	nybble 2 ; TM44
+	nybble 2 ; TM45
+	nybble 4 ; TM46
+	nybble 3 ; TM47
+	nybble 4 ; TM48
+	nybble 4 ; TM49
+	nybble 2 ; TM50
+	end_nybble_array NUM_TMS
 
-Function6713:
+; Unused. Also leftover from Generation I.
+AskName_Old:
 	push hl
 	call LoadStandardMenuHeader
 	ld a, [wBattleMode]
 	dec a
-	coord hl, 1, 0
-	ld b, $04
-	ld c, $0a
+	hlcoord 1, 0
+	ld b, 4
+	ld c, 10
 	call z, ClearBox
+
 	ld a, [wCurPartySpecies]
-	ld [wce37], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
+; Test for being in debug field mode that doesn't go anywhere... maybe the name screen was skipped in debug mode?
 	ld a, [wDebugFlags]
 	bit 1, a
 	pop hl
 	push hl
-	ld hl, Text6788
+	ld hl, AskGiveNickname_Old
 	call PrintText
 	call YesNoBox
 	pop hl
-	jr c, .sub_6779
+	jr c, .declined_nickname
+
 	push hl
 	ld e, l
 	ld d, h
 	ld a, BANK(NamingScreen)
-	ld b, $00
+	ld b, NAME_MON
 	ld hl, NamingScreen
 	call FarCall_hl
 	call ClearBGPalettes
@@ -2893,106 +2938,114 @@ Function6713:
 	call SetPalettes
 	ld a, [wBattleMode]
 	and a
-	jr nz, .sub_676b
+	jr nz, .in_battle
 	call LoadFontExtra
-	call Function3657
-	jr .sub_6773
-.sub_676b
+	call ReloadSpritesAndFont
+	jr .done
+
+.in_battle
 	callfar _LoadHPBar
-.sub_6773
+.done
 	pop hl
 	ld a, [hl]
-	cp $50
-	jr nz, .sub_6784
-.sub_6779
+	cp "@"
+	jr nz, .not_terminated ; shouldn't this be the other way around? 'jr z' instead of 'jr nz'?
+.declined_nickname
 	ld d, h
 	ld e, l
 	ld hl, wStringBuffer1
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-.sub_6784
+.not_terminated
 	call CloseWindow
 	ret
 
-Text6788:
+AskGiveNickname_Old:
 	text_from_ram wStringBuffer1
 	text "に"
 	line "ニックネームを　つけますか？"
 	done
 
-Function679d:
-	ld de, wFieldMoveScriptID
+Unreferenced_DisplayNameRaterScreen:
+	ld de, wUnknownNameBuffer
 	push de
 	ld hl, NamingScreen
-	ld b, $00
+	ld b, NAME_MON
 	ld a, BANK(NamingScreen)
 	call FarCall_hl
 	call ClearBGPalettes
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call UpdateTimePals
 	pop de
 	ld a, [de]
-	cp $50
-	jr z, .sub_67d3
+	cp "@"
+	jr z, .empty_name
 	ld hl, wPartyMonNicknames
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld e, l
 	ld d, h
-	ld hl, wFieldMoveScriptID
-	ld bc, $0006
+	ld hl, wUnknownNameBuffer
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	and a
 	ret
-.sub_67d3
+
+.empty_name
 	scf
 	ret
 
+; Replace invalid name characters with question marks, or replaces entire name with "？" if no terminator is found.
+; These characters include control characters, kana with diacritics they shouldn't have, and English letter tiles.
 CorrectNickErrors:
 	push bc
 	push de
-	ld b, $06
-.sub_67d9
+	ld b, MON_NAME_LENGTH
+.checkchar
 	ld a, [de]
-	cp $50
-	jr z, .sub_6802
-	ld hl, Table6805
+	cp "@"
+	jr z, .end
+	ld hl, InvalidNicknameChars
 	dec hl
-.sub_67e2
+.loop
 	inc hl
 	ld a, [hl]
-	cp $ff
-	jr z, .sub_67f5
+	cp -1
+	jr z, .done
 	ld a, [de]
 	cp [hl]
 	inc hl
-	jr c, .sub_67e2
+	jr c, .loop
 	cp [hl]
-	jr nc, .sub_67e2
-	ld a, $e6
+	jr nc, .loop
+	ld a, "？"
 	ld [de], a
-	jr .sub_67e2
-.sub_67f5
+	jr .loop
+
+.done
 	inc de
 	dec b
-	jr nz, .sub_67d9
+	jr nz, .checkchar
 	pop de
 	push de
-	ld a, $e6
+	ld a, "？"
 	ld [de], a
 	inc de
-	ld a, $50
+	ld a, "@"
 	ld [de], a
-.sub_6802
+.end
 	pop de
 	pop bc
 	ret
 
-Table6805::
-	db $00, $05, $14, $19, $1d
-	db $26, $35, $3a, $49, $7f
-	db $ff
+InvalidNicknameChars:
+	db "<NULL>",   "オ゛" + 1
+	db "<PLAY_G>", "ノ゛" + 1
+	db "<NI>",     "<NO>" + 1
+	db "<ROUTE>",  "<GREEN>" + 1
+	db "<MOM>",    "┘" + 1
+	db -1
 
 SECTION "engine/dumps/bank01.asm@CanObjectMoveInDirection", ROMX
 
@@ -3199,45 +3252,51 @@ IsObjectMovingOffEdgeOfScreen:
 	scf
 	ret
 
-SECTION "engine/dumps/bank01.asm@SettingsScreen", ROMX
+SECTION "engine/dumps/bank01.asm@OptionsMenu", ROMX
 
-SettingsScreen:
+DEF OPT_TEXT_SPEED_ROW EQU 3
+DEF OPT_BATTLE_ANIM_ROW EQU 7
+DEF OPT_BATTLE_STYLE_ROW EQU 11
+DEF OPT_SOUND_ROW EQU 13
+DEF OPT_BOTTOM_ROW EQU 16
+
+OptionsMenu::
 	ld a, [wVramState]
 	push af
 	xor a
 	ld [wVramState], a
-
-Function78ed:
-	call Function7a93
-
-Function78f0:
-	call Function7a41
-	ld [hl], $ed
-	call Function7a55
+.ReinitDisplay:
+	call DisplayOptionsMenu
+.Loop:
+	call GetOptionsMenuCursorPos
+	ld [hl], "▶"
+	call SetOptionsFromCursorPositions
 	call WaitBGMap
-.sub_78fb
+.wait_joy_loop
 	call DelayFrame
 	call GetJoypadDebounced
 	ldh a, [hJoySum]
 	ld b, a
 	and a
-	jr z, .sub_78fb
+	jr z, .wait_joy_loop
 	ld a, b
-	and $0a
-	jr nz, .sub_7924
+	and START | B_BUTTON
+	jr nz, .ExitOptions
 	ld a, b
-	and $04
-	jr nz, .sub_7939
+	and SELECT
+	jr nz, .SwitchSGBBorder
 	ld a, b
-	and $01
-	jr z, Function7977
-	ld a, [wc409]
-	cp $10
-	jr nz, Function78f0
-	ld a, [wTileMapBackup]
-	cp $07
-	jr z, .sub_7956
-.sub_7924
+	and A_BUTTON
+	jr z, .CheckDPad
+
+	ld a, [wOptionsMenuCursorY]
+	cp OPT_BOTTOM_ROW
+	jr nz, .Loop
+
+	ld a, [wOptionsMenuCursorX]
+	cp 7
+	jr z, .SwitchActiveFrame
+.ExitOptions:
 	push de
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
@@ -3248,351 +3307,395 @@ Function78f0:
 	bit 0, [hl]
 	jp z, TitleSequenceStart
 	ret
-.sub_7939
-	ld hl, wce5f
+
+.SwitchSGBBorder:
+	ld hl, wOptions
 	ld a, [hl]
-	xor $08
+	xor (1 << SGB_BORDER)
 	ld [hl], a
 	callfar UpdateSGBBorder
 	call LoadFont
 	call LoadFontExtra
-	ld c, $70
+	ld c, 112
 	call DelayFrames
-	jp Function78ed
-.sub_7956
+	jp .ReinitDisplay
+
+.SwitchActiveFrame
 	ld a, [wActiveFrame]
 	inc a
-	and $07
+	and 7
 	ld [wActiveFrame], a
-	coord hl, 17, 16
-	add $f7
+	hlcoord 17, 16
+	add "１"
 	ld [hl], a
 	call LoadFontExtra
-	jr Function78f0
+	jr .Loop
 
-Function796a:
+.ClearOldMenuCursor:
 	push af
-	call Function7a41
-	ld [hl], $7f
+	call GetOptionsMenuCursorPos
+	ld [hl], "　"
 	pop af
-	ld [wTileMapBackup], a
-	jp Function78f0
+	ld [wOptionsMenuCursorX], a
+	jp .Loop
 
-Function7977:
-	ld a, [wc409]
-	bit 7, b
-	jr nz, .sub_799e
-	bit 6, b
-	jr nz, .sub_79c1
-	cp $07
-	jp z, .sub_7a10
-	cp $0b
-	jp z, .sub_7a1b
-	cp $0d
-	jp z, .sub_7a26
-	cp $10
-	jp z, .sub_7a31
-	bit 5, b
-	jp nz, .sub_79f6
-	jp .sub_7a01
-.sub_799e
-	cp $10
-	ld b, $f3
-	ld hl, wc40a
-	jr z, .sub_79e2
-	cp $03
-	ld b, $04
-	inc hl
-	jr z, .sub_79e2
-	cp $07
-	ld b, $04
-	inc hl
-	jr z, .sub_79e2
-	cp $0b
-	ld b, $02
-	inc hl
-	jr z, .sub_79e2
-	ld b, $03
-	inc hl
-	jr .sub_79e2
-.sub_79c1
-	cp $07
-	ld b, $fc
-	ld hl, wc40a
-	jr z, .sub_79e2
-	cp $0b
-	ld b, $fc
-	inc hl
-	jr z, .sub_79e2
-	cp $0d
-	ld b, $fe
-	inc hl
-	jr z, .sub_79e2
-	cp $10
-	ld b, $fd
-	inc hl
-	jr z, .sub_79e2
-	ld b, $0d
-	inc hl
-.sub_79e2
+.CheckDPad:
+	ld a, [wOptionsMenuCursorY]
+	bit D_DOWN_F, b
+	jr nz, .down_pressed
+	bit D_UP_F, b
+	jr nz, .up_pressed
+
+	cp OPT_BATTLE_ANIM_ROW
+	jp z, .Cursor_BattleAnimation
+	cp OPT_BATTLE_STYLE_ROW
+	jp z, .Cursor_BattleStyle
+	cp OPT_SOUND_ROW
+	jp z, .Cursor_Audio
+	cp OPT_BOTTOM_ROW
+	jp z, .Cursor_BottomRow
+
+.Cursor_TextSpeed:
+	bit D_LEFT_F, b
+	jp nz, .text_speed_left
+	jp .text_speed_right
+
+.down_pressed
+	cp OPT_BOTTOM_ROW
+	ld b, OPT_TEXT_SPEED_ROW - OPT_BOTTOM_ROW
+	ld hl, wOptionsTextSpeedCursorX
+	jr z, .update_cursor
+
+	cp OPT_TEXT_SPEED_ROW
+	ld b, OPT_BATTLE_ANIM_ROW - OPT_TEXT_SPEED_ROW
+	inc hl ; wOptionsBattleAnimCursorX
+	jr z, .update_cursor
+
+	cp OPT_BATTLE_ANIM_ROW
+	ld b, OPT_BATTLE_STYLE_ROW - OPT_BATTLE_ANIM_ROW
+	inc hl ; wOptionsBattleStyleCursorX
+	jr z, .update_cursor
+
+	cp OPT_BATTLE_STYLE_ROW
+	ld b, OPT_SOUND_ROW - OPT_BATTLE_STYLE_ROW
+	inc hl ; wOptionsAudioSettingsCursorX
+	jr z, .update_cursor
+
+	ld b, OPT_BOTTOM_ROW - OPT_SOUND_ROW
+	inc hl ; wOptionsBottomRowCursorX
+	jr .update_cursor
+
+.up_pressed
+	cp OPT_BATTLE_ANIM_ROW
+	ld b, OPT_TEXT_SPEED_ROW - OPT_BATTLE_ANIM_ROW
+	ld hl, wOptionsTextSpeedCursorX
+	jr z, .update_cursor
+
+	cp OPT_BATTLE_STYLE_ROW
+	ld b, OPT_BATTLE_ANIM_ROW - OPT_BATTLE_STYLE_ROW
+	inc hl ; wOptionsBattleAnimCursorX
+	jr z, .update_cursor
+
+	cp OPT_SOUND_ROW
+	ld b, OPT_BATTLE_STYLE_ROW - OPT_SOUND_ROW
+	inc hl ; wOptionsBattleStyleCursorX
+	jr z, .update_cursor
+
+	cp OPT_BOTTOM_ROW
+	ld b, OPT_SOUND_ROW - OPT_BOTTOM_ROW
+	inc hl ; wOptionsAudioSettingsCursorX
+	jr z, .update_cursor
+
+	ld b, OPT_BOTTOM_ROW - OPT_TEXT_SPEED_ROW
+	inc hl ; wOptionsBottomRowCursorX
+.update_cursor
 	add b
 	push af
 	ld a, [hl]
 	push af
-	call Function7a41
-	ld [hl], $ec
+	call GetOptionsMenuCursorPos
+	ld [hl], "▷"
 	pop af
-	ld [wTileMapBackup], a
+	ld [wOptionsMenuCursorX], a
 	pop af
-	ld [wc409], a
-	jp Function78f0
-.sub_79f6
-	ld a, [wc40a]
-	cp $01
-	jr z, .sub_7a0a
-	sub $07
-	jr .sub_7a0a
-.sub_7a01
-	ld a, [wc40a]
-	cp $0f
-	jr z, .sub_7a0a
-	add $07
-.sub_7a0a
-	ld [wc40a], a
-	jp Function796a
-.sub_7a10
-	ld a, [wWhichPicTest]
-	xor $0b
-	ld [wWhichPicTest], a
-	jp Function796a
-.sub_7a1b
-	ld a, [wc40c]
-	xor $0b
-	ld [wc40c], a
-	jp Function796a
-.sub_7a26
-	ld a, [wc40d]
-	xor $0b
-	ld [wc40d], a
-	jp Function796a
-.sub_7a31
-	call Function7a41
-	ld [hl], $ec
-	ld a, [wTileMapBackup]
-	xor $06
-	ld [wTileMapBackup], a
-	jp Function78f0
+	ld [wOptionsMenuCursorY], a
+	jp .Loop
 
-Function7a41:
-	ld a, [wc409]
+.text_speed_left
+	ld a, [wOptionsTextSpeedCursorX]
+	cp 1
+	jr z, .update_text_speed
+	sub 7
+	jr .update_text_speed
+
+.text_speed_right
+	ld a, [wOptionsTextSpeedCursorX]
+	cp 15
+	jr z, .update_text_speed
+	add 7
+.update_text_speed
+	ld [wOptionsTextSpeedCursorX], a
+	jp .ClearOldMenuCursor
+
+.Cursor_BattleAnimation:
+	ld a, [wOptionsBattleAnimCursorX]
+	xor %1011 ; 1 <-> 10
+	ld [wOptionsBattleAnimCursorX], a
+	jp .ClearOldMenuCursor
+
+.Cursor_BattleStyle:
+	ld a, [wOptionsBattleStyleCursorX]
+	xor %1011 ; 1 <-> 10
+	ld [wOptionsBattleStyleCursorX], a
+	jp .ClearOldMenuCursor
+	
+.Cursor_Audio:
+	ld a, [wOptionsAudioSettingsCursorX]
+	xor %1011 ; 1 <-> 10
+	ld [wOptionsAudioSettingsCursorX], a
+	jp .ClearOldMenuCursor
+
+.Cursor_BottomRow:
+	call GetOptionsMenuCursorPos
+	ld [hl], "▷"
+	ld a, [wOptionsMenuCursorX]
+	xor %110 ; 1 <-> 7
+	ld [wOptionsMenuCursorX], a
+	jp .Loop
+
+GetOptionsMenuCursorPos:
+	ld a, [wOptionsMenuCursorY]
 	ld hl, wTileMap
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	call AddNTimes
-	ld a, [wTileMapBackup]
-	ld b, $00
+	ld a, [wOptionsMenuCursorX]
+	ld b, 0
 	ld c, a
 	add hl, bc
 	ret
 
-Function7a55:
-	ld hl, Table7c22
-	ld a, [wc40a]
+SetOptionsFromCursorPositions:
+	ld hl, TextSpeedOptionData
+	ld a, [wOptionsTextSpeedCursorX]
 	ld c, a
-.sub_7a5c
+.loop
 	ld a, [hli]
 	cp c
-	jr z, .sub_7a63
+	jr z, .found
 	inc hl
-	jr .sub_7a5c
-.sub_7a63
+	jr .loop
+
+.found
 	ld a, [hl]
 	ld d, a
-	ld a, [wWhichPicTest]
+	ld a, [wOptionsBattleAnimCursorX]
 	dec a
-	jr z, .sub_7a6f
-	set 7, d
-	jr .sub_7a71
-.sub_7a6f
-	res 7, d
-.sub_7a71
-	ld a, [wc40c]
+	jr z, .battle_anim_off
+	set BATTLE_SCENE_F, d
+	jr .battle_anim_on
+
+.battle_anim_off
+	res BATTLE_SCENE_F, d
+.battle_anim_on
+	ld a, [wOptionsBattleStyleCursorX]
 	dec a
-	jr z, .sub_7a7b
-	set 6, d
-	jr .sub_7a7d
-.sub_7a7b
-	res 6, d
-.sub_7a7d
-	ld a, [wc40d]
+	jr z, .battle_shift_off
+	set BATTLE_SHIFT_F, d
+	jr .battle_shift_on
+
+.battle_shift_off
+	res BATTLE_SHIFT_F, d
+.battle_shift_on
+	ld a, [wOptionsAudioSettingsCursorX]
 	dec a
-	jr z, .sub_7a87
-	set 5, d
-	jr .sub_7a89
-.sub_7a87
-	res 5, d
-.sub_7a89
-	ld a, [wce5f]
-	and $08
+	jr z, .mono
+	set STEREO_F, d
+	jr .stereo
+
+.mono
+	res STEREO_F, d
+.stereo
+	ld a, [wOptions]
+	and 1 << SGB_BORDER
 	or d
-	ld [wce5f], a
+	ld [wOptions], a
 	ret
 
-Function7a93:
+DisplayOptionsMenu:
 	call ClearBGPalettes
 	call DisableLCD
 	xor a
 	ldh [hBGMapMode], a
-	call .sub_7b26
+	call .LoadGFX_DrawDisplay
 	xor a
-	ld hl, wc40a
+	ld hl, wOptionsTextSpeedCursorX
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	inc a
+	assert FAST_TEXT_DELAY_F == 0
+	inc a ; 1 << FAST_TEXT_DELAY_F
 	ld [wTextBoxFlags], a
-	ld hl, Table7c23
-	ld a, [wce5f]
+	ld hl, TextSpeedOptionData + 1
+	ld a, [wOptions]
 	ld c, a
-	and $07
+	and TEXT_DELAY_MASK
 	push bc
-	ld de, $0002
+	ld de, 2
 	call FindItemInTable
 	pop bc
 	dec hl
 	ld a, [hl]
-	ld [wc40a], a
-	coord hl, 0, 3
-	call .sub_7b1f
+	ld [wOptionsTextSpeedCursorX], a ;
+	hlcoord 0, OPT_TEXT_SPEED_ROW
+	call .PlaceUnfilledRightArrow
 	sla c
-	ld a, $01
-	jr nc, .sub_7ad0
-	ld a, $0a
-.sub_7ad0
-	ld [wWhichPicTest], a
-	coord hl, 0, 7
-	call .sub_7b1f
+	ld a, 1 ; On
+	jr nc, .battle_anim
+	ld a, 10 ; Off
+.battle_anim
+	ld [wOptionsBattleAnimCursorX], a
+	hlcoord 0, OPT_BATTLE_ANIM_ROW
+	call .PlaceUnfilledRightArrow
 	sla c
-	ld a, $01
-	jr nc, .sub_7ae1
-	ld a, $0a
-.sub_7ae1
-	ld [wc40c], a
-	coord hl, 0, 11
-	call .sub_7b1f
+	ld a, 1 ; Shift
+	jr nc, .battle_style
+	ld a, 10 ; Set
+.battle_style
+	ld [wOptionsBattleStyleCursorX], a
+	hlcoord 0, OPT_BATTLE_STYLE_ROW
+	call .PlaceUnfilledRightArrow
 	sla c
-	ld a, $01
-	jr nc, .sub_7af2
-	ld a, $0a
-.sub_7af2
-	ld [wc40d], a
-	coord hl, 0, 13
-	call .sub_7b1f
-	ld a, $01
-	ld [wc40e], a
-	coord hl, 1, 16
-	ld [hl], $ec
-	coord hl, 7, 16
-	ld [hl], $ec
-	ld a, [wc40a]
-	ld [wTileMapBackup], a
-	ld a, $03
-	ld [wc409], a
+	ld a, 1 ; Mono
+	jr nc, .mono_stereo
+	ld a, 10 ; Stereo
+.mono_stereo
+	ld [wOptionsAudioSettingsCursorX], a
+	hlcoord 0, OPT_SOUND_ROW
+	call .PlaceUnfilledRightArrow
+	ld a, 1
+	ld [wOptionsBottomRowCursorX], a
+; Cursor in front of "Cancel"
+	hlcoord 1, OPT_BOTTOM_ROW
+	ld [hl], "▷"
+; Cursor in front of frame options
+	hlcoord 7, OPT_BOTTOM_ROW
+	ld [hl], "▷"
+	ld a, [wOptionsTextSpeedCursorX]
+	ld [wOptionsMenuCursorX], a
+	ld a, 3
+	ld [wOptionsMenuCursorY], a
 	call EnableLCD
 	call WaitBGMap
 	call SetPalettes
 	ret
-.sub_7b1f
+
+.PlaceUnfilledRightArrow
 	ld e, a
-	ld d, $00
+	ld d, 0
 	add hl, de
-	ld [hl], $ec
+	ld [hl], "▷"
 	ret
-.sub_7b26
-	ld de, vChars1 + $0700
+
+.LoadGFX_DrawDisplay
+	ld de, vChars1 tile $70
 	ld hl, TrainerCardGFX
-	ld bc, $0010
+	ld bc, 1 tiles
 	ld a, BANK(TrainerCardGFX)
 	call FarCopyData
 	ld hl, wTileMap
-	ld bc, $0168
-	ld a, $f0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld a, $f0 ; checkered square tile
 	call ByteFill
-	coord hl, 1, 1
+; Text Speed
+	hlcoord 1, OPT_TEXT_SPEED_ROW - 2
 	lb bc, 3, 18
 	call ClearBox
-	coord hl, 1, 5
+; Battle Scene
+	hlcoord 1, OPT_BATTLE_ANIM_ROW - 2
 	lb bc, 3, 18
 	call ClearBox
-	coord hl, 1, 9
+; Battle Style
+	hlcoord 1, OPT_BATTLE_STYLE_ROW - 2
 	lb bc, 3, 18
 	call ClearBox
-	coord hl, 1, 13
+; Sound
+	hlcoord 1, OPT_SOUND_ROW
 	lb bc, 1, 18
 	call ClearBox
-	coord hl, 1, 1
-	ld de, Text7bad
+
+	hlcoord 1, OPT_TEXT_SPEED_ROW - 2
+	ld de, .OptionsText_TextSpeed
 	call PlaceString
-	coord hl, 1, 5
-	ld de, Text7bc9
+
+	hlcoord 1, OPT_BATTLE_ANIM_ROW - 2
+	ld de, .OptionsText_BattleScene
 	call PlaceString
-	coord hl, 1, 9
-	ld de, Text7be8
+
+	hlcoord 1, OPT_BATTLE_STYLE_ROW - 2
+	ld de, .OptionsText_BattleStyle
 	call PlaceString
-	coord hl, 1, 13
-	ld de, Text7c03
+
+	hlcoord 1, OPT_SOUND_ROW
+	ld de, .OptionsText_Sound
 	call PlaceString
-	coord hl, 1, 16
-	ld de, Text7c12
+
+	hlcoord 1, OPT_BOTTOM_ROW
+	ld de, .OptionsText_Cancel
 	call PlaceString
-	coord hl, 6, 15
-	ld b, $01
-	ld c, $0b
+; Draw the text box for the frame options
+	hlcoord 6, OPT_BOTTOM_ROW - 1
+	ld b, 1
+	ld c, 11
 	call DrawTextBox
-	coord hl, 7, 16
-	ld de, Text7c17
+
+	hlcoord 7, OPT_BOTTOM_ROW
+	ld de, .OptionsText_FrameType
 	call PlaceString
+; Place # of active frame
 	ld a, [wActiveFrame]
-	coord hl, 17, 16
-	add $f7
+	hlcoord 17, 16
+	add "１"
 	ld [hl], a
 	ret
 
-Text7bad:
+.OptionsText_TextSpeed:
 	db "はなしの　はやさ"
 	next "　はやい　　　　ふつう　　　　おそい"
 	text_end
 
-Text7bc9:
+.OptionsText_BattleScene:
 	db "せんとう　アニメーション"
 	next "　じっくり　みる　　とばして　みる"
 	text_end
 
-Text7be8:
+.OptionsText_BattleStyle:
 	db "しあいの　ルール"
 	next "　いれかえタイプ　　かちぬきタイプ"
 	text_end
 
-Text7c03:
+.OptionsText_Sound:
 	db "　モノラル　　　　　ステレオ"
 	text_end
 
-Text7c12:
+.OptionsText_Cancel:
 	db "　おわり"
 	text_end
 
-Text7c17:
+.OptionsText_FrameType:
 	db "　わく　を　かえる　"
 	text_end
 
-Table7c22:
-	db $0F
-
-Table7c23:
-	db $05, $08, $03
-	db $01, $01, $08
-	db $FF
+; Table that indicates how the 3 text speed options affect frame delays.
+; Format:
+; 00: X coordinate of menu cursor.
+; 01: delay after printing a letter (in frames).
+TextSpeedOptionData:
+	db 15, TEXT_DELAY_SLOW
+	db  8, TEXT_DELAY_MED
+	db  1, TEXT_DELAY_FAST
+	db  8, -1
 
 Unknown7c2a:
 rept 491

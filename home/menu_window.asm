@@ -27,7 +27,7 @@ SetMenuAttributes::
 Get2DMenuJoypad::
 	call Place2DMenuCursor
 Get2DMenuJoypad_NoPlaceCursor::
-	ld hl, w2DMenuFlags + 1
+	ld hl, w2DMenuFlags2
 	res 7, [hl]
 .loop:
 	call Move2DMenuCursor
@@ -37,7 +37,7 @@ Get2DMenuJoypad_NoPlaceCursor::
 	call UpdateTimeOfDayPalettes
 	call Menu_WasButtonPressed
 	jr c, .asm_1a9f
-	ld a, [w2DMenuFlags]
+	ld a, [w2DMenuFlags1]
 	bit 7, a
 	jp nz, .done
 	jr .asm_1a8a
@@ -45,7 +45,7 @@ Get2DMenuJoypad_NoPlaceCursor::
 .asm_1a9f:
 	call _2DMenuInterpretJoypad
 	jp c, .done
-	ld a, [w2DMenuFlags]
+	ld a, [w2DMenuFlags1]
 	bit 7, a
 	jr nz, .done
 	ldh a, [hJoySum]
@@ -66,7 +66,7 @@ Get2DMenuJoypad_NoPlaceCursor::
 	ret
 
 Menu_WasButtonPressed::
-	ld a, [w2DMenuFlags]
+	ld a, [w2DMenuFlags1]
 	bit 6, a
 	jr z, .asm_1ad6
 	farcall PlaySpriteAnimationsAndDelayFrame
@@ -100,7 +100,7 @@ _2DMenuInterpretJoypad::
 	ret
 
 .SetFlag15AndCarry:
-	ld hl, w2DMenuFlags + 1
+	ld hl, w2DMenuFlags2
 	set 7, [hl]
 	scf
 	ret
@@ -115,7 +115,7 @@ _2DMenuInterpretJoypad::
 	ret
 
 .asm_1b1a:
-	ld a, [w2DMenuFlags]
+	ld a, [w2DMenuFlags1]
 	bit 5, a
 	jr nz, .asm_1b28
 	bit 3, a
@@ -138,7 +138,7 @@ _2DMenuInterpretJoypad::
 	ret
 
 .asm_1b36:
-	ld a, [w2DMenuFlags]
+	ld a, [w2DMenuFlags1]
 	bit 5, a
 	jr nz, .asm_1b44
 	bit 2, a
@@ -162,7 +162,7 @@ _2DMenuInterpretJoypad::
 	ret
 
 .asm_1b54:
-	ld a, [w2DMenuFlags]
+	ld a, [w2DMenuFlags1]
 	bit 4, a
 	jr nz, .asm_1b62
 	bit 1, a
@@ -186,7 +186,7 @@ _2DMenuInterpretJoypad::
 	ret
 
 .asm_1b74:
-	ld a, [w2DMenuFlags]
+	ld a, [w2DMenuFlags1]
 	bit 4, a
 	jr nz, .asm_1b82
 	bit 0, a

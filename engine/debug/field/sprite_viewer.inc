@@ -21,7 +21,7 @@ FieldDebug_SpriteViewer:
 	ld hl, wVramState
 	set 0, [hl]
 	call ClearPalettes
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call CloseWindow
 	call UpdateTimePals
 	pop af
@@ -259,8 +259,8 @@ FieldDebug_SpriteViewer:
 	call PlaceString
 	call .SetStartingPoint
 	ld c, a
-	callfar Function14144
-	ld hl, vSprites + $c0
+	callfar LoadOverworldSprite_PlayerSlot
+	ld hl, vSprites tile $0c
 	ld de, vFont
 	ld bc, 12
 	call Get2bpp

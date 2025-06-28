@@ -813,7 +813,7 @@ MoveDisabled:
 
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	ld hl, DisabledMoveText
 	jp PrintText
 
@@ -3875,7 +3875,7 @@ BattleCommand_Sketch:
 	ld [hl], a
 
 	ld [wNamedObjectIndexBuffer], a
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	call LoadMoveAnim
 	ld hl, SketchedText
 	jp PrintText
@@ -4048,7 +4048,7 @@ BattleCommand_Spite:
 	jr z, .failed
 	push bc
 	push de
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	pop de
 
 	call BattleRandom
@@ -4410,7 +4410,7 @@ UpdateMoveData:
 	ld [wNamedObjectIndexBuffer], a
 
 .get_move_name:
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	jp CopyStringToStringBuffer2
 
 ; Unreferenced. Seems to be early sleep code leftover from Gen 1.
@@ -6739,7 +6739,7 @@ BattleCommand_Mimic:
 	ld a, [de]
 	ld [hl], a
 	ld [wNamedObjectIndexBuffer], a
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	call LoadMoveAnim
 	ld hl, MimicLearnedMoveText
 	jp PrintText
@@ -6870,7 +6870,7 @@ BattleCommand_Disable:
 .got_disabled_move_pointer
 	ld a, [wNamedObjectIndexBuffer]
 	ld [hl], a
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	ld hl, MoveDisabledText
 	jp PrintText
 
@@ -7484,7 +7484,7 @@ BattleCommand_MirrorMove:
 	call FarCopyBytes
 
 	call IncrementMovePP
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	call CopyStringToStringBuffer2
 	call BattleCommand_MoveDelay
 	ldh a, [hBattleTurn]

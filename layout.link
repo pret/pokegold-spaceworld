@@ -116,7 +116,7 @@ ROMX $01
 	"engine/overworld/object_collision.asm@_CheckObjectCollision"
 	"engine/dumps/bank01.asm@HasObjectReachedMovementLimit"
 	"engine/overworld/object_collision.asm@_CheckPlayerObjectCollision"
-	"engine/dumps/bank01.asm@SettingsScreen"
+	"engine/dumps/bank01.asm@OptionsMenu"
 
 ROMX $02
 	"engine/dumps/bank02.asm@SpawnPlayer"

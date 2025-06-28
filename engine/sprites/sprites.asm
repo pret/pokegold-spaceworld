@@ -7,11 +7,11 @@ RefreshSprites:
 	call CheckInteriorMap
 	jr c, .outdoor
 	call AddIndoorSprites
-	call LoadUsedSpritesGfx
+	call LoadUsedSpritesGFX
 	ret
 .outdoor
 	call AddOutdoorSprites
-	call LoadUsedSpritesGfx
+	call LoadUsedSpritesGFX
 	ret
 
 CheckInteriorMap:
@@ -35,49 +35,50 @@ AddIndoorSprites:
 	ld [wUsedSprites], a
 	ld hl, wMap2ObjectSprite
 	ld a, 2
-.asm_14070
+.loop
 	push af
 	ld a, [hl]
 	and a
-	jr z, .asm_1408d
+	jr z, .next
 	ld c, a
 	call IsAnimatedSprite
-	jr nc, .static_sprite
+	jr nc, .animated_sprite
 	ld de, wUsedStaticSprites
 	ld b, 2
-	call Function14099
-	jr .asm_1408d
-.static_sprite
+	call AddSpriteGFX
+	jr .next
+
+.animated_sprite
 	ld de, wUsedNPCSprites
 	ld b, 8
-	call Function14099
-.asm_1408d
-	ld de, $10
+	call AddSpriteGFX
+.next
+	ld de, MAPOBJECT_LENGTH
 	add hl, de
 	pop af
 	inc a
-	cp $10
-	jp nz, .asm_14070
+	cp NUM_OBJECTS
+	jp nz, .loop
 	ret
 
-Function14099:
+AddSpriteGFX:
 .loop
 	ld a, [de]
 	and a
-	jr z, .asm_140a5
+	jr z, .slot_found
 	cp c
 	ret z
 	dec b
-	jr z, .asm_140a8
+	jr z, .done
 	inc de
 	jr .loop
 
-.asm_140a5
+.slot_found
 	ld a, c
 	ld [de], a
 	ret
 
-.asm_140a8
+.done
 	scf
 	ret
 
@@ -100,72 +101,73 @@ AddOutdoorSprites:
 	ld de, wUsedNPCSprites
 	ld bc, SPRITE_SET_LENGTH
 	call CopyBytes
-	ld a, [wd642]
+	ld a, [wUnusedAddOutdoorSpritesReturnValue]
 	ld c, a
 	pop af
-	ld [wd642], a
+	ld [wUnusedAddOutdoorSpritesReturnValue], a
 	ret
 
-Function140d9:
+LoadStandingSpritesGFX:
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
-	res 7, [hl]
-	set 6, [hl]
-	call LoadUsedSpritesGfx
+	res SPRITES_SKIP_STANDING_GFX_F, [hl]
+	set SPRITES_SKIP_WALKING_GFX_F, [hl]
+	call LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
 
-Function140ea:
+LoadWalkingSpritesGFX:
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
-	set 7, [hl]
-	res 6, [hl]
-	call LoadUsedSpritesGfx
+	set SPRITES_SKIP_STANDING_GFX_F, [hl]
+	res SPRITES_SKIP_WALKING_GFX_F, [hl]
+	call LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
 
-LoadUsedSpritesGfx:
+LoadUsedSpritesGFX:
 	ld hl, vNPCSprites
 	ld de, wUsedSprites
 	ld b, SPRITE_SET_LENGTH
 	ld c, 0
-.asm_14105
+.loop
 	push bc
 	push de
 	push hl
 	ld a, [de]
 	and a
-	jr z, .asm_1410f
+	jr z, .skip
 	call LoadOverworldSprite
-.asm_1410f
+.skip
 	pop hl
-	ld bc, $c0
+	ld bc, $c tiles
 	add hl, bc
 	pop de
 	inc de
 	pop bc
 	inc c
 	dec b
-	jr nz, .asm_14105
+	jr nz, .loop
 	ld a, [de]
 	and a
-	jr z, .asm_14127
+	jr z, .no_still_sprite_1
+
 	push de
-	ld hl, vNPCSprites + $780
+	ld hl, vNPCSprites tile $78
 	call LoadOverworldSprite
 	pop de
-.asm_14127
+.no_still_sprite_1
 	inc de
 	ld a, [de]
 	and a
-	jr z, .asm_14132
-	ld hl, vNPCSprites + $7c0
+	jr z, .no_still_sprite_2
+	ld hl, vNPCSprites tile $7c
 	call LoadOverworldSprite
-.asm_14132
+.no_still_sprite_2
 	ret
 
 Function14133:
@@ -181,14 +183,15 @@ Function14133:
 	ld a, c
 	jr LoadOverworldSprite
 
-Function14144:
+LoadOverworldSprite_PlayerSlot:
 	ld a, c
 	ld hl, vNPCSprites
 	jr LoadOverworldSprite
 
-Function1414a:
+; Unreferenced
+LoadOverworldSprite_FollowerSlot:
 	ld a, c
-	ld hl, vNPCSprites + $c0
+	ld hl, vNPCSprites tile $0c
 	jr LoadOverworldSprite
 
 LoadOverworldSprite:
@@ -198,7 +201,7 @@ LoadOverworldSprite:
 	push hl
 	push de
 	ld a, [wSpriteFlags]
-	bit 7, a
+	bit SPRITES_SKIP_STANDING_GFX_F, a
 	jr nz, .dont_copy
 	call Get2bpp
 .dont_copy
@@ -215,7 +218,7 @@ LoadOverworldSprite:
 	call IsAnimatedSprite
 	ret c
 	ld a, [wSpriteFlags]
-	bit 6, a
+	bit SPRITES_SKIP_WALKING_GFX_F, a
 	ret nz
 	call Get2bpp
 	ret

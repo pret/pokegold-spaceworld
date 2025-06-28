@@ -82,14 +82,14 @@ OldCityPokecenter2FTextString4:
 	line "タイムマシンです"
 	done
 
-; TODO?: APPEARS to be movement data. These bytes including a set/remove sliding command makes sense
+; TODO?: APPEARS to be movement data. These bytes including a set sliding command makes sense
 ; considering that the Link Cable nurse has no proper walking sprites.
-; The stray '$48' byte doesn't correspond to any command, though, so it's hard to be certain.
+; The latter two bytes, however, are an exact match for the address of OldCityPokecenter2FMovement1,
+; so it's hard to be certain.
 OldCityPokecenter2FMovement_Unreferenced:
 	slow_step UP
 	set_sliding
-	remove_sliding
-	db $48
+	dw OldCityPokecenter2FMovement1
 
 OldCityPokecenter2FMovement1:
 	slow_step RIGHT

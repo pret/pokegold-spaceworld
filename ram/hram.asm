@@ -96,20 +96,17 @@ hSpriteHeight::
 
 NEXTU
 
+hItemPrice:: ds 3
+
+NEXTU
+
 hConnectionStripLength:: db
 hConnectedMapWidth:: db
-
+hSpriteOffset:: db
 NEXTU
 
 hMapObjectIndex:: db
 hObjectStructIndex:: db
-
-ENDU
-
-UNION
-hSpriteOffset::
-	db
-NEXTU
 hEnemyMonSpeed:: dw
 ENDU
 

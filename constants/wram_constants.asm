@@ -1,3 +1,4 @@
+; wOptions
 DEF TEXT_DELAY_MASK EQU %111
 	const_def 3
 	const SGB_BORDER     ; 3
@@ -15,6 +16,10 @@ DEF START_MONEY EQU 3000
 ; wStateFlags
 DEF SPRITE_UPDATES_DISABLED_F EQU 0
 DEF SCRIPTED_MOVEMENT_STATE_F EQU 7
+
+; wSpriteFlags::
+DEF SPRITES_SKIP_WALKING_GFX_F  EQU 6
+DEF SPRITES_SKIP_STANDING_GFX_F EQU 7
 
 ; wPlayerStepFlags::
 	const_def 4
@@ -34,6 +39,11 @@ DEF SCRIPTED_MOVEMENT_STATE_F EQU 7
 	const FRAME_7 ; 6
 	const FRAME_8 ; 7
 DEF NUM_FRAMES EQU const_value
+
+; wTextboxFlags::
+	const_def
+	const FAST_TEXT_DELAY_F ; 0
+	const TEXT_DELAY_F      ; 1
 
 ; wMonType::
 	const_def

@@ -187,7 +187,7 @@ FieldDebug_TownMap:
 	call ClearSprites
 	callfar FlyMap
 	call ClearPalettes
-	call Function3657
+	call ReloadSpritesAndFont
 	call LoadFontExtra
 	call CloseWindow
 	call GetMemSGBLayout

@@ -238,7 +238,7 @@ StartMenu_Pokedex:
 	call LoadStandardMenuHeader
 	predef Pokedex
 	call ClearPalettes
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call ReloadFontAndTileset
 	call Call_ExitMenu
 	call GetMemSGBLayout
@@ -826,7 +826,7 @@ StartMenuLoadSprites:
 	call DisableLCD
 	ld a, 6
 	call UpdateSoundNTimes
-	callfar Function140d9
+	callfar LoadStandingSpritesGFX
 	call LoadTilesetGFX
 	call LoadFontExtra
 	call ClearSprites
@@ -982,7 +982,7 @@ PartyHeldItem:
 	jp c, .close
 	call GetCurNick
 	ld hl, wStringBuffer1
-	ld de, wcd11
+	ld de, wMonOrItemNameBuffer
 	ld bc, $0006
 	call CopyBytes
 	ld a, [wMenuCursorY]
@@ -1125,7 +1125,7 @@ PartyHeldItem:
 
 ItemWasEquippedText:
 	db 1
-	dw wcd11
+	dw wMonOrItemNameBuffer
 	text "は　そうび　していた"
 	line "@"
 
@@ -1142,7 +1142,7 @@ ItemWasEquippedText:
 
 ItemPrompt66FA:
 	db 1
-	dw wcd11
+	dw wMonOrItemNameBuffer
 	text "は　@"
 
 .UnusedText3
@@ -1153,7 +1153,7 @@ ItemPrompt66FA:
 
 PartyNoItemToRecieveText:
 	db 1
-	dw wcd11
+	dw wMonOrItemNameBuffer
 	text "は　なにも"
 	line "そうび　していません！<PROMPT>"
 
@@ -1163,7 +1163,7 @@ PartyItemRecieveBagFullText:
 
 ItemPrompt673D:
 	db 1
-	dw wcd11
+	dw wMonOrItemNameBuffer
 	text "から　@"
 
 .UnusedText4
@@ -1174,7 +1174,7 @@ ItemPrompt673D:
 
 ItemPrompt6753:
 	db 1
-	dw wcd11
+	dw wMonOrItemNameBuffer
 	text "は　@"
 
 .UnusedText5:
@@ -1542,7 +1542,7 @@ SummaryDrawPoke:
 	ld b, 6
 	ld c, $12
 	call DrawTextBox
-	ld hl, w2DMenuFlags
+	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	jr PartySelectionInputs.PartySelectSkipInputs
 PartySelectionInputs:
@@ -1693,7 +1693,7 @@ SwapEntries:
 PartySelectionBackOut:
 	xor a
 	ld [wSelectedSwapPosition], a
-	ld hl, w2DMenuFlags
+	ld hl, w2DMenuFlags1
 	res 6, [hl]
 	call ClearSprites
 	call ClearTileMap

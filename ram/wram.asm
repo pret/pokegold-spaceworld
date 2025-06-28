@@ -137,6 +137,8 @@ NEXTU
 	ds 1
 
 wClockDialogArrowBlinkCounter:: ds 1
+
+
 wc40a:: ds 1
 
 ; Monster or Trainer test?
@@ -147,6 +149,16 @@ wWhichPicTest::
 wc40c:: ds 1
 wc40d:: ds 1
 wc40e:: ds 1
+NEXTU
+wOptionsMenuCursorX:: db
+wOptionsMenuCursorY:: db
+wOptionsTextSpeedCursorX:: db
+wOptionsBattleAnimCursorX:: db
+wOptionsBattleStyleCursorX:: db
+wOptionsAudioSettingsCursorX:: db
+wOptionsBottomRowCursorX:: db
+NEXTU
+	ds 7
 
 	ds 3
 
@@ -826,7 +838,17 @@ w2DMenuCursorInitY:: db
 w2DMenuCursorInitX:: db
 w2DMenuNumRows:: db
 w2DMenuNumCols:: db
-w2DMenuFlags:: dw
+w2DMenuFlags1::
+; bit 7: Disable checking of wMenuJoypadFilter
+; bit 6: Enable sprite animations
+; bit 5: Wrap around vertically
+; bit 4: Wrap around horizontally
+; bit 3: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 5 is disabled and we tried to go too far down
+; bit 2: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 5 is disabled and we tried to go too far up
+; bit 1: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 4 is disabled and we tried to go too far left
+; bit 0: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 4 is disabled and we tried to go too far right
+	db
+w2DMenuFlags2:: db
 w2DMenuCursorOffsets:: db
 wMenuJoypadFilter:: db
 w2DMenuDataEnd::
@@ -963,9 +985,9 @@ wccf4:: ds 1
 
 SECTION "CD11", WRAM0[$CD11]
 
-wcd11:: ds 1
+wMonOrItemNameBuffer:: ds MON_NAME_LENGTH
 
-	ds 11
+	ds MON_NAME_LENGTH
 
 wcd1d:: ds 8
 
@@ -1064,11 +1086,9 @@ wChosenStarter:: db
 wcd60:: db
 
 SECTION "CD70", WRAM0[$CD70]
-wcd70:: ds 1
-wcd71:: ds 1
-wcd72:: dw
-wcd74:: db
-wcd75:: db
+wListPointer:: dw
+wNamesPointer:: dw
+wItemAttributesPointer:: dw
 
 wCurItem:: db
 wItemIndex:: db
@@ -1147,7 +1167,8 @@ wEnemyEffectivenessVsPlayerMons:: flag_array PARTY_LENGTH
 wPlayerEffectivenessVsEnemyMons:: flag_array PARTY_LENGTH	
 
 NEXTU
-
+wUnknownNameBuffer:: ds MON_NAME_LENGTH
+NEXTU
 wcdc3:: db
 wcdc4:: db
 wcdc5:: db
@@ -1265,7 +1286,7 @@ wCurDamage:: dw
 wce2d:: ds 1
 
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
-wce32:: ds 1
+wPutativeTMHMMove:: db
 wce33:: ds 1
 wce34:: ds 1
 wWildMon:: db
@@ -1329,6 +1350,8 @@ wSaveFileExists:: db
 
 wActiveFrame:: db
 
+; bit 0: 1-frame text delay
+; bit 1: when unset, no text delay
 wTextBoxFlags::  db
 
 wDebugFlags:: db
@@ -1575,7 +1598,7 @@ wd637:: db ;OW battle state? $3 wild battle, $8 is trainer battle $4 is left bat
 wd638:: db ;wd637's last written-to value
 
 SECTION "Used sprites", WRAM0[$D642]
-wd642:: db
+wUnusedAddOutdoorSpritesReturnValue:: db
 wBGMapAnchor::
 	dw
 
@@ -1692,15 +1715,9 @@ wAnnonID:: ds 1
 
 wd875:: ds 1
 
-wBufferMonNickname::
-wd876:: ds 1
+wBufferMonNickname:: ds MON_NAME_LENGTH
 
-	ds 5
-
-wBufferMonOT::
-wd87c:: ds 1
-
-	ds 5
+wBufferMonOT:: ds PLAYER_NAME_LENGTH
 
 wd882:: ds 1
 wd883:: ds 1

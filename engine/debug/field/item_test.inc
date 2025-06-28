@@ -257,7 +257,7 @@ FieldDebug_ItemTest:
 .use_item2
 	call UseItem
 	call ClearBGPalettes
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	jp .restart
 
 ItemTest_FindUsableItem:

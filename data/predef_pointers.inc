@@ -11,10 +11,10 @@ PredefPointers::
 ; Please be a peach and nuke the hell out of these:
 ; WE NEED LABELS!
 ; Thank youu~
-	add_predef Function6445 ; 0
+	add_predef LearnMove ; 0
 	add_predef IntroDisplayPicCenteredOrUpperRight
-	add_predef Function6713
-	add_predef Function66b1
+	add_predef AskName_Old
+	add_predef GetItemPrice_Old
 	add_predef DebugMenu
 	add_predef GetItemAmount
 	add_predef HealParty

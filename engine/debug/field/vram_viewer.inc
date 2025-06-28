@@ -180,7 +180,7 @@ FieldDebug_DoVRAMViewer:
 	call LoadTilesetGFX
 	ld a, 1
 	ldh [hMapAnims], a
-	callfar LoadUsedSpritesGfx
+	callfar LoadUsedSpritesGFX
 	call LoadFontExtra
 	call EnableLCD
 	ret

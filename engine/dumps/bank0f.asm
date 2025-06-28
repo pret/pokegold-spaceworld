@@ -3588,9 +3588,9 @@ asm_3db59:
 	ld a, b
 	ld [wMenuJoypadFilter], a
 	ld a, c
-	ld [w2DMenuFlags], a
+	ld [w2DMenuFlags1], a
 	xor a
-	ld [w2DMenuFlags + 1], a
+	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
 
@@ -3782,7 +3782,7 @@ sub_3dcb7:
 	cp $fc
 	ret nc
 	ld [wNumSetBits], a
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	ld hl, $c401
 	jp PlaceString
 

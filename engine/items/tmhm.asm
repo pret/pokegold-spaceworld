@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "engine/items/tmhm.asm", ROMX
 
 CanLearnTMHMMove:
-; Gets the index of TM or HM with move ID wce32,
+; Gets the index of TM or HM with move ID wPutativeTMHMMove,
 ; then checks the corresponding flag in wCurPartySpecies's learnset.
 ; Sets register c to 1 if TM/HM is in learnset OR if debug is enabled.
 	ld a, [wDebugFlags]
@@ -17,7 +17,7 @@ CanLearnTMHMMove:
 	ld hl, wMonHLearnset
 	push hl
 
-	ld a, [wce32]
+	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, 0
 	ld hl, TMHMMoves

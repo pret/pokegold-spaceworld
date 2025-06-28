@@ -1241,7 +1241,7 @@ Function508c4::
 	dec hl
 	dec hl
 	dec hl
-	ld a, "▷" ; $ec
+	ld a, "▷"
 	ld [hli], a
 	inc hl
 	inc hl
@@ -1703,7 +1703,7 @@ Function50c48::
 	jr nz, .asm_50c59
 	ld hl, wOTPartyCount
 	ld de, wOTPartyMonOT
-	ld a, $06
+	ld a, ENEMY_OT_NAME
 	jr .asm_50c8b
 
 
@@ -1712,7 +1712,7 @@ Function50c48::
 	jr nz, .asm_50c67
 	ld hl, wPartyCount
 	ld de, wPartyMonOTs
-	ld a, $05
+	ld a, PARTY_OT_NAME
 	jr .asm_50c8b
 
 
@@ -1721,7 +1721,7 @@ Function50c48::
 	jr nz, .asm_50c75
 	ld hl, wcd60
 	ld de, PokemonNames
-	ld a, $01
+	ld a, MON_NAME
 	jr .asm_50c8b
 
 
@@ -1730,30 +1730,30 @@ Function50c48::
 	jr nz, .asm_50c83
 
 	ld hl, wItems
-	ld de, $6fec ; ItemNames?
-	ld a, $04
+	ld de, ItemNames
+	ld a, ITEM_NAME
 	jr .asm_50c8b
 
 
 .asm_50c83
 	ld hl, wcd60
-	ld de, $6fec
-	ld a, $04
+	ld de, ItemNames
+	ld a, ITEM_NAME
 .asm_50c8b
 	ld [wNamedObjectTypeBuffer], a
 	ld a, l
-	ld [wcd70], a
+	ld [wListPointer], a
 	ld a, h
-	ld [wcd71], a
+	ld [wListPointer + 1], a
 	ld a, e
-	ld [wcd72], a
+	ld [wNamesPointer], a
 	ld a, d
-	ld [wcd72 + 1], a
-	ld bc, $68F3    ; ItemAttributes?
+	ld [wNamesPointer + 1], a
+	ld bc, ItemAttributes
 	ld a, c
-	ld [wcd74], a
+	ld [wItemAttributesPointer], a
 	ld a, b
-	ld [wcd75], a
+	ld [wItemAttributesPointer + 1], a
 	ret
 
 Function50caa::

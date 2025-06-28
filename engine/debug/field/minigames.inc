@@ -48,7 +48,7 @@ FieldDebug_Minigames:
 	ld hl, wQueuedScriptBank
 	call CallFar_atHL
 	call ClearPalettes
-	call Function3657
+	call ReloadSpritesAndFont
 	call LoadTilesetGFX
 	ld hl, wVramState
 	set 0, [hl]
