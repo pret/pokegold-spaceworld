@@ -300,12 +300,12 @@ DebugMart_LoadItems:
 	ld [wCurItem], a
 	callfar GetItemPrice
 	ld a, d
-	ld [wcdc3], a
+	ld [wMiscStringBuffer], a
 	ld a, e
-	ld [wcdc3 + 1], a
+	ld [wMiscStringBuffer + 1], a
 	ld hl, wStringBuffer1
-	ld de, wcdc3
-	ld bc, $8206
+	ld de, wMiscStringBuffer
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 6
 	call PrintNumber
 	pop hl
 	ld de, wStringBuffer1

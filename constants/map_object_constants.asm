@@ -36,6 +36,7 @@ DEF OBJECT_21               rb ; 21
                             rb_skip 6
 DEF OBJECT_LENGTH EQU _RS
 DEF NUM_OBJECT_STRUCTS EQU 10
+DEF UNKNOWN_STRUCT  EQU 0
 DEF PLAYER_STRUCT   EQU 1
 DEF FOLLOWER_STRUCT EQU 2
 
@@ -121,7 +122,7 @@ DEF NUM_MINOR_OBJECT_ANIMATIONS EQU const_value
 	const MINOR_OBJECT_SPRITE_BOULDER_DUST_2 ; 4
 DEF NUM_MINOR_OBJECT_SPRITES EQU const_value
 
-; MinorObjectGFX indexes (see LoadMinorObjectGFX)
+; MinorObjectGFX indexes (see _LoadMinorObjectGFX)
 	const_def
 	const MINOR_OBJECT_GFX_NULL                 ; 0
 	const MINOR_OBJECT_GFX_SHADOW               ; 1

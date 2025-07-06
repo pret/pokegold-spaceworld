@@ -92,7 +92,7 @@ GameStart::
 	call PlaySFX
 	pop af
 	call Bankswitch
-	ld c, $04
+	ld c, 4
 	call DelayFrames
 
 IntroCleanup::
@@ -127,7 +127,7 @@ OverworldStart::
 	call SetUpGameEntry
 	ld hl, wDebugFlags
 	bit CONTINUED_F, [hl]
-	call z, Function15b5
+	call z, SpawnPlayer
 	ld hl, wd4a9
 	set 0, [hl]
 	jp Function2a85
@@ -256,22 +256,23 @@ GiveRandomJohto::
 	ld b, a
 	add a, a
 	add a, b
-	add a, $98 ; maybe should be a constant - 152, aka the number of kanto pokes
-	ld b, $08
+	add a, NUM_KANTO_POKEMON + 1
+	ld b, 8
 	call GivePokemon
-	ld a, $8D
+	ld a, ITEM_BERRY
 	ld [wPartyMon1 + 1], a
 	ret
 
+; Unreferenced
 GiveKantoStarters::
-	ld a, $03
-	ld b, $20
+	ld a, DEX_VENUSAUR
+	ld b, 32
 	call GivePokemon
-	ld a, $06
-	ld b, $24
+	ld a, DEX_CHARIZARD
+	ld b, 36
 	call GivePokemon
-	ld a, $09
-	ld b, $24
+	ld a, DEX_BLASTOISE
+	ld b, 36
 	call GivePokemon
 	ret
 
@@ -279,8 +280,7 @@ GivePokemon::
 	ld [wCurPartySpecies], a
 	ld a, b
 	ld [wCurPartyLevel], a
-	ld a, $10
-	call Predef
+	predef Functiond886
 	ret
 
 AddRandomPokemonToBox:
@@ -292,7 +292,7 @@ AddRandomPokemonToBox:
 	ld [wEnemySubStatus5], a
 	call RandomUnder246
 	ld [wTempEnemyMonSpecies], a
-	ld a, $05
+	ld a, 5
 	ld [wCurPartyLevel], a
 	callfar LoadEnemyMon
 	ld a, [wTempEnemyMonSpecies]
@@ -308,16 +308,16 @@ RandomUnder246::
 	call Random
 	and a
 	jr z, .loop
-	cp $F6
+	cp 246
 	jr nc, .loop
 	ret
 
 FillTMs::
-	ld b, $39
-	ld a, $01
+	ld b, NUM_TM_HM
+	ld a, 1
 	ld hl, wTMsHMs
 .loop
-	ld [hl+], a
+	ld [hli], a
 	dec b
 	jr nz, .loop
 	ret
@@ -358,12 +358,12 @@ DemoSetUpPlayer::
 	ret
 
 DemoItemList::
-	db ITEM_POKE_BALL, $05
-	db ITEM_POTION, $0A
-	db ITEM_FULL_HEAL, $0A
-	db ITEM_STIMULUS_ORB, $01
-	db ITEM_FOCUS_ORB, $01
-	db $FF
+	db ITEM_POKE_BALL,     5
+	db ITEM_POTION,       10
+	db ITEM_FULL_HEAL,    10
+	db ITEM_STIMULUS_ORB,  1
+	db ITEM_FOCUS_ORB,     1
+	db -1
 
 DemoPlayerName::
 	db "サトシ@"
@@ -503,8 +503,8 @@ ChoosePlayerName::
 	call ClearTileMap
 	call LoadFontExtra
 	call WaitBGMap
-	ld de, $4D10
-	ld bc, $1200
+	ld de, ProtagonistPic
+	lb bc, BANK(ProtagonistPic), 0
 	call IntroDisplayPicCenteredOrUpperRight
 	call GBFadeInFromWhite
 .farjump
@@ -556,8 +556,8 @@ ChooseRivalName::
 	call ClearTileMap
 	call LoadFontExtra
 	call WaitBGMap
-	ld de, $4BD4
-	ld bc, $1200
+	ld de, OakPic
+	lb bc, BANK(OakPic), 0
 	call IntroDisplayPicCenteredOrUpperRight
 	call GBFadeInFromWhite
 .farjump
@@ -647,11 +647,11 @@ SaveCustomName::
 
 PanPortraitRight::
 	hlcoord 5, 4
-	ld d, $06
-	ld e, $7E
+	ld d, 6
+	ld e, (SCREEN_WIDTH * 6) + 6
 	ld b, d
 	ld c, e
-	ld d, $00
+	ld d, 0
 	add hl, de
 .loop
 	xor a
@@ -660,8 +660,8 @@ PanPortraitRight::
 	push bc
 .innerLoop
 	;pans all the tiles onscreen to the right one
-	ld a, [hl+]
-	ld [hl-], a
+	ld a, [hli]
+	ld [hld], a
 	dec hl
 	dec c
 	jr nz, .innerLoop
@@ -676,16 +676,16 @@ PanPortraitRight::
 
 PanPortraitLeft::
 	hlcoord 12, 4
-	ld b, $06
-	ld c, $7E
+	ld b, 6
+	ld c, (SCREEN_WIDTH * 6) + 6
 .loop
 	xor a
 	ldh [hBGMapMode], a
 	push hl
 	push bc
 .innerloop
-	ld a, [hl-]
-	ld [hl+], a
+	ld a, [hld]
+	ld [hli], a
 	inc hl
 	dec c
 	jr nz, .innerloop
@@ -706,7 +706,7 @@ FadeInIntroPic:
 	ld hl, IntroFadePalettes
 	ld b, 6
 .next
-	ld a, [hl+]
+	ld a, [hli]
 	ldh [rBGP], a
 	ld c, 10
 	call DelayFrames
@@ -763,7 +763,7 @@ IntroDisplayPicCenteredOrUpperRight::
 	pop hl
 	xor a
 	ldh [hGraphicStartTile], a
-	ld bc, $0707
+	lb bc, 7, 7
 	predef PlaceGraphic
 	ret
 
@@ -778,15 +778,15 @@ LoadStartingSprites:
 .loop
 	ld a, [de]
 	inc de
-	ld [hl+], a
+	ld [hli], a
 	ld a, [de]
 	inc de
-	ld [hl+], a
+	ld [hli], a
 	ld a, [de]
 	inc de
-	ld [hl+], a
+	ld [hli], a
 	xor a
-	ld [hl+], a
+	ld [hli], a
 	dec c
 	jr nz, .loop
 	ret

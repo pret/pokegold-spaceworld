@@ -63,7 +63,7 @@ SilentHillScript1:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 02
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 02
 	ld hl, SilentHillMovement1
 	call LoadMovementDataPointer
@@ -115,7 +115,7 @@ SilentHillMovement2:
 	remove_object
 
 SilentHillScript3:
-	call Function1848
+	call UnfreezeAllObjects
 	ld a, 3
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
@@ -137,9 +137,9 @@ SilentHillScript4:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 3
-	call Function15ed
+	call CopyMapObjectToReservedObjectStruct
 	ld a, 3
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, [wYCoord]
 	cp 9
 	jr z, .jump2
@@ -200,9 +200,9 @@ SilentHillScript5:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 3
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 0
-	call Function186a
+	call UnfreezeObject
 	ld b, 3
 	ld c, 0
 	call StartFollow

@@ -38,7 +38,7 @@ FieldDebug_FollowNPCTest:
 .asm_fc9a5:
 	callfar SetFollowerDefaultAttributes
 	ld a, 1
-	call Function15ed
+	call CopyMapObjectToReservedObjectStruct
 	ld a, 1
 	ld hl, .MovementData
 	call LoadMovementDataPointer
@@ -48,7 +48,7 @@ FieldDebug_FollowNPCTest:
 	ret
 
 .asm_fc9c2:
-	call Function18cc
+	call UnfreezePlayer
 	ld a, 1
 	call DeleteMapObject
 	ret

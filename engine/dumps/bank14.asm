@@ -550,7 +550,7 @@ Function50340::
 	call PrintNumber
 
 	call .CalcExpToNextLevel
-	ld de, wcdc3
+	ld de, wExpToNextLevel
 	hlcoord 10, 13
 	ld bc, $0307
 	call PrintNumber
@@ -604,18 +604,18 @@ Function50340::
 	ldh a, [hQuotient + 3]
 	sub [hl]
 	dec hl
-	ld [wcdc5], a
+	ld [wExpToNextLevel + 2], a
 	ldh a, [hQuotient + 2]
 	sbc [hl]
 	dec hl
-	ld [wcdc4], a
+	ld [wExpToNextLevel + 1], a
 	ldh a, [hQuotient + 1]
 	sbc [hl]
-	ld [wcdc3], a
+	ld [wExpToNextLevel], a
 	ret
 
 .AlreadyAtMaxLevel
-	ld hl, wcdc3
+	ld hl, wExpToNextLevel
 	xor a
 	ld [hli], a
 	ld [hli], a
@@ -1274,8 +1274,7 @@ Function508c4::
 
 .asm_50922
 	push hl
-	ld a, $1a
-	call Predef
+	predef CanLearnTMHMMove
 	pop hl
 	ld de, .text_50948
 	ld a, c

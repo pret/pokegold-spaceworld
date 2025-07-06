@@ -96,7 +96,7 @@ hSpriteHeight::
 
 NEXTU
 
-hItemPrice:: ds 3
+hItemPrice_Old:: ds 3
 
 NEXTU
 

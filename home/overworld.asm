@@ -57,7 +57,7 @@ Function2c5a:
 	ld a, BANK(HandleNPCStep)
 	call Bankswitch
 	call HandleNPCStep
-	call Function18a0
+	call LoadMinorObjectGFX
 	ld a, BANK(Functiond4e6)
 	call Bankswitch
 	call Functiond4e6

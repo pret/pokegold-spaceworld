@@ -6,12 +6,12 @@ FieldDebug_UnusedSetPriority:
 	cp 1
 	jr nz, .skip
 	ld a, 0
-	call Function19aa
+	call SetObjFlags2_7_IfVisible
 	jr .done
 
 .skip
 	ld a, 0
-	call Function19b5
+	call ResetObjFlags2_7_IfVisible
 .done
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret

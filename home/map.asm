@@ -915,7 +915,7 @@ ReadObjectEvents::
 
 ClearObjectStructs::
 	xor a
-	ld [wUnkObjectStruct], a ; TODO
+	ld [wReservedObjectStruct], a
 	ld hl, wObject2Struct
 	ld de, OBJECT_LENGTH
 	ld c, 7
@@ -1106,7 +1106,7 @@ Function27C7:: ; TODO
 	ret
 
 .exterior
-	ld hl, $D4B2 ; TODO: figure out what this is
+	ld hl, wDigWarpNumber
 	ld a, [wPrevWarp]
 	ld [hli], a
 	ld a, [wMapGroup]
@@ -1691,7 +1691,7 @@ Function2ba8::
 	ld a, BANK(HandleNPCStep)
 	call Bankswitch
 	call HandleNPCStep
-	call Function18a0
+	call LoadMinorObjectGFX
 	ld a, BANK(Functiond6e4)
 	call Bankswitch
 	call Functiond6e4

@@ -44,7 +44,7 @@ SilentHillLabBackScript1:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 0
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 0
 	ld hl, SilentHillLabBackMovement1
 	call LoadMovementDataPointer
@@ -91,7 +91,7 @@ SilentHillLabBackRivalChoosePokemon:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 3
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld hl, SilentHillLabBackMovementPointers
 	ld a, [wChosenStarter]
 	ld d, 0

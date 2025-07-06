@@ -375,7 +375,7 @@ Text_CantUseFlyHere:
 FlyScript:
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
-	jpfar Functionfcc24
+	jpfar DoTeleportAnimation
 
 
 DigFunction:
@@ -441,7 +441,7 @@ DigScript:
 	call CopyBytes
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
-	jpfar Functionfcc24
+	jpfar DoTeleportAnimation
 
 EmptyFunctiond2da:
 	ret
@@ -534,7 +534,7 @@ TeleportScript:
 	call Function1fea
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
-	jpfar Functionfcc24
+	jpfar DoTeleportAnimation
 
 Text_ReturnToLastMonCenter:
 	text "さいごに　たちよった"

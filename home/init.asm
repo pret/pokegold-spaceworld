@@ -100,7 +100,7 @@ Init:
 	ldh [rLCDC], a
 
 	call DisableAudio
-	call _2007
+	call LoadSGBBorderOptions
 	predef CheckSGB
 	ld a, $1F
 	ldh [rIE], a

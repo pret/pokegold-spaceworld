@@ -165,7 +165,7 @@ SilentHillLabFrontMoveDown:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 0
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 0
 	ld hl, SilentHillLabFrontMovement1
 	call LoadMovementDataPointer
@@ -187,9 +187,9 @@ SilentHillLabFrontScript2:
 
 SilentHillLabFrontScript3:
 	ld a, 6
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 0
-	call Function186a
+	call UnfreezeObject
 	ld b, 6
 	ld c, 0
 	call StartFollow
@@ -220,7 +220,7 @@ SilentHillLabFrontMovement2:
 	step_end
 
 SilentHillLabFrontScript4:
-	call Function1828
+	call FreezeAllObjects
 	ld a, 4
 	ld [wMapScriptNumber], a
 	ret
@@ -254,7 +254,7 @@ SilentHillLabFrontScript5:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 2
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 2
 	ld hl, SilentHillLabFrontMovement3
 	call LoadMovementDataPointer
@@ -275,7 +275,7 @@ SilentHillLabFrontScript6:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 4
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 4
 	ld hl, SilentHillLabFrontMovement4
 	call LoadMovementDataPointer
@@ -299,7 +299,7 @@ SilentHillLabFrontScript7:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 0
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 0
 	ld hl, SilentHillLabFrontMovement5
 	call LoadMovementDataPointer
@@ -320,13 +320,13 @@ SilentHillLabFrontMovement5:
 
 SilentHillLabFrontScript8:
 	ld a, 3
-	call Function1989
+	call SetObjectLowPriority
 	ld a, 5
-	call Function1989
+	call SetObjectLowPriority
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 0
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 0
 	ld hl, SilentHillLabFrontMovement6
 	call LoadMovementDataPointer
@@ -350,9 +350,9 @@ SilentHillLabFrontScript9:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 5
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 5
-	call Function197e
+	call ResetObjectLowPriority
 	ld a, 5
 	ld hl, SilentHillLabFrontMovement7
 	call LoadMovementDataPointer
@@ -388,9 +388,9 @@ SilentHillLabFrontScript10:
 	ld d, RIGHT
 	call SetObjectFacing
 	ld a, 3
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 3
-	call Function197e
+	call ResetObjectLowPriority
 	ld a, 3
 	ld hl, SilentHillLabFrontMovement8
 	call LoadMovementDataPointer
@@ -413,9 +413,9 @@ SilentHillLabFrontScript11:
 	ld hl, SilentHillLabFrontTextString9
 	call OpenTextbox
 	ld a, $0B
-	call Function1617
+	call ApplyDeletionToMapObject
 	ld a, $0C
-	call Function1617
+	call ApplyDeletionToMapObject
 	ld hl, SilentHillLabFrontTextString10
 	call OpenTextbox
 	ld hl, SilentHillLabFrontTextString15
@@ -454,7 +454,7 @@ SilentHillLabFrontRivalMovePokemon:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 5
-	call Function17f9
+	call FreezeAllOtherObjects
 	pop hl
 	ld a, 5
 	call LoadMovementDataPointer
@@ -533,7 +533,7 @@ SilentHillLabFrontScript14:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 5
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 5
 	ld hl, SilentHillLabFrontMovement11
 	call LoadMovementDataPointer
@@ -585,7 +585,7 @@ SilentHillLabFrontMoveRivalLeave:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 8
-	call Function17f9
+	call FreezeAllOtherObjects
 	pop hl
 	ld a, 8
 	call LoadMovementDataPointer

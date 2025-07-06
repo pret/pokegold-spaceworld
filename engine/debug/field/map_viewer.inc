@@ -99,10 +99,10 @@ DebugMapViewer::
 	ret
 
 .Init:
-	call Function18b4
+	call FreezePlayer
 	call DebugMapViewer_LoadCursorSprite
 	call DebugMapViewer_ReplacePlayerObject
-	ld a, $2a
+	ld a, movement_step_sleep
 	ld [wMovementObject], a
 	ld a, DEBUGMAPVIEWER_CONTROL_CURSOR
 	ldh [hDebugMapViewerJumptable], a
@@ -124,11 +124,11 @@ DebugMapViewer::
 	jr .apply_movement
 .start_pressed
 	call DebugMapViewer_ShowViewerPrompt
-	ld a, $2a
+	ld a, movement_step_sleep
 	jr .apply_movement
 .a_pressed
 	call DebugMapViewer_ShowSelectedDetails
-	ld a, $2a
+	ld a, movement_step_sleep
 .apply_movement
 	ld [wMovementObject], a
 	and a
@@ -160,9 +160,9 @@ DebugMapViewer::
 .Cleanup:
 	ld a, 1
 	call DeleteMapObject
-	call Function18cc
+	call UnfreezePlayer
 	ld a, 0
-	call Function1908
+	call CenterObject
 	xor a
 	ldh [hDebugMapViewerJumptable], a
 	scf
@@ -208,7 +208,7 @@ DebugMapViewer_ShowSelectedDetails:
 ; (referred to as "actor number")
 	ld de, hEventID
 	hlcoord 10, 14
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNumber
 
 ; Display index of selected object from visible objects
@@ -218,12 +218,12 @@ DebugMapViewer_ShowSelectedDetails:
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
-	cp $10
+	cp NUM_OBJECTS
 	jr nc, .invalid_index
 	ld d, h
 	ld e, l
 	hlcoord 10, 16
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNumber
 	jr .wait
 
@@ -259,7 +259,7 @@ DebugMapViewer_DoMovement:
 	bit D_RIGHT_F, a
 	jr nz, .right
 .done
-	ld a, $2a
+	ld a, movement_step_sleep
 	ret
 
 .down
@@ -323,20 +323,21 @@ DebugMapViewer_DoMovement:
 	ret
 
 DebugMapViewer_ReplacePlayerObject:
-	callfar DebugMapViewer_SetupCursor
-	ld a, 1
-	call Function15ed
-	ld a, 1
-	call Function1908
+	callfar DebugMapViewer_SetupGold
+	ld a, PLAYER_OBJECT_INDEX
+	call CopyMapObjectToReservedObjectStruct
+	ld a, PLAYER_STRUCT
+	call CenterObject
 	ld bc, wObjectStructs
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set 3, [hl]
-	set 2, [hl]
-	set 1, [hl]
+	set SLIDING_F, [hl]
+	set FIXED_FACING_F, [hl]
+	set WONT_DELETE_F, [hl]
 	ret
 
-Datafd044:
+; Already handled by DebugMapViewer_SetupGold
+.Unreferenced_GoldObjectTemplate:
 	object_event -4, -4, SPRITE_GOLD, $17, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
 	ds 2
 
@@ -348,8 +349,8 @@ DebugMapViewer_LoadCursorSprite:
 	xor a
 	ldh [hBGMapMode], a
 	ld de, TownMapCursorGFX
-	ld hl, $80c0
-	ld bc, $3f04
+	ld hl, vChars0 tile $0c
+	lb bc, BANK(TownMapCursorGFX), 4
 	call Get2bpp
 	pop af
 	ldh [hMapAnims], a

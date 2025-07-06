@@ -77,13 +77,13 @@ TitleSequenceInit::
 	jr nz, .clear_loop
 
 	ld hl, TitleScreenGFX
-	ld de, vChars2 + 65 tiles
+	ld de, vChars2 tile $41
 	ld bc, 13 tiles
 	ld a, BANK(TitleScreenGFX)
 	call FarCopyData
 
 	ld hl, TitleScreenVersionGFX
-	ld de, vChars2 + 96 tiles
+	ld de, vChars2 tile $60
 	ld bc, 24 tiles
 	ld a, BANK(TitleScreenVersionGFX)
 	call FarCopyData
@@ -101,7 +101,7 @@ TitleSequenceInit::
 	call FarCopyData
 
 	ld hl, TitleScreenGoldLogoGFX
-	ld de, vChars0 + 186 tiles
+	ld de, vChars1 tile $3a
 	ld bc, 20 tiles
 	ld a, BANK(TitleScreenGoldLogoGFX)
 	call FarCopyData
@@ -563,7 +563,7 @@ IntroCopyRightInfo::
 	call ClearTileMap
 	call LoadFontExtra
 	ld de, TitleScreenGFX
-	ld hl, $9600
+	ld hl, vChars2 tile $60
 	lb bc, BANK(TitleScreenGFX), $19
 	call Request2bpp
 
@@ -626,8 +626,6 @@ SetTitleGfxNext::
 	dec c
 	jr nz, .loop
 	ret
-
-SECTION "engine/movie/title.asm@Title screen TEMPORARY", ROMX
 
 GameInit::
 	call ClearWindowData

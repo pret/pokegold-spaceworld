@@ -2,8 +2,8 @@ INCLUDE "constants.asm"
 
 SECTION "home/map_objects.asm", ROM0
 
-Function15b5::
-	callfar SpawnPlayer
+SpawnPlayer::
+	callfar _SpawnPlayer
 	ret
 
 GetMapObject::
@@ -20,30 +20,30 @@ GetMapObjectAttrPtr::
 	add hl, de
 	ret
 
-Function15d1::
+Unreferenced_Function15d1::
 	ldh [hMapObjectIndex], a
 	call GetMapObject
-	call Function40eb
+	call OpenDebugMenu
 	ret
 
-Function15da::
+Unreferenced_Function15da::
 	ldh [hMapObjectIndex], a
 	callfar UnmaskObject
 	ldh a, [hMapObjectIndex]
 	call GetMapObject
-	call Function40eb
+	call OpenDebugMenu
 	ret
 
-Function15ed::
+CopyMapObjectToReservedObjectStruct::
 	ldh [hMapObjectIndex], a
 	call GetMapObject
-	ld a, $0
+	ld a, UNKNOWN_STRUCT
 	ldh [hObjectStructIndex], a
-	ld de, wObjectStructs
+	ld de, wReservedObjectStruct
 	callfar CopyMapObjectToObjectStruct
 	ret
 
-Function1602::
+CopyMapObjectToFollowerObjectStruct::
 	ldh [hMapObjectIndex], a
 	call GetMapObject
 	ld a, FOLLOWER_STRUCT
@@ -52,29 +52,29 @@ Function1602::
 	callfar CopyMapObjectToObjectStruct
 	ret
 
-Function1617::
+ApplyDeletionToMapObject::
 	ldh [hMapObjectIndex], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
-	ld [hl], $ff
+	ld [hl], -1
 	push af
 	ld d, a
 	ld a, [wObjectFollow_Leader]
 	cp d
-	jr nz, .asm_1633
-	ld a, $ff
+	jr nz, .not_leader
+	ld a, -1
 	ld [wObjectFollow_Leader], a
-.asm_1633:
+.not_leader
 	ld a, [wObjectFollow_Follower]
 	cp d
-	jr nz, .asm_163e
-	ld a, $0
+	jr nz, .not_follower
+	ld a, 0
 	ld [wObjectFollow_Follower], a
-.asm_163e:
+.not_follower
 	pop af
 	call GetObjectStruct
 	ld bc, OBJECT_LENGTH
@@ -82,8 +82,8 @@ Function1617::
 	call ByteFill
 	ret
 
-Function164a::
-	call Function1617
+DeleteObjectStruct::
+	call ApplyDeletionToMapObject
 	callfar MaskObject
 	ret
 
@@ -103,18 +103,19 @@ CopyPlayerObjectTemplate::
 Spawn_ConvertCoords::
 	call GetMapObject
 	ld a, [wXCoord]
-	add $4
+	add 4
 	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld [hl], a
 	ld a, [wYCoord]
-	add $4
+	add 4
 	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld [hl], a
 	ret
 
-Function1680::
+; Unreferenced
+RelocateMapObjectToStruct::
 	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_MAP_X
@@ -186,7 +187,7 @@ LoadMovementDataPointer::
 	and a
 	ret
 
-Function16fb::
+LoadMovementDataPointer_KeepStateFlags::
 	ld [wMovementObject], a
 	ldh a, [hROMBank]
 	ld [wMovementDataBank], a
@@ -196,7 +197,7 @@ Function16fb::
 	ld [wMovementDataAddr + 1], a
 	ld a, [wMovementObject]
 	call CheckObjectVisibility
-	jr c, .return
+	jr c, .return ; as opposed to just "ret c"?
 
 	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
@@ -367,101 +368,104 @@ IsAnimatedSprite::
 	db SPRITE_BOULDER
 	db -1
 
-Function17f9::
+FreezeAllOtherObjects::
 	call GetMapObject
-	ld hl, $0
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
 	call GetObjectStruct
 	push bc
-	call Function1828
+	call FreezeAllObjects
 	pop bc
-	ld hl, $5
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 5, [hl]
+	res FROZEN_F, [hl]
 	ret
 
-Function1813::
+; Unreferenced
+FreezeObject::
 	call GetMapObject
-	ld hl, $0
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
 	call GetObjectStruct
-	ld hl, $5
+	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 5, [hl]
+	set FROZEN_F, [hl]
 	ret
 
-Function1828::
+FreezeAllObjects::
 	ld bc, wObjectStructs
 	xor a
-.asm_182c:
+.loop
 	push af
 	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_183b
+	jr z, .next
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 5, [hl]
-.asm_183b:
+	set FROZEN_F, [hl]
+.next
 	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	pop af
 	inc a
-	cp 10
-	jr nz, .asm_182c
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	ret
 
-Function1848::
+UnfreezeAllObjects::
 	push bc
 	ld bc, wObjectStructs
 	xor a
-.asm_184d:
+.loop
 	push af
 	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .asm_185c
+	jr z, .next
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 5, [hl]
-.asm_185c:
+	res FROZEN_F, [hl]
+.next
 	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
 	pop af
 	inc a
-	cp 10
-	jr nz, .asm_184d
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	pop bc
 	ret
 
-Function186a::
+UnfreezeObject::
 	call GetMapObject
-	ld hl, $0
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
+
 	call GetObjectStruct
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 5, [hl]
+	res FROZEN_F, [hl]
 	ret
 
-Function187f::
+; Iterates through a dba function table at 'hl' that is 16 entries long. 
+Unreferenced_FarCallLoop::
 	xor a
-.asm_1880:
+.loop
 	push af
 	push hl
 	ld b, a
@@ -482,60 +486,55 @@ Function187f::
 	pop af
 	inc a
 	cp 16
-	jr nz, .asm_1880
+	jr nz, .loop
 	ret
 
 ._hl_:
 	jp hl
 
-Function18a0::
+LoadMinorObjectGFX::
 	ld a, [wQueuedMinorObjectGFX]
 	and a
 	ret z
-	ldh a, [hROMBank]
-	push af
-	ld a, BANK(LoadMinorObjectGFX)
-	call Bankswitch
-	call LoadMinorObjectGFX
-	pop af
-	call Bankswitch
+	homecall _LoadMinorObjectGFX
 	ret
 
-Function18b4::
+FreezePlayer::
 	ld bc, wPlayerStruct
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set 3, [hl]
-	set 2, [hl]
-	set 1, [hl]
+	set SLIDING_F, [hl]
+	set FIXED_FACING_F, [hl]
+	set WONT_DELETE_F, [hl]
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 5, [hl]
-	call Function18e5
+	set FROZEN_F, [hl]
+	call ForceObjectToFaceDirection
 	ret
 
-Function18cc::
+UnfreezePlayer::
 	ld hl, wPlayerFlags
-	res 3, [hl]
-	res 2, [hl]
-	res 1, [hl]
+	res SLIDING_F, [hl]
+	res FIXED_FACING_F, [hl]
+	res WONT_DELETE_F, [hl]
 	ld hl, wPlayerFlags + 1
-	res 5, [hl]
+	res FROZEN_F, [hl]
 	ld hl, wPlayerMovementType
-	ld [hl], $10
+	ld [hl], SPRITEMOVEFN_OBEY_DPAD
 	ld hl, wPlayerStepType
-	ld [hl], $0
+	ld [hl], STEP_TYPE_RESET
 	ret
 
-Function18e5::
+; Freezes object at 'bc' by making its movement function force it to keep facing the same direction.
+ForceObjectToFaceDirection::
 	ld hl, OBJECT_DIRECTION
 	add hl, bc
 	ld a, [hl]
 	srl a
 	srl a
-	and $3
+	maskbits NUM_DIRECTIONS
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, .Data
 	add hl, de
 	ld a, [hl]
@@ -544,34 +543,37 @@ Function18e5::
 	ld [hl], a
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $0
+	ld [hl], STEP_TYPE_RESET
 	ret
 
 .Data:
-	db $05, $06, $07, $08
+	db SPRITEMOVEFN_TURN_DOWN
+	db SPRITEMOVEFN_TURN_UP
+	db SPRITEMOVEFN_TURN_LEFT
+	db SPRITEMOVEFN_TURN_RIGHT
 
-Function1908::
+CenterObject::
 	call CheckObjectVisibility
 	ret c
 	push bc
-	call Function191d
+	call .ClearCenteredObject
 	pop bc
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set 7, [hl]
+	set CENTERED_OBJECT_F, [hl]
 	ldh a, [hObjectStructIndex]
 	ld [wCenteredObject], a
 	ret
 
-Function191d::
+.ClearCenteredObject:
 	ld a, [wCenteredObject]
-	cp $ff
+	cp -1
 	ret z
 	call GetObjectStruct
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	res 7, [hl]
-	ld a, $ff
+	res CENTERED_OBJECT_F, [hl]
+	ld a, -1
 	ld [wCenteredObject], a
 	ret
 
@@ -605,10 +607,10 @@ SetFollowerIfVisible::
 	ret c
 	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
-	ld [hl], $18
+	ld [hl], SPRITEMOVEFN_FOLLOW_2
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
-	ld [hl], $0
+	ld [hl], STEP_TYPE_RESET
 	ldh a, [hObjectStructIndex]
 	ld [wObjectFollow_Follower], a
 	ret
@@ -617,58 +619,58 @@ ResetFollower::
 	ld a, [wObjectFollow_Follower]
 	and a
 	ret z
-	cp $ff
+	cp -1
 	ret z
 	call GetObjectStruct
-	call Function18e5
+	call ForceObjectToFaceDirection
 	ret
 
-Function197e::
+ResetObjectLowPriority::
 	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 0, [hl]
+	res LOW_PRIORITY_F, [hl]
 	ret
 
-Function1989::
+SetObjectLowPriority::
 	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 0, [hl]
+	set LOW_PRIORITY_F, [hl]
 	ret
 
-Function1994::
+ObjectUseOBP0::
 	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 4, [hl]
+	res USE_OBP1_F, [hl]
 	ret
 
-Function199f::
+ObjectUseOBP1::
 	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 4, [hl]
+	set USE_OBP1_F, [hl]
 	ret
 
-Function19aa::
+SetObjFlags2_7_IfVisible::
 	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 7, [hl]
+	set OBJ_FLAGS2_7_F, [hl]
 	ret
 
-Function19b5::
+ResetObjFlags2_7_IfVisible::
 	call CheckObjectVisibility
 	ret c
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 7, [hl]
+	res OBJ_FLAGS2_7_F, [hl]
 	ret
 
 SetObjectFacing::
@@ -680,7 +682,7 @@ SetObjectFacing::
 	ld a, d
 	add a
 	add a
-	and $c
+	and %00001100
 	ld hl, OBJECT_DIRECTION
 	add hl, bc
 	ld [hl], a

@@ -152,6 +152,7 @@
 	const DEX_DRAGONITE     ; 95
 	const DEX_MEWTWO        ; 96
 	const DEX_MEW           ; 97
+DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_HAPPA         ; 98 CHIKORITA
 	const DEX_HANAMOGURA    ; 99 BAYLEEF
 	const DEX_HANARYU       ; 9a MEGANIUM

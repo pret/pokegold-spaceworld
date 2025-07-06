@@ -1167,7 +1167,12 @@ wEnemyEffectivenessVsPlayerMons:: flag_array PARTY_LENGTH
 wPlayerEffectivenessVsEnemyMons:: flag_array PARTY_LENGTH	
 
 NEXTU
-wUnknownNameBuffer:: ds MON_NAME_LENGTH
+; Used for an old nickname function and for storing the item price in the shop menu.
+wMiscStringBuffer:: ds STRING_BUFFER_LENGTH
+
+NEXTU
+wExpToNextLevel:: ds 3
+
 NEXTU
 wcdc3:: db
 wcdc4:: db
@@ -1389,9 +1394,10 @@ wFollowMovementQueue::
 	ds 5
 
 wObjectStructs::
-; Note: this might actually not be an object. TODO: Investigate (if indexing starts at 1, then this isn't an object)
-; It might just be unused/a leftover.
-wUnkObjectStruct:: object_struct wUnkObject
+; Object struct reserved for the map viewer cursor and for Blue in Silent Hill.
+; Presumably needed any time they needed something to have a higher priority than the player.
+wReservedObjectStruct:: object_struct wReservedObject
+
 wPlayerStruct::   object_struct wPlayer
 ; wObjectStruct1 - wObjectStruct12
 for n, 1, NUM_OBJECT_STRUCTS - 1

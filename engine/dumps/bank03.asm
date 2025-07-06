@@ -10,7 +10,7 @@ GetFlyPointMapLocation:
 	add hl, hl
 	ld de, SpawnPoints
 	add hl, de
-	ld b, [hl]					; SpawnPoints + (wFlyDestination * 4)
+	ld b, [hl] ; SpawnPoints + (wFlyDestination * 4)
 	inc hl
 	ld c, [hl]
 	call GetWorldMapLocation
@@ -287,9 +287,7 @@ Functiond4e6:
 
 Functiond4fa:
 	call Functiond51e
-	ld hl, Function8261
-	ld a, BANK(Function8261)
-	call FarCall_hl
+	callfar Function8261
 
 Functiond505:
 	ld a, $04
@@ -2170,7 +2168,7 @@ _BillsPC:
 	call LoadStandardMenuHeader
 	call ClearTileMap
 	call LoadFontsBattleExtra
-	ld hl, vChars2 + $780
+	ld hl, vChars2 tile $78
 	ld de, PokeBallsGFX
 	lb bc, BANK(PokeBallsGFX), $01
 	call Request2bpp

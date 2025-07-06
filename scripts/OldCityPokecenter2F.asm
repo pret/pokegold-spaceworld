@@ -71,7 +71,7 @@ OldCityPokecenter2FText4:
 ; unreferenced?
 	ld hl, OldCityPokecenter2FMovement1
 	ld a, $5
-	call Function16fb ; something related to follow
+	call LoadMovementDataPointer_KeepStateFlags
 	ld hl, $0000
 	nop
 .asm_9480c

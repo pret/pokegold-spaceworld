@@ -1,8 +1,8 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank02.asm@SpawnPlayer", ROMX
+SECTION "engine/dumps/bank02.asm@_SpawnPlayer", ROMX
 
-SpawnPlayer:
+_SpawnPlayer::
 	ld a, PLAYER
 	ld hl, PlayerObjectTemplate
 	call CopyPlayerObjectTemplate
@@ -15,25 +15,25 @@ SpawnPlayer:
 	ld bc, wMapObjects
 	call CopyMapObjectToObjectStruct
 	ld a, PLAYER_OBJECT
-	call Function1908
+	call CenterObject
 	ret
 
 PlayerObjectTemplate:
 	object_event -4, -4, SPRITE_GOLD, SPRITEMOVEFN_OBEY_DPAD, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
 	db $00, $00
 
-SpawnFollower:
+SpawnFollower::
 	call SetFollowerDefaultAttributes
-	ld a, [wUsedSprites+1]
+	ld a, [wUsedSprites + 1]
 	ld [wMap1ObjectSprite], a
 	ld a, FOLLOWER
-	call Function1602
+	call CopyMapObjectToFollowerObjectStruct
 	ld b, PLAYER
 	ld c, FOLLOWER
 	call StartFollow
 	ret
 
-SetFollowerDefaultAttributes:
+SetFollowerDefaultAttributes::
 	ld a, FOLLOWER
 	ld hl, FollowerObjectTemplate
 	call CopyPlayerObjectTemplate
@@ -48,28 +48,28 @@ FollowerObjectTemplate:
 	object_event -4, -4, SPRITE_RHYDON, SPRITEMOVEFN_FOLLOW_2, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0
 	db $00, $00
 
-DeleteFollower:
+DeleteFollower::
 	ld a, FOLLOWER
 	call DeleteMapObject
 	xor a
 	ld [wObjectFollow_Follower], a
-	ld a, $ff
+	ld a, -1
 	ld [wObjectFollow_Leader], a
 	ret
 
-DebugMapViewer_SetupCursor:
-	ld a, $01
-	ld hl, Data8089
+DebugMapViewer_SetupGold::
+	ld a, PLAYER_OBJECT_INDEX
+	ld hl, .DebugMapViewer_GoldObjectTemplate
 	call CopyPlayerObjectTemplate
-	ld a, $01
+	ld a, 1
 	call Spawn_ConvertCoords
 	ret
 
-Data8089:
+.DebugMapViewer_GoldObjectTemplate:
 	object_event -4, -4, SPRITE_GOLD, $17, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
 	db $00, $00
 
-_InitializeVisibleSprites:
+_InitializeVisibleSprites::
 	ld bc, wMap2Object
 	ld a, FOLLOWER + 1
 .loop
@@ -191,7 +191,7 @@ UnmaskObject:
 	ld [hl], 0 ; unmasked
 	ret
 
-CopyMapObjectToObjectStruct:
+CopyMapObjectToObjectStruct::
 	ldh a, [hMapObjectIndex]
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, de
@@ -553,47 +553,53 @@ CheckVisibleRange_Horizontal:
 	jr nz, .loop_h
 	ret
 
-Function833a:
+; Determines path of object 'b' to map coordinates 'de' at speed 'c'.
+; Makes the object invisible for the duration of the path.
+ComputeObjectPathToCoords_Invisible::
 	ld a, c
 	push af
 	call InitMovementBuffer
 	ld a, movement_hide_object
 	call AppendToMovementBuffer
+
 	ld a, b
 	call GetMapObject
-	ld hl, $0000
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr z, .sub_8361
+	cp -1
+	jr z, .not_loaded
+
 	call GetObjectStruct
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld b, [hl]
 	ld c, a
-	jr .sub_836c
-.sub_8361
-	ld hl, $0002
+	jr .done
+
+.not_loaded
+	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0003
+	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld b, [hl]
 	ld c, a
-.sub_836c
+.done
 	pop af
-	call ComputePathToWalkToPlayer
-	ld a, $28
+	call ComputePathToWalkToDestination
+	ld a, movement_show_object
 	call AppendToMovementBuffer
-	ld a, $32
+	ld a, movement_step_end
 	call AppendToMovementBuffer
 	xor a
 	ret
 
-Function837c:
+; Determines path of object 'b' to map coordinates 'de' at speed 'c'.
+Unreferenced_ComputeObjectPathToCoords::
 	call InitMovementBuffer
 	push bc
 	ld a, b
@@ -611,8 +617,8 @@ Function837c:
 	ld b, a
 	pop hl
 	ld a, l
-	call ComputePathToWalkToPlayer
-	ld a, $32
+	call ComputePathToWalkToDestination
+	ld a, movement_step_end
 	call AppendToMovementBuffer
 	ret
 
@@ -621,7 +627,7 @@ Function83a2:
 	call InitMovementBuffer
 	pop de
 	call Function83b0
-	ld a, $32
+	ld a, movement_step_end
 	call AppendToMovementBuffer
 	ret
 
@@ -658,10 +664,10 @@ Function83b0:
 	ld e, [hl]
 	ld d, a
 	pop af
-	call ComputePathToWalkToPlayer
+	call ComputePathToWalkToDestination
 	ret
 
-LoadMinorObjectGFX::
+_LoadMinorObjectGFX::
 	ld hl, wQueuedMinorObjectGFX
 	push hl
 	ld a, [hl]
@@ -723,7 +729,7 @@ LoadMinorObjectGFX::
 .LoadHappyEmote:
 	ld hl, HappyEmoteGFX
 .load_emote:
-	ld de, vChars1 + $78 tiles
+	ld de, vChars1 tile $78
 	ld b, (HappyEmoteGFX.end - HappyEmoteGFX) / LEN_2BPP_TILE
 	ld c, BANK(EmoteGFX)
 	jp .FarCopy
@@ -731,7 +737,7 @@ LoadMinorObjectGFX::
 .LoadJumpShadow:
 	ld [hl], $00
 	ld hl, JumpShadowGFX
-	ld de, vChars1 + $7c tiles
+	ld de, vChars1 tile $7c
 	ld b, (JumpShadowGFX.end - JumpShadowGFX) / LEN_2BPP_TILE
 	ld c, BANK(JumpShadowGFX)
 	jp .FarCopy
@@ -739,7 +745,7 @@ LoadMinorObjectGFX::
 .LoadUnknownBouncingOrb:
 	ld [hl], $00
 	ld hl, UnknownBouncingOrbGFX
-	ld de, vChars1 + $7c tiles
+	ld de, vChars1 tile $7c
 	ld b, (UnknownBouncingOrbGFX.end - UnknownBouncingOrbGFX) / LEN_2BPP_TILE
 	ld c, BANK(UnknownBouncingOrbGFX)
 	jp .FarCopy
@@ -747,7 +753,7 @@ LoadMinorObjectGFX::
 .LoadBoulderDust:
 	ld [hl], $00
 	ld hl, BoulderDustGFX
-	ld de, vChars1 + $7c tiles
+	ld de, vChars1 tile $7c
 	ld b, (BoulderDustGFX.end - BoulderDustGFX) / LEN_2BPP_TILE
 	ld c, BANK(BoulderDustGFX)
 	jp .FarCopy
@@ -990,7 +996,7 @@ Pokedex_GetArea:
 
 	call InitTownMap
 	ld de, PokedexNestIconGFX
-	ld hl, vChars0 + 127 tiles
+	ld hl, vChars0 tile $7f
 	lb bc, BANK(PokedexNestIconGFX), 1
 	call Request1bpp
 
@@ -1131,7 +1137,7 @@ PlaceGoldInMap:
 	call Request2bpp
 
 	ld de, GoldSpriteGFX + 12 tiles
-	ld hl, vChars0 + $40
+	ld hl, vChars0 tile $04
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
 
@@ -1169,12 +1175,12 @@ PlaceGoldInMap:
 
 Function88b3:
 	ld de, PidgeySpriteGFX
-	ld hl, vChars0 + 8 tiles
+	ld hl, vChars0 tile $08
 	lb bc, BANK(PidgeySpriteGFX), 4
 	call Request2bpp
 	
 	ld de, PidgeySpriteGFX + 12 tiles
-	ld hl, vChars0 + 12 tiles
+	ld hl, vChars0 tile $0c
 	lb bc, BANK(PidgeySpriteGFX), 4
 	call Request2bpp
 
