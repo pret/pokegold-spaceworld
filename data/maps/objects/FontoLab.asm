@@ -14,8 +14,8 @@ FontoLab_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  2,  2, SPRITE_SCIENTIST, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  8,  5, SPRITE_SCIENTIST, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  2, SPRITE_SCIENTIST, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  8,  5, SPRITE_SCIENTIST, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 FontoLab_Blocks::
 INCBIN "maps/FontoLab.blk"

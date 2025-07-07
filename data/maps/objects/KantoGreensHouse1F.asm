@@ -15,7 +15,7 @@ KantoGreensHouse1F_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  5,  3, SPRITE_0F, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5,  3, SPRITE_0F, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoGreensHouse1F_Blocks::
 INCBIN "maps/KantoGreensHouse1F.blk"

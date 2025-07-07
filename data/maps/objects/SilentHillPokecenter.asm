@@ -15,11 +15,11 @@ SilentHillPokecenter_MapEvents::
 	bg_event 13,  1, 1
 
 	def_object_events
-	object_event  5,  1, SPRITE_NURSE, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 14,  6, SPRITE_GENTLEMAN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  3,  4, SPRITE_24, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  9,  1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 10,  1, SPRITE_RHYDON, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5,  1, SPRITE_NURSE, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 14,  6, SPRITE_GENTLEMAN, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  4, SPRITE_24, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  1, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10,  1, SPRITE_RHYDON, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SilentHillPokecenter_Blocks::
 INCBIN "maps/SilentHillPokecenter.blk"

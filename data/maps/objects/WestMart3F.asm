@@ -29,9 +29,9 @@ WestMart3F_MapEvents::
 	bg_event  9,  7, 3
 
 	def_object_events
-	object_event  6,  1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 13,  4, SPRITE_GENTLEMAN, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  3,  5, SPRITE_SUPER_NERD, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  1, SPRITE_CLERK, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 13,  4, SPRITE_GENTLEMAN, SPRITEMOVEFN_RANDOM_WALK_XY, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  5, SPRITE_SUPER_NERD, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestMart3F_Blocks::
 INCBIN "maps/WestMart3F.blk"

@@ -33,10 +33,10 @@ Newtype_MapEvents::
 	bg_event 30, 21, 5
 
 	def_object_events
-	object_event  5, 10, SPRITE_SILVER, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 24, 26, SPRITE_FISHER, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 24,  9, SPRITE_ROCKER, FACE_UP, 2, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6, 30, SPRITE_GIRL, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5, 10, SPRITE_SILVER, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 24, 26, SPRITE_FISHER, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 24,  9, SPRITE_ROCKER, SPRITEMOVEFN_RANDOM_WALK_XY, 2, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6, 30, SPRITE_GIRL, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Newtype_Blocks::
 INCBIN "maps/Newtype.blk"

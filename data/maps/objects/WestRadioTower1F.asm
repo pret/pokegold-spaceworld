@@ -17,9 +17,9 @@ WestRadioTower1F_MapEvents::
 	bg_event  0,  1, 2
 
 	def_object_events
-	object_event  6,  6, SPRITE_RECEPTIONIST, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  2,  3, SPRITE_SUPER_NERD, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  7,  4, SPRITE_ROCKER, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  6, SPRITE_RECEPTIONIST, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  3, SPRITE_SUPER_NERD, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  4, SPRITE_ROCKER, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestRadioTower1F_Blocks::
 INCBIN "maps/WestRadioTower1F.blk"

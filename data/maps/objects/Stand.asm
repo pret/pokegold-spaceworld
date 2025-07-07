@@ -34,15 +34,15 @@ Stand_MapEvents::
 	bg_event 32, 35, 10
 
 	def_object_events
-	object_event 10, 10, SPRITE_POKEFAN_M, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 14, 17, SPRITE_TWIN, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 28, 19, SPRITE_ROCKER, FACE_RIGHT, 0, 3, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 30, 31, SPRITE_TEACHER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 21,  8, SPRITE_RHYDON, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 13,  6, SPRITE_CLEFAIRY, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6,  6, SPRITE_RHYDON, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 14, 15, SPRITE_PIDGEY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6, 21, SPRITE_RHYDON, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10, 10, SPRITE_POKEFAN_M, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 14, 17, SPRITE_TWIN, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 28, 19, SPRITE_ROCKER, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 3, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 30, 31, SPRITE_TEACHER, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 21,  8, SPRITE_RHYDON, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 13,  6, SPRITE_CLEFAIRY, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  6, SPRITE_RHYDON, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 14, 15, SPRITE_PIDGEY, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6, 21, SPRITE_RHYDON, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Stand_Blocks::
 INCBIN "maps/Stand.blk"

@@ -21,9 +21,9 @@ Sugar_MapEvents::
 	bg_event 10, 14, 4
 
 	def_object_events
-	object_event  8, 12, SPRITE_TWIN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  9,  6, SPRITE_GRANNY, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 13, 11, SPRITE_GRAMPS, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  8, 12, SPRITE_TWIN, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  6, SPRITE_GRANNY, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 13, 11, SPRITE_GRAMPS, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
 Sugar_Blocks::
 INCBIN "maps/Sugar.blk"

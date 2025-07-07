@@ -18,8 +18,8 @@ Route1P1_MapEvents::
 	bg_event 20,  8, 2
 
 	def_object_events
-	object_event 20,  5, SPRITE_SUPER_NERD, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 18, 12, SPRITE_YOUNGSTER, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 20,  5, SPRITE_SUPER_NERD, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 18, 12, SPRITE_YOUNGSTER, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
 Route1P1_Blocks::
 INCBIN "maps/Route1P1.blk"

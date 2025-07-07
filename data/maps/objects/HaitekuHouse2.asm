@@ -14,7 +14,7 @@ HaitekuHouse2_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  7,  3, SPRITE_SAILOR, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  3, SPRITE_SAILOR, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 HaitekuHouse2_Blocks::
 INCBIN "maps/HaitekuHouse2.blk"

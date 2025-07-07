@@ -111,3 +111,15 @@ DEF HMENURETURN_ASM    EQU %11111111
 	const_def 1
 	const SCROLLINGMENU_ITEMS_NORMAL
 	const SCROLLINGMENU_ITEMS_QUANTITY
+
+; Naming types (see engine/menus/naming_screen.asm)
+	const_def
+	const NAME_MON
+	const NAME_PLAYER
+	const NAME_RIVAL
+	const NAME_MOM
+	const NAME_BOX
+	const NAME_5 ; duplicate of NAME_MON
+	const NAME_6 ; duplicate of NAME_MON
+	const NAME_7 ; duplicate of NAME_MON
+DEF NUM_NAME_TYPES EQU const_value

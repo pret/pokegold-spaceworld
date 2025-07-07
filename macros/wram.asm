@@ -312,6 +312,25 @@ MACRO map_object
 	ds 2
 ENDM
 
+MACRO minor_object
+\1ParentObject:: db
+\1Type:: db
+\1Animation:: db
+\1SpriteTile:: db
+\1XCoord:: db
+\1YCoord:: db
+\1XOffset:: db
+\1YOffset:: db
+\1_08:: db
+\1_09:: db
+\1JumptableIndex:: db
+\1Timer:: db
+\1Frame:: db
+\1Var1:: db
+\1Var2:: db
+\1Var3:: db
+ENDM
+
 MACRO sprite_anim_struct
 \1Index:: ds 1          ; 0
 \1FramesetID:: ds 1     ; 1

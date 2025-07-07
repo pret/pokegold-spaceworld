@@ -27,7 +27,7 @@ UnusedOverworldMovementCheck::
 	jp CheckMovementWalkOrBike
 
 SetPlayerIdle:
-	ld a, NO_MOVEMENT
+	ld a, movement_step_sleep
 
 SetPlayerMovement:
 	ld [wPlayerMovement], a
@@ -56,7 +56,7 @@ _CheckMovementWalkOrBike:
 	bit D_RIGHT_F, a
 	jr nz, .check_right
 .idle
-	ld a, NO_MOVEMENT
+	ld a, movement_step_sleep
 	ret
 
 .check_right
@@ -71,12 +71,12 @@ _CheckMovementWalkOrBike:
 .move_right
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
-	ld a, FAST_STEP_RIGHT
+	ld a, movement_big_step | RIGHT
 	ret z
-	ld a, STEP_RIGHT
+	ld a, movement_step | RIGHT
 	ret
 .face_right
-	ld a, FACE_RIGHT
+	ld a, movement_turn_head | RIGHT
 	ret
 
 .check_left:
@@ -91,12 +91,12 @@ _CheckMovementWalkOrBike:
 .move_left
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
-	ld a, FAST_STEP_LEFT
+	ld a, movement_big_step | LEFT
 	ret z
-	ld a, STEP_LEFT
+	ld a, movement_step | LEFT
 	ret
 .face_left
-	ld a, FACE_LEFT
+	ld a, movement_turn_head | LEFT
 	ret
 
 .check_down
@@ -109,17 +109,17 @@ _CheckMovementWalkOrBike:
 	jr nc, .move_down
 	cp OLD_COLLISION_LEDGE
 	jr nz, .face_down
-	ld a, JUMP_DOWN
+	ld a, movement_jump_step | DOWN
 	ret
 .move_down
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
-	ld a, FAST_STEP_DOWN
+	ld a, movement_big_step | DOWN
 	ret z
-	ld a, STEP_DOWN
+	ld a, movement_step | DOWN
 	ret
 .face_down
-	ld a, FACE_DOWN
+	ld a, movement_turn_head | DOWN
 	ret
 
 .check_up
@@ -134,12 +134,12 @@ _CheckMovementWalkOrBike:
 .move_up
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
-	ld a, FAST_STEP_UP
+	ld a, movement_big_step | UP
 	ret z
-	ld a, STEP_UP
+	ld a, movement_step | UP
 	ret
 .face_up
-	ld a, FACE_UP
+	ld a, movement_turn_head | UP
 	ret
 
 CheckMovementDebug::
@@ -156,39 +156,39 @@ _CheckMovementDebug:
 	jr nz, .move_left
 	bit D_RIGHT_F, a
 	jr nz, .move_right
-	ld a, NO_MOVEMENT
+	ld a, movement_step_sleep
 	ret
 
 .move_down
 	ld a, [wTileDown]
 	cp -1
-	ld a, FAST_STEP_DOWN
+	ld a, movement_big_step | DOWN
 	ret nz
-	ld a, JUMP_UP
+	ld a, movement_jump_step | UP
 	ret
 
 .move_up
 	ld a, [wTileUp]
 	cp -1
-	ld a, FAST_STEP_UP
+	ld a, movement_big_step | UP
 	ret nz
-	ld a, JUMP_DOWN
+	ld a, movement_jump_step | DOWN
 	ret
 
 .move_left
 	ld a, [wTileLeft]
 	cp -1
-	ld a, FAST_STEP_LEFT
+	ld a, movement_big_step | LEFT
 	ret nz
-	ld a, JUMP_RIGHT
+	ld a, movement_jump_step | RIGHT
 	ret
 
 .move_right
 	ld a, [wTileRight]
 	cp -1
-	ld a, FAST_STEP_RIGHT
+	ld a, movement_big_step | RIGHT
 	ret nz
-	ld a, JUMP_LEFT
+	ld a, movement_jump_step | LEFT
 	ret
 
 CheckMovementSkateboard::
@@ -233,7 +233,7 @@ _CheckMovementSkateboard:
 .idle
 	ld a, STANDING
 	ld [wSkatingDirection], a
-	ld a, NO_MOVEMENT
+	ld a, movement_step_sleep
 	ret
 
 CheckSkateDown:
@@ -252,23 +252,23 @@ CheckSkateDown:
 	jr nz, .collision
 
 .jump
-	ld a, FAST_JUMP_DOWN
+	ld a, movement_fast_jump_step | DOWN
 	ret
 
 .can_skate
 	call OldIsTileCollisionGrass
 	jr z, .slow
-	ld a, FAST_STEP_DOWN
+	ld a, movement_big_step | DOWN
 	ret
 
 .slow
-	ld a, STEP_DOWN
+	ld a, movement_step | DOWN
 	ret
 
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
-	ld a, FACE_DOWN
+	ld a, movement_turn_head | DOWN
 	ret
 
 CheckSkateUp:
@@ -283,23 +283,23 @@ CheckSkateUp:
 	jr nc, .can_skate
 	cp (OLD_COLLISION_ROCK | COLLISION_FLAG)
 	jr nz, .collision
-	ld a, FAST_JUMP_UP
+	ld a, movement_fast_jump_step | UP
 	ret
 
 .can_skate
 	call OldIsTileCollisionGrass
 	jr z, .slow
-	ld a, FAST_STEP_UP
+	ld a, movement_big_step | UP
 	ret
 
 .slow
-	ld a, STEP_UP
+	ld a, movement_step | UP
 	ret
 
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
-	ld a, FACE_UP
+	ld a, movement_turn_head | UP
 	ret
 
 CheckSkateLeft:
@@ -314,23 +314,23 @@ CheckSkateLeft:
 	jr nc, .can_skate
 	cp (OLD_COLLISION_ROCK | COLLISION_FLAG)
 	jr nz, .collision
-	ld a, FAST_JUMP_LEFT
+	ld a, movement_fast_jump_step | LEFT
 	ret
 
 .can_skate
 	call OldIsTileCollisionGrass
 	jr z, .slow
-	ld a, FAST_STEP_LEFT
+	ld a, movement_big_step | LEFT
 	ret
 
 .slow
-	ld a, STEP_LEFT
+	ld a, movement_step | LEFT
 	ret
 
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
-	ld a, FACE_LEFT
+	ld a, movement_turn_head | LEFT
 	ret
 
 CheckSkateRight:
@@ -345,23 +345,23 @@ CheckSkateRight:
 	jr nc, .can_skate
 	cp (OLD_COLLISION_ROCK | COLLISION_FLAG)
 	jr nz, .collision
-	ld a, FAST_JUMP_RIGHT
+	ld a, movement_fast_jump_step | RIGHT
 	ret
 
 .can_skate
 	call OldIsTileCollisionGrass
 	jr z, .slow
-	ld a, FAST_STEP_RIGHT
+	ld a, movement_big_step | RIGHT
 	ret
 
 .slow
-	ld a, STEP_RIGHT
+	ld a, movement_step | RIGHT
 	ret
 
 .collision
 	ld a, STANDING
 	ld [wSkatingDirection], a
-	ld a, FACE_RIGHT
+	ld a, movement_turn_head | RIGHT
 	ret
 
 OldIsTileCollisionGrass::
@@ -394,7 +394,7 @@ _OldCheckMovementSurf:
 	jp nz, .check_left
 	bit D_RIGHT_F, a
 	jr nz, .check_right
-	ld a, NO_MOVEMENT
+	ld a, movement_step_sleep
 	ret
 
 .check_down
@@ -408,14 +408,14 @@ _OldCheckMovementSurf:
 	                        ;        You can walk into them from water because of this.
 	call OldIsTileCollisionWater
 	jr c, .face_down
-	ld a, STEP_DOWN
+	ld a, movement_step | DOWN
 	ret
 .face_down
-	ld a, FACE_DOWN
+	ld a, movement_turn_head | DOWN
 	ret
 .exit_water_down
 	call SetPlayerStateWalk
-	ld a, SLOW_STEP_DOWN
+	ld a, movement_slow_step | DOWN
 	ret
 
 .check_up
@@ -429,14 +429,14 @@ _OldCheckMovementSurf:
 	                      ;        You can walk into them from water because of this.
 	call OldIsTileCollisionWater
 	jr c, .face_up
-	ld a, STEP_UP
+	ld a, movement_step | UP
 	ret
 .face_up
-	ld a, FACE_UP
+	ld a, movement_turn_head | UP
 	ret
 .exit_water_up
 	call SetPlayerStateWalk
-	ld a, SLOW_STEP_UP
+	ld a, movement_slow_step | UP
 	ret
 
 .check_left
@@ -450,14 +450,14 @@ _OldCheckMovementSurf:
 	                        ;        You can walk into them from water because of this.
 	call OldIsTileCollisionWater
 	jr c, .face_left
-	ld a, STEP_LEFT
+	ld a, movement_step | LEFT
 	ret
 .face_left
-	ld a, FACE_LEFT
+	ld a, movement_turn_head | LEFT
 	ret
 .exit_water_left
 	call SetPlayerStateWalk
-	ld a, SLOW_STEP_LEFT
+	ld a, movement_slow_step | LEFT
 	ret
 
 .check_right
@@ -471,14 +471,14 @@ _OldCheckMovementSurf:
 	                      ;        You can walk into them from water because of this.
 	call OldIsTileCollisionWater
 	jr c, .face_right
-	ld a, STEP_RIGHT
+	ld a, movement_step | RIGHT
 	ret
 .face_right
-	ld a, FACE_RIGHT
+	ld a, movement_turn_head | RIGHT
 	ret
 .exit_water_right
 	call SetPlayerStateWalk
-	ld a, SLOW_STEP_RIGHT
+	ld a, movement_slow_step | RIGHT
 	ret
 
 OldIsTileCollisionWater::
@@ -489,9 +489,9 @@ OldIsTileCollisionWater::
 ;  c - water
 ; nc - not water
 	and COLLISION_TYPE_MASK
-	cp OLD_COLLISION_TYPE_WATER
+	cp OLD_HI_NYBBLE_WATER
 	ret z
-	cp OLD_COLLISION_TYPE_WATER2
+	cp OLD_HI_NYBBLE_WATER_ALT
 	ret z
 	scf
 	ret
@@ -543,7 +543,7 @@ CheckCompanionObjectCollision::
 	add hl, bc
 	set 1, [hl] ; mark object as having collided with player
 	ldh a, [hObjectStructIndex]
-	cp COMPANION_OBJECT_INDEX
+	cp FOLLOWER_OBJECT_INDEX
 	jr z, .is_companion
 	xor a
 	ld [wCompanionCollisionFrameCounter], a
@@ -593,7 +593,7 @@ GetPlayerMovementByState:
 CheckMovementWalk::
 	ld a, [wPlayerTile]
 	swap a
-	and LOW((COLLISION_TYPE_MASK >> 4) | (COLLISION_TYPE_MASK << 4))
+	and COLLISION_TYPE_MASK >> 4
 	ld hl, .WalkingCollisionTable
 	jp CallJumptable
 
@@ -616,7 +616,7 @@ CheckMovementWalk::
 	dw CheckMovementWalkRegular ; unused
 
 NoWalkMovement:
-	ld a, NO_MOVEMENT
+	ld a, movement_step_sleep
 	ret
 
 CheckMovementWalkSolid::
@@ -631,16 +631,16 @@ CheckMovementWalkLand::
 	ret
 
 .force_movement
-	ld b, STEP_DOWN
+	ld b, movement_step | DOWN
 	cp (COLLISION_LAND_S & COLLISION_SUBTYPE_MASK)
 	jr z, .finish
-	ld b, STEP_UP
+	ld b, movement_step | UP
 	cp (COLLISION_LAND_N & COLLISION_SUBTYPE_MASK)
 	jr z, .finish
-	ld b, STEP_LEFT
+	ld b, movement_step | LEFT
 	cp (COLLISION_LAND_W & COLLISION_SUBTYPE_MASK)
 	jr z, .finish
-	ld b, STEP_RIGHT
+	ld b, movement_step | RIGHT
 	cp (COLLISION_LAND_E & COLLISION_SUBTYPE_MASK)
 	jr z, .finish
 	; fall-through --> map other codes to COLLISION_LAND_E
@@ -649,17 +649,17 @@ CheckMovementWalkLand::
 	ret
 
 SlowDownMovementWalk:
-	ld b, SLOW_STEP_DOWN
-	cp STEP_DOWN
+	ld b, movement_slow_step | DOWN
+	cp movement_step | DOWN
 	jr z, .finish
-	ld b, SLOW_STEP_UP
-	cp STEP_UP
+	ld b, movement_slow_step | UP
+	cp movement_step | UP
 	jr z, .finish
-	ld b, SLOW_STEP_LEFT
-	cp STEP_LEFT
+	ld b, movement_slow_step | LEFT
+	cp movement_step | LEFT
 	jr z, .finish
-	ld b, SLOW_STEP_RIGHT
-	cp STEP_RIGHT
+	ld b, movement_slow_step | RIGHT
+	cp movement_step | RIGHT
 	jr z, .finish
 	ret
 .finish
@@ -669,16 +669,16 @@ SlowDownMovementWalk:
 CheckMovementWalkLand2::
 	ld a, [wPlayerTile]
 	and COLLISION_SUBTYPE_MASK
-	ld b, STEP_DOWN
+	ld b, movement_step | DOWN
 	cp (COLLISION_LAND2_S & COLLISION_SUBTYPE_MASK)
 	jr z, .finish
-	ld b, STEP_UP
+	ld b, movement_step | UP
 	cp (COLLISION_LAND2_N & COLLISION_SUBTYPE_MASK)
 	jr z, .finish
-	ld b, STEP_LEFT
+	ld b, movement_step | LEFT
 	cp (COLLISION_LAND2_W & COLLISION_SUBTYPE_MASK)
 	jr z, .finish
-	ld b, STEP_RIGHT
+	ld b, movement_step | RIGHT
 	cp (COLLISION_LAND2_E & COLLISION_SUBTYPE_MASK)
 	jr z, .finish
 	; fall-through --> map other codes to COLLISION_LAND2_E
@@ -700,7 +700,7 @@ CheckMovementWalkWarp::
 	jr z, .move_down
 	jp CheckMovementWalkRegular
 .move_down
-	ld a, STEP_DOWN
+	ld a, movement_step | DOWN
 	ret
 
 .check_dpad
@@ -720,28 +720,28 @@ CheckMovementWalkWarp::
 	cp -1
 	jp nz, CheckMovementWalkRegular
 	call z, .moved_out_of_bounds
-	ld a, FACE_DOWN
+	ld a, movement_turn_head | DOWN
 	ret
 .up
 	ld a, [wTileUp]
 	cp -1
 	jp nz, CheckMovementWalkRegular
 	call z, .moved_out_of_bounds
-	ld a, FACE_UP
+	ld a, movement_turn_head | UP
 	ret
 .left
 	ld a, [wTileLeft]
 	cp -1
 	jp nz, CheckMovementWalkRegular
 	call z, .moved_out_of_bounds
-	ld a, FACE_LEFT
+	ld a, movement_turn_head | LEFT
 	ret
 .right
 	ld a, [wTileRight]
 	cp -1
 	jp nz, CheckMovementWalkRegular
 	call z, .moved_out_of_bounds
-	ld a, FACE_RIGHT
+	ld a, movement_turn_head | RIGHT
 	ret
 
 .moved_out_of_bounds
@@ -788,7 +788,7 @@ CheckMovementWalkJump:
 	jr z, .jump_down
 	jp CheckWalkDown
 .jump_down
-	ld a, JUMP_DOWN
+	ld a, movement_jump_step | DOWN
 	ret
 
 .up
@@ -802,7 +802,7 @@ CheckMovementWalkJump:
 	jr z, .jump_up
 	jp CheckWalkUp
 .jump_up
-	ld a, JUMP_UP
+	ld a, movement_jump_step | UP
 	ret
 
 .left
@@ -816,7 +816,7 @@ CheckMovementWalkJump:
 	jr z, .jump_left
 	jp CheckWalkLeft
 .jump_left
-	ld a, JUMP_LEFT
+	ld a, movement_jump_step | LEFT
 	ret
 
 .right
@@ -830,7 +830,7 @@ CheckMovementWalkJump:
 	jr z, .jump_right
 	jp CheckWalkRight
 .jump_right
-	ld a, JUMP_RIGHT
+	ld a, movement_jump_step | RIGHT
 	ret
 
 CheckWalkDown::
@@ -841,10 +841,10 @@ CheckWalkDown::
 	ld a, [wTileDown]
 	call CheckCollisionSolid
 	jr c, .face_down
-	ld a, STEP_DOWN
+	ld a, movement_step | DOWN
 	ret
 .face_down
-	ld a, FACE_DOWN
+	ld a, movement_turn_head | DOWN
 	ret
 
 CheckWalkUp::
@@ -855,10 +855,10 @@ CheckWalkUp::
 	ld a, [wTileUp]
 	call CheckCollisionSolid
 	jr c, .face_up
-	ld a, STEP_UP
+	ld a, movement_step | UP
 	ret
 .face_up
-	ld a, FACE_UP
+	ld a, movement_turn_head | UP
 	ret
 
 CheckWalkLeft::
@@ -869,10 +869,10 @@ CheckWalkLeft::
 	ld a, [wTileLeft]
 	call CheckCollisionSolid
 	jr c, .face_left
-	ld a, STEP_LEFT
+	ld a, movement_step | LEFT
 	ret
 .face_left
-	ld a, FACE_LEFT
+	ld a, movement_turn_head | LEFT
 	ret
 
 CheckWalkRight::
@@ -883,16 +883,16 @@ CheckWalkRight::
 	ld a, [wTileRight]
 	call CheckCollisionSolid
 	jr c, .face_right
-	ld a, STEP_RIGHT
+	ld a, movement_step | RIGHT
 	ret
 .face_right
-	ld a, FACE_RIGHT
+	ld a, movement_turn_head | RIGHT
 	ret
 
 CheckMovementSurf::
 	ld a, [wPlayerTile]
 	swap a
-	and  LOW((COLLISION_TYPE_MASK >> 4) | (COLLISION_TYPE_MASK << 4))
+	and COLLISION_TYPE_MASK >> 4
 	ld hl, .SurfCollisionTable
 	jp CallJumptable
 
@@ -932,21 +932,21 @@ CheckMovementSurfWater::
 	cp (COLLISION_WATERFALL & COLLISION_SUBTYPE_MASK)
 	jr nz, CheckMovementSurfRegular
 ; waterfall
-	ld a, FAST_STEP_DOWN
+	ld a, movement_big_step | DOWN
 	ret
 
 CheckMovementSurfWater2::
 	ld a, [wPlayerTile]
 	and COLLISION_WATER_SUBTYPE_MASK
-	ld d, STEP_RIGHT
+	ld d, movement_step | RIGHT
 	jr z, .finish ; COLLISION_WATER2_E
-	ld d, STEP_LEFT
+	ld d, movement_step | LEFT
 	cp (COLLISION_WATER2_W & COLLISION_WATER_SUBTYPE_MASK)
 	jr z, .finish
-	ld d, STEP_UP
+	ld d, movement_step | UP
 	cp (COLLISION_WATER2_N & COLLISION_WATER_SUBTYPE_MASK)
 	jr z, .finish
-	ld d, STEP_DOWN
+	ld d, movement_step | DOWN
 	cp (COLLISION_WATER2_S & COLLISION_WATER_SUBTYPE_MASK)
 	jr z, .finish
 	; fall-through --> no aliasing due to mask
@@ -964,10 +964,10 @@ CheckSurfDown:
 	jr c, .face_down ; FIXME: This assumes cut-trees are solid, which they aren't.
 	                ;        You can walk into them from water because of this.
 	call nz, SurfDismount
-	ld a, STEP_DOWN
+	ld a, movement_step | DOWN
 	ret
 .face_down
-	ld a, FACE_DOWN
+	ld a, movement_turn_head | DOWN
 	ret
 
 CheckSurfUp:
@@ -980,10 +980,10 @@ CheckSurfUp:
 	jr c, .face_up ; FIXME: This assumes cut-trees are solid, which they aren't.
 	              ;        You can walk into them from water because of this.
 	call nz, SurfDismount
-	ld a, STEP_UP
+	ld a, movement_step | UP
 	ret
 .face_up
-	ld a, FACE_UP
+	ld a, movement_turn_head | UP
 	ret
 
 CheckSurfLeft:
@@ -996,10 +996,10 @@ CheckSurfLeft:
 	jr c, .face_left ; FIXME: This assumes cut-trees are solid, which they aren't.
 	                ;        You can walk into them from water because of this.
 	call nz, SurfDismount
-	ld a, STEP_LEFT
+	ld a, movement_step | LEFT
 	ret
 .face_left
-	ld a, FACE_LEFT
+	ld a, movement_turn_head | LEFT
 	ret
 
 CheckSurfRight:
@@ -1012,10 +1012,10 @@ CheckSurfRight:
 	jr c, .face_right ; FIXME: This assumes cut-trees are solid, which they aren't.
 	                 ;        You can walk into them from water because of this.
 	call nz, SurfDismount
-	ld a, STEP_RIGHT
+	ld a, movement_step | RIGHT
 	ret
 .face_right
-	ld a, FACE_RIGHT
+	ld a, movement_turn_head | RIGHT
 	ret
 
 SurfDismount:

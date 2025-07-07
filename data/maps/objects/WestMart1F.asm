@@ -18,7 +18,7 @@ WestMart1F_MapEvents::
 	bg_event  3,  0, 2
 
 	def_object_events
-	object_event  7,  1, SPRITE_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  1, SPRITE_RECEPTIONIST, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestMart1F_Blocks::
 INCBIN "maps/WestMart1F.blk"

@@ -18,9 +18,9 @@ WestMart6F_MapEvents::
 	bg_event 14,  0, 5
 
 	def_object_events
-	object_event 12,  3, SPRITE_OFFICER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6,  4, SPRITE_RHYDON, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  3,  6, SPRITE_PIDGEY, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 12,  3, SPRITE_OFFICER, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  4, SPRITE_RHYDON, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  6, SPRITE_PIDGEY, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestMart6F_Blocks::
 INCBIN "maps/WestMart6F.blk"

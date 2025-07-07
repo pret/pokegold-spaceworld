@@ -396,8 +396,8 @@ _InitScrollingMenu::
 	ldh [hBGMapMode], a
 	inc a
 	ldh [hInMenu], a
-	ld hl, wce5f
-	set 4, [hl]
+	ld hl, wOptions
+	set NO_TEXT_SCROLL_F, [hl]
 	call asm_243c3
 	call asm_243fc
 	ld c, $0a
@@ -416,8 +416,8 @@ _ScrollingMenu::
 	ld [wMenuJoypad], a
 	ld a, $00
 	ldh [hInMenu], a
-	ld hl, wce5f
-	res 4, [hl]
+	ld hl, wOptions
+	res NO_TEXT_SCROLL_F, [hl]
 	ret
 
 Function242a3:
@@ -511,7 +511,7 @@ Function24342:
 	ret
 
 asm_2434e:
-	ld hl, w2DMenuFlags + 1
+	ld hl, w2DMenuFlags2
 	bit 7, [hl]
 	jp z, SetFFInAccumulator
 	ld a, [wMenuDataHeaderEnd]
@@ -522,7 +522,7 @@ asm_2434e:
 	ret
 
 asm_24362:
-	ld hl, w2DMenuFlags + 1
+	ld hl, w2DMenuFlags2
 	bit 7, [hl]
 	jp z, SetFFInAccumulator
 	ld a, [wMenuDataHeaderEnd]
@@ -533,7 +533,7 @@ asm_24362:
 	ret
 
 asm_24376:
-	ld hl, w2DMenuFlags + 1
+	ld hl, w2DMenuFlags2
 	bit 7, [hl]
 	jp z, ClearAccumulator
 	ld hl, wMenuScrollPosition
@@ -544,7 +544,7 @@ asm_24376:
 	jp ClearAccumulator
 
 asm_2438a:
-	ld hl, w2DMenuFlags + 1
+	ld hl, w2DMenuFlags2
 	bit 7, [hl]
 	jp z, ClearAccumulator
 	ld hl, wMenuScrollPosition
@@ -642,9 +642,9 @@ asm_2442e:
 	jr z, asm_24434
 	set 1, a
 asm_24434:
-	ld [w2DMenuFlags], a
+	ld [w2DMenuFlags1], a
 	xor a
-	ld [w2DMenuFlags + 1], a
+	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
 	ld a, $c3
@@ -1426,7 +1426,7 @@ MonMenuLoop:
 	ld [wMenuDataItems], a
 	call InitVerticalMenuCursor
 
-	ld hl, w2DMenuFlags
+	ld hl, w2DMenuFlags1
 	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 
 	call Get2DMenuJoypad
@@ -1486,7 +1486,7 @@ GetMonMenuString:
 	inc hl
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	ret
 
 .NotMove:
@@ -1635,7 +1635,7 @@ BattleMonMenu:
 	bit STATICMENU_CURSOR_F, a
 	jr z, .set_carry
 	call InitVerticalMenuCursor
-	ld hl, w2DMenuFlags
+	ld hl, w2DMenuFlags1
 	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call Get2DMenuJoypad
 	bit B_BUTTON_F, a
@@ -1822,7 +1822,7 @@ asm_24bee:
 	jr z, asm_24c12
 	ld a, $30
 asm_24c12:
-	ld [w2DMenuFlags], a
+	ld [w2DMenuFlags1], a
 	ld a, [wMenuDataIndicesPointer]
 	or $20
 	ld [w2DMenuCursorOffsets], a

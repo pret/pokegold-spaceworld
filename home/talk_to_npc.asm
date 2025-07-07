@@ -147,7 +147,7 @@ Function30e8::
 	ret
 
 GetFacingPersonText::
-	farcall Function776e
+	farcall CheckFacingObject
 	ret nc
 	call TurnNPCTalkingTo
 	scf
@@ -221,7 +221,7 @@ TextboxCleanup:
 	ret
 
 Function318f:
-	callfar Function140ea
+	callfar LoadWalkingSpritesGFX
 	call RedrawPlayerSprite
 	ret
 

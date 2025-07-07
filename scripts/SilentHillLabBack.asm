@@ -44,7 +44,7 @@ SilentHillLabBackScript1:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 0
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld a, 0
 	ld hl, SilentHillLabBackMovement1
 	call LoadMovementDataPointer
@@ -59,7 +59,10 @@ SilentHillLabBackScript1:
 	ret
 
 SilentHillLabBackMovement1:
-	db 09, 09, 05, $32
+	step UP
+	step UP
+	slow_step UP
+	step_end
 
 SilentHillLabBackScript2:
 	ld hl, wc5ed
@@ -88,7 +91,7 @@ SilentHillLabBackRivalChoosePokemon:
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	ld a, 3
-	call Function17f9
+	call FreezeAllOtherObjects
 	ld hl, SilentHillLabBackMovementPointers
 	ld a, [wChosenStarter]
 	ld d, 0
@@ -114,7 +117,12 @@ SilentHillLabBackMovementPointers:
 	dw SilentHillLabBackMovement2+2
 
 SilentHillLabBackMovement2:
-	db $0B, $0B, $0B, $0B, $05, $32
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	slow_step UP
+	step_end
 
 SilentHillLabBackScript5:
 	ld hl, SilentHillLabBackTextString12

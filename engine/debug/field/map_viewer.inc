@@ -57,7 +57,7 @@ DebugMapViewer::
 	jr c, .continue
 	call Function2c4a
 	jr nc, .loop
-	callfar Function824c
+	callfar CheckObjectEnteringVisibleRange
 	jr .loop
 
 .continue
@@ -99,10 +99,10 @@ DebugMapViewer::
 	ret
 
 .Init:
-	call Function18b4
+	call FreezePlayer
 	call DebugMapViewer_LoadCursorSprite
 	call DebugMapViewer_ReplacePlayerObject
-	ld a, $2a
+	ld a, movement_step_sleep
 	ld [wMovementObject], a
 	ld a, DEBUGMAPVIEWER_CONTROL_CURSOR
 	ldh [hDebugMapViewerJumptable], a
@@ -124,32 +124,32 @@ DebugMapViewer::
 	jr .apply_movement
 .start_pressed
 	call DebugMapViewer_ShowViewerPrompt
-	ld a, $2a
+	ld a, movement_step_sleep
 	jr .apply_movement
 .a_pressed
 	call DebugMapViewer_ShowSelectedDetails
-	ld a, $2a
+	ld a, movement_step_sleep
 .apply_movement
 	ld [wMovementObject], a
 	and a
 	ret
 
 .MoveCursorToPlayer:
-	ld a, 1
+	ld a, MAP_VIEWER_CURSOR
 	ld hl, wMovementBuffer
 	call LoadMovementDataPointer
-	ld d, 2
-	ld b, 1
-	ld c, 0
-	callfar Function83a2
+	ld d, STEP_BIKE
+	ld b, MAP_VIEWER_CURSOR
+	ld c, PLAYER
+	callfar ObjectWalkToPlayer
 	ld a, DEBUGMAPVIEWER_WAIT_FINISHED_MOVING
 	ldh [hDebugMapViewerJumptable], a
 	and a
 	ret
 
 .WaitFinishedMoving:
-	ld hl, wVramState
-	bit 7, [hl]
+	ld hl, wStateFlags
+	bit SCRIPTED_MOVEMENT_STATE_F, [hl]
 	jr nz, .skip
 	ld a, DEBUGMAPVIEWER_CLEANUP
 	ldh [hDebugMapViewerJumptable], a
@@ -158,11 +158,11 @@ DebugMapViewer::
 	ret
 
 .Cleanup:
-	ld a, 1
+	ld a, MAP_VIEWER_CURSOR
 	call DeleteMapObject
-	call Function18cc
-	ld a, 0
-	call Function1908
+	call UnfreezePlayer
+	ld a, PLAYER
+	call CenterObject
 	xor a
 	ldh [hDebugMapViewerJumptable], a
 	scf
@@ -190,7 +190,7 @@ DebugMapViewer_ShowSelectedDetails:
 	ld a, 0
 	ldh [hTextBoxCursorBlinkInterval], a
 	ld bc, wObjectStructs
-	callfar Function77a1
+	callfar WillObjectBumpIntoSomeoneElse
 	jr nc, .skip
 	call RefreshScreen
 	call .DisplayActorCastID
@@ -208,7 +208,7 @@ DebugMapViewer_ShowSelectedDetails:
 ; (referred to as "actor number")
 	ld de, hEventID
 	hlcoord 10, 14
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNumber
 
 ; Display index of selected object from visible objects
@@ -218,12 +218,12 @@ DebugMapViewer_ShowSelectedDetails:
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
-	cp $10
+	cp NUM_OBJECTS
 	jr nc, .invalid_index
 	ld d, h
 	ld e, l
 	hlcoord 10, 16
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNumber
 	jr .wait
 
@@ -259,7 +259,7 @@ DebugMapViewer_DoMovement:
 	bit D_RIGHT_F, a
 	jr nz, .right
 .done
-	ld a, $2a
+	ld a, movement_step_sleep
 	ret
 
 .down
@@ -324,19 +324,20 @@ DebugMapViewer_DoMovement:
 
 DebugMapViewer_ReplacePlayerObject:
 	callfar DebugMapViewer_SetupCursor
-	ld a, 1
-	call Function15ed
-	ld a, 1
-	call Function1908
-	ld bc, wObjectStructs
+	ld a, MAP_VIEWER_CURSOR
+	call CopyMapObjectToReservedObjectStruct
+	ld a, MAP_VIEWER_CURSOR
+	call CenterObject
+	ld bc, wReservedObjectStruct
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set 3, [hl]
-	set 2, [hl]
-	set 1, [hl]
+	set SLIDING_F, [hl]
+	set FIXED_FACING_F, [hl]
+	set WONT_DELETE_F, [hl]
 	ret
 
-Datafd044:
+; Already handled by DebugMapViewer_SetupCursor
+.Unreferenced_CursorObjectTemplate:
 	object_event -4, -4, SPRITE_GOLD, $17, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
 	ds 2
 
@@ -348,8 +349,8 @@ DebugMapViewer_LoadCursorSprite:
 	xor a
 	ldh [hBGMapMode], a
 	ld de, TownMapCursorGFX
-	ld hl, $80c0
-	ld bc, $3f04
+	ld hl, vChars0 tile $0c
+	lb bc, BANK(TownMapCursorGFX), 4
 	call Get2bpp
 	pop af
 	ldh [hMapAnims], a

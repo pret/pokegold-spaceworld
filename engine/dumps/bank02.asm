@@ -1,8 +1,8 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank02.asm@SpawnPlayer", ROMX
+SECTION "engine/dumps/bank02.asm@_SpawnPlayer", ROMX
 
-SpawnPlayer:
+_SpawnPlayer::
 	ld a, PLAYER
 	ld hl, PlayerObjectTemplate
 	call CopyPlayerObjectTemplate
@@ -15,25 +15,25 @@ SpawnPlayer:
 	ld bc, wMapObjects
 	call CopyMapObjectToObjectStruct
 	ld a, PLAYER_OBJECT
-	call Function1908
+	call CenterObject
 	ret
 
 PlayerObjectTemplate:
-	object_event -4, -4, SPRITE_GOLD, $10, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
+	object_event -4, -4, SPRITE_GOLD, SPRITEMOVEFN_OBEY_DPAD, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
 	db $00, $00
 
-SpawnFollower:
+SpawnFollower::
 	call SetFollowerDefaultAttributes
-	ld a, [wUsedSprites+1]
+	ld a, [wUsedSprites + 1]
 	ld [wMap1ObjectSprite], a
 	ld a, FOLLOWER
-	call Function1602
+	call CopyMapObjectToFollowerObjectStruct
 	ld b, PLAYER
 	ld c, FOLLOWER
 	call StartFollow
 	ret
 
-SetFollowerDefaultAttributes:
+SetFollowerDefaultAttributes::
 	ld a, FOLLOWER
 	ld hl, FollowerObjectTemplate
 	call CopyPlayerObjectTemplate
@@ -45,35 +45,35 @@ SetFollowerDefaultAttributes:
 	ret
 
 FollowerObjectTemplate:
-	object_event -4, -4, SPRITE_RHYDON, $18, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0
+	object_event -4, -4, SPRITE_RHYDON, SPRITEMOVEFN_FOLLOW_2, 15, 15, 0, 0, 0, 0, 0, 0, 0, 0
 	db $00, $00
 
-DeleteFollower:
+DeleteFollower::
 	ld a, FOLLOWER
 	call DeleteMapObject
 	xor a
 	ld [wObjectFollow_Follower], a
-	ld a, $ff
+	ld a, -1
 	ld [wObjectFollow_Leader], a
 	ret
 
-DebugMapViewer_SetupCursor:
-	ld a, $01
-	ld hl, Data8089
+DebugMapViewer_SetupCursor::
+	ld a, MAP_VIEWER_CURSOR ; Temporarily overwrites the follower's map object
+	ld hl, .CursorObjectTemplate
 	call CopyPlayerObjectTemplate
-	ld a, $01
+	ld a, MAP_VIEWER_CURSOR
 	call Spawn_ConvertCoords
 	ret
 
-Data8089:
+.CursorObjectTemplate:
 	object_event -4, -4, SPRITE_GOLD, $17, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
 	db $00, $00
 
-_InitializeVisibleSprites:
+_InitializeVisibleSprites::
 	ld bc, wMap2Object
 	ld a, 2
 .loop
-	ldh [hConnectionStripLength], a
+	ldh [hMapObjectIndex], a
 	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
@@ -112,7 +112,7 @@ _InitializeVisibleSprites:
 	jr nc, .next
 
 	push bc
-	call Function80eb
+	call CopyObjectStruct
 	pop bc
 	jp c, .ret
 
@@ -121,7 +121,7 @@ _InitializeVisibleSprites:
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hConnectionStripLength]
+	ldh a, [hMapObjectIndex]
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
@@ -130,21 +130,21 @@ _InitializeVisibleSprites:
 .ret:
 	ret
 
-Function80eb:
-	call Function811a
+CopyObjectStruct::
+	call CheckObjectMask
 	and a
 	ret nz ; masked
 
-	ld hl, wObject1StructEnd
-	ld a, $03
+	ld hl, wObjectStructs + OBJECT_LENGTH * 3
+	ld a, 3
 	ld de, OBJECT_LENGTH
 .loop
-	ldh [hConnectedMapWidth], a
+	ldh [hObjectStructIndex], a
 	ld a, [hl]
 	and a
 	jr z, .done
 	add hl, de
-	ldh a, [hConnectedMapWidth]
+	ldh a, [hObjectStructIndex]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -155,43 +155,43 @@ Function80eb:
 	ld d, h
 	ld e, l
 	call CopyMapObjectToObjectStruct
-	ld a, [wVramState]
-	bit 7, a
+	ld a, [wStateFlags]
+	bit SCRIPTED_MOVEMENT_STATE_F, a
 	ret z
 
 	ld hl, OBJECT_FLAGS2
 	add hl, de
-	set 5, [hl]
+	set FROZEN_F, [hl]
 	ret
 
-Function811a:
-	ldh a, [hConnectionStripLength]
+CheckObjectMask::
+	ldh a, [hMapObjectIndex]
 	ld e, a
-	ld d, $00
-	ld hl, wUnknownWordcc9c
+	ld d, 0
+	ld hl, wObjectMasks
 	add hl, de
 	ld a, [hl]
 	ret
 
-Function8125:
-	ldh a, [hConnectionStripLength]
-	ld e, a
-	ld d, $00
-	ld hl, wUnknownWordcc9c
-	add hl, de
-	ld [hl], $ff
-	ret
-
-Function8131:
+MaskObject::
 	ldh a, [hMapObjectIndex]
 	ld e, a
-	ld d, $00
-	ld hl, wUnknownWordcc9c
+	ld d, 0
+	ld hl, wObjectMasks
 	add hl, de
-	ld [hl], $00
+	ld [hl], -1 ; masked
 	ret
 
-CopyMapObjectToObjectStruct:
+UnmaskObject::
+	ldh a, [hMapObjectIndex]
+	ld e, a
+	ld d, 0
+	ld hl, wObjectMasks
+	add hl, de
+	ld [hl], 0 ; unmasked
+	ret
+
+CopyMapObjectToObjectStruct::
 	ldh a, [hMapObjectIndex]
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, de
@@ -270,7 +270,7 @@ CopyMapObjectToObjectStruct:
 	add hl, de
 	ld [hl], a
 
-	call Function820d
+	call GetSpriteVTile
 	ld hl, OBJECT_SPRITE_TILE
 	add hl, de
 	ld [hl], a
@@ -289,336 +289,356 @@ CopyMapObjectToObjectStruct:
 	and a
 	ret
 
-InitObjectFlags:
+InitObjectFlags::
 	ld hl, OBJECT_FLAGS1
 	add hl, de
-	ld [hl], $70
+	ld [hl], COLLISION_OBJS | NOCLIP_NOT_SET | COLLISION_TILES
 	ldh a, [hObjectStructIndex]
 	push hl
 	ld hl, wCenteredObject
 	cp [hl]
 	pop hl
-	jr nz, .sub_81e0
-	set 7, [hl]
-.sub_81e0
-	cp $01
-	jr z, .sub_81e8
-	cp $02
-	jr nz, .sub_81ea
-.sub_81e8
-	set 1, [hl]
-.sub_81ea
+	jr nz, .not_centered
+	set CENTERED_OBJECT_F, [hl]
+
+.not_centered
+	cp PLAYER_OBJECT_INDEX
+	jr z, .wont_delete
+	cp FOLLOWER_OBJECT_INDEX
+	jr nz, .will_delete
+
+.wont_delete
+	set WONT_DELETE_F, [hl]
+.will_delete
 	ld hl, OBJECT_FLAGS2
 	add hl, de
-	ld [hl], $00
+	ld [hl], 0
 	ldh a, [hObjectStructIndex]
-	cp $01
+	cp PLAYER_OBJECT_INDEX
 	ret z
-	set 4, [hl]
+	set COLLISION_TILES_F, [hl]
 	ret
 
 CopyMapObject_Radius:
 	push af
 	swap a
-	and $0f
+	and $f
 	inc a
 	ld hl, OBJECT_RADIUS_X
 	add hl, de
 	ld [hl], a
 	pop af
-	and $0f
+	and $f
 	inc a
 	ld hl, OBJECT_RADIUS_Y
 	add hl, de
 	ld [hl], a
 	ret
 
-Function820d:
+GetSpriteVTile:
 	push af
 	ldh a, [hMapObjectIndex]
 	cp PLAYER_OBJECT
 	jr nz, .not_player
 	pop af
-	ld a, $00
+	ld a, $0 ; offset of player tiles
 	ret
 .not_player
-	cp $01
-	jr nz, .sub_8220
+	cp FOLLOWER
+	jr nz, .not_follower
 	pop af
-	ld a, $0c
+	ld a, $c ; offset of follower's tiles
 	ret
-.sub_8220
+
+.not_follower
 	pop af
 	push hl
 	push de
 	ld d, a
-	ld e, $00
-	ld hl, wUsedNPCSprites
-.sub_8229
+	ld e, 0
+	ld hl, wUsedSprites + 2
+.loop
 	ld a, [hli]
 	cp d
-	jr z, .sub_8238
+	jr z, .found
+
 	inc e
 	ld a, e
-	cp $0a
-	jr nz, .sub_8229
-	ld a, $00
+	cp SPRITE_GFX_LIST_CAPACITY - 2
+	jr nz, .loop
+	ld a, 0
 	scf
-	jr .sub_823f
-.sub_8238
-	ld hl, Data8242
+	jr .done
+
+.found
+	ld hl, .VTileOffsets
 	ld d, $00
 	add hl, de
 	ld a, [hl]
-.sub_823f
+.done
 	pop de
 	pop hl
 	ret
 
-Data8242:
-	db $18, $24, $30, $3c, $48, $54, $60, $6c
-	db $78, $7c
+.VTileOffsets:
+	db $18, $24, $30, $3c, $48, $54, $60, $6c, $78, $7c
 
-Function824c:
+CheckObjectEnteringVisibleRange::
 	nop
 	ld a, [wPlayerStepDirection]
-	cp $ff
+	cp STANDING
 	ret z
-	ld hl, Table8259
+	ld hl, .dw
 	jp CallJumptable
 
-Table8259:
-	dw Function8299
-	dw Function8292
-	dw Function82e6
-	dw Function82ed
+.dw:
+	dw CheckVisibleRange_Down
+	dw CheckVisibleRange_Up
+	dw CheckVisibleRange_Left
+	dw CheckVisibleRange_Right
 
-Function8261:
+EmptyFunction8261:
 	ret
 
-Function8262:
+Unreferenced_CheckObjectEnteringVisibleRange_Alternate::
 	ld a, [wPlayerStepDirection]
-	cp $ff
+	cp STANDING
 	ret z
-	ld hl, Table826e
+	ld hl, .dw
 	jp CallJumptable
 
-Table826e:
-	dw Function827d
-	dw Function8276
-	dw Function8284
-	dw Function828b
+.dw:
+	dw CheckVisibleRange_DownAlt
+	dw CheckVisibleRange_UpAlt
+	dw CheckVisibleRange_LeftAlt
+	dw CheckVisibleRange_RightAlt
 
-Function8276:
+CheckVisibleRange_UpAlt:
 	ld a, [wYCoord]
-	sub $02
-	jr Function829e
+	sub 2
+	jr CheckVisibleRange_Vertical
 
-Function827d:
+CheckVisibleRange_DownAlt:
 	ld a, [wYCoord]
-	add $0a
-	jr Function829e
+	add 10
+	jr CheckVisibleRange_Vertical
 
-Function8284:
+CheckVisibleRange_LeftAlt:
 	ld a, [wXCoord]
-	sub $02
-	jr Function82f2
+	sub 2
+	jr CheckVisibleRange_Horizontal
 
-Function828b:
+CheckVisibleRange_RightAlt:
 	ld a, [wXCoord]
-	add $0b
-	jr Function82f2
+	add 11
+	jr CheckVisibleRange_Horizontal
 
-Function8292:
+CheckVisibleRange_Up::
 	ld a, [wYCoord]
-	sub $01
-	jr Function829e
+	sub 1
+	jr CheckVisibleRange_Vertical
 
-Function8299:
+CheckVisibleRange_Down::
 	ld a, [wYCoord]
-	add $09
-
-Function829e:
+	add 9
+CheckVisibleRange_Vertical::
 	ld d, a
 	ld a, [wXCoord]
 	ld e, a
 	ld bc, wMap2Object
-	ld a, $02
-.sub_82a8
-	ldh [hConnectionStripLength], a
-	ld hl, $0001
+	ld a, 2
+.loop_v
+	ldh [hMapObjectIndex], a
+	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .sub_82d8
-	ld hl, $0002
+	jr z, .next_v
+
+	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld a, d
 	cp [hl]
-	jr nz, .sub_82d8
-	ld hl, $0000
+	jr nz, .next_v
+
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr nz, .sub_82d8
-	ld hl, $0003
+	cp -1
+	jr nz, .next_v
+
+	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld a, [hl]
-	add $01
+	add 1
 	sub e
-	jr c, .sub_82d8
-	cp $0c
-	jr nc, .sub_82d8
+	jr c, .next_v
+
+	cp MAPOBJECT_SCREEN_WIDTH
+	jr nc, .next_v
+
 	push de
 	push bc
-	call Function80eb
+	call CopyObjectStruct
 	pop bc
 	pop de
-.sub_82d8
-	ld hl, $0010
+.next_v
+	ld hl, MAPOBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hConnectionStripLength]
+	ldh a, [hMapObjectIndex]
 	inc a
-	cp $10
-	jr nz, .sub_82a8
+	cp NUM_OBJECTS
+	jr nz, .loop_v
 	ret
 
-Function82e6:
+CheckVisibleRange_Left::
 	ld a, [wXCoord]
-	sub $01
-	jr Function82f2
+	sub 1
+	jr CheckVisibleRange_Horizontal
 
-Function82ed:
+CheckVisibleRange_Right::
 	ld a, [wXCoord]
-	add $0a
-
-Function82f2:
+	add 10
+CheckVisibleRange_Horizontal::
 	ld e, a
 	ld a, [wYCoord]
 	ld d, a
 	ld bc, wMap2Object
-	ld a, $02
-.sub_82fc
+	ld a, 2
+.loop_h
 	ldh [hConnectionStripLength], a
-	ld hl, $0001
+	ld hl, MAPOBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .sub_832c
-	ld hl, $0003
+	jr z, .next_h
+
+	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld a, e
 	cp [hl]
-	jr nz, .sub_832c
-	ld hl, $0000
+	jr nz, .next_h
+
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr nz, .sub_832c
-	ld hl, $0002
+	cp -1
+	jr nz, .next_h
+
+	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld a, [hl]
 	add $01
 	sub d
-	jr c, .sub_832c
-	cp $0b
-	jr nc, .sub_832c
+	jr c, .next_h
+
+	cp MAPOBJECT_SCREEN_HEIGHT
+	jr nc, .next_h
+
 	push de
 	push bc
-	call Function80eb
+	call CopyObjectStruct
 	pop bc
 	pop de
-.sub_832c
-	ld hl, $0010
+.next_h
+	ld hl, MAPOBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hConnectionStripLength]
+	ldh a, [hMapObjectIndex]
 	inc a
-	cp $10
-	jr nz, .sub_82fc
+	cp NUM_OBJECTS
+	jr nz, .loop_h
 	ret
 
-Function833a:
+; Determines path of object 'b' to map coordinates 'de' at speed 'c'.
+; Makes the object invisible for the duration of the path.
+ComputeObjectPathToCoords_Invisible::
 	ld a, c
 	push af
 	call InitMovementBuffer
-	ld a, $29
+	ld a, movement_hide_object
 	call AppendToMovementBuffer
+
 	ld a, b
 	call GetMapObject
-	ld hl, $0000
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr z, .sub_8361
+	cp -1
+	jr z, .not_loaded
+
 	call GetObjectStruct
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld b, [hl]
 	ld c, a
-	jr .sub_836c
-.sub_8361
-	ld hl, $0002
+	jr .done
+
+.not_loaded
+	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0003
+	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld b, [hl]
 	ld c, a
-.sub_836c
+.done
 	pop af
-	call ComputePathToWalkToPlayer
-	ld a, $28
+	call ComputePathToWalkToDestination
+	ld a, movement_show_object
 	call AppendToMovementBuffer
-	ld a, $32
+	ld a, movement_step_end
 	call AppendToMovementBuffer
 	xor a
 	ret
 
-Function837c:
+; Determines path of object 'b' to map coordinates 'de' at speed 'c'.
+Unreferenced_ComputeObjectPathToCoords::
 	call InitMovementBuffer
 	push bc
 	ld a, b
 	call GetMapObject
-	ld hl, $0000
+	ld hl, MAPOBJECTTEMPLATE_SPRITE
 	add hl, bc
 	ld a, [hl]
 	call GetObjectStruct
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld c, [hl]
 	ld b, a
 	pop hl
 	ld a, l
-	call ComputePathToWalkToPlayer
-	ld a, $32
+	call ComputePathToWalkToDestination
+	ld a, movement_step_end
 	call AppendToMovementBuffer
 	ret
 
-Function83a2:
+; Creates a path from object 'b' to object 'c' in wMovementBuffer at speed 'd'.
+; Unlike the final game's TrainerWalkToPlayer, the final step isn't removed, so they walk on top of the target instead of in front.
+ObjectWalkToPlayer::
 	push de
 	call InitMovementBuffer
 	pop de
-	call Function83b0
-	ld a, $32
+	call .GetPathToPlayer
+	ld a, movement_step_end
 	call AppendToMovementBuffer
 	ret
 
-Function83b0:
+.GetPathToPlayer:
 	push de
 	push bc
 	ld a, c
 	call GetMapObject
-	ld hl, $0000
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	call GetObjectStruct
@@ -627,35 +647,35 @@ Function83b0:
 	pop bc
 	ld a, b
 	call GetMapObject
-	ld hl, $0000
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	call GetObjectStruct
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld c, [hl]
 	ld b, a
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, de
 	ld a, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, de
 	ld e, [hl]
 	ld d, a
 	pop af
-	call ComputePathToWalkToPlayer
+	call ComputePathToWalkToDestination
 	ret
 
-Function83e8:
-	ld hl, wcb70
+_LoadMinorObjectGFX::
+	ld hl, wQueuedMinorObjectGFX
 	push hl
 	ld a, [hl]
 	ld l, a
-	ld h, $00
-	ld de, .Table83fb
+	ld h, 0
+	ld de, .MinorObjectGFX
 	add hl, hl
 	add hl, de
 	ld e, [hl]
@@ -665,8 +685,8 @@ Function83e8:
 	push de
 	ret
 
-.Table83fb:
-	dw .LoadDone
+.MinorObjectGFX:
+	dw .LoadNull
 	dw .LoadJumpShadow
 	dw .LoadUnknownBouncingOrb
 	dw .LoadShockEmote
@@ -699,7 +719,7 @@ Function83e8:
 	ld [wVBCopyFarSize], a
 	ret
 
-.LoadDone:
+.LoadNull:
 	ret
 
 .LoadShockEmote:
@@ -711,7 +731,7 @@ Function83e8:
 .LoadHappyEmote:
 	ld hl, HappyEmoteGFX
 .load_emote:
-	ld de, vChars1 + $780
+	ld de, vChars1 tile $78
 	ld b, (HappyEmoteGFX.end - HappyEmoteGFX) / LEN_2BPP_TILE
 	ld c, BANK(EmoteGFX)
 	jp .FarCopy
@@ -719,7 +739,7 @@ Function83e8:
 .LoadJumpShadow:
 	ld [hl], $00
 	ld hl, JumpShadowGFX
-	ld de, vChars1 + $7c0
+	ld de, vChars1 tile $7c
 	ld b, (JumpShadowGFX.end - JumpShadowGFX) / LEN_2BPP_TILE
 	ld c, BANK(JumpShadowGFX)
 	jp .FarCopy
@@ -727,7 +747,7 @@ Function83e8:
 .LoadUnknownBouncingOrb:
 	ld [hl], $00
 	ld hl, UnknownBouncingOrbGFX
-	ld de, vChars1 + $7c0
+	ld de, vChars1 tile $7c
 	ld b, (UnknownBouncingOrbGFX.end - UnknownBouncingOrbGFX) / LEN_2BPP_TILE
 	ld c, BANK(UnknownBouncingOrbGFX)
 	jp .FarCopy
@@ -735,7 +755,7 @@ Function83e8:
 .LoadBoulderDust:
 	ld [hl], $00
 	ld hl, BoulderDustGFX
-	ld de, vChars1 + $7c0
+	ld de, vChars1 tile $7c
 	ld b, (BoulderDustGFX.end - BoulderDustGFX) / LEN_2BPP_TILE
 	ld c, BANK(BoulderDustGFX)
 	jp .FarCopy
@@ -790,222 +810,150 @@ Function83e8:
 
 SECTION "engine/dumps/bank02.asm@QueueFollowerFirstStep", ROMX
 
-QueueFollowerFirstStep:
-	call Function85f2
-	jr c, .sub_85ec
+QueueFollowerFirstStep::
+	call .QueueFirstStep
+	jr c, .same
 	ld [wFollowMovementQueue], a
 	xor a
 	ld [wFollowerMovementQueueLength], a
 	ret
-.sub_85ec
-	ld a, $ff
+
+.same
+	ld a, -1
 	ld [wFollowerMovementQueueLength], a
 	ret
 
-Function85f2:
+.QueueFirstStep:
 	ld a, [wObjectFollow_Leader]
 	call GetObjectStruct
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld d, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
 	ld a, [wObjectFollow_Follower]
 	call GetObjectStruct
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, d
 	cp [hl]
-	jr z, .sub_861a
-	jr c, .sub_8616
+	jr z, .check_y
+	jr c, .left
 	and a
-	ld a, $0b
+	ld a, movement_step + RIGHT
 	ret
-.sub_8616
+
+.left
 	and a
-	ld a, $0a
+	ld a, movement_step + LEFT
 	ret
-.sub_861a
-	ld hl, $0011
+
+.check_y
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, e
 	cp [hl]
-	jr z, .sub_862c
-	jr c, .sub_8628
+	jr z, .same_xy
+	jr c, .up
 	and a
-	ld a, $08
+	ld a, movement_step + DOWN
 	ret
-.sub_8628
+	
+.up
 	and a
-	ld a, $09
+	ld a, movement_step + UP
 	ret
-.sub_862c
+
+.same_xy
 	scf
 	ret
 
-Function862e:
+; a = d * sin(e * pi/32)
+_Sine::
 	ld a, e
-	and $3f
-	cp $20
-	jr nc, .sub_863a
-	call Function8644
-	ld a, h
-	ret
-.sub_863a
-	and $1f
-	call Function8644
-	ld a, h
-	xor $ff
-	inc a
-	ret
+	calc_sine_wave
 
-Function8644:
-	ld e, a
-	ld a, d
-	ld d, $00
-	ld hl, Data8660
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, $0000
-.sub_8653
-	srl a
-	jr nc, .sub_8658
-	add hl, de
-.sub_8658
-	sla e
-	rl d
-	and a
-	jr nz, .sub_8653
-	ret
-
-Data8660:
-	dw $00
-	dw $19
-	dw $32
-	dw $4a
-	dw $62
-	dw $79
-	dw $8e
-	dw $a2
-	dw $b5
-	dw $c6
-	dw $d5
-	dw $e2
-	dw $ed
-	dw $f5
-	dw $fb
-	dw $ff
-	dw $100
-	dw $ff
-	dw $fb
-	dw $f5
-	dw $ed
-	dw $e2
-	dw $d5
-	dw $c6
-	dw $b5
-	dw $a2
-	dw $8e
-	dw $79
-	dw $62
-	dw $4a
-	dw $32
-	dw $19
-
-Function86a0:
+TownMap::
 	call InitTownMap
-	ld hl, ClearSpriteAnims
-	ld a, BANK(ClearSpriteAnims)
-	call FarCall_hl
-	call PlaceGoldInMap
+	callfar ClearSpriteAnims
+	call TownMap_InitPlayerIcon
 	call WaitBGMap
 	call SetPalettes
-.sub_86b4
+.loop
 	call DelayFrame
 	call GetJoypadDebounced
-	ld hl, PlaySpriteAnimations
-	ld a, BANK(PlaySpriteAnimations)
-	call FarCall_hl
+	callfar PlaySpriteAnimations
 	ld hl, hJoyDown
 	ld a, [hl]
-	and $03
-	jr z, .sub_86b4
+	and A_BUTTON | B_BUTTON
+	jr z, .loop
 	ret
 
-FlyMap:
+FlyMap::
 	ld hl, hInMenu
 	ld a, [hl]
 	push af
-	ld [hl], $01
+	ld [hl], 1
 	call InitTownMap
-	ld hl, ClearSpriteAnims
-	ld a, BANK(ClearSpriteAnims)
-	call FarCall_hl
-	call PlaceGoldInMap
-	call Function88b3
-	ld hl, wcb60
+	callfar ClearSpriteAnims
+	call TownMap_InitPlayerIcon
+	call FlyMap_InitPidgeyIcon
+	ld hl, wFlyIconAnimStructPointer
 	ld [hl], c
 	inc hl
 	ld [hl], b
-	coord hl, 1, 15
-	ld de, Text8776
+	hlcoord 1, 15
+	ld de, ChooseADestinationText
 	call PlaceString
 	call WaitBGMap
 	call SetPalettes
 	xor a
 	ld [wFlyDestination], a
-.sub_86fc
+.loop
 	call DelayFrame
 	call GetJoypadDebounced
-
 	callfar PlaySpriteAnimations
-
 	ld hl, hJoyDown
 	ld a, [hl]
-	and $02
-	jr nz, .sub_873e
+	and B_BUTTON
+	jr nz, .cancel
 	ld a, [hl]
-	and $01
-	jr nz, .sub_8743
-	call Function8747
-
+	and A_BUTTON
+	jr nz, .fly
+	call .HandleDPad
 	callfar GetFlyPointMapLocation
-
-	ld d, $00
+	ld d, 0
 	ld hl, LandmarkPositions
 	add hl, de
 	add hl, de
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	ld hl, wcb60
+	ld hl, wFlyIconAnimStructPointer
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld hl, $0004
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], e
-	ld hl, $0005
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld [hl], d
-	jr .sub_86fc
-.sub_873e
-	ld a, $ff
+	jr .loop
+
+.cancel
+	ld a, -1
 	ld [wFlyDestination], a
-.sub_8743
+.fly
 	pop af
 	ldh [hInMenu], a
 	ret
 
-; Choose fly destination based on D-Pad input
-Function8747:
+.HandleDPad:
 	ld a, [wFlyDestination]
 	ld l, a
-	ld h, $00
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	ld de, FlyPointPaths
@@ -1013,28 +961,28 @@ Function8747:
 	ld de, hJoySum
 	ld a, [de]
 	and D_UP
-	jr nz, .sub_876e
+	jr nz, .get_point
 	inc hl
 	ld a, [de]
 	and D_DOWN
-	jr nz, .sub_876e
+	jr nz, .get_point
 	inc hl
 	ld a, [de]
 	and D_LEFT
-	jr nz, .sub_876e
+	jr nz, .get_point
 	inc hl
 	ld a, [de]
 	and D_RIGHT
-	jr nz, .sub_876e
+	jr nz, .get_point
 	ret
-.sub_876e
+.get_point
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
 	ld [wFlyDestination], a
 	ret
 
-Text8776:
+ChooseADestinationText:
 	db "とびさき　を　えらんでください@"
 
 Pokedex_GetArea:
@@ -1045,7 +993,7 @@ Pokedex_GetArea:
 
 	call InitTownMap
 	ld de, PokedexNestIconGFX
-	ld hl, vChars0 + 127 tiles
+	ld hl, vChars0 tile $7f
 	lb bc, BANK(PokedexNestIconGFX), 1
 	call Request1bpp
 
@@ -1179,14 +1127,14 @@ DecompTownMapTilemap:
 	inc de
 	jr .loop
 
-PlaceGoldInMap:
+TownMap_InitPlayerIcon:
 	ld de, GoldSpriteGFX
 	ld hl, vChars0
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
 
 	ld de, GoldSpriteGFX + 12 tiles
-	ld hl, vChars0 + $40
+	ld hl, vChars0 tile $04
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
 
@@ -1222,14 +1170,14 @@ PlaceGoldInMap:
 	ld [hl], d
 	ret
 
-Function88b3:
+FlyMap_InitPidgeyIcon:
 	ld de, PidgeySpriteGFX
-	ld hl, vChars0 + 8 tiles
+	ld hl, vChars0 tile $08
 	lb bc, BANK(PidgeySpriteGFX), 4
 	call Request2bpp
 	
 	ld de, PidgeySpriteGFX + 12 tiles
-	ld hl, vChars0 + 12 tiles
+	ld hl, vChars0 tile $0c
 	lb bc, BANK(PidgeySpriteGFX), 4
 	call Request2bpp
 

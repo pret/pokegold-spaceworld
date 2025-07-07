@@ -21,9 +21,9 @@ North_MapEvents::
 	bg_event  8, 12, 4
 
 	def_object_events
-	object_event  9,  6, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 10,  9, SPRITE_BUG_CATCHER_BOY, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  9,  9, SPRITE_TWIN, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  6, SPRITE_GRANNY, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10,  9, SPRITE_BUG_CATCHER_BOY, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  9, SPRITE_TWIN, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 North_Blocks::
 INCBIN "maps/North.blk"

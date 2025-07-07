@@ -405,10 +405,10 @@ ProtectedWaitBGMap::
 TextCommandProcessor::
 ; Process a string of text commands
 ; at hl and write text to bc
-	ld a, [wTextBoxFlags]
+	ld a, [wTextboxFlags]
 	push af
-	set 1, a
-	ld [wTextBoxFlags], a
+	set TEXT_DELAY_F, a
+	ld [wTextboxFlags], a
 	ld a, c
 	ld [wTextDest], a
 	ld a, b
@@ -420,7 +420,7 @@ NextTextCommand::
 	cp "@" ; terminator
 	jr nz, .doTextCommand
 	pop af
-	ld [wTextBoxFlags], a
+	ld [wTextboxFlags], a
 	ret
 .doTextCommand
 	push hl

@@ -3,34 +3,34 @@ INCLUDE "constants.asm"
 SECTION "home/print_text.asm", ROM0
 
 PrintLetterDelay::
-	ld a, [wce5f]
-	bit 4, a
+	ld a, [wOptions]
+	bit NO_TEXT_SCROLL_F, a
 	ret nz
-	ld a, [wTextBoxFlags]
-	bit 1, a
+	ld a, [wTextboxFlags]
+	bit TEXT_DELAY_F, a
 	ret z
 	push hl
 	push de
 	push bc
-	ld a, [wTextBoxFlags]
-	bit 0, a
+	ld a, [wTextboxFlags]
+	bit FAST_TEXT_DELAY_F, a
 	jr z, .waitOneFrame
-	ld a, [wce5f]
-	and $07
+	ld a, [wOptions]
+	and TEXT_DELAY_MASK
 	jr .initFrameCnt
 .waitOneFrame
-	ld a, $01
+	ld a, 1
 .initFrameCnt
 	ld [wVBlankJoyFrameCounter], a
 .checkButtons
 	call GetJoypad
 	ldh a, [hJoyState]
 .checkAButton
-	bit 0, a ; is the A button pressed?
+	bit A_BUTTON_F, a
 	jr z, .checkBButton
 	jr .endWait
 .checkBButton
-	bit 1, a ; is the B button pressed?
+	bit B_BUTTON_F, a
 	jr z, .buttonsNotPressed
 .endWait
 	call DelayFrame

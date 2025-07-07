@@ -30,7 +30,7 @@ PlayBattleAnim:
 
 RunBattleAnimScript_User:
 	ld a, [wOptions]
-	bit BATTLE_SCENE, a
+	bit BATTLE_SCENE_F, a
 	jr z, .enabled
 
 ; If high byte doesn't equal 0, go ahead and skip to the animation-playing part.

@@ -30,17 +30,17 @@ SilentHillLabFront_MapEvents::
 	bg_event  4,  0, 15
 
 	def_object_events
-	object_event  4,  2, SPRITE_OKIDO, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  4,  0, SPRITE_OKIDO, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  3,  4, SPRITE_SILVER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  4,  0, SPRITE_SILVER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  4, 14, SPRITE_BLUE, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  1,  3, SPRITE_BLUE, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  1, 13, SPRITE_NANAMI, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  1,  8, SPRITE_SCIENTIST, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6, 12, SPRITE_SCIENTIST, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  0,  1, SPRITE_POKEDEX, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  1,  1, SPRITE_POKEDEX, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  2, SPRITE_OKIDO, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  0, SPRITE_OKIDO, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  4, SPRITE_SILVER, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  0, SPRITE_SILVER, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4, 14, SPRITE_BLUE, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  3, SPRITE_BLUE, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1, 13, SPRITE_NANAMI, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  8, SPRITE_SCIENTIST, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6, 12, SPRITE_SCIENTIST, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  0,  1, SPRITE_POKEDEX, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  1, SPRITE_POKEDEX, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SilentHillLabFront_Blocks::
 INCBIN "maps/SilentHillLabFront.blk"

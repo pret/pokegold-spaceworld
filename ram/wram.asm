@@ -57,9 +57,7 @@ wMusicFade::
 ; $00 = none (default)
 	db
 wMusicFadeCount:: db
-wMusicFadeID::
-wMusicFadeIDLow:: db
-wMusicFadeIDHigh:: db
+wMusicFadeID:: dw
 
 wSweepingFadeIndex:: db
 wSweepingFadeCounter:: db
@@ -137,6 +135,8 @@ NEXTU
 	ds 1
 
 wClockDialogArrowBlinkCounter:: ds 1
+
+
 wc40a:: ds 1
 
 ; Monster or Trainer test?
@@ -147,6 +147,16 @@ wWhichPicTest::
 wc40c:: ds 1
 wc40d:: ds 1
 wc40e:: ds 1
+NEXTU
+wOptionsMenuCursorX:: db
+wOptionsMenuCursorY:: db
+wOptionsTextSpeedCursorX:: db
+wOptionsBattleAnimCursorX:: db
+wOptionsBattleStyleCursorX:: db
+wOptionsAudioSettingsCursorX:: db
+wOptionsBottomRowCursorX:: db
+NEXTU
+	ds 7
 
 	ds 3
 
@@ -288,6 +298,7 @@ wMapBuffer::
 wMapScriptNumber:: db
 wMapScriptNumberLocation:: dw
 wUnknownMapPointer:: dw ; TODO
+; setting bit 7 seems to disable overworld updates and player control?
 wc5ed:: db
 	ds 18
 wMapBufferEnd::
@@ -734,6 +745,7 @@ wPokedexSlowpokeNumSearchEntries::
 wNestIconBlinkCounter::
 wBattleTransitionCounter:: db
 
+UNION
 wBattleTransitionSineWaveOffset::
 wBattleTransitionSpinQuadrant::
 wIntroSceneTimer::
@@ -741,7 +753,10 @@ wTrainerGearCard::
 wcb60:: ds 1
 
 wTrainerGearRadioIndex::
-wcb61:: ds 1
+wSlotReelIconDelay:: db
+NEXTU
+wFlyIconAnimStructPointer:: dw
+ENDU
 
 wVBCopySize:: ds 1
 wVBCopySrc:: ds 2
@@ -749,14 +764,14 @@ wVBCopyDst:: ds 2
 wVBCopyDoubleSize:: ds 1
 wVBCopyDoubleSrc:: ds 2
 wVBCopyDoubleDst:: ds 2
-wcb6c:: db
-wcb6d:: db
-wcb6e:: db
+wPlayerStepVectorX:: db
+wPlayerStepVectorY:: db
+wPlayerStepFlags:: db
 wPlayerStepDirection:: db
 
 SECTION "CB71", WRAM0[$CB70]
 
-wcb70:: db
+wQueuedMinorObjectGFX:: db
 
 wVBCopyFarSize:: ds 1
 wVBCopyFarSrc:: ds 2
@@ -766,7 +781,7 @@ wPlayerMovement:: db
 wMovementObject:: db
 	ptrba wMovementData
 
-wcb7c:: ds 1
+wIndexedMovement2Pointer:: dw
 
 SECTION "Collision buffer", WRAM0[$CB90]
 
@@ -825,7 +840,17 @@ w2DMenuCursorInitY:: db
 w2DMenuCursorInitX:: db
 w2DMenuNumRows:: db
 w2DMenuNumCols:: db
-w2DMenuFlags:: dw
+w2DMenuFlags1::
+; bit 7: Disable checking of wMenuJoypadFilter
+; bit 6: Enable sprite animations
+; bit 5: Wrap around vertically
+; bit 4: Wrap around horizontally
+; bit 3: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 5 is disabled and we tried to go too far down
+; bit 2: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 5 is disabled and we tried to go too far up
+; bit 1: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 4 is disabled and we tried to go too far left
+; bit 0: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 4 is disabled and we tried to go too far right
+	db
+w2DMenuFlags2:: db
 w2DMenuCursorOffsets:: db
 wMenuJoypadFilter:: db
 w2DMenuDataEnd::
@@ -858,8 +883,6 @@ UNION
 wcc3a::
 wChargeMoveNum::
 wMovementBufferCount:: db
-
-wcc3b::
 wMovementBufferObject:: db
 
 	ptrba wMovementBufferPointer
@@ -876,8 +899,6 @@ wSpriteViewerMenuStartingItem:: db
 wSpriteViewerSavedMenuPointerY:: db
 wSpriteViewerJumptableIndex:: db
 
-	ds 56
-
 NEXTU
 ; trainer HUD data
 	ds 1
@@ -891,11 +912,8 @@ SECTION "CC9A", WRAM0[$CC9A]
 wSkatingDirection:: db
 wCompanionCollisionFrameCounter:: db
 
-wUnknownWordcc9c::
-	dw
-
-wUnknownBuffercc9e::
-	ds 14
+wObjectMasks::
+	ds NUM_OBJECTS
 
 
 wSpriteCurPosX::         ds 1
@@ -969,9 +987,9 @@ wccf4:: ds 1
 
 SECTION "CD11", WRAM0[$CD11]
 
-wcd11:: ds 1
+wMonOrItemNameBuffer:: ds MON_NAME_LENGTH
 
-	ds 11
+	ds MON_NAME_LENGTH
 
 wcd1d:: ds 8
 
@@ -1061,7 +1079,7 @@ wFieldMoveSucceeded::
 ; 2 - switch
 wBattlePlayerAction:: db
 
-wVramState:: db
+wStateFlags:: db
 
 	ds 3 ; TODO
 wcd5d:: db
@@ -1070,11 +1088,9 @@ wChosenStarter:: db
 wcd60:: db
 
 SECTION "CD70", WRAM0[$CD70]
-wcd70:: ds 1
-wcd71:: ds 1
-wcd72:: dw
-wcd74:: db
-wcd75:: db
+wListPointer:: dw
+wNamesPointer:: dw
+wItemAttributesPointer:: dw
 
 wCurItem:: db
 wItemIndex:: db
@@ -1153,7 +1169,13 @@ wEnemyEffectivenessVsPlayerMons:: flag_array PARTY_LENGTH
 wPlayerEffectivenessVsEnemyMons:: flag_array PARTY_LENGTH	
 
 NEXTU
+; Used for an old nickname function and for storing the item price in the shop menu.
+wMiscStringBuffer:: ds STRING_BUFFER_LENGTH
 
+NEXTU
+wExpToNextLevel:: ds 3
+
+NEXTU
 wcdc3:: db
 wcdc4:: db
 wcdc5:: db
@@ -1271,7 +1293,7 @@ wCurDamage:: dw
 wce2d:: ds 1
 
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
-wce32:: ds 1
+wPutativeTMHMMove:: db
 wce33:: ds 1
 wce34:: ds 1
 wWildMon:: db
@@ -1313,11 +1335,11 @@ wTimeOfDay:: db
 ; 02 - Cave                35--50s
 ; 03 - Morning  06--09h    50--59s
 
+wcd3e: ds 1
 wcd3f: ds 1
 
-SECTION "CE5F", WRAM0[$CE5F]
+SECTION "Options", WRAM0[$CE5F]
 
-wce5f:: ; debug menu writes $41 to it
 wOptions::
 ; bit 0-2: number of frames to delay when printing text
 ;   fast 1; mid 3; slow 5
@@ -1328,12 +1350,15 @@ wOptions::
 ; bit 7: battle scene off/on
 	db
 
-wce60::
-	db ; main menu checks this, maybe states if there's a save present?
+; A buffer for sOptions that is used to check if a save file exists.
+; Only checks the bottom bit, for whatever reason.
+wSaveFileExists:: db
 
 wActiveFrame:: db
 
-wTextBoxFlags::  db
+; bit 0: 1-frame text delay
+; bit 1: when unset, no text delay
+wTextboxFlags::  db
 
 wDebugFlags:: db
 ; Bit 0: Debug battle indicator
@@ -1370,20 +1395,20 @@ wFollowMovementQueue::
 	ds 5
 
 wObjectStructs::
-; Note: this might actually not be an object. TODO: Investigate (if indexing starts at 1, then this isn't an object)
-; It might just be unused/a leftover.
-wUnkObjectStruct:: object_struct wUnkObject
+; Object struct reserved for the map viewer cursor and for Blue in Silent Hill.
+; Presumably needed any time they needed something to have a higher priority than the player.
+wReservedObjectStruct:: object_struct wReservedObject
+
 wPlayerStruct::   object_struct wPlayer
 ; wObjectStruct1 - wObjectStruct12
 for n, 1, NUM_OBJECT_STRUCTS - 1
 wObject{d:n}Struct:: object_struct wObject{d:n}
 endr
 
-wCmdQueue::
-wCmdQueueEntry1:: ds 16
-wCmdQueueEntry2:: ds 16
-wCmdQueueEntry3:: ds 16
-wCmdQueueEntry4:: ds 16
+wMinorObjects::
+for n, 0, NUM_MINOR_OBJECTS
+wMinorObject{d:n}Struct:: minor_object wMinorObject{d:n}
+endr
 
 wMapObjects::
 wPlayerObject:: map_object wPlayer ; player is map object 0
@@ -1580,22 +1605,12 @@ wd637:: db ;OW battle state? $3 wild battle, $8 is trainer battle $4 is left bat
 wd638:: db ;wd637's last written-to value
 
 SECTION "Used sprites", WRAM0[$D642]
-wd642:: db
+wUnusedAddOutdoorSpritesReturnValue:: db
 wBGMapAnchor::
 	dw
 
-UNION
-
 wUsedSprites::
 	ds 2
-
-NEXTU
-
-	ds 1
-
-wd646:: db
-
-ENDU
 
 wUsedNPCSprites::
 	ds 8
@@ -1707,15 +1722,9 @@ wAnnonID:: ds 1
 
 wd875:: ds 1
 
-wBufferMonNickname::
-wd876:: ds 1
+wBufferMonNickname:: ds MON_NAME_LENGTH
 
-	ds 5
-
-wBufferMonOT::
-wd87c:: ds 1
-
-	ds 5
+wBufferMonOT:: ds PLAYER_NAME_LENGTH
 
 wd882:: ds 1
 wd883:: ds 1

@@ -18,8 +18,8 @@ OldCityMuseum_MapEvents::
 	bg_event 13,  4, 4
 
 	def_object_events
-	object_event  1,  5, SPRITE_FISHER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 13,  4, SPRITE_EGG, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  5, SPRITE_FISHER, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 13,  4, SPRITE_EGG, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityMuseum_Blocks::
 INCBIN "maps/OldCityMuseum.blk"

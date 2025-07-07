@@ -14,7 +14,7 @@ StandLab_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  2,  3, SPRITE_NURSE, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  3, SPRITE_NURSE, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 StandLab_Blocks::
 INCBIN "maps/StandLab.blk"

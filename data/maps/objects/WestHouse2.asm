@@ -18,9 +18,9 @@ WestHouse2_MapEvents::
 	bg_event  8,  0, 4
 
 	def_object_events
-	object_event  7,  3, SPRITE_GRAMPS, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  8,  6, SPRITE_YOUNGSTER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  1,  5, SPRITE_BUG_CATCHER_BOY, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  3, SPRITE_GRAMPS, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  8,  6, SPRITE_YOUNGSTER, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  5, SPRITE_BUG_CATCHER_BOY, SPRITEMOVEFN_RANDOM_WALK_XY, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestHouse2_Blocks::
 INCBIN "maps/WestHouse2.blk"

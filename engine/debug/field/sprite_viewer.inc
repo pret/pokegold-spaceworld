@@ -13,15 +13,15 @@ FieldDebug_SpriteViewer:
 	call LoadStandardMenuHeader
 	call ClearTileMap
 	call HideSprites
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call .Init
 	call .DoSpriteViewer
 	push af
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call ClearPalettes
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call CloseWindow
 	call UpdateTimePals
 	pop af
@@ -36,7 +36,7 @@ FieldDebug_SpriteViewer:
 	ld [wSpriteViewerMenuStartingItem], a
 	ld a, 1
 	ldh [hTextBoxCursorBlinkInterval], a
-	callfar Function77ad
+	callfar IsObjectFacingSomeoneElse
 	ret nc
 	ldh a, [hEventID]
 	call GetObjectStruct
@@ -259,8 +259,8 @@ FieldDebug_SpriteViewer:
 	call PlaceString
 	call .SetStartingPoint
 	ld c, a
-	callfar Function14144
-	ld hl, vSprites + $c0
+	callfar LoadOverworldSprite_PlayerSlot
+	ld hl, vSprites tile $0c
 	ld de, vFont
 	ld bc, 12
 	call Get2bpp
@@ -355,7 +355,7 @@ FieldDebug_SpriteViewer:
 	ret
 .set_following
 	call .SetStartingPoint
-	ld [wd646], a
+	ld [wUsedSprites + FOLLOWER], a
 	ld a, SPRITEVIEWER_SET_FOLLOWING
 	ld [wSpriteViewerJumptableIndex], a
 	ret

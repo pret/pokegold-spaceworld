@@ -16,7 +16,7 @@ OldCityTower5F_MapEvents::
 	bg_event  4,  1, 3
 
 	def_object_events
-	object_event  2,  3, SPRITE_SAGE, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  3, SPRITE_SAGE, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityTower5F_Blocks::
 INCBIN "maps/OldCityTower5F.blk"

@@ -25,10 +25,10 @@ Fonto_MapEvents::
 	bg_event 10, 12, 5
 
 	def_object_events
-	object_event  2,  4, SPRITE_36, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  2,  5, SPRITE_RHYDON, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  5, 14, SPRITE_YOUNGSTER, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 16,  8, SPRITE_TWIN, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  4, SPRITE_36, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  5, SPRITE_RHYDON, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5, 14, SPRITE_YOUNGSTER, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 16,  8, SPRITE_TWIN, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
 Fonto_Blocks::
 INCBIN "maps/Fonto.blk"

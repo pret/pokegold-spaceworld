@@ -13,11 +13,11 @@ HaitekuLeague2F_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  4,  1, SPRITE_LASS, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  3,  6, SPRITE_24, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  8, 12, SPRITE_COOLTRAINER_F, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  2, 10, SPRITE_24, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  7,  7, SPRITE_COOLTRAINER_F, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  1, SPRITE_LASS, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  6, SPRITE_24, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  8, 12, SPRITE_COOLTRAINER_F, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2, 10, SPRITE_24, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  7, SPRITE_COOLTRAINER_F, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 HaitekuLeague2F_Blocks::
 INCBIN "maps/HaitekuLeague2F.blk"

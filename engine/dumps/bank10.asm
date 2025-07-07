@@ -47,17 +47,17 @@ Pokedex:
 	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set NO_TEXT_SCROLL, [hl]
+	set NO_TEXT_SCROLL_F, [hl]
 
 	ldh a, [hMapAnims]
 	push af
 	xor a
 	ldh [hMapAnims], a
 
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	push af
 	xor a
-	ld [wVramState], a
+	ld [wStateFlags], a
 
 	ldh a, [hJoypadSum]
 	push af
@@ -71,7 +71,7 @@ Pokedex:
 	pop af
 	ldh [hJoypadSum], a	
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	pop af
 	ldh [hMapAnims], a
 	pop af

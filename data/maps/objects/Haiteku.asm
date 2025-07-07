@@ -30,11 +30,11 @@ Haiteku_MapEvents::
 	bg_event 24, 28, 8
 
 	def_object_events
-	object_event 22, 15, SPRITE_TWIN, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 23, 14, SPRITE_CLEFAIRY, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 23, 24, SPRITE_SAILOR, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 26, 10, SPRITE_SAILOR, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 10, 14, SPRITE_GENTLEMAN, SLOW_STEP_DOWN, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 22, 15, SPRITE_TWIN, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 23, 14, SPRITE_CLEFAIRY, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 23, 24, SPRITE_SAILOR, SPRITEMOVEFN_RANDOM_WALK_XY, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 26, 10, SPRITE_SAILOR, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10, 14, SPRITE_GENTLEMAN, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Haiteku_Blocks::
 INCBIN "maps/Haiteku.blk"

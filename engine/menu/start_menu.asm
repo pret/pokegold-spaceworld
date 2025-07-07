@@ -238,7 +238,7 @@ StartMenu_Pokedex:
 	call LoadStandardMenuHeader
 	predef Pokedex
 	call ClearPalettes
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call ReloadFontAndTileset
 	call Call_ExitMenu
 	call GetMemSGBLayout
@@ -337,8 +337,8 @@ CheckItemsQuantity:
 	ret
 
 DrawBackpack:
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call ClearSprites
 	call ClearTileMap
 	callfar LoadBackpackGraphics
@@ -348,8 +348,8 @@ DrawBackpack:
 	call DrawTextBox
 	ret
 
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call ExitMenu
 	ret
 
@@ -357,8 +357,8 @@ StartMenu_Backpack:
 	call CheckItemsQuantity
 	jr c, .NoItems
 	call LoadStandardMenuHeader
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call DrawBackpack
 	xor a
 	ld [wSelectedSwapPosition], a
@@ -373,8 +373,8 @@ StartMenu_Backpack:
 	ld a, 0
 .skip
 	push af
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	xor a
 	ld [wSelectedSwapPosition], a
 	call ClearPalettes
@@ -826,12 +826,12 @@ StartMenuLoadSprites:
 	call DisableLCD
 	ld a, 6
 	call UpdateSoundNTimes
-	callfar Function140d9
+	callfar LoadStandingSpritesGFX
 	call LoadTilesetGFX
 	call LoadFontExtra
 	call ClearSprites
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call UpdateSprites
 	call EnableLCD
 	call GetMemSGBLayout
@@ -982,7 +982,7 @@ PartyHeldItem:
 	jp c, .close
 	call GetCurNick
 	ld hl, wStringBuffer1
-	ld de, wcd11
+	ld de, wMonOrItemNameBuffer
 	ld bc, $0006
 	call CopyBytes
 	ld a, [wMenuCursorY]
@@ -1125,7 +1125,7 @@ PartyHeldItem:
 
 ItemWasEquippedText:
 	db 1
-	dw wcd11
+	dw wMonOrItemNameBuffer
 	text "は　そうび　していた"
 	line "@"
 
@@ -1142,7 +1142,7 @@ ItemWasEquippedText:
 
 ItemPrompt66FA:
 	db 1
-	dw wcd11
+	dw wMonOrItemNameBuffer
 	text "は　@"
 
 .UnusedText3
@@ -1153,7 +1153,7 @@ ItemPrompt66FA:
 
 PartyNoItemToRecieveText:
 	db 1
-	dw wcd11
+	dw wMonOrItemNameBuffer
 	text "は　なにも"
 	line "そうび　していません！<PROMPT>"
 
@@ -1163,7 +1163,7 @@ PartyItemRecieveBagFullText:
 
 ItemPrompt673D:
 	db 1
-	dw wcd11
+	dw wMonOrItemNameBuffer
 	text "から　@"
 
 .UnusedText4
@@ -1174,7 +1174,7 @@ ItemPrompt673D:
 
 ItemPrompt6753:
 	db 1
-	dw wcd11
+	dw wMonOrItemNameBuffer
 	text "は　@"
 
 .UnusedText5:
@@ -1455,13 +1455,13 @@ NeedNewBadgeText:
 	line "まだ　つかえません！<PROMPT>"
 
 PartyPokemonSummary2:
-	ld hl, wce5f
+	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL_F, [hl]
 	call PokeSummary
 	pop af
-	ld [wce5f], a
+	ld [wOptions], a
 	call ClearBGPalettes
 	jp HandleSelectedPokemon
 
@@ -1542,7 +1542,7 @@ SummaryDrawPoke:
 	ld b, 6
 	ld c, $12
 	call DrawTextBox
-	ld hl, w2DMenuFlags
+	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	jr PartySelectionInputs.PartySelectSkipInputs
 PartySelectionInputs:
@@ -1693,7 +1693,7 @@ SwapEntries:
 PartySelectionBackOut:
 	xor a
 	ld [wSelectedSwapPosition], a
-	ld hl, w2DMenuFlags
+	ld hl, w2DMenuFlags1
 	res 6, [hl]
 	call ClearSprites
 	call ClearTileMap
@@ -1824,8 +1824,8 @@ UseRegisteredItem:
 
 .overworld
 	call RefreshScreen
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call UseItem
 	call ClearPalettes
 	call StartMenuLoadSprites
@@ -1853,10 +1853,10 @@ UseRegisteredItem:
 	ret
 
 TrainerCardLoop:
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	push af
 	xor a
-	ld [wVramState], a
+	ld [wStateFlags], a
 	call ClearTrainerCardJumptable
 .loop
 	call UpdateTime
@@ -1866,7 +1866,7 @@ TrainerCardLoop:
 	jr .loop
 .escape
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	ret
 
 ClearTrainerCardJumptable:

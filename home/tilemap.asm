@@ -2,11 +2,11 @@ INCLUDE "constants.asm"
 
 SECTION "home/tilemap.asm", ROM0
 
-Function360b::
+RestoreScreenAndReloadTiles::
 	call ClearSprites
-	ld hl, wVramState
-	set 0, [hl]
-	call Function3657
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
+	call ReloadSpritesAndFont
 	call LoadFontExtra
 	call GetMemSGBLayout
 	jr WaitBGMap
@@ -57,9 +57,9 @@ SetHPPal::
 	ld [hl], d
 	ret
 
-Function3657::
+ReloadSpritesAndFont::
 	call DisableLCD
-	callfar Function140d9
+	callfar LoadStandingSpritesGFX
 	call LoadFont
 	call UpdateSprites
 	call EnableLCD

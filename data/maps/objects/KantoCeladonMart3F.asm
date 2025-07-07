@@ -15,8 +15,8 @@ KantoCeladonMart3F_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  6,  1, SPRITE_CLERK, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  3,  5, SPRITE_GIRL, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  1, SPRITE_CLERK, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  5, SPRITE_GIRL, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoCeladonMart3F_Blocks::
 INCBIN "maps/KantoCeladonMart3F.blk"

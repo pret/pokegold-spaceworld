@@ -14,7 +14,7 @@ NewtypeHouse1_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  7,  3, SPRITE_BUG_CATCHER_BOY, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  3, SPRITE_BUG_CATCHER_BOY, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NewtypeHouse1_Blocks::
 INCBIN "maps/NewtypeHouse1.blk"

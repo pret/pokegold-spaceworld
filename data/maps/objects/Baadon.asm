@@ -28,9 +28,9 @@ Baadon_MapEvents::
 	bg_event  6, 14, 4
 
 	def_object_events
-	object_event 14,  8, SPRITE_SUPER_NERD, FACE_UP, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6,  9, SPRITE_YOUNGSTER, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 10, 14, SPRITE_TWIN, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 14,  8, SPRITE_SUPER_NERD, SPRITEMOVEFN_RANDOM_WALK_XY, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  9, SPRITE_YOUNGSTER, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10, 14, SPRITE_TWIN, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Baadon_Blocks::
 INCBIN "maps/Baadon.blk"

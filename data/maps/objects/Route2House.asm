@@ -20,7 +20,7 @@ Route2House_MapEvents::
 	bg_event  4,  3, 3
 
 	def_object_events
-	object_event  6,  6, SPRITE_SCIENTIST, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  6, SPRITE_SCIENTIST, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Route2House_Blocks::
 INCBIN "maps/Route2House.blk"

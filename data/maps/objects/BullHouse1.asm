@@ -14,7 +14,7 @@ BullHouse1_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  2,  3, SPRITE_KIKUKO, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  3, SPRITE_KIKUKO, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BullHouse1_Blocks::
 INCBIN "maps/BullHouse1.blk"

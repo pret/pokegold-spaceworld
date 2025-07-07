@@ -14,7 +14,7 @@ SouthHouse1_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  2,  3, SPRITE_GRANNY, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  3, SPRITE_GRANNY, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SouthHouse1_Blocks::
 INCBIN "maps/SouthHouse1.blk"

@@ -14,7 +14,7 @@ StandHouse_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  2,  3, SPRITE_SUPER_NERD, FACE_RIGHT, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  3, SPRITE_SUPER_NERD, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
 StandHouse_Blocks::
 INCBIN "maps/StandHouse.blk"

@@ -145,16 +145,16 @@ WaitSFX::
 	push hl
 .loop
 	ld hl, wChannel5Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .loop
 	ld hl, wChannel6Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .loop
 	ld hl, wChannel7Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .loop
 	ld hl, wChannel8Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .loop
 	pop hl
 	ret
@@ -190,16 +190,16 @@ FadeToMapMusic::
 	call GetMapMusic
 	ld a, [wMapMusic]
 	cp e
-	jr z, .jump
+	jr z, .dont_change
 	ld a, 8
 	ld [wMusicFade], a
 	ld a, e
 	ld [wMusicFadeID], a
 	ld a, d
-	ld [wMusicFadeID+1], a
+	ld [wMusicFadeID + 1], a
 	ld a, e
 	ld [wMapMusic], a
-.jump
+.dont_change
 	pop af
 	pop bc
 	pop de
@@ -234,13 +234,13 @@ SpecialMapMusic::
 	ld a, [wPlayerState]
 	and a
 	jr z, .normal
-	cp $02
-	jr z, .state2
+	cp PLAYER_SKATE
+	jr z, .skateboard
 	ld de, MUSIC_BICYCLE
 	scf
 	ret
 
-.state2
+.skateboard
 	ld de, MUSIC_NONE
 	scf
 	ret

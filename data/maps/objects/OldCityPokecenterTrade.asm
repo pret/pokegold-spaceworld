@@ -14,7 +14,7 @@ OldCityPokecenterTrade_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  3,  3, SPRITE_GOLD, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  3, SPRITE_GOLD, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityPokecenterTrade_Blocks::
 INCBIN "maps/OldCityPokecenterTrade.blk"

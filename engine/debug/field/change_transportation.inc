@@ -135,9 +135,9 @@ FieldDebug_CheckFacingSurfable:
 	push af
 	call GetFacingTileCoord
 	and COLLISION_TYPE_MASK
-	cp OLD_COLLISION_TYPE_WATER ; happens to match COLLISION_TYPE_WATER
+	cp OLD_HI_NYBBLE_WATER ; happens to match HI_NYBBLE_WATER
 	jr z, .surfable
-	cp OLD_COLLISION_TYPE_WATER2
+	cp OLD_HI_NYBBLE_WATER_ALT
 	jr z, .surfable
 ; not surfable
 	pop af
@@ -161,8 +161,8 @@ FieldDebug_SetSurfDirection:
 	ret
 
 .Directions:
-	db SLOW_STEP_DOWN
-	db SLOW_STEP_UP
-	db SLOW_STEP_LEFT
-	db SLOW_STEP_RIGHT
+	slow_step DOWN
+	slow_step UP
+	slow_step LEFT
+	slow_step RIGHT
 

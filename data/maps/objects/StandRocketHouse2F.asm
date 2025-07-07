@@ -13,7 +13,7 @@ StandRocketHouse2F_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  5,  4, SPRITE_ROCKET_F, FACE_RIGHT, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5,  4, SPRITE_ROCKET_F, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
 StandRocketHouse2F_Blocks::
 INCBIN "maps/StandRocketHouse2F.blk"

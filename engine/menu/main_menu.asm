@@ -13,9 +13,8 @@ INCLUDE "constants.asm"
 	const PLAY_POKEMON
 	const SET_TIME
 
-SECTION "engine/menu/main_menu.asm@Initialize new game WRAM", ROMX
-; TODO: Move this to another file when surrounding
-; functions have been disassembled.
+SECTION "engine/menu/main_menu.asm", ROMX
+
 InitializeNewGameWRAM:
 	ld a, [wSGB]
 	push af
@@ -23,12 +22,12 @@ InitializeNewGameWRAM:
 	; Clear a lot of in-game WRAM.
 
 	ld hl, wShadowOAM
-	ld bc, (wcd3f + 1) - wShadowOAM
+	ld bc, (wcd3f) - wShadowOAM
 	xor a
 	call ByteFill
 
 	ld hl, wPlayerName
-	ld bc, $1164
+	ld bc, wBoxMonNicknamesEnd - wPlayerName
 	xor a
 	call ByteFill
 
@@ -51,28 +50,30 @@ InitializeNewGameWRAM:
 	ld [wPlayerID + 1], a
 
 	ld hl, wPartyCount
-	call InitializeByteList
+	call .InitList
 	ld hl, wBoxListLength
-	call InitializeByteList
+	call .InitList
 	ld hl, wNumBagItems
-	call InitializeByteList
+	call .InitList
 	ld hl, wNumKeyItems
-	call InitializeByteList
+	call .InitList
 	ld hl, wUnknownListLengthd1ea
-	call InitializeByteList
+	call .InitList
 
 	xor a
 	ld [wMonType], a
 	ld [wJohtoBadges], a
 	ld [wKantoBadges], a
 	ld [wCoins], a
-	ld [wd15c], a
+	ld [wCoins + 1], a
+
+if START_MONEY >= $10000
+	ld a, HIGH(START_MONEY >> 8)
+endc
 	ld [wMoney], a
-
-	ld a, $0B
+	ld a, HIGH(START_MONEY)
 	ld [wMoney + 1], a
-
-	ld a, $B8
+	ld a, LOW(START_MONEY)
 	ld [wMoney + 2], a
 
 	ld hl, wUnknownListLengthd1ea
@@ -89,16 +90,53 @@ InitializeNewGameWRAM:
 
 	ret
 
-; Initializes a $FF-terminated list preceded by a length to
-; length 0, with an immediate terminator.
-InitializeByteList:
+; Loads 0 in the count and -1 in the first item or mon slot.
+.InitList:
 	xor a
 	ld [hli], a
 	dec a
 	ld [hl], a
 	ret
 
-SECTION "engine/menu/main_menu.asm@MainMenu", ROMX
+CheckIfSaveFileExists:
+	ld a, BANK(sOptions)
+	call OpenSRAM
+	ld a, [sOptions]
+	ld [wSaveFileExists], a
+	call CloseSRAM
+	ret
+
+LoadOptions:
+	ld a, BANK(sOptions)
+	call OpenSRAM
+	ld hl, sOptions
+	ld a, [hli]
+	ld [wOptions], a
+	inc hl
+	ld a, [hli]
+	ld [wActiveFrame], a
+	ld a, [hl]
+	ld [wTextboxFlags], a
+	call CloseSRAM
+	ret
+
+; Copies the contents of wDebugFlags - wce66 to... themselves.
+; Presumably, the debug flags were originally saved to the save file (evidenced by SRAM being opened and closed),
+; but the source address was dummied out.
+Dummy_LoadDebugFlags:
+	ld a, BANK(s0_a600)
+	call OpenSRAM
+	ld hl, wDebugFlags
+	ld a, [hli]
+	ld [wDebugFlags], a
+	ld a, [hli]
+	ld [wce64], a
+	ld a, [hli]
+	ld [wce65], a
+	ld a, [hl]
+	ld [wce66], a
+	call CloseSRAM
+	ret
 
 MainMenu::
 	ld hl, wd4a9
@@ -108,8 +146,8 @@ MainMenu::
 	call LoadFontExtra
 	call LoadFont
 	call ClearWindowData
-	call Function5388
-	ld hl, wce60
+	call CheckIfSaveFileExists
+	ld hl, wSaveFileExists
 	bit 0, [hl]
 	jr nz, .setMenuContinue
 	xor a
@@ -208,8 +246,8 @@ MainMenuOptionContinue::
 	jp nz, MainMenu
 	jr .loop
 .escape
-	call Function5397
-	call Function53b0
+	call LoadOptions
+	call Dummy_LoadDebugFlags
 	ld hl, wDebugFlags
 	res DEBUG_FIELD_F, [hl]
 	set CONTINUED_F, [hl]

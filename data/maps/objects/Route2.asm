@@ -19,9 +19,9 @@ Route2_MapEvents::
 	bg_event 24, 10, 2
 
 	def_object_events
-	object_event 19, 11, SPRITE_YOUNGSTER, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0
-	object_event 15,  7, SPRITE_YOUNGSTER, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 10,  8, SPRITE_YOUNGSTER, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0
+	object_event 19, 11, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0
+	object_event 15,  7, SPRITE_YOUNGSTER, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10,  8, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0
 
 Route2_Blocks::
 INCBIN "maps/Route2.blk"

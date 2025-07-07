@@ -14,8 +14,8 @@ HaitekuImposterOakHouse_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  7,  3, SPRITE_EVIL_OKIDO, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  1,  2, SPRITE_POKEFAN_F, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  7,  3, SPRITE_EVIL_OKIDO, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  2, SPRITE_POKEFAN_F, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 HaitekuImposterOakHouse_Blocks::
 INCBIN "maps/HaitekuImposterOakHouse.blk"

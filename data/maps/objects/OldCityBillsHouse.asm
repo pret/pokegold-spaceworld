@@ -20,7 +20,7 @@ OldCityBillsHouse_MapEvents::
 	bg_event  1,  1, 6
 
 	def_object_events
-	object_event  5,  4, SPRITE_MASAKI, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5,  4, SPRITE_MASAKI, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityBillsHouse_Blocks::
 INCBIN "maps/OldCityBillsHouse.blk"

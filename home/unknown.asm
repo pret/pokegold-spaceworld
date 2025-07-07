@@ -27,12 +27,12 @@ _1FF4::
 	call CloseSRAM
 	ret
 
-_2007::
-	ld a, BANK(s0_a600)
+LoadSGBBorderOptions::
+	ld a, BANK(sOptions)
 	call OpenSRAM
-	ld a, [s0_a600]
-	and 8
-	ld [wce5f], a
+	ld a, [sOptions]
+	and SGB_BORDER
+	ld [wOptions], a
 	call CloseSRAM
 	ret
 
@@ -40,8 +40,8 @@ _2007::
 SECTION "home/unknown.asm@Unknown_20f8", ROM0
 
 Function20f8::
-	call Function1848
-	call Function18cc
+	call UnfreezeAllObjects
+	call UnfreezePlayer
 	ret
 
 

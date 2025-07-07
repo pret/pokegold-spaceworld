@@ -15,12 +15,12 @@ FieldDebug_ToggleNPCMovement:
 	cp 1
 	jr nz, .move
 ; stop NPCs
-	ld a, 0
-	call Function17f9
+	ld a, PLAYER_OBJECT
+	call FreezeAllOtherObjects
 	jr .done
 
 .move
-	call Function1848
+	call UnfreezeAllObjects
 .done
 	and a
 	ret

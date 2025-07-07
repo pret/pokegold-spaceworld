@@ -14,7 +14,7 @@ BullForestRoute1House_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  1,  5, SPRITE_COOLTRAINER_F, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  5, SPRITE_COOLTRAINER_F, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BullForestRoute1House_Blocks::
 INCBIN "maps/BullForestRoute1House.blk"

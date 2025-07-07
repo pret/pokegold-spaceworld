@@ -7,8 +7,8 @@ FieldDebug_Warp:
 .do_warp
 	ld a, [wMenuSelection]
 	ld [wDefaultSpawnPoint], a
-	ld hl, wVramState
-	set 6, [hl]
+	ld hl, wStateFlags
+	set 6, [hl] ; TODO: ???
 	ldh a, [hROMBank]
 	ld hl, FieldDebug_ShowWarpToText
 	call QueueScript
@@ -22,7 +22,7 @@ SECTION "engine/debug/field/warp.inc@FieldDebug_ShowWarpToText", ROMX
 
 FieldDebug_ShowWarpToText:
 	call .ShowText
-	call Functionfcc24
+	call DoTeleportAnimation
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
 	scf
@@ -44,30 +44,31 @@ FieldDebug_ShowWarpToText:
 	line "ワープします！"
 	done
 
-Functionfcc24:
-	ld a, 0
-	call Function17f9
-	ld a, 0
-	ld hl, .MovementDatafcc49
+DoTeleportAnimation:
+	ld a, PLAYER_OBJECT
+	call FreezeAllOtherObjects
+	ld a, PLAYER_OBJECT
+	ld hl, .TeleportFrom
 	call LoadMovementDataPointer
-	ld hl, wVramState
-	set 7, [hl]
+	ld hl, wStateFlags
+	set SCRIPTED_MOVEMENT_STATE_F, [hl]
 
-.asm_fcc36
+.loop
 	call Function2c4a
-	ld a, [wVramState]
-	bit 7, a
-	jr nz, .asm_fcc36
-	ld a, 0
-	ld hl, .MovementDatafcc4b
-	call Function16fb
+	ld a, [wStateFlags]
+	bit SCRIPTED_MOVEMENT_STATE_F, a
+	jr nz, .loop
+	ld a, PLAYER_OBJECT
+	ld hl, .TeleportTo
+	call LoadMovementDataPointer_KeepStateFlags
 	ret
 
-.MovementDatafcc49:
-	db $36
-	db $32
+.TeleportFrom:
+	teleport_from
+	step_end
+	
 
-.MovementDatafcc4b:
-	db $37
-	db $32
+.TeleportTo:
+	teleport_to
+	step_end
 

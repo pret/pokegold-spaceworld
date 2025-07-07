@@ -14,7 +14,7 @@ BullHouse2_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  8,  4, SPRITE_GRANNY, FACE_RIGHT, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  8,  4, SPRITE_GRANNY, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
 BullHouse2_Blocks::
 INCBIN "maps/BullHouse2.blk"

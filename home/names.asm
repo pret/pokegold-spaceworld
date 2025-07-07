@@ -61,9 +61,9 @@ GetName::
 
 .done
 	ld a, e
-	ld [wcd72], a
+	ld [wNamesPointer], a
 	ld a, d
-	ld [wcd72 + 1], a
+	ld [wNamesPointer + 1], a
 
 	pop de
 	pop bc
@@ -230,7 +230,7 @@ IsHMMove::
 	db MOVE_FLASH
 	db -1
 
-Unreferenced_GetMoveName::
+GetMoveName::
 	push hl
 	ld a, MOVE_NAME
 	ld [wNamedObjectTypeBuffer], a

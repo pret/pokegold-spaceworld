@@ -15,8 +15,8 @@ Route1Gate2F_MapEvents::
 	bg_event  3,  0, 2
 
 	def_object_events
-	object_event  3,  3, SPRITE_LASS, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  6,  4, SPRITE_TWIN, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  3, SPRITE_LASS, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  4, SPRITE_TWIN, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Route1Gate2F_Blocks::
 INCBIN "maps/Route1Gate2F.blk"

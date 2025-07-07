@@ -15,9 +15,9 @@ HaitekuAquarium1F_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event 15,  5, SPRITE_RECEPTIONIST, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event 12,  2, SPRITE_YOUNGSTER, SLOW_STEP_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  4,  5, SPRITE_LASS, FACE_UP, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 15,  5, SPRITE_RECEPTIONIST, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 12,  2, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  5, SPRITE_LASS, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
 HaitekuAquarium1F_Blocks::
 INCBIN "maps/HaitekuAquarium1F.blk"

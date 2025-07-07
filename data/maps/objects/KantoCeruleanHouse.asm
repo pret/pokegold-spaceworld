@@ -14,7 +14,7 @@ KantoCeruleanHouse_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  3,  3, SPRITE_FISHER, FACE_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  3, SPRITE_FISHER, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoCeruleanHouse_Blocks::
 INCBIN "maps/KantoCeruleanHouse.blk"

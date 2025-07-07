@@ -14,7 +14,7 @@ NewtypeHouse2_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  4,  3, SPRITE_GENTLEMAN, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  3, SPRITE_GENTLEMAN, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NewtypeHouse2_Blocks::
 INCBIN "maps/NewtypeHouse2.blk"

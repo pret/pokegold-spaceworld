@@ -25,8 +25,8 @@ DebugMenu::
 	call OpenMenu
 	call CloseWindow
 	jp c, TitleSequenceStart
-	ld a, $41
-	ld [wce5f], a
+	ld a, BATTLE_SHIFT | TEXT_DELAY_FAST
+	ld [wOptions], a
 	ld a, [wMenuSelection]
 	ld hl, DebugJumpTable
 	jp CallJumptable
@@ -105,7 +105,7 @@ DebugMenuOptionMonsterTest::
 	ld a, %11100100
 	ldh [rBGP], a
 
-Function40eb::
+OpenDebugMenu::
 	jp DebugMenu
 
 DebugMenuOptionName::
@@ -113,6 +113,43 @@ DebugMenuOptionName::
 	ld a, %11100100
 	ldh [rBGP], a
 	jp DebugMenu
+
+SetDemoEventFlags:
+	ld hl, wd41a
+	set 5, [hl]
+	ld hl, wd41a
+	set 7, [hl] ; talked to blue
+	ld hl, wd41a
+	set 0, [hl] ; read email
+	ld hl, wd41a
+	set 3, [hl]
+	ld hl, wd41a
+	set 6, [hl]
+	ld hl, wd41a
+	set 6, [hl]
+	ld hl, wd41e
+	set 5, [hl]
+	ld hl, wd41b
+	set 1, [hl] ; followed oak to back room
+	ld hl, wd41c
+	set 4, [hl] ; received pokedexes
+	ld hl, wd41d
+	set 2, [hl] ; beat rival in lab
+	ld hl, wd41b
+	set 2, [hl] ; chose a starter
+	ld a, %1
+	ld [wd29a], a
+	ld a, %1
+	ld [wd29b], a
+	ld a, %110
+	ld [wd29c], a
+	ld a, %10010
+	ld [wd29d], a
+	ld a, %110
+	ld [wd29e], a
+	ld a, %10
+	ld [wd2a0], a
+	ret
 
 SECTION "engine/menu/debug_menu.asm@Sound Test", ROMX
 

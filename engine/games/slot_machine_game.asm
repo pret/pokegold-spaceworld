@@ -93,16 +93,16 @@ SlotMachineGame:
 	inc hl
 	ld [hl], LOW(SLOTS_STARTING_COINS)
 
-	ld hl, wce5f
-	set 4, [hl]
+	ld hl, wOptions
+	set NO_TEXT_SCROLL_F, [hl]
 	call SlotMachineGame_Init
 	call DelayFrame
 
 .loop
 	call SlotsLoop
 	jr nc, .loop
-	ld hl, wce5f
-	res 4, [hl]
+	ld hl, wOptions
+	res NO_TEXT_SCROLL_F, [hl]
 	ld hl, rLCDC
 	res rLCDC_SPRITE_SIZE, [hl]
 	ret
@@ -262,7 +262,7 @@ Slots_DisplayBiasValue:
 	ret
 
 Slots_AnimateReelSpritesAfterSpin:
-	ld hl, wcb61
+	ld hl, wSlotReelIconDelay
 	ld a, [hl]
 	inc [hl]
 	and 7
@@ -1711,7 +1711,7 @@ Slots_InitBias:
 
 .done
 	ld a, [hl]
-	ld [$C509], a
+	ld [wSlotBias], a
 	ret
 
 .Biases:
@@ -1792,7 +1792,7 @@ Slots_AskBet:
 	jr .loop
 
 .Start:
-	ld hl,	wCoins+1
+	ld hl, wCoins + 1
 	ld a, [hl]
 	sub c
 	ld [hld], a

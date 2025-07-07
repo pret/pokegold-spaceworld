@@ -14,7 +14,7 @@ KantoFishingGuru_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  4,  3, SPRITE_FISHING_GURU, STEP_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  3, SPRITE_FISHING_GURU, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoFishingGuru_Blocks::
 INCBIN "maps/KantoFishingGuru.blk"

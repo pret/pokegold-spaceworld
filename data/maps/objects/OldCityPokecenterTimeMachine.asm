@@ -15,7 +15,7 @@ OldCityPokecenterTimeMachine_MapEvents::
 	bg_event 15,  3, 1
 
 	def_object_events
-	object_event 13,  2, SPRITE_LINK_RECEPTIONIST, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 13,  2, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityPokecenterTimeMachine_Blocks::
 INCBIN "maps/OldCityPokecenterTimeMachine.blk"

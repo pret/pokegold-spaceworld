@@ -17,8 +17,8 @@ Route1Gate1F_MapEvents::
 	def_bg_events
 
 	def_object_events
-	object_event  6,  1, SPRITE_YOUNGSTER, SLOW_STEP_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  1,  6, SPRITE_COOLTRAINER_F, SLOW_STEP_DOWN, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6,  1, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Route1Gate1F_Blocks::
 INCBIN "maps/Route1Gate1F.blk"

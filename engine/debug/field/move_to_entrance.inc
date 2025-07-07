@@ -30,10 +30,10 @@ FieldDebug_MoveToRoute1Entrance:
 	call FieldDebug_ShowTextboxAndExit
 	ld d, $d
 	ld e, $d
-	ld b, 0
-	ld c, 1
-	callfar Function833a
-	ld a, 0
+	ld b, PLAYER_OBJECT
+	ld c, STEP_WALK
+	callfar ComputeObjectPathToCoords_Invisible
+	ld a, PLAYER_OBJECT
 	ld hl, wMovementBuffer
 	call LoadMovementDataPointer
 	call Function1fea

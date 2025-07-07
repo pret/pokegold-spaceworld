@@ -10,7 +10,7 @@ GetFlyPointMapLocation:
 	add hl, hl
 	ld de, SpawnPoints
 	add hl, de
-	ld b, [hl]					; SpawnPoints + (wFlyDestination * 4)
+	ld b, [hl] ; SpawnPoints + (wFlyDestination * 4)
 	inc hl
 	ld c, [hl]
 	call GetWorldMapLocation
@@ -272,14 +272,14 @@ Functiond4b2:
 	ret
 
 Functiond4e6:
-	ld a, [wcb6e]
+	ld a, [wPlayerStepFlags]
 	and a
 	ret z
-	bit 7, a
+	bit PLAYERSTEP_START_F, a
 	jr nz, .sub_d4f8
-	bit 6, a
+	bit PLAYERSTEP_STOP_F, a
 	jr nz, Functiond519
-	bit 5, a
+	bit PLAYERSTEP_CONTINUE_F, a
 	jr nz, Functiond543
 	ret
 .sub_d4f8
@@ -287,9 +287,7 @@ Functiond4e6:
 
 Functiond4fa:
 	call Functiond51e
-	ld hl, Function8261
-	ld a, BANK(Function8261)
-	call FarCall_hl
+	callfar EmptyFunction8261
 
 Functiond505:
 	ld a, $04
@@ -335,9 +333,9 @@ Functiond51e:
 
 Functiond543:
 	call .sub_d5bf
-	ld a, [wcb6c]
+	ld a, [wPlayerStepVectorX]
 	ld d, a
-	ld a, [wcb6d]
+	ld a, [wPlayerStepVectorY]
 	ld e, a
 	call .sub_d55f
 	call .sub_d591
@@ -383,7 +381,7 @@ Functiond543:
 	jr nz, .sub_d563
 	ret
 .sub_d591
-	ld bc, wCmdQueue
+	ld bc, wMinorObjects
 	ld a, $01
 .sub_d596
 	ldh [hConnectionStripLength], a
@@ -603,14 +601,14 @@ Functiond6bb:
 	ret
 
 Functiond6e4:
-	ld a, [wcb6e]
+	ld a, [wPlayerStepFlags]
 	and a
 	ret z
-	bit 7, a
+	bit PLAYERSTEP_START_F, a
 	jr nz, .sub_d6f7
-	bit 6, a
+	bit PLAYERSTEP_STOP_F, a
 	jr nz, .sub_d702
-	bit 5, a
+	bit PLAYERSTEP_CONTINUE_F, a
 	jp nz, Functiond543
 	ret
 .sub_d6f7
@@ -2097,7 +2095,7 @@ Function60a0:
 	pop de
 	jr c, .sub_e155
 	push de
-	ld b, $00
+	ld b, NAME_MON
 	farcall NamingScreen
 	pop de
 	ld a, [de]
@@ -2111,8 +2109,8 @@ Function60a0:
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
-	res 7, [hl]
-	set 6, [hl]
+	res SPRITES_SKIP_STANDING_GFX_F, [hl]
+	set SPRITES_SKIP_WALKING_GFX_F, [hl]
 	call RedrawPlayerSprite
 	pop af
 	ld [wSpriteFlags], a
@@ -2170,7 +2168,7 @@ _BillsPC:
 	call LoadStandardMenuHeader
 	call ClearTileMap
 	call LoadFontsBattleExtra
-	ld hl, vChars2 + $780
+	ld hl, vChars2 tile $78
 	ld de, PokeBallsGFX
 	lb bc, BANK(PokeBallsGFX), $01
 	call Request2bpp
@@ -2192,7 +2190,7 @@ _BillsPC:
 	call CloseWindow
 	call CloseWindow
 	call LoadTilesetGFX
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call LoadFontExtra
 	call CloseWindow
 	ret
@@ -2573,7 +2571,7 @@ WhenYouChangeBoxText:
 	done
 
 ChangeBoxName:
-	ld b, $04
+	ld b, NAME_BOX
 	ld de, wMovementBufferCount
 	ld a, BANK(NamingScreen)
 	ld hl, NamingScreen
@@ -2644,7 +2642,7 @@ Functione5d3:
 	call ExitMenu
 	ret
 .sub_e62a
-	ld hl, wce5f
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set 4, [hl]
@@ -2681,7 +2679,7 @@ Functione5d3:
 	ld hl, WhichOneWouldYouLikeToSeeText
 	call PrintText
 	pop af
-	ld [wce5f], a
+	ld [wOptions], a
 	ret
 
 CurrentBoxText:
@@ -2696,14 +2694,14 @@ WhichOneWouldYouLikeToSeeText:
 
 Functione6a4: ; has something to do with releasing mon from PC
 	ld a, l
-	ld [wcd70], a
+	ld [wListPointer], a
 	ld a, h
-	ld [wcd71], a
+	ld [wListPointer + 1], a
 	coord hl, 4, 2
 	ld b, $09
 	ld c, $0e
 	call DrawTextBox
-	ld hl, wcd70
+	ld hl, wListPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2771,8 +2769,8 @@ Function6734:
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call ClearBGPalettes
 	call ClearSprites
 	call LoadStandardMenuHeader
@@ -2784,11 +2782,11 @@ Function6734:
 	ld a, BANK(_NewPokedexEntry)
 	call FarCall_hl
 	call ClearBGPalettes
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call ExitMenu
 	call LoadTilesetGFX_LCDOff
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call UpdateTimePals
 	pop af
 	ldh [hMapAnims], a
@@ -2818,12 +2816,12 @@ _UseItem:
 	jp hl
 
 Tablee7a5:
-	dw PokeBallEffect	; ITEM_MASTER_BALL
-	dw PokeBallEffect	; ITEM_ULTRA_BALL
+	dw PokeBallEffect    ; ITEM_MASTER_BALL
+	dw PokeBallEffect    ; ITEM_ULTRA_BALL
 	dw Functionf66f
-	dw PokeBallEffect	; ITEM_GREAT_BALL
-	dw PokeBallEffect	; ITEM_POKE_BALL
-	dw Functionec95
+	dw PokeBallEffect    ; ITEM_GREAT_BALL
+	dw PokeBallEffect    ; ITEM_POKE_BALL
+	dw TownMapEffect     ; ITEM_TOWN_MAP 
 	dw Functioneca4
 	dw Functioned00
 	dw Functionef02
@@ -3263,11 +3261,11 @@ PokeBallEffect:
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMonNicknames
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld b, $00
+	ld b, NAME_MON
 	ld a, BANK(NamingScreen)
 	ld hl, NamingScreen
 	push de
@@ -3275,10 +3273,10 @@ PokeBallEffect:
 	call GBFadeOutToWhite
 	pop de
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr nz, .sub_eb5f
 	ld hl, wStringBuffer1
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	jr .sub_eb5f
 .sub_eb13
@@ -3289,17 +3287,17 @@ PokeBallEffect:
 	call YesNoBox
 	jr c, .sub_eb47
 	ld de, wBoxMonNicknames
-	ld b, $00
+	ld b, NAME_MON
 	ld a, BANK(NamingScreen)
 	ld hl, NamingScreen
 	call FarCall_hl
 	call GBFadeOutToWhite
 	ld de, wBoxMonNicknames
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr nz, .sub_eb47
 	ld hl, wStringBuffer1
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 .sub_eb47
 	ld hl, Textec0e
@@ -3409,13 +3407,11 @@ ReturnToBattle_UseBall:
 	call SetPalettes
 	ret
 
-Functionec95:
+TownMapEffect:
 	ld a, [wBattleMode]
 	and a
 	jp nz, IsntTheTimeMessage
-	ld a, BANK(Function86a0)
-	ld hl, Function86a0
-	jp FarCall_hl
+	farjp TownMap
 
 Functioneca4:
 	xor a
@@ -4591,7 +4587,7 @@ Functionf4d1:
 	push hl
 	ld a, [hl]
 	ld [wce37], a
-	call Unreferenced_GetMoveName
+	call GetMoveName
 	call CopyStringToStringBuffer2
 	pop hl
 	ld a, [wMovementBufferCount]
@@ -4784,8 +4780,8 @@ Functionf678:
 	ld [wce37], a
 	predef GetTMHMMove
 	ld a, [wce37]
-	ld [wce32], a
-	call Unreferenced_GetMoveName
+	ld [wPutativeTMHMMove], a
+	call GetMoveName
 	call CopyStringToStringBuffer2
 	pop af
 	ld hl, Textf723
@@ -4802,13 +4798,13 @@ Functionf678:
 	ret
 .sub_f6bb
 	ld hl, wHPBarTempHP
-	ld de, wcd11
+	ld de, wMonOrItemNameBuffer
 	ld bc, $0008
 	call CopyBytes
 	ld a, PARTYMENUACTION_TEACH_TMHM
 	call Functionf0cf
 	push af
-	ld hl, wcd11
+	ld hl, wMonOrItemNameBuffer
 	ld de, wHPBarTempHP
 	ld bc, $0008
 	call CopyBytes
@@ -4838,7 +4834,7 @@ Functionf678:
 .sub_f70c
 	call Functionfdab
 	jr c, .sub_f6bb
-	predef Function6445
+	predef LearnMove
 	ld a, b
 	and a
 	ret z
@@ -5322,7 +5318,7 @@ Functionfaba:
 
 Functionfbde:
 	call ClearBGPalettes
-	call Function360b
+	call RestoreScreenAndReloadTiles
 	call GetMemSGBLayout
 	jp ReloadFontAndTileset
 
@@ -5516,7 +5512,7 @@ WobbleProbabilities:
 Functionfdab:
 	ld a, $02
 	call GetPartyParamLocation
-	ld a, [wce32]
+	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, $04
 .sub_fdb6
@@ -5556,7 +5552,7 @@ Datafdf1:
 	db $28, $3c
 
 Functionfdf3:
-	ld a, [wce32]
+	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, $04
 .sub_fdf9

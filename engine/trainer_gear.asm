@@ -53,10 +53,10 @@ DEF TRAINERGEAR_END_LOOP_F EQU 7
 	const TRAINERGEAR_RADIOSTATE_TURNBACKDIAL
 
 OpenTrainerGear:
-	ld hl, wce5f
+	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL_F, [hl]
 	ldh a, [hMapAnims]
 	push af
 	xor a
@@ -64,24 +64,24 @@ OpenTrainerGear:
 	ldh a, [hJoypadSum]
 	push af
 
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	push af
 	xor a
-	ld [wVramState], a
+	ld [wStateFlags], a
 	call TrainerGear_Init
 	call DelayFrame
 .loop
 	call TrainerGear_Loop
 	jr nc, .loop
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 
 	pop af
 	ldh [hJoypadSum], a
 	pop af
 	ldh [hMapAnims], a
 	pop af
-	ld [wce5f], a
+	ld [wOptions], a
 	call ClearJoypad
 	ret
 
@@ -291,7 +291,7 @@ TrainerGear_Map:
 	coord hl, 0, 3
 	call DecompTownMapTilemap
 	call WaitBGMap
-	call PlaceGoldInMap
+	call TownMap_InitPlayerIcon
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]

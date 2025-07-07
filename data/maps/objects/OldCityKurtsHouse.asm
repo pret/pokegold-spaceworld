@@ -19,7 +19,7 @@ OldCityKurtsHouse_MapEvents::
 	bg_event 15,  0, 4
 
 	def_object_events
-	object_event  2,  2, SPRITE_GANTETSU, SLOW_STEP_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  2,  2, SPRITE_GANTETSU, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityKurtsHouse_Blocks::
 INCBIN "maps/OldCityKurtsHouse.blk"
