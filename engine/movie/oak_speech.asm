@@ -85,9 +85,9 @@ GameStart::
 	ld [wMusicFade], a
 	ld de, MUSIC_NONE
 	ld a, e
-	ld [wMusicFadeIDLow], a
+	ld [wMusicFadeID], a
 	ld a, d
-	ld [wMusicFadeIDHigh], a
+	ld [wMusicFadeID + 1], a
 	ld de, SFX_ESCAPE_ROPE
 	call PlaySFX
 	pop af
@@ -161,6 +161,7 @@ GameStartPlacement::
 
 DebugSetUpPlayer::
 	call SetPlayerNamesDebug
+; Set money to 999999
 	ld a, $0F
 	ld [wMoney], a
 	ld a, $42

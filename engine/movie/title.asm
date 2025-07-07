@@ -629,6 +629,6 @@ SetTitleGfxNext::
 
 GameInit::
 	call ClearWindowData
-	ld a, $23
-	ld [wce5f], a
+	ld a, STEREO | TEXT_DELAY_MED
+	ld [wOptions], a
 	jp IntroSequence

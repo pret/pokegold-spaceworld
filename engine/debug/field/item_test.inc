@@ -48,14 +48,14 @@ ItemTest_KeyItemMenu:
 
 FieldDebug_ItemTest:
 	call ClearSprites
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call LoadStandardMenuHeader
 	call ClearTileMap
 	call UpdateSprites
 	call .DoItemTest
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call CloseWindow
 	ret
 ; unused

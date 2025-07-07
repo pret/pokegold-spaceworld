@@ -25,8 +25,8 @@ DebugMenu::
 	call OpenMenu
 	call CloseWindow
 	jp c, TitleSequenceStart
-	ld a, $41
-	ld [wce5f], a
+	ld a, BATTLE_SHIFT | TEXT_DELAY_FAST
+	ld [wOptions], a
 	ld a, [wMenuSelection]
 	ld hl, DebugJumpTable
 	jp CallJumptable

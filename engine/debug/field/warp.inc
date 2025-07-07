@@ -7,8 +7,8 @@ FieldDebug_Warp:
 .do_warp
 	ld a, [wMenuSelection]
 	ld [wDefaultSpawnPoint], a
-	ld hl, wVramState
-	set 6, [hl]
+	ld hl, wStateFlags
+	set 6, [hl] ; TODO: ???
 	ldh a, [hROMBank]
 	ld hl, FieldDebug_ShowWarpToText
 	call QueueScript
@@ -50,12 +50,12 @@ DoTeleportAnimation:
 	ld a, PLAYER_OBJECT
 	ld hl, .TeleportFrom
 	call LoadMovementDataPointer
-	ld hl, wVramState
+	ld hl, wStateFlags
 	set SCRIPTED_MOVEMENT_STATE_F, [hl]
 
 .loop
 	call Function2c4a
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	bit SCRIPTED_MOVEMENT_STATE_F, a
 	jr nz, .loop
 	ld a, PLAYER_OBJECT

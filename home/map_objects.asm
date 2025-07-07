@@ -182,7 +182,7 @@ LoadMovementDataPointer::
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_RESET
-	ld hl, wVramState
+	ld hl, wStateFlags
 	set SCRIPTED_MOVEMENT_STATE_F, [hl]
 	and a
 	ret
@@ -313,7 +313,7 @@ GetMinorObjectEmptySlot::
 	ret
 
 UpdateSprites::
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	bit SPRITE_UPDATES_DISABLED_F, a
 	ret z
 	callfar UpdateAllObjectsFrozen

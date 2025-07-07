@@ -135,7 +135,7 @@ DebugMapViewer::
 	ret
 
 .MoveCursorToPlayer:
-	ld a, 1
+	ld a, FOLLOWER
 	ld hl, wMovementBuffer
 	call LoadMovementDataPointer
 	ld d, 2
@@ -148,8 +148,8 @@ DebugMapViewer::
 	ret
 
 .WaitFinishedMoving:
-	ld hl, wVramState
-	bit 7, [hl]
+	ld hl, wStateFlags
+	bit SCRIPTED_MOVEMENT_STATE_F, [hl]
 	jr nz, .skip
 	ld a, DEBUGMAPVIEWER_CLEANUP
 	ldh [hDebugMapViewerJumptable], a
@@ -158,10 +158,10 @@ DebugMapViewer::
 	ret
 
 .Cleanup:
-	ld a, 1
+	ld a, FOLLOWER
 	call DeleteMapObject
 	call UnfreezePlayer
-	ld a, 0
+	ld a, PLAYER
 	call CenterObject
 	xor a
 	ldh [hDebugMapViewerJumptable], a
@@ -323,12 +323,12 @@ DebugMapViewer_DoMovement:
 	ret
 
 DebugMapViewer_ReplacePlayerObject:
-	callfar DebugMapViewer_SetupGold
-	ld a, PLAYER_OBJECT_INDEX
+	callfar DebugMapViewer_SetupCursor
+	ld a, FOLLOWER
 	call CopyMapObjectToReservedObjectStruct
-	ld a, PLAYER_STRUCT
+	ld a, FOLLOWER
 	call CenterObject
-	ld bc, wObjectStructs
+	ld bc, wReservedObjectStruct
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set SLIDING_F, [hl]
@@ -336,8 +336,8 @@ DebugMapViewer_ReplacePlayerObject:
 	set WONT_DELETE_F, [hl]
 	ret
 
-; Already handled by DebugMapViewer_SetupGold
-.Unreferenced_GoldObjectTemplate:
+; Already handled by DebugMapViewer_SetupCursor
+.Unreferenced_CursorObjectTemplate:
 	object_event -4, -4, SPRITE_GOLD, $17, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
 	ds 2
 

@@ -4,8 +4,8 @@ SECTION "home/tilemap.asm", ROM0
 
 RestoreScreenAndReloadTiles::
 	call ClearSprites
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call ReloadSpritesAndFont
 	call LoadFontExtra
 	call GetMemSGBLayout

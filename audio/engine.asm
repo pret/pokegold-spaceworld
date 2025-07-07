@@ -2221,9 +2221,10 @@ Music_Transpose:
 	ret
 
 Music_StereoPanning:
-	ld a, [wce5f]
-	bit 5, a
+	ld a, [wOptions]
+	bit STEREO_F, a
 	ret z
+	; fallthrough
 
 Music_ForceStereoPanning:
 	call SetLRTracks
@@ -2619,8 +2620,8 @@ _PlayCryHeader::
 	and a
 	jr z, .next
 
-	ld a, [wce5f]
-	bit 5, a
+	ld a, [wOptions]
+	bit STEREO_F, a
 	jr z, .next
 
 	ld hl, CHANNEL_TRACKS
@@ -2688,8 +2689,8 @@ _PlaySFX::
 	ret
 
 PlayStereoSFX::
-	ld a, [wce5f]
-	bit 5, a	; Stereo flag?
+	ld a, [wOptions]
+	bit STEREO_F, a
 	jr z, _PlaySFX
 
 	ld hl, wMusicID

@@ -396,8 +396,8 @@ _InitScrollingMenu::
 	ldh [hBGMapMode], a
 	inc a
 	ldh [hInMenu], a
-	ld hl, wce5f
-	set 4, [hl]
+	ld hl, wOptions
+	set NO_TEXT_SCROLL_F, [hl]
 	call asm_243c3
 	call asm_243fc
 	ld c, $0a
@@ -416,8 +416,8 @@ _ScrollingMenu::
 	ld [wMenuJoypad], a
 	ld a, $00
 	ldh [hInMenu], a
-	ld hl, wce5f
-	res 4, [hl]
+	ld hl, wOptions
+	res NO_TEXT_SCROLL_F, [hl]
 	ret
 
 Function242a3:

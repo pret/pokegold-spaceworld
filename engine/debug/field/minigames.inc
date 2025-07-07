@@ -40,8 +40,8 @@ FieldDebug_Minigames:
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call ClearSprites
 	call ClearTileMap
 	call WaitBGMap
@@ -50,8 +50,8 @@ FieldDebug_Minigames:
 	call ClearPalettes
 	call ReloadSpritesAndFont
 	call LoadTilesetGFX
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call CloseWindow
 	pop af
 	ldh [hMapAnims], a

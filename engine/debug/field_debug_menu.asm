@@ -208,8 +208,8 @@ FieldDebug_NamePlayer:
 	call ClearSprites
 	call GetMemSGBLayout
 	call SetPalettes
-	ld hl, wce5f
-	res 4, [hl]
+	ld hl, wOptions
+	res NO_TEXT_SCROLL_F, [hl]
 	call LoadFontExtra
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret

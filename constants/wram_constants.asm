@@ -1,11 +1,11 @@
 ; wOptions
 DEF TEXT_DELAY_MASK EQU %111
 	const_def 3
-	const SGB_BORDER     ; 3
-	const NO_TEXT_SCROLL ; 4
-	const STEREO         ; 5
-	const BATTLE_SHIFT   ; 6
-	const BATTLE_SCENE   ; 7
+	shift_const SGB_BORDER     ; 3
+	shift_const NO_TEXT_SCROLL ; 4
+	shift_const STEREO         ; 5
+	shift_const BATTLE_SHIFT   ; 6
+	shift_const BATTLE_SCENE   ; 7
 
 DEF TEXT_DELAY_FAST EQU %001 ; 1
 DEF TEXT_DELAY_MED  EQU %011 ; 3

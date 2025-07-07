@@ -300,8 +300,8 @@ PlayerTossItemMenu:
 	call LoadStandardMenuHeader
 	call ClearTileMap
 	call ClearSprites
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call UpdateSprites
 .loop
 	call PCItemsJoypad
@@ -310,8 +310,8 @@ PlayerTossItemMenu:
 	callfar TryTossItem
 	jr .loop
 .quit
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call Call_ExitMenu
 	and a
 	ret
@@ -333,8 +333,8 @@ PlayerDepositItemMenu:
 	jr .loop
 .quit
 	call ClearPalettes
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call Call_ExitMenu
 	and a
 	ret

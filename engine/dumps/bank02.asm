@@ -57,15 +57,15 @@ DeleteFollower::
 	ld [wObjectFollow_Leader], a
 	ret
 
-DebugMapViewer_SetupGold::
-	ld a, PLAYER_OBJECT_INDEX
-	ld hl, .DebugMapViewer_GoldObjectTemplate
+DebugMapViewer_SetupCursor::
+	ld a, FOLLOWER ; Temporarily overwrites the follower's map object
+	ld hl, .CursorObjectTemplate
 	call CopyPlayerObjectTemplate
-	ld a, 1
+	ld a, FOLLOWER
 	call Spawn_ConvertCoords
 	ret
 
-.DebugMapViewer_GoldObjectTemplate:
+.CursorObjectTemplate:
 	object_event -4, -4, SPRITE_GOLD, $17, 14, 14, 0, 0, 0, 0, 0, 0, 0, 0
 	db $00, $00
 
@@ -155,7 +155,7 @@ CopyObjectStruct:
 	ld d, h
 	ld e, l
 	call CopyMapObjectToObjectStruct
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	bit SCRIPTED_MOVEMENT_STATE_F, a
 	ret z
 

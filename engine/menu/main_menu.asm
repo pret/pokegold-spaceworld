@@ -116,7 +116,7 @@ LoadOptions:
 	ld a, [hli]
 	ld [wActiveFrame], a
 	ld a, [hl]
-	ld [wTextBoxFlags], a
+	ld [wTextboxFlags], a
 	call CloseSRAM
 	ret
 

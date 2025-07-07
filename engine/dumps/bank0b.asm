@@ -52,8 +52,8 @@ asm_2d33e:
 	ld de, wcd1d
 	ld bc, $8
 	call CopyBytes
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	ld a, $3
 	ld [wPartyMenuActionText], a
 	ld a, $36
@@ -104,8 +104,8 @@ asm_2d3a8:
 asm_2d3ad:
 	call ClearBGPalettes
 	call ClearSprites
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call RestoreScreenAndReloadTiles
 	call GetMemSGBLayout
 	ret

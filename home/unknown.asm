@@ -31,7 +31,7 @@ LoadSGBBorderOptions::
 	ld a, BANK(sOptions)
 	call OpenSRAM
 	ld a, [sOptions]
-	and 1 << SGB_BORDER
+	and SGB_BORDER
 	ld [wOptions], a
 	call CloseSRAM
 	ret

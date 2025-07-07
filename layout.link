@@ -91,6 +91,7 @@ ROM0
 	"home/pokemon.asm@3AED"
 	"home/misc_3c43.asm"
 	"home/audio.asm"
+	"home/unknown_3e32.asm"
 
 ROMX $01
 	org $4000

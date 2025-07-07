@@ -337,8 +337,8 @@ CheckItemsQuantity:
 	ret
 
 DrawBackpack:
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call ClearSprites
 	call ClearTileMap
 	callfar LoadBackpackGraphics
@@ -348,8 +348,8 @@ DrawBackpack:
 	call DrawTextBox
 	ret
 
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call ExitMenu
 	ret
 
@@ -357,8 +357,8 @@ StartMenu_Backpack:
 	call CheckItemsQuantity
 	jr c, .NoItems
 	call LoadStandardMenuHeader
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call DrawBackpack
 	xor a
 	ld [wSelectedSwapPosition], a
@@ -373,8 +373,8 @@ StartMenu_Backpack:
 	ld a, 0
 .skip
 	push af
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	xor a
 	ld [wSelectedSwapPosition], a
 	call ClearPalettes
@@ -830,8 +830,8 @@ StartMenuLoadSprites:
 	call LoadTilesetGFX
 	call LoadFontExtra
 	call ClearSprites
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call UpdateSprites
 	call EnableLCD
 	call GetMemSGBLayout
@@ -1455,13 +1455,13 @@ NeedNewBadgeText:
 	line "まだ　つかえません！<PROMPT>"
 
 PartyPokemonSummary2:
-	ld hl, wce5f
+	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL_F, [hl]
 	call PokeSummary
 	pop af
-	ld [wce5f], a
+	ld [wOptions], a
 	call ClearBGPalettes
 	jp HandleSelectedPokemon
 
@@ -1824,8 +1824,8 @@ UseRegisteredItem:
 
 .overworld
 	call RefreshScreen
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call UseItem
 	call ClearPalettes
 	call StartMenuLoadSprites
@@ -1853,10 +1853,10 @@ UseRegisteredItem:
 	ret
 
 TrainerCardLoop:
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	push af
 	xor a
-	ld [wVramState], a
+	ld [wStateFlags], a
 	call ClearTrainerCardJumptable
 .loop
 	call UpdateTime
@@ -1866,7 +1866,7 @@ TrainerCardLoop:
 	jr .loop
 .escape
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	ret
 
 ClearTrainerCardJumptable:

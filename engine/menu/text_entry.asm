@@ -13,10 +13,10 @@ NamingScreen:
 	ld [hl], d
 	ld hl, wNamingScreenType
 	ld [hl], b
-	ld hl, wce5f
+	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL_F, [hl]
 	ldh a, [hMapAnims]
 	push af
 	xor a
@@ -36,7 +36,7 @@ NamingScreen:
 	pop af
 	ldh [hMapAnims], a
 	pop af
-	ld [wce5f], a
+	ld [wOptions], a
 	call ClearJoypad
 	ret
 

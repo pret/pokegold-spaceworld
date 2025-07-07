@@ -1027,8 +1027,8 @@ ClearGraphicsForPartyMenu::
 	call ClearBGPalettes
 
 .asm_5075f
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call ClearSprites
 	xor a
 	ldh [hBGMapMode], a
@@ -1045,14 +1045,14 @@ PartyMenuInBattle::
 	xor a
 	ldh [hMapAnims], a
 	ld hl, wOptions
-	set NO_TEXT_SCROLL, [hl]
+	set NO_TEXT_SCROLL_F, [hl]
 
 	call PartyMenuInBattle_SetMenuAttributes
 	call Function5081f
 	call Function507cf
 
 	ld hl, wOptions
-	res NO_TEXT_SCROLL, [hl]
+	res NO_TEXT_SCROLL_F, [hl]
 	pop bc
 	ld a, b
 	ldh [hMapAnims], a
@@ -1385,11 +1385,11 @@ Function509d8::
 	ld b, $0a
 	call GetSGBLayout
 Function509dd::
-	ld hl, wce5f
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	push hl
-	set 4, [hl]
+	set NO_TEXT_SCROLL_F, [hl]
 	ld a, [wPartyMenuActionText]
 	cp PARTYMENUTEXT_HEAL_PSN
 	jr nc, .asm_509fc

@@ -57,9 +57,7 @@ wMusicFade::
 ; $00 = none (default)
 	db
 wMusicFadeCount:: db
-wMusicFadeID::
-wMusicFadeIDLow:: db
-wMusicFadeIDHigh:: db
+wMusicFadeID:: dw
 
 wSweepingFadeIndex:: db
 wSweepingFadeCounter:: db
@@ -1077,7 +1075,7 @@ wFieldMoveSucceeded::
 ; 2 - switch
 wBattlePlayerAction:: db
 
-wVramState:: db
+wStateFlags:: db
 
 	ds 3 ; TODO
 wcd5d:: db
@@ -1336,9 +1334,8 @@ wTimeOfDay:: db
 wcd3e: ds 1
 wcd3f: ds 1
 
-SECTION "CE5F", WRAM0[$CE5F]
+SECTION "Options", WRAM0[$CE5F]
 
-wce5f:: ; debug menu writes $41 to it
 wOptions::
 ; bit 0-2: number of frames to delay when printing text
 ;   fast 1; mid 3; slow 5
@@ -1357,7 +1354,7 @@ wActiveFrame:: db
 
 ; bit 0: 1-frame text delay
 ; bit 1: when unset, no text delay
-wTextBoxFlags::  db
+wTextboxFlags::  db
 
 wDebugFlags:: db
 ; Bit 0: Debug battle indicator

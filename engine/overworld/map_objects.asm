@@ -1351,7 +1351,7 @@ Movement_step_end:
 	ld hl, OBJECT_MOVEMENT_INDEX
 	add hl, bc
 	ld [hl], 0
-	ld hl, wVramState
+	ld hl, wStateFlags
 	res SCRIPTED_MOVEMENT_STATE_F, [hl]
 	ret
 
@@ -1378,7 +1378,7 @@ Movement_remove_object:
 	jr nz, .not_leading
 	ld [hl], -1
 .not_leading
-	ld hl, wVramState
+	ld hl, wStateFlags
 	res SCRIPTED_MOVEMENT_STATE_F, [hl]
 	ret
 
@@ -1391,7 +1391,7 @@ Movement_step_stop:
 	add hl, bc
 	ld [hl], STEP_TYPE_STANDING
 
-	ld hl, wVramState
+	ld hl, wStateFlags
 	res SCRIPTED_MOVEMENT_STATE_F, [hl]
 	ret
 
@@ -2169,7 +2169,7 @@ DoStepsForAllObjects:
 	ret
 
 InitSprites::
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	bit SPRITE_UPDATES_DISABLED_F, a
 	ret z
 	xor a

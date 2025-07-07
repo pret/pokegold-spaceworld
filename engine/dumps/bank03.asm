@@ -275,11 +275,11 @@ Functiond4e6:
 	ld a, [wPlayerStepFlags]
 	and a
 	ret z
-	bit 7, a
+	bit PLAYERSTEP_START_F, a
 	jr nz, .sub_d4f8
-	bit 6, a
+	bit PLAYERSTEP_STOP_F, a
 	jr nz, Functiond519
-	bit 5, a
+	bit PLAYERSTEP_CONTINUE_F, a
 	jr nz, Functiond543
 	ret
 .sub_d4f8
@@ -604,11 +604,11 @@ Functiond6e4:
 	ld a, [wPlayerStepFlags]
 	and a
 	ret z
-	bit 7, a
+	bit PLAYERSTEP_START_F, a
 	jr nz, .sub_d6f7
-	bit 6, a
+	bit PLAYERSTEP_STOP_F, a
 	jr nz, .sub_d702
-	bit 5, a
+	bit PLAYERSTEP_CONTINUE_F, a
 	jp nz, Functiond543
 	ret
 .sub_d6f7
@@ -2769,8 +2769,8 @@ Function6734:
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call ClearBGPalettes
 	call ClearSprites
 	call LoadStandardMenuHeader
@@ -2782,8 +2782,8 @@ Function6734:
 	ld a, BANK(_NewPokedexEntry)
 	call FarCall_hl
 	call ClearBGPalettes
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call ExitMenu
 	call LoadTilesetGFX_LCDOff
 	call RestoreScreenAndReloadTiles

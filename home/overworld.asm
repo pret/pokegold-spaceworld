@@ -44,9 +44,9 @@ Function2c4a:
 	call Function2c5a
 	and a
 	ld a, [wPlayerStepFlags]
-	bit 5, a
+	bit PLAYERSTEP_CONTINUE_F, a
 	ret z
-	bit 6, a
+	bit PLAYERSTEP_STOP_F, a
 	jr z, .loop
 	scf
 	ret

@@ -2032,7 +2032,7 @@ LoadEnemyMonToSwitchTo:
 	jr nz, EnemySendOutFirstMon
 
 	ld a, [wOptions]
-	bit BATTLE_SHIFT, a
+	bit BATTLE_SHIFT_F, a
 	jr nz, EnemySendOutFirstMon
 
 	callfar Battle_GetTrainerName
@@ -6021,10 +6021,10 @@ Function3ef19:
 InitBattleCommon:
 	ld a, [wTimeOfDayPal]
 	push af
-	ld hl, wTextBoxFlags
+	ld hl, wTextboxFlags
 	ld a, [hl]
 	push af
-	res 1, [hl]
+	res TEXT_DELAY_F, [hl]
 	ldh a, [hMapAnims]
 	ld [wce26], a
 	call PlayBattleMusic
@@ -6041,8 +6041,8 @@ InitBattleCommon:
 _InitBattleCommon:
 	ld b, 0
 	call GetSGBLayout
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call InitBattleDisplay
 	call BattleStartMessage
 	xor a
@@ -6061,7 +6061,7 @@ _InitBattleCommon:
 	call StartBattle
 	call sub_3f13e
 	pop af
-	ld [wTextBoxFlags], a
+	ld [wTextboxFlags], a
 	pop af
 	ld [wTimeOfDayPal], a
 	ld a, [wce26]

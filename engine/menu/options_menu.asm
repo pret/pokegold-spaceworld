@@ -9,10 +9,10 @@ DEF OPT_SOUND_ROW EQU 13
 DEF OPT_BOTTOM_ROW EQU 16
 
 OptionsMenu::
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	push af
 	xor a
-	ld [wVramState], a
+	ld [wStateFlags], a
 .ReinitDisplay:
 	call DisplayOptionsMenu
 .Loop:
@@ -50,7 +50,7 @@ OptionsMenu::
 	call PlaySFX
 	pop de
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	ld hl, wd4a9
 	bit 0, [hl]
 	jp z, TitleSequenceStart
@@ -59,7 +59,7 @@ OptionsMenu::
 .SwitchSGBBorder:
 	ld hl, wOptions
 	ld a, [hl]
-	xor (1 << SGB_BORDER)
+	xor SGB_BORDER
 	ld [hl], a
 	callfar UpdateSGBBorder
 	call LoadFont
@@ -239,32 +239,32 @@ SetOptionsFromCursorPositions:
 	ld a, [wOptionsBattleAnimCursorX]
 	dec a
 	jr z, .battle_anim_off
-	set BATTLE_SCENE, d
+	set BATTLE_SCENE_F, d
 	jr .battle_anim_on
 
 .battle_anim_off
-	res BATTLE_SCENE, d
+	res BATTLE_SCENE_F, d
 .battle_anim_on
 	ld a, [wOptionsBattleStyleCursorX]
 	dec a
 	jr z, .battle_shift_off
-	set BATTLE_SHIFT, d
+	set BATTLE_SHIFT_F, d
 	jr .battle_shift_on
 
 .battle_shift_off
-	res BATTLE_SHIFT, d
+	res BATTLE_SHIFT_F, d
 .battle_shift_on
 	ld a, [wOptionsAudioSettingsCursorX]
 	dec a
 	jr z, .mono
-	set STEREO, d
+	set STEREO_F, d
 	jr .stereo
 
 .mono
-	res STEREO, d
+	res STEREO_F, d
 .stereo
 	ld a, [wOptions]
-	and 1 << SGB_BORDER
+	and SGB_BORDER
 	or d
 	ld [wOptions], a
 	ret
@@ -284,7 +284,7 @@ DisplayOptionsMenu:
 	ld [hl], a
 	assert FAST_TEXT_DELAY_F == 0
 	inc a ; 1 << FAST_TEXT_DELAY_F
-	ld [wTextBoxFlags], a
+	ld [wTextboxFlags], a
 	ld hl, TextSpeedOptionData + 1
 	ld a, [wOptions]
 	ld c, a

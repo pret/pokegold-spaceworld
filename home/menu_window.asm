@@ -291,8 +291,8 @@ ExitMenu::
 	ret
 
 Function1c0a::
-	ld a, [wVramState]
-	bit 0, a
+	ld a, [wStateFlags]
+	bit SPRITE_UPDATES_DISABLED_F, a
 	ret z
 
 	xor a

@@ -439,8 +439,8 @@ InitializeVisibleSprites::
 FadeIn:: ; This is not OverworldFadeIn, but I don't know what it is
 	call InitToolgearBuffer
 	call RefreshTiles
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call Function2407
 	callfar InitSprites
 	call DelayFrame
@@ -1637,8 +1637,8 @@ Function2b39::
 	ld hl, wDebugFlags
 	res 6, [hl]
 	res 7, [hl]
-	ld hl, wVramState
-	res 7, [hl]
+	ld hl, wStateFlags
+	res SCRIPTED_MOVEMENT_STATE_F, [hl]
 	ld a, $0
 	call WriteIntod637
 	ret
@@ -1646,8 +1646,8 @@ Function2b39::
 Function2b52::
 .asm_2b52:
 	call UpdateTime
-	ld a, [wVramState]
-	bit 7, a
+	ld a, [wStateFlags]
+	bit SCRIPTED_MOVEMENT_STATE_F, a
 	jr z, Function2b39
 	ldh a, [hMapEntryMethod]
 	and a
@@ -1707,9 +1707,9 @@ Function2ba8::
 	call Bankswitch
 	and a
 	ld a, [wPlayerStepFlags]
-	bit 5, a
+	bit PLAYERSTEP_CONTINUE_F, a
 	ret z
-	bit 6, a
+	bit PLAYERSTEP_STOP_F, a
 	jr z, Function2ba8
 	scf
 	ret

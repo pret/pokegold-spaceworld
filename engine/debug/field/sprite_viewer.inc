@@ -13,13 +13,13 @@ FieldDebug_SpriteViewer:
 	call LoadStandardMenuHeader
 	call ClearTileMap
 	call HideSprites
-	ld hl, wVramState
-	res 0, [hl]
+	ld hl, wStateFlags
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call .Init
 	call .DoSpriteViewer
 	push af
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call ClearPalettes
 	call RestoreScreenAndReloadTiles
 	call CloseWindow
