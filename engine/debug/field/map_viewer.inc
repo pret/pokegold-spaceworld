@@ -135,13 +135,13 @@ DebugMapViewer::
 	ret
 
 .MoveCursorToPlayer:
-	ld a, FOLLOWER
+	ld a, MAP_VIEWER_CURSOR
 	ld hl, wMovementBuffer
 	call LoadMovementDataPointer
-	ld d, 2
-	ld b, 1
-	ld c, 0
-	callfar Function83a2
+	ld d, STEP_BIKE
+	ld b, MAP_VIEWER_CURSOR
+	ld c, PLAYER
+	callfar ObjectWalkToPlayer
 	ld a, DEBUGMAPVIEWER_WAIT_FINISHED_MOVING
 	ldh [hDebugMapViewerJumptable], a
 	and a
@@ -158,7 +158,7 @@ DebugMapViewer::
 	ret
 
 .Cleanup:
-	ld a, FOLLOWER
+	ld a, MAP_VIEWER_CURSOR
 	call DeleteMapObject
 	call UnfreezePlayer
 	ld a, PLAYER
@@ -324,9 +324,9 @@ DebugMapViewer_DoMovement:
 
 DebugMapViewer_ReplacePlayerObject:
 	callfar DebugMapViewer_SetupCursor
-	ld a, FOLLOWER
+	ld a, MAP_VIEWER_CURSOR
 	call CopyMapObjectToReservedObjectStruct
-	ld a, FOLLOWER
+	ld a, MAP_VIEWER_CURSOR
 	call CenterObject
 	ld bc, wReservedObjectStruct
 	ld hl, OBJECT_FLAGS1

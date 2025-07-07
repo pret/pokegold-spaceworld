@@ -291,7 +291,7 @@ TrainerGear_Map:
 	coord hl, 0, 3
 	call DecompTownMapTilemap
 	call WaitBGMap
-	call PlaceGoldInMap
+	call TownMap_InitPlayerIcon
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	ld a, [hl]

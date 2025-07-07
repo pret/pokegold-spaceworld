@@ -745,6 +745,7 @@ wPokedexSlowpokeNumSearchEntries::
 wNestIconBlinkCounter::
 wBattleTransitionCounter:: db
 
+UNION
 wBattleTransitionSineWaveOffset::
 wBattleTransitionSpinQuadrant::
 wIntroSceneTimer::
@@ -752,7 +753,10 @@ wTrainerGearCard::
 wcb60:: ds 1
 
 wTrainerGearRadioIndex::
-wcb61:: ds 1
+wSlotReelIconDelay:: db
+NEXTU
+wFlyIconAnimStructPointer:: dw
+ENDU
 
 wVBCopySize:: ds 1
 wVBCopySrc:: ds 2

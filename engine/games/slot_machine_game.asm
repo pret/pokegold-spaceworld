@@ -262,7 +262,7 @@ Slots_DisplayBiasValue:
 	ret
 
 Slots_AnimateReelSpritesAfterSpin:
-	ld hl, wcb61
+	ld hl, wSlotReelIconDelay
 	ld a, [hl]
 	inc [hl]
 	and 7

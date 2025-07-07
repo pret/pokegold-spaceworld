@@ -287,7 +287,7 @@ Functiond4e6:
 
 Functiond4fa:
 	call Functiond51e
-	callfar Function8261
+	callfar EmptyFunction8261
 
 Functiond505:
 	ld a, $04
@@ -2816,12 +2816,12 @@ _UseItem:
 	jp hl
 
 Tablee7a5:
-	dw PokeBallEffect	; ITEM_MASTER_BALL
-	dw PokeBallEffect	; ITEM_ULTRA_BALL
+	dw PokeBallEffect    ; ITEM_MASTER_BALL
+	dw PokeBallEffect    ; ITEM_ULTRA_BALL
 	dw Functionf66f
-	dw PokeBallEffect	; ITEM_GREAT_BALL
-	dw PokeBallEffect	; ITEM_POKE_BALL
-	dw Functionec95
+	dw PokeBallEffect    ; ITEM_GREAT_BALL
+	dw PokeBallEffect    ; ITEM_POKE_BALL
+	dw TownMapEffect     ; ITEM_TOWN_MAP 
 	dw Functioneca4
 	dw Functioned00
 	dw Functionef02
@@ -3407,13 +3407,11 @@ ReturnToBattle_UseBall:
 	call SetPalettes
 	ret
 
-Functionec95:
+TownMapEffect:
 	ld a, [wBattleMode]
 	and a
 	jp nz, IsntTheTimeMessage
-	ld a, BANK(Function86a0)
-	ld hl, Function86a0
-	jp FarCall_hl
+	farjp TownMap
 
 Functioneca4:
 	xor a
