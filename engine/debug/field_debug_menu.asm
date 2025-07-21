@@ -41,10 +41,10 @@ FieldDebugMenu::
 	call UpdateTimePals
 	call UpdateSprites
 	ld a, [wFieldDebugMenuCursorBuffer]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call OpenMenu
 	jr c, .WaitInput
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	ld [wFieldDebugMenuCursorBuffer], a
 	call PlaceHollowCursor
 

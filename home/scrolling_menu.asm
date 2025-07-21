@@ -2,7 +2,11 @@ INCLUDE "constants.asm"
 
 SECTION "home/scrolling_menu.asm", ROM0
 
-Function3810::
+; Runs a scrolling menu from a table with the following:
+; 1. A pointer to the menu header.
+; 2. Pointer to the cursor in RAM.
+; 3. Pointer to the menu scroll position in RAM.
+ScrollingMenu_FromTable::
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -12,13 +16,15 @@ Function3810::
 	ld l, e
 	call CopyMenuHeader
 	pop hl
+	
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
 	ld a, [de]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	push de
+
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -26,11 +32,13 @@ Function3810::
 	ld a, [de]
 	ld [wMenuScrollPosition], a
 	push de
+
 	call ScrollingMenu
 	pop de
 	ld a, [wMenuScrollPosition]
 	ld [de], a
 	pop de
+
 	ld a, [wMenuCursorY]
 	ld [de], a
 	ld a, [wMenuJoypad]

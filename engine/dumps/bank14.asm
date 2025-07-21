@@ -1078,7 +1078,7 @@ PartyMenuInBattle_SetMenuAttributes::
 	ld a, $01
 .asm_507b4
 	ld [wMenuJoypadFilter], a
-	ld a, [wcd3c]
+	ld a, [wBillsPCCursor]
 	and a
 	jr z, .asm_507c1
 	inc b
@@ -1094,10 +1094,10 @@ Data_507c7:
 	db $01, $00, $00, $01, $60, $00, $20, $00
 
 Function507cf::
-	call Get2DMenuJoypad
+	call StaticMenuJoypad
 	call PlaceHollowCursor
 	ld a, [wMenuCursorY]
-	ld [wcd3c], a
+	ld [wBillsPCCursor], a
 	ldh a, [hJoySum]
 	ld b, a
 	ld a, [wSelectedSwapPosition]
@@ -1755,12 +1755,12 @@ Function50c48::
 	ld [wItemAttributesPointer + 1], a
 	ret
 
-Function50caa::
+CalcLevel::
 	ld a, [wTempMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld d, $01
-.asm_50cb5
+	ld d, 1
+.next_level
 	inc d
 	call CalcExpAtLevel
 	push hl
@@ -1778,7 +1778,9 @@ Function50caa::
 	ld a, [hl]
 	sbc c
 	pop hl
-	jr nc, .asm_50cb5
+	jr nc, .next_level
+
+.got_level
 	dec d
 	ret
 

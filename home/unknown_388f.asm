@@ -49,14 +49,14 @@ TestWildBattleStart::
 	and D_PAD
 	ret z ; if no directions are down, don't try and trigger a wild encounter
 	call CheckBPressedDebug
-	jp nz, ClearAccumulator ; if b button is down, clear acc
+	jp nz, xor_a ; if b button is down, clear acc
 	callfar Function3ee3e
 	ld a, [wBattleMode]
 	and a
 	ret z ; if no battle, return
 	ld a, $3
 	call WriteIntod637
-	call SetFFInAccumulator
+	call xor_a_dec_a
 	ret
 
 Function3904::

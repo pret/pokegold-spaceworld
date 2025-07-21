@@ -46,6 +46,8 @@ DEF MAX_ITEMS     EQU 20
 DEF MAX_KEY_ITEMS EQU 20
 DEF MAX_PC_ITEMS  EQU 50
 
+DEF MAX_ITEM_STACK EQU 99
+
 ; held item effects
 	const_def
 	const HELD_NONE

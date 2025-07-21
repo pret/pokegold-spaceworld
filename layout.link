@@ -154,7 +154,7 @@ ROMX $03
 	"engine/pokemon/health.asm@HP Bar"
 	"engine/events/field_moves.asm"
 	"engine/items/inventory.asm@_CheckTossableItem"
-	"engine/dumps/bank03.asm@Functiond41d"
+	"engine/dumps/bank03.asm@Unreferenced_TossItem_Old"
 	"engine/items/item_effects.asm"
 	"engine/dumps/bank03.asm@GetMaxPPOfMove"
 
@@ -223,7 +223,7 @@ ROMX $08
 
 ROMX $09
 	org $4000
-	"engine/dumps/bank09.asm@Function24000"
+	"engine/dumps/bank09.asm@_PushWindow"
 
 ROMX $0a
 	org $4000
@@ -283,9 +283,8 @@ ROMX $10
 
 ROMX $11
 	org $4000
-	org $40d5
+	"engine/dumps/bank11.asm"
 	"gfx.asm@Pokedex GFX"
-	org $4945
 	"data/pokemon/dex_entries.asm"
 
 ROMX $12
@@ -992,5 +991,5 @@ SRAM 0
 	"Sprite Buffers"
 	org $a600
 	"Unknown, bank 0"
-	org $bffe
-	"Window Stack Top"
+	org $b800
+	"SRAM Window Stack"

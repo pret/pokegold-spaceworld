@@ -112,6 +112,10 @@
 	charmap "<ROCKET>",  $5e ; "ROCKET"
 	charmap "<DEXEND>",  $5f
 
+	charmap "m", $60
+	charmap "k", $61
+	charmap "g", $62
+
 	charmap "■", $60
 	charmap "▲", $61
 	charmap "☎", $62
@@ -273,7 +277,7 @@
 
 	charmap "▷", $ec
 	charmap "▶", $ed
-	charmap "▲", $ed
+;	charmap "▲", $ed
 	charmap "▼", $ee
 	charmap "♂", $ef
 	charmap "円", $f0

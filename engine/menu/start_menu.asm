@@ -14,10 +14,10 @@ DisplayStartMenu:
 	call ClearJoypad
 	call GetStartMenuState
 	ld a, [wStartmenuCursor]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call OpenMenu
 	jr c, .MainReturn
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	ld [wStartmenuCursor], a
 	call PlaceHollowCursor
 	ld a, [wMenuSelection]
@@ -72,7 +72,7 @@ DisplayStartMenu:
 	db $A8 ; flags
 	db 0 ; items
 	dw StartMenuItems
-	db $8A, $1F
+	dw PlaceMenuStrings
 	dw .Strings
 
 .Strings:
@@ -263,7 +263,7 @@ ToolsPocketHeader:
 	db 4, 9, 2, 0
 	dw wNumBagItems
 
-	dba Function2473b
+	dba PlacePackItems
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
 
@@ -282,7 +282,7 @@ KeyItemsPocketHeader:
 	db 4, 9, 1, 0
 	dw wNumKeyItems
 
-	dba Function2473b
+	dba PlacePackItems
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
 
@@ -297,7 +297,7 @@ BackpackMenuHeader:
 	db 4, 9, 2, 0
 	dw wNumBagItems
 
-	dba Function2473b
+	dba PlacePackItems
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
 
@@ -392,7 +392,7 @@ StartMenu_Backpack:
 DebugBackpackLoop:
 ; checks the field debug flag, if set this runs
 ; otherwise NondebugBackpackLoop runs
-; if wactivebackpackpocket is 1 (doesn't have key items) then jumps below
+; if wActiveBackpackPocket is 1 (doesn't have key items) then jumps below
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
 	jp z, NondebugBackpackLoop
@@ -404,7 +404,7 @@ DebugBackpackLoop:
 	ld de, .ToolsPocketText
 	call DrawBackpackTitleRow
 	ld a, [wRegularItemsCursor]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, [wRegularItemsScrollPosition]
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu
@@ -424,7 +424,7 @@ DebugBackpackLoop:
 	ld de, KeyItemsPocketText
 	call DrawBackpackTitleRow
 	ld a, [wBackpackAndKeyItemsCursor]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, [wBackpackAndKeyItemsScrollPosition]
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu
@@ -444,7 +444,7 @@ NondebugBackpackLoop:
 	ld de, BackpackHeaderText
 	call DrawBackpackTitleRow
 	ld a, [wBackpackAndKeyItemsCursor]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, [wBackpackAndKeyItemsScrollPosition]
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu
@@ -794,10 +794,8 @@ BallPocket:
 .MenuData:
 	db SCROLLINGMENU_ENABLE_FUNCTION3 ; flags
 	db 4, 8 ; rows, columns
-	db $80 ; horizontal spacing?
-	db 0 ; ???
-	dw wNumBallItems
-
+	db SCROLLINGMENU_BALL_POCKET
+	dbw 0, wNumBallItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
@@ -1546,7 +1544,7 @@ SummaryDrawPoke:
 	set 6, [hl]
 	jr PartySelectionInputs.PartySelectSkipInputs
 PartySelectionInputs:
-	call Get2DMenuJoypad + 3
+	call StaticMenuJoypad + 3
 	bit B_BUTTON_F, a
 	jp nz, PartySelectionBackOut
 	bit A_BUTTON_F, a

@@ -181,7 +181,7 @@ asm_2d47b:
 	call WaitBGMap
 	ld a, $1
 	ldh [hBGMapMode], a
-	call Get2DMenuJoypad
+	call StaticMenuJoypad
 	ld b, a
 	ld a, [wMenuCursorY]
 	dec a

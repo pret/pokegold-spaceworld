@@ -462,7 +462,7 @@ PCItemsJoypad:
 	ld hl, .MenuHeader
 	call CopyMenuHeader
 	ld a, [wBackpackAndKeyItemsCursor]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, [wBackpackAndKeyItemsScrollPosition]
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu

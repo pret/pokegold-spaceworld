@@ -1763,7 +1763,7 @@ EnemySwitch:
 
 	ld a, [wCurBattleMon]
 	ld c, a
-	ld b, 1 ; SET_FLAG
+	ld b, SET_FLAG
 	push bc
 	predef SmallFarFlagAction
 	ld hl, wBattleParticipantsIncludingFainted
@@ -3448,7 +3448,7 @@ PassedBattleMonEntrance:
 	ld a, [wCurPartyMon]
 	ld [wCurBattleMon], a
 	ld c, a
-	ld b, 1 ; SET_FLAG
+	ld b, SET_FLAG
 	push bc
 	ld hl, wBattleParticipantsNotFainted
 	predef SmallFarFlagAction
@@ -3623,7 +3623,7 @@ asm_3db9a:
 	call WaitBGMap
 	ld a, 1
 	ldh [hBGMapMode], a
-	call Get2DMenuJoypad_NoPlaceCursor
+	call ScrollingMenuJoypad
 	bit 6, a
 	jp nz, asm_3dc55
 	bit 7, a
@@ -4321,8 +4321,8 @@ LoadEnemyMon:
 ; Load preset middle-class DVs for trainer battles.
 	ld a, [wBattleMode]
 	cp TRAINER_BATTLE
-	ld a, $98
-	ld b, $88
+	ln a, 9, 8
+	ln b, 8, 8
 	jr z, .UpdateDVs
 
 ; Otherwise randomly generate DVs for wild encounters
@@ -5081,7 +5081,7 @@ asm_3e507:
 	xor a
 	ld [wMonType], a
 	predef CopyMonToTempMon
-	farcall Function50caa
+	farcall CalcLevel
 	pop bc
 	ld hl, $1f
 	add hl, bc

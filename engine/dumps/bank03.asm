@@ -21,115 +21,126 @@ SECTION "engine/dumps/bank03.asm@Functionc9c1", ROMX
 
 Functionc9c1:
 	xor a
-	ld bc, $0020
+	ld bc, $0020 ; presumably size of wCurrMapInlineTrainers
 	ld hl, wCurrMapInlineTrainers
 	call ByteFill
 	ld de, wMap2Object
-	ld a, $02
-.sub_c9d0
+	ld a, 2 ; skip the player
+.loop
 	push af
 	push de
-	ld hl, $0008
+	ld hl, MAPOBJECT_PALETTE
 	add hl, de
 	ld a, [hl]
-	cp $00
-	jr nz, .sub_c9e7
-	ld hl, $0000
+	cp 0
+	jr nz, .skip
+
+	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, de
 	ld a, [hl]
-	cp $ff
-	jr z, .sub_c9e7
-	call .sub_c9f5
-.sub_c9e7
+	cp -1
+	jr z, .skip
+	call .check_inline_trainer
+
+.skip
 	pop de
-	ld hl, $0010
+	ld hl, MAPOBJECT_LENGTH
 	add hl, de
 	ld d, h
 	ld e, l
 	pop af
 	inc a
-	cp $10
-	jr nz, .sub_c9d0
+	cp NUM_OBJECTS
+	jr nz, .loop
 	ret
-.sub_c9f5
+
+.check_inline_trainer
 	jp CheckInlineTrainer
 
-Functionc9f8:
+; Leftover from Generation I. Equivalent to pokered's AddItemToInventory_.
+Unreferenced_ReceiveItem_Old:
 	ld a, [wItemQuantity]
 	push af
 	push bc
 	push de
 	push hl
 	push hl
-	ld d, $32
+	ld d, 50 ; PC_ITEM_CAPACITY
 	push hl
-	ld bc, $2e62
+	ld bc, $2e62 ; TODO: ???
 	add hl, bc
 	ld a, h
 	or l
 	pop hl
-	jr nz, .sub_ca0e
-	ld d, $14
-.sub_ca0e
+	jr nz, .check_if_inventory_full
+
+	ld d, 20 ; BAG_ITEM_CAPACITY
+.check_if_inventory_full
 	ld a, [hl]
 	sub d
 	ld d, a
 	ld a, [hli]
 	and a
-	jr z, .sub_ca24
-.sub_ca15
+	jr z, .add_new_item
+
+.not_at_end_of_inventory
 	ld a, [hli]
 	ld b, a
 	ld a, [wCurItem]
 	cp b
-	jp z, .sub_ca3e
+	jp z, .increase_item_quantity
 	inc hl
 	ld a, [hl]
-	cp $ff
-	jr nz, .sub_ca15
-.sub_ca24
+	cp -1
+	jr nz, .not_at_end_of_inventory
+
+.add_new_item
 	pop hl
 	ld a, d
 	and a
-	jr z, .sub_ca5f
+	jr z, .done
+
 	inc [hl]
 	ld a, [hl]
 	add a
 	dec a
 	ld c, a
-	ld b, $00
-	add hl, bc
+	ld b, 0
+	add hl, bc ; address to store item
 	ld a, [wCurItem]
 	ld [hli], a
 	ld a, [wItemQuantity]
 	ld [hli], a
-	ld [hl], $ff
-	jp .sub_ca5e
-.sub_ca3e
+	ld [hl], -1
+	jp .success
+
+.increase_item_quantity
 	ld a, [wItemQuantity]
 	ld b, a
 	ld a, [hl]
 	add b
-	cp $64
-	jp c, .sub_ca5c
-	sub $63
+	cp MAX_ITEM_STACK + 1
+	jp c, .store_new_quantity
+	sub MAX_ITEM_STACK
 	ld [wItemQuantity], a
 	ld a, d
 	and a
-	jr z, .sub_ca58
-	ld a, $63
+	jr z, .increase_item_quantity_failed
+	ld a, MAX_ITEM_STACK
 	ld [hli], a
-	jp .sub_ca15
-.sub_ca58
+	jp .not_at_end_of_inventory
+
+.increase_item_quantity_failed
 	pop hl
 	and a
-	jr .sub_ca5f
-.sub_ca5c
+	jr .done
+
+.store_new_quantity
 	ld [hl], a
 	pop hl
-.sub_ca5e
+.success
 	scf
-.sub_ca5f
+.done
 	pop hl
 	pop de
 	pop bc
@@ -138,12 +149,12 @@ Functionc9f8:
 	ld [wItemQuantity], a
 	ret
 
-Functionca68:
+Unreferenced_RemoveItemFromInventory_Old:
 	push hl
 	inc hl
 	ld a, [wItemIndex]
 	ld e, a
-	ld d, $00
+	ld d, 0
 	add hl, de
 	add hl, de
 	inc hl
@@ -154,17 +165,17 @@ Functionca68:
 	ld [hld], a
 	ld [wItemQuantityBuffer], a
 	and a
-	jr nz, .sub_ca9f
+	jr nz, .skip_moving_up_slots
 	ld e, l
 	ld d, h
 	inc de
 	inc de
-.sub_ca84
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
-	cp $ff
-	jr nz, .sub_ca84
+	cp -1
+	jr nz, .loop
 	xor a
 	ld [wMenuScrollPosition], a
 	ld [wRegularItemsCursor], a
@@ -172,173 +183,182 @@ Functionca68:
 	ld a, [hl]
 	dec a
 	ld [hl], a
-	ld [wCurPartyLevel+1], a
-	cp $02
-	jr c, .sub_caa0
-	jr .sub_caa0
-.sub_ca9f
+	ld [wScrollingMenuListSize], a
+	cp 2
+	jr c, .done
+	jr .done
+.skip_moving_up_slots
 	pop hl
-.sub_caa0
+.done
 	ret
 
 
-SECTION "engine/dumps/bank03.asm@Functiond41d", ROMX
+SECTION "engine/dumps/bank03.asm@Unreferenced_TossItem_Old", ROMX
 
-Functiond41d:
+Unreferenced_TossItem_Old:
 	push hl
-	call Functiond4b2
+	call Unused_IsKeyItem_Old
 	ld a, [wItemAttributeValue]
 	and a
-	jr nz, .sub_d45f
+	jr nz, .cant_toss
+
 	ld a, [wCurItem]
-	ld [wce37], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	call CopyStringToStringBuffer2
-	ld hl, ItemsThrowAwayText
+	ld hl, .ItemsThrowAwayText
 	call MenuTextBox
 	call YesNoBox
 	call CloseWindow
-	jr c, .sub_d468
+	jr c, .cancel
+
 	ld a, [wItemIndex]
 	pop hl
 	call TossItem
 	ld a, [wCurItem]
-	ld [wce37], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	call CopyStringToStringBuffer2
-	ld hl, ItemsDiscardedText
+	ld hl, .ItemsDiscardedText
 	call MenuTextBox
 	call CloseWindow
+
 	and a
 	ret
-.sub_d45f
-	ld hl, ItemsTooImportantText
+
+.cant_toss
+	ld hl, .ItemsTooImportantText
 	call MenuTextBox
 	call CloseWindow
-.sub_d468
+.cancel
 	pop hl
 	scf
 	ret
 
-ItemsDiscardedText:
+.ItemsDiscardedText:
 	text_from_ram wStringBuffer1
 	text "を" ; "Threw away"
 	line "すてました！" ; "(item?)!"
 	prompt
 
-ItemsThrowAwayText:
+.ItemsThrowAwayText:
 	text_from_ram wStringBuffer2
 	text "を　すてます" ; "Are you sure you want"
 	line "ほんとに　よろしいですか？" ; "to throw (item?) away?"
 	prompt
 
-ItemsTooImportantText:
+.ItemsTooImportantText:
 	text "それは　とても　たいせつなモノです" ; "You can't throw away"
 	line "すてることは　できません！" ; "something that special!"
 	prompt
 
-Functiond4b2:
+Unused_IsKeyItem_Old:
 	push hl
 	push bc
-	ld a, $01
+	ld a, 1
 	ld [wItemAttributeValue], a
 	ld a, [wCurItem]
-	cp $c4
-	jr nc, .sub_d4d7
-	ld hl, ItemAttributes +  4
+	cp ITEM_HM01_RED
+	jr nc, .check_if_hm
+	ld hl, ItemAttributes + ITEMATTR_PERMISSIONS
 	dec a
 	ld c, a
-	ld b, $00
+	ld b, 0
+rept 5
 	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
+endr
 	ld a, BANK(ItemAttributes)
 	call GetFarByte
 	bit 0, a
-	jr nz, .sub_d4e3
-	jr .sub_d4df
-.sub_d4d7
+	jr nz, .cant_toss
+	jr .can_toss
+
+.check_if_hm
 	ld a, [wCurItem]
 	call IsHM
-	jr c, .sub_d4e3
-.sub_d4df
+	jr c, .cant_toss
+
+.can_toss
 	xor a
 	ld [wItemAttributeValue], a
-.sub_d4e3
+.cant_toss
 	pop bc
 	pop hl
 	ret
 
-Functiond4e6:
+_HandlePlayerStep_Old:
 	ld a, [wPlayerStepFlags]
 	and a
 	ret z
 	bit PLAYERSTEP_START_F, a
-	jr nz, .sub_d4f8
+	jr nz, .start
 	bit PLAYERSTEP_STOP_F, a
-	jr nz, Functiond519
+	jr nz, .update_player_coords
 	bit PLAYERSTEP_CONTINUE_F, a
-	jr nz, Functiond543
+	jr nz, HandlePlayerStep_Finish
 	ret
-.sub_d4f8
-	jr Functiond505
 
-Functiond4fa:
-	call Functiond51e
+.start
+	jr ._start
+
+.unreferenced_d4fa
+	call UpdatePlayerCoords
 	callfar EmptyFunction8261
 
-Functiond505:
-	ld a, $04
-	ld [wcdb2], a
+._start
+	ld a, 4
+	ld [wHandlePlayerStep], a
 	ldh a, [hOverworldFlashlightEffect]
 	and a
-	jr nz, .sub_d514
-	call Functiond5f3
-	jr Functiond543
-.sub_d514
-	call Functiond708
-	jr Functiond543
+	jr nz, .update_overworld_map
+	call UpdateOverworldMap_Old
+	jr HandlePlayerStep_Finish
 
-Functiond519:
-	call Functiond51e
-	jr Functiond543
+.update_overworld_map
+	call UpdateOverworldMap
+	jr HandlePlayerStep_Finish
 
-Functiond51e:
+.update_player_coords
+	call UpdatePlayerCoords
+	jr HandlePlayerStep_Finish
+
+UpdatePlayerCoords:
 	ld a, [wPlayerStepDirection]
 	and a
-	jr nz, .sub_d529
+	jr nz, .check_step_down
 	ld hl, wYCoord
 	inc [hl]
 	ret
-.sub_d529
-	cp $01
-	jr nz, .sub_d532
+
+.check_step_down
+	cp UP
+	jr nz, .check_step_left
 	ld hl, wYCoord
 	dec [hl]
 	ret
-.sub_d532
-	cp $02
-	jr nz, .sub_d53b
+
+.check_step_left
+	cp LEFT
+	jr nz, .check_step_right
 	ld hl, wXCoord
 	dec [hl]
 	ret
-.sub_d53b
-	cp $03
+
+.check_step_right
+	cp RIGHT
 	ret nz
 	ld hl, wXCoord
 	inc [hl]
 	ret
 
-Functiond543:
-	call .sub_d5bf
+HandlePlayerStep_Finish:
+	call HandlePlayerStep
 	ld a, [wPlayerStepVectorX]
 	ld d, a
 	ld a, [wPlayerStepVectorY]
 	ld e, a
-	call .sub_d55f
-	call .sub_d591
+	call ScrollNPCs
+	call ScrollMinorObjects
 	ldh a, [hSCX]
 	add d
 	ldh [hSCX], a
@@ -346,73 +366,78 @@ Functiond543:
 	add e
 	ldh [hSCY], a
 	ret
-.sub_d55f
+
+ScrollNPCs:
 	ld bc, wObjectStructs
 	xor a
-.sub_d563
-	ldh [hConnectionStripLength], a
-	ld hl, $0000
+.loop
+	ldh [hMapObjectIndex], a
+	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .sub_d583
-	ld hl, $0004
+	jr z, .skip
+	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit 7, [hl]
-	jr nz, .sub_d583
-	ld hl, $0018
+	bit CENTERED_OBJECT_F, [hl]
+	jr nz, .skip
+
+	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld a, [hl]
 	sub d
 	ld [hl], a
-	ld hl, $0019
+	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	ld a, [hl]
 	sub e
 	ld [hl], a
-.sub_d583
-	ld hl, $0028
+.skip
+	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hConnectionStripLength]
+	ldh a, [hMapObjectIndex]
 	inc a
-	cp $0a
-	jr nz, .sub_d563
+	cp NUM_OBJECT_STRUCTS
+	jr nz, .loop
 	ret
-.sub_d591
+
+ScrollMinorObjects:
 	ld bc, wMinorObjects
-	ld a, $01
-.sub_d596
-	ldh [hConnectionStripLength], a
-	ld hl, $0000
+	ld a, 1
+.loop
+	ldh [hMapObjectIndex], a
+	ld hl, MINOR_OBJECT_PARENT_OBJECT
 	add hl, bc
 	ld a, [wCenteredObject]
 	inc a
 	cp [hl]
-	jr z, .sub_d5b1
-	ld hl, $0004
+	jr z, .skip
+	ld hl, MINOR_OBJECT_X_POS
 	add hl, bc
 	ld a, [hl]
 	sub d
 	ld [hl], a
-	ld hl, $0005
+	ld hl, MINOR_OBJECT_Y_POS
 	add hl, bc
 	ld a, [hl]
 	sub e
 	ld [hl], a
-.sub_d5b1
-	ld hl, $0010
+
+.skip
+	ld hl, MINOR_OBJECT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
-	ldh a, [hConnectionStripLength]
+	ldh a, [hMapObjectIndex]
 	inc a
-	cp $05
-	jr nz, .sub_d596
+	cp NUM_MINOR_OBJECTS + 1
+	jr nz, .loop
 	ret
-.sub_d5bf
-	ld hl, wcdb2
+
+HandlePlayerStep::
+	ld hl, wHandlePlayerStep
 	ld a, [hl]
 	and a
 	ret z
@@ -420,122 +445,126 @@ Functiond543:
 	ld a, [hl]
 	add a
 	ld e, a
-	ld d, $00
-	ld hl, Tabled5d3
+	ld d, 0
+	ld hl, .Jumptable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
-Tabled5d3:
+.Jumptable:
 	dw RefreshTiles
-	dw Functiond5ea
+	dw _Functionc9c1
 	dw BufferScreen
-	dw Functiond5e9
-	dw Functiond5e9
-	dw Functiond5e9
-	dw Functiond5e9
-	dw Functiond5e9
-	dw Functiond5e9
-	dw Functiond5e9
-	dw Functiond5e9
+	dw .fail
+	dw .fail
+	dw .fail
+	dw .fail
+	dw .fail
+	dw .fail
+	dw .fail
+	dw .fail
 
-Functiond5e9:
+.fail
 	ret
 
-Functiond5ea:
-	ld hl, Functionc9c1
-	ld a, BANK(Functionc9c1)
-	call FarCall_hl
+_Functionc9c1:
+	callfar Functionc9c1
 	ret
 
-Functiond5f3:
+UpdateOverworldMap_Old:
 	ld a, [wPlayerStepDirection]
-	and a
-	jr z, .sub_d606
-	cp $01
-	jr z, .sub_d610
-	cp $02
-	jr z, .sub_d61a
-	cp $03
-	jr z, .sub_d624
+	and a ; DOWN
+	jr z, .step_down
+	cp UP
+	jr z, .step_up
+	cp LEFT
+	jr z, .step_left
+	cp RIGHT
+	jr z, .step_right
 	ret
-.sub_d606
-	call Functiond62e
+
+.step_down
+	call ScrollOverworldMapDown
 	call LoadMapPart
 	call ScheduleSouthRowRedraw
 	ret
-.sub_d610
-	call Functiond65f
+
+.step_up
+	call ScrollOverworldMapUp
 	call LoadMapPart
 	call ScheduleNorthRowRedraw
 	ret
-.sub_d61a
-	call Functiond692
+
+.step_left
+	call ScrollOverworldMapLeft
 	call LoadMapPart
 	call ScheduleWestColumnRedraw
 	ret
-.sub_d624
-	call Functiond6bb
+	
+.step_right
+	call ScrollOverworldMapRight
 	call LoadMapPart
 	call ScheduleEastColumnRedraw
 	ret
 
-Functiond62e:
+ScrollOverworldMapDown:
 	ld a, [wBGMapAnchor]
-	add $40
+	add BG_MAP_WIDTH * 2
 	ld [wBGMapAnchor], a
-	jr nc, .sub_d643
-	ld a, [wBGMapAnchor+1]
+	jr nc, .no_overflow
+	ld a, [wBGMapAnchor + 1]
 	inc a
-	and $03
-	or $98
-	ld [wBGMapAnchor+1], a
-.sub_d643
+	and %11
+	or HIGH(vBGMap0)
+	ld [wBGMapAnchor + 1], a
+.no_overflow
 	ld hl, wMetatileNextY
 	inc [hl]
 	ld a, [hl]
-	cp $02
-	jr nz, .sub_d651
-	ld [hl], $00
-	call .sub_d652
-.sub_d651
+	cp 2
+	jr nz, .done
+	ld [hl], 0
+	call .ScrollMapDataDown
+.done
 	ret
-.sub_d652
+
+.ScrollMapDataDown:
 	ld hl, wOverworldMapAnchor
 	ld a, [wMapWidth]
-	add $06
+	add 3 * 2 ; surrounding tiles
 	add [hl]
 	ld [hli], a
 	ret nc
 	inc [hl]
 	ret
 
-Functiond65f:
+ScrollOverworldMapUp:
 	ld a, [wBGMapAnchor]
-	sub $40
+	sub BG_MAP_WIDTH * 2
 	ld [wBGMapAnchor], a
-	jr nc, .sub_d674
+	jr nc, .not_underflowed
 	ld a, [wBGMapAnchor+1]
 	dec a
-	and $03
-	or $98
+	and %11
+	or HIGH(vBGMap0)
 	ld [wBGMapAnchor+1], a
-.sub_d674
+.not_underflowed
 	ld hl, wMetatileNextY
 	dec [hl]
 	ld a, [hl]
-	cp $ff
-	jr nz, .sub_d682
-	ld [hl], $01
-	call .sub_d683
-.sub_d682
+	cp -1
+	jr nz, .done_up
+	ld [hl], 1
+	call .ScrollMapDataUp
+.done_up
 	ret
-.sub_d683
+
+.ScrollMapDataUp:
 	ld hl, wOverworldMapAnchor
 	ld a, [wMapWidth]
-	add $06
+	add 3 * 2
 	ld b, a
 	ld a, [hl]
 	sub b
@@ -544,192 +573,209 @@ Functiond65f:
 	dec [hl]
 	ret
 
-Functiond692:
+ScrollOverworldMapLeft:
 	ld a, [wBGMapAnchor]
 	ld e, a
-	and $e0
+	and ~(BG_MAP_WIDTH - 1)
 	ld d, a
 	ld a, e
-	sub $02
-	and $1f
+	sub 2
+	maskbits BG_MAP_WIDTH - 1
 	or d
 	ld [wBGMapAnchor], a
 	ld hl, wMetatileNextX
 	dec [hl]
 	ld a, [hl]
-	cp $ff
-	jr nz, .sub_d6b0
-	ld [hl], $01
-	call .sub_d6b1
-.sub_d6b0
+	cp -1
+	jr nz, .done_left
+	ld [hl], 1
+	call .ScrollMapDataLeft
+.done_left
 	ret
-.sub_d6b1
+
+.ScrollMapDataLeft:
 	ld hl, wOverworldMapAnchor
 	ld a, [hl]
-	sub $01
+	sub 1
 	ld [hli], a
 	ret nc
 	dec [hl]
 	ret
 
-Functiond6bb:
+ScrollOverworldMapRight:
 	ld a, [wBGMapAnchor]
 	ld e, a
-	and $e0
+	and ~(BG_MAP_WIDTH - 1)
 	ld d, a
 	ld a, e
-	add $02
-	and $1f
+	add 2
+	maskbits BG_MAP_WIDTH - 1
 	or d
 	ld [wBGMapAnchor], a
 	ld hl, wMetatileNextX
 	inc [hl]
 	ld a, [hl]
-	cp $02
-	jr nz, .sub_d6d9
+	cp 2
+	jr nz, .done_right
 	ld [hl], $00
-	call .sub_d6da
-.sub_d6d9
+	call .ScrollMapDataRight
+.done_right
 	ret
-.sub_d6da
+
+.ScrollMapDataRight:
 	ld hl, wOverworldMapAnchor
 	ld a, [hl]
-	add $01
+	add 1
 	ld [hli], a
 	ret nc
 	inc [hl]
 	ret
 
-Functiond6e4:
+_HandlePlayerStep:
 	ld a, [wPlayerStepFlags]
 	and a
 	ret z
 	bit PLAYERSTEP_START_F, a
-	jr nz, .sub_d6f7
+	jr nz, .update_overworld_map
 	bit PLAYERSTEP_STOP_F, a
-	jr nz, .sub_d702
+	jr nz, .update_player_coords
 	bit PLAYERSTEP_CONTINUE_F, a
-	jp nz, Functiond543
+	jp nz, HandlePlayerStep_Finish
 	ret
-.sub_d6f7
-	ld a, $04
-	ld [wcdb2], a
-	call Functiond708
-	jp Functiond543
-.sub_d702
-	call Functiond51e
-	jp Functiond543
 
-Functiond708:
+.update_overworld_map
+	ld a, 4
+	ld [wHandlePlayerStep], a
+	call UpdateOverworldMap
+	jp HandlePlayerStep_Finish
+
+.update_player_coords
+	call UpdatePlayerCoords
+	jp HandlePlayerStep_Finish
+
+UpdateOverworldMap:
 	ld a, [wPlayerStepDirection]
 	and a
-	jr z, .sub_d71b
-	cp $01
-	jr z, .sub_d727
-	cp $02
-	jr z, .sub_d733
-	cp $03
-	jr z, .sub_d73f
+	jr z, .step_down
+	cp UP
+	jr z, .step_up
+	cp LEFT
+	jr z, .step_left
+	cp RIGHT
+	jr z, .step_right
 	ret
-.sub_d71b
-	call Functiond62e
+
+.step_down
+	call ScrollOverworldMapDown
 	call LoadMapPart
-	ld a, $02
-	call .sub_d74b
+	ld a, 2
+	call ScrollOverworldFlashlight
 	ret
-.sub_d727
-	call Functiond65f
+.step_up
+	call ScrollOverworldMapUp
 	call LoadMapPart
-	ld a, $01
-	call .sub_d74b
+	ld a, 1
+	call ScrollOverworldFlashlight
 	ret
-.sub_d733
-	call Functiond692
+.step_left
+	call ScrollOverworldMapLeft
 	call LoadMapPart
-	ld a, $03
-	call .sub_d74b
+	ld a, 3
+	call ScrollOverworldFlashlight
 	ret
-.sub_d73f
-	call Functiond6bb
+.step_right
+	call ScrollOverworldMapRight
 	call LoadMapPart
-	ld a, $04
-	call .sub_d74b
+	ld a, 4
+	call ScrollOverworldFlashlight
 	ret
-.sub_d74b
+
+ScrollOverworldFlashlight::
 	push af
-	call .sub_d758
-	call Functiond873
+	call .GetFlashlightVariables
+	call .GetFlashlightSize
 	pop af
-	add $02
+	add 2
 	ldh [hRedrawRowOrColumnMode], a
 	ret
-.sub_d758
+
+.GetFlashlightVariables:
 	dec a
 	ld l, a
-	ld h, $00
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, hl
 	ldh a, [hOverworldFlashlightEffect]
 	dec a
-	swap a
-	sla a
+	swap a  ; * 16
+	sla a   ; *  2
 	ld e, a
-	ld d, $00
+	ld d, 0
 	add hl, de
-	ld de, Datad7b1
+	ld de, .FlashlightColumns
 	add hl, de
-	call Functiond831
+	call .ReadFlashlightDst
 	ld a, e
-	ld [wOverworldMapBlocksEnd], a
+	ld [wRedrawFlashlightDst0], a
 	ld a, d
-	ld [wRedrawFlashlightDst0+1], a
-	call Functiond85f
+	ld [wRedrawFlashlightDst0 + 1], a
+
+	call .GetFlashlightSrc
 	ld a, e
 	ld [wRedrawFlashlightSrc0], a
 	ld a, d
-	ld [wRedrawFlashlightSrc0+1], a
-	call Functiond831
+	ld [wRedrawFlashlightSrc0 + 1], a
+
+	call .ReadFlashlightDst
 	ld a, e
 	ld [wRedrawFlashlightBlackDst0], a
 	ld a, d
-	ld [wRedrawFlashlightBlackDst0+1], a
-	call Functiond831
+	ld [wRedrawFlashlightBlackDst0 + 1], a
+
+	call .ReadFlashlightDst
 	ld a, e
 	ld [wRedrawFlashlightDst1], a
 	ld a, d
-	ld [wRedrawFlashlightDst1+1], a
-	call Functiond85f
+	ld [wRedrawFlashlightDst1 + 1], a
+
+	call .GetFlashlightSrc
 	ld a, e
 	ld [wRedrawFlashlightSrc1], a
 	ld a, d
-	ld [wRedrawFlashlightSrc1+1], a
-	call Functiond831
+	ld [wRedrawFlashlightSrc1 + 1], a
+
+	call .ReadFlashlightDst
 	ld a, e
 	ld [wRedrawFlashlightBlackDst1], a
 	ld a, d
-	ld [wRedrawFlashlightBlackDst1+1], a
+	ld [wRedrawFlashlightBlackDst1 + 1], a
 	ret
 
-Datad7b1:
-	db $02, $03, $02, $11, $02, $02, $02, $10
-	db $02, $0e, $02, $00, $02, $0f, $02, $01
-	db $03, $02, $11, $02, $02, $02, $10, $02
-	db $0e, $02, $00, $02, $0f, $02, $01, $02
+; The positions of the columns drawn.
+; TODO: Wrap these in neat macros.
+.FlashlightColumns:
+	db $02, $03, $02, $11, $02, $02, $02, $10 ; up
+	db $02, $0e, $02, $00, $02, $0f, $02, $01 ; down
+	db $03, $02, $11, $02, $02, $02, $10, $02 ; left
+	db $0e, $02, $00, $02, $0f, $02, $01, $02 ; right
+
 	db $04, $05, $04, $0f, $04, $04, $04, $0e
 	db $04, $0c, $04, $02, $04, $0d, $04, $03
 	db $05, $04, $0f, $04, $04, $04, $0e, $04
 	db $0c, $04, $02, $04, $0d, $04, $03, $04
+
 	db $06, $07, $06, $0d, $06, $06, $06, $0c
 	db $06, $0a, $06, $04, $06, $0b, $06, $05
 	db $07, $06, $0d, $06, $06, $06, $0c, $06
 	db $0a, $06, $04, $06, $0b, $06, $05, $06
+
 	db $08, $09, $08, $0b, $08, $08, $08, $0a
 	db $08, $08, $08, $06, $08, $09, $08, $07
 	db $09, $08, $0b, $08, $08, $08, $0a, $08
 	db $08, $08, $06, $08, $09, $08, $07, $08
 
-Functiond831:
+.ReadFlashlightDst:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -738,112 +784,124 @@ Functiond831:
 	push bc
 	ld a, [wBGMapAnchor]
 	ld e, a
-	ld a, [wBGMapAnchor+1]
+	ld a, [wBGMapAnchor + 1]
 	ld d, a
-.sub_d83f
-	ld a, $20
+.row_loop
+	ld a, BG_MAP_WIDTH
 	add e
 	ld e, a
-	jr nc, .sub_d846
+	jr nc, .no_overflow
 	inc d
-.sub_d846
+.no_overflow
 	ld a, d
-	and $03
-	or $98
+	and %11
+	or HIGH(vBGMap0) ; equivalent of add $98
 	ld d, a
 	dec b
-	jr nz, .sub_d83f
-.sub_d84f
+	jr nz, .row_loop
+.tile_loop
 	ld a, e
 	inc a
-	and $1f
+	maskbits BG_MAP_WIDTH - 1 ; only works if BG_MAP_WIDTH is 2^n
 	ld b, a
 	ld a, e
-	and $e0
+	and ~(BG_MAP_WIDTH - 1)
 	or b
 	ld e, a
 	dec c
-	jr nz, .sub_d84f
+	jr nz, .tile_loop
 	pop bc
 	pop hl
 	ret
 
-Functiond85f:
+.GetFlashlightSrc:
 	push hl
 	ld hl, wTileMap
-	ld de, $0014
-.sub_d866
+	ld de, SCREEN_WIDTH
+.loop
 	ld a, b
 	and a
-	jr z, .sub_d86e
+	jr z, .last_row
 	add hl, de
 	dec b
-	jr .sub_d866
-.sub_d86e
+	jr .loop
+
+.last_row
 	add hl, bc
 	ld e, l
 	ld d, h
 	pop hl
 	ret
 
-Functiond873:
+.GetFlashlightSize:
 	ldh a, [hOverworldFlashlightEffect]
 	dec a
 	ld l, a
-	ld h, $00
-	ld de, Datad882
+	ld h, 0
+	ld de, .Sizes
 	add hl, de
 	ld a, [hl]
 	ld [wRedrawFlashlightWidthHeight], a
 	ret
 
-Datad882:
-	db $07, $05, $03, $01
+.Sizes:
+	db 7, 5, 3, 1
 
-Functiond886:
+TryAddMonToParty::
+; Check if to copy wild mon or generate a new one
+	; Whose is it?
 	ld de, wPartyCount
 	ld a, [wMonType]
-	and $0f
-	jr z, .sub_d893
+	and $f
+	jr z, .getpartylocation ; PARTYMON
 	ld de, wOTPartyCount
-.sub_d893
+
+.getpartylocation
+	; Do we have room for it?
 	ld a, [de]
 	inc a
-	cp $07
+	cp PARTY_LENGTH + 1
 	ret nc
+	; Increase the party count
 	ld [de], a
-	ld a, [de]
-	ldh [hMoveMon], a
+	ld a, [de] ; Why are we doing this?
+	ldh [hMoveMon], a ; HRAM backup
 	add e
 	ld e, a
-	jr nc, .sub_d8a1
+	jr nc, .loadspecies
 	inc d
-.sub_d8a1
+
+.loadspecies
+	; Load the species of the Pokemon into the party list.
+	; The terminator is usually here, but it'll be back.
 	ld a, [wCurPartySpecies]
 	ld [de], a
+	; Load the terminator into the next slot.
 	inc de
-	ld a, $ff
+	ld a, -1
 	ld [de], a
-	ld hl, wPartyMon6StatsEnd
+	; Now let's load the OT name.
+	ld hl, wPartyMonOTs
 	ld a, [wMonType]
-	and $0f
-	jr z, Functiond8b6
+	and $f
+	jr z, .loadOTname
 	ld hl, wOTPartyMonOT
 
-Functiond8b6:
-	ldh a, [hMoveMon]
+.loadOTname
+	ldh a, [hMoveMon] ; Restore index from backup
 	dec a
 	call SkipNames
 	ld d, h
 	ld e, l
 	ld hl, wPlayerName
-	ld bc, $0006
+	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
+	; Only initialize the nickname for party mon
 	ld a, [wMonType]
 	and a
-	jr nz, .sub_d8ea
+	jr nz, .skipnickname
 	ld a, [wCurPartySpecies]
-	ld [wce37], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, wPartyMonNicknames
 	ldh a, [hMoveMon]
@@ -852,114 +910,131 @@ Functiond8b6:
 	ld d, h
 	ld e, l
 	ld hl, wStringBuffer1
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-.sub_d8ea
+
+.skipnickname
 	ld hl, wPartyMon1
 	ld a, [wMonType]
-	and $0f
-	jr z, .sub_d8f7
-	ld hl, wWildMons
-.sub_d8f7
+	and $f
+	jr z, .initializeStats
+	ld hl, wOTPartyMons
+
+.initializeStats
 	ldh a, [hMoveMon]
 	dec a
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld e, l
 	ld d, h
 	push hl
+	; Initialize the species
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld a, [wMonHeader]
+	ld a, [wMonHIndex]
 	ld [de], a
 	inc de
+
+	; Copy the item if it's a wild mon
 	ld a, [wBattleMode]
 	and a
-	jr z, .sub_d91b
+	jr z, .skipitem
 	ld a, [wEnemyMonItem]
 	ld [de], a
-.sub_d91b
+.skipitem
 	inc de
+
+	; Copy the moves if it's a wild mon
 	push de
 	xor a
 	ld [wFieldMoveScriptID], a
 	predef FillMoves
 	pop de
+rept NUM_MOVES
 	inc de
-	inc de
-	inc de
-	inc de
+endr
+
+	; Initialize ID.
 	ld a, [wPlayerID]
 	ld [de], a
 	inc de
 	ld a, [wPlayerID + 1]
 	ld [de], a
 	inc de
+
+	; Initialize Exp.
 	push de
 	ld a, [wCurPartyLevel]
 	ld d, a
-	ld hl, CalcExpAtLevel
-	ld a, BANK(CalcExpAtLevel)
-	call FarCall_hl
+	callfar CalcExpAtLevel
 	pop de
-	ldh a, [hMultiplicand]
+	ldh a, [hProduct + 1]
 	ld [de], a
 	inc de
-	ldh a, [hDividend+2]
+	ldh a, [hProduct + 2]
 	ld [de], a
 	inc de
-	ldh a, [hDividend+3]
+	ldh a, [hProduct + 3]
 	ld [de], a
 	inc de
+
+	; Initialize stat experience.
 	xor a
-	ld b, $0a
-.sub_d952
+	ld b, MON_DVS - MON_STAT_EXP
+
+.loop
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .sub_d952
+	jr nz, .loop
 	pop hl
 	push hl
 	ld a, [wMonType]
-	and $0f
-	ld a, $98
-	ld b, $88
-	jr nz, .sub_d99a
+	and $f
+	ln a, 9, 8
+	ln b, 8, 8
+	jr nz, .initializeDVs
+
+; Check if mon is caught
 	ld a, [wCurPartySpecies]
-	ld [wce37], a
+	ld [wTempSpecies], a
 	dec a
 	ld c, a
-	ld b, $02
-	ld hl, wPartyMonNicknamesEnd
+	ld b, CHECK_FLAG
+	ld hl, wPokedexCaught
 	push de
-	ld d, $03
+	ld d, 3
 	call SmallFarFlagAction
 	pop de
+
+; Set the mon's caught and seen flags
 	ld a, c
-	ld a, [wce37]
+	ld a, [wTempSpecies]
 	dec a
 	ld c, a
-	ld b, $01
+	ld b, SET_FLAG
 	push bc
 	call SmallFarFlagAction
 	pop bc
-	ld hl, wEndPokedexCaught
+	ld hl, wPokedexSeen
 	call SmallFarFlagAction
 	pop hl
 	push hl
 	ld a, [wBattleMode]
 	and a
-	jr nz, .sub_d9d3
+	jr nz, .copywildmonDVs
 	call Random
 	ld b, a
 	call Random
-.sub_d99a
+.initializeDVs
 	ld [de], a
 	inc de
 	ld a, b
 	ld [de], a
 	inc de
+
+	; Initialize PP.
 	push hl
 	push de
 	inc hl
@@ -967,147 +1042,174 @@ Functiond8b6:
 	call FillPP
 	pop de
 	pop hl
+rept NUM_MOVES
 	inc de
-	inc de
-	inc de
-	inc de
-	ld a, $46
+endr
+
+	; Initialize happiness.
+	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
+
+	; Doesn't initialize these three values whatsoever. (Unused1 - Unused3)
 	inc de
 	inc de
 	inc de
+
+	; Initialize level.
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	inc de
+
 	xor a
+	; Status
 	ld [de], a
 	inc de
+	; Unused
 	ld [de], a
 	inc de
-	ld bc, $000a
+
+	; Initialize HP.
+	ld bc, MON_STAT_EXP - 1
 	add hl, bc
-	ld a, $01
+	ld a, 1
 	ld c, a
-	xor a
+	xor a ; FALSE
 	ld b, a
 	call CalcMonStatC
-	ldh a, [hDividend+2]
+	ldh a, [hProduct + 2]
 	ld [de], a
 	inc de
-	ldh a, [hDividend+3]
+	ldh a, [hProduct + 3]
 	ld [de], a
 	inc de
-	jr .sub_da0a
-.sub_d9d3
+	jr .initstats
+
+.copywildmonDVs
 	ld a, [wEnemyMonDVs]
 	ld [de], a
 	inc de
 	ld a, [wEnemyMonDVs + 1]
 	ld [de], a
 	inc de
+
 	push hl
 	ld hl, wEnemyMonPP
-	ld b, $04
-.sub_d9e3
+	ld b, NUM_MOVES
+.wildmonpploop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .sub_d9e3
+	jr nz, .wildmonpploop
 	pop hl
-	ld a, $46
+
+	; Initialize happiness.
+	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
+
+	; Doesn't initialize these three values whatsoever. (Unused1 - Unused3)
 	inc de
 	inc de
 	inc de
+
+	; Initialize level.
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	inc de
+
 	ld a, [wEnemyMonStatus]
+	; Copy wEnemyMonStatus
 	ld [de], a
 	inc de
 	ld a, [wEnemyMonStatus + 1]
+	; Copy EnemyMonUnused
 	ld [de], a
 	inc de
+	; Copy wEnemyMonHP
 	ld a, [wEnemyMonHP]
 	ld [de], a
 	inc de
 	ld a, [wEnemyMonHP + 1]
 	ld [de], a
 	inc de
-.sub_da0a
+
+.initstats
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .sub_da1c
+	jr nz, .generatestats
 	ld hl, wEnemyMonMaxHP
-	ld bc, $000c
+	ld bc, PARTYMON_STRUCT_LENGTH - MON_MAXHP
 	call CopyBytes
 	pop hl
-	jr .sub_da26
-.sub_da1c
+	jr .done
+
+.generatestats
 	pop hl
-	ld bc, $000a
+	ld bc, MON_STAT_EXP - 1
 	add hl, bc
-	ld b, $00
+	ld b, FALSE
 	call CalcMonStats
-.sub_da26
+.done
 	scf
 	ret
 
-FillPP:
-	ld b, $04
-.sub_da2a
+FillPP::
+	ld b, NUM_MOVES
+.loop
 	ld a, [hli]
 	and a
-	jr z, .sub_da49
+	jr z, .next
 	dec a
 	push hl
 	push de
 	push bc
-	ld hl, Functiond8b6
-	ld bc, $0007
+	ld hl, Moves
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld de, wStringBuffer1
-	ld a, $10
+	ld a, BANK(Moves)
 	call FarCopyBytes
 	pop bc
 	pop de
 	pop hl
-	ld a, [wStringBuffer1+5]
-.sub_da49
+	ld a, [wStringBuffer1 + MOVE_PP]
+.next
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .sub_da2a
+	jr nz, .loop
 	ret
 
 
-Functionda4f:
+AddTempmonToParty:
 	ld hl, wPartyCount
 	ld a, [hl]
-	cp $06
+	cp PARTY_LENGTH
 	scf
 	ret z
+
 	inc a
 	ld [hl], a
 	ld c, a
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	ld a, [wCurPartySpecies]
 	ld [hli], a
 	ld [hl], $ff
-	ld hl, wPartyMon1
+
+	ld hl, wPartyMon1Species
 	ld a, [wPartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld e, l
 	ld d, h
-	ld hl, wTempMon
+	ld hl, wTempMonSpecies
 	call CopyBytes
-	ld hl, wPartyMon6StatsEnd
+
+	ld hl, wPartyMonOTs
 	ld a, [wPartyCount]
 	dec a
 	call SkipNames
@@ -1116,8 +1218,9 @@ Functionda4f:
 	ld hl, wOTPartyMonOT
 	ld a, [wCurPartyMon]
 	call SkipNames
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
+
 	ld hl, wPartyMonNicknames
 	ld a, [wPartyCount]
 	dec a
@@ -1127,45 +1230,56 @@ Functionda4f:
 	ld hl, wOTPartyMonNicknames
 	ld a, [wCurPartyMon]
 	call SkipNames
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
+
 	ld a, [wCurPartySpecies]
-	ld [wce37], a
+	ld [wNamedObjectIndexBuffer], a
 	dec a
 	ld c, a
-	ld b, $01
-	ld hl, wPartyMonNicknamesEnd
+	ld b, SET_FLAG
+	ld hl, wPokedexCaught
 	push bc
 	call SmallFarFlagAction
 	pop bc
-	ld hl, wEndPokedexCaught
+	ld hl, wPokedexSeen
 	call SmallFarFlagAction
 	and a
 	ret
 
-Functiondac8:
+; Sents/Gets mon into/from Box depending on Parameter.
+; wPokemonWithdrawDepositParameter == 0: get mon into Party.
+; wPokemonWithdrawDepositParameter == 1: sent mon into Box.
+; wPokemonWithdrawDepositParameter == 2: get mon from DayCare.
+; wPokemonWithdrawDepositParameter == 3: put mon into DayCare.
+SendGetMonIntoFromBox::
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .sub_dae3
+	jr z, .check_IfPartyIsFull
 	cp $02
-	jr z, .sub_dae3
+	jr z, .check_IfPartyIsFull
 	cp $03
-	ld hl, wd882
+	ld hl, wBufferMon
 	jr z, .sub_db1f
-	ld hl, wBoxListLength
+
+	; we want to sent a mon into the Box
+	; so check if there's enough space
+	ld hl, wBoxCount
 	ld a, [hl]
-	cp $1e
-	jr nz, .sub_daed
-	jr .sub_daeb
-.sub_dae3
+	cp MONS_PER_BOX
+	jr nz, .there_is_room
+	jr .full
+	
+.check_IfPartyIsFull
 	ld hl, wPartyCount
 	ld a, [hl]
-	cp $06
-	jr nz, .sub_daed
-.sub_daeb
+	cp PARTY_LENGTH
+	jr nz, .there_is_room
+
+.full
 	scf
 	ret
-.sub_daed
+.there_is_room
 	inc a
 	ld [hl], a
 	ld c, a
@@ -1173,23 +1287,25 @@ Functiondac8:
 	add hl, bc
 	ld a, [wPokemonWithdrawDepositParameter]
 	cp $02
-	ld a, [wd882]
-	jr z, .sub_db00
+	ld a, [wBufferMonSpecies]
+	jr z, .okay1
 	ld a, [wCurPartySpecies]
-.sub_db00
+
+.okay1
 	ld [hli], a
 	ld [hl], $ff
 	ld a, [wPokemonWithdrawDepositParameter]
 	dec a
 	ld hl, wPartyMon1
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wPartyCount]
-	jr nz, .sub_db1b
+	jr nz, .okay2
 	ld hl, wBoxMon1
-	ld bc, $0020
-	ld a, [wBoxListLength]
-.sub_db1b
-	dec a
+	ld bc, BOXMON_STRUCT_LENGTH
+	ld a, [wBoxCount]
+
+.okay2
+	dec a ; wPartyCount - 1
 	call AddNTimes
 .sub_db1f
 	push hl
@@ -1199,114 +1315,125 @@ Functiondac8:
 	and a
 	ld hl, wBoxMon1
 	ld bc, BOXMON_STRUCT_LENGTH
-	jr z, .sub_db3b
+	jr z, .okay3
 	cp $02
-	ld hl, wd882
-	jr z, .sub_db41
+	ld hl, wBufferMon
+	jr z, .okay4
 	ld hl, wPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
-.sub_db3b
+
+.okay3
 	ld a, [wCurPartyMon]
 	call AddNTimes
-.sub_db41
+
+.okay4
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [wPokemonWithdrawDepositParameter]
 	cp $03
 	ld de, wBufferMonOT
-	jr z, .sub_db66
+	jr z, .okay5
 	dec a
-	ld hl, wPartyMon6StatsEnd
+	ld hl, wPartyMonOTs
 	ld a, [wPartyCount]
-	jr nz, .sub_db60
+	jr nz, .okay6
 	ld hl, wBoxMonOT
-	ld a, [wBoxListLength]
-.sub_db60
+	ld a, [wBoxCount]
+
+.okay6
 	dec a
 	call SkipNames
 	ld d, h
 	ld e, l
-.sub_db66
+
+.okay5
 	ld hl, wBoxMonOT
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .sub_db79
+	jr z, .okay7
 	ld hl, wBufferMonOT
 	cp $02
-	jr z, .sub_db7f
-	ld hl, wPartyMon6StatsEnd
-.sub_db79
+	jr z, .okay8
+	ld hl, wPartyMonOTs
+
+.okay7
 	ld a, [wCurPartyMon]
 	call SkipNames
-.sub_db7f
+
+.okay8
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 	ld a, [wPokemonWithdrawDepositParameter]
 	cp $03
 	ld de, wBufferMonNickname
-	jr z, .sub_dba4
+	jr z, .okay9
 	dec a
 	ld hl, wPartyMonNicknames
 	ld a, [wPartyCount]
-	jr nz, .sub_db9e
+	jr nz, .okay10
 	ld hl, wBoxMonNicknames
-	ld a, [wBoxListLength]
-.sub_db9e
+	ld a, [wBoxCount]
+
+.okay10
 	dec a
 	call SkipNames
 	ld d, h
 	ld e, l
-.sub_dba4
+
+.okay9
 	ld hl, wBoxMonNicknames
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .sub_dbb7
+	jr z, .okay11
 	ld hl, wBufferMonNickname
 	cp $02
-	jr z, .sub_dbbd
+	jr z, .okay12
 	ld hl, wPartyMonNicknames
-.sub_dbb7
+
+.okay11
 	ld a, [wCurPartyMon]
 	call SkipNames
-.sub_dbbd
-	ld bc, $0006
+.okay12
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop hl
+
 	ld a, [wPokemonWithdrawDepositParameter]
 	cp $01
-	jr z, .sub_dc14
+	jr z, .done_clear_carry
 	cp $03
-	jr z, .sub_dc14
+	jr z, .done_clear_carry
+
 	push hl
 	srl a
-	add $02
+	add $2
 	ld [wMonType], a
 	predef CopyMonToTempMon
-	ld a, BANK(Function50caa)
-	ld hl, Function50caa
-	call FarCall_hl
+	farcall CalcLevel
 	ld a, d
 	ld [wCurPartyLevel], a
 	pop hl
 	ld b, h
 	ld c, l
-	ld hl, $001f
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld [hl], a
-	ld hl, $0024
+	ld hl, MON_MAXHP
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, $000a
+	ld hl, MON_STAT_EXP - 1
 	add hl, bc
+
 	push bc
-	ld b, $01
+	ld b, TRUE
 	call CalcMonStats
 	pop bc
+
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr nz, .sub_dc14
-	ld hl, $0022
+	jr nz, .done_clear_carry
+	ld hl, MON_HP
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -1317,47 +1444,51 @@ Functiondac8:
 	ld a, [hl]
 	inc de
 	ld [de], a
-.sub_dc14
+.done_clear_carry
 	and a
 	ret
 
-Functiondc16:
+; TODO: Might not be for breedmon?
+RetrieveBreedmon:
 	ld hl, wPartyCount
 	ld a, [hl]
-	cp $06
+	cp PARTY_LENGTH
 	push af
-	jr nz, .sub_dc2a
-	ld hl, wBoxListLength
+	jr nz, .room_in_party_or_box
+	ld hl, wBoxCount
 	ld a, [hl]
-	cp $1e
-	jr nz, .sub_dc2a
+	cp MONS_PER_BOX
+	jr nz, .room_in_party_or_box
 	pop af
 	scf
 	ret
-.sub_dc2a
+
+.room_in_party_or_box
 	inc a
 	ld [hl], a
 	ld c, a
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	ld a, [wd882]
+	ld a, [wBufferMonSpecies]
 	ld de, wBufferMonNickname
-	jr z, .sub_dc42
+	jr z, .okay
 	ld a, [wBreedMon1Species]
 	ld de, wBreedMon1Nickname
-.sub_dc42
+
+.okay
 	ld [hli], a
 	ld [wCurSpecies], a
 	ld a, $ff
 	ld [hl], a
-	pop af
-	jr z, .sub_dcad
+	pop af ; if wPartyCount = PARTY_LENGTH
+	jr z, .party_full
+
 	ld hl, wPartyMonNicknames
 	ld a, [wPartyCount]
 	dec a
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	push hl
 	ld h, d
@@ -1365,27 +1496,30 @@ Functiondc16:
 	pop de
 	call CopyBytes
 	push hl
-	ld hl, wPartyMon6StatsEnd
+
+	ld hl, wPartyMonOTs
 	ld a, [wPartyCount]
 	dec a
-	ld bc, $0006
+	ld bc, PLAYER_NAME_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
 	call CopyBytes
 	push hl
-	ld hl, wPartyMon1
+
+	ld hl, wPartyMons
 	ld a, [wPartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, $0020
+	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	call GetBaseData
+
 	ld h, d
 	ld l, e
 	dec hl
@@ -1397,9 +1531,9 @@ Functiondc16:
 	inc de
 	inc de
 	push de
-	ld bc, hFFEB
+	ld bc, -(BOXMON_STRUCT_LENGTH - MON_STAT_EXP)
 	add hl, bc
-	ld b, $01
+	ld b, TRUE
 	call CalcMonStats
 	pop hl
 	pop de
@@ -1408,11 +1542,12 @@ Functiondc16:
 	inc de
 	ld a, [hl]
 	ld [de], a
-	jr .sub_dce9
-.sub_dcad
+	jr .done
+
+.party_full
 	ld hl, wBoxMonNicknames
-	ld a, [wBoxListLength]
-	ld bc, $0006
+	ld a, [wBoxCount]
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	push hl
 	ld h, d
@@ -1420,196 +1555,224 @@ Functiondc16:
 	pop de
 	call CopyBytes
 	push hl
+
 	ld hl, wBoxMonOT
-	ld a, [wBoxListLength]
-	ld bc, $0006
+	ld a, [wBoxCount]
+	ld bc, PLAYER_NAME_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
 	call CopyBytes
 	push hl
-	ld hl, wBoxMon1
-	ld a, [wBoxListLength]
-	ld bc, $0030
+	
+	ld hl, wBoxMons
+	ld a, [wBoxCount]
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, $0020
+	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
-.sub_dce9
+
+.done
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	ret z
 	ld hl, wBreedMon2Nickname
 	ld de, wBreedMon1Nickname
-	ld bc, $002c
+	ld bc, MON_NAME_LENGTH + PLAYER_NAME_LENGTH + BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	and a
 	ret
 
-Functiondcfc:
+; TODO: Withdraw/Deposit Pokémon in breeder?
+Functiondcfc::
 	ld a, [wPokemonWithdrawDepositParameter]
 	ld de, wBufferMonNickname
 	and a
-	jr z, .sub_dd2c
+	jr z, .withdraw
+
 	ld hl, wBreedMon1Nickname
 	ld de, wBreedMon2Nickname
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
+
 	ld hl, wBreedMon1OT
 	ld de, wBreedMon2OT
-	ld bc, $0006
+	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
+
 	ld hl, wBreedMon1
 	ld de, wBreedMon2
-	ld bc, $0020
+	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	ld de, wBreedMon1Nickname
-.sub_dd2c
+
+.withdraw
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	call CopyBytes
+
 	ld a, [wCurPartyMon]
-	ld hl, wPartyMon6StatsEnd
-	ld bc, $0006
+	ld hl, wPartyMonOTs
+	ld bc, PLAYER_NAME_LENGTH
 	call AddNTimes
 	call CopyBytes
+
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
-	ld bc, $0020
+	ld bc, BOXMON_STRUCT_LENGTH
 	jp CopyBytes
 
-Functiondd5c:
-	ld de, wBoxListLength
+; Sends the mon into one of ???'s Boxes.
+; The data comes mainly from 'wEnemyMon'.
+SendMonIntoBox::
+	ld de, wBoxCount
 	ld a, [de]
 	cp MONS_PER_BOX
 	ret nc
 	inc a
 	ld [de], a
+
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	ld c, a
-.sub_dd6c
-	inc de
+.loop
+	inc de ; wBoxList
 	ld a, [de]
 	ld b, a
 	ld a, c
 	ld c, b
 	ld [de], a
-	cp $ff
-	jr nz, .sub_dd6c
+	cp -1
+	jr nz, .loop
+
 	call GetBaseData
 	ld hl, wBoxMonOT
 	ld bc, PLAYER_NAME_LENGTH
-	ld a, [wBoxListLength]
+	ld a, [wBoxCount]
 	dec a
-	jr z, .sub_dda9
+	jr z, .copy_ot
 	dec a
 	call AddNTimes
 	push hl
-	ld bc, $0006
+
+	ld bc, PLAYER_NAME_LENGTH
 	add hl, bc
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, [wBoxListLength]
+	ld a, [wBoxCount]
 	dec a
 	ld b, a
-.sub_dd96
+
+.shift_mon_ot
 	push bc
 	push hl
-	ld bc, $0006
+	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 	pop hl
 	ld d, h
 	ld e, l
-	ld bc, $fffa
+	ld bc, -(PLAYER_NAME_LENGTH)
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .sub_dd96
-.sub_dda9
+	jr nz, .shift_mon_ot
+
+.copy_ot
 	ld hl, wPlayerName
 	ld de, wBoxMonOT
-	ld bc, $0006
+	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
-	ld a, [wBoxListLength]
+
+	ld a, [wBoxCount]
 	dec a
-	jr z, .sub_dde5
+	jr z, .copy_nickname
+
 	ld hl, wBoxMonNicknames
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	dec a
 	call AddNTimes
 	push hl
-	ld bc, $0006
+
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, [wBoxListLength]
+	ld a, [wBoxCount]
 	dec a
 	ld b, a
-.sub_ddd2
+
+.shift_loop_mon_name
 	push bc
 	push hl
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop hl
 	ld d, h
 	ld e, l
-	ld bc, $fffa
+	ld bc, -(MON_NAME_LENGTH)
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .sub_ddd2
-.sub_dde5
+	jr nz, .shift_loop_mon_name
+
+.copy_nickname
 	ld a, [wCurPartySpecies]
-	ld [wce37], a
+	ld [wTempSpecies], a
 	call GetPokemonName
 	ld de, wBoxMonNicknames
 	ld hl, wStringBuffer1
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-	ld a, [wBoxListLength]
+
+	ld a, [wBoxCount]
 	dec a
-	jr z, .sub_de2a
+	jr z, .copy_boxmon
+
 	ld hl, wBoxMon1
-	ld bc, $0020
+	ld bc, BOXMON_STRUCT_LENGTH
 	dec a
 	call AddNTimes
 	push hl
-	ld bc, $0020
+	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, [wBoxListLength]
+	ld a, [wBoxCount]
 	dec a
 	ld b, a
-.sub_de17
+
+.shift_loop_boxmon
 	push bc
 	push hl
-	ld bc, $0020
+	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	pop hl
 	ld d, h
 	ld e, l
-	ld bc, hBGMapAddress
+	ld bc, -(BOXMON_STRUCT_LENGTH)
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .sub_de17
-.sub_de2a
+	jr nz, .shift_loop_boxmon
+
+.copy_boxmon
 	ld hl, wEnemyMon
-	ld de, wBoxMon1
-	ld bc, $0006
+	ld de, wBoxMons
+	ld bc, (wEnemyMonMovesEnd - wEnemyMon)
 	call CopyBytes
+
+	; Copy player ID
 	ld hl, wPlayerID
 	ld a, [hli]
 	ld [de], a
@@ -1618,36 +1781,37 @@ Functiondd5c:
 	ld [de], a
 	inc de
 	push de
+
+	; Get experience points
 	ld a, [wCurPartyLevel]
 	ld d, a
-	ld hl, CalcExpAtLevel
-	ld a, BANK(CalcExpAtLevel)
-	call FarCall_hl
+	callfar CalcExpAtLevel
 	pop de
-	ldh a, [hMultiplicand]
+	ldh a, [hProduct + 1]
 	ld [de], a
 	inc de
-	ldh a, [hDividend+2]
+	ldh a, [hProduct + 2]
 	ld [de], a
 	inc de
-	ldh a, [hDividend+3]
+	ldh a, [hProduct + 3]
 	ld [de], a
 	inc de
 	xor a
-	ld b, $0a
-.sub_de5c
+	ld b, (NUM_EXP_STATS * 2)
+.skip_stat_exp
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .sub_de5c
+	jr nz, .skip_stat_exp
 	ld hl, wEnemyMonDVs
-	ld b, $07
-.sub_de66
+	ld b, (wBoxMon1Happiness - wBoxMon1DVs) + 1
+.copy_dvs_pp_happiness
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .sub_de66
+	jr nz, .copy_dvs_pp_happiness
+
 	xor a
 	ld [de], a
 	inc de
@@ -1660,158 +1824,171 @@ Functiondd5c:
 	scf
 	ret
 
-Functionde79:
+; 
+GiveEgg::
 	ld a, [wPartyCount]
-	cp $06
-	jr z, .sub_de8b
-	call Functiond886
+	cp PARTY_LENGTH
+	jr z, .party_full
+	call TryAddMonToParty
 	ld de, wPartyMonNicknames
 	ld hl, wPartyCount
-	jr .sub_dead
-.sub_de8b
-	ld a, [wBoxListLength]
-	cp $1e
+	jr .next
+
+.party_full
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX
 	scf
 	ret z
 	ld a, [wCurPartySpecies]
 	ld [wTempEnemyMonSpecies], a
 	xor a
-	ld [wEnemySubStatus5], a
-	ld hl, LoadEnemyMon
-	ld a, BANK(LoadEnemyMon)
-	call FarCall_hl
-	call Functiondd5c
+	ld [wEnemySubStatus5], a ; ???
+	callfar LoadEnemyMon
+	call SendMonIntoBox
 	ld de, wBoxMonNicknames
-	ld hl, wBoxListLength
-.sub_dead
+	ld hl, wBoxCount
+
+.next
 	ld a, [hl]
 	push af
-	ld b, $00
+	ld b, 0
 	ld c, a
 	add hl, bc
-	ld a, $fd
+	ld a, DEX_EGG
 	ld [hl], a
 	pop af
+
 	dec a
 	ld h, d
 	ld l, e
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
-	ld a, $c0
+
+; Print "EGG" as its name
+	ld a, "た"
 	ld [hli], a
-	ld a, $cf
+	ld a, "ま"
 	ld [hli], a
-	ld a, $2a
+	ld a, "ご"
 	ld [hli], a
-	ld [hl], $50
+	ld [hl], "@"
 	and a
 	ret
 
-Functiondecd:
+RemoveMonFromPartyOrBox:
 	ld hl, wPartyCount
+
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .sub_ded9
-	ld hl, wBoxListLength
-.sub_ded9
+	jr z, .okay
+
+	ld hl, wBoxCount
+
+.okay
 	ld a, [hl]
 	dec a
 	ld [hli], a
 	ld a, [wCurPartyMon]
 	ld c, a
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	ld e, l
 	ld d, h
 	inc de
-.sub_dee6
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	inc a
-	jr nz, .sub_dee6
-	ld hl, wPartyMon6StatsEnd
-	ld d, $05
+	jr nz, .loop
+	ld hl, wPartyMonOTs
+	ld d, PARTY_LENGTH - 1
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .sub_defc
+	jr z, .party
 	ld hl, wBoxMonOT
-	ld d, $1d
-.sub_defc
+	ld d, MONS_PER_BOX - 1
+
+.party
+	; If this is the last mon in our party (box),
+	; shift all the other mons up to close the gap.
 	ld a, [wCurPartyMon]
 	call SkipNames
 	ld a, [wCurPartyMon]
 	cp d
-	jr nz, .sub_df0b
-	ld [hl], $ff
+	jr nz, .delete_inside
+	ld [hl], -1
 	ret
-.sub_df0b
+
+.delete_inside
+	; Shift the OT names
 	ld d, h
 	ld e, l
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	ld bc, wPartyMonNicknames
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .sub_df1d
+	jr z, .party2
 	ld bc, wBoxMonNicknames
-.sub_df1d
+.party2
 	call CopyDataUntil
-	ld hl, wPartyMon1
-	ld bc, $0030
+	ld hl, wPartyMons
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .sub_df32
-	ld hl, wBoxMon1
-	ld bc, $0020
-.sub_df32
+	jr z, .party3
+	ld hl, wBoxMons
+	ld bc, BOXMON_STRUCT_LENGTH
+.party3
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .sub_df49
-	ld bc, $0020
+	jr z, .party4
+	ld bc, BOXMON_STRUCT_LENGTH
 	add hl, bc
 	ld bc, wBoxMonOT
-	jr .sub_df50
-.sub_df49
-	ld bc, $0030
+	jr .copy
+
+.party4
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
-	ld bc, wPartyMon6StatsEnd
-.sub_df50
+	ld bc, wPartyMonOTs
+.copy
 	call CopyDataUntil
 	ld hl, wPartyMonNicknames
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .sub_df5f
+	jr z, .party5
 	ld hl, wBoxMonNicknames
-.sub_df5f
-	ld bc, $0006
+.party5
+	ld bc, MON_NAME_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	ld bc, wPartyMonNicknamesEnd
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
-	jr z, .sub_df7a
+	jr z, .party6
 	ld bc, wBoxMonNicknamesEnd
-.sub_df7a
+.party6
 	jp CopyDataUntil
 
-CalcMonStats:
+CalcMonStats::
 	ld c, $00
 .loop
 	inc c
 	call CalcMonStatC
-	ldh a, [hMultiplicand + 1]
+	ldh a, [hProduct + 2]
 	ld [de], a
 	inc de
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hProduct + 3]
 	ld [de], a
 	inc de
 	ld a, c
@@ -1819,7 +1996,7 @@ CalcMonStats:
 	jr nz, .loop
 	ret
 
-CalcMonStatC:
+CalcMonStatC::
 ; 'c' is 1-6 and points to the BaseStat
 ; 1: HP
 ; 2: Attack
@@ -2035,76 +2212,83 @@ CalcMonStatC:
 	pop hl
 	ret
 
-Function60a0:
+GivePoke::
 	ld a, [wCurPartySpecies]
 	dec a
 	ld c, a
-	ld d, $00
-	ld hl, wPartyMonNicknamesEnd
-	ld b, $02
+	ld d, 0
+	ld hl, wPokedexCaught
+	ld b, CHECK_FLAG
 	predef SmallFarFlagAction
+
 	push bc
-	xor a
+	xor a ; PARTYMON
 	ld [wMonType], a
-	call Functiond886
-	jr nc, .sub_e0d2
+	call TryAddMonToParty
+	jr nc, .party_full
 	ld hl, wPartyMonNicknames
 	ld a, [wPartyCount]
 	dec a
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
+
 	ld d, h
 	ld e, l
 	pop bc
 	ld a, c
-	ld b, $00
+	ld b, 0
 	push bc
 	push de
-	jr .sub_e0e1
-.sub_e0d2
-	call Functiondd5c
+	jr .give_mon_success
+
+.party_full
+	call SendMonIntoBox
 	pop bc
-	jp nc, .sub_e165
+	jp nc, .give_mon_failure
 	ld a, c
 	ld de, wBoxMonNicknames
-	ld b, $01
+	ld b, 1
 	push bc
 	push de
-.sub_e0e1
+.give_mon_success
 	push af
 	ld a, [wCurPartySpecies]
-	ld [wce37], a
+	ld [wTempSpecies], a
 	call GetPokemonName
 	pop af
 	and a
-	jr nz, .sub_e10d
+	jr nz, .skip_pokedex
+
 	ld hl, wd41c
-	bit 4, [hl]
-	jr z, .sub_e10d
+	bit 4, [hl] ; flag for obtaining the pokedex
+	jr z, .skip_pokedex
+
 	ld hl, NewDexDataText
 	call PrintText
 	call ClearSprites
 	ld a, [wCurPartySpecies]
-	ld [wce37], a
+	ld [wTempSpecies], a
 	predef NewPokedexEntry
 	call LoadTilesetGFX_LCDOff
-.sub_e10d
+.skip_pokedex
 	ld hl, GotItText
 	call PrintText
 	call YesNoBox
 	pop de
-	jr c, .sub_e155
+	jr c, .done
+
 	push de
 	ld b, NAME_MON
 	farcall NamingScreen
 	pop de
 	ld a, [de]
-	cp $50
-	jr nz, .sub_e133
+	cp "@"
+	jr nz, .not_empty
+
 	ld hl, wStringBuffer1
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-.sub_e133
+.not_empty
 	call ClearBGPalettes
 	ld hl, wSpriteFlags
 	ld a, [hl]
@@ -2119,27 +2303,28 @@ Function60a0:
 	call GetMemSGBLayout
 	call WaitBGMap
 	call GBFadeInFromWhite
-.sub_e155
+.done
 	pop bc
 	ld a, b
 	and a
 	ret z
-	ld hl, BallSentToPCText
-	ld hl, BallSentToSomeonesPCText
+	ld hl, WasSentToBillsPCText
+	ld hl, WasSentToSomeonesPCText
 	call PrintText
-	ld b, $01
-	ret
-.sub_e165
-	ld b, $02
+	ld b, 1
 	ret
 
-BallSentToPCText:
+.give_mon_failure
+	ld b, 2
+	ret
+
+WasSentToBillsPCText:
 	text_from_ram wStringBuffer1
 	text "は　マサキの　ところへ"
 	line "てんそうされた！"
 	prompt
 
-BallSentToSomeonesPCText:
+WasSentToSomeonesPCText:
 	text_from_ram wStringBuffer1
 	text "は　だれかの　<PC>に" ; "was transferred to"
 	line "てんそうされた！" ; "Someone's PC!"
@@ -2149,9 +2334,9 @@ NewDexDataText:
 	text_from_ram wStringBuffer1
 	text "の　データが　あたらしく" ; "New Dex data will"
 	line "#ずかんに　セーブされます！@" ; "be added for (MON)!"
-
-Texte1b8:
-	db "ドギ@"
+	sound_slot_machine_start
+	text_waitbutton
+	text_end
 
 GotItText:
 	text "ゲットした　@" ; "Got it!"
@@ -2163,30 +2348,31 @@ AskGiveNicknameText:
 	done
 
 _BillsPC:
-	call Functione284
+	call .CheckCanUsePC
 	ret c
 	call LoadStandardMenuHeader
 	call ClearTileMap
 	call LoadFontsBattleExtra
 	ld hl, vChars2 tile $78
 	ld de, PokeBallsGFX
-	lb bc, BANK(PokeBallsGFX), $01
+	lb bc, BANK(PokeBallsGFX), 1
 	call Request2bpp
-	ld hl, WhatAreYouGoingToDoText
+	ld hl, .PCWhatText
 	call MenuTextBox
-	ld hl, Datae22e
+	ld hl, .MenuHeader
 	call LoadMenuHeader
-.sub_e1fa
+.loop
 	call SetPalettes
 	xor a
-	ld [wActiveBackpackPocket], a
+	ld [wWhichIndexSet], a
 	call OpenMenu
-	jr c, .sub_e211
+	jr c, .cancel
 	ld a, [wMenuSelection]
-	ld hl, Tablee270
+	ld hl, .Jumptable
 	call CallJumptable
-	jr nc, .sub_e1fa
-.sub_e211
+	jr nc, .loop
+
+.cancel
 	call CloseWindow
 	call CloseWindow
 	call LoadTilesetGFX
@@ -2195,40 +2381,32 @@ _BillsPC:
 	call CloseWindow
 	ret
 
-WhatAreYouGoingToDoText:
+.PCWhatText:
 	text "なんに　するん？" ; (lit. "What are you going to do?")
 	done
 
-Datae22e:
-	db $40, $00, $00, $11, $0e
-	dw Datae236
-	db $01
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 14, 17
+	dw .MenuData
+	db 1
 
-Datae236:
-	db $80, $00
-	dw Datae27c
-	db $8a, $1f
-	dw LookAtPokemonText
+.MenuData:
+	db MENU_BACKUP_TILES_2
+	db 0
+	dw .items
+	dw PlaceMenuStrings
+	dw .strings
 
-LookAtPokemonText:
-	db "#の　ようすをみる@" ; (lit "look at Pokemon")
-
-WithdrawMonText:
-	db "#を　つれていく@" ; "Withdraw (Pokemon)"
-
-DepositMonText:
-	db "#を　あずける@" ; "Deposit (Pokemon)"
-
-ReleaseMonText:
-	db "#を　にがす@" ; "Release (Pokemon)"
-
-ChangeBoxText:
+.strings
+	db "#の　ようすをみる@"   ; (lit "look at Pokemon")
+	db "#を　つれていく@"    ; "Withdraw (Pokemon)"
+	db "#を　あずける@"      ; "Deposit (Pokemon)"
+	db "#を　にがす@"       ; "Release (Pokemon)"
 	db "ボックスを　かえる@" ; "Change Box"
+	db "さようなら@"        ; "Goodbye"
 
-GoodbyeText:
-	db "さようなら@" ; "Goodbye"
-
-Tablee270:
+.Jumptable:
 	dw Functione5c5
 	dw Functione31b
 	dw BillsPC_DepositMon
@@ -2236,19 +2414,26 @@ Tablee270:
 	dw BillsPC_ChangeBoxMenu
 	dw BillsPC_SeeYa
 
-Datae27c:
-	db $05, $00, $01, $02, $03, $04, $05, $ff
+.items
+	db 5 ; # items
+	db 0 ; VIEW
+	db 1 ; WITHDRAW
+	db 2 ; DEPOSIT
+	db 3 ; RELEASE
+	db 4 ; CHANGE BOX
+	db 5 ; SEE YA!
+	db -1
 
-Functione284:
+.CheckCanUsePC:
 	ld a, [wPartyCount]
 	and a
 	ret nz
-	ld hl, Texte291
+	ld hl, .PCGottaHavePokemonText
 	call MenuTextBoxBackup
 	scf
 	ret
 
-Texte291:
+.PCGottaHavePokemonText:
 	text "#もってへんやつは"
 	line "おことわりや！"
 	prompt
@@ -2258,57 +2443,61 @@ BillsPC_SeeYa:
 	ret
 
 BillsPC_DepositMon:
-	call Functione2b0
-	jr c, .sub_e2ae
-	call Functione2f0
-.sub_e2ae
+	call .CheckPartySize
+	jr c, .cant_deposit
+	call _DepositPKMN
+
+.cant_deposit
 	and a
 	ret
 
-Functione2b0:
+.CheckPartySize:
 	ld a, [wPartyCount]
 	and a
-	jr z, .sub_e2bc
-	cp $02
-	jr c, .sub_e2c4
+	jr z, .no_mon
+	cp 2
+	jr c, .only_one_mon
 	and a
 	ret
-.sub_e2bc
-	ld hl, YouDontEventHaveOnePokemonText
-	call MenuTextBoxBackup
-	scf
-	ret
-.sub_e2c4
-	ld hl, CantDepositLastMonText
+
+.no_mon
+	ld hl, .PCNoSingleMonText
 	call MenuTextBoxBackup
 	scf
 	ret
 
-YouDontEventHaveOnePokemonText:
+.only_one_mon
+	ld hl, .PCCantDepositLastMonText
+	call MenuTextBoxBackup
+	scf
+	ret
+
+.PCNoSingleMonText:
 	text "１ぴきも　もってへんやんか！" ; (lit: "I can't even have one!")
 	prompt
 
-CantDepositLastMonText:
-	text "それ　あずけたら" ; "You can't deposit"
+.PCCantDepositLastMonText:
+	text "それ　あずけたら"   ; "You can't deposit"
 	line "こまるんとちゃう？" ; "the last #MON!"
 	prompt
 
-Functione2f0:
+_DepositPKMN:
 	call LoadStandardMenuHeader
 	ld hl, Tablee6da
-	call Functione6a4
+	call BillsPC_Menu
 	call CloseWindow
 	ret c
+
 	ld a, [wScrollingMenuCursorPosition]
 	ld [wCurPartyMon], a
 	ld a, [wMenuSelection]
 	ld [wCurPartySpecies], a
-	ld a, $01
+	ld a, 1
 	ld [wPokemonWithdrawDepositParameter], a
-	predef Functiondac8
+	predef SendGetMonIntoFromBox
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	call Functiondecd
+	call RemoveMonFromPartyOrBox
 	ret
 
 Functione31b:
@@ -2320,7 +2509,7 @@ Functione31b:
 	ret
 .sub_e325
 	ld a, [wPartyCount]
-	cp $06
+	cp PARTY_LENGTH
 	jr nc, .sub_e32e
 	and a
 	ret
@@ -2338,7 +2527,7 @@ Texte336:
 Functione350:
 	call LoadStandardMenuHeader
 	ld hl, Datae6f8
-	call Functione6a4
+	call BillsPC_Menu
 	call CloseWindow
 	ret c
 	ld a, [wScrollingMenuCursorPosition]
@@ -2347,10 +2536,10 @@ Functione350:
 	ld [wCurPartySpecies], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	predef Functiondac8
+	predef SendGetMonIntoFromBox
 	ld a, $01
 	ld [wPokemonWithdrawDepositParameter], a
-	call Functiondecd
+	call RemoveMonFromPartyOrBox
 	ret
 
 BillsPC_ReleaseMon:
@@ -2360,7 +2549,7 @@ BillsPC_ReleaseMon:
 .sub_e380
 	call LoadStandardMenuHeader
 	ld hl, Datae6f8
-	call Functione6a4
+	call BillsPC_Menu
 	call CloseWindow
 	ld a, [wScrollingMenuCursorPosition]
 	ld [wCurPartyMon], a
@@ -2374,7 +2563,7 @@ BillsPC_ReleaseMon:
 	ret c
 	ld a, $01
 	ld [wPokemonWithdrawDepositParameter], a
-	call Functiondecd
+	call RemoveMonFromPartyOrBox
 	ret
 
 OnceReleasedText:
@@ -2573,9 +2762,7 @@ WhenYouChangeBoxText:
 ChangeBoxName:
 	ld b, NAME_BOX
 	ld de, wMovementBufferCount
-	ld a, BANK(NamingScreen)
-	ld hl, NamingScreen
-	call FarCall_hl
+	farcall NamingScreen
 	ld a, [wMovementBufferCount]
 	cp $50
 	ret z
@@ -2613,15 +2800,15 @@ Functione5d3:
 	call SetPalettes
 	ld hl, Datae71c
 	call CopyMenuHeader
-	ld a, [wcd3c]
-	ld [wMenuCursorBuffer], a
-	ld a, [wcd46]
+	ld a, [wBillsPCCursor]
+	ld [wMenuCursorPosition], a
+	ld a, [wBillsPCScrollPosition]
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
-	ld [wcd46], a
+	ld [wBillsPCScrollPosition], a
 	ld a, [w2DMenuDataEnd]
-	ld [wcd3c], a
+	ld [wBillsPCCursor], a
 	call ClearPalettes
 	ld a, [wMenuJoypad]
 	cp $02
@@ -2641,11 +2828,12 @@ Functione5d3:
 	call MaxVolume
 	call ExitMenu
 	ret
+
 .sub_e62a
 	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL_F, [hl]
 	call ClearTileMap
 	ld a, [wd4b6]
 	ld hl, wd4b9
@@ -2692,28 +2880,29 @@ WhichOneWouldYouLikeToSeeText:
 	text "どの#が　みたいねん？" ; "Which would you like to see?"
 	done
 
-Functione6a4: ; has something to do with releasing mon from PC
+BillsPC_Menu::
 	ld a, l
 	ld [wListPointer], a
 	ld a, h
 	ld [wListPointer + 1], a
-	coord hl, 4, 2
-	ld b, $09
-	ld c, $0e
+	hlcoord 4, 2
+	ld b, 9
+	ld c, 14
 	call DrawTextBox
 	ld hl, wListPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Function3810 ; in home/scrolling_menu.asm and appears to be related to the smaller mon selection box like G1 (still investigating)
+	call ScrollingMenu_FromTable
 	ld a, [wMenuJoypad]
-	cp $02
-	jr z, .sub_e6ce
+	cp B_BUTTON
+	jr z, .exit
 	ld hl, MonSelectedText
 	call MenuTextBoxBackup
 	and a
 	ret
-.sub_e6ce
+	
+.exit
 	scf
 	ret
 
@@ -2722,45 +2911,65 @@ MonSelectedText:
 	prompt
 
 Tablee6da:
-	dw Datae6e0
-	dw wcd3c
-	dw wcd46
+	dw .MenuHeader
+	dw wBillsPCCursor
+	dw wBillsPCScrollPosition
 
-Datae6e0:
-	db $40, $03, $05, $0b, $12
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 5, 3, 18, 11
 	dw Datae6e8
-	db $01
+	db 1
 
 Datae6e8:
-	db $00, $04
-
-Datae6ea:
-	db $08, $01, $00, $aa, $d6, $09, $a6
-	db $47, $09, $ba, $47, $00, $00, $00
+	db 0
+	db 4, 8
+	db SCROLLINGMENU_ITEMS_NORMAL
+	dbw 0, wPartyCount
+	dba PlacePartyMonNicknames
+	dba PlacePartyMonLevels
+	ds 3
 
 Datae6f8:
 	dw Datae6fe
-	dw wcd3c
-	dw wcd46
+	dw wBillsPCCursor
+	dw wBillsPCScrollPosition
 
 Datae6fe:
-	db $40, $03, $05, $0b, $12
+	db MENU_BACKUP_TILES
+	menu_coords 5, 3, 18, 11
 	dw Datae706
-	db $01
+	db 1
 
 Datae706:
-	db $00, $04, $08, $01, $00, $83, $da, $09
-	db $ab, $47, $09, $c1, $47, $00, $00, $00
+	db 0
+	db 4, 8
+	db SCROLLINGMENU_ITEMS_NORMAL
+	
+	dbw 0, wBoxCount
+	dba PlaceBoxMonNicknames
+	dba PlaceBoxMonLevels
+	ds 3
 
 Datae716:
 	dw Datae71c
-	dw wcd3c
-	dw wcd46
+	dw wBillsPCCursor
+	dw wBillsPCScrollPosition
 
 Datae71c:
-	db $40, $04, $01, $0b, $13, $24, $67, $01
-	db $00, $04, $00, $01, $00, $83, $da, $09
-	db $d8, $47, $00, $00, $00, $00, $00, $00
+	db $40
+	menu_coords 1, 4, SCREEN_WIDTH - 1, 11
+	dw Datae724
+	db 1
+
+Datae724:
+	db $00
+	db $04, $00
+	db 1
+	dbw 0, wBoxCount
+	dba PlaceDetailedBoxMonView
+	ds 3
+	ds 3
 
 Function6734:
 	call RefreshScreen
@@ -2774,13 +2983,9 @@ Function6734:
 	call ClearBGPalettes
 	call ClearSprites
 	call LoadStandardMenuHeader
-	ld hl, LoadPokeDexGraphics
-	ld a, BANK(LoadPokeDexGraphics)
-	call FarCall_hl
+	callfar LoadPokeDexGraphics
 	call ClearTileMap
-	ld hl, _NewPokedexEntry
-	ld a, BANK(_NewPokedexEntry)
-	call FarCall_hl
+	callfar _NewPokedexEntry
 	call ClearBGPalettes
 	ld hl, wStateFlags
 	set SPRITE_UPDATES_DISABLED_F, [hl]
@@ -2998,7 +3203,7 @@ PokeBallEffect:
 	cp PARTY_LENGTH
 	jr nz, .room_in_party
 
-	ld a, [wBoxListLength]
+	ld a, [wBoxCount]
 	cp MONS_PER_BOX
 	jp z, Ball_BoxIsFullMessage
 
@@ -3114,9 +3319,7 @@ PokeBallEffect:
 	ld d, a
 	push de
 	ld a, [wBattleMonItem]
-	ld hl, GetItemHeldEffect
-	ld a, BANK(GetItemHeldEffect)
-	call FarCall_hl
+	callfar GetItemHeldEffect
 	ld a, b
 	cp $46
 	pop de
@@ -3253,7 +3456,7 @@ PokeBallEffect:
 	xor a
 	ld [wMonType], a
 	call ClearSprites
-	predef Functiond886
+	predef TryAddMonToParty
 	ld hl, Textec61
 	call PrintText
 	call YesNoBox
@@ -3281,7 +3484,7 @@ PokeBallEffect:
 	jr .sub_eb5f
 .sub_eb13
 	call ClearSprites
-	predef Functiondd5c
+	predef SendMonIntoBox
 	ld hl, Textec61
 	call PrintText
 	call YesNoBox
@@ -3397,9 +3600,7 @@ Textec69:
 
 ReturnToBattle_UseBall:
 	call ClearPalettes
-	ld hl, Call_LoadBattleFontsHPBar
-	ld a, BANK(Call_LoadBattleFontsHPBar)
-	call FarCall_hl
+	callfar Call_LoadBattleFontsHPBar
 	call GetMemSGBLayout
 	call CloseWindow
 	call LoadStandardMenuHeader
@@ -4173,7 +4374,7 @@ Dataf203:
 	db $ff, $00, $00
 
 Functionf218:
-	ld a, [wcd3c]
+	ld a, [wBillsPCCursor]
 	dec a
 	ld b, a
 .sub_f21d
@@ -4183,7 +4384,7 @@ Functionf218:
 	predef PartyMenuInBattle
 	pop bc
 	jr c, .sub_f28c
-	ld a, [wcd3c]
+	ld a, [wBillsPCCursor]
 	dec a
 	ld c, a
 	ld a, b
@@ -4237,7 +4438,7 @@ Functionf218:
 .sub_f28c
 	ld a, b
 	inc a
-	ld [wcd3c], a
+	ld [wBillsPCCursor], a
 	ret
 .sub_f292
 	ld hl, Textf2a6
@@ -4973,7 +5174,6 @@ NoCyclingText:
 
 ItemCantGetOnText:
 	text "ここでは@"
-Textf893:
 	text_from_ram wStringBuffer1
 	text "に"
 	line "のることは　できません"
@@ -4986,7 +5186,6 @@ BallBoxFullText:
 
 ItemUsedText:
 	text "<PLAYER>は@"
-Textf8ca:
 	text_low
 	text_from_ram wStringBuffer2
 	text "を　つかった！"
@@ -4994,7 +5193,6 @@ Textf8ca:
 
 ItemGotOnText:
 	text "<PLAYER>は@"
-Textf8db:
 	text_low
 	text_from_ram wStringBuffer2
 	text "に　のった"
@@ -5002,7 +5200,6 @@ Textf8db:
 
 ItemGotOffText:
 	text "<PLAYER>は@"
-Textf8ea:
 	text_low
 	text_from_ram wStringBuffer2
 	text "から　おりた"
@@ -5027,7 +5224,7 @@ GetMaxPPOfMove:
 	dec a
 	jr z, .got_partymon ; BOXMON
 
-	ld hl, wd884
+	ld hl, wBufferMonMoves
 	dec a
 	jr z, .got_nonpartymon ; TEMPMON
 
@@ -5245,7 +5442,7 @@ Functionfaba:
 .sub_fb22
 	ld a, $01
 	ld [wPokemonWithdrawDepositParameter], a
-	predef Functiondc16
+	predef RetrieveBreedmon
 	jp c, Functionfbea
 	ld a, [wd8a2]
 	sub $01
@@ -5283,9 +5480,7 @@ Functionfaba:
 	predef Functiondcfc
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	ld hl, Functiondecd
-	ld a, BANK(Functiondecd)
-	call FarCall_hl
+	callfar RemoveMonFromPartyOrBox ; in the same bank, no need to farcall!
 	ld a, [wCurPartySpecies]
 	call PlayCry
 	ld hl, Breeder_DepositedText
@@ -5427,9 +5622,9 @@ Functionfd03:
 	call PlayCry
 	xor a
 	ld [wMonType], a
-	ld a, $05
+	ld a, 5
 	ld [wCurPartyLevel], a
-	predef Functionde79
+	predef GiveEgg
 	jp Functionfbde
 
 Breeder_EggLaidText:

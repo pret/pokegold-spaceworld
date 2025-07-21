@@ -281,7 +281,7 @@ GivePokemon::
 	ld [wCurPartySpecies], a
 	ld a, b
 	ld [wCurPartyLevel], a
-	predef Functiond886
+	predef TryAddMonToParty
 	ret
 
 AddRandomPokemonToBox:
@@ -298,7 +298,7 @@ AddRandomPokemonToBox:
 	callfar LoadEnemyMon
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a
-	callfar Functiondd5c
+	callfar SendMonIntoBox
 	pop af
 	dec a
 	jr nz, .loop

@@ -1,97 +1,118 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank09.asm@Function24000", ROMX
+SECTION "engine/dumps/bank09.asm@_PushWindow", ROMX
 
-Function24000:
-	xor a
+; START OF: engine/menus/menu.asm
+
+_PushWindow::
+	xor a ; BANK(sWindowStack)
 	call OpenSRAM
+
 	ld hl, wWindowStackPointer
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	push de
-	ld b, $10
+
+	ld b, wMenuDataHeaderEnd - wMenuDataHeader
 	ld hl, wMenuDataHeader
-.asm_24010
+.loop
 	ld a, [hli]
 	ld [de], a
 	dec de
 	dec b
-	jr nz, .asm_24010
-	ld a, [wMenuDataHeader]
-	bit 6, a
-	jr nz, .asm_24028
-	bit 7, a
-	jr z, .asm_2404e
+	jr nz, .loop
+
+; If bit MENU_BACKUP_TILES_F or MENU_BACKUP_TILES_2_F of the menu flags is set,
+; also set bit MENU_RESTORE_TILES_F of the address at 7:[wWindowStackPointer],
+; and draw the menu using the coordinates from the header.
+; Otherwise, reset bit MENU_RESTORE_TILES_F of 7:[wWindowStackPointer].
+	ld a, [wMenuFlags]
+	bit MENU_BACKUP_TILES_F, a
+	jr nz, .backup_tiles
+	bit MENU_BACKUP_TILES_2_F, a
+	jr z, .no_backup_tiles
+
+; Don't bother backing up tiles if it doesn't overlap with any other windows.
 	push de
-	call asm_240b3
+	call PushWindow_CheckForOtherWindowOverlap
 	pop de
-	jr nc, .asm_2404e
-.asm_24028
+	jr nc, .no_backup_tiles
+
+.backup_tiles
 	ld hl, wWindowStackPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	set 0, [hl]
+	set MENU_RESTORE_TILES_F, [hl]
 	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	inc b
 	inc c
-	call Function2406d
+	call .CheckForOverflow
 
-.asm_2403b
+.row
 	push bc
 	push hl
-.asm_2403d
+.col
 	ld a, [hli]
 	ld [de], a
 	dec de
 	dec c
-	jr nz, .asm_2403d
+	jr nz, .col
+
 	pop hl
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_2403b
-	jr .asm_24055
+	jr nz, .row
+	jr .done
 
-.asm_2404e
-	pop hl
+.no_backup_tiles
+	pop hl ; last-pushed register was de
 	push hl
 	ld a, [hld]
 	ld l, [hl]
 	ld h, a
-	res 0, [hl]
+	res MENU_RESTORE_TILES_F, [hl]
 
-.asm_24055
-	pop hl
-	call Function2406d
+.done
+	pop hl ; last-pushed register was de
+	call .CheckForOverflow
+
+; Push the previous window address onto the bottom for easy access
 	ld a, h
 	ld [de], a
 	dec de
 	ld a, l
 	ld [de], a
 	dec de
+
 	ld hl, wWindowStackPointer
 	ld [hl], e
 	inc hl
 	ld [hl], d
+
 	call CloseSRAM
 	ld hl, wWindowStackSize
 	inc [hl]
 	ret
 
-Function2406d:
+; Dummied out in the final game. See _PushWindow.ret in pokegold.
+; hl = starting position of search.
+; de = ending position of search.
+; bc = dimensions of menu box (optional)
+.CheckForOverflow:
 	push bc
 	push de
 	push hl
 	xor a
 	ld l, c
-	ld h, $00
+	ld h, 0
 	ld c, b
-	ld b, $00
-	ld a, $14
+	ld b, 0
+	ld a, SCREEN_WIDTH
 	call AddNTimes
 	ld a, h
 	cpl
@@ -101,254 +122,288 @@ Function2406d:
 	ld l, a
 	inc hl
 	add hl, de
+
 	ld a, e
-	sub $00
+	sub LOW(sWindowStackBottom)
 	ld a, d
-	sbc $b8
-	jr c, Function24090
+	sbc HIGH(sWindowStackBottom)
+	jr c, .window_stack_overflow
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Function24090:
-	ld hl, .text_2409c
+.window_stack_overflow:
+	ld hl, .WindowSaveAreaOverflowText
 	call PrintText
 	call WaitBGMap
-.asm_24099
+.indefinite_loop
 	nop
-	jr .asm_24099
+	jr .indefinite_loop
 
-.text_2409c:
+.WindowSaveAreaOverflowText:
 	text "ウィンドウセーブエりアが"
 	next "オーバーしました"
 	done
 
-asm_240b3:
+; Returns the carry flag if any of the other windows overlap with the current window.
+PushWindow_CheckForOtherWindowOverlap:
 	ld hl, wWindowStackPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-asm_240b9:
+.loop
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	or h
-	jr z, asm_240d0
+	jr z, .stack_bottom_reached
+
 	push hl
-	dec hl
+	dec hl ; top coord
 	ld b, [hl]
-	dec hl
+	dec hl ; left coord
 	ld c, [hl]
-	dec hl
+	dec hl ; bottom coord
 	ld d, [hl]
-	dec hl
+	dec hl ; right coord
 	ld e, [hl]
-	call asm_240f2
+	call .AvoidRedundantTiles
 	pop hl
 	ret c
-	jr asm_240b9
-asm_240d0:
+	jr .loop
+
+; Check again, but in reverse: if the current window overlaps with any other windows, set the carry flag.
+.stack_bottom_reached:
 	ld hl, wMenuBorderTopCoord
 	ld b, [hl]
-	inc hl
+	inc hl ; wMenuBorderLeftCoord
 	ld c, [hl]
-	inc hl
+	inc hl ; wMenuBorderBottomCoord
 	ld d, [hl]
-	inc hl
+	inc hl ; wMenuBorderRightCoord
 	ld e, [hl]
-	inc hl
+	inc hl ; not necessary if we're overwriting hl right after
 	ld hl, wWindowStackPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-asm_240e1:
+.loop2
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	or h
 	ret z
+
 	push hl
-	ld a, [hld]
-	ld l, [hl]
+	ld a, [hld] ; top coord
+	ld l, [hl]  ; left coord
 	ld h, a
-	call asm_24116
+	call .CheckIfInCoordRange
 	pop hl
 	ret c
-	jr asm_240e1
-asm_240f2:
+	jr .loop2
+
+.AvoidRedundantTiles:
 	ld a, [wMenuBorderTopCoord]
 	ld h, a
 	ld a, [wMenuBorderLeftCoord]
 	ld l, a
-	call asm_24116
+	call .CheckIfInCoordRange
 	ret c
 	ld a, [wMenuBorderBottomCoord]
 	ld h, a
-	call asm_24116
+	call .CheckIfInCoordRange
 	ret c
 	ld a, [wMenuBorderRightCoord]
 	ld l, a
-	call asm_24116
+	call .CheckIfInCoordRange
 	ret c
 	ld a, [wMenuBorderTopCoord]
 	ld h, a
-	call asm_24116
+	call .CheckIfInCoordRange
 	ret
 
-asm_24116:
+; If b <= h <= d && c <= l <= e, set carry flag.
+; b, h, and d are generally used for vertical positioning, and the others for horizontal positioning.
+; It doesn't really matter which one has which, though.
+.CheckIfInCoordRange:
 	ld a, h
 	cp b
-	jr c, asm_2412a
+	jr c, .out_of_range
 	cp d
-	jr c, asm_2411f
-	jr nz, asm_2412a
-asm_2411f:
+	jr c, .next_range
+	jr nz, .out_of_range
+.next_range
 	ld a, l
 	cp c
-	jr c, asm_2412a
+	jr c, .out_of_range
 	cp e
-	jr c, asm_24128
-	jr nz, asm_2412a
-asm_24128:
+	jr c, .in_range
+	jr nz, .out_of_range
+.in_range
 	scf
 	ret
 
-asm_2412a:
+.out_of_range
 	and a
 	ret
 
 _ExitMenu::
 	xor a
 	ldh [hBGMapMode], a
-	xor a
+
+	xor a ; BANK(sWindowStack)
 	call OpenSRAM
+
 	call GetWindowStackTop
 	ld a, l
 	or h
-	jp z, Function24164
+	jp z, Error_Cant_ExitMenu
+
 	ld a, l
 	ld [wWindowStackPointer], a
 	ld a, h
 	ld [wWindowStackPointer + 1], a
 	call PopWindow
-	ld a, [wMenuDataHeader]
-	bit 0, a
-	jr z, asm_24152
+	ld a, [wMenuFlags]
+	bit MENU_RESTORE_TILES_F, a
+	jr z, .loop
 	ld d, h
 	ld e, l
 	call RestoreTileBackup
-asm_24152:
+
+.loop
 	call GetWindowStackTop
 	ld a, h
 	or l
-	jr z, asm_2415c
+	jr z, .done
 	call PopWindow
-asm_2415c:
+
+.done
 	call CloseSRAM
 	ld hl, wWindowStackSize
 	dec [hl]
 	ret
 
-Function24164:
-	ld hl, .text_2416f
+Error_Cant_ExitMenu:
+	ld hl, .WindowPoppingErrorText
 	call PrintText
 	call WaitBGMap
-.loop
-	jr .loop
+.infinite_loop
+	jr .infinite_loop
 
-.text_2416f:
+.WindowPoppingErrorText:
 	text "ポップできる　ウィンドウが"
 	next "ありません！"
 	done
 
-Function24185::
-	xor a
+_ExitAllMenus::
+.loop
+	xor a ; BANK(sWindowStack)
 	call OpenSRAM
 	call GetWindowStackTop
 	ld a, l
 	or h
-	jr z, asm_24195
+	jr z, .stack_bottom_reached
+
 	call _ExitMenu
-	jr Function24185
-asm_24195:
+	jr .loop
+
+.stack_bottom_reached
 	call CloseSRAM
 	ret
 
 _InitVerticalMenuCursor::
 	ld a, [wMenuDataHeaderEnd]
 	ld b, a
-	ld hl, wMenuData3
+	ld hl, wMoreMenuData
 	ld a, [wMenuBorderTopCoord]
 	inc a
-	bit 6, b
-	jr nz, asm_241a9
+	bit STATICMENU_NO_TOP_SPACING_F, b
+	jr nz, .skip_offset
 	inc a
-asm_241a9:
+.skip_offset
 	ld [hli], a
+; w2DMenuCursorInitX
 	ld a, [wMenuBorderLeftCoord]
 	inc a
 	ld [hli], a
+; w2DMenuNumRows
 	ld a, [wMenuDataItems]
 	ld [hli], a
-	ld a, $01
+; w2DMenuNumCols
+	ld a, 1
 	ld [hli], a
-	ld [hl], $00
-	bit 5, b
-	jr z, asm_241be
-	set 5, [hl]
-asm_241be:
-	ld a, [wMenuDataHeader]
-	bit 4, a
-	jr z, asm_241c7
-	set 6, [hl]
-asm_241c7:
+; w2DMenuFlags1
+	ld [hl], 0
+	bit STATICMENU_WRAP_F, b
+	jr z, .skip_bit_5
+	set _2DMENU_WRAP_UP_DOWN_F, [hl]
+.skip_bit_5
+	ld a, [wMenuFlags]
+	bit MENU_SPRITE_ANIMS_F, a
+	jr z, .skip_bit_6
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
+.skip_bit_6
 	inc hl
+; w2DMenuFlags2
 	xor a
 	ld [hli], a
-	ld a, $20
+; w2DMenuCursorOffsets
+	ln a, 2, 0
 	ld [hli], a
-	ld a, $01
-	bit 0, b
-	jr nz, asm_241d5
-	add $02
-asm_241d5:
+; wMenuJoypadFilter
+	ld a, A_BUTTON
+	bit STATICMENU_DISABLE_B_F, b
+	jr nz, .skip_bit_1
+	add B_BUTTON
+.skip_bit_1
 	ld [hli], a
-	ld a, [wMenuCursorBuffer]
+; wMenuCursorY
+	ld a, [wMenuCursorPosition]
 	and a
-	jr z, asm_241e3
+	jr z, .load_at_the_top
 	ld c, a
 	ld a, [wMenuDataItems]
 	cp c
-	jr nc, asm_241e5
-asm_241e3:
-	ld c, $01
-asm_241e5:
+	jr nc, .load_position
+.load_at_the_top
+	ld c, 1
+.load_position
 	ld [hl], c
 	inc hl
-	ld a, $01
+; wMenuCursorX
+	ld a, 1
 	ld [hli], a
+; wCursorOffCharacter, wCursorCurrentTile
 	xor a
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
 	ret
+
+; END OF: engine/menus/menu.asm
+
+; START OF: engine/items/update_item_description.asm
 
 UpdateItemDescription::
 	ld a, [wMenuSelection]
 	ld [wSelectedItem], a
 	hlcoord 0, 12
-	ld b, $04
-	ld c, $12
+	ld b, 4
+	ld c, 18
 	call DrawTextBox
 	decoord 1, 14
 	callfar ShowItemDescription
 	ret
 
+; START OF: engine/events/pokepic.asm
+
 Pokepic:
-	ld a, $01
+	ld a, 1
 	ldh [hBGMapMode], a
 	ld hl, .PokepicMenuHeader
 	call LoadMenuHeader
@@ -361,7 +416,7 @@ Pokepic:
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld de, vFont
+	ld de, vChars1
 	call LoadMonFrontSprite
 	ld a, [wMenuBorderTopCoord]
 	inc a
@@ -374,7 +429,7 @@ Pokepic:
 	ldh [hGraphicStartTile], a
 	lb bc, 7, 7
 	predef PlaceGraphic
-	ld a, $01
+	ld a, 1
 	ldh [hBGMapMode], a
 	call TextboxWaitPressAorB_BlinkCursor
 	call ClearMenuBoxInterior
@@ -386,9 +441,11 @@ Pokepic:
 
 .PokepicMenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 6, 4, $e, $d
+	menu_coords 6, 4, 14, 13
 	dw 0
 	db 1
+
+; START OF: engine/menus/scrolling_menu.asm
 
 _InitScrollingMenu::
 	xor a
@@ -398,278 +455,288 @@ _InitScrollingMenu::
 	ldh [hInMenu], a
 	ld hl, wOptions
 	set NO_TEXT_SCROLL_F, [hl]
-	call asm_243c3
-	call asm_243fc
-	ld c, $0a
+	call InitScrollingMenuCursor
+	call ScrollingMenu_InitFlags
+	ld c, 10
 	call DelayFrames
-	call Function242a3
+	call ScrollingMenuMain
 	ret
 
 _ScrollingMenu::
-	call Function242b6
-	jp c, .asm_24296
-	ld a, $00
+.loop
+	call ScrollingMenuJoyAction
+	jp c, .exit
+	ld a, 0
 	ldh [hJoypadSum], a
-	call z, Function242a3
-	jr _ScrollingMenu
-.asm_24296
+	call z, ScrollingMenuMain
+	jr .loop
+.exit
 	ld [wMenuJoypad], a
-	ld a, $00
+	ld a, 0
 	ldh [hInMenu], a
 	ld hl, wOptions
 	res NO_TEXT_SCROLL_F, [hl]
 	ret
 
-Function242a3:
+ScrollingMenuMain::
 	xor a
 	ldh [hBGMapMode], a
-	call Function24475
-	call Function244ff
-	call Function2452c
+	call ScrollingMenu_UpdateDisplay
+	call ScrollingMenu_PlaceCursor
+	call ScrollingMenu_CheckCallFunction3
 	xor a
 	ldh [hJoypadSum], a
 	call WaitBGMap
 	ret
 
-Function242b6:
-	call Get2DMenuJoypad_NoPlaceCursor
+ScrollingMenuJoyAction::
+	call ScrollingMenuJoypad
 	ldh a, [hJoySum]
-	and $f0
+	and D_PAD
 	ld b, a
 	ldh a, [hJoypadSum]
-	and $0f
+	and BUTTONS
 	or b
-	bit 0, a
-	jp nz, Function242f1
-	bit 1, a
-	jp nz, asm_2431c
-	bit 2, a
-	jp nz, Function24320
-	bit 3, a
-	jp nz, Function24342
-	bit 4, a
-	jp nz, asm_24362
-	bit 5, a
-	jp nz, asm_2434e
-	bit 6, a
-	jp nz, asm_24376
-	bit 7, a
-	jp nz, asm_2438a
-	jr Function242b6
-	ld a, $ff
+	bit A_BUTTON_F, a
+	jp nz, .a_button
+	bit B_BUTTON_F, a
+	jp nz, .b_button
+	bit SELECT_F, a
+	jp nz, .select
+	bit START_F, a
+	jp nz, .start
+	bit D_RIGHT_F, a
+	jp nz, .d_right
+	bit D_LEFT_F, a
+	jp nz, .d_left
+	bit D_UP_F, a
+	jp nz, .d_up
+	bit D_DOWN_F, a
+	jp nz, .d_down
+	jr ScrollingMenuJoyAction
+
+	; unreferenced
+.no_zero_no_carry
+	ld a, -1
 	and a
 	ret
 
-Function242f1:
+.a_button
 	call PlaceHollowCursor
-	ld a, [w2DMenuDataEnd]
+	ld a, [wMenuCursorY]
 	dec a
-	call asm_24555
+	call ScrollingMenu_GetListItemCoordAndFunctionArgs
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
 	ld a, [wMenuSelectionQuantity]
 	ld [wItemQuantityBuffer], a
-	call asm_243a5
+	call ScrollingMenu_GetCursorPosition
 	dec a
 	ld [wScrollingMenuCursorPosition], a
-	ld [wItemIndex], a
+	ld [wCurItemQuantity], a
 	ld a, [wMenuSelection]
-	cp $ff
-	jr z, asm_2431c
-	ld a, $01
+	cp -1
+	jr z, .b_button
+	ld a, A_BUTTON
 	scf
 	ret
 
-asm_2431c:
-	ld a, $02
+.b_button
+	ld a, B_BUTTON
 	scf
 	ret
 
-Function24320:
-	ld a, [wMenuDataHeaderEnd]
-	bit 7, a
-	jp z, SetFFInAccumulator
-	ld a, [w2DMenuDataEnd]
+.select
+	ld a, [wMenuDataFlags]
+	bit SCROLLINGMENU_ENABLE_SELECT_F, a
+	jp z, xor_a_dec_a
+	ld a, [wMenuCursorY]
 	dec a
-	call asm_24555
+	call ScrollingMenu_GetListItemCoordAndFunctionArgs
 	ld a, [wMenuSelection]
-	cp $ff
-	jp z, SetFFInAccumulator
-	call asm_243a5
+	cp -1
+	jp z, xor_a_dec_a
+	call ScrollingMenu_GetCursorPosition
 	dec a
 	ld [wScrollingMenuCursorPosition], a
-	ld a, $04
+	ld a, SELECT
 	scf
 	ret
 
-Function24342:
-	ld a, [wMenuDataHeaderEnd]
-	bit 6, a
-	jp z, SetFFInAccumulator
-	ld a, $08
+.start
+	ld a, [wMenuDataFlags]
+	bit SCROLLINGMENU_ENABLE_START_F, a
+	jp z, xor_a_dec_a
+	ld a, START
 	scf
 	ret
 
-asm_2434e:
+.d_left
 	ld hl, w2DMenuFlags2
-	bit 7, [hl]
-	jp z, SetFFInAccumulator
+	bit _2DMENU_DISABLE_JOYPAD_FILTER_F, [hl]
+	jp z, xor_a_dec_a
 	ld a, [wMenuDataHeaderEnd]
-	bit 3, a
-	jp z, SetFFInAccumulator
-	ld a, $20
+	bit SCROLLINGMENU_ENABLE_LEFT_F, a
+	jp z, xor_a_dec_a
+	ld a, D_LEFT
 	scf
 	ret
 
-asm_24362:
+.d_right
 	ld hl, w2DMenuFlags2
-	bit 7, [hl]
-	jp z, SetFFInAccumulator
+	bit _2DMENU_DISABLE_JOYPAD_FILTER_F, [hl]
+	jp z, xor_a_dec_a
 	ld a, [wMenuDataHeaderEnd]
-	bit 2, a
-	jp z, SetFFInAccumulator
-	ld a, $10
+	bit SCROLLINGMENU_ENABLE_RIGHT_F, a
+	jp z, xor_a_dec_a
+	ld a, D_RIGHT
 	scf
 	ret
 
-asm_24376:
+.d_up
 	ld hl, w2DMenuFlags2
-	bit 7, [hl]
-	jp z, ClearAccumulator
+	bit _2DMENU_DISABLE_JOYPAD_FILTER_F, [hl]
+	jp z, xor_a
 	ld hl, wMenuScrollPosition
 	ld a, [hl]
 	and a
-	jp z, ClearAccumulator
+	jp z, xor_a ; xor_a_dec_a in final game
 	dec [hl]
-	jp ClearAccumulator
+	jp xor_a
 
-asm_2438a:
+.d_down
 	ld hl, w2DMenuFlags2
-	bit 7, [hl]
-	jp z, ClearAccumulator
+	bit _2DMENU_DISABLE_JOYPAD_FILTER_F, [hl]
+	jp z, xor_a
 	ld hl, wMenuScrollPosition
-	ld a, [wMenuDataItems]
+	ld a, [wMenuData_ScrollingMenuHeight]
 	add [hl]
 	ld b, a
 	ld a, [wScrollingMenuListSize]
 	cp b
-	jp c, ClearAccumulator
+	jp c, xor_a ; xor_a_dec_a in final game
 	inc [hl]
-	jp ClearAccumulator
+	jp xor_a
 
-asm_243a5:
+ScrollingMenu_GetCursorPosition:
 	ld a, [wMenuScrollPosition]
 	ld c, a
-	ld a, [w2DMenuDataEnd]
+	ld a, [wMenuCursorY]
 	add c
 	ld c, a
 	ret
 
 ScrollingMenu_ClearLeftColumn::
 	call MenuBoxCoord2Tile
-	ld de, $14
+	ld de, SCREEN_WIDTH
 	add hl, de
-	ld de, $28
-	ld a, [wMenuDataItems]
-asm_243bc:
-	ld [hl], $7f
+	ld de, 2 * SCREEN_WIDTH
+	ld a, [wMenuData_ScrollingMenuHeight]
+.loop
+	ld [hl], "　"
 	add hl, de
 	dec a
-	jr nz, asm_243bc
+	jr nz, .loop
 	ret
 
-asm_243c3:
-	ld hl, wMenuDataDisplayFunctionPointer + 1
+InitScrollingMenuCursor::
+	ld hl, wMenuData_ItemsPointerAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wMenuDataDisplayFunctionPointer]
+	ld a, [wMenuData_ItemsPointerBank]
 	call GetFarByte
 	ld [wScrollingMenuListSize], a
 	ld a, [wMenuScrollPosition]
 	ld c, a
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	add c
 	ld b, a
 	ld a, [wScrollingMenuListSize]
 	inc a
 	cp b
-	jr c, .asm_243f2
+	jr c, .wrap
+
 	ld a, [wMenuScrollPosition]
 	ld c, a
-	ld a, [wMenuDataItems]
+	ld a, [wMenuData_ScrollingMenuHeight]
 	add c
 	ld b, a
 	ld a, [wScrollingMenuListSize]
 	inc a
 	cp b
-	jr nc, .asm_243fb
-.asm_243f2
+	jr nc, .done
+
+.wrap
 	xor a
 	ld [wMenuScrollPosition], a
-	ld a, $01
-	ld [wMenuCursorBuffer], a
-.asm_243fb
+	ld a, 1
+	ld [wMenuCursorPosition], a
+.done
 	ret
 
-asm_243fc:
-	ld a, [wMenuDataHeaderEnd]
+ScrollingMenu_InitFlags::
+	ld a, [wMenuDataFlags]
 	ld c, a
 	ld a, [wScrollingMenuListSize]
 	ld b, a
 	ld a, [wMenuBorderTopCoord]
-	add $01
-	ld [wMenuData3], a
+	add 1
+	ld [w2DMenuCursorInitY], a
 	ld a, [wMenuBorderLeftCoord]
-	add $00
+	add 0
 	ld [w2DMenuCursorInitX], a
-	ld a, [wMenuDataItems]
+	ld a, [wMenuData_ScrollingMenuHeight]
 	cp b
-	jr c, asm_2441e
-	jr z, asm_2441e
+	jr c, .no_extra_row
+	jr z, .no_extra_row
 	ld a, b
 	inc a
-asm_2441e:
+.no_extra_row
 	ld [w2DMenuNumRows], a
-	ld a, $01
+	ld a, 1
 	ld [w2DMenuNumCols], a
-	ld a, $8c
-	bit 2, c
-	jr z, asm_2442e
-	set 0, a
-asm_2442e:
-	bit 3, c
-	jr z, asm_24434
-	set 1, a
-asm_24434:
+	ld a, _2DMENU_EXIT_UP | _2DMENU_EXIT_DOWN | _2DMENU_DISABLE_JOYPAD_FILTER
+	bit SCROLLINGMENU_ENABLE_RIGHT_F, c
+	jr z, .skip_set_0
+	set _2DMENU_EXIT_RIGHT_F, a
+
+.skip_set_0
+	bit SCROLLINGMENU_ENABLE_LEFT_F, c
+	jr z, .skip_set_1
+	set _2DMENU_EXIT_LEFT_F, a
+
+.skip_set_1
 	ld [w2DMenuFlags1], a
 	xor a
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
-	ld a, $c3
-	bit 7, c
-	jr z, asm_24448
-	add $04
-asm_24448:
-	bit 6, c
-	jr z, asm_2444e
-	add $08
-asm_2444e:
+	ld a, A_BUTTON | B_BUTTON | D_UP | D_DOWN
+	bit SCROLLINGMENU_ENABLE_SELECT_F, c
+	jr z, .disallow_select
+	add SELECT
+.disallow_select
+	bit SCROLLINGMENU_ENABLE_START_F, c
+	jr z, .disallow_start
+	add START
+
+.disallow_start
 	ld [wMenuJoypadFilter], a
 	ld a, [w2DMenuNumRows]
 	ld b, a
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	and a
-	jr z, asm_24460
+	jr z, .reset_cursor
 	cp b
-	jr z, asm_24462
-	jr c, asm_24462
-asm_24460:
-	ld a, $01
-asm_24462:
-	ld [w2DMenuDataEnd], a
-	ld a, $01
+	jr z, .cursor_okay
+	jr c, .cursor_okay
+
+.reset_cursor
+	ld a, 1
+.cursor_okay
+	ld [wMenuCursorY], a
+	ld a, 1
 	ld [wMenuCursorX], a
 	xor a
 	ld [wCursorCurrentTile], a
@@ -677,192 +744,197 @@ asm_24462:
 	ld [wCursorOffCharacter], a
 	ret
 
-Function24475:
+ScrollingMenu_UpdateDisplay::
 	call ClearWholeMenuBox
 	ld a, [wMenuScrollPosition]
 	and a
-	jr z, asm_2448b
+	jr z, .okay
 	ld a, [wMenuBorderTopCoord]
 	ld b, a
 	ld a, [wMenuBorderRightCoord]
 	ld c, a
 	call Coord2Tile
-	ld [hl], $61
-asm_2448b:
+	ld [hl], "▲"
+
+.okay
 	call MenuBoxCoord2Tile
-	ld bc, $0015
+	ld bc, SCREEN_WIDTH + 1
 	add hl, bc
 	ld a, [wMenuDataItems]
 	ld b, a
-	ld c, $00
-asm_24498:
+	ld c, 0
+.loop
 	ld a, [wMenuScrollPosition]
 	add c
 	ld [wScrollingMenuCursorPosition], a
 	ld a, c
-	call asm_24555
+	call ScrollingMenu_GetListItemCoordAndFunctionArgs
 	ld a, [wMenuSelection]
-	cp $ff
-	jr z, asm_244c8
+	cp -1
+	jr z, .cancel
 	push bc
 	push hl
-	call asm_244e2
+	call ScrollingMenu_CallFunctions1and2
 	pop hl
-	ld bc, $0028
+	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	inc c
 	ld a, c
 	cp b
-	jr nz, asm_24498
+	jr nz, .loop
 	ld a, [wMenuBorderBottomCoord]
 	ld b, a
 	ld a, [wMenuBorderRightCoord]
 	ld c, a
 	call Coord2Tile
-	ld [hl], $ee
+	ld [hl], "▼"
 	ret
 
-asm_244c8:
+.cancel
 	ld a, [wMenuDataHeaderEnd]
-	bit 0, a
-	jr nz, asm_244da
-	ld de, .text_244d6
+	bit SCROLLINGMENU_CALL_FUNCTION1_CANCEL_F, a
+	jr nz, .call_function
+	ld de, .CancelString
 	call PlaceString
 	ret
 
-.text_244d6:
+.CancelString:
 	db "やめる@"
 
-asm_244da:
+.call_function
 	ld d, h
 	ld e, l
-	ld hl, wMenuDataPointerTableAddr + 1
-	jp CallFar_atHL
+	ld hl, wMenuData_ScrollingMenuFunction1
+	jp CallPointerAt
 
-asm_244e2:
+ScrollingMenu_CallFunctions1and2::
 	push hl
 	ld d, h
 	ld e, l
-	ld hl, wMenuDataPointerTableAddr + 1
-	call CallFar_atHL
+	ld hl, wMenuData_ScrollingMenuFunction1
+	call CallPointerAt
 	pop hl
 	ld a, [wMenuDataIndicesPointer]
 	and a
-	jr z, asm_244fe
+	jr z, .done
 	ld e, a
-	ld d, $00
+	ld d, 0
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, wcc1c
-	call CallFar_atHL
-asm_244fe:
+	ld hl, wMenuData_ScrollingMenuFunction2
+	call CallPointerAt
+.done
 	ret
 
-Function244ff:
+ScrollingMenu_PlaceCursor:
 	ld a, [wSelectedSwapPosition]
 	and a
-	jr z, asm_2452b
+	jr z, .done
 	ld b, a
 	ld a, [wMenuScrollPosition]
 	cp b
-	jr nc, asm_2452b
+	jr nc, .done
 	ld c, a
-	ld a, [wMenuDataItems]
+	ld a, [wMenuData_ScrollingMenuHeight]
 	add c
 	cp b
-	jr c, asm_2452b
+	jr c, .done
 	ld a, b
 	sub c
 	dec a
 	add a
-	add $01
+	add $1
 	ld c, a
 	ld a, [wMenuBorderTopCoord]
 	add c
 	ld b, a
 	ld a, [wMenuBorderLeftCoord]
-	add $00
+	add $0
 	ld c, a
 	call Coord2Tile
-	ld [hl], $ec
-asm_2452b:
+	ld [hl], "▷"
+
+.done
 	ret
 
-Function2452c:
-	ld a, [wMenuDataHeaderEnd]
-	bit 5, a
+; Seems to be more specialized compared to the final game...
+; It automatically draws a text box and predefines a decoord.
+ScrollingMenu_CheckCallFunction3:
+	ld a, [wMenuDataFlags]
+	bit SCROLLINGMENU_ENABLE_FUNCTION3_F, a
 	ret z
 	hlcoord 0, 12
-	ld b, $04
-	ld c, $12
+	ld b, 4
+	ld c, SCREEN_HEIGHT
 	call DrawTextBox
-	ld a, [w2DMenuDataEnd]
+	ld a, [wMenuCursorY]
 	dec a
-	call asm_24555
+	call ScrollingMenu_GetListItemCoordAndFunctionArgs
 	ld a, [wMenuSelection]
-	cp $ff
+	cp -1
 	jr z, .done
 	decoord 1, 14
-	ld hl, wcc1f
-	call CallFar_atHL
+	ld hl, wMenuData_ScrollingMenuFunction3
+	call CallPointerAt
 	ret
 
 .done
 	ret
 
-asm_24555:
+ScrollingMenu_GetListItemCoordAndFunctionArgs::
 	push de
 	push hl
 	ld e, a
 	ld a, [wMenuScrollPosition]
 	add e
 	ld e, a
-	ld d, $00
-	ld hl, wMenuDataDisplayFunctionPointer + 1
+	ld d, 0
+	ld hl, wMenuData_ItemsPointerAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	inc hl
-	ld a, [wMenuDataIndicesPointer + 1]
-	cp $01
-	jr z, asm_24576
-	cp $02
-	jr z, asm_24575
-	cp $80
-	jr z, asm_24590
-asm_24575:
+	ld a, [wMenuData_ScrollingMenuItemFormat]
+	cp SCROLLINGMENU_ITEMS_NORMAL
+	jr z, .got_spacing
+	cp SCROLLINGMENU_ITEMS_QUANTITY
+	jr z, .pointless_jump
+	cp SCROLLINGMENU_BALL_POCKET
+	jr z, .ball_pocket
+
+.pointless_jump
 	add hl, de
-asm_24576:
+.got_spacing
 	add hl, de
-	ld a, [wMenuDataDisplayFunctionPointer]
+	ld a, [wMenuData_ItemsPointerBank]
 	call GetFarByte
 	ld [wMenuSelection], a
 	ld [wCurItem], a
 	inc hl
-	ld a, [wMenuDataDisplayFunctionPointer]
+	ld a, [wMenuData_ItemsPointerBank]
 	call GetFarByte
 	ld [wMenuSelectionQuantity], a
 	pop hl
 	pop de
 	ret
 
-asm_24590:
+.ball_pocket:
 	ld a, [wScrollingMenuListSize]
 	ld d, a
 	ld a, e
-	cp d
-	jr nc, asm_245b5
+	cp d ; if menu scroll position <= menu list size
+	jr nc, .failure
 	inc e
-	ld d, $00
-asm_2459b:
+	ld d, 0
+.loop
 	inc d
 	ld a, [hli]
 	and a
-	jr z, asm_2459b
+	jr z, .loop
 	dec e
-	jr nz, asm_2459b
+	jr nz, .loop
 	dec hl
 	dec d
 	push bc
@@ -872,10 +944,11 @@ asm_2459b:
 	ld d, c
 	pop hl
 	pop bc
-	jr asm_245b7
-asm_245b5:
-	ld d, $ff
-asm_245b7:
+	jr .done
+
+.failure
+	ld d, -1
+.done
 	ld a, d
 	ld [wMenuSelection], a
 	ld [wCurItem], a
@@ -885,119 +958,124 @@ asm_245b7:
 	pop de
 	ret
 
+; END
+
+; START OF: engine/items/switch_items.asm
+
 SwitchItemsInBag::
 	ld a, [wSelectedSwapPosition]
 	and a
-	jr z, asm_24602
+	jr z, .init
 	ld b, a
 	ld a, [wScrollingMenuCursorPosition]
 	inc a
 	cp b
-	jr z, asm_2460a
+	jr z, .trivial
 	ld a, [wScrollingMenuCursorPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
 	ld a, [wSelectedSwapPosition]
 	dec a
 	ld [wSelectedSwapPosition], a
 	ld a, [wSelectedSwapPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	push hl
 	ld a, [wScrollingMenuCursorPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	ld a, [hl]
 	pop hl
 	cp [hl]
-	jr z, asm_2466c
+	jr z, .combine_stacks
 	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
 	ld a, [wSelectedSwapPosition]
 	cp c
-	jr c, asm_2463f
-	jr asm_2460f
-asm_24602:
+	jr c, .above
+	jr .below
+
+.init:
 	ld a, [wScrollingMenuCursorPosition]
 	inc a
 	ld [wSelectedSwapPosition], a
 	ret
 
-asm_2460a:
+.trivial:
 	xor a
 	ld [wSelectedSwapPosition], a
 	ret
 
-asm_2460f:
+.below:
 	ld a, [wSelectedSwapPosition]
-	call asm_246db
+	call ItemSwitch_CopyItemToBuffer
 	ld a, [wScrollingMenuCursorPosition]
 	ld d, a
 	ld a, [wSelectedSwapPosition]
 	ld e, a
-	call asm_24707
+	call ItemSwitch_GetItemOffset
 	push bc
 	ld a, [wSelectedSwapPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	dec hl
 	push hl
-	call asm_2471b
+	call ItemSwitch_GetItemFormatSize
 	add hl, bc
 	ld d, h
 	ld e, l
 	pop hl
 	pop bc
-	call asm_24732
+	call ItemSwitch_BackwardsCopyBytes
 	ld a, [wScrollingMenuCursorPosition]
-	call asm_246e8
+	call ItemSwitch_CopyBufferToItem
 	xor a
 	ld [wSelectedSwapPosition], a
 	ret
 
-asm_2463f:
+.above:
 	ld a, [wSelectedSwapPosition]
-	call asm_246db
+	call ItemSwitch_CopyItemToBuffer
 	ld a, [wScrollingMenuCursorPosition]
 	ld d, a
 	ld a, [wSelectedSwapPosition]
 	ld e, a
-	call asm_24707
+	call ItemSwitch_GetItemOffset
 	push bc
 	ld a, [wSelectedSwapPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	ld d, h
 	ld e, l
-	call asm_2471b
+	call ItemSwitch_GetItemFormatSize
 	add hl, bc
 	pop bc
 	call CopyBytes
 	ld a, [wScrollingMenuCursorPosition]
-	call asm_246e8
+	call ItemSwitch_CopyBufferToItem
 	xor a
 	ld [wSelectedSwapPosition], a
 	ret
 
-asm_2466c:
+.combine_stacks:
 	ld a, [wSelectedSwapPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	inc hl
 	push hl
 	ld a, [wScrollingMenuCursorPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	inc hl
 	ld a, [hl]
 	pop hl
 	add [hl]
-	cp $64
-	jr c, asm_2469c
-	sub $63
+	cp MAX_ITEM_STACK + 1
+	jr c, .merge_stacks
+	sub MAX_ITEM_STACK
 	push af
 	ld a, [wScrollingMenuCursorPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	inc hl
-	ld [hl], $63
+	ld [hl], MAX_ITEM_STACK
 	ld a, [wSelectedSwapPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	inc hl
 	pop af
 	ld [hl], a
@@ -1005,67 +1083,67 @@ asm_2466c:
 	ld [wSelectedSwapPosition], a
 	ret
 
-asm_2469c:
+.merge_stacks:
 	push af
 	ld a, [wScrollingMenuCursorPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	inc hl
 	pop af
 	ld [hl], a
-	ld hl, wMenuDataDisplayFunctionPointer + 1
+	ld hl, wMenuData_ItemsPointerAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wSelectedSwapPosition]
 	cp [hl]
-	jr nz, asm_246c0
+	jr nz, .not_combining_last_item
 	dec [hl]
 	ld a, [wSelectedSwapPosition]
-	call asm_246f7
-	ld [hl], $ff
+	call ItemSwitch_GetNthItem
+	ld [hl], -1 ; end
 	xor a
 	ld [wSelectedSwapPosition], a
 	ret
 
-asm_246c0:
+.not_combining_last_item:
 	dec [hl]
-	call asm_2471b
+	call ItemSwitch_GetItemFormatSize
 	push bc
 	ld a, [wSelectedSwapPosition]
-	call asm_246f7
+	call ItemSwitch_GetNthItem
 	pop bc
 	push hl
 	add hl, bc
 	pop de
-asm_246cf:
+.copy_loop
 	ld a, [hli]
 	ld [de], a
 	inc de
-	cp $ff
-	jr nz, asm_246cf
+	cp -1 ; end?
+	jr nz, .copy_loop
 	xor a
 	ld [wSelectedSwapPosition], a
 	ret
 
-asm_246db:
-	call asm_246f7
-	ld de, wMovementBufferCount
-	call asm_2471b
+ItemSwitch_CopyItemToBuffer:
+	call ItemSwitch_GetNthItem
+	ld de, wSwitchItemBuffer
+	call ItemSwitch_GetItemFormatSize
 	call CopyBytes
 	ret
 
-asm_246e8:
-	call asm_246f7
+ItemSwitch_CopyBufferToItem:
+	call ItemSwitch_GetNthItem
 	ld d, h
 	ld e, l
-	ld hl, wMovementBufferCount
-	call asm_2471b
+	ld hl, wSwitchItemBuffer
+	call ItemSwitch_GetItemFormatSize
 	call CopyBytes
 	ret
 
-asm_246f7:
+ItemSwitch_GetNthItem:
 	push af
-	call asm_2471b
+	call ItemSwitch_GetItemFormatSize
 	ld hl, wMenuDataDisplayFunctionPointer + 1
 	ld a, [hli]
 	ld h, [hl]
@@ -1075,15 +1153,15 @@ asm_246f7:
 	call AddNTimes
 	ret
 
-asm_24707:
+ItemSwitch_GetItemOffset:
 	push hl
-	call asm_2471b
+	call ItemSwitch_GetItemFormatSize
 	ld a, d
 	sub e
-	jr nc, asm_24711
+	jr nc, .dont_negate
 	dec a
 	cpl
-asm_24711:
+.dont_negate
 	ld hl, 0
 	call AddNTimes
 	ld b, h
@@ -1091,12 +1169,12 @@ asm_24711:
 	pop hl
 	ret
 
-asm_2471b:
+ItemSwitch_GetItemFormatSize:
 	push hl
-	ld a, [wMenuDataIndicesPointer + 1]
+	ld a, [wMenuData_ScrollingMenuItemFormat]
 	ld c, a
-	ld b, $00
-	ld hl, .data_2472c
+	ld b, 0
+	ld hl, .item_format_sizes
 	add hl, bc
 	add hl, bc
 	ld c, [hl]
@@ -1105,31 +1183,37 @@ asm_2471b:
 	pop hl
 	ret
 
-.data_2472c:
-	dw 0
-	dw 1
-	dw 2
+.item_format_sizes:
+; entries correspond to SCROLLINGMENU_ITEMS_* constants
+	dw 0 ; unused
+	dw 1 ; SCROLLINGMENU_ITEMS_NORMAL
+	dw 2 ; SCROLLINGMENU_ITEMS_QUANTITY
 
-asm_24732:
+ItemSwitch_BackwardsCopyBytes:
+.loop
 	ld a, [hld]
 	ld [de], a
 	dec de
 	dec bc
 	ld a, b
 	or c
-	jr nz, asm_24732
+	jr nz, .loop
 	ret
 
-Function2473b::
+; END OF: engine/items/switch_items.asm
+
+; START OF: engine/menus/menu_2.asm
+
+PlacePackItems::
 	ld a, [wMenuSelection]
-	cp $ff
-	jr z, .asm_24762
+	cp -1
+	jr z, .cancel
 	push de
 	callfar CheckItemMenu
 	ld a, [wItemAttributeValue]
 	ld e, a
-	ld d, $00
-	ld hl, .data_2475b
+	ld d, 0
+	ld hl, .attribute_icons
 	add hl, de
 	ld a, [hl]
 	pop de
@@ -1137,17 +1221,23 @@ Function2473b::
 	inc de
 	jr PlaceMenuItemName
 
-.data_2475b:
-	db $7f, $62, $64, $63, $7f, $7f, $7f
+.attribute_icons:
+	db "　"
+	db $62  ; TM Holder icon
+	db $64  ; Ball Holder icon
+	db $63  ; Key Items icon
+	db "　"
+	db "　"
+	db "　"
 
-.asm_24762
+.cancel
 	ld h, d
 	ld l, e
-	ld de, .text_2476b
+	ld de, .CancelString
 	call PlaceString
 	ret
 
-.text_2476b:
+.CancelString:
 	db "　ーーやめるーー@"
 
 PlaceMenuItemName::
@@ -1168,19 +1258,21 @@ PlaceMenuItemQuantity::
 	pop hl
 	and a
 	jr nz, .done
-	ld [hl], $f1
+	ld [hl], "×"
 	inc hl
 	ld de, wMenuSelectionQuantity
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNumber
 .done
 	ret
 
-asm_247a6:
+PlacePartyMonNicknames::
 	ld hl, wPartyMonNicknames
-	jr .asm_247ae
+	jr PlaceMonNicknames
+
+PlaceBoxMonNicknames::
 	ld hl, wBoxMonNicknames
-.asm_247ae
+PlaceMonNicknames:
 	push de
 	ld a, [wScrollingMenuCursorPosition]
 	call GetNick
@@ -1188,13 +1280,15 @@ asm_247a6:
 	call PlaceString
 	ret
 
-asm_247ba:
-	ld a, $00
+PlacePartyMonLevels::
+	ld a, PARTYMON
 	ld [wMonType], a
-	jr .asm_247c6
-	ld a, $02
+	jr PlaceMonLevels
+
+PlaceBoxMonLevels::
+	ld a, BOXMON
 	ld [wMonType], a
-.asm_247c6
+PlaceMonLevels:
 	push de
 	ld a, [wScrollingMenuCursorPosition]
 	ld [wCurPartyMon], a
@@ -1203,35 +1297,39 @@ asm_247ba:
 	call PrintLevel
 	ret
 
-ret_247d7:
+; Unreferenced.
 	ret
 
-asm_247d8:
+; Prints the names, nicknames, levels, and genders of Pokémon.
+PlaceDetailedBoxMonView::
 	push de
 	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
-	ld b, $00
+	ld b, 0
 	ld hl, wBoxList
 	add hl, bc
+
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	pop hl
 	call PlaceString
-	ld de, 6
+	ld de, MON_NAME_LENGTH
 	add hl, de
 	push hl
+
 	ld a, [wScrollingMenuCursorPosition]
 	ld hl, wBoxMonNicknames
 	call GetNick
 	pop hl
 	call PlaceString
-	ld de, 6
+	ld de, MON_NAME_LENGTH
 	add hl, de
 	push hl
+
 	ld a, [wScrollingMenuCursorPosition]
 	ld [wCurPartyMon], a
-	ld a, $02
+	ld a, BOXMON
 	ld [wMonType], a
 	predef CopyMonToTempMon
 	pop hl
@@ -1241,17 +1339,18 @@ asm_247d8:
 	ld de, 3
 	add hl, de
 	push hl
+
 	callfar GetGender
-	ld a, $ef
-	jr c, .asm_2482e
-	ld a, $f5
-.asm_2482e
+	ld a, "♂"
+	jr c, .male
+	ld a, "♀"
+.male
 	pop hl
 	ld [hl], a
 	ret
 
-asm_4831:
-	ld hl, .MenuHeader2484e
+Unreferenced_PlaceMoneyTextbox_Old::
+	ld hl, .MenuHeader
 	call CopyMenuHeader
 	call MenuBox
 	call PlaceVerticalMenuItems
@@ -1259,50 +1358,52 @@ asm_4831:
 	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	ld de, wMoney
-	ld bc, $4306
+	lb bc, PRINTNUM_RIGHTALIGN | 3, 6
 	call PrintNumber
 	ret
 
-.MenuHeader2484e:
+.MenuHeader:
 	db 0
-	menu_coords 11, 0, $13, 2
-	dw .data_24856
+	menu_coords 11, 0, SCREEN_WIDTH - 1, 2
+	dw .MenuData
 	db 1
 
-.data_24856:
-	db $40, $01
+.MenuData:
+	db STATICMENU_NO_TOP_SPACING
+	db 1
 	db "　　　　　　円@"
 
-asm_24860:
-	ld hl, MenuHeader24888
+PlaceMoneyTopRight::
+	ld hl, MoneyTopRightMenuHeader
 	call CopyMenuHeader
-	jr asm_24872
+	jr PlaceMoneyTextbox
 
-asm_24868:
-	ld hl, MenuHeader24888
-	ld d, $0b
-	ld e, $00
+; Unreferenced.
+PlaceMoneyAtTopLeftOfTextbox::
+	ld hl, MoneyTopRightMenuHeader
+	ld d, 11
+	ld e, 0
 	call OffsetMenuHeader
 
-asm_24872:
+PlaceMoneyTextbox:
 	call MenuBox
 	call MenuBoxCoord2Tile
 	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	ld de, wMoney
-	ld bc, $4306
+	lb bc, PRINTNUM_RIGHTALIGN | 3, 6
 	call PrintNumber
-	ld [hl], $f0
+	ld [hl], "円"
 	ret
 
-MenuHeader24888:
+MoneyTopRightMenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 11, 0, $13, 2
-	dw 0
+	menu_coords 11, 0, SCREEN_WIDTH - 1, 2
+	dw NULL
 	db 1
 
-UnreferencedMenu_24890:
 ; An unreferenced, nonfunctional menu that resembles the field debug menu.
+Unreferenced_FieldMoveMenu:
 	ld hl, .MenuData
 	call LoadMenuHeader
 	call VerticalMenu
@@ -1316,20 +1417,22 @@ UnreferencedMenu_24890:
 
 .MenuText:
 	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
-	db 3	; amount of options
-	db "うる@"			; Switch
-	db "かう@"			; Buy
-	db "やめる@"		; Cancel
-	db "くさかり@"		; "Mower"? (replaced by Uproot)
-	db "とんでけ@"		; "Flight"? (replaced by Wind Ride)
-	db "どんぶらこ@"	; "Splash"? (replaced by Water Sport)
-	db "フルパワー@"	; "Full Power" (replaced by Strong Arm)
-	db "ひかりゴケ@"	; Bright Moss
-	db "うずしお@"		; Whirlpool
-	db "とびはねる@"	; Bounce
-	db "あなをほる@"	; Dig
-	db "テレポート@"	; Teleport
-	db "タマゴうみ@"	; Softboiled
+	db 3 ; amount of options
+	db "うる@"      ; Switch
+	db "かう@"      ; Buy
+	db "やめる@"    ; Cancel
+	db "くさかり@"   ; "Mower"? (replaced by Uproot)
+	db "とんでけ@"   ; "Flight"? (replaced by Wind Ride)
+	db "どんぶらこ@" ; "Splash"? (replaced by Water Sport)
+	db "フルパワー@" ; "Full Power" (replaced by Strong Arm)
+	db "ひかりゴケ@" ; Bright Moss
+	db "うずしお@"   ; Whirlpool
+	db "とびはねる@" ; Bounce
+	db "あなをほる@" ; Dig
+	db "テレポート@" ; Teleport
+	db "タマゴうみ@" ; Softboiled
+
+; START OF: engine/pokemon/mon_submenu.asm
 
 ; MonMenuOptionStrings indexes
 	const_def 1
@@ -1343,13 +1446,13 @@ UnreferencedMenu_24890:
 DEF NUM_MONMENUVALUES EQU const_value - 1
 
 MonMenuOptionStrings:
-	db "つよさをみる@"	; Stats
-	db "ならびかえ@"	; Switch
-	db "そうび@"		; Item
-	db "キャンセル@"	; Cancel
-	db "もちわざ@"		; Moves
-	db "メール@"		; Mail
-	db "エラー！@"		; Error!
+	db "つよさをみる@" ; Stats
+	db "ならびかえ@"   ; Switch
+	db "そうび@"      ; Item
+	db "キャンセル@"   ; Cancel
+	db "もちわざ@"     ; Moves
+	db "メール@"      ; Mail
+	db "エラー！@"     ; Error!
 
 Unreferenced_FieldMoveList:
 	db MOVE_UPROOT, MONMENUITEM_CUT
@@ -1365,23 +1468,23 @@ Unreferenced_FieldMoveList:
 	db -1
 
 MonMenuOptions:
-	db MONMENU_FIELD_MOVE, MONMENUITEM_CUT, MOVE_UPROOT
-	db MONMENU_FIELD_MOVE, MONMENUITEM_FLY, MOVE_WIND_RIDE
-	db MONMENU_FIELD_MOVE, MONMENUITEM_SURF, MOVE_WATER_SPORT
-	db MONMENU_FIELD_MOVE, MONMENUITEM_STRENGTH, MOVE_STRONG_ARM
-	db MONMENU_FIELD_MOVE, MONMENUITEM_FLASH, MOVE_BRIGHT_MOSS
-	db MONMENU_FIELD_MOVE, MONMENUITEM_WHIRLPOOL, MOVE_WHIRLPOOL
-	db MONMENU_FIELD_MOVE, MONMENUITEM_BOUNCE, MOVE_BOUNCE
-	db MONMENU_FIELD_MOVE, MONMENUITEM_DIG, MOVE_DIG
-	db MONMENU_FIELD_MOVE, MONMENUITEM_TELEPORT, MOVE_TELEPORT
+	db MONMENU_FIELD_MOVE, MONMENUITEM_CUT,        MOVE_UPROOT
+	db MONMENU_FIELD_MOVE, MONMENUITEM_FLY,        MOVE_WIND_RIDE
+	db MONMENU_FIELD_MOVE, MONMENUITEM_SURF,       MOVE_WATER_SPORT
+	db MONMENU_FIELD_MOVE, MONMENUITEM_STRENGTH,   MOVE_STRONG_ARM
+	db MONMENU_FIELD_MOVE, MONMENUITEM_FLASH,      MOVE_BRIGHT_MOSS
+	db MONMENU_FIELD_MOVE, MONMENUITEM_WHIRLPOOL,  MOVE_WHIRLPOOL
+	db MONMENU_FIELD_MOVE, MONMENUITEM_BOUNCE,     MOVE_BOUNCE
+	db MONMENU_FIELD_MOVE, MONMENUITEM_DIG,        MOVE_DIG
+	db MONMENU_FIELD_MOVE, MONMENUITEM_TELEPORT,   MOVE_TELEPORT
 	db MONMENU_FIELD_MOVE, MONMENUITEM_SOFTBOILED, MOVE_SOFTBOILED
-	db MONMENU_MENUOPTION, MONMENUITEM_STATS, MONMENUVALUE_STATS
-	db MONMENU_MENUOPTION, MONMENUITEM_SWITCH, MONMENUVALUE_SWITCH
-	db MONMENU_MENUOPTION, MONMENUITEM_ITEM, MONMENUVALUE_ITEM
-	db MONMENU_MENUOPTION, MONMENUITEM_CANCEL, MONMENUVALUE_CANCEL
-	db MONMENU_MENUOPTION, MONMENUITEM_MOVE, MONMENUVALUE_MOVE
-	db MONMENU_MENUOPTION, MONMENUITEM_MAIL, MONMENUVALUE_MAIL
-	db MONMENU_MENUOPTION, MONMENUITEM_ERROR, MONMENUVALUE_ERROR
+	db MONMENU_MENUOPTION, MONMENUITEM_STATS,      MONMENUVALUE_STATS
+	db MONMENU_MENUOPTION, MONMENUITEM_SWITCH,     MONMENUVALUE_SWITCH
+	db MONMENU_MENUOPTION, MONMENUITEM_ITEM,       MONMENUVALUE_ITEM
+	db MONMENU_MENUOPTION, MONMENUITEM_CANCEL,     MONMENUVALUE_CANCEL
+	db MONMENU_MENUOPTION, MONMENUITEM_MOVE,       MONMENUVALUE_MOVE
+	db MONMENU_MENUOPTION, MONMENUITEM_MAIL,       MONMENUVALUE_MAIL
+	db MONMENU_MENUOPTION, MONMENUITEM_ERROR,      MONMENUVALUE_ERROR
 	db -1
 
 MonSubmenu::
@@ -1398,6 +1501,7 @@ MonSubmenu::
 	ldh [hBGMapMode], a
 	call MonMenuLoop
 	ld [wMenuSelection], a
+
 	call CloseWindow
 	ret
 
@@ -1408,6 +1512,7 @@ MonSubmenu::
 	db 1 ; default option
 
 .GetTopCoord:
+; [wMenuBorderTopCoord] = 1 + [wMenuBorderBottomCoord] - 2 * ([wMonSubmenuCount] + 1)
 	ld a, [wMonSubmenuCount]
 	inc a
 	add a
@@ -1420,7 +1525,8 @@ MonSubmenu::
 	ret
 
 MonMenuLoop:
-	ld a, (STATICMENU_CURSOR | STATICMENU_WRAP)
+.loop
+	ld a, MENU_UNUSED | MENU_BACKUP_TILES_2
 	ld [wMenuDataFlags], a
 	ld a, [wMonSubmenuCount]
 	ld [wMenuDataItems], a
@@ -1429,19 +1535,19 @@ MonMenuLoop:
 	ld hl, w2DMenuFlags1
 	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 
-	call Get2DMenuJoypad
+	call StaticMenuJoypad
 	ldh a, [hJoyDown]
 	bit A_BUTTON_F, a
 	jr nz, .select
 	bit B_BUTTON_F, a
 	jr nz, .cancel
-	jr MonMenuLoop
+	jr .loop
 
-.cancel:
+.cancel
 	ld a, MONMENUITEM_CANCEL
 	ret
 
-.select:
+.select
 	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
@@ -1453,20 +1559,20 @@ MonMenuLoop:
 
 PopulateMonMenu:
 	call MenuBoxCoord2Tile
-	ld bc, 2*SCREEN_WIDTH + 2
+	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
 	ld de, wMonSubmenuItems
 .loop
 	ld a, [de]
 	inc de
-	cp $ff
+	cp -1
 	ret z
 	push de
 	push hl
 	call GetMonMenuString
 	pop hl
 	call PlaceString
-	ld bc, 2*SCREEN_WIDTH
+	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	pop de
 	jr .loop
@@ -1477,11 +1583,11 @@ GetMonMenuString:
 	add a
 	add b
 	ld c, a
-	ld b, $00
+	ld b, 0
 	ld hl, MonMenuOptions
 	add hl, bc
 	ld a, [hli]
-	and a	; if MONMENU_MENUOPTION
+	and a ; if MONMENU_MENUOPTION
 	jr z, .NotMove
 	inc hl
 	ld a, [hl]
@@ -1512,7 +1618,7 @@ GetMonSubmenuItems:
 	push bc
 	push de
 	ld a, [de]
-	and a	; no move in this slot
+	and a ; no move in this slot
 	jr z, .next
 
 	push hl
@@ -1566,7 +1672,7 @@ IsFieldMove:
 	ld a, [hli]
 	cp -1
 	jr z, .nope
-	and a	; MONMENU_MENUOPTION
+	and a ; MONMENU_MENUOPTION
 	jr z, .nope
 	ld d, [hl]
 	inc hl
@@ -1604,7 +1710,7 @@ AddMonMenuItem:
 	ld e, a
 	inc a
 	ld [wMonSubmenuCount], a
-	ld d, $00
+	ld d, 0
 	ld hl, wMonSubmenuItems
 	add hl, de
 	pop af
@@ -1627,8 +1733,8 @@ BattleMonMenu:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wMenuData2
-	ld bc, $8	; TODO: constantify
+	ld de, wMenuData
+	ld bc, wMenuDataEnd - wMenuData
 	call CopyBytes
 
 	ld a, [wMenuDataFlags]
@@ -1637,19 +1743,20 @@ BattleMonMenu:
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
 	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
-	call Get2DMenuJoypad
+	call StaticMenuJoypad
 	bit B_BUTTON_F, a
 	jr z, .clear_carry
 	ret z
 
-.set_carry:
+.set_carry
 	scf
 	ret
 
-.clear_carry:
+.clear_carry
 	and a
 	ret
 
+; Unreferenced.
 	ret
 
 .MenuHeader:
@@ -1661,380 +1768,408 @@ BattleMonMenu:
 .MenuText:
 	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
 	db 3
-	db "とりかえる@"	; Switch
-	db "つよさをみる@"		; Stats
-	db "キャンセル@"		; Cancel
+	db "とりかえる@"   ; Switch
+	db "つよさをみる@" ; Stats
+	db "キャンセル@"   ; Cancel
 
-LoadBattleMenu:
-	ld hl, MenuHeader24b24
-	jr asm_24b0e
+; START OF: engine/battle/menu.asm
 
-asm_24b0b:
-	ld hl, MenuHeader24b3e
-asm_24b0e:
+LoadBattleMenu::
+	ld hl, BattleMenuHeader
+	jr CommonBattleMenu
+
+; Unreferenced.
+SafariBattleMenu::
+	ld hl, SafariBattleMenuHeader
+	; fallthrough
+CommonBattleMenu:
 	call LoadMenuHeader
-	ld a, [wStartmenuCursor]
-	ld [wMenuCursorBuffer], a
-	call asm_24b67
-	ld a, [wMenuCursorBuffer]
-	ld [wStartmenuCursor], a
+	ld a, [wBattleMenuCursorPosition]
+	ld [wMenuCursorPosition], a
+	call Battle_2DMenu
+	ld a, [wMenuCursorPosition]
+	ld [wBattleMenuCursorPosition], a
 	call ExitMenu
 	ret
 
-MenuHeader24b24:
+BattleMenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 9, 12, $13, $11
-	dw .text_24b2c
+	menu_coords 9, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw .MenuData
 	db 1
 
-.text_24b2c:
+.MenuData:
 	db STATICMENU_CURSOR
 	dn 2, 2
 	db 5
-	db "たたかう@"	; "FIGHT"
-	db "どうぐ@"	; "ITEM"
-	db "#@"			; "<PK><MN>"
-	db "にげる@"	; "RUN"
+	db "たたかう@" ; "FIGHT"
+	db "どうぐ@"   ; "ITEM"
+	db "#@"       ; "<PK><MN>"
+	db "にげる@"   ; "RUN"
 
-MenuHeader24b3e:
+SafariBattleMenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 0, 12, $13, $11
-	dw .text_24b46
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw .MenuData
 	db 1
 
-.text_24b46:
+.MenuData:
 	db STATICMENU_CURSOR
 	dn 2, 2
 	db 11
-	db "サファりボール×　　　@"	; "SAFARI BALL×   @"
-	db "エサをなげる@"			; "BAIT"
-	db "いしをなげる@"			; "THROW ROCK"
-	db "にげる@"				; "RUN"
+	db "サファりボール×　　　@" ; "SAFARI BALL×   @"
+	db "エサをなげる@"         ; "THROW BAIT"
+	db "いしをなげる@"         ; "THROW ROCK"
+	db "にげる@"              ; "RUN"
 
-asm_24b67:
+Battle_2DMenu:
 	call CopyMenuData
 	call MenuBox
-	ld a, [wMenuDataItems]
+	ld a, [wMenuData_2DMenuDimensions]
 	ld b, a
 	and $0f
-	ld [wMovementBufferCount], a
+	ld [wBattleMenuRows], a ; rows
+
 	ld a, b
 	and $f0
 	swap a
-	ld [wMovementBufferObject], a
-	call asm_24bb8
-	call asm_24bee
-	call Get2DMenuJoypad
+	ld [wBattleMenuColumns], a ; columns
+
+	call .PlaceStrings
+	call .InitAndHandleCursor
+	call StaticMenuJoypad
 	ldh a, [hJoySum]
-	bit 2, a
-	jr nz, asm_24ba2
+	bit SELECT_F, a
+	jr nz, .quit
+
 	ld a, [w2DMenuNumRows]
 	ld c, a
-	ld a, [w2DMenuDataEnd]
+	ld a, [wMenuCursorY]
 	dec a
-	call asm_24ba4
+	call .GetNewCursorPos
 	ld c, a
 	ld a, [wMenuCursorX]
 	add c
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	and a
 	ret
 
-asm_24ba2:
+.quit
 	scf
 	ret
 
-asm_24ba4:
+.GetNewCursorPos:
 	and a
 	ret z
 	push bc
 	ld b, a
 	xor a
-asm_24ba9:
+.loop
 	add c
 	dec b
-	jr nz, asm_24ba9
+	jr nz, .loop
 	pop bc
 	ret
 
-asm_24baf:
-	ld b, $00
-asm_24bb1:
+.unreferenced_24baf:
+	ld b, 0
+.loop2
 	inc b
 	sub c
-	jr nc, asm_24bb1
+	jr nc, .loop2
 	dec b
 	add c
 	ret
 
-asm_24bb8:
+.PlaceStrings:
 	ld hl, wMenuDataPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $0003
+	ld de, 3
 	add hl, de
 	ld d, h
 	ld e, l
 	call GetMenuTextStartCoord
 	call Coord2Tile
-	ld a, [wMovementBufferCount]
+	ld a, [wBattleMenuRows]
 	ld b, a
-asm_24bce:
+.column_loop
 	push bc
 	push hl
-	ld a, [wMovementBufferObject]
+	ld a, [wBattleMenuColumns]
 	ld c, a
-asm_24bd4:
+.row_loop
 	push bc
 	call PlaceString
 	inc de
-	ld a, [wMenuDataIndicesPointer]
+	ld a, [wMenuData_2DMenuSpacing]
 	ld c, a
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, asm_24bd4
+	jr nz, .row_loop
+	
 	pop hl
-	ld bc, $0028
+	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, asm_24bce
+	jr nz, .column_loop
 	ret
 
-asm_24bee:
+.InitAndHandleCursor:
 	call GetMenuTextStartCoord
 	ld a, b
-	ld [wMenuData3], a
+	ld [w2DMenuCursorInitY], a
 	dec c
 	ld a, c
 	ld [w2DMenuCursorInitX], a
-	ld a, [wMovementBufferCount]
+	ld a, [wBattleMenuRows]
 	ld [w2DMenuNumRows], a
-	ld a, [wMovementBufferObject]
+	ld a, [wBattleMenuColumns]
 	ld [w2DMenuNumCols], a
-	ld a, [wMenuDataHeaderEnd]
+
+	ld a, [wMenuDataFlags]
 	ld d, a
-	bit 5, d
-	ld a, $00
-	jr z, asm_24c12
-	ld a, $30
-asm_24c12:
+	bit STATICMENU_WRAP_F, d
+	ld a, 0
+	jr z, .no_wrap
+	ld a, _2DMENU_WRAP_LEFT_RIGHT | _2DMENU_WRAP_UP_DOWN
+
+.no_wrap
 	ld [w2DMenuFlags1], a
-	ld a, [wMenuDataIndicesPointer]
+	ld a, [wMenuData_2DMenuSpacing]
 	or $20
 	ld [w2DMenuCursorOffsets], a
-	ld a, $05
+	ld a, A_BUTTON | SELECT
 	ld [wMenuJoypadFilter], a
 	ld a, [w2DMenuNumCols]
 	ld e, a
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	ld b, a
 	xor a
-	ld d, $00
-asm_24c2d:
+	ld d, 0
+
+.loop3
 	inc d
 	add e
 	cp b
-	jr c, asm_24c2d
+	jr c, .loop3
+
 	sub e
 	ld c, a
 	ld a, b
 	sub c
 	and a
-	jr z, asm_24c3e
+	jr z, .left_wrap
 	cp e
-	jr z, asm_24c40
-	jr c, asm_24c40
-asm_24c3e:
-	ld a, $01
-asm_24c40:
+	jr z, .right_wrap
+	jr c, .right_wrap
+
+.left_wrap
+	ld a, 1
+.right_wrap
 	ld [wMenuCursorX], a
 	ld a, [w2DMenuNumRows]
 	ld e, a
 	ld a, d
 	and a
-	jr z, asm_24c50
+	jr z, .up_wrap
 	cp e
-	jr z, asm_24c52
-	jr c, asm_24c52
-asm_24c50:
-	ld a, $01
-asm_24c52:
-	ld [w2DMenuDataEnd], a
+	jr z, .down_wrap
+	jr c, .down_wrap
+
+.up_wrap
+	ld a, 1
+.down_wrap
+	ld [wMenuCursorY], a
 	xor a
 	ld [wCursorOffCharacter], a
 	ld [wCursorCurrentTile], a
 	ld [wCursorCurrentTile + 1], a
 	ret
 
+; START OF: engine/items/buy_sell_toss.asm
+
 SelectQuantityToToss::
-	ld hl, MenuHeader24d64
+	ld hl, TossItem_MenuHeader
 	call LoadMenuHeader
-	call asm_24c84
+	call Toss_Sell_Loop
 	ret
 
-asm_24c64:
+SelectQuantityToBuy::
 	callfar GetItemPrice
 	ld a, d
-	ld [wFieldMoveScriptID], a
+	ld [wBuySellItemPrice], a
 	ld a, e
-	ld [wMapBlocksAddress], a
-	ld hl, MenuHeader24d6c
+	ld [wBuySellItemPrice + 1], a
+	ld hl, BuyItem_MenuHeader
 	call LoadMenuHeader
-	call asm_24c84
+	call Toss_Sell_Loop
 	ret
 
-asm_24c84:
+Toss_Sell_Loop:
 	ld a, 1
 	ld [wItemQuantity], a
-asm_24c89:
+.preloop
+; It won't progress if you're holding the A Button...
 	call GetJoypad
 	ldh a, [hJoyState]
-	bit 0, a
-	jr nz, asm_24c89
-asm_24c92:
-	call asm_24d15
-	call asm_24ca2
-	jr nc, asm_24c92
-	cp $ff
-	jr nz, asm_24ca0
+	bit A_BUTTON_F, a
+	jr nz, .preloop
+
+.loop
+	call BuySellToss_UpdateQuantityDisplayAndPrice
+	call BuySellToss_InterpretJoypad
+	jr nc, .loop
+	cp -1
+	jr nz, .nope ; pressed B
 	scf
 	ret
 
-asm_24ca0:
+.nope
 	and a
 	ret
 
-asm_24ca2:
+BuySellToss_InterpretJoypad:
+.loop
 	call DelayFrame
 	ldh a, [hInMenu]
 	push af
-	ld a, $01
+	ld a, 1
 	ldh [hInMenu], a
 	call GetJoypadDebounced
 	pop af
 	ldh [hInMenu], a
+
 	ldh a, [hJoyDown]
-	bit 1, a
-	jr nz, asm_24cd0
-	bit 0, a
-	jr nz, asm_24cd4
+	bit B_BUTTON_F, a
+	jr nz, .b
+	bit A_BUTTON_F, a
+	jr nz, .a
+
 	ldh a, [hJoySum]
-	bit 7, a
-	jr nz, asm_24cd6
-	bit 6, a
-	jr nz, asm_24ce2
-	bit 5, a
-	jr nz, asm_24cf0
-	bit 4, a
-	jr nz, asm_24d02
-	jr asm_24ca2
-asm_24cd0:
-	ld a, $ff
+	bit D_DOWN_F, a
+	jr nz, .down
+	bit D_UP_F, a
+	jr nz, .up
+	bit D_LEFT_F, a
+	jr nz, .left
+	bit D_RIGHT_F, a
+	jr nz, .right
+	jr .loop
+.b
+	ld a, -1
 	scf
 	ret
 
-asm_24cd4:
+.a
 	scf
 	ret
 
-asm_24cd6:
+.down
 	ld hl, wItemQuantity
 	dec [hl]
-	jr nz, asm_24ce0
+	jr nz, .finish_down
 	ld a, [wItemQuantityBuffer]
 	ld [hl], a
-asm_24ce0:
+
+.finish_down
 	and a
 	ret
 
-asm_24ce2:
+.up
 	ld hl, wItemQuantity
 	inc [hl]
 	ld a, [wItemQuantityBuffer]
 	cp [hl]
-	jr nc, asm_24cee
+	jr nc, .finish_up
 	ld [hl], 1
-asm_24cee:
+
+.finish_up
 	and a
 	ret
 
-asm_24cf0:
+.left
 	ld a, [wItemQuantity]
 	sub 10
-	jr c, asm_24cfb
-	jr z, asm_24cfb
-	jr asm_24cfd
-asm_24cfb:
+	jr c, .load_1
+	jr z, .load_1
+	jr .finish_left
+
+.load_1
 	ld a, 1
-asm_24cfd:
+
+.finish_left
 	ld [wItemQuantity], a
 	and a
 	ret
 
-asm_24d02:
+.right
 	ld a, [wItemQuantity]
 	add 10
 	ld b, a
 	ld a, [wItemQuantityBuffer]
 	cp b
-	jr nc, asm_24d0f
+	jr nc, .finish_right
 	ld b, a
-asm_24d0f:
+
+.finish_right
 	ld a, b
 	ld [wItemQuantity], a
 	and a
 	ret
 
-asm_24d15:
+BuySellToss_UpdateQuantityDisplayAndPrice:
 	call MenuBox
 	call MenuBoxCoord2Tile
-	ld de, $15
+	ld de, SCREEN_WIDTH + 1
 	add hl, de
-	ld [hl], $f1
+	ld [hl], "×"
 	inc hl
 	ld de, wItemQuantity
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNumber
 	ld a, [wMenuDataPointer]
-	cp $ff
+	cp -1
 	ret nz
+
 	xor a
 	ldh [hMultiplicand], a
-	ld a, [wFieldMoveScriptID]
+	ld a, [wBuySellItemPrice]
 	ldh [hMultiplicand + 1], a
-	ld a, [wMapBlocksAddress]
+	ld a, [wBuySellItemPrice + 1]
 	ldh [hMultiplicand + 2], a
 	ld a, [wItemQuantity]
 	ldh [hMultiplier], a
 	push hl
 	call Multiply
-	ld hl, hFFCD
-	ldh a, [hMultiplicand]
+
+	ld hl, hMoneyTemp
+	ldh a, [hProduct + 1]
 	ld [hli], a
-	ldh a, [hMultiplicand + 1]
+	ldh a, [hProduct + 2]
 	ld [hli], a
-	ldh a, [hMultiplicand + 2]
+	ldh a, [hProduct + 3]
 	ld [hl], a
 	pop hl
 	inc hl
-	ld de, hFFCD
-	ld bc, $0406
+	ld de, hMoneyTemp
+	lb bc, 4, 6
 	call PrintNumber
-	ld [hl], $f0
+	ld [hl], "円"
 	call WaitBGMap
 	ret
 
-MenuHeader24d64:
+TossItem_MenuHeader:
 	db MENU_BACKUP_TILES
 	menu_coords 15, 9, $13, 11
-	dw 0
+	dw NULL
 	db 0
 
-MenuHeader24d6c:
+BuyItem_MenuHeader:
 	db MENU_BACKUP_TILES
 	menu_coords 7, 15, $13, $11
 	dw $ff

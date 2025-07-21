@@ -39,7 +39,7 @@ CheckStartmenuSelectHook:
 
 Function2c4a:
 ; copy of Function2ba8
-; calling Functiond4e6 instead of Functiond6e4
+; calling _HandlePlayerStep_Old instead of _HandlePlayerStep
 .loop
 	call Function2c5a
 	and a
@@ -58,9 +58,9 @@ Function2c5a:
 	call Bankswitch
 	call HandleNPCStep
 	call LoadMinorObjectGFX
-	ld a, BANK(Functiond4e6)
+	ld a, BANK(_HandlePlayerStep_Old)
 	call Bankswitch
-	call Functiond4e6
+	call _HandlePlayerStep_Old
 	ld a, BANK(InitSprites)
 	call Bankswitch
 	call InitSprites

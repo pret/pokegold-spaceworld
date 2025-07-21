@@ -147,7 +147,7 @@ ForgetMove::
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
-	call Get2DMenuJoypad
+	call StaticMenuJoypad
 	push af
 	call ReloadTilesFromBuffer
 	pop af

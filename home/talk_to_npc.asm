@@ -44,7 +44,7 @@ Function3055::
 	cp $ff
 	ret z
 	cp b
-	jp z, SetFFInAccumulator
+	jp z, xor_a_dec_a
 	jr .Loop
 
 asm_3062:
@@ -70,7 +70,7 @@ Function307a::
 	ld hl, wTalkingTargetType
 	res 0, [hl]
 	res 1, [hl]
-	call SetFFInAccumulator
+	call xor_a_dec_a
 	ret
 
 PrintTextboxDebugNumbers::
@@ -105,7 +105,7 @@ PrintTextboxDebugNumbers::
 QueueMapTextSubroutine::
 	ldh a, [hJoyState]
 	bit A_BUTTON_F, a
-	jp z, ClearAccumulator ; if we didn't press a
+	jp z, xor_a ; if we didn't press a
 	call GetFacingPersonText
 	jp nc, Function30e8 ; if not talking to a person
 	ld d, $0
@@ -127,12 +127,12 @@ QueueMapTextSubroutine::
 	ld [de], a
 	ld hl, wTalkingTargetType
 	set 0, [hl] ; we're talking to an NPC
-	call SetFFInAccumulator
+	call xor_a_dec_a
 	ret
 
 Function30e8::
 	call GetFacingSignpost
-	jp nc, ClearAccumulator ; if not facing person or sign
+	jp nc, xor_a ; if not facing person or sign
 	ld a, e
 	ldh [hFFEB], a
 	ld a, d
@@ -143,7 +143,7 @@ Function30e8::
 	ldh [hFFEE], a
 	ld hl, wTalkingTargetType
 	set 1, [hl] ; we're talking to a sign
-	call SetFFInAccumulator
+	call xor_a_dec_a
 	ret
 
 GetFacingPersonText::
@@ -345,11 +345,11 @@ CheckBPressedDebug:
 	bit B_BUTTON_F, a
 	ret
 
-ClearAccumulator::
+xor_a::
 	xor a
 	ret
 
-SetFFInAccumulator::
+xor_a_dec_a::
 	xor a
 	dec a
 	ret

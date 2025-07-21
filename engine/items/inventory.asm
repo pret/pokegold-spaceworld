@@ -149,7 +149,7 @@ PutItemInPocket:
 	jr z, .terminator
 	cp c
 	jr nz, .next
-	ld a, 99
+	ld a, MAX_ITEM_STACK
 	sub [hl]
 	add b
 	ld b, a
@@ -192,12 +192,12 @@ PutItemInPocket:
 	ld [hl], a
 	jr .done
 
-; set this slot's quantity to 99,
+; set this slot's quantity to MAX_ITEM_STACK,
 ; and keep iterating through list
 ; to add remaining amount
 .set_max
-	ld [hl], 99
-	sub 99
+	ld [hl], MAX_ITEM_STACK
+	sub MAX_ITEM_STACK
 	ld [wItemQuantity], a
 	jr .loop2
 

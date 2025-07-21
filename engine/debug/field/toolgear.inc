@@ -62,7 +62,7 @@ OpenToolgearMenu:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
 	call .AfterToolgearOpen
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call VerticalMenu
 	call CloseWindow
 	ret

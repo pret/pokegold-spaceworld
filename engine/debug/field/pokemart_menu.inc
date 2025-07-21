@@ -8,7 +8,7 @@ FieldDebug_PokemartMenu:
 
 .DoPokemartMenu:
 	call LoadStandardMenuHeader
-	callfar asm_24860
+	callfar PlaceMoneyTopRight
 	ld hl, DebugMart_PokemartMenuText
 	call PrintText
 	ld hl, .MenuHeader
@@ -118,11 +118,11 @@ DebugMart_Buy:
 	cp A_BUTTON
 	jr z, .buy_item
 .buy_item
-	ld a, 99
+	ld a, MAX_ITEM_STACK
 	ld [wItemQuantityBuffer], a
 	ld hl, .HowManyText
 	call PrintText
-	callfar asm_24c64
+	callfar SelectQuantityToBuy
 	call ExitMenu
 	jr c, .done
 	predef LoadItemData
@@ -152,10 +152,10 @@ DebugMart_Buy:
 .ConfirmPurchaseText:
 	text_from_ram wStringBuffer2
 	text "を　@"
-	deciram wItemQuantity, 1, $2
+	deciram wItemQuantity, 1, 2
 	text "こで"
 	line "@"
-	deciram hFFCD, 3, $6
+	deciram hMoneyTemp, 3, 6
 	text "円　おかいあげですか？"
 	done
 
@@ -260,7 +260,7 @@ DebugMart_Sell:
 .ItemQuantityPrompt:
 	ld hl, .HowManyItemsText
 	call PrintText
-	callfar asm_24c64
+	callfar SelectQuantityToBuy
 	jr c, .got_quantity
 	jr .CannotSellItem
 
@@ -300,11 +300,11 @@ DebugMart_LoadItems:
 	ld [wCurItem], a
 	callfar GetItemPrice
 	ld a, d
-	ld [wMiscStringBuffer], a
+	ld [wBuySellItemPrice], a
 	ld a, e
-	ld [wMiscStringBuffer + 1], a
+	ld [wBuySellItemPrice + 1], a
 	ld hl, wStringBuffer1
-	ld de, wMiscStringBuffer
+	ld de, wBuySellItemPrice
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 6
 	call PrintNumber
 	pop hl

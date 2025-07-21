@@ -293,7 +293,7 @@ Unreferenced_FadeToMapMusic_Old:
 	jr c, .dont_change
 	ld a, 8
 	ld [wMusicFade], a
-	call PlaceWaitingText
+	call _DisableAudio
 	ld a, e
 	ld [wMusicFadeID], a
 	ld a, d

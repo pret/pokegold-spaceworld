@@ -28,13 +28,13 @@ GiveItemPredef::
 	dbw 3, GiveItem
 	add_predef ComputeHPBarPixels
 	add_predef FillPP
-	add_predef Functiond886 ; 10
-	add_predef Functionda4f
-	add_predef Functiondac8
+	add_predef TryAddMonToParty ; 10
+	add_predef AddTempmonToParty
+	add_predef SendGetMonIntoFromBox
 	add_predef Functiondcfc
-	add_predef Functiondc16
-	add_predef Functiondd5c
-	add_predef Functionde79
+	add_predef RetrieveBreedmon
+	add_predef SendMonIntoBox
+	add_predef GiveEgg
 	add_predef UpdateHPBar
 	add_predef CalcMonStats ; 18
 	add_predef CalcMonStatC

@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "Sprite Buffers", SRAM
 
 UNION
-sScratch:: ds  SCREEN_WIDTH * SCREEN_HEIGHT
+sScratch:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 NEXTU
 sSpriteBuffer0:: ds SPRITEBUFFERSIZE
 sSpriteBuffer1:: ds SPRITEBUFFERSIZE
@@ -19,5 +19,9 @@ s0_a600:: ds 7 ; TODO: properly label this and figure out exact size
 ENDU
 
 
-SECTION "Window Stack Top", SRAM
-sWindowStackTop:: dw
+SECTION "SRAM Window Stack", SRAM
+
+sWindowStackBottom::
+	ds $800 - 1
+sWindowStackTop::
+	ds 1

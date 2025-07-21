@@ -310,7 +310,7 @@ CheckLabDoor:
 	ld hl, SilentHillTextString1
 	call OpenTextbox
 	call LabClosed
-	call ClearAccumulator
+	call xor_a
 	ret
 
 LabClosed:

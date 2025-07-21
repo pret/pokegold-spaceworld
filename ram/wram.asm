@@ -813,28 +813,46 @@ wWindowStackSize:: db
 SECTION "CC09", WRAM0[$CC02]
 
 wMenuDataHeader::
-	db
+wMenuFlags:: db
 wMenuBorderTopCoord:: db
 wMenuBorderLeftCoord:: db
 wMenuBorderBottomCoord:: db
 wMenuBorderRightCoord:: db
 wMenuDataPointer:: dw
-wMenuCursorBuffer:: db
-	ds 8 ; TODO
+wMenuCursorPosition:: db
+	ds 8
 wMenuDataHeaderEnd::
 
-wMenuData2::
+wMenuData::
 wMenuDataFlags:: db
+
+UNION
 wMenuDataItems:: db
 wMenuDataIndicesPointer:: dw
 wMenuDataDisplayFunctionPointer:: dw
 wMenuDataPointerTableAddr:: dw
+wMenuDataEnd::
 	ds 2
-wcc1c:: dw
-	ds 1
-wcc1f:: dw
-	ds 1
-wMenuData3::
+NEXTU
+; 2D Menu
+wMenuData_2DMenuDimensions:: db
+wMenuData_2DMenuSpacing:: db
+wMenuData_2DMenuItemStringsBank:: db
+wMenuData_2DMenuItemStringsAddr:: dw
+wMenuData_2DMenuFunctionBank:: db
+wMenuData_2DMenuFunctionAddr:: dw
+NEXTU
+wMenuData_ScrollingMenuHeight:: db
+wMenuData_ScrollingMenuWidth:: db
+wMenuData_ScrollingMenuItemFormat:: db
+wMenuData_ItemsPointerBank:: db
+wMenuData_ItemsPointerAddr:: dw
+wMenuData_ScrollingMenuFunction1:: ds 3
+wMenuData_ScrollingMenuFunction2:: ds 3
+wMenuData_ScrollingMenuFunction3:: ds 3
+ENDU
+
+wMoreMenuData::
 
 w2DMenuCursorInitY:: db
 w2DMenuCursorInitX:: db
@@ -904,6 +922,15 @@ NEXTU
 	ds 1
 wPlaceBallsDirection:: db
 wTrainerHUDTiles:: ds 4
+
+NEXTU
+; switching items in pack
+wSwitchItemBuffer:: ds 2
+
+NEXTU
+
+wBattleMenuRows:: db
+wBattleMenuColumns:: db
 
 ENDU
 
@@ -1029,7 +1056,8 @@ ENDU
 
 SECTION "CD3C", WRAM0[$CD3C]
 
-wcd3c:: db
+wcd3c::
+wBillsPCCursor:: db
 wRegularItemsCursor:: db
 wBackpackAndKeyItemsCursor:: db
 
@@ -1046,8 +1074,10 @@ wFieldDebugMenuCursorBuffer::
 wcd43:: db
 wRegularItemsScrollPosition:: db
 wBackpackAndKeyItemsScrollPosition:: db
-wcd46:: ds 1
+wBillsPCScrollPosition:: ds 1
 wcd47:: ds 1
+
+; TODO: change to wSwitchItem, wSwitchMon, wSwappingMove
 wSelectedSwapPosition:: db
 wMenuScrollPosition:: db
 
@@ -1093,7 +1123,9 @@ wNamesPointer:: dw
 wItemAttributesPointer:: dw
 
 wCurItem:: db
+wCurItemQuantity::
 wItemIndex:: db
+
 wCurPartySpecies: db
 wCurPartyMon: db
 
@@ -1114,7 +1146,7 @@ wTalkingTargetType:: db
 ;bit 1 = has engaged sign in dialogue
 
 wcdb1:: ds 1
-wcdb2:: ds 1
+wHandlePlayerStep:: ds 1
 
 	ds 1
 
@@ -1169,7 +1201,10 @@ wEnemyEffectivenessVsPlayerMons:: flag_array PARTY_LENGTH
 wPlayerEffectivenessVsEnemyMons:: flag_array PARTY_LENGTH	
 
 NEXTU
-; Used for an old nickname function and for storing the item price in the shop menu.
+wBuySellItemPrice:: dw
+
+NEXTU
+; Used for an old nickname function
 wMiscStringBuffer:: ds STRING_BUFFER_LENGTH
 
 NEXTU
@@ -1726,15 +1761,19 @@ wBufferMonNickname:: ds MON_NAME_LENGTH
 
 wBufferMonOT:: ds PLAYER_NAME_LENGTH
 
+UNION
 wd882:: ds 1
 wd883:: ds 1
 wd884:: ds 1
 
-SECTION "D8A2", WRAM0[$D8A2]
+ ds $1d
 
 wd8a2:: ds 1
 wd8a3:: ds 1
 wd8a4:: ds 1
+NEXTU
+wBufferMon:: box_struct wBufferMon
+ENDU
 
 wBreedMon1Nickname:: ds MON_NAME_LENGTH
 wBreedMon1OT:: ds PLAYER_NAME_LENGTH
@@ -1783,21 +1822,16 @@ ENDU
 
 SECTION "DA83", WRAM0[$DA83]
 
-wBoxListLength:: db
+wBoxCount:: db
 wBoxList:: ds MONS_PER_BOX
 wBoxListEnd:: db
-
-SECTION "DAA3", WRAM0[$DAA3]
 
 wBoxMons::
 ; wBoxMon1 - wBoxMon30
 for n, 1, MONS_PER_BOX + 1
 wBoxMon{d:n}:: box_struct wBoxMon{d:n}
 endr
-
 wBoxDataEnd::
-
-SECTION "DE63", WRAM0[$DE63]
 
 wBoxMonOT::
 ; wBoxMon1OT - wBoxMon30OT

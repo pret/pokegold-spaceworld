@@ -61,7 +61,7 @@ PlayerHouse2PositionCheck:
 	ld hl, PlayerHouse2FTextString2
 	call OpenTextbox
 	call PlayerHouse2FMovePlayer
-	call ClearAccumulator
+	call xor_a
 	ret
 
 PlayerHouse2FMovePlayer:
