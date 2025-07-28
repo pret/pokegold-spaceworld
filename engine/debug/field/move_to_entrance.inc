@@ -36,7 +36,7 @@ FieldDebug_MoveToRoute1Entrance:
 	ld a, PLAYER_OBJECT
 	ld hl, wMovementBuffer
 	call LoadMovementDataPointer
-	call Function1fea
+	call ScreenCleanup
 	ret
 
 .MoveText:

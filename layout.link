@@ -278,7 +278,7 @@ ROMX $10
 	"data/moves/names.asm"
 	org $58b6
 	"data/moves/moves.asm"
-	org $6493
+	"engine/dumps/bank10.asm@EvolvePokemon"
 	"data/pokemon/evos_attacks.asm"
 
 ROMX $11
@@ -993,3 +993,8 @@ SRAM 0
 	"Unknown, bank 0"
 	org $b800
 	"SRAM Window Stack"
+
+SRAM $02
+	"Boxes 1-5"
+SRAM $03
+	"Boxes 6-10"

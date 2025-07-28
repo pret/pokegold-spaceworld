@@ -39,7 +39,7 @@ DisplayStartMenu:
 .exit
 	call ExitMenu
 .UpdateTime
-	call Function1fea
+	call ScreenCleanup
 	call UpdateTimePals
 	ret
 
@@ -509,7 +509,7 @@ BackpackSelected:
 
 .BagSelectJumptable:
 	dw SelectItem
-	dw .UnknownSelection
+	dw .TMHolder
 	dw BallPocketLoop
 	dw .SwapPocket
 	dw SelectItem
@@ -523,9 +523,9 @@ BackpackSelected:
 	and a
 	ret
 
-.UnknownSelection
+.TMHolder
 	call LoadStandardMenuHeader
-	callfar Function2d2fc
+	callfar _TMHolder
 	call ExitMenu
 	call DrawBackpack
 	and a
@@ -630,14 +630,14 @@ UseItemSelection:
 	ret
 
 .SimpleItem:
-	call UseItem
+	call DoItemEffect
 	and a
 	ret
 
 .SpriteItem:
 ; might be a better name for this once
 ; bank 5 gets sorted out
-	call UseItem
+	call DoItemEffect
 	call ClearBGPalettes
 	call StartMenuLoadSprites
 	call DrawBackpack
@@ -645,7 +645,7 @@ UseItemSelection:
 	ret
 
 .FieldMove:
-	call UseItem
+	call DoItemEffect
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jr z, .FailedMove
@@ -899,7 +899,7 @@ HandleSelectedPokemon:
 	xor a
 	ld [wPartyMenuActionText], a
 	ld [wSelectedSwapPosition], a
-	predef PartyMenuInBattle
+	predef OpenPartyMenu
 	jr PartyPrompt.partypromptreturn
 
 PartyPrompt:
@@ -909,7 +909,7 @@ PartyPrompt:
 	callfar UnfreezeMonIcons
 	ld a, PARTYMENUACTION_MOVE
 	ld [wPartyMenuActionText], a
-	predef PartyMenuInBattle
+	predef OpenPartyMenu
 .partypromptreturn
 	jr c, .return
 	jp SelectedPokemonSubmenu
@@ -1359,7 +1359,7 @@ PartyPokemonSummary:
 	xor a
 	ld [wMonType], a
 	call LowVolume
-	predef Function502b5
+	predef StatsScreenMain
 	call MaxVolume
 	call ReloadFontAndTileset
 	call Call_ExitMenu
@@ -1414,7 +1414,7 @@ PartyTryDig:
 	jp PartyPromptExit
 
 PartyCalculateHealth:
-	ld a, MON_MAXHP ; might be wrong, was $24
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ldh [hDividend], a
@@ -1424,7 +1424,7 @@ PartyCalculateHealth:
 	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, MON_HP + 1 ; might be wrong, was $23
+	ld a, MON_HP + 1
 	call GetPartyParamLocation
 	ldh a, [hQuotient + 3]
 	sub [hl]
@@ -1432,7 +1432,7 @@ PartyCalculateHealth:
 	ldh a, [hQuotient + 2]
 	sbc [hl]
 	jp nc, PrintNotHealthyEnoughText
-	callfar Functionf218
+	callfar SoftboiledFunction
 	jp HandleSelectedPokemon
 
 PrintNotHealthyEnoughText:
@@ -1490,7 +1490,7 @@ PokeSummary:
 	lb bc, 2, $12
 	call ClearBox
 	hlcoord 3, 1
-	predef Function508c4
+	predef PlacePartyMember
 	ld hl, wPlayerHPPal
 	call SetHPPal
 	ld b, $0E
@@ -1598,7 +1598,7 @@ PartySelectionInputs:
 	call PlaceString
 .step
 	hlcoord 1, 14
-	predef Function2d663
+	predef PrintMoveDescription
 	jp PartySelectionInputs
 
 .DrawMovePokeText
@@ -1735,7 +1735,7 @@ CheckRegisteredItem:
 	call RefreshScreen
 	ld hl, .NothingRegisteredText
 	call MenuTextBoxBackup
-	call Function1fea
+	call ScreenCleanup
 	ret
 
 .NothingRegisteredText:
@@ -1809,14 +1809,14 @@ UseRegisteredItem:
 .CantUse
 	call RefreshScreen
 	call PrintCantUseText
-	call Function1fea
+	call ScreenCleanup
 	and a
 	ret
 
 .UnusedSimpleUse
 	call RefreshScreen
-	call UseItem
-	call Function1fea
+	call DoItemEffect
+	call ScreenCleanup
 	and a
 	ret
 
@@ -1824,16 +1824,16 @@ UseRegisteredItem:
 	call RefreshScreen
 	ld hl, wStateFlags
 	res SPRITE_UPDATES_DISABLED_F, [hl]
-	call UseItem
+	call DoItemEffect
 	call ClearPalettes
 	call StartMenuLoadSprites
 	call UpdateTimePals
-	call Function1fea
+	call ScreenCleanup
 	and a
 	ret
 
 .FieldMove
-	call UseItem
+	call DoItemEffect
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jr z, .CantUse2
@@ -1846,7 +1846,7 @@ UseRegisteredItem:
 .CantUse2
 	call RefreshScreen
 	call PrintCantUseText
-	call Function1fea
+	call ScreenCleanup
 	and a
 	ret
 

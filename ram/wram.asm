@@ -618,18 +618,18 @@ wEnemyEvaLevel:: db
 
 	ds 1
 
-wcab9:: ds 1
+wForceEvolution:: db
 wcaba:: ds 1
 
 	ds 1
 
 wPlayerSubstituteHP:: ds 1
 wEnemySubstituteHP:: ds 1
-wcabe:: ds 1
+wPlayerDebugSelectedMove:: ds 1
 
 	ds 1
 
-wcac0:: ds 1
+wMoveSelectionMenuType:: ds 1
 
 wCurPlayerSelectedMove:: db
 wCurEnemySelectedMove:: db
@@ -900,6 +900,13 @@ UNION
 
 wcc3a::
 wChargeMoveNum::
+wPrevPartyLevel::
+wRodResponse_Old::
+wPokeFluteCuredSleep::
+wTempRestorePPItem:: db
+
+NEXTU
+
 wMovementBufferCount:: db
 wMovementBufferObject:: db
 
@@ -931,6 +938,10 @@ NEXTU
 
 wBattleMenuRows:: db
 wBattleMenuColumns:: db
+
+NEXTU
+
+wTempBoxName:: ds BOX_NAME_LENGTH
 
 ENDU
 
@@ -1018,21 +1029,13 @@ wMonOrItemNameBuffer:: ds MON_NAME_LENGTH
 
 	ds MON_NAME_LENGTH
 
-wcd1d:: ds 8
+wTMHMMoveNameBackup:: ds 8
 
 	ds 1
 
-UNION
+
 wStringBuffer1:: ds STRING_BUFFER_LENGTH
-NEXTU
-	ds 1
-wcd27:: ds 1
 
-	ds 1
-
-wcd29:: ds 1
-wcd2a:: ds 1
-ENDU
 SECTION "CD31", WRAM0[$CD31]
 
 UNION
@@ -1057,6 +1060,7 @@ ENDU
 SECTION "CD3C", WRAM0[$CD3C]
 
 wcd3c::
+wPartyMenuCursor::
 wBillsPCCursor:: db
 wRegularItemsCursor:: db
 wBackpackAndKeyItemsCursor:: db
@@ -1065,17 +1069,15 @@ wBattleMenuCursorPosition::
 wStartmenuCursor:: db
 
 wCurMoveNum:: db
+wCurBattleMon:: db
 
-wCurBattleMon::
-wcd41:: db
-
-wcd42:: db
+wTMHolderCursor:: db
 wFieldDebugMenuCursorBuffer::
 wcd43:: db
 wRegularItemsScrollPosition:: db
 wBackpackAndKeyItemsScrollPosition:: db
-wBillsPCScrollPosition:: ds 1
-wcd47:: ds 1
+wBillsPCScrollPosition:: db
+wTMHolderScrollPosition:: db
 
 ; TODO: change to wSwitchItem, wSwitchMon, wSwappingMove
 wSelectedSwapPosition:: db
@@ -1129,10 +1131,10 @@ wItemIndex:: db
 wCurPartySpecies: db
 wCurPartyMon: db
 
-SECTION "CD7B", WRAM0[$CD7B]
+	ds 1
 
 wWhichHPBar:: db
-wPokemonWithdrawDepositParameter:: ds 1
+wPokemonWithdrawDepositParameter:: db
 
 wItemQuantity:: db
 wItemQuantityBuffer:: db
@@ -1175,7 +1177,7 @@ wNextMapGroup:: db
 wNextMapNumber:: db
 wPrevWarp:: db
 
-wcdc2:: db
+wEvolvableFlags:: db
 
 UNION
 wSkipMovesBeforeLevelUp::
@@ -1187,6 +1189,13 @@ wReplacementBlock:: db
 NEXTU
 wMonSubmenuCount:: db
 wMonSubmenuItems:: ds NUM_MONMENU_ITEMS + 1
+
+NEXTU
+; general-purpose HP buffers
+wHPBuffer1:: dw
+wHPBuffer2:: dw
+wHPBuffer3:: dw
+
 NEXTU
 
 wHPBarMaxHP:: dw
@@ -1230,6 +1239,13 @@ NEXTU
 wFinalCatchRate:: db
 wThrownBallWobbleCount:: db
 
+NEXTU
+; evolution data
+wEvolutionOldSpecies:: db
+wEvolutionNewSpecies:: db
+wEvolutionPicOffset::  db
+wEvolutionCanceled::   db
+
 ENDU
 
 wLinkBattleRNs:: ds 10
@@ -1244,10 +1260,9 @@ wEnemyMonBaseStats:: ds NUM_EXP_STATS
 wEnemyMonCatchRate:: db
 wcdff:: ds 1
 wBattleMode:: db
-wce01:: ds 1
+wTempWildMonSpecies:: ds 1
 wOtherTrainerClass:: ds 1
-wBattleType::
-wce03:: ds 1
+wBattleType:: db
 wce04:: ds 1
 wOtherTrainerID:: ds 1
 wBattleResult:: ds 1
@@ -1316,7 +1331,7 @@ wMonHLearnset::
 	ds 1
 wMonHeaderEnd::
 
-SECTION "CE26", WRAM0[$CE26]
+
 wce26:: ds 1
 
 	ds 2
@@ -1325,7 +1340,7 @@ wCurDamage:: dw
 
 	ds 2
 
-wce2d:: ds 1
+wRepelEffect:: db
 
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wPutativeTMHMMove:: db
@@ -1338,10 +1353,14 @@ wNamedObjectIndexBuffer::
 wNumSetBits::
 wTextDecimalByte::
 wTempIconSpecies::
+wTempPP::
+wTempTMHM::
+wUsePPUp::
 wTempSpecies::
 wMoveGrammar::
 wTypeMatchup::
 wCurType::
+wBreedingCompatibility::
 wTempByteValue::
 wApplyStatLevelMultipliersToEnemy::
 wce37::
@@ -1352,9 +1371,7 @@ wce38:: ds 1
 wNumFleeAttempts::
 wce39:: ds 1
 
-SECTION "CE3A", WRAM0[$CE3A]
-
-wce3a:: ds 1
+wMonTriedToEvolve:: db
 
 wVBlankSavedROMBank::
 	db
@@ -1507,9 +1524,7 @@ wJohtoBadges::
 wKantoBadges::
 	flag_array NUM_KANTO_BADGES
 
-wTMsHMs:: db
-
-SECTION "D19E", WRAM0[$D19E]
+wTMsHMs:: ds NUM_TM_HM
 
 wItems::
 wNumBagItems:: db
@@ -1581,10 +1596,14 @@ wd41d:: db
 wd41e:: db
 
 SECTION "D4A9", WRAM0[$D4A7]
+; Bit 0 set when exiting a battle.
+; Bit 1 set when viewing summary/opening new dex entry, and reset when closing new dex entry.
 wd4a7:: db
 	ds 1
 wd4a9:: db
 	ds 1 ; TODO
+
+; TODO: change to wJoypadDisable, constantify flags
 wJoypadFlags:: db
 ; 76543210
 ; ||||\__/
@@ -1600,10 +1619,13 @@ wDigWarpNumber:: db
 wd4b3:: ds 1
 wd4b4:: ds 1
 wd4b5:: ds 1
-wd4b6:: ds 1
-wd4b7:: ds 1
-wd4b8:: ds 1
-wd4b9:: ds 1
+
+; Doesn't get written to at any point yet, but it's read... once.
+wCurBox:: db
+
+	ds 2
+
+wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES
 
 
 SECTION "Warp data", WRAM0[$D513]
@@ -1755,25 +1777,21 @@ wUnownDex:: ds NUM_UNOWN
 
 wAnnonID:: ds 1
 
-wd875:: ds 1
+	ds 1
+
+; Buffer used for withdrawing Breeder Pokémon, as well as checking gender.
 
 wBufferMonNickname:: ds MON_NAME_LENGTH
-
 wBufferMonOT:: ds PLAYER_NAME_LENGTH
-
-UNION
-wd882:: ds 1
-wd883:: ds 1
-wd884:: ds 1
-
- ds $1d
-
-wd8a2:: ds 1
-wd8a3:: ds 1
-wd8a4:: ds 1
-NEXTU
 wBufferMon:: box_struct wBufferMon
-ENDU
+
+; 1 = One Pokémon deposited.
+; 2 = Two Pokémon deposited.
+; 3 = Egg laid.
+; 4 = Egg received, don't lay another egg.
+wBreederStatus:: ds 1
+
+	ds 2
 
 wBreedMon1Nickname:: ds MON_NAME_LENGTH
 wBreedMon1OT:: ds PLAYER_NAME_LENGTH
@@ -1783,9 +1801,9 @@ wBreedMon2Nickname:: ds MON_NAME_LENGTH
 wBreedMon2OT:: ds PLAYER_NAME_LENGTH
 wBreedMon2:: box_struct wBreedMon2
 
-SECTION "D8FD", WRAM0[$D8FD]
-
-wd8fd:: ds 1
+; Uses the last two bits to keep track of your breeder mons' genders.
+; Bit clear = male, bit set = female
+wBreedMonGenders:: db
 wd8fe:: ds 1
 
 SECTION "D913", WRAM0[$D913]
@@ -1820,33 +1838,7 @@ endr
 wOTPartyDataEnd::
 ENDU
 
-SECTION "DA83", WRAM0[$DA83]
-
-wBoxCount:: db
-wBoxList:: ds MONS_PER_BOX
-wBoxListEnd:: db
-
-wBoxMons::
-; wBoxMon1 - wBoxMon30
-for n, 1, MONS_PER_BOX + 1
-wBoxMon{d:n}:: box_struct wBoxMon{d:n}
-endr
-wBoxDataEnd::
-
-wBoxMonOT::
-; wBoxMon1OT - wBoxMon30OT
-for n, 1, MONS_PER_BOX + 1
-wBoxMon{d:n}OT:: ds PLAYER_NAME_LENGTH
-endr
-wBoxMonOTEnd::
-
-wBoxMonNicknames::
-; wBoxMon1Nick - wBoxMon30Nick
-for n, 1, MONS_PER_BOX + 1
-wBoxMon{d:n}Nick:: ds MON_NAME_LENGTH
-endr
-wBoxMonNicknamesEnd::
-wdfcb:: ds 1
+wBox:: box wBox
 
 SECTION "Stack Bottom", WRAM0
 

@@ -62,7 +62,7 @@ SilentHillHouseNPCText1:
 .jump
 	call RefreshScreen
 	callfar PokemonCenterPC
-	call Function1fea
+	call ScreenCleanup
 	ret
 
 SilentHillHouseTextString1:

@@ -79,24 +79,24 @@ RefreshPlayerCoords::
 
 	; This piece of code has been removed in pokegold (note that the conditions above were altered, as well)
 	call GetObjectStruct
-	ld hl, 16 ; TODO: constantify this
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	add a, d
 	ld [hl], a
 	ld [wMap1ObjectXCoord], a
-	ld hl, 18 ; TODO: constantify this
+	ld hl, OBJECT_LAST_MAP_X
 	add hl, bc
 	ld a, [hl]
 	add a, d
 	ld [hl], a
-	ld hl, 17 ; TODO: constantify this
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	add a, e
 	ld [hl], a
 	ld [wMap1ObjectYCoord], a
-	ld hl, 19
+	ld hl, OBJECT_LAST_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	add a, e

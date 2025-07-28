@@ -35,7 +35,7 @@ FieldDebug_ShowWarpToText:
 	call CopyStringToStringBuffer2
 	ld hl, .WarpToText
 	call FieldDebug_ShowTextboxAndExit
-	call Function1fea
+	call ScreenCleanup
 	ret
 
 .WarpToText:

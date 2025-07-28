@@ -23,7 +23,7 @@ CopyMonToTempMon::
 	ld bc, BOXMON_STRUCT_LENGTH
 	cp BOXMON
 	jr z, .getmonaddress
-	ld hl, wd882
+	ld hl, wBufferMon
 	jr .copywholestruct
 
 .getmonaddress
@@ -44,7 +44,7 @@ GetMonSpecies::
 	cp BOXMON
 	jr z, .boxmon
 	cp TEMPMON
-	jr z, .breedmon
+	jr z, .buffermon
 	; WILDMON
 
 .partymon
@@ -56,11 +56,11 @@ GetMonSpecies::
 	jr .done
 
 .boxmon
-	ld hl, wBoxList
+	ld hl, wBoxSpecies
 	jr .done
 
-.breedmon
-	ld a, [wd882]
+.buffermon
+	ld a, [wBufferMonSpecies]
 	jr .done2
 
 .done
@@ -148,7 +148,7 @@ GetTypeName::
 	ld h, [hl]
 	ld l, a
 	ld de, wStringBuffer1
-	ld bc, MOVE_NAME_LENGTH
+	ld bc, TYPE_NAME_LENGTH
 	jp CopyBytes
 
 SECTION "engine/dumps/bank14.asm@GetTrainerClassName_Old", ROMX
@@ -338,15 +338,16 @@ DrawHP:
 	pop de
 	ret
 
-Function502b5::
+; TODO: Finish this baby up.
+StatsScreenMain::
 	ld a, [wCurPartySpecies]
 	cp DEX_EGG
-	jr z, .asm_502d9
+	jr z, .got_stats
 
 	call CopyMonToTempMon
 	ld a, [wMonType]
-	cp 2
-	jr c, .asm_502d9
+	cp BOXMON
+	jr c, .got_stats
 
 	ld a, [wTempMonLevel]
 	ld [wCurPartyLevel], a
@@ -354,7 +355,8 @@ Function502b5::
 	ld de, wTempMonMaxHP
 	ld b, 1
 	predef CalcMonStats
-.asm_502d9
+
+.got_stats
 	ld hl, wd4a7
 	set 1, [hl]
 	call ClearBGPalettes
@@ -732,7 +734,7 @@ Function50562::
 
 	ld de, wStringBuffer1
 	push de
-	ld bc, 6
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 	pop de
@@ -741,7 +743,7 @@ Function50562::
 	call PlaceString
 
 	ld d, 0
-	call Function50628
+	call PrintTempMonStats
 	hlcoord 10, 6
 	ld de, .Parameters
 	call PlaceString
@@ -762,7 +764,7 @@ Function50562::
 .OTPointers
 	dw wPartyMonOTs
 	dw wOTPartyMonOT
-	dw wBoxMonOT
+	dw wBoxMonOTs
 	dw wBufferMonOT
 
 Function505d9::
@@ -812,10 +814,12 @@ GetNicknamePointer::
 	ld a, [wCurPartyMon]
 	jp SkipNames
 
-Function50628::
+; Prints a text box containing wTempMon's stats.
+; If d = 0, print it closer to the middle. Else, print it on the side.
+PrintTempMonStats::
 	ld a, d
 	and a
-	jr nz, .asm_5063e
+	jr nz, .level_up_screen
 
 	hlcoord 8, 6
 	ld b, 10
@@ -823,57 +827,58 @@ Function50628::
 	call DrawTextBox
 
 	hlcoord 9, 8
-	ld bc, $0006
-	jr .asm_5064e
+	lb bc, 0, 6
+	jr .next
 
-.asm_5063e
+.level_up_screen
 	hlcoord 9, 0
 	ld b, 10
 	ld c, 9
 	call DrawTextBox
 
 	hlcoord 11, 2
-	ld bc, $0004
-.asm_5064e
+	lb bc, 0, 4
+
+.next
 	push bc
 	push hl
-	ld de, Data_50684
+	ld de, .StatNames
 	call PlaceString
 
 	pop hl
 	pop bc
 	add hl, bc
 	ld de, wTempMonAttack
-	ld bc, $0203
-	call .asm_5067a
+	lb bc, 2, 3
+	call .PrintStat
 
 	ld de, wTempMonDefense
-	call .asm_5067a
+	call .PrintStat
 
 	ld de, wTempMonSpclAtk
-	call .asm_5067a
+	call .PrintStat
 
 	ld de, wTempMonSpclDef
-	call .asm_5067a
+	call .PrintStat
 
 	ld de, wTempMonSpeed
 	jp PrintNumber
 
-.asm_5067a
+.PrintStat
 	push hl
 	call PrintNumber
 	pop hl
 	; Print next numbers two tiles lower
-	ld de, $0028
+	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	ret
 
-Data_50684:
-	db   "こうげき"
-	next "ぼうぎょ"
-	next "とくこう"
-	next "とくぼう"
-	next "すばやさ"
+.StatNames:
+	db   "こうげき" ; "ATTACK"
+	next "ぼうぎょ" ; "DEFENSE"
+	next "とくこう" ; "SPCL.ATK"
+	next "とくぼう" ; "SPCL.DEF"
+	next "すばやさ" ; "SPEED"
 	next "@"
 
 GetGender::
@@ -1036,10 +1041,10 @@ ClearGraphicsForPartyMenu::
 	call UpdateSprites
 	ret
 
-PartyMenuInBattle_Setup::
+OpenPartyMenu_ClearGraphics::
 	call ClearGraphicsForPartyMenu
 	; Fallthrough
-PartyMenuInBattle::
+OpenPartyMenu::
 	ldh a, [hMapAnims]
 	push af
 	xor a
@@ -1047,9 +1052,9 @@ PartyMenuInBattle::
 	ld hl, wOptions
 	set NO_TEXT_SCROLL_F, [hl]
 
-	call PartyMenuInBattle_SetMenuAttributes
-	call Function5081f
-	call Function507cf
+	call .SetMenuAttributes
+	call InitPartyMenuLayout
+	call PartyMenuSelect
 
 	ld hl, wOptions
 	res NO_TEXT_SCROLL_F, [hl]
@@ -1058,7 +1063,7 @@ PartyMenuInBattle::
 	ldh [hMapAnims], a
 	ret
 
-PartyMenuInBattle_SetMenuAttributes::
+.SetMenuAttributes:
 	call LoadFontsBattleExtra
 	xor a
 	ld [wMonType], a
@@ -1078,7 +1083,7 @@ PartyMenuInBattle_SetMenuAttributes::
 	ld a, $01
 .asm_507b4
 	ld [wMenuJoypadFilter], a
-	ld a, [wBillsPCCursor]
+	ld a, [wPartyMenuCursor]
 	and a
 	jr z, .asm_507c1
 	inc b
@@ -1093,11 +1098,11 @@ PartyMenuInBattle_SetMenuAttributes::
 Data_507c7:
 	db $01, $00, $00, $01, $60, $00, $20, $00
 
-Function507cf::
+PartyMenuSelect::
 	call StaticMenuJoypad
 	call PlaceHollowCursor
 	ld a, [wMenuCursorY]
-	ld [wBillsPCCursor], a
+	ld [wPartyMenuCursor], a
 	ldh a, [hJoySum]
 	ld b, a
 	ld a, [wSelectedSwapPosition]
@@ -1131,20 +1136,21 @@ Function507cf::
 	jr nz, .asm_5080f
 	call _SwitchPartyMons
 .asm_5080f
-	call Function50eca
+	call PartyMenu_ClearCursor
 	xor a
 	ld [wSelectedSwapPosition], a
 	ld [wPartyMenuActionText], a
-	call Function5081f
-	jp Function507cf
+	call InitPartyMenuLayout
+	jp PartyMenuSelect
 
-Function5081f::
+InitPartyMenuLayout::
 	ld a, [wPartyMenuActionText]
 	cp PARTYMENUACTION_MOVE
-	jp z, Function509dd
+	jp z, PrintPartyMenuText
+
 	callfar LoadOverworldMonIcon
-	call Function50eca
-	callfar Function95f8
+	call PartyMenu_ClearCursor
+	callfar InitPartyMenuPalettes
 	hlcoord 3, 1
 	ld de, wPartySpecies
 	ld a, [wCurPartyMon]
@@ -1152,12 +1158,12 @@ Function5081f::
 	xor a
 	ld [wCurPartyMon], a
 	ld [wcce1], a
-.asm_5084b
+.loop
 	ld a, [de]
-	cp $FF
-	jp z, .asm_50877
+	cp -1
+	jp z, .done
 	push de
-	call Function508c4
+	call PlacePartyMember
 	pop de
 	ld a, [wCurPartyMon]
 	ldh [hObjectStructIndex], a
@@ -1165,60 +1171,62 @@ Function5081f::
 	push de
 
 	ld hl, LoadMenuMonIcon
-	ld a, BANK(LoadMenuMonIcon)   ; ...What macro do I use here?
+	ld a, BANK(LoadMenuMonIcon)
 	ld e, MONICON_PARTYMENU
 	call FarCall_hl
 
 	pop de
 	inc de
 	pop hl
-	ld bc, $0028
+	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	ld a, [wCurPartyMon]
 	inc a
 	ld [wCurPartyMon], a
+	jr .loop
 
-	jr .asm_5084b
-
-.asm_50877
+.done
 	pop af
 	ld [wCurPartyMon], a
-	jp Function509d8
+	jp PrintPartyText_GetSGBLayout
 
-Function5087e::
+WritePartyMenuTilemapAndText::
 	ld a, [wPartyMenuActionText]
 	cp PARTYMENUACTION_MOVE
-	jp z, Function509dd
-	callfar Function95f8
-	ld hl, $c2b7
+	jp z, PrintPartyMenuText
+
+	callfar InitPartyMenuPalettes
+	hlcoord 3, 1
 	ld de, wPartySpecies
 	ld a, [wCurPartyMon]
 	push af
 	xor a
 	ld [wCurPartyMon], a
 	ld [wcce1], a
-.asm_5089f
+.loop
 	ld a, [de]
-	cp $FF
-	jp z, .asm_508bd
+	cp -1
+	jp z, .done
 	push de
-	call Function508c4
+	call PlacePartyMember
 	pop de
 	ld a, [wCurPartyMon]
 	ldh [hEventID], a
 	inc de
-	ld bc, $0028
+	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
-	ld a, [wCurPartyMon]
+	ld a, [wCurPartyMon] ; redundant
 	inc a
 	ld [wCurPartyMon], a
-	jr .asm_5089f
-.asm_508bd
+	jr .loop
+
+.done
 	pop af
 	ld [wCurPartyMon], a
-	jp Function509d8
+	jp PrintPartyText_GetSGBLayout
 
-Function508c4::
+; Places the tilemap of the party member at wCurPartyMon.
+PlacePartyMember::
 	push bc
 	push hl
 	push hl
@@ -1229,15 +1237,18 @@ Function508c4::
 	call PlaceString
 	call CopyMonToTempMon
 	pop hl
+
 	push hl
 	ld a, [wSelectedSwapPosition]
 	and a
-	jr z, .asm_508ef
+	jr z, .not_switching
+
 	dec a
 	ld b, a
 	ld a, [wCurPartyMon]
 	cp b
-	jr nz, .asm_508ef
+	jr nz, .not_switching
+
 	dec hl
 	dec hl
 	dec hl
@@ -1245,50 +1256,51 @@ Function508c4::
 	ld [hli], a
 	inc hl
 	inc hl
-.asm_508ef
+
+.not_switching
 	ld a, [wPartyMenuActionText]
 	cp PARTYMENUACTION_TEACH_TMHM
-	jr z, .asm_50922
+	jr z, .PlacePartyMonTMHMCompatibility
 	cp PARTYMENUACTION_EVO_STONE
-	jr z, .DetermineCompatibility
+	jr z, .PlacePartyMonEvoStoneCompatibility
 	cp PARTYMENUACTION_GIVE_MON
-	jp z, .asm_509b5
+	jp z, .PlacePartyMonGender
 	cp PARTYMENUACTION_GIVE_MON_FEMALE
-	jp z, .asm_509b5
+	jp z, .PlacePartyMonGender
 	push hl
-	ld bc, hRTCRandom
+	ld bc, -15
 	add hl, bc
 	ld de, wTempMonStatus
 	call PlaceStatusString
 	pop hl
 	push hl
-	ld bc, hCurMapTextSubroutinePtr + 1
+	ld bc, -12
 	add hl, bc
-	ld b, $00
+	ld b, 0
 	call DrawEnemyHP
 	push de
-	call Function50b66
+	call SetPartyHPBarPalette
 	pop de
 	pop hl
-	jr .asm_5093c
+	jr .PrintLevel
 
-.asm_50922
+.PlacePartyMonTMHMCompatibility
 	push hl
 	predef CanLearnTMHMMove
 	pop hl
-	ld de, .text_50948
+	ld de, .string_able
 	ld a, c
 	and a
-	jr nz, .asm_50933
-	ld de, .text_5094f
-.asm_50933
+	jr nz, .able
+	ld de, .string_not_able
+.able
 	push hl
-	ld bc, $0009
+	ld bc, 9
 	add hl, bc
 	call PlaceString
 	pop hl
-.asm_5093c
-	ld bc, $0005
+.PrintLevel
+	ld bc, 5
 	add hl, bc
 	push de
 	call PrintLevel
@@ -1297,21 +1309,24 @@ Function508c4::
 	pop bc
 	ret
 
-.text_50948:
-	db "おぼえられる@"
+.string_able:
+	db "おぼえられる@" ; "ABLE"
 
-.text_5094f:
-	db "おぼえられない@"
+.string_not_able:
+	db "おぼえられない@" ; "NOT ABLE"
 
-.DetermineCompatibility:
+.PlacePartyMonEvoStoneCompatibility:
 	push hl
 	ld hl, EvosAttacksPointers
-	ld a, [wTempMonSpecies]   ; Species of selected pokemon?
+	ld a, [wTempMonSpecies]
 	dec a
 	ld c, a
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	add hl, bc
+; BUG: Only the first three evolution entries can have Stone compatibility reported correctly.
+; While this never comes up in the final game, this prototype has Espeon and Umbreon evolving from
+; Heart Stones and Poison Stones respectively, making it five evolution stone entries for Eevee.
 	ld de, wStringBuffer1
 	ld a, BANK(EvosAttacksPointers)
 	ld bc, 2
@@ -1325,16 +1340,16 @@ Function508c4::
 	ld bc, 10
 	call FarCopyBytes
 	ld hl, wStringBuffer1
-	ld de, .string_not_able
-	; Fallthrough
-.asm_50986
+	ld de, .string_cant_use
+
+.loop
 	ld a, [hli]
 	and a
-	jr z, .asm_5099e
+	jr z, .nope
 	inc hl
 	inc hl
 	cp EVOLVE_STONE
-	jr nz, .asm_50986
+	jr nz, .loop
 	dec hl
 	dec hl
 	ld b, [hl]
@@ -1342,23 +1357,24 @@ Function508c4::
 	inc hl
 	inc hl
 	cp b
-	jr nz, .asm_50986
-	ld de, .string_able
-.asm_5099e
+	jr nz, .loop
+	ld de, .string_can_use
+
+.nope
 	pop hl
 	push hl
-	ld bc, $0009
+	ld bc, 9
 	add hl, bc
 	call PlaceString
 	pop hl
-	jr .asm_5093c
+	jr .PrintLevel
 
-.string_able
-	db "つかえる@"
-.string_not_able
-	db "つかえない@"
+.string_can_use
+	db "つかえる@" ; "ABLE"
+.string_cant_use
+	db "つかえない@" ; "NOT ABLE"
 
-.asm_509b5
+.PlacePartyMonGender
 	xor a
 	ld [wMonType], a
 	push hl
@@ -1369,11 +1385,11 @@ Function508c4::
 	ld de, .female
 .got_gender
 	push hl
-	ld bc, $0009
+	ld bc, 9
 	add hl, bc
 	call PlaceString
 	pop hl
-	jp .asm_5093c
+	jp .PrintLevel
 
 .male
 	db "オス@"
@@ -1381,35 +1397,37 @@ Function508c4::
 .female
 	db "メス@"
 
-Function509d8::
-	ld b, $0a
+PrintPartyText_GetSGBLayout::
+	ld b, SGB_PARTY_MENU
 	call GetSGBLayout
-Function509dd::
+PrintPartyMenuText::
 	ld hl, wOptions
 	ld a, [hl]
 	push af
 	push hl
 	set NO_TEXT_SCROLL_F, [hl]
+
 	ld a, [wPartyMenuActionText]
 	cp PARTYMENUTEXT_HEAL_PSN
-	jr nc, .asm_509fc
+	jr nc, .heal
+
 	add a
 	ld c, a
-	ld b, $00
-	ld hl, .data_50a33
+	ld b, 0
+	ld hl, .PartyMenuStrings
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	call PrintText
-	jr .asm_50a17
+	jr .done
 
-.asm_509fc
-	and $0f
+.heal
+	and $f
 	add a
 	ld c, a
-	ld b, $00
-	ld hl, .data_50a21
+	ld b, 0
+	ld hl, .MenuActionStrings
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -1420,7 +1438,7 @@ Function509dd::
 	call GetNick
 	pop hl
 	call PrintText
-.asm_50a17
+.done
 	pop hl
 	pop af
 	ld [hl], a
@@ -1428,58 +1446,58 @@ Function509dd::
 	call SetPalettes
 	ret
 
-.data_50a21
-	dw Text_50acb
-	dw Text_50af9
-	dw Text_50b09
-	dw Text_50b1d
-	dw Text_50ae5
-	dw Text_50ab0
-	dw Text_50b2b
-	dw Text_50b3b
-	dw Text_50b4e
+.MenuActionStrings
+	dw CuredOfPoisonText
+	dw BurnWasHealedText
+	dw _WasDefrostedText
+	dw _WokeUpText
+	dw RidOfParalysisText
+	dw RecoveredSomeHPText
+	dw HealthReturnedText
+	dw RevitalizedText
+	dw _GrewToLevelText
 
-.data_50a33
-	dw Text_50a43
-	dw Text_50a51
-	dw Text_50a5f
-	dw Text_50a6c
-	dw Text_50a7a
-	dw Text_50a51
-	dw Text_50a88
-	dw Text_50a9c
+.PartyMenuStrings
+	dw ChooseAMonString
+	dw UseOnWhichPKMNString
+	dw WhichPKMNString
+	dw TeachWhichPKMNString
+	dw MoveToWhereString
+	dw UseOnWhichPKMNString
+	dw ChooseFirstMonString
+	dw ChooseSecondMonString
 
-Text_50a43: ; Choose a pokemon
+ChooseAMonString:
 	text "#を　えらんで　ください"
 	done
 
-Text_50a51:
+UseOnWhichPKMNString:
 	text "どの#に　つかいますか？"
 	done
 
-Text_50a5f:
+WhichPKMNString:
 	text "どの#を　だしますか？"
 	done
 
-Text_50a6c:
+TeachWhichPKMNString:
 	text "どの#に　おしえますか？"
 	done
 
-Text_50a7a:
+MoveToWhereString:
 	text "どこに　いどうしますか？"
 	done
 
-Text_50a88: ; first Pokemon in Daycare?
+ChooseFirstMonString:
 	text "１ぴきめの　#を"
 	line "えらんで　ください"
 	done
 
-Text_50a9c: ; second Pokemon in Daycare?
+ChooseSecondMonString:
 	text "２ひきめの　#を"
 	line "えらんで　ください"
 	done
 
-Text_50ab0: ; restored hp
+RecoveredSomeHPText:
 	text_from_ram wStringBuffer1
 	text "の　たいりょくが"
 	line "@"
@@ -1487,62 +1505,62 @@ Text_50ab0: ; restored hp
 	text "　かいふくした"
 	done
 
-Text_50acb: ; cured poison
+CuredOfPoisonText:
 	text_from_ram wStringBuffer1
 	text "の　どくは"
 	line "きれい　さっぱり　なくなった！"
 	done
 
-Text_50ae5: ; cured paralysis
+RidOfParalysisText:
 	text_from_ram wStringBuffer1
 	text "の　からだの"
 	line "しびれが　とれた"
 	done
 
-Text_50af9: ; cured burn
+BurnWasHealedText:
 	text_from_ram wStringBuffer1
 	text "の"
 	line "やけどが　なおった"
 	done
 
-Text_50b09: ; cured frozen
+_WasDefrostedText:
 	text_from_ram wStringBuffer1
 	text "の　からだの"
 	line "こおりが　とけた"
 	done
 
-Text_50b1d: ; cured asleep
+_WokeUpText:
 	text_from_ram wStringBuffer1
 	text "は"
 	line "めを　さました"
 	done
 
-Text_50b2b: ; health returned (presumably for Sacred Fire)
+HealthReturnedText:
 	text_from_ram wStringBuffer1
 	text "は"
 	line "けんこうになった！"
 	done
 
-Text_50b3b: ; revived
+RevitalizedText:
 	text_from_ram wStringBuffer1
 	text "は"
 	line "げんきを　とりもどした！"
 	done
 
-Text_50b4e: ; leveled up
+_GrewToLevelText:
 	text_from_ram wStringBuffer1
 	text "の　レべルが@"
 	deciram wCurPartyLevel, 1, 3
 	text "になった@"
 	sound_dex_fanfare_50_79
 	text_waitbutton
-	db "@"
-
-Function50b66::
+	text_end
+	
+SetPartyHPBarPalette::
 	ld hl, wHPPals
 	ld a, [wcce1]
 	ld c, a
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	call SetHPPal
 	ld b, SGB_PARTY_MENU_HP_PALS
@@ -2079,15 +2097,15 @@ _SwitchPartyMons::
 	call CopyBytes
 	ret
 
-Function50eca::
+PartyMenu_ClearCursor::
 	hlcoord 0, 1
-	ld bc, $0028
-	ld a, $06
-.asm_50ed2
-	ld [hl], $7f
+	ld bc, 2 * SCREEN_WIDTH
+	ld a, PARTY_LENGTH
+.next
+	ld [hl], "　"
 	add hl, bc
 	dec a
-	jr nz, .asm_50ed2
+	jr nz, .next
 	ret
 
 GetUnownLetter::
@@ -2137,5 +2155,5 @@ GetUnownLetter::
 ; Increment to get 1-26
 	ldh a, [hQuotient + 3]
 	inc a
-	ld [wAnnonID], a    ; $d874
+	ld [wAnnonID], a
 	ret

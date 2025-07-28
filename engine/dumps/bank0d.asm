@@ -4382,7 +4382,7 @@ UpdateMoveData:
 	push bc
 	ld a, [wCurPlayerSelectedMove]
 	ld b, a
-	ld a, [wcabe]
+	ld a, [wPlayerDebugSelectedMove]
 	and a
 	jr z, .get_move_data
 	ld b, a
@@ -8437,7 +8437,7 @@ BattleCommand_BatonPass:
 	call LoadStandardMenuHeader
 	ld a, PARTYMENUACTION_SWITCH
 	ld [wPartyMenuActionText], a
-	predef PartyMenuInBattle_Setup
+	predef OpenPartyMenu_ClearGraphics
 
 .player_loop
 	jr c, .pressed_b
@@ -8450,7 +8450,7 @@ BattleCommand_BatonPass:
 	call PrintText
 
 .pressed_b
-	predef PartyMenuInBattle
+	predef OpenPartyMenu
 	jr .player_loop
 
 .picked_mon

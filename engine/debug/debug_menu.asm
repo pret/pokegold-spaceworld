@@ -137,17 +137,17 @@ SetDemoEventFlags:
 	set 2, [hl] ; beat rival in lab
 	ld hl, wd41b
 	set 2, [hl] ; chose a starter
-	ld a, %1
+	ld a, 1
 	ld [wd29a], a
-	ld a, %1
+	ld a, 1
 	ld [wd29b], a
-	ld a, %110
+	ld a, 6
 	ld [wd29c], a
-	ld a, %10010
+	ld a, 18
 	ld [wd29d], a
-	ld a, %110
+	ld a, 6
 	ld [wd29e], a
-	ld a, %10
+	ld a, 2
 	ld [wd2a0], a
 	ret
 

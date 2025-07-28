@@ -17,7 +17,7 @@ DEF ITEMATTR_STRUCT_LENGTH EQU const_value
 	const TM_HM    ; 4
 
 ; item menu types
-; UseItem.dw indexes (see engine/items/pack.asm)
+; DoItemEffect.dw indexes (see engine/items/pack.asm)
 ; UseRegisteredItem.SwitchTo indexes (see engine/overworld/select_menu.asm)
 	const_def
 	const ITEMMENU_NOUSE   ; 0

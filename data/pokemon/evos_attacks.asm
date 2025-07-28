@@ -17,8 +17,8 @@ EvosAttacks::
 ; - Evolution methods:
 ;    * db EVOLVE_LEVEL, level, dex
 ;    * db EVOLVE_STONE, 1, used item, dex
-;    * db EVOLVE_ITEM, 1, held? item, dex
-;    * db EVOLVE_TRADE, 1, dex
+;    * db EVOLVE_ITEM, min level (1), held? item, dex
+;    * db EVOLVE_TRADE, min level (1), dex
 ; - db 0 ; no more evolutions
 ; - Learnset (in increasing level order):
 ;    * db level, move

@@ -82,7 +82,7 @@ DEF HMENURETURN_SCRIPT EQU %10000000
 DEF HMENURETURN_ASM    EQU %11111111
 
 
-; PartyMenuQualityPointers indexes (see data/party_menu_qualities.asm)
+; PrintPartyMenuText indexes (see data/party_menu_qualities.asm)
 	const_def
 	const PARTYMENUACTION_CHOOSE_POKEMON
 	const PARTYMENUACTION_HEALING_ITEM
@@ -93,7 +93,6 @@ DEF HMENURETURN_ASM    EQU %11111111
 	const PARTYMENUACTION_GIVE_MON
 	const PARTYMENUACTION_GIVE_MON_FEMALE ; unused
 	const PARTYMENUACTION_GIVE_ITEM
-	const PARTYMENUACTION_MOBILE ; mobile
 ; PrintPartyMenuActionText arguments (see engine/pokemon/party_menu.asm)
 	const_def $f0
 	const PARTYMENUTEXT_HEAL_PSN

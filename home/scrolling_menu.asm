@@ -62,27 +62,34 @@ ScrollingMenu::
 	ld a, [wMenuJoypad]
 	ret
 
-Function385a::
+PartyMenu_TextboxBackup::
 	push hl
-	jr asm_3865
+	jr .continue
 
-Function385d::
+.unreferenced_385d:
 	callfar FreezeMonIcons
-asm_3865:
+.continue
 	pop hl
 	call MenuTextBox
-	ld c, $0
-	call Function3872
+	ld c, 0
+	call PartyMenu_WaitForAorB
 	call CloseWindow
 	ret
 
-Function3872::
+; BUG: Supposed to wait for at most c frames until the player pushes a button. If c is 0, then wait indefinitely.
+; However, there is a bit of a problem: it doesn't actually call DelayFrames at any point.
+; Presumably, this function was intended to loop at .unreferenced_3875 at one point,
+; but they forgot to add a DelayFrame when they added the jump at the beginning.
+;
+; TLDR: The Softboiled heal message only shows up for one frame due to a combination of two oversights.
+PartyMenu_WaitForAorB::
+.loop
 	push bc
-	jr asm_387d
+	jr .continue
 
-Function3875::
+.unreferenced_3875:
 	callfar PlaySpriteAnimationsAndDelayFrame
-asm_387d:
+.continue
 	pop bc
 	call GetJoypad
 	ldh a, [hJoyDown]
@@ -90,8 +97,9 @@ asm_387d:
 	jr nz, .done
 	ld a, c
 	and a
-	jr z, Function3872
+	jr z, .loop
 	dec c
-	jr z, Function3872
-.done:
+; BUG: This is supposed to be a jr nz, not jr z
+	jr z, .loop
+.done
 	ret

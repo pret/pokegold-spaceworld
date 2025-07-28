@@ -31,8 +31,8 @@ GiveItemPredef::
 	add_predef TryAddMonToParty ; 10
 	add_predef AddTempmonToParty
 	add_predef SendGetMonIntoFromBox
-	add_predef Functiondcfc
-	add_predef RetrieveBreedmon
+	add_predef DepositBreedmonOrBuffermon
+	add_predef RetrieveBreedmonOrBuffermon
 	add_predef SendMonIntoBox
 	add_predef GiveEgg
 	add_predef UpdateHPBar
@@ -41,21 +41,21 @@ GiveItemPredef::
 	add_predef CanLearnTMHMMove
 	add_predef GetTMHMMove
 	add_predef LinkTextboxAtHL
-	add_predef Function2d663
+	add_predef PrintMoveDescription
 	add_predef UpdatePlayerHUD
 	add_predef PlaceGraphic
 	add_predef Function3f068 ; 20
 	add_predef LoadMonBackPic
 	add_predef AnyPartyAlive
 	add_predef UpdateEnemyHUD
-	add_predef Function3e1a4
+	add_predef DoubleOrHalveSelectedStats_Old
 	add_predef Function3ef19
 	add_predef CalcAndPlaceExpBar
 	add_predef GetBattleMonBackpic
 	add_predef GetEnemyMonFrontpic ; 28
-	add_predef Function421f8
+	add_predef LearnLevelMoves
 	add_predef FillMoves
-	add_predef Function41fa1
+	add_predef EvolveAfterBattle
 	add_predef Function28da4
 	add_predef Function28d6e
 	add_predef NewPokedexEntry
@@ -65,13 +65,13 @@ GiveItemPredef::
 	add_predef ListMoves
 	add_predef GetMonBackpic
 	add_predef PlaceNonFaintStatus
-	add_predef Function508c4
-	add_predef PartyMenuInBattle_Setup
-	add_predef PartyMenuInBattle
-	add_predef Function5081f ; 38
+	add_predef PlacePartyMember
+	add_predef OpenPartyMenu_ClearGraphics
+	add_predef OpenPartyMenu
+	add_predef InitPartyMenuLayout ; 38
 	add_predef ListMovePP
 	add_predef GetGender
-	add_predef Function502b5
+	add_predef StatsScreenMain
 	add_predef DrawPlayerHP
 	add_predef DrawEnemyHP
 	add_predef GetTypeName

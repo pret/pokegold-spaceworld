@@ -28,9 +28,9 @@ Unreferenced_GetPartyParamLocation_Old:
 	pop bc
 	ret
 
-Unreferenced_UseItem_Old:
-	ld a, BANK(_UseItem)
-	ld hl, $67C4 ; Early location for _UseItem
+Unreferenced_DoItemEffect_Old:
+	ld a, BANK(_DoItemEffect)
+	ld hl, $67C4 ; Early location for _DoItemEffect
 	jp Old_FarCallFunctionAddress
 
 Unreferenced_CheckTossableItem_Old:

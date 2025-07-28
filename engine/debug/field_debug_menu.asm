@@ -83,7 +83,7 @@ FieldDebugMenu::
 
 .Cleanup:
 	push af
-	call Function1fea
+	call ScreenCleanup
 	pop af
 	ret
 

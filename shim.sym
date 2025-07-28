@@ -33,6 +33,8 @@
 0A:5A1F Function29a1f ; prints text
 0A:5ABF Function29abf ; prints text
 
+0B:786F Bank0b_FillerStart
+
 0E:4B78 LoadTrainerClassName
 ;0E:4BA0 LoadTrainerClassName.got_name
 0E:4BA9 LoadTrainerClass
@@ -49,16 +51,11 @@
 0E:4F45 Function38f45
 0E:50E9 Battle_GetTrainerName
 
-10:5F93 Function4af93
-10:5FA1 Function41fa1
-10:61F8 Function421f8
-10:6252 FillMoves
-10:58B8 Data418b8
-
-14:7274 Unknown53274
+14:7274 Bank14_FillerStart
 
 23:4940 Function8c940
 23:49C6 Function8c9c6
+23:4b6d FishingAnim_Old
 
 38:48A2 PokerMinigame
 38:5AE3 FifteenPuzzleMinigame

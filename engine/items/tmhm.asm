@@ -8,7 +8,7 @@ CanLearnTMHMMove:
 ; Sets register c to 1 if TM/HM is in learnset OR if debug is enabled.
 	ld a, [wDebugFlags]
 	ld c, 01
-	bit 1, a
+	bit DEBUG_FIELD_F, a
 	ret nz
 
 	ld a, [wCurPartySpecies]

@@ -243,11 +243,11 @@ FieldDebug_ItemTest:
 	ld a, [wCurItem]
 	call ItemTest_FindUsableItem
 	jr c, .use_item2
-	call UseItem
+	call DoItemEffect
 	jp .restart
 
 .use_item
-	call UseItem
+	call DoItemEffect
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jp z, .restart
@@ -255,7 +255,7 @@ FieldDebug_ItemTest:
 	ret
 
 .use_item2
-	call UseItem
+	call DoItemEffect
 	call ClearBGPalettes
 	call RestoreScreenAndReloadTiles
 	jp .restart

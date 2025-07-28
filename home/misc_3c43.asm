@@ -15,8 +15,8 @@ GetPartyParamLocation::
 	pop bc
 	ret
 
-UseItem::
-	farjp _UseItem
+DoItemEffect::
+	farjp _DoItemEffect
 
 CheckTossableItem::
 	push hl

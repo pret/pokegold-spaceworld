@@ -121,7 +121,7 @@ PlayerHouse2FComputerText:
 .jump
 	call RefreshScreen
 	callfar PokemonCenterPC
-	call Function1fea
+	call ScreenCleanup
 	ret
 
 PlayerHouse2FCheckEmail:

@@ -121,7 +121,7 @@ ForgetMove::
 	call PrintText
 	hlcoord 10, 8
 	ld b, NUM_MOVES * 2
-	ld c, MOVE_NAME_LENGTH + 3
+	ld c, MOVE_NAME_LENGTH
 	call DrawTextBox
 	hlcoord 12, 10
 	ld a, SCREEN_WIDTH * 2

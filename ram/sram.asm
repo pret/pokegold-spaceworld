@@ -25,3 +25,27 @@ sWindowStackBottom::
 	ds $800 - 1
 sWindowStackTop::
 	ds 1
+
+; The PC boxes will not fit into one SRAM bank,
+; so they use multiple SECTIONs
+DEF box_n = 0
+MACRO boxes
+	rept \1
+		DEF box_n += 1
+	sBox{d:box_n}:: box sBox{d:box_n}
+	endr
+ENDM
+
+SECTION "Boxes 1-5", SRAM
+
+; sBox1 - sBox5
+	boxes 5
+
+SECTION "Boxes 6-10", SRAM
+
+; sBox6 - sBox10
+	boxes 5
+
+; All 10 boxes fit exactly within 2 SRAM banks
+	assert box_n == NUM_BOXES, \
+		"boxes: Expected {d:NUM_BOXES} total boxes, got {d:box_n}"

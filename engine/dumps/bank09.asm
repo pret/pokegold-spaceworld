@@ -1306,7 +1306,7 @@ PlaceDetailedBoxMonView::
 	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
 	ld b, 0
-	ld hl, wBoxList
+	ld hl, wBoxSpecies
 	add hl, bc
 
 	ld a, [hl]
