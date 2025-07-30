@@ -44,7 +44,7 @@ SpriteAnimFrameData:
 	dw .Frameset_TradeTubeBulge         ; SPRITE_ANIM_FRAMESET_TRADE_TUBE_BULGE
 	dw .Frameset_TrademonIcon           ; SPRITE_ANIM_FRAMESET_TRADEMON_ICON
 	dw .Frameset_TrademonBubble         ; SPRITE_ANIM_FRAMESET_TRADEMON_BUBBLE
-	dw .Frameset_Unknown                ; SPRITE_ANIM_FRAMESET_UNKNOWN
+	dw .Frameset_EvolutionBallOfLight   ; SPRITE_ANIM_FRAMESET_EVOLUTION_BALL_OF_LIGHT
 	dw .Frameset_RadioFrequencyMeter    ; SPRITE_ANIM_FRAMESET_RADIO_FREQUENCY_METER
 
 .Frameset_00:
@@ -275,8 +275,8 @@ SpriteAnimFrameData:
 	oamframe SPRITE_ANIM_OAMSET_TRADEMON_BUBBLE, 32
 	oamend
 
-.Frameset_Unknown:
-	oamframe SPRITE_ANIM_OAMSET_UNKNOWN_41, 32
+.Frameset_EvolutionBallOfLight:
+	oamframe SPRITE_ANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT, 32
 	oamend
 
 .Frameset_RadioFrequencyMeter:

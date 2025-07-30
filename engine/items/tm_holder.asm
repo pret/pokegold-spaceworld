@@ -1,23 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank0b.asm", ROMX
-
-ShowItemDescription::
-	push de
-	ld hl, ItemDescriptions
-	ld a, [wSelectedItem]
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	pop hl
-	jp PlaceString
-
-INCLUDE "data/items/descriptions.inc"
+SECTION "engine/items/tm_holder.asm", ROMX
 
 _TMHolder:
 	ld a, 1
@@ -474,22 +457,3 @@ ConsumeTM:
 	ret nz
 	ld [wTMHolderScrollPosition], a
 	ret
-
-; START OF: "engine/pokemon/print_move_description.asm"
-
-PrintMoveDescription:
-	push hl
-	ld hl, MoveDescriptions
-	ld a, [wSelectedItem]
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	ld e, a
-	ld d, [hl]
-	pop hl
-	jp PlaceString
-
-INCLUDE "data/moves/descriptions.inc"

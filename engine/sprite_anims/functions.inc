@@ -52,7 +52,7 @@ DoSpriteAnimFrame:
 	dw AnimSeq_TradePokeBall
 	dw AnimSeq_TradeTubeBulge
 	dw AnimSeq_TrademonInTube
-	dw AnimSeq_Unknown
+	dw AnimSeq_RevealNewMon
 	dw AnimSeq_RadioFrequencyMeter
 
 AnimSeq_Null:
@@ -1283,9 +1283,8 @@ AnimSeq_TrademonInTube:
 	callfar TradeAnim_AnimateTrademonInTube
 	ret
 
-; Appears to resemble the final game's AnimSeq_RevealNewMon, but it doesn't seem to be used in this build...
-; Who knows what it was used for?
-AnimSeq_Unknown:
+; Unused in this build. See EvolutionAnimation.PlayEvolvedSFX.
+AnimSeq_RevealNewMon:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -1298,6 +1297,7 @@ AnimSeq_Unknown:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [hl]
+
 	push af
 	push de
 	call AnimSeqs_Sine
@@ -1305,6 +1305,7 @@ AnimSeq_Unknown:
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
+
 	pop de
 	pop af
 	call AnimSeqs_Cosine

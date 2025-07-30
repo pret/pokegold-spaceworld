@@ -4,7 +4,7 @@ SECTION "gfx.asm@Mon Nest Icon", ROMX
 PokedexNestIconGFX::
 INCBIN "gfx/trainer_gear/dexmap_nest_icon.1bpp"
 
-SECTION "gfx.asm@Bank 2 Misc GFX", ROMX
+SECTION "gfx.asm@Minor Object GFX", ROMX
 UnknownBouncingOrbGFX:: INCBIN "gfx/overworld/gfx_84bf.2bpp"
 .end:
 JumpShadowGFX::         INCBIN "gfx/overworld/shadow.2bpp"

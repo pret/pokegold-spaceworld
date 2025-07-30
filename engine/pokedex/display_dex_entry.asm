@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank11.asm", ROMX
+SECTION "engine/pokedex/display_dex_entry.asm", ROMX
 
 _DisplayDexEntry:
 	hlcoord 9, 6

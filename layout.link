@@ -117,9 +117,11 @@ ROMX $01
 	"engine/menu_options_menu.asm"
 
 ROMX $02
-	"engine/dumps/bank02.asm@_SpawnPlayer"
-	"gfx.asm@Bank 2 Misc GFX"
-	"engine/dumps/bank02.asm@QueueFollowerFirstStep"
+	"engine/overworld/player_object.asm"
+	"engine/gfx/load_minor_object_gfx.asm"
+	"gfx.asm@Minor Object GFX"
+	"engine/overworld/player_object.asm@QueueFollowerFirstStep"
+	"engine/events/town_map.asm"
 	"gfx.asm@Mon Nest Icon"
 
 	"data/maps/flypoints.asm"
@@ -141,7 +143,6 @@ ROMX $03
 	"engine/overworld/player_movement.asm@Player Movement"
 	"data/collision/collision_type_table.asm"
 	"engine/overworld/player_movement.asm@Rest of Player Movement"
-	"engine/dumps/bank03.asm@GetFlyPointMapLocation"
 	"engine/overworld/spawn_points.asm"
 	"data/maps/spawn_points.asm"
 	"data/tileset_headers.asm"
@@ -154,9 +155,14 @@ ROMX $03
 	"engine/pokemon/health.asm@HP Bar"
 	"engine/events/field_moves.asm"
 	"engine/items/inventory.asm@_CheckTossableItem"
-	"engine/dumps/bank03.asm@Unreferenced_TossItem_Old"
+	"engine/overworld/player_step.asm"
+	"engine/pokemon/move_mon.asm"
+	"engine/pokemon/bills_pc.asm"
+	"engine/events/starter_dex.asm"
 	"engine/items/item_effects.asm"
-	"engine/dumps/bank03.asm@GetMaxPPOfMove"
+	"engine/events/breeder.asm"
+	"engine/battle_anims/pokeball_wobble.asm"
+	"engine/pokemon/knows_move.asm"
 
 ROMX $04
 	org $4000
@@ -223,7 +229,15 @@ ROMX $08
 
 ROMX $09
 	org $4000
-	"engine/dumps/bank09.asm@_PushWindow"
+	"engine/menu/menu.asm"
+	"engine/items/update_item_description.asm"
+	"engine/events/pokepic.asm"
+	"engine/menu/scrolling_menu.asm"
+	"engine/items/switch_items.asm"
+	"engine/menu/menu_2.asm"
+	"engine/pokemon/mon_submenu.asm"
+	"engine/battle/menu.asm"
+	"engine/items/buy_sell_toss.asm"
 
 ROMX $0a
 	org $4000
@@ -232,7 +246,9 @@ ROMX $0a
 
 ROMX $0b
 	org $4000
-	"engine/dumps/bank0b.asm"
+	"engine/items/print_item_description.asm"
+	"engine/items/tm_holder.asm"
+	"engine/pokemon/print_move_description.asm"
 
 ROMX $0c
 	org $4000
@@ -273,17 +289,17 @@ ROMX $0f
 
 ROMX $10
 	org $4000
-	"engine/dumps/bank10.asm"
-	org $52a1
+	"engine/pokedex/pokedex.asm"
+	"engine/link/time_capsule_2.asm"
+	"engine/pokedex/pokedex_2.asm"
 	"data/moves/names.asm"
-	org $58b6
 	"data/moves/moves.asm"
-	"engine/dumps/bank10.asm@EvolvePokemon"
+	"engine/pokemon/evolve.asm"
 	"data/pokemon/evos_attacks.asm"
 
 ROMX $11
 	org $4000
-	"engine/dumps/bank11.asm"
+	"engine/pokedex/display_dex_entry.asm"
 	"gfx.asm@Pokedex GFX"
 	"data/pokemon/dex_entries.asm"
 
@@ -777,7 +793,7 @@ ROMX $33
 	"engine/battle_anims/anim_commands.asm"
 	"engine/dumps/bank33.asm"
 	"engine/battle_anims/functions.asm"
-	"engine/battle_anims/helper.asm"
+	"engine/battle_anims/helpers.asm"
 
 
 ROMX $34
