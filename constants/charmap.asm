@@ -112,10 +112,6 @@
 	charmap "<ROCKET>",  $5e ; "ROCKET"
 	charmap "<DEXEND>",  $5f
 
-	charmap "m", $60
-	charmap "k", $61
-	charmap "g", $62
-
 	charmap "■", $60
 	charmap "▲", $61
 	charmap "☎", $62

@@ -2,6 +2,12 @@ INCLUDE "constants.asm"
 
 SECTION "engine/pokedex/display_dex_entry.asm", ROMX
 
+; Meters
+DEF POKEDEX_m EQU $60
+; Kilograms
+DEF POKEDEX_k EQU $61
+DEF POKEDEX_g EQU $62
+
 _DisplayDexEntry:
 	hlcoord 9, 6
 	ld de, PokedexText_HeightWeight
@@ -123,8 +129,8 @@ _DisplayDexEntry:
 	ret
 
 PokedexText_HeightWeight:
-	db   "たかさ　　？？？m"
-	next "おもさ　　？？？kg"
+	db   "たかさ　　？？？", POKEDEX_m
+	next "おもさ　　？？？", POKEDEX_k, POKEDEX_g
 	text_end
 
 PokedexText_Pokemon:
