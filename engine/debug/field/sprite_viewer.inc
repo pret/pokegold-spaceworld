@@ -169,7 +169,7 @@ FieldDebug_SpriteViewer:
 .UpdateMenu:
 	call .SetMenuAttributes
 .loop2
-	call Get2DMenuJoypad
+	call StaticMenuJoypad
 	ld a, [wMenuCursorY]
 	ld [wSpriteViewerSavedMenuPointerY], a
 	ldh a, [hJoySum]

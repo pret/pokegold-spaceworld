@@ -70,7 +70,7 @@ SpriteAnimOAMData:
 	spriteanimoam $00, .OAMData_Walk                     ; SPRITE_ANIM_OAMSET_TRADEMON_ICON_1
 	spriteanimoam $04, .OAMData_Walk                     ; SPRITE_ANIM_OAMSET_TRADEMON_ICON_2
 	spriteanimoam $10, .OAMData_TradePoofBubble          ; SPRITE_ANIM_OAMSET_TRADEMON_BUBBLE
-	spriteanimoam $00, .OAMData_Unknown1                 ; SPRITE_ANIM_OAMSET_UNKNOWN_41
+	spriteanimoam $00, .OAMData_Unknown1                 ; SPRITE_ANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT
 	spriteanimoam $00, .OAMData_RadioFrequencyMeter      ; SPRITE_ANIM_OAMSET_RADIO_FREQUENCY_METER
 
 .OAMData_1x1_Palette0:

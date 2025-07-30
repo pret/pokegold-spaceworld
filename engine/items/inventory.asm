@@ -2,6 +2,141 @@ INCLUDE "constants.asm"
 
 SECTION "engine/items/inventory.asm@Inventory", ROMX
 
+; Leftover from Generation I. Equivalent to pokered's AddItemToInventory_.
+Unreferenced_ReceiveItem_Old:
+	ld a, [wItemQuantity]
+	push af
+	push bc
+	push de
+	push hl
+	push hl
+	ld d, 50 ; PC_ITEM_CAPACITY
+	push hl
+	ld bc, $2e62 ; TODO: ???
+	add hl, bc
+	ld a, h
+	or l
+	pop hl
+	jr nz, .check_if_inventory_full
+
+	ld d, 20 ; BAG_ITEM_CAPACITY
+.check_if_inventory_full
+	ld a, [hl]
+	sub d
+	ld d, a
+	ld a, [hli]
+	and a
+	jr z, .add_new_item
+
+.not_at_end_of_inventory
+	ld a, [hli]
+	ld b, a
+	ld a, [wCurItem]
+	cp b
+	jp z, .increase_item_quantity
+	inc hl
+	ld a, [hl]
+	cp -1
+	jr nz, .not_at_end_of_inventory
+
+.add_new_item
+	pop hl
+	ld a, d
+	and a
+	jr z, .done
+
+	inc [hl]
+	ld a, [hl]
+	add a
+	dec a
+	ld c, a
+	ld b, 0
+	add hl, bc ; address to store item
+	ld a, [wCurItem]
+	ld [hli], a
+	ld a, [wItemQuantity]
+	ld [hli], a
+	ld [hl], -1
+	jp .success
+
+.increase_item_quantity
+	ld a, [wItemQuantity]
+	ld b, a
+	ld a, [hl]
+	add b
+	cp MAX_ITEM_STACK + 1
+	jp c, .store_new_quantity
+	sub MAX_ITEM_STACK
+	ld [wItemQuantity], a
+	ld a, d
+	and a
+	jr z, .increase_item_quantity_failed
+	ld a, MAX_ITEM_STACK
+	ld [hli], a
+	jp .not_at_end_of_inventory
+
+.increase_item_quantity_failed
+	pop hl
+	and a
+	jr .done
+
+.store_new_quantity
+	ld [hl], a
+	pop hl
+.success
+	scf
+.done
+	pop hl
+	pop de
+	pop bc
+	pop bc
+	ld a, b
+	ld [wItemQuantity], a
+	ret
+
+Unreferenced_RemoveItemFromInventory_Old:
+	push hl
+	inc hl
+	ld a, [wItemIndex]
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	inc hl
+	ld a, [wItemQuantity]
+	ld e, a
+	ld a, [hl]
+	sub e
+	ld [hld], a
+	ld [wItemQuantityBuffer], a
+	and a
+	jr nz, .skip_moving_up_slots
+	ld e, l
+	ld d, h
+	inc de
+	inc de
+.loop
+	ld a, [de]
+	inc de
+	ld [hli], a
+	cp -1
+	jr nz, .loop
+	xor a
+	ld [wMenuScrollPosition], a
+	ld [wRegularItemsCursor], a
+	pop hl
+	ld a, [hl]
+	dec a
+	ld [hl], a
+	ld [wScrollingMenuListSize], a
+	cp 2
+	jr c, .done
+	jr .done
+.skip_moving_up_slots
+	pop hl
+.done
+	ret
+
 _ReceiveItem:
 	call DoesHLEqualwNumBagItems
 	jp nz, PutItemInPocket
@@ -149,7 +284,7 @@ PutItemInPocket:
 	jr z, .terminator
 	cp c
 	jr nz, .next
-	ld a, 99
+	ld a, MAX_ITEM_STACK
 	sub [hl]
 	add b
 	ld b, a
@@ -192,12 +327,12 @@ PutItemInPocket:
 	ld [hl], a
 	jr .done
 
-; set this slot's quantity to 99,
+; set this slot's quantity to MAX_ITEM_STACK,
 ; and keep iterating through list
 ; to add remaining amount
 .set_max
-	ld [hl], 99
-	sub 99
+	ld [hl], MAX_ITEM_STACK
+	sub MAX_ITEM_STACK
 	ld [wItemQuantity], a
 	jr .loop2
 
@@ -718,6 +853,97 @@ GetItemPrice:
 	ld a, ITEMATTR_PRICE_HI
 	call GetItemAttr
 	ld d, a
+	pop bc
+	pop hl
+	ret
+
+Unreferenced_TossItem_Old:
+	push hl
+	call Unused_IsKeyItem_Old
+	ld a, [wItemAttributeValue]
+	and a
+	jr nz, .cant_toss
+
+	ld a, [wCurItem]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	call CopyStringToStringBuffer2
+	ld hl, .ItemsThrowAwayText
+	call MenuTextBox
+	call YesNoBox
+	call CloseWindow
+	jr c, .cancel
+
+	ld a, [wItemIndex]
+	pop hl
+	call TossItem
+	ld a, [wCurItem]
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
+	call CopyStringToStringBuffer2
+	ld hl, .ItemsDiscardedText
+	call MenuTextBox
+	call CloseWindow
+
+	and a
+	ret
+
+.cant_toss
+	ld hl, .ItemsTooImportantText
+	call MenuTextBox
+	call CloseWindow
+.cancel
+	pop hl
+	scf
+	ret
+
+.ItemsDiscardedText:
+	text_from_ram wStringBuffer1
+	text "を" ; "Threw away"
+	line "すてました！" ; "(item?)!"
+	prompt
+
+.ItemsThrowAwayText:
+	text_from_ram wStringBuffer2
+	text "を　すてます" ; "Are you sure you want"
+	line "ほんとに　よろしいですか？" ; "to throw (item?) away?"
+	prompt
+
+.ItemsTooImportantText:
+	text "それは　とても　たいせつなモノです" ; "You can't throw away"
+	line "すてることは　できません！" ; "something that special!"
+	prompt
+
+Unused_IsKeyItem_Old:
+	push hl
+	push bc
+	ld a, 1
+	ld [wItemAttributeValue], a
+	ld a, [wCurItem]
+	cp ITEM_HM01_RED
+	jr nc, .check_if_hm
+	ld hl, ItemAttributes + ITEMATTR_PERMISSIONS
+	dec a
+	ld c, a
+	ld b, 0
+rept 5
+	add hl, bc
+endr
+	ld a, BANK(ItemAttributes)
+	call GetFarByte
+	bit 0, a
+	jr nz, .cant_toss
+	jr .can_toss
+
+.check_if_hm
+	ld a, [wCurItem]
+	call IsHM
+	jr c, .cant_toss
+
+.can_toss
+	xor a
+	ld [wItemAttributeValue], a
+.cant_toss
 	pop bc
 	pop hl
 	ret

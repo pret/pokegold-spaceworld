@@ -21,19 +21,20 @@ CallJumptable::
 	ld l, a
 	jp hl
 
-CallFar_atHL::
-; CallFar_atHL
-; Call the function pointed to by
-; the 3-byte pointer at hl
-; Clobbers: a, hl
+; Call the function pointed to by the 3-byte pointer at hl.
+; Clobbers: a, hl.
+CallPointerAt::
 	ldh a, [hROMBank]
 	push af
 	ld a, [hli]
 	call Bankswitch
+
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	call ._hl_
+	
 	pop hl
 	ld a, h
 	call Bankswitch

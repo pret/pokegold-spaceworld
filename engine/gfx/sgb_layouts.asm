@@ -533,8 +533,8 @@ GetMonSGBPaletteFlags:
 .return
 	ret
 
-Function95f8:
-	ld hl, BlkPacket_98fc
+InitPartyMenuPalettes:
+	ld hl, BlkPacket_PartyMenu
 	ld de, wcce2
 	ld bc, $0030
 	jp CopyBytes

@@ -50,7 +50,7 @@ BlkPacket_SlotMachine:
 	attr_blk_data %011, 0,0,0, 04,04, 15,09
 	attr_blk_data %011, 0,0,0, 00,12, 19,17
 
-BlkPacket_98fc:
+BlkPacket_PartyMenu:
 	attr_blk 7
 	attr_blk_data %111, 0,0,1, 00,00, 02,12
 	attr_blk_data %010, 0,0,0, 12,00, 18,01

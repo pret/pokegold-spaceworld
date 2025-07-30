@@ -160,7 +160,7 @@ SilentHillLabFrontMoveDown:
 	ret nz
 	ldh a, [hJoyState]
 	bit 6, a
-	jp z, SetFFInAccumulator
+	jp z, xor_a_dec_a
 	call SilentHillLabFrontText3
 	ld hl, wJoypadFlags
 	set 4, [hl]
@@ -173,7 +173,7 @@ SilentHillLabFrontMoveDown:
 	set 7, [hl]
 	ld a, 1
 	call WriteIntod637
-	call ClearAccumulator
+	call xor_a
 	ret
 
 SilentHillLabFrontMovement1:
@@ -464,7 +464,7 @@ SilentHillLabFrontRivalMovePokemon:
 	ld [wMapScriptNumber], a
 	ld a, 1
 	call WriteIntod637
-	call ClearAccumulator
+	call xor_a
 	ret
 
 SilentHillLabFrontMovement9:
@@ -595,7 +595,7 @@ SilentHillLabFrontMoveRivalLeave:
 	ld [wMapScriptNumber], a
 	ld a, 1
 	call WriteIntod637
-	call ClearAccumulator
+	call xor_a
 	ret
 
 Movememt12:

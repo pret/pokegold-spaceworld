@@ -30,7 +30,7 @@ ENDM
 MACRO party_struct
 	box_struct \1
 \1Status::         db
-\1Unused::         db
+\1Unused4::        db
 \1HP::             dw
 \1MaxHP::          dw
 \1Stats:: ; big endian
@@ -101,18 +101,26 @@ MACRO battle_struct
 ENDM
 
 MACRO box
-\1::
-\1Count::           ds 1
-\1Species::         ds MONS_PER_BOX + 1
+\1Count::   db
+\1Species:: ds MONS_PER_BOX + 1
 \1Mons::
-\1Mon1::            box_struct \1Mon1
-\1Mon2::            ds BOXMON_STRUCT_LENGTH * (MONS_PER_BOX +- 1)
-\1MonOT::           ds NAME_LENGTH * MONS_PER_BOX
-\1MonNicknames::    ds PKMN_NAME_LENGTH * MONS_PER_BOX
+	; \1Mon1 - \1Mon30
+	for n, 1, MONS_PER_BOX + 1
+	\1Mon{d:n}:: box_struct \1Mon{d:n}
+	endr
+\1MonOTs::
+	; \1Mon1OT - \1Mon30OT
+	for n, 1, MONS_PER_BOX + 1
+	\1Mon{d:n}OT:: ds PLAYER_NAME_LENGTH
+	endr
+\1MonNicknames::
+	; \1Mon1Nickname - \1Mon30Nickname
+	for n, 1, MONS_PER_BOX + 1
+	\1Mon{d:n}Nickname:: ds MON_NAME_LENGTH
+	endr
 \1MonNicknamesEnd::
-\1End::             ds 2 ; padding
+\1End::
 ENDM
-
 
 MACRO map_connection_struct
 \1ConnectedMapGroup::       db

@@ -108,6 +108,11 @@ NEXTU
 hMapObjectIndex:: db
 hObjectStructIndex:: db
 hEnemyMonSpeed:: dw
+
+NEXTU
+
+hPokedexTempWeight:: dw
+
 ENDU
 
 UNION
@@ -173,8 +178,7 @@ hCurSpriteTile:: db
 hCurSpriteOAMFlags:: db
 ENDU
 
-hFFCD:: db
-	ds 2 ; TODO
+hMoneyTemp:: ds 3
 
 hLCDCPointer::
 	db
@@ -206,7 +210,7 @@ hWX:: db
 hWY:: db
 
 hOverworldFlashlightEffect:: db
-; Influences draw distance of map around HIRO
+; Influences draw distance of map around the player.
 ; Meant to go from 0 --> to desired distance
 ; or else graphical errors will occur.
 ; 0 - regular distance

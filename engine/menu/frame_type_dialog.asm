@@ -7,7 +7,7 @@ FrameTypeDialog:
 	call LoadMenuHeader
 	ld a, [wActiveFrame]
 	inc a
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call VerticalMenu
 	jr c, .close
 	ld a, [wMenuCursorY]

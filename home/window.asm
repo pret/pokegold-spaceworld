@@ -16,7 +16,8 @@ RefreshScreen::
 	call Bankswitch
 	ret
 
-Function1fea::
+; TODO: Better name for this?
+ScreenCleanup::
 	call TextboxCleanup
 	call ClearWindowData
 	call InitToolgearBuffer

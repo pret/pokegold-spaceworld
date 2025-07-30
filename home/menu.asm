@@ -56,18 +56,18 @@ VerticalMenu::
 	call PlaceVerticalMenuItems
 	call WaitBGMap
 	call CopyMenuData
-	ld a, [wMenuData2]
-	bit 7, a
-	jr z, .asm_1daa
+	ld a, [wMenuData]
+	bit STATICMENU_CURSOR_F, a
+	jr z, .cancel
 	call InitVerticalMenuCursor
-	call Get2DMenuJoypad
-	bit 1, a
-	jr z, .asm_1dac
-.asm_1daa:
+	call StaticMenuJoypad
+	bit B_BUTTON_F, a
+	jr z, .okay
+.cancel
 	scf
 	ret
 
-.asm_1dac:
+.okay
 	and a
 	ret
 
@@ -102,6 +102,7 @@ YesNoBox::
 PlaceYesNoBox::
 	jr _YesNoBox
 
+; Unreferenced?
 PlaceGenericTwoOptionBox::
 	call LoadMenuHeader
 	jr InterpretTwoOptionMenu
@@ -169,7 +170,6 @@ _OffsetMenuHeader::
 	ld h, a
 	ld a, [wMenuBorderRightCoord]
 	sub h
-.asm_1e3d:
 	ld h, a
 	ld a, d
 	ld [wMenuBorderLeftCoord], a
@@ -190,11 +190,11 @@ OpenMenu::
 	call CopyMenuData
 	call GetMenuIndexSet
 	push de
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	push af
-	call Function1e8a
+	call .ExitMenu_NoPoppingError
 	pop af
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call AutomaticGetMenuBottomCoord
 	call PushWindow
 	call MenuBox
@@ -202,17 +202,19 @@ OpenMenu::
 	call GetMenuIndexSet
 	push de
 	call RunMenuItemPrintingFunction
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 	call UpdateSprites
 	call GetMenuIndexSet
 	pop de
-	call Function1f27
+	call GetStaticMenuJoypad
 	ret
 
-Function1e8a::
+; Unlike _ExitMenu, there is no error for trying to pop a window when none are available.
+.ExitMenu_NoPoppingError:
 	xor a
 	ldh [hBGMapMode], a
+
 	xor a
 	call OpenSRAM
 	call GetWindowStackTop
@@ -251,29 +253,31 @@ GetMenuIndexSet::
 	ld l, a
 	ld a, [wWhichIndexSet]
 	and a
-	jr z, .asm_1ed9
+	jr z, .skip
 	ld b, a
 	ld c, -1
-.asm_1ed2:
+.loop
 	ld a, [hli]
 	cp c
-	jr nz, .asm_1ed2
+	jr nz, .loop
 	dec b
-	jr nz, .asm_1ed2
-.asm_1ed9:
+	jr nz, .loop
+
+.skip
 	ld d, h
 	ld e, l
 	inc hl
-	ld c, $ff
-.asm_1ede:
+	ld c, -1
+.not_terminator
 	inc c
 	ld a, [hli]
-	cp $ff
-	jr nz, .asm_1ede
+	cp -1
+	jr nz, .not_terminator
 	ld a, c
 	ld [wMenuDataItems], a
 	ret
 
+; Unreferenced?
 Function1ee9::
 	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
@@ -297,7 +301,7 @@ RunMenuItemPrintingFunction::
 	call MenuBoxCoord2Tile
 	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
-.asm_1f09:
+.loop
 	inc de
 	ld a, [de]
 	cp -1
@@ -313,70 +317,72 @@ RunMenuItemPrintingFunction::
 	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop de
-	jr .asm_1f09
+	jr .loop
 
-._hl_:
+._hl_
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
-Function1f27::
-; Combines Crystal functions "InitMenuCursorAndButtonPermissions" and "GetStaticMenuJoypad"
+; Combines pokegold functions "InitMenuCursorAndButtonPermissions" and "GetStaticMenuJoypad".
+GetStaticMenuJoypad::
 	push de
 	call InitVerticalMenuCursor
 	ld hl, wMenuJoypadFilter
-	ld a, [wMenuData2]
-	bit 3, a
-	jr z, .asm_1f37
-	set 3, [hl]
-.asm_1f37:
-	bit 2, a
-	jr z, .asm_1f3f
+	ld a, [wMenuDataFlags]
+	bit STATICMENU_ENABLE_START_F, a
+	jr z, .disallow_start
+	set START_F, [hl]
+
+.disallow_start
+	bit STATICMENU_ENABLE_LEFT_RIGHT_F, a
+	jr z, .disallow_left_right
 	ld a, [hl]
 	or D_LEFT | D_RIGHT
 	ld [hl], a
-.asm_1f3f:
-	call Get2DMenuJoypad
+
+.disallow_left_right:
+	call StaticMenuJoypad
 	pop de
-	bit 0, a
-	jr nz, .asm_1f66
-	bit 1, a
-	jr nz, .asm_1f7e
-	bit 3, a
-	jr nz, .asm_1f7e
-	bit 4, a
-	jr nz, .asm_1f58
-	bit 5, a
-	jr nz, .asm_1f5f
+	bit A_BUTTON_F, a
+	jr nz, .a_pressed
+	bit B_BUTTON_F, a
+	jr nz, .b_start_pressed
+	bit START_F, a
+	jr nz, .b_start_pressed
+	bit D_RIGHT_F, a
+	jr nz, .right_pressed
+	bit D_LEFT_F, a
+	jr nz, .left_pressed
 	ret
 
-.asm_1f58:
+.right_pressed
 	ld a, D_RIGHT
 	ld [wMenuJoypad], a
-	jr .asm_1f6b
+	jr .move_cursor
 
-.asm_1f5f:
+.left_pressed
 	ld a, D_LEFT
 	ld [wMenuJoypad], a
-	jr .asm_1f6b
+	jr .move_cursor
 
-.asm_1f66:
+.a_pressed
 	ld a, A_BUTTON
 	ld [wMenuJoypad], a
-.asm_1f6b:
+.move_cursor
 	ld a, [wMenuCursorY]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, de
 	ld a, [hl]
 	ld [wMenuSelection], a
 	ld a, [wMenuCursorY]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	and a
 	ret
 
-.asm_1f7e:
+.b_start_pressed
 	ld a, B_BUTTON
 	ld [wMenuJoypad], a
 	ld a, -1
@@ -400,19 +406,19 @@ PlaceMenuStrings::
 
 ClearWindowData::
 	ld hl, wWindowStackPointer
-	call .clear
+	call .ClearMenuData
 	ld hl, wMenuDataHeader
-	call .clear
-	ld hl, wMenuData2
-	call .clear
-	ld hl, wMenuData3
-	call .clear
+	call .ClearMenuData
+	ld hl, wMenuData
+	call .ClearMenuData
+	ld hl, wMoreMenuData
+	call .ClearMenuData
 
 	xor a
 	call OpenSRAM
 
 	xor a
-	ld hl, sWindowStackTop + 1
+	ld hl, sWindowStackTop
 	ld [hld], a
 	ld [hld], a
 	ld a, l
@@ -423,7 +429,7 @@ ClearWindowData::
 	call CloseSRAM
 	ret
 
-.clear:
+.ClearMenuData:
 	ld bc, wMenuDataHeaderEnd - wMenuDataHeader
 	xor a
 	call ByteFill

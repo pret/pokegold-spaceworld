@@ -17,7 +17,7 @@ DEF ITEMATTR_STRUCT_LENGTH EQU const_value
 	const TM_HM    ; 4
 
 ; item menu types
-; UseItem.dw indexes (see engine/items/pack.asm)
+; DoItemEffect.dw indexes (see engine/items/pack.asm)
 ; UseRegisteredItem.SwitchTo indexes (see engine/overworld/select_menu.asm)
 	const_def
 	const ITEMMENU_NOUSE   ; 0
@@ -45,6 +45,8 @@ DEF NUM_POCKETS EQU const_value
 DEF MAX_ITEMS     EQU 20
 DEF MAX_KEY_ITEMS EQU 20
 DEF MAX_PC_ITEMS  EQU 50
+
+DEF MAX_ITEM_STACK EQU 99
 
 ; held item effects
 	const_def

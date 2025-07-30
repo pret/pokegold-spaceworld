@@ -8,7 +8,7 @@ Function32c8::
 	and a
 	ret
 
-Function32d0::
+GetTerminatingString::
 	ld hl, .EmptyString
 	ret
 

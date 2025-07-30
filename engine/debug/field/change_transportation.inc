@@ -3,7 +3,7 @@ FieldDebug_ChangeTransportation:
 	call LoadMenuHeader
 	ld a, [wPlayerState]
 	call GetActiveTransportation
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	dec a
 	call CopyNameFromMenu
 	call VerticalMenu

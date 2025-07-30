@@ -178,7 +178,7 @@ DebugMapViewer_ShowViewerPrompt:
 	ld a, DEBUGMAPVIEWER_MOVE_CURSOR_TO_PLAYER
 	ldh [hDebugMapViewerJumptable], a
 .no
-	call Function1fea
+	call ScreenCleanup
 	ret
 
 .ChangeViewerPrompt:
@@ -194,7 +194,7 @@ DebugMapViewer_ShowSelectedDetails:
 	jr nc, .skip
 	call RefreshScreen
 	call .DisplayActorCastID
-	call Function1fea
+	call ScreenCleanup
 	ret
 .skip
 	call DisplayBGEventDetails
@@ -370,7 +370,7 @@ DisplayBGEventDetails:
 	call .PrintTableDetails
 	call .WaitInput
 	call CloseWindow
-	call Function1fea
+	call ScreenCleanup
 	ret
 
 .Functionfd0cc:

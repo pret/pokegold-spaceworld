@@ -9,7 +9,7 @@ Function1130b:
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr c, .bigjump
-	ld a, [wBoxListLength]
+	ld a, [wBoxCount]
 	cp MONS_PER_BOX
 	jr nc, .fullbox
 	xor a
@@ -18,7 +18,7 @@ Function1130b:
 	ld [wTempEnemyMonSpecies], a
 	callfar LoadEnemyMon
 	call RecievePokemon
-	predef Functiondd5c
+	predef SendMonIntoBox
 	and $7F
 	add a, $F7
 	ld hl, wStringBuffer2
@@ -35,7 +35,7 @@ Function1130b:
 	ret
 .bigjump
 	call RecievePokemon
-	predef Functiond886
+	predef TryAddMonToParty
 	scf
 	ret
 
@@ -46,7 +46,7 @@ RecievePokemon:
 	dec a
 	ld c, a
 	ld hl, wPokedexCaught
-	ld b, 01 ;SET_FLAG
+	ld b, SET_FLAG
 	predef SmallFarFlagAction
 	pop af
 	ld [wNamedObjectIndexBuffer], a
@@ -57,20 +57,18 @@ RecievePokemon:
 RecievePokemonText:
 	text "<PLAYER>は"
 	line "@"
-
-	db $01, $26, $CD
-
+	text_from_ram wStringBuffer1
 	text "を　てにいれた！@"
-
-	db $0B, "@"
+	sound_dex_fanfare_50_79
+	db "@"
 
 BoxCantHoldText:
 	text "#を　もちきれないので"
 	line "<PC>の　ボックス@"
-	db $01, $31, $CD
+	text_from_ram wStringBuffer2
 	text "　に"
 	cont "@"
-	db $01, $17, $DF
+	text_from_ram wBoxMonNicknames
 	text "を　てんそうした！"
 	done
 

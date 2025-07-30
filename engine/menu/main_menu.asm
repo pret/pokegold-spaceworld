@@ -51,7 +51,7 @@ InitializeNewGameWRAM:
 
 	ld hl, wPartyCount
 	call .InitList
-	ld hl, wBoxListLength
+	ld hl, wBoxCount
 	call .InitList
 	ld hl, wNumBagItems
 	call .InitList

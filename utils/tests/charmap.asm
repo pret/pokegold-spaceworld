@@ -113,7 +113,7 @@
 	charmap "<DEXEND>",  $5f
 
 	charmap "■", $60
-	charmap "▲", $61
+	charmap "▲", $61 
 	charmap "☎", $62
 
 	charmap "Ａ", $60
@@ -273,7 +273,7 @@
 
 	charmap "▷", $ec
 	charmap "▶", $ed
-	charmap "▲", $ed
+	; charmap "▲", $ed
 	charmap "▼", $ee
 	charmap "♂", $ef
 	charmap "円", $f0

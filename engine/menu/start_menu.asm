@@ -14,10 +14,10 @@ DisplayStartMenu:
 	call ClearJoypad
 	call GetStartMenuState
 	ld a, [wStartmenuCursor]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call OpenMenu
 	jr c, .MainReturn
-	ld a, [wMenuCursorBuffer]
+	ld a, [wMenuCursorPosition]
 	ld [wStartmenuCursor], a
 	call PlaceHollowCursor
 	ld a, [wMenuSelection]
@@ -39,7 +39,7 @@ DisplayStartMenu:
 .exit
 	call ExitMenu
 .UpdateTime
-	call Function1fea
+	call ScreenCleanup
 	call UpdateTimePals
 	ret
 
@@ -72,7 +72,7 @@ DisplayStartMenu:
 	db $A8 ; flags
 	db 0 ; items
 	dw StartMenuItems
-	db $8A, $1F
+	dw PlaceMenuStrings
 	dw .Strings
 
 .Strings:
@@ -263,7 +263,7 @@ ToolsPocketHeader:
 	db 4, 9, 2, 0
 	dw wNumBagItems
 
-	dba Function2473b
+	dba PlacePackItems
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
 
@@ -282,7 +282,7 @@ KeyItemsPocketHeader:
 	db 4, 9, 1, 0
 	dw wNumKeyItems
 
-	dba Function2473b
+	dba PlacePackItems
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
 
@@ -297,7 +297,7 @@ BackpackMenuHeader:
 	db 4, 9, 2, 0
 	dw wNumBagItems
 
-	dba Function2473b
+	dba PlacePackItems
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
 
@@ -392,7 +392,7 @@ StartMenu_Backpack:
 DebugBackpackLoop:
 ; checks the field debug flag, if set this runs
 ; otherwise NondebugBackpackLoop runs
-; if wactivebackpackpocket is 1 (doesn't have key items) then jumps below
+; if wActiveBackpackPocket is 1 (doesn't have key items) then jumps below
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
 	jp z, NondebugBackpackLoop
@@ -404,7 +404,7 @@ DebugBackpackLoop:
 	ld de, .ToolsPocketText
 	call DrawBackpackTitleRow
 	ld a, [wRegularItemsCursor]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, [wRegularItemsScrollPosition]
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu
@@ -424,7 +424,7 @@ DebugBackpackLoop:
 	ld de, KeyItemsPocketText
 	call DrawBackpackTitleRow
 	ld a, [wBackpackAndKeyItemsCursor]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, [wBackpackAndKeyItemsScrollPosition]
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu
@@ -444,7 +444,7 @@ NondebugBackpackLoop:
 	ld de, BackpackHeaderText
 	call DrawBackpackTitleRow
 	ld a, [wBackpackAndKeyItemsCursor]
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	ld a, [wBackpackAndKeyItemsScrollPosition]
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu
@@ -509,7 +509,7 @@ BackpackSelected:
 
 .BagSelectJumptable:
 	dw SelectItem
-	dw .UnknownSelection
+	dw .TMHolder
 	dw BallPocketLoop
 	dw .SwapPocket
 	dw SelectItem
@@ -523,9 +523,9 @@ BackpackSelected:
 	and a
 	ret
 
-.UnknownSelection
+.TMHolder
 	call LoadStandardMenuHeader
-	callfar Function2d2fc
+	callfar _TMHolder
 	call ExitMenu
 	call DrawBackpack
 	and a
@@ -630,14 +630,14 @@ UseItemSelection:
 	ret
 
 .SimpleItem:
-	call UseItem
+	call DoItemEffect
 	and a
 	ret
 
 .SpriteItem:
 ; might be a better name for this once
 ; bank 5 gets sorted out
-	call UseItem
+	call DoItemEffect
 	call ClearBGPalettes
 	call StartMenuLoadSprites
 	call DrawBackpack
@@ -645,7 +645,7 @@ UseItemSelection:
 	ret
 
 .FieldMove:
-	call UseItem
+	call DoItemEffect
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jr z, .FailedMove
@@ -794,10 +794,8 @@ BallPocket:
 .MenuData:
 	db SCROLLINGMENU_ENABLE_FUNCTION3 ; flags
 	db 4, 8 ; rows, columns
-	db $80 ; horizontal spacing?
-	db 0 ; ???
-	dw wNumBallItems
-
+	db SCROLLINGMENU_BALL_POCKET
+	dbw 0, wNumBallItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
@@ -901,7 +899,7 @@ HandleSelectedPokemon:
 	xor a
 	ld [wPartyMenuActionText], a
 	ld [wSelectedSwapPosition], a
-	predef PartyMenuInBattle
+	predef OpenPartyMenu
 	jr PartyPrompt.partypromptreturn
 
 PartyPrompt:
@@ -911,7 +909,7 @@ PartyPrompt:
 	callfar UnfreezeMonIcons
 	ld a, PARTYMENUACTION_MOVE
 	ld [wPartyMenuActionText], a
-	predef PartyMenuInBattle
+	predef OpenPartyMenu
 .partypromptreturn
 	jr c, .return
 	jp SelectedPokemonSubmenu
@@ -1361,7 +1359,7 @@ PartyPokemonSummary:
 	xor a
 	ld [wMonType], a
 	call LowVolume
-	predef Function502b5
+	predef StatsScreenMain
 	call MaxVolume
 	call ReloadFontAndTileset
 	call Call_ExitMenu
@@ -1416,7 +1414,7 @@ PartyTryDig:
 	jp PartyPromptExit
 
 PartyCalculateHealth:
-	ld a, MON_MAXHP ; might be wrong, was $24
+	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
 	ldh [hDividend], a
@@ -1426,7 +1424,7 @@ PartyCalculateHealth:
 	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, MON_HP + 1 ; might be wrong, was $23
+	ld a, MON_HP + 1
 	call GetPartyParamLocation
 	ldh a, [hQuotient + 3]
 	sub [hl]
@@ -1434,7 +1432,7 @@ PartyCalculateHealth:
 	ldh a, [hQuotient + 2]
 	sbc [hl]
 	jp nc, PrintNotHealthyEnoughText
-	callfar Functionf218
+	callfar SoftboiledFunction
 	jp HandleSelectedPokemon
 
 PrintNotHealthyEnoughText:
@@ -1492,7 +1490,7 @@ PokeSummary:
 	lb bc, 2, $12
 	call ClearBox
 	hlcoord 3, 1
-	predef Function508c4
+	predef PlacePartyMember
 	ld hl, wPlayerHPPal
 	call SetHPPal
 	ld b, $0E
@@ -1546,7 +1544,7 @@ SummaryDrawPoke:
 	set 6, [hl]
 	jr PartySelectionInputs.PartySelectSkipInputs
 PartySelectionInputs:
-	call Get2DMenuJoypad + 3
+	call StaticMenuJoypad + 3
 	bit B_BUTTON_F, a
 	jp nz, PartySelectionBackOut
 	bit A_BUTTON_F, a
@@ -1600,7 +1598,7 @@ PartySelectionInputs:
 	call PlaceString
 .step
 	hlcoord 1, 14
-	predef Function2d663
+	predef PrintMoveDescription
 	jp PartySelectionInputs
 
 .DrawMovePokeText
@@ -1737,7 +1735,7 @@ CheckRegisteredItem:
 	call RefreshScreen
 	ld hl, .NothingRegisteredText
 	call MenuTextBoxBackup
-	call Function1fea
+	call ScreenCleanup
 	ret
 
 .NothingRegisteredText:
@@ -1811,14 +1809,14 @@ UseRegisteredItem:
 .CantUse
 	call RefreshScreen
 	call PrintCantUseText
-	call Function1fea
+	call ScreenCleanup
 	and a
 	ret
 
 .UnusedSimpleUse
 	call RefreshScreen
-	call UseItem
-	call Function1fea
+	call DoItemEffect
+	call ScreenCleanup
 	and a
 	ret
 
@@ -1826,16 +1824,16 @@ UseRegisteredItem:
 	call RefreshScreen
 	ld hl, wStateFlags
 	res SPRITE_UPDATES_DISABLED_F, [hl]
-	call UseItem
+	call DoItemEffect
 	call ClearPalettes
 	call StartMenuLoadSprites
 	call UpdateTimePals
-	call Function1fea
+	call ScreenCleanup
 	and a
 	ret
 
 .FieldMove
-	call UseItem
+	call DoItemEffect
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jr z, .CantUse2
@@ -1848,7 +1846,7 @@ UseRegisteredItem:
 .CantUse2
 	call RefreshScreen
 	call PrintCantUseText
-	call Function1fea
+	call ScreenCleanup
 	and a
 	ret
 

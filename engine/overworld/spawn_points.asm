@@ -2,6 +2,21 @@ INCLUDE "constants.asm"
 
 SECTION "engine/overworld/spawn_points.asm", ROMX
 
+GetFlyPointMapLocation:
+	ld a, [wFlyDestination]
+	ld l, a
+	ld h, $00
+	add hl, hl
+	add hl, hl
+	ld de, SpawnPoints
+	add hl, de
+	ld b, [hl] ; SpawnPoints + (wFlyDestination * 4)
+	inc hl
+	ld c, [hl]
+	call GetWorldMapLocation
+	ld e, a
+	ret
+
 LoadSpawnPoint:
 ; loads the spawn point in wDefaultSpawnPoint
 	push hl

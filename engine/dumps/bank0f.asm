@@ -261,7 +261,7 @@ asm_3c229:
 	ld hl, wBattleMonPP
 	add hl, bc
 	ld a, [hl]
-	and $3f		; Power points?
+	and PP_MASK
 	jr z, asm_3c219
 	ld a, [wCurPlayerMove]
 	ld [wCurPlayerSelectedMove], a
@@ -275,10 +275,10 @@ asm_3c246:
 	and a
 	jr nz, asm_3c281
 	xor a
-	ld [wcac0], a
+	ld [wMoveSelectionMenuType], a
 	inc a
 	ld [wFXAnimID], a
-	call Function3daa7
+	call MoveSelectionScreen
 	push af
 	call ReloadTilesFromBuffer
 	call DrawHUDsAndHPBars
@@ -1554,13 +1554,13 @@ sub_3cbdb:
 	call LoadStandardMenuHeader
 	ld a, PARTYMENUACTION_SWITCH
 	ld [wPartyMenuActionText], a
-	predef PartyMenuInBattle_Setup
+	predef OpenPartyMenu_ClearGraphics
 
 asm_3cbe8:
 	jr nc, asm_3cbf1
 
 asm_3cbea:
-	predef PartyMenuInBattle
+	predef OpenPartyMenu
 	jr asm_3cbe8
 
 asm_3cbf1:
@@ -1763,7 +1763,7 @@ EnemySwitch:
 
 	ld a, [wCurBattleMon]
 	ld c, a
-	ld b, 1 ; SET_FLAG
+	ld b, SET_FLAG
 	push bc
 	predef SmallFarFlagAction
 	ld hl, wBattleParticipantsIncludingFainted
@@ -2047,7 +2047,7 @@ LoadEnemyMonToSwitchTo:
 
 	ld a, PARTYMENUACTION_SWITCH
 	ld [wPartyMenuActionText], a
-	predef PartyMenuInBattle_Setup
+	predef OpenPartyMenu_ClearGraphics
 
 .pick
 	ld a, 1
@@ -2063,7 +2063,7 @@ LoadEnemyMonToSwitchTo:
 	call PrintText
 
 .fainted
-	predef PartyMenuInBattle
+	predef OpenPartyMenu
 	jr .pick
 
 .notout
@@ -3272,13 +3272,13 @@ BattleMenuPack_SelectItem:
 	ret
 
 .normal_item_effect:
-	call UseItem
+	call DoItemEffect
 	call ClearPalettes
 	callfar DrawBackpack
 	ret
 
 .menu_close:
-	call UseItem
+	call DoItemEffect
 	ret
 
 BattleMenu_PKMN:
@@ -3289,7 +3289,7 @@ asm_3d8c0:
 	call LoadStandardMenuHeader
 	xor a
 	ld [wPartyMenuActionText], a
-	predef PartyMenuInBattle_Setup
+	predef OpenPartyMenu_ClearGraphics
 	jp c, asm_3d918
 	jp asm_3d8eb
 
@@ -3300,7 +3300,7 @@ asm_3d8d5:
 	call ByteFill
 	xor a
 	ld [wPartyMenuActionText], a
-	predef PartyMenuInBattle
+	predef OpenPartyMenu
 	jr c, asm_3d918
 
 asm_3d8eb:
@@ -3347,7 +3347,7 @@ sub_3d930:
 	xor a
 	ld [wMonType], a
 	ld hl, wPartyMon1Species
-	predef Function502b5
+	predef StatsScreenMain
 	call MaxVolume
 	call DisableLCD
 	ld hl, vSprites
@@ -3448,7 +3448,7 @@ PassedBattleMonEntrance:
 	ld a, [wCurPartyMon]
 	ld [wCurBattleMon], a
 	ld c, a
-	ld b, 1 ; SET_FLAG
+	ld b, SET_FLAG
 	push bc
 	ld hl, wBattleParticipantsNotFainted
 	predef SmallFarFlagAction
@@ -3494,70 +3494,71 @@ BattleMenu_Run:
 	ret nz
 	jp DisplayBattleMenu
 
-Function3daa7:
+MoveSelectionScreen::
 	ld hl, wEnemyMonMoves
-	ld a, [wcac0]
+	ld a, [wMoveSelectionMenuType]
 	dec a
-	jr z, asm_3dac8
+	jr z, .got_menu_type
 	dec a
-	jr z, asm_3dabc
-	call sub_3dce0
+	jr z, .ether_elixer_menu
+	call .CheckPlayerHasUsableMoves
 	ret z
 	ld hl, wBattleMonMoves
-	jr asm_3dac8
+	jr .got_menu_type
 
-asm_3dabc:
+.ether_elixer_menu
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Moves
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 
-asm_3dac8:
+.got_menu_type
 	ld de, wListMoves_MoveIndicesBuffer
-	ld bc, 4
+	ld bc, NUM_MOVES
 	call CopyBytes
 	xor a
 	ldh [hBGMapMode], a
-	ld hl, $c340
+	hlcoord 0, 17 - (NUM_MOVES * 2) - 1
 	ld b, 8
 	ld c, 8
-	ld a, [wcac0]
+	ld a, [wMoveSelectionMenuType]
 	cp 2
-	jr nz, asm_3dae9
-	ld hl, $c34a
+	jr nz, .got_dims
+	hlcoord 10, 17 - (NUM_MOVES * 2) - 1
 	ld b, 8
 	ld c, 8
 
-asm_3dae9:
+.got_dims
 	call DrawTextBox
-	ld hl, $c36a
-	ld a, [wcac0]
+	hlcoord 2, 17 - (NUM_MOVES * 2) + 1
+	ld a, [wMoveSelectionMenuType]
 	cp 2
-	jr nz, asm_3daf9
-	ld hl, $c374
+	jr nz, .got_start_coord
+	hlcoord 12, 17 - (NUM_MOVES * 2) + 1
 
-asm_3daf9:
-	ld a, $28
+.got_start_coord
+	ld a, SCREEN_WIDTH * 2
 	ld [wHPBarMaxHP], a
 	predef ListMoves
-	ld b, 1
-	ld a, [wcac0]
-	cp 2
-	jr nz, asm_3db0e
-	ld b, $b
 
-asm_3db0e:
-	ld a, $a
+	ld b, 1
+	ld a, [wMoveSelectionMenuType]
+	cp 2
+	jr nz, .got_default_coord
+	ld b, 11
+
+.got_default_coord
+	ld a, 17 - (NUM_MOVES * 2) + 1
 	ld [w2DMenuCursorInitY], a
 	ld a, b
 	ld [w2DMenuCursorInitX], a
-	ld a, [wcac0]
+	ld a, [wMoveSelectionMenuType]
 	cp 1
-	jr z, asm_3db22
+	jr z, .skip_inc
 	ld a, [wCurMoveNum]
 	inc a
 
-asm_3db22:
+.skip_inc
 	ld [wMenuCursorY], a
 	ld a, 1
 	ld [wMenuCursorX], a
@@ -3566,25 +3567,30 @@ asm_3db22:
 	ld [w2DMenuNumRows], a
 	ld a, 1
 	ld [w2DMenuNumCols], a
-	ld c, $2c
-	ld a, [wcac0]
-	dec a
-	ld b, $c1
-	jr z, asm_3db59
-	dec a
-	ld b, $c3
-	jr z, asm_3db59
-	ld a, [wLinkMode]
-	cp 3
-	jr z, asm_3db59
-	ld a, [wDebugFlags]
-	bit 0, a
-	ld b, $c7
-	jr z, asm_3db59
-	ld b, $ff
-	ld c, $2f
 
-asm_3db59:
+	ld c, STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP
+	ld a, [wMoveSelectionMenuType]
+	dec a
+	ld b, D_DOWN | D_UP | A_BUTTON
+	jr z, .okay
+
+	dec a
+	ld b,  D_DOWN | D_UP | A_BUTTON | B_BUTTON
+	jr z, .okay
+
+	ld a, [wLinkMode]
+	cp 3 ; LINK_COLOSSEUM
+	jr z, .okay
+
+	ld a, [wDebugFlags]
+	bit DEBUG_BATTLE_F, a
+	ld b, D_DOWN | D_UP | A_BUTTON | B_BUTTON | SELECT
+	jr z, .okay
+
+	ld b, D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON | START | SELECT
+	ld c, STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_SELECT | STATICMENU_DISABLE_B | STATICMENU_ENABLE_START | STATICMENU_WRAP
+
+.okay
 	ld a, b
 	ld [wMenuJoypadFilter], a
 	ld a, c
@@ -3594,92 +3600,100 @@ asm_3db59:
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
 
-asm_3db6a:
-	ld a, [wcac0]
+.menu_loop
+	ld a, [wMoveSelectionMenuType]
 	and a
-	jr z, asm_3db7e
-	dec a
-	jr nz, asm_3db9a
-	ld hl, $c3c3
-	ld de, Data3dc47
-	call PlaceString
-	jr asm_3db9a
+	jr z, .battle_player_moves
 
-asm_3db7e:
+	dec a
+	jr nz, .interpret_joypad
+	hlcoord 11, 14
+	ld de, .Unused_BattleText_MimicWhichMove
+	call PlaceString
+	jr .interpret_joypad
+
+.battle_player_moves
 	ld a, [wDebugFlags]
 	bit 0, a
-	jr nz, asm_3db9a
-	call sub_3ddba
+	jr nz, .interpret_joypad
+	
+	call MoveInfoBox
 	ld a, [wSelectedSwapPosition]
 	and a
-	jr z, asm_3db9a
-	ld hl, $c369
+	jr z, .interpret_joypad
+	hlcoord 1, 18 - (NUM_MOVES * 2)
 	dec a
-	ld bc, $28
+	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
-	ld [hl], $ec
+	ld [hl], "▷"
 
-asm_3db9a:
+.interpret_joypad
 	call WaitBGMap
 	ld a, 1
 	ldh [hBGMapMode], a
-	call Get2DMenuJoypad_NoPlaceCursor
-	bit 6, a
-	jp nz, asm_3dc55
-	bit 7, a
-	jp nz, asm_3dc66
-	bit 2, a
-	jp nz, asm_3dd31
-	bit 3, a
-	jp nz, asm_3dc7b
-	bit 4, a
-	jp nz, asm_3dcaa
-	bit 5, a
-	jp nz, asm_3dca4
-	bit 1, a
+	call ScrollingMenuJoypad
+	bit D_UP_F, a
+	jp nz, .pressed_up
+	bit D_DOWN_F, a
+	jp nz, .pressed_down
+	bit SELECT_F, a
+	jp nz, .pressed_select
+	bit START_F, a
+	jp nz, .pressed_start
+	bit D_RIGHT_F, a
+	jp nz, .pressed_right
+	bit D_LEFT_F, a
+	jp nz, .pressed_left
+	bit B_BUTTON_F, a
+	; A button
 	push af
+
 	xor a
 	ld [wSelectedSwapPosition], a
 	ld a, [wMenuCursorY]
 	dec a
 	ld [wMenuCursorY], a
 	ld b, a
-	ld a, [wcac0]
+	ld a, [wMoveSelectionMenuType]
 	dec a
-	jr nz, asm_3dbd9
+	jr nz, .not_enemy_moves_process_b
 	pop af
 	ret
 
-asm_3dbd9:
+.not_enemy_moves_process_b
 	dec a
 	ld a, b
 	ld [wCurMoveNum], a
-	jr nz, asm_3dbe2
+	jr nz, .use_move
+
 	pop af
 	ret
 
-asm_3dbe2:
+.use_move
 	pop af
 	ret nz
+
 	ld hl, wBattleMonPP
 	ld a, [wMenuCursorY]
 	ld c, a
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	and $3f
-	jr z, asm_3dc1a
+	and PP_MASK
+	jr z, .no_pp_left
+
 	ld a, [wPlayerDisableCount]
 	swap a
 	and $f
 	dec a
 	cp c
-	jr z, asm_3dc15
-	ld a, [wPlayerSubStatus5]
-	bit 3, a
-	jr nz, asm_3dc05
+	jr z, .move_disabled
 
-asm_3dc05:
+	ld a, [wPlayerSubStatus5]
+	bit SUBSTATUS_TRANSFORMED, a
+	jr nz, .transformed
+	; something was commented out here
+.transformed
 	ld a, [wMenuCursorY]
 	ld hl, wBattleMonMoves
 	ld c, a
@@ -3690,162 +3704,174 @@ asm_3dc05:
 	xor a
 	ret
 
-asm_3dc15:
-	ld hl, Data3dc38
-	jr asm_3dc1d
+.move_disabled
+	ld hl, .BattleText_TheMoveIsDisabled
+	jr .place_textbox_start_over
 
-asm_3dc1a:
-	ld hl, Data3dc26
+.no_pp_left
+	ld hl, .BattleText_TheresNoPPLeftForThisMove
 
-asm_3dc1d:
+.place_textbox_start_over
 	call PrintText
 	call ReloadTilesFromBuffer
-	jp Function3daa7
+	jp MoveSelectionScreen
 
 
 
-Data3dc26:
-	text "わざの　のこりポイントが　ない！<PROMPT>"
+.BattleText_TheresNoPPLeftForThisMove:
+	text "わざの　のこりポイントが　ない！"
+	prompt
 
-Data3dc38:
-	text "わざを　ふうじられている！<PROMPT>"
+.BattleText_TheMoveIsDisabled:
+	text "わざを　ふうじられている！"
+	prompt
 
-Data3dc47:
-	db "どのわざを<NEXT>ものまねする？@"
+.Unused_BattleText_MimicWhichMove:
+	db   "どのわざを"
+	next "ものまねする？@"
 
-asm_3dc55:
+.pressed_up
 	ld a, [wMenuCursorY]
 	and a
-	jp nz, asm_3db6a
+	jp nz, .menu_loop
 	ld a, [wNumMoves]
 	inc a
 	ld [wMenuCursorY], a
-	jp asm_3db6a
+	jp .menu_loop
 
-asm_3dc66:
+.pressed_down
 	ld a, [wMenuCursorY]
 	ld b, a
 	ld a, [wNumMoves]
 	inc a
 	inc a
 	cp b
-	jp nz, asm_3db6a
+	jp nz, .menu_loop
 	ld a, 1
 	ld [wMenuCursorY], a
-	jp asm_3db6a
+	jp .menu_loop
 
-asm_3dc7b:
-	bit 3, a
+.DebugMovePreview:
+.pressed_start
+	bit START_F, a
 	ld a, 0
-	jr nz, asm_3dc83
+	jr nz, .player_side
 	ld a, 1
 
-asm_3dc83:
+.player_side
 	ldh [hBattleTurn], a
 	call ReloadTilesFromBuffer
-	call sub_3dcb7
-	ld a, [wcabe]
+	call .DrawDebugMoveSelection
+	ld a, [wPlayerDebugSelectedMove]
 	and a
-	jp z, Function3daa7
+	jp z, MoveSelectionScreen
 	ld [wFXAnimID], a
 	xor a
 	ld [wNumHits], a
 	ld [wFXAnimID + 1], a
 	predef PlayBattleAnim
-	jp Function3daa7
+	jp MoveSelectionScreen
 
-asm_3dca4:
-	ld a, [wcabe]
+.pressed_left
+	ld a, [wPlayerDebugSelectedMove]
 	dec a
-	jr asm_3dcae
+	jr .pressed_left_right_continue
 
-asm_3dcaa:
-	ld a, [wcabe]
+.pressed_right
+	ld a, [wPlayerDebugSelectedMove]
 	inc a
 
-asm_3dcae:
-	ld [wcabe], a
-	call sub_3dcb7
-	jp Function3daa7
+.pressed_left_right_continue
+	ld [wPlayerDebugSelectedMove], a
+	call .DrawDebugMoveSelection
+	jp MoveSelectionScreen
 
-sub_3dcb7:
-	ld hl, $c3ea
-	ld bc, $020a
+.DrawDebugMoveSelection:
+	hlcoord 10, 16
+	lb bc, 2, 10
 	call ClearBox
-	ld hl, $c3fe
-	ld de, wcabe
-	ld bc, $8103
+
+	hlcoord 10, 17
+	ld de, wPlayerDebugSelectedMove
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNumber
-	ld a, [wcabe]
+
+	ld a, [wPlayerDebugSelectedMove]
 	and a
 	ret z
-	cp $fc
+	cp NUM_ATTACKS + 1
 	ret nc
-	ld [wNumSetBits], a
+
+	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
-	ld hl, $c401
+	hlcoord 13, 17
 	jp PlaceString
 
-sub_3dce0:
-	ld a, $a5
+.CheckPlayerHasUsableMoves:
+	ld a, MOVE_STRUGGLE
 	ld [wCurPlayerSelectedMove], a
 	ld a, [wPlayerDisableCount]
 	and a
 	ld hl, wBattleMonPP
-	jr nz, asm_3dcf7
+	jr nz, .disabled
+
 	ld a, [hli]
 	or [hl]
 	inc hl
 	or [hl]
 	inc hl
 	or [hl]
+; BUG: There should be "and PP_MASK" here
 	ret nz
-	jr asm_3dd0c
+	jr .force_struggle
 
-asm_3dcf7:
+.disabled
 	swap a
 	and $f
 	ld b, a
-	ld d, 5
+	ld d, NUM_MOVES + 1
 	xor a
-
-asm_3dcff:
+.loop
 	dec d
-	jr z, asm_3dd0a
+	jr z, .done
 	ld c, [hl]
 	inc hl
 	dec b
-	jr z, asm_3dcff
+	jr z, .loop
 	or c
-	jr asm_3dcff
+	jr .loop
 
-asm_3dd0a:
-	and a
+.done
+	; BUG: This will result in a move with PP Up confusing the game.
+	and a ; should be "and PP_MASK"
 	ret nz
 
-asm_3dd0c:
-	ld hl, Data3dd19
+.force_struggle
+	ld hl, .BattleText_MonHasNoMovesLeft
 	call PrintText
-	ld c, $3c
+	ld c, 60
 	call DelayFrames
 	xor a
 	ret
 
-Data3dd19:
+.BattleText_MonHasNoMovesLeft:
 	text_from_ram wBattleMonNickname
-	text "は　だすことの　できる<LINE>わざが　ない！<DONE>"
+	text "は　だすことの　できる"
+	line "わざが　ない！"
+	done
 
-asm_3dd31:
+.pressed_select
 	ld a, [wDebugFlags]
-	bit 0, a
-	jp nz, asm_3dc7b
+	bit DEBUG_BATTLE_F, a
+	jp nz, .DebugMovePreview
+
 	ld a, [wSelectedSwapPosition]
 	and a
-	jr z, asm_3ddb1
+	jr z, .start_swap
 	ld hl, wBattleMonMoves
-	call sub_3dd97
+	call .swap_bytes
 	ld hl, wBattleMonPP
-	call sub_3dd97
+	call .swap_bytes
 	ld hl, wPlayerDisableCount
 	ld a, [hl]
 	swap a
@@ -3853,7 +3879,7 @@ asm_3dd31:
 	ld b, a
 	ld a, [wMenuCursorY]
 	cp b
-	jr nz, asm_3dd67
+	jr nz, .not_swapping_disabled_move
 	ld a, [hl]
 	and $f
 	ld b, a
@@ -3861,12 +3887,12 @@ asm_3dd31:
 	swap a
 	add b
 	ld [hl], a
-	jr asm_3dd78
+	jr .swap_moves_in_party_struct
 
-asm_3dd67:
+.not_swapping_disabled_move
 	ld a, [wSelectedSwapPosition]
 	cp b
-	jr nz, asm_3dd78
+	jr nz, .swap_moves_in_party_struct
 	ld a, [hl]
 	and $f
 	ld b, a
@@ -3875,22 +3901,23 @@ asm_3dd67:
 	add b
 	ld [hl], a
 
-asm_3dd78:
+.swap_moves_in_party_struct
+; BUG: COOLTRAINER glitch from Generation I still exists here.
 	ld hl, wPartyMon1Moves
 	ld a, [wCurBattleMon]
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
-	call sub_3dd97
+	call .swap_bytes
 	pop hl
-	ld bc, $15
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
-	call sub_3dd97
+	call .swap_bytes
 	xor a
 	ld [wSelectedSwapPosition], a
-	jp Function3daa7
+	jp MoveSelectionScreen
 
-sub_3dd97:
+.swap_bytes
 	push hl
 	ld a, [wSelectedSwapPosition]
 	dec a
@@ -3912,33 +3939,37 @@ sub_3dd97:
 	ld [de], a
 	ret
 
-asm_3ddb1:
+.start_swap
 	ld a, [wMenuCursorY]
 	ld [wSelectedSwapPosition], a
-	jp Function3daa7
+	jp MoveSelectionScreen
 
-sub_3ddba:
+MoveInfoBox:
 	xor a
 	ldh [hBGMapMode], a
-	ld hl, $c399
+
+	hlcoord 9, 12
 	ld b, 4
 	ld c, 9
 	call DrawTextBox
+
 	ld a, [wPlayerDisableCount]
 	and a
-	jr z, asm_3dde3
+	jr z, .not_disabled
+
 	swap a
 	and $f
 	ld b, a
 	ld a, [wMenuCursorY]
 	cp b
-	jr nz, asm_3dde3
-	ld hl, $c3d6
-	ld de, DisabledText
-	call PlaceString
-	jr asm_3de5b
+	jr nz, .not_disabled
 
-asm_3dde3:
+	hlcoord 10, 15
+	ld de, .Disabled
+	call PlaceString
+	jr .done
+
+.not_disabled
 	ld hl, wMenuCursorY
 	dec [hl]
 	xor a
@@ -3950,11 +3981,13 @@ asm_3dde3:
 	add hl, bc
 	ld a, [hl]
 	ld [wCurPlayerSelectedMove], a
+
 	ld a, [wCurBattleMon]
 	ld [wCurPartyMon], a
-	ld a, 4
+	ld a, WILDMON
 	ld [wMonType], a
 	callfar GetMaxPPOfMove
+
 	ld hl, wMenuCursorY
 	ld c, [hl]
 	inc [hl]
@@ -3962,39 +3995,38 @@ asm_3dde3:
 	ld hl, wBattleMonPP
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	ld [wStringBuffer1], a
-
-	; Untranslated references to VRAM! Hooray?
-
-	ld hl, $c3d6
-	ld de, MoveTypeText
+	hlcoord 10, 15
+	ld de, .Type
 	call PlaceString
-	ld hl, $c3b4
+
+	hlcoord 16, 13
 	ld [hl], "／"
-	ld hl, $c3ee
+	hlcoord 14, 16
 	ld [hl], "／"
-	ld hl, $c3b2
+	hlcoord 14, 13
 	ld de, wStringBuffer1
-	ld bc, $0102
+	lb bc, 1, 2
 	call PrintNumber
-	ld hl, $c3b5
-	ld de, wNumSetBits
-	ld bc, $0102
+
+	hlcoord 17, 13
+	ld de, wTempPP
+	lb bc, 1, 2
 	call PrintNumber
+
 	callfar UpdateMoveData
 	ld a, [wPlayerMoveStruct]
 	ld b, a
-	ld hl, $c3ef
+	hlcoord 15, 16
 	predef PrintMoveType
 
-asm_3de5b:
+.done
 	jp WaitBGMap
 
-DisabledText:
+.Disabled:
 	db "ふうじられている！@"
-
-MoveTypeText:
+.Type:
 	db "わざタイプ@"
 
 sub_3de6e:
@@ -4321,8 +4353,8 @@ LoadEnemyMon:
 ; Load preset middle-class DVs for trainer battles.
 	ld a, [wBattleMode]
 	cp TRAINER_BATTLE
-	ld a, $98
-	ld b, $88
+	ln a, 9, 8
+	ln b, 8, 8
 	jr z, .UpdateDVs
 
 ; Otherwise randomly generate DVs for wild encounters
@@ -4489,33 +4521,36 @@ asm_3e193:
 	pop bc
 	ret
 
-Function3e1a4:
-	call Function3e1aa
-	jp asm_3e1d1
+; A leftover from Generation I, where it had no effect due to no stats actually being selected.
+; BUG: Remarkably, this is STILL run from HealStatus despite the stat double/halve bitfields
+; being overwritten with variables that are actually used as substatuses.
+DoubleOrHalveSelectedStats_Old::
+	call DoubleSelectedStats
+	jp HalveSelectedStats
 
-Function3e1aa:
+DoubleSelectedStats:
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wPlayerSubStatus1]
+	ld a, [wPlayerSubStatus1] ; wPlayerStatsToDouble
 	ld hl, wBattleMonAttack + 1
-	jr z, asm_3e1bb
-	ld a, [wEnemySubStatus1]
+	jr z, .notEnemyTurn
+	ld a, [wEnemySubStatus1] ; wEnemyStatsToDouble
 	ld hl, wEnemyMonAttack + 1
 
-asm_3e1bb:
+.notEnemyTurn
 	ld c, 4
 	ld b, a
 
-asm_3e1be:
+.loop
 	srl b
-	call c, sub_3e1c9
+	call c, .doubleStat
 	inc hl
 	inc hl
 	dec c
 	ret z
-	jr asm_3e1be
+	jr .loop
 
-sub_3e1c9:
+.doubleStat
 	ld a, [hl]
 	add a
 	ld [hld], a
@@ -4524,29 +4559,27 @@ sub_3e1c9:
 	ld [hli], a
 	ret
 
-asm_3e1d1:
+HalveSelectedStats:
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wPlayerSubStatus2]
+	ld a, [wPlayerSubStatus2] ; wPlayerStatsToHalve
 	ld hl, wBattleMonAttack
-	jr z, asm_3e1e2
-	ld a, [wEnemySubStatus2]
+	jr z, .notEnemyTurn
+	ld a, [wEnemySubStatus2] ; wEnemyStatsToHalve
 	ld hl, wEnemyMonAttack
-
-asm_3e1e2:
+.notEnemyTurn
 	ld c, 4
 	ld b, a
-
-asm_3e1e5:
+.loop
 	srl b
-	call c, sub_3e1f0
+	call c, .halveStat
 	inc hl
 	inc hl
 	dec c
 	ret z
-	jr asm_3e1e5
+	jr .loop
 
-sub_3e1f0:
+.halveStat
 	ld a, [hl]
 	srl a
 	ld [hli], a
@@ -4555,11 +4588,10 @@ sub_3e1f0:
 	rr a
 	ld [hl], a
 	or d
-	jr nz, asm_3e1ff
+	jr nz, .nonzeroStat
 	ld a, 1
 	ld [hl], a
-
-asm_3e1ff:
+.nonzeroStat
 	dec hl
 	ret
 
@@ -5081,7 +5113,7 @@ asm_3e507:
 	xor a
 	ld [wMonType], a
 	predef CopyMonToTempMon
-	farcall Function50caa
+	farcall CalcLevel
 	pop bc
 	ld hl, $1f
 	add hl, bc
@@ -5178,15 +5210,15 @@ asm_3e5d3:
 	ld [wMonType], a
 	predef CopyMonToTempMon
 	ld d, 1
-	callfar Function50628
+	callfar PrintTempMonStats
 	call TextboxWaitPressAorB_BlinkCursor
 	call ReloadTilesFromBuffer
 	xor a
 	ld [wMonType], a
 	ld a, [wCurSpecies]
 	ld [wNumSetBits], a
-	predef Function421f8
-	ld hl, wcdc2
+	predef LearnLevelMoves
+	ld hl, wEvolvableFlags
 	ld a, [wCurPartyMon]
 	ld c, a
 	ld b, 1
@@ -5843,12 +5875,12 @@ endr
 
 SECTION "engine/dumps/bank0f.asm@Function3ee3e", ROMX
 Function3ee3e:
-	ld a, [wce2d]
+	ld a, [wRepelEffect]
 	and a
 	jr z, asm_3ee4b
 	dec a
 	jp z, asm_3eeba
-	ld [wce2d], a
+	ld [wRepelEffect], a
 
 asm_3ee4b:
 	call sub_3eec8
@@ -5906,7 +5938,7 @@ asm_3ee91:
 	jr c, asm_3eebd
 	ld [wCurPartySpecies], a
 	ld [wTempEnemyMonSpecies], a
-	ld a, [wce2d]
+	ld a, [wRepelEffect]
 	and a
 	jr z, asm_3eec1
 	ld a, [wPartyMon1Level]
@@ -5917,7 +5949,7 @@ asm_3ee91:
 	jr asm_3eec1
 
 asm_3eeba:
-	ld [wce2d], a
+	ld [wRepelEffect], a
 
 asm_3eebd:
 	ld a, 1
@@ -6012,7 +6044,7 @@ Function3ef19:
 	ld a, [wOtherTrainerClass]
 	and a
 	jr nz, InitBattleCommon
-	ld a, [wce01]
+	ld a, [wTempWildMonSpecies]
 	and a
 	jr z, InitBattleCommon
 	ld [wCurPartySpecies], a
@@ -6338,8 +6370,8 @@ asm_3f148:
 
 asm_3f151:
 	xor a
-	ld [wcab9], a
-	predef Function41fa1
+	ld [wForceEvolution], a
+	predef EvolveAfterBattle
 
 asm_3f15a:
 	xor a
@@ -6347,7 +6379,7 @@ asm_3f15a:
 	ld [wBattleMode], a
 	ld [wBattleType], a
 	ld [wAttackMissed], a
-	ld [wce01], a
+	ld [wTempWildMonSpecies], a
 	ld [wOtherTrainerClass], a
 	ld [wce38], a
 	ld [wce39], a

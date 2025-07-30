@@ -121,7 +121,7 @@ ForgetMove::
 	call PrintText
 	hlcoord 10, 8
 	ld b, NUM_MOVES * 2
-	ld c, MOVE_NAME_LENGTH + 3
+	ld c, MOVE_NAME_LENGTH
 	call DrawTextBox
 	hlcoord 12, 10
 	ld a, SCREEN_WIDTH * 2
@@ -147,7 +147,7 @@ ForgetMove::
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
-	call Get2DMenuJoypad
+	call StaticMenuJoypad
 	push af
 	call ReloadTilesFromBuffer
 	pop af

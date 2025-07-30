@@ -168,7 +168,7 @@ CutScript:
 	call LoadMapPart
 	call UpdateSprites
 	call WaitBGMap
-	call Function1fea
+	call ScreenCleanup
 	scf
 	ret
 
@@ -252,7 +252,7 @@ SurfScript:
 	call RedrawPlayerSprite
 	call PlayMapMusic
 	call MovePlayerIntoWater
-	call Function1fea
+	call ScreenCleanup
 	ret
 
 Text_UsedSurf:
@@ -531,7 +531,7 @@ TeleportScript:
 	ld c, 60
 	call DelayFrames
 	call CloseWindow
-	call Function1fea
+	call ScreenCleanup
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
 	jpfar DoTeleportAnimation

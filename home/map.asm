@@ -1204,7 +1204,7 @@ ApplyFlashlight::
 
 .no_flashlight
 	ld de, wTileMap
-	ld b, SCREEN_HEIGHT ; TODO: constantify this
+	ld b, SCREEN_HEIGHT
 .row
 	ld c, SCREEN_WIDTH
 .tile
@@ -1692,9 +1692,9 @@ Function2ba8::
 	call Bankswitch
 	call HandleNPCStep
 	call LoadMinorObjectGFX
-	ld a, BANK(Functiond6e4)
+	ld a, BANK(_HandlePlayerStep)
 	call Bankswitch
-	call Functiond6e4
+	call _HandlePlayerStep
 	ld a, BANK(InitSprites)
 	call Bankswitch
 	call InitSprites

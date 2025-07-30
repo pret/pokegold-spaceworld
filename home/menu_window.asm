@@ -5,72 +5,77 @@ SECTION "home/menu_window.asm", ROM0
 SetMenuAttributes::
 	push hl
 	push bc
-	ld hl, wMenuData3
-	ld b, $8
-.asm_1a6b:
+	ld hl, wMoreMenuData
+	ld b, w2DMenuDataEnd - wMoreMenuData
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
-	jr nz, .asm_1a6b
-	ld a, $1
-	ld [hli], a
-	ld [hli], a
+	jr nz, .loop
+
+	ld a, 1
+	ld [hli], a ; wMenuCursorY
+	ld [hli], a ; wMenuCursorX
 	xor a
-	ld [hli], a
-	ld [hli], a
+	ld [hli], a ; wCursorOffCharacter
+	ld [hli], a ; wCursorCurrentTile
 	ld [hli], a
 	pop bc
 	pop hl
 	ret
 
-Get2DMenuJoypad::
+StaticMenuJoypad::
 	call Place2DMenuCursor
-Get2DMenuJoypad_NoPlaceCursor::
+ScrollingMenuJoypad::
 	ld hl, w2DMenuFlags2
-	res 7, [hl]
-.loop:
+	res _2DMENU_DISABLE_JOYPAD_FILTER_F, [hl]
+
+.menu_joypad_loop
 	call Move2DMenuCursor
 	call WaitBGMap
-.asm_1a8a:
+
+.loopRTC
 	call UpdateTime
 	call UpdateTimeOfDayPalettes
 	call Menu_WasButtonPressed
-	jr c, .asm_1a9f
+	jr c, .pressed
 	ld a, [w2DMenuFlags1]
-	bit 7, a
+	bit _2DMENU_DISABLE_JOYPAD_FILTER_F, a
 	jp nz, .done
-	jr .asm_1a8a
+	jr .loopRTC
 
-.asm_1a9f:
+.pressed
 	call _2DMenuInterpretJoypad
 	jp c, .done
 	ld a, [w2DMenuFlags1]
-	bit 7, a
+	bit _2DMENU_DISABLE_JOYPAD_FILTER_F, a
 	jr nz, .done
 	ldh a, [hJoySum]
 	ld b, a
 	ld a, [wMenuJoypadFilter]
 	and b
-	jp z, .loop
-.done:
+	jp z, .menu_joypad_loop
+
+.done
 	ldh a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
-	jr z, .asm_1ac4
+	jr z, .a_b_not_pressed
 	push de
 	ld de, SE_SELECT
 	call PlaySFX
 	pop de
-.asm_1ac4:
+.a_b_not_pressed
 	ldh a, [hJoySum]
 	ret
 
 Menu_WasButtonPressed::
 	ld a, [w2DMenuFlags1]
-	bit 6, a
-	jr z, .asm_1ad6
+	bit _2DMENU_ENABLE_SPRITE_ANIMS_F, a
+	jr z, .skip_to_joypad
 	farcall PlaySpriteAnimationsAndDelayFrame
-.asm_1ad6:
+
+.skip_to_joypad
 	call GetJoypadDebounced
 	ldh a, [hJoySum]
 	and a
@@ -81,125 +86,125 @@ Menu_WasButtonPressed::
 _2DMenuInterpretJoypad::
 	ldh a, [hJoySum]
 	bit A_BUTTON_F, a
-	jp nz, .PressedABStartOrSelect
+	jp nz, .a_b_start_select
 	bit B_BUTTON_F, a
-	jp nz, .PressedABStartOrSelect
+	jp nz, .a_b_start_select
 	bit SELECT_F, a
-	jp nz, .PressedABStartOrSelect
+	jp nz, .a_b_start_select
 	bit START_F, a
-	jp nz, .PressedABStartOrSelect
+	jp nz, .a_b_start_select
 	bit D_RIGHT_F, a
-	jr nz, .PressedRight
+	jr nz, .d_right
 	bit D_LEFT_F, a
-	jr nz, .PressedLeft
+	jr nz, .d_left
 	bit D_UP_F, a
-	jr nz, .PressedUp
+	jr nz, .d_up
 	bit D_DOWN_F, a
-	jr nz, .PressedDown
+	jr nz, .d_down
 	and a
 	ret
 
-.SetFlag15AndCarry:
+.set_bit_7
 	ld hl, w2DMenuFlags2
-	set 7, [hl]
+	set _2DMENU_EXITING_F, [hl]
 	scf
 	ret
 
-.PressedDown:
+.d_down
 	ld hl, wMenuCursorY
 	ld a, [w2DMenuNumRows]
 	cp [hl]
-	jr z, .asm_1b1a
+	jr z, .check_wrap_around_down
 	inc [hl]
 	xor a
 	ret
 
-.asm_1b1a:
+.check_wrap_around_down
 	ld a, [w2DMenuFlags1]
-	bit 5, a
-	jr nz, .asm_1b28
-	bit 3, a
-	jp nz, .SetFlag15AndCarry
+	bit _2DMENU_WRAP_UP_DOWN_F, a
+	jr nz, .wrap_around_down
+	bit _2DMENU_EXIT_DOWN_F, a
+	jp nz, .set_bit_7
 	xor a
 	ret
 
-.asm_1b28:
+.wrap_around_down
 	ld [hl], $1
 	xor a
 	ret
 
-.PressedUp:
+.d_up
 	ld hl, wMenuCursorY
 	ld a, [hl]
 	dec a
-	jr z, .asm_1b36
+	jr z, .check_wrap_around_up
 	ld [hl], a
 	xor a
 	ret
 
-.asm_1b36:
+.check_wrap_around_up
 	ld a, [w2DMenuFlags1]
-	bit 5, a
-	jr nz, .asm_1b44
-	bit 2, a
-	jp nz, .SetFlag15AndCarry
+	bit _2DMENU_WRAP_UP_DOWN_F, a
+	jr nz, .wrap_around_up
+	bit _2DMENU_EXIT_UP_F, a
+	jp nz, .set_bit_7
 	xor a
 	ret
 
-.asm_1b44:
+.wrap_around_up
 	ld a, [w2DMenuNumRows]
 	ld [hl], a
 	xor a
 	ret
 
-.PressedLeft:
+.d_left
 	ld hl, wMenuCursorX
 	ld a, [hl]
 	dec a
-	jr z, .asm_1b54
+	jr z, .check_wrap_around_left
 	ld [hl], a
 	xor a
 	ret
 
-.asm_1b54:
+.check_wrap_around_left
 	ld a, [w2DMenuFlags1]
-	bit 4, a
-	jr nz, .asm_1b62
-	bit 1, a
-	jp nz, .SetFlag15AndCarry
+	bit _2DMENU_WRAP_LEFT_RIGHT_F, a
+	jr nz, .wrap_around_left
+	bit _2DMENU_EXIT_LEFT_F, a
+	jp nz, .set_bit_7
 	xor a
 	ret
 
-.asm_1b62:
+.wrap_around_left
 	ld a, [w2DMenuNumCols]
 	ld [hl], a
 	xor a
 	ret
 
-.PressedRight:
+.d_right
 	ld hl, wMenuCursorX
 	ld a, [w2DMenuNumCols]
 	cp [hl]
-	jr z, .asm_1b74
+	jr z, .check_wrap_around_right
 	inc [hl]
 	xor a
 	ret
 
-.asm_1b74:
+.check_wrap_around_right
 	ld a, [w2DMenuFlags1]
-	bit 4, a
-	jr nz, .asm_1b82
-	bit 0, a
-	jp nz, .SetFlag15AndCarry
+	bit _2DMENU_WRAP_LEFT_RIGHT_F, a
+	jr nz, .wrap_around_right
+	bit _2DMENU_EXIT_RIGHT_F, a
+	jp nz, .set_bit_7
 	xor a
 	ret
 
-.asm_1b82:
+.wrap_around_right
 	ld [hl], $1
 	xor a
 	ret
 
-.PressedABStartOrSelect:
+.a_b_start_select
 	xor a
 	ret
 
@@ -209,7 +214,7 @@ Move2DMenuCursor::
 	ld h, [hl]
 	ld l, a
 	ld a, [hl]
-	cp $ed
+	cp "▶"
 	jr nz, Place2DMenuCursor
 	ld a, [wCursorOffCharacter]
 	ld [hl], a
@@ -227,12 +232,13 @@ Place2DMenuCursor::
 	ld b, a
 	xor a
 	dec b
-	jr z, .asm_1bb6
-.asm_1bb2:
+	jr z, .got_row
+.row_loop
 	add c
 	dec b
-	jr nz, .asm_1bb2
-.asm_1bb6:
+	jr nz, .row_loop
+
+.got_row
 	ld c, SCREEN_WIDTH
 	call AddNTimes
 	ld a, [w2DMenuCursorOffsets]
@@ -242,20 +248,22 @@ Place2DMenuCursor::
 	ld b, a
 	xor a
 	dec b
-	jr z, .asm_1bcd
-.asm_1bc9:
+	jr z, .got_col
+.col_loop
 	add c
 	dec b
-	jr nz, .asm_1bc9
-.asm_1bcd:
+	jr nz, .col_loop
+
+.got_col
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	cp $ed
-	jr z, .asm_1bd9
+	cp "▶"
+	jr z, .cursor_on
 	ld [wCursorOffCharacter], a
-	ld [hl], $ed
-.asm_1bd9:
+	ld [hl], "▶"
+
+.cursor_on
 	ld a, l
 	ld [wCursorCurrentTile], a
 	ld a, h
@@ -267,7 +275,7 @@ PlaceHollowCursor::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld [hl], $ec
+	ld [hl], "▷"
 	ret
 
 HideCursor::
@@ -275,31 +283,29 @@ HideCursor::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld [hl], $7f
+	ld [hl], "　"
 	ret
 
 PushWindow::
-	ld hl, PlaceWaitingText
-	ld a, $9
-	jp FarCall_hl
+	jpfar _PushWindow
 
 ExitMenu::
 	push af
 	callfar _ExitMenu
-	call Function1c0a
+	call .ResetBGMap
 	pop af
 	ret
 
-Function1c0a::
+.ResetBGMap:
 	ld a, [wStateFlags]
 	bit SPRITE_UPDATES_DISABLED_F, a
 	ret z
 
-	xor a
+	xor a ; BANK(sScratch)
 	call OpenSRAM
 	hlcoord 0, 0
-	ld de, sSpriteBuffer0
-	ld bc, $168
+	ld de, sScratch
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call CopyBytes
 	call CloseSRAM
 
@@ -307,23 +313,22 @@ Function1c0a::
 
 	xor a
 	call OpenSRAM
-	ld hl, sSpriteBuffer0
+	ld hl, sScratch
 	decoord 0, 0
-	ld bc, $168
-.asm_1c33:
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+.copy_loop
 	ld a, [hl]
-	cp $61
-	jr c, .asm_1c39
+	cp "▲"
+	jr c, .skip
 	ld [de], a
-.asm_1c39:
+.skip
 	inc hl
 	inc de
 	dec bc
 	ld a, c
 	or b
-	jr nz, .asm_1c33
+	jr nz, .copy_loop
 	call CloseSRAM
-
 	ret
 
 InitVerticalMenuCursor::
@@ -337,40 +342,42 @@ CloseWindow::
 	pop af
 	ret
 
-Function1c58::
-	jpfar Function24185
+; Unreferenced.
+ExitAllMenus::
+	jpfar _ExitAllMenus
 
 RestoreTileBackup::
 	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	inc b
 	inc c
-.asm_1c68:
+.row
 	push bc
 	push hl
-.asm_1c6a:
+.col
 	ld a, [de]
 	ld [hli], a
 	dec de
 	dec c
-	jr nz, .asm_1c6a
+	jr nz, .col
+
 	pop hl
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_1c68
+	jr nz, .row
 	ret
 
 PopWindow::
-	ld b, $10
+	ld b, wMenuDataHeaderEnd - wMenuDataHeader
 	ld de, wMenuDataHeader
-.asm_1c7f:
+.loop
 	ld a, [hld]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_1c7f
+	jr nz, .loop
 	ret
 
 GetMenuBoxDims::
@@ -399,7 +406,7 @@ CopyMenuData::
 	ld h, [hl]
 	ld l, a
 	ld de, wMenuDataFlags
-	ld bc, $10
+	ld bc, wMenuDataHeaderEnd - wMenuDataHeader
 	call CopyBytes
 	pop af
 	pop bc
@@ -430,7 +437,7 @@ PlaceVerticalMenuItems::
 	ld a, [de]
 	inc de
 	ld b, a
-.asm_1ccc:
+.loop
 	push bc
 	call PlaceString
 	inc de
@@ -438,17 +445,17 @@ PlaceVerticalMenuItems::
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .asm_1ccc
+	jr nz, .loop
 
 	ld a, [wMenuDataFlags]
-	bit 4, a
+	bit STATICMENU_PLACE_TITLE_F, a
 	ret z
 
 	call MenuBoxCoord2Tile
 	ld a, [de]
 	ld c, a
 	inc de
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	jp PlaceString
 
@@ -466,16 +473,20 @@ GetMenuTextStartCoord::
 	ld a, [wMenuBorderLeftCoord]
 	ld c, a
 	inc c
+; if not set, leave extra room on top
 	ld a, [wMenuDataFlags]
-	bit 6, a
-	jr nz, .asm_1d08
+	bit STATICMENU_NO_TOP_SPACING_F, a
+	jr nz, .no_top_spacing
 	inc b
-.asm_1d08
+
+.no_top_spacing
+; if set, leave extra room on the left
 	ld a, [wMenuDataFlags]
-	bit 7, a
-	jr z, .done
+	bit STATICMENU_CURSOR_F, a
+	jr z, .no_cursor
 	inc c
-.done
+
+.no_cursor
 	ret
 
 ClearMenuBoxInterior::

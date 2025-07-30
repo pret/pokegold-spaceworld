@@ -230,7 +230,7 @@ ConfirmPokemonSelection:
 	ld [wCurPartySpecies], a
 	ld a, 5
 	ld [wCurPartyLevel], a
-	callfar Function60a0
+	callfar GivePoke
 	xor a
 	ld [wPartyMon1 + 1], a
 	ld a, 3
@@ -319,7 +319,7 @@ SilentHillLabBackFunc4:
 	ld [wd265], a
 	push hl
 	ld [wNamedObjectIndexBuffer], a
-	farcall Function6734
+	farcall StarterDex
 	ld a, [wd265]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName

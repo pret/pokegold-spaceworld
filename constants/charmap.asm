@@ -273,7 +273,7 @@
 
 	charmap "▷", $ec
 	charmap "▶", $ed
-	charmap "▲", $ed
+;	charmap "▲", $ed
 	charmap "▼", $ee
 	charmap "♂", $ef
 	charmap "円", $f0

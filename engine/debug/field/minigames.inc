@@ -46,7 +46,7 @@ FieldDebug_Minigames:
 	call ClearTileMap
 	call WaitBGMap
 	ld hl, wQueuedScriptBank
-	call CallFar_atHL
+	call CallPointerAt
 	call ClearPalettes
 	call ReloadSpritesAndFont
 	call LoadTilesetGFX

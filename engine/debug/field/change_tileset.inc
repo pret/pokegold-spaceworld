@@ -5,7 +5,7 @@ FieldDebug_ChangeTileset:
 	call LoadMenuHeader
 	ld a, [wMapTileset]
 	inc a
-	ld [wMenuCursorBuffer], a
+	ld [wMenuCursorPosition], a
 	call VerticalMenu
 	call CloseWindow
 	jr c, .reopen
