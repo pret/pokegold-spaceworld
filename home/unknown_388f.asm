@@ -6,35 +6,35 @@ Function388f::
 	ret
 
 Function3890::
-	farcall Function14cac
+	farcall _Unreferenced_PokemonNewsScript
 	ret
 
-Function3899::
-	farcall Function14dac
+PokemonBooksScript::
+	farcall _PokemonBooksScript
 	ret
 
-Function38a2::
-	farcall Function14dc4
+PlayerHouse1FFridgeScript::
+	farcall _PlayerHouse1FFridgeScript
 	ret
 
-Function38ab::
-	farcall Function14ddd
+SilentHillHouseStoveScript::
+	farcall _SilentHillHouseStoveScript
 	ret
 
-Function38b4::
-	farcall Function14e00
+SilentHillHouseSinkScript::
+	farcall _SilentHillHouseSinkScript
 	ret
 
-Function38bd::
-	farcall Function14e5f
+SilentHillHouseTVScript::
+	farcall _SilentHillHouseTVScript
 	ret
 
-Function38c6::
-	farcall Function14e27
+PokecenterSignScript::
+	farcall _PokecenterSignScript
 	ret
 
-Function38cf::
-	farcall Function14e4a
+RivalHouseWindowScript::
+	farcall _RivalHouseWindowScript
 	ret
 
 Function38d8::

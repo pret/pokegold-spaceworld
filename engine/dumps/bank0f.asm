@@ -24,7 +24,7 @@ StartBattle:
 	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c02e
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 2
 	jr z, .asm_3c03f
 .asm_3c02e
@@ -92,7 +92,7 @@ StartBattle:
 	ld a, [wLinkMode]
 	and a
 	jr z, .to_battle
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 2
 	jr nz, .to_battle
 	call EnemySwitch
@@ -178,7 +178,7 @@ EnemyPokemonFledText:
 
 asm_3c183:
 	call UpdateBattleMonInParty
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 1
 	jr z, asm_3c1a9
 	call sub_3c492
@@ -394,7 +394,7 @@ asm_3c339:
 	jp asm_3c3c7
 
 asm_3c347:
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 2
 	jr z, asm_3c35d
 	call BattleRandom
@@ -424,7 +424,7 @@ asm_3c36d:
 	jr asm_3c3c7
 
 asm_3c37f:
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 2
 	jr z, asm_3c38f
 	call BattleRandom
@@ -443,7 +443,7 @@ sub_3c399:
 	dec a
 	jr nz, asm_3c3b6
 	ld a, [wDebugFlags]
-	bit 0, a
+	bit DEBUG_BATTLE_F, a
 	jr nz, asm_3c3b6
 	ld a, [wEnemySubStatus5]
 	bit 7, a
@@ -748,7 +748,7 @@ SandstormHitsText:
 	prompt
 
 sub_3c61e:
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 1
 	jr z, asm_3c632
 	xor a
@@ -1352,7 +1352,7 @@ asm_3ca0a:
 	jr nz, asm_3ca18
 	ld b, 0
 	ld hl, wDebugFlags
-	set 1, [hl]
+	set DEBUG_FIELD_F, [hl]
 
 asm_3ca18:
 	ld a, [wLinkMode]
@@ -2649,7 +2649,7 @@ UpdateBattleMonInParty:
 	jp CopyBytes
 
 sub_3d40b:
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 1
 	jr z, asm_3d418
 	call sub_3d41f
@@ -2783,7 +2783,7 @@ RecoveredWithItemText:
 	prompt
 
 sub_3d50b:
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 1
 	jr z, asm_3d518
 	call sub_3d51f
@@ -3614,7 +3614,7 @@ MoveSelectionScreen::
 
 .battle_player_moves
 	ld a, [wDebugFlags]
-	bit 0, a
+	bit DEBUG_BATTLE_F, a
 	jr nz, .interpret_joypad
 	
 	call MoveInfoBox

@@ -28,10 +28,10 @@ PlayerHouse2FNPCIDs2:
 	db $FF
 
 PlayerHouse2FSignPointers:
-	dw Function3899
+	dw PokemonBooksScript
 	dw PlayerHouse2FRadioText
 	dw PlayerHouse2FComputerText
-	dw Function3899
+	dw PokemonBooksScript
 	dw PlayerHouse2FN64Text
 
 PlayerHouse2FScript1:

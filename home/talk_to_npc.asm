@@ -37,7 +37,7 @@ CallMapTextSubroutine::
 	ret
 
 Function3055::
-	ldh a, [hFFEA]
+	ldh a, [hLastTalked]
 	ld b, a
 .Loop:
 	ld a, [hli]
@@ -81,7 +81,7 @@ PrintTextboxDebugNumbers::
 	ld a, [wTalkingTargetType]
 	bit 0, a
 	jr z, .CheckSign
-	ld de, hFFEA
+	ld de, hLastTalked
 	jr .PrintNum
 
 .CheckSign:
@@ -247,7 +247,7 @@ TurnNPCTalkingTo::
 	add hl, bc
 	ld a, [hl]
 	sub 02
-	ldh [hFFEA], a
+	ldh [hLastTalked], a
 	ret
 
 Function31C3::
@@ -261,7 +261,7 @@ CheckInlineTrainer::
 	call GetObjectStruct
 	call GetInlineMapObject
 	jr nc, .Escape
-	ld hl, MAPOBJECT_SCRIPT_POINTER + 1
+	ld hl, MAPOBJECT_SIGHT_RANGE
 	add hl, de
 	ld a, [hl]
 	cp b

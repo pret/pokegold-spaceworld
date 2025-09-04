@@ -81,12 +81,12 @@ GiveItemPredef::
 	add_predef ChangeBGPalColor0_4Frames
 	add_predef PredefShakeScreenVertically
 	add_predef PredefShakeScreenHorizontally
-	add_predef Function145b8
-	add_predef Function146dc
-	add_predef Function145de
+	add_predef SavePokemonData
+	add_predef TryLoadPokemonData
+	add_predef Dummy_SaveBox
 	add_predef ExecuteBGEffects ; 48
-	add_predef Function1457a
-	add_predef Function143e0
+	add_predef SaveOptionsAndGameData
+	add_predef SaveMenu
 	add_predef CheckSGB
 	add_predef LoadSGBLayout
 	add_predef Pokedex_GetArea

@@ -12,12 +12,19 @@ ENDU
 
 SECTION "Unknown, bank 0", SRAM
 
-UNION
-sOptions:: ds 4
-NEXTU
-s0_a600:: ds 7 ; TODO: properly label this and figure out exact size
-ENDU
+sOptions:: ds 7
+	ds 1
 
+; TODO: Replace the big ds blocks with proper RAM ranges when rgbds stops throwing errors.
+sGameData:: ds $7d2 ; wGameDataEnd - wGameData
+sGameDataEnd::
+
+sGameData2:: ds $71 ; wGameData2End - wGameData2
+sGameData2End::
+
+
+SECTION "Save Pokemon Data", SRAM
+sPokemonData::  ds $3d9 ; wPokemonDataEnd - wPokemonData
 
 SECTION "SRAM Window Stack", SRAM
 
@@ -49,3 +56,6 @@ SECTION "Boxes 6-10", SRAM
 ; All 10 boxes fit exactly within 2 SRAM banks
 	assert box_n == NUM_BOXES, \
 		"boxes: Expected {d:NUM_BOXES} total boxes, got {d:box_n}"
+
+SECTION "Checksum", SRAM
+sChecksum:: ds 3

@@ -2,7 +2,6 @@ INCLUDE "constants.asm"
 
 
 SECTION "engine/battle_anims/functions.asm", ROMX
-; TODO: Uncomment the asserts once we have all the framesets labelled
 
 DoBattleAnimFrame:
 	ld hl, BATTLEANIMSTRUCT_FUNCTION
@@ -4083,7 +4082,8 @@ BattleAnimFunction_RainSandstorm:
 	ld hl, BATTLEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld [hl], a
-; Seems to make some kind of assert-worthy assumption... investigate after decompiling the framesets.
+	assert BATTLE_ANIM_FRAMESET_RAIN_1 + 1 == BATTLE_ANIM_FRAMESET_RAIN_2 \
+		&& BATTLE_ANIM_FRAMESET_RAIN_2 + 1 == BATTLE_ANIM_FRAMESET_RAIN_3
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	inc [hl]

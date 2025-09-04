@@ -189,7 +189,7 @@ StartMenu_Reset:
 	ret
 
 StartMenu_Save:
-	predef Function143e0
+	predef SaveMenu
 	call UpdateSprites
 	ld a, 0
 	ret

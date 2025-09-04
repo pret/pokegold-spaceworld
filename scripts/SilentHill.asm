@@ -168,7 +168,7 @@ Function776a:
 	ld hl, wd41a
 	set 7, [hl]
 	ld a, 1
-	ld hl, wd29d
+	ld hl, wSilentHillLabFrontCurScript
 	ld [hl], a
 	ret
 
@@ -275,7 +275,7 @@ SilentHillScript6:
 	bit 2, [hl]
 	ret z
 	ld a, $12
-	ld [wd29d], a
+	ld [wSilentHillLabFrontCurScript], a
 	ld a, 6
 	ld [wMapScriptNumber], a
 	ret
@@ -333,7 +333,7 @@ SilentHillMovement7:
 
 SilentHillSignPointers::
 	dw SilentHillPlayerHouseText
-	dw Function38c6
+	dw PokecenterSignScript
 	dw SilentHillSignText1
 	dw SilentHillLabText
 	dw SilentHillRivalHouseText

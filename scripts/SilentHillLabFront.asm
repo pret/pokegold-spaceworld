@@ -640,18 +640,18 @@ SilentHillLabFrontScript19:
 SilentHillLabFrontTextPointers2:
 	dw SilentHillLabFrontText1
 	dw SilentHillLabFrontText2
-	dw Function3899
-	dw Function3899
-	dw Function3899
-	dw Function3899
-	dw Function3899
-	dw Function3899
-	dw Function3899
-	dw Function3899
-	dw Function3899
-	dw Function3899
-	dw Function3899
-	dw Function3899
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
 	dw SilentHillLabFrontText3
 
 SilentHillLabFrontText1:

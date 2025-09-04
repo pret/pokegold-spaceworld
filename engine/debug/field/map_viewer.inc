@@ -72,7 +72,7 @@ DebugMapViewer::
 
 .do_jumptable
 	ld a, [wDebugFlags]
-	bit 1, a
+	bit DEBUG_FIELD_F, a
 	ret z
 	ldh a, [hDebugMapViewerJumptable]
 	and a

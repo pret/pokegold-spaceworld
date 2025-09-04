@@ -120,6 +120,17 @@ DEF PLAYER_SURF_PIKA EQU 8
 	const DEBUG_BATTLE_F
 	const DEBUG_FIELD_F
 	const CONTINUED_F
+	const SAVE_FILE_EXISTS_F ; Set but not read anywhere.
+	const_skip 2
+; These two are reset by Function2b39, but otherwise unreferenced.
+	const UNK_DEBUG_FLAG_6_F
+	const UNK_DEBUG_FLAG_7_F
+
+; wSaveFileFlags::
+	const_def
+	const SAVED_FILE_F
+	const NEW_FILE_F
+	const ANOTHER_FILE_EXISTS_F
 
 ; wJumptableIndex::
 DEF JUMPTABLE_INDEX_MASK EQU %01111111

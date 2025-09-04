@@ -26,7 +26,6 @@ RunMapScript::
 	pop hl
 	ret
 
-; TODO: is this used?
 WriteIntod637::
 	push af
 	; TODO: figure out what variables are concerned here
@@ -955,6 +954,7 @@ InitObjectMasks::
 	ld bc, NUM_OBJECTS - 2
 	ld a, $ff
 	call ByteFill
+	
 	ld hl, wUnknownMapPointer
 	ld e, [hl]
 	inc hl
@@ -1635,8 +1635,8 @@ Function2b39::
 	res 4, [hl]
 	res 6, [hl]
 	ld hl, wDebugFlags
-	res 6, [hl]
-	res 7, [hl]
+	res UNK_DEBUG_FLAG_6_F, [hl]
+	res UNK_DEBUG_FLAG_7_F, [hl]
 	ld hl, wStateFlags
 	res SCRIPTED_MOVEMENT_STATE_F, [hl]
 	ld a, $0
@@ -1716,7 +1716,7 @@ Function2ba8::
 
 Function2be5:: ; TODO
 	ld a, [wDebugFlags]
-	bit 7, a
+	bit UNK_DEBUG_FLAG_7_F, a
 	ret nz
 	ld a, [wMapGroup]
 	ld b, a

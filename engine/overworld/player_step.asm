@@ -172,7 +172,7 @@ HandlePlayerStep::
 
 .Jumptable:
 	dw RefreshTiles
-	dw Functionc9c1
+	dw CheckTrainerBattle
 	dw BufferScreen
 	dw .fail
 	dw .fail
@@ -186,8 +186,8 @@ HandlePlayerStep::
 .fail
 	ret
 
-Functionc9c1:
-	callfar _Functionc9c1
+CheckTrainerBattle:
+	callfar _CheckTrainerBattle
 	ret
 
 UpdateOverworldMap_Old:

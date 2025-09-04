@@ -1,28 +1,28 @@
-05:43B6 InitAllSRAMBanks
-05:43E0 Function143e0
-05:451B PrintSaveScreenText
-05:457A Function1457a
-05:45B8 Function145b8
-05:45DE Function145de
-05:4624 Function14624
-05:46DC Function146dc
+;05:43E0 SaveMenu
+;05:44E9 VerifyChecksum
+;05:451B PrintSaveScreenText
+;05:457A SaveOptionsAndGameData
+;05:45B8 SavePokemonData
+;05:45DE Dummy_SaveBox
+;05:4624 TryLoadSaveFile
+;05:46DC TryLoadPokemonData
 ; Structure:
 ; byte Map group ($ff = end)
 ; byte Map ID
 ; ptr  Copied to c5e9, also byte pointed to written at wMapScriptNumber
 ; ptr  Copied to c5eb
 ; word Unknown (2 bytes)
-05:470E UnknownMapBufferPointers
-05:4777 Function14777
-05:4C94 Data14c94
-05:4CAC Function14cac
-05:4DAC Function14dac
-05:4DC4 Function14dc4
-05:4DDD Function14ddd
-05:4E00 Function14e00
-05:4E5F Function14e5f
-05:4E27 Function14e27
-05:4E4A Function14e4a
+;05:470E UnknownMapBufferPointers
+;05:4777 Function14777
+;05:4C94 Data14c94
+;05:4CAC _Unreferenced_PokemonNewsScript
+;05:4DAC _PokemonBooksScript
+;05:4DC4 _PlayerHouse1FFridgeScript
+;05:4DDD _SilentHillHouseStoveScript
+;05:4E00 _SilentHillHouseSinkScript
+;05:4E5F _SilentHillHouseTVScript
+;05:4E27 _PokecenterSignScript
+;05:4E4A _RivalHouseWindowScript
 
 ; all these probably print text
 0A:4000 Function28000
