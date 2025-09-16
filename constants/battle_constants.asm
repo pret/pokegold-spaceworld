@@ -42,7 +42,7 @@ DEF EFFECTIVENESS_MASK EQU %01111111
 	const SP_DEFENSE
 	const ACCURACY
 	const EVASION
-	const ABILITY ; used for BattleCommand_Curse
+	const_skip ; The ABILITY text doesn't exist yet, nor does the effect that would use it.
 DEF NUM_LEVEL_STATS EQU const_value
 
 ; move struct members (see data/moves/moves.asm)

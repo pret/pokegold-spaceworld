@@ -328,7 +328,7 @@ asm_3c285:
 	ld [wCurPlayerSelectedMove], a
 
 asm_3c2bb:
-	callfar Function38220
+	callfar AI_Switch
 	ld a, 1
 	ldh [hBattleTurn], a
 	call SpikesDamage
@@ -469,7 +469,7 @@ sub_3c3b8:
 asm_3c3c7:
 	ld a, 1
 	ldh [hBattleTurn], a
-	callfar Function38000
+	callfar AI_SwitchOrTryItem
 	jr c, asm_3c3eb
 	callfar DoEnemyTurn
 	call sub_3c473
@@ -511,7 +511,7 @@ asm_3c41d:
 	call DrawHUDsAndHPBars
 	ld a, 1
 	ldh [hBattleTurn], a
-	callfar Function38000
+	callfar AI_SwitchOrTryItem
 	jr c, asm_3c460
 	callfar DoEnemyTurn
 	call sub_3c473
@@ -1315,7 +1315,7 @@ sub_3c9c2:
 	ld hl, wEnemyHPPal
 	ld e, $30
 	call UpdateHPPal
-	callfar Function3834e
+	callfar EnemySwitch_TrainerHud
 	ld a, [wLinkMode]
 	and a
 	jr z, asm_3c9e4
@@ -1334,7 +1334,7 @@ asm_3c9e4:
 	xor a
 	ld [wEnemyMoveStruct], a
 	ld [wFieldMoveSucceeded], a
-	ld [wcaba], a
+	ld [wEnemyTurnsTaken], a
 	inc a
 	ret
 
@@ -1347,7 +1347,7 @@ asm_3c9fd:
 	ld b, $b
 
 asm_3ca0a:
-	ld a, [wca22]
+	ld a, [wTrainerClass]
 	cp $2b
 	jr nz, asm_3ca18
 	ld b, 0
@@ -1420,7 +1420,7 @@ GotMoneyForWinningText:
 	prompt
 
 BattleText_EnemyWasDefeated:
-	text_from_ram wca2b
+	text_from_ram wOTClassName
 	text "の　@"
 	text_from_ram wStringBuffer1
 	text ""
@@ -1653,7 +1653,7 @@ OutOfUsableMonsText:
 	prompt
 
 Data3ccdd:
-	text_from_ram wca2b
+	text_from_ram wOTClassName
 	text "との"
 	line "しょうぶに　まけた！"
 	prompt
@@ -2151,7 +2151,7 @@ EnemySendOutFirstMon:
 ; This makes the game halt the script early and throw up an error handler,
 ; due to reading the start of the following 'text' line as a <NULL> character.
 TrainerAboutToUseText:
-	text_from_ram wca2b
+	text_from_ram wOTClassName
 	text "の　@"
 	text_from_ram wStringBuffer1
 	text "は<LINE>"
@@ -2163,7 +2163,7 @@ TrainerAboutToUseText:
 	done
 
 TrainerSentOutText:
-	text_from_ram wca2b
+	text_from_ram wOTClassName
 	text "の　@"
 	text_from_ram wStringBuffer1
 	text "は"
@@ -4136,8 +4136,8 @@ asm_3df26:
 	dec a
 	jr z, asm_3df3f
 	ld a, 1
-	ld [wca22], a
-	callfar Function384d4
+	ld [wTrainerClass], a
+	callfar AIChooseMove
 	jr asm_3df6b
 
 asm_3df3f:
@@ -6102,10 +6102,10 @@ _InitBattleCommon:
 	ret
 
 sub_3ef9a:
-	ld [wca22], a
-	callfar LoadTrainerClass
-	callfar Function38f45
-	ld a, [wca22]
+	ld [wTrainerClass], a
+	callfar GetTrainerAttributes
+	callfar ReadTrainerParty
+	ld a, [wTrainerClass]
 	cp 9
 	jr nz, asm_3efb8
 	xor a
@@ -6136,7 +6136,7 @@ sub_3efdb:
 	ld de, vFrontPic
 	call LoadMonFrontSprite
 	xor a
-	ld [wca22], a
+	ld [wTrainerClass], a
 	ldh [hGraphicStartTile], a
 	ld hl, $c2ac
 	ld bc, $0707
@@ -6144,9 +6144,9 @@ sub_3efdb:
 	ret
 
 sub_3f003:
-	ld a, [wca23]
+	ld a, [wEnemyTrainerGraphicsPointer]
 	ld e, a
-	ld a, [wca24]
+	ld a, [wEnemyTrainerGraphicsPointer + 1]
 	ld d, a
 	ld a, $12
 	call UncompressSpriteFromDE
@@ -6325,7 +6325,7 @@ InitBattleVariables:
 	ld [wCurBattleMon], a
 	ld [wBattleResult], a
 	ld [wTimeOfDayPal], a
-	ld [wcaba], a
+	ld [wEnemyTurnsTaken], a
 	ld hl, wPlayerHPPal
 	ld [hli], a
 	ld [hl], a
@@ -6702,7 +6702,7 @@ BattleStartMessage:
 
 .PlaceBattleStartText:
 	push hl
-	callfar Function38340
+	callfar BattleStart_TrainerHuds
 	pop hl
 	call PrintText
 	ret
@@ -6722,7 +6722,7 @@ HookedPokemonAttackedText:
 	prompt
 
 WantsToBattleText:
-	text_from_ram wca2b
+	text_from_ram wOTClassName
 	text "の　@"
 	text_from_ram wStringBuffer1
 	text "が"
@@ -6759,7 +6759,7 @@ sub_3f60c:
 	ld de, wPlayerName
 	call PlaceString
 	ld hl, $c36c
-	ld de, wd8fe
+	ld de, wOTPlayerName
 	call PlaceString
 	ld hl, $c349
 	ld a, $69

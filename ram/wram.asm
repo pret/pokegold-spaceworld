@@ -495,12 +495,12 @@ wIntroFrameCounter2:: ds 1
 wIntroSpriteStateFlag:: ds 1
 ENDU
 
-wca22:: ds 1
-wca23:: ds 1
-wca24:: ds 1
-	ds 6
-wca2b:: ds 1
-	ds 10
+wTrainerClass:: db
+wEnemyTrainerGraphicsPointer:: dw
+	ds 2
+wEnemyTrainerBaseReward:: db
+	ds 3
+wOTClassName:: ds TRAINER_CLASS_NAME_LENGTH
 wCurOTMon:: db
 
 wBattleParticipantsNotFainted::
@@ -624,7 +624,9 @@ wEnemyEvaLevel:: db
 	ds 1
 
 wForceEvolution:: db
-wcaba:: ds 1
+
+wAILayer2Encouragement::
+wEnemyTurnsTaken:: ds 1
 
 	ds 1
 
@@ -636,6 +638,8 @@ wPlayerDebugSelectedMove:: ds 1
 
 wMoveSelectionMenuType:: ds 1
 
+; TODO: Replace these with just wCurPlayer/EnemyMove
+; and replace the original wCurPlayerMove/wCurEnemyMove with wLastPlayer/EnemyCounterMove
 wCurPlayerSelectedMove:: db
 wCurEnemySelectedMove:: db
 
@@ -1240,7 +1244,7 @@ wcdc6:: db
 wcdc7:: db
 wcdc8:: db
 	ds 1
-wcdca:: db
+wEnemyItemUsed:: db
 
 NEXTU
 ; battle HUD
@@ -1250,6 +1254,10 @@ NEXTU
 ; thrown ball data
 wFinalCatchRate:: db
 wThrownBallWobbleCount:: db
+
+NEXTU
+; move AI
+wEnemyAIMoveScores:: ds NUM_MOVES
 
 NEXTU
 ; evolution data
@@ -1817,10 +1825,11 @@ wBreedMon2:: box_struct wBreedMon2
 ; Uses the last two bits to keep track of your breeder mons' genders.
 ; Bit clear = male, bit set = female
 wBreedMonGenders:: db
-wd8fe:: ds 1
+wOTPlayerName:: ds PLAYER_NAME_LENGTH
 
 SECTION "D913", WRAM0[$D913]
 
+wOTPartyData::
 wOTPartyCount:: db
 wOTPartySpecies:: ds PARTY_LENGTH
 wOTPartySpeciesEnd:: db

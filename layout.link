@@ -271,12 +271,10 @@ ROMX $0d
 
 ROMX $0e
 	org $4000
-	org $4391
 	"engine/dumps/bank0e.asm"
-	org $4494
-	"gfx.asm@PokeBalls GFX"
 	org $4d90
 	"data/trainers/class_names.asm"
+	"engine/dumps/bank0e.asm@ReadTrainerParty"
 	org $5110
 	"data/trainers/parties.asm@Trainer Parties"
 

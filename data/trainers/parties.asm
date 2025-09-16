@@ -805,6 +805,7 @@ GerugeMemberFGroup::
 
 SECTION "data/trainers/parties.asm@Trainer Parties 48 TEMPORARY", ROMX
 SportsmanGroup::
+; TODO: This guy clearly ain't named "Shigeki", he's "Tetsuji". Add a trainer constant accordingly
 	; SPORTSMAN_SHIGEKI
 	db "てつじ@", TRAINERTYPE_ITEM_MOVES
 	db  9, DEX_DONPHAN, ITEM_NONE, MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_NONE, MOVE_NONE

@@ -43,7 +43,7 @@ DoEnemyTurn:
 	and a
 	ret nz
 
-	ld hl, wcaba
+	ld hl, wEnemyTurnsTaken
 	inc [hl]
 
 	call UpdateMoveData

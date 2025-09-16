@@ -33,21 +33,29 @@
 0A:5A1F Function29a1f ; prints text
 0A:5ABF Function29abf ; prints text
 
-0E:4B78 LoadTrainerClassName
-;0E:4BA0 LoadTrainerClassName.got_name
-0E:4BA9 LoadTrainerClass
+;0E:4B78 GetTrainerAttributesName
+;0E:4BA0 GetTrainerAttributesName.got_name
+;0E:4BA9 GetTrainerAttributes
+;0E:4BD0 TrainerClassAttributes
 
-0E:4000 Function38000
-0E:4220 Function38220
-0E:4340 Function38340
-0E:434E Function3834e
+;0E:4000 TrainerAI
+;0E:4220 AI_Switch
+;0E:4340 BattleStart_TrainerHuds
+;0E:434E EnemySwitch_TrainerHud
 ;0E:43CD DrawPlayerHUDBorder
 ;0E:43FD DrawEnemyHUDBorder
 ;0E:4415 PlaceHUDBorderTiles
 ;0E:4431 LinkBattle_TrainerHuds
-0E:44D4 Function384d4
-0E:4F45 Function38f45
-0E:50E9 Battle_GetTrainerName
+;0E:4594 AIScoringPointers
+;0e:49b4 AICompareSpeed
+;0e:49c7 AICheckPlayerHalfHP
+;0e:49da AICheckEnemyHalfHP
+;0e:49ed AICheckEnemyQuarterHP
+;0e:4a1f UsefulMoves
+;0e:4b5f AIGetEnemyMove
+;0E:44D4 Function384d4
+;0E:4F45 ReadTrainerParty
+;0E:50E9 Battle_GetTrainerName
 
 23:4940 Function8c940
 23:49C6 Function8c9c6
@@ -71,5 +79,6 @@
 
 ; Filler. TODO: Determine the position of all filler and preferably extract it to binary files.
 0B:786F Bank0b_FillerStart
+0e:59bc Bank0e_FillerStart
 14:7274 Bank14_FillerStart
 

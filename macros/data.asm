@@ -95,6 +95,10 @@ MACRO dd ; four-byte (big-endian)
 	dx 4, \1
 ENDM
 
+MACRO littledt ; three-byte (little-endian)
+    db low(\1), high(\1), low((\1) >> 16)
+ENDM
+
 MACRO bigdw ; big-endian word
 	dx 2, \1
 ENDM
