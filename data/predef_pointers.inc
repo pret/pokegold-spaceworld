@@ -91,8 +91,8 @@ GiveItemPredef::
 	add_predef LoadSGBLayout
 	add_predef Pokedex_GetArea
 	add_predef DoBattleTransition
-	add_predef Function8c9c6
-	add_predef Function8c940 ; 50
+	add_predef LeaveMapAnim_Old
+	add_predef EnterMapAnim_Old ; 50
 	add_predef PlayBattleAnim
 	add_predef Functioncc000
 	add_predef Functioncc000_2

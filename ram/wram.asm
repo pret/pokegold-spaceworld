@@ -297,7 +297,7 @@ SECTION "Map Buffer", WRAM0
 wMapBuffer::
 wMapScriptNumber:: db
 wMapScriptNumberLocation:: dw
-wUnknownMapPointer:: dw ; TODO
+wMapScriptPointerLocation:: dw ; TODO
 ; setting bit 7 seems to disable overworld updates and player control?
 wc5ed:: db
 	ds 18
@@ -1624,6 +1624,8 @@ wJoypadFlags:: db
 ; ||\------ don't wait for keypress to close text box
 ; |\------- joypad sync mtx
 ; \-------- joypad disabled
+	ds 1
+wMovementFlags_Old:: db
 
 SECTION "wDigWarpNumber", WRAM0[$D4B2]
 

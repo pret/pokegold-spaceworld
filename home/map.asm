@@ -67,7 +67,7 @@ SetUpMapBuffer::
 	ld de, wMapScriptNumberLocation
 	call GetMapScriptNumber ; Read map script from pointed location
 	call CopyWord ; Copy map script pointer
-	ld de, wUnknownMapPointer
+	ld de, wMapScriptPointerLocation
 	call CopyWord
 
 .done
@@ -955,7 +955,7 @@ InitObjectMasks::
 	ld a, $ff
 	call ByteFill
 	
-	ld hl, wUnknownMapPointer
+	ld hl, wMapScriptPointerLocation
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

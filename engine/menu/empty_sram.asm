@@ -395,8 +395,9 @@ MACRO map_buffer_pointers
 
 ENDM
 
+; TODO: Rename to something more fitting, and actually label the flag ram addresses.
 UnknownMapBufferPointers:
-	map_buffer_pointers PLAYER_HOUSE_2F, wPlayerHouse2FCurScript, PlayerHouse2FScriptPointers, $d39a
+	map_buffer_pointers PLAYER_HOUSE_2F, wPlayerHouse2FCurScript, PlayerHouse2FScriptPointers, wd39a
 	;db $01, $09, $9A, $D2, $95, $41, $9A, $D3
 	db $01, $08, $9B, $D2, $A6, $40, $9B, $D3 ; PLAYER_HOUSE_1F
 	db $01, $04, $9C, $D2, $7E, $76, $9C, $D3 ; SILENT_HILL

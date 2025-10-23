@@ -1,29 +1,4 @@
-;05:43E0 SaveMenu
-;05:44E9 VerifyChecksum
-;05:451B PrintSaveScreenText
-;05:457A SaveOptionsAndGameData
-;05:45B8 SavePokemonData
-;05:45DE Dummy_SaveBox
-;05:4624 TryLoadSaveFile
-;05:46DC TryLoadPokemonData
-; Structure:
-; byte Map group ($ff = end)
-; byte Map ID
-; ptr  Copied to c5e9, also byte pointed to written at wMapScriptNumber
-; ptr  Copied to c5eb
-; word Unknown (2 bytes)
-;05:470E UnknownMapBufferPointers
-;05:4777 Function14777
-;05:4C94 Data14c94
-;05:4CAC _Unreferenced_PokemonNewsScript
-;05:4DAC _PokemonBooksScript
-;05:4DC4 _PlayerHouse1FFridgeScript
-;05:4DDD _SilentHillHouseStoveScript
-;05:4E00 _SilentHillHouseSinkScript
-;05:4E5F _SilentHillHouseTVScript
-;05:4E27 _PokecenterSignScript
-;05:4E4A _RivalHouseWindowScript
-
+; Link cable-related functions.
 ; all these probably print text
 0A:4000 Function28000
 0A:4C98 LinkTextboxAtHL
@@ -33,42 +8,19 @@
 0A:5A1F Function29a1f ; prints text
 0A:5ABF Function29abf ; prints text
 
-;0E:4B78 GetTrainerAttributesName
-;0E:4BA0 GetTrainerAttributesName.got_name
-;0E:4BA9 GetTrainerAttributes
-;0E:4BD0 TrainerClassAttributes
-
-;0E:4000 TrainerAI
-;0E:4220 AI_Switch
-;0E:4340 BattleStart_TrainerHuds
-;0E:434E EnemySwitch_TrainerHud
-;0E:43CD DrawPlayerHUDBorder
-;0E:43FD DrawEnemyHUDBorder
-;0E:4415 PlaceHUDBorderTiles
-;0E:4431 LinkBattle_TrainerHuds
-;0E:4594 AIScoringPointers
-;0e:49b4 AICompareSpeed
-;0e:49c7 AICheckPlayerHalfHP
-;0e:49da AICheckEnemyHalfHP
-;0e:49ed AICheckEnemyQuarterHP
-;0e:4a1f UsefulMoves
-;0e:4b5f AIGetEnemyMove
-;0E:44D4 Function384d4
-;0E:4F45 ReadTrainerParty
-;0E:50E9 Battle_GetTrainerName
-
-23:4940 Function8c940
-23:49C6 Function8c9c6
-23:4b6d FishingAnim_Old
+;23:4940 EnterMapAnim_Old
+;23:49C6 Function8c9c6
+;23:4b6d FishingAnim_Old
 
 38:48A2 PokerMinigame
-38:5AE3 FifteenPuzzleMinigame
 
 38:4E5F Cursor_AnimateCursor
 38:4EA8 Cursor_InterpretJoypad
 
 ; Poker Cursor AnimSeq Function
 38:5054 Functione1054
+
+38:5AE3 FifteenPuzzleMinigame
 
 ;3F:40E9 InGameDebugMenu
 ;3F:4E3E Functionfce3e

@@ -735,7 +735,7 @@ LoadTrainerHudOAM:
 
 LoadBallIconGFX:
 	ld de, PokeBallsGFX
-	ld hl, vChars0 + 49 tiles
+	ld hl, vChars0 tile $31
 	lb bc, 14, 4
 	jp Request2bpp
 
@@ -1452,7 +1452,6 @@ AI_Smart_Substitute:
 	call AICheckEnemyHalfHP
 	jr nc, .discourage
 
-; BUG: Should be "ret nz" in order to discourage if the enemy already has substitute.
 	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret z

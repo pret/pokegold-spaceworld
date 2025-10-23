@@ -389,6 +389,8 @@ ROMX $23
 	"engine/dumps/bank23.asm@RestoreOverworldMapTiles"
 	org $44be
 	"engine/battle/battle_transitions.asm"
+	org $4940
+	"engine/dumps/bank23.asm@EnterMapAnim_Old"
 	org $4cfd
 	"engine/dumps/bank23.asm@ClearSpriteAnims"
 	org $60cc
