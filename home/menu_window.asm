@@ -214,7 +214,7 @@ Move2DMenuCursor::
 	ld h, [hl]
 	ld l, a
 	ld a, [hl]
-	cp "▶"
+	cp '▶'
 	jr nz, Place2DMenuCursor
 	ld a, [wCursorOffCharacter]
 	ld [hl], a
@@ -258,10 +258,10 @@ Place2DMenuCursor::
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	cp "▶"
+	cp '▶'
 	jr z, .cursor_on
 	ld [wCursorOffCharacter], a
-	ld [hl], "▶"
+	ld [hl], '▶'
 
 .cursor_on
 	ld a, l
@@ -275,7 +275,7 @@ PlaceHollowCursor::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld [hl], "▷"
+	ld [hl], '▷'
 	ret
 
 HideCursor::
@@ -283,7 +283,7 @@ HideCursor::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld [hl], "　"
+	ld [hl], '　'
 	ret
 
 PushWindow::
@@ -318,7 +318,7 @@ ExitMenu::
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 .copy_loop
 	ld a, [hl]
-	cp "▲"
+	cp '▲'
 	jr c, .skip
 	ld [de], a
 .skip

@@ -497,7 +497,7 @@ ChoosePlayerName::
 	ld de, wPlayerName
 	farcall NamingScreen
 	ld a, [wPlayerName]
-	cp "@"
+	cp '@'
 	jr z, .loop
 
 	call GBFadeOutToWhite
@@ -550,7 +550,7 @@ ChooseRivalName::
 	ld de, wRivalName
 	farcall NamingScreen
 	ld a, [wRivalName]
-	cp "@"
+	cp '@'
 	jr z, .loop
 
 	call GBFadeOutToWhite
@@ -602,7 +602,7 @@ MomNamePrompt::
 	ld de, wMomsName
 	farcall NamingScreen
 	ld a, [wMomsName]
-	cp "@"
+	cp '@'
 	jr z, .loop
 
 	call ClearPalettes

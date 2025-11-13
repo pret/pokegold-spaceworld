@@ -1020,13 +1020,13 @@ GiveEgg::
 	call AddNTimes
 
 ; Print "EGG" as its name
-	ld a, "た"
+	ld a, 'た'
 	ld [hli], a
-	ld a, "ま"
+	ld a, 'ま'
 	ld [hli], a
-	ld a, "ご"
+	ld a, 'ご'
 	ld [hli], a
-	ld [hl], "@"
+	ld [hl], '@'
 	and a
 	ret
 
@@ -1437,7 +1437,7 @@ GivePoke::
 	farcall NamingScreen
 	pop de
 	ld a, [de]
-	cp "@"
+	cp '@'
 	jr nz, .not_empty
 
 	ld hl, wStringBuffer1

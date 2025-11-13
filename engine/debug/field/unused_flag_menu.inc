@@ -65,9 +65,9 @@ ENDM
 	ret
 
 .CheckBit:
-	ld a, "０"
+	ld a, '０'
 	jr z, .not_set
-	ld a, "１"
+	ld a, '１'
 .not_set
 	ld [bc], a
 	inc bc

@@ -17,7 +17,7 @@ OptionsMenu::
 	call DisplayOptionsMenu
 .Loop:
 	call GetOptionsMenuCursorPos
-	ld [hl], "▶"
+	ld [hl], '▶'
 	call SetOptionsFromCursorPositions
 	call WaitBGMap
 .wait_joy_loop
@@ -74,7 +74,7 @@ OptionsMenu::
 	and 7
 	ld [wActiveFrame], a
 	hlcoord 17, 16
-	add "１"
+	add '１'
 	ld [hl], a
 	call LoadFontExtra
 	jr .Loop
@@ -82,7 +82,7 @@ OptionsMenu::
 .ClearOldMenuCursor:
 	push af
 	call GetOptionsMenuCursorPos
-	ld [hl], "　"
+	ld [hl], '　'
 	pop af
 	ld [wOptionsMenuCursorX], a
 	jp .Loop
@@ -162,7 +162,7 @@ OptionsMenu::
 	ld a, [hl]
 	push af
 	call GetOptionsMenuCursorPos
-	ld [hl], "▷"
+	ld [hl], '▷'
 	pop af
 	ld [wOptionsMenuCursorX], a
 	pop af
@@ -205,7 +205,7 @@ OptionsMenu::
 
 .Cursor_BottomRow:
 	call GetOptionsMenuCursorPos
-	ld [hl], "▷"
+	ld [hl], '▷'
 	ld a, [wOptionsMenuCursorX]
 	xor %110 ; 1 <-> 7
 	ld [wOptionsMenuCursorX], a
@@ -326,10 +326,10 @@ DisplayOptionsMenu:
 	ld [wOptionsBottomRowCursorX], a
 ; Cursor in front of "Cancel"
 	hlcoord 1, OPT_BOTTOM_ROW
-	ld [hl], "▷"
+	ld [hl], '▷'
 ; Cursor in front of frame options
 	hlcoord 7, OPT_BOTTOM_ROW
-	ld [hl], "▷"
+	ld [hl], '▷'
 	ld a, [wOptionsTextSpeedCursorX]
 	ld [wOptionsMenuCursorX], a
 	ld a, 3
@@ -343,7 +343,7 @@ DisplayOptionsMenu:
 	ld e, a
 	ld d, 0
 	add hl, de
-	ld [hl], "▷"
+	ld [hl], '▷'
 	ret
 
 .LoadGFX_DrawDisplay
@@ -404,7 +404,7 @@ DisplayOptionsMenu:
 ; Place # of active frame
 	ld a, [wActiveFrame]
 	hlcoord 17, 16
-	add "１"
+	add '１'
 	ld [hl], a
 	ret
 

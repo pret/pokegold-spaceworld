@@ -39,9 +39,9 @@ _DisplayDexEntry:
 	ld de, PokedexText_Pokemon
 	call PlaceString
 	hlcoord 2, 8
-	ld a, "№"
+	ld a, '№'
 	ld [hli], a
-	ld a, "．"
+	ld a, '．'
 	ld [hli], a
 	ld de, wTempSpecies
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
@@ -68,14 +68,14 @@ _DisplayDexEntry:
 	ld a, [de]
 	cp 10
 	jr nc, .less_than_1_meter
-	ld [hl], "０"
+	ld [hl], '０'
 
 .less_than_1_meter
 ; Shift last digit to the right and put decimal point in its place.
 	inc hl
 	ld a, [hli]
 	ld [hld], a
-	ld [hl], "．"
+	ld [hl], '．'
 
 .skip_height
 	inc de
@@ -108,14 +108,14 @@ _DisplayDexEntry:
 	ldh a, [hPokedexTempWeight]
 	sbc 0
 	jr nc, .less_than_1_kilogram
-	ld [hl], "０"
+	ld [hl], '０'
 
 .less_than_1_kilogram
 ; Shift last digit to the right and put decimal point in its place.
 	inc hl
 	ld a, [hli]
 	ld [hld], a
-	ld [hl], "．"
+	ld [hl], '．'
 
 	pop af
 	ldh [hPokedexTempWeight + 1], a

@@ -136,7 +136,7 @@ BuySellToss_UpdateQuantityDisplayAndPrice:
 	call MenuBoxCoord2Tile
 	ld de, SCREEN_WIDTH + 1
 	add hl, de
-	ld [hl], "×"
+	ld [hl], '×'
 	inc hl
 	ld de, wItemQuantity
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
@@ -168,7 +168,7 @@ BuySellToss_UpdateQuantityDisplayAndPrice:
 	ld de, hMoneyTemp
 	lb bc, 4, 6
 	call PrintNumber
-	ld [hl], "円"
+	ld [hl], '円'
 	call WaitBGMap
 	ret
 

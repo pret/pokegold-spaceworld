@@ -531,7 +531,7 @@ PokeBallEffect:
 
 	pop de
 	ld a, [de]
-	cp "@" ; Did we just leave the name empty?
+	cp '@' ; Did we just leave the name empty?
 	jr nz, .return_from_capture
 	ld hl, wStringBuffer1
 	ld bc, MON_NAME_LENGTH
@@ -555,7 +555,7 @@ PokeBallEffect:
 	call GBFadeOutToWhite
 	ld de, wBoxMonNicknames
 	ld a, [de]
-	cp "@"
+	cp '@'
 	jr nz, .done_with_nickname_pc
 
 	ld hl, wStringBuffer1
@@ -1262,7 +1262,7 @@ ItemActionTextWaitButton:
 	ldh [hBGMapMode], a
 	ld hl, wTileMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	ld a, "　"
+	ld a, '　'
 	call ByteFill
 	callfar WritePartyMenuTilemapAndText
 	ld a, 1

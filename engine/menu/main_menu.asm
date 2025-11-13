@@ -312,7 +312,7 @@ PrintPlayTime::
 	ld de, hRTCHours
 	ld bc, $0103 ; 1 byte, 3 digit
 	call PrintNumber
-	ld [hl], "："
+	ld [hl], '：'
 	inc hl
 	ld de, hRTCMinutes
 	ld bc, $8102 ; PRINTNUM_LEADINGZEROS, 1 byte, 2 digit

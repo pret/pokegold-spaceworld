@@ -271,7 +271,7 @@ _RedrawFlashlightRow::
 _RedrawFlashlightColumnBlack::
 	ld l, e
 	ld h, d
-	ld b, "■"
+	ld b, '■'
 	ld de, BG_MAP_WIDTH
 	ld a, [wRedrawFlashlightWidthHeight]
 	add a
@@ -294,7 +294,7 @@ _RedrawFlashlightColumnBlack::
 _RedrawFlashlightRowBlack::
 	ld l, e
 	ld h, d
-	ld b, "■"
+	ld b, '■'
 	ld a, [wRedrawFlashlightWidthHeight]
 	ld c, a
 .loop

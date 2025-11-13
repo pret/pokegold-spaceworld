@@ -1502,7 +1502,7 @@ PokeSummary:
 	ld a, [wCurPartyMon]
 	and a
 	jr z, .FirstPokeChosen
-	ld [hl], "」"
+	ld [hl], '」'
 .FirstPokeChosen
 	inc a
 	ld b, a
@@ -1511,7 +1511,7 @@ PokeSummary:
 	jr z, .LastPokeChosen
 	inc hl
 	inc hl
-	ld [hl], "▶" ; right filled arrow
+	ld [hl], '▶' ; right filled arrow
 .LastPokeChosen
 	ld de, PartyMenuAttributes
 	call SetMenuAttributes
@@ -1976,18 +1976,18 @@ TrainerCardMainInputs:
 	ret
 .left
 	hlcoord 4, 16
-	ld [hl], "▶"
+	ld [hl], '▶'
 	hlcoord 11, 16
-	ld [hl], "　"
+	ld [hl], '　'
 	xor a
 	ld [wFlyDestination], a
 	and a
 	ret
 .right
 	hlcoord 4, 16
-	ld [hl], "　"
+	ld [hl], '　'
 	hlcoord 11, 16
-	ld [hl], "▶"
+	ld [hl], '▶'
 	ld a, 1
 	ld [wFlyDestination], a
 	and a
@@ -2145,7 +2145,7 @@ DrawTrainerCardMainPage:
 	ld de, TrainerCardBadgesTextTiles
 	call PlaceTrainerCardTiles
 	hlcoord 4, 16
-	ld [hl], "▶"
+	ld [hl], '▶'
 	ret
 
 TrainerCardText:

@@ -56,7 +56,7 @@ PlaceMenuItemQuantity::
 	pop hl
 	and a
 	jr nz, .done
-	ld [hl], "×"
+	ld [hl], '×'
 	inc hl
 	ld de, wMenuSelectionQuantity
 	lb bc, 1, 2
@@ -139,9 +139,9 @@ PlaceDetailedBoxMonView::
 	push hl
 
 	callfar GetGender
-	ld a, "♂"
+	ld a, '♂'
 	jr c, .male
-	ld a, "♀"
+	ld a, '♀'
 .male
 	pop hl
 	ld [hl], a
@@ -191,7 +191,7 @@ PlaceMoneyTextbox:
 	ld de, wMoney
 	lb bc, PRINTNUM_RIGHTALIGN | 3, 6
 	call PrintNumber
-	ld [hl], "円"
+	ld [hl], '円'
 	ret
 
 MoneyTopRightMenuHeader:

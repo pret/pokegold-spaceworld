@@ -3102,11 +3102,11 @@ CenterMonName:
 .loop:
 	inc de
 	ld a, [de]
-	cp "@"
+	cp '@'
 	jr z, .done
 	inc de
 	ld a, [de]
-	cp "@"
+	cp '@'
 	jr z, .done
 	dec hl
 	dec b
@@ -3296,7 +3296,7 @@ asm_3d8c0:
 asm_3d8d5:
 	ld hl, $c387
 	ld bc, $81
-	ld a, "　"
+	ld a, '　'
 	call ByteFill
 	xor a
 	ld [wPartyMenuActionText], a
@@ -3625,7 +3625,7 @@ MoveSelectionScreen::
 	dec a
 	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
-	ld [hl], "▷"
+	ld [hl], '▷'
 
 .interpret_joypad
 	call WaitBGMap
@@ -4002,9 +4002,9 @@ MoveInfoBox:
 	call PlaceString
 
 	hlcoord 16, 13
-	ld [hl], "／"
+	ld [hl], '／'
 	hlcoord 14, 16
-	ld [hl], "／"
+	ld [hl], '／'
 	hlcoord 14, 13
 	ld de, wStringBuffer1
 	lb bc, 1, 2
