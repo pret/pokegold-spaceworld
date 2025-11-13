@@ -263,11 +263,11 @@ InitDummyBoxNames:
 	push hl
 	ld de, .DummyBoxText
 	call CopyString
-	ld a, "０"
+	ld a, '０'
 	add c
 	dec hl
 	ld [hli], a
-	ld [hl], "@"
+	ld [hl], '@'
 	pop hl
 	ld de, BOX_NAME_LENGTH
 	add hl, de
@@ -436,7 +436,7 @@ BillsPC_ChangeBoxSubmenu:
 	ld de, wTempBoxName
 	farcall NamingScreen
 	ld a, [wTempBoxName]
-	cp "@"
+	cp '@'
 	ret z
 	ld hl, wBoxNames
 	ld bc, BOX_NAME_LENGTH
@@ -525,9 +525,9 @@ _ViewPKMN:
 	ld de, .CurrentBox
 	call PlaceString
 	hlcoord 0, 3
-	ld a, "┌"
+	ld a, '┌'
 	ld [hli], a
-	ld a, "─"
+	ld a, '─'
 	ld c, SCREEN_WIDTH - 1
 
 .top_border_loop
@@ -535,7 +535,7 @@ _ViewPKMN:
 	dec c
 	jr nz, .top_border_loop
 	ld de, SCREEN_WIDTH
-	ld a, "│"
+	ld a, '│'
 	ld c, 8
 .left_border_loop
 	ld [hl], a

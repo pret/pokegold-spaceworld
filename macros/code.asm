@@ -1,14 +1,14 @@
 ; Syntactic sugar macros
 
-MACRO lb ; r, hi, lo
+MACRO? lb ; r, hi, lo
 	ld \1, (((\2) & $ff) << 8) | (((\3) & $ff))
 ENDM
 
-MACRO ln ; r, hi, lo
+MACRO? ln ; r, hi, lo
 	ld \1, (((\2) & $f) << 4) | (((\3) & $f))
 ENDM
 
-MACRO ldpixel
+MACRO? ldpixel
 if _NARG >= 5
 	lb \1, \2 * 8 + \4, \3 * 8 + \5
 else

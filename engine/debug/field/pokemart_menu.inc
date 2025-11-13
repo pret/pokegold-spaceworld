@@ -78,7 +78,7 @@ DebugMart_BuyMenuHeader:
 	pop hl
 	ld c, $83
 	call PrintBCDNumber
-	ld [hl], "円"
+	ld [hl], '円'
 	ret
 
 DebugMart_WelcomeText:
@@ -324,11 +324,11 @@ DebugMart_LoadItems:
 .PrintPaddedDigits:
 	ld a, [de]
 	inc de
-	cp "　"
+	cp '　'
 	jr nz, .to_digit
-	ld a, "０"
+	ld a, '０'
 .to_digit
-	sub "０"
+	sub '０'
 	ret
 
 DebugMart_ShowPlaceholderText:

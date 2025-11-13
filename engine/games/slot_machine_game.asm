@@ -248,7 +248,7 @@ Slots_DisplayBiasValue:
 
 ; print second digit
 	and $f
-	add "０"
+	add '０'
 	hlcoord 1, 0
 	ld [hl], a
 
@@ -256,7 +256,7 @@ Slots_DisplayBiasValue:
 	ld a, e
 	swap a
 	and $F
-	add "０"
+	add '０'
 	hlcoord 0, 0
 	ld [hl], a
 	ret
@@ -1952,7 +1952,7 @@ Slots_PayoutText:
 	inc a
 	ldcoord_a 3, 14
 	hlcoord 18, 16
-	ld [hl], "▼"
+	ld [hl], '▼'
 	ld hl, .LinedUpText
 rept 4
 	inc bc

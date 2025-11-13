@@ -23,7 +23,7 @@ Function1130b:
 	add a, $F7
 	ld hl, wStringBuffer2
 	ld [hli], a
-	ld [hl], "@"
+	ld [hl], '@'
 	ld hl, BoxCantHoldText
 	call PrintText
 	scf

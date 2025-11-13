@@ -85,7 +85,7 @@ SetClockDialog_PrintUpDownArrows:
 	ret
 
 .clear_arrows
-	ld a, "　"
+	ld a, '　'
 	hlcoord 18, 14
 	ld [hl], a
 	hlcoord 18, 16

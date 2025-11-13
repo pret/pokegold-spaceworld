@@ -78,7 +78,7 @@ GetNthString::
 	ret z
 	push bc
 	ld b, a
-	ld c, "@"
+	ld c, '@'
 .readChar:
 	ld a, [hli]
 	cp c
@@ -113,7 +113,7 @@ endr
 	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
 	ld hl, wStringBuffer1 + MON_NAME_LENGTH - 1
-	ld [hl], "@"
+	ld [hl], '@'
 	pop de
 	pop hl
 	pop af
@@ -171,7 +171,7 @@ GetMachineName::
 ; now get the machine number and convert it to text
 	ld a, [wNamedObjectIndexBuffer]
 	sub ITEM_TM01_RED - 1
-	ld b, "０"
+	ld b, '０'
 .first_digit
 	sub 10
 	jr c, .second_digit
@@ -184,11 +184,11 @@ GetMachineName::
 	ld [de], a
 	inc de
 	pop af
-	ld b, "０"
+	ld b, '０'
 	add b
 	ld [de], a
 	inc de
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	pop af
 	ld [wNamedObjectIndexBuffer], a

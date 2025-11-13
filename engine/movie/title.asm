@@ -115,7 +115,7 @@ TitleSequenceInit::
 
 	ld hl, vBGMap0
 	ld bc, 128 tiles
-	ld a, "　"
+	ld a, '　'
 	call ByteFill
 
 	ld b, SGB_TITLE_SCREEN
@@ -483,7 +483,7 @@ LoadPrintArea::
 
 PrintPMJapaneseChara::
 	coord hl, 15, 2
-	ld a, "こ"
+	ld a, 'こ'
 	lb bc, 4, 4
 	jr PrintBoxArea
 

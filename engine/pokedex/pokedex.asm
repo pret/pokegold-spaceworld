@@ -845,7 +845,7 @@ Pokedex_PlaceBorder:
 	; Left border
 	ld a, $66
 	ld [hli], a
-	ld a, "　"
+	ld a, '　'
 .fill_middle
 	ld [hli], a
 	dec c
