@@ -79,7 +79,7 @@ rgbdscheck.o: rgbdscheck.asm
 
 %.map: %.gb
 
-$(CORRECTEDROM): RGBFIXFLAGS += -f hg -m 0x10
+$(CORRECTEDROM): RGBFIXFLAGS += -f hg -m 0x10 -Wno-overwrite
 $(CORRECTEDROM): %-correctheader.gb: %.gb
 	cp $< $@
 	cp $(<:.gb=.sym) $(@:.gb=.sym)
