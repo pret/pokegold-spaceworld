@@ -39,7 +39,7 @@ DEF _src = -_tgt
 DEF _tgt = 0
 endc
 
-if !STRCMP("\1", "north")
+if "\1" === "north"
 DEF _blk = \3_WIDTH * (\3_HEIGHT - 3) + _src
 DEF _map = _tgt
 DEF _win = (\3_WIDTH + 6) * \3_HEIGHT + 1
@@ -50,7 +50,7 @@ if _len > \3_WIDTH
 DEF _len = \3_WIDTH
 endc
 
-elif !STRCMP("\1", "south")
+elif "\1" === "south"
 DEF _blk = _src
 DEF _map = (CURRENT_MAP_WIDTH + 6) * (CURRENT_MAP_HEIGHT + 3) + _tgt
 DEF _win = \3_WIDTH + 7
@@ -61,7 +61,7 @@ if _len > \3_WIDTH
 DEF _len = \3_WIDTH
 endc
 
-elif !STRCMP("\1", "west")
+elif "\1" === "west"
 DEF _blk = (\3_WIDTH * _src) + \3_WIDTH - 3
 DEF _map = (CURRENT_MAP_WIDTH + 6) * _tgt
 DEF _win = (\3_WIDTH + 6) * 2 - 6
@@ -72,7 +72,7 @@ if _len > \3_HEIGHT
 DEF _len = \3_HEIGHT
 endc
 
-elif !STRCMP("\1", "east")
+elif "\1" === "east"
 DEF _blk = (\3_WIDTH * _src)
 DEF _map = (CURRENT_MAP_WIDTH + 6) * _tgt + CURRENT_MAP_WIDTH + 3
 DEF _win = \3_WIDTH + 7
