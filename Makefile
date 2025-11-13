@@ -124,17 +124,17 @@ $(BUILD)/%.pic: $(BUILD)/%.2bpp tools/pkmncompress | $$(dir $$@)
 
 .PRECIOUS: $(BUILD)/%.2bpp
 $(BUILD)/%.2bpp: %.png tools/gfx | $$(dir $$@)
-	$(RGBGFX) $(RGBGFXFLAGS) $(OUTPUT_OPTION) $<
+	$(RGBGFX) -c dmg $(RGBGFXFLAGS) $(OUTPUT_OPTION) $<
 	tools/gfx $(tools/gfx) $(OUTPUT_OPTION) $@
 
 .PRECIOUS: $(BUILD)/%.1bpp
 $(BUILD)/%.1bpp: %.1bpp.png tools/gfx | $$(dir $$@)
-	$(RGBGFX) $(RGBGFXFLAGS) -d1 $(OUTPUT_OPTION) $<
+	$(RGBGFX) -c dmg $(RGBGFXFLAGS) -d1 $(OUTPUT_OPTION) $<
 	tools/gfx $(tools/gfx) -d1 $(OUTPUT_OPTION) $@
 
 .PRECIOUS: $(BUILD)/%.tilemap
 $(BUILD)/%.tilemap: %.png | $$(dir $$@)
-	$(RGBGFX) $(RGBGFXFLAGS) -t $@ $<
+	$(RGBGFX) -c dmg $(RGBGFXFLAGS) -t $@ $<
 
 .PRECIOUS: $(BUILD)/%.sgb.tilemap
 export LC_ALL=C
