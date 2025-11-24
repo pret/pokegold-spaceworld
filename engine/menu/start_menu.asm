@@ -698,28 +698,24 @@ TryTossItem:
 	ret
 
 .TossedText:
-	db 1
-	dw wStringBuffer2
+	text_from_ram wStringBuffer2
 	text "を　"
 	line "いくつ　すてますか？"
 	done
 
 .TossVerifyText:
-	db 1
-	dw wStringBuffer2
+	text_from_ram wStringBuffer2
 	text "を　@"
-	db 9
-	dw wItemQuantity
-	db $12
+	deciram wItemQuantity, 1, 2
 	text "こ"
 	line "すててもよろしいですか？"
 	done
 
 .TossedTextCopy:
-	db 1
-	dw wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "を"
-	line "すてました！<PROMPT>"
+	line "すてました！"
+	prompt
 
 CantDropItem:
 	ld hl, .CantDropItemText
@@ -728,7 +724,8 @@ CantDropItem:
 
 .CantDropItemText:
 	text "それは　とても　たいせつなモノです"
-	line "すてることは　できません！<PROMPT>"
+	line "すてることは　できません！"
+	prompt
 
 PrintCantUseHM:
 	ld hl, .CantUseHMText
@@ -737,7 +734,8 @@ PrintCantUseHM:
 
 .CantUseHMText:
 	text "かいはつちゅう　です"
-	line "いまは　つかえません<PROMPT>"
+	line "いまは　つかえません"
+	prompt
 
 PrintCantUseText:
 	ld hl, .CantUseHereText
@@ -747,7 +745,8 @@ PrintCantUseText:
 .CantUseHereText:
 	text "オーキドの　ことば<⋯⋯>"
 	line "<PLAYER>よ！　こういうものには"
-	cont "つかいどきが　あるのじゃ！<PROMPT>"
+	cont "つかいどきが　あるのじゃ！"
+	prompt
 
 DrawNoItemsText:
 	ld hl, .NoItemsText
@@ -755,7 +754,9 @@ DrawNoItemsText:
 	ret
 
 .NoItemsText:
-	text "どうぐ　をひとつも<NEXT>もっていません！<PROMPT>"
+	text "どうぐ　をひとつも"
+	next "もっていません！"
+	prompt
 
 BallPocket:
 	xor a
@@ -871,10 +872,10 @@ RegisterItem:
 	ret
 
 .RegisteredItemText:
-	db 1
-	dw wStringBuffer2
+	text_from_ram wStringBuffer2
 	text "を　"
-	line "べんりボタンに　とうろくした！<PROMPT>"
+	line "べんりボタンに　とうろくした！"
+	prompt
 
 PrintCantRegisterToolText:
 	ld hl, .CantRegisterToolText
@@ -883,7 +884,8 @@ PrintCantRegisterToolText:
 
 .CantRegisterToolText:
 	text "そのどうぐは　"
-	line "とうろくできません！<PROMPT>"
+	line "とうろくできません！"
+	prompt
 
 StartMenu_Party:
 	ld a, [wPartyCount]
@@ -1116,70 +1118,57 @@ PartyHeldItem:
 	db "そうびを　はずす@"
 
 .CantBeEquippedText
-	db 1
-	dw wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "を　そうびすることは"
-	line "できません<PROMPT>"
+	line "できません"
+	prompt
 
 ItemWasEquippedText:
-	db 1
-	dw wMonOrItemNameBuffer
+	text_from_ram wMonOrItemNameBuffer
 	text "は　そうび　していた"
 	line "@"
-
-.UnusedText1
-	db 1
-	dw wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "を　はずして"
-	para "@"
 
-.UnusedText2
-	db 1
-	dw wStringBuffer2
-	text "を　そうびした！<PROMPT>"
+	para "@"
+	text_from_ram wStringBuffer2
+	text "を　そうびした！"
+	prompt
 
 ItemPrompt66FA:
-	db 1
-	dw wMonOrItemNameBuffer
+	text_from_ram wMonOrItemNameBuffer
 	text "は　@"
-
-.UnusedText3
-	db 1
-	dw wStringBuffer2
+	text_from_ram wStringBuffer2
 	text "を"
-	line "そうびした！<PROMPT>"
+	line "そうびした！"
+	prompt
 
 PartyNoItemToRecieveText:
-	db 1
-	dw wMonOrItemNameBuffer
+	text_from_ram wMonOrItemNameBuffer
 	text "は　なにも"
-	line "そうび　していません！<PROMPT>"
+	line "そうび　していません！"
+	prompt
 
 PartyItemRecieveBagFullText:
 	text "どうぐが　いっぱいで"
-	line "そうびを　はずせません！<PROMPT>"
+	line "そうびを　はずせません！"
+	prompt
 
 ItemPrompt673D:
-	db 1
-	dw wMonOrItemNameBuffer
+	text_from_ram wMonOrItemNameBuffer
 	text "から　@"
-
-.UnusedText4
-	db 1
-	dw wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "を"
-	line "はずしました！<PROMPT>"
+	line "はずしました！"
+	prompt
 
 ItemPrompt6753:
-	db 1
-	dw wMonOrItemNameBuffer
+	text_from_ram wMonOrItemNameBuffer
 	text "は　@"
-
-.UnusedText5:
-	db 1
-	dw wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "を"
 	line "すでに　そうび　しています"
+
 	para "そうびしている　どうぐを"
 	line "とりかえますか？"
 	done
@@ -1341,17 +1330,18 @@ PartyMailMenu:
 	done
 
 .DrawNick
-	db 1
-	dw wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "から　@"
 
 .DeleteMailText
 	text "メールを"
-	line "はずしました！<PROMPT>"
+	line "はずしました！"
+	prompt
 
 .MailFullText
 	text "どうぐが　いっぱいで"
-	line "メールを　はずせません！<PROMPT>"
+	line "メールを　はずせません！"
+	prompt
 
 PartyPokemonSummary:
 	call LoadStandardMenuHeader
@@ -1441,7 +1431,8 @@ PrintNotHealthyEnoughText:
 	jp HandleSelectedPokemon
 
 NotHealthyEnoughText:
-	text "たいりょくが　たりません！<PROMPT>"
+	text "たいりょくが　たりません！"
+	prompt
 
 PrintNeedNewBadgeText:
 	ld hl, NeedNewBadgeText
@@ -1450,7 +1441,8 @@ PrintNeedNewBadgeText:
 
 NeedNewBadgeText:
 	text "あたらしい　バッジを　てにするまで"
-	line "まだ　つかえません！<PROMPT>"
+	line "まだ　つかえません！"
+	prompt
 
 PartyPokemonSummary2:
 	ld hl, wOptions
@@ -1740,7 +1732,8 @@ CheckRegisteredItem:
 
 .NothingRegisteredText:
 	text "べんりボタンを　おした！"
-	line "⋯しかしなにもおきない！<PROMPT>"
+	line "⋯しかしなにもおきない！"
+	prompt
 
 GetRegisteredItemID:
 ; if you can use the registered item, sets the ID to a
@@ -2149,7 +2142,11 @@ DrawTrainerCardMainPage:
 	ret
 
 TrainerCardText:
-	db "なまえ／<NEXT><NEXT>おこづかい<NEXT><NEXT>#ずかん@"
+	db   "なまえ／"
+	next ""
+	next "おこづかい"
+	next ""
+	next "#ずかん@"
 
 TrainerCardDexEntriesText:
 	db "ひき@"

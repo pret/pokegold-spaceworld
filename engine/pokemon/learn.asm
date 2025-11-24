@@ -218,10 +218,12 @@ AskForgetMoveText:
 	line "@"
 	text_from_ram wStringBuffer2
 	text "を　おぼえたい<⋯⋯>！"
+
 	para "しかし　@"
 	text_from_ram wMonOrItemNameBuffer
 	text "は　わざを　４つ"
 	line "おぼえるので　せいいっぱいだ！"
+
 	para "@"
 	text_from_ram wStringBuffer2
 	text "の　かわりに"
@@ -242,13 +244,15 @@ Text_1_2_and_Poof:
 MoveForgotText:
 	text "　ポカン！@"
 	text_exit
-	text ""
+	text_start
+
 	para "@"
 	text_from_ram wMonOrItemNameBuffer
 	text "は　@"
 	text_from_ram wStringBuffer1
 	text "の"
 	line "つかいかたを　きれいに　わすれた！"
+
 	para "そして<⋯⋯>！"
 	prompt
 

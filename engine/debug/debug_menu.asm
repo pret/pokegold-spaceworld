@@ -269,7 +269,8 @@ _DebugMenuSoundTest::
 
 .String:
 	deciram hDebugMenuSoundMenuIndex, 1, 1
-	text "<LINE>@"
+	text_start
+	line "@"
 	text_from_ram wStartDay
 	text "　"
 	done

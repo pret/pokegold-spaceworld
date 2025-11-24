@@ -737,9 +737,8 @@ SilentHillLabFrontTextString5:
 
 	para "すこし　わしの　はなしを"
 	line "きいては　くれんか？@"
-	db $08
 
-SilentHillLabFrontText6:
+	start_asm
 	call YesNoBox
 	jr c, .jump
 .loop

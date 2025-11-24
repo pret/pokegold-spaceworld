@@ -773,7 +773,9 @@ StoringEnergyText:
 	prompt
 
 UnleashedEnergyText:
-	text "<USER>の<LINE>がまんが　とかれた！<PROMPT>"
+	text "<USER>の"
+	line "がまんが　とかれた！"
+	prompt
 
 HungOnText:
 	text "<TARGET>は"
@@ -1168,7 +1170,8 @@ UsedMoveText_CheckObedience:
 	ret
 
 MoveNameText:
-	text "<LINE>@"
+	text_start
+	line "@"
 	text_from_ram wStringBuffer2
 	start_asm
 ; get start address
@@ -7769,6 +7772,7 @@ BattleCommand_NailDown:
 .PutACurseText
 	text "<USER>は"
 	line "じぶんに　くぎを　うった"
+
 	para "<TARGET>は"
 	line "のろいを　かけられた！"
 	prompt

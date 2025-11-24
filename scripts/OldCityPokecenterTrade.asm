@@ -42,4 +42,4 @@ OldCityPokecenterTradeTextString1:
 	text_exit
 	text_exit
 	text_exit
-	db "@"
+	text_end

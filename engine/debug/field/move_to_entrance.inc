@@ -21,6 +21,7 @@ FieldDebug_MoveToRoute1Entrance:
 
 .CantUseText:
 	text "ここでは　できません"
+
 	para "ロード１でじっこうできます"
 	done
 

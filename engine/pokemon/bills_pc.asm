@@ -428,6 +428,7 @@ BillsPC_ChangeBoxSubmenu:
 .ChangeBoxSaveText:
 	text "#　ボックスを　かえると" ; "When you change a box"
 	line "どうじに　レポートが　かかれます" ; "data will be saved."
+
 	para "<⋯⋯>　それでも　いいですか？" ; "Is that okay?"
 	done
 

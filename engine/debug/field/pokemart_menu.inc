@@ -339,5 +339,5 @@ DebugMart_ShowPlaceholderText:
 
 .PlaceholderText:
 	text "かいはつちゅうです"
-	next "<PROMPT>"
-
+	next ""
+	prompt

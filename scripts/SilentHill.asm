@@ -396,9 +396,7 @@ SilentHillTextRival1:
 	cont "じぶんの　ははおや　のこと"
 	cont "いつも　なんて　よんでる？@"
 
-	db $08
-
-LoadMomNamePromptUnused:
+	start_asm
 	call LoadStandardMenuHeader
 	callfar MomNamePrompt
 	call CloseWindow

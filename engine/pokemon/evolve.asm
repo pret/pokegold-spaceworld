@@ -335,7 +335,8 @@ CongratulationsYourPokemonText:
 	done
 
 EvolvedIntoText:
-	text "<LINE>@"
+	text_start
+	line "@"
 	text_from_ram wStringBuffer1
 	text "に　しんかした"
 	done

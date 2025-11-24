@@ -544,8 +544,9 @@ SRAMClearMenu::
 	jp Init
 
 SRAMClear_Message::
-	db "<NULL>すべての　セーブデータエリアを"
-	db "<LINE>クリア　しますか？<DONE>"
+	text "すべての　セーブデータエリアを"
+	line "クリア　しますか？"
+	done
 
 SRAMClear_WinPOS::
 	db 0

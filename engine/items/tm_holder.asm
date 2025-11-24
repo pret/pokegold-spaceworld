@@ -111,6 +111,7 @@ ContainedMoveText:
 	text_from_ram wStringBuffer2
 	text "が"
 	line "きろくされていた！"
+
 	para "@"
 	text_from_ram wStringBuffer2
 	text "を"
@@ -123,6 +124,7 @@ TMHMNotCompatibleText:
 	text_from_ram wStringBuffer2
 	text "は"
 	line "あいしょうが　わるかった！"
+
 	para "@"
 	text_from_ram wStringBuffer2
 	text "は　おぼえられない！"

@@ -191,8 +191,7 @@ PlayerHouse2FTextString5:
 	line "メールが　とどいている　ようだ"
 	cont "よんでみる？@"
 
-	db $08
-
+	start_asm
 	call PlayerHouse2FCheckEmail
 	call Function3036
 	ret
