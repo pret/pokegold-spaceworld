@@ -744,7 +744,7 @@ SilentHillLabFrontTextString5:
 .loop
 	ld hl, SilentHillLabFrontTextString6A
 	call PrintText
-	call Function3036
+	call Text_asmReturn
 	ret
 
 .jump

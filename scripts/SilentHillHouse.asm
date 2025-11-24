@@ -77,12 +77,12 @@ SilentHillHouseTextString1:
 	set 6, [hl]
 	ld hl, SilentHillHouseTextString2
 	call PrintText
-	call Function3036
+	call Text_asmReturn
 	ret
 .jump
 	ld hl, SilentHillHouseTextString3
 	call PrintText
-	call Function3036
+	call Text_asmReturn
 	ret
 
 SilentHillHouseTextString2:

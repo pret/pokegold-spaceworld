@@ -403,7 +403,7 @@ SilentHillTextRival1:
 	call GetMemSGBLayout
 	call UpdateSprites
 	call UpdateTimePals
-	jp Function3036
+	jp Text_asmReturn
 
 MomNameMenuHeaderUnused:
 	db MENU_BACKUP_TILES ; flags

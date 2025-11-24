@@ -1,10 +1,5 @@
 	charmap "<NULL>", $00
 
-	charmap "イ゛", $01
-	charmap "ヴ",  $02
-	charmap "エ゛", $03
-	charmap "オ゛", $04
-
 	charmap "ガ", $05
 	charmap "ギ", $06
 	charmap "グ", $07
@@ -21,13 +16,7 @@
 	charmap "デ", $12
 	charmap "ド", $13
 
-	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"
-
-	charmap "<15>", $15 ; nothing
-	charmap "<16>", $16 ; nothing
-
-	charmap "ネ゛", $17
-	charmap "ノ゛", $18
+;	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"
 
 	charmap "バ", $19
 	charmap "ビ", $1a
@@ -38,9 +27,6 @@
 	charmap "<NI>",  $1d ; "に　"
 	charmap "<TTE>", $1e ; "って"
 	charmap "<WO>",  $1f ; "を　"
-
-	charmap "ィ゛", $20
-	charmap "あ゛", $21
 
 	charmap "<TA!>",     $22 ; "た！"
 	charmap "<KOUGEKI>", $23 ; "こうげき"
@@ -92,8 +78,6 @@
 	charmap "<GA>",     $4a ; "が　"
 	charmap "<_CONT>",  $4b ; implements "<CONT>"
 	charmap "<SCROLL>", $4c
-
-	charmap "も゜", $4d
 
 	charmap "<NEXT>",    $4e
 	charmap "<LINE>",    $4f
