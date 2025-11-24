@@ -31,7 +31,7 @@
 	const FIELDDEBUG_TRAINER_GEAR            ; $1c
 
 FieldDebug_MenuStrings:
-	db "りセット@"
+	db "リセット@"
 	db "とじる@"
 	db "わくせん@"
 	db "ゲーム@"
@@ -41,7 +41,7 @@ FieldDebug_MenuStrings:
 	db "キャラ@"
 	db "なまえ@"
 	db "ツールギア@"
-	db "イべント@"
+	db "イベント@"
 	db "かいふく@"
 	db "つうしん@"
 	db "つぎ▶@"

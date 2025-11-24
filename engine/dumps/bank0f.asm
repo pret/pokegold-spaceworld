@@ -139,7 +139,7 @@ StartBattle:
 SafariZonePAText:
 	text "アナウンス『ピンポーン！"
 
-	para "サファり　ボールを"
+	para "サファリ　ボールを"
 	line "ぜんぶ　なげました！"
 	prompt
 
@@ -862,7 +862,7 @@ sub_3c6e0:
 
 EndPsychicVeilText:
 	text "<USER>を　つつんでいた"
-	line "しんぴの　べールが　なくなった！"
+	line "しんぴの　ベールが　なくなった！"
 	prompt
 
 sub_3c704:
@@ -5338,7 +5338,7 @@ BoostedExpPointsText:
 
 GrewToLevelText:
 	text_from_ram wStringBuffer1
-	text "は<LINE>レべル@"
+	text "は<LINE>レベル@"
 	deciram wCurPartyLevel, 1, 3
 	text "　に　あがった！@"
 	db "ジ@"

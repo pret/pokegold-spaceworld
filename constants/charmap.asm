@@ -32,6 +32,7 @@
 	charmap "バ", $19
 	charmap "ビ", $1a
 	charmap "ブ", $1b
+	charmap "ベ", $3d ; same as printing Hiragana べ
 	charmap "ボ", $1c
 
 	charmap "<NI>",  $1d ; "に　"
@@ -79,6 +80,7 @@
 	charmap "パ", $40
 	charmap "ピ", $41
 	charmap "プ", $42
+	charmap "ペ", $47 ; same as printing Hiragana ぺ
 	charmap "ポ", $43
 	charmap "ぱ", $44
 	charmap "ぴ", $45
@@ -99,17 +101,17 @@
 	charmap "<PARA>",    $51
 	charmap "<PLAYER>",  $52 ; wPlayerName
 	charmap "<RIVAL>",   $53 ; wRivalName
-	charmap "#",         $54 ; "POKé"
+	charmap "#",         $54 ; "ポケモン"
 	charmap "<CONT>",    $55
 	charmap "<⋯⋯>",      $56 ; "⋯⋯"
 	charmap "<DONE>",    $57
 	charmap "<PROMPT>",  $58
 	charmap "<TARGET>",  $59
 	charmap "<USER>",    $5a
-	charmap "<PC>",      $5b ; "PC"
-	charmap "<TM>",      $5c ; "TM"
-	charmap "<TRAINER>", $5d ; "TRAINER"
-	charmap "<ROCKET>",  $5e ; "ROCKET"
+	charmap "<PC>",      $5b ; "パソコン"
+	charmap "<TM>",      $5c ; "わざマシン"
+	charmap "<TRAINER>", $5d ; "トレーナー"
+	charmap "<ROCKET>",  $5e ; "ロケットだん"
 	charmap "<DEXEND>",  $5f
 
 	charmap "■", $60
@@ -183,6 +185,7 @@
 	charmap "ハ", $99
 	charmap "ヒ", $9a
 	charmap "フ", $9b
+	charmap "ヘ", $cd ; shared graphic tile with Hiragana へ
 	charmap "ホ", $9c
 	charmap "マ", $9d
 	charmap "ミ", $9e
@@ -193,6 +196,7 @@
 	charmap "ユ", $a3
 	charmap "ヨ", $a4
 	charmap "ラ", $a5
+	charmap "リ", $d8 ; shared graphic tile with Hiragana り
 	charmap "ル", $a6
 	charmap "レ", $a7
 	charmap "ロ", $a8

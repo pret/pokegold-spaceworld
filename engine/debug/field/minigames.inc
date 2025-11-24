@@ -71,7 +71,7 @@ FieldDebug_Minigames:
 	db 3
 	db "スロットマシン@"
 	db "ポーカーゲーム@"
-	db "ぺアゲーム@"
+	db "ペアゲーム@"
 
 .MinigamePointers:
 	dba SlotMachineGame

@@ -11,5 +11,5 @@ DisplayResetDialog::
 	ret
 
 _ResetConfirmText::
-	text "ほんとにりセットしますか？"
+	text "ほんとにリセットしますか？"
 	done

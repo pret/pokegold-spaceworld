@@ -879,7 +879,7 @@ SilentHillLabFrontTextString11B:
 	cont "これからも　ときどきは"
 	cont "わしのところへ　かおを　だせ！"
 
-	para "#ずかんの　ぺージが"
+	para "#ずかんの　ページが"
 	line "きに　なるからな"
 	done
 
@@ -996,7 +996,7 @@ SilentHillLabFrontTextString21:
 
 	para "みつけた　#の　データが"
 	line "じどうてきに　かきこまれて"
-	cont "ぺージが　ふえて　いく　という"
+	cont "ページが　ふえて　いく　という"
 	cont "とても　ハイテクな　ずかん　だよ！"
 	done
 
@@ -1037,12 +1037,12 @@ SilentHillLabFrontTextString23:
 	line "わすれている　みたいだから"
 
 	para "わたしが　かわりに　これを　あげる！"
-	line "さいしんがた　#りュックよ"
+	line "さいしんがた　#リュックよ"
 
 	para "<PLAYER>は"
-	line "#りュックを　もらった！"
+	line "#リュックを　もらった！"
 
-	para "ナナミ『この　りュックには"
+	para "ナナミ『この　リュックには"
 	line "モンスターボールを"
 	cont "まとめて　いれられる"
 	cont "ボールホルダと"

@@ -221,7 +221,7 @@ FieldDebug_DoClearEventFlags:
 .MenuData:
 	db STATICMENU_CURSOR
 	db 2
-	db "フラグを　クりア@"
+	db "フラグを　クリア@"
 	db "フラグを　うめる@"
 
 .CheckMapFlags:

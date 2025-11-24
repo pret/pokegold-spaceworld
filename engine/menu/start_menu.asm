@@ -78,13 +78,13 @@ DisplayStartMenu:
 .Strings:
 	db "ずかん@"
 	db "ポケモン@"
-	db "りュック@"
+	db "リュック@"
 	db "<PLAYER>@"
 	db "レポート@"
 	db "せってい@"
 	db "とじる@"
 	db "わくせん@"
-	db "りセット@"
+	db "リセット@"
 
 StartMenuJumpTable:
 	dw StartMenu_Pokedex
@@ -456,7 +456,7 @@ NondebugBackpackLoop:
 	jr HandleBackpackInput
 
 BackpackHeaderText:
-	db "　　　　　　りュックの　なか　　　　　@"
+	db "　　　　　　リュックの　なか　　　　　@"
 
 HandleBackpackInput:
 	ld a, [wMenuJoypad]
@@ -2188,7 +2188,7 @@ DrawTrainerCaseBadgePage:
 	ret
 
 TrainerCardLeagueBadgesTextTiles:
-	db "#りーグバッジ@"
+	db "#リーグバッジ@"
 
 TrainerCardBadgesTiles:
 	db $0A, $0B, $0C, $0D, $0E, $FF

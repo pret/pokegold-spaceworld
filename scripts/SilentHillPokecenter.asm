@@ -96,7 +96,7 @@ SilentHillPokecenterNPCText4:
 	ret
 
 SilentHillPokecenterTextString5:
-	text "こいつ　へルガー"
+	text "こいつ　ヘルガー"
 	line "いままでにない　タイプの　ポケモンさ"
 	done
 
@@ -106,5 +106,5 @@ SilentHillPokecenterNPCText5:
 	ret
 
 SilentHillPokecenterTextString6:
-	text "へルガー『ぐるるうー"
+	text "ヘルガー『ぐるるうー"
 	done

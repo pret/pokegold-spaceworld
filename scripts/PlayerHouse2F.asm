@@ -171,7 +171,7 @@ PlayerHouse2FTextString2:
 	done
 
 PlayerHouse2FTextString3:
-	text "クりスマスに　カントーの"
+	text "クリスマスに　カントーの"
 	line "しんせきに　プレゼント"
 	cont "してもらった　にんぎょうだ"
 	done
@@ -227,7 +227,7 @@ PlayerHouse2FTextString8: ; (unused?)
 
 	para "もうしこみさきは⋯⋯"
 	line "⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯"
-	cont "シルフの　ホームぺージだ"
+	cont "シルフの　ホームページだ"
 	done
 
 PlayerHouse2FTextString9:

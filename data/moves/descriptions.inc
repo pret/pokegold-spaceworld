@@ -257,7 +257,7 @@ PoundDescription:
 
 KarateChopDescription:
 	db   "チョップで　てきを　こうげき"
-	next "クりティカルヒットが　でやすい@"
+	next "クリティカルヒットが　でやすい@"
 
 DoubleslapDescription:
 	db   "てきを　おうふくビンタで"
@@ -376,7 +376,7 @@ FuryAttackDescription:
 	next "２ー５かい　れんぞくで　こうげき@"
 
 HornDrillDescription:
-	db   "ツノを　ドりルのように　かいてんさせ"
+	db   "ツノを　ドリルのように　かいてんさせ"
 	next "てきを　つつき　せんとうふのうにする@"
 
 TackleDescription:
@@ -408,15 +408,15 @@ TailWhipDescription:
 	next "ぼうぎょを　さげさせる@"
 
 PoisonStingDescription:
-	db   "どくのある　ハりや　ツノで　こうげき"
+	db   "どくのある　ハリや　ツノで　こうげき"
 	next "てきに　どくをあたえることがある@"
 
 TwineedleDescription:
-	db   "りょうての　ハりを　つかって"
+	db   "りょうての　ハリを　つかって"
 	next "てきを　２かい　れんぞくで　こうげき@"
 
 PinMissileDescription:
-	db   "するどいハりを　てきに　はっしゃして"
+	db   "するどいハリを　てきに　はっしゃして"
 	next "２ー５かい　れんぞくで　こうげき@"
 
 LeerDescription:
@@ -525,7 +525,7 @@ CounterDescription:
 
 SeismicTossDescription:
 	db   "いんりょくを　りようして　なげる"
-	next "レべルぶんの　ダメージを　あたえる@"
+	next "レベルぶんの　ダメージを　あたえる@"
 
 StrengthDescription:
 	db   "ぜんしんに　すごいちからを　ためて"
@@ -549,7 +549,7 @@ GrowthDescription:
 
 RazorLeafDescription:
 	db   "はっぱで　てきを　きりつける"
-	next "クりティカルヒットが　でやすい@"
+	next "クリティカルヒットが　でやすい@"
 
 SolarbeamDescription:
 	db   "１ターンめで　ひかりを　きゅうしゅう"
@@ -653,7 +653,7 @@ TeleportDescription:
 
 NightShadeDescription:
 	db   "てきに　おそろしい　まぼろしを　みせ"
-	next "レべルぶんの　ダメージを　あたえる@"
+	next "レベルぶんの　ダメージを　あたえる@"
 
 MimicDescription:
 	db   "てきが　つかった　わざが　"
@@ -713,7 +713,7 @@ ReflectDescription:
 
 FocusEnergyDescription:
 	db   "こうげきに　きあいを　こめて"
-	next "クりティカルヒットを　でやすくする@"
+	next "クリティカルヒットを　でやすくする@"
 
 BideDescription:
 	db   "２ー３ターン　こうげきに　たえて"
@@ -744,7 +744,7 @@ SmogDescription:
 	next "てきに　どくをあたえることがある@"
 
 SludgeDescription:
-	db   "へドロを　なげつけて　こうげき"
+	db   "ヘドロを　なげつけて　こうげき"
 	next "てきに　どくをあたえることがある@"
 
 BoneClubDescription:
@@ -772,7 +772,7 @@ SkullBashDescription:
 	next "つぎのターンで　てきを　こうげき@"
 
 SpikeCannonDescription:
-	db   "するどいハりを　てきに　はっしゃして"
+	db   "するどいハリを　てきに　はっしゃして"
 	next "２ー５かい　れんぞくで　こうげき@"
 
 ConstrictDescription:
@@ -844,7 +844,7 @@ FlashDescription:
 	next "てきの　めいちゅうりつを　さげさせる@"
 
 PsywaveDescription:
-	db   "てきに　１ーレべル×１．５の"
+	db   "てきに　１ーレベル×１．５の"
 	next "ダメージを　ランダムで　あたえる@"
 
 SplashDescription:
@@ -856,7 +856,7 @@ AcidArmorDescription:
 
 CrabhammerDescription:
 	db   "ハサミを　てきに　たたきつける"
-	next "クりティカルヒットが　でやすい@"
+	next "クリティカルヒットが　でやすい@"
 
 ExplosionDescription:
 	db   "てきに　だいダメージを　あたえるが"
@@ -883,7 +883,7 @@ HyperFangDescription:
 	next "ひるませることがある@"
 
 SharpenDescription:
-	db   "ポりゴンを　へらし　カクカクになって"
+	db   "ポリゴンを　へらし　カクカクになって"
 	next "こうげきを　あげる@"
 
 ConversionDescription:
@@ -900,7 +900,7 @@ SuperFangDescription:
 
 SlashDescription:
 	db   "するどいカマや　ツメなどで　こうげき"
-	next "クりティカルヒットが　でやすい@"
+	next "クリティカルヒットが　でやすい@"
 
 SubstituteDescription:
 	db   "たいりょくの　４ぶんの１を　つかって"
@@ -956,7 +956,7 @@ Conversion2Description:
 
 CoinHurlDescription:
 	db   "おかねを　つかって　てきを　こうげき"
-	next "かいぬしが　りッチなほど　つよいワザ@"
+	next "かいぬしが　リッチなほど　つよいワザ@"
 
 CottonSporeDescription:
 	db   "ほうしを　まとわりつかせ　てきにの"
@@ -998,7 +998,7 @@ BellyDrumDescription:
 	next "こうげきを　グーンとあげる@"
 
 SludgeBombDescription:
-	db   "へドロを　なげつけて　こうげき"
+	db   "ヘドロを　なげつけて　こうげき"
 	next "てきに　どくをあたえることがある@"
 
 MudSlapDescription:
@@ -1199,7 +1199,7 @@ HiddenPowerDescription:
 
 CrossCutterDescription:
 	db   "ハサミを　こうさ　させて　こうげき"
-	next "クりティカルヒットが　でやすい@"
+	next "クリティカルヒットが　でやすい@"
 
 TwisterDescription:
 	db   "ものすごい　かぜを　おこして"
@@ -1228,7 +1228,7 @@ UprootDescription:
 
 WindRideDescription:
 	db   "かぜと　ともに　てきに　たいあたり"
-	next "クりティカルヒットが　でやすい@"
+	next "クリティカルヒットが　でやすい@"
 
 WaterSportDescription:
 	db   "コメントさくせいちゅう@"

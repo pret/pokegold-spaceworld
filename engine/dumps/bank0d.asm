@@ -8319,7 +8319,7 @@ BattleCommand_Safeguard:
 
 .CoveredByVeilText:
 	text "<USER>は"
-	line "しんぴのべールに　つつまれた！"
+	line "しんぴのベールに　つつまれた！"
 	prompt
 
 .failed
@@ -8356,7 +8356,7 @@ BattleCommand_CheckSafeguard:
 
 SafeguardProtectText:
 	text "<TARGET>は"
-	line "しんぴのべールに　まもられている！"
+	line "しんぴのベールに　まもられている！"
 	prompt
 
 BattleCommand_GetMagnitude:

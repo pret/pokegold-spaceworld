@@ -500,12 +500,12 @@ Dakutens:
 	db "カガキギクグケゲコゴ"
 	db "サザシジスズセゼソゾ"
 	db "タダチヂツヅテデトド"
-	db "ハバヒビフブへべホボ"
+	db "ハバヒビフブヘベホボ"
 	db $FF
 
 Handakutens:
 	db "はぱひぴふぷへぺほぽ"
-	db "ハパヒピフプへぺホポ"
+	db "ハパヒピフプヘペホポ"
 	db $FF
 
 NamingScreenDeleteCharacter:

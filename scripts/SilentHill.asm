@@ -426,7 +426,7 @@ SilentHillTextRival2: ; BYTE OFF
 	line "そんな　こどもっぽい"
 	cont "よびかた　してるなんて"
 	cont "おわらいだぜ！"
-	cont"あー　ちょっとだけ　すっきりした！"
+	cont "あー　ちょっとだけ　すっきりした！"
 
 	para "そんじゃあ"
 	line "おれは　ひとあし　おさきに"
@@ -460,7 +460,7 @@ SilentHillTextBackpack:
 	ret
 
 SilentHillTextBackpackString:
-	text "あなたの　りュック　かっこいいわよ"
+	text "あなたの　リュック　かっこいいわよ"
 	line "どこで　てに　いれたの？"
 	done
 

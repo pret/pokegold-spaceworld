@@ -82,7 +82,7 @@ DebugMart_BuyMenuHeader:
 	ret
 
 DebugMart_WelcomeText:
-	text "フレンドりーショップへ　"
+	text "フレンドリーショップへ　"
 	line "ようこそ！"
 	prompt
 
