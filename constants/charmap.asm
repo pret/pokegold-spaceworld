@@ -69,7 +69,7 @@
 	charmap "び", $3b
 	charmap "ぶ", $3c
 	charmap "べ", $3d
-	charmap "ベ", $3d ; Katakana, same as printing Hiragana べ
+	charmap "ベ", $3d ; Katakana, shared graphic tile with Hiragana "べ"
 	charmap "ぼ", $3e
 
 	charmap "<ENEMY>", $3f
@@ -82,7 +82,7 @@
 	charmap "ぴ", $45
 	charmap "ぷ", $46
 	charmap "ぺ", $47
-	charmap "ペ", $47 ; Katakana, same as printing Hiragana ぺ
+	charmap "ペ", $47 ; Katakana, shared graphic tile with Hiragana "ぺ"
 	charmap "ぽ", $48
 
 	charmap "<MOM>",    $49 ; wMomsName
@@ -234,7 +234,7 @@
 	charmap "ひ", $cb
 	charmap "ふ", $cc
 	charmap "へ", $cd
-	charmap "ヘ", $cd ; Katakana, shared graphic tile with Hiragana へ
+	charmap "ヘ", $cd ; Katakana, shared graphic tile with Hiragana "へ"
 	charmap "ほ", $ce
 	charmap "ま", $cf
 	charmap "み", $d0
@@ -246,7 +246,7 @@
 	charmap "よ", $d6
 	charmap "ら", $d7
 	charmap "り", $d8
-	charmap "リ", $d8 ; Katakana, shared graphic tile with Hiragana り
+	charmap "リ", $d8 ; Katakana, shared graphic tile with Hiragana "り"
 	charmap "る", $d9
 	charmap "れ", $da
 	charmap "ろ", $db
