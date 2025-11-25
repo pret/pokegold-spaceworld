@@ -90,6 +90,8 @@
 	charmap "<_CONT>",  $4b ; implements "<CONT>"
 	charmap "<SCROLL>", $4c
 
+	charmap "<も゜>", $4d
+
 	charmap "<NEXT>",    $4e
 	charmap "<LINE>",    $4f
 	charmap "@",         $50 ; string terminator
