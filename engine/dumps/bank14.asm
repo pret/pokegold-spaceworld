@@ -249,10 +249,10 @@ GetTrainerClassName_Old::
 	db "だんいん@"
 
 .cooltrainer_male
-	db "エりート♂@"
+	db "エリート♂@"
 
 .cooltrainer_female
-	db "エりート♀@"
+	db "エリート♀@"
 
 DrawPlayerHP::
 	ld a, 1
@@ -1549,7 +1549,7 @@ RevitalizedText:
 
 _GrewToLevelText:
 	text_from_ram wStringBuffer1
-	text "の　レべルが@"
+	text "の　レベルが@"
 	deciram wCurPartyLevel, 1, 3
 	text "になった@"
 	sound_dex_fanfare_50_79

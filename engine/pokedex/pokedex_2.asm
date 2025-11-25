@@ -809,7 +809,8 @@ Pokedex_InitUnownMode:
 	db "アンノーン　の　しゅるい@"
 
 .VariantsDiscoveredString:
-	db "　　しゅるい<NEXT>　はっけん！@"
+	db   "　　しゅるい"
+	next "　はっけん！@"
 
 
 PrintUnownList:

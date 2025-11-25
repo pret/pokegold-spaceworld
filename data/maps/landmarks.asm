@@ -69,7 +69,7 @@ LandmarkNames::
 	db "ブルーフォレスト@" ; BLUE_FOREST
 	db "スタンド@" ; STAND
 	db "カントー@" ; KANTO
-	db "プりンス@" ; PRINCE
+	db "プリンス@" ; PRINCE
 	db "フジヤマ@" ; MT_FUJI
 	db "サウス@" ; SOUTH
 	db "ノース@" ; NORTH

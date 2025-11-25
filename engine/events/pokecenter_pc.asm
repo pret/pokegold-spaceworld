@@ -55,6 +55,7 @@ PokemonCenterPC:
 
 .TurnOnText:
 	text "コンピューターを　きどう！"
+
 	para "ネットワークにせつぞくした！"
 	prompt
 
@@ -125,12 +126,14 @@ PC_Demo:
 	ret
 
 .SkarmoryText:
-	text "ポケモン　ジャーナル　ホームぺージ"
+	text "ポケモン　ジャーナル　ホームページ"
 	line "<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>"
+
 	para "しんポケモン　はっけん！！"
-	line "めいめい　ヨロイドり"
+	line "めいめい　ヨロイドリ"
 	cont "はがねの　ように"
 	cont "かたい　つばさが　とくちょう"
+
 	para "ひこうタイプ　だけではなく"
 	line "あたらしく　メタルタイプ　としても"
 	cont "ぶんるい　されることが　けってい"
@@ -216,6 +219,7 @@ _PlayersPC:
 .TurnOnText:
 	text "<PLAYER>は　じぶんのパソコンに"
 	line "つないだ"
+
 	para "どうぐあずかりシステムを"
 	line "よびだした！"
 	prompt
@@ -223,6 +227,7 @@ _PlayersPC:
 .ShutDownText:
 	text "<PLAYER>は　じぶんのパソコンとの"
 	line "せつぞくをきった"
+
 	para ""
 	done
 

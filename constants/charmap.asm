@@ -1,9 +1,9 @@
 	charmap "<NULL>", $00
 
-	charmap "イ゛", $01
-	charmap "ヴ",  $02
-	charmap "エ゛", $03
-	charmap "オ゛", $04
+	charmap "<イ゛>", $01
+	charmap "<ヴ>",  $02
+	charmap "<エ゛>", $03
+	charmap "<オ゛>", $04
 
 	charmap "ガ", $05
 	charmap "ギ", $06
@@ -21,30 +21,26 @@
 	charmap "デ", $12
 	charmap "ド", $13
 
-	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"
-
-	charmap "<15>", $15 ; nothing
-	charmap "<16>", $16 ; nothing
-
-	charmap "ネ゛", $17
-	charmap "ノ゛", $18
+	charmap "<ナ゛>", $14
+	charmap "<ニ゛>", $15
+	charmap "<ヌ゛>", $16
+	charmap "<ネ゛>", $17
+	charmap "<ノ゛>", $18
 
 	charmap "バ", $19
 	charmap "ビ", $1a
 	charmap "ブ", $1b
 	charmap "ボ", $1c
 
-	charmap "<NI>",  $1d ; "に　"
-	charmap "<TTE>", $1e ; "って"
-	charmap "<WO>",  $1f ; "を　"
-
-	charmap "ィ゛", $20
-	charmap "あ゛", $21
-
-	charmap "<TA!>",     $22 ; "た！"
-	charmap "<KOUGEKI>", $23 ; "こうげき"
-	charmap "<WA>",      $24 ; "は　"
-	charmap "<NO>",      $25 ; "の　"
+	charmap "<マ゛>", $1d
+	charmap "<ミ゛>", $1e
+	charmap "<ム゛>", $1f
+	charmap "<ィ゛>", $20
+	charmap "<あ゛>", $21
+	charmap "<い゛>", $22
+	charmap "<う゛>", $23
+	charmap "<え゛>", $24
+	charmap "<お゛>", $25
 
 	charmap "が", $26
 	charmap "ぎ", $27
@@ -62,9 +58,10 @@
 	charmap "で", $33
 	charmap "ど", $34
 
-	charmap "<ROUTE>",   $35 ; "ばん　どうろ"
-	charmap "<WATASHI>", $36 ; "わたし"
-	charmap "<KOKO_WA>", $37 ; "ここは"
+	charmap "<な゛>", $35
+	charmap "<に゛>", $36
+	charmap "<ぬ゛>", $37
+
 	charmap "<RED>",     $38 ; wRedsName
 	charmap "<GREEN>",   $39 ; wGreensName
 
@@ -72,6 +69,7 @@
 	charmap "び", $3b
 	charmap "ぶ", $3c
 	charmap "べ", $3d
+	charmap "ベ", $3d ; Katakana, shared graphic tile with Hiragana "べ"
 	charmap "ぼ", $3e
 
 	charmap "<ENEMY>", $3f
@@ -84,6 +82,7 @@
 	charmap "ぴ", $45
 	charmap "ぷ", $46
 	charmap "ぺ", $47
+	charmap "ペ", $47 ; Katakana, shared graphic tile with Hiragana "ぺ"
 	charmap "ぽ", $48
 
 	charmap "<MOM>",    $49 ; wMomsName
@@ -91,7 +90,7 @@
 	charmap "<_CONT>",  $4b ; implements "<CONT>"
 	charmap "<SCROLL>", $4c
 
-	charmap "も゜", $4d
+	charmap "<も゜>", $4d
 
 	charmap "<NEXT>",    $4e
 	charmap "<LINE>",    $4f
@@ -99,17 +98,17 @@
 	charmap "<PARA>",    $51
 	charmap "<PLAYER>",  $52 ; wPlayerName
 	charmap "<RIVAL>",   $53 ; wRivalName
-	charmap "#",         $54 ; "POKé"
+	charmap "#",         $54 ; "ポケモン"
 	charmap "<CONT>",    $55
 	charmap "<⋯⋯>",      $56 ; "⋯⋯"
 	charmap "<DONE>",    $57
 	charmap "<PROMPT>",  $58
 	charmap "<TARGET>",  $59
 	charmap "<USER>",    $5a
-	charmap "<PC>",      $5b ; "PC"
-	charmap "<TM>",      $5c ; "TM"
-	charmap "<TRAINER>", $5d ; "TRAINER"
-	charmap "<ROCKET>",  $5e ; "ROCKET"
+	charmap "<PC>",      $5b ; "パソコン"
+	charmap "<TM>",      $5c ; "わざマシン"
+	charmap "<TRAINER>", $5d ; "トレーナー"
+	charmap "<ROCKET>",  $5e ; "ロケットだん"
 	charmap "<DEXEND>",  $5f
 
 	charmap "■", $60
@@ -235,6 +234,7 @@
 	charmap "ひ", $cb
 	charmap "ふ", $cc
 	charmap "へ", $cd
+	charmap "ヘ", $cd ; Katakana, shared graphic tile with Hiragana "へ"
 	charmap "ほ", $ce
 	charmap "ま", $cf
 	charmap "み", $d0
@@ -246,6 +246,7 @@
 	charmap "よ", $d6
 	charmap "ら", $d7
 	charmap "り", $d8
+	charmap "リ", $d8 ; Katakana, shared graphic tile with Hiragana "り"
 	charmap "る", $d9
 	charmap "れ", $da
 	charmap "ろ", $db

@@ -6,12 +6,12 @@ CaveMinecarts1_ScriptLoader::
 	ret
 
 CaveMinecarts1_TextPointers::
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText

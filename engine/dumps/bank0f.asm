@@ -139,7 +139,7 @@ StartBattle:
 SafariZonePAText:
 	text "アナウンス『ピンポーン！"
 
-	para "サファり　ボールを"
+	para "サファリ　ボールを"
 	line "ぜんぶ　なげました！"
 	prompt
 
@@ -862,7 +862,7 @@ sub_3c6e0:
 
 EndPsychicVeilText:
 	text "<USER>を　つつんでいた"
-	line "しんぴの　べールが　なくなった！"
+	line "しんぴの　ベールが　なくなった！"
 	prompt
 
 sub_3c704:
@@ -1423,7 +1423,7 @@ BattleText_EnemyWasDefeated:
 	text_from_ram wca2b
 	text "の　@"
 	text_from_ram wStringBuffer1
-	text ""
+	text_start
 	line "との　しょうぶに　かった！"
 	prompt
 
@@ -1648,6 +1648,7 @@ RivalWinText:
 OutOfUsableMonsText:
 	text "<PLAYER>の　てもとには"
 	line "たたかえる　#が　いない！"
+
 	para "<PLAYER>は"
 	line "めのまえが　まっくらに　なった！"
 	prompt
@@ -2154,7 +2155,8 @@ TrainerAboutToUseText:
 	text_from_ram wca2b
 	text "の　@"
 	text_from_ram wStringBuffer1
-	text "は<LINE>"
+	text "は"
+	line ""
 	text_from_ram wEnemyMonNickname
 	text "を　くりだそうと　している"
 
@@ -4242,7 +4244,9 @@ LinkBattleSendRecieveAction:
 	ret
 
 BattleText_TargetsEncoreEnded:
-	text "<TARGET>の<LINE>アンコールじょうたいが　とけた！<PROMPT>"
+	text "<TARGET>の"
+	line "アンコールじょうたいが　とけた！"
+	prompt
 
 asm_3dff2:
 	ldh a, [hBattleTurn]
@@ -5332,16 +5336,20 @@ BoostedExpPointsText:
 	text "　おおめに@"
 
 .BoostedExpPoints3Text:
-	text "<LINE>@"
+	text_start
+	line "@"
 	deciram wStringBuffer2, 2, 4
-	text "　けいけんちを　もらった！<PROMPT>"
+	text "　けいけんちを　もらった！"
+	prompt
 
 GrewToLevelText:
 	text_from_ram wStringBuffer1
-	text "は<LINE>レべル@"
+	text "は"
+	line "レベル@"
 	deciram wCurPartyLevel, 1, 3
 	text "　に　あがった！@"
-	db "ジ@"
+	sound_dex_fanfare_50_79
+	text_end
 
 PrintSendOutMonMessage:
 	ld a, [wLinkMode]
@@ -5429,7 +5437,8 @@ PrintPlayerMon1Text:
 	ret
 .Text:
 	text_from_ram wBattleMonNickname
-	text "！<DONE>"
+	text "！"
+	done
 
 RetreatMon:
 	ld hl, PlayerMon2Text
@@ -5506,7 +5515,7 @@ PrintComeBackText:
 	ret
 
 ComeBackText:
-	text ""
+	text_start
 	line "もどれ！"
 	done
 

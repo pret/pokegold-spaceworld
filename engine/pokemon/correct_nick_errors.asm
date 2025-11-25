@@ -46,9 +46,10 @@ CorrectNickErrors:
 	ret
 
 InvalidNicknameChars:
-	db '<NULL>',   'オ゛' + 1
-	db '<PLAY_G>', 'ノ゛' + 1
-	db '<NI>',     '<NO>' + 1
-	db '<ROUTE>',  '<GREEN>' + 1
-	db '<MOM>',    '┘' + 1
+	;      ≥        <
+	db '<NULL>',   'ガ'
+	db 'ド' + 1,    'バ'
+	db 'ボ' + 1,    'が'
+	db 'ど' + 1,    'ば'
+	db '<MOM>',    '　'
 	db -1

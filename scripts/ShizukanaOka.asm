@@ -151,6 +151,7 @@ ShizukanaOkaSignpost1:
 
 ShizukanaOkaTrainer6EncounterString:
 	text "ねえ　ねえ　みてよ"
+
 	para "これ　ぜったい"
 	line "しんしゅの　ポケモン　だよ！"
 	done
@@ -189,6 +190,7 @@ ShizukanaOkaTrainer4EncounterString:
 ShizukanaOkaTrainer4WonString:
 	text "よるになると　くらくなるから"
 	line "こどもは　はやく　かえりなさい！"
+
 	para "おれ？"
 	line "おれは　ひをふくから　だいじょうぶ"
 	done
@@ -204,6 +206,7 @@ ShizukanaOkaTrainer3EncounterString:
 ShizukanaOkaTrainer3WonString:
 	text "ポケモンずかんを　つくるんだって？"
 	line "ちょっと　みせてよ"
+
 	para "へー"
 	line "タイプべつに　ポケモン　さがせるんだ"
 	done
@@ -227,6 +230,7 @@ ShizukanaOkaText1String:
 	text "この　おかの　ポケモンは　よわい！"
 	line "だから　ここで　しゅぎょう　している"
 	cont "トレーナーも　おおいよ"
+
 	para "みんな　バトルが　すきだから"
 	line "うでだめしを　するといい"
 	done

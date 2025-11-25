@@ -502,6 +502,7 @@ CheckIfSpawnPoint:
 
 Text_CantFindDestination:
 	text "とびさきが　みつかりません"
+
 	para ""
 	done
 
@@ -521,6 +522,7 @@ FailTeleport:
 
 Text_CantUseTeleportHere:
 	text "ここでは　つかえません！"
+
 	para ""
 	done
 

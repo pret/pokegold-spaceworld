@@ -82,7 +82,7 @@ DebugMart_BuyMenuHeader:
 	ret
 
 DebugMart_WelcomeText:
-	text "フレンドりーショップへ　"
+	text "フレンドリーショップへ　"
 	line "ようこそ！"
 	prompt
 
@@ -339,5 +339,5 @@ DebugMart_ShowPlaceholderText:
 
 .PlaceholderText:
 	text "かいはつちゅうです"
-	next "<PROMPT>"
-
+	next ""
+	prompt

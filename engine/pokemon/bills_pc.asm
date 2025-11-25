@@ -428,6 +428,7 @@ BillsPC_ChangeBoxSubmenu:
 .ChangeBoxSaveText:
 	text "#　ボックスを　かえると" ; "When you change a box"
 	line "どうじに　レポートが　かかれます" ; "data will be saved."
+
 	para "<⋯⋯>　それでも　いいですか？" ; "Is that okay?"
 	done
 
@@ -556,7 +557,7 @@ _ViewPKMN:
 	db "ボックス／いまの　ボックス@" ; "Box/Current Box"
 
 .SpeciesNameLevel:
-	db "しゅるい　　なまえ　　　レべル@" ; "Species Name Level"
+	db "しゅるい　　なまえ　　　レベル@" ; "Species Name Level"
 
 .PCString_ChooseaPKMN:
 	text "どの#が　みたいねん？" ; "Which would you like to see?"

@@ -307,7 +307,7 @@ ContText::
 
 .Text:
 	text "<_CONT>@"
-	db "@"
+	text_end
 
 PlaceDexEnd::
 	ld [hl], '。'
