@@ -11,7 +11,7 @@ GameFreakText::
 	text "ゲームフリーク！"
 	done
 
-Text_asmReturn::
+TextAsmEnd::
 	ld hl, .stop
 	ret
 

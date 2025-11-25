@@ -1,5 +1,10 @@
 	charmap "<NULL>", $00
 
+	charmap "<イ゛>", $01
+	charmap "<ヴ>",  $02
+	charmap "<エ゛>", $03
+	charmap "<オ゛>", $04
+
 	charmap "ガ", $05
 	charmap "ギ", $06
 	charmap "グ", $07
@@ -16,22 +21,26 @@
 	charmap "デ", $12
 	charmap "ド", $13
 
-;	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"
+	charmap "<ナ゛>", $14
+	charmap "<ニ゛>", $15
+	charmap "<ヌ゛>", $16
+	charmap "<ネ゛>", $17
+	charmap "<ノ゛>", $18
 
 	charmap "バ", $19
 	charmap "ビ", $1a
 	charmap "ブ", $1b
-	charmap "ベ", $3d ; same as printing Hiragana べ
 	charmap "ボ", $1c
 
-	charmap "<NI>",  $1d ; "に　"
-	charmap "<TTE>", $1e ; "って"
-	charmap "<WO>",  $1f ; "を　"
-
-	charmap "<TA!>",     $22 ; "た！"
-	charmap "<KOUGEKI>", $23 ; "こうげき"
-	charmap "<WA>",      $24 ; "は　"
-	charmap "<NO>",      $25 ; "の　"
+	charmap "<マ゛>", $1d
+	charmap "<ミ゛>", $1e
+	charmap "<ム゛>", $1f
+	charmap "<ィ゛>", $20
+	charmap "<あ゛>", $21
+	charmap "<い゛>", $22
+	charmap "<う゛>", $23
+	charmap "<え゛>", $24
+	charmap "<お゛>", $25
 
 	charmap "が", $26
 	charmap "ぎ", $27
@@ -49,9 +58,10 @@
 	charmap "で", $33
 	charmap "ど", $34
 
-	charmap "<ROUTE>",   $35 ; "ばん　どうろ"
-	charmap "<WATASHI>", $36 ; "わたし"
-	charmap "<KOKO_WA>", $37 ; "ここは"
+	charmap "<な゛>", $35
+	charmap "<に゛>", $36
+	charmap "<ぬ゛>", $37
+
 	charmap "<RED>",     $38 ; wRedsName
 	charmap "<GREEN>",   $39 ; wGreensName
 
@@ -59,6 +69,7 @@
 	charmap "び", $3b
 	charmap "ぶ", $3c
 	charmap "べ", $3d
+	charmap "ベ", $3d ; Katakana, same as printing Hiragana べ
 	charmap "ぼ", $3e
 
 	charmap "<ENEMY>", $3f
@@ -66,12 +77,12 @@
 	charmap "パ", $40
 	charmap "ピ", $41
 	charmap "プ", $42
-	charmap "ペ", $47 ; same as printing Hiragana ぺ
 	charmap "ポ", $43
 	charmap "ぱ", $44
 	charmap "ぴ", $45
 	charmap "ぷ", $46
 	charmap "ぺ", $47
+	charmap "ペ", $47 ; Katakana, same as printing Hiragana ぺ
 	charmap "ぽ", $48
 
 	charmap "<MOM>",    $49 ; wMomsName
@@ -169,7 +180,6 @@
 	charmap "ハ", $99
 	charmap "ヒ", $9a
 	charmap "フ", $9b
-	charmap "ヘ", $cd ; shared graphic tile with Hiragana へ
 	charmap "ホ", $9c
 	charmap "マ", $9d
 	charmap "ミ", $9e
@@ -180,7 +190,6 @@
 	charmap "ユ", $a3
 	charmap "ヨ", $a4
 	charmap "ラ", $a5
-	charmap "リ", $d8 ; shared graphic tile with Hiragana り
 	charmap "ル", $a6
 	charmap "レ", $a7
 	charmap "ロ", $a8
@@ -223,6 +232,7 @@
 	charmap "ひ", $cb
 	charmap "ふ", $cc
 	charmap "へ", $cd
+	charmap "ヘ", $cd ; Katakana, shared graphic tile with Hiragana へ
 	charmap "ほ", $ce
 	charmap "ま", $cf
 	charmap "み", $d0
@@ -234,6 +244,7 @@
 	charmap "よ", $d6
 	charmap "ら", $d7
 	charmap "り", $d8
+	charmap "リ", $d8 ; Katakana, shared graphic tile with Hiragana り
 	charmap "る", $d9
 	charmap "れ", $da
 	charmap "ろ", $db

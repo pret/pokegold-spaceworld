@@ -70,7 +70,7 @@ Textdbaf4:
 .sub_dbb63
 	call Function04ac
 	call Function0502
-	jp Text_asmReturn
+	jp TextAsmEnd
 
 Textdbb6c:
 	deciram wStartHour, 1, 2

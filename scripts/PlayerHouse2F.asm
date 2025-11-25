@@ -193,7 +193,7 @@ PlayerHouse2FTextString5:
 
 	start_asm
 	call PlayerHouse2FCheckEmail
-	call Text_asmReturn
+	call TextAsmEnd
 	ret
 
 PlayerHouse2FTextString6:

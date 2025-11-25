@@ -49,7 +49,7 @@ InvalidNicknameChars:
 	;      ≥        <
 	db '<NULL>',   'ガ'
 	db 'ド' + 1,    'バ'
-	db '<NI>',     'が'
-	db '<ROUTE>',  'ば'
+	db 'ボ' + 1,    'が'
+	db 'ど' + 1,    'ば'
 	db '<MOM>',    '　'
 	db -1

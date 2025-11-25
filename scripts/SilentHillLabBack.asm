@@ -189,7 +189,7 @@ SilentHillLabBackTextString4:
 
 	start_asm
 	call ConfirmPokemonSelection
-	call Text_asmReturn
+	call TextAsmEnd
 	ret
 
 SilentHillLabBackTextString5:
@@ -200,7 +200,7 @@ SilentHillLabBackTextString5:
 
 	start_asm
 	call ConfirmPokemonSelection
-	call Text_asmReturn
+	call TextAsmEnd
 	ret
 
 SilentHillLabBackTextString6:
@@ -211,7 +211,7 @@ SilentHillLabBackTextString6:
 
 	start_asm
 	call ConfirmPokemonSelection
-	call Text_asmReturn
+	call TextAsmEnd
 	ret
 
 ConfirmPokemonSelection:
