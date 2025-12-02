@@ -34,9 +34,6 @@ RGBLINKFLAGS ?= -Weverything -Wtruncation=1
 RGBFIXFLAGS  ?= -Weverything
 RGBGFXFLAGS  ?= -Weverything
 
-SCAN_INCLUDES := tools/scan_includes
-MAKE_SHIM := tools/make_shim.py
-
 tools/gfx :=
 
 
@@ -69,7 +66,7 @@ tidy:
 # Visualize disassembly progress.
 .PHONY: coverage
 coverage: $(ROM:.gb=.map)
-	utils/coverage.py $<
+	$(PYTHON) utils/coverage.py $<
 
 
 ### Build products
@@ -97,7 +94,7 @@ $(BASEROM):
 	@exit 1
 
 $(BUILD)/shim.asm: shim.sym | $$(dir $$@)
-	$(MAKE_SHIM) $< > $@
+	$(PYTHON) tools/make_shim.py $< > $@
 
 
 ### Misc file-specific graphics rules
@@ -115,8 +112,8 @@ $(BUILD)/%.o: $(BUILD)/%.asm | $$(dir $$@) rgbdscheck.o
 $(BUILD)/%.o: %.asm | $$(dir $$@) rgbdscheck.o
 	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<
 
-$(BUILD)/%.d: %.asm | $$(dir $$@) $(SCAN_INCLUDES)
-	@$(SCAN_INCLUDES) -b $(BUILD)/ -i $(BUILD)/ -i ./ -o $@ -t $(@:.d=.o) $<
+$(BUILD)/%.d: %.asm | $$(dir $$@) tools/scan_includes
+	@tools/scan_includes -b $(BUILD)/ -i $(BUILD)/ -i ./ -o $@ -t $(@:.d=.o) $<
 
 .PRECIOUS: $(BUILD)/%.pic
 $(BUILD)/%.pic: $(BUILD)/%.2bpp tools/pkmncompress | $$(dir $$@)
