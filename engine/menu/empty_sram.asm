@@ -413,7 +413,7 @@ UnknownMapBufferPointers:
 	db $02, $11, $A6, $D2, $8F, $47, $A6, $D3 ; OLD_CITY_POKECENTER_2F
 	db -1
 
-Function14777:
-	ld a, $00
-	call WriteIntod637
+OverworldLoop_ReturnFromBattle:
+	ld a, MAPSTATUS_MAIN
+	call SetMapStatus
 	ret

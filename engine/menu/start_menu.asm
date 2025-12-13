@@ -974,7 +974,7 @@ PartyCheckLessThanTwo:
 
 PartyHeldItem:
 	callfar FreezeMonIcons
-	ld hl, .HoldItemMenu
+	ld hl, GiveTakeItemMenuData
 	call LoadMenuHeader
 	call VerticalMenu
 	jp c, .close
@@ -1019,7 +1019,7 @@ PartyHeldItem:
 	jr z, .NoItem
 	ld [wce37], a
 	call GetItemName
-	ld hl, ItemPrompt6753
+	ld hl, PokemonAskSwapItemText
 	call MenuTextBox
 	call YesNoBox
 	call ExitMenu
@@ -1034,11 +1034,11 @@ PartyHeldItem:
 	ld [wce37], a
 	ld a, b
 	ld [wCurItem], a
-	call PartyRecieveItem
+	call ReceiveItemFromPokemon
 	jp nc, .GiveItem
 	ld a, [wce37]
 	ld [wCurItem], a
-	ld hl, ItemWasEquippedText
+	ld hl, PokemonSwapItemText
 	call MenuTextBoxBackup
 	jr .CheckMail
 
@@ -1047,7 +1047,7 @@ PartyHeldItem:
 	ld [wItemQuantity], a
 	ld hl, wNumBagItems
 	call TossItem
-	ld hl, ItemPrompt66FA
+	ld hl, PokemonHoldItemText
 	call MenuTextBoxBackup
 .CheckMail
 	call GetPartyItemOffset
@@ -1061,13 +1061,13 @@ PartyHeldItem:
 .GiveItem
 	ld a, [wce37]
 	ld [wCurItem], a
-	call PartyRecieveItem
-	ld hl, PartyItemRecieveBagFullText
+	call ReceiveItemFromPokemon
+	ld hl, ItemStorageFullText
 	call MenuTextBoxBackup
 	jr .ExitGiveItem
 
 .CantGive
-	ld hl, .CantBeEquippedText
+	ld hl, ItemCantHeldText
 	call MenuTextBoxBackup
 .ExitGiveItem
 	call ClearPalettes
@@ -1082,102 +1082,86 @@ PartyHeldItem:
 	and a
 	jr z, .NoItemToRecieve
 	ld [wCurItem], a
-	call PartyRecieveItem
+	call ReceiveItemFromPokemon
 	jr nc, .jump2
 	call GetPartyItemOffset
 	ld a, [hl]
-	ld [wce37], a
-	ld [hl], 0
+	ld [wNamedObjectIndexBuffer], a
+	ld [hl], ITEM_NONE
 	call GetItemName
-	ld hl, ItemPrompt673D
+	ld hl, PokemonTookItemText
 	call MenuTextBoxBackup
 	jr .escape
 .NoItemToRecieve
-	ld hl, PartyNoItemToRecieveText
+	ld hl, PokemonNotHoldingText
 	call MenuTextBoxBackup
 	jr .escape
 .jump2
-	ld hl, PartyItemRecieveBagFullText
+	ld hl, ItemStorageFullText
 	call MenuTextBoxBackup
 .escape
 	ret
 
-.HoldItemMenu ; verticalmenu
+GiveTakeItemMenuData:
 	db STATICMENU_NO_TOP_SPACING | STATICMENU_PLACE_TITLE
 	menu_coords 4, 4, $e, 9
-	dw .HoldItemMenuText
-	db 1
+	dw .Items
+	db 1 ; default option
 
-.HoldItemMenuText
-	db $80
-
-	db 2
+.Items:
+	db STATICMENU_CURSOR ; flags
+	db 2 ; # items
 	db "そうびを　する@"
 	db "そうびを　はずす@"
 
-.CantBeEquippedText
-	db 1
-	dw wStringBuffer1
+ItemCantHeldText:
+	text_from_ram wStringBuffer1
 	text "を　そうびすることは"
-	line "できません<PROMPT>"
+	line "できません"
+	prompt
 
-ItemWasEquippedText:
-	db 1
-	dw wMonOrItemNameBuffer
+PokemonSwapItemText:
+	text_from_ram wMonOrItemNameBuffer
 	text "は　そうび　していた"
 	line "@"
-
-.UnusedText1
-	db 1
-	dw wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "を　はずして"
 	para "@"
+	text_from_ram wStringBuffer2
+	text "を　そうびした！"
+	prompt
 
-.UnusedText2
-	db 1
-	dw wStringBuffer2
-	text "を　そうびした！<PROMPT>"
-
-ItemPrompt66FA:
-	db 1
-	dw wMonOrItemNameBuffer
+PokemonHoldItemText:
+	text_from_ram wMonOrItemNameBuffer
 	text "は　@"
-
-.UnusedText3
-	db 1
-	dw wStringBuffer2
+	text_from_ram wStringBuffer2
 	text "を"
-	line "そうびした！<PROMPT>"
+	line "そうびした！"
+	prompt
 
-PartyNoItemToRecieveText:
-	db 1
-	dw wMonOrItemNameBuffer
+PokemonNotHoldingText:
+	text_from_ram wMonOrItemNameBuffer
 	text "は　なにも"
-	line "そうび　していません！<PROMPT>"
+	line "そうび　していません！"
+	prompt
 
-PartyItemRecieveBagFullText:
+ItemStorageFullText:
 	text "どうぐが　いっぱいで"
-	line "そうびを　はずせません！<PROMPT>"
+	line "そうびを　はずせません！"
+	prompt
 
-ItemPrompt673D:
-	db 1
-	dw wMonOrItemNameBuffer
+PokemonTookItemText:
+	text_from_ram wMonOrItemNameBuffer
 	text "から　@"
-
-.UnusedText4
-	db 1
-	dw wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "を"
-	line "はずしました！<PROMPT>"
+	line "はずしました！"
+	prompt
 
-ItemPrompt6753:
-	db 1
-	dw wMonOrItemNameBuffer
+PokemonAskSwapItemText:
+	text_from_ram wMonOrItemNameBuffer
 	text "は　@"
-
-.UnusedText5:
-	db 1
-	dw wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "を"
 	line "すでに　そうび　しています"
 	para "そうびしている　どうぐを"
@@ -1191,7 +1175,7 @@ GetPartyItemOffset:
 	pop af
 	ret
 
-PartyRecieveItem:
+ReceiveItemFromPokemon:
 	ld a, 1
 	ld [wItemQuantity], a
 	ld hl, wNumBagItems

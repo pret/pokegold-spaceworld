@@ -5788,8 +5788,8 @@ BattleCommand_TryEscape:
 	call CallFromBank0F
 	xor a
 	ld [wNumHits], a
-	inc a ; LOSE
-	ld [wBattleResult], a
+	inc a ; TRUE
+	ld [wBattleEnded], a
 	ld a, [wPlayerMoveStruct]
 	jr .run_away
 
@@ -5842,8 +5842,8 @@ BattleCommand_TryEscape:
 	call CallFromBank0F
 	xor a
 	ld [wNumHits], a
-	inc a
-	ld [wBattleResult], a
+	inc a ; TRUE
+	ld [wBattleEnded], a
 	ld a, [wEnemyMoveStruct]
 	jr .run_away
 

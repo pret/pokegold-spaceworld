@@ -299,7 +299,8 @@ wMapScriptNumber:: db
 wMapScriptNumberLocation:: dw
 wMapScriptPointerLocation:: dw ; TODO
 ; setting bit 7 seems to disable overworld updates and player control?
-wc5ed:: db
+; setting bit 6 disables map connections
+wOverworldFlags:: db
 	ds 18
 wMapBufferEnd::
 
@@ -1128,7 +1129,8 @@ wBattlePlayerAction:: db
 wStateFlags:: db
 
 	ds 3
-wcd5d:: db
+
+wBattleResult:: db
 
 	ds 1
 
@@ -1285,7 +1287,7 @@ wOtherTrainerClass:: ds 1
 wBattleType:: db
 wce04:: ds 1
 wOtherTrainerID:: ds 1
-wBattleResult:: ds 1
+wBattleEnded:: ds 1
 
 wMonHeader::
 
@@ -1655,10 +1657,10 @@ REPT 32 ; TODO: confirm this
 ENDR
 
 
-wCurrMapSignCount::
+wCurMapBGEventCount::
 	db
 
-wCurrMapSigns::
+wCurrMapBGEvents::
 REPT 16 ; TODO: confirm this
 	ds 4
 ENDR
@@ -1672,16 +1674,15 @@ REPT NUM_OBJECTS
 ENDR
 	ds 32
 
-wd637:: db ;OW battle state? $3 wild battle, $8 is trainer battle $4 is left battle, $B is load overworld? $0 is in overworld
-wd638:: db ;wd637's last written-to value
+wMapStatus:: db ;OW battle state? $3 wild battle, $8 is trainer battle $4 is left battle, $B is load overworld? $0 is in overworld
+wLastMapStatus:: db ;wMapStatus's last written-to value
 
 wGameDataEnd::
 	
 ; Sort of redundant to separate data like this when they're right next to each other.
 wGameData2::
-wd639:: db ; ???
 
-ds 8
+	ds 9
 
 wUnusedAddOutdoorSpritesReturnValue:: db
 wBGMapAnchor::

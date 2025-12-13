@@ -241,11 +241,11 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 	const BATTLEACTION_STRUGGLE
 	const BATTLEACTION_FORFEIT
 
-; wBattleResult
+; wBattleEnded
 	const_def
-	const DRAW
-	const LOSE
 	const WIN
+	const LOSE
+	const DRAW
 
 DEF BATTLERESULT_BOX_FULL EQU 7
 DEF BATTLERESULT_BITMASK EQU (1 << BATTLERESULT_BOX_FULL)

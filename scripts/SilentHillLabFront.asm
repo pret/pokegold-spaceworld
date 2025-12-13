@@ -169,10 +169,10 @@ SilentHillLabFrontMoveDown:
 	ld a, 0
 	ld hl, SilentHillLabFrontMovement1
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	call xor_a
 	ret
 
@@ -196,12 +196,12 @@ SilentHillLabFrontScript3:
 	ld hl, SilentHillLabFrontMovement2
 	ld a, 6
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, 3
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillLabFrontMovement2:
@@ -258,12 +258,12 @@ SilentHillLabFrontScript5:
 	ld a, 2
 	ld hl, SilentHillLabFrontMovement3
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, 5
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillLabFrontMovement3:
@@ -279,12 +279,12 @@ SilentHillLabFrontScript6:
 	ld a, 4
 	ld hl, SilentHillLabFrontMovement4
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, 6
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillLabFrontMovement4:
@@ -303,12 +303,12 @@ SilentHillLabFrontScript7:
 	ld a, 0
 	ld hl, SilentHillLabFrontMovement5
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, 7
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillLabFrontMovement5:
@@ -330,12 +330,12 @@ SilentHillLabFrontScript8:
 	ld a, 0
 	ld hl, SilentHillLabFrontMovement6
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, 8
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillLabFrontMovement6:
@@ -356,12 +356,12 @@ SilentHillLabFrontScript9:
 	ld a, 5
 	ld hl, SilentHillLabFrontMovement7
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, 9
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillLabFrontMovement7:
@@ -394,12 +394,12 @@ SilentHillLabFrontScript10:
 	ld a, 3
 	ld hl, SilentHillLabFrontMovement8
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, $0A
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillLabFrontMovement8:
@@ -458,12 +458,12 @@ SilentHillLabFrontRivalMovePokemon:
 	pop hl
 	ld a, 5
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, $0C
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	call xor_a
 	ret
 
@@ -488,10 +488,10 @@ SilentHillLabFrontScript13:
 	ld hl, SilentHillLabFrontTextString17
 	call OpenTextbox
 	call GetLabPokemon
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 8
-	ld [wd637], a
+	ld a, MAPSTATUS_START_TRAINER_BATTLE
+	ld [wMapStatus], a
 	ld a, $0D
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
@@ -524,7 +524,7 @@ LabPokemon:
 
 SilentHillLabFrontScript14:
 	ld hl, SilentHillLabFrontTextString19
-	ld a, [wcd5d]
+	ld a, [wBattleResult]
 	and a
 	jr nz, .skip
 	ld hl, SilentHillLabFrontTextString18
@@ -537,12 +537,12 @@ SilentHillLabFrontScript14:
 	ld a, 5
 	ld hl, SilentHillLabFrontMovement11
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, $0E
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillLabFrontMovement11:
@@ -589,12 +589,12 @@ SilentHillLabFrontMoveRivalLeave:
 	pop hl
 	ld a, 8
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, $10
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	call xor_a
 	ret
 

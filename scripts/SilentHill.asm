@@ -67,12 +67,12 @@ SilentHillScript1:
 	ld a, 02
 	ld hl, SilentHillMovement1
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, 1
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillMovement1:
@@ -97,10 +97,10 @@ SilentHillScript2:
 	ld a, 2
 	ld hl, SilentHillMovement2
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ld a, 2
 	ld [wMapScriptNumber], a
 	ret
@@ -150,10 +150,10 @@ SilentHillScript4:
 .skip
 	ld a, 03
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ld a, 4
 	ld [wMapScriptNumber], a
 	ret
@@ -216,10 +216,10 @@ SilentHillScript5:
 .skip
 	ld a, 3
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ld a, 5
 	ld [wMapScriptNumber], a
 	ret
@@ -317,10 +317,10 @@ LabClosed:
 	ld a, 0
 	ld hl, SilentHillMovement7
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillTextString1:

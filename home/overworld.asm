@@ -37,11 +37,10 @@ CheckStartmenuSelectHook:
 	dec a
 	ret
 
-Function2c4a:
-; copy of Function2ba8
-; calling _HandlePlayerStep_Limited instead of _HandlePlayerStep
+; Runs the code for all map objects that move, and stays in a loop as long as the player is moving.
+HandleMapObjects::
 .loop
-	call Function2c5a
+	call .HandleMapObjects
 	and a
 	ld a, [wPlayerStepFlags]
 	bit PLAYERSTEP_CONTINUE_F, a
@@ -51,16 +50,16 @@ Function2c4a:
 	scf
 	ret
 
-Function2c5a:
+.HandleMapObjects:
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(HandleNPCStep)
 	call Bankswitch
 	call HandleNPCStep
 	call LoadMinorObjectGFX
-	ld a, BANK(_HandlePlayerStep_Limited)
+	ld a, BANK(_HandlePlayerStep)
 	call Bankswitch
-	call _HandlePlayerStep_Limited
+	call _HandlePlayerStep
 	ld a, BANK(InitSprites)
 	call Bankswitch
 	call InitSprites
@@ -77,7 +76,7 @@ UpdateAndTransferToolgear:
 	call DelayFrame
 	call UpdateToolgear
 	ld hl, wToolgearFlags
-	set 2, [hl] ;  ; transfer toolgear to window
+	set 2, [hl] ; transfer toolgear to window
 	call DelayFrame
 	ret
 

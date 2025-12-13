@@ -185,10 +185,10 @@ Unreferenced_TestTrainerWalkToPlayer:
 	ld d, 0
 	add hl, de
 	call LoadMovementDataPointer
-	ld hl, wc5ed
-	set 7, [hl]
-	ld a, 1
-	call WriteIntod637
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 .MovementData:

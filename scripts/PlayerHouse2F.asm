@@ -66,15 +66,15 @@ PlayerHouse2PositionCheck:
 
 PlayerHouse2FMovePlayer:
 	ld a, 0
-	ld hl, Movement
+	ld hl, .Movement
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
-Movement:
+.Movement:
 	step DOWN
 	slow_step DOWN
 	step_end
@@ -191,8 +191,7 @@ PlayerHouse2FTextString5:
 	line "メールが　とどいている　ようだ"
 	cont "よんでみる？@"
 
-	db $08
-
+	start_asm
 	call PlayerHouse2FCheckEmail
 	call Function3036
 	ret
