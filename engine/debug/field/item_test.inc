@@ -141,7 +141,7 @@ FieldDebug_ItemTest:
 	ld de, $28
 	ld a, [wMenuDataItems]
 .clear_menu_loop
-	ld [hl], "　"
+	ld [hl], '　'
 	add hl, de
 	dec a
 	jr nz, .clear_menu_loop

@@ -234,10 +234,10 @@ BlinkCursor:
 	ldh a, [hVBlankCounter]
 	and $10
 	jr z, .cursor_off
-	ld a, "▼"
+	ld a, '▼'
 	jr .save_cursor_state
 .cursor_off
-	ld a, "　"
+	ld a, '　'
 .save_cursor_state
 	ldcoord_a (SCREEN_WIDTH - 2), (SCREEN_HEIGHT - 1)
 	ret
@@ -255,7 +255,7 @@ TextboxBlinkCursor::
 ; to be shown at all.
 	ld a, [hl]
 	ld b, a
-	ld a, "▼"
+	ld a, '▼'
 	cp b
 	jr nz, .showCursorCountdown
 .showTextboxFrameCountdown
@@ -267,7 +267,7 @@ TextboxBlinkCursor::
 	dec a
 	ldh [hTextBoxCursorBlinkInterval + 1], a
 	ret nz
-	ld a, "─"
+	ld a, '─'
 	ld [hl], a
 	ld a, $ff
 	ldh [hTextBoxCursorBlinkInterval], a
@@ -289,6 +289,6 @@ TextboxBlinkCursor::
 	ret nz
 	ld a, $06
 	ldh [hTextBoxCursorBlinkInterval + 1], a ; reset to $6FF iterations
-	ld a, "▼"
+	ld a, '▼'
 	ld [hl], a
 	ret

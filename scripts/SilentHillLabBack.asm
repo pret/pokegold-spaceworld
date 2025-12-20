@@ -184,31 +184,34 @@ SilentHillLabBackTextString3:
 SilentHillLabBackTextString4:
 	text "オーキド『ほう！　ほのおのポケモン"
 	line "@"
-	ld bc, wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "に　するんじゃな？@"
-	db 08
+
+	start_asm
 	call ConfirmPokemonSelection
-	call Function3036
+	call TextAsmEnd
 	ret
 
 SilentHillLabBackTextString5:
 	text "オーキド『ふむ　みずのポケモン"
 	line "@"
-	ld bc, wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "に　きめるのじゃな？@"
-	db 08
+
+	start_asm
 	call ConfirmPokemonSelection
-	call Function3036
+	call TextAsmEnd
 	ret
 
 SilentHillLabBackTextString6:
 	text "オーキド『おお！　くさのポケモン"
 	line "@"
-	ld bc, wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "が　いいんじゃな？@"
-	db 08
+
+	start_asm
 	call ConfirmPokemonSelection
-	call Function3036
+	call TextAsmEnd
 	ret
 
 ConfirmPokemonSelection:
@@ -252,8 +255,9 @@ SilentHillLabBackTextString8:
 
 	para "<PLAYER>は　オーキドはかせから"
 	line "@"
-	ld bc, wStringBuffer1
-	text "を　もらった！<PROMPT>"
+	text_from_ram wStringBuffer1
+	text "を　もらった！"
+	prompt
 
 SilentHillLabBackTextString9:
 	text "オーキド『そうじゃ！"
@@ -290,7 +294,7 @@ SilentHillLabBackTextString12:
 SilentHillLabBackTextString13:
 	text "<RIVAL>は　オーキドから"
 	line "@"
-	ld bc, wStringBuffer1
+	text_from_ram wStringBuffer1
 	text "を　もらった！"
 	done
 

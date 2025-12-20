@@ -45,7 +45,7 @@ SafariBattleMenuHeader:
 	db STATICMENU_CURSOR
 	dn 2, 2
 	db 11
-	db "サファりボール×　　　@" ; "SAFARI BALL×   @"
+	db "サファリボール×　　　@" ; "SAFARI BALL×   @"
 	db "エサをなげる@"         ; "THROW BAIT"
 	db "いしをなげる@"         ; "THROW ROCK"
 	db "にげる@"              ; "RUN"

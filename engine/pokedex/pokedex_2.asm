@@ -252,11 +252,11 @@ Pokedex_DisplaySearchOptions:
 	push de
 	ld a, [wDexArrowCursorPosIndex]
 	call Pokedex_GetSearchScreenCursorPos
-	ld [hl], "　"
+	ld [hl], '　'
 
 	; Place new cursor
 	hlcoord 13, 12
-	ld [hl], "▶"
+	ld [hl], '▶'
 	xor a
 	ld [wDexArrowCursorPosIndex], a
 	pop de
@@ -315,7 +315,7 @@ Pokedex_DisplayTypeSearch:
 	call Pokedex_PlaceSearchScreenTypeList
 	call Pokedex_PlaceSearchScreenTypeStrings
 	hlcoord 2, 4
-	ld [hl], "▶"
+	ld [hl], '▶'
 	call Pokedex_WaitBGMap
 	ret
 
@@ -447,7 +447,7 @@ Pokedex_MoveSearchMenuCursor:
 	jr z, .set_carry_flag_up
 
 	call Pokedex_GetSearchScreenCursorPos
-	ld [hl], "　"
+	ld [hl], '　'
 	ld hl, wDexArrowCursorPosIndex
 	dec [hl]
 	jr .PutArrow
@@ -462,7 +462,7 @@ Pokedex_MoveSearchMenuCursor:
 	jr nc, .set_carry_flag_down
 
 	call Pokedex_GetSearchScreenCursorPos
-	ld [hl], "　"
+	ld [hl], '　'
 	ld hl, wDexArrowCursorPosIndex
 	inc [hl]
 	jr .PutArrow
@@ -474,7 +474,7 @@ Pokedex_MoveSearchMenuCursor:
 .PutArrow:
 	ld a, [hl]
 	call Pokedex_GetSearchScreenCursorPos
-	ld [hl], "▶"
+	ld [hl], '▶'
 	call Pokedex_WaitBGMap
 	and a
 	ret
@@ -516,7 +516,7 @@ Pokedex_MoveTypeSelectedMenuCursor:
 	ret z
 
 	call Pokedex_GetTypeSelectedMenuCursorPos
-	ld [hl], "　"
+	ld [hl], '　'
 	ld hl, wDexArrowCursorPosIndex
 	dec [hl]
 	jr .PutArrow
@@ -527,14 +527,14 @@ Pokedex_MoveTypeSelectedMenuCursor:
 	ret nc
 
 	call Pokedex_GetTypeSelectedMenuCursorPos
-	ld [hl], "　"
+	ld [hl], '　'
 	ld hl, wDexArrowCursorPosIndex
 	inc [hl]
 
 .PutArrow:
 	ld a, [hl]
 	call Pokedex_GetTypeSelectedMenuCursorPos
-	ld [hl], "▶"
+	ld [hl], '▶'
 	call Pokedex_WaitBGMap
 	and a
 	ret
@@ -796,12 +796,12 @@ Pokedex_InitUnownMode:
 	hlcoord 12, 8
 	call PrintUnownListEntry
 	hlcoord 17, 8
-	ld a, "？"
+	ld a, '？'
 	ld [hli], a
 	ld [hl], a
 	call PrintUnownList
 	hlcoord 2, 4
-	ld [hl], "▶"
+	ld [hl], '▶'
 	call Pokedex_WaitBGMap
 	ret
 
@@ -809,7 +809,8 @@ Pokedex_InitUnownMode:
 	db "アンノーン　の　しゅるい@"
 
 .VariantsDiscoveredString:
-	db "　　しゅるい<NEXT>　はっけん！@"
+	db   "　　しゅるい"
+	next "　はっけん！@"
 
 
 PrintUnownList:
@@ -909,7 +910,7 @@ Pokedex_UnownModeHandleDPadInput:
 	jr z, .top_of_list
 
 	call .GetCursorPos
-	ld [hl], "　"
+	ld [hl], '　'
 	ld hl, wDexArrowCursorPosIndex
 	dec [hl]
 	jr .PlaceArrow
@@ -932,7 +933,7 @@ Pokedex_UnownModeHandleDPadInput:
 	jr nc, .bottom_of_list
 
 	call .GetCursorPos
-	ld [hl], "　"
+	ld [hl], '　'
 	ld hl, wDexArrowCursorPosIndex
 	inc [hl]
 	jr .PlaceArrow
@@ -944,7 +945,7 @@ Pokedex_UnownModeHandleDPadInput:
 .PlaceArrow:
 	ld a, [hl]
 	call Pokedex_GetSearchScreenCursorPos
-	ld [hl], "▶"
+	ld [hl], '▶'
 	call Pokedex_WaitBGMap
 	and a
 	ret

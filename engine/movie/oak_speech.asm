@@ -384,9 +384,9 @@ OakSpeechDemo::
 
 	para "もちろん"
 	line "きみの　パートナーとなる　ポケモンと"
-	cont "りュックは　ようい　しておる"
+	cont "リュックは　ようい　しておる"
 
-	para "りュックの　なかには"
+	para "リュックの　なかには"
 	line "キズぐすりと"
 	cont "モンスターボールが"
 	cont "はいっておるから　あんしんじゃ！"
@@ -421,7 +421,7 @@ OakSpeech2::
 
 OakSpeech3::
 	text "その　#　という　いきものを"
-	line "ひとは　ぺットに　したり"
+	line "ひとは　ペットに　したり"
 	cont "しょうぶに　つかったり"
 	cont "そして・・・"
 
@@ -497,7 +497,7 @@ ChoosePlayerName::
 	ld de, wPlayerName
 	farcall NamingScreen
 	ld a, [wPlayerName]
-	cp "@"
+	cp '@'
 	jr z, .loop
 
 	call GBFadeOutToWhite
@@ -550,7 +550,7 @@ ChooseRivalName::
 	ld de, wRivalName
 	farcall NamingScreen
 	ld a, [wRivalName]
-	cp "@"
+	cp '@'
 	jr z, .loop
 
 	call GBFadeOutToWhite
@@ -602,7 +602,7 @@ MomNamePrompt::
 	ld de, wMomsName
 	farcall NamingScreen
 	ld a, [wMomsName]
-	cp "@"
+	cp '@'
 	jr z, .loop
 
 	call ClearPalettes

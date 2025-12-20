@@ -29,10 +29,10 @@ RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
 RGBLINK ?= $(RGBDS)rgblink
 
-RGBASMFLAGS := -E -i $(BUILD)/ -DGOLD
-
-SCAN_INCLUDES := tools/scan_includes
-MAKE_SHIM := tools/make_shim.py
+RGBASMFLAGS  ?= -Weverything -Wtruncation=1
+RGBLINKFLAGS ?= -Weverything -Wtruncation=1
+RGBFIXFLAGS  ?= -Weverything
+RGBGFXFLAGS  ?= -Weverything
 
 tools/gfx :=
 
@@ -66,7 +66,7 @@ tidy:
 # Visualize disassembly progress.
 .PHONY: coverage
 coverage: $(ROM:.gb=.map)
-	utils/coverage.py $<
+	$(PYTHON) utils/coverage.py $<
 
 
 ### Build products
@@ -76,21 +76,25 @@ rgbdscheck.o: rgbdscheck.asm
 
 %.map: %.gb
 
+$(CORRECTEDROM): RGBFIXFLAGS += -f hg -m 0x10 -Wno-overwrite
 $(CORRECTEDROM): %-correctheader.gb: %.gb
 	cp $< $@
 	cp $(<:.gb=.sym) $(@:.gb=.sym)
-	$(RGBFIX) -f hg -m 0x10 $@
+	$(RGBFIX) $(RGBFIXFLAGS) $@
 
+RGBLINKFLAGS += -d
+
+$(ROM): RGBFIXFLAGS += -f lh -k 01 -l 0x33 -m 0x03 -p 0 -r 3
 $(ROM): poke%-spaceworld.gb: layout.link $(OBJS) | $(BASEROM)
-	$(RGBLINK) -d -n $(@:.gb=.sym) -m $(@:.gb=.map) -l layout.link -O $(BASEROM) -o $@ $(filter-out $<, $^)
-	$(RGBFIX) -f lh -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t "POKEMON2$(shell echo $* | cut -d _ -f 1 | tr '[:lower:]' '[:upper:]')" $@
+	$(RGBLINK) $(RGBLINKFLAGS) -l layout.link -n $(@:.gb=.sym) -m $(@:.gb=.map) -O $(BASEROM) -o $@ $(filter-out $<, $^)
+	$(RGBFIX) $(RGBFIXFLAGS) -t "POKEMON2$(shell echo $* | cut -d _ -f 1 | tr '[:lower:]' '[:upper:]')" $@
 
 $(BASEROM):
 	@echo "Please obtain a copy of Gold_debug.sgb and put it in this directory as $@"
 	@exit 1
 
 $(BUILD)/shim.asm: shim.sym | $$(dir $$@)
-	$(MAKE_SHIM) $< > $@
+	$(PYTHON) tools/make_shim.py $< > $@
 
 
 ### Misc file-specific graphics rules
@@ -100,14 +104,16 @@ include slack/slack.mk
 
 ### Catch-all build target rules
 
+RGBASMFLAGS += -E -i $(BUILD)/ -DGOLD
+
 $(BUILD)/%.o: $(BUILD)/%.asm | $$(dir $$@) rgbdscheck.o
 	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<
 
 $(BUILD)/%.o: %.asm | $$(dir $$@) rgbdscheck.o
 	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<
 
-$(BUILD)/%.d: %.asm | $$(dir $$@) $(SCAN_INCLUDES)
-	@$(SCAN_INCLUDES) -b $(BUILD)/ -i $(BUILD)/ -i ./ -o $@ -t $(@:.d=.o) $<
+$(BUILD)/%.d: %.asm | $$(dir $$@) tools/scan_includes
+	@tools/scan_includes -b $(BUILD)/ -i $(BUILD)/ -i ./ -o $@ -t $(@:.d=.o) $<
 
 .PRECIOUS: $(BUILD)/%.pic
 $(BUILD)/%.pic: $(BUILD)/%.2bpp tools/pkmncompress | $$(dir $$@)
@@ -115,17 +121,17 @@ $(BUILD)/%.pic: $(BUILD)/%.2bpp tools/pkmncompress | $$(dir $$@)
 
 .PRECIOUS: $(BUILD)/%.2bpp
 $(BUILD)/%.2bpp: %.png tools/gfx | $$(dir $$@)
-	$(RGBGFX) $(OUTPUT_OPTION) $<
+	$(RGBGFX) -c dmg $(RGBGFXFLAGS) $(OUTPUT_OPTION) $<
 	tools/gfx $(tools/gfx) $(OUTPUT_OPTION) $@
 
 .PRECIOUS: $(BUILD)/%.1bpp
 $(BUILD)/%.1bpp: %.1bpp.png tools/gfx | $$(dir $$@)
-	$(RGBGFX) -d1 $(OUTPUT_OPTION) $<
+	$(RGBGFX) -c dmg $(RGBGFXFLAGS) -d1 $(OUTPUT_OPTION) $<
 	tools/gfx $(tools/gfx) -d1 $(OUTPUT_OPTION) $@
 
 .PRECIOUS: $(BUILD)/%.tilemap
 $(BUILD)/%.tilemap: %.png | $$(dir $$@)
-	$(RGBGFX) -t $@ $<
+	$(RGBGFX) -c dmg $(RGBGFXFLAGS) -t $@ $<
 
 .PRECIOUS: $(BUILD)/%.sgb.tilemap
 export LC_ALL=C

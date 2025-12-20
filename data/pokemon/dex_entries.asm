@@ -210,7 +210,7 @@ WeedleDexEntry:
 	db 3
 	dw 32
 	db   "もりに　おおく　ハッパを　たべる。"
-	next "あたまに　するどい　ハりをもち"
+	next "あたまに　するどい　ハリをもち"
 	next "さされると　どくに　おかされる。@"
 
 KakunaDexEntry:
@@ -350,7 +350,7 @@ NidorinaDexEntry:
 	next "にくだんせんを　このむ。@"
 
 NidoqueenDexEntry:
-	db "ドりル@"
+	db "ドリル@"
 	db 13
 	dw 600
 	db   "せなかに　はりのような　ウロコが"
@@ -374,7 +374,7 @@ NidorinoDexEntry:
 	next "きょうれつな　どくそをだす　しくみ。@"
 
 NidokingDexEntry:
-	db "ドりル@"
+	db "ドリル@"
 	db 14
 	dw 620
 	db   "ダイヤのように　かたい　ひふと"
@@ -585,7 +585,7 @@ PoliwagDexEntry:
 	db "おたま@"
 	db 6
 	dw 124
-	db   "スべスべした　くろいひふは　うすい。"
+	db   "スベスベした　くろいひふは　うすい。"
 	next "おなかの　なかが　すけて"
 	next "うずまきじょうに　みえる。@"
 
@@ -602,7 +602,7 @@ PoliwrathDexEntry:
 	db 13
 	dw 540
 	db   "クロールや　バタフライが　とくいで"
-	next "オりンピックの　せんしゅでも　"
+	next "オリンピックの　せんしゅでも　"
 	next "ぐんぐんと　おいぬいていく。@"
 
 AbraDexEntry:
@@ -806,15 +806,15 @@ DewgongDexEntry:
 	next "むしろ　さむいほど　げんきになる。@"
 
 GrimerDexEntry:
-	db "へドロ@"
+	db "ヘドロ@"
 	db 9
 	dw 300
 	db   "つきからの　エックスせんをあびた"
-	next "へドロが　べトべターにへんかした。"
+	next "ヘドロが　ベトベターにへんかした。"
 	next "きたないモノが　だいこうぶつ。@"
 
 MukDexEntry:
-	db "へドロ@"
+	db "ヘドロ@"
 	db 12
 	dw 300
 	db   "ふだんは　じめんに　まざっていて"
@@ -1123,7 +1123,7 @@ LickitungDexEntry:
 	db "なめまわし@"
 	db 12
 	dw 655
-	db   "べロが　からだの　２ばいも　のびる。"
+	db   "ベロが　からだの　２ばいも　のびる。"
 	next "エサをとったり　こうげきをしたりと"
 	next "まるで　てのように　うごくのだ。@"
 
@@ -1152,7 +1152,7 @@ RhyhornDexEntry:
 	next "コナゴナに　ふんさいしてしまう。@"
 
 RhydonDexEntry:
-	db "ドりル@"
+	db "ドリル@"
 	db 19
 	dw 1200
 	db   "ぜんしんを　よろいのような　ひふで"
@@ -1211,7 +1211,7 @@ SeakingDexEntry:
 	db "きんぎょ@"
 	db 13
 	dw 390
-	db   "ツノが　ドりルのように　とがっていて"
+	db   "ツノが　ドリルのように　とがっていて"
 	next "いわはだを　ツノで　くりぬき"
 	next "じぶんの　すを　つくっている。@"
 
@@ -1232,11 +1232,11 @@ StarmieDexEntry:
 	next "じもとでは　うたがわれている。@"
 
 MrMimeDexEntry:
-	db "バりアー@"
+	db "バリアー@"
 	db 13
 	dw 545
 	db   "ひとを　しんじこませるのが　うまい。"
-	next "パントマイムで　つくったカべが"
+	next "パントマイムで　つくったカベが"
 	next "ほんとうに　あらわれるという。@"
 
 ScytherDexEntry:

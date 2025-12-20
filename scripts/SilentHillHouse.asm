@@ -69,21 +69,20 @@ SilentHillHouseTextString1:
 	text "おや？　<RIVAL>あてに　メールが"
 	line "とどいている　ようだ"
 	cont "よんでみる？@"
-	db $08
 
-SilentHillHouseNPCText2: ; (unused due to typo in the text pointers?)
+	start_asm
 	call YesNoBox
 	jr c, .jump
 	ld hl, wd41a
 	set 6, [hl]
 	ld hl, SilentHillHouseTextString2
 	call PrintText
-	call Function3036
+	call TextAsmEnd
 	ret
 .jump
 	ld hl, SilentHillHouseTextString3
 	call PrintText
-	call Function3036
+	call TextAsmEnd
 	ret
 
 SilentHillHouseTextString2:

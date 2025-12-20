@@ -29,14 +29,14 @@ ItemNames::
 	db "みずのいし@" ; WATER_STONE
 	db "しようきんし@" ; 19
 	db "マックスアップ@" ; HP_UP
-	db "タウりン@" ; PROTEIN
-	db "ブロムへキシン@" ; IRON
+	db "タウリン@" ; PROTEIN
+	db "ブロムヘキシン@" ; IRON
 	db "インドメタシン@" ; CARBOS
 	db "しようきんし@" ; 1E
-	db "りゾチウム@" ; CALCIUM
+	db "リゾチウム@" ; CALCIUM
 	db "ふしぎなアメ@" ; RARE_CANDY
 	db "ヨクアタール@" ; X_ACCURACY
-	db "りーフのいし@" ; LEAF_STONE
+	db "リーフのいし@" ; LEAF_STONE
 	db "しようきんし@" ; 23
 	db "きんのたま@" ; NUGGET
 	db "ピッピにんぎょう@" ; POKE_DOLL
@@ -46,7 +46,7 @@ ItemNames::
 	db "エフェクトガード@" ; GUARD_SPEC
 	db "シルバースプレー@" ; SUPER_REPEL
 	db "ゴールドスプレー@" ; MAX_REPEL
-	db "クりィテカッター@" ; DIRE_HIT
+	db "クリィテカッター@" ; DIRE_HIT
 	db "しようきんし@" ; 2D
 	db "おいしいみず@" ; FRESH_WATER
 	db "サイコソーダ@" ; SODA_POP
@@ -55,7 +55,7 @@ ItemNames::
 	db "しようきんし@" ; 32
 	db "ディフェンダー@" ; X_DEFEND
 	db "スピーダー@" ; X_SPEED
-	db "スぺシャルアップ@" ; X_SPECIAL
+	db "スペシャルアップ@" ; X_SPECIAL
 	db "コインケース@" ; COIN_CASE
 	db "ダウジングマシン@" ; ITEMFINDER
 	db "ポケモンのふえ@" ; POKE_FLUTE
@@ -66,7 +66,7 @@ ItemNames::
 	db "すごいつりざお@" ; SUPER_ROD
 	db "ポイントアップ@" ; PP_UP
 	db "ピーピーエイド@" ; ETHER
-	db "ピーピーりカバー@" ; MAX_ETHER
+	db "ピーピーリカバー@" ; MAX_ETHER
 	db "ピーピーエイダー@" ; ELIXER
 	db "しんぴのはなびら@" ; MYSTIC_PETAL
 	db "しろいハネ@" ; WHITE_FEATHER
@@ -76,14 +76,14 @@ ItemNames::
 	db "アップグレード@" ; UP_GRADE
 	db "ふしぎないと@" ; STRANGE_THREAD
 	db "おっきなはっぱ@" ; BIG_LEAF
-	db "せんせいのハり@" ; QUICK_NEEDLE
+	db "せんせいのハリ@" ; QUICK_NEEDLE
 	db "しようきんし@" ; 4B
 	db "とがったいし@" ; SHARP_STONE
 	db "くろいハネ@" ; BLACK_FEATHER
 	db "とがったまえば@" ; SHARP_FANG
-	db "へビのぬけがら@" ; SNAKESKIN
+	db "ヘビのぬけがら@" ; SNAKESKIN
 	db "でんきぶくろ@" ; ELECTRIC_POUCH
-	db "もうどくバり@" ; TOXIC_NEEDLE
+	db "もうどくバリ@" ; TOXIC_NEEDLE
 	db "おうじゃのしるし@" ; KINGS_ROCK
 	db "ふしぎなちから@" ; STRANGE_POWER
 	db "いのちのおふだ@" ; LIFE_TAG
@@ -99,8 +99,8 @@ ItemNames::
 	db "まよけのおふだ@" ; TALISMAN_TAG
 	db "ふしぎなみず@" ; STRANGE_WATER
 	db "まがったスプーン@" ; TWISTEDSPOON
-	db "こうげきバり@" ; ATTACK_NEEDLE
-	db "パワーりスト@" ; POWER_BRACER
+	db "こうげきバリ@" ; ATTACK_NEEDLE
+	db "パワーリスト@" ; POWER_BRACER
 	db "かたいいし@" ; HARD_STONE
 	db "しようきんし@" ; 64
 	db "ぷよぷよふうせん@" ; JIGGLING_BALLOON
@@ -113,7 +113,7 @@ ItemNames::
 	db "かせきのかけら@" ; FOSSIL_SHARD
 	db "きたないゴミ@" ; GROSS_GARBAGE
 	db "おっきなしんじゅ@" ; BIG_PEARL
-	db "おうじゃのべルト@" ; CHAMPION_BELT
+	db "おうじゃのベルト@" ; CHAMPION_BELT
 	db "おふだ@" ; TAG
 	db "のろいのおふだ@" ; SPELL_TAG
 	db "５えんだま@" ; 5_YEN_COIN
@@ -144,7 +144,7 @@ ItemNames::
 	db "２ほんのツノ@" ; TWIN_HORNS
 	db "ごすんくぎ@" ; SPIKE
 	db "きのみ@" ; BERRY
-	db "りンゴ@" ; APPLE
+	db "リンゴ@" ; APPLE
 	db "メタルコート@" ; METAL_COAT
 	db "きれいなシッポ@" ; PRETTY_TAIL
 	db "みずのシッポ@" ; WATER_TAIL

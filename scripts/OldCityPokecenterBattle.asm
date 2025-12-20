@@ -40,4 +40,4 @@ OldCityPokecenterBattleText1:
 OldCityPokecenterBattleTextString1:
 	text "ちょっとまってね！@"
 	text_exit
-	db "@"
+	text_end

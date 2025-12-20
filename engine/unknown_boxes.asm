@@ -23,7 +23,7 @@ Function1130b:
 	add a, $F7
 	ld hl, wStringBuffer2
 	ld [hli], a
-	ld [hl], "@"
+	ld [hl], '@'
 	ld hl, BoxCantHoldText
 	call PrintText
 	scf
@@ -60,7 +60,7 @@ RecievePokemonText:
 	text_from_ram wStringBuffer1
 	text "を　てにいれた！@"
 	sound_dex_fanfare_50_79
-	db "@"
+	text_end
 
 BoxCantHoldText:
 	text "#を　もちきれないので"
@@ -74,8 +74,10 @@ BoxCantHoldText:
 
 BoxFullText:
 	text "#を　もちきれません！"
+
 	para "ボックスも　いっぱいで"
 	line "てんそうできません！"
+
 	para "#センターなどで"
 	line "ボックスを　かえてきて　ください"
 	done

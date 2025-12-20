@@ -111,6 +111,7 @@ ContainedMoveText:
 	text_from_ram wStringBuffer2
 	text "が"
 	line "きろくされていた！"
+
 	para "@"
 	text_from_ram wStringBuffer2
 	text "を"
@@ -123,6 +124,7 @@ TMHMNotCompatibleText:
 	text_from_ram wStringBuffer2
 	text "は"
 	line "あいしょうが　わるかった！"
+
 	para "@"
 	text_from_ram wStringBuffer2
 	text "は　おぼえられない！"
@@ -349,9 +351,9 @@ TMHolder_DisplayItems:
 	pop hl
 	ld bc, $8
 	add hl, bc
-	ld [hl], "×"
+	ld [hl], '×'
 	inc hl
-	ld a, "０"
+	ld a, '０'
 
 	pop bc
 	push bc
@@ -371,11 +373,11 @@ TMHolder_DisplayItems:
 .cancel
 	call .GetCurrentLineCoord
 ; Write "CANCEL"
-	ld a, "や"
+	ld a, 'や'
 	ld [hli], a
-	ld a, "め"
+	ld a, 'め'
 	ld [hli], a
-	ld [hl], "る"
+	ld [hl], 'る'
 .done
 	ret
 

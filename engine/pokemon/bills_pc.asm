@@ -263,11 +263,11 @@ InitDummyBoxNames:
 	push hl
 	ld de, .DummyBoxText
 	call CopyString
-	ld a, "０"
+	ld a, '０'
 	add c
 	dec hl
 	ld [hli], a
-	ld [hl], "@"
+	ld [hl], '@'
 	pop hl
 	ld de, BOX_NAME_LENGTH
 	add hl, de
@@ -428,6 +428,7 @@ BillsPC_ChangeBoxSubmenu:
 .ChangeBoxSaveText:
 	text "#　ボックスを　かえると" ; "When you change a box"
 	line "どうじに　レポートが　かかれます" ; "data will be saved."
+
 	para "<⋯⋯>　それでも　いいですか？" ; "Is that okay?"
 	done
 
@@ -436,7 +437,7 @@ BillsPC_ChangeBoxSubmenu:
 	ld de, wTempBoxName
 	farcall NamingScreen
 	ld a, [wTempBoxName]
-	cp "@"
+	cp '@'
 	ret z
 	ld hl, wBoxNames
 	ld bc, BOX_NAME_LENGTH
@@ -525,9 +526,9 @@ _ViewPKMN:
 	ld de, .CurrentBox
 	call PlaceString
 	hlcoord 0, 3
-	ld a, "┌"
+	ld a, '┌'
 	ld [hli], a
-	ld a, "─"
+	ld a, '─'
 	ld c, SCREEN_WIDTH - 1
 
 .top_border_loop
@@ -535,7 +536,7 @@ _ViewPKMN:
 	dec c
 	jr nz, .top_border_loop
 	ld de, SCREEN_WIDTH
-	ld a, "│"
+	ld a, '│'
 	ld c, 8
 .left_border_loop
 	ld [hl], a
@@ -556,7 +557,7 @@ _ViewPKMN:
 	db "ボックス／いまの　ボックス@" ; "Box/Current Box"
 
 .SpeciesNameLevel:
-	db "しゅるい　　なまえ　　　レべル@" ; "Species Name Level"
+	db "しゅるい　　なまえ　　　レベル@" ; "Species Name Level"
 
 .PCString_ChooseaPKMN:
 	text "どの#が　みたいねん？" ; "Which would you like to see?"

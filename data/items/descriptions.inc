@@ -356,7 +356,7 @@ CalciumDescription:
 	db   "とくしゅの　きそポイントを　あげる@"
 
 RareCandyDescription:
-	db   "ポケモンの　レべルを　１つあげる@"
+	db   "ポケモンの　レベルを　１つあげる@"
 
 XAccuracyDescription:
 	db   "しようした　せんとうちゅうだけ"
@@ -403,7 +403,7 @@ MaxRepelDescription:
 
 DireHitDescription:
 	db   "しようした　せんとうちゅうだけ"
-	next "クりティカルりつが　あがる@"
+	next "クリティカルりつが　あがる@"
 
 Item2DDescription:
 	db   "？"
@@ -754,7 +754,7 @@ InvisibleWallDescription:
 
 SharpScytheDescription:
 	db   "そうびすると"
-	next "クりティカルが　でやすくなる@"
+	next "クリティカルが　でやすくなる@"
 
 Item87Description:
 	db   "？"

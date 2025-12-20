@@ -34,7 +34,7 @@ MoveNames::
 	db "ずつき@" ; HEADBUTT
 	db "つのでつく@" ; HORN_ATTACK
 	db "みだれづき@" ; FURY_ATTACK
-	db "つのドりル@" ; HORN_DRILL
+	db "つのドリル@" ; HORN_DRILL
 	db "たいあたり@" ; TACKLE
 	db "のしかかり@" ; BODY_SLAM
 	db "まきつく@" ; WRAP
@@ -67,7 +67,7 @@ MoveNames::
 	db "オーロラビーム@" ; AURORA_BEAM
 	db "はかいこうせん@" ; HYPER_BEAM
 	db "つつく@" ; PECK
-	db "ドりルくちばし@" ; DRILL_PECK
+	db "ドリルくちばし@" ; DRILL_PECK
 	db "じごくぐるま@" ; SUBMISSION
 	db "けたぐり@" ; LOW_KICK
 	db "カウンター@" ; COUNTER
@@ -103,7 +103,7 @@ MoveNames::
 	db "でんこうせっか@" ; QUICK_ATTACK
 	db "いかり@" ; RAGE
 	db "テレポート@" ; TELEPORT
-	db "ナイトへッド@" ; NIGHT_SHADE
+	db "ナイトヘッド@" ; NIGHT_SHADE
 	db "ものまね@" ; MIMIC
 	db "いやなおと@" ; SCREECH
 	db "かげぶんしん@" ; DOUBLE_TEAM
@@ -114,10 +114,10 @@ MoveNames::
 	db "あやしいひかり@" ; CONFUSE_RAY
 	db "からにこもる@" ; WITHDRAW
 	db "まるくなる@" ; DEFENSE_CURL
-	db "バりアー@" ; BARRIER
+	db "バリアー@" ; BARRIER
 	db "ひかりのかべ@" ; LIGHT_SCREEN
 	db "くろいきり@" ; HAZE
-	db "りフレクター@" ; REFLECT
+	db "リフレクター@" ; REFLECT
 	db "きあいだめ@" ; FOCUS_ENERGY
 	db "がまん@" ; BIDE
 	db "ゆびをふる@" ; METRONOME
@@ -126,7 +126,7 @@ MoveNames::
 	db "タマゴばくだん@" ; EGG_BOMB
 	db "したでなめる@" ; LICK
 	db "スモッグ@" ; SMOG
-	db "へドロこうげき@" ; SLUDGE
+	db "ヘドロこうげき@" ; SLUDGE
 	db "ホネこんぼう@" ; BONE_CLUB
 	db "だいもんじ@" ; FIRE_BLAST
 	db "たきのぼり@" ; WATERFALL
@@ -169,7 +169,7 @@ MoveNames::
 	db "みがわり@" ; SUBSTITUTE
 	db "わるあがき@" ; STRUGGLE
 	db "スケッチ@" ; SKETCH
-	db "トりプルキック@" ; TRIPLE_KICK
+	db "トリプルキック@" ; TRIPLE_KICK
 	db "どろぼう@" ; THIEF
 	db "クモのす@" ; SPIDER_WEB
 	db "こころのめ@" ; MIND_READER
@@ -190,7 +190,7 @@ MoveNames::
 	db "だましうち@" ; FAINT_ATTACK
 	db "てんしのキッス@" ; SWEET_KISS
 	db "はらだいこ@" ; BELLY_DRUM
-	db "へドロばくだん@" ; SLUDGE_BOMB
+	db "ヘドロばくだん@" ; SLUDGE_BOMB
 	db "どろかけ@" ; MUD_SLAP
 	db "オクタンほう@" ; OCTAZOOKA
 	db "まきびし@" ; SPIKES

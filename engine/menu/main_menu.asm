@@ -312,7 +312,7 @@ PrintPlayTime::
 	ld de, hRTCHours
 	lb bc, 1, 3
 	call PrintNumber
-	ld [hl], "："
+	ld [hl], '：'
 	inc hl
 	ld de, hRTCMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2

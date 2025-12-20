@@ -396,16 +396,14 @@ SilentHillTextRival1:
 	cont "じぶんの　ははおや　のこと"
 	cont "いつも　なんて　よんでる？@"
 
-	db $08
-
-LoadMomNamePromptUnused:
+	start_asm
 	call LoadStandardMenuHeader
 	callfar MomNamePrompt
 	call CloseWindow
 	call GetMemSGBLayout
 	call UpdateSprites
 	call UpdateTimePals
-	jp Function3036
+	jp TextAsmEnd
 
 MomNameMenuHeaderUnused:
 	db MENU_BACKUP_TILES ; flags
@@ -426,7 +424,7 @@ SilentHillTextRival2: ; BYTE OFF
 	line "そんな　こどもっぽい"
 	cont "よびかた　してるなんて"
 	cont "おわらいだぜ！"
-	cont"あー　ちょっとだけ　すっきりした！"
+	cont "あー　ちょっとだけ　すっきりした！"
 
 	para "そんじゃあ"
 	line "おれは　ひとあし　おさきに"
@@ -460,7 +458,7 @@ SilentHillTextBackpack:
 	ret
 
 SilentHillTextBackpackString:
-	text "あなたの　りュック　かっこいいわよ"
+	text "あなたの　リュック　かっこいいわよ"
 	line "どこで　てに　いれたの？"
 	done
 

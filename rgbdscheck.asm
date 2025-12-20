@@ -1,6 +1,6 @@
-IF !DEF(__RGBDS_MAJOR__) || !DEF(__RGBDS_MINOR__) || !DEF(__RGBDS_PATCH__)
-	fail "pokecrystal requires rgbds v0.7.0 or newer."
+IF !DEF(__RGBDS_MAJOR__)
+	fail "pokegold-spaceworld requires rgbds v1.0.0 or newer."
 ENDC
-IF __RGBDS_MAJOR__ == 0 && __RGBDS_MINOR__ <  7
-	fail "pokecrystal requires rgbds v0.7.0 or newer."
+IF __RGBDS_MAJOR__ < 1
+	fail "pokegold-spaceworld requires rgbds v1.0.0 or newer."
 ENDC

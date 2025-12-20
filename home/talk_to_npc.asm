@@ -3,20 +3,20 @@ INCLUDE "constants.asm"
 SECTION "home/talk_to_npc.asm", ROM0
 
 MapDefaultText::
-	ld hl, GameplayText
+	ld hl, GameFreakText
 	call OpenTextbox
 	ret
 
-GameplayText::
-	text "ゲームフりーク！"
+GameFreakText::
+	text "ゲームフリーク！"
 	done
 
-Function3036::
-	ld hl, EmptyText
+TextAsmEnd::
+	ld hl, .stop
 	ret
 
-EmptyText::
-	db "@"
+.stop:
+	text_end
 
 CallMapTextSubroutine::
 	ld a, [wTalkingTargetType]

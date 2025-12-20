@@ -70,12 +70,12 @@ InitToolgearBuffer::
 	call LoadToolgearGraphics
 
 	bgcoord hl, 0, 0, wToolgearBuffer
-	ld a, "─"
+	ld a, '─'
 	ld bc, SCREEN_WIDTH
 	call ByteFill
 
 	bgcoord hl, 0, 1, wToolgearBuffer
-	ld a, "　"
+	ld a, '　'
 	ld bc, SCREEN_WIDTH
 	call ByteFill
 
@@ -106,7 +106,7 @@ UpdateToolgear::
 ; This function is called every frame, and loads special tiles into the $66-$7a space.
 	bgcoord hl, 0, 1, wToolgearBuffer
 	ld bc, SCREEN_WIDTH
-	ld a, "　"
+	ld a, '　'
 	call ByteFill
 
 	ld hl, wd153
@@ -132,9 +132,9 @@ UpdateToolgear::
 	call .printDec
 	ldh a, [hRTCDays]
 	and 7
-	add "日" ; Sunday
+	add '日' ; Sunday
 	ldbgcoord_a 6, 1, wToolgearBuffer
-	ld a, "⚡" ; power
+	ld a, '⚡' ; power
 	ldbgcoord_a 9, 1, wToolgearBuffer
 	inc a ; mobile
 	ldbgcoord_a 11, 1, wToolgearBuffer
@@ -142,7 +142,7 @@ UpdateToolgear::
 	and 1
 	ret z
 
-	ld a, "："
+	ld a, '：'
 	ldbgcoord_a 2, 1, wToolgearBuffer
 	ret
 
@@ -183,7 +183,7 @@ UpdateToolgear::
 ; .printDigit
 ; print a hexadecimal digit for value in a to de
 	and $f
-	add "０"
+	add '０'
 	ld [de], a
 	inc de
 	ret

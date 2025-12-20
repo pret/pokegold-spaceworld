@@ -773,7 +773,9 @@ StoringEnergyText:
 	prompt
 
 UnleashedEnergyText:
-	text "<USER>の<LINE>がまんが　とかれた！<PROMPT>"
+	text "<USER>の"
+	line "がまんが　とかれた！"
+	prompt
 
 HungOnText:
 	text "<TARGET>は"
@@ -1168,7 +1170,8 @@ UsedMoveText_CheckObedience:
 	ret
 
 MoveNameText:
-	text "<LINE>@"
+	text_start
+	line "@"
 	text_from_ram wStringBuffer2
 	start_asm
 ; get start address
@@ -5568,7 +5571,7 @@ Text_BattleFoeEffectActivate:
 
 GetStatName:
 	ld hl, StatNames
-	ld c, "@"
+	ld c, '@'
 
 .CheckName
 	dec b
@@ -7769,6 +7772,7 @@ BattleCommand_NailDown:
 .PutACurseText
 	text "<USER>は"
 	line "じぶんに　くぎを　うった"
+
 	para "<TARGET>は"
 	line "のろいを　かけられた！"
 	prompt
@@ -8319,7 +8323,7 @@ BattleCommand_Safeguard:
 
 .CoveredByVeilText:
 	text "<USER>は"
-	line "しんぴのべールに　つつまれた！"
+	line "しんぴのベールに　つつまれた！"
 	prompt
 
 .failed
@@ -8356,7 +8360,7 @@ BattleCommand_CheckSafeguard:
 
 SafeguardProtectText:
 	text "<TARGET>は"
-	line "しんぴのべールに　まもられている！"
+	line "しんぴのベールに　まもられている！"
 	prompt
 
 BattleCommand_GetMagnitude:

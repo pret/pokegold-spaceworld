@@ -140,7 +140,7 @@ _PushWindow::
 	jr .indefinite_loop
 
 .WindowSaveAreaOverflowText:
-	text "ウィンドウセーブエりアが"
+	text "ウィンドウセーブエリアが"
 	next "オーバーしました"
 	done
 

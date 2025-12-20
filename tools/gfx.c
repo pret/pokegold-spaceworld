@@ -5,7 +5,6 @@
 
 struct Options {
 	bool trim_whitespace;
-	bool trim_trailing;
 	bool remove_whitespace;
 	bool interleave;
 	bool remove_duplicates;
@@ -25,7 +24,6 @@ void parse_args(int argc, char *argv[]) {
 	struct option long_options[] = {
 		{"remove-whitespace", no_argument, 0, 'R'},
 		{"trim-whitespace", no_argument, 0, 'T'},
-		{"trim-trailing", no_argument, 0, 't'},
 		{"interleave", no_argument, 0, 'I'},
 		{"remove-duplicates", no_argument, 0, 'D'},
 		{"keep-whitespace", no_argument, 0, 'W'},
@@ -45,9 +43,6 @@ void parse_args(int argc, char *argv[]) {
 			break;
 		case 'T':
 			options.trim_whitespace = true;
-			break;
-		case 't':
-			options.trim_trailing = true;
 			break;
 		case 'I':
 			options.interleave = true;
@@ -119,46 +114,10 @@ bool is_whitespace(const uint8_t *tile, int tile_size) {
 	return true;
 }
 
-/**
- * is_solid_color
- * Check if a tile is solid color, i.e. each
- * bitplane is filled with the same value.
- * Different bitplanes can have different values.
- * 
- * Returns true if solid color, else false.
- */
-bool is_solid_color(uint8_t *tile, int depth, int tile_size) {
-	
-	const uint8_t ONES = 0xff;
-	const uint8_t ZEROS = 0x00;
-	
-	for (int i = 0; i < depth; i++) {
-		if (tile[i] != ONES && tile[i] != ZEROS) {
-			return false;
-		}
-	}
-	return !memcmp(&tile[0], &tile[depth], tile_size - depth);
-}
-
 void trim_whitespace(struct Graphic *graphic) {
 	int tile_size = options.depth * 8;
 	for (int i = graphic->size - tile_size; i > 0; i -= tile_size) {
 		if (is_whitespace(&graphic->data[i], tile_size) && !is_preserved(i / tile_size)) {
-			graphic->size = i;
-		} else {
-			break;
-		}
-	}
-}
-
-void trim_trailing(struct Graphic *graphic) {
-	int tile_size = options.depth * 8;
-	int last_tile = graphic->size - tile_size;
-	if (!is_solid_color(&graphic->data[last_tile], options.depth, tile_size)) {
-		return;
-	}
-	for (int i = graphic->size -  2 * tile_size; i > 0; i -= tile_size) {
-		if (!memcmp(&graphic->data[i], &graphic->data[last_tile], tile_size)) {
 			graphic->size = i;
 		} else {
 			break;
@@ -309,8 +268,6 @@ int main(int argc, char *argv[]) {
 
 	if (options.trim_whitespace) {
 		trim_whitespace(&graphic);
-	} else if (options.trim_trailing) {
-		trim_trailing(&graphic);
 	}
 	if (options.interleave) {
 		if (!options.png_file) {

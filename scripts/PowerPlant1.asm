@@ -6,12 +6,12 @@ PowerPlant1_ScriptLoader::
 	ret
 
 PowerPlant1_TextPointers::
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
-	dw GameplayText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText
+	dw GameFreakText

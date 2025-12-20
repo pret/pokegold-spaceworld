@@ -10,7 +10,7 @@ CorrectNickErrors:
 	ld b, MON_NAME_LENGTH
 .checkchar
 	ld a, [de]
-	cp "@"
+	cp '@'
 	jr z, .end
 	ld hl, InvalidNicknameChars
 	dec hl
@@ -25,7 +25,7 @@ CorrectNickErrors:
 	jr c, .loop
 	cp [hl]
 	jr nc, .loop
-	ld a, "？"
+	ld a, '？'
 	ld [de], a
 	jr .loop
 
@@ -35,10 +35,10 @@ CorrectNickErrors:
 	jr nz, .checkchar
 	pop de
 	push de
-	ld a, "？"
+	ld a, '？'
 	ld [de], a
 	inc de
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 .end
 	pop de
@@ -46,9 +46,10 @@ CorrectNickErrors:
 	ret
 
 InvalidNicknameChars:
-	db "<NULL>",   "オ゛" + 1
-	db "<PLAY_G>", "ノ゛" + 1
-	db "<NI>",     "<NO>" + 1
-	db "<ROUTE>",  "<GREEN>" + 1
-	db "<MOM>",    "┘" + 1
+	;      ≥        <
+	db '<NULL>',   'ガ'
+	db 'ド' + 1,    'バ'
+	db 'ボ' + 1,    'が'
+	db 'ど' + 1,    'ば'
+	db '<MOM>',    '　'
 	db -1

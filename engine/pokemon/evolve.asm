@@ -304,7 +304,7 @@ UpdateSpeciesNameIfNotNicknamed:
 	cp [hl]
 	inc hl
 	ret nz
-	cp "@"
+	cp '@'
 	jr nz, .loop
 
 	ld a, [wCurPartyMon]
@@ -335,7 +335,8 @@ CongratulationsYourPokemonText:
 	done
 
 EvolvedIntoText:
-	text "<LINE>@"
+	text_start
+	line "@"
 	text_from_ram wStringBuffer1
 	text "に　しんかした"
 	done

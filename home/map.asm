@@ -393,7 +393,7 @@ LoadMapTimeOfDay::
 	ldh [hSCY], a
 	ldh [hSCX], a
 
-	ld a, "■"
+	ld a, '■'
 	ld bc, vBGMap1 - vBGMap0
 	hlbgcoord 0, 0
 	call ByteFill
@@ -1123,7 +1123,7 @@ LoadMapPart::
 	call Bankswitch
 
 	call LoadMetatiles
-	ld a, "■"
+	ld a, '■'
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill

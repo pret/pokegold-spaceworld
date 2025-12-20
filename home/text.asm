@@ -4,7 +4,7 @@ SECTION "home/text.asm", ROM0
 
 ClearBox::
 ; Fill a c*b box at hl with blank tiles.
-	ld a, "　"
+	ld a, '　'
 	; fallthrough
 
 FillBoxWithByte::
@@ -28,7 +28,7 @@ ClearTileMap::
 
 	hlcoord 0, 0
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	ld a, "　"
+	ld a, '　'
 	call ByteFill
 	ldh a, [rLCDC]
 	bit 7, a
@@ -39,7 +39,7 @@ DrawTextBox::
 
 	; Top
 	push hl
-	ld a, "┌"
+	ld a, '┌'
 	ld [hli], a
 	inc a ; "─"
 	call .PlaceChars
@@ -52,11 +52,11 @@ DrawTextBox::
 	add hl, de
 .row
 	push hl
-	ld a, "│"
+	ld a, '│'
 	ld [hli], a
-	ld a, "　"
+	ld a, '　'
 	call .PlaceChars
-	ld [hl], "│"
+	ld [hl], '│'
 	pop hl
 
 	ld de, SCREEN_WIDTH
@@ -65,11 +65,11 @@ DrawTextBox::
 	jr nz, .row
 
 	; Bottom
-	ld a, "└"
+	ld a, '└'
 	ld [hli], a
-	ld a, "─"
+	ld a, '─'
 	call .PlaceChars
-	ld [hl], "┘"
+	ld [hl], '┘'
 
 	ret
 
@@ -107,7 +107,7 @@ PlaceString::
 	push hl
 PlaceNextChar::
 	ld a, [de]
-	cp "@"
+	cp '@'
 	jr nz, CheckDict
 	ld b, h
 	ld c, l
@@ -124,7 +124,7 @@ endc
 	jp z, \2
 ENDM
 
-	cp "<NEXT>"
+	cp '<NEXT>'
 	jr nz, .asm_0eaa
 	pop hl
 	ld bc, 2 * SCREEN_WIDTH
@@ -133,7 +133,7 @@ ENDM
 	jp NextChar
 
 .asm_0eaa:
-	cp "<LINE>"
+	cp '<LINE>'
 	jr nz, .asm_0eb6
 	pop hl
 	hlcoord 1, 16
@@ -141,30 +141,30 @@ ENDM
 	jp NextChar
 
 .asm_0eb6:
-	dict "<NULL>", NullChar
-	dict "<SCROLL>", _ContTextNoPause
-	dict "<_CONT>", _ContText
-	dict "<PARA>", Paragraph
-	dict "<MOM>", PrintMomsName
-	dict "<PLAYER>", PrintPlayerName
-	dict "<RIVAL>", PrintRivalName
-	dict "#", PlacePOKe
-	dict "<PC>", PCChar
-	dict "<ROCKET>", RocketChar
-	dict "<TM>", TMChar
-	dict "<TRAINER>", TrainerChar
-	dict "<CONT>", ContText
-	dict "<⋯⋯>", SixDotsChar
-	dict "<DONE>", DoneText
-	dict "<PROMPT>", PromptText
-	dict "<GA>", GaCharacter
-	dict "<DEXEND>", PlaceDexEnd
-	dict "<TARGET>", PlaceMoveTargetsName
-	dict "<USER>", PlaceMoveUsersName
+	dict '<NULL>', NullChar
+	dict '<SCROLL>', _ContTextNoPause
+	dict '<_CONT>', _ContText
+	dict '<PARA>', Paragraph
+	dict '<MOM>', PrintMomsName
+	dict '<PLAYER>', PrintPlayerName
+	dict '<RIVAL>', PrintRivalName
+	dict '#', PlacePOKe
+	dict '<PC>', PCChar
+	dict '<ROCKET>', RocketChar
+	dict '<TM>', TMChar
+	dict '<TRAINER>', TrainerChar
+	dict '<CONT>', ContText
+	dict '<⋯⋯>', SixDotsChar
+	dict '<DONE>', DoneText
+	dict '<PROMPT>', PromptText
+	dict '<GA>', GaCharacter
+	dict '<DEXEND>', PlaceDexEnd
+	dict '<TARGET>', PlaceMoveTargetsName
+	dict '<USER>', PlaceMoveUsersName
 
-	cp "ﾟ"
+	cp 'ﾟ'
 	jr z, .diacritic
-	cp "ﾞ"
+	cp 'ﾞ'
 	jr nz, .not_diacritic
 .diacritic:
 	push hl
@@ -177,18 +177,18 @@ ENDM
 .not_diacritic:
 	cp FIRST_REGULAR_TEXT_CHAR
 	jr nc, .place
-	cp "パ"
+	cp 'パ'
 	jr nc, .handakuten
 	cp FIRST_HIRAGANA_DAKUTEN_CHAR
 	jr nc, .hiragana_dakuten
-	add "カ" - "ガ"
+	add 'カ' - 'ガ'
 	jr .katakana_dakuten
 
 .hiragana_dakuten:
-	add "か" - "が"
+	add 'か' - 'が'
 .katakana_dakuten:
 	push af
-	ld a, "ﾞ"
+	ld a, 'ﾞ'
 	push hl
 	ld bc, -SCREEN_WIDTH
 	add hl, bc
@@ -198,16 +198,16 @@ ENDM
 	jr .place
 
 .handakuten:
-	cp "ぱ"
+	cp 'ぱ'
 	jr nc, .hiragana_handakuten
-	add "ハ" - "パ"
+	add 'ハ' - 'パ'
 	jr .katakana_handakuten
 
 .hiragana_handakuten:
-	add "は" - "ぱ"
+	add 'は' - 'ぱ'
 .katakana_handakuten:
 	push af
-	ld a, "ﾟ"
+	ld a, 'ﾟ'
 	push hl
 	ld bc, -SCREEN_WIDTH
 	add hl, bc
@@ -307,10 +307,10 @@ ContText::
 
 .Text:
 	text "<_CONT>@"
-	db "@"
+	text_end
 
 PlaceDexEnd::
-	ld [hl], "。"
+	ld [hl], '。'
 	pop hl
 	ret
 
@@ -318,12 +318,12 @@ PromptText::
 	ld a, [wLinkMode]
 	cp $3
 	jp z, Function1026
-	ld a, "▼"
+	ld a, '▼'
 	ldcoord_a 18, 17
 Function1026::
 	call ProtectedWaitBGMap
 	call ButtonSound
-	ld a, "─"
+	ld a, '─'
 	ldcoord_a 18, 17
 DoneText::
 	pop hl
@@ -336,14 +336,14 @@ DoneText::
 
 Paragraph::
 	push de
-	ld a, "▼"
+	ld a, '▼'
 	ldcoord_a 18, 17
 	call ProtectedWaitBGMap
 	call ButtonSound
 	hlcoord 1, 13
 	lb bc, 4, 18
 	call ClearBox
-	ld a, "─"
+	ld a, '─'
 	ldcoord_a 18, 17
 	ld c, 20
 	call DelayFrames
@@ -352,13 +352,13 @@ Paragraph::
 	jp NextChar
 
 _ContText::
-	ld a, "▼"
+	ld a, '▼'
 	ldcoord_a 18, 17
 	call ProtectedWaitBGMap
 	push de
 	call ButtonSound
 	pop de
-	ld a, "─"
+	ld a, '─'
 	ldcoord_a 18, 17
 _ContTextNoPause::
 	push de
@@ -383,7 +383,7 @@ ScrollTextUpOneLine::
 	dec b
 	jr nz, .copyText
 	coord hl, TEXTBOX_INNERX, TEXTBOX_INNERY + 2
-	ld a, "　"
+	ld a, '　'
 	ld b, TEXTBOX_INNERW
 .clearText
 	ld [hli], a
@@ -417,7 +417,7 @@ TextCommandProcessor::
 
 NextTextCommand::
 	ld a, [hli]
-	cp "@" ; terminator
+	cp '@' ; terminator
 	jr nz, .doTextCommand
 	pop af
 	ld [wTextboxFlags], a
@@ -539,12 +539,12 @@ Text_WAIT_BUTTON::
 	ld a, [wLinkMode]
 	cp $03
 	jp z, Text_TX_LINK_WAIT_BUTTON
-	ld a, "▼"
+	ld a, '▼'
 	ldcoord_a TEXTBOX_WIDTH - 2, TEXTBOX_Y + TEXTBOX_HEIGHT - 1
 	push bc
 	call ButtonSound
 	pop bc
-	ld a, "─"
+	ld a, '─'
 	ldcoord_a TEXTBOX_WIDTH - 2, TEXTBOX_Y + TEXTBOX_HEIGHT - 1
 	pop hl
 	jp NextTextCommand
@@ -554,7 +554,7 @@ Text_TX_SCROLL::
 ; pushes text up two lines and sets the BC cursor to the border tile
 ; below the first character column of the text box.
 ; [07]
-	ld a, "─"
+	ld a, '─'
 	ldcoord_a TEXTBOX_WIDTH - 2, TEXTBOX_Y + TEXTBOX_HEIGHT - 1
 	call ScrollTextUpOneLine
 	call ScrollTextUpOneLine
@@ -679,7 +679,7 @@ Text_TX_DOTS:
 	ld h, b
 	ld l, c
 .loop
-	ld a, "⋯"
+	ld a, '⋯'
 	ld [hli], a
 	push de
 	call GetJoypad

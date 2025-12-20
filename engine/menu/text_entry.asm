@@ -2,8 +2,8 @@ INCLUDE "constants.asm"
 
 SECTION "engine/menu/text_entry.asm@naming", ROMX
 
-DEF NAMINGSCREEN_UNDERSCORE EQU "♀"
-DEF NAMINGSCREEN_HYPHEN     EQU "♂"
+DEF NAMINGSCREEN_UNDERSCORE EQU '♀'
+DEF NAMINGSCREEN_HYPHEN     EQU '♂'
 DEF NAMINGSCREEN_END        EQU $F0
 
 NamingScreen:
@@ -211,7 +211,7 @@ NamingScreen_InitText:
 	call WaitForAutoBgMapTransfer
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	ld a, "■"
+	ld a, '■'
 	call ByteFill
 	hlcoord 1, 1
 	lb bc, $07, $12
@@ -443,10 +443,10 @@ LetterOffsetsTable2:
 NamingScreenTryAddCharacter:
 	ld a, [wNamingScreenLastCharacter]
 	ld hl, Dakutens
-	cp "ﾞ"
+	cp 'ﾞ'
 	jr z, .jump
 	ld hl, Handakutens
-	cp "ﾟ"
+	cp 'ﾟ'
 	jr z, .jump
 	ld a, [wNamingScreenMaxNameLength]
 	ld c, a
@@ -460,7 +460,7 @@ NamingScreenTryAddCharacter:
 	inc [hl]
 	call NamingScreenGetTextCursorPosition
 	ld a, [hl]
-	cp "@"
+	cp '@'
 	ret z
 	ld [hl], NAMINGSCREEN_UNDERSCORE
 	ret
@@ -500,12 +500,12 @@ Dakutens:
 	db "カガキギクグケゲコゴ"
 	db "サザシジスズセゼソゾ"
 	db "タダチヂツヅテデトド"
-	db "ハバヒビフブへべホボ"
+	db "ハバヒビフブヘベホボ"
 	db $FF
 
 Handakutens:
 	db "はぱひぴふぷへぺほぽ"
-	db "ハパヒピフプへぺホポ"
+	db "ハパヒピフプヘペホポ"
 	db $FF
 
 NamingScreenDeleteCharacter:
@@ -551,7 +551,7 @@ NamingScreenInitNameEntry:
 	ld [hli], a
 	dec c
 	jr nz, .loop
-	ld [hl], "@"
+	ld [hl], '@'
 	ret
 
 NamingScreenStoreEntry:
@@ -568,7 +568,7 @@ NamingScreenStoreEntry:
 	cp NAMINGSCREEN_UNDERSCORE
 	jr nz, .notterminator
 .terminator
-	ld [hl], "@"
+	ld [hl], '@'
 .notterminator
 	inc hl
 	dec c
@@ -758,7 +758,7 @@ ComposeMailMessage:
 	ld d, [hl]
 	ld hl, $0010
 	add hl, de
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	ret
 
 InitMailText:
@@ -881,7 +881,7 @@ DoMailEntry:
 
 .ajump
 	call NamingScreenGetLastCharacter
-	cp "円"
+	cp '円'
 	jr z, .startjump
 	call NamingScreenTryAddCharacter
 	xor a
@@ -892,9 +892,9 @@ DoMailEntry:
 	ret nz
 	inc [hl]
 	call NamingScreenGetTextCursorPosition
-	ld [hl], "♀"
+	ld [hl], '♀'
 	dec hl
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	ret
 .bjump
 	call NamingScreenDeleteCharacter
@@ -906,9 +906,9 @@ DoMailEntry:
 	ret nz
 	dec [hl]
 	call NamingScreenGetTextCursorPosition
-	ld [hl], "♀"
+	ld [hl], '♀'
 	inc hl
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	ret
 .startjump
 	call NamingScreenStoreEntry
@@ -975,7 +975,7 @@ SetupMail:
 	ld d, [hl]
 	ld hl, $0010
 	add hl, de
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	ret
 
 DrawMailLoadedText:
@@ -993,7 +993,7 @@ DrawMail:
 	call WaitForAutoBgMapTransfer
 	hlcoord 0, 0
 	lb bc, $01, $68
-	ld a, "■"
+	ld a, '■'
 	call ByteFill
 	hlcoord 1, 1
 	lb bc, $07, $12
