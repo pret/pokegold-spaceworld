@@ -151,10 +151,6 @@ _Breeder::
 	jp PrintText
 
 .CheckBreedmonCompatibility:
-; Assumes that wBreedMonGenders has already been set from opening the Breeder menu with 1 or fewer Pokémon.
-; If you open the breeder after saving and resetting the game while they have two Pokémon
-; (assuming the BreedMons GET saved at this point in development),
-; then this check will fail until you change out the BreedMons again.
 	ld a, [wBreedMonGenders]
 	ld b, a
 	srl b

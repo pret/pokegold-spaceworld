@@ -73,7 +73,7 @@ DebugMenuItems:
 DebugMenuOptionField::
 	ld hl, wDebugFlags
 	set DEBUG_FIELD_F, [hl] ; set debug mode
-	jp StartNewGame
+	jp NewGame
 
 DebugMenuOptionFight::
 	ld hl, wDebugFlags
@@ -138,17 +138,17 @@ SetDemoEventFlags:
 	ld hl, wd41b
 	set 2, [hl] ; chose a starter
 	ld a, 1
-	ld [wd29a], a
+	ld [wPlayerHouse2FCurScript], a
 	ld a, 1
-	ld [wd29b], a
+	ld [wPlayerHouse1FCurScript], a
 	ld a, 6
-	ld [wd29c], a
+	ld [wSilentHillCurScript], a
 	ld a, 18
-	ld [wd29d], a
+	ld [wSilentHillLabFrontCurScript], a
 	ld a, 6
-	ld [wd29e], a
+	ld [wSilentHillLabBackCurScript], a
 	ld a, 2
-	ld [wd2a0], a
+	ld [wSilentHillHouseCurScript], a
 	ret
 
 SECTION "engine/menu/debug_menu.asm@Sound Test", ROMX

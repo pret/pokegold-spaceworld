@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "scripts/OldCityPokecenterTimeMachine.asm", ROMX
 
 OldCityPokecenterTimeMachine_ScriptLoader:
-	call Unreferenced_Function7e6
+	call SetBitsForTimeCapsuleRequestIfNotLinked
 	ld hl, OldCityPokecenterTimeMachineScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber

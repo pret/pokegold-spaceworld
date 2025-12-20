@@ -28,10 +28,10 @@ PlayerHouse2FNPCIDs2:
 	db $FF
 
 PlayerHouse2FSignPointers:
-	dw Function3899
+	dw PokemonBooksScript
 	dw PlayerHouse2FRadioText
 	dw PlayerHouse2FComputerText
-	dw Function3899
+	dw PokemonBooksScript
 	dw PlayerHouse2FN64Text
 
 PlayerHouse2FScript1:
@@ -66,15 +66,15 @@ PlayerHouse2PositionCheck:
 
 PlayerHouse2FMovePlayer:
 	ld a, 0
-	ld hl, Movement
+	ld hl, .Movement
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
-Movement:
+.Movement:
 	step DOWN
 	slow_step DOWN
 	step_end

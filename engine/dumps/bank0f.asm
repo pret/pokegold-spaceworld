@@ -24,7 +24,7 @@ StartBattle:
 	ld a, [wLinkMode]
 	and a
 	jr z, .asm_3c02e
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 2
 	jr z, .asm_3c03f
 .asm_3c02e
@@ -92,7 +92,7 @@ StartBattle:
 	ld a, [wLinkMode]
 	and a
 	jr z, .to_battle
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 2
 	jr nz, .to_battle
 	call EnemySwitch
@@ -147,13 +147,13 @@ SafariZonePAText:
 asm_3c132:
 	call ReloadTilesFromBuffer
 	ld a, 2
-	ld [wcd5d], a
+	ld [wBattleResult], a
 	ld a, [wLinkMode]
 	and a
 	ld hl, WildPokemonFledText
 	jr z, asm_3c14a
 	xor a
-	ld [wcd5d], a
+	ld [wBattleResult], a
 	ld hl, EnemyPokemonFledText
 
 asm_3c14a:
@@ -178,7 +178,7 @@ EnemyPokemonFledText:
 
 asm_3c183:
 	call UpdateBattleMonInParty
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 1
 	jr z, asm_3c1a9
 	call sub_3c492
@@ -231,7 +231,7 @@ asm_3c1c4:
 asm_3c200:
 	call DisplayBattleMenu
 	ret c
-	ld a, [wBattleResult]
+	ld a, [wBattleEnded]
 	and a
 	ret nz
 	ld hl, wPlayerSubStatus5
@@ -328,7 +328,7 @@ asm_3c285:
 	ld [wCurPlayerSelectedMove], a
 
 asm_3c2bb:
-	callfar Function38220
+	callfar AI_Switch
 	ld a, 1
 	ldh [hBattleTurn], a
 	call SpikesDamage
@@ -394,7 +394,7 @@ asm_3c339:
 	jp asm_3c3c7
 
 asm_3c347:
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 2
 	jr z, asm_3c35d
 	call BattleRandom
@@ -424,7 +424,7 @@ asm_3c36d:
 	jr asm_3c3c7
 
 asm_3c37f:
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 2
 	jr z, asm_3c38f
 	call BattleRandom
@@ -443,7 +443,7 @@ sub_3c399:
 	dec a
 	jr nz, asm_3c3b6
 	ld a, [wDebugFlags]
-	bit 0, a
+	bit DEBUG_BATTLE_F, a
 	jr nz, asm_3c3b6
 	ld a, [wEnemySubStatus5]
 	bit 7, a
@@ -469,11 +469,11 @@ sub_3c3b8:
 asm_3c3c7:
 	ld a, 1
 	ldh [hBattleTurn], a
-	callfar Function38000
+	callfar AI_SwitchOrTryItem
 	jr c, asm_3c3eb
 	callfar DoEnemyTurn
 	call sub_3c473
-	ld a, [wBattleResult]
+	ld a, [wBattleEnded]
 	and a
 	ret nz
 	call sub_3c492
@@ -485,7 +485,7 @@ asm_3c3eb:
 	call DrawHUDsAndHPBars
 	callfar DoPlayerTurn
 	call sub_3c473
-	ld a, [wBattleResult]
+	ld a, [wBattleEnded]
 	and a
 	ret nz
 	call sub_3c48d
@@ -501,7 +501,7 @@ asm_3c3eb:
 asm_3c41d:
 	callfar DoPlayerTurn
 	call sub_3c473
-	ld a, [wBattleResult]
+	ld a, [wBattleEnded]
 	and a
 	ret nz
 	call sub_3c48d
@@ -511,11 +511,11 @@ asm_3c41d:
 	call DrawHUDsAndHPBars
 	ld a, 1
 	ldh [hBattleTurn], a
-	callfar Function38000
+	callfar AI_SwitchOrTryItem
 	jr c, asm_3c460
 	callfar DoEnemyTurn
 	call sub_3c473
-	ld a, [wBattleResult]
+	ld a, [wBattleEnded]
 	and a
 	ret nz
 	call sub_3c492
@@ -748,7 +748,7 @@ SandstormHitsText:
 	prompt
 
 sub_3c61e:
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 1
 	jr z, asm_3c632
 	xor a
@@ -1248,7 +1248,7 @@ asm_3c94d:
 	call PrintEmptyString
 	call BackUpTilesToBuffer
 	xor a
-	ld [wcd5d], a
+	ld [wBattleResult], a
 	ld b, $4b
 	call Function32c8
 	push af
@@ -1315,7 +1315,7 @@ sub_3c9c2:
 	ld hl, wEnemyHPPal
 	ld e, $30
 	call UpdateHPPal
-	callfar Function3834e
+	callfar EnemySwitch_TrainerHud
 	ld a, [wLinkMode]
 	and a
 	jr z, asm_3c9e4
@@ -1334,7 +1334,7 @@ asm_3c9e4:
 	xor a
 	ld [wEnemyMoveStruct], a
 	ld [wFieldMoveSucceeded], a
-	ld [wcaba], a
+	ld [wEnemyTurnsTaken], a
 	inc a
 	ret
 
@@ -1347,12 +1347,12 @@ asm_3c9fd:
 	ld b, $b
 
 asm_3ca0a:
-	ld a, [wca22]
+	ld a, [wTrainerClass]
 	cp $2b
 	jr nz, asm_3ca18
 	ld b, 0
 	ld hl, wDebugFlags
-	set 1, [hl]
+	set DEBUG_FIELD_F, [hl]
 
 asm_3ca18:
 	ld a, [wLinkMode]
@@ -1420,7 +1420,7 @@ GotMoneyForWinningText:
 	prompt
 
 BattleText_EnemyWasDefeated:
-	text_from_ram wca2b
+	text_from_ram wOTClassName
 	text "の　@"
 	text_from_ram wStringBuffer1
 	text_start
@@ -1504,7 +1504,7 @@ asm_3cb56:
 	ld de, $c37d
 	call sub_3ccef
 	ld a, 1
-	ld [wcd5d], a
+	ld [wBattleResult], a
 	ld a, [wcad5]
 	and a
 	ret z
@@ -1654,7 +1654,7 @@ OutOfUsableMonsText:
 	prompt
 
 Data3ccdd:
-	text_from_ram wca2b
+	text_from_ram wOTClassName
 	text "との"
 	line "しょうぶに　まけた！"
 	prompt
@@ -2152,7 +2152,7 @@ EnemySendOutFirstMon:
 ; This makes the game halt the script early and throw up an error handler,
 ; due to reading the start of the following 'text' line as a <NULL> character.
 TrainerAboutToUseText:
-	text_from_ram wca2b
+	text_from_ram wOTClassName
 	text "の　@"
 	text_from_ram wStringBuffer1
 	text "は"
@@ -2165,7 +2165,7 @@ TrainerAboutToUseText:
 	done
 
 TrainerSentOutText:
-	text_from_ram wca2b
+	text_from_ram wOTClassName
 	text "の　@"
 	text_from_ram wStringBuffer1
 	text "は"
@@ -2356,7 +2356,7 @@ TryRunningFromBattle:
 	jr z, .play_sound
 	dec a
 .play_sound
-	ld [wcd5d], a
+	ld [wBattleResult], a
 	push de
 	ld de, SFX_RUN
 	call WaitPlaySFX
@@ -2651,7 +2651,7 @@ UpdateBattleMonInParty:
 	jp CopyBytes
 
 sub_3d40b:
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 1
 	jr z, asm_3d418
 	call sub_3d41f
@@ -2785,7 +2785,7 @@ RecoveredWithItemText:
 	prompt
 
 sub_3d50b:
-	ldh a, [hLinkPlayerNumber]
+	ldh a, [hSerialConnectionStatus]
 	cp 1
 	jr z, asm_3d518
 	call sub_3d51f
@@ -3193,7 +3193,7 @@ BattleMenu_Pack:
 	xor a
 	ld [wWildMon], a
 	ld a, 2
-	ld [wcd5d], a
+	ld [wBattleResult], a
 	call ClearWindowData
 	call SetPalettes
 	scf
@@ -3616,7 +3616,7 @@ MoveSelectionScreen::
 
 .battle_player_moves
 	ld a, [wDebugFlags]
-	bit 0, a
+	bit DEBUG_BATTLE_F, a
 	jr nz, .interpret_joypad
 	
 	call MoveInfoBox
@@ -4138,8 +4138,8 @@ asm_3df26:
 	dec a
 	jr z, asm_3df3f
 	ld a, 1
-	ld [wca22], a
-	callfar Function384d4
+	ld [wTrainerClass], a
+	callfar AIChooseMove
 	jr asm_3df6b
 
 asm_3df3f:
@@ -6100,7 +6100,7 @@ _InitBattleCommon:
 	cp 1
 	call z, UpdateEnemyHUD
 	call StartBattle
-	call sub_3f13e
+	call ExitBattle
 	pop af
 	ld [wTextboxFlags], a
 	pop af
@@ -6111,10 +6111,10 @@ _InitBattleCommon:
 	ret
 
 sub_3ef9a:
-	ld [wca22], a
-	callfar LoadTrainerClass
-	callfar Function38f45
-	ld a, [wca22]
+	ld [wTrainerClass], a
+	callfar GetTrainerAttributes
+	callfar ReadTrainerParty
+	ld a, [wTrainerClass]
 	cp 9
 	jr nz, asm_3efb8
 	xor a
@@ -6145,7 +6145,7 @@ sub_3efdb:
 	ld de, vFrontPic
 	call LoadMonFrontSprite
 	xor a
-	ld [wca22], a
+	ld [wTrainerClass], a
 	ldh [hGraphicStartTile], a
 	ld hl, $c2ac
 	ld bc, $0707
@@ -6153,9 +6153,9 @@ sub_3efdb:
 	ret
 
 sub_3f003:
-	ld a, [wca23]
+	ld a, [wEnemyTrainerGraphicsPointer]
 	ld e, a
-	ld a, [wca24]
+	ld a, [wEnemyTrainerGraphicsPointer + 1]
 	ld d, a
 	ld a, $12
 	call UncompressSpriteFromDE
@@ -6321,7 +6321,7 @@ Data3f0d0:
 InitBattleVariables:
 	xor a
 	ld [wFieldMoveSucceeded], a
-	ld [wcd5d], a
+	ld [wBattleResult], a
 	ld hl, wcd3c
 	ld [hli], a
 	ld [hli], a
@@ -6332,9 +6332,9 @@ InitBattleVariables:
 	ld [wBattleMonSpecies], a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wCurBattleMon], a
-	ld [wBattleResult], a
+	ld [wBattleEnded], a
 	ld [wTimeOfDayPal], a
-	ld [wcaba], a
+	ld [wEnemyTurnsTaken], a
 	ld hl, wPlayerHPPal
 	ld [hli], a
 	ld [hl], a
@@ -6365,24 +6365,25 @@ InitBattleVariables:
 .return
 	ret
 
-sub_3f13e:
+ExitBattle:
 	call IsLinkBattle
-	jr nz, asm_3f148
-	call sub_3f1f3
-	jr asm_3f151
+	jr nz, .HandleEndOfBattle
+	call ShowLinkBattleParticipantsAfterEnd
+	jr .CheckEvolution
 
-asm_3f148:
-	ld a, [wcd5d]
+.HandleEndOfBattle
+	ld a, [wBattleResult]
 	and a
-	jr nz, asm_3f15a
-	call sub_3f19e
+	jr nz, .CleanUpBattleRAM
+	; WIN
+	call CheckPayDay
 
-asm_3f151:
+.CheckEvolution
 	xor a
 	ld [wForceEvolution], a
 	predef EvolveAfterBattle
 
-asm_3f15a:
+.CleanUpBattleRAM:
 	xor a
 	ld [wLowHealthAlarmBuffer], a
 	ld [wBattleMode], a
@@ -6392,7 +6393,7 @@ asm_3f15a:
 	ld [wOtherTrainerClass], a
 	ld [wce38], a
 	ld [wce39], a
-	ld [wBattleResult], a
+	ld [wBattleEnded], a
 	ld hl, wcd3c
 	ld [hli], a
 	ld [hli], a
@@ -6400,14 +6401,15 @@ asm_3f15a:
 	ld [hl], a
 	ld [wMenuScrollPosition], a
 	ld hl, wPlayerSubStatus1
-	ld b, $18
-.clear
+	ld b, wEnemyFuryCutterCount - wPlayerSubStatus1
+.loop
 	ld [hli], a
 	dec b
-	jr nz, .clear
+	jr nz, .loop
 	ld hl, wd4a7
 	set 0, [hl]
 	call WaitSFX
+
 	ld a, $e3
 	ldh [rLCDC], a
 	ld hl, wd14f
@@ -6415,19 +6417,21 @@ asm_3f15a:
 	call ClearPalettes
 	ret
 
-sub_3f19e:
+CheckPayDay:
 	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
 	inc hl
 	or [hl]
 	ret z
+
 	ld a, [wBattleMonItem]
 	ld b, a
 	callfar GetItemHeldEffect
 	ld a, b
-	cp $4c
+	cp HELD_AMULET_COIN
 	jr nz, AddBattleMoneyToAccount
+
 	ld hl, wPayDayMoney + 2
 	sla [hl]
 	dec hl
@@ -6435,6 +6439,7 @@ sub_3f19e:
 	dec hl
 	rl [hl]
 	jr nc, AddBattleMoneyToAccount
+
 	ld a, $ff
 	ld [hli], a
 	ld [hli], a
@@ -6464,27 +6469,27 @@ BattleText_PlayerPickedUpPayDayMoney:
 	line "ひろった！"
 	prompt
 
-sub_3f1f3:
+ShowLinkBattleParticipantsAfterEnd:
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
-	ld bc, $30
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [wEnemyMonStatus]
 	ld [hl], a
 	call ClearTileMap
-	call sub_3f60c
-	ld a, [wcd5d]
-	cp 1
+	call _ShowLinkBattleParticipants
+	ld a, [wBattleResult]
+	cp LOSE
 	ld de, WonAgainstText
-	jr c, .print_text
+	jr c, .store_result
 	ld de, LostAgainstText
-	jr z, .print_text
+	jr z, .store_result
 	ld de, TiedAgainstText
 
-.print_text
-	ld hl, $c346
+.store_result
+	hlcoord 6, 8
 	call PlaceString
-	ld c, $c8
+	ld c, 200
 	call DelayFrames
 	ret
 
@@ -6711,7 +6716,7 @@ BattleStartMessage:
 
 .PlaceBattleStartText:
 	push hl
-	callfar Function38340
+	callfar BattleStart_TrainerHuds
 	pop hl
 	call PrintText
 	ret
@@ -6731,7 +6736,7 @@ HookedPokemonAttackedText:
 	prompt
 
 WantsToBattleText:
-	text_from_ram wca2b
+	text_from_ram wOTClassName
 	text "の　@"
 	text_from_ram wStringBuffer1
 	text "が"
@@ -6741,7 +6746,7 @@ WantsToBattleText:
 ShowLinkBattleParticipants:
 	call IsLinkBattle
 	jr nz, .ok
-	call sub_3f60c
+	call _ShowLinkBattleParticipants
 	call ClearTileMap
 .ok
 	call DelayFrame
@@ -6758,22 +6763,22 @@ ShowLinkBattleParticipants:
 	ldh [hMapAnims], a
 	ret
 
-sub_3f60c:
+_ShowLinkBattleParticipants:
 	call LoadFontExtra
-	ld hl, $c2f3
+	hlcoord 3, 4
 	ld b, 7
-	ld c, $c
+	ld c, 12
 	call DrawTextBox
-	ld hl, $c31c
+	hlcoord 4, 6
 	ld de, wPlayerName
 	call PlaceString
-	ld hl, $c36c
-	ld de, wd8fe
+	hlcoord 4, 10
+	ld de, wOTPlayerName
 	call PlaceString
-	ld hl, $c349
-	ld a, $69
+	hlcoord 9, 8
+	ld a, "Ｖ"
 	ld [hli], a
-	ld [hl], $6a
+	ld [hl], "Ｓ"
 	callfar LinkBattle_TrainerHuds
 	ld c, 150
 	jp DelayFrames

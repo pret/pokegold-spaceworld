@@ -157,7 +157,7 @@ GetTrainerClassName_Old::
 ; Seemingly unreferenced.
 ; Loads a name to wStringBuffer1 from a partial list of Trainer classes leftover from Red/Green.
 	ld hl, .name_table
-	ld a, [wca22]
+	ld a, [wTrainerClass]
 	dec a
 	ld c, a
 	ld b, 0
@@ -176,18 +176,18 @@ GetTrainerClassName_Old::
 	ret
 
 .name_table:
-	dw .youngster, .bug_catcher, .lass, wca2b
+	dw .youngster, .bug_catcher, .lass, wOTClassName
 	dw .jr_trainer_male, .jr_trainer_female, .pokemaniac, .super_nerd
-	dw wca2b, wca2b, .burglar, .engineer
-	dw .jack, wca2b, .swimmer, wca2b
-	dw wca2b, .beauty, wca2b, .rocker
-	dw .juggler, wca2b, wca2b, .blackbelt
-	dw wca2b, .prof_oak, .chief, .scientist
-	dw wca2b, .rocket, .cooltrainer_male, .cooltrainer_female
-	dw wca2b, wca2b, wca2b, wca2b
-	dw wca2b, wca2b, wca2b, wca2b
-	dw wca2b, wca2b, wca2b, wca2b
-	dw wca2b, wca2b, wca2b
+	dw wOTClassName, wOTClassName, .burglar, .engineer
+	dw .jack, wOTClassName, .swimmer, wOTClassName
+	dw wOTClassName, .beauty, wOTClassName, .rocker
+	dw .juggler, wOTClassName, wOTClassName, .blackbelt
+	dw wOTClassName, .prof_oak, .chief, .scientist
+	dw wOTClassName, .rocket, .cooltrainer_male, .cooltrainer_female
+	dw wOTClassName, wOTClassName, wOTClassName, wOTClassName
+	dw wOTClassName, wOTClassName, wOTClassName, wOTClassName
+	dw wOTClassName, wOTClassName, wOTClassName, wOTClassName
+	dw wOTClassName, wOTClassName, wOTClassName
 
 
 .youngster

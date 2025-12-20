@@ -32,7 +32,7 @@ DEF OBJECT_JUMPTABLE_INDEX  rb ; 1d
 DEF OBJECT_1E               rb ; 1e
 DEF OBJECT_JUMP_HEIGHT      rb ; 1f
 DEF OBJECT_RANGE            rb ; 20
-DEF OBJECT_21               rb ; 21
+DEF OBJECT_SIGHT_RANGE      rb ; 21
                             rb_skip 6
 DEF OBJECT_LENGTH EQU _RS
 DEF NUM_OBJECT_STRUCTS EQU 10
@@ -151,11 +151,10 @@ DEF MAPOBJECT_MOVEMENT         rb ; 4
 DEF MAPOBJECT_RADIUS           rb ; 5
 DEF MAPOBJECT_HOUR             rb ; 6
 DEF MAPOBJECT_TIMEOFDAY        rb ; 7
-DEF MAPOBJECT_PALETTE          rb ; 8
-DEF MAPOBJECT_SIGHT_RANGE      rb ; 9
-DEF MAPOBJECT_SCRIPT_POINTER   rw ; a
-DEF MAPOBJECT_EVENT_FLAG       rw
-                               rb_skip 2
+DEF MAPOBJECT_TYPE             rb ; 8, set to anything but 0 to skip trainer checks
+							   rb_skip 2
+DEF MAPOBJECT_SIGHT_RANGE      rb ; b
+                               rb_skip 4
 DEF MAPOBJECT_LENGTH EQU _RS
 DEF NUM_OBJECTS EQU 16
 DEF PLAYER_OBJECT EQU 0

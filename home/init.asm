@@ -91,10 +91,10 @@ Init:
 	ldh [rWX], a
 
 	ld a, $ff
-	ldh [hLinkPlayerNumber], a
-	ld h, HIGH($9800)
+	ldh [hSerialConnectionStatus], a
+	ld h, HIGH(vBGMap0)
 	call BlankBGMap
-	ld h, HIGH($9C00)
+	ld h, HIGH(vBGMap1)
 	call BlankBGMap
 	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
@@ -104,7 +104,7 @@ Init:
 	predef CheckSGB
 	ld a, $1F
 	ldh [rIE], a
-	ld a, HIGH($9C00)
+	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
 	xor a
 	ldh [hBGMapAddress], a

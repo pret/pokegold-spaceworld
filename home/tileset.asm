@@ -354,43 +354,48 @@ GetBlockLocation::
 	add hl, bc
 	ret
 
-GetFacingSignpost::
+CheckFacingBGEvent::
 	call GetFacingTileCoord
+; Load facing into b.
 	ld b, a
-GetSignpost::
+; Convert the coordinates at de to within-boundaries coordinates.
+GetBGEvent::
 	ld a, d
-	sub $4
+	sub 4
 	ld d, a
 	ld a, e
-	sub $4
+	sub 4
 	ld e, a
-	ld a, [wCurrMapSignCount]
+; If there are no BG events, we don't need to be here.
+	ld a, [wCurMapBGEventCount]
 	and a
 	ret z
+
+; Checks to see if you are facing a BG event.  If so, sets carry.
 	ld c, a
-	ld hl, wCurrMapSigns
-.asm_2f32:
+	ld hl, wCurrMapBGEvents
+.loop
 	ld a, [hli]
 	cp e
-	jr nz, .asm_2f3e
+	jr nz, .y_next
 	ld a, [hli]
 	cp d
-	jr nz, .asm_2f3f
+	jr nz, .x_next
 	ld a, [hli]
 	cp b ; useless comparison
-	jr .asm_2f46
+	jr .set_carry
 
-.asm_2f3e:
+.y_next
 	inc hl
-.asm_2f3f:
+.x_next
 	inc hl
 	inc hl
 	dec c
-	jr nz, .asm_2f32
+	jr nz, .loop
 	xor a
 	ret
 
-.asm_2f46:
+.set_carry
 	scf
 	ret
 

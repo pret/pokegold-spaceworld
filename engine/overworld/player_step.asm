@@ -2,8 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/overworld/player_step.asm", ROMX
 
-; TODO: How does this differ from _HandlePlayerStep, aside from where it's called from?
-_HandlePlayerStep_Limited:
+_HandlePlayerStep:
 	ld a, [wPlayerStepFlags]
 	and a
 	ret z
@@ -28,11 +27,11 @@ _HandlePlayerStep_Limited:
 	ldh a, [hOverworldFlashlightEffect]
 	and a
 	jr nz, .update_overworld_map
-	call UpdateOverworldMap_Old
+	call UpdateOverworldMap
 	jr HandlePlayerStep_Finish
 
 .update_overworld_map
-	call UpdateOverworldMap
+	call UpdateOverworldMap_Flashlight
 	jr HandlePlayerStep_Finish
 
 .update_player_coords
@@ -172,7 +171,7 @@ HandlePlayerStep::
 
 .Jumptable:
 	dw RefreshTiles
-	dw Functionc9c1
+	dw CheckTrainerBattle
 	dw BufferScreen
 	dw .fail
 	dw .fail
@@ -186,11 +185,11 @@ HandlePlayerStep::
 .fail
 	ret
 
-Functionc9c1:
-	callfar _Functionc9c1
+CheckTrainerBattle:
+	callfar _CheckTrainerBattle
 	ret
 
-UpdateOverworldMap_Old:
+UpdateOverworldMap:
 	ld a, [wPlayerStepDirection]
 	and a ; DOWN
 	jr z, .step_down
@@ -348,7 +347,8 @@ ScrollOverworldMapRight:
 	inc [hl]
 	ret
 
-_HandlePlayerStep:
+; Duplicate of _HandlePlayerStep that only gets run when wMapStatus is 10
+_HandlePlayerStep_Unused::
 	ld a, [wPlayerStepFlags]
 	and a
 	ret z
@@ -363,14 +363,14 @@ _HandlePlayerStep:
 .update_overworld_map
 	ld a, 4
 	ld [wHandlePlayerStep], a
-	call UpdateOverworldMap
+	call UpdateOverworldMap_Flashlight
 	jp HandlePlayerStep_Finish
 
 .update_player_coords
 	call UpdatePlayerCoords
 	jp HandlePlayerStep_Finish
 
-UpdateOverworldMap:
+UpdateOverworldMap_Flashlight:
 	ld a, [wPlayerStepDirection]
 	and a
 	jr z, .step_down

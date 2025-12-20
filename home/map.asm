@@ -26,14 +26,12 @@ RunMapScript::
 	pop hl
 	ret
 
-; TODO: is this used?
-WriteIntod637::
+SetMapStatus::
 	push af
-	; TODO: figure out what variables are concerned here
-	ld a, [wd637]
-	ld [wd638], a
+	ld a, [wMapStatus]
+	ld [wLastMapStatus], a
 	pop af
-	ld [wd637], a
+	ld [wMapStatus], a
 	ret
 
 ClearMapBuffer::
@@ -68,7 +66,7 @@ SetUpMapBuffer::
 	ld de, wMapScriptNumberLocation
 	call GetMapScriptNumber ; Read map script from pointed location
 	call CopyWord ; Copy map script pointer
-	ld de, wUnknownMapPointer
+	ld de, wMapScriptPointerLocation
 	call CopyWord
 
 .done
@@ -770,7 +768,7 @@ CopyAndReadHeaders::
 	inc hl
 	inc hl
 	call ReadWarps
-	call ReadSigns
+	call ReadBGEvents
 	ret
 
 GetMapConnections::
@@ -841,13 +839,13 @@ ReadWarps::
 	ret
 
 
-ReadSigns::
+ReadBGEvents::
 	ld a, [hli]
-	ld [wCurrMapSignCount], a
+	ld [wCurMapBGEventCount], a
 	and a
 	ret z
 	ld c, a
-	ld de, wCurrMapSigns
+	ld de, wCurrMapBGEvents
 .next
 	ld b, 4
 .copy
@@ -955,7 +953,8 @@ InitObjectMasks::
 	ld bc, NUM_OBJECTS - 2
 	ld a, $ff
 	call ByteFill
-	ld hl, wUnknownMapPointer
+	
+	ld hl, wMapScriptPointerLocation
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1540,19 +1539,19 @@ FillEastConnectionStrip::
 	jr nz, .loop
 	ret
 
-Function2a85::
-.asm_2a85:
+OverworldLoop::
+.loop
 	call LoadMap
-	call Function2a8d
-	jr .asm_2a85
+	call _OverworldLoop
+	jr .loop
 
-Function2a8d::
+_OverworldLoop::
 	push hl
 	push de
 	push bc
 	push af
 
-	ld a, [wd637]
+	ld a, [wMapStatus]
 	and $f
 	add a
 	ld e, a
@@ -1579,22 +1578,29 @@ Function2a8d::
 	pop hl
 	ret
 
-.Pointers:
-	dbbw $00, $55, Function2ae5
-	dbbw $00, $55, Function2b52
-	dbbw $00, $55, Function2b77
-	dbbw $0e, $33, Function3904
-	dbbw $00, $55, Function2b39
-	dbbw $0e, $33, Function391f
-	dbbw $00, $33, Function2b78
-	dbbw $00, $33, Function2b78
-	dbbw $0e, $33, Function3904
-	dbbw $00, $55, Function2b79
-	dbbw $00, $55, Function2b87
-	dbbw $0e, $33, Function3920
-	dbbw $05, $33, Function14777
+; TODO: Maybe make these a macro?
+; Byte 1: Bank
+; Byte 2: Unused?
+; Bytes 3-4: Pointer to function
 
-Function2ae5::
+; Battle-related functions are run in bank $0e, even though they're in bank $f now.
+; This doesn't change anything in practice because we still call a predef to go to that bank.
+.Pointers:
+	dbbw $00, $55, OverworldLoop_Main
+	dbbw $00, $55, OverworldLoop_EventRunning
+	dbbw $00, $55, OverworldLoop_02
+	dbbw $0e, $33, OverworldLoop_StartBattle
+	dbbw $00, $55, OverworldLoop_ReturnToMain
+	dbbw $0e, $33, OverworldLoop_05
+	dbbw $00, $33, OverworldLoop_06
+	dbbw $00, $33, OverworldLoop_07
+	dbbw $0e, $33, OverworldLoop_StartBattle
+	dbbw $00, $55, OverworldLoop_DebugMapViewer
+	dbbw $00, $55, OverworldLoop_Unused
+	dbbw $0e, $33, OverworldLoop_ExitBattle
+	dbbw BANK(OverworldLoop_ReturnFromBattle), $33, OverworldLoop_ReturnFromBattle
+
+OverworldLoop_Main::
 .loop:
 	ld hl, wJoypadFlags
 	set 4, [hl]
@@ -1605,96 +1611,109 @@ Function2ae5::
 	res 4, [hl]
 	res 6, [hl]
 	call GetJoypad
-	call Function2be5
-	ld hl, wc5ed
-	bit 7, [hl]
-	res 7, [hl]
+
+	call RunMapTextSubroutine
+	ld hl, wOverworldFlags
+	bit OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	res OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ret nz
+
 	call TestWildBattleStart
 	ret nz
 	call OverworldStartButtonCheck
 	ret nz
+
 	callfar OverworldMovementCheck
 	ldh a, [hMapEntryMethod]
 	and a
 	ret nz
-	call Function2c4a
+
+	call HandleMapObjects
 	jr nc, .loop
 	farcall CheckObjectEnteringVisibleRange
-	ld a, [wc5ed]
-	bit 6, a
+
+	ld a, [wOverworldFlags]
+	bit OVERWORLD_DISABLE_MAP_CONNECTIONS_F, a
 	jr nz, .loop
+	
 	call CheckMovingOffEdgeOfMap
 	ret c
 	call WarpCheck
 	ret c
 	jr .loop
 
-Function2b39::
+OverworldLoop_ReturnToMain::
 	ld hl, wJoypadFlags
 	res 4, [hl]
 	res 6, [hl]
+
 	ld hl, wDebugFlags
-	res 6, [hl]
-	res 7, [hl]
+	res UNK_DEBUG_FLAG_6_F, [hl]
+	res SKIP_MAP_SCRIPT_F, [hl]
+
 	ld hl, wStateFlags
 	res SCRIPTED_MOVEMENT_STATE_F, [hl]
-	ld a, $0
-	call WriteIntod637
+	ld a, MAPSTATUS_MAIN
+	call SetMapStatus
 	ret
 
-Function2b52::
-.asm_2b52:
+OverworldLoop_EventRunning::
+.loop
 	call UpdateTime
 	ld a, [wStateFlags]
 	bit SCRIPTED_MOVEMENT_STATE_F, a
-	jr z, Function2b39
+	jr z, OverworldLoop_ReturnToMain
 	ldh a, [hMapEntryMethod]
 	and a
 	ret nz
-	call Function2c4a
-	jr nc, .asm_2b52
+	call HandleMapObjects
+	jr nc, .loop
+
 	farcall CheckObjectEnteringVisibleRange
 	call CheckMovingOffEdgeOfMap
 	ret c
 	call WarpCheck
 	ret c
-	jr .asm_2b52
+	jr .loop
 
-Function2b77::
+OverworldLoop_02::
 	ret
 
-Function2b78::
+OverworldLoop_06::
+OverworldLoop_07::
 	ret
 
-Function2b79::
+OverworldLoop_DebugMapViewer::
 	callfar DebugMapViewer
-	ld a, $4
-	call WriteIntod637
+	ld a, MAPSTATUS_RETURN_TO_MAIN
+	call SetMapStatus
 	ret
 
-Function2b87::
-.asm_2b87:
+; A pared-down version of the standard overworld loop.
+; TODO: Figure out how this actually works.
+OverworldLoop_Unused::
+.loop
 	call UpdateTime
 	call GetJoypad
 	call OverworldStartButtonCheck
 	ret nz
 	callfar OverworldMovementCheck
-	call Function2ba8
-	jr nc, .asm_2b87
+	call .HandleMapObjects
+	jr nc, .loop
 	farcall CheckObjectEnteringVisibleRange
-	jr .asm_2b87
+	jr .loop
 
-Function2ba8::
+.HandleMapObjects:
+.loop2
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(HandleNPCStep)
 	call Bankswitch
 	call HandleNPCStep
 	call LoadMinorObjectGFX
-	ld a, BANK(_HandlePlayerStep)
+	ld a, BANK(_HandlePlayerStep_Unused)
 	call Bankswitch
-	call _HandlePlayerStep
+	call _HandlePlayerStep_Unused
 	ld a, BANK(InitSprites)
 	call Bankswitch
 	call InitSprites
@@ -1710,13 +1729,13 @@ Function2ba8::
 	bit PLAYERSTEP_CONTINUE_F, a
 	ret z
 	bit PLAYERSTEP_STOP_F, a
-	jr z, Function2ba8
+	jr z, .loop2
 	scf
 	ret
 
-Function2be5:: ; TODO
+RunMapTextSubroutine::
 	ld a, [wDebugFlags]
-	bit 7, a
+	bit SKIP_MAP_SCRIPT_F, a
 	ret nz
 	ld a, [wMapGroup]
 	ld b, a

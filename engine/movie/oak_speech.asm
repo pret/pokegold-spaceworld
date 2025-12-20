@@ -99,29 +99,29 @@ IntroCleanup::
 	ld de, ShrinkPic1
 	lb bc, BANK(ShrinkPic1), $00
 	call IntroDisplayPicCenteredOrUpperRight
-	ld c, $04
+	ld c, 4
 	call DelayFrames
 	ld de, ShrinkPic2
 	lb bc, BANK(ShrinkPic2), $00
 	call IntroDisplayPicCenteredOrUpperRight
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	hlcoord 6, 5
-	ld b, $07
-	ld c, $07
+	ld b, 7
+	ld c, 7
 	call ClearBox
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	call LoadStartingSprites
 	call LoadFontExtra
-	ld c, $32
+	ld c, 50
 	call DelayFrames
 	call GBFadeOutToWhite
 	call ClearTileMap
 	call Function0502
-	ld a, $00
-	ld [wd638], a
-	ld [wd637], a
+	ld a, MAPSTATUS_MAIN
+	ld [wLastMapStatus], a
+	ld [wMapStatus], a
 
 OverworldStart::
 	call SetUpGameEntry
@@ -130,7 +130,7 @@ OverworldStart::
 	call z, SpawnPlayer
 	ld hl, wd4a9
 	set 0, [hl]
-	jp Function2a85
+	jp OverworldLoop
 
 SetUpGameEntry::
 	ld a, $04

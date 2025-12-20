@@ -57,7 +57,7 @@ InitializeNewGameWRAM:
 	call .InitList
 	ld hl, wNumKeyItems
 	call .InitList
-	ld hl, wUnknownListLengthd1ea
+	ld hl, wNumPCItems
 	call .InitList
 
 	xor a
@@ -76,7 +76,7 @@ endc
 	ld a, LOW(START_MONEY)
 	ld [wMoney + 2], a
 
-	ld hl, wUnknownListLengthd1ea
+	ld hl, wNumPCItems
 	ld a, ITEM_REPEL
 	ld [wCurItem], a
 	ld a, 1
@@ -121,10 +121,10 @@ LoadOptions:
 	ret
 
 ; Copies the contents of wDebugFlags - wce66 to... themselves.
-; Presumably, the debug flags were originally saved to the save file (evidenced by SRAM being opened and closed),
+; Presumably, the debug flags were originally read from the save file (evidenced by SRAM being opened and closed),
 ; but the source address was dummied out.
 Dummy_LoadDebugFlags:
-	ld a, BANK(s0_a600)
+	ld a, BANK(sOptions)
 	call OpenSRAM
 	ld hl, wDebugFlags
 	ld a, [hli]
@@ -181,10 +181,10 @@ MainMenuHeader:
 	db 1 ; default option
 
 .MenuData:
-	db $80
+	db STATICMENU_CURSOR
 	db 0 ; items
 	dw MainMenuItems
-	db $8a, $1f
+	dw PlaceMenuStrings
 	dw .Strings
 
 .Strings:
@@ -195,10 +195,10 @@ MainMenuHeader:
 	db "じかんセット@"
 
 MainMenuJumptable:
-	dw MainMenuOptionContinue
-	dw StartNewGame
+	dw Continue
+	dw NewGame
 	dw MenuCallSettings
-	dw StartNewGame
+	dw NewGame
 	dw MainMenuOptionSetTime
 
 MainMenuItems:
@@ -233,9 +233,9 @@ MainMenuOptionSetTime::
 	callfar SetTime
 	ret
 
-MainMenuOptionContinue::
-	callfar Function14624
-	call DisplayContinueGameInfo
+Continue::
+	callfar TryLoadSaveFile
+	call DisplaySaveInfoOnContinue
 .loop
 	call ClearJoypad
 	call GetJoypad
@@ -251,7 +251,7 @@ MainMenuOptionContinue::
 	ld hl, wDebugFlags
 	res DEBUG_FIELD_F, [hl]
 	set CONTINUED_F, [hl]
-	set 3, [hl]
+	set SAVE_FILE_EXISTS_F, [hl]
 	ldh a, [hJoyState]
 	bit SELECT_F, a
 	jr z, .skip
@@ -259,16 +259,16 @@ MainMenuOptionContinue::
 .skip
 	call ClearBGPalettes
 	call ClearTileMap
-	ld c, $0A
+	ld c, 10
 	call DelayFrames
 	jp OverworldStart
 
-DisplayContinueGameInfo::
+DisplaySaveInfoOnContinue::
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 4, 7
-	ld b, $08
-	ld c, $0D
+	ld b, 8
+	ld c, 13
 	call DrawTextBox
 	hlcoord 5, 9
 	ld de, PlayerInfoText
@@ -284,38 +284,38 @@ DisplayContinueGameInfo::
 	call PrintPlayTime
 	ld a, $01
 	ldh [hBGMapMode], a
-	ld c, $1E
+	ld c, 30
 	call DelayFrames
 	ret
 
 PrintNumBadges::
 	push hl
 	ld hl, wJohtoBadges
-	ld b, $01 ; only Johto Badges
+	ld b, 1 ; only Johto Badges
 	call CountSetBits
 	pop hl
 	ld de, wNumSetBits
-	ld bc, $0102 ; flags and constants for this? 1 byte source, 2 digit display
+	lb bc, 1, 2
 	jp PrintNumber
 
 PrintNumOwnedMons::
 	push hl
 	ld hl, wPokedexCaught
-	ld b, $20 ; flag_array NUM_POKEMON?
+	ld b, (NUM_POKEMON + 7) / 8 ; flag_array NUM_POKEMON
 	call CountSetBits
 	pop hl
 	ld de, wNumSetBits
-	ld bc, $0103 ; 1 byte, 3 digit
+	lb bc, 1, 3
 	jp PrintNumber
 
 PrintPlayTime::
 	ld de, hRTCHours
-	ld bc, $0103 ; 1 byte, 3 digit
+	lb bc, 1, 3
 	call PrintNumber
 	ld [hl], '：'
 	inc hl
 	ld de, hRTCMinutes
-	ld bc, $8102 ; PRINTNUM_LEADINGZEROS, 1 byte, 2 digit
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jp PrintNumber
 
 PlayerInfoText:
@@ -325,7 +325,7 @@ PlayerInfoText:
 	next "プレイじかん"
 	text_end
 
-StartNewGame::
+NewGame::
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld de, MUSIC_OAK_INTRO

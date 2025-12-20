@@ -50,12 +50,12 @@ SilentHillLabBackScript1:
 	call LoadMovementDataPointer
 	ld hl, wd41b
 	set 1, [hl]
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, 1
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillLabBackMovement1:
@@ -65,7 +65,7 @@ SilentHillLabBackMovement1:
 	step_end
 
 SilentHillLabBackScript2:
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 6, [hl]
 	call Function20f8
 	ld a, 3
@@ -103,12 +103,12 @@ SilentHillLabBackRivalChoosePokemon:
 	ld l, a
 	ld a, 3
 	call LoadMovementDataPointer
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, 4
 	ld [wMapScriptNumber], a
-	ld a, 1
-	call WriteIntod637
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
 	ret
 
 SilentHillLabBackMovementPointers:
@@ -138,7 +138,7 @@ SilentHillLabBackScript5:
 
 SilentHillLabBackScript6:
 	call Function20f8
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	res 6, [hl]
 	ld a, 6
 	ld[wMapScriptNumber], a
@@ -220,11 +220,11 @@ ConfirmPokemonSelection:
 	ld hl, wd41b
 	set 2, [hl]
 	ld a, 1
-	ld [wd29b], a
+	ld [wPlayerHouse1FCurScript], a
 	ld a, 1
-	ld [wd29a], a
+	ld [wPlayerHouse2FCurScript], a
 	ld a, 1
-	ld [wd2a0], a
+	ld [wSilentHillHouseCurScript], a
 	ld hl, SilentHillLabBackTextString8
 	call PrintText
 	ld hl, wJoypadFlags
@@ -309,7 +309,7 @@ SilentHillLabBackFunc4:
 	ld hl, wd41b
 	bit 2, [hl]
 	jr nz, .bigjump
-	ldh a, [hFFEA]
+	ldh a, [hLastTalked]
 	sub 2
 	ld [wChosenStarter], a
 	ld d, 0
@@ -363,8 +363,8 @@ SilentHillLabBackTextString15:
 	done
 
 SilentHillLabBackTextPointers2:
-	dw Function3899
-	dw Function3899
-	dw Function3899
-	dw Function3899
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
 	dw MapDefaultText

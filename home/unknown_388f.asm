@@ -2,46 +2,46 @@ INCLUDE "constants.asm"
 
 SECTION "home/unknown_388f.asm", ROM0
 
-Function388f::
+EmptyFunction388f::
 	ret
 
-Function3890::
-	farcall Function14cac
+Unreferenced_PokemonNewsScript::
+	farcall _Unreferenced_PokemonNewsScript
 	ret
 
-Function3899::
-	farcall Function14dac
+PokemonBooksScript::
+	farcall _PokemonBooksScript
 	ret
 
-Function38a2::
-	farcall Function14dc4
+PlayerHouse1FFridgeScript::
+	farcall _PlayerHouse1FFridgeScript
 	ret
 
-Function38ab::
-	farcall Function14ddd
+SilentHillHouseStoveScript::
+	farcall _SilentHillHouseStoveScript
 	ret
 
-Function38b4::
-	farcall Function14e00
+SilentHillHouseSinkScript::
+	farcall _SilentHillHouseSinkScript
 	ret
 
-Function38bd::
-	farcall Function14e5f
+SilentHillHouseTVScript::
+	farcall _SilentHillHouseTVScript
 	ret
 
-Function38c6::
-	farcall Function14e27
+PokecenterSignScript::
+	farcall _PokecenterSignScript
 	ret
 
-Function38cf::
-	farcall Function14e4a
+RivalHouseWindowScript::
+	farcall _RivalHouseWindowScript
 	ret
 
-Function38d8::
-	ld hl, wc5ed
+InitTrainerBattle::
+	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, $8
-	ld [wd637], a
+	ld a, MAPSTATUS_START_TRAINER_BATTLE
+	ld [wMapStatus], a
 	ret
 
 TestWildBattleStart::
@@ -54,12 +54,12 @@ TestWildBattleStart::
 	ld a, [wBattleMode]
 	and a
 	ret z ; if no battle, return
-	ld a, $3
-	call WriteIntod637
+	ld a, MAPSTATUS_START_WILD_BATTLE
+	call SetMapStatus
 	call xor_a_dec_a
 	ret
 
-Function3904::
+OverworldLoop_StartBattle::
 	predef Function3ef19
 	ld a, $f3
 	ldh [hMapEntryMethod], a
@@ -68,22 +68,22 @@ Function3904::
 	ld hl, wJoypadFlags
 	set 4, [hl]
 	set 6, [hl]
-	ld a, $b
-	call WriteIntod637
+	ld a, MAPSTATUS_EXIT_BATTLE
+	call SetMapStatus
 	ret
 
-Function391f::
+OverworldLoop_05::
 	ret
 
-Function3920::
-	ld a, [wcd5d]
-	cp $1
-	jr z, .asm_392d
-	ld a, $4
-	call WriteIntod637
+OverworldLoop_ExitBattle::
+	ld a, [wBattleResult]
+	cp LOSE
+	jr z, .DemoGameOver
+	ld a, MAPSTATUS_RETURN_TO_MAIN
+	call SetMapStatus
 	ret
 
-.asm_392d:
+.DemoGameOver:
 	ld hl, wJoypadFlags
 	res 4, [hl]
 	ld hl, .text

@@ -136,8 +136,6 @@ ENDM
 
 
 MACRO channel_struct
-; TODO: CH1 isn't at C101, please rebase all of these
-; Addreses are Channel1 (c101).
 \1MusicID::           dw
 \1MusicBank::         db
 \1Flags1::            db ; 0:on/off 1:subroutine 3:sfx 4:noise 5:rest
@@ -160,7 +158,7 @@ MACRO channel_struct
 \1LoopCount::         db
 \1Tempo::             dw
 \1Tracks::            db ; hi:left lo:right
-\1SFXDutyLoop::         ds 1
+\1SFXDutyLoop::       ds 1
 \1VibratoDelayCount:: db ; initialized by \1VibratoDelay
 \1VibratoDelay::      db ; number of frames a note plays until vibrato starts
 \1VibratoExtent::     db
@@ -313,11 +311,10 @@ MACRO map_object
 \1ObjectRadius::     db
 \1ObjectHour::       db
 \1ObjectTimeOfDay::  db
-\1ObjectPalette::    db ; ...Questionable. Needs investigation
-\1ObjectSightRange:: db
-\1ObjectScript::     dw
-\1ObjectEventFlag::  dw
+\1ObjectType::       db
 	ds 2
+\1ObjectSightRange:: db
+	ds 4
 ENDM
 
 MACRO minor_object

@@ -54,7 +54,7 @@ DoTeleportAnimation:
 	set SCRIPTED_MOVEMENT_STATE_F, [hl]
 
 .loop
-	call Function2c4a
+	call HandleMapObjects
 	ld a, [wStateFlags]
 	bit SCRIPTED_MOVEMENT_STATE_F, a
 	jr nz, .loop

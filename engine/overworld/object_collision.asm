@@ -87,7 +87,7 @@ CheckFacingObject:
 	ld bc, wPlayerSprite
 	ld a, PLAYER_OBJECT_INDEX
 	ldh [hMapObjectIndex], a
-	call _CheckObjectCollision
+	call IsNPCAtCoord
 	ret nc
 	ld hl, OBJECT_WALKING
 	add hl, bc
@@ -107,13 +107,13 @@ WillObjectBumpIntoSomeoneElse:
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld e, [hl]
-	jr _CheckObjectCollision
+	jr IsNPCAtCoord
 
 IsObjectFacingSomeoneElse:
 	ldh a, [hMapObjectIndex]
 	call GetObjectStruct
 	call .GetFacingCoords
-	call _CheckObjectCollision
+	call IsNPCAtCoord
 	ret
 .GetFacingCoords
 	ld hl, OBJECT_MAP_X
@@ -148,7 +148,7 @@ IsObjectFacingSomeoneElse:
 
 ; returns the carry flag if a sprite is at coords d, e
 ; will not collide with sprite index stored in hEventCollisionException
-_CheckObjectCollision:
+IsNPCAtCoord:
 	ld bc, wObjectStructs
 	xor a
 .loop
@@ -158,22 +158,25 @@ _CheckObjectCollision:
 	ld a, [hl]
 	and a
 	jr z, .next
+
 	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr nz, .check_last_position
+	jr nz, .check_current_coords
 	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jr nz, .check_last_position
+	jr nz, .check_current_coords
+
 	ldh a, [hEventCollisionException]
 	ld l, a
 	ldh a, [hObjectStructIndex]
 	cp l
-	jr nz, .collision
-.check_last_position
+	jr nz, .yes
+
+.check_current_coords
 	ld hl, OBJECT_LAST_MAP_X
 	add hl, bc
 	ld a, [hl]
@@ -188,7 +191,8 @@ _CheckObjectCollision:
 	ld l, a
 	ldh a, [hObjectStructIndex]
 	cp l
-	jr nz, .collision
+	jr nz, .yes
+
 .next
 	ld hl, OBJECT_LENGTH
 	add hl, bc
@@ -201,7 +205,7 @@ _CheckObjectCollision:
 	and a
 	ret
 
-.collision
+.yes
 	scf
 	ret
 

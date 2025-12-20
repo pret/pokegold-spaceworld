@@ -540,7 +540,7 @@ SRAMClearMenu::
 	cp $01
 	jp z, Init
 
-	callfar InitAllSRAMBanks
+	callfar EmptyAllSRAMBanks
 	jp Init
 
 SRAMClear_Message::

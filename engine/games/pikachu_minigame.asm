@@ -398,7 +398,7 @@ PikachuMiniGame_RunFrame:
 	ldh [hSCX], a
 	ldh [hSCY], a
 
-	ld a, 144
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	scf
 	ret

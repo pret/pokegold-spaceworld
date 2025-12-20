@@ -37,7 +37,7 @@ CallMapTextSubroutine::
 	ret
 
 Function3055::
-	ldh a, [hFFEA]
+	ldh a, [hLastTalked]
 	ld b, a
 .Loop:
 	ld a, [hli]
@@ -81,7 +81,7 @@ PrintTextboxDebugNumbers::
 	ld a, [wTalkingTargetType]
 	bit 0, a
 	jr z, .CheckSign
-	ld de, hFFEA
+	ld de, hLastTalked
 	jr .PrintNum
 
 .CheckSign:
@@ -107,7 +107,7 @@ QueueMapTextSubroutine::
 	bit A_BUTTON_F, a
 	jp z, xor_a ; if we didn't press a
 	call GetFacingPersonText
-	jp nc, Function30e8 ; if not talking to a person
+	jp nc, .CheckBGEvent ; if not talking to a person
 	ld d, $0
 	ld e, a
 	ld a, [wDebugFlags]
@@ -130,8 +130,8 @@ QueueMapTextSubroutine::
 	call xor_a_dec_a
 	ret
 
-Function30e8::
-	call GetFacingSignpost
+.CheckBGEvent:
+	call CheckFacingBGEvent
 	jp nc, xor_a ; if not facing person or sign
 	ld a, e
 	ldh [hFFEB], a
@@ -247,7 +247,7 @@ TurnNPCTalkingTo::
 	add hl, bc
 	ld a, [hl]
 	sub 02
-	ldh [hFFEA], a
+	ldh [hLastTalked], a
 	ret
 
 Function31C3::
@@ -261,7 +261,7 @@ CheckInlineTrainer::
 	call GetObjectStruct
 	call GetInlineMapObject
 	jr nc, .Escape
-	ld hl, MAPOBJECT_SCRIPT_POINTER + 1
+	ld hl, MAPOBJECT_SIGHT_RANGE
 	add hl, de
 	ld a, [hl]
 	cp b

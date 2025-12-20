@@ -146,7 +146,7 @@ ROMX $03
 	"engine/overworld/spawn_points.asm"
 	"data/maps/spawn_points.asm"
 	"data/tileset_headers.asm"
-	"engine/dumps/bank03.asm@Functionc9c1"
+	"engine/dumps/bank03.asm@CheckTrainerBattle"
 	"engine/items/inventory.asm@Inventory"
 	"engine/smallflag.asm"
 	"engine/pokemon/health.asm@HealParty"
@@ -188,8 +188,9 @@ ROMX $05
 	"engine/sprites/sprites.asm@RefreshSprites"
 	"data/maps/sprite_sets.asm"
 	"data/overworld_sprites.asm"
-	org $477d
+	"engine/menu/empty_sram.asm"
 	"engine/events/pokecenter_pc.asm"
+	"engine/dumps/bank05.asm"
 
 ROMX $06
 	org $4000
@@ -270,12 +271,10 @@ ROMX $0d
 
 ROMX $0e
 	org $4000
-	org $4391
 	"engine/dumps/bank0e.asm"
-	org $4494
-	"gfx.asm@PokeBalls GFX"
 	org $4d90
 	"data/trainers/class_names.asm"
+	"engine/dumps/bank0e.asm@ReadTrainerParty"
 	org $5110
 	"data/trainers/parties.asm@Trainer Parties"
 
@@ -390,6 +389,8 @@ ROMX $23
 	"engine/dumps/bank23.asm@RestoreOverworldMapTiles"
 	org $44be
 	"engine/battle/battle_transitions.asm"
+	org $4940
+	"engine/dumps/bank23.asm@EnterMapAnim_Old"
 	org $4cfd
 	"engine/dumps/bank23.asm@ClearSpriteAnims"
 	org $60cc
@@ -1010,7 +1011,12 @@ SRAM 0
 	org $b800
 	"SRAM Window Stack"
 
+SRAM 1
+	"Save Pokemon Data"
+
 SRAM $02
 	"Boxes 1-5"
 SRAM $03
 	"Boxes 6-10"
+	org $bffd
+	"Checksum"
