@@ -35,8 +35,8 @@ FieldDebug_OpenMapViewer:
 	done
 
 .MapViewScript:
-	ld a, 9
-	call WriteIntod637
+	ld a, MAPSTATUS_DEBUG_MAP_VIEWER
+	call SetMapStatus
 	xor a
 	ldh [hJoypadSum], a
 	ld a, DEBUGMAPVIEWER_INIT
@@ -55,14 +55,14 @@ DebugMapViewer::
 	call GetJoypad
 	call .do_jumptable
 	jr c, .continue
-	call Function2c4a
+	call HandleMapObjects
 	jr nc, .loop
 	callfar CheckObjectEnteringVisibleRange
 	jr .loop
 
 .continue
-	ld a, 4
-	call WriteIntod637
+	ld a, MAPSTATUS_RETURN_TO_MAIN
+	call SetMapStatus
 	pop bc
 	ld a, b
 	ld [wd153], a
@@ -72,7 +72,7 @@ DebugMapViewer::
 
 .do_jumptable
 	ld a, [wDebugFlags]
-	bit 1, a
+	bit DEBUG_FIELD_F, a
 	ret z
 	ldh a, [hDebugMapViewerJumptable]
 	and a
@@ -361,7 +361,7 @@ DebugMapViewer_LoadCursorSprite:
 SECTION "engine/debug/field/map_viewer.inc@DisplayBGEventDetails", ROMX
 
 DisplayBGEventDetails:
-	call GetSignpost
+	call GetBGEvent
 	ret nc
 	call .Functionfd0cc
 	call RefreshScreen
@@ -384,7 +384,7 @@ DisplayBGEventDetails:
 	ld [wHPBarOldHP], a
 	ld a, b
 	ld [wReplacementBlock], a
-	ld a, [wCurrMapSignCount]
+	ld a, [wCurMapBGEventCount]
 	sub c
 	inc a
 	ld [wHPBarNewHP], a

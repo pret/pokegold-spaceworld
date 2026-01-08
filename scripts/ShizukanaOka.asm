@@ -56,7 +56,7 @@ ShizukanaOkaTrainer2:
 	ld [wOtherTrainerClass], a
 	ld a, SCHOOLBOY_TETSUYA
 	ld [wOtherTrainerID], a
-	call Function38d8
+	call InitTrainerBattle
 	ret
 .Trainer2Won ;Already won
 	ld hl, ShizukanaOkaTrainer2WonString
@@ -75,7 +75,7 @@ ShizukanaOkaTrainer3:
 	ld [wOtherTrainerClass], a
 	ld a, BUG_CATCHER_BOY_JUNICHI
 	ld [wOtherTrainerID], a
-	call Function38d8
+	call InitTrainerBattle
 	ret
 .Trainer3Won ;Already won
 	ld hl, ShizukanaOkaTrainer3WonString
@@ -94,7 +94,7 @@ ShizukanaOkaTrainer4:
 	ld [wOtherTrainerClass], a
 	ld a, FIREBREATHER_AKITO
 	ld [wOtherTrainerID], a
-	call Function38d8
+	call InitTrainerBattle
 	ret
 .Trainer4Won ;Already won
 	ld hl, ShizukanaOkaTrainer4WonString
@@ -113,7 +113,7 @@ ShizukanaOkaTrainer5:
 	ld [wOtherTrainerClass], a
 	ld a, BEAUTY_MEGUMI
 	ld [wOtherTrainerID], a
-	call Function38d8
+	call InitTrainerBattle
 	ret
 .Trainer5Won ;Already won
 	ld hl, ShizukanaOkaTrainer5WonString
@@ -132,7 +132,7 @@ ShizukanaOkaTrainer6:
 	ld [wOtherTrainerClass], a
 	ld a, BUG_CATCHER_BOY_SOUSUKE
 	ld [wOtherTrainerID], a
-	call Function38d8
+	call InitTrainerBattle
 	ret
 .Trainer6Won ;Already won
 	ld hl, ShizukanaOkaTrainer6WonString

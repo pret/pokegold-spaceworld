@@ -1040,7 +1040,7 @@ CheckObjectCollision::
 	ld a, [wPlayerMapY]
 	add e
 	ld e, a
-	callfar _CheckObjectCollision
+	callfar IsNPCAtCoord
 	ret nc
 	jp CheckCompanionObjectCollision
 

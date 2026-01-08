@@ -14,7 +14,7 @@ PokemonCenterPC:
 ; Also used for player's PC (both in debug and in demo mode)
 
 	ld a, [wDebugFlags]
-	bit 1, a
+	bit DEBUG_FIELD_F, a
 	jp z, PC_Demo
 	call PC_PlayBootSound
 
@@ -25,7 +25,7 @@ PokemonCenterPC:
 	ld hl, .TurnOnText
 	call MenuTextBoxBackup
 	ld hl, wDebugFlags
-	bit 1, [hl]
+	bit DEBUG_FIELD_F, [hl]
 	jr nz, .DisplayMenu
 	ld hl, .NotConnectedText
 	call MenuTextBoxBackup
@@ -263,7 +263,7 @@ PlayerWithdrawItemMenu:
 	jr c, .done
 
 .Withdraw:
-	ld hl, wUnknownListLengthd1ea
+	ld hl, wNumPCItems
 	ld a, [wItemIndex]
 	call TossItem
 	ld hl, wNumBagItems
@@ -277,7 +277,7 @@ PlayerWithdrawItemMenu:
 .PackFull:
 	ld hl, .NoRoomWithdrawText
 	call MenuTextBoxBackup
-	ld hl, wUnknownListLengthd1ea
+	ld hl, wNumPCItems
 	call ReceiveItem
 	ret
 
@@ -311,7 +311,7 @@ PlayerTossItemMenu:
 .loop
 	call PCItemsJoypad
 	jr c, .quit
-	ld de, wUnknownListLengthd1ea
+	ld de, wNumPCItems
 	callfar TryTossItem
 	jr .loop
 .quit
@@ -427,7 +427,7 @@ PlayerDepositItemMenu:
 	ld hl, wNumBagItems
 	ld a, [wItemIndex]
 	call TossItem
-	ld hl, wUnknownListLengthd1ea
+	ld hl, wNumPCItems
 	call ReceiveItem
 	jr nc, .NoRoomInPC
 	predef LoadItemData
@@ -507,7 +507,23 @@ PCItemsJoypad:
 	db SCROLLINGMENU_ENABLE_SELECT | SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT
 	db 4, 8 ; rows, columns
 	db SCROLLINGMENU_ITEMS_QUANTITY ; type
-	dbw 0, wUnknownListLengthd1ea
+	dbw 0, wNumPCItems
+	dba PlaceMenuItemName
+	dba PlaceMenuItemQuantity
+	dba UpdateItemDescription
+
+; Leftover menu data for a Gen I-styled deposit menu (with the addition of the item's description)
+.UnusedDepositMenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 4, 1, 19, 10
+	dw .UnusedDepositMenuData
+	db  1 ; default selection
+
+.UnusedDepositMenuData:
+	db SCROLLINGMENU_ENABLE_SELECT | SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT
+	db 4, 8 ; rows, columns
+	db SCROLLINGMENU_ITEMS_QUANTITY ; type
+	dbw 0, wItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription

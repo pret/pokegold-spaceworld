@@ -34,11 +34,11 @@ PlayerHouse1FScript2:
 	ret
 
 PlayerHouse1FSignPointers:
-	dw Function38ab
-	dw Function38b4
-	dw Function38a2
-	dw Function38bd
-	dw Function3899
+	dw SilentHillHouseStoveScript
+	dw SilentHillHouseSinkScript
+	dw PlayerHouse1FFridgeScript
+	dw SilentHillHouseTVScript
+	dw PokemonBooksScript
 PlayerHouse1F_TextPointers::
 	dw PlayerHouse1FNPCText1
 

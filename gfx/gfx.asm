@@ -268,10 +268,6 @@ SECTION "gfx.asm@Bank C Tilesets Common", ROMX
 CommonExteriorTilesGFX:
 INCBIN "gfx/tilesets/common.2bpp"
 
-SECTION "gfx.asm@PokeBalls GFX", ROMX
-
-PokeBallsGFX:: INCBIN "gfx/misc/poke_balls.2bpp"
-
 SECTION "gfx.asm@Pokedex GFX", ROMX
 PokedexButtonsGFX::
 INCBIN "gfx/pokedex/buttons.2bpp"

@@ -18,7 +18,7 @@ AskName_Old:
 	call GetPokemonName
 ; Test for being in debug field mode that doesn't go anywhere... maybe the name screen was skipped in debug mode?
 	ld a, [wDebugFlags]
-	bit 1, a
+	bit DEBUG_FIELD_F, a
 	pop hl
 	push hl
 	ld hl, AskGiveNickname_Old

@@ -120,6 +120,16 @@ DEF PLAYER_SURF_PIKA EQU 8
 	const DEBUG_BATTLE_F
 	const DEBUG_FIELD_F
 	const CONTINUED_F
+	const SAVE_FILE_EXISTS_F ; Set but not read anywhere.
+	const_skip 2
+	const UNK_DEBUG_FLAG_6_F ; Only set in Unreferenced_CheckInlineTrainers, not read anywhere
+	const SKIP_MAP_SCRIPT_F
+
+; wSaveFileFlags::
+	const_def
+	const SAVED_FILE_F
+	const NEW_FILE_F
+	const ANOTHER_FILE_EXISTS_F
 
 ; wJumptableIndex::
 DEF JUMPTABLE_INDEX_MASK EQU %01111111
@@ -149,3 +159,24 @@ const BATTLEANIM_STOP_F          ; 0
 const BATTLEANIM_IN_SUBROUTINE_F ; 1
 const BATTLEANIM_IN_LOOP_F       ; 2
 const BATTLEANIM_KEEPSPRITES_F   ; 3
+
+; wOverworldFlags::
+	const_def 6
+	const OVERWORLD_DISABLE_MAP_CONNECTIONS_F
+	const OVERWORLD_PAUSE_MAP_PROCESSES_F
+
+; wMapStatus::
+	const_def
+	const MAPSTATUS_MAIN
+	const MAPSTATUS_EVENT_RUNNING
+	const MAPSTATUS_02
+	const MAPSTATUS_START_WILD_BATTLE
+	const MAPSTATUS_RETURN_TO_MAIN
+	const MAPSTATUS_05
+	const MAPSTATUS_06
+	const MAPSTATUS_07
+	const MAPSTATUS_START_TRAINER_BATTLE
+	const MAPSTATUS_DEBUG_MAP_VIEWER
+	const MAPSTATUS_UNUSED
+	const MAPSTATUS_EXIT_BATTLE
+	const MAPSTATUS_RETURN_FROM_BATTLE

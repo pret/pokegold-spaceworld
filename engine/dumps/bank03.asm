@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank03.asm@Functionc9c1", ROMX
+SECTION "engine/dumps/bank03.asm@CheckTrainerBattle", ROMX
 
-_Functionc9c1:
+_CheckTrainerBattle:
 	xor a
-	ld bc, $0020 ; presumably size of wCurrMapInlineTrainers
+	ld bc, NUM_OBJECTS * 2
 	ld hl, wCurrMapInlineTrainers
 	call ByteFill
 	ld de, wMap2Object
@@ -12,10 +12,10 @@ _Functionc9c1:
 .loop
 	push af
 	push de
-	ld hl, MAPOBJECT_PALETTE
+	ld hl, MAPOBJECT_TYPE
 	add hl, de
 	ld a, [hl]
-	cp 0
+	cp 0 ; 1 or greater == not a trainer
 	jr nz, .skip
 
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID

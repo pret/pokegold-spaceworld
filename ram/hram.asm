@@ -3,7 +3,7 @@ SECTION "HRAM", HRAM
 hOAMDMA::
 	ds 10
 
-	ds 3 ; TODO
+hChecksum:: ds 3
 
 hRTCHours:: db
 hRTCMinutes:: db
@@ -62,9 +62,9 @@ hJoypadState2:: db
 
 UNION
 
-hFFA7:: db
-hFFA8:: db
-hFFA9:: db
+hSeenTrainerDistance:: db
+hSeenTrainerDirection:: db
+hSeenTrainerObject:: db
 
 NEXTU
 
@@ -112,6 +112,10 @@ hEnemyMonSpeed:: dw
 NEXTU
 
 hPokedexTempWeight:: dw
+
+NEXTU
+
+hTempCurBox:: db
 
 ENDU
 
@@ -188,20 +192,11 @@ hLYOverrideEnd:: db
 	ds 1 ; TODO
 
 
-hSerialReceived::
-	db
-
-hLinkPlayerNumber::
-	db
-
-hSerialIgnoringInitialData::
-	db
-
-
-hSerialSend::
-	db
-hSerialReceive::
-	db
+hSerialReceivedNewData:: db
+hSerialConnectionStatus:: db
+hSerialIgnoringInitialData:: db
+hSerialSend:: db
+hSerialReceive:: db
 
 
 hSCX:: db
@@ -267,7 +262,7 @@ hMapAnims::
 hTileAnimFrame::
 	db
 
-hFFEA::
+hLastTalked::
 	db
 
 hFFEB:: db

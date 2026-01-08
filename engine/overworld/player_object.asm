@@ -280,10 +280,10 @@ CopyMapObjectToObjectStruct::
 	ld a, [hl]
 	call CopyMapObject_Radius
 
-	ld hl, MAPOBJECT_SCRIPT_POINTER + 1
+	ld hl, MAPOBJECT_SIGHT_RANGE
 	add hl, bc
 	ld a, [hl]
-	ld hl, OBJECT_21
+	ld hl, OBJECT_SIGHT_RANGE
 	add hl, de
 	ld [hl], a
 	and a

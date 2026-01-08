@@ -1611,8 +1611,8 @@ PokeDollEffect:
 	dec a ; WILD_BATTLE?
 	jp nz, IsntTheTimeMessage
 
-	ld a, LOSE
-	ld [wBattleResult], a
+	ld a, TRUE
+	ld [wBattleEnded], a
 	jp UseItemText
 
 GuardSpecEffect:
@@ -1764,8 +1764,8 @@ ENDM
 .PlayedTheFlute:
 	text "<PLAYER>は"
 	line "#のふえを　ふいてみた！@"
-; BUG: No text_asm.
-	ld b, 8
+	text_waitbutton
+	start_asm
 	ld a, [wBattleMode]
 	and a
 	jr nz, .battle

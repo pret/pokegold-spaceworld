@@ -59,14 +59,14 @@ Route1P2Text2:
 	call OpenTextbox
 	ld hl, $D3A2
 	set 1, [hl]
-	ld a, $3C
+	ld a, TRAINER_KIMONO_GIRL
 	ld [wOtherTrainerClass], a
-	ld a, $02
+	ld a, KIMONO_GIRL_KOUME
 	ld [wOtherTrainerID], a
-	ld hl, wc5ed
+	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, $08
-	ld [wd637], a
+	ld a, MAPSTATUS_START_TRAINER_BATTLE
+	ld [wMapStatus], a
 	ret
 
 .Text2Jump
