@@ -127,7 +127,7 @@ _SilentHillHouseTVScript::
 
 ; Scene from "Primeape Goes Bananas"
 .SilentHillHouseTVNightText:
-	text "オコりザルが　あばれている<⋯⋯>"
+	text "オコリザルが　あばれている<⋯⋯>"
 	cont "サトシが　にげまわってる！<⋯⋯>"
 	cont "#アニメだ！"
 	done

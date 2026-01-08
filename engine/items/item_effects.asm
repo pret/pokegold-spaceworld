@@ -1764,8 +1764,8 @@ ENDM
 .PlayedTheFlute:
 	text "<PLAYER>は"
 	line "#のふえを　ふいてみた！@"
-; BUG: No start_asm.
-	ld b, 8
+	text_waitbutton
+	start_asm
 	ld a, [wBattleMode]
 	and a
 	jr nz, .battle
