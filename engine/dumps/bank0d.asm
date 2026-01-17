@@ -238,9 +238,9 @@ BattleCommand_CheckTurn:
 ; Repurposed as hardcoded turn handling. Useless as a command.
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wCurPlayerSelectedMove]
+	ld a, [wCurPlayerMove]
 	jr z, .go
-	ld a, [wCurEnemySelectedMove]
+	ld a, [wCurEnemyMove]
 
 .go
 	inc a
@@ -289,14 +289,14 @@ BattleCommand_CheckTurn:
 	call PrintText
 
 	; Snore and Sleep Talk bypass sleep.
-	ld a, [wCurPlayerSelectedMove]
+	ld a, [wCurPlayerMove]
 	cp MOVE_SNORE
 	jr z, .not_asleep
 	cp MOVE_SLEEP_TALK
 	jr z, .not_asleep
 
 	xor a
-	ld [wCurPlayerMove], a
+	ld [wLastPlayerCounterMove], a
 	jp EndTurn
 
 .not_asleep
@@ -305,7 +305,7 @@ BattleCommand_CheckTurn:
 	jr z, .not_frozen
 
 	; Flame Wheel and Sacred Fire thaw the user.
-	ld a, [wCurPlayerSelectedMove]
+	ld a, [wCurPlayerMove]
 	cp MOVE_FLAME_WHEEL
 	jr z, .not_frozen
 	cp MOVE_SACRED_FIRE
@@ -314,7 +314,7 @@ BattleCommand_CheckTurn:
 	ld hl, FrozenSolidText
 	call PrintText
 	xor a
-	ld [wCurPlayerMove], a
+	ld [wLastPlayerCounterMove], a
 	jp EndTurn
 
 .not_frozen
@@ -323,7 +323,7 @@ BattleCommand_CheckTurn:
 	jp z, .not_trapped
 
 	; Rapid Spin breaks the player free of trapping moves
-	ld a, [wCurPlayerSelectedMove]
+	ld a, [wCurPlayerMove]
 	cp MOVE_RAPID_SPIN
 	jp z, .not_trapped
 	ld hl, CantMoveText
@@ -428,7 +428,7 @@ BattleCommand_CheckTurn:
 	and a
 	jr z, .no_disabled_move
 
-	ld hl, wCurPlayerSelectedMove
+	ld hl, wCurPlayerMove
 	cp [hl]
 	jr nz, .no_disabled_move
 
@@ -504,14 +504,14 @@ CheckEnemyTurn:
 
 .fast_asleep
 	; Snore and Sleep Talk bypass sleep.
-	ld a, [wCurPlayerSelectedMove]
+	ld a, [wCurPlayerMove]
 	cp MOVE_SNORE
 	jr z, .not_asleep
 	cp MOVE_SLEEP_TALK
 	jr z, .not_asleep
 
 	xor a
-	ld [wCurEnemyMove], a
+	ld [wLastEnemyCounterMove], a
 	jp EndTurn
 
 .not_asleep
@@ -520,7 +520,7 @@ CheckEnemyTurn:
 	jr z, .not_frozen
 
 	; Flame Wheel and Sacred Fire thaw the user.
-	ld a, [wCurEnemySelectedMove]
+	ld a, [wCurEnemyMove]
 	cp MOVE_FLAME_WHEEL
 	jr z, .not_frozen
 	cp MOVE_SACRED_FIRE
@@ -529,7 +529,7 @@ CheckEnemyTurn:
 	ld hl, FrozenSolidText
 	call PrintText
 	xor a
-	ld [wCurEnemyMove], a
+	ld [wLastEnemyCounterMove], a
 	jp EndTurn
 
 .not_frozen
@@ -538,7 +538,7 @@ CheckEnemyTurn:
 	jp z, .not_trapped
 
 	; Rapid Spin breaks the player free of trapping moves
-	ld a, [wCurEnemySelectedMove]
+	ld a, [wCurEnemyMove]
 	cp MOVE_RAPID_SPIN
 	jp z, .not_trapped
 	ld hl, CantMoveText
@@ -657,7 +657,7 @@ CheckEnemyTurn:
 	and a
 	jr z, .no_disabled_move
 
-	ld hl, wCurEnemySelectedMove
+	ld hl, wCurEnemyMove
 	cp [hl]
 	jr nz, .no_disabled_move
 
@@ -800,12 +800,12 @@ InfatuationText:
 	prompt
 
 MoveDisabled:
-	ld hl, wCurPlayerSelectedMove
+	ld hl, wCurPlayerMove
 	ld de, wPlayerSubStatus3
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .ok
-	inc hl ; wCurEnemySelectedMove
+	inc hl ; wCurEnemyMove
 	ld de, wEnemySubStatus3
 
 .ok
@@ -1084,7 +1084,7 @@ BattleCommand_CheckObedience:
 	ld hl, wBattleMonMoves
 	add hl, bc
 	ld a, [hl]
-	ld [wCurPlayerSelectedMove], a
+	ld [wCurPlayerMove], a
 	call UpdateMoveData
 
 .EndDisobedience
@@ -1125,10 +1125,10 @@ UsedMoveText:
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMoveStruct]
-	ld hl, wCurPlayerMove
+	ld hl, wLastPlayerCounterMove
 	jr z, .playerTurn
 	ld a, [wEnemyMoveStruct]
-	ld hl, wCurEnemyMove
+	ld hl, wLastEnemyCounterMove
 
 .playerTurn:
 	ld [hl], a
@@ -1343,12 +1343,12 @@ MoveGrammar:
 BattleCommand_DoTurn:
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wCurPlayerSelectedMove]
+	ld a, [wCurPlayerMove]
 	ld hl, wBattleMonPP
 	ld de, wPlayerSubStatus3
 	jr z, .proceed
 
-	ld a, [wCurEnemySelectedMove]
+	ld a, [wCurEnemyMove]
 	ld hl, wEnemyMonPP
 	ld de, wEnemySubStatus3
 
@@ -2003,12 +2003,12 @@ BattleCommand_CheckHit:
 	bit SUBSTATUS_INVULNERABLE, [hl]
 	jp z, .EnemyMonMist
 	
-	ld hl, wCurEnemyMove
+	ld hl, wLastEnemyCounterMove
 	ld de, wPlayerMoveStruct
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .fly_moves
-	ld hl, wCurPlayerMove
+	ld hl, wLastPlayerCounterMove
 	ld de, wEnemyMoveStruct
 
 .fly_moves:
@@ -2553,7 +2553,7 @@ Unreferenced_Gen1HealEffect:
 .updateHPBar:
 	ld [wWhichHPBar], a
 	predef UpdateHPBar
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 	ld hl, Unused_RegainedHealthText
 	jp PrintText
@@ -3146,7 +3146,7 @@ GetEnemyMonStat:
 	push de
 	push bc
 	ld a, [wLinkMode]
-	cp 3 ; LINK_COLOSSEUM
+	cp LINK_COLOSSEUM
 	jr nz, .notLinkBattle
 
 	ld hl, wOTPartyMon1MaxHP
@@ -3563,10 +3563,10 @@ INCLUDE "data/moves/flail_reversal_power.inc"
 BattleCommand_Counter:
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wCurEnemySelectedMove
+	ld hl, wCurEnemyMove
 	ld de, wEnemyMoveStructPower
 	jr z, .got_enemy_move
-	ld hl, wCurPlayerSelectedMove
+	ld hl, wCurPlayerMove
 	ld de, wPlayerMoveStructPower
 
 .got_enemy_move
@@ -3611,11 +3611,11 @@ BattleCommand_Encore:
 	and a
 	ld hl, wEnemySubStatus5
 	ld de, wEnemyEncoreCount
-	ld a, [wCurEnemyMove]
+	ld a, [wLastEnemyCounterMove]
 	jr z, .ok
 	ld hl, wPlayerSubStatus5
 	ld de, wPlayerEncoreCount
-	ld a, [wCurPlayerMove]
+	ld a, [wLastPlayerCounterMove]
 
 .ok
 ; Struggle, Mirror Move, and Encore itself can be encored, unlike the final game.
@@ -3857,7 +3857,7 @@ TookAimText:
 
 BattleCommand_Sketch:
 	ld a, [wLinkMode]
-	cp 3 ; LINK_COLOSSEUM
+	cp LINK_COLOSSEUM
 	jr z, .failed
 
 	call CheckSubstituteOpp
@@ -3870,7 +3870,7 @@ BattleCommand_Sketch:
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld a, [wCurEnemyMove]
+	ld a, [wLastEnemyCounterMove]
 	ld [hl], a
 
 	ld hl, wPartyMon1Moves
@@ -3928,12 +3928,12 @@ BattleCommand_SleepTalk:
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wBattleMonMoves + 1
-	ld de, wCurPlayerSelectedMove
+	ld de, wCurPlayerMove
 	ld bc, wPlayerMoveStruct
 	ld a, [wBattleMonStatus]
 	jr z, .go
 	ld hl, wEnemyMonMoves + 1
-	ld de, wCurEnemySelectedMove
+	ld de, wCurEnemyMove
 	ld bc, wEnemyMoveStruct
 	ld a, [wEnemyMonStatus]
 
@@ -4019,11 +4019,11 @@ BattleCommand_Spite:
 	and a
 	ld hl, wEnemyMonMoves
 	ld de, wOTPartyMon1PP
-	ld a, [wCurEnemyMove]
+	ld a, [wLastEnemyCounterMove]
 	jr z, .got_moves
 	ld hl, wBattleMonMoves
 	ld de, wPartyMon1PP
-	ld a, [wCurPlayerMove]
+	ld a, [wLastPlayerCounterMove]
 
 .got_moves
 	and a
@@ -4241,7 +4241,7 @@ DoEnemyDamage:
 	ld [wWhichHPBar], a
 	predef UpdateHPBar
 .did_no_damage:
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 DoPlayerDamage:
@@ -4296,7 +4296,7 @@ DoPlayerDamage:
 	predef UpdateHPBar
 
 .did_no_damage:
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 DoSubstituteDamage:
@@ -4352,7 +4352,7 @@ DoSubstituteDamage:
 .got_move_effect:
 	xor a
 	ld [hl], a
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 SubTookDamageText:
@@ -4372,18 +4372,18 @@ UpdateMoveData:
 
 	ld hl, wEnemySubStatus5
 	ld de, wEnemyMoveStruct
-	ld bc, wCurEnemyMove
+	ld bc, wLastEnemyCounterMove
 	push bc
-	ld a, [wCurEnemySelectedMove]
+	ld a, [wCurEnemyMove]
 	ld b, a
 	jr .get_move_data
 
 .player:
 	ld hl, wPlayerSubStatus5
 	ld de, wPlayerMoveStruct
-	ld bc, wCurPlayerMove
+	ld bc, wLastPlayerCounterMove
 	push bc
-	ld a, [wCurPlayerSelectedMove]
+	ld a, [wCurPlayerMove]
 	ld b, a
 	ld a, [wPlayerDebugSelectedMove]
 	and a
@@ -4463,7 +4463,7 @@ Unreferenced_OldSleepTarget:
 	ld [de], a
 	call PlayDamageAnim
 	push de
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 
 	ld hl, FellAsleepText
@@ -4487,9 +4487,9 @@ Unreferenced_OldSleepTarget:
 	and ~SLP
 	ld [de], a
 	ld a, [hl]
-	call PrintRecoveredUsingItem
+	call PrintUsersItemActivated
 	call ConsumeHeldItem
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 FellAsleepText:
@@ -4558,7 +4558,7 @@ BattleCommand_SleepTarget:
 	ld [de], a
 	call PlayDamageAnim
 	push de
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 
 	ld hl, FellAsleepText
@@ -4580,9 +4580,9 @@ BattleCommand_SleepTarget:
 	and ~SLP
 	ld [de], a
 	ld a, [hl]
-	call PrintRecoveredUsingItem
+	call PrintUsersItemActivated
 	call ConsumeHeldItem
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 .fail:
@@ -4630,7 +4630,7 @@ BattleCommand_PoisonTarget:
 	push de
 	ld de, ANIM_PSN
 	call PlayOpponentBattleAnim
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 	ld hl, WasPoisonedText
 	call PrintText
@@ -4651,9 +4651,9 @@ BattleCommand_PoisonTarget:
 	res PSN, a
 	ld [de], a
 	ld a, [hl]
-	call PrintRecoveredUsingItem
+	call PrintUsersItemActivated
 	call ConsumeHeldItem
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 WasPoisonedText:
@@ -4724,7 +4724,7 @@ BattleCommand_Poison:
 	xor a
 	ld [de], a
 	call PlayDamageAnim
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 
 	ld hl, BadlyPoisonedText
@@ -4747,9 +4747,9 @@ BattleCommand_Poison:
 	res PSN, a
 	ld [de], a
 	ld a, [hl]
-	call PrintRecoveredUsingItem
+	call PrintUsersItemActivated
 	call ConsumeHeldItem
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 	call .check_toxic
 	ret nz
@@ -4937,7 +4937,7 @@ BattleCommand_BurnTarget:
 	call CallFromBank0F
 	ld de, ANIM_BRN
 	call PlayOpponentBattleAnim
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 	ld hl, WasBurnedText
 	call PrintText
@@ -4958,9 +4958,9 @@ BattleCommand_BurnTarget:
 	res BRN, a
 	ld [de], a
 	ld a, [hl]
-	call PrintRecoveredUsingItem
+	call PrintUsersItemActivated
 	call ConsumeHeldItem
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 WasBurnedText:
@@ -5032,7 +5032,7 @@ BattleCommand_FreezeTarget:
 
 	ld de, ANIM_FRZ
 	call PlayOpponentBattleAnim
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 	ld hl, WasFrozenText
 	call PrintText
@@ -5053,9 +5053,9 @@ BattleCommand_FreezeTarget:
 	res FRZ, a
 	ld [de], a
 	ld a, [hl]
-	call PrintRecoveredUsingItem
+	call PrintUsersItemActivated
 	call ConsumeHeldItem
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 WasFrozenText:
@@ -5100,7 +5100,7 @@ BattleCommand_ParalyzeTarget:
 	call CallFromBank0F
 	ld de, ANIM_PAR
 	call PlayOpponentBattleAnim
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 	call PrintParalyze
 
@@ -5120,9 +5120,9 @@ BattleCommand_ParalyzeTarget:
 	res PAR, a
 	ld [de], a
 	ld a, [hl]
-	call PrintRecoveredUsingItem
+	call PrintUsersItemActivated
 	call ConsumeHeldItem
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 BattleCommand_StatUp:
@@ -5347,7 +5347,7 @@ BattleCommand_StatDown:
 	ld hl, wPlayerStatLevels
 	ld de, wEnemyMoveStructEffect
 	ld a, [wLinkMode]
-	cp 3 ; LINK_COLOSSEUM
+	cp LINK_COLOSSEUM
 	jr z, .got_stat_levels
 ; 25% chance for enemy monsters' stat-lowering moves to fail
 	call BattleRandom
@@ -6557,7 +6557,7 @@ BattleCommand_Paralyze:
 	ld c, 30
 	call DelayFrames
 	call LoadMoveAnim
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 	call PrintParalyze
 
@@ -6577,9 +6577,9 @@ BattleCommand_Paralyze:
 	res PAR, a
 	ld [de], a
 	ld a, [hl]
-	call PrintRecoveredUsingItem
+	call PrintUsersItemActivated
 	call ConsumeHeldItem
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 .paralyzed
@@ -6650,7 +6650,7 @@ BattleCommand_Substitute:
 .played_anim
 	ld hl, MadeSubstituteText
 	call PrintText
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	jp CallFromBank0F
 
 .already_has_sub
@@ -6719,12 +6719,12 @@ BattleCommand_Mimic:
 	jr nz, .fail
 
 	ld hl, wBattleMonMoves
-	ld de, wCurEnemyMove
+	ld de, wLastEnemyCounterMove
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .player_turn
 	ld hl, wEnemyMonMoves
-	ld de, wCurPlayerMove
+	ld de, wLastPlayerCounterMove
 
 .player_turn
 ; BUG: No checks for Struggle, so it can be mimicked.
@@ -6814,13 +6814,13 @@ BattleCommand_Disable:
 
 	ld de, wEnemyDisableCount
 	ld hl, wEnemyMonMoves
-	ld bc, wCurEnemyMove
+	ld bc, wLastEnemyCounterMove
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_moves
 	ld de, wPlayerDisableCount
 	ld hl, wBattleMonMoves
-	ld bc, wCurPlayerMove
+	ld bc, wLastPlayerCounterMove
 
 .got_moves
 	ld a, [de]
@@ -6965,7 +6965,7 @@ BattleCommand_ResetStats:
 	call .CopyStats
 
 	ld hl, wEnemyMonStatus
-	ld de, wCurEnemySelectedMove
+	ld de, wCurEnemyMove
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .cure_status
@@ -7110,7 +7110,7 @@ BattleCommand_Heal:
 	callfar RestoreHP
 	pop af
 	ldh [hBattleTurn], a
-	ld hl, DrawHUDsAndHPBars
+	ld hl, UpdateBattleHuds
 	call CallFromBank0F
 	ld hl, RegainedHealthText
 	jp PrintText
@@ -7456,13 +7456,13 @@ BattleCommand_Selfdestruct:
 BattleCommand_MirrorMove:
 	ldh a, [hBattleTurn]
 	and a
-	ld a, [wCurEnemyMove]
-	ld hl, wCurPlayerSelectedMove
+	ld a, [wLastEnemyCounterMove]
+	ld hl, wCurPlayerMove
 	ld de, wPlayerMoveStruct
 	jr z, .got_moves
-	ld a, [wCurPlayerMove]
+	ld a, [wLastPlayerCounterMove]
 	ld de, wEnemyMoveStruct
-	ld hl, wCurEnemySelectedMove
+	ld hl, wCurEnemyMove
 
 .got_moves
 	cp MOVE_MIRROR_MOVE
@@ -7508,12 +7508,12 @@ MirrorMoveFailedText:
 BattleCommand_Metronome:
 	call LoadMoveAnim
 	ld de, wPlayerMoveStructEffect
-	ld hl, wCurPlayerSelectedMove
+	ld hl, wCurPlayerMove
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .GetMove
 	ld de, wEnemyMoveStructEffect
-	ld hl, wCurEnemySelectedMove
+	ld hl, wCurEnemyMove
 
 .GetMove
 	call BattleRandom
@@ -8450,7 +8450,7 @@ BattleCommand_BatonPass:
 	cp [hl]
 	jr nz, .picked_mon
 	
-	ld hl, BattleText_MonIsAlreadyOut
+	ld hl, BattleText_MonIsAlreadyOut_0d
 	call PrintText
 
 .pressed_b
@@ -8458,7 +8458,7 @@ BattleCommand_BatonPass:
 	jr .player_loop
 
 .picked_mon
-	callfar HasMonFainted
+	callfar CheckIfCurPartyMonIsFitToFight
 	jr z, .pressed_b
 
 	call ClearPalettes
@@ -8543,7 +8543,7 @@ BattleCommand_BatonPass:
 	call BattleCommand_MoveDelay
 	jp PrintButItFailed
 
-BattleText_MonIsAlreadyOut:
+BattleText_MonIsAlreadyOut_0d:
 	text_from_ram wBattleMonNickname
 	text "はもうでています"
 	prompt
@@ -8943,20 +8943,20 @@ ConsumeHeldItem:
 
 INCLUDE "data/battle/held_consumables.inc"
 
-PrintRecoveredUsingItem:
+PrintUsersItemActivated:
 	push hl
 	push de
 	push bc
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-	ld hl, RecoveredUsingText
+	ld hl, BattleText_UsersStringBuffer1Activated
 	call PrintText
 	pop bc
 	pop de
 	pop hl
 	ret
 
-RecoveredUsingText:
+BattleText_UsersStringBuffer1Activated:
 	text "そうびしていた"
 	line "@"
 	text_from_ram wStringBuffer1

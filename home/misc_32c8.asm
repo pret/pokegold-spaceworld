@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "home/misc_32c8.asm@Unknown 32c8", ROM0
 
-Function32c8::
+Call_GetItemAmount::
 	predef GetItemAmount
 	ld a, b
 	and a

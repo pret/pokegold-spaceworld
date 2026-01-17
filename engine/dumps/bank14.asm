@@ -1074,12 +1074,12 @@ OpenPartyMenu::
 	ld [w2DMenuNumRows], a
 
 	ld b, a
-	ld a, [wce38]
+	ld a, [wFailedToFlee]
 	and a
 	ld a, $03
 	jr z, .asm_507b4
-	xor a
-	ld [wce38], a
+	xor a ; FALSE
+	ld [wFailedToFlee], a
 	ld a, $01
 .asm_507b4
 	ld [wMenuJoypadFilter], a

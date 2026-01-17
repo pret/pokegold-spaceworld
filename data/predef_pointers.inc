@@ -44,12 +44,12 @@ GiveItemPredef::
 	add_predef PrintMoveDescription
 	add_predef UpdatePlayerHUD
 	add_predef PlaceGraphic
-	add_predef Function3f068 ; 20
+	add_predef Old_ScaleSpriteByTwo ; 20
 	add_predef LoadMonBackPic
-	add_predef AnyPartyAlive
+	add_predef CheckPlayerPartyForFitMon
 	add_predef UpdateEnemyHUD
 	add_predef DoubleOrHalveSelectedStats_Old
-	add_predef Function3ef19
+	add_predef StartBattle
 	add_predef CalcAndPlaceExpBar
 	add_predef GetBattleMonBackpic
 	add_predef GetEnemyMonFrontpic ; 28

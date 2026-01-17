@@ -22,6 +22,7 @@ WaitBGMap::
 	call DelayFrames
 	ret
 
+; TODO: Change to SetDefaultBGPAndOBP
 SetPalettes::
 	ld a, %11100100
 	ldh [rBGP], a

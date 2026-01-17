@@ -50,7 +50,7 @@ TestWildBattleStart::
 	ret z ; if no directions are down, don't try and trigger a wild encounter
 	call CheckBPressedDebug
 	jp nz, xor_a ; if b button is down, clear acc
-	callfar Function3ee3e
+	callfar TryWildBattle
 	ld a, [wBattleMode]
 	and a
 	ret z ; if no battle, return
@@ -60,7 +60,7 @@ TestWildBattleStart::
 	ret
 
 OverworldLoop_StartBattle::
-	predef Function3ef19
+	predef StartBattle
 	ld a, $f3
 	ldh [hMapEntryMethod], a
 	ld hl, wd4a9

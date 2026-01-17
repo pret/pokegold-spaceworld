@@ -61,7 +61,8 @@ _BattleRandom:
 	jr nz, .loop
 
 ; This has the side effect of pulling the last value first,
-; then wrapping around. As a result
+; then wrapping around. As a result, when we check to see if
+; we've reached the end, we check the one before it.
 
 	pop af
 	pop bc
