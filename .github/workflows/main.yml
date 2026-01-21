@@ -5,25 +5,29 @@ on:
     branches: [ master ]
   pull_request:
 
+env:
+  rgbds_version: v1.0.1
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v6
 
       - name: Checkout rgbds
-        uses: actions/checkout@master
+        uses: actions/checkout@v6
         with:
           path: rgbds
-          ref: v1.0.0
+          ref: ${{ env.rgbds_version }}
           repository: gbdev/rgbds
 
       - name: Install rgbds
         working-directory: rgbds
         run: |
-          sudo apt-get install -yq libpng-dev
-          sudo make install
+          sudo apt-get update
+          sudo apt-get install -yq bison libpng-dev pkg-config
+          sudo make -j$(nproc) install
 
       - name: Remove rgbds
         run: |
@@ -31,7 +35,7 @@ jobs:
 
       - name: Cache baserom
         id: cache-baserom
-        uses: actions/cache@master
+        uses: actions/cache@v5
         with:
           path: baserom.gb
           key: ${{ runner.os }}-baserom
