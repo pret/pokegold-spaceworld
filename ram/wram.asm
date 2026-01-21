@@ -1833,8 +1833,16 @@ wOTPartySpeciesEnd:: db
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
 UNION
-wWildMons::
-	ds 41
+wWildMonData::
+
+wMornEncounterRate::  db
+wDayEncounterRate::   db
+wNiteEncounterRate::  db
+
+wWildMons:: ds NUM_GRASSMON * 2
+
+	ds 2
+
 NEXTU
 wOTPartyMons::
 ; wOTPartyMon1 - wOTPartyMon6
