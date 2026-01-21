@@ -120,11 +120,13 @@ DEF NUM_HOF_TEAMS EQU 30
 
 ; wild data
 
-DEF NUM_GRASSMON EQU 6 ; data/wild/*_grass.asm table size
-DEF NUM_WATERMON EQU 3 ; data/wild/*_water.asm table size
+DEF NUM_GRASSMON EQU 18 ; data/wild/*_grass.asm table size
 
-DEF GRASS_WILDDATA_LENGTH EQU (NUM_GRASSMON * 2 + 1) * 3 + 2
-DEF WATER_WILDDATA_LENGTH EQU (NUM_WATERMON * 2 + 1) * 1 + 2
+DEF GRASS_WILDDATA_DAYBLOCK_START    EQU 3 ; 
+DEF GRASS_WILDDATA_NITEBLOCK_START   EQU 7 ; the slot in GrassMonProbTable to start at
+
+DEF GRASS_WILDDATA_LENGTH EQU (NUM_GRASSMON * 2) + 3 + 2
+
 
 DEF BASE_HAPPINESS        EQU 70
 

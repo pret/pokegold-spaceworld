@@ -280,11 +280,9 @@ ROMX $0e
 
 ROMX $0f
 	org $4000
-	"engine/dumps/bank0f.asm@StartBattle"
-	"engine/battle/core.asm"
-	"engine/dumps/bank0f.asm@PlayMoveAnimation"
-	"data/wild.asm"
-	"engine/dumps/bank0f.asm@Function3ee3e"
+	"engine/battle/core.asm@DoBattle"
+	"engine/overworld/wildmons.asm"
+	"engine/battle/core.asm@StartBattle"
 
 ROMX $10
 	org $4000

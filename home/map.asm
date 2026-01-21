@@ -299,7 +299,7 @@ MapSetup_Reload::
 	ld [wMusicFade], a
 	ld b, 9 ; TODO: constantify this
 	call GetSGBLayout
-	call LoadWildMons
+	call LoadWildMonData
 	call FadeIn
 	ret
 
@@ -345,7 +345,7 @@ MapSetup_Continue::
 	ld [wMusicFade], a
 	ld b, 9 ; TODO: constantify this
 	call GetSGBLayout
-	call LoadWildMons
+	call LoadWildMonData
 	call Function242c ; TODO
 	call FadeIn
 	ret
@@ -373,7 +373,7 @@ MapSetup_Warp::
 	call PlayMapMusic
 	ld b, 9 ; TODO: constantify this
 	call GetSGBLayout
-	call LoadWildMons
+	call LoadWildMonData
 	call FadeIn
 	call Function2407 ; TODO
 	ret
@@ -419,8 +419,8 @@ LoadMapTimeOfDay::
 	jr nz, .row
 	ret
 
-LoadWildMons::
-	callfar _LoadWildMons
+LoadWildMonData::
+	callfar _LoadWildMonData
 	ret
 
 LoadGraphics::
@@ -484,7 +484,7 @@ MapSetup_Connection::
 	call FadeToMapMusic
 	ld b, 9 ; TODO: constantify this
 	call GetSGBLayout
-	call LoadWildMons
+	call LoadWildMonData
 	scf
 	ret
 

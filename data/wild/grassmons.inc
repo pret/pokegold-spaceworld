@@ -1,6 +1,4 @@
-INCLUDE "constants.asm"
-
-SECTION "data/wild.asm", ROMX
+; TODO: These aren't bespoke morning/day/night chunks. Find a way to indicate this.
 
 GrassWildMons::
 

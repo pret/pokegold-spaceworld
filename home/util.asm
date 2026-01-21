@@ -70,7 +70,7 @@ AddNTimes::
 	jr nz, .loop
 	ret
 
-memcmp:: ; TODO: rename
+CompareBytes::
 ; Compare c bytes at hl and de
 ; Returns z if all equal, nz otherwise.
 .loop:

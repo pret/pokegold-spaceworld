@@ -906,7 +906,7 @@ AIChooseMove::
 	and a
 	jr z, .ChooseMove
 
-	ld [wCurEnemySelectedMove], a
+	ld [wCurEnemyMove], a
 	ld a, c
 	ld [wCurEnemyMoveNum], a
 	ret
@@ -1278,7 +1278,7 @@ AI_Smart_DreamEater:
 
 AI_Smart_MirrorMove:
 ; If the player did not use any move last turn...
-	ld a, [wCurPlayerMove]
+	ld a, [wLastPlayerCounterMove]
 	and a
 	jr nz, .usedmove
 
@@ -1466,7 +1466,7 @@ AI_Smart_Substitute:
 ; that would not be effective against itself.
 ; Consequently, the Smart AI might still use Mimic even if no move has actually been used yet.
 AI_Smart_Mimic:
-	ld a, [wCurPlayerMove]
+	ld a, [wLastPlayerCounterMove]
 	and a
 	ret z
 
@@ -1485,7 +1485,7 @@ AI_Smart_Mimic:
 
 	dec [hl]
 .skip_encourage
-	ld a, [wCurPlayerMove]
+	ld a, [wLastPlayerCounterMove]
 	and a
 	ret z ; Pointless repeat of an earlier check...
 
@@ -1551,7 +1551,7 @@ AI_Smart_Counter:
 	cp 3
 	jr nc, .encourage
 
-	ld a, [wCurPlayerMove]
+	ld a, [wLastPlayerCounterMove]
 	and a
 	jr z, .done
 
@@ -1584,7 +1584,7 @@ AI_Smart_Encore:
 	jr nz, .discourage
 
 	push hl
-	ld a, [wCurPlayerMove]
+	ld a, [wLastPlayerCounterMove]
 	ld hl, EncoreMoves
 	ld de, 1
 	call FindItemInTable
@@ -1664,7 +1664,7 @@ AI_Smart_DefrostOpponent:
 ; less than four moves encourages the AI to use Spite against them.
 AI_Smart_Spite:
 	push hl
-	ld a, [wCurPlayerMove]
+	ld a, [wLastPlayerCounterMove]
 	ld b, a
 	ld c, NUM_MOVES
 	ld hl, wBattleMonMoves
@@ -2590,7 +2590,7 @@ ReadTrainerParty::
 
 .skip_name
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr nz, .skip_name
 
 	ld a, [hli]

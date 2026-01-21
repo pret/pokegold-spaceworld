@@ -626,8 +626,7 @@ wEnemyEvaLevel:: db
 
 wForceEvolution:: db
 
-wAILayer2Encouragement::
-wEnemyTurnsTaken:: ds 1
+wEnemyTurnsTaken:: db
 
 	ds 1
 
@@ -639,10 +638,8 @@ wPlayerDebugSelectedMove:: ds 1
 
 wMoveSelectionMenuType:: ds 1
 
-; TODO: Replace these with just wCurPlayer/EnemyMove
-; and replace the original wCurPlayerMove/wCurEnemyMove with wLastPlayer/EnemyCounterMove
-wCurPlayerSelectedMove:: db
-wCurEnemySelectedMove:: db
+wCurPlayerMove:: db
+wCurEnemyMove:: db
 
 wLinkBattleRNCount:: db
 
@@ -661,27 +658,21 @@ wcacb:: ds 1
 wcacc:: ds 1
 ENDU
 
-wcacd:: ds 1
-wcace:: ds 1
+wUnused_SafariEscapeFactor:: db
+wUnused_SafariBaitFactor:: db
 
 	ds 1
 
 wEnemyBackupDVs:: dw
 
-wAlreadyDisobeyed::
-wcad2:: ds 1
+wAlreadyDisobeyed:: db
 
-wDisabledMove:: ds 1
-wEnemyDisabledMove:: ds 1
-wcad5:: ds 1
+wDisabledMove:: db
+wEnemyDisabledMove:: db
+wWhichMonFaintedFirst:: db
 
-UNION
-wCurPlayerMove:: ds 1
-wCurEnemyMove:: ds 1
-NEXTU
-wcad6:: ds 1
-wcad7:: ds 1
-ENDU
+wLastPlayerCounterMove:: db
+wLastEnemyCounterMove:: db
 
 wEnemyMinimized:: db
 wAlreadyFailed:: db
@@ -690,11 +681,8 @@ wBattleParticipantsIncludingFainted:: db
 wBattleLowHealthAlarm:: db
 wPlayerMinimized:: db
 
-wPlayerScreens::
-wcadd:: db
-
-wEnemyScreens::
-wcade:: db
+wPlayerScreens:: db
+wEnemyScreens:: db
 
 wPlayerSafeguardCount:: db
 wEnemySafeguardCount:: db
@@ -710,6 +698,7 @@ ENDU
 
 
 SECTION "CB14", WRAM0[$CB14]
+wBattleEnd::
 
 UNION
 wRedrawRowOrColumnSrcTiles::
@@ -730,7 +719,8 @@ ENDU
 SECTION "CB56", WRAM0[$CB4C]
 UNION
 wOtherPlayerLinkMode:: db
-wOtherPlayerLinkAction:: db
+wOtherPlayerLinkAction::
+wBattleAction:: db
 	ds 3 ; TODO
 
 wPlayerLinkAction:: db
@@ -1066,6 +1056,11 @@ wStringBuffer2:: ds STRING_BUFFER_LENGTH
 
 NEXTU
 
+	ds 2
+wGainBoostedExp:: db
+
+NEXTU
+
 wcd31:: db
 wcd32:: db
 wcd33:: db
@@ -1074,7 +1069,6 @@ ENDU
 
 SECTION "CD3C", WRAM0[$CD3C]
 
-wcd3c::
 wPartyMenuCursor::
 wBillsPCCursor:: db
 wRegularItemsCursor:: db
@@ -1087,8 +1081,7 @@ wCurMoveNum:: db
 wCurBattleMon:: db
 
 wTMHolderCursor:: db
-wFieldDebugMenuCursorBuffer::
-wcd43:: db
+wFieldDebugMenuCursorBuffer:: db
 wRegularItemsScrollPosition:: db
 wBackpackAndKeyItemsScrollPosition:: db
 wBillsPCScrollPosition:: db
@@ -1198,6 +1191,7 @@ wPrevWarp:: db
 wEvolvableFlags:: db
 
 UNION
+wBoostExpByExpAll::
 wSkipMovesBeforeLevelUp::
 wListMovesLineSpacing::
 wFieldMoveScriptID:: db
@@ -1278,14 +1272,15 @@ wTempBattleMonSpecies:: ds 1
 
 wEnemyMon:: battle_struct wEnemyMon
 wEnemyMonBaseStats:: ds NUM_EXP_STATS
-
 wEnemyMonCatchRate:: db
-wcdff:: ds 1
+wEnemyMonBaseExp:: db
+wEnemyMonEnd::
+
 wBattleMode:: db
 wTempWildMonSpecies:: ds 1
 wOtherTrainerClass:: ds 1
 wBattleType:: db
-wce04:: ds 1
+wUnused_GymLeaderNo:: ds 1 ; Unused
 wOtherTrainerID:: ds 1
 wBattleEnded:: ds 1
 
@@ -1354,7 +1349,7 @@ wMonHLearnset::
 wMonHeaderEnd::
 
 
-wce26:: ds 1
+wMapAnimsBackup:: db
 
 	ds 2
 
@@ -1388,10 +1383,8 @@ wApplyStatLevelMultipliersToEnemy::
 wce37::
 	db
 
-wce38:: ds 1
-
-wNumFleeAttempts::
-wce39:: ds 1
+wFailedToFlee:: db
+wNumFleeAttempts:: db
 
 wMonTriedToEvolve:: db
 
@@ -1840,8 +1833,16 @@ wOTPartySpeciesEnd:: db
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
 UNION
-wWildMons::
-	ds 41
+wWildMonData::
+
+wMornEncounterRate::  db
+wDayEncounterRate::   db
+wNiteEncounterRate::  db
+
+wWildMons:: ds NUM_GRASSMON * 2
+
+	ds 2
+
 NEXTU
 wOTPartyMons::
 ; wOTPartyMon1 - wOTPartyMon6
