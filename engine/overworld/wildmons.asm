@@ -118,7 +118,7 @@ endr
 	scf
 	ret
 
-INCLUDE "data/wild.inc"
+INCLUDE "data/wild/grassmons.inc"
 
 TryWildBattle::
 ; If there is no active Repel, there's no need to be here.
@@ -135,7 +135,7 @@ TryWildBattle::
 	jr nc, .no_battle
 
 ; Get encounter rate for the time of day.
-	call .GetTimeOfDay
+	call WildMon_GetTimeOfDay
 	ld c, a
 	ld b, 0
 	ld hl, wWildMonData
@@ -150,9 +150,9 @@ TryWildBattle::
 
 	call Random
 	ld b, a
-	ld hl, .GrassMonProbTable
+	ld hl, GrassMonProbTable
 
-	call .GetTimeOfDay
+	call WildMon_GetTimeOfDay
 	cp NITE_F
 	ld bc, 0
 	jr c, .got_time
@@ -187,7 +187,7 @@ TryWildBattle::
 	ld a, [hli]
 	ld [wCurPartyLevel], a
 	ld a, [hl]
-	call .ValidateTempWildMonSpecies
+	call ValidateTempWildMonSpecies
 	jr c, .no_battle
 
 	ld [wCurPartySpecies], a
@@ -237,35 +237,12 @@ TryWildBattle::
 	db COLLISION_4C
 	db -1
 
-MACRO mon_prob
-; percent, index
-	db \1, \2 * 2
-ENDM
-
-.GrassMonProbTable:
-	mon_prob  1,  0 ; start of morning block (#1)
-	mon_prob  4,  1 ;
-	mon_prob  5,  2 ;
-	mon_prob  1,  3 ; start of day block (#4)
-	mon_prob  4,  4 ;
-	mon_prob 15,  5 ;
-	mon_prob 20,  6 ;
-	mon_prob  5,  7 ; start of night block (#8)
-	mon_prob 10,  8 ;
-	mon_prob 20,  9 ;
-	mon_prob 15, 10 ; end of morning block (#11)
-	mon_prob  5, 11 ;
-	mon_prob  5, 12 ; end of day block (#13)
-	mon_prob 20, 13 ;
-	mon_prob 10, 14 ;
-	mon_prob  5, 15 ;
-	mon_prob  4, 16 ;
-	mon_prob  1, 17 ; end of night block (#18)
+INCLUDE "data/wild/probabilities.inc"
 
 ; This actually works as intended in the proto!
 ; In the final game, due to a development oversight,
 ; this function is called with the wild Pokemon's level, not its species, in a.
-.ValidateTempWildMonSpecies:
+ValidateTempWildMonSpecies:
 	and a
 	jr z, .nowildmon ; = 0
 	cp NUM_POKEMON + 1 ; 252
@@ -277,7 +254,7 @@ ENDM
 	scf
 	ret
 
-.GetTimeOfDay:
+WildMon_GetTimeOfDay:
 	ld a, [wTimeOfDay]
 	inc a
 	maskbits NUM_DAYTIMES
