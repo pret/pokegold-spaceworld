@@ -13,7 +13,7 @@
 	const PAL_TOWN_BULL ; 0a
 	const PAL_TOWN_BAADON ; 0b
 	const PAL_TOWN_OLDCITY ; 0c
-	const PAL_TOWN_0D ; 0d
+	const PAL_NIGHTTIME ; 0d
 	const PAL_BLACK ; 0e
 	const PAL_MEWMON ; 0f
 	const PAL_BLUEMON ; 10

@@ -13,29 +13,29 @@
 	const SPRITE_GANTETSU              ; 0b KURT
 	const SPRITE_MOM                   ; 0c
 	const SPRITE_SILVERS_MOM           ; 0d
-	const SPRITE_REDS_MOM              ; 0e
-	const SPRITE_0F                    ; 0f duplicate SPRITE_REDS_MOM
+	const SPRITE_0E                    ; 0e falls into SPRITE_REDS_MOM
+	const SPRITE_REDS_MOM              ; 0f
 	const SPRITE_NANAMI                ; 10 DAISY
 	const SPRITE_EVIL_OKIDO            ; 11 EVIL_PROF_OAK
 	const SPRITE_KIKUKO                ; 12 AGATHA
 	const SPRITE_HAYATO                ; 13 FALKNER
-	const SPRITE_TSUKUSHI              ; 14 BUGSY
-	const SPRITE_15                    ; 15 duplicate SPRITE_TSUKUSHI
+	const SPRITE_14                    ; 14 falls into SPRITE_TSUKUSHI
+	const SPRITE_TSUKUSHI              ; 15 BUGSY
 	const SPRITE_ENOKI                 ; 16 MORTY
-	const SPRITE_MIKAN                 ; 17 JASMINE
-	const SPRITE_18                    ; 18 duplicate SPRITE_MIKAN
-	const SPRITE_COOLTRAINER_M         ; 19
-	const SPRITE_1A                    ; 1a duplicate SPRITE_COOLTRAINER_M
-	const SPRITE_1B                    ; 1b duplicate SPRITE_COOLTRAINER_M
-	const SPRITE_1C                    ; 1c duplicate SPRITE_COOLTRAINER_M
-	const SPRITE_1D                    ; 1d duplicate SPRITE_COOLTRAINER_M
-	const SPRITE_1E                    ; 1e duplicate SPRITE_COOLTRAINER_M
-	const SPRITE_1F                    ; 1f duplicate SPRITE_COOLTRAINER_M
-	const SPRITE_20                    ; 20 duplicate SPRITE_COOLTRAINER_M
-	const SPRITE_21                    ; 21 duplicate SPRITE_COOLTRAINER_M
-	const SPRITE_22                    ; 22 duplicate SPRITE_COOLTRAINER_M
-	const SPRITE_23                    ; 23 duplicate SPRITE_COOLTRAINER_M
-	const SPRITE_24                    ; 24 duplicate SPRITE_COOLTRAINER_M
+	const SPRITE_17                    ; 17 falls into SPRITE_MIKAN
+	const SPRITE_MIKAN                 ; 18 JASMINE
+	const SPRITE_19                    ; 19 falls into SPRITE_COOLTRAINER_M
+	const SPRITE_1A                    ; 1a falls into SPRITE_COOLTRAINER_M
+	const SPRITE_1B                    ; 1b falls into SPRITE_COOLTRAINER_M
+	const SPRITE_1C                    ; 1c falls into SPRITE_COOLTRAINER_M
+	const SPRITE_1D                    ; 1d falls into SPRITE_COOLTRAINER_M
+	const SPRITE_1E                    ; 1e falls into SPRITE_COOLTRAINER_M
+	const SPRITE_1F                    ; 1f falls into SPRITE_COOLTRAINER_M
+	const SPRITE_20                    ; 20 falls into SPRITE_COOLTRAINER_M
+	const SPRITE_21                    ; 21 falls into SPRITE_COOLTRAINER_M
+	const SPRITE_22                    ; 22 falls into SPRITE_COOLTRAINER_M
+	const SPRITE_23                    ; 23 falls into SPRITE_COOLTRAINER_M
+	const SPRITE_COOLTRAINER_M         ; 24
 	const SPRITE_COOLTRAINER_F         ; 25
 	const SPRITE_BUG_CATCHER_BOY       ; 26
 	const SPRITE_TWIN                  ; 27
@@ -51,9 +51,9 @@
 	const SPRITE_GRANNY                ; 31
 	const SPRITE_SWIMMER_M             ; 32
 	const SPRITE_SWIMMER_F             ; 33
-	const SPRITE_ROCKET_M              ; 34
-	const SPRITE_35                    ; 35 duplicate SPRITE_ROCKET_M
-	const SPRITE_36                    ; 36 duplicate SPRITE_ROCKET_M
+	const SPRITE_34                    ; 34 falls into SPRITE_ROCKET_M
+	const SPRITE_35                    ; 35 falls into SPRITE_ROCKET_M
+	const SPRITE_ROCKET_M              ; 36
 	const SPRITE_ROCKET_F              ; 37
 	const SPRITE_NURSE                 ; 38
 	const SPRITE_LINK_RECEPTIONIST     ; 39
@@ -68,9 +68,9 @@
 	const SPRITE_BLACKBELT             ; 42
 	const SPRITE_RECEPTIONIST          ; 43
 	const SPRITE_OFFICER               ; 44
-	const SPRITE_CAPTAIN               ; 45
-	const SPRITE_46                    ; 46 duplicate SPRITE_CAPTAIN
-	const SPRITE_47                    ; 47 duplicate SPRITE_CAPTAIN
+	const SPRITE_45                    ; 45 falls into SPRITE_CAPTAIN
+	const SPRITE_46                    ; 46 falls into SPRITE_CAPTAIN
+	const SPRITE_CAPTAIN               ; 47
 	const SPRITE_MOHAWK                ; 48
 	const SPRITE_GYM_GUY               ; 49
 	const SPRITE_SAILOR                ; 4a
@@ -87,8 +87,8 @@
 	const SPRITE_POKE_BALL             ; 55
 	const SPRITE_POKEDEX               ; 56
 	const SPRITE_PAPER                 ; 57
-	const SPRITE_OLD_LINK_RECEPTIONIST ; 58
-	const SPRITE_59                    ; 59 duplicate SPRITE_OLD_LINK_RECEPTIONIST
+	const SPRITE_58                    ; 58 falls into SPRITE_OLD_LINK_RECEPTIONIST
+	const SPRITE_OLD_LINK_RECEPTIONIST ; 59
 	const SPRITE_EGG                   ; 5a
 	const SPRITE_BOULDER               ; 5b
 

@@ -30,7 +30,7 @@ WestMart4F_MapEvents::
 
 	def_object_events
 	object_event 13,  5, SPRITE_CLERK, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
-	object_event  8,  6, SPRITE_24, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  8,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event  7,  2, SPRITE_ROCKER, SPRITEMOVEFN_RANDOM_WALK_X, 2, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestMart4F_Blocks::

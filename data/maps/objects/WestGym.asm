@@ -16,7 +16,7 @@ WestGym_MapEvents::
 	bg_event  6, 15, 1
 
 	def_object_events
-	object_event  4,  4, SPRITE_TSUKUSHI, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  4, SPRITE_14, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event  9,  7, SPRITE_LASS, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0
 	object_event  3, 11, SPRITE_COOLTRAINER_F, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 3, 0, 0
 	object_event  5,  9, SPRITE_LASS, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
