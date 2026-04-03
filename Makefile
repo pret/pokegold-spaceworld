@@ -1,4 +1,4 @@
-ROM := pokesilver-spaceworld.gb
+ROM := pokegold-spaceworld.gb
 CORRECTEDROM := $(ROM:%.gb=%-correctheader.gb)
 BASEROM := baserom.gb
 
@@ -90,7 +90,7 @@ $(ROM): poke%-spaceworld.gb: layout.link $(OBJS) | $(BASEROM)
 	$(RGBFIX) $(RGBFIXFLAGS) -t "POKEMON2$(shell echo $* | cut -d _ -f 1 | tr '[:lower:]' '[:upper:]')" $@
 
 $(BASEROM):
-	@echo "Please obtain a copy of Silver_debug.sgb and put it in this directory as $@"
+	@echo "Please obtain a copy of Gold_debug.sgb and put it in this directory as $@"
 	@exit 1
 
 $(BUILD)/shim.asm: shim.sym | $$(dir $$@)
@@ -104,7 +104,7 @@ include slack/slack.mk
 
 ### Catch-all build target rules
 
-RGBASMFLAGS += -E -i $(BUILD)/ -DSILVER
+RGBASMFLAGS += -E -i $(BUILD)/ -DGOLD
 
 $(BUILD)/%.o: $(BUILD)/%.asm | $$(dir $$@) rgbdscheck.o
 	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<
