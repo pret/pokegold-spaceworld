@@ -381,6 +381,10 @@ ROMX $21
 ROMX $23
 	org $4000
 	"engine/dumps/bank23.asm@AnimateTilesetImpl"
+	org $401f
+	"data/tileset_anims.asm"
+	org $411b
+	"engine/dumps/bank23.asm@WaitTileAnimation"
 	org $42dc
 	"engine/palettes.asm"
 	org $446d

@@ -716,6 +716,9 @@ wRedrawFlashlightWidthHeight:: db
 ; in units of two tiles (people event meta tile)
 ENDU
 
+SECTION "CB3C", WRAM0[$CB3C]
+wTileAnimBuffer:: ds 1 tiles
+
 SECTION "CB56", WRAM0[$CB4C]
 UNION
 wOtherPlayerLinkMode:: db
@@ -983,6 +986,8 @@ wPlaceBallsY:: db
 ; Both RBY and final GSC write directly to wLowHealth, this prototype writes it here.
 ; TODO: Investigate how it actually functions.
 wLowHealthAlarmBuffer:: db
+
+wTileAnimationTimer:: db
 
 SECTION "CCC7", WRAM0[$CCC7]
 
