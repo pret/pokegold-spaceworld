@@ -156,37 +156,37 @@ INCBIN "data/tilesets/aquarium_metatiles.bin"
 Aquarium_Coll:
 INCLUDE "data/tilesets/aquarium_collision.inc"
 
-SECTION "gfx.asm@Bank 7 Tilesets Bull Forest", ROMX
-BullForest_GFX:
-INCBIN "gfx/tilesets/bull_forest.common.2bpp"
-BullForest_Meta:
-INCBIN "data/tilesets/bull_forest_metatiles.bin"
-BullForest_Coll:
-INCLUDE "data/tilesets/bull_forest_collision.inc"
+SECTION "gfx.asm@Bank 7 Tilesets North", ROMX
+North_GFX:
+INCBIN "gfx/tilesets/north.common.2bpp"
+North_Meta:
+INCBIN "data/tilesets/north_metatiles.bin"
+North_Coll:
+INCBIN "data/tilesets/north_collision.bin"
 
-SECTION "gfx.asm@Bank 7 Tilesets Fonto", ROMX
-Fonto_GFX:
-INCBIN "gfx/tilesets/fonto.common.2bpp"
-Fonto_Meta:
-INCBIN "data/tilesets/fonto_metatiles.bin"
-Fonto_Coll:
-INCLUDE "data/tilesets/fonto_collision.inc"
+SECTION "gfx.asm@Bank 7 Tilesets Font", ROMX
+Font_GFX:
+INCBIN "gfx/tilesets/font.common.2bpp"
+Font_Meta:
+INCBIN "data/tilesets/font_metatiles.bin"
+Font_Coll:
+INCBIN "data/tilesets/font_collision.bin"
 
-SECTION "gfx.asm@Bank 7 Tilesets Haiteku", ROMX
-Haiteku_GFX:
-INCBIN "gfx/tilesets/haiteku.common.2bpp"
-Haiteku_Meta:
-INCBIN "data/tilesets/haiteku_metatiles.bin"
-Haiteku_Coll:
-INCLUDE "data/tilesets/haiteku_collision.inc"
+SECTION "gfx.asm@Bank 7 Tilesets HighTech", ROMX
+HighTech_GFX:
+INCBIN "gfx/tilesets/hightech.common.2bpp"
+HighTech_Meta:
+INCBIN "data/tilesets/hightech_metatiles.bin"
+HighTech_Coll:
+INCBIN "data/tilesets/hightech_collision.bin"
 
-SECTION "gfx.asm@Bank 8 Tilesets Baadon", ROMX
-Baadon_GFX:
-INCBIN "gfx/tilesets/baadon.common.2bpp"
-Baadon_Meta:
-INCBIN "data/tilesets/baadon_metatiles.bin"
-Baadon_Coll:
-INCLUDE "data/tilesets/baadon_collision.inc"
+SECTION "gfx.asm@Bank 8 Tilesets Birdon", ROMX
+Birdon_GFX:
+INCBIN "gfx/tilesets/birdon.common.2bpp"
+Birdon_Meta:
+INCBIN "data/tilesets/birdon_metatiles.bin"
+Birdon_Coll:
+INCBIN "data/tilesets/birdon_collision.bin"
 
 SECTION "gfx.asm@Bank 8 Tilesets Kanto", ROMX
 Kanto_GFX:

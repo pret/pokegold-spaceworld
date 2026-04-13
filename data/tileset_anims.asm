@@ -58,7 +58,7 @@ TilesetGenericAnim:
 	tileframe WriteTileFromAnimBuffer, vTileset tile $53
 	tileframe DoneTileAnimation
 
-TilesetFontoAnim:
+TilesetFontAnim:
 ; UnusedTilesetAnim4 in pokegold/pokecrystal.
 ; Scrolls tile $54 like a waterfall; scrolls tile $03 like cave water.
 	tileframe ReadTileToAnimBuffer,    vTileset tile $54

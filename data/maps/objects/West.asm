@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/West.asm", ROMX
 
 	map_attributes West, WEST, NORTH | EAST
-	connection north, BaadonRoute1, BAADON_ROUTE_1, 5
+	connection north, BirdonRoute1, BIRDON_ROUTE_1, 5
 	connection east, Route2, ROUTE_2, 5
 
 West_MapEvents::
@@ -20,8 +20,8 @@ West_MapEvents::
 	warp_event 15, 19, WEST_GYM, 2, 268
 	warp_event 26, 19, WEST_HOUSE_1, 1, 274
 	warp_event 32, 19, WEST_HOUSE_2, 1, 277
-	warp_event 22,  5, BAADON_ROUTE_GATE_WEST, 1, 90
-	warp_event 23,  5, BAADON_ROUTE_GATE_WEST, 2, 90
+	warp_event 22,  5, BIRDON_ROUTE_GATE_WEST, 1, 90
+	warp_event 23,  5, BIRDON_ROUTE_GATE_WEST, 2, 90
 	warp_event 35, 15, ROUTE_2_GATE_1F, 1, 226
 
 	def_bg_events

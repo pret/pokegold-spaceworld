@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "data/maps/objects/Stand.asm", ROMX
 
 	map_attributes Stand, STAND, NORTH | SOUTH
-	connection north, BullForestRoute2, BULL_FOREST_ROUTE_2, 10
+	connection north, BlueForestRoute2, BLUE_FOREST_ROUTE_2, 10
 	connection south, StandRoute, STAND_ROUTE, 10
 
 Stand_MapEvents::
@@ -18,8 +18,8 @@ Stand_MapEvents::
 	warp_event 17, 31, STAND_ROCKET_HOUSE_1F, 1, 425
 	warp_event 34, 31, STAND_LEAGUE_1F, 1, 434
 	warp_event 35, 31, STAND_LEAGUE_1F, 2, 434
-	warp_event 30, 13, BULL_FOREST_ROUTE_GATE_STAND, 1, 198
-	warp_event 31, 13, BULL_FOREST_ROUTE_GATE_STAND, 2, 198
+	warp_event 30, 13, BLUE_FOREST_ROUTE_GATE_STAND, 1, 198
+	warp_event 31, 13, BLUE_FOREST_ROUTE_GATE_STAND, 2, 198
 
 	def_bg_events
 	bg_event  8,  8, 1

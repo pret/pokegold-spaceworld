@@ -39,7 +39,7 @@ ENDM
 	map_const SILENT_HILL_LAB_FRONT,             4,  8 ; 12
 	map_const SILENT_HILL_LAB_BACK,              4,  4 ; 13
 	map_const UNUSED_MAP_13,                     4,  4 ; 14
-	map_const SHIZUKANA_OKA,                    25, 18 ; 15
+	map_const SILENT_HILLS,                    25, 18 ; 15
 	endgroup
 
 	newgroup  OLD                                      ;  2
@@ -89,57 +89,57 @@ ENDM
 	map_const WEST_HOUSE_2,                      5,  4 ; 19
 	endgroup
 
-	newgroup  HAITEKU                                  ;  4
-	map_const HAITEKU_WEST_ROUTE,               25,  9 ;  1
-	map_const HAITEKU_WEST_ROUTE_OCEAN,         10, 27 ;  2
-	map_const HAITEKU,                          20, 18 ;  3
-	map_const HAITEKU_WEST_ROUTE_GATE,           5,  4 ;  4
-	map_const HAITEKU_POKECENTER_1F,             8,  4 ;  5
-	map_const HAITEKU_POKECENTER_2F,             8,  4 ;  6
-	map_const HAITEKU_LEAGUE_1F,                 4,  8 ;  7
-	map_const HAITEKU_LEAGUE_2F,                 5,  9 ;  8
-	map_const HAITEKU_MART,                      6,  4 ;  9
-	map_const HAITEKU_HOUSE_1,                   5,  4 ; 10
-	map_const HAITEKU_HOUSE_2,                   5,  4 ; 11
-	map_const HAITEKU_IMPOSTER_OAK_HOUSE,        5,  4 ; 12
-	map_const HAITEKU_AQUARIUM_1F,               8,  4 ; 13
-	map_const HAITEKU_AQUARIUM_2F,               8,  4 ; 14
+	newgroup  HIGHTECH                                  ;  4
+	map_const HIGHTECH_WEST_ROUTE,               25,  9 ;  1
+	map_const HIGHTECH_WEST_ROUTE_OCEAN,         10, 27 ;  2
+	map_const HIGHTECH,                          20, 18 ;  3
+	map_const HIGHTECH_WEST_ROUTE_GATE,           5,  4 ;  4
+	map_const HIGHTECH_POKECENTER_1F,             8,  4 ;  5
+	map_const HIGHTECH_POKECENTER_2F,             8,  4 ;  6
+	map_const HIGHTECH_LEAGUE_1F,                 4,  8 ;  7
+	map_const HIGHTECH_LEAGUE_2F,                 5,  9 ;  8
+	map_const HIGHTECH_MART,                      6,  4 ;  9
+	map_const HIGHTECH_HOUSE_1,                   5,  4 ; 10
+	map_const HIGHTECH_HOUSE_2,                   5,  4 ; 11
+	map_const HIGHTECH_IMPOSTER_OAK_HOUSE,        5,  4 ; 12
+	map_const HIGHTECH_AQUARIUM_1F,               8,  4 ; 13
+	map_const HIGHTECH_AQUARIUM_2F,               8,  4 ; 14
 	endgroup
 
-	newgroup  FONTO                                    ;  5
-	map_const FONTO_ROUTE_1,                    35,  9 ;  1
-	map_const FONTO_ROUTE_2,                    10, 18 ;  2
-	map_const FONTO_ROUTE_3,                    25,  9 ;  3
-	map_const FONTO_ROUTE_4,                    10, 18 ;  4
-	map_const FONTO_ROUTE_5,                    10, 18 ;  5
-	map_const FONTO_ROUTE_6,                    35,  9 ;  6
-	map_const FONTO,                            10,  9 ;  7
-	map_const FONTO_ROUTE_GATE_1,                5,  4 ;  8
-	map_const FONTO_ROUTE_GATE_2,                5,  4 ;  9
-	map_const FONTO_ROUTE_GATE_3,                5,  4 ; 10
-	map_const FONTO_ROCKET_HOUSE,                8,  4 ; 11
-	map_const FONTO_MART,                        8,  4 ; 12
-	map_const FONTO_HOUSE,                       5,  4 ; 13
-	map_const FONTO_POKECENTER_1F,               8,  4 ; 14
-	map_const FONTO_POKECENTER_2F,               8,  4 ; 15
-	map_const FONTO_LAB,                         5,  4 ; 16
+	newgroup  FONT                                    ;  5
+	map_const FONT_ROUTE_1,                    35,  9 ;  1
+	map_const FONT_ROUTE_2,                    10, 18 ;  2
+	map_const FONT_ROUTE_3,                    25,  9 ;  3
+	map_const FONT_ROUTE_4,                    10, 18 ;  4
+	map_const FONT_ROUTE_5,                    10, 18 ;  5
+	map_const FONT_ROUTE_6,                    35,  9 ;  6
+	map_const FONT,                            10,  9 ;  7
+	map_const FONT_ROUTE_GATE_1,                5,  4 ;  8
+	map_const FONT_ROUTE_GATE_2,                5,  4 ;  9
+	map_const FONT_ROUTE_GATE_3,                5,  4 ; 10
+	map_const FONT_ROCKET_HOUSE,                8,  4 ; 11
+	map_const FONT_MART,                        8,  4 ; 12
+	map_const FONT_HOUSE,                       5,  4 ; 13
+	map_const FONT_POKECENTER_1F,               8,  4 ; 14
+	map_const FONT_POKECENTER_2F,               8,  4 ; 15
+	map_const FONT_LAB,                         5,  4 ; 16
 	endgroup
 
-	newgroup  BAADON                                   ;  6
-	map_const BAADON_ROUTE_1,                   10, 27 ;  1
-	map_const BAADON_ROUTE_2,                   50,  9 ;  2
-	map_const BAADON_ROUTE_3,                   10, 18 ;  3
-	map_const BAADON,                           10,  9 ;  4
-	map_const BAADON_ROUTE_GATE_WEST,            5,  4 ;  5
-	map_const BAADON_ROUTE_GATE_NEWTYPE,         5,  4 ;  6
-	map_const BAADON_MART,                       8,  4 ;  7
-	map_const BAADON_POKECENTER_1F,              8,  4 ;  8
-	map_const BAADON_POKECENTER_2F,              8,  4 ;  9
-	map_const BAADON_HOUSE_1,                    4,  4 ; 10
-	map_const BAADON_WALLPAPER_HOUSE,            4,  4 ; 11
-	map_const BAADON_HOUSE_2,                    5,  4 ; 12
-	map_const BAADON_LEAGUE_1F,                  4,  8 ; 13
-	map_const BAADON_LEAGUE_2F,                  5,  9 ; 14
+	newgroup  BIRDON                                   ;  6
+	map_const BIRDON_ROUTE_1,                   10, 27 ;  1
+	map_const BIRDON_ROUTE_2,                   50,  9 ;  2
+	map_const BIRDON_ROUTE_3,                   10, 18 ;  3
+	map_const BIRDON,                           10,  9 ;  4
+	map_const BIRDON_ROUTE_GATE_WEST,            5,  4 ;  5
+	map_const BIRDON_ROUTE_GATE_NEWTYPE,         5,  4 ;  6
+	map_const BIRDON_MART,                       8,  4 ;  7
+	map_const BIRDON_POKECENTER_1F,              8,  4 ;  8
+	map_const BIRDON_POKECENTER_2F,              8,  4 ;  9
+	map_const BIRDON_HOUSE_1,                    4,  4 ; 10
+	map_const BIRDON_WALLPAPER_HOUSE,            4,  4 ; 11
+	map_const BIRDON_HOUSE_2,                    5,  4 ; 12
+	map_const BIRDON_LEAGUE_1F,                  4,  8 ; 13
+	map_const BIRDON_LEAGUE_2F,                  5,  9 ; 14
 	endgroup
 
 	newgroup  NEWTYPE                                  ;  7
@@ -176,22 +176,22 @@ ENDM
 	map_const SUGAR_POKECENTER_2F,               8,  4 ;  8
 	endgroup
 
-	newgroup  BULL                                     ;  9
-	map_const BULL_FOREST_ROUTE_1,              25,  9 ;  1
-	map_const BULL_FOREST_ROUTE_2,              10, 27 ;  2
-	map_const BULL_FOREST_ROUTE_3,              10, 27 ;  3
-	map_const BULL_FOREST,                      20, 18 ;  4
-	map_const BULL_FOREST_ROUTE_1_HOUSE,         5,  4 ;  5
-	map_const BULL_FOREST_ROUTE_GATE_STAND,      5,  4 ;  6
-	map_const BULL_MART,                         8,  4 ;  7
-	map_const BULL_HOUSE_1,                      4,  4 ;  8
-	map_const BULL_HOUSE_2,                      5,  4 ;  9
-	map_const BULL_HOUSE_3,                      5,  4 ; 10
-	map_const BULL_POKECENTER_1F,                8,  4 ; 11
-	map_const BULL_POKECENTER_2F,                8,  4 ; 12
-	map_const BULL_LEAGUE_1F,                    4,  8 ; 13
-	map_const BULL_LEAGUE_2F,                    5,  9 ; 14
-	map_const BULL_HOUSE_4,                      5,  4 ; 15
+	newgroup  BLUE                                     ;  9
+	map_const BLUE_FOREST_ROUTE_1,              25,  9 ;  1
+	map_const BLUE_FOREST_ROUTE_2,              10, 27 ;  2
+	map_const BLUE_FOREST_ROUTE_3,              10, 27 ;  3
+	map_const BLUE_FOREST,                      20, 18 ;  4
+	map_const BLUE_FOREST_ROUTE_1_HOUSE,         5,  4 ;  5
+	map_const BLUE_FOREST_ROUTE_GATE_STAND,      5,  4 ;  6
+	map_const BLUE_MART,                         8,  4 ;  7
+	map_const BLUE_HOUSE_1,                      4,  4 ;  8
+	map_const BLUE_HOUSE_2,                      5,  4 ;  9
+	map_const BLUE_HOUSE_3,                      5,  4 ; 10
+	map_const BLUE_POKECENTER_1F,                8,  4 ; 11
+	map_const BLUE_POKECENTER_2F,                8,  4 ; 12
+	map_const BLUE_LEAGUE_1F,                    4,  8 ; 13
+	map_const BLUE_LEAGUE_2F,                    5,  9 ; 14
+	map_const BLUE_HOUSE_4,                      5,  4 ; 15
 	endgroup
 
 	newgroup  STAND                                    ; 10

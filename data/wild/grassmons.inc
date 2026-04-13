@@ -103,7 +103,7 @@ endc
 	db 11, DEX_ODDISH
 	db 13, DEX_ODDISH
 
-	map_id BAADON_ROUTE_1
+	map_id BIRDON_ROUTE_1
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 19, DEX_DITTO
@@ -127,7 +127,7 @@ endc
 	db 23, DEX_DROWZEE
 	db 23, DEX_DROWZEE
 
-	map_id HAITEKU_WEST_ROUTE
+	map_id HIGHTECH_WEST_ROUTE
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 12, DEX_EXEGGCUTE
@@ -151,7 +151,7 @@ endc
 	db 16, DEX_EKANS
 	db 16, DEX_EKANS
 
-	map_id HAITEKU_WEST_ROUTE_OCEAN
+	map_id HIGHTECH_WEST_ROUTE_OCEAN
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_TENTACOOL
@@ -175,7 +175,7 @@ endc
 	db 35, DEX_HANEEI
 	db 45, DEX_TENTACOOL
 
-	map_id FONTO_ROUTE_1
+	map_id FONT_ROUTE_1
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_TENTACOOL
@@ -199,7 +199,7 @@ endc
 	db 35, DEX_HANEEI
 	db 45, DEX_TENTACOOL
 
-	map_id FONTO_ROUTE_2
+	map_id FONT_ROUTE_2
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_TENTACOOL
@@ -223,7 +223,7 @@ endc
 	db 35, DEX_HANEEI
 	db 45, DEX_TENTACOOL
 
-	map_id FONTO_ROUTE_3
+	map_id FONT_ROUTE_3
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 16, DEX_MACHOP
@@ -247,7 +247,7 @@ endc
 	db 20, DEX_DROWZEE
 	db 20, DEX_DROWZEE
 
-	map_id FONTO_ROUTE_4
+	map_id FONT_ROUTE_4
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 17, DEX_SPEAROW
@@ -271,7 +271,7 @@ endc
 	db 21, DEX_BULU
 	db 21, DEX_BULU
 
-	map_id BAADON_ROUTE_2
+	map_id BIRDON_ROUTE_2
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 21, DEX_SPEAROW
@@ -295,7 +295,7 @@ endc
 	db 25, DEX_BULU
 	db 25, DEX_BULU
 
-	map_id BAADON_ROUTE_3
+	map_id BIRDON_ROUTE_3
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 23, DEX_HANEKO
@@ -415,7 +415,7 @@ endc
 	db 36, DEX_HYPNO
 	db 36, DEX_WOLFMAN
 
-	map_id BULL_FOREST_ROUTE_1
+	map_id BLUE_FOREST_ROUTE_1
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 29, DEX_REDIBA
@@ -439,7 +439,7 @@ endc
 	db 37, DEX_WOLFMAN
 	db 37, DEX_WOLFMAN
 
-	map_id BULL_FOREST_ROUTE_2
+	map_id BLUE_FOREST_ROUTE_2
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 32, DEX_MILTANK
@@ -535,7 +535,7 @@ endc
 	db 35, DEX_ARBOK
 	db 35, DEX_HOHO
 
-	map_id FONTO_ROUTE_5
+	map_id FONT_ROUTE_5
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_TENTACOOL
@@ -559,7 +559,7 @@ endc
 	db 35, DEX_HANEEI
 	db 45, DEX_TENTACOOL
 
-	map_id FONTO_ROUTE_6
+	map_id FONT_ROUTE_6
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_TENTACOOL
@@ -583,7 +583,7 @@ endc
 	db 35, DEX_HANEEI
 	db 45, DEX_TENTACOOL
 
-	map_id BULL_FOREST_ROUTE_3
+	map_id BLUE_FOREST_ROUTE_3
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn
 	db 25, DEX_TENTACOOL
@@ -607,7 +607,7 @@ endc
 	db 35, DEX_TENTACRUEL
 	db 45, DEX_TENTACOOL
 
-	map_id SHIZUKANA_OKA
+	map_id SILENT_HILLS
 	db 8 percent, 8 percent, 8 percent ; encounter rates: morn/day/nite
 	; morn
 	db 7, DEX_REDIBA

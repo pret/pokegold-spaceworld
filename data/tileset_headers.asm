@@ -14,10 +14,10 @@ Tilesets:
 	tileset SilentHill, TilesetGenericAnim
 	tileset OldCity, TilesetWaterAnim
 	tileset West, TilesetFlowerAnim
-	tileset Haiteku, TilesetFlowerAnim
-	tileset Baadon, TilesetWaterAnim
-	tileset Fonto, TilesetFontoAnim
-	tileset BullForest, TilesetWaterAnim
+	tileset HighTech, TilesetFlowerAnim
+	tileset Birdon, TilesetWaterAnim
+	tileset Font, TilesetFontAnim
+	tileset North, TilesetWaterAnim
 	tileset Kanto, TilesetFlowerAnim
 	tileset South, TilesetWaterAnim
 	tileset House, TilesetNoAnim

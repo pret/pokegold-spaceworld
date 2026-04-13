@@ -6,12 +6,12 @@
 	const PAL_TOWN_WEST ; 03
 	const PAL_TOWN_NEWTYPE ; 04
 	const PAL_TOWN_SUGAR ; 05
-	const PAL_TOWN_FONTO ; 06
+	const PAL_TOWN_FONT ; 06
 	const PAL_TOWN_SILENTHILL ; 07
-	const PAL_TOWN_HAITEKU ; 08
+	const PAL_TOWN_HIGHTECH ; 08
 	const PAL_TOWN_SOUTH ; 09
-	const PAL_TOWN_BULL ; 0a
-	const PAL_TOWN_BAADON ; 0b
+	const PAL_TOWN_BLUE ; 0a
+	const PAL_TOWN_BIRDON ; 0b
 	const PAL_TOWN_OLDCITY ; 0c
 	const PAL_NIGHTTIME ; 0d
 	const PAL_BLACK ; 0e

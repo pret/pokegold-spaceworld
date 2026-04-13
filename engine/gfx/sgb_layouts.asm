@@ -406,12 +406,12 @@ MapGroupPalettes:
 	db PAL_TOWN_SILENTHILL ; Silent Hill
 	db PAL_TOWN_OLDCITY ; Old City
 	db PAL_TOWN_WEST ; West
-	db PAL_TOWN_HAITEKU ; Haiteku
-	db PAL_TOWN_FONTO ; Fonto
-	db PAL_TOWN_BAADON ; Baadon
+	db PAL_TOWN_HIGHTECH ; HighTech
+	db PAL_TOWN_FONT ; Font
+	db PAL_TOWN_BIRDON ; Birdon
 	db PAL_TOWN_NEWTYPE ; Newtype
 	db PAL_TOWN_SUGAR ; Sugar
-	db PAL_TOWN_BULL ; Bull
+	db PAL_TOWN_BLUE ; Blue
 	db PAL_TOWN_STAND ; Stand
 	db PAL_TOWN_WEST ; Kanto
 	db PAL_TOWN_STAND ; Prince

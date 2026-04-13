@@ -1576,7 +1576,7 @@ wRoute1P1CurScript:: db
 wRoute1P2CurScript:: db
 wRoute1Gate1FCurScript:: db
 wRoute1Gate2FCurScript:: db
-wShizukanaOkaCurScript:: db
+wSilentHillsCurScript:: db
 wd2a6:: db
 
 
