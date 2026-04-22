@@ -21,7 +21,6 @@ AnimateHealingMachine::
 	ld de, PokeCenterOAMData
 	call CopyHealingMachineOAM
 	call CopyHealingMachineOAM ; duplicate, removed code?
-.waitLoop ; never called?
 	ld a, [wPartyCount]
 	ld b, a
 .partyLoop
@@ -30,10 +29,8 @@ AnimateHealingMachine::
 	call DelayFrames
 	dec b
 	jr nz, .partyLoop
-.next ; never called?
 	ld d, $28
 	call FlashSprite8Times
-.waitLoop2 ; never called?
 	ld c, 32
 	call DelayFrames
 	ld d, 0

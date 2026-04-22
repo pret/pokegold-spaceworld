@@ -184,7 +184,6 @@ ROMX $04
 ROMX $05
 	org $4000
 	"engine/overworld/player_movement.asm@_RedrawPlayerSprite"
-	org $4036
 	"engine/sprites/sprites.asm@RefreshSprites"
 	"data/maps/sprite_sets.asm"
 	"data/overworld_sprites.asm"
@@ -195,37 +194,25 @@ ROMX $05
 ROMX $06
 	org $4000
 	"gfx.asm@Bank 6 Tilesets Silent Hill"
-	org $4e00
 	"gfx.asm@Bank 6 Tilesets Forest"
-	org $5800
 	"gfx.asm@Bank 6 Tilesets Old City"
-	org $6600
 	"gfx.asm@Bank 6 Tilesets West"
-	org $7400
 	"gfx.asm@Bank 6 Tilesets House"
 
 ROMX $07
 	org $4000
 	"gfx.asm@Bank 7 Tilesets Rocket House"
-	org $4b00
 	"gfx.asm@Bank 7 Tilesets Aquarium"
-	org $5600
 	"gfx.asm@Bank 7 Tilesets North"
-	org $6400
 	"gfx.asm@Bank 7 Tilesets Font"
-	org $7200
 	"gfx.asm@Bank 7 Tilesets HighTech"
 
 ROMX $08
 	org $4000
 	"gfx.asm@Bank 8 Tilesets Birdon"
-	org $4e00
 	"gfx.asm@Bank 8 Tilesets Kanto"
-	org $5c00
 	"gfx.asm@Bank 8 Tilesets South"
-	org $6a00
 	"gfx.asm@Bank 8 Tilesets Tower"
-	org $7500
 	"gfx.asm@Bank 8 Tilesets Gate"
 
 ROMX $09
@@ -254,15 +241,10 @@ ROMX $0b
 ROMX $0c
 	org $4000
 	"gfx.asm@Bank C Tilesets Radio Tower"
-	org $4b00
 	"gfx.asm@Bank C Tilesets Traditional House"
-	org $5600
 	"gfx.asm@Bank C Tilesets Mart"
-	org $6100
 	"gfx.asm@Bank C Tilesets Gym"
-	org $7100
 	"gfx.asm@Bank C Tilesets Pokecenter"
-	org $7c00
 	"gfx.asm@Bank C Tilesets Common"
 
 ROMX $0d
@@ -272,10 +254,8 @@ ROMX $0d
 ROMX $0e
 	org $4000
 	"engine/dumps/bank0e.asm"
-	org $4d90
 	"data/trainers/class_names.asm"
 	"engine/dumps/bank0e.asm@ReadTrainerParty"
-	org $5110
 	"data/trainers/parties.asm@Trainer Parties"
 
 ROMX $0f
@@ -307,23 +287,16 @@ ROMX $12
 ROMX $13
 	org $4000
 	"gfx.asm@Bank 13 Tilesets Lab"
-	org $4b00
 	"gfx.asm@Bank 13 Tilesets Ruins Of Alph"
-	org $5b00
 	"gfx.asm@Bank 13 Tilesets Ship"
-	org $6900
 	"gfx.asm@Bank 13 Tilesets Ship Port"
 
 ROMX $14
 	org $4000
 	"engine/dumps/bank14.asm@CopyMonToTempMon"
-	org $40dd
 	"data/types/names.asm"
-	org $4162
 	"engine/dumps/bank14.asm@GetTrainerClassName_Old"
-	org $4756
 	"engine/dumps/bank14.asm@Party Menu Routines"
-	org $4f10
 	"data/pokemon/base_stats.asm"
 	"data/pokemon/names.asm"
 	"gfx.asm@PKMN Sprite Bank List"
@@ -381,19 +354,12 @@ ROMX $21
 ROMX $23
 	org $4000
 	"engine/tileset_anims.asm"
-	org $4209
 	"engine/overworld/healing_machine.asm"
-	org $42dc
 	"engine/palettes.asm"
-	org $44be
 	"engine/battle/battle_transitions.asm"
-	org $4940
 	"engine/overworld/player_animations_old.asm"
-	org $4cfd
 	"engine/sprite_anims/core.asm"
-	org $60cc
 	"gfx.asm@Pokemon Party Sprites"
-	org $70cc
 	"engine/gfx/mon_icons.asm"
 
 ROMX $24
@@ -904,11 +870,8 @@ ROMX $36
 ROMX $37
 	org $4000
 	"gfx.asm@Bank 37 Tilesets Dept Store"
-	org $4b00
 	"gfx.asm@Bank 37 Tilesets Office"
-	org $5b00
 	"gfx.asm@Bank 37 Tilesets Cave"
-	org $6b00
 	"gfx.asm@Bank 37 Tilesets Power Plant"
 
 ROMX $38
@@ -921,7 +884,6 @@ ROMX $38
 	org $622b
 	"engine/games/memory_minigame.asm"
 	"gfx.asm@Matches GFX"
-	org $6886
 	"engine/games/picross_minigame.asm"
 	"gfx.asm@Picross GFX"
 
