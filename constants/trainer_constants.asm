@@ -139,6 +139,7 @@ ENDM
 
 	trainerclass TRAINER_TWINS ; 3d
 
+DEF NUM_TRAINER_CLASSES_OLD EQU __trainer_class__ ; Original count according to FightDebugMenu
 	trainerclass TRAINER_GERUGE_MEMBER_M_2 ; 3e
 
 	trainerclass TRAINER_ELITE_FOUR_M ; 3f

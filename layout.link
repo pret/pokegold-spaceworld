@@ -985,7 +985,7 @@ ROMX $3f
 	"engine/debug/field/warp.inc@FieldDebug_ShowWarpToText"
 	"gfx.asm@Town Map Cursor"
 	"engine/debug/field/map_viewer.inc@DisplayBGEventDetails"
-	org $6255
+	"engine/debug/fight_debug_menu.asm"
 	"engine/menu/debug_menu.asm@Sound Test"
 	org $67a1
 	"engine/menu/debug_menu.asm@Subgame Menu"

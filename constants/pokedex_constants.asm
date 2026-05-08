@@ -256,6 +256,7 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 DEF NUM_POKEMON EQU const_value - 1
 	const DEX_FC            ; fc
 	const DEX_EGG           ; fd EGG
+DEF NUM_POKEMON_OLD EQU const_value - 1 ; Original count according to FightDebugMenu, perhaps DEX_EGG was originally in $fe?
 	const DEX_FE            ; fe
 
   ;  Annon forms
