@@ -78,7 +78,7 @@ DebugMenuOptionField::
 DebugMenuOptionFight::
 	ld hl, wDebugFlags
 	set DEBUG_BATTLE_F, [hl]
-	predef Functionfdb66
+	predef FightDebugMenu
 	ld hl, wDebugFlags
 	res DEBUG_BATTLE_F, [hl]
 	ret
