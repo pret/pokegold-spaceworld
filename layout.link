@@ -986,9 +986,9 @@ ROMX $3f
 	"gfx.asm@Town Map Cursor"
 	"engine/debug/field/map_viewer.inc@DisplayBGEventDetails"
 	"engine/debug/fight_debug_menu.asm"
-	"engine/menu/debug_menu.asm@Sound Test"
-	org $67a1
-	"engine/menu/debug_menu.asm@Subgame Menu"
+	"engine/debug/sound_debug_menu.asm"
+	"engine/debug/monster_debug_menu.asm"
+	"engine/debug/subgame_debug_menu.asm"
 
 WRAM0
 	org $c000
