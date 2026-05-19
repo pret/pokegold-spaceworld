@@ -59,7 +59,7 @@ _IsObjectCollisionTileSolid:
 	add hl, de
 	ld a, BANK(CollisionTypeTable)
 	call GetFarByte
-	and ALWAYS_SOLID ; also covers SOMETIMES_SOLID
+	and WALL_TILE ; also covers WATER_TILE
 	ret z
 	scf
 	ret

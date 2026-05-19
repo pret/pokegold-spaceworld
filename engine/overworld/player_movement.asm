@@ -1105,7 +1105,7 @@ CheckCollisionSometimesSolid::
 ;      00 - sometimes solid
 ;      01 - never solid
 	call GetCollisionType
-	cp SOMETIMES_SOLID
+	cp WATER_TILE
 	jr z, .sometimes_solid
 	and a
 	jr z, .never_solid
