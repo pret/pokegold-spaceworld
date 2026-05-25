@@ -373,6 +373,23 @@ wPikachuMinigameColumnBuffer:: ds 16
 
 NEXTU
 
+; wFifteenPuzzleBitmap is Panels 1 - 15
+wFifteenPuzzleBitmap:: ds 4*4*15
+; wFifteenPuzzleEmptyPanelBitmap is Panel 16 / Empty Panel
+wFifteenPuzzleEmptyPanelBitmap:: ds 4*4
+wFifteenPuzzlePanelNumberOrder:: ds 4*4
+wFifteenPuzzlePosition:: ds 1
+; wFifteenPuzzleEmptyPanelNumber should always be $0f
+wFifteenPuzzleEmptyPanelNumber:: ds 1
+wFifteenPuzzleJoyStateBuffer:: ds 1
+wFifteenPuzzleIconNumber:: ds 1
+wFifteenPuzzleTimeFrames:: ds 1
+wFifteenPuzzleTimeSeconds:: ds 1
+wFifteenPuzzleTimeMinutes:: ds 1
+wFifteenPuzzleGFXPointer:: ds 1
+
+NEXTU
+
 wPicrossCursorSpritePointer:: ds 2
 wPicrossCurrentGridNumber:: ds 1
 wPicrossCurrentCellNumber:: ds 1
