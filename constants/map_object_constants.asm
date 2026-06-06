@@ -52,9 +52,9 @@ DEF OW_RIGHT EQU RIGHT << 2
 	shift_const WONT_DELETE     ; 1
 	shift_const FIXED_FACING    ; 2
 	shift_const SLIDING         ; 3
-	shift_const COLLISION_TILES ; 4
+	shift_const NOCLIP_TILES ; 4
 	shift_const NOCLIP_NOT_SET  ; 5
-	shift_const COLLISION_OBJS  ; 6
+	shift_const NOCLIP_OBJS  ; 6
 	shift_const CENTERED_OBJECT ; 7
 
 ; object_struct OBJECT_FLAGS2 bit flags

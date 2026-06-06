@@ -53,7 +53,7 @@ FieldDebug_FieldCut:
 
 .IsCollision: ; broken
 	call GetFacingTileCoord
-	cp OLD_COLLISION_CUT_TREE
+	cp COLL_OLD_CUT_TREE
 	ret
 
 .IsCuttableTile:

@@ -292,7 +292,7 @@ CopyMapObjectToObjectStruct::
 InitObjectFlags::
 	ld hl, OBJECT_FLAGS1
 	add hl, de
-	ld [hl], COLLISION_OBJS | NOCLIP_NOT_SET | COLLISION_TILES
+	ld [hl], NOCLIP_OBJS | NOCLIP_NOT_SET | NOCLIP_TILES
 	ldh a, [hObjectStructIndex]
 	push hl
 	ld hl, wCenteredObject
@@ -316,7 +316,7 @@ InitObjectFlags::
 	ldh a, [hObjectStructIndex]
 	cp PLAYER_OBJECT_INDEX
 	ret z
-	set COLLISION_TILES_F, [hl]
+	set NOCLIP_TILES_F, [hl]
 	ret
 
 CopyMapObject_Radius:

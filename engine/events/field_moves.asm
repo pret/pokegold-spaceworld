@@ -46,7 +46,7 @@ TryCut:
 
 CheckCuttableBlock:
 	call GetFacingTileCoord
-	cp $80
+	cp COLL_OLD_CUT_TREE
 	jr nz, .fail
 	call GetBlockLocation
 	ld a, l
@@ -123,10 +123,10 @@ IsCuttableTile:
 	ret
 
 CuttableTiles:
-	db $81
-	db $82
-	db $8A
-	db $8B
+	db COLL_OLD_GRASS_81
+	db COLL_OLD_GRASS_82
+	db COLL_OLD_GRASS_82 | COLLFLAG_ENCOUNTER
+	db COLL_OLD_GRASS    | COLLFLAG_ENCOUNTER
 	db -1
 
 FailCut:
@@ -202,10 +202,10 @@ SurfFunction:
 
 TrySurf:
 	call GetFacingTileCoord
-	and $f0
-	cp $20
+	and COLLMASK_TYPE
+	cp COLLMASK_TYPE_OLD_WATER
 	jr z, .success
-	cp $40
+	cp COLLMASK_TYPE_OLD_WATER_ALT
 	jr z, .success
 	set_script FailSurf
 	xor a

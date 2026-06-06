@@ -237,8 +237,8 @@ UpdateTallGrassFlags:
 ; This entire function was blanked out for the final game. See 'UselessAndA' in pokegold.
 ResetObjFlags2_7:
 ; This comparison is pointless because the instructions below it have been nop'd out.
-	and COLLISION_TYPE_MASK
-	cp HI_NYBBLE_WARPS
+	and COLLMASK_TYPE
+	cp COLLMASK_TYPE_WARPS
 	nop
 	nop
 
@@ -272,24 +272,24 @@ SetTallGrassFlags:
 
 CheckGrassTile:
 	ld d, a
-	and $f0
-	cp HI_NYBBLE_TALL_GRASS
+	and COLLMASK_TYPE
+	cp COLLMASK_TYPE_TALL_GRASS
 	jr z, .grass
-	cp HI_NYBBLE_WATER
+	cp COLLMASK_TYPE_WATER
 	jr z, .water
 	scf
 	ret
 
 .grass
 	ld a, d
-	and LO_NYBBLE_GRASS
+	and COLLMASK_SUBTYPE
 	ret z
 	scf
 	ret
 ; For some reason, the above code is duplicated down here.
 .water
 	ld a, d
-	and LO_NYBBLE_GRASS
+	and COLLMASK_SUBTYPE
 	ret z
 	scf
 	ret

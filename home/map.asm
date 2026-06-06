@@ -375,7 +375,7 @@ MapSetup_Warp::
 	call GetSGBLayout
 	call LoadWildMonData
 	call FadeIn
-	call Function2407 ; TODO
+	call CheckExitTiles
 	ret
 
 LoadMapTimeOfDay::
@@ -439,13 +439,13 @@ FadeIn:: ; This is not OverworldFadeIn, but I don't know what it is
 	call RefreshTiles
 	ld hl, wStateFlags
 	set SPRITE_UPDATES_DISABLED_F, [hl]
-	call Function2407
+	call CheckExitTiles
 	callfar InitSprites
 	call DelayFrame
 	callfar OverworldFadeIn
 	ret
 
-Function2407::
+CheckExitTiles::
 	ld a, movement_step_sleep
 	ld [wPlayerMovement], a
 	xor a
@@ -454,15 +454,15 @@ Function2407::
 	and %00001100
 	ld [wPlayerFacing], a
 	ld a, [wPlayerTile]
-	and COLLISION_TYPE_MASK
-	cp HI_NYBBLE_WARPS
+	and COLLMASK_TYPE
+	cp COLLMASK_TYPE_WARPS
 	ret nz
 	ld a, [wPlayerTile]
-	cp COLLISION_STEPS
+	cp COLL_LADDER
 	ret z
-	cp COLLISION_CARPET
+	cp COLL_CARPET
 	ret z
-	cp $78
+	cp (COLL_CARPET | COLLFLAG_ENCOUNTER)
 	ret z
 Function242c::
 	ld a, $0
