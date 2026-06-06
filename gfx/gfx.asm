@@ -36,26 +36,46 @@ SECTION "gfx.asm@SGB GFX", ROMX
 INCLUDE "data/pokemon/palettes.inc"
 INCLUDE "data/sgb/super_palettes.inc"
 
+if DEF(GOLD)
+
 AlternateSGBBorderTilemap::
-INCBIN "gfx/sgb/sgb_border_alt.sgb.tilemap"
+INCBIN "gfx/sgb/sgb_border_alt_gold.sgb.tilemap"
 
 AlternateSGBBorderPalettes:
-INCLUDE "gfx/sgb/sgb_border_alt.pal"
+INCLUDE "gfx/sgb/sgb_border_alt_gold.pal"
 
 AlternateSGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
 SGBBorderTilemap::
-INCBIN "gfx/sgb/sgb_border.sgb.tilemap"
+INCBIN "gfx/sgb/sgb_border_gold.sgb.tilemap"
 
 SGBBorderPalettes:
-INCLUDE "gfx/sgb/sgb_border.pal"
+INCLUDE "gfx/sgb/sgb_border_gold.pal"
 
 SGBBorderGFX::
-if DEF(GOLD)
 INCBIN "gfx/sgb/sgb_border_gold.2bpp"
+
 else
+
+AlternateSGBBorderTilemap::
+INCBIN "gfx/sgb/sgb_border_alt_silver.sgb.tilemap"
+
+AlternateSGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border_alt_silver.pal"
+
+AlternateSGBBorderGFX::
+INCBIN "gfx/sgb/sgb_border_alt.2bpp"
+
+SGBBorderTilemap::
+INCBIN "gfx/sgb/sgb_border_silver.sgb.tilemap"
+
+SGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border_silver.pal"
+
+SGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_silver.2bpp"
+
 endc
 
 SECTION "gfx.asm@Shrink GFX", ROMX

@@ -458,9 +458,15 @@ SilentHillTextBackpack:
 	ret
 
 SilentHillTextBackpackString:
+if DEF(GOLD)
 	text "あなたの　リュック　かっこいいわよ"
 	line "どこで　てに　いれたの？"
 	done
+else
+	text "その　とけい　かっこいいわね"
+	line "えっ　トレーナーギアって　いうの？"
+	done
+endc
 
 SilentHillTextPokemonHate:
 	ld hl, SilentHillTextPokemonHateString
@@ -468,6 +474,14 @@ SilentHillTextPokemonHate:
 	ret
 
 SilentHillTextPokemonHateString:
+if DEF(GOLD)
 	text "よのなかに　ポケモンが　きらいな"
 	line "ひとは　いるのかな？"
 	done
+else
+	text "なに？　きみは"
+	line "ポケモンを　あつめてるのか！"
+
+	para "それは　すばらしいことだ"
+	done
+endc

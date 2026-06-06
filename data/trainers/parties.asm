@@ -15,8 +15,6 @@ INCLUDE "data/trainers/party_pointers.inc"
 
 ; TODO: decode all data
 
-if DEF(GOLD)
-
 HayatoGroup::
 ; Leftover Youngster data from Red/Blue
 	db 11, MON_RATTATA, MON_EKANS, 0
@@ -35,6 +33,7 @@ HayatoGroup::
 
 AkaneGroup::
 BugCatcherBoyGroup::
+if DEF(GOLD)
 	; BUG_CATCHER_BOY_JUNICHI
 	db "じゅんいち@", TRAINERTYPE_ITEM_MOVES
 	db  7, DEX_PARAS, ITEM_NONE, MOVE_STUN_SPORE, MOVE_LEECH_LIFE, MOVE_NONE, MOVE_NONE
@@ -44,6 +43,17 @@ BugCatcherBoyGroup::
 	db "そうすけ@", TRAINERTYPE_ITEM_MOVES
 	db  9, DEX_REDIBA, ITEM_NONE, MOVE_SCRATCH, MOVE_QUICK_ATTACK, MOVE_NONE, MOVE_NONE
 	db -1 ; end
+else
+	; BUG_CATCHER_BOY_KENJI
+	db "けんじ@", TRAINERTYPE_ITEM_MOVES
+	db  9, DEX_REDIBA, ITEM_NONE, MOVE_SCRATCH, MOVE_QUICK_ATTACK, MOVE_NONE, MOVE_NONE
+	db -1 ; end
+
+	; BUG_CATCHER_BOY_KEN
+	db "けん@", TRAINERTYPE_ITEM_MOVES
+	db  7, DEX_VENONAT, ITEM_NONE, MOVE_STUN_SPORE, MOVE_LEECH_LIFE, MOVE_NONE, MOVE_NONE
+	db -1 ; end
+endc
 
 ; Leftover Bug Catcher data from Red/Blue
 	db  6, MON_WEEDLE, MON_CATERPIE, 0
@@ -63,11 +73,18 @@ BugCatcherBoyGroup::
 
 TsukishiGroup::
 LassGroup::
+if DEF(GOLD)
 	; LASS_ATSUKO
 	db "あつこ@", TRAINERTYPE_ITEM_MOVES
 	db  8, DEX_ODDISH, ITEM_NONE
 	; No moves?
 	db -1 ; end
+else
+	; LASS_HIZUKI
+	db "ひづき@", TRAINERTYPE_ITEM_MOVES
+	db 10, DEX_ODDISH, ITEM_NONE, MOVE_ABSORB, MOVE_STUN_SPORE, MOVE_NONE, MOVE_NONE
+	db -1 ; end
+endc
 
 ; Leftover Lass data from Red/Blue
 	db  9, MON_PIDGEY, MON_PIDGEY, 0
@@ -223,11 +240,18 @@ ProtagonistGroup::
 SibaGroup::
 KasumiGroup::
 FisherGroup::
+if DEF(GOLD)
 	; FISHER_HISASHI
 	db "ひさし@", TRAINERTYPE_ITEM_MOVES
 	db  8, DEX_PUKU, ITEM_NONE
 	; No moves?
 	db -1 ; end
+else
+	; FISHER_HISASHI
+	db "ひさし@", TRAINERTYPE_ITEM_MOVES
+	db 10, DEX_PUKU, ITEM_NONE, MOVE_PECK, MOVE_FLAIL, MOVE_NONE, MOVE_NONE
+	db -1 ; end
+endc
 ; Leftover Fisher data from Red/Blue
 	db 17, MON_GOLDEEN, MON_TENTACOOL, MON_GOLDEEN, 0
 	db 17, MON_TENTACOOL, MON_STARYU, MON_SHELLDER, 0
@@ -283,10 +307,13 @@ GerugeMemberMGroup::
 
 Trio1Group::
 BeautyGroup::
+IF DEF(GOLD)
 	; BEAUTY_MEGUMI
 	db "めぐみ@", TRAINERTYPE_ITEM_MOVES
 	db 10, DEX_MEOWTH, ITEM_NONE, MOVE_PAY_DAY, MOVE_GROWL, MOVE_NONE, MOVE_NONE
 	db -1 ; end
+else
+endc
 ; Leftover Beauty data from Red/Blue
 	db 21, MON_ODDISH, MON_BELLSPROUT, MON_ODDISH, MON_BELLSPROUT, 0
 	db 24, MON_BELLSPROUT, MON_BELLSPROUT, 0
@@ -593,24 +620,46 @@ TwinsGroup::
 	db 13, DEX_MADAME, DEX_ELEBABY, DEX_MIZUUO, 0
 
 SchoolboyGroup::
+if DEF(GOLD)
 	; SCHOOLBOY_TETSUYA
 	db "てつや@", TRAINERTYPE_ITEM_MOVES
 	db  9, DEX_YADOKING, ITEM_NONE, MOVE_DISABLE, MOVE_CONFUSION, MOVE_NONE, MOVE_NONE
 	db -1 ; end
+else
+	; SCHOOLBOY_TETSUYA
+	db "てつや@", TRAINERTYPE_ITEM
+	db  8, DEX_YADOKING, ITEM_NONE
+	db -1 ; end
+endc
 
 FirebreatherGroup::
-	; MOLTRESBREATHER_AKITO
+if DEF(GOLD)
+	; FIREBREATHER_AKITO
 	db "あきと@", TRAINERTYPE_ITEM_MOVES
 	db 10, DEX_BOOBY, ITEM_NONE, MOVE_SCRATCH, MOVE_SMOG, MOVE_NONE, MOVE_NONE
 	db -1 ; end
+else
+	; FIREBREATHER_AKITO
+	db "あきと@", TRAINERTYPE_ITEM
+	db  8, DEX_BOOBY, ITEM_NONE
+	db -1 ; end
+endc
 
 SportsmanGroup::
+if DEF(GOLD)
 	; SPORTSMAN_SHIGEKI
 	db "しげき@", TRAINERTYPE_ITEM
 	db  8, DEX_DONPHAN, ITEM_NONE
 	db -1 ; end
+else
+	; SPORTSMAN_TETSUJI
+	db "てつじ@", TRAINERTYPE_ITEM_MOVES
+	db  9, DEX_DONPHAN, ITEM_NONE, MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_NONE, MOVE_NONE
+	db -1 ; end
+endc
 
 KimonoGirlGroup::
+if DEF(GOLD)
 	; KIMONO_GIRL_TAMAO
 	db "たまお@", TRAINERTYPE_ITEM_MOVES
 	db 12, DEX_JIGGLYPUFF, ITEM_NONE, MOVE_CHARM, MOVE_ENCORE, MOVE_POUND, MOVE_NONE
@@ -620,64 +669,7 @@ KimonoGirlGroup::
 	db "こうめ@", TRAINERTYPE_ITEM_MOVES
 	db 10, DEX_CLEFAIRY, ITEM_NONE, MOVE_CHARM, MOVE_SWEET_KISS, MOVE_POUND, MOVE_NONE
 	db -1 ; end
-
 else
-
-SECTION "data/trainers/parties.asm@Trainer Parties 1 TEMPORARY", ROMX
-AkaneGroup::
-BugCatcherBoyGroup::
-	; BUG_CATCHER_BOY_KENJI
-	db "けんじ@", TRAINERTYPE_ITEM_MOVES
-	db  9, DEX_REDIBA, ITEM_NONE, MOVE_SCRATCH, MOVE_QUICK_ATTACK, MOVE_NONE, MOVE_NONE
-	db -1 ; end
-
-	; BUG_CATCHER_BOY_KEN
-	db "けん@", TRAINERTYPE_ITEM_MOVES
-	db  7, DEX_VENONAT, ITEM_NONE, MOVE_STUN_SPORE, MOVE_LEECH_LIFE, MOVE_NONE, MOVE_NONE
-	db -1 ; end
-
-SECTION "data/trainers/parties.asm@Trainer Parties 2 TEMPORARY", ROMX
-MikanGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 3 TEMPORARY", ROMX
-OkidoGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 4 TEMPORARY", ROMX
-WataruGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 5 TEMPORARY", ROMX
-GerugeMemberMGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 6 TEMPORARY", ROMX
-Trio1Group::
-BeautyGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 7 TEMPORARY", ROMX
-FledglingGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 8 TEMPORARY", ROMX
-PokeManiacGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 9 TEMPORARY", ROMX
-GentlemanGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 10 TEMPORARY", ROMX
-TeacherMGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 11 TEMPORARY", ROMX
-TeacherFGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 12 TEMPORARY", ROMX
-ManchildGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 13 TEMPORARY", ROMX
-RockerGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 14 TEMPORARY", ROMX
-HikerGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 15 TEMPORARY", ROMX
-KimonoGirlGroup::
 	; KIMONO_GIRL_KOUME
 	db "こうめ@", TRAINERTYPE_ITEM_MOVES
 	db  9, DEX_DONPHAN, ITEM_NONE, MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_NONE, MOVE_NONE
@@ -687,128 +679,4 @@ KimonoGirlGroup::
 	db "たまお@", TRAINERTYPE_ITEM_MOVES
 	db 10, DEX_JIGGLYPUFF, ITEM_NONE, MOVE_CHARM, MOVE_POUND, MOVE_ENCORE, MOVE_NONE
 	db -1 ; end
-
-SECTION "data/trainers/parties.asm@Trainer Parties 16 TEMPORARY", ROMX
-HayatoGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 17 TEMPORARY", ROMX
-TsukishiGroup::
-LassGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 18 TEMPORARY", ROMX
-EnokiGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 19 TEMPORARY", ROMX
-OkeraGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 20 TEMPORARY", ROMX
-GamaGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 21 TEMPORARY", ROMX
-Trio2Group::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 22 TEMPORARY", ROMX
-Trio3Group::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 23 TEMPORARY", ROMX
-ProfessionalMGroup::
-ProfessionalFGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 24 TEMPORARY", ROMX
-SwimmerMGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 25 TEMPORARY", ROMX
-SuperNerdGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 26 TEMPORARY", ROMX
-EngineerGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 27 TEMPORARY", ROMX
-JugglerGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 28 TEMPORARY", ROMX
-TwinsGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 29 TEMPORARY", ROMX
-SchoolboyGroup::
-	; SCHOOLBOY_TETSUYA
-	db "てつや@", TRAINERTYPE_ITEM
-	db  8, DEX_YADOKING, ITEM_NONE
-	db -1 ; end
-
-SECTION "data/trainers/parties.asm@Trainer Parties 30 TEMPORARY", ROMX
-FirebreatherGroup::
-	; MOLTRESBREATHER_AKITO
-	db "あきと@", TRAINERTYPE_ITEM
-	db  8, DEX_BOOBY, ITEM_NONE
-	db -1 ; end
-
-SECTION "data/trainers/parties.asm@Trainer Parties 31 TEMPORARY", ROMX
-BlueGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 32 TEMPORARY", ROMX
-RivalGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 33 TEMPORARY", ROMX
-SakakiGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 34 TEMPORARY", ROMX
-ProtagonistGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 35 TEMPORARY", ROMX
-SibaGroup::
-KasumiGroup::
-FisherGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 36 TEMPORARY", ROMX
-KannaGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 37 TEMPORARY", ROMX
-RocketFGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 38 TEMPORARY", ROMX
-YoungsterGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 39 TEMPORARY", ROMX
-ProdigyGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 40 TEMPORARY", ROMX
-RocketMGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 41 TEMPORARY", ROMX
-SwimmerFGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 42 TEMPORARY", ROMX
-SailorGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 43 TEMPORARY", ROMX
-BikerGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 44 TEMPORARY", ROMX
-RockClimberGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 45 TEMPORARY", ROMX
-BurglarGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 46 TEMPORARY", ROMX
-BlackbeltGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 47 TEMPORARY", ROMX
-PsychicGroup::
-KungFuMasterGroup::
-FortuneTellerGroup::
-HooliganGroup::
-SageGroup::
-MediumGroup::
-SoldierGroup::
-GerugeMemberFGroup::
-
-SECTION "data/trainers/parties.asm@Trainer Parties 48 TEMPORARY", ROMX
-SportsmanGroup::
-; TODO: This guy clearly ain't named "Shigeki", he's "Tetsuji". Add a trainer constant accordingly
-	; SPORTSMAN_SHIGEKI
-	db "てつじ@", TRAINERTYPE_ITEM_MOVES
-	db  9, DEX_DONPHAN, ITEM_NONE, MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_NONE, MOVE_NONE
-	db -1 ; end
-
 endc

@@ -52,9 +52,15 @@ SilentHillsTrainer2:
 	call OpenTextbox
 	ld hl, wd3a5
 	set 1, [hl]
+IF DEF(GOLD)
 	ld a, TRAINER_SCHOOLBOY
 	ld [wOtherTrainerClass], a
 	ld a, SCHOOLBOY_TETSUYA
+else
+	ld a, TRAINER_SPORTSMAN
+	ld [wOtherTrainerClass], a
+	ld a, SPORTSMAN_TETSUJI
+endc
 	ld [wOtherTrainerID], a
 	call InitTrainerBattle
 	ret
@@ -71,9 +77,15 @@ SilentHillsTrainer3:
 	call OpenTextbox
 	ld hl, wd3a5
 	set 2, [hl]
+IF DEF(GOLD)
 	ld a, TRAINER_BUG_CATCHER_BOY
 	ld [wOtherTrainerClass], a
 	ld a, BUG_CATCHER_BOY_JUNICHI
+else
+	ld a, TRAINER_BUG_CATCHER_BOY
+	ld [wOtherTrainerClass], a
+	ld a, BUG_CATCHER_BOY_KEN
+endc
 	ld [wOtherTrainerID], a
 	call InitTrainerBattle
 	ret
@@ -90,9 +102,15 @@ SilentHillsTrainer4:
 	call OpenTextbox
 	ld hl, wd3a5
 	set 3, [hl]
+IF DEF(GOLD)
 	ld a, TRAINER_FIREBREATHER
 	ld [wOtherTrainerClass], a
 	ld a, FIREBREATHER_AKITO
+else
+	ld a, TRAINER_FISHER
+	ld [wOtherTrainerClass], a
+	ld a, FISHER_HISASHI
+endc
 	ld [wOtherTrainerID], a
 	call InitTrainerBattle
 	ret
@@ -109,9 +127,15 @@ SilentHillsTrainer5:
 	call OpenTextbox
 	ld hl, wd3a5
 	set 4, [hl]
+IF DEF(GOLD)
 	ld a, TRAINER_BEAUTY
 	ld [wOtherTrainerClass], a
 	ld a, BEAUTY_MEGUMI
+else
+	ld a, TRAINER_LASS
+	ld [wOtherTrainerClass], a
+	ld a, LASS_HIZUKI
+endc
 	ld [wOtherTrainerID], a
 	call InitTrainerBattle
 	ret
@@ -128,9 +152,15 @@ SilentHillsTrainer6:
 	call OpenTextbox
 	ld hl, wd3a5
 	set 5, [hl]
+IF DEF(GOLD)
 	ld a, TRAINER_BUG_CATCHER_BOY
 	ld [wOtherTrainerClass], a
 	ld a, BUG_CATCHER_BOY_SOUSUKE
+else
+	ld a, TRAINER_BUG_CATCHER_BOY
+	ld [wOtherTrainerClass], a
+	ld a, BUG_CATCHER_BOY_KENJI
+endc
 	ld [wOtherTrainerID], a
 	call InitTrainerBattle
 	ret
@@ -149,6 +179,7 @@ SilentHillsSignpost1:
 	call OpenTextbox
 	ret
 
+if DEF(GOLD)
 SilentHillsTrainer6EncounterString:
 	text "ねえ　ねえ　みてよ"
 
@@ -225,6 +256,81 @@ SilentHillsTrainer2WonString:
 	line "まいにち　ポケモンの　べんきょうを"
 	cont "きちんと　してるのに　まけるなんて"
 	done
+
+else
+
+SilentHillsTrainer6EncounterString:
+	text "じゃーん！"
+	line "みたことない　ポケモン"
+	cont "だいはっけん"
+	done
+
+	text "ほかの　ポケモンも"
+	line "つかまえて　おくべきだったー"
+	done
+
+SilentHillsTrainer6WonString:
+	text "きみの　ポケモンも　みたことないな"
+	line "ね　こうかん　しない？"
+	done
+
+SilentHillsTrainer5EncounterString:
+	text "ねーねー　あたしと"
+	line "ポケモンしょうぶ　しよーよー"
+	done
+
+	text "やーん"
+	done
+
+SilentHillsTrainer5WonString:
+	text "よるになると　くらくなるじゃない？"
+	line "あるいてても　まわりが"
+	cont "よくわからなくて　こわいわ"
+	done
+
+SilentHillsTrainer4EncounterString:
+	text "きみ！"
+
+	para "おこらないから"
+	line "いけが　あるところを　おしえなさい！"
+	done
+
+	text "みずが　ちかくに　ないと⋯⋯"
+	done
+
+SilentHillsTrainer4WonString:
+	text "どうして　おじさんは"
+	line "こんなところに　いるんだ？"
+	done
+
+SilentHillsTrainer3EncounterString:
+	text "ポケモンは　はじめたばかり？"
+	line "それやったら　まけへんで"
+	done
+
+	text "うわ　なんでやねん"
+	done
+
+SilentHillsTrainer3WonString:
+	text "なんか　すっげー　くやしいわ"
+	done
+
+SilentHillsTrainer2EncounterString:
+	text "ここは　ひろくて"
+	line "トレーニングに　さいてきだ"
+
+	para "なんのって　もちろん"
+	line "ポケモンの　トレーニングだよ！"
+	done
+
+	text "れ　れんしゅう　ぶそくか⋯⋯"
+	done
+
+SilentHillsTrainer2WonString:
+	text "よーし　はしる　ぞー"
+	done
+
+endc
 
 SilentHillsText1String:
 	text "この　おかの　ポケモンは　よわい！"
