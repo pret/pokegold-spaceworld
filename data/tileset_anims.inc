@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/tileset_anims.asm", ROMX
-
 MACRO tileframe
 	if _NARG == 2
 		dw \2 ; argument
@@ -10,7 +6,6 @@ MACRO tileframe
 	endc
 	dw \1 ; function
 ENDM
-
 
 TilesetFlowerAnim:
 ; UnusedTilesetAnim1 in pokegold/pokecrystal.

@@ -247,3 +247,45 @@ GetFadeStep::
 	db $90, $80, $80
 	db $40, $40, $40
 	db $00, $00, $00
+
+RestoreOverworldMapTiles::
+	xor a
+	call OpenSRAM
+	ld hl, wTileMap
+	ld de, sScratch
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	call CopyBytes
+	call CloseSRAM
+	farcall ReanchorBGMap_NoOAMUpdate
+
+	xor a
+	call OpenSRAM
+	ld hl, sScratch
+	ld de, wTileMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+.loop
+	ld a, [hl]
+	cp $61
+	jr c, .next
+	ld [de], a
+.next
+	inc hl
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, .loop
+	
+	call CloseSRAM
+	call UpdateSprites
+	call WaitBGMap
+	ld a, SCREEN_HEIGHT_PX
+	ldh [hWY], a
+	call DelayFrame
+
+	xor a
+	ldh [hBGMapMode], a
+	call InitToolgearBuffer
+	ld b, SGB_MAP_PALS
+	call GetSGBLayout
+	ret

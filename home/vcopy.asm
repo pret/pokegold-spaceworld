@@ -528,9 +528,9 @@ endr
 AnimateTileset::
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(AnimateTilesetImpl)
+	ld a, BANK(_AnimateTileset)
 	call Bankswitch
-	call AnimateTilesetImpl
+	call _AnimateTileset
 	pop af
 	jp Bankswitch
 

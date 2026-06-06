@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank23.asm@ClearSpriteAnims", ROMX
+SECTION "engine/sprite_anims/core.asm", ROMX
 
 ClearSpriteAnims::
 	ld hl, wSpriteAnimData
