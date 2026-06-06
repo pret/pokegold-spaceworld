@@ -96,6 +96,6 @@ GiveItemPredef::
 	add_predef PlayBattleAnim
 	add_predef Functioncc000
 	add_predef Functioncc000_2
-	add_predef Functionfdb66
+	add_predef FightDebugMenu
 	add_predef LoadItemData
 	dbw $ff, InexplicablyEmptyFunction ; 56

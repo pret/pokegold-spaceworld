@@ -78,6 +78,9 @@ WarpMenuOptions::
 
 	; PRINCE and MT_FUJI are skipped in the menu
 
+;	db SPAWN_POINT_PRINCE
+;	db SPAWN_POINT_MT_FUJI
+
 	db SPAWN_POINT_SOUTH
 	db SPAWN_POINT_NORTH
 	db SPAWN_POINT_ROUTE_15

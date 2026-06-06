@@ -20,14 +20,14 @@
 ; Poker Cursor AnimSeq Function
 38:5054 Functione1054
 
-38:5AE3 FifteenPuzzleMinigame
+;38:5AE3 FifteenPuzzleMinigame
 
 ;3F:40E9 InGameDebugMenu
 ;3F:4E3E Functionfce3e
-3F:5B66 Functionfdb66
-3F:64CE MonsterTest
-3F:654E PicTest
-3F:6750 PicTestMenu
+;3F:5B66 FightDebugMenu
+;3F:64CE MonsterTest
+;3F:654E MonsterTest_List
+;3F:6750 MonsterTest_Cursor
 
 ; Filler. TODO: Determine the position of all filler and preferably extract it to binary files.
 0B:786F Bank0b_FillerStart

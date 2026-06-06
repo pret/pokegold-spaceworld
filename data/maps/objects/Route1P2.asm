@@ -12,8 +12,8 @@ Route1P2_MapEvents::
 	def_warp_events
 	warp_event  8,  5, ROUTE_1_GATE_1F, 1, 53
 	warp_event  9,  5, ROUTE_1_GATE_1F, 2, 53
-	warp_event  8, 25, SHIZUKANA_OKA, 6, 213
-	warp_event  9, 25, SHIZUKANA_OKA, 9, 213
+	warp_event  8, 25, SILENT_HILLS, 6, 213
+	warp_event  9, 25, SILENT_HILLS, 9, 213
 
 	def_bg_events
 	bg_event 10, 20, 1

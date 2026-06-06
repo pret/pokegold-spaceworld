@@ -373,6 +373,23 @@ wPikachuMinigameColumnBuffer:: ds 16
 
 NEXTU
 
+; wFifteenPuzzleBitmap is Panels 1 - 15
+wFifteenPuzzleBitmap:: ds 4*4*15
+; wFifteenPuzzleEmptyPanelBitmap is Panel 16 / Empty Panel
+wFifteenPuzzleEmptyPanelBitmap:: ds 4*4
+wFifteenPuzzlePanelNumberOrder:: ds 4*4
+wFifteenPuzzlePosition:: ds 1
+; wFifteenPuzzleEmptyPanelNumber should always be $0f
+wFifteenPuzzleEmptyPanelNumber:: ds 1
+wFifteenPuzzleJoyStateBuffer:: ds 1
+wFifteenPuzzleIconNumber:: ds 1
+wFifteenPuzzleTimeFrames:: ds 1
+wFifteenPuzzleTimeSeconds:: ds 1
+wFifteenPuzzleTimeMinutes:: ds 1
+wFifteenPuzzleGFXPointer:: ds 1
+
+NEXTU
+
 wPicrossCursorSpritePointer:: ds 2
 wPicrossCurrentGridNumber:: ds 1
 wPicrossCurrentCellNumber:: ds 1
@@ -716,6 +733,9 @@ wRedrawFlashlightWidthHeight:: db
 ; in units of two tiles (people event meta tile)
 ENDU
 
+SECTION "CB3C", WRAM0[$CB3C]
+wTileAnimBuffer:: ds 1 tiles
+
 SECTION "CB56", WRAM0[$CB4C]
 UNION
 wOtherPlayerLinkMode:: db
@@ -983,6 +1003,8 @@ wPlaceBallsY:: db
 ; Both RBY and final GSC write directly to wLowHealth, this prototype writes it here.
 ; TODO: Investigate how it actually functions.
 wLowHealthAlarmBuffer:: db
+
+wTileAnimationTimer:: db
 
 SECTION "CCC7", WRAM0[$CCC7]
 
@@ -1571,7 +1593,7 @@ wRoute1P1CurScript:: db
 wRoute1P2CurScript:: db
 wRoute1Gate1FCurScript:: db
 wRoute1Gate2FCurScript:: db
-wShizukanaOkaCurScript:: db
+wSilentHillsCurScript:: db
 wd2a6:: db
 
 

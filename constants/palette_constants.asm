@@ -1,19 +1,19 @@
 ; SuperPalettes indexes (see data/sgb/super_palettes.inc)
 	const_def
 	const PAL_ROUTE ; 00
-	const PAL_TOWN_01 ; 01
-	const PAL_TOWN_02 ; 02
-	const PAL_TOWN_03 ; 03
-	const PAL_TOWN_04 ; 04
-	const PAL_TOWN_05 ; 05
-	const PAL_TOWN_06 ; 06
-	const PAL_TOWN_07 ; 07
-	const PAL_TOWN_08 ; 08
-	const PAL_TOWN_09 ; 09
-	const PAL_TOWN_0A ; 0a
-	const PAL_TOWN_0B ; 0b
-	const PAL_TOWN_0C ; 0c
-	const PAL_TOWN_0D ; 0d
+	const PAL_TOWN_NORTH ; 01
+	const PAL_TOWN_STAND ; 02
+	const PAL_TOWN_WEST ; 03
+	const PAL_TOWN_NEWTYPE ; 04
+	const PAL_TOWN_SUGAR ; 05
+	const PAL_TOWN_FONT ; 06
+	const PAL_TOWN_SILENTHILL ; 07
+	const PAL_TOWN_HIGHTECH ; 08
+	const PAL_TOWN_SOUTH ; 09
+	const PAL_TOWN_BLUE ; 0a
+	const PAL_TOWN_BIRDON ; 0b
+	const PAL_TOWN_OLDCITY ; 0c
+	const PAL_NIGHTTIME ; 0d
 	const PAL_BLACK ; 0e
 	const PAL_MEWMON ; 0f
 	const PAL_BLUEMON ; 10

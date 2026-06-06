@@ -101,168 +101,168 @@ TrainerCardLeadersGFX:: INCBIN "gfx/trainer_card/leaders.2bpp"
 	db $18, $00 ; leftover of previous graphics
 Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp"
 
-SECTION "gfx.asm@Bank 6 Tilesets 00", ROMX
-Tileset_00_GFX:
-Tileset_1b_GFX:
-INCBIN "gfx/tilesets/tileset_00.common.2bpp"
-Tileset_00_Meta:
-INCBIN "data/tilesets/tileset_00_metatiles.bin"
-Tileset_00_Coll:
-INCBIN "data/tilesets/tileset_00_collision.bin"
+SECTION "gfx.asm@Bank 6 Tilesets Silent Hill", ROMX
+SilentHill_GFX:
+Forest_GFX:
+INCBIN "gfx/tilesets/silent_hill.common.2bpp"
+SilentHill_Meta:
+INCBIN "data/tilesets/silent_hill_metatiles.bin"
+SilentHill_Coll:
+INCBIN "data/tilesets/silent_hill_collision.bin"
 
-SECTION "gfx.asm@Bank 6 Tilesets 1b", ROMX
-Tileset_1b_Meta:
-INCBIN "data/tilesets/tileset_1b_metatiles.bin"
-Tileset_1b_Coll:
-INCBIN "data/tilesets/tileset_1b_collision.bin"
+SECTION "gfx.asm@Bank 6 Tilesets Forest", ROMX
+Forest_Meta:
+INCBIN "data/tilesets/forest_metatiles.bin"
+Forest_Coll:
+INCBIN "data/tilesets/forest_collision.bin"
 
-SECTION "gfx.asm@Bank 6 Tilesets 01", ROMX
-Tileset_01_GFX:
-INCBIN "gfx/tilesets/tileset_01.common.2bpp"
-Tileset_01_Meta:
-INCBIN "data/tilesets/tileset_01_metatiles.bin"
-Tileset_01_Coll:
-INCBIN "data/tilesets/tileset_01_collision.bin"
+SECTION "gfx.asm@Bank 6 Tilesets Old City", ROMX
+OldCity_GFX:
+INCBIN "gfx/tilesets/old_city.common.2bpp"
+OldCity_Meta:
+INCBIN "data/tilesets/old_city_metatiles.bin"
+OldCity_Coll:
+INCBIN "data/tilesets/old_city_collision.bin"
 
-SECTION "gfx.asm@Bank 6 Tilesets 02", ROMX
-Tileset_02_GFX:
-INCBIN "gfx/tilesets/tileset_02.common.2bpp"
-Tileset_02_Meta:
-INCBIN "data/tilesets/tileset_02_metatiles.bin"
-Tileset_02_Coll:
-INCBIN "data/tilesets/tileset_02_collision.bin"
+SECTION "gfx.asm@Bank 6 Tilesets West", ROMX
+West_GFX:
+INCBIN "gfx/tilesets/west.common.2bpp"
+West_Meta:
+INCBIN "data/tilesets/west_metatiles.bin"
+West_Coll:
+INCBIN "data/tilesets/west_collision.bin"
 
-SECTION "gfx.asm@Bank 6 Tilesets 09", ROMX
-Tileset_09_GFX:
-INCBIN "gfx/tilesets/tileset_09.2bpp"
-Tileset_09_Meta:
-INCBIN "data/tilesets/tileset_09_metatiles.bin"
-Tileset_09_Coll:
-INCBIN "data/tilesets/tileset_09_collision.bin"
+SECTION "gfx.asm@Bank 6 Tilesets House", ROMX
+House_GFX:
+INCBIN "gfx/tilesets/house.2bpp"
+House_Meta:
+INCBIN "data/tilesets/house_metatiles.bin"
+House_Coll:
+INCBIN "data/tilesets/house_collision.bin"
 
-SECTION "gfx.asm@Bank 7 Tilesets 13", ROMX
-Tileset_13_GFX:
-INCBIN "gfx/tilesets/tileset_13.2bpp"
-Tileset_13_Meta:
-INCBIN "data/tilesets/tileset_13_metatiles.bin"
-Tileset_13_Coll:
-INCBIN "data/tilesets/tileset_13_collision.bin"
+SECTION "gfx.asm@Bank 7 Tilesets Rocket House", ROMX
+RocketHouse_GFX:
+INCBIN "gfx/tilesets/rocket_house.2bpp"
+RocketHouse_Meta:
+INCBIN "data/tilesets/rocket_house_metatiles.bin"
+RocketHouse_Coll:
+INCBIN "data/tilesets/rocket_house_collision.bin"
 
-SECTION "gfx.asm@Bank 7 Tilesets 0e", ROMX
-Tileset_0e_GFX:
-INCBIN "gfx/tilesets/tileset_0e.2bpp"
-Tileset_0e_Meta:
-INCBIN "data/tilesets/tileset_0e_metatiles.bin"
-Tileset_0e_Coll:
-INCBIN "data/tilesets/tileset_0e_collision.bin"
+SECTION "gfx.asm@Bank 7 Tilesets Aquarium", ROMX
+Aquarium_GFX:
+INCBIN "gfx/tilesets/aquarium.2bpp"
+Aquarium_Meta:
+INCBIN "data/tilesets/aquarium_metatiles.bin"
+Aquarium_Coll:
+INCBIN "data/tilesets/aquarium_collision.bin"
 
-SECTION "gfx.asm@Bank 7 Tilesets 06", ROMX
-Tileset_06_GFX:
-INCBIN "gfx/tilesets/tileset_06.common.2bpp"
-Tileset_06_Meta:
-INCBIN "data/tilesets/tileset_06_metatiles.bin"
-Tileset_06_Coll:
-INCBIN "data/tilesets/tileset_06_collision.bin"
+SECTION "gfx.asm@Bank 7 Tilesets North", ROMX
+North_GFX:
+INCBIN "gfx/tilesets/north.common.2bpp"
+North_Meta:
+INCBIN "data/tilesets/north_metatiles.bin"
+North_Coll:
+INCBIN "data/tilesets/north_collision.bin"
 
-SECTION "gfx.asm@Bank 7 Tilesets 05", ROMX
-Tileset_05_GFX:
-INCBIN "gfx/tilesets/tileset_05.common.2bpp"
-Tileset_05_Meta:
-INCBIN "data/tilesets/tileset_05_metatiles.bin"
-Tileset_05_Coll:
-INCBIN "data/tilesets/tileset_05_collision.bin"
+SECTION "gfx.asm@Bank 7 Tilesets Font", ROMX
+Font_GFX:
+INCBIN "gfx/tilesets/font.common.2bpp"
+Font_Meta:
+INCBIN "data/tilesets/font_metatiles.bin"
+Font_Coll:
+INCBIN "data/tilesets/font_collision.bin"
 
-SECTION "gfx.asm@Bank 7 Tilesets 03", ROMX
-Tileset_03_GFX:
-INCBIN "gfx/tilesets/tileset_03.common.2bpp"
-Tileset_03_Meta:
-INCBIN "data/tilesets/tileset_03_metatiles.bin"
-Tileset_03_Coll:
-INCBIN "data/tilesets/tileset_03_collision.bin"
+SECTION "gfx.asm@Bank 7 Tilesets HighTech", ROMX
+HighTech_GFX:
+INCBIN "gfx/tilesets/hightech.common.2bpp"
+HighTech_Meta:
+INCBIN "data/tilesets/hightech_metatiles.bin"
+HighTech_Coll:
+INCBIN "data/tilesets/hightech_collision.bin"
 
-SECTION "gfx.asm@Bank 8 Tilesets 04", ROMX
-Tileset_04_GFX:
-INCBIN "gfx/tilesets/tileset_04.common.2bpp"
-Tileset_04_Meta:
-INCBIN "data/tilesets/tileset_04_metatiles.bin"
-Tileset_04_Coll:
-INCBIN "data/tilesets/tileset_04_collision.bin"
+SECTION "gfx.asm@Bank 8 Tilesets Birdon", ROMX
+Birdon_GFX:
+INCBIN "gfx/tilesets/birdon.common.2bpp"
+Birdon_Meta:
+INCBIN "data/tilesets/birdon_metatiles.bin"
+Birdon_Coll:
+INCBIN "data/tilesets/birdon_collision.bin"
 
-SECTION "gfx.asm@Bank 8 Tilesets 07", ROMX
-Tileset_07_GFX:
-INCBIN "gfx/tilesets/tileset_07.common.2bpp"
-Tileset_07_Meta:
-INCBIN "data/tilesets/tileset_07_metatiles.bin"
-Tileset_07_Coll:
-INCBIN "data/tilesets/tileset_07_collision.bin"
+SECTION "gfx.asm@Bank 8 Tilesets Kanto", ROMX
+Kanto_GFX:
+INCBIN "gfx/tilesets/kanto.common.2bpp"
+Kanto_Meta:
+INCBIN "data/tilesets/kanto_metatiles.bin"
+Kanto_Coll:
+INCBIN "data/tilesets/kanto_collision.bin"
 
-SECTION "gfx.asm@Bank 8 Tilesets 08", ROMX
-Tileset_08_GFX:
-INCBIN "gfx/tilesets/tileset_08.common.2bpp"
-Tileset_08_Meta:
-INCBIN "data/tilesets/tileset_08_metatiles.bin"
-Tileset_08_Coll:
-INCBIN "data/tilesets/tileset_08_collision.bin"
+SECTION "gfx.asm@Bank 8 Tilesets South", ROMX
+South_GFX:
+INCBIN "gfx/tilesets/south.common.2bpp"
+South_Meta:
+INCBIN "data/tilesets/south_metatiles.bin"
+South_Coll:
+INCBIN "data/tilesets/south_collision.bin"
 
-SECTION "gfx.asm@Bank 8 Tilesets 0f", ROMX
-Tileset_0f_GFX:
-INCBIN "gfx/tilesets/tileset_0f.2bpp"
-Tileset_0f_Meta:
-INCBIN "data/tilesets/tileset_0f_metatiles.bin"
-Tileset_0f_Coll:
-INCBIN "data/tilesets/tileset_0f_collision.bin"
+SECTION "gfx.asm@Bank 8 Tilesets Tower", ROMX
+Tower_GFX:
+INCBIN "gfx/tilesets/tower.2bpp"
+Tower_Meta:
+INCBIN "data/tilesets/tower_metatiles.bin"
+Tower_Coll:
+INCBIN "data/tilesets/tower_collision.bin"
 
-SECTION "gfx.asm@Bank 8 Tilesets 11", ROMX
-Tileset_11_GFX:
-INCBIN "gfx/tilesets/tileset_11.2bpp"
-Tileset_11_Meta:
-INCBIN "data/tilesets/tileset_11_metatiles.bin"
-Tileset_11_Coll:
-INCBIN "data/tilesets/tileset_11_collision.bin"
+SECTION "gfx.asm@Bank 8 Tilesets Gate", ROMX
+Gate_GFX:
+INCBIN "gfx/tilesets/gate.2bpp"
+Gate_Meta:
+INCBIN "data/tilesets/gate_metatiles.bin"
+Gate_Coll:
+INCBIN "data/tilesets/gate_collision.bin"
 
 SECTION "gfx.asm@Gameboy GFX", ROMX
 TradeGameBoyGFX::
 INCBIN "gfx/trade/gameboy.2bpp"
 
-SECTION "gfx.asm@Bank C Tilesets 12", ROMX
-Tileset_12_GFX:
-INCBIN "gfx/tilesets/tileset_12.2bpp"
-Tileset_12_Meta:
-INCBIN "data/tilesets/tileset_12_metatiles.bin"
-Tileset_12_Coll:
-INCBIN "data/tilesets/tileset_12_collision.bin"
+SECTION "gfx.asm@Bank C Tilesets Radio Tower", ROMX
+RadioTower_GFX:
+INCBIN "gfx/tilesets/radio_tower.2bpp"
+RadioTower_Meta:
+INCBIN "data/tilesets/radio_tower_metatiles.bin"
+RadioTower_Coll:
+INCBIN "data/tilesets/radio_tower_collision.bin"
 
-SECTION "gfx.asm@Bank C Tilesets 0b", ROMX
-Tileset_0b_GFX:
-INCBIN "gfx/tilesets/tileset_0b.2bpp"
-Tileset_0b_Meta:
-INCBIN "data/tilesets/tileset_0b_metatiles.bin"
-Tileset_0b_Coll:
-INCBIN "data/tilesets/tileset_0b_collision.bin"
+SECTION "gfx.asm@Bank C Tilesets Traditional House", ROMX
+TraditionalHouse_GFX:
+INCBIN "gfx/tilesets/traditional_house.2bpp"
+TraditionalHouse_Meta:
+INCBIN "data/tilesets/traditional_house_metatiles.bin"
+TraditionalHouse_Coll:
+INCBIN "data/tilesets/traditional_house_collision.bin"
 
-SECTION "gfx.asm@Bank C Tilesets 0d", ROMX
-Tileset_0d_GFX:
-INCBIN "gfx/tilesets/tileset_0d.2bpp"
-Tileset_0d_Meta:
-INCBIN "data/tilesets/tileset_0d_metatiles.bin"
-Tileset_0d_Coll:
-INCBIN "data/tilesets/tileset_0d_collision.bin"
+SECTION "gfx.asm@Bank C Tilesets Mart", ROMX
+Mart_GFX:
+INCBIN "gfx/tilesets/mart.2bpp"
+Mart_Meta:
+INCBIN "data/tilesets/mart_metatiles.bin"
+Mart_Coll:
+INCBIN "data/tilesets/mart_collision.bin"
 
-SECTION "gfx.asm@Bank C Tilesets 14", ROMX
-Tileset_14_GFX:
-INCBIN "gfx/tilesets/tileset_14.2bpp"
-Tileset_14_Meta:
-INCBIN "data/tilesets/tileset_14_metatiles.bin"
-Tileset_14_Coll:
-INCBIN "data/tilesets/tileset_14_collision.bin"
+SECTION "gfx.asm@Bank C Tilesets Gym", ROMX
+Gym_GFX:
+INCBIN "gfx/tilesets/gym.2bpp"
+Gym_Meta:
+INCBIN "data/tilesets/gym_metatiles.bin"
+Gym_Coll:
+INCBIN "data/tilesets/gym_collision.bin"
 
-SECTION "gfx.asm@Bank C Tilesets 0c", ROMX
-Tileset_0c_GFX:
-INCBIN "gfx/tilesets/tileset_0c.2bpp"
-Tileset_0c_Meta:
-INCBIN "data/tilesets/tileset_0c_metatiles.bin"
-Tileset_0c_Coll:
-INCBIN "data/tilesets/tileset_0c_collision.bin"
+SECTION "gfx.asm@Bank C Tilesets Pokecenter", ROMX
+Pokecenter_GFX:
+INCBIN "gfx/tilesets/pokecenter.2bpp"
+Pokecenter_Meta:
+INCBIN "data/tilesets/pokecenter_metatiles.bin"
+Pokecenter_Coll:
+INCBIN "data/tilesets/pokecenter_collision.bin"
 
 SECTION "gfx.asm@Bank C Tilesets Common", ROMX
 CommonExteriorTilesGFX:
@@ -323,37 +323,37 @@ KimonoGirlPic:: INCBIN "gfx/trainer/kimonogirl.pic"
 TwinsPic:: INCBIN "gfx/trainer/twins.pic"
 
 
-SECTION "gfx.asm@Bank 13 Tilesets 0a", ROMX
-Tileset_0a_GFX:
-INCBIN "gfx/tilesets/tileset_0a.2bpp"
-Tileset_0a_Meta:
-INCBIN "data/tilesets/tileset_0a_metatiles.bin"
-Tileset_0a_Coll:
-INCBIN "data/tilesets/tileset_0a_collision.bin"
+SECTION "gfx.asm@Bank 13 Tilesets Lab", ROMX
+Lab_GFX:
+INCBIN "gfx/tilesets/lab.2bpp"
+Lab_Meta:
+INCBIN "data/tilesets/lab_metatiles.bin"
+Lab_Coll:
+INCBIN "data/tilesets/lab_collision.bin"
 
-SECTION "gfx.asm@Bank 13 Tilesets 16", ROMX
-Tileset_16_GFX:
-INCBIN "gfx/tilesets/tileset_16.2bpp"
-Tileset_16_Meta:
-INCBIN "data/tilesets/tileset_16_metatiles.bin"
-Tileset_16_Coll:
-INCBIN "data/tilesets/tileset_16_collision.bin"
+SECTION "gfx.asm@Bank 13 Tilesets Ruins Of Alph", ROMX
+RuinsOfAlph_GFX:
+INCBIN "gfx/tilesets/ruins_of_alph.2bpp"
+RuinsOfAlph_Meta:
+INCBIN "data/tilesets/ruins_of_alph_metatiles.bin"
+RuinsOfAlph_Coll:
+INCBIN "data/tilesets/ruins_of_alph_collision.bin"
 
-SECTION "gfx.asm@Bank 13 Tilesets 19", ROMX
-Tileset_19_GFX:
-INCBIN "gfx/tilesets/tileset_19.2bpp"
-Tileset_19_Meta:
-INCBIN "data/tilesets/tileset_19_metatiles.bin"
-Tileset_19_Coll:
-INCBIN "data/tilesets/tileset_19_collision.bin"
+SECTION "gfx.asm@Bank 13 Tilesets Ship", ROMX
+Ship_GFX:
+INCBIN "gfx/tilesets/ship.common.2bpp"
+Ship_Meta:
+INCBIN "data/tilesets/ship_metatiles.bin"
+Ship_Coll:
+INCBIN "data/tilesets/ship_collision.bin"
 
-SECTION "gfx.asm@Bank 13 Tilesets 1a", ROMX
-Tileset_1a_GFX:
-INCBIN "gfx/tilesets/tileset_1a.2bpp"
-Tileset_1a_Meta:
-INCBIN "data/tilesets/tileset_1a_metatiles.bin"
-Tileset_1a_Coll:
-INCBIN "data/tilesets/tileset_1a_collision.bin"
+SECTION "gfx.asm@Bank 13 Tilesets Ship Port", ROMX
+ShipPort_GFX:
+INCBIN "gfx/tilesets/ship_port.common.2bpp"
+ShipPort_Meta:
+INCBIN "data/tilesets/ship_port_metatiles.bin"
+ShipPort_Coll:
+INCBIN "data/tilesets/ship_port_collision.bin"
 
 SECTION "gfx.asm@PKMN Sprite Bank List", ROMX
 INCLUDE "gfx/pokemon/pkmn_pic_banks.inc"
@@ -533,37 +533,37 @@ OldLinkReceptionistSpriteGFX:: INCBIN "gfx/sprites/old_link_receptionist.2bpp"
 EggSpriteGFX:: INCBIN "gfx/sprites/egg.2bpp"
 BoulderSpriteGFX:: INCBIN "gfx/sprites/boulder.2bpp"
 
-SECTION "gfx.asm@Bank 37 Tilesets 10", ROMX
-Tileset_10_GFX:
-INCBIN "gfx/tilesets/tileset_10.2bpp"
-Tileset_10_Meta:
-INCBIN "data/tilesets/tileset_10_metatiles.bin"
-Tileset_10_Coll:
-INCBIN "data/tilesets/tileset_10_collision.bin"
+SECTION "gfx.asm@Bank 37 Tilesets Dept Store", ROMX
+DeptStore_GFX:
+INCBIN "gfx/tilesets/dept_store.2bpp"
+DeptStore_Meta:
+INCBIN "data/tilesets/dept_store_metatiles.bin"
+DeptStore_Coll:
+INCBIN "data/tilesets/dept_store_collision.bin"
 
-SECTION "gfx.asm@Bank 37 Tilesets 15", ROMX
-Tileset_15_GFX:
-INCBIN "gfx/tilesets/tileset_15.2bpp"
-Tileset_15_Meta:
-INCBIN "data/tilesets/tileset_15_metatiles.bin"
-Tileset_15_Coll:
-INCBIN "data/tilesets/tileset_15_collision.bin"
+SECTION "gfx.asm@Bank 37 Tilesets Office", ROMX
+Office_GFX:
+INCBIN "gfx/tilesets/office.2bpp"
+Office_Meta:
+INCBIN "data/tilesets/office_metatiles.bin"
+Office_Coll:
+INCBIN "data/tilesets/office_collision.bin"
 
-SECTION "gfx.asm@Bank 37 Tilesets 17", ROMX
-Tileset_17_GFX:
-INCBIN "gfx/tilesets/tileset_17.2bpp"
-Tileset_17_Meta:
-INCBIN "data/tilesets/tileset_17_metatiles.bin"
-Tileset_17_Coll:
-INCBIN "data/tilesets/tileset_17_collision.bin"
+SECTION "gfx.asm@Bank 37 Tilesets Cave", ROMX
+Cave_GFX:
+INCBIN "gfx/tilesets/cave.2bpp"
+Cave_Meta:
+INCBIN "data/tilesets/cave_metatiles.bin"
+Cave_Coll:
+INCBIN "data/tilesets/cave_collision.bin"
 
-SECTION "gfx.asm@Bank 37 Tilesets 18", ROMX
-Tileset_18_GFX:
-INCBIN "gfx/tilesets/tileset_18.2bpp"
-Tileset_18_Meta:
-INCBIN "data/tilesets/tileset_18_metatiles.bin"
-Tileset_18_Coll:
-INCBIN "data/tilesets/tileset_18_collision.bin"
+SECTION "gfx.asm@Bank 37 Tilesets Power Plant", ROMX
+PowerPlant_GFX:
+INCBIN "gfx/tilesets/power_plant.2bpp"
+PowerPlant_Meta:
+INCBIN "data/tilesets/power_plant_metatiles.bin"
+PowerPlant_Coll:
+INCBIN "data/tilesets/power_plant_collision.bin"
 
 SECTION "gfx.asm@Poker GFX", ROMX
 PokerGFX::

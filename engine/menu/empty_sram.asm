@@ -409,7 +409,7 @@ UnknownMapBufferPointers:
 	db $01, $02, $A2, $D2, $72, $7C, $A2, $D3 ; ROUTE1P2
 	db $01, $05, $A3, $D2, $6B, $40, $A3, $D3 ; ROUTE1_GATE_1F
 	db $01, $06, $A4, $D2, $29, $41, $A4, $D3 ; ROUTE1_GATE_2F
-	db $01, $0F, $A5, $D2, $55, $56, $A5, $D3 ; SHIZUKANA_OKA
+	db $01, $0F, $A5, $D2, $55, $56, $A5, $D3 ; SILENT_HILLS
 	db $02, $11, $A6, $D2, $8F, $47, $A6, $D3 ; OLD_CITY_POKECENTER_2F
 	db -1
 
