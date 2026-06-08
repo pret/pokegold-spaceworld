@@ -226,6 +226,7 @@ ROMX $0b
 	"engine/items/print_item_description.asm"
 	"engine/items/tm_holder.asm"
 	"engine/pokemon/print_move_description.asm"
+	"slack.asm@Bank 0b Padding"
 
 ROMX $0c
 	"gfx.asm@Bank C Tilesets Radio Tower"
@@ -243,6 +244,7 @@ ROMX $0e
 	"data/trainers/class_names.asm"
 	"engine/dumps/bank0e.asm@ReadTrainerParty"
 	"data/trainers/parties.asm@Trainer Parties"
+	"slack.asm@Bank 0e Padding"
 
 ROMX $0f
 	"engine/battle/core.asm@DoBattle"
@@ -280,6 +282,7 @@ ROMX $14
 	"data/pokemon/base_stats.asm"
 	"data/pokemon/names.asm"
 	"gfx.asm@PKMN Sprite Bank List"
+	"slack.asm@Bank 14 Padding"
 
 ROMX $15
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 1"
@@ -315,9 +318,15 @@ ROMX $1f
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 11"
 	"gfx.asm@Annon Pic Ptrs and Pics"
 	"gfx/pokemon/egg.asm"
+	
+ROMX $20
+	"slack.asm@Bank 20 Padding"
 
 ROMX $21
 	"gfx.asm@Attack Animation GFX"
+
+ROMX $22
+	"slack.asm@Bank 22 Padding"
 
 ROMX $23
 	"engine/tileset_anims.asm"
@@ -660,6 +669,27 @@ ROMX $27
 	"data/maps/objects/NorthPokecenter2F.asm"
 	"scripts/NorthPokecenter2F.asm"
 
+ROMX $28
+	"slack.asm@Bank 28 Padding"
+
+ROMX $29
+	"slack.asm@Bank 29 Padding"
+
+ROMX $2a
+	"slack.asm@Bank 2a Padding"
+
+ROMX $2b
+	"slack.asm@Bank 2b Padding"
+
+ROMX $2c
+	"slack.asm@Bank 2c Padding"
+
+ROMX $2d
+	"slack.asm@Bank 2d Padding"
+
+ROMX $2e
+	"slack.asm@Bank 2e Padding"
+
 ROMX $2f
 	"data/maps/objects/PowerPlant1.asm"
 	"scripts/PowerPlant1.asm"
@@ -735,6 +765,9 @@ ROMX $34
 	"scripts/SilentHillLabBack.asm"
 	"data/maps/objects/UnusedMap13.asm"
 	"scripts/UnusedMap13.asm"
+
+ROMX $35
+	"slack.asm@Bank 35 Padding"
 
 ROMX $36
 	"scripts/dummy_text_pointers.asm"
@@ -874,6 +907,10 @@ ROMX $3c
 	"data/pokemon/cries.asm"
 	"audio/cries.asm"
 	"audio/songs/title.asm"
+	"slack.asm@Bank 3c Padding"
+
+ROMX $3d
+	"slack.asm@Bank 3d Padding"
 
 ROMX $3e
 	"engine/gfx/load_gfx.asm"
@@ -894,6 +931,7 @@ ROMX $3f
 	"engine/debug/sound_debug_menu.asm"
 	"engine/debug/monster_debug_menu.asm"
 	"engine/debug/subgame_debug_menu.asm"
+	"slack.asm@Bank 3f Padding"
 
 WRAM0
 	"Music engine RAM"

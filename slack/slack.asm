@@ -128,6 +128,136 @@ if DEF(_SILVER)
 INCBIN "slack/bank03padding_silver.bin"
 endc
 
+SECTION "slack.asm@Bank 0b Padding", ROMX
+Bank0bPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank0bpadding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank0bpadding_silver.bin"
+endc
+
+SECTION "slack.asm@Bank 0e Padding", ROMX
+Bank0ePadding:
+if DEF(_GOLD)
+INCBIN "slack/bank0epadding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank0epadding_silver.bin"
+endc
+
+SECTION "slack.asm@Bank 14 Padding", ROMX
+Bank14Padding:
+if DEF(_GOLD)
+INCBIN "slack/bank14padding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank14padding_silver.bin"
+endc
+
+SECTION "slack.asm@Bank 20 Padding", ROMX
+; Bank is unused besides filler.
+Bank20Padding:
+if DEF(_GOLD)
+INCBIN "slack/bank20padding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank20padding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 22 Padding", ROMX
+; Bank is unused besides filler.
+Bank22Padding:
+if DEF(_GOLD)
+INCBIN "slack/bank22padding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank22padding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 35 Padding", ROMX
+; Bank is unused besides filler.
+Bank35Padding:
+rept 23
+db $C9 
+endr
+if DEF(_GOLD)
+INCBIN "slack/bank35padding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank35padding_silver.bin"
+endc
+
+SECTION "slack.asm@Bank 28 Padding", ROMX
+; Bank is unused besides filler.
+Bank28Padding:
+if DEF(_GOLD)
+INCBIN "slack/bank28padding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank28padding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 29 Padding", ROMX
+; Bank is unused besides filler.
+Bank29Padding:
+if DEF(_GOLD)
+INCBIN "slack/bank29padding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank29padding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 2a Padding", ROMX
+; Bank is unused besides filler.
+Bank2aPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank2apadding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank2apadding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 2b Padding", ROMX
+; Bank is unused besides filler.
+Bank2bPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank2bpadding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank2bpadding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 2c Padding", ROMX
+; Bank is unused besides filler.
+Bank2cPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank2cpadding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank2cpadding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 2d Padding", ROMX
+; Bank is unused besides filler.
+Bank2dPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank2dpadding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank2dpadding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 2e Padding", ROMX
+; Bank is unused besides filler.
+Bank2ePadding:
+if DEF(_GOLD)
+INCBIN "slack/bank2epadding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank2epadding_silver.2bpp"
+endc
+
 SECTION "slack.asm@Bank 31 Padding", ROMX
 
 CorruptedSpriteGFX:
@@ -135,7 +265,7 @@ if DEF(_GOLD)
 INCBIN "slack/bank31padding_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank31padding_silver.bin"
+INCBIN "slack/bank31padding_silver.2bpp"
 endc
 
 SECTION "slack.asm@Bank 39 Padding", ROMX
@@ -146,4 +276,32 @@ INCBIN "slack/bank39padding_gold.bin"
 endc
 if DEF(_SILVER)
 INCBIN "slack/bank39padding_silver.bin"
+endc
+
+SECTION "slack.asm@Bank 3c Padding", ROMX
+Bank3cPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank3cpadding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank3cpadding_silver.bin"
+endc
+
+SECTION "slack.asm@Bank 3d Padding", ROMX
+; Bank is unused besides filler.
+Bank3dPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank3dpadding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank3dpadding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 3f Padding", ROMX
+Bank3fPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank3fpadding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank3fpadding_silver.bin"
 endc

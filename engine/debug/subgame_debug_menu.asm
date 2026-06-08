@@ -71,4 +71,6 @@ SubGameMenu_PicrossGame:
 SubGameMenu_SlotMachineGame:
 	callfar SlotMachineGame
 	ret
-
+; unreferenced
+	cpl
+	ret
