@@ -36,26 +36,48 @@ SECTION "gfx.asm@SGB GFX", ROMX
 INCLUDE "data/pokemon/palettes.inc"
 INCLUDE "data/sgb/super_palettes.inc"
 
+if DEF(_GOLD)
+
 AlternateSGBBorderTilemap::
-INCBIN "gfx/sgb/sgb_border_alt.sgb.tilemap"
+INCBIN "gfx/sgb/sgb_border_alt_gold.sgb.tilemap"
 
 AlternateSGBBorderPalettes:
-INCLUDE "gfx/sgb/sgb_border_alt.pal"
+INCLUDE "gfx/sgb/sgb_border_alt_gold.pal"
 
 AlternateSGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_alt.2bpp"
 
 SGBBorderTilemap::
-INCBIN "gfx/sgb/sgb_border.sgb.tilemap"
+INCBIN "gfx/sgb/sgb_border_gold.sgb.tilemap"
 
 SGBBorderPalettes:
-INCLUDE "gfx/sgb/sgb_border.pal"
+INCLUDE "gfx/sgb/sgb_border_gold.pal"
 
 SGBBorderGFX::
-if DEF(GOLD)
 INCBIN "gfx/sgb/sgb_border_gold.2bpp"
-else
+
+endc
+
+if DEF(_SILVER)
+
+AlternateSGBBorderTilemap::
+INCBIN "gfx/sgb/sgb_border_alt_silver.sgb.tilemap"
+
+AlternateSGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border_alt_silver.pal"
+
+AlternateSGBBorderGFX::
+INCBIN "gfx/sgb/sgb_border_alt.2bpp"
+
+SGBBorderTilemap::
+INCBIN "gfx/sgb/sgb_border_silver.sgb.tilemap"
+
+SGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border_silver.pal"
+
+SGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_silver.2bpp"
+
 endc
 
 SECTION "gfx.asm@Shrink GFX", ROMX
@@ -65,17 +87,20 @@ ShrinkPic2::
 INCBIN "gfx/player/shrink2.pic"
 
 SECTION "gfx.asm@Title Screen GFX", ROMX
-if DEF(GOLD)
 TitleScreenGFX:: INCBIN "gfx/title/title.2bpp"
+if DEF(_GOLD)
 TitleScreenVersionGFX:: INCBIN "gfx/title/title_gold_version.2bpp"
 TitleScreenHoOhGFX:: INCBIN "gfx/title/title_hooh.2bpp"
-TitleScreenLogoGFX:: INCBIN "gfx/title/title_logo.2bpp"
-TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_goldlogo.2bpp"
-else
-TitleScreenGFX:: INCBIN "gfx/title/title.2bpp"
+endc
+if DEF(_SILVER)
 TitleScreenVersionGFX:: INCBIN "gfx/title/title_silver_version.2bpp"
 TitleScreenHoOhGFX:: INCBIN "gfx/title/title_hooh.2bpp"
+endc
 TitleScreenLogoGFX:: INCBIN "gfx/title/title_logo.2bpp"
+if DEF(_GOLD)
+TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_goldlogo.2bpp"
+endc
+if DEF(_SILVER)
 TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_silverlogo.2bpp"
 endc
 

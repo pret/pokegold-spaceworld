@@ -112,6 +112,7 @@ ROMX $01
 	"data/items/names.asm"
 	"engine/overworld/object_collision.asm"
 	"engine/menu_options_menu.asm"
+	"slack.asm@Bank 01 Padding"
 
 ROMX $02
 	"engine/overworld/player_object.asm"
@@ -131,9 +132,7 @@ ROMX $02
 	"gfx.asm@Title Screen BG Decoration Border"
 	"engine/gfx/sgb_layouts.asm"
 	"gfx.asm@SGB GFX"
-	"slack.asm@Unknownaebc"
-	"slack.asm@Corrupted SGB GFX"
-	"slack.asm@Unknownbb43"
+	"slack.asm@Bank 02 Padding"
 
 ROMX $03
 	"engine/overworld/player_movement.asm@Player Movement"
@@ -159,6 +158,7 @@ ROMX $03
 	"engine/events/breeder.asm"
 	"engine/battle_anims/pokeball_wobble.asm"
 	"engine/pokemon/knows_move.asm"
+	"slack.asm@Bank 03 Padding"
 
 ROMX $04
 	"data/maps/maps.asm"
@@ -705,7 +705,7 @@ ROMX $30
 
 ROMX $31
 	"gfx.asm@Bank 31 Sprites 2"
-	"slack.asm@Corrupted Sprites"
+	"slack.asm@Bank 31 Padding"
 
 ROMX $32
 	"engine/battle_anims/bg_effects.asm"
@@ -847,7 +847,7 @@ ROMX $39
 	"gfx.asm@Intro Underwater GFX"
 	"gfx.asm@Intro Forest GFX"
 	"gfx.asm@Intro Mon"
-	"slack.asm@Unknowne7e9f"
+	"slack.asm@Bank 39 Padding"
 
 ROMX $3a
 	"audio/engine.asm"

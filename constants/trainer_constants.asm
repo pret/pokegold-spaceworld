@@ -59,6 +59,12 @@ ENDM
 	trainerclass TRAINER_FLEDGLING ; 18
 
 	trainerclass TRAINER_LASS ; 19
+if DEF(_GOLD)
+	const LASS_ATSUKO ; 01
+endc
+if DEF(_SILVER)
+	const LASS_HIZUKI ; 01
+endc
 
 	trainerclass TRAINER_PRODIGY ; 1a
 
@@ -82,10 +88,17 @@ ENDM
 	trainerclass TRAINER_MANCHILD ; 23
 
 	trainerclass TRAINER_BUG_CATCHER_BOY ; 24
+if DEF(_GOLD)
 	const BUG_CATCHER_BOY_JUNICHI ; 01
 	const BUG_CATCHER_BOY_SOUSUKE ; 02
+endc
+if DEF(_SILVER)
+	const BUG_CATCHER_BOY_KENJI ; 01
+	const BUG_CATCHER_BOY_KEN ; 02
+endc
 
 	trainerclass TRAINER_FISHER ; 25
+	const FISHER_HISASHI ; 01
 
 	trainerclass TRAINER_SWIMMER_M ; 26
 
@@ -115,7 +128,12 @@ ENDM
 	trainerclass TRAINER_BLACKBELT ; 32
 
 	trainerclass TRAINER_SPORTSMAN ; 33
+if DEF(_GOLD)
 	const SPORTSMAN_SHIGEKI ; 01
+endc
+if DEF(_SILVER)
+	const SPORTSMAN_TETSUJI ; 01
+endc
 
 	trainerclass TRAINER_PSYCHIC ; 34
 
@@ -134,8 +152,14 @@ ENDM
 	trainerclass TRAINER_GERUGE_MEMBER_F ; 3b
 
 	trainerclass TRAINER_KIMONO_GIRL ; 3c
+if DEF(_GOLD)
 	const KIMONO_GIRL_TAMAO ; 01
 	const KIMONO_GIRL_KOUME ; 02
+endc
+if DEF(_SILVER)
+	const KIMONO_GIRL_KOUME ; 01
+	const KIMONO_GIRL_TAMAO ; 02
+endc
 
 	trainerclass TRAINER_TWINS ; 3d
 

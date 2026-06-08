@@ -61,7 +61,12 @@ Route1P2Text2:
 	set 1, [hl]
 	ld a, TRAINER_KIMONO_GIRL
 	ld [wOtherTrainerClass], a
+if DEF(_GOLD)
 	ld a, KIMONO_GIRL_KOUME
+endc
+if DEF(_SILVER)
+	ld a, KIMONO_GIRL_TAMAO
+endc
 	ld [wOtherTrainerID], a
 	ld hl, wOverworldFlags
 	set 7, [hl]
@@ -80,6 +85,7 @@ Route1P2TextSign1:
 	call OpenTextbox
 	ret
 
+if DEF(_GOLD)
 Route1P2TextString1:
 	text "まあ　かわいらしい　トレーナーやこと"
 	line "うちと　ポケモン　しはります？"
@@ -93,13 +99,35 @@ Route1P2TextString3:
 	text "かわいい　かおして　つよおすなあ"
 	line "その　ちょうしで　おきばりやす"
 	done
+endc
+if DEF(_SILVER)
+Route1P2TextString1:
+	text "うちの　ポケモン"
+	line "そら　もう　かわいいんどすえ"
+	done
+
+Route1P2TextString2: ; (unused?)
+	text "うそでしょー！"
+	line "じゃなくて　なに　しはるんよ"
+	done
+
+Route1P2TextString3:
+	text "プりンちゃんが　かわいそ　どす"
+	done
+endc
 
 Route1P2TextString4:
+if DEF(_GOLD)
 	text "シゲル『おっ　サトシじゃないか！"
 
 	para "なんとか　ここまで　これた"
 	line "って　かんじだな"
-
+endc
+if DEF(_SILVER)
+	text "サトシ『おっ　シゲルじゃないか"
+	line "なんとか　ここまで　これた"
+	cont "って　かんじだな"
+endc
 	para "じつりょくが　ないのに"
 	line "むり　するなよな"
 

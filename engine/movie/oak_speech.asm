@@ -367,10 +367,20 @@ DemoItemList::
 	db -1
 
 DemoPlayerName::
+if DEF(_GOLD)
 	db "サトシ@"
+endc
+if DEF(_SILVER)
+	db "シゲル@"
+endc
 
 DemoRivalName::
+if DEF(_GOLD)
 	db "シゲル@"
+endc
+if DEF(_SILVER)
+	db "サトシ@"
+endc
 
 OakSpeechDemo::
 	text "ようこそ"
@@ -528,9 +538,16 @@ PlayerNameMenuData:
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
 	db 04 ; items
 	db "じぶんできめる@"
+if DEF(_GOLD)
 	db "ゴールド@"
 	db "サトシ@"
 	db "ジャック@"
+endc
+if DEF(_SILVER)
+	db "シルバー@"
+	db "シゲル@"
+	db "ジョン@"
+endc
 	db 3 ; x offset for the title string
 	db "なまえこうほ@"
 
@@ -581,9 +598,16 @@ RivalNameMenuData:
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
 	db 04 ; items
 	db "じぶんできめる@"
+if DEF(_GOLD)
 	db "シルバー@"
 	db "シゲル@"
 	db "ジョン@"
+endc
+if DEF(_SILVER)
+	db "ゴールド@"
+	db "サトシ@"
+	db "ジャック@"
+endc
 	db 3
 	db "なまえこうほ@"
 

@@ -444,8 +444,3 @@ TextSpeedOptionData:
 	db  8, TEXT_DELAY_MED
 	db  1, TEXT_DELAY_FAST
 	db  8, -1
-
-Unknown7c2a:
-rept 491
-	db $39, $00
-endr
