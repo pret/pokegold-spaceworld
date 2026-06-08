@@ -24,7 +24,7 @@ def get_project_dir():
 	
 def get_baserom_path():
 	project_dir = get_project_dir()
-	return os.path.join(project_dir, 'baserom.gb')
+	return os.path.join(project_dir, 'baserom-gold.gb')
 
 def dump_strings(data):
 	charmap = read_charmap()

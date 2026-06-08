@@ -33,21 +33,24 @@ jobs:
         run: |
           rm -rf rgbds
 
-      - name: Cache baserom
-        id: cache-baserom
+      - name: Cache baseroms
+        id: cache-baseroms
         uses: actions/cache@v5
         with:
-          path: baserom.gb
-          key: ${{ runner.os }}-baserom
+          path: baserom-gold.gb baserom-silver.gb
+          key: ${{ runner.os }}-baseroms
 
-      - name: Download baserom
-        if: steps.cache-baserom.outputs.cache-hit != 'true'
+      - name: Download baseroms
+        if: steps.cache-baseroms.outputs.cache-hit != 'true'
         run: |
           sudo apt-get install wget p7zip-full
-          wget -O roms.7z 'https://tcrf.net/images/3/33/Pok%C3%A9mon_Gold_-_Spaceworld_1997_Demo_%28Debug%29.7z'
-          7z e roms.7z
-          mv P*\(Debug\).sgb baserom.gb
-          rm -f roms.7z P*\(Header\ Fixed\).sgb
+          wget -O gold-debug.7z 'https://tcrf.net/images/3/33/Pok%C3%A9mon_Gold_-_Spaceworld_1997_Demo_%28Debug%29.7z'
+          wget -O silver-debug.7z 'https://tcrf.net/images/b/b2/Pok%C3%A9mon_Silver_-_Spaceworld_1997_Demo_%28Debug%29.7z'
+          7z e gold-debug.7z
+          mv P*\(Debug\).sgb baserom-gold.gb
+          7z e gold-debug.7z
+          mv P*\(Debug\).sgb baserom-silver.gb
+          rm -f *.7z P*\(Header\ Fixed\).sgb
 
       - name: Compare
         run: |

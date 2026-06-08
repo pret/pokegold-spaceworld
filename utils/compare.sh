@@ -1,11 +1,11 @@
 #!/bin/sh
-# Compares baserom.gb and pokegold-spaceworld.gb
+# Compares baserom-gold.gb and pokegold-spaceworld.gb
 
-# create baserom.txt if necessary
-if [ ! -f baserom.txt ]; then
-    hexdump -C baserom.gb > baserom.txt
+# create baserom-gold.txt if necessary
+if [ ! -f baserom-gold.txt ]; then
+    hexdump -C baserom-gold.gb > baserom-gold.txt
 fi
 
 hexdump -C pokegold-spaceworld.gb > pokegold-spaceworld.txt
 
-diff -u baserom.txt pokegold-spaceworld.txt | less
+diff -u baserom-gold.txt pokegold-spaceworld.txt | less
