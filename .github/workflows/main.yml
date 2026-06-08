@@ -48,7 +48,7 @@ jobs:
           wget -O silver-debug.7z 'https://tcrf.net/images/b/b2/Pok%C3%A9mon_Silver_-_Spaceworld_1997_Demo_%28Debug%29.7z'
           7z e gold-debug.7z
           mv P*\(Debug\).sgb baserom-gold.gb
-          7z e gold-debug.7z
+          7z e silver-debug.7z
           mv P*\(Debug\).sgb baserom-silver.gb
           rm -f *.7z P*\(Header\ Fixed\).sgb
 
