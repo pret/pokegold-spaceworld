@@ -190,7 +190,7 @@ DebugFillPokedex::
 	ld b, $1F
 	ld a, $FF
 .loop
-	ld [hl+], a
+	ld [hli], a
 	dec b
 	jr nz, .loop
 	ld [hl], $07
@@ -329,7 +329,7 @@ DebugGiveKeyItems::
 	ld c, $FF
 .loop
 	inc c
-	ld a, [hl+]
+	ld a, [hli]
 	ld [de], a
 	inc de
 	cp $FF

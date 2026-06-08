@@ -502,7 +502,7 @@ GetLabPokemon:
 	ld a, [wd266]
 	ld b, a
 .loop
-	ld a, [hl+]
+	ld a, [hli]
 	cp b
 	jr nz, .jump
 	ld a, [hl]

@@ -39,9 +39,14 @@ _DebugMenuSoundTest::
 	ret
 
 .a_pressed
+; BUG: The selected sound won't play as the PlaySFX call isn't present.
+; Loading the soundbank is pointless as all sounds share the same bank, this would be correct in pokered.
 	ldh a, [hDebugMenuSoundBank]
 	ld c, a
 	ldh a, [hDebugMenuSoundID]
+;	ld e, a
+;	ld d, 0
+;	callfar PlaySFX
 	jr .RefreshScreenAndLoop
 
 .up_pressed

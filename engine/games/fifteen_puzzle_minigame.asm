@@ -123,7 +123,7 @@ FifteenPuzzleMinigame:
 	ld a, [de]
 	inc de
 	add a, FIFTEENPUZZLE_PANEL_COUNT
-	ld [hl+], a
+	ld [hli], a
 	dec c
 	jr nz, .LoadGFXBuffersLoop
 	ret
@@ -241,7 +241,7 @@ FifteenPuzzleMinigame:
 	ld hl, .PositionJumptable
 	add hl, de
 	add hl, de
-	ld a, [hl+]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
@@ -435,7 +435,7 @@ FifteenPuzzleMinigame_Tilemap:
 	add hl, de
 	ld b, [hl]
 	inc hl
-	ld a, [hl+]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld de, wFifteenPuzzleGFXPointer
@@ -513,7 +513,7 @@ FifteenPuzzleMinigame_Tilemap:
 .LoadTilemap_Loop:
 	push bc
 	push hl
-	ld a, [hl+]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	
@@ -525,7 +525,7 @@ FifteenPuzzleMinigame_Tilemap:
 	ld a, 4
 .LoadTilemap_Loop_2:
 	push af
-	ld a, [hl+]
+	ld a, [hli]
 	ld [de], a
 	inc de
 	pop af
@@ -568,7 +568,7 @@ FifteenPuzzleMinigame_Tilemap:
 .PlaceTiles_Pass:
 	ld e, a
 
-	ld a, [hl+]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 
@@ -596,7 +596,7 @@ FifteenPuzzleMinigame_Tilemap:
 	push af
 	ld a, [de]
 	inc de
-	ld [hl+], a
+	ld [hli], a
 	pop af
 	dec a
 	jr nz, .PlaceTiles_Loop_2
@@ -632,7 +632,7 @@ FifteenPuzzleMinigame_Tilemap:
 	ld c, FIFTEENPUZZLE_PANEL_COUNT
 	xor a
 .InitShufflePuzzleLayout_Loop:
-	ld [hl+], a
+	ld [hli], a
 	inc a
 	dec c
 	jr nz, .InitShufflePuzzleLayout_Loop
@@ -661,7 +661,7 @@ FifteenPuzzleMinigame_Tilemap:
 .ShufflePuzzleLayout_Loop:
 	ld a, [de]
 	inc de
-	ld [hl+], a
+	ld [hli], a
 	dec c
 	jr nz, .ShufflePuzzleLayout_Loop
 	ld bc, FIFTEENPUZZLE_PANEL_COUNT
@@ -704,7 +704,7 @@ FifteenPuzzleMinigame_Tilemap:
 	inc hl
 	ld c, 7
 .SlideFinalPanelLeft_Loop:
-	ld a, [hl+]
+	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
@@ -737,7 +737,7 @@ FifteenPuzzleMinigame_Tilemap:
 	inc hl
 	ld c, SCREEN_WIDTH - 5					; Scroll Start Offset
 .SlidePuzzleLeft_Move_Loop:
-	ld a, [hl+]
+	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
@@ -809,6 +809,7 @@ FifteenPuzzleMinigame_Tilemap:
 
 SECTION "engine/games/fifteen_puzzle_minigame.asm@FifteenPuzzleIconTable", ROMX
 	FifteenPuzzleIconTable:				; Icons used in the minigame are pulled from this table.
+	table_width 3
 	dba RhydonSpriteGFX
 	dba ClefairySpriteGFX
 	dba PidgeySpriteGFX
@@ -817,3 +818,4 @@ SECTION "engine/games/fifteen_puzzle_minigame.asm@FifteenPuzzleIconTable", ROMX
 	dba SeelSpriteGFX
 	dba PoliwrathSpriteGFX
 	dba LaprasSpriteGFX
+	assert_table_length 8

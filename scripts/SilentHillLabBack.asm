@@ -98,7 +98,7 @@ SilentHillLabBackRivalChoosePokemon:
 	ld e, a
 	add hl, de
 	add hl, de
-	ld a, [hl+]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, 3
@@ -319,7 +319,7 @@ SilentHillLabBackFunc4:
 	add hl, de
 	add hl, de
 	add hl, de
-	ld a, [hl+]
+	ld a, [hli]
 	ld [wd265], a
 	push hl
 	ld [wNamedObjectIndexBuffer], a
@@ -329,7 +329,7 @@ SilentHillLabBackFunc4:
 	call GetPokemonName
 	pop hl
 	push hl
-	ld a, [hl+]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	call OpenTextbox

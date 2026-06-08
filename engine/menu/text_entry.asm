@@ -145,7 +145,7 @@ GetNamingScreenSetup:
 	call Request2bpp
 	ld a, $08
 	ld hl, wTileMapBackup
-	ld [hl+], a
+	ld [hli], a
 	ld [hl], $00
 	depixel 4, 4, 4, 0
 	ld a, SPRITE_ANIM_OBJ_MAP_CHARACTER_ICON
@@ -228,7 +228,7 @@ NamingScreen_InitText:
 
 .innerloop
 	ld a, [de]
-	ld [hl+], a
+	ld [hli], a
 	inc de
 	dec c
 	jr nz, .innerloop
