@@ -405,10 +405,11 @@ UnknownMapBufferPointers:
 	db $01, $0D, $9E, $D2, $73, $5C, $9E, $D3 ; SILENT_HILL_LAB_BACK
 	db $01, $0A, $9F, $D2, $8C, $46, $9F, $D3 ; SILENT_HILL_POKECENTER
 	db $01, $0B, $A0, $D2, $43, $48, $A0, $D3 ; SILENT_HILL_HOUSE
-if DEF(GOLD)
+if DEF(_GOLD)
 	db $01, $01, $A1, $D2, $A2, $7B, $A1, $D3 ; ROUTE1P1
 	db $01, $02, $A2, $D2, $72, $7C, $A2, $D3 ; ROUTE1P2
-else
+endc
+if DEF(_SILVER)
 	db $01, $01, $A1, $D2, $AC, $7B, $A1, $D3 ; ROUTE1P1
 	db $01, $02, $A2, $D2, $7C, $7C, $A2, $D3 ; ROUTE1P2
 endc

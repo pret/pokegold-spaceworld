@@ -3,27 +3,29 @@ INCLUDE "constants.asm"
 SECTION "slack.asm@Bank 01 Padding", ROMX
 
 Bank01Padding:
-if DEF(GOLD)
+if DEF(_GOLD)
 rept 491
 	db $39, $00
 endr
-else
+endc
+if DEF(_SILVER)
 INCBIN "slack/bank01padding_silver.bin"
 endc
 
 SECTION "slack.asm@Bank 02 Padding", ROMX
 
 Bank02Padding:
-if DEF(GOLD)
+if DEF(_GOLD)
 INCBIN "slack/bank02padding_gold.bin"
-else
+endc
+if DEF(_SILVER)
 INCBIN "slack/bank02padding_silver.bin"
 endc
 
 SECTION "slack.asm@Bank 03 Padding", ROMX
 
 Bank03Padding:
-if DEF(GOLD)
+if DEF(_GOLD)
 Unreferenced_BootedHMTextfde0:
 	db "います"
 	prompt
@@ -121,24 +123,27 @@ Unreferenced_Fillerfe23:
 	db $f5, $d7, $7f, $ff, $fe, $b5, $ff, $9f
 	db $95, $7a, $6b, $7b, $ff, $6f, $bb, $c7
 	db $ef, $34, $ff, $d7, $3d
-else
+endc
+if DEF(_SILVER)
 INCBIN "slack/bank03padding_silver.bin"
 endc
 
 SECTION "slack.asm@Bank 31 Padding", ROMX
 
 CorruptedSpriteGFX:
-if DEF(GOLD)
+if DEF(_GOLD)
 INCBIN "slack/bank31padding_gold.2bpp"
-else
+endc
+if DEF(_SILVER)
 INCBIN "slack/bank31padding_silver.bin"
 endc
 
 SECTION "slack.asm@Bank 39 Padding", ROMX
 
 Bank39Padding:
-if DEF(GOLD)
+if DEF(_GOLD)
 INCBIN "slack/bank39padding_gold.bin"
-else
+endc
+if DEF(_SILVER)
 INCBIN "slack/bank39padding_silver.bin"
 endc

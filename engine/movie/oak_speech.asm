@@ -367,16 +367,18 @@ DemoItemList::
 	db -1
 
 DemoPlayerName::
-if DEF(GOLD)
+if DEF(_GOLD)
 	db "サトシ@"
-else
+endc
+if DEF(_SILVER)
 	db "シゲル@"
 endc
 
 DemoRivalName::
-if DEF(GOLD)
+if DEF(_GOLD)
 	db "シゲル@"
-else
+endc
+if DEF(_SILVER)
 	db "サトシ@"
 endc
 
@@ -536,11 +538,12 @@ PlayerNameMenuData:
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
 	db 04 ; items
 	db "じぶんできめる@"
-if DEF(GOLD)
+if DEF(_GOLD)
 	db "ゴールド@"
 	db "サトシ@"
 	db "ジャック@"
-else
+endc
+if DEF(_SILVER)
 	db "シルバー@"
 	db "シゲル@"
 	db "ジョン@"
@@ -595,11 +598,12 @@ RivalNameMenuData:
 	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
 	db 04 ; items
 	db "じぶんできめる@"
-if DEF(GOLD)
+if DEF(_GOLD)
 	db "シルバー@"
 	db "シゲル@"
 	db "ジョン@"
-else
+endc
+if DEF(_SILVER)
 	db "ゴールド@"
 	db "サトシ@"
 	db "ジャック@"

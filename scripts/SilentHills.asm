@@ -52,11 +52,12 @@ SilentHillsTrainer2:
 	call OpenTextbox
 	ld hl, wd3a5
 	set 1, [hl]
-IF DEF(GOLD)
+if DEF(_GOLD)
 	ld a, TRAINER_SCHOOLBOY
 	ld [wOtherTrainerClass], a
 	ld a, SCHOOLBOY_TETSUYA
-else
+endc
+if DEF(_SILVER)
 	ld a, TRAINER_SPORTSMAN
 	ld [wOtherTrainerClass], a
 	ld a, SPORTSMAN_TETSUJI
@@ -77,11 +78,12 @@ SilentHillsTrainer3:
 	call OpenTextbox
 	ld hl, wd3a5
 	set 2, [hl]
-IF DEF(GOLD)
+if DEF(_GOLD)
 	ld a, TRAINER_BUG_CATCHER_BOY
 	ld [wOtherTrainerClass], a
 	ld a, BUG_CATCHER_BOY_JUNICHI
-else
+endc
+if DEF(_SILVER)
 	ld a, TRAINER_BUG_CATCHER_BOY
 	ld [wOtherTrainerClass], a
 	ld a, BUG_CATCHER_BOY_KEN
@@ -102,11 +104,12 @@ SilentHillsTrainer4:
 	call OpenTextbox
 	ld hl, wd3a5
 	set 3, [hl]
-IF DEF(GOLD)
+if DEF(_GOLD)
 	ld a, TRAINER_FIREBREATHER
 	ld [wOtherTrainerClass], a
 	ld a, FIREBREATHER_AKITO
-else
+endc
+if DEF(_SILVER)
 	ld a, TRAINER_FISHER
 	ld [wOtherTrainerClass], a
 	ld a, FISHER_HISASHI
@@ -127,11 +130,12 @@ SilentHillsTrainer5:
 	call OpenTextbox
 	ld hl, wd3a5
 	set 4, [hl]
-IF DEF(GOLD)
+if DEF(_GOLD)
 	ld a, TRAINER_BEAUTY
 	ld [wOtherTrainerClass], a
 	ld a, BEAUTY_MEGUMI
-else
+endc
+if DEF(_SILVER)
 	ld a, TRAINER_LASS
 	ld [wOtherTrainerClass], a
 	ld a, LASS_HIZUKI
@@ -152,11 +156,12 @@ SilentHillsTrainer6:
 	call OpenTextbox
 	ld hl, wd3a5
 	set 5, [hl]
-IF DEF(GOLD)
+if DEF(_GOLD)
 	ld a, TRAINER_BUG_CATCHER_BOY
 	ld [wOtherTrainerClass], a
 	ld a, BUG_CATCHER_BOY_SOUSUKE
-else
+endc
+if DEF(_SILVER)
 	ld a, TRAINER_BUG_CATCHER_BOY
 	ld [wOtherTrainerClass], a
 	ld a, BUG_CATCHER_BOY_KENJI
@@ -179,7 +184,8 @@ SilentHillsSignpost1:
 	call OpenTextbox
 	ret
 
-if DEF(GOLD)
+if DEF(_GOLD)
+
 SilentHillsTrainer6EncounterString:
 	text "ねえ　ねえ　みてよ"
 
@@ -257,7 +263,9 @@ SilentHillsTrainer2WonString:
 	cont "きちんと　してるのに　まけるなんて"
 	done
 
-else
+endc
+
+if DEF(_SILVER)
 
 SilentHillsTrainer6EncounterString:
 	text "じゃーん！"

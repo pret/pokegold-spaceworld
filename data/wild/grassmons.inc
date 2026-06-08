@@ -5,11 +5,12 @@ GrassWildMons::
 	map_id ROUTE_1_P1
 	db 8 percent, 8 percent, 8 percent ; encounter rates: morn/day/nite
 	; morn
-if DEF(GOLD)
+if DEF(_GOLD)
 	db 7, DEX_SUNNY
 	db 3, DEX_SUNNY
 	db 5, DEX_SUNNY
-else
+endc
+if DEF(_SILVER)
 	db 8, DEX_PIDGEY
 	db 8, DEX_PIDGEY
 	db 7, DEX_PIDGEY
@@ -21,9 +22,10 @@ endc
 	db 4, DEX_RATTATA
 	db 6, DEX_KIRINRIKI
 	db 4, DEX_KIRINRIKI
-if DEF(GOLD)
+if DEF(_GOLD)
 	db 4, DEX_HANEKO
-else
+endc
+if DEF(_SILVER)
 	db 4, DEX_MARIL
 endc
 	db 4, DEX_PIDGEY
@@ -32,10 +34,11 @@ endc
 	db 7, DEX_RATTATA
 	db 5, DEX_RATTATA
 	db 5, DEX_RATTATA
-if DEF(GOLD)
+if DEF(_GOLD)
 	db 7, DEX_RATTATA
 	db 8, DEX_RATTATA
-else
+endc
+if DEF(_SILVER)
 	db 5, DEX_HOHO
 	db 3, DEX_HOHO
 endc
@@ -44,11 +47,12 @@ endc
 	map_id ROUTE_1_P2
 	db 8 percent, 8 percent, 8 percent ; encounter rates: morn/day/nite
 	; morn
-if DEF(GOLD)
+if DEF(_GOLD)
 	db 6, DEX_SUNNY
 	db 6, DEX_SUNNY
 	db 6, DEX_SUNNY
-else
+endc
+if DEF(_SILVER)
 	db 8, DEX_PIDGEY
 	db 8, DEX_PIDGEY
 	db 6, DEX_PIDGEY
@@ -60,9 +64,10 @@ endc
 	db 5, DEX_PIDGEY
 	db 7, DEX_YOROIDORI
 	db 5, DEX_RATTATA
-if DEF(GOLD)
+if DEF(_GOLD)
 	db 8, DEX_HANEKO
-else
+endc
+if DEF(_SILVER)
 	db 8, DEX_MARIL
 endc
 	db 4, DEX_PIDGEY
@@ -70,9 +75,10 @@ endc
 	; nite
 	db 7, DEX_RATTATA
 	db 6, DEX_EKANS
-if DEF(GOLD)
+if DEF(_GOLD)
 	db 6, DEX_RATTATA
-else
+endc
+if DEF(_SILVER)
 	db 6, DEX_HOHO
 endc
 	db 7, DEX_EKANS
@@ -620,9 +626,10 @@ endc
 	db 6, DEX_PIDGEY
 	db 4, DEX_CATERPIE
 	db 6, DEX_CATERPIE
-if DEF(GOLD)
+if DEF(_GOLD)
 	db 6, DEX_HANEKO
-else
+endc
+if DEF(_SILVER)
 	db 6, DEX_MARIL
 endc
 	db 5, DEX_CATERPIE
@@ -630,9 +637,10 @@ endc
 	; nite
 	db 4, DEX_METAPOD
 	db 6, DEX_RATTATA
-if DEF(GOLD)
+if DEF(_GOLD)
 	db 6, DEX_CATERPIE
-else
+endc
+if DEF(_SILVER)
 	db 5, DEX_HOHO
 endc
 	db 6, DEX_REDIBA

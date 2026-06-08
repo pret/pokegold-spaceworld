@@ -13,9 +13,10 @@ SECTION "home/init.asm@Entry point", ROM0
 SECTION "home/init.asm@Global check value", ROM0
 ; The ROM has an incorrect global check, so set it here.
 ; It is not corrected by RGBFIX.
-if DEF(GOLD)
+if DEF(_GOLD)
 	dw $C621
-else
+endc
+if DEF(_SILVER)
 	dw $2FC9
 endc
 

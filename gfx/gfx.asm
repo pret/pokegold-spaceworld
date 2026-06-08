@@ -36,7 +36,7 @@ SECTION "gfx.asm@SGB GFX", ROMX
 INCLUDE "data/pokemon/palettes.inc"
 INCLUDE "data/sgb/super_palettes.inc"
 
-if DEF(GOLD)
+if DEF(_GOLD)
 
 AlternateSGBBorderTilemap::
 INCBIN "gfx/sgb/sgb_border_alt_gold.sgb.tilemap"
@@ -56,7 +56,9 @@ INCLUDE "gfx/sgb/sgb_border_gold.pal"
 SGBBorderGFX::
 INCBIN "gfx/sgb/sgb_border_gold.2bpp"
 
-else
+endc
+
+if DEF(_SILVER)
 
 AlternateSGBBorderTilemap::
 INCBIN "gfx/sgb/sgb_border_alt_silver.sgb.tilemap"
@@ -85,17 +87,20 @@ ShrinkPic2::
 INCBIN "gfx/player/shrink2.pic"
 
 SECTION "gfx.asm@Title Screen GFX", ROMX
-if DEF(GOLD)
 TitleScreenGFX:: INCBIN "gfx/title/title.2bpp"
+if DEF(_GOLD)
 TitleScreenVersionGFX:: INCBIN "gfx/title/title_gold_version.2bpp"
 TitleScreenHoOhGFX:: INCBIN "gfx/title/title_hooh.2bpp"
-TitleScreenLogoGFX:: INCBIN "gfx/title/title_logo.2bpp"
-TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_goldlogo.2bpp"
-else
-TitleScreenGFX:: INCBIN "gfx/title/title.2bpp"
+endc
+if DEF(_SILVER)
 TitleScreenVersionGFX:: INCBIN "gfx/title/title_silver_version.2bpp"
 TitleScreenHoOhGFX:: INCBIN "gfx/title/title_hooh.2bpp"
+endc
 TitleScreenLogoGFX:: INCBIN "gfx/title/title_logo.2bpp"
+if DEF(_GOLD)
+TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_goldlogo.2bpp"
+endc
+if DEF(_SILVER)
 TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_silverlogo.2bpp"
 endc
 

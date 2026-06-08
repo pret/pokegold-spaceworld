@@ -59,13 +59,12 @@ Route1P2Text2:
 	call OpenTextbox
 	ld hl, $D3A2
 	set 1, [hl]
-if DEF(GOLD)
 	ld a, TRAINER_KIMONO_GIRL
 	ld [wOtherTrainerClass], a
+if DEF(_GOLD)
 	ld a, KIMONO_GIRL_KOUME
-else
-	ld a, TRAINER_KIMONO_GIRL
-	ld [wOtherTrainerClass], a
+endc
+if DEF(_SILVER)
 	ld a, KIMONO_GIRL_TAMAO
 endc
 	ld [wOtherTrainerID], a
@@ -86,7 +85,7 @@ Route1P2TextSign1:
 	call OpenTextbox
 	ret
 
-if DEF(GOLD)
+if DEF(_GOLD)
 Route1P2TextString1:
 	text "まあ　かわいらしい　トレーナーやこと"
 	line "うちと　ポケモン　しはります？"
@@ -100,7 +99,8 @@ Route1P2TextString3:
 	text "かわいい　かおして　つよおすなあ"
 	line "その　ちょうしで　おきばりやす"
 	done
-else
+endc
+if DEF(_SILVER)
 Route1P2TextString1:
 	text "うちの　ポケモン"
 	line "そら　もう　かわいいんどすえ"
@@ -117,12 +117,13 @@ Route1P2TextString3:
 endc
 
 Route1P2TextString4:
-if DEF(GOLD)
+if DEF(_GOLD)
 	text "シゲル『おっ　サトシじゃないか！"
 
 	para "なんとか　ここまで　これた"
 	line "って　かんじだな"
-else
+endc
+if DEF(_SILVER)
 	text "サトシ『おっ　シゲルじゃないか"
 	line "なんとか　ここまで　これた"
 	cont "って　かんじだな"
