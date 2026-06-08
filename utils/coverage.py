@@ -8,7 +8,7 @@ Generate a PNG visualizing the space used by each bank in the ROM.
 """
 
 import sys
-from pokemontools import png
+import png
 from colorsys import hls_to_rgb
 
 from mapreader import MapReader
@@ -63,7 +63,7 @@ def main():
 
     png_data = [tuple(c for pixel in row for c in pixel) for row in pixels]
     with open(filename, 'wb') as f:
-        w = png.Writer(width, height)
+        w = png.Writer(width, height, greyscale=False, bitdepth=8, compression=9)
         w.write(f, png_data)
 
 if __name__ == '__main__':
