@@ -18,7 +18,7 @@ Unreferenced_GetMoveSound:
 	add hl, de
 	add hl, de
 
-	ld a, [hl+] ; Monster
+	ld a, [hli]
 	ld e, a 
 	ld d, 0
 	
@@ -42,7 +42,7 @@ Unreferenced_GetMoveSound:
 	ld d, 0
 	push hl
 	ld hl, wCryPitch
-	ld a, [hl+]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, de
@@ -56,7 +56,7 @@ Unreferenced_GetMoveSound:
 	ld e, [hl]
 	ld d, 0
 	ld hl, wCryLength
-	ld a, [hl+]
+	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	add hl, de
@@ -70,7 +70,7 @@ Unreferenced_GetMoveSound:
 	pop de
 	ret
 .NotCryMove:
-	ld a, [hl+]
+	ld a, [hli]
 	ld [wCryPitch], a
 	xor a
 	ld [wCryPitch + 1], a
