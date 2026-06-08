@@ -4,7 +4,7 @@ SECTION "data/moves/animations.asm", ROMX
 
 BattleAnimations::
 ; entries correspond to constants/move_constants.asm
-	table_width 2, BattleAnimations
+	table_width 2
 	dw BattleAnim_Dummy
 	dw BattleAnim_Pound
 	dw BattleAnim_KarateChop

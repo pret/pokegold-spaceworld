@@ -259,9 +259,6 @@ MonsterTest_SelectedMenu:
 	call GetJoypadDebounced
 
 	ld hl, hJoySum
-;	ld a, [hl]
-;	and (START)
-;	jr nz, .increment_unown
 	ld a, [hl]
 	and (A_BUTTON | B_BUTTON)
 	ret nz
@@ -290,15 +287,6 @@ MonsterTest_SelectedMenu:
 	ld a, c
 	ld [wTempSpecies], a
 	jp MonsterTest_SelectedMenu
-;.increment_unown:
-;	ld a, [wUnownDex]
-;	inc a
-;	ld [wUnownDex], a
-;	cp NUM_ANNON + 1
-;	jr c, MonsterTest_SelectedMenu
-;	ld a, 1
-;	ld [wUnownDex], a
-;	jr z, MonsterTest_SelectedMenu
 
 MonsterTest_PlaceBorder:
 	ld de, 20

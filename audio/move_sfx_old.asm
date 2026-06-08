@@ -102,7 +102,7 @@ Unreferenced_GetMoveSound:
 
 .MoveSoundTable:
 ; Table correlates to data/moves/sfx.asm in pokered
-	table_width 3, .MoveSoundTable
+	table_width 3
 	; ID, pitch mod, tempo mod
 	db SFX_POUND,			$00, $80
 	db SFX_COMET_PUNCH,		$10, $80
