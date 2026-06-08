@@ -1,92 +1,86 @@
-/*
- * Copyright © 2013 stag019 <stag019@gmail.com>
- *
- * Permission to use, copy, modify, and distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
- * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
- * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
- * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
- * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- */
+#define PROGRAM_NAME "pkmncompress"
+#define USAGE_OPTS "[-h|--help] [-u|--uncompress] infile.2bpp outfile.pic"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdint.h>
-#include <string.h>
+#include "common.h"
 
-typedef uint8_t u8;
-
-u8 *compressed = NULL;
-int xrows = 0;
-int xwidth = 0;
-int curbit = 0;
-int curbyte = 0;
-
-void writebit(int bit)
-{
-	if (++curbit == 8)
-	{
-		curbyte++;
-		curbit = 0;
-	}
-	compressed[curbyte] |= bit << (7 - curbit);
-}
-
-void method_1(u8 *RAM)
-{
-	int i;
-	int j;
-	int nibble_1;
-	int nibble_2 = 0;
-	int code_1;
-	int code_2;
-	int table;
-	static int method_1[2][0x10] = {
-		{0x0, 0x1, 0x3, 0x2, 0x6, 0x7, 0x5, 0x4, 0xC, 0xD, 0xF, 0xE, 0xA, 0xB, 0x9, 0x8},
-		{0x8, 0x9, 0xB, 0xA, 0xE, 0xF, 0xD, 0xC, 0x4, 0x5, 0x7, 0x6, 0x2, 0x3, 0x1, 0x0}
+void parse_args(int argc, char *argv[], bool *uncomp) {
+	struct option long_options[] = {
+		{"uncompress", no_argument, 0, 'u'},
+		{"help", no_argument, 0, 'h'},
+		{0}
 	};
-
-	for (i = 0; i < xrows * xwidth * 8; i++)
-	{
-		j = i / xrows;
-		j += i % xrows * xwidth * 8;
-		if (!(i % xrows))
-		{
-			nibble_2 = 0;
+	for (int opt; (opt = getopt_long(argc, argv, "uh", long_options)) != -1;) {
+		switch (opt) {
+		case 'u':
+			*uncomp = true;
+			break;
+		case 'h':
+			usage_exit(0);
+			break;
+		default:
+			usage_exit(1);
 		}
-		nibble_1 = (RAM[j] >> 4) & 0x0F;
-		table = 0;
-		if (nibble_2 & 1)
-		{
-			table = 1;
-		}
-		code_1 = method_1[table][nibble_1];
-		nibble_2 = RAM[j] & 0x0F;
-		table = 0;
-		if (nibble_1 & 1)
-		{
-			table = 1;
-		}
-		code_2 = method_1[table][nibble_2];
-		RAM[j] = (code_1 << 4) | code_2;
 	}
 }
 
-// "Get the previous power of 2. Deriving the bitcount from that seems to be faster on average than using the lookup table."
-void RLE(int nums)
-{
-	int v;
-	int j;
-	int bitcount;
-	int number;
+uint8_t output[15 * 15 * 0x10];
+int cur_bit;
+int cur_byte;
 
-	bitcount = -1;
-	v = ++nums;
+void write_bit(int bit) {
+	if (++cur_bit == 8) {
+		cur_byte++;
+		cur_bit = 0;
+	}
+	output[cur_byte] |= bit << (7 - cur_bit);
+}
+
+int read_bit(uint8_t *data) {
+	if (cur_bit == -1) {
+		cur_byte++;
+		cur_bit = 7;
+	}
+	return (data[cur_byte] >> cur_bit--) & 1;
+}
+
+void transpose_tiles(uint8_t *data, int width) {
+	int size = width * width;
+	for (int i = 0; i < size; i++) {
+		int j = (i * width + i / width) % size;
+		if (i < j) {
+			uint8_t tmp[0x10];
+			uint8_t *p = data + i * COUNTOF(tmp);
+			uint8_t *q = data + j * COUNTOF(tmp);
+			memcpy(tmp, p, COUNTOF(tmp));
+			memcpy(p, q, COUNTOF(tmp));
+			memcpy(q, tmp, COUNTOF(tmp));
+		}
+	}
+}
+
+void compress_plane(uint8_t *plane, int width) {
+	static int gray_codes[2][0x10] = {
+		{0x0, 0x1, 0x3, 0x2, 0x6, 0x7, 0x5, 0x4, 0xC, 0xD, 0xF, 0xE, 0xA, 0xB, 0x9, 0x8},
+		{0x8, 0x9, 0xB, 0xA, 0xE, 0xF, 0xD, 0xC, 0x4, 0x5, 0x7, 0x6, 0x2, 0x3, 0x1, 0x0},
+	};
+	int ram_size = width * width * 8;
+	for (int i = 0, nybble_lo = 0; i < ram_size; i++) {
+		int m = i % width;
+		if (!m) {
+			nybble_lo = 0;
+		}
+		int j = i / width + m * width * 8;
+		int nybble_hi = (plane[j] >> 4) & 0xF;
+		int code_hi = gray_codes[nybble_lo & 1][nybble_hi];
+		nybble_lo = plane[j] & 0xF;
+		int code_lo = gray_codes[nybble_hi & 1][nybble_lo];
+		plane[j] = (code_hi << 4) | code_lo;
+	}
+}
+
+void rle_encode_number(int n) {
+	int bit_count = -1;
+	int v = ++n;
 	v++;
 	v |= v >> 1;
 	v |= v >> 2;
@@ -95,357 +89,276 @@ void RLE(int nums)
 	v |= v >> 16;
 	v -= v >> 1;
 	v--;
-
-	number = nums - v;
-	while(v) {
+	int number = n - v;
+	while (v) {
 		v >>= 1;
-		bitcount++;
+		bit_count++;
 	}
-	for(j = 0; j < bitcount; j++) {
-		writebit(1);
+	for (int j = 0; j < bit_count; j++) {
+		write_bit(1);
 	}
-	writebit(0);
-	for(j = bitcount; j >= 0; j--) {
-		writebit((number >> j) & 1);
+	write_bit(0);
+	for (int j = bit_count; j >= 0; j--) {
+		write_bit((number >> j) & 1);
 	}
 }
 
-void RLE_old(int nums)
-{
-	int search;
-	int i;
-	int j;
-	int bitcount;
-	int number;
-	static int RLE[0x10] = {0x0001, 0x0003, 0x0007, 0x000F, 0x001F, 0x003F, 0x007F, 0x00FF, 0x01FF, 0x03FF, 0x07FF, 0x0FFF, 0x1FFF, 0x3FFF, 0x7FFF, 0xFFFF};
+void write_data_packet(uint8_t *bit_groups, int n) {
+	for (int i = 0; i < n; i++) {
+		write_bit((bit_groups[i] >> 1) & 1);
+		write_bit(bit_groups[i] & 1);
+	}
+}
 
-	bitcount = -1;
-	search = ++nums;
-	while (search > 0)
-	{
-		for (i = 0; i < 0xF; i++)
-		{
-			if (RLE[i] == search)
-			{
-				bitcount = i;
-				break;
-			}
+int interpret_compress(uint8_t *planes[2], int mode, int order, int width) {
+	int ram_size = width * width * 8;
+	uint8_t *rams[2] = {xmalloc(ram_size), xmalloc(ram_size)};
+	memcpy(rams[0], planes[order], ram_size);
+	memcpy(rams[1], planes[order ^ 1], ram_size);
+	if (mode != 0) {
+		for (int i = 0; i < ram_size; i++) {
+			rams[1][i] ^= rams[0][i];
 		}
-		if (bitcount != -1)
-		{
-			break;
-		}
-		search--;
 	}
-	number = nums - RLE[bitcount];
-	for (j = 0; j < bitcount; j++)
-	{
-		writebit(1);
+	compress_plane(rams[0], width);
+	if (mode != 1) {
+		compress_plane(rams[1], width);
 	}
-	writebit(0);
-	for (j = bitcount; j >= 0; j--)
-	{
-		writebit((number >> j) & 1);
-	}
-}
-
-void data_packet(u8 *bitgroups, int bgi)
-{
-	int i;
-	for (i = 0; i < bgi; i++)
-	{
-		writebit((bitgroups[i] >> 1) & 1);
-		writebit(bitgroups[i] & 1);
-	}
-}
-
-int interpret_compress(u8 *RAM_1, u8 *RAM_2, int interpretation, int switchram)
-{
-	u8 *_1_RAM;
-	u8 *_2_RAM;
-	int i;
-	int ram;
-	int type;
-	int nums;
-	u8 *bitgroups;
-	int x;
-	int y;
-	int byte;
-	int bit;
-	int bitgroup;
-	int bgi = 0;
-
-	int ram_size = xrows * xwidth * 8;
-	_1_RAM = (u8 *)calloc(ram_size, 1);
-	_2_RAM = (u8 *)calloc(ram_size, 1);
-	if (switchram)
-	{
-		memcpy(_1_RAM, RAM_2, ram_size);
-		memcpy(_2_RAM, RAM_1, ram_size);
-	}
-	else
-	{
-		memcpy(_1_RAM, RAM_1, ram_size);
-		memcpy(_2_RAM, RAM_2, ram_size);
-	}
-
-	switch(interpretation)
-	{
-		case 1:
-			method_1(_1_RAM);
-			method_1(_2_RAM);
-		break;
-		case 2:
-		case 3:
-			for (i = 0; i < xrows * xwidth * 8; i++)
-			{
-				_2_RAM[i] ^= _1_RAM[i];
-			}
-			method_1(_1_RAM);
-		break;
-	}
-	if (interpretation == 3)
-	{
-		method_1(_2_RAM);
-	}
-
-	curbit = 7;
-	curbyte = 0;
-	compressed = (u8 *)calloc(0x310, 1);
-	compressed[0] = (xrows << 4) | xwidth;
-	writebit(switchram);
-
-	for (ram = 0; ram < 2; ram++)
-	{
-		type = 0;
-		nums = 0;
-		bitgroups = (u8 *)calloc(0x1000, 1);
-
-		for (x = 0; x < xwidth; x++)
-		{
-			for (bit = 0; bit < 8; bit += 2)
-			{
-				byte = x * xrows * 8;
-				for (y=0; y < xrows * 8; y++)
-				{
-					if (ram)
-					{
-						bitgroup = (_2_RAM[byte] >> (6 - bit)) & 3;
-					}
-					else
-					{
-						bitgroup = (_1_RAM[byte] >> (6 - bit)) & 3;
-					}
-					if (!bitgroup)
-					{
-						if (!type)
-						{
-							writebit(0);
+	cur_bit = 7;
+	cur_byte = 0;
+	memset(output, 0, COUNTOF(output));
+	output[0] = (width << 4) | width;
+	write_bit(order);
+	uint8_t bit_groups[15 * 4 * 15 * 8] = {0};
+	int index = 0;
+	for (int plane = 0; plane < 2; plane++) {
+		int type = 0;
+		int nums = 0;
+		memset(bit_groups, 0, COUNTOF(bit_groups));
+		for (int x = 0; x < width; x++) {
+			for (int bit = 0; bit < 8; bit += 2) {
+				for (int y = 0, byte = x * width * 8; y < width * 8; y++, byte++) {
+					int bit_group = (rams[plane][byte] >> (6 - bit)) & 3;
+					if (bit_group) {
+						if (type == 0) {
+							write_bit(1);
+						} else if (type == 1) {
+							rle_encode_number(nums);
 						}
-						else if (type == 1)
-						{
+						type = 2;
+						bit_groups[index++] = bit_group;
+						nums = 0;
+					} else {
+						if (type == 0) {
+							write_bit(0);
+						} else if (type == 1) {
 							nums++;
-						}
-						else
-						{
-							data_packet(bitgroups, bgi);
-							writebit(0);
-							writebit(0);
+						} else {
+							write_data_packet(bit_groups, index);
+							write_bit(0);
+							write_bit(0);
 						}
 						type = 1;
-						free(bitgroups);
-						bitgroups = (u8 *)calloc(0x1000, 1);
-						bgi = 0;
+						memset(bit_groups, 0, COUNTOF(bit_groups));
+						index = 0;
 					}
-					else
-					{
-						if (!type)
-						{
-							writebit(1);
-						}
-						else if (type == 1)
-						{
-							RLE(nums);
-						}
-						type = -1;
-						bitgroups[bgi++] = bitgroup;
-						nums = 0;
-					}
-					byte++;
 				}
 			}
 		}
-		if (type == 1)
-		{
-			RLE(nums);
+		if (type == 1) {
+			rle_encode_number(nums);
+		} else {
+			write_data_packet(bit_groups, index);
 		}
-		else
-		{
-			data_packet(bitgroups, bgi);
-		}
-		if (!ram)
-		{
-			if (interpretation < 2)
-			{
-				writebit(0);
-			}
-			else
-			{
-				writebit(1);
-				writebit(interpretation - 2);
+		if (!plane) {
+			if (mode == 0) {
+				write_bit(0);
+			} else {
+				write_bit(1);
+				write_bit(mode - 1);
 			}
 		}
 	}
-	free(bitgroups);
-	free(_1_RAM);
-	free(_2_RAM);
-	return (curbyte + 1) * 8 + curbit;
+	free(rams[0]);
+	free(rams[1]);
+	return (cur_byte + 1) * 8 + cur_bit;
 }
 
-int compress(u8 *data, int width, int height)
-{
-	u8 *RAM_1;
-	u8 *RAM_2;
-	int i;
-	int mode;
-	int order;
-	int newsize;
-	int compressedsize;
-	int size = -1;
-	u8 *current = NULL;
-	int ram_size;
-
-	xrows = height;
-	xwidth = width;
-
-	ram_size = xrows * xwidth * 8;
-
-	RAM_1 = (u8 *)calloc(ram_size, 1);
-	RAM_2 = (u8 *)calloc(ram_size, 1);
-
-	for (i = 0; i < xrows * xwidth * 8; i++)
-	{
-		RAM_1[i] = data[(i << 1)];
-		RAM_2[i] = data[(i << 1) | 1];
-	}
-
-	for (mode = 1; mode < 4; mode++)
-	{
-		for (order = 0; order < 2; order++)
-		{
-			if (!(mode == 1 && order == 0))
-			{
-				newsize = interpret_compress(RAM_1, RAM_2, mode, order);
-				if (size == -1 || newsize < size)
-				{
-					if (current != NULL)
-					{
-						free(current);
-					}
-					current = (u8 *)calloc(0x310, 1);
-					memcpy(current, compressed, newsize / 8);
-					free(compressed);
-					size = newsize;
-				}
-			}
-		}
-	}
-	compressed = (u8 *)calloc(0x310, 1);
-	compressedsize = size / 8;
-	memcpy(compressed, current, compressedsize);
-	free(current);
-
-	free(RAM_1);
-	free(RAM_2);
-
-	return compressedsize;
-}
-
-uint8_t *transpose_tiles(uint8_t *data, int width, int height)
-{
-	int i;
-	int j;
-	int tile_size = 0x10;
-
-	int size = width * height * tile_size;
-	u8 *transposed = calloc(size, 1);
-	for (i = 0; i < size; i++)
-	{
-		j = (i / 0x10) * width * 0x10;
-		j = (j % size) + 0x10 * (j / size) + (i % 0x10);
-		transposed[j] = data[i];
-	}
-
-	free(data);
-
-	return transposed;
-}
-
-int main(int argc, char *argv[])
-{
+int get_width(long filesize) {
 	int width = 0;
-	int height = 0;
-	int transpose = 1;
-
-	if (argc != 3)
-	{
-		fputs("Usage: pkmncompress infile.2bpp outfile.pic\n", stderr);
-		return EXIT_FAILURE;
-	}
-
-	char *infile = argv[1];
-	char *outfile = argv[2];
-
-	FILE *f = fopen(infile, "rb");
-	if (!f) {
-		fprintf(stderr, "failed to open for reading: '%s'\n", infile);
-		return EXIT_FAILURE;
-	}
-	fseek(f, 0, SEEK_END);
-	int filesize = ftell(f);
-
-	for (int i = 0; i < 32; i++) {
-		width = i;
-		height = i;
-		if (width * height * 16 >= filesize) {
+	for (int w = 1; w < 16; w++) {
+		if (filesize == w * w * 0x10) {
+			width = w;
 			break;
 		}
 	}
-	if (width * height * 16 < filesize) {
-		fprintf(stderr, "file too big: '%s' (%x)\n", infile, filesize);
-		return EXIT_FAILURE;
+	if (!width) {
+		error_exit("Image is not a square, or is larger than 15x15 tiles");
 	}
-	if (width * height * 16 > filesize) {
-		fprintf(stderr, "wrong filesize for '%s' (%x). must be a square image of 16-byte tiles\n", infile, filesize);
-		return EXIT_FAILURE;
+	return width;
+}
+
+int compress(uint8_t *data, long filesize) {
+	int width = get_width(filesize);
+	int ram_size = width * width * 8;
+	uint8_t *planes[2] = {xmalloc(ram_size), xmalloc(ram_size)};
+	transpose_tiles(data, width);
+	for (int i = 0; i < ram_size; i++) {
+		planes[0][i] = data[i * 2];
+		planes[1][i] = data[i * 2 + 1];
+	}
+	uint8_t current[COUNTOF(output)] = {0};
+	int compressed_size = -1;
+	for (int mode = 0; mode < 3; mode++) {
+		for (int order = 0; order < 2; order++) {
+			if (mode == 0 && order == 0) {
+				continue;
+			}
+			int new_size = interpret_compress(planes, mode, order, width);
+			if (compressed_size == -1 || new_size < compressed_size) {
+				compressed_size = new_size;
+				memset(current, 0, COUNTOF(current));
+				memcpy(current, output, compressed_size / 8);
+			}
+		}
+	}
+	memset(output, 0, COUNTOF(output));
+	memcpy(output, current, compressed_size / 8);
+	free(planes[0]);
+	free(planes[1]);
+	return compressed_size / 8;
+}
+
+int read_int(uint8_t *data, int count) {
+	int n = 0;
+	while (count--) {
+		n = (n << 1) | read_bit(data);
+	}
+	return n;
+}
+
+uint8_t *fill_plane(uint8_t *data, int width) {
+	static int table[0x10] = {
+		0x0001, 0x0003, 0x0007, 0x000F, 0x001F, 0x003F, 0x007F, 0x00FF,
+		0x01FF, 0x03FF, 0x07FF, 0x0FFF, 0x1FFF, 0x3FFF, 0x7FFF, 0xFFFF,
+	};
+	int mode = read_bit(data);
+	int size = width * width * 0x20;
+	uint8_t *plane = xmalloc(size);
+	int len = 0;
+	while (len < size) {
+		if (mode) {
+			while (len < size) {
+				int bit_group = read_int(data, 2);
+				if (!bit_group) {
+					break;
+				}
+				plane[len++] = bit_group;
+			}
+		} else {
+			size_t w = 0;
+			while (read_bit(data)) {
+				w++;
+			}
+			if (w >= COUNTOF(table)) {
+				error_exit("Invalid compressed data");
+			}
+			int n = table[w] + read_int(data, w + 1);
+			while (len < size && n--) {
+				plane[len++] = 0;
+			}
+		}
+		mode ^= 1;
+	}
+	if (len > size) {
+		error_exit("Invalid compressed data");
+	}
+	uint8_t *ram = xmalloc(size);
+	len = 0;
+	for (int y = 0; y < width; y++) {
+		for (int x = 0; x < width * 8; x++) {
+			for (int i = 0; i < 4; i++) {
+				ram[len++] = plane[(y * 4 + i) * width * 8 + x];
+			}
+		}
+	}
+	for (int i = 0; i < size - 3; i += 4) {
+		ram[i / 4] = (ram[i] << 6) | (ram[i + 1] << 4) | (ram[i + 2] << 2) | ram[i + 3];
+	}
+	free(plane);
+	return ram;
+}
+
+void uncompress_plane(uint8_t *plane, int width) {
+	static int codes[2][0x10] = {
+		{0x0, 0x1, 0x3, 0x2, 0x7, 0x6, 0x4, 0x5, 0xF, 0xE, 0xC, 0xD, 0x8, 0x9, 0xB, 0xA},
+		{0xF, 0xE, 0xC, 0xD, 0x8, 0x9, 0xB, 0xA, 0x0, 0x1, 0x3, 0x2, 0x7, 0x6, 0x4, 0x5},
+	};
+	for (int x = 0; x < width * 8; x++) {
+		int bit = 0;
+		for (int y = 0; y < width; y++) {
+			int i = y * width * 8 + x;
+			int nybble_hi = (plane[i] >> 4) & 0xF;
+			int code_hi = codes[bit][nybble_hi];
+			bit = code_hi & 1;
+			int nybble_lo = plane[i] & 0xF;
+			int code_lo = codes[bit][nybble_lo];
+			bit = code_lo & 1;
+			plane[i] = (code_hi << 4) | code_lo;
+		}
+	}
+}
+
+int uncompress(uint8_t *data) {
+	cur_bit = 7;
+	int width = read_int(data, 4);
+	if (read_int(data, 4) != width) {
+		error_exit("Image is not a square");
+	}
+	int size = width * width * 8;
+	uint8_t *rams[2];
+	int order = read_bit(data);
+	rams[order] = fill_plane(data, width);
+	int mode = read_bit(data);
+	if (mode) {
+		mode += read_bit(data);
+	}
+	rams[order ^ 1] = fill_plane(data, width);
+	uncompress_plane(rams[order], width);
+	if (mode != 1) {
+		uncompress_plane(rams[order ^ 1], width);
+	}
+	if (mode != 0) {
+		for (int i = 0; i < size; i++) {
+			rams[order ^ 1][i] ^= rams[order][i];
+		}
+	}
+	for (int i = 0; i < size; i++) {
+		output[i * 2] = rams[0][i];
+		output[i * 2 + 1] = rams[1][i];
+	}
+	transpose_tiles(output, width);
+	free(rams[0]);
+	free(rams[1]);
+	return size * 2;
+}
+
+int main(int argc, char *argv[]) {
+	bool uncomp = false;
+	parse_args(argc, argv, &uncomp);
+
+	argc -= optind;
+	argv += optind;
+	if (argc < 1) {
+		usage_exit(1);
 	}
 
-	u8 *data = (u8 *)calloc(filesize, 1);
-	fseek(f, 0, SEEK_SET);
-	int size = fread(data, 1, filesize, f);
-	fclose(f);
-	if (size != filesize) {
-		fprintf(stderr, "failed to read: '%s'\n", infile);
-		return EXIT_FAILURE;
-	}
+	long filesize;
+	uint8_t *data = read_u8(argv[0], &filesize);
 
-	if (transpose) {
-		data = transpose_tiles(data, width, height);
-	}
-
-	int compressed_size = compress(data, width, height);
+	int output_size = uncomp ? uncompress(data) : compress(data, filesize);
+	write_u8(argv[1], output, output_size);
 
 	free(data);
-
-	f = fopen(outfile, "wb");
-	if (!f) {
-		fprintf(stderr, "failed to open for writing: '%s'\n", outfile);
-		return EXIT_FAILURE;
-	}
-	fwrite(compressed, 1, compressed_size, f);
-	fclose(f);
-
-	free(compressed);
-
-	return EXIT_SUCCESS;
+	return 0;
 }
