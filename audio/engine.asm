@@ -2773,6 +2773,7 @@ PlayStereoSFX::
 
 	ret
 
+PlayCrySFX::
 	ld hl, wMusicID
 	ld [hl], e
 	inc hl

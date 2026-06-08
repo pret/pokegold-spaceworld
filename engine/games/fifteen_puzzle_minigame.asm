@@ -809,6 +809,7 @@ FifteenPuzzleMinigame_Tilemap:
 
 SECTION "engine/games/fifteen_puzzle_minigame.asm@FifteenPuzzleIconTable", ROMX
 	FifteenPuzzleIconTable:				; Icons used in the minigame are pulled from this table.
+	table_width 3, FifteenPuzzleIconTable
 	dba RhydonSpriteGFX
 	dba ClefairySpriteGFX
 	dba PidgeySpriteGFX
@@ -817,3 +818,4 @@ SECTION "engine/games/fifteen_puzzle_minigame.asm@FifteenPuzzleIconTable", ROMX
 	dba SeelSpriteGFX
 	dba PoliwrathSpriteGFX
 	dba LaprasSpriteGFX
+	assert_table_length 8
