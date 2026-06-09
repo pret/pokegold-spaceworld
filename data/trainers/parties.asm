@@ -685,4 +685,11 @@ if DEF(_SILVER)
 	db "たまお@", TRAINERTYPE_ITEM_MOVES
 	db 10, DEX_JIGGLYPUFF, ITEM_NONE, MOVE_CHARM, MOVE_POUND, MOVE_ENCORE, MOVE_NONE
 	db -1 ; end
+
+	db -1 ; end
+
+	; early version of KIMONO_GIRL_KOUME?
+	db "こうめ@", TRAINERTYPE_ITEM_MOVES
+	db  8, DEX_CLEFAIRY, ITEM_NONE
+	db -1 ; end
 endc
