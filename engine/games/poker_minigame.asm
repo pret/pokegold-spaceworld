@@ -97,9 +97,9 @@ PokerMinigame:
 	call PrintNumber
 	ret
 
-.UnreferencedPrintDebugCard2:
+.UnreferencedPrintTurnNumber:
 	hlcoord 0, 0
-	ld de, wPokerCard2
+	ld de, wPokerTurnNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNumber
 	ret
@@ -352,11 +352,11 @@ PokerMinigame_CheckCoinCase:
 	ret
 
 PokerMinigame_GetNextCard:
-	ld a, [wPokerCard1]
+	ld a, [wPokerCardNumber]
 	cp POKER_MAX_CARDS
 	call nc, PokerMinigame_ShuffleCards
 
-	ld hl, wPokerCard1
+	ld hl, wPokerCardNumber
 	ld e, [hl]
 	ld d, $00
 	inc [hl]
@@ -369,9 +369,9 @@ PokerMinigame_GetNextCard:
 
 PokerMinigame_ShuffleFirstCard:
 	xor a
-	ld [wPokerCard1], a
+	ld [wPokerCardNumber], a
 	ld a, 1
-	ld [wPokerCard2], a
+	ld [wPokerTurnNumber], a
 	call PokerMinigame_ShuffleCardsMain
 	ret
 PokerMinigame_ShuffleCards:
@@ -385,8 +385,8 @@ PokerMinigame_ShuffleCards:
 	dec b
 	jr nz, .CheckLoop
 	ld a, c
-	ld [wPokerCard1], a
-	ld hl, wPokerCard2
+	ld [wPokerCardNumber], a
+	ld hl, wPokerTurnNumber
 	ld a, [hl]
 	inc a
 	cp 40 + 1
@@ -1159,12 +1159,12 @@ PokerMinigame_HudTextbox_DrawCursor:
 PokerMinigame_Shuffling:
 	ld hl, PokerMinigame_ShufflingTable
 
-	ld a, [wPokerCard2]	; wPokerCard2 = $C505
+	ld a, [wPokerTurnNumber]
 	ld c, a
 	ld b, $6D
 	call .SetSub
 
-	ld a, [wPokerCard2]	; wPokerCard2 = $C505
+	ld a, [wPokerTurnNumber]
 	ld c, a
 	ld a, 40
 	sub c
@@ -1339,7 +1339,7 @@ PokerMinigame_CursorAction:
 	ld a, [hl]
 	ld e, a
 	ld d, $00
-	ld hl, wPokerSortOrder	; wPokerSortOrder = $C508
+	ld hl, wPokerSortOrder
 	add hl, de
 	ld a, [hl]
 	ld [wPokerPosition], a
@@ -1520,7 +1520,6 @@ PokerMinigame_SetCardColor:
 	callfar Function9645
 	ret
 
-; Data from E11C1 to E11C5 (5 bytes)
 .ColTable:
 	db %00001111
 	db %00001010
