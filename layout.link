@@ -863,7 +863,7 @@ ROMX $37
 
 ROMX $38
 	"engine/games/pikachu_minigame.asm@Pikachu Minigame"
-	org $5403
+	"engine/games/poker_minigame.asm"
 	"gfx.asm@Poker GFX"
 	"engine/games/fifteen_puzzle_minigame.asm"
 	"gfx.asm@15 Puzzle GFX"

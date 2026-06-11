@@ -1,21 +1,5 @@
 INCLUDE "constants.asm"
 
-; MinigamePikachuDoMovement.Jumptable constants
-	const_def
-	const MINIGAME_PIKACHU_INIT    ; 00
-	const MINIGAME_PIKACHU_CONTROL ; 01
-	const MINIGAME_PIKACHU_JUMPING ; 02
-	const MINIGAME_PIKACHU_FALLING ; 03
-
-; PikachuMiniGame_PerformGameFunction.Jumptable constants
-	const_def
-	const PIKACHU_MINIGAME_SETUP                ; 00
-	const PIKACHU_MINIGAME_NOTE_SPAWNER         ; 01
-	const PIKACHU_MINIGAME_SET_NEXT_SCENE_TIMER ; 02
-	const PIKACHU_MINIGAME_WAIT_AND_GOTO_NEXT   ; 03
-	const PIKACHU_MINIGAME_SHOW_JIGGLYPUFF      ; 04
-	const PIKACHU_MINIGAME_FADE_OUT             ; 05
-
 SECTION "engine/games/pikachu_minigame.asm@Pikachu Minigame", ROMX
 
 PikachuMiniGame::

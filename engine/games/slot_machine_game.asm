@@ -2,96 +2,12 @@ INCLUDE "constants.asm"
 
 SECTION "engine/games/slot_machine_game.asm", ROMX
 
-DEF SLOTS_NO_BIAS        EQU -1
-DEF SLOTS_NO_MATCH       EQU -1
-
-DEF SLOTS_STARTING_COINS    EQU 256
-
-DEF SLOTS_GFX_BLANK_TILE          EQU $17
-DEF SLOTS_GFX_ILLUMINATED_LIGHT   EQU $14
-DEF SLOTS_GFX_DEILLUMINATED_LIGHT EQU $23
-DEF SLOTS_GFX_SEVEN_TILE_1        EQU $25
-DEF SLOTS_GFX_SEVEN_TILE_2        EQU $41
-
-DEF SLOTS_SEVEN    EQU $00
-DEF SLOTS_POKEBALL EQU $04
-DEF SLOTS_CHERRY   EQU $08
-DEF SLOTS_PIKACHU  EQU $0c
-DEF SLOTS_SQUIRTLE EQU $10
-DEF SLOTS_STARYU   EQU $14
-
-DEF REEL_SIZE EQU 15
-
-; SlotsJumptable constants
-	const_def
-	const SLOTS_INIT
-	const SLOTS_BET_AND_START
-	const SLOTS_WAIT_START
-	const SLOTS_WAIT_REEL1
-	const SLOTS_WAIT_STOP_REEL1
-	const SLOTS_WAIT_REEL2
-	const SLOTS_WAIT_STOP_REEL2
-	const SLOTS_WAIT_REEL3
-	const SLOTS_WAIT_STOP_REEL3
-	const SLOTS_NEXT_09
-	const SLOTS_NEXT_0A
-	const SLOTS_NEXT_0B
-	const SLOTS_FLASH_IF_WIN
-	const SLOTS_FLASH_SCREEN
-	const SLOTS_GIVE_EARNED_COINS
-	const SLOTS_PAYOUT_TEXT_AND_ANIM
-	const SLOTS_PAYOUT_ANIM
-	const SLOTS_RESTART_OR_QUIT
-	const SLOTS_QUIT
-DEF SLOTS_END_LOOP_F EQU 7
-
-; ReelActionJumptable constants
-	const_def
-	const REEL_ACTION_DO_NOTHING
-	const REEL_ACTION_STOP_REEL_IGNORE_JOYPAD
-	const REEL_ACTION_QUADRUPLE_RATE
-	const REEL_ACTION_DOUBLE_RATE
-	const REEL_ACTION_NORMAL_RATE
-	const REEL_ACTION_HALF_RATE
-	const REEL_ACTION_QUARTER_RATE
-	const REEL_ACTION_STOP_REEL1
-	const REEL_ACTION_STOP_REEL2
-	const REEL_ACTION_STOP_REEL3
-	const REEL_ACTION_SET_UP_REEL2_SKIP_TO_7
-	const REEL_ACTION_WAIT_REEL2_SKIP_TO_7
-	const REEL_ACTION_FAST_SPIN_REEL2_UNTIL_LINED_UP_7S
-	const REEL_ACTION_0D
-	const REEL_ACTION_CHECK_DROP_REEL
-	const REEL_ACTION_WAIT_DROP_REEL
-	const REEL_ACTION_START_SLOW_ADVANCE_REEL3
-	const REEL_ACTION_WAIT_SLOW_ADVANCE_REEL3
-	const REEL_ACTION_INIT_GOLEM
-	const REEL_ACTION_WAIT_GOLEM
-	const REEL_ACTION_END_GOLEM
-	const REEL_ACTION_INIT_CHANSEY
-	const REEL_ACTION_WAIT_CHANSEY
-	const REEL_ACTION_WAIT_EGG
-	const REEL_ACTION_DROP_REEL
-
-; Constants for slot_reel offsets (see macros/wram.asm)
-DEF REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
-DEF REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
-DEF REEL_POSITION      EQUS "(wReel1Position - wReel1)"
-DEF REEL_SPIN_DISTANCE EQUS "(wReel1SpinDistance - wReel1)"
-DEF REEL_SPIN_RATE     EQUS "(wReel1SpinRate - wReel1)"
-DEF REEL_OAM_ADDR      EQUS "(wReel1OAMAddr - wReel1)"
-DEF REEL_X_COORD       EQUS "(wReel1XCoord - wReel1)"
-DEF REEL_MANIP_COUNTER EQUS "(wReel1ManipCounter - wReel1)"
-DEF REEL_MANIP_DELAY   EQUS "(wReel1ManipDelay - wReel1)"
-DEF REEL_FIELD_0B      EQUS "(wReel1Field0b - wReel1)"
-DEF REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
-
 SlotMachineGame:
 ; Always start off with 256 coins
 	ld hl, wCoins
-	ld [hl], HIGH(SLOTS_STARTING_COINS)
+	ld [hl], HIGH(MINIGAME_STARTING_COINS)
 	inc hl
-	ld [hl], LOW(SLOTS_STARTING_COINS)
+	ld [hl], LOW(MINIGAME_STARTING_COINS)
 
 	ld hl, wOptions
 	set NO_TEXT_SCROLL_F, [hl]
@@ -187,7 +103,7 @@ SlotMachineGame_Init:
 
 SlotsLoop:
 	ld a, [wJumptableIndex]
-	bit SLOTS_END_LOOP_F, a
+	bit MINIGAME_END_LOOP_F, a
 	jr nz, .done
 	call SlotsJumptable
 	call Slots_SpinReels
@@ -559,7 +475,7 @@ SlotsAction_RestartOrQuit:
 
 SlotsAction_Quit:
 	ld hl, wJumptableIndex
-	set SLOTS_END_LOOP_F, [hl]
+	set MINIGAME_END_LOOP_F, [hl]
 	ret
 
 Slots_LoadReelState:
