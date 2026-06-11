@@ -257,8 +257,8 @@ NEXTU
 	ds 200
 
 wPokerAddress:: ds 13 * 4
-wPokerCard1:: db
-wPokerCard2:: db
+wPokerCardNumber:: db
+wPokerTurnNumber:: db
 wPokerPosition:: db
 wPokerPreviousCard:: db
 wPokerSortOrder:: ds 5
