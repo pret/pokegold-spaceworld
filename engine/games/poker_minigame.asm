@@ -23,7 +23,7 @@ PokerMinigame:
 .Init:
 	call DisableLCD
 	callfar ClearSpriteAnims
-	ld b, 17
+	ld b, SGB_POKER
 	call GetSGBLayout
 
 	ld hl, PokerGFX
