@@ -2,18 +2,6 @@ INCLUDE "constants.asm"
 
 SECTION "engine/games/fifteen_puzzle_minigame.asm", ROMX
 
-	const_def
-	const FIFTEENPUZZLE_DOING_PUZZLE
-	const FIFTEENPUZZLE_SOLVED_PUZZLE
-	const FIFTEENPUZZLE_SLIDE_FINAL_PANEL
-	const FIFTEENPUZZLE_SLIDE_PUZZLE_LEFT
-	const FIFTEENPUZZLE_END_SCREEN
-
-
-DEF FIFTEENPUZZLE_END_LOOP_F EQU 7
-DEF FIFTEENPUZZLE_PANEL_COUNT EQU 16
-DEF FIFTEENPUZZLE_EMPTY_PANEL_NUM EQU FIFTEENPUZZLE_PANEL_COUNT - 1
-
 FifteenPuzzleMinigame:
 	call .LoadGFXAndPals
 	call DelayFrame
@@ -91,7 +79,7 @@ FifteenPuzzleMinigame:
 
 .JumptableLoop:
 	ld a, [wJumptableIndex]
-	bit FIFTEENPUZZLE_END_LOOP_F, a
+	bit MINIGAME_END_LOOP_F, a
 	jr nz, .quit
 
 	call .ExecuteJumptable
@@ -150,7 +138,7 @@ FifteenPuzzleMinigame:
 	ret
 .ExitPuzzle:
 ;	ld hl, wJumptableIndex
-;	set FIFTEENPUZZLE_END_LOOP_F, [hl]
+;	set MINIGAME_END_LOOP_F, [hl]
 ;	ret
 .InitPuzzle:
 	ld hl, wJumptableIndex
@@ -228,7 +216,7 @@ FifteenPuzzleMinigame:
 
 .PuzzleEndScreen_End:
 	ld hl, wJumptableIndex
-	set FIFTEENPUZZLE_END_LOOP_F, [hl]
+	set MINIGAME_END_LOOP_F, [hl]
 	xor a
 	ldh [hSCY], a
 	ret

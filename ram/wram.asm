@@ -256,6 +256,25 @@ NEXTU
 
 	ds 200
 
+wPokerAddress:: ds 13 * 4
+wPokerCard1:: db
+wPokerCard2:: db
+wPokerPosition:: db
+wPokerPreviousCard:: db
+wPokerSortOrder:: ds 5
+wPokerString:: ds 5
+wPokerAllow:: db
+wPokerPayout:: db
+wPokerCurrentBet:: dw
+wPokerWork:: db
+wPokerDoubleUp:: dw
+wPokerColWork:: db
+wPokerWorkEnd:: ds 32
+
+NEXTU
+
+	ds 200
+
 wPokedexOrder:: ds $100
 wPokedexOrderEnd::
 

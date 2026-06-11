@@ -1144,7 +1144,7 @@ AnimSeq_SlotsChanseyEgg:
 	ret
 
 AnimSeq_PokerCursor:
-	callfar Functione1054
+	callfar PokerMinigame_CursorAction
 	ret
 
 AnimSeq_TrainerGearPointer:

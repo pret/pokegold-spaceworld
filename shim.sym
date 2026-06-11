@@ -12,13 +12,13 @@
 ;23:49C6 Function8c9c6
 ;23:4b6d FishingAnim_Old
 
-38:48A2 PokerMinigame
+;38:48A2 PokerMinigame
 
-38:4E5F Cursor_AnimateCursor
-38:4EA8 Cursor_InterpretJoypad
+;38:4E5F PokerMinigame_BetAmount
+;38:4EA8 PokerMinigame_YesOrNo
 
 ; Poker Cursor AnimSeq Function
-38:5054 Functione1054
+;38:5054 PokerMinigame_CursorAction
 
 ;38:5AE3 FifteenPuzzleMinigame
 
@@ -31,8 +31,8 @@
 
 ; Filler. TODO: Determine the position of all filler and preferably extract it to binary files.
 0B:786F Bank0b_FillerStart
-0e:59bc Bank0e_FillerStart
-14:7274 Bank14_FillerStart
-23:7325 Bank23_FillerStart
-3c:664e Bank3c_FillerStart
-3f:682b Bank3f_FillerStart
+;0e:59bc Bank0e_FillerStart
+;14:7274 Bank14_FillerStart
+;23:7325 Bank23_FillerStart
+;3c:664e Bank3c_FillerStart
+;3f:682d Bank3f_FillerStart

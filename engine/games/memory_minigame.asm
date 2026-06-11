@@ -2,27 +2,12 @@ INCLUDE "constants.asm"
 
 SECTION "engine/games/memory_minigame.asm", ROMX
 
-; MemoryMinigame.Jumptable indices
-	const_def
-	const MEMORYGAME_RESTART_GAME
-	const MEMORYGAME_RESTART_BOARD
-	const MEMORYGAME_INIT_BOARD_AND_CURSOR
-	const MEMORYGAME_CHECK_TRIES_REMAINING
-	const MEMORYGAME_PICK_CARD_1
-	const MEMORYGAME_PICK_CARD_2
-	const MEMORYGAME_DELAY_PICK_AGAIN
-	const MEMORYGAME_REVEAL_ALL
-	const MEMORYGAME_ASK_PLAY_AGAIN
-DEF MEMORYGAME_END_LOOP_F EQU 7
-
-DEF MEMORYGAME_STARTING_COINS EQU 256
-
 MemoryMinigame:
 ; Always start off with 256 coins
 	ld hl, wCoins
-	ld [hl], HIGH(MEMORYGAME_STARTING_COINS)
+	ld [hl], HIGH(MINIGAME_STARTING_COINS)
 	inc hl
-	ld [hl], LOW(MEMORYGAME_STARTING_COINS)
+	ld [hl], LOW(MINIGAME_STARTING_COINS)
 
 	call .LoadGFXAndPals
 	call DelayFrame
@@ -76,7 +61,7 @@ MemoryMinigame:
 
 .JumptableLoop:
 	ld a, [wJumptableIndex]
-	bit MEMORYGAME_END_LOOP_F, a
+	bit MINIGAME_END_LOOP_F, a
 	jr nz, .quit
 	call .ExecuteJumptable
 	callfar PlaySpriteAnimations
@@ -109,10 +94,10 @@ MemoryMinigame:
 	ret
 
 .ResetBoard:
-	call Cursor_AnimateCursor
+	call PokerMinigame_BetAmount	; Leftover from Poker Minigame
 	jr nc, .proceed
 	ld hl, wJumptableIndex
-	set MEMORYGAME_END_LOOP_F, [hl]
+	set MINIGAME_END_LOOP_F, [hl]
 	ret
 
 .proceed
@@ -269,10 +254,10 @@ endr
 	inc [hl]
 
 .AskPlayAgain:
-	call Cursor_InterpretJoypad
+	call PokerMinigame_YesOrNo
 	jr nc, .restart
 	ld hl, wJumptableIndex
-	set MEMORYGAME_END_LOOP_F, [hl]
+	set MINIGAME_END_LOOP_F, [hl]
 	ret
 
 .restart

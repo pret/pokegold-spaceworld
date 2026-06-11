@@ -2,33 +2,6 @@ INCLUDE "constants.asm"
 
 SECTION "engine/games/picross_minigame.asm", ROMX
 
-; PicrossSprites constants
-	const_def
-	const PATTERN_NORMAL
-	const PATTERN_TILESET
-
-; PicrossMinigame.Jumptable constants
-	const_def
-	const PICROSS_INIT_MODE
-	const PICROSS_RUN_MODE
-	const PICROSS_EXIT_MODE
-DEF PICROSS_END_LOOP_F EQU 7
-
-; wPicrossCurrentCellType constants
-	const_def
-	const PICROSS_BLANK_CELL
-	const PICROSS_COLORED_CELL
-	const PICROSS_MARKED_CELL
-
-DEF PICROSS_GFX_BGTILE EQU $80
-DEF PICROSS_GFX_BUSHTILE EQU $81
-DEF PICROSS_GFX_BUSHGROUNDTILE EQU $82
-DEF PICROSS_GFX_GROUNDTILE EQU $83
-
-DEF PICROSS_GFX_COLUMNS EQU $84
-DEF PICROSS_GFX_ROWS EQU $b4
-DEF PICROSS_GFX_TABLESTART equ $f0
-
 ; The Picross game area is referred as the "table" here.
 ; The table consists of 256 cells, divided into 4x4 "grids" of 16 cells each.
 
@@ -261,7 +234,7 @@ PicrossMinigame:
 .GameLoop:
 	call .GetJoypadState
 	ld a, [wJumptableIndex]
-	bit PICROSS_END_LOOP_F, a
+	bit MINIGAME_END_LOOP_F, a
 	jr nz, .quit
 
 	call .ExecuteJumptable
@@ -328,7 +301,7 @@ PicrossMinigame:
 
 ; Game will truly exit once the Start button is pressed
 	ld hl, wJumptableIndex
-	set PICROSS_END_LOOP_F, [hl]
+	set MINIGAME_END_LOOP_F, [hl]
 	ret
 
 .PlaceBGMapTiles:
