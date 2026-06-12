@@ -36,7 +36,7 @@ OldCityPokecenter2FText1:
 	ld [wce37], a
 	ld hl, wJoypadFlags
 	set 5, [hl]
-	callfar Function29abf
+	callfar Link_Receptionist_Intro
 	ld hl, wJoypadFlags
 	res 5, [hl]
 	ret
@@ -46,7 +46,7 @@ OldCityPokecenter2FText2:
 	ld [wce37], a
 	ld hl, wJoypadFlags
 	set 5, [hl]
-	callfar Function29abf
+	callfar Link_Receptionist_Intro
 	ld hl, wJoypadFlags
 	res 5, [hl]
 	ret
@@ -63,7 +63,7 @@ Text947e3:
 OldCityPokecenter2FText4:
 	ld hl, OldCityPokecenter2FTextString4
 	call OpenTextbox
-	callfar Function29a1f
+	callfar CheckTimeCapsuleCompatibility
 	jr c, .asm_9480c
 	ld a, $05
 	call DeleteMapObject

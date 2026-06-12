@@ -128,6 +128,15 @@ if DEF(_SILVER)
 INCBIN "slack/bank03padding_silver.bin"
 endc
 
+SECTION "slack.asm@Bank 0a Padding", ROMX
+Bank0aPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank0apadding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank0apadding_silver.bin"
+endc
+
 SECTION "slack.asm@Bank 0b Padding", ROMX
 Bank0bPadding:
 if DEF(_GOLD)

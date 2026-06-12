@@ -218,9 +218,11 @@ ROMX $09
 	"engine/items/buy_sell_toss.asm"
 
 ROMX $0a
-	org $4000
+	"engine/dumps/bank0a.asm"
 	org $5641
 	"gfx.asm@Gameboy GFX"
+	"engine/dumps/bank0a.asm@CheckTimeCapsuleCompatibility"
+	"slack.asm@Bank 0a Padding"
 
 ROMX $0b
 	"engine/items/print_item_description.asm"
