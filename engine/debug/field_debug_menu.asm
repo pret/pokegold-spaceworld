@@ -229,7 +229,7 @@ FieldDebug_HealPokemon:
 	prompt
 
 FieldDebug_CableClub:
-	callfar Function29abf
+	callfar Link_Receptionist_Intro
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
