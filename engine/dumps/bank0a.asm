@@ -25,7 +25,7 @@ CheckTimeCapsuleCompatibility:
 	ld a, [wPartyCount]
 	ld b, a
 .move_loop:
-	ld c, $04
+	ld c, NUM_MOVES
 .move_next:
 	ld a, [hli]
 	cp MOVE_STRUGGLE + 1
@@ -153,7 +153,7 @@ CableClubCheckInPrompt:
 	callfar Dummy_SaveBox
 	ld c, $20
 	call DelayFrames
-	ld de, $0020
+	ld de, SFX_SAVE
 	call WaitPlaySFX
 	call WaitSFX
 	ld c, 30
@@ -435,38 +435,41 @@ Text_Receptionist_Options:
 	next "やめる@"
 Text_Receptionist_Empty:
 	db "@"
+
 UnreferencedFunction29ef7:
-		add b
-		add $C0
-		ld [wLinkPlayerSyncBuffer], a
-		ld [wLinkPlayerSyncBuffer + 1], a	; wLinkPlayerSyncBuffer + 1 = $CB52
-		call Serial_ExchangeLinkMenuSelection
-		ld a, [wLinkReceivedSyncBuffer]
-		ld b, a
-		ldh a, [hSerialConnectionStatus]
-		cp USING_EXTERNAL_CLOCK
-		ret z
-		ld a, [wReservedObjectStepDuration]	; wReservedObjectStepDuration = $CE88
-		cp $0C
-		ret nz
-		ld a, [wMapId]	; wMapId = $D657
-		ld a, $02
-		jr z, .Function29F1A
-		inc a
-.Function29F1A:	
-		ld [wLinkMode], a	; wLinkMode = $CDBD
-		ldh a, [hSerialConnectionStatus]
-		cp USING_INTERNAL_CLOCK
-		ret z
-		ld a, [wReservedObjectStepDuration]	; wReservedObjectStepDuration = $CE88
-		cp $08
-		ret nz
-		ld a, [wMapId]	; wMapId = $D657
-		ld a, $02
-		jr z, .Function29F30
-		inc a
-.Function29F30:	
-		ld [wLinkMode], a	; wLinkMode = $CDBD
+	add b
+	add $C0
+	ld [wLinkPlayerSyncBuffer], a
+	ld [wLinkPlayerSyncBuffer + 1], a	; wLinkPlayerSyncBuffer + 1 = $CB52
+	call Serial_ExchangeLinkMenuSelection
+	ld a, [wLinkReceivedSyncBuffer]
+	ld b, a
+	ldh a, [hSerialConnectionStatus]
+	cp USING_EXTERNAL_CLOCK
+	ret z
+	ld a, [wReservedObjectStepDuration]	; wReservedObjectStepDuration = $CE88
+	cp $0C
+	ret nz
+	ld a, [wMapId]	; wMapId = $D657
+	ld a, $02
+	jr z, .Function29F1A
+	inc a
+.Function29F1A:
+	ld [wLinkMode], a	; wLinkMode = $CDBD
+	ldh a, [hSerialConnectionStatus]
+	cp USING_INTERNAL_CLOCK
+	ret z
+	ld a, [wReservedObjectStepDuration]	; wReservedObjectStepDuration = $CE88
+	cp $08
+	ret nz
+	ld a, [wMapId]	; wMapId = $D657
+	ld a, $02
+	jr z, .Function29F30
+	inc a
+.Function29F30:
+	ld [wLinkMode], a	; wLinkMode = $CDBD
+	; incomplete
+
 Text_Link_WaitUnreferenced:
 	text "ちょっと　まってね"
 	done
