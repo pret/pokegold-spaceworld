@@ -49,3 +49,5 @@ $(BUILD)/gfx/battle_anims/skyattack.2bpp: tools/gfx += --remove-whitespace
 $(BUILD)/gfx/battle_anims/status.2bpp: tools/gfx += --remove-whitespace
 
 $(BUILD)/gfx/evo/bubbles.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace
+
+$(BUILD)/gfx/trade/game_boy.2bpp: tools/gfx += --remove-duplicates --preserve=0x23,0x27

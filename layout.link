@@ -219,8 +219,8 @@ ROMX $09
 
 ROMX $0a
 	"engine/dumps/bank0a.asm"
-	org $5641
-	"gfx.asm@Gameboy GFX"
+	org $4d6e
+	"engine/movie/trade_animation.asm"
 	"engine/dumps/bank0a.asm@CheckTimeCapsuleCompatibility"
 	"slack.asm@Bank 0a Padding"
 

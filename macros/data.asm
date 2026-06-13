@@ -145,6 +145,17 @@ MACRO? menu_coords
 	db \4, \3 ; end coords
 ENDM
 
+MACRO? dname
+	if _NARG == 2
+		def n = \2
+	else
+		def n = PLAYER_NAME_LENGTH - 1
+	endc
+	assert STRFIND(\1, "@") == -1, "String terminator \"@\" in name: \1"
+	assert CHARLEN(\1) <= n, "Name longer than {d:n} characters: \1"
+	db \1
+	ds n - CHARLEN(\1), '@'
+ENDM
 
 MACRO? bcd
 rept _NARG

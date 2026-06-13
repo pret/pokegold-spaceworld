@@ -245,10 +245,6 @@ INCBIN "data/tilesets/gate_metatiles.bin"
 Gate_Coll:
 INCLUDE "data/tilesets/gate_collision.inc"
 
-SECTION "gfx.asm@Gameboy GFX", ROMX
-TradeGameBoyGFX::
-INCBIN "gfx/trade/gameboy.2bpp"
-
 SECTION "gfx.asm@Bank C Tilesets Radio Tower", ROMX
 RadioTower_GFX:
 INCBIN "gfx/tilesets/radio_tower.2bpp"

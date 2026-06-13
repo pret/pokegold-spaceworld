@@ -56,8 +56,8 @@ GiveItemPredef::
 	add_predef LearnLevelMoves
 	add_predef FillMoves
 	add_predef EvolveAfterBattle
-	add_predef Function28da4
-	add_predef Function28d6e
+	add_predef TradeAnimationPlayer2
+	add_predef TradeAnimation
 	add_predef NewPokedexEntry
 	add_predef Pokedex
 	add_predef ConvertMon_1to2 ; 30
