@@ -3,11 +3,6 @@ INCLUDE "constants.asm"
 SECTION "engine/dumps/bank0a.asm", ROMX
 
 SECTION "engine/dumps/bank0a.asm@CheckTimeCapsuleCompatibility", ROMX
-UnknownData299D1:
-	db $15, $04, $05, $E3, $59, $DE, $59, $DD, $59, $00, $E3, $59, $C9, $E0, $59, $00, $E7, $57, $16, $16,
-	db $16, $16, $16, $17, $18, $22, $1A, $17, $17, $1C, $21, $1E, $17, $17, $1F, $1B, $20, $17, $15, $04,
-	db $05, $0B, $5A, $06, $5A, $03, $5A, $00, $0B, $5A, $C3, $DD, $59, $08, $5A, $00, $E7, $57, $16, $16,
-	db $16, $16, $16, $17, $18, $19, $1A, $17, $17, $1C, $1D, $1E, $17, $17, $1F, $1B, $20, $17
 
 CheckTimeCapsuleCompatibility:
 	ld hl, wPartySpecies
@@ -160,7 +155,7 @@ CableClubCheckInPrompt:
 	call DelayFrames
 	pop af
 	ld [wTempByteValue], a
-	ld hl, $5C3B
+	ld hl, CableClubWaitText
 	call OpenTextbox
 	ld hl, wLinkTimeoutFrames
 	ld a, $03
@@ -199,7 +194,7 @@ Function29BA5:
 	call CloseLink
 	ld hl, CableClubExitText
 	call OpenTextbox
-	
+
 Function29BAE:
 	xor a
 	ld hl, wLinkTimeoutFrames
@@ -313,7 +308,7 @@ Link_Receptionist:
 
 .Function29DB3:
 	ld a, $01
-	ld [wLinkMode], a	; wLinkMode = $CDBD
+	ld [wLinkMode], a
 	ld c, LINK_COLOSSEUM
 	call DelayFrames
 	ld hl, Text_Receptionist_TemporaryStagingInLinkRoom
@@ -340,10 +335,10 @@ Link_Receptionist:
 	jr nz, .IncompatibleRoom_Textbox
 	ld a, [wTempByteValue]
 	inc a
-	ld [wLinkMode], a	; wLinkMode = $CDBD
+	ld [wLinkMode], a
 	ld hl, Text_Receptionist_PleaseComeIn
 	call OpenTextbox
-	ld a, [wLinkMode]	; wLinkMode = $CDBD
+	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
 	ld a, LINK_TRADECENTER
 	jr z, .remove_receptionist
@@ -388,7 +383,7 @@ Link_Receptionist:
 .EnsureSync:
 	add $D0
 	ld [wLinkPlayerSyncBuffer], a
-	ld [wLinkPlayerSyncBuffer + 1], a	; wLinkPlayerSyncBuffer + 1 = $CB52
+	ld [wLinkPlayerSyncBuffer + 1], a
 .receive_loop:
 	call Serial_ExchangeLinkMenuSelection
 	ld a, [wLinkReceivedSyncBuffer]
@@ -396,7 +391,7 @@ Link_Receptionist:
 	and $F0
 	cp $D0
 	jr z, .done
-	ld a, [wBattleAction]	; wBattleAction = $CB4D
+	ld a, [wOtherPlayerLinkAction]
 	ld b, a
 	and $F0
 	cp $D0
@@ -440,34 +435,34 @@ UnreferencedFunction29ef7:
 	add b
 	add $C0
 	ld [wLinkPlayerSyncBuffer], a
-	ld [wLinkPlayerSyncBuffer + 1], a	; wLinkPlayerSyncBuffer + 1 = $CB52
+	ld [wLinkPlayerSyncBuffer + 1], a
 	call Serial_ExchangeLinkMenuSelection
 	ld a, [wLinkReceivedSyncBuffer]
 	ld b, a
 	ldh a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
 	ret z
-	ld a, [wReservedObjectStepDuration]	; wReservedObjectStepDuration = $CE88
+	ld a, [wReservedObjectStepDuration]
 	cp $0C
 	ret nz
-	ld a, [wMapId]	; wMapId = $D657
+	ld a, [wMapId]
 	ld a, $02
 	jr z, .Function29F1A
 	inc a
 .Function29F1A:
-	ld [wLinkMode], a	; wLinkMode = $CDBD
+	ld [wLinkMode], a
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ret z
-	ld a, [wReservedObjectStepDuration]	; wReservedObjectStepDuration = $CE88
+	ld a, [wReservedObjectStepDuration]
 	cp $08
 	ret nz
-	ld a, [wMapId]	; wMapId = $D657
+	ld a, [wMapId]
 	ld a, $02
 	jr z, .Function29F30
 	inc a
 .Function29F30:
-	ld [wLinkMode], a	; wLinkMode = $CDBD
+	ld [wLinkMode], a
 	; incomplete
 
 Text_Link_WaitUnreferenced:

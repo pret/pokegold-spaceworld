@@ -227,14 +227,12 @@ MACRO hall_of_fame
 ENDM
 
 MACRO trademon
-\1Species:: ds 1 ; wc6d0 | wc702
-\1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wc703
-\1Nickname:: ds PKMN_NAME_LENGTH ; wc6dc | wc70e
-\1SenderName:: ds NAME_LENGTH ; wc6e7 | wc719
-\1OTName:: ds NAME_LENGTH ; wc6f2 | wc724
-\1DVs:: ds 2 ; wc6fd | wc72f
-\1ID:: ds 2 ; wc6ff | wc731
-\1CaughtData:: ds 1 ; wc701 | wc733
+\1Species:: ds 1 ; wc4d0 | wc4eb
+\1SpeciesName:: ds MON_NAME_LENGTH ; wc4d1 | wc4ec
+\1Nickname:: ds MON_NAME_LENGTH ; wc4d7 | wc4f2
+\1SenderName:: ds PLAYER_NAME_LENGTH ; wc4dd | wc4f8
+\1OTName:: ds PLAYER_NAME_LENGTH ; wc4e3 | c4fe
+\1ID:: ds 2 ; wc4e9 | wc504
 \1End::
 ENDM
 

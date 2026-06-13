@@ -2,6 +2,9 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/OldCityPokecenterTrade.asm", ROMX
 
+; unreferenced
+	ret
+
 OldCityPokecenterTrade_ScriptLoader:
 	ld hl, OldCityPokecenterTradeScriptPointers
 	call RunMapScript

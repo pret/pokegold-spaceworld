@@ -209,6 +209,17 @@ wNamingScreenStringEntryCoordY:: db
 wNamingScreenStringEntryCoordX:: db
 
 NEXTU
+ds 200
+; trade
+wPlayerTrademon:: trademon wPlayerTrademon
+wOTTrademon::     trademon wOTTrademon
+wTradeAnimAddress:: dw
+wLinkPlayer1Name:: ds PLAYER_NAME_LENGTH
+wLinkPlayer2Name:: ds PLAYER_NAME_LENGTH
+wLinkTradeSendmonSpecies:: db
+wLinkTradeGetmonSpecies::  db
+
+NEXTU
 
 	ds 200
 
@@ -787,11 +798,13 @@ wIntroSceneFrameCounter::
 wTrainerGearPointerPosition::
 wPokedexSlowpokeNumSearchEntries::
 wNestIconBlinkCounter::
+wFrameCounter::
 wBattleTransitionCounter:: db
 
 UNION
 wBattleTransitionSineWaveOffset::
 wBattleTransitionSpinQuadrant::
+wFrameCounter2::
 wIntroSceneTimer::
 wTrainerGearCard::
 wcb60:: ds 1

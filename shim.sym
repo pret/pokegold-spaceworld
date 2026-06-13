@@ -2,9 +2,9 @@
 ; all these probably print text
 0A:4000 Function28000
 0A:4C98 LinkTextboxAtHL
-0A:4D6E Function28d6e
-0A:4DA4 Function28da4
-0A:533B TradeAnim_AnimateTrademonInTube
+;0A:4D6E TradeAnimation
+;0A:4DA4 TradeAnimationPlayer2
+;0A:533B TradeAnim_AnimateTrademonInTube
 ;0A:5A1F CheckTimeCapsuleCompatibility ; prints text
 ;0A:5ABF Link_Receptionist_Intro ; prints text
 
