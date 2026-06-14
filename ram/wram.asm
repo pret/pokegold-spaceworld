@@ -337,9 +337,20 @@ wMapBufferEnd::
 
 UNION
 
+wLinkData::
 wc600::
 wOverworldMapBlocks:: ds 1300
+wLinkDataEnd::
 wOverworldMapBlocksEnd::
+
+NEXTU
+	ds 700
+wLinkPlayerMail::
+wLinkPlayerMailPreamble:: ds SERIAL_MAIL_PREAMBLE_LENGTH
+wLinkPlayerMailMessages:: ds MAIL_STRUCT_LENGTH * PARTY_LENGTH
+wLinkPlayerMailPatchSet:: ds 33
+wLinkPlayerMailEnd::
+	ds 10
 
 NEXTU
 
@@ -348,6 +359,33 @@ wLYOverridesEnd:: db
 	ds 15
 wLYOverrides2:: ds SCREEN_HEIGHT_PX
 wLYOverrides2End::
+
+NEXTU
+
+; link data members
+wLinkPlayerName:: ds PLAYER_NAME_LENGTH
+wLinkPartyCount:: db
+wLinkPartySpecies:: ds PARTY_LENGTH
+wLinkPartyEnd:: db ; older code doesn't check PartyCount
+
+; link player data
+wLinkPlayerData::
+; wLinkPlayerPartyMon1 - wLinkPlayerPartyMon6
+for n, 1, PARTY_LENGTH + 1
+wLinkPlayerPartyMon{d:n}:: party_struct wLinkPlayerPartyMon{d:n}
+endr
+
+wLinkPlayerPartyMonOTs::
+; wLinkPlayerPartyMon1OT - wLinkPlayerPartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wLinkPlayerPartyMon{d:n}OT:: ds NAME_LENGTH
+endr
+
+wLinkPlayerPartyMonNicknames::
+; wLinkPlayerPartyMon1Nickname - wLinkPlayerPartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wLinkPlayerPartyMon{d:n}Nickname:: ds NAME_LENGTH
+endr
 
 NEXTU
 

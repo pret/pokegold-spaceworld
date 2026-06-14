@@ -34,7 +34,7 @@ OldCityPokecenterBattleText1:
 	call OpenTextbox
 	ld hl, wJoypadFlags
 	res 5, [hl]
-	callfar Function28000
+	callfar StartLinkCommunications
 	ret
 
 OldCityPokecenterBattleTextString1:

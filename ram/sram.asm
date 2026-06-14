@@ -57,5 +57,17 @@ SECTION "Boxes 6-10", SRAM
 	assert box_n == NUM_BOXES, \
 		"boxes: Expected {d:NUM_BOXES} total boxes, got {d:box_n}"
 
+sPartyMail::
+; sPartyMon1Mail - sPartyMon6Mail
+for n, 1, PARTY_LENGTH + 1
+sPartyMon{d:n}Mail:: mailmsg sPartyMon{d:n}Mail
+endr
+
+sPartyMailBackup::
+; sPartyMon1MailBackup - sPartyMon6MailBackup
+for n, 1, PARTY_LENGTH + 1
+sPartyMon{d:n}MailBackup:: mailmsg sPartyMon{d:n}MailBackup
+endr
+
 SECTION "Checksum", SRAM
 sChecksum:: ds 3
