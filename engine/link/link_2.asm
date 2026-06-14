@@ -1,14 +1,12 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank0a.asm", ROMX
-
-SECTION "engine/dumps/bank0a.asm@CheckTimeCapsuleCompatibility", ROMX
+SECTION "engine/link/link_2.asm", ROMX
 
 CheckTimeCapsuleCompatibility:
 	ld hl, wPartySpecies
 	ld b, PARTY_LENGTH
 .loop:
-	ldi a, [hl]
+	ld a, [hli]
 	cp -1
 	jr z, .checkitem
 	cp NUM_KANTO_POKEMON + 1
@@ -167,7 +165,7 @@ CableClubCheckInPrompt:
 	ld [wLinkPlayerSyncBuffer], a
 	call WaitLinkTransfer
 	ld hl, wLinkTimeoutFrames
-	ldi a, [hl]
+	ld a, [hli]
 	inc a
 	jr nz, Handle_Link_Receptionist
 	ld a, [hl]
@@ -315,7 +313,7 @@ Link_Receptionist:
 	call OpenTextbox
 	ld c, 80
 	call DelayFrames
-	callfar Function28000
+	callfar StartLinkCommunications
 	ret
 
 .ChangeRoom:

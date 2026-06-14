@@ -1,7 +1,7 @@
 ; Link cable-related functions.
 ; all these probably print text
-0A:4000 Function28000
-0A:4C98 LinkTextboxAtHL
+;0A:4000 Function28000
+;0A:4C98 LinkTextboxAtHL
 ;0A:4D6E TradeAnimation
 ;0A:4DA4 TradeAnimationPlayer2
 ;0A:533B TradeAnim_AnimateTrademonInTube
@@ -30,7 +30,7 @@
 ;3F:6750 MonsterTest_Cursor
 
 ; Filler. TODO: Determine the position of all filler and preferably extract it to binary files.
-0a:5f3e Bank0a_FillerStart
+;0a:5f3e Bank0a_FillerStart
 ;0B:786F Bank0b_FillerStart
 ;0e:59bc Bank0e_FillerStart
 ;14:7274 Bank14_FillerStart
