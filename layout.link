@@ -218,10 +218,9 @@ ROMX $09
 	"engine/items/buy_sell_toss.asm"
 
 ROMX $0a
-	"engine/dumps/bank0a.asm"
-	org $4d6e
+	"engine/link/link.asm"
 	"engine/movie/trade_animation.asm"
-	"engine/dumps/bank0a.asm@CheckTimeCapsuleCompatibility"
+	"engine/link/link_2.asm"
 	"slack.asm@Bank 0a Padding"
 
 ROMX $0b
