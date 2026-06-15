@@ -156,6 +156,10 @@ wOptionsBattleStyleCursorX:: db
 wOptionsAudioSettingsCursorX:: db
 wOptionsBottomRowCursorX:: db
 NEXTU
+; link patch lists
+wPlayerPatchLists:: ds SERIAL_PATCH_LIST_LENGTH
+wOTPatchLists:: ds SERIAL_PATCH_LIST_LENGTH
+NEXTU
 	ds 7
 
 	ds 3
@@ -348,7 +352,7 @@ NEXTU
 wLinkPlayerMail::
 wLinkPlayerMailPreamble:: ds SERIAL_MAIL_PREAMBLE_LENGTH
 wLinkPlayerMailMessages:: ds MAIL_STRUCT_LENGTH * PARTY_LENGTH
-wLinkPlayerMailPatchSet:: ds 33
+wLinkPlayerMailPatchSet:: ds 35
 wLinkPlayerMailEnd::
 	ds 10
 
@@ -1035,6 +1039,12 @@ wBattleMenuRows:: db
 wBattleMenuColumns:: db
 
 NEXTU
+; trade
+wCurTradePartyMon:: db
+wCurOTTradePartyMon:: db
+wBufferTrademonNickname:: ds MON_NAME_LENGTH
+
+NEXTU
 
 wTempBoxName:: ds BOX_NAME_LENGTH
 
@@ -1220,7 +1230,7 @@ wBattleResult:: db
 	ds 1
 
 wChosenStarter:: db
-wcd60:: db
+wCurMartCount:: db
 
 SECTION "CD70", WRAM0[$CD70]
 wListPointer:: dw
@@ -1329,7 +1339,7 @@ wcdc4:: db
 wcdc5:: db
 
 wcdc6:: db
-wcdc7:: db
+wLinkBattleRNPreamble:: db
 wcdc8:: db
 	ds 1
 wEnemyItemUsed:: db
@@ -1454,7 +1464,7 @@ wRepelEffect:: db
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wPutativeTMHMMove:: db
 wce33:: ds 1
-wce34:: ds 1
+wInitListType:: ds 1
 wWildMon:: db
 wBattleHasJustStarted:: db
 

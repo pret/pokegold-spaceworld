@@ -219,7 +219,12 @@ ROMX $09
 
 ROMX $0a
 	"engine/link/link.asm"
+	"data/pokemon/gen1_base_special.asm"
 	"engine/movie/trade_animation.asm"
+	"scripts/UnusedGen1TradeCenter.asm"
+	"data/maps/objects/UnusedGen1TradeCenter.asm"
+	"scripts/UnusedGen1Colosseum.asm"
+	"data/maps/objects/UnusedGen1Colosseum.asm"
 	"engine/link/link_2.asm"
 	"slack.asm@Bank 0a Padding"
 

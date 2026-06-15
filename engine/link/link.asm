@@ -71,7 +71,7 @@ Gen2ToGen1LinkComms:
 	call DelayFrames
 	ld a, $08
 	ldh [rIE], a
-	ld hl, wcdc7
+	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMon
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
 	call Serial_ExchangeBytes
@@ -80,14 +80,14 @@ Gen2ToGen1LinkComms:
 
 	ld hl, wLinkData
 	ld de, wOTPlayerName
-	ld bc, $0161
+	ld bc, PLAYER_NAME_LENGTH + (1 + PARTY_LENGTH + 1) + (REDMON_STRUCT_LENGTH + PLAYER_NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 
-	ld hl, wOptionsMenuCursorX
+	ld hl, wPlayerPatchLists
 	ld de, wPlayerTrademon
-	ld bc, $00C8
+	ld bc, SERIAL_PATCH_LIST_LENGTH
 	call Serial_ExchangeBytes
 
 	ld a, $1D
@@ -99,7 +99,7 @@ Gen2ToGen1LinkComms:
 	call Link_FindFirstNonControlCharacter_SkipZero
 
 	ld de, wLinkData
-	ld bc, $0161
+	ld bc, PLAYER_NAME_LENGTH + (1 + PARTY_LENGTH + 1) + (REDMON_STRUCT_LENGTH + PLAYER_NAME_LENGTH * 2) * PARTY_LENGTH + 3
 	call Link_CopyOTData
 
 	ld de, wPlayerTrademon
@@ -224,7 +224,7 @@ Gen2ToGen2LinkComms:
 	ld a, $08
 	ldh [rIE], a
 
-	ld hl, wcdc7
+	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMon
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
 	call Serial_ExchangeBytes
@@ -238,7 +238,7 @@ Gen2ToGen2LinkComms:
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 
-	ld hl, wOptionsMenuCursorX
+	ld hl, wPlayerPatchLists
 	ld de, wPlayerTrademon
 	ld bc, SERIAL_PATCH_LIST_LENGTH
 	call Serial_ExchangeBytes
@@ -248,7 +248,7 @@ Gen2ToGen2LinkComms:
 	jr nz, .not_trading
 	ld hl, wLinkPlayerMail
 	ld de, wBattle
-	ld bc, $0118
+	ld bc, wLinkPlayerMailEnd - wLinkPlayerMail
 	call ExchangeBytes
 .not_trading
 	ld a, $1D
@@ -260,7 +260,7 @@ Gen2ToGen2LinkComms:
 	ld hl, wOTPlayerName
 	call Link_FindFirstNonControlCharacter_SkipZero
 	ld de, wLinkData
-	ld bc, PLAYER_NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (PARTYMON_STRUCT_LENGTH + MON_NAME_LENGTH * 2) * PARTY_LENGTH
+	ld bc, PLAYER_NAME_LENGTH + (1 + PARTY_LENGTH + 1) + (PARTYMON_STRUCT_LENGTH + PLAYER_NAME_LENGTH * 2) * PARTY_LENGTH
 	call Link_CopyOTData
 
 	ld de, wPlayerTrademon
@@ -427,13 +427,14 @@ ClearLinkData:
 	ret
 
 FixDataForLinkTransfer:
-	ld hl, wcdc7
+	ld hl, wLinkBattleRNPreamble
 	ld a, SERIAL_PREAMBLE_BYTE
 	ld b, SERIAL_RN_PREAMBLE_LENGTH
 .preamble_loop
 	ld [hli], a
 	dec b
 	jr nz, .preamble_loop
+; Initialize random seed, making sure special bytes are omitted
 	ld b, SERIAL_RNS_LENGTH
 	ld de, wLinkBattleRNs
 .rn_loop
@@ -446,7 +447,8 @@ FixDataForLinkTransfer:
 	dec b
 	jr nz, .rn_loop
 
-	ld hl, wOptionsMenuCursorX
+; Clear the patch list
+	ld hl, wPlayerPatchLists
 	ld a, SERIAL_PREAMBLE_BYTE
 rept SERIAL_PATCH_PREAMBLE_LENGTH
 	ld [hli], a
@@ -459,7 +461,7 @@ endr
 	jr nz, .clear_loop
 
 	ld hl, wLinkData + SERIAL_PREAMBLE_LENGTH + PLAYER_NAME_LENGTH + (1 + PARTY_LENGTH + 1) - 1
-	ld de, wDayOfWeekBuffer
+	ld de, wPlayerPatchLists + SERIAL_RNS_LENGTH
 	lb bc, 0, 0
 .patch_loop:
 ; Check if we've gone over the entire area
@@ -744,8 +746,8 @@ Link_ConvertPartyStruct1to2:
 	ld a, c
 	ld [hli], a
 	ld [hl], b
-	ld hl, wOTPartyMons
-	ld c, $06
+	ld hl, wOTPartyMon1Species
+	ld c, PARTY_LENGTH
 .loop
 	push bc
 	call .ConvertToGen2
@@ -753,13 +755,13 @@ Link_ConvertPartyStruct1to2:
 	dec c
 	jr nz, .loop
 	pop hl
-	ld bc, $0108
+	ld bc, PARTY_LENGTH * REDMON_STRUCT_LENGTH
 	add hl, bc
 	ld de, wOTPartyMon1OT
-	ld bc, $0024
+	ld bc, PARTY_LENGTH * PLAYER_NAME_LENGTH
 	call CopyBytes
 	ld de, wOTPartyMon1Nickname
-	ld bc, $0024
+	ld bc, PARTY_LENGTH * MON_NAME_LENGTH
 	call CopyBytes
 	ret
 
@@ -812,25 +814,25 @@ Link_ConvertPartyStruct1to2:
 	ld h, d
 	ld l, e
 	pop de
-	ld bc, $001A
+	ld bc, MON_HAPPINESS - MON_ITEM
 	call CopyBytes
 	pop bc
 	ld d, h
 	ld e, l
-	ld hl, $001F
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [de]
 	inc de
 	ld [hl], a
 	ld [wCurPartyLevel], a
 	push bc
-	ld hl, $0024
+	ld hl, MON_MAXHP
 	add hl, bc
 	push hl
 	ld h, d
 	ld l, e
 	pop de
-	ld bc, $0008
+	ld bc, MON_SAT - MON_MAXHP
 	call CopyBytes
 	pop bc
 	call GetBaseData
@@ -976,9 +978,9 @@ LinkTradeOTPartymonMenuLoop:
 	jp z, LinkTradePartiesMenuMasterLoop
 	bit A_BUTTON_F, a
 	jr z, .not_a_button
-	ld a, $01
-	ld [wce34], a
-	callfar Function50c48
+	ld a, INIT_ENEMYOT_LIST
+	ld [wInitListType], a
+	callfar InitList
 	ld hl, wOTPartyMons
 	call LinkMonStatsScreen
 	jp LinkTradePartiesMenuMasterLoop
@@ -1034,10 +1036,10 @@ LinkTradePartymonMenuLoop:
 	jr z, .not_a_button
 	jp LinkTrade_TradeStatsMenu
 
-.unreferenced:	
-		ld a, $04
-		ld [wce34], a
-		callfar Function50c48
+.unreferenced_check_party_ot_name:
+		ld a, INIT_PLAYEROT_LIST
+		ld [wInitListType], a
+		callfar InitList
 		call LinkMonStatsScreen
 		jp LinkTradePartiesMenuMasterLoop
 
@@ -1143,9 +1145,9 @@ LinkTrade_TradeStatsMenu:
 .show_stats:
 	pop af
 	ld [wMenuCursorY], a
-	ld a, 4
-	ld [wce34], a
-	callfar Function50c48
+	ld a, INIT_PLAYEROT_LIST
+	ld [wInitListType], a
+	callfar InitList
 	call LinkMonStatsScreen
 	call ReloadTilesFromBuffer
 	jp LinkTrade_PlayerPartyMenu
@@ -1155,13 +1157,13 @@ LinkTrade_TradeStatsMenu:
 	pop af
 	ld [wMenuCursorY], a
 	dec a
-	ld [wBattleMenuRows], a
+	ld [wCurTradePartyMon], a
 	ld [wLinkPlayerSyncBuffer], a
 	call Serial_PrintWaitingTextAndSyncAndExchangeNybble
 	ld a, [wLinkReceivedSyncBuffer]
 	cp $f
 	jp z, InitTradeMenuDisplay
-	ld [wBattleMenuColumns], a
+	ld [wCurOTTradePartyMon], a
 	call LinkTradePlaceArrow
 	ld c, 100
 	call DelayFrames
@@ -1170,7 +1172,7 @@ LinkTrade_TradeStatsMenu:
 	xor a
 	ld [wLinkPlayerSyncBuffer + 1], a
 	ld [wBattleAction], a
-	ld a, [wBattleMenuColumns]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartySpecies
 	ld c, a
 	ld b, $00
@@ -1293,12 +1295,12 @@ LinkMonStatsScreen:
 	jp PlaceTradeScreenFooter
 
 ValidateOTTrademon:
-	ld a, [wBattleMenuColumns]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartyMons
 	ld bc, $0030
 	call AddNTimes
 	push hl
-	ld a, [wBattleMenuColumns]
+	ld a, [wCurOTTradePartyMon]
 	inc a
 	ld c, a
 	ld b, $00
@@ -1310,7 +1312,7 @@ ValidateOTTrademon:
 	jr nz, .Function28990
 	ld b, h
 	ld c, l
-	ld hl, $001F
+	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	cp $65
@@ -1319,7 +1321,7 @@ ValidateOTTrademon:
 	cp $01
 	jr nz, .Function2898E
 	ld hl, wOTPartySpecies
-	ld a, [wBattleMenuColumns]
+	ld a, [wCurOTTradePartyMon]
 	ld c, a
 	ld b, $00
 	add hl, bc
@@ -1397,7 +1399,7 @@ LinkTrade:
 	ld b, $04
 	ld c, $12
 	call LinkTextboxAtHL
-	ld a, [wBattleMenuRows]
+	ld a, [wCurTradePartyMon]
 	ld hl, wPartySpecies
 	ld c, a
 	ld b, $00
@@ -1409,7 +1411,7 @@ LinkTrade:
 	ld de, wMovementBufferPointerBank
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-	ld a, [wBattleMenuColumns]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartySpecies
 	ld c, a
 	ld b, $00
@@ -1487,7 +1489,7 @@ LinkTrade:
 
 .do_trade:
 	ld hl, sPartyMail
-	ld a, [wBattleMenuRows]
+	ld a, [wCurTradePartyMon]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld a, $02
@@ -1496,7 +1498,7 @@ LinkTrade:
 	ld e, l
 	ld bc, MAIL_STRUCT_LENGTH
 	add hl, bc
-	ld a, [wBattleMenuRows]
+	ld a, [wCurTradePartyMon]
 	ld c, a
 .copy_mail
 	inc c
@@ -1517,75 +1519,87 @@ LinkTrade:
 	call AddNTimes
 	push hl
 	ld hl, wLinkPlayerMail
-	ld a, [wBattleMenuColumns]
+	ld a, [wCurOTTradePartyMon]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	pop de
 	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	call CloseSRAM
+; Buffer player data
+; nickname
 	ld hl, wPlayerName
 	ld de, wPlayerTrademonSenderName
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
-	ld a, [wBattleMenuRows]
+; species
+	ld a, [wCurTradePartyMon]
 	ld hl, wPartySpecies
-	ld b, $00
+	ld b, 0
 	ld c, a
 	add hl, bc
 	ld a, [hl]
+; OT name
 	ld [wPlayerTrademon], a
-	ld a, [wBattleMenuRows]
+	ld a, [wCurTradePartyMon]
 	ld hl, wPartyMon1OT
 	call SkipNames
 	ld de, wPlayerTrademonOTName
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
+; ID
 	ld hl, wPartyMon1ID
-	ld a, [wBattleMenuRows]
+	ld a, [wCurTradePartyMon]
 	ld bc, $0030
 	call AddNTimes
 	ld a, [hli]
 	ld [wPlayerTrademonID], a
 	ld a, [hl]
 	ld [wPlayerTrademonID + 1], a
+
+; Buffer other player data
+; nickname
 	ld hl, wOTPlayerName
 	ld de, wOTTrademonSenderName
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
-	ld a, [wBattleMenuColumns]
+; species
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartySpecies
-	ld b, $00
+	ld b, 0
 	ld c, a
 	add hl, bc
 	ld a, [hl]
 	ld [wOTTrademon], a
-	ld a, [wBattleMenuColumns]
+; OT name
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartyMon1OT
 	call SkipNames
 	ld de, wOTTrademonOTName
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
+; ID
 	ld hl, wOTPartyMon1ID
-	ld a, [wBattleMenuColumns]
+	ld a, [wCurOTTradePartyMon]
 	ld bc, $0030
 	call AddNTimes
 	ld a, [hli]
 	ld [wOTTrademonID], a
 	ld a, [hl]
-	ld [wPokerTurnNumber], a
-	ld a, [wBattleMenuRows]
+	ld [wOTTrademonID + 1], a
+
+	ld a, [wCurTradePartyMon]
 	ld [wCurPartyMon], a
 	ld hl, wPartySpecies
 	ld b, $00
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	ld [wBattleMenuRows], a
+	ld [wCurTradePartyMon], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
 	callfar RemoveMonFromPartyOrBox
-	ld a, [wBattleMenuColumns]
+	ld a, [wCurOTTradePartyMon]
 	ld c, a
 	ld [wCurPartyMon], a
 	ld hl, wOTPartySpecies
@@ -1607,13 +1621,13 @@ LinkTrade:
 	ld [wCurPartyMon], a
 	ld a, $01
 	ld [wForceEvolution], a
-	ld a, [wBattleMenuColumns]
+	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartySpecies
 	ld b, $00
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	ld [wBattleMenuColumns], a
+	ld [wCurOTTradePartyMon], a
 	ld c, 100
 	call DelayFrames
 	call ClearTileMap
@@ -1714,15 +1728,3 @@ LoadTradeScreenBorderGFX:
 	ld hl, vChars2 tile $76
 	lb bc, BANK(LinkCommsBorderGFX), 9
 	jp Request2bpp
-
-UnreferencedData28CD7:
-	db $41, $50, $64, $32, $41, $55, $32, $41, $55, $14, $19, $50, $14, $19, $2D, $23
-	db $32, $46, $19, $32, $1F, $3D, $28, $41, $32, $5A, $1E, $37, $28, $37, $4B, $28
-	db $37, $4B, $3C, $55, $41, $64, $19, $32, $28, $4B, $4B, $55, $64, $37, $50, $28
-	db $5A, $2D, $46, $28, $41, $32, $50, $23, $3C, $32, $50, $28, $32, $46, $69, $78
-	db $87, $23, $32, $41, $46, $55, $64, $64, $78, $1E, $2D, $37, $41, $50, $28, $50
-	db $5F, $78, $3A, $23, $3C, $46, $5F, $28, $41, $2D, $55, $64, $73, $82, $1E, $5A
-	db $73, $19, $32, $37, $50, $3C, $7D, $28, $32, $23, $23, $3C, $3C, $55, $1E, $2D
-	db $69, $64, $28, $46, $5F, $32, $50, $46, $64, $64, $37, $5F, $55, $55, $37, $46
-	db $14, $64, $5F, $30, $41, $6E, $6E, $6E, $4B, $5A, $73, $2D, $46, $3C, $41, $7D
-	db $7D, $7D, $32, $46, $64, $9A, $64

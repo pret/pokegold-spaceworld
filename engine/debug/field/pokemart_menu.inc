@@ -59,7 +59,7 @@ DebugMart_BuyMenuHeader:
 	db STATICMENU_WRAP
 	db 4, 8 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL
-	dbw 0, wcd60
+	dbw 0, wCurMartCount
 	dba PlaceMenuItemName
 	dba .PrintAmount
 	dba UpdateItemDescription
@@ -273,7 +273,7 @@ DebugMart_Sell:
 	done
 
 DebugMart_LoadItems:
-	ld hl, wcd60
+	ld hl, wCurMartCount
 .load_loop
 	ld a, [de]
 	inc de
@@ -281,7 +281,7 @@ DebugMart_LoadItems:
 	cp -1
 	jr nz, .load_loop
 	ld hl, wcc3a
-	ld de, wcd60 + 1
+	ld de, wCurMartCount + 1
 .load_loop2
 	ld a, [de]
 	inc de

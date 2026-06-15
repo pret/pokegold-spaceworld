@@ -10,12 +10,23 @@ MACRO map_attributes
 DEF CURRENT_MAP_WIDTH = \2_WIDTH
 DEF CURRENT_MAP_HEIGHT = \2_HEIGHT
 \1_MapAttributes::
+if _NARG <= 3
 	db CURRENT_MAP_HEIGHT, CURRENT_MAP_WIDTH
 	dw \1_Blocks
 	dw \1_TextPointers
 	dw \1_ScriptLoader
 	dw \1_MapEvents
 	db \3
+	else
+; Gen 1 Map Attributes
+	db TILESET_\3
+	db CURRENT_MAP_HEIGHT, CURRENT_MAP_WIDTH
+	dw \1_Blocks
+	dw \1_TextPointers
+	dw \1_ScriptLoader
+	db \4
+	dw \1_MapEvents
+	endc
 ENDM
 
 ; Connections go in order: north, south, west, east

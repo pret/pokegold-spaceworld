@@ -61,7 +61,7 @@ ENDM
 	unused_check_bit wcdc4
 	unused_check_bit wcdc5
 	unused_check_bit wcdc6
-	unused_check_bit wcdc7
+	unused_check_bit wLinkBattleRNPreamble
 	ret
 
 .CheckBit:
