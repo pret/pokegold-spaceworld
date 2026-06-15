@@ -146,7 +146,7 @@ IntroScene1:
 	ldh [hLCDCPointer], a
 	call Intro_InitSineLYOverrides
 
-	xor a	; FALSE
+	xor a ; FALSE
 	ld [wIntroSpriteStateFlag], a
 
 	call EnableLCD
@@ -435,7 +435,7 @@ Intro_InitLapras:
 	call InitSpriteAnimStruct
 	ret
 
-Intro_UnusedInitAerodactyl:	; unreferenced
+Intro_UnusedInitAerodactyl: ; unreferenced
 	depixel 2, 0
 	ld a, SPRITE_ANIM_OBJ_UNUSED_INTRO_AERODACTYL
 	call InitSpriteAnimStruct
@@ -525,19 +525,19 @@ endr
 .wave_tiles:
 ; Fill an entire bg map row with each frame
 rept 8
-	db $70, $71, $72, $73	; frame 1
+	db $70, $71, $72, $73 ; frame 1
 endr
 
 rept 8
-	db $74, $75, $76, $77	; frame 2
+	db $74, $75, $76, $77 ; frame 2
 endr
 
 rept 8
-	db $78, $79, $7a, $7b	; frame 3
+	db $78, $79, $7a, $7b ; frame 3
 endr
 
 rept 8
-	db $7c, $7d, $7e, $7f	; frame 4
+	db $7c, $7d, $7e, $7f ; frame 4
 endr
 
 Intro_InitSineLYOverrides:

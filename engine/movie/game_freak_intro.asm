@@ -33,7 +33,7 @@ GameFreakIntro::
 	call WaitBGMap
 	call SetPalettes
 
-	ld c, 3 * 60	; 3 seconds
+	ld c, 3 * 60 ; 3 seconds
 	call DelayFrames
 
 	xor a
@@ -100,7 +100,7 @@ GameFreakIntro::
 	call EnableLCD
 
 	ld a, %11100100
-	ld a, %11100100	; redundant
+	ld a, %11100100 ; redundant
 	ldh [rOBP0], a
 	ld a, %00100100
 	ldh [rOBP1], a
@@ -174,7 +174,7 @@ GameFreakPresents_Star:
 
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
-	ld [hl], $a0	; star path radius
+	ld [hl], $a0 ; star path radius
 
 	ld de, SFX_GAME_FREAK_LOGO_RG
 	call PlaySFX

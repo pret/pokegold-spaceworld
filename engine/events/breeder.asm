@@ -191,9 +191,9 @@ _Breeder::
 .MenuData:
 	db STATICMENU_CURSOR
 	db 3
-	db "あずける@"	; Deposit
-	db "ひきとる@"	; Withdraw
-	db "やめる@"	; Cancel
+	db "あずける@"	 ; Deposit
+	db "ひきとる@" ; Withdraw
+	db "やめる@" ; Cancel
 
 .DepositedText:
 	text "あずけた！"

@@ -94,7 +94,7 @@ MemoryMinigame:
 	ret
 
 .ResetBoard:
-	call PokerMinigame_BetAmount	; Leftover from Poker Minigame
+	call PokerMinigame_BetAmount ; Leftover from Poker Minigame
 	jr nc, .proceed
 	ld hl, wJumptableIndex
 	set MINIGAME_END_LOOP_F, [hl]

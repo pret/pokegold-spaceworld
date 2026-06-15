@@ -72,7 +72,7 @@ OverworldFadeOut::
 
 ReplaceTimeOfDayPals::
 	ld hl, TimeOfDayPalsets
-	ld a, [wMapPermissions]	; wMapPermissions = $D661
+	ld a, [wMapPermissions] ; wMapPermissions = $D661
 	cp TOWN
 	jr z, .get_palset
 

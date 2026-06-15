@@ -2484,21 +2484,21 @@ LoadBattleMonFromParty:
 	call AddNTimes
 	; Copy species, held item, and move
 	ld de, wBattleMon
-	ld bc, (wPartyMon1ID - wPartyMon1Species)	; 6
+	ld bc, (wPartyMon1ID - wPartyMon1Species) ; 6
 	call CopyBytes
 	; Skip ID, experience, and stat experience
-	ld bc, (wPartyMon1DVs - wPartyMon1ID)	; 15
+	ld bc, (wPartyMon1DVs - wPartyMon1ID) ; 15
 	add hl, bc
 	; Copy DVs, PP, and happiness
 	ld de, wBattleMonDVs
-	ld bc, (wPartyMon1PokerusStatus - wPartyMon1DVs)	; 7
+	ld bc, (wPartyMon1PokerusStatus - wPartyMon1DVs) ; 7
 	call CopyBytes
 	; Copy level, status, current and max HP, and stats
 	inc hl
 	inc hl
 	inc hl
 	ld de, wBattleMonLevel
-	ld bc, (wPartyMon1StatsEnd - wPartyMon1Level)	; 17
+	ld bc, (wPartyMon1StatsEnd - wPartyMon1Level) ; 17
 	call CopyBytes
 	; Copy both types
 	ld a, [wTempBattleMonSpecies]
@@ -2547,21 +2547,21 @@ LoadEnemyMonFromParty:
 	call AddNTimes
 	; Copy species, held item, and move
 	ld de, wEnemyMon
-	ld bc, (wPartyMon1ID - wPartyMon1Species)	; 6
+	ld bc, (wPartyMon1ID - wPartyMon1Species) ; 6
 	call CopyBytes
 	; Skip ID, experience, and stat experience
-	ld bc, (wPartyMon1DVs - wPartyMon1ID)	; 15
+	ld bc, (wPartyMon1DVs - wPartyMon1ID) ; 15
 	add hl, bc
 	; Copy DVs, PP, and happiness
 	ld de, wEnemyMonDVs
-	ld bc, (wPartyMon1PokerusStatus - wPartyMon1DVs)	; 7
+	ld bc, (wPartyMon1PokerusStatus - wPartyMon1DVs) ; 7
 	call CopyBytes
 	; Copy level, status, current and max HP, and stats
 	inc hl
 	inc hl
 	inc hl
 	ld de, wEnemyMonLevel
-	ld bc, (wPartyMon1StatsEnd - wPartyMon1Level)	; 17
+	ld bc, (wPartyMon1StatsEnd - wPartyMon1Level) ; 17
 	call CopyBytes
 
 	ld a, [wEnemyMonSpecies]
@@ -3333,13 +3333,13 @@ BattleMenuPack_SelectItem:
 	ret
 
 .item_attribute_jump_table:
-	dw .cant_use	; ITEMMENU_NOUSE
-	dw .cant_use	; TM_HOLDER
-	dw .ball_holder	; BALL_HOLDER
-	dw .other_bags	; IMPORTANT_BAG/ITEM_BAG
-	dw .menu_close	; ITEMMENU_CURRENT
-	dw .normal_item_effect	; ITEMMENU_PARTY
-	dw .menu_close	; ITEMMENU_CLOSE
+	dw .cant_use           ; ITEMMENU_NOUSE
+	dw .cant_use           ; TM_HOLDER
+	dw .ball_holder        ; BALL_HOLDER
+	dw .other_bags         ; IMPORTANT_BAG/ITEM_BAG
+	dw .menu_close         ; ITEMMENU_CURRENT
+	dw .normal_item_effect ; ITEMMENU_PARTY
+	dw .menu_close         ; ITEMMENU_CLOSE
 
 .cant_use:
 	callfar PrintCantUseText

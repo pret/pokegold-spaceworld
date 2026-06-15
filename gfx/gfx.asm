@@ -308,7 +308,7 @@ TsukushiPic:: INCBIN "gfx/trainer/tsukushi.pic"
 EnokiPic:: INCBIN "gfx/trainer/enoki.pic"
 OkeraPic:: INCBIN "gfx/trainer/okera.pic" ; Gen 1 Police Female
 MikanPic:: INCBIN "gfx/trainer/mikan.pic"
-BluePic:: INCBIN "gfx/trainer/blue.pic"	; Gen 1 Pokemaniac
+BluePic:: INCBIN "gfx/trainer/blue.pic" ; Gen 1 Pokemaniac
 GamaPic:: INCBIN "gfx/trainer/gama.pic" ; Gen 1 Super Nerd
 RivalPic:: INCBIN "gfx/trainer/rival.pic"
 OakPic:: INCBIN "gfx/trainer/oak.pic"

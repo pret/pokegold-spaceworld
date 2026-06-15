@@ -401,12 +401,12 @@ wPikachuMinigamePikachuNextAnim:: ds 1
 
 wPikachuMinigameControlEnable:: ds 1
 
-wc606:: ds 1	; written to, but is this read from?
+wc606:: ds 1 ; written to, but is this read from?
 
 wPikachuMinigamePikachuYOffset:: ds 1
 wPikachuMinigameNoteTimer:: ds 1
 wPikachuMinigameScore:: ds 2
-wPikachuMinigameNoteCounter:: ds 2	; not used for anything meaningful?
+wPikachuMinigameNoteCounter:: ds 2 ; not used for anything meaningful?
 
 wPikachuMinigameSpawnTypeIndex:: ds 1
 wPikachuMinigameSpawnDataIndex:: ds 1

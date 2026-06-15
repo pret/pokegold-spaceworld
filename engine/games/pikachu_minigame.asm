@@ -236,9 +236,9 @@ PikachuMiniGame_BlinkText:
 
 .text
 	db "スタートホタン▶タイトルかめん"
-	db 0	; terminator
+	db 0 ; terminator
 
-PikachuMiniGame_Copy128Tiles:	; unreferenced?
+PikachuMiniGame_Copy128Tiles: ; unreferenced?
 	ld bc, $80 tiles
 .loop
 	ld a, [de]
@@ -692,7 +692,7 @@ PikachuMiniGame_NoteSpawner:
 	ld [hl], e
 	ret
 
-.next_scene	; can this be reached?
+.next_scene ; can this be reached?
 	ld hl, wPikachuMinigameJumptableIndex
 	inc [hl]
 	ret

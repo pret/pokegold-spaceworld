@@ -34,7 +34,7 @@ DebugMenu::
 DebugJumpTable::
 	dw DebugMenuOptionFight
 	dw DebugMenuOptionField
-	dw DebugMenuSoundTest	; to home bank
+	dw DebugMenuSoundTest ; to home bank
 	dw DebugMenuOptionSubGames
 	dw DebugMenuOptionMonsterTest
 	dw DebugMenuOptionName

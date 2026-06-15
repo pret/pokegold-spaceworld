@@ -1094,16 +1094,16 @@ PokerMinigame_GetPayout:
 	ld [wPokerCurrentBet], a
 	ret
 .table:
-	dw  0	; Dud (Double UP)
-	dw  0	; One Pair
-	dw  1	; Two Pair
-	dw  2	; Three of a Kind
-	dw  4	; Straight
-	dw 20	; Flush
-	dw 10	; Full House
-	dw 80	; Straight Flush
-	dw 40	; Four of a Kind
-	dw 100	; Five of a Kind
+	dw   0 ; Dud (Double UP)
+	dw   0 ; One Pair
+	dw   1 ; Two Pair
+	dw   2 ; Three of a Kind
+	dw   4 ; Straight
+	dw  20 ; Flush
+	dw  10 ; Full House
+	dw  80 ; Straight Flush
+	dw  40 ; Four of a Kind
+	dw 100 ; Five of a Kind
 
 PokerMinigame_HudTextbox:
 	hlcoord 11, 12

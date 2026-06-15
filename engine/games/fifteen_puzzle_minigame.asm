@@ -131,7 +131,7 @@ FifteenPuzzleMinigame:
 	jr c, .InitPuzzle
 
 	ldh a, [hJoypadDown]
-	ld [wFifteenPuzzleJoyStateBuffer], a	; The code to exit the minigame was blatantly stubbed out.
+	ld [wFifteenPuzzleJoyStateBuffer], a ; The code to exit the minigame was blatantly stubbed out.
 ;	and B_BUTTON
 ;	jr nz, .ExitPuzzle
 	call .ExecutePanelJumptable
@@ -154,7 +154,7 @@ FifteenPuzzleMinigame:
 	ret
 .FinishedPuzzle_Next:
 	ld hl, wJumptableIndex
-	inc [hl]								; FIFTEENPUZZLE_SLIDE_FINAL_PANEL
+	inc [hl] ; FIFTEENPUZZLE_SLIDE_FINAL_PANEL
 	ld a, 4
 	ld [wJumptableIndex + 1], a
 .SlideFinalPanel:
@@ -170,7 +170,7 @@ FifteenPuzzleMinigame:
 .SlideFinalPanelScroll:
 	call FifteenPuzzleMinigame_Tilemap
 	ld hl, wJumptableIndex
-	inc [hl]								; FIFTEENPUZZLE_SLIDE_PUZZLE_LEFT
+	inc [hl] ; FIFTEENPUZZLE_SLIDE_PUZZLE_LEFT
 	ld a, SCREEN_WIDTH - 4
 	ld [wJumptableIndex + 1], a
 	ld a, $02
@@ -192,7 +192,7 @@ FifteenPuzzleMinigame:
 	ret
 .SlidePuzzleLeft_End:
 	ld hl, wJumptableIndex
-	inc [hl]								; FIFTEENPUZZLE_END_SCREEN
+	inc [hl] ; FIFTEENPUZZLE_END_SCREEN
 	ld a, SCREEN_WIDTH - 4
 	ld [wJumptableIndex + 1], a
 .PuzzleEndScreen:
@@ -235,22 +235,22 @@ FifteenPuzzleMinigame:
 	jp hl
 
 .PositionJumptable:
-	dw .PanelCanMoveUpLeft					; 1		(Row 1 Right)
-	dw .PanelCanMoveUpLeftRight				; 2		(Row 1 Middle Right)
-	dw .PanelCanMoveUpLeftRight				; 3		(Row 1 Middle Left)
-	dw .PanelCanMoveUpRight					; 4		(Row 1 Left)
-	dw .PanelCanMoveUpDownLeft				; 5		(Row 2 Right)
-	dw .PanelCanMoveAllDirections			; 6		(Row 2 Middle Right)
-	dw .PanelCanMoveAllDirections			; 7		(Row 2 Middle Left)
-	dw .PanelCanMoveUpDownRight				; 8		(Row 2 Left)
-	dw .PanelCanMoveUpDownLeft				; 9		(Row 3 Right)
-	dw .PanelCanMoveAllDirections			; 10	(Row 3 Middle Right)
-	dw .PanelCanMoveAllDirections			; 11	(Row 3 Middle Left)
-	dw .PanelCanMoveUpDownRight				; 12	(Row 3 Left)
-	dw .PanelCanMoveDownLeft				; 13	(Row 4 Right)
-	dw .PanelCanMoveDownLeftRight			; 14	(Row 4 Middle Right)
-	dw .PanelCanMoveDownLeftRight			; 15	(Row 4 Middle Left)
-	dw .PanelCanMoveDownRight				; 16	(Row 4 Left)
+	dw .PanelCanMoveUpLeft        ;  1 (Row 1 Right)
+	dw .PanelCanMoveUpLeftRight   ;  2 (Row 1 Middle Right)
+	dw .PanelCanMoveUpLeftRight   ;  3 (Row 1 Middle Left)
+	dw .PanelCanMoveUpRight       ;  4 (Row 1 Left)
+	dw .PanelCanMoveUpDownLeft    ;  5 (Row 2 Right)
+	dw .PanelCanMoveAllDirections ;  6 (Row 2 Middle Right)
+	dw .PanelCanMoveAllDirections ;  7 (Row 2 Middle Left)
+	dw .PanelCanMoveUpDownRight   ;  8 (Row 2 Left)
+	dw .PanelCanMoveUpDownLeft    ;  9 (Row 3 Right)
+	dw .PanelCanMoveAllDirections ; 10 (Row 3 Middle Right)
+	dw .PanelCanMoveAllDirections ; 11 (Row 3 Middle Left)
+	dw .PanelCanMoveUpDownRight   ; 12 (Row 3 Left)
+	dw .PanelCanMoveDownLeft      ; 13 (Row 4 Right)
+	dw .PanelCanMoveDownLeftRight ; 14 (Row 4 Middle Right)
+	dw .PanelCanMoveDownLeftRight ; 15 (Row 4 Middle Left)
+	dw .PanelCanMoveDownRight     ; 16 (Row 4 Left)
 
 .PanelCanMoveUpLeft:
 	call .PanelMoveUpCheck
@@ -641,7 +641,7 @@ FifteenPuzzleMinigame_Tilemap:
 	ld [wFifteenPuzzleEmptyPanelNumber], a
 	ld hl, wFifteenPuzzleEmptyPanelBitmap
 	ld bc, FIFTEENPUZZLE_PANEL_COUNT
-	ld a, $1f								; Blank Tile
+	ld a, $1f ; Blank Tile
 	call ByteFill
 	ret
 .ShufflePuzzleLayout_SubRow:
@@ -723,14 +723,14 @@ FifteenPuzzleMinigame_Tilemap:
 	ld e, l
 	ld d, h
 	inc hl
-	ld c, SCREEN_WIDTH - 5					; Scroll Start Offset
+	ld c, SCREEN_WIDTH - 5 ; Scroll Start Offset
 .SlidePuzzleLeft_Move_Loop:
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
 	jr nz, .SlidePuzzleLeft_Move_Loop
-	ld a, $1f								; Blank Tile
+	ld a, $1f ; Blank Tile
 	ld [de],a
 	ret
 
@@ -796,7 +796,7 @@ FifteenPuzzleMinigame_Tilemap:
 	ret
 
 SECTION "engine/games/fifteen_puzzle_minigame.asm@FifteenPuzzleIconTable", ROMX
-	FifteenPuzzleIconTable:				; Icons used in the minigame are pulled from this table.
+FifteenPuzzleIconTable: ; Icons used in the minigame are pulled from this table.
 	table_width 3
 	dba RhydonSpriteGFX
 	dba ClefairySpriteGFX

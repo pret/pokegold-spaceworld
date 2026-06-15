@@ -245,10 +245,10 @@ UpdateChannels:
 	ret
 
 .ch1_rest
-	ld a, %1000	; stop envelope
+	ld a, %1000 ; stop envelope
 	ldh [rNR12], a
 	ld a, [wCurTrackFrequency + 1]
-	or $80		; restart ch1
+	or $80      ; restart ch1
 	ldh [rNR14], a
 	ret
 

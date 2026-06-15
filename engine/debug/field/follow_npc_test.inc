@@ -86,7 +86,7 @@ FieldDebug_FollowNPCTest:
 	slow_step UP
 	remove_object
 
-MenuHeaderfca01:	; unreferenced?
+MenuHeaderfca01: ; unreferenced?
 	db MENU_BACKUP_TILES
 	menu_coords 0, 0, 11, 10
 	dw .MenuData

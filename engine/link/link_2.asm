@@ -294,7 +294,7 @@ Link_Receptionist:
 	inc a
 	ld [wLinkMode], a
 	ld [wLinkTimeoutFrames], a
-	jp OverworldStart	; BUG: Should be a jpfar, instead it jumps to the middle of TradeGameBoyGFX and causes an RST $38 crash.
+	jp OverworldStart ; BUG: Should be a jpfar, instead it jumps to the middle of TradeGameBoyGFX and causes an RST $38 crash.
 
 .UnreferencedCommunicationCancelled:
 	ld c, $03

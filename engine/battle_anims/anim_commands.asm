@@ -42,7 +42,7 @@ RunBattleAnimScript_User:
 	ldh [hBGMapMode], a
 	call BattleAnimAssignPals
 	xor a
-	ld [wBattleAnimOAMPointerLo + 1], a	; TODO
+	ld [wBattleAnimOAMPointerLo + 1], a ; TODO
 
 .playframe
 	call RunBattleAnimCommand

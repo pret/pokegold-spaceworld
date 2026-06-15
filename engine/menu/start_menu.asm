@@ -184,7 +184,7 @@ StartMenu_Reset:
 ; This causes it to read data as code, specifically from the middle of MapGroup_Newtype in vanilla.
 	ld hl, DisplayResetDialog
 	ld a, BANK(DisplayResetDialog)
-	call DisplayResetDialog		; the problematic line
+	call DisplayResetDialog ; the problematic line
 	ld a, 0
 	ret
 
