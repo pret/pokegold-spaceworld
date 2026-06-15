@@ -82,7 +82,6 @@ AddSpriteGFX:
 	scf
 	ret
 
-
 AddOutdoorSprites:
 	ld a, [wPlayerObjectSprite]
 	ld [wUsedSprites], a

@@ -1,5 +1,6 @@
 INCLUDE "constants.asm"
 
+
 SECTION "Sprite Buffers", SRAM
 
 UNION
@@ -9,6 +10,7 @@ sSpriteBuffer0:: ds SPRITEBUFFERSIZE
 sSpriteBuffer1:: ds SPRITEBUFFERSIZE
 sSpriteBuffer2:: ds SPRITEBUFFERSIZE
 ENDU
+
 
 SECTION "Unknown, bank 0", SRAM
 
@@ -25,6 +27,7 @@ sGameData2End::
 
 SECTION "Save Pokemon Data", SRAM
 sPokemonData::  ds $3d9 ; wPokemonDataEnd - wPokemonData
+
 
 SECTION "SRAM Window Stack", SRAM
 
@@ -43,10 +46,12 @@ MACRO boxes
 	endr
 ENDM
 
+
 SECTION "Boxes 1-5", SRAM
 
 ; sBox1 - sBox5
 	boxes 5
+
 
 SECTION "Boxes 6-10", SRAM
 
@@ -68,6 +73,7 @@ sPartyMailBackup::
 for n, 1, PARTY_LENGTH + 1
 sPartyMon{d:n}MailBackup:: mailmsg sPartyMon{d:n}MailBackup
 endr
+
 
 SECTION "Checksum", SRAM
 sChecksum:: ds 3

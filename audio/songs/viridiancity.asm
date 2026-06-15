@@ -278,7 +278,6 @@ Music_ViridianCity_branch_ec2eb::
 	note E_, 2
 	sound_ret
 
-
 Music_ViridianCity_Ch2::
 	vibrato 5, 1, 5
 	sound_call Music_ViridianCity_branch_ec368
@@ -410,7 +409,6 @@ Music_ViridianCity_branch_ec368::
 	note G#, 2
 	note F#, 2
 	sound_ret
-
 
 Music_ViridianCity_Ch3::
 	note_type 12, 1, 1

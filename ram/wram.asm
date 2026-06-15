@@ -136,13 +136,11 @@ NEXTU
 
 wClockDialogArrowBlinkCounter:: ds 1
 
-
 wc40a:: ds 1
 
 ; Monster or Trainer test?
 wWhichPicTest::
 	db
-
 
 wc40c:: ds 1
 wc40d:: ds 1
@@ -326,6 +324,7 @@ wDexPlaySlowpokeAnimation:: db
 
 ENDU
 
+
 SECTION "Map Buffer", WRAM0
 
 wMapBuffer::
@@ -337,7 +336,6 @@ wMapScriptPointerLocation:: dw ; TODO
 wOverworldFlags:: db
 	ds 18
 wMapBufferEnd::
-
 
 UNION
 
@@ -650,7 +648,6 @@ wEnemyFuryCutterCount:: db
 
 	ds 1
 
-
 wPlayerDamageTaken:: dw
 wEnemyDamageTaken:: dw
 
@@ -698,7 +695,6 @@ wPlayerAccLevel:: db
 wPlayerEvaLevel:: db
 
 	ds 1
-
 
 wEnemyStatLevels::
 wEnemyAtkLevel::
@@ -785,7 +781,6 @@ wWeatherCount:: db
 ENDU
 
 
-
 SECTION "CB14", WRAM0[$CB14]
 wBattleEnd::
 
@@ -805,8 +800,10 @@ wRedrawFlashlightWidthHeight:: db
 ; in units of two tiles (people event meta tile)
 ENDU
 
+
 SECTION "CB3C", WRAM0[$CB3C]
 wTileAnimBuffer:: ds 1 tiles
+
 
 SECTION "CB56", WRAM0[$CB4C]
 UNION
@@ -829,6 +826,7 @@ wMonType:: db
 wSelectedItem::
 wCurSpecies:: db
 wNamedObjectTypeBuffer:: db
+
 
 SECTION "CB5E", WRAM0[$CB5E]
 wJumptableIndex:: db
@@ -868,6 +866,7 @@ wPlayerStepVectorY:: db
 wPlayerStepFlags:: db
 wPlayerStepDirection:: db
 
+
 SECTION "CB71", WRAM0[$CB70]
 
 wQueuedMinorObjectGFX:: db
@@ -882,6 +881,7 @@ wMovementObject:: db
 
 wIndexedMovement2Pointer:: dw
 
+
 SECTION "Collision buffer", WRAM0[$CB90]
 
 wTileDown::  db
@@ -892,9 +892,11 @@ wTileRight:: db
 wScreenSave::
 	ds 6 * 5
 
+
 SECTION "CBB2", WRAM0[$CBB2]
 wToolgearBuffer::
 	ds $40
+
 
 SECTION "CBF2", WRAM0[$CBF2]
 
@@ -908,6 +910,7 @@ wWhichIndexSet::
 wActiveBackpackPocket:: db
 wScrollingMenuCursorPosition:: db
 wWindowStackSize:: db
+
 
 SECTION "CC09", WRAM0[$CC02]
 
@@ -977,6 +980,7 @@ wMenuCursorX:: db
 wCursorOffCharacter:: db
 wCursorCurrentTile:: dw
 
+
 SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
 wVBlankJoyFrameCounter: db
 
@@ -993,7 +997,6 @@ wTitleSequenceOpeningType::
 
 wDefaultSpawnPoint::
 	db
-
 
 UNION
 
@@ -1050,6 +1053,7 @@ wTempBoxName:: ds BOX_NAME_LENGTH
 
 ENDU
 
+
 SECTION "CC9A", WRAM0[$CC9A]
 
 wSkatingDirection:: db
@@ -1057,7 +1061,6 @@ wCompanionCollisionFrameCounter:: db
 
 wObjectMasks::
 	ds NUM_OBJECTS
-
 
 wSpriteCurPosX::         ds 1
 wSpriteCurPosY::         ds 1
@@ -1086,9 +1089,11 @@ wLowHealthAlarmBuffer:: db
 
 wTileAnimationTimer:: db
 
+
 SECTION "CCC7", WRAM0[$CCC7]
 
 wDisableVBlankOAMUpdate:: db
+
 
 SECTION "CCCA", WRAM0[$CCCA]
 
@@ -1100,6 +1105,7 @@ wNumHits:: db
 
 wDisableVBlankWYUpdate:: db
 wSGB:: db
+
 
 SECTION "CCD0", WRAM0[$CCD0]
 
@@ -1130,6 +1136,7 @@ wccf2:: ds 1
 wccf3:: ds 1
 wccf4:: ds 1
 
+
 SECTION "CD11", WRAM0[$CD11]
 
 wMonOrItemNameBuffer:: ds MON_NAME_LENGTH
@@ -1140,8 +1147,8 @@ wTMHMMoveNameBackup:: ds 8
 
 	ds 1
 
-
 wStringBuffer1:: ds STRING_BUFFER_LENGTH
+
 
 SECTION "CD31", WRAM0[$CD31]
 
@@ -1168,6 +1175,7 @@ wcd32:: db
 wcd33:: db
 
 ENDU
+
 
 SECTION "CD3C", WRAM0[$CD3C]
 
@@ -1231,6 +1239,7 @@ wBattleResult:: db
 
 wChosenStarter:: db
 wCurMartCount:: db
+
 
 SECTION "CD70", WRAM0[$CD70]
 wListPointer:: dw
@@ -1371,7 +1380,6 @@ wLinkBattleRNs:: ds 10
 wTempEnemyMonSpecies:: ds 1
 wTempBattleMonSpecies:: ds 1
 
-
 wEnemyMon:: battle_struct wEnemyMon
 wEnemyMonBaseStats:: ds NUM_EXP_STATS
 wEnemyMonCatchRate:: db
@@ -1450,7 +1458,6 @@ wMonHLearnset::
 	ds 1
 wMonHeaderEnd::
 
-
 wMapAnimsBackup:: db
 
 	ds 2
@@ -1507,6 +1514,7 @@ wTimeOfDay:: db
 wcd3e: ds 1
 wcd3f: ds 1
 
+
 SECTION "Options", WRAM0[$CE5F]
 
 wOptions::
@@ -1518,7 +1526,6 @@ wOptions::
 ; bit 6: battle style shift/set
 ; bit 7: battle scene off/on
 	db
-
 
 ; Used as a buffer for sOptions to check if a save file exists.
 ; Only checks the bottom bit (since all valid text speeds have that bit set).
@@ -1660,6 +1667,7 @@ wPlayerState:: db
 wd265:: db
 wd266:: db
 
+
 ;The starting house's map script number is stored at d29a. Others are probably nearby.
 SECTION "D29A", WRAM0[$D29A]
 wPlayerHouse2FCurScript:: db
@@ -1677,15 +1685,16 @@ wSilentHillsCurScript:: db
 wd2a6:: db
 
 
-
 SECTION "D39D", WRAM0[$D39A]
 wd39a:: db
 wd39b:: db
 wd39c:: db
 wd39d:: db
 
+
 SECTION "D3A5", WRAM0[$D3A5]
 wd3a5:: db
+
 
 SECTION "Game Event Flags", WRAM0[$D41A]
 wd41a:: db
@@ -1703,6 +1712,7 @@ wd41d:: db
 ; 76543210
 ;      \--- beat rival in the lab
 wd41e:: db
+
 
 SECTION "D4A9", WRAM0[$D4A7]
 ; Bit 0 set when exiting a battle.
@@ -1723,6 +1733,7 @@ wJoypadFlags:: db
 ; \-------- joypad disabled
 	ds 1
 wMovementFlags_Old:: db
+
 
 SECTION "wDigWarpNumber", WRAM0[$D4B2]
 
@@ -1750,7 +1761,6 @@ wCurrMapWarps::
 REPT 32 ; TODO: confirm this
 	ds 5
 ENDR
-
 
 wCurMapBGEventCount::
 	db
@@ -1845,7 +1855,6 @@ wSouthMapConnection:: map_connection_struct wSouth
 wWestMapConnection::  map_connection_struct wWest
 wEastMapConnection::  map_connection_struct wEast
 
-
 wTileset::
 wTilesetBank::
 	db
@@ -1925,12 +1934,14 @@ wBreedMon2:: box_struct wBreedMon2
 wBreedMonGenders:: db
 wOTPlayerName:: ds PLAYER_NAME_LENGTH
 
+
 SECTION "D913", WRAM0[$D913]
 
 wOTPartyData::
 wOTPartyCount:: db
 wOTPartySpecies:: ds PARTY_LENGTH
 wOTPartySpeciesEnd:: db
+
 
 SECTION "Wild mon buffer", WRAM0[$D91B]
 
@@ -1969,6 +1980,7 @@ ENDU
 wPokemonDataEnd::
 
 wBox:: box wBox
+
 
 SECTION "Stack Bottom", WRAM0
 

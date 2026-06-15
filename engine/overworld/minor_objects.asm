@@ -25,7 +25,6 @@ HandleMinorObjects:
 	jr nz, .loop
 	ret
 
-
 .HandleMinorObjectAction:
 	ld hl, MINOR_OBJECT_TYPE
 	add hl, bc

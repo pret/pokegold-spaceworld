@@ -1208,7 +1208,6 @@ EndUsedMove1Text:
 	text "を　つかった！"
 	done
 
-
 EndUsedMove2Text:
 	text "を　した！"
 	done
@@ -1431,7 +1430,6 @@ NoPPLeftText:
 	text "しかし　わざの　ポイントが"
 	line "なかった！"
 	prompt
-
 
 BattleCommand_Critical:
 	xor a
@@ -2145,7 +2143,6 @@ BattleCommand_CheckHit:
 	ld a, [wEnemyEvaLevel]
 	ld c, a
 	jr z, .got_acc_eva
-
 
 	ld hl, wEnemyMoveStructAccuracy
 	ld a, [wEnemyAccLevel]
@@ -3394,7 +3391,6 @@ Unused_HighCriticalMoves:
 	db MOVE_CRABHAMMER
 	db MOVE_SLASH
 	db -1
-
 
 INCLUDE "data/types/type_boost_items.inc"
 
@@ -8572,7 +8568,6 @@ ReleasedByText:
 	line "こうげきから　かいほうされた！"
 	prompt
 
-
 BattleCommand_HealMorn:
 	lb de, MORN_F, MORN_F
 	jr BattleCommand_TimeBasedHealContinue
@@ -9065,4 +9060,3 @@ SkipToBattleCommand:
 	ld a, l
 	ld [wBattleScriptBufferAddress], a
 	ret
-

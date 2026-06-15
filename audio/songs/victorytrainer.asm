@@ -103,7 +103,6 @@ Music_VictoryTrainer_branch_eda18::
 	note B_, 3
 	sound_loop 0, Music_VictoryTrainer_branch_eda18
 
-
 Music_VictoryTrainer_Ch2::
 	duty_cycle 2
 	note_type 4, 12, 3
@@ -178,7 +177,6 @@ Music_VictoryTrainer_branch_eda75::
 	note_type 4, 6, 7
 	note E_, 12
 	sound_loop 0, Music_VictoryTrainer_branch_eda75
-
 
 Music_VictoryTrainer_Ch3::
 	note_type 4, 1, 0

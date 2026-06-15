@@ -1184,7 +1184,6 @@ PokerMinigame_Shuffling:
 	ld [de], a
 	jr .SetSub
 
-
 PokerMinigame_ChangeCursor:
 	ld de, $6818
 	ld a, SPRITE_ANIM_OBJ_POKER_CURSOR

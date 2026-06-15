@@ -1,6 +1,5 @@
 INCLUDE "constants.asm"
 
-
 SECTION "home/tileset.asm", ROM0
 
 LoadTilesetGFX::
@@ -44,7 +43,6 @@ LoadTilesetGFX::
 	xor a
 	ldh [hTileAnimFrame], a
 	ret
-
 
 RefreshPlayerCoords::
 	ld a, [wXCoord]
@@ -206,7 +204,6 @@ SaveScreen::
 	jr nz, .row
 	ret
 
-
 RefreshTiles::
 	call .left_right
 	call .up_down
@@ -247,7 +244,6 @@ RefreshTiles::
 	call GetCoordTileCollision
 	ld [wTileRight], a
 	ret
-
 
 GetFacingTileCoord::
 	ld a, [wPlayerDirection] ; TODO: wPlayerDirection in Crystal. Not here?

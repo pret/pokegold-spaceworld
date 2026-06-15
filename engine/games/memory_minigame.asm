@@ -399,7 +399,6 @@ MemoryGame_InitBoard:
 	jr nz, .loop
 	ret
 
-
 MemoryGame_SampleTilePlacement:
 	push hl
 	ld de, wMemoryGameCards

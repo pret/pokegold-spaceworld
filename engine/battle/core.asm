@@ -3818,8 +3818,6 @@ MoveSelectionScreen::
 	call ReloadTilesFromBuffer
 	jp MoveSelectionScreen
 
-
-
 .BattleText_TheresNoPPLeftForThisMove:
 	text "わざの　のこりポイントが　ない！"
 	prompt
@@ -5245,7 +5243,6 @@ GiveExperiencePoints:
 	add hl, bc
 	ld d, [hl]
 
-
 	ldh a, [hQuotient + 3]
 	ld [wStringBuffer2 + 1], a
 	add d
@@ -6495,7 +6492,6 @@ InitBattleDisplay:
 	xor a
 	ldh [hSCX], a
 	ret
-
 
 BattleIntroSlidingPics:
 	ld b, $70

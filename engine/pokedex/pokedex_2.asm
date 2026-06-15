@@ -812,7 +812,6 @@ Pokedex_InitUnownMode:
 	db   "　　しゅるい"
 	next "　はっけん！@"
 
-
 PrintUnownList:
 	ld a, [wDexUnownCount]
 	cp 7

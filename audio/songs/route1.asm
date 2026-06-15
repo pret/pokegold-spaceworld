@@ -116,7 +116,6 @@ Music_Route1_branch_ec4db::
 	sound_loop 0, Music_Route1_branch_ec4db
 	sound_ret
 
-
 Music_Route1_Ch2::
 	duty_cycle 2
 
@@ -245,7 +244,6 @@ Music_Route1_branch_ec586::
 	note D_, 2
 	sound_ret
 	sound_ret
-
 
 Music_Route1_Ch3::
 	vibrato 8, 2, 5

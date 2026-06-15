@@ -189,7 +189,6 @@ GetTrainerClassName_Old::
 	dw wOTClassName, wOTClassName, wOTClassName, wOTClassName
 	dw wOTClassName, wOTClassName, wOTClassName
 
-
 .youngster
 	db "たんパン@"
 
@@ -1723,7 +1722,6 @@ InitList::
 	ld a, ENEMY_OT_NAME
 	jr .done
 
-
 .check_party_ot_name
 	cp INIT_PLAYEROT_LIST
 	jr nz, .check_mon_name
@@ -1731,7 +1729,6 @@ InitList::
 	ld de, wPartyMonOTs
 	ld a, PARTY_OT_NAME
 	jr .done
-
 
 .check_mon_name
 	cp INIT_MON_LIST
@@ -1741,7 +1738,6 @@ InitList::
 	ld a, MON_NAME
 	jr .done
 
-
 .check_item_name
 	cp INIT_BAG_ITEM_LIST
 	jr nz, .check_ob_item_name
@@ -1750,7 +1746,6 @@ InitList::
 	ld de, ItemNames
 	ld a, ITEM_NAME
 	jr .done
-
 
 .check_ob_item_name
 	ld hl, wCurMartCount

@@ -966,7 +966,6 @@ AI_Basic:
 	ld [hl], a
 	jr .checkmove
 
-
 StatusOnlyEffects:
 	db EFFECT_SLEEP
 	db EFFECT_TOXIC
@@ -1657,7 +1656,6 @@ AI_Smart_DefrostOpponent:
 	dec [hl]
 	dec [hl]
 	ret
-
 
 ; BUG: The final game checks if the player has actually used a move first.
 ; If no move has been used yet/the player is frozen/asleep, then the player's Pokémon having

@@ -241,7 +241,6 @@ MonsterTest_ClearScreen:
 	call ByteFill
 	ret
 
-
 MonsterTest_SelectedMenu:
 	xor a
 	ldh [hBGMapMode], a

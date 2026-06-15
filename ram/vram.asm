@@ -66,7 +66,6 @@ vPicrossPlayArea::
 
 ENDU
 
-
 vBGMap0::
 	ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 

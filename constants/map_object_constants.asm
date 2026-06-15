@@ -141,8 +141,7 @@ DEF NUM_MINOR_OBJECT_SPRITES EQU const_value
 	const MINOR_OBJECT_GFX_CLEFAIRY_WALK_2      ; e
 DEF NUM_MINOR_OBJECT_GFX_ENTRIES EQU const_value
 
-
-	rsreset
+rsreset
 DEF MAPOBJECT_OBJECT_STRUCT_ID rb ; 0
 DEF MAPOBJECT_SPRITE           rb ; 1
 DEF MAPOBJECT_Y_COORD          rb ; 2
@@ -235,7 +234,6 @@ DEF FOLLOWER_OBJECT_INDEX  EQU 2
 	const OBJECT_ACTION_STAND         ; 02
 	const OBJECT_ACTION_SPIN          ; 03
 DEF NUM_OBJECT_ACTIONS EQU const_value
-
 
 ; DoPlayerMovement.DoStep arguments (see engine/overworld/player_movement.asm)
 	const_def

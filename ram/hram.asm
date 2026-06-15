@@ -22,7 +22,6 @@ hVBlankCounter::
 hROMBank::
 	db
 
-
 hVBlank::
 	db
 
@@ -125,7 +124,6 @@ UNION
 ; replace certain instances of hDividend with hQuotient
 ;
 
-
 ; math-related values
 
 UNION
@@ -191,13 +189,11 @@ hLYOverrideStart:: db
 hLYOverrideEnd:: db
 	ds 1 ; TODO
 
-
 hSerialReceivedNewData:: db
 hSerialConnectionStatus:: db
 hSerialIgnoringInitialData:: db
 hSerialSend:: db
 hSerialReceive:: db
-
 
 hSCX:: db
 hSCY:: db

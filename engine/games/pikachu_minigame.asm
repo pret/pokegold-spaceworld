@@ -319,7 +319,6 @@ PikachuMiniGame_Draw2x2Tile:
 	pop bc
 	ret
 
-
 PikachuMiniGame_RunFrame:
 ; Run a single frame of the minigame
 
@@ -387,7 +386,6 @@ PikachuMiniGame_RunFrame:
 	scf
 	ret
 
-
 PikachuMiniGame_RunTimer:
 	ld hl, wPikachuMinigameTimeFrames
 
@@ -414,7 +412,6 @@ PikachuMiniGame_RunTimer:
 	ld a, PIKACHU_MINIGAME_SET_NEXT_SCENE_TIMER
 	ld [wPikachuMinigameJumptableIndex], a
 	ret
-
 
 PikachuMiniGame_UpdateBlocks:
 	ldh a, [hSCX]
@@ -444,7 +441,6 @@ PikachuMiniGame_UpdateBlocks:
 	ld a, 1
 	ld [wVBCopySize], a
 	ret
-
 
 PikachuMiniGame_PrintBCD:
 ; Print the BCD number in HL to DE, least-significant
@@ -1126,7 +1122,6 @@ MinigamePikachuCheckFloorCollision:
 	cp [hl]
 	ret
 
-
 PikachuMiniGame_ScrollScene:
 	ld hl, wPikachuMinigameScrollSpeed
 	ldh a, [hSCX]
@@ -1160,7 +1155,6 @@ PikachuMiniGame_ScrollScene:
 	ld a, $01
 	ldh [hRedrawRowOrColumnMode], a
 	ret
-
 
 PikachuMiniGame_RenderColumn:
 	call PikachuMiniGame_GetNextColumn

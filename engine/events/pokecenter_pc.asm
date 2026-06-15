@@ -173,7 +173,6 @@ TurnOffPC:
 	line "やめました"
 	prompt
 
-
 _PlayersPC:
 	ld hl, .TurnOnText
 	call MenuTextBoxBackup

@@ -98,7 +98,6 @@ DEF REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
 	const PIKACHU_MINIGAME_SHOW_JIGGLYPUFF      ; 04
 	const PIKACHU_MINIGAME_FADE_OUT             ; 05
 
-
 ; PicrossSprites constants
 	const_def
 	const PATTERN_NORMAL

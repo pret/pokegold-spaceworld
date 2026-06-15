@@ -556,7 +556,6 @@ Music_LeaderBattle_branch_ec8a4::
 	note E_, 6
 	sound_loop 0, Music_LeaderBattle_branch_ec8a4
 
-
 Music_LeaderBattle_Ch2::
 	duty_cycle 3
 	vibrato 8, 2, 5
@@ -856,7 +855,6 @@ Music_LeaderBattle_branch_ecadc::
 	octave 4
 	note A_, 6
 	sound_loop 0, Music_LeaderBattle_branch_ecadc
-
 
 Music_LeaderBattle_Ch3::
 	vibrato 0, 2, 0

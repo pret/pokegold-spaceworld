@@ -30,7 +30,6 @@ Music_SpottedRocket_branch_ed996::
 	note D_, 4
 	sound_loop 0, Music_SpottedRocket_branch_ed996
 
-
 Music_SpottedRocket_Ch2::
 	duty_cycle 1
 	note_type 12, 11, 6
@@ -68,7 +67,6 @@ Music_SpottedRocket_branch_ed9ad::
 	note A#, 4
 	note_type 12, 12, 2
 	sound_loop 0, Music_SpottedRocket_branch_ed9ad
-
 
 Music_SpottedRocket_Ch3::
 	note_type 12, 1, 0

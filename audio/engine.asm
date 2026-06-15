@@ -1232,7 +1232,6 @@ ApplyPitchSlide:
 	pop hl
 	ret
 
-
 HandleVibrato:
 	push hl
 	ld hl, CHANNEL_VIBRATO_DELAY_COUNT
@@ -1298,7 +1297,6 @@ HandleVibrato:
 	pop hl
 	ret
 
-
 Handle_0b:
 	push hl
 	ld hl, CHANNEL_FIELD25 + 1
@@ -1318,7 +1316,6 @@ Handle_0b:
 .done
 	pop hl
 	ret
-
 
 Handle_crypitch:
 	push hl
@@ -1341,7 +1338,6 @@ Handle_crypitch:
 	ld [hl], d
 	pop hl
 	ret
-
 
 Handle_0e:
 	push hl
@@ -1381,7 +1377,6 @@ Handle_0e:
 	pop hl
 	ret
 
-
 Handle_0d:
 	push hl
 	ld hl, CHANNEL_FIELD2A
@@ -1415,7 +1410,6 @@ Handle_0d:
 	pop hl
 	ret
 
-
 .intensity_done
 	ld [wCurTrackIntensity], a
 	ld hl, CHANNEL_NOTE_FLAGS
@@ -1423,7 +1417,6 @@ Handle_0d:
 	set NOTE_INTENSITY_OVERRIDE, [hl]
 	pop hl
 	ret
-
 
 GetFromTable:
 	add hl, de
@@ -1456,7 +1449,6 @@ GetFromTable:
 .carry
 	scf
 	ret
-
 
 HandleNoise:
 	ld hl, CHANNEL_FIELD2E
@@ -1505,7 +1497,6 @@ HandleNoise:
 	res SOUND_UNKN_0F, [hl]
 	ret
 
-
 ReadNoiseSample::
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
@@ -1553,7 +1544,6 @@ ReadNoiseSample::
 .done
 	ret
 
-
 HaltMusicWhileSFXPlaying::
 	ld a, [wSFXPriority]
 	and a
@@ -1570,7 +1560,6 @@ HaltMusicWhileSFXPlaying::
 	add hl, bc
 	set NOTE_REST, [hl]
 	ret
-
 
 ParseMusic::
 	call GetMusicByte
@@ -1649,7 +1638,6 @@ RestoreVolume:
 	ld [wSFXPriority], a
 	ret
 
-
 _ParseMusic:
 	ld a, [wCurMusicByte]
 	and $f
@@ -1678,13 +1666,11 @@ _ParseMusic:
 	call LoadNote
 	ret
 
-
 .rest
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
 	set NOTE_REST, [hl]
 	ret
-
 
 ParseSFXOrRest:
 ; turn noise sampling on
@@ -1718,7 +1704,6 @@ ParseSFXOrRest:
 	add hl, bc
 	ld [hl], a
 	ret
-
 
 GetNoiseSample:
 	ld a, [wCurChannel]
@@ -1755,7 +1740,6 @@ GetNoiseSample:
 	xor a
 	ld [wNoiseSampleDelay], a
 	ret
-
 
 ParseMusicCommand:
 	ld a, [wCurMusicByte]
@@ -2182,7 +2166,6 @@ Music_DutyCycle:
 	ld [hl], a
 	ret
 
-
 Music_VolumeEnvelope:
 	call GetMusicByte
 	ld hl, CHANNEL_INTENSITY
@@ -2334,7 +2317,6 @@ GetMusicByte:
 	pop hl
 	ret
 
-
 GetFrequency:
 ; generate frequency
 ; input:
@@ -2387,7 +2369,6 @@ GetFrequency:
 	ld d, a
 	ret
 
-
 SetNoteDuration:
 ; input: a = note duration in 16ths
 
@@ -2418,7 +2399,6 @@ SetNoteDuration:
 	add hl, bc
 	ld [hl], d
 	ret
-
 
 .Multiply:
 ; multiplies a and de
@@ -2485,14 +2465,12 @@ Tempo:
 	ld [hl], a
 	ret
 
-
 StartChannel:
 	call SetLRTracks
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
 	set SOUND_CHANNEL_ON, [hl]
 	ret
-
 
 StopChannel:
 	ld hl, CHANNEL_FLAGS1
@@ -2505,7 +2483,6 @@ StopChannel:
 	ld [hli], a
 	ld [hli], a
 	ret
-
 
 SetLRTracks:
 	push de
@@ -2521,7 +2498,6 @@ SetLRTracks:
 	ld [hl], a
 	pop de
 	ret
-
 
 _PlayMusic::
 	ld hl, wMusicID
@@ -2556,7 +2532,6 @@ _PlayMusic::
 	ld [wChannel3JumpCondition], a
 	ld [wChannel4JumpCondition], a
 	ret
-
 
 _PlayCryHeader::
 	ld hl, wMusicID
@@ -2652,7 +2627,6 @@ _PlayCryHeader::
 	ld a, 1
 	ld [wSFXPriority], a
 	ret
-
 
 _PlaySFX::
 	ld hl, wMusicID
@@ -2828,7 +2802,6 @@ PlayCrySFX::
 
 	ret
 
-
 LoadChannel::
 	call LoadMusicByte
 	inc de
@@ -2866,7 +2839,6 @@ LoadChannel::
 	ld [hl], a
 	ret
 
-
 ChannelInit:
 	push de
 	xor a
@@ -2890,7 +2862,6 @@ ChannelInit:
 	ld [hl], a
 	pop de
 	ret
-
 
 LoadMusicByte::
 	ld a, [wMusicBank]

@@ -658,7 +658,6 @@ Music_TrainerBattle_branch_ece86::
 	note A#, 1
 	sound_loop 0, Music_TrainerBattle_branch_ece86
 
-
 Music_TrainerBattle_Ch2::
 	duty_cycle 3
 	vibrato 10, 2, 5
@@ -961,7 +960,6 @@ Music_TrainerBattle_branch_ed129::
 	note E_, 8
 	note G_, 8
 	sound_loop 0, Music_TrainerBattle_branch_ed129
-
 
 Music_TrainerBattle_Ch3::
 	vibrato 0, 2, 0

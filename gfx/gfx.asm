@@ -343,7 +343,6 @@ SoldierPic:: INCBIN "gfx/trainer/soldier.pic"
 KimonoGirlPic:: INCBIN "gfx/trainer/kimonogirl.pic"
 TwinsPic:: INCBIN "gfx/trainer/twins.pic"
 
-
 SECTION "gfx.asm@Bank 13 Tilesets Lab", ROMX
 Lab_GFX:
 INCBIN "gfx/tilesets/lab.2bpp"
@@ -380,7 +379,6 @@ SECTION "gfx.asm@PKMN Sprite Bank List", ROMX
 INCLUDE "gfx/pokemon/pkmn_pic_banks.inc"
 
 INCLUDE "gfx/pokemon/pkmn_pics.inc"
-
 
 SECTION "gfx.asm@Annon Pic Ptrs and Pics", ROMX
 INCLUDE "gfx/pokemon/annon_pic_ptrs.inc"

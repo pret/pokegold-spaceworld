@@ -1,6 +1,5 @@
 INCLUDE "constants.asm"
 
-
 SECTION "home/interrupts.asm@VBlank interrupt vector", ROM0
 	jp VBlank
 
@@ -16,12 +15,10 @@ SECTION "home/interrupts.asm@Serial interrupt vector", ROM0
 SECTION "home/interrupts.asm@Joypad interrupt vector", ROM0
 	jp JoypadDummy
 
-
 SECTION "home/interrupts.asm@Timer dummy interrupt", ROM0
 
 TimerDummy:
 	reti
-
 
 SECTION "home/interrupts.asm@Joypad dummy interrupt", ROM0
 

@@ -15,7 +15,6 @@ _Multiply::
 	ldh [hMathBuffer + 3], a
 	ldh [hMathBuffer + 4], a
 
-
 .loop
 	ldh a, [hMultiplier]
 	srl a
@@ -50,7 +49,6 @@ _Multiply::
 	dec b
 	jr z, .done
 
-
 ; hMultiplicand <<= 1
 
 	ldh a, [hMultiplicand + 2]
@@ -70,7 +68,6 @@ _Multiply::
 	ldh [hProduct], a
 
 	jr .loop
-
 
 .done
 	ldh a, [hMathBuffer + 4]

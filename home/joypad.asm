@@ -1,6 +1,5 @@
 INCLUDE "constants.asm"
 
-
 SECTION "home/joypad.asm", ROM0
 
 ClearJoypad::
@@ -10,7 +9,6 @@ ClearJoypad::
 ; Currently pressed
 	ldh [hJoyState], a
 	ret
-
 
 Joypad::
 ; Read the joypad register and translate it to something more

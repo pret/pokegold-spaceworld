@@ -40,10 +40,8 @@ DEF GENDER_UNKNOWN EQU -1
 	const GROWTH_FAST          ; 04
 	const GROWTH_SLOW          ; 05
 
-
 ; pokedex entries (see data/pokemon/dex_entries.asm)
 DEF NUM_DEX_ENTRY_BANKS EQU 4
-
 
 ; party_struct members (see macros/wram.asm)
 DEF MON_SPECIES            EQUS "(wPartyMon1Species - wPartyMon1)"
@@ -80,7 +78,6 @@ DEF PARTYMON_STRUCT_LENGTH EQUS "(wPartyMon1StatsEnd - wPartyMon1)"
 
 DEF REDMON_STRUCT_LENGTH EQU 44
 
-
 ; caught data
 
 DEF CAUGHT_TIME_MASK  EQU %11000000
@@ -95,7 +92,6 @@ DEF CAUGHT_BY_BOY     EQU 2
 
 DEF CAUGHT_EGG_LEVEL EQU 1
 
-
 ; maximum number of party pokemon
 DEF PARTY_LENGTH EQU 6
 
@@ -109,14 +105,12 @@ DEF HOF_MON_LENGTH EQUS "(wHallOfFamePokemonListMon1End - wHallOfFamePokemonList
 DEF HOF_LENGTH EQUS "(wHallOfFamePokemonListEnd - wHallOfFamePokemonList + 1)"
 DEF NUM_HOF_TEAMS EQU 30
 
-
 ; evolution types (used in data/pokemon/evos_attacks.asm)
 	const_def 1
 	const EVOLVE_LEVEL
 	const EVOLVE_STONE
 	const EVOLVE_ITEM
 	const EVOLVE_TRADE
-
 
 ; wild data
 
@@ -126,7 +120,6 @@ DEF GRASS_WILDDATA_DAYBLOCK_START    EQU 3 ;
 DEF GRASS_WILDDATA_NITEBLOCK_START   EQU 7 ; the slot in GrassMonProbTable to start at
 
 DEF GRASS_WILDDATA_LENGTH EQU (NUM_GRASSMON * 2) + 3 + 2
-
 
 DEF BASE_HAPPINESS        EQU 70
 

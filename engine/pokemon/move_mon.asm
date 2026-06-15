@@ -337,7 +337,6 @@ FillPP::
 	jr nz, .loop
 	ret
 
-
 AddTempmonToParty:
 	ld hl, wPartyCount
 	ld a, [hl]

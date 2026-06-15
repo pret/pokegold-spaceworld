@@ -240,7 +240,6 @@ NamingScreen_InitText:
 	jr nz, .outerloop
 	ret
 
-
 NamingScreenJoypadLoop:
 	call GetJoypadDebounced
 	ld a, [wJumptableIndex]

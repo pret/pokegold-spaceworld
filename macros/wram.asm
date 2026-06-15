@@ -74,7 +74,6 @@ MACRO red_party_struct
 \1Special::    dw
 ENDM
 
-
 MACRO battle_struct
 \1Species::   db
 \1Item::      db
@@ -133,7 +132,6 @@ MACRO map_connection_struct
 \1ConnectionStripXOffset::  db
 \1ConnectionWindow::        dw
 ENDM
-
 
 MACRO channel_struct
 \1MusicID::           dw

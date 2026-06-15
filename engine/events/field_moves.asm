@@ -1,4 +1,3 @@
-
 INCLUDE "constants.asm"
 
 ; TODO - need to constantize tile ids, movements
@@ -287,7 +286,6 @@ MovePlayerIntoWater:
 SurfMovementDirections:
 	db 4, 5, 6, 7
 
-
 FlyFunction:
 	call .ResetScriptID
 .next
@@ -376,7 +374,6 @@ FlyScript:
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
 	jpfar DoTeleportAnimation
-
 
 DigFunction:
 	call .ResetScriptID

@@ -152,7 +152,6 @@ Music_OakIntro_branch_ec69b::
 	sound_loop 0, Music_OakIntro_branch_ec69b
 	sound_ret
 
-
 Music_OakIntro_Ch2::
 	vibrato 8, 2, 6
 	duty_cycle 3
@@ -227,7 +226,6 @@ Music_OakIntro_branch_ec72e::
 	rest 4
 	sound_loop 0, Music_OakIntro_branch_ec72e
 	sound_ret
-
 
 Music_OakIntro_Ch3::
 	vibrato 9, 2, 8

@@ -122,7 +122,6 @@ MACRO? dba_pic ; dbw bank, address
 	dw \1
 ENDM
 
-
 MACRO? dbpixel
 if _NARG >= 4
 ; x tile, x pxl, y tile, y pxl
@@ -137,7 +136,6 @@ MACRO? dsprite
 ; y tile, y pxl, x tile, x pxl, vtile offset, flags, attributes
 	db LOW(\1 * 8) + \2, LOW(\3 * 8) + \4, \5, \6
 ENDM
-
 
 MACRO? menu_coords
 ; x1, y1, x2, y2
@@ -163,7 +161,6 @@ rept _NARG
 	shift
 endr
 ENDM
-
 
 MACRO? sine_table
 ; \1 samples of sin(x) from x=0 to x<32768 (pi radians)

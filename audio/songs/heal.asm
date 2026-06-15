@@ -28,7 +28,6 @@ Music_Heal_Ch1::
 	note B_, 4
 	sound_ret
 
-
 Music_Heal_Ch2::
 	duty_cycle 2
 	note_type 12, 12, 3
@@ -41,7 +40,6 @@ Music_Heal_Ch2::
 	octave 5
 	note E_, 8
 	sound_ret
-
 
 Music_Heal_Ch3::
 	note_type 12, 1, 0

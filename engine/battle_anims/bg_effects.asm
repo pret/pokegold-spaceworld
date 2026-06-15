@@ -130,7 +130,6 @@ BattleBGEffects:
 	dw BattleBGEffect_Rollout
 	dw BattleBGEffect_VitalThrow
 
-
 BattleBGEffect_End:
 	call EndBattleBGEffect
 	ret
@@ -340,7 +339,6 @@ BattleBGEffect_HideMon:
 	dw BattleBGEffects_IncAnonJumptableIndex
 	dw .four
 
-
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
 	push bc
@@ -405,7 +403,6 @@ BattleBGEffect_BattlerObj_1Row:
 	dw BattleBGEffects_IncAnonJumptableIndex
 	dw BattleBGEffects_IncAnonJumptableIndex
 	dw .five
-
 
 .zero
 	call BGEffect_CheckFlyDigStatus
@@ -472,7 +469,6 @@ BattleBGEffect_BattlerObj_2Row:
 	dw BattleBGEffects_IncAnonJumptableIndex
 	dw BattleBGEffects_IncAnonJumptableIndex
 	dw .five
-
 
 .zero
 	call BGEffect_CheckFlyDigStatus
@@ -695,7 +691,6 @@ BattleBGEffect_RunPicResizeScript:
 	dw .restart
 	dw .end
 
-
 .zero
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
@@ -893,7 +888,6 @@ BattleBGEffect_Surf:
 	dw .zero
 	dw .one
 
-
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
 	lb de, 4, 1
@@ -950,7 +944,6 @@ BattleBGEffect_Psychic:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
 	call BattleBGEffects_ClearLYOverrides
@@ -989,7 +982,6 @@ BattleBGEffect_Teleport:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
 	call BattleBGEffects_ClearLYOverrides
@@ -1014,7 +1006,6 @@ BattleBGEffect_NightShade:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
@@ -1046,7 +1037,6 @@ BattleBGEffect_DoubleTeam:
 	dw .three
 	dw .four
 	dw .five
-
 
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
@@ -1134,7 +1124,6 @@ BattleBGEffect_AcidArmor:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
 	call BattleBGEffects_ClearLYOverrides
@@ -1175,7 +1164,6 @@ BattleBGEffect_Withdraw:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
@@ -1226,7 +1214,6 @@ BattleBGEffect_Dig:
 	dw .one
 	dw .two
 	dw .three
-
 
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
@@ -1294,7 +1281,6 @@ BattleBGEffect_Tackle:
 	dw Tackle_MoveForward
 	dw Tackle_ReturnMove
 	dw .three
-
 
 .zero
 ; Prepares mon to move forward (player moves right, enemy moves left).
@@ -1391,7 +1377,6 @@ BattleBGEffect_BetaPursuit: ; unused
 	dw Tackle_ReturnMove
 	dw .three
 
-
 .three
 	call BattleAnim_ResetLCDStatCustom
 	ret
@@ -1443,7 +1428,6 @@ BattleBGEffect_WobbleMon:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
 	call BattleBGEffects_ClearLYOverrides
@@ -1492,7 +1476,6 @@ BattleBGEffect_Flail:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
@@ -1559,7 +1542,6 @@ BattleBGEffect_WaveDeformMon:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
 	call BattleBGEffects_ClearLYOverrides
@@ -1602,7 +1584,6 @@ BattleBGEffect_BounceDown:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
@@ -1766,7 +1747,6 @@ BattleBGEffect_BetaSendOutMon2:
 	dw .zero
 	dw .one
 
-
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
 	call BattleBGEffects_ClearLYOverrides
@@ -1804,7 +1784,6 @@ BattleBGEffect_FadeMonsToBlackRepeating:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncAnonJumptableIndex
@@ -2117,7 +2096,6 @@ BGEffect_RapidCyclePals:
 	dw .zero_dmg
 	dw .one_dmg
 	dw .two_dmg
-
 
 .zero_dmg
 	call BattleBGEffects_IncAnonJumptableIndex

@@ -175,7 +175,6 @@ _ReceiveItem:
 	call GetTMHMNumber
 	jp ReceiveTMHM
 
-
 _TossItem:
 	call DoesHLEqualwNumBagItems
 	jr nz, .remove_item
@@ -215,7 +214,6 @@ _TossItem:
 
 .remove_item
 	jp RemoveItemFromPocket
-
 
 _CheckItem:
 	call DoesHLEqualwNumBagItems
@@ -257,7 +255,6 @@ _CheckItem:
 .not_bag
 	jp CheckTheItem
 
-
 DoesHLEqualwNumBagItems:
 	ld a, l
 	cp LOW(wNumBagItems)
@@ -265,7 +262,6 @@ DoesHLEqualwNumBagItems:
 	ld a, h
 	cp HIGH(wNumBagItems)
 	ret
-
 
 PutItemInPocket:
 	ld d, h
@@ -351,7 +347,6 @@ PutItemInPocket:
 	scf
 	ret
 
-
 GetPocketCapacity:
 	ld c, MAX_ITEMS
 	ld a, e
@@ -364,7 +359,6 @@ GetPocketCapacity:
 .not_bag
 	ld c, MAX_PC_ITEMS
 	ret
-
 
 RemoveItemFromPocket:
 	ld d, h
@@ -414,7 +408,6 @@ RemoveItemFromPocket:
 	and a
 	ret
 
-
 CheckTheItem:
 	ld a, [wCurItem]
 	ld c, a
@@ -433,7 +426,6 @@ CheckTheItem:
 .fail
 	and a
 	ret
-
 
 ReceiveKeyItem:
 	ld hl, wNumKeyItems
@@ -454,7 +446,6 @@ ReceiveKeyItem:
 .full_pack
 	and a
 	ret
-
 
 TossKeyItem:
 	ld hl, wNumKeyItems
@@ -479,7 +470,6 @@ TossKeyItem:
 	scf
 	ret
 
-
 CheckKeyItems:
 	ld a, [wCurItem]
 	ld c, a
@@ -499,7 +489,6 @@ CheckKeyItems:
 	scf
 	ret
 
-
 ; get index of ball item id c from BallItems
 GetBallIndex:
 	ld a, c
@@ -516,7 +505,6 @@ GetBallIndex:
 	ld c, a
 	ret
 
-
 ; get ball item id at index c in BallItems
 GetBallByIndex:
 	push bc
@@ -530,14 +518,12 @@ GetBallByIndex:
 	ld c, a
 	ret
 
-
 BallItems:
 	db ITEM_MASTER_BALL
 	db ITEM_ULTRA_BALL
 	db ITEM_GREAT_BALL
 	db ITEM_POKE_BALL
 	db -1
-
 
 ; empties the ball pocket by setting the
 ; terminator immediately after wNumBallItems
@@ -550,7 +536,6 @@ EmptyBallPocket:
 	ld [hli], a
 	ld [hl], -1
 	ret
-
 
 ReceiveBall:
 	ld hl, wBallQuantities
@@ -579,7 +564,6 @@ ReceiveBall:
 .overflow
 	and a
 	ret
-
 
 TossBall:
 	ld hl, wBallQuantities
@@ -610,7 +594,6 @@ TossBall:
 	and a
 	ret
 
-
 CheckBall:
 	ld hl, wBallQuantities
 	ld b, 0
@@ -620,7 +603,6 @@ CheckBall:
 	ret z
 	scf
 	ret
-
 
 ReceiveTMHM:
 	ld b, 0
@@ -637,7 +619,6 @@ ReceiveTMHM:
 .overflow
 	and a
 	ret
-
 
 TossTMHM:
 	ld b, 0
@@ -657,7 +638,6 @@ TossTMHM:
 .underflow
 	and a
 	ret
-
 
 CheckTMHM:
 	ld b, 0

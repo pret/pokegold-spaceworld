@@ -48,7 +48,6 @@ Music_Evolution_branch_edb5b::
 	note C_, 4
 	sound_ret
 
-
 Music_Evolution_Ch2::
 	duty_cycle 2
 	vibrato 8, 2, 5
@@ -81,7 +80,6 @@ Music_Evolution_branch_edb89::
 	note D_, 4
 	note G_, 4
 	sound_ret
-
 
 Music_Evolution_Ch3::
 	note_type 12, 1, 0

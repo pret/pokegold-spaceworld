@@ -385,9 +385,9 @@ TryLoadPokemonData:
 .done
 	call CloseSRAM
 	ret
+
 ; Unreferenced
 	ret
-
 
 MACRO map_buffer_pointers
 	db GROUP_\1, MAP_\1

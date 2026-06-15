@@ -163,7 +163,6 @@ Music_Bicycle_branch_ed659::
 	vibrato 8, 1, 4
 	sound_loop 0, Music_Bicycle_branch_ed659
 
-
 Music_Bicycle_Ch2::
 	duty_cycle 2
 	vibrato 6, 1, 5
@@ -311,7 +310,6 @@ Music_Bicycle_branch_ed717::
 	note B_, 12
 	note_type 12, 12, 3
 	sound_loop 0, Music_Bicycle_branch_ed717
-
 
 Music_Bicycle_Ch3::
 	note_type 12, 1, 3

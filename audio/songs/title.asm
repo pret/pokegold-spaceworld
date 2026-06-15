@@ -164,7 +164,6 @@ Music_Title_branch_f23b3::
 	note D_, 1
 	sound_ret
 
-
 Music_Title_Ch2::
 	vibrato 16, 4, 6
 	duty_cycle 1
@@ -333,7 +332,6 @@ Music_Title_branch_f24a2::
 	note D_, 1
 	sound_ret
 
-
 Music_Title_Ch3::
 	note_type 12, 1, 0
 	octave 3
@@ -470,7 +468,6 @@ Music_Title_branch_f2556::
 	note D_, 1
 	rest 5
 	sound_ret
-
 
 Music_Title_Ch4::
 	toggle_noise 0

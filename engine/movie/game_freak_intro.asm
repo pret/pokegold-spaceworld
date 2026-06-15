@@ -106,7 +106,6 @@ GameFreakIntro::
 	ldh [rOBP1], a
 	ret
 
-
 .Frame:
 ; Play one frame of GameFreakPresents sequence.
 ; Return carry when the sequence completes or is canceled.
@@ -140,7 +139,6 @@ GameFreakIntro::
 
 	scf
 	ret
-
 
 GameFreakPresentsScene:
 	jumptable .scenes, wJumptableIndex
@@ -217,7 +215,6 @@ GameFreakPresents_LogoSparkles:
 	call GameFreakPresents_NextScene
 	ret
 
-
 GameFreakPresents_PlaceGameFreak:
 	hlcoord 5, 12
 	ld de, .game_freak
@@ -277,7 +274,6 @@ GameFreakPresents_UpdateLogoPal:
 	rrc [hl]
 	rrc [hl]
 	ret
-
 
 GameFreakPresents_Sparkle:
 ; Initialize and configure a sparkle sprite.

@@ -134,7 +134,6 @@ TitleSequenceInit::
 
 	call .load_position_table
 
-
 	ld a, %00011010
 	ldh [rBGP], a
 	ld a, %11100100

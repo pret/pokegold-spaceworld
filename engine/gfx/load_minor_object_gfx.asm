@@ -2,7 +2,6 @@ INCLUDE "constants.asm"
 
 SECTION "engine/gfx/load_minor_object_gfx.asm", ROMX
 
-
 _LoadMinorObjectGFX::
 	ld hl, wQueuedMinorObjectGFX
 	push hl
