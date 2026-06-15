@@ -1714,49 +1714,49 @@ ListMoves::
 .asm_50c47
 	ret
 
-Function50c48::
-	ld a, [wce34]
-	cp $01
-	jr nz, .asm_50c59
+InitList::
+	ld a, [wInitListType]
+	cp INIT_ENEMYOT_LIST
+	jr nz, .check_party_ot_name
 	ld hl, wOTPartyCount
 	ld de, wOTPartyMonOT
 	ld a, ENEMY_OT_NAME
-	jr .asm_50c8b
+	jr .done
 
 
-.asm_50c59
-	cp $04
-	jr nz, .asm_50c67
+.check_party_ot_name
+	cp INIT_PLAYEROT_LIST
+	jr nz, .check_mon_name
 	ld hl, wPartyCount
 	ld de, wPartyMonOTs
 	ld a, PARTY_OT_NAME
-	jr .asm_50c8b
+	jr .done
 
 
-.asm_50c67
-	cp $05
-	jr nz, .asm_50c75
-	ld hl, wcd60
+.check_mon_name
+	cp INIT_MON_LIST
+	jr nz, .check_item_name
+	ld hl, wCurMartCount
 	ld de, PokemonNames
 	ld a, MON_NAME
-	jr .asm_50c8b
+	jr .done
 
 
-.asm_50c75
-	cp $02
-	jr nz, .asm_50c83
+.check_item_name
+	cp INIT_BAG_ITEM_LIST
+	jr nz, .check_ob_item_name
 
 	ld hl, wItems
 	ld de, ItemNames
 	ld a, ITEM_NAME
-	jr .asm_50c8b
+	jr .done
 
 
-.asm_50c83
-	ld hl, wcd60
+.check_ob_item_name
+	ld hl, wCurMartCount
 	ld de, ItemNames
 	ld a, ITEM_NAME
-.asm_50c8b
+.done
 	ld [wNamedObjectTypeBuffer], a
 	ld a, l
 	ld [wListPointer], a

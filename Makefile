@@ -14,10 +14,8 @@ rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call
 ASMFILES := $(call rwildcard, $(DIRS), *.asm) $(FILES)
 
 GOLD_OBJS := $(patsubst %.asm, $(BUILD)/%_gold.o, $(ASMFILES))
-GOLD_OBJS += $(BUILD)/shim_gold.o
 
 SILVER_OBJS := $(patsubst %.asm, $(BUILD)/%_silver.o, $(ASMFILES))
-SILVER_OBJS += $(BUILD)/shim_silver.o
 
 
 ### Build tools
@@ -80,7 +78,7 @@ tidy:
 	rm -rf $(ROMS) $(CORRECTEDROMS) \
 	       $(ROMS:.gb=.sym) $(CORRECTEDROMS:.gb=.sym) \
 	       $(ROMS:.gb=.map) $(CORRECTEDROMS:.gb=.map) \
-	       $(GOLD_OBJS) $(SILVER_OBJS) $(BUILD)/shim.asm rgbdscheck.o
+	       $(GOLD_OBJS) $(SILVER_OBJS) rgbdscheck.o
 
 # Visualize disassembly progress.
 .PHONY: coverage
@@ -126,9 +124,6 @@ baserom-gold.gb:
 baserom-silver.gb:
 	@echo "Please obtain a copy of Silver_debug.sgb and put it in this directory as $@"
 	@exit 1
-
-$(BUILD)/shim.asm: shim.sym | $$(dir $$@)
-	$(PYTHON) tools/make_shim.py $< > $@
 
 
 ### Misc file-specific graphics rules
