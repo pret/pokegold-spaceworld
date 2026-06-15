@@ -127,6 +127,41 @@ endc
 if DEF(_SILVER)
 INCBIN "slack/bank03padding_silver.bin"
 endc
+SECTION "slack.asm@Bank 04 Padding", ROMX
+Bank04Padding:
+if DEF(_GOLD)
+INCBIN "slack/bank04padding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank04padding_silver.bin"
+endc
+
+SECTION "slack.asm@Bank 05 Padding", ROMX
+Bank05Padding:
+if DEF(_GOLD)
+INCBIN "slack/bank05padding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank05padding_silver.bin"
+endc
+
+SECTION "slack.asm@Bank 06 Padding", ROMX
+Bank06Padding:
+if DEF(_GOLD)
+INCBIN "slack/bank06padding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank06padding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 09 Padding", ROMX
+Bank09Padding:
+if DEF(_GOLD)
+INCBIN "slack/bank09padding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank09padding_silver.bin"
+endc
 
 SECTION "slack.asm@Bank 0a Padding", ROMX
 Bank0aPadding:
@@ -146,6 +181,24 @@ if DEF(_SILVER)
 INCBIN "slack/bank0bpadding_silver.bin"
 endc
 
+SECTION "slack.asm@Bank 0c Padding", ROMX
+Bank0cPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank0cpadding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank0cpadding_silver.2bpp"
+endc
+
+SECTION "slack.asm@Bank 0d Padding", ROMX
+Bank0dPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank0dpadding_gold.2bpp"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank0dpadding_silver.2bpp"
+endc
+
 SECTION "slack.asm@Bank 0e Padding", ROMX
 Bank0ePadding:
 if DEF(_GOLD)
@@ -153,6 +206,113 @@ INCBIN "slack/bank0epadding_gold.bin"
 endc
 if DEF(_SILVER)
 INCBIN "slack/bank0epadding_silver.bin"
+endc
+
+SECTION "slack.asm@Bank 0f Padding", ROMX
+Bank0fPadding:
+if DEF(_GOLD)
+INCBIN "slack/bank0fpadding_gold.bin"
+endc
+if DEF(_SILVER)
+INCBIN "slack/bank0fpadding_silver.bin"
+endc
+
+SECTION "slack.asm@Bank 10 Padding", ROMX
+if DEF(_GOLD)
+Bank10Padding:
+.Unreferenced_LeafyEvosAttacks:
+	db 0 ; no more evolutions
+	db  1, MOVE_TACKLE
+	db  7, MOVE_SAND_ATTACK
+	db 14, MOVE_QUICK_ATTACK
+	db 21, MOVE_TAIL_WHIP
+	db 28, MOVE_ABSORB
+	db 35, MOVE_RAZOR_LEAF
+	db 42, MOVE_GROWTH
+	db 49, MOVE_MORNING_SUN
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+.Unreferenced_LeafyEvosAttacks1
+	db MOVE_GROWTH
+	db 49, MOVE_MORNING_SUN
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+.Unreferenced_TailEvosAttacks
+	db 25, MOVE_SWIFT
+	db 31, MOVE_MUD_SLAP
+	db 38, MOVE_FURY_SWIPES
+	db 45, MOVE_MIMIC
+	db 0 ; no more level-up moves
+.Unreferenced_LeafyEvosAttacks2
+	db 0 ; no more evolutions
+	db  1, MOVE_TACKLE
+	db  7, MOVE_SAND_ATTACK
+	db 14, MOVE_QUICK_ATTACK
+	db 21, MOVE_TAIL_WHIP
+	db 28, MOVE_ABSORB
+	db 35, MOVE_RAZOR_LEAF
+	db 42, MOVE_GROWTH
+	db 49, MOVE_MORNING_SUN
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+.Unreferenced_LeafyEvosAttacks3
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+.JunkData 
+	db $E6, $6D, $C3, $FF
+INCBIN "slack/bank10padding_gold.2bpp"
+endc
+if DEF(_SILVER)
+Bank10Padding:
+.Unreferenced_LeafyEvosAttacks
+	db MOVE_GROWTH
+	db 49, MOVE_MORNING_SUN
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+.Unreferenced_LeafyEvosAttacks1
+	db MOVE_ABSORB
+	db 35, MOVE_RAZOR_LEAF
+	db 42, MOVE_GROWTH
+	db 49, MOVE_MORNING_SUN
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+.Unreferenced_TailEvosAttacks
+	db  1, MOVE_SCRATCH
+	db  5, MOVE_LEER
+	db  9, MOVE_SAND_ATTACK
+	db 14, MOVE_PURSUIT
+	db 19, MOVE_ENCORE
+	db 25, MOVE_SWIFT
+	db 31, MOVE_MUD_SLAP
+	db 38, MOVE_FURY_SWIPES
+	db 45, MOVE_MIMIC
+	db 0 ; no more level-up moves
+.Unreferenced_LeafyEvosAttacks2
+	db 0 ; no more evolutions
+	db  1, MOVE_TACKLE
+	db  7, MOVE_SAND_ATTACK
+	db 14, MOVE_QUICK_ATTACK
+	db 21, MOVE_TAIL_WHIP
+	db 28, MOVE_ABSORB
+	db 35, MOVE_RAZOR_LEAF
+	db 42, MOVE_GROWTH
+	db 49, MOVE_MORNING_SUN
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+.Unreferenced_LeafyEvosAttacks3
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+.JunkData
+	db 0, 0, 0, 0
+INCBIN "slack/bank10padding_silver.2bpp"
 endc
 
 SECTION "slack.asm@Bank 14 Padding", ROMX
