@@ -128,7 +128,6 @@ baserom-silver.gb:
 
 ### Misc file-specific graphics rules
 include gfx/gfx.mk
-include slack/slack.mk
 
 
 ### Catch-all build target rules
