@@ -1,4 +1,3 @@
-
 MACRO? _redef_current_label
 	if DEF(\1)
 		PURGE \1

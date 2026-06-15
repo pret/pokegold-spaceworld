@@ -1,4 +1,3 @@
-
 MACRO farcall ; bank, address
 	ld a, BANK(\1)
 	ld hl, \1
