@@ -176,12 +176,12 @@ wMinuteBuffer:: db
 	ds 150
 
 UNION
-	wCurSpriteOAMAddr:: dw
+wCurSpriteOAMAddr:: dw
 NEXTU
 	ds 1
-	wCurIcon:: db
+wCurIcon:: db
 ENDU
-	wCurIconTile:: db
+wCurIconTile:: db
 
 UNION
 wCurSpriteOAMFlags:: db
