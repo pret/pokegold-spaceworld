@@ -1,27 +1,27 @@
 INCLUDE "constants.asm"
 
 
-SECTION "slack.asm@Bank 01 Padding", ROMX
+SECTION "garbage.asm@Bank 01 Garbage", ROMX
 
 if DEF(_GOLD)
 	ds 982, $39, $00
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank01padding_silver.2bpp", 42
+INCBIN "garbage/bank01_silver.2bpp", 42
 endc
 
 
-SECTION "slack.asm@Bank 02 Padding", ROMX
+SECTION "garbage.asm@Bank 02 Garbage", ROMX
 
 if DEF(_GOLD)
-INCBIN "slack/bank02padding_gold.2bpp", 188
+INCBIN "garbage/bank02_gold.2bpp", 188
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank02padding_silver.2bpp", 188
+INCBIN "garbage/bank02_silver.2bpp", 188
 endc
 
 
-SECTION "slack.asm@Bank 03 Padding", ROMX
+SECTION "garbage.asm@Bank 03 Garbage", ROMX
 
 if DEF(_GOLD)
 Unreferenced_Corrupt_AlreadyKnowsMoveText1:
@@ -75,109 +75,109 @@ Unreferenced_Corrupt_KnowsMove:
 	prompt
 
 if DEF(_GOLD)
-INCBIN "slack/bank03padding_gold.2bpp", 35
+INCBIN "garbage/bank03_gold.2bpp", 35
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank03padding_silver.2bpp", 35
+INCBIN "garbage/bank03_silver.2bpp", 35
 endc
 
 
-SECTION "slack.asm@Bank 04 Padding", ROMX
+SECTION "garbage.asm@Bank 04 Garbage", ROMX
 
 if DEF(_GOLD)
-INCBIN "slack/bank04padding_gold.2bpp", 227
+INCBIN "garbage/bank04_gold.2bpp", 227
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank04padding_silver.2bpp", 227
+INCBIN "garbage/bank04_silver.2bpp", 227
 endc
 
 
-SECTION "slack.asm@Bank 05 Padding", ROMX
+SECTION "garbage.asm@Bank 05 Garbage", ROMX
 
 if DEF(_GOLD)
-INCBIN "slack/bank05padding_gold.2bpp", 74
+INCBIN "garbage/bank05_gold.2bpp", 74
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank05padding_silver.2bpp", 74
+INCBIN "garbage/bank05_silver.2bpp", 74
 endc
 
 
-SECTION "slack.asm@Bank 06 Padding", ROMX
+SECTION "garbage.asm@Bank 06 Garbage", ROMX
 
 if DEF(_GOLD)
-INCBIN "slack/bank06padding_gold.2bpp"
+INCBIN "garbage/bank06_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank06padding_silver.2bpp"
+INCBIN "garbage/bank06_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 09 Padding", ROMX
+SECTION "garbage.asm@Bank 09 Garbage", ROMX
 
 if DEF(_GOLD)
-INCBIN "slack/bank09padding_gold.2bpp", 116
+INCBIN "garbage/bank09_gold.2bpp", 116
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank09padding_silver.2bpp", 116
+INCBIN "garbage/bank09_silver.2bpp", 116
 endc
 
 
-SECTION "slack.asm@Bank 0a Padding", ROMX
+SECTION "garbage.asm@Bank 0a Garbage", ROMX
 
 if DEF(_GOLD)
-INCBIN "slack/bank0apadding_gold.2bpp", 62
+INCBIN "garbage/bank0a_gold.2bpp", 62
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank0apadding_silver.2bpp", 62
+INCBIN "garbage/bank0a_silver.2bpp", 62
 endc
 
 
-SECTION "slack.asm@Bank 0b Padding", ROMX
+SECTION "garbage.asm@Bank 0b Garbage", ROMX
 if DEF(_GOLD)
-INCBIN "slack/bank0bpadding_gold.2bpp", 111
+INCBIN "garbage/bank0b_gold.2bpp", 111
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank0bpadding_silver.2bpp", 111
+INCBIN "garbage/bank0b_silver.2bpp", 111
 endc
 
 
-SECTION "slack.asm@Bank 0c Padding", ROMX
+SECTION "garbage.asm@Bank 0c Garbage", ROMX
 if DEF(_GOLD)
-INCBIN "slack/bank0cpadding_gold.2bpp"
+INCBIN "garbage/bank0c_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank0cpadding_silver.2bpp"
+INCBIN "garbage/bank0c_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 0d Padding", ROMX
+SECTION "garbage.asm@Bank 0d Garbage", ROMX
 if DEF(_GOLD)
-INCBIN "slack/bank0dpadding_gold.2bpp"
+INCBIN "garbage/bank0d_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank0dpadding_silver.2bpp"
+INCBIN "garbage/bank0d_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 0e Padding", ROMX
+SECTION "garbage.asm@Bank 0e Garbage", ROMX
 if DEF(_GOLD)
-INCBIN "slack/bank0epadding_gold.2bpp", 188
+INCBIN "garbage/bank0e_gold.2bpp", 188
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank0epadding_silver.2bpp", 185
+INCBIN "garbage/bank0e_silver.2bpp", 185
 endc
 
 
-SECTION "slack.asm@Bank 0f Padding", ROMX
+SECTION "garbage.asm@Bank 0f Garbage", ROMX
 if DEF(_GOLD)
-INCBIN "slack/bank0fpadding_gold.2bpp", 75
+INCBIN "garbage/bank0f_gold.2bpp", 75
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank0fpadding_silver.2bpp", 75
+INCBIN "garbage/bank0f_silver.2bpp", 75
 endc
 
 
-SECTION "slack.asm@Bank 10 Padding", ROMX
+SECTION "garbage.asm@Bank 10 Garbage", ROMX
 if DEF(_GOLD)
 Unreferenced_Corrupt_LeafyEvosAttacks1:
 	db 0 ; no more evolutions
@@ -224,7 +224,7 @@ Unreferenced_Corrupt_LeafyEvosAttacks4:
 
 	db $E6, $6D, $C3, $FF ; garbage
 
-INCBIN "slack/bank10padding_gold.2bpp"
+INCBIN "garbage/bank10_gold.2bpp"
 endc
 
 if DEF(_SILVER)
@@ -273,163 +273,163 @@ Unreferenced_Corrupt_LeafyEvosAttacks4:
 
 	db 0, 0, 0, 0 ; garbage
 
-INCBIN "slack/bank10padding_silver.2bpp"
+INCBIN "garbage/bank10_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 14 Padding", ROMX
+SECTION "garbage.asm@Bank 14 Garbage", ROMX
 if DEF(_GOLD)
-INCBIN "slack/bank14padding_gold.2bpp", 116
+INCBIN "garbage/bank14_gold.2bpp", 116
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank14padding_silver.2bpp", 116
+INCBIN "garbage/bank14_silver.2bpp", 116
 endc
 
 
-SECTION "slack.asm@Bank 20 Padding", ROMX
+SECTION "garbage.asm@Bank 20 Garbage", ROMX
 ; This whole bank is garbage data.
 if DEF(_GOLD)
-INCBIN "slack/bank20padding_gold.2bpp"
+INCBIN "garbage/bank20_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank20padding_silver.2bpp"
+INCBIN "garbage/bank20_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 22 Padding", ROMX
+SECTION "garbage.asm@Bank 22 Garbage", ROMX
 ; This whole bank is garbage data.
 if DEF(_GOLD)
-INCBIN "slack/bank22padding_gold.2bpp"
+INCBIN "garbage/bank22_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank22padding_silver.2bpp"
+INCBIN "garbage/bank22_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 35 Padding", ROMX
+SECTION "garbage.asm@Bank 35 Garbage", ROMX
 ; This whole bank is garbage data.
 rept 23
 	ret
 endr
 if DEF(_GOLD)
-INCBIN "slack/bank35padding_gold.2bpp", 23
+INCBIN "garbage/bank35_gold.2bpp", 23
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank35padding_silver.2bpp", 23
+INCBIN "garbage/bank35_silver.2bpp", 23
 endc
 
 
-SECTION "slack.asm@Bank 28 Padding", ROMX
+SECTION "garbage.asm@Bank 28 Garbage", ROMX
 ; This whole bank is garbage data.
 if DEF(_GOLD)
-INCBIN "slack/bank28padding_gold.2bpp"
+INCBIN "garbage/bank28_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank28padding_silver.2bpp"
+INCBIN "garbage/bank28_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 29 Padding", ROMX
+SECTION "garbage.asm@Bank 29 Garbage", ROMX
 ; This whole bank is garbage data.
 if DEF(_GOLD)
-INCBIN "slack/bank29padding_gold.2bpp"
+INCBIN "garbage/bank29_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank29padding_silver.2bpp"
+INCBIN "garbage/bank29_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 2a Padding", ROMX
+SECTION "garbage.asm@Bank 2a Garbage", ROMX
 ; This whole bank is garbage data.
 if DEF(_GOLD)
-INCBIN "slack/bank2apadding_gold.2bpp"
+INCBIN "garbage/bank2a_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank2apadding_silver.2bpp"
+INCBIN "garbage/bank2a_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 2b Padding", ROMX
+SECTION "garbage.asm@Bank 2b Garbage", ROMX
 ; This whole bank is garbage data.
 if DEF(_GOLD)
-INCBIN "slack/bank2bpadding_gold.2bpp"
+INCBIN "garbage/bank2b_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank2bpadding_silver.2bpp"
+INCBIN "garbage/bank2b_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 2c Padding", ROMX
+SECTION "garbage.asm@Bank 2c Garbage", ROMX
 ; This whole bank is garbage data.
 if DEF(_GOLD)
-INCBIN "slack/bank2cpadding_gold.2bpp"
+INCBIN "garbage/bank2c_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank2cpadding_silver.2bpp"
+INCBIN "garbage/bank2c_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 2d Padding", ROMX
+SECTION "garbage.asm@Bank 2d Garbage", ROMX
 ; This whole bank is garbage data.
 if DEF(_GOLD)
-INCBIN "slack/bank2dpadding_gold.2bpp"
+INCBIN "garbage/bank2d_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank2dpadding_silver.2bpp"
+INCBIN "garbage/bank2d_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 2e Padding", ROMX
+SECTION "garbage.asm@Bank 2e Garbage", ROMX
 ; This whole bank is garbage data.
 if DEF(_GOLD)
-INCBIN "slack/bank2epadding_gold.2bpp"
+INCBIN "garbage/bank2e_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank2epadding_silver.2bpp"
+INCBIN "garbage/bank2e_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 31 Padding", ROMX
+SECTION "garbage.asm@Bank 31 Garbage", ROMX
 if DEF(_GOLD)
-INCBIN "slack/bank31padding_gold.2bpp"
+INCBIN "garbage/bank31_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank31padding_silver.2bpp"
+INCBIN "garbage/bank31_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 39 Padding", ROMX
+SECTION "garbage.asm@Bank 39 Garbage", ROMX
 if DEF(_GOLD)
-INCBIN "slack/bank39padding_gold.2bpp", 159
+INCBIN "garbage/bank39_gold.2bpp", 159
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank39padding_silver.2bpp", 159
+INCBIN "garbage/bank39_silver.2bpp", 159
 endc
 
 
-SECTION "slack.asm@Bank 3c Padding", ROMX
+SECTION "garbage.asm@Bank 3c Garbage", ROMX
 if DEF(_GOLD)
-INCBIN "slack/bank3cpadding_gold.2bpp", 78
+INCBIN "garbage/bank3c_gold.2bpp", 78
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank3cpadding_silver.2bpp", 78
+INCBIN "garbage/bank3c_silver.2bpp", 78
 endc
 
 
-SECTION "slack.asm@Bank 3d Padding", ROMX
+SECTION "garbage.asm@Bank 3d Garbage", ROMX
 ; This whole bank is garbage data.
 if DEF(_GOLD)
-INCBIN "slack/bank3dpadding_gold.2bpp"
+INCBIN "garbage/bank3d_gold.2bpp"
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank3dpadding_silver.2bpp"
+INCBIN "garbage/bank3d_silver.2bpp"
 endc
 
 
-SECTION "slack.asm@Bank 3f Padding", ROMX
+SECTION "garbage.asm@Bank 3f Garbage", ROMX
 if DEF(_GOLD)
-INCBIN "slack/bank3fpadding_gold.2bpp", 45
+INCBIN "garbage/bank3f_gold.2bpp", 45
 endc
 if DEF(_SILVER)
-INCBIN "slack/bank3fpadding_silver.2bpp", 45
+INCBIN "garbage/bank3f_silver.2bpp", 45
 endc
