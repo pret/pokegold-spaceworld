@@ -111,8 +111,8 @@ ROMX $01
 	"data/items/attributes.asm"
 	"data/items/names.asm"
 	"engine/overworld/object_collision.asm"
-	"engine/menu_options_menu.asm"
-	"slack.asm@Bank 01 Padding"
+	"engine/menu/options_menu.asm"
+	"garbage.asm@Bank 01 Garbage"
 
 ROMX $02
 	"engine/overworld/player_object.asm"
@@ -132,7 +132,7 @@ ROMX $02
 	"gfx.asm@Title Screen BG Decoration Border"
 	"engine/gfx/sgb_layouts.asm"
 	"gfx.asm@SGB GFX"
-	"slack.asm@Bank 02 Padding"
+	"garbage.asm@Bank 02 Garbage"
 
 ROMX $03
 	"engine/overworld/player_movement.asm@Player Movement"
@@ -158,7 +158,7 @@ ROMX $03
 	"engine/events/breeder.asm"
 	"engine/battle_anims/pokeball_wobble.asm"
 	"engine/pokemon/knows_move.asm"
-	"slack.asm@Bank 03 Padding"
+	"garbage.asm@Bank 03 Garbage"
 
 ROMX $04
 	"data/maps/maps.asm"
@@ -175,7 +175,7 @@ ROMX $04
 	"engine/menu/text_entry.asm@mail2"
 	"engine/menu/start_menu.asm"
 	"gfx.asm@Trainer Card GFX"
-	"slack.asm@Bank 04 Padding"
+	"garbage.asm@Bank 04 Garbage"
 
 ROMX $05
 	"engine/overworld/player_movement.asm@_RedrawPlayerSprite"
@@ -185,7 +185,7 @@ ROMX $05
 	"engine/menu/empty_sram.asm"
 	"engine/events/pokecenter_pc.asm"
 	"engine/dumps/bank05.asm"
-	"slack.asm@Bank 05 Padding"
+	"garbage.asm@Bank 05 Garbage"
 
 ROMX $06
 	"gfx.asm@Bank 6 Tilesets Silent Hill"
@@ -193,7 +193,7 @@ ROMX $06
 	"gfx.asm@Bank 6 Tilesets Old City"
 	"gfx.asm@Bank 6 Tilesets West"
 	"gfx.asm@Bank 6 Tilesets House"
-	"slack.asm@Bank 06 Padding"
+	"garbage.asm@Bank 06 Garbage"
 
 ROMX $07
 	"gfx.asm@Bank 7 Tilesets Rocket House"
@@ -219,7 +219,7 @@ ROMX $09
 	"engine/pokemon/mon_submenu.asm"
 	"engine/battle/menu.asm"
 	"engine/items/buy_sell_toss.asm"
-	"slack.asm@Bank 09 Padding"
+	"garbage.asm@Bank 09 Garbage"
 
 ROMX $0a
 	"engine/link/link.asm"
@@ -230,13 +230,13 @@ ROMX $0a
 	"scripts/UnusedGen1Colosseum.asm"
 	"data/maps/objects/UnusedGen1Colosseum.asm"
 	"engine/link/link_2.asm"
-	"slack.asm@Bank 0a Padding"
+	"garbage.asm@Bank 0a Garbage"
 
 ROMX $0b
 	"engine/items/print_item_description.asm"
 	"engine/items/tm_holder.asm"
 	"engine/pokemon/print_move_description.asm"
-	"slack.asm@Bank 0b Padding"
+	"garbage.asm@Bank 0b Garbage"
 
 ROMX $0c
 	"gfx.asm@Bank C Tilesets Radio Tower"
@@ -245,24 +245,24 @@ ROMX $0c
 	"gfx.asm@Bank C Tilesets Gym"
 	"gfx.asm@Bank C Tilesets Pokecenter"
 	"gfx.asm@Bank C Tilesets Common"
-	"slack.asm@Bank 0c Padding"
+	"garbage.asm@Bank 0c Garbage"
 
 ROMX $0d
 	"engine/dumps/bank0d.asm@DoPlayerTurn"
-	"slack.asm@Bank 0d Padding"
+	"garbage.asm@Bank 0d Garbage"
 
 ROMX $0e
 	"engine/dumps/bank0e.asm"
 	"data/trainers/class_names.asm"
 	"engine/dumps/bank0e.asm@ReadTrainerParty"
 	"data/trainers/parties.asm@Trainer Parties"
-	"slack.asm@Bank 0e Padding"
+	"garbage.asm@Bank 0e Garbage"
 
 ROMX $0f
 	"engine/battle/core.asm@DoBattle"
 	"engine/overworld/wildmons.asm"
 	"engine/battle/core.asm@StartBattle"
-	"slack.asm@Bank 0f Padding"
+	"garbage.asm@Bank 0f Garbage"
 
 ROMX $10
 	"engine/pokedex/pokedex.asm"
@@ -272,7 +272,7 @@ ROMX $10
 	"data/moves/moves.asm"
 	"engine/pokemon/evolve.asm"
 	"data/pokemon/evos_attacks.asm"
-	"slack.asm@Bank 10 Padding"
+	"garbage.asm@Bank 10 Garbage"
 
 ROMX $11
 	"engine/pokedex/display_dex_entry.asm"
@@ -296,7 +296,7 @@ ROMX $14
 	"data/pokemon/base_stats.asm"
 	"data/pokemon/names.asm"
 	"gfx.asm@PKMN Sprite Bank List"
-	"slack.asm@Bank 14 Padding"
+	"garbage.asm@Bank 14 Garbage"
 
 ROMX $15
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 1"
@@ -334,13 +334,13 @@ ROMX $1f
 	"gfx/pokemon/egg.asm"
 	
 ROMX $20
-	"slack.asm@Bank 20 Padding"
+	"garbage.asm@Bank 20 Garbage"
 
 ROMX $21
 	"gfx.asm@Attack Animation GFX"
 
 ROMX $22
-	"slack.asm@Bank 22 Padding"
+	"garbage.asm@Bank 22 Garbage"
 
 ROMX $23
 	"engine/tileset_anims.asm"
@@ -684,25 +684,25 @@ ROMX $27
 	"scripts/NorthPokecenter2F.asm"
 
 ROMX $28
-	"slack.asm@Bank 28 Padding"
+	"garbage.asm@Bank 28 Garbage"
 
 ROMX $29
-	"slack.asm@Bank 29 Padding"
+	"garbage.asm@Bank 29 Garbage"
 
 ROMX $2a
-	"slack.asm@Bank 2a Padding"
+	"garbage.asm@Bank 2a Garbage"
 
 ROMX $2b
-	"slack.asm@Bank 2b Padding"
+	"garbage.asm@Bank 2b Garbage"
 
 ROMX $2c
-	"slack.asm@Bank 2c Padding"
+	"garbage.asm@Bank 2c Garbage"
 
 ROMX $2d
-	"slack.asm@Bank 2d Padding"
+	"garbage.asm@Bank 2d Garbage"
 
 ROMX $2e
-	"slack.asm@Bank 2e Padding"
+	"garbage.asm@Bank 2e Garbage"
 
 ROMX $2f
 	"data/maps/objects/PowerPlant1.asm"
@@ -749,7 +749,7 @@ ROMX $30
 
 ROMX $31
 	"gfx.asm@Bank 31 Sprites 2"
-	"slack.asm@Bank 31 Padding"
+	"garbage.asm@Bank 31 Garbage"
 
 ROMX $32
 	"engine/battle_anims/bg_effects.asm"
@@ -781,7 +781,7 @@ ROMX $34
 	"scripts/UnusedMap13.asm"
 
 ROMX $35
-	"slack.asm@Bank 35 Padding"
+	"garbage.asm@Bank 35 Garbage"
 
 ROMX $36
 	"scripts/dummy_text_pointers.asm"
@@ -894,7 +894,7 @@ ROMX $39
 	"gfx.asm@Intro Underwater GFX"
 	"gfx.asm@Intro Forest GFX"
 	"gfx.asm@Intro Mon"
-	"slack.asm@Bank 39 Padding"
+	"garbage.asm@Bank 39 Garbage"
 
 ROMX $3a
 	"audio/engine.asm"
@@ -921,10 +921,10 @@ ROMX $3c
 	"data/pokemon/cries.asm"
 	"audio/cries.asm"
 	"audio/songs/title.asm"
-	"slack.asm@Bank 3c Padding"
+	"garbage.asm@Bank 3c Garbage"
 
 ROMX $3d
-	"slack.asm@Bank 3d Padding"
+	"garbage.asm@Bank 3d Garbage"
 
 ROMX $3e
 	"engine/gfx/load_gfx.asm"
@@ -945,7 +945,7 @@ ROMX $3f
 	"engine/debug/sound_debug_menu.asm"
 	"engine/debug/monster_debug_menu.asm"
 	"engine/debug/subgame_debug_menu.asm"
-	"slack.asm@Bank 3f Padding"
+	"garbage.asm@Bank 3f Garbage"
 
 WRAM0
 	"Music engine RAM"
