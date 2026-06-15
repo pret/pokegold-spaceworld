@@ -111,7 +111,7 @@ ROMX $01
 	"data/items/attributes.asm"
 	"data/items/names.asm"
 	"engine/overworld/object_collision.asm"
-	"engine/menu_options_menu.asm"
+	"engine/menu/options_menu.asm"
 	"slack.asm@Bank 01 Padding"
 
 ROMX $02

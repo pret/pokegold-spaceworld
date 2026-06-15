@@ -18,12 +18,12 @@ KnowsMove:
 	ret
 
 .knows_move
-	ld hl, KnowsMoveText
+	ld hl, AlreadyKnowsMoveText
 	call PrintText
 	scf
 	ret
 
-KnowsMoveText:
+AlreadyKnowsMoveText:
 	text_from_ram wStringBuffer1
 	text "は　すでに"
 	line "@"
