@@ -60,3 +60,10 @@ jobs:
             git diff-index HEAD --
             return 1
           fi
+
+      - name: Discord webhook
+        if: ${{ github.repository_owner == 'pret' && github.event_name == 'push' }}
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          .github/webhook.sh
