@@ -118,15 +118,15 @@ ComputePathToWalkToDestination::
 	ret
 
 .MovementData:
- 	slow_step DOWN
- 	slow_step UP
- 	slow_step LEFT
- 	slow_step RIGHT
- 	step DOWN
- 	step UP
- 	step LEFT
- 	step RIGHT
- 	big_step DOWN
- 	big_step UP
- 	big_step LEFT
- 	big_step RIGHT
+	slow_step DOWN
+	slow_step UP
+	slow_step LEFT
+	slow_step RIGHT
+	step DOWN
+	step UP
+	step LEFT
+	step RIGHT
+	big_step DOWN
+	big_step UP
+	big_step LEFT
+	big_step RIGHT

@@ -152,7 +152,7 @@ DEF MAPOBJECT_RADIUS           rb ; 5
 DEF MAPOBJECT_HOUR             rb ; 6
 DEF MAPOBJECT_TIMEOFDAY        rb ; 7
 DEF MAPOBJECT_TYPE             rb ; 8, set to anything but 0 to skip trainer checks
-							   rb_skip 2
+                               rb_skip 2
 DEF MAPOBJECT_SIGHT_RANGE      rb ; b
                                rb_skip 4
 DEF MAPOBJECT_LENGTH EQU _RS

@@ -106,7 +106,7 @@ Unreferenced_GetMoveSound:
 	; ID, pitch mod, tempo mod
 	db SFX_POUND,			$00, $80
 	db SFX_COMET_PUNCH,		$10, $80
-	db SFX_DOUBLESLAP, 		$00, $80
+	db SFX_DOUBLESLAP,		$00, $80
 	db SFX_THRASH,			$01, $80
 	db SFX_MEGA_PUNCH,		$00, $40
 	db SFX_SHINE,			$00, $FF

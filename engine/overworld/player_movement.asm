@@ -962,7 +962,7 @@ CheckSurfDown:
 	ld a, [wTileDown]
 	call CheckCollisionSometimesSolid
 	jr c, .face_down ; FIXME: This assumes cut-trees are solid, which they aren't.
-	                ;        You can walk into them from water because of this.
+	                 ;        You can walk into them from water because of this.
 	call nz, SurfDismount
 	ld a, movement_step | DOWN
 	ret
@@ -978,7 +978,7 @@ CheckSurfUp:
 	ld a, [wTileUp]
 	call CheckCollisionSometimesSolid
 	jr c, .face_up ; FIXME: This assumes cut-trees are solid, which they aren't.
-	              ;        You can walk into them from water because of this.
+	               ;        You can walk into them from water because of this.
 	call nz, SurfDismount
 	ld a, movement_step | UP
 	ret
@@ -994,7 +994,7 @@ CheckSurfLeft:
 	ld a, [wTileLeft]
 	call CheckCollisionSometimesSolid
 	jr c, .face_left ; FIXME: This assumes cut-trees are solid, which they aren't.
-	                ;        You can walk into them from water because of this.
+	                 ;        You can walk into them from water because of this.
 	call nz, SurfDismount
 	ld a, movement_step | LEFT
 	ret
@@ -1010,7 +1010,7 @@ CheckSurfRight:
 	ld a, [wTileRight]
 	call CheckCollisionSometimesSolid
 	jr c, .face_right ; FIXME: This assumes cut-trees are solid, which they aren't.
-	                 ;        You can walk into them from water because of this.
+	                  ;        You can walk into them from water because of this.
 	call nz, SurfDismount
 	ld a, movement_step | RIGHT
 	ret

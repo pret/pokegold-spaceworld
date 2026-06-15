@@ -237,7 +237,7 @@ FifteenPuzzleMinigame:
 .PositionJumptable:
 	dw .PanelCanMoveUpLeft					; 1		(Row 1 Right)
 	dw .PanelCanMoveUpLeftRight				; 2		(Row 1 Middle Right)
-	dw .PanelCanMoveUpLeftRight 			; 3		(Row 1 Middle Left)
+	dw .PanelCanMoveUpLeftRight				; 3		(Row 1 Middle Left)
 	dw .PanelCanMoveUpRight					; 4		(Row 1 Left)
 	dw .PanelCanMoveUpDownLeft				; 5		(Row 2 Right)
 	dw .PanelCanMoveAllDirections			; 6		(Row 2 Middle Right)

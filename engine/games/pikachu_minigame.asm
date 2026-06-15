@@ -1262,12 +1262,12 @@ PikachuMiniGame_GetNextColumn:
 	dw .DummyCommand  ; f6
 	dw .DummyCommand  ; f7
 	dw .DummyCommand  ; f8
-	dw .CommandF9	  ; f9
-	dw .CommandFA	  ; fa
-	dw .CommandFB	  ; fb
-	dw .JumpCommand	  ; fc
-	dw .CommandFD	  ; fd
-	dw .CallCommand	  ; fe
+	dw .CommandF9     ; f9
+	dw .CommandFA     ; fa
+	dw .CommandFB     ; fb
+	dw .JumpCommand   ; fc
+	dw .CommandFD     ; fd
+	dw .CallCommand   ; fe
 	dw .ReturnCommand ; ff
 
 .DummyCommand:

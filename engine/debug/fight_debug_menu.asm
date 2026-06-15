@@ -97,7 +97,7 @@ FightDebugMenu:
 	jp nz, .EnemySet
 	bit D_RIGHT_F, a			; right button
 	jp nz, .MonsLevel
-	bit D_UP_F, a 				; up button
+	bit D_UP_F, a				; up button
 	jp nz, .BeforeMons
 	bit D_DOWN_F, a				; down button
 	jp nz, .NextMons
@@ -237,7 +237,7 @@ endr
 	push de						; wPokemonData
 	call DelayFrame
 	call GetJoypadDebounced
-	pop de 						; wPokemonData
+	pop de						; wPokemonData
 	pop bc						; b = monster number c = level
 	ldh a, [hJoySum]
 	bit A_BUTTON_F, a			; "a" button
@@ -524,7 +524,7 @@ endr
 	push bc							; b = monster number c = level
 	call DelayFrame
 	call GetJoypadDebounced
-	pop bc 							; b = monster number c = level
+	pop bc							; b = monster number c = level
 	ldh a, [hJoySum]
 	bit A_BUTTON_F, a				; "a" button
 	jp nz, .TypeChange
@@ -581,7 +581,7 @@ endr
 	push bc							; b = monster number c = level
 	call DelayFrame
 	call GetJoypadDebounced
-	pop bc 							; b = monster number c = level
+	pop bc							; b = monster number c = level
 	ldh a, [hJoySum]
 	bit A_BUTTON_F, a				; "a" button
 	jp nz, .EnemyMonsCountUp
@@ -920,7 +920,7 @@ endr
 .5DashesText:
 	db   "ーーーーー@"
 .WildPokemonText:
-	db   "ワイルドモンスター@" 				; "WILD #MON@"
+	db   "ワイルドモンスター@"				; "WILD #MON@"
 .TrainerText:
 	db   "ディーラー　　　　@"				; "TRAINER　　　　　@"
 .EnemyNumNameLevelText:
@@ -931,7 +931,7 @@ endr
 .10SpacesText:
 	db   "　　　　　　　　　　@"
 .PlayerNameText:
-	db   "ゴールド@@" 						; "GOLD@@"
+	db   "ゴールド@@"						; "GOLD@@"
 
 .ItemTable_Old: ; unreferenced, used in pokeyellow but hasn't been updated to fit the new item constants
 	db ITEM_03,				99

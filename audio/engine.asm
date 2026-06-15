@@ -2338,10 +2338,10 @@ GetMusicByte:
 GetFrequency:
 ; generate frequency
 ; input:
-; 	d: octave
-;	e: pitch
+;    d: octave
+;    e: pitch
 ; output:
-; 	de: frequency
+;    de: frequency
 
 ; get octave
 	ld hl, CHANNEL_PITCH_OFFSET

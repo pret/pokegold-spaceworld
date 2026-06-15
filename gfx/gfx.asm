@@ -422,7 +422,7 @@ AnimObjHornGFX:      INCBIN "gfx/battle_anims/horn.2bpp"
 AnimObjFlowerGFX:    INCBIN "gfx/battle_anims/flower.2bpp"
 AnimObjMiscGFX:
 PointerGFX:          INCBIN "gfx/battle_anims/pointer.2bpp"
-					 INCBIN "gfx/battle_anims/misc.2bpp"
+                     INCBIN "gfx/battle_anims/misc.2bpp"
 AnimObjSkyAttackGFX: INCBIN "gfx/battle_anims/skyattack.2bpp"
 AnimObjGlobeGFX:     INCBIN "gfx/battle_anims/globe.2bpp"
 AnimObjShapesGFX:    INCBIN "gfx/battle_anims/shapes.2bpp"
@@ -430,7 +430,7 @@ AnimObjStatusGFX:    INCBIN "gfx/battle_anims/status.2bpp"
 AnimObjObjectsGFX:   INCBIN "gfx/battle_anims/objects.2bpp"
 AnimObjShineGFX:     INCBIN "gfx/battle_anims/shine.2bpp"
 AnimObjAngelsGFX:    INCBIN "gfx/battle_anims/angels.2bpp"
-	                 ;INCBIN "gfx/battle_anims/destinybond.2bpp"
+                    ;INCBIN "gfx/battle_anims/destinybond.2bpp"
 
 SECTION "gfx.asm@Pokemon Party Sprites", ROMX
 MenuMonIconGFX::

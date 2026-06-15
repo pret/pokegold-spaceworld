@@ -15,15 +15,15 @@ LandmarkPositions:
 	landmark 148, 24		; LANDMARK_BLUE_FOREST_ROUTE_3
 	landmark 148, 36		; LANDMARK_BLUE_FOREST
 	landmark 148, 48		; LANDMARK_BLUE_FOREST_ROUTE_2
-	landmark 148, 60 		; LANDMARK_STAND
+	landmark 148, 60		; LANDMARK_STAND
 	landmark 148, 76		; LANDMARK_STAND_ROUTE
 	landmark 140, 92		; LANDMARK_KANTO_EAST_ROUTE
 	landmark 124, 92		; LANDMARK_KANTO
 	landmark 112, 92		; LANDMARK_ROUTE_SILENT_EAST
 	landmark 100, 92		; LANDMARK_SILENT_HILL
 	landmark 100, 84		; LANDMARK_PRINCE
-	landmark 100, 76 		; LANDMARK_MT_FUJI
-	landmark 92, 92 		; LANDMARK_ROUTE_1_P1
+	landmark 100, 76		; LANDMARK_MT_FUJI
+	landmark 92, 92			; LANDMARK_ROUTE_1_P1
 	landmark 84, 92			; LANDMARK_ROUTE_1_P2
 	landmark 84, 76			; LANDMARK_OLD_CITY
 	landmark 72, 76			; LANDMARK_ROUTE_2
