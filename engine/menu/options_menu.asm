@@ -196,7 +196,7 @@ OptionsMenu::
 	xor %1011 ; 1 <-> 10
 	ld [wOptionsBattleStyleCursorX], a
 	jp .ClearOldMenuCursor
-	
+
 .Cursor_Audio:
 	ld a, [wOptionsAudioSettingsCursorX]
 	xor %1011 ; 1 <-> 10

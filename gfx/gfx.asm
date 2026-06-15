@@ -420,7 +420,7 @@ AnimObjWebGFX:       INCBIN "gfx/battle_anims/web.2bpp"
 AnimObjHazeGFX:      INCBIN "gfx/battle_anims/haze.2bpp"
 AnimObjHornGFX:      INCBIN "gfx/battle_anims/horn.2bpp"
 AnimObjFlowerGFX:    INCBIN "gfx/battle_anims/flower.2bpp"
-AnimObjMiscGFX:      
+AnimObjMiscGFX:
 PointerGFX:          INCBIN "gfx/battle_anims/pointer.2bpp"
 					 INCBIN "gfx/battle_anims/misc.2bpp"
 AnimObjSkyAttackGFX: INCBIN "gfx/battle_anims/skyattack.2bpp"

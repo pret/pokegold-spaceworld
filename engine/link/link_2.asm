@@ -219,7 +219,7 @@ Text_LinkInstructions:
 CableClubWelcomeText:
 	text "つうしん　ケーブル　クラブに"
 	line "ようこそ！@"
-	db	"ザザザ@" 
+	db	"ザザザ@"
 
 CableClubCheckInText:
 	text "うけつけは　こちらです"

@@ -49,7 +49,7 @@ MonsterTest:
 
 	ld [wTempSpecies], a
 	ret
-	
+
 .Different:
 	ld a, [wTempSpecies]
 	dec a
@@ -58,7 +58,7 @@ MonsterTest:
 	ld a, [wOptionsTextSpeedCursorX]	; page size
 	cp NUM_MONSTERTEST_ITEMS + 1
 	jr c, .ScrollPosition
-	
+
 	sub c
 	cp NUM_MONSTERTEST_ITEMS
 	jr c, .AllowChange
@@ -196,7 +196,7 @@ MonsterTest_List:
 
 	ld a, [wOptionsMenuCursorY]
 	sub NUM_MONSTERTEST_ITEMS
-	ld [wOptionsMenuCursorY], a	
+	ld [wOptionsMenuCursorY], a
 	jp nc, .Loop
 
 	xor a								; scroll down by 9 if possible
@@ -233,14 +233,14 @@ MonsterTest_ListGetString:
 .is_a_pokemon:
 	call GetPokemonName
 	ret
-	
+
 MonsterTest_ClearScreen:
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, '　'
 	call ByteFill
 	ret
-	
+
 
 MonsterTest_SelectedMenu:
 	xor a
@@ -375,7 +375,7 @@ MonsterTest_GetPic:
 	call PrepMonFrontpic
 	ld hl, wMonHBackSprite - wMonHeader
 	call UncompressMonSprite
-	
+
 	ld hl, vChars2 tile $31
 	predef GetMonBackpic
 
@@ -411,7 +411,7 @@ MonsterTest_Cursor:
 	ld a, [wOptionsMenuCursorX]
 	and a
 	jr z, .return
-	
+
 	call .get_position
 	ld [hl], '　'
 	ld hl, wOptionsMenuCursorX
@@ -421,7 +421,7 @@ MonsterTest_Cursor:
 	ld a, [wOptionsMenuCursorX]
 	cp NUM_MONSTERTEST_ITEMS-1
 	jr nc, .return
-	
+
 	call .get_position
 	ld [hl], '　'
 	ld hl, wOptionsMenuCursorX

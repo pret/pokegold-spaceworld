@@ -1391,7 +1391,7 @@ BattleBGEffect_BetaPursuit: ; unused
 	dw Tackle_ReturnMove
 	dw .three
 
-	
+
 .three
 	call BattleAnim_ResetLCDStatCustom
 	ret
@@ -1894,7 +1894,7 @@ BattleBGEffect_FadeMonsToBlackRepeating:
 
 	dc 2, 1, 0, 0
 	dc 3, 3, 2, 0
-	
+
 	dc 1, 0, 0, 0
 	dc 3, 3, 3, 0
 

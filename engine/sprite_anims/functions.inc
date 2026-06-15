@@ -69,7 +69,7 @@ AnimSeq_PartyMon:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld [hl], 2 * TILE_WIDTH
-	
+
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], 0
@@ -559,7 +559,7 @@ AnimSeq_GSIntroFireball:
 	ld d, a
 	add 8
 	ld [hl], a
-	
+
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -886,7 +886,7 @@ AnimSeq_MinigamePicrossDust:
 	ld a, [hl]
 	and a
 	ret z
-	
+
 	ld [hl], $00
 	ld a, $18 ; SPRITE_ANIM_FRAMESET_MINIGAME_PICROSS_DUST
 	call _ReinitSpriteAnimFrame
@@ -1216,7 +1216,7 @@ AnimSeq_TradePokeBall:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $30
-	
+
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $24
@@ -1309,7 +1309,7 @@ AnimSeq_RevealNewMon:
 	pop de
 	pop af
 	call AnimSeqs_Cosine
-	
+
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a

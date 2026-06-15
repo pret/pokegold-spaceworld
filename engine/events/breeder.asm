@@ -101,7 +101,7 @@ _Breeder::
 	ld a, GET_BREED_MON
 	ld [wPokemonWithdrawDepositParameter], a
 	predef DepositBreedmonOrBuffermon
-	
+
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	callfar RemoveMonFromPartyOrBox ; in the same bank, no need to farcall!

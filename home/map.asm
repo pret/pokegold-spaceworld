@@ -953,7 +953,7 @@ InitObjectMasks::
 	ld bc, NUM_OBJECTS - 2
 	ld a, $ff
 	call ByteFill
-	
+
 	ld hl, wMapScriptPointerLocation
 	ld e, [hl]
 	inc hl
@@ -1635,7 +1635,7 @@ OverworldLoop_Main::
 	ld a, [wOverworldFlags]
 	bit OVERWORLD_DISABLE_MAP_CONNECTIONS_F, a
 	jr nz, .loop
-	
+
 	call CheckMovingOffEdgeOfMap
 	ret c
 	call WarpCheck

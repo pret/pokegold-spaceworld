@@ -16,7 +16,7 @@ ScrollingMenu_FromTable::
 	ld l, e
 	call CopyMenuHeader
 	pop hl
-	
+
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

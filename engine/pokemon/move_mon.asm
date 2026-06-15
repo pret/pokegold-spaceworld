@@ -424,7 +424,7 @@ SendGetMonIntoFromBox::
 	cp MONS_PER_BOX
 	jr nz, .there_is_room
 	jr .full
-	
+
 .check_IfPartyIsFull
 	ld hl, wPartyCount
 	ld a, [hl]
@@ -721,7 +721,7 @@ RetrieveBreedmonOrBuffermon:
 	pop hl
 	call CopyBytes
 	push hl
-	
+
 	ld hl, wBoxMons
 	ld a, [wBoxCount]
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -1180,7 +1180,7 @@ CalcMonStatC::
 	jr nz, .not_spdef
 	dec hl
 	dec hl
-	
+
 .not_spdef
 	sla c
 	ld a, d
@@ -1295,7 +1295,7 @@ CalcMonStatC::
 	add e
 	jr nc, .no_overflow_2
 	inc d
-	
+
 .no_overflow_2
 	ldh [hMultiplicand + 2], a
 	ld a, d

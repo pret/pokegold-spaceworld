@@ -105,7 +105,7 @@ DoMove:
 	ld a, [hl]
 	ld [wPredefBC], a
 	pop bc
-	
+
 	ld hl, .ReadMoveEffectCommand
 	push hl
 	ld a, [wPredefBC + 1]
@@ -484,7 +484,7 @@ CheckEnemyTurn:
 	ld [wEnemyMonStatus], a
 	and a
 	jr z, .woke_up
-	
+
 	ld hl, FastAsleepText
 	call PrintText
 	xor a
@@ -2002,7 +2002,7 @@ BattleCommand_CheckHit:
 	dec hl
 	bit SUBSTATUS_INVULNERABLE, [hl]
 	jp z, .EnemyMonMist
-	
+
 	ld hl, wLastEnemyCounterMove
 	ld de, wPlayerMoveStruct
 	ldh a, [hBattleTurn]
@@ -2864,7 +2864,7 @@ PlayerAttackDamage:
 	ld hl, wCurDamage
 	ld [hli], a
 	ld [hl], a
-	
+
 	ld hl, wPlayerMoveStructPower
 	ld a, [hli]
 	and a
@@ -3266,7 +3266,7 @@ BattleCommand_DamageCalc:
 	ld [hl], 50
 	ld b, 4
 	call Divide
-	
+
 ; Item boosts
 	call GetUserItem
 	ld hl, TypeBoostItems
@@ -3628,7 +3628,7 @@ BattleCommand_Encore:
 	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
-	
+
 	set SUBSTATUS_ENCORED, [hl]
 	call BattleRandom
 	and 3
@@ -3894,7 +3894,7 @@ SketchedText:
 	text "を　ダビングした！"
 	prompt
 
-; Thaw the opponent if frozen, and 
+; Thaw the opponent if frozen, and
 ; raise the user's Attack one stage.
 BattleCommand_DefrostOpponent:
 	call LoadMoveAnim
@@ -4214,7 +4214,7 @@ DoEnemyDamage:
 	sbc b
 	ld [wEnemyMonHP], a
 	jr nc, .no_underflow
-	
+
 	ld a, [wHPBarOldHP + 1]
 	ld [hli], a
 	ld a, [wHPBarOldHP]
@@ -4512,7 +4512,7 @@ BattleCommand_SleepTarget:
 	cp EFFECTIVE
 	ld hl, DoesntAffectText
 	jr c, .fail
-	
+
 	push bc
 	call GetOpponentItem
 	ld a, b
@@ -4545,7 +4545,7 @@ BattleCommand_SleepTarget:
 	res SUBSTATUS_RECHARGE, a
 	ld [bc], a
 	jr nz, .random_loop
-	
+
 	ld a, [wAttackMissed]
 	and a
 	jr nz, .fail
@@ -4941,7 +4941,7 @@ BattleCommand_BurnTarget:
 	call CallFromBank0F
 	ld hl, WasBurnedText
 	call PrintText
-	
+
 	call GetOpponentItem
 	ld a, b
 	pop de
@@ -5289,7 +5289,7 @@ BattleCommand_StatUp:
 
 	ld hl, Text_BattleEffectActivate
 	call PrintText
-	
+
 ; BUG: Incorrectly checks the opponents' Pokémon for burn and
 ; paralysis penalties, while leaving the player untouched.
 
@@ -5636,7 +5636,7 @@ BattleCommand_StoreEnergy:
 	res SUBSTATUS_BIDE, [hl]
 	ld hl, UnleashedEnergyText
 	call PrintText
-	
+
 ; BUG: The move struct power and damage taken variables are hardcoded to the player's values.
 ; No handling exists for the enemy whatsoever, so Bide will silently fail when unleashed by them.
 
@@ -6227,7 +6227,7 @@ BattleDugText:
 	prompt
 
 ; Skips to the traptarget command in the move's battle script buffer.
-; This command was dummied out in the final game, most likely due to 
+; This command was dummied out in the final game, most likely due to
 ; the changes made to trapping moves.
 BattleCommand_SkipToTrapTarget:
 	ld hl, wPlayerSubStatus3
@@ -7011,7 +7011,7 @@ BattleCommand_ResetStats:
 	inc hl
 	ld a, [hl]
 	and ~((1 << SUBSTATUS_X_ACCURACY) | (1 << SUBSTATUS_MIST) | (1 << SUBSTATUS_FOCUS_ENERGY) | (1 << SUBSTATUS_LEECH_SEED))
-	
+
 	ld [hli], a
 	ld a, [hl]
 	and %11110000 | (1 << SUBSTATUS_TRANSFORMED)
@@ -7069,7 +7069,7 @@ BattleCommand_Heal:
 	ld a, b
 	cp MOVE_REST
 	jr nz, .not_rest
-	
+
 	push hl
 	push de
 	push af
@@ -7844,7 +7844,7 @@ BattleCommand_Foresight:
 	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
-	
+
 	call CheckHiddenOpponent
 	jr nz, .failed
 
@@ -7886,7 +7886,7 @@ BattleCommand_PerishSong:
 .enemy
 	ld a, [de]
 	jr nz, .done
-	
+
 	set SUBSTATUS_PERISH, a
 	ld [de], a
 	ld a, 4
@@ -8449,7 +8449,7 @@ BattleCommand_BatonPass:
 	ld a, [wCurPartyMon]
 	cp [hl]
 	jr nz, .picked_mon
-	
+
 	ld hl, BattleText_MonIsAlreadyOut_0d
 	call PrintText
 
@@ -8682,7 +8682,7 @@ BattleCommand_HiddenPower:
 	srl a
 	srl a
 	or b
-	
+
 	; Special
 	ld b, a
 	ld a, [hl]

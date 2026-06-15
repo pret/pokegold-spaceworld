@@ -257,4 +257,4 @@ Pokered_MonIndices::
 	db DEX_GONGU			; fa
 	db DEX_REDIBA			; fb
 	db DEX_REDIBA			; fc
-	
+

@@ -218,7 +218,7 @@ UpdateOverworldMap:
 	call LoadMapPart
 	call ScheduleWestColumnRedraw
 	ret
-	
+
 .step_right
 	call ScrollOverworldMapRight
 	call LoadMapPart

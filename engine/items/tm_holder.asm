@@ -27,7 +27,7 @@ _TMHolder:
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	call CopyStringToStringBuffer2
-	
+
 	ld hl, BootedTMText
 	call PrintText
 	ld hl, ContainedMoveText

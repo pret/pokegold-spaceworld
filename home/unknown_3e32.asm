@@ -70,7 +70,7 @@ Unreferenced_GetBattleAnimByte_Old:
 	ld d, [hl]
 
 	ld a, BANK(BattleAnimations)
-	ld [MBC3RomBank], a 
+	ld [MBC3RomBank], a
 	ldh [hROMBank], a
 
 	ld a, [de]

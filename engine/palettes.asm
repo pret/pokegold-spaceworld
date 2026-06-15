@@ -275,7 +275,7 @@ RestoreOverworldMapTiles::
 	ld a, c
 	or b
 	jr nz, .loop
-	
+
 	call CloseSRAM
 	call UpdateSprites
 	call WaitBGMap

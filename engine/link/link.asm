@@ -361,7 +361,7 @@ Gen2ToGen2LinkComms:
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
 	jr nz, .ready_to_trade
-	ld a, TRAINER_PROTAGONIST 
+	ld a, TRAINER_PROTAGONIST
 	ld [wOtherTrainerClass], a
 	call ClearTileMap
 	call WaitBGMap
@@ -1205,7 +1205,7 @@ LinkTrade_TradeStatsMenu:
 	db "ステイタスをみる　　こうかんにだす@"
 
 LinkAbnormalMonText:
-	text "あいてがわが　えらんだ　@" 
+	text "あいてがわが　えらんだ　@"
 	text_from_ram wStringBuffer1
 	text "の"
 	line "データが　こわれているようです！！"

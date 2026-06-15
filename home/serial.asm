@@ -22,7 +22,7 @@ Serial::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	jr z, .player2
-	
+
 	ld a, 1 << rSC_ON
 	ldh [rSC], a
 	jr .player2

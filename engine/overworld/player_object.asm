@@ -720,7 +720,7 @@ QueueFollowerFirstStep::
 	and a
 	ld a, movement_step + DOWN
 	ret
-	
+
 .up
 	and a
 	ld a, movement_step + UP

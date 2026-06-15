@@ -613,7 +613,7 @@ wCriticalHit::
 ; 1 for a critical hit
 ; 2 for a OHKO
 	db
-	
+
 wAttackMissed::
 ; nonzero for a miss
 wca3a:: db
@@ -1321,7 +1321,7 @@ wHPBarHPDifference:: dw
 NEXTU
 ; switch AI
 wEnemyEffectivenessVsPlayerMons:: flag_array PARTY_LENGTH
-wPlayerEffectivenessVsEnemyMons:: flag_array PARTY_LENGTH	
+wPlayerEffectivenessVsEnemyMons:: flag_array PARTY_LENGTH
 
 NEXTU
 wBuySellItemPrice:: dw
@@ -1773,7 +1773,7 @@ wMapStatus:: db ;OW battle state? $3 wild battle, $8 is trainer battle $4 is lef
 wLastMapStatus:: db ;wMapStatus's last written-to value
 
 wGameDataEnd::
-	
+
 ; Sort of redundant to separate data like this when they're right next to each other.
 wGameData2::
 

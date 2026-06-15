@@ -27,7 +27,7 @@ _AnimateTileset:
 	ld h, [hl]
 	ld l, a
 	jp hl
-	
+
 INCLUDE "data/tileset_anims.inc"
 
 WaitTileAnimation:
@@ -149,7 +149,7 @@ AnimateFlowerTile:
 	ld sp, hl
 	ld hl, vTileset tile $38
 	jr WriteTile
-	
+
 FlowerTileFrame1:
 	INCBIN "gfx/tilesets/flower/flower1.2bpp"
 FlowerTileFrame2:

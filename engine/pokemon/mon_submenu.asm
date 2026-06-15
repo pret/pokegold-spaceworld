@@ -13,7 +13,7 @@ MonSubmenu::
 	call LoadMenuHeader
 	call .GetTopCoord
 	call PopulateMonMenu
-	
+
 	ld a, 1
 	ldh [hBGMapMode], a
 	call MonMenuLoop

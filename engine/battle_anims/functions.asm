@@ -1501,7 +1501,7 @@ BattleAnimFunction_Bite:
 	ld a, [hl]
 	and $7f
 	ld [hl], a
-	
+
 .one
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
@@ -1773,7 +1773,7 @@ BattleAnimFunction_Wrap:
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, [hl]
-	assert BATTLE_ANIM_FRAMESET_BIND_1 + 1 == BATTLE_ANIM_FRAMESET_BIND_2 \ 
+	assert BATTLE_ANIM_FRAMESET_BIND_1 + 1 == BATTLE_ANIM_FRAMESET_BIND_2 \
 		&& BATTLE_ANIM_FRAMESET_BIND_2 + 1 == BATTLE_ANIM_FRAMESET_BIND_3 \
 		&& BATTLE_ANIM_FRAMESET_BIND_3 + 1 == BATTLE_ANIM_FRAMESET_BIND_4
 	inc a

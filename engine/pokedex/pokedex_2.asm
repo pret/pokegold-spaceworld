@@ -64,7 +64,7 @@ Pokedex_UpdateSearchScreen:
 	dw Pokedex_InitNextSearchMonType,          Pokedex_UpdateNextSearchMonType
 	dw Pokedex_InitSecondTypeSelectedMenu,     Pokedex_UpdateSecondTypeSelectedMenu
 	dw Pokedex_ExitSearch_NoSlowpokeAnimation, Pokedex_ExitSearch_PlaySlowpokeAnimation
-	
+
 Pokedex_InitSearchMonType:
 	xor a
 	ld hl, wDexSearchMonType1
@@ -601,7 +601,7 @@ Pokedex_SearchForMons:
 	ld a, [wMonHType1]
 	cp b
 	jr z, .match_found
-	
+
 	ld a, [wMonHType2]
 	cp b
 	jr nz, .next_mon
@@ -783,7 +783,7 @@ Pokedex_InitUnownMode:
 	hlcoord 4, 1
 	ld de, .UnownVariantsString
 	call PlaceString
-	
+
 	hlcoord 13, 4
 	ld de, .VariantsDiscoveredString
 	call PlaceString
@@ -872,7 +872,7 @@ Pokedex_UnownModeHandleDPadInput:
 	ld a, [hl]
 	and a
 	ret z
-	
+
 	dec [hl]
 	hlcoord 3, 3
 	lb bc, 14, 7

@@ -19,12 +19,12 @@ Unreferenced_GetMoveSound:
 	add hl, de
 
 	ld a, [hli]
-	ld e, a 
+	ld e, a
 	ld d, 0
-	
+
 	call .IsCryMove
 	jr nc, .NotCryMove
-	
+
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .next
@@ -36,7 +36,7 @@ Unreferenced_GetMoveSound:
 	push hl
 	call LoadCryHeader
 	pop hl
-	
+
 	push de
 	ld e, [hl]
 	ld d, 0
@@ -52,7 +52,7 @@ Unreferenced_GetMoveSound:
 	ld [wCryPitch + 1], a
 	pop hl
 	inc hl
-	
+
 	ld e, [hl]
 	ld d, 0
 	ld hl, wCryLength
@@ -65,7 +65,7 @@ Unreferenced_GetMoveSound:
 	ld a, h
 	ld [wCryLength + 1], a
 	pop de
-	
+
 	callfar _PlayCryHeader
 	pop de
 	ret

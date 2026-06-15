@@ -172,7 +172,7 @@ Pokedex_GetArea:
 	ld a, [de]
 	and a
 	ret z
-	
+
 	push de
 	push hl
 	ld e, a
@@ -201,7 +201,7 @@ Pokedex_GetArea:
 ; Blank out attributes
 	xor a
 	ld [hli], a
-	
+
 	pop de
 	inc de
 	jr .nestloop
@@ -303,7 +303,7 @@ FlyMap_InitPidgeyIcon:
 	ld hl, vChars0 tile $08
 	lb bc, BANK(PidgeySpriteGFX), 4
 	call Request2bpp
-	
+
 	ld de, PidgeySpriteGFX + 12 tiles
 	ld hl, vChars0 tile $0c
 	lb bc, BANK(PidgeySpriteGFX), 4

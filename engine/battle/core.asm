@@ -216,7 +216,7 @@ BattleTurn:
 	call CheckFaint_Player
 	jp z, HandlePlayerMonFaint
 	call HandlePerishSong
-	
+
 	call CheckFaint_Enemy
 	jp z, HandleEnemyMonFaint
 	call CheckFaint_Player
@@ -1259,7 +1259,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	hlcoord 1, 0
 	lb bc, 4, 10
 	call ClearBox
-	
+
 	ld a, [wBattleMode]
 	dec a
 	jr z, .wild2
@@ -1578,7 +1578,7 @@ UpdateFaintedPlayerMon:
 	ld a, [wWhichMonFaintedFirst]
 	and a
 	ret z
-	
+
 	ld a, $f0
 	ld [wCryTracks], a
 	ld a, [wBattleMonSpecies]
@@ -1900,7 +1900,7 @@ FindMonInOTPartyToSwitchIntoBattle:
 	ld a, [wOTPartyCount]
 	cp b
 	jp z, ScoreMonTypeMatchups
-	
+
 	ld a, [wCurOTMon]
 	cp b
 	jr z, .discourage
@@ -2365,7 +2365,7 @@ TryToRunAwayFromBattle:
 	ld c, 2
 	call CompareBytes
 	jr nc, .can_escape
-	
+
 	xor a
 	ldh [hMultiplicand], a
 	ld a, 32
@@ -2688,7 +2688,7 @@ SpikesDamage:
 .ok
 	bit SCREENS_SPIKES, [hl]
 	ret z
-	
+
 ; Flying-types aren't affected by Spikes.
 	ld a, [de]
 	cp TYPE_FLYING
@@ -3239,7 +3239,7 @@ BattleMenu_Pack:
 	jp nz, .ItemsCantBeUsed
 
 	call LoadStandardMenuHeader
-	
+
 	callfar GetPocket2Status
 	xor a
 	ld [wSelectedSwapPosition], a
@@ -3718,7 +3718,7 @@ MoveSelectionScreen::
 	ld a, [wDebugFlags]
 	bit DEBUG_BATTLE_F, a
 	jr nz, .interpret_joypad
-	
+
 	call MoveInfoBox
 	ld a, [wSelectedSwapPosition]
 	and a
@@ -4148,7 +4148,7 @@ ParseEnemyAction:
 	jr z, .skip_turn
 	cp BATTLEACTION_SWITCH1
 	jp nc, .locked_in
-	
+
 	ld [wCurEnemyMoveNum], a
 	ld c, a
 	ld hl, wEnemyMonMoves
@@ -4209,7 +4209,7 @@ ParseEnemyAction:
 	ld a, [wEnemySubStatus3]
 	and ((1 << SUBSTATUS_USING_TRAPPING_MOVE) | (1 << SUBSTATUS_BIDE))
 	jp nz, .locked_in
-	
+
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_USING_TRAPPING_MOVE, a
 	jr .continue
@@ -4440,7 +4440,7 @@ LoadEnemyMon:
 
 ; Let's get the item:
 
-; Is the item predetermined?	
+; Is the item predetermined?
 	ld a, [wBattleMode]
 	cp TRAINER_BATTLE
 	jr nz, .WildItem

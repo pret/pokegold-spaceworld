@@ -611,7 +611,7 @@ BattleAnim_PlayerDamage:
 
 ; Leftover from Generation I. In those games, this animation would be used instead of the standard damage animation
 ; if the move had an additional effect.
-BattleAnim_ShakeHorizontalUnused: 
+BattleAnim_ShakeHorizontalUnused:
 	anim_bgeffect BATTLE_BG_EFFECT_SHAKE_SCREEN_X, $20, $2, $20
 	anim_wait 40
 	anim_ret

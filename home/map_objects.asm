@@ -462,7 +462,7 @@ UnfreezeObject::
 	res FROZEN_F, [hl]
 	ret
 
-; Iterates through a dba function table at 'hl' that is 16 entries long. 
+; Iterates through a dba function table at 'hl' that is 16 entries long.
 HealingMachineLoop::
 	xor a
 .loop

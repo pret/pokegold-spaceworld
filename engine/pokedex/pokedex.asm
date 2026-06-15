@@ -69,7 +69,7 @@ Pokedex::
 	jr nc, .loop
 
 	pop af
-	ldh [hJoypadSum], a	
+	ldh [hJoypadSum], a
 	pop af
 	ld [wStateFlags], a
 	pop af
@@ -143,7 +143,7 @@ ShowPokedexMenu:
 	ld hl, wPokedexSeen
 	ld b, wEndPokedexSeen - wPokedexSeen
 	call CountSetBits
-	ld de, wNumSetBits	
+	ld de, wNumSetBits
 	hlcoord 16, 13
 	lb bc, 1, 3
 	call PrintNumber
@@ -624,7 +624,7 @@ Pokedex_SelectButtonMenu:
 	bit NUMBERED_DEX_ORDER_F, a
 	jr nz, .Number
 
-	bit ALPHABETICAL_DEX_ORDER_F, a ; 
+	bit ALPHABETICAL_DEX_ORDER_F, a ;
 	jr nz, .ABC
 
 	bit SEARCH_TYPE_F, a
@@ -746,11 +746,11 @@ Pokedex_PlaceDefaultStringIfNotSeen:
 	ld a, [wCurDexMode]
 	and a
 	ret nz
-	
+
 	call Pokedex_CheckSeen
 	ret nz
 	inc hl
-	
+
 	ld de, .NameNotSeen
 	call PlaceString
 	scf
@@ -910,7 +910,7 @@ PlaceArrowButtons:
 	hlcoord 14, 6
 	ld a, $40
 	call .PutButton
-	
+
 ; Down
 	hlcoord 14, 2
 	ld a, $42
@@ -1026,7 +1026,7 @@ Pokedex_HandCursorControls:
 	ld a, [de]
 	and SELECT
 	jr nz, .select
-	
+
 	ld a, [de]
 	and START
 	jr nz, .start
@@ -1380,7 +1380,7 @@ Pokedex_DexEntryScreen:
 	ld b, SGB_POKEDEX
 	call GetSGBLayout
 	pop af
-	
+
 	ld [wTempSpecies], a
 	call Pokedex_DisplayDexEntry
 
@@ -1444,7 +1444,7 @@ Pokedex_DexEntryInput:
 	ld a, [hl]
 	and a
 	jr z, .no_more_entries
-	
+
 	dec a
 	ld [hl], a
 	call .NextMonIsSeen
@@ -1469,7 +1469,7 @@ Pokedex_DexEntryInput:
 	ld a, [hl]
 	cp d
 	jr nc, .no_more_entries
-	
+
 	add 2 * TILE_WIDTH
 	ld [hl], a
 	call .NextMonIsSeen
@@ -1647,7 +1647,7 @@ Pokedex_SlowpokeAnimation:
 	ld a, [hl]
 	ld [hl], 0
 	push af
-	
+
 	ld a, %11100100
 	ldh [rOBP0], a
 	call Pokedex_AnimateDexSearchSlowpoke

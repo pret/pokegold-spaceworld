@@ -1555,7 +1555,7 @@ _GrewToLevelText:
 	sound_dex_fanfare_50_79
 	text_waitbutton
 	text_end
-	
+
 SetPartyHPBarPalette::
 	ld hl, wHPPals
 	ld a, [wcce1]
@@ -1650,9 +1650,9 @@ GetMonBackpic::
 	ld de, sSpriteBuffer1
 	ld bc, SPRITEBUFFERSIZE
 	call CopyBytes
-	
+
 	call _InterlaceMergeSpriteBuffers
-	
+
 	pop hl
 	ld de, sSpriteBuffer1
 	ld c, 6 * 6

@@ -34,7 +34,7 @@ CallPointerAt::
 	ld l, a
 
 	call ._hl_
-	
+
 	pop hl
 	ld a, h
 	call Bankswitch

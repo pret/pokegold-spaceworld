@@ -8,7 +8,7 @@ ENDM
 SpriteAnimGFX:
 	; # tiles, gfx bank, gfx pointer
 	; (good chunk of pointers were dummied out to either .DeletedGFX or MenuMonIconGFX)
-	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGFX 
+	sprite_anim_obj_gfx  16, $31,                  MenuMonIconGFX
 	sprite_anim_obj_gfx   8, BANK(PoliwagIcon),    PoliwagIcon    ; SPRITE_ANIM_DICT_POLIWAG_ICON
 	sprite_anim_obj_gfx   8, BANK(JigglypuffIcon), JigglypuffIcon ; SPRITE_ANIM_DICT_JIGGLYPUFF_ICON
 	sprite_anim_obj_gfx   8, BANK(DiglettIcon),    DiglettIcon    ; SPRITE_ANIM_DICT_DIGLETT_ICON

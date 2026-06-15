@@ -129,7 +129,7 @@ InterpretTwoOptionMenu::
 	push af
 	ld c, 15
 	call DelayFrames
-	
+
 	call CloseWindow
 	pop af
 	jr c, .no

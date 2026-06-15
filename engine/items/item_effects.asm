@@ -30,7 +30,7 @@ ItemEffects:
 	dw NoEffect            ; ITEM_03
 	dw PokeBallEffect      ; ITEM_GREAT_BALL
 	dw PokeBallEffect      ; ITEM_POKE_BALL
-	dw TownMapEffect       ; ITEM_TOWN_MAP 
+	dw TownMapEffect       ; ITEM_TOWN_MAP
 	dw BicycleEffect       ; ITEM_BICYCLE
 	dw EvoStoneEffect      ; ITEM_MOON_STONE
 	dw StatusHealingEffect ; ITEM_ANTIDOTE
@@ -265,7 +265,7 @@ PokeBallEffect:
 	ld e, [hl]
 	sla c
 	rl b
-	
+
 	ld h, d
 	ld l, e
 	add hl, de
@@ -2021,7 +2021,7 @@ RestorePP:
 	cp b
 	jr nc, .restore_some
 	ld b, a
-	
+
 .restore_some
 	ld a, [hl]
 	and PP_UP_MASK
@@ -2128,7 +2128,7 @@ AskTeachTMHM_Old:
 	ld a, [wBattleMode]
 	and a
 	jp nz, IsntTheTimeMessage
-	
+
 	ld a, [wCurItem]
 	sub ITEM_TM01_RED
 	push af

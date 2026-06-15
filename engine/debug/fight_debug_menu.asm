@@ -29,7 +29,7 @@ FightDebugMenu:
 .AddItemEnd:
 	call LoadFontsBattleExtra
 	call ClearTileMap
-	
+
 	call ClearSprites
 	ld hl, wTileMap
 	ld b, 1
@@ -39,7 +39,7 @@ FightDebugMenu:
 	hlcoord 6, 1
 	ld de, .FightTestText		; "FIGHT TEST@"
 	call PlaceString
-	
+
 	hlcoord 4, 4
 	ld de, .NumNameLevelText	; "No.　　　　NAME　　　　LEVEL@"
 	call PlaceString
@@ -49,7 +49,7 @@ FightDebugMenu:
 	call PlaceString
 
 	xor a
-	ld [wCurPartyMon], a 
+	ld [wCurPartyMon], a
 	ld [wEnemyMon], a			; monster number
 	ld [wEnemyMonLevel], a		; level
 	ld [wTrainerClass], a		; trainer number
@@ -164,7 +164,7 @@ endr
 	pop de
 	pop hl
 	pop bc
-	
+
 	jp .MonsNumberLoop
 
 .CountDown
@@ -269,7 +269,7 @@ endr
 	ld e, a
 	jr nc, .LevelCountUp_2
 	inc d
-	
+
 .LevelCountUp_2:
 	ld a, c
 	ld [de], a					; monster level -> wOTPartyCount
@@ -633,7 +633,7 @@ endr
 
 	pop bc							; b = monster number c = level
 	jp .EnemyMonsLoop
-	
+
 .MonsCountUp
 	inc b							; monster number
 	ld a, b
@@ -717,7 +717,7 @@ endr
 	bit D_UP_F, a					; up button
 	jp nz, .EnemyType
 	jr .EnemyLevelLoop
-	
+
 .EnemyLevelCountUp:
 	inc c							; level
 	ld a, c
@@ -784,7 +784,7 @@ endr
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 	predef StartBattle
-	
+
 	ld a, 1
 	ldh [hBGMapMode], a
 
@@ -792,13 +792,13 @@ endr
 	ld [wNumFleeAttempts], a
 
 	ld hl, wPlayerSubStatus1
-	ld bc, 5						; wPlayerSubStatus1 - wPlayerSubStatus5 
+	ld bc, 5						; wPlayerSubStatus1 - wPlayerSubStatus5
 	call ByteFill
 
 	ld hl, wEnemySubStatus1
 	ld bc, 5						; wEnemySubStatus1 - wEnemySubStatus5
 	call ByteFill
-	
+
 	call LoadFont
 	call LoadFontsBattleExtra
 
@@ -814,11 +814,11 @@ endr
 	ld b, 1
 	ld c, 18
 	call DrawTextBox
-	
+
 	hlcoord 6, 1
 	ld de, .FightTestText			; "FIGHT TEST@"
 	call PlaceString
-	
+
 	hlcoord 4, 4
 	ld de, .NumNameLevelText		; "No.　　　　NAME　　　　LEVEL@"
 	call PlaceString
@@ -903,7 +903,7 @@ endr
 	xor a
 	ld [wCurPartyMon], a
 	jp .MonsNumber
-	
+
 .FightTestText:
 	db   "テスト　ファイト@"					; "FIGHT TEST@"
 .NumNameLevelText:

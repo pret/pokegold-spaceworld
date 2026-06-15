@@ -741,7 +741,7 @@ MovementFunction_RunBackAndForth:
 	add hl, bc
 	inc [hl]
 	jp StepFunction_NPCWalk
-	
+
 .cant_move
 	ld hl, OBJECT_WALKING
 	add hl, bc
@@ -1665,7 +1665,7 @@ JumpStep:
 	add hl, bc
 	res OVERHEAD_F, [hl]
 
-	call ClearObjectJumptableIndex 
+	call ClearObjectJumptableIndex
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STAND

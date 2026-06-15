@@ -188,7 +188,7 @@ SECTION "slack.asm@Bank 35 Padding", ROMX
 ; Bank is unused besides filler.
 Bank35Padding:
 rept 23
-db $C9 
+db $C9
 endr
 if DEF(_GOLD)
 INCBIN "slack/bank35padding_gold.bin"

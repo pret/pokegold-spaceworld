@@ -128,7 +128,7 @@ IsObjectFacingSomeoneElse:
 	and %00001100
 	and a
 	jr z, .down
-	
+
 	cp OW_UP
 	jr z, .up
 	cp OW_LEFT

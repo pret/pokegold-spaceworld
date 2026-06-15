@@ -40,7 +40,7 @@ AnimateHealingMachine::
 	call UngroupHealingMachineSprites
 	call UpdateSprites
 	ret
-	
+
 PokeCenterFlashingMonitorAndHealBall:
 	INCBIN "gfx/overworld/heal_machine.2bpp"
 

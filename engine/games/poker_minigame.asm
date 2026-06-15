@@ -1057,7 +1057,7 @@ PokerMinigame_YesOrNo:
 .yes:
 	scf
 	ret
-	
+
 PokerMinigame_DoubleUpCheck:
 	ld hl, wPokerCurrentBet
 	ld a, [hli]
@@ -1074,7 +1074,7 @@ PokerMinigame_DoubleUpCheck:
 .dud:
 	scf
 	ret
-	
+
 PokerMinigame_GetPayout:
 	ld a, [wPokerAllow]
 	ld e, a
@@ -1183,7 +1183,7 @@ PokerMinigame_Shuffling:
 	ld a, b
 	ld [de], a
 	jr .SetSub
-	
+
 
 PokerMinigame_ChangeCursor:
 	ld de, $6818
@@ -1600,7 +1600,7 @@ PokerMinigame_PayoutText:
 PokerMinigame_ShuffleCardsText:
 	text "カードを　きります"
 	done
-	
+
 PokerMinigame_BlankText:
 	db "@"
 
@@ -1673,4 +1673,4 @@ PokerMinigame_ShufflingTable:
 	db $A6, $C2, $A7, $C2, $A8, $C2, $A9, $C2, $AA, $C2, $AB, $C2, $AC, $C2, $AD, $C2
 	db $AE, $C2, $AF, $C2, $B0, $C2, $B1, $C2, $B2, $C2, $B3, $C2, $C7, $C2, $DB, $C2
 	db $EF, $C2, $03, $C3, $17, $C3, $2B, $C3, $3F, $C3, $53, $C3, $67, $C3, $7B, $C3
-	
+

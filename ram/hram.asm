@@ -123,7 +123,7 @@ UNION
 
 ; hProduct: unchanged
 ; replace certain instances of hDividend with hQuotient
-; 
+;
 
 
 ; math-related values

@@ -584,7 +584,7 @@ BillsPC_Menu::
 	call MenuTextBoxBackup
 	and a
 	ret
-	
+
 .exit
 	scf
 	ret

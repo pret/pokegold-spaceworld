@@ -38,7 +38,7 @@ DEF COLLMASK_WATER_SUBTYPE EQU $03
 
 DEF COLLFLAG_ENCOUNTER EQU $08 ; enables encounters or special actions depending on the type.
 
-; old collision data type nybbles for "COLLMASK_TYPE" 
+; old collision data type nybbles for "COLLMASK_TYPE"
 DEF COLLMASK_TYPE_OLD_WATER      EQU $20 ; matches COLLMASK_TYPE_WATER
 DEF COLLMASK_TYPE_OLD_WATER_ALT  EQU $40
 DEF COLLMASK_TYPE_OLD_PITS       EQU $50

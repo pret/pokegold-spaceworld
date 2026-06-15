@@ -66,7 +66,7 @@ DoTeleportAnimation:
 .TeleportFrom:
 	teleport_from
 	step_end
-	
+
 
 .TeleportTo:
 	teleport_to

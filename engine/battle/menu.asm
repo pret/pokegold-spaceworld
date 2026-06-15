@@ -138,7 +138,7 @@ Battle_2DMenu:
 	pop bc
 	dec c
 	jr nz, .row_loop
-	
+
 	pop hl
 	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc

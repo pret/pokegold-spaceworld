@@ -15,6 +15,6 @@ TypeBoostItems:
 	db HELD_ICE_BOOST,      TYPE_ICE      ; ICE_FANG
 	db HELD_DRAGON_BOOST,   TYPE_DRAGON   ; DRAGON_FANG
 ; Boosting effects for new types not implemented yet in this build:
-;	db HELD_DARK_BOOST,     TYPE_DARK         
-;	db HELD_METAL_BOOST,    TYPE_METAL        
+;	db HELD_DARK_BOOST,     TYPE_DARK
+;	db HELD_METAL_BOOST,    TYPE_METAL
 	db -1

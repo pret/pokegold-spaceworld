@@ -35,7 +35,7 @@
 	const SFX_GO_OUTSIDE            ; 1f*
 	const SFX_SAVE                  ; 20
 	const SFX_POKEFLUTE             ; 21
-	const SFX_SAFARI_ZONE_PA        ; 22*        
+	const SFX_SAFARI_ZONE_PA        ; 22*
 	const SFX_THROW_BALL            ; 23*
 	const SFX_BALL_POOF             ; 24*
 	const SFX_FAINT                 ; 25
