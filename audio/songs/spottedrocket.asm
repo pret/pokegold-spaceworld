@@ -21,14 +21,14 @@ Music_SpottedRocket_Ch1::
 	note_type 12, 4, 15
 	note D_, 4
 
-Music_SpottedRocket_branch_ed996::
+.mainloop
 	note_type 12, 10, 1
 	note D_, 4
 	note D_, 4
 	note D_, 4
 	note_type 12, 7, 0
 	note D_, 4
-	sound_loop 0, Music_SpottedRocket_branch_ed996
+	sound_loop 0, .mainloop
 
 Music_SpottedRocket_Ch2::
 	duty_cycle 1
@@ -38,7 +38,7 @@ Music_SpottedRocket_Ch2::
 	note A#, 2
 	note B_, 8
 
-Music_SpottedRocket_branch_ed9ad::
+.mainloop
 	note_type 12, 12, 2
 	octave 4
 	note D#, 2
@@ -66,7 +66,7 @@ Music_SpottedRocket_branch_ed9ad::
 	note_type 12, 3, 15
 	note A#, 4
 	note_type 12, 12, 2
-	sound_loop 0, Music_SpottedRocket_branch_ed9ad
+	sound_loop 0, .mainloop
 
 Music_SpottedRocket_Ch3::
 	note_type 12, 1, 0
@@ -77,7 +77,7 @@ Music_SpottedRocket_Ch3::
 	note F_, 1
 	rest 1
 
-Music_SpottedRocket_branch_ed9df::
+.mainloop
 	note F#, 1
 	rest 3
 	note F#, 1
@@ -85,4 +85,4 @@ Music_SpottedRocket_branch_ed9df::
 	note F#, 1
 	rest 3
 	note A#, 4
-	sound_loop 0, Music_SpottedRocket_branch_ed9df
+	sound_loop 0, .mainloop

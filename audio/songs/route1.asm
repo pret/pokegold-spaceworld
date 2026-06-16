@@ -16,7 +16,7 @@ Music_Route1_Ch1::
 	duty_cycle 2
 	pitch_offset 1
 
-Music_Route1_branch_ec4db::
+.mainloop
 	note_type 12, 10, 1
 	rest 4
 	octave 4
@@ -113,21 +113,21 @@ Music_Route1_branch_ec4db::
 	octave 3
 	note A_, 2
 	note A_, 2
-	sound_loop 0, Music_Route1_branch_ec4db
+	sound_loop 0, .mainloop
 	sound_ret
 
 Music_Route1_Ch2::
 	duty_cycle 2
 
-Music_Route1_branch_ec548::
+.mainloop
 	note_type 12, 13, 1
-	sound_call Music_Route1_branch_ec55b
-	sound_call Music_Route1_branch_ec56e
-	sound_call Music_Route1_branch_ec55b
-	sound_call Music_Route1_branch_ec586
-	sound_loop 0, Music_Route1_branch_ec548
+	sound_call .sub1
+	sound_call .sub2
+	sound_call .sub1
+	sound_call .sub3
+	sound_loop 0, .mainloop
 
-Music_Route1_branch_ec55b::
+.sub1::
 	octave 4
 	note D_, 1
 	note E_, 1
@@ -148,7 +148,7 @@ Music_Route1_branch_ec55b::
 	note E_, 6
 	sound_ret
 
-Music_Route1_branch_ec56e::
+.sub2::
 	note C#, 1
 	note D_, 1
 	note E_, 2
@@ -173,7 +173,7 @@ Music_Route1_branch_ec56e::
 	note F#, 2
 	sound_ret
 
-Music_Route1_branch_ec586::
+.sub3::
 	note C#, 1
 	note D_, 1
 	note E_, 2
@@ -249,7 +249,7 @@ Music_Route1_Ch3::
 	vibrato 8, 2, 5
 	note_type 12, 1, 3
 
-Music_Route1_branch_ec5dc::
+.mainloop
 	rest 2
 	octave 4
 	note D_, 4
@@ -316,13 +316,13 @@ Music_Route1_branch_ec5dc::
 	note A_, 8
 	octave 4
 	note D_, 6
-	sound_loop 0, Music_Route1_branch_ec5dc
+	sound_loop 0, .mainloop
 	sound_ret
 
 Music_Route1_Ch4::
 	toggle_noise 2
 
-Music_Route1_branch_ec625:
+.mainloop
 	drum_speed 12
 	rest 4
 	drum_note 4, 2
@@ -413,5 +413,5 @@ Music_Route1_branch_ec625:
 	rest 2
 	drum_note 4, 2
 	drum_note 4, 2
-	sound_loop 0, Music_Route1_branch_ec625
+	sound_loop 0, .mainloop
 	sound_ret

@@ -8,11 +8,11 @@ SetTime:
 	ld [hli], a
 	ldh a, [hRTCMinutes]
 	ld [hl], a
-	ld hl, Textdbaf4
+	ld hl, AdjustTimeText
 	call PrintText
 	ret
 
-Textdbaf4:
+AdjustTimeText:
 	deciram wStartHour, 1, 2
 	text "　じ"
 	line "@"
@@ -25,54 +25,54 @@ Textdbaf4:
 	ldh a, [hJoyState]
 	and a
 	jr z, .loop
-	bit 0, a
-	jp nz, .sub_dbb63
-	bit 6, a
-	jr nz, .sub_dbb2a
-	bit 7, a
-	jr nz, .sub_dbb37
-	bit 4, a
-	jr nz, .sub_dbb43
-	bit 5, a
-	jr nz, .sub_dbb50
+	bit A_BUTTON_F, a
+	jp nz, .set_time
+	bit D_UP_F, a
+	jr nz, .inc_hour
+	bit D_DOWN_F, a
+	jr nz, .dec_hour
+	bit D_RIGHT_F, a
+	jr nz, .inc_minute
+	bit D_LEFT_F, a
+	jr nz, .dec_minute
 	jr .loop
-.sub_dbb2a
+.inc_hour
 	ld a, [wStartHour]
-	cp $17
-	jr z, .sub_dbb5a
+	cp 23
+	jr z, .show_text
 	inc a
 	ld [wStartHour], a
-	jr .sub_dbb5a
-.sub_dbb37
+	jr .show_text
+.dec_hour
 	ld a, [wStartHour]
 	and a
-	jr z, .sub_dbb5a
+	jr z, .show_text
 	dec a
 	ld [wStartHour], a
-	jr .sub_dbb5a
-.sub_dbb43
+	jr .show_text
+.inc_minute
 	ld a, [wStartMinute]
-	cp $3b
-	jr z, .sub_dbb5a
+	cp 59
+	jr z, .show_text
 	inc a
 	ld [wStartMinute], a
-	jr .sub_dbb5a
-.sub_dbb50
+	jr .show_text
+.dec_minute
 	ld a, [wStartMinute]
 	and a
-	jr z, .sub_dbb5a
+	jr z, .show_text
 	dec a
 	ld [wStartMinute], a
-.sub_dbb5a
-	ld hl, Textdbaf4 ; meant Textdbb6c?
+.show_text
+	ld hl, AdjustTimeText ; meant AdjustTimeEndText?
 	call PrintText
 	jp .loop
-.sub_dbb63
+.set_time
 	call Function04ac
 	call Function0502
 	jp TextAsmEnd
 
-Textdbb6c:
+AdjustTimeEndText:
 	deciram wStartHour, 1, 2
 	text "　じ"
 	line "@"

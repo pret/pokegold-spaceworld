@@ -30,7 +30,7 @@ Music_VictoryTrainer_Ch1::
 	duty_cycle 1
 	tempo 224
 
-Music_VictoryTrainer_branch_eda18::
+.mainloop
 	note_type 4, 6, 3
 	octave 3
 	note A_, 6
@@ -101,7 +101,7 @@ Music_VictoryTrainer_branch_eda18::
 	note G_, 3
 	note A_, 3
 	note B_, 3
-	sound_loop 0, Music_VictoryTrainer_branch_eda18
+	sound_loop 0, .mainloop
 
 Music_VictoryTrainer_Ch2::
 	duty_cycle 2
@@ -117,7 +117,7 @@ Music_VictoryTrainer_Ch2::
 	note_type 4, 12, 4
 	note D_, 12
 
-Music_VictoryTrainer_branch_eda75::
+.mainloop
 	note_type 4, 8, 5
 	octave 4
 	note D_, 6
@@ -176,7 +176,7 @@ Music_VictoryTrainer_branch_eda75::
 	note E_, 12
 	note_type 4, 6, 7
 	note E_, 12
-	sound_loop 0, Music_VictoryTrainer_branch_eda75
+	sound_loop 0, .mainloop
 
 Music_VictoryTrainer_Ch3::
 	note_type 4, 1, 0
@@ -191,7 +191,7 @@ Music_VictoryTrainer_Ch3::
 	note A_, 12
 	note_type 4, 2, 1
 
-Music_VictoryTrainer_branch_edacc::
+.mainloop
 	note F#, 3
 	rest 3
 	note F#, 3
@@ -268,4 +268,4 @@ Music_VictoryTrainer_branch_edacc::
 	note C#, 3
 	octave 4
 	note A_, 3
-	sound_loop 0, Music_VictoryTrainer_branch_edacc
+	sound_loop 0, .mainloop
