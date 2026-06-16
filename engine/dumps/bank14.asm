@@ -686,12 +686,12 @@ Function504e5::
 
 	hlcoord 9, 6
 	ld a, $3c
-	ld [wcdc3], a
+	ld [wFlag1], a
 	call ListMoves
 
 	hlcoord 11, 7
 	ld a, $3c
-	ld [wcdc3], a
+	ld [wFlag1], a
 	call ListMovePP
 
 	call WaitBGMap
@@ -942,7 +942,7 @@ ListMovePP::
 	sub c
 	ld b, a
 	push hl
-	ld a, [wcdc3]
+	ld a, [wFlag1]
 	ld e, a
 	ld d, 0
 	ld a, $3e ; P
@@ -999,7 +999,7 @@ ListMovePP::
 	lb bc, 1, 2
 	call PrintNumber
 	pop hl
-	ld a, [wcdc3]
+	ld a, [wFlag1]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -1156,7 +1156,7 @@ InitPartyMenuLayout::
 	push af
 	xor a
 	ld [wCurPartyMon], a
-	ld [wcce1], a
+	ld [wSGBPals], a
 .loop
 	ld a, [de]
 	cp -1
@@ -1201,7 +1201,7 @@ WritePartyMenuTilemapAndText::
 	push af
 	xor a
 	ld [wCurPartyMon], a
-	ld [wcce1], a
+	ld [wSGBPals], a
 .loop
 	ld a, [de]
 	cp -1
@@ -1557,14 +1557,14 @@ _GrewToLevelText:
 
 SetPartyHPBarPalette::
 	ld hl, wHPPals
-	ld a, [wcce1]
+	ld a, [wSGBPals]
 	ld c, a
 	ld b, 0
 	add hl, bc
 	call SetHPPal
 	ld b, SGB_PARTY_MENU_HP_PALS
 	call GetSGBLayout
-	ld hl, wcce1
+	ld hl, wSGBPals
 	inc [hl]
 	ret
 
@@ -1946,20 +1946,20 @@ GrowthRates:
 	growth_rate 5, 4,   0,   0,   0 ; Slow
 
 _SwitchPartyMons::
-	; replace instances of wHPBarOldHP with wcdc5, perhaps?
+	; replace instances of wHPBarOldHP with wFlag3, perhaps?
 	ld a, [wSelectedSwapPosition]
 	dec a
 	ld [wHPBarOldHP], a
 	ld b, a
 	ld a, [wMenuCursorY]
 	dec a
-	ld [wcdc4], a
+	ld [wFlag2], a
 	cp b
 	jr z, .skip
 	call .SwapMonAndMail
-	ld a, [wcdc5]
+	ld a, [wFlag3]
 	call .ClearSprite
-	ld a, [wcdc4]
+	ld a, [wFlag2]
 	call .ClearSprite
 .skip
 	ret
@@ -1992,13 +1992,13 @@ _SwitchPartyMons::
 	push de
 	push bc
 	ld bc, wPartySpecies
-	ld a, [wcdc4]
+	ld a, [wFlag2]
 	ld l, a
 	ld h, 0
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld a, [wcdc5]
+	ld a, [wFlag3]
 	ld l, a
 	ld h, 0
 	add hl, bc
@@ -2008,7 +2008,7 @@ _SwitchPartyMons::
 	ld [hl], a
 	pop af
 	ld [de], a
-	ld a, [wcdc4]
+	ld a, [wFlag2]
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -2016,7 +2016,7 @@ _SwitchPartyMons::
 	ld de, wcc3a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wcdc5]
+	ld a, [wFlag3]
 	ld hl, wPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -2028,12 +2028,12 @@ _SwitchPartyMons::
 	ld hl, wcc3a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wcdc4]
+	ld a, [wFlag2]
 	ld hl, wPartyMonOTs
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
-	ld a, [wcdc5]
+	ld a, [wFlag3]
 	ld hl, wPartyMonOTs
 	call SkipNames
 	pop de
@@ -2043,12 +2043,12 @@ _SwitchPartyMons::
 	ld hl, wcc3a
 	call .CopyName
 	ld hl, wPartyMonNicknames
-	ld a, [wcdc4]
+	ld a, [wFlag2]
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
 	ld hl, wPartyMonNicknames
-	ld a, [wcdc5]
+	ld a, [wFlag3]
 	call SkipNames
 	pop de
 	push hl
@@ -2057,7 +2057,7 @@ _SwitchPartyMons::
 	ld hl, wcc3a
 	call .CopyName
 	ld hl, $ba68    ; Buffer somewhere in SRAM. Needs investigation
-	ld a, [wcdc4]
+	ld a, [wFlag2]
 	ld bc, $0028    ; todo: Constantify this
 	call AddNTimes
 	push hl
@@ -2067,7 +2067,7 @@ _SwitchPartyMons::
 	call OpenSRAM
 	call CopyBytes
 	ld hl, $ba68
-	ld a, [wcdc5]
+	ld a, [wFlag3]
 	ld bc, $0028
 	call AddNTimes
 	pop de

@@ -363,7 +363,7 @@ SECTION "engine/debug/field/map_viewer.inc@DisplayBGEventDetails", ROMX
 DisplayBGEventDetails:
 	call GetBGEvent
 	ret nc
-	call .Functionfd0cc
+	call .SetData
 	call RefreshScreen
 	ld hl, .TableText
 	call MenuTextBox
@@ -373,11 +373,11 @@ DisplayBGEventDetails:
 	call ScreenCleanup
 	ret
 
-.Functionfd0cc:
+.SetData:
 	ld a, [hld]
 	ld [wFieldMoveScriptID], a
 	ld a, [hl]
-	ld [wcdc8], a
+	ld [wMapBGEventCount], a
 	ld a, d
 	ld [wMapBlocksAddress], a
 	ld a, e
@@ -404,7 +404,7 @@ DisplayBGEventDetails:
 	call PrintHexByte
 
 	hlcoord 14, 14
-	ld de, wcdc8
+	ld de, wMapBGEventCount
 	call PrintHexByte
 
 	hlcoord 17, 14

@@ -7,7 +7,7 @@ FieldDebug_DoVRAMViewer:
 	xor a
 	ldh [hMapAnims], a
 	ld a, 1
-	ld [wcdc3], a
+	ld [wFlag1], a
 	call .GenerateTilemap
 	call WaitBGMap
 	call .DoViewer
@@ -21,7 +21,7 @@ FieldDebug_DoVRAMViewer:
 	ret
 
 .DoViewer:
-	ld a, [wcdc3]
+	ld a, [wFlag1]
 	dec a
 	ld hl, .Jumptable
 	call CallJumptable
@@ -56,7 +56,7 @@ FieldDebug_DoVRAMViewer:
 	ret
 
 .next_page
-	ld hl, wcdc3
+	ld hl, wFlag1
 	inc [hl]
 	ld a, [hl]
 	cp 8
@@ -68,7 +68,7 @@ FieldDebug_DoVRAMViewer:
 	ret
 
 .previous_page
-	ld hl, wcdc3
+	ld hl, wFlag1
 	dec [hl]
 	jr z, .not_at_start
 	and a

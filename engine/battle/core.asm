@@ -178,7 +178,7 @@ WildFled_EnemyFled_LinkBattleCanceled:
 	xor a
 	ldh [hBattleTurn], a
 ; Was originally AnimationSlideEnemyMonOff in pokered.
-	jpfar Functioncc000
+	jpfar AnimationSlideEnemyMonOff
 
 WildPokemonFledText:
 	text "やせいの@"

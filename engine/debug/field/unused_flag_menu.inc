@@ -57,10 +57,10 @@ MACRO unused_check_bit
 	call .CheckBit
 ENDM
 
-	unused_check_bit wcdc3
-	unused_check_bit wcdc4
-	unused_check_bit wcdc5
-	unused_check_bit wcdc6
+	unused_check_bit wFlag1
+	unused_check_bit wFlag2
+	unused_check_bit wFlag3
+	unused_check_bit wFlag4
 	unused_check_bit wLinkBattleRNPreamble
 	ret
 
@@ -71,20 +71,5 @@ ENDM
 .not_set
 	ld [bc], a
 	inc bc
-	ret
-
-Functionfd91e: ; unused?
-	call .asm_fd930
-	ld a, [wNumSetBits]
-	ld [wCurPartySpecies], a
-	callfar Pokepic
-	ret
-
-.asm_fd930
-	call Random
-	cp 251
-	jr nc, .asm_fd930
-	inc a
-	ld [wNumSetBits], a
 	ret
 

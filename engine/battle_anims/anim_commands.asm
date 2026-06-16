@@ -2,8 +2,8 @@ INCLUDE "constants.asm"
 
 SECTION "engine/battle_anims/anim_commands.asm", ROMX
 
-Functioncc000:
-Functioncc000_2:
+AnimationSlideEnemyMonOff:
+AnimationSubstitute:
 	ret
 
 PlayBattleAnim:

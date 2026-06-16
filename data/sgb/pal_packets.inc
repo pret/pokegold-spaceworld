@@ -7,7 +7,7 @@ ENDM
 PalPacket_Poker:
 	sgb_pal_set POKER_1, POKER_2, POKER_3, POKER_4
 
-PalPacket_995c:
+PalPacket_Battle:
 	sgb_pal_set ROUTE, ROUTE, ROUTE, ROUTE
 
 PalPacket_GSIntroShellderLapras:
@@ -49,7 +49,7 @@ PalPacket_SlotMachine:
 PalPacket_TitleScreen:
 	sgb_pal_set LOGO_1, LOGO_2, MEWMON, PURPLEMON
 
-PalPacket_9a3c:
+PalPacket_StartMenu:
 	sgb_pal_set MEWMON, ROUTE, ROUTE, ROUTE
 
 PalPacket_GFIntro:

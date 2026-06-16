@@ -85,10 +85,10 @@ _DebugMenuSoundTest::
 	ldh a, [hDebugMenuSoundBank]
 	ld c, a
 	ld a, 10
-	ld [wcdb5], a
-	ld [wcdb6], a
+	ld [wAudioFadeOutCounterReloadValue], a
+	ld [wAudioFadeOutCounter], a
 	ld a, $ff
-	ld [wcdb4], a
+	ld [wAudioFadeOutControl], a
 	jr .RefreshScreenAndLoop
 
 .DetermineDescriptionPointer:

@@ -18,13 +18,13 @@ FieldDebug_FollowNPCTest:
 	ld a, [wObjectFollow_Follower]
 	and a
 	jr nz, .cannot_use
-	call .asm_fc9a5
+	call .set
 	call CloseWindow
 	scf
 	ret
 
 .end
-	call .asm_fc9c2
+	call .cancel
 	jr .close
 .cannot_use
 	ld hl, .CannotUseWithPokemonText
@@ -35,7 +35,7 @@ FieldDebug_FollowNPCTest:
 	and a
 	ret
 
-.asm_fc9a5:
+.set:
 	callfar SetFollowerDefaultAttributes
 	ld a, 1
 	call CopyMapObjectToReservedObjectStruct
@@ -47,7 +47,7 @@ FieldDebug_FollowNPCTest:
 	call StartFollow
 	ret
 
-.asm_fc9c2:
+.cancel:
 	call UnfreezePlayer
 	ld a, 1
 	call DeleteMapObject
@@ -86,7 +86,7 @@ FieldDebug_FollowNPCTest:
 	slow_step UP
 	remove_object
 
-MenuHeaderfca01: ; unreferenced?
+MenuHeaderCutsceneTest: ; unreferenced?
 	db MENU_BACKUP_TILES
 	menu_coords 0, 0, 11, 10
 	dw .MenuData

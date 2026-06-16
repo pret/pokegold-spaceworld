@@ -289,6 +289,8 @@ FieldDebug_ClearEventFlags:
 
 INCLUDE "engine/debug/field/unused_flag_menu.inc"
 
+INCLUDE "engine/debug/field/unused_show_mon.inc"
+
 INCLUDE "engine/debug/field/unused_priority_menu.inc"
 
 INCLUDE "engine/debug/field/vram_viewer.inc"

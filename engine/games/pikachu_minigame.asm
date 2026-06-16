@@ -78,8 +78,8 @@ PikachuMiniGame::
 	ld [wPikachuMinigameNoteCounter + 1], a
 	ld [wPikachuMinigameTimeFrames], a
 	ld [wPikachuMinigameTimeSeconds], a
-	ld [wc613], a
-	ld [wc614], a
+	ld [wPikachuMinigameTimeMinutes], a
+	ld [wPikachuMinigameTimeHours], a
 	ld [wPikachuMinigameNoteTimer], a
 	ld [wPikachuMinigameSpawnTypeIndex], a
 	ld [wPikachuMinigameSpawnDataIndex], a
@@ -826,7 +826,7 @@ MinigamePikachuDoMovement::
 	ld a, 3
 	ld [wPikachuMinigamePikachuNextAnim], a
 	ld a, $10
-	ld [wc606], a
+	ld [wPikachuMinigameJumpCounter], a
 	ret
 
 .PikachuJumping:

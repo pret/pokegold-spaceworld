@@ -9,7 +9,7 @@ MACRO attr_blk_data
 	db \5, \6, \7, \8 ; x1, y1, x2, y2
 ENDM
 
-BlkPacket_986c:
+BlkPacket_Default:
 	attr_blk 1
 	attr_blk_data %011, 0,0,0, 00,00, 19,17
 	ds 8
