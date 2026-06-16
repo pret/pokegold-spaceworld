@@ -15,7 +15,7 @@ Music_OakIntro_Ch1::
 	vibrato 9, 2, 5
 	duty_cycle 1
 
-Music_OakIntro_branch_ec69b::
+.mainloop
 	note_type 12, 11, 2
 	octave 2
 	note B_, 4
@@ -149,14 +149,14 @@ Music_OakIntro_branch_ec69b::
 	note B_, 2
 	octave 4
 	note E_, 2
-	sound_loop 0, Music_OakIntro_branch_ec69b
+	sound_loop 0, .mainloop
 	sound_ret
 
 Music_OakIntro_Ch2::
 	vibrato 8, 2, 6
 	duty_cycle 3
 
-Music_OakIntro_branch_ec72e::
+.mainloop
 	note_type 12, 13, 4
 	octave 4
 	note E_, 6
@@ -224,13 +224,13 @@ Music_OakIntro_branch_ec72e::
 	note A_, 1
 	note G#, 8
 	rest 4
-	sound_loop 0, Music_OakIntro_branch_ec72e
+	sound_loop 0, .mainloop
 	sound_ret
 
 Music_OakIntro_Ch3::
 	vibrato 9, 2, 8
 
-Music_OakIntro_branch_ec77c::
+.mainloop
 	note_type 12, 1, 1
 	octave 3
 	note E_, 2
@@ -331,13 +331,13 @@ Music_OakIntro_branch_ec77c::
 	rest 2
 	note E_, 2
 	rest 2
-	sound_loop 0, Music_OakIntro_branch_ec77c
+	sound_loop 0, .mainloop
 	sound_ret
 
 Music_OakIntro_Ch4::
 	toggle_noise 0
 
-Music_OakIntro_branch_ec7e9::
+.mainloop
 	drum_speed 12
 	drum_note 3, 2
 	rest 2
@@ -434,5 +434,5 @@ Music_OakIntro_branch_ec7e9::
 	rest 3
 	drum_note 3, 3
 	rest 3
-	sound_loop 0, Music_OakIntro_branch_ec7e9
+	sound_loop 0, .mainloop
 	sound_ret

@@ -131,7 +131,7 @@ SilentHillScript4:
 	cp 09
 	jr nz, .bigjump
 .jump
-	call Function776a
+	call .TalkedToBlue
 	ld hl, SilentHillTextNorthExit
 	call OpenTextbox
 	ld hl, wJoypadFlags
@@ -164,7 +164,7 @@ SilentHillScript4:
 	call CallMapTextSubroutine
 	ret
 
-Function776a:
+.TalkedToBlue:
 	ld hl, wd41a
 	set 7, [hl]
 	ld a, 1

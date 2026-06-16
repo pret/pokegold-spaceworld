@@ -18,7 +18,7 @@ Music_Bicycle_Ch1::
 	octave 3
 	note G_, 2
 
-Music_Bicycle_branch_ed659::
+.mainloop
 	octave 4
 	note C_, 4
 	note D_, 4
@@ -161,7 +161,7 @@ Music_Bicycle_branch_ed659::
 	note G_, 12
 	note_type 12, 11, 5
 	vibrato 8, 1, 4
-	sound_loop 0, Music_Bicycle_branch_ed659
+	sound_loop 0, .mainloop
 
 Music_Bicycle_Ch2::
 	duty_cycle 2
@@ -170,7 +170,7 @@ Music_Bicycle_Ch2::
 	octave 4
 	note C_, 2
 
-Music_Bicycle_branch_ed717::
+.mainloop
 	note E_, 4
 	note F_, 4
 	note G_, 4
@@ -309,13 +309,13 @@ Music_Bicycle_branch_ed717::
 	note_type 12, 12, 7
 	note B_, 12
 	note_type 12, 12, 3
-	sound_loop 0, Music_Bicycle_branch_ed717
+	sound_loop 0, .mainloop
 
 Music_Bicycle_Ch3::
 	note_type 12, 1, 3
 	rest 2
 
-Music_Bicycle_branch_ed7c9::
+.mainloop
 	octave 4
 	note C_, 1
 	rest 1
@@ -649,36 +649,36 @@ Music_Bicycle_branch_ed7c9::
 	octave 4
 	note F_, 1
 	rest 1
-	sound_loop 0, Music_Bicycle_branch_ed7c9
+	sound_loop 0, .mainloop
 
 Music_Bicycle_Ch4::
 	toggle_noise 1
 	drum_speed 12
 	rest 2
 
-Music_Bicycle_branch_ed91f::
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed965
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed96e
-	sound_call Music_Bicycle_branch_ed965
-	sound_call Music_Bicycle_branch_ed965
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed965
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed96e
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed965
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed95c
-	sound_call Music_Bicycle_branch_ed95c
-	sound_loop 0, Music_Bicycle_branch_ed91f
+.mainloop
+	sound_call .sub1
+	sound_call .sub2
+	sound_call .sub1
+	sound_call .sub3
+	sound_call .sub2
+	sound_call .sub2
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub2
+	sound_call .sub1
+	sound_call .sub3
+	sound_call .sub1
+	sound_call .sub2
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub1
+	sound_call .sub1
+	sound_loop 0, .mainloop
 
-Music_Bicycle_branch_ed95c::
+.sub1
 	rest 2
 	drum_note 9, 2
 	rest 2
@@ -689,7 +689,7 @@ Music_Bicycle_branch_ed95c::
 	drum_note 9, 2
 	sound_ret
 
-Music_Bicycle_branch_ed965::
+.sub2
 	rest 2
 	drum_note 9, 2
 	rest 2
@@ -700,7 +700,7 @@ Music_Bicycle_branch_ed965::
 	drum_note 9, 2
 	sound_ret
 
-Music_Bicycle_branch_ed96e::
+.sub3
 	rest 2
 	drum_note 9, 2
 	rest 2

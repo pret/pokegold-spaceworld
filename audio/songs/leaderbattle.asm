@@ -67,7 +67,7 @@ Music_LeaderBattle_Ch1::
 	rest 9
 	note A_, 6
 
-Music_LeaderBattle_branch_ec8a4::
+.mainloop
 	note F#, 1
 	octave 3
 	note C#, 1
@@ -554,7 +554,7 @@ Music_LeaderBattle_branch_ec8a4::
 	note A_, 2
 	note G#, 4
 	note E_, 6
-	sound_loop 0, Music_LeaderBattle_branch_ec8a4
+	sound_loop 0, .mainloop
 
 Music_LeaderBattle_Ch2::
 	duty_cycle 3
@@ -617,7 +617,7 @@ Music_LeaderBattle_Ch2::
 	octave 4
 	note C#, 6
 
-Music_LeaderBattle_branch_ecadc::
+.mainloop
 	note_type 12, 12, 5
 	note D#, 4
 	note C#, 4
@@ -854,7 +854,7 @@ Music_LeaderBattle_branch_ecadc::
 	note_type 12, 12, 3
 	octave 4
 	note A_, 6
-	sound_loop 0, Music_LeaderBattle_branch_ecadc
+	sound_loop 0, .mainloop
 
 Music_LeaderBattle_Ch3::
 	vibrato 0, 2, 0
@@ -1048,7 +1048,7 @@ Music_LeaderBattle_Ch3::
 	note C#, 6
 	note_type 12, 1, 4
 
-Music_LeaderBattle_branch_eccc9::
+.mainloop
 	octave 3
 	note B_, 2
 	octave 4
@@ -1405,4 +1405,4 @@ Music_LeaderBattle_branch_eccc9::
 	note B_, 2
 	octave 4
 	note G_, 6
-	sound_loop 0, Music_LeaderBattle_branch_eccc9
+	sound_loop 0, .mainloop

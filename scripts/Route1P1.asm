@@ -2,17 +2,6 @@ INCLUDE "constants.asm"
 
 SECTION "scripts/Route1P1.asm", ROMX
 
-	ret
-
-	dw Textdbb82
-Textdbb82:
-	text "べんりな　よのなかだね"
-	done
-
-	rept 9
-	ret
-	endr
-
 Route1P1_ScriptLoader::
 	ld hl, Route1P1ScriptPointers
 	call RunMapScript

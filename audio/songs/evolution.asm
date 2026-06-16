@@ -27,16 +27,16 @@ Music_Evolution_Ch1::
 	rest 4
 	duty_cycle 3
 
-Music_Evolution_branch_edb49::
-	sound_call Music_Evolution_branch_edb5b
+.mainloop
+	sound_call .sub
 	note_type 12, 10, 4
 	note F#, 4
-	sound_call Music_Evolution_branch_edb5b
+	sound_call .sub
 	note_type 12, 10, 4
 	note F#, 4
-	sound_loop 0, Music_Evolution_branch_edb49
+	sound_loop 0, .mainloop
 
-Music_Evolution_branch_edb5b::
+.sub
 	note_type 12, 10, 2
 	octave 3
 	note C_, 4
@@ -60,16 +60,16 @@ Music_Evolution_Ch2::
 	rest 4
 	duty_cycle 3
 
-Music_Evolution_branch_edb77::
-	sound_call Music_Evolution_branch_edb89
+.mainloop
+	sound_call .sub
 	note_type 12, 11, 5
 	note A_, 4
-	sound_call Music_Evolution_branch_edb89
+	sound_call .sub
 	note_type 12, 11, 5
 	note B_, 4
-	sound_loop 0, Music_Evolution_branch_edb77
+	sound_loop 0, .mainloop
 
-Music_Evolution_branch_edb89::
+.sub
 	note_type 12, 11, 2
 	octave 3
 	note G_, 4
@@ -85,16 +85,16 @@ Music_Evolution_Ch3::
 	note_type 12, 1, 0
 	rest 8
 
-Music_Evolution_branch_edb99::
-	sound_call Music_Evolution_branch_edba7
+.mainloop
+	sound_call .sub
 	octave 4
 	note A_, 4
-	sound_call Music_Evolution_branch_edba7
+	sound_call .sub
 	octave 4
 	note B_, 4
-	sound_loop 0, Music_Evolution_branch_edb99
+	sound_loop 0, .mainloop
 
-Music_Evolution_branch_edba7::
+.sub
 	octave 3
 	note A_, 2
 	rest 2

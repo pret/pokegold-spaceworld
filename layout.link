@@ -866,6 +866,7 @@ ROMX $36
 	"scripts/BlueForestRoute3.asm"
 	"scripts/SilentHill.asm"
 	"engine/menu/set_time.asm"
+	"scripts/DeletedMap.asm"
 	"scripts/Route1P1.asm"
 	"scripts/Route1P2.asm"
 
