@@ -57,10 +57,10 @@ MACRO unused_check_bit
 	call .CheckBit
 ENDM
 
-	unused_check_bit wFlag1
-	unused_check_bit wFlag2
-	unused_check_bit wFlag3
-	unused_check_bit wFlag4
+	unused_check_bit wBufferFlag1
+	unused_check_bit wBufferFlag2
+	unused_check_bit wBufferFlag3
+	unused_check_bit wBufferFlag4
 	unused_check_bit wLinkBattleRNPreamble
 	ret
 

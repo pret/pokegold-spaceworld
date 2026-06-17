@@ -1,4 +1,4 @@
-FieldDebug_UnusedShowRandomMon: ; unused?
+FieldDebug_UnusedShowRandomMon: ; unreferenced
 	call .get_number
 	ld a, [wNumSetBits]
 	ld [wCurPartySpecies], a
