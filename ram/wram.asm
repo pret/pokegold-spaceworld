@@ -997,7 +997,6 @@ wDefaultSpawnPoint::
 
 UNION
 
-wcc3a::
 wChargeMoveNum::
 wPrevPartyLevel::
 wRodResponse_Old::
@@ -1321,10 +1320,10 @@ NEXTU
 wExpToNextLevel:: ds 3
 
 NEXTU
-wFlag1:: db
-wFlag2:: db
-wFlag3:: db
-wFlag4:: db
+wBufferFlag1:: db
+wBufferFlag2:: db
+wBufferFlag3:: db
+wBufferFlag4:: db
 wLinkBattleRNPreamble:: db
 wMapBGEventCount:: db
 	ds 1

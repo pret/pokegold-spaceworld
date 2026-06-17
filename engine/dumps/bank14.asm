@@ -686,12 +686,12 @@ Function504e5::
 
 	hlcoord 9, 6
 	ld a, $3c
-	ld [wFlag1], a
+	ld [wMiscStringBuffer], a
 	call ListMoves
 
 	hlcoord 11, 7
 	ld a, $3c
-	ld [wFlag1], a
+	ld [wMiscStringBuffer], a
 	call ListMovePP
 
 	call WaitBGMap
@@ -942,7 +942,7 @@ ListMovePP::
 	sub c
 	ld b, a
 	push hl
-	ld a, [wFlag1]
+	ld a, [wMiscStringBuffer]
 	ld e, a
 	ld d, 0
 	ld a, $3e ; P
@@ -999,7 +999,7 @@ ListMovePP::
 	lb bc, 1, 2
 	call PrintNumber
 	pop hl
-	ld a, [wFlag1]
+	ld a, [wMiscStringBuffer]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -1946,20 +1946,19 @@ GrowthRates:
 	growth_rate 5, 4,   0,   0,   0 ; Slow
 
 _SwitchPartyMons::
-	; replace instances of wHPBarOldHP with wFlag3, perhaps?
 	ld a, [wSelectedSwapPosition]
 	dec a
-	ld [wHPBarOldHP], a
+	ld [wBufferFlag3], a
 	ld b, a
 	ld a, [wMenuCursorY]
 	dec a
-	ld [wFlag2], a
+	ld [wBufferFlag2], a
 	cp b
 	jr z, .skip
 	call .SwapMonAndMail
-	ld a, [wFlag3]
+	ld a, [wBufferFlag3]
 	call .ClearSprite
-	ld a, [wFlag2]
+	ld a, [wBufferFlag2]
 	call .ClearSprite
 .skip
 	ret
@@ -1992,13 +1991,13 @@ _SwitchPartyMons::
 	push de
 	push bc
 	ld bc, wPartySpecies
-	ld a, [wFlag2]
+	ld a, [wBufferFlag2]
 	ld l, a
 	ld h, 0
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld a, [wFlag3]
+	ld a, [wBufferFlag3]
 	ld l, a
 	ld h, 0
 	add hl, bc
@@ -2008,15 +2007,15 @@ _SwitchPartyMons::
 	ld [hl], a
 	pop af
 	ld [de], a
-	ld a, [wFlag2]
+	ld a, [wBufferFlag2]
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
-	ld de, wcc3a
+	ld de, wSwitchItemBuffer
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wFlag3]
+	ld a, [wBufferFlag3]
 	ld hl, wPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -2025,58 +2024,58 @@ _SwitchPartyMons::
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	pop de
-	ld hl, wcc3a
+	ld hl, wTempBoxName
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wFlag2]
+	ld a, [wBufferFlag2]
 	ld hl, wPartyMonOTs
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
-	ld a, [wFlag3]
+	ld a, [wBufferFlag3]
 	ld hl, wPartyMonOTs
 	call SkipNames
 	pop de
 	push hl
 	call .CopyName
 	pop de
-	ld hl, wcc3a
+	ld hl, wSwitchItemBuffer
 	call .CopyName
 	ld hl, wPartyMonNicknames
-	ld a, [wFlag2]
+	ld a, [wBufferFlag2]
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
 	ld hl, wPartyMonNicknames
-	ld a, [wFlag3]
+	ld a, [wBufferFlag3]
 	call SkipNames
 	pop de
 	push hl
 	call .CopyName
 	pop de
-	ld hl, wcc3a
+	ld hl, wSwitchItemBuffer
 	call .CopyName
-	ld hl, $ba68    ; Buffer somewhere in SRAM. Needs investigation
-	ld a, [wFlag2]
-	ld bc, $0028    ; todo: Constantify this
+	ld hl, sPartyMon1MailMessage
+	ld a, [wBufferFlag2]
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
-	ld de, wcc3a
-	ld bc, $0028
+	ld de, wSwitchItemBuffer
+	ld bc, MAIL_STRUCT_LENGTH
 	ld a, $02
 	call OpenSRAM
 	call CopyBytes
-	ld hl, $ba68
-	ld a, [wFlag3]
-	ld bc, $0028
+	ld hl, sPartyMon1MailMessage
+	ld a, [wBufferFlag3]
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	pop de
 	push hl
-	ld bc, $0028
+	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	pop de
-	ld hl, wcc3a
-	ld bc, $0028
+	ld hl, wSwitchItemBuffer
+	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	pop bc
@@ -2085,7 +2084,7 @@ _SwitchPartyMons::
 	ret
 
 .CopyNameToSwitchMonBuffer
-	ld de, wcc3a
+	ld de, wSwitchItemBuffer
 
 .CopyName
 	ld bc, PLAYER_NAME_LENGTH
