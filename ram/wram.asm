@@ -1319,10 +1319,10 @@ NEXTU
 wExpToNextLevel:: ds 3
 
 NEXTU
-wBufferFlag1:: db
-wBufferFlag2:: db
-wBufferFlag3:: db
-wBufferFlag4:: db
+wVRAMViewerPage:: db
+wSwitchMonTo:: db
+wSwitchMonFrom:: db
+	ds 1
 wLinkBattleRNPreamble:: db
 wMapBGEventCount:: db
 	ds 1

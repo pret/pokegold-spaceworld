@@ -418,7 +418,11 @@ StatsScreenMain::
 	ret
 
 .StatsScreen_LoadPageJumptable
-	dw LoadPinkPage, LoadGreenPage, LoadBluePage
+	table_width 2
+	dw LoadPinkPage
+	dw LoadGreenPage
+	dw LoadBluePage
+	assert_table_length 3
 
 LoadPinkPage::
 	call WaitBGMap
@@ -1954,17 +1958,17 @@ GrowthRates:
 _SwitchPartyMons::
 	ld a, [wSelectedSwapPosition]
 	dec a
-	ld [wBufferFlag3], a
+	ld [wSwitchMonFrom], a
 	ld b, a
 	ld a, [wMenuCursorY]
 	dec a
-	ld [wBufferFlag2], a
+	ld [wSwitchMonTo], a
 	cp b
 	jr z, .skip
 	call .SwapMonAndMail
-	ld a, [wBufferFlag3]
+	ld a, [wSwitchMonFrom]
 	call .ClearSprite
-	ld a, [wBufferFlag2]
+	ld a, [wSwitchMonTo]
 	call .ClearSprite
 .skip
 	ret
@@ -1997,13 +2001,13 @@ _SwitchPartyMons::
 	push de
 	push bc
 	ld bc, wPartySpecies
-	ld a, [wBufferFlag2]
+	ld a, [wSwitchMonTo]
 	ld l, a
 	ld h, 0
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld a, [wBufferFlag3]
+	ld a, [wSwitchMonFrom]
 	ld l, a
 	ld h, 0
 	add hl, bc
@@ -2013,7 +2017,7 @@ _SwitchPartyMons::
 	ld [hl], a
 	pop af
 	ld [de], a
-	ld a, [wBufferFlag2]
+	ld a, [wSwitchMonTo]
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -2021,7 +2025,7 @@ _SwitchPartyMons::
 	ld de, wSwitchItemBuffer
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wBufferFlag3]
+	ld a, [wSwitchMonFrom]
 	ld hl, wPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -2033,12 +2037,12 @@ _SwitchPartyMons::
 	ld hl, wTempBoxName
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wBufferFlag2]
+	ld a, [wSwitchMonTo]
 	ld hl, wPartyMonOTs
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
-	ld a, [wBufferFlag3]
+	ld a, [wSwitchMonFrom]
 	ld hl, wPartyMonOTs
 	call SkipNames
 	pop de
@@ -2048,12 +2052,12 @@ _SwitchPartyMons::
 	ld hl, wSwitchItemBuffer
 	call .CopyName
 	ld hl, wPartyMonNicknames
-	ld a, [wBufferFlag2]
+	ld a, [wSwitchMonTo]
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
 	ld hl, wPartyMonNicknames
-	ld a, [wBufferFlag3]
+	ld a, [wSwitchMonFrom]
 	call SkipNames
 	pop de
 	push hl
@@ -2062,7 +2066,7 @@ _SwitchPartyMons::
 	ld hl, wSwitchItemBuffer
 	call .CopyName
 	ld hl, sPartyMon1MailMessage
-	ld a, [wBufferFlag2]
+	ld a, [wSwitchMonTo]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
@@ -2072,7 +2076,7 @@ _SwitchPartyMons::
 	call OpenSRAM
 	call CopyBytes
 	ld hl, sPartyMon1MailMessage
-	ld a, [wBufferFlag3]
+	ld a, [wSwitchMonFrom]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	pop de
