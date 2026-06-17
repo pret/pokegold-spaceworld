@@ -134,17 +134,16 @@ NEXTU
 
 	ds 1
 
-wClockDialogArrowBlinkCounter:: ds 1
+wClockDialogArrowBlinkCounter:: db
 
-wc40a:: ds 1
+wc40a:: db
 
 ; Monster or Trainer test?
-wWhichPicTest::
-	db
+wWhichPicTest:: db
 
-wc40c:: ds 1
-wc40d:: ds 1
-wc40e:: ds 1
+wc40c:: db
+wc40d:: db
+wc40e:: db
 NEXTU
 wOptionsMenuCursorX:: db
 wOptionsMenuCursorY:: db
@@ -390,94 +389,94 @@ NEXTU
 
 ; Pikachu minigame
 
-wPikachuMinigamePikachuObjectPointer:: ds 2
-wPikachuMinigamePikachuTailObjectPointer:: ds 2
-wPikachuMinigamePikachuNextAnim:: ds 1
+wPikachuMinigamePikachuObjectPointer:: dw
+wPikachuMinigamePikachuTailObjectPointer:: dw
+wPikachuMinigamePikachuNextAnim:: db
 
-wPikachuMinigameControlEnable:: ds 1
+wPikachuMinigameControlEnable:: db
 
-wPikachuMinigameJumpCounter:: ds 1 ; written to, but is this read from?
+wPikachuMinigameJumpCounter:: db ; written to, but is this read from?
 
-wPikachuMinigamePikachuYOffset:: ds 1
-wPikachuMinigameNoteTimer:: ds 1
-wPikachuMinigameScore:: ds 2
-wPikachuMinigameNoteCounter:: ds 2 ; not used for anything meaningful?
+wPikachuMinigamePikachuYOffset:: db
+wPikachuMinigameNoteTimer:: db
+wPikachuMinigameScore:: dw
+wPikachuMinigameNoteCounter:: dw ; not used for anything meaningful?
 
-wPikachuMinigameSpawnTypeIndex:: ds 1
-wPikachuMinigameSpawnDataIndex:: ds 1
-wPikachuMinigameScoreModifier:: ds 1
+wPikachuMinigameSpawnTypeIndex:: db
+wPikachuMinigameSpawnDataIndex:: db
+wPikachuMinigameScoreModifier:: db
 
-wPikachuMinigameNoteCaught:: ds 1
+wPikachuMinigameNoteCaught:: db
 
 ; Time keeping
-wPikachuMinigameTimeFrames:: ds 1
-wPikachuMinigameTimeSeconds:: ds 1
+wPikachuMinigameTimeFrames:: db
+wPikachuMinigameTimeSeconds:: db
 
 ; are these two used?
-wPikachuMinigameTimeMinutes:: ds 1
-wPikachuMinigameTimeHours:: ds 1
+wPikachuMinigameTimeMinutes:: db
+wPikachuMinigameTimeHours:: db
 
-wPikachuMinigameRedrawTimer:: ds 1
-wPikachuMinigameMapOffset:: ds 1
-wPikachuMinigameScrollSpeed:: ds 1
+wPikachuMinigameRedrawTimer:: db
+wPikachuMinigameMapOffset:: db
+wPikachuMinigameScrollSpeed:: db
 
-wPikachuMinigameColumnFlags:: ds 1
-wPikachuMinigameSavedColumnPointer:: ds 2
-wPikachuMinigameColumnPointer:: ds 2
+wPikachuMinigameColumnFlags:: db
+wPikachuMinigameSavedColumnPointer:: dw
+wPikachuMinigameColumnPointer:: dw
 
-wPikachuMinigameRepeatColumnCounter:: ds 1
-wPikachuMinigameRepeatColumnCounter2:: ds 1
+wPikachuMinigameRepeatColumnCounter:: db
+wPikachuMinigameRepeatColumnCounter2:: db
 
-wPikachuMinigameSceneTimer:: ds 1
+wPikachuMinigameSceneTimer:: db
 
-wPikachuMinigameJumptableIndex:: ds 1
+wPikachuMinigameJumptableIndex:: db
 
-wPikachuMinigameBGMapPointer:: ds 2
-wPikachuMinigameTilemapPointer:: ds 2
-wPikachuMinigameTilesPointer:: ds 2
+wPikachuMinigameBGMapPointer:: dw
+wPikachuMinigameTilemapPointer:: dw
+wPikachuMinigameTilesPointer:: dw
 
 wPikachuMinigameColumnBuffer:: ds 16
 
 NEXTU
 
 ; wFifteenPuzzleBitmap is Panels 1 - 15
-wFifteenPuzzleBitmap:: ds 4*4*15
+wFifteenPuzzleBitmap:: ds 4 * 4 * 15
 ; wFifteenPuzzleEmptyPanelBitmap is Panel 16 / Empty Panel
-wFifteenPuzzleEmptyPanelBitmap:: ds 4*4
-wFifteenPuzzlePanelNumberOrder:: ds 4*4
-wFifteenPuzzlePosition:: ds 1
+wFifteenPuzzleEmptyPanelBitmap:: ds 4 * 4
+wFifteenPuzzlePanelNumberOrder:: ds 4 * 4
+wFifteenPuzzlePosition:: db
 ; wFifteenPuzzleEmptyPanelNumber should always be $0f
-wFifteenPuzzleEmptyPanelNumber:: ds 1
-wFifteenPuzzleJoyStateBuffer:: ds 1
-wFifteenPuzzleIconNumber:: ds 1
-wFifteenPuzzleTimeFrames:: ds 1
-wFifteenPuzzleTimeSeconds:: ds 1
-wFifteenPuzzleTimeMinutes:: ds 1
-wFifteenPuzzleGFXPointer:: ds 1
+wFifteenPuzzleEmptyPanelNumber:: db
+wFifteenPuzzleJoyStateBuffer:: db
+wFifteenPuzzleIconNumber:: db
+wFifteenPuzzleTimeFrames:: db
+wFifteenPuzzleTimeSeconds:: db
+wFifteenPuzzleTimeMinutes:: db
+wFifteenPuzzleGFXPointer:: db
 
 NEXTU
 
-wPicrossCursorSpritePointer:: ds 2
-wPicrossCurrentGridNumber:: ds 1
-wPicrossCurrentCellNumber:: ds 1
-wPicrossCurrentCellType:: ds 1
-wPicrossJoypadAction:: ds 1
-wPicrossJoyStateBuffer:: ds 1
+wPicrossCursorSpritePointer:: dw
+wPicrossCurrentGridNumber:: db
+wPicrossCurrentCellNumber:: db
+wPicrossCurrentCellType:: db
+wPicrossJoypadAction:: db
+wPicrossJoyStateBuffer:: db
 
-wPicrossCursorMovementDelay:: ds 1
-wPicrossMarkedCells:: ds 4*4*4*4
+wPicrossCursorMovementDelay:: db
+wPicrossMarkedCells:: ds 4 * 4 * 4 * 4
 	ds 1
 wPicrossLayoutBuffer:: ds $20
 wPicrossLayoutBuffer2:: ds $20 - 1
-wPicrossBitmap:: ds 4*4*4*4
-wPicrossBase2bppPointer:: ds 2
-wPicrossBaseGFXPointer:: ds 2
-wPicrossDrawingRoutineCounter:: ds 1
+wPicrossBitmap:: ds 4 * 4 * 4 * 4
+wPicrossBase2bppPointer:: dw
+wPicrossBaseGFXPointer:: dw
+wPicrossDrawingRoutineCounter:: db
 	ds 11
-wPicrossNumbersBuffer:: ds 4*4*4*4
+wPicrossNumbersBuffer:: ds 4 * 4 * 4 * 4
 wPicrossRowGFX2bppBuffer:: ds 144
 	ds 112
-wPicrossErrorCheck:: ds 1
+wPicrossErrorCheck:: db
 	ds 1
 NEXTU
 ; Battle-related
@@ -572,12 +571,12 @@ NEXTU
 ; intro water/grass/fire cutscene data
 	ds 14
 wIntroJumptableIndex:: db
-wIntroBGMapPointer:: ds 2
-wIntroTilemapPointer:: ds 2
-wIntroTilesPointer:: ds 2
-wIntroFrameCounter1:: ds 1
-wIntroFrameCounter2:: ds 1
-wIntroSpriteStateFlag:: ds 1
+wIntroBGMapPointer:: dw
+wIntroTilemapPointer:: dw
+wIntroTilesPointer:: dw
+wIntroFrameCounter1:: db
+wIntroFrameCounter2:: db
+wIntroSpriteStateFlag:: db
 ENDU
 
 wTrainerClass:: db
@@ -651,11 +650,11 @@ wEnemyDamageTaken:: dw
 UNION
 wBattleReward:: ds 3
 NEXTU
-wPicrossAnimateDust:: ds 1
+wPicrossAnimateDust:: db
 ENDU
 
 wBattleAnimParam::
-wca5c:: ds 1
+wca5c:: db
 
 wBattleScriptBuffer:: ds 30
 
@@ -682,7 +681,7 @@ wEnemySpDef::   dw
 
 wPlayerStatLevels::
 wPlayerAtkLevel::
-wcaa9:: ds 1
+wcaa9:: db
 
 wPlayerDefLevel::  db
 wPlayerSpdLevel::  db
@@ -695,7 +694,7 @@ wPlayerEvaLevel:: db
 
 wEnemyStatLevels::
 wEnemyAtkLevel::
-wcab1:: ds 1
+wcab1:: db
 
 wEnemyDefLevel::  db
 wEnemySpdLevel::  db
@@ -712,13 +711,13 @@ wEnemyTurnsTaken:: db
 
 	ds 1
 
-wPlayerSubstituteHP:: ds 1
-wEnemySubstituteHP:: ds 1
-wPlayerDebugSelectedMove:: ds 1
+wPlayerSubstituteHP:: db
+wEnemySubstituteHP:: db
+wPlayerDebugSelectedMove:: db
 
 	ds 1
 
-wMoveSelectionMenuType:: ds 1
+wMoveSelectionMenuType:: db
 
 wCurPlayerMove:: db
 wCurEnemyMove:: db
@@ -735,9 +734,9 @@ wEnemyHPAtTimeOfPlayerSwitch:: dw
 UNION
 wPayDayMoney:: ds 3
 NEXTU
-wcaca:: ds 1
-wcacb:: ds 1
-wcacc:: ds 1
+wcaca:: db
+wcacb:: db
+wcacc:: db
 ENDU
 
 wUnused_SafariEscapeFactor:: db
@@ -843,7 +842,7 @@ wBattleTransitionSineWaveOffset::
 wBattleTransitionSpinQuadrant::
 wIntroSceneTimer::
 wTrainerGearCard::
-wFrameCounter2:: ds 1
+wFrameCounter2:: db
 
 wTrainerGearRadioIndex::
 wSlotReelIconDelay:: db
@@ -851,12 +850,12 @@ NEXTU
 wFlyIconAnimStructPointer:: dw
 ENDU
 
-wVBCopySize:: ds 1
-wVBCopySrc:: ds 2
-wVBCopyDst:: ds 2
-wVBCopyDoubleSize:: ds 1
-wVBCopyDoubleSrc:: ds 2
-wVBCopyDoubleDst:: ds 2
+wVBCopySize:: db
+wVBCopySrc:: dw
+wVBCopyDst:: dw
+wVBCopyDoubleSize:: db
+wVBCopyDoubleSrc:: dw
+wVBCopyDoubleDst:: dw
 wPlayerStepVectorX:: db
 wPlayerStepVectorY:: db
 wPlayerStepFlags:: db
@@ -867,10 +866,10 @@ SECTION "CB71", WRAM0[$CB70]
 
 wQueuedMinorObjectGFX:: db
 
-wVBCopyFarSize:: ds 1
-wVBCopyFarSrc:: ds 2
-wVBCopyFarDst:: ds 2
-wVBCopyFarSrcBank:: ds 1
+wVBCopyFarSize:: db
+wVBCopyFarSrc:: dw
+wVBCopyFarDst:: dw
+wVBCopyFarSrcBank:: db
 wPlayerMovement:: db
 wMovementObject:: db
 	ptrba wMovementData
@@ -988,11 +987,9 @@ wLastSpawnMapNumber: db
 
 ;Controls what type of opening (fire/notes) you get.
 wcc38::
-wTitleSequenceOpeningType::
-	db
+wTitleSequenceOpeningType:: db
 
-wDefaultSpawnPoint::
-	db
+wDefaultSpawnPoint:: db
 
 UNION
 
@@ -1029,7 +1026,7 @@ wTrainerHUDTiles:: ds 4
 
 NEXTU
 ; switching items in pack
-wSwitchItemBuffer:: ds 2
+wSwitchItemBuffer:: dw
 
 NEXTU
 
@@ -1057,21 +1054,21 @@ wCompanionCollisionFrameCounter:: db
 wObjectMasks::
 	ds NUM_OBJECTS
 
-wSpriteCurPosX::         ds 1
-wSpriteCurPosY::         ds 1
-wSpriteWidth::           ds 1
-wSpriteHeight::          ds 1
-wSpriteInputCurByte::    ds 1
-wSpriteInputBitCounter:: ds 1
-wSpriteOutputBitOffset:: ds 1
-wSpriteLoadFlags::       ds 1
-wSpriteUnpackMode::      ds 1
-wSpriteFlipped::         ds 1
-wSpriteInputPtr::        ds 2
-wSpriteOutputPtr::       ds 2
-wSpriteOutputPtrCached:: ds 2
-wSpriteDecodeTable0Ptr:: ds 2
-wSpriteDecodeTable1Ptr:: ds 2
+wSpriteCurPosX::         db
+wSpriteCurPosY::         db
+wSpriteWidth::           db
+wSpriteHeight::          db
+wSpriteInputCurByte::    db
+wSpriteInputBitCounter:: db
+wSpriteOutputBitOffset:: db
+wSpriteLoadFlags::       db
+wSpriteUnpackMode::      db
+wSpriteFlipped::         db
+wSpriteInputPtr::        dw
+wSpriteOutputPtr::       dw
+wSpriteOutputPtrCached:: dw
+wSpriteDecodeTable0Ptr:: dw
+wSpriteDecodeTable1Ptr:: dw
 
 wFXAnimID:: dw
 
@@ -1104,9 +1101,9 @@ wSGB:: db
 
 SECTION "CCD0", WRAM0[$CCD0]
 
-wSGBPalBuffer:: ds 1
-wPlayerHPPal:: ds 1
-wEnemyHPPal:: ds 1
+wSGBPalBuffer:: db
+wPlayerHPPal:: db
+wEnemyHPPal:: db
 
 wHPPals:: ds PARTY_LENGTH
 wCurHPPal:: db
@@ -1173,27 +1170,22 @@ wTMHolderScrollPosition:: db
 wSelectedSwapPosition:: db
 wMenuScrollPosition:: db
 
-wTextDest:: ds 2
+wTextDest:: dw
 
 wQueuedScriptBank:: db
 wQueuedScriptAddr:: dw
 
-wPredefID::
-	db
+wPredefID:: db
 
-wPredefHL::
-	dw
-wPredefDE::
-	dw
+wPredefHL:: dw
+wPredefDE:: dw
 wPredefBC::
 
-wFarCallBCBuffer::
-	dw
+wFarCallBCBuffer:: dw
 
 	ds 1
 
-wNumMoves::
-	db
+wNumMoves:: db
 
 wItemEffectSucceeded::
 wFieldMoveSucceeded::
@@ -1244,7 +1236,7 @@ wTalkingTargetType:: db
 
 	ds 1
 
-wHandlePlayerStep:: ds 1
+wHandlePlayerStep:: db
 
 	ds 1
 
@@ -1255,7 +1247,7 @@ wAudioFadeOutCounter:: db
 
 	ds 2
 
-wPartyMenuActionText:: ds 1
+wPartyMenuActionText:: db
 
 wItemAttributeValue:: db
 
@@ -1351,8 +1343,8 @@ ENDU
 
 wLinkBattleRNs:: ds 10
 
-wTempEnemyMonSpecies:: ds 1
-wTempBattleMonSpecies:: ds 1
+wTempEnemyMonSpecies:: db
+wTempBattleMonSpecies:: db
 
 wEnemyMon:: battle_struct wEnemyMon
 wEnemyMonBaseStats:: ds NUM_EXP_STATS
@@ -1361,12 +1353,12 @@ wEnemyMonBaseExp:: db
 wEnemyMonEnd::
 
 wBattleMode:: db
-wTempWildMonSpecies:: ds 1
-wOtherTrainerClass:: ds 1
+wTempWildMonSpecies:: db
+wOtherTrainerClass:: db
 wBattleType:: db
-wUnused_GymLeaderNo:: ds 1 ; Unused
-wOtherTrainerID:: ds 1
-wBattleEnded:: ds 1
+wUnused_GymLeaderNo:: db ; Unused
+wOtherTrainerID:: db
+wBattleEnded:: db
 
 wMonHeader::
 
@@ -1376,55 +1368,35 @@ wMonHIndex::
 	ds 1
 
 wMonHBaseStats::
-wMonHBaseHP::
-	ds 1
-wMonHBaseAttack::
-	ds 1
-wMonHBaseDefense::
-	ds 1
-wMonHBaseSpeed::
-	ds 1
-wMonHBaseSpecialAtt::
-	ds 1
-wMonHBaseSpecialDef::
-	ds 1
+wMonHBaseHP:: db
+wMonHBaseAttack:: db
+wMonHBaseDefense:: db
+wMonHBaseSpeed:: db
+wMonHBaseSpecialAtt:: db
+wMonHBaseSpecialDef:: db
 
 wMonHTypes::
-wMonHType1::
-	ds 1
-wMonHType2::
-	ds 1
+wMonHType1:: db
+wMonHType2:: db
 
-wMonHCatchRate::
-	ds 1
-wMonHBaseEXP::
-	ds 1
+wMonHCatchRate:: db
+wMonHBaseEXP:: db
 
 wMonHItems::
-wMonHItem1::
-	ds 1
-wMonHItem2::
-	ds 1
+wMonHItem1:: db
+wMonHItem2:: db
 
-wMonHGenderRatio::
-	ds 1
+wMonHGenderRatio:: db
 
-wMonHUnk0::
-	ds 1
-wMonHUnk1::
-	ds 1
-wMonHUnk2::
-	ds 1
+wMonHUnk0:: db
+wMonHUnk1:: db
+wMonHUnk2:: db
 
-wMonHSpriteDim::
-	ds 1
-wMonHFrontSprite::
-	ds 2
-wMonHBackSprite::
-	ds 2
+wMonHSpriteDim:: db
+wMonHFrontSprite:: dw
+wMonHBackSprite:: dw
 
-wMonHGrowthRate::
-	ds 1
+wMonHGrowthRate:: db
 
 wMonHLearnset::
 ; bit field
@@ -1444,8 +1416,8 @@ wRepelEffect:: db
 
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wPutativeTMHMMove:: db
-wce33:: ds 1
-wInitListType:: ds 1
+wce33:: db
+wInitListType:: db
 wWildMon:: db
 wBattleHasJustStarted:: db
 
@@ -1471,11 +1443,9 @@ wNumFleeAttempts:: db
 
 wMonTriedToEvolve:: db
 
-wVBlankSavedROMBank::
-	db
+wVBlankSavedROMBank:: db
 
-wBuffer::
-	db
+wBuffer:: db
 
 wTimeOfDay:: db
 ; based on RTC
@@ -1517,9 +1487,9 @@ wDebugFlags:: db
 ; Bit 1: Debug field indicator
 ; Bit 2-3: Game is continued (set when selecting continue on the main menu)
 
-wce64:: ds 1
-wce65:: ds 1
-wce66:: ds 1
+wce64:: db
+wce65:: db
+wce66:: db
 
 wGameData::
 wPlayerName:: ds 6
@@ -1530,16 +1500,11 @@ wPlayerID:: dw
 
 	ds 1
 
-wObjectFollow_Leader::
-	db
-wObjectFollow_Follower::
-	db
-wCenteredObject::
-	db
-wFollowerMovementQueueLength::
-	db
-wFollowMovementQueue::
-	ds 5
+wObjectFollow_Leader:: db
+wObjectFollow_Follower:: db
+wCenteredObject:: db
+wFollowerMovementQueueLength:: db
+wFollowMovementQueue:: ds 5
 
 wObjectStructs::
 ; Object struct reserved for the map viewer cursor and for Blue in Silent Hill.
@@ -1712,9 +1677,9 @@ wMovementFlags_Old:: db
 SECTION "wDigWarpNumber", WRAM0[$D4B2]
 
 wDigWarpNumber:: db
-wd4b3:: ds 1
-wd4b4:: ds 1
-wd4b5:: ds 1
+wd4b3:: db
+wd4b4:: db
+wd4b5:: db
 
 ; Doesn't get written to at any point yet, but it's read... once.
 wCurBox:: db
@@ -1728,24 +1693,21 @@ SECTION "Warp data", WRAM0[$D513]
 
 wWarpNumber:: db
 
-wCurrMapWarpCount::
-	db
+wCurrMapWarpCount:: db
 
 wCurrMapWarps::
 REPT 32 ; TODO: confirm this
 	ds 5
 ENDR
 
-wCurMapBGEventCount::
-	db
+wCurMapBGEventCount:: db
 
 wCurrMapBGEvents::
 REPT 16 ; TODO: confirm this
 	ds 4
 ENDR
 
-wCurrMapObjectCount::
-	db
+wCurrMapObjectCount:: db
 
 wCurrMapInlineTrainers::
 REPT NUM_OBJECTS
@@ -1764,18 +1726,14 @@ wGameData2::
 	ds 9
 
 wUnusedAddOutdoorSpritesReturnValue:: db
-wBGMapAnchor::
-	dw
+wBGMapAnchor:: dw
 
 wUsedSprites::
 	ds 2
-
 wUsedNPCSprites::
 	ds 8
-
 wUsedStaticSprites::
 	ds 2
-
 wUsedSpritesEnd::
 
 
@@ -1784,8 +1742,7 @@ SECTION "Map header", WRAM0[$D656]
 wMapGroup:: db
 wMapId:: db
 
-wOverworldMapAnchor::
-	dw
+wOverworldMapAnchor:: dw
 
 wYCoord:: db
 wXCoord:: db
@@ -1793,35 +1750,23 @@ wXCoord:: db
 wMetatileNextY:: db
 wMetatileNextX:: db
 
-wd65e::
-	db
+wd65e:: db
 
 wMapPartial::
-wMapAttributesBank::
-	db
-wMapTileset::
-	db
-wMapPermissions::
-	db
-wMapAttributesPtr::
-	dw
+wMapAttributesBank:: db
+wMapTileset:: db
+wMapPermissions:: db
+wMapAttributesPtr:: dw
 wMapPartialEnd::
 
 wMapAttributes::
-wMapHeight::
-	db
-wMapWidth::
-	db
-wMapBlocksPointer::
-	dw
-wMapTextPtr::
-	dw
-wMapScriptPtr::
-	dw
-wMapObjectsPtr::
-	dw
-wMapConnections::
-	db
+wMapHeight:: db
+wMapWidth:: db
+wMapBlocksPointer:: dw
+wMapTextPtr:: dw
+wMapScriptPtr:: dw
+wMapObjectsPtr:: dw
+wMapConnections:: db
 wMapAttributesEnd::
 
 wNorthMapConnection:: map_connection_struct wNorth
@@ -1830,16 +1775,11 @@ wWestMapConnection::  map_connection_struct wWest
 wEastMapConnection::  map_connection_struct wEast
 
 wTileset::
-wTilesetBank::
-	db
-wTilesetBlocksAddress::
-	dw
-wTilesetTilesAddress::
-	dw
-wTilesetCollisionAddress::
-	dw
-wTilesetAnim::
-	dw
+wTilesetBank:: db
+wTilesetBlocksAddress:: dw
+wTilesetTilesAddress:: dw
+wTilesetCollisionAddress:: dw
+wTilesetAnim:: dw
 	ds 2 ; TODO
 wTilesetEnd::
 
@@ -1877,7 +1817,7 @@ wEndPokedexSeen::
 
 wUnownDex:: ds NUM_UNOWN
 
-wAnnonID:: ds 1
+wAnnonID:: db
 
 	ds 1
 
@@ -1891,7 +1831,7 @@ wBufferMon:: box_struct wBufferMon
 ; 2 = Two Pokémon deposited.
 ; 3 = Egg laid.
 ; 4 = Egg received, don't lay another egg.
-wBreederStatus:: ds 1
+wBreederStatus:: db
 
 	ds 2
 

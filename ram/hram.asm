@@ -1,7 +1,6 @@
 SECTION "HRAM", HRAM
 
-hOAMDMA::
-	ds 10
+hOAMDMA:: ds 10
 
 hChecksum:: ds 3
 
@@ -16,17 +15,13 @@ hRTCStatusFlags:: db
 
 hDebugMapViewerJumptable:: db
 
-hVBlankCounter::
-	db
+hVBlankCounter:: db
 
-hROMBank::
-	db
+hROMBank:: db
 
-hVBlank::
-	db
+hVBlank:: db
 
-hMapEntryMethod::
-	db
+hMapEntryMethod:: db
 
 hStartmenuCloseAndSelectHookEnable:: db
 
@@ -88,10 +83,8 @@ hEventID:: db
 NEXTU
 
 hSpriteWidth::
-hSpriteInterlaceCounter::
-	db
-hSpriteHeight::
-	db
+hSpriteInterlaceCounter:: db
+hSpriteHeight:: db
 
 NEXTU
 
@@ -144,8 +137,7 @@ hQuotient::     ds 4
 hRemainder::    db
 ENDU
 
-hMathBuffer::
-	ds 5
+hMathBuffer::   ds 5
 
 NEXTU
 
@@ -163,7 +155,7 @@ ENDU
 
 	ds 3 ; TODO
 
-hFFC0:: ds 1
+hFFC0:: db
 
 	ds 6
 
@@ -182,8 +174,7 @@ ENDU
 
 hMoneyTemp:: ds 3
 
-hLCDCPointer::
-	db
+hLCDCPointer:: db
 
 hLYOverrideStart:: db
 hLYOverrideEnd:: db
@@ -210,20 +201,15 @@ hOverworldFlashlightEffect:: db
 ; 3 -  6x 6 tile block
 ; 4 -  2x 2 tile block
 
-hBGMapMode::
-	db
+hBGMapMode:: db
 
-hBGMapTransferPosition::
-	db
+hBGMapTransferPosition:: db
 
-hBGMapAddress::
-	dw
+hBGMapAddress:: dw
 
-hFFE2::
-	db
+hFFE2:: db
 
-hSPTemp::
-	dw
+hSPTemp:: dw
 
 hRedrawRowOrColumnMode:: db
 ; Used for redrawing BG in small updates
@@ -252,21 +238,17 @@ hRedrawRowOrColumnMode:: db
 
 hRedrawRowOrColumnDest:: ds 2
 
-hMapAnims::
-	db
+hMapAnims:: db
 
-hTileAnimFrame::
-	db
+hTileAnimFrame:: db
 
-hLastTalked::
-	db
+hLastTalked:: db
 
 hFFEB:: db
 hFFEC:: db
 hFFED:: db
 
-hFFEE::
-	db
+hFFEE:: db
 
 hRandomAdd:: db
 hRandomSub:: db
