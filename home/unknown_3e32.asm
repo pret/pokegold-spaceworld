@@ -10,9 +10,11 @@ SECTION "home/unknown_3e32.asm", ROM0
 DEF Old_FarCallFunctionAddress EQU $2f91
 
 Unreferenced_Function3e32:
+if DEF(_DEMO)
 	xor a
 	dec a
 	ldh [hConnectionStripLength], a
+endc
 	jr nz, @ - 25 ; Unknown function
 	ret
 

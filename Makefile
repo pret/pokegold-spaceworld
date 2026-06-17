@@ -134,8 +134,8 @@ include gfx/gfx.mk
 
 RGBASMFLAGS += -E -i $(BUILD)/
 
-$(GOLD_OBJS):   RGBASMFLAGS += -D _GOLD
-$(SILVER_OBJS): RGBASMFLAGS += -D _SILVER
+$(GOLD_OBJS):   RGBASMFLAGS += -D _GOLD -D _DEMO
+$(SILVER_OBJS): RGBASMFLAGS += -D _SILVER -D _DEMO
 
 $(BUILD)/%_gold.o: $(BUILD)/%.asm | $$(dir $$@) rgbdscheck.o
 	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<

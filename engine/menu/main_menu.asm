@@ -3,15 +3,19 @@ INCLUDE "constants.asm"
 	const_def
 	const M_NEW_GAME
 	const M_CONTINUE
+if DEF(_DEMO)
 	const M_PLAY_GAME
 	const M_SET_TIME
+endc
 
 	const_def
 	const CONTINUE
 	const NEW_GAME
 	const OPTION
+if DEF(_DEMO)
 	const PLAY_POKEMON
 	const SET_TIME
+endc
 
 SECTION "engine/menu/main_menu.asm", ROMX
 
@@ -155,6 +159,7 @@ MainMenu::
 .setMenuContinue
 	ld a, M_CONTINUE
 .skip
+if DEF(_DEMO)
 	ldh a, [hJoyState]
 	and D_DOWN | B_BUTTON | A_BUTTON
 	cp D_DOWN | B_BUTTON | A_BUTTON
@@ -164,6 +169,7 @@ MainMenu::
 .setMenuPlay
 	ld a, M_PLAY_GAME
 .triggerMenu
+endc
 	ld [wWhichIndexSet], a
 	ld hl, MainMenuHeader
 	call LoadMenuHeader
@@ -216,6 +222,7 @@ ContinueMenu:
 	db OPTION
 	db -1
 
+if DEF(_DEMO)
 PlayPokemonMenu:
 	db 2
 	db PLAY_POKEMON
@@ -228,6 +235,7 @@ PlayPokemonSetTimeMenu:
 	db OPTION
 	db SET_TIME
 	db -1
+endc
 
 MainMenuOptionSetTime::
 	callfar SetTime

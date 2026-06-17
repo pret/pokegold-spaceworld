@@ -3,6 +3,7 @@ INCLUDE "constants.asm"
 SECTION "engine/movie/oak_speech.asm", ROMX
 
 DemoStart::
+if DEF(_DEMO)
 	ld de, OakPic
 	lb bc, BANK(OakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -19,6 +20,7 @@ DemoStart::
 	ldh [rOBP0], a
 	call DemoSetUpPlayer
 	jp IntroCleanup
+endc
 
 GameStart::
 	ld de, OakPic
@@ -345,6 +347,7 @@ DebugKeyItemsList::
 	db ITEM_BICYCLE
 	db $FF
 
+if DEF(_DEMO)
 DemoSetUpPlayer::
 	ld hl, wPlayerName
 	ld de, DemoPlayerName
@@ -380,6 +383,7 @@ if DEF(_GOLD)
 endc
 if DEF(_SILVER)
 	db "サトシ@"
+endc
 endc
 
 OakSpeechDemo::

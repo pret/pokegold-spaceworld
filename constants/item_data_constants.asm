@@ -13,7 +13,7 @@ DEF ITEMATTR_STRUCT_LENGTH EQU const_value
 	const_def 1
 	const ITEM     ; 1
 	const KEY_ITEM ; 2
-	const BALL     ; 3
+	const BALL     ; 3 (Disabled in Demo Mode)
 	const TM_HM    ; 4
 
 ; item menu types
