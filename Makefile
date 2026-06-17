@@ -5,7 +5,7 @@ CORRECTEDROMS := $(ROMS:%.gb=%-correctheader.gb)
 GOLD_BASEROM := baserom-gold.gb
 SILVER_BASEROM := baserom-silver.gb
 
-DIRS := home engine data gfx audio maps scripts ram garbage
+DIRS := home engine data gfx audio maps scripts ram dumps garbage
 FILES :=
 
 BUILD := build

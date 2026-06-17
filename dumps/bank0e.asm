@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank0e.asm", ROMX
+SECTION "dumps/bank0e.asm", ROMX
 
 ; START OF: engine/battle/ai/items.asm
 
@@ -2543,7 +2543,8 @@ TrainerClassAttributes:
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-SECTION "engine/dumps/bank0e.asm@ReadTrainerParty", ROMX
+
+SECTION "dumps/bank0e.asm@ReadTrainerParty", ROMX
 
 ; START OF: "engine/battle/read_trainer_party.asm"
 

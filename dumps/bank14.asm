@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank14.asm@CopyMonToTempMon", ROMX
+SECTION "dumps/bank14.asm@CopyMonToTempMon", ROMX
 
 CopyMonToTempMon::
 	ld a, [wCurPartyMon]
@@ -151,7 +151,8 @@ GetTypeName::
 	ld bc, TYPE_NAME_LENGTH
 	jp CopyBytes
 
-SECTION "engine/dumps/bank14.asm@GetTrainerClassName_Old", ROMX
+
+SECTION "dumps/bank14.asm@GetTrainerClassName_Old", ROMX
 
 GetTrainerClassName_Old::
 ; Seemingly unreferenced.
@@ -1026,7 +1027,8 @@ ListMovePP::
 	jr nz, .load_loop
 	ret
 
-SECTION "engine/dumps/bank14.asm@Party Menu Routines", ROMX
+
+SECTION "dumps/bank14.asm@Party Menu Routines", ROMX
 
 ClearGraphicsForPartyMenu::
 	ldh a, [rLCDC]

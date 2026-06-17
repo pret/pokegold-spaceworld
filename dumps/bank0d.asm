@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank0d.asm@DoPlayerTurn", ROMX
+SECTION "dumps/bank0d.asm@DoPlayerTurn", ROMX
 DoPlayerTurn:
 	xor a
 	ldh [hBattleTurn], a

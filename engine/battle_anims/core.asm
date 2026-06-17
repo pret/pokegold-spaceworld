@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank33.asm", ROMX
+SECTION "engine/battle_anims/core.asm", ROMX
 
 QueueBattleAnimation:
 	ld hl, wActiveAnimObjects

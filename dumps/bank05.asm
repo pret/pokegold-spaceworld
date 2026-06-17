@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank05.asm", ROMX
+SECTION "dumps/bank05.asm", ROMX
 
 ; Early duplicate of PlayerHouse2FRadioText, which is present in the map's bank in the final game.
 ; Uses the long "ポケモン" and "⋯⋯⋯⋯" instead of their shortcuts, and lacks the final sentence.

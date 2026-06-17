@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/dumps/bank03.asm@CheckTrainerBattle", ROMX
+SECTION "dumps/bank03.asm@CheckTrainerBattle", ROMX
 
 _CheckTrainerBattle:
 	xor a

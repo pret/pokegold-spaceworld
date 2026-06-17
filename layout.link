@@ -141,7 +141,7 @@ ROMX $03
 	"engine/overworld/spawn_points.asm"
 	"data/maps/spawn_points.asm"
 	"data/tileset_headers.asm"
-	"engine/dumps/bank03.asm@CheckTrainerBattle"
+	"dumps/bank03.asm@CheckTrainerBattle"
 	"engine/items/inventory.asm@Inventory"
 	"engine/smallflag.asm"
 	"engine/pokemon/health.asm@HealParty"
@@ -184,7 +184,7 @@ ROMX $05
 	"data/overworld_sprites.asm"
 	"engine/menu/empty_sram.asm"
 	"engine/events/pokecenter_pc.asm"
-	"engine/dumps/bank05.asm"
+	"dumps/bank05.asm"
 	"garbage.asm@Bank 05 Garbage"
 
 ROMX $06
@@ -248,13 +248,13 @@ ROMX $0c
 	"garbage.asm@Bank 0c Garbage"
 
 ROMX $0d
-	"engine/dumps/bank0d.asm@DoPlayerTurn"
+	"dumps/bank0d.asm@DoPlayerTurn"
 	"garbage.asm@Bank 0d Garbage"
 
 ROMX $0e
-	"engine/dumps/bank0e.asm"
+	"dumps/bank0e.asm"
 	"data/trainers/class_names.asm"
-	"engine/dumps/bank0e.asm@ReadTrainerParty"
+	"dumps/bank0e.asm@ReadTrainerParty"
 	"data/trainers/parties.asm@Trainer Parties"
 	"garbage.asm@Bank 0e Garbage"
 
@@ -289,10 +289,10 @@ ROMX $13
 	"gfx.asm@Bank 13 Tilesets Ship Port"
 
 ROMX $14
-	"engine/dumps/bank14.asm@CopyMonToTempMon"
+	"dumps/bank14.asm@CopyMonToTempMon"
 	"data/types/names.asm"
-	"engine/dumps/bank14.asm@GetTrainerClassName_Old"
-	"engine/dumps/bank14.asm@Party Menu Routines"
+	"dumps/bank14.asm@GetTrainerClassName_Old"
+	"dumps/bank14.asm@Party Menu Routines"
 	"data/pokemon/base_stats.asm"
 	"data/pokemon/names.asm"
 	"gfx.asm@PKMN Sprite Bank List"
@@ -758,7 +758,7 @@ ROMX $32
 
 ROMX $33
 	"engine/battle_anims/anim_commands.asm"
-	"engine/dumps/bank33.asm"
+	"engine/battle_anims/core.asm"
 	"engine/battle_anims/functions.asm"
 	"engine/battle_anims/helpers.asm"
 
