@@ -1516,7 +1516,7 @@ PokerMinigame_SetCardColor:
 	add $03
 	ld [hli], a
 	ld [hl], $0A
-	callfar Function9645
+	callfar LoadPokerCardPalettes
 	ret
 
 .ColTable:

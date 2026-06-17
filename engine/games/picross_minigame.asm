@@ -1765,7 +1765,7 @@ Picross_ApplyTileGFXCommon:
 	ld [hl], a
 	jr .finish
 
-.asm_e3516 ; unreferenced
+.clear ; unreferenced
 	ld a, b
 	xor $ff
 	ld e, a
@@ -1773,7 +1773,7 @@ Picross_ApplyTileGFXCommon:
 	and e
 	ld [hl], a
 	pop af
-
+; fallthrough
 .finish
 	pop de
 	inc hl

@@ -6641,7 +6641,7 @@ BattleCommand_Substitute:
 	jr .played_anim
 
 .skip_anim
-	callfar Functioncc000_2
+	callfar AnimationSubstitute
 
 .played_anim
 	ld hl, MadeSubstituteText
@@ -7172,7 +7172,7 @@ BattleCommand_Transform:
 	jr .anim_played
 
 .skip_anim
-	callfar Functioncc000_2
+	callfar AnimationSubstitute
 
 .anim_played
 	xor a

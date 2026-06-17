@@ -369,37 +369,37 @@ StatsScreenMain::
 	ldh [hMapAnims], a
 	ld c, 1
 	ld b, 0
-	ld hl, Function50340
-.asm_502fc
+	ld hl, LoadPinkPage
+.StatsScreen_LoadPage
 	push bc
-	ld de, .asm_50302
+	ld de, .done_loading
 	push de
 	jp hl
 
-.asm_50302
+.done_loading
 	pop bc
-.asm_50303
+.joypad_loop
 	call GetJoypadDebounced
 	ldh a, [hJoySum]
 	and (D_LEFT | D_RIGHT | B_BUTTON | A_BUTTON)
-	jr z, .asm_50303
+	jr z, .joypad_loop
 	bit B_BUTTON_F, a
-	jr nz, .asm_50333
+	jr nz, .b_button
 	bit D_LEFT_F, a
-	jr nz, .asm_5031e
+	jr nz, .d_left
 	inc c
 	ld a, 3
 	cp c
-	jr nc, .asm_50323
+	jr nc, .StatsScreen_JumpToLoadPageFunction
 	ld c, 1
-	jr .asm_50323
+	jr .StatsScreen_JumpToLoadPageFunction
 
-.asm_5031e
+.d_left
 	dec c
-	jr nz, .asm_50323
+	jr nz, .StatsScreen_JumpToLoadPageFunction
 	ld c, 3
-.asm_50323
-	ld hl, .data_5033a
+.StatsScreen_JumpToLoadPageFunction
+	ld hl, .StatsScreen_LoadPageJumptable
 	dec c
 	ld b, 0
 	add hl, bc
@@ -409,18 +409,22 @@ StatsScreenMain::
 	ld l, a
 	inc c
 	ld b, 1
-	jr .asm_502fc
+	jr .StatsScreen_LoadPage
 
-.asm_50333
+.b_button
 	call ClearBGPalettes
 	pop af
 	ldh [hMapAnims], a
 	ret
 
-.data_5033a
-	dw Function50340, Function504e5, Function50562
+.StatsScreen_LoadPageJumptable
+	table_width 2
+	dw LoadPinkPage
+	dw LoadGreenPage
+	dw LoadBluePage
+	assert_table_length 3 ; TODO: NUM_STAT_PAGES
 
-Function50340::
+LoadPinkPage::
 	call WaitBGMap
 	xor a
 	ldh [hBGMapMode], a
@@ -429,7 +433,7 @@ Function50340::
 	ld [wCurSpecies], a
 	ld a, b
 	and a
-	jr nz, .asm_503b3
+	jr nz, .draw_page
 	push bc
 	hlcoord 1, 0
 	ld [hl], $74
@@ -452,9 +456,9 @@ Function50340::
 	push bc
 	call GetGender
 	ld a, '♂'
-	jr c, .asm_50384
+	jr c, .done_status
 	ld a, '♀'
-.asm_50384
+.done_status
 	pop hl
 	ld [hl], a
 	hlcoord 1, 12
@@ -468,12 +472,12 @@ Function50340::
 	ld bc, SCREEN_WIDTH
 	ld d, SCREEN_HEIGHT
 
-.place_vertical_divider
+.vertical_divider
 	ld a, $31
 	ld [hl], a
 	add hl, bc
 	dec d
-	jr nz, .place_vertical_divider
+	jr nz, .vertical_divider
 
 	inc a
 	hlcoord 2, 16
@@ -485,10 +489,10 @@ Function50340::
 	inc a
 	ld [hl], a
 	pop bc
-.asm_503b3
+.draw_page
 	push bc
 	ld b, 1
-	call Function505d9
+	call StatsScreen_LoadPageIndicators
 	hlcoord 8, 0
 	ld bc, TextCommands
 	call ClearBox
@@ -512,12 +516,12 @@ Function50340::
 	hlcoord 15, 4
 	ld a, [wMonType]
 	cp 2
-	jr z, .asm_503f5
+	jr z, .StatusOK
 	push hl
 	ld de, wTempMonStatus
 	call PlaceStatusString
 	pop hl
-.asm_503f5
+.StatusOK
 	ld de, StatusText_OK
 	call z, PlaceString
 	hlcoord 14, 6
@@ -534,12 +538,12 @@ Function50340::
 
 	ld a, [wTempMonLevel]
 	push af
-	cp 100
-	jr z, .asm_50420
+	cp MAX_LEVEL
+	jr z, .got_level
 
 	inc a
 	ld [wTempMonLevel], a
-.asm_50420
+.got_level
 	hlcoord 16, 14
 	call PrintLevel
 
@@ -645,12 +649,12 @@ StatusText_Ato:
 StatusText_De:
 	db "で@"
 
-Function504e5::
+LoadGreenPage::
 	call WaitBGMap
 	xor a
 	ldh [hBGMapMode], a
 	ld b, 2
-	call Function505d9
+	call StatsScreen_LoadPageIndicators
 
 	hlcoord 8, 0
 	ld bc, TextCommands
@@ -663,16 +667,16 @@ Function504e5::
 	ld a, [wTempMonItem]
 	and a
 	ld de, .NoItem
-	jr z, .asm_50511
+	jr z, .got_item_name
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-.asm_50511
+.got_item_name
 	hlcoord 11, 2
 	call PlaceString
 
 	ld hl, wTempMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
 
 	hlcoord 8, 4
@@ -685,13 +689,13 @@ Function504e5::
 	call PlaceString
 
 	hlcoord 9, 6
-	ld a, $3c
-	ld [wcdc3], a
+	ld a, SCREEN_WIDTH * 3
+	ld [wListMovesLineSpacing], a
 	call ListMoves
 
 	hlcoord 11, 7
-	ld a, $3c
-	ld [wcdc3], a
+	ld a, SCREEN_WIDTH * 3
+	ld [wListMovesLineSpacing], a
 	call ListMovePP
 
 	call WaitBGMap
@@ -708,12 +712,12 @@ Function504e5::
 .Moves
 	db "　もちわざ　@"
 
-Function50562::
+LoadBluePage::
 	call WaitBGMap
 	xor a
 	ldh [hBGMapMode], a
 	ld b, 3
-	call Function505d9
+	call StatsScreen_LoadPageIndicators
 
 	hlcoord 8, 0
 	ld bc, TextCommands
@@ -766,7 +770,7 @@ Function50562::
 	dw wBoxMonOTs
 	dw wBufferMonOT
 
-Function505d9::
+StatsScreen_LoadPageIndicators::
 	hlcoord 1, 14
 	ld a, $36
 	call .load_square
@@ -942,7 +946,7 @@ ListMovePP::
 	sub c
 	ld b, a
 	push hl
-	ld a, [wcdc3]
+	ld a, [wListMovesLineSpacing]
 	ld e, a
 	ld d, 0
 	ld a, $3e ; P
@@ -999,7 +1003,7 @@ ListMovePP::
 	lb bc, 1, 2
 	call PrintNumber
 	pop hl
-	ld a, [wcdc3]
+	ld a, [wListMovesLineSpacing]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -1027,10 +1031,10 @@ SECTION "engine/dumps/bank14.asm@Party Menu Routines", ROMX
 ClearGraphicsForPartyMenu::
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
-	jr z, .asm_5075f
+	jr z, .InitPartyMenuGFX
 	call ClearBGPalettes
 
-.asm_5075f
+.InitPartyMenuGFX
 	ld hl, wStateFlags
 	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call ClearSprites
@@ -1051,7 +1055,7 @@ OpenPartyMenu::
 	ld hl, wOptions
 	set NO_TEXT_SCROLL_F, [hl]
 
-	call .SetMenuAttributes
+	call InitPartyMenu
 	call InitPartyMenuLayout
 	call PartyMenuSelect
 
@@ -1062,11 +1066,11 @@ OpenPartyMenu::
 	ldh [hMapAnims], a
 	ret
 
-.SetMenuAttributes:
+InitPartyMenu:
 	call LoadFontsBattleExtra
 	xor a
 	ld [wMonType], a
-	ld de, Data_507c7
+	ld de, PartyMenu2DMenuData
 	call SetMenuAttributes
 
 	ld a, [wPartyCount]
@@ -1076,26 +1080,31 @@ OpenPartyMenu::
 	ld a, [wFailedToFlee]
 	and a
 	ld a, $03
-	jr z, .asm_507b4
+	jr z, .cancel
 	xor a ; FALSE
 	ld [wFailedToFlee], a
 	ld a, $01
-.asm_507b4
+.cancel
 	ld [wMenuJoypadFilter], a
 	ld a, [wPartyMenuCursor]
 	and a
-	jr z, .asm_507c1
+	jr z, .skip
 	inc b
 	cp b
-	jr c, .asm_507c3
-.asm_507c1
+	jr c, .done
+.skip
 	ld a, $01
-.asm_507c3
+.done
 	ld [wMenuCursorY], a
 	ret
 
-Data_507c7:
-	db $01, $00, $00, $01, $60, $00, $20, $00
+PartyMenu2DMenuData:
+	db 1, 0 ; cursor start y, x
+	db 0, 1 ; rows, columns
+	db _2DMENU_WRAP_UP_DOWN | _2DMENU_ENABLE_SPRITE_ANIMS ; flags 1
+	db 0 ; flags 2
+	dn 2, 0 ; cursor offset
+	db 0 ; accepted buttons
 
 PartyMenuSelect::
 	call StaticMenuJoypad
@@ -1106,12 +1115,12 @@ PartyMenuSelect::
 	ld b, a
 	ld a, [wSelectedSwapPosition]
 	and a
-	jp nz, .asm_50808
+	jp nz, .swap_mons
 	ld a, [wPartyCount]
 	and a
-	jr z, .asm_50806
+	jr z, .exitmenu
 	bit 1, b
-	jr nz, .asm_50806
+	jr nz, .exitmenu
 
 	ld a, [wMenuCursorY]
 	dec a
@@ -1127,14 +1136,14 @@ PartyMenuSelect::
 	and a
 	ret
 
-.asm_50806
+.exitmenu
 	scf
 	ret
-.asm_50808
-	bit 1, b
-	jr nz, .asm_5080f
+.swap_mons
+	bit B_BUTTON_F, b
+	jr nz, .done
 	call _SwitchPartyMons
-.asm_5080f
+.done
 	call PartyMenu_ClearCursor
 	xor a
 	ld [wSelectedSwapPosition], a
@@ -1156,7 +1165,7 @@ InitPartyMenuLayout::
 	push af
 	xor a
 	ld [wCurPartyMon], a
-	ld [wcce1], a
+	ld [wSGBPals], a
 .loop
 	ld a, [de]
 	cp -1
@@ -1201,7 +1210,7 @@ WritePartyMenuTilemapAndText::
 	push af
 	xor a
 	ld [wCurPartyMon], a
-	ld [wcce1], a
+	ld [wSGBPals], a
 .loop
 	ld a, [de]
 	cp -1
@@ -1557,14 +1566,14 @@ _GrewToLevelText:
 
 SetPartyHPBarPalette::
 	ld hl, wHPPals
-	ld a, [wcce1]
+	ld a, [wSGBPals]
 	ld c, a
 	ld b, 0
 	add hl, bc
 	call SetHPPal
 	ld b, SGB_PARTY_MENU_HP_PALS
 	call GetSGBLayout
-	ld hl, wcce1
+	ld hl, wSGBPals
 	inc [hl]
 	ret
 
@@ -1664,11 +1673,11 @@ GetMonBackpic::
 ListMoves::
 	ld de, wListMoves_MoveIndicesBuffer
 	ld b, $00
-.asm_50c03
+.moves_loop
 	ld a, [de]
 	inc de
 	and a
-	jr z, .asm_50c36
+	jr z, .no_more_moves
 	push de
 	push hl
 	push hl
@@ -1693,13 +1702,13 @@ ListMoves::
 	pop bc
 	pop de
 	ld a, b
-	cp $04
-	jr z, .asm_50c47
-	jr .asm_50c03
+	cp NUM_MOVES
+	jr z, .done
+	jr .moves_loop
 
-.asm_50c36
+.no_more_moves
 	ld a, b
-.asm_50c37
+.nonmove_loop
 	push af
 	ld [hl], $e3
 	ld a, [wHPBarMaxHP]
@@ -1708,9 +1717,9 @@ ListMoves::
 	add hl, bc
 	pop af
 	inc a
-	cp $04
-	jr nz, .asm_50c37
-.asm_50c47
+	cp NUM_MOVES
+	jr nz, .nonmove_loop
+.done
 	ret
 
 InitList::
@@ -1946,20 +1955,19 @@ GrowthRates:
 	growth_rate 5, 4,   0,   0,   0 ; Slow
 
 _SwitchPartyMons::
-	; replace instances of wHPBarOldHP with wcdc5, perhaps?
 	ld a, [wSelectedSwapPosition]
 	dec a
-	ld [wHPBarOldHP], a
+	ld [wSwitchMonFrom], a
 	ld b, a
 	ld a, [wMenuCursorY]
 	dec a
-	ld [wcdc4], a
+	ld [wSwitchMonTo], a
 	cp b
 	jr z, .skip
 	call .SwapMonAndMail
-	ld a, [wcdc5]
+	ld a, [wSwitchMonFrom]
 	call .ClearSprite
-	ld a, [wcdc4]
+	ld a, [wSwitchMonTo]
 	call .ClearSprite
 .skip
 	ret
@@ -1992,13 +2000,13 @@ _SwitchPartyMons::
 	push de
 	push bc
 	ld bc, wPartySpecies
-	ld a, [wcdc4]
+	ld a, [wSwitchMonTo]
 	ld l, a
 	ld h, 0
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld a, [wcdc5]
+	ld a, [wSwitchMonFrom]
 	ld l, a
 	ld h, 0
 	add hl, bc
@@ -2008,15 +2016,15 @@ _SwitchPartyMons::
 	ld [hl], a
 	pop af
 	ld [de], a
-	ld a, [wcdc4]
+	ld a, [wSwitchMonTo]
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
-	ld de, wcc3a
+	ld de, wSwitchItemBuffer
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wcdc5]
+	ld a, [wSwitchMonFrom]
 	ld hl, wPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -2025,58 +2033,58 @@ _SwitchPartyMons::
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	pop de
-	ld hl, wcc3a
+	ld hl, wTempBoxName
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [wcdc4]
+	ld a, [wSwitchMonTo]
 	ld hl, wPartyMonOTs
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
-	ld a, [wcdc5]
+	ld a, [wSwitchMonFrom]
 	ld hl, wPartyMonOTs
 	call SkipNames
 	pop de
 	push hl
 	call .CopyName
 	pop de
-	ld hl, wcc3a
+	ld hl, wSwitchItemBuffer
 	call .CopyName
 	ld hl, wPartyMonNicknames
-	ld a, [wcdc4]
+	ld a, [wSwitchMonTo]
 	call SkipNames
 	push hl
 	call .CopyNameToSwitchMonBuffer
 	ld hl, wPartyMonNicknames
-	ld a, [wcdc5]
+	ld a, [wSwitchMonFrom]
 	call SkipNames
 	pop de
 	push hl
 	call .CopyName
 	pop de
-	ld hl, wcc3a
+	ld hl, wSwitchItemBuffer
 	call .CopyName
-	ld hl, $ba68    ; Buffer somewhere in SRAM. Needs investigation
-	ld a, [wcdc4]
-	ld bc, $0028    ; todo: Constantify this
+	ld hl, sPartyMon1MailMessage
+	ld a, [wSwitchMonTo]
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
-	ld de, wcc3a
-	ld bc, $0028
+	ld de, wSwitchItemBuffer
+	ld bc, MAIL_STRUCT_LENGTH
 	ld a, $02
 	call OpenSRAM
 	call CopyBytes
-	ld hl, $ba68
-	ld a, [wcdc5]
-	ld bc, $0028
+	ld hl, sPartyMon1MailMessage
+	ld a, [wSwitchMonFrom]
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	pop de
 	push hl
-	ld bc, $0028
+	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	pop de
-	ld hl, wcc3a
-	ld bc, $0028
+	ld hl, wSwitchItemBuffer
+	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	pop bc
@@ -2085,7 +2093,7 @@ _SwitchPartyMons::
 	ret
 
 .CopyNameToSwitchMonBuffer
-	ld de, wcc3a
+	ld de, wSwitchItemBuffer
 
 .CopyName
 	ld bc, PLAYER_NAME_LENGTH

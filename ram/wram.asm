@@ -244,9 +244,7 @@ wCurReelYCoord:: db
 	ds 2
 wSlotBuildingMatch:: db
 wSlotsDataEnd::
-	ds 2
-wc51a:: ds 1
-	ds 25
+	ds 28
 wSlotsEnd:: db
 
 NEXTU
@@ -316,10 +314,9 @@ wDexCurUnownIndex::
 wDexConvertedMonType:: db
 
 wDexSearchResultCount:: db
-wc5e3:: db
-wc5e4:: db
-wc5e5:: db
-wc5e6:: db
+
+	ds 4
+
 wDexPlaySlowpokeAnimation:: db
 
 ENDU
@@ -399,7 +396,7 @@ wPikachuMinigamePikachuNextAnim:: ds 1
 
 wPikachuMinigameControlEnable:: ds 1
 
-wc606:: ds 1 ; written to, but is this read from?
+wPikachuMinigameJumpCounter:: ds 1 ; written to, but is this read from?
 
 wPikachuMinigamePikachuYOffset:: ds 1
 wPikachuMinigameNoteTimer:: ds 1
@@ -417,11 +414,11 @@ wPikachuMinigameTimeFrames:: ds 1
 wPikachuMinigameTimeSeconds:: ds 1
 
 ; are these two used?
-wc613:: ds 1
-wc614:: ds 1
+wPikachuMinigameTimeMinutes:: ds 1
+wPikachuMinigameTimeHours:: ds 1
 
 wPikachuMinigameRedrawTimer:: ds 1
-wc616:: ds 1
+wPikachuMinigameMapOffset:: ds 1
 wPikachuMinigameScrollSpeed:: ds 1
 
 wPikachuMinigameColumnFlags:: ds 1
@@ -844,10 +841,9 @@ wBattleTransitionCounter:: db
 UNION
 wBattleTransitionSineWaveOffset::
 wBattleTransitionSpinQuadrant::
-wFrameCounter2::
 wIntroSceneTimer::
 wTrainerGearCard::
-wcb60:: ds 1
+wFrameCounter2:: ds 1
 
 wTrainerGearRadioIndex::
 wSlotReelIconDelay:: db
@@ -1000,7 +996,6 @@ wDefaultSpawnPoint::
 
 UNION
 
-wcc3a::
 wChargeMoveNum::
 wPrevPartyLevel::
 wRodResponse_Old::
@@ -1109,7 +1104,7 @@ wSGB:: db
 
 SECTION "CCD0", WRAM0[$CCD0]
 
-wccd0:: ds 1
+wSGBPalBuffer:: ds 1
 wPlayerHPPal:: ds 1
 wEnemyHPPal:: ds 1
 
@@ -1118,24 +1113,7 @@ wCurHPPal:: db
 
 	ds 7
 
-; Todo: Replace instances of wcce1-f4 with "wSGBPals + #"
-wSGBPals:: ; ds PALPACKET_LENGTH * 3
-wcce1:: ds 1
-wcce2:: ds 1
-wcce3:: ds 1
-wcce4:: ds 1
-
-	ds 6
-
-wcceb:: ds 1
-
-	ds 5
-
-wccf1:: ds 1
-wccf2:: ds 1
-wccf3:: ds 1
-wccf4:: ds 1
-
+wSGBPals::  ds PALPACKET_LENGTH * 3
 
 SECTION "CD11", WRAM0[$CD11]
 
@@ -1167,12 +1145,6 @@ NEXTU
 
 	ds 2
 wGainBoostedExp:: db
-
-NEXTU
-
-wcd31:: db
-wcd32:: db
-wcd33:: db
 
 ENDU
 
@@ -1218,9 +1190,10 @@ wPredefBC::
 wFarCallBCBuffer::
 	dw
 
-wcd56:: ds 1
+	ds 1
+
 wNumMoves::
-wcd57:: ds 1
+	db
 
 wItemEffectSucceeded::
 wFieldMoveSucceeded::
@@ -1269,14 +1242,16 @@ wTalkingTargetType:: db
 ;bit 0 = has engaged NPC in dialogue
 ;bit 1 = has engaged sign in dialogue
 
-wcdb1:: ds 1
+	ds 1
+
 wHandlePlayerStep:: ds 1
 
 	ds 1
 
-wcdb4:: ds 1
-wcdb5:: ds 1
-wcdb6:: ds 1
+; Leftovers from pokered
+wAudioFadeOutControl:: db
+wAudioFadeOutCounterReloadValue:: db
+wAudioFadeOutCounter:: db
 
 	ds 2
 
@@ -1343,13 +1318,12 @@ NEXTU
 wExpToNextLevel:: ds 3
 
 NEXTU
-wcdc3:: db
-wcdc4:: db
-wcdc5:: db
-
-wcdc6:: db
+wVRAMViewerPage:: db
+wSwitchMonTo:: db
+wSwitchMonFrom:: db
+	ds 1
 wLinkBattleRNPreamble:: db
-wcdc8:: db
+wMapBGEventCount:: db
 	ds 1
 wEnemyItemUsed:: db
 

@@ -6,7 +6,7 @@ LoadSGBLayout:
 	ld a, b
 	cp SGB_RAM
 	jr nz, .not_ram
-	ld a, [wccd0]
+	ld a, [wSGBPalBuffer]
 .not_ram
 	cp SGB_PARTY_MENU_HP_PALS
 	jp z, SGB_ApplyPartyMenuHPPals
@@ -52,29 +52,29 @@ SGB_BattleGrayscale:
 	ret
 
 SGB_BattleColors:
-	ld hl, PalPacket_995c
+	ld hl, PalPacket_Battle
 	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 
 	ld a, [wPlayerSubStatus5]
 	ld hl, wBattleMon
-	call Function9567
-	jr c, .sub_92f7
+	call DeterminePaletteID_0
+	jr c, .pass1
 
 	ld e, $00
-	call Function9599
-.sub_92f7
+	call CheckShininessBattle
+.pass1
 	ld b, a
 	ld a, [wEnemySubStatus5]
 	ld hl, wTempEnemyMonSpecies
-	call Function9567
-	jr c, .sub_9308
+	call DeterminePaletteID_0
+	jr c, .pass2
 	ld e, $01
-	call Function9599
-.sub_9308
+	call CheckShininessBattle
+.pass2
 	ld c, a
-	ld hl, wcce2
+	ld hl, wSGBPals + 1
 	ld a, [wPlayerHPPal]
 	add $23
 	ld [hli], a
@@ -88,74 +88,74 @@ SGB_BattleColors:
 	inc hl
 	ld a, c
 	ld [hl], a
-	ld hl, wcce1
+	ld hl, wSGBPals
 	ld de, BlkPacket_Battle
 	ld a, $01
-	ld [wccd0], a
+	ld [wSGBPalBuffer], a
 	ret
 
 SGB_MoveList:
-	ld hl, PalPacket_995c
-	ld de, wcce1
+	ld hl, PalPacket_Battle
+	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld hl, wcce2
+	ld hl, wSGBPals + 1
 	ld [hl], $10
 	inc hl
 	inc hl
 	ld a, [wPlayerHPPal]
 	add $23
 	ld [hl], a
-	ld hl, wcce1
+	ld hl, wSGBPals
 	ld de, BlkPacket_MoveList
 	ret
 
 SGB_TownMap:
 	ld hl, PalPacket_TownMap
-	ld de, BlkPacket_986c
+	ld de, BlkPacket_Default
 	ret
 
 SGB_StatsScreenHPPals:
-	ld hl, PalPacket_995c
-	ld de, wcce1
+	ld hl, PalPacket_Battle
+	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld a, [wCurPartySpecies]
-	call Function956d
-	call Function957e
+	call DeterminePaletteID
+	call CheckShininessMenu
 	push af
-	ld hl, wcce2
+	ld hl, wSGBPals + 1
 	ld a, [wCurHPPal]
 	add $23
 	ld [hli], a
 	inc hl
 	pop af
 	ld [hl], a
-	ld hl, wcce1
+	ld hl, wSGBPals
 	ld de, BlkPacket_StatsScreen
 	ret
 
 SGB_PartyMenu:
 	ld hl, PalPacket_PartyMenu
-	ld de, wcce2
+	ld de, wSGBPals + 1
 	ret
 
 SGB_Pokedex:
 	ld hl, PalPacket_Pokedex
-	ld de, wcce1
+	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld a, [wCurPartySpecies]
-	call Function956d
-	ld hl, wcce4
+	call DeterminePaletteID
+	ld hl, wSGBPals + 3
 	ld [hl], a
-	ld hl, wcce1
+	ld hl, wSGBPals
 	ld de, BlkPacket_Pokedex
 	ret
 
 SGB_Pokedex_WaitBGMap:
 	ld hl, PalPacket_GSIntroCharizard
-	ld de, BlkPacket_986c
+	ld de, BlkPacket_Default
 	ret
 
 SGB_SlotMachine:
@@ -169,8 +169,8 @@ SGB_TitleScreen:
 	ret
 
 SGB_Diploma:
-	ld hl, PalPacket_9a3c
-	ld de, BlkPacket_986c
+	ld hl, PalPacket_StartMenu
+	ld de, BlkPacket_Default
 	ret
 
 SGB_GSIntro:
@@ -189,87 +189,87 @@ endr
 	ret
 
 .BlkPacketTable:
-	dw BlkPacket_986c, PalPacket_GSIntroShellderLapras
+	dw BlkPacket_Default, PalPacket_GSIntroShellderLapras
 	dw BlkPacket_GSIntroJigglypuffPikachu, PalPacket_GSIntroJigglypuffPikachu
-	dw BlkPacket_986c, PalPacket_GSIntroBlastoise
+	dw BlkPacket_Default, PalPacket_GSIntroBlastoise
 
 SGB_GFIntro:
 	ld hl, PalPacket_GFIntro
-	ld de, BlkPacket_986c
-	ld a, $08
-	ld [wccd0], a
+	ld de, BlkPacket_Default
+	ld a, SGB_DIPLOMA
+	ld [wSGBPalBuffer], a
 	ret
 
 SGB_PikachuMinigame:
 	ld hl, PalPacket_PikachuMinigame
-	ld de, BlkPacket_986c
+	ld de, BlkPacket_Default
 	ret
 
 SGB_Poker:
-	ld hl, BlkPacket_986c
-	ld de, wc51a
+	ld hl, BlkPacket_Default
+	ld de, wPokerWorkEnd
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld hl, PalPacket_Poker
-	ld de, BlkPacket_986c
+	ld de, BlkPacket_Default
 	ret
 
 SGB_MapPals:
-	ld hl, PalPacket_995c
-	ld de, wcce1
+	ld hl, PalPacket_Battle
+	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	call GetMapPalsIndex
-	ld hl, wcce2
+	ld hl, wSGBPals + 1
 	ld [hld], a
-	ld de, BlkPacket_986c
-	ld a, $09
-	ld [wccd0], a
+	ld de, BlkPacket_Default
+	ld a, SGB_MAP_PALS
+	ld [wSGBPalBuffer], a
 	ret
 
 SGB_Evolution:
 	push bc
-	ld hl, PalPacket_995c
-	ld de, wcce1
+	ld hl, PalPacket_Battle
+	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop bc
 	ld a, c
 	and a
-	ld a, $0e
-	jr nz, .sub_9437
+	ld a, PAL_BLACK
+	jr nz, .ret
 	ld a, [wPlayerHPPal]
-	call Function956d
-	call Function957e
-.sub_9437
-	ld [wcce2], a
-	ld hl, wcce1
-	ld de, BlkPacket_986c
+	call DeterminePaletteID
+	call CheckShininessMenu
+.ret
+	ld [wSGBPals + 1], a
+	ld hl, wSGBPals
+	ld de, BlkPacket_Default
 	ret
 
 SGB_TrainerCard:
-	ld hl, PalPacket_9a3c
-	ld de, BlkPacket_986c
+	ld hl, PalPacket_StartMenu
+	ld de, BlkPacket_Default
 	ret
 
 SGB12:
-	ld hl, PalPacket_995c
-	ld de, wcce1
+	ld hl, PalPacket_Battle
+	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld hl, BlkPacket_986c
-	ld de, wccf1
+	ld hl, BlkPacket_Default
+	ld de, wSGBPals + 16
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	call GetMapPalsIndex
-	ld hl, wcce2
+	ld hl, wSGBPals + 1
 	ld [hl], a
 	ld a, [wCurPartySpecies]
-	call Function956d
-	ld hl, wcce4
+	call DeterminePaletteID
+	ld hl, wSGBPals + 3
 	ld [hl], a
-	ld hl, wccf4
-	ld a, $05
+	ld hl, wSGBPals + 19
+	ld a, %00000101
 	ld [hli], a
 	ld a, [wMenuBorderLeftCoord]
 	ld [hli], a
@@ -279,46 +279,46 @@ SGB12:
 	ld [hli], a
 	ld a, [wMenuBorderBottomCoord]
 	ld [hl], a
-	ld hl, wcce1
-	ld de, wccf1
+	ld hl, wSGBPals
+	ld de, wSGBPals + 16
 	ret
 
 SGB_TrainerGear:
-	ld hl, PalPacket_995c
-	ld de, wcce1
+	ld hl, PalPacket_Battle
+	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld a, $16
-	ld [wcce2], a
+	ld [wSGBPals + 1], a
 	ld a, $30
-	ld [wcce4], a
-	ld hl, wcce1
+	ld [wSGBPals + 3], a
+	ld hl, wSGBPals
 	ld de, BlkPacket_TrainerGear
 	ret
 
 SGB_TrainerGearMap:
-	ld hl, PalPacket_995c
-	ld de, wcce1
+	ld hl, PalPacket_Battle
+	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld a, $16
-	ld [wcce2], a
+	ld [wSGBPals + 1], a
 	ld a, $26
-	ld [wcce4], a
-	ld hl, wcce1
+	ld [wSGBPals + 3], a
+	ld hl, wSGBPals
 	ld de, BlkPacket_TrainerGear
 	ret
 
 SGB_TrainerGearRadio:
-	ld hl, PalPacket_995c
-	ld de, wcce1
+	ld hl, PalPacket_Battle
+	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld a, $16
-	ld [wcce2], a
+	ld [wSGBPals + 1], a
 	ld a, $39
-	ld [wcce4], a
-	ld hl, wcce1
+	ld [wSGBPals + 3], a
+	ld hl, wSGBPals
 	ld de, BlkPacket_TrainerGear
 	ret
 
@@ -425,15 +425,15 @@ _LoadSGBLayout_ReturnFromJumpTable:
 	pop hl
 	jp PushSGBPals
 
-Function9567:
+DeterminePaletteID_0:
 	bit 3, a
-	ld a, $18
+	ld a, PAL_GRAYMON
 	ret nz
-	ld a, [hl]
 
-Function956d:
+	ld a, [hl]
+DeterminePaletteID:
 	and a
-	jr z, .sub_957a
+	jr z, .trainer
 	ld e, a
 	ld d, $00
 	ld hl, PokemonPalettes
@@ -441,42 +441,46 @@ Function956d:
 	ld a, [hl]
 	and a
 	ret
-.sub_957a
-	ld a, $0f
+.trainer
+	ld a, PAL_MEWMON
 	scf
 	ret
 
-Function957e:
+CheckShininessMenu:
 	push bc
 	push af
+
 	ld hl, wPartyMon1DVs
 	ld a, [wCurPartyMon]
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	call CheckShininess
 	ld b, $00
-	jr nc, .sub_9595
-	ld b, $0a
-.sub_9595
+	jr nc, .pass
+	ld b, PAL_SHINY_MEWMON - PAL_MEWMON
+.pass
 	pop af
 	add b
 	pop bc
 	ret
 
-Function9599:
+CheckShininessBattle:
 	push bc
 	push af
+
 	ld a, e
 	and a
 	ld a, [wMonSGBPaletteFlagsBuffer]
-	jr z, .sub_95a4
+	jr z, .player_mon_is_shiny
+
 	srl a
-.sub_95a4
+.player_mon_is_shiny
 	srl a
+
 	ld b, $00
-	jr nc, .sub_95ac
-	ld b, $0a
-.sub_95ac
+	jr nc, .pass
+	ld b, PAL_SHINY_MEWMON - PAL_MEWMON
+.pass
 	pop af
 	add b
 	pop bc
@@ -549,13 +553,13 @@ GetMonSGBPaletteFlags:
 
 InitPartyMenuPalettes:
 	ld hl, BlkPacket_PartyMenu
-	ld de, wcce2
+	ld de, wSGBPals + 1
 	ld bc, $0030
 	jp CopyBytes
 
 SGB_ApplyPartyMenuHPPals:
 	ld hl, wHPPals
-	ld a, [wcce1]
+	ld a, [wSGBPals]
 	ld e, a
 	ld d, $00
 	add hl, de
@@ -563,17 +567,17 @@ SGB_ApplyPartyMenuHPPals:
 	ld d, h
 	ld a, [de]
 	and a
-	ld e, $05
-	jr z, .sub_961d
+	ld e, %00000101
+	jr z, .next
 	dec a
-	ld e, $0a
-	jr z, .sub_961d
-	ld e, $0f
-.sub_961d
+	ld e, %00001010
+	jr z, .next
+	ld e, %00001111
+.next
 	push de
-	ld hl, wcceb
-	ld bc, $0006
-	ld a, [wcce1]
+	ld hl, wSGBPals + 10
+	ld bc, 6
+	ld a, [wSGBPals]
 	call AddNTimes
 	pop de
 	ld [hl], e
@@ -584,7 +588,7 @@ LoadMagikarpPalettes_Intro:
 	jp PushSGBPals
 
 LoadForestPalettes2_Intro:
-	ld hl, BlkPacket_986c
+	ld hl, BlkPacket_Default
 	jp PushSGBPals
 
 LoadVenusaurPalettes_Intro:
@@ -595,8 +599,8 @@ LoadCharizardPalettes_Intro:
 	ld hl, PalPacket_GSIntroCharizard
 	jp PushSGBPals
 
-Function9645:
-	ld hl, wc51a
+LoadPokerCardPalettes:
+	ld hl, wPokerWorkEnd
 	jp PushSGBPals
 
 PushSGBPals:

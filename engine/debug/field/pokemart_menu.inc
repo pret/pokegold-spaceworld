@@ -68,7 +68,7 @@ DebugMart_BuyMenuHeader:
 	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
 	ld b, 0
-	ld hl, wcc3a
+	ld hl, wBattleMenuRows
 	add hl, bc
 	add hl, bc
 	add hl, bc
@@ -280,7 +280,7 @@ DebugMart_LoadItems:
 	ld [hli], a
 	cp -1
 	jr nz, .load_loop
-	ld hl, wcc3a
+	ld hl, wBattleMenuRows
 	ld de, wCurMartCount + 1
 .load_loop2
 	ld a, [de]
