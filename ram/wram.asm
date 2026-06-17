@@ -314,10 +314,9 @@ wDexCurUnownIndex::
 wDexConvertedMonType:: db
 
 wDexSearchResultCount:: db
-wDexUnused1:: db
-wDexUnused2:: db
-wDexUnused3:: db
-wDexUnused4:: db
+
+	ds 4
+
 wDexPlaySlowpokeAnimation:: db
 
 ENDU

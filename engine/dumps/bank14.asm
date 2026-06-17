@@ -418,7 +418,7 @@ StatsScreenMain::
 	ret
 
 .data_5033a
-	dw Function50340, Function504e5, Function50562
+	dw Function50340, LoadGreenPage, Function50562
 
 Function50340::
 	call WaitBGMap
@@ -645,7 +645,7 @@ StatusText_Ato:
 StatusText_De:
 	db "で@"
 
-Function504e5::
+LoadGreenPage::
 	call WaitBGMap
 	xor a
 	ldh [hBGMapMode], a
@@ -663,10 +663,10 @@ Function504e5::
 	ld a, [wTempMonItem]
 	and a
 	ld de, .NoItem
-	jr z, .asm_50511
+	jr z, .got_item_name
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-.asm_50511
+.got_item_name
 	hlcoord 11, 2
 	call PlaceString
 
@@ -685,13 +685,13 @@ Function504e5::
 	call PlaceString
 
 	hlcoord 9, 6
-	ld a, $3c
-	ld [wMiscStringBuffer], a
+	ld a, SCREEN_WIDTH * 3
+	ld [wListMovesLineSpacing], a
 	call ListMoves
 
 	hlcoord 11, 7
-	ld a, $3c
-	ld [wMiscStringBuffer], a
+	ld a, SCREEN_WIDTH * 3
+	ld [wListMovesLineSpacing], a
 	call ListMovePP
 
 	call WaitBGMap
@@ -942,7 +942,7 @@ ListMovePP::
 	sub c
 	ld b, a
 	push hl
-	ld a, [wMiscStringBuffer]
+	ld a, [wListMovesLineSpacing]
 	ld e, a
 	ld d, 0
 	ld a, $3e ; P
@@ -999,7 +999,7 @@ ListMovePP::
 	lb bc, 1, 2
 	call PrintNumber
 	pop hl
-	ld a, [wMiscStringBuffer]
+	ld a, [wListMovesLineSpacing]
 	ld e, a
 	ld d, 0
 	add hl, de
