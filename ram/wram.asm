@@ -1193,8 +1193,7 @@ wFarCallBCBuffer::
 	ds 1
 
 wNumMoves::
-
-	ds 1
+	db
 
 wItemEffectSucceeded::
 wFieldMoveSucceeded::

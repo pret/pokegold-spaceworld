@@ -422,7 +422,7 @@ StatsScreenMain::
 	dw LoadPinkPage
 	dw LoadGreenPage
 	dw LoadBluePage
-	assert_table_length 3
+	assert_table_length 3 ; TODO: NUM_STAT_PAGES
 
 LoadPinkPage::
 	call WaitBGMap
@@ -1105,7 +1105,6 @@ PartyMenu2DMenuData:
 	db 0 ; flags 2
 	dn 2, 0 ; cursor offset
 	db 0 ; accepted buttons
-
 
 PartyMenuSelect::
 	call StaticMenuJoypad
