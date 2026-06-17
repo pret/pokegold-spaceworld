@@ -94,8 +94,8 @@ GiveItemPredef::
 	add_predef LeaveMapAnim_Old
 	add_predef EnterMapAnim_Old ; 50
 	add_predef PlayBattleAnim
-	add_predef AnimationSlideEnemyMonOff ; Redirects to a ret
-	add_predef AnimationSubstitute ; Redirects to a ret
+	add_predef AnimationSlideEnemyMonOff ; dummied out
+	add_predef AnimationSubstitute ; dummied out
 	add_predef FightDebugMenu
 	add_predef LoadItemData
 	dbw $ff, InexplicablyEmptyFunction ; 56
