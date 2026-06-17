@@ -4,6 +4,7 @@ SECTION "engine/battle_anims/anim_commands.asm", ROMX
 
 AnimationSlideEnemyMonOff:
 AnimationSubstitute:
+; Dummied out from pokered.
 	ret
 
 PlayBattleAnim:
