@@ -64,17 +64,17 @@ OldCityPokecenter2FText4:
 	ld hl, OldCityPokecenter2FTextString4
 	call OpenTextbox
 	callfar CheckTimeCapsuleCompatibility
-	jr c, .ret
+	jr c, .done
 	ld a, $05
 	call DeleteMapObject
-	jr .ret
+	jr .done
 ; unreferenced?
 	ld hl, OldCityPokecenter2FMovement1
 	ld a, $5
 	call LoadMovementDataPointer_KeepStateFlags
 	ld hl, $0000
 	nop
-.ret
+.done
 	ret
 
 OldCityPokecenter2FTextString4:
