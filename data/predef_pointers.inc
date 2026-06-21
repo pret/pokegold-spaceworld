@@ -98,4 +98,4 @@ GiveItemPredef::
 	add_predef AnimationSubstitute ; dummied out
 	add_predef FightDebugMenu
 	add_predef LoadItemData
-	dbw $ff, InexplicablyEmptyFunction ; 56
+	dbw $ff, DummyEndPredef ; 56

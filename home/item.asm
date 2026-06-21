@@ -1,7 +1,21 @@
 INCLUDE "constants.asm"
 
+SECTION "home/item.asm", ROM0
 
-SECTION "home/items.asm@TossItem", ROM0
+DoItemEffect::
+	farjp _DoItemEffect
+
+CheckTossableItem::
+	push hl
+	push de
+	push bc
+	callfar _CheckTossableItem
+	pop bc
+	pop de
+	pop hl
+	ret
+
+SECTION "home/item.asm@TossItem", ROM0
 
 TossItem:
 	ldh a, [hROMBank]
@@ -42,8 +56,7 @@ ReceiveItem::
 	pop bc
 	ret
 
-
-SECTION "home/items.asm@GiveItem", ROM0
+SECTION "home/item.asm@GiveItem", ROM0
 
 GiveItem::
 ; Give player quantity c of item b,
@@ -60,4 +73,22 @@ GiveItem::
 	call GetItemName
 	call CopyStringToStringBuffer2
 	scf
+	ret
+
+GiveMonToPlayer::
+; Give to the player Pokemon of species b at level c.
+	ld a, b
+	ld [wCurPartySpecies], a
+	ld a, c
+	ld [wCurPartyLevel], a
+	xor a
+	ld [wMonType], a
+	farjp Function1130a
+
+SECTION "home/item.asm@Call_GetItemAmount", ROM0
+
+Call_GetItemAmount::
+	predef GetItemAmount
+	ld a, b
+	and a
 	ret

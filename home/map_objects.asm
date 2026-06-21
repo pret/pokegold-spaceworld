@@ -20,13 +20,13 @@ GetMapObjectAttrPtr::
 	add hl, de
 	ret
 
-Unreferenced_Function15d1::
+Unreferenced_SelectMapObject::
 	ldh [hMapObjectIndex], a
 	call GetMapObject
 	call OpenDebugMenu
 	ret
 
-Unreferenced_Function15da::
+Unreferenced_UnselectMapObject::
 	ldh [hMapObjectIndex], a
 	callfar UnmaskObject
 	ldh a, [hMapObjectIndex]

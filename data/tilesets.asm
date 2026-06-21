@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "data/tileset_headers.asm", ROMX
+SECTION "data/tilesets.asm", ROMX
 
 MACRO tileset
 	db BANK(\1_GFX) ; shared bank
@@ -11,6 +11,7 @@ ENDM
 
 Tilesets:
 	; name, animation set
+	table_width TILESET_LENGTH
 	tileset SilentHill, TilesetGenericAnim
 	tileset OldCity, TilesetWaterAnim
 	tileset West, TilesetFlowerAnim
@@ -39,3 +40,4 @@ Tilesets:
 	tileset Ship, TilesetNoAnim
 	tileset ShipPort, TilesetNoAnim
 	tileset Forest, TilesetGenericAnim
+	assert_table_length NUM_TILESETS + 1

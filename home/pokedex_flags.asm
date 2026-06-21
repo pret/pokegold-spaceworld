@@ -1,39 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "home/misc_32c8.asm@Unknown 32c8", ROM0
-
-Call_GetItemAmount::
-	predef GetItemAmount
-	ld a, b
-	and a
-	ret
-
-GetTerminatingString::
-	ld hl, .EmptyString
-	ret
-
-.EmptyString:
-	db "@"
-
-SubtractSigned::
-	sub b
-	ret nc
-	cpl
-	add $1
-	scf
-	ret
-
-SECTION "home/misc_32c8.asm@Unknown 3686", ROM0
-
-GiveMonToPlayer::
-; Give to the player Pokemon of species b at level c.
-	ld a, b
-	ld [wCurPartySpecies], a
-	ld a, c
-	ld [wCurPartyLevel], a
-	xor a
-	ld [wMonType], a
-	farjp Function1130a
+SECTION "home/pokedex_flags.asm", ROM0
 
 WaitPressedAny::
 ; Waits for one of the buttons in d to be pressed.
