@@ -36,4 +36,3 @@ FieldDebug_ToggleNPCMovement:
 	db 2
 	db "とめる@"
 	db "うごかす@"
-

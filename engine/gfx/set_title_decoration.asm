@@ -30,4 +30,3 @@ SetTitleBGDecorationBorder:
 	dec c
 	jr nz, .loop
 	ret
-

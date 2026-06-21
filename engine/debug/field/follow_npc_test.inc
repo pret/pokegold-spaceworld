@@ -99,4 +99,3 @@ MenuHeaderCutsceneTest: ; unreferenced
 	db "つれあるかれデモ@"
 	db "ライバルおねえさん@"
 	db "さくせいちゅう@"
-

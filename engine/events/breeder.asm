@@ -191,7 +191,7 @@ _Breeder::
 .MenuData:
 	db STATICMENU_CURSOR
 	db 3
-	db "あずける@"	 ; Deposit
+	db "あずける@" ; Deposit
 	db "ひきとる@" ; Withdraw
 	db "やめる@" ; Cancel
 

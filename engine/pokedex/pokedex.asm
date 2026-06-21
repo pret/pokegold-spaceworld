@@ -1772,4 +1772,3 @@ _NewPokedexEntry:
 	and A_BUTTON | B_BUTTON
 	jr z, .wait_for_input
 	ret
-

@@ -269,4 +269,3 @@ FieldDebug_DoClearEventFlags:
 	pop hl
 	and a
 	ret
-

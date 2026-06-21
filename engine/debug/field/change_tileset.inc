@@ -36,4 +36,3 @@ FieldDebug_ChangeTileset:
 	db "セル１@"
 	db "セル２@"
 	db "セル３@"
-

@@ -127,7 +127,6 @@ LoadBattleAnimGFX:
 	pop bc
 	ret
 
-
 INCLUDE "data/battle_anims/framesets.inc"
 
 INCLUDE "data/battle_anims/oam.inc"

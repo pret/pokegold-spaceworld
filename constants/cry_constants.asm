@@ -39,4 +39,3 @@
 	const CRY_23 ; 23
 	const CRY_24 ; 24
 	const CRY_25 ; 25
-

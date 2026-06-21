@@ -94,4 +94,3 @@ OpenToolgearMenu:
 	db "６０びょう@"
 	db "２４じかん@"
 	db "けす@"
-

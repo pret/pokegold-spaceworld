@@ -62,4 +62,3 @@
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR,
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR,
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR,
-

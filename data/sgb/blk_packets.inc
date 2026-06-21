@@ -70,4 +70,3 @@ BlkPacket_TitleScreen:
 	attr_blk 1
 	attr_blk_data %111, 0,0,1, 00,00, 19,05
 	ds 8
-

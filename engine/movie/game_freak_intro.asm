@@ -222,7 +222,7 @@ GameFreakPresents_PlaceGameFreak:
 	ret
 
 .game_freak
-;	   G    A    M    E         F    R    E    A    K
+	;  G    A    M    E         F    R    E    A    K
 	db $80, $81, $82, $83, $8d, $84, $85, $83, $81, $86
 	db "@"
 
@@ -236,7 +236,7 @@ GameFreakPresents_PlacePresents:
 	ret
 
 .presents
-;          P R E S E N T S
+	;  P R E S E N T S
 	db $87, $88, $89, $8a, $8b, $8c
 	db "@"
 

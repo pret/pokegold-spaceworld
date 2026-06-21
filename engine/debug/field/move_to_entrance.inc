@@ -44,4 +44,3 @@ FieldDebug_MoveToRoute1Entrance:
 	text "とくていちてん　まで"
 	next "うごかします"
 	done
-

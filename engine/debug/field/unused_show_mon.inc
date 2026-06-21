@@ -12,4 +12,3 @@ FieldDebug_UnusedShowRandomMon: ; unreferenced
 	inc a
 	ld [wNumSetBits], a
 	ret
-

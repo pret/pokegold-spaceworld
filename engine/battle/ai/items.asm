@@ -36,7 +36,7 @@ AI_SwitchOrTryItem::
 	ld l, a
 	call Random
 	jp hl
-	
+
 INCLUDE "data/trainers/ai_pointers.inc"
 
 JugglerAI:

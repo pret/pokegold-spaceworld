@@ -1137,4 +1137,3 @@ ComposeMail_AnimateCursor:
 
 .YOffsets:
 	db $00, $08, $18, $20, $30
-

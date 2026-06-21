@@ -618,7 +618,7 @@ PlaceNonFaintStatus::
 	ld [hli], a
 	ld [hl], 'ひ'
 	ret
-	
+
 
 SECTION "engine/pokemon/party_menu.asm@PartyMenu_ClearCursor", ROMX
 

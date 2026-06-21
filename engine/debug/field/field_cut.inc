@@ -90,4 +90,3 @@ FieldDebug_FieldCut:
 	db METATILE_CUT_NE_TREE_SE
 	db METATILE_SMALL_TREE_SE
 	db -1
-

@@ -40,4 +40,3 @@ Cries::
 	dba Cry_23
 	dba Cry_24
 	dba Cry_25
-

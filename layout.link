@@ -344,7 +344,7 @@ ROMX $1f
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 11"
 	"gfx.asm@Annon Pic Ptrs and Pics"
 	"gfx/pokemon/egg.asm"
-	
+
 ROMX $20
 	"garbage.asm@Bank 20 Garbage"
 

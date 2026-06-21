@@ -165,4 +165,3 @@ FieldDebug_SetSurfDirection:
 	slow_step UP
 	slow_step LEFT
 	slow_step RIGHT
-

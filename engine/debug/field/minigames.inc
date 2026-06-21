@@ -83,4 +83,3 @@ FieldDebug_Minigames:
 	text "で　"
 	line "あそびますか？"
 	done
-

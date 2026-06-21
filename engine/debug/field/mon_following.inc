@@ -57,4 +57,3 @@ FieldDebug_PokemonFollowing:
 .UnableText:
 	text "だめです！！"
 	done
-

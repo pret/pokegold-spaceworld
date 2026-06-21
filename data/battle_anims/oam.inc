@@ -587,13 +587,11 @@ BattleAnimOAMData:
 	dbsprite  -3,  -1, 4, 4, $01, $0
 	dbsprite   1,  -1, 4, 4, $01, X_FLIP | Y_FLIP
 
-
 .OAMData_47:
 	dbsprite  -2,  -2, 0, 0, $00, X_FLIP
 	dbsprite   1,  -2, 0, 0, $00, $0
 	dbsprite  -2,   1, 0, 0, $00, X_FLIP | Y_FLIP
 	dbsprite   1,   1, 0, 0, $00, Y_FLIP
-
 
 .OAMData_48:
 	dbsprite  -1,  -3, 4, 0, $00, $0

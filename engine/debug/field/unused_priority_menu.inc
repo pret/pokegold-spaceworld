@@ -27,4 +27,3 @@ FieldDebug_UnusedSetPriority:
 	db 2
 	db "ゆうせん@"
 	db "ひゆうせん@"
-

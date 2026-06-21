@@ -1900,4 +1900,3 @@ PicrossSprites:
 ; TODO: Setting fixed bank $C for now before Pokecenter_GFX is ripped
 	picross_pattern PATTERN_TILESET, $c, Pokecenter_GFX + $200
 	picross_pattern PATTERN_NORMAL, PoliwrathSpriteGFX
-

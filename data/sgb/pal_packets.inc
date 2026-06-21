@@ -54,4 +54,3 @@ PalPacket_StartMenu:
 
 PalPacket_GFIntro:
 	sgb_pal_set GAME_FREAK, ROUTE, ROUTE, ROUTE
-

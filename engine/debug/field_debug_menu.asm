@@ -294,4 +294,3 @@ INCLUDE "engine/debug/field/unused_show_mon.inc"
 INCLUDE "engine/debug/field/unused_priority_menu.inc"
 
 INCLUDE "engine/debug/field/vram_viewer.inc"
-

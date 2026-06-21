@@ -61,4 +61,3 @@ FieldDebug_CheckTile:
 
 .HexadecimalNumbers:
 	db "０１２３４５６７８９ＡＢＣＤＥＦ"
-

@@ -263,4 +263,3 @@ PokemonCries::
 	mon_cry CRY_00,    0,  256 ; fd
 	mon_cry CRY_00,    0,  256 ; fe
 	mon_cry CRY_00,    0,  256 ; ff
-

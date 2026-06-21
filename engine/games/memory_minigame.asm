@@ -608,4 +608,3 @@ MemoryGame_AnimateCursor:
 	add a, 9
 	ld [hl], a
 	ret
-

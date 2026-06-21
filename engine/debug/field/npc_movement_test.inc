@@ -52,4 +52,3 @@ FieldDebug_NPCMovementTest:
 .NotHereText:
 	text "ここではだめです！"
 	done
-

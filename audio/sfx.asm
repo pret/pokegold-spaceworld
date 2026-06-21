@@ -2224,4 +2224,3 @@ Sfx_UnusedFanfare3_Ch8:
 	note F_, 4
 	note F#, 6
 	sound_ret
-

@@ -429,4 +429,3 @@ DisplayBGEventDetails:
 	and A_BUTTON | B_BUTTON | SELECT
 	jr z, .WaitInput
 	ret
-
