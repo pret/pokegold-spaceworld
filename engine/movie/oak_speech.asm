@@ -134,7 +134,7 @@ OverworldStart::
 
 SetUpGameEntry::
 	ld a, $04
-	ld [wd65e], a
+	ld [wMapIdStack], a
 	ld a, $F2
 	ldh [hMapEntryMethod], a
 	ld hl, wDebugFlags
@@ -146,7 +146,7 @@ SetUpGameEntry::
 	ld [wDefaultSpawnPoint], a
 	ld hl, GameStartPlacement
 	ld de, wMapGroup
-	ld bc, wd65e - wMapGroup
+	ld bc, wMapIdStack - wMapGroup
 	call CopyBytes
 	ret
 

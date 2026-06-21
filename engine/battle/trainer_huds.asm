@@ -19,7 +19,6 @@ ShowPlayerMonsRemaining:
 	ld hl, wPartyMon1HP
 	ld de, wPartyCount
 	call StageBallTilesData
-	; ldpixel wPlaceBallsX, 12, 12
 	ld a, 12 * TILE_WIDTH
 	ld hl, wPlaceBallsX
 	ld [hli], a
@@ -34,7 +33,6 @@ ShowOTTrainerMonsRemaining:
 	ld hl, wOTPartyMon1HP
 	ld de, wOTPartyCount
 	call StageBallTilesData
-	; ldpixel wPlaceBallsX, 9, 4
 	ld hl, wPlaceBallsX
 	ld a, 9 * TILE_WIDTH
 	ld [hli], a

@@ -6,14 +6,14 @@ MoveGrammar:
 ; 0: "[mon]の<LINE>[move]を　つかった!" ("[mon]<LINE>used [move]!")
 	db MOVE_SWORDS_DANCE
 	db MOVE_GROWTH
-	db $0
+	db 0 ; end set
 
 ; 1: "[mon]の<LINE>[move]した!" ("[mon]<LINE>did [move]!")
 	db MOVE_RECOVER
 	db MOVE_BIDE
 	db MOVE_SELFDESTRUCT
 	db MOVE_AMNESIA
-	db $0
+	db 0 ; end set
 
 ; 2: "[mon]の<LINE>[move]を　した!" ("[mon]<LINE>did [move]!")
 	db MOVE_MEDITATE
@@ -22,7 +22,7 @@ MoveGrammar:
 	db MOVE_MIMIC
 	db MOVE_DOUBLE_TEAM
 	db MOVE_BARRAGE
-	db $0
+	db 0 ; end set
 
 ; 3: "[mon]の<LINE>[move]　こうげき!" ("[mon]'s<LINE>[move] attack!")
 	db MOVE_POUND
@@ -71,7 +71,7 @@ MoveGrammar:
 	db MOVE_SHARPEN
 	db MOVE_SLASH
 	db MOVE_SUBSTITUTE
-	db $0
+	db 0 ; end set
 
 ; 4: "[mon]の<LINE>[move]!" ("[mon]'s<LINE>[move]!")
 ; Any move not listed above uses this grammar.

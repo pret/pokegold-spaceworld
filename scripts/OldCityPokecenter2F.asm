@@ -52,11 +52,11 @@ OldCityPokecenter2FText2:
 	ret
 
 OldCityPokecenter2FText3:
-	ld hl, Text947e3
+	ld hl, OldCityPokecenter2FTextString3
 	call OpenTextbox
 	ret
 
-Text947e3:
+OldCityPokecenter2FTextString3:
 	text "おりゃ！"
 	done
 
@@ -64,17 +64,17 @@ OldCityPokecenter2FText4:
 	ld hl, OldCityPokecenter2FTextString4
 	call OpenTextbox
 	callfar CheckTimeCapsuleCompatibility
-	jr c, .asm_9480c
+	jr c, .ret
 	ld a, $05
 	call DeleteMapObject
-	jr .asm_9480c
+	jr .ret
 ; unreferenced?
 	ld hl, OldCityPokecenter2FMovement1
 	ld a, $5
 	call LoadMovementDataPointer_KeepStateFlags
 	ld hl, $0000
 	nop
-.asm_9480c
+.ret
 	ret
 
 OldCityPokecenter2FTextString4:

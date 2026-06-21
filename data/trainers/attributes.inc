@@ -1,285 +1,284 @@
 ; Combination of pokered's TrainerPicAndMoneyPointers and the final game's TrainerClassAttributes.
-; The money values are leftover from Generation I, where they used BCD, whereas this build reads it like a normal byte.
 TrainerClassAttributes:
-; TRAINER_HAYATO (originally Youngster)
+; TRAINER_HAYATO
 	dw HayatoPic
-	db 21 ; originally: 15
+	db $15
 	littledt $ffff00 | AI_BASIC | AI_SETUP | AI_TYPES | AI_OFFENSIVE | AI_SMART | AI_OPPORTUNIST | AI_AGGRESSIVE | AI_CAUTIOUS
 	db 0
 
-; TRAINER_AKANE (originally Bug Catcher)
+; TRAINER_AKANE
 	dw AkanePic
-	db 16 ; originally 10
+	db $10
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_TSUKUSHI (originally Lass)
+; TRAINER_TSUKUSHI
 	dw TsukushiPic
-	db 21 ; originally 15
+	db $15
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_ENOKI (originally Sailor)
+; TRAINER_ENOKI
 	dw EnokiPic
-	db 48 ; originally 30
+	db $30
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_OKERA (originally Jr. Trainer Male)
+; TRAINER_OKERA
 	dw OkeraPic
-	db 32 ; originally 20
+	db $20
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_MIKAN (originally Jr. Trainer Female)
+; TRAINER_MIKAN
 	dw MikanPic
-	db 32 ; originally 20
+	db $20
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_BLUE (originally Pokémaniac)
+; TRAINER_BLUE
 	dw BluePic
-	db 80 ; originally 50
+	db $50
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_GAMA (originally SuperNerd)
+; TRAINER_GAMA
 	dw GamaPic
-	db 37 ; originally 25
+	db $25
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_RIVAL (originally Hiker)
+; TRAINER_RIVAL
 	dw RivalPic
-	db 53 ; originally 35
+	db $35
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_OKIDO (originally Biker)
+; TRAINER_OKIDO
 	dw OakPic
 	db $20
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_SAKAKI (originally Burglar)
+; TRAINER_SAKAKI
 	dw ProtagonistPic
 	db $90
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_PROTAGONIST (originally Engineer)
+; TRAINER_PROTAGONIST
 	dw ProtagonistPic
-	db 80 ; originally 50
+	db $50
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_SIBA (originally unused Juggler duplicate)
+; TRAINER_SIBA
 	dw KurtPic
-	db 53 ; originally 35
+	db $35
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_KASUMI (originally Fisher)
+; TRAINER_KASUMI
 	dw KurtPic
-	db 53 ; originally 35
+	db $35
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_KANNA (originally Swimmer)
+; TRAINER_KANNA
 	dw KurtPic
-	db 5
+	db $5
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_WATARU (originally Cue Ball)
+; TRAINER_WATARU
 	dw KurtPic
-	db 37 ; originally 25
+	db $25
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_GERUGE_MEMBER_M (originally Gambler)
+; TRAINER_GERUGE_MEMBER_M
 	dw KurtPic
-	db 112 ; originally 70
+	db $70
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_TRIO_1 (originally Beauty)
+; TRAINER_TRIO_1
 	dw KurtPic
-	db 112 ; originally 70
+	db $70
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_TRIO_2 (originally Psychic)
+; TRAINER_TRIO_2
 	dw KurtPic
-	db 16 ; originally 10
+	db $10
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_TRIO_3 (originally Rocker)
+; TRAINER_TRIO_3
 	dw KurtPic
-	db 37 ; originally 25
+	db $25
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_ROCKET_F (originally Juggler)
+; TRAINER_ROCKET_F
 	dw YoungsterPic
-	db 53 ; originally 35
+	db $35
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_YOUNGSTER (originally Tamer)
+; TRAINER_YOUNGSTER
 	dw YoungsterPic
-	db 64 ; originally 40
+	db $40
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_SCHOOLBOY (originally Bird Keeper)
+; TRAINER_SCHOOLBOY
 	dw SchoolboyPic
-	db 37 ; originally 25
+	db $25
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_FLEDGLING (originally Black Belt)
+; TRAINER_FLEDGLING
 	dw FledglingPic
-	db 37 ; originally 25
+	db $25
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_LASS (originally Rival 1)
+; TRAINER_LASS
 	dw LassPic
-	db 53 ; originally 35
+	db $35
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_GENIUS (originally Prof. Oak)
+; TRAINER_GENIUS
 	dw ProfessionalMPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_PROFESSIONAL_M (originally Chief)
+; TRAINER_PROFESSIONAL_M
 	dw ProfessionalMPic
-	db 48 ; originally 30
+	db $30
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_PROFESSIONAL_F (originally Scientist)
+; TRAINER_PROFESSIONAL_F
 	dw ProfessionalFPic
-	db 80 ; originally 50
+	db $50
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_BEAUTY (originally Giovanni)
+; TRAINER_BEAUTY
 	dw BeautyPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_POKEMANIAC (originally Rocket)
+; TRAINER_POKEMANIAC
 	dw PokemaniacPic
-	db 48 ; originally 30
+	db $30
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_ROCKET_M (originally Cooltrainer Male)
+; TRAINER_ROCKET_M
 	dw RocketMPic
-	db 53 ; originally 35
+	db $35
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_GENTLEMAN (originally Cooltrainer Female)
+; TRAINER_GENTLEMAN
 	dw TeacherMPic
-	db 53 ; originally 35
+	db $35
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_TEACHER_M (originally Bruno)
+; TRAINER_TEACHER_M
 	dw TeacherMPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_TEACHER_F (originally Brock)
+; TRAINER_TEACHER_F
 	dw TeacherFPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_MANCHILD (originally Misty)
+; TRAINER_MANCHILD
 	dw BugCatcherBoyPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_BUG_CATCHER_BOY (originally Lt. Surge)
+; TRAINER_BUG_CATCHER_BOY
 	dw BugCatcherBoyPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_FISHER (originally Erika)
+; TRAINER_FISHER
 	dw FisherPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_SWIMMER_M (originally Koga)
+; TRAINER_SWIMMER_M
 	dw SwimmerMPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_SWIMMER_F (originally Blaine)
+; TRAINER_SWIMMER_F
 	dw SwimmerFPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_SAILOR (originally Sabrina)
+; TRAINER_SAILOR
 	dw SuperNerdPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_SUPER_NERD (originally Gentleman)
+; TRAINER_SUPER_NERD
 	dw SuperNerdPic
-	db 112 ; originally 70
+	db $70
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_ENGINEER (originally Rival 2)
+; TRAINER_ENGINEER
 	dw EngineerPic
-	db 101 ; originally 65
+	db $65
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_ROCKER (originally Rival 3)
+; TRAINER_ROCKER
 	dw GreenPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_HIKER (originally Loreli)
+; TRAINER_HIKER
 	dw BikerPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_BIKER (originally Channeler)
+; TRAINER_BIKER
 	dw BikerPic
-	db 48 ; originally 30
+	db $30
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_ROCK_CLIMBER (originally Agatha)
+; TRAINER_ROCK_CLIMBER
 	dw BurglarPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
-; TRAINER_BURGLAR (originally Lance)
+; TRAINER_BURGLAR
 	dw BurglarPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
@@ -287,102 +286,102 @@ TrainerClassAttributes:
 
 ; TRAINER_FIREBREATHER
 	dw FirebreatherPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_JUGGLER
 	dw JugglerPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_BLACKBELT
 	dw BlackbeltPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_SPORTSMAN
 	dw SportsmanPic
-	db 112 ; originally 70
+	db $70
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_PSYCHIC
 	dw MediumPic
-	db 101 ; originally 65
+	db $65
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_KUNG_FU_MASTER
 	dw MediumPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_FORTUNE_TELLER
 	dw MediumPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_HOOLIGAN
 	dw MediumPic
-	db 48 ; originally 30
+	db $30
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_SAGE
 	dw MediumPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_MEDIUM
 	dw MediumPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_SOLDIER
 	dw SoldierPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_GERUGE_MEMBER_F
 	dw KimonoGirlPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_KIMONO_GIRL
 	dw KimonoGirlPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_TWINS
 	dw TwinsPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_GERUGE_MEMBER_M_2
 	dw TwinsPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_ELITE_FOUR_M
 	dw TwinsPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0
 
 ; TRAINER_ELITE_FOUR_F
 	dw TwinsPic
-	db 153 ; originally 99
+	db $99
 	littledt AI_BASIC | AI_SETUP | AI_TYPES
 	db 0

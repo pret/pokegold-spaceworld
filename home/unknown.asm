@@ -41,7 +41,7 @@ LoadSGBBorderOptions::
 
 SECTION "home/unknown.asm@Unknown_20f8", ROM0
 
-Function20f8::
+UnfreezeEverything::
 	call UnfreezeAllObjects
 	call UnfreezePlayer
 	ret

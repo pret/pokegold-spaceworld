@@ -78,7 +78,7 @@ PartyMenu_TextboxBackup::
 
 ; BUG: Supposed to wait for at most c frames until the player pushes a button. If c is 0, then wait indefinitely.
 ; However, there is a bit of a problem: it doesn't actually call DelayFrames at any point.
-; Presumably, this function was intended to loop at .unreferenced_3875 at one point,
+; Presumably, this function was intended to loop at .animate_and_delay_frame at one point,
 ; but they forgot to add a DelayFrame when they added the jump at the beginning.
 ;
 ; TLDR: The Softboiled heal message only shows up for one frame due to a combination of two oversights.
@@ -87,7 +87,7 @@ PartyMenu_WaitForAorB::
 	push bc
 	jr .continue
 
-.unreferenced_3875:
+.animate_and_delay_frame:
 	callfar PlaySpriteAnimationsAndDelayFrame
 .continue
 	pop bc

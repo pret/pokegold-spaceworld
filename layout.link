@@ -81,7 +81,7 @@ ROM0
 	"home/misc_32c8.asm@Unknown 3686"
 	"home/names.asm@Names"
 	"home/scrolling_menu.asm"
-	"home/unknown_388f.asm"
+	"home/std_scripts.asm"
 	"home/mon_stats.asm"
 	"home/cry.asm"
 	"home/pokemon.asm@3A4B"
@@ -90,7 +90,7 @@ ROM0
 	"home/pokemon.asm@3AED"
 	"home/misc_3c43.asm"
 	"home/audio.asm"
-	"home/unknown_3e32.asm"
+	"garbage.asm@Home Garbage"
 
 ROMX $01
 	"engine/link/place_waiting_text.asm"

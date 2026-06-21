@@ -422,7 +422,7 @@ SilentHillLabFrontScript11:
 	call OpenTextbox
 	ld hl, wd41c
 	set 4, [hl]
-	call Function20f8
+	call UnfreezeEverything
 	ld a, $0B
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
@@ -553,7 +553,7 @@ SilentHillLabFrontMovement11:
 	remove_object
 
 SilentHillLabFrontScript15:
-	call Function20f8
+	call UnfreezeEverything
 	ld a, $0F
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
@@ -616,7 +616,7 @@ SilentHillLabFrontScript17:
 	ld a, 6
 	ld [wItemQuantity], a
 	call ReceiveItem
-	call Function20f8
+	call UnfreezeEverything
 	ld a, $11
 	ld [wMapScriptNumber], a
 	ret

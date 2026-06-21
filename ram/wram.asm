@@ -1750,7 +1750,7 @@ wXCoord:: db
 wMetatileNextY:: db
 wMetatileNextX:: db
 
-wd65e:: db
+wMapIdStack:: db
 
 wMapPartial::
 wMapAttributesBank:: db

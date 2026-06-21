@@ -40,16 +40,16 @@ AppendToMovementBufferNTimes::
 	push af
 	ld a, c
 	and a
-	jr nz, .asm_1a0a
+	jr nz, .okay
 	pop af
 	ret
 
-.asm_1a0a:
+.okay:
 	pop af
-.asm_1a0b:
+.loop:
 	call AppendToMovementBuffer
 	dec c
-	jr nz, .asm_1a0b
+	jr nz, .loop
 	ret
 
 ComputePathToWalkToDestination::
