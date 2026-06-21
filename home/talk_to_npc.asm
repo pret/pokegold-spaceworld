@@ -177,16 +177,16 @@ TextboxIdle::
 	bit 5, a
 	res 5, a
 	ld [wJoypadFlags], a
-	jr nz, .Escape
+	jr nz, .next
 	call GetJoypad
 	ldh a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
-	jr nz, .Escape
+	jr nz, .next
 	call UpdateTime
 	call UpdateTimeOfDayPalettes
 	call DelayFrame
 	jr .Loop
-.Escape
+.next
 	call TextboxCleanup
 	ret
 
@@ -248,108 +248,4 @@ TurnNPCTalkingTo::
 	ld a, [hl]
 	sub 02
 	ldh [hLastTalked], a
-	ret
-
-Function31C3::
-	ret
-
-CheckInlineTrainer::
-	; Passed de is the pointer to a map_object struct. If it's an inline trainer, write to relevant wram region.
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
-	add hl, de
-	ld a, [hl]
-	call GetObjectStruct
-	call GetInlineMapObject
-	jr nc, .Escape
-	ld hl, MAPOBJECT_SIGHT_RANGE
-	add hl, de
-	ld a, [hl]
-	cp b
-	jr c, .Escape
-	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
-	add hl, de
-	ld a, [hl]
-	add a, a
-	ld hl, wCurrMapInlineTrainers
-	add a, l
-	ld l, a
-	jr nc, .NoCarry
-	inc h
-.NoCarry
-	ld [hl], b
-	inc hl
-	ld [hl], c
-.Escape
-	ret
-
-GetInlineMapObject::
-	;bc is start of object struct. if c flag set, returns distance in B and direction in C
-	ld hl, OBJECT_MAP_X
-	add hl, bc
-	ld a, [wPlayerMapX]
-	cp [hl]
-	jr z, .EqualX
-	ld hl, OBJECT_MAP_Y
-	add hl, bc
-	ld a, [wPlayerMapY]
-	cp [hl]
-	jr z, .EqualY
-	and a
-	ret
-.EqualX
-	ld hl, OBJECT_MAP_Y
-	add hl, bc
-	ld a, [wPlayerMapY]
-	sub [hl]
-	jr z, .Reset
-	jr nc, .SetDown
-	cpl
-	inc a
-	ld b, a
-	ld c, UP
-	scf
-	ret
-.SetDown
-	ld b, a
-	ld c, DOWN
-	scf
-	ret
-.EqualY
-	ld hl, OBJECT_MAP_X
-	add hl, bc
-	ld a, [wPlayerMapX]
-	sub [hl]
-	jr z, .Reset ; (this condition is impossible to meet)
-	jr nc, .SetRight
-	cpl
-	inc a
-	ld b, a
-	ld c, LEFT
-	scf
-	ret
-.SetRight
-	ld b, a
-	ld c, RIGHT
-	scf
-	ret
-.Reset
-	and a
-	ret
-
-CheckBPressedDebug:
-	; If in debug mode, returns a check on the B button.
-	ld a, [wDebugFlags]
-	bit DEBUG_FIELD_F, a
-	ret z
-	ldh a, [hJoyState]
-	bit B_BUTTON_F, a
-	ret
-
-xor_a::
-	xor a
-	ret
-
-xor_a_dec_a::
-	xor a
-	dec a
 	ret

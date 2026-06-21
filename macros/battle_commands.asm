@@ -97,7 +97,7 @@ ENDM
 	command endure                  ; 5a
 	command rollout                 ; 5b
 	command rolloutpower            ; 5c
-	command opponentattackup2       ; 5d
+	command swagger                 ; 5d
 	command furycutter              ; 5e
 	command attract                 ; 5f
 	command happinesspower          ; 60

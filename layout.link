@@ -60,6 +60,7 @@ ROM0
 	"home/farcall.asm"
 	"home/predef.asm"
 	"home/talk_to_npc.asm"
+	"home/trainers.asm"
 	"home/items.asm@TossItem"
 	"home/random.asm"
 	"home/sram.asm"
@@ -141,7 +142,7 @@ ROMX $03
 	"engine/overworld/spawn_points.asm"
 	"data/maps/spawn_points.asm"
 	"data/tileset_headers.asm"
-	"dumps/bank03.asm@CheckTrainerBattle"
+	"home/trainers.asm@Bank 03"
 	"engine/items/inventory.asm@Inventory"
 	"engine/smallflag.asm"
 	"engine/pokemon/health.asm@HealParty"
@@ -184,7 +185,8 @@ ROMX $05
 	"data/overworld_sprites.asm"
 	"engine/menu/empty_sram.asm"
 	"engine/events/pokecenter_pc.asm"
-	"dumps/bank05.asm"
+	"engine/events/std_scripts.asm"
+	"engine/events/check_inline_trainers.asm"
 	"garbage.asm@Bank 05 Garbage"
 
 ROMX $06
@@ -248,14 +250,16 @@ ROMX $0c
 	"garbage.asm@Bank 0c Garbage"
 
 ROMX $0d
-	"dumps/bank0d.asm@DoPlayerTurn"
+	"engine/battle/effect_commands.asm"
 	"garbage.asm@Bank 0d Garbage"
 
 ROMX $0e
-	"dumps/bank0e.asm"
-	"data/trainers/class_names.asm"
-	"dumps/bank0e.asm@ReadTrainerParty"
-	"data/trainers/parties.asm@Trainer Parties"
+	"engine/battle/ai/items.asm"
+	"engine/battle/trainer_huds.asm"
+	"engine/battle/ai/move.asm"
+	"engine/battle/ai/scoring.asm"
+	"engine/battle/read_trainer_attributes.asm"
+	"engine/battle/read_trainer_party.asm"
 	"garbage.asm@Bank 0e Garbage"
 
 ROMX $0f
@@ -289,10 +293,18 @@ ROMX $13
 	"gfx.asm@Bank 13 Tilesets Ship Port"
 
 ROMX $14
-	"dumps/bank14.asm@CopyMonToTempMon"
-	"data/types/names.asm"
-	"dumps/bank14.asm@GetTrainerClassName_Old"
-	"dumps/bank14.asm@Party Menu Routines"
+	"engine/pokemon/tempmon.asm"
+	"engine/pokemon/types.asm"
+	"engine/battle/getgen1trainerclassname.asm"
+	"engine/pokemon/mon_stats.asm"
+	"engine/pokemon/party_menu.asm"
+	"engine/gfx/load_pics.asm"
+	"engine/pokemon/mon_stats.asm@ListMoves"
+	"engine/link/init_list.asm"
+	"engine/pokemon/experience.asm"
+	"engine/pokemon/switchpartymons.asm"
+	"engine/pokemon/party_menu.asm@PartyMenu_ClearCursor"
+	"engine/gfx/load_pics.asm@GetUnownLetter"
 	"data/pokemon/base_stats.asm"
 	"data/pokemon/names.asm"
 	"gfx.asm@PKMN Sprite Bank List"

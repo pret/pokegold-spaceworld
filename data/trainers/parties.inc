@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 ; Trainer data structure:
 ; - db "NAME@", TRAINERTYPE_* constant
 ; - 1 to 6 Pokémon:
@@ -8,10 +6,6 @@ INCLUDE "constants.asm"
 ;    * for TRAINERTYPE_MOVES:      db level, species, 4 moves
 ;    * for TRAINERTYPE_ITEM_MOVES: db level, species, item, 4 moves
 ; - db -1 ; end
-
-SECTION "data/trainers/parties.asm@Trainer Parties", ROMX
-
-INCLUDE "data/trainers/party_pointers.inc"
 
 ; TODO: decode all data
 

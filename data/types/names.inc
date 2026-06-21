@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/types/names.asm", ROMX
-
 TypeNames::
 	dw .Normal   ; NORMAL
 	dw .Fighting ; FIGHTING
