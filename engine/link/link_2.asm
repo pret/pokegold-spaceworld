@@ -95,7 +95,7 @@ Link_Receptionist_Intro:
 	call DelayFrames
 	ld hl, CableClubConnectingText
 	call OpenTextbox
-	jp Function29BAE
+	jp LinkTimeout
 
 .no_link_action:
 	ld a, 90
@@ -117,7 +117,7 @@ Link_Receptionist_Intro:
 	ld a, [wLinkTimeoutFrames]
 	dec a
 	ld [wLinkTimeoutFrames], a
-	jp z, Function29B9D
+	jp z, ShowLinkInstructions
 	ld a, $01
 	ldh [rSB], a
 	ld a, $81
@@ -134,7 +134,7 @@ CableClubCheckInPrompt:
 	ld hl, CableClubCheckInText
 	call OpenTextbox
 	call YesNoBox
-	jr c, Function29BA5
+	jr c, ExitCableClub
 	ld a, [wTempByteValue]
 	push af
 	ld hl, wSaveFileFlags
@@ -181,19 +181,19 @@ CableClubCheckLinkFailure:
 	call CloseLink
 	ld hl, CableClubLinkFailureText
 	call OpenTextbox
-	jr Function29BAE
+	jr LinkTimeout
 
-Function29B9D:
+ShowLinkInstructions:
 	ld hl, Text_LinkInstructions
 	call OpenTextbox
-	jr Function29BAE
+	jr LinkTimeout
 
-Function29BA5:
+ExitCableClub:
 	call CloseLink
 	ld hl, CableClubExitText
 	call OpenTextbox
 
-Function29BAE:
+LinkTimeout:
 	xor a
 	ld hl, wLinkTimeoutFrames
 	ld [hli], a
@@ -283,8 +283,8 @@ Link_Receptionist:
 	ld c, 50
 	call DelayFrames
 	ld hl, wDebugFlags
-	res 1, [hl]
-	jr .Function29DB3
+	res DEBUG_FIELD_F, [hl]
+	jr .StartTimeCapsule
 
 .UnreferencedBrokenReturnToOverworld:
 	ld c, 20
@@ -304,10 +304,10 @@ Link_Receptionist:
 	call OpenTextbox
 	ret
 
-.Function29DB3:
-	ld a, $01
+.StartTimeCapsule:
+	ld a, LINK_TIMECAPSULE
 	ld [wLinkMode], a
-	ld c, LINK_COLOSSEUM
+	ld c, 3
 	call DelayFrames
 	ld hl, Text_Receptionist_TemporaryStagingInLinkRoom
 	call OpenTextbox
@@ -345,7 +345,7 @@ Link_Receptionist:
 	call DeleteMapObject
 	ret
 
-.UnreferencedFunction29E0B:
+.UnreferencedIncompatibleRoom:
 	ld [bc], a
 	ld a, [bc]
 	inc de
@@ -362,7 +362,7 @@ Link_Receptionist:
 .IncompatibleRoom_Textbox:
 	ld hl, Text_Receptionist_IncompatibleRooms
 	call OpenTextbox
-	jr .Function29E35
+	jr .CloseLink
 
 .FailedLinkToPast:
 	ld c, $14
@@ -372,7 +372,7 @@ Link_Receptionist:
 	ld hl, Text_Receptionist_CantLinkToThePast
 	call PrintText
 	call OpenTextbox
-.Function29E35:
+.CloseLink:
 	ld c, $03
 	call DelayFrames
 	call CloseLink
@@ -429,7 +429,7 @@ Text_Receptionist_Options:
 Text_Receptionist_Empty:
 	db "@"
 
-UnreferencedFunction29ef7:
+Link_Receptionist_Old:
 	add b
 	add $C0
 	ld [wLinkPlayerSyncBuffer], a
@@ -441,28 +441,28 @@ UnreferencedFunction29ef7:
 	cp USING_EXTERNAL_CLOCK
 	ret z
 	ld a, [wReservedObjectStepDuration]
-	cp $0C
+	cp movement_big_step
 	ret nz
 	ld a, [wMapId]
-	ld a, $02
-	jr z, .Function29F1A
+	ld a, LINK_TRADECENTER
+	jr z, .next
 	inc a
-.Function29F1A:
+.next:
 	ld [wLinkMode], a
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ret z
 	ld a, [wReservedObjectStepDuration]
-	cp $08
+	cp movement_step
 	ret nz
 	ld a, [wMapId]
-	ld a, $02
-	jr z, .Function29F30
+	ld a, LINK_TRADECENTER
+	jr z, .end
 	inc a
-.Function29F30:
+.end:
 	ld [wLinkMode], a
 	; incomplete
 
-Text_Link_WaitUnreferenced:
+Text_Receptionist_Old_Wait:
 	text "ちょっと　まってね"
 	done

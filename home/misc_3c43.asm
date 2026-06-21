@@ -87,5 +87,5 @@ InitSpriteAnimStruct::
 	call Bankswitch
 	ret
 
-EmptyFunction3cbe::
+ReinitSpriteAnimFrame:: ; stubbed
 	ret

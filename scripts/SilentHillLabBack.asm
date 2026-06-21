@@ -67,7 +67,7 @@ SilentHillLabBackMovement1:
 SilentHillLabBackScript2:
 	ld hl, wOverworldFlags
 	set 6, [hl]
-	call Function20f8
+	call UnfreezeEverything
 	ld a, 3
 	ld d, UP
 	call SetObjectFacing
@@ -137,7 +137,7 @@ SilentHillLabBackScript5:
 	ret
 
 SilentHillLabBackScript6:
-	call Function20f8
+	call UnfreezeEverything
 	ld hl, wOverworldFlags
 	res 6, [hl]
 	ld a, 6

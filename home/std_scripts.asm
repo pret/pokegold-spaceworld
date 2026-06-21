@@ -1,8 +1,8 @@
 INCLUDE "constants.asm"
 
-SECTION "home/unknown_388f.asm", ROM0
+SECTION "home/std_scripts.asm", ROM0
 
-EmptyFunction388f::
+Unreferenced_StubbedSTDScript::
 	ret
 
 Unreferenced_PokemonNewsScript::

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/trainers/class_names.asm", ROMX
-
 TrainerClassNames::
 	db "ハヤト@" ; HAYATO
 	db "アカネ@" ; AKANE

@@ -922,7 +922,7 @@ Swagger:
 	usedmovetext
 	doturn
 	checkhit
-	opponentattackup2
+	swagger
 	confusetarget
 	endmove
 
