@@ -491,6 +491,82 @@ DebugPlayerName:
 DebugRivalName:
 	db "レッド@"
 
+ChoosePlayerName::
+	call PanPortraitRight
+	ld hl, PlayerNameMenuHeader
+	call NamingWindow
+	ld a, [wMenuCursorY]
+	dec a
+	jr z, .loop
+	ld de, wPlayerName
+	call SaveCustomName
+	jr .farjump
+
+.loop
+	ld b, NAME_PLAYER
+	ld de, wPlayerName
+	farcall NamingScreen
+	ld a, [wPlayerName]
+	cp '@'
+	jr z, .loop
+
+	call GBFadeOutToWhite
+	call ClearTileMap
+	call LoadFontExtra
+	call WaitBGMap
+	ld de, ProtagonistPic
+	lb bc, BANK(ProtagonistPic), 0
+	call IntroDisplayPicCenteredOrUpperRight
+	call GBFadeInFromWhite
+.farjump
+	ld hl, ChoosePlayerNameEndText
+	call PrintText
+	ret
+
+ChoosePlayerNameEndText:
+	text "ふむ・・・"
+	line "<PLAYER>　と　いうんだな！"
+	prompt
+
+SECTION "engine/movie/oak_speech.asm@ChooseRivalName", ROMX
+
+ChooseRivalName::
+	call PanPortraitRight
+	ld hl, RivalNameMenuHeader
+	call NamingWindow
+	ld a, [wMenuCursorY]
+	dec a
+	jr z, .loop
+	ld de, wRivalName
+	call SaveCustomName
+	jr .farjump
+
+.loop
+	ld b, NAME_RIVAL
+	ld de, wRivalName
+	farcall NamingScreen
+	ld a, [wRivalName]
+	cp '@'
+	jr z, .loop
+
+	call GBFadeOutToWhite
+	call ClearTileMap
+	call LoadFontExtra
+	call WaitBGMap
+	ld de, OakPic
+	lb bc, BANK(OakPic), 0
+	call IntroDisplayPicCenteredOrUpperRight
+	call GBFadeInFromWhite
+.farjump
+	ld hl, ChooseRivalNameEndText
+	call PrintText
+	ret
+
+ChooseRivalNameEndText:
+	text "そうか　そうだったな"
+	line "<RIVAL>　という　なまえだ"
+	prompt
+
 SECTION "engine/movie/oak_speech.asm@MomNamePrompt", ROMX
 
 MomNamePrompt::

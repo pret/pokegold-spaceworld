@@ -40,4 +40,4 @@ Tilesets:
 	tileset Ship, TilesetNoAnim
 	tileset ShipPort, TilesetNoAnim
 	tileset Forest, TilesetGenericAnim
-	assert_table_length NUM_TILESETS + 1
+	assert_table_length NUM_TILESETS

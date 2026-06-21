@@ -344,14 +344,14 @@ MapSetup_NewGame::
 	ld b, 9 ; TODO: constantify this
 	call GetSGBLayout
 	call LoadWildMonData
-	call SetPlayerFacingDown ; TODO
+	call SetPlayerFacingDown
 	call FadeIn
 	ret
 
 MapSetup_Warp::
 	callfar OverworldFadeOut
 	call DisableLCD
-	call WarpEnvironmentCheck ; TODO
+	call WarpEnvironmentCheck
 	ld a, [wNextWarp]
 	ld [wWarpNumber], a
 	ld a, [wNextMapGroup]
@@ -928,7 +928,7 @@ ClearObjectStructs::
 	jr nz, .clear_cmd_queue
 	ret
 
-ReadWord:: ; TODO: is this used?
+Unreferenced_ReadWord::
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

@@ -7,7 +7,7 @@ SECTION "home/load_options.asm", ROM0
 InitOptions::
 	ld a, BANK(sOptions)
 	call OpenSRAM
-	ld hl, sOptions ; TODO: label this.
+	ld hl, sOptions
 	ld bc, 7
 	xor a
 	call ByteFill

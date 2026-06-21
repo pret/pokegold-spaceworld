@@ -28,7 +28,7 @@
 	const TILESET_SHIP                 ; 19
 	const TILESET_SHIP_PORT            ; 1a
 	const TILESET_FOREST               ; 1b
-DEF NUM_TILESETS EQU const_value - 1
+DEF NUM_TILESETS EQU const_value
 
 ; wTileset struct size
 DEF TILESET_LENGTH EQU 11
