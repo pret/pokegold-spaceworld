@@ -148,7 +148,7 @@ SilentHillScript4:
 .jump2
 	ld hl, SilentHillMovement4
 .skip
-	ld a, 3
+	ld a, $03
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
