@@ -9,20 +9,20 @@ SilentHill_ScriptLoader::
 	ret
 
 SilentHillNPCIDs1:
-	db 0
-	db 2
-	db 3
+	db $00
+	db $02
+	db $03
 	db $FF
 
 SilentHillNPCIDs2:
-	db 2
-	db 3
+	db $02
+	db $03
 	db $FF
 
 SilentHillNPCIDs3:
-	db 1
-	db 2
-	db 3
+	db $01
+	db $02
+	db $03
 	db $FF
 
 SilentHillScriptPointers1:
@@ -94,14 +94,14 @@ SilentHillScript2:
 	call OpenTextbox
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 2
+	ld a, $02
 	ld hl, SilentHillMovement2
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
-	ld a, 2
+	ld a, $02
 	ld [wMapScriptNumber], a
 	ret
 
