@@ -290,7 +290,7 @@ BackpackMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 3, 3, $11, $0A
 	dw .BackpackData
-	db 1
+	db 1 ; default option
 
 .BackpackData
 	db $A1
