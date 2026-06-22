@@ -18,5 +18,5 @@ FOR n, 1, NUM_PLAYER_NAMES + 1
 	li #MOMNAME{d:n}
 ENDR
 	assert_list_length NUM_PLAYER_NAMES
-	db 3
+	db 3 ; x offset for the title string
 	db "なまえこうほ@"
