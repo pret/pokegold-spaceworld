@@ -199,7 +199,7 @@ PrepareTextbox::
 	call ReanchorBGMap_NoOAMUpdate
 	hlcoord 0, 12 ;in the tilemap in WRAM
 	ld b, 4
-	ld c, $12
+	ld c, 18
 	call DrawTextBox
 	call WaitBGMap
 	call LoadFonts_NoOAMUpdate
