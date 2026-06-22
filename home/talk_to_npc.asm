@@ -194,11 +194,11 @@ PrepareTextbox::
 	call ClearWindowData
 	ldh a, [hROMBank]
 	push af
-	ld a, 01
+	ld a, 1
 	call Bankswitch
 	call ReanchorBGMap_NoOAMUpdate
 	hlcoord 0, 12 ;in the tilemap in WRAM
-	ld b, 04
+	ld b, 4
 	ld c, $12
 	call DrawTextBox
 	call WaitBGMap

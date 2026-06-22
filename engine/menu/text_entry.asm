@@ -1094,7 +1094,7 @@ ComposeMail_AnimateCursor:
 	inc [hl]
 	jr .UpdatePositionOffset
 .skip3
-	ld [hl], 00
+	ld [hl], 0
 	jr .UpdatePositionOffset
 .upJump
 	ld hl, SPRITEANIMSTRUCT_VAR2

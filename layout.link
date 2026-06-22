@@ -108,6 +108,8 @@ ROMX $01
 	"engine/movie/oak_speech.asm@ChooseRivalName"
 	"data/rival_names.asm"
 	"engine/movie/oak_speech.asm@MomNamePrompt"
+	"data/mom_names.asm"
+	"engine/movie/oak_speech.asm@NamingWindow"
 	"engine/movie/title.asm@Title screen"
 	"engine/predef.asm"
 	"engine/overworld/init_map.asm"

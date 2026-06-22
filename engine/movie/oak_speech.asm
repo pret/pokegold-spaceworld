@@ -596,21 +596,7 @@ MomNamePrompt::
 .escape
 	ret
 
-MomNameMenuHeader:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 00, 00, 10, 11
-	dw .MomNameMenuData
-	db 01 ; initial selection
-
-.MomNameMenuData:
-	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B
-	db 04 ; items
-	db "じぶんで　きめる@"
-	db "おかあさん@"
-	db "ママ@"
-	db "かあちゃん@"
-	db 3
-	db "なまえこうほ@"
+SECTION "engine/movie/oak_speech.asm@NamingWindow", ROMX
 
 NamingWindow::
 	; loads the menu header put into hl
