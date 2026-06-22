@@ -1310,7 +1310,7 @@ PartyMailMenu:
 
 .MailMenu
 	db MENU_BACKUP_TILES
-	menu_coords 4, 4, $0E, $0B
+	menu_coords 4, 4, 14, 11
 	dw .MailMenuStrings
 	db 1
 
