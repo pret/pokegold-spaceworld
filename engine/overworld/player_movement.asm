@@ -13,12 +13,14 @@ UnusedOverworldMovementCheck::
 	jr z, SetPlayerIdle ; player movement is disabled
 	ldh a, [hJoyState]
 	ld d, a
+if DEF(_DEBUG)	
 	ld hl, wDebugFlags
 	bit DEBUG_FIELD_F, [hl]
 	jr z, .skip_debug_move
 	bit B_BUTTON_F, d
 	jp nz, CheckMovementDebug
 .skip_debug_move
+endc
 	ld a, [wPlayerState]
 	cp PLAYER_SKATE
 	jp z, CheckMovementSkateboard
@@ -572,6 +574,7 @@ _OverworldMovementCheck::
 	jp z, SetPlayerIdle
 	ldh a, [hJoyState]
 	ld d, a
+if DEF(_DEBUG)
 	ld hl, wDebugFlags
 	bit DEBUG_FIELD_F, [hl]
 	jr z, .skip_debug_move
@@ -579,6 +582,7 @@ _OverworldMovementCheck::
 	jp nz, CheckMovementDebug
 
 .skip_debug_move
+endc
 	call GetPlayerMovementByState
 	jp SetPlayerMovement
 

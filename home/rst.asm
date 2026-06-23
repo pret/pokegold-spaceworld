@@ -24,9 +24,8 @@ SECTION "home/rst.asm@rst30", ROM0
 SECTION "home/rst.asm@rst38", ROM0
 	; Jumps in the middle of unmapped echo RAM.
 	; Probably used to trigger a breakpoint.
-if DEF(_GOLD)
-	jp $F080
-endc
-if DEF(_SILVER)
+if DEF(_SILVER) & DEF(_DEBUG)
 	rst $38
+else
+	jp $F080
 endc

@@ -421,8 +421,12 @@ TitleSeq_TitleScreenInputAndTimeout::
 	jr .psbtn_nextseq
 
 .psbtn_gotodebug
+if DEF(_DEBUG)
 	ld a, $01 ; DebugMenu
 	jr .psbtn_nextseq
+else
+	ret
+endc
 
 .psbtn_sramclear
 	ld a, $02

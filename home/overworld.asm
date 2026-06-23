@@ -5,6 +5,8 @@ SECTION "home/overworld.asm@Startmenu and Select Button Check", ROM0
 
 OverworldStartButtonCheck::
 	ldh a, [hJoyState]
+;	bit SELECT_F, a
+;	jr nz, SelectButtonFunction
 	bit START_F, a
 	ret z
 if DEF(_DEBUG)

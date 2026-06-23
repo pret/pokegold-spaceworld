@@ -2,6 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "garbage.asm@Home Garbage", ROM0
 
+if DEF(_DEBUG)
 DEF Old_FarCallFunctionAddress EQU $2f91
 
 Unreferenced_Corrupt__InterlaceMergeSpriteBuffers.interlaceLoopFlipped:
@@ -342,29 +343,35 @@ Unused_SpecialMapMusic_Old:
 .normal
 	and a
 	ret
+endc
 
 SECTION "garbage.asm@Bank 01 Garbage", ROMX
 
+if DEF(_DEBUG)
 if DEF(_GOLD)
 	ds 982, $39, $00
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank01_silver.2bpp", 42
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 02 Garbage", ROMX
 
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank02_gold.2bpp", 188
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank02_silver.2bpp", 188
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 03 Garbage", ROMX
 
+if DEF(_DEBUG)
 if DEF(_GOLD)
 Unreferenced_Corrupt_AlreadyKnowsMoveText1:
 	db "います"
@@ -422,104 +429,134 @@ endc
 if DEF(_SILVER)
 INCBIN "garbage/bank03_silver.2bpp", 35
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 04 Garbage", ROMX
 
+if DEF(_DEBUG)
+	db $18, $00 ; leftover of previous graphics
+Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp"
 if DEF(_GOLD)
 INCBIN "garbage/bank04_gold.2bpp", 227
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank04_silver.2bpp", 227
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 05 Garbage", ROMX
 
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank05_gold.2bpp", 74
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank05_silver.2bpp", 74
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 06 Garbage", ROMX
 
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank06_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank06_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 09 Garbage", ROMX
 
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank09_gold.2bpp", 116
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank09_silver.2bpp", 116
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 0a Garbage", ROMX
 
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank0a_gold.2bpp", 62
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank0a_silver.2bpp", 62
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 0b Garbage", ROMX
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank0b_gold.2bpp", 111
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank0b_silver.2bpp", 111
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 0c Garbage", ROMX
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank0c_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank0c_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 0d Garbage", ROMX
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank0d_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank0d_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 0e Garbage", ROMX
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank0e_gold.2bpp", 188
 endc
 if DEF(_SILVER)
+	db -1 ; end
+
+	; early version of KIMONO_GIRL_KOUME?
+	db "こうめ@", TRAINERTYPE_ITEM_MOVES
+	db  8, DEX_CLEFAIRY, ITEM_NONE
+	db -1 ; end
 INCBIN "garbage/bank0e_silver.2bpp", 185
+endc
 endc
 
 
 SECTION "garbage.asm@Bank 0f Garbage", ROMX
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank0f_gold.2bpp", 75
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank0f_silver.2bpp", 75
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 10 Garbage", ROMX
+if DEF(_DEBUG)
 if DEF(_GOLD)
 Unreferenced_Corrupt_LeafyEvosAttacks1:
 	db 0 ; no more evolutions
@@ -540,33 +577,6 @@ Unreferenced_Corrupt_LeafyEvosAttacks2:
 	db 56, MOVE_WRAP
 	db 63, MOVE_SOLARBEAM
 	db 0 ; no more level-up moves
-Unreferenced_Corrupt_TailEvosAttacks:
-	db 25, MOVE_SWIFT
-	db 31, MOVE_MUD_SLAP
-	db 38, MOVE_FURY_SWIPES
-	db 45, MOVE_MIMIC
-	db 0 ; no more level-up moves
-Unreferenced_Corrupt_LeafyEvosAttacks3:
-	db 0 ; no more evolutions
-	db  1, MOVE_TACKLE
-	db  7, MOVE_SAND_ATTACK
-	db 14, MOVE_QUICK_ATTACK
-	db 21, MOVE_TAIL_WHIP
-	db 28, MOVE_ABSORB
-	db 35, MOVE_RAZOR_LEAF
-	db 42, MOVE_GROWTH
-	db 49, MOVE_MORNING_SUN
-	db 56, MOVE_WRAP
-	db 63, MOVE_SOLARBEAM
-	db 0 ; no more level-up moves
-Unreferenced_Corrupt_LeafyEvosAttacks4:
-	db 56, MOVE_WRAP
-	db 63, MOVE_SOLARBEAM
-	db 0 ; no more level-up moves
-
-	db $E6, $6D, $C3, $FF ; garbage
-
-INCBIN "garbage/bank10_gold.2bpp"
 endc
 
 if DEF(_SILVER)
@@ -590,6 +600,7 @@ Unreferenced_Corrupt_TailEvosAttacks:
 	db  9, MOVE_SAND_ATTACK
 	db 14, MOVE_PURSUIT
 	db 19, MOVE_ENCORE
+endc
 	db 25, MOVE_SWIFT
 	db 31, MOVE_MUD_SLAP
 	db 38, MOVE_FURY_SWIPES
@@ -612,39 +623,51 @@ Unreferenced_Corrupt_LeafyEvosAttacks4:
 	db 56, MOVE_WRAP
 	db 63, MOVE_SOLARBEAM
 	db 0 ; no more level-up moves
+if DEF(_GOLD)
+	db $E6, $6D, $C3, $FF ; garbage
 
+INCBIN "garbage/bank10_gold.2bpp"
+endc
+if DEF(_SILVER)
 	db 0, 0, 0, 0 ; garbage
 
 INCBIN "garbage/bank10_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 14 Garbage", ROMX
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank14_gold.2bpp", 116
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank14_silver.2bpp", 116
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 20 Garbage", ROMX
 ; This whole bank is garbage data.
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank20_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank20_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 22 Garbage", ROMX
 ; This whole bank is garbage data.
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank22_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank22_silver.2bpp"
+endc
 endc
 
 
@@ -653,125 +676,153 @@ SECTION "garbage.asm@Bank 35 Garbage", ROMX
 rept 23
 	ret
 endr
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank35_gold.2bpp", 23
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank35_silver.2bpp", 23
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 28 Garbage", ROMX
 ; This whole bank is garbage data.
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank28_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank28_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 29 Garbage", ROMX
 ; This whole bank is garbage data.
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank29_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank29_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 2a Garbage", ROMX
 ; This whole bank is garbage data.
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank2a_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank2a_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 2b Garbage", ROMX
 ; This whole bank is garbage data.
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank2b_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank2b_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 2c Garbage", ROMX
 ; This whole bank is garbage data.
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank2c_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank2c_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 2d Garbage", ROMX
 ; This whole bank is garbage data.
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank2d_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank2d_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 2e Garbage", ROMX
 ; This whole bank is garbage data.
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank2e_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank2e_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 31 Garbage", ROMX
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank31_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank31_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 39 Garbage", ROMX
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank39_gold.2bpp", 159
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank39_silver.2bpp", 159
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 3c Garbage", ROMX
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank3c_gold.2bpp", 78
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank3c_silver.2bpp", 78
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 3d Garbage", ROMX
 ; This whole bank is garbage data.
+if DEF(_DEBUG)
 if DEF(_GOLD)
 INCBIN "garbage/bank3d_gold.2bpp"
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank3d_silver.2bpp"
 endc
+endc
 
 
 SECTION "garbage.asm@Bank 3f Garbage", ROMX
+if DEF(_DEBUG)
+	cpl
+	ret
 if DEF(_GOLD)
 INCBIN "garbage/bank3f_gold.2bpp", 45
 endc
 if DEF(_SILVER)
 INCBIN "garbage/bank3f_silver.2bpp", 45
+endc
 endc
