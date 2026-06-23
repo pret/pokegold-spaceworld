@@ -462,7 +462,7 @@ CheckExitTiles::
 	ret z
 	cp (COLL_CARPET | COLLFLAG_ENCOUNTER)
 	ret z
-	
+
 SetPlayerFacingDown::
 	ld a, $0
 	ld [wPlayerFacing], a

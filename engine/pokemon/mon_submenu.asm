@@ -2,6 +2,13 @@ INCLUDE "constants.asm"
 
 SECTION "engine/pokemon/mon_submenu.asm", ROMX
 
+; An unreferenced, nonfunctional menu that resembles the field debug menu.
+Unreferenced_FieldMoveMenu:
+	ld hl, Unused_FieldMoveMenuData
+	call LoadMenuHeader
+	call VerticalMenu
+	ret
+
 INCLUDE "data/mon_menu.inc"
 
 MonSubmenu::

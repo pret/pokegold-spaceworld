@@ -1,11 +1,4 @@
-; An unreferenced, nonfunctional menu that resembles the field debug menu.
-Unreferenced_FieldMoveMenu:
-	ld hl, .MenuData
-	call LoadMenuHeader
-	call VerticalMenu
-	ret
-
-.MenuData:
+Unused_FieldMoveMenuData:
 	db MENU_BACKUP_TILES
 	menu_coords 0, 0, 6, 10
 	dw .MenuText
