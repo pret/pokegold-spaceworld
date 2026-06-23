@@ -577,7 +577,7 @@ DebugSelectedItemMenu:
 	db MENU_BACKUP_TILES
 	menu_coords $0D, $0A, $13, $10
 	dw .DebugSelectedItemMenuText
-	db 1
+	db 1 ; default option
 
 .DebugSelectedItemMenuText
 	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
@@ -590,7 +590,7 @@ SelectedItemMenu:
 	db MENU_BACKUP_TILES
 	menu_coords $0E, $0A, $13, $0E
 	dw .SelectedItemMenuText
-	db 1
+	db 1 ; default option
 
 .SelectedItemMenuText
 	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
@@ -1312,7 +1312,7 @@ PartyMailMenu:
 	db MENU_BACKUP_TILES
 	menu_coords 4, 4, 14, 11
 	dw .MailMenuStrings
-	db 1
+	db 1 ; default option
 
 .MailMenuStrings
 
