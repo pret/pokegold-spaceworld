@@ -108,7 +108,7 @@ UpdateToolgear::
 	ld bc, SCREEN_WIDTH
 	ld a, '　'
 	call ByteFill
-
+if DEF(_DEBUG)
 	ld hl, wd153
 	bit TOOLGEAR_COORDS_F, [hl]
 	jr z, .debug_show_time
@@ -122,6 +122,7 @@ UpdateToolgear::
 	ld c, 1
 	call .printHex
 	ret
+endc
 
 .debug_show_time
 	ld hl, hRTCHours

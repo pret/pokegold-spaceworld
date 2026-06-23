@@ -7,6 +7,7 @@ OverworldStartButtonCheck::
 	ldh a, [hJoyState]
 	bit START_F, a
 	ret z
+if DEF(_DEBUG)
 	and (START | B_BUTTON)
 	cp (START | B_BUTTON)
 	jr nz, .regularMenu
@@ -15,6 +16,7 @@ OverworldStartButtonCheck::
 	ret z              ; debug disabled
 	farcall FieldDebugMenu
 	jr CheckStartmenuSelectHook
+endc
 .regularMenu
 	farcall DisplayStartMenu
 	jr CheckStartmenuSelectHook
