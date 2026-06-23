@@ -277,7 +277,6 @@ GetMenuIndexSet::
 	ld [wMenuDataItems], a
 	ret
 
-; Unreferenced?
 Unreferenced_RestoreItemMenuTileBackup:
 	call MenuBoxCoord2Tile
 	call GetMenuBoxDims

@@ -8,7 +8,6 @@ DebugMenuSoundTest::
 	ld a, BANK(_DebugMenuSoundTest)
 	call Bankswitch
 	call _DebugMenuSoundTest
-
 	pop af
 	call Bankswitch
 	jp DebugMenu
