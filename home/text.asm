@@ -9,18 +9,18 @@ ClearBox::
 
 FillBoxWithByte::
 	ld de, SCREEN_WIDTH
-.asm_0e1d:
+.row:
 	push hl
 	push bc
-.asm_0e1f:
+.col:
 	ld [hli], a
 	dec c
-	jr nz, .asm_0e1f
+	jr nz, .col
 	pop bc
 	pop hl
 	add hl, de
 	dec b
-	jr nz, .asm_0e1d
+	jr nz, .row
 	ret
 
 ClearTileMap::
@@ -125,22 +125,22 @@ endc
 ENDM
 
 	cp '<NEXT>'
-	jr nz, .asm_0eaa
+	jr nz, .not_next
 	pop hl
 	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	push hl
 	jp NextChar
 
-.asm_0eaa:
+.not_next:
 	cp '<LINE>'
-	jr nz, .asm_0eb6
+	jr nz, .not_line
 	pop hl
 	hlcoord 1, 16
 	push hl
 	jp NextChar
 
-.asm_0eb6:
+.not_line:
 	dict '<NULL>', NullChar
 	dict '<SCROLL>', _ContTextNoPause
 	dict '<_CONT>', _ContText
@@ -258,19 +258,21 @@ GaCharacter:: print_name GaCharacterTExt
 
 PlaceMoveTargetsName::
 	ldh a, [hBattleTurn]
-	xor $1
-	jr asm_0fbb
+	xor 1
+	jr PlaceBattlersName
 
 PlaceMoveUsersName::
 	ldh a, [hBattleTurn]
-asm_0fbb:
+	; fallthrough
+
+PlaceBattlersName:
 	push de
 	and a
-	jr nz, .asm_0fc4
+	jr nz, .enemy
 	ld de, wBattleMonNickname
 	jr PlaceCommandCharacter
 
-.asm_0fc4:
+.enemy:
 	ld de, EnemyText
 	call PlaceString
 	ld h, b
@@ -728,3 +730,12 @@ TextCommands::
 	dw Text_PlaySound
 	dw Text_PlaySound
 	dw Text_PlaySound
+
+SECTION "home/text.asm@GetTerminatingString", ROM0
+
+GetTerminatingString::
+	ld hl, .EmptyString
+	ret
+
+.EmptyString:
+	db "@"

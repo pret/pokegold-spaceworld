@@ -9,20 +9,20 @@ SilentHill_ScriptLoader::
 	ret
 
 SilentHillNPCIDs1:
-	db 0
-	db 2
-	db 3
+	db $00
+	db $02
+	db $03
 	db $FF
 
 SilentHillNPCIDs2:
-	db 2
-	db 3
+	db $02
+	db $03
 	db $FF
 
 SilentHillNPCIDs3:
-	db 1
-	db 2
-	db 3
+	db $01
+	db $02
+	db $03
 	db $FF
 
 SilentHillScriptPointers1:
@@ -62,9 +62,9 @@ SilentHillScript1:
 	ret nz
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 02
+	ld a, 2
 	call FreezeAllOtherObjects
-	ld a, 02
+	ld a, 2
 	ld hl, SilentHillMovement1
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -94,14 +94,14 @@ SilentHillScript2:
 	call OpenTextbox
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 2
+	ld a, $02
 	ld hl, SilentHillMovement2
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
-	ld a, 2
+	ld a, $02
 	ld [wMapScriptNumber], a
 	ret
 
@@ -148,7 +148,7 @@ SilentHillScript4:
 .jump2
 	ld hl, SilentHillMovement4
 .skip
-	ld a, 03
+	ld a, $03
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
@@ -407,13 +407,13 @@ SilentHillTextRival1:
 
 MomNameMenuHeaderUnused:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 00, 00, 10, 11
+	menu_coords 0, 0, 10, 11
 	dw .MomNameMenuDataUnused
-	db 01 ; initial selection
+	db 1 ; initial selection
 
 .MomNameMenuDataUnused:
 	db STATICMENU_CURSOR
-	db 04 ; items
+	db 4 ; items
 	db "じぶんで　きめる@"
 	db "おかあさん　@"
 	db "ママ@"

@@ -25,13 +25,13 @@ SilentHillLabBackScriptPointers:
 	dw SilentHillLabBackNPCIDs1
 
 SilentHillLabBackNPCIDs1:
-	db 00, 01, 02, 03, 04, $FF
+	db $00, $01, $02, $03, $04, $FF
 SilentHillLabBackNPCIDs2:
-	db 00, 01, 04, $FF
+	db $00, $01, $04, $FF
 SilentHillLabBackNPCIDs3:
-	db 00, 01, 02, $FF
+	db $00, $01, $02, $FF
 SilentHillLabBackNPCIDs4:
-	db 00, 01, 03, $FF
+	db $00, $01, $03, $FF
 
 SilentHillLabBack_TextPointers::
 	dw SilentHillLabBackText1

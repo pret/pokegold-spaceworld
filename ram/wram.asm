@@ -1780,7 +1780,7 @@ wTilesetBlocksAddress:: dw
 wTilesetTilesAddress:: dw
 wTilesetCollisionAddress:: dw
 wTilesetAnim:: dw
-	ds 2 ; TODO
+	ds 2 ; unused
 wTilesetEnd::
 
 wGameData2End::

@@ -277,19 +277,18 @@ GetMenuIndexSet::
 	ld [wMenuDataItems], a
 	ret
 
-; Unreferenced?
-Function1ee9::
+Unreferenced_RestoreItemMenuTileBackup:
 	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	ld a, [wMenuDataItems]
 	add a
 	cp b
-	jr nc, .asm_1ef9
+	jr nc, .col
 	ld b, a
 	dec c
 	ret
 
-.asm_1ef9:
+.col:
 	ld a, b
 	srl a
 	dec a

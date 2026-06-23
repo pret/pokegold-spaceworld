@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "home/misc_3c43.asm", ROM0
+SECTION "home/battle.asm", ROM0
 
 GetPartyParamLocation::
 ; Get the location of parameter a from wCurPartyMon in hl
@@ -15,18 +15,7 @@ GetPartyParamLocation::
 	pop bc
 	ret
 
-DoItemEffect::
-	farjp _DoItemEffect
-
-CheckTossableItem::
-	push hl
-	push de
-	push bc
-	callfar _CheckTossableItem
-	pop bc
-	pop de
-	pop hl
-	ret
+SECTION "home/battle.asm@GetBattleAnimPointer", ROM0
 
 GetBattleAnimPointer::
 	ld a, BANK(BattleAnimations)
@@ -73,19 +62,4 @@ GetBattleAnimByte::
 	pop hl
 
 	ld a, [wBattleAnimByte]
-	ret
-
-InitSpriteAnimStruct::
-	ld [wSpriteAnimAddrBackup], a
-	ldh a, [hROMBank]
-	push af
-	ld a, BANK(_InitSpriteAnimStruct)
-	call Bankswitch
-	ld a, [wSpriteAnimAddrBackup]
-	call _InitSpriteAnimStruct
-	pop af
-	call Bankswitch
-	ret
-
-ReinitSpriteAnimFrame:: ; stubbed
 	ret

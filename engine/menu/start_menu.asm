@@ -288,9 +288,9 @@ KeyItemsPocketHeader:
 
 BackpackMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 03, 03, $11, $0A
+	menu_coords 3, 3, $11, $0A
 	dw .BackpackData
-	db 01
+	db 1 ; default option
 
 .BackpackData
 	db $A1
@@ -343,7 +343,7 @@ DrawBackpack:
 	call ClearTileMap
 	callfar LoadBackpackGraphics
 	hlcoord 2, 2
-	ld b, 08
+	ld b, 8
 	ld c, $0F
 	call DrawTextBox
 	ret
@@ -577,7 +577,7 @@ DebugSelectedItemMenu:
 	db MENU_BACKUP_TILES
 	menu_coords $0D, $0A, $13, $10
 	dw .DebugSelectedItemMenuText
-	db 01
+	db 1 ; default option
 
 .DebugSelectedItemMenuText
 	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
@@ -590,7 +590,7 @@ SelectedItemMenu:
 	db MENU_BACKUP_TILES
 	menu_coords $0E, $0A, $13, $0E
 	dw .SelectedItemMenuText
-	db 01
+	db 1 ; default option
 
 .SelectedItemMenuText
 	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
@@ -924,7 +924,7 @@ PartyPromptExit:
 	nop
 	nop
 	nop
-	ld hl, 0000
+	ld hl, 0
 	call Call_ExitMenu
 	call WaitBGMap
 	call UpdateTimePals
@@ -1310,9 +1310,9 @@ PartyMailMenu:
 
 .MailMenu
 	db MENU_BACKUP_TILES
-	menu_coords 04, 04, $0E, $0B
+	menu_coords 4, 4, 14, 11
 	dw .MailMenuStrings
-	db 01
+	db 1 ; default option
 
 .MailMenuStrings
 

@@ -2,6 +2,11 @@ INCLUDE "constants.asm"
 
 SECTION "home/map.asm", ROM0
 
+UnfreezeEverything::
+	call UnfreezeAllObjects
+	call UnfreezePlayer
+	ret
+
 ; Runs a map script indexed by wMapScriptNumber
 RunMapScript::
 	push hl
@@ -243,7 +248,7 @@ GetWorldMapLocation::
 	ld a, b
 	ret
 
-EmptyFunction2252::
+DummyMapFunction::
 	ret
 
 LoadMap::
@@ -260,24 +265,24 @@ LoadMap::
 	ret
 
 .jumptable
+	dw MapSetup_NewGame
 	dw MapSetup_Continue
-	dw MapSetup_22af ; TODO
-	dw MapSetup_Reload
-	dw MapSetup_22de ; TODO
-	dw MapSetup_22de ; TODO
+	dw MapSetup_Fight
+	dw MapSetup_FallingWarp
+	dw MapSetup_FallingWarp
 	dw MapSetup_Warp
 	dw MapSetup_Connection
-	dw MapSetup_2275 ; TODO
+	dw MapSetup_Link
 
-MapSetup_2275::
+MapSetup_Link::
 	ldh a, [hROMBank]
 	push af
-	call MapSetup_22af ; TODO
+	call MapSetup_Continue
 	pop af
 	call Bankswitch
 	ret
 
-MapSetup_Reload::
+MapSetup_Fight::
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
@@ -296,7 +301,7 @@ MapSetup_Reload::
 	call FadeIn
 	ret
 
-MapSetup_22af::
+MapSetup_Continue::
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
@@ -315,10 +320,10 @@ MapSetup_22af::
 	call FadeIn
 	ret
 
-MapSetup_22de::
+MapSetup_FallingWarp::
 	callfar OverworldFadeOut
 
-MapSetup_Continue::
+MapSetup_NewGame::
 	call DisableLCD
 	call DisableAudio
 	call VolumeOff
@@ -339,14 +344,14 @@ MapSetup_Continue::
 	ld b, 9 ; TODO: constantify this
 	call GetSGBLayout
 	call LoadWildMonData
-	call Function242c ; TODO
+	call SetPlayerFacingDown
 	call FadeIn
 	ret
 
 MapSetup_Warp::
 	callfar OverworldFadeOut
 	call DisableLCD
-	call Function27C7 ; TODO
+	call WarpEnvironmentCheck
 	ld a, [wNextWarp]
 	ld [wWarpNumber], a
 	ld a, [wNextMapGroup]
@@ -457,11 +462,12 @@ CheckExitTiles::
 	ret z
 	cp (COLL_CARPET | COLLFLAG_ENCOUNTER)
 	ret z
-Function242c::
+	
+SetPlayerFacingDown::
 	ld a, $0
 	ld [wPlayerFacing], a
 	ld a, $0
-	ld d, $0
+	ld d, DOWN
 	call SetObjectFacing
 	ret
 
@@ -922,7 +928,7 @@ ClearObjectStructs::
 	jr nz, .clear_cmd_queue
 	ret
 
-ReadWord:: ; TODO: is this used?
+Unreferenced_ReadWord::
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1004,7 +1010,7 @@ RestoreFacingAfterWarp::
 	call GetCoordOfUpperLeftCorner
 	ret
 
-Function275e:: ; TODO: is this used?
+.unreferenced_pass
 	inc hl
 	inc hl
 	inc hl
@@ -1066,11 +1072,11 @@ GetCoordOfUpperLeftCorner::
 	ld [wMetatileNextX], a
 	ret
 
-Function27C7:: ; TODO
+WarpEnvironmentCheck::
 	call GetMapEnvironment
-	cp 2
+	cp ROUTE
 	jr z, .interior
-	cp 1
+	cp TOWN
 	jr z, .interior
 	ret
 .interior
@@ -1079,12 +1085,12 @@ Function27C7:: ; TODO
 	ld a, [wNextMapNumber]
 	ld c, a
 	call GetAnyMapEnvironment
-	cp 3
+	cp INDOOR
 	jr z, .exterior
-	cp 4
+	cp CAVE
 	jr z, .exterior
-	cp 6
-	jr z, .exterior
+	cp GATE
+	jr z, .exterior ; BUG: ENVIRONMENT_5, and DUNGEON are missing.
 	ret
 
 .exterior

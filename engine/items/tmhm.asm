@@ -7,7 +7,7 @@ CanLearnTMHMMove:
 ; then checks the corresponding flag in wCurPartySpecies's learnset.
 ; Sets register c to 1 if TM/HM is in learnset OR if debug is enabled.
 	ld a, [wDebugFlags]
-	ld c, 01
+	ld c, 1
 	bit DEBUG_FIELD_F, a
 	ret nz
 
