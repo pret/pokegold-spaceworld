@@ -123,8 +123,6 @@ TrainerCardColonGFX:: INCBIN "gfx/trainer_card/colon.2bpp"
 TrainerCardIDNoGFX:: INCBIN "gfx/trainer_card/id_no.2bpp"
 .End::
 TrainerCardLeadersGFX:: INCBIN "gfx/trainer_card/leaders.2bpp"
-	db $18, $00 ; leftover of previous graphics
-Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp"
 
 SECTION "gfx.asm@Bank 6 Tilesets Silent Hill", ROMX
 SilentHill_GFX:

@@ -7,23 +7,27 @@ OverworldStartButtonCheck::
 	ldh a, [hJoyState]
 	bit START_F, a
 	ret z
-	and (START | B_BUTTON)
-	cp (START | B_BUTTON)
+if DEF(_DEBUG)
+	and START | B_BUTTON
+	cp START | B_BUTTON
 	jr nz, .regularMenu
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
-	ret z              ; debug disabled
+	ret z ; debug disabled
 	farcall FieldDebugMenu
 	jr CheckStartmenuSelectHook
 .regularMenu
+endc
 	farcall DisplayStartMenu
 	jr CheckStartmenuSelectHook
+
 SelectButtonFunction::
 	callfar CheckRegisteredItem
+	; fallthrough
 CheckStartmenuSelectHook:
 	ldh a, [hStartmenuCloseAndSelectHookEnable]
 	and a
-	ret z          ; hook is disabled
+	ret z ; hook is disabled
 	ld hl, wQueuedScriptAddr
 	ld a, [hli]
 	ld h, [hl]
@@ -32,7 +36,7 @@ CheckStartmenuSelectHook:
 	call FarCall_hl
 	ld hl, hStartmenuCloseAndSelectHookEnable
 	xor a
-	ld [hli], a    ; clear hook enable and ???
+	ld [hli], a ; clear hook enable and ???
 	ld [hl], a
 	dec a
 	ret

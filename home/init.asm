@@ -11,13 +11,21 @@ SECTION "home/init.asm@Entry point", ROM0
 
 
 SECTION "home/init.asm@Global check value", ROM0
-; The ROM has an incorrect global check, so set it here.
-; It is not corrected by RGBFIX.
+; The ROMs have incorrect global checksums, so set them here.
+; RGBFIX only calculates checksums for the "correctheader" ROMs.
 if DEF(_GOLD)
-	dw $C621
+	if DEF(_DEBUG)
+		dw $C621
+	else
+		dw $497E
+	endc
 endc
 if DEF(_SILVER)
-	dw $2FC9
+	if DEF(_DEBUG)
+		dw $2FC9
+	else
+		dw $7AB1
+	endc
 endc
 
 
