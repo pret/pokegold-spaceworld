@@ -4,9 +4,9 @@ ROMS := pokegold-spaceworld.gb \
         pokesilver-spaceworld-debug.gb
 CORRECTEDROMS := $(ROMS:%.gb=%-correctheader.gb)
 
-GOLD_BASEROM := baserom-gold.gb
-GOLD_DEBUG_BASEROM := baserom-gold-debug.gb
-SILVER_BASEROM := baserom-silver.gb
+GOLD_BASEROM         := baserom-gold.gb
+GOLD_DEBUG_BASEROM   := baserom-gold-debug.gb
+SILVER_BASEROM       := baserom-silver.gb
 SILVER_DEBUG_BASEROM := baserom-silver-debug.gb
 
 DIRS := home engine data gfx audio maps scripts ram dumps garbage
@@ -17,12 +17,11 @@ BUILD := build
 rwildcard = $(foreach d, $(wildcard $1*), $(filter $(subst *, %, $2), $d) $(call rwildcard, $d/, $2))
 ASMFILES := $(call rwildcard, $(DIRS), *.asm) $(FILES)
 
-GOLD_OBJS := $(patsubst %.asm, $(BUILD)/%_gold.o, $(ASMFILES))
-
-GOLD_DEBUG_OBJS := $(patsubst %.asm, $(BUILD)/%_gold_debug.o, $(ASMFILES))
-SILVER_OBJS := $(patsubst %.asm, $(BUILD)/%_silver.o, $(ASMFILES))
-
+GOLD_OBJS         := $(patsubst %.asm, $(BUILD)/%_gold.o, $(ASMFILES))
+GOLD_DEBUG_OBJS   := $(patsubst %.asm, $(BUILD)/%_gold_debug.o, $(ASMFILES))
+SILVER_OBJS       := $(patsubst %.asm, $(BUILD)/%_silver.o, $(ASMFILES))
 SILVER_DEBUG_OBJS := $(patsubst %.asm, $(BUILD)/%_silver_debug.o, $(ASMFILES))
+
 
 ### Build tools
 
@@ -61,11 +60,11 @@ gold: pokegold-spaceworld.gb pokegold-spaceworld-correctheader.gb
 .PHONY: silver
 silver: pokesilver-spaceworld.gb pokesilver-spaceworld-correctheader.gb
 
-.PHONY: gold-debug
-gold: pokegold-spaceworld-debug.gb pokegold-spaceworld_debug-correctheader.gb
+.PHONY: gold_debug
+gold_debug: pokegold-spaceworld-debug.gb pokegold-spaceworld-debug-correctheader.gb
 
-.PHONY: silver-debug
-silver: pokesilver-spaceworld-debug.gb pokesilver-spaceworld-debug-correctheader.gb
+.PHONY: silver_debug
+silver_debug: pokesilver-spaceworld-debug.gb pokesilver-spaceworld-debug-correctheader.gb
 
 .PHONY: compare
 compare: $(ROMS) $(CORRECTEDROMS)
@@ -91,8 +90,8 @@ tidy:
 	       $(ROMS:.gb=.sym) $(CORRECTEDROMS:.gb=.sym) \
 	       $(ROMS:.gb=.map) $(CORRECTEDROMS:.gb=.map) \
 	       $(GOLD_OBJS) $(SILVER_OBJS) \
-		   $(GOLD_DEBUG_OBJS) $(SILVER_DEBUG_OBJS) \
-		   rgbdscheck.o
+	       $(GOLD_DEBUG_OBJS) $(SILVER_DEBUG_OBJS) \
+	       rgbdscheck.o
 
 # Visualize disassembly progress.
 .PHONY: coverage
@@ -142,7 +141,7 @@ pokesilver-spaceworld.gb: RGBFIXFLAGS += -f lh -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -
 pokesilver-spaceworld.gb: layout.link $(SILVER_OBJS) | $(BASEROM)
 	$(RGBLINK) $(RGBLINKFLAGS) -l layout.link -n $(@:.gb=.sym) -m $(@:.gb=.map) -O $(SILVER_BASEROM) -o $@ $(filter-out $<, $^)
 	$(RGBFIX) $(RGBFIXFLAGS) $@
-	
+
 pokegold-spaceworld-debug.gb: RGBFIXFLAGS += -f lh -k 01 -l 0x33 -m 0x03 -p 0 -r 3 -t POKEMON2GOLD
 pokegold-spaceworld-debug.gb: layout.link $(GOLD_DEBUG_OBJS) | $(BASEROM)
 	$(RGBLINK) $(RGBLINKFLAGS) -l layout.link -n $(@:.gb=.sym) -m $(@:.gb=.map) -O $(GOLD_DEBUG_BASEROM) -o $@ $(filter-out $<, $^)
@@ -154,11 +153,11 @@ pokesilver-spaceworld-debug.gb: layout.link $(SILVER_DEBUG_OBJS) | $(BASEROM)
 	$(RGBFIX) $(RGBFIXFLAGS) $@
 
 baserom-gold.gb:
-	@echo "Please obtain a copy of Gold.sgb and put it in this directory as $@"
+	@echo "Please obtain a copy of Gold_nondebug.sgb and put it in this directory as $@"
 	@exit 1
 
 baserom-silver.gb:
-	@echo "Please obtain a copy of Silver.sgb and put it in this directory as $@"
+	@echo "Please obtain a copy of Silver_nondebug.sgb and put it in this directory as $@"
 	@exit 1
 
 baserom-gold-debug.gb:
@@ -178,11 +177,10 @@ include gfx/gfx.mk
 
 RGBASMFLAGS += -E -i $(BUILD)/
 
-$(GOLD_OBJS):   RGBASMFLAGS += -D _GOLD
-$(SILVER_OBJS): RGBASMFLAGS += -D _SILVER
+$(GOLD_OBJS):         RGBASMFLAGS += -D _GOLD
+$(SILVER_OBJS):       RGBASMFLAGS += -D _SILVER
 $(GOLD_DEBUG_OBJS):   RGBASMFLAGS += -D _GOLD -D _DEBUG
 $(SILVER_DEBUG_OBJS): RGBASMFLAGS += -D _SILVER -D _DEBUG
-
 
 $(BUILD)/%_gold.o: $(BUILD)/%.asm | $$(dir $$@) rgbdscheck.o
 	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<
@@ -201,7 +199,7 @@ $(BUILD)/%_gold.d: %.asm | $$(dir $$@) tools/scan_includes
 
 $(BUILD)/%_silver.d: %.asm | $$(dir $$@) tools/scan_includes
 	@tools/scan_includes -b $(BUILD)/ -i $(BUILD)/ -i ./ -o $@ -t $(@:.d=.o) $<
-	
+
 $(BUILD)/%_gold_debug.o: $(BUILD)/%.asm | $$(dir $$@) rgbdscheck.o
 	$(RGBASM) $(RGBASMFLAGS) $(OUTPUT_OPTION) $<
 

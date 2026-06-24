@@ -13,7 +13,7 @@ UnusedOverworldMovementCheck::
 	jr z, SetPlayerIdle ; player movement is disabled
 	ldh a, [hJoyState]
 	ld d, a
-if DEF(_DEBUG)	
+if DEF(_DEBUG)
 	ld hl, wDebugFlags
 	bit DEBUG_FIELD_F, [hl]
 	jr z, .skip_debug_move
@@ -580,7 +580,6 @@ if DEF(_DEBUG)
 	jr z, .skip_debug_move
 	bit B_BUTTON_F, d
 	jp nz, CheckMovementDebug
-
 .skip_debug_move
 endc
 	call GetPlayerMovementByState

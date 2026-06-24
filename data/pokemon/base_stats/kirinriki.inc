@@ -6,7 +6,7 @@
 	db TYPE_DARK, TYPE_NORMAL ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-if DEF(_GOLD) & !DEF(_DEBUG)
+if DEF(_GOLD) && !DEF(_DEBUG)
 	db ITEM_APPLE, ITEM_TAG ; items
 else
 	db ITEM_BERRY, ITEM_TAG ; items

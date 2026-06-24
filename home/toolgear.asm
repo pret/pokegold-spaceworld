@@ -108,6 +108,7 @@ UpdateToolgear::
 	ld bc, SCREEN_WIDTH
 	ld a, '　'
 	call ByteFill
+
 if DEF(_DEBUG)
 	ld hl, wd153
 	bit TOOLGEAR_COORDS_F, [hl]
