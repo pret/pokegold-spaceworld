@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/OldCity.asm", ROMX
 
-	map_attributes OldCity, OLD_CITY, SOUTH | WEST
+	map_attributes OldCity, OLD_CITY
 	connection south, Route1P2, ROUTE_1_P2, 5
 	connection west, Route2, ROUTE_2, 5
 

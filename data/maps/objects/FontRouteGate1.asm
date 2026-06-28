@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/FontRouteGate1.asm", ROMX
 
-	map_attributes FontRouteGate1, FONT_ROUTE_GATE_1, 0
+	map_attributes FontRouteGate1, FONT_ROUTE_GATE_1
 
 FontRouteGate1_MapEvents::
 	dw $4000 ; unknown

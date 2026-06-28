@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoOaksLab.asm", ROMX
 
-	map_attributes KantoOaksLab, KANTO_OAKS_LAB, 0
+	map_attributes KantoOaksLab, KANTO_OAKS_LAB
 
 KantoOaksLab_MapEvents::
 	dw $4000 ; unknown

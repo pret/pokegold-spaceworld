@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/PrinceRoute.asm", ROMX
 
-	map_attributes PrinceRoute, PRINCE_ROUTE, NORTH | SOUTH
+	map_attributes PrinceRoute, PRINCE_ROUTE
 	connection north, Prince, PRINCE, 0
 	connection south, SilentHill, SILENT_HILL, 0
 

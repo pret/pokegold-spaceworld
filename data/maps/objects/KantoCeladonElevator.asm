@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoCeladonElevator.asm", ROMX
 
-	map_attributes KantoCeladonElevator, KANTO_CELADON_ELEVATOR, 0
+	map_attributes KantoCeladonElevator, KANTO_CELADON_ELEVATOR
 
 KantoCeladonElevator_MapEvents::
 	dw $4000 ; unknown

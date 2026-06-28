@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/Office2.asm", ROMX
 
-	map_attributes Office2, OFFICE_2, 0
+	map_attributes Office2, OFFICE_2
 
 Office2_MapEvents::
 	dw $0 ; unknown

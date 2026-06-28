@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BlueMart.asm", ROMX
 
-	map_attributes BlueMart, BLUE_MART, 0
+	map_attributes BlueMart, BLUE_MART
 
 BlueMart_MapEvents::
 	dw $4000 ; unknown

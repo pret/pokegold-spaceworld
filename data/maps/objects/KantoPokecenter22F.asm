@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoPokecenter22F.asm", ROMX
 
-	map_attributes KantoPokecenter22F, KANTO_POKECENTER_2_2F, 0
+	map_attributes KantoPokecenter22F, KANTO_POKECENTER_2_2F
 
 KantoPokecenter22F_MapEvents::
 	dw $4000 ; unknown

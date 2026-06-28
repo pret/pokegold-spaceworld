@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoSilphCo.asm", ROMX
 
-	map_attributes KantoSilphCo, KANTO_SILPH_CO, 0
+	map_attributes KantoSilphCo, KANTO_SILPH_CO
 
 KantoSilphCo_MapEvents::
 	dw $4000 ; unknown

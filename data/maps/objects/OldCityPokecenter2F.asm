@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/OldCityPokecenter2F.asm", ROMX
 
-	map_attributes OldCityPokecenter2F, OLD_CITY_POKECENTER_2F, 0
+	map_attributes OldCityPokecenter2F, OLD_CITY_POKECENTER_2F
 
 OldCityPokecenter2F_MapEvents::
 	dw $4000 ; unknown

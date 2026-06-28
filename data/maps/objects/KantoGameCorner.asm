@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoGameCorner.asm", ROMX
 
-	map_attributes KantoGameCorner, KANTO_GAME_CORNER, 0
+	map_attributes KantoGameCorner, KANTO_GAME_CORNER
 
 KantoGameCorner_MapEvents::
 	dw $4000 ; unknown

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/OldCityMuseum.asm", ROMX
 
-	map_attributes OldCityMuseum, OLD_CITY_MUSEUM, 0
+	map_attributes OldCityMuseum, OLD_CITY_MUSEUM
 
 OldCityMuseum_MapEvents::
 	dw $4000 ; unknown

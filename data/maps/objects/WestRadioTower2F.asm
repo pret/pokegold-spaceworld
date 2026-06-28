@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/WestRadioTower2F.asm", ROMX
 
-	map_attributes WestRadioTower2F, WEST_RADIO_TOWER_2F, 0
+	map_attributes WestRadioTower2F, WEST_RADIO_TOWER_2F
 
 WestRadioTower2F_MapEvents::
 	dw $4000 ; unknown

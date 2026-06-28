@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BirdonLeague2F.asm", ROMX
 
-	map_attributes BirdonLeague2F, BIRDON_LEAGUE_2F, 0
+	map_attributes BirdonLeague2F, BIRDON_LEAGUE_2F
 
 BirdonLeague2F_MapEvents::
 	dw $4000 ; unknown

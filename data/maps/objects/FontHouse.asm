@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/FontHouse.asm", ROMX
 
-	map_attributes FontHouse, FONT_HOUSE, 0
+	map_attributes FontHouse, FONT_HOUSE
 
 FontHouse_MapEvents::
 	dw $4000 ; unknown

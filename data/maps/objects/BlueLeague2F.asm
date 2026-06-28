@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BlueLeague2F.asm", ROMX
 
-	map_attributes BlueLeague2F, BLUE_LEAGUE_2F, 0
+	map_attributes BlueLeague2F, BLUE_LEAGUE_2F
 
 BlueLeague2F_MapEvents::
 	dw $4000 ; unknown

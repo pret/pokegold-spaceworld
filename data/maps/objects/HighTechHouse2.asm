@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/HighTechHouse2.asm", ROMX
 
-	map_attributes HighTechHouse2, HIGHTECH_HOUSE_2, 0
+	map_attributes HighTechHouse2, HIGHTECH_HOUSE_2
 
 HighTechHouse2_MapEvents::
 	dw $4000 ; unknown

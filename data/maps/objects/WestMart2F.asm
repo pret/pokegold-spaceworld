@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/WestMart2F.asm", ROMX
 
-	map_attributes WestMart2F, WEST_MART_2F, 0
+	map_attributes WestMart2F, WEST_MART_2F
 
 WestMart2F_MapEvents::
 	dw $4000 ; unknown

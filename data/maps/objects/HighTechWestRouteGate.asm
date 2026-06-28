@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/HighTechWestRouteGate.asm", ROMX
 
-	map_attributes HighTechWestRouteGate, HIGHTECH_WEST_ROUTE_GATE, 0
+	map_attributes HighTechWestRouteGate, HIGHTECH_WEST_ROUTE_GATE
 
 HighTechWestRouteGate_MapEvents::
 	dw $4000 ; unknown

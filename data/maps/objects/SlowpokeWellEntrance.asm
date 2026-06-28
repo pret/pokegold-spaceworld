@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/SlowpokeWellEntrance.asm", ROMX
 
-	map_attributes SlowpokeWellEntrance, SLOWPOKE_WELL_ENTRANCE, 0
+	map_attributes SlowpokeWellEntrance, SLOWPOKE_WELL_ENTRANCE
 
 SlowpokeWellEntrance_MapEvents::
 	dw $0 ; unknown

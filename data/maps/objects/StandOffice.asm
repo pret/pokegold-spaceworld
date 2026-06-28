@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/StandOffice.asm", ROMX
 
-	map_attributes StandOffice, STAND_OFFICE, 0
+	map_attributes StandOffice, STAND_OFFICE
 
 StandOffice_MapEvents::
 	dw $4000 ; unknown

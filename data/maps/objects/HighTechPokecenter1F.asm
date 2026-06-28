@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/HighTechPokecenter1F.asm", ROMX
 
-	map_attributes HighTechPokecenter1F, HIGHTECH_POKECENTER_1F, 0
+	map_attributes HighTechPokecenter1F, HIGHTECH_POKECENTER_1F
 
 HighTechPokecenter1F_MapEvents::
 	dw $4000 ; unknown

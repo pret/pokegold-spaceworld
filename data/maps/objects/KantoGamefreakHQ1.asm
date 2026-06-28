@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoGamefreakHQ1.asm", ROMX
 
-	map_attributes KantoGamefreakHQ1, KANTO_GAMEFREAK_HQ_1, 0
+	map_attributes KantoGamefreakHQ1, KANTO_GAMEFREAK_HQ_1
 
 KantoGamefreakHQ1_MapEvents::
 	dw $4000 ; unknown

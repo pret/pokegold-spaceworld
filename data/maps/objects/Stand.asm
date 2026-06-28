@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/Stand.asm", ROMX
 
-	map_attributes Stand, STAND, NORTH | SOUTH
+	map_attributes Stand, STAND
 	connection north, BlueForestRoute2, BLUE_FOREST_ROUTE_2, 10
 	connection south, StandRoute, STAND_ROUTE, 10
 

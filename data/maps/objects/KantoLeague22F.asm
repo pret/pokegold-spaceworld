@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoLeague22F.asm", ROMX
 
-	map_attributes KantoLeague22F, KANTO_LEAGUE_2_2F, 0
+	map_attributes KantoLeague22F, KANTO_LEAGUE_2_2F
 
 KantoLeague22F_MapEvents::
 	dw $4000 ; unknown

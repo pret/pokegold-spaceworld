@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoCeruleanHouse.asm", ROMX
 
-	map_attributes KantoCeruleanHouse, KANTO_CERULEAN_HOUSE, 0
+	map_attributes KantoCeruleanHouse, KANTO_CERULEAN_HOUSE
 
 KantoCeruleanHouse_MapEvents::
 	dw $4000 ; unknown

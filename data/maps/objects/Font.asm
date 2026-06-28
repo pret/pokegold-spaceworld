@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/Font.asm", ROMX
 
-	map_attributes Font, FONT, NORTH | WEST | EAST
+	map_attributes Font, FONT
 	connection north, FontRoute2, FONT_ROUTE_2, 0
 	connection west, FontRoute1, FONT_ROUTE_1, 0
 	connection east, FontRoute3, FONT_ROUTE_3, 0

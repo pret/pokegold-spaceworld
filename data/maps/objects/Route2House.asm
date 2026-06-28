@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/Route2House.asm", ROMX
 
-	map_attributes Route2House, ROUTE_2_HOUSE, 0
+	map_attributes Route2House, ROUTE_2_HOUSE
 
 Route2House_MapEvents::
 	dw $4000 ; unknown

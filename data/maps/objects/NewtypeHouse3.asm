@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/NewtypeHouse3.asm", ROMX
 
-	map_attributes NewtypeHouse3, NEWTYPE_HOUSE_3, 0
+	map_attributes NewtypeHouse3, NEWTYPE_HOUSE_3
 
 NewtypeHouse3_MapEvents::
 	dw $4000 ; unknown

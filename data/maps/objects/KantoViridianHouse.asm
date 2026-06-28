@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoViridianHouse.asm", ROMX
 
-	map_attributes KantoViridianHouse, KANTO_VIRIDIAN_HOUSE, 0
+	map_attributes KantoViridianHouse, KANTO_VIRIDIAN_HOUSE
 
 KantoViridianHouse_MapEvents::
 	dw $4000 ; unknown

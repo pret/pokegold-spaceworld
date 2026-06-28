@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/NewtypeDojo.asm", ROMX
 
-	map_attributes NewtypeDojo, NEWTYPE_DOJO, 0
+	map_attributes NewtypeDojo, NEWTYPE_DOJO
 
 NewtypeDojo_MapEvents::
 	dw $4000 ; unknown

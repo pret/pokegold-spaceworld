@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/NewtypePokecenter2F.asm", ROMX
 
-	map_attributes NewtypePokecenter2F, NEWTYPE_POKECENTER_2F, 0
+	map_attributes NewtypePokecenter2F, NEWTYPE_POKECENTER_2F
 
 NewtypePokecenter2F_MapEvents::
 	dw $4000 ; unknown

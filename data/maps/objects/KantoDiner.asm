@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoDiner.asm", ROMX
 
-	map_attributes KantoDiner, KANTO_DINER, 0
+	map_attributes KantoDiner, KANTO_DINER
 
 KantoDiner_MapEvents::
 	dw $4000 ; unknown

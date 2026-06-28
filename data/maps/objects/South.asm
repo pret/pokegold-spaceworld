@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/South.asm", ROMX
 
-	map_attributes South, SOUTH, NORTH | SOUTH | EAST
+	map_attributes South, SOUTH
 	connection north, FontRoute5, FONT_ROUTE_5, 10
 	connection south, HighTechWestRouteOcean, HIGHTECH_WEST_ROUTE_OCEAN, 10
 	connection east, FontRoute1, FONT_ROUTE_1, 0
