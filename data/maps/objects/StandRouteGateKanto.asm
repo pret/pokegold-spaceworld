@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/StandRouteGateKanto.asm", ROMX
 
-	map_attributes StandRouteGateKanto, STAND_ROUTE_GATE_KANTO, 0
+	map_attributes StandRouteGateKanto, STAND_ROUTE_GATE_KANTO
 
 StandRouteGateKanto_MapEvents::
 	dw $4000 ; unknown

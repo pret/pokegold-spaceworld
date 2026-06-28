@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/SugarMart.asm", ROMX
 
-	map_attributes SugarMart, SUGAR_MART, 0
+	map_attributes SugarMart, SUGAR_MART
 
 SugarMart_MapEvents::
 	dw $4000 ; unknown

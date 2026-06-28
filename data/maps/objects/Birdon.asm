@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/Birdon.asm", ROMX
 
-	map_attributes Birdon, BIRDON, NORTH | SOUTH | EAST
+	map_attributes Birdon, BIRDON
 	connection north, FontRoute4, FONT_ROUTE_4, 0
 	connection south, BirdonRoute1, BIRDON_ROUTE_1, 0
 	connection east, BirdonRoute2, BIRDON_ROUTE_2, 0

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/HighTechAquarium1F.asm", ROMX
 
-	map_attributes HighTechAquarium1F, HIGHTECH_AQUARIUM_1F, 0
+	map_attributes HighTechAquarium1F, HIGHTECH_AQUARIUM_1F
 
 HighTechAquarium1F_MapEvents::
 	dw $4000 ; unknown

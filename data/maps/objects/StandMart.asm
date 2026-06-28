@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/StandMart.asm", ROMX
 
-	map_attributes StandMart, STAND_MART, 0
+	map_attributes StandMart, STAND_MART
 
 StandMart_MapEvents::
 	dw $4000 ; unknown

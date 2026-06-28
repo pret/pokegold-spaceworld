@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/NewtypeDiner.asm", ROMX
 
-	map_attributes NewtypeDiner, NEWTYPE_DINER, 0
+	map_attributes NewtypeDiner, NEWTYPE_DINER
 
 NewtypeDiner_MapEvents::
 	dw $4000 ; unknown

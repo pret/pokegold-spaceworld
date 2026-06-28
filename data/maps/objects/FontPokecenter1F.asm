@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/FontPokecenter1F.asm", ROMX
 
-	map_attributes FontPokecenter1F, FONT_POKECENTER_1F, 0
+	map_attributes FontPokecenter1F, FONT_POKECENTER_1F
 
 FontPokecenter1F_MapEvents::
 	dw $4000 ; unknown

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BirdonRouteGateNewtype.asm", ROMX
 
-	map_attributes BirdonRouteGateNewtype, BIRDON_ROUTE_GATE_NEWTYPE, 0
+	map_attributes BirdonRouteGateNewtype, BIRDON_ROUTE_GATE_NEWTYPE
 
 BirdonRouteGateNewtype_MapEvents::
 	dw $4000 ; unknown

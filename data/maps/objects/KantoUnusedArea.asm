@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoUnusedArea.asm", ROMX
 
-	map_attributes KantoUnusedArea, KANTO_UNUSED_AREA, 0
+	map_attributes KantoUnusedArea, KANTO_UNUSED_AREA
 
 KantoUnusedArea_MapEvents::
 	dw $0 ; unknown

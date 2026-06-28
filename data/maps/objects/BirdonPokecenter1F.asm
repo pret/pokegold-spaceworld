@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BirdonPokecenter1F.asm", ROMX
 
-	map_attributes BirdonPokecenter1F, BIRDON_POKECENTER_1F, 0
+	map_attributes BirdonPokecenter1F, BIRDON_POKECENTER_1F
 
 BirdonPokecenter1F_MapEvents::
 	dw $4000 ; unknown

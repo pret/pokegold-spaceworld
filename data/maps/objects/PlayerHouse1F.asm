@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/PlayerHouse1F.asm", ROMX
 
-	map_attributes PlayerHouse1F, PLAYER_HOUSE_1F, 0
+	map_attributes PlayerHouse1F, PLAYER_HOUSE_1F
 
 PlayerHouse1F_MapEvents::
 	dw $4000 ; unknown

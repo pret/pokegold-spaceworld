@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BirdonRouteGateWest.asm", ROMX
 
-	map_attributes BirdonRouteGateWest, BIRDON_ROUTE_GATE_WEST, 0
+	map_attributes BirdonRouteGateWest, BIRDON_ROUTE_GATE_WEST
 
 BirdonRouteGateWest_MapEvents::
 	dw $4000 ; unknown

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/StandRocketHouse1F.asm", ROMX
 
-	map_attributes StandRocketHouse1F, STAND_ROCKET_HOUSE_1F, 0
+	map_attributes StandRocketHouse1F, STAND_ROCKET_HOUSE_1F
 
 StandRocketHouse1F_MapEvents::
 	dw $4000 ; unknown

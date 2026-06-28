@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/HighTechWestRouteOcean.asm", ROMX
 
-	map_attributes HighTechWestRouteOcean, HIGHTECH_WEST_ROUTE_OCEAN, NORTH | EAST
+	map_attributes HighTechWestRouteOcean, HIGHTECH_WEST_ROUTE_OCEAN
 	connection north, South, SOUTH, -10
 	connection east, HighTechWestRoute, HIGHTECH_WEST_ROUTE, 18
 

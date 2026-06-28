@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoCeladonMart4F.asm", ROMX
 
-	map_attributes KantoCeladonMart4F, KANTO_CELADON_MART_4F, 0
+	map_attributes KantoCeladonMart4F, KANTO_CELADON_MART_4F
 
 KantoCeladonMart4F_MapEvents::
 	dw $4000 ; unknown

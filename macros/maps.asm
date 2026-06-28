@@ -6,27 +6,40 @@ ENDM
 MACRO map_attributes
 ;\1: map name
 ;\2: map id
-;\3: connections: combo of NORTH, SOUTH, WEST, and/or EAST, or 0 for none
-DEF CURRENT_MAP_WIDTH = \2_WIDTH
-DEF CURRENT_MAP_HEIGHT = \2_HEIGHT
+	REDEF CURRENT_MAP_ID EQUS "\2"
+	DEF CURRENT_MAP_WIDTH = \2_WIDTH
+	DEF CURRENT_MAP_HEIGHT = \2_HEIGHT
 \1_MapAttributes::
-if _NARG <= 3
 	db CURRENT_MAP_HEIGHT, CURRENT_MAP_WIDTH
 	dw \1_Blocks
 	dw \1_TextPointers
 	dw \1_ScriptLoader
 	dw \1_MapEvents
-	db \3
-	else
-; Gen 1 Map Attributes
+	db MAP_CONNECTIONS_\2
+	; Define `MAP_CONNECTIONS_\2` after `db`ing it so that the `db`ed value
+	; gets updated when subsequent `connection`s modify `MAP_CONNECTIONS_\2`.
+	DEF MAP_CONNECTIONS_\2 = 0
+ENDM
+
+; Gen 1 equivalent of map_attributes
+MACRO old_map_header
+;\1: map name
+;\2: map id
+;\3: tileset
+	REDEF CURRENT_MAP_ID EQUS "\2"
+	DEF CURRENT_MAP_WIDTH = \2_WIDTH
+	DEF CURRENT_MAP_HEIGHT = \2_HEIGHT
+\1_MapAttributes::
 	db TILESET_\3
 	db CURRENT_MAP_HEIGHT, CURRENT_MAP_WIDTH
 	dw \1_Blocks
 	dw \1_TextPointers
 	dw \1_ScriptLoader
-	db \4
+	db MAP_CONNECTIONS_\2
 	dw \1_MapEvents
-	endc
+	; Define `MAP_CONNECTIONS_\2` after `db`ing it so that the `db`ed value
+	; gets updated when subsequent `connection`s modify `MAP_CONNECTIONS_\2`.
+	DEF MAP_CONNECTIONS_\2 = 0
 ENDM
 
 ; Connections go in order: north, south, west, east
@@ -37,66 +50,77 @@ MACRO connection
 ;\4: offset of the target map relative to the current map
 ;    (x offset for east/west, y offset for north/south)
 
-; LEGACY: Support for old connection macro
-if _NARG == 6
-	connection \1, \2, \3, (\4) - (\5)
-else
+	; Calculate tile offsets for source (current) and target maps
+	DEF _src = 0
+	DEF _tgt = (\4) + 3
+	if _tgt < 0
+		DEF _src = -_tgt
+		DEF _tgt = 0
+	endc
 
-; Calculate tile offsets for source (current) and target maps
-DEF _src = 0
-DEF _tgt = (\4) + 3
-if _tgt < 0
-DEF _src = -_tgt
-DEF _tgt = 0
-endc
+	if "\1" === "north"
+		if MAP_CONNECTIONS_{CURRENT_MAP_ID} & (NORTH | SOUTH | WEST | EAST)
+			fail "Invalid order for 'connection' (must be north, south, west, east)"
+		endc
+		DEF MAP_CONNECTIONS_{CURRENT_MAP_ID} |= NORTH
+		DEF _blk = \3_WIDTH * (\3_HEIGHT - 3) + _src
+		DEF _map = _tgt
+		DEF _win = (\3_WIDTH + 6) * \3_HEIGHT + 1
+		DEF _y = \3_HEIGHT * 2 - 1
+		DEF _x = (\4) * -2
+		DEF _len = CURRENT_MAP_WIDTH + 3 - (\4)
+		if _len > \3_WIDTH
+			DEF _len = \3_WIDTH
+		endc
 
-if "\1" === "north"
-DEF _blk = \3_WIDTH * (\3_HEIGHT - 3) + _src
-DEF _map = _tgt
-DEF _win = (\3_WIDTH + 6) * \3_HEIGHT + 1
-DEF _y = \3_HEIGHT * 2 - 1
-DEF _x = (\4) * -2
-DEF _len = CURRENT_MAP_WIDTH + 3 - (\4)
-if _len > \3_WIDTH
-DEF _len = \3_WIDTH
-endc
+	elif "\1" === "south"
+		if MAP_CONNECTIONS_{CURRENT_MAP_ID} & (SOUTH | WEST | EAST)
+			fail "Invalid order for 'connection' (must be north, south, west, east)"
+		endc
+		DEF MAP_CONNECTIONS_{CURRENT_MAP_ID} |= SOUTH
+		DEF _blk = _src
+		DEF _map = (CURRENT_MAP_WIDTH + 6) * (CURRENT_MAP_HEIGHT + 3) + _tgt
+		DEF _win = \3_WIDTH + 7
+		DEF _y = 0
+		DEF _x = (\4) * -2
+		DEF _len = CURRENT_MAP_WIDTH + 3 - (\4)
+		if _len > \3_WIDTH
+			DEF _len = \3_WIDTH
+		endc
 
-elif "\1" === "south"
-DEF _blk = _src
-DEF _map = (CURRENT_MAP_WIDTH + 6) * (CURRENT_MAP_HEIGHT + 3) + _tgt
-DEF _win = \3_WIDTH + 7
-DEF _y = 0
-DEF _x = (\4) * -2
-DEF _len = CURRENT_MAP_WIDTH + 3 - (\4)
-if _len > \3_WIDTH
-DEF _len = \3_WIDTH
-endc
+	elif "\1" === "west"
+		if MAP_CONNECTIONS_{CURRENT_MAP_ID} & (WEST | EAST)
+			fail "Invalid order for 'connection' (must be north, south, west, east)"
+		endc
+		DEF MAP_CONNECTIONS_{CURRENT_MAP_ID} |= WEST
+		DEF _blk = (\3_WIDTH * _src) + \3_WIDTH - 3
+		DEF _map = (CURRENT_MAP_WIDTH + 6) * _tgt
+		DEF _win = (\3_WIDTH + 6) * 2 - 6
+		DEF _y = (\4) * -2
+		DEF _x = \3_WIDTH * 2 - 1
+		DEF _len = CURRENT_MAP_HEIGHT + 3 - (\4)
+		if _len > \3_HEIGHT
+			DEF _len = \3_HEIGHT
+		endc
 
-elif "\1" === "west"
-DEF _blk = (\3_WIDTH * _src) + \3_WIDTH - 3
-DEF _map = (CURRENT_MAP_WIDTH + 6) * _tgt
-DEF _win = (\3_WIDTH + 6) * 2 - 6
-DEF _y = (\4) * -2
-DEF _x = \3_WIDTH * 2 - 1
-DEF _len = CURRENT_MAP_HEIGHT + 3 - (\4)
-if _len > \3_HEIGHT
-DEF _len = \3_HEIGHT
-endc
+	elif "\1" === "east"
+		if MAP_CONNECTIONS_{CURRENT_MAP_ID} & EAST
+			fail "Invalid order for 'connection' (must be north, south, west, east)"
+		endc
+		DEF MAP_CONNECTIONS_{CURRENT_MAP_ID} |= EAST
+		DEF _blk = (\3_WIDTH * _src)
+		DEF _map = (CURRENT_MAP_WIDTH + 6) * _tgt + CURRENT_MAP_WIDTH + 3
+		DEF _win = \3_WIDTH + 7
+		DEF _y = (\4) * -2
+		DEF _x = 0
+		DEF _len = CURRENT_MAP_HEIGHT + 3 - (\4)
+		if _len > \3_HEIGHT
+			DEF _len = \3_HEIGHT
+		endc
 
-elif "\1" === "east"
-DEF _blk = (\3_WIDTH * _src)
-DEF _map = (CURRENT_MAP_WIDTH + 6) * _tgt + CURRENT_MAP_WIDTH + 3
-DEF _win = \3_WIDTH + 7
-DEF _y = (\4) * -2
-DEF _x = 0
-DEF _len = CURRENT_MAP_HEIGHT + 3 - (\4)
-if _len > \3_HEIGHT
-DEF _len = \3_HEIGHT
-endc
-
-else
-fail "Invalid direction for 'connection'."
-endc
+	else
+		fail "Invalid direction for 'connection'."
+	endc
 
 	map_id \3
 	dw \2_Blocks + _blk
@@ -105,7 +129,6 @@ endc
 	db \3_WIDTH
 	db _y, _x
 	dw wOverworldMapBlocks + _win
-endc
 ENDM
 
 MACRO def_warp_events

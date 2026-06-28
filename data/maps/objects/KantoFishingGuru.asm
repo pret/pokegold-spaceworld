@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoFishingGuru.asm", ROMX
 
-	map_attributes KantoFishingGuru, KANTO_FISHING_GURU, 0
+	map_attributes KantoFishingGuru, KANTO_FISHING_GURU
 
 KantoFishingGuru_MapEvents::
 	dw $4000 ; unknown

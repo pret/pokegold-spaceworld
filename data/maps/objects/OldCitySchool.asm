@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/OldCitySchool.asm", ROMX
 
-	map_attributes OldCitySchool, OLD_CITY_SCHOOL, 0
+	map_attributes OldCitySchool, OLD_CITY_SCHOOL
 
 OldCitySchool_MapEvents::
 	dw $4000 ; unknown

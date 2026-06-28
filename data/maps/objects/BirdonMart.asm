@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BirdonMart.asm", ROMX
 
-	map_attributes BirdonMart, BIRDON_MART, 0
+	map_attributes BirdonMart, BIRDON_MART
 
 BirdonMart_MapEvents::
 	dw $4000 ; unknown

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/OldCityMart.asm", ROMX
 
-	map_attributes OldCityMart, OLD_CITY_MART, 0
+	map_attributes OldCityMart, OLD_CITY_MART
 
 OldCityMart_MapEvents::
 	dw $4000 ; unknown

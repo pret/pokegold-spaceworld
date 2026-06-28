@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/OldCityPokecenterTimeMachine.asm", ROMX
 
-	map_attributes OldCityPokecenterTimeMachine, OLD_CITY_POKECENTER_TIME_MACHINE, 0
+	map_attributes OldCityPokecenterTimeMachine, OLD_CITY_POKECENTER_TIME_MACHINE
 
 OldCityPokecenterTimeMachine_MapEvents::
 	dw $4000 ; unknown

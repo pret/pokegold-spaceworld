@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoHospital.asm", ROMX
 
-	map_attributes KantoHospital, KANTO_HOSPITAL, 0
+	map_attributes KantoHospital, KANTO_HOSPITAL
 
 KantoHospital_MapEvents::
 	dw $4000 ; unknown

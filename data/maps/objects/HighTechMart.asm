@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/HighTechMart.asm", ROMX
 
-	map_attributes HighTechMart, HIGHTECH_MART, 0
+	map_attributes HighTechMart, HIGHTECH_MART
 
 HighTechMart_MapEvents::
 	dw $4000 ; unknown

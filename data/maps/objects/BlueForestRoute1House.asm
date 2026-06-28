@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BlueForestRoute1House.asm", ROMX
 
-	map_attributes BlueForestRoute1House, BLUE_FOREST_ROUTE_1_HOUSE, 0
+	map_attributes BlueForestRoute1House, BLUE_FOREST_ROUTE_1_HOUSE
 
 BlueForestRoute1House_MapEvents::
 	dw $4000 ; unknown

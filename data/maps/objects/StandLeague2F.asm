@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/StandLeague2F.asm", ROMX
 
-	map_attributes StandLeague2F, STAND_LEAGUE_2F, 0
+	map_attributes StandLeague2F, STAND_LEAGUE_2F
 
 StandLeague2F_MapEvents::
 	dw $4000 ; unknown

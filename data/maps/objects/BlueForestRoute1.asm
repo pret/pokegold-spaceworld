@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BlueForestRoute1.asm", ROMX
 
-	map_attributes BlueForestRoute1, BLUE_FOREST_ROUTE_1, SOUTH | EAST
+	map_attributes BlueForestRoute1, BLUE_FOREST_ROUTE_1
 	connection south, Route18, ROUTE_18, 0
 	connection east, BlueForest, BLUE_FOREST, -9
 

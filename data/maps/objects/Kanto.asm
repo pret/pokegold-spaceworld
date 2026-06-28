@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/Kanto.asm", ROMX
 
-	map_attributes Kanto, KANTO, WEST | EAST
+	map_attributes Kanto, KANTO
 	connection west, RouteSilentEast, ROUTE_SILENT_EAST, 9
 	connection east, KantoEastRoute, KANTO_EAST_ROUTE, 9
 

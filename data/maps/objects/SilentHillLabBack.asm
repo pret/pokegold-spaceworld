@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/SilentHillLabBack.asm", ROMX
 
-	map_attributes SilentHillLabBack, SILENT_HILL_LAB_BACK, 0
+	map_attributes SilentHillLabBack, SILENT_HILL_LAB_BACK
 
 SilentHillLabBack_MapEvents::
 	dw $4000 ; unknown

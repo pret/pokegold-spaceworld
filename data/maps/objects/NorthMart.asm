@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/NorthMart.asm", ROMX
 
-	map_attributes NorthMart, NORTH_MART, 0
+	map_attributes NorthMart, NORTH_MART
 
 NorthMart_MapEvents::
 	dw $4000 ; unknown

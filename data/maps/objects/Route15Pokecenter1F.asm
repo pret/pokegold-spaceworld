@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/Route15Pokecenter1F.asm", ROMX
 
-	map_attributes Route15Pokecenter1F, ROUTE_15_POKECENTER_1F, 0
+	map_attributes Route15Pokecenter1F, ROUTE_15_POKECENTER_1F
 
 Route15Pokecenter1F_MapEvents::
 	dw $4000 ; unknown

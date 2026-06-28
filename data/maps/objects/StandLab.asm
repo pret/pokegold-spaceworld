@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/StandLab.asm", ROMX
 
-	map_attributes StandLab, STAND_LAB, 0
+	map_attributes StandLab, STAND_LAB
 
 StandLab_MapEvents::
 	dw $4000 ; unknown

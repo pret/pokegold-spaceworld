@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/KantoRedsHouse.asm", ROMX
 
-	map_attributes KantoRedsHouse, KANTO_REDS_HOUSE, 0
+	map_attributes KantoRedsHouse, KANTO_REDS_HOUSE
 
 KantoRedsHouse_MapEvents::
 	dw $4000 ; unknown

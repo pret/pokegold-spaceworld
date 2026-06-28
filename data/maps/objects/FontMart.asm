@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/FontMart.asm", ROMX
 
-	map_attributes FontMart, FONT_MART, 0
+	map_attributes FontMart, FONT_MART
 
 FontMart_MapEvents::
 	dw $4000 ; unknown

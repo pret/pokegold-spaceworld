@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/SilentHillPokecenter.asm", ROMX
 
-	map_attributes SilentHillPokecenter, SILENT_HILL_POKECENTER, 0
+	map_attributes SilentHillPokecenter, SILENT_HILL_POKECENTER
 
 SilentHillPokecenter_MapEvents::
 	dw $4000 ; unknown

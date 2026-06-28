@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/WestPokecenter2F.asm", ROMX
 
-	map_attributes WestPokecenter2F, WEST_POKECENTER_2F, 0
+	map_attributes WestPokecenter2F, WEST_POKECENTER_2F
 
 WestPokecenter2F_MapEvents::
 	dw $4000 ; unknown

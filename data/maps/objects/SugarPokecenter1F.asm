@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/SugarPokecenter1F.asm", ROMX
 
-	map_attributes SugarPokecenter1F, SUGAR_POKECENTER_1F, 0
+	map_attributes SugarPokecenter1F, SUGAR_POKECENTER_1F
 
 SugarPokecenter1F_MapEvents::
 	dw $4000 ; unknown

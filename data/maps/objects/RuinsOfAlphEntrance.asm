@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/RuinsOfAlphEntrance.asm", ROMX
 
-	map_attributes RuinsOfAlphEntrance, RUINS_OF_ALPH_ENTRANCE, 0
+	map_attributes RuinsOfAlphEntrance, RUINS_OF_ALPH_ENTRANCE
 
 RuinsOfAlphEntrance_MapEvents::
 	dw $0 ; unknown

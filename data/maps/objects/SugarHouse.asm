@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/SugarHouse.asm", ROMX
 
-	map_attributes SugarHouse, SUGAR_HOUSE, 0
+	map_attributes SugarHouse, SUGAR_HOUSE
 
 SugarHouse_MapEvents::
 	dw $4000 ; unknown

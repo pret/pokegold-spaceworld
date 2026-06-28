@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/CaveMinecarts4.asm", ROMX
 
-	map_attributes CaveMinecarts4, CAVE_MINECARTS_4, 0
+	map_attributes CaveMinecarts4, CAVE_MINECARTS_4
 
 CaveMinecarts4_MapEvents::
 	dw $0 ; unknown

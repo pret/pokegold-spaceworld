@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/FontLab.asm", ROMX
 
-	map_attributes FontLab, FONT_LAB, 0
+	map_attributes FontLab, FONT_LAB
 
 FontLab_MapEvents::
 	dw $4000 ; unknown

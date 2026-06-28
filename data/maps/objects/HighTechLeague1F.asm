@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/HighTechLeague1F.asm", ROMX
 
-	map_attributes HighTechLeague1F, HIGHTECH_LEAGUE_1F, 0
+	map_attributes HighTechLeague1F, HIGHTECH_LEAGUE_1F
 
 HighTechLeague1F_MapEvents::
 	dw $4000 ; unknown

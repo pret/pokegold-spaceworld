@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/NorthHouse2.asm", ROMX
 
-	map_attributes NorthHouse2, NORTH_HOUSE_2, 0
+	map_attributes NorthHouse2, NORTH_HOUSE_2
 
 NorthHouse2_MapEvents::
 	dw $4000 ; unknown

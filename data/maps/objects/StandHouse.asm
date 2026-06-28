@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/StandHouse.asm", ROMX
 
-	map_attributes StandHouse, STAND_HOUSE, 0
+	map_attributes StandHouse, STAND_HOUSE
 
 StandHouse_MapEvents::
 	dw $4000 ; unknown

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BirdonWallpaperHouse.asm", ROMX
 
-	map_attributes BirdonWallpaperHouse, BIRDON_WALLPAPER_HOUSE, 0
+	map_attributes BirdonWallpaperHouse, BIRDON_WALLPAPER_HOUSE
 
 BirdonWallpaperHouse_MapEvents::
 	dw $4000 ; unknown

@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/BluePokecenter1F.asm", ROMX
 
-	map_attributes BluePokecenter1F, BLUE_POKECENTER_1F, 0
+	map_attributes BluePokecenter1F, BLUE_POKECENTER_1F
 
 BluePokecenter1F_MapEvents::
 	dw $4000 ; unknown

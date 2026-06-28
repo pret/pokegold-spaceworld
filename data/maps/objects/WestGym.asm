@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "data/maps/objects/WestGym.asm", ROMX
 
-	map_attributes WestGym, WEST_GYM, 0
+	map_attributes WestGym, WEST_GYM
 
 WestGym_MapEvents::
 	dw $4000 ; unknown
