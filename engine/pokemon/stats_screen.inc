@@ -17,7 +17,7 @@ StatsScreenMain::
 	predef CalcMonStats
 
 .got_stats
-	ld hl, wd4a7
+	ld hl, wPokedexMenuFlags
 	set 1, [hl]
 	call ClearBGPalettes
 	call ClearTileMap

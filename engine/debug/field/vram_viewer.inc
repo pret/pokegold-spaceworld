@@ -164,8 +164,8 @@ FieldDebug_DoVRAMViewer:
 	ret
 
 .LoadPokemon:
-	ld a, 3
-	ld [wce37], a
+	ld a, DEX_VENUSAUR
+	ld [wTempSpecies], a
 	ld [wCurPartySpecies], a
 	call GetBaseData
 	call LoadMonFrontSprite
@@ -229,17 +229,17 @@ FieldDebug_DoClearEventFlags:
 	ld b, a
 	ld a, [wMapId]
 	ld c, a
-	ld hl, UnknownMapBufferPointers
+	ld hl, MapScenes
 .determine_loop
 	push hl
-	ld a, BANK(UnknownMapBufferPointers)
+	ld a, BANK(MapScenes)
 	call GetFarByte
 	cp -1
 	jr z, .none_found
 	cp b
 	jr nz, .determine_loop2
 	inc hl
-	ld a, BANK(UnknownMapBufferPointers)
+	ld a, BANK(MapScenes)
 	call GetFarByte
 	cp c
 	jr nz, .determine_loop2
@@ -255,11 +255,11 @@ FieldDebug_DoClearEventFlags:
 	pop hl
 	ld de, 6
 	add hl, de
-	ld a, BANK(UnknownMapBufferPointers)
+	ld a, BANK(MapScenes)
 	call GetFarByte
 	ld e, a
 	inc hl
-	ld a, BANK(UnknownMapBufferPointers)
+	ld a, BANK(MapScenes)
 	call GetFarByte
 	ld d, a
 	scf

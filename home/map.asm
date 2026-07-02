@@ -50,9 +50,9 @@ SetUpMapBuffer::
 	call ClearMapBuffer
 	ldh a, [hROMBank]
 	push af
-	ld a, BANK(UnknownMapBufferPointers)
+	ld a, BANK(MapScenes)
 	call Bankswitch
-	ld hl, UnknownMapBufferPointers
+	ld hl, MapScenes
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapId]

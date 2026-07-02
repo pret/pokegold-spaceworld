@@ -151,16 +151,13 @@ GetStartMenuState:
 	bit DEBUG_FIELD_F, [hl]
 	jr z, .store
 	ld b, 0
-	ld hl, wd41b
-	bit 2, [hl]
+	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 	jr z, .store
 	ld b, 1
-	ld hl, wd41c
-	bit 4, [hl]
+	CheckEvent SILENT_HILL_LAB_FRONT_GOT_POKEDEX
 	jr z, .store
 	ld b, 2
-	ld hl, wd41d
-	bit 2, [hl]
+	CheckEvent SILENT_HILL_LAB_FRONT_RIVAL_BATTLED
 	jr z, .store
 	ld b, 3
 .store
@@ -816,7 +813,7 @@ DrawBackpackTitleRow:
 
 LoadItemData:
 	ld a, [wCurItem]
-	ld [wce37], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	call CopyStringToStringBuffer2
 	ret
@@ -1019,7 +1016,7 @@ PartyHeldItem:
 	ld a, [hl]
 	and a
 	jr z, .NoItem
-	ld [wce37], a
+	ld [wTempSpecies], a
 	call GetItemName
 	ld hl, PokemonAskSwapItemText
 	call MenuTextBox
@@ -1030,15 +1027,15 @@ PartyHeldItem:
 	ld [wItemQuantity], a
 	ld hl, wNumBagItems
 	call TossItem
-	ld a, [wce37]
+	ld a, [wTempSpecies]
 	ld b, a
 	ld a, [wCurItem]
-	ld [wce37], a
+	ld [wTempSpecies], a
 	ld a, b
 	ld [wCurItem], a
 	call ReceiveItemFromPokemon
 	jp nc, .GiveItem
-	ld a, [wce37]
+	ld a, [wTempSpecies]
 	ld [wCurItem], a
 	ld hl, PokemonSwapItemText
 	call MenuTextBoxBackup
@@ -1061,7 +1058,7 @@ PartyHeldItem:
 	jr .ExitGiveItem
 
 .GiveItem
-	ld a, [wce37]
+	ld a, [wTempSpecies]
 	ld [wCurItem], a
 	call ReceiveItemFromPokemon
 	ld hl, ItemStorageFullText
@@ -1578,8 +1575,8 @@ PartySelectionInputs:
 	hlcoord 15, 12
 	cp 2
 	jr c, .NotAMove
-	ld [wce37], a
-	ld de, wce37
+	ld [wTempSpecies], a
+	ld de, wTempSpecies
 	lb bc, 1, 3
 	call PrintNumber
 	jr .step
@@ -1790,8 +1787,8 @@ UseRegisteredItem:
 	jp CallJumptable
 
 .RegisteredItemJumptable 
-; BUG: This table only has 6 entires instead of the needed 7.
-; dw .UnusedUseRegularItem appears to have been commented out, adding it back as the fifth entry restores proper behavior.
+; BUG: This table only has 6 entries instead of the needed 7.
+; .UnusedUseRegularItem appears to have been commented out, adding it back as the fifth entry restores proper behavior.
 	dw .CantUse2
 	dw .CantUse
 	dw .CantUse
@@ -2116,7 +2113,7 @@ DrawTrainerCardMainPage:
 	ld hl, wPokedexCaught
 	ld b, $1C
 	call CountSetBits
-	ld de, wce37
+	ld de, wNamedObjectIndexBuffer
 	hlcoord 13, 10
 	lb bc, 1, 3
 	call PrintNumber

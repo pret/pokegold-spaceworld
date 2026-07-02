@@ -1413,8 +1413,7 @@ GivePoke::
 	and a
 	jr nz, .skip_pokedex
 
-	ld hl, wd41c
-	bit 4, [hl] ; flag for obtaining the pokedex
+	CheckEvent SILENT_HILL_LAB_FRONT_GOT_POKEDEX
 	jr z, .skip_pokedex
 
 	ld hl, NewDexDataText

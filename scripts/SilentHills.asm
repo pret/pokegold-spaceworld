@@ -50,7 +50,7 @@ SilentHillsTrainer2:
 	jr nz, .Trainer2Won
 	ld hl, SilentHillsTrainer2EncounterString
 	call OpenTextbox
-	ld hl, wd3a5
+	ld hl, wSilentHillsFlags
 	set 1, [hl]
 if DEF(_GOLD)
 	ld a, TRAINER_SCHOOLBOY
@@ -71,12 +71,12 @@ endc
 	ret
 
 SilentHillsTrainer3:
-	ld hl, wd3a5
+	ld hl, wSilentHillsFlags
 	bit 2, [hl]
 	jr nz, .Trainer3Won
 	ld hl, SilentHillsTrainer3EncounterString
 	call OpenTextbox
-	ld hl, wd3a5
+	ld hl, wSilentHillsFlags
 	set 2, [hl]
 if DEF(_GOLD)
 	ld a, TRAINER_BUG_CATCHER_BOY
@@ -97,12 +97,12 @@ endc
 	ret
 
 SilentHillsTrainer4:
-	ld hl, wd3a5
+	ld hl, wSilentHillsFlags
 	bit 3, [hl]
 	jr nz, .Trainer4Won
 	ld hl, SilentHillsTrainer4EncounterString
 	call OpenTextbox
-	ld hl, wd3a5
+	ld hl, wSilentHillsFlags
 	set 3, [hl]
 if DEF(_GOLD)
 	ld a, TRAINER_FIREBREATHER
@@ -123,12 +123,12 @@ endc
 	ret
 
 SilentHillsTrainer5:
-	ld hl, wd3a5
+	ld hl, wSilentHillsFlags
 	bit 4, [hl]
 	jr nz, .Trainer5Won
 	ld hl, SilentHillsTrainer5EncounterString
 	call OpenTextbox
-	ld hl, wd3a5
+	ld hl, wSilentHillsFlags
 	set 4, [hl]
 if DEF(_GOLD)
 	ld a, TRAINER_BEAUTY
@@ -149,12 +149,12 @@ endc
 	ret
 
 SilentHillsTrainer6:
-	ld hl, wd3a5
+	ld hl, wSilentHillsFlags
 	bit 5, [hl]
 	jr nz, .Trainer6Won
 	ld hl, SilentHillsTrainer6EncounterString
 	call OpenTextbox
-	ld hl, wd3a5
+	ld hl, wSilentHillsFlags
 	set 5, [hl]
 if DEF(_GOLD)
 	ld a, TRAINER_BUG_CATCHER_BOY

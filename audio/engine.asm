@@ -1997,7 +1997,7 @@ MusicEE:
 
 MusicF9:
 	ld a, 1
-	ld [wc1b3], a
+	ld [wUnusedMusicF9Flag], a
 	ret
 
 MusicE2:
@@ -2526,7 +2526,7 @@ _PlayMusic::
 	dec a
 	jr nz, .loop
 	xor a
-	ld [wc1b3], a
+	ld [wUnusedMusicF9Flag], a
 	ld [wChannel1JumpCondition], a
 	ld [wChannel2JumpCondition], a
 	ld [wChannel3JumpCondition], a

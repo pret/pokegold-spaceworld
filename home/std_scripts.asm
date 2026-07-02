@@ -61,9 +61,9 @@ TestWildBattleStart::
 
 OverworldLoop_StartBattle::
 	predef StartBattle
-	ld a, $f3
+	ld a, MAPSETUP_RELOADMAP
 	ldh [hMapEntryMethod], a
-	ld hl, wd4a9
+	ld hl, wGameModeFlags
 	set 5, [hl]
 	ld hl, wJoypadFlags
 	set 4, [hl]

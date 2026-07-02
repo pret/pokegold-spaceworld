@@ -22,7 +22,7 @@ InitializeNewGameWRAM:
 	; Clear a lot of in-game WRAM.
 
 	ld hl, wShadowOAM
-	ld bc, (wcd3f) - wShadowOAM
+	ld bc, wNewGameWRAMEnd - wShadowOAM
 	xor a
 	call ByteFill
 
@@ -120,7 +120,7 @@ LoadOptions:
 	call CloseSRAM
 	ret
 
-; Copies the contents of wDebugFlags - wce66 to... themselves.
+; Copies the contents of wDebugFlags - wDebugFlags4 to... themselves.
 ; Presumably, the debug flags were originally read from the save file (evidenced by SRAM being opened and closed),
 ; but the source address was dummied out.
 Dummy_LoadDebugFlags:
@@ -130,16 +130,16 @@ Dummy_LoadDebugFlags:
 	ld a, [hli]
 	ld [wDebugFlags], a
 	ld a, [hli]
-	ld [wce64], a
+	ld [wDebugFlags2], a
 	ld a, [hli]
-	ld [wce65], a
+	ld [wDebugFlags3], a
 	ld a, [hl]
-	ld [wce66], a
+	ld [wDebugFlags4], a
 	call CloseSRAM
 	ret
 
 MainMenu::
-	ld hl, wd4a9
+	ld hl, wGameModeFlags
 	res 0, [hl]
 	call ClearTileMap
 	call GetMemSGBLayout

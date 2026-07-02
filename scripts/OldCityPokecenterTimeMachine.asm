@@ -30,6 +30,6 @@ OldCityPokecenterTimeMachine_TextPointers:
 
 OldCityPokecenterTimeMachineText1:
 	xor a
-	ld [wce37], a
+	ld [wTempByteValue], a
 	callfar Link_Receptionist_Intro
 	ret

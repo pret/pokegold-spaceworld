@@ -44,8 +44,7 @@ PlayerHouse2FScript1:
 	ret
 
 PlayerHouse2PositionCheck:
-	ld hl, wd41a
-	bit 0, [hl]
+	CheckEvent PLAYER_HOUSE_2F_READ_EMAIL
 	ret nz
 	ld a, [wYCoord]
 	cp 1
@@ -86,13 +85,11 @@ PlayerHouse2FScript2:
 	ret
 
 PlayerHouse2FText1:
-	ld hl, wd41a
-	bit 3, [hl]
+	CheckEvent PLAYER_HOUSE_2F_TALKED_TO_KEN
 	jr nz, .jump
 	ld hl, PlayerHouse2FTextString1
 	call OpenTextbox
-	ld hl, wd41a
-	set 3, [hl]
+	SetEvent PLAYER_HOUSE_2F_TALKED_TO_KEN
 	ld c, 3
 	call DelayFrames
 .jump
@@ -111,8 +108,7 @@ PlayerHouse2FRadioText:
 	ret
 
 PlayerHouse2FComputerText:
-	ld hl, wd41a
-	bit 0, [hl]
+	CheckEvent PLAYER_HOUSE_2F_READ_EMAIL
 	jr nz, .jump
 	ld hl, PlayerHouse2FTextString5
 	call OpenTextbox
@@ -127,8 +123,7 @@ PlayerHouse2FComputerText:
 PlayerHouse2FCheckEmail:
 	call YesNoBox
 	jr c, .jump2
-	ld hl, wd41a
-	set 0, [hl]
+	SetEvent PLAYER_HOUSE_2F_READ_EMAIL
 	ld hl, PlayerHouse2FTextString6
 	call PrintText
 	ret

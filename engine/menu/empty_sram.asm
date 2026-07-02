@@ -389,35 +389,7 @@ TryLoadPokemonData:
 ; Unreferenced
 	ret
 
-MACRO map_buffer_pointers
-	db GROUP_\1, MAP_\1
-	dw \2, \3, \4
-
-ENDM
-
-; TODO: Rename to something more fitting, and actually label the flag ram addresses.
-UnknownMapBufferPointers:
-	map_buffer_pointers PLAYER_HOUSE_2F, wPlayerHouse2FCurScript, PlayerHouse2FScriptPointers, wd39a
-	;db $01, $09, $9A, $D2, $95, $41, $9A, $D3
-	db $01, $08, $9B, $D2, $A6, $40, $9B, $D3 ; PLAYER_HOUSE_1F
-	db $01, $04, $9C, $D2, $7E, $76, $9C, $D3 ; SILENT_HILL
-	db $01, $0C, $9D, $D2, $C6, $4B, $9D, $D3 ; SILENT_HILL_LAB_FRONT
-	db $01, $0D, $9E, $D2, $73, $5C, $9E, $D3 ; SILENT_HILL_LAB_BACK
-	db $01, $0A, $9F, $D2, $8C, $46, $9F, $D3 ; SILENT_HILL_POKECENTER
-	db $01, $0B, $A0, $D2, $43, $48, $A0, $D3 ; SILENT_HILL_HOUSE
-if DEF(_GOLD)
-	db $01, $01, $A1, $D2, $A2, $7B, $A1, $D3 ; ROUTE1P1
-	db $01, $02, $A2, $D2, $72, $7C, $A2, $D3 ; ROUTE1P2
-endc
-if DEF(_SILVER)
-	db $01, $01, $A1, $D2, $AC, $7B, $A1, $D3 ; ROUTE1P1
-	db $01, $02, $A2, $D2, $7C, $7C, $A2, $D3 ; ROUTE1P2
-endc
-	db $01, $05, $A3, $D2, $6B, $40, $A3, $D3 ; ROUTE1_GATE_1F
-	db $01, $06, $A4, $D2, $29, $41, $A4, $D3 ; ROUTE1_GATE_2F
-	db $01, $0F, $A5, $D2, $55, $56, $A5, $D3 ; SILENT_HILLS
-	db $02, $11, $A6, $D2, $8F, $47, $A6, $D3 ; OLD_CITY_POKECENTER_2F
-	db -1
+INCLUDE "data/maps/scenes.inc"
 
 OverworldLoop_ReturnFromBattle:
 	ld a, MAPSTATUS_MAIN

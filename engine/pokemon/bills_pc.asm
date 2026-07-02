@@ -242,16 +242,16 @@ _ChangeBox:
 	call LoadStandardMenuHeader
 	call ClearPalettes
 	call ClearTileMap
-.sub_e3d4
+.loop
 	ld hl, _ChangeBox_MenuHeader
 	call CopyMenuHeader
 	call ScrollingMenu
 	ld a, [wMenuJoypad]
 	cp B_BUTTON
-	jr z, .sub_e3e9
+	jr z, .exit
 	call BillsPC_ChangeBoxSubmenu
-	jr .sub_e3d4
-.sub_e3e9
+	jr .loop
+.exit
 	call CloseWindow
 	ret
 

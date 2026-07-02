@@ -6330,14 +6330,14 @@ ExitBattle:
 	ld [hli], a
 	dec b
 	jr nz, .loop
-	ld hl, wd4a7
+	ld hl, wPokedexMenuFlags
 	set 0, [hl]
 	call WaitSFX
 
 	ld a, $e3
 	ldh [rLCDC], a
-	ld hl, wd14f
-	res 7, [hl]
+	ld hl, wToolgearFlags
+	res HIDE_TOOLGEAR_F, [hl]
 	call ClearPalettes
 	ret
 

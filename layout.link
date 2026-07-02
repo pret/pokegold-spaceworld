@@ -177,7 +177,7 @@ ROMX $04
 	"gfx.asm@Title Screen GFX"
 	"engine/items/tmhm.asm"
 	"data/moves/tmhm_moves.asm"
-	"engine/unknown_boxes.asm"
+	"engine/pokemon/add_mon.asm"
 	"engine/menu/text_entry.asm@naming"
 	"data/text/text_input_chars.asm"
 	"gfx.asm@Name Entry Extra Tiles"

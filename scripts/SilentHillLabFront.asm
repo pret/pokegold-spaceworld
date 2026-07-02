@@ -420,8 +420,7 @@ SilentHillLabFrontScript11:
 	call OpenTextbox
 	ld hl, SilentHillLabFrontTextString15
 	call OpenTextbox
-	ld hl, wd41c
-	set 4, [hl]
+	SetEvent SILENT_HILL_LAB_FRONT_GOT_POKEDEX
 	call UnfreezeEverything
 	ld a, $0B
 	ld [wMapScriptNumber], a
@@ -499,7 +498,7 @@ SilentHillLabFrontScript13:
 
 GetLabPokemon:
 	ld hl, LabPokemon
-	ld a, [wd266]
+	ld a, [wRivalStarter]
 	ld b, a
 .loop
 	ld a, [hli]
@@ -608,8 +607,7 @@ Movememt12:
 SilentHillLabFrontScript17:
 	ld hl, SilentHillLabFrontTextString23
 	call OpenTextbox
-	ld hl, wd41d
-	set 2, [hl]
+	SetEvent SILENT_HILL_LAB_FRONT_RIVAL_BATTLED
 	ld hl, wNumBagItems
 	ld a, 5
 	ld [wCurItem], a
@@ -683,7 +681,7 @@ SilentHillLabFrontTextString1:
 	done
 
 SilentHillLabFrontText2:
-	ld hl, wd39d
+	ld hl, wSilentHillLabFrontFlags
 	bit 0, [hl]
 	set 0, [hl]
 	jr z, .jump

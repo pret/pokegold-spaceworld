@@ -153,11 +153,7 @@ hMutateWX:: db
 
 ENDU
 
-	ds 3 ; TODO
-
-hFFC0:: db
-
-	ds 6
+	ds 10
 
 UNION
 hUsedSpriteIndex:: db
@@ -207,7 +203,7 @@ hBGMapTransferPosition:: db
 
 hBGMapAddress:: dw
 
-hFFE2:: db
+	ds 1
 
 hSPTemp:: dw
 
@@ -244,11 +240,10 @@ hTileAnimFrame:: db
 
 hLastTalked:: db
 
-hFFEB:: db
-hFFEC:: db
-hFFED:: db
-
-hFFEE:: db
+hBGEventYCoord:: db
+hBGEventXCoord:: db
+hBGEventScriptID:: db
+hBGEventObjectID:: db
 
 hRandomAdd:: db
 hRandomSub:: db

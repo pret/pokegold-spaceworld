@@ -44,7 +44,7 @@ FieldDebug_OpenMapViewer:
 	ret
 
 DebugMapViewer::
-	ld a, [wd153]
+	ld a, [wTimeOfDayDebugFlags]
 	ld b, a
 	ld a, [wToolgearFlags]
 	ld c, a
@@ -65,7 +65,7 @@ DebugMapViewer::
 	call SetMapStatus
 	pop bc
 	ld a, b
-	ld [wd153], a
+	ld [wTimeOfDayDebugFlags], a
 	ld a, c
 	ld [wToolgearFlags], a
 	ret

@@ -2386,7 +2386,7 @@ ApplyPPUp:
 	ld a, b
 	cp NUM_MOVES + 1
 	ret z
-	ld a, [wce37]
+	ld a, [wUsePPUp]
 	dec a
 	jr nz, .use
 	ld a, [wMenuCursorY]
@@ -2435,7 +2435,7 @@ ComputeMaxPP:
 .okay
 	add b
 	ld b, a
-	ld a, [wce37]
+	ld a, [wUsePPUp]
 	dec a
 	jr z, .no_pp_up
 	dec c

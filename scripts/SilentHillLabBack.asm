@@ -48,10 +48,9 @@ SilentHillLabBackScript1:
 	ld a, 0
 	ld hl, SilentHillLabBackMovement1
 	call LoadMovementDataPointer
-	ld hl, wd41b
-	set 1, [hl]
+	SetEvent SILENT_HILL_LAB_BACK_FOLLOWED_OAK
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, 1
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -127,7 +126,7 @@ SilentHillLabBackMovement2:
 SilentHillLabBackScript5:
 	ld hl, SilentHillLabBackTextString12
 	call OpenTextbox
-	ld a, [wd266]
+	ld a, [wRivalStarter]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, SilentHillLabBackTextString13
@@ -151,8 +150,7 @@ SilentHillLabBackScript7:
 	ret
 
 SilentHillLabBackText1:
-	ld hl, wd41b
-	bit 2, [hl]
+	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 	ld hl, SilentHillLabBackTextString3
 	jr z, .skip
 	ld hl, SilentHillLabBackTextString9
@@ -217,19 +215,18 @@ SilentHillLabBackTextString6:
 ConfirmPokemonSelection:
 	call YesNoBox
 	jr c, .bigJump
-	ld hl, wd41b
-	set 2, [hl]
+	SetEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 	ld a, 1
-	ld [wPlayerHouse1FCurScript], a
+	ld [wPlayerHouse1FSceneID], a
 	ld a, 1
-	ld [wPlayerHouse2FCurScript], a
+	ld [wPlayerHouse2FSceneID], a
 	ld a, 1
-	ld [wSilentHillHouseCurScript], a
+	ld [wSilentHillHouseSceneID], a
 	ld hl, SilentHillLabBackTextString8
 	call PrintText
 	ld hl, wJoypadFlags
 	set 5, [hl]
-	ld a, [wd265]
+	ld a, [wPlayerStarter]
 	ld [wCurPartySpecies], a
 	ld a, 5
 	ld [wCurPartyLevel], a
@@ -267,8 +264,7 @@ SilentHillLabBackTextString9:
 	done
 
 SilentHillLabBackFunc3:
-	ld hl, wd41b
-	bit 2, [hl]
+	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 	ld hl, SilentHillLabBackTextString11
 	jr z, .skip
 	ld hl, SilentHillLabBackTextString14
@@ -306,8 +302,7 @@ SilentHillLabBackTextString14:
 	done
 
 SilentHillLabBackFunc4:
-	ld hl, wd41b
-	bit 2, [hl]
+	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 	jr nz, .bigjump
 	ldh a, [hLastTalked]
 	sub 2
@@ -320,11 +315,11 @@ SilentHillLabBackFunc4:
 	add hl, de
 	add hl, de
 	ld a, [hli]
-	ld [wd265], a
+	ld [wPlayerStarter], a
 	push hl
 	ld [wNamedObjectIndexBuffer], a
 	farcall StarterDex
-	ld a, [wd265]
+	ld a, [wPlayerStarter]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	pop hl
@@ -337,7 +332,7 @@ SilentHillLabBackFunc4:
 	inc hl
 	inc hl
 	ld a, [hl]
-	ld [wd266], a
+	ld [wRivalStarter], a
 	ret
 .bigjump
 	ld hl, SilentHillLabBackTextString15

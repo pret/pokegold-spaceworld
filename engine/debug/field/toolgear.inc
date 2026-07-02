@@ -19,12 +19,12 @@ FieldDebug_Toolgear:
 	ret
 
 .DayNight60SecondCycle:
-	ld hl, wd153
+	ld hl, wTimeOfDayDebugFlags
 	set OVERWORLD_MINUTE_TIME_F, [hl]
 	jr .UpdateDayNightCycle
 
 .ResetDayNightCycle:
-	ld hl, wd153
+	ld hl, wTimeOfDayDebugFlags
 	res OVERWORLD_MINUTE_TIME_F, [hl]
 	jr .UpdateDayNightCycle
 
@@ -54,7 +54,7 @@ FieldDebug_Toolgear:
 
 EnableToolgearCoords:
 	call EnableToolgear
-	ld hl, wd153
+	ld hl, wTimeOfDayDebugFlags
 	set TOOLGEAR_COORDS_F, [hl]
 	ret
 
@@ -72,7 +72,7 @@ OpenToolgearMenu:
 	bit TOOLGEAR_COORDS_F, a
 	ld a, FIELDDEBUG_RETURN_CLEANUP
 	ret nz
-	ld hl, wd153
+	ld hl, wTimeOfDayDebugFlags
 	bit TOOLGEAR_COORDS_F, [hl]
 	ld a, FIELDDEBUG_RETURN_WAIT_INPUT
 	ret nz

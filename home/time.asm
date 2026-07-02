@@ -43,7 +43,7 @@ UpdateTime::
 	bit DEBUG_FIELD_F, a
 	jr z, .get_time_of_day
 
-	ld a, [wd153]
+	ld a, [wTimeOfDayDebugFlags]
 	bit OVERWORLD_MINUTE_TIME_F, a
 	jr nz, .get_time_with_seconds
 

@@ -1,11 +1,9 @@
 INCLUDE "constants.asm"
 
-SECTION "engine/unknown_boxes.asm", ROMX
+SECTION "engine/pokemon/add_mon.asm", ROMX
 
-Function1130a:
-	ret
-
-Function1130b:
+_AddEnemyMonToPlayerParty:
+	ret ; dummied out via an early return
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr c, .bigjump
