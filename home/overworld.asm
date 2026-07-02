@@ -21,6 +21,8 @@ endc
 	farcall DisplayStartMenu
 	jr CheckStartmenuSelectHook
 
+; OverworldStartButtonCheck did not check SELECT_F to call SelectButtonFunction
+; for the Space World 1997 demo experience, as no key items were available during it.
 SelectButtonFunction::
 	callfar CheckRegisteredItem
 	; fallthrough
