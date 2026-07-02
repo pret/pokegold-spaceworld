@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Checkout rgbds
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: rgbds
           ref: ${{ env.rgbds_version }}
