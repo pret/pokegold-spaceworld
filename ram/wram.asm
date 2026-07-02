@@ -600,6 +600,7 @@ wCriticalHit::
 	db
 
 wAttackMissed:: db
+; nonzero for a miss
 
 wPlayerSubStatus1:: db
 wPlayerSubStatus2:: db
