@@ -50,7 +50,7 @@ SilentHillLabBackScript1:
 	call LoadMovementDataPointer
 	SetEvent SILENT_HILL_LAB_BACK_FOLLOWED_OAK
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, 1
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
