@@ -983,7 +983,7 @@ PartyHeldItem:
 	call GetCurNick
 	ld hl, wStringBuffer1
 	ld de, wMonOrItemNameBuffer
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, [wMenuCursorY]
 	cp 1
@@ -1228,13 +1228,13 @@ PartyGiveMail:
 	call Call_ExitMenu
 	call WaitBGMap
 	ld a, [wCurPartyMon]
-	ld hl, $BA68
-	ld bc, $0028
+	ld hl, sBox5End
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, wMovementBufferCount
-	ld bc, $0028
+	ld bc, MAIL_STRUCT_LENGTH
 	ld a, 2
 	call OpenSRAM
 	call CopyBytes
@@ -1278,10 +1278,10 @@ PartyMailMenu:
 	jr .exit
 .GiveMail
 	ld a, [wCurPartyMon]
-	ld hl, $BA68
-	ld bc, $0028
+	ld hl, sBox5End
+	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
-	ld bc, $0028
+	ld bc, MAIL_STRUCT_LENGTH
 	ld de, wMovementBufferCount
 	ld a, 2
 	call OpenSRAM
@@ -1639,13 +1639,13 @@ PartySelectionInputs:
 	ld a, [wBattleMode]
 	jr z, .NotInBattle
 	ld hl, wBattleMonMoves
-	ld bc, $0020
+	ld bc, NUM_MOVES * MOVE_NAME_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	push hl
 	call SwapEntries
 	pop hl
-	ld bc, $0006
+	ld bc, PARTY_LENGTH
 	add hl, bc
 	call SwapEntries
 .NotInBattle
@@ -1789,12 +1789,15 @@ UseRegisteredItem:
 	ld hl, .RegisteredItemJumptable
 	jp CallJumptable
 
-.RegisteredItemJumptable
+.RegisteredItemJumptable 
+; BUG: This table only has 6 entires instead of the needed 7.
+; dw .UnusedUseRegularItem appears to have been commented out, adding it back as the fifth entry restores proper behavior.
 	dw .CantUse2
 	dw .CantUse
 	dw .CantUse
 	dw .CantUse
-	dw .overworld
+;	dw .UnusedUseRegularItem
+	dw .KeyItem
 	dw .FieldMove
 
 .CantUse
@@ -1804,14 +1807,14 @@ UseRegisteredItem:
 	and a
 	ret
 
-.UnusedSimpleUse
+.UnusedUseRegularItem
 	call RefreshScreen
 	call DoItemEffect
 	call ScreenCleanup
 	and a
 	ret
 
-.overworld
+.KeyItem
 	call RefreshScreen
 	ld hl, wStateFlags
 	res SPRITE_UPDATES_DISABLED_F, [hl]

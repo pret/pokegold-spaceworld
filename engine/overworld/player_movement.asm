@@ -5,7 +5,7 @@ SECTION "engine/overworld/player_movement.asm@Player Movement", ROMX
 OverworldMovementCheck::
 	jp _OverworldMovementCheck
 
-UnusedOverworldMovementCheck::
+UnusedOldOverworldMovementCheck::
 	ld a, PLAYER_OBJECT_INDEX
 	ldh [hEventCollisionException], a
 	ld a, [wPlayerStepType]
