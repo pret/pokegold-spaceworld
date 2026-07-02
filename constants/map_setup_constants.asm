@@ -6,4 +6,4 @@
 	const_skip
 	const MAPSETUP_WARP       ; f6
 	const MAPSETUP_CONNECTION ; f7
-	const_skip
+	const MAPSETUP_EXIT_LINK  ; f8

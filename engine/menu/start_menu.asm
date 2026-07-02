@@ -1787,7 +1787,7 @@ UseRegisteredItem:
 	jp CallJumptable
 
 .RegisteredItemJumptable 
-; BUG: This table only has 6 entires instead of the needed 7.
+; BUG: This table only has 6 entries instead of the needed 7.
 ; .UnusedUseRegularItem appears to have been commented out, adding it back as the fifth entry restores proper behavior.
 	dw .CantUse2
 	dw .CantUse

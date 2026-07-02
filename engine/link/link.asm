@@ -1247,7 +1247,7 @@ ExitLinkCommunications:
 	call ClearBGPalettes
 	xor a
 	ld [wUnusedLinkCommunicationByte], a
-	ld a, $F8
+	ld a, MAPSETUP_EXIT_LINK
 	ldh [hMapEntryMethod], a
 	call LoadMap
 	call GBFadeInFromWhite

@@ -787,7 +787,7 @@ SECTION "CB3C", WRAM0[$CB3C]
 wTileAnimBuffer:: ds 1 tiles
 
 
-SECTION "CB56", WRAM0[$CB4C]
+SECTION "CB4C", WRAM0[$CB4C]
 UNION
 wOtherPlayerLinkMode:: db
 wOtherPlayerLinkAction::
@@ -848,7 +848,7 @@ wPlayerStepFlags:: db
 wPlayerStepDirection:: db
 
 
-SECTION "CB71", WRAM0[$CB70]
+SECTION "CB70", WRAM0[$CB70]
 
 wQueuedMinorObjectGFX:: db
 
@@ -893,7 +893,7 @@ wScrollingMenuCursorPosition:: db
 wWindowStackSize:: db
 
 
-SECTION "CC09", WRAM0[$CC02]
+SECTION "CC02", WRAM0[$CC02]
 
 wMenuDataHeader::
 wMenuFlags:: db
@@ -1443,7 +1443,7 @@ wTimeOfDay:: db
 
 	ds 1
 
-wNewGameWRAM::
+wNewGameWRAMEnd::
 
 SECTION "Options", WRAM0[$CE5F]
 
@@ -1590,7 +1590,9 @@ wPlayerState:: db
 wPlayerStarter:: db
 wRivalStarter:: db
 
+
 SECTION "Map Scene ID & Flags", WRAM0[$D29A]
+
 wPlayerHouse2FSceneID:: db
 wPlayerHouse1FSceneID:: db
 wSilentHillSceneID:: db
@@ -1621,10 +1623,7 @@ wRoute1Gate2FFlags:: db
 wSilentHillsFlags:: db
 wOldCityPokecenter2FFlags:: db
 
-	ds 73
-
-
-SECTION "Event Flags", WRAM0[$D41A]
+	ds 115
 
 wEventFlags:: flag_array NUM_EVENTS
 

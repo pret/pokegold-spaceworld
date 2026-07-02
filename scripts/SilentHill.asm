@@ -3,7 +3,7 @@ INCLUDE "constants.asm"
 SECTION "scripts/SilentHill.asm", ROMX
 
 SilentHill_ScriptLoader::
-	ld hl, SilentHillScriptPointers1
+	ld hl, SilentHillScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret

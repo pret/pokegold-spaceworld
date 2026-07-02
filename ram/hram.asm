@@ -240,10 +240,10 @@ hTileAnimFrame:: db
 
 hLastTalked:: db
 
-hBGYPos:: db
-hBGXPos:: db
-hBGScriptID:: db
-hBGObjectID:: db
+hBGEventYCoord:: db
+hBGEventXCoord:: db
+hBGEventScriptID:: db
+hBGEventObjectID:: db
 
 hRandomAdd:: db
 hRandomSub:: db

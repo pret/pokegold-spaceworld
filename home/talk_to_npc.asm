@@ -53,7 +53,7 @@ asm_3062:
 	ret z
 	ld h, d
 	ld l, e
-	ldh a, [hBGObjectID]
+	ldh a, [hBGEventObjectID]
 	dec a
 	ld d, $0
 	ld e, a
@@ -87,7 +87,7 @@ PrintTextboxDebugNumbers::
 .CheckSign:
 	bit 1, a
 	jr z, .PrintNum
-	ld de, hBGObjectID
+	ld de, hBGEventObjectID
 
 .PrintNum:
 	hlcoord 4, 12
@@ -134,13 +134,13 @@ QueueMapTextSubroutine::
 	call CheckFacingBGEvent
 	jp nc, xor_a ; if not facing person or sign
 	ld a, e
-	ldh [hBGYPos], a
+	ldh [hBGEventYCoord], a
 	ld a, d
-	ldh [hBGXPos], a
+	ldh [hBGEventXCoord], a
 	ld a, b
-	ldh [hBGScriptID], a
+	ldh [hBGEventScriptID], a
 	ld a, [hl]
-	ldh [hBGObjectID], a
+	ldh [hBGEventObjectID], a
 	ld hl, wTalkingTargetType
 	set 1, [hl] ; we're talking to a sign
 	call xor_a_dec_a

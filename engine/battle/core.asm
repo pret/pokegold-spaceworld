@@ -6337,7 +6337,7 @@ ExitBattle:
 	ld a, $e3
 	ldh [rLCDC], a
 	ld hl, wToolgearFlags
-	res 7, [hl]
+	res HIDE_TOOLGEAR_F, [hl]
 	call ClearPalettes
 	ret
 
