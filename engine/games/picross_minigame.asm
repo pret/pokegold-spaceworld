@@ -170,7 +170,7 @@ PicrossMinigame:
 ; load cursor GFX
 	ld de, vSprites
 	ld hl, PicrossCursorGFX
-	ld bc, 9 tiles
+	ld bc, 9 tiles ; should be 6 tiles
 	ld a, BANK(PicrossCursorGFX)
 	call FarCopyData
 

@@ -25,6 +25,7 @@ ROM0
 	"home/interrupts.asm@Serial interrupt vector"
 	org $0060
 	"home/interrupts.asm@Joypad interrupt vector"
+	"garbage.asm@High Home Garbage"
 	org $0100
 	"home/init.asm@Entry point"
 	org $014e
@@ -291,15 +292,18 @@ ROMX $11
 	"engine/pokedex/display_dex_entry.asm"
 	"gfx.asm@Pokedex GFX"
 	"data/pokemon/dex_entries.asm"
+	"garbage.asm@Bank 11 Garbage"
 
 ROMX $12
 	"gfx.asm@Trainer Battle Sprites"
+	"garbage.asm@Bank 12 Garbage"
 
 ROMX $13
 	"gfx.asm@Bank 13 Tilesets Lab"
 	"gfx.asm@Bank 13 Tilesets Ruins Of Alph"
 	"gfx.asm@Bank 13 Tilesets Ship"
 	"gfx.asm@Bank 13 Tilesets Ship Port"
+	"garbage.asm@Bank 13 Garbage"
 
 ROMX $14
 	"engine/pokemon/tempmon.asm"
@@ -321,44 +325,56 @@ ROMX $14
 
 ROMX $15
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 1"
+	"garbage.asm@Bank 15 Garbage"
 
 ROMX $16
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 2"
+	"garbage.asm@Bank 16 Garbage"
 
 ROMX $17
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 3"
+	"garbage.asm@Bank 17 Garbage"
 
 ROMX $18
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 4"
+	"garbage.asm@Bank 18 Garbage"
 
 ROMX $19
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 5"
+	"garbage.asm@Bank 19 Garbage"
 
 ROMX $1a
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 6"
+	"garbage.asm@Bank 1a Garbage"
 
 ROMX $1b
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 7"
+	"garbage.asm@Bank 1b Garbage"
 
 ROMX $1c
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 8"
+	"garbage.asm@Bank 1c Garbage"
 
 ROMX $1d
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 9"
+	"garbage.asm@Bank 1d Garbage"
 
 ROMX $1e
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 10"
+	"garbage.asm@Bank 1e Garbage"
 
 ROMX $1f
 	"gfx/pokemon/pkmn_pics.asm@PKMN Pics 11"
 	"gfx.asm@Annon Pic Ptrs and Pics"
 	"gfx/pokemon/egg.asm"
+	"garbage.asm@Bank 1f Garbage"
 
 ROMX $20
 	"garbage.asm@Bank 20 Garbage"
 
 ROMX $21
 	"gfx.asm@Attack Animation GFX"
+	"garbage.asm@Bank 21 Garbage"
 
 ROMX $22
 	"garbage.asm@Bank 22 Garbage"
@@ -372,11 +388,13 @@ ROMX $23
 	"engine/sprite_anims/core.asm"
 	"gfx.asm@Pokemon Party Sprites"
 	"engine/gfx/mon_icons.asm"
+	"garbage.asm@Bank 23 Garbage"
 
 ROMX $24
 	"engine/menu/set_clock_dialog.asm"
 	"engine/games/slot_machine_game.asm"
 	"gfx.asm@Slot Machine GFX"
+	"garbage.asm@Bank 24 Garbage"
 
 ROMX $25
 	"data/maps/objects/Route2Gate1F.asm"
@@ -419,6 +437,7 @@ ROMX $25
 	"scripts/OldCityKurtsHouse.asm"
 	"data/maps/objects/OldCitySchool.asm"
 	"scripts/OldCitySchool.asm"
+	"garbage.asm@Bank 25 Garbage"
 
 ROMX $26
 	"data/maps/objects/Route1Gate1F.asm"
@@ -461,6 +480,7 @@ ROMX $26
 	"scripts/WestHouse1.asm"
 	"data/maps/objects/WestHouse2.asm"
 	"scripts/WestHouse2.asm"
+	"garbage.asm@Bank 26 Garbage"
 
 ROMX $27
 	"data/maps/objects/HighTechWestRouteGate.asm"
@@ -703,6 +723,7 @@ ROMX $27
 	"scripts/NorthPokecenter1F.asm"
 	"data/maps/objects/NorthPokecenter2F.asm"
 	"scripts/NorthPokecenter2F.asm"
+	"garbage.asm@Bank 27 Garbage"
 
 ROMX $28
 	"garbage.asm@Bank 28 Garbage"
@@ -764,9 +785,11 @@ ROMX $2f
 	"scripts/SlowpokeWellMain.asm"
 	"data/maps/objects/SilentHills.asm"
 	"scripts/SilentHills.asm"
+	"garbage.asm@Bank 2f Garbage"
 
 ROMX $30
 	"gfx.asm@Bank 30 Sprites 1"
+	"garbage.asm@Bank 30 Garbage"
 
 ROMX $31
 	"gfx.asm@Bank 31 Sprites 2"
@@ -776,12 +799,14 @@ ROMX $32
 	"engine/battle_anims/bg_effects.asm"
 	"data/moves/animations.asm"
 	"engine/gfx/screen_effects.asm"
+	"garbage.asm@Bank 32 Garbage"
 
 ROMX $33
 	"engine/battle_anims/anim_commands.asm"
 	"engine/battle_anims/core.asm"
 	"engine/battle_anims/functions.asm"
 	"engine/battle_anims/helpers.asm"
+	"garbage.asm@Bank 33 Garbage"
 
 ROMX $34
 	"data/maps/objects/RouteSilentEastGate.asm"
@@ -800,6 +825,7 @@ ROMX $34
 	"scripts/SilentHillLabBack.asm"
 	"data/maps/objects/UnusedMap13.asm"
 	"scripts/UnusedMap13.asm"
+	"garbage.asm@Bank 34 Garbage"
 
 ROMX $35
 	"garbage.asm@Bank 35 Garbage"
@@ -890,12 +916,14 @@ ROMX $36
 	"scripts/DeletedMap.asm"
 	"scripts/Route1P1.asm"
 	"scripts/Route1P2.asm"
+	"garbage.asm@Bank 36 Garbage"
 
 ROMX $37
 	"gfx.asm@Bank 37 Tilesets Dept Store"
 	"gfx.asm@Bank 37 Tilesets Office"
 	"gfx.asm@Bank 37 Tilesets Cave"
 	"gfx.asm@Bank 37 Tilesets Power Plant"
+	"garbage.asm@Bank 37 Garbage"
 
 ROMX $38
 	"engine/games/pikachu_minigame.asm@Pikachu Minigame"
@@ -908,6 +936,7 @@ ROMX $38
 	"gfx.asm@Matches GFX"
 	"engine/games/picross_minigame.asm"
 	"gfx.asm@Picross GFX"
+	"garbage.asm@Bank 38 Garbage"
 
 ROMX $39
 	"engine/movie/game_freak_intro.asm"
@@ -923,6 +952,7 @@ ROMX $3a
 	"audio/songs/none.asm"
 	"audio/cry_pointers.asm"
 	"audio/sfx_pointers.asm"
+	"garbage.asm@Bank 3a Garbage"
 
 ROMX $3b
 	"audio/songs/nidorinointro.asm"
@@ -936,6 +966,7 @@ ROMX $3b
 	"audio/songs/spottedrocket.asm"
 	"audio/songs/victorytrainer.asm"
 	"audio/songs/evolution.asm"
+	"garbage.asm@Bank 3b Garbage"
 
 ROMX $3c
 	"audio/move_sfx_old.asm"
@@ -951,6 +982,7 @@ ROMX $3d
 ROMX $3e
 	"engine/gfx/load_gfx.asm"
 	"gfx.asm@Misc GFX"
+	"garbage.asm@Bank 3e Garbage"
 
 ROMX $3f
 	"engine/menu/field_debug_menu.asm@FieldDebugMenuHeader"

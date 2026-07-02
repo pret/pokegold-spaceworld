@@ -2,7 +2,7 @@
 set -e
 
 # Report unnamed symbols
-content="$(tools/unnamed.py -r . pokegold-spaceworld.sym | head)"
+content="$(tools/unnamed.py -r . pokegold-spaceworld-debug.sym | head)"
 
 curl -H 'Content-Type: application/json' -X POST "$DISCORD_WEBHOOK_URL" -d@- << EOF
 {
