@@ -70,7 +70,7 @@ GameStart::
 	ld hl, OakSpeech6
 	call PrintText
 	farcall SetClockDialog
-	call Function04ac
+	call SetClock
 	call GBFadeOutToWhite
 	call ClearTileMap
 	ld de, ProtagonistPic
@@ -118,7 +118,7 @@ IntroCleanup::
 	call DelayFrames
 	call GBFadeOutToWhite
 	call ClearTileMap
-	call Function0502
+	call StartRTC
 	ld a, MAPSTATUS_MAIN
 	ld [wLastMapStatus], a
 	ld [wMapStatus], a

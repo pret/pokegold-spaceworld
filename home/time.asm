@@ -91,38 +91,48 @@ UpdateTime::
 	db 50, DARKNESS_F
 	db 59, MORN_F
 
-Function04ac::
+SetClock::
+; set clock data from hram
+
 	ld hl, hRTCStatusFlags
 	set 0, [hl]
-	call Function04ea
+	call StopRTC
+; enable clock r/w
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
+; set clock data
+; stored 'backwards' in hram
 	call LatchClock
 
+; seconds
 	ld a, RTC_S
 	ld [MBC3SRamBank], a
 	ld a, 0
 	ld [MBC3RTC], a
 
+; minutes
 	ld a, RTC_M
 	ld [MBC3SRamBank], a
 	ld a, [wStartMinute]
 	ld [MBC3RTC], a
 
+; hours
 	ld a, RTC_H
 	ld [MBC3SRamBank], a
 	ld a, [wStartHour]
 	ld [MBC3RTC], a
 
+; days
 	ld a, [wStartDay]
 	ldh [hRTCDays], a
 
+; cleanup
 	call CloseSRAM
 	ld hl, hRTCStatusFlags
 	res 0, [hl]
 	ret
 
-Function04ea::
+StopRTC:: ; unreferenced
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	call LatchClock
@@ -134,7 +144,7 @@ Function04ea::
 	call CloseSRAM
 	ret
 
-Function0502::
+StartRTC::
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	call LatchClock

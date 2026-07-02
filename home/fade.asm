@@ -2,7 +2,9 @@ INCLUDE "constants.asm"
 
 SECTION "home/fade.asm", ROM0
 
-Function0343::
+; Functions to fade the screen in and out.
+
+TimeOfDayFade::
 	ld a, [wTimeOfDayPal] ; tells if current map is dark
 	ld b, a
 	ld hl, FadePal4

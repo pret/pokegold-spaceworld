@@ -68,8 +68,8 @@ AdjustTimeText:
 	call PrintText
 	jp .loop
 .set_time
-	call Function04ac
-	call Function0502
+	call SetClock
+	call StartRTC
 	jp TextAsmEnd
 
 AdjustTimeEndText:
