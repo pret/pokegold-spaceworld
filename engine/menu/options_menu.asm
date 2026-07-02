@@ -51,7 +51,7 @@ OptionsMenu::
 	pop de
 	pop af
 	ld [wStateFlags], a
-	ld hl, wd4a9
+	ld hl, wGameModeFlags
 	bit 0, [hl]
 	jp z, TitleSequenceStart
 	ret

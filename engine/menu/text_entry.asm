@@ -650,7 +650,7 @@ LoadNamingScreenGFX:
 	call FarCopyData
 
 	ld a, $26
-	ld hl, wc41a
+	ld hl, wSpriteAnimDict + (NUM_SPRITEANIMDICT_ENTRIES - 1) * 2
 	ld [hli], a
 	ld [hl], $7F
 	xor a

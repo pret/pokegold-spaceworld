@@ -81,7 +81,7 @@ HealParty:
 .party_done
 	xor a
 	ld [wCurPartyMon], a
-	ld [wce37], a
+	ld [wTempSpecies], a
 	ld a, [wPartyCount]
 	ld b, a
 

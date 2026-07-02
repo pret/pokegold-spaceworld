@@ -46,7 +46,7 @@ newcharmap local
 	charmap "　", $7f
 
 EnableToolgear::
-	ld hl, wd153
+	ld hl, wTimeOfDayDebugFlags
 	res TOOLGEAR_COORDS_F, [hl]
 	ld hl, wToolgearFlags
 	set TOOLGEAR_COORDS_F, [hl]
@@ -110,7 +110,7 @@ UpdateToolgear::
 	call ByteFill
 
 if DEF(_DEBUG)
-	ld hl, wd153
+	ld hl, wTimeOfDayDebugFlags
 	bit TOOLGEAR_COORDS_F, [hl]
 	jr z, .debug_show_time
 

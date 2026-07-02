@@ -60,17 +60,17 @@ LoadCryHeader::
 
 GetCryIndex::
 	ld d, a
-	ld a, [wce37]
+	ld a, [wTempSpecies]
 	push af
 	ld a, d
-	ld [wce37], a
+	ld [wTempSpecies], a
 	farcall ConvertMon_2to1
-	ld a, [wce37]
+	ld a, [wTempSpecies]
 	dec a
 	ld c, a
 	ld b, $0
 	pop af
-	ld [wce37], a
+	ld [wTempSpecies], a
 	ret
 
 PrintLevel::
@@ -90,8 +90,8 @@ PrintLevelFullWidth::
 	ld c, 3
 	ld a, [wTempMonLevel]
 _PrintLevelCommon:
-	ld [wce37], a
-	ld de, wce37
+	ld [wTempSpecies], a
+	ld de, wTempSpecies
 	ld b, PRINTNUM_RIGHTALIGN | 1
 	jp PrintNumber
 

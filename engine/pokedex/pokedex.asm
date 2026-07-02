@@ -1726,7 +1726,7 @@ NewPokedexEntry::
 	call UpdateSprites
 	callfar LoadPokeDexGraphics
 	call ClearSprites
-	ld hl, wd4a7
+	ld hl, wPokedexMenuFlags
 	set 1, [hl]
 	ldh a, [hMapAnims]
 	push af
@@ -1741,7 +1741,7 @@ NewPokedexEntry::
 	call GetMemSGBLayout
 	call LoadFontExtra
 	call SetPalettes
-	ld hl, wd4a7
+	ld hl, wPokedexMenuFlags
 	res 1, [hl]
 	call MaxVolume
 	ret

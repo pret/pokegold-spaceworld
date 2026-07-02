@@ -115,38 +115,27 @@ DebugMenuOptionName::
 	jp DebugMenu
 
 SetDemoEventFlags:
-	ld hl, wd41a
-	set 5, [hl]
-	ld hl, wd41a
-	set 7, [hl] ; talked to blue
-	ld hl, wd41a
-	set 0, [hl] ; read email
-	ld hl, wd41a
-	set 3, [hl]
-	ld hl, wd41a
-	set 6, [hl]
-	ld hl, wd41a
-	set 6, [hl]
-	ld hl, wd41e
-	set 5, [hl]
-	ld hl, wd41b
-	set 1, [hl] ; followed oak to back room
-	ld hl, wd41c
-	set 4, [hl] ; received pokedexes
-	ld hl, wd41d
-	set 2, [hl] ; beat rival in lab
-	ld hl, wd41b
-	set 2, [hl] ; chose a starter
+	SetEvent SILENT_HILL_RIVAL_EVENT
+	SetEvent SILENT_HILL_TALKED_TO_BLUE ; talked to blue
+	SetEvent PLAYER_HOUSE_2F_READ_EMAIL ; read email
+	SetEvent PLAYER_HOUSE_2F_TALKED_TO_KEN
+	SetEvent SILENT_HILL_HOUSE_READ_RIVAL_EMAIL
+	SetEvent SILENT_HILL_HOUSE_READ_RIVAL_EMAIL
+	SetEvent SILENT_HILL_HOUSE_KEN_LEFT
+	SetEvent SILENT_HILL_LAB_BACK_FOLLOWED_OAK ; followed oak to back room
+	SetEvent SILENT_HILL_LAB_FRONT_GOT_POKEDEX ; received pokedexes
+	SetEvent SILENT_HILL_LAB_FRONT_RIVAL_BATTLED ; beat rival in lab
+	SetEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER ; chose a starter
 	ld a, 1
-	ld [wPlayerHouse2FCurScript], a
+	ld [wPlayerHouse2FSceneID], a
 	ld a, 1
-	ld [wPlayerHouse1FCurScript], a
+	ld [wPlayerHouse1FSceneID], a
 	ld a, 6
-	ld [wSilentHillCurScript], a
+	ld [wSilentHillSceneID], a
 	ld a, 18
-	ld [wSilentHillLabFrontCurScript], a
+	ld [wSilentHillLabFrontSceneID], a
 	ld a, 6
-	ld [wSilentHillLabBackCurScript], a
+	ld [wSilentHillLabBackSceneID], a
 	ld a, 2
-	ld [wSilentHillHouseCurScript], a
+	ld [wSilentHillHouseSceneID], a
 	ret

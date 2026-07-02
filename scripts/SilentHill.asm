@@ -25,6 +25,7 @@ SilentHillNPCIDs3:
 	db $03
 	db $FF
 
+SilentHillScriptPointers:
 SilentHillScriptPointers1:
 	dw SilentHillScript1
 	dw SilentHillNPCIDs1
@@ -165,10 +166,9 @@ SilentHillScript4:
 	ret
 
 .TalkedToBlue:
-	ld hl, wd41a
-	set 7, [hl]
+	SetEvent SILENT_HILL_TALKED_TO_BLUE
 	ld a, 1
-	ld hl, wSilentHillLabFrontCurScript
+	ld hl, wSilentHillLabFrontSceneID
 	ld [hl], a
 	ret
 
@@ -271,11 +271,10 @@ SilentHillScript6:
 	ld hl, SilentHillNPCIDs2
 	ld de, SilentHillSignPointers
 	call CallMapTextSubroutine
-	ld hl, wd41b
-	bit 2, [hl]
+	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 	ret z
 	ld a, $12
-	ld [wSilentHillLabFrontCurScript], a
+	ld [wSilentHillLabFrontSceneID], a
 	ld a, 6
 	ld [wMapScriptNumber], a
 	ret

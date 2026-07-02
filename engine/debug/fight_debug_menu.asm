@@ -144,7 +144,7 @@ endr
 	push hl
 	ld de, .5SpacesText ; "5 spaces"
 	call PlaceString
-	ld bc, hFFEC
+	ld bc, hBGXPos
 	add hl, bc
 	ld de, .5SpacesText ; "5 spaces"
 	call PlaceString

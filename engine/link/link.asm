@@ -1246,7 +1246,7 @@ LinkTradeOTPartymonMenuCheckCancel:
 ExitLinkCommunications:
 	call ClearBGPalettes
 	xor a
-	ld [wd4a7 + 1], a
+	ld [wUnusedLinkCommunicationByte], a
 	ld a, $F8
 	ldh [hMapEntryMethod], a
 	call LoadMap

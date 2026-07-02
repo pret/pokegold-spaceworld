@@ -41,7 +41,9 @@ wMusicBank:: db
 
 wNoiseSampleAddress:: dw
 wNoiseSampleDelay:: db
-wc1a2:: db
+
+	ds 1
+
 wNoiseSampleSet:: db
 
 wLowHealthAlarm::
@@ -67,7 +69,7 @@ wMapMusic:: db
 wCryPitch:: dw
 wCryLength:: dw
 wLastVolume:: db
-wc1b3:: db
+wUnusedMusicF9Flag:: db
 wSFXPriority:: db
 wChannel1JumpCondition:: db
 wChannel2JumpCondition:: db
@@ -103,10 +105,6 @@ wTileMapBackup::
 
 NEXTU
 
-wc408:: db
-wc409:: db
-
-NEXTU
 wSpriteAnimData::
 ; wSpriteAnimDict pairs keys with values
 ; keys: SPRITE_ANIM_DICT_* indexes (taken from SpriteAnimObjects)
@@ -136,14 +134,12 @@ NEXTU
 
 wClockDialogArrowBlinkCounter:: db
 
-wc40a:: db
+	ds 1
 
 ; Monster or Trainer test?
 wWhichPicTest:: db
 
-wc40c:: db
-wc40d:: db
-wc40e:: db
+	ds 3
 NEXTU
 wOptionsMenuCursorX:: db
 wOptionsMenuCursorY:: db
@@ -162,11 +158,7 @@ NEXTU
 	ds 3
 
 wDayOfWeekBuffer:: db
-
-	ds 7
-
-wc41a:: db
-	ds 1
+	ds 9
 wHourBuffer:: db
 	ds 9
 wMinuteBuffer:: db
@@ -336,7 +328,6 @@ wMapBufferEnd::
 UNION
 
 wLinkData::
-wc600::
 wOverworldMapBlocks:: ds 1300
 wLinkDataEnd::
 wOverworldMapBlocksEnd::
@@ -608,9 +599,7 @@ wCriticalHit::
 ; 2 for a OHKO
 	db
 
-wAttackMissed::
-; nonzero for a miss
-wca3a:: db
+wAttackMissed:: db
 
 wPlayerSubStatus1:: db
 wPlayerSubStatus2:: db
@@ -654,7 +643,8 @@ wPicrossAnimateDust:: db
 ENDU
 
 wBattleAnimParam::
-wca5c:: db
+
+	ds 1
 
 wBattleScriptBuffer:: ds 30
 
@@ -681,7 +671,8 @@ wEnemySpDef::   dw
 
 wPlayerStatLevels::
 wPlayerAtkLevel::
-wcaa9:: db
+
+	ds 1
 
 wPlayerDefLevel::  db
 wPlayerSpdLevel::  db
@@ -694,7 +685,8 @@ wPlayerEvaLevel:: db
 
 wEnemyStatLevels::
 wEnemyAtkLevel::
-wcab1:: db
+
+	ds 1
 
 wEnemyDefLevel::  db
 wEnemySpdLevel::  db
@@ -731,13 +723,7 @@ wEnemyItemState:: db
 wCurEnemyMoveNum:: db
 wEnemyHPAtTimeOfPlayerSwitch:: dw
 
-UNION
 wPayDayMoney:: ds 3
-NEXTU
-wcaca:: db
-wcacb:: db
-wcacc:: db
-ENDU
 
 wUnused_SafariEscapeFactor:: db
 wUnused_SafariBaitFactor:: db
@@ -986,7 +972,6 @@ wLastSpawnMapNumber: db
 	ds 2
 
 ;Controls what type of opening (fire/notes) you get.
-wcc38::
 wTitleSequenceOpeningType:: db
 
 wDefaultSpawnPoint:: db
@@ -1416,7 +1401,9 @@ wRepelEffect:: db
 
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
 wPutativeTMHMMove:: db
-wce33:: db
+
+	ds 1
+
 wInitListType:: db
 wWildMon:: db
 wBattleHasJustStarted:: db
@@ -1435,7 +1422,6 @@ wCurType::
 wBreedingCompatibility::
 wTempByteValue::
 wApplyStatLevelMultipliersToEnemy::
-wce37::
 	db
 
 wFailedToFlee:: db
@@ -1455,9 +1441,9 @@ wTimeOfDay:: db
 ; 02 - Cave                35--50s
 ; 03 - Morning  06--09h    50--59s
 
-wcd3e: ds 1
-wcd3f: ds 1
+	ds 1
 
+wNewGameWRAM::
 
 SECTION "Options", WRAM0[$CE5F]
 
@@ -1486,10 +1472,9 @@ wDebugFlags:: db
 ; Bit 0: Debug battle indicator
 ; Bit 1: Debug field indicator
 ; Bit 2-3: Game is continued (set when selecting continue on the main menu)
-
-wce64:: db
-wce65:: db
-wce66:: db
+wDebugFlags2:: db
+wDebugFlags3:: db
+wDebugFlags4:: db
 
 wGameData::
 wPlayerName:: ds 6
@@ -1529,7 +1514,6 @@ for n, 1, NUM_OBJECTS
 wMap{d:n}Object:: map_object wMap{d:n}
 endr
 
-wd14f::
 wToolgearFlags:: db
 ; 76543210
 ; |    | \- show toolgear
@@ -1542,7 +1526,7 @@ wToolgearFlags:: db
 wTimeOfDayPal:: db
 ; Applied according to wCurTimeOfDay from wTimeOfDayPalset
 
-wd153:: db
+wTimeOfDayDebugFlags:: db
 ; 76543210
 ; |      \- show player coords in toolgear instead of time
 ; \-------- switch overworld palettes according to minutes not hours
@@ -1603,63 +1587,55 @@ wPlayerState:: db
 ; 02 - skateboard
 ; 04 - surfing
 
-wd265:: db
-wd266:: db
+wPlayerStarter:: db
+wRivalStarter:: db
 
+SECTION "Map Scene ID & Flags", WRAM0[$D29A]
+wPlayerHouse2FSceneID:: db
+wPlayerHouse1FSceneID:: db
+wSilentHillSceneID:: db
+wSilentHillLabFrontSceneID:: db
+wSilentHillLabBackSceneID:: db
+wSilentHillPokecenterSceneID:: db
+wSilentHillHouseSceneID:: db
+wRoute1P1SceneID:: db
+wRoute1P2SceneID:: db
+wRoute1Gate1FSceneID:: db
+wRoute1Gate2FSceneID:: db
+wSilentHillsSceneID:: db
+wOldCityPokecenter2FSceneID:: db
 
-;The starting house's map script number is stored at d29a. Others are probably nearby.
-SECTION "D29A", WRAM0[$D29A]
-wPlayerHouse2FCurScript:: db
-wPlayerHouse1FCurScript:: db
-wSilentHillCurScript:: db
-wSilentHillLabFrontCurScript:: db
-wSilentHillLabBackCurScript:: db
-wSilentHillPokecenterCurScript:: db
-wSilentHillHouseCurScript:: db
-wRoute1P1CurScript:: db
-wRoute1P2CurScript:: db
-wRoute1Gate1FCurScript:: db
-wRoute1Gate2FCurScript:: db
-wSilentHillsCurScript:: db
-wd2a6:: db
+	ds 243
 
+wPlayerHouse2FFlags:: db
+wPlayerHouse1FFlags:: db
+wSilentHillFlags:: db
+wSilentHillLabFrontFlags:: db
+wSilentHillLabBackFlags:: db
+wSilentHillPokecenterFlags:: db
+wSilentHillHouseFlags:: db
+wRoute1P1Flags:: db
+wRoute1P2Flags:: db
+wRoute1Gate1FFlags:: db
+wRoute1Gate2FFlags:: db
+wSilentHillsFlags:: db
+wOldCityPokecenter2FFlags:: db
 
-SECTION "D39D", WRAM0[$D39A]
-wd39a:: db
-wd39b:: db
-wd39c:: db
-wd39d:: db
+	ds 73
 
+SECTION "Event Flags", WRAM0[$D41A]
 
-SECTION "D3A5", WRAM0[$D3A5]
-wd3a5:: db
-
-
-SECTION "Game Event Flags", WRAM0[$D41A]
-wd41a:: db
-; 76543210
-; |      \- read email?
-; \-------- talked to Blue, triggers Oak
-wd41b:: db
-; 76543210
-;      |\-- followed Oak to his back room
-;      \--- chose a starter
-wd41c:: db
-; 76543210
-;    \----- recieved pokedexes
-wd41d:: db
-; 76543210
-;      \--- beat rival in the lab
-wd41e:: db
+wEventFlags:: flag_array NUM_EVENTS
 
 
 SECTION "D4A9", WRAM0[$D4A7]
 ; Bit 0 set when exiting a battle.
 ; Bit 1 set when viewing summary/opening new dex entry, and reset when closing new dex entry.
-wd4a7:: db
+wPokedexMenuFlags:: db
+wUnusedLinkCommunicationByte:: db
+wGameModeFlags:: db
+
 	ds 1
-wd4a9:: db
-	ds 1 ; TODO
 
 ; TODO: change to wJoypadDisable, constantify flags
 wJoypadFlags:: db
@@ -1677,9 +1653,8 @@ wMovementFlags_Old:: db
 SECTION "wDigWarpNumber", WRAM0[$D4B2]
 
 wDigWarpNumber:: db
-wd4b3:: db
-wd4b4:: db
-wd4b5:: db
+
+	ds 3
 
 ; Doesn't get written to at any point yet, but it's read... once.
 wCurBox:: db

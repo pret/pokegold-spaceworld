@@ -33,7 +33,7 @@ OldCityPokecenter2F_TextPointers:
 
 OldCityPokecenter2FText1:
 	ld a, $01
-	ld [wce37], a
+	ld [wTempByteValue], a
 	ld hl, wJoypadFlags
 	set 5, [hl]
 	callfar Link_Receptionist_Intro
@@ -43,7 +43,7 @@ OldCityPokecenter2FText1:
 
 OldCityPokecenter2FText2:
 	ld a, $02
-	ld [wce37], a
+	ld [wTempByteValue], a
 	ld hl, wJoypadFlags
 	set 5, [hl]
 	callfar Link_Receptionist_Intro

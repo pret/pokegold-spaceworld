@@ -52,8 +52,7 @@ SilentHillHouseTextPointers2::
 	dw RivalHouseWindowScript
 
 SilentHillHouseNPCText1:
-	ld hl, wd41a
-	bit 6, [hl]
+	CheckEvent SILENT_HILL_HOUSE_READ_RIVAL_EMAIL
 	jr nz, .jump
 	ld hl, SilentHillHouseTextString1
 	call OpenTextbox
@@ -73,8 +72,7 @@ SilentHillHouseTextString1:
 	start_asm
 	call YesNoBox
 	jr c, .jump
-	ld hl, wd41a
-	set 6, [hl]
+	SetEvent SILENT_HILL_HOUSE_READ_RIVAL_EMAIL
 	ld hl, SilentHillHouseTextString2
 	call PrintText
 	call TextAsmEnd
@@ -115,11 +113,9 @@ SilentHillHouseTextString4:
 	done
 
 SilentHillHouseNPCText4:
-	ld hl, wd41e
-	bit 2, [hl]
+	CheckEvent SILENT_HILL_HOUSE_GOT_POKEGEAR_MAP
 	jr nz, .jump
-	ld hl, wd41e
-	set 2, [hl]
+	SetEvent SILENT_HILL_HOUSE_GOT_POKEGEAR_MAP
 	ld hl, SilentHillHouseTextString5
 	call OpenTextbox
 	call WaitBGMap

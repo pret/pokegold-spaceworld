@@ -128,7 +128,7 @@ OverworldStart::
 	ld hl, wDebugFlags
 	bit CONTINUED_F, [hl]
 	call z, SpawnPlayer
-	ld hl, wd4a9
+	ld hl, wGameModeFlags
 	set 0, [hl]
 	jp OverworldLoop
 

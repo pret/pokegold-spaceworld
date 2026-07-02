@@ -83,7 +83,7 @@ GiveMonToPlayer::
 	ld [wCurPartyLevel], a
 	xor a
 	ld [wMonType], a
-	farjp Function1130a
+	farjp _AddEnemyMonToPlayerParty
 
 SECTION "home/item.asm@Call_GetItemAmount", ROM0
 

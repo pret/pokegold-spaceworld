@@ -34,7 +34,7 @@ SetClockDialog:
 SetClockDialog_Init:
 	xor a
 	ld [wJumptableIndex], a
-	ld hl, wc408
+	ld hl, wSpriteAnimData
 	ld bc, 50
 	call ByteFill
 

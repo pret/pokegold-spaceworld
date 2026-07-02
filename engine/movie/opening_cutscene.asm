@@ -985,7 +985,7 @@ Intro_BlankTilemapAndBGMap:
 	or c
 	jr nz, .blank_tilemap
 
-	ld hl, wc600
+	ld hl, wOverworldMapBlocks
 	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
 
 .blank_bgmap
@@ -997,7 +997,7 @@ Intro_BlankTilemapAndBGMap:
 	jr nz, .blank_bgmap
 
 	ld hl, vBGMap0
-	ld de, wc600
+	ld de, wOverworldMapBlocks
 	lb bc, BANK(@), $40
 	call Request2bpp
 	ret
