@@ -1,6 +1,6 @@
 # Pokémon Gold and Silver: Space World 1997 Demo [![Build Status][ci-badge]][ci]
 
-This is a work-in-progress disassembly of the Pokémon Gold and Pokémon Silver prototypes demoed at Space World 1997.
+This is a disassembly of the Pokémon Gold and Pokémon Silver prototypes demoed at Space World 1997.
 
 It builds the following ROMs:
 
@@ -12,13 +12,6 @@ It builds the following ROMs:
 - Gold_debug.sgb, with correct header `sha1: 87fd8dbe5db39619529abcfc99e74cc5ecb8b94e`
 - Silver_debug.sgb (aka MONS2SD.COM) `sha1: 4c576dd4671bb1fe36c5e6d76c8909f98d739667`
 - Silver_debug.sgb, with correct header `sha1: 51b78133bdb7b80e595014941bda5c20dac05967`
-
-To build the ROMs, you will need to provide copies of:
-
-- Gold_nondebug.sgb, renamed **baserom-gold.gb**
-- Silver_nondebug.sgb, renamed **baserom-silver.gb**
-- Gold_debug.sgb, renamed **baserom-gold-debug.gb**
-- Silver_debug.sgb, renamed **baserom-silver-debug.gb**
 
 
 ## See also

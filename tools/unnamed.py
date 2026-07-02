@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Usage: unnamed.py [-h] [-r rootdir] [-l count] pokegold-spaceworld.sym
+Usage: unnamed.py [-h] [-r rootdir] [-l count] pokegold-spaceworld-debug.sym
 
 Parse the symfile to find unnamed symbols.
 """
