@@ -1,5 +1,5 @@
 MACRO scene_pointers
-	db GROUP_\1, MAP_\1
+	map_id \1
 	dw w\2SceneID, \2ScriptPointers, w\2Flags
 
 ENDM
