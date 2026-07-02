@@ -1628,7 +1628,8 @@ SECTION "Event Flags", WRAM0[$D41A]
 wEventFlags:: flag_array NUM_EVENTS
 
 
-SECTION "D4A9", WRAM0[$D4A7]
+SECTION "D4A7", WRAM0[$D4A7]
+
 ; Bit 0 set when exiting a battle.
 ; Bit 1 set when viewing summary/opening new dex entry, and reset when closing new dex entry.
 wPokedexMenuFlags:: db
