@@ -144,7 +144,7 @@ endr
 	push hl
 	ld de, .5SpacesText ; "5 spaces"
 	call PlaceString
-	ld bc, -20
+	ld bc, -SCREEN_WIDTH
 	add hl, bc
 	ld de, .5SpacesText ; "5 spaces"
 	call PlaceString
