@@ -48,8 +48,8 @@ objects = None
 if args.rootdir:
 	for line in subprocess.Popen(['make', '-C', args.rootdir, '-s', '-p', 'DEBUG=1'],
 			stdout=subprocess.PIPE).stdout.read().decode().split('\n'):
-		if line.startswith('GOLD_OBJS :='):
-			objects = line[len('GOLD_OBJS :='):].strip().split()
+		if line.startswith('pokegold-spaceworld-debug_obj :='):
+			objects = line[len('pokegold-spaceworld-debug_obj :='):].strip().split()
 			break
 	else:
 		print('Error: Object files not found!', file=sys.stderr)
@@ -72,7 +72,7 @@ for line in args.symfile:
 
 # If no object files were provided, just print what we know and exit
 unnamed_percent = 100 * (symbols_total - len(symbols)) / symbols_total
-print(f'Unnamed pokegold-spaceworld symbols: {len(symbols)} ({unnamed_percent:.2f}% complete)')
+print(f'Unnamed pokegold-spaceworld debug symbols: {len(symbols)} ({unnamed_percent:.2f}% complete)')
 if not objects:
 	for sym in symbols:
 		print(sym)
