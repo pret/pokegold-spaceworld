@@ -164,7 +164,7 @@ FieldDebug_DoVRAMViewer:
 	ret
 
 .LoadPokemon:
-	ld a, 3
+	ld a, DEX_VENUSAUR
 	ld [wTempSpecies], a
 	ld [wCurPartySpecies], a
 	call GetBaseData
