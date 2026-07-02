@@ -2,7 +2,8 @@ INCLUDE "constants.asm"
 
 SECTION "home/util.asm", ROM0
 
-Function33ef::
+Copy2x2TilesToVRAM:: ; unreferenced
+; Copies a 2D rectangle from hl (src) to de (dst) with size in (b = y, c = x).
 	; hl = src
 	; de  = dest
 	; b = y
@@ -14,10 +15,10 @@ Function33ef::
 	dec a
 	dec a
 	ld b, $0
-.asm_33f7:
+.row_offset
 	add hl, bc
 	dec a
-	jr nz, .asm_33f7
+	jr nz, .row_offset
 	pop bc
 	dec b
 	ld a, b
@@ -26,7 +27,7 @@ Function33ef::
 	ld d, h
 	ld e, l
 	pop hl
-.asm_3403:
+.col_loop
 	push af
 	push bc
 	call CopyBytes
@@ -44,7 +45,7 @@ Function33ef::
 	pop bc
 	pop af
 	dec a
-	jr nz, .asm_3403
+	jr nz, .col_loop
 	pop hl
 	pop de
 	jp CopyBytes
@@ -83,34 +84,40 @@ CompareBytes::
 	jr nz, .loop
 	ret
 
-Function3439::
+; INPUT:
+; a = oam block index (each block is 4 oam entries)
+; b = Y coordinate of upper left corner of sprite
+; c = X coordinate of upper left corner of sprite
+; de = base address of 4 tile number and attribute pairs
+WriteOAMBlock::
 ; Place 2x2 sprite from *de into OAM at slot a
 	ld h, HIGH(wShadowOAM)
-	swap a
+	swap a ; multiply by 16
 	ld l, a
-	call .Load
+	call .Load ; upper left
 	push bc
 	ld a, $8
 	add c
 	ld c, a
-	call .Load
+	call .Load ; upper right
 	pop bc
 	ld a, $8
 	add b
 	ld b, a
-	call .Load
+	call .Load ; lower left
 	ld a, $8
 	add c
 	ld c, a
+	                      ; lower right
 .Load:
-	ld [hl], b
+	ld [hl], b ; Y coordinate
 	inc hl
-	ld [hl], c
+	ld [hl], c ; X coordinate
 	inc hl
-	ld a, [de]
+	ld a, [de] ; tile number
 	inc de
 	ld [hli], a
-	ld a, [de]
+	ld a, [de] ; attribute
 	inc de
 	ld [hli], a
 	ret
