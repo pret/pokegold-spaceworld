@@ -1623,6 +1623,7 @@ wOldCityPokecenter2FFlags:: db
 
 	ds 73
 
+
 SECTION "Event Flags", WRAM0[$D41A]
 
 wEventFlags:: flag_array NUM_EVENTS
