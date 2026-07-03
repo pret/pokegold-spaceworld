@@ -87,26 +87,36 @@ Battle_2DMenu:
 	ret
 
 .GetNewCursorPos:
-	and a
-	ret z
+; multiplies a (row offset) by c (columns) using repeated addition
+; inverse of .div_mod
+; input:  a = row index (0-based)
+;         c = number of columns
+; output: a = a * c (linear index)
+	and a        ; set z if a = 0
+	ret z        ; 0 * c = 0, return early
 	push bc
-	ld b, a
-	xor a
+	ld b, a      ; b = loop counter (row index)
+	xor a        ; a = 0 (accumulator)
 .loop
-	add c
-	dec b
-	jr nz, .loop
+	add c        ; add one column-width
+	dec b        ; decrement counter
+	jr nz, .loop ; loop b times
 	pop bc
 	ret
 
-.unreferenced_24baf:
-	ld b, 0
+.div_mod ; unreferenced
+; divides a (linear index) by c (columns) using repeated subtraction
+; inverse of .GetNewCursorPos
+; input:  a = linear position
+;         c = columns
+; output: b = quotient (row), a = remainder (column)
+	ld b, 0       ; b = quotient (row)
 .loop2
-	inc b
-	sub c
-	jr nc, .loop2
-	dec b
-	add c
+	inc b         ; increment quotient
+	sub c         ; subtract one column-width
+	jr nc, .loop2 ; loop while a >= c
+	dec b         ; overshot; fix quotient
+	add c         ; overshot; fix remainder
 	ret
 
 .PlaceStrings:

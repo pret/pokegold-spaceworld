@@ -421,7 +421,7 @@ BillsPC_ChangeBoxSubmenu:
 	ret c
 	jr .UnderDev
 
-.Unreferenced_e54d:
+.get_menu_selection ; unreferenced
 	ld a, [wMenuSelection]
 	ret
 
