@@ -39,19 +39,19 @@ CountSetBits::
 ; Count the number of bits set in b bytes at hl.
 ; Return to a, c, and wNumSetBits.
 	ld c, $0
-.asm_36b3:
+.byte_loop
 	ld a, [hli]
 	ld e, a
 	ld d, $8
-.asm_36b7:
+.bit_loop
 	srl e
 	ld a, $0
 	adc c
 	ld c, a
 	dec d
-	jr nz, .asm_36b7
+	jr nz, .bit_loop
 	dec b
-	jr nz, .asm_36b3
+	jr nz, .byte_loop
 	ld a, c
 	ld [wNumSetBits], a
 	ret
