@@ -1309,17 +1309,17 @@ ValidateOTTrademon:
 	ld a, [hl]
 	pop hl
 	cp [hl]
-	jr nz, .Function28990
+	jr nz, .invalid
 	ld b, h
 	ld c, l
 	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
 	cp $65
-	jr nc, .Function28990
+	jr nc, .invalid
 	ld a, [wLinkMode]
 	cp $01
-	jr nz, .Function2898E
+	jr nz, .valid
 	ld hl, wOTPartySpecies
 	ld a, [wCurOTTradePartyMon]
 	ld c, a
@@ -1333,16 +1333,16 @@ ValidateOTTrademon:
 	add hl, bc
 	ld a, [wMonHType1]
 	cp [hl]
-	jr nz, .Function28990
+	jr nz, .invalid
 	inc hl
 	ld a, [wMonHType2]
 	cp [hl]
-	jr nz, .Function28990
-.Function2898E:
+	jr nz, .invalid
+.valid
 	scf
 	ret
 
-.Function28990:
+.invalid
 	and a
 	ret
 
@@ -1363,12 +1363,12 @@ PlaceTradeScreenTextbox:
 	call PlaceString
 	hlcoord 3, 3
 	ld de, wPartySpecies
-	call .Function289C7
+	call .PrintPartyNames
 	hlcoord 13, 3
 	ld de, wOTPartySpecies
-.Function289C7:
+.PrintPartyNames:
 	ld c, $00
-.Function289C9:
+.loop
 	ld a, [de]
 	cp -1
 	ret z
@@ -1389,7 +1389,7 @@ PlaceTradeScreenTextbox:
 	add hl, bc
 	pop bc
 	inc c
-	jr .Function289C9
+	jr .loop
 
 LinkTrade:
 	xor a
