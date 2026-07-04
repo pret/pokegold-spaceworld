@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/Office3.asm", ROMX
-
 	map_attributes Office3, OFFICE_3
 
 Office3_MapEvents::

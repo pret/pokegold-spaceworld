@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/SugarPokecenter1F.asm", ROMX
-
 	map_attributes SugarPokecenter1F, SUGAR_POKECENTER_1F
 
 SugarPokecenter1F_MapEvents::

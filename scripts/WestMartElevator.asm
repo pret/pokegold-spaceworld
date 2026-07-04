@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/WestMartElevator.asm", ROMX
-
 WestMartElevator_ScriptLoader::
 	ret
 

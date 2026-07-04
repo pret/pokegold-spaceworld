@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoFishingGuru.asm", ROMX
-
 KantoFishingGuru_ScriptLoader::
 	ret
 

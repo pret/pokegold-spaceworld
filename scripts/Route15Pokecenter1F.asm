@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/Route15Pokecenter1F.asm", ROMX
-
 Route15Pokecenter1F_ScriptLoader::
 	ret
 

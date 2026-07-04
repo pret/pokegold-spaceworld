@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/HighTechPokecenter1F.asm", ROMX
-
 	map_attributes HighTechPokecenter1F, HIGHTECH_POKECENTER_1F
 
 HighTechPokecenter1F_MapEvents::

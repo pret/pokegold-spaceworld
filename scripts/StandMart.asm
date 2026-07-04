@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/StandMart.asm", ROMX
-
 StandMart_ScriptLoader::
 	ret
 

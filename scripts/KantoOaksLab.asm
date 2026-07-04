@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoOaksLab.asm", ROMX
-
 KantoOaksLab_ScriptLoader::
 	ret
 

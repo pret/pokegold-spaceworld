@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/OldCityPokecenterTrade.asm", ROMX
-
 ; unreferenced
 	ret
 

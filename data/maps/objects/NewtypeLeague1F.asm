@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/NewtypeLeague1F.asm", ROMX
-
 	map_attributes NewtypeLeague1F, NEWTYPE_LEAGUE_1F
 
 NewtypeLeague1F_MapEvents::

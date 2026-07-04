@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BluePokecenter1F.asm", ROMX
-
 BluePokecenter1F_ScriptLoader::
 	ret
 

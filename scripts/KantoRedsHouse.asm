@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoRedsHouse.asm", ROMX
-
 KantoRedsHouse_ScriptLoader::
 	ret
 

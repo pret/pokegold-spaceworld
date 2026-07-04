@@ -95,10 +95,6 @@ INCLUDE "engine/items/buy_sell_toss.asm"
 INCLUDE "engine/link/link.asm"
 INCLUDE "data/pokemon/gen1_base_special.asm"
 INCLUDE "engine/movie/trade_animation.asm"
-INCLUDE "scripts/UnusedGen1TradeCenter.asm"
-INCLUDE "data/maps/objects/UnusedGen1TradeCenter.asm"
-INCLUDE "scripts/UnusedGen1Colosseum.asm"
-INCLUDE "data/maps/objects/UnusedGen1Colosseum.asm"
 INCLUDE "engine/link/link_2.asm"
 
 
@@ -181,6 +177,10 @@ INCLUDE "engine/battle_anims/anim_commands.asm"
 INCLUDE "engine/battle_anims/core.asm"
 INCLUDE "engine/battle_anims/functions.asm"
 INCLUDE "engine/battle_anims/helpers.asm"
+
+
+;ROMX $36
+INCLUDE "engine/menu/set_time.asm"
 
 
 ;ROMX $38

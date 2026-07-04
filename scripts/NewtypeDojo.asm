@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/NewtypeDojo.asm", ROMX
-
 NewtypeDojo_ScriptLoader::
 	ret
 

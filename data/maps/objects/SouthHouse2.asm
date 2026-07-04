@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/SouthHouse2.asm", ROMX
-
 	map_attributes SouthHouse2, SOUTH_HOUSE_2
 
 SouthHouse2_MapEvents::

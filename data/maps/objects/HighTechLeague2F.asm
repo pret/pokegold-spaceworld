@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/HighTechLeague2F.asm", ROMX
-
 	map_attributes HighTechLeague2F, HIGHTECH_LEAGUE_2F
 
 HighTechLeague2F_MapEvents::

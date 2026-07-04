@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/BlueForestRouteGateStand.asm", ROMX
-
 	map_attributes BlueForestRouteGateStand, BLUE_FOREST_ROUTE_GATE_STAND
 
 BlueForestRouteGateStand_MapEvents::

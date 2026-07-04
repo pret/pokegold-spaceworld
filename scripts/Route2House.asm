@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/Route2House.asm", ROMX
-
 Route2House_ScriptLoader::
 	ret
 

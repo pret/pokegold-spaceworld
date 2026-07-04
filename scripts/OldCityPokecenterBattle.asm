@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/OldCityPokecenterBattle.asm", ROMX
-
 OldCityPokecenterBattle_ScriptLoader:
 	ld hl, OldCityPokecenterBattleScriptPointers
 	call RunMapScript

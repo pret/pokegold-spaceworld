@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BlueHouse4.asm", ROMX
-
 BlueHouse4_ScriptLoader::
 	ret
 

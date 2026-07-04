@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/SugarRouteGate.asm", ROMX
-
 	map_attributes SugarRouteGate, SUGAR_ROUTE_GATE
 
 SugarRouteGate_MapEvents::

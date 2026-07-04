@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/Route18Pokecenter2F.asm", ROMX
-
 	map_attributes Route18Pokecenter2F, ROUTE_18_POKECENTER_2F
 
 Route18Pokecenter2F_MapEvents::

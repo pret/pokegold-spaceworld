@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/RouteSilentEastGate.asm", ROMX
-
 	map_attributes RouteSilentEastGate, ROUTE_SILENT_EAST_GATE
 
 RouteSilentEastGate_MapEvents::

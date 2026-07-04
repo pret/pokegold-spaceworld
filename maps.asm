@@ -1,4 +1,13 @@
-;ROMX $25
+SECTION "Maps 1", ROMX
+
+INCLUDE "scripts/UnusedGen1TradeCenter.asm"
+INCLUDE "data/maps/objects/UnusedGen1TradeCenter.asm"
+INCLUDE "scripts/UnusedGen1Colosseum.asm"
+INCLUDE "data/maps/objects/UnusedGen1Colosseum.asm"
+
+
+SECTION "Maps 2", ROMX
+
 INCLUDE "data/maps/objects/Route2Gate1F.asm"
 INCLUDE "scripts/Route2Gate1F.asm"
 INCLUDE "data/maps/objects/Route2Gate2F.asm"
@@ -41,7 +50,8 @@ INCLUDE "data/maps/objects/OldCitySchool.asm"
 INCLUDE "scripts/OldCitySchool.asm"
 
 
-;ROMX $26
+SECTION "Maps 3", ROMX
+
 INCLUDE "data/maps/objects/Route1Gate1F.asm"
 INCLUDE "scripts/Route1Gate1F.asm"
 INCLUDE "data/maps/objects/Route1Gate2F.asm"
@@ -84,7 +94,8 @@ INCLUDE "data/maps/objects/WestHouse2.asm"
 INCLUDE "scripts/WestHouse2.asm"
 
 
-;ROMX $27
+SECTION "Maps 4", ROMX
+
 INCLUDE "data/maps/objects/HighTechWestRouteGate.asm"
 INCLUDE "scripts/HighTechWestRouteGate.asm"
 INCLUDE "data/maps/objects/HighTechPokecenter1F.asm"
@@ -327,7 +338,8 @@ INCLUDE "data/maps/objects/NorthPokecenter2F.asm"
 INCLUDE "scripts/NorthPokecenter2F.asm"
 
 
-;ROMX $2f
+SECTION "Maps 5", ROMX
+
 INCLUDE "data/maps/objects/PowerPlant1.asm"
 INCLUDE "scripts/PowerPlant1.asm"
 INCLUDE "data/maps/objects/PowerPlant2.asm"
@@ -368,7 +380,8 @@ INCLUDE "data/maps/objects/SilentHills.asm"
 INCLUDE "scripts/SilentHills.asm"
 
 
-;ROMX $34
+SECTION "Maps 6", ROMX
+
 INCLUDE "data/maps/objects/RouteSilentEastGate.asm"
 INCLUDE "scripts/RouteSilentEastGate.asm"
 INCLUDE "data/maps/objects/PlayerHouse1F.asm"
@@ -387,7 +400,8 @@ INCLUDE "data/maps/objects/UnusedMap13.asm"
 INCLUDE "scripts/UnusedMap13.asm"
 
 
-;ROMX $36
+SECTION "Maps 7", ROMX
+
 INCLUDE "scripts/dummy_text_pointers.asm"
 INCLUDE "data/maps/objects/SilentHill.asm"
 INCLUDE "data/maps/objects/OldCity.asm"
@@ -469,7 +483,10 @@ INCLUDE "scripts/FontRoute5.asm"
 INCLUDE "data/maps/objects/BlueForestRoute3.asm"
 INCLUDE "scripts/BlueForestRoute3.asm"
 INCLUDE "scripts/SilentHill.asm"
-INCLUDE "engine/menu/set_time.asm"
+
+
+SECTION "Maps 8", ROMX
+
 INCLUDE "scripts/DeletedMap.asm"
 INCLUDE "scripts/Route1P1.asm"
 INCLUDE "scripts/Route1P2.asm"

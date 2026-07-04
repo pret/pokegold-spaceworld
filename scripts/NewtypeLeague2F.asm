@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/NewtypeLeague2F.asm", ROMX
-
 NewtypeLeague2F_ScriptLoader::
 	ret
 

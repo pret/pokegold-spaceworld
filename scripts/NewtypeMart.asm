@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/NewtypeMart.asm", ROMX
-
 NewtypeMart_ScriptLoader::
 	ret
 

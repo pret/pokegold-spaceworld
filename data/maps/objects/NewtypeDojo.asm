@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/NewtypeDojo.asm", ROMX
-
 	map_attributes NewtypeDojo, NEWTYPE_DOJO
 
 NewtypeDojo_MapEvents::

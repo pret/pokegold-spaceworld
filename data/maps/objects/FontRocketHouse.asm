@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/FontRocketHouse.asm", ROMX
-
 	map_attributes FontRocketHouse, FONT_ROCKET_HOUSE
 
 FontRocketHouse_MapEvents::

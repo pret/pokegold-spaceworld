@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/SilentHillLabFront.asm", ROMX
-
 	map_attributes SilentHillLabFront, SILENT_HILL_LAB_FRONT
 
 SilentHillLabFront_MapEvents::

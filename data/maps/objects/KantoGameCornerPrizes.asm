@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/KantoGameCornerPrizes.asm", ROMX
-
 	map_attributes KantoGameCornerPrizes, KANTO_GAME_CORNER_PRIZES
 
 KantoGameCornerPrizes_MapEvents::

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/NewtypePokecenter2F.asm", ROMX
-
 NewtypePokecenter2F_ScriptLoader::
 	ret
 

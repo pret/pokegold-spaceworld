@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/PowerPlant1.asm", ROMX
-
 	map_attributes PowerPlant1, POWER_PLANT_1
 
 PowerPlant1_MapEvents::

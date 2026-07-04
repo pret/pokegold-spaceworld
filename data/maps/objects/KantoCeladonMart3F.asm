@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/KantoCeladonMart3F.asm", ROMX
-
 	map_attributes KantoCeladonMart3F, KANTO_CELADON_MART_3F
 
 KantoCeladonMart3F_MapEvents::

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/PowerPlant1.asm", ROMX
-
 PowerPlant1_ScriptLoader::
 	ret
 

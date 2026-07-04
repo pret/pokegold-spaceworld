@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/HighTechWestRoute.asm", ROMX
-
 	map_attributes HighTechWestRoute, HIGHTECH_WEST_ROUTE
 	connection west, HighTechWestRouteOcean, HIGHTECH_WEST_ROUTE_OCEAN, -18
 	connection east, HighTech, HIGHTECH, 0

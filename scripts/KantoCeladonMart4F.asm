@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoCeladonMart4F.asm", ROMX
-
 KantoCeladonMart4F_ScriptLoader::
 	ret
 

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SlowpokeWellMain.asm", ROMX
-
 SlowpokeWellMain_ScriptLoader::
 	ret
 

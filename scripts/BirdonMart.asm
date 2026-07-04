@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BirdonMart.asm", ROMX
-
 BirdonMart_ScriptLoader::
 	ret
 

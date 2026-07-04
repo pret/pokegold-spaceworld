@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/StandPokecenter1F.asm", ROMX
-
 	map_attributes StandPokecenter1F, STAND_POKECENTER_1F
 
 StandPokecenter1F_MapEvents::

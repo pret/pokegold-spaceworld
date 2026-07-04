@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/SugarHouse2.asm", ROMX
-
 	map_attributes SugarHouse2, SUGAR_HOUSE_2
 
 SugarHouse2_MapEvents::

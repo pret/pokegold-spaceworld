@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SouthHouse1.asm", ROMX
-
 SouthHouse1_ScriptLoader::
 	ret
 

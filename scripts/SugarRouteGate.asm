@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SugarRouteGate.asm", ROMX
-
 SugarRouteGate_ScriptLoader::
 	ret
 

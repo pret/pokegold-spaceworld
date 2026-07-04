@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/WestMart5F.asm", ROMX
-
 	map_attributes WestMart5F, WEST_MART_5F
 
 WestMart5F_MapEvents::

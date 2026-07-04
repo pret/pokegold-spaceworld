@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/UnusedMap13.asm", ROMX
-
 UnusedMap13_ScriptLoader::
 	ld hl, UnusedMap13ScriptPointers
 	call RunMapScript

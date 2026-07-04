@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/WestRadioTower4F.asm", ROMX
-
 	map_attributes WestRadioTower4F, WEST_RADIO_TOWER_4F
 
 WestRadioTower4F_MapEvents::

@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/dummy_text_pointers.asm", ROMX
 OldCity_TextPointers::
 West_TextPointers::
 HighTech_TextPointers::

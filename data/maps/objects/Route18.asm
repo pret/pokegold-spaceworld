@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/Route18.asm", ROMX
-
 	map_attributes Route18, ROUTE_18
 	connection north, BlueForestRoute1, BLUE_FOREST_ROUTE_1, 0
 	connection west, NewtypeRoute, NEWTYPE_ROUTE, 36

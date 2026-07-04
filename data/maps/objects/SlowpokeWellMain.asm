@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/SlowpokeWellMain.asm", ROMX
-
 	map_attributes SlowpokeWellMain, SLOWPOKE_WELL_MAIN
 
 SlowpokeWellMain_MapEvents::

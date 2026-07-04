@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BlueForestRouteGateStand.asm", ROMX
-
 BlueForestRouteGateStand_ScriptLoader::
 	ret
 

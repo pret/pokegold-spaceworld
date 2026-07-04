@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/StandRoute.asm", ROMX
-
 	map_attributes StandRoute, STAND_ROUTE
 	connection north, Stand, STAND, -10
 	connection south, KantoEastRoute, KANTO_EAST_ROUTE, -10

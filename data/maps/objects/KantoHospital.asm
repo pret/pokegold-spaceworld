@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/KantoHospital.asm", ROMX
-
 	map_attributes KantoHospital, KANTO_HOSPITAL
 
 KantoHospital_MapEvents::

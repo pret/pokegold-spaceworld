@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SilentHillLabFront.asm", ROMX
-
 SilentHillLabFront_ScriptLoader::
 	ld hl, SilentHillLabFrontScriptPointers
 	call RunMapScript

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/SouthPokecenter2F.asm", ROMX
-
 	map_attributes SouthPokecenter2F, SOUTH_POKECENTER_2F
 
 SouthPokecenter2F_MapEvents::

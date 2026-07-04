@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoGameCornerPrizes.asm", ROMX
-
 KantoGameCornerPrizes_ScriptLoader::
 	ret
 

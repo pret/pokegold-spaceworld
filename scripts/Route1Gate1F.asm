@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/Route1Gate1F.asm", ROMX
-
 Route1Gate1F_ScriptLoader::
 	ld hl, Route1Gate1FScriptPointers
 	call RunMapScript

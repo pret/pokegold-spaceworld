@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SilentHill.asm", ROMX
-
 SilentHill_ScriptLoader::
 	ld hl, SilentHillScriptPointers
 	call RunMapScript

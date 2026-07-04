@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/BirdonWallpaperHouse.asm", ROMX
-
 	map_attributes BirdonWallpaperHouse, BIRDON_WALLPAPER_HOUSE
 
 BirdonWallpaperHouse_MapEvents::

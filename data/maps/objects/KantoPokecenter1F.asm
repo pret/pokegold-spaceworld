@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/KantoPokecenter1F.asm", ROMX
-
 	map_attributes KantoPokecenter1F, KANTO_POKECENTER_1F
 
 KantoPokecenter1F_MapEvents::

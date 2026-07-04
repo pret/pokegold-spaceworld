@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/BlueMart.asm", ROMX
-
 	map_attributes BlueMart, BLUE_MART
 
 BlueMart_MapEvents::

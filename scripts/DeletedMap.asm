@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/DeletedMap.asm", ROMX
 ; Leftovers from a deleted map?
 DeletedMap_ScriptLoader:
 	ret

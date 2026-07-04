@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/RuinsOfAlphEntrance.asm", ROMX
-
 	map_attributes RuinsOfAlphEntrance, RUINS_OF_ALPH_ENTRANCE
 
 RuinsOfAlphEntrance_MapEvents::

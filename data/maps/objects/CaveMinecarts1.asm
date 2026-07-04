@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/CaveMinecarts1.asm", ROMX
-
 	map_attributes CaveMinecarts1, CAVE_MINECARTS_1
 
 CaveMinecarts1_MapEvents::

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BlueLeague1F.asm", ROMX
-
 BlueLeague1F_ScriptLoader::
 	ret
 

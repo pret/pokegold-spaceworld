@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/WestRocketRaidedHouse.asm", ROMX
-
 	map_attributes WestRocketRaidedHouse, WEST_ROCKET_RAIDED_HOUSE
 
 WestRocketRaidedHouse_MapEvents::

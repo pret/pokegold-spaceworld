@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/KantoSchool.asm", ROMX
-
 	map_attributes KantoSchool, KANTO_SCHOOL
 
 KantoSchool_MapEvents::

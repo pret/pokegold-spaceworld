@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SugarMart.asm", ROMX
-
 SugarMart_ScriptLoader::
 	ret
 
