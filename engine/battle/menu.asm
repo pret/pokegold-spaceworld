@@ -104,7 +104,7 @@ Battle_2DMenu:
 	pop bc
 	ret
 
-.div_mod ; unreferenced
+.GetNewCursorRow: ; unreferenced
 ; divides a (linear index) by c (columns) using repeated subtraction
 ; inverse of .GetNewCursorPos
 ; input:  a = linear position
