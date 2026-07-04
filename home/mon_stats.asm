@@ -32,7 +32,7 @@ DrawBattleHPBar::
 	sub $8
 	jr c, .write_dmg
 	ld e, a
-	ld a, $6a
+	ld a, $6a ; full bar
 	ld [hli], a
 	ld a, e
 	and a
