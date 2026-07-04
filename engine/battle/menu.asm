@@ -100,11 +100,6 @@ Battle_2DMenu:
 	ret
 
 .GetNewCursorRow: ; unreferenced
-; divides a (linear index) by c (columns) using repeated subtraction
-; inverse of .GetNewCursorPos
-; input:  a = linear position
-;         c = columns
-; output: b = quotient (row), a = remainder (column)
 	ld b, 0       ; b = quotient (row)
 .loop2
 	inc b         ; increment quotient
