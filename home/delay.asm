@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/delay.asm", ROM0
-
 DelayFrame::
 ; Wait for one frame
 	ld a, 1

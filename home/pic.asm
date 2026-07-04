@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/pic.asm", ROM0
-
 UncompressSpriteData::
 ; bankswitches and runs _UncompressSpriteData
 ; bank is given in a, sprite input stream is pointed to in wSpriteInputPtr

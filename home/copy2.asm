@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/copy2.asm", ROM0
-
 RedrawPlayerSprite::
 	jpfar _RedrawPlayerSprite
 

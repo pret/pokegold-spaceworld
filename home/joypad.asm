@@ -1,6 +1,5 @@
-INCLUDE "constants.asm"
-
-SECTION "home/joypad.asm", ROM0
+JoypadDummy:
+	reti
 
 ClearJoypad::
 	xor a

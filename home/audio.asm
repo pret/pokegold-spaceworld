@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/audio.asm", ROM0
-
 DisableAudio::
 	push hl
 	push de

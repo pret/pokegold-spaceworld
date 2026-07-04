@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/copy.asm", ROM0
-
 FarCopyBytes::
 ; Copy bc bytes from a:hl to de.
 	ld [wBuffer], a

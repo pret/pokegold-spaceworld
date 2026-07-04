@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 ; This file contains all of the unreferenced garbage data that exists in each ROM's banks.
 
 

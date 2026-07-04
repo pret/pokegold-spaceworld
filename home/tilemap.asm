@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/tilemap.asm", ROM0
-
 RestoreScreenAndReloadTiles::
 	call ClearSprites
 	ld hl, wStateFlags

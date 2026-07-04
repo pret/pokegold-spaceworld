@@ -163,10 +163,8 @@ endr
 ENDM
 
 MACRO? sine_table
-; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
-DEF x = 0
-rept \1
-	dw (sin(x) + LOW(sin(x))) >> 8 ; round up
-DEF x = x + 32768 / \1 ; a circle has 65536 "degrees"
-endr
+; \1 samples of sin(x) from x=0 to x<0.5 turns (pi radians)
+	for? x, \1
+		dw sin(x * 0.5 / (\1))
+	endr
 ENDM

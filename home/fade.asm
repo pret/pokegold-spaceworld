@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/fade.asm", ROM0
-
 ; Functions to fade the screen in and out.
 
 TimeOfDayFade::

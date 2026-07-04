@@ -2,27 +2,33 @@
 *.gb
 *.sgb
 *.gbc
-*.sym
-*.map
-*.sav
-*.sn*
-*.rtc
-!shim.sym
 
 # build artifacts
-/build
-rgbdscheck.o
+*.o
 
-# build tools
-tools/scan_includes
-tools/pkmncompress
-tools/gfx
+# compiled graphics
+*.1bpp
+*.2bpp
+*.sgb.tilemap
+
+# rgbds extras
+*.map
+*.sym
+
+# tool binaries
 *.exe
+
+# precompiled python
 *.pyc
 __pycache__
 
-# utility output
-/coverage.png
+# save game files
+*.sgm
+*.sav
+*.rtc
+*.sn*
+*.sa*
+*.sg1
 
 # macos files
 .DS_STORE

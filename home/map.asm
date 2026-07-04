@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/map.asm", ROM0
-
 UnfreezeEverything::
 	call UnfreezeAllObjects
 	call UnfreezePlayer

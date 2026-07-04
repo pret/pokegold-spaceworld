@@ -1,8 +1,3 @@
-INCLUDE "constants.asm"
-
-
-SECTION "home/names.asm@Names", ROM0
-
 NamesPointers::
 ; entries correspond to GetName constants (see constants/text_constants.asm)
 	dba PokemonNames       ; MON_NAME (not used; jumps to GetPokemonName)
@@ -238,27 +233,5 @@ GetMoveName::
 	ld [wCurSpecies], a
 	call GetName
 	ld de, wStringBuffer1
-	pop hl
-	ret
-
-
-SECTION "home/names.asm@GetNick", ROM0
-
-GetCurNick::
-	ld a, [wCurPartyMon]
-	ld hl, wPartyMonNicknames
-
-GetNick:
-; Get nickname a from list hl.
-	push hl
-	push bc
-	call SkipNames
-	ld de, wStringBuffer1
-	push de
-	ld bc, MON_NAME_LENGTH
-	call CopyBytes
-	pop de
-	callfar CorrectNickErrors
-	pop bc
 	pop hl
 	ret

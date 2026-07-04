@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/menu.asm", ROM0
-
 LoadMenuHeader::
 	call CopyMenuHeader
 	call PushWindow

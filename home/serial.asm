@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/serial.asm", ROM0
-
 ; The serial interrupt.
 Serial::
 	push af

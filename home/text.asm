@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/text.asm", ROM0
-
 ClearBox::
 ; Fill a c*b box at hl with blank tiles.
 	ld a, '　'
@@ -730,12 +726,3 @@ TextCommands::
 	dw Text_PlaySound
 	dw Text_PlaySound
 	dw Text_PlaySound
-
-SECTION "home/text.asm@GetTerminatingString", ROM0
-
-GetTerminatingString::
-	ld hl, .EmptyString
-	ret
-
-.EmptyString:
-	db "@"

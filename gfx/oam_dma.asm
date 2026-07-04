@@ -1,6 +1,6 @@
 INCLUDE "constants.asm"
 
-SECTION "home/oam_dma.asm", ROMX
+SECTION "gfx/oam_dma.asm", ROMX
 
 WriteOAMDMACodeToHRAM::
 	ld c, LOW(hOAMDMA)
@@ -15,6 +15,10 @@ WriteOAMDMACodeToHRAM::
 	ret
 
 .OAMDMA
+; This code is defined in ROM, but
+; copied to and called from HRAM.
+LOAD "OAM DMA", HRAM
+hOAMDMA::
 	ld a, HIGH(wShadowOAM)
 	ldh [rDMA], a
 	ld a, $28
@@ -22,4 +26,5 @@ WriteOAMDMACodeToHRAM::
 	dec a
 	jr nz, .wait
 	ret
+ENDL
 .OAMDMAEnd

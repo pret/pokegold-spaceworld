@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/talk_to_npc.asm", ROM0
-
 MapDefaultText::
 	ld hl, GameFreakText
 	call OpenTextbox

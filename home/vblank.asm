@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/vblank.asm", ROM0
-
 VBlank::
 	push af
 	push bc

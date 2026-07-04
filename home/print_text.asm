@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/print_text.asm", ROM0
-
 PrintLetterDelay::
 	ld a, [wOptions]
 	bit NO_TEXT_SCROLL_F, a

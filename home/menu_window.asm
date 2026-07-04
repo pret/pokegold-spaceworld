@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/menu_window.asm", ROM0
-
 SetMenuAttributes::
 	push hl
 	push bc

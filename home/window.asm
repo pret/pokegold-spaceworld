@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/window.asm", ROM0
-
 RefreshScreen::
 	call ClearWindowData
 	ldh a, [hROMBank]

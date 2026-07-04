@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/predef.asm", ROM0
-
 Predef::
 	ld [wPredefID], a
 	ldh a, [hROMBank]

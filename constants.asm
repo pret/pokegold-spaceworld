@@ -1,3 +1,6 @@
+IF !DEF(__constants__)
+	DEF __constants__ EQU 1
+
 INCLUDE "constants/charmap.asm"
 
 INCLUDE "macros/const.asm"
@@ -69,3 +72,5 @@ INCLUDE "constants/flypoint_constants.asm"
 INCLUDE "constants/spawnpoint_constants.asm"
 INCLUDE "constants/player_constants.asm"
 INCLUDE "constants/event_constants.asm"
+
+ENDC

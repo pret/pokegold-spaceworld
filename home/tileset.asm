@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/tileset.asm", ROM0
-
 LoadTilesetGFX::
 	call GetMapEnvironment
 	cp TOWN

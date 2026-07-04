@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/sound_test.asm", ROM0
-
 DebugMenuSoundTest::
 	ldh a, [hROMBank]
 	push af

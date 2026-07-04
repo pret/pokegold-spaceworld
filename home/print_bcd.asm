@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/print_bcd.asm", ROM0
-
 ; function to print a BCD (Binary-coded decimal) number
 ; de = address of BCD number
 ; hl = destination address
