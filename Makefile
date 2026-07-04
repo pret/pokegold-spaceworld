@@ -134,11 +134,11 @@ endif
 
 ### Build products
 
-%-correctheader.gb: RGBFIXFLAGS += -f hg -m MBC3+TIMER+RAM+BATTERY -Wno-overwrite
+%-correctheader.gb: RGBFIXCFLAGS = -f hg -m MBC3+TIMER+RAM+BATTERY -Wno-overwrite
 %-correctheader.gb: %.gb
 	cp $< $@
 	cp $(<:.gb=.sym) $(@:.gb=.sym)
-	$(RGBFIX) $(RGBFIXFLAGS) $@
+	$(RGBFIX) $(RGBFIXFLAGS) $(RGBFIXCFLAGS) $@
 
 RGBLINKFLAGS += -d
 RGBFIXFLAGS += -sf lh -k 01 -l 0x33 -m MBC1+RAM+BATTERY -r 3 -p 0xff
@@ -168,12 +168,6 @@ gfx/minigames/poker.2bpp: tools/gfx += --trim-whitespace
 gfx/minigames/picross_numbers.2bpp: tools/gfx += --trim-whitespace
 
 gfx/intro/jigglypuff_pikachu.2bpp: tools/gfx += --trim-whitespace
-
-gfx/intro/%.bin: gfx/intro/%.bin
-	cp $< $@
-
-gfx/minigames/%.bin: gfx/minigames/%.bin
-	cp $< $@
 
 gfx/battle_anims/attack_animations_1.2bpp: tools/gfx += --trim-whitespace
 gfx/battle_anims/attack_animations_2.2bpp: tools/gfx += --trim-whitespace

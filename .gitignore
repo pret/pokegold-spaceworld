@@ -9,6 +9,7 @@
 # compiled graphics
 *.1bpp
 *.2bpp
+*.pic
 *.sgb.tilemap
 
 # rgbds extras
