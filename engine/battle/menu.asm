@@ -86,7 +86,7 @@ Battle_2DMenu:
 	scf
 	ret
 
-.GetNewCursorPos:
+.GetNewCursorOffset:
 ; multiplies a (row offset) by c (columns) using repeated addition
 ; inverse of .div_mod
 ; input:  a = row index (0-based)
