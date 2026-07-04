@@ -40,7 +40,7 @@ DrawBattleHPBar::
 	jr .dec_hp
 
 .write_dmg
-	ld a, $62
+	ld a, $62 ; empty bar
 	add e
 	ld [hl], a
 .done_bar
