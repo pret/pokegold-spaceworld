@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/engine.asm", ROMX
-
 _DisableAudio::
 	push hl
 	push de

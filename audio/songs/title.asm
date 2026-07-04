@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/title.asm", ROMX
-
 Music_Title::
 	channel_count 4
 	channel 1, Music_Title_Ch1

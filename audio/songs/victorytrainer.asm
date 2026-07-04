@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/victorytrainer.asm", ROMX
-
 Music_VictoryTrainer::
 	channel_count 3
 	channel 1, Music_VictoryTrainer_Ch1

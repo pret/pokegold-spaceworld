@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/sfx.asm", ROMX
-
 Sfx_BallWobble:
 	channel_count 1
 	channel 5, Sfx_BallWobble_Ch5

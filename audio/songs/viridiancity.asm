@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/viridiancity.asm", ROMX
-
 Music_ViridianCity::
 	channel_count 4
 	channel 1, Music_ViridianCity_Ch1

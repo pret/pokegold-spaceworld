@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/nidorinointro.asm", ROMX
-
 Music_NidorinoIntro::
 	channel_count 4
 	channel 1, Music_NidorinoIntro_Ch1

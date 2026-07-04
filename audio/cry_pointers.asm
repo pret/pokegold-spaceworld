@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/cry_pointers.asm", ROMX
 Cries::
 	dba Cry_00
 	dba Cry_01

@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 SECTION "VRAM", VRAM
 
 UNION

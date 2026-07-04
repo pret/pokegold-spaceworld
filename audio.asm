@@ -1,11 +1,13 @@
-;ROMX $3a
+SECTION "Audio", ROMX
+
 INCLUDE "audio/engine.asm"
 INCLUDE "audio/songs/none.asm"
 INCLUDE "audio/cry_pointers.asm"
 INCLUDE "audio/sfx_pointers.asm"
 
 
-;ROMX $3b
+SECTION "Songs 1", ROMX
+
 INCLUDE "audio/songs/nidorinointro.asm"
 INCLUDE "audio/songs/viridiancity.asm"
 INCLUDE "audio/songs/route1.asm"
@@ -19,9 +21,17 @@ INCLUDE "audio/songs/victorytrainer.asm"
 INCLUDE "audio/songs/evolution.asm"
 
 
-;ROMX $3c
+SECTION "Sound Effects", ROMX
+
 INCLUDE "audio/move_sfx_old.asm"
 INCLUDE "audio/sfx.asm"
+
+SECTION "Cries", ROMX
+
 INCLUDE "data/pokemon/cries.asm"
 INCLUDE "audio/cries.asm"
+
+
+SECTION "Songs 2", ROMX
+
 INCLUDE "audio/songs/title.asm"

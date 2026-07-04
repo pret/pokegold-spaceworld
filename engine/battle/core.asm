@@ -6077,7 +6077,7 @@ GetTrainerPic:
 	ld e, a
 	ld a, [wEnemyTrainerGraphicsPointer + 1]
 	ld d, a
-	ld a, BANK("gfx.asm@Trainer Battle Sprites")
+	ld a, BANK("Trainer Pics")
 	call UncompressSpriteFromDE
 	ld de, vFrontPic
 	ln a, 7, 7

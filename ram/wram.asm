@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-
 SECTION "Music engine RAM", WRAM0
 
 wMusic::

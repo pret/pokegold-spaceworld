@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/spottedrocket.asm", ROMX
-
 Music_SpottedRocket::
 	channel_count 3
 	channel 1, Music_SpottedRocket_Ch1
