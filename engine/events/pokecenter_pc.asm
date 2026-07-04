@@ -10,7 +10,7 @@ SECTION "engine/events/pokecenter_pc.asm", ROMX
 	const PCITEM_HALL_OF_FAME
 	const PCITEM_TURN_OFF
 
-PokemonCenterPC:
+PokemonCenterPC::
 ; Also used for player's PC (both in debug and in demo mode)
 
 	ld a, [wDebugFlags]

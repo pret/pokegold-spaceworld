@@ -9,7 +9,7 @@ MACRO tileset
 	dw NULL ; unused
 ENDM
 
-Tilesets:
+Tilesets::
 	; name, animation set
 	table_width TILESET_LENGTH
 	tileset SilentHill, TilesetGenericAnim

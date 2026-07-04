@@ -88,7 +88,7 @@ GetNthString::
 	pop bc
 	ret
 
-GetPokemonName:
+GetPokemonName::
 ; Get Pokemon name wNamedObjectIndexBuffer.
 
 	ldh a, [hROMBank]

@@ -540,7 +540,7 @@ EnableSprites::
 	set rLCDC_SPRITES_ENABLE, [hl]
 	ret
 
-TransferToolgearRow:
+TransferToolgearRow::
 ; TransferToolgearRow
 ; Copy second line of toolgear to window
 	ld a, [wToolgearFlags]

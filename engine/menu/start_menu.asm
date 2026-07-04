@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/menu/start_menu.asm", ROMX
 
-DisplayStartMenu:
+DisplayStartMenu::
 	call RefreshScreen
 	ld de, SFX_MENU
 	call PlaySFX
@@ -1708,7 +1708,7 @@ PartyPokeDivider:
 PartyMoveText:
 	db "どこに　いどうしますか？@"
 
-CheckRegisteredItem:
+CheckRegisteredItem::
 	call .RegisteredItem
 	ret
 

@@ -17,7 +17,7 @@ GetFlyPointMapLocation:
 	ld e, a
 	ret
 
-LoadSpawnPoint:
+LoadSpawnPoint::
 ; loads the spawn point in wDefaultSpawnPoint
 	push hl
 	push de

@@ -8,7 +8,7 @@ SilentHillLabFront_ScriptLoader::
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillLabFrontScriptPointers:
+SilentHillLabFrontScriptPointers::
 	dw SilentHillLabFrontScript1
 	dw SilentHillLabFrontNPCIDs1
 

@@ -8,7 +8,7 @@ Route1P2_ScriptLoader::
 	call WriteBackMapScriptNumber
 	ret
 
-Route1P2ScriptPointers:
+Route1P2ScriptPointers::
 	dw Route1P2Script
 	dw Route1P2NPCIDs
 

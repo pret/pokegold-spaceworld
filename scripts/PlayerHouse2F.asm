@@ -8,7 +8,7 @@ PlayerHouse2F_ScriptLoader::
 	call WriteBackMapScriptNumber
 	ret
 
-PlayerHouse2FScriptPointers:
+PlayerHouse2FScriptPointers::
 	dw PlayerHouse2FScript1
 	dw PlayerHouse2FNPCIDs1
 	dw PlayerHouse2FScript2

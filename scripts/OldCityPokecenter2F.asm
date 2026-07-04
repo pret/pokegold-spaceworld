@@ -9,7 +9,7 @@ OldCityPokecenter2F_ScriptLoader:
 	call WriteBackMapScriptNumber
 	ret
 
-OldCityPokecenter2FScriptPointers:
+OldCityPokecenter2FScriptPointers::
 	dw OldCityPokecenter2FScript1
 	dw OldCityPokecenter2FNPCIds
 

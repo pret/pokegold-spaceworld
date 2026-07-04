@@ -1127,7 +1127,7 @@ CheckCollisionSometimesSolid::
 
 SECTION "engine/overworld/player_movement.asm@_RedrawPlayerSprite", ROMX
 
-_RedrawPlayerSprite:
+_RedrawPlayerSprite::
 	call GetPlayerSprite
 	ld hl, vChars0
 	call LoadOverworldSprite

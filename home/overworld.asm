@@ -86,7 +86,7 @@ UpdateAndTransferToolgear:
 	call DelayFrame
 	ret
 
-ScheduleNorthRowRedraw:
+ScheduleNorthRowRedraw::
 	coord hl, 0, 0
 	call CopyToRedrawRowOrColumnSrcTiles
 	ld a, [wBGMapAnchor]
@@ -97,7 +97,7 @@ ScheduleNorthRowRedraw:
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-ScheduleSouthRowRedraw:
+ScheduleSouthRowRedraw::
 	coord hl, 0, SCREEN_HEIGHT - 2
 	call CopyToRedrawRowOrColumnSrcTiles
 	ld a, [wBGMapAnchor]
@@ -117,7 +117,7 @@ ScheduleSouthRowRedraw:
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-ScheduleEastColumnRedraw:
+ScheduleEastColumnRedraw::
 	coord hl, SCREEN_WIDTH - 2, 0
 	call ScheduleColumnRedrawHelper
 	ld a, [wBGMapAnchor]
@@ -135,7 +135,7 @@ ScheduleEastColumnRedraw:
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-ScheduleWestColumnRedraw:
+ScheduleWestColumnRedraw::
 	coord hl, 0, 0
 	call ScheduleColumnRedrawHelper
 	ld a, [wBGMapAnchor]

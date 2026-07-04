@@ -397,7 +397,7 @@ LoadMapTimeOfDay::
 	call ByteFill
 	ret
 
-.PushAttrMap
+.PushAttrMap::
 	decoord 0, 0
 	hlbgcoord 0, 0
 	ld c, SCREEN_WIDTH

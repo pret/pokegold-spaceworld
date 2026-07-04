@@ -8,7 +8,7 @@ SilentHills_ScriptLoader::
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillsScriptPointers:
+SilentHillsScriptPointers::
 	dw SilentHillsScript
 	dw SilentHillsNPCIDs
 

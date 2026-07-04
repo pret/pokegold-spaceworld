@@ -15,7 +15,7 @@ SECTION "data/maps/maps.asm", ROMX
 
 	db 0 ; ???
 
-MapGroupPointers:
+MapGroupPointers::
 	dw MapGroup_SilentHill
 	dw MapGroup_OldCity
 	dw MapGroup_West

@@ -391,7 +391,7 @@ TryLoadPokemonData:
 
 INCLUDE "data/maps/scenes.inc"
 
-OverworldLoop_ReturnFromBattle:
+OverworldLoop_ReturnFromBattle::
 	ld a, MAPSTATUS_MAIN
 	call SetMapStatus
 	ret

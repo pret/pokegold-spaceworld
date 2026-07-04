@@ -8,7 +8,7 @@ Route1Gate2F_ScriptLoader::
 	call WriteBackMapScriptNumber
 	ret
 
-Route1Gate2FScriptPointers:
+Route1Gate2FScriptPointers::
 	dw Route1Gate2FScript
 	dw Route1Gate2FNPCIDs
 

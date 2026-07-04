@@ -7,7 +7,7 @@ AnimationSubstitute:
 ; Dummied out from pokered.
 	ret
 
-PlayBattleAnim:
+PlayBattleAnim::
 	ld c, 8
 .wait
 	call DelayFrame

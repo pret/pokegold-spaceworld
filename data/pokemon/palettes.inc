@@ -1,4 +1,4 @@
-PokemonPalettes:
+PokemonPalettes::
 	db PAL_MEWMON    ; NONE
 	db PAL_GREENMON  ; BULBASAUR
 	db PAL_GREENMON  ; IVYSAUR

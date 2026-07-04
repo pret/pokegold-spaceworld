@@ -137,7 +137,7 @@ Unreferenced_RemoveItemFromInventory_Old:
 .done
 	ret
 
-_ReceiveItem:
+_ReceiveItem::
 	call DoesHLEqualwNumBagItems
 	jp nz, PutItemInPocket
 	push hl
@@ -175,7 +175,7 @@ _ReceiveItem:
 	call GetTMHMNumber
 	jp ReceiveTMHM
 
-_TossItem:
+_TossItem::
 	call DoesHLEqualwNumBagItems
 	jr nz, .remove_item
 	push hl
@@ -753,7 +753,7 @@ SECTION "engine/items/inventory.asm@_CheckTossableItem", ROMX
 
 ; Return 1 in wItemAttributeValue and
 ; carry if wCurItem can't be removed from the bag.
-_CheckTossableItem:
+_CheckTossableItem::
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
 	bit CANT_TOSS_F, a

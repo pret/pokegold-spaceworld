@@ -54,7 +54,7 @@ ReanchorBGMap_NoOAMUpdate::
 	jr nz, .loop
 	ret
 
-LoadFonts_NoOAMUpdate:
+LoadFonts_NoOAMUpdate::
 	call UpdateSprites
 	call LoadFont
 	call LoadFontExtra

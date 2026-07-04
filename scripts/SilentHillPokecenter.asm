@@ -8,7 +8,7 @@ SilentHillPokecenter_ScriptLoader::
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillPokecenterScriptPointers:
+SilentHillPokecenterScriptPointers::
 	dw SilentHillPokecenterScript
 	dw SilentHillPokecenterNPCIDs
 

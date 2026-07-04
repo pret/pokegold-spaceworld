@@ -2,7 +2,7 @@ INCLUDE "constants.asm"
 
 SECTION "engine/menu/set_time.asm", ROMX
 
-SetTime:
+SetTime::
 	ld hl, wStartHour
 	ldh a, [hRTCHours]
 	ld [hli], a

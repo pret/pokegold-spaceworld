@@ -31,7 +31,7 @@ endc
 
 SECTION "home/init.asm@Init", ROM0
 
-Reset:
+Reset::
 	call DisableAudio
 	call ClearPalettes
 	ei
@@ -44,7 +44,7 @@ Reset:
 
 	jr Init ; pointless
 
-Init:
+Init::
 	di
 	xor a
 	ldh [rIF], a
@@ -139,7 +139,7 @@ Init:
 	ld [MBC3SRamEnable], a
 	jp GameInit
 
-ClearVRAM:
+ClearVRAM::
 	ld hl, VRAM_Begin
 	ld bc, VRAM_End - VRAM_Begin
 	xor a

@@ -1907,7 +1907,7 @@ GetFollowerNextMovementIndex:
 	scf
 	ret
 
-UpdateAllObjectsFrozen:
+UpdateAllObjectsFrozen::
 	ld bc, wObjectStructs
 	xor a
 .loop
@@ -2032,7 +2032,7 @@ UpdateAllObjectsFrozen:
 	scf
 	ret
 
-HandleNPCStep:
+HandleNPCStep::
 	call ResetStepVector
 	call DoStepsForAllObjects
 	call HandleMinorObjects

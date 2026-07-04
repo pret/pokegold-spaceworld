@@ -2,12 +2,12 @@ INCLUDE "constants.asm"
 
 SECTION "engine/palettes.asm", ROMX
 
-UpdateTimeOfDayPal:
+UpdateTimeOfDayPal::
 	call UpdateTime
 	call GetTimePalette
 	ret
 
-_TimeOfDayPals:
+_TimeOfDayPals::
 	ld hl, wTimeOfDayPalFlags
 	bit CLEAR_PALSET_F, [hl]
 	ret nz
@@ -50,7 +50,7 @@ Function8c325:
 	call OverworldFadeIn
 	ret
 
-_UpdateTimePals:
+_UpdateTimePals::
 	ld c, $09
 	call GetFadeStep
 	call ApplyPalettesAtHL

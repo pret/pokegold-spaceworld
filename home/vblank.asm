@@ -27,7 +27,7 @@ VBlank::
 	pop af
 	reti
 
-.blanks
+.blanks::
 	dw VBlank0
 	dw VBlank1
 	dw VBlank2

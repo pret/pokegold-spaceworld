@@ -4,7 +4,7 @@ SECTION "engine/pokemon/correct_nick_errors.asm", ROMX
 
 ; Replace invalid name characters with question marks, or replaces entire name with "？" if no terminator is found.
 ; These characters include control characters, kana with diacritics they shouldn't have, and English letter tiles.
-CorrectNickErrors:
+CorrectNickErrors::
 	push bc
 	push de
 	ld b, MON_NAME_LENGTH

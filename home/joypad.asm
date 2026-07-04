@@ -165,7 +165,7 @@ GetJoypadDebounced::
 	ld [wVBlankJoyFrameCounter], a
 	ret
 
-TextboxWaitPressAorB_BlinkCursor:
+TextboxWaitPressAorB_BlinkCursor::
 ; Show a blinking cursor in the lower right-hand
 ; corner of a textbox and wait until A or B is
 ; pressed.

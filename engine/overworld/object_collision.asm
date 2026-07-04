@@ -64,7 +64,7 @@ _IsObjectCollisionTileSolid:
 	scf
 	ret
 
-CheckFacingObject:
+CheckFacingObject::
 	call GetFacingTileCoord
 	cp COLL_COUNTER
 	jr z, .counter

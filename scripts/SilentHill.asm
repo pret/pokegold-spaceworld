@@ -25,7 +25,7 @@ SilentHillNPCIDs3:
 	db $03
 	db $FF
 
-SilentHillScriptPointers:
+SilentHillScriptPointers::
 	dw SilentHillScript1
 	dw SilentHillNPCIDs1
 

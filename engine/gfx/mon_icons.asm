@@ -189,7 +189,7 @@ endr
 	scf
 	ret
 
-FreezeMonIcons:
+FreezeMonIcons::
 	ld hl, wSpriteAnimationStructs
 	ld e, PARTY_LENGTH
 	ld a, [wMenuCursorY]

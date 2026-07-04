@@ -5057,7 +5057,7 @@ EmptyBattleTextbox:
 .empty:
 	text_end
 
-_BattleRandom:
+_BattleRandom::
 ; If the normal RNG is used in a link battle it'll desync.
 ; To circumvent this a shared PRNG is used instead.
 
