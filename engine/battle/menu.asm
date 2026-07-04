@@ -87,11 +87,6 @@ Battle_2DMenu:
 	ret
 
 .GetNewCursorOffset:
-; multiplies a (row offset) by c (columns) using repeated addition
-; inverse of .div_mod
-; input:  a = row index (0-based)
-;         c = number of columns
-; output: a = a * c (linear index)
 	and a        ; set z if a = 0
 	ret z        ; 0 * c = 0, return early
 	push bc
