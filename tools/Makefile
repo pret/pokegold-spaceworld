@@ -1,11 +1,11 @@
 .PHONY: all clean
 
 CC := gcc
-CFLAGS := -O3 -std=c99 -Wall -Wextra
+CFLAGS := -O3 -std=c17 -Wall -Wextra -pedantic
 
 tools := \
-	pkmncompress \
 	gfx \
+	pkmncompress \
 	scan_includes
 
 all: $(tools)
@@ -13,3 +13,6 @@ all: $(tools)
 
 clean:
 	$(RM) $(tools)
+
+%: %.c common.h
+	$(CC) $(CFLAGS) -o $@ $<
