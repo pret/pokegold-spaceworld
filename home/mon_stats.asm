@@ -30,7 +30,7 @@ DrawBattleHPBar::
 .dec_hp
 	ld a, e
 	sub $8
-	jr c, .write_dmg
+	jr c, .last_bar
 	ld e, a
 	ld a, $6a ; full bar
 	ld [hli], a
@@ -39,7 +39,7 @@ DrawBattleHPBar::
 	jr z, .done_bar
 	jr .dec_hp
 
-.write_dmg
+.last_bar
 	ld a, $62 ; empty bar
 	add e
 	ld [hl], a
