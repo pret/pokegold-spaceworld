@@ -16,7 +16,7 @@ DrawBattleHPBar::
 	ld [hli], a
 	dec d
 	jr nz, .fill_bar
-	ld a, $6b
+	ld a, $6b ; bar end
 	add b
 	ld [hl], a
 	pop hl
