@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/events/pokepic.asm", ROMX
-
 Pokepic::
 	ld a, 1
 	ldh [hBGMapMode], a

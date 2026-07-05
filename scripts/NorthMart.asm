@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/NorthMart.asm", ROMX
-
 NorthMart_ScriptLoader::
 	ret
 

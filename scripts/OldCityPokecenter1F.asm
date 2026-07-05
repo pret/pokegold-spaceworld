@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/OldCityPokecenter1F.asm", ROMX
-
 OldCityPokecenter1F_ScriptLoader::
 	ret
 

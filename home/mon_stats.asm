@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/mon_stats.asm", ROM0
-
 DrawBattleHPBar::
 	push hl
 	push de

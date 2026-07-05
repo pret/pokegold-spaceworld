@@ -1,8 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/flypoints.asm", ROMX
-
-;
 ; Table that the game reads for determining which Fly point to move to depending on D-Pad input.
 ; Each row corresponds to the index of a Fly point.
 ;

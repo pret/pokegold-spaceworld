@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/pokedex_flags.asm", ROM0
-
 WaitPressedAny::
 ; Waits for one of the buttons in d to be pressed.
 ; If bc is negative, waits forever.

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/BirdonLeague1F.asm", ROMX
-
 	map_attributes BirdonLeague1F, BIRDON_LEAGUE_1F
 
 BirdonLeague1F_MapEvents::

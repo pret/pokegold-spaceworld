@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle/read_trainer_party.asm", ROMX
-
 ReadTrainerParty::
 	ld a, [wLinkMode]
 	and a
@@ -335,5 +331,5 @@ Battle_GetTrainerName:
 	call CopyBytes
 	ret
 
-INCLUDE "data/trainers/party_pointers.inc"
-INCLUDE "data/trainers/parties.inc"
+INCLUDE "data/trainers/party_pointers.asm"
+INCLUDE "data/trainers/parties.asm"

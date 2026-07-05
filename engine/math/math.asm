@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/math/math.asm", ROMX
-
 _Multiply::
 
 ; hMultiplier is one byte.

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/engine.asm", ROMX
-
 _DisableAudio::
 	push hl
 	push de
@@ -2868,15 +2864,15 @@ LoadMusicByte::
 	call _LoadMusicByte
 	ret
 
-INCLUDE "audio/notes.inc"
+INCLUDE "audio/notes.asm"
 
-INCLUDE "audio/wave_samples.inc"
+INCLUDE "audio/wave_samples.asm"
 
-INCLUDE "audio/wave_overrides.inc"
+INCLUDE "audio/wave_overrides.asm"
 
-INCLUDE "audio/intensity_overrides.inc"
+INCLUDE "audio/intensity_overrides.asm"
 
-INCLUDE "audio/drumkits.inc"
+INCLUDE "audio/drumkits.asm"
 
 LRTracks:
 ; bit corresponds to track #
@@ -2896,4 +2892,4 @@ ChannelPointers:
 	dw wChannel7
 	dw wChannel8
 
-INCLUDE "audio/song_header_pointers.inc"
+INCLUDE "audio/song_header_pointers.asm"

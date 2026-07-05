@@ -1,8 +1,4 @@
-INCLUDE "constants.asm"
-
-SECTION "data/sprites/facings.asm", ROMX
-
-INCLUDE "data/sprites/old_facings.inc"
+INCLUDE "data/sprites/old_facings.asm"
 
 Facings:
 	dw FacingStepDown0

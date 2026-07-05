@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/movie/game_freak_intro.asm", ROMX
-
 GameFreakIntro::
 ; Copyright screen and Game Freak logo
 
@@ -335,3 +331,9 @@ GameFreakPresents_Sparkle:
 	db $38, $03
 	db $34, $02
 	db $3c, $04
+
+GameFreakLogoGFX:
+INCBIN "gfx/splash/game_freak_logo.1bpp"
+
+GameFreakLogoSparkleGFX:
+INCBIN "gfx/splash/game_freak_logo_oam.2bpp"

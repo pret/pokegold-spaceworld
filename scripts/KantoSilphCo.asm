@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoSilphCo.asm", ROMX
-
 KantoSilphCo_ScriptLoader::
 	ret
 

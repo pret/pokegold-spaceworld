@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/time.asm", ROM0
-
 LatchClock:
 	ld a, 0
 	ld [MBC3LatchClock], a

@@ -1,8 +1,4 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/link/link.asm", ROMX
-
-StartLinkCommunications:
+StartLinkCommunications::
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
 	jr z, .CallAndSetupLinkMode

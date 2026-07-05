@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/OldCityGym.asm", ROMX
-
 OldCityGym_ScriptLoader::
 	ret
 

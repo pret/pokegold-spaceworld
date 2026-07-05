@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/none.asm", ROMX
-
 Music_None::
 	channel_count 4
 	channel 1, Music_None_Ch1

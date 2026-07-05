@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/sram.asm", ROM0
-
 OpenSRAM::
 	push af
 	ld a, 1

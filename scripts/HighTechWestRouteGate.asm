@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/HighTechWestRouteGate.asm", ROMX
-
 HighTechWestRouteGate_ScriptLoader::
 	ret
 

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BlueForestRoute1House.asm", ROMX
-
 BlueForestRoute1House_ScriptLoader::
 	ret
 

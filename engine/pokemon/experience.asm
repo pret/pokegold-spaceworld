@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/experience.asm", ROMX
-
 CalcLevel::
 	ld a, [wTempMonSpecies]
 	ld [wCurSpecies], a
@@ -159,4 +155,4 @@ CalcExpAtLevel::
 	ldh [hMultiplier], a
 	jp Multiply
 
-INCLUDE "data/growth_rates.inc"
+INCLUDE "data/growth_rates.asm"

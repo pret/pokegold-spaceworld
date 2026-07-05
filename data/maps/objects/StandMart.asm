@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/StandMart.asm", ROMX
-
 	map_attributes StandMart, STAND_MART
 
 StandMart_MapEvents::

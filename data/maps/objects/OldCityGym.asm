@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/OldCityGym.asm", ROMX
-
 	map_attributes OldCityGym, OLD_CITY_GYM
 
 OldCityGym_MapEvents::

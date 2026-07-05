@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/BluePokecenter2F.asm", ROMX
-
 	map_attributes BluePokecenter2F, BLUE_POKECENTER_2F
 
 BluePokecenter2F_MapEvents::

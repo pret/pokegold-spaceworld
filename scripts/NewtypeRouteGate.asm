@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/NewtypeRouteGate.asm", ROMX
-
 NewtypeRouteGate_ScriptLoader::
 	ret
 

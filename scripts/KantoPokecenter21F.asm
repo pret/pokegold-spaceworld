@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoPokecenter21F.asm", ROMX
-
 KantoPokecenter21F_ScriptLoader::
 	ret
 

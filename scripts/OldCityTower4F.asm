@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/OldCityTower4F.asm", ROMX
-
 OldCityTower4F_ScriptLoader::
 	ret
 

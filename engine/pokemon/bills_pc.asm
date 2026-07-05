@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/bills_pc.asm", ROMX
-
 _BillsPC:
 	call .CheckCanUsePC
 	ret c

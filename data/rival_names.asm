@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/rival_names.asm", ROMX
-
 RivalNameMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, 11

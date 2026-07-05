@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/StandHouse.asm", ROMX
-
 StandHouse_ScriptLoader::
 	ret
 

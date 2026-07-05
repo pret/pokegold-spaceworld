@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/movement.asm", ROM0
-
 InitMovementBuffer::
 	ld [wMovementBufferObject], a
 	xor a

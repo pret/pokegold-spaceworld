@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/rtc.asm", ROM0
-
 UpdateTimeOfDayPalettes:
 	ld a, [wStateFlags]
 	bit SPRITE_UPDATES_DISABLED_F, a

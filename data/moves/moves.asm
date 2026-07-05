@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 MACRO move
 	db \1 ; animation
 	db \2 ; effect
@@ -9,8 +7,6 @@ MACRO move
 	db \6 ; pp
 	db \7 percent ; effect chance
 ENDM
-
-SECTION "data/moves/moves.asm", ROMX
 
 Moves::
 	move MOVE_POUND,        EFFECT_NORMAL_HIT,        40, TYPE_NORMAL,   100 percent,     35,   0

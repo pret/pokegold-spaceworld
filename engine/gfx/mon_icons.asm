@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/gfx/mon_icons.asm", ROMX
-
 LoadOverworldMonIcon::
 	push hl
 	push de
@@ -189,7 +185,7 @@ endr
 	scf
 	ret
 
-FreezeMonIcons:
+FreezeMonIcons::
 	ld hl, wSpriteAnimationStructs
 	ld e, PARTY_LENGTH
 	ld a, [wMenuCursorY]
@@ -269,4 +265,4 @@ ReadMonMenuIcon:
 	ld a, $00
 	ret
 
-INCLUDE "data/pokemon/menu_icons.inc"
+INCLUDE "data/pokemon/menu_icons.asm"

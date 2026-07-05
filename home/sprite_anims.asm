@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/sprite_anims.asm", ROM0
-
 InitSpriteAnimStruct::
 	ld [wSpriteAnimAddrBackup], a
 	ldh a, [hROMBank]

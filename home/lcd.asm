@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/lcd.asm", ROM0
-
 LCD::
 	push af
 	ldh a, [hLCDCPointer]

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BirdonWallpaperHouse.asm", ROMX
-
 BirdonWallpaperHouse_ScriptLoader::
 	ret
 

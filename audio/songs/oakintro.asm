@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/oakintro.asm", ROMX
-
 Music_OakIntro::
 	channel_count 4
 	channel 1, Music_OakIntro_Ch1

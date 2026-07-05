@@ -1,8 +1,4 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/sprites/sprites.asm@RefreshSprites", ROMX
-
-RefreshSprites:
+RefreshSprites::
 	call GetPlayerSprite
 	call CheckInteriorMap
 	jr c, .outdoor
@@ -106,7 +102,7 @@ AddOutdoorSprites:
 	ld [wUnusedAddOutdoorSpritesReturnValue], a
 	ret
 
-LoadStandingSpritesGFX:
+LoadStandingSpritesGFX::
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af
@@ -117,7 +113,7 @@ LoadStandingSpritesGFX:
 	ld [wSpriteFlags], a
 	ret
 
-LoadWalkingSpritesGFX:
+LoadWalkingSpritesGFX::
 	ld hl, wSpriteFlags
 	ld a, [hl]
 	push af

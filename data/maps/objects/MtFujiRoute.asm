@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/MtFujiRoute.asm", ROMX
-
 	map_attributes MtFujiRoute, MT_FUJI_ROUTE
 	connection north, MtFuji, MT_FUJI, 0
 	connection south, Prince, PRINCE, 0

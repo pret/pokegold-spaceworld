@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/evolve.asm", ROMX
-
 EvolvePokemon::
 	ld hl, wEvolvableFlags
 	xor a
@@ -552,4 +548,4 @@ EvoFlagAction:
 	pop de
 	ret
 
-INCLUDE "engine/movie/evolution_animation.inc"
+INCLUDE "engine/movie/evolution_animation.asm"

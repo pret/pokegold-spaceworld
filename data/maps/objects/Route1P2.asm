@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/Route1P2.asm", ROMX
-
 	map_attributes Route1P2, ROUTE_1_P2
 	connection north, OldCity, OLD_CITY, -5
 	connection east, Route1P1, ROUTE_1_P1, 9

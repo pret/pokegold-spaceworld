@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/Route15.asm", ROMX
-
 	map_attributes Route15, ROUTE_15
 	connection north, BirdonRoute3, BIRDON_ROUTE_3, 0
 	connection east, Newtype, NEWTYPE, 0

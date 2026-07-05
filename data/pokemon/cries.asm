@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/pokemon/cries.asm", ROMX
-
 MACRO mon_cry
 ; index, pitch, length
 	dw \1, \2, \3

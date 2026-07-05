@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/wildmons.asm", ROMX
-
 _LoadWildMonData::
 	xor a
 	ld hl, wWildMonData
@@ -118,7 +114,7 @@ endr
 	scf
 	ret
 
-INCLUDE "data/wild/grassmons.inc"
+INCLUDE "data/wild/grassmons.asm"
 
 TryWildBattle::
 ; If there is no active Repel, there's no need to be here.
@@ -237,7 +233,7 @@ TryWildBattle::
 	db COLL_OLD_WHIRLPOOL | COLLFLAG_ENCOUNTER
 	db -1
 
-INCLUDE "data/wild/probabilities.inc"
+INCLUDE "data/wild/probabilities.asm"
 
 ; This actually works as intended in the proto!
 ; In the final game, due to a development oversight,

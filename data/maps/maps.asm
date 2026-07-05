@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 MACRO map
 ;\1: map name: for the MapAttributes pointer (see data/maps/attributes.asm)
 ;\2: tileset: a TILESET_* constant
@@ -11,11 +9,9 @@ MACRO map
 	db 0, 0
 ENDM
 
-SECTION "data/maps/maps.asm", ROMX
-
 	db 0 ; ???
 
-MapGroupPointers:
+MapGroupPointers::
 	dw MapGroup_SilentHill
 	dw MapGroup_OldCity
 	dw MapGroup_West

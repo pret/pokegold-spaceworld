@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/scrolling_menu.asm", ROM0
-
 ; Runs a scrolling menu from a table with the following:
 ; 1. A pointer to the menu header.
 ; 2. Pointer to the cursor in RAM.

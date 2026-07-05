@@ -1,14 +1,10 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SilentHillPokecenter.asm", ROMX
-
 SilentHillPokecenter_ScriptLoader::
 	ld hl, SilentHillPokecenterScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillPokecenterScriptPointers:
+SilentHillPokecenterScriptPointers::
 	dw SilentHillPokecenterScript
 	dw SilentHillPokecenterNPCIDs
 

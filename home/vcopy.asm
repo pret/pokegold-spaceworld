@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/vcopy.asm", ROM0
-
 RedrawRowOrColumn::
 ; This function redraws a BG row of height 2 or a BG column of width 2.
 ; One of its main uses is redrawing the row or column that will be exposed upon
@@ -540,7 +536,7 @@ EnableSprites::
 	set rLCDC_SPRITES_ENABLE, [hl]
 	ret
 
-TransferToolgearRow:
+TransferToolgearRow::
 ; TransferToolgearRow
 ; Copy second line of toolgear to window
 	ld a, [wToolgearFlags]

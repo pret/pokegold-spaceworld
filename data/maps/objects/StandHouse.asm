@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/StandHouse.asm", ROMX
-
 	map_attributes StandHouse, STAND_HOUSE
 
 StandHouse_MapEvents::

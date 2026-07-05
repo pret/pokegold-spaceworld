@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/BirdonPokecenter2F.asm", ROMX
-
 	map_attributes BirdonPokecenter2F, BIRDON_POKECENTER_2F
 
 BirdonPokecenter2F_MapEvents::

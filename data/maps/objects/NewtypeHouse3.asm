@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/NewtypeHouse3.asm", ROMX
-
 	map_attributes NewtypeHouse3, NEWTYPE_HOUSE_3
 
 NewtypeHouse3_MapEvents::

@@ -1,8 +1,4 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/link/link_2.asm", ROMX
-
-CheckTimeCapsuleCompatibility:
+CheckTimeCapsuleCompatibility::
 	ld hl, wPartySpecies
 	ld b, PARTY_LENGTH
 .loop:
@@ -83,7 +79,7 @@ CheckTimeCapsuleCompatibility:
 	text "は　つれていけません！"
 	done
 
-Link_Receptionist_Intro:
+Link_Receptionist_Intro::
 	ld a, $02
 	ldh [hVBlank], a
 	ld hl, CableClubWelcomeText

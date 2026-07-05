@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/move_sfx_old.asm", ROMX
-
 ; An unreferenced updated version of GetMoveSound from pokered
 ; goes unreferenced as sounds are now played in a move's animation.
 Unreferenced_GetMoveSound:

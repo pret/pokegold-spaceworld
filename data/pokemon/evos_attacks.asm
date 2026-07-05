@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/pokemon/evos_attacks.asm", ROMX
-
 ; Evolutions for Pokémon available in the demo were removed,
 ; and have been left in comments.
 
@@ -9,7 +5,7 @@ SECTION "data/pokemon/evos_attacks.asm", ROMX
 ; so its data is corrupt. (See EeveeEvosAttacks.)
 
 
-INCLUDE "data/pokemon/evos_attacks_pointers.inc"
+INCLUDE "data/pokemon/evos_attacks_pointers.asm"
 
 
 EvosAttacks::

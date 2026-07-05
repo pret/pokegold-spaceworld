@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/debug/subgame_debug_menu.asm", ROMX
-
 CallSubGameMenu:
 	call ClearTileMap
 	call LoadFont

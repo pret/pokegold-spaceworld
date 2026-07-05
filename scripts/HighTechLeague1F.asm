@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/HighTechLeague1F.asm", ROMX
-
 HighTechLeague1F_ScriptLoader::
 	ret
 

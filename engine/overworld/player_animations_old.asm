@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/player_animations_old.asm", ROMX
-
 ; A bunch of old animation functions from Generation I.
 ; Basically non-functional because RAM has moved around so much since then.
 ; Certain lines of code were removed here, presumably so that it would actually compile.

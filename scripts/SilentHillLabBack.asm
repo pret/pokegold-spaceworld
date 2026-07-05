@@ -1,14 +1,10 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SilentHillLabBack.asm", ROMX
-
 SilentHillLabBack_ScriptLoader::
 	ld hl, SilentHillLabBackScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillLabBackScriptPointers:
+SilentHillLabBackScriptPointers::
 	dw SilentHillLabBackScript1
 	dw SilentHillLabBackNPCIDs1
 	dw SilentHillLabBackScript2

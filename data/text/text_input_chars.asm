@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/text/text_input_chars.asm", ROMX
-
 TextEntryChars:
 	db "あいうえお　かきくけこ　さしすせそ"
 	db "たちつてと　なにぬねの　はひふへほ"

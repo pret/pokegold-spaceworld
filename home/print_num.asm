@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/print_num.asm", ROM0
-
 PrintNumber::
 ; function to print a number
 ; de = address of number in little-endian format

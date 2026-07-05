@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/cry.asm", ROM0
-
 PlayStereoCry::
 	push af
 	ld a, $1

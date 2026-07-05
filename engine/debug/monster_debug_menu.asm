@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/debug/monster_debug_menu.asm", ROMX
-
 DEF NUM_MONSTERTEST_ITEMS EQU 9
 
 MonsterTest:

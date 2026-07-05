@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/HighTechAquarium2F.asm", ROMX
-
 	map_attributes HighTechAquarium2F, HIGHTECH_AQUARIUM_2F
 
 HighTechAquarium2F_MapEvents::

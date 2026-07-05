@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/events/breeder.asm", ROMX
-
 _Breeder::
 	ld a, [wBreederStatus]
 	cp BREEDER_TWO_BREEDMON

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/moves/animations.asm", ROMX
-
 BattleAnimations::
 ; entries correspond to constants/move_constants.asm
 	table_width 2

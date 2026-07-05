@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/movie/title.asm@Title screen", ROMX
-
 IntroSequence::
 	callfar GameFreakIntro
 	jr c, TitleSequenceStart

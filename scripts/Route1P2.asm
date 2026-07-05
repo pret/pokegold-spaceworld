@@ -1,14 +1,10 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/Route1P2.asm", ROMX
-
 Route1P2_ScriptLoader::
 	ld hl, Route1P2ScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-Route1P2ScriptPointers:
+Route1P2ScriptPointers::
 	dw Route1P2Script
 	dw Route1P2NPCIDs
 

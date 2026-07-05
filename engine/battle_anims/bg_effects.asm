@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle_anims/bg_effects.asm", ROMX
-
 	const_def
 	const BGSQUARE_SIX
 	const BGSQUARE_FOUR

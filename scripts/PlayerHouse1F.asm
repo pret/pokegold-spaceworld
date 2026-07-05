@@ -1,14 +1,10 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/PlayerHouse1F.asm", ROMX
-
 PlayerHouse1F_ScriptLoader::
 	ld hl, PlayerHouse1FScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-PlayerHouse1FScriptPointers:
+PlayerHouse1FScriptPointers::
 	dw PlayerHouse1FScript1
 	dw PlayerHouse1FNPCIDs1
 	dw PlayerHouse1FScript2

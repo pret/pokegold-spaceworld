@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/pokemon/names.asm", ROMX
-
 PokemonNames::
 	db "フシギダネ" ; BULBASAUR
 	db "フシギソウ" ; IVYSAUR

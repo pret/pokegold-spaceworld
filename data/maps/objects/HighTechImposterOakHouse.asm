@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/HighTechImposterOakHouse.asm", ROMX
-
 	map_attributes HighTechImposterOakHouse, HIGHTECH_IMPOSTER_OAK_HOUSE
 
 HighTechImposterOakHouse_MapEvents::

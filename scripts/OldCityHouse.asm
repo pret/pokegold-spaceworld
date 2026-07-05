@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/OldCityHouse.asm", ROMX
-
 OldCityHouse_ScriptLoader::
 	ret
 

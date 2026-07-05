@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/random.asm", ROM0
-
 Random::
 ; A simple hardware-based random number generator (RNG).
 

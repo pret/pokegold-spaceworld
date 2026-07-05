@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoLeague1F.asm", ROMX
-
 KantoLeague1F_ScriptLoader::
 	ret
 

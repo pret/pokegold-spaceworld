@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/items/tm_holder.asm", ROMX
-
 _TMHolder:
 	ld a, 1
 	ldh [hInMenu], a

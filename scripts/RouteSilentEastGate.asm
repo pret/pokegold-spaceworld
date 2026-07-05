@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/RouteSilentEastGate.asm", ROMX
-
 RouteSilentEastGate_ScriptLoader::
 	ret
 

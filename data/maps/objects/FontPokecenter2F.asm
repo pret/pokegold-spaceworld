@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/FontPokecenter2F.asm", ROMX
-
 	map_attributes FontPokecenter2F, FONT_POKECENTER_2F
 
 FontPokecenter2F_MapEvents::

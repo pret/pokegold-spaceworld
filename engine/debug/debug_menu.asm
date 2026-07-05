@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/menu/debug_menu.asm", ROMX
-
 ; DebugJumpTable indices
 	const_def
 	const DEBUGMENU_FIGHT

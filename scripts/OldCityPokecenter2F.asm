@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/OldCityPokecenter2F.asm", ROMX
-
 OldCityPokecenter2F_ScriptLoader:
 	call SetBitsForTimeCapsuleRequestIfNotLinked
 	ld hl, OldCityPokecenter2FScriptPointers
@@ -9,7 +5,7 @@ OldCityPokecenter2F_ScriptLoader:
 	call WriteBackMapScriptNumber
 	ret
 
-OldCityPokecenter2FScriptPointers:
+OldCityPokecenter2FScriptPointers::
 	dw OldCityPokecenter2FScript1
 	dw OldCityPokecenter2FNPCIds
 

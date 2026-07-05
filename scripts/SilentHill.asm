@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SilentHill.asm", ROMX
-
 SilentHill_ScriptLoader::
 	ld hl, SilentHillScriptPointers
 	call RunMapScript
@@ -25,7 +21,7 @@ SilentHillNPCIDs3:
 	db $03
 	db $FF
 
-SilentHillScriptPointers:
+SilentHillScriptPointers::
 	dw SilentHillScript1
 	dw SilentHillNPCIDs1
 

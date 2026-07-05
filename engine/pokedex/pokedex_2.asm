@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokedex/pokedex_2.asm", ROMX
-
 ; Pokedex_UpdateSearchScreen.Jumptable indexes
 	const_def
 	const SEARCHSTATE_INIT_FIRST_MON_TYPE
@@ -394,7 +390,7 @@ endr
 	ld d, h
 	ret
 
-INCLUDE "data/types/search_strings.inc"
+INCLUDE "data/types/search_strings.asm"
 
 Pokedex_MoveSearchMenuCursor:
 	ld hl, hJoySum
@@ -636,7 +632,7 @@ Pokedex_SearchForMons:
 .done
 	ret
 
-INCLUDE "data/types/search_types.inc"
+INCLUDE "data/types/search_types.asm"
 
 Pokedex_WaitBGMap:
 	call WaitBGMap

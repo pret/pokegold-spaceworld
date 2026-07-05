@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/clear_sprites.asm", ROM0
-
 ClearSprites::
 	ld hl, wShadowOAM
 	ld b, wShadowOAMEnd - wShadowOAM

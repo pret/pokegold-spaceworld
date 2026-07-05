@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/FontMart.asm", ROMX
-
 FontMart_ScriptLoader::
 	ret
 

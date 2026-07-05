@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/learn.asm", ROMX
-
 LearnMove::
 	call BackUpTilesToBuffer
 	ld a, [wCurPartyMon]

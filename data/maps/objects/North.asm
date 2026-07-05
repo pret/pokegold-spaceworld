@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/North.asm", ROMX
-
 	map_attributes North, NORTH
 	connection south, BlueForestRoute3, BLUE_FOREST_ROUTE_3, 0
 

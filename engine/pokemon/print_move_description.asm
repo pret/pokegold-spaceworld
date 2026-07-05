@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/print_move_description.asm", ROMX
-
 PrintMoveDescription::
 	push hl
 	ld hl, MoveDescriptions
@@ -17,4 +13,4 @@ PrintMoveDescription::
 	pop hl
 	jp PlaceString
 
-INCLUDE "data/moves/descriptions.inc"
+INCLUDE "data/moves/descriptions.asm"

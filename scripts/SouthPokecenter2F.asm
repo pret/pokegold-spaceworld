@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SouthPokecenter2F.asm", ROMX
-
 SouthPokecenter2F_ScriptLoader::
 	ret
 

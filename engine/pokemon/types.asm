@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/types.asm", ROMX
-
 PrintMonTypes::
 ; Print one or both types of [wCurSpecies]
 ; on the stats screen at hl.
@@ -81,4 +77,4 @@ GetTypeName::
 	ld bc, TYPE_NAME_LENGTH
 	jp CopyBytes
 
-INCLUDE "data/types/names.inc"
+INCLUDE "data/types/names.asm"

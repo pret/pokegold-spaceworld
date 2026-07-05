@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/SugarHouse.asm", ROMX
-
 SugarHouse_ScriptLoader::
 	ret
 

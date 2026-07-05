@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BirdonHouse1.asm", ROMX
-
 BirdonHouse1_ScriptLoader::
 	ret
 

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/StandPokecenter1F.asm", ROMX
-
 StandPokecenter1F_ScriptLoader::
 	ret
 

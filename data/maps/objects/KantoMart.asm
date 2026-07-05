@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/KantoMart.asm", ROMX
-
 	map_attributes KantoMart, KANTO_MART
 
 KantoMart_MapEvents::

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/events/starter_dex.asm", ROMX
-
 ; Brings up the Pokédex entry of the index in wTempSpecies/wNamedObjectIndex to show as if it were caught.
 StarterDex::
 	call RefreshScreen

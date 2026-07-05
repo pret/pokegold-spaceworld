@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BlueMart.asm", ROMX
-
 BlueMart_ScriptLoader::
 	ret
 

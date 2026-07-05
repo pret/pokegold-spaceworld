@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/HighTechHouse2.asm", ROMX
-
 HighTechHouse2_ScriptLoader::
 	ret
 

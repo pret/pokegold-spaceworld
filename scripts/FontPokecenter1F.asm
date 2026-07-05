@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/FontPokecenter1F.asm", ROMX
-
 FontPokecenter1F_ScriptLoader::
 	ret
 

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/print_hex.asm", ROM0
-
 PrintHexBytes:
 ; Print c hex bytes located at de to hl
 .loop

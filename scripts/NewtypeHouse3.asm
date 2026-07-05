@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/NewtypeHouse3.asm", ROMX
-
 NewtypeHouse3_ScriptLoader::
 	ret
 

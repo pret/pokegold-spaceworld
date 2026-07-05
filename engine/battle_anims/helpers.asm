@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle_anims/helpers.asm", ROMX
-
 ReinitBattleAnimFrameset:
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
@@ -127,8 +123,8 @@ LoadBattleAnimGFX:
 	pop bc
 	ret
 
-INCLUDE "data/battle_anims/framesets.inc"
+INCLUDE "data/battle_anims/framesets.asm"
 
-INCLUDE "data/battle_anims/oam.inc"
+INCLUDE "data/battle_anims/oam.asm"
 
-INCLUDE "data/battle_anims/object_gfx.inc"
+INCLUDE "data/battle_anims/object_gfx.asm"

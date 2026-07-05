@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/items/buy_sell_toss.asm", ROMX
-
 SelectQuantityToToss::
 	ld hl, TossItem_MenuHeader
 	call LoadMenuHeader

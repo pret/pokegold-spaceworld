@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/StandLeague1F.asm", ROMX
-
 StandLeague1F_ScriptLoader::
 	ret
 

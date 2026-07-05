@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/WestMart2F.asm", ROMX
-
 WestMart2F_ScriptLoader::
 	ret
 

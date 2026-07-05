@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/BlueHouse4.asm", ROMX
-
 	map_attributes BlueHouse4, BLUE_HOUSE_4
 
 BlueHouse4_MapEvents::

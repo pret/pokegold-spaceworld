@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/movie/oak_speech.asm", ROMX
-
 DemoStart::
 	ld de, OakPic
 	lb bc, BANK(OakPic), $00
@@ -528,7 +524,7 @@ ChoosePlayerNameEndText:
 	line "<PLAYER>　と　いうんだな！"
 	prompt
 
-SECTION "engine/movie/oak_speech.asm@ChooseRivalName", ROMX
+INCLUDE "data/player_names.asm"
 
 ChooseRivalName::
 	call PanPortraitRight
@@ -567,7 +563,7 @@ ChooseRivalNameEndText:
 	line "<RIVAL>　という　なまえだ"
 	prompt
 
-SECTION "engine/movie/oak_speech.asm@MomNamePrompt", ROMX
+INCLUDE "data/rival_names.asm"
 
 MomNamePrompt::
 	ld hl, MomNameMenuHeader
@@ -596,7 +592,7 @@ MomNamePrompt::
 .escape
 	ret
 
-SECTION "engine/movie/oak_speech.asm@NamingWindow", ROMX
+INCLUDE "data/mom_names.asm"
 
 NamingWindow::
 	; loads the menu header put into hl

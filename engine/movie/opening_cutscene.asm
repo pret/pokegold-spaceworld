@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/movie/opening_cutscene.asm", ROMX
-
 OpeningCutscene::
 	call .Init
 .loop
@@ -1235,3 +1231,48 @@ Intro_ResetLYOverrides:
 	dec c
 	jr nz, .loop
 	ret
+
+IntroUnderwaterGFX:
+INCBIN "gfx/intro/underwater.2bpp"
+
+Intro_WaterTilemap:
+INCBIN "gfx/intro/water_tilemap.bin"
+
+Intro_WaterMeta:
+INCBIN "gfx/intro/water.bin"
+
+IntroWaterPokemonGFX:
+INCBIN "gfx/intro/water_pokemon.2bpp"
+
+IntroForestGFX:
+INCBIN "gfx/intro/forest.2bpp"
+
+IntroForestLogGFX:
+INCBIN "gfx/intro/forest_log.2bpp"
+
+Intro_GrassTilemap:
+INCBIN "gfx/intro/forest_tilemap.bin"
+
+Intro_GrassMeta:
+INCBIN "gfx/intro/forest.bin"
+
+IntroJigglypuffPikachuGFX:
+INCBIN "gfx/intro/jigglypuff_pikachu.2bpp"
+
+IntroCharizard1GFX:
+INCBIN "gfx/intro/charizard_1.2bpp"
+
+IntroCharizard2GFX:
+INCBIN "gfx/intro/charizard_2.2bpp"
+
+IntroCharizard3GFX:
+INCBIN "gfx/intro/charizard_3.2bpp"
+
+IntroCharizardFlamesGFX:
+INCBIN "gfx/intro/charizard_flames.2bpp"
+
+IntroBlastoiseGFX:
+INCBIN "gfx/intro/blastoise.2bpp"
+
+IntroVenusaurGFX:
+INCBIN "gfx/intro/venusaur.2bpp"

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/evolution.asm", ROMX
-
 Music_Evolution::
 	channel_count 3
 	channel 1, Music_Evolution_Ch1

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/CaveMinecarts4.asm", ROMX
-
 CaveMinecarts4_ScriptLoader::
 	ret
 

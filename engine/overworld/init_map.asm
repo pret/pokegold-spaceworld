@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/init_map.asm", ROMX
-
 ReanchorBGMap_NoOAMUpdate::
 	xor a
 	ldh [hLCDCPointer], a
@@ -54,7 +50,7 @@ ReanchorBGMap_NoOAMUpdate::
 	jr nz, .loop
 	ret
 
-LoadFonts_NoOAMUpdate:
+LoadFonts_NoOAMUpdate::
 	call UpdateSprites
 	call LoadFont
 	call LoadFontExtra

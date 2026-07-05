@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/NewtypeMart.asm", ROMX
-
 	map_attributes NewtypeMart, NEWTYPE_MART
 
 NewtypeMart_MapEvents::

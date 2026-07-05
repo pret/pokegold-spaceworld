@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/link/time_capsule_2.asm", ROMX
-
 ; Takes the DEX_* index stored in wTempSpecies,
 ; finds its MON_* in the Pokered_MonIndices table,
 ; and returns its index in wTempSpecies.
@@ -40,4 +36,4 @@ ConvertMon_1to2::
 	pop bc
 	ret
 
-INCLUDE "data/pokemon/gen1_order.inc"
+INCLUDE "data/pokemon/gen1_order.asm"

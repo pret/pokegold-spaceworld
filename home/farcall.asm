@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/farcall.asm", ROM0
-
 FarCall_hl::
 	push af
 	ld a, b

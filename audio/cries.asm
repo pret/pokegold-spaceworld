@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/cries.asm", ROMX
-
 Cry_00:
 	channel_count 3
 	channel 5, Cry_00_Ch5

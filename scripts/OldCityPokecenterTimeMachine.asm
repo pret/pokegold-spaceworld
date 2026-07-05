@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/OldCityPokecenterTimeMachine.asm", ROMX
-
 OldCityPokecenterTimeMachine_ScriptLoader:
 	call SetBitsForTimeCapsuleRequestIfNotLinked
 	ld hl, OldCityPokecenterTimeMachineScriptPointers

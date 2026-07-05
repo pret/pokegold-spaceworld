@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/sfx_pointers.asm", ROMX
-
 SFX::
 ; entries correspond to SFX_* constants
 	dba Sfx_BallWobble

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/minor_objects.asm", ROMX
-
 HandleMinorObjects:
 	ld bc, wMinorObjects
 	ld a, 1
@@ -354,4 +350,4 @@ MinorObjectAnim_BoulderDust:
 	ld [hl], a
 	ret
 
-INCLUDE "data/sprites/minor_object_sprites.inc"
+INCLUDE "data/sprites/minor_object_sprites.asm"

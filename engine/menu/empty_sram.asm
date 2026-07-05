@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/menu/empty_sram.asm", ROMX
-
 Checksum::
 	push de
 	xor a
@@ -387,11 +383,4 @@ TryLoadPokemonData:
 	ret
 
 ; Unreferenced
-	ret
-
-INCLUDE "data/maps/scenes.inc"
-
-OverworldLoop_ReturnFromBattle:
-	ld a, MAPSTATUS_MAIN
-	call SetMapStatus
 	ret

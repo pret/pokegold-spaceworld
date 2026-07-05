@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/BirdonMart.asm", ROMX
-
 	map_attributes BirdonMart, BIRDON_MART
 
 BirdonMart_MapEvents::

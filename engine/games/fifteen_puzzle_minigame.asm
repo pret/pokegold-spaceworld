@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/games/fifteen_puzzle_minigame.asm", ROMX
-
 FifteenPuzzleMinigame:
 	call .LoadGFXAndPals
 	call DelayFrame
@@ -795,7 +791,9 @@ FifteenPuzzleMinigame_Tilemap:
 	ld [hl], $08
 	ret
 
-SECTION "engine/games/fifteen_puzzle_minigame.asm@FifteenPuzzleIconTable", ROMX
+FifteenPuzzleGFX:
+INCBIN "gfx/minigames/15_puzzle.2bpp"
+
 FifteenPuzzleIconTable: ; Icons used in the minigame are pulled from this table.
 	table_width 3
 	dba RhydonSpriteGFX

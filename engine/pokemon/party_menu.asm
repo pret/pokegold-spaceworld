@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/party_menu.asm", ROMX
-
 ClearGraphicsForPartyMenu::
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
@@ -617,18 +613,4 @@ PlaceNonFaintStatus::
 	ld a, 'ま'
 	ld [hli], a
 	ld [hl], 'ひ'
-	ret
-
-
-SECTION "engine/pokemon/party_menu.asm@PartyMenu_ClearCursor", ROMX
-
-PartyMenu_ClearCursor::
-	hlcoord 0, 1
-	ld bc, 2 * SCREEN_WIDTH
-	ld a, PARTY_LENGTH
-.next
-	ld [hl], '　'
-	add hl, bc
-	dec a
-	jr nz, .next
 	ret

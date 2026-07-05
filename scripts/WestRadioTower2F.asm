@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/WestRadioTower2F.asm", ROMX
-
 WestRadioTower2F_ScriptLoader::
 	ret
 

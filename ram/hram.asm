@@ -1,7 +1,5 @@
 SECTION "HRAM", HRAM
 
-hOAMDMA:: ds 10
-
 hChecksum:: ds 3
 
 hRTCHours:: db

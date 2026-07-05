@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/FontRocketHouse.asm", ROMX
-
 FontRocketHouse_ScriptLoader::
 	ret
 

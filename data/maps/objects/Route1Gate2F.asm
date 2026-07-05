@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/Route1Gate2F.asm", ROMX
-
 	map_attributes Route1Gate2F, ROUTE_1_GATE_2F
 
 Route1Gate2F_MapEvents::

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/WestGym.asm", ROMX
-
 	map_attributes WestGym, WEST_GYM
 
 WestGym_MapEvents::

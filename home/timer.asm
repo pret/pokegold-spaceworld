@@ -1,0 +1,2 @@
+TimerDummy:
+	reti

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle_anims/core.asm", ROMX
-
 QueueBattleAnimation:
 	ld hl, wActiveAnimObjects
 	ld e, NUM_BATTLE_ANIM_STRUCTS
@@ -305,4 +301,4 @@ _QueueBGEffect:
 	callfar QueueBGEffect
 	ret
 
-INCLUDE "data/battle_anims/objects.inc"
+INCLUDE "data/battle_anims/objects.asm"

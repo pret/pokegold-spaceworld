@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/items/names.asm", ROMX
-
 ItemNames::
 	db "マスターボール@" ; MASTER_BALL
 	db "ハイパーボール@" ; ULTRA_BALL

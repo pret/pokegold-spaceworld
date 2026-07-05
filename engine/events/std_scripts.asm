@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/events/std_scripts.asm", ROMX
-
 ; The actual code for std_collision.asm isn't present yet, so scripts are currently loaded
 ; from an object placed over the corresponding collision tile.
 

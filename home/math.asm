@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/math.asm", ROM0
-
 Multiply::
 	push hl
 	push bc
@@ -18,15 +14,4 @@ Divide::
 	pop bc
 	pop de
 	pop hl
-	ret
-
-SECTION "home/math.asm@SubtractAbsolute", ROM0
-
-SubtractAbsolute:: ; unreferenced
-; Return |a - b|, sign in carry.
-	sub b
-	ret nc
-	cpl
-	add 1
-	scf
 	ret

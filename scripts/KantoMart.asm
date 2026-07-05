@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoMart.asm", ROMX
-
 KantoMart_ScriptLoader::
 	ret
 

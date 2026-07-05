@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/NewtypeDiner.asm", ROMX
-
 NewtypeDiner_ScriptLoader::
 	ret
 

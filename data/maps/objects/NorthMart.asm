@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/NorthMart.asm", ROMX
-
 	map_attributes NorthMart, NORTH_MART
 
 NorthMart_MapEvents::

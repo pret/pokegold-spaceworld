@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/NewtypeDiner.asm", ROMX
-
 	map_attributes NewtypeDiner, NEWTYPE_DINER
 
 NewtypeDiner_MapEvents::

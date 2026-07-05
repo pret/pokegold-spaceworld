@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/PlayerHouse2F.asm", ROMX
-
 	map_attributes PlayerHouse2F, PLAYER_HOUSE_2F
 
 PlayerHouse2F_MapEvents::

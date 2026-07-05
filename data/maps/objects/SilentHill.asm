@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/SilentHill.asm", ROMX
-
 	map_attributes SilentHill, SILENT_HILL
 	connection north, PrinceRoute, PRINCE_ROUTE, 0
 	connection west, Route1P1, ROUTE_1_P1, 0

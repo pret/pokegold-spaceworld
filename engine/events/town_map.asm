@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/events/town_map.asm", ROMX
-
 TownMap::
 	call InitTownMap
 	callfar ClearSpriteAnims
@@ -320,3 +316,6 @@ FlyMap_InitPidgeyIcon:
 
 TownMapTilemap:
 INCBIN "gfx/trainer_gear/town_map.tilemap.rle"
+
+PokedexNestIconGFX:
+INCBIN "gfx/trainer_gear/dexmap_nest_icon.1bpp"

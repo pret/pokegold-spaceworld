@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle/trainer_huds.asm", ROMX
-
 BattleStart_TrainerHuds:
 	call LoadBallIconGFX
 	call ShowPlayerMonsRemaining

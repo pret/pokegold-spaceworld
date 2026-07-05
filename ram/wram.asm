@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-
 SECTION "Music engine RAM", WRAM0
 
 wMusic::
@@ -64,7 +61,7 @@ wMusicFadeID:: dw
 wSweepingFadeIndex:: db
 wSweepingFadeCounter:: db
 
-wIncrementTempo: dw
+wIncrementTempo:: dw
 wMapMusic:: db
 wCryPitch:: dw
 wCryLength:: dw
@@ -964,11 +961,11 @@ wCursorCurrentTile:: dw
 
 
 SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
-wVBlankJoyFrameCounter: db
+wVBlankJoyFrameCounter:: db
 
-wVBlankOccurred: db
-wLastSpawnMapGroup: db
-wLastSpawnMapNumber: db
+wVBlankOccurred:: db
+wLastSpawnMapGroup:: db
+wLastSpawnMapNumber:: db
 
 	ds 2
 
@@ -1201,8 +1198,8 @@ wCurItem:: db
 wCurItemQuantity::
 wItemIndex:: db
 
-wCurPartySpecies: db
-wCurPartyMon: db
+wCurPartySpecies:: db
+wCurPartyMon:: db
 
 	ds 1
 

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/map_objects.asm", ROMX
-
 HandleStepTypeAndAction:
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
@@ -1907,7 +1903,7 @@ GetFollowerNextMovementIndex:
 	scf
 	ret
 
-UpdateAllObjectsFrozen:
+UpdateAllObjectsFrozen::
 	ld bc, wObjectStructs
 	xor a
 .loop
@@ -2032,7 +2028,7 @@ UpdateAllObjectsFrozen:
 	scf
 	ret
 
-HandleNPCStep:
+HandleNPCStep::
 	call ResetStepVector
 	call DoStepsForAllObjects
 	call HandleMinorObjects

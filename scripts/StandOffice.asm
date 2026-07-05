@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/StandOffice.asm", ROMX
-
 StandOffice_ScriptLoader::
 	ret
 

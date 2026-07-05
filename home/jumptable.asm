@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/jumptable.asm", ROM0
-
 CallJumptable::
 ; CallJumptable
 ; Call function whose pointer is

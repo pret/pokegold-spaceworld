@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/StandRocketHouse2F.asm", ROMX
-
 	map_attributes StandRocketHouse2F, STAND_ROCKET_HOUSE_2F
 
 StandRocketHouse2F_MapEvents::

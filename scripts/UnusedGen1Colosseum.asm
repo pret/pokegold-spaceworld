@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/UnusedGen1Colosseum.asm", ROMX
-
 	old_map_header UnusedGen1Colosseum, OLD_CITY_POKECENTER_BATTLE, OFFICE
 
 UnusedGen1Colosseum_ScriptLoader:

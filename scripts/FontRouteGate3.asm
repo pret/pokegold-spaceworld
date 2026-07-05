@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/FontRouteGate3.asm", ROMX
-
 FontRouteGate3_ScriptLoader::
 	ret
 

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/Sugar.asm", ROMX
-
 	map_attributes Sugar, SUGAR
 	connection south, SugarRoute, SUGAR_ROUTE, 0
 

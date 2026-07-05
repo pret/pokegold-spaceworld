@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/BlueLeague1F.asm", ROMX
-
 	map_attributes BlueLeague1F, BLUE_LEAGUE_1F
 
 BlueLeague1F_MapEvents::

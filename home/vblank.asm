@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/vblank.asm", ROM0
-
 VBlank::
 	push af
 	push bc
@@ -27,7 +23,7 @@ VBlank::
 	pop af
 	reti
 
-.blanks
+.blanks::
 	dw VBlank0
 	dw VBlank1
 	dw VBlank2

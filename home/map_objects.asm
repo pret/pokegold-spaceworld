@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/map_objects.asm", ROM0
-
 SpawnPlayer::
 	callfar _SpawnPlayer
 	ret

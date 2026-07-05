@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BirdonLeague2F.asm", ROMX
-
 BirdonLeague2F_ScriptLoader::
 	ret
 

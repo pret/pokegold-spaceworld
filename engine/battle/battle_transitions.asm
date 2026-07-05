@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 ; BattleTransitionJumptable.Jumptable indexes
 DEF BATTLETRANSITION_WAVY        EQU $01
 DEF BATTLETRANSITION_WIPE_UNUSED EQU $08
@@ -10,9 +8,6 @@ DEF BATTLETRANSITION_FINISH      EQU $24
 DEF BATTLETRANSITION_END         EQU $80
 
 DEF BATTLETRANSITION_BLACK EQU $ff
-
-
-SECTION "engine/battle/battle_transitions.asm", ROMX
 
 DoBattleTransition:
 	ld a, %11100011

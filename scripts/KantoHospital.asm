@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoHospital.asm", ROMX
-
 KantoHospital_ScriptLoader::
 	ret
 

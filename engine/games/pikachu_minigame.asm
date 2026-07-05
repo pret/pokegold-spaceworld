@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/games/pikachu_minigame.asm@Pikachu Minigame", ROMX
-
 PikachuMiniGame::
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a

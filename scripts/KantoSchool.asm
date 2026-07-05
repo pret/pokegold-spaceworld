@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoSchool.asm", ROMX
-
 KantoSchool_ScriptLoader::
 	ret
 

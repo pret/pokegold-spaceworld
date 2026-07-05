@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/heal.asm", ROMX
-
 Music_Heal::
 	channel_count 3
 	channel 1, Music_Heal_Ch1

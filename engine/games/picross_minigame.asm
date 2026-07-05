@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/games/picross_minigame.asm", ROMX
-
 ; The Picross game area is referred as the "table" here.
 ; The table consists of 256 cells, divided into 4x4 "grids" of 16 cells each.
 
@@ -1900,3 +1896,18 @@ PicrossSprites:
 ; TODO: Setting fixed bank $C for now before Pokecenter_GFX is ripped
 	picross_pattern PATTERN_TILESET, $c, Pokecenter_GFX + $200
 	picross_pattern PATTERN_NORMAL, PoliwrathSpriteGFX
+
+PicrossNumbersGFX:
+INCBIN "gfx/minigames/picross_numbers.2bpp"
+
+PicrossBackgroundGFX:
+INCBIN "gfx/minigames/picross_background.2bpp"
+
+PicrossGridHighlightsGFX:
+INCBIN "gfx/minigames/picross_highlights.2bpp"
+
+PicrossGridGFX:
+INCBIN "gfx/minigames/picross_grid.2bpp"
+
+PicrossCursorGFX:
+INCBIN "gfx/minigames/picross_cursor.2bpp"

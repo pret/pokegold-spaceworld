@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/bicycle.asm", ROMX
-
 Music_Bicycle::
 	channel_count 4
 	channel 1, Music_Bicycle_Ch1

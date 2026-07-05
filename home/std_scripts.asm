@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/std_scripts.asm", ROM0
-
 Unreferenced_StubbedSTDScript::
 	ret
 

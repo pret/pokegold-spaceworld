@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/debug/sound_debug_menu.asm", ROMX
-
 _DebugMenuSoundTest::
 	call ClearTileMap
 	call LoadFontExtra
@@ -129,4 +125,4 @@ _DebugMenuSoundTest::
 	text "　"
 	done
 
-INCLUDE "data/sound_test_text_pointers.inc"
+INCLUDE "data/sound_test_text_pointers.asm"

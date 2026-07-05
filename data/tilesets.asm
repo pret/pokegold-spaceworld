@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/tilesets.asm", ROMX
-
 MACRO tileset
 	db BANK(\1_GFX) ; shared bank
 	dw \1_Meta, \1_GFX, \1_Coll
@@ -9,7 +5,7 @@ MACRO tileset
 	dw NULL ; unused
 ENDM
 
-Tilesets:
+Tilesets::
 	; name, animation set
 	table_width TILESET_LENGTH
 	tileset SilentHill, TilesetGenericAnim

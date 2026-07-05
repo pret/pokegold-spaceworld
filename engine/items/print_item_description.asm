@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/items/print_item_description.asm", ROMX
-
 PrintItemDescription::
 	push de
 	ld hl, ItemDescriptions
@@ -17,4 +13,4 @@ PrintItemDescription::
 	pop hl
 	jp PlaceString
 
-INCLUDE "data/items/descriptions.inc"
+INCLUDE "data/items/descriptions.asm"

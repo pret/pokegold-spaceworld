@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/copy2.asm", ROM0
-
 RedrawPlayerSprite::
 	jpfar _RedrawPlayerSprite
 
@@ -17,7 +13,7 @@ LoadFontExtra::
 LoadToolgearGraphics::
 	jpfar LoadToolgearGraphicsDebug
 
-FarCopyData:
+FarCopyData::
 ; Identical to FarCopyBytes except for tail call optimization.
 ; Copy bc 2bpp bytes from a:hl to de.
 	ld [wBuffer], a
@@ -30,7 +26,7 @@ FarCopyData:
 	call Bankswitch
 	ret
 
-FarCopyDataDouble:
+FarCopyDataDouble::
 ; Copy and expand bc 1bpp bytes from a:hl to de.
 	ld [wBuffer], a
 	ldh a, [hROMBank]
@@ -169,7 +165,7 @@ Copy2bpp::
 	pop af
 	jp FarCopyData
 
-Get1bpp:
+Get1bpp::
 ; Copy c 1bpp tiles from b:de to hl in VRAM using
 ; VBlank service or direct copy in case LCD is off.
 	ldh a, [rLCDC]

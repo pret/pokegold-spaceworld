@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "audio/songs/leaderbattle.asm", ROMX
-
 Music_LeaderBattle::
 	channel_count 3
 	channel 1, Music_LeaderBattle_Ch1

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/NorthHouse2.asm", ROMX
-
 NorthHouse2_ScriptLoader::
 	ret
 

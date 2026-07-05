@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/games/memory_minigame.asm", ROMX
-
 MemoryMinigame:
 ; Always start off with 256 coins
 	ld hl, wCoins
@@ -608,3 +604,6 @@ MemoryGame_AnimateCursor:
 	add a, 9
 	ld [hl], a
 	ret
+
+MemoryGameGFX:
+INCBIN "gfx/minigames/matches.2bpp"

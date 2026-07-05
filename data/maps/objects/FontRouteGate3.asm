@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/FontRouteGate3.asm", ROMX
-
 	map_attributes FontRouteGate3, FONT_ROUTE_GATE_3
 
 FontRouteGate3_MapEvents::

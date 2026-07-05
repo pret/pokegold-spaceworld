@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoCeladonElevator.asm", ROMX
-
 KantoCeladonElevator_ScriptLoader::
 	ret
 

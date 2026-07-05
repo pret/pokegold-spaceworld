@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokedex/display_dex_entry.asm", ROMX
-
 ; Meters
 DEF POKEDEX_m EQU $60
 ; Kilograms
@@ -136,3 +132,18 @@ PokedexText_HeightWeight:
 PokedexText_Pokemon:
 	db "#" ; "Pokémon" (ポケモン)
 	text_end
+
+PokedexButtonsGFX:
+INCBIN "gfx/pokedex/buttons.2bpp"
+
+PokedexPokeBallGFX:
+INCBIN "gfx/pokedex/poke_ball.2bpp"
+
+PokedexCursorGFX:
+INCBIN "gfx/pokedex/cursor.2bpp"
+
+PokedexBorderGFX:
+INCBIN "gfx/pokedex/border.2bpp"
+
+PokedexSearchGFX:
+INCBIN "gfx/pokedex/search.2bpp"

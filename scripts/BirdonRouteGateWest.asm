@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/BirdonRouteGateWest.asm", ROMX
-
 BirdonRouteGateWest_ScriptLoader::
 	ret
 

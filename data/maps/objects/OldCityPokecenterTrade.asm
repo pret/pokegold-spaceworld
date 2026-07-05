@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/OldCityPokecenterTrade.asm", ROMX
-
 	map_attributes OldCityPokecenterTrade, OLD_CITY_POKECENTER_TRADE
 
 OldCityPokecenterTrade_MapEvents::

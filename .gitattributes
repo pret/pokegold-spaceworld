@@ -4,6 +4,8 @@
 # Explicitly declare text files you want to always be normalized and converted
 # to native line endings on checkout.
 *.asm text
+*.pal text
+*.link text
 *.sh text
 *.c text
 *.py text
@@ -11,7 +13,6 @@
 *.h text
 *.txt text
 *.inc text
-
 
 # Denote all files that are truly binary and should not be modified.
 *.png binary
@@ -21,3 +22,5 @@
 *.bin binary
 *.blk binary
 *.pic binary
+*.rle binary
+*.tilemap binary

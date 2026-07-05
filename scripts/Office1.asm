@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/Office1.asm", ROMX
-
 Office1_ScriptLoader::
 	ret
 

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/objects/NewtypeRouteGate.asm", ROMX
-
 	map_attributes NewtypeRouteGate, NEWTYPE_ROUTE_GATE
 
 NewtypeRouteGate_MapEvents::

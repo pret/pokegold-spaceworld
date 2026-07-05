@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "home/util.asm", ROM0
-
 Copy2x2TilesToVRAM:: ; unreferenced
 ; Copies a 2D rectangle from hl (src) to de (dst) with size in (b = y, c = x).
 	; hl = src

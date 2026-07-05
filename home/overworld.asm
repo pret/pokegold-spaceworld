@@ -1,8 +1,3 @@
-INCLUDE "constants.asm"
-
-
-SECTION "home/overworld.asm@Startmenu and Select Button Check", ROM0
-
 OverworldStartButtonCheck::
 	ldh a, [hJoyState]
 	bit START_F, a
@@ -86,7 +81,7 @@ UpdateAndTransferToolgear:
 	call DelayFrame
 	ret
 
-ScheduleNorthRowRedraw:
+ScheduleNorthRowRedraw::
 	coord hl, 0, 0
 	call CopyToRedrawRowOrColumnSrcTiles
 	ld a, [wBGMapAnchor]
@@ -97,7 +92,7 @@ ScheduleNorthRowRedraw:
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-ScheduleSouthRowRedraw:
+ScheduleSouthRowRedraw::
 	coord hl, 0, SCREEN_HEIGHT - 2
 	call CopyToRedrawRowOrColumnSrcTiles
 	ld a, [wBGMapAnchor]
@@ -117,7 +112,7 @@ ScheduleSouthRowRedraw:
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-ScheduleEastColumnRedraw:
+ScheduleEastColumnRedraw::
 	coord hl, SCREEN_WIDTH - 2, 0
 	call ScheduleColumnRedrawHelper
 	ld a, [wBGMapAnchor]
@@ -135,7 +130,7 @@ ScheduleEastColumnRedraw:
 	ldh [hRedrawRowOrColumnMode], a
 	ret
 
-ScheduleWestColumnRedraw:
+ScheduleWestColumnRedraw::
 	coord hl, 0, 0
 	call ScheduleColumnRedrawHelper
 	ld a, [wBGMapAnchor]
@@ -175,18 +170,4 @@ ScheduleColumnRedrawHelper:
 .noCarry
 	dec c
 	jr nz, .loop
-	ret
-
-
-SECTION "home/overworld.asm@QueueScript", ROM0
-
-QueueScript::
-; Install a function that is called as soon as
-; the start menu is closed or directly after
-; the select button function ran
-	ld [wQueuedScriptBank], a
-	ld a, l
-	ld [wQueuedScriptAddr], a
-	ld a, h
-	ld [wQueuedScriptAddr + 1], a
 	ret

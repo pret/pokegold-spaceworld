@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoViridianHouse.asm", ROMX
-
 KantoViridianHouse_ScriptLoader::
 	ret
 

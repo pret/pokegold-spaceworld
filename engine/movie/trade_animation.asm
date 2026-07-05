@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/movie/trade_animation.asm", ROMX
 DEF TRADEANIM_RIGHT_ARROW EQU '▶' ; $ed
 DEF TRADEANIM_LEFT_ARROW  EQU '▼' ; $ee
 

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "scripts/KantoGamefreakHQ4.asm", ROMX
-
 KantoGamefreakHQ4_ScriptLoader::
 	ret
 

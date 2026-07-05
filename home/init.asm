@@ -1,37 +1,4 @@
-INCLUDE "constants.asm"
-
-
-SECTION "NULL", ROM0
-NULL::
-
-
-SECTION "home/init.asm@Entry point", ROM0
-	nop
-	jp Init
-
-
-SECTION "home/init.asm@Global check value", ROM0
-; The ROMs have incorrect global checksums, so set them here.
-; RGBFIX only calculates checksums for the "correctheader" ROMs.
-if DEF(_GOLD)
-	if DEF(_DEBUG)
-		dw $C621
-	else
-		dw $497E
-	endc
-endc
-if DEF(_SILVER)
-	if DEF(_DEBUG)
-		dw $2FC9
-	else
-		dw $7AB1
-	endc
-endc
-
-
-SECTION "home/init.asm@Init", ROM0
-
-Reset:
+Reset::
 	call DisableAudio
 	call ClearPalettes
 	ei
@@ -44,7 +11,7 @@ Reset:
 
 	jr Init ; pointless
 
-Init:
+Init::
 	di
 	xor a
 	ldh [rIF], a
@@ -139,7 +106,7 @@ Init:
 	ld [MBC3SRamEnable], a
 	jp GameInit
 
-ClearVRAM:
+ClearVRAM::
 	ld hl, VRAM_Begin
 	ld bc, VRAM_End - VRAM_Begin
 	xor a

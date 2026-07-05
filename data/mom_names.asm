@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/mom_names.asm", ROMX
-
 MomNameMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, 11

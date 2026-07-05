@@ -1,26 +1,14 @@
-INCLUDE "constants.asm"
-
-SECTION "home/interrupts.asm@VBlank interrupt vector", ROM0
+SECTION "VBlank interrupt vector", ROM0[$0040]
 	jp VBlank
 
-SECTION "home/interrupts.asm@LCD interrupt vector", ROM0
+SECTION "LCD interrupt vector", ROM0[$0048]
 	jp LCD
 
-SECTION "home/interrupts.asm@Timer interrupt vector", ROM0
+SECTION "Timer interrupt vector", ROM0[$0050]
 	jp TimerDummy
 
-SECTION "home/interrupts.asm@Serial interrupt vector", ROM0
+SECTION "Serial interrupt vector", ROM0[$0058]
 	jp Serial
 
-SECTION "home/interrupts.asm@Joypad interrupt vector", ROM0
+SECTION "Joypad interrupt vector", ROM0[$0060]
 	jp JoypadDummy
-
-SECTION "home/interrupts.asm@Timer dummy interrupt", ROM0
-
-TimerDummy:
-	reti
-
-SECTION "home/interrupts.asm@Joypad dummy interrupt", ROM0
-
-JoypadDummy:
-	reti
