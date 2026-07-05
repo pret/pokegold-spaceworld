@@ -2124,3 +2124,13 @@ Slots_Reel3Tilemap:
 
 SlotsTilemap:
 INCBIN "gfx/minigames/slots_tilemap.bin"
+
+SlotMachineGFX:
+INCBIN "gfx/minigames/slots_1.2bpp"
+
+SlotMachine2GFX:
+INCBIN "gfx/minigames/slots_2.2bpp"
+INCBIN "gfx/minigames/slots_3.2bpp"
+
+SlotMachine3GFX:
+INCBIN "gfx/minigames/slots_4.2bpp"

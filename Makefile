@@ -11,7 +11,7 @@ ROM_OBJ := \
 	maps.o \
 	ram.o \
 	garbage/garbage.o \
-	gfx/gfx.o \
+	gfx/misc.o \
 	gfx/pics.o \
 	gfx/sprites.o \
 	gfx/tilesets.o

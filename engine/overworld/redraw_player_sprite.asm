@@ -27,10 +27,4 @@ GetPlayerSprite:
 	ld [wPlayerObjectSprite], a
 	ret
 
-PlayerSpriteTable:
-; state, sprite
-	db PLAYER_NORMAL, SPRITE_GOLD
-	db PLAYER_BIKE,   SPRITE_GOLD_BIKE
-	db PLAYER_SKATE,  SPRITE_GOLD_SKATEBOARD
-	db PLAYER_SURF,   SPRITE_LAPRAS
-	db -1
+INCLUDE "data/sprites/player_sprites.asm"

@@ -923,3 +923,46 @@ SGBDelayCycles:
 INCLUDE "data/sgb/blk_packets.asm"
 INCLUDE "data/sgb/pal_packets.asm"
 INCLUDE "data/sgb/ctrl_packets.asm"
+
+INCLUDE "data/pokemon/palettes.asm"
+INCLUDE "data/sgb/super_palettes.asm"
+
+if DEF(_GOLD)
+AlternateSGBBorderTilemap::
+INCBIN "gfx/sgb/sgb_border_alt_gold.sgb.tilemap"
+
+AlternateSGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border_alt_gold.pal"
+
+AlternateSGBBorderGFX::
+INCBIN "gfx/sgb/sgb_border_alt.2bpp"
+
+SGBBorderTilemap::
+INCBIN "gfx/sgb/sgb_border_gold.sgb.tilemap"
+
+SGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border_gold.pal"
+
+SGBBorderGFX::
+INCBIN "gfx/sgb/sgb_border_gold.2bpp"
+endc
+
+if DEF(_SILVER)
+AlternateSGBBorderTilemap::
+INCBIN "gfx/sgb/sgb_border_alt_silver.sgb.tilemap"
+
+AlternateSGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border_alt_silver.pal"
+
+AlternateSGBBorderGFX::
+INCBIN "gfx/sgb/sgb_border_alt.2bpp"
+
+SGBBorderTilemap::
+INCBIN "gfx/sgb/sgb_border_silver.sgb.tilemap"
+
+SGBBorderPalettes:
+INCLUDE "gfx/sgb/sgb_border_silver.pal"
+
+SGBBorderGFX::
+INCBIN "gfx/sgb/sgb_border_silver.2bpp"
+endc

@@ -38,7 +38,6 @@ ROMX $01
 	"Bank 01 Garbage"
 ROMX $02
 	"bank2"
-	"SGB GFX"
 	"Bank 02 Garbage"
 ROMX $03
 	"bank3"
@@ -48,7 +47,6 @@ ROMX $04
 	"Shrink GFX"
 	"Title Screen GFX"
 	"bank4"
-	"Trainer Card GFX"
 	"Bank 04 Garbage"
 ROMX $05
 	"bank5"
@@ -148,7 +146,6 @@ ROMX $23
 	"Bank 23 Garbage"
 ROMX $24
 	"bank24"
-	"Slot Machine GFX"
 	"Bank 24 Garbage"
 ROMX $25
 	"Maps 2"
@@ -203,13 +200,9 @@ ROMX $37
 	"Bank 37 Garbage"
 ROMX $38
 	"bank38"
-	"Picross GFX"
 	"Bank 38 Garbage"
 ROMX $39
 	"Intro"
-	"Intro Underwater GFX"
-	"Intro Forest GFX"
-	"Intro Mon"
 	"Bank 39 Garbage"
 ROMX $3a
 	"Audio"
@@ -226,7 +219,6 @@ ROMX $3d
 	"Bank 3d Garbage"
 ROMX $3e
 	"bank3E"
-	"Misc GFX"
 	"Bank 3e Garbage"
 ROMX $3f
 	"bank3F"

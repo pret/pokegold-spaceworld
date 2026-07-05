@@ -2252,4 +2252,18 @@ PlaceTrainerCardBGTile:
 	jr nz, .LastLoop
 	ret
 
-; end of section
+TrainerCardBorderGFX:
+INCBIN "gfx/trainer_card/border.2bpp"
+
+TrainerCardGFX::
+INCBIN "gfx/trainer_card/trainer_card.2bpp"
+
+TrainerCardColonGFX:
+INCBIN "gfx/trainer_card/colon.2bpp"
+
+TrainerCardIDNoGFX:
+INCBIN "gfx/trainer_card/id_no.2bpp"
+.End:
+
+TrainerCardLeadersGFX:
+INCBIN "gfx/trainer_card/leaders.2bpp"
