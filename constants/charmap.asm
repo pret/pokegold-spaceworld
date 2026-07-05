@@ -61,9 +61,8 @@
 	charmap "<な゛>", $35
 	charmap "<に゛>", $36
 	charmap "<ぬ゛>", $37
-
-	charmap "<RED>",     $38 ; wRedsName
-	charmap "<GREEN>",   $39 ; wGreensName
+	charmap "<ね゛>", $38
+	charmap "<の゛>", $39
 
 	charmap "ば", $3a
 	charmap "び", $3b
@@ -72,7 +71,7 @@
 	charmap "ベ", $3d ; Katakana, shared graphic tile with Hiragana "べ"
 	charmap "ぼ", $3e
 
-	charmap "<ENEMY>", $3f
+	charmap "<ま゛>", $3f
 
 	charmap "パ", $40
 	charmap "ピ", $41
