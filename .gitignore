@@ -32,4 +32,4 @@ __pycache__
 *.sg1
 
 # macos files
-.DS_STORE
+.DS_Store

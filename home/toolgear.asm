@@ -1,5 +1,4 @@
 ; local charmap, global charmap won't apply
-; see https://github.com/gbdev/rgbds/issues/265#issuecomment-395229694
 pushc
 newcharmap local
 	charmap "０", $66

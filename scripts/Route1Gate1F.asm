@@ -5,8 +5,8 @@ Route1Gate1F_ScriptLoader::
 	ret
 
 Route1Gate1FScriptPointers::
-	dw Route1Gate1FScript ;>> routine
-	dw Route1Gate1FNPCIDs ;>> data
+	dw Route1Gate1FScript
+	dw Route1Gate1FNPCIDs
 
 Route1Gate1FNPCIDs:
 	db $00

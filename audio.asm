@@ -26,6 +26,7 @@ SECTION "Sound Effects", ROMX
 INCLUDE "audio/move_sfx_old.asm"
 INCLUDE "audio/sfx.asm"
 
+
 SECTION "Cries", ROMX
 
 INCLUDE "data/pokemon/cries.asm"
