@@ -1367,7 +1367,7 @@ PlaceTradeScreenTextbox:
 	hlcoord 13, 3
 	ld de, wOTPartySpecies
 .PrintPartyNames:
-	ld c, $00
+	ld c, 0
 .loop
 	ld a, [de]
 	cp -1
