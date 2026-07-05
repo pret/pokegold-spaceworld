@@ -12,38 +12,38 @@ DrawBattleHPBar::
 	ld [hli], a
 	push hl
 	ld a, $62
-.asm_3957:
+.fill_bar
 	ld [hli], a
 	dec d
-	jr nz, .asm_3957
-	ld a, $6b
+	jr nz, .fill_bar
+	ld a, $6b ; bar end
 	add b
 	ld [hl], a
 	pop hl
 	ld a, e
 	and a
-	jr nz, .asm_396a
+	jr nz, .dec_hp
 	ld a, c
 	and a
-	jr z, .asm_397d
+	jr z, .done_bar
 	ld e, $1
-.asm_396a:
+.dec_hp
 	ld a, e
 	sub $8
-	jr c, .asm_3979
+	jr c, .last_bar
 	ld e, a
-	ld a, $6a
+	ld a, $6a ; full bar
 	ld [hli], a
 	ld a, e
 	and a
-	jr z, .asm_397d
-	jr .asm_396a
+	jr z, .done_bar
+	jr .dec_hp
 
-.asm_3979:
-	ld a, $62
+.last_bar
+	ld a, $62 ; empty bar
 	add e
 	ld [hl], a
-.asm_397d:
+.done_bar
 	pop bc
 	pop de
 	pop hl
@@ -55,9 +55,9 @@ PrepMonFrontpic::
 _PrepMonFrontpic::
 	ld a, [wCurPartySpecies]
 	and a
-	jr z, .asm_39a8
+	jr z, .no_pokemon
 	cp NUM_POKEMON + 1
-	jr nc, .asm_39a8
+	jr nc, .no_pokemon
 	push hl
 	ld de, vFrontPic
 	call LoadMonFrontSprite
@@ -70,7 +70,7 @@ _PrepMonFrontpic::
 	ld [wSpriteFlipped], a
 	ret
 
-.asm_39a8:
+.no_pokemon
 	xor a
 	ld [wSpriteFlipped], a
 	inc a

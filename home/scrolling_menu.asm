@@ -66,7 +66,7 @@ PartyMenu_TextboxBackup::
 	push hl
 	jr .continue
 
-.unreferenced_385d:
+.freeze_mon_icons ; unreferenced
 	callfar FreezeMonIcons
 .continue
 	pop hl

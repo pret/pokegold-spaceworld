@@ -74,7 +74,7 @@ Battle_2DMenu:
 	ld c, a
 	ld a, [wMenuCursorY]
 	dec a
-	call .GetNewCursorPos
+	call .GetNewCursorOffset
 	ld c, a
 	ld a, [wMenuCursorX]
 	add c
@@ -86,7 +86,7 @@ Battle_2DMenu:
 	scf
 	ret
 
-.GetNewCursorPos:
+.GetNewCursorOffset:
 	and a
 	ret z
 	push bc
@@ -99,7 +99,7 @@ Battle_2DMenu:
 	pop bc
 	ret
 
-.unreferenced_24baf:
+.GetNewCursorRow: ; unreferenced
 	ld b, 0
 .loop2
 	inc b
