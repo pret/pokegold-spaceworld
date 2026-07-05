@@ -1,6 +1,6 @@
 GiveItem::
 ; Give player quantity c of item b,
-; and copy the item's name to wcf4b.
+; and copy the item's name to wStringBuffer2.
 ; Return carry on success.
 	ld a, b
 	ld [wNamedObjectIndexBuffer], a
