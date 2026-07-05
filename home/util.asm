@@ -90,7 +90,7 @@ CompareBytes::
 ; c = X coordinate of upper left corner of sprite
 ; de = base address of 4 tile number and attribute pairs
 WriteOAMBlock::
-; Place 2x2 sprite from *de into OAM at slot a with size in (b = y, c = x).
+; Place 2x2 sprite from *de into OAM at slot a
 	ld h, HIGH(wShadowOAM)
 	swap a ; multiply by 16
 	ld l, a
