@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/spawn_points.asm", ROMX
-
 GetFlyPointMapLocation:
 	ld a, [wFlyDestination]
 	ld l, a

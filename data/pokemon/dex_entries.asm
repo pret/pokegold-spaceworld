@@ -1,12 +1,8 @@
-INCLUDE "constants.asm"
-
 ; entry format:
 ;	db category
 ;	db height (meters * 10)
 ;	dw weight (kilograms * 10)
 ;	db entry text
-
-SECTION "data/pokemon/dex_entries.asm", ROMX
 
 PokedexEntryPointers1::
 	dw BulbasaurDexEntry

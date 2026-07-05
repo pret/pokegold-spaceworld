@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/events/check_inline_trainers.asm", ROMX
-
 ; Unreferenced version of CheckInlineTrainers
 
 Unreferenced_CheckInlineTrainers:

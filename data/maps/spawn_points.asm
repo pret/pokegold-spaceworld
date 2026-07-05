@@ -1,11 +1,7 @@
-INCLUDE "constants.asm"
-
-SECTION "data/maps/spawn_points.asm", ROMX
-;
 ; Spawn points used by Fly, Debug Warp, etc.
-;
+
 ; Group, Map, X Position, Y Position
-;
+
 SpawnPoints:
 
 ; Fly destinations

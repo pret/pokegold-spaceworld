@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/object_collision.asm", ROMX
-
 CanObjectMoveInDirection:
 	ld hl, OBJECT_FLAGS1
 	add hl, bc

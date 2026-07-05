@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/items/item_effects.asm", ROMX
-
 _DoItemEffect::
 	ld a, [wCurItem]
 	ld [wNamedObjectIndexBuffer], a

@@ -1,5 +1,3 @@
-SECTION "engine/debug/field/change_tileset.inc@FieldDebug_ChangeTileset", ROMX
-
 FieldDebug_ChangeTileset:
 	ld hl, .MenuHeader
 	call LoadMenuHeader

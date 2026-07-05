@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle/ai/items.asm", ROMX
-
 ; Trainers' item and switch AI is still completely unchanged from Generation I.
 ; In practice, though, since the wTrainerClass gets overwritten with 0 or 1 at some point,
 ; the opponent will always use GenericAI.

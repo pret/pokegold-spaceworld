@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/pokemon/evos_attacks.asm", ROMX
-
 ; Evolutions for Pokémon available in the demo were removed,
 ; and have been left in comments.
 

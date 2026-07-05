@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/moves/names.asm", ROMX
-
 MoveNames::
 	db "はたく@" ; POUND
 	db "からてチョップ@" ; KARATE_CHOP

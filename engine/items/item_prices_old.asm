@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/items/item_prices_old.asm", ROMX
-
 ; This function is wildly out of date. It assumes wItemAttributesPointer uses either an early layout,
 ; or an updated version of Generation I's ItemPrices. The final game stores prices with the rest of
 ; the ItemAttributes anyway, so this function is pointless now.

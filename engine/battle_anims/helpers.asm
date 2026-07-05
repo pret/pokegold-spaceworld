@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle_anims/helpers.asm", ROMX
-
 ReinitBattleAnimFrameset:
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
 	add hl, bc

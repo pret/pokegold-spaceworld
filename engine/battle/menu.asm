@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle/menu.asm", ROMX
-
 LoadBattleMenu::
 	ld hl, BattleMenuHeader
 	jr CommonBattleMenu

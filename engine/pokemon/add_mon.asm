@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/add_mon.asm", ROMX
-
 _AddEnemyMonToPlayerParty::
 	ret ; dummied out via an early return
 	ld a, [wPartyCount]

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/tempmon.asm", ROMX
-
 CopyMonToTempMon::
 	ld a, [wCurPartyMon]
 	ld e, a

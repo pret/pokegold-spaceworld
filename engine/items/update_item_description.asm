@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/items/update_item_description.asm", ROMX
-
 UpdateItemDescription::
 	ld a, [wMenuSelection]
 	ld [wSelectedItem], a

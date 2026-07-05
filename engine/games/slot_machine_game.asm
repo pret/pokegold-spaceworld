@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/games/slot_machine_game.asm", ROMX
-
 SlotMachineGame:
 ; Always start off with 256 coins
 	ld hl, wCoins

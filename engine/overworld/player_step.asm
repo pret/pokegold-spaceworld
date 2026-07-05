@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/player_step.asm", ROMX
-
 _HandlePlayerStep::
 	ld a, [wPlayerStepFlags]
 	and a

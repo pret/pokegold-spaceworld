@@ -1,8 +1,3 @@
-INCLUDE "constants.asm"
-
-
-SECTION "engine/battle_anims/functions.asm", ROMX
-
 DoBattleAnimFrame:
 	ld hl, BATTLEANIMSTRUCT_FUNCTION
 	add hl, bc

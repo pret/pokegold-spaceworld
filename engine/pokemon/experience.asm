@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/experience.asm", ROMX
-
 CalcLevel::
 	ld a, [wTempMonSpecies]
 	ld [wCurSpecies], a

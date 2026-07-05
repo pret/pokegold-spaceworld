@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/evolve.asm", ROMX
-
 EvolvePokemon::
 	ld hl, wEvolvableFlags
 	xor a

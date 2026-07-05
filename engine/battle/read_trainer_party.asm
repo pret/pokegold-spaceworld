@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle/read_trainer_party.asm", ROMX
-
 ReadTrainerParty::
 	ld a, [wLinkMode]
 	and a

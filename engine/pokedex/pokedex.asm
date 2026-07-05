@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 ; Pokedex_RunJumptable.Jumptable indexes
 	const_def
 	const DEXSTATE_INIT
@@ -40,8 +38,6 @@ DEF NEXT_MENU_F  EQU 7
 	const A_BUTTON_MENU_NO_UNOWN
 	const SELECT_BUTTON_MENU
 	const A_BUTTON_MENU_UNOWN
-
-SECTION "engine/pokedex/pokedex.asm", ROMX
 
 Pokedex::
 	ld hl, wOptions

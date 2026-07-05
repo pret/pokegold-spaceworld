@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/menu/menu.asm", ROMX
-
 _PushWindow::
 	xor a ; BANK(sWindowStack)
 	call OpenSRAM

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/gfx/mon_icons.asm", ROMX
-
 LoadOverworldMonIcon::
 	push hl
 	push de

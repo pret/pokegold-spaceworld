@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/minor_objects.asm", ROMX
-
 HandleMinorObjects:
 	ld bc, wMinorObjects
 	ld a, 1

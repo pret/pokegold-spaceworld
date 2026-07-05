@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle/ai/move.asm", ROMX
 ; Score each move of wEnemyMonMoves in wEnemyAIMoveScores. Lower is better.
 ; Pick the move with the lowest score.
 AIChooseMove::

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/palettes.asm", ROMX
-
 UpdateTimeOfDayPal::
 	call UpdateTime
 	call GetTimePalette

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/gfx/set_title_decoration.asm", ROMX
-
 SetTitleBGDecorationBorder:
 	ld de, TitleBGDecorationBorder
 	ld hl, vChars2 + $500
@@ -30,3 +26,6 @@ SetTitleBGDecorationBorder:
 	dec c
 	jr nz, .loop
 	ret
+
+TitleBGDecorationBorder:
+INCBIN "gfx/title/titlebgdecoration.2bpp"

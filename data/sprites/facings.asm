@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/sprites/facings.asm", ROMX
-
 INCLUDE "data/sprites/old_facings.inc"
 
 Facings:

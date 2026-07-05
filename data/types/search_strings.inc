@@ -1,7 +1,3 @@
-;INCLUDE "constants.asm"
-
-;SECTION "data/types/search_strings.asm", ROMX
-
 PokedexTypeSearchStrings::
 	db "ノーマル@" ; NORMAL
 	db "ほのお　@" ; FIRE

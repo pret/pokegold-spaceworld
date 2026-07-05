@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/predef.asm", ROMX
-
 GetPredefPointer::
 	ld a, h
 	ld [wPredefHL], a

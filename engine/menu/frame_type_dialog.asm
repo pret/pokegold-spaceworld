@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/menu/frame_type_dialog.asm", ROMX
-
 FrameTypeDialog:
 	ld hl, .MenuHeader
 	call LoadMenuHeader

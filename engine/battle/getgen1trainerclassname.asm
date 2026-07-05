@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle/getgen1trainerclassname.asm", ROMX
-
 GetGen1TrainerClassName: ; unreferenced
 	ld hl, Gen1TrainerClassNames
 	ld a, [wTrainerClass]

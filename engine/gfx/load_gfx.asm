@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/gfx/load_gfx.asm", ROMX
-
 LoadFontGraphics::
 	ld de, FontGFX
 	ld hl, $8800

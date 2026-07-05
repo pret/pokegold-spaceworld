@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/map_objects.asm", ROMX
-
 HandleStepTypeAndAction:
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc

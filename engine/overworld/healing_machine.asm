@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/healing_machine.asm", ROMX
-
 AnimateHealingMachine::
 	ld a, [wPartyCount]
 	and a

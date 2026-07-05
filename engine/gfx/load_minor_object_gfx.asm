@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/gfx/load_minor_object_gfx.asm", ROMX
-
 _LoadMinorObjectGFX::
 	ld hl, wQueuedMinorObjectGFX
 	push hl
@@ -140,3 +136,18 @@ _LoadMinorObjectGFX::
 	ld [hl], $00
 	ld b, (ClefairySpriteGFX.end - ClefairySpriteGFX) / LEN_2BPP_TILE / 4
 	jp .ContinueFarCopy
+
+UnknownBouncingOrbGFX: INCBIN "gfx/overworld/gfx_84bf.2bpp"
+.end
+JumpShadowGFX:         INCBIN "gfx/overworld/shadow.2bpp"
+.end
+
+EmoteGFX::
+ShockEmoteGFX:         INCBIN "gfx/overworld/shock.2bpp"
+.end
+QuestionEmoteGFX:      INCBIN "gfx/overworld/question.2bpp"
+.end
+HappyEmoteGFX:         INCBIN "gfx/overworld/happy.2bpp"
+.end
+BoulderDustGFX:        INCBIN "gfx/overworld/boulder_dust.2bpp"
+.end

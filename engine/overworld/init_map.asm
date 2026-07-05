@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/init_map.asm", ROMX
-
 ReanchorBGMap_NoOAMUpdate::
 	xor a
 	ldh [hLCDCPointer], a

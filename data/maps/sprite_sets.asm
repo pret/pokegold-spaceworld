@@ -3,10 +3,6 @@
 ; Sprites outside of whatever is defined in its map group will be rendered
 ; as the player sprite.
 
-INCLUDE "constants.asm"
-
-SECTION "data/maps/sprite_sets.asm", ROMX
-
 MapGroupSpriteSets:
 	db $01 ; MAPGROUP_SILENT
 	db $02 ; MAPGROUP_OLD

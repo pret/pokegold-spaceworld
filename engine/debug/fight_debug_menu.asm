@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/debug/fight_debug_menu.asm", ROMX
-
 FightDebugMenu:
 	ld a, 1
 	ldh [hInMenu], a

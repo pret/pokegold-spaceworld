@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/switchpartymons.asm", ROMX
-
 _SwitchPartyMons::
 	ld a, [wSelectedSwapPosition]
 	dec a

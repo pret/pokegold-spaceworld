@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/overworld_sprites.asm", ROMX
-
 MACRO overworld_sprite
 ; pointer, length, bank
 	dw \1

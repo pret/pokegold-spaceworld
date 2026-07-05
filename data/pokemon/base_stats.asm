@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/pokemon/base_stats.asm", ROMX
-
 MACRO tmhm
 ; used in data/pokemon/base_stats/*.asm
 DEF tms1 = 0 ; TM01-TM24 (24)

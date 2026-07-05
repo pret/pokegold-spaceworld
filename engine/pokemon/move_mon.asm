@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/move_mon.asm", ROMX
-
 TryAddMonToParty::
 ; Check if to copy wild mon or generate a new one
 	; Whose is it?

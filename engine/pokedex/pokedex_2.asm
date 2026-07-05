@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokedex/pokedex_2.asm", ROMX
-
 ; Pokedex_UpdateSearchScreen.Jumptable indexes
 	const_def
 	const SEARCHSTATE_INIT_FIRST_MON_TYPE

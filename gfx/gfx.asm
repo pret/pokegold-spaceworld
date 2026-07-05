@@ -1,41 +1,3 @@
-SECTION "Mon Nest Icon", ROMX
-
-PokedexNestIconGFX::
-INCBIN "gfx/trainer_gear/dexmap_nest_icon.1bpp"
-
-
-SECTION "Minor Object GFX", ROMX
-
-UnknownBouncingOrbGFX:: INCBIN "gfx/overworld/gfx_84bf.2bpp"
-.end::
-JumpShadowGFX::         INCBIN "gfx/overworld/shadow.2bpp"
-.end::
-EmoteGFX::
-ShockEmoteGFX::         INCBIN "gfx/overworld/shock.2bpp"
-.end:
-QuestionEmoteGFX::      INCBIN "gfx/overworld/question.2bpp"
-.end:
-HappyEmoteGFX::         INCBIN "gfx/overworld/happy.2bpp"
-.end::
-BoulderDustGFX::        INCBIN "gfx/overworld/boulder_dust.2bpp"
-.end::
-
-
-SECTION "Trainer Gear GFX", ROMX
-
-TrainerGearGFX::
-INCBIN "gfx/trainer_gear/trainer_gear.2bpp"
-RadioGFX::
-INCBIN "gfx/trainer_gear/radio.2bpp"
-VerticalPipeGFX::
-INCBIN "gfx/trainer_gear/vertical_pipe.2bpp"
-
-
-SECTION "Title Screen BG Decoration Border", ROMX
-TitleBGDecorationBorder::
-INCBIN "gfx/title/titlebgdecoration.2bpp"
-
-
 SECTION "SGB GFX", ROMX
 
 INCLUDE "data/pokemon/palettes.inc"
@@ -110,22 +72,6 @@ TitleScreenGoldLogoGFX:: INCBIN "gfx/title/title_silverlogo.2bpp"
 endc
 
 
-SECTION "Name Entry Extra Tiles", ROMX
-
-TextScreenGFX_End::
-INCBIN "gfx/font/text_entry_end.1bpp"
-TextScreenGFX_Hyphen::
-INCBIN "gfx/font/text_entry_hyphen.1bpp"
-TextScreenGFX_Underscore::
-INCBIN "gfx/font/text_entry_underscore.1bpp"
-
-
-SECTION "Mail Icon GFX", ROMX
-
-MailIconGFX::
-INCBIN "gfx/icons/mail.2bpp"
-
-
 SECTION "Trainer Card GFX", ROMX
 
 TrainerCardBorderGFX:: INCBIN "gfx/trainer_card/border.2bpp"
@@ -134,20 +80,6 @@ TrainerCardColonGFX:: INCBIN "gfx/trainer_card/colon.2bpp"
 TrainerCardIDNoGFX:: INCBIN "gfx/trainer_card/id_no.2bpp"
 .End::
 TrainerCardLeadersGFX:: INCBIN "gfx/trainer_card/leaders.2bpp"
-
-
-SECTION "Pokedex GFX", ROMX
-
-PokedexButtonsGFX::
-INCBIN "gfx/pokedex/buttons.2bpp"
-PokedexPokeBallGFX::
-INCBIN "gfx/pokedex/poke_ball.2bpp"
-PokedexCursorGFX::
-INCBIN "gfx/pokedex/cursor.2bpp"
-PokedexBorderGFX::
-INCBIN "gfx/pokedex/border.2bpp"
-PokedexSearchGFX::
-INCBIN "gfx/pokedex/search.2bpp"
 
 
 SECTION "Attack Animation GFX", ROMX
@@ -206,24 +138,6 @@ SlotMachine3GFX::
 INCBIN "gfx/minigames/slots_4.2bpp"
 
 
-SECTION "Poker GFX", ROMX
-
-PokerGFX::
-INCBIN "gfx/minigames/poker.2bpp"
-
-
-SECTION "15 Puzzle GFX", ROMX
-
-FifteenPuzzleGFX::
-INCBIN "gfx/minigames/15_puzzle.2bpp"
-
-
-SECTION "Matches GFX", ROMX
-
-MemoryGameGFX::
-INCBIN "gfx/minigames/matches.2bpp"
-
-
 SECTION "Picross GFX", ROMX
 
 PicrossNumbersGFX::
@@ -236,14 +150,6 @@ PicrossGridGFX::
 INCBIN "gfx/minigames/picross_grid.2bpp"
 PicrossCursorGFX::
 INCBIN "gfx/minigames/picross_cursor.2bpp"
-
-
-SECTION "Gamefreak Logo GFX", ROMX
-
-GameFreakLogoGFX::
-INCBIN "gfx/splash/game_freak_logo.1bpp"
-GameFreakLogoSparkleGFX::
-INCBIN "gfx/splash/game_freak_logo_oam.2bpp"
 
 
 SECTION "Intro Underwater GFX", ROMX
@@ -350,9 +256,3 @@ BlackTileAndCursor1bppGFX:: INCBIN "gfx/misc/black_tile_cursor.1bpp"
 .End::
 PackIconGFX:: INCBIN "gfx/pack/pack_icons.2bpp"
 .End::
-
-
-SECTION "Town Map Cursor", ROMX
-
-TownMapCursorGFX::
-INCBIN "gfx/trainer_gear/town_map_cursor.2bpp"

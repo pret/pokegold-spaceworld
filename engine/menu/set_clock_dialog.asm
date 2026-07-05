@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/menu/set_clock_dialog.asm", ROMX
-
 DEF UP_ARROW      EQU $f0
 DEF DOWN_ARROW    EQU $ee
 

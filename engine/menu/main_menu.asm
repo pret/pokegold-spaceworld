@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 	const_def
 	const M_NEW_GAME
 	const M_CONTINUE
@@ -12,8 +10,6 @@ INCLUDE "constants.asm"
 	const OPTION
 	const PLAY_POKEMON
 	const SET_TIME
-
-SECTION "engine/menu/main_menu.asm", ROMX
 
 InitializeNewGameWRAM:
 	ld a, [wSGB]

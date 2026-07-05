@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/items/tmhm.asm", ROMX
-
 CanLearnTMHMMove:
 ; Gets the index of TM or HM with move ID wPutativeTMHMMove,
 ; then checks the corresponding flag in wCurPartySpecies's learnset.

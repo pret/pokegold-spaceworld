@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/pokemon/nickname_unused.asm", ROMX
-
 ; Unused. Also leftover from Generation I.
 AskName_Old:
 	push hl

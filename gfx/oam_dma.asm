@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "gfx/oam_dma.asm", ROMX
-
 WriteOAMDMACodeToHRAM::
 	ld c, LOW(hOAMDMA)
 	ld b, .OAMDMAEnd - .OAMDMA

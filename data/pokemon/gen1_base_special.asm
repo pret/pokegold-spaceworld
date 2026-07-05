@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "data/pokemon/gen1_base_special.asm", ROMX
-
 ; The original base Special stat for each Pokémon from Red/Blue
 
 KantoMonSpecials:

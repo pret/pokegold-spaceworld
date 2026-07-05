@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/trainer_gear.asm@OpenTrainerGear", ROMX
-
 DEF TRAINERGEAR_GFX_VERTICAL_PIPE      EQU $00
 DEF TRAINERGEAR_GFX_POINTER            EQU $7c
 
@@ -719,7 +715,14 @@ TrainerGear_DrawBox:
 	ld [hli], a
 	ret
 
-SECTION "engine/trainer_gear.asm@TrainerGear_RadioText", ROMX
+TrainerGearGFX:
+INCBIN "gfx/trainer_gear/trainer_gear.2bpp"
+
+RadioGFX:
+INCBIN "gfx/trainer_gear/radio.2bpp"
+
+VerticalPipeGFX:
+INCBIN "gfx/trainer_gear/vertical_pipe.2bpp"
 
 TrainerGear_RadioText:
 	text "エーボタンで　チューニング！"

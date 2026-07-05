@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/menu/options_menu.asm", ROMX
-
 DEF OPT_TEXT_SPEED_ROW EQU 3
 DEF OPT_BATTLE_ANIM_ROW EQU 7
 DEF OPT_BATTLE_STYLE_ROW EQU 11

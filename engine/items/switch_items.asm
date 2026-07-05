@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/items/switch_items.asm", ROMX
-
 SwitchItemsInBag::
 	ld a, [wSelectedSwapPosition]
 	and a

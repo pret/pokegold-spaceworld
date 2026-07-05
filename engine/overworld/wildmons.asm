@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/overworld/wildmons.asm", ROMX
-
 _LoadWildMonData::
 	xor a
 	ld hl, wWildMonData

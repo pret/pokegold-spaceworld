@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle/read_trainer_attributes.asm", ROMX
-
 GetOTName::
 	ld hl, wOTPlayerName
 	ld a, [wLinkMode]

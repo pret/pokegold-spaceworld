@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/bcd.asm", ROMX
-
 AddBCD:
 	and a
 	ld b, c

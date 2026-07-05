@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle/effect_commands.asm", ROMX
-
 DoPlayerTurn:
 	xor a
 	ldh [hBattleTurn], a

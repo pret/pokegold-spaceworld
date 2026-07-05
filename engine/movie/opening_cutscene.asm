@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/movie/opening_cutscene.asm", ROMX
-
 OpeningCutscene::
 	call .Init
 .loop

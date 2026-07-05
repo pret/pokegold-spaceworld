@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/gfx/sgb_layouts.asm", ROMX
-
 LoadSGBLayout:
 	ld a, b
 	cp SGB_RAM

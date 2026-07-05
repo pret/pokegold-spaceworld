@@ -1,8 +1,4 @@
-INCLUDE "constants.asm"
-
 ; TODO - need to constantize tile ids, movements
-
-SECTION "engine/events/field_moves.asm", ROMX
 
 CutFunction:
 	call .ResetScriptID

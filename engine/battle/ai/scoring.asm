@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/battle/ai/scoring.asm", ROMX
-
 AI_Basic:
 ; Don't use status-only moves if the player can't be statused.
 ; The final game elaborates on this to include other redundancies (see final's AI_Redundant)

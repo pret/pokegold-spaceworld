@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/menu/start_menu.asm", ROMX
-
 DisplayStartMenu::
 	call RefreshScreen
 	ld de, SFX_MENU

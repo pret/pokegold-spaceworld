@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/tileset_anims.asm", ROMX
-
 _AnimateTileset::
 	ldh a, [hMapAnims]
 	and a

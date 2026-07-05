@@ -1,5 +1,3 @@
-SECTION "engine/overworld/check_trainer_battle.asm", ROMX
-
 _CheckTrainerBattle:
 	xor a
 	ld bc, NUM_OBJECTS * 2

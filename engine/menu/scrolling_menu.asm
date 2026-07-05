@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/menu/scrolling_menu.asm", ROMX
-
 _InitScrollingMenu::
 	xor a
 	ld [wMenuJoypad], a

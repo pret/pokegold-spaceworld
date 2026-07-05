@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/events/pokecenter_pc.asm", ROMX
-
 ; PokemonCenterPC.Jumptable indices
 	const_def
 	const PCITEM_PLAYERS_PC

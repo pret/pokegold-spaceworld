@@ -33,420 +33,204 @@ ROM0
 	org $150
 	"Home"
 	"Home Garbage"
-
 ROMX $01
-	"engine/link/place_waiting_text.asm"
-	"engine/menu/debug_menu.asm"
-	"gfx/oam_dma.asm"
-	"data/sprites/facings.asm"
-	"engine/overworld/minor_objects.asm"
-	"engine/overworld/map_objects.asm"
-	"engine/menu/main_menu.asm"
-	"engine/movie/oak_speech.asm"
-	"data/player_names.asm"
-	"engine/movie/oak_speech.asm@ChooseRivalName"
-	"data/rival_names.asm"
-	"engine/movie/oak_speech.asm@MomNamePrompt"
-	"data/mom_names.asm"
-	"engine/movie/oak_speech.asm@NamingWindow"
-	"engine/movie/title.asm@Title screen"
-	"engine/predef.asm"
-	"engine/overworld/init_map.asm"
-	"engine/pokemon/learn.asm"
-	"engine/items/item_prices_old.asm"
-	"engine/pokemon/nickname_unused.asm"
-	"engine/pokemon/correct_nick_errors.asm"
-	"engine/math/math.asm"
-	"data/items/attributes.asm"
-	"data/items/names.asm"
-	"engine/overworld/object_collision.asm"
-	"engine/menu/options_menu.asm"
+	"bank1"
 	"Bank 01 Garbage"
-
 ROMX $02
-	"engine/overworld/player_object.asm"
-	"engine/gfx/load_minor_object_gfx.asm"
-	"Minor Object GFX"
-	"engine/overworld/player_object.asm@QueueFollowerFirstStep"
-	"engine/events/town_map.asm"
-	"Mon Nest Icon"
-
-	"data/maps/flypoints.asm"
-	"data/maps/landmarks.asm"
-
-	"engine/trainer_gear.asm@OpenTrainerGear"
-	"Trainer Gear GFX"
-	"engine/trainer_gear.asm@TrainerGear_RadioText"
-	"engine/gfx/set_title_decoration.asm"
-	"Title Screen BG Decoration Border"
-	"engine/gfx/sgb_layouts.asm"
+	"bank2"
 	"SGB GFX"
 	"Bank 02 Garbage"
-
 ROMX $03
-	"engine/overworld/player_movement.asm@Player Movement"
-	"data/collision/collision_type_table.asm"
-	"engine/overworld/player_movement.asm@Rest of Player Movement"
-	"engine/overworld/spawn_points.asm"
-	"data/maps/spawn_points.asm"
-	"data/tilesets.asm"
-	"engine/overworld/check_trainer_battle.asm"
-	"engine/items/inventory.asm@Inventory"
-	"engine/smallflag.asm"
-	"engine/pokemon/health.asm@HealParty"
-	"engine/bcd.asm"
-	"engine/items/inventory.asm@GetItemAmount"
-	"engine/pokemon/health.asm@HP Bar"
-	"engine/events/field_moves.asm"
-	"engine/items/inventory.asm@_CheckTossableItem"
-	"engine/overworld/player_step.asm"
-	"engine/pokemon/move_mon.asm"
-	"engine/pokemon/bills_pc.asm"
-	"engine/events/starter_dex.asm"
-	"engine/items/item_effects.asm"
-	"engine/events/breeder.asm"
-	"engine/battle_anims/pokeball_wobble.asm"
-	"engine/pokemon/knows_move.asm"
+	"bank3"
 	"Bank 03 Garbage"
-
 ROMX $04
-	"data/maps/maps.asm"
+	"Maps"
 	"Shrink GFX"
 	"Title Screen GFX"
-	"engine/items/tmhm.asm"
-	"data/moves/tmhm_moves.asm"
-	"engine/pokemon/add_mon.asm"
-	"engine/menu/text_entry.asm@naming"
-	"data/text/text_input_chars.asm"
-	"Name Entry Extra Tiles"
-	"engine/menu/text_entry.asm@mail"
-	"Mail Icon GFX"
-	"engine/menu/text_entry.asm@mail2"
-	"engine/menu/start_menu.asm"
+	"bank4"
 	"Trainer Card GFX"
 	"Bank 04 Garbage"
-
 ROMX $05
-	"engine/overworld/player_movement.asm@_RedrawPlayerSprite"
-	"engine/sprites/sprites.asm@RefreshSprites"
-	"data/maps/sprite_sets.asm"
-	"data/overworld_sprites.asm"
-	"engine/menu/empty_sram.asm"
-	"engine/events/pokecenter_pc.asm"
-	"engine/events/std_scripts.asm"
-	"engine/events/check_inline_trainers.asm"
+	"bank5"
 	"Bank 05 Garbage"
-
 ROMX $06
 	"Tilesets 1"
 	"Bank 06 Garbage"
-
 ROMX $07
 	"Tilesets 2"
-
 ROMX $08
 	"Tilesets 3"
-
 ROMX $09
-	"engine/menu/menu.asm"
-	"engine/items/update_item_description.asm"
-	"engine/events/pokepic.asm"
-	"engine/menu/scrolling_menu.asm"
-	"engine/items/switch_items.asm"
-	"engine/menu/menu_2.asm"
-	"engine/pokemon/mon_submenu.asm"
-	"engine/battle/menu.asm"
-	"engine/items/buy_sell_toss.asm"
+	"bank9"
 	"Bank 09 Garbage"
-
 ROMX $0a
-	"engine/link/link.asm"
-	"data/pokemon/gen1_base_special.asm"
-	"engine/movie/trade_animation.asm"
+	"bankA"
 	"Maps 1"
-	"engine/link/link_2.asm"
+	"bankA_2"
 	"Bank 0a Garbage"
-
 ROMX $0b
-	"engine/items/print_item_description.asm"
-	"engine/items/tm_holder.asm"
-	"engine/pokemon/print_move_description.asm"
+	"bankB"
 	"Bank 0b Garbage"
-
 ROMX $0c
 	"Tilesets 4"
 	"Bank 0c Garbage"
-
 ROMX $0d
-	"engine/battle/effect_commands.asm"
+	"Effect Commands"
 	"Bank 0d Garbage"
-
 ROMX $0e
-	"engine/battle/ai/items.asm"
-	"engine/battle/trainer_huds.asm"
-	"engine/battle/ai/move.asm"
-	"engine/battle/ai/scoring.asm"
-	"engine/battle/read_trainer_attributes.asm"
-	"engine/battle/read_trainer_party.asm"
+	"Enemy Trainers"
 	"Bank 0e Garbage"
-
 ROMX $0f
-	"engine/battle/core.asm@DoBattle"
-	"engine/overworld/wildmons.asm"
-	"engine/battle/core.asm@StartBattle"
+	"Battle Core"
 	"Bank 0f Garbage"
-
 ROMX $10
-	"engine/pokedex/pokedex.asm"
-	"engine/link/time_capsule_2.asm"
-	"engine/pokedex/pokedex_2.asm"
-	"data/moves/names.asm"
-	"data/moves/moves.asm"
-	"engine/pokemon/evolve.asm"
-	"data/pokemon/evos_attacks.asm"
+	"bank10"
 	"Bank 10 Garbage"
-
 ROMX $11
-	"engine/pokedex/display_dex_entry.asm"
-	"Pokedex GFX"
-	"data/pokemon/dex_entries.asm"
+	"bank11"
 	"Bank 11 Garbage"
-
 ROMX $12
 	"Trainer Pics"
 	"Bank 12 Garbage"
-
 ROMX $13
 	"Tilesets 5"
 	"Bank 13 Garbage"
-
 ROMX $14
-	"engine/pokemon/tempmon.asm"
-	"engine/pokemon/types.asm"
-	"engine/battle/getgen1trainerclassname.asm"
-	"engine/pokemon/mon_stats.asm"
-	"engine/pokemon/party_menu.asm"
-	"engine/gfx/load_pics.asm"
-	"engine/pokemon/mon_stats.asm@ListMoves"
-	"engine/link/init_list.asm"
-	"engine/pokemon/experience.asm"
-	"engine/pokemon/switchpartymons.asm"
-	"engine/pokemon/party_menu.asm@PartyMenu_ClearCursor"
-	"engine/gfx/load_pics.asm@GetUnownLetter"
-	"data/pokemon/base_stats.asm"
-	"data/pokemon/names.asm"
+	"bank14"
 	"Pic Banks"
 	"Bank 14 Garbage"
-
 ROMX $15
 	"Pics 1"
 	"Bank 15 Garbage"
-
 ROMX $16
 	"Pics 2"
 	"Bank 16 Garbage"
-
 ROMX $17
 	"Pics 3"
 	"Bank 17 Garbage"
-
 ROMX $18
 	"Pics 4"
 	"Bank 18 Garbage"
-
 ROMX $19
 	"Pics 5"
 	"Bank 19 Garbage"
-
 ROMX $1a
 	"Pics 6"
 	"Bank 1a Garbage"
-
 ROMX $1b
 	"Pics 7"
 	"Bank 1b Garbage"
-
 ROMX $1c
 	"Pics 8"
 	"Bank 1c Garbage"
-
 ROMX $1d
 	"Pics 9"
 	"Bank 1d Garbage"
-
 ROMX $1e
 	"Pics 10"
 	"Bank 1e Garbage"
-
 ROMX $1f
 	"Pics 11"
 	"Annon Pic Ptrs and Pics"
 	"Egg Pic"
 	"Bank 1f Garbage"
-
 ROMX $20
 	"Bank 20 Garbage"
-
 ROMX $21
 	"Attack Animation GFX"
 	"Bank 21 Garbage"
-
 ROMX $22
 	"Bank 22 Garbage"
-
 ROMX $23
-	"engine/tileset_anims.asm"
-	"engine/overworld/healing_machine.asm"
-	"engine/palettes.asm"
-	"engine/battle/battle_transitions.asm"
-	"engine/overworld/player_animations_old.asm"
-	"engine/sprite_anims/core.asm"
+	"bank23"
 	"Pokemon Party Sprites"
-	"engine/gfx/mon_icons.asm"
+	"bank23_2"
 	"Bank 23 Garbage"
-
 ROMX $24
-	"engine/menu/set_clock_dialog.asm"
-	"engine/games/slot_machine_game.asm"
+	"bank24"
 	"Slot Machine GFX"
 	"Bank 24 Garbage"
-
 ROMX $25
 	"Maps 2"
 	"Bank 25 Garbage"
-
 ROMX $26
 	"Maps 3"
 	"Bank 26 Garbage"
-
 ROMX $27
 	"Maps 4"
 	"Bank 27 Garbage"
-
 ROMX $28
 	"Bank 28 Garbage"
-
 ROMX $29
 	"Bank 29 Garbage"
-
 ROMX $2a
 	"Bank 2a Garbage"
-
 ROMX $2b
 	"Bank 2b Garbage"
-
 ROMX $2c
 	"Bank 2c Garbage"
-
 ROMX $2d
 	"Bank 2d Garbage"
-
 ROMX $2e
 	"Bank 2e Garbage"
-
 ROMX $2f
 	"Maps 5"
 	"Bank 2f Garbage"
-
 ROMX $30
 	"Sprites 1"
 	"Bank 30 Garbage"
-
 ROMX $31
 	"Sprites 2"
 	"Bank 31 Garbage"
-
 ROMX $32
-	"engine/battle_anims/bg_effects.asm"
-	"data/moves/animations.asm"
-	"engine/gfx/screen_effects.asm"
+	"bank32"
 	"Bank 32 Garbage"
-
 ROMX $33
-	"engine/battle_anims/anim_commands.asm"
-	"engine/battle_anims/core.asm"
-	"engine/battle_anims/functions.asm"
-	"engine/battle_anims/helpers.asm"
+	"Move Animations"
 	"Bank 33 Garbage"
-
 ROMX $34
 	"Maps 6"
 	"Bank 34 Garbage"
-
 ROMX $35
 	"Bank 35 Garbage"
-
 ROMX $36
 	"Maps 7"
-	"engine/menu/set_time.asm"
+	"bank36"
 	"Maps 8"
 	"Bank 36 Garbage"
-
 ROMX $37
 	"Tilesets 6"
 	"Bank 37 Garbage"
-
 ROMX $38
-	"engine/games/pikachu_minigame.asm@Pikachu Minigame"
-	"engine/games/poker_minigame.asm"
-	"Poker GFX"
-	"engine/games/fifteen_puzzle_minigame.asm"
-	"15 Puzzle GFX"
-	"engine/games/fifteen_puzzle_minigame.asm@FifteenPuzzleIconTable"
-	"engine/games/memory_minigame.asm"
-	"Matches GFX"
-	"engine/games/picross_minigame.asm"
+	"bank38"
 	"Picross GFX"
 	"Bank 38 Garbage"
-
 ROMX $39
-	"engine/movie/game_freak_intro.asm"
-	"Gamefreak Logo GFX"
-	"engine/movie/opening_cutscene.asm"
+	"Intro"
 	"Intro Underwater GFX"
 	"Intro Forest GFX"
 	"Intro Mon"
 	"Bank 39 Garbage"
-
 ROMX $3a
 	"Audio"
 	"Bank 3a Garbage"
-
 ROMX $3b
 	"Songs 1"
 	"Bank 3b Garbage"
-
 ROMX $3c
 	"Sound Effects"
 	"Cries"
 	"Songs 2"
 	"Bank 3c Garbage"
-
 ROMX $3d
 	"Bank 3d Garbage"
-
 ROMX $3e
-	"engine/gfx/load_gfx.asm"
+	"bank3E"
 	"Misc GFX"
 	"Bank 3e Garbage"
-
 ROMX $3f
-	"engine/menu/field_debug_menu.asm@FieldDebugMenuHeader"
-	"engine/menu/frame_type_dialog.asm"
-	"engine/menu/reset_dialog.asm"
-	"engine/debug/field/change_tileset.inc@FieldDebug_ChangeTileset"
-	"engine/landmarks.asm@1"
-	"data/maps/landmarks.asm@LandmarkNames"
-	"engine/landmarks.asm@2"
-	"engine/debug/field/warp.inc@FieldDebug_ShowWarpToText"
-	"Town Map Cursor"
-	"engine/debug/field/map_viewer.inc@DisplayBGEventDetails"
-	"engine/debug/fight_debug_menu.asm"
-	"engine/debug/sound_debug_menu.asm"
-	"engine/debug/monster_debug_menu.asm"
-	"engine/debug/subgame_debug_menu.asm"
+	"bank3F"
 	"Bank 3f Garbage"
-
 WRAM0
 	"Music engine RAM"
 	org $c200
@@ -455,27 +239,22 @@ WRAM0
 	"Map Buffer"
 	org $dfff
 	"Stack Bottom"
-
 VRAM 0
 	"VRAM"
-
-HRAM
-	"OAM DMA"
-	"HRAM"
-
 SRAM 0
 	"Sprite Buffers"
 	org $a600
 	"Unknown, bank 0"
 	org $b800
 	"SRAM Window Stack"
-
 SRAM 1
 	"Save Pokemon Data"
-
 SRAM $02
 	"Boxes 1-5"
 SRAM $03
 	"Boxes 6-10"
 	org $bffd
 	"Checksum"
+HRAM
+	"OAM DMA"
+	"HRAM"

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/sprites/sprites.asm@RefreshSprites", ROMX
-
 RefreshSprites::
 	call GetPlayerSprite
 	call CheckInteriorMap

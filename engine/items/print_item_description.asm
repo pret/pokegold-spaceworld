@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/items/print_item_description.asm", ROMX
-
 PrintItemDescription::
 	push de
 	ld hl, ItemDescriptions

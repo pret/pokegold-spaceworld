@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/menu/text_entry.asm@naming", ROMX
-
 DEF NAMINGSCREEN_UNDERSCORE EQU '♀'
 DEF NAMINGSCREEN_HYPHEN     EQU '♂'
 DEF NAMINGSCREEN_END        EQU $F0
@@ -666,7 +662,16 @@ LoadNamingScreenGFX:
 	ldh [hWX], a
 	ret
 
-SECTION "engine/menu/text_entry.asm@mail", ROMX
+INCLUDE "data/text/text_input_chars.asm"
+
+TextScreenGFX_End:
+INCBIN "gfx/font/text_entry_end.1bpp"
+
+TextScreenGFX_Hyphen:
+INCBIN "gfx/font/text_entry_hyphen.1bpp"
+
+TextScreenGFX_Underscore:
+INCBIN "gfx/font/text_entry_underscore.1bpp"
 
 ComposeMailMessage:
 	ld hl, wNamingScreenDestinationPointer
@@ -922,7 +927,8 @@ DoMailEntry:
 	set 7, [hl]
 	ret
 
-SECTION "engine/menu/text_entry.asm@mail2", ROMX
+MailIconGFX:
+INCBIN "gfx/icons/mail.2bpp"
 
 SetupMail:
 	call ClearBGPalettes

@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/menu/menu_2.asm", ROMX
-
 PlacePackItems::
 	ld a, [wMenuSelection]
 	cp -1

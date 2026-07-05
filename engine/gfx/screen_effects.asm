@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/gfx/screen_effects.asm", ROMX
-
 ; b = new color for BG color 0 (usually white) for 4 frames
 ChangeBGPalColor0_4Frames:
 	ldh a, [rBGP]

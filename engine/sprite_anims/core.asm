@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/sprite_anims/core.asm", ROMX
-
 ClearSpriteAnims::
 	ld hl, wSpriteAnimData
 	ld bc, wSpriteAnimDataEnd - wSpriteAnimData

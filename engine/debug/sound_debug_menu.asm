@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/debug/sound_debug_menu.asm", ROMX
-
 _DebugMenuSoundTest::
 	call ClearTileMap
 	call LoadFontExtra

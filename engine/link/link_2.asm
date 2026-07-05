@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/link/link_2.asm", ROMX
-
 CheckTimeCapsuleCompatibility::
 	ld hl, wPartySpecies
 	ld b, PARTY_LENGTH

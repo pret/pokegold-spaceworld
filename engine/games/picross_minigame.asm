@@ -1,7 +1,3 @@
-INCLUDE "constants.asm"
-
-SECTION "engine/games/picross_minigame.asm", ROMX
-
 ; The Picross game area is referred as the "table" here.
 ; The table consists of 256 cells, divided into 4x4 "grids" of 16 cells each.
 

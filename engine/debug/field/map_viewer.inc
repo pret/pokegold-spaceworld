@@ -358,7 +358,8 @@ DebugMapViewer_LoadCursorSprite:
 	ldh [hBGMapMode], a
 	ret
 
-SECTION "engine/debug/field/map_viewer.inc@DisplayBGEventDetails", ROMX
+TownMapCursorGFX:
+INCBIN "gfx/trainer_gear/town_map_cursor.2bpp"
 
 DisplayBGEventDetails:
 	call GetBGEvent

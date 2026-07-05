@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 MACRO collperm
 	if _NARG <= 8
 	; collisions with COLLFLAG_ENCOUNTER have the same permissions as ones without.
@@ -11,7 +9,6 @@ MACRO collperm
 	db \1_TILE, \2_TILE, \3_TILE, \4_TILE, \5_TILE, \6_TILE, \7_TILE, \9_TILE
 	endc
 ENDM
-SECTION "data/collision/collision_type_table.asm", ROMX
 
 CollisionTypeTable:
 	collperm LAND,  LAND,  LAND,  LAND,  LAND,  LAND,  LAND,  WALL        ; Regular     ($00)
