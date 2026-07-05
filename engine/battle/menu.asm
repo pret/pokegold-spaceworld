@@ -87,26 +87,26 @@ Battle_2DMenu:
 	ret
 
 .GetNewCursorOffset:
-	and a        ; set z if a = 0
-	ret z        ; 0 * c = 0, return early
+	and a
+	ret z
 	push bc
-	ld b, a      ; b = loop counter (row index)
-	xor a        ; a = 0 (accumulator)
+	ld b, a
+	xor a
 .loop
-	add c        ; add one column-width
-	dec b        ; decrement counter
-	jr nz, .loop ; loop b times
+	add c
+	dec b
+	jr nz, .loop
 	pop bc
 	ret
 
 .GetNewCursorRow: ; unreferenced
-	ld b, 0       ; b = quotient (row)
+	ld b, 0
 .loop2
-	inc b         ; increment quotient
-	sub c         ; subtract one column-width
-	jr nc, .loop2 ; loop while a >= c
-	dec b         ; overshot; fix quotient
-	add c         ; overshot; fix remainder
+	inc b
+	sub c
+	jr nc, .loop2
+	dec b
+	add c
 	ret
 
 .PlaceStrings:
