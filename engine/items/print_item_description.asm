@@ -13,4 +13,4 @@ PrintItemDescription::
 	pop hl
 	jp PlaceString
 
-INCLUDE "data/items/descriptions.inc"
+INCLUDE "data/items/descriptions.asm"

@@ -390,7 +390,7 @@ endr
 	ld d, h
 	ret
 
-INCLUDE "data/types/search_strings.inc"
+INCLUDE "data/types/search_strings.asm"
 
 Pokedex_MoveSearchMenuCursor:
 	ld hl, hJoySum
@@ -632,7 +632,7 @@ Pokedex_SearchForMons:
 .done
 	ret
 
-INCLUDE "data/types/search_types.inc"
+INCLUDE "data/types/search_types.asm"
 
 Pokedex_WaitBGMap:
 	call WaitBGMap

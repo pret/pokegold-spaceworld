@@ -11,7 +11,7 @@ FieldDebug_TownMap:
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
-INCLUDE "engine/debug/field/sprite_viewer.inc"
+INCLUDE "engine/debug/field/sprite_viewer.asm"
 
 FieldDebug_NamePlayer:
 	call LoadStandardMenuHeader
@@ -30,7 +30,7 @@ FieldDebug_NamePlayer:
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
-INCLUDE "engine/debug/field/toolgear.inc"
+INCLUDE "engine/debug/field/toolgear.asm"
 
 FieldDebug_HealPokemon:
 	predef HealParty
@@ -49,21 +49,21 @@ FieldDebug_CableClub:
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
-INCLUDE "engine/debug/field/npc_movement_test.inc"
+INCLUDE "engine/debug/field/npc_movement_test.asm"
 
-INCLUDE "engine/debug/field/mon_following.inc"
+INCLUDE "engine/debug/field/mon_following.asm"
 
-INCLUDE "engine/debug/field/follow_npc_test.inc"
+INCLUDE "engine/debug/field/follow_npc_test.asm"
 
-INCLUDE "engine/debug/field/warp.inc"
+INCLUDE "engine/debug/field/warp.asm"
 
-INCLUDE "engine/debug/field/toggle_npc_movement.inc"
+INCLUDE "engine/debug/field/toggle_npc_movement.asm"
 
-INCLUDE "engine/debug/field/field_cut.inc"
+INCLUDE "engine/debug/field/field_cut.asm"
 
-INCLUDE "engine/debug/field/check_tile.inc"
+INCLUDE "engine/debug/field/check_tile.asm"
 
-INCLUDE "engine/debug/field/move_to_entrance.inc"
+INCLUDE "engine/debug/field/move_to_entrance.asm"
 
 FieldDebug_TrainerGear:
 	call .OpenTrainerGear
@@ -78,20 +78,20 @@ FieldDebug_TrainerGear:
 	call CloseWindow
 	ret
 
-INCLUDE "engine/debug/field/map_viewer.inc"
+INCLUDE "engine/debug/field/map_viewer.asm"
 
-INCLUDE "engine/debug/field/item_test.inc"
+INCLUDE "engine/debug/field/item_test.asm"
 
 FieldDebug_PCMenu:
 	callfar PokemonCenterPC
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
-INCLUDE "engine/debug/field/pokemart_menu.inc"
+INCLUDE "engine/debug/field/pokemart_menu.asm"
 
-INCLUDE "engine/debug/field/teleport.inc"
+INCLUDE "engine/debug/field/teleport.asm"
 
-INCLUDE "engine/debug/field/minigames.inc"
+INCLUDE "engine/debug/field/minigames.asm"
 
 FieldDebug_VRAMViewer:
 	call FieldDebug_DoVRAMViewer
@@ -103,10 +103,10 @@ FieldDebug_ClearEventFlags:
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
-INCLUDE "engine/debug/field/unused_flag_menu.inc"
+INCLUDE "engine/debug/field/unused_flag_menu.asm"
 
-INCLUDE "engine/debug/field/unused_show_mon.inc"
+INCLUDE "engine/debug/field/unused_show_mon.asm"
 
-INCLUDE "engine/debug/field/unused_priority_menu.inc"
+INCLUDE "engine/debug/field/unused_priority_menu.asm"
 
-INCLUDE "engine/debug/field/vram_viewer.inc"
+INCLUDE "engine/debug/field/vram_viewer.asm"

@@ -19,7 +19,7 @@ FieldDebugMenuHeader:
 	dw PlaceMenuStrings
 	dw FieldDebug_MenuStrings
 
-INCLUDE "data/debug/field_debug_entries.inc"
+INCLUDE "data/debug/field_debug_entries.asm"
 
 FieldDebugMenu::
 	call RefreshScreen
@@ -173,4 +173,4 @@ FieldDebug_ShowTrainerCard: ; unreferenced?
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
-INCLUDE "engine/debug/field/change_transportation.inc"
+INCLUDE "engine/debug/field/change_transportation.asm"

@@ -5,7 +5,7 @@ Unreferenced_FieldMoveMenu:
 	call VerticalMenu
 	ret
 
-INCLUDE "data/mon_menu.inc"
+INCLUDE "data/mon_menu.asm"
 
 MonSubmenu::
 	xor a

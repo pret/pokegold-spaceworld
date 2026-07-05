@@ -331,5 +331,5 @@ Battle_GetTrainerName:
 	call CopyBytes
 	ret
 
-INCLUDE "data/trainers/party_pointers.inc"
-INCLUDE "data/trainers/parties.inc"
+INCLUDE "data/trainers/party_pointers.asm"
+INCLUDE "data/trainers/parties.asm"

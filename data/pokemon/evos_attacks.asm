@@ -5,7 +5,7 @@
 ; so its data is corrupt. (See EeveeEvosAttacks.)
 
 
-INCLUDE "data/pokemon/evos_attacks_pointers.inc"
+INCLUDE "data/pokemon/evos_attacks_pointers.asm"
 
 
 EvosAttacks::

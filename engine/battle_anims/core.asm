@@ -301,4 +301,4 @@ _QueueBGEffect:
 	callfar QueueBGEffect
 	ret
 
-INCLUDE "data/battle_anims/objects.inc"
+INCLUDE "data/battle_anims/objects.asm"

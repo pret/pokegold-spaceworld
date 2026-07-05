@@ -1,7 +1,7 @@
 SECTION "SGB GFX", ROMX
 
-INCLUDE "data/pokemon/palettes.inc"
-INCLUDE "data/sgb/super_palettes.inc"
+INCLUDE "data/pokemon/palettes.asm"
+INCLUDE "data/sgb/super_palettes.asm"
 
 if DEF(_GOLD)
 AlternateSGBBorderTilemap::

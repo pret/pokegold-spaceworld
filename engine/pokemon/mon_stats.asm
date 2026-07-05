@@ -82,7 +82,7 @@ DrawHP:
 	pop de
 	ret
 
-INCLUDE "engine/pokemon/stats_screen.inc"
+INCLUDE "engine/pokemon/stats_screen.asm"
 
 ; Prints a text box containing wTempMon's stats.
 ; If d = 0, print it closer to the middle. Else, print it on the side.

@@ -1627,7 +1627,7 @@ Pokedex_ABCMode:
 .done
 	ret
 
-INCLUDE "data/pokemon/dex_order_alpha.inc"
+INCLUDE "data/pokemon/dex_order_alpha.asm"
 
 Pokedex_SlowpokeAnimation:
 	call Pokedex_PlaceSlowpoke

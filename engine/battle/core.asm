@@ -2963,7 +2963,7 @@ HandleStatBoostingHeldItems:
 	pop hl
 	ret
 
-INCLUDE "data/battle/held_stat_up.inc"
+INCLUDE "data/battle/held_stat_up.asm"
 
 UseItemFailedText:
 	text "<USER>が　そうびしていた"
@@ -4970,7 +4970,7 @@ ApplyStatLevelMultiplier:
 	ret
 
 StatLevelMultipliers_Applied:
-	INCLUDE "data/battle/stat_multipliers.inc"
+	INCLUDE "data/battle/stat_multipliers.asm"
 
 ; Checks every odd-numbered badge, and triggers their corresponding boosts.
 ; Stat boosts are identical to Gen 1, with Special Attack replacing Special.

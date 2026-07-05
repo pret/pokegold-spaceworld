@@ -125,4 +125,4 @@ _DebugMenuSoundTest::
 	text "　"
 	done
 
-INCLUDE "data/sound_test_text_pointers.inc"
+INCLUDE "data/sound_test_text_pointers.asm"

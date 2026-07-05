@@ -25,4 +25,4 @@ GetPredefPointer::
 	ld d, [hl]
 	ret
 
-INCLUDE "data/predef_pointers.inc"
+INCLUDE "data/predef_pointers.asm"

@@ -265,4 +265,4 @@ ReadMonMenuIcon:
 	ld a, $00
 	ret
 
-INCLUDE "data/pokemon/menu_icons.inc"
+INCLUDE "data/pokemon/menu_icons.asm"

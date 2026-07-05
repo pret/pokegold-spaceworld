@@ -77,4 +77,4 @@ GetTypeName::
 	ld bc, TYPE_NAME_LENGTH
 	jp CopyBytes
 
-INCLUDE "data/types/names.inc"
+INCLUDE "data/types/names.asm"

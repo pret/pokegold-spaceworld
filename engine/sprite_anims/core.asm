@@ -473,11 +473,11 @@ LoadSpriteAnimGFX::
 	pop bc
 	ret
 
-INCLUDE "data/sprite_anims/objects.inc"
-INCLUDE "engine/sprite_anims/functions.inc"
-INCLUDE "data/sprite_anims/framesets.inc"
-INCLUDE "data/sprite_anims/oam.inc"
-INCLUDE "data/sprite_anims/gfx.inc"
+INCLUDE "data/sprite_anims/objects.asm"
+INCLUDE "engine/sprite_anims/functions.asm"
+INCLUDE "data/sprite_anims/framesets.asm"
+INCLUDE "data/sprite_anims/oam.asm"
+INCLUDE "data/sprite_anims/gfx.asm"
 
 Sprites_Cosine:
 ; a = d * cos(a * pi/32)

@@ -50,5 +50,5 @@ Unreferenced_GetLinkBattlePic:
 	ld [hl], d
 	ret
 
-INCLUDE "data/trainers/attributes.inc"
-INCLUDE "data/trainers/class_names.inc"
+INCLUDE "data/trainers/attributes.asm"
+INCLUDE "data/trainers/class_names.asm"

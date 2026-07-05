@@ -920,6 +920,6 @@ SGBDelayCycles:
 	jr nz, .wait
 	ret
 
-INCLUDE "data/sgb/blk_packets.inc"
-INCLUDE "data/sgb/pal_packets.inc"
-INCLUDE "data/sgb/ctrl_packets.inc"
+INCLUDE "data/sgb/blk_packets.asm"
+INCLUDE "data/sgb/pal_packets.asm"
+INCLUDE "data/sgb/ctrl_packets.asm"

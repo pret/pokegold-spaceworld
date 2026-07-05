@@ -18,4 +18,4 @@ GetGen1TrainerClassName: ; unreferenced
 	jr nz, .copy
 	ret
 
-INCLUDE "data/trainers/gen1_class_names.inc"
+INCLUDE "data/trainers/gen1_class_names.asm"

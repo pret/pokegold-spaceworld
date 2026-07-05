@@ -675,7 +675,7 @@ AI_Smart_Encore:
 	ld [hl], a
 	ret
 
-INCLUDE "data/battle/ai/encore_moves.inc"
+INCLUDE "data/battle/ai/encore_moves.asm"
 
 AI_Smart_PainSplit:
 ; Discourage this move if [enemy's current HP * 2 > player's current HP].
@@ -939,7 +939,7 @@ AIHasMoveInArray:
 	pop hl
 	ret
 
-INCLUDE "data/battle/ai/useful_moves.inc"
+INCLUDE "data/battle/ai/useful_moves.asm"
 
 AI_Opportunist:
 ; Discourage stall moves when the enemy's HP is low.
@@ -988,7 +988,7 @@ AI_Opportunist:
 .done
 	ret
 
-INCLUDE "data/battle/ai/stall_moves.inc"
+INCLUDE "data/battle/ai/stall_moves.asm"
 
 AI_Aggressive:
 ; Use whatever does the most damage.
@@ -1104,7 +1104,7 @@ AI_Aggressive:
 .done
 	ret
 
-INCLUDE "data/battle/ai/reckless_moves.inc"
+INCLUDE "data/battle/ai/reckless_moves.asm"
 
 AI_Cautious:
 ; Discourage moves with residual effects after the first turn.
@@ -1145,7 +1145,7 @@ AI_Cautious:
 .return
 	ret
 
-INCLUDE "data/battle/ai/residual_moves.inc"
+INCLUDE "data/battle/ai/residual_moves.asm"
 
 AI_None:
 	ret

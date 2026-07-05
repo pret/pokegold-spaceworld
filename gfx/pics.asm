@@ -44,7 +44,7 @@ TwinsPic::            INCBIN "gfx/trainer/twins.pic"
 
 SECTION "Pic Banks", ROMX
 
-INCLUDE "gfx/pokemon/pkmn_pic_banks.inc"
+INCLUDE "gfx/pokemon/pkmn_pic_banks.asm"
 
 
 SECTION "Pics 1", ROMX
@@ -594,7 +594,7 @@ LeafyPicBack::        INCBIN "gfx/pokemon/leafy/back.pic"
 
 SECTION "Annon Pic Ptrs and Pics", ROMX
 
-INCLUDE "gfx/pokemon/annon_pic_ptrs.inc"
+INCLUDE "gfx/pokemon/annon_pic_ptrs.asm"
 
 AnnonPics::
 AnnonAPicFront::      INCBIN "gfx/pokemon/annon_a/front.pic"

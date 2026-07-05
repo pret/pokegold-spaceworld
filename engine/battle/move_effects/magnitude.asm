@@ -30,4 +30,4 @@ MagnitudeText:
 	text "！！"
 	prompt
 
-INCLUDE "data/moves/magnitude_power.inc"
+INCLUDE "data/moves/magnitude_power.asm"

@@ -143,4 +143,4 @@ GetMoveGrammar:
 	pop bc
 	ret
 
-	INCLUDE "data/moves/grammar.inc"
+	INCLUDE "data/moves/grammar.asm"

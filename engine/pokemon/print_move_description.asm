@@ -13,4 +13,4 @@ PrintMoveDescription::
 	pop hl
 	jp PlaceString
 
-INCLUDE "data/moves/descriptions.inc"
+INCLUDE "data/moves/descriptions.asm"

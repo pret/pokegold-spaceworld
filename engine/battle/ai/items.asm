@@ -33,7 +33,7 @@ AI_SwitchOrTryItem::
 	call Random
 	jp hl
 
-INCLUDE "data/trainers/ai_pointers.inc"
+INCLUDE "data/trainers/ai_pointers.asm"
 
 JugglerAI:
 	cp 25 percent + 1

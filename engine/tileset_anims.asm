@@ -24,7 +24,7 @@ _AnimateTileset::
 	ld l, a
 	jp hl
 
-INCLUDE "data/tileset_anims.inc"
+INCLUDE "data/tileset_anims.asm"
 
 WaitTileAnimation:
 ; Do nothing this frame.

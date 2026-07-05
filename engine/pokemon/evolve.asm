@@ -548,4 +548,4 @@ EvoFlagAction:
 	pop de
 	ret
 
-INCLUDE "engine/movie/evolution_animation.inc"
+INCLUDE "engine/movie/evolution_animation.asm"

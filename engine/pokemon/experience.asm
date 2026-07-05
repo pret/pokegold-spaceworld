@@ -155,4 +155,4 @@ CalcExpAtLevel::
 	ldh [hMultiplier], a
 	jp Multiply
 
-INCLUDE "data/growth_rates.inc"
+INCLUDE "data/growth_rates.asm"

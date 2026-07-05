@@ -350,4 +350,4 @@ MinorObjectAnim_BoulderDust:
 	ld [hl], a
 	ret
 
-INCLUDE "data/sprites/minor_object_sprites.inc"
+INCLUDE "data/sprites/minor_object_sprites.asm"

@@ -36,4 +36,4 @@ ConvertMon_1to2::
 	pop bc
 	ret
 
-INCLUDE "data/pokemon/gen1_order.inc"
+INCLUDE "data/pokemon/gen1_order.asm"

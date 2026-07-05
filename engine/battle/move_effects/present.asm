@@ -46,4 +46,4 @@ BattleCommand_Present:
 	callfar RestoreHP
 	jp EndMoveEffect
 
-INCLUDE "data/moves/present_power.inc"
+INCLUDE "data/moves/present_power.asm"

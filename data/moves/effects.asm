@@ -1,4 +1,4 @@
-INCLUDE "data/moves/effects_pointers.inc"
+INCLUDE "data/moves/effects_pointers.asm"
 
 NormalHit:
 	checkobedience
