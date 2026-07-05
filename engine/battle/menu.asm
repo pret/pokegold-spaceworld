@@ -74,7 +74,7 @@ Battle_2DMenu:
 	ld c, a
 	ld a, [wMenuCursorY]
 	dec a
-	call .GetNewCursorPos
+	call .GetNewCursorOffset
 	ld c, a
 	ld a, [wMenuCursorX]
 	add c
