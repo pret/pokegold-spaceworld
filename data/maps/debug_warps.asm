@@ -1,5 +1,3 @@
-INCLUDE "data/maps/landmark_names.asm"
-
 WarpMenuOptions::
 
 	db 16 ; Number of options in the menu - 43 total stored in data, but most are unused

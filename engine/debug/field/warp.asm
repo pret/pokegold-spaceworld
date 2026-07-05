@@ -74,6 +74,7 @@ GetLandmarkName::
 	ld e, l
 	ret
 
+INCLUDE "data/maps/landmark_names.asm"
 INCLUDE "data/maps/debug_warps.asm"
 
 FieldDebug_ShowWarpToText:
