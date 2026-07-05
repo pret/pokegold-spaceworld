@@ -88,9 +88,7 @@ GroupHealingMachineSprites::
 	ret
 
 .group:
-	nop
-	sub a, h
-	add hl, de
+	dba ObjectUseOBP0
 
 UngroupHealingMachineSprites:
 	ld hl, .ungroup
@@ -100,6 +98,4 @@ UngroupHealingMachineSprites:
 	ret
 
 .ungroup:
-	nop
-	sbc a
-	add hl, de
+	dba ObjectUseOBP1
