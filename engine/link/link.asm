@@ -1318,7 +1318,7 @@ ValidateOTTrademon:
 	cp MAX_LEVEL + 1
 	jr nc, .invalid
 	ld a, [wLinkMode]
-	cp $01
+	cp LINK_TIMECAPSULE
 	jr nz, .valid
 	ld hl, wOTPartySpecies
 	ld a, [wCurOTTradePartyMon]
