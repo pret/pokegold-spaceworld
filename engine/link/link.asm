@@ -1315,7 +1315,7 @@ ValidateOTTrademon:
 	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
-	cp $65
+	cp MAX_LEVEL + 1
 	jr nc, .invalid
 	ld a, [wLinkMode]
 	cp $01
