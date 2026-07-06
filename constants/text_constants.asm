@@ -30,7 +30,7 @@ DEF TEXTBOX_INNERX EQU TEXTBOX_X + 1
 DEF TEXTBOX_Y      EQU SCREEN_HEIGHT - TEXTBOX_HEIGHT
 DEF TEXTBOX_INNERY EQU TEXTBOX_Y + 2
 
-; PrintNumber bit flags (see home/print_num.asm)
+; PrintNumber, PrintBCDNumber bit flags (see home/print_num.asm and home/print_bcd.asm)
 	const_def 6
 	shift_const PRINTNUM_LEFTALIGN    ; 6
 	shift_const PRINTNUM_LEADINGZEROS ; 7
