@@ -314,11 +314,11 @@ PlaceDexEnd::
 
 PromptText::
 	ld a, [wLinkMode]
-	cp $3
-	jp z, Function1026
+	cp LINK_COLOSSEUM
+	jp z, DoneTextLinkMode
 	ld a, '▼'
 	ldcoord_a 18, 17
-Function1026::
+DoneTextLinkMode::
 	call ProtectedWaitBGMap
 	call ButtonSound
 	ld a, '─'
@@ -535,7 +535,7 @@ Text_WAIT_BUTTON::
 ; show arrow
 ; [06]
 	ld a, [wLinkMode]
-	cp $03
+	cp LINK_COLOSSEUM
 	jp z, Text_TX_LINK_WAIT_BUTTON
 	ld a, '▼'
 	ldcoord_a TEXTBOX_WIDTH - 2, TEXTBOX_Y + TEXTBOX_HEIGHT - 1
