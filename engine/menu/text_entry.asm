@@ -146,7 +146,7 @@ GetNamingScreenSetup:
 	depixel 4, 4, 4, 0
 	ld a, SPRITE_ANIM_OBJ_MAP_CHARACTER_ICON
 	call InitSpriteAnimStruct
-	ld hl, $0001
+	ld hl, 1
 	add hl, bc
 	ld [hl], $00
 	hlcoord 5, 2
@@ -159,13 +159,13 @@ GetNamingScreenSetup:
 	db "バンク　の　なまえは？@"
 
 .LoadSprite:
-; copies the sprite at de into the top of VRAM, as well as the sprite $C0 after de
+; copies the walking sprite at de into the top of VRAM
 	push de
 	ld hl, vChars0
 	lb bc, BANK(GoldSpriteGFX), $04
 	call Request2bpp
 	pop de
-	ld hl, $00C0
+	ld hl, 12 tiles
 	add hl, de
 	ld e, l
 	ld d, h
@@ -359,7 +359,7 @@ NamingScreen_AnimateCursor:
 	ret
 
 .rightjump
-	ld hl, $000C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	cp $0E
@@ -372,7 +372,7 @@ NamingScreen_AnimateCursor:
 	jr .escape
 
 .leftjump
-	ld hl, $000C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -384,7 +384,7 @@ NamingScreen_AnimateCursor:
 	jr .escape
 
 .downjump
-	ld hl, $000D
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	cp $07
@@ -396,7 +396,7 @@ NamingScreen_AnimateCursor:
 	jr .escape
 
 .upjump ; :24
-	ld hl, $000D
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -407,24 +407,24 @@ NamingScreen_AnimateCursor:
 	ld [hl], $07
 	jr .escape
 .escape
-	ld hl, $000C
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld e, [hl]
 	ld d, $00
 	ld hl, LetterOffsetsTable1
 	add hl, de
 	ld a, [hl]
-	ld hl, $0006
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
-	ld hl, $000D
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld e, [hl]
 	ld d, $00
 	ld hl, LetterOffsetsTable2
 	add hl, de
 	ld a, [hl]
-	ld hl, $0007
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	ret
@@ -575,10 +575,10 @@ NamingScreenGetLastCharacter:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld hl, $0006
+	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0004
+	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
 	add a, [hl]
 	sub $08
@@ -586,10 +586,10 @@ NamingScreenGetLastCharacter:
 	srl a
 	srl a
 	ld e, a
-	ld hl, $0007
+	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0005
+	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	add a, [hl]
 	sub $10
@@ -598,7 +598,7 @@ NamingScreenGetLastCharacter:
 	srl a
 	ld d, a
 	hlcoord 0, 0
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 .loop
 	ld a, d
 	and a
@@ -725,7 +725,7 @@ ComposeMailMessage:
 	call LoadNamingScreenGFX
 	ld de, vChars0
 	ld hl, MailIconGFX
-	ld bc, $0080
+	ld bc, 8 tiles
 	ld a, BANK(MailIconGFX)
 	call FarCopyData
 	ld a, 8
@@ -735,7 +735,7 @@ ComposeMailMessage:
 	depixel 4, 4, 4, 0
 	ld a, SPRITE_ANIM_OBJ_RHYDON_ICON
 	call InitSpriteAnimStruct
-	ld hl, $0002
+	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], 0
 	depixel 11, 3, 0, 0
@@ -760,7 +760,7 @@ ComposeMailMessage:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0010
+	ld hl, MAIL_LINE_LENGTH
 	add hl, de
 	ld [hl], '<NEXT>'
 	ret
@@ -978,7 +978,7 @@ SetupMail:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0010
+	ld hl, MAIL_LINE_LENGTH
 	add hl, de
 	ld [hl], '<NEXT>'
 	ret

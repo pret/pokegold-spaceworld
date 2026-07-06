@@ -1813,7 +1813,7 @@ BattleCommand_CheckHit:
 	ldh [hPrintNumDivisor], a
 	ld b, 4
 	call Divide
-	; minimum accuracy is $0001
+	; minimum accuracy is 1 (nonzero)
 	ldh a, [hQuotient + 3]
 	ld b, a
 	ldh a, [hQuotient + 2]

@@ -550,7 +550,7 @@ GetMonSGBPaletteFlags:
 InitPartyMenuPalettes:
 	ld hl, BlkPacket_PartyMenu
 	ld de, wSGBPals + 1
-	ld bc, $0030
+	ld bc, 6 palettes
 	jp CopyBytes
 
 SGB_ApplyPartyMenuHPPals:
@@ -740,8 +740,8 @@ PushSGBBorder:
 	ret
 
 SGB_ClearVRAM:
-	ld hl, vChars0
-	ld bc, $2000
+	ld hl, STARTOF(VRAM)
+	ld bc, SIZEOF(VRAM)
 	xor a
 	call ByteFill
 	ret
@@ -802,7 +802,7 @@ SGBBorder_PushBGPals:
 	ldh [rBGP], a
 	ld hl, SuperPalettes
 	ld de, vChars1
-	ld bc, $1000
+	ld bc, $100 tiles
 	call CopyData
 	call DrawDefaultTiles
 	ld a, $e3

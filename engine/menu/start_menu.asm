@@ -1252,7 +1252,7 @@ PartyMailMenu:
 	jp c, .exit
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1 + MON_ITEM
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
 	ld [wCurItem], a
@@ -1506,7 +1506,7 @@ SummaryDrawPoke:
 	predef CopyMonToTempMon
 	ld hl, wTempMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, $28
 	ld [wHPBarMaxHP], a
@@ -1620,13 +1620,13 @@ PartySelectionInputs:
 	jr .DrawMovePokeText
 .swap
 	ld hl, wPartyMon1 + MON_MOVES
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	push hl
 	call SwapEntries
 	pop hl
-	ld bc, $0015
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	call SwapEntries
 	ld a, [wBattleMode]
@@ -1915,10 +1915,10 @@ TrainerCardMainPage:
 	call TrainerCardDrawProtag
 	call DisableLCD
 	call PlaceMiscTilesTrainerCard
-	ld hl, TrainerCardBorderGFX
+	ld hl, AllTrainerCardGFX
 	ld de, vTileset
-	ld bc, $0240
-	ld a, BANK(TrainerCardBorderGFX)
+	ld bc, AllTrainerCardGFXEnd - AllTrainerCardGFX
+	ld a, BANK(AllTrainerCardGFX)
 	call FarCopyData
 	call DrawTrainerCardMainPage
 	call EnableLCD
@@ -2030,7 +2030,7 @@ TrainerCardBadgePage:
 	call DisableLCD
 	ld hl, TrainerCardLeadersGFX
 	ld de, vTileset
-	ld bc, $07F0
+	ld bc, TrainerCardLeadersGFXEnd - TrainerCardLeadersGFX
 	ld a, BANK(TrainerCardLeadersGFX)
 	call FarCopyData
 	call ClearTileMap
@@ -2066,7 +2066,7 @@ TrainerCardDrawProtag:
 	call OpenSRAM
 	ld hl, sSpriteBuffer1
 	ld de, sSpriteBuffer0
-	ld bc, $0310
+	ld bc, 7 * 7 tiles
 	call CopyBytes
 	call CloseSRAM
 	ld de, vChars2 tile $30
@@ -2252,18 +2252,17 @@ PlaceTrainerCardBGTile:
 	jr nz, .LastLoop
 	ret
 
+AllTrainerCardGFX:
 TrainerCardBorderGFX:
 INCBIN "gfx/trainer_card/border.2bpp"
-
 TrainerCardGFX::
 INCBIN "gfx/trainer_card/trainer_card.2bpp"
-
 TrainerCardColonGFX:
 INCBIN "gfx/trainer_card/colon.2bpp"
-
 TrainerCardIDNoGFX:
 INCBIN "gfx/trainer_card/id_no.2bpp"
-.End:
+AllTrainerCardGFXEnd:
 
 TrainerCardLeadersGFX:
 INCBIN "gfx/trainer_card/leaders.2bpp"
+TrainerCardLeadersGFXEnd:

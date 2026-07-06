@@ -253,7 +253,7 @@ ListMovePP::
 	pop de
 	pop hl
 	push hl
-	ld bc, $0014
+	ld bc, wTempMonPP - (wTempMonMoves + 1)
 	add hl, bc
 	ld a, [hl]
 	and $3f

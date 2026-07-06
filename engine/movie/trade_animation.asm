@@ -702,7 +702,7 @@ TradeAnim_GetNickname:
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	pop de
-	ld bc, $0006
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ret
 

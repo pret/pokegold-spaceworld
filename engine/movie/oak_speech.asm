@@ -723,7 +723,7 @@ IntroDisplayPicCenteredOrUpperRight::
 	ld bc, DOUBLESPRITEBUFFERSIZE
 	call CopyBytes
 	call CloseSRAM
-	ld de, VRAM_Begin + $1000
+	ld de, vFrontPic
 	call InterlaceMergeSpriteBuffers
 	pop hl
 	xor a

@@ -68,7 +68,7 @@ OldCityPokecenter2FText4:
 	ld hl, OldCityPokecenter2FMovement1
 	ld a, $5
 	call LoadMovementDataPointer_KeepStateFlags
-	ld hl, $0000
+	ld hl, NULL
 	nop
 .done
 	ret

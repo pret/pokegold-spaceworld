@@ -534,7 +534,7 @@ PokerMinigame_PlaceCards:
 .Flipped:
 	pop hl
 	ld de, PokerMinigame_ReverseData
-	ld bc, $0604
+	lb bc, $06, $04
 .Flipped_Loop:
 	push bc
 .Flipped_Loop1:
@@ -1019,7 +1019,7 @@ PokerMinigame_BetAmount:
 	dec [hl]
 .SetBet:
 	push bc
-	ld de, $0030
+	ld de, SFX_PAY_DAY
 	call PlaySFX
 	pop bc
 	ld a, c
@@ -1103,7 +1103,7 @@ PokerMinigame_GetPayout:
 
 PokerMinigame_HudTextbox:
 	hlcoord 11, 12
-	ld bc, $0407
+	lb bc, $04, $07
 	call DrawTextBox
 
 	ld de, .ExchangeText

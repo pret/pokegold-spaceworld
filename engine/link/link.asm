@@ -1293,7 +1293,7 @@ LinkMonStatsScreen:
 ValidateOTTrademon:
 	ld a, [wCurOTTradePartyMon]
 	ld hl, wOTPartyMons
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
 	ld a, [wCurOTTradePartyMon]
@@ -1546,7 +1546,7 @@ LinkTrade:
 ; ID
 	ld hl, wPartyMon1ID
 	ld a, [wCurTradePartyMon]
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hli]
 	ld [wPlayerTrademonID], a
@@ -1577,7 +1577,7 @@ LinkTrade:
 ; ID
 	ld hl, wOTPartyMon1ID
 	ld a, [wCurOTTradePartyMon]
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hli]
 	ld [wOTTrademonID], a
@@ -1606,10 +1606,10 @@ LinkTrade:
 	ld [wCurPartySpecies], a
 	ld hl, wOTPartyMons
 	ld a, c
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld de, wTempMon
-	ld bc, $0030
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	predef AddTempmonToParty
 	ld a, [wPartyCount]

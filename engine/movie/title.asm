@@ -493,7 +493,7 @@ PrintPokemonLogo::
 	ld [hl], $B9
 	coord hl, 1, 2
 	ld a, $80
-	ld bc, $0E04
+	lb bc, 14, 4
 
 PrintBoxArea::
 	ld de, SCREEN_WIDTH
@@ -578,11 +578,11 @@ IntroCopyRightInfo_Text::
 
 Set_HoOh::
 	coord hl, 7, 9
-	ld de, $000D
+	ld de, SCREEN_WIDTH - 7
 	ld a, $00
-	ld b, $07
+	ld b, 7
 .loop
-	ld c, $07
+	ld c, 7
 .loop2
 	ld [hli], a
 	inc a
