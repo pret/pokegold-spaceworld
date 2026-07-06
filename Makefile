@@ -153,11 +153,6 @@ pokesilver%.gb: RGBFIXFLAGS += -t POKEMON2SILVER
 
 ### Misc file-specific graphics rules
 
-gfx/sgb/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
-gfx/sgb/sgb_border_gold.2bpp: tools/gfx += --trim-whitespace
-gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
-gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
-
 gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
 
 gfx/minigames/slots_1.2bpp: tools/gfx += --trim-whitespace
@@ -196,7 +191,15 @@ gfx/evo/bubbles.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whites
 
 gfx/trade/game_boy.2bpp: tools/gfx += --remove-duplicates --preserve=0x23,0x27
 
-gfx/sgb/%.sgb.tilemap: gfx/sgb/%.bin ; tr < $< -d '\000' > $@
+gfx/sgb/sgb_border_alt.2bpp: tools/gfx += --trim-whitespace
+gfx/sgb/sgb_border_gold.2bpp: tools/gfx += --trim-whitespace
+gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
+gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
+
+gfx/sgb/sgb_border_alt_gold.sgb.tilemap: gfx/sgb/sgb_border_alt_gold.bin ; tr < $< -d '\000' > $@
+gfx/sgb/sgb_border_alt_silver.sgb.tilemap: gfx/sgb/sgb_border_alt_silver.bin ; tr < $< -d '\000' > $@
+gfx/sgb/sgb_border_gold.sgb.tilemap: gfx/sgb/sgb_border_gold.bin ; tr < $< -d '\000' > $@
+gfx/sgb/sgb_border_silver.sgb.tilemap: gfx/sgb/sgb_border_silver.bin ; tr < $< -d '\000' > $@
 
 
 ### Catch-all graphics rules
