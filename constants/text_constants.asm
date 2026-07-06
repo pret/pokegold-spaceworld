@@ -30,16 +30,10 @@ DEF TEXTBOX_INNERX EQU TEXTBOX_X + 1
 DEF TEXTBOX_Y      EQU SCREEN_HEIGHT - TEXTBOX_HEIGHT
 DEF TEXTBOX_INNERY EQU TEXTBOX_Y + 2
 
-; PrintNum bit flags
-	const_def 5
-	const PRINTNUM_MONEY_F        ; 5
-	const PRINTNUM_RIGHTALIGN_F   ; 6
-	const PRINTNUM_LEADINGZEROS_F ; 7
-
-; PrintNum arguments (see engine/math/print_num.asm)
-DEF PRINTNUM_MONEY          EQU 1 << PRINTNUM_MONEY_F
-DEF PRINTNUM_RIGHTALIGN     EQU 1 << PRINTNUM_RIGHTALIGN_F
-DEF PRINTNUM_LEADINGZEROS   EQU 1 << PRINTNUM_LEADINGZEROS_F
+; PrintNumber, PrintBCDNumber bit flags (see home/print_num.asm and home/print_bcd.asm)
+	const_def 6
+	shift_const PRINTNUM_LEFTALIGN    ; 6
+	shift_const PRINTNUM_LEADINGZEROS ; 7
 
 ; character sets (see constants/charmap.asm)
 DEF FIRST_REGULAR_TEXT_CHAR EQU $60

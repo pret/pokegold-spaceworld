@@ -169,7 +169,7 @@ RunTradeAnimScript:
 	ld de, vChars0
 	call TradeAnim_GetFrontpic
 	ld a, [wOTTrademonSpecies]
-	ld de, $8310
+	ld de, vChars0 tile $31
 	call TradeAnim_GetFrontpic
 	ld a, [wPlayerTrademonSpecies]
 	ld de, wPlayerTrademonSpeciesName
@@ -1186,9 +1186,9 @@ LoadTradeBallAndCableGFX:
 LoadTradeBubbleGFX:
 	ld e, MONICON_TRADE
 	callfar LoadMenuMonIcon
-	ld de, $5991
+	ld de, TradeBubbleGFX
 	ld hl, vChars0 tile $72
-	ld bc, $0a04
+	lb bc, BANK(TradeBubbleGFX), 4
 	call Request2bpp
 	ld a, $08
 	ld hl, wSpriteAnimDict

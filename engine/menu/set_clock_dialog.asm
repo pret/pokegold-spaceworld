@@ -317,7 +317,7 @@ SetClockDialog_PrintDayOfWeek:
 
 SetClockDialog_PrintNumber:
 	push hl
-	ld a, $7f
+	ld a, '　'
 	ld [hli], a
 	ld [hl], a
 	pop hl

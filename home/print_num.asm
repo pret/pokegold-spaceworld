@@ -224,7 +224,7 @@ PrintNumber::
 	ret
 .PrintLeadingZero:
 ; prints a leading zero unless they are turned off in the flags
-	bit 7, d
+	bit PRINTNUM_LEADINGZEROS_F, d
 	ret z
 	ld [hl], '０'
 	ret
@@ -232,13 +232,13 @@ PrintNumber::
 .AdvancePointer:
 ; increments the pointer unless leading zeroes are not being printed,
 ; the number is left-aligned, and no nonzero digits have been printed yet
-	bit 7, d      ; print leading zeroes?
+	bit PRINTNUM_LEADINGZEROS_F, d
 	jr nz, .inc
-	bit 6, d      ; left alignment or right alignment?
+	bit PRINTNUM_LEFTALIGN_F, d
 	jr z, .inc
 	ldh a, [hPrintNumLeadingDigit]
 	and a
-	ret z         ; don't advance if leading digit is zero
+	ret z ; don't advance if leading digit is zero
 .inc
 	inc hl
 	ret

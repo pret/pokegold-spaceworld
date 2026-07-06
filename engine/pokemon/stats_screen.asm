@@ -103,7 +103,7 @@ LoadPinkPage::
 	inc hl
 
 	ld de, wMoveGrammar
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNumber
 	hlcoord 1, 8
 	call PrintLevel
@@ -212,13 +212,13 @@ LoadPinkPage::
 	ld [wTempMonLevel], a
 	ld de, wTempMonExp
 	hlcoord 12, 11
-	ld bc, $0307
+	lb bc, 3, 7
 	call PrintNumber
 
 	call .CalcExpToNextLevel
 	ld de, wExpToNextLevel
 	hlcoord 10, 13
-	ld bc, $0307
+	lb bc, 3, 7
 	call PrintNumber
 
 	hlcoord 9, 13
@@ -390,7 +390,7 @@ LoadBluePage::
 
 	hlcoord 12, 1
 	ld de, wTempMonID
-	ld bc, $8205
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNumber
 
 	ld hl, .OTPointers

@@ -88,7 +88,7 @@ PrintLevelFullWidth::
 _PrintLevelCommon:
 	ld [wTempSpecies], a
 	ld de, wTempSpecies
-	ld b, PRINTNUM_RIGHTALIGN | 1
+	ld b, PRINTNUM_LEFTALIGN | 1
 	jp PrintNumber
 
 GetNthMove:: ; unreferenced?

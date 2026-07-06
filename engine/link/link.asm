@@ -635,7 +635,7 @@ Link_PrepPartyData_Gen1:
 	push bc
 	ld b, $00
 	ld c, a
-	ld hl, $4CD7
+	ld hl, KantoMonSpecials
 	add hl, bc
 	ld a, [hl]
 	ld [wMonHBaseSpecialAtt], a
@@ -1079,8 +1079,8 @@ LinkTrade_TradeStatsMenu:
 	call PlaceString
 
 .joy_loop:
-	ld a, $7F
-	ld [$C3eb], a
+	ld a, '　'
+	ldcoord_a 11, 16
 	ld a, $13
 	ld [wMenuJoypadFilter], a
 	ld a, $01

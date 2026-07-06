@@ -76,7 +76,7 @@ DebugMart_BuyMenuHeader:
 	ld d, h
 	ld e, l
 	pop hl
-	ld c, $83
+	ld c, 3 | PRINTNUM_LEADINGZEROS
 	call PrintBCDNumber
 	ld [hl], '円'
 	ret

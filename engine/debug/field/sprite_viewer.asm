@@ -150,7 +150,7 @@ FieldDebug_SpriteViewer:
 .display_loop
 	push bc
 	push hl
-	ld bc, $8103
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	ld de, wStringBuffer1
 	call PrintNumber
 	ld a, [wStringBuffer1]

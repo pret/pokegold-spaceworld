@@ -701,7 +701,7 @@ Pokedex_PrintListing:
 	jr z, .unidentified
 
 	ld de, wTempByteValue
-	lb bc, (%10000000 | 1), 3
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNumber
 
 ; Here, only seen Pokémon are listed in the first place, so this effectively does nothing.

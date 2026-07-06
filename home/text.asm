@@ -588,7 +588,7 @@ Text_TX_NUM::
 	ld a, b
 	and $f0
 	swap a
-	set 6, a
+	set PRINTNUM_LEFTALIGN_F, a
 	ld b, a
 	call PrintNumber
 	ld b, h
@@ -630,11 +630,11 @@ Text_PlaySound::
 	inc hl
 	jr .loop
 .found
-	cp $14
+	cp TX_CRY_14
 	jr z, .playCry
-	cp $15
+	cp TX_CRY_15
 	jr z, .playCry
-	cp $16
+	cp TX_CRY_16
 	jr z, .playCry
 	push de
 	ld e, [hl]

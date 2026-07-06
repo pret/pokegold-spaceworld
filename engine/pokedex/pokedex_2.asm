@@ -842,7 +842,7 @@ PrintUnownListEntry:
 	ld l, c
 	ld h, b
 	ld de, wDexCurUnownIndex
-	lb bc, 1 | %10000000, 2
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNumber
 	ret
 
