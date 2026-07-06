@@ -196,10 +196,7 @@ gfx/sgb/sgb_border_gold.2bpp: tools/gfx += --trim-whitespace
 gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
 gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
 
-gfx/sgb/sgb_border_alt_gold.sgb.tilemap: gfx/sgb/sgb_border_alt_gold.bin ; tr < $< -d '\000' > $@
-gfx/sgb/sgb_border_alt_silver.sgb.tilemap: gfx/sgb/sgb_border_alt_silver.bin ; tr < $< -d '\000' > $@
-gfx/sgb/sgb_border_gold.sgb.tilemap: gfx/sgb/sgb_border_gold.bin ; tr < $< -d '\000' > $@
-gfx/sgb/sgb_border_silver.sgb.tilemap: gfx/sgb/sgb_border_silver.bin ; tr < $< -d '\000' > $@
+gfx/sgb/%.sgb.tilemap: gfx/sgb/%.bin ; LC_CTYPE=C LANG=C tr < $< -d '\000' > $@
 
 
 ### Catch-all graphics rules
