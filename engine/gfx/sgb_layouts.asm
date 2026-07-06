@@ -392,13 +392,14 @@ ApplyMapGroupPalette:
 	ld a, [wMapGroup]
 	ld e, a
 	ld d, $00
-	ld hl, MapGroupPalettes ; BUG: MapGroupPalettes overflows if "wMapGroup" is "MISC". This only
+	ld hl, MapGroupPalettes ; BUG: MapGroupPalettes overflows if "wMapGroup" reaches "MISC". This only
 	add hl, de              ; affects the Power Plant and Office maps which are normally incessible.
 	ld a, [hl]
 	ret
 
 MapGroupPalettes:
-	db PAL_TOWN_NORTH ; Dummy
+	table_width 1
+	db PAL_TOWN_NORTH ; 00
 	db PAL_TOWN_SILENTHILL ; Silent Hill
 	db PAL_TOWN_OLDCITY ; Old City
 	db PAL_TOWN_WEST ; West
@@ -414,6 +415,7 @@ MapGroupPalettes:
 	db PAL_TOWN_STAND ; Mt.Fuji
 	db PAL_TOWN_SOUTH ; South
 	db PAL_TOWN_NORTH ; North
+	assert_table_length NUM_MAP_GROUPS - 1 ; BUG: MISC and EMPTY are unaccounted for.
 
 _LoadSGBLayout_ReturnFromJumpTable:
 	push de

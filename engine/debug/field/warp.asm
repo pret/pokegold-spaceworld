@@ -50,11 +50,11 @@ DebugMenu_WarpMenuHeader::
 .MenuData2:
 	db 0 ; flags
 	db 4 ; items
-	dw $0100 ; dummy
+	dw $0100 ; ???
 	dba WarpMenuOptions
 	dba PlaceSelectedMapName
-	dba NULL ; dummy
-	dba NULL ; dummy
+	dba NULL ; placeholder
+	dba NULL ; placeholder
 
 PlaceSelectedMapName::
 	push de
