@@ -569,8 +569,8 @@ ROM0 bank #0:
 	         $1f8a = PlaceMenuStrings
 	         $1f9e = ClearWindowData
 	         $1fcc = ClearWindowData.ClearMenuData
-	         $1fd4 = RefreshScreen
-	         $1fea = ScreenCleanup
+	         $1fd4 = ReanchorMap
+	         $1fea = CloseText
 	         $1ff4 = InitOptions
 	         $2007 = LoadSGBBorderOptions
 	         $2018 = EnableToolgear
@@ -680,8 +680,8 @@ ROM0 bank #0:
 	         $2702 = InitObjectMasks.next
 	         $2714 = InitObjectMasks.null
 	         $271e = InitObjectMasks.done
-	         $271f = RestoreFacingAfterWarp
-	         $2740 = RestoreFacingAfterWarp.unreferenced_pass
+	         $271f = GetWarpDestCoords
+	         $2740 = GetWarpDestCoords.unreferenced_pass
 	         $275c = GetCoordOfUpperLeftCorner
 	         $276c = GetCoordOfUpperLeftCorner.increment_then_halve1
 	         $2770 = GetCoordOfUpperLeftCorner.resume
@@ -884,8 +884,8 @@ ROM0 bank #0:
 	         $3307 = ByteFill.start_filling
 	         $3308 = ByteFill.loop
 	         $3310 = UncompressSpriteFromDE
-	         $3319 = BackUpTilesToBuffer
-	         $3325 = ReloadTilesFromBuffer
+	         $3319 = LoadTilemapToTempTilemap
+	         $3325 = SafeLoadTempTilemapToTilemap
 	         $3339 = CopyStringToStringBuffer2
 	         $333c = CopyString
 	         $3344 = Multiply
@@ -2280,7 +2280,7 @@ ROMX bank #3:
 	         $443d = CheckMovementWalkWarp.left
 	         $444b = CheckMovementWalkWarp.right
 	         $4459 = CheckMovementWalkWarp.moved_out_of_bounds
-	         $445a = CheckMovementWalkMisc
+	         $445a = CheckMovementWalkSubgame
 	         $445d = CheckMovementWalkSpecial
 	         $4460 = CheckMovementWalkRegular
 	         $4479 = CheckMovementWalkJump
@@ -3740,7 +3740,7 @@ ROMX bank #8:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #9:
-	SECTION: $4000-$4d73 ($0d74 bytes) ["bank9"]
+	SECTION: $4000-$4d73 ($0d74 bytes) ["Menu"]
 	         $4000 = _PushWindow
 	         $4010 = _PushWindow.loop
 	         $4028 = _PushWindow.backup_tiles
@@ -3950,7 +3950,7 @@ ROMX bank #9:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #10:
-	SECTION: $4000-$59d0 ($19d1 bytes) ["bankA"]
+	SECTION: $4000-$59d0 ($19d1 bytes) ["Link Cable"]
 	         $4000 = StartLinkCommunications
 	         $400c = StartLinkCommunications.CallAndSetupLinkMode
 	         $400f = StartLinkCommunications.ExitLinkMode
@@ -4236,7 +4236,7 @@ ROMX bank #10:
 	         $5881 = TradeLinkCableGFX
 	         $5971 = TradeCableGFX
 	         $5991 = TradeBubbleGFX
-	SECTION: $59d1-$5a1e ($004e bytes) ["Maps 1"]
+	SECTION: $59d1-$5a1e ($004e bytes) ["Link Cable Maps"]
 	         $59d1 = UnusedGen1TradeCenter_MapAttributes
 	         $59dd = UnusedGen1TradeCenter_ScriptLoader
 	         $59de = UnusedGen1TradeCenter_TextPointers
@@ -4249,7 +4249,7 @@ ROMX bank #10:
 	         $5a08 = UnusedGen1ColosseumText1
 	         $5a0b = UnusedGen1Colosseum_Blocks
 	         $5a0b = UnusedGen1Colosseum_MapEvents
-	SECTION: $5a1f-$5f3d ($051f bytes) ["bankA_2"]
+	SECTION: $5a1f-$5f3d ($051f bytes) ["Link Cable 2"]
 	         $5a1f = CheckTimeCapsuleCompatibility
 	         $5a24 = CheckTimeCapsuleCompatibility.loop
 	         $5a30 = CheckTimeCapsuleCompatibility.checkitem
@@ -4310,7 +4310,7 @@ ROMX bank #10:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #11:
-	SECTION: $4000-$786e ($386f bytes) ["bankB"]
+	SECTION: $4000-$786e ($386f bytes) ["Item Descriptions"]
 	         $4000 = PrintItemDescription
 	         $4014 = ItemDescriptions
 	         $4212 = MasterBallDescription
@@ -8625,11 +8625,11 @@ ROMX bank #35:
 	         $48c4 = WipeLYOverrides
 	         $48ca = WipeLYOverrides.loop
 	         $48cf = StartTrainerBattle_DrawSineWave
-	         $48da = StartTrainerBattle_DrawSineWave.negative_u12
-	         $48e4 = StartTrainerBattle_DrawSineWave.apply_u12
-	         $48f3 = StartTrainerBattle_DrawSineWave.multiply_u12
-	         $48f8 = StartTrainerBattle_DrawSineWave.even_u12
-	         $4900 = StartTrainerBattle_DrawSineWave.sinetable_u12
+	         $48da = StartTrainerBattle_DrawSineWave.negative_u13
+	         $48e4 = StartTrainerBattle_DrawSineWave.apply_u13
+	         $48f3 = StartTrainerBattle_DrawSineWave.multiply_u13
+	         $48f8 = StartTrainerBattle_DrawSineWave.even_u13
+	         $4900 = StartTrainerBattle_DrawSineWave.sinetable_u13
 	         $4940 = EnterMapAnim_Old
 	         $496c = EnterMapAnim_Old.done
 	         $496f = EnterMapAnim_Old.dungeonWarpAnimation
@@ -8930,11 +8930,11 @@ ROMX bank #35:
 	         $6059 = Sprites_Cosine
 	         $6059 = SpriteAnimGFX.DeletedGFX
 	         $605b = Sprites_Sine
-	         $6066 = Sprites_Sine.negative_u13
-	         $6070 = Sprites_Sine.apply_u13
-	         $607f = Sprites_Sine.multiply_u13
-	         $6084 = Sprites_Sine.even_u13
-	         $608c = Sprites_Sine.sinetable_u13
+	         $6066 = Sprites_Sine.negative_u14
+	         $6070 = Sprites_Sine.apply_u14
+	         $607f = Sprites_Sine.multiply_u14
+	         $6084 = Sprites_Sine.even_u14
+	         $608c = Sprites_Sine.sinetable_u14
 	SECTION: $60cc-$70cb ($1000 bytes) ["Pokemon Party Sprites"]
 	         $60cc = PoliwagIcon
 	         $60cc = MenuMonIconGFX
@@ -9262,7 +9262,7 @@ ROMX bank #36:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #37:
-	SECTION: $4000-$4adc ($0add bytes) ["Maps 2"]
+	SECTION: $4000-$4adc ($0add bytes) ["Old City Maps"]
 	         $4000 = Route2Gate1F_MapAttributes
 	         $400b = Route2Gate1F_MapEvents
 	         $404d = Route2Gate1F_Blocks
@@ -9397,7 +9397,7 @@ ROMX bank #37:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #38:
-	SECTION: $4000-$4d21 ($0d22 bytes) ["Maps 3"]
+	SECTION: $4000-$4d21 ($0d22 bytes) ["West Maps"]
 	         $4000 = Route1Gate1F_MapAttributes
 	         $400b = Route1Gate1F_MapEvents
 	         $404d = Route1Gate1F_Blocks
@@ -10155,7 +10155,7 @@ ROMX bank #46:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #47:
-	SECTION: $4000-$593d ($193e bytes) ["Maps 5"]
+	SECTION: $4000-$593d ($193e bytes) ["Misc Maps"]
 	         $4000 = PowerPlant1_MapAttributes
 	         $400b = PowerPlant1_MapEvents
 	         $4010 = PowerPlant1_Blocks
@@ -11708,10 +11708,10 @@ ROMX bank #51:
 	         $6224 = BattleAnim_IncAnonJumptableIndex
 	         $622a = BattleAnim_Cosine
 	         $622c = BattleAnim_Sine
-	         $6237 = BattleAnim_Sine.negative_u17
-	         $6241 = BattleAnim_Sine.apply_u17
-	         $6250 = BattleAnim_Sine.multiply_u17
-	         $6255 = BattleAnim_Sine.even_u17
+	         $6237 = BattleAnim_Sine.negative_u18
+	         $6241 = BattleAnim_Sine.apply_u18
+	         $6250 = BattleAnim_Sine.multiply_u18
+	         $6255 = BattleAnim_Sine.even_u18
 	         $625d = BattleAnim_Sine_e
 	         $6263 = BattleAnim_Cosine_e
 	         $6269 = BattleAnimSineWave
@@ -11998,7 +11998,7 @@ ROMX bank #51:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #52:
-	SECTION: $4000-$6094 ($2095 bytes) ["Maps 6"]
+	SECTION: $4000-$6094 ($2095 bytes) ["Silent Hill Maps"]
 	         $4000 = RouteSilentEastGate_MapAttributes
 	         $400b = RouteSilentEastGate_MapEvents
 	         $402c = RouteSilentEastGate_Blocks
@@ -14789,7 +14789,7 @@ ROMX bank #63:
 	         $623e = FightDebugMenu.PlayerNameText
 	         $6244 = FightDebugMenu.ItemTable_Old
 	         $6255 = _DebugMenuSoundTest
-	         $6267 = _DebugMenuSoundTest.RefreshScreenAndLoop
+	         $6267 = _DebugMenuSoundTest.ReanchorMapAndLoop
 	         $626a = _DebugMenuSoundTest.Loop
 	         $628a = _DebugMenuSoundTest.a_pressed
 	         $6291 = _DebugMenuSoundTest.up_pressed
@@ -14911,8 +14911,8 @@ VRAM bank #0:
 
 SRAM bank #0:
 	SECTION: $a000-$a497 ($0498 bytes) ["Sprite Buffers"]
-	         $a000 = sScratch
 	         $a000 = sSpriteBuffer0
+	         $a000 = sScratch
 	         $a188 = sSpriteBuffer1
 	         $a310 = sSpriteBuffer2
 	EMPTY: $a498-$a5ff ($0168 bytes)
@@ -16702,8 +16702,8 @@ SRAM bank #2:
 	         $ac07 = sBox3Mon11PP
 	         $ac0b = sBox3Mon11Happiness
 	         $ac0c = sBox3Mon11PokerusStatus
-	         $ac0d = sBox3Mon11CaughtData
 	         $ac0d = sBox3Mon11CaughtLevel
+	         $ac0d = sBox3Mon11CaughtData
 	         $ac0d = sBox3Mon11CaughtTime
 	         $ac0e = sBox3Mon11CaughtGender
 	         $ac0e = sBox3Mon11CaughtLocation
@@ -17345,9 +17345,9 @@ SRAM bank #2:
 	         $b0af = sBox4Mon6PP
 	         $b0b3 = sBox4Mon6Happiness
 	         $b0b4 = sBox4Mon6PokerusStatus
-	         $b0b5 = sBox4Mon6CaughtLevel
 	         $b0b5 = sBox4Mon6CaughtData
 	         $b0b5 = sBox4Mon6CaughtTime
+	         $b0b5 = sBox4Mon6CaughtLevel
 	         $b0b6 = sBox4Mon6CaughtGender
 	         $b0b6 = sBox4Mon6CaughtLocation
 	         $b0b7 = sBox4Mon6Level
@@ -24243,6 +24243,7 @@ WRAM0 bank #0:
 	SECTION: $cb5e-$cb6f ($0012 bytes) ["CB5E"]
 	         $cb5e = wJumptableIndex
 	         $cb5f = wNestIconBlinkCounter
+	         $cb5f = wSlotsDelay
 	         $cb5f = wMemoryGameCardChoice
 	         $cb5f = wIntroSceneFrameCounter
 	         $cb5f = wTrainerGearPointerPosition
@@ -24250,7 +24251,6 @@ WRAM0 bank #0:
 	         $cb5f = wBattleTransitionCounter
 	         $cb5f = wFlyDestination
 	         $cb5f = wPokedexSlowpokeNumSearchEntries
-	         $cb5f = wSlotsDelay
 	         $cb60 = wBattleTransitionSpinQuadrant
 	         $cb60 = wBattleTransitionSineWaveOffset
 	         $cb60 = wFlyIconAnimStructPointer
@@ -25518,8 +25518,8 @@ WRAM0 bank #0:
 	         $d730 = wPartyMon3CaughtGender
 	         $d730 = wPartyMon3CaughtLocation
 	         $d731 = wPartyMon3Level
-	         $d732 = wPartyMon3End
 	         $d732 = wPartyMon3Status
+	         $d732 = wPartyMon3End
 	         $d733 = wPartyMon3Unused4
 	         $d734 = wPartyMon3HP
 	         $d736 = wPartyMon3MaxHP
@@ -25614,9 +25614,9 @@ WRAM0 bank #0:
 	         $d7b9 = wPartyMon6PP
 	         $d7bd = wPartyMon6Happiness
 	         $d7be = wPartyMon6PokerusStatus
+	         $d7bf = wPartyMon6CaughtTime
 	         $d7bf = wPartyMon6CaughtData
 	         $d7bf = wPartyMon6CaughtLevel
-	         $d7bf = wPartyMon6CaughtTime
 	         $d7c0 = wPartyMon6CaughtGender
 	         $d7c0 = wPartyMon6CaughtLocation
 	         $d7c1 = wPartyMon6Level
@@ -25763,8 +25763,8 @@ WRAM0 bank #0:
 	         $d938 = wOTPartyMon1CaughtData
 	         $d938 = wOTPartyMon1CaughtTime
 	         $d938 = wOTPartyMon1CaughtLevel
-	         $d939 = wOTPartyMon1CaughtGender
 	         $d939 = wOTPartyMon1CaughtLocation
+	         $d939 = wOTPartyMon1CaughtGender
 	         $d93a = wOTPartyMon1Level
 	         $d93b = wOTPartyMon1End
 	         $d93b = wOTPartyMon1Status
@@ -25896,9 +25896,9 @@ WRAM0 bank #0:
 	         $d9f2 = wOTPartyMon5PP
 	         $d9f6 = wOTPartyMon5Happiness
 	         $d9f7 = wOTPartyMon5PokerusStatus
+	         $d9f8 = wOTPartyMon5CaughtTime
 	         $d9f8 = wOTPartyMon5CaughtLevel
 	         $d9f8 = wOTPartyMon5CaughtData
-	         $d9f8 = wOTPartyMon5CaughtTime
 	         $d9f9 = wOTPartyMon5CaughtLocation
 	         $d9f9 = wOTPartyMon5CaughtGender
 	         $d9fa = wOTPartyMon5Level
@@ -26720,8 +26720,8 @@ WRAM0 bank #0:
 	         $dfb9 = wBoxMon28Nickname
 	         $dfbf = wBoxMon29Nickname
 	         $dfc5 = wBoxMon30Nickname
-	         $dfcb = wBoxMonNicknamesEnd
 	         $dfcb = wBoxEnd
+	         $dfcb = wBoxMonNicknamesEnd
 	EMPTY: $dfcb-$dffe ($0034 bytes)
 	SECTION: $dfff ($0000 bytes) ["Stack Bottom"]
 	         $dfff = wStackBottom
@@ -26774,8 +26774,8 @@ HRAM bank #0:
 	         $ffaf = hItemPrice_Old
 	         $ffb0 = hObjectStructIndex
 	         $ffb0 = hEventID
-	         $ffb0 = hConnectedMapWidth
 	         $ffb0 = hSpriteHeight
+	         $ffb0 = hConnectedMapWidth
 	         $ffb1 = hEnemyMonSpeed
 	         $ffb1 = hSpriteOffset
 	         $ffb3 = hDividend
