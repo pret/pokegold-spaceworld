@@ -188,7 +188,7 @@ GetMapAttributesPointer::
 	ld a, [wMapId]
 	ld c, a
 	call GetAnyMapPointer
-	ld bc, 3 ; TODO: constantify this
+	ld bc, MAP_MAPATTRIBUTES
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -206,7 +206,7 @@ GetMapEnvironment::
 	ld a, BANK(MapGroupPointers)
 	call Bankswitch
 	call GetMapPointer
-	ld bc, 2 ; TODO: constantify this
+	ld bc, MAP_ENVIRONMENT
 	add hl, bc
 	ld b, [hl]
 	pop af
@@ -222,7 +222,7 @@ GetAnyMapEnvironment::
 	ld a, BANK(MapGroupPointers)
 	call Bankswitch
 	call GetAnyMapPointer
-	ld bc, 2 ; TODO: constantify this
+	ld bc, MAP_ENVIRONMENT
 	add hl, bc
 	ld b, [hl]
 	pop af
@@ -236,7 +236,7 @@ GetWorldMapLocation::
 	ld a, BANK(MapGroupPointers)
 	call Bankswitch
 	call GetAnyMapPointer
-	ld bc, 5 ; TODO: constantify this
+	ld bc, MAP_LOCATION
 	add hl, bc
 	ld b, [hl]
 	pop af
@@ -291,7 +291,7 @@ MapSetup_Fight::
 	call PlayMapMusic
 	ld a, $88 ; TODO: constantify this
 	ld [wMusicFade], a
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAP_PALS
 	call GetSGBLayout
 	call LoadWildMonData
 	call FadeIn
@@ -311,7 +311,7 @@ MapSetup_Continue::
 	call PlayMapMusic
 	ld a, $88 ; TODO: constantify this
 	ld [wMusicFade], a
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAP_PALS
 	call GetSGBLayout
 	call FadeIn
 	ret
@@ -335,9 +335,9 @@ MapSetup_NewGame::
 	call InitializeVisibleSprites
 	call EnableLCD
 	call PlayMapMusic
-	ld a, $88 ; TODO: constantify this
+	ld a, $88
 	ld [wMusicFade], a
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAP_PALS
 	call GetSGBLayout
 	call LoadWildMonData
 	call SetPlayerFacingDown
@@ -357,7 +357,7 @@ MapSetup_Warp::
 	call CopyMapPartialAndAttributes
 	call SetUpMapBuffer
 	call InitObjectMasks
-	call RestoreFacingAfterWarp
+	call GetWarpDestCoords
 	call RefreshPlayerCoords
 	call LoadGraphics
 	call ChangeMap
@@ -365,7 +365,7 @@ MapSetup_Warp::
 	call InitializeVisibleSprites
 	call EnableLCD
 	call PlayMapMusic
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAP_PALS
 	call GetSGBLayout
 	call LoadWildMonData
 	call FadeIn
@@ -477,7 +477,7 @@ MapSetup_Connection::
 	call ChangeMap
 	call SaveScreen
 	call FadeToMapMusic
-	ld b, 9 ; TODO: constantify this
+	ld b, SGB_MAP_PALS
 	call GetSGBLayout
 	call LoadWildMonData
 	scf
@@ -715,7 +715,7 @@ GetDestinationWarpPointer:
 	jr z, .found_warp
 .nope
 	push de
-	ld de, 4 ; TODO: constantify this
+	ld de, MAP_MAPATTRIBUTES_HI
 	add hl, de
 	pop de
 	dec c
@@ -817,7 +817,7 @@ ReadWarps::
 	ld c, a
 	ld de, wCurrMapWarps
 .next
-	ld b, 5 ; TODO: constantify this
+	ld b, MAP_LOCATION
 .copy
 	ld a, [hli]
 	ld [de], a
@@ -984,20 +984,19 @@ InitObjectMasks::
 .done
 	ret
 
-RestoreFacingAfterWarp::
+GetWarpDestCoords::
 	ld hl, wMapObjectsPtr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	; Point to 1st warp
+rept 3 ; get to the warp coords
 	inc hl
-	inc hl
-	inc hl
+endr
 	ld a, [wWarpNumber]
 	dec a
 	ld c, a
 	ld b, 0
-	ld a, 7 ; Size of warp ; TODO: constantify this
+	ld a, WARP_EVENT_SIZE
 	call AddNTimes
 	ld a, [hli]
 	ld [wYCoord], a
@@ -1125,11 +1124,13 @@ LoadMetatiles::
 	ld a, [wOverworldMapAnchor + 1]
 	ld d, a
 	ld hl, wTileMapBackup
-	ld b, 5 ; TODO: constantify this
+	ld b, SCREEN_META_HEIGHT
+
 .row
 	push de
 	push hl
-	ld c, 6 ; TODO: constantify this
+	ld c, SCREEN_META_WIDTH
+
 .tile
 	push bc
 	push de
@@ -1138,7 +1139,7 @@ LoadMetatiles::
 	ld c, a
 	call DrawMetatile
 	pop hl
-	ld bc, 4
+	ld bc, METATILE_WIDTH
 	add hl, bc
 	pop de
 	inc de
@@ -1150,7 +1151,7 @@ LoadMetatiles::
 	add hl, de
 	pop de
 	ld a, [wMapWidth]
-	add a, 6
+	add a, SCREEN_META_WIDTH
 	add a, e
 	ld e, a
 	jr nc, .nocarry

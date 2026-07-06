@@ -143,7 +143,7 @@ DoCut2:
 	ret
 
 CutScript:
-	call RefreshScreen
+	call ReanchorMap
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
 	ld [wMonType], a
@@ -163,7 +163,7 @@ CutScript:
 	call LoadMapPart
 	call UpdateSprites
 	call WaitBGMap
-	call ScreenCleanup
+	call CloseText
 	scf
 	ret
 
@@ -233,7 +233,7 @@ Text_CantSurfHere:
 	prompt
 
 SurfScript:
-	call RefreshScreen
+	call ReanchorMap
 	ld hl, wPartyMonNicknames
 	ld a, BOXMON
 	ld [wMonType], a
@@ -247,7 +247,7 @@ SurfScript:
 	call RedrawPlayerSprite
 	call PlayMapMusic
 	call MovePlayerIntoWater
-	call ScreenCleanup
+	call CloseText
 	ret
 
 Text_UsedSurf:
@@ -520,13 +520,13 @@ Text_CantUseTeleportHere:
 	done
 
 TeleportScript:
-	call RefreshScreen
+	call ReanchorMap
 	ld hl, Text_ReturnToLastMonCenter
 	call MenuTextBox
 	ld c, 60
 	call DelayFrames
 	call CloseWindow
-	call ScreenCleanup
+	call CloseText
 	ld a, MAPSETUP_TELEPORT
 	ldh [hMapEntryMethod], a
 	jpfar DoTeleportAnimation

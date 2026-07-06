@@ -392,13 +392,13 @@ ApplyMapGroupPalette:
 	ld a, [wMapGroup]
 	ld e, a
 	ld d, $00
-	ld hl, MapGroupPalettes ; FIXME: MapGroupPalettes overflows if "wMapGroup" is "MISC". This only
-	add hl, de              ; affects the Power Plant maps which are normally incessible.
+	ld hl, MapGroupPalettes ; BUG: MapGroupPalettes overflows if "wMapGroup" is "MISC". This only
+	add hl, de              ; affects the Power Plant and Office maps which are normally incessible.
 	ld a, [hl]
 	ret
 
 MapGroupPalettes:
-	db PAL_TOWN_NORTH ; ???
+	db PAL_TOWN_NORTH ; Dummy
 	db PAL_TOWN_SILENTHILL ; Silent Hill
 	db PAL_TOWN_OLDCITY ; Old City
 	db PAL_TOWN_WEST ; West

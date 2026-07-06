@@ -248,10 +248,10 @@ Serial_ExchangeLinkMenuSelection::
 	ret
 
 Serial_PrintWaitingTextAndSyncAndExchangeNybble::
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	callfar PlaceWaitingText
 	call WaitLinkTransfer
-	jp ReloadTilesFromBuffer
+	jp SafeLoadTempTilemapToTilemap
 
 WaitLinkTransfer::
 	ld a, $ff

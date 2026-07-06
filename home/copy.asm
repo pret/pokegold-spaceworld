@@ -75,14 +75,14 @@ UncompressSpriteFromDE::
 	jp UncompressSpriteData
 
 ; TODO: Rename to LoadTilemapToTempTilemap
-BackUpTilesToBuffer::
+LoadTilemapToTempTilemap::
 	hlcoord 0, 0
 	decoord 0, 0, wTileMapBackup
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	jp CopyBytes
 
 ; TODO: Rename to SafeLoadTempTilemapToTilemap
-ReloadTilesFromBuffer::
+SafeLoadTempTilemapToTilemap::
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 0, wTileMapBackup

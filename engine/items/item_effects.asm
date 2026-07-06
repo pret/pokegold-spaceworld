@@ -702,7 +702,7 @@ BicycleEffect:
 	ret
 
 .UseBike:
-	call RefreshScreen
+	call ReanchorMap
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	jr z, .get_off_bike
@@ -720,7 +720,7 @@ BicycleEffect:
 	call CloseWindow
 	call RedrawPlayerSprite
 	call PlayMapMusic
-	call ScreenCleanup
+	call CloseText
 	ret
 
 EvoStoneEffect:
@@ -1644,7 +1644,7 @@ XItemEffect:
 	call UseItemText
 	ld a, $ae ; XSTATITEM_ANIM in pokered
 	ld [wPlayerMoveStructAnimation], a
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	call WaitBGMap
 	xor a
 	ldh [hBattleTurn], a
@@ -2166,7 +2166,7 @@ AskTeachTMHM_Old:
 	call ClearBGPalettes
 	call ClearSprites
 	call GetMemSGBLayout
-	jp ReloadTilesFromBuffer
+	jp SafeLoadTempTilemapToTilemap
 
 .TeachTMHM:
 	predef CanLearnTMHMMove

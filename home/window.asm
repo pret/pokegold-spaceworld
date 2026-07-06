@@ -1,4 +1,4 @@
-RefreshScreen::
+ReanchorMap::
 	call ClearWindowData
 	ldh a, [hROMBank]
 	push af
@@ -12,8 +12,7 @@ RefreshScreen::
 	call Bankswitch
 	ret
 
-; TODO: Better name for this?
-ScreenCleanup::
+CloseText::
 	call TextboxCleanup
 	call ClearWindowData
 	call InitToolgearBuffer

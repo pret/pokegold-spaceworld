@@ -41,13 +41,13 @@ DoBattle:
 	call DelayFrames
 
 .player_2
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 .check_any_alive
 	call CheckPlayerPartyForFitMon
 	ld a, d
 	and a
 	jp z, LostBattle
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	ld a, [wBattleType]
 	and a
 	jp nz, .SafariZoneBattleTurn
@@ -74,7 +74,7 @@ DoBattle:
 	hlcoord 1, 5
 	ld a, 9
 	call SlideBattlePicOut
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	ld a, [wCurPartyMon]
 	ld c, a
 	ld b, SET_FLAG
@@ -90,7 +90,7 @@ DoBattle:
 	call NewBattleMonStatus
 	call SendOutPlayerMon
 	call EmptyBattleTextbox
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	xor a
 	ldh [hBattleTurn], a
 	call SpikesDamage
@@ -117,7 +117,7 @@ DoBattle:
 	and a ; if non-zero, this would have meant that the item was used successfully
 	jr z, .SafariZoneBattleTurn
 	; There used to be code checking for Safari Balls here, but it was taken out.
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	ld hl, Unused_OutOfSafariBallsText
 	jp PrintText
 
@@ -154,7 +154,7 @@ Unused_OutOfSafariBallsText:
 	prompt
 
 WildFled_EnemyFled_LinkBattleCanceled:
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	ld a, DRAW
 	ld [wBattleResult], a
 
@@ -223,7 +223,7 @@ BattleTurn:
 	call HandleStatBoostingHeldItems
 	call HandleHealingItems
 	call UpdateBattleMonInParty
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 
 	call TryEnemyFlee
 	jp c, WildFled_EnemyFled_LinkBattleCanceled
@@ -300,7 +300,7 @@ BattleTurn:
 	ld [wFXAnimID], a
 	call MoveSelectionScreen
 	push af
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	call UpdateBattleHuds
 	pop af
 	jp nz, .loop1
@@ -1294,7 +1294,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	ld hl, EnemyMonFainted
 	call PrintText
 	call EmptyBattleTextbox
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	xor a
 	ld [wBattleResult], a
 	ld b, ITEM_EXP_ALL_RED
@@ -1377,7 +1377,7 @@ HandleEnemySwitch:
 	cp BATTLEACTION_FORFEIT
 	ret z
 
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 
 .not_linked
 	call EnemySwitch
@@ -1588,7 +1588,7 @@ FaintedText:
 
 AskUseNextPokemon:
 	call EmptyBattleTextbox
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 ; We don't need to be here if we're in a Trainer battle,
 ; as that decision is made for us.
 	ld a, [wBattleMode]
@@ -1668,7 +1668,7 @@ ForcePlayerMonChoice:
 	call NewBattleMonStatus
 	call SendOutPlayerMon
 	call EmptyBattleTextbox
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 
 	xor a
 	ldh [hBattleTurn], a
@@ -2225,7 +2225,7 @@ EnemySendOutFirstMon:
 	xor a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wBattleParticipantsIncludingFainted], a
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	jp PlayerSwitch
 
 ; BUG: They forgot to terminate the line immediately after StringBuffer1.
@@ -2354,7 +2354,7 @@ TryToRunAwayFromBattle:
 	ldh [hEnemyMonSpeed], a
 	ld a, [de]
 	ldh [hEnemyMonSpeed + 1], a
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	ld de, hMultiplicand + 1
 	ld hl, hEnemyMonSpeed
 	ld c, 2
@@ -2415,7 +2415,7 @@ TryToRunAwayFromBattle:
 	call PrintText
 	ld a, TRUE
 	ld [wFailedToFlee], a
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	and a
 	ret
 
@@ -2424,13 +2424,13 @@ TryToRunAwayFromBattle:
 	and a
 	ld a, DRAW
 	jr z, .fled
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a
 	ld a, BATTLEACTION_FORFEIT
 	ld [wCurMoveNum], a
 	call LinkBattleSendRecieveAction
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 
 	ld a, [wOtherPlayerLinkAction]
 	cp BATTLEACTION_FORFEIT
@@ -2447,7 +2447,7 @@ TryToRunAwayFromBattle:
 	ld hl, BattleText_GotAwaySafely
 	call PrintText
 	call WaitSFX
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	scf
 	ret
 
@@ -3198,13 +3198,13 @@ CenterMonName:
 	ret
 
 BattleMenu:
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	ld a, [wBattleType]
 	and a
 	jr nz, .ok
 	call UpdateBattleHuds
 	call EmptyBattleTextbox
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 .ok
 
 .loop
@@ -3224,7 +3224,7 @@ BattleMenu:
 BattleMenu_Fight:
 	xor a
 	ld [wNumFleeAttempts], a
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	and a
 	ret
 
@@ -3264,7 +3264,7 @@ BattleMenu_Pack:
 	and a
 	jr nz, .run
 	call CloseWindow
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	call UpdateBattleHuds
 	call WaitBGMap
 	call ClearWindowData
@@ -3287,7 +3287,7 @@ BattleMenu_Pack:
 	call DelayFrame
 	call Call_LoadBattleFontsHPBar
 	call CloseWindow
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	call SetPalettes
 	jp BattleMenu
 
@@ -3410,7 +3410,7 @@ BattleMenu_PKMN:
 	call ClearPalettes
 	call _LoadHPBar
 	call CloseWindow
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	call GetMemSGBLayout
 	call SetPalettes
 	jp BattleMenu
@@ -3518,7 +3518,7 @@ PlayerSwitch:
 	call NewBattleMonStatus
 	call SendOutPlayerMon
 	call EmptyBattleTextbox
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	xor a
 	ldh [hBattleTurn], a
 	call SpikesDamage
@@ -3559,7 +3559,7 @@ PassedBattleMonEntrance:
 	call ApplyStatLevelMultiplierOnAllStats
 	call SendOutPlayerMon
 	call EmptyBattleTextbox
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	xor a
 	ldh [hBattleTurn], a
 	call SpikesDamage
@@ -3577,7 +3577,7 @@ BattleText_MonCantBeRecalled:
 	prompt
 
 BattleMenu_Run:
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	ld a, 3
 	ld [wMenuCursorY], a
 	ld hl, wBattleMonSpeed
@@ -3810,7 +3810,7 @@ MoveSelectionScreen::
 
 .place_textbox_start_over
 	call PrintText
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	jp MoveSelectionScreen
 
 .BattleText_TheresNoPPLeftForThisMove:
@@ -3855,7 +3855,7 @@ MoveSelectionScreen::
 
 .player_side
 	ldh [hBattleTurn], a
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	call .DrawDebugMoveSelection
 	ld a, [wPlayerDebugSelectedMove]
 	and a
@@ -4128,11 +4128,11 @@ ParseEnemyAction:
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	ld a, [wBattlePlayerAction]
 	and a
 	call z, LinkBattleSendRecieveAction
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 
 	ld a, [wOtherPlayerLinkAction]
 	cp BATTLEACTION_STRUGGLE
@@ -5387,7 +5387,7 @@ GiveExperiencePoints:
 	callfar BadgeStatBoosts
 	callfar UpdatePlayerHUD
 	call EmptyBattleTextbox
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 
 .skip_active_mon_update
 	ld hl, GrewToLevelText
@@ -5398,7 +5398,7 @@ GiveExperiencePoints:
 	ld d, 1
 	callfar PrintTempMonStats
 	call TextboxWaitPressAorB_BlinkCursor
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	xor a ; PARTYMON
 	ld [wMonType], a
 	ld a, [wCurSpecies]
@@ -5738,7 +5738,7 @@ PrintSafariZoneBattleText:
 
 .done
 	push hl
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	pop hl
 	jp PrintText
 

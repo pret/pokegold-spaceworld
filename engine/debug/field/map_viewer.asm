@@ -169,7 +169,7 @@ DebugMapViewer::
 	ret
 
 DebugMapViewer_ShowViewerPrompt:
-	call RefreshScreen
+	call ReanchorMap
 	ld hl, .ChangeViewerPrompt
 	call MenuTextBox
 	call YesNoBox
@@ -178,7 +178,7 @@ DebugMapViewer_ShowViewerPrompt:
 	ld a, DEBUGMAPVIEWER_MOVE_CURSOR_TO_PLAYER
 	ldh [hDebugMapViewerJumptable], a
 .no
-	call ScreenCleanup
+	call CloseText
 	ret
 
 .ChangeViewerPrompt:
@@ -192,9 +192,9 @@ DebugMapViewer_ShowSelectedDetails:
 	ld bc, wObjectStructs
 	callfar WillObjectBumpIntoSomeoneElse
 	jr nc, .skip
-	call RefreshScreen
+	call ReanchorMap
 	call .DisplayActorCastID
-	call ScreenCleanup
+	call CloseText
 	ret
 .skip
 	call DisplayBGEventDetails
@@ -365,13 +365,13 @@ DisplayBGEventDetails:
 	call GetBGEvent
 	ret nc
 	call .SetData
-	call RefreshScreen
+	call ReanchorMap
 	ld hl, .TableText
 	call MenuTextBox
 	call .PrintTableDetails
 	call .WaitInput
 	call CloseWindow
-	call ScreenCleanup
+	call CloseText
 	ret
 
 .SetData:

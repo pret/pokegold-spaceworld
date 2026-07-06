@@ -1,5 +1,5 @@
 LearnMove::
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
@@ -145,7 +145,7 @@ ForgetMove::
 	ld [w2DMenuCursorOffsets], a
 	call StaticMenuJoypad
 	push af
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	pop af
 	pop hl
 	bit B_BUTTON_F, a

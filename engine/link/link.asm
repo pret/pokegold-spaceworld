@@ -1066,7 +1066,7 @@ LinkTradePartiesMenuMasterLoop:
 	jp LinkTradeOTPartymonMenuLoop
 
 LinkTrade_TradeStatsMenu:
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	call PlaceHollowCursor
 	ld a, [wMenuCursorY]
 	push af
@@ -1107,7 +1107,7 @@ LinkTrade_TradeStatsMenu:
 .b_button:
 	pop af
 	ld [wMenuCursorY], a
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	jp LinkTrade_PlayerPartyMenu
 
 .d_right:
@@ -1145,7 +1145,7 @@ LinkTrade_TradeStatsMenu:
 	ld [wInitListType], a
 	callfar InitList
 	call LinkMonStatsScreen
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	jp LinkTrade_PlayerPartyMenu
 
 .try_trade
@@ -1418,7 +1418,7 @@ LinkTrade:
 	ld hl, LinkAskTradeForText
 	bccoord 1, 14
 	call TextCommandProcessor
-	call BackUpTilesToBuffer
+	call LoadTilemapToTempTilemap
 	hlcoord 10, 7
 	ld b, $03
 	ld c, $05
@@ -1446,7 +1446,7 @@ LinkTrade:
 	ld [wMenuCursorX], a
 	call ScrollingMenuJoypad
 	push af
-	call ReloadTilesFromBuffer
+	call SafeLoadTempTilemapToTilemap
 	pop af
 	bit B_BUTTON_F, a
 	jr nz, .canceled
