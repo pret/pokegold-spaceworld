@@ -55,9 +55,9 @@ SilentHillHouseNPCText1:
 	ret
 
 .jump
-	call RefreshScreen
+	call ReanchorMap
 	callfar PokemonCenterPC
-	call ScreenCleanup
+	call CloseText
 	ret
 
 SilentHillHouseTextString1:

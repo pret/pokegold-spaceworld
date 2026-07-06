@@ -838,7 +838,48 @@ INCBIN "garbage/debug/bank10_silver.2bpp"
 endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank10_gold.2bpp", 186
+	Unreferenced_Corrupt_LeafyEvosAttacks1:
+	db 0 ; no more evolutions
+	db  1, MOVE_TACKLE
+	db  7, MOVE_SAND_ATTACK
+	db 14, MOVE_QUICK_ATTACK
+	db 21, MOVE_TAIL_WHIP
+	db 28, MOVE_ABSORB
+	db 35, MOVE_RAZOR_LEAF
+	db 42, MOVE_GROWTH
+	db 49, MOVE_MORNING_SUN
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+	Unreferenced_Corrupt_TailEvosAttacks:
+	db  5, MOVE_LEER
+	db  9, MOVE_SAND_ATTACK
+	db 14, MOVE_PURSUIT
+	db 19, MOVE_ENCORE
+	db 25, MOVE_SWIFT
+	db 31, MOVE_MUD_SLAP
+	db 38, MOVE_FURY_SWIPES
+	db 45, MOVE_MIMIC
+	db 0 ; no more level-up moves
+	Unreferenced_Corrupt_LeafyEvosAttacks2:
+	db 0 ; no more evolutions
+	db  1, MOVE_TACKLE
+	db  7, MOVE_SAND_ATTACK
+	db 14, MOVE_QUICK_ATTACK
+	db 21, MOVE_TAIL_WHIP
+	db 28, MOVE_ABSORB
+	db 35, MOVE_RAZOR_LEAF
+	db 42, MOVE_GROWTH
+	db 49, MOVE_MORNING_SUN
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+	Unreferenced_Corrupt_LeafyEvosAttacks3:
+	db 56, MOVE_WRAP
+	db 63, MOVE_SOLARBEAM
+	db 0 ; no more level-up moves
+	db $1E, $DF, $90, $F6 ; garbage
+	INCBIN "garbage/bank10_gold.2bpp"
 	endc
 	if DEF(_SILVER)
 INCBIN "garbage/bank10_silver.2bpp", 186
@@ -1518,18 +1559,453 @@ endc
 
 
 SECTION "Bank 34 Garbage", ROMX
-; TODO: Extract the corrupt map scripts.
 
+if DEF(_SILVER) && !DEF(_DEBUG)
+else
+	ret
+Unreferenced_Corrupt_UnusedMap13_ScriptLoader:
+	if DEF(_GOLD)
+		db $20
+		call WriteBackMapScriptNumber + Bank34NonDebugOffset
+	endc
+	ret
+Unreferenced_Corrupt_UnusedMap13ScriptPointers:
+	dw Unreferenced_Corrupt_UnusedMap13Script
+	dw Unreferenced_Corrupt_UnusedMap13NPCIDs
+
+Unreferenced_Corrupt_UnusedMap13NPCIDs:
+	db $FF
+
+Unreferenced_Corrupt_UnusedMap13SignPointers:
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+Unreferenced_Corrupt_UnusedMap13_TextPointers::
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+Unreferenced_Corrupt_UnusedMap13Script:
+	ld hl, Unreferenced_Corrupt_UnusedMap13NPCIDs
+	ld de, Unreferenced_Corrupt_UnusedMap13SignPointers
+	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
+	ret
+	if DEF(_GOLD)
+	Unreferenced_Corrupt_Gold_SilentHillLabBackTextString11:
+		db "ぜ　<PLAYER>！"
+		line "さきに　えらんで！"
+		cont "おれは　こころが　ひろいからな"
+		done
+
+	Unreferenced_Corrupt_Gold_SilentHillLabBackTextString12:
+		text "<RIVAL>『じゃ　おれは　これ！"
+		done
+
+	Unreferenced_Corrupt_Gold_SilentHillLabBackTextString13:
+		text "<RIVAL>は　オーキドから"
+		line "@"
+		text_from_ram wStringBuffer1
+		text "を　もらった！"
+		done
+
+	Unreferenced_Corrupt_Gold_SilentHillLabBackTextString14:
+		text "<RIVAL>『<PLAYER>の#"
+		line "いいなあ！"
+		cont "でも　おれのポケモンも"
+		cont "ちょっと　いいだろ？"
+		done
+
+	Unreferenced_Corrupt_Gold_SilentHillLabBackFunc4:
+		CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
+		jr nz, .bigjump
+		ldh a, [hLastTalked]
+		sub 2
+		ld [wChosenStarter], a
+		ld d, 0
+		ld e, a
+		ld hl, Unreferenced_Corrupt_Gold_SilentHillLabBackStarterData
+		add hl, de
+		add hl, de
+		add hl, de
+		add hl, de
+		ld a, [hli]
+		ld [wPlayerStarter], a
+		push hl
+		ld [wNamedObjectIndexBuffer], a
+		ld a, $03
+		ld hl, StarterDex + Bank34StarterDexOffset
+		call FarCall_hl + Bank34NonDebugOffset - Bank34CorruptOffset
+		ld a, [wPlayerStarter]
+		ld [wNamedObjectIndexBuffer], a
+		call GetPokemonName + Bank34NonDebugOffset - Bank34CorruptOffset
+		pop hl
+		push hl
+		ld a, [hli]
+		ld h, [hl]
+		ld l, a
+		call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
+		pop hl
+		inc hl
+		inc hl
+		ld a, [hl]
+		ld [wRivalStarter], a
+		ret
+	.bigjump
+		ld hl, Unreferenced_Corrupt_Gold_SilentHillLabBackTextString15
+		call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
+		ret
+	Unreferenced_Corrupt_Gold_SilentHillLabBackStarterData:
+		db DEX_HONOGUMA
+		dw @ - $229
+		db DEX_KURUSU
+
+		db DEX_KURUSU
+		dw @ - $203
+		db DEX_HAPPA
+
+		db DEX_HAPPA
+		dw @ - $1de
+		db DEX_HONOGUMA
+
+	Unreferenced_Corrupt_Gold_SilentHillLabBackTextString15:
+		text "オーキド『これ！"
+		line "よくばっちゃ　いかん！"
+		done
+
+	Unreferenced_Corrupt_Gold_SilentHillLabBackTextPointers2:
+		dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset
+		dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset
+		dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset
+		dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset
+		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+		map_attributes Unreferenced_Corrupt_Gold_UnusedMap13, UNUSED_MAP_13
+
+	Unreferenced_Corrupt_Gold_UnusedMap13_MapEvents::
+
+	Unreferenced_Corrupt_Gold_UnusedMap13_Blocks::
+	INCBIN "maps/UnusedMap13.blk"
+
+	Unreferenced_Corrupt_Gold_UnusedMap13_ScriptLoader::
+		ld hl, Unreferenced_Corrupt_Gold_UnusedMap13ScriptPointers
+		call RunMapScript + Bank34NonDebugOffset
+		call WriteBackMapScriptNumber + Bank34NonDebugOffset
+		ret
+
+	Unreferenced_Corrupt_Gold_UnusedMap13ScriptPointers:
+		dw Unreferenced_Corrupt_Gold_UnusedMap13Script
+		dw Unreferenced_Corrupt_Gold_UnusedMap13NPCIDs
+
+	Unreferenced_Corrupt_Gold_UnusedMap13NPCIDs:
+		db $FF
+
+	Unreferenced_Corrupt_Gold_UnusedMap13SignPointers:
+		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+	Unreferenced_Corrupt_Gold_UnusedMap13_TextPointers::
+		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+	Unreferenced_Corrupt_Gold_UnusedMap13Script:
+		ld hl, Unreferenced_Corrupt_Gold_UnusedMap13NPCIDs
+		ld de, Unreferenced_Corrupt_Gold_UnusedMap13SignPointers
+		call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
+		ret
+	else
+		call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
+		ret
+	Unreferenced_Corrupt_Silver_SilentHillLabBackTextString6:
+		db "おお！　くさのポケモン"
+		line "@"
+		text_from_ram wStringBuffer1
+		text "が　いいんじゃな？@"
+
+		start_asm
+		call Unreferenced_Corrupt_Silver_ConfirmPokemonSelection
+		call TextAsmEnd + Bank34NonDebugOffset - Bank34CorruptOffset
+		ret
+
+	Unreferenced_Corrupt_Silver_ConfirmPokemonSelection:
+		call YesNoBox
+		jr c, .bigJump
+		SetEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
+		ld a, 1
+		ld [wPlayerHouse1FSceneID], a
+		ld a, 1
+		ld [wPlayerHouse2FSceneID], a
+		ld a, 1
+		ld [wSilentHillHouseSceneID], a
+		ld hl, Unreferenced_Corrupt_Silver_SilentHillLabBackTextString8
+		call PrintText
+		ld hl, wJoypadFlags
+		set 5, [hl]
+		ld a, [wPlayerStarter]
+		ld [wCurPartySpecies], a
+		ld a, 5
+		ld [wCurPartyLevel], a
+		ld hl, GivePoke + Bank34StarterDexOffset
+		ld a, $03
+		call FarCall_hl + Bank34NonDebugOffset - Bank34CorruptOffset
+		xor a
+		ld [wPartyMon1Item], a
+		ld a, 3
+		ld [wMapScriptNumber], a
+		ret
+	.bigJump
+		ld hl, Unreferenced_Corrupt_Silver_SilentHillLabBackTextString7
+		call PrintText
+		ret
+
+	Unreferenced_Corrupt_Silver_SilentHillLabBackTextString7:
+		text "では"
+		line "どれに　するのじゃ？"
+		done
+
+	Unreferenced_Corrupt_Silver_SilentHillLabBackTextString8:
+		text "オーキド『この　ポケモンは"
+		line "ほんとに　げんきが　いいぞ！"
+
+		para "<PLAYER>は　オーキドはかせから"
+		line "@"
+		text_from_ram wStringBuffer1
+		text "を　もらった！"
+		prompt
+
+	Unreferenced_Corrupt_Silver_SilentHillLabBackTextString9:
+		text "オーキド『そうじゃ！"
+		line "やせいの　ポケモンが　でて　きても"
+		cont "そいつを　たたかわせて　いけば"
+		cont "となりまちへ　いける！"
+		done
+
+	Unreferenced_Corrupt_Silver_SilentHillLabBackFunc3:
+		CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
+		ld hl, Unreferenced_Corrupt_SilentHillLabBackTextString11
+		jr z, .skip
+		ld hl, Unreferenced_Corrupt_SilentHillLabBackTextString14
+	.skip
+		call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
+		ret
+
+	Unreferenced_Corrupt_Silver_SilentHillLabBackTextString10:
+		text "<RIVAL>『あッ！　おれにも！"
+		line "じいさん　おれにもくれ"
+	endc
+Unreferenced_Corrupt_SilentHillLabBackTextString10:
+	db "よう！"
+	done
+
+Unreferenced_Corrupt_SilentHillLabBackTextString11:
+	text "<RIVAL>『いいぜ　<PLAYER>！"
+	line "さきに　えらんで！"
+	cont "おれは　こころが　ひろいからな"
+	done
+
+Unreferenced_Corrupt_SilentHillLabBackTextString12:
+	text "<RIVAL>『じゃ　おれは　これ！"
+	done
+
+Unreferenced_Corrupt_SilentHillLabBackTextString13:
+	text "<RIVAL>は　オーキドから"
+	line "@"
+	text_from_ram wStringBuffer1
+	text "を　もらった！"
+	done
+
+Unreferenced_Corrupt_SilentHillLabBackTextString14:
+	text "<RIVAL>『<PLAYER>の#"
+	line "いいなあ！"
+	cont "でも　おれのポケモンも"
+	cont "ちょっと　いいだろ？"
+	done
+
+Unreferenced_Corrupt_SilentHillLabBackFunc4:
+	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
+	jr nz, .bigjump
+	ldh a, [hLastTalked]
+	sub 2
+	ld [wChosenStarter], a
+	ld d, 0
+	ld e, a
+	ld hl, Unreferenced_Corrupt_SilentHillLabBackStarterData
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld [wPlayerStarter], a
+	push hl
+	ld [wNamedObjectIndexBuffer], a
+	ld a, $03
+	ld hl, StarterDex + Bank34StarterDexOffset
+	call FarCall_hl + Bank34NonDebugOffset - Bank34CorruptOffset
+	ld a, [wPlayerStarter]
+	ld [wNamedObjectIndexBuffer], a
+	call GetPokemonName + Bank34NonDebugOffset - Bank34CorruptOffset
+	pop hl
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
+	pop hl
+	inc hl
+	inc hl
+	ld a, [hl]
+	ld [wRivalStarter], a
+	ret
+.bigjump
+	ld hl, Unreferenced_Corrupt_SilentHillLabBackTextString15
+	call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
+	ret
+Unreferenced_Corrupt_SilentHillLabBackStarterData:
+	db DEX_HONOGUMA
+	dw @ - $229
+	db DEX_KURUSU
+
+	db DEX_KURUSU
+	dw @ - $203
+	db DEX_HAPPA
+
+	db DEX_HAPPA
+	dw @ - $1de
+	db DEX_HONOGUMA
+
+Unreferenced_Corrupt_SilentHillLabBackTextString15:
+	text "オーキド『これ！"
+	line "よくばっちゃ　いかん！"
+	done
+
+Unreferenced_Corrupt_SilentHillLabBackTextPointers2:
+	dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset - Bank34OldOffset
+	dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset - Bank34OldOffset
+	dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset - Bank34OldOffset
+	dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset - Bank34OldOffset
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+	map_attributes Unreferenced_Corrupt2_UnusedMap13, UNUSED_MAP_13
+
+Unreferenced_Corrupt2_UnusedMap13_MapEvents::
+
+Unreferenced_Corrupt2_UnusedMap13_Blocks::
+INCBIN "maps/UnusedMap13.blk"
+
+Unreferenced_Corrupt2_UnusedMap13_ScriptLoader::
+	ld hl, Unreferenced_Corrupt2_UnusedMap13ScriptPointers
+	call RunMapScript + Bank34NonDebugOffset
+	call WriteBackMapScriptNumber + Bank34NonDebugOffset
+	ret
+
+Unreferenced_Corrupt2_UnusedMap13ScriptPointers:
+	dw Unreferenced_Corrupt2_UnusedMap13Script
+	dw Unreferenced_Corrupt2_UnusedMap13NPCIDs
+
+Unreferenced_Corrupt2_UnusedMap13NPCIDs:
+	db $FF
+
+Unreferenced_Corrupt2_UnusedMap13SignPointers:
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+Unreferenced_Corrupt2_UnusedMap13_TextPointers::
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+Unreferenced_Corrupt2_UnusedMap13Script:
+	ld hl, Unreferenced_Corrupt2_UnusedMap13NPCIDs
+	ld de, Unreferenced_Corrupt2_UnusedMap13SignPointers
+	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
+	ret
+
+Unreferenced_Corrupt2_SilentHillLabBackFunc4:
+	dw wPlayerStarter
+	push hl
+	ld [wNamedObjectIndexBuffer], a
+	ld a, $03
+	ld hl, StarterDex + Bank34StarterDexOffset + $38
+	call FarCall_hl + Bank34NonDebugOffset - Bank34CorruptOffset
+	ld a, [wPlayerStarter]
+	ld [wNamedObjectIndexBuffer], a
+	call GetPokemonName + Bank34NonDebugOffset - Bank34CorruptOffset
+	pop hl
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
+	pop hl
+	inc hl
+	inc hl
+	ld a, [hl]
+	ld [wRivalStarter], a
+	ret
+.bigjump
+	ld hl, Unreferenced_Corrupt2_SilentHillLabBackTextString15
+	call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
+	ret
+Unreferenced_Corrupt2_SilentHillLabBackStarterData:
+	db DEX_HONOGUMA
+	dw @ - $229
+	db DEX_KURUSU
+
+	db DEX_KURUSU
+	dw @ - $203
+	db DEX_HAPPA
+
+	db DEX_HAPPA
+	dw @ - $1de
+	db DEX_HONOGUMA
+
+Unreferenced_Corrupt2_SilentHillLabBackTextString15:
+	text "オーキド『これ！"
+	line "よくばっちゃ　いかん！"
+	done
+
+Unreferenced_Corrupt2_SilentHillLabBackTextPointers2:
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+	map_attributes Unreferenced_Corrupt3_UnusedMap13, UNUSED_MAP_13
+
+Unreferenced_Corrupt3_UnusedMap13_MapEvents::
+
+Unreferenced_Corrupt3_UnusedMap13_Blocks::
+INCBIN "maps/UnusedMap13.blk"
+
+Unreferenced_Corrupt3_UnusedMap13_ScriptLoader::
+	ld hl, Unreferenced_Corrupt3_UnusedMap13ScriptPointers
+	call RunMapScript + Bank34NonDebugOffset
+	call WriteBackMapScriptNumber + Bank34NonDebugOffset
+	ret
+
+Unreferenced_Corrupt3_UnusedMap13ScriptPointers:
+	dw Unreferenced_Corrupt3_UnusedMap13Script
+	dw Unreferenced_Corrupt3_UnusedMap13NPCIDs
+
+Unreferenced_Corrupt3_UnusedMap13NPCIDs:
+	db $FF
+
+Unreferenced_Corrupt3_UnusedMap13SignPointers:
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+Unreferenced_Corrupt3_UnusedMap13_TextPointers::
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+Unreferenced_Corrupt3_UnusedMap13Script:
+	ld hl, Unreferenced_Corrupt3_UnusedMap13NPCIDs
+	ld de, Unreferenced_Corrupt3_UnusedMap13SignPointers
+	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
+	ret
+
+endc
 if DEF(_DEBUG)
 DEF Bank34NonDebugOffset EQU 0
-DEF Bank34OldOffset EQU 5
 DEF Bank34StarterDexOffset EQU 13
 DEF Bank34CorruptOffset EQU $17
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank34_gold.2bpp", 149
+	DEF Bank34OldOffset EQU 5
+INCBIN "garbage/debug/bank34_gold.2bpp", 115
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank34_silver.2bpp", 149
+	DEF Bank34OldOffset EQU 0
+	INCBIN "garbage/debug/bank34_silver.2bpp", 115
 	endc
 else
 DEF Bank34NonDebugOffset EQU $1E
@@ -1537,10 +2013,10 @@ DEF Bank34OldOffset EQU -4
 DEF Bank34CorruptOffset EQU -7
 DEF Bank34StarterDexOffset EQU 37
 	if DEF(_GOLD)
-INCBIN "garbage/bank34_gold.2bpp", 149
+	INCBIN "garbage/bank34_gold.2bpp", 115
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank34_silver.2bpp", 149
+	INCBIN "garbage/bank34_silver.2bpp", 149
 	endc
 endc
 
@@ -1606,7 +2082,7 @@ else
 endc
 
 SECTION "Bank 38 Garbage", ROMX
-; TODO: Investigate matching data at the beginning.
+
 if DEF(_DEBUG)
 	if DEF(_GOLD)
 	INCBIN "garbage/debug/bank38_gold.2bpp", 87

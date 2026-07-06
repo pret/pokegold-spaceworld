@@ -260,7 +260,7 @@ wPokerCardNumber:: db
 wPokerTurnNumber:: db
 wPokerPosition:: db
 wPokerPreviousCard:: db
-wPokerSortOrder:: ds 5
+wPokerSortOrder:: ds POKER_NUM_CARDS
 wPokerString:: ds 5
 wPokerAllow:: db
 wPokerPayout:: db

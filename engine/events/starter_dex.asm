@@ -1,6 +1,6 @@
 ; Brings up the Pokédex entry of the index in wTempSpecies/wNamedObjectIndex to show as if it were caught.
 StarterDex::
-	call RefreshScreen
+	call ReanchorMap
 	call LowVolume
 	ldh a, [hMapAnims]
 	push af
@@ -24,5 +24,5 @@ StarterDex::
 	pop af
 	ldh [hMapAnims], a
 	call MaxVolume
-	call ScreenCleanup
+	call CloseText
 	ret

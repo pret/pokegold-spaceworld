@@ -1,5 +1,5 @@
 DisplayStartMenu::
-	call RefreshScreen
+	call ReanchorMap
 	ld de, SFX_MENU
 	call PlaySFX
 	ld hl, .StartMenuHeader
@@ -35,7 +35,7 @@ DisplayStartMenu::
 .exit
 	call ExitMenu
 .UpdateTime
-	call ScreenCleanup
+	call CloseText
 	call UpdateTimePals
 	ret
 
@@ -1715,10 +1715,10 @@ CheckRegisteredItem::
 	ret
 
 .NotRegistered
-	call RefreshScreen
+	call ReanchorMap
 	ld hl, .NothingRegisteredText
 	call MenuTextBoxBackup
-	call ScreenCleanup
+	call CloseText
 	ret
 
 .NothingRegisteredText:
@@ -1794,28 +1794,28 @@ UseRegisteredItem:
 	dw .FieldMove
 
 .CantUse
-	call RefreshScreen
+	call ReanchorMap
 	call PrintCantUseText
-	call ScreenCleanup
+	call CloseText
 	and a
 	ret
 
 .UnusedUseRegularItem
-	call RefreshScreen
+	call ReanchorMap
 	call DoItemEffect
-	call ScreenCleanup
+	call CloseText
 	and a
 	ret
 
 .KeyItem
-	call RefreshScreen
+	call ReanchorMap
 	ld hl, wStateFlags
 	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call DoItemEffect
 	call ClearPalettes
 	call StartMenuLoadSprites
 	call UpdateTimePals
-	call ScreenCleanup
+	call CloseText
 	and a
 	ret
 
@@ -1831,9 +1831,9 @@ UseRegisteredItem:
 	ret
 
 .CantUse2
-	call RefreshScreen
+	call ReanchorMap
 	call PrintCantUseText
-	call ScreenCleanup
+	call CloseText
 	and a
 	ret
 

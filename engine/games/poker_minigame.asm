@@ -374,7 +374,7 @@ PokerMinigame_ShuffleCards:
 	call PokerMinigame_ShuffleCardsMain
 
 	ld hl, wPokerSortOrder
-	ld b, 5
+	ld b, POKER_NUM_CARDS
 	ld c, 0
 .CheckLoop:
 	call .CheckVisible
@@ -385,7 +385,7 @@ PokerMinigame_ShuffleCards:
 	ld hl, wPokerTurnNumber
 	ld a, [hl]
 	inc a
-	cp 40 + 1
+	cp POKER_MAX_TURNS + 1
 	jr c, .Complete
 	ld a, 1
 .Complete:
@@ -619,11 +619,11 @@ PokerMinigame_GetCardPos:
 	ld l, a
 	ret
 .Table:
-	dw SCREEN_WIDTH * 5 + 2 + wTileMap
-	dw SCREEN_WIDTH * 5 + 5 + wTileMap
-	dw SCREEN_WIDTH * 5 + 8 + wTileMap
-	dw SCREEN_WIDTH * 5 + 11 + wTileMap
-	dw SCREEN_WIDTH * 5 + 14 + wTileMap
+	dwcoord 2, 5
+	dwcoord 5, 5
+	dwcoord 8, 5
+	dwcoord 11, 5
+	dwcoord 14, 5
 
 PokerMinigame_SortCards:
 	ld hl, wPokerSortOrder
@@ -1149,8 +1149,8 @@ PokerMinigame_HudTextbox_DrawCursor:
 	ret
 
 .PosTable:
-	dw SCREEN_WIDTH * 14 + 12 + wTileMap
-	dw SCREEN_WIDTH * 16 + 12 + wTileMap
+	dwcoord 12, 14
+	dwcoord 12, 16
 
 PokerMinigame_Shuffling:
 	ld hl, PokerMinigame_ShufflingTable
@@ -1162,7 +1162,7 @@ PokerMinigame_Shuffling:
 
 	ld a, [wPokerTurnNumber]
 	ld c, a
-	ld a, 40
+	ld a, POKER_MAX_TURNS
 	sub c
 	ld c, a
 	ld b, $6C
@@ -1200,7 +1200,7 @@ PokerMinigame_ChangeCursor_Change:
 
 .Next:
 	ld hl, wPokerSortOrder
-	ld a, 5
+	ld a, POKERCARD_TYPES
 .Loop:
 	bit 7, [hl]
 	jr z, .Pass
@@ -1239,8 +1239,16 @@ PokerMinigame_GetMatchText:
 	ret
 
 .Table:
-	dw PokerMinigame_DudText, PokerMinigame_OnePairText, PokerMinigame_TwoPairText, PokerMinigame_ThreeOfAKindText, PokerMinigame_StraightText, PokerMinigame_FlushText, PokerMinigame_FullHouseText, PokerMinigame_StraightFlushText
-	dw PokerMinigame_FourOfAKindText, PokerMinigame_FiveOfAKindText
+	dw PokerMinigame_DudText
+	dw PokerMinigame_OnePairText
+	dw PokerMinigame_TwoPairText
+	dw PokerMinigame_ThreeOfAKindText
+	dw PokerMinigame_StraightText
+	dw PokerMinigame_FlushText
+	dw PokerMinigame_FullHouseText
+	dw PokerMinigame_StraightFlushText
+	dw PokerMinigame_FourOfAKindText
+	dw PokerMinigame_FiveOfAKindText
 
 PokerMinigame_GetPayoutText:
 	ld hl, wPokerCurrentBet
@@ -1288,7 +1296,7 @@ PokerMinigame_ReverseAllCards:
 	ld [wPokerPreviousCard], a
 .loop:
 	ld a, [wPokerPreviousCard]
-	cp $05
+	cp POKER_NUM_CARDS
 	ret nc
 	call PokerMinigame_ReverseCard
 	ld hl, wPokerPreviousCard
@@ -1507,7 +1515,7 @@ PokerMinigame_SetCardColor:
 
 	ld hl, wPokerWorkEnd + 4
 	ld [hli], a
-	ld [hl], 5
+	ld [hl], POKERCARD_TYPES
 	inc hl
 	add $03
 	ld [hli], a
@@ -1531,13 +1539,14 @@ PokerMinigame_ClearColor:
 	ret
 
 PokerMinigame_CardData:
-	db $05, $60, $11, $20, $11, $30, $11, $40, $11, $50, $11, $60, $12, $20, $12, $30
-	db $12, $40, $12, $50, $12, $60, $13, $20, $13, $30, $13, $40, $13, $50, $13, $60
-	db $14, $20, $14, $30, $14, $40, $14, $50, $14, $60, $15, $20, $15, $30, $15, $40
-	db $15, $50, $15, $60, $16, $20, $16, $30, $16, $40, $16, $50, $16, $60, $17, $20
-	db $17, $30, $17, $40, $17, $50, $17, $60, $18, $20, $18, $30, $18, $40, $18, $50
-	db $18, $60, $19, $20, $19, $30, $19, $40, $19, $50, $19, $60, $1A, $20, $1A, $30
-	db $1A, $40, $1A, $50, $1A, $60
+	db $05, POKERCARD_PORYGON * $10 ; Reverse Card
+for x, 10
+	db x + $11, POKERCARD_PIKACHU    * $10
+	db x + $11, POKERCARD_ODDISH     * $10
+	db x + $11, POKERCARD_JIGGLYPUFF * $10
+	db x + $11, POKERCARD_POLIWAG    * $10
+	db x + $11, POKERCARD_PORYGON    * $10
+endr
 
 PokerMinigame_InstructionsText:
 	text "エーボタン　で　カードを　えらび"
@@ -1653,21 +1662,69 @@ PokerMinigame_BetWindow:
 	db	"　１まい@"
 
 PokerMinigame_ReverseData:
-	db $04, $05, $05, $06, $02, $2C, $2D, $03, $0A, $2E, $2F, $0B, $0A, $5C, $5D, $0B
-	db $02, $5E, $5F, $03, $07, $08, $08, $09
+	db	$04, $05, $05, $06
+	db	$02, $2c, $2d, $03
+	db	$0a, $2e, $2f, $0b
+	db	$0a, $5c, $5d, $0b
+	db	$02, $5e, $5f, $03
+	db	$07, $08, $08, $09
+
 
 PokerMinigame_ConvTable:
-	db $00, $10, $20, $30, $40, $01, $11, $21, $31, $41, $02, $12, $22, $32, $42, $03
-	db $13, $23, $33, $43, $04, $14, $24, $34, $44, $05, $15, $25, $35, $45, $06, $16
-	db $26, $36, $46, $07, $17, $27, $37, $47, $08, $18, $28, $38, $48, $09, $19, $29
-	db $39, $49, $0A, $1A, $2A, $3A, $4A
+	db	$00, $10, $20, $30, $40
+	db	$01, $11, $21, $31, $41
+	db	$02, $12, $22, $32, $42
+	db	$03, $13, $23, $33, $43
+	db	$04, $14, $24, $34, $44
+	db	$05, $15, $25, $35, $45
+	db	$06, $16, $26, $36, $46
+	db	$07, $17, $27, $37, $47
+	db	$08, $18, $28, $38, $48
+	db	$09, $19, $29, $39, $49
+	db	$0a, $1a, $2a, $3a, $4a
 
 PokerMinigame_ShufflingTable:
-	db $68, $C3, $54, $C3, $40, $C3, $2C, $C3, $18, $C3, $04, $C3, $F0, $C2, $DC, $C2
-	db $C8, $C2, $B4, $C2, $A0, $C2, $A1, $C2, $A2, $C2, $A3, $C2, $A4, $C2, $A5, $C2
-	db $A6, $C2, $A7, $C2, $A8, $C2, $A9, $C2, $AA, $C2, $AB, $C2, $AC, $C2, $AD, $C2
-	db $AE, $C2, $AF, $C2, $B0, $C2, $B1, $C2, $B2, $C2, $B3, $C2, $C7, $C2, $DB, $C2
-	db $EF, $C2, $03, $C3, $17, $C3, $2B, $C3, $3F, $C3, $53, $C3, $67, $C3, $7B, $C3
+	dwcoord 0, 10
+	dwcoord 0, 9
+	dwcoord 0, 8
+	dwcoord 0, 7
+	dwcoord 0, 6
+	dwcoord 0, 5
+	dwcoord 0, 4
+	dwcoord 0, 3
+	dwcoord 0, 2
+	dwcoord 0, 1
+	dwcoord 0, 0
+	dwcoord 1, 0
+	dwcoord 2, 0
+	dwcoord 3, 0
+	dwcoord 4, 0
+	dwcoord 5, 0
+	dwcoord 6, 0
+	dwcoord 7, 0
+	dwcoord 8, 0
+	dwcoord 9, 0
+	dwcoord 10, 0
+	dwcoord 11, 0
+	dwcoord 12, 0
+	dwcoord 13, 0
+	dwcoord 14, 0
+	dwcoord 15, 0
+	dwcoord 16, 0
+	dwcoord 17, 0
+	dwcoord 18, 0
+	dwcoord 19, 0
+	dwcoord 19, 1
+	dwcoord 19, 2
+	dwcoord 19, 3
+	dwcoord 19, 4
+	dwcoord 19, 5
+	dwcoord 19, 6
+	dwcoord 19, 7
+	dwcoord 19, 8
+	dwcoord 19, 9
+	dwcoord 19, 10
+
 
 PokerGFX:
 INCBIN "gfx/minigames/poker.2bpp"

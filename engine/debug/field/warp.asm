@@ -48,15 +48,13 @@ DebugMenu_WarpMenuHeader::
 	db 1 ; default option
 
 .MenuData2:
-	db $00 ; flags
+	db 0 ; flags
 	db 4 ; items
 	dw $0100 ; ???
-
 	dba WarpMenuOptions
 	dba PlaceSelectedMapName
-
-	db $00, $00, $00 ; ???
-	db $00, $00, $00 ; ???
+	dba NULL ; placeholder
+	dba NULL ; placeholder
 
 PlaceSelectedMapName::
 	push de
@@ -86,13 +84,13 @@ FieldDebug_ShowWarpToText:
 	ret
 
 .ShowText:
-	call RefreshScreen
+	call ReanchorMap
 	ld a, [wDefaultSpawnPoint]
 	call GetLandmarkName
 	call CopyStringToStringBuffer2
 	ld hl, .WarpToText
 	call FieldDebug_ShowTextboxAndExit
-	call ScreenCleanup
+	call CloseText
 	ret
 
 .WarpToText:

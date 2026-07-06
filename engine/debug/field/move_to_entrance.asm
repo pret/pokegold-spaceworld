@@ -26,7 +26,7 @@ FieldDebug_MoveToRoute1Entrance:
 	done
 
 .DoMove:
-	call RefreshScreen
+	call ReanchorMap
 	ld hl, .MoveText
 	call FieldDebug_ShowTextboxAndExit
 	ld d, $d
@@ -37,7 +37,7 @@ FieldDebug_MoveToRoute1Entrance:
 	ld a, PLAYER_OBJECT
 	ld hl, wMovementBuffer
 	call LoadMovementDataPointer
-	call ScreenCleanup
+	call CloseText
 	ret
 
 .MoveText:

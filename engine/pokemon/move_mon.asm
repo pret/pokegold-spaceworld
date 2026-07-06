@@ -992,7 +992,7 @@ GiveEgg::
 	ld a, [wCurPartySpecies]
 	ld [wTempEnemyMonSpecies], a
 	xor a
-	ld [wEnemySubStatus5], a ; ???
+	ld [wEnemySubStatus5], a ; overwrite SUBSTATUS_TRANSFORMED
 	callfar LoadEnemyMon
 	call SendMonIntoBox
 	ld de, wBoxMonNicknames

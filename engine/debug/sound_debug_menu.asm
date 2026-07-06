@@ -7,7 +7,7 @@ _DebugMenuSoundTest::
 	ldh [hDebugMenuSoundMenuIndex], a
 	call .DetermineDescriptionPointer
 
-.RefreshScreenAndLoop:
+.ReanchorMapAndLoop:
 	call WaitBGMap
 
 .Loop:
@@ -43,7 +43,7 @@ _DebugMenuSoundTest::
 ;	ld e, a
 ;	ld d, 0
 ;	callfar PlaySFX
-	jr .RefreshScreenAndLoop
+	jr .ReanchorMapAndLoop
 
 .up_pressed
 	ldh a, [hDebugMenuSoundMenuIndex]
@@ -56,7 +56,7 @@ _DebugMenuSoundTest::
 .SetIndex:
 	ldh [hDebugMenuSoundMenuIndex], a
 	call .DetermineDescriptionPointer
-	jr .RefreshScreenAndLoop
+	jr .ReanchorMapAndLoop
 
 .down_pressed
 	ldh a, [hDebugMenuSoundMenuIndex]
@@ -69,13 +69,13 @@ _DebugMenuSoundTest::
 .SetIndex2:
 	ldh [hDebugMenuSoundMenuIndex], a
 	call .DetermineDescriptionPointer
-	jr .RefreshScreenAndLoop
+	jr .ReanchorMapAndLoop
 
 .start_pressed
 	ldh a, [hDebugMenuSoundBank]
 	ld c, a
 	ld a, -1
-	jr .RefreshScreenAndLoop
+	jr .ReanchorMapAndLoop
 
 .b_pressed
 	ldh a, [hDebugMenuSoundBank]
@@ -85,7 +85,7 @@ _DebugMenuSoundTest::
 	ld [wAudioFadeOutCounter], a
 	ld a, $ff
 	ld [wAudioFadeOutControl], a
-	jr .RefreshScreenAndLoop
+	jr .ReanchorMapAndLoop
 
 .DetermineDescriptionPointer:
 	ld hl, SoundTestTextPointers

@@ -191,7 +191,7 @@ _CheckMovementDebug:
 
 CheckMovementSkateboard::
 	call _CheckMovementSkateboard
-	jp SetPlayerMovement ; FIXME: .skip_debug_move already calls SetPlayerMovement
+	jp SetPlayerMovement ; BUG: .skip_debug_move already calls SetPlayerMovement
 	                     ;        The skateboard doesn't work, because it uses the current
 	                     ;        coordinate as player animation.
 
@@ -404,7 +404,7 @@ _OldCheckMovementSurf:
 	call CheckPlayerObjectCollision
 	jr c, .face_down
 	call IsPlayerCollisionTileSolid
-	jr nc, .exit_water_down ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr nc, .exit_water_down ; BUG: This assumes cut-trees are solid, which they aren't.
 	                        ;        You can walk into them from water because of this.
 	call OldIsTileCollisionWater
 	jr c, .face_down
@@ -425,7 +425,7 @@ _OldCheckMovementSurf:
 	call CheckPlayerObjectCollision
 	jr c, .face_up
 	call IsPlayerCollisionTileSolid
-	jr nc, .exit_water_up ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr nc, .exit_water_up ; BUG: This assumes cut-trees are solid, which they aren't.
 	                      ;        You can walk into them from water because of this.
 	call OldIsTileCollisionWater
 	jr c, .face_up
@@ -446,7 +446,7 @@ _OldCheckMovementSurf:
 	call CheckPlayerObjectCollision
 	jr c, .face_left
 	call IsPlayerCollisionTileSolid
-	jr nc, .exit_water_left ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr nc, .exit_water_left ; BUG: This assumes cut-trees are solid, which they aren't.
 	                        ;        You can walk into them from water because of this.
 	call OldIsTileCollisionWater
 	jr c, .face_left
@@ -467,7 +467,7 @@ _OldCheckMovementSurf:
 	call CheckPlayerObjectCollision
 	jr c, .face_right
 	call IsPlayerCollisionTileSolid
-	jr nc, .exit_water_right ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr nc, .exit_water_right ; BUG: This assumes cut-trees are solid, which they aren't.
 	                      ;        You can walk into them from water because of this.
 	call OldIsTileCollisionWater
 	jr c, .face_right
@@ -603,9 +603,9 @@ CheckMovementWalk::
 	dw CheckMovementWalkSolid   ; water current
 	dw CheckMovementWalkLand    ; slowdown and fixed movement
 	dw CheckMovementWalkLand2   ; fixed movement
-	dw CheckMovementWalkRegular ; ???
+	dw CheckMovementWalkRegular ; pits
 	dw CheckMovementWalkWarp    ; warps
-	dw CheckMovementWalkMisc    ; ???
+	dw CheckMovementWalkSubgame ; slots, console
 	dw CheckMovementWalkSpecial ; counters, signposts, book cases
 	dw CheckMovementWalkJump    ; jumps
 	dw CheckMovementWalkRegular ; unused -- movement prohibit not yet implemented
@@ -746,7 +746,7 @@ CheckMovementWalkWarp::
 .moved_out_of_bounds
 	ret
 
-CheckMovementWalkMisc::
+CheckMovementWalkSubgame::
 	jp CheckMovementWalkRegular
 
 CheckMovementWalkSpecial::
@@ -960,7 +960,7 @@ CheckSurfDown:
 	jr c, .face_down
 	ld a, [wTileDown]
 	call CheckCollisionSometimesSolid
-	jr c, .face_down ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr c, .face_down ; BUG: This assumes cut-trees are solid, which they aren't.
 	                 ;        You can walk into them from water because of this.
 	call nz, SurfDismount
 	ld a, movement_step | DOWN
@@ -976,7 +976,7 @@ CheckSurfUp:
 	jr c, .face_up
 	ld a, [wTileUp]
 	call CheckCollisionSometimesSolid
-	jr c, .face_up ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr c, .face_up ; BUG: This assumes cut-trees are solid, which they aren't.
 	               ;        You can walk into them from water because of this.
 	call nz, SurfDismount
 	ld a, movement_step | UP
@@ -992,7 +992,7 @@ CheckSurfLeft:
 	jr c, .face_left
 	ld a, [wTileLeft]
 	call CheckCollisionSometimesSolid
-	jr c, .face_left ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr c, .face_left ; BUG: This assumes cut-trees are solid, which they aren't.
 	                 ;        You can walk into them from water because of this.
 	call nz, SurfDismount
 	ld a, movement_step | LEFT
@@ -1008,7 +1008,7 @@ CheckSurfRight:
 	jr c, .face_right
 	ld a, [wTileRight]
 	call CheckCollisionSometimesSolid
-	jr c, .face_right ; FIXME: This assumes cut-trees are solid, which they aren't.
+	jr c, .face_right ; BUG: This assumes cut-trees are solid, which they aren't.
 	                  ;        You can walk into them from water because of this.
 	call nz, SurfDismount
 	ld a, movement_step | RIGHT

@@ -88,7 +88,7 @@ INCLUDE "engine/events/std_scripts.asm"
 INCLUDE "engine/events/check_inline_trainers.asm"
 
 
-SECTION "bank9", ROMX
+SECTION "Menu", ROMX
 
 INCLUDE "engine/menu/menu.asm"
 INCLUDE "engine/items/update_item_description.asm"
@@ -101,19 +101,19 @@ INCLUDE "engine/battle/menu.asm"
 INCLUDE "engine/items/buy_sell_toss.asm"
 
 
-SECTION "bankA", ROMX
+SECTION "Link Cable", ROMX
 
 INCLUDE "engine/link/link.asm"
 INCLUDE "data/pokemon/gen1_base_special.asm"
 INCLUDE "engine/movie/trade_animation.asm"
 
 
-SECTION "bankA_2", ROMX
+SECTION "Link Cable 2", ROMX
 
 INCLUDE "engine/link/link_2.asm"
 
 
-SECTION "bankB", ROMX
+SECTION "Item Descriptions", ROMX
 
 INCLUDE "engine/items/print_item_description.asm"
 INCLUDE "engine/items/tm_holder.asm"

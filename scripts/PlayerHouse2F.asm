@@ -111,9 +111,9 @@ PlayerHouse2FComputerText:
 	ret
 
 .jump
-	call RefreshScreen
+	call ReanchorMap
 	callfar PokemonCenterPC
-	call ScreenCleanup
+	call CloseText
 	ret
 
 PlayerHouse2FCheckEmail:

@@ -22,7 +22,7 @@ FieldDebugMenuHeader:
 INCLUDE "data/debug/field_debug_entries.asm"
 
 FieldDebugMenu::
-	call RefreshScreen
+	call ReanchorMap
 	ld de, SFX_MENU
 	call PlaySFX
 	ld hl, FieldDebugMenuHeader
@@ -78,7 +78,7 @@ FieldDebugMenu::
 
 .Cleanup:
 	push af
-	call ScreenCleanup
+	call CloseText
 	pop af
 	ret
 

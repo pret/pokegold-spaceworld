@@ -1,4 +1,9 @@
-; TODO: Finish this baby up.
+	const_def 1
+	const PINK_PAGE  ; 1
+	const GREEN_PAGE ; 2
+	const BLUE_PAGE  ; 3
+DEF NUM_STAT_PAGES EQU const_value - 1
+
 StatsScreenMain::
 	ld a, [wCurPartySpecies]
 	cp DEX_EGG
@@ -28,7 +33,7 @@ StatsScreenMain::
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ld c, 1
+	ld c, PINK_PAGE
 	ld b, 0
 	ld hl, LoadPinkPage
 .StatsScreen_LoadPage
@@ -49,16 +54,16 @@ StatsScreenMain::
 	bit D_LEFT_F, a
 	jr nz, .d_left
 	inc c
-	ld a, 3
+	ld a, BLUE_PAGE
 	cp c
 	jr nc, .StatsScreen_JumpToLoadPageFunction
-	ld c, 1
+	ld c, PINK_PAGE
 	jr .StatsScreen_JumpToLoadPageFunction
 
 .d_left
 	dec c
 	jr nz, .StatsScreen_JumpToLoadPageFunction
-	ld c, 3
+	ld c, BLUE_PAGE
 .StatsScreen_JumpToLoadPageFunction
 	ld hl, .StatsScreen_LoadPageJumptable
 	dec c
@@ -83,7 +88,7 @@ StatsScreenMain::
 	dw LoadPinkPage
 	dw LoadGreenPage
 	dw LoadBluePage
-	assert_table_length 3 ; TODO: NUM_STAT_PAGES
+	assert_table_length NUM_STAT_PAGES
 
 LoadPinkPage::
 	call WaitBGMap
@@ -97,9 +102,9 @@ LoadPinkPage::
 	jr nz, .draw_page
 	push bc
 	hlcoord 1, 0
-	ld [hl], $74
+	ld [hl], '・'
 	inc hl
-	ld [hl], $f2
+	ld [hl], '．'
 	inc hl
 
 	ld de, wMoveGrammar
@@ -314,7 +319,7 @@ LoadGreenPage::
 	call WaitBGMap
 	xor a
 	ldh [hBGMapMode], a
-	ld b, 2
+	ld b, GREEN_PAGE
 	call StatsScreen_LoadPageIndicators
 
 	hlcoord 8, 0
@@ -377,7 +382,7 @@ LoadBluePage::
 	call WaitBGMap
 	xor a
 	ldh [hBGMapMode], a
-	ld b, 3
+	ld b, BLUE_PAGE
 	call StatsScreen_LoadPageIndicators
 
 	hlcoord 8, 0
@@ -442,7 +447,7 @@ StatsScreen_LoadPageIndicators::
 	ld a, $36
 	call .load_square
 	ld a, b
-	cp 2
+	cp GREEN_PAGE
 	ld a, $3a
 	hlcoord 3, 14
 	jr c, .load_square

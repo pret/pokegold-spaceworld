@@ -9,7 +9,7 @@ MACRO map
 	db 0, 0
 ENDM
 
-	db 0 ; ???
+	db 0 ; unused
 
 MapGroupPointers::
 	dw MapGroup_SilentHill
