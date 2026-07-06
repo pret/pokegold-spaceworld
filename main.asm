@@ -79,7 +79,7 @@ SECTION "bank5", ROMX
 INCLUDE "engine/overworld/redraw_player_sprite.asm"
 INCLUDE "engine/sprites/sprites.asm"
 INCLUDE "data/maps/sprite_sets.asm"
-INCLUDE "data/overworld_sprites.asm"
+INCLUDE "data/sprites/sprites.asm"
 INCLUDE "engine/menu/empty_sram.asm"
 INCLUDE "data/maps/scenes.asm"
 INCLUDE "engine/overworld/return_from_battle.asm"
