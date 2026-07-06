@@ -48,7 +48,7 @@ Route1P2Text1:
 	jp Init
 
 Route1P2Text2:
-	ld hl, wRoute1P2Flags ; trainer flags?
+	ld hl, wRoute1P2Flags
 	bit 1, [hl]
 	jr nz, .Text2Jump ; already fought
 	ld hl, Route1P2TextString1
