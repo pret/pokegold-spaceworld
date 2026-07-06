@@ -3,15 +3,16 @@
 
 MACRO add_predef
 \1Predef::
+if _NARG == 2
+	db \2
+	dw \1
+else
 	dba \1
+endc
 ENDM
 
 PredefPointers::
-; To YOU who is reading this:
-; Please be a peach and nuke the hell out of these:
-; WE NEED LABELS!
-; Thank youu~
-	add_predef LearnMove ; 0
+	add_predef LearnMove
 	add_predef IntroDisplayPicCenteredOrUpperRight
 	add_predef AskName_Old
 	add_predef GetItemPrice_Old
@@ -19,16 +20,15 @@ PredefPointers::
 	add_predef GetItemAmount
 	add_predef HealParty
 	add_predef AddBCD
-	dba AddBCD ; 8
-	dba AddBCD
+	dba AddBCD ; duplicate
+	dba AddBCD ; duplicate
 	add_predef SubBCD
-	dba GetItemAmount
+	dba GetItemAmount ; duplicate
 	add_predef SmallFarFlagAction
-GiveItemPredef::
-	dbw 3, GiveItem
+	add_predef GiveItem, 3 ; wrong bank
 	add_predef ComputeHPBarPixels
 	add_predef FillPP
-	add_predef TryAddMonToParty ; 10
+	add_predef TryAddMonToParty
 	add_predef AddTempmonToParty
 	add_predef SendGetMonIntoFromBox
 	add_predef DepositBreedmonOrBuffermon
@@ -36,7 +36,7 @@ GiveItemPredef::
 	add_predef SendMonIntoBox
 	add_predef GiveEgg
 	add_predef UpdateHPBar
-	add_predef CalcMonStats ; 18
+	add_predef CalcMonStats
 	add_predef CalcMonStatC
 	add_predef CanLearnTMHMMove
 	add_predef GetTMHMMove
@@ -44,7 +44,7 @@ GiveItemPredef::
 	add_predef PrintMoveDescription
 	add_predef UpdatePlayerHUD
 	add_predef PlaceGraphic
-	add_predef Old_ScaleSpriteByTwo ; 20
+	add_predef Old_ScaleSpriteByTwo
 	add_predef LoadMonBackPic
 	add_predef CheckPlayerPartyForFitMon
 	add_predef UpdateEnemyHUD
@@ -52,7 +52,7 @@ GiveItemPredef::
 	add_predef StartBattle
 	add_predef CalcAndPlaceExpBar
 	add_predef GetBattleMonBackpic
-	add_predef GetEnemyMonFrontpic ; 28
+	add_predef GetEnemyMonFrontpic
 	add_predef LearnLevelMoves
 	add_predef FillMoves
 	add_predef EvolveAfterBattle
@@ -60,7 +60,7 @@ GiveItemPredef::
 	add_predef TradeAnimation
 	add_predef NewPokedexEntry
 	add_predef Pokedex
-	add_predef ConvertMon_1to2 ; 30
+	add_predef ConvertMon_1to2
 	add_predef CopyMonToTempMon
 	add_predef ListMoves
 	add_predef GetMonBackpic
@@ -68,7 +68,7 @@ GiveItemPredef::
 	add_predef PlacePartyMember
 	add_predef OpenPartyMenu_ClearGraphics
 	add_predef OpenPartyMenu
-	add_predef InitPartyMenuLayout ; 38
+	add_predef InitPartyMenuLayout
 	add_predef ListMovePP
 	add_predef GetGender
 	add_predef StatsScreenMain
@@ -76,7 +76,7 @@ GiveItemPredef::
 	add_predef DrawEnemyHP
 	add_predef GetTypeName
 	add_predef PrintMoveType
-	add_predef PrintMonTypes ; 40
+	add_predef PrintMonTypes
 	add_predef GetUnownLetter
 	add_predef ChangeBGPalColor0_4Frames
 	add_predef PredefShakeScreenVertically
@@ -84,7 +84,7 @@ GiveItemPredef::
 	add_predef SavePokemonData
 	add_predef TryLoadPokemonData
 	add_predef Dummy_SaveBox
-	add_predef ExecuteBGEffects ; 48
+	add_predef ExecuteBGEffects
 	add_predef SaveOptionsAndGameData
 	add_predef SaveMenu
 	add_predef CheckSGB
@@ -92,10 +92,10 @@ GiveItemPredef::
 	add_predef Pokedex_GetArea
 	add_predef DoBattleTransition
 	add_predef LeaveMapAnim_Old
-	add_predef EnterMapAnim_Old ; 50
+	add_predef EnterMapAnim_Old
 	add_predef PlayBattleAnim
 	add_predef AnimationSlideEnemyMonOff ; dummied out
 	add_predef AnimationSubstitute ; dummied out
 	add_predef FightDebugMenu
 	add_predef LoadItemData
-	dbw $ff, DummyEndPredef ; 56
+	dbw $ff, DummyEndPredef
