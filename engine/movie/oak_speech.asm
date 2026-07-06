@@ -524,7 +524,7 @@ ChoosePlayerNameEndText:
 	line "<PLAYER>　と　いうんだな！"
 	prompt
 
-INCLUDE "data/player_names.asm"
+INCLUDE "data/names/player_names.asm"
 
 ChooseRivalName::
 	call PanPortraitRight
@@ -563,7 +563,7 @@ ChooseRivalNameEndText:
 	line "<RIVAL>　という　なまえだ"
 	prompt
 
-INCLUDE "data/rival_names.asm"
+INCLUDE "data/names/rival_names.asm"
 
 MomNamePrompt::
 	ld hl, MomNameMenuHeader
@@ -592,7 +592,7 @@ MomNamePrompt::
 .escape
 	ret
 
-INCLUDE "data/mom_names.asm"
+INCLUDE "data/names/mom_names.asm"
 
 NamingWindow::
 	; loads the menu header put into hl
