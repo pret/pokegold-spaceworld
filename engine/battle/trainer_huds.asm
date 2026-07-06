@@ -211,4 +211,4 @@ LoadBallIconGFX:
 	lb bc, 14, 4
 	jp Request2bpp
 
-PokeBallsGFX:: INCBIN "gfx/misc/poke_balls.2bpp"
+PokeBallsGFX:: INCBIN "gfx/battle/balls.2bpp"

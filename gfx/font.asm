@@ -91,11 +91,11 @@ AnnonAlphabetGFX:
 INCBIN "gfx/font/annon_alphabet.1bpp"
 
 EmptyTile1bppGFX:
-INCBIN "gfx/misc/empty_tile.1bpp"
+INCBIN "gfx/font/empty_tile.1bpp"
 .End
 
 BlackTileAndCursor1bppGFX:
-INCBIN "gfx/misc/black_tile_cursor.1bpp"
+INCBIN "gfx/font/black_tile_cursor.1bpp"
 .End
 
 PackIconGFX:
