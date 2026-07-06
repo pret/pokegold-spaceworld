@@ -196,7 +196,7 @@ gfx/sgb/sgb_border_gold.2bpp: tools/gfx += --trim-whitespace
 gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
 gfx/sgb/sgb_border_silver.2bpp: tools/gfx += --trim-whitespace
 
-gfx/sgb/%.sgb.tilemap: gfx/sgb/%.bin ; LC_CTYPE=C LANG=C tr < $< -d '\000' > $@
+gfx/sgb/%.sgb.tilemap: gfx/sgb/%.bin ; LC_ALL=C tr < $< -d '\000' > $@
 
 
 ### Catch-all graphics rules
