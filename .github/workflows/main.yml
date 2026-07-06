@@ -35,12 +35,8 @@ jobs:
 
       - name: Compare
         run: |
-          make -j$(nproc) compare
-          if ! git diff-index --quiet HEAD --; then
-            echo 'Uncommitted changes detected:'
-            git diff-index HEAD --
-            return 1
-          fi
+          make DEBUG=1 -j$(nproc) compare
+          .github/checkdiff.sh
 
       - name: Discord webhook
         if: ${{ github.repository_owner == 'pret' && github.event_name == 'push' }}
@@ -48,3 +44,32 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           .github/webhook.sh
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Checkout rgbds
+        uses: actions/checkout@v7
+        with:
+          path: rgbds
+          ref: ${{ env.rgbds_version }}
+          repository: gbdev/rgbds
+
+      - name: Install rgbds
+        working-directory: rgbds
+        run: |
+          brew install bison libpng pkg-config
+          export PATH="$(brew --prefix bison)/bin:$PATH"
+          sudo make -j$(sysctl -n hw.ncpu) install
+
+      - name: Remove rgbds
+        run: |
+          rm -rf rgbds
+
+      - name: Compare
+        run: |
+          make DEBUG=1 -j$(sysctl -n hw.ncpu) compare
+          .github/checkdiff.sh
