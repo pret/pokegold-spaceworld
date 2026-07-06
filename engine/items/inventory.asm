@@ -8,7 +8,7 @@ Unreferenced_ReceiveItem_Old:
 	push hl
 	ld d, 50 ; PC_ITEM_CAPACITY
 	push hl
-	ld bc, $2e62 ; TODO: ???
+	ld bc, -wNumBagItems
 	add hl, bc
 	ld a, h
 	or l

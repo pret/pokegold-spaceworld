@@ -1181,7 +1181,7 @@ PokerMinigame_Shuffling:
 	jr .SetSub
 
 PokerMinigame_ChangeCursor:
-	ld de, $6818
+	depixel 13, 3
 	ld a, SPRITE_ANIM_OBJ_POKER_CURSOR
 	call InitSpriteAnimStruct
 	ld a, c
@@ -1234,7 +1234,7 @@ PokerMinigame_GetMatchText:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $C3B9
+	hlcoord 1, 14
 	call PlaceString
 	ret
 

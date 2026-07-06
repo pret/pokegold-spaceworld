@@ -410,7 +410,7 @@ DisplayBGEventDetails:
 
 	hlcoord 17, 14
 	ld de, wFieldMoveScriptID
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNumber
 
 	hlcoord 14, 16
@@ -419,7 +419,7 @@ DisplayBGEventDetails:
 
 	hlcoord 17, 16
 	ld de, wHPBarNewHP
-	ld bc, $8102
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNumber
 
 	ret

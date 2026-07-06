@@ -41,7 +41,7 @@ SilentHillsText1:
 	ret
 
 SilentHillsTrainer2:
-	ld hl, $D3A5
+	ld hl, wSilentHillsFlags
 	bit 1, [hl]
 	jr nz, .Trainer2Won
 	ld hl, SilentHillsTrainer2EncounterString

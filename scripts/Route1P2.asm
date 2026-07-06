@@ -48,12 +48,12 @@ Route1P2Text1:
 	jp Init
 
 Route1P2Text2:
-	ld hl, $D3A2 ; trainer flags?
+	ld hl, wRoute1P2Flags ; trainer flags?
 	bit 1, [hl]
 	jr nz, .Text2Jump ; already fought
 	ld hl, Route1P2TextString1
 	call OpenTextbox
-	ld hl, $D3A2
+	ld hl, wRoute1P2Flags
 	set 1, [hl]
 	ld a, TRAINER_KIMONO_GIRL
 	ld [wOtherTrainerClass], a

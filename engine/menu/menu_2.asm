@@ -152,7 +152,7 @@ Unreferenced_PlaceMoneyTextbox_Old::
 	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	ld de, wMoney
-	lb bc, PRINTNUM_RIGHTALIGN | 3, 6
+	lb bc, PRINTNUM_LEFTALIGN | 3, 6
 	call PrintNumber
 	ret
 
@@ -185,7 +185,7 @@ PlaceMoneyTextbox:
 	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	ld de, wMoney
-	lb bc, PRINTNUM_RIGHTALIGN | 3, 6
+	lb bc, PRINTNUM_LEFTALIGN | 3, 6
 	call PrintNumber
 	ld [hl], '円'
 	ret
