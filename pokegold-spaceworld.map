@@ -304,7 +304,7 @@ ROM0 bank #0:
 	         $1011 = ContText.Text
 	         $1015 = PlaceDexEnd
 	         $1019 = PromptText
-	         $1026 = Function1026
+	         $1026 = DoneTextLinkMode
 	         $1031 = DoneText
 	         $1037 = DoneText.Text
 	         $1038 = Paragraph

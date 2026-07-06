@@ -266,7 +266,7 @@
 00:1011 ContText.Text
 00:1015 PlaceDexEnd
 00:1019 PromptText
-00:1026 Function1026
+00:1026 DoneTextLinkMode
 00:1031 DoneText
 00:1037 DoneText.Text
 00:1038 Paragraph
