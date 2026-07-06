@@ -14953,8 +14953,8 @@ VRAM bank #0:
 
 SRAM bank #0:
 	SECTION: $a000-$a497 ($0498 bytes) ["Sprite Buffers"]
-	         $a000 = sSpriteBuffer0
 	         $a000 = sScratch
+	         $a000 = sSpriteBuffer0
 	         $a188 = sSpriteBuffer1
 	         $a310 = sSpriteBuffer2
 	EMPTY: $a498-$a5ff ($0168 bytes)
@@ -23719,8 +23719,8 @@ WRAM0 bank #0:
 	         $c690 = wLYOverridesEnd
 	         $c690 = wLinkPlayerPartyMon3HP
 	         $c692 = wLinkPlayerPartyMon3MaxHP
-	         $c694 = wLinkPlayerPartyMon3Attack
 	         $c694 = wLinkPlayerPartyMon3Stats
+	         $c694 = wLinkPlayerPartyMon3Attack
 	         $c696 = wLinkPlayerPartyMon3Defense
 	         $c698 = wLinkPlayerPartyMon3Speed
 	         $c69a = wLinkPlayerPartyMon3SpclAtk
@@ -23978,8 +23978,8 @@ WRAM0 bank #0:
 	         $c7b7 = wAnimObject7JumptableIndex
 	         $c7b8 = wAnimObject7Var1
 	         $c7b9 = wAnimObject7Var2
-	         $c7ba = wAnimObject8
 	         $c7ba = wAnimObject8Index
+	         $c7ba = wAnimObject8
 	         $c7bb = wAnimObject8OAMFlags
 	         $c7bc = wAnimObject8FixY
 	         $c7bd = wAnimObject8FramesetID
