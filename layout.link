@@ -59,15 +59,15 @@ ROMX $07
 ROMX $08
 	"Tilesets 3"
 ROMX $09
-	"bank9"
+	"Menu"
 	"Bank 09 Garbage"
 ROMX $0a
-	"bankA"
-	"Maps 1"
-	"bankA_2"
+	"Link Cable"
+	"Link Cable Maps"
+	"Link Cable 2"
 	"Bank 0a Garbage"
 ROMX $0b
-	"bankB"
+	"Item Descriptions"
 	"Bank 0b Garbage"
 ROMX $0c
 	"Tilesets 4"
@@ -148,10 +148,10 @@ ROMX $24
 	"bank24"
 	"Bank 24 Garbage"
 ROMX $25
-	"Maps 2"
+	"Old City Maps"
 	"Bank 25 Garbage"
 ROMX $26
-	"Maps 3"
+	"West Maps"
 	"Bank 26 Garbage"
 ROMX $27
 	"Maps 4"
@@ -171,7 +171,7 @@ ROMX $2d
 ROMX $2e
 	"Bank 2e Garbage"
 ROMX $2f
-	"Maps 5"
+	"Misc Maps"
 	"Bank 2f Garbage"
 ROMX $30
 	"Sprites 1"
@@ -186,7 +186,7 @@ ROMX $33
 	"Move Animations"
 	"Bank 33 Garbage"
 ROMX $34
-	"Maps 6"
+	"Silent Hill Maps"
 	"Bank 34 Garbage"
 ROMX $35
 	"Bank 35 Garbage"

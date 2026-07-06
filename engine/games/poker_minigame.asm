@@ -1539,26 +1539,14 @@ PokerMinigame_ClearColor:
 	ret
 
 PokerMinigame_CardData:
-MACRO cardtypes
-	db \1+$10, POKERCARD_PIKACHU    * $10
-	db \1+$10, POKERCARD_ODDISH     * $10
-	db \1+$10, POKERCARD_JIGGLYPUFF * $10
-	db \1+$10, POKERCARD_POLIWAG    * $10
-	db \1+$10, POKERCARD_PORYGON    * $10
-ENDM
-
-	db	$05, POKERCARD_PORYGON * $10 ; Reverse Card
-
-	cardtypes  1
-	cardtypes  2
-	cardtypes  3
-	cardtypes  4
-	cardtypes  5
-	cardtypes  6
-	cardtypes  7
-	cardtypes  8
-	cardtypes  9
-	cardtypes 10
+	db $05, POKERCARD_PORYGON * $10 ; Reverse Card
+for x, 10
+	db x + $11, POKERCARD_PIKACHU    * $10
+	db x + $11, POKERCARD_ODDISH     * $10
+	db x + $11, POKERCARD_JIGGLYPUFF * $10
+	db x + $11, POKERCARD_POLIWAG    * $10
+	db x + $11, POKERCARD_PORYGON    * $10
+endr
 
 PokerMinigame_InstructionsText:
 	text "エーボタン　で　カードを　えらび"

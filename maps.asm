@@ -1,4 +1,4 @@
-SECTION "Maps 1", ROMX
+SECTION "Link Cable Maps", ROMX
 
 INCLUDE "scripts/UnusedGen1TradeCenter.asm"
 INCLUDE "data/maps/objects/UnusedGen1TradeCenter.asm"
@@ -6,7 +6,7 @@ INCLUDE "scripts/UnusedGen1Colosseum.asm"
 INCLUDE "data/maps/objects/UnusedGen1Colosseum.asm"
 
 
-SECTION "Maps 2", ROMX
+SECTION "Old City Maps", ROMX
 
 INCLUDE "data/maps/objects/Route2Gate1F.asm"
 INCLUDE "scripts/Route2Gate1F.asm"
@@ -50,7 +50,7 @@ INCLUDE "data/maps/objects/OldCitySchool.asm"
 INCLUDE "scripts/OldCitySchool.asm"
 
 
-SECTION "Maps 3", ROMX
+SECTION "West Maps", ROMX
 
 INCLUDE "data/maps/objects/Route1Gate1F.asm"
 INCLUDE "scripts/Route1Gate1F.asm"
@@ -338,7 +338,7 @@ INCLUDE "data/maps/objects/NorthPokecenter2F.asm"
 INCLUDE "scripts/NorthPokecenter2F.asm"
 
 
-SECTION "Maps 5", ROMX
+SECTION "Misc Maps", ROMX
 
 INCLUDE "data/maps/objects/PowerPlant1.asm"
 INCLUDE "scripts/PowerPlant1.asm"
@@ -380,7 +380,7 @@ INCLUDE "data/maps/objects/SilentHills.asm"
 INCLUDE "scripts/SilentHills.asm"
 
 
-SECTION "Maps 6", ROMX
+SECTION "Silent Hill Maps", ROMX
 
 INCLUDE "data/maps/objects/RouteSilentEastGate.asm"
 INCLUDE "scripts/RouteSilentEastGate.asm"
