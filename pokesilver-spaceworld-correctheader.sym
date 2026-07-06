@@ -3432,12 +3432,14 @@
 04:714f PlaceTrainerCardBGTile.InnerLoop
 04:7161 PlaceTrainerCardBGTile.ScanLoop2
 04:716a PlaceTrainerCardBGTile.LastLoop
+04:7171 AllTrainerCardGFX
 04:7171 TrainerCardBorderGFX
 04:71e1 TrainerCardGFX
 04:7381 TrainerCardColonGFX
 04:7391 TrainerCardIDNoGFX
+04:73b1 AllTrainerCardGFXEnd
 04:73b1 TrainerCardLeadersGFX
-04:73b1 TrainerCardIDNoGFX.End
+04:7ba1 TrainerCardLeadersGFXEnd
 05:4000 _RedrawPlayerSprite
 05:400a GetPlayerSprite
 05:4011 GetPlayerSprite.loop

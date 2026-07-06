@@ -3493,12 +3493,14 @@ ROMX bank #4:
 	         $714f = PlaceTrainerCardBGTile.InnerLoop
 	         $7161 = PlaceTrainerCardBGTile.ScanLoop2
 	         $716a = PlaceTrainerCardBGTile.LastLoop
+	         $7171 = AllTrainerCardGFX
 	         $7171 = TrainerCardBorderGFX
 	         $71e1 = TrainerCardGFX
 	         $7381 = TrainerCardColonGFX
 	         $7391 = TrainerCardIDNoGFX
+	         $73b1 = AllTrainerCardGFXEnd
 	         $73b1 = TrainerCardLeadersGFX
-	         $73b1 = TrainerCardIDNoGFX.End
+	         $7ba1 = TrainerCardLeadersGFXEnd
 	SECTION: $7ba1-$7fff ($045f bytes) ["Bank 04 Garbage"]
 	TOTAL EMPTY: $0000 bytes
 
