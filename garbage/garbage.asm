@@ -442,7 +442,53 @@ Unused_SpecialMapMusic_Old:
 	ret
 else
 if DEF(_GOLD)
-INCBIN "garbage/home_gold.2bpp", 246
+Unreferenced_Corrupt_PlayMapMusic::
+	dw $0317
+	pop de
+	ld a, e
+	ld [wMapMusic], a
+	call @ - $F6
+.jump
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+
+Unreferenced_Corrupt_SpecialMapMusic::
+	ld a, [wPlayerState]
+	and a
+	jr z, .normal
+	cp PLAYER_SKATE
+	jr z, .skateboard
+	ld de, MUSIC_BICYCLE
+	scf
+	ret
+
+.skateboard
+	ld de, MUSIC_NONE
+	scf
+	ret
+
+.normal
+	and a
+	ret
+
+Unreferenced_Corrupt_GetMapMusic::
+	call Unreferenced_Corrupt_SpecialMapMusic
+	ret c
+	ld a, [wMapPermissions]
+	cp TOWN
+	jr z, .not_route
+	cp INDOOR
+	jr z, .not_route
+	ld de, MUSIC_ROUTE_1
+	ret
+
+.not_route
+	ld de, MUSIC_VIRIDIAN_CITY
+	ret
+INCBIN "garbage/home_gold.2bpp", 50
 endc
 if DEF(_SILVER)
 INCBIN "garbage/home_silver.2bpp", 246
