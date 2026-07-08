@@ -24416,6 +24416,7 @@ WRAM0 bank #0:
 	         $cc38 = wTitleSequenceOpeningType
 	         $cc39 = wDefaultSpawnPoint
 	         $cc3a = wTempBoxName
+	         $cc3a = wPlayerSpinWhileMovingUpOrDownAnimDeltaY_Old
 	         $cc3a = wPrevPartyLevel
 	         $cc3a = wSwitchItemBuffer
 	         $cc3a = wChargeMoveNum
@@ -24424,19 +24425,32 @@ WRAM0 bank #0:
 	         $cc3a = wMovementBufferCount
 	         $cc3a = wSpriteViewerMenuStartingItem
 	         $cc3a = wCurTradePartyMon
+	         $cc3a = wFlyAnimUsingCoordList_Old
 	         $cc3a = wBattleMenuRows
+	         $cc3a = wPlayerSpinInPlaceAnimFrameDelay_Old
 	         $cc3a = wRodResponse_Old
 	         $cc3b = wPlaceBallsDirection
+	         $cc3b = wPlayerSpinWhileMovingUpOrDownAnimMaxY_Old
+	         $cc3b = wPlayerSpinInPlaceAnimFrameDelayDelta_Old
 	         $cc3b = wMovementBufferObject
 	         $cc3b = wBattleMenuColumns
 	         $cc3b = wCurOTTradePartyMon
+	         $cc3b = wFlyAnimCounter_Old
+	         $cc3c = wPlayerSpinWhileMovingUpOrDownAnimFrameDelay_Old
+	         $cc3c = wPlayerSpinInPlaceAnimFrameDelayEndValue_Old
 	         $cc3c = wMovementBufferPointerBank
+	         $cc3c = wFlyAnimBirdSpriteImageIndex_Old
 	         $cc3c = wTrainerHUDTiles
 	         $cc3c = wBufferTrademonNickname
+	         $cc3d = wPlayerSpinInPlaceAnimSoundID_Old
 	         $cc3d = wMovementBufferPointerAddr
 	         $cc3d = wSpriteViewerSavedMenuPointerY
 	         $cc3e = wSpriteViewerJumptableIndex
 	         $cc3f = wMovementBuffer
+	         $cc45 = wFacingDirectionList_Old
+	         $cc4c = wSavedPlayerScreenY_Old
+	         $cc4c = wEmotionBubbleSpriteIndex_Old
+	         $cc4d = wSavedPlayerFacingDirection_Old
 	EMPTY: $cc76-$cc99 ($0024 bytes)
 	SECTION: $cc9a-$ccc5 ($002c bytes) ["CC9A"]
 	         $cc9a = wSkatingDirection
@@ -24743,8 +24757,10 @@ WRAM0 bank #0:
 	         $ce7f = wReservedObjectStruct
 	         $ce80 = wReservedObjectMapObjectIndex
 	         $ce81 = wReservedObjectSpriteTile
+	         $ce81 = wSpritePlayerStateData1ImageIndex_Old
 	         $ce82 = wReservedObjectMovementType
 	         $ce83 = wReservedObjectFlags
+	         $ce83 = wSpritePlayerStateData1YPixels_Old
 	         $ce85 = wReservedObjectWalking
 	         $ce86 = wReservedObjectDirection
 	         $ce87 = wReservedObjectStepType
@@ -26416,8 +26432,8 @@ WRAM0 bank #0:
 	         $dcc0 = wBoxMon17CaughtTime
 	         $dcc0 = wBoxMon17CaughtData
 	         $dcc0 = wBoxMon17CaughtLevel
-	         $dcc1 = wBoxMon17CaughtGender
 	         $dcc1 = wBoxMon17CaughtLocation
+	         $dcc1 = wBoxMon17CaughtGender
 	         $dcc2 = wBoxMon17Level
 	         $dcc3 = wBoxMon17End
 	         $dcc3 = wBoxMon18Species
@@ -26750,8 +26766,8 @@ WRAM0 bank #0:
 	         $df05 = wBoxMon28OT
 	         $df0b = wBoxMon29OT
 	         $df11 = wBoxMon30OT
-	         $df17 = wBoxMonNicknames
 	         $df17 = wBoxMon1Nickname
+	         $df17 = wBoxMonNicknames
 	         $df1d = wBoxMon2Nickname
 	         $df23 = wBoxMon3Nickname
 	         $df29 = wBoxMon4Nickname
