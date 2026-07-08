@@ -1026,6 +1026,30 @@ NEXTU
 
 wTempBoxName:: ds BOX_NAME_LENGTH
 
+NEXTU
+wPlayerSpinInPlaceAnimFrameDelay_Old:: db
+wPlayerSpinInPlaceAnimFrameDelayDelta_Old:: db
+wPlayerSpinInPlaceAnimFrameDelayEndValue_Old:: db
+wPlayerSpinInPlaceAnimSoundID_Old:: db
+	ds 6
+	db ; temporary space used when wFacingDirectionList_Old is rotated
+wFacingDirectionList_Old:: ds 4
+	ds 3
+wSavedPlayerScreenY_Old:: db
+wSavedPlayerFacingDirection_Old:: db
+
+NEXTU
+wPlayerSpinWhileMovingUpOrDownAnimDeltaY_Old:: db
+wPlayerSpinWhileMovingUpOrDownAnimMaxY_Old:: db
+wPlayerSpinWhileMovingUpOrDownAnimFrameDelay_Old:: db
+
+NEXTU
+wFlyAnimUsingCoordList_Old:: db
+wFlyAnimCounter_Old:: db
+wFlyAnimBirdSpriteImageIndex_Old:: db
+	ds 15
+wEmotionBubbleSpriteIndex_Old:: db
+
 ENDU
 
 
@@ -1490,9 +1514,17 @@ wFollowerMovementQueueLength:: db
 wFollowMovementQueue:: ds 5
 
 wObjectStructs::
+UNION
 ; Object struct reserved for the map viewer cursor and for Blue in Silent Hill.
 ; Presumably needed any time they needed something to have a higher priority than the player.
 wReservedObjectStruct:: object_struct wReservedObject
+
+NEXTU
+	ds 2
+wSpritePlayerStateData1ImageIndex_Old:: db
+	ds 1
+wSpritePlayerStateData1YPixels_Old:: db
+ENDU
 
 wPlayerStruct::   object_struct wPlayer
 ; wObjectStruct1 - wObjectStruct12

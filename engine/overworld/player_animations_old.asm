@@ -2,13 +2,10 @@
 ; Basically non-functional because RAM has moved around so much since then.
 ; Certain lines of code were removed here, presumably so that it would actually compile.
 
-; TODO: Make this less messy by including old variables in wram.asm.
-; Shouldn't be too much of a priority since it's... you know, not used. Or functional.
-
 EnterMapAnim_Old::
 	call InitFacingDirectionList_Old
 	ld a, $ec
-	ld [wReservedObjectFlags], a ; wSpritePlayerStateData1YPixels in pokered
+	ld [wSpritePlayerStateData1YPixels_Old], a
 	call WaitBGMap
 	push hl
 	call GBFadeInFromWhite
@@ -18,16 +15,18 @@ EnterMapAnim_Old::
 	ld a, b
 	and a
 	jr nz, .done
-; if the player is not standing on a warp pad or hole
-	ld hl, wBattleMenuRows ; originally wPlayerSpinInPlaceAnimFrameDelay
+; This originally jumped if the player was standing on a warp pad or hole,
+; but b now has no meaningful value on return from FishingAnim_Old
+
+	ld hl, wPlayerSpinInPlaceAnimFrameDelay_Old
 	xor a
-	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelay
+	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelay_Old
 	inc a
-	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelayDelta
+	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelayDelta_Old
 	ld a, $8
-	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelayEndValue
-	ld [hl], $ff ; wPlayerSpinInPlaceAnimSoundID
-	ld hl, $cc45 ; originally wFacingDirectionList
+	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelayEndValue_Old
+	ld [hl], $ff ; wPlayerSpinInPlaceAnimSoundID_Old
+	ld hl, wFacingDirectionList_Old
 	call PlayerSpinInPlace_Old
 .done
 	jp RestoreFacingDirectionAndYScreenPos_Old
@@ -76,13 +75,13 @@ FlyAnimationEnterScreenCoords_Old:
 	db $3C, $40
 
 PlayerSpinWhileMovingDown_Old:
-	ld hl, wBattleMenuRows ; originally wPlayerSpinWhileMovingUpOrDownAnimDeltaY
+	ld hl, wPlayerSpinWhileMovingUpOrDownAnimDeltaY_Old
 	ld a, $10
-	ld [hli], a ; wPlayerSpinWhileMovingUpOrDownAnimDeltaY
+	ld [hli], a ; wPlayerSpinWhileMovingUpOrDownAnimDeltaY_Old
 	ld a, $3c
-	ld [hli], a ; wPlayerSpinWhileMovingUpOrDownAnimMaxY
+	ld [hli], a ; wPlayerSpinWhileMovingUpOrDownAnimMaxY_Old
 	call GetPlayerTeleportAnimFrameDelay_Old
-	ld [hl], a ; wPlayerSpinWhileMovingUpOrDownAnimFrameDelay
+	ld [hl], a ; wPlayerSpinWhileMovingUpOrDownAnimFrameDelay_Old
 	jp PlayerSpinWhileMovingUpOrDown_Old
 
 LeaveMapAnim_Old:
@@ -91,22 +90,27 @@ LeaveMapAnim_Old:
 	ld a, b
 	and a
 	jr z, .playerNotStandingOnWarpPadOrHole
+; This originally jumped if the player was standing on a warp pad or hole,
+; but b now has no meaningful value on return from FishingAnim_Old
+
 	dec a
 	jp nz, LeaveMapThroughHoleAnim_Old
 .spinWhileMovingUp
-	ld hl, wBattleMenuRows ; originally wPlayerSpinWhileMovingUpOrDownAnimDeltaY
+	ld hl, wPlayerSpinWhileMovingUpOrDownAnimDeltaY_Old
 	ld a, -$10
-	ld [hli], a ; wPlayerSpinWhileMovingUpOrDownAnimDeltaY
+	ld [hli], a ; wPlayerSpinWhileMovingUpOrDownAnimDeltaY_Old
 	ld a, $ec
-	ld [hli], a ; wPlayerSpinWhileMovingUpOrDownAnimMaxY
+	ld [hli], a ; wPlayerSpinWhileMovingUpOrDownAnimMaxY_Old
 	call GetPlayerTeleportAnimFrameDelay_Old
-	ld [hl], a ; wPlayerSpinWhileMovingUpOrDownAnimFrameDelay
+	ld [hl], a ; wPlayerSpinWhileMovingUpOrDownAnimFrameDelay_Old
 	call PlayerSpinWhileMovingUpOrDown_Old
 	call FishingAnim_Old ; originally IsPlayerStandingOnWarpPadOrHole
 	ld a, b
 	dec a
 	jr z, .playerStandingOnWarpPad
-; if not standing on a warp pad, there is an extra delay
+; This originally jumped if the player was standing on a warp pad or hole,
+; but b now has no meaningful value on return from FishingAnim_Old
+
 	ld c, 10
 	call DelayFrames
 .playerStandingOnWarpPad
@@ -114,42 +118,42 @@ LeaveMapAnim_Old:
 	jp RestoreFacingDirectionAndYScreenPos_Old
 
 .playerNotStandingOnWarpPadOrHole
-	ld hl, wBattleMenuRows ; originally wPlayerSpinInPlaceAnimFrameDelay
+	ld hl, wPlayerSpinInPlaceAnimFrameDelay_Old
 	ld a, 16
-	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelay
+	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelay_Old
 	ld a, -1
-	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelayDelta
+	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelayDelta_Old
 	xor a
-	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelayEndValue
-	ld [hl], SFX_TELEPORT_EXIT_2 ; wPlayerSpinInPlaceAnimSoundID
-	ld hl, $cc45 ; originally wFacingDirectionList
+	ld [hli], a ; wPlayerSpinInPlaceAnimFrameDelayEndValue_Old
+	ld [hl], SFX_TELEPORT_EXIT_2 ; wPlayerSpinInPlaceAnimSoundID_Old
+	ld hl, wFacingDirectionList_Old
 	call PlayerSpinInPlace_Old
 	jr .spinWhileMovingUp
 
 ; Also unreferenced
 .flyAnimation
 	call LoadBirdSpriteGraphics_Old
-	ld hl, wBattleMenuRows ; originally wFlyAnimUsingCoordList
+	ld hl, wFlyAnimUsingCoordList_Old
 	ld a, $ff ; is not using coord list (flap in place)
-	ld [hli], a ; wFlyAnimUsingCoordList
+	ld [hli], a ; wFlyAnimUsingCoordList_Old
 	ld a, 8
-	ld [hli], a ; wFlyAnimCounter
-	ld [hl], $c ; wFlyAnimBirdSpriteImageIndex
+	ld [hli], a ; wFlyAnimCounter_Old
+	ld [hl], $c ; wFlyAnimBirdSpriteImageIndex_Old
 	call DoFlyAnimation_Old
-	ld hl, wBattleMenuRows ; wFlyAnimUsingCoordList
+	ld hl, wFlyAnimUsingCoordList_Old
 	xor a ; is using coord list
-	ld [hli], a ; wFlyAnimUsingCoordList
+	ld [hli], a ; wFlyAnimUsingCoordList_Old
 	ld a, $c
-	ld [hli], a ; wFlyAnimCounter
-	ld [hl], $c ; wFlyAnimBirdSpriteImageIndex (facing right)
+	ld [hli], a ; wFlyAnimCounter_Old
+	ld [hl], $c ; wFlyAnimBirdSpriteImageIndex_Old (facing right)
 	ld de, FlyAnimationScreenCoords1_Old
 	call DoFlyAnimation_Old
 	ld c, 40
 	call DelayFrames
-	ld hl, wBattleMenuColumns ; originally wFlyAnimCounter
+	ld hl, wFlyAnimCounter_Old
 	ld a, 11
-	ld [hli], a ; wFlyAnimCounter
-	ld [hl], $8 ; wFlyAnimBirdSpriteImageIndex (facing left)
+	ld [hli], a ; wFlyAnimCounter_Old
+	ld [hl], $8 ; wFlyAnimBirdSpriteImageIndex_Old (facing left)
 	ld de, FlyAnimationScreenCoords2_Old
 	call DoFlyAnimation_Old
 	call GBFadeOutToWhite
@@ -207,16 +211,16 @@ LeaveMapThroughHoleAnim_Old:
 	jp RestoreFacingDirectionAndYScreenPos_Old
 
 DoFlyAnimation_Old:
-	ld a, [wTrainerHUDTiles] ; originally wFlyAnimBirdSpriteImageIndex
+	ld a, [wFlyAnimBirdSpriteImageIndex_Old]
 	xor $1 ; make the bird flap its wings
-	ld [wTrainerHUDTiles], a
-	ld [wReservedObjectSpriteTile], a ; originally wSpritePlayerStateData1ImageIndex
+	ld [wFlyAnimBirdSpriteImageIndex_Old], a
+	ld [wSpritePlayerStateData1ImageIndex_Old], a
 	ld c, 3
 	call DelayFrames
-	ld a, [wBattleMenuRows] ; wFlyAnimUsingCoordList
+	ld a, [wFlyAnimUsingCoordList_Old]
 	cp $ff
 	jr z, .skipCopyingCoords ; if the bird is flapping its wings in place
-	ld hl, wReservedObjectFlags ; originally wSpritePlayerStateData1YPixels
+	ld hl, wSpritePlayerStateData1YPixels_Old
 	ld a, [de]
 	inc de
 	ld [hli], a ; y
@@ -225,7 +229,7 @@ DoFlyAnimation_Old:
 	inc de
 	ld [hl], a ; x
 .skipCopyingCoords
-	ld a, [wBattleMenuColumns] ; wFlyAnimCounter
+	ld a, [wFlyAnimCounter_Old]
 	dec a
 	ld [wBattleMenuColumns], a
 	jr nz, DoFlyAnimation_Old
@@ -242,16 +246,16 @@ LoadBirdSpriteGraphics_Old:
 	jp Request2bpp
 
 InitFacingDirectionList_Old:
-	ld a, [wReservedObjectSpriteTile] ; originally wSpritePlayerStateData1ImageIndex
-	ld [$cc4d], a ; originally wSavedPlayerFacingDirection
-	ld a, [wReservedObjectFlags] ; originally wSpritePlayerStateData1YPixels
-	ld [$cc4c], a ; originally wSavedPlayerScreenY
+	ld a, [wSpritePlayerStateData1ImageIndex_Old]
+	ld [wSavedPlayerFacingDirection_Old], a
+	ld a, [wSpritePlayerStateData1YPixels_Old]
+	ld [wSavedPlayerScreenY_Old], a
 	ld hl, .PlayerSpinningFacingOrder
-	ld de, $cc45 ; originally wFacingDirectionList
+	ld de, wFacingDirectionList_Old
 	ld bc, 4
 	call CopyBytes
 	ld a, [wReservedObjectSpriteTile]
-	ld hl, $cc45
+	ld hl, wFacingDirectionList_Old
 ; find the place in the list that matches the current facing direction
 .loop
 	cp [hl]
@@ -268,29 +272,29 @@ InitFacingDirectionList_Old:
 SpinPlayerSprite_Old:
 ; copy the current value from the list into the sprite data and rotate the list
 	ld a, [hl]
-	ld [wReservedObjectSpriteTile], a ; originally wSpritePlayerStateData1ImageIndex
+	ld [wSpritePlayerStateData1ImageIndex_Old], a
 	push hl
-	ld hl, $cc45 ; wFacingDirectionList
-	ld de, $cc44 ; wFacingDirectionList - 1
+	ld hl, wFacingDirectionList_Old
+	ld de, wFacingDirectionList_Old - 1
 	ld bc, 4
 	call CopyBytes
-	ld a, [$cc44]
-	ld [$cc48], a ; wFacingDirectionList + 3
+	ld a, [wFacingDirectionList_Old - 1]
+	ld [wFacingDirectionList_Old + 3], a
 	pop hl
 	ret
 
 PlayerSpinInPlace_Old:
 	call SpinPlayerSprite_Old
-	ld a, [wBattleMenuRows] ; originally wPlayerSpinInPlaceAnimFrameDelay
+	ld a, [wPlayerSpinInPlaceAnimFrameDelay_Old]
 	ld c, a
 	and $3
 	jr nz, .skipPlayingSound
 .skipPlayingSound
-	ld a, [wBattleMenuColumns] ; wPlayerSpinInPlaceAnimFrameDelayDelta
+	ld a, [wPlayerSpinInPlaceAnimFrameDelayDelta_Old]
 	add c
-	ld [wBattleMenuRows], a ; wPlayerSpinInPlaceAnimFrameDelay
+	ld [wPlayerSpinInPlaceAnimFrameDelay_Old], a
 	ld c, a
-	ld a, [wTrainerHUDTiles] ; wPlayerSpinInPlaceAnimFrameDelayEndValue
+	ld a, [wPlayerSpinInPlaceAnimFrameDelayEndValue_Old]
 	cp c
 	ret z
 	call DelayFrames
@@ -298,25 +302,25 @@ PlayerSpinInPlace_Old:
 
 PlayerSpinWhileMovingUpOrDown_Old:
 	call SpinPlayerSprite_Old
-	ld a, [wBattleMenuRows] ; wPlayerSpinWhileMovingUpOrDownAnimDeltaY
+	ld a, [wPlayerSpinWhileMovingUpOrDownAnimDeltaY_Old]
 	ld c, a
-	ld a, [wReservedObjectFlags] ; wSpritePlayerStateData1YPixels
+	ld a, [wSpritePlayerStateData1YPixels_Old]
 	add c
-	ld [wReservedObjectFlags], a ; wSpritePlayerStateData1YPixels
+	ld [wSpritePlayerStateData1YPixels_Old], a
 	ld c, a
-	ld a, [wBattleMenuColumns] ; wPlayerSpinWhileMovingUpOrDownAnimMaxY
+	ld a, [wPlayerSpinWhileMovingUpOrDownAnimMaxY_Old]
 	cp c
 	ret z
-	ld a, [wTrainerHUDTiles] ; wPlayerSpinWhileMovingUpOrDownAnimFrameDelay
+	ld a, [wPlayerSpinWhileMovingUpOrDownAnimFrameDelay_Old]
 	ld c, a
 	call DelayFrames
 	jr PlayerSpinWhileMovingUpOrDown_Old
 
 RestoreFacingDirectionAndYScreenPos_Old:
-	ld a, [$cc4c] ; wSavedPlayerScreenY
-	ld [wReservedObjectFlags], a ; wSpritePlayerStateData1YPixels
-	ld a, [$cc4d] ; wSavedPlayerFacingDirection
-	ld [wReservedObjectSpriteTile], a ; wSpritePlayerStateData1ImageIndex
+	ld a, [wSavedPlayerScreenY_Old]
+	ld [wSpritePlayerStateData1YPixels_Old], a
+	ld a, [wSavedPlayerFacingDirection_Old]
+	ld [wSpritePlayerStateData1ImageIndex_Old], a
 	ret
 
 ; if SGB, 2 frames, else 3 frames
@@ -338,8 +342,8 @@ FishingAnim_Old:
 	call Request2bpp
 	ld a, 4
 	ld hl, RedFishingTiles
-	call $4c4d ; LoadAnimSpriteGfx_Old
-	ld a, [wReservedObjectSpriteTile] ; originally wSpritePlayerStateData1ImageIndex
+	call LoadAnimSpriteGfx_Old
+	ld a, [wSpritePlayerStateData1ImageIndex_Old]
 	ld c, a
 	ld b, $0
 	ld hl, FishingRodOAM
@@ -362,7 +366,7 @@ FishingAnim_Old:
 ; shake the player's sprite vertically
 	ld b, 10
 .loop
-	ld hl, wReservedObjectFlags ; wSpritePlayerStateData1YPixels
+	ld hl, wSpritePlayerStateData1YPixels_Old
 	call .ShakePlayerSprite
 	ld hl, wShadowOAMSprite39
 	call .ShakePlayerSprite
@@ -373,21 +377,21 @@ FishingAnim_Old:
 
 ; If the player is facing up, hide the fishing rod so it doesn't overlap with
 ; the exclamation bubble that will be shown next.
-	ld a, [wReservedObjectSpriteTile] ; wSpritePlayerStateData1ImageIndex
+	ld a, [wSpritePlayerStateData1ImageIndex_Old]
 	cp OW_UP
 	jr nz, .skipHidingFishingRod
 	ld a, $a0
 	ld [wShadowOAMSprite39YCoord], a
 
 .skipHidingFishingRod
-	ld hl, $cc4c ; wEmotionBubbleSpriteIndex
+	ld hl, wEmotionBubbleSpriteIndex_Old
 	xor a
 	ld [hli], a ; player's sprite
 	ld [hl], a ; EXCLAMATION_BUBBLE
 ; There's no predef for displaying emotion bubbles in this build, so this amounts to nothing
 
 ; If the player is facing up, unhide the fishing rod.
-	ld a, [wReservedObjectSpriteTile] ; wSpritePlayerStateData1ImageIndex
+	ld a, [wSpritePlayerStateData1ImageIndex_Old]
 	cp OW_UP
 	jr nz, .skipUnhidingFishingRod
 	ld a, $44
