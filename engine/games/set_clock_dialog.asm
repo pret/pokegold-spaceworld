@@ -1,3 +1,5 @@
+; This is considered a subgame internally.
+
 DEF UP_ARROW      EQU $f0
 DEF DOWN_ARROW    EQU $ee
 

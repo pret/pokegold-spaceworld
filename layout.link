@@ -25,35 +25,35 @@ ROM0
 	"Serial interrupt vector"
 	org $0060
 	"Joypad interrupt vector"
-	"High Home Garbage"
+	"High Home Overdump"
 	org $0100
 	"Entry point"
 	org $014e
 	"Global check value"
 	org $150
 	"Home"
-	"Home Garbage"
+	"Home Overdump"
 ROMX $01
 	"bank1"
-	"Bank 01 Garbage"
+	"Bank 01 Overdump"
 ROMX $02
 	"bank2"
-	"Bank 02 Garbage"
+	"Bank 02 Overdump"
 ROMX $03
 	"bank3"
-	"Bank 03 Garbage"
+	"Bank 03 Overdump"
 ROMX $04
 	"Maps"
 	"Shrink GFX"
 	"Title Screen GFX"
 	"bank4"
-	"Bank 04 Garbage"
+	"Bank 04 Overdump"
 ROMX $05
 	"bank5"
-	"Bank 05 Garbage"
+	"Bank 05 Overdump"
 ROMX $06
 	"Tilesets 1"
-	"Bank 06 Garbage"
+	"Bank 06 Overdump"
 ROMX $07
 	"Tilesets 2"
 ROMX $08
@@ -71,82 +71,82 @@ ROMX $0b
 	"Bank 0b Garbage"
 ROMX $0c
 	"Tilesets 4"
-	"Bank 0c Garbage"
+	"Bank 0c Overdump"
 ROMX $0d
 	"Effect Commands"
-	"Bank 0d Garbage"
+	"Bank 0d Overdump"
 ROMX $0e
 	"Enemy Trainers"
-	"Bank 0e Garbage"
+	"Bank 0e Overdump"
 ROMX $0f
 	"Battle Core"
-	"Bank 0f Garbage"
+	"Bank 0f Overdump"
 ROMX $10
 	"bank10"
-	"Bank 10 Garbage"
+	"Bank 10 Overdump"
 ROMX $11
 	"bank11"
-	"Bank 11 Garbage"
+	"Bank 11 Overdump"
 ROMX $12
 	"Trainer Pics"
-	"Bank 12 Garbage"
+	"Bank 12 Overdump"
 ROMX $13
 	"Tilesets 5"
-	"Bank 13 Garbage"
+	"Bank 13 Overdump"
 ROMX $14
 	"bank14"
 	"Pic Banks"
-	"Bank 14 Garbage"
+	"Bank 14 Overdump"
 ROMX $15
 	"Pics 1"
-	"Bank 15 Garbage"
+	"Bank 15 Overdump"
 ROMX $16
 	"Pics 2"
-	"Bank 16 Garbage"
+	"Bank 16 Overdump"
 ROMX $17
 	"Pics 3"
-	"Bank 17 Garbage"
+	"Bank 17 Overdump"
 ROMX $18
 	"Pics 4"
-	"Bank 18 Garbage"
+	"Bank 18 Overdump"
 ROMX $19
 	"Pics 5"
-	"Bank 19 Garbage"
+	"Bank 19 Overdump"
 ROMX $1a
 	"Pics 6"
-	"Bank 1a Garbage"
+	"Bank 1a Overdump"
 ROMX $1b
 	"Pics 7"
-	"Bank 1b Garbage"
+	"Bank 1b Overdump"
 ROMX $1c
 	"Pics 8"
-	"Bank 1c Garbage"
+	"Bank 1c Overdump"
 ROMX $1d
 	"Pics 9"
-	"Bank 1d Garbage"
+	"Bank 1d Overdump"
 ROMX $1e
 	"Pics 10"
-	"Bank 1e Garbage"
+	"Bank 1e Overdump"
 ROMX $1f
 	"Pics 11"
 	"Annon Pic Ptrs and Pics"
 	"Egg Pic"
-	"Bank 1f Garbage"
+	"Bank 1f Overdump"
 ROMX $20
-	"Bank 20 Garbage"
+	"Bank 20 Overdump"
 ROMX $21
 	"Attack Animation GFX"
-	"Bank 21 Garbage"
+	"Bank 21 Overdump"
 ROMX $22
-	"Bank 22 Garbage"
+	"Bank 22 Overdump"
 ROMX $23
 	"bank23"
 	"Pokemon Party Sprites"
 	"bank23_2"
-	"Bank 23 Garbage"
+	"Bank 23 Overdump"
 ROMX $24
-	"bank24"
-	"Bank 24 Garbage"
+	"Subgames 1"
+	"Bank 24 Overdump"
 ROMX $25
 	"Old City Maps"
 	"Bank 25 Garbage"
@@ -155,74 +155,74 @@ ROMX $26
 	"Bank 26 Garbage"
 ROMX $27
 	"Maps 4"
-	"Bank 27 Garbage"
+	"Bank 27 Overdump"
 ROMX $28
-	"Bank 28 Garbage"
+	"Bank 28 Overdump"
 ROMX $29
-	"Bank 29 Garbage"
+	"Bank 29 Overdump"
 ROMX $2a
-	"Bank 2a Garbage"
+	"Bank 2a Overdump"
 ROMX $2b
-	"Bank 2b Garbage"
+	"Bank 2b Overdump"
 ROMX $2c
-	"Bank 2c Garbage"
+	"Bank 2c Overdump"
 ROMX $2d
-	"Bank 2d Garbage"
+	"Bank 2d Overdump"
 ROMX $2e
-	"Bank 2e Garbage"
+	"Bank 2e Overdump"
 ROMX $2f
 	"Misc Maps"
 	"Bank 2f Garbage"
 ROMX $30
 	"Sprites 1"
-	"Bank 30 Garbage"
+	"Bank 30 Overdump"
 ROMX $31
 	"Sprites 2"
-	"Bank 31 Garbage"
+	"Bank 31 Overdump"
 ROMX $32
 	"bank32"
-	"Bank 32 Garbage"
+	"Bank 32 Overdump"
 ROMX $33
 	"Move Animations"
-	"Bank 33 Garbage"
+	"Bank 33 Overdump"
 ROMX $34
 	"Silent Hill Maps"
 	"Bank 34 Garbage"
 ROMX $35
-	"Bank 35 Garbage"
+	"Bank 35 Overdump"
 ROMX $36
 	"Maps 7"
 	"bank36"
 	"Maps 8"
-	"Bank 36 Garbage"
+	"Bank 36 Overdump"
 ROMX $37
 	"Tilesets 6"
-	"Bank 37 Garbage"
+	"Bank 37 Overdump"
 ROMX $38
-	"bank38"
-	"Bank 38 Garbage"
+	"Subgames 2"
+	"Bank 38 Overdump"
 ROMX $39
 	"Intro"
-	"Bank 39 Garbage"
+	"Bank 39 Overdump"
 ROMX $3a
 	"Audio"
-	"Bank 3a Garbage"
+	"Bank 3a Overdump"
 ROMX $3b
 	"Songs 1"
-	"Bank 3b Garbage"
+	"Bank 3b Overdump"
 ROMX $3c
 	"Sound Effects"
 	"Cries"
 	"Songs 2"
-	"Bank 3c Garbage"
+	"Bank 3c Overdump"
 ROMX $3d
-	"Bank 3d Garbage"
+	"Bank 3d Overdump"
 ROMX $3e
 	"bank3E"
-	"Bank 3e Garbage"
+	"Bank 3e Overdump"
 ROMX $3f
-	"bank3F"
-	"Bank 3f Garbage"
+	"Debug"
+	"Bank 3f Overdump"
 WRAM0
 	"Music engine RAM"
 	org $c200
