@@ -192,9 +192,9 @@ SECTION "bank23_2", ROMX
 INCLUDE "engine/gfx/mon_icons.asm"
 
 
-SECTION "bank24", ROMX
+SECTION "Subgames 1", ROMX
 
-INCLUDE "engine/menu/set_clock_dialog.asm"
+INCLUDE "engine/games/set_clock_dialog.asm"
 INCLUDE "engine/games/slot_machine_game.asm"
 
 
@@ -218,7 +218,7 @@ SECTION "bank36", ROMX
 INCLUDE "engine/menu/set_time.asm"
 
 
-SECTION "bank38", ROMX
+SECTION "Subgames 2", ROMX
 
 INCLUDE "engine/games/pikachu_minigame.asm"
 INCLUDE "engine/games/poker_minigame.asm"
@@ -238,7 +238,7 @@ SECTION "bank3E", ROMX
 INCLUDE "engine/gfx/load_gfx.asm"
 
 
-SECTION "bank3F", ROMX
+SECTION "Debug", ROMX
 
 INCLUDE "engine/debug/field_debug_menu.asm"
 INCLUDE "engine/menu/frame_type_dialog.asm"

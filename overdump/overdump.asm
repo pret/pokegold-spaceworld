@@ -1,7 +1,7 @@
-; This file contains all of the unreferenced garbage data that exists in each ROM's banks.
+; This file contains all of the unreferenced overdump data that exists in each ROM's banks.
 
 
-SECTION "High Home Garbage", ROM0
+SECTION "High Home Overdump", ROM0
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
@@ -96,20 +96,21 @@ else
 endc
 
 
-SECTION "Home Garbage", ROM0
+
+SECTION "Home Overdump", ROM0
 
 if DEF(_DEBUG)
 
 DEF Old_FarCallFunctionAddress EQU $2f91
 
-Unreferenced_Corrupt__InterlaceMergeSpriteBuffers.interlaceLoopFlipped:
+Overdump_Corrupt__InterlaceMergeSpriteBuffers.interlaceLoopFlipped:
 	xor a
 	dec a
 	ldh [hConnectionStripLength], a
 	jr nz, @ - 25 ; Unknown function
 	ret
 
-Unreferenced_Corrupt_GetPartyParamLocation_Old:
+Overdump_Corrupt_GetPartyParamLocation_Old:
 	push bc
 	ld hl, wPartyMons
 	ld c, a
@@ -121,12 +122,12 @@ Unreferenced_Corrupt_GetPartyParamLocation_Old:
 	pop bc
 	ret
 
-Unreferenced_Corrupt_DoItemEffect_Old:
+Overdump_Corrupt_DoItemEffect_Old:
 	ld a, BANK(_DoItemEffect)
 	ld hl, $67C4 ; Early location for _DoItemEffect
 	jp Old_FarCallFunctionAddress
 
-Unreferenced_Corrupt_CheckTossableItem_Old:
+Overdump_Corrupt_CheckTossableItem_Old:
 	push hl
 	push de
 	push bc
@@ -138,7 +139,7 @@ Unreferenced_Corrupt_CheckTossableItem_Old:
 	pop hl
 	ret
 
-Unreferenced_Corrupt_GetBattleAnimPointer_Old:
+Overdump_Corrupt_GetBattleAnimPointer_Old:
 	ld a, BANK(BattleAnimations)
 	ld [MBC3RomBank], a
 	ldh [hROMBank], a
@@ -153,7 +154,7 @@ Unreferenced_Corrupt_GetBattleAnimPointer_Old:
 	ldh [hROMBank], a
 	ret
 
-Unreferenced_Corrupt_GetBattleAnimByte_Old:
+Overdump_Corrupt_GetBattleAnimByte_Old:
 	push hl
 	push de
 
@@ -184,7 +185,7 @@ Unreferenced_Corrupt_GetBattleAnimByte_Old:
 	ld a, [wBattleAnimByte]
 	ret
 
-Unreferenced_Corrupt_InitSpriteAnimStruct_Old:
+Overdump_Corrupt_InitSpriteAnimStruct_Old:
 	ld [wCurSpriteOAMFlags], a
 	ldh a, [hROMBank]
 	push af
@@ -196,10 +197,10 @@ Unreferenced_Corrupt_InitSpriteAnimStruct_Old:
 	call $32AB ; Old location of Bankswitch
 	ret
 
-Unreferenced_Corrupt_ReinitSpriteAnimFrame_Old: ; stubbed
+Overdump_Corrupt_ReinitSpriteAnimFrame_Old: ; stubbed
 	ret
 
-Unreferenced_Corrupt_DisableAudio_Old:
+Overdump_Corrupt_DisableAudio_Old:
 	push hl
 	push de
 	push bc
@@ -239,7 +240,7 @@ Unused_UpdateSound_Old:
 	pop hl
 	ret
 
-Unreferenced_Corrupt_LoadMusicByte_Old:
+Overdump_Corrupt_LoadMusicByte_Old:
 	ld [MBC3RomBank], a ; Unsafe
 	ldh [hROMBank], a
 	ld a, [de]
@@ -250,7 +251,7 @@ Unreferenced_Corrupt_LoadMusicByte_Old:
 	pop af
 	ret
 
-Unreferenced_Corrupt_PlayMusic_Old:
+Overdump_Corrupt_PlayMusic_Old:
 	push hl
 	push de
 	push bc
@@ -270,7 +271,7 @@ Unreferenced_Corrupt_PlayMusic_Old:
 	pop hl
 	ret
 
-Unreferenced_Corrupt_PlayCryHeader_Old:
+Overdump_Corrupt_PlayCryHeader_Old:
 	push hl
 	push de
 	push bc
@@ -332,7 +333,7 @@ Unused_PlaySFX_Old:
 	pop hl
 	ret
 
-Unreferenced_Corrupt_WaitPlaySFX_Old:
+Overdump_Corrupt_WaitPlaySFX_Old:
 	call Unused_WaitSFX_Old
 	call Unused_PlaySFX_Old
 	ret
@@ -355,17 +356,17 @@ Unused_WaitSFX_Old:
 	pop hl
 	ret
 
-Unreferenced_Corrupt_MaxVolume_Old:
+Overdump_Corrupt_MaxVolume_Old:
 	ld a, $77
 	ld [wVolume], a
 	ret
 
-Unreferenced_Corrupt_LowVolume_Old:
+Overdump_Corrupt_LowVolume_Old:
 	ld a, $33
 	ld [wVolume], a
 	ret
 
-Unreferenced_Corrupt_UpdateSoundNTimes_Old:
+Overdump_Corrupt_UpdateSoundNTimes_Old:
 .loop
 	and a
 	ret z
@@ -373,13 +374,13 @@ Unreferenced_Corrupt_UpdateSoundNTimes_Old:
 	call Unused_UpdateSound_Old
 	jr .loop
 
-Unreferenced_Corrupt_FadeToMapMusic_Old:
+Overdump_Corrupt_FadeToMapMusic_Old:
 	push hl
 	push de
 	push bc
 	push af
 ; The check appears to be backwards: the carry flag is set if the player is on a vehicle, and unset otherwise.
-; If the player is on no vehicle, then it would've used the last value of 'de' as the music id, potentially playing a garbage track.
+; If the player is on no vehicle, then it would've used the last value of 'de' as the music id, potentially playing a overdump track.
 ; The final game fixes this by instead checking if the vehicle track is already playing, but the final GetMapMusic still sets the carry flag.
 	call Unused_SpecialMapMusic_Old
 	jr c, .dont_change
@@ -398,13 +399,13 @@ Unreferenced_Corrupt_FadeToMapMusic_Old:
 	ret
 
 ; Disables audio when the player is not on a bike or skateboard.
-Unreferenced_Corrupt_PlayMapMusic_Old:
+Overdump_Corrupt_PlayMapMusic_Old:
 	push hl
 	push de
 	push bc
 	push af
 	ld de, MUSIC_NONE
-	call Unreferenced_Corrupt_PlayMusic_Old
+	call Overdump_Corrupt_PlayMusic_Old
 	call DelayFrame
 	call Unused_SpecialMapMusic_Old
 	jr c, .play_music
@@ -414,7 +415,7 @@ Unreferenced_Corrupt_PlayMapMusic_Old:
 ; or this is an oversight, and they meant to call DisableAudio instead (note the lack of underscore).
 	call _DisableAudio
 .play_music
-	call Unreferenced_Corrupt_PlayMusic_Old
+	call Overdump_Corrupt_PlayMusic_Old
 	pop af
 	pop bc
 	pop de
@@ -442,80 +443,126 @@ Unused_SpecialMapMusic_Old:
 	ret
 else
 if DEF(_GOLD)
-INCBIN "garbage/home_gold.2bpp", 246
+Overdump_Corrupt_PlayMapMusic::
+	dw $0317
+	pop de
+	ld a, e
+	ld [wMapMusic], a
+	call @ - $F6
+.jump
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+
+Overdump_Corrupt_SpecialMapMusic::
+	ld a, [wPlayerState]
+	and a
+	jr z, .normal
+	cp PLAYER_SKATE
+	jr z, .skateboard
+	ld de, MUSIC_BICYCLE
+	scf
+	ret
+
+.skateboard
+	ld de, MUSIC_NONE
+	scf
+	ret
+
+.normal
+	and a
+	ret
+
+Overdump_Corrupt_GetMapMusic::
+	call Overdump_Corrupt_SpecialMapMusic
+	ret c
+	ld a, [wMapPermissions]
+	cp TOWN
+	jr z, .not_route
+	cp INDOOR
+	jr z, .not_route
+	ld de, MUSIC_ROUTE_1
+	ret
+
+.not_route
+	ld de, MUSIC_VIRIDIAN_CITY
+	ret
+INCBIN "overdump/home_gold.2bpp", 50
 endc
 if DEF(_SILVER)
-INCBIN "garbage/home_silver.2bpp", 246
+INCBIN "overdump/home_silver.2bpp", 246
 endc
 endc
 
-SECTION "Bank 01 Garbage", ROMX
+SECTION "Bank 01 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
 	ds 982, $39, $00
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank01_silver.2bpp", 42
+INCBIN "overdump/debug/bank01_silver.2bpp", 42
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank01_gold.2bpp", 39
+INCBIN "overdump/bank01_gold.2bpp", 39
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank01_silver.2bpp", 39
+INCBIN "overdump/bank01_silver.2bpp", 39
 	endc
 endc
 
 
-SECTION "Bank 02 Garbage", ROMX
+SECTION "Bank 02 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank02_gold.2bpp", 188
+INCBIN "overdump/debug/bank02_gold.2bpp", 188
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank02_silver.2bpp", 188
+INCBIN "overdump/debug/bank02_silver.2bpp", 188
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank02_gold.2bpp", 188
+INCBIN "overdump/bank02_gold.2bpp", 188
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank02_silver.2bpp", 188
+INCBIN "overdump/bank02_silver.2bpp", 188
 	endc
 endc
 
 
-SECTION "Bank 03 Garbage", ROMX
+SECTION "Bank 03 Overdump", ROMX
 
 if DEF(_DEBUG)
 
 if DEF(_GOLD)
-Unreferenced_Corrupt_AlreadyKnowsMoveText1:
+Overdump_Corrupt_AlreadyKnowsMoveText1:
 	db "います"
 	prompt
 
-Unreferenced_Corrupt_AlreadyKnowsMoveText2:
+Overdump_Corrupt_AlreadyKnowsMoveText2:
 	dw wStringBuffer2 ; This is missing the preceeding "text_from_ram" byte
 	text "を　おぼえています"
 	prompt
 
-	db $28, $3c ; garbage
+	db $28, $3c ; overdump
 endc
 if DEF(_SILVER)
-Unreferenced_Corrupt_AlreadyKnowsMoveText1:
+Overdump_Corrupt_AlreadyKnowsMoveText1:
 	db "ぼえています"
 	prompt
 
-Unreferenced_Corrupt_AlreadyKnowsMoveText2:
+Overdump_Corrupt_AlreadyKnowsMoveText2:
 	db "を　おぼえています"
 	prompt
 
-	db $de, $3b ; garbage
+	db $de, $3b ; overdump
 endc
 
-Unreferenced_Corrupt_KnowsMove:
+Overdump_Corrupt_KnowsMove:
 	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, NUM_MOVES
@@ -543,180 +590,180 @@ Unreferenced_Corrupt_KnowsMove:
 	prompt
 
 if DEF(_GOLD)
-INCBIN "garbage/debug/bank03_gold.2bpp", 35
+INCBIN "overdump/debug/bank03_gold.2bpp", 35
 endc
 if DEF(_SILVER)
-INCBIN "garbage/debug/bank03_silver.2bpp", 35
+INCBIN "overdump/debug/bank03_silver.2bpp", 35
 endc
 else
 if DEF(_GOLD)
-INCBIN "garbage/bank03_gold.2bpp", 200
+INCBIN "overdump/bank03_gold.2bpp", 200
 endc
 if DEF(_SILVER)
-INCBIN "garbage/bank03_silver.2bpp", 200
+INCBIN "overdump/bank03_silver.2bpp", 200
 endc
 endc
 
 
-SECTION "Bank 04 Garbage", ROMX
+SECTION "Bank 04 Overdump", ROMX
 
 if DEF(_DEBUG)
 	db $18, $00 ; leftover of previous graphics
-Unreferenced_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp"
+Overdump_UnusedLeaderNameGFX:: INCBIN "gfx/trainer_card/unused_leader_name.2bpp"
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank04_gold.2bpp", 227
+INCBIN "overdump/debug/bank04_gold.2bpp", 227
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank04_silver.2bpp", 227
+INCBIN "overdump/debug/bank04_silver.2bpp", 227
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank04_gold.2bpp", 161
+INCBIN "overdump/bank04_gold.2bpp", 161
 endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank04_silver.2bpp", 161
+INCBIN "overdump/bank04_silver.2bpp", 161
 	endc
 endc
 
 
-SECTION "Bank 05 Garbage", ROMX
+SECTION "Bank 05 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank05_gold.2bpp", 74
+INCBIN "overdump/debug/bank05_gold.2bpp", 74
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank05_silver.2bpp", 74
+INCBIN "overdump/debug/bank05_silver.2bpp", 74
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank05_gold.2bpp", 38
+INCBIN "overdump/bank05_gold.2bpp", 38
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank05_silver.2bpp", 38
+INCBIN "overdump/bank05_silver.2bpp", 38
 	endc
 endc
 
 
-SECTION "Bank 06 Garbage", ROMX
+SECTION "Bank 06 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank06_gold.2bpp"
+INCBIN "overdump/debug/bank06_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank06_silver.2bpp"
+INCBIN "overdump/debug/bank06_silver.2bpp"
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank06_gold.2bpp"
+INCBIN "overdump/bank06_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank06_silver.2bpp"
+INCBIN "overdump/bank06_silver.2bpp"
 	endc
 endc
 
 
-SECTION "Bank 09 Garbage", ROMX
+SECTION "Bank 09 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank09_gold.2bpp", 116
+INCBIN "overdump/debug/bank09_gold.2bpp", 116
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank09_silver.2bpp", 116
+INCBIN "overdump/debug/bank09_silver.2bpp", 116
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank09_gold.2bpp", 116
+INCBIN "overdump/bank09_gold.2bpp", 116
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank09_silver.2bpp", 116
+INCBIN "overdump/bank09_silver.2bpp", 116
 	endc
 endc
 
 
-SECTION "Bank 0a Garbage", ROMX
+SECTION "Bank 0a Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank0a_gold.2bpp", 62
+INCBIN "overdump/debug/bank0a_gold.2bpp", 62
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank0a_silver.2bpp", 62
+INCBIN "overdump/debug/bank0a_silver.2bpp", 62
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank0a_gold.2bpp", 62
+INCBIN "overdump/bank0a_gold.2bpp", 62
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank0a_silver.2bpp", 62
+INCBIN "overdump/bank0a_silver.2bpp", 62
 	endc
 endc
 
 
-SECTION "Bank 0b Garbage", ROMX
+SECTION "Bank 0b Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank0b_gold.2bpp", 111
+INCBIN "overdump/debug/bank0b_gold.2bpp", 111
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank0b_silver.2bpp", 111
+INCBIN "overdump/debug/bank0b_silver.2bpp", 111
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank0b_gold.2bpp", 111
+INCBIN "overdump/bank0b_gold.2bpp", 111
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank0b_silver.2bpp", 111
+INCBIN "overdump/bank0b_silver.2bpp", 111
 	endc
 endc
 
 
-SECTION "Bank 0c Garbage", ROMX
+SECTION "Bank 0c Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank0c_gold.2bpp"
+INCBIN "overdump/debug/bank0c_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank0c_silver.2bpp"
+INCBIN "overdump/debug/bank0c_silver.2bpp"
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank0c_gold.2bpp"
+INCBIN "overdump/bank0c_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank0c_silver.2bpp"
+INCBIN "overdump/bank0c_silver.2bpp"
 	endc
 endc
 
 
-SECTION "Bank 0d Garbage", ROMX
+SECTION "Bank 0d Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank0d_gold.2bpp"
+INCBIN "overdump/debug/bank0d_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank0d_silver.2bpp"
+INCBIN "overdump/debug/bank0d_silver.2bpp"
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank0d_gold.2bpp"
+INCBIN "overdump/bank0d_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank0d_silver.2bpp"
+INCBIN "overdump/bank0d_silver.2bpp"
 	endc
 endc
 
 
-SECTION "Bank 0e Garbage", ROMX
+SECTION "Bank 0e Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank0e_gold.2bpp", 188
+INCBIN "overdump/debug/bank0e_gold.2bpp", 188
 	endc
 	if DEF(_SILVER)
 	db -1 ; end
@@ -725,43 +772,43 @@ INCBIN "garbage/debug/bank0e_gold.2bpp", 188
 	db "こうめ@", TRAINERTYPE_ITEM_MOVES
 	db  8, DEX_CLEFAIRY, ITEM_NONE
 	db -1 ; end
-INCBIN "garbage/debug/bank0e_silver.2bpp", 185
+INCBIN "overdump/debug/bank0e_silver.2bpp", 185
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank0e_gold.2bpp", 188
+INCBIN "overdump/bank0e_gold.2bpp", 188
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank0e_silver.2bpp", 175
+INCBIN "overdump/bank0e_silver.2bpp", 175
 	endc
 endc
 
 
-SECTION "Bank 0f Garbage", ROMX
+SECTION "Bank 0f Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank0f_gold.2bpp", 75
+INCBIN "overdump/debug/bank0f_gold.2bpp", 75
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank0f_silver.2bpp", 75
+INCBIN "overdump/debug/bank0f_silver.2bpp", 75
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank0f_gold.2bpp", 75
+INCBIN "overdump/bank0f_gold.2bpp", 75
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank0f_silver.2bpp", 75
+INCBIN "overdump/bank0f_silver.2bpp", 75
 	endc
 endc
 
 
-SECTION "Bank 10 Garbage", ROMX
+SECTION "Bank 10 Overdump", ROMX
 
 if DEF(_DEBUG)
 
 if DEF(_GOLD)
-Unreferenced_Corrupt_LeafyEvosAttacks1:
+Overdump_Corrupt_LeafyEvosAttacks1:
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
 	db  7, MOVE_SAND_ATTACK
@@ -774,7 +821,7 @@ Unreferenced_Corrupt_LeafyEvosAttacks1:
 	db 56, MOVE_WRAP
 	db 63, MOVE_SOLARBEAM
 	db 0 ; no more level-up moves
-Unreferenced_Corrupt_LeafyEvosAttacks2:
+Overdump_Corrupt_LeafyEvosAttacks2:
 	db MOVE_GROWTH
 	db 49, MOVE_MORNING_SUN
 	db 56, MOVE_WRAP
@@ -783,13 +830,13 @@ Unreferenced_Corrupt_LeafyEvosAttacks2:
 endc
 
 if DEF(_SILVER)
-Unreferenced_Corrupt_LeafyEvosAttacks1:
+Overdump_Corrupt_LeafyEvosAttacks1:
 	db MOVE_GROWTH
 	db 49, MOVE_MORNING_SUN
 	db 56, MOVE_WRAP
 	db 63, MOVE_SOLARBEAM
 	db 0 ; no more level-up moves
-Unreferenced_Corrupt_LeafyEvosAttacks2:
+Overdump_Corrupt_LeafyEvosAttacks2:
 	db MOVE_ABSORB
 	db 35, MOVE_RAZOR_LEAF
 	db 42, MOVE_GROWTH
@@ -797,7 +844,7 @@ Unreferenced_Corrupt_LeafyEvosAttacks2:
 	db 56, MOVE_WRAP
 	db 63, MOVE_SOLARBEAM
 	db 0 ; no more level-up moves
-Unreferenced_Corrupt_TailEvosAttacks:
+Overdump_Corrupt_TailEvosAttacks:
 	db  1, MOVE_SCRATCH
 	db  5, MOVE_LEER
 	db  9, MOVE_SAND_ATTACK
@@ -809,7 +856,7 @@ endc
 	db 38, MOVE_FURY_SWIPES
 	db 45, MOVE_MIMIC
 	db 0 ; no more level-up moves
-Unreferenced_Corrupt_LeafyEvosAttacks3:
+Overdump_Corrupt_LeafyEvosAttacks3:
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
 	db  7, MOVE_SAND_ATTACK
@@ -822,23 +869,23 @@ Unreferenced_Corrupt_LeafyEvosAttacks3:
 	db 56, MOVE_WRAP
 	db 63, MOVE_SOLARBEAM
 	db 0 ; no more level-up moves
-Unreferenced_Corrupt_LeafyEvosAttacks4:
+Overdump_Corrupt_LeafyEvosAttacks4:
 	db 56, MOVE_WRAP
 	db 63, MOVE_SOLARBEAM
 	db 0 ; no more level-up moves
 if DEF(_GOLD)
-	db $E6, $6D, $C3, $FF ; garbage
+	db $E6, $6D, $C3, $FF ; overdump
 
-INCBIN "garbage/debug/bank10_gold.2bpp"
+INCBIN "overdump/debug/bank10_gold.2bpp"
 endc
 if DEF(_SILVER)
-	db 0, 0, 0, 0 ; garbage
+	db 0, 0, 0, 0 ; overdump
 
-INCBIN "garbage/debug/bank10_silver.2bpp"
+INCBIN "overdump/debug/bank10_silver.2bpp"
 endc
 else
 	if DEF(_GOLD)
-	Unreferenced_Corrupt_LeafyEvosAttacks1:
+	Overdump_Corrupt_LeafyEvosAttacks1:
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
 	db  7, MOVE_SAND_ATTACK
@@ -851,7 +898,7 @@ else
 	db 56, MOVE_WRAP
 	db 63, MOVE_SOLARBEAM
 	db 0 ; no more level-up moves
-	Unreferenced_Corrupt_TailEvosAttacks:
+	Overdump_Corrupt_TailEvosAttacks:
 	db  5, MOVE_LEER
 	db  9, MOVE_SAND_ATTACK
 	db 14, MOVE_PURSUIT
@@ -861,7 +908,7 @@ else
 	db 38, MOVE_FURY_SWIPES
 	db 45, MOVE_MIMIC
 	db 0 ; no more level-up moves
-	Unreferenced_Corrupt_LeafyEvosAttacks2:
+	Overdump_Corrupt_LeafyEvosAttacks2:
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
 	db  7, MOVE_SAND_ATTACK
@@ -874,745 +921,745 @@ else
 	db 56, MOVE_WRAP
 	db 63, MOVE_SOLARBEAM
 	db 0 ; no more level-up moves
-	Unreferenced_Corrupt_LeafyEvosAttacks3:
+	Overdump_Corrupt_LeafyEvosAttacks3:
 	db 56, MOVE_WRAP
 	db 63, MOVE_SOLARBEAM
 	db 0 ; no more level-up moves
-	db $1E, $DF, $90, $F6 ; garbage
-	INCBIN "garbage/bank10_gold.2bpp"
+	db $1E, $DF, $90, $F6 ; overdump
+	INCBIN "overdump/bank10_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank10_silver.2bpp", 186
+INCBIN "overdump/bank10_silver.2bpp", 186
 	endc
 endc
 
-SECTION "Bank 11 Garbage", ROMX
+SECTION "Bank 11 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank11_gold.2bpp", 49
+	INCBIN "overdump/debug/bank11_gold.2bpp", 49
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank11_silver.2bpp", 49
+	INCBIN "overdump/debug/bank11_silver.2bpp", 49
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank11_gold.2bpp", 49
+	INCBIN "overdump/bank11_gold.2bpp", 49
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank11_silver.2bpp", 49
+	INCBIN "overdump/bank11_silver.2bpp", 49
 	endc
 endc
 
-SECTION "Bank 12 Garbage", ROMX
+SECTION "Bank 12 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank12_gold.2bpp", 146
+	INCBIN "overdump/debug/bank12_gold.2bpp", 146
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank12_silver.2bpp", 146
+	INCBIN "overdump/debug/bank12_silver.2bpp", 146
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank12_gold.2bpp", 146
+	INCBIN "overdump/bank12_gold.2bpp", 146
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank12_silver.2bpp", 146
+	INCBIN "overdump/bank12_silver.2bpp", 146
 	endc
 endc
 
 
-SECTION "Bank 13 Garbage", ROMX
+SECTION "Bank 13 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank13_gold.2bpp"
+	INCBIN "overdump/debug/bank13_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank13_silver.2bpp"
+	INCBIN "overdump/debug/bank13_silver.2bpp"
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank13_gold.2bpp"
+	INCBIN "overdump/bank13_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank13_silver.2bpp"
+	INCBIN "overdump/bank13_silver.2bpp"
 	endc
 endc
 
 
-SECTION "Bank 14 Garbage", ROMX
+SECTION "Bank 14 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank14_gold.2bpp", 116
+	INCBIN "overdump/debug/bank14_gold.2bpp", 116
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank14_silver.2bpp", 116
+	INCBIN "overdump/debug/bank14_silver.2bpp", 116
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank14_gold.2bpp", 116
+	INCBIN "overdump/bank14_gold.2bpp", 116
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank14_silver.2bpp", 116
+	INCBIN "overdump/bank14_silver.2bpp", 116
 	endc
 endc
 
 
-SECTION "Bank 15 Garbage", ROMX
+SECTION "Bank 15 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank15_gold.2bpp", 159
+	INCBIN "overdump/debug/bank15_gold.2bpp", 159
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank15_silver.2bpp", 159
+	INCBIN "overdump/debug/bank15_silver.2bpp", 159
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank15_gold.2bpp", 159
+	INCBIN "overdump/bank15_gold.2bpp", 159
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank15_silver.2bpp", 159
+	INCBIN "overdump/bank15_silver.2bpp", 159
 	endc
 endc
 
 
-SECTION "Bank 16 Garbage", ROMX
+SECTION "Bank 16 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank16_gold.2bpp", 168
+	INCBIN "overdump/debug/bank16_gold.2bpp", 168
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank16_silver.2bpp", 168
+	INCBIN "overdump/debug/bank16_silver.2bpp", 168
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank16_gold.2bpp", 168
+	INCBIN "overdump/bank16_gold.2bpp", 168
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank16_silver.2bpp", 168
+	INCBIN "overdump/bank16_silver.2bpp", 168
 	endc
 endc
 
 
-SECTION "Bank 17 Garbage", ROMX
+SECTION "Bank 17 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank17_gold.2bpp", 238
+	INCBIN "overdump/debug/bank17_gold.2bpp", 238
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank17_silver.2bpp", 238
+	INCBIN "overdump/debug/bank17_silver.2bpp", 238
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank17_gold.2bpp", 238
+	INCBIN "overdump/bank17_gold.2bpp", 238
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank17_silver.2bpp", 238
+	INCBIN "overdump/bank17_silver.2bpp", 238
 	endc
 endc
 
 
-SECTION "Bank 18 Garbage", ROMX
+SECTION "Bank 18 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank18_gold.2bpp", 87
+	INCBIN "overdump/debug/bank18_gold.2bpp", 87
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank18_silver.2bpp", 87
+	INCBIN "overdump/debug/bank18_silver.2bpp", 87
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank18_gold.2bpp", 87
+	INCBIN "overdump/bank18_gold.2bpp", 87
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank18_silver.2bpp", 87
+	INCBIN "overdump/bank18_silver.2bpp", 87
 	endc
 endc
 
 
-SECTION "Bank 19 Garbage", ROMX
+SECTION "Bank 19 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank19_gold.2bpp", 161
+	INCBIN "overdump/debug/bank19_gold.2bpp", 161
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank19_silver.2bpp", 161
+	INCBIN "overdump/debug/bank19_silver.2bpp", 161
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank19_gold.2bpp", 161
+	INCBIN "overdump/bank19_gold.2bpp", 161
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank19_silver.2bpp", 161
+	INCBIN "overdump/bank19_silver.2bpp", 161
 	endc
 endc
 
 
-SECTION "Bank 1a Garbage", ROMX
+SECTION "Bank 1a Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank1a_gold.2bpp", 230
+	INCBIN "overdump/debug/bank1a_gold.2bpp", 230
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank1a_silver.2bpp", 230
+	INCBIN "overdump/debug/bank1a_silver.2bpp", 230
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank1a_gold.2bpp", 230
+	INCBIN "overdump/bank1a_gold.2bpp", 230
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank1a_silver.2bpp", 230
+	INCBIN "overdump/bank1a_silver.2bpp", 230
 	endc
 endc
 
 
-SECTION "Bank 1b Garbage", ROMX
+SECTION "Bank 1b Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank1b_gold.2bpp", 39
+	INCBIN "overdump/debug/bank1b_gold.2bpp", 39
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank1b_silver.2bpp", 39
+	INCBIN "overdump/debug/bank1b_silver.2bpp", 39
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank1b_gold.2bpp", 39
+	INCBIN "overdump/bank1b_gold.2bpp", 39
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank1b_silver.2bpp", 39
+	INCBIN "overdump/bank1b_silver.2bpp", 39
 	endc
 endc
 
 
-SECTION "Bank 1c Garbage", ROMX
+SECTION "Bank 1c Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank1c_gold.2bpp", 127
+	INCBIN "overdump/debug/bank1c_gold.2bpp", 127
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank1c_silver.2bpp", 127
+	INCBIN "overdump/debug/bank1c_silver.2bpp", 127
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank1c_gold.2bpp", 127
+	INCBIN "overdump/bank1c_gold.2bpp", 127
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank1c_silver.2bpp", 127
+	INCBIN "overdump/bank1c_silver.2bpp", 127
 	endc
 endc
 
 
-SECTION "Bank 1d Garbage", ROMX
+SECTION "Bank 1d Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank1d_gold.2bpp", 207
+	INCBIN "overdump/debug/bank1d_gold.2bpp", 207
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank1d_silver.2bpp", 207
+	INCBIN "overdump/debug/bank1d_silver.2bpp", 207
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank1d_gold.2bpp", 207
+	INCBIN "overdump/bank1d_gold.2bpp", 207
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank1d_silver.2bpp", 207
+	INCBIN "overdump/bank1d_silver.2bpp", 207
 	endc
 endc
 
 
-SECTION "Bank 1e Garbage", ROMX
+SECTION "Bank 1e Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank1e_gold.2bpp", 34
+	INCBIN "overdump/debug/bank1e_gold.2bpp", 34
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank1e_silver.2bpp", 34
+	INCBIN "overdump/debug/bank1e_silver.2bpp", 34
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank1e_gold.2bpp", 34
+	INCBIN "overdump/bank1e_gold.2bpp", 34
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank1e_silver.2bpp", 34
+	INCBIN "overdump/bank1e_silver.2bpp", 34
 	endc
 endc
 
 
-SECTION "Bank 1f Garbage", ROMX
+SECTION "Bank 1f Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank1f_gold.2bpp", 201
+	INCBIN "overdump/debug/bank1f_gold.2bpp", 201
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank1f_silver.2bpp", 201
+	INCBIN "overdump/debug/bank1f_silver.2bpp", 201
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank1f_gold.2bpp", 201
+	INCBIN "overdump/bank1f_gold.2bpp", 201
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank1f_silver.2bpp", 201
+	INCBIN "overdump/bank1f_silver.2bpp", 201
 	endc
 endc
 
 
-SECTION "Bank 20 Garbage", ROMX
+SECTION "Bank 20 Overdump", ROMX
 
-; This whole bank is garbage data.
+; This whole bank is overdump data.
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank20_gold.2bpp"
+	INCBIN "overdump/debug/bank20_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank20_silver.2bpp"
+	INCBIN "overdump/debug/bank20_silver.2bpp"
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank20_gold.2bpp"
+	INCBIN "overdump/bank20_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank20_silver.2bpp"
+	INCBIN "overdump/bank20_silver.2bpp"
 	endc
 endc
 
 
-SECTION "Bank 21 Garbage", ROMX
-
-if DEF(_DEBUG)
-	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank21_gold.2bpp", 208
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank21_silver.2bpp", 208
-	endc
-else
-	if DEF(_GOLD)
-	INCBIN "garbage/bank21_gold.2bpp", 208
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/bank21_silver.2bpp", 208
-	endc
-endc
-
-
-SECTION "Bank 22 Garbage", ROMX
-
-; This whole bank is garbage data.
-if DEF(_DEBUG)
-	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank22_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank22_silver.2bpp"
-	endc
-else
-	if DEF(_GOLD)
-	INCBIN "garbage/bank22_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/bank22_silver.2bpp"
-	endc
-endc
-
-
-SECTION "Bank 23 Garbage", ROMX
+SECTION "Bank 21 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank23_gold.2bpp", 37
+	INCBIN "overdump/debug/bank21_gold.2bpp", 208
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank23_silver.2bpp", 37
+	INCBIN "overdump/debug/bank21_silver.2bpp", 208
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank23_gold.2bpp", 37
+	INCBIN "overdump/bank21_gold.2bpp", 208
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank23_silver.2bpp", 37
+	INCBIN "overdump/bank21_silver.2bpp", 208
 	endc
 endc
 
 
-SECTION "Bank 24 Garbage", ROMX
+SECTION "Bank 22 Overdump", ROMX
+
+; This whole bank is overdump data.
+if DEF(_DEBUG)
+	if DEF(_GOLD)
+	INCBIN "overdump/debug/bank22_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/debug/bank22_silver.2bpp"
+	endc
+else
+	if DEF(_GOLD)
+	INCBIN "overdump/bank22_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/bank22_silver.2bpp"
+	endc
+endc
+
+
+SECTION "Bank 23 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank24_gold.2bpp", 43
+	INCBIN "overdump/debug/bank23_gold.2bpp", 37
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank24_silver.2bpp", 43
+	INCBIN "overdump/debug/bank23_silver.2bpp", 37
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank24_gold.2bpp", 43
+	INCBIN "overdump/bank23_gold.2bpp", 37
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank24_silver.2bpp", 43
+	INCBIN "overdump/bank23_silver.2bpp", 37
 	endc
 endc
 
 
-SECTION "Bank 25 Garbage", ROMX
+SECTION "Bank 24 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank25_gold.2bpp", 221
+	INCBIN "overdump/debug/bank24_gold.2bpp", 43
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank25_silver.2bpp", 221
+	INCBIN "overdump/debug/bank24_silver.2bpp", 43
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank25_gold.2bpp", 221
+	INCBIN "overdump/bank24_gold.2bpp", 43
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank25_silver.2bpp", 221
+	INCBIN "overdump/bank24_silver.2bpp", 43
 	endc
 endc
 
 
-SECTION "Bank 26 Garbage", ROMX
+SECTION "Bank 25 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank26_gold.2bpp", 34
+	INCBIN "overdump/debug/bank25_gold.2bpp", 221
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank26_silver.2bpp", 34
+	INCBIN "overdump/debug/bank25_silver.2bpp", 221
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank26_gold.2bpp", 34
+	INCBIN "overdump/bank25_gold.2bpp", 221
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank26_silver.2bpp", 34
+	INCBIN "overdump/bank25_silver.2bpp", 221
 	endc
 endc
 
 
-SECTION "Bank 27 Garbage", ROMX
+SECTION "Bank 26 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank27_gold.2bpp", 88
+	INCBIN "overdump/debug/bank26_gold.2bpp", 34
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank27_silver.2bpp", 88
+	INCBIN "overdump/debug/bank26_silver.2bpp", 34
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank27_gold.2bpp", 88
+	INCBIN "overdump/bank26_gold.2bpp", 34
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank27_silver.2bpp", 88
+	INCBIN "overdump/bank26_silver.2bpp", 34
 	endc
 endc
 
 
-SECTION "Bank 28 Garbage", ROMX
-
-; This whole bank is garbage data.
-if DEF(_DEBUG)
-	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank28_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank28_silver.2bpp"
-	endc
-else
-	if DEF(_GOLD)
-	INCBIN "garbage/bank28_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/bank28_silver.2bpp"
-	endc
-endc
-
-
-SECTION "Bank 29 Garbage", ROMX
-
-; This whole bank is garbage data.
-if DEF(_DEBUG)
-	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank29_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank29_silver.2bpp"
-	endc
-else
-	if DEF(_GOLD)
-	INCBIN "garbage/bank29_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/bank29_silver.2bpp"
-	endc
-endc
-
-
-SECTION "Bank 2a Garbage", ROMX
-
-; This whole bank is garbage data.
-if DEF(_DEBUG)
-	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank2a_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank2a_silver.2bpp"
-	endc
-else
-	if DEF(_GOLD)
-	INCBIN "garbage/bank2a_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/bank2a_silver.2bpp"
-	endc
-endc
-
-
-SECTION "Bank 2b Garbage", ROMX
-
-; This whole bank is garbage data.
-if DEF(_DEBUG)
-	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank2b_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank2b_silver.2bpp"
-	endc
-else
-	if DEF(_GOLD)
-	INCBIN "garbage/bank2b_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/bank2b_silver.2bpp"
-	endc
-endc
-
-SECTION "Bank 2c Garbage", ROMX
-
-; This whole bank is garbage data.
-if DEF(_DEBUG)
-	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank2c_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank2c_silver.2bpp"
-	endc
-else
-	if DEF(_GOLD)
-	INCBIN "garbage/bank2c_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/bank2c_silver.2bpp"
-	endc
-endc
-
-
-SECTION "Bank 2d Garbage", ROMX
-
-; This whole bank is garbage data.
-if DEF(_DEBUG)
-	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank2d_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank2d_silver.2bpp"
-	endc
-else
-	if DEF(_GOLD)
-	INCBIN "garbage/bank2d_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/bank2d_silver.2bpp"
-	endc
-endc
-
-
-SECTION "Bank 2e Garbage", ROMX
-
-; This whole bank is garbage data.
-if DEF(_DEBUG)
-	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank2e_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank2e_silver.2bpp"
-	endc
-else
-	if DEF(_GOLD)
-	INCBIN "garbage/bank2e_gold.2bpp"
-	endc
-	if DEF(_SILVER)
-	INCBIN "garbage/bank2e_silver.2bpp"
-	endc
-endc
-
-
-SECTION "Bank 2f Garbage", ROMX
+SECTION "Bank 27 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank2f_gold.2bpp", 150
+	INCBIN "overdump/debug/bank27_gold.2bpp", 88
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank2f_silver.2bpp", 62
+	INCBIN "overdump/debug/bank27_silver.2bpp", 88
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank2f_gold.2bpp", 150
+	INCBIN "overdump/bank27_gold.2bpp", 88
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank2f_silver.2bpp", 62
+	INCBIN "overdump/bank27_silver.2bpp", 88
 	endc
 endc
 
 
-SECTION "Bank 30 Garbage", ROMX
+SECTION "Bank 28 Overdump", ROMX
+
+; This whole bank is overdump data.
+if DEF(_DEBUG)
+	if DEF(_GOLD)
+	INCBIN "overdump/debug/bank28_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/debug/bank28_silver.2bpp"
+	endc
+else
+	if DEF(_GOLD)
+	INCBIN "overdump/bank28_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/bank28_silver.2bpp"
+	endc
+endc
+
+
+SECTION "Bank 29 Overdump", ROMX
+
+; This whole bank is overdump data.
+if DEF(_DEBUG)
+	if DEF(_GOLD)
+	INCBIN "overdump/debug/bank29_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/debug/bank29_silver.2bpp"
+	endc
+else
+	if DEF(_GOLD)
+	INCBIN "overdump/bank29_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/bank29_silver.2bpp"
+	endc
+endc
+
+
+SECTION "Bank 2a Overdump", ROMX
+
+; This whole bank is overdump data.
+if DEF(_DEBUG)
+	if DEF(_GOLD)
+	INCBIN "overdump/debug/bank2a_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/debug/bank2a_silver.2bpp"
+	endc
+else
+	if DEF(_GOLD)
+	INCBIN "overdump/bank2a_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/bank2a_silver.2bpp"
+	endc
+endc
+
+
+SECTION "Bank 2b Overdump", ROMX
+
+; This whole bank is overdump data.
+if DEF(_DEBUG)
+	if DEF(_GOLD)
+	INCBIN "overdump/debug/bank2b_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/debug/bank2b_silver.2bpp"
+	endc
+else
+	if DEF(_GOLD)
+	INCBIN "overdump/bank2b_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/bank2b_silver.2bpp"
+	endc
+endc
+
+SECTION "Bank 2c Overdump", ROMX
+
+; This whole bank is overdump data.
+if DEF(_DEBUG)
+	if DEF(_GOLD)
+	INCBIN "overdump/debug/bank2c_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/debug/bank2c_silver.2bpp"
+	endc
+else
+	if DEF(_GOLD)
+	INCBIN "overdump/bank2c_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/bank2c_silver.2bpp"
+	endc
+endc
+
+
+SECTION "Bank 2d Overdump", ROMX
+
+; This whole bank is overdump data.
+if DEF(_DEBUG)
+	if DEF(_GOLD)
+	INCBIN "overdump/debug/bank2d_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/debug/bank2d_silver.2bpp"
+	endc
+else
+	if DEF(_GOLD)
+	INCBIN "overdump/bank2d_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/bank2d_silver.2bpp"
+	endc
+endc
+
+
+SECTION "Bank 2e Overdump", ROMX
+
+; This whole bank is overdump data.
+if DEF(_DEBUG)
+	if DEF(_GOLD)
+	INCBIN "overdump/debug/bank2e_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/debug/bank2e_silver.2bpp"
+	endc
+else
+	if DEF(_GOLD)
+	INCBIN "overdump/bank2e_gold.2bpp"
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/bank2e_silver.2bpp"
+	endc
+endc
+
+
+SECTION "Bank 2f Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank30_gold.2bpp", 64
+	INCBIN "overdump/debug/bank2f_gold.2bpp", 150
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank30_silver.2bpp", 64
+	INCBIN "overdump/debug/bank2f_silver.2bpp", 62
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank30_gold.2bpp", 64
+	INCBIN "overdump/bank2f_gold.2bpp", 150
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank30_silver.2bpp", 64
+	INCBIN "overdump/bank2f_silver.2bpp", 62
 	endc
 endc
 
 
-SECTION "Bank 31 Garbage", ROMX
+SECTION "Bank 30 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank31_gold.2bpp", 64
+	INCBIN "overdump/debug/bank30_gold.2bpp", 64
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank31_silver.2bpp", 64
+	INCBIN "overdump/debug/bank30_silver.2bpp", 64
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank31_gold.2bpp", 64
+	INCBIN "overdump/bank30_gold.2bpp", 64
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank31_silver.2bpp", 64
+	INCBIN "overdump/bank30_silver.2bpp", 64
 	endc
 endc
 
 
-SECTION "Bank 32 Garbage", ROMX
+SECTION "Bank 31 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank32_gold.2bpp", 98
+	INCBIN "overdump/debug/bank31_gold.2bpp", 64
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank32_silver.2bpp", 98
+	INCBIN "overdump/debug/bank31_silver.2bpp", 64
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank32_gold.2bpp", 98
+	INCBIN "overdump/bank31_gold.2bpp", 64
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank32_silver.2bpp", 98
+	INCBIN "overdump/bank31_silver.2bpp", 64
 	endc
 endc
 
 
-SECTION "Bank 33 Garbage", ROMX
+SECTION "Bank 32 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank33_gold.2bpp", 32
+	INCBIN "overdump/debug/bank32_gold.2bpp", 98
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank33_silver.2bpp", 32
+	INCBIN "overdump/debug/bank32_silver.2bpp", 98
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank33_gold.2bpp", 32
+	INCBIN "overdump/bank32_gold.2bpp", 98
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank33_silver.2bpp", 32
+	INCBIN "overdump/bank32_silver.2bpp", 98
 	endc
 endc
 
 
-SECTION "Bank 34 Garbage", ROMX
+SECTION "Bank 33 Overdump", ROMX
+
+if DEF(_DEBUG)
+	if DEF(_GOLD)
+	INCBIN "overdump/debug/bank33_gold.2bpp", 32
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/debug/bank33_silver.2bpp", 32
+	endc
+else
+	if DEF(_GOLD)
+	INCBIN "overdump/bank33_gold.2bpp", 32
+	endc
+	if DEF(_SILVER)
+	INCBIN "overdump/bank33_silver.2bpp", 32
+	endc
+endc
+
+
+SECTION "Bank 34 Overdump", ROMX
 
 if DEF(_SILVER) && !DEF(_DEBUG)
 else
 	ret
-Unreferenced_Corrupt_UnusedMap13_ScriptLoader:
+Overdump_Corrupt_UnusedMap13_ScriptLoader:
 	if DEF(_GOLD)
 		db $20
 		call WriteBackMapScriptNumber + Bank34NonDebugOffset
 	endc
 	ret
-Unreferenced_Corrupt_UnusedMap13ScriptPointers:
-	dw Unreferenced_Corrupt_UnusedMap13Script
-	dw Unreferenced_Corrupt_UnusedMap13NPCIDs
+Overdump_Corrupt_UnusedMap13ScriptPointers:
+	dw Overdump_Corrupt_UnusedMap13Script
+	dw Overdump_Corrupt_UnusedMap13NPCIDs
 
-Unreferenced_Corrupt_UnusedMap13NPCIDs:
+Overdump_Corrupt_UnusedMap13NPCIDs:
 	db $FF
 
-Unreferenced_Corrupt_UnusedMap13SignPointers:
+Overdump_Corrupt_UnusedMap13SignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt_UnusedMap13_TextPointers::
+Overdump_Corrupt_UnusedMap13_TextPointers::
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt_UnusedMap13Script:
-	ld hl, Unreferenced_Corrupt_UnusedMap13NPCIDs
-	ld de, Unreferenced_Corrupt_UnusedMap13SignPointers
+Overdump_Corrupt_UnusedMap13Script:
+	ld hl, Overdump_Corrupt_UnusedMap13NPCIDs
+	ld de, Overdump_Corrupt_UnusedMap13SignPointers
 	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
 	if DEF(_GOLD)
-	Unreferenced_Corrupt_Gold_SilentHillLabBackTextString11:
+	Overdump_Corrupt_Gold_SilentHillLabBackTextString11:
 		db "ぜ　<PLAYER>！"
 		line "さきに　えらんで！"
 		cont "おれは　こころが　ひろいからな"
 		done
 
-	Unreferenced_Corrupt_Gold_SilentHillLabBackTextString12:
+	Overdump_Corrupt_Gold_SilentHillLabBackTextString12:
 		text "<RIVAL>『じゃ　おれは　これ！"
 		done
 
-	Unreferenced_Corrupt_Gold_SilentHillLabBackTextString13:
+	Overdump_Corrupt_Gold_SilentHillLabBackTextString13:
 		text "<RIVAL>は　オーキドから"
 		line "@"
 		text_from_ram wStringBuffer1
 		text "を　もらった！"
 		done
 
-	Unreferenced_Corrupt_Gold_SilentHillLabBackTextString14:
+	Overdump_Corrupt_Gold_SilentHillLabBackTextString14:
 		text "<RIVAL>『<PLAYER>の#"
 		line "いいなあ！"
 		cont "でも　おれのポケモンも"
 		cont "ちょっと　いいだろ？"
 		done
 
-	Unreferenced_Corrupt_Gold_SilentHillLabBackFunc4:
+	Overdump_Corrupt_Gold_SilentHillLabBackFunc4:
 		CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 		jr nz, .bigjump
 		ldh a, [hLastTalked]
@@ -1620,7 +1667,7 @@ Unreferenced_Corrupt_UnusedMap13Script:
 		ld [wChosenStarter], a
 		ld d, 0
 		ld e, a
-		ld hl, Unreferenced_Corrupt_Gold_SilentHillLabBackStarterData
+		ld hl, Overdump_Corrupt_Gold_SilentHillLabBackStarterData
 		add hl, de
 		add hl, de
 		add hl, de
@@ -1648,10 +1695,10 @@ Unreferenced_Corrupt_UnusedMap13Script:
 		ld [wRivalStarter], a
 		ret
 	.bigjump
-		ld hl, Unreferenced_Corrupt_Gold_SilentHillLabBackTextString15
+		ld hl, Overdump_Corrupt_Gold_SilentHillLabBackTextString15
 		call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
 		ret
-	Unreferenced_Corrupt_Gold_SilentHillLabBackStarterData:
+	Overdump_Corrupt_Gold_SilentHillLabBackStarterData:
 		db DEX_HONOGUMA
 		dw @ - $229
 		db DEX_KURUSU
@@ -1664,64 +1711,64 @@ Unreferenced_Corrupt_UnusedMap13Script:
 		dw @ - $1de
 		db DEX_HONOGUMA
 
-	Unreferenced_Corrupt_Gold_SilentHillLabBackTextString15:
+	Overdump_Corrupt_Gold_SilentHillLabBackTextString15:
 		text "オーキド『これ！"
 		line "よくばっちゃ　いかん！"
 		done
 
-	Unreferenced_Corrupt_Gold_SilentHillLabBackTextPointers2:
+	Overdump_Corrupt_Gold_SilentHillLabBackTextPointers2:
 		dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset
 		dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset
 		dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset
 		dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset
 		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-		map_attributes Unreferenced_Corrupt_Gold_UnusedMap13, UNUSED_MAP_13
+		map_attributes Overdump_Corrupt_Gold_UnusedMap13, UNUSED_MAP_13
 
-	Unreferenced_Corrupt_Gold_UnusedMap13_MapEvents::
+	Overdump_Corrupt_Gold_UnusedMap13_MapEvents::
 
-	Unreferenced_Corrupt_Gold_UnusedMap13_Blocks::
+	Overdump_Corrupt_Gold_UnusedMap13_Blocks::
 	INCBIN "maps/UnusedMap13.blk"
 
-	Unreferenced_Corrupt_Gold_UnusedMap13_ScriptLoader::
-		ld hl, Unreferenced_Corrupt_Gold_UnusedMap13ScriptPointers
+	Overdump_Corrupt_Gold_UnusedMap13_ScriptLoader::
+		ld hl, Overdump_Corrupt_Gold_UnusedMap13ScriptPointers
 		call RunMapScript + Bank34NonDebugOffset
 		call WriteBackMapScriptNumber + Bank34NonDebugOffset
 		ret
 
-	Unreferenced_Corrupt_Gold_UnusedMap13ScriptPointers:
-		dw Unreferenced_Corrupt_Gold_UnusedMap13Script
-		dw Unreferenced_Corrupt_Gold_UnusedMap13NPCIDs
+	Overdump_Corrupt_Gold_UnusedMap13ScriptPointers:
+		dw Overdump_Corrupt_Gold_UnusedMap13Script
+		dw Overdump_Corrupt_Gold_UnusedMap13NPCIDs
 
-	Unreferenced_Corrupt_Gold_UnusedMap13NPCIDs:
+	Overdump_Corrupt_Gold_UnusedMap13NPCIDs:
 		db $FF
 
-	Unreferenced_Corrupt_Gold_UnusedMap13SignPointers:
+	Overdump_Corrupt_Gold_UnusedMap13SignPointers:
 		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	Unreferenced_Corrupt_Gold_UnusedMap13_TextPointers::
+	Overdump_Corrupt_Gold_UnusedMap13_TextPointers::
 		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	Unreferenced_Corrupt_Gold_UnusedMap13Script:
-		ld hl, Unreferenced_Corrupt_Gold_UnusedMap13NPCIDs
-		ld de, Unreferenced_Corrupt_Gold_UnusedMap13SignPointers
+	Overdump_Corrupt_Gold_UnusedMap13Script:
+		ld hl, Overdump_Corrupt_Gold_UnusedMap13NPCIDs
+		ld de, Overdump_Corrupt_Gold_UnusedMap13SignPointers
 		call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 		ret
 	else
 		call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 		ret
-	Unreferenced_Corrupt_Silver_SilentHillLabBackTextString6:
+	Overdump_Corrupt_Silver_SilentHillLabBackTextString6:
 		db "おお！　くさのポケモン"
 		line "@"
 		text_from_ram wStringBuffer1
 		text "が　いいんじゃな？@"
 
 		start_asm
-		call Unreferenced_Corrupt_Silver_ConfirmPokemonSelection
+		call Overdump_Corrupt_Silver_ConfirmPokemonSelection
 		call TextAsmEnd + Bank34NonDebugOffset - Bank34CorruptOffset
 		ret
 
-	Unreferenced_Corrupt_Silver_ConfirmPokemonSelection:
+	Overdump_Corrupt_Silver_ConfirmPokemonSelection:
 		call YesNoBox
 		jr c, .bigJump
 		SetEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
@@ -1731,7 +1778,7 @@ Unreferenced_Corrupt_UnusedMap13Script:
 		ld [wPlayerHouse2FSceneID], a
 		ld a, 1
 		ld [wSilentHillHouseSceneID], a
-		ld hl, Unreferenced_Corrupt_Silver_SilentHillLabBackTextString8
+		ld hl, Overdump_Corrupt_Silver_SilentHillLabBackTextString8
 		call PrintText
 		ld hl, wJoypadFlags
 		set 5, [hl]
@@ -1748,16 +1795,16 @@ Unreferenced_Corrupt_UnusedMap13Script:
 		ld [wMapScriptNumber], a
 		ret
 	.bigJump
-		ld hl, Unreferenced_Corrupt_Silver_SilentHillLabBackTextString7
+		ld hl, Overdump_Corrupt_Silver_SilentHillLabBackTextString7
 		call PrintText
 		ret
 
-	Unreferenced_Corrupt_Silver_SilentHillLabBackTextString7:
+	Overdump_Corrupt_Silver_SilentHillLabBackTextString7:
 		text "では"
 		line "どれに　するのじゃ？"
 		done
 
-	Unreferenced_Corrupt_Silver_SilentHillLabBackTextString8:
+	Overdump_Corrupt_Silver_SilentHillLabBackTextString8:
 		text "オーキド『この　ポケモンは"
 		line "ほんとに　げんきが　いいぞ！"
 
@@ -1767,55 +1814,55 @@ Unreferenced_Corrupt_UnusedMap13Script:
 		text "を　もらった！"
 		prompt
 
-	Unreferenced_Corrupt_Silver_SilentHillLabBackTextString9:
+	Overdump_Corrupt_Silver_SilentHillLabBackTextString9:
 		text "オーキド『そうじゃ！"
 		line "やせいの　ポケモンが　でて　きても"
 		cont "そいつを　たたかわせて　いけば"
 		cont "となりまちへ　いける！"
 		done
 
-	Unreferenced_Corrupt_Silver_SilentHillLabBackFunc3:
+	Overdump_Corrupt_Silver_SilentHillLabBackFunc3:
 		CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
-		ld hl, Unreferenced_Corrupt_SilentHillLabBackTextString11
+		ld hl, Overdump_Corrupt_SilentHillLabBackTextString11
 		jr z, .skip
-		ld hl, Unreferenced_Corrupt_SilentHillLabBackTextString14
+		ld hl, Overdump_Corrupt_SilentHillLabBackTextString14
 	.skip
 		call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
 		ret
 
-	Unreferenced_Corrupt_Silver_SilentHillLabBackTextString10:
+	Overdump_Corrupt_Silver_SilentHillLabBackTextString10:
 		text "<RIVAL>『あッ！　おれにも！"
 		line "じいさん　おれにもくれ"
 	endc
-Unreferenced_Corrupt_SilentHillLabBackTextString10:
+Overdump_Corrupt_SilentHillLabBackTextString10:
 	db "よう！"
 	done
 
-Unreferenced_Corrupt_SilentHillLabBackTextString11:
+Overdump_Corrupt_SilentHillLabBackTextString11:
 	text "<RIVAL>『いいぜ　<PLAYER>！"
 	line "さきに　えらんで！"
 	cont "おれは　こころが　ひろいからな"
 	done
 
-Unreferenced_Corrupt_SilentHillLabBackTextString12:
+Overdump_Corrupt_SilentHillLabBackTextString12:
 	text "<RIVAL>『じゃ　おれは　これ！"
 	done
 
-Unreferenced_Corrupt_SilentHillLabBackTextString13:
+Overdump_Corrupt_SilentHillLabBackTextString13:
 	text "<RIVAL>は　オーキドから"
 	line "@"
 	text_from_ram wStringBuffer1
 	text "を　もらった！"
 	done
 
-Unreferenced_Corrupt_SilentHillLabBackTextString14:
+Overdump_Corrupt_SilentHillLabBackTextString14:
 	text "<RIVAL>『<PLAYER>の#"
 	line "いいなあ！"
 	cont "でも　おれのポケモンも"
 	cont "ちょっと　いいだろ？"
 	done
 
-Unreferenced_Corrupt_SilentHillLabBackFunc4:
+Overdump_Corrupt_SilentHillLabBackFunc4:
 	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 	jr nz, .bigjump
 	ldh a, [hLastTalked]
@@ -1823,7 +1870,7 @@ Unreferenced_Corrupt_SilentHillLabBackFunc4:
 	ld [wChosenStarter], a
 	ld d, 0
 	ld e, a
-	ld hl, Unreferenced_Corrupt_SilentHillLabBackStarterData
+	ld hl, Overdump_Corrupt_SilentHillLabBackStarterData
 	add hl, de
 	add hl, de
 	add hl, de
@@ -1851,10 +1898,10 @@ Unreferenced_Corrupt_SilentHillLabBackFunc4:
 	ld [wRivalStarter], a
 	ret
 .bigjump
-	ld hl, Unreferenced_Corrupt_SilentHillLabBackTextString15
+	ld hl, Overdump_Corrupt_SilentHillLabBackTextString15
 	call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
-Unreferenced_Corrupt_SilentHillLabBackStarterData:
+Overdump_Corrupt_SilentHillLabBackStarterData:
 	db DEX_HONOGUMA
 	dw @ - $229
 	db DEX_KURUSU
@@ -1867,51 +1914,51 @@ Unreferenced_Corrupt_SilentHillLabBackStarterData:
 	dw @ - $1de
 	db DEX_HONOGUMA
 
-Unreferenced_Corrupt_SilentHillLabBackTextString15:
+Overdump_Corrupt_SilentHillLabBackTextString15:
 	text "オーキド『これ！"
 	line "よくばっちゃ　いかん！"
 	done
 
-Unreferenced_Corrupt_SilentHillLabBackTextPointers2:
+Overdump_Corrupt_SilentHillLabBackTextPointers2:
 	dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset - Bank34OldOffset
 	dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset - Bank34OldOffset
 	dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset - Bank34OldOffset
 	dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset - Bank34OldOffset
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	map_attributes Unreferenced_Corrupt2_UnusedMap13, UNUSED_MAP_13
+	map_attributes Overdump_Corrupt2_UnusedMap13, UNUSED_MAP_13
 
-Unreferenced_Corrupt2_UnusedMap13_MapEvents::
+Overdump_Corrupt2_UnusedMap13_MapEvents::
 
-Unreferenced_Corrupt2_UnusedMap13_Blocks::
+Overdump_Corrupt2_UnusedMap13_Blocks::
 INCBIN "maps/UnusedMap13.blk"
 
-Unreferenced_Corrupt2_UnusedMap13_ScriptLoader::
-	ld hl, Unreferenced_Corrupt2_UnusedMap13ScriptPointers
+Overdump_Corrupt2_UnusedMap13_ScriptLoader::
+	ld hl, Overdump_Corrupt2_UnusedMap13ScriptPointers
 	call RunMapScript + Bank34NonDebugOffset
 	call WriteBackMapScriptNumber + Bank34NonDebugOffset
 	ret
 
-Unreferenced_Corrupt2_UnusedMap13ScriptPointers:
-	dw Unreferenced_Corrupt2_UnusedMap13Script
-	dw Unreferenced_Corrupt2_UnusedMap13NPCIDs
+Overdump_Corrupt2_UnusedMap13ScriptPointers:
+	dw Overdump_Corrupt2_UnusedMap13Script
+	dw Overdump_Corrupt2_UnusedMap13NPCIDs
 
-Unreferenced_Corrupt2_UnusedMap13NPCIDs:
+Overdump_Corrupt2_UnusedMap13NPCIDs:
 	db $FF
 
-Unreferenced_Corrupt2_UnusedMap13SignPointers:
+Overdump_Corrupt2_UnusedMap13SignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt2_UnusedMap13_TextPointers::
+Overdump_Corrupt2_UnusedMap13_TextPointers::
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt2_UnusedMap13Script:
-	ld hl, Unreferenced_Corrupt2_UnusedMap13NPCIDs
-	ld de, Unreferenced_Corrupt2_UnusedMap13SignPointers
+Overdump_Corrupt2_UnusedMap13Script:
+	ld hl, Overdump_Corrupt2_UnusedMap13NPCIDs
+	ld de, Overdump_Corrupt2_UnusedMap13SignPointers
 	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
 
-Unreferenced_Corrupt2_SilentHillLabBackFunc4:
+Overdump_Corrupt2_SilentHillLabBackFunc4:
 	dw wPlayerStarter
 	push hl
 	ld [wNamedObjectIndexBuffer], a
@@ -1934,10 +1981,10 @@ Unreferenced_Corrupt2_SilentHillLabBackFunc4:
 	ld [wRivalStarter], a
 	ret
 .bigjump
-	ld hl, Unreferenced_Corrupt2_SilentHillLabBackTextString15
+	ld hl, Overdump_Corrupt2_SilentHillLabBackTextString15
 	call OpenTextbox + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
-Unreferenced_Corrupt2_SilentHillLabBackStarterData:
+Overdump_Corrupt2_SilentHillLabBackStarterData:
 	db DEX_HONOGUMA
 	dw @ - $229
 	db DEX_KURUSU
@@ -1950,47 +1997,47 @@ Unreferenced_Corrupt2_SilentHillLabBackStarterData:
 	dw @ - $1de
 	db DEX_HONOGUMA
 
-Unreferenced_Corrupt2_SilentHillLabBackTextString15:
+Overdump_Corrupt2_SilentHillLabBackTextString15:
 	text "オーキド『これ！"
 	line "よくばっちゃ　いかん！"
 	done
 
-Unreferenced_Corrupt2_SilentHillLabBackTextPointers2:
+Overdump_Corrupt2_SilentHillLabBackTextPointers2:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	map_attributes Unreferenced_Corrupt3_UnusedMap13, UNUSED_MAP_13
+	map_attributes Overdump_Corrupt3_UnusedMap13, UNUSED_MAP_13
 
-Unreferenced_Corrupt3_UnusedMap13_MapEvents::
+Overdump_Corrupt3_UnusedMap13_MapEvents::
 
-Unreferenced_Corrupt3_UnusedMap13_Blocks::
+Overdump_Corrupt3_UnusedMap13_Blocks::
 INCBIN "maps/UnusedMap13.blk"
 
-Unreferenced_Corrupt3_UnusedMap13_ScriptLoader::
-	ld hl, Unreferenced_Corrupt3_UnusedMap13ScriptPointers
+Overdump_Corrupt3_UnusedMap13_ScriptLoader::
+	ld hl, Overdump_Corrupt3_UnusedMap13ScriptPointers
 	call RunMapScript + Bank34NonDebugOffset
 	call WriteBackMapScriptNumber + Bank34NonDebugOffset
 	ret
 
-Unreferenced_Corrupt3_UnusedMap13ScriptPointers:
-	dw Unreferenced_Corrupt3_UnusedMap13Script
-	dw Unreferenced_Corrupt3_UnusedMap13NPCIDs
+Overdump_Corrupt3_UnusedMap13ScriptPointers:
+	dw Overdump_Corrupt3_UnusedMap13Script
+	dw Overdump_Corrupt3_UnusedMap13NPCIDs
 
-Unreferenced_Corrupt3_UnusedMap13NPCIDs:
+Overdump_Corrupt3_UnusedMap13NPCIDs:
 	db $FF
 
-Unreferenced_Corrupt3_UnusedMap13SignPointers:
+Overdump_Corrupt3_UnusedMap13SignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt3_UnusedMap13_TextPointers::
+Overdump_Corrupt3_UnusedMap13_TextPointers::
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt3_UnusedMap13Script:
-	ld hl, Unreferenced_Corrupt3_UnusedMap13NPCIDs
-	ld de, Unreferenced_Corrupt3_UnusedMap13SignPointers
+Overdump_Corrupt3_UnusedMap13Script:
+	ld hl, Overdump_Corrupt3_UnusedMap13NPCIDs
+	ld de, Overdump_Corrupt3_UnusedMap13SignPointers
 	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
 
@@ -2001,11 +2048,11 @@ DEF Bank34StarterDexOffset EQU 13
 DEF Bank34CorruptOffset EQU $17
 	if DEF(_GOLD)
 	DEF Bank34OldOffset EQU 5
-INCBIN "garbage/debug/bank34_gold.2bpp", 115
+INCBIN "overdump/debug/bank34_gold.2bpp", 115
 	endc
 	if DEF(_SILVER)
 	DEF Bank34OldOffset EQU 0
-	INCBIN "garbage/debug/bank34_silver.2bpp", 115
+	INCBIN "overdump/debug/bank34_silver.2bpp", 115
 	endc
 else
 DEF Bank34NonDebugOffset EQU $1E
@@ -2013,224 +2060,224 @@ DEF Bank34OldOffset EQU -4
 DEF Bank34CorruptOffset EQU -7
 DEF Bank34StarterDexOffset EQU 37
 	if DEF(_GOLD)
-	INCBIN "garbage/bank34_gold.2bpp", 115
+	INCBIN "overdump/bank34_gold.2bpp", 115
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank34_silver.2bpp", 149
+	INCBIN "overdump/bank34_silver.2bpp", 149
 	endc
 endc
 
 
-SECTION "Bank 35 Garbage", ROMX
+SECTION "Bank 35 Overdump", ROMX
 
-; This whole bank is garbage data.
+; This whole bank is overdump data.
 rept 23
 	ret
 endr
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank35_gold.2bpp", 23
+	INCBIN "overdump/debug/bank35_gold.2bpp", 23
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank35_silver.2bpp", 23
+	INCBIN "overdump/debug/bank35_silver.2bpp", 23
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank35_gold.2bpp", 23
+	INCBIN "overdump/bank35_gold.2bpp", 23
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank35_silver.2bpp", 23
+	INCBIN "overdump/bank35_silver.2bpp", 23
 	endc
 endc
 
 
-SECTION "Bank 36 Garbage", ROMX
+SECTION "Bank 36 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank36_gold.2bpp", 221
+	INCBIN "overdump/debug/bank36_gold.2bpp", 221
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank36_silver.2bpp", 213
+	INCBIN "overdump/debug/bank36_silver.2bpp", 213
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank36_gold.2bpp", 221
+	INCBIN "overdump/bank36_gold.2bpp", 221
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank36_silver.2bpp", 213
+	INCBIN "overdump/bank36_silver.2bpp", 213
 	endc
 endc
 
 
-SECTION "Bank 37 Garbage", ROMX
+SECTION "Bank 37 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank37_gold.2bpp"
+	INCBIN "overdump/debug/bank37_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank37_silver.2bpp"
+	INCBIN "overdump/debug/bank37_silver.2bpp"
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank37_gold.2bpp"
+	INCBIN "overdump/bank37_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank37_silver.2bpp"
+	INCBIN "overdump/bank37_silver.2bpp"
 	endc
 endc
 
-SECTION "Bank 38 Garbage", ROMX
+SECTION "Bank 38 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	INCBIN "garbage/debug/bank38_gold.2bpp", 87
+	INCBIN "overdump/debug/bank38_gold.2bpp", 87
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/debug/bank38_silver.2bpp", 87
+	INCBIN "overdump/debug/bank38_silver.2bpp", 87
 	endc
 else
 	if DEF(_GOLD)
-	INCBIN "garbage/bank38_gold.2bpp", 87
+	INCBIN "overdump/bank38_gold.2bpp", 87
 	endc
 	if DEF(_SILVER)
-	INCBIN "garbage/bank38_silver.2bpp", 87
+	INCBIN "overdump/bank38_silver.2bpp", 87
 	endc
 endc
 
 
-SECTION "Bank 39 Garbage", ROMX
+SECTION "Bank 39 Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank39_gold.2bpp", 159
+INCBIN "overdump/debug/bank39_gold.2bpp", 159
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank39_silver.2bpp", 159
+INCBIN "overdump/debug/bank39_silver.2bpp", 159
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank39_gold.2bpp", 159
+INCBIN "overdump/bank39_gold.2bpp", 159
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank39_silver.2bpp", 159
+INCBIN "overdump/bank39_silver.2bpp", 159
 	endc
 endc
 
 
-SECTION "Bank 3a Garbage", ROMX
+SECTION "Bank 3a Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank3a_gold.2bpp", 177
+INCBIN "overdump/debug/bank3a_gold.2bpp", 177
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank3a_silver.2bpp", 177
+INCBIN "overdump/debug/bank3a_silver.2bpp", 177
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank3a_gold.2bpp", 177
+INCBIN "overdump/bank3a_gold.2bpp", 177
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank3a_silver.2bpp", 177
+INCBIN "overdump/bank3a_silver.2bpp", 177
 	endc
 endc
 
 
-SECTION "Bank 3b Garbage", ROMX
+SECTION "Bank 3b Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank3b_gold.2bpp", 189
+INCBIN "overdump/debug/bank3b_gold.2bpp", 189
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank3b_silver.2bpp", 189
+INCBIN "overdump/debug/bank3b_silver.2bpp", 189
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank3b_gold.2bpp", 189
+INCBIN "overdump/bank3b_gold.2bpp", 189
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank3b_silver.2bpp", 189
+INCBIN "overdump/bank3b_silver.2bpp", 189
 	endc
 endc
 
 
-SECTION "Bank 3c Garbage", ROMX
+SECTION "Bank 3c Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank3c_gold.2bpp", 78
+INCBIN "overdump/debug/bank3c_gold.2bpp", 78
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank3c_silver.2bpp", 78
+INCBIN "overdump/debug/bank3c_silver.2bpp", 78
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank3c_gold.2bpp", 78
+INCBIN "overdump/bank3c_gold.2bpp", 78
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank3c_silver.2bpp", 78
+INCBIN "overdump/bank3c_silver.2bpp", 78
 	endc
 endc
 
 
-SECTION "Bank 3d Garbage", ROMX
+SECTION "Bank 3d Overdump", ROMX
 
-; This whole bank is garbage data.
+; This whole bank is overdump data.
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank3d_gold.2bpp"
+INCBIN "overdump/debug/bank3d_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank3d_silver.2bpp"
+INCBIN "overdump/debug/bank3d_silver.2bpp"
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank3d_gold.2bpp"
+INCBIN "overdump/bank3d_gold.2bpp"
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank3d_silver.2bpp"
+INCBIN "overdump/bank3d_silver.2bpp"
 	endc
 endc
 
 
-SECTION "Bank 3e Garbage", ROMX
+SECTION "Bank 3e Overdump", ROMX
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank3e_gold.2bpp", 42
+INCBIN "overdump/debug/bank3e_gold.2bpp", 42
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank3e_silver.2bpp", 42
+INCBIN "overdump/debug/bank3e_silver.2bpp", 42
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank3e_gold.2bpp", 42
+INCBIN "overdump/bank3e_gold.2bpp", 42
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank3e_silver.2bpp", 42
+INCBIN "overdump/bank3e_silver.2bpp", 42
 	endc
 endc
 
 
-SECTION "Bank 3f Garbage", ROMX
+SECTION "Bank 3f Overdump", ROMX
 
 if DEF(_DEBUG)
 	cpl
 	ret
 	if DEF(_GOLD)
-INCBIN "garbage/debug/bank3f_gold.2bpp", 45
+INCBIN "overdump/debug/bank3f_gold.2bpp", 45
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/debug/bank3f_silver.2bpp", 45
+INCBIN "overdump/debug/bank3f_silver.2bpp", 45
 	endc
 else
 	if DEF(_GOLD)
-INCBIN "garbage/bank3f_gold.2bpp", 43
+INCBIN "overdump/bank3f_gold.2bpp", 43
 	endc
 	if DEF(_SILVER)
-INCBIN "garbage/bank3f_silver.2bpp", 43
+INCBIN "overdump/bank3f_silver.2bpp", 43
 	endc
 endc
