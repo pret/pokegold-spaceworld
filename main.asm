@@ -213,7 +213,7 @@ INCLUDE "engine/battle_anims/functions.asm"
 INCLUDE "engine/battle_anims/helpers.asm"
 
 
-SECTION "bank36", ROMX
+SECTION "Set Time", ROMX
 
 INCLUDE "engine/menu/set_time.asm"
 

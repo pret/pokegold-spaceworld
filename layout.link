@@ -154,7 +154,16 @@ ROMX $26
 	"West Maps"
 	"Bank 26 Overdump"
 ROMX $27
-	"Maps 4"
+	"High-Tech Maps"
+	"Font Maps"
+	"Birdon Maps"
+	"Newtype Maps"
+	"Sugar Maps"
+	"Blue Forest Maps"
+	"Stand Maps"
+	"Kanto Maps"
+	"South Maps"
+	"North Maps"
 	"Bank 27 Overdump"
 ROMX $28
 	"Bank 28 Overdump"
@@ -191,9 +200,11 @@ ROMX $34
 ROMX $35
 	"Bank 35 Overdump"
 ROMX $36
-	"Maps 7"
-	"bank36"
-	"Maps 8"
+	"Town Maps"
+	"Route Maps"
+	"Silent Hill Scripts"
+	"Set Time"
+	"Route Scripts"
 	"Bank 36 Overdump"
 ROMX $37
 	"Tilesets 6"

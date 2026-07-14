@@ -94,7 +94,7 @@ INCLUDE "data/maps/objects/WestHouse2.asm"
 INCLUDE "scripts/WestHouse2.asm"
 
 
-SECTION "Maps 4", ROMX
+SECTION "High-Tech Maps", ROMX
 
 INCLUDE "data/maps/objects/HighTechWestRouteGate.asm"
 INCLUDE "scripts/HighTechWestRouteGate.asm"
@@ -118,6 +118,9 @@ INCLUDE "data/maps/objects/HighTechAquarium1F.asm"
 INCLUDE "scripts/HighTechAquarium1F.asm"
 INCLUDE "data/maps/objects/HighTechAquarium2F.asm"
 INCLUDE "scripts/HighTechAquarium2F.asm"
+
+SECTION "Font Maps", ROMX
+
 INCLUDE "data/maps/objects/FontRouteGate1.asm"
 INCLUDE "scripts/FontRouteGate1.asm"
 INCLUDE "data/maps/objects/FontRouteGate2.asm"
@@ -136,6 +139,9 @@ INCLUDE "data/maps/objects/FontPokecenter2F.asm"
 INCLUDE "scripts/FontPokecenter2F.asm"
 INCLUDE "data/maps/objects/FontLab.asm"
 INCLUDE "scripts/FontLab.asm"
+
+SECTION "Birdon Maps", ROMX
+
 INCLUDE "data/maps/objects/BirdonMart.asm"
 INCLUDE "scripts/BirdonMart.asm"
 INCLUDE "data/maps/objects/BirdonPokecenter1F.asm"
@@ -154,6 +160,9 @@ INCLUDE "data/maps/objects/BirdonLeague2F.asm"
 INCLUDE "scripts/BirdonLeague2F.asm"
 INCLUDE "data/maps/objects/BirdonRouteGateWest.asm"
 INCLUDE "scripts/BirdonRouteGateWest.asm"
+
+SECTION "Newtype Maps", ROMX
+
 INCLUDE "data/maps/objects/BirdonRouteGateNewtype.asm"
 INCLUDE "scripts/BirdonRouteGateNewtype.asm"
 INCLUDE "data/maps/objects/NewtypePokecenter1F.asm"
@@ -188,6 +197,9 @@ INCLUDE "data/maps/objects/Route18Pokecenter1F.asm"
 INCLUDE "scripts/Route18Pokecenter1F.asm"
 INCLUDE "data/maps/objects/Route18Pokecenter2F.asm"
 INCLUDE "scripts/Route18Pokecenter2F.asm"
+
+SECTION "Sugar Maps", ROMX
+
 INCLUDE "data/maps/objects/SugarRouteGate.asm"
 INCLUDE "scripts/SugarRouteGate.asm"
 INCLUDE "data/maps/objects/SugarHouse.asm"
@@ -200,6 +212,9 @@ INCLUDE "data/maps/objects/SugarPokecenter1F.asm"
 INCLUDE "scripts/SugarPokecenter1F.asm"
 INCLUDE "data/maps/objects/SugarPokecenter2F.asm"
 INCLUDE "scripts/SugarPokecenter2F.asm"
+
+SECTION "Blue Forest Maps", ROMX
+
 INCLUDE "data/maps/objects/BlueForestRoute1House.asm"
 INCLUDE "scripts/BlueForestRoute1House.asm"
 INCLUDE "data/maps/objects/BlueForestRouteGateStand.asm"
@@ -222,6 +237,9 @@ INCLUDE "data/maps/objects/BlueLeague2F.asm"
 INCLUDE "scripts/BlueLeague2F.asm"
 INCLUDE "data/maps/objects/BlueHouse4.asm"
 INCLUDE "scripts/BlueHouse4.asm"
+
+SECTION "Stand Maps", ROMX
+
 INCLUDE "data/maps/objects/StandRouteGateKanto.asm"
 INCLUDE "scripts/StandRouteGateKanto.asm"
 INCLUDE "data/maps/objects/StandLab.asm"
@@ -244,6 +262,9 @@ INCLUDE "data/maps/objects/StandLeague1F.asm"
 INCLUDE "scripts/StandLeague1F.asm"
 INCLUDE "data/maps/objects/StandLeague2F.asm"
 INCLUDE "scripts/StandLeague2F.asm"
+
+SECTION "Kanto Maps", ROMX
+
 INCLUDE "data/maps/objects/KantoCeruleanHouse.asm"
 INCLUDE "scripts/KantoCeruleanHouse.asm"
 INCLUDE "data/maps/objects/KantoPokecenter1F.asm"
@@ -316,6 +337,9 @@ INCLUDE "data/maps/objects/KantoLeague22F.asm"
 INCLUDE "scripts/KantoLeague22F.asm"
 INCLUDE "data/maps/objects/KantoFishingGuru.asm"
 INCLUDE "scripts/KantoFishingGuru.asm"
+
+SECTION "South Maps", ROMX
+
 INCLUDE "data/maps/objects/SouthHouse1.asm"
 INCLUDE "scripts/SouthHouse1.asm"
 INCLUDE "data/maps/objects/SouthPokecenter1F.asm"
@@ -326,6 +350,9 @@ INCLUDE "data/maps/objects/SouthMart.asm"
 INCLUDE "scripts/SouthMart.asm"
 INCLUDE "data/maps/objects/SouthHouse2.asm"
 INCLUDE "scripts/SouthHouse2.asm"
+
+SECTION "North Maps", ROMX
+
 INCLUDE "data/maps/objects/NorthHouse1.asm"
 INCLUDE "scripts/NorthHouse1.asm"
 INCLUDE "data/maps/objects/NorthMart.asm"
@@ -400,7 +427,7 @@ INCLUDE "data/maps/objects/UnusedMap13.asm"
 INCLUDE "scripts/UnusedMap13.asm"
 
 
-SECTION "Maps 7", ROMX
+SECTION "Town Maps", ROMX
 
 INCLUDE "scripts/dummy_text_pointers.asm"
 INCLUDE "data/maps/objects/SilentHill.asm"
@@ -432,6 +459,9 @@ INCLUDE "data/maps/objects/South.asm"
 INCLUDE "scripts/South.asm"
 INCLUDE "data/maps/objects/North.asm"
 INCLUDE "scripts/North.asm"
+
+SECTION "Route Maps", ROMX
+
 INCLUDE "data/maps/objects/Route1P1.asm"
 INCLUDE "data/maps/objects/Route1P2.asm"
 INCLUDE "data/maps/objects/Route2.asm"
@@ -482,10 +512,12 @@ INCLUDE "data/maps/objects/FontRoute5.asm"
 INCLUDE "scripts/FontRoute5.asm"
 INCLUDE "data/maps/objects/BlueForestRoute3.asm"
 INCLUDE "scripts/BlueForestRoute3.asm"
+
+SECTION "Silent Hill Scripts", ROMX
+
 INCLUDE "scripts/SilentHill.asm"
 
-
-SECTION "Maps 8", ROMX
+SECTION "Route Scripts", ROMX
 
 INCLUDE "scripts/DeletedMap.asm"
 INCLUDE "scripts/Route1P1.asm"
