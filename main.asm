@@ -153,7 +153,7 @@ INCLUDE "engine/pokemon/evolve.asm"
 INCLUDE "data/pokemon/evos_attacks.asm"
 
 
-SECTION "bank11", ROMX
+SECTION "Dex Entries", ROMX
 
 INCLUDE "engine/pokedex/display_dex_entry.asm"
 INCLUDE "data/pokemon/dex_entries.asm"
@@ -177,7 +177,7 @@ INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
 
 
-SECTION "bank23", ROMX
+SECTION "Overworld Anims", ROMX
 
 INCLUDE "engine/tilesets/tileset_anims.asm"
 INCLUDE "engine/overworld/healing_machine.asm"
@@ -187,14 +187,14 @@ INCLUDE "engine/overworld/player_animations_old.asm"
 INCLUDE "engine/sprite_anims/core.asm"
 
 
-SECTION "bank23_2", ROMX
+SECTION "Mon Icons", ROMX
 
 INCLUDE "engine/gfx/mon_icons.asm"
 
 
 SECTION "Subgames 1", ROMX
 
-INCLUDE "engine/games/set_clock_dialog.asm"
+INCLUDE "engine/menu/set_clock_dialog.asm"
 INCLUDE "engine/games/slot_machine_game.asm"
 
 

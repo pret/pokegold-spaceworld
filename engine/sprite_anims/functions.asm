@@ -742,15 +742,17 @@ AnimSeq_MinigamePikachu:
 	ld [hl], 0
 	ld e, a
 	ld d, $00
-	ld hl, Data8d40b
+	ld hl, .pikachu_framesets
 	add hl, de
 	ld a, [hl]
 	call _ReinitSpriteAnimFrame
 	ret
 
-; Data from 8D40B to 8D40E (4 bytes)
-Data8d40b:
-	db $12, $13, $12, $14
+.pikachu_framesets:
+	db SPRITE_ANIM_FRAMESET_GS_MINIGAME_PIKACHU
+	db SPRITE_ANIM_FRAMESET_GS_MINIGAME_PIKACHU_2
+	db SPRITE_ANIM_FRAMESET_GS_MINIGAME_PIKACHU
+	db SPRITE_ANIM_FRAMESET_GS_MINIGAME_PIKACHU_3
 
 AnimSeq_MinigamePikachuTail:
 	farcall CopyPikachuObjDataToTailObj

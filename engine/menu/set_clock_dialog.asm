@@ -1,5 +1,3 @@
-; This is considered a subgame internally.
-
 SetClockDialog:
 	call SetClockDialog_Init
 

@@ -85,7 +85,7 @@ ROMX $10
 	"bank10"
 	"Bank 10 Overdump"
 ROMX $11
-	"bank11"
+	"Dex Entries"
 	"Bank 11 Overdump"
 ROMX $12
 	"Trainer Pics"
@@ -140,9 +140,9 @@ ROMX $21
 ROMX $22
 	"Bank 22 Overdump"
 ROMX $23
-	"bank23"
+	"Overworld Anims"
 	"Pokemon Party Sprites"
-	"bank23_2"
+	"Mon Icons"
 	"Bank 23 Overdump"
 ROMX $24
 	"Subgames 1"

@@ -393,10 +393,8 @@ CheckObjectEnteringVisibleRange::
 	dw CheckVisibleRange_Left
 	dw CheckVisibleRange_Right
 
-EmptyFunction8261:
-	ret
-
-Unreferenced_CheckObjectEnteringVisibleRange_Alternate::
+CheckObjectEnteringVisibleRange_Alternate::
+	ret ; dummied out via early return
 	ld a, [wPlayerStepDirection]
 	cp STANDING
 	ret z

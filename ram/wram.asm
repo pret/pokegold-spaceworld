@@ -989,8 +989,11 @@ wMovementBufferObject:: db
 
 	ptrba wMovementBufferPointer
 
-wMovementBuffer::
-	ds 55
+wMovementXBuffer::
+wMovementBuffer:: db
+wMovementYBuffer:: db
+wMovementSpriteViewerDirection:: db
+	ds 53
 
 NEXTU
 
@@ -1735,8 +1738,8 @@ wGameData2::
 wUnusedAddOutdoorSpritesReturnValue:: db
 wBGMapAnchor:: dw
 
-wUsedSprites::
-	ds 2
+wUsedSprites:: db
+wUsedFollowerSprites:: db
 wUsedNPCSprites::
 	ds 8
 wUsedStaticSprites::

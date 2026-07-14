@@ -19,7 +19,7 @@ _TimeOfDayPals::
 	call OverworldFadeIn
 	ret
 
-_LABEL_8C2FE_:
+Unreferenced_ResetTimeOfDayPal:
 	ld hl, wTimeOfDayPalFlags
 	res CLEAR_PALSET_F, [hl]
 	call OverworldFadeOut
@@ -29,7 +29,7 @@ _LABEL_8C2FE_:
 	call OverworldFadeIn
 	ret
 
-_LABEL_8C313_:
+Unreferenced_SetTimeOfDayPal:
 	ld hl, wTimeOfDayPalFlags
 	set CLEAR_PALSET_F, [hl]
 	call OverworldFadeOut
@@ -38,7 +38,7 @@ _LABEL_8C313_:
 	call OverworldFadeIn
 	ret
 
-Function8c325:
+ChangeTimeOfDayPal:
 	call OverworldFadeOut
 	call UpdateTime
 	call GetTimePalette
