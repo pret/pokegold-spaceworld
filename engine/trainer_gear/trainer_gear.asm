@@ -112,7 +112,7 @@ TrainerGear_Init:
 	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld a, %11100000
 	ldh [rOBP1], a
 	ret

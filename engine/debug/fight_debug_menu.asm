@@ -770,7 +770,7 @@ endr
 	ld [wTempWildMonSpecies], a
  ;fallthrough
 .MonsterSet:
-	call SetPalettes
+	call SetDefaultBGPAndOBP
  ; Don't mess around with obedience.
 	ld a, (1 << EARTHBADGE)
 	ld [wBadges], a

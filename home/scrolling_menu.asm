@@ -49,7 +49,7 @@ ScrollingMenu::
 	call Bankswitch
 
 	call _InitScrollingMenu
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call _ScrollingMenu
 
 	pop af

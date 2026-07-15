@@ -122,7 +122,7 @@ MonsterTest_List:
 	dec d
 	jr nz, .TextInput_Loop
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 
 	call MonsterTest_Cursor
 
@@ -247,7 +247,7 @@ MonsterTest_SelectedMenu:
 	ldh [hMapAnims], a
 	call MonsterTest_PlaceBorder
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 
 	call MonsterTest_GetPic
 .wait_for_input:
@@ -356,7 +356,7 @@ MonsterTest_GetPic:
 ; No code is present to load the palettes yet, but SGB_POKEDEX works on the front sprites.
 ;	ld b, SGB_POKEDEX
 ;	call GetSGBLayout
-;	call SetPalettes
+;	call SetDefaultBGPAndOBP
 
 	call GetPokemonName
 	hlcoord 9, 2

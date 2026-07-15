@@ -7,8 +7,6 @@
 ;    * for TRAINERTYPE_ITEM_MOVES: db level, species, item, 4 moves
 ; - db -1 ; end
 
-; TODO: decode all data
-
 HayatoGroup::
 ; Leftover Youngster data from Red/Blue
 	db 11, MON_RATTATA, MON_EKANS, 0

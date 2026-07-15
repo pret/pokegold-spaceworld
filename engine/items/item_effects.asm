@@ -658,7 +658,7 @@ ReturnToBattle_UseBall:
 	call CloseWindow
 	call LoadStandardMenuHeader
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 TownMapEffect:

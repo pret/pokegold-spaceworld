@@ -1515,7 +1515,7 @@ SummaryDrawPoke:
 	hlcoord 11, 3
 	predef ListMovePP
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
@@ -1902,7 +1902,7 @@ HandleTrainerCardJumptable:
 	dw TrainerCardSetClearFlag
 
 .SetPalAndIncJumpTable:
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 .IncreaseJumpTableIndex:
 	ld a, [wJumptableIndex]
 	inc a

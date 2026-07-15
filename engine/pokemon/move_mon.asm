@@ -598,7 +598,6 @@ SendGetMonIntoFromBox::
 	and a
 	ret
 
-; TODO: Might not be for breedmon?
 RetrieveBreedmonOrBuffermon:
 	ld hl, wPartyCount
 	ld a, [hl]

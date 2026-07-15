@@ -147,7 +147,7 @@ FieldDebug_SpriteViewer:
 	call ClearTileMap
 	call .SetMenuAttributes
 	call .DisplayMenu
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call WaitBGMap
 
 	ld a, SPRITEVIEWER_UPDATE_MENU

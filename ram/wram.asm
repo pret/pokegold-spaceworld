@@ -542,7 +542,7 @@ ENDU
 	ds 50
 wActualBattleAnimEnd::
 
-	ds $1a3 ; TODO
+	ds $1a3
 
 wBattle::
 wEnemyMoveStruct:: move_struct wEnemyMoveStruct
@@ -790,10 +790,10 @@ UNION
 wOtherPlayerLinkMode:: db
 wOtherPlayerLinkAction::
 wBattleAction:: db
-	ds 3 ; TODO
+	ds 3
 
 wPlayerLinkAction:: db
-	ds 4 ; TODO
+	ds 4
 NEXTU
 wLinkReceivedSyncBuffer:: ds 5
 wLinkPlayerSyncBuffer:: ds 5
@@ -1554,7 +1554,7 @@ wToolgearFlags:: db
 ; |    \--- transfer toolgear to window
 ; \-------- hide toolgear
 
-	ds 2 ; TODO
+	ds 2
 
 wTimeOfDayPal:: db
 ; Applied according to wCurTimeOfDay from wTimeOfDayPalset
@@ -1564,7 +1564,7 @@ wTimeOfDayDebugFlags:: db
 ; |      \- show player coords in toolgear instead of time
 ; \-------- switch overworld palettes according to minutes not hours
 
-	ds 3 ; TODO
+	ds 3
 wTimeOfDayPalFlags:: db
 ; 76543210
 ; \-------- disable overworld palette switch
@@ -1706,14 +1706,14 @@ wWarpNumber:: db
 wCurrMapWarpCount:: db
 
 wCurrMapWarps::
-REPT 32 ; TODO: confirm this
+REPT 32
 	ds 5
 ENDR
 
 wCurMapBGEventCount:: db
 
 wCurrMapBGEvents::
-REPT 16 ; TODO: confirm this
+REPT 16
 	ds 4
 ENDR
 
