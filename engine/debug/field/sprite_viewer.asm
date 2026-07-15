@@ -9,7 +9,7 @@
 	const SPRITEVIEWER_EXIT                  ; 6
 	const SPRITEVIEWER_SET_FOLLOWING         ; 7
 	
-DEF SPRITE_NAME_LENGTH EQU 5
+DEF SPRITEVIEWER_NUM_ROWS EQU 5
 
 FieldDebug_SpriteViewer:
 	call LoadStandardMenuHeader
@@ -54,7 +54,7 @@ FieldDebug_SpriteViewer:
 	ld a, [wMovementBufferObject]
 	ld d, a
 
-	ld a, SPRITE_NAME_LENGTH
+	ld a, SPRITEVIEWER_NUM_ROWS
 	add [hl]
 	cp d
 	jr c, .skip
@@ -63,7 +63,7 @@ FieldDebug_SpriteViewer:
 	ld [wSpriteViewerSavedMenuPointerY], a
 
 	ld a, [wMovementBufferObject]
-	sub SPRITE_NAME_LENGTH
+	sub SPRITEVIEWER_NUM_ROWS
 	ld [wSpriteViewerMenuStartingItem], a
 	ret
 
@@ -80,9 +80,9 @@ FieldDebug_SpriteViewer:
 	ld de, .MenuAttributes
 	call SetMenuAttributes
 	ld a, [wMovementBufferObject]
-	cp SPRITE_NAME_LENGTH
+	cp SPRITEVIEWER_NUM_ROWS
 	jr c, .apply
-	ld a, SPRITE_NAME_LENGTH
+	ld a, SPRITEVIEWER_NUM_ROWS
 .apply
 	ld [w2DMenuNumRows], a
 	ld a, [wSpriteViewerSavedMenuPointerY]
@@ -156,7 +156,7 @@ FieldDebug_SpriteViewer:
 	ret
 
 .DisplayMenu:
-	ld c, SPRITE_NAME_LENGTH
+	ld c, SPRITEVIEWER_NUM_ROWS
 
 	ld a, [wMovementBufferObject]
 	cp c
@@ -238,10 +238,10 @@ FieldDebug_SpriteViewer:
 
 .down
 	ld a, [wMovementBufferObject]
-	cp SPRITE_NAME_LENGTH
+	cp SPRITEVIEWER_NUM_ROWS
 	jr c, .reload_menu
 
-	sub SPRITE_NAME_LENGTH
+	sub SPRITEVIEWER_NUM_ROWS
 	ld b, a
 	ld a, [wSpriteViewerMenuStartingItem]
 	cp b
@@ -253,13 +253,13 @@ FieldDebug_SpriteViewer:
 
 .right
 	ld a, [wMovementBufferObject]
-	cp SPRITE_NAME_LENGTH
+	cp SPRITEVIEWER_NUM_ROWS
 	jr c, .reload_menu
 
-	sub SPRITE_NAME_LENGTH - 1
+	sub SPRITEVIEWER_NUM_ROWS - 1
 	ld b, a
 	ld a, [wSpriteViewerMenuStartingItem]
-	add SPRITE_NAME_LENGTH
+	add SPRITEVIEWER_NUM_ROWS
 	ld [wSpriteViewerMenuStartingItem], a
 	cp b
 	jr c, .reload_menu
@@ -271,7 +271,7 @@ FieldDebug_SpriteViewer:
 
 .left
 	ld a, [wSpriteViewerMenuStartingItem]
-	sub SPRITE_NAME_LENGTH
+	sub SPRITEVIEWER_NUM_ROWS
 	ld [wSpriteViewerMenuStartingItem], a
 	jr nc, .reload_menu
 
