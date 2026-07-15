@@ -13,30 +13,22 @@ DEF SPRITE_NAME_LENGTH EQU 5
 
 FieldDebug_SpriteViewer:
 	call LoadStandardMenuHeader
-
 	call ClearTileMap
 	call HideSprites
 
 	ld hl, wStateFlags
 	res SPRITE_UPDATES_DISABLED_F, [hl]
 
-
 	call .Init
-
 	call .DoSpriteViewer
-
-
 	push af
 
 	ld hl, wStateFlags
 	set SPRITE_UPDATES_DISABLED_F, [hl]
 
 	call ClearPalettes
-
 	call RestoreScreenAndReloadTiles
-
 	call CloseWindow
-
 	call UpdateTimePals
 
 	pop af
@@ -45,13 +37,10 @@ FieldDebug_SpriteViewer:
 .Init:
 	ld a, NUM_OVERWORLD_SPRITES
 	ld [wMovementBufferObject], a
-
 	ld a, 1
 	ld [wSpriteViewerSavedMenuPointerY], a
-
 	ld a, 0
 	ld [wSpriteViewerMenuStartingItem], a
-
 	ld a, 1
 	ldh [hTextBoxCursorBlinkInterval], a
 	callfar IsObjectFacingSomeoneElse
@@ -101,10 +90,12 @@ FieldDebug_SpriteViewer:
 	ret
 
 .MenuAttributes:
-	db 3,         1
-	db 0,         1
-	db %00001111, 0
-	db $30,       %00000011
+	db 3, 1 ; cursor start y, x
+	db 0, 1 ; rows, columns
+	db _2DMENU_EXIT_RIGHT | _2DMENU_EXIT_LEFT | _2DMENU_EXIT_UP | _2DMENU_EXIT_DOWN ; flags 1
+	db 0 ; flags 2
+	dn 3, 0 ; cursor offset
+	db A_BUTTON | B_BUTTON ; accepted buttons
 
 .DoSpriteViewer:
 	ld a, 0
@@ -154,13 +145,9 @@ FieldDebug_SpriteViewer:
 	call HideSprites
 	call ClearPalettes
 	call ClearTileMap
-
 	call .SetMenuAttributes
-
 	call .DisplayMenu
-
 	call SetPalettes
-
 	call WaitBGMap
 
 	ld a, SPRITEVIEWER_UPDATE_MENU
@@ -184,7 +171,6 @@ FieldDebug_SpriteViewer:
 	ld [wStringBuffer1], a
 .display_loop
 	push bc
-
 	push hl
 
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
@@ -197,11 +183,9 @@ FieldDebug_SpriteViewer:
 
 	ld hl, wStringBuffer1
 	inc [hl]
-
 	pop hl
 	ld de, SCREEN_WIDTH * 3
 	add hl, de
-
 	pop bc
 	dec c
 	jr nz, .display_loop
@@ -303,9 +287,7 @@ FieldDebug_SpriteViewer:
 
 .ShowSprites:
 	call ClearTileMap
-
 	call .SetStartingPoint
-
 	call .LoadUnderDevelopmentString
 	hlcoord 1, 2
 	call PlaceString
@@ -318,9 +300,7 @@ FieldDebug_SpriteViewer:
 	ld de, vFont
 	ld bc, 12
 	call Get2bpp
-
 	call LoadFont
-
 	call .SetStartingPoint
 	call IsAnimatedSprite
 	jr c, .animated_sprite

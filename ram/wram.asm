@@ -989,8 +989,8 @@ wMovementBufferObject:: db
 
 	ptrba wMovementBufferPointer
 
-wMovementXBuffer::
-wMovementBuffer:: db
+wMovementBuffer::
+wMovementXBuffer:: db
 wMovementYBuffer:: db
 wMovementSpriteViewerDirection:: db
 	ds 53
