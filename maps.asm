@@ -210,8 +210,7 @@ INCLUDE "scripts/SugarPokecenter2F.asm"
 SECTION "Blue Forest Maps", ROMX
 
 INCLUDE "maps/Route19House.asm"
-INCLUDE "data/maps/objects/BlueForestRouteGateStand.asm"
-INCLUDE "scripts/BlueForestRouteGateStand.asm"
+INCLUDE "maps/Route20Gate.asm"
 INCLUDE "data/maps/objects/BlueMart.asm"
 INCLUDE "scripts/BlueMart.asm"
 INCLUDE "data/maps/objects/BlueHouse1.asm"

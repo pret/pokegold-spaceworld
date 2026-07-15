@@ -6,8 +6,8 @@ Route20_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
-	warp_event  8, 48, BLUE_FOREST_ROUTE_GATE_STAND, 3, 405
-	warp_event  9, 48, BLUE_FOREST_ROUTE_GATE_STAND, 4, 405
+	warp_event  8, 48, ROUTE_20_GATE, 3, 405
+	warp_event  9, 48, ROUTE_20_GATE, 4, 405
 
 	def_bg_events
 

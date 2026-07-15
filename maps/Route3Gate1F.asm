@@ -19,20 +19,4 @@ Route3Gate1F_MapEvents::
 Route3Gate1F_Blocks::
 INCBIN "maps/Route3Gate1F.blk"
 
-Route3Gate1F_ScriptLoader::
-	ret
-
-Route3Gate1F_TextPointers::
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
-	dw MapDefaultText
+	map_dummy_text_pointers

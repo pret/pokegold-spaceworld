@@ -25,13 +25,13 @@ ENDM
 	const_def
 
 	newgroup  SILENT                                   ;  1
-	map_const ROUTE_1,                       15,  9 ;  1
-	map_const ROUTE_2,                       10, 18 ;  2
-	map_const ROUTE_23,                30,  9 ;  3
+	map_const ROUTE_1,                          15,  9 ;  1
+	map_const ROUTE_2,                          10, 18 ;  2
+	map_const ROUTE_23,                         30,  9 ;  3
 	map_const SILENT_HILL,                      10,  9 ;  4
 	map_const ROUTE_1_GATE_1F,                   5,  4 ;  5
 	map_const ROUTE_1_GATE_2F,                   4,  3 ;  6
-	map_const ROUTE_23_GATE,            5,  4 ;  7
+	map_const ROUTE_23_GATE,                     5,  4 ;  7
 	map_const PLAYER_HOUSE_1F,                   5,  4 ;  8
 	map_const PLAYER_HOUSE_2F,                   5,  4 ;  9
 	map_const SILENT_HILL_POKECENTER,            8,  4 ; 10
@@ -39,7 +39,7 @@ ENDM
 	map_const SILENT_HILL_LAB_FRONT,             4,  8 ; 12
 	map_const SILENT_HILL_LAB_BACK,              4,  4 ; 13
 	map_const SILENT_HILL_LAB_BACK_UNUSED,       4,  4 ; 14
-	map_const QUIET_HILLS,                     25, 18 ; 15
+	map_const QUIET_HILLS,                      25, 18 ; 15
 	endgroup
 
 	newgroup  OLD                                      ;  2
@@ -89,32 +89,32 @@ ENDM
 	map_const WEST_HOUSE_2,                      5,  4 ; 19
 	endgroup
 
-	newgroup  HIGHTECH                                  ;  4
-	map_const ROUTE_6,               25,  9 ;  1
-	map_const ROUTE_7,         10, 27 ;  2
-	map_const HIGHTECH,                          20, 18 ;  3
-	map_const ROUTE_7_GATE,           5,  4 ;  4
-	map_const HIGHTECH_POKECENTER_1F,             8,  4 ;  5
-	map_const HIGHTECH_POKECENTER_2F,             8,  4 ;  6
-	map_const HIGHTECH_LEAGUE_1F,                 4,  8 ;  7
-	map_const HIGHTECH_LEAGUE_2F,                 5,  9 ;  8
-	map_const HIGHTECH_MART,                      6,  4 ;  9
-	map_const HIGHTECH_HOUSE_1,                   5,  4 ; 10
-	map_const HIGHTECH_HOUSE_2,                   5,  4 ; 11
-	map_const HIGHTECH_IMPOSTER_OAK_HOUSE,        5,  4 ; 12
-	map_const HIGHTECH_AQUARIUM_1F,               8,  4 ; 13
-	map_const HIGHTECH_AQUARIUM_2F,               8,  4 ; 14
+	newgroup  HIGHTECH                                 ;  4
+	map_const ROUTE_6,                          25,  9 ;  1
+	map_const ROUTE_7,                          10, 27 ;  2
+	map_const HIGHTECH,                         20, 18 ;  3
+	map_const ROUTE_7_GATE,                      5,  4 ;  4
+	map_const HIGHTECH_POKECENTER_1F,            8,  4 ;  5
+	map_const HIGHTECH_POKECENTER_2F,            8,  4 ;  6
+	map_const HIGHTECH_LEAGUE_1F,                4,  8 ;  7
+	map_const HIGHTECH_LEAGUE_2F,                5,  9 ;  8
+	map_const HIGHTECH_MART,                     6,  4 ;  9
+	map_const HIGHTECH_HOUSE_1,                  5,  4 ; 10
+	map_const HIGHTECH_HOUSE_2,                  5,  4 ; 11
+	map_const HIGHTECH_IMPOSTER_OAK_HOUSE,       5,  4 ; 12
+	map_const HIGHTECH_AQUARIUM_1F,              8,  4 ; 13
+	map_const HIGHTECH_AQUARIUM_2F,              8,  4 ; 14
 	endgroup
 
 	newgroup  FONT                                    ;  5
-	map_const ROUTE_9,                    35,  9 ;  1
-	map_const ROUTE_10,                    10, 18 ;  2
-	map_const ROUTE_11,                    25,  9 ;  3
-	map_const ROUTE_12,                    10, 18 ;  4
-	map_const ROUTE_24,                    10, 18 ;  5
-	map_const ROUTE_25,                    35,  9 ;  6
+	map_const ROUTE_9,                         35,  9 ;  1
+	map_const ROUTE_10,                        10, 18 ;  2
+	map_const ROUTE_11,                        25,  9 ;  3
+	map_const ROUTE_12,                        10, 18 ;  4
+	map_const ROUTE_24,                        10, 18 ;  5
+	map_const ROUTE_25,                        35,  9 ;  6
 	map_const FONT,                            10,  9 ;  7
-	map_const ROUTE_9_GATE,                5,  4 ;  8
+	map_const ROUTE_9_GATE,                     5,  4 ;  8
 	map_const FONT_ROUTE_GATE_2,                5,  4 ;  9
 	map_const FONT_ROUTE_GATE_3,                5,  4 ; 10
 	map_const FONT_ROCKET_HOUSE,                8,  4 ; 11
@@ -166,9 +166,9 @@ ENDM
 	endgroup
 
 	newgroup  SUGAR                                    ;  8
-	map_const ROUTE_16,                      10, 27 ;  1
+	map_const ROUTE_16,                         10, 27 ;  1
 	map_const SUGAR,                            10,  9 ;  2
-	map_const ROUTE_16_GATE,                  5,  4 ;  3
+	map_const ROUTE_16_GATE,                     5,  4 ;  3
 	map_const SUGAR_HOUSE,                       4,  8 ;  4
 	map_const SUGAR_HOUSE_2,                     4,  4 ;  5
 	map_const SUGAR_MART,                        8,  4 ;  6
@@ -177,12 +177,12 @@ ENDM
 	endgroup
 
 	newgroup  BLUE                                     ;  9
-	map_const ROUTE_19,              25,  9 ;  1
-	map_const ROUTE_20,              10, 27 ;  2
-	map_const ROUTE_26,              10, 27 ;  3
+	map_const ROUTE_19,                         25,  9 ;  1
+	map_const ROUTE_20,                         10, 27 ;  2
+	map_const ROUTE_26,                         10, 27 ;  3
 	map_const BLUE_FOREST,                      20, 18 ;  4
-	map_const ROUTE_19_HOUSE,         5,  4 ;  5
-	map_const BLUE_FOREST_ROUTE_GATE_STAND,      5,  4 ;  6
+	map_const ROUTE_19_HOUSE,                    5,  4 ;  5
+	map_const ROUTE_20_GATE,                     5,  4 ;  6
 	map_const BLUE_MART,                         8,  4 ;  7
 	map_const BLUE_HOUSE_1,                      4,  4 ;  8
 	map_const BLUE_HOUSE_2,                      5,  4 ;  9
@@ -195,9 +195,9 @@ ENDM
 	endgroup
 
 	newgroup  STAND                                    ; 10
-	map_const ROUTE_21,                      10, 27 ;  1
+	map_const ROUTE_21,                         10, 27 ;  1
 	map_const STAND,                            20, 18 ;  2
-	map_const ROUTE_21_GATE,            5,  4 ;  3
+	map_const ROUTE_21_GATE,                     5,  4 ;  3
 	map_const STAND_LAB,                         4,  4 ;  4
 	map_const STAND_POKECENTER_1F,               8,  4 ;  5
 	map_const STAND_POKECENTER_2F,               8,  4 ;  6
@@ -211,7 +211,7 @@ ENDM
 	endgroup
 
 	newgroup  KANTO                                    ; 11
-	map_const ROUTE_22,                 20,  9 ;  1
+	map_const ROUTE_22,                         20,  9 ;  1
 	map_const KANTO,                            30, 27 ;  2
 	map_const KANTO_CERULEAN_HOUSE,              5,  4 ;  3
 	map_const KANTO_POKECENTER_1F,               8,  4 ;  4
@@ -252,12 +252,12 @@ ENDM
 	endgroup
 
 	newgroup  PRINCE                                   ; 12
-	map_const ROUTE_29,                     10,  5 ;  1
+	map_const ROUTE_29,                         10,  5 ;  1
 	map_const PRINCE,                           10,  9 ;  2
 	endgroup
 
 	newgroup  MT_FUJI                                  ; 13
-	map_const ROUTE_30,                    10,  5 ;  1
+	map_const ROUTE_30,                         10,  5 ;  1
 	map_const MT_FUJI,                          10,  9 ;  2
 	endgroup
 

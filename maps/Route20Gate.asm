@@ -1,6 +1,6 @@
-	map_attributes BlueForestRouteGateStand, BLUE_FOREST_ROUTE_GATE_STAND
+	map_attributes Route20Gate, ROUTE_20_GATE
 
-BlueForestRouteGateStand_MapEvents::
+Route20Gate_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
@@ -13,5 +13,7 @@ BlueForestRouteGateStand_MapEvents::
 
 	def_object_events
 
-BlueForestRouteGateStand_Blocks::
-INCBIN "maps/BlueForestRouteGateStand.blk"
+Route20Gate_Blocks::
+INCBIN "maps/Route20Gate.blk"
+
+	map_dummy_text_pointers
