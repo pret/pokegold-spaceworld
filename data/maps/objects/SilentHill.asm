@@ -1,7 +1,7 @@
 	map_attributes SilentHill, SILENT_HILL
-	connection north, PrinceRoute, PRINCE_ROUTE, 0
-	connection west, Route1P1, ROUTE_1_P1, 0
-	connection east, RouteSilentEast, ROUTE_SILENT_EAST, 0
+	connection north, Route29, ROUTE_29, 0
+	connection west, Route1, ROUTE_1, 0
+	connection east, Route23, ROUTE_23, 0
 
 SilentHill_MapEvents::
 	dw $4000 ; unknown

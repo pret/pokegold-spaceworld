@@ -1,4 +1,4 @@
-BlueForestRoute3_ScriptLoader::
+Route26_ScriptLoader::
 	ret
 
 	db "@"

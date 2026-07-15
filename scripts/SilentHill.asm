@@ -1,3 +1,5 @@
+	ret
+
 SilentHill_ScriptLoader::
 	ld hl, SilentHillScriptPointers
 	call RunMapScript

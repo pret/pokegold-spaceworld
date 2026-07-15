@@ -1,17 +1,17 @@
-	map_attributes FontRouteGate1, FONT_ROUTE_GATE_1
+	map_attributes Route9Gate, ROUTE_9_GATE
 
-FontRouteGate1_MapEvents::
+Route9Gate_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
 	warp_event  0,  7, SOUTH, 7, 45
 	warp_event  1,  7, SOUTH, 7, 45
-	warp_event  8,  7, FONT_ROUTE_1, 1, 49
-	warp_event  9,  7, FONT_ROUTE_1, 1, 49
+	warp_event  8,  7, ROUTE_9, 1, 49
+	warp_event  9,  7, ROUTE_9, 1, 49
 
 	def_bg_events
 
 	def_object_events
 
-FontRouteGate1_Blocks::
-INCBIN "maps/FontRouteGate1.blk"
+Route9Gate_Blocks::
+INCBIN "maps/Route9Gate.blk"

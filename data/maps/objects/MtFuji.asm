@@ -1,5 +1,5 @@
 	map_attributes MtFuji, MT_FUJI
-	connection south, MtFujiRoute, MT_FUJI_ROUTE, 0
+	connection south, Route30, ROUTE_30, 0
 
 MtFuji_MapEvents::
 	dw $0 ; unknown

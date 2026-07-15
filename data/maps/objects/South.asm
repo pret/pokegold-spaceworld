@@ -1,7 +1,7 @@
 	map_attributes South, SOUTH
-	connection north, FontRoute5, FONT_ROUTE_5, 10
-	connection south, HighTechWestRouteOcean, HIGHTECH_WEST_ROUTE_OCEAN, 10
-	connection east, FontRoute1, FONT_ROUTE_1, 0
+	connection north, Route24, ROUTE_24, 10
+	connection south, Route7, ROUTE_7, 10
+	connection east, Route9, ROUTE_9, 0
 
 South_MapEvents::
 	dw $4000 ; unknown
@@ -13,9 +13,9 @@ South_MapEvents::
 	warp_event 33, 23, SOUTH_HOUSE_2, 1, 329
 	warp_event 30,  5, FONT_ROUTE_GATE_3, 1, 94
 	warp_event 31,  5, FONT_ROUTE_GATE_3, 2, 94
-	warp_event 35, 19, FONT_ROUTE_GATE_1, 2, 278
-	warp_event 30, 30, HIGHTECH_WEST_ROUTE_GATE, 3, 432
-	warp_event 31, 30, HIGHTECH_WEST_ROUTE_GATE, 4, 432
+	warp_event 35, 19, ROUTE_9_GATE, 2, 278
+	warp_event 30, 30, ROUTE_7_GATE, 3, 432
+	warp_event 31, 30, ROUTE_7_GATE, 4, 432
 
 	def_bg_events
 	bg_event 30, 14, 1

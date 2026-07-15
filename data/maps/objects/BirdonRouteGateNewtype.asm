@@ -6,8 +6,8 @@ BirdonRouteGateNewtype_MapEvents::
 	def_warp_events
 	warp_event  4,  7, ROUTE_15, 1, 47
 	warp_event  5,  7, ROUTE_15, 2, 47
-	warp_event  4,  0, BIRDON_ROUTE_3, 1, 14
-	warp_event  5,  0, BIRDON_ROUTE_3, 2, 14
+	warp_event  4,  0, ROUTE_14, 1, 14
+	warp_event  5,  0, ROUTE_14, 2, 14
 
 	def_bg_events
 

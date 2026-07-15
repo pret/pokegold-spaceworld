@@ -236,3 +236,30 @@ MACRO map_generic_npcids
 		endr
 	db -1
 ENDM
+; Bank $27 already redirects the text pointers to a dummy file.
+MACRO map_dummy_script_bank27
+{CURRENT_MAP_NAME}_ScriptLoader::
+	ret
+
+	db "@"
+ENDM
+
+MACRO map_dummy_text_pointers
+{CURRENT_MAP_NAME}_ScriptLoader::
+	ret
+
+{CURRENT_MAP_NAME}_TextPointers::
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+	dw MapDefaultText
+ENDM

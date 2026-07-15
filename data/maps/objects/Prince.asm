@@ -1,6 +1,6 @@
 	map_attributes Prince, PRINCE
-	connection north, MtFujiRoute, MT_FUJI_ROUTE, 0
-	connection south, PrinceRoute, PRINCE_ROUTE, 0
+	connection north, Route30, ROUTE_30, 0
+	connection south, Route29, ROUTE_29, 0
 
 Prince_MapEvents::
 	dw $0 ; unknown

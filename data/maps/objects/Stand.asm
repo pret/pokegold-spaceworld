@@ -1,6 +1,6 @@
 	map_attributes Stand, STAND
-	connection north, BlueForestRoute2, BLUE_FOREST_ROUTE_2, 10
-	connection south, StandRoute, STAND_ROUTE, 10
+	connection north, Route20, ROUTE_20, 10
+	connection south, Route21, ROUTE_21, 10
 
 Stand_MapEvents::
 	dw $4000 ; unknown

@@ -1,4 +1,4 @@
-FontRoute5_ScriptLoader::
+Route24_ScriptLoader::
 	ret
 
 	db "@"

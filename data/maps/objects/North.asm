@@ -1,5 +1,5 @@
 	map_attributes North, NORTH
-	connection south, BlueForestRoute3, BLUE_FOREST_ROUTE_3, 0
+	connection south, Route26, ROUTE_26, 0
 
 North_MapEvents::
 	dw $4000 ; unknown

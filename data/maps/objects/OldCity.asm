@@ -1,6 +1,6 @@
 	map_attributes OldCity, OLD_CITY
-	connection south, Route1P2, ROUTE_1_P2, 5
-	connection west, Route2, ROUTE_2, 5
+	connection south, Route2, ROUTE_2, 5
+	connection west, Route3, ROUTE_3, 5
 
 OldCity_MapEvents::
 	dw $4000 ; unknown

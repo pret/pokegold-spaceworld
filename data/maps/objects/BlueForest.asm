@@ -1,7 +1,7 @@
 	map_attributes BlueForest, BLUE_FOREST
-	connection north, BlueForestRoute3, BLUE_FOREST_ROUTE_3, 5
-	connection south, BlueForestRoute2, BLUE_FOREST_ROUTE_2, 5
-	connection west, BlueForestRoute1, BLUE_FOREST_ROUTE_1, 9
+	connection north, Route26, ROUTE_26, 5
+	connection south, Route20, ROUTE_20, 5
+	connection west, Route19, ROUTE_19, 9
 
 BlueForest_MapEvents::
 	dw $4000 ; unknown

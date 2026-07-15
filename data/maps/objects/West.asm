@@ -1,6 +1,6 @@
 	map_attributes West, WEST
-	connection north, BirdonRoute1, BIRDON_ROUTE_1, 5
-	connection east, Route2, ROUTE_2, 5
+	connection north, Route4, BIRDON_ROUTE_1, 5
+	connection east, Route3, ROUTE_3, 5
 
 West_MapEvents::
 	dw $4000 ; unknown
@@ -18,7 +18,7 @@ West_MapEvents::
 	warp_event 32, 19, WEST_HOUSE_2, 1, 277
 	warp_event 22,  5, BIRDON_ROUTE_GATE_WEST, 1, 90
 	warp_event 23,  5, BIRDON_ROUTE_GATE_WEST, 2, 90
-	warp_event 35, 15, ROUTE_2_GATE_1F, 1, 226
+	warp_event 35, 15, ROUTE_3_GATE_1F, 1, 226
 
 	def_bg_events
 	bg_event 16,  7, 1

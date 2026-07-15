@@ -1,10 +1,10 @@
 FieldDebug_MoveToRoute1Entrance:
 ; Check if the player is currently on Route 1
 	ld a, [wMapGroup]
-	cp GROUP_ROUTE_1_P1
+	cp GROUP_ROUTE_1
 	jr nz, .cannot_use
 	ld a, [wMapId]
-	cp MAP_ROUTE_1_P1
+	cp MAP_ROUTE_1
 	jr nz, .cannot_use
 
 	ldh a, [hROMBank]

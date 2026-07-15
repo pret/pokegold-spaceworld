@@ -10,16 +10,16 @@ QuietHills_MapEvents::
 	object_const TIME_CAPSULE_RECEPTIONIST
 
 	def_warp_events
-	warp_event 49, 28, ROUTE_1_P1, 1, 490
-	warp_event 49, 29, ROUTE_1_P1, 1, 490
-	warp_event 49, 30, ROUTE_1_P1, 2, 521
-	warp_event 49, 31, ROUTE_1_P1, 2, 521
-	warp_event  4,  0, ROUTE_1_P2, 3, 34
-	warp_event  5,  0, ROUTE_1_P2, 3, 34
-	warp_event  6,  0, ROUTE_1_P2, 3, 35
-	warp_event  7,  0, ROUTE_1_P2, 4, 35
-	warp_event  8,  0, ROUTE_1_P2, 4, 36
-	warp_event  9,  0, ROUTE_1_P2, 4, 36
+	warp_event 49, 28, ROUTE_1, 1, 490
+	warp_event 49, 29, ROUTE_1, 1, 490
+	warp_event 49, 30, ROUTE_1, 2, 521
+	warp_event 49, 31, ROUTE_1, 2, 521
+	warp_event  4,  0, ROUTE_2, 3, 34
+	warp_event  5,  0, ROUTE_2, 3, 34
+	warp_event  6,  0, ROUTE_2, 3, 35
+	warp_event  7,  0, ROUTE_2, 4, 35
+	warp_event  8,  0, ROUTE_2, 4, 36
+	warp_event  9,  0, ROUTE_2, 4, 36
 
 	def_bg_events
 	bg_event  9,  2, 1

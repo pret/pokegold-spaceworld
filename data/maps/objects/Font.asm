@@ -1,7 +1,7 @@
 	map_attributes Font, FONT
-	connection north, FontRoute2, FONT_ROUTE_2, 0
-	connection west, FontRoute1, FONT_ROUTE_1, 0
-	connection east, FontRoute3, FONT_ROUTE_3, 0
+	connection north, Route10, ROUTE_10, 0
+	connection west, Route9, ROUTE_9, 0
+	connection east, Route11, ROUTE_11, 0
 
 Font_MapEvents::
 	dw $4000 ; unknown

@@ -1,5 +1,5 @@
 	map_attributes Sugar, SUGAR
-	connection south, SugarRoute, SUGAR_ROUTE, 0
+	connection south, Route16, ROUTE_16, 0
 
 Sugar_MapEvents::
 	dw $4000 ; unknown

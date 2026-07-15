@@ -4,8 +4,8 @@ Route1Gate1F_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
-	warp_event  4,  7, ROUTE_1_P2, 1, 47
-	warp_event  5,  7, ROUTE_1_P2, 2, 47
+	warp_event  4,  7, ROUTE_2, 1, 47
+	warp_event  5,  7, ROUTE_2, 2, 47
 	warp_event  4,  0, OLD_CITY, 12, 14
 	warp_event  5,  0, OLD_CITY, 13, 14
 	warp_event  1,  0, ROUTE_1_GATE_2F, 1, 12

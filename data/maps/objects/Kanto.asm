@@ -1,6 +1,6 @@
 	map_attributes Kanto, KANTO
-	connection west, RouteSilentEast, ROUTE_SILENT_EAST, 9
-	connection east, KantoEastRoute, KANTO_EAST_ROUTE, 9
+	connection west, Route23, ROUTE_23, 9
+	connection east, Route22, ROUTE_22, 9
 
 Kanto_MapEvents::
 	dw $4000 ; unknown
@@ -34,7 +34,7 @@ Kanto_MapEvents::
 	warp_event 52, 45, KANTO_LEAGUE_2_1F, 1, 855
 	warp_event 53, 45, KANTO_LEAGUE_2_1F, 2, 855
 	warp_event 45, 46, KANTO_FISHING_GURU, 1, 887
-	warp_event  6, 27, ROUTE_SILENT_EAST_GATE, 3, 508
+	warp_event  6, 27, ROUTE_23_GATE, 3, 508
 	warp_event 21, 13, KANTO_GAMEFREAK_HQ_1, 5, 263
 
 	def_bg_events

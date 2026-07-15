@@ -1,7 +1,7 @@
 	map_attributes Birdon, BIRDON
-	connection north, FontRoute4, FONT_ROUTE_4, 0
-	connection south, BirdonRoute1, BIRDON_ROUTE_1, 0
-	connection east, BirdonRoute2, BIRDON_ROUTE_2, 0
+	connection north, Route12, ROUTE_12, 0
+	connection south, Route4, BIRDON_ROUTE_1, 0
+	connection east, Route13, ROUTE_13, 0
 
 Birdon_MapEvents::
 	dw $4000 ; unknown

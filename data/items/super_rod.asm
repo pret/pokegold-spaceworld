@@ -20,7 +20,7 @@ SuperRodData:
 	dbw $20, .Group8  ; ROUTE_21
 	dbw $21, .Group2  ; ROUTE_22
 	dbw $22, .Group9  ; ROUTE_23
-	dbw $23, .Group3  ; ROUTE_24
+	dbw $23, .Group3  ; ROUTE_10
 	dbw $24, .Group3  ; ROUTE_25
 	dbw $41, .Group3  ; CERULEAN_GYM
 	dbw $5e, .Group4  ; VERMILION_DOCK
