@@ -64,7 +64,7 @@ OldCityPokecenter2FText4:
 	ld a, $05
 	call DeleteMapObject
 	jr .done
-; unreferenced?
+; unreferenced, replaced by the above 3 lines.
 	ld hl, OldCityPokecenter2FMovement1
 	ld a, $5
 	call LoadMovementDataPointer_KeepStateFlags
@@ -78,13 +78,10 @@ OldCityPokecenter2FTextString4:
 	line "タイムマシンです"
 	done
 
-; TODO?: APPEARS to be movement data. These bytes including a set sliding command makes sense
-; considering that the Link Cable nurse has no proper walking sprites.
-; The latter two bytes, however, are an exact match for the address of OldCityPokecenter2FMovement1,
-; so it's hard to be certain.
-OldCityPokecenter2FMovement_Unreferenced:
-	slow_step UP
-	set_sliding
+; Supposed to be wMovementObject, wMovementDataBank, wMovementDataAddr in order.
+OldCityPokecenter2FMovementDataPointer_Old:
+	db 5
+	db BANK(OldCityPokecenter2FMovement1)
 	dw OldCityPokecenter2FMovement1
 
 OldCityPokecenter2FMovement1:
