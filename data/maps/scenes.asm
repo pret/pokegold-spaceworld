@@ -15,6 +15,6 @@ MapScenes::
 	scene_pointers ROUTE_1_P2,             Route1P2
 	scene_pointers ROUTE_1_GATE_1F,        Route1Gate1F
 	scene_pointers ROUTE_1_GATE_2F,        Route1Gate2F
-	scene_pointers SILENT_HILLS,           SilentHills
+	scene_pointers QUIET_HILLS,            QuietHills
 	scene_pointers OLD_CITY_POKECENTER_2F, OldCityPokecenter2F
 	db -1

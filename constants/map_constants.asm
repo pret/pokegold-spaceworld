@@ -38,8 +38,8 @@ ENDM
 	map_const SILENT_HILL_HOUSE,                 5,  4 ; 11
 	map_const SILENT_HILL_LAB_FRONT,             4,  8 ; 12
 	map_const SILENT_HILL_LAB_BACK,              4,  4 ; 13
-	map_const UNUSED_MAP_13,                     4,  4 ; 14
-	map_const SILENT_HILLS,                    25, 18 ; 15
+	map_const SILENT_HILL_LAB_BACK_UNUSED,       4,  4 ; 14
+	map_const QUIET_HILLS,                     25, 18 ; 15
 	endgroup
 
 	newgroup  OLD                                      ;  2

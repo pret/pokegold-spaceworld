@@ -5,93 +5,89 @@ SECTION "High Home Overdump", ROM0
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	db $00, $00, $00, $00, $00, $C5, $F7, $1B,
-	db $BA, $E7, $F5, $6D, $B6, $7B, $FD, $F8,
-	db $37, $DD, $17, $F5, $F7, $FF, $F9, $72,
-	db $BB, $AF, $F7, $EF, $5C, $12, $00, $BA,
-	db $17, $02, $15, $C0, $12, $7E, $03, $10,
-	db $08, $00, $41, $00, $48, $2C, $01, $3E,
-	db $00, $C0, $50, $01, $00, $82, $43, $00,
-	db $03, $06, $B2, $07, $50, $29, $33, $50,
-	db $47, $50, $D0, $04, $E1, $05, $31, $84,
-	db $50, $2F, $84, $01, $82, $38, $82, $04,
-	db $10, $15, $70, $02, $10, $23, $61, $38,
-	db $00, $01, $06, $32, $50, $D1, $23, $04,
-	db $85, $22, $44, $A9, $01, $B4, $61, $00,
-	db $40, $24, $3C, $0C, $06, $0A, $19, $A0,
-	db $21, $1A, $15, $30, $11, $02, $14, $00,
-	db $12, $07, $47, $00, $41, $D0, $B1, $4A,
-	db $4C, $01, $E1, $00, $2C, $00, $00, $02,
-	db $93, $29, $4C, $01, $08, $A1, $28, $79,
-	db $05, $51, $44, $69, $15, $81, $10, $8A,
-	db $C8, $0E, $86, $45, $12
+	db $C5, $F7, $1B, $BA, $E7, $F5, $6D, $B6
+	db $7B, $FD, $F8, $37, $DD, $17, $F5, $F7
+	db $FF, $F9, $72, $BB, $AF, $F7, $EF, $5C
+	db $12, $00, $BA, $17, $02, $15, $C0, $12
+	db $7E, $03, $10, $08, $00, $41, $00, $48
+	db $2C, $01, $3E, $00, $C0, $50, $01, $00
+	db $82, $43, $00, $03, $06, $B2, $07, $50
+	db $29, $33, $50, $47, $50, $D0, $04, $E1
+	db $05, $31, $84, $50, $2F, $84, $01, $82
+	db $38, $82, $04, $10, $15, $70, $02, $10
+	db $23, $61, $38, $00, $01, $06, $32, $50
+	db $D1, $23, $04, $85, $22, $44, $A9, $01
+	db $B4, $61, $00, $40, $24, $3C, $0C, $06
+	db $0A, $19, $A0, $21, $1A, $15, $30, $11
+	db $02, $14, $00, $12, $07, $47, $00, $41
+	db $D0, $B1, $4A, $4C, $01, $E1, $00, $2C
+	db $00, $00, $02, $93, $29, $4C, $01, $08
+	db $A1, $28, $79, $05, $51, $44, $69, $15
+	db $81, $10, $8A, $C8, $0E, $86, $45, $12
 	endc
 	if DEF(_SILVER)
-	db $00, $00, $00, $00, $00, $03, $20, $10,
-	db $01, $24, $00, $23, $20, $00, $20, $20,
-	db $40, $20, $00, $01, $01, $81, $30, $40,
-	db $01, $09, $95, $10, $A1, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $7F, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $50, $D2, $76, $F3, $7F,
-	db $FF, $00, $01, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $DF, $FF, $FF,
-	db $FD, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FD, $FC, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF
+	db $03, $20, $10, $01, $24, $00, $23, $20
+	db $00, $20, $20, $40, $20, $00, $01, $01
+	db $81, $30, $40, $01, $09, $95, $10, $A1
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $7F, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $50, $D2
+	db $76, $F3, $7F, $FF, $00, $01, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $DF, $FF, $FF, $FD, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FD, $FC, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	endc
 else
 	if DEF(_GOLD)
-	db $00, $00, $00, $00, $00, $FB, $7F, $FF,
-	db $F9, $BF, $FF, $ED, $FF, $7F, $E7, $EB,
-	db $FF, $6F, $1F, $F8, $E7, $4F, $F6, $5F,
-	db $5F, $FF, $FF, $DF, $BE, $1A, $51, $2A,
-	db $41, $4B, $49, $21, $C0, $31, $20, $52,
-	db $97, $18, $00, $09, $05, $AA, $78, $64,
-	db $01, $8D, $94, $33, $82, $90, $A6, $3B,
-	db $82, $10, $08, $9D, $5C, $2F, $50, $95,
-	db $40, $1D, $24, $12, $63, $80, $31, $68,
-	db $80, $43, $02, $BA, $44, $50, $86, $14,
-	db $21, $68, $56, $00, $88, $9B, $3B, $0A,
-	db $97, $83, $C1, $0D, $42, $4B, $03, $D1,
-	db $87, $2D, $A0, $01, $CA, $2B, $88, $CB,
-	db $20, $61, $21, $14, $0E, $CF, $76, $05,
-	db $F0, $02, $11, $02, $9E, $EC, $13, $59,
-	db $51, $31, $15, $1D, $8A, $31, $03, $22,
-	db $C0, $CE, $A0, $DF, $38, $95, $3D, $00,
-	db $50, $8C, $20, $9B, $10, $2C, $28, $85,
-	db $61, $33, $1C, $4C, $A5, $51, $00, $1E,
-	db $82, $E8, $02, $9E, $24
+	db $FB, $7F, $FF, $F9, $BF, $FF, $ED, $FF
+	db $7F, $E7, $EB, $FF, $6F, $1F, $F8, $E7
+	db $4F, $F6, $5F, $5F, $FF, $FF, $DF, $BE
+	db $1A, $51, $2A, $41, $4B, $49, $21, $C0
+	db $31, $20, $52, $97, $18, $00, $09, $05
+	db $AA, $78, $64, $01, $8D, $94, $33, $82
+	db $90, $A6, $3B, $82, $10, $08, $9D, $5C
+	db $2F, $50, $95, $40, $1D, $24, $12, $63
+	db $80, $31, $68, $80, $43, $02, $BA, $44
+	db $50, $86, $14, $21, $68, $56, $00, $88
+	db $9B, $3B, $0A, $97, $83, $C1, $0D, $42
+	db $4B, $03, $D1, $87, $2D, $A0, $01, $CA
+	db $2B, $88, $CB, $20, $61, $21, $14, $0E
+	db $CF, $76, $05, $F0, $02, $11, $02, $9E
+	db $EC, $13, $59, $51, $31, $15, $1D, $8A
+	db $31, $03, $22, $C0, $CE, $A0, $DF, $38
+	db $95, $3D, $00, $50, $8C, $20, $9B, $10
+	db $2C, $28, $85, $61, $33, $1C, $4C, $A5
+	db $51, $00, $1E, $82, $E8, $02, $9E, $24
 	endc
 	if DEF(_SILVER)
-	db $00, $00, $00, $00, $00, $28, $AA, $AA,
-	db $22, $AE, $AA, $A2, $AA, $A8, $AA, $AA,
-	db $A2, $A8, $AA, $88, $AA, $AA, $A2, $A3,
-	db $2A, $AA, $A2, $0A, $AB, $EA, $AF, $AA,
-	db $A6, $AE, $EA, $EB, $8A, $EA, $AA, $AA,
-	db $FA, $AE, $BA, $AB, $AA, $EA, $AE, $BE,
-	db $AB, $AA, $AE, $AA, $AE, $BB, $BA, $AE,
-	db $EB, $EB, $AE, $AE, $AF, $AA, $AA, $AA,
-	db $F2, $AA, $AA, $EB, $EA, $AA, $AA, $AA,
-	db $BF, $AA, $AA, $8E, $AE, $EA, $FE, $AA,
-	db $AA, $BA, $AE, $AA, $AA, $AE, $EA, $AA,
-	db $EE, $AE, $AA, $AA, $BA, $AA, $B8, $AB,
-	db $AE, $AA, $6A, $AA, $E8, $AA, $EA, $EA,
-	db $EB, $EE, $28, $EA, $BC, $AB, $BA, $AE,
-	db $AA, $AA, $FE, $AA, $AA, $BB, $AA, $EA,
-	db $AA, $AB, $AB, $BE, $BB, $EB, $AE, $BA,
-	db $AE, $EA, $AA, $AA, $AA, $CA, $BF, $AA,
-	db $AF, $AE, $BA, $AA, $AB, $AE, $AA, $EA,
-	db $AA, $AA, $AE, $AA, $AA, $AB, $AE, $EE,
-	db $AE, $AB, $AE, $BA, $AA
+	db $28, $AA, $AA, $22, $AE, $AA, $A2, $AA
+	db $A8, $AA, $AA, $A2, $A8, $AA, $88, $AA
+	db $AA, $A2, $A3, $2A, $AA, $A2, $0A, $AB
+	db $EA, $AF, $AA, $A6, $AE, $EA, $EB, $8A
+	db $EA, $AA, $AA, $FA, $AE, $BA, $AB, $AA
+	db $EA, $AE, $BE, $AB, $AA, $AE, $AA, $AE
+	db $BB, $BA, $AE, $EB, $EB, $AE, $AE, $AF
+	db $AA, $AA, $AA, $F2, $AA, $AA, $EB, $EA
+	db $AA, $AA, $AA, $BF, $AA, $AA, $8E, $AE
+	db $EA, $FE, $AA, $AA, $BA, $AE, $AA, $AA
+	db $AE, $EA, $AA, $EE, $AE, $AA, $AA, $BA
+	db $AA, $B8, $AB, $AE, $AA, $6A, $AA, $E8
+	db $AA, $EA, $EA, $EB, $EE, $28, $EA, $BC
+	db $AB, $BA, $AE, $AA, $AA, $FE, $AA, $AA
+	db $BB, $AA, $EA, $AA, $AB, $AB, $BE, $BB
+	db $EB, $AE, $BA, $AE, $EA, $AA, $AA, $AA
+	db $CA, $BF, $AA, $AF, $AE, $BA, $AA, $AB
+	db $AE, $AA, $EA, $AA, $AA, $AE, $AA, $AA
+	db $AB, $AE, $EE, $AE, $AB, $AE, $BA, $AA
 	endc
 endc
 
@@ -1610,28 +1606,28 @@ SECTION "Bank 34 Overdump", ROMX
 if DEF(_SILVER) && !DEF(_DEBUG)
 else
 	ret
-Overdump_Corrupt_UnusedMap13_ScriptLoader:
+Overdump_Corrupt_SilentHillLabBackUnused_ScriptLoader:
 	if DEF(_GOLD)
 		db $20
 		call WriteBackMapScriptNumber + Bank34NonDebugOffset
 	endc
 	ret
-Overdump_Corrupt_UnusedMap13ScriptPointers:
-	dw Overdump_Corrupt_UnusedMap13Script
-	dw Overdump_Corrupt_UnusedMap13NPCIDs
+Overdump_Corrupt_SilentHillLabBackUnusedScriptPointers:
+	dw Overdump_Corrupt_SilentHillLabBackUnusedScript
+	dw Overdump_Corrupt_SilentHillLabBackUnusedNPCIDs
 
-Overdump_Corrupt_UnusedMap13NPCIDs:
+Overdump_Corrupt_SilentHillLabBackUnusedNPCIDs:
 	db $FF
 
-Overdump_Corrupt_UnusedMap13SignPointers:
+Overdump_Corrupt_SilentHillLabBackUnusedSignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Overdump_Corrupt_UnusedMap13_TextPointers::
+Overdump_Corrupt_SilentHillLabBackUnused_TextPointers::
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Overdump_Corrupt_UnusedMap13Script:
-	ld hl, Overdump_Corrupt_UnusedMap13NPCIDs
-	ld de, Overdump_Corrupt_UnusedMap13SignPointers
+Overdump_Corrupt_SilentHillLabBackUnusedScript:
+	ld hl, Overdump_Corrupt_SilentHillLabBackUnusedNPCIDs
+	ld de, Overdump_Corrupt_SilentHillLabBackUnusedSignPointers
 	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
 	if DEF(_GOLD)
@@ -1723,35 +1719,35 @@ Overdump_Corrupt_UnusedMap13Script:
 		dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset
 		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-		map_attributes Overdump_Corrupt_Gold_UnusedMap13, UNUSED_MAP_13
+		map_attributes Overdump_Corrupt_Gold_SilentHillLabBackUnused, SILENT_HILL_LAB_BACK_UNUSED
 
-	Overdump_Corrupt_Gold_UnusedMap13_MapEvents::
+	Overdump_Corrupt_Gold_SilentHillLabBackUnused_MapEvents::
 
-	Overdump_Corrupt_Gold_UnusedMap13_Blocks::
-	INCBIN "maps/UnusedMap13.blk"
+	Overdump_Corrupt_Gold_SilentHillLabBackUnused_Blocks::
+	INCBIN "maps/SilentHillLabBackUnused.blk"
 
-	Overdump_Corrupt_Gold_UnusedMap13_ScriptLoader::
-		ld hl, Overdump_Corrupt_Gold_UnusedMap13ScriptPointers
+	Overdump_Corrupt_Gold_SilentHillLabBackUnused_ScriptLoader::
+		ld hl, Overdump_Corrupt_Gold_SilentHillLabBackUnusedScriptPointers
 		call RunMapScript + Bank34NonDebugOffset
 		call WriteBackMapScriptNumber + Bank34NonDebugOffset
 		ret
 
-	Overdump_Corrupt_Gold_UnusedMap13ScriptPointers:
-		dw Overdump_Corrupt_Gold_UnusedMap13Script
-		dw Overdump_Corrupt_Gold_UnusedMap13NPCIDs
+	Overdump_Corrupt_Gold_SilentHillLabBackUnusedScriptPointers:
+		dw Overdump_Corrupt_Gold_SilentHillLabBackUnusedScript
+		dw Overdump_Corrupt_Gold_SilentHillLabBackUnusedNPCIDs
 
-	Overdump_Corrupt_Gold_UnusedMap13NPCIDs:
+	Overdump_Corrupt_Gold_SilentHillLabBackUnusedNPCIDs:
 		db $FF
 
-	Overdump_Corrupt_Gold_UnusedMap13SignPointers:
+	Overdump_Corrupt_Gold_SilentHillLabBackUnusedSignPointers:
 		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	Overdump_Corrupt_Gold_UnusedMap13_TextPointers::
+	Overdump_Corrupt_Gold_SilentHillLabBackUnused_TextPointers::
 		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	Overdump_Corrupt_Gold_UnusedMap13Script:
-		ld hl, Overdump_Corrupt_Gold_UnusedMap13NPCIDs
-		ld de, Overdump_Corrupt_Gold_UnusedMap13SignPointers
+	Overdump_Corrupt_Gold_SilentHillLabBackUnusedScript:
+		ld hl, Overdump_Corrupt_Gold_SilentHillLabBackUnusedNPCIDs
+		ld de, Overdump_Corrupt_Gold_SilentHillLabBackUnusedSignPointers
 		call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 		ret
 	else
@@ -1926,35 +1922,33 @@ Overdump_Corrupt_SilentHillLabBackTextPointers2:
 	dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset - Bank34OldOffset
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	map_attributes Overdump_Corrupt2_UnusedMap13, UNUSED_MAP_13
+	map_attributes Overdump_Corrupt2_SilentHillLabBackUnused, SILENT_HILL_LAB_BACK_UNUSED
 
-Overdump_Corrupt2_UnusedMap13_MapEvents::
+Overdump_Corrupt2_SilentHillLabBackUnused_MapEvents::
 
-Overdump_Corrupt2_UnusedMap13_Blocks::
-INCBIN "maps/UnusedMap13.blk"
+Overdump_Corrupt2_SilentHillLabBackUnused_Blocks::
+INCBIN "maps/SilentHillLabBackUnused.blk"
 
-Overdump_Corrupt2_UnusedMap13_ScriptLoader::
-	ld hl, Overdump_Corrupt2_UnusedMap13ScriptPointers
+Overdump_Corrupt2_SilentHillLabBackUnused_ScriptLoader::
+	ld hl, Overdump_Corrupt2_SilentHillLabBackUnusedScriptPointers
 	call RunMapScript + Bank34NonDebugOffset
 	call WriteBackMapScriptNumber + Bank34NonDebugOffset
 	ret
 
-Overdump_Corrupt2_UnusedMap13ScriptPointers:
-	dw Overdump_Corrupt2_UnusedMap13Script
-	dw Overdump_Corrupt2_UnusedMap13NPCIDs
+	map_generic_scriptpointers
 
-Overdump_Corrupt2_UnusedMap13NPCIDs:
+Overdump_Corrupt2_SilentHillLabBackUnusedNPCIDs:
 	db $FF
 
-Overdump_Corrupt2_UnusedMap13SignPointers:
+Overdump_Corrupt2_SilentHillLabBackUnusedSignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Overdump_Corrupt2_UnusedMap13_TextPointers::
+Overdump_Corrupt2_SilentHillLabBackUnused_TextPointers::
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Overdump_Corrupt2_UnusedMap13Script:
-	ld hl, Overdump_Corrupt2_UnusedMap13NPCIDs
-	ld de, Overdump_Corrupt2_UnusedMap13SignPointers
+Overdump_Corrupt2_SilentHillLabBackUnusedScript:
+	ld hl, Overdump_Corrupt2_SilentHillLabBackUnusedNPCIDs
+	ld de, Overdump_Corrupt2_SilentHillLabBackUnusedSignPointers
 	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
 
@@ -2009,35 +2003,33 @@ Overdump_Corrupt2_SilentHillLabBackTextPointers2:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	map_attributes Overdump_Corrupt3_UnusedMap13, UNUSED_MAP_13
+	map_attributes Overdump_Corrupt3_SilentHillLabBackUnused, SILENT_HILL_LAB_BACK_UNUSED
 
-Overdump_Corrupt3_UnusedMap13_MapEvents::
+Overdump_Corrupt3_SilentHillLabBackUnused_MapEvents::
 
-Overdump_Corrupt3_UnusedMap13_Blocks::
-INCBIN "maps/UnusedMap13.blk"
+Overdump_Corrupt3_SilentHillLabBackUnused_Blocks::
+INCBIN "maps/SilentHillLabBackUnused.blk"
 
-Overdump_Corrupt3_UnusedMap13_ScriptLoader::
-	ld hl, Overdump_Corrupt3_UnusedMap13ScriptPointers
+Overdump_Corrupt3_SilentHillLabBackUnused_ScriptLoader::
+	ld hl, Overdump_Corrupt3_SilentHillLabBackUnusedScriptPointers
 	call RunMapScript + Bank34NonDebugOffset
 	call WriteBackMapScriptNumber + Bank34NonDebugOffset
 	ret
 
-Overdump_Corrupt3_UnusedMap13ScriptPointers:
-	dw Overdump_Corrupt3_UnusedMap13Script
-	dw Overdump_Corrupt3_UnusedMap13NPCIDs
+	map_generic_scriptpointers
 
-Overdump_Corrupt3_UnusedMap13NPCIDs:
+Overdump_Corrupt3_SilentHillLabBackUnusedNPCIDs:
 	db $FF
 
-Overdump_Corrupt3_UnusedMap13SignPointers:
+Overdump_Corrupt3_SilentHillLabBackUnusedSignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Overdump_Corrupt3_UnusedMap13_TextPointers::
+Overdump_Corrupt3_SilentHillLabBackUnused_TextPointers::
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Overdump_Corrupt3_UnusedMap13Script:
-	ld hl, Overdump_Corrupt3_UnusedMap13NPCIDs
-	ld de, Overdump_Corrupt3_UnusedMap13SignPointers
+Overdump_Corrupt3_SilentHillLabBackUnusedScript:
+	ld hl, Overdump_Corrupt3_SilentHillLabBackUnusedNPCIDs
+	ld de, Overdump_Corrupt3_SilentHillLabBackUnusedSignPointers
 	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
 

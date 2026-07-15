@@ -15,3 +15,22 @@ OldCityPokecenterTimeMachine_MapEvents::
 
 OldCityPokecenterTimeMachine_Blocks::
 INCBIN "maps/OldCityPokecenterTimeMachine.blk"
+
+OldCityPokecenterTimeMachine_ScriptLoader:
+	call SetBitsForTimeCapsuleRequestIfNotLinked
+	map_generic_scriptloader
+	map_generic_scriptpointers
+	map_generic_script
+	map_generic_npcids
+
+OldCityPokecenterTimeMachineSignPointers:
+	dw MapDefaultText
+
+OldCityPokecenterTimeMachine_TextPointers:
+	dw OldCityPokecenterTimeMachineText1
+
+OldCityPokecenterTimeMachineText1:
+	xor a
+	ld [wTempByteValue], a
+	callfar Link_Receptionist_Intro
+	ret

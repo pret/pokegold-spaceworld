@@ -1,30 +1,35 @@
+	map_attributes SilentHillPokecenter, SILENT_HILL_POKECENTER
+
+SilentHillPokecenter_MapEvents::
+	dw $4000 ; unknown
+
+	def_warp_events
+	warp_event  5,  7, SILENT_HILL, 2, 59
+	warp_event  6,  7, SILENT_HILL, 2, 60
+
+	def_bg_events
+	bg_event 13,  1, 1
+
+	def_object_events
+	object_event  5,  1, SPRITE_NURSE, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 14,  6, SPRITE_GENTLEMAN, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  4, SPRITE_COOLTRAINER_M, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  1, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event 10,  1, SPRITE_RHYDON, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+SilentHillPokecenter_Blocks::
+INCBIN "maps/SilentHillPokecenter.blk"
+
 SilentHillPokecenter_ScriptLoader::
-	ld hl, SilentHillPokecenterScriptPointers
-	call RunMapScript
-	call WriteBackMapScriptNumber
-	ret
-
-SilentHillPokecenterScriptPointers::
-	dw SilentHillPokecenterScript
-	dw SilentHillPokecenterNPCIDs
-
-SilentHillPokecenterScript:
-	ld hl, SilentHillPokecenterNPCIDs
-	ld de, SilentHillPokecenterPCPointer
-	call CallMapTextSubroutine
-	ret
+	map_generic_scriptloader
+	map_generic_scriptpointers
+	map_generic_script
 
 	dw SilentHillPokecenterNPCIDs
 
-SilentHillPokecenterNPCIDs:
-	db 0
-	db 1
-	db 2
-	db 3
-	db 4
-	db $FF
+	map_generic_npcids
 
-SilentHillPokecenterPCPointer:
+SilentHillPokecenterSignPointers:
 	dw SilentHillPokecenterPCText
 
 SilentHillPokecenterPCText:

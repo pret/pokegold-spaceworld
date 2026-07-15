@@ -1,52 +1,72 @@
-SilentHills_ScriptLoader::
-	ld hl, SilentHillsScriptPointers
-	call RunMapScript
-	call WriteBackMapScriptNumber
-	ret
+	map_attributes QuietHills, QUIET_HILLS
 
-SilentHillsScriptPointers::
-	dw SilentHillsScript
-	dw SilentHillsNPCIDs
+QuietHills_MapEvents::
+	dw $4000 ; unknown
 
-SilentHillsNPCIDs:
-	db 0
-	db 1
-	db 2
-	db 3
-	db 4
-	db 5
-	db $FF
+	object_const_def
+	object_const ROCKER
+	object_const 2F_BATTLE_RECEPTIONIST
+	object_const 2F_GRAMPS
+	object_const TIME_CAPSULE_RECEPTIONIST
 
-SilentHillsSignPointers:
-	dw SilentHillsSignpost1
-	dw SilentHillsSignpost2
+	def_warp_events
+	warp_event 49, 28, ROUTE_1_P1, 1, 490
+	warp_event 49, 29, ROUTE_1_P1, 1, 490
+	warp_event 49, 30, ROUTE_1_P1, 2, 521
+	warp_event 49, 31, ROUTE_1_P1, 2, 521
+	warp_event  4,  0, ROUTE_1_P2, 3, 34
+	warp_event  5,  0, ROUTE_1_P2, 3, 34
+	warp_event  6,  0, ROUTE_1_P2, 3, 35
+	warp_event  7,  0, ROUTE_1_P2, 4, 35
+	warp_event  8,  0, ROUTE_1_P2, 4, 36
+	warp_event  9,  0, ROUTE_1_P2, 4, 36
 
-SilentHills_TextPointers:
-	dw SilentHillsText1
-	dw SilentHillsTrainer2
-	dw SilentHillsTrainer3
-	dw SilentHillsTrainer4
-	dw SilentHillsTrainer5
-	dw SilentHillsTrainer6
+	def_bg_events
+	bg_event  9,  2, 1
+	bg_event 47, 28, 2
 
-SilentHillsScript:
-	ld hl, SilentHillsNPCIDs
-	ld de, SilentHillsSignPointers
-	call CallMapTextSubroutine
-	ret
+	def_object_events
+	object_event 41, 28, SPRITE_ROCKER, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  9,  7, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0
+	object_event 41, 19, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 4, 0, 0
+	object_event 27, 14, SPRITE_FISHER, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 2, 0, 0
+	object_event 36, 16, SPRITE_TEACHER, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 5, 0, 0
+	object_event  9, 25, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 4, 0, 0
 
-SilentHillsText1:
-	ld hl, SilentHillsText1String
+QuietHills_Blocks::
+INCBIN "maps/QuietHills.blk"
+
+QuietHills_ScriptLoader::
+	map_generic_scriptloader
+	map_generic_scriptpointers
+	map_generic_npcids
+
+QuietHillsSignPointers:
+	dw QuietHillsSignpost1
+	dw QuietHillsSignpost2
+
+QuietHills_TextPointers:
+	dw QuietHillsText1
+	dw QuietHillsTrainer2
+	dw QuietHillsTrainer3
+	dw QuietHillsTrainer4
+	dw QuietHillsTrainer5
+	dw QuietHillsTrainer6
+
+	map_generic_script
+
+QuietHillsText1:
+	ld hl, QuietHillsText1String
 	call OpenTextbox
 	ret
 
-SilentHillsTrainer2:
-	ld hl, wSilentHillsFlags
+QuietHillsTrainer2:
+	ld hl, wQuietHillsFlags
 	bit 1, [hl]
 	jr nz, .Trainer2Won
-	ld hl, SilentHillsTrainer2EncounterString
+	ld hl, QuietHillsTrainer2EncounterString
 	call OpenTextbox
-	ld hl, wSilentHillsFlags
+	ld hl, wQuietHillsFlags
 	set 1, [hl]
 if DEF(_GOLD)
 	ld a, TRAINER_SCHOOLBOY
@@ -62,17 +82,17 @@ endc
 	call InitTrainerBattle
 	ret
 .Trainer2Won ;Already won
-	ld hl, SilentHillsTrainer2WonString
+	ld hl, QuietHillsTrainer2WonString
 	call OpenTextbox
 	ret
 
-SilentHillsTrainer3:
-	ld hl, wSilentHillsFlags
+QuietHillsTrainer3:
+	ld hl, wQuietHillsFlags
 	bit 2, [hl]
 	jr nz, .Trainer3Won
-	ld hl, SilentHillsTrainer3EncounterString
+	ld hl, QuietHillsTrainer3EncounterString
 	call OpenTextbox
-	ld hl, wSilentHillsFlags
+	ld hl, wQuietHillsFlags
 	set 2, [hl]
 if DEF(_GOLD)
 	ld a, TRAINER_BUG_CATCHER_BOY
@@ -88,17 +108,17 @@ endc
 	call InitTrainerBattle
 	ret
 .Trainer3Won ;Already won
-	ld hl, SilentHillsTrainer3WonString
+	ld hl, QuietHillsTrainer3WonString
 	call OpenTextbox
 	ret
 
-SilentHillsTrainer4:
-	ld hl, wSilentHillsFlags
+QuietHillsTrainer4:
+	ld hl, wQuietHillsFlags
 	bit 3, [hl]
 	jr nz, .Trainer4Won
-	ld hl, SilentHillsTrainer4EncounterString
+	ld hl, QuietHillsTrainer4EncounterString
 	call OpenTextbox
-	ld hl, wSilentHillsFlags
+	ld hl, wQuietHillsFlags
 	set 3, [hl]
 if DEF(_GOLD)
 	ld a, TRAINER_FIREBREATHER
@@ -114,17 +134,17 @@ endc
 	call InitTrainerBattle
 	ret
 .Trainer4Won ;Already won
-	ld hl, SilentHillsTrainer4WonString
+	ld hl, QuietHillsTrainer4WonString
 	call OpenTextbox
 	ret
 
-SilentHillsTrainer5:
-	ld hl, wSilentHillsFlags
+QuietHillsTrainer5:
+	ld hl, wQuietHillsFlags
 	bit 4, [hl]
 	jr nz, .Trainer5Won
-	ld hl, SilentHillsTrainer5EncounterString
+	ld hl, QuietHillsTrainer5EncounterString
 	call OpenTextbox
-	ld hl, wSilentHillsFlags
+	ld hl, wQuietHillsFlags
 	set 4, [hl]
 if DEF(_GOLD)
 	ld a, TRAINER_BEAUTY
@@ -140,17 +160,17 @@ endc
 	call InitTrainerBattle
 	ret
 .Trainer5Won ;Already won
-	ld hl, SilentHillsTrainer5WonString
+	ld hl, QuietHillsTrainer5WonString
 	call OpenTextbox
 	ret
 
-SilentHillsTrainer6:
-	ld hl, wSilentHillsFlags
+QuietHillsTrainer6:
+	ld hl, wQuietHillsFlags
 	bit 5, [hl]
 	jr nz, .Trainer6Won
-	ld hl, SilentHillsTrainer6EncounterString
+	ld hl, QuietHillsTrainer6EncounterString
 	call OpenTextbox
-	ld hl, wSilentHillsFlags
+	ld hl, wQuietHillsFlags
 	set 5, [hl]
 if DEF(_GOLD)
 	ld a, TRAINER_BUG_CATCHER_BOY
@@ -166,23 +186,23 @@ endc
 	call InitTrainerBattle
 	ret
 .Trainer6Won ;Already won
-	ld hl, SilentHillsTrainer6WonString
+	ld hl, QuietHillsTrainer6WonString
 	call OpenTextbox
 	ret
 
-SilentHillsSignpost2:
-	ld hl, SilentHillsSignpost2String
+QuietHillsSignpost2:
+	ld hl, QuietHillsSignpost2String
 	call OpenTextbox
 	ret
 
-SilentHillsSignpost1:
-	ld hl, SilentHillsSignpost1String
+QuietHillsSignpost1:
+	ld hl, QuietHillsSignpost1String
 	call OpenTextbox
 	ret
 
 if DEF(_GOLD)
 
-SilentHillsTrainer6EncounterString:
+QuietHillsTrainer6EncounterString:
 	text "ねえ　ねえ　みてよ"
 
 	para "これ　ぜったい"
@@ -193,13 +213,13 @@ SilentHillsTrainer6EncounterString:
 	line "わかってないから　しかたないよ"
 	done
 
-SilentHillsTrainer6WonString:
+QuietHillsTrainer6WonString:
 	text "あたらしい　ポケモンだけでなく"
 	line "あたらしい　タイプも"
 	cont "みつかったって　うわさだよ"
 	done
 
-SilentHillsTrainer5EncounterString:
+QuietHillsTrainer5EncounterString:
 	text "いい　てんきねー"
 	line "あなた　ちょうしは　いかが？"
 	done
@@ -208,11 +228,11 @@ SilentHillsTrainer5EncounterString:
 	line "⋯⋯なにいってるのかしら　あたし"
 	done
 
-SilentHillsTrainer5WonString:
+QuietHillsTrainer5WonString:
 	text "なんで　こうなるの？"
 	line "さんぽしてた　だけなのに@@"
 
-SilentHillsTrainer4EncounterString:
+QuietHillsTrainer4EncounterString:
 	text "こんなところで"
 	line "ひを　ふく　れんしゅう！"
 	done
@@ -220,7 +240,7 @@ SilentHillsTrainer4EncounterString:
 	text "あちち　しっぱいだー"
 	done
 
-SilentHillsTrainer4WonString:
+QuietHillsTrainer4WonString:
 	text "よるになると　くらくなるから"
 	line "こどもは　はやく　かえりなさい！"
 
@@ -228,7 +248,7 @@ SilentHillsTrainer4WonString:
 	line "おれは　ひをふくから　だいじょうぶ"
 	done
 
-SilentHillsTrainer3EncounterString:
+QuietHillsTrainer3EncounterString:
 	text "むしポケモンの　ことなら"
 	line "だれよりも　くわしいよ"
 	done
@@ -236,7 +256,7 @@ SilentHillsTrainer3EncounterString:
 	text "パラパラー"
 	done
 
-SilentHillsTrainer3WonString:
+QuietHillsTrainer3WonString:
 	text "ポケモンずかんを　つくるんだって？"
 	line "ちょっと　みせてよ"
 
@@ -244,7 +264,7 @@ SilentHillsTrainer3WonString:
 	line "タイプべつに　ポケモン　さがせるんだ"
 	done
 
-SilentHillsTrainer2EncounterString:
+QuietHillsTrainer2EncounterString:
 	text "いっとくけど"
 	line "きみよりも　べんきょう　してるから"
 	cont "きみよりも　つよいよ　ぜったい！"
@@ -253,7 +273,7 @@ SilentHillsTrainer2EncounterString:
 	text "な　なぜなんだ？"
 	done
 
-SilentHillsTrainer2WonString:
+QuietHillsTrainer2WonString:
 	text "おかしいよ⋯⋯"
 	line "まいにち　ポケモンの　べんきょうを"
 	cont "きちんと　してるのに　まけるなんて"
@@ -263,7 +283,7 @@ endc
 
 if DEF(_SILVER)
 
-SilentHillsTrainer6EncounterString:
+QuietHillsTrainer6EncounterString:
 	text "じゃーん！"
 	line "みたことない　ポケモン"
 	cont "だいはっけん"
@@ -273,12 +293,12 @@ SilentHillsTrainer6EncounterString:
 	line "つかまえて　おくべきだったー"
 	done
 
-SilentHillsTrainer6WonString:
+QuietHillsTrainer6WonString:
 	text "きみの　ポケモンも　みたことないな"
 	line "ね　こうかん　しない？"
 	done
 
-SilentHillsTrainer5EncounterString:
+QuietHillsTrainer5EncounterString:
 	text "ねーねー　あたしと"
 	line "ポケモンしょうぶ　しよーよー"
 	done
@@ -286,13 +306,13 @@ SilentHillsTrainer5EncounterString:
 	text "やーん"
 	done
 
-SilentHillsTrainer5WonString:
+QuietHillsTrainer5WonString:
 	text "よるになると　くらくなるじゃない？"
 	line "あるいてても　まわりが"
 	cont "よくわからなくて　こわいわ"
 	done
 
-SilentHillsTrainer4EncounterString:
+QuietHillsTrainer4EncounterString:
 	text "きみ！"
 
 	para "おこらないから"
@@ -302,12 +322,12 @@ SilentHillsTrainer4EncounterString:
 	text "みずが　ちかくに　ないと⋯⋯"
 	done
 
-SilentHillsTrainer4WonString:
+QuietHillsTrainer4WonString:
 	text "どうして　おじさんは"
 	line "こんなところに　いるんだ？"
 	done
 
-SilentHillsTrainer3EncounterString:
+QuietHillsTrainer3EncounterString:
 	text "ポケモンは　はじめたばかり？"
 	line "それやったら　まけへんで"
 	done
@@ -315,11 +335,11 @@ SilentHillsTrainer3EncounterString:
 	text "うわ　なんでやねん"
 	done
 
-SilentHillsTrainer3WonString:
+QuietHillsTrainer3WonString:
 	text "なんか　すっげー　くやしいわ"
 	done
 
-SilentHillsTrainer2EncounterString:
+QuietHillsTrainer2EncounterString:
 	text "ここは　ひろくて"
 	line "トレーニングに　さいてきだ"
 
@@ -330,13 +350,13 @@ SilentHillsTrainer2EncounterString:
 	text "れ　れんしゅう　ぶそくか⋯⋯"
 	done
 
-SilentHillsTrainer2WonString:
+QuietHillsTrainer2WonString:
 	text "よーし　はしる　ぞー"
 	done
 
 endc
 
-SilentHillsText1String:
+QuietHillsText1String:
 	text "この　おかの　ポケモンは　よわい！"
 	line "だから　ここで　しゅぎょう　している"
 	cont "トレーナーも　おおいよ"
@@ -345,12 +365,12 @@ SilentHillsText1String:
 	line "うでだめしを　するといい"
 	done
 
-SilentHillsSignpost2String:
+QuietHillsSignpost2String:
 	text "しずかな　おか"
 	line "サイレントヒル　は　こちら"
 	done
 
-SilentHillsSignpost1String:
+QuietHillsSignpost1String:
 	text "しずかな　おか"
 	line "オールドシティ　は　こちら"
 	done

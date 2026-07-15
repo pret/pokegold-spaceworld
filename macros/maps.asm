@@ -3,9 +3,22 @@ MACRO map_id
 	db GROUP_\1, MAP_\1
 ENDM
 
+MACRO object_const_def
+	const_def 2
+ENDM
+
+MACRO object_const
+	const {CURRENT_MAP_ID}_\1
+ENDM
+
+MACRO npc_id
+	const {CURRENT_MAP_ID}_\1 - 2
+ENDM
+
 MACRO map_attributes
 ;\1: map name
 ;\2: map id
+	REDEF CURRENT_MAP_NAME EQUS "\1"
 	REDEF CURRENT_MAP_ID EQUS "\2"
 	DEF CURRENT_MAP_WIDTH = \2_WIDTH
 	DEF CURRENT_MAP_HEIGHT = \2_HEIGHT
@@ -193,4 +206,33 @@ MACRO object_event
 	if DEF(_NUM_OBJECT_EVENTS)
 		DEF {_NUM_OBJECT_EVENTS} += 1
 	endc
+ENDM
+
+MACRO map_generic_scriptloader
+	ld hl, {CURRENT_MAP_NAME}ScriptPointers
+	call RunMapScript
+	call WriteBackMapScriptNumber
+	ret
+ENDM
+; For maps that don't have any scenes.
+MACRO map_generic_scriptpointers
+{CURRENT_MAP_NAME}ScriptPointers::
+	dw {CURRENT_MAP_NAME}Script
+	dw {CURRENT_MAP_NAME}NPCIDs
+ENDM
+
+MACRO map_generic_script
+{CURRENT_MAP_NAME}Script::
+	ld hl, {CURRENT_MAP_NAME}NPCIDs
+	ld de, {CURRENT_MAP_NAME}SignPointers
+	call CallMapTextSubroutine
+	ret
+ENDM
+
+MACRO map_generic_npcids
+{CURRENT_MAP_NAME}NPCIDs::
+	for x, {_NUM_OBJECT_EVENTS}
+		db x
+		endr
+	db -1
 ENDM

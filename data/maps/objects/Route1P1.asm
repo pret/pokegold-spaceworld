@@ -6,8 +6,8 @@ Route1P1_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
-	warp_event  8,  8, SILENT_HILLS, 2, 110
-	warp_event  8,  9, SILENT_HILLS, 3, 110
+	warp_event  8,  8, QUIET_HILLS, 2, 110
+	warp_event  8,  9, QUIET_HILLS, 3, 110
 
 	def_bg_events
 	bg_event 12,  7, 1
