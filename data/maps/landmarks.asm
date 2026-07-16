@@ -24,7 +24,7 @@ LandmarkPositions:
 	landmark  84,  76 ; LANDMARK_OLD_CITY
 	landmark  72,  76 ; LANDMARK_ROUTE_3
 	landmark  60,  76 ; LANDMARK_WEST
-	landmark  60,  64 ; LANDMARK_BIRDON_ROUTE_1
+	landmark  60,  64 ; LANDMARK_ROUTE_4
 	landmark  60,  52 ; LANDMARK_BIRDON
 	landmark  84,  52 ; LANDMARK_ROUTE_13
 	landmark 100,  52 ; LANDMARK_ROUTE_14

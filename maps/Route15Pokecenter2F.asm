@@ -1,0 +1,16 @@
+	map_attributes Route15Pokecenter2F, ROUTE_15_POKECENTER_2F
+
+Route15Pokecenter2F_MapEvents::
+	dw $4000 ; unknown
+
+	def_warp_events
+	warp_event  0,  7, ROUTE_15_POKECENTER_1F, 3, 57
+
+	def_bg_events
+
+	def_object_events
+
+Route15Pokecenter2F_Blocks::
+INCBIN "maps/Route15Pokecenter2F.blk"
+
+	map_dummy_text_pointers

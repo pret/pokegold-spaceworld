@@ -6,8 +6,8 @@ Route14_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
-	warp_event  8, 30, BIRDON_ROUTE_GATE_NEWTYPE, 3, 261
-	warp_event  9, 30, BIRDON_ROUTE_GATE_NEWTYPE, 4, 261
+	warp_event  8, 30, ROUTE_14_GATE, 3, 261
+	warp_event  9, 30, ROUTE_14_GATE, 4, 261
 
 	def_bg_events
 

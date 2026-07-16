@@ -6,8 +6,8 @@ Route24_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
-	warp_event  8, 30, FONT_ROUTE_GATE_3, 3, 261
-	warp_event  9, 30, FONT_ROUTE_GATE_3, 4, 261
+	warp_event  8, 30, ROUTE_24_GATE, 3, 261
+	warp_event  9, 30, ROUTE_24_GATE, 4, 261
 
 	def_bg_events
 

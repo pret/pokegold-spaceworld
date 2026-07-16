@@ -6,8 +6,8 @@ Route12_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
-	warp_event  8, 30, FONT_ROUTE_GATE_2, 3, 261
-	warp_event  9, 30, FONT_ROUTE_GATE_2, 4, 261
+	warp_event  8, 30, ROUTE_12_GATE, 3, 261
+	warp_event  9, 30, ROUTE_12_GATE, 4, 261
 
 	def_bg_events
 

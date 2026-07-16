@@ -6,8 +6,8 @@ Route18_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
-	warp_event  8,  5, ROUTE_17_GATE, 1, 53
-	warp_event  9,  5, ROUTE_17_GATE, 2, 53
+	warp_event  8,  5, ROUTE_18_GATE, 1, 53
+	warp_event  9,  5, ROUTE_18_GATE, 2, 53
 	warp_event 13, 28, ROUTE_18_POKECENTER_1F, 1, 247
 
 	def_bg_events

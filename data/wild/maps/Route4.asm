@@ -1,4 +1,4 @@
-	map_id BIRDON_ROUTE_1
+	map_id ROUTE_4
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn only
 	db 19, DEX_DITTO
