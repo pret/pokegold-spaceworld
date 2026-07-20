@@ -1662,7 +1662,7 @@ ForcePlayerMonChoice:
 	call _LoadHPBar
 	call CloseWindow
 	call GetMemSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 
 	call SendOutMonText
 	call NewBattleMonStatus
@@ -2166,7 +2166,7 @@ EnemySendOutFirstMon:
 
 	ld b, SGB_BATTLE_COLORS
 	call GetSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	callfar Battle_GetTrainerName
 
 	ld hl, TrainerSentOutText
@@ -3268,7 +3268,7 @@ BattleMenu_Pack:
 	call UpdateBattleHuds
 	call WaitBGMap
 	call ClearWindowData
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	and a
 	ret
 
@@ -3278,7 +3278,7 @@ BattleMenu_Pack:
 	ld a, DRAW
 	ld [wBattleResult], a
 	call ClearWindowData
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	scf
 	ret
 
@@ -3288,7 +3288,7 @@ BattleMenu_Pack:
 	call Call_LoadBattleFontsHPBar
 	call CloseWindow
 	call LoadTilemapToTempTilemap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	jp BattleMenu
 
 .ItemsCantBeUsed
@@ -3412,7 +3412,7 @@ BattleMenu_PKMN:
 	call CloseWindow
 	call LoadTilemapToTempTilemap
 	call GetMemSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	jp BattleMenu
 
 ; TODO: Do the tile identifiers look right (are they not vFrontPic, vBackPic)?...
@@ -3482,7 +3482,7 @@ BattleMenu_PKMN:
 	call _LoadHPBar
 	call CloseWindow
 	call GetMemSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 
 PlayerSwitch:
 	ld a, [wLinkMode]

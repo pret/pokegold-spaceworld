@@ -34,7 +34,7 @@ AskName_Old:
 	call ClearTileMap
 	call ClearSprites
 	call GetMemSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld a, [wBattleMode]
 	and a
 	jr nz, .in_battle

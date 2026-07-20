@@ -13,9 +13,9 @@ _HandlePlayerStep::
 .start
 	jr ._start
 
-.unreferenced_d4fa
+.unreferenced_checkobjects
 	call UpdatePlayerCoords
-	callfar EmptyFunction8261
+	callfar CheckObjectEnteringVisibleRange_Alternate
 
 ._start
 	ld a, 4

@@ -332,7 +332,7 @@ DisplayOptionsMenu:
 	ld [wOptionsMenuCursorY], a
 	call EnableLCD
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 .PlaceUnfilledRightArrow

@@ -91,5 +91,6 @@
 	const SPRITE_OLD_LINK_RECEPTIONIST ; 59
 	const SPRITE_EGG                   ; 5a
 	const SPRITE_BOULDER               ; 5b
+DEF NUM_OVERWORLD_SPRITES EQU const_value - 1
 
 DEF SPRITE_TILE_SIZE EQU 64

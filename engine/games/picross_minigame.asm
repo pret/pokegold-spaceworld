@@ -1893,8 +1893,7 @@ PicrossSprites:
 	picross_pattern PATTERN_NORMAL, GengarIcon
 	picross_pattern PATTERN_NORMAL, AnnonIcon
 	picross_pattern PATTERN_NORMAL, SnorlaxIcon
-; TODO: Setting fixed bank $C for now before Pokecenter_GFX is ripped
-	picross_pattern PATTERN_TILESET, $c, Pokecenter_GFX + $200
+	picross_pattern PATTERN_TILESET, BANK(Pokecenter_GFX), Pokecenter_GFX + $200
 	picross_pattern PATTERN_NORMAL, PoliwrathSpriteGFX
 
 PicrossNumbersGFX:
