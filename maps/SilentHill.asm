@@ -9,7 +9,7 @@ SilentHill_MapEvents::
 	def_warp_events
 	warp_event  5,  4, PLAYER_HOUSE_1F, 1, 51
 	warp_event 13,  4, SILENT_HILL_POKECENTER, 1, 55
-	warp_event  3, 12, SILENT_HILL_HOUSE, 1, 114
+	warp_event  3, 12, RIVAL_HOUSE, 1, 114
 	warp_event 14, 11, SILENT_HILL_LAB_FRONT, 1, 104
 	warp_event 15, 11, SILENT_HILL_LAB_FRONT, 2, 104
 

@@ -13,16 +13,16 @@ PlayerHouse1FFridgeScript::
 	farcall _PlayerHouse1FFridgeScript
 	ret
 
-SilentHillHouseStoveScript::
-	farcall _SilentHillHouseStoveScript
+RivalHouseStoveScript::
+	farcall _RivalHouseStoveScript
 	ret
 
-SilentHillHouseSinkScript::
-	farcall _SilentHillHouseSinkScript
+RivalHouseSinkScript::
+	farcall _RivalHouseSinkScript
 	ret
 
-SilentHillHouseTVScript::
-	farcall _SilentHillHouseTVScript
+RivalHouseTVScript::
+	farcall _RivalHouseTVScript
 	ret
 
 PokecenterSignScript::

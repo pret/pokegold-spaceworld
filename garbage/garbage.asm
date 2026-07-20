@@ -1730,7 +1730,7 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
 		ld a, 1
 		ld [wPlayerHouse2FSceneID], a
 		ld a, 1
-		ld [wSilentHillHouseSceneID], a
+		ld [wRivalHouseSceneID], a
 		ld hl, Unreferenced_Corrupt_Silver_SilentHillLabBackTextString8
 		call PrintText
 		ld hl, wJoypadFlags

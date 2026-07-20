@@ -10,9 +10,9 @@ MapScenes::
 	scene_pointers SILENT_HILL_LAB_FRONT,  SilentHillLabFront
 	scene_pointers SILENT_HILL_LAB_BACK,   SilentHillLabBack
 	scene_pointers SILENT_HILL_POKECENTER, SilentHillPokecenter
-	scene_pointers SILENT_HILL_HOUSE,      SilentHillHouse
-	scene_pointers ROUTE_1,             Route1
-	scene_pointers ROUTE_2,             Route2
+	scene_pointers RIVAL_HOUSE,            RivalHouse
+	scene_pointers ROUTE_1,                Route1
+	scene_pointers ROUTE_2,                Route2
 	scene_pointers ROUTE_1_GATE_1F,        Route1Gate1F
 	scene_pointers ROUTE_1_GATE_2F,        Route1Gate2F
 	scene_pointers QUIET_HILLS,            QuietHills

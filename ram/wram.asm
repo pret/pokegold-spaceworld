@@ -1629,7 +1629,7 @@ wSilentHillSceneID:: db
 wSilentHillLabFrontSceneID:: db
 wSilentHillLabBackSceneID:: db
 wSilentHillPokecenterSceneID:: db
-wSilentHillHouseSceneID:: db
+wRivalHouseSceneID:: db
 wRoute1SceneID:: db
 wRoute2SceneID:: db
 wRoute1Gate1FSceneID:: db
@@ -1645,7 +1645,7 @@ wSilentHillFlags:: db
 wSilentHillLabFrontFlags:: db
 wSilentHillLabBackFlags:: db
 wSilentHillPokecenterFlags:: db
-wSilentHillHouseFlags:: db
+wRivalHouseFlags:: db
 wRoute1Flags:: db
 wRoute2Flags:: db
 wRoute1Gate1FFlags:: db

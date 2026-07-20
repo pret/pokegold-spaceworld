@@ -9,10 +9,10 @@ FieldDebug_NPCMovementTest:
 
 .NPCMovementTest:
 	ld a, [wMapGroup]
-	cp GROUP_SILENT_HILL_HOUSE
+	cp GROUP_RIVAL_HOUSE
 	jr nz, .not_here
 	ld a, [wMapId]
-	cp MAP_SILENT_HILL_HOUSE
+	cp MAP_RIVAL_HOUSE
 	jr nz, .not_here
 	ld a, 2
 	ld hl, .MovementData

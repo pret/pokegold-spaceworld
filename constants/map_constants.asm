@@ -35,7 +35,7 @@ ENDM
 	map_const PLAYER_HOUSE_1F,                   5,  4 ;  8
 	map_const PLAYER_HOUSE_2F,                   5,  4 ;  9
 	map_const SILENT_HILL_POKECENTER,            8,  4 ; 10
-	map_const SILENT_HILL_HOUSE,                 5,  4 ; 11
+	map_const RIVAL_HOUSE,                       5,  4 ; 11
 	map_const SILENT_HILL_LAB_FRONT,             4,  8 ; 12
 	map_const SILENT_HILL_LAB_BACK,              4,  4 ; 13
 	map_const SILENT_HILL_LAB_BACK_UNUSED,       4,  4 ; 14

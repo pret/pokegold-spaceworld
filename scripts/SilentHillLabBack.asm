@@ -217,7 +217,7 @@ ConfirmPokemonSelection:
 	ld a, 1
 	ld [wPlayerHouse2FSceneID], a
 	ld a, 1
-	ld [wSilentHillHouseSceneID], a
+	ld [wRivalHouseSceneID], a
 	ld hl, SilentHillLabBackTextString8
 	call PrintText
 	ld hl, wJoypadFlags
