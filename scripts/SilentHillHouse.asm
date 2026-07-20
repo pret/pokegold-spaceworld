@@ -1,56 +1,56 @@
-SilentHillHouse_ScriptLoader::
-	ld hl, SilentHillHouseScriptPointers
+RivalHouse_ScriptLoader::
+	ld hl, RivalHouseScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillHouseScriptPointers::
-	dw SilentHillHouseScript1
-	dw SilentHillHouseNPCIDs1
-	dw SilentHillHouseScript2
-	dw SilentHillHouseNPCIDs2
-	dw SilentHillHouseScript3
-	dw SilentHillHouseNPCIDs1
+RivalHouseScriptPointers::
+	dw RivalHouseScript1
+	dw RivalHouseNPCIDs1
+	dw RivalHouseScript2
+	dw RivalHouseNPCIDs2
+	dw RivalHouseScript3
+	dw RivalHouseNPCIDs1
 
-SilentHillHouseScript1:
-	ld hl, SilentHillHouseNPCIDs1
-	ld de, SilentHillHouseTextPointers2
+RivalHouseScript1:
+	ld hl, RivalHouseNPCIDs1
+	ld de, RivalHouseTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-SilentHillHouseScript2:
-	ld hl, SilentHillHouseNPCIDs2
-	ld de, SilentHillHouseTextPointers2
+RivalHouseScript2:
+	ld hl, RivalHouseNPCIDs2
+	ld de, RivalHouseTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-SilentHillHouseScript3:
-	ld hl, SilentHillHouseNPCIDs1
-	ld de, SilentHillHouseTextPointers2
+RivalHouseScript3:
+	ld hl, RivalHouseNPCIDs1
+	ld de, RivalHouseTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-SilentHillHouseNPCIDs1:
+RivalHouseNPCIDs1:
 	db 0
 	db $FF
 
-SilentHillHouseNPCIDs2:
+RivalHouseNPCIDs2:
 	db 0
 	db 1
 	db $FF
 
-SilentHillHouseTextPointers2::
-	dw SilentHillHouseNPCText1
-	dw SilentHillHouseTVScript
+RivalHouseTextPointers2::
+	dw RivalHouseNPCText1
+	dw RivalHouseTVScript
 	dw PokemonBooksScript
-	dw SilentHillHouseSinkScript
-	dw SilentHillHouseStoveScript
+	dw RivalHouseSinkScript
+	dw RivalHouseStoveScript
 	dw RivalHouseWindowScript
 
-SilentHillHouseNPCText1:
-	CheckEvent SILENT_HILL_HOUSE_READ_RIVAL_EMAIL
+RivalHouseNPCText1:
+	CheckEvent RIVAL_HOUSE_READ_RIVAL_EMAIL
 	jr nz, .jump
-	ld hl, SilentHillHouseTextString1
+	ld hl, RivalHouseTextString1
 	call OpenTextbox
 	ret
 
@@ -60,7 +60,7 @@ SilentHillHouseNPCText1:
 	call CloseText
 	ret
 
-SilentHillHouseTextString1:
+RivalHouseTextString1:
 	text "おや？　<RIVAL>あてに　メールが"
 	line "とどいている　ようだ"
 	cont "よんでみる？@"
@@ -68,18 +68,18 @@ SilentHillHouseTextString1:
 	start_asm
 	call YesNoBox
 	jr c, .jump
-	SetEvent SILENT_HILL_HOUSE_READ_RIVAL_EMAIL
-	ld hl, SilentHillHouseTextString2
+	SetEvent RIVAL_HOUSE_READ_RIVAL_EMAIL
+	ld hl, RivalHouseTextString2
 	call PrintText
 	call TextAsmEnd
 	ret
 .jump
-	ld hl, SilentHillHouseTextString3
+	ld hl, RivalHouseTextString3
 	call PrintText
 	call TextAsmEnd
 	ret
 
-SilentHillHouseTextString2:
+RivalHouseTextString2:
 	text "とつぜん　メールを　さしあげる"
 	line "しつれいを　おゆるしあれ"
 
@@ -89,41 +89,41 @@ SilentHillHouseTextString2:
 	cont "ポケモンけんきゅうしゃ　オーキド"
 	done
 
-SilentHillHouseTextString3:
+RivalHouseTextString3:
 	text "ひとのメールは"
 	line "みちゃ　いけないよな<⋯⋯>"
 	done
 
-SilentHillHouse_TextPointers::
-	dw SilentHillHouseNPCText3
-	dw SilentHillHouseNPCText4
+RivalHouse_TextPointers::
+	dw RivalHouseNPCText3
+	dw RivalHouseNPCText4
 
-SilentHillHouseNPCText3:
-	ld hl, SilentHillHouseTextString4
+RivalHouseNPCText3:
+	ld hl, RivalHouseTextString4
 	call OpenTextbox
 	ret
 
-SilentHillHouseTextString4:
+RivalHouseTextString4:
 	text "このまえ　かわったいろの"
 	line "ポッポを　みかけたわ"
 	done
 
-SilentHillHouseNPCText4:
-	CheckEvent SILENT_HILL_HOUSE_GOT_POKEGEAR_MAP
+RivalHouseNPCText4:
+	CheckEvent RIVAL_HOUSE_GOT_POKEGEAR_MAP
 	jr nz, .jump
-	SetEvent SILENT_HILL_HOUSE_GOT_POKEGEAR_MAP
-	ld hl, SilentHillHouseTextString5
+	SetEvent RIVAL_HOUSE_GOT_POKEGEAR_MAP
+	ld hl, RivalHouseTextString5
 	call OpenTextbox
 	call WaitBGMap
-	ld hl, SilentHillHouseTextString6
+	ld hl, RivalHouseTextString6
 	jr .skip
 .jump
-	ld hl, SilentHillHouseTextString7
+	ld hl, RivalHouseTextString7
 .skip
 	call OpenTextbox
 	ret
 
-SilentHillHouseTextString5:
+RivalHouseTextString5:
 	text "ケン『ななな"
 	line "なんだ　<PLAYER>　じゃないか！"
 
@@ -141,7 +141,7 @@ SilentHillHouseTextString5:
 	cont "よし　これで　マップが　みれるぞ！"
 	done
 
-SilentHillHouseTextString6:
+RivalHouseTextString6:
 	text "もし　オールドにいくなら"
 	line "マサキって　やつに　あうといい"
 
@@ -151,7 +151,7 @@ SilentHillHouseTextString6:
 	cont "てだすけを　してくれるぜ"
 	done
 
-SilentHillHouseTextString7:
+RivalHouseTextString7:
 	text "ケン『<PLAYER>"
 	line "オーキドはかせに　みこまれて"
 	cont "ポケモンずかんを　つくるんだって？"

@@ -56,23 +56,23 @@ _PlayerHouse1FFridgeScript::
 	line "ほとんど　からっぽだ<⋯⋯>"
 	done
 
-_SilentHillHouseStoveScript::
-	ld hl, .SilentHillHouseStoveText
+_RivalHouseStoveScript::
+	ld hl, .RivalHouseStoveText
 	call OpenTextbox
 	ret
 
 ; Player's stove
-.SilentHillHouseStoveText:
+.RivalHouseStoveText:
 	text "ガスコンロの　ひは　きえている"
 	line "あんぜん　だいいち！"
 	done
 
-_SilentHillHouseSinkScript::
-	ld hl, .SilentHillHouseSinkText
+_RivalHouseSinkScript::
+	ld hl, .RivalHouseSinkText
 	call OpenTextbox
 	ret
 
-.SilentHillHouseSinkText:
+.RivalHouseSinkText:
 	text "ピカピカの　ながしだい！"
 	line "こんやの　メニューは　なんだろう？"
 	done
@@ -97,27 +97,27 @@ _RivalHouseWindowScript::
 	done
 
 ; Various scenes from the Pokemon anime that play on the player and rival's TVs
-_SilentHillHouseTVScript::
+_RivalHouseTVScript::
 	ld a, [wTimeOfDay]
 	and a
 	jr nz, .not_day
-	ld hl, .SilentHillHouseTVDayText
+	ld hl, .RivalHouseTVDayText
 	jr .done
 
 .not_day
 	dec a
 	jr nz, .not_night
-	ld hl, .SilentHillHouseTVNightText
+	ld hl, .RivalHouseTVNightText
 	jr .done
 
 .not_night
-	ld hl, .SilentHillHouseTVMorningText
+	ld hl, .RivalHouseTVMorningText
 .done
 	call OpenTextbox
 	ret
 
 ; Scene from "Pokémon: I Choose You!"
-.SilentHillHouseTVDayText:
+.RivalHouseTVDayText:
 	text "ピカチュウが　オニスズメと"
 	line "たたかっている<⋯⋯>"
 	cont "サトシが　なみだ　ぐんでいる<⋯⋯>"
@@ -125,14 +125,14 @@ _SilentHillHouseTVScript::
 	done
 
 ; Scene from "Primeape Goes Bananas"
-.SilentHillHouseTVNightText:
+.RivalHouseTVNightText:
 	text "オコリザルが　あばれている<⋯⋯>"
 	cont "サトシが　にげまわってる！<⋯⋯>"
 	cont "#アニメだ！"
 	done
 
 ; Scene from "Bulbasaur's Mysterious Garden"
-.SilentHillHouseTVMorningText:
+.RivalHouseTVMorningText:
 	text "フシギダネが　すねている<⋯⋯>"
 	cont "サトシが　こまっている<⋯⋯>"
 	cont "#アニメだ！"

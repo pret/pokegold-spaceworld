@@ -30,10 +30,10 @@ PlayerHouse1FScript2:
 	ret
 
 PlayerHouse1FSignPointers:
-	dw SilentHillHouseStoveScript
-	dw SilentHillHouseSinkScript
+	dw RivalHouseStoveScript
+	dw RivalHouseSinkScript
 	dw PlayerHouse1FFridgeScript
-	dw SilentHillHouseTVScript
+	dw RivalHouseTVScript
 	dw PokemonBooksScript
 PlayerHouse1F_TextPointers::
 	dw PlayerHouse1FNPCText1
