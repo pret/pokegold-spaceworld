@@ -1,0 +1,180 @@
+	map_attributes SilentHillHouse, SILENT_HILL_HOUSE
+
+SilentHillHouse_MapEvents::
+	dw $4000 ; unknown
+
+	def_warp_events
+	warp_event  4,  7, SILENT_HILL, 3, 47
+	warp_event  5,  7, SILENT_HILL, 3, 47
+
+	def_bg_events
+	bg_event  0,  1, 1
+	bg_event  4,  1, 2
+	bg_event  5,  1, 3
+	bg_event  9,  1, 4
+	bg_event  8,  1, 5
+	bg_event  2,  0, 6
+
+	def_object_events
+	object_event  5,  3, SPRITE_SILVERS_MOM, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  5,  4, SPRITE_ROCKER, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+SilentHillHouse_Blocks::
+INCBIN "maps/SilentHillHouse.blk"
+
+SilentHillHouse_ScriptLoader::
+	map_generic_scriptloader
+
+SilentHillHouseScriptPointers::
+	dw SilentHillHouseScript1
+	dw SilentHillHouseNPCIDs1
+	dw SilentHillHouseScript2
+	dw SilentHillHouseNPCIDs2
+	dw SilentHillHouseScript3
+	dw SilentHillHouseNPCIDs1
+
+SilentHillHouseScript1:
+	ld hl, SilentHillHouseNPCIDs1
+	ld de, SilentHillHouseTextPointers2
+	call CallMapTextSubroutine
+	ret
+
+SilentHillHouseScript2:
+	ld hl, SilentHillHouseNPCIDs2
+	ld de, SilentHillHouseTextPointers2
+	call CallMapTextSubroutine
+	ret
+
+SilentHillHouseScript3: ; This could have just been a multidefinition
+	ld hl, SilentHillHouseNPCIDs1
+	ld de, SilentHillHouseTextPointers2
+	call CallMapTextSubroutine
+	ret
+
+SilentHillHouseNPCIDs1:
+	db 0
+	db $FF
+
+SilentHillHouseNPCIDs2:
+	db 0
+	db 1
+	db $FF
+
+SilentHillHouseTextPointers2::
+	dw SilentHillHouseNPCText1
+	dw SilentHillHouseTVScript
+	dw PokemonBooksScript
+	dw SilentHillHouseSinkScript
+	dw SilentHillHouseStoveScript
+	dw RivalHouseWindowScript
+
+SilentHillHouseNPCText1:
+	CheckEvent SILENT_HILL_HOUSE_READ_RIVAL_EMAIL
+	jr nz, .jump
+	ld hl, SilentHillHouseTextString1
+	call OpenTextbox
+	ret
+
+.jump
+	call ReanchorMap
+	callfar PokemonCenterPC
+	call CloseText
+	ret
+
+SilentHillHouseTextString1:
+	text "おや？　<RIVAL>あてに　メールが"
+	line "とどいている　ようだ"
+	cont "よんでみる？@"
+
+	start_asm
+	call YesNoBox
+	jr c, .jump
+	SetEvent SILENT_HILL_HOUSE_READ_RIVAL_EMAIL
+	ld hl, SilentHillHouseTextString2
+	call PrintText
+	call TextAsmEnd
+	ret
+.jump
+	ld hl, SilentHillHouseTextString3
+	call PrintText
+	call TextAsmEnd
+	ret
+
+SilentHillHouseTextString2:
+	text "とつぜん　メールを　さしあげる"
+	line "しつれいを　おゆるしあれ"
+
+	para "じつは　きみに　どうしても"
+	line "わたしたい　ものが　あるのじゃが"
+	cont "うけとって　もらえんかのう"
+	cont "ポケモンけんきゅうしゃ　オーキド"
+	done
+
+SilentHillHouseTextString3:
+	text "ひとのメールは"
+	line "みちゃ　いけないよな<⋯⋯>"
+	done
+
+SilentHillHouse_TextPointers::
+	dw SilentHillHouseNPCText3
+	dw SilentHillHouseNPCText4
+
+SilentHillHouseNPCText3:
+	ld hl, SilentHillHouseTextString4
+	call OpenTextbox
+	ret
+
+SilentHillHouseTextString4:
+	text "このまえ　かわったいろの"
+	line "ポッポを　みかけたわ"
+	done
+
+SilentHillHouseNPCText4:
+	CheckEvent SILENT_HILL_HOUSE_GOT_POKEGEAR_MAP
+	jr nz, .jump
+	SetEvent SILENT_HILL_HOUSE_GOT_POKEGEAR_MAP
+	ld hl, SilentHillHouseTextString5
+	call OpenTextbox
+	call WaitBGMap
+	ld hl, SilentHillHouseTextString6
+	jr .skip
+.jump
+	ld hl, SilentHillHouseTextString7
+.skip
+	call OpenTextbox
+	ret
+
+SilentHillHouseTextString5:
+	text "ケン『ななな"
+	line "なんだ　<PLAYER>　じゃないか！"
+
+	para "おれは　ちょっと　あのー"
+	line"がっこうの　しゅくだいを"
+	cont "おしえに　きてるんだ！"
+
+	para "えっ　マップ？"
+	line "そうか　そんな　やくそくも　してたな"
+	cont "わかった"
+	cont "トレーナーギアを　かしてみな"
+
+	para "スロットに　マップの　カセットを　"
+	line "さしこんでっと⋯⋯"
+	cont "よし　これで　マップが　みれるぞ！"
+	done
+
+SilentHillHouseTextString6:
+	text "もし　オールドにいくなら"
+	line "マサキって　やつに　あうといい"
+
+	para "おれの　ともだちで"
+	line "すごい　ポケモン　マニアだ！"
+	cont "きっと　おまえの"
+	cont "てだすけを　してくれるぜ"
+	done
+
+SilentHillHouseTextString7:
+	text "ケン『<PLAYER>"
+	line "オーキドはかせに　みこまれて"
+	cont "ポケモンずかんを　つくるんだって？"
+	cont "すごいじゃないか　がんばれよ"
+	done

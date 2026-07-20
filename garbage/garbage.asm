@@ -1563,28 +1563,28 @@ SECTION "Bank 34 Garbage", ROMX
 if DEF(_SILVER) && !DEF(_DEBUG)
 else
 	ret
-Unreferenced_Corrupt_UnusedMap13_ScriptLoader:
+Unreferenced_Corrupt_SilentHillLabBackUnused_ScriptLoader:
 	if DEF(_GOLD)
 		db $20
 		call WriteBackMapScriptNumber + Bank34NonDebugOffset
 	endc
 	ret
-Unreferenced_Corrupt_UnusedMap13ScriptPointers:
-	dw Unreferenced_Corrupt_UnusedMap13Script
-	dw Unreferenced_Corrupt_UnusedMap13NPCIDs
+Unreferenced_Corrupt_SilentHillLabBackUnusedScriptPointers:
+	dw Unreferenced_Corrupt_SilentHillLabBackUnusedScript
+	dw Unreferenced_Corrupt_SilentHillLabBackUnusedNPCIDs
 
-Unreferenced_Corrupt_UnusedMap13NPCIDs:
+Unreferenced_Corrupt_SilentHillLabBackUnusedNPCIDs:
 	db $FF
 
-Unreferenced_Corrupt_UnusedMap13SignPointers:
+Unreferenced_Corrupt_SilentHillLabBackUnusedSignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt_UnusedMap13_TextPointers::
+Unreferenced_Corrupt_SilentHillLabBackUnused_TextPointers::
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt_UnusedMap13Script:
-	ld hl, Unreferenced_Corrupt_UnusedMap13NPCIDs
-	ld de, Unreferenced_Corrupt_UnusedMap13SignPointers
+Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
+	ld hl, Unreferenced_Corrupt_SilentHillLabBackUnusedNPCIDs
+	ld de, Unreferenced_Corrupt_SilentHillLabBackUnusedSignPointers
 	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
 	if DEF(_GOLD)
@@ -1676,35 +1676,35 @@ Unreferenced_Corrupt_UnusedMap13Script:
 		dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset
 		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-		map_attributes Unreferenced_Corrupt_Gold_UnusedMap13, UNUSED_MAP_13
+		map_attributes Unreferenced_Corrupt_Gold_SilentHillLabBackUnused, SILENT_HILL_LAB_BACK_UNUSED
 
-	Unreferenced_Corrupt_Gold_UnusedMap13_MapEvents::
+	Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_MapEvents::
 
-	Unreferenced_Corrupt_Gold_UnusedMap13_Blocks::
-	INCBIN "maps/UnusedMap13.blk"
+	Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_Blocks::
+	INCBIN "maps/SilentHillLabBackUnused.blk"
 
-	Unreferenced_Corrupt_Gold_UnusedMap13_ScriptLoader::
-		ld hl, Unreferenced_Corrupt_Gold_UnusedMap13ScriptPointers
+	Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_ScriptLoader::
+		ld hl, Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedScriptPointers
 		call RunMapScript + Bank34NonDebugOffset
 		call WriteBackMapScriptNumber + Bank34NonDebugOffset
 		ret
 
-	Unreferenced_Corrupt_Gold_UnusedMap13ScriptPointers:
-		dw Unreferenced_Corrupt_Gold_UnusedMap13Script
-		dw Unreferenced_Corrupt_Gold_UnusedMap13NPCIDs
+	Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedScriptPointers:
+		dw Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedScript
+		dw Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedNPCIDs
 
-	Unreferenced_Corrupt_Gold_UnusedMap13NPCIDs:
+	Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedNPCIDs:
 		db $FF
 
-	Unreferenced_Corrupt_Gold_UnusedMap13SignPointers:
+	Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedSignPointers:
 		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	Unreferenced_Corrupt_Gold_UnusedMap13_TextPointers::
+	Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_TextPointers::
 		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	Unreferenced_Corrupt_Gold_UnusedMap13Script:
-		ld hl, Unreferenced_Corrupt_Gold_UnusedMap13NPCIDs
-		ld de, Unreferenced_Corrupt_Gold_UnusedMap13SignPointers
+	Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedScript:
+		ld hl, Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedNPCIDs
+		ld de, Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedSignPointers
 		call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 		ret
 	else
@@ -1879,35 +1879,35 @@ Unreferenced_Corrupt_SilentHillLabBackTextPointers2:
 	dw PokemonBooksScript + Bank34NonDebugOffset - Bank34CorruptOffset - Bank34OldOffset
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	map_attributes Unreferenced_Corrupt2_UnusedMap13, UNUSED_MAP_13
+	map_attributes Unreferenced_Corrupt2_SilentHillLabBackUnused, SILENT_HILL_LAB_BACK_UNUSED
 
-Unreferenced_Corrupt2_UnusedMap13_MapEvents::
+Unreferenced_Corrupt2_SilentHillLabBackUnused_MapEvents::
 
-Unreferenced_Corrupt2_UnusedMap13_Blocks::
-INCBIN "maps/UnusedMap13.blk"
+Unreferenced_Corrupt2_SilentHillLabBackUnused_Blocks::
+INCBIN "maps/SilentHillLabBackUnused.blk"
 
-Unreferenced_Corrupt2_UnusedMap13_ScriptLoader::
-	ld hl, Unreferenced_Corrupt2_UnusedMap13ScriptPointers
+Unreferenced_Corrupt2_SilentHillLabBackUnused_ScriptLoader::
+	ld hl, Unreferenced_Corrupt2_SilentHillLabBackUnusedScriptPointers
 	call RunMapScript + Bank34NonDebugOffset
 	call WriteBackMapScriptNumber + Bank34NonDebugOffset
 	ret
 
-Unreferenced_Corrupt2_UnusedMap13ScriptPointers:
-	dw Unreferenced_Corrupt2_UnusedMap13Script
-	dw Unreferenced_Corrupt2_UnusedMap13NPCIDs
+Unreferenced_Corrupt2_SilentHillLabBackUnusedScriptPointers:
+	dw Unreferenced_Corrupt2_SilentHillLabBackUnusedScript
+	dw Unreferenced_Corrupt2_SilentHillLabBackUnusedNPCIDs
 
-Unreferenced_Corrupt2_UnusedMap13NPCIDs:
+Unreferenced_Corrupt2_SilentHillLabBackUnusedNPCIDs:
 	db $FF
 
-Unreferenced_Corrupt2_UnusedMap13SignPointers:
+Unreferenced_Corrupt2_SilentHillLabBackUnusedSignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt2_UnusedMap13_TextPointers::
+Unreferenced_Corrupt2_SilentHillLabBackUnused_TextPointers::
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt2_UnusedMap13Script:
-	ld hl, Unreferenced_Corrupt2_UnusedMap13NPCIDs
-	ld de, Unreferenced_Corrupt2_UnusedMap13SignPointers
+Unreferenced_Corrupt2_SilentHillLabBackUnusedScript:
+	ld hl, Unreferenced_Corrupt2_SilentHillLabBackUnusedNPCIDs
+	ld de, Unreferenced_Corrupt2_SilentHillLabBackUnusedSignPointers
 	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
 
@@ -1962,35 +1962,35 @@ Unreferenced_Corrupt2_SilentHillLabBackTextPointers2:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-	map_attributes Unreferenced_Corrupt3_UnusedMap13, UNUSED_MAP_13
+	map_attributes Unreferenced_Corrupt3_SilentHillLabBackUnused, SILENT_HILL_LAB_BACK_UNUSED
 
-Unreferenced_Corrupt3_UnusedMap13_MapEvents::
+Unreferenced_Corrupt3_SilentHillLabBackUnused_MapEvents::
 
-Unreferenced_Corrupt3_UnusedMap13_Blocks::
-INCBIN "maps/UnusedMap13.blk"
+Unreferenced_Corrupt3_SilentHillLabBackUnused_Blocks::
+INCBIN "maps/SilentHillLabBackUnused.blk"
 
-Unreferenced_Corrupt3_UnusedMap13_ScriptLoader::
-	ld hl, Unreferenced_Corrupt3_UnusedMap13ScriptPointers
+Unreferenced_Corrupt3_SilentHillLabBackUnused_ScriptLoader::
+	ld hl, Unreferenced_Corrupt3_SilentHillLabBackUnusedScriptPointers
 	call RunMapScript + Bank34NonDebugOffset
 	call WriteBackMapScriptNumber + Bank34NonDebugOffset
 	ret
 
-Unreferenced_Corrupt3_UnusedMap13ScriptPointers:
-	dw Unreferenced_Corrupt3_UnusedMap13Script
-	dw Unreferenced_Corrupt3_UnusedMap13NPCIDs
+Unreferenced_Corrupt3_SilentHillLabBackUnusedScriptPointers:
+	dw Unreferenced_Corrupt3_SilentHillLabBackUnusedScript
+	dw Unreferenced_Corrupt3_SilentHillLabBackUnusedNPCIDs
 
-Unreferenced_Corrupt3_UnusedMap13NPCIDs:
+Unreferenced_Corrupt3_SilentHillLabBackUnusedNPCIDs:
 	db $FF
 
-Unreferenced_Corrupt3_UnusedMap13SignPointers:
+Unreferenced_Corrupt3_SilentHillLabBackUnusedSignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt3_UnusedMap13_TextPointers::
+Unreferenced_Corrupt3_SilentHillLabBackUnused_TextPointers::
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
 
-Unreferenced_Corrupt3_UnusedMap13Script:
-	ld hl, Unreferenced_Corrupt3_UnusedMap13NPCIDs
-	ld de, Unreferenced_Corrupt3_UnusedMap13SignPointers
+Unreferenced_Corrupt3_SilentHillLabBackUnusedScript:
+	ld hl, Unreferenced_Corrupt3_SilentHillLabBackUnusedNPCIDs
+	ld de, Unreferenced_Corrupt3_SilentHillLabBackUnusedSignPointers
 	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
 
