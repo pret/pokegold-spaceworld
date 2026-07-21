@@ -25,6 +25,7 @@ ROM0
 	"Serial interrupt vector"
 	org $0060
 	"Joypad interrupt vector"
+	org $0068
 	"High Home Garbage"
 	org $0100
 	"Entry point"
