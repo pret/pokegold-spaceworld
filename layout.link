@@ -225,10 +225,12 @@ ROMX $3f
 	"Bank 3f Garbage"
 WRAM0
 	"Music engine RAM"
-	org $c200
 	"OAM Buffer"
-	org $c5e8
 	"Map Buffer"
+	"Video"
+	"Options"
+	"Game Data"
+	"Party"
 	org $dfff
 	"Stack Bottom"
 VRAM 0
@@ -236,7 +238,7 @@ VRAM 0
 SRAM 0
 	"Sprite Buffers"
 	org $a600
-	"Unknown, bank 0"
+	"Save Game Data"
 	org $b800
 	"SRAM Window Stack"
 SRAM 1

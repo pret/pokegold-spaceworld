@@ -1221,14 +1221,14 @@ PartyGiveMail:
 	call Call_ExitMenu
 	call WaitBGMap
 	ld a, [wCurPartyMon]
-	ld hl, sBox5End
+	ld hl, sPartyMailBackup
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, wMovementBufferCount
 	ld bc, MAIL_STRUCT_LENGTH
-	ld a, 2
+	ld a, BANK(sPartyMailBackup)
 	call OpenSRAM
 	call CopyBytes
 	call CloseSRAM
@@ -1271,12 +1271,12 @@ PartyMailMenu:
 	jr .exit
 .GiveMail
 	ld a, [wCurPartyMon]
-	ld hl, sBox5End
+	ld hl, sPartyMailBackup
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld bc, MAIL_STRUCT_LENGTH
 	ld de, wMovementBufferCount
-	ld a, 2
+	ld a, BANK(sPartyMailBackup)
 	call OpenSRAM
 	call CopyBytes
 	call CloseSRAM

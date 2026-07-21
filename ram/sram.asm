@@ -8,22 +8,19 @@ sSpriteBuffer1:: ds SPRITEBUFFERSIZE
 sSpriteBuffer2:: ds SPRITEBUFFERSIZE
 ENDU
 
-
-SECTION "Unknown, bank 0", SRAM
+SECTION "Save Game Data", SRAM
 
 sOptions:: ds 7
 	ds 1
 
-; TODO: Replace the big ds blocks with proper RAM ranges when rgbds stops throwing errors.
-sGameData:: ds $7d2 ; wGameDataEnd - wGameData
+sGameData:: ds wGameDataEnd - wGameData ; wGameDataEnd - wGameData
 sGameDataEnd::
 
-sGameData2:: ds $71 ; wGameData2End - wGameData2
+sGameData2:: ds wGameData2End - wGameData2
 sGameData2End::
 
-
 SECTION "Save Pokemon Data", SRAM
-sPokemonData::  ds $3d9 ; wPokemonDataEnd - wPokemonData
+sPokemonData::  ds wPokemonDataEnd - wPokemonData
 
 
 SECTION "SRAM Window Stack", SRAM
@@ -49,6 +46,11 @@ SECTION "Boxes 1-5", SRAM
 ; sBox1 - sBox5
 	boxes 5
 
+sPartyMailBackup::
+; sPartyMon1MailBackup - sPartyMon6MailBackup
+for n, 1, PARTY_LENGTH + 1
+sPartyMon{d:n}MailBackup:: mailmsg sPartyMon{d:n}MailBackup
+endr
 
 SECTION "Boxes 6-10", SRAM
 
@@ -64,13 +66,6 @@ sPartyMail::
 for n, 1, PARTY_LENGTH + 1
 sPartyMon{d:n}Mail:: mailmsg sPartyMon{d:n}Mail
 endr
-
-sPartyMailBackup::
-; sPartyMon1MailBackup - sPartyMon6MailBackup
-for n, 1, PARTY_LENGTH + 1
-sPartyMon{d:n}MailBackup:: mailmsg sPartyMon{d:n}MailBackup
-endr
-
 
 SECTION "Checksum", SRAM
 sChecksum:: ds 3

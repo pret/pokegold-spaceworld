@@ -108,7 +108,7 @@ _SwitchPartyMons::
 	pop de
 	ld hl, wSwitchItemBuffer
 	call .CopyName
-	ld hl, sPartyMon1MailMessage
+	ld hl, sPartyMail
 	ld a, [wSwitchMonTo]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
@@ -118,7 +118,7 @@ _SwitchPartyMons::
 	ld a, $02
 	call OpenSRAM
 	call CopyBytes
-	ld hl, sPartyMon1MailMessage
+	ld hl, sPartyMail
 	ld a, [wSwitchMonFrom]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
