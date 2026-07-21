@@ -71,7 +71,7 @@ BattleCommand_BatonPass:
 	call ClearBox
 	ld b, SGB_BATTLE_COLORS
 	call GetSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call .BatonPass_LinkPlayerSwitch
 
 	callfar PassedBattleMonEntrance

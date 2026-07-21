@@ -32,7 +32,7 @@ FieldDebug_Toolgear:
 	callfar SetTime
 
 .UpdateDayNightCycle:
-	callfar Function8c325
+	callfar ChangeTimeOfDayPal
 	call UpdateTimePals
 	ld a, FIELDDEBUG_RETURN_CLOSE
 	ret

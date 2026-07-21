@@ -1,5 +1,4 @@
-DEF UP_ARROW      EQU $f0
-DEF DOWN_ARROW    EQU $ee
+DEF TIMESET_UP_ARROW EQU '円' ; $f0
 
 SetClockDialog:
 	call SetClockDialog_Init
@@ -73,11 +72,11 @@ SetClockDialog_PrintUpDownArrows:
 
 ; Print up arrow
 	hlcoord 18, 14
-	ld [hl], UP_ARROW
+	ld [hl], TIMESET_UP_ARROW
 
 ; Print down arrow
 	hlcoord 18, 16
-	ld [hl], DOWN_ARROW
+	ld [hl], '▼'
 	ret
 
 .clear_arrows

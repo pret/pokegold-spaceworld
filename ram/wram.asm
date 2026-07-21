@@ -82,6 +82,7 @@ wSFXDuration:: db
 
 wMusicInitEnd::
 
+	ds 68
 
 SECTION "OAM Buffer", WRAM0
 
@@ -542,7 +543,7 @@ ENDU
 	ds 50
 wActualBattleAnimEnd::
 
-	ds $1a3 ; TODO
+	ds $1a3
 
 wBattle::
 wEnemyMoveStruct:: move_struct wEnemyMoveStruct
@@ -759,10 +760,9 @@ wBattleWeather:: db
 wWeatherCount:: db
 
 ENDU
-
-
-SECTION "CB14", WRAM0[$CB14]
 wBattleEnd::
+
+SECTION "Video", WRAM0
 
 UNION
 wRedrawRowOrColumnSrcTiles::
@@ -780,20 +780,16 @@ wRedrawFlashlightWidthHeight:: db
 ; in units of two tiles (people event meta tile)
 ENDU
 
-
-SECTION "CB3C", WRAM0[$CB3C]
 wTileAnimBuffer:: ds 1 tiles
 
-
-SECTION "CB4C", WRAM0[$CB4C]
 UNION
 wOtherPlayerLinkMode:: db
 wOtherPlayerLinkAction::
 wBattleAction:: db
-	ds 3 ; TODO
+	ds 3
 
 wPlayerLinkAction:: db
-	ds 4 ; TODO
+	ds 4
 NEXTU
 wLinkReceivedSyncBuffer:: ds 5
 wLinkPlayerSyncBuffer:: ds 5
@@ -807,8 +803,7 @@ wSelectedItem::
 wCurSpecies:: db
 wNamedObjectTypeBuffer:: db
 
-
-SECTION "CB5E", WRAM0[$CB5E]
+	ds 1
 wJumptableIndex:: db
 
 wSlotsDelay::
@@ -845,9 +840,6 @@ wPlayerStepVectorY:: db
 wPlayerStepFlags:: db
 wPlayerStepDirection:: db
 
-
-SECTION "CB70", WRAM0[$CB70]
-
 wQueuedMinorObjectGFX:: db
 
 wVBCopyFarSize:: db
@@ -860,9 +852,9 @@ wMovementObject:: db
 
 wIndexedMovement2Pointer:: dw
 
+	ds 18
 
-SECTION "Collision buffer", WRAM0[$CB90]
-
+; collision buffer
 wTileDown::  db
 wTileUp::    db
 wTileLeft::  db
@@ -871,13 +863,8 @@ wTileRight:: db
 wScreenSave::
 	ds 6 * 5
 
-
-SECTION "CBB2", WRAM0[$CBB2]
 wToolgearBuffer::
 	ds $40
-
-
-SECTION "CBF2", WRAM0[$CBF2]
 
 wWindowData::
 wWindowStackPointer:: dw
@@ -890,8 +877,7 @@ wActiveBackpackPocket:: db
 wScrollingMenuCursorPosition:: db
 wWindowStackSize:: db
 
-
-SECTION "CC02", WRAM0[$CC02]
+	ds 8
 
 wMenuDataHeader::
 wMenuFlags:: db
@@ -959,8 +945,8 @@ wMenuCursorX:: db
 wCursorOffCharacter:: db
 wCursorCurrentTile:: dw
 
+	ds 3
 
-SECTION "CC32", WRAM0[$CC32] ; Please merge when more is disassembled
 wVBlankJoyFrameCounter:: db
 
 wVBlankOccurred:: db
@@ -990,7 +976,10 @@ wMovementBufferObject:: db
 	ptrba wMovementBufferPointer
 
 wMovementBuffer::
-	ds 55
+wMovementXBuffer:: db
+wMovementYBuffer:: db
+wMovementSpriteViewerDirection:: db
+	ds 53
 
 NEXTU
 
@@ -1052,8 +1041,7 @@ wEmotionBubbleSpriteIndex_Old:: db
 
 ENDU
 
-
-SECTION "CC9A", WRAM0[$CC9A]
+	ds 35
 
 wSkatingDirection:: db
 wCompanionCollisionFrameCounter:: db
@@ -1088,13 +1076,11 @@ wLowHealthAlarmBuffer:: db
 
 wTileAnimationTimer:: db
 
-
-SECTION "CCC7", WRAM0[$CCC7]
+	ds 1
 
 wDisableVBlankOAMUpdate:: db
 
-
-SECTION "CCCA", WRAM0[$CCCA]
+	ds 2
 
 wBGP:: db
 wOBP0:: db
@@ -1104,9 +1090,6 @@ wNumHits:: db
 
 wDisableVBlankWYUpdate:: db
 wSGB:: db
-
-
-SECTION "CCD0", WRAM0[$CCD0]
 
 wSGBPalBuffer:: db
 wPlayerHPPal:: db
@@ -1119,8 +1102,6 @@ wCurHPPal:: db
 
 wSGBPals::  ds PALPACKET_LENGTH * 3
 
-SECTION "CD11", WRAM0[$CD11]
-
 wMonOrItemNameBuffer:: ds MON_NAME_LENGTH
 
 	ds MON_NAME_LENGTH
@@ -1131,8 +1112,7 @@ wTMHMMoveNameBackup:: ds 8
 
 wStringBuffer1:: ds STRING_BUFFER_LENGTH
 
-
-SECTION "CD31", WRAM0[$CD31]
+	ds 1
 
 UNION
 wStartDay:: db
@@ -1152,8 +1132,7 @@ wGainBoostedExp:: db
 
 ENDU
 
-
-SECTION "CD3C", WRAM0[$CD3C]
+	ds 1
 
 wPartyMenuCursor::
 wBillsPCCursor:: db
@@ -1212,10 +1191,13 @@ wBattleResult:: db
 wChosenStarter:: db
 wCurMartCount:: db
 
+	ds 15
 
-SECTION "CD70", WRAM0[$CD70]
 wListPointer:: dw
 wNamesPointer:: dw
+
+; Start of WRAM 1 in pokegold
+
 wItemAttributesPointer:: dw
 
 wCurItem:: db
@@ -1467,7 +1449,9 @@ wTimeOfDay:: db
 
 wNewGameWRAMEnd::
 
-SECTION "Options", WRAM0[$CE5F]
+	ds 32
+
+SECTION "Options", WRAM0
 
 wOptions::
 ; bit 0-2: number of frames to delay when printing text
@@ -1497,6 +1481,8 @@ wDebugFlags:: db
 wDebugFlags2:: db
 wDebugFlags3:: db
 wDebugFlags4:: db
+
+SECTION "Game Data", WRAM0
 
 wGameData::
 wPlayerName:: ds 6
@@ -1551,7 +1537,7 @@ wToolgearFlags:: db
 ; |    \--- transfer toolgear to window
 ; \-------- hide toolgear
 
-	ds 2 ; TODO
+	ds 2
 
 wTimeOfDayPal:: db
 ; Applied according to wCurTimeOfDay from wTimeOfDayPalset
@@ -1561,7 +1547,7 @@ wTimeOfDayDebugFlags:: db
 ; |      \- show player coords in toolgear instead of time
 ; \-------- switch overworld palettes according to minutes not hours
 
-	ds 3 ; TODO
+	ds 3
 wTimeOfDayPalFlags:: db
 ; 76543210
 ; \-------- disable overworld palette switch
@@ -1620,9 +1606,8 @@ wPlayerState:: db
 wPlayerStarter:: db
 wRivalStarter:: db
 
-
-SECTION "Map Scene ID & Flags", WRAM0[$D29A]
-
+	ds 51
+; map scene ids
 wPlayerHouse2FSceneID:: db
 wPlayerHouse1FSceneID:: db
 wSilentHillSceneID:: db
@@ -1638,7 +1623,7 @@ wSilentHillsSceneID:: db
 wOldCityPokecenter2FSceneID:: db
 
 	ds 243
-
+; map flags
 wPlayerHouse2FFlags:: db
 wPlayerHouse1FFlags:: db
 wSilentHillFlags:: db
@@ -1657,8 +1642,7 @@ wOldCityPokecenter2FFlags:: db
 
 wEventFlags:: flag_array NUM_EVENTS
 
-
-SECTION "D4A7", WRAM0[$D4A7]
+	ds 136
 
 ; Bit 0 set when exiting a battle.
 ; Bit 1 set when viewing summary/opening new dex entry, and reset when closing new dex entry.
@@ -1681,8 +1665,7 @@ wJoypadFlags:: db
 	ds 1
 wMovementFlags_Old:: db
 
-
-SECTION "wDigWarpNumber", WRAM0[$D4B2]
+	ds 4
 
 wDigWarpNumber:: db
 
@@ -1695,22 +1678,20 @@ wCurBox:: db
 
 wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES
 
-
-SECTION "Warp data", WRAM0[$D513]
-
+; warp data
 wWarpNumber:: db
 
 wCurrMapWarpCount:: db
 
 wCurrMapWarps::
-REPT 32 ; TODO: confirm this
+REPT 32
 	ds 5
 ENDR
 
 wCurMapBGEventCount:: db
 
 wCurrMapBGEvents::
-REPT 16 ; TODO: confirm this
+REPT 16
 	ds 4
 ENDR
 
@@ -1735,17 +1716,17 @@ wGameData2::
 wUnusedAddOutdoorSpritesReturnValue:: db
 wBGMapAnchor:: dw
 
-wUsedSprites::
-	ds 2
+wUsedSprites:: db
+wUsedFollowerSprites:: db
 wUsedNPCSprites::
 	ds 8
 wUsedStaticSprites::
 	ds 2
 wUsedSpritesEnd::
 
+	ds 5
 
-SECTION "Map header", WRAM0[$D656]
-
+; map header
 wMapGroup:: db
 wMapId:: db
 
@@ -1791,6 +1772,8 @@ wTilesetAnim:: dw
 wTilesetEnd::
 
 wGameData2End::
+
+SECTION "Party", WRAM0
 
 wPokemonData::
 wPartyCount:: db
@@ -1855,17 +1838,14 @@ wBreedMon2:: box_struct wBreedMon2
 wBreedMonGenders:: db
 wOTPlayerName:: ds PLAYER_NAME_LENGTH
 
-
-SECTION "D913", WRAM0[$D913]
+	ds 15
 
 wOTPartyData::
 wOTPartyCount:: db
 wOTPartySpecies:: ds PARTY_LENGTH
 wOTPartySpeciesEnd:: db
 
-
-SECTION "Wild mon buffer", WRAM0[$D91B]
-
+; wildmon buffer
 UNION
 wWildMonData::
 

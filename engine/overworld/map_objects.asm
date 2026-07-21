@@ -807,7 +807,7 @@ FacePlayerObject:
 	cpl
 	ret
 
-Stubbed_UpdateYOffset:
+Stubbed_SwayObject:
 ; dummied out
 	ret
 	ld hl, OBJECT_1E
@@ -1063,10 +1063,10 @@ StepFunction_TeleportTo:
 	call ClearObjectJumptableIndex
 	ret
 
-Unreferenced_Function4b22:
+Unreferenced_StrengthBoulderDust_Old:
 	call ClearObjectJumptableIndex
 	; fallthrough
-Stub_Function4b25:
+Stub_SpawnStrengthBoulderDust_Old:
 	ret
 
 SpawnShadow:
@@ -1126,7 +1126,7 @@ StepFunction_Sleep:
 	ret
 
 StepFunction_Standing:
-	call Stubbed_UpdateYOffset
+	call Stubbed_SwayObject
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STAND
@@ -1136,7 +1136,7 @@ StepFunction_Standing:
 	ret
 
 StepFunction_NPCWalk:
-	call Stubbed_UpdateYOffset
+	call Stubbed_SwayObject
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STEP
@@ -1806,7 +1806,7 @@ StepFunction_PlayerJump:
 	maskbits NUM_DIRECTIONS
 	cp d
 	ret z
-	jp Stub_Function4b25
+	jp Stub_SpawnStrengthBoulderDust_Old
 
 ApplyMovementToFollower:
 	ld e, a

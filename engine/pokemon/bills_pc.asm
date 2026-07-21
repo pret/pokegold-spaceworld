@@ -13,7 +13,7 @@ _BillsPC:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
 .loop
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	xor a
 	ld [wWhichIndexSet], a
 	call OpenMenu
@@ -469,7 +469,7 @@ _ViewPKMN:
 .loop
 	call ClearBGPalettes
 	call .InitViewPokemonDisplay
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld hl, BillsPC_ViewMenuHeader
 	call CopyMenuHeader
 	ld a, [wBillsPCCursor]
