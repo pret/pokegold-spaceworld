@@ -183,7 +183,7 @@ DebugSetUpPlayer::
 	ret
 
 DebugFillPokedex::
-	ld b, $1F
+	ld b, NUM_POKEMON / 8
 	ld a, $FF
 .loop
 	ld [hli], a
@@ -209,34 +209,34 @@ FillBagWithList::
 	ret
 
 DebugBagItems::
-	db ITEM_IMPORTANT_BAG, $01
-	db ITEM_BAG, $01
-	db ITEM_TM_HOLDER, $01
-	db ITEM_BALL_HOLDER, $01
-	db ITEM_BICYCLE, $01
-	db ITEM_MAIL, $06
-	db ITEM_ULTRA_BALL, $1E
-	db ITEM_POKE_BALL, $63
-	db ITEM_POTION, $1E
-	db ITEM_RARE_CANDY, $14
-	db ITEM_MOON_STONE, $63
-	db ITEM_FULL_HEAL, $63
-	db ITEM_PROTEIN, $63
-	db ITEM_QUICK_NEEDLE, $63
-	db ITEM_SNAKESKIN, $63
-	db ITEM_KINGS_ROCK, $63
-	db ITEM_FLEE_FEATHER, $63
-	db ITEM_FOCUS_ORB, $63
-	db ITEM_SHARP_SCYTHE, $63
-	db ITEM_DETECT_ORB, $63
-	db $FF
+	db ITEM_IMPORTANT_BAG, 1
+	db ITEM_BAG,           1
+	db ITEM_TM_HOLDER,     1
+	db ITEM_BALL_HOLDER,   1
+	db ITEM_BICYCLE,       1
+	db ITEM_MAIL,          6
+	db ITEM_ULTRA_BALL,   30
+	db ITEM_POKE_BALL,    99
+	db ITEM_POTION,       30
+	db ITEM_RARE_CANDY,   20
+	db ITEM_MOON_STONE,   99
+	db ITEM_FULL_HEAL,    99
+	db ITEM_PROTEIN,      99
+	db ITEM_QUICK_NEEDLE, 99
+	db ITEM_SNAKESKIN,    99
+	db ITEM_KINGS_ROCK,   99
+	db ITEM_FLEE_FEATHER, 99
+	db ITEM_FOCUS_ORB,    99
+	db ITEM_SHARP_SCYTHE, 99
+	db ITEM_DETECT_ORB,   99
+	db -1
 
 GiveRandomPokemon::
 	and a
 	ret z
 .loop
 	push af
-	call RandomUnder246
+	call RandomUnderNyula
 	ld b, $0A
 	call GivePokemon
 	pop af
@@ -287,7 +287,7 @@ AddRandomPokemonToBox:
 	push af
 	xor a
 	ld [wEnemySubStatus5], a
-	call RandomUnder246
+	call RandomUnderNyula
 	ld [wTempEnemyMonSpecies], a
 	ld a, 5
 	ld [wCurPartyLevel], a
@@ -300,12 +300,12 @@ AddRandomPokemonToBox:
 	jr nz, .loop
 	ret
 
-RandomUnder246::
+RandomUnderNyula::
 .loop
 	call Random
 	and a
 	jr z, .loop
-	cp 246
+	cp DEX_NYULA
 	jr nc, .loop
 	ret
 
