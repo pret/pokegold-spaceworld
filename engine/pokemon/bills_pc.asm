@@ -321,18 +321,10 @@ endr
 	call PlaceString
 	ret
 
-; TODO: rework this to use a nice macro?
 .BoxNumbers:
-	db "№．０１　@"
-	db "№．０２　@"
-	db "№．０３　@"
-	db "№．０４　@"
-	db "№．０５　@"
-	db "№．０６　@"
-	db "№．０７　@"
-	db "№．０８　@"
-	db "№．０９　@"
-	db "№．１０　@"
+for x, 1, NUM_BOXES + 1
+	db "№．{02d:x}　@"
+endr
 
 BillsPC_PrintBoxCountAndCapacity:
 	ld h, d
@@ -357,7 +349,7 @@ BillsPC_PrintBoxCountAndCapacity:
 	next "　@"
 
 .OutOf30: ; max mon per box
-	db "／３０@"
+	db "／{d:MONS_PER_BOX}@"
 
 .GetBoxCount:
 	ld a, [wMenuSelection]

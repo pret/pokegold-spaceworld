@@ -3415,18 +3415,17 @@ BattleMenu_PKMN:
 	call SetDefaultBGPAndOBP
 	jp BattleMenu
 
-; TODO: Do the tile identifiers look right (are they not vFrontPic, vBackPic)?...
 .Battle_StatsScreen:
 	call DisableLCD
 
-	ld hl, vChars2 tile $31
+	ld hl, vBackPic
 	ld de, vChars0
 	ld bc, $11 tiles
 	call CopyBytes
 
-	ld hl, vChars2
+	ld hl, vFrontPic
 	ld de, vChars0 tile $11
-	ld bc, $31 tiles
+	ld bc, 7 * 7 tiles
 	call CopyBytes
 
 	call EnableLCD
@@ -3441,13 +3440,13 @@ BattleMenu_PKMN:
 	call DisableLCD
 
 	ld hl, vChars0
-	ld de, vChars2 tile $31
+	ld de, vBackPic
 	ld bc, $11 tiles
 	call CopyBytes
 
 	ld hl, vChars0 tile $11
-	ld de, vChars2
-	ld bc, $31 tiles
+	ld de, vFrontPic
+	ld bc, 7 * 7 tiles
 	call CopyBytes
 
 	call EnableLCD
