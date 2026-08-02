@@ -2,12 +2,16 @@
 	connection north, OldCity, OLD_CITY, -5
 	connection east, Route1, ROUTE_1, 9
 
+	object_const_def
+	object_const RIVAL
+	object_const KIMONO_GIRL
+
 Route2_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
-	warp_event  8,  5, ROUTE_1_GATE_1F, 1, 53
-	warp_event  9,  5, ROUTE_1_GATE_1F, 2, 53
+	warp_event  8,  5, ROUTE_2_GATE_1F, 1, 53
+	warp_event  9,  5, ROUTE_2_GATE_1F, 2, 53
 	warp_event  8, 25, QUIET_HILLS, 6, 213
 	warp_event  9, 25, QUIET_HILLS, 9, 213
 

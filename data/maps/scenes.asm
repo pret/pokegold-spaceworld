@@ -13,8 +13,8 @@ MapScenes::
 	scene_pointers RIVAL_HOUSE,            RivalHouse
 	scene_pointers ROUTE_1,                Route1
 	scene_pointers ROUTE_2,                Route2
-	scene_pointers ROUTE_1_GATE_1F,        Route1Gate1F
-	scene_pointers ROUTE_1_GATE_2F,        Route1Gate2F
+	scene_pointers ROUTE_2_GATE_1F,        Route2Gate1F
+	scene_pointers ROUTE_2_GATE_2F,        Route2Gate2F
 	scene_pointers QUIET_HILLS,            QuietHills
 	scene_pointers OLD_CITY_POKECENTER_2F, OldCityPokecenter2F
 	db -1

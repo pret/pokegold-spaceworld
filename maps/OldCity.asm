@@ -17,8 +17,8 @@ OldCity_MapEvents::
 	warp_event 10, 26, OLD_CITY_HOUSE, 1, 370
 	warp_event 27, 28, OLD_CITY_POKECENTER_1F, 1, 404
 	warp_event  3, 31, OLD_CITY_KURTS_HOUSE, 1, 418
-	warp_event 18, 30, ROUTE_1_GATE_1F, 3, 426
-	warp_event 19, 30, ROUTE_1_GATE_1F, 4, 426
+	warp_event 18, 30, ROUTE_2_GATE_1F, 3, 426
+	warp_event 19, 30, ROUTE_2_GATE_1F, 4, 426
 	warp_event 22, 26, OLD_CITY_SCHOOL, 1, 376
 
 	def_bg_events

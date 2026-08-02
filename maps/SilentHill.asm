@@ -3,6 +3,12 @@
 	connection west, Route1, ROUTE_1, 0
 	connection east, Route23, ROUTE_23, 0
 
+	object_const_def
+	object_const RIVAL
+	object_const BLUE
+	object_const TEACHER
+	object_const SUPER_NERD
+
 SilentHill_MapEvents::
 	dw $4000 ; unknown
 

@@ -1,5 +1,9 @@
 	map_attributes PlayerHouse2F, PLAYER_HOUSE_2F
 
+	object_const_def
+	object_const KEN
+	object_const POKEDOLL
+
 PlayerHouse2F_MapEvents::
 	dw $4000 ; unknown
 
@@ -34,13 +38,13 @@ PlayerHouse2F_TextPointers::
 	dw PlayerHouse2FDollText
 
 PlayerHouse2FNPCIDs1:
-	db 0
-	db 1
-	db $FF
+	npc_id PLAYER_HOUSE_2F_KEN
+	npc_id PLAYER_HOUSE_2F_POKEDOLL
+	db -1
 
 PlayerHouse2FNPCIDs2:
-	db 1
-	db $FF
+	npc_id PLAYER_HOUSE_2F_POKEDOLL
+	db -1
 
 PlayerHouse2FSignPointers:
 	dw PokemonBooksScript

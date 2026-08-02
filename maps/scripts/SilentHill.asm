@@ -7,21 +7,21 @@ SilentHill_ScriptLoader::
 	ret
 
 SilentHillNPCIDs1:
-	db $00
-	db $02
-	db $03
-	db $FF
+	npc_id SILENT_HILL_RIVAL
+	npc_id SILENT_HILL_TEACHER
+	npc_id SILENT_HILL_SUPER_NERD
+	db -1
 
 SilentHillNPCIDs2:
-	db $02
-	db $03
-	db $FF
+	npc_id SILENT_HILL_TEACHER
+	npc_id SILENT_HILL_SUPER_NERD
+	db -1
 
 SilentHillNPCIDs3:
-	db $01
-	db $02
-	db $03
-	db $FF
+	npc_id SILENT_HILL_BLUE
+	npc_id SILENT_HILL_TEACHER
+	npc_id SILENT_HILL_SUPER_NERD
+	db -1
 
 SilentHillScriptPointers::
 	dw SilentHillScript1
@@ -60,9 +60,9 @@ SilentHillScript1:
 	ret nz
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 2
+	ld a, SILENT_HILL_RIVAL
 	call FreezeAllOtherObjects
-	ld a, 2
+	ld a, SILENT_HILL_RIVAL
 	ld hl, SilentHillMovement1
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -92,7 +92,7 @@ SilentHillScript2:
 	call OpenTextbox
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, $02
+	ld a, SILENT_HILL_RIVAL
 	ld hl, SilentHillMovement2
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -126,7 +126,7 @@ SilentHillScript4:
 	ld a, [wYCoord]
 	cp 8
 	jr z, .jump
-	cp 09
+	cp 9
 	jr nz, .bigjump
 .jump
 	call .TalkedToBlue
@@ -134,9 +134,9 @@ SilentHillScript4:
 	call OpenTextbox
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 3
+	ld a, SILENT_HILL_BLUE
 	call CopyMapObjectToReservedObjectStruct
-	ld a, 3
+	ld a, SILENT_HILL_BLUE
 	call FreezeAllOtherObjects
 	ld a, [wYCoord]
 	cp 9
@@ -146,7 +146,7 @@ SilentHillScript4:
 .jump2
 	ld hl, SilentHillMovement4
 .skip
-	ld a, $03
+	ld a, SILENT_HILL_BLUE
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
@@ -196,11 +196,11 @@ SilentHillScript5:
 	call OpenTextbox
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 3
+	ld a, SILENT_HILL_BLUE
 	call FreezeAllOtherObjects
 	ld a, 0
 	call UnfreezeObject
-	ld b, 3
+	ld b, SILENT_HILL_BLUE
 	ld c, 0
 	call StartFollow
 	ld a, [wYCoord]
@@ -211,7 +211,7 @@ SilentHillScript5:
 .jump
 	ld hl, SilentHillMovement6
 .skip
-	ld a, 3
+	ld a, SILENT_HILL_BLUE
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]

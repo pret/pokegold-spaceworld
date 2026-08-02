@@ -1632,8 +1632,8 @@ wSilentHillPokecenterSceneID:: db
 wRivalHouseSceneID:: db
 wRoute1SceneID:: db
 wRoute2SceneID:: db
-wRoute1Gate1FSceneID:: db
-wRoute1Gate2FSceneID:: db
+wRoute2Gate1FSceneID:: db
+wRoute2Gate2FSceneID:: db
 wQuietHillsSceneID:: db
 wOldCityPokecenter2FSceneID:: db
 
@@ -1648,8 +1648,8 @@ wSilentHillPokecenterFlags:: db
 wRivalHouseFlags:: db
 wRoute1Flags:: db
 wRoute2Flags:: db
-wRoute1Gate1FFlags:: db
-wRoute1Gate2FFlags:: db
+wRoute2Gate1FFlags:: db
+wRoute2Gate2FFlags:: db
 wQuietHillsFlags:: db
 wOldCityPokecenter2FFlags:: db
 

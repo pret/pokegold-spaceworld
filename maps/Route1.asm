@@ -1,6 +1,10 @@
 	map_attributes Route1, ROUTE_1
 	connection west, Route2, ROUTE_2, -9
 	connection east, SilentHill, SILENT_HILL, 0
+	
+	object_const_def
+	object_const SUPER_NERD
+	object_const YOUNGSTER
 
 Route1_MapEvents::
 	dw $4000 ; unknown

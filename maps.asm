@@ -30,8 +30,8 @@ INCLUDE "maps/OldCitySchool.asm"
 
 SECTION "West Maps", ROMX
 
-INCLUDE "maps/Route1Gate1F.asm"
-INCLUDE "maps/Route1Gate2F.asm"
+INCLUDE "maps/Route2Gate1F.asm"
+INCLUDE "maps/Route2Gate2F.asm"
 INCLUDE "maps/WestMart1F.asm"
 INCLUDE "maps/WestMart2F.asm"
 INCLUDE "maps/WestMart3F.asm"
@@ -50,6 +50,7 @@ INCLUDE "maps/WestPokecenter2F.asm"
 INCLUDE "maps/WestGym.asm"
 INCLUDE "maps/WestHouse1.asm"
 INCLUDE "maps/WestHouse2.asm"
+
 
 SECTION "High-Tech Maps", ROMX
 
@@ -106,6 +107,7 @@ INCLUDE "maps/NewtypeHouse1.asm"
 INCLUDE "maps/NewtypeDiner.asm"
 INCLUDE "maps/NewtypeHouse2.asm"
 INCLUDE "maps/NewtypeHouse3.asm"
+
 
 SECTION "Route 15 & 18 Maps", ROMX
 
@@ -214,7 +216,7 @@ INCLUDE "maps/NorthPokecenter1F.asm"
 INCLUDE "maps/NorthPokecenter2F.asm"
 
 
-SECTION "Misc Maps", ROMX
+SECTION "Dungeon Maps", ROMX
 
 INCLUDE "maps/PowerPlant1.asm"
 INCLUDE "maps/PowerPlant2.asm"
@@ -249,7 +251,7 @@ INCLUDE "maps/SilentHillLabBack.asm"
 INCLUDE "maps/SilentHillLabBackUnused.asm"
 
 
-SECTION "Town Maps", ROMX
+SECTION "City Maps", ROMX
 
 INCLUDE "maps/dummy_text_pointers.asm"
 INCLUDE "maps/SilentHill.asm"

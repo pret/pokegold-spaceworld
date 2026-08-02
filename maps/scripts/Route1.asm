@@ -9,9 +9,9 @@ Route1ScriptPointers::
 	dw Route1NPCIDs
 
 Route1NPCIDs:
-	db 0
-	db 1
-	db $FF
+	npc_id ROUTE_1_SUPER_NERD
+	npc_id ROUTE_1_YOUNGSTER
+	db -1
 
 Route1SignPointers:
 	dw Route1TextSign1

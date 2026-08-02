@@ -1,4 +1,11 @@
-	map_attributes SilentHillPokecenter, SILENT_HILL_POKECENTER
+	map_attributes SilentHillPokecenter, SILENT_HILL_POKECENTER	
+
+	object_const_def
+	object_const NURSE
+	object_const GENTLEMAN
+	object_const COOLTRAINER_M
+	object_const YOUNGSTER
+	object_const HOUNDOOM
 
 SilentHillPokecenter_MapEvents::
 	dw $4000 ; unknown

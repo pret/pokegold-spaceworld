@@ -29,8 +29,8 @@ ENDM
 	map_const ROUTE_2,                          10, 18 ;  2
 	map_const ROUTE_23,                         30,  9 ;  3
 	map_const SILENT_HILL,                      10,  9 ;  4
-	map_const ROUTE_1_GATE_1F,                   5,  4 ;  5
-	map_const ROUTE_1_GATE_2F,                   4,  3 ;  6
+	map_const ROUTE_2_GATE_1F,                   5,  4 ;  5
+	map_const ROUTE_2_GATE_2F,                   4,  3 ;  6
 	map_const ROUTE_23_GATE,                     5,  4 ;  7
 	map_const PLAYER_HOUSE_1F,                   5,  4 ;  8
 	map_const PLAYER_HOUSE_2F,                   5,  4 ;  9

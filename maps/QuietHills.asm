@@ -1,13 +1,15 @@
 	map_attributes QuietHills, QUIET_HILLS
 
-QuietHills_MapEvents::
-	dw $4000 ; unknown
-
 	object_const_def
 	object_const ROCKER
-	object_const 2F_BATTLE_RECEPTIONIST
-	object_const 2F_GRAMPS
-	object_const TIME_CAPSULE_RECEPTIONIST
+	object_const TRAINER1
+	object_const TRAINER2
+	object_const TRAINER3
+	object_const TRAINER4
+	object_const TRAINER5
+
+QuietHills_MapEvents::
+	dw $4000 ; unknown
 
 	def_warp_events
 	warp_event 49, 28, ROUTE_1, 1, 490

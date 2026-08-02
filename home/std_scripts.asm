@@ -9,28 +9,28 @@ PokemonBooksScript::
 	farcall _PokemonBooksScript
 	ret
 
-PlayerHouse1FFridgeScript::
-	farcall _PlayerHouse1FFridgeScript
+EmptyFridgeScript::
+	farcall _EmptyFridgeScript
 	ret
 
-RivalHouseStoveScript::
-	farcall _RivalHouseStoveScript
+StoveScript::
+	farcall _StoveScript
 	ret
 
-RivalHouseSinkScript::
-	farcall _RivalHouseSinkScript
+SinkScript::
+	farcall _SinkScript
 	ret
 
-RivalHouseTVScript::
-	farcall _RivalHouseTVScript
+TVScript::
+	farcall _TVScript
 	ret
 
 PokecenterSignScript::
 	farcall _PokecenterSignScript
 	ret
 
-RivalHouseWindowScript::
-	farcall _RivalHouseWindowScript
+WindowScript::
+	farcall _WindowScript
 	ret
 
 InitTrainerBattle::

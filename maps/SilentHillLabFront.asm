@@ -1,5 +1,18 @@
 	map_attributes SilentHillLabFront, SILENT_HILL_LAB_FRONT
 
+	object_const_def
+	object_const OAK1
+	object_const OAK2
+	object_const RIVAL1
+	object_const RIVAL2
+	object_const BLUE1
+	object_const BLUE2
+	object_const NANAMI
+	object_const OAKS_AIDE1
+	object_const OAKS_AIDE2
+	object_const POKEDEX1
+	object_const POKEDEX2
+	
 SilentHillLabFront_MapEvents::
 	dw $4000 ; unknown
 
@@ -106,68 +119,76 @@ SilentHillLabFrontScriptPointers::
 	dw SilentHillLabFrontNPCIDs9
 
 SilentHillLabFrontNPCIDs1:
-	db $02
-	db $09
-	db $0A
-	db $FF
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
 SilentHillLabFrontNPCIDs2:
-	db $00
-	db $02
-	db $04
-	db $09
-	db $0A
-	db $FF
+	npc_id SILENT_HILL_LAB_FRONT_OAK1
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
+	npc_id SILENT_HILL_LAB_FRONT_BLUE1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
 SilentHillLabFrontNPCIDs3:
-	db $02
-	db $04
-	db $09
-	db $0A
-	db $FF
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
+	npc_id SILENT_HILL_LAB_FRONT_BLUE1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
 SilentHillLabFrontNPCIDs4:
-	db $04
-	db $09
-	db $0A
-	db $FF
+	npc_id SILENT_HILL_LAB_FRONT_BLUE1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
 SilentHillLabFrontNPCIDs5:
-	db $01
-	db $03
-	db $05
-	db $06
-	db $07
-	db $08
-	db $09
-	db $0A
-	db $FF
+	npc_id SILENT_HILL_LAB_FRONT_OAK2
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL2
+	npc_id SILENT_HILL_LAB_FRONT_BLUE2
+	npc_id SILENT_HILL_LAB_FRONT_NANAMI
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
 SilentHillLabFrontNPCIDs6:
-	db $01
-	db $03
-	db $05
-	db $06
-	db $07
-	db $08
-	db $FF
+	npc_id SILENT_HILL_LAB_FRONT_OAK2
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL2
+	npc_id SILENT_HILL_LAB_FRONT_BLUE2
+	npc_id SILENT_HILL_LAB_FRONT_NANAMI
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	db -1
+
 SilentHillLabFrontNPCIDs7:
-	db $00
-	db $05
-	db $06
-	db $07
-	db $08
-	db $FF
+	npc_id SILENT_HILL_LAB_FRONT_OAK1
+	npc_id SILENT_HILL_LAB_FRONT_BLUE2
+	npc_id SILENT_HILL_LAB_FRONT_NANAMI
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	db -1
+	
 SilentHillLabFrontNPCIDs8: ; (unused?)
-	db $00
-	db $03
-	db $05
-	db $06
-	db $07
-	db $08
-	db $09
-	db $0A
-	db $FF
+	npc_id SILENT_HILL_LAB_FRONT_OAK1
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL2
+	npc_id SILENT_HILL_LAB_FRONT_BLUE2
+	npc_id SILENT_HILL_LAB_FRONT_NANAMI
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
 SilentHillLabFrontNPCIDs9:
-	db $00
-	db $07
-	db $08
-	db $FF
+	npc_id SILENT_HILL_LAB_FRONT_OAK1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	db -1
 
 SilentHillLabFront_TextPointers::
 	dw SilentHillLabFrontText4
@@ -203,9 +224,9 @@ SilentHillLabFrontMoveDown:
 	call SilentHillLabFrontText3
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	call FreezeAllOtherObjects
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	ld hl, SilentHillLabFrontMovement1
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -227,13 +248,13 @@ SilentHillLabFrontScript2:
 SilentHillLabFrontScript3:
 	ld a, 6
 	call FreezeAllOtherObjects
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	call UnfreezeObject
-	ld b, 6
-	ld c, 0
+	ld b, SILENT_HILL_LAB_FRONT_BLUE1
+	ld c, PLAYER_OBJECT
 	call StartFollow
 	ld hl, SilentHillLabFrontMovement2
-	ld a, 6
+	ld a, SILENT_HILL_LAB_FRONT_BLUE1
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
@@ -265,21 +286,21 @@ SilentHillLabFrontScript4:
 	ret
 
 SilentHillLabFrontConversation1:
-	ld a, 4
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
 	ld d, RIGHT
 	call SetObjectFacing
 	ld hl, SilentHillLabFrontTextString20
 	call OpenTextbox
 	ld hl, SilentHillLabFrontTextString4
 	call OpenTextbox
-	ld a, 4
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
 	ld d, UP
 	call SetObjectFacing
 	ld hl, SilentHillLabFrontTextString28
 	call OpenTextbox
 	ld hl, SilentHillLabFrontTextString5
 	call OpenTextbox
-	ld a, 4
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
 	ld d, RIGHT
 	call SetObjectFacing
 	ld hl, SilentHillLabFrontTextString29
@@ -292,9 +313,9 @@ SilentHillLabFrontConversation1:
 SilentHillLabFrontScript5:
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 2
+	ld a, SILENT_HILL_LAB_FRONT_OAK1
 	call FreezeAllOtherObjects
-	ld a, 2
+	ld a, SILENT_HILL_LAB_FRONT_OAK1
 	ld hl, SilentHillLabFrontMovement3
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -313,9 +334,9 @@ SilentHillLabFrontMovement3:
 SilentHillLabFrontScript6:
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 4
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
 	call FreezeAllOtherObjects
-	ld a, 4
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
 	ld hl, SilentHillLabFrontMovement4
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -337,9 +358,9 @@ SilentHillLabFrontMovement4:
 SilentHillLabFrontScript7:
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	call FreezeAllOtherObjects
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	ld hl, SilentHillLabFrontMovement5
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -358,15 +379,15 @@ SilentHillLabFrontMovement5:
 	step_end
 
 SilentHillLabFrontScript8:
-	ld a, 3
+	ld a, SILENT_HILL_LAB_FRONT_OAK2
 	call SetObjectLowPriority
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call SetObjectLowPriority
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	call FreezeAllOtherObjects
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	ld hl, SilentHillLabFrontMovement6
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -388,11 +409,11 @@ SilentHillLabFrontMovement6:
 SilentHillLabFrontScript9:
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call FreezeAllOtherObjects
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call ResetObjectLowPriority
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	ld hl, SilentHillLabFrontMovement7
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -413,24 +434,24 @@ SilentHillLabFrontMovement7:
 	step_end
 
 SilentHillLabFrontScript10:
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	ld d, RIGHT
 	call SetObjectFacing
 	ld hl, SilentHillLabFrontTextString21
 	call OpenTextbox
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	ld d, RIGHT
 	call SetObjectFacing
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	ld d, RIGHT
 	call SetObjectFacing
-	ld a, 3
+	ld a, SILENT_HILL_LAB_FRONT_OAK2
 	call FreezeAllOtherObjects
-	ld a, 3
+	ld a, SILENT_HILL_LAB_FRONT_OAK2
 	call ResetObjectLowPriority
-	ld a, 3
+	ld a, SILENT_HILL_LAB_FRONT_OAK2
 	ld hl, SilentHillLabFrontMovement8
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -491,10 +512,10 @@ SilentHillLabFrontRivalMovePokemon:
 	push hl
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call FreezeAllOtherObjects
 	pop hl
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
@@ -570,9 +591,9 @@ SilentHillLabFrontScript14:
 	call OpenTextbox
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call FreezeAllOtherObjects
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	ld hl, SilentHillLabFrontMovement11
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -622,10 +643,10 @@ SilentHillLabFrontMoveRivalLeave:
 	push hl
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 8
+	ld a, SILENT_HILL_LAB_FRONT_NANAMI
 	call FreezeAllOtherObjects
 	pop hl
-	ld a, 8
+	ld a, SILENT_HILL_LAB_FRONT_NANAMI
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
@@ -648,7 +669,7 @@ SilentHillLabFrontScript17:
 	call OpenTextbox
 	SetEvent SILENT_HILL_LAB_FRONT_RIVAL_BATTLED
 	ld hl, wNumBagItems
-	ld a, 5
+	ld a, ITEM_POKE_BALL
 	ld [wCurItem], a
 	ld a, 6
 	ld [wItemQuantity], a

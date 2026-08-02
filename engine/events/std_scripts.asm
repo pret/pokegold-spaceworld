@@ -45,34 +45,33 @@ _PokemonBooksScript::
 	text "ポケモンえほんが　そろってる！"
 	done
 
-_PlayerHouse1FFridgeScript::
-	ld hl, .PlayerHouse1FFridgeText
+_EmptyFridgeScript::
+	ld hl, .EmptyFridgeText
 	call OpenTextbox
 	ret
 
 ; Player's empty fridge flavor text
-.PlayerHouse1FFridgeText:
+.EmptyFridgeText:
 	text "なかは<⋯⋯>"
 	line "ほとんど　からっぽだ<⋯⋯>"
 	done
 
-_RivalHouseStoveScript::
-	ld hl, .RivalHouseStoveText
+_StoveScript::
+	ld hl, .StoveText
 	call OpenTextbox
 	ret
 
-; Player's stove
-.RivalHouseStoveText:
+.StoveText:
 	text "ガスコンロの　ひは　きえている"
 	line "あんぜん　だいいち！"
 	done
 
-_RivalHouseSinkScript::
-	ld hl, .RivalHouseSinkText
+_SinkScript::
+	ld hl, .SinkText
 	call OpenTextbox
 	ret
 
-.RivalHouseSinkText:
+.SinkText:
 	text "ピカピカの　ながしだい！"
 	line "こんやの　メニューは　なんだろう？"
 	done
@@ -87,37 +86,37 @@ _PokecenterSignScript::
 	line "ポケモンセンター"
 	done
 
-_RivalHouseWindowScript::
-	ld hl, .RivalHouseWindowText
+_WindowScript::
+	ld hl, .WindowText
 	call OpenTextbox
 	ret
 
-.RivalHouseWindowText:
+.WindowText:
 	text "まどが　よごれているぞ？"
 	done
 
 ; Various scenes from the Pokemon anime that play on the player and rival's TVs
-_RivalHouseTVScript::
+_TVScript::
 	ld a, [wTimeOfDay]
 	and a
 	jr nz, .not_day
-	ld hl, .RivalHouseTVDayText
+	ld hl, .TVDayText
 	jr .done
 
 .not_day
 	dec a
 	jr nz, .not_night
-	ld hl, .RivalHouseTVNightText
+	ld hl, .TVNightText
 	jr .done
 
 .not_night
-	ld hl, .RivalHouseTVMorningText
+	ld hl, .TVMorningText
 .done
 	call OpenTextbox
 	ret
 
 ; Scene from "Pokémon: I Choose You!"
-.RivalHouseTVDayText:
+.TVDayText:
 	text "ピカチュウが　オニスズメと"
 	line "たたかっている<⋯⋯>"
 	cont "サトシが　なみだ　ぐんでいる<⋯⋯>"
@@ -125,14 +124,14 @@ _RivalHouseTVScript::
 	done
 
 ; Scene from "Primeape Goes Bananas"
-.RivalHouseTVNightText:
+.TVNightText:
 	text "オコリザルが　あばれている<⋯⋯>"
 	cont "サトシが　にげまわってる！<⋯⋯>"
 	cont "#アニメだ！"
 	done
 
 ; Scene from "Bulbasaur's Mysterious Garden"
-.RivalHouseTVMorningText:
+.TVMorningText:
 	text "フシギダネが　すねている<⋯⋯>"
 	cont "サトシが　こまっている<⋯⋯>"
 	cont "#アニメだ！"

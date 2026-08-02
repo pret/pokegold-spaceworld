@@ -1,10 +1,14 @@
-	map_attributes Route1Gate2F, ROUTE_1_GATE_2F
+	map_attributes Route2Gate2F, ROUTE_2_GATE_2F
 
-Route1Gate2F_MapEvents::
+	object_const_def
+	object_const LASS
+	object_const TWIN
+
+Route2Gate2F_MapEvents::
 	dw $4000 ; unknown
 
 	def_warp_events
-	warp_event  5,  0, ROUTE_1_GATE_1F, 5, 13
+	warp_event  5,  0, ROUTE_2_GATE_1F, 5, 13
 
 	def_bg_events
 	bg_event  1,  0, 1
@@ -14,44 +18,44 @@ Route1Gate2F_MapEvents::
 	object_event  3,  3, SPRITE_LASS, SPRITEMOVEFN_RANDOM_WALK_XY, 1, 1, -1, -1, 0, 0, 0, 0, 0, 0
 	object_event  6,  4, SPRITE_TWIN, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
-Route1Gate2F_Blocks::
-INCBIN "maps/Route1Gate2F.blk"
+Route2Gate2F_Blocks::
+INCBIN "maps/Route2Gate2F.blk"
 
-Route1Gate2F_ScriptLoader::
+Route2Gate2F_ScriptLoader::
 	map_generic_scriptloader
 	map_generic_scriptpointers
 	map_generic_npcids
 
-Route1Gate2FSignPointers:
-	dw Route1Gate2FTextSign1
-	dw Route1Gate2FTextSign2
-Route1Gate2F_TextPointers::
-	dw Route1Gate2FTextNPC1
-	dw Route1Gate2FTextNPC2
+Route2Gate2FSignPointers:
+	dw Route2Gate2FTextSign1
+	dw Route2Gate2FTextSign2
+Route2Gate2F_TextPointers::
+	dw Route2Gate2FTextNPC1
+	dw Route2Gate2FTextNPC2
 
 	map_generic_script
 
-Route1Gate2FTextNPC1:
-	ld hl, Route1Gate2FTextString1
+Route2Gate2FTextNPC1:
+	ld hl, Route2Gate2FTextString1
 	call OpenTextbox
 	ret
 
-Route1Gate2FTextNPC2:
-	ld hl, Route1Gate2FTextString2
+Route2Gate2FTextNPC2:
+	ld hl, Route2Gate2FTextString2
 	call OpenTextbox
 	ret
 
-Route1Gate2FTextSign1:
-	ld hl, Route1Gate2FTextString3
+Route2Gate2FTextSign1:
+	ld hl, Route2Gate2FTextString3
 	call OpenTextbox
 	ret
 
-Route1Gate2FTextSign2:
-	ld hl, Route1Gate2FTextString4
+Route2Gate2FTextSign2:
+	ld hl, Route2Gate2FTextString4
 	call OpenTextbox
 	ret
 
-Route1Gate2FTextString1:
+Route2Gate2FTextString1:
 	text "ガンテツさんって　しってる？"
 
 	para "ガンテツさんに"
@@ -59,7 +63,7 @@ Route1Gate2FTextString1:
 	cont "トレーナーとして　たいしたもの　よ"
 	done
 
-Route1Gate2FTextString2:
+Route2Gate2FTextString2:
 	text "あなた　かんこうで　きたの？"
 	line "なら　ざんねんね"
 
@@ -69,7 +73,7 @@ Route1Gate2FTextString2:
 	cont "ものじゃないわ"
 	done
 
-Route1Gate2FTextString3:
+Route2Gate2FTextString3:
 	text "<PLAYER>は"
 	line "ぼうえんきょうを　のぞいた！"
 
@@ -77,7 +81,7 @@ Route1Gate2FTextString3:
 	line "たかーい　とう　が　みえる！"
 	done
 
-Route1Gate2FTextString4:
+Route2Gate2FTextString4:
 	text "<PLAYER>は"
 	line "ぼうえんきょうを　のぞいた！"
 

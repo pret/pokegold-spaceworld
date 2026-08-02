@@ -62,11 +62,11 @@ RivalHouseNPCIDs2:
 
 RivalHouseTextPointers2::
 	dw RivalHouseNPCText1
-	dw RivalHouseTVScript
+	dw TVScript
 	dw PokemonBooksScript
-	dw RivalHouseSinkScript
-	dw RivalHouseStoveScript
-	dw RivalHouseWindowScript
+	dw SinkScript
+	dw StoveScript
+	dw WindowScript
 
 RivalHouseNPCText1:
 	CheckEvent RIVAL_HOUSE_READ_RIVAL_EMAIL

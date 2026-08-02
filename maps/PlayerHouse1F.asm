@@ -1,5 +1,8 @@
 	map_attributes PlayerHouse1F, PLAYER_HOUSE_1F
 
+	object_const_def
+	object_const MOM
+
 PlayerHouse1F_MapEvents::
 	dw $4000 ; unknown
 
@@ -31,11 +34,11 @@ PlayerHouse1FScriptPointers::
 	dw PlayerHouse1FNPCIDs2
 
 PlayerHouse1FNPCIDs1:
-	db $FF
+	db -1
 
 PlayerHouse1FNPCIDs2:
-	db 0
-	db $FF
+	npc_id PLAYER_HOUSE_1F_MOM
+	db -1
 
 PlayerHouse1FScript1:
 	ld hl, PlayerHouse1FNPCIDs1
@@ -50,10 +53,10 @@ PlayerHouse1FScript2:
 	ret
 
 PlayerHouse1FSignPointers:
-	dw RivalHouseStoveScript
-	dw RivalHouseSinkScript
-	dw PlayerHouse1FFridgeScript
-	dw RivalHouseTVScript
+	dw StoveScript
+	dw SinkScript
+	dw EmptyFridgeScript
+	dw TVScript
 	dw PokemonBooksScript
 PlayerHouse1F_TextPointers::
 	dw PlayerHouse1FNPCText1

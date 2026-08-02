@@ -181,7 +181,7 @@ ROMX $2d
 ROMX $2e
 	"Bank 2e Garbage"
 ROMX $2f
-	"Misc Maps"
+	"Dungeon Maps"
 	"Bank 2f Garbage"
 ROMX $30
 	"Sprites 1"
@@ -201,7 +201,7 @@ ROMX $34
 ROMX $35
 	"Bank 35 Garbage"
 ROMX $36
-	"Town Maps"
+	"City Maps"
 	"Route Maps"
 	"Silent Hill Scripts"
 	"Set Time"

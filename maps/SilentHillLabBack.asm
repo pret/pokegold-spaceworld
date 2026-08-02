@@ -1,5 +1,12 @@
 	map_attributes SilentHillLabBack, SILENT_HILL_LAB_BACK
 
+	object_const_def
+	object_const OAK
+	object_const RIVAL
+	object_const STARTER_HONOGUMA
+	object_const STARTER_KURUSU
+	object_const STARTER_HAPPA
+	
 SilentHillLabBack_MapEvents::
 	dw $4000 ; unknown
 
@@ -44,13 +51,31 @@ SilentHillLabBackScriptPointers::
 	dw SilentHillLabBackNPCIDs1
 
 SilentHillLabBackNPCIDs1:
-	db $00, $01, $02, $03, $04, $FF
+	npc_id SILENT_HILL_LAB_BACK_OAK
+	npc_id SILENT_HILL_LAB_BACK_RIVAL
+	npc_id SILENT_HILL_LAB_BACK_STARTER_HONOGUMA
+	npc_id SILENT_HILL_LAB_BACK_STARTER_KURUSU
+	npc_id SILENT_HILL_LAB_BACK_STARTER_HAPPA
+	db -1
+
 SilentHillLabBackNPCIDs2:
-	db $00, $01, $04, $FF
+	npc_id SILENT_HILL_LAB_BACK_OAK
+	npc_id SILENT_HILL_LAB_BACK_RIVAL
+	npc_id SILENT_HILL_LAB_BACK_STARTER_HAPPA
+	db -1
+
 SilentHillLabBackNPCIDs3:
-	db $00, $01, $02, $FF
+	npc_id SILENT_HILL_LAB_BACK_OAK
+	npc_id SILENT_HILL_LAB_BACK_RIVAL
+	npc_id SILENT_HILL_LAB_BACK_STARTER_HONOGUMA
+	db -1
+
 SilentHillLabBackNPCIDs4:
-	db $00, $01, $03, $FF
+	npc_id SILENT_HILL_LAB_BACK_OAK
+	npc_id SILENT_HILL_LAB_BACK_RIVAL
+	npc_id SILENT_HILL_LAB_BACK_STARTER_KURUSU
+	db -1
+
 
 SilentHillLabBack_TextPointers::
 	dw SilentHillLabBackText1
@@ -86,7 +111,7 @@ SilentHillLabBackScript2:
 	ld hl, wOverworldFlags
 	set 6, [hl]
 	call UnfreezeEverything
-	ld a, 3
+	ld a, SILENT_HILL_LAB_BACK_RIVAL
 	ld d, UP
 	call SetObjectFacing
 	ld hl, SilentHillLabBackTextString1
@@ -108,7 +133,7 @@ SilentHillLabBackScript3:
 SilentHillLabBackRivalChoosePokemon:
 	ld hl, wJoypadFlags
 	set 4, [hl]
-	ld a, 3
+	ld a, SILENT_HILL_LAB_BACK_RIVAL
 	call FreezeAllOtherObjects
 	ld hl, SilentHillLabBackMovementPointers
 	ld a, [wChosenStarter]
@@ -119,7 +144,7 @@ SilentHillLabBackRivalChoosePokemon:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, 3
+	ld a, SILENT_HILL_LAB_BACK_RIVAL
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]

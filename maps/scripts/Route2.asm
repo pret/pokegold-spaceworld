@@ -9,9 +9,9 @@ Route2ScriptPointers::
 	dw Route2NPCIDs
 
 Route2NPCIDs:
-	db $00
-	db $01
-	db $FF
+	npc_id ROUTE_2_RIVAL
+	npc_id ROUTE_2_KIMONO_GIRL
+	db -1
 
 Route2SignPointers:
 	dw Route2TextSign1
