@@ -42,6 +42,7 @@ FieldDebug_SpriteViewer:
 	ld a, 0
 	ld [wSpriteViewerMenuStartingItem], a
 	ld a, 1
+
 	ldh [hTextBoxCursorBlinkInterval], a
 	callfar IsObjectFacingSomeoneElse
 	ret nc
@@ -50,10 +51,8 @@ FieldDebug_SpriteViewer:
 	call GetObjectStruct
 	ld hl, OBJECT_SPRITE
 	add hl, bc
-
 	ld a, [wMovementBufferObject]
 	ld d, a
-
 	ld a, SPRITEVIEWER_NUM_ROWS
 	add [hl]
 	cp d
@@ -61,7 +60,6 @@ FieldDebug_SpriteViewer:
 
 	sub d
 	ld [wSpriteViewerSavedMenuPointerY], a
-
 	ld a, [wMovementBufferObject]
 	sub SPRITEVIEWER_NUM_ROWS
 	ld [wSpriteViewerMenuStartingItem], a
@@ -70,10 +68,8 @@ FieldDebug_SpriteViewer:
 .skip
 	ld a, 1
 	ld [wSpriteViewerSavedMenuPointerY], a
-
 	ld a, [hl]
 	ld [wSpriteViewerMenuStartingItem], a
-
 	ret
 
 .SetMenuAttributes:
@@ -105,7 +101,6 @@ FieldDebug_SpriteViewer:
 	ld a, [wSpriteViewerJumptableIndex]
 	ld hl, .Jumptable
 	call CallJumptable
-
 	jr nc, .loop
 	ret
 
@@ -157,11 +152,9 @@ FieldDebug_SpriteViewer:
 
 .DisplayMenu:
 	ld c, SPRITEVIEWER_NUM_ROWS
-
 	ld a, [wMovementBufferObject]
 	cp c
 	jr nc, .setup
-
 	ld c, a
 .setup
 	hlcoord 5, 4
@@ -211,7 +204,6 @@ FieldDebug_SpriteViewer:
 	jr nz, .left
 	bit D_RIGHT_F, a
 	jr nz, .right
-
 	jr .loop2
 
 .a_button
@@ -230,7 +222,6 @@ FieldDebug_SpriteViewer:
 	ld a, [wSpriteViewerMenuStartingItem]
 	and a
 	jr z, .reload_menu
-
 	dec a
 	ld [wSpriteViewerMenuStartingItem], a
 	jr .reload_menu
@@ -239,13 +230,11 @@ FieldDebug_SpriteViewer:
 	ld a, [wMovementBufferObject]
 	cp SPRITEVIEWER_NUM_ROWS
 	jr c, .reload_menu
-
 	sub SPRITEVIEWER_NUM_ROWS
 	ld b, a
 	ld a, [wSpriteViewerMenuStartingItem]
 	cp b
 	jr z, .reload_menu
-
 	inc a
 	ld [wSpriteViewerMenuStartingItem], a
 	jr .reload_menu
@@ -254,7 +243,6 @@ FieldDebug_SpriteViewer:
 	ld a, [wMovementBufferObject]
 	cp SPRITEVIEWER_NUM_ROWS
 	jr c, .reload_menu
-
 	sub SPRITEVIEWER_NUM_ROWS - 1
 	ld b, a
 	ld a, [wSpriteViewerMenuStartingItem]
@@ -262,7 +250,6 @@ FieldDebug_SpriteViewer:
 	ld [wSpriteViewerMenuStartingItem], a
 	cp b
 	jr c, .reload_menu
-
 	dec b
 	ld a, b
 	ld [wSpriteViewerMenuStartingItem], a
@@ -273,7 +260,6 @@ FieldDebug_SpriteViewer:
 	sub SPRITEVIEWER_NUM_ROWS
 	ld [wSpriteViewerMenuStartingItem], a
 	jr nc, .reload_menu
-
 	xor a
 	ld [wSpriteViewerMenuStartingItem], a
 	jr .reload_menu
@@ -320,7 +306,6 @@ FieldDebug_SpriteViewer:
 	ld [wMovementXBuffer], a
 	ld a, TILE_WIDTH * 4
 	ld [wMovementYBuffer], a
-
 	ld hl, SpriteViewerSpriteTilemap
 	ld de, wShadowOAM
 	call SetupSpriteViewerSpriteTilemap
@@ -345,7 +330,6 @@ FieldDebug_SpriteViewer:
 	call SetupSpriteViewerSpriteWalkingTilemap
 
 	call .animate_walking
-
 	bit B_BUTTON_F, a
 	jr nz, .return_to_menu
 	bit A_BUTTON_F, a
@@ -362,8 +346,8 @@ FieldDebug_SpriteViewer:
 
 	xor a
 	ld [wMovementSpriteViewerDirection], a
-
 	jr .SpriteLoop
+
 .return_to_menu
 	ld a, SPRITEVIEWER_INIT_MENU
 	ld [wSpriteViewerJumptableIndex], a
@@ -433,7 +417,6 @@ SetupSpriteViewerSpriteWalkingTilemap:
 	ld bc, 2
 	call AddNTimes
 	ld c, 4
-
 .loop:
 	push bc
 	push hl
@@ -459,7 +442,6 @@ SetupSpriteViewerSpriteTilemap:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-
 .loop:
 	ld a, [wMovementYBuffer]
 	add $10
@@ -473,11 +455,9 @@ SetupSpriteViewerSpriteTilemap:
 	inc hl
 	ld [de], a
 	inc de
-
 	ld a, [hli]
 	ld [de], a
 	inc de
-
 	ld a, [hl]
 	and $f0
 	ld [de], a

@@ -1453,7 +1453,6 @@ wNewGameWRAMEnd::
 	ds 32
 
 
-
 SECTION "Options", WRAM0
 
 wOptions::
