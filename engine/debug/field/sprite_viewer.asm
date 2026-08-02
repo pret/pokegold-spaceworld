@@ -124,7 +124,6 @@ FieldDebug_SpriteViewer:
 	ld hl, SpawnFollower
 	ld a, BANK(SpawnFollower)
 	call QueueScript
-
 ; Exits immediately after setting sprite to follow the player
 	ld a, -1
 	ld [wSpriteViewerJumptableIndex], a
