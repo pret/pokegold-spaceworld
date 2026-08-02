@@ -184,19 +184,19 @@ DebugSetUpPlayer::
 
 DebugFillPokedex::
 	ld b, NUM_POKEMON / 8
-	ld a, $FF
+	ld a, %11111111
 .loop
 	ld [hli], a
 	dec b
 	jr nz, .loop
-	ld [hl], $07
+	ld [hl], (1 << (NUM_POKEMON % 8)) - 1 ; %00000111
 	ret
 
 FillBagWithList::
 	ld hl, wNumBagItems
 .loop
 	ld a, [de]
-	cp $FF
+	cp -1
 	jr z, .yump
 	ld [wCurItem], a
 	inc de
@@ -236,8 +236,8 @@ GiveRandomPokemon::
 	ret z
 .loop
 	push af
-	call RandomUnderNyula
-	ld b, $0A
+	call RandomSpecies_RaiEnSuiOrUnder
+	ld b, 10 ; level
 	call GivePokemon
 	pop af
 	dec a
@@ -287,7 +287,7 @@ AddRandomPokemonToBox:
 	push af
 	xor a
 	ld [wEnemySubStatus5], a
-	call RandomUnderNyula
+	call RandomSpecies_RaiEnSuiOrUnder
 	ld [wTempEnemyMonSpecies], a
 	ld a, 5
 	ld [wCurPartyLevel], a
@@ -300,12 +300,12 @@ AddRandomPokemonToBox:
 	jr nz, .loop
 	ret
 
-RandomUnderNyula::
+RandomSpecies_RaiEnSuiOrUnder::
 .loop
 	call Random
 	and a
 	jr z, .loop
-	cp DEX_NYULA
+	cp DEX_SUI + 1
 	jr nc, .loop
 	ret
 

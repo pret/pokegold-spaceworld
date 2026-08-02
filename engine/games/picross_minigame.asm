@@ -1893,7 +1893,7 @@ PicrossSprites:
 	picross_pattern PATTERN_NORMAL, GengarIcon
 	picross_pattern PATTERN_NORMAL, AnnonIcon
 	picross_pattern PATTERN_NORMAL, SnorlaxIcon
-	picross_pattern PATTERN_TILESET, BANK(Pokecenter_GFX), Pokecenter_GFX + $200
+	picross_pattern PATTERN_TILESET, BANK(Pokecenter_GFX), Pokecenter_GFX + $20 tiles
 	picross_pattern PATTERN_NORMAL, PoliwrathSpriteGFX
 
 PicrossNumbersGFX:

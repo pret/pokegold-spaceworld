@@ -40,7 +40,7 @@ SetClockDialog_Init:
 	call Request1bpp
 
 	ld de, UpArrowGFX
-	ld hl, vFont tile $70
+	ld hl, vFont tile (TIMESET_UP_ARROW - $80)
 	lb bc, BANK(UpArrowGFX), 1
 	call Request1bpp
 	ret

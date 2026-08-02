@@ -543,7 +543,7 @@ ENDU
 	ds 50
 wActualBattleAnimEnd::
 
-	ds $1a3
+	ds 419
 
 wBattle::
 wEnemyMoveStruct:: move_struct wEnemyMoveStruct
@@ -761,6 +761,7 @@ wWeatherCount:: db
 
 ENDU
 wBattleEnd::
+
 
 SECTION "Video", WRAM0
 
@@ -1451,6 +1452,8 @@ wNewGameWRAMEnd::
 
 	ds 32
 
+
+
 SECTION "Options", WRAM0
 
 wOptions::
@@ -1481,6 +1484,7 @@ wDebugFlags:: db
 wDebugFlags2:: db
 wDebugFlags3:: db
 wDebugFlags4:: db
+
 
 SECTION "Game Data", WRAM0
 
@@ -1548,6 +1552,7 @@ wTimeOfDayDebugFlags:: db
 ; \-------- switch overworld palettes according to minutes not hours
 
 	ds 3
+
 wTimeOfDayPalFlags:: db
 ; 76543210
 ; \-------- disable overworld palette switch
@@ -1607,6 +1612,7 @@ wPlayerStarter:: db
 wRivalStarter:: db
 
 	ds 51
+
 ; map scene ids
 wPlayerHouse2FSceneID:: db
 wPlayerHouse1FSceneID:: db
@@ -1623,6 +1629,7 @@ wSilentHillsSceneID:: db
 wOldCityPokecenter2FSceneID:: db
 
 	ds 243
+
 ; map flags
 wPlayerHouse2FFlags:: db
 wPlayerHouse1FFlags:: db
@@ -1684,15 +1691,15 @@ wWarpNumber:: db
 wCurrMapWarpCount:: db
 
 wCurrMapWarps::
-REPT 32
-	ds 5
+REPT 32 ; TODO: add a MAX_NUM_WARP_EVENTS constant
+	ds WARP_EVENT_SIZE - 2
 ENDR
 
 wCurMapBGEventCount:: db
 
 wCurrMapBGEvents::
-REPT 16
-	ds 4
+REPT 16 ; TODO: add a MAX_NUM_BG_EVENTS constant
+	ds BG_EVENT_SIZE
 ENDR
 
 wCurrMapObjectCount:: db

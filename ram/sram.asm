@@ -8,18 +8,21 @@ sSpriteBuffer1:: ds SPRITEBUFFERSIZE
 sSpriteBuffer2:: ds SPRITEBUFFERSIZE
 ENDU
 
+
 SECTION "Save Game Data", SRAM
 
 sOptions:: ds 7
 	ds 1
 
-sGameData:: ds wGameDataEnd - wGameData ; wGameDataEnd - wGameData
+sGameData:: ds wGameDataEnd - wGameData
 sGameDataEnd::
 
 sGameData2:: ds wGameData2End - wGameData2
 sGameData2End::
 
+
 SECTION "Save Pokemon Data", SRAM
+
 sPokemonData::  ds wPokemonDataEnd - wPokemonData
 
 
@@ -52,6 +55,7 @@ for n, 1, PARTY_LENGTH + 1
 sPartyMon{d:n}MailBackup:: mailmsg sPartyMon{d:n}MailBackup
 endr
 
+
 SECTION "Boxes 6-10", SRAM
 
 ; sBox6 - sBox10
@@ -66,6 +70,7 @@ sPartyMail::
 for n, 1, PARTY_LENGTH + 1
 sPartyMon{d:n}Mail:: mailmsg sPartyMon{d:n}Mail
 endr
+
 
 SECTION "Checksum", SRAM
 sChecksum:: ds 3
