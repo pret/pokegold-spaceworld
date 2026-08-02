@@ -2,7 +2,7 @@ SUMMARY:
 	ROM0: 16236 bytes used / 148 free
 	ROMX: 1032192 bytes used / 0 free in 63 banks
 	SRAM: 20395 bytes used / 12373 free in 4 banks
-	WRAM0: 7742 bytes used / 450 free
+	WRAM0: 8139 bytes used / 53 free
 	HRAM: 117 bytes used / 10 free
 
 ROM0 bank #0:
@@ -827,10 +827,10 @@ ROM0 bank #0:
 	         $303a = TextAsmEnd.stop
 	         $303b = CallMapTextSubroutine
 	         $3051 = CallMapTextSubroutine.Return
-	         $3055 = Function3055
-	         $3058 = Function3055.Loop
-	         $3062 = asm_3062
-	         $307a = Function307a
+	         $3055 = CheckAllMapObjects
+	         $3058 = CheckAllMapObjects.Loop
+	         $3062 = TalkingToBGObject
+	         $307a = ResetTalkingTarget
 	         $3085 = PrintTextboxDebugNumbers
 	         $3097 = PrintTextboxDebugNumbers.CheckSign
 	         $309e = PrintTextboxDebugNumbers.PrintNum
@@ -844,7 +844,7 @@ ROM0 bank #0:
 	         $314a = TextboxIdle.next
 	         $314e = PrepareTextbox
 	         $3171 = TextboxCleanup
-	         $318f = Function318f
+	         $318f = ReloadObjectGFX
 	         $319b = TurnNPCTalkingTo
 	         $31b9 = TurnNPCTalkingTo.Jump
 	         $31c3 = Unreferenced_CheckTrainerBattle
@@ -955,7 +955,7 @@ ROM0 bank #0:
 	         $360b = RestoreScreenAndReloadTiles
 	         $361e = ClearBGPalettes
 	         $3621 = WaitBGMap
-	         $362b = SetPalettes
+	         $362b = SetDefaultBGPAndOBP
 	         $3634 = ClearPalettes
 	         $363c = GetMemSGBLayout
 	         $363e = GetSGBLayout
@@ -1303,8 +1303,8 @@ ROMX bank #1:
 	         $4965 = FacePlayerObject.closer_horizontal
 	         $496d = FacePlayerObject.done
 	         $4973 = FacePlayerObject.FlipNegativeToPositive
-	         $4979 = Stubbed_UpdateYOffset
-	         $4994 = Stubbed_UpdateYOffset.y_offsets
+	         $4979 = Stubbed_SwayObject
+	         $4994 = Stubbed_SwayObject.y_offsets
 	         $499c = UpdateJumpPosition
 	         $49d0 = UpdateJumpPosition.got_direction
 	         $49dc = UpdateJumpPosition.y_offsets
@@ -1325,8 +1325,8 @@ ROMX bank #1:
 	         $4af6 = StepFunction_TeleportTo.InitFinalSpin
 	         $4b00 = StepFunction_TeleportTo.DoFinalSpin
 	         $4b0c = StepFunction_TeleportTo.FinishStep
-	         $4b22 = Unreferenced_Function4b22
-	         $4b25 = Stub_Function4b25
+	         $4b22 = Unreferenced_StrengthBoulderDust_Old
+	         $4b25 = Stub_SpawnStrengthBoulderDust_Old
 	         $4b26 = SpawnShadow
 	         $4b42 = SpawnShadow.ShadowObject
 	         $4b48 = SpawnStrengthBoulderDust
@@ -1517,8 +1517,8 @@ ROMX bank #1:
 	         $57de = GivePokemon
 	         $57eb = AddRandomPokemonToBox
 	         $57ed = AddRandomPokemonToBox.loop
-	         $5818 = RandomUnder246
-	         $5818 = RandomUnder246.loop
+	         $5818 = RandomSpecies_RaiEnSuiOrUnder
+	         $5818 = RandomSpecies_RaiEnSuiOrUnder.loop
 	         $5823 = FillTMs
 	         $582a = FillTMs.loop
 	         $582f = DebugGiveKeyItems
@@ -1903,9 +1903,8 @@ ROMX bank #2:
 	         $4242 = GetSpriteVTile.VTileOffsets
 	         $424c = CheckObjectEnteringVisibleRange
 	         $4259 = CheckObjectEnteringVisibleRange.dw
-	         $4261 = EmptyFunction8261
-	         $4262 = Unreferenced_CheckObjectEnteringVisibleRange_Alternate
-	         $426e = Unreferenced_CheckObjectEnteringVisibleRange_Alternate.dw
+	         $4261 = CheckObjectEnteringVisibleRange_Alternate
+	         $426e = CheckObjectEnteringVisibleRange_Alternate.dw
 	         $4276 = CheckVisibleRange_UpAlt
 	         $427d = CheckVisibleRange_DownAlt
 	         $4284 = CheckVisibleRange_LeftAlt
@@ -2561,7 +2560,6 @@ ROMX bank #3:
 	         $52a8 = FailDig
 	         $52b4 = Text_CantUseDigHere
 	         $52c2 = DigScript
-	         $52da = EmptyFunctiond2da
 	         $52db = TeleportFunction
 	         $52df = TeleportFunction.next
 	         $52ee = TeleportFunction.finish
@@ -2596,7 +2594,7 @@ ROMX bank #3:
 	         $54e3 = Unused_IsKeyItem_Old.cant_toss
 	         $54e6 = _HandlePlayerStep
 	         $54f8 = _HandlePlayerStep.start
-	         $54fa = _HandlePlayerStep.unreferenced_d4fa
+	         $54fa = _HandlePlayerStep.unreferenced_checkobjects
 	         $5505 = _HandlePlayerStep._start
 	         $5514 = _HandlePlayerStep.update_overworld_map
 	         $5519 = _HandlePlayerStep.update_player_coords
@@ -2905,16 +2903,13 @@ ROMX bank #3:
 	         $6fc9 = ReviveEffect.skip_to_revive
 	         $6fd9 = ReviveEffect.revive_half_hp
 	         $6fdc = ReviveEffect.finish_revive
-	         $6fed = Unreferenced_EmptyFunctionefed
 	         $6fee = FullRestoreEffect
 	         $701a = FullRestoreEffect.NotAtFullHealth
 	         $7049 = FullRestoreEffect.not_in_battle
-	         $705a = Unreferenced_EmptyFunctionf05a
 	         $705b = RestoreHPEffect
 	         $7086 = RestoreHPEffect.get_heal_amount
 	         $708c = RestoreHPEffect.continue_heal
 	         $709e = RestoreHPEffect.not_in_battle
-	         $70af = Unreferenced_EmptyFunctionf0af
 	         $70b0 = HealHP_SFX_GFX
 	         $70cf = UseItem_SelectMon
 	         $70d8 = ItemActionTextWaitButton
@@ -3420,9 +3415,9 @@ ROMX bank #4:
 	         $6753 = PokemonAskSwapItemText
 	         $6784 = GetPartyItemOffset
 	         $678c = ReceiveItemFromPokemon
-	         $6798 = UnusedHandleItemJumptable
-	         $67a9 = UnusedItemJumptable
-	         $67b7 = EmptyFunction127b7
+	         $6798 = UnusedHandleRecieveItemJumptable
+	         $67a9 = UnusedRecieveItemJumptable
+	         $67b7 = PartyGiveItem
 	         $67b8 = ChangeBackpackPocket
 	         $67c0 = PartyBallPocket
 	         $67cb = PartyBallPocket.exit
@@ -3498,7 +3493,7 @@ ROMX bank #4:
 	         $6e0f = TrainerCardMainInputs.exit
 	         $6e16 = TrainerCardMainInputs.left
 	         $6e26 = TrainerCardMainInputs.right
-	         $6e37 = EmptyFunction12e37
+	         $6e37 = EmptyTrainerCardFunction
 	         $6e38 = TrainerCardScroll
 	         $6e49 = TrainerCardClearTileMap
 	         $6e5c = TrainerCardSetWindowY
@@ -3570,9 +3565,9 @@ ROMX bank #5:
 	         $410f = LoadUsedSpritesGFX.skip
 	         $4127 = LoadUsedSpritesGFX.no_still_sprite_1
 	         $4132 = LoadUsedSpritesGFX.no_still_sprite_2
-	         $4133 = Function14133
+	         $4133 = Unreferenced_LoadOverworldSprite_NPCSlot
 	         $4144 = LoadOverworldSprite_PlayerSlot
-	         $414a = LoadOverworldSprite_FollowerSlot
+	         $414a = Unreferenced_LoadOverworldSprite_FollowerSlot
 	         $4150 = LoadOverworldSprite
 	         $4161 = LoadOverworldSprite.dont_copy
 	         $417d = GetOverworldSpriteData
@@ -8569,9 +8564,9 @@ ROMX bank #35:
 	         $42d9 = UngroupHealingMachineSprites.ungroup
 	         $42dc = UpdateTimeOfDayPal
 	         $42e3 = _TimeOfDayPals
-	         $42fe = _LABEL_8C2FE_
-	         $4313 = _LABEL_8C313_
-	         $4325 = Function8c325
+	         $42fe = Unreferenced_ResetTimeOfDayPal
+	         $4313 = Unreferenced_SetTimeOfDayPal
+	         $4325 = ChangeTimeOfDayPal
 	         $4335 = _UpdateTimePals
 	         $433e = OverworldFadeIn
 	         $4349 = OverworldFadeOut
@@ -8823,7 +8818,7 @@ ROMX bank #35:
 	         $53ab = AnimSeq_GSTitleFlameNote.zero
 	         $53c2 = AnimSeq_GSTitleFlameNote.one
 	         $53ec = AnimSeq_MinigamePikachu
-	         $540b = Data8d40b
+	         $540b = AnimSeq_MinigamePikachu.pikachu_framesets
 	         $540f = AnimSeq_MinigamePikachuTail
 	         $5418 = AnimSeq_MinigameNote
 	         $541c = AnimSeq_MinigameNote.anon_dw
@@ -9168,12 +9163,12 @@ ROMX bank #36:
 	         $47a8 = ReelAction_StopReelIgnoreJoypad
 	         $47b2 = ReelAction_StopReelIgnoreJoypad.EndReel
 	         $47bc = ReelAction_StopReelIgnoreJoypad.clear_reel_oam
-	         $47c8 = Function907c8
-	         $47f6 = Function907c8.asm907f6
-	         $4805 = Function90805
-	         $4814 = Function90805.asm90814
-	         $481b = Function90805.loop
-	         $4822 = Function90822
+	         $47c8 = Slots_PayoutAnim
+	         $47f6 = Slots_PayoutAnim.seven
+	         $4805 = Slots_PlaceReelTiles
+	         $4814 = Slots_PlaceReelTiles.place
+	         $481b = Slots_PlaceReelTiles.loop
+	         $4822 = Slots_CheckReelTiles
 	         $486b = ReelAction_StopReel1
 	         $487f = ReelAction_StopReel1.NoBias
 	         $4883 = ReelAction_StopReel1.CheckForBias
@@ -13461,16 +13456,16 @@ ROMX bank #58:
 	         $4070 = UpdateChannel.noteover
 	         $4076 = UpdateChannel.continue_sound_update
 	         $407a = DisablePitchWheel
-	         $4081 = Unreferenced_Functione8081
-	         $408c = Unreferenced_Functione8081.fail
-	         $408e = Unreferenced_Functione8081.disable_music
-	         $4093 = Unreferenced_Functione8081.disable_sfx
-	         $409e = Unreferenced_Functione8081.clear_loop
-	         $40a2 = Unreferenced_Functione8081.done
+	         $4081 = Unreferenced_MuteAudio
+	         $408c = Unreferenced_MuteAudio.fail
+	         $408e = Unreferenced_MuteAudio.disable_music
+	         $4093 = Unreferenced_MuteAudio.disable_sfx
+	         $409e = Unreferenced_MuteAudio.clear_loop
+	         $40a2 = Unreferenced_MuteAudio.done
 	         $40a4 = GetChannelRegisters
 	         $40b2 = GetChannelRegisters.registers
-	         $40b6 = Functione80b6
-	         $40f3 = Functione80b6.end
+	         $40b6 = ContinueSoundUpdate
+	         $40f3 = ContinueSoundUpdate.end
 	         $40fa = UpdateChannels
 	         $410b = UpdateChannels.jumptable
 	         $411b = UpdateChannels.Channel1
@@ -13506,7 +13501,7 @@ ROMX bank #58:
 	         $42ce = IsChannelSFXOn.off
 	         $42d0 = IsAnySFXOn
 	         $42ee = IsAnySFXOn.on
-	         $42f0 = Functione82f0
+	         $42f0 = SetupPlayDanger
 	         $4307 = PlayDanger
 	         $431e = PlayDanger.halfway
 	         $4323 = PlayDanger.begin
@@ -13557,7 +13552,7 @@ ROMX bank #58:
 	         $45b9 = LoadNote.flag_0e
 	         $45c2 = LoadNote.flag_0d
 	         $45cb = LoadNote.flag_0b
-	         $45d8 = Functione85d8
+	         $45d8 = CheckChannelFlags2
 	         $4605 = HandleDuty
 	         $461b = ApplyPitchSlide
 	         $465e = ApplyPitchSlide.decreasing
@@ -14508,23 +14503,29 @@ ROMX bank #63:
 	         $4657 = FieldDebug_SpriteViewer.set_following
 	         $4663 = FieldDebug_SpriteViewer.FollowPromptString
 	         $4672 = FieldDebug_SpriteViewer.SetStartingPoint
-	         $467d = LoadUnderDevelopmentString
-	         $4681 = LoadUnderDevelopmentString.String
-	         $4689 = Functionfc689
-	         $469c = Functionfc69c
-	         $46bb = Functionfc6bb
-	         $46be = Functionfc6be
-	         $46de = Datafc6de
-	         $46fe = Datafc6fe
-	         $470e = Datafc70e
-	         $471e = Datafc71e
-	         $472e = Datafc72e
-	         $473e = Datafc73e
-	         $474e = Datafc74e
-	         $475e = Datafc75e
-	         $476e = Datafc76e
-	         $477e = Datafc77e
-	         $478e = Datafc78e
+	         $467d = FieldDebug_SpriteViewer.LoadUnderDevelopmentString
+	         $4681 = FieldDebug_SpriteViewer.String
+	         $4689 = SetupSpriteViewerSpriteWalkingTilemap
+	         $469c = SetupSpriteViewerSpriteWalkingTilemap.loop
+	         $46bb = SetupSpriteViewerSpriteTilemap
+	         $46be = SetupSpriteViewerSpriteTilemap.loop
+	         $46de = SpriteViewerSpriteTilemap
+	         $46fe = SpriteViewerSpriteTilemap.FacingStepDown0
+	         $46fe = SpriteViewerSpriteTilemap.FacingStepDown2
+	         $470e = SpriteViewerSpriteTilemap.FacingStepDown1
+	         $471e = SpriteViewerSpriteTilemap.FacingStepDown3
+	         $472e = SpriteViewerSpriteTilemap.FacingStepUp0
+	         $472e = SpriteViewerSpriteTilemap.FacingStepUp2
+	         $473e = SpriteViewerSpriteTilemap.FacingStepUp1
+	         $474e = SpriteViewerSpriteTilemap.FacingStepUp3
+	         $475e = SpriteViewerSpriteTilemap.FacingStepLeft0
+	         $475e = SpriteViewerSpriteTilemap.FacingStepLeft2
+	         $476e = SpriteViewerSpriteTilemap.FacingStepRight0
+	         $476e = SpriteViewerSpriteTilemap.FacingStepRight2
+	         $477e = SpriteViewerSpriteTilemap.FacingStepLeft1
+	         $477e = SpriteViewerSpriteTilemap.FacingStepLeft3
+	         $478e = SpriteViewerSpriteTilemap.FacingStepRight1
+	         $478e = SpriteViewerSpriteTilemap.FacingStepRight3
 	         $479e = FieldDebug_NamePlayer
 	         $47cb = FieldDebug_Toolgear
 	         $47da = FieldDebug_Toolgear.Jumptable
@@ -15016,7 +15017,7 @@ SRAM bank #0:
 	         $a188 = sSpriteBuffer1
 	         $a310 = sSpriteBuffer2
 	EMPTY: $a498-$a5ff ($0168 bytes)
-	SECTION: $a600-$ae4a ($084b bytes) ["Unknown, bank 0"]
+	SECTION: $a600-$ae4a ($084b bytes) ["Save Game Data"]
 	         $a600 = sOptions
 	         $a608 = sGameData
 	         $adda = sGameData2
@@ -15035,7 +15036,7 @@ SRAM bank #1:
 	TOTAL EMPTY: $1c27 bytes
 
 SRAM bank #2:
-	SECTION: $a000-$ba67 ($1a68 bytes) ["Boxes 1-5"]
+	SECTION: $a000-$bb75 ($1b76 bytes) ["Boxes 1-5"]
 	         $a000 = sBox1Count
 	         $a000 = sBox1
 	         $a001 = sBox1Species
@@ -18824,13 +18825,68 @@ SRAM bank #2:
 	         $ba56 = sBox5Mon28Nickname
 	         $ba5c = sBox5Mon29Nickname
 	         $ba62 = sBox5Mon30Nickname
+	         $ba68 = sPartyMon1MailBackupMessage
+	         $ba68 = sPartyMon1MailBackup
+	         $ba68 = sPartyMailBackup
 	         $ba68 = sBox5End
 	         $ba68 = sBox5MonNicknamesEnd
-	EMPTY: $ba68-$bfff ($0598 bytes)
-	TOTAL EMPTY: $0598 bytes
+	         $ba88 = sPartyMon1MailBackupMessageEnd
+	         $ba89 = sPartyMon1MailBackupAuthor
+	         $ba8f = sPartyMon1MailBackupAuthorNationality
+	         $ba91 = sPartyMon1MailBackupAuthorID
+	         $ba93 = sPartyMon1MailBackupSpecies
+	         $ba94 = sPartyMon1MailBackupType
+	         $ba95 = sPartyMon2MailBackupMessage
+	         $ba95 = sPartyMon2MailBackup
+	         $ba95 = sPartyMon1MailBackupEnd
+	         $bab5 = sPartyMon2MailBackupMessageEnd
+	         $bab6 = sPartyMon2MailBackupAuthor
+	         $babc = sPartyMon2MailBackupAuthorNationality
+	         $babe = sPartyMon2MailBackupAuthorID
+	         $bac0 = sPartyMon2MailBackupSpecies
+	         $bac1 = sPartyMon2MailBackupType
+	         $bac2 = sPartyMon3MailBackupMessage
+	         $bac2 = sPartyMon3MailBackup
+	         $bac2 = sPartyMon2MailBackupEnd
+	         $bae2 = sPartyMon3MailBackupMessageEnd
+	         $bae3 = sPartyMon3MailBackupAuthor
+	         $bae9 = sPartyMon3MailBackupAuthorNationality
+	         $baeb = sPartyMon3MailBackupAuthorID
+	         $baed = sPartyMon3MailBackupSpecies
+	         $baee = sPartyMon3MailBackupType
+	         $baef = sPartyMon4MailBackupMessage
+	         $baef = sPartyMon4MailBackup
+	         $baef = sPartyMon3MailBackupEnd
+	         $bb0f = sPartyMon4MailBackupMessageEnd
+	         $bb10 = sPartyMon4MailBackupAuthor
+	         $bb16 = sPartyMon4MailBackupAuthorNationality
+	         $bb18 = sPartyMon4MailBackupAuthorID
+	         $bb1a = sPartyMon4MailBackupSpecies
+	         $bb1b = sPartyMon4MailBackupType
+	         $bb1c = sPartyMon5MailBackupMessage
+	         $bb1c = sPartyMon5MailBackup
+	         $bb1c = sPartyMon4MailBackupEnd
+	         $bb3c = sPartyMon5MailBackupMessageEnd
+	         $bb3d = sPartyMon5MailBackupAuthor
+	         $bb43 = sPartyMon5MailBackupAuthorNationality
+	         $bb45 = sPartyMon5MailBackupAuthorID
+	         $bb47 = sPartyMon5MailBackupSpecies
+	         $bb48 = sPartyMon5MailBackupType
+	         $bb49 = sPartyMon6MailBackupMessage
+	         $bb49 = sPartyMon6MailBackup
+	         $bb49 = sPartyMon5MailBackupEnd
+	         $bb69 = sPartyMon6MailBackupMessageEnd
+	         $bb6a = sPartyMon6MailBackupAuthor
+	         $bb70 = sPartyMon6MailBackupAuthorNationality
+	         $bb72 = sPartyMon6MailBackupAuthorID
+	         $bb74 = sPartyMon6MailBackupSpecies
+	         $bb75 = sPartyMon6MailBackupType
+	         $bb76 = sPartyMon6MailBackupEnd
+	EMPTY: $bb76-$bfff ($048a bytes)
+	TOTAL EMPTY: $048a bytes
 
 SRAM bank #3:
-	SECTION: $a000-$bc83 ($1c84 bytes) ["Boxes 6-10"]
+	SECTION: $a000-$bb75 ($1b76 bytes) ["Boxes 6-10"]
 	         $a000 = sBox6Count
 	         $a000 = sBox6
 	         $a001 = sBox6Species
@@ -22675,69 +22731,14 @@ SRAM bank #3:
 	         $bb72 = sPartyMon6MailAuthorID
 	         $bb74 = sPartyMon6MailSpecies
 	         $bb75 = sPartyMon6MailType
-	         $bb76 = sPartyMon1MailBackupMessage
-	         $bb76 = sPartyMon1MailBackup
-	         $bb76 = sPartyMailBackup
 	         $bb76 = sPartyMon6MailEnd
-	         $bb96 = sPartyMon1MailBackupMessageEnd
-	         $bb97 = sPartyMon1MailBackupAuthor
-	         $bb9d = sPartyMon1MailBackupAuthorNationality
-	         $bb9f = sPartyMon1MailBackupAuthorID
-	         $bba1 = sPartyMon1MailBackupSpecies
-	         $bba2 = sPartyMon1MailBackupType
-	         $bba3 = sPartyMon2MailBackupMessage
-	         $bba3 = sPartyMon2MailBackup
-	         $bba3 = sPartyMon1MailBackupEnd
-	         $bbc3 = sPartyMon2MailBackupMessageEnd
-	         $bbc4 = sPartyMon2MailBackupAuthor
-	         $bbca = sPartyMon2MailBackupAuthorNationality
-	         $bbcc = sPartyMon2MailBackupAuthorID
-	         $bbce = sPartyMon2MailBackupSpecies
-	         $bbcf = sPartyMon2MailBackupType
-	         $bbd0 = sPartyMon3MailBackupMessage
-	         $bbd0 = sPartyMon3MailBackup
-	         $bbd0 = sPartyMon2MailBackupEnd
-	         $bbf0 = sPartyMon3MailBackupMessageEnd
-	         $bbf1 = sPartyMon3MailBackupAuthor
-	         $bbf7 = sPartyMon3MailBackupAuthorNationality
-	         $bbf9 = sPartyMon3MailBackupAuthorID
-	         $bbfb = sPartyMon3MailBackupSpecies
-	         $bbfc = sPartyMon3MailBackupType
-	         $bbfd = sPartyMon4MailBackupMessage
-	         $bbfd = sPartyMon4MailBackup
-	         $bbfd = sPartyMon3MailBackupEnd
-	         $bc1d = sPartyMon4MailBackupMessageEnd
-	         $bc1e = sPartyMon4MailBackupAuthor
-	         $bc24 = sPartyMon4MailBackupAuthorNationality
-	         $bc26 = sPartyMon4MailBackupAuthorID
-	         $bc28 = sPartyMon4MailBackupSpecies
-	         $bc29 = sPartyMon4MailBackupType
-	         $bc2a = sPartyMon5MailBackupMessage
-	         $bc2a = sPartyMon5MailBackup
-	         $bc2a = sPartyMon4MailBackupEnd
-	         $bc4a = sPartyMon5MailBackupMessageEnd
-	         $bc4b = sPartyMon5MailBackupAuthor
-	         $bc51 = sPartyMon5MailBackupAuthorNationality
-	         $bc53 = sPartyMon5MailBackupAuthorID
-	         $bc55 = sPartyMon5MailBackupSpecies
-	         $bc56 = sPartyMon5MailBackupType
-	         $bc57 = sPartyMon6MailBackupMessage
-	         $bc57 = sPartyMon6MailBackup
-	         $bc57 = sPartyMon5MailBackupEnd
-	         $bc77 = sPartyMon6MailBackupMessageEnd
-	         $bc78 = sPartyMon6MailBackupAuthor
-	         $bc7e = sPartyMon6MailBackupAuthorNationality
-	         $bc80 = sPartyMon6MailBackupAuthorID
-	         $bc82 = sPartyMon6MailBackupSpecies
-	         $bc83 = sPartyMon6MailBackupType
-	         $bc84 = sPartyMon6MailBackupEnd
-	EMPTY: $bc84-$bffc ($0379 bytes)
+	EMPTY: $bb76-$bffc ($0487 bytes)
 	SECTION: $bffd-$bfff ($0003 bytes) ["Checksum"]
 	         $bffd = sChecksum
-	TOTAL EMPTY: $0379 bytes
+	TOTAL EMPTY: $0487 bytes
 
 WRAM0 bank #0:
-	SECTION: $c000-$c1bb ($01bc bytes) ["Music engine RAM"]
+	SECTION: $c000-$c1ff ($0200 bytes) ["Music engine RAM"]
 	         $c000 = wMusic
 	         $c000 = wChannels
 	         $c000 = wChannel1
@@ -23081,7 +23082,6 @@ WRAM0 bank #0:
 	         $c1ba = wCryTracks
 	         $c1bb = wSFXDuration
 	         $c1bc = wMusicInitEnd
-	EMPTY: $c1bc-$c1ff ($0044 bytes)
 	SECTION: $c200-$c5e7 ($03e8 bytes) ["OAM Buffer"]
 	         $c200 = wShadowOAM
 	         $c200 = wShadowOAMSprite00
@@ -24314,8 +24314,8 @@ WRAM0 bank #0:
 	         $cae3 = wWeatherCount
 	         $cb14 = wLinkDataEnd
 	         $cb14 = wOverworldMapBlocksEnd
-	SECTION: $cb14-$cb3b ($0028 bytes) ["CB14"]
 	         $cb14 = wBattleEnd
+	SECTION: $cb14-$ce5e ($034b bytes) ["Video"]
 	         $cb14 = wRedrawRowOrColumnSrcTiles
 	         $cb14 = wRedrawFlashlightDst0
 	         $cb16 = wRedrawFlashlightSrc0
@@ -24324,9 +24324,7 @@ WRAM0 bank #0:
 	         $cb1c = wRedrawFlashlightSrc1
 	         $cb1e = wRedrawFlashlightBlackDst1
 	         $cb20 = wRedrawFlashlightWidthHeight
-	SECTION: $cb3c-$cb4b ($0010 bytes) ["CB3C"]
 	         $cb3c = wTileAnimBuffer
-	SECTION: $cb4c-$cb5c ($0011 bytes) ["CB4C"]
 	         $cb4c = wOtherPlayerLinkMode
 	         $cb4c = wLinkReceivedSyncBuffer
 	         $cb4d = wOtherPlayerLinkAction
@@ -24339,8 +24337,6 @@ WRAM0 bank #0:
 	         $cb5b = wSelectedItem
 	         $cb5b = wCurSpecies
 	         $cb5c = wNamedObjectTypeBuffer
-	EMPTY: $cb5d-$cb5d ($0001 byte)
-	SECTION: $cb5e-$cb6f ($0012 bytes) ["CB5E"]
 	         $cb5e = wJumptableIndex
 	         $cb5f = wSlotsDelay
 	         $cb5f = wMemoryGameCardChoice
@@ -24369,7 +24365,6 @@ WRAM0 bank #0:
 	         $cb6d = wPlayerStepVectorY
 	         $cb6e = wPlayerStepFlags
 	         $cb6f = wPlayerStepDirection
-	SECTION: $cb70-$cb7d ($000e bytes) ["CB70"]
 	         $cb70 = wQueuedMinorObjectGFX
 	         $cb71 = wVBCopyFarSize
 	         $cb72 = wVBCopyFarSrc
@@ -24380,16 +24375,12 @@ WRAM0 bank #0:
 	         $cb79 = wMovementDataBank
 	         $cb7a = wMovementDataAddr
 	         $cb7c = wIndexedMovement2Pointer
-	EMPTY: $cb7e-$cb8f ($0012 bytes)
-	SECTION: $cb90-$cbb1 ($0022 bytes) ["Collision buffer"]
 	         $cb90 = wTileDown
 	         $cb91 = wTileUp
 	         $cb92 = wTileLeft
 	         $cb93 = wTileRight
 	         $cb94 = wScreenSave
-	SECTION: $cbb2-$cbf1 ($0040 bytes) ["CBB2"]
 	         $cbb2 = wToolgearBuffer
-	SECTION: $cbf2-$cbf9 ($0008 bytes) ["CBF2"]
 	         $cbf2 = wWindowData
 	         $cbf2 = wWindowStackPointer
 	         $cbf4 = wMenuJoypad
@@ -24400,8 +24391,6 @@ WRAM0 bank #0:
 	         $cbf7 = wActiveBackpackPocket
 	         $cbf8 = wScrollingMenuCursorPosition
 	         $cbf9 = wWindowStackSize
-	EMPTY: $cbfa-$cc01 ($0008 bytes)
-	SECTION: $cc02-$cc2e ($002d bytes) ["CC02"]
 	         $cc02 = wMenuDataHeader
 	         $cc02 = wMenuFlags
 	         $cc03 = wMenuBorderTopCoord
@@ -24446,8 +24435,6 @@ WRAM0 bank #0:
 	         $cc2b = wMenuCursorX
 	         $cc2c = wCursorOffCharacter
 	         $cc2d = wCursorCurrentTile
-	EMPTY: $cc2f-$cc31 ($0003 bytes)
-	SECTION: $cc32-$cc75 ($0044 bytes) ["CC32"]
 	         $cc32 = wVBlankJoyFrameCounter
 	         $cc33 = wVBlankOccurred
 	         $cc34 = wLastSpawnMapGroup
@@ -24486,12 +24473,13 @@ WRAM0 bank #0:
 	         $cc3d = wPlayerSpinInPlaceAnimSoundID_Old
 	         $cc3e = wSpriteViewerJumptableIndex
 	         $cc3f = wMovementBuffer
+	         $cc3f = wMovementXBuffer
+	         $cc40 = wMovementYBuffer
+	         $cc41 = wMovementSpriteViewerDirection
 	         $cc45 = wFacingDirectionList_Old
 	         $cc4c = wSavedPlayerScreenY_Old
 	         $cc4c = wEmotionBubbleSpriteIndex_Old
 	         $cc4d = wSavedPlayerFacingDirection_Old
-	EMPTY: $cc76-$cc99 ($0024 bytes)
-	SECTION: $cc9a-$ccc5 ($002c bytes) ["CC9A"]
 	         $cc9a = wSkatingDirection
 	         $cc9b = wCompanionCollisionFrameCounter
 	         $cc9c = wObjectMasks
@@ -24515,38 +24503,28 @@ WRAM0 bank #0:
 	         $ccc3 = wPlaceBallsY
 	         $ccc4 = wLowHealthAlarmBuffer
 	         $ccc5 = wTileAnimationTimer
-	EMPTY: $ccc6-$ccc6 ($0001 byte)
-	SECTION: $ccc7-$ccc7 ($0001 byte) ["CCC7"]
 	         $ccc7 = wDisableVBlankOAMUpdate
-	EMPTY: $ccc8-$ccc9 ($0002 bytes)
-	SECTION: $ccca-$cccf ($0006 bytes) ["CCCA"]
 	         $ccca = wBGP
 	         $cccb = wOBP0
 	         $cccc = wOBP1
 	         $cccd = wNumHits
 	         $ccce = wDisableVBlankWYUpdate
 	         $cccf = wSGB
-	SECTION: $ccd0-$cd10 ($0041 bytes) ["CCD0"]
 	         $ccd0 = wSGBPalBuffer
 	         $ccd1 = wPlayerHPPal
 	         $ccd2 = wEnemyHPPal
 	         $ccd3 = wHPPals
 	         $ccd9 = wCurHPPal
 	         $cce1 = wSGBPals
-	SECTION: $cd11-$cd2f ($001f bytes) ["CD11"]
 	         $cd11 = wMonOrItemNameBuffer
 	         $cd1d = wTMHMMoveNameBackup
 	         $cd26 = wStringBuffer1
-	EMPTY: $cd30-$cd30 ($0001 byte)
-	SECTION: $cd31-$cd3a ($000a bytes) ["CD31"]
 	         $cd31 = wStartDay
 	         $cd31 = wHPBarTempHP
 	         $cd31 = wStringBuffer2
 	         $cd32 = wStartHour
 	         $cd33 = wStartMinute
 	         $cd33 = wGainBoostedExp
-	EMPTY: $cd3b-$cd3b ($0001 byte)
-	SECTION: $cd3c-$cd60 ($0025 bytes) ["CD3C"]
 	         $cd3c = wPartyMenuCursor
 	         $cd3c = wBillsPCCursor
 	         $cd3d = wRegularItemsCursor
@@ -24579,8 +24557,6 @@ WRAM0 bank #0:
 	         $cd5d = wBattleResult
 	         $cd5f = wChosenStarter
 	         $cd60 = wCurMartCount
-	EMPTY: $cd61-$cd6f ($000f bytes)
-	SECTION: $cd70-$ce3e ($00cf bytes) ["CD70"]
 	         $cd70 = wListPointer
 	         $cd72 = wNamesPointer
 	         $cd74 = wItemAttributesPointer
@@ -24771,8 +24747,7 @@ WRAM0 bank #0:
 	         $ce3c = wBuffer
 	         $ce3d = wTimeOfDay
 	         $ce3f = wNewGameWRAMEnd
-	EMPTY: $ce3f-$ce5e ($0020 bytes)
-	SECTION: $ce5f-$d266 ($0408 bytes) ["Options"]
+	SECTION: $ce5f-$ce66 ($0008 bytes) ["Options"]
 	         $ce5f = wOptions
 	         $ce60 = wSaveFileExists
 	         $ce60 = wSaveFileFlags
@@ -24782,6 +24757,7 @@ WRAM0 bank #0:
 	         $ce64 = wDebugFlags2
 	         $ce65 = wDebugFlags3
 	         $ce66 = wDebugFlags4
+	SECTION: $ce67-$d6a9 ($0843 bytes) ["Game Data"]
 	         $ce67 = wGameData
 	         $ce67 = wPlayerName
 	         $ce6d = wMomsName
@@ -25407,8 +25383,6 @@ WRAM0 bank #0:
 	         $d264 = wPlayerState
 	         $d265 = wPlayerStarter
 	         $d266 = wRivalStarter
-	EMPTY: $d267-$d299 ($0033 bytes)
-	SECTION: $d29a-$d41e ($0185 bytes) ["Map Scene ID & Flags"]
 	         $d29a = wPlayerHouse2FSceneID
 	         $d29b = wPlayerHouse1FSceneID
 	         $d29c = wSilentHillSceneID
@@ -25436,19 +25410,14 @@ WRAM0 bank #0:
 	         $d3a5 = wSilentHillsFlags
 	         $d3a6 = wOldCityPokecenter2FFlags
 	         $d41a = wEventFlags
-	EMPTY: $d41f-$d4a6 ($0088 bytes)
-	SECTION: $d4a7-$d4ad ($0007 bytes) ["D4A7"]
 	         $d4a7 = wPokedexMenuFlags
 	         $d4a8 = wUnusedLinkCommunicationByte
 	         $d4a9 = wGameModeFlags
 	         $d4ab = wJoypadFlags
 	         $d4ad = wMovementFlags_Old
-	EMPTY: $d4ae-$d4b1 ($0004 bytes)
-	SECTION: $d4b2-$d512 ($0061 bytes) ["wDigWarpNumber"]
 	         $d4b2 = wDigWarpNumber
 	         $d4b6 = wCurBox
 	         $d4b9 = wBoxNames
-	SECTION: $d513-$d650 ($013e bytes) ["Warp data"]
 	         $d513 = wWarpNumber
 	         $d514 = wCurrMapWarpCount
 	         $d515 = wCurrMapWarps
@@ -25463,11 +25432,10 @@ WRAM0 bank #0:
 	         $d642 = wUnusedAddOutdoorSpritesReturnValue
 	         $d643 = wBGMapAnchor
 	         $d645 = wUsedSprites
+	         $d646 = wUsedFollowerSprites
 	         $d647 = wUsedNPCSprites
 	         $d64f = wUsedStaticSprites
 	         $d651 = wUsedSpritesEnd
-	EMPTY: $d651-$d655 ($0005 bytes)
-	SECTION: $d656-$d903 ($02ae bytes) ["Map header"]
 	         $d656 = wMapGroup
 	         $d657 = wMapId
 	         $d658 = wOverworldMapAnchor
@@ -25539,6 +25507,7 @@ WRAM0 bank #0:
 	         $d6a6 = wTilesetAnim
 	         $d6aa = wTilesetEnd
 	         $d6aa = wGameData2End
+	SECTION: $d6aa-$dfca ($0921 bytes) ["Party"]
 	         $d6aa = wPokemonData
 	         $d6aa = wPartyCount
 	         $d6ab = wPartySpecies
@@ -25847,13 +25816,10 @@ WRAM0 bank #0:
 	         $d8fd = wBreedMon2End
 	         $d8fd = wBreedMonGenders
 	         $d8fe = wOTPlayerName
-	EMPTY: $d904-$d912 ($000f bytes)
-	SECTION: $d913-$d91a ($0008 bytes) ["D913"]
 	         $d913 = wOTPartyData
 	         $d913 = wOTPartyCount
 	         $d914 = wOTPartySpecies
 	         $d91a = wOTPartySpeciesEnd
-	SECTION: $d91b-$dfca ($06b0 bytes) ["Wild mon buffer"]
 	         $d91b = wWildMonData
 	         $d91b = wMornEncounterRate
 	         $d91b = wOTPartyMons
@@ -26842,7 +26808,7 @@ WRAM0 bank #0:
 	SECTION: $dfff ($0000 bytes) ["Stack Bottom"]
 	         $dfff = wStackBottom
 	EMPTY: $dfff-$dfff ($0001 byte)
-	TOTAL EMPTY: $01c2 bytes
+	TOTAL EMPTY: $0035 bytes
 
 HRAM bank #0:
 	SECTION: $ff80-$ff89 ($000a bytes) ["OAM DMA"]
