@@ -6,10 +6,10 @@ hRTCHours:: db
 hRTCMinutes:: db
 hRTCSeconds:: db
 hRTCDays:: db
-	ds 2 ; TODO
+	ds 2
 hRTCStatusFlags:: db
 
-	ds 2 ; TODO
+	ds 2
 
 hDebugMapViewerJumptable:: db
 
@@ -39,7 +39,7 @@ hJoypadSum:: db
 ; Sum of all keys that were pressed
 ; since hJoypadSum was last cleared
 
-	ds 1; TODO
+	ds 1
 hJoyDown:: db
 hJoyState:: db
 hJoySum:: db
@@ -66,7 +66,7 @@ hDebugMenuSoundBank:: db
 
 ENDU
 
-	ds 3 ; TODO
+	ds 3
 hGraphicStartTile:: db
 hMoveMon:: db
 
@@ -172,7 +172,7 @@ hLCDCPointer:: db
 
 hLYOverrideStart:: db
 hLYOverrideEnd:: db
-	ds 1 ; TODO
+	ds 1
 
 hSerialReceivedNewData:: db
 hSerialConnectionStatus:: db
@@ -250,5 +250,3 @@ hRTCRandom:: db
 hBattleTurn:: db
 
 hCurMapTextSubroutinePtr:: dw
-
-	; TODO

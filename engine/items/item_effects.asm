@@ -658,7 +658,7 @@ ReturnToBattle_UseBall:
 	call CloseWindow
 	call LoadStandardMenuHeader
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 TownMapEffect:
@@ -1121,9 +1121,7 @@ ReviveEffect:
 	call ItemActionTextWaitButton
 	call UseDisposableItem
 	jp StatusHealer_ClearPalettes
-
-Unreferenced_EmptyFunctionefed:
-	ret
+	ret ; useless ret
 
 FullRestoreEffect:
 	ld a, [wPartyCount]
@@ -1184,9 +1182,7 @@ FullRestoreEffect:
 	call ItemActionTextWaitButton
 	call UseDisposableItem
 	jp StatusHealer_ClearPalettes
-
-Unreferenced_EmptyFunctionf05a:
-	ret
+	ret ; useless ret
 
 RestoreHPEffect:
 	ld a, [wPartyCount]
@@ -1230,9 +1226,7 @@ RestoreHPEffect:
 	call ItemActionTextWaitButton
 	call UseDisposableItem
 	jp StatusHealer_ClearPalettes
-
-Unreferenced_EmptyFunctionf0af:
-	ret
+	ret ; useless ret
 
 HealHP_SFX_GFX:
 	push de

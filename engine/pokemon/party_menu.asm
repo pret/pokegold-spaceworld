@@ -421,7 +421,7 @@ PrintPartyMenuText::
 	pop af
 	ld [hl], a
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 .MenuActionStrings

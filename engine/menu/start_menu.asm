@@ -1178,22 +1178,22 @@ ReceiveItemFromPokemon:
 	call ReceiveItem
 	ret
 
-UnusedHandleItemJumptable:
+UnusedHandleRecieveItemJumptable:
 	callfar CheckItemMenu
 	ld a, [wItemAttributeValue]
-	ld hl, UnusedItemJumptable
+	ld hl, UnusedRecieveItemJumptable
 	jp CallJumptable
 
-UnusedItemJumptable:
-	dw EmptyFunction127b7
+UnusedRecieveItemJumptable:
+	dw PartyGiveItem
 	dw PartyGiveMail
 	dw PartyBallPocket
 	dw ChangeBackpackPocket
-	dw EmptyFunction127b7
-	dw EmptyFunction127b7
-	dw EmptyFunction127b7
+	dw PartyGiveItem
+	dw PartyGiveItem
+	dw PartyGiveItem
 
-EmptyFunction127b7:
+PartyGiveItem:
 	ret
 
 ChangeBackpackPocket:
@@ -1221,14 +1221,14 @@ PartyGiveMail:
 	call Call_ExitMenu
 	call WaitBGMap
 	ld a, [wCurPartyMon]
-	ld hl, sBox5End
+	ld hl, sPartyMailBackup
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, wMovementBufferCount
 	ld bc, MAIL_STRUCT_LENGTH
-	ld a, 2
+	ld a, BANK(sPartyMailBackup)
 	call OpenSRAM
 	call CopyBytes
 	call CloseSRAM
@@ -1271,12 +1271,12 @@ PartyMailMenu:
 	jr .exit
 .GiveMail
 	ld a, [wCurPartyMon]
-	ld hl, sBox5End
+	ld hl, sPartyMailBackup
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld bc, MAIL_STRUCT_LENGTH
 	ld de, wMovementBufferCount
-	ld a, 2
+	ld a, BANK(sPartyMailBackup)
 	call OpenSRAM
 	call CopyBytes
 	call CloseSRAM
@@ -1515,7 +1515,7 @@ SummaryDrawPoke:
 	hlcoord 11, 3
 	predef ListMovePP
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
@@ -1902,7 +1902,7 @@ HandleTrainerCardJumptable:
 	dw TrainerCardSetClearFlag
 
 .SetPalAndIncJumpTable:
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 .IncreaseJumpTableIndex:
 	ld a, [wJumptableIndex]
 	inc a
@@ -1931,7 +1931,7 @@ TrainerCardMainPage:
 	ret
 
 TrainerCardMainInputs:
-	call EmptyFunction12e37
+	call EmptyTrainerCardFunction
 	call GetJoypad
 	ld hl, hJoyDown
 	ld a, [hl]
@@ -1980,7 +1980,7 @@ TrainerCardMainInputs:
 	and a
 	ret
 
-EmptyFunction12e37:
+EmptyTrainerCardFunction:
 	ret
 
 TrainerCardScroll:

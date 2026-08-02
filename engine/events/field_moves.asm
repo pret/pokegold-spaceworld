@@ -435,9 +435,7 @@ DigScript:
 	ld a, MAPSETUP_WARP
 	ldh [hMapEntryMethod], a
 	jpfar DoTeleportAnimation
-
-EmptyFunctiond2da:
-	ret
+	ret ; useless ret
 
 TeleportFunction:
 	xor a

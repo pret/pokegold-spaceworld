@@ -3,7 +3,7 @@ TownMap::
 	callfar ClearSpriteAnims
 	call TownMap_InitPlayerIcon
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 .loop
 	call DelayFrame
 	call GetJoypadDebounced
@@ -31,7 +31,7 @@ FlyMap::
 	ld de, ChooseADestinationText
 	call PlaceString
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	xor a
 	ld [wFlyDestination], a
 .loop
@@ -130,7 +130,7 @@ Pokedex_GetArea:
 	call PlaceString
 
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wTileMap

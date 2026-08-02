@@ -349,8 +349,8 @@ SlotsAction_WaitStopReel3:
 	call SlotsAction_Next
 	xor a
 	ldh [hJoypadSum], a
-	call Function90822
-	call Function90805
+	call Slots_CheckReelTiles
+	call Slots_PlaceReelTiles
 	ret
 
 SlotsAction_FlashIfWin:
@@ -402,11 +402,11 @@ SlotsAction_PayoutTextAndAnim:
 	call Slots_PayoutText
 	call SlotsAction_Next
 	ld bc, wReel1ReelAction
-	call Function907c8
+	call Slots_PayoutAnim
 	ld bc, wReel2ReelAction
-	call Function907c8
+	call Slots_PayoutAnim
 	ld bc, wReel3ReelAction
-	call Function907c8
+	call Slots_PayoutAnim
 	call WaitBGMap
 	ld hl, wShadowOAM
 	ld e, $60
@@ -451,8 +451,8 @@ SlotsAction_PayoutAnim:
 	ret
 .done
 	call SlotsAction_Next
-	call Function90822
-	call Function90805
+	call Slots_CheckReelTiles
+	call Slots_PlaceReelTiles
 	ret
 
 SlotsAction_RestartOrQuit:
@@ -861,7 +861,7 @@ Slots_StopReel:
 	ld hl, REEL_STOP_DELAY
 	add hl, bc
 	ld [hl], 3
-	call Function907c8
+	call Slots_PayoutAnim
 
 ReelAction_StopReelIgnoreJoypad:
 	ld hl, REEL_STOP_DELAY
@@ -892,7 +892,7 @@ ReelAction_StopReelIgnoreJoypad:
 	ld [hl], a
 	ret
 
-Function907c8:
+Slots_PayoutAnim:
 	ld hl, REEL_X_COORD
 	add hl, bc
 	ld a, [hl]
@@ -913,14 +913,14 @@ Function907c8:
 	inc de
 	pop hl
 	ld bc, $14
-	call .asm907f6
+	call .seven
 	dec de
-	call .asm907f6
+	call .seven
 	dec de
-	call .asm907f6
+	call .seven
 	pop bc
 	ret
-.asm907f6
+.seven
 	ld a, [de]
 	add SLOTS_GFX_SEVEN_TILE_1
 	ld [hli], a
@@ -936,14 +936,14 @@ Function907c8:
 	add hl, bc
 	ret
 
-Function90805:
+Slots_PlaceReelTiles:
 	hlcoord 5, 4
-	call .asm90814
+	call .place
 	hlcoord 9, 4
-	call .asm90814
+	call .place
 	hlcoord 13, 4
 
-.asm90814
+.place
 	ld a, SLOTS_GFX_BLANK_TILE
 	ld de, $14
 	ld c, 6
@@ -955,7 +955,7 @@ Function90805:
 	jr nz, .loop
 	ret
 
-Function90822:
+Slots_CheckReelTiles:
 	ld bc, wReel1
 	ld hl, REEL_X_COORD
 	add hl, bc

@@ -27,7 +27,7 @@ GameFreakIntro::
 	ld a, 1
 	ldh [hBGMapMode], a
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 
 	ld c, 3 * 60 ; 3 seconds
 	call DelayFrames

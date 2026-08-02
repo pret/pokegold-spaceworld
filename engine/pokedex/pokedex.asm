@@ -1736,7 +1736,7 @@ NewPokedexEntry::
 	call ClearTileMap
 	call GetMemSGBLayout
 	call LoadFontExtra
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld hl, wPokedexMenuFlags
 	res 1, [hl]
 	call MaxVolume
@@ -1755,7 +1755,7 @@ _NewPokedexEntry:
 	pop af
 	ld [wTempSpecies], a
 	call Pokedex_DisplayDexEntry
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call WaitBGMap
 	call GetBaseData
 	hlcoord 1, 1

@@ -253,7 +253,7 @@ LoadPinkPage::
 	and a
 	ret nz
 
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld hl, wTempMonDVs
 	call GetUnownLetter
 

@@ -8,50 +8,60 @@
 	const SPRITEVIEWER_FOLLOW_PROMPT         ; 5
 	const SPRITEVIEWER_EXIT                  ; 6
 	const SPRITEVIEWER_SET_FOLLOWING         ; 7
+	
+DEF SPRITEVIEWER_NUM_ROWS EQU 5
 
 FieldDebug_SpriteViewer:
 	call LoadStandardMenuHeader
 	call ClearTileMap
 	call HideSprites
+
 	ld hl, wStateFlags
 	res SPRITE_UPDATES_DISABLED_F, [hl]
+
 	call .Init
 	call .DoSpriteViewer
 	push af
+
 	ld hl, wStateFlags
 	set SPRITE_UPDATES_DISABLED_F, [hl]
+
 	call ClearPalettes
 	call RestoreScreenAndReloadTiles
 	call CloseWindow
 	call UpdateTimePals
+
 	pop af
 	ret
 
 .Init:
-	ld a, $5b
+	ld a, NUM_OVERWORLD_SPRITES
 	ld [wMovementBufferObject], a
 	ld a, 1
 	ld [wSpriteViewerSavedMenuPointerY], a
 	ld a, 0
 	ld [wSpriteViewerMenuStartingItem], a
 	ld a, 1
+
 	ldh [hTextBoxCursorBlinkInterval], a
 	callfar IsObjectFacingSomeoneElse
 	ret nc
+
 	ldh a, [hEventID]
 	call GetObjectStruct
-	ld hl, 0
+	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [wMovementBufferObject]
 	ld d, a
-	ld a, 5
+	ld a, SPRITEVIEWER_NUM_ROWS
 	add [hl]
 	cp d
 	jr c, .skip
+
 	sub d
 	ld [wSpriteViewerSavedMenuPointerY], a
 	ld a, [wMovementBufferObject]
-	sub 5
+	sub SPRITEVIEWER_NUM_ROWS
 	ld [wSpriteViewerMenuStartingItem], a
 	ret
 
@@ -66,9 +76,9 @@ FieldDebug_SpriteViewer:
 	ld de, .MenuAttributes
 	call SetMenuAttributes
 	ld a, [wMovementBufferObject]
-	cp 5
+	cp SPRITEVIEWER_NUM_ROWS
 	jr c, .apply
-	ld a, 5
+	ld a, SPRITEVIEWER_NUM_ROWS
 .apply
 	ld [w2DMenuNumRows], a
 	ld a, [wSpriteViewerSavedMenuPointerY]
@@ -76,15 +86,16 @@ FieldDebug_SpriteViewer:
 	ret
 
 .MenuAttributes:
-	db 3, 1
-	db 0, 1
-	db $F, 0
-	db $30, 3
+	db 3, 1 ; cursor start y, x
+	db 0, 1 ; rows, columns
+	db _2DMENU_EXIT_RIGHT | _2DMENU_EXIT_LEFT | _2DMENU_EXIT_UP | _2DMENU_EXIT_DOWN ; flags 1
+	db 0 ; flags 2
+	dn 3, 0 ; cursor offset
+	db A_BUTTON | B_BUTTON ; accepted buttons
 
 .DoSpriteViewer:
 	ld a, 0
 	ld [wSpriteViewerJumptableIndex], a
-
 .loop
 	ld a, [wSpriteViewerJumptableIndex]
 	ld hl, .Jumptable
@@ -113,7 +124,6 @@ FieldDebug_SpriteViewer:
 	ld hl, SpawnFollower
 	ld a, BANK(SpawnFollower)
 	call QueueScript
-
 ; Exits immediately after setting sprite to follow the player
 	ld a, -1
 	ld [wSpriteViewerJumptableIndex], a
@@ -124,40 +134,47 @@ FieldDebug_SpriteViewer:
 .InitMenu:
 	xor a
 	ldh [hBGMapMode], a
+
 	call HideSprites
 	call ClearPalettes
 	call ClearTileMap
 	call .SetMenuAttributes
 	call .DisplayMenu
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call WaitBGMap
+
 	ld a, SPRITEVIEWER_UPDATE_MENU
 	ld [wSpriteViewerJumptableIndex], a
 	xor a
 	ret
 
 .DisplayMenu:
-	ld c, 5
+	ld c, SPRITEVIEWER_NUM_ROWS
 	ld a, [wMovementBufferObject]
 	cp c
 	jr nc, .setup
 	ld c, a
 .setup
 	hlcoord 5, 4
+
 	ld a, [wSpriteViewerMenuStartingItem]
 	inc a
 	ld [wStringBuffer1], a
 .display_loop
 	push bc
 	push hl
+
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	ld de, wStringBuffer1
 	call PrintNumber
+
 	ld a, [wStringBuffer1]
-	call LoadUnderDevelopmentString
+	call .LoadUnderDevelopmentString
 	call PlaceString
+
 	ld hl, wStringBuffer1
 	inc [hl]
+
 	pop hl
 	ld de, SCREEN_WIDTH * 3
 	add hl, de
@@ -172,6 +189,7 @@ FieldDebug_SpriteViewer:
 	call StaticMenuJoypad
 	ld a, [wMenuCursorY]
 	ld [wSpriteViewerSavedMenuPointerY], a
+
 	ldh a, [hJoySum]
 	bit A_BUTTON_F, a
 	jp nz, .a_button
@@ -209,9 +227,9 @@ FieldDebug_SpriteViewer:
 
 .down
 	ld a, [wMovementBufferObject]
-	cp 5
+	cp SPRITEVIEWER_NUM_ROWS
 	jr c, .reload_menu
-	sub 5
+	sub SPRITEVIEWER_NUM_ROWS
 	ld b, a
 	ld a, [wSpriteViewerMenuStartingItem]
 	cp b
@@ -222,12 +240,12 @@ FieldDebug_SpriteViewer:
 
 .right
 	ld a, [wMovementBufferObject]
-	cp 5
+	cp SPRITEVIEWER_NUM_ROWS
 	jr c, .reload_menu
-	sub 4
+	sub SPRITEVIEWER_NUM_ROWS - 1
 	ld b, a
 	ld a, [wSpriteViewerMenuStartingItem]
-	add 5
+	add SPRITEVIEWER_NUM_ROWS
 	ld [wSpriteViewerMenuStartingItem], a
 	cp b
 	jr c, .reload_menu
@@ -238,7 +256,7 @@ FieldDebug_SpriteViewer:
 
 .left
 	ld a, [wSpriteViewerMenuStartingItem]
-	sub 5
+	sub SPRITEVIEWER_NUM_ROWS
 	ld [wSpriteViewerMenuStartingItem], a
 	jr nc, .reload_menu
 	xor a
@@ -254,12 +272,14 @@ FieldDebug_SpriteViewer:
 .ShowSprites:
 	call ClearTileMap
 	call .SetStartingPoint
-	call LoadUnderDevelopmentString
+	call .LoadUnderDevelopmentString
 	hlcoord 1, 2
 	call PlaceString
+
 	call .SetStartingPoint
 	ld c, a
 	callfar LoadOverworldSprite_PlayerSlot
+
 	ld hl, vSprites tile $0c
 	ld de, vFont
 	ld bc, 12
@@ -268,6 +288,7 @@ FieldDebug_SpriteViewer:
 	call .SetStartingPoint
 	call IsAnimatedSprite
 	jr c, .animated_sprite
+
 ; static sprite
 	ld a, SPRITEVIEWER_SETUP_STATIC_SPRITE
 	ld [wSpriteViewerJumptableIndex], a
@@ -281,15 +302,17 @@ FieldDebug_SpriteViewer:
 	ret
 
 .SetupAnimatedSprite:
-	ld a, $10
-	ld [wMovementBuffer], a
-	ld a, $20
-	ld [wMovementBuffer + 1], a
-	ld hl, Datafc6de
+	ld a, TILE_WIDTH * 2
+	ld [wMovementXBuffer], a
+	ld a, TILE_WIDTH * 4
+	ld [wMovementYBuffer], a
+	ld hl, SpriteViewerSpriteTilemap
 	ld de, wShadowOAM
-	call Functionfc6bb
+	call SetupSpriteViewerSpriteTilemap
+
 	ld a, A_BUTTON | B_BUTTON
 	call FieldDebug_WaitJoypadInput
+
 	ld a, SPRITEVIEWER_INIT_MENU
 	ld [wSpriteViewerJumptableIndex], a
 	xor a
@@ -297,46 +320,52 @@ FieldDebug_SpriteViewer:
 
 .SetupStaticSprite:
 	xor a
-	ld [wMovementBuffer + 2], a
+	ld [wMovementSpriteViewerDirection], a
 
 .SpriteLoop:
-	ld a, $10
-	ld [wMovementBuffer], a
-	ld a, $20
-	ld [wMovementBuffer + 1], a
-	call Functionfc689
+	ld a, TILE_WIDTH * 2
+	ld [wMovementXBuffer], a
+	ld a, TILE_WIDTH * 4
+	ld [wMovementYBuffer], a
+	call SetupSpriteViewerSpriteWalkingTilemap
+
 	call .animate_walking
 	bit B_BUTTON_F, a
 	jr nz, .return_to_menu
 	bit A_BUTTON_F, a
 	jr nz, .show_follow_prompt
-	ld a, [wMovementBuffer + 2]
+
+	ld a, [wMovementSpriteViewerDirection]
 	inc a
-	and 3
-	ld [wMovementBuffer + 2], a
+	and RIGHT
+	ld [wMovementSpriteViewerDirection], a
+
 	ldh a, [hJoyState]
 	and D_UP | D_DOWN | D_LEFT | D_RIGHT
 	jr nz, .SpriteLoop
 	xor a
-	ld [wMovementBuffer + 2], a
+	ld [wMovementSpriteViewerDirection], a
 	jr .SpriteLoop
+
 .return_to_menu
 	ld a, SPRITEVIEWER_INIT_MENU
 	ld [wSpriteViewerJumptableIndex], a
 	xor a ; FIELDDEBUG_RETURN_REOPEN
 	ret
+
 .show_follow_prompt
 	ld a, SPRITEVIEWER_FOLLOW_PROMPT
 	ld [wSpriteViewerJumptableIndex], a
 	xor a ; FIELDDEBUG_RETURN_REOPEN
 	ret
+
 .animate_walking
 	ld c, 10
 .animate_loop
 	call DelayFrame
 	call GetJoypad
 	ldh a, [hJoyDown]
-	and 3
+	and A_BUTTON | B_BUTTON
 	ret nz
 	dec c
 	jr nz, .animate_loop
@@ -353,9 +382,10 @@ FieldDebug_SpriteViewer:
 	ld [wSpriteViewerJumptableIndex], a
 	xor a
 	ret
+
 .set_following
 	call .SetStartingPoint
-	ld [wUsedSprites + FOLLOWER], a
+	ld [wUsedFollowerSprites], a
 	ld a, SPRITEVIEWER_SET_FOLLOWING
 	ld [wSpriteViewerJumptableIndex], a
 	ret
@@ -373,32 +403,31 @@ FieldDebug_SpriteViewer:
 	pop bc
 	ret
 
-LoadUnderDevelopmentString:
+.LoadUnderDevelopmentString:
 	ld de, .String
 	ret
 
 .String:
 	db "かいはつちゅう@"
 
-Functionfc689:
+SetupSpriteViewerSpriteWalkingTilemap:
 	ld de, wShadowOAM
-	ld hl, Datafc6de
-	ld a, [wMovementBuffer + 2]
-	and 3
+	ld hl, SpriteViewerSpriteTilemap
+	ld a, [wMovementSpriteViewerDirection]
+	and %00000011
 	ld bc, 2
 	call AddNTimes
 	ld c, 4
-
-Functionfc69c:
+.loop
 	push bc
 	push hl
 	push de
-	call Functionfc6bb
-	ld a, [wMovementBuffer]
+	call SetupSpriteViewerSpriteTilemap
+	ld a, [wMovementXBuffer]
 	add $20
-	ld [wMovementBuffer], a
+	ld [wMovementXBuffer], a
 	pop hl
-	ld bc, $10
+	ld bc, 4 * 4
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -407,22 +436,21 @@ Functionfc69c:
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, Functionfc69c
+	jr nz, .loop
 	ret
 
-Functionfc6bb:
+SetupSpriteViewerSpriteTilemap:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-
-Functionfc6be:
-	ld a, [wMovementBuffer + 1]
+.loop
+	ld a, [wMovementYBuffer]
 	add $10
 	add [hl]
 	inc hl
 	ld [de], a
 	inc de
-	ld a, [wMovementBuffer]
+	ld a, [wMovementXBuffer]
 	add 8
 	add [hl]
 	inc hl
@@ -437,63 +465,7 @@ Functionfc6be:
 	inc de
 	ld a, [hli]
 	bit 0, a
-	jr z, Functionfc6be
+	jr z, .loop
 	ret
 
-Datafc6de:
-	dw Datafc6fe
-	dw Datafc70e
-	dw Datafc6fe
-	dw Datafc71e
-	dw Datafc72e
-	dw Datafc73e
-	dw Datafc72e
-	dw Datafc74e
-	dw Datafc75e
-	dw Datafc77e
-	dw Datafc75e
-	dw Datafc77e
-	dw Datafc76e
-	dw Datafc78e
-	dw Datafc76e
-	dw Datafc78e
-
-Datafc6fe:
-	db 0, 0, 0, 0, 0, 8, 1, 0
-	db 8, 0, 2, 2, 8, 8, 3, 3
-
-Datafc70e:
-	db 0, 0, $c, 0, 0, 8, $d, 0
-	db 8, 0, $e, 2, 8, 8, $f, 3
-
-Datafc71e:
-	db 0, 8, $c, $20, 0, 0, $d, $20
-	db 8, 8, $e, $22, 8, 0, $f, $23
-
-Datafc72e:
-	db 0, 0, 4, 0, 0, 8, 5, 0
-	db 8, 0, 6, 2, 8, 8, 7, 3
-
-Datafc73e:
-	db 0, 0, $10, 0, 0, 8, $11, 0
-	db 8, 0, $12, 2, 8, 8, $13, 3
-
-Datafc74e:
-	db 0, 8, $10, $20, 0, 0, $11, $20
-	db 8, 8, $12, $22, 8, 0, $13, $23
-
-Datafc75e:
-	db 0, 0, 8, 0, 0, 8, 9, 0
-	db 8, 0, $a, 2, 8, 8, $b, 3
-
-Datafc76e:
-	db 0, 8, 8, $20, 0, 0, 9, $20
-	db 8, 8, $a, $22, 8, 0, $b, $23
-
-Datafc77e:
-	db 0, 0, $14, 0, 0, 8, $15, 0
-	db 8, 0, $16, 2, 8, 8, $17, 3
-
-Datafc78e:
-	db 0, 8, $14, $20, 0, 0, $15, $20
-	db 8, 8, $16, $22, 8, 0, $17, $23
+INCLUDE "data/debug/sprite_viewer_facings.asm"

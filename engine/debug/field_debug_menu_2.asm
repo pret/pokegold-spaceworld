@@ -7,7 +7,7 @@ FieldDebug_TownMap:
 	call LoadFontExtra
 	call CloseWindow
 	call GetMemSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
 
@@ -23,7 +23,7 @@ FieldDebug_NamePlayer:
 	call CloseWindow
 	call ClearSprites
 	call GetMemSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld hl, wOptions
 	res NO_TEXT_SCROLL_F, [hl]
 	call LoadFontExtra

@@ -295,6 +295,19 @@
 	charmap "８", $fe
 	charmap "９", $ff
 
+; ASCII numerals (for use with interpolated constants in text strings)
+
+	charmap "0", '０'
+	charmap "1", '１'
+	charmap "2", '２'
+	charmap "3", '３'
+	charmap "4", '４'
+	charmap "5", '５'
+	charmap "6", '６'
+	charmap "7", '７'
+	charmap "8", '８'
+	charmap "9", '９'
+
 ; Actual characters (from gfx/font/font_battle_extra.png)
 
 	charmap "<LV>",      $6e

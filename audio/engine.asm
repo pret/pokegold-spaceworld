@@ -70,7 +70,7 @@ _UpdateSound::
 	cp NUM_CHANNELS
 	jr nz, .loop
 
-	call Functione82f0
+	call SetupPlayDanger
 	ret
 
 UpdateChannel:
@@ -93,7 +93,7 @@ UpdateChannel:
 	call ParseMusic
 
 .continue_sound_update
-	call Functione80b6
+	call ContinueSoundUpdate
 	ret
 
 DisablePitchWheel:
@@ -102,7 +102,7 @@ DisablePitchWheel:
 	res SOUND_PITCH_WHEEL, [hl]
 	ret
 
-Unreferenced_Functione8081:
+Unreferenced_MuteAudio:
 	ld a, [wMapMusic]
 	bit 0, a
 	jr nz, .disable_music
@@ -149,7 +149,7 @@ GetChannelRegisters:
 .registers
 	db LOW(rNR10), LOW(rNR20), LOW(rNR30), LOW(rNR40)
 
-Functione80b6:
+ContinueSoundUpdate:
 	ld hl, CHANNEL_DUTY_CYCLE
 	add hl, bc
 	ld a, [hl]
@@ -168,7 +168,7 @@ Functione80b6:
 	ld [wCurTrackFrequency + 1], a
 	ld a, $3F
 	ld [wSoundLength], a
-	call Functione85d8
+	call CheckChannelFlags2
 	call ReadNoiseSample
 	call HaltMusicWhileSFXPlaying
 	call IsChannelSFXOn
@@ -516,7 +516,7 @@ IsAnySFXOn:
 	scf
 	ret
 
-Functione82f0:
+SetupPlayDanger:
 	call IncrementTempo
 	call PlayDanger
 	call FadeMusic
@@ -1088,7 +1088,7 @@ LoadNote:
 	pop hl
 	ret
 
-Functione85d8::
+CheckChannelFlags2::
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
 	bit SOUND_DUTY, [hl]

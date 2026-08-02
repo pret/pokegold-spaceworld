@@ -67,7 +67,7 @@ OptionsMenu::
 .SwitchActiveFrame
 	ld a, [wActiveFrame]
 	inc a
-	and 7
+	and %111 ; BUG: This fails to account for Border 9, leaving it unused.
 	ld [wActiveFrame], a
 	hlcoord 17, 16
 	add '１'
@@ -332,7 +332,7 @@ DisplayOptionsMenu:
 	ld [wOptionsMenuCursorY], a
 	call EnableLCD
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 .PlaceUnfilledRightArrow

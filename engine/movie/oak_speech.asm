@@ -183,20 +183,20 @@ DebugSetUpPlayer::
 	ret
 
 DebugFillPokedex::
-	ld b, $1F
-	ld a, $FF
+	ld b, NUM_POKEMON / 8
+	ld a, %11111111
 .loop
 	ld [hli], a
 	dec b
 	jr nz, .loop
-	ld [hl], $07
+	ld [hl], (1 << (NUM_POKEMON % 8)) - 1 ; %00000111
 	ret
 
 FillBagWithList::
 	ld hl, wNumBagItems
 .loop
 	ld a, [de]
-	cp $FF
+	cp -1
 	jr z, .yump
 	ld [wCurItem], a
 	inc de
@@ -209,35 +209,35 @@ FillBagWithList::
 	ret
 
 DebugBagItems::
-	db ITEM_IMPORTANT_BAG, $01
-	db ITEM_BAG, $01
-	db ITEM_TM_HOLDER, $01
-	db ITEM_BALL_HOLDER, $01
-	db ITEM_BICYCLE, $01
-	db ITEM_MAIL, $06
-	db ITEM_ULTRA_BALL, $1E
-	db ITEM_POKE_BALL, $63
-	db ITEM_POTION, $1E
-	db ITEM_RARE_CANDY, $14
-	db ITEM_MOON_STONE, $63
-	db ITEM_FULL_HEAL, $63
-	db ITEM_PROTEIN, $63
-	db ITEM_QUICK_NEEDLE, $63
-	db ITEM_SNAKESKIN, $63
-	db ITEM_KINGS_ROCK, $63
-	db ITEM_FLEE_FEATHER, $63
-	db ITEM_FOCUS_ORB, $63
-	db ITEM_SHARP_SCYTHE, $63
-	db ITEM_DETECT_ORB, $63
-	db $FF
+	db ITEM_IMPORTANT_BAG, 1
+	db ITEM_BAG,           1
+	db ITEM_TM_HOLDER,     1
+	db ITEM_BALL_HOLDER,   1
+	db ITEM_BICYCLE,       1
+	db ITEM_MAIL,          6
+	db ITEM_ULTRA_BALL,   30
+	db ITEM_POKE_BALL,    99
+	db ITEM_POTION,       30
+	db ITEM_RARE_CANDY,   20
+	db ITEM_MOON_STONE,   99
+	db ITEM_FULL_HEAL,    99
+	db ITEM_PROTEIN,      99
+	db ITEM_QUICK_NEEDLE, 99
+	db ITEM_SNAKESKIN,    99
+	db ITEM_KINGS_ROCK,   99
+	db ITEM_FLEE_FEATHER, 99
+	db ITEM_FOCUS_ORB,    99
+	db ITEM_SHARP_SCYTHE, 99
+	db ITEM_DETECT_ORB,   99
+	db -1
 
 GiveRandomPokemon::
 	and a
 	ret z
 .loop
 	push af
-	call RandomUnder246
-	ld b, $0A
+	call RandomSpecies_RaiEnSuiOrUnder
+	ld b, 10 ; level
 	call GivePokemon
 	pop af
 	dec a
@@ -287,7 +287,7 @@ AddRandomPokemonToBox:
 	push af
 	xor a
 	ld [wEnemySubStatus5], a
-	call RandomUnder246
+	call RandomSpecies_RaiEnSuiOrUnder
 	ld [wTempEnemyMonSpecies], a
 	ld a, 5
 	ld [wCurPartyLevel], a
@@ -300,12 +300,12 @@ AddRandomPokemonToBox:
 	jr nz, .loop
 	ret
 
-RandomUnder246::
+RandomSpecies_RaiEnSuiOrUnder::
 .loop
 	call Random
 	and a
 	jr z, .loop
-	cp 246
+	cp DEX_SUI + 1
 	jr nc, .loop
 	ret
 

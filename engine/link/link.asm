@@ -1285,7 +1285,7 @@ LinkMonStatsScreen:
 	predef StatsScreenMain
 	call ClearTileMap
 	call MaxVolume
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call LoadTradeScreenBorderGFX
 	call PlaceTradeScreenTextbox
 	jp PlaceTradeScreenFooter

@@ -165,7 +165,7 @@ LoadUsedSpritesGFX:
 .no_still_sprite_2
 	ret
 
-Function14133:
+Unreferenced_LoadOverworldSprite_NPCSlot:
 	swap b
 	ld a, b
 	and $f0
@@ -183,8 +183,7 @@ LoadOverworldSprite_PlayerSlot:
 	ld hl, vNPCSprites
 	jr LoadOverworldSprite
 
-; Unreferenced
-LoadOverworldSprite_FollowerSlot:
+Unreferenced_LoadOverworldSprite_FollowerSlot:
 	ld a, c
 	ld hl, vNPCSprites tile $0c
 	jr LoadOverworldSprite

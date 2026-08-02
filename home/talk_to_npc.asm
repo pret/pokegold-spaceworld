@@ -17,8 +17,8 @@ TextAsmEnd::
 CallMapTextSubroutine::
 	ld a, [wTalkingTargetType]
 	bit 0, a
-	jr z, asm_3062
-	call Function3055
+	jr z, TalkingToBGObject
+	call CheckAllMapObjects
 	ret z
 	ld hl, hCurMapTextSubroutinePtr
 	ld a, [hli]
@@ -29,10 +29,10 @@ CallMapTextSubroutine::
 	jp hl
 
 .Return:
-	call Function307a
+	call ResetTalkingTarget
 	ret
 
-Function3055::
+CheckAllMapObjects::
 	ldh a, [hLastTalked]
 	ld b, a
 .Loop:
@@ -43,7 +43,7 @@ Function3055::
 	jp z, xor_a_dec_a
 	jr .Loop
 
-asm_3062:
+TalkingToBGObject:
 	ld a, [wTalkingTargetType]
 	bit 1, a
 	ret z
@@ -58,11 +58,11 @@ asm_3062:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, Function307a
+	ld de, ResetTalkingTarget
 	push de
 	jp hl
 
-Function307a::
+ResetTalkingTarget::
 	ld hl, wTalkingTargetType
 	res 0, [hl]
 	res 1, [hl]
@@ -210,13 +210,13 @@ TextboxCleanup:
 	ldh [hBGMapMode], a
 	ld a, $90
 	ldh [hWY], a
-	call Function318f
+	call ReloadObjectGFX
 	ld hl, wToolgearFlags
 	res 7, [hl]
 	call InitToolgearBuffer
 	ret
 
-Function318f:
+ReloadObjectGFX:
 	callfar LoadWalkingSpritesGFX
 	call RedrawPlayerSprite
 	ret

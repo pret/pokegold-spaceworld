@@ -1662,7 +1662,7 @@ ForcePlayerMonChoice:
 	call _LoadHPBar
 	call CloseWindow
 	call GetMemSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 
 	call SendOutMonText
 	call NewBattleMonStatus
@@ -2166,7 +2166,7 @@ EnemySendOutFirstMon:
 
 	ld b, SGB_BATTLE_COLORS
 	call GetSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	callfar Battle_GetTrainerName
 
 	ld hl, TrainerSentOutText
@@ -3268,7 +3268,7 @@ BattleMenu_Pack:
 	call UpdateBattleHuds
 	call WaitBGMap
 	call ClearWindowData
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	and a
 	ret
 
@@ -3278,7 +3278,7 @@ BattleMenu_Pack:
 	ld a, DRAW
 	ld [wBattleResult], a
 	call ClearWindowData
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	scf
 	ret
 
@@ -3288,7 +3288,7 @@ BattleMenu_Pack:
 	call Call_LoadBattleFontsHPBar
 	call CloseWindow
 	call LoadTilemapToTempTilemap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	jp BattleMenu
 
 .ItemsCantBeUsed
@@ -3412,21 +3412,20 @@ BattleMenu_PKMN:
 	call CloseWindow
 	call LoadTilemapToTempTilemap
 	call GetMemSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	jp BattleMenu
 
-; TODO: Do the tile identifiers look right (are they not vFrontPic, vBackPic)?...
 .Battle_StatsScreen:
 	call DisableLCD
 
-	ld hl, vChars2 tile $31
+	ld hl, vBackPic
 	ld de, vChars0
 	ld bc, $11 tiles
 	call CopyBytes
 
-	ld hl, vChars2
+	ld hl, vFrontPic
 	ld de, vChars0 tile $11
-	ld bc, $31 tiles
+	ld bc, 7 * 7 tiles
 	call CopyBytes
 
 	call EnableLCD
@@ -3441,13 +3440,13 @@ BattleMenu_PKMN:
 	call DisableLCD
 
 	ld hl, vChars0
-	ld de, vChars2 tile $31
+	ld de, vBackPic
 	ld bc, $11 tiles
 	call CopyBytes
 
 	ld hl, vChars0 tile $11
-	ld de, vChars2
-	ld bc, $31 tiles
+	ld de, vFrontPic
+	ld bc, 7 * 7 tiles
 	call CopyBytes
 
 	call EnableLCD
@@ -3482,7 +3481,7 @@ BattleMenu_PKMN:
 	call _LoadHPBar
 	call CloseWindow
 	call GetMemSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 
 PlayerSwitch:
 	ld a, [wLinkMode]
