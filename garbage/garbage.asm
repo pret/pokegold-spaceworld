@@ -5,93 +5,17 @@ SECTION "High Home Garbage", ROM0
 
 if DEF(_DEBUG)
 	if DEF(_GOLD)
-	db $00, $00, $00, $00, $00, $C5, $F7, $1B,
-	db $BA, $E7, $F5, $6D, $B6, $7B, $FD, $F8,
-	db $37, $DD, $17, $F5, $F7, $FF, $F9, $72,
-	db $BB, $AF, $F7, $EF, $5C, $12, $00, $BA,
-	db $17, $02, $15, $C0, $12, $7E, $03, $10,
-	db $08, $00, $41, $00, $48, $2C, $01, $3E,
-	db $00, $C0, $50, $01, $00, $82, $43, $00,
-	db $03, $06, $B2, $07, $50, $29, $33, $50,
-	db $47, $50, $D0, $04, $E1, $05, $31, $84,
-	db $50, $2F, $84, $01, $82, $38, $82, $04,
-	db $10, $15, $70, $02, $10, $23, $61, $38,
-	db $00, $01, $06, $32, $50, $D1, $23, $04,
-	db $85, $22, $44, $A9, $01, $B4, $61, $00,
-	db $40, $24, $3C, $0C, $06, $0A, $19, $A0,
-	db $21, $1A, $15, $30, $11, $02, $14, $00,
-	db $12, $07, $47, $00, $41, $D0, $B1, $4A,
-	db $4C, $01, $E1, $00, $2C, $00, $00, $02,
-	db $93, $29, $4C, $01, $08, $A1, $28, $79,
-	db $05, $51, $44, $69, $15, $81, $10, $8A,
-	db $C8, $0E, $86, $45, $12
+	INCBIN "garbage/debug/high_home_gold.2bpp", 8
 	endc
 	if DEF(_SILVER)
-	db $00, $00, $00, $00, $00, $03, $20, $10,
-	db $01, $24, $00, $23, $20, $00, $20, $20,
-	db $40, $20, $00, $01, $01, $81, $30, $40,
-	db $01, $09, $95, $10, $A1, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $7F, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $50, $D2, $76, $F3, $7F,
-	db $FF, $00, $01, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $DF, $FF, $FF,
-	db $FD, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FD, $FC, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF,
-	db $FF, $FF, $FF, $FF, $FF
+	INCBIN "garbage/debug/high_home_silver.2bpp", 8
 	endc
 else
 	if DEF(_GOLD)
-	db $00, $00, $00, $00, $00, $FB, $7F, $FF,
-	db $F9, $BF, $FF, $ED, $FF, $7F, $E7, $EB,
-	db $FF, $6F, $1F, $F8, $E7, $4F, $F6, $5F,
-	db $5F, $FF, $FF, $DF, $BE, $1A, $51, $2A,
-	db $41, $4B, $49, $21, $C0, $31, $20, $52,
-	db $97, $18, $00, $09, $05, $AA, $78, $64,
-	db $01, $8D, $94, $33, $82, $90, $A6, $3B,
-	db $82, $10, $08, $9D, $5C, $2F, $50, $95,
-	db $40, $1D, $24, $12, $63, $80, $31, $68,
-	db $80, $43, $02, $BA, $44, $50, $86, $14,
-	db $21, $68, $56, $00, $88, $9B, $3B, $0A,
-	db $97, $83, $C1, $0D, $42, $4B, $03, $D1,
-	db $87, $2D, $A0, $01, $CA, $2B, $88, $CB,
-	db $20, $61, $21, $14, $0E, $CF, $76, $05,
-	db $F0, $02, $11, $02, $9E, $EC, $13, $59,
-	db $51, $31, $15, $1D, $8A, $31, $03, $22,
-	db $C0, $CE, $A0, $DF, $38, $95, $3D, $00,
-	db $50, $8C, $20, $9B, $10, $2C, $28, $85,
-	db $61, $33, $1C, $4C, $A5, $51, $00, $1E,
-	db $82, $E8, $02, $9E, $24
+	INCBIN "garbage/high_home_gold.2bpp", 8
 	endc
 	if DEF(_SILVER)
-	db $00, $00, $00, $00, $00, $28, $AA, $AA,
-	db $22, $AE, $AA, $A2, $AA, $A8, $AA, $AA,
-	db $A2, $A8, $AA, $88, $AA, $AA, $A2, $A3,
-	db $2A, $AA, $A2, $0A, $AB, $EA, $AF, $AA,
-	db $A6, $AE, $EA, $EB, $8A, $EA, $AA, $AA,
-	db $FA, $AE, $BA, $AB, $AA, $EA, $AE, $BE,
-	db $AB, $AA, $AE, $AA, $AE, $BB, $BA, $AE,
-	db $EB, $EB, $AE, $AE, $AF, $AA, $AA, $AA,
-	db $F2, $AA, $AA, $EB, $EA, $AA, $AA, $AA,
-	db $BF, $AA, $AA, $8E, $AE, $EA, $FE, $AA,
-	db $AA, $BA, $AE, $AA, $AA, $AE, $EA, $AA,
-	db $EE, $AE, $AA, $AA, $BA, $AA, $B8, $AB,
-	db $AE, $AA, $6A, $AA, $E8, $AA, $EA, $EA,
-	db $EB, $EE, $28, $EA, $BC, $AB, $BA, $AE,
-	db $AA, $AA, $FE, $AA, $AA, $BB, $AA, $EA,
-	db $AA, $AB, $AB, $BE, $BB, $EB, $AE, $BA,
-	db $AE, $EA, $AA, $AA, $AA, $CA, $BF, $AA,
-	db $AF, $AE, $BA, $AA, $AB, $AE, $AA, $EA,
-	db $AA, $AA, $AE, $AA, $AA, $AB, $AE, $EE,
-	db $AE, $AB, $AE, $BA, $AA
+	INCBIN "garbage/high_home_silver.2bpp", 8
 	endc
 endc
 
@@ -442,7 +366,53 @@ Unused_SpecialMapMusic_Old:
 	ret
 else
 if DEF(_GOLD)
-INCBIN "garbage/home_gold.2bpp", 246
+Unreferenced_Corrupt_PlayMapMusic::
+	dw $0317
+	pop de
+	ld a, e
+	ld [wMapMusic], a
+	call @ - $F6
+.jump
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+
+Unreferenced_Corrupt_SpecialMapMusic::
+	ld a, [wPlayerState]
+	and a
+	jr z, .normal
+	cp PLAYER_SKATE
+	jr z, .skateboard
+	ld de, MUSIC_BICYCLE
+	scf
+	ret
+
+.skateboard
+	ld de, MUSIC_NONE
+	scf
+	ret
+
+.normal
+	and a
+	ret
+
+Unreferenced_Corrupt_GetMapMusic::
+	call Unreferenced_Corrupt_SpecialMapMusic
+	ret c
+	ld a, [wMapPermissions]
+	cp TOWN
+	jr z, .not_route
+	cp INDOOR
+	jr z, .not_route
+	ld de, MUSIC_ROUTE_1
+	ret
+
+.not_route
+	ld de, MUSIC_VIRIDIAN_CITY
+	ret
+INCBIN "garbage/home_gold.2bpp", 50
 endc
 if DEF(_SILVER)
 INCBIN "garbage/home_silver.2bpp", 246
