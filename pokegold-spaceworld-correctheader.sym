@@ -1057,6 +1057,13 @@
 00:3ddd SpecialMapMusic.normal
 00:3ddf GetMapMusic
 00:3df2 GetMapMusic.not_route
+00:3df6 Unreferenced_Corrupt_PlayMapMusic
+00:3e00 Unreferenced_Corrupt_PlayMapMusic.jump
+00:3e05 Unreferenced_Corrupt_SpecialMapMusic
+00:3e14 Unreferenced_Corrupt_SpecialMapMusic.skateboard
+00:3e19 Unreferenced_Corrupt_SpecialMapMusic.normal
+00:3e1b Unreferenced_Corrupt_GetMapMusic
+00:3e2e Unreferenced_Corrupt_GetMapMusic.not_route
 01:4000 PlaceWaitingText
 01:4012 PlaceWaitingText.link_textbox
 01:4017 PlaceWaitingText.textbox_done

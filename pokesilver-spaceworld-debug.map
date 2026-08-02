@@ -1,5 +1,5 @@
 SUMMARY:
-	ROM0: 16234 bytes used / 150 free
+	ROM0: 16229 bytes used / 155 free
 	ROMX: 1032192 bytes used / 0 free in 63 banks
 	SRAM: 20395 bytes used / 12373 free in 4 banks
 	WRAM0: 8139 bytes used / 53 free
@@ -33,7 +33,8 @@ ROM0 bank #0:
 	SECTION: $0058-$005a ($0003 bytes) ["Serial interrupt vector"]
 	EMPTY: $005b-$005f ($0005 bytes)
 	SECTION: $0060-$0062 ($0003 bytes) ["Joypad interrupt vector"]
-	SECTION: $0063-$00ff ($009d bytes) ["High Home Garbage"]
+	EMPTY: $0063-$0067 ($0005 bytes)
+	SECTION: $0068-$00ff ($0098 bytes) ["High Home Garbage"]
 	SECTION: $0100-$0103 ($0004 bytes) ["Entry point"]
 	EMPTY: $0104-$014d ($004a bytes)
 	SECTION: $014e-$014f ($0002 bytes) ["Global check value"]
@@ -1125,7 +1126,7 @@ ROM0 bank #0:
 	         $3fea = Unused_SpecialMapMusic_Old
 	         $3ff9 = Unused_SpecialMapMusic_Old.skateboard
 	         $3ffe = Unused_SpecialMapMusic_Old.normal
-	TOTAL EMPTY: $0096 bytes
+	TOTAL EMPTY: $009b bytes
 
 ROMX bank #1:
 	SECTION: $4000-$7c29 ($3c2a bytes) ["bank1"]
