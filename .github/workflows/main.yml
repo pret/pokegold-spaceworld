@@ -58,13 +58,6 @@ jobs:
           add: "*.sym *.map"
           message: ${{ github.event.commits[0].message }}
 
-      - name: Discord webhook
-        if: ${{ github.repository_owner == 'pret' && github.event_name == 'push' }}
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: |
-          .github/webhook.sh
-
   build-macos:
     runs-on: macos-latest
     steps:
