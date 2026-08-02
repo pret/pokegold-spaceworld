@@ -1779,6 +1779,7 @@ wTilesetEnd::
 
 wGameData2End::
 
+
 SECTION "Party", WRAM0
 
 wPokemonData::

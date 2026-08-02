@@ -96,7 +96,6 @@ FieldDebug_SpriteViewer:
 .DoSpriteViewer:
 	ld a, 0
 	ld [wSpriteViewerJumptableIndex], a
-
 .loop
 	ld a, [wSpriteViewerJumptableIndex]
 	ld hl, .Jumptable
@@ -176,6 +175,7 @@ FieldDebug_SpriteViewer:
 
 	ld hl, wStringBuffer1
 	inc [hl]
+
 	pop hl
 	ld de, SCREEN_WIDTH * 3
 	add hl, de
@@ -289,6 +289,7 @@ FieldDebug_SpriteViewer:
 	call .SetStartingPoint
 	call IsAnimatedSprite
 	jr c, .animated_sprite
+
 ; static sprite
 	ld a, SPRITEVIEWER_SETUP_STATIC_SPRITE
 	ld [wSpriteViewerJumptableIndex], a
@@ -343,7 +344,6 @@ FieldDebug_SpriteViewer:
 	ldh a, [hJoyState]
 	and D_UP | D_DOWN | D_LEFT | D_RIGHT
 	jr nz, .SpriteLoop
-
 	xor a
 	ld [wMovementSpriteViewerDirection], a
 	jr .SpriteLoop
@@ -353,11 +353,15 @@ FieldDebug_SpriteViewer:
 	ld [wSpriteViewerJumptableIndex], a
 	xor a ; FIELDDEBUG_RETURN_REOPEN
 	ret
+	ret
+
 .show_follow_prompt
 	ld a, SPRITEVIEWER_FOLLOW_PROMPT
 	ld [wSpriteViewerJumptableIndex], a
 	xor a ; FIELDDEBUG_RETURN_REOPEN
 	ret
+	ret
+
 .animate_walking
 	ld c, 10
 .animate_loop
@@ -417,7 +421,7 @@ SetupSpriteViewerSpriteWalkingTilemap:
 	ld bc, 2
 	call AddNTimes
 	ld c, 4
-.loop:
+.loop
 	push bc
 	push hl
 	push de
@@ -442,7 +446,7 @@ SetupSpriteViewerSpriteTilemap:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.loop:
+.loop
 	ld a, [wMovementYBuffer]
 	add $10
 	add [hl]
