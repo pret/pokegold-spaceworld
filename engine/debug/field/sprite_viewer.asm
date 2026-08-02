@@ -352,13 +352,11 @@ FieldDebug_SpriteViewer:
 	ld [wSpriteViewerJumptableIndex], a
 	xor a ; FIELDDEBUG_RETURN_REOPEN
 	ret
-	ret
 
 .show_follow_prompt
 	ld a, SPRITEVIEWER_FOLLOW_PROMPT
 	ld [wSpriteViewerJumptableIndex], a
 	xor a ; FIELDDEBUG_RETURN_REOPEN
-	ret
 	ret
 
 .animate_walking
