@@ -1,4 +1,8 @@
 	map_attributes RivalHouse, RIVAL_HOUSE
+	
+	object_const_def
+	const RIVAL_HOUSE_RIVALS_SISTER
+	const RIVAL_HOUSE_KEN
 
 RivalHouse_MapEvents::
 	dw $4000 ; unknown
@@ -22,16 +26,13 @@ RivalHouse_MapEvents::
 RivalHouse_Blocks::
 INCBIN "maps/RivalHouse.blk"
 
-RivalHouse_ScriptLoader::
 	map_generic_scriptloader
 
 RivalHouseScriptPointers::
-	dw RivalHouseScript1
-	dw RivalHouseNPCIDs1
-	dw RivalHouseScript2
-	dw RivalHouseNPCIDs2
-	dw RivalHouseScript3
-	dw RivalHouseNPCIDs1
+	def_script_pointers
+	script_pointer RivalHouseScript1, RivalHouseNPCIDs1, RIVAL_HOUSE_DEFAULT
+	script_pointer RivalHouseScript2, RivalHouseNPCIDs2, RIVAL_HOUSE_KEN_HERE
+	script_pointer RivalHouseScript3, RivalHouseNPCIDs1, RIVAL_HOUSE_GOT_MAP_CARD
 
 RivalHouseScript1:
 	ld hl, RivalHouseNPCIDs1

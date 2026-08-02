@@ -1,17 +1,17 @@
 	map_attributes SilentHillLabFront, SILENT_HILL_LAB_FRONT
 
 	object_const_def
-	object_const OAK1
-	object_const OAK2
-	object_const RIVAL1
-	object_const RIVAL2
-	object_const BLUE1
-	object_const BLUE2
-	object_const NANAMI
-	object_const OAKS_AIDE1
-	object_const OAKS_AIDE2
-	object_const POKEDEX1
-	object_const POKEDEX2
+	const SILENT_HILL_LAB_FRONT_OAK1
+	const SILENT_HILL_LAB_FRONT_OAK2
+	const SILENT_HILL_LAB_FRONT_RIVAL1
+	const SILENT_HILL_LAB_FRONT_RIVAL2
+	const SILENT_HILL_LAB_FRONT_BLUE1
+	const SILENT_HILL_LAB_FRONT_BLUE2
+	const SILENT_HILL_LAB_FRONT_NANAMI
+	const SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	const SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	const SILENT_HILL_LAB_FRONT_POKEDEX1
+	const SILENT_HILL_LAB_FRONT_POKEDEX2
 	
 SilentHillLabFront_MapEvents::
 	dw $4000 ; unknown
@@ -54,69 +54,29 @@ SilentHillLabFront_MapEvents::
 SilentHillLabFront_Blocks::
 INCBIN "maps/SilentHillLabFront.blk"
 
-SilentHillLabFront_ScriptLoader::
-	ld hl, SilentHillLabFrontScriptPointers
-	call RunMapScript
-	call WriteBackMapScriptNumber
-	ret
+	map_generic_scriptloader
 
 SilentHillLabFrontScriptPointers::
-	dw SilentHillLabFrontScript1
-	dw SilentHillLabFrontNPCIDs1
-
-	dw SilentHillLabFrontScript2
-	dw SilentHillLabFrontNPCIDs2
-
-	dw SilentHillLabFrontScript3
-	dw SilentHillLabFrontNPCIDs2
-
-	dw SilentHillLabFrontScript4
-	dw SilentHillLabFrontNPCIDs2
-
-	dw SilentHillLabFrontConversation1
-	dw SilentHillLabFrontNPCIDs2
-
-	dw SilentHillLabFrontScript6
-	dw SilentHillLabFrontNPCIDs3
-
-	dw SilentHillLabFrontScript7
-	dw SilentHillLabFrontNPCIDs4
-
-	dw SilentHillLabFrontScript8
-	dw SilentHillLabFrontNPCIDs5
-
-	dw SilentHillLabFrontScript9
-	dw SilentHillLabFrontNPCIDs5
-
-	dw SilentHillLabFrontScript10
-	dw SilentHillLabFrontNPCIDs5
-
-	dw SilentHillLabFrontScript11
-	dw SilentHillLabFrontNPCIDs5
-
-	dw SilentHillLabFrontScript12
-	dw SilentHillLabFrontNPCIDs6
-
-	dw SilentHillLabFrontScript13
-	dw SilentHillLabFrontNPCIDs6
-
-	dw SilentHillLabFrontScript14
-	dw SilentHillLabFrontNPCIDs6
-
-	dw SilentHillLabFrontScript15
-	dw SilentHillLabFrontNPCIDs7
-
-	dw SilentHillLabFrontScript16
-	dw SilentHillLabFrontNPCIDs7
-
-	dw SilentHillLabFrontScript17
-	dw SilentHillLabFrontNPCIDs7
-
-	dw SilentHillLabFrontScript18
-	dw SilentHillLabFrontNPCIDs7
-
-	dw SilentHillLabFrontScript19
-	dw SilentHillLabFrontNPCIDs9
+	def_script_pointers
+	script_pointer SilentHillLabFrontScript1, SilentHillLabFrontNPCIDs1, SILENT_HILL_LAB_FRONT_DEFAULT
+	script_pointer SilentHillLabFrontScript2, SilentHillLabFrontNPCIDs2, SILENT_HILL_LAB_FRONT_START_BLUE_CUTSCENE
+	script_pointer SilentHillLabFrontScript3, SilentHillLabFrontNPCIDs2, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE
+	script_pointer SilentHillLabFrontScript4, SilentHillLabFrontNPCIDs2, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_2
+	script_pointer SilentHillLabFrontConversation1, SilentHillLabFrontNPCIDs2, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_CONVERSATION
+	script_pointer SilentHillLabFrontScript6, SilentHillLabFrontNPCIDs3, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_END
+	script_pointer SilentHillLabFrontScript7, SilentHillLabFrontNPCIDs4, SILENT_HILL_LAB_FRONT_RIVAL_ENTER_BACK
+	script_pointer SilentHillLabFrontScript8, SilentHillLabFrontNPCIDs5, SILENT_HILL_LAB_FRONT_ENTER_BACK
+	script_pointer SilentHillLabFrontScript9, SilentHillLabFrontNPCIDs5, SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE
+	script_pointer SilentHillLabFrontScript10, SilentHillLabFrontNPCIDs5, SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE_2
+	script_pointer SilentHillLabFrontScript11, SilentHillLabFrontNPCIDs5, SILENT_HILL_LAB_FRONT_GET_POKEDEX
+	script_pointer SilentHillLabFrontScript12, SilentHillLabFrontNPCIDs6, SILENT_HILL_LAB_FRONT_RIVAL_WAIT_FOR_BATTLE
+	script_pointer SilentHillLabFrontScript13, SilentHillLabFrontNPCIDs6, SILENT_HILL_LAB_FRONT_RIVAL_START_BATTLE
+	script_pointer SilentHillLabFrontScript14, SilentHillLabFrontNPCIDs6, SILENT_HILL_LAB_FRONT_RIVAL_BATTLE_END
+	script_pointer SilentHillLabFrontScript15, SilentHillLabFrontNPCIDs7, SILENT_HILL_LAB_FRONT_RIVAL_LEFT
+	script_pointer SilentHillLabFrontScript16, SilentHillLabFrontNPCIDs7, SILENT_HILL_LAB_FRONT_RIVAL_LEFT_END
+	script_pointer SilentHillLabFrontScript17, SilentHillLabFrontNPCIDs7, SILENT_HILL_LAB_FRONT_GET_POKEBALLS
+	script_pointer SilentHillLabFrontScript18, SilentHillLabFrontNPCIDs7, SILENT_HILL_LAB_FRONT_GOT_POKEBALLS
+	script_pointer SilentHillLabFrontScript19, SilentHillLabFrontNPCIDs9, SILENT_HILL_LAB_FRONT_FINISHED
 
 SilentHillLabFrontNPCIDs1:
 	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
@@ -241,7 +201,7 @@ SilentHillLabFrontMovement1:
 	step_end
 
 SilentHillLabFrontScript2:
-	ld a, 2
+	ld a, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE
 	ld [wMapScriptNumber], a
 	ret
 
@@ -258,7 +218,7 @@ SilentHillLabFrontScript3:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 3
+	ld a, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_2
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -281,7 +241,7 @@ SilentHillLabFrontMovement2:
 
 SilentHillLabFrontScript4:
 	call FreezeAllObjects
-	ld a, 4
+	ld a, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_CONVERSATION
 	ld [wMapScriptNumber], a
 	ret
 
@@ -320,7 +280,7 @@ SilentHillLabFrontScript5:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 5
+	ld a, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_END
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -341,7 +301,7 @@ SilentHillLabFrontScript6:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 6
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_ENTER_BACK
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -365,7 +325,7 @@ SilentHillLabFrontScript7:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 7
+	ld a, SILENT_HILL_LAB_FRONT_ENTER_BACK
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -392,7 +352,7 @@ SilentHillLabFrontScript8:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 8
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -418,7 +378,7 @@ SilentHillLabFrontScript9:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 9
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE_2
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -456,7 +416,7 @@ SilentHillLabFrontScript10:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, $0A
+	ld a, SILENT_HILL_LAB_FRONT_GET_POKEDEX
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -472,9 +432,9 @@ SilentHillLabFrontScript11:
 	call OpenTextbox
 	ld hl, SilentHillLabFrontTextString9
 	call OpenTextbox
-	ld a, $0B
+	ld a, SILENT_HILL_LAB_FRONT_POKEDEX1
 	call ApplyDeletionToMapObject
-	ld a, $0C
+	ld a, SILENT_HILL_LAB_FRONT_POKEDEX2
 	call ApplyDeletionToMapObject
 	ld hl, SilentHillLabFrontTextString10
 	call OpenTextbox
@@ -482,7 +442,7 @@ SilentHillLabFrontScript11:
 	call OpenTextbox
 	SetEvent SILENT_HILL_LAB_FRONT_GOT_POKEDEX
 	call UnfreezeEverything
-	ld a, $0B
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_WAIT_FOR_BATTLE
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
 	ret
@@ -519,7 +479,7 @@ SilentHillLabFrontRivalMovePokemon:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, $0C
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_START_BATTLE
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -551,7 +511,7 @@ SilentHillLabFrontScript13:
 	set 7, [hl]
 	ld a, MAPSTATUS_START_TRAINER_BATTLE
 	ld [wMapStatus], a
-	ld a, $0D
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_BATTLE_END
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
 	ret
@@ -598,7 +558,7 @@ SilentHillLabFrontScript14:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, $0E
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_LEFT
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -613,7 +573,7 @@ SilentHillLabFrontMovement11:
 
 SilentHillLabFrontScript15:
 	call UnfreezeEverything
-	ld a, $0F
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_LEFT_END
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
 	ret
@@ -650,7 +610,7 @@ SilentHillLabFrontMoveRivalLeave:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, $10
+	ld a, SILENT_HILL_LAB_FRONT_GET_POKEBALLS
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -675,7 +635,7 @@ SilentHillLabFrontScript17:
 	ld [wItemQuantity], a
 	call ReceiveItem
 	call UnfreezeEverything
-	ld a, $11
+	ld a, SILENT_HILL_LAB_FRONT_GOT_POKEBALLS
 	ld [wMapScriptNumber], a
 	ret
 

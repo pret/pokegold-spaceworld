@@ -1,8 +1,8 @@
 	map_attributes Route2Gate1F, ROUTE_2_GATE_1F
 
 	object_const_def
-	object_const YOUNGSTER
-	object_const COOLTRAINER_F
+	const ROUTE_2_GATE_1F_YOUNGSTER
+	const ROUTE_2_GATE_1F_COOLTRAINER_F
 
 Route2Gate1F_MapEvents::
 	dw $4000 ; unknown
@@ -23,10 +23,9 @@ Route2Gate1F_MapEvents::
 Route2Gate1F_Blocks::
 INCBIN "maps/Route2Gate1F.blk"
 
-Route2Gate1F_ScriptLoader::
 	map_generic_scriptloader
-	map_generic_scriptpointers
-	map_generic_npcids
+	map_generic_script_pointers
+	map_generic_npc_ids
 
 Route2Gate1FSignPointers:
 	dw MapDefaultText ;no signs

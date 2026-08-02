@@ -1,12 +1,12 @@
 	map_attributes QuietHills, QUIET_HILLS
 
 	object_const_def
-	object_const ROCKER
-	object_const TRAINER1
-	object_const TRAINER2
-	object_const TRAINER3
-	object_const TRAINER4
-	object_const TRAINER5
+	const QUIET_HILLS_ROCKER
+	const QUIET_HILLS_TRAINER1
+	const QUIET_HILLS_TRAINER2
+	const QUIET_HILLS_TRAINER3
+	const QUIET_HILLS_TRAINER4
+	const QUIET_HILLS_TRAINER5
 
 QuietHills_MapEvents::
 	dw $4000 ; unknown
@@ -38,10 +38,9 @@ QuietHills_MapEvents::
 QuietHills_Blocks::
 INCBIN "maps/QuietHills.blk"
 
-QuietHills_ScriptLoader::
 	map_generic_scriptloader
-	map_generic_scriptpointers
-	map_generic_npcids
+	map_generic_script_pointers
+	map_generic_npc_ids
 
 QuietHillsSignPointers:
 	dw QuietHillsSignpost1

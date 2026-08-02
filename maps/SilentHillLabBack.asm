@@ -1,11 +1,11 @@
 	map_attributes SilentHillLabBack, SILENT_HILL_LAB_BACK
 
 	object_const_def
-	object_const OAK
-	object_const RIVAL
-	object_const STARTER_HONOGUMA
-	object_const STARTER_KURUSU
-	object_const STARTER_HAPPA
+	const SILENT_HILL_LAB_BACK_OAK
+	const SILENT_HILL_LAB_BACK_RIVAL
+	const SILENT_HILL_LAB_BACK_STARTER_HONOGUMA
+	const SILENT_HILL_LAB_BACK_STARTER_KURUSU
+	const SILENT_HILL_LAB_BACK_STARTER_HAPPA
 	
 SilentHillLabBack_MapEvents::
 	dw $4000 ; unknown
@@ -31,24 +31,17 @@ SilentHillLabBack_MapEvents::
 SilentHillLabBack_Blocks::
 INCBIN "maps/SilentHillLabBack.blk"
 
-SilentHillLabBack_ScriptLoader::
 	map_generic_scriptloader
 
 SilentHillLabBackScriptPointers::
-	dw SilentHillLabBackScript1
-	dw SilentHillLabBackNPCIDs1
-	dw SilentHillLabBackScript2
-	dw SilentHillLabBackNPCIDs1
-	dw SilentHillLabBackScript3
-	dw SilentHillLabBackNPCIDs1
-	dw SilentHillLabBackRivalChoosePokemon
-	dw SilentHillLabBackNPCIDs1
-	dw SilentHillLabBackScript5
-	dw SilentHillLabBackNPCIDs1
-	dw SilentHillLabBackScript6
-	dw SilentHillLabBackNPCIDs1
-	dw SilentHillLabBackScript7
-	dw SilentHillLabBackNPCIDs1
+	def_script_pointers
+	script_pointer SilentHillLabBackScript1, SilentHillLabBackNPCIDs1, SILENT_HILL_LAB_BACK_DEFAULT
+	script_pointer SilentHillLabBackScript2, SilentHillLabBackNPCIDs1, SILENT_HILL_LAB_BACK_OAK_INSTRUCTION
+	script_pointer SilentHillLabBackScript3, SilentHillLabBackNPCIDs1, SILENT_HILL_LAB_BACK_CHOOSE_STARTER
+	script_pointer SilentHillLabBackRivalChoosePokemon, SilentHillLabBackNPCIDs1,  SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER
+	script_pointer SilentHillLabBackScript5, SilentHillLabBackNPCIDs1, SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER2
+	script_pointer SilentHillLabBackScript6, SilentHillLabBackNPCIDs1, SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER3
+	script_pointer SilentHillLabBackScript7, SilentHillLabBackNPCIDs1, SILENT_HILL_LAB_BACK_CUTSCENE_OVER
 
 SilentHillLabBackNPCIDs1:
 	npc_id SILENT_HILL_LAB_BACK_OAK
@@ -95,7 +88,7 @@ SilentHillLabBackScript1:
 	SetEvent SILENT_HILL_LAB_BACK_FOLLOWED_OAK
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
-	ld a, 1
+	ld a, SILENT_HILL_LAB_BACK_OAK_INSTRUCTION
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -120,7 +113,7 @@ SilentHillLabBackScript2:
 	call OpenTextbox
 	ld hl, SilentHillLabBackTextString2
 	call OpenTextbox
-	ld a, 2
+	ld a, SILENT_HILL_LAB_BACK_CHOOSE_STARTER
 	ld [wMapScriptNumber], a
 	ret
 
@@ -148,7 +141,7 @@ SilentHillLabBackRivalChoosePokemon:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set 7, [hl]
-	ld a, 4
+	ld a, SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER2
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -175,7 +168,7 @@ SilentHillLabBackScript5:
 	call GetPokemonName
 	ld hl, SilentHillLabBackTextString13
 	call OpenTextbox
-	ld a, 5
+	ld a, SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER3
 	ld [wMapScriptNumber], a
 	ret
 
@@ -183,7 +176,7 @@ SilentHillLabBackScript6:
 	call UnfreezeEverything
 	ld hl, wOverworldFlags
 	res 6, [hl]
-	ld a, 6
+	ld a, SILENT_HILL_LAB_BACK_CUTSCENE_OVER
 	ld[wMapScriptNumber], a
 	ret
 
@@ -260,11 +253,11 @@ ConfirmPokemonSelection:
 	call YesNoBox
 	jr c, .bigJump
 	SetEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
-	ld a, 1
+	ld a, PLAYER_HOUSE_1F_MOM_BACK
 	ld [wPlayerHouse1FSceneID], a
-	ld a, 1
+	ld a, PLAYER_HOUSE_2F_KEN_LEFT
 	ld [wPlayerHouse2FSceneID], a
-	ld a, 1
+	ld a, RIVAL_HOUSE_KEN_HERE
 	ld [wRivalHouseSceneID], a
 	ld hl, SilentHillLabBackTextString8
 	call PrintText
@@ -277,7 +270,7 @@ ConfirmPokemonSelection:
 	callfar GivePoke
 	xor a
 	ld [wPartyMon1 + 1], a
-	ld a, 3
+	ld a, SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER
 	ld [wMapScriptNumber], a
 	ret
 .bigJump

@@ -7,10 +7,6 @@ MACRO object_const_def
 	const_def 2
 ENDM
 
-MACRO object_const
-	const {CURRENT_MAP_ID}_\1
-ENDM
-
 MACRO npc_id
 	db \1 - 2
 ENDM
@@ -208,7 +204,17 @@ MACRO object_event
 	endc
 ENDM
 
+MACRO def_script_pointers
+	const_def
+ENDM
+
+MACRO script_pointer
+	dw \1, \2
+	const \3
+ENDM
+
 MACRO map_generic_scriptloader
+{CURRENT_MAP_NAME}_ScriptLoader::
 	ld hl, {CURRENT_MAP_NAME}ScriptPointers
 	call RunMapScript
 	call WriteBackMapScriptNumber
@@ -216,10 +222,10 @@ MACRO map_generic_scriptloader
 ENDM
 
 ; For maps that don't have any scenes.
-MACRO map_generic_scriptpointers
+MACRO map_generic_script_pointers
 {CURRENT_MAP_NAME}ScriptPointers::
-	dw {CURRENT_MAP_NAME}Script
-	dw {CURRENT_MAP_NAME}NPCIDs
+	def_script_pointers
+	script_pointer {CURRENT_MAP_NAME}Script, {CURRENT_MAP_NAME}NPCIDs, {CURRENT_MAP_ID}_DEFAULT
 ENDM
 
 MACRO map_generic_script
@@ -230,7 +236,7 @@ MACRO map_generic_script
 	ret
 ENDM
 
-MACRO map_generic_npcids
+MACRO map_generic_npc_ids
 {CURRENT_MAP_NAME}NPCIDs::
 	for x, {_NUM_OBJECT_EVENTS}
 		db x

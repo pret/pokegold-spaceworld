@@ -18,11 +18,10 @@ INCBIN "maps/OldCityPokecenterTrade.blk"
 ; unreferenced
 	ret
 
-OldCityPokecenterTrade_ScriptLoader:
 	map_generic_scriptloader
-	map_generic_scriptpointers
+	map_generic_script_pointers
 	map_generic_script
-	map_generic_npcids
+	map_generic_npc_ids
 
 OldCityPokecenterTradeSignPointers:
 	dw MapDefaultText

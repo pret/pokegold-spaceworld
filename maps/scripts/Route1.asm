@@ -5,8 +5,8 @@ Route1_ScriptLoader::
 	ret
 
 Route1ScriptPointers::
-	dw Route1Script
-	dw Route1NPCIDs
+	def_script_pointers
+	script_pointer Route1Script, Route1NPCIDs, ROUTE_1_DEFAULT
 
 Route1NPCIDs:
 	npc_id ROUTE_1_SUPER_NERD

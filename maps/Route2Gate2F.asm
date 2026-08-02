@@ -1,8 +1,8 @@
 	map_attributes Route2Gate2F, ROUTE_2_GATE_2F
 
 	object_const_def
-	object_const LASS
-	object_const TWIN
+	const ROUTE_2_GATE_2F_LASS
+	const ROUTE_2_GATE_2F_TWIN
 
 Route2Gate2F_MapEvents::
 	dw $4000 ; unknown
@@ -21,10 +21,9 @@ Route2Gate2F_MapEvents::
 Route2Gate2F_Blocks::
 INCBIN "maps/Route2Gate2F.blk"
 
-Route2Gate2F_ScriptLoader::
 	map_generic_scriptloader
-	map_generic_scriptpointers
-	map_generic_npcids
+	map_generic_script_pointers
+	map_generic_npc_ids
 
 Route2Gate2FSignPointers:
 	dw Route2Gate2FTextSign1

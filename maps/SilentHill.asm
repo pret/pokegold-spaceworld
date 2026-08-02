@@ -4,10 +4,10 @@
 	connection east, Route23, ROUTE_23, 0
 
 	object_const_def
-	object_const RIVAL
-	object_const BLUE
-	object_const TEACHER
-	object_const SUPER_NERD
+	const SILENT_HILL_RIVAL
+	const SILENT_HILL_BLUE
+	const SILENT_HILL_TEACHER
+	const SILENT_HILL_SUPER_NERD
 
 SilentHill_MapEvents::
 	dw $4000 ; unknown

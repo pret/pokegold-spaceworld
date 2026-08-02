@@ -3,8 +3,8 @@
 	connection east, SilentHill, SILENT_HILL, 0
 	
 	object_const_def
-	object_const SUPER_NERD
-	object_const YOUNGSTER
+	const ROUTE_1_SUPER_NERD
+	const ROUTE_1_YOUNGSTER
 
 Route1_MapEvents::
 	dw $4000 ; unknown

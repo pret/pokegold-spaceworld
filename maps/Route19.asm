@@ -17,7 +17,4 @@ Route19_MapEvents::
 Route19_Blocks::
 INCBIN "maps/Route19.blk"
 
-Route19_ScriptLoader::
-	ret
-
-	db "@"
+	map_dummy_script_bank27

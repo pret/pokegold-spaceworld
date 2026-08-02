@@ -1,4 +1,7 @@
 	map_attributes OldCityPokecenterTimeMachine, OLD_CITY_POKECENTER_TIME_MACHINE
+	
+	object_const_def
+	const OLD_CITY_POKECENTER_TIME_MACHINE_TIME_CAPSULE_RECEPTIONIST
 
 OldCityPokecenterTimeMachine_MapEvents::
 	dw $4000 ; unknown
@@ -18,10 +21,14 @@ INCBIN "maps/OldCityPokecenterTimeMachine.blk"
 
 OldCityPokecenterTimeMachine_ScriptLoader:
 	call SetBitsForTimeCapsuleRequestIfNotLinked
-	map_generic_scriptloader
-	map_generic_scriptpointers
+	ld hl, OldCityPokecenterTimeMachineScriptPointers
+	call RunMapScript
+	call WriteBackMapScriptNumber
+	ret
+
+	map_generic_script_pointers
 	map_generic_script
-	map_generic_npcids
+	map_generic_npc_ids
 
 OldCityPokecenterTimeMachineSignPointers:
 	dw MapDefaultText

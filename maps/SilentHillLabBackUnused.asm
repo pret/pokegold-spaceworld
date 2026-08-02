@@ -5,9 +5,8 @@ SilentHillLabBackUnused_MapEvents::
 SilentHillLabBackUnused_Blocks::
 INCBIN "maps/SilentHillLabBackUnused.blk"
 
-SilentHillLabBackUnused_ScriptLoader::
 	map_generic_scriptloader
-	map_generic_scriptpointers
+	map_generic_script_pointers
 
 SilentHillLabBackUnusedNPCIDs:
 	db $FF

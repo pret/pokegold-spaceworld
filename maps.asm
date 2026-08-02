@@ -30,7 +30,7 @@ INCLUDE "maps/OldCitySchool.asm"
 
 SECTION "West Maps", ROMX
 
-INCLUDE "maps/Route2Gate1F.asm"
+INCLUDE "maps/Route2Gate1F.asm" ; why is this here?
 INCLUDE "maps/Route2Gate2F.asm"
 INCLUDE "maps/WestMart1F.asm"
 INCLUDE "maps/WestMart2F.asm"
@@ -54,7 +54,7 @@ INCLUDE "maps/WestHouse2.asm"
 
 SECTION "High-Tech Maps", ROMX
 
-INCLUDE "maps/Route7Gate.asm" ; originally part of Route 5?
+INCLUDE "maps/Route7Gate.asm"
 INCLUDE "maps/HighTechPokecenter1F.asm"
 INCLUDE "maps/HighTechPokecenter2F.asm"
 INCLUDE "maps/HighTechLeague1F.asm"

@@ -1,7 +1,7 @@
 	map_attributes PlayerHouse1F, PLAYER_HOUSE_1F
 
 	object_const_def
-	object_const MOM
+	const PLAYER_HOUSE_1F_MOM
 
 PlayerHouse1F_MapEvents::
 	dw $4000 ; unknown
@@ -24,14 +24,12 @@ PlayerHouse1F_MapEvents::
 PlayerHouse1F_Blocks::
 INCBIN "maps/PlayerHouse1F.blk"
 
-PlayerHouse1F_ScriptLoader::
 	map_generic_scriptloader
 
 PlayerHouse1FScriptPointers::
-	dw PlayerHouse1FScript1
-	dw PlayerHouse1FNPCIDs1
-	dw PlayerHouse1FScript2
-	dw PlayerHouse1FNPCIDs2
+	def_script_pointers
+	script_pointer PlayerHouse1FScript1, PlayerHouse1FNPCIDs1, PLAYER_HOUSE_1F_DEFAULT
+	script_pointer PlayerHouse1FScript2, PlayerHouse1FNPCIDs2, PLAYER_HOUSE_1F_MOM_BACK
 
 PlayerHouse1FNPCIDs1:
 	db -1
@@ -55,7 +53,7 @@ PlayerHouse1FScript2:
 PlayerHouse1FSignPointers:
 	dw StoveScript
 	dw SinkScript
-	dw EmptyFridgeScript
+	dw FridgeScript
 	dw TVScript
 	dw PokemonBooksScript
 PlayerHouse1F_TextPointers::

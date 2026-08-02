@@ -45,13 +45,12 @@ _PokemonBooksScript::
 	text "ポケモンえほんが　そろってる！"
 	done
 
-_EmptyFridgeScript::
-	ld hl, .EmptyFridgeText
+_FridgeScript::
+	ld hl, .FridgeText
 	call OpenTextbox
 	ret
 
-; Player's empty fridge flavor text
-.EmptyFridgeText:
+.FridgeText:
 	text "なかは<⋯⋯>"
 	line "ほとんど　からっぽだ<⋯⋯>"
 	done

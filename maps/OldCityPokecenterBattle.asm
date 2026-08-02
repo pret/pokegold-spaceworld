@@ -15,11 +15,10 @@ OldCityPokecenterBattle_MapEvents::
 OldCityPokecenterBattle_Blocks::
 INCBIN "maps/OldCityPokecenterBattle.blk"
 
-OldCityPokecenterBattle_ScriptLoader:
 	map_generic_scriptloader
-	map_generic_scriptpointers
+	map_generic_script_pointers
 	map_generic_script
-	map_generic_npcids
+	map_generic_npc_ids
 
 OldCityPokecenterBattleSignPointers:
 	dw MapDefaultText

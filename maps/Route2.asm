@@ -3,8 +3,8 @@
 	connection east, Route1, ROUTE_1, 9
 
 	object_const_def
-	object_const RIVAL
-	object_const KIMONO_GIRL
+	const ROUTE_2_RIVAL
+	const ROUTE_2_KIMONO_GIRL
 
 Route2_MapEvents::
 	dw $4000 ; unknown

@@ -1,11 +1,11 @@
-	map_attributes SilentHillPokecenter, SILENT_HILL_POKECENTER	
+	map_attributes SilentHillPokecenter, SILENT_HILL_POKECENTER
 
 	object_const_def
-	object_const NURSE
-	object_const GENTLEMAN
-	object_const COOLTRAINER_M
-	object_const YOUNGSTER
-	object_const HOUNDOOM
+	const SILENT_HILL_POKECENTER_NURSE
+	const SILENT_HILL_POKECENTER_GENTLEMAN
+	const SILENT_HILL_POKECENTER_COOLTRAINER_M
+	const SILENT_HILL_POKECENTER_YOUNGSTER
+	const SILENT_HILL_POKECENTER_HOUNDOOM
 
 SilentHillPokecenter_MapEvents::
 	dw $4000 ; unknown
@@ -27,14 +27,13 @@ SilentHillPokecenter_MapEvents::
 SilentHillPokecenter_Blocks::
 INCBIN "maps/SilentHillPokecenter.blk"
 
-SilentHillPokecenter_ScriptLoader::
 	map_generic_scriptloader
-	map_generic_scriptpointers
+	map_generic_script_pointers
 	map_generic_script
 
 	dw SilentHillPokecenterNPCIDs
 
-	map_generic_npcids
+	map_generic_npc_ids
 
 SilentHillPokecenterSignPointers:
 	dw SilentHillPokecenterPCText

@@ -9,8 +9,8 @@ PokemonBooksScript::
 	farcall _PokemonBooksScript
 	ret
 
-EmptyFridgeScript::
-	farcall _EmptyFridgeScript
+FridgeScript::
+	farcall _FridgeScript
 	ret
 
 StoveScript::

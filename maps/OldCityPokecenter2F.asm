@@ -1,10 +1,10 @@
 	map_attributes OldCityPokecenter2F, OLD_CITY_POKECENTER_2F
 
 	object_const_def
-	object_const 2F_TRADE_RECEPTIONIST
-	object_const 2F_BATTLE_RECEPTIONIST
-	object_const 2F_GRAMPS
-	object_const TIME_CAPSULE_RECEPTIONIST
+	const OLD_CITY_POKECENTER_2F_TRADE_RECEPTIONIST
+	const OLD_CITY_POKECENTER_2F_BATTLE_RECEPTIONIST
+	const OLD_CITY_POKECENTER_2F_GRAMPS
+	const OLD_CITY_POKECENTER_2F_TIME_CAPSULE_RECEPTIONIST
 
 OldCityPokecenter2F_MapEvents::
 	dw $4000 ; unknown
@@ -29,10 +29,14 @@ INCBIN "maps/OldCityPokecenter2F.blk"
 
 OldCityPokecenter2F_ScriptLoader:
 	call SetBitsForTimeCapsuleRequestIfNotLinked
-	map_generic_scriptloader
-	map_generic_scriptpointers
+	ld hl, OldCityPokecenter2FScriptPointers
+	call RunMapScript
+	call WriteBackMapScriptNumber
+	ret
+
+	map_generic_script_pointers
 	map_generic_script
-	map_generic_npcids
+	map_generic_npc_ids
 
 OldCityPokecenter2FSignPointers:
 	dw MapDefaultText

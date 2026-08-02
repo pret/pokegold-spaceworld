@@ -1,8 +1,8 @@
 	map_attributes PlayerHouse2F, PLAYER_HOUSE_2F
 
 	object_const_def
-	object_const KEN
-	object_const POKEDOLL
+	const PLAYER_HOUSE_2F_KEN
+	const PLAYER_HOUSE_2F_POKEDOLL
 
 PlayerHouse2F_MapEvents::
 	dw $4000 ; unknown
@@ -24,14 +24,12 @@ PlayerHouse2F_MapEvents::
 PlayerHouse2F_Blocks::
 INCBIN "maps/PlayerHouse2F.blk"
 
-PlayerHouse2F_ScriptLoader::
 	map_generic_scriptloader
 
 PlayerHouse2FScriptPointers::
-	dw PlayerHouse2FScript1
-	dw PlayerHouse2FNPCIDs1
-	dw PlayerHouse2FScript2
-	dw PlayerHouse2FNPCIDs2
+	def_script_pointers
+	script_pointer PlayerHouse2FScript1, PlayerHouse2FNPCIDs1, PLAYER_HOUSE_2F_DEFAULT
+	script_pointer PlayerHouse2FScript2, PlayerHouse2FNPCIDs2, PLAYER_HOUSE_2F_KEN_LEFT
 
 PlayerHouse2F_TextPointers::
 	dw PlayerHouse2FText1
