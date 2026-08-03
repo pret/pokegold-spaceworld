@@ -1,5 +1,20 @@
 ; TODO - need to constantize tile ids, movements
 
+MACRO def_field_scripts
+	DEF field_script_id = 0
+ENDM
+
+MACRO field_script
+	dw \1
+	DEF \1ScriptID = field_script_id
+	DEF field_script_id += 1
+ENDM
+
+MACRO set_field_script
+	ld a, \1ScriptID
+	ld [wFieldMoveScriptID], a
+ENDM
+
 CutFunction:
 	call .ResetScriptID
 .next
@@ -7,23 +22,25 @@ CutFunction:
 	jr nc, .next
 	ld [wFieldMoveSucceeded], a
 	ret
+
 .ResetScriptID
 	xor a
 	ld [wFieldMoveScriptID], a
 	ret
+
 .ExecScript
 	ld a, [wFieldMoveScriptID]
-	ld hl, .CutScriptTable
+	ld hl, CutScriptTable
 	jp CallJumptable
 
-.CutScriptTable
-	init_script_table
-	add_script TryCut
-	add_script CheckCuttableBlock
-	add_script CheckCuttableTile
-	add_script DoCut
-	add_script DoCut2
-	add_script FailCut
+CutScriptTable:
+	def_field_scripts
+	field_script TryCut
+	field_script CheckCuttableBlock
+	field_script CheckCuttableTile
+	field_script DoCut
+	field_script DoCut2
+	field_script FailCut
 
 TryCut:
 	call GetMapEnvironment
@@ -31,11 +48,12 @@ TryCut:
 	jr z, .success
 	cp TOWN
 	jr z, .success
-	set_script FailCut
+	set_field_script FailCut
 	xor a
 	ret
+
 .success
-	set_script CheckCuttableBlock
+	set_field_script CheckCuttableBlock
 	xor a
 	ret
 
@@ -54,11 +72,12 @@ CheckCuttableBlock:
 	dec hl
 	ld a, [hl]
 	ld [wReplacementBlock], a
-	set_script DoCut2
+	set_field_script DoCut2
 	xor a
 	ret
+
 .fail
-	set_script CheckCuttableTile
+	set_field_script CheckCuttableTile
 	xor a
 	ret
 
@@ -97,11 +116,12 @@ CheckCuttableTile:
 	ld [wMapBlocksAddress + 1], a
 	ld a, $04
 	ld [wReplacementBlock], a
-	set_script DoCut
+	set_field_script DoCut
 	xor a
 	ret
+
 .fail
-	set_script FailCut
+	set_field_script FailCut
 	xor a
 	ret
 
@@ -137,7 +157,9 @@ Text_CantUseCutHere:
 
 DoCut:
 DoCut2:
-	far_queue CutScript
+	ld hl, CutScript
+	ld a, BANK(CutScript)
+	call QueueScript
 	scf
 	ld a, SCRIPT_SUCCESS
 	ret
@@ -180,20 +202,22 @@ SurfFunction:
 	jr nc, .next
 	ld [wFieldMoveSucceeded], a
 	ret
+
 .ResetScriptID
 	xor a
 	ld [wFieldMoveScriptID], a
 	ret
+
 .ExecScript
 	ld a, [wFieldMoveScriptID]
 	ld hl, .SurfScriptTable
 	jp CallJumptable
 
 .SurfScriptTable:
-	init_script_table
-	add_script TrySurf
-	add_script DoSurf
-	add_script FailSurf
+	def_field_scripts
+	field_script TrySurf
+	field_script DoSurf
+	field_script FailSurf
 
 TrySurf:
 	call GetFacingTileCoord
@@ -202,16 +226,19 @@ TrySurf:
 	jr z, .success
 	cp COLLMASK_TYPE_OLD_WATER_ALT
 	jr z, .success
-	set_script FailSurf
+	set_field_script FailSurf
 	xor a
 	ret
+
 .success
-	set_script DoSurf
+	set_field_script DoSurf
 	xor a
 	ret
 
 DoSurf:
-	queue_ba SurfScript
+	ldh a, [hROMBank]
+	ld hl, SurfScript
+	call QueueScript
 	ld a, -1
 	ld [wFieldMoveScriptID], a
 	scf
@@ -289,21 +316,23 @@ FlyFunction:
 	jr nc, .next
 	ld [wFieldMoveSucceeded], a
 	ret
+
 .ResetScriptID
 	xor a
 	ld [wFieldMoveScriptID], a
 	ret
+
 .ExecScript
 	ld a, [wFieldMoveScriptID]
 	ld hl, .FlyScriptTable
 	jp CallJumptable
 
 .FlyScriptTable:
-	init_script_table
-	add_script TryFly
-	add_script ShowFlyMap
-	add_script DoFly
-	add_script FailFly
+	def_field_scripts
+	field_script TryFly
+	field_script ShowFlyMap
+	field_script DoFly
+	field_script FailFly
 
 TryFly:
 	call GetMapEnvironment
@@ -311,11 +340,12 @@ TryFly:
 	jr z, .success
 	cp ROUTE
 	jr z, .success
-	set_script FailFly
+	set_field_script FailFly
 	xor a
 	ret
+
 .success
-	set_script ShowFlyMap
+	set_field_script ShowFlyMap
 	xor a
 	ret
 
@@ -331,9 +361,10 @@ ShowFlyMap:
 	jr z, .dont_fly
 	cp NUM_SPAWNS
 	jr nc, .dont_fly
-	set_script DoFly
+	set_field_script DoFly
 	xor a
 	ret
+
 .dont_fly
 	call UpdateTimePals
 	ld a, -1
@@ -346,7 +377,9 @@ DoFly:
 	ld a, [wFlyDestination]
 	inc a
 	ld [wDefaultSpawnPoint], a
-	queue_ba FlyScript
+	ldh a, [hROMBank]
+	ld hl, FlyScript
+	call QueueScript
 	ld a, -1
 	ld [wFieldMoveScriptID], a
 	scf
@@ -383,7 +416,7 @@ DigFunction:
 
 ; Finish by returning only the low nibble
 .finish
-	and $FF - SCRIPT_FINISHED_MASK
+	and ~SCRIPT_FINISHED_MASK
 	ld [wFieldMoveSucceeded], a
 	ret
 
@@ -393,10 +426,10 @@ DigFunction:
 	ret
 
 .DigScriptTable:
-	init_script_table
-	add_script CheckCanDig
-	add_script DoDig
-	add_script FailDig
+	def_field_scripts
+	field_script CheckCanDig
+	field_script DoDig
+	field_script FailDig
 
 CheckCanDig:
 	call GetMapEnvironment
@@ -404,14 +437,17 @@ CheckCanDig:
 	jr z, .success
 	cp CAVE
 	jr z, .success
-	set_script FailDig
+	set_field_script FailDig
 	ret
+
 .success
-	set_script DoDig
+	set_field_script DoDig
 	ret
 
 DoDig:
-	queue_ab DigScript
+	ld hl, DigScript
+	ldh a, [hROMBank]
+	call QueueScript
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_SUCCESS
 	ld [wFieldMoveScriptID], a
 	ret
@@ -450,16 +486,16 @@ TeleportFunction:
 
 ; Finish by returning only the low nibble
 .finish
-	and $FF - SCRIPT_FINISHED_MASK
+	and ~SCRIPT_FINISHED_MASK
 	ld [wFieldMoveSucceeded], a
 	ret
 
 .TeleportScriptTable
-	init_script_table
-	add_script TryTeleport
-	add_script DoTeleport
-	add_script FailTeleport
-	add_script CheckIfSpawnPoint
+	def_field_scripts
+	field_script TryTeleport
+	field_script DoTeleport
+	field_script FailTeleport
+	field_script CheckIfSpawnPoint
 
 TryTeleport:
 	call GetMapEnvironment
@@ -467,10 +503,11 @@ TryTeleport:
 	jr z, .success
 	cp ROUTE
 	jr z, .success
-	set_script FailTeleport
+	set_field_script FailTeleport
 	ret
+
 .success
-	set_script CheckIfSpawnPoint
+	set_field_script CheckIfSpawnPoint
 	ret
 
 CheckIfSpawnPoint:
@@ -485,10 +522,11 @@ CheckIfSpawnPoint:
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_FAIL
 	ld [wFieldMoveScriptID], a
 	ret
+
 .not_spawn
 	ld a, c
 	ld [wDefaultSpawnPoint], a
-	set_script DoTeleport
+	set_field_script DoTeleport
 	ret
 
 Text_CantFindDestination:
@@ -498,7 +536,9 @@ Text_CantFindDestination:
 	done
 
 DoTeleport:
-	queue_ba TeleportScript
+	ldh a, [hROMBank]
+	ld hl, TeleportScript
+	call QueueScript
 	ld a, SCRIPT_FINISHED_MASK | SCRIPT_SUCCESS
 	ld [wFieldMoveScriptID], a
 	ret
