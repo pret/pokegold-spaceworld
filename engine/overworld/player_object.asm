@@ -352,7 +352,7 @@ GetSpriteVTile:
 	push de
 	ld d, a
 	ld e, 0
-	ld hl, wUsedSprites + 2
+	ld hl, wUsedSprites + NUM_RESERVED_OBJECTS
 .loop
 	ld a, [hli]
 	cp d
@@ -360,7 +360,7 @@ GetSpriteVTile:
 
 	inc e
 	ld a, e
-	cp SPRITE_GFX_LIST_CAPACITY - 2
+	cp SPRITE_GFX_LIST_CAPACITY - NUM_RESERVED_OBJECTS
 	jr nz, .loop
 	ld a, 0
 	scf

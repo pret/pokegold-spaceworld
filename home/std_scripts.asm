@@ -9,33 +9,33 @@ PokemonBooksScript::
 	farcall _PokemonBooksScript
 	ret
 
-PlayerHouse1FFridgeScript::
-	farcall _PlayerHouse1FFridgeScript
+FridgeScript::
+	farcall _FridgeScript
 	ret
 
-SilentHillHouseStoveScript::
-	farcall _SilentHillHouseStoveScript
+StoveScript::
+	farcall _StoveScript
 	ret
 
-SilentHillHouseSinkScript::
-	farcall _SilentHillHouseSinkScript
+SinkScript::
+	farcall _SinkScript
 	ret
 
-SilentHillHouseTVScript::
-	farcall _SilentHillHouseTVScript
+TVScript::
+	farcall _TVScript
 	ret
 
 PokecenterSignScript::
 	farcall _PokecenterSignScript
 	ret
 
-RivalHouseWindowScript::
-	farcall _RivalHouseWindowScript
+WindowScript::
+	farcall _WindowScript
 	ret
 
 InitTrainerBattle::
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_START_TRAINER_BATTLE
 	ld [wMapStatus], a
 	ret

@@ -1619,12 +1619,12 @@ wSilentHillSceneID:: db
 wSilentHillLabFrontSceneID:: db
 wSilentHillLabBackSceneID:: db
 wSilentHillPokecenterSceneID:: db
-wSilentHillHouseSceneID:: db
-wRoute1P1SceneID:: db
-wRoute1P2SceneID:: db
-wRoute1Gate1FSceneID:: db
-wRoute1Gate2FSceneID:: db
-wSilentHillsSceneID:: db
+wRivalHouseSceneID:: db
+wRoute1SceneID:: db
+wRoute2SceneID:: db
+wRoute2Gate1FSceneID:: db
+wRoute2Gate2FSceneID:: db
+wQuietHillsSceneID:: db
 wOldCityPokecenter2FSceneID:: db
 
 	ds 243
@@ -1636,12 +1636,12 @@ wSilentHillFlags:: db
 wSilentHillLabFrontFlags:: db
 wSilentHillLabBackFlags:: db
 wSilentHillPokecenterFlags:: db
-wSilentHillHouseFlags:: db
-wRoute1P1Flags:: db
-wRoute1P2Flags:: db
-wRoute1Gate1FFlags:: db
-wRoute1Gate2FFlags:: db
-wSilentHillsFlags:: db
+wRivalHouseFlags:: db
+wRoute1Flags:: db
+wRoute2Flags:: db
+wRoute2Gate1FFlags:: db
+wRoute2Gate2FFlags:: db
+wQuietHillsFlags:: db
 wOldCityPokecenter2FFlags:: db
 
 	ds 115

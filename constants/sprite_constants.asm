@@ -12,7 +12,7 @@
 	const SPRITE_SAKAKI                ; 0a GIOVANNI
 	const SPRITE_GANTETSU              ; 0b KURT
 	const SPRITE_MOM                   ; 0c
-	const SPRITE_SILVERS_MOM           ; 0d
+	const SPRITE_SILVERS_SISTER        ; 0d
 	const SPRITE_0E                    ; 0e falls into SPRITE_REDS_MOM
 	const SPRITE_REDS_MOM              ; 0f
 	const SPRITE_NANAMI                ; 10 DAISY

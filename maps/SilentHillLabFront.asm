@@ -1,0 +1,1179 @@
+	map_attributes SilentHillLabFront, SILENT_HILL_LAB_FRONT
+
+	object_const_def
+	const SILENT_HILL_LAB_FRONT_OAK1
+	const SILENT_HILL_LAB_FRONT_OAK2
+	const SILENT_HILL_LAB_FRONT_RIVAL1
+	const SILENT_HILL_LAB_FRONT_RIVAL2
+	const SILENT_HILL_LAB_FRONT_BLUE1
+	const SILENT_HILL_LAB_FRONT_BLUE2
+	const SILENT_HILL_LAB_FRONT_NANAMI
+	const SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	const SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	const SILENT_HILL_LAB_FRONT_POKEDEX1
+	const SILENT_HILL_LAB_FRONT_POKEDEX2
+	
+SilentHillLabFront_MapEvents::
+	dw $4000 ; unknown
+
+	def_warp_events
+	warp_event  3, 15, SILENT_HILL, 4, 82
+	warp_event  4, 15, SILENT_HILL, 5, 83
+	warp_event  4,  0, SILENT_HILL_LAB_BACK, 2, 13
+
+	def_bg_events
+	bg_event  6,  1, 1
+	bg_event  2,  0, 2
+	bg_event  0,  7, 3
+	bg_event  1,  7, 4
+	bg_event  2,  7, 5
+	bg_event  5,  7, 6
+	bg_event  6,  7, 7
+	bg_event  7,  7, 8
+	bg_event  0, 11, 9
+	bg_event  1, 11, 10
+	bg_event  2, 11, 11
+	bg_event  5, 11, 12
+	bg_event  6, 11, 13
+	bg_event  7, 11, 14
+	bg_event  4,  0, 15
+
+	def_object_events
+	object_event  4,  2, SPRITE_OKIDO, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  0, SPRITE_OKIDO, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  3,  4, SPRITE_SILVER, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4,  0, SPRITE_SILVER, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  4, 14, SPRITE_BLUE, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  3, SPRITE_BLUE, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1, 13, SPRITE_NANAMI, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  8, SPRITE_SCIENTIST, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  6, 12, SPRITE_SCIENTIST, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  0,  1, SPRITE_POKEDEX, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+	object_event  1,  1, SPRITE_POKEDEX, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
+
+SilentHillLabFront_Blocks::
+INCBIN "maps/SilentHillLabFront.blk"
+
+	map_generic_scriptloader
+
+SilentHillLabFrontScriptPointers::
+	def_script_pointers
+	script_pointer SilentHillLabFrontScript1, SilentHillLabFrontNPCIDs1, SILENT_HILL_LAB_FRONT_DEFAULT
+	script_pointer SilentHillLabFrontScript2, SilentHillLabFrontNPCIDs2, SILENT_HILL_LAB_FRONT_START_BLUE_CUTSCENE
+	script_pointer SilentHillLabFrontScript3, SilentHillLabFrontNPCIDs2, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE
+	script_pointer SilentHillLabFrontScript4, SilentHillLabFrontNPCIDs2, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_2
+	script_pointer SilentHillLabFrontConversation1, SilentHillLabFrontNPCIDs2, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_CONVERSATION
+	script_pointer SilentHillLabFrontScript6, SilentHillLabFrontNPCIDs3, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_END
+	script_pointer SilentHillLabFrontScript7, SilentHillLabFrontNPCIDs4, SILENT_HILL_LAB_FRONT_RIVAL_ENTER_BACK
+	script_pointer SilentHillLabFrontScript8, SilentHillLabFrontNPCIDs5, SILENT_HILL_LAB_FRONT_ENTER_BACK
+	script_pointer SilentHillLabFrontScript9, SilentHillLabFrontNPCIDs5, SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE
+	script_pointer SilentHillLabFrontScript10, SilentHillLabFrontNPCIDs5, SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE_2
+	script_pointer SilentHillLabFrontScript11, SilentHillLabFrontNPCIDs5, SILENT_HILL_LAB_FRONT_GET_POKEDEX
+	script_pointer SilentHillLabFrontScript12, SilentHillLabFrontNPCIDs6, SILENT_HILL_LAB_FRONT_RIVAL_WAIT_FOR_BATTLE
+	script_pointer SilentHillLabFrontScript13, SilentHillLabFrontNPCIDs6, SILENT_HILL_LAB_FRONT_RIVAL_START_BATTLE
+	script_pointer SilentHillLabFrontScript14, SilentHillLabFrontNPCIDs6, SILENT_HILL_LAB_FRONT_RIVAL_BATTLE_END
+	script_pointer SilentHillLabFrontScript15, SilentHillLabFrontNPCIDs7, SILENT_HILL_LAB_FRONT_RIVAL_LEFT
+	script_pointer SilentHillLabFrontScript16, SilentHillLabFrontNPCIDs7, SILENT_HILL_LAB_FRONT_RIVAL_LEFT_END
+	script_pointer SilentHillLabFrontScript17, SilentHillLabFrontNPCIDs7, SILENT_HILL_LAB_FRONT_GET_POKEBALLS
+	script_pointer SilentHillLabFrontScript18, SilentHillLabFrontNPCIDs7, SILENT_HILL_LAB_FRONT_GOT_POKEBALLS
+	script_pointer SilentHillLabFrontScript19, SilentHillLabFrontNPCIDs9, SILENT_HILL_LAB_FRONT_FINISHED
+
+SilentHillLabFrontNPCIDs1:
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
+SilentHillLabFrontNPCIDs2:
+	npc_id SILENT_HILL_LAB_FRONT_OAK1
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
+	npc_id SILENT_HILL_LAB_FRONT_BLUE1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
+SilentHillLabFrontNPCIDs3:
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
+	npc_id SILENT_HILL_LAB_FRONT_BLUE1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
+SilentHillLabFrontNPCIDs4:
+	npc_id SILENT_HILL_LAB_FRONT_BLUE1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
+SilentHillLabFrontNPCIDs5:
+	npc_id SILENT_HILL_LAB_FRONT_OAK2
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL2
+	npc_id SILENT_HILL_LAB_FRONT_BLUE2
+	npc_id SILENT_HILL_LAB_FRONT_NANAMI
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
+SilentHillLabFrontNPCIDs6:
+	npc_id SILENT_HILL_LAB_FRONT_OAK2
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL2
+	npc_id SILENT_HILL_LAB_FRONT_BLUE2
+	npc_id SILENT_HILL_LAB_FRONT_NANAMI
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	db -1
+
+SilentHillLabFrontNPCIDs7:
+	npc_id SILENT_HILL_LAB_FRONT_OAK1
+	npc_id SILENT_HILL_LAB_FRONT_BLUE2
+	npc_id SILENT_HILL_LAB_FRONT_NANAMI
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	db -1
+	
+SilentHillLabFrontNPCIDs8: ; (unused?)
+	npc_id SILENT_HILL_LAB_FRONT_OAK1
+	npc_id SILENT_HILL_LAB_FRONT_RIVAL2
+	npc_id SILENT_HILL_LAB_FRONT_BLUE2
+	npc_id SILENT_HILL_LAB_FRONT_NANAMI
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
+	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
+	db -1
+
+SilentHillLabFrontNPCIDs9:
+	npc_id SILENT_HILL_LAB_FRONT_OAK1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
+	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
+	db -1
+
+SilentHillLabFront_TextPointers::
+	dw SilentHillLabFrontText4
+	dw SilentHillLabFrontText7
+	dw SilentHillLabFrontText10
+	dw SilentHillLabFrontText11
+	dw SilentHillLabFrontTextString20
+	dw SilentHillLabFrontText12
+	dw SilentHillLabFrontText13
+	dw SilentHillLabFrontText14
+	dw SilentHillLabFrontText15
+	dw SilentHillLabFrontText16
+	dw SilentHillLabFrontText16
+
+SilentHillLabFrontScript1:
+	call SilentHillLabFrontMoveDown
+	ret z
+	ld hl, SilentHillLabFrontNPCIDs1
+	ld de, SilentHillLabFrontTextPointers2
+	call CallMapTextSubroutine
+	ret
+
+SilentHillLabFrontMoveDown:
+	ld a, [wXCoord]
+	cp 4
+	ret nz
+	ld a, [wYCoord]
+	cp 1
+	ret nz
+	ldh a, [hJoyState]
+	bit 6, a
+	jp z, xor_a_dec_a
+	call SilentHillLabFrontText3
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	ld a, PLAYER_OBJECT
+	call FreezeAllOtherObjects
+	ld a, PLAYER_OBJECT
+	ld hl, SilentHillLabFrontMovement1
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	call xor_a
+	ret
+
+SilentHillLabFrontMovement1:
+	slow_step LEFT
+	step_end
+
+SilentHillLabFrontScript2:
+	ld a, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE
+	ld [wMapScriptNumber], a
+	ret
+
+SilentHillLabFrontScript3:
+	ld a, 6
+	call FreezeAllOtherObjects
+	ld a, PLAYER_OBJECT
+	call UnfreezeObject
+	ld b, SILENT_HILL_LAB_FRONT_BLUE1
+	ld c, PLAYER_OBJECT
+	call StartFollow
+	ld hl, SilentHillLabFrontMovement2
+	ld a, SILENT_HILL_LAB_FRONT_BLUE1
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_2
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	ret
+
+SilentHillLabFrontMovement2:
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	step UP
+	slow_step UP
+	slow_step RIGHT
+	turn_head UP
+	step_end
+
+SilentHillLabFrontScript4:
+	call FreezeAllObjects
+	ld a, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_CONVERSATION
+	ld [wMapScriptNumber], a
+	ret
+
+SilentHillLabFrontConversation1:
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
+	ld d, RIGHT
+	call SetObjectFacing
+	ld hl, SilentHillLabFrontTextString20
+	call OpenTextbox
+	ld hl, SilentHillLabFrontTextString4
+	call OpenTextbox
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
+	ld d, UP
+	call SetObjectFacing
+	ld hl, SilentHillLabFrontTextString28
+	call OpenTextbox
+	ld hl, SilentHillLabFrontTextString5
+	call OpenTextbox
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
+	ld d, RIGHT
+	call SetObjectFacing
+	ld hl, SilentHillLabFrontTextString29
+	call OpenTextbox
+	ld hl, SilentHillLabFrontTextString7
+	call OpenTextbox
+	call SilentHillLabFrontScript5
+	ret
+
+SilentHillLabFrontScript5:
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_OAK1
+	call FreezeAllOtherObjects
+	ld a, SILENT_HILL_LAB_FRONT_OAK1
+	ld hl, SilentHillLabFrontMovement3
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_END
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	ret
+
+SilentHillLabFrontMovement3:
+	step UP
+	slow_step UP
+	remove_object
+
+SilentHillLabFrontScript6:
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
+	call FreezeAllOtherObjects
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
+	ld hl, SilentHillLabFrontMovement4
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_ENTER_BACK
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	ret
+
+SilentHillLabFrontMovement4:
+	big_step UP
+	big_step UP
+	big_step RIGHT
+	big_step UP
+	big_step UP
+	remove_object
+
+SilentHillLabFrontScript7:
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	ld a, PLAYER_OBJECT
+	call FreezeAllOtherObjects
+	ld a, PLAYER_OBJECT
+	ld hl, SilentHillLabFrontMovement5
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_ENTER_BACK
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	ret
+
+SilentHillLabFrontMovement5:
+	step UP
+	step UP
+	step UP
+	slow_step UP
+	step_end
+
+SilentHillLabFrontScript8:
+	ld a, SILENT_HILL_LAB_FRONT_OAK2
+	call SetObjectLowPriority
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
+	call SetObjectLowPriority
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	ld a, PLAYER_OBJECT
+	call FreezeAllOtherObjects
+	ld a, PLAYER_OBJECT
+	ld hl, SilentHillLabFrontMovement6
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	ret
+
+SilentHillLabFrontMovement6:
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
+	slow_step LEFT
+	step_end
+
+SilentHillLabFrontScript9:
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
+	call FreezeAllOtherObjects
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
+	call ResetObjectLowPriority
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
+	ld hl, SilentHillLabFrontMovement7
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE_2
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	ret
+
+SilentHillLabFrontMovement7:
+	step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	step LEFT
+	slow_step LEFT
+	step_end
+
+SilentHillLabFrontScript10:
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
+	ld d, RIGHT
+	call SetObjectFacing
+	ld hl, SilentHillLabFrontTextString21
+	call OpenTextbox
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	ld a, PLAYER_OBJECT
+	ld d, RIGHT
+	call SetObjectFacing
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
+	ld d, RIGHT
+	call SetObjectFacing
+	ld a, SILENT_HILL_LAB_FRONT_OAK2
+	call FreezeAllOtherObjects
+	ld a, SILENT_HILL_LAB_FRONT_OAK2
+	call ResetObjectLowPriority
+	ld a, SILENT_HILL_LAB_FRONT_OAK2
+	ld hl, SilentHillLabFrontMovement8
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_GET_POKEDEX
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	ret
+
+SilentHillLabFrontMovement8:
+	step DOWN
+	slow_step DOWN
+	step_end
+
+SilentHillLabFrontScript11:
+	ld hl, SilentHillLabFrontTextString8
+	call OpenTextbox
+	ld hl, SilentHillLabFrontTextString9
+	call OpenTextbox
+	ld a, SILENT_HILL_LAB_FRONT_POKEDEX1
+	call ApplyDeletionToMapObject
+	ld a, SILENT_HILL_LAB_FRONT_POKEDEX2
+	call ApplyDeletionToMapObject
+	ld hl, SilentHillLabFrontTextString10
+	call OpenTextbox
+	ld hl, SilentHillLabFrontTextString15
+	call OpenTextbox
+	SetEvent SILENT_HILL_LAB_FRONT_GOT_POKEDEX
+	call UnfreezeEverything
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_WAIT_FOR_BATTLE
+	ld [wMapScriptNumber], a
+	call InitObjectMasks
+	ret
+
+SilentHillLabFrontScript12:
+	call SilentHillLabFrontMoveDown
+	ret z
+	call SilentHillLabFrontRivalMovePokemon
+	ret z
+	ld hl, SilentHillLabFrontNPCIDs6
+	ld de, SilentHillLabFrontTextPointers2
+	call CallMapTextSubroutine
+	ret
+
+SilentHillLabFrontRivalMovePokemon:
+	ld a, [wYCoord]
+	cp 8
+	ret nz
+	ld hl, SilentHillLabFrontMovement9
+	ld a, [wXCoord]
+	cp 3
+	jr z, .jump
+	cp 4
+	ret nz
+	ld hl, SilentHillLabFrontMovement10
+.jump
+	push hl
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
+	call FreezeAllOtherObjects
+	pop hl
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_START_BATTLE
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	call xor_a
+	ret
+
+SilentHillLabFrontMovement9:
+	step DOWN
+	step RIGHT
+	step RIGHT
+	step DOWN
+	step DOWN
+	slow_step DOWN
+	step_end
+
+SilentHillLabFrontMovement10:
+	step DOWN
+	step RIGHT
+	step DOWN
+	step DOWN
+	slow_step DOWN
+	step_end
+
+SilentHillLabFrontScript13:
+	ld hl, SilentHillLabFrontTextString17
+	call OpenTextbox
+	call GetLabPokemon
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, MAPSTATUS_START_TRAINER_BATTLE
+	ld [wMapStatus], a
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_BATTLE_END
+	ld [wMapScriptNumber], a
+	call InitObjectMasks
+	ret
+
+GetLabPokemon:
+	ld hl, LabPokemon
+	ld a, [wRivalStarter]
+	ld b, a
+.loop
+	ld a, [hli]
+	cp b
+	jr nz, .jump
+	ld a, [hl]
+	ld [wOtherTrainerID], a
+	ld a, 9
+	ld [wOtherTrainerClass], a
+	ret
+.jump
+	inc hl
+	jr .loop
+
+LabPokemon:
+	db DEX_KURUSU
+	db 1
+	db DEX_HAPPA
+	db 2
+	db DEX_HONOGUMA
+	db 3
+
+SilentHillLabFrontScript14:
+	ld hl, SilentHillLabFrontTextString19
+	ld a, [wBattleResult]
+	and a
+	jr nz, .skip
+	ld hl, SilentHillLabFrontTextString18
+.skip
+	call OpenTextbox
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
+	call FreezeAllOtherObjects
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
+	ld hl, SilentHillLabFrontMovement11
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_LEFT
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	ret
+
+SilentHillLabFrontMovement11:
+	slow_step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
+	remove_object
+
+SilentHillLabFrontScript15:
+	call UnfreezeEverything
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL_LEFT_END
+	ld [wMapScriptNumber], a
+	call InitObjectMasks
+	ret
+
+SilentHillLabFrontScript16:
+	call SilentHillLabFrontMoveDown
+	ret z
+	call SilentHillLabFrontMoveRivalLeave
+	ret z
+	ld hl, SilentHillLabFrontNPCIDs7
+	ld de, SilentHillLabFrontTextPointers2
+	call CallMapTextSubroutine
+	ret
+
+SilentHillLabFrontMoveRivalLeave:
+	ld a, [wYCoord]
+	cp $0B
+	ret nz
+	ld hl, Movememt12+1
+	ld a, [wXCoord]
+	cp 3
+	jr z, .jump
+	cp 4
+	ret nz
+	ld hl, Movememt12
+.jump
+	push hl
+	ld hl, wJoypadFlags
+	set 4, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_NANAMI
+	call FreezeAllOtherObjects
+	pop hl
+	ld a, SILENT_HILL_LAB_FRONT_NANAMI
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_GET_POKEBALLS
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	call xor_a
+	ret
+
+Movememt12:
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step RIGHT
+	slow_step UP
+	step_end
+
+SilentHillLabFrontScript17:
+	ld hl, SilentHillLabFrontTextString23
+	call OpenTextbox
+	SetEvent SILENT_HILL_LAB_FRONT_RIVAL_BATTLED
+	ld hl, wNumBagItems
+	ld a, ITEM_POKE_BALL
+	ld [wCurItem], a
+	ld a, 6
+	ld [wItemQuantity], a
+	call ReceiveItem
+	call UnfreezeEverything
+	ld a, SILENT_HILL_LAB_FRONT_GOT_POKEBALLS
+	ld [wMapScriptNumber], a
+	ret
+
+SilentHillLabFrontScript18:
+	call SilentHillLabFrontMoveDown
+	ret z
+	ld hl, SilentHillLabFrontNPCIDs7
+	ld de, SilentHillLabFrontTextPointers2
+	call CallMapTextSubroutine
+	ret
+
+SilentHillLabFrontScript19:
+	call SilentHillLabFrontMoveDown
+	ret z
+	ld hl, SilentHillLabFrontNPCIDs9
+	ld de, SilentHillLabFrontTextPointers2
+	call CallMapTextSubroutine
+	ret
+
+SilentHillLabFrontTextPointers2:
+	dw SilentHillLabFrontText1
+	dw SilentHillLabFrontText2
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw PokemonBooksScript
+	dw SilentHillLabFrontText3
+
+SilentHillLabFrontText1:
+	ld hl, SilentHillLabFrontTextString1
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString1:
+	text "パソコンを　みると"
+	line "なんと　メールが　きていた！"
+
+	para "<⋯⋯>　<⋯⋯>　<⋯⋯>"
+	line "オーキドはかせ！"
+	cont "あなたが　ゆくえふめいに"
+	cont "なっていると　せけんは"
+	cont "おおさわぎ　です！"
+
+	para "それは　そうと"
+	line "はかせ　から　みつけるように"
+	cont "たのまれた　れいの#"
+	cont "みつけるどころか"
+	cont "まだ　てがかりも"
+	cont "つかむことが　できません"
+
+	para "やはり　あいつは"
+	line "かくうの　#なのでは"
+	cont "ないでしょうか<⋯⋯>"
+	cont "<⋯⋯>　<⋯⋯>　<⋯⋯>じょしゅより"
+	done
+
+SilentHillLabFrontText2:
+	ld hl, wSilentHillLabFrontFlags
+	bit 0, [hl]
+	set 0, [hl]
+	jr z, .jump
+	res 0, [hl]
+	ld hl, SilentHillLabFrontTextString2A
+	jr .skip
+.jump
+	ld hl, SilentHillLabFrontTextString2B
+.skip
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString2A:
+	text "スタート　ボタンを　プシュ！"
+	line "おすと　メニューが　ひらくなり"
+	done
+
+SilentHillLabFrontTextString2B:
+	text "セーブするには　#　レポート"
+	line "こまめに　かくと　いいなり"
+	done
+
+SilentHillLabFrontText3:
+	ld hl, SilentHillLabFrontTextString3
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString3:
+	text "カギが　かかっている"
+	done
+
+SilentHillLabFrontText4:
+	ld a, [wMapScriptNumber]
+	cp $0E
+	jp nc, SilentHillLabFrontText7
+	ld hl, SilentHillLabFrontTextString4
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString4:
+	text "オーキド『ごくろうさん！"
+	done
+
+SilentHillLabFrontTextString5:
+	text "オーキド『そうとも！"
+	line "わしが　オーキドじゃ！"
+	cont "じじいで　わるかったな！"
+
+	para "おまえたち　ふたりは"
+	line "この　オーキドが　よんだのじゃ！"
+
+	para "すこし　わしの　はなしを"
+	line "きいては　くれんか？@"
+
+	start_asm
+	call YesNoBox
+	jr c, .jump
+.loop
+	ld hl, SilentHillLabFrontTextString6A
+	call PrintText
+	call TextAsmEnd
+	ret
+
+.jump
+	ld hl, SilentHillLabFrontTextString6B
+	call PrintText
+	call YesNoBox
+	jr c, .jump
+	jr .loop
+
+SilentHillLabFrontTextString6A:
+	text "オーキド『いまから　１ねんまえ"
+	line "わしは　カントーで"
+	cont "きみたちの　ような　しょうねんに"
+	cont "#の　けんきゅうの　ため"
+	cont "#と　ずかんを　わたした"
+
+	para "そして　かれらは"
+	line "じつに　よくやってくれた！"
+
+	para "１５０しゅるいの"
+	line "#を　みつけることに"
+	cont "せいこう　したのじゃ！"
+	cont "が　<⋯⋯>　<⋯⋯>　<⋯⋯>"
+	cont "しかし　<⋯⋯>　<⋯⋯>"
+
+	para "せかいは　ひろいものじゃ"
+	line "そのご　ぜんこく　かくちで"
+	cont "あたらしい　#が　ぞくぞくと"
+	cont "みつかっておる！"
+
+	para "そこで　わしは　カントーから"
+	line "ここ　サイレントヒルに"
+	cont "けんきゅうの　ばしょを　うつした"
+
+	para "ばしょが　かわれば"
+	line "あたらしい　#にも"
+	cont "であうことが　できるからな"
+	cont "<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>"
+
+	para "これからも　どんどんと"
+	line "けんきゅうを　すすめるが"
+	cont "わしも　ごらんのとおりの　おいぼれ"
+	cont "まごや　じょしゅたちも　おるが"
+	cont "それでも　やはり　かずが　たらん！"
+
+	para "<PLAYER>！　<RIVAL>！"
+	line "#けんきゅうの　ために"
+	cont "ちからを　かして　くれんか！"
+	done
+
+SilentHillLabFrontTextString6B:
+	text "オーキド『そうか<⋯⋯>"
+	line "わしに　ひとを　みるめが"
+	cont "なかったと　いうことじゃな<⋯⋯>"
+
+	para "いや！"
+	line "わしの　ひとを　みるめは"
+	cont "まちがっては　おらんはず！"
+
+	para "な？"
+	cont "わしの　はなしを　きいてくれるな？"
+	done
+
+SilentHillLabFrontTextString7:
+	text "オーキド『ふたりとも！"
+	line "ちょっと　わしに　ついてこい！"
+	done
+
+SilentHillLabFrontText7:
+	ld a, [wMapScriptNumber]
+	cp $12
+	jr z, .jump
+	ld hl, SilentHillLabFrontTextString11A
+	call OpenTextbox
+	ret
+
+.jump
+	ld hl, SilentHillLabFrontTextString11B
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString8:
+	text "オーキド『<PLAYER>！<RIVAL>！"
+	line "このずかんを"
+	cont "おまえたちに　あずける！"
+	done
+
+SilentHillLabFrontTextString9:
+	text "<PLAYER>は　オーキドから"
+	line "#ずかんを　もらった！"
+	done
+
+SilentHillLabFrontTextString10:
+	text "オーキド『この　せかいの　すべての"
+	line "#を　きろくした"
+	cont "かんぺきな　ずかんを　つくること！"
+	cont "それが　わしの　ゆめ　だった！"
+
+	para "しかし　しんしゅの　#は"
+	cont "ぞくぞくと　みつかっている！"
+
+	para "わしに　のこされた"
+	line "じかんは　すくない！"
+
+	para "そこで　おまえ　たちには"
+	line "わしの　かわりに"
+	cont "ゆめを　はたして　ほしいのじゃ！"
+
+	para "さあ　ふたりとも"
+	line "さっそく　しゅっぱつ　してくれい！"
+	cont "これは　#の　れきしに　のこる"
+	cont "いだいな　しごとじゃー！"
+	done
+
+SilentHillLabFrontTextString11A:
+	text "オーキド『せかい　じゅうの"
+	line "#たちが"
+	cont "<PLAYER>を　まって　おるぞー"
+	done
+
+SilentHillLabFrontTextString11B:
+	text "オーキド『おう！　<PLAYER>"
+	line "どうだ？"
+	cont "わしの　あげた　#は<⋯⋯>？"
+
+	para "ほう！"
+	cont "だいぶ　なついた　みたいだな"
+
+	para "おまえには　#トレーナーの"
+	line "さいのうが　あるかもしれん"
+	cont "これからも　ときどきは"
+	cont "わしのところへ　かおを　だせ！"
+
+	para "#ずかんの　ページが"
+	line "きに　なるからな"
+	done
+
+SilentHillLabFrontText8:
+	ld hl, SilentHillLabFrontTextString12
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString12:
+	text "オーキド『よく　きたな！"
+	line "#ずかんの"
+	cont "ちょうしは　どうかな？"
+
+	para "どれ<⋯⋯>　ちょっと"
+	cont "みて　あげようか！"
+	done
+
+SilentHillLabFrontText9:
+	ld hl, SilentHillLabFrontTextString13
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString13:
+	text "オーキド『<⋯⋯>　おっほんッ！"
+	line "よくやったな　<PLAYER>！"
+
+	para "ちょっと"
+	line "わしに　ついて　きなさい！"
+
+	para "<RIVAL>は　すまんが"
+	line "そこで　まっていなさい！"
+
+	para "<RIVAL>『えー！"
+	line "なんだよ　ケチー！"
+
+	para "オーキド『<RIVAL>は"
+	line "でんせつの　#が"
+	cont "ほしかった　だけじゃないのか？"
+	cont "<RIVAL>『ギクッ！"
+	done
+
+SilentHillLabFrontText10:
+	ld hl, SilentHillLabFrontTextString14
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString14:
+	text "<RIVAL>『なんだ"
+	line "<PLAYER>じゃないか！"
+	cont "おれも　ここが"
+	cont "あやしいと　おもって　きたんだけど"
+	cont "だれも　いないみたいだな<⋯⋯>"
+	done
+
+SilentHillLabFrontText11:
+	ld hl, SilentHillLabFrontTextString16
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString15:
+	text "<RIVAL>『よっしゃあ！"
+	line "じいさん！　おれにまかせな！"
+	done
+
+SilentHillLabFrontTextString16:
+	text "<RIVAL>『おれが　えらんだ"
+	line "#のほうが　つよそうだぜ！"
+	cont "こっちに　したかったんじゃないの？"
+	done
+
+SilentHillLabFrontTextString17:
+	text "<RIVAL>『<PLAYER>！"
+	line "せっかく　じいさんに"
+	cont "#　もらったんだから"
+	cont "<⋯⋯>　ちょっと"
+	cont "たたかわせて　みようぜ！"
+	done
+
+SilentHillLabFrontTextString18:
+	text "<RIVAL>『くっそー！"
+	line "こんどは　ぜったい　まけないぞ！"
+	done
+
+SilentHillLabFrontTextString19:
+	text "<RIVAL>『よーし！"
+	line "ほかの　#と　たたかわせて"
+	cont "もっと　もっと　つよくしよう！"
+
+	para "そんじゃ　ばいばい！"
+	done
+
+SilentHillLabFrontTextString20:
+	text "じいちゃん！"
+	line "つれてきたよー！"
+	done
+
+SilentHillLabFrontTextString21:
+	text "ぼくは　かつて"
+	line "#トレーナーの　ちょうてんを"
+	cont "めざしたことが　あるんだ"
+	cont "そのとき　いいきに　なっていた"
+	cont "ぼくの　てんぐのはなを"
+	cont "へしおった　やつに"
+	cont "きみは　どことなく　にている"
+
+	para "あいつの　おかげで　ぼくは"
+	line "こころを　いれかえて"
+	cont "じいさんの　けんきゅうを"
+	cont "てつだうように　なったのさ"
+	cont "<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>　<⋯⋯>"
+
+	para "さあ！"
+	line "これが　#ずかんだ！"
+
+	para "みつけた　#の　データが"
+	line "じどうてきに　かきこまれて"
+	cont "ページが　ふえて　いく　という"
+	cont "とても　ハイテクな　ずかん　だよ！"
+	done
+
+SilentHillLabFrontText12:
+	ld hl, SilentHillLabFrontTextString22
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString22:
+	text "ぼくも　むかし　やったけど"
+	line "なかなか　たいへんだよ<⋯⋯>"
+	cont "がんばってね！"
+	done
+
+SilentHillLabFrontText13:
+	ld hl, SilentHillLabFrontTextString24
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString23:
+	text "ナナミ『さっき　あなたを　"
+	line "つれてきた　わかい　おとこのこ<⋯⋯>"
+	cont "あれは　わたしの　おとうとなの"
+	cont "<⋯⋯>ということは　つまり"
+
+	para "そう！"
+	line "わたしも　オーキドの　まご　なの！"
+
+	para "おじいちゃんは　りっぱな"
+	cont "#けんきゅうしゃよ"
+	cont "わたしは　おてつだい　できることが"
+	cont "とっても　うれしいの！"
+	cont "あっ　こんなこと　しられたら"
+	cont "おじいちゃん　ちょうしに　のるから"
+	cont "ないしょに　しておいてね！"
+
+	para "<⋯⋯>おじいちゃん　すっかり"
+	line "わすれている　みたいだから"
+
+	para "わたしが　かわりに　これを　あげる！"
+	line "さいしんがた　#リュックよ"
+
+	para "<PLAYER>は"
+	line "#リュックを　もらった！"
+
+	para "ナナミ『この　リュックには"
+	line "モンスターボールを"
+	cont "まとめて　いれられる"
+	cont "ボールホルダと"
+	cont "わざマシンを　まとめて　いれられる"
+	cont "わざマシンホルダが　ついているの"
+
+	para "モンスターボール　６こと　"
+	line "わざマシンひとつは　オマケしておくわ"
+	cont "ホルダに　なんにも　はいってないと"
+	cont "さびしいもんね！"
+
+	para "ねえ　<PLAYER>くン"
+	line "あなたの　おかあさんが"
+	cont "しんぱいすると　いけないから"
+	cont "このまちを　でるまえに"
+	cont "かおを　みせに　いってあげてね"
+
+	para "<⋯⋯>あなたの　かつやく"
+	line "いのっているわ"
+	done
+
+SilentHillLabFrontTextString24:
+	text "<⋯⋯>あなたの　かつやく"
+	line "いのってるわ"
+	done
+
+SilentHillLabFrontText14:
+	ld hl, SilentHillLabFrontTextString25
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString25:
+	text "わたしは"
+	line "はかせの　じょしゅ　です"
+
+	para "わたしは　もちろん"
+	line "はかせを　ソンケー　しております"
+
+	para "あなた　とは　また　どこかで"
+	line "おあい　することに"
+	cont "なるような　きがします"
+	done
+
+SilentHillLabFrontText15:
+	ld hl, SilentHillLabFrontTextString26
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString26:
+	text "わたしは"
+	line "はかせの　じょしゅ　です"
+
+	para "わたしは　もちろん"
+	line "はかせを　ソンケー　しております"
+
+	para "あなた　とは　また　どこかで"
+	line "おあい　することに"
+	cont "なるような　きがします"
+	done
+
+SilentHillLabFrontText16:
+	ld hl, SilentHillLabFrontTextString27
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString27:
+	text "なんだろう？"
+	line "でんし　てちょう　かな？"
+	done
+
+SilentHillLabFrontText17:
+	ld hl, SilentHillLabFrontTextString28
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString28:
+	text "<RIVAL>『あのメールを　くれた"
+	line "オーキドって　こんな　じじい<⋯⋯>"
+
+	para "あっ　ゴメン"
+	line "こんな　じいさん　なのか？"
+	cont "ほんもの　はじめて　みたよ！"
+	done
+
+SilentHillLabFrontTextString29:
+	text "<RIVAL>『<PLAYER>！"
+	line "なんだか"
+	cont "おもしろく　なってきたな！"
+	done
+
+SilentHillLabFrontText18:
+	ld hl, SilentHillLabFrontTextString30
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString30:
+	text "わたしは"
+	line "はかせの　じょしゅ　です"
+
+	para "あなた　とは　また　どこかで"
+	line "おあい　することに"
+	cont "なるような　きがします"
+	done
+
+SilentHillLabFrontText19:
+	ld hl, SilentHillLabFrontTextString31
+	call OpenTextbox
+	ret
+
+SilentHillLabFrontTextString31:
+	text "わたしは"
+	line "はかせの　じょしゅ　です"
+
+	para "あなた　とは　また　どこかで"
+	line "おあい　することに"
+	cont "なるような　きがします"
+	done

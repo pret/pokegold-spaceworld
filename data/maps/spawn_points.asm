@@ -64,5 +64,5 @@ SpawnPoints:
 
 ; Only appears in debug menu, likely for the purposes of testing the demo
 
-	db GROUP_SILENT_HILLS, MAP_SILENT_HILLS, $10, $10
+	db GROUP_QUIET_HILLS, MAP_QUIET_HILLS, $10, $10
 	db $ff, $ff, $ff, $ff
