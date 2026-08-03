@@ -122,16 +122,16 @@ SetDemoEventFlags:
 	SetEvent SILENT_HILL_LAB_FRONT_GOT_POKEDEX
 	SetEvent SILENT_HILL_LAB_FRONT_RIVAL_BATTLED
 	SetEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
-	ld a, 1
+	ld a, SCENE_PLAYER_HOUSE_2F_KEN_LEFT
 	ld [wPlayerHouse2FSceneID], a
-	ld a, 1
+	ld a, SCENE_PLAYER_HOUSE_1F_MOM_BACK
 	ld [wPlayerHouse1FSceneID], a
-	ld a, 6
+	ld a, SCENE_SILENT_HILL_GOT_STARTER
 	ld [wSilentHillSceneID], a
-	ld a, 18
+	ld a, SCENE_SILENT_HILL_LAB_FRONT_FINISHED
 	ld [wSilentHillLabFrontSceneID], a
-	ld a, 6
+	ld a, SCENE_SILENT_HILL_LAB_BACK_CUTSCENE_OVER
 	ld [wSilentHillLabBackSceneID], a
-	ld a, 2
+	ld a, SCENE_RIVAL_HOUSE_GOT_MAP_CARD
 	ld [wRivalHouseSceneID], a
 	ret

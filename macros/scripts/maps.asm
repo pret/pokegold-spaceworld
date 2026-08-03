@@ -211,6 +211,7 @@ ENDM
 MACRO script_pointer
 	dw \1, \2
 	const \3
+	EXPORT \3
 ENDM
 
 MACRO map_generic_scriptloader
@@ -225,7 +226,7 @@ ENDM
 MACRO map_generic_script_pointers
 {CURRENT_MAP_NAME}ScriptPointers::
 	def_script_pointers
-	script_pointer {CURRENT_MAP_NAME}Script, {CURRENT_MAP_NAME}NPCIDs, {CURRENT_MAP_ID}_DEFAULT
+	script_pointer {CURRENT_MAP_NAME}Script, {CURRENT_MAP_NAME}NPCIDs, SCENE_{CURRENT_MAP_ID}_DEFAULT
 ENDM
 
 MACRO map_generic_script
