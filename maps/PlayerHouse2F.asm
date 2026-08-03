@@ -28,8 +28,8 @@ INCBIN "maps/PlayerHouse2F.blk"
 
 PlayerHouse2FScriptPointers::
 	def_script_pointers
-	script_pointer PlayerHouse2FScript1, PlayerHouse2FNPCIDs1, PLAYER_HOUSE_2F_DEFAULT
-	script_pointer PlayerHouse2FScript2, PlayerHouse2FNPCIDs2, PLAYER_HOUSE_2F_KEN_LEFT
+	script_pointer PlayerHouse2FScript1, PlayerHouse2FNPCIDs1, SCRIPT_PLAYER_HOUSE_2F_DEFAULT
+	script_pointer PlayerHouse2FScript2, PlayerHouse2FNPCIDs2, SCRIPT_PLAYER_HOUSE_2F_KEN_LEFT
 
 PlayerHouse2F_TextPointers::
 	dw PlayerHouse2FText1
