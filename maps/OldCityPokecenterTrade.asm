@@ -13,7 +13,7 @@ OldCityPokecenterTrade_MapEvents::
 	object_event  3,  3, SPRITE_GOLD, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityPokecenterTrade_Blocks::
-INCBIN "maps/OldCityPokecenterTrade.blk"
+INCBIN "maps/PokecenterTrade.blk"
 
 ; unreferenced
 	ret

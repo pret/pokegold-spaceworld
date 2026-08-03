@@ -18,6 +18,6 @@ WestPokecenter1F_MapEvents::
 	object_event 10,  1, SPRITE_34, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestPokecenter1F_Blocks::
-INCBIN "maps/WestPokecenter1F.blk"
+INCBIN "maps/Pokecenter1F.blk"
 
 	map_dummy_text_pointers

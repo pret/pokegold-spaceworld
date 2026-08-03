@@ -22,6 +22,6 @@ OldCitySchool_MapEvents::
 	object_event  2, 11, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCitySchool_Blocks::
-INCBIN "maps/OldCitySchool.blk"
+INCBIN "maps/School.blk"
 
 	map_dummy_text_pointers

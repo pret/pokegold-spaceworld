@@ -14,6 +14,6 @@ KantoRedsHouse_MapEvents::
 	object_event  1,  5, SPRITE_TEACHER, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoRedsHouse_Blocks::
-INCBIN "maps/KantoRedsHouse.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

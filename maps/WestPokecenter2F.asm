@@ -15,6 +15,6 @@ WestPokecenter2F_MapEvents::
 	object_event 13,  3, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestPokecenter2F_Blocks::
-INCBIN "maps/WestPokecenter2F.blk"
+INCBIN "maps/Pokecenter2F.blk"
 
 	map_dummy_text_pointers

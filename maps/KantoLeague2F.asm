@@ -16,6 +16,6 @@ KantoLeague2F_MapEvents::
 	object_event  5,  1, SPRITE_COOLTRAINER_F, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoLeague2F_Blocks::
-INCBIN "maps/KantoLeague2F.blk"
+INCBIN "maps/League2F.blk"
 
 	map_dummy_text_pointers

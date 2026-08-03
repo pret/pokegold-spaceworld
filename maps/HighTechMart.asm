@@ -15,6 +15,6 @@ HighTechMart_MapEvents::
 	object_event  4,  1, SPRITE_SAILOR, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 HighTechMart_Blocks::
-INCBIN "maps/HighTechMart.blk"
+INCBIN "maps/Mart.blk"
 
 	map_dummy_text_pointers

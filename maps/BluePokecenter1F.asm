@@ -17,6 +17,6 @@ BluePokecenter1F_MapEvents::
 	object_event 10,  1, SPRITE_GRANNY, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BluePokecenter1F_Blocks::
-INCBIN "maps/BluePokecenter1F.blk"
+INCBIN "maps/Pokecenter1F.blk"
 
 	map_dummy_text_pointers

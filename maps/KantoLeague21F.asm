@@ -18,6 +18,6 @@ KantoLeague21F_MapEvents::
 	object_event  6,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoLeague21F_Blocks::
-INCBIN "maps/KantoLeague21F.blk"
+INCBIN "maps/League1F.blk"
 
 	map_dummy_text_pointers

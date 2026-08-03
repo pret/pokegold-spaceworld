@@ -13,7 +13,7 @@ OldCityPokecenterBattle_MapEvents::
 	object_event  3,  3, SPRITE_GOLD, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityPokecenterBattle_Blocks::
-INCBIN "maps/OldCityPokecenterBattle.blk"
+INCBIN "maps/PokecenterBattle.blk"
 
 	map_generic_scriptloader
 	map_generic_script_pointers

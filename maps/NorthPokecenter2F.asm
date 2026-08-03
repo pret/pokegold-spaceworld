@@ -14,6 +14,6 @@ NorthPokecenter2F_MapEvents::
 	object_event 14,  7, SPRITE_FISHING_GURU, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NorthPokecenter2F_Blocks::
-INCBIN "maps/NorthPokecenter2F.blk"
+INCBIN "maps/Pokecenter2F.blk"
 
 	map_dummy_text_pointers

@@ -14,6 +14,6 @@ KantoEldersHouse_MapEvents::
 	object_event  1,  5, SPRITE_GRANNY, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoEldersHouse_Blocks::
-INCBIN "maps/KantoEldersHouse.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

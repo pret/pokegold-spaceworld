@@ -13,6 +13,6 @@ BlueHouse1_MapEvents::
 	object_event  2,  3, SPRITE_KIKUKO, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BlueHouse1_Blocks::
-INCBIN "maps/BlueHouse1.blk"
+INCBIN "maps/TraditionalHouse.blk"
 
 	map_dummy_text_pointers

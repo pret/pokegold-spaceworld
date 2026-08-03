@@ -14,6 +14,6 @@ Route24Gate_MapEvents::
 	def_object_events
 
 Route24Gate_Blocks::
-INCBIN "maps/Route24Gate.blk"
+INCBIN "maps/NorthSouthGate.blk"
 
 	map_dummy_text_pointers

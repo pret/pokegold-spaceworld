@@ -12,6 +12,6 @@ WestMartElevator_MapEvents::
 	def_object_events
 
 WestMartElevator_Blocks::
-INCBIN "maps/WestMartElevator.blk"
+INCBIN "maps/Elevator.blk"
 
 	map_dummy_text_pointers

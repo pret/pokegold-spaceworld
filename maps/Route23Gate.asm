@@ -14,7 +14,7 @@ Route23Gate_MapEvents::
 	def_object_events
 
 Route23Gate_Blocks::
-INCBIN "maps/Route23Gate.blk"
+INCBIN "maps/EastWestGate.blk"
 
 Route23Gate_ScriptLoader::
 	ret

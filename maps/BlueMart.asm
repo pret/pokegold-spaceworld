@@ -15,6 +15,6 @@ BlueMart_MapEvents::
 	object_event  4,  1, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BlueMart_Blocks::
-INCBIN "maps/BlueMart.blk"
+INCBIN "maps/Mart.blk"
 
 	map_dummy_text_pointers

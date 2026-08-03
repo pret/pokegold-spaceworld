@@ -24,6 +24,6 @@ WestRocketRaidedHouse_MapEvents::
 	object_event  7,  2, SPRITE_POKE_BALL, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestRocketRaidedHouse_Blocks::
-INCBIN "maps/WestRocketRaidedHouse.blk"
+INCBIN "maps/House2.blk"
 
 	map_dummy_text_pointers

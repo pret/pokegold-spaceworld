@@ -13,6 +13,6 @@ NorthHouse1_MapEvents::
 	object_event  2,  3, SPRITE_TWIN, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NorthHouse1_Blocks::
-INCBIN "maps/NorthHouse1.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

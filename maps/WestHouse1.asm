@@ -19,6 +19,6 @@ WestHouse1_MapEvents::
 	object_event  1,  4, SPRITE_PIDGEY, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestHouse1_Blocks::
-INCBIN "maps/WestHouse1.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

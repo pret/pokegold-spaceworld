@@ -13,6 +13,6 @@ NewtypeSailorHouse_MapEvents::
 	object_event  6,  3, SPRITE_CAPTAIN, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NewtypeSailorHouse_Blocks::
-INCBIN "maps/NewtypeSailorHouse.blk"
+INCBIN "maps/House2.blk"
 
 	map_dummy_text_pointers
