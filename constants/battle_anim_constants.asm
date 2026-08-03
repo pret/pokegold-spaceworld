@@ -1,4 +1,4 @@
-; battle_anim_struct members (see macros/wram.asm)
+; battle_anim_struct members (see macros/ram.asm)
 	const_def
 	const BATTLEANIMSTRUCT_INDEX
 	const BATTLEANIMSTRUCT_OAMFLAGS
@@ -22,7 +22,7 @@ DEF NUM_BATTLE_ANIM_STRUCTS EQU 10 ; see wActiveAnimObjects
 
 DEF BATTLEANIMSTRUCT_OAMFLAGS_FIX_COORDS_F EQU 0
 
-; wBattleAnimTileDict size (see wram.asm)
+; wBattleAnimTileDict size (see ram/wram.asm)
 DEF NUM_BATTLEANIMTILEDICT_ENTRIES EQU 5
 
 ; Start tile for battle animation graphics
@@ -748,7 +748,7 @@ DEF NUM_BATTLE_ANIM_OAMSETS EQU const_value
 	;const ANIM_BG_WOBBLE_MON
 	;const ANIM_BG_35
 
-; wBattleAnimTileDict keys (see wram.asm)
+; wBattleAnimTileDict keys (see ram/wram.asm)
 ; AnimObjGFX indexes (see data/battle_anims/object_gfx.asm)
 	const_def 1
 	const BATTLE_ANIM_GFX_HIT        ; 01
@@ -792,7 +792,7 @@ DEF NUM_BATTLE_ANIM_OAMSETS EQU const_value
 	const BATTLE_ANIM_GFX_ENEMYFEET  ; 27
 DEF NUM_BATTLE_ANIM_GFX EQU const_value - 1
 
-; battle_bg_effect struct members (see macros/wram.asm)
+; battle_bg_effect struct members (see macros/ram.asm)
 	const_def
 	const BG_EFFECT_STRUCT_FUNCTION
 	const BG_EFFECT_STRUCT_JT_INDEX

@@ -27,7 +27,7 @@ DEF NUM_MUSIC_CHANS EQU const_value
 DEF NUM_NOISE_CHANS EQU const_value - NUM_MUSIC_CHANS
 DEF NUM_CHANNELS EQU const_value
 
-; channel_struct members (see macros/wram.asm)
+; channel_struct members (see macros/ram.asm)
 DEF CHANNEL_MUSIC_ID                    EQUS "(wChannel1MusicID - wChannel1)"
 DEF CHANNEL_MUSIC_BANK                  EQUS "(wChannel1MusicBank - wChannel1)"
 DEF CHANNEL_FLAGS1                      EQUS "(wChannel1Flags1 - wChannel1)"

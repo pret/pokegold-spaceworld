@@ -1,4 +1,4 @@
-; sprite_anim_struct members (see macros/wram.asm)
+; sprite_anim_struct members (see macros/ram.asm)
 	const_def
 	const SPRITEANIMSTRUCT_INDEX           ; 0
 	const SPRITEANIMSTRUCT_FRAMESET_ID     ; 1

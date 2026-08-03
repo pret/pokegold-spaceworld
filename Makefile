@@ -94,7 +94,7 @@ tidy:
 	$(MAKE) clean -C tools/
 
 
-RGBASMFLAGS += -Q8 -P constants.asm
+RGBASMFLAGS += -Q8 -P includes.asm
 # Create a sym/map for debug purposes if `make` run with `DEBUG=1`
 ifeq ($(DEBUG),1)
 RGBASMFLAGS += -E
@@ -117,7 +117,7 @@ $(info $(shell $(MAKE) -C tools))
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
-preinclude_deps := constants.asm $(shell tools/scan_includes constants.asm)
+preinclude_deps := includes.asm $(shell tools/scan_includes includes.asm)
 define DEP
 $1: $2 $$(shell tools/scan_includes $2) $(preinclude_deps) | rgbdscheck.o
 	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<

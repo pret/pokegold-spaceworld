@@ -43,7 +43,7 @@ DEF GENDER_UNKNOWN EQU -1
 ; pokedex entries (see data/pokemon/dex_entries.asm)
 DEF NUM_DEX_ENTRY_BANKS EQU 4
 
-; party_struct members (see macros/wram.asm)
+; party_struct members (see macros/ram.asm)
 DEF MON_SPECIES            EQUS "(wPartyMon1Species - wPartyMon1)"
 DEF MON_ITEM               EQUS "(wPartyMon1Item - wPartyMon1)"
 DEF MON_MOVES              EQUS "(wPartyMon1Moves - wPartyMon1)"

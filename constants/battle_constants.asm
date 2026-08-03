@@ -32,7 +32,7 @@ DEF EFFECTIVENESS_MASK EQU %01111111
 	const_def 7
 	shift_const STAB_DAMAGE
 
-; wPlayerStatLevels and wEnemyStatLevels indexes (see wram.asm)
+; wPlayerStatLevels and wEnemyStatLevels indexes (see ram/wram.asm)
 ; GetStatName arguments (see data/battle/stat_names.asm)
 	const_def
 	const ATTACK
@@ -58,8 +58,8 @@ DEF MOVE_LENGTH EQU const_value
 
 ; stat constants
 ; indexes for:
-; - wPlayerStats and wEnemyStats (see wram.asm)
-; - party_struct and battle_struct members (see macros/wram.asm)
+; - wPlayerStats and wEnemyStats (see ram/wram.asm)
+; - party_struct and battle_struct members (see macros/ram.asm)
 	const_def 1
 	const STAT_HP
 	const STAT_ATK

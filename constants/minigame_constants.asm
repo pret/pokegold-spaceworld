@@ -69,7 +69,7 @@ DEF REEL_SIZE EQU 15
 	const REEL_ACTION_WAIT_EGG
 	const REEL_ACTION_DROP_REEL
 
-; Constants for slot_reel offsets (see macros/wram.asm)
+; Constants for slot_reel offsets (see macros/ram.asm)
 DEF REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
 DEF REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
 DEF REEL_POSITION      EQUS "(wReel1Position - wReel1)"

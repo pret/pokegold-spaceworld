@@ -35,7 +35,7 @@ DEF HP_RED    EQU 2
 DEF SPRITEBUFFERSIZE EQU 7 * 7 * 8 ; 7 * 7 (tiles) * 8 (bytes per tile)
 DEF DOUBLESPRITEBUFFERSIZE EQU 2 * SPRITEBUFFERSIZE
 
-; sprite_oam_struct members (see macros/wram.asm)
+; sprite_oam_struct members (see macros/ram.asm)
 	const_def
 	const SPRITEOAMSTRUCT_YCOORD     ; 0
 	const SPRITEOAMSTRUCT_XCOORD     ; 1
