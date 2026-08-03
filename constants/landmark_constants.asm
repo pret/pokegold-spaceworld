@@ -37,8 +37,8 @@
 	const LANDMARK_ROUTE_24                   ; 23
 	const LANDMARK_SOUTH                      ; 24
 	const LANDMARK_ROUTE_9                    ; 25
-	const LANDMARK_HIGH_TECH_WEST_ROUTE_OCEAN ; 26
-	const LANDMARK_HIGH_TECH_WEST_ROUTE       ; 27
+	const LANDMARK_ROUTE_7                    ; 26
+	const LANDMARK_ROUTE_6                    ; 27
 	const LANDMARK_HIGH_TECH                  ; 28
 	const LANDMARK_ROUTE_5                    ; 29
 	const LANDMARK_ROUTE_12                   ; 2a

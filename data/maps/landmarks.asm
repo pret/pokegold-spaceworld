@@ -44,9 +44,9 @@ LandmarkPositions:
 	landmark  12,  36 ; LANDMARK_ROUTE_24
 	landmark  12,  44 ; LANDMARK_SOUTH
 	landmark  24,  44 ; LANDMARK_ROUTE_9
-	landmark  12,  56 ; LANDMARK_HIGH_TECH_WEST_ROUTE_OCEAN
-	landmark  20,  68 ; LANDMARK_HIGH_TECH_WEST_ROUTE
+	landmark  12,  56 ; LANDMARK_ROUTE_7
+	landmark  20,  68 ; LANDMARK_ROUTE_6
 	landmark  36,  68 ; LANDMARK_HIGH_TECH
-	landmark  48,  68 ; LANDMARK_WASTE_BRIDGE
+	landmark  48,  68 ; LANDMARK_ROUTE_5
 	landmark  60,  44 ; LANDMARK_ROUTE_12
-	landmark  36,  56 ; LANDMARK_FONT_BRIDGE
+	landmark  36,  56 ; LANDMARK_ROUTE_8
