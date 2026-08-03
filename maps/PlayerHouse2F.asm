@@ -85,7 +85,7 @@ PlayerHouse2FMovePlayer:
 	ld hl, .Movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
 	ret

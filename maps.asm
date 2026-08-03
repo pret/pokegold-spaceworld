@@ -4,7 +4,7 @@ INCLUDE "maps/UnusedGen1TradeCenter.asm"
 INCLUDE "maps/UnusedGen1Colosseum.asm"
 
 
-SECTION "Old City Maps", ROMX
+SECTION "Old City Interior Maps", ROMX
 
 INCLUDE "maps/Route3Gate1F.asm"
 INCLUDE "maps/Route3Gate2F.asm"
@@ -28,10 +28,10 @@ INCLUDE "maps/OldCityKurtsHouse.asm"
 INCLUDE "maps/OldCitySchool.asm"
 
 
-SECTION "West Maps", ROMX
+SECTION "West Interior Maps", ROMX
 
-INCLUDE "maps/Route2Gate1F.asm" ; why is this here?
-INCLUDE "maps/Route2Gate2F.asm"
+INCLUDE "maps/Route2Gate1F.asm" ; These are grouped with West's interior maps,
+INCLUDE "maps/Route2Gate2F.asm" ; despite Route 2 connecting to Old, not West.
 INCLUDE "maps/WestMart1F.asm"
 INCLUDE "maps/WestMart2F.asm"
 INCLUDE "maps/WestMart3F.asm"
@@ -52,7 +52,7 @@ INCLUDE "maps/WestHouse1.asm"
 INCLUDE "maps/WestHouse2.asm"
 
 
-SECTION "High-Tech Maps", ROMX
+SECTION "High-Tech Interior Maps", ROMX
 
 INCLUDE "maps/Route7Gate.asm"
 INCLUDE "maps/HighTechPokecenter1F.asm"
@@ -67,7 +67,7 @@ INCLUDE "maps/HighTechAquarium1F.asm"
 INCLUDE "maps/HighTechAquarium2F.asm"
 
 
-SECTION "Font Maps", ROMX
+SECTION "Font Interior Maps", ROMX
 
 INCLUDE "maps/Route9Gate.asm"
 INCLUDE "maps/Route12Gate.asm"
@@ -80,7 +80,7 @@ INCLUDE "maps/FontPokecenter2F.asm"
 INCLUDE "maps/FontLab.asm"
 
 
-SECTION "Birdon Maps", ROMX
+SECTION "Birdon Interior Maps", ROMX
 
 INCLUDE "maps/BirdonMart.asm"
 INCLUDE "maps/BirdonPokecenter1F.asm"
@@ -93,7 +93,7 @@ INCLUDE "maps/BirdonLeague2F.asm"
 INCLUDE "maps/Route4Gate.asm"
 
 
-SECTION "Newtype Maps", ROMX
+SECTION "Newtype Interior Maps", ROMX
 
 INCLUDE "maps/Route14Gate.asm"
 INCLUDE "maps/NewtypePokecenter1F.asm"
@@ -109,7 +109,7 @@ INCLUDE "maps/NewtypeHouse2.asm"
 INCLUDE "maps/NewtypeHouse3.asm"
 
 
-SECTION "Route 15 & 18 Maps", ROMX
+SECTION "Route 15 & 18 Interior Maps", ROMX
 
 INCLUDE "maps/Route15Pokecenter1F.asm"
 INCLUDE "maps/Route15Pokecenter2F.asm"
@@ -118,7 +118,7 @@ INCLUDE "maps/Route18Pokecenter1F.asm"
 INCLUDE "maps/Route18Pokecenter2F.asm"
 
 
-SECTION "Sugar Maps", ROMX
+SECTION "Sugar Interior Maps", ROMX
 
 INCLUDE "maps/Route16Gate.asm"
 INCLUDE "maps/SugarHouse.asm"
@@ -128,7 +128,7 @@ INCLUDE "maps/SugarPokecenter1F.asm"
 INCLUDE "maps/SugarPokecenter2F.asm"
 
 
-SECTION "Blue Forest Maps", ROMX
+SECTION "Blue Forest Interior Maps", ROMX
 
 INCLUDE "maps/Route19House.asm"
 INCLUDE "maps/Route20Gate.asm"
@@ -143,7 +143,7 @@ INCLUDE "maps/BlueLeague2F.asm"
 INCLUDE "maps/BlueHouse4.asm"
 
 
-SECTION "Stand Maps", ROMX
+SECTION "Stand Interior Maps", ROMX
 
 INCLUDE "maps/Route21Gate.asm"
 INCLUDE "maps/StandLab.asm"
@@ -158,7 +158,7 @@ INCLUDE "maps/StandLeague1F.asm"
 INCLUDE "maps/StandLeague2F.asm"
 
 
-SECTION "Kanto Maps", ROMX
+SECTION "Kanto Interior Maps", ROMX
 
 INCLUDE "maps/KantoCeruleanHouse.asm"
 INCLUDE "maps/KantoPokecenter1F.asm"
@@ -198,7 +198,7 @@ INCLUDE "maps/KantoLeague22F.asm"
 INCLUDE "maps/KantoFishingGuru.asm"
 
 
-SECTION "South Maps", ROMX
+SECTION "South Interior Maps", ROMX
 
 INCLUDE "maps/SouthHouse1.asm"
 INCLUDE "maps/SouthPokecenter1F.asm"
@@ -207,7 +207,7 @@ INCLUDE "maps/SouthMart.asm"
 INCLUDE "maps/SouthHouse2.asm"
 
 
-SECTION "North Maps", ROMX
+SECTION "North Interior Maps", ROMX
 
 INCLUDE "maps/NorthHouse1.asm"
 INCLUDE "maps/NorthMart.asm"

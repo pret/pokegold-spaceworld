@@ -48,7 +48,7 @@ SilentHillScript1:
 	ld hl, SilentHillMovement1
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_RIVAL_CUTSCENE
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -78,7 +78,7 @@ SilentHillScript2:
 	ld hl, SilentHillMovement2
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
 	ld a, SILENT_HILL_RIVAL_CUTSCENE_2
@@ -131,7 +131,7 @@ SilentHillScript4:
 	ld a, SILENT_HILL_BLUE
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
 	ld a, SILENT_HILL_BLUE_CUTSCENE
@@ -196,7 +196,7 @@ SilentHillScript5:
 	ld a, SILENT_HILL_BLUE
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
 	ld a, SILENT_HILL_FOLLOW_BLUE
@@ -296,7 +296,7 @@ LabClosed:
 	ld hl, SilentHillMovement7
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
 	ret

@@ -4,11 +4,11 @@ MACRO map_id
 ENDM
 
 MACRO object_const_def
-	const_def 2
+	const_def NUM_RESERVED_OBJECTS
 ENDM
 
 MACRO npc_id
-	db \1 - 2
+	db \1 - NUM_RESERVED_OBJECTS
 ENDM
 
 MACRO map_attributes

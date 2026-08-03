@@ -35,7 +35,7 @@ WindowScript::
 
 InitTrainerBattle::
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_START_TRAINER_BATTLE
 	ld [wMapStatus], a
 	ret

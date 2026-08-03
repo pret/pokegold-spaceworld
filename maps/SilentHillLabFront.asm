@@ -190,7 +190,7 @@ SilentHillLabFrontMoveDown:
 	ld hl, SilentHillLabFrontMovement1
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
 	call xor_a
@@ -217,7 +217,7 @@ SilentHillLabFrontScript3:
 	ld a, SILENT_HILL_LAB_FRONT_BLUE1
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_2
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -279,7 +279,7 @@ SilentHillLabFrontScript5:
 	ld hl, SilentHillLabFrontMovement3
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_END
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -300,7 +300,7 @@ SilentHillLabFrontScript6:
 	ld hl, SilentHillLabFrontMovement4
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL_ENTER_BACK
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -324,7 +324,7 @@ SilentHillLabFrontScript7:
 	ld hl, SilentHillLabFrontMovement5
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_ENTER_BACK
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -351,7 +351,7 @@ SilentHillLabFrontScript8:
 	ld hl, SilentHillLabFrontMovement6
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -377,7 +377,7 @@ SilentHillLabFrontScript9:
 	ld hl, SilentHillLabFrontMovement7
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE_2
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -415,7 +415,7 @@ SilentHillLabFrontScript10:
 	ld hl, SilentHillLabFrontMovement8
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_GET_POKEDEX
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -478,7 +478,7 @@ SilentHillLabFrontRivalMovePokemon:
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL_START_BATTLE
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -508,7 +508,7 @@ SilentHillLabFrontScript13:
 	call OpenTextbox
 	call GetLabPokemon
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_START_TRAINER_BATTLE
 	ld [wMapStatus], a
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL_BATTLE_END
@@ -557,7 +557,7 @@ SilentHillLabFrontScript14:
 	ld hl, SilentHillLabFrontMovement11
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL_LEFT
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
@@ -609,7 +609,7 @@ SilentHillLabFrontMoveRivalLeave:
 	ld a, SILENT_HILL_LAB_FRONT_NANAMI
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_GET_POKEBALLS
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING

@@ -102,7 +102,7 @@ SilentHillLabBackMovement1:
 
 SilentHillLabBackScript2:
 	ld hl, wOverworldFlags
-	set 6, [hl]
+	set OVERWORLD_DISABLE_MAP_CONNECTIONS_F, [hl]
 	call UnfreezeEverything
 	ld a, SILENT_HILL_LAB_BACK_RIVAL
 	ld d, UP
@@ -140,7 +140,7 @@ SilentHillLabBackRivalChoosePokemon:
 	ld a, SILENT_HILL_LAB_BACK_RIVAL
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
-	set 7, [hl]
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER2
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING

@@ -31,7 +31,7 @@ INCBIN "maps/SilentHillPokecenter.blk"
 	map_generic_script_pointers
 	map_generic_script
 
-	dw SilentHillPokecenterNPCIDs
+	dw SilentHillPokecenterNPCIDs ; leftover from non-demo version?
 
 	map_generic_npc_ids
 
