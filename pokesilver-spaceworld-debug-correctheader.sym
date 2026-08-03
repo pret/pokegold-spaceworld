@@ -2449,7 +2449,7 @@
 03:4fae CutFunction.next
 03:4fb7 CutFunction.ResetScriptID
 03:4fbc CutFunction.ExecScript
-03:4fc5 CutFunction.CutScriptTable
+03:4fc5 CutScriptTable
 03:4fd1 TryCut
 03:4fe3 TryCut.success
 03:4fea CheckCuttableBlock

@@ -2503,7 +2503,7 @@ ROMX bank #3:
 	         $4fae = CutFunction.next
 	         $4fb7 = CutFunction.ResetScriptID
 	         $4fbc = CutFunction.ExecScript
-	         $4fc5 = CutFunction.CutScriptTable
+	         $4fc5 = CutScriptTable
 	         $4fd1 = TryCut
 	         $4fe3 = TryCut.success
 	         $4fea = CheckCuttableBlock
@@ -26746,9 +26746,9 @@ WRAM0 bank #0:
 	         $de61 = wBoxMon30CaughtGender
 	         $de61 = wBoxMon30CaughtLocation
 	         $de62 = wBoxMon30Level
-	         $de63 = wBoxMon1OT
-	         $de63 = wBoxMonOTs
 	         $de63 = wBoxMon30End
+	         $de63 = wBoxMonOTs
+	         $de63 = wBoxMon1OT
 	         $de69 = wBoxMon2OT
 	         $de6f = wBoxMon3OT
 	         $de75 = wBoxMon4OT
