@@ -25,13 +25,13 @@ SilentHillNPCIDs3:
 
 SilentHillScriptPointers::
 	def_script_pointers
-	script_pointer SilentHillScript1, SilentHillNPCIDs1, SCRIPT_SILENT_HILL_DEFAULT
-	script_pointer SilentHillScript2, SilentHillNPCIDs1, SCRIPT_SILENT_HILL_RIVAL_CUTSCENE
-	script_pointer SilentHillScript3, SilentHillNPCIDs1, SCRIPT_SILENT_HILL_RIVAL_CUTSCENE_2
-	script_pointer SilentHillScript4, SilentHillNPCIDs2, SCRIPT_SILENT_HILL_RIVAL_CUTSCENE_END
-	script_pointer SilentHillScript5, SilentHillNPCIDs3, SCRIPT_SILENT_HILL_BLUE_CUTSCENE
-	script_pointer SilentHillScript6, SilentHillNPCIDs2, SCRIPT_SILENT_HILL_FOLLOW_BLUE
-	script_pointer SilentHillScript7, SilentHillNPCIDs2, SCRIPT_SILENT_HILL_GOT_STARTER
+	script_pointer SilentHillScript1, SilentHillNPCIDs1, SCENE_SILENT_HILL_DEFAULT
+	script_pointer SilentHillScript2, SilentHillNPCIDs1, SCENE_SILENT_HILL_RIVAL_CUTSCENE
+	script_pointer SilentHillScript3, SilentHillNPCIDs1, SCENE_SILENT_HILL_RIVAL_CUTSCENE_2
+	script_pointer SilentHillScript4, SilentHillNPCIDs2, SCENE_SILENT_HILL_RIVAL_CUTSCENE_END
+	script_pointer SilentHillScript5, SilentHillNPCIDs3, SCENE_SILENT_HILL_BLUE_CUTSCENE
+	script_pointer SilentHillScript6, SilentHillNPCIDs2, SCENE_SILENT_HILL_FOLLOW_BLUE
+	script_pointer SilentHillScript7, SilentHillNPCIDs2, SCENE_SILENT_HILL_GOT_STARTER
 
 SilentHillScript1:
 	ld a, [wYCoord]
@@ -49,7 +49,7 @@ SilentHillScript1:
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
-	ld a, SCRIPT_SILENT_HILL_RIVAL_CUTSCENE
+	ld a, SCENE_SILENT_HILL_RIVAL_CUTSCENE
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
@@ -81,7 +81,7 @@ SilentHillScript2:
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
-	ld a, SCRIPT_SILENT_HILL_RIVAL_CUTSCENE_2
+	ld a, SCENE_SILENT_HILL_RIVAL_CUTSCENE_2
 	ld [wMapScriptNumber], a
 	ret
 
@@ -96,7 +96,7 @@ SilentHillMovement2:
 
 SilentHillScript3:
 	call UnfreezeAllObjects
-	ld a, SCRIPT_SILENT_HILL_RIVAL_CUTSCENE_END
+	ld a, SCENE_SILENT_HILL_RIVAL_CUTSCENE_END
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
 	ret
@@ -134,7 +134,7 @@ SilentHillScript4:
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
-	ld a, SCRIPT_SILENT_HILL_BLUE_CUTSCENE
+	ld a, SCENE_SILENT_HILL_BLUE_CUTSCENE
 	ld [wMapScriptNumber], a
 	ret
 
@@ -146,7 +146,7 @@ SilentHillScript4:
 
 .TalkedToBlue:
 	SetEvent SILENT_HILL_TALKED_TO_BLUE
-	ld a, SCRIPT_SILENT_HILL_LAB_FRONT_START_BLUE_CUTSCENE
+	ld a, SCENE_SILENT_HILL_LAB_FRONT_START_BLUE_CUTSCENE
 	ld hl, wSilentHillLabFrontSceneID
 	ld [hl], a
 	ret
@@ -199,7 +199,7 @@ SilentHillScript5:
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
-	ld a, SCRIPT_SILENT_HILL_FOLLOW_BLUE
+	ld a, SCENE_SILENT_HILL_FOLLOW_BLUE
 	ld [wMapScriptNumber], a
 	ret
 
@@ -252,9 +252,9 @@ SilentHillScript6:
 	call CallMapTextSubroutine
 	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 	ret z
-	ld a, SCRIPT_SILENT_HILL_LAB_FRONT_FINISHED
+	ld a, SCENE_SILENT_HILL_LAB_FRONT_FINISHED
 	ld [wSilentHillLabFrontSceneID], a
-	ld a, SCRIPT_SILENT_HILL_GOT_STARTER
+	ld a, SCENE_SILENT_HILL_GOT_STARTER
 	ld [wMapScriptNumber], a
 	ret
 

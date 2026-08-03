@@ -1695,11 +1695,11 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
 		call YesNoBox
 		jr c, .bigJump
 		SetEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
-		ld a, 1
+		ld a, SCENE_PLAYER_HOUSE_1F_MOM_BACK
 		ld [wPlayerHouse1FSceneID], a
-		ld a, 1
+		ld a, SCENE_PLAYER_HOUSE_2F_KEN_LEFT
 		ld [wPlayerHouse2FSceneID], a
-		ld a, 1
+		ld a, SCENE_RIVAL_HOUSE_KEN_HERE
 		ld [wRivalHouseSceneID], a
 		ld hl, Unreferenced_Corrupt_Silver_SilentHillLabBackTextString8
 		call PrintText
@@ -1714,7 +1714,7 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
 		call FarCall_hl + Bank34NonDebugOffset - Bank34CorruptOffset
 		xor a
 		ld [wPartyMon1Item], a
-		ld a, 3
+		ld a, SCENE_SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER
 		ld [wMapScriptNumber], a
 		ret
 	.bigJump
