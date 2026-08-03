@@ -1007,12 +1007,12 @@ ROM0 bank #0:
 	         $3853 = Unreferenced_StubbedSTDScript
 	         $3854 = Unreferenced_PokemonNewsScript
 	         $385d = PokemonBooksScript
-	         $3866 = PlayerHouse1FFridgeScript
-	         $386f = SilentHillHouseStoveScript
-	         $3878 = SilentHillHouseSinkScript
-	         $3881 = SilentHillHouseTVScript
+	         $3866 = FridgeScript
+	         $386f = StoveScript
+	         $3878 = SinkScript
+	         $3881 = TVScript
 	         $388a = PokecenterSignScript
-	         $3893 = RivalHouseWindowScript
+	         $3893 = WindowScript
 	         $389c = InitTrainerBattle
 	         $38a7 = TestWildBattleStart
 	         $38c8 = OverworldLoop_StartBattle
@@ -3659,23 +3659,23 @@ ROMX bank #5:
 	         $4c8f = _Unreferenced_PokemonNewsScript.DuplicatePokemonNewsText
 	         $4d88 = _PokemonBooksScript
 	         $4d8f = _PokemonBooksScript.PokemonBooksText
-	         $4da0 = _PlayerHouse1FFridgeScript
-	         $4da7 = _PlayerHouse1FFridgeScript.PlayerHouse1FFridgeText
-	         $4db9 = _SilentHillHouseStoveScript
-	         $4dc0 = _SilentHillHouseStoveScript.SilentHillHouseStoveText
-	         $4ddc = _SilentHillHouseSinkScript
-	         $4de3 = _SilentHillHouseSinkScript.SilentHillHouseSinkText
+	         $4da0 = _FridgeScript
+	         $4da7 = _FridgeScript.FridgeText
+	         $4db9 = _StoveScript
+	         $4dc0 = _StoveScript.StoveText
+	         $4ddc = _SinkScript
+	         $4de3 = _SinkScript.SinkText
 	         $4e03 = _PokecenterSignScript
 	         $4e0a = _PokecenterSignScript.PokecenterSignText
-	         $4e26 = _RivalHouseWindowScript
-	         $4e2d = _RivalHouseWindowScript.RivalHouseWindowText
-	         $4e3b = _SilentHillHouseTVScript
-	         $4e46 = _SilentHillHouseTVScript.not_day
-	         $4e4e = _SilentHillHouseTVScript.not_night
-	         $4e51 = _SilentHillHouseTVScript.done
-	         $4e55 = _SilentHillHouseTVScript.SilentHillHouseTVDayText
-	         $4e84 = _SilentHillHouseTVScript.SilentHillHouseTVNightText
-	         $4eaa = _SilentHillHouseTVScript.SilentHillHouseTVMorningText
+	         $4e26 = _WindowScript
+	         $4e2d = _WindowScript.WindowText
+	         $4e3b = _TVScript
+	         $4e46 = _TVScript.not_day
+	         $4e4e = _TVScript.not_night
+	         $4e51 = _TVScript.done
+	         $4e55 = _TVScript.TVDayText
+	         $4e84 = _TVScript.TVNightText
+	         $4eaa = _TVScript.TVMorningText
 	         $4ecd = Unreferenced_CheckInlineTrainers
 	         $4ee4 = Unreferenced_CheckInlineTrainers.loop
 	         $4ef2 = Unreferenced_CheckInlineTrainers.found
@@ -7274,7 +7274,7 @@ ROMX bank #16:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #17:
-	SECTION: $4000-$7c30 ($3c31 bytes) ["bank11"]
+	SECTION: $4000-$7c30 ($3c31 bytes) ["Dex Entries"]
 	         $4000 = _DisplayDexEntry
 	         $4021 = _DisplayDexEntry.got_dex_entries
 	         $4075 = _DisplayDexEntry.less_than_1_meter
@@ -8493,7 +8493,7 @@ ROMX bank #34:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #35:
-	SECTION: $4000-$60cb ($20cc bytes) ["bank23"]
+	SECTION: $4000-$60cb ($20cc bytes) ["Overworld Anims"]
 	         $4000 = _AnimateTileset
 	         $401f = TilesetFlowerAnim
 	         $404b = TilesetWaterAnim
@@ -8976,7 +8976,7 @@ ROMX bank #35:
 	         $6f4c = ButterfreeIcon
 	         $6fcc = ZubatIcon
 	         $704c = SnorlaxIcon
-	SECTION: $70cc-$7324 ($0259 bytes) ["bank23_2"]
+	SECTION: $70cc-$7324 ($0259 bytes) ["Mon Icons"]
 	         $70cc = LoadOverworldMonIcon
 	         $70d6 = LoadOverworldMonIcon.loop
 	         $70e3 = LoadMenuMonIcon
@@ -9009,7 +9009,7 @@ ROMX bank #35:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #36:
-	SECTION: $4000-$5a2a ($1a2b bytes) ["bank24"]
+	SECTION: $4000-$5a2a ($1a2b bytes) ["Subgames 1"]
 	         $4000 = SetClockDialog
 	         $4003 = SetClockDialog.loop
 	         $402f = SetClockDialog_Init
@@ -9269,22 +9269,22 @@ ROMX bank #36:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #37:
-	SECTION: $4000-$4adc ($0add bytes) ["Old City Maps"]
-	         $4000 = Route2Gate1F_MapAttributes
-	         $400b = Route2Gate1F_MapEvents
-	         $404d = Route2Gate1F_Blocks
-	         $4061 = Route2Gate1F_ScriptLoader
-	         $4062 = Route2Gate1F_TextPointers
-	         $407c = Route2Gate2F_MapAttributes
-	         $4087 = Route2Gate2F_MapEvents
-	         $40b5 = Route2Gate2F_Blocks
-	         $40c1 = Route2Gate2F_ScriptLoader
-	         $40c2 = Route2Gate2F_TextPointers
-	         $40dc = Route2House_MapAttributes
-	         $40e7 = Route2House_MapEvents
-	         $411f = Route2House_Blocks
-	         $412f = Route2House_ScriptLoader
-	         $4130 = Route2House_TextPointers
+	SECTION: $4000-$4adc ($0add bytes) ["Old City Interior Maps"]
+	         $4000 = Route3Gate1F_MapAttributes
+	         $400b = Route3Gate1F_MapEvents
+	         $404d = Route3Gate1F_Blocks
+	         $4061 = Route3Gate1F_ScriptLoader
+	         $4062 = Route3Gate1F_TextPointers
+	         $407c = Route3Gate2F_MapAttributes
+	         $4087 = Route3Gate2F_MapEvents
+	         $40b5 = Route3Gate2F_Blocks
+	         $40c1 = Route3Gate2F_ScriptLoader
+	         $40c2 = Route3Gate2F_TextPointers
+	         $40dc = Route3House_MapAttributes
+	         $40e7 = Route3House_MapEvents
+	         $411f = Route3House_Blocks
+	         $412f = Route3House_ScriptLoader
+	         $4130 = Route3House_TextPointers
 	         $414a = OldCityMuseum_MapAttributes
 	         $4155 = OldCityMuseum_MapEvents
 	         $4192 = OldCityMuseum_Blocks
@@ -9345,8 +9345,8 @@ ROMX bank #37:
 	         $4762 = OldCityPokecenter2F_Blocks
 	         $4782 = OldCityPokecenter2F_ScriptLoader
 	         $478f = OldCityPokecenter2FScriptPointers
-	         $4793 = OldCityPokecenter2FScript1
-	         $479d = OldCityPokecenter2FNPCIds
+	         $4793 = OldCityPokecenter2FScript
+	         $479d = OldCityPokecenter2FNPCIDs
 	         $47a2 = OldCityPokecenter2FSignPointers
 	         $47a4 = OldCityPokecenter2F_TextPointers
 	         $47ac = OldCityPokecenter2FText1
@@ -9356,15 +9356,15 @@ ROMX bank #37:
 	         $47e9 = OldCityPokecenter2FText4
 	         $480c = OldCityPokecenter2FText4.done
 	         $480d = OldCityPokecenter2FTextString4
-	         $4820 = OldCityPokecenter2FMovement_Unreferenced
+	         $4820 = OldCityPokecenter2FMovementDataPointer_Old
 	         $4824 = OldCityPokecenter2FMovement1
 	         $4826 = OldCityPokecenterTrade_MapAttributes
 	         $4831 = OldCityPokecenterTrade_MapEvents
 	         $4851 = OldCityPokecenterTrade_Blocks
 	         $4866 = OldCityPokecenterTrade_ScriptLoader
 	         $4870 = OldCityPokecenterTradeScriptPointers
-	         $4874 = OldCityPokecenterTradeScript1
-	         $487e = OldCityPokecenterTradeNPCIds
+	         $4874 = OldCityPokecenterTradeScript
+	         $487e = OldCityPokecenterTradeNPCIDs
 	         $4880 = OldCityPokecenterTradeSignPointers
 	         $4882 = OldCityPokecenterTrade_TextPointers
 	         $4884 = OldCityPokecenterTradeText1
@@ -9374,8 +9374,8 @@ ROMX bank #37:
 	         $48d7 = OldCityPokecenterBattle_Blocks
 	         $48eb = OldCityPokecenterBattle_ScriptLoader
 	         $48f5 = OldCityPokecenterBattleScriptPointers
-	         $48f9 = OldCityPokecenterBattleScript1
-	         $4903 = OldCityPokecenterBattleNPCIds
+	         $48f9 = OldCityPokecenterBattleScript
+	         $4903 = OldCityPokecenterBattleNPCIDs
 	         $4905 = OldCityPokecenterBattleSignPointers
 	         $4907 = OldCityPokecenterBattle_TextPointers
 	         $4909 = OldCityPokecenterBattleText1
@@ -9385,8 +9385,8 @@ ROMX bank #37:
 	         $495e = OldCityPokecenterTimeMachine_Blocks
 	         $497e = OldCityPokecenterTimeMachine_ScriptLoader
 	         $498b = OldCityPokecenterTimeMachineScriptPointers
-	         $498f = OldCityPokecenterTimeMachineScript1
-	         $4999 = OldCityPokecenterTimeMachineNPCIds
+	         $498f = OldCityPokecenterTimeMachineScript
+	         $4999 = OldCityPokecenterTimeMachineNPCIDs
 	         $499b = OldCityPokecenterTimeMachineSignPointers
 	         $499d = OldCityPokecenterTimeMachine_TextPointers
 	         $499f = OldCityPokecenterTimeMachineText1
@@ -9404,37 +9404,37 @@ ROMX bank #37:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #38:
-	SECTION: $4000-$4d21 ($0d22 bytes) ["West Maps"]
-	         $4000 = Route1Gate1F_MapAttributes
-	         $400b = Route1Gate1F_MapEvents
-	         $404d = Route1Gate1F_Blocks
-	         $4061 = Route1Gate1F_ScriptLoader
-	         $406b = Route1Gate1FScriptPointers
-	         $406f = Route1Gate1FNPCIDs
-	         $4072 = Route1Gate1FSignPointers
-	         $4074 = Route1Gate1F_TextPointers
-	         $4078 = Route1Gate1FScript
-	         $4082 = Route1Gate1FText1
-	         $4089 = Route1Gate1FText2
-	         $4090 = Route1Gate1FText1String
-	         $40ac = Route1Gate1FText2String
-	         $40da = Route1Gate2F_MapAttributes
-	         $40e5 = Route1Gate2F_MapEvents
-	         $4113 = Route1Gate2F_Blocks
-	         $411f = Route1Gate2F_ScriptLoader
-	         $4129 = Route1Gate2FScriptPointers
-	         $412d = Route1Gate2FNPCIDs
-	         $4130 = Route1Gate2FSignPointers
-	         $4134 = Route1Gate2F_TextPointers
-	         $4138 = Route1Gate2FScript
-	         $4142 = Route1Gate2FTextNPC1
-	         $4149 = Route1Gate2FTextNPC2
-	         $4150 = Route1Gate2FTextSign1
-	         $4157 = Route1Gate2FTextSign2
-	         $415e = Route1Gate2FTextString1
-	         $4197 = Route1Gate2FTextString2
-	         $41d8 = Route1Gate2FTextString3
-	         $41ff = Route1Gate2FTextString4
+	SECTION: $4000-$4d21 ($0d22 bytes) ["West Interior Maps"]
+	         $4000 = Route2Gate1F_MapAttributes
+	         $400b = Route2Gate1F_MapEvents
+	         $404d = Route2Gate1F_Blocks
+	         $4061 = Route2Gate1F_ScriptLoader
+	         $406b = Route2Gate1FScriptPointers
+	         $406f = Route2Gate1FNPCIDs
+	         $4072 = Route2Gate1FSignPointers
+	         $4074 = Route2Gate1F_TextPointers
+	         $4078 = Route2Gate1FScript
+	         $4082 = Route2Gate1FText1
+	         $4089 = Route2Gate1FText2
+	         $4090 = Route2Gate1FText1String
+	         $40ac = Route2Gate1FText2String
+	         $40da = Route2Gate2F_MapAttributes
+	         $40e5 = Route2Gate2F_MapEvents
+	         $4113 = Route2Gate2F_Blocks
+	         $411f = Route2Gate2F_ScriptLoader
+	         $4129 = Route2Gate2FScriptPointers
+	         $412d = Route2Gate2FNPCIDs
+	         $4130 = Route2Gate2FSignPointers
+	         $4134 = Route2Gate2F_TextPointers
+	         $4138 = Route2Gate2FScript
+	         $4142 = Route2Gate2FTextNPC1
+	         $4149 = Route2Gate2FTextNPC2
+	         $4150 = Route2Gate2FTextSign1
+	         $4157 = Route2Gate2FTextSign2
+	         $415e = Route2Gate2FTextString1
+	         $4197 = Route2Gate2FTextString2
+	         $41d8 = Route2Gate2FTextString3
+	         $41ff = Route2Gate2FTextString4
 	         $4224 = WestMart1F_MapAttributes
 	         $422f = WestMart1F_MapEvents
 	         $4265 = WestMart1F_Blocks
@@ -9529,12 +9529,12 @@ ROMX bank #38:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #39:
-	SECTION: $4000-$7757 ($3758 bytes) ["Maps 4"]
-	         $4000 = HighTechWestRouteGate_MapAttributes
-	         $400b = HighTechWestRouteGate_MapEvents
-	         $402c = HighTechWestRouteGate_Blocks
-	         $4040 = HighTechWestRouteGate_ScriptLoader
-	         $4041 = HighTechWestRouteGate_TextPointers
+	SECTION: $4000-$4536 ($0537 bytes) ["High-Tech Interior Maps"]
+	         $4000 = Route7Gate_MapAttributes
+	         $400b = Route7Gate_MapEvents
+	         $402c = Route7Gate_Blocks
+	         $4040 = Route7Gate_ScriptLoader
+	         $4041 = Route7Gate_TextPointers
 	         $405b = HighTechPokecenter1F_MapAttributes
 	         $4066 = HighTechPokecenter1F_MapEvents
 	         $40b4 = HighTechPokecenter1F_Blocks
@@ -9585,21 +9585,22 @@ ROMX bank #39:
 	         $44fc = HighTechAquarium2F_Blocks
 	         $451c = HighTechAquarium2F_ScriptLoader
 	         $451d = HighTechAquarium2F_TextPointers
-	         $4537 = FontRouteGate1_MapAttributes
-	         $4542 = FontRouteGate1_MapEvents
-	         $4563 = FontRouteGate1_Blocks
-	         $4577 = FontRouteGate1_ScriptLoader
-	         $4578 = FontRouteGate1_TextPointers
-	         $4592 = FontRouteGate2_MapAttributes
-	         $459d = FontRouteGate2_MapEvents
-	         $45be = FontRouteGate2_Blocks
-	         $45d2 = FontRouteGate2_ScriptLoader
-	         $45d3 = FontRouteGate2_TextPointers
-	         $45ed = FontRouteGate3_MapAttributes
-	         $45f8 = FontRouteGate3_MapEvents
-	         $4619 = FontRouteGate3_Blocks
-	         $462d = FontRouteGate3_ScriptLoader
-	         $462e = FontRouteGate3_TextPointers
+	SECTION: $4537-$4922 ($03ec bytes) ["Font Interior Maps"]
+	         $4537 = Route9Gate_MapAttributes
+	         $4542 = Route9Gate_MapEvents
+	         $4563 = Route9Gate_Blocks
+	         $4577 = Route9Gate_ScriptLoader
+	         $4578 = Route9Gate_TextPointers
+	         $4592 = Route12Gate_MapAttributes
+	         $459d = Route12Gate_MapEvents
+	         $45be = Route12Gate_Blocks
+	         $45d2 = Route12Gate_ScriptLoader
+	         $45d3 = Route12Gate_TextPointers
+	         $45ed = Route24Gate_MapAttributes
+	         $45f8 = Route24Gate_MapEvents
+	         $4619 = Route24Gate_Blocks
+	         $462d = Route24Gate_ScriptLoader
+	         $462e = Route24Gate_TextPointers
 	         $4648 = FontRocketHouse_MapAttributes
 	         $4653 = FontRocketHouse_MapEvents
 	         $469a = FontRocketHouse_Blocks
@@ -9630,6 +9631,7 @@ ROMX bank #39:
 	         $48f4 = FontLab_Blocks
 	         $4908 = FontLab_ScriptLoader
 	         $4909 = FontLab_TextPointers
+	SECTION: $4923-$4d37 ($0415 bytes) ["Birdon Interior Maps"]
 	         $4923 = BirdonMart_MapAttributes
 	         $492e = BirdonMart_MapEvents
 	         $4968 = BirdonMart_Blocks
@@ -9670,16 +9672,17 @@ ROMX bank #39:
 	         $4c95 = BirdonLeague2F_Blocks
 	         $4cc2 = BirdonLeague2F_ScriptLoader
 	         $4cc3 = BirdonLeague2F_TextPointers
-	         $4cdd = BirdonRouteGateWest_MapAttributes
-	         $4ce8 = BirdonRouteGateWest_MapEvents
-	         $4d09 = BirdonRouteGateWest_Blocks
-	         $4d1d = BirdonRouteGateWest_ScriptLoader
-	         $4d1e = BirdonRouteGateWest_TextPointers
-	         $4d38 = BirdonRouteGateNewtype_MapAttributes
-	         $4d43 = BirdonRouteGateNewtype_MapEvents
-	         $4d64 = BirdonRouteGateNewtype_Blocks
-	         $4d78 = BirdonRouteGateNewtype_ScriptLoader
-	         $4d79 = BirdonRouteGateNewtype_TextPointers
+	         $4cdd = Route4Gate_MapAttributes
+	         $4ce8 = Route4Gate_MapEvents
+	         $4d09 = Route4Gate_Blocks
+	         $4d1d = Route4Gate_ScriptLoader
+	         $4d1e = Route4Gate_TextPointers
+	SECTION: $4d38-$52df ($05a8 bytes) ["Newtype Interior Maps"]
+	         $4d38 = Route14Gate_MapAttributes
+	         $4d43 = Route14Gate_MapEvents
+	         $4d64 = Route14Gate_Blocks
+	         $4d78 = Route14Gate_ScriptLoader
+	         $4d79 = Route14Gate_TextPointers
 	         $4d93 = NewtypePokecenter1F_MapAttributes
 	         $4d9e = NewtypePokecenter1F_MapEvents
 	         $4dec = NewtypePokecenter1F_Blocks
@@ -9735,6 +9738,7 @@ ROMX bank #39:
 	         $52b1 = NewtypeHouse3_Blocks
 	         $52c5 = NewtypeHouse3_ScriptLoader
 	         $52c6 = NewtypeHouse3_TextPointers
+	SECTION: $52e0-$5506 ($0227 bytes) ["Route 15 & 18 Interior Maps"]
 	         $52e0 = Route15Pokecenter1F_MapAttributes
 	         $52eb = Route15Pokecenter1F_MapEvents
 	         $5339 = Route15Pokecenter1F_Blocks
@@ -9745,11 +9749,11 @@ ROMX bank #39:
 	         $538b = Route15Pokecenter2F_Blocks
 	         $53ab = Route15Pokecenter2F_ScriptLoader
 	         $53ac = Route15Pokecenter2F_TextPointers
-	         $53c6 = NewtypeRouteGate_MapAttributes
-	         $53d1 = NewtypeRouteGate_MapEvents
-	         $53f2 = NewtypeRouteGate_Blocks
-	         $5406 = NewtypeRouteGate_ScriptLoader
-	         $5407 = NewtypeRouteGate_TextPointers
+	         $53c6 = Route18Gate_MapAttributes
+	         $53d1 = Route18Gate_MapEvents
+	         $53f2 = Route18Gate_Blocks
+	         $5406 = Route18Gate_ScriptLoader
+	         $5407 = Route18Gate_TextPointers
 	         $5421 = Route18Pokecenter1F_MapAttributes
 	         $542c = Route18Pokecenter1F_MapEvents
 	         $547a = Route18Pokecenter1F_Blocks
@@ -9760,11 +9764,12 @@ ROMX bank #39:
 	         $54cc = Route18Pokecenter2F_Blocks
 	         $54ec = Route18Pokecenter2F_ScriptLoader
 	         $54ed = Route18Pokecenter2F_TextPointers
-	         $5507 = SugarRouteGate_MapAttributes
-	         $5512 = SugarRouteGate_MapEvents
-	         $5533 = SugarRouteGate_Blocks
-	         $5547 = SugarRouteGate_ScriptLoader
-	         $5548 = SugarRouteGate_TextPointers
+	SECTION: $5507-$57c4 ($02be bytes) ["Sugar Interior Maps"]
+	         $5507 = Route16Gate_MapAttributes
+	         $5512 = Route16Gate_MapEvents
+	         $5533 = Route16Gate_Blocks
+	         $5547 = Route16Gate_ScriptLoader
+	         $5548 = Route16Gate_TextPointers
 	         $5562 = SugarHouse_MapAttributes
 	         $556d = SugarHouse_MapEvents
 	         $55a7 = SugarHouse_Blocks
@@ -9790,16 +9795,17 @@ ROMX bank #39:
 	         $578a = SugarPokecenter2F_Blocks
 	         $57aa = SugarPokecenter2F_ScriptLoader
 	         $57ab = SugarPokecenter2F_TextPointers
-	         $57c5 = BlueForestRoute1House_MapAttributes
-	         $57d0 = BlueForestRoute1House_MapEvents
-	         $57f0 = BlueForestRoute1House_Blocks
-	         $5804 = BlueForestRoute1House_ScriptLoader
-	         $5805 = BlueForestRoute1House_TextPointers
-	         $581f = BlueForestRouteGateStand_MapAttributes
-	         $582a = BlueForestRouteGateStand_MapEvents
-	         $584b = BlueForestRouteGateStand_Blocks
-	         $585f = BlueForestRouteGateStand_ScriptLoader
-	         $5860 = BlueForestRouteGateStand_TextPointers
+	SECTION: $57c5-$5c9e ($04da bytes) ["Blue Forest Interior Maps"]
+	         $57c5 = Route19House_MapAttributes
+	         $57d0 = Route19House_MapEvents
+	         $57f0 = Route19House_Blocks
+	         $5804 = Route19House_ScriptLoader
+	         $5805 = Route19House_TextPointers
+	         $581f = Route20Gate_MapAttributes
+	         $582a = Route20Gate_MapEvents
+	         $584b = Route20Gate_Blocks
+	         $585f = Route20Gate_ScriptLoader
+	         $5860 = Route20Gate_TextPointers
 	         $587a = BlueMart_MapAttributes
 	         $5885 = BlueMart_MapEvents
 	         $58bf = BlueMart_Blocks
@@ -9845,11 +9851,12 @@ ROMX bank #39:
 	         $5c70 = BlueHouse4_Blocks
 	         $5c84 = BlueHouse4_ScriptLoader
 	         $5c85 = BlueHouse4_TextPointers
-	         $5c9f = StandRouteGateKanto_MapAttributes
-	         $5caa = StandRouteGateKanto_MapEvents
-	         $5ccb = StandRouteGateKanto_Blocks
-	         $5cdf = StandRouteGateKanto_ScriptLoader
-	         $5ce0 = StandRouteGateKanto_TextPointers
+	SECTION: $5c9f-$61c3 ($0525 bytes) ["Stand Interior Maps"]
+	         $5c9f = Route21Gate_MapAttributes
+	         $5caa = Route21Gate_MapEvents
+	         $5ccb = Route21Gate_Blocks
+	         $5cdf = Route21Gate_ScriptLoader
+	         $5ce0 = Route21Gate_TextPointers
 	         $5cfa = StandLab_MapAttributes
 	         $5d05 = StandLab_MapEvents
 	         $5d25 = StandLab_Blocks
@@ -9900,6 +9907,7 @@ ROMX bank #39:
 	         $617c = StandLeague2F_Blocks
 	         $61a9 = StandLeague2F_ScriptLoader
 	         $61aa = StandLeague2F_TextPointers
+	SECTION: $61c4-$72d5 ($1112 bytes) ["Kanto Interior Maps"]
 	         $61c4 = KantoCeruleanHouse_MapAttributes
 	         $61cf = KantoCeruleanHouse_MapEvents
 	         $61ef = KantoCeruleanHouse_Blocks
@@ -10080,6 +10088,7 @@ ROMX bank #39:
 	         $72a7 = KantoFishingGuru_Blocks
 	         $72bb = KantoFishingGuru_ScriptLoader
 	         $72bc = KantoFishingGuru_TextPointers
+	SECTION: $72d6-$7516 ($0241 bytes) ["South Interior Maps"]
 	         $72d6 = SouthHouse1_MapAttributes
 	         $72e1 = SouthHouse1_MapEvents
 	         $7301 = SouthHouse1_Blocks
@@ -10105,6 +10114,7 @@ ROMX bank #39:
 	         $74e8 = SouthHouse2_Blocks
 	         $74fc = SouthHouse2_ScriptLoader
 	         $74fd = SouthHouse2_TextPointers
+	SECTION: $7517-$7757 ($0241 bytes) ["North Interior Maps"]
 	         $7517 = NorthHouse1_MapAttributes
 	         $7522 = NorthHouse1_MapEvents
 	         $7542 = NorthHouse1_Blocks
@@ -10162,7 +10172,7 @@ ROMX bank #46:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #47:
-	SECTION: $4000-$5995 ($1996 bytes) ["Misc Maps"]
+	SECTION: $4000-$5995 ($1996 bytes) ["Dungeon Maps"]
 	         $4000 = PowerPlant1_MapAttributes
 	         $400b = PowerPlant1_MapEvents
 	         $4010 = PowerPlant1_Blocks
@@ -10253,41 +10263,41 @@ ROMX bank #47:
 	         $5316 = SlowpokeWellMain_Blocks
 	         $53ca = SlowpokeWellMain_ScriptLoader
 	         $53cb = SlowpokeWellMain_TextPointers
-	         $53dd = SilentHills_MapAttributes
-	         $53e8 = SilentHills_MapEvents
-	         $5489 = SilentHills_Blocks
-	         $564b = SilentHills_ScriptLoader
-	         $5655 = SilentHillsScriptPointers
-	         $5659 = SilentHillsNPCIDs
-	         $5660 = SilentHillsSignPointers
-	         $5664 = SilentHills_TextPointers
-	         $5670 = SilentHillsScript
-	         $567a = SilentHillsText1
-	         $5681 = SilentHillsTrainer2
-	         $56a1 = SilentHillsTrainer2.Trainer2Won
-	         $56a8 = SilentHillsTrainer3
-	         $56c8 = SilentHillsTrainer3.Trainer3Won
-	         $56cf = SilentHillsTrainer4
-	         $56ef = SilentHillsTrainer4.Trainer4Won
-	         $56f6 = SilentHillsTrainer5
-	         $5716 = SilentHillsTrainer5.Trainer5Won
-	         $571d = SilentHillsTrainer6
-	         $573d = SilentHillsTrainer6.Trainer6Won
-	         $5744 = SilentHillsSignpost2
-	         $574b = SilentHillsSignpost1
-	         $5752 = SilentHillsTrainer6EncounterString
-	         $5794 = SilentHillsTrainer6WonString
-	         $57be = SilentHillsTrainer5EncounterString
-	         $57f1 = SilentHillsTrainer5WonString
-	         $580b = SilentHillsTrainer4EncounterString
-	         $582d = SilentHillsTrainer4WonString
-	         $5864 = SilentHillsTrainer3EncounterString
-	         $5885 = SilentHillsTrainer3WonString
-	         $58b8 = SilentHillsTrainer2EncounterString
-	         $58ed = SilentHillsTrainer2WonString
-	         $591a = SilentHillsText1String
-	         $5968 = SilentHillsSignpost2String
-	         $597f = SilentHillsSignpost1String
+	         $53dd = QuietHills_MapAttributes
+	         $53e8 = QuietHills_MapEvents
+	         $5489 = QuietHills_Blocks
+	         $564b = QuietHills_ScriptLoader
+	         $5655 = QuietHillsScriptPointers
+	         $5659 = QuietHillsNPCIDs
+	         $5660 = QuietHillsSignPointers
+	         $5664 = QuietHills_TextPointers
+	         $5670 = QuietHillsScript
+	         $567a = QuietHillsText1
+	         $5681 = QuietHillsTrainer2
+	         $56a1 = QuietHillsTrainer2.Trainer2Won
+	         $56a8 = QuietHillsTrainer3
+	         $56c8 = QuietHillsTrainer3.Trainer3Won
+	         $56cf = QuietHillsTrainer4
+	         $56ef = QuietHillsTrainer4.Trainer4Won
+	         $56f6 = QuietHillsTrainer5
+	         $5716 = QuietHillsTrainer5.Trainer5Won
+	         $571d = QuietHillsTrainer6
+	         $573d = QuietHillsTrainer6.Trainer6Won
+	         $5744 = QuietHillsSignpost2
+	         $574b = QuietHillsSignpost1
+	         $5752 = QuietHillsTrainer6EncounterString
+	         $5794 = QuietHillsTrainer6WonString
+	         $57be = QuietHillsTrainer5EncounterString
+	         $57f1 = QuietHillsTrainer5WonString
+	         $580b = QuietHillsTrainer4EncounterString
+	         $582d = QuietHillsTrainer4WonString
+	         $5864 = QuietHillsTrainer3EncounterString
+	         $5885 = QuietHillsTrainer3WonString
+	         $58b8 = QuietHillsTrainer2EncounterString
+	         $58ed = QuietHillsTrainer2WonString
+	         $591a = QuietHillsText1String
+	         $5968 = QuietHillsSignpost2String
+	         $597f = QuietHillsSignpost1String
 	SECTION: $5996-$7fff ($266a bytes) ["Bank 2f Garbage"]
 	TOTAL EMPTY: $0000 bytes
 
@@ -12006,11 +12016,11 @@ ROMX bank #51:
 
 ROMX bank #52:
 	SECTION: $4000-$6094 ($2095 bytes) ["Silent Hill Maps"]
-	         $4000 = RouteSilentEastGate_MapAttributes
-	         $400b = RouteSilentEastGate_MapEvents
-	         $402c = RouteSilentEastGate_Blocks
-	         $4040 = RouteSilentEastGate_ScriptLoader
-	         $4041 = RouteSilentEastGate_TextPointers
+	         $4000 = Route23Gate_MapAttributes
+	         $400b = Route23Gate_MapEvents
+	         $402c = Route23Gate_Blocks
+	         $4040 = Route23Gate_ScriptLoader
+	         $4041 = Route23Gate_TextPointers
 	         $4042 = PlayerHouse1F_MapAttributes
 	         $404d = PlayerHouse1F_MapEvents
 	         $4088 = PlayerHouse1F_Blocks
@@ -12063,7 +12073,7 @@ ROMX bank #52:
 	         $468c = SilentHillPokecenterScriptPointers
 	         $4690 = SilentHillPokecenterScript
 	         $469c = SilentHillPokecenterNPCIDs
-	         $46a2 = SilentHillPokecenterPCPointer
+	         $46a2 = SilentHillPokecenterSignPointers
 	         $46a4 = SilentHillPokecenterPCText
 	         $46ab = SilentHillPokecenterTextString1
 	         $46bc = SilentHillPokecenter_TextPointers
@@ -12077,32 +12087,32 @@ ROMX bank #52:
 	         $47a5 = SilentHillPokecenterTextString5
 	         $47c2 = SilentHillPokecenterNPCText5
 	         $47c9 = SilentHillPokecenterTextString6
-	         $47d5 = SilentHillHouse_MapAttributes
-	         $47e0 = SilentHillHouse_MapEvents
-	         $4825 = SilentHillHouse_Blocks
-	         $4839 = SilentHillHouse_ScriptLoader
-	         $4843 = SilentHillHouseScriptPointers
-	         $484f = SilentHillHouseScript1
-	         $4859 = SilentHillHouseScript2
-	         $4863 = SilentHillHouseScript3
-	         $486d = SilentHillHouseNPCIDs1
-	         $486f = SilentHillHouseNPCIDs2
-	         $4872 = SilentHillHouseTextPointers2
-	         $487e = SilentHillHouseNPCText1
-	         $488c = SilentHillHouseNPCText1.jump
-	         $489b = SilentHillHouseTextString1
-	         $48d1 = SilentHillHouseTextString1.jump
-	         $48db = SilentHillHouseTextString2
-	         $4937 = SilentHillHouseTextString3
-	         $494c = SilentHillHouse_TextPointers
-	         $4950 = SilentHillHouseNPCText3
-	         $4957 = SilentHillHouseTextString4
-	         $4970 = SilentHillHouseNPCText4
-	         $498a = SilentHillHouseNPCText4.jump
-	         $498d = SilentHillHouseNPCText4.skip
-	         $4991 = SilentHillHouseTextString5
-	         $4a29 = SilentHillHouseTextString6
-	         $4a76 = SilentHillHouseTextString7
+	         $47d5 = RivalHouse_MapAttributes
+	         $47e0 = RivalHouse_MapEvents
+	         $4825 = RivalHouse_Blocks
+	         $4839 = RivalHouse_ScriptLoader
+	         $4843 = RivalHouseScriptPointers
+	         $484f = RivalHouseScript1
+	         $4859 = RivalHouseScript2
+	         $4863 = RivalHouseScript3
+	         $486d = RivalHouseNPCIDs1
+	         $486f = RivalHouseNPCIDs2
+	         $4872 = RivalHouseTextPointers2
+	         $487e = RivalHouseNPCText1
+	         $488c = RivalHouseNPCText1.jump
+	         $489b = RivalHouseTextString1
+	         $48d1 = RivalHouseTextString1.jump
+	         $48db = RivalHouseTextString2
+	         $4937 = RivalHouseTextString3
+	         $494c = RivalHouse_TextPointers
+	         $4950 = RivalHouseNPCText3
+	         $4957 = RivalHouseTextString4
+	         $4970 = RivalHouseNPCText4
+	         $498a = RivalHouseNPCText4.jump
+	         $498d = RivalHouseNPCText4.skip
+	         $4991 = RivalHouseTextString5
+	         $4a29 = RivalHouseTextString6
+	         $4a76 = RivalHouseTextString7
 	         $4aac = SilentHillLabFront_MapAttributes
 	         $4ab7 = SilentHillLabFront_MapEvents
 	         $4b9c = SilentHillLabFront_Blocks
@@ -12262,22 +12272,22 @@ ROMX bank #52:
 	         $6031 = SilentHillLabBackStarterData
 	         $603d = SilentHillLabBackTextString15
 	         $6053 = SilentHillLabBackTextPointers2
-	         $605d = UnusedMap13_MapAttributes
-	         $6068 = UnusedMap13_Blocks
-	         $6068 = UnusedMap13_MapEvents
-	         $6078 = UnusedMap13_ScriptLoader
-	         $6082 = UnusedMap13ScriptPointers
-	         $6086 = UnusedMap13NPCIDs
-	         $6087 = UnusedMap13SignPointers
-	         $6089 = UnusedMap13_TextPointers
-	         $608b = UnusedMap13Script
+	         $605d = SilentHillLabBackUnused_MapAttributes
+	         $6068 = SilentHillLabBackUnused_Blocks
+	         $6068 = SilentHillLabBackUnused_MapEvents
+	         $6078 = SilentHillLabBackUnused_ScriptLoader
+	         $6082 = SilentHillLabBackUnusedScriptPointers
+	         $6086 = SilentHillLabBackUnusedNPCIDs
+	         $6087 = SilentHillLabBackUnusedSignPointers
+	         $6089 = SilentHillLabBackUnused_TextPointers
+	         $608b = SilentHillLabBackUnusedScript
 	SECTION: $6095-$7fff ($1f6b bytes) ["Bank 34 Garbage"]
-	         $6096 = Unreferenced_Corrupt_UnusedMap13_ScriptLoader
-	         $609b = Unreferenced_Corrupt_UnusedMap13ScriptPointers
-	         $609f = Unreferenced_Corrupt_UnusedMap13NPCIDs
-	         $60a0 = Unreferenced_Corrupt_UnusedMap13SignPointers
-	         $60a2 = Unreferenced_Corrupt_UnusedMap13_TextPointers
-	         $60a4 = Unreferenced_Corrupt_UnusedMap13Script
+	         $6096 = Unreferenced_Corrupt_SilentHillLabBackUnused_ScriptLoader
+	         $609b = Unreferenced_Corrupt_SilentHillLabBackUnusedScriptPointers
+	         $609f = Unreferenced_Corrupt_SilentHillLabBackUnusedNPCIDs
+	         $60a0 = Unreferenced_Corrupt_SilentHillLabBackUnusedSignPointers
+	         $60a2 = Unreferenced_Corrupt_SilentHillLabBackUnused_TextPointers
+	         $60a4 = Unreferenced_Corrupt_SilentHillLabBackUnusedScript
 	         $60ae = Unreferenced_Corrupt_Gold_SilentHillLabBackTextString11
 	         $60cd = Unreferenced_Corrupt_Gold_SilentHillLabBackTextString12
 	         $60db = Unreferenced_Corrupt_Gold_SilentHillLabBackTextString13
@@ -12287,15 +12297,15 @@ ROMX bank #52:
 	         $615f = Unreferenced_Corrupt_Gold_SilentHillLabBackStarterData
 	         $616b = Unreferenced_Corrupt_Gold_SilentHillLabBackTextString15
 	         $6181 = Unreferenced_Corrupt_Gold_SilentHillLabBackTextPointers2
-	         $618b = Unreferenced_Corrupt_Gold_UnusedMap13_MapAttributes
-	         $6196 = Unreferenced_Corrupt_Gold_UnusedMap13_Blocks
-	         $6196 = Unreferenced_Corrupt_Gold_UnusedMap13_MapEvents
-	         $61a6 = Unreferenced_Corrupt_Gold_UnusedMap13_ScriptLoader
-	         $61b0 = Unreferenced_Corrupt_Gold_UnusedMap13ScriptPointers
-	         $61b4 = Unreferenced_Corrupt_Gold_UnusedMap13NPCIDs
-	         $61b5 = Unreferenced_Corrupt_Gold_UnusedMap13SignPointers
-	         $61b7 = Unreferenced_Corrupt_Gold_UnusedMap13_TextPointers
-	         $61b9 = Unreferenced_Corrupt_Gold_UnusedMap13Script
+	         $618b = Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_MapAttributes
+	         $6196 = Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_Blocks
+	         $6196 = Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_MapEvents
+	         $61a6 = Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_ScriptLoader
+	         $61b0 = Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedScriptPointers
+	         $61b4 = Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedNPCIDs
+	         $61b5 = Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedSignPointers
+	         $61b7 = Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_TextPointers
+	         $61b9 = Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedScript
 	         $61c3 = Unreferenced_Corrupt_SilentHillLabBackTextString10
 	         $61c7 = Unreferenced_Corrupt_SilentHillLabBackTextString11
 	         $61eb = Unreferenced_Corrupt_SilentHillLabBackTextString12
@@ -12306,29 +12316,29 @@ ROMX bank #52:
 	         $627d = Unreferenced_Corrupt_SilentHillLabBackStarterData
 	         $6289 = Unreferenced_Corrupt_SilentHillLabBackTextString15
 	         $629f = Unreferenced_Corrupt_SilentHillLabBackTextPointers2
-	         $62a9 = Unreferenced_Corrupt2_UnusedMap13_MapAttributes
-	         $62b4 = Unreferenced_Corrupt2_UnusedMap13_Blocks
-	         $62b4 = Unreferenced_Corrupt2_UnusedMap13_MapEvents
-	         $62c4 = Unreferenced_Corrupt2_UnusedMap13_ScriptLoader
-	         $62ce = Unreferenced_Corrupt2_UnusedMap13ScriptPointers
-	         $62d2 = Unreferenced_Corrupt2_UnusedMap13NPCIDs
-	         $62d3 = Unreferenced_Corrupt2_UnusedMap13SignPointers
-	         $62d5 = Unreferenced_Corrupt2_UnusedMap13_TextPointers
-	         $62d7 = Unreferenced_Corrupt2_UnusedMap13Script
+	         $62a9 = Unreferenced_Corrupt2_SilentHillLabBackUnused_MapAttributes
+	         $62b4 = Unreferenced_Corrupt2_SilentHillLabBackUnused_Blocks
+	         $62b4 = Unreferenced_Corrupt2_SilentHillLabBackUnused_MapEvents
+	         $62c4 = Unreferenced_Corrupt2_SilentHillLabBackUnused_ScriptLoader
+	         $62ce = Unreferenced_Corrupt2_SilentHillLabBackUnusedScriptPointers
+	         $62d2 = Unreferenced_Corrupt2_SilentHillLabBackUnusedNPCIDs
+	         $62d3 = Unreferenced_Corrupt2_SilentHillLabBackUnusedSignPointers
+	         $62d5 = Unreferenced_Corrupt2_SilentHillLabBackUnused_TextPointers
+	         $62d7 = Unreferenced_Corrupt2_SilentHillLabBackUnusedScript
 	         $62e1 = Unreferenced_Corrupt2_SilentHillLabBackFunc4
 	         $6308 = Unreferenced_Corrupt2_SilentHillLabBackFunc4.bigjump
 	         $630f = Unreferenced_Corrupt2_SilentHillLabBackStarterData
 	         $631b = Unreferenced_Corrupt2_SilentHillLabBackTextString15
 	         $6331 = Unreferenced_Corrupt2_SilentHillLabBackTextPointers2
-	         $633b = Unreferenced_Corrupt3_UnusedMap13_MapAttributes
-	         $6346 = Unreferenced_Corrupt3_UnusedMap13_Blocks
-	         $6346 = Unreferenced_Corrupt3_UnusedMap13_MapEvents
-	         $6356 = Unreferenced_Corrupt3_UnusedMap13_ScriptLoader
-	         $6360 = Unreferenced_Corrupt3_UnusedMap13ScriptPointers
-	         $6364 = Unreferenced_Corrupt3_UnusedMap13NPCIDs
-	         $6365 = Unreferenced_Corrupt3_UnusedMap13SignPointers
-	         $6367 = Unreferenced_Corrupt3_UnusedMap13_TextPointers
-	         $6369 = Unreferenced_Corrupt3_UnusedMap13Script
+	         $633b = Unreferenced_Corrupt3_SilentHillLabBackUnused_MapAttributes
+	         $6346 = Unreferenced_Corrupt3_SilentHillLabBackUnused_Blocks
+	         $6346 = Unreferenced_Corrupt3_SilentHillLabBackUnused_MapEvents
+	         $6356 = Unreferenced_Corrupt3_SilentHillLabBackUnused_ScriptLoader
+	         $6360 = Unreferenced_Corrupt3_SilentHillLabBackUnusedScriptPointers
+	         $6364 = Unreferenced_Corrupt3_SilentHillLabBackUnusedNPCIDs
+	         $6365 = Unreferenced_Corrupt3_SilentHillLabBackUnusedSignPointers
+	         $6367 = Unreferenced_Corrupt3_SilentHillLabBackUnused_TextPointers
+	         $6369 = Unreferenced_Corrupt3_SilentHillLabBackUnusedScript
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #53:
@@ -12336,7 +12346,7 @@ ROMX bank #53:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #54:
-	SECTION: $4000-$7ae3 ($3ae4 bytes) ["Maps 7"]
+	SECTION: $4000-$59de ($19df bytes) ["City Maps"]
 	         $4000 = OldCity_TextPointers
 	         $4000 = West_TextPointers
 	         $4000 = HighTech_TextPointers
@@ -12351,30 +12361,30 @@ ROMX bank #54:
 	         $4000 = MtFuji_TextPointers
 	         $4000 = South_TextPointers
 	         $4000 = North_TextPointers
-	         $4000 = Route2_TextPointers
-	         $4000 = HighTechWestRoute_TextPointers
-	         $4000 = HighTechWestRouteOcean_TextPointers
-	         $4000 = FontRoute1_TextPointers
-	         $4000 = FontRoute6_TextPointers
-	         $4000 = FontRoute2_TextPointers
-	         $4000 = FontRoute4_TextPointers
-	         $4000 = FontRoute3_TextPointers
-	         $4000 = BirdonRoute1_TextPointers
-	         $4000 = BirdonRoute2_TextPointers
-	         $4000 = BirdonRoute3_TextPointers
+	         $4000 = Route3_TextPointers
+	         $4000 = Route6_TextPointers
+	         $4000 = Route7_TextPointers
+	         $4000 = Route9_TextPointers
+	         $4000 = Route25_TextPointers
+	         $4000 = Route10_TextPointers
+	         $4000 = Route12_TextPointers
+	         $4000 = Route11_TextPointers
+	         $4000 = Route4_TextPointers
+	         $4000 = Route13_TextPointers
+	         $4000 = Route14_TextPointers
 	         $4000 = Route15_TextPointers
-	         $4000 = NewtypeRoute_TextPointers
+	         $4000 = Route17_TextPointers
 	         $4000 = Route18_TextPointers
-	         $4000 = BlueForestRoute1_TextPointers
-	         $4000 = SugarRoute_TextPointers
-	         $4000 = BlueForestRoute2_TextPointers
-	         $4000 = StandRoute_TextPointers
-	         $4000 = KantoEastRoute_TextPointers
-	         $4000 = RouteSilentEast_TextPointers
-	         $4000 = PrinceRoute_TextPointers
-	         $4000 = MtFujiRoute_TextPointers
-	         $4000 = FontRoute5_TextPointers
-	         $4000 = BlueForestRoute3_TextPointers
+	         $4000 = Route19_TextPointers
+	         $4000 = Route16_TextPointers
+	         $4000 = Route20_TextPointers
+	         $4000 = Route21_TextPointers
+	         $4000 = Route22_TextPointers
+	         $4000 = Route23_TextPointers
+	         $4000 = Route29_TextPointers
+	         $4000 = Route30_TextPointers
+	         $4000 = Route24_TextPointers
+	         $4000 = Route26_TextPointers
 	         $4014 = SilentHill_MapAttributes
 	         $4043 = SilentHill_MapEvents
 	         $40b3 = SilentHill_Blocks
@@ -12434,119 +12444,115 @@ ROMX bank #54:
 	         $592b = North_MapEvents
 	         $5983 = North_Blocks
 	         $59dd = North_ScriptLoader
-	         $59df = Route1P1_MapAttributes
-	         $5a02 = Route1P1_MapEvents
-	         $5a37 = Route1P1_Blocks
-	         $5abe = Route1P2_MapAttributes
-	         $5ae1 = Route1P2_MapEvents
-	         $5b20 = Route1P2_Blocks
-	         $5bd4 = Route2_MapAttributes
-	         $5bf7 = Route2_MapEvents
-	         $5c3d = Route2_Blocks
-	         $5cc4 = Route2_ScriptLoader
-	         $5cc6 = HighTechWestRoute_MapAttributes
-	         $5ce9 = HighTechWestRoute_MapEvents
-	         $5cee = HighTechWestRoute_Blocks
-	         $5dcf = HighTechWestRoute_ScriptLoader
-	         $5dd1 = HighTechWestRouteOcean_MapAttributes
-	         $5df4 = HighTechWestRouteOcean_MapEvents
-	         $5e07 = HighTechWestRouteOcean_Blocks
-	         $5f15 = HighTechWestRouteOcean_ScriptLoader
-	         $5f17 = FontRoute1_MapAttributes
-	         $5f3a = FontRoute1_MapEvents
-	         $5f46 = FontRoute1_Blocks
-	         $6081 = FontRoute1_ScriptLoader
-	         $6083 = FontRoute6_MapAttributes
-	         $60a6 = FontRoute6_MapEvents
-	         $60ab = FontRoute6_Blocks
-	         $61e6 = FontRoute6_ScriptLoader
-	         $61e8 = FontRoute2_MapAttributes
-	         $620b = FontRoute2_MapEvents
-	         $6210 = FontRoute2_Blocks
-	         $62c4 = FontRoute2_ScriptLoader
-	         $62c6 = FontRoute4_MapAttributes
-	         $62e9 = FontRoute4_MapEvents
-	         $62fc = FontRoute4_Blocks
-	         $63b0 = FontRoute4_ScriptLoader
-	         $63b2 = FontRoute3_MapAttributes
-	         $63d5 = FontRoute3_MapEvents
-	         $63da = FontRoute3_Blocks
-	         $64bb = FontRoute3_ScriptLoader
-	         $64bd = BirdonRoute1_MapAttributes
-	         $64e0 = BirdonRoute1_MapEvents
-	         $64f3 = BirdonRoute1_Blocks
-	         $6601 = BirdonRoute1_ScriptLoader
-	         $6603 = BirdonRoute2_MapAttributes
-	         $6626 = BirdonRoute2_MapEvents
-	         $662b = BirdonRoute2_Blocks
-	         $67ed = BirdonRoute2_ScriptLoader
-	         $67ef = BirdonRoute3_MapAttributes
-	         $6812 = BirdonRoute3_MapEvents
-	         $6825 = BirdonRoute3_Blocks
-	         $68d9 = BirdonRoute3_ScriptLoader
+	SECTION: $59df-$7667 ($1c89 bytes) ["Route Maps"]
+	         $59df = Route1_MapAttributes
+	         $5a02 = Route1_MapEvents
+	         $5a37 = Route1_Blocks
+	         $5abe = Route2_MapAttributes
+	         $5ae1 = Route2_MapEvents
+	         $5b20 = Route2_Blocks
+	         $5bd4 = Route3_MapAttributes
+	         $5bf7 = Route3_MapEvents
+	         $5c3d = Route3_Blocks
+	         $5cc4 = Route3_ScriptLoader
+	         $5cc6 = Route6_MapAttributes
+	         $5ce9 = Route6_MapEvents
+	         $5cee = Route6_Blocks
+	         $5dcf = Route6_ScriptLoader
+	         $5dd1 = Route7_MapAttributes
+	         $5df4 = Route7_MapEvents
+	         $5e07 = Route7_Blocks
+	         $5f15 = Route7_ScriptLoader
+	         $5f17 = Route9_MapAttributes
+	         $5f3a = Route9_MapEvents
+	         $5f46 = Route9_Blocks
+	         $6081 = Route9_ScriptLoader
+	         $6083 = Route25_MapAttributes
+	         $60a6 = Route25_MapEvents
+	         $60ab = Route25_Blocks
+	         $61e6 = Route25_ScriptLoader
+	         $61e8 = Route10_MapAttributes
+	         $620b = Route10_MapEvents
+	         $6210 = Route10_Blocks
+	         $62c4 = Route10_ScriptLoader
+	         $62c6 = Route12_MapAttributes
+	         $62e9 = Route12_MapEvents
+	         $62fc = Route12_Blocks
+	         $63b0 = Route12_ScriptLoader
+	         $63b2 = Route11_MapAttributes
+	         $63d5 = Route11_MapEvents
+	         $63da = Route11_Blocks
+	         $64bb = Route11_ScriptLoader
+	         $64bd = Route4_MapAttributes
+	         $64e0 = Route4_MapEvents
+	         $64f3 = Route4_Blocks
+	         $6601 = Route4_ScriptLoader
+	         $6603 = Route13_MapAttributes
+	         $6626 = Route13_MapEvents
+	         $662b = Route13_Blocks
+	         $67ed = Route13_ScriptLoader
+	         $67ef = Route14_MapAttributes
+	         $6812 = Route14_MapEvents
+	         $6825 = Route14_Blocks
+	         $68d9 = Route14_ScriptLoader
 	         $68db = Route15_MapAttributes
 	         $68fe = Route15_MapEvents
 	         $6934 = Route15_Blocks
 	         $69bb = Route15_ScriptLoader
-	         $69bd = NewtypeRoute_MapAttributes
-	         $69e0 = NewtypeRoute_MapEvents
-	         $69e5 = NewtypeRoute_Blocks
-	         $6a6c = NewtypeRoute_ScriptLoader
+	         $69bd = Route17_MapAttributes
+	         $69e0 = Route17_MapEvents
+	         $69e5 = Route17_Blocks
+	         $6a6c = Route17_ScriptLoader
 	         $6a6e = Route18_MapAttributes
 	         $6a91 = Route18_MapEvents
 	         $6aab = Route18_Blocks
 	         $6c6d = Route18_ScriptLoader
-	         $6c6f = BlueForestRoute1_MapAttributes
-	         $6c92 = BlueForestRoute1_MapEvents
-	         $6cac = BlueForestRoute1_Blocks
-	         $6d8d = BlueForestRoute1_ScriptLoader
-	         $6d8f = SugarRoute_MapAttributes
-	         $6db2 = SugarRoute_MapEvents
-	         $6dc5 = SugarRoute_Blocks
-	         $6ed3 = SugarRoute_ScriptLoader
-	         $6ed5 = BlueForestRoute2_MapAttributes
-	         $6ef8 = BlueForestRoute2_MapEvents
-	         $6f0b = BlueForestRoute2_Blocks
-	         $7019 = BlueForestRoute2_ScriptLoader
-	         $701b = StandRoute_MapAttributes
-	         $703e = StandRoute_MapEvents
-	         $7051 = StandRoute_Blocks
-	         $715f = StandRoute_ScriptLoader
-	         $7161 = KantoEastRoute_MapAttributes
-	         $7184 = KantoEastRoute_MapEvents
-	         $7197 = KantoEastRoute_Blocks
-	         $724b = KantoEastRoute_ScriptLoader
-	         $724d = RouteSilentEast_MapAttributes
-	         $7270 = RouteSilentEast_MapEvents
-	         $727c = RouteSilentEast_Blocks
-	         $738a = RouteSilentEast_ScriptLoader
-	         $738c = PrinceRoute_MapAttributes
-	         $73af = PrinceRoute_MapEvents
-	         $73b4 = PrinceRoute_Blocks
-	         $73e6 = PrinceRoute_ScriptLoader
-	         $73e8 = MtFujiRoute_MapAttributes
-	         $740b = MtFujiRoute_MapEvents
-	         $7410 = MtFujiRoute_Blocks
-	         $7442 = MtFujiRoute_ScriptLoader
-	         $7444 = FontRoute5_MapAttributes
-	         $7467 = FontRoute5_MapEvents
-	         $747a = FontRoute5_Blocks
-	         $752e = FontRoute5_ScriptLoader
-	         $7530 = BlueForestRoute3_MapAttributes
-	         $7553 = BlueForestRoute3_MapEvents
-	         $7558 = BlueForestRoute3_Blocks
-	         $7666 = BlueForestRoute3_ScriptLoader
+	         $6c6f = Route19_MapAttributes
+	         $6c92 = Route19_MapEvents
+	         $6cac = Route19_Blocks
+	         $6d8d = Route19_ScriptLoader
+	         $6d8f = Route16_MapAttributes
+	         $6db2 = Route16_MapEvents
+	         $6dc5 = Route16_Blocks
+	         $6ed3 = Route16_ScriptLoader
+	         $6ed5 = Route20_MapAttributes
+	         $6ef8 = Route20_MapEvents
+	         $6f0b = Route20_Blocks
+	         $7019 = Route20_ScriptLoader
+	         $701b = Route21_MapAttributes
+	         $703e = Route21_MapEvents
+	         $7051 = Route21_Blocks
+	         $715f = Route21_ScriptLoader
+	         $7161 = Route22_MapAttributes
+	         $7184 = Route22_MapEvents
+	         $7197 = Route22_Blocks
+	         $724b = Route22_ScriptLoader
+	         $724d = Route23_MapAttributes
+	         $7270 = Route23_MapEvents
+	         $727c = Route23_Blocks
+	         $738a = Route23_ScriptLoader
+	         $738c = Route29_MapAttributes
+	         $73af = Route29_MapEvents
+	         $73b4 = Route29_Blocks
+	         $73e6 = Route29_ScriptLoader
+	         $73e8 = Route30_MapAttributes
+	         $740b = Route30_MapEvents
+	         $7410 = Route30_Blocks
+	         $7442 = Route30_ScriptLoader
+	         $7444 = Route24_MapAttributes
+	         $7467 = Route24_MapEvents
+	         $747a = Route24_Blocks
+	         $752e = Route24_ScriptLoader
+	         $7530 = Route26_MapAttributes
+	         $7553 = Route26_MapEvents
+	         $7558 = Route26_Blocks
+	         $7666 = Route26_ScriptLoader
+	SECTION: $7668-$7ae3 ($047c bytes) ["Silent Hill Scripts"]
 	         $7669 = SilentHill_ScriptLoader
 	         $7673 = SilentHillNPCIDs1
 	         $7677 = SilentHillNPCIDs2
 	         $767a = SilentHillNPCIDs3
 	         $767e = SilentHillScriptPointers
-	         $7682 = SilentHillScriptPointers2
-	         $7686 = SilentHillScriptPointers3
-	         $768a = SilentHillScriptPointers4
-	         $768e = SilentHillScriptPointers5
-	         $7692 = SilentHillScriptPointers6
-	         $7696 = SilentHillScriptPointers7
 	         $769a = SilentHillScript1
 	         $76c8 = SilentHillMovement1
 	         $76cf = SilentHillScript2
@@ -12592,7 +12598,7 @@ ROMX bank #54:
 	         $7aa0 = SilentHillTextBackpackString
 	         $7ac0 = SilentHillTextPokemonHate
 	         $7ac7 = SilentHillTextPokemonHateString
-	SECTION: $7ae4-$7b7e ($009b bytes) ["bank36"]
+	SECTION: $7ae4-$7b7e ($009b bytes) ["Set Time"]
 	         $7ae4 = SetTime
 	         $7af4 = AdjustTimeText
 	         $7b08 = AdjustTimeText.loop
@@ -12603,43 +12609,43 @@ ROMX bank #54:
 	         $7b5a = AdjustTimeText.show_text
 	         $7b63 = AdjustTimeText.set_time
 	         $7b6c = AdjustTimeEndText
-	SECTION: $7b7f-$7ddc ($025e bytes) ["Maps 8"]
+	SECTION: $7b7f-$7ddc ($025e bytes) ["Route Scripts"]
 	         $7b7f = DeletedMap_ScriptLoader
 	         $7b80 = DeletedMap_TextPointers
 	         $7b82 = DeletedMapText1
 	         $7b8f = DeletedMap_TextPointers2
-	         $7b98 = Route1P1_ScriptLoader
-	         $7ba2 = Route1P1ScriptPointers
-	         $7ba6 = Route1P1NPCIDs
-	         $7ba9 = Route1P1SignPointers
-	         $7bad = Route1P1_TextPointers
-	         $7bb1 = Route1P1Script
-	         $7bbb = Route1P1TextNPC1
-	         $7bc2 = Route1P1TextNPC2
-	         $7bc9 = Route1P1TextSign1
-	         $7bd0 = Route1P1TextSign2
-	         $7bd7 = Route1P1TextString1
-	         $7c08 = Route1P1TextString2
-	         $7c2a = Route1P1TextString3
-	         $7c48 = Route1P1TextString4
-	         $7c68 = Route1P2_ScriptLoader
-	         $7c72 = Route1P2ScriptPointers
-	         $7c76 = Route1P2NPCIDs
-	         $7c79 = Route1P2SignPointers
-	         $7c7b = Route1P2_TextPointers
-	         $7c7f = Route1P2Script
-	         $7c9d = Route1P2Script.skipCheck
-	         $7ca7 = Route1P2Text1
-	         $7ca7 = Route1P2Script.endDemo
-	         $7cb3 = Route1P2Text2
-	         $7cda = Route1P2Text2.Text2Jump
-	         $7cda = Route1P2Text3
-	         $7ce1 = Route1P2TextSign1
-	         $7ce8 = Route1P2TextString1
-	         $7d0c = Route1P2TextString2
-	         $7d19 = Route1P2TextString3
-	         $7d3b = Route1P2TextString4
-	         $7dbd = Route1P2TextString5
+	         $7b98 = Route1_ScriptLoader
+	         $7ba2 = Route1ScriptPointers
+	         $7ba6 = Route1NPCIDs
+	         $7ba9 = Route1SignPointers
+	         $7bad = Route1_TextPointers
+	         $7bb1 = Route1Script
+	         $7bbb = Route1TextNPC1
+	         $7bc2 = Route1TextNPC2
+	         $7bc9 = Route1TextSign1
+	         $7bd0 = Route1TextSign2
+	         $7bd7 = Route1TextString1
+	         $7c08 = Route1TextString2
+	         $7c2a = Route1TextString3
+	         $7c48 = Route1TextString4
+	         $7c68 = Route2_ScriptLoader
+	         $7c72 = Route2ScriptPointers
+	         $7c76 = Route2NPCIDs
+	         $7c79 = Route2SignPointers
+	         $7c7b = Route2_TextPointers
+	         $7c7f = Route2Script
+	         $7c9d = Route2Script.skipCheck
+	         $7ca7 = Route2Text1
+	         $7ca7 = Route2Script.endDemo
+	         $7cb3 = Route2Text2
+	         $7cda = Route2Text2.Text2Jump
+	         $7cda = Route2Text3
+	         $7ce1 = Route2TextSign1
+	         $7ce8 = Route2TextString1
+	         $7d0c = Route2TextString2
+	         $7d19 = Route2TextString3
+	         $7d3b = Route2TextString4
+	         $7dbd = Route2TextString5
 	SECTION: $7ddd-$7fff ($0223 bytes) ["Bank 36 Garbage"]
 	TOTAL EMPTY: $0000 bytes
 
@@ -12661,7 +12667,7 @@ ROMX bank #55:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #56:
-	SECTION: $4000-$7856 ($3857 bytes) ["bank38"]
+	SECTION: $4000-$7856 ($3857 bytes) ["Subgames 2"]
 	         $4000 = PikachuMiniGame
 	         $400a = PikachuMiniGame.loop
 	         $401a = PikachuMiniGame.Init
@@ -14373,7 +14379,7 @@ ROMX bank #62:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #63:
-	SECTION: $4000-$682a ($282b bytes) ["bank3F"]
+	SECTION: $4000-$682a ($282b bytes) ["Debug"]
 	         $4000 = FieldDebugMenuHeader
 	         $4008 = FieldDebugMenuHeader.MenuData
 	         $4010 = FieldDebug_MenuStrings
@@ -25358,12 +25364,12 @@ WRAM0 bank #0:
 	         $d29d = wSilentHillLabFrontSceneID
 	         $d29e = wSilentHillLabBackSceneID
 	         $d29f = wSilentHillPokecenterSceneID
-	         $d2a0 = wSilentHillHouseSceneID
-	         $d2a1 = wRoute1P1SceneID
-	         $d2a2 = wRoute1P2SceneID
-	         $d2a3 = wRoute1Gate1FSceneID
-	         $d2a4 = wRoute1Gate2FSceneID
-	         $d2a5 = wSilentHillsSceneID
+	         $d2a0 = wRivalHouseSceneID
+	         $d2a1 = wRoute1SceneID
+	         $d2a2 = wRoute2SceneID
+	         $d2a3 = wRoute2Gate1FSceneID
+	         $d2a4 = wRoute2Gate2FSceneID
+	         $d2a5 = wQuietHillsSceneID
 	         $d2a6 = wOldCityPokecenter2FSceneID
 	         $d39a = wPlayerHouse2FFlags
 	         $d39b = wPlayerHouse1FFlags
@@ -25371,12 +25377,12 @@ WRAM0 bank #0:
 	         $d39d = wSilentHillLabFrontFlags
 	         $d39e = wSilentHillLabBackFlags
 	         $d39f = wSilentHillPokecenterFlags
-	         $d3a0 = wSilentHillHouseFlags
-	         $d3a1 = wRoute1P1Flags
-	         $d3a2 = wRoute1P2Flags
-	         $d3a3 = wRoute1Gate1FFlags
-	         $d3a4 = wRoute1Gate2FFlags
-	         $d3a5 = wSilentHillsFlags
+	         $d3a0 = wRivalHouseFlags
+	         $d3a1 = wRoute1Flags
+	         $d3a2 = wRoute2Flags
+	         $d3a3 = wRoute2Gate1FFlags
+	         $d3a4 = wRoute2Gate2FFlags
+	         $d3a5 = wQuietHillsFlags
 	         $d3a6 = wOldCityPokecenter2FFlags
 	         $d41a = wEventFlags
 	         $d4a7 = wPokedexMenuFlags
@@ -26708,9 +26714,9 @@ WRAM0 bank #0:
 	         $de61 = wBoxMon30CaughtGender
 	         $de61 = wBoxMon30CaughtLocation
 	         $de62 = wBoxMon30Level
-	         $de63 = wBoxMon30End
-	         $de63 = wBoxMonOTs
 	         $de63 = wBoxMon1OT
+	         $de63 = wBoxMonOTs
+	         $de63 = wBoxMon30End
 	         $de69 = wBoxMon2OT
 	         $de6f = wBoxMon3OT
 	         $de75 = wBoxMon4OT
