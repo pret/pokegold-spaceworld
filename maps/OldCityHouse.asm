@@ -19,6 +19,6 @@ OldCityHouse_MapEvents::
 	object_event  5,  1, SPRITE_YOUNGSTER, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityHouse_Blocks::
-INCBIN "maps/OldCityHouse.blk"
+INCBIN "maps/TraditionalHouse.blk"
 
 	map_dummy_text_pointers

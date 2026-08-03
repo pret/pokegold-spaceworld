@@ -13,6 +13,6 @@ SugarHouse2_MapEvents::
 	object_event  2,  3, SPRITE_FISHING_GURU, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SugarHouse2_Blocks::
-INCBIN "maps/SugarHouse2.blk"
+INCBIN "maps/TraditionalHouse.blk"
 
 	map_dummy_text_pointers

@@ -13,6 +13,6 @@ BlueHouse2_MapEvents::
 	object_event  8,  4, SPRITE_GRANNY, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
 BlueHouse2_Blocks::
-INCBIN "maps/BlueHouse2.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

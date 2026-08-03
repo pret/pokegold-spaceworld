@@ -13,4 +13,4 @@ UnusedGen1ColosseumText1:
 UnusedGen1Colosseum_MapEvents:
 
 UnusedGen1Colosseum_Blocks:
-	INCBIN "maps/OldCityPokecenterBattle.blk"
+	INCBIN "maps/PokecenterBattle.blk"

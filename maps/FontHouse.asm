@@ -13,6 +13,6 @@ FontHouse_MapEvents::
 	object_event  8,  4, SPRITE_GENTLEMAN, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 1, -1, -1, 0, 0, 0, 0, 0, 0
 
 FontHouse_Blocks::
-INCBIN "maps/FontHouse.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

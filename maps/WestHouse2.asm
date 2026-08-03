@@ -19,6 +19,6 @@ WestHouse2_MapEvents::
 	object_event  1,  5, SPRITE_BUG_CATCHER_BOY, SPRITEMOVEFN_RANDOM_WALK_XY, 2, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
 WestHouse2_Blocks::
-INCBIN "maps/WestHouse2.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

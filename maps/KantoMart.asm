@@ -15,6 +15,6 @@ KantoMart_MapEvents::
 	object_event  4,  1, SPRITE_GRAMPS, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoMart_Blocks::
-INCBIN "maps/KantoMart.blk"
+INCBIN "maps/Mart.blk"
 
 	map_dummy_text_pointers

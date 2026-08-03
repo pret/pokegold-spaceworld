@@ -14,6 +14,6 @@ HighTechImposterOakHouse_MapEvents::
 	object_event  1,  2, SPRITE_POKEFAN_F, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 HighTechImposterOakHouse_Blocks::
-INCBIN "maps/HighTechImposterOakHouse.blk"
+INCBIN "maps/House2.blk"
 
 	map_dummy_text_pointers

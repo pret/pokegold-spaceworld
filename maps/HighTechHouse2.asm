@@ -13,6 +13,6 @@ HighTechHouse2_MapEvents::
 	object_event  7,  3, SPRITE_SAILOR, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 HighTechHouse2_Blocks::
-INCBIN "maps/HighTechHouse2.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

@@ -12,6 +12,6 @@ KantoCeladonElevator_MapEvents::
 	def_object_events
 
 KantoCeladonElevator_Blocks::
-INCBIN "maps/KantoCeladonElevator.blk"
+INCBIN "maps/Elevator.blk"
 
 	map_dummy_text_pointers

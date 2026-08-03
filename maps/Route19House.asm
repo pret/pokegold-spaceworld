@@ -13,6 +13,6 @@ Route19House_MapEvents::
 	object_event  1,  5, SPRITE_COOLTRAINER_F, SPRITEMOVEFN_RANDOM_WALK_X, 1, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 Route19House_Blocks::
-INCBIN "maps/Route19House.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

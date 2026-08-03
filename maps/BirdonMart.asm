@@ -15,6 +15,6 @@ BirdonMart_MapEvents::
 	object_event  4,  1, SPRITE_TEACHER, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BirdonMart_Blocks::
-INCBIN "maps/BirdonMart.blk"
+INCBIN "maps/Mart.blk"
 
 	map_dummy_text_pointers

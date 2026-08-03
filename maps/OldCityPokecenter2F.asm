@@ -25,7 +25,7 @@ OldCityPokecenter2F_MapEvents::
 	object_event 13,  3, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityPokecenter2F_Blocks::
-INCBIN "maps/OldCityPokecenter2F.blk"
+INCBIN "maps/Pokecenter2F.blk"
 
 OldCityPokecenter2F_ScriptLoader:
 	call SetBitsForTimeCapsuleRequestIfNotLinked

@@ -12,6 +12,6 @@ BlueHouse4_MapEvents::
 	def_object_events
 
 BlueHouse4_Blocks::
-INCBIN "maps/BlueHouse4.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

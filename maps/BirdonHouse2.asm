@@ -13,6 +13,6 @@ BirdonHouse2_MapEvents::
 	object_event  7,  5, SPRITE_GRANNY, SPRITEMOVEFN_TURN_LEFT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BirdonHouse2_Blocks::
-INCBIN "maps/BirdonHouse2.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

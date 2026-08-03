@@ -15,6 +15,6 @@ SugarMart_MapEvents::
 	object_event  4,  1, SPRITE_POKEFAN_M, SPRITEMOVEFN_TURN_UP, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SugarMart_Blocks::
-INCBIN "maps/SugarMart.blk"
+INCBIN "maps/Mart.blk"
 
 	map_dummy_text_pointers

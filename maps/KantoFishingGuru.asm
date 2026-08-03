@@ -13,6 +13,6 @@ KantoFishingGuru_MapEvents::
 	object_event  4,  3, SPRITE_FISHING_GURU, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoFishingGuru_Blocks::
-INCBIN "maps/KantoFishingGuru.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

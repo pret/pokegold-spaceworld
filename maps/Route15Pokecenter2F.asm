@@ -11,6 +11,6 @@ Route15Pokecenter2F_MapEvents::
 	def_object_events
 
 Route15Pokecenter2F_Blocks::
-INCBIN "maps/Route15Pokecenter2F.blk"
+INCBIN "maps/Pokecenter2F.blk"
 
 	map_dummy_text_pointers

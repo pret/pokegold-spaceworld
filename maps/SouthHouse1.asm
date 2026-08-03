@@ -13,6 +13,6 @@ SouthHouse1_MapEvents::
 	object_event  2,  3, SPRITE_GRANNY, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 SouthHouse1_Blocks::
-INCBIN "maps/SouthHouse1.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

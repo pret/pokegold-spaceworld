@@ -17,6 +17,6 @@ KantoSchool_MapEvents::
 	object_event  6,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEFN_RANDOM_WALK_Y, 0, 2, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoSchool_Blocks::
-INCBIN "maps/KantoSchool.blk"
+INCBIN "maps/School.blk"
 
 	map_dummy_text_pointers

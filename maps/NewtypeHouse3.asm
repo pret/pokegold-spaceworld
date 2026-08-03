@@ -13,6 +13,6 @@ NewtypeHouse3_MapEvents::
 	object_event  4,  3, SPRITE_GRAMPS, SPRITEMOVEFN_TURN_RIGHT, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 NewtypeHouse3_Blocks::
-INCBIN "maps/NewtypeHouse3.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers

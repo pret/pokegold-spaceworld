@@ -14,6 +14,6 @@ Route9Gate_MapEvents::
 	def_object_events
 
 Route9Gate_Blocks::
-INCBIN "maps/Route9Gate.blk"
+INCBIN "maps/EastWestGate.blk"
 
 	map_dummy_text_pointers

@@ -16,6 +16,6 @@ BirdonPokecenter1F_MapEvents::
 	object_event 10,  1, SPRITE_POKEFAN_M, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 BirdonPokecenter1F_Blocks::
-INCBIN "maps/BirdonPokecenter1F.blk"
+INCBIN "maps/Pokecenter1F.blk"
 
 	map_dummy_text_pointers

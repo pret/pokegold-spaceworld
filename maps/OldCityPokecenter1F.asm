@@ -18,6 +18,6 @@ OldCityPokecenter1F_MapEvents::
 	object_event 10,  1, SPRITE_35, SPRITEMOVEFN_TURN_DOWN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 OldCityPokecenter1F_Blocks::
-INCBIN "maps/OldCityPokecenter1F.blk"
+INCBIN "maps/Pokecenter1F.blk"
 
 	map_dummy_text_pointers_old

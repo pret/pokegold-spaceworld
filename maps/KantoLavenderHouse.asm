@@ -14,6 +14,6 @@ KantoLavenderHouse_MapEvents::
 	object_event  1,  5, SPRITE_POKEFAN_F, SPRITEMOVEFN_RANDOM_SPIN, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0
 
 KantoLavenderHouse_Blocks::
-INCBIN "maps/KantoLavenderHouse.blk"
+INCBIN "maps/House1.blk"
 
 	map_dummy_text_pointers
