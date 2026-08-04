@@ -73,8 +73,7 @@ HandleMapObjects::
 	call Bankswitch
 	ret
 
-; unreferenced
-UpdateAndTransferToolgear:
+UpdateAndTransferToolgear: ; unreferenced
 	call DelayFrame
 	call UpdateToolgear
 	ld hl, wToolgearFlags

@@ -443,7 +443,7 @@ UpdatePlayerStep:
 	set PLAYERSTEP_CONTINUE_F, [hl]
 	ret
 
-Unreferenced_GetObjectSpritePos:
+GetObjectSpritePos: ; unreferenced
 	ld a, [wXCoord]
 	ld d, a
 	ld hl, OBJECT_MAP_X
@@ -480,7 +480,7 @@ Object_IncAnonJumptableIndex:
 	inc [hl]
 	ret
 
-Unreferenced_GetObjectJumptableIndex:
+GetObjectJumptableIndex: ; unreferenced
 	ld hl, OBJECT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [hl]
@@ -654,7 +654,7 @@ StepFunction_Reset:
 	ld [hl], a
 	ret
 
-Unreferenced_RandomWalkContinue_Duplicate:
+RandomWalkContinue_Duplicate: ; unreferenced
 	call InitStep
 	call CanObjectMoveInDirection
 	jr c, RandomWalk_NewDuration
@@ -711,10 +711,9 @@ RandomSpinContinue:
 	ld [hl], a
 	jp StepFunction_Sleep
 
-; Unreferenced.
 ; Runs back and forth every four tiles. If it hits a wall, or NPC, it will continue to try to move in that direction.
 ; Due to an oversight, OBJECT_MOVEMENT_INDEX is not reset upon loading a room, causing the exact range of the running to be effectively random.
-MovementFunction_RunBackAndForth:
+MovementFunction_RunBackAndForth: ; unreferenced
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_FROM_MOVEMENT
@@ -748,10 +747,9 @@ MovementFunction_RunBackAndForth:
 	call CopyLastCoordsToCoords
 	ret
 
-; Unreferenced.
 ; Makes the NPC turn to face the player in the direction that the player is closer to.
 ; In situations where Horiz. distance = Vert. distance, vertical directions take priority.
-FacePlayerObject:
+FacePlayerObject: ; unreferenced
 	ld a, [wPlayerMapX]
 	ld d, a
 	ld a, [wPlayerMapY]
@@ -1063,7 +1061,7 @@ StepFunction_TeleportTo:
 	call ClearObjectJumptableIndex
 	ret
 
-Unreferenced_StrengthBoulderDust_Old:
+StrengthBoulderDust_Old: ; unreferenced
 	call ClearObjectJumptableIndex
 	; fallthrough
 Stub_SpawnStrengthBoulderDust_Old:
@@ -1091,8 +1089,7 @@ SpawnShadow:
 .ShadowObject:
 	db MINOR_OBJECT_TYPE_SHADOW, MINOR_OBJECT_ANIM_SHADOW, $fc, 2, 0, 8
 
-; Unreferenced in this build
-SpawnStrengthBoulderDust:
+SpawnStrengthBoulderDust: ; Unreferenced in this build
 	ld e, a
 	add a
 	add e

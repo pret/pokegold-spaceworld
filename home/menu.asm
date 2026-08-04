@@ -98,8 +98,7 @@ YesNoBox::
 PlaceYesNoBox::
 	jr _YesNoBox
 
-; Unreferenced
-PlaceGenericTwoOptionBox::
+PlaceGenericTwoOptionBox:: ; unreferenced
 	call LoadMenuHeader
 	jr InterpretTwoOptionMenu
 

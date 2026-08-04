@@ -1,7 +1,6 @@
 ; Functions to fade the screen in and out.
 
-; unreferenced
-TimeOfDayFade::
+TimeOfDayFade:: ; unreferenced
 	ld a, [wTimeOfDayPal] ; tells if current map is dark
 	ld b, a
 	ld hl, FadePal4
