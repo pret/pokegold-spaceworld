@@ -258,6 +258,7 @@ SRAM 1
 	"Save Pokemon Data"
 SRAM $02
 	"Boxes 1-5"
+	"Mail"
 SRAM $03
 	"Boxes 6-10"
 	org $bffd

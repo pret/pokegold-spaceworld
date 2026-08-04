@@ -1,4 +1,5 @@
 WaitPressedAny::
+; unreferenced
 ; Waits for one of the buttons in d to be pressed.
 ; If bc is negative, waits forever.
 ; Otherwise, times out after bc frames then returns z.

@@ -480,7 +480,7 @@ Object_IncAnonJumptableIndex:
 	inc [hl]
 	ret
 
-GetObjectJumptableIndex:
+Unreferenced_GetObjectJumptableIndex:
 	ld hl, OBJECT_JUMPTABLE_INDEX
 	add hl, bc
 	ld a, [hl]

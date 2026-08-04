@@ -1483,7 +1483,7 @@ wDebugFlags:: db
 wDebugFlags2:: db
 wDebugFlags3:: db
 wDebugFlags4:: db
-
+wOptionsEnd::
 
 SECTION "Game Data", WRAM0
 

@@ -621,6 +621,7 @@ BillsPC_WithdrawReleaseMenu:
 	dba PlaceBoxMonLevels
 	ds 3
 
+; unreferenced
 BillsPC_ViewMenu:
 	dw BillsPC_ViewMenuHeader
 	dw wBillsPCCursor

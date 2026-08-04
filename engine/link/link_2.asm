@@ -86,7 +86,7 @@ Link_Receptionist_Intro::
 	call OpenTextbox
 	jr .no_link_action
 
-.connecting:
+.connecting: ; unreferenced
 	ld c, 60
 	call DelayFrames
 	ld hl, CableClubConnectingText

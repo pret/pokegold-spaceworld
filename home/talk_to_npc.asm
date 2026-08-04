@@ -160,6 +160,7 @@ OpenTextbox::
 	call TextboxIdle
 	ret
 
+; unreferenced
 OpenTextboxNoInput::
 	push hl
 	call PrepareTextbox

@@ -907,7 +907,7 @@ AICheckEnemyQuarterHP:
 	pop hl
 	ret
 
-; Return carry if the enemy has a move in array hl.
+; Unreferenced, return carry if the enemy has a move in array hl.
 AIHasMoveInArray:
 	push hl
 	push de

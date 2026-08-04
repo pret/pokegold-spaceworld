@@ -115,7 +115,7 @@ _SwitchPartyMons::
 	push hl
 	ld de, wSwitchItemBuffer
 	ld bc, MAIL_STRUCT_LENGTH
-	ld a, $02
+	ld a, BANK(sPartyMail)
 	call OpenSRAM
 	call CopyBytes
 	ld hl, sPartyMail

@@ -702,7 +702,7 @@ Link_PrepPartyData_Gen2:
 
 	ld hl, sPartyMail
 	ld bc, MAIL_STRUCT_LENGTH * PARTY_LENGTH
-	ld a, $02
+	ld a, BANK(sPartyMail)
 	call OpenSRAM
 	call CopyBytes
 	call CloseSRAM
@@ -861,9 +861,9 @@ Link_ConvertPartyStruct1to2:
 	ldh a, [hQuotient + 3]
 	ld [hli], a
 	push hl
-	ld hl, $1b
+	ld hl, MON_HAPPINESS
 	add hl, bc
-	ld a, $46
+	ld a, BASE_HAPPINESS
 	ld [hli], a
 	xor a
 	ld [hli], a
@@ -894,7 +894,7 @@ Link_CopyRandomNumbers:
 	ld hl, wEnemyMon
 	call Link_FindFirstNonControlCharacter_AllowZero
 	ld de, wLinkBattleRNs
-	ld c, 10
+	ld c, SERIAL_RNS_LENGTH
 .loop:
 	ld a, [hli]
 	cp SERIAL_NO_DATA_BYTE
@@ -1488,7 +1488,7 @@ LinkTrade:
 	ld a, [wCurTradePartyMon]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
-	ld a, $02
+	ld a, BANK(sPartyMail)
 	call OpenSRAM
 	ld d, h
 	ld e, l

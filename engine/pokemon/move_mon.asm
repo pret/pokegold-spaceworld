@@ -1490,6 +1490,7 @@ NewDexDataText:
 GotItText:
 	text "ゲットした　@" ; "Got it!"
 
+; unreferenced
 AskGiveNicknameText:
 	text_from_ram wStringBuffer1
 	text "に" ; "Would you like to"

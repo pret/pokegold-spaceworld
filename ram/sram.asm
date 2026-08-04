@@ -11,8 +11,7 @@ ENDU
 
 SECTION "Save Game Data", SRAM
 
-sOptions:: ds 7
-	ds 1
+sOptions:: ds wOptionsEnd - wOptions
 
 sGameData:: ds wGameDataEnd - wGameData
 sGameDataEnd::
@@ -49,12 +48,16 @@ SECTION "Boxes 1-5", SRAM
 ; sBox1 - sBox5
 	boxes 5
 
-sPartyMailBackup::
-; sPartyMon1MailBackup - sPartyMon6MailBackup
-for n, 1, PARTY_LENGTH + 1
-sPartyMon{d:n}MailBackup:: mailmsg sPartyMon{d:n}MailBackup
-endr
 
+SECTION "Mail", SRAM
+
+; sPartyMail, was originally in Bank 2
+sPartyMail::
+; sPartyMon1Mail - sPartyMon6Mail
+for n, 1, PARTY_LENGTH + 1
+sPartyMon{d:n}Mail:: mailmsg sPartyMon{d:n}Mail
+endr
+sPartyMailEnd::
 
 SECTION "Boxes 6-10", SRAM
 
@@ -64,13 +67,7 @@ SECTION "Boxes 6-10", SRAM
 ; All 10 boxes fit exactly within 2 SRAM banks
 	assert box_n == NUM_BOXES, \
 		"boxes: Expected {d:NUM_BOXES} total boxes, got {d:box_n}"
-
-sPartyMail::
-; sPartyMon1Mail - sPartyMon6Mail
-for n, 1, PARTY_LENGTH + 1
-sPartyMon{d:n}Mail:: mailmsg sPartyMon{d:n}Mail
-endr
-
+		
 
 SECTION "Checksum", SRAM
 sChecksum:: ds 3

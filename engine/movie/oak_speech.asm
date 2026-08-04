@@ -16,6 +16,7 @@ DemoStart::
 	call DemoSetUpPlayer
 	jp IntroCleanup
 
+; unreferenced
 GameStart::
 	ld de, OakPic
 	lb bc, BANK(OakPic), $00
@@ -319,16 +320,17 @@ FillTMs::
 	jr nz, .loop
 	ret
 
+; unreferenced
 DebugGiveKeyItems::
 	ld hl, DebugKeyItemsList
 	ld de, wKeyItems
-	ld c, $FF
+	ld c, -1
 .loop
 	inc c
 	ld a, [hli]
 	ld [de], a
 	inc de
-	cp $FF
+	cp -1
 	jr nz, .loop
 	ld a, c
 	ld [wNumKeyItems], a
@@ -339,7 +341,7 @@ DebugKeyItemsList::
 	db ITEM_BALL_HOLDER
 	db ITEM_BAG
 	db ITEM_BICYCLE
-	db $FF
+	db -1
 
 DemoSetUpPlayer::
 	ld hl, wPlayerName
