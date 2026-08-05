@@ -249,7 +249,7 @@ RestoreOverworldMapTiles::
 	call OpenSRAM
 	ld hl, wTileMap
 	ld de, sScratch
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	call CopyBytes
 	call CloseSRAM
 	farcall ReanchorBGMap_NoOAMUpdate
@@ -258,7 +258,7 @@ RestoreOverworldMapTiles::
 	call OpenSRAM
 	ld hl, sScratch
 	ld de, wTileMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 .loop
 	ld a, [hl]
 	cp $61

@@ -55,7 +55,7 @@ RedrawRowOrColumn::
 	push de
 	call .DrawHalf
 	pop de
-	ld a, TILEMAP_WIDTH ; width of VRAM background map
+	ld a, TILEMAP_WIDTH
 	add e
 	ld e, a
 	; fallthrough (draw lower half)
@@ -71,10 +71,10 @@ RedrawRowOrColumn::
 	ld a, e
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and TILEMAP_WIDTH - 1 ; mask lower address bits
+	maskbits TILEMAP_WIDTH ; mask lower address bits
 	ld b, a
 	ld a, e
-	and ($FF ^ (TILEMAP_WIDTH - 1)) ; mask upper address bits
+	and ~(TILEMAP_WIDTH - 1) ; mask upper address bits
 	or b
 	ld e, a
 	dec c
@@ -251,10 +251,10 @@ _RedrawFlashlightRow::
 	ld a, e
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and TILEMAP_WIDTH - 1 ; mask lower address bits
+	maskbits TILEMAP_WIDTH ; mask lower address bits
 	ld b, a
 	ld a, e
-	and ($FF ^ (TILEMAP_WIDTH - 1)) ; mask upper address bits
+	and ~(TILEMAP_WIDTH - 1) ; mask upper address bits
 	or b
 	ld e, a
 	dec c
@@ -300,10 +300,10 @@ _RedrawFlashlightRowBlack::
 	ld a, l
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and TILEMAP_WIDTH - 1 ; mask lower address bits
+	maskbits TILEMAP_WIDTH ; mask lower address bits
 	ld d, a
 	ld a, l
-	and ($FF ^ (TILEMAP_WIDTH - 1)) ; mask upper address bits
+	and ~(TILEMAP_WIDTH - 1) ; mask upper address bits
 	or d
 	ld l, a
 	dec c

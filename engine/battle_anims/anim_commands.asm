@@ -89,7 +89,7 @@ RunBattleAnimScript_Target:
 
 BattleAnim_ClearOAM:
 	ld hl, wShadowOAM
-	ld c, OBJ_SIZE * OAM_COUNT
+	ld c, OAM_SIZE
 	xor a
 .loop
 	ld [hli], a

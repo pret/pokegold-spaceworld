@@ -50,7 +50,7 @@ FieldDebug_DoVRAMViewer:
 
 .switch_tileset
 	ldh a, [rLCDC]
-	xor (1 << B_LCDC_BLOCKS)
+	xor LCDC_BLOCKS
 	ldh [rLCDC], a
 	and a
 	ret

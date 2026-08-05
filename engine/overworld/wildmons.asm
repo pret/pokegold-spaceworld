@@ -33,7 +33,7 @@ _LoadWildMonData::
 ; Load nest landmarks into wTilemap[0,0]
 FindNest:
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	xor a
 	call ByteFill
 	ld hl, GrassWildMons
@@ -95,7 +95,7 @@ endr
 .AppendNest:
 	ld c, a
 	ld hl, wTileMap
-	ld de, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld de, SCREEN_AREA
 .AppendNestLoop:
 	ld a, [hli]
 	cp c

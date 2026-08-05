@@ -1251,7 +1251,7 @@ ItemActionTextWaitButton:
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wTileMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, '　'
 	call ByteFill
 	callfar WritePartyMenuTilemapAndText

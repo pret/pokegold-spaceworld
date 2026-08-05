@@ -23,7 +23,7 @@ ClearTileMap::
 ; Fill wTileMap with blank tiles.
 
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 	ld a, '　'
 	call ByteFill
 	ldh a, [rLCDC]

@@ -206,7 +206,7 @@ NamingScreen_InitText:
 ; next it places the tiles at TextEntryChars in a 11x8 box at 2,9
 	call WaitForAutoBgMapTransfer
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, '■'
 	call ByteFill
 	hlcoord 1, 1

@@ -84,6 +84,7 @@ wMusicInitEnd::
 
 	ds 68
 
+
 SECTION "OAM Buffer", WRAM0
 
 wShadowOAM::
@@ -93,13 +94,11 @@ wShadowOAMSprite{02d:n}:: sprite_oam_struct wShadowOAMSprite{02d:n}
 endr
 wShadowOAMEnd::
 
-wTileMap::
-	ds SCREEN_HEIGHT * SCREEN_WIDTH
+wTileMap:: ds SCREEN_AREA
 
 UNION
 
-wTileMapBackup::
-	ds SCREEN_HEIGHT * SCREEN_WIDTH
+wTileMapBackup:: ds SCREEN_AREA
 
 NEXTU
 
@@ -1484,6 +1483,7 @@ wDebugFlags2:: db
 wDebugFlags3:: db
 wDebugFlags4:: db
 wOptionsEnd::
+
 
 SECTION "Game Data", WRAM0
 

@@ -349,7 +349,7 @@ DisplayOptionsMenu:
 	ld a, BANK(TrainerCardGFX)
 	call FarCopyData
 	ld hl, wTileMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, $f0 ; checkered square tile
 	call ByteFill
 ; Text Speed

@@ -119,7 +119,7 @@ TrainerGear_Init:
 
 TrainerGear_InitTilemap:
 	ld hl, wTileMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, TRAINERGEAR_GFX_BLANKTILE
 	call ByteFill
 	ld de, wTileMap

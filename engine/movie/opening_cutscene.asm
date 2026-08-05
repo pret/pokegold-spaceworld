@@ -539,7 +539,7 @@ endr
 Intro_InitSineLYOverrides:
 	ld bc, wLYOverrides2
 	ld a, SCREEN_HEIGHT_PX
-	ld de, TILEMAP_WIDTH * TILEMAP_HEIGHT
+	ld de, TILEMAP_AREA
 .loop
 	push af
 	push de
@@ -971,7 +971,7 @@ IntroScene16:
 
 Intro_BlankTilemapAndBGMap:
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 
 .blank_tilemap
 	ld [hl], 0
@@ -982,7 +982,7 @@ Intro_BlankTilemapAndBGMap:
 	jr nz, .blank_tilemap
 
 	ld hl, wOverworldMapBlocks
-	ld bc, TILEMAP_WIDTH * TILEMAP_HEIGHT
+	ld bc, TILEMAP_AREA
 
 .blank_bgmap
 	ld [hl], 0

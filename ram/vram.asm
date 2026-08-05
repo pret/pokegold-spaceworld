@@ -2,57 +2,34 @@ SECTION "VRAM", VRAM
 
 UNION
 
-vChars0::
-	ds $80 tiles
-
-vChars1::
-	ds $80 tiles
-
-vChars2::
-	ds $80 tiles
+vChars0:: ds $80 tiles
+vChars1:: ds $80 tiles
+vChars2:: ds $80 tiles
 
 NEXTU
 
 ; Battle/menu
-vSprites::
-	ds $80 tiles
-
-vFont::
-	ds $80 tiles
-
-vFrontPic::
-	ds 7 * 7 tiles
-vBackPic::
-	ds 6 * 6 tiles
+vSprites::  ds $80 tiles
+vFont::     ds $80 tiles
+vFrontPic:: ds 7 * 7 tiles
+vBackPic::  ds 6 * 6 tiles
 
 NEXTU
 
-vNPCSprites::
-	ds $80 tiles
-
-vNPCSprites2::
-	ds $80 tiles
-
-vTileset::
-	ds $20 tiles
-vExteriorTileset::
-	ds $40 tiles
+vNPCSprites::      ds $80 tiles
+vNPCSprites2::     ds $80 tiles
+vTileset::         ds $20 tiles
+vExteriorTileset:: ds $40 tiles
 vTilesetEnd::
 
 NEXTU
 
 	ds $80 tiles
 
-vPicrossBackground::
-	ds $70 tiles
-
-vPicrossPlayArea::
-	ds $90 tiles
+vPicrossBackground:: ds $70 tiles
+vPicrossPlayArea::   ds $90 tiles
 
 ENDU
 
-vBGMap0::
-	ds TILEMAP_WIDTH * TILEMAP_HEIGHT
-
-vBGMap1::
-	ds TILEMAP_WIDTH * TILEMAP_HEIGHT
+vBGMap0:: ds TILEMAP_AREA
+vBGMap1:: ds TILEMAP_AREA

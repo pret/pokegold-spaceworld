@@ -28,9 +28,9 @@ Init::
 	ldh [rTMA], a
 	ldh [rTAC], a
 	ld [wTitleSequenceOpeningType], a ; Useless, since WRAM gets cleared right after
-	ld a, 1 << B_TAC_START | TAC_4KHZ
+	ld a, TAC_START | TAC_4KHZ
 	ldh [rTAC], a
-	ld a, 1 << B_LCDC_ENABLE
+	ld a, LCDC_ON
 	ldh [rLCDC], a
 	call DisableLCD
 
@@ -61,7 +61,7 @@ Init::
 	ldh [hSCX], a
 	ldh [hSCY], a
 	ldh [rJOYP], a
-	ld a, 1 << B_STAT_MODE_0
+	ld a, STAT_MODE_0
 	ldh [rSTAT], a
 	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
@@ -82,7 +82,7 @@ Init::
 	call DisableAudio
 	call LoadSGBBorderOptions
 	predef CheckSGB
-	ld a, $1F
+	ld a, IE_DEFAULT
 	ldh [rIE], a
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
@@ -120,7 +120,7 @@ BlankBGMap:
 FillBGMap:
 	ld a, l
 _FillBGMap:
-	ld de, TILEMAP_WIDTH * TILEMAP_HEIGHT
+	ld de, TILEMAP_AREA
 	ld l, e
 .loop
 	ld [hli], a

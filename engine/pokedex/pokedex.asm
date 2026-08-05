@@ -107,7 +107,7 @@ InitPokedex:
 
 	xor a
 	call ShowPokedexMenu
-	ld a, (1 << B_LCDC_ENABLE) | (1 << B_LCDC_WIN_MAP) | (1 << B_LCDC_WINDOW) | (1 << B_LCDC_OBJ_SIZE)
+	ld a, %11100100
 	ldh [rBGP], a
 	ld a, %11010000
 	ldh [rOBP0], a
@@ -197,7 +197,7 @@ String_START_VARIANTS:
 
 Pokedex_ClearScreen:
 	ld hl, wTileMap
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 .loop:
 	ld [hl], $6B
 	inc hl
@@ -562,7 +562,7 @@ Pokedex_AButtonMenu:
 	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	call .ReturnButtons
-	ld a, (1 << B_LCDC_ENABLE) | (1 << B_LCDC_WIN_MAP) | (1 << B_LCDC_WINDOW) | (1 << B_LCDC_OBJ_SIZE)
+	ld a, %11100100
 	ldh [rBGP], a
 	ld a, %11010000
 	ldh [rOBP0], a

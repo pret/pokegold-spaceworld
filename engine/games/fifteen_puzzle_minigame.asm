@@ -732,7 +732,7 @@ FifteenPuzzleMinigame_Tilemap:
 
 .PlaceBorderTiles:
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 	ld a, $04
 	call ByteFill
 

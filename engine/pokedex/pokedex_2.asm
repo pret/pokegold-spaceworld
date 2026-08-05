@@ -271,7 +271,7 @@ Pokedex_DisplayTypeSearch:
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wTileMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 .fill_screen
 	ld [hl], $6b
 	inc hl
@@ -760,7 +760,7 @@ Pokedex_InitUnownMode:
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wTileMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, $6b
 	call ByteFill
 

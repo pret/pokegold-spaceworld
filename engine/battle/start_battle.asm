@@ -311,7 +311,7 @@ ClearBattleRAM:
 	xor a
 	ld [hli], a
 	ld [hl], HIGH(vBGMap0)
-	ld a, (LCDC_DEFAULT & ~(1 << B_LCDC_WIN_MAP))
+	ld a, LCDC_DEFAULT & ~LCDC_WIN_MAP
 	ldh [rLCDC], a
 	ld a, [wMapId]
 	cp $d9 ; SAFARI_ZONE_EAST

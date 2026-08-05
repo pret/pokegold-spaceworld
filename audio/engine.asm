@@ -419,7 +419,7 @@ endr
 	add hl, de
 	ld de, _AUD3WAVERAM
 	push bc
-	ld b, $10
+	ld b, AUD3WAVE_SIZE
 .load_pattern
 	ld a, [hli]
 	ld [de], a
@@ -536,7 +536,7 @@ PlayDanger:
 	ret z
 
 	; Don't do anything if SFX is being played
-	and $ff ^ (1 << DANGER_ON_F)
+	and ~(1 << DANGER_ON_F)
 	ld d, a
 	call IsAnySFXOn
 	jr c, .increment

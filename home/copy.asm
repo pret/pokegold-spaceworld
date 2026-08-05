@@ -77,7 +77,7 @@ UncompressSpriteFromDE::
 LoadTilemapToTempTilemap::
 	hlcoord 0, 0
 	decoord 0, 0, wTileMapBackup
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 	jp CopyBytes
 
 SafeLoadTempTilemapToTilemap::
@@ -85,7 +85,7 @@ SafeLoadTempTilemapToTilemap::
 	ldh [hBGMapMode], a
 	hlcoord 0, 0, wTileMapBackup
 	decoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 	call CopyBytes
 	ld a, 1
 	ldh [hBGMapMode], a

@@ -1,7 +1,7 @@
 SECTION "Sprite Buffers", SRAM
 
 UNION
-sScratch:: ds SCREEN_WIDTH * SCREEN_HEIGHT
+sScratch:: ds SCREEN_AREA
 NEXTU
 sSpriteBuffer0:: ds SPRITEBUFFERSIZE
 sSpriteBuffer1:: ds SPRITEBUFFERSIZE

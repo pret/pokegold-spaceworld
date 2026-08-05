@@ -292,7 +292,7 @@ ScrollOverworldMapLeft:
 	ld d, a
 	ld a, e
 	sub 2
-	maskbits TILEMAP_WIDTH - 1
+	maskbits TILEMAP_WIDTH
 	or d
 	ld [wBGMapAnchor], a
 	ld hl, wMetatileNextX
@@ -321,7 +321,7 @@ ScrollOverworldMapRight:
 	ld d, a
 	ld a, e
 	add 2
-	maskbits TILEMAP_WIDTH - 1
+	maskbits TILEMAP_WIDTH
 	or d
 	ld [wBGMapAnchor], a
 	ld hl, wMetatileNextX
@@ -515,7 +515,7 @@ ScrollOverworldFlashlight::
 .tile_loop
 	ld a, e
 	inc a
-	maskbits TILEMAP_WIDTH - 1 ; only works if TILEMAP_WIDTH is 2^n
+	maskbits TILEMAP_WIDTH
 	ld b, a
 	ld a, e
 	and ~(TILEMAP_WIDTH - 1)

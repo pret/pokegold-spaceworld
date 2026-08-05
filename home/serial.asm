@@ -19,7 +19,7 @@ Serial::
 	cp USING_INTERNAL_CLOCK
 	jr z, .player2
 
-	ld a, 1 << B_SC_START
+	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a
 	jr .player2
 
@@ -40,7 +40,7 @@ Serial::
 	bit 7, a
 	jr nz, .delay_loop ; wait until rDIV has incremented from 3 to $80 or more
 
-	ld a, 1 << B_SC_START
+	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a
 	jr .player2
 
@@ -104,7 +104,7 @@ Serial_ExchangeByte::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	jr nz, .not_player_2
-	ld a, (1 << B_SC_START) | 1
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 .not_player_2
 .loop
@@ -314,7 +314,7 @@ LinkTransfer::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	jr nz, .player_1
-	ld a, (1 << B_SC_START) | 1
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 
 .player_1
@@ -342,7 +342,7 @@ LinkDataReceived::
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ret nz
-	ld a, (1 << B_SC_START) | 1
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 	ret
 
@@ -355,6 +355,6 @@ SetBitsForTimeCapsuleRequestIfNotLinked::
 	ldh [rSB], a
 	xor a
 	ldh [hSerialReceive], a
-	ld a, (1 << B_SC_START)
+	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a
 	ret

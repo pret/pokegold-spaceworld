@@ -21,7 +21,7 @@ StartLinkCommunications::
 	ret
 
 LinkCommunications:
-	ld c, $50
+	ld c, 80
 	call DelayFrames
 	call ClearTileMap
 	call UpdateSprites
@@ -55,17 +55,17 @@ Gen2ToGen1LinkComms:
 	call DelayFrames
 	xor a
 	ldh [hSerialSend], a
-	ld a, $81
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 	call DelayFrame
 	xor a
 	ldh [hSerialSend], a
-	ld a, $81
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 .player_1
 	ld c, 3
 	call DelayFrames
-	ld a, $08
+	ld a, IE_SERIAL
 	ldh [rIE], a
 	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMon
@@ -86,7 +86,7 @@ Gen2ToGen1LinkComms:
 	ld bc, SERIAL_PATCH_LIST_LENGTH
 	call Serial_ExchangeBytes
 
-	ld a, $1D
+	ld a, IE_JOYPAD | IE_SERIAL | IE_TIMER | IE_VBLANK
 	ldh [rIE], a
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -207,17 +207,17 @@ Gen2ToGen2LinkComms:
 	call DelayFrames
 	xor a
 	ldh [hSerialSend], a
-	ld a, $81
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 	call DelayFrame
 	xor a
 	ldh [hSerialSend], a
-	ld a, $81
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 .player_1
 	ld c, 3
 	call DelayFrames
-	ld a, $08
+	ld a, IE_SERIAL
 	ldh [rIE], a
 
 	ld hl, wLinkBattleRNPreamble
@@ -247,7 +247,7 @@ Gen2ToGen2LinkComms:
 	ld bc, wLinkPlayerMailEnd - wLinkPlayerMail
 	call ExchangeBytes
 .not_trading
-	ld a, $1D
+	ld a, IE_JOYPAD | IE_SERIAL | IE_TIMER | IE_VBLANK
 	ldh [rIE], a
 	ld de, MUSIC_NONE
 	call PlayMusic

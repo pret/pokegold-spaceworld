@@ -117,11 +117,11 @@ ScheduleEastColumnRedraw::
 	call ScheduleColumnRedrawHelper
 	ld a, [wBGMapAnchor]
 	ld c, a
-	and ($FF ^ (TILEMAP_WIDTH - 1))  ; mask upper address bits
+	and ~(TILEMAP_WIDTH - 1)  ; mask upper address bits
 	ld b, a
 	ld a, c
 	add SCREEN_WIDTH - 2
-	and TILEMAP_WIDTH - 1            ; mask lower address bits
+	maskbits TILEMAP_WIDTH
 	or b
 	ldh [hRedrawRowOrColumnDest], a
 	ld a, [wBGMapAnchor + 1]

@@ -134,7 +134,7 @@ Pokedex_GetArea:
 	xor a
 	ldh [hBGMapMode], a
 	ld hl, wTileMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	xor a
 	call ByteFill
 	callfar FindNest

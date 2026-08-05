@@ -148,7 +148,7 @@ PikachuMiniGame_ClearBothTilemaps:
 	jr nz, .clear_bgmap
 
 	ld hl, wTileMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 .clear_tilemap
 	ld [hl], 0
 	inc hl
@@ -364,7 +364,7 @@ PikachuMiniGame_RunFrame:
 	callfar ClearSpriteAnims
 
 	ld hl, wShadowOAM
-	ld c, OBJ_SIZE * OAM_COUNT
+	ld c, OAM_SIZE
 	xor a
 .clear_oam
 	ld [hli], a

@@ -21,10 +21,10 @@ LCD::
 
 .try_hide_sprites
 	ldh a, [rLY]
-	cp $80
+	cp 128
 	jr nz, .dont_hide
 	ld hl, rLCDC
-	res 1, [hl]
+	res B_LCDC_OBJS, [hl]
 .dont_hide
 	pop hl
 	pop af
@@ -45,20 +45,20 @@ LCD::
 
 DisableLCD::
 	ldh a, [rLCDC]
-	bit 7, a
+	bit B_LCDC_ENABLE, a
 	ret z
 	xor a
 	ldh [rIF], a
 	ldh a, [rIE]
 	ld b, a
-	res 0, a
+	res B_IE_VBLANK, a
 	ldh [rIE], a
 .wait
 	ldh a, [rLY]
 	cp LY_VBLANK + 1
 	jr nz, .wait
 	ldh a, [rLCDC]
-	and $7f ; Shut LCD down
+	and ~LCDC_ENABLE
 	ldh [rLCDC], a
 	xor a
 	ldh [rIF], a
@@ -68,6 +68,6 @@ DisableLCD::
 
 EnableLCD::
 	ldh a, [rLCDC]
-	set 7, a
+	set B_LCDC_ENABLE, a
 	ldh [rLCDC], a
 	ret
