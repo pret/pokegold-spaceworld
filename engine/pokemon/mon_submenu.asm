@@ -286,7 +286,7 @@ BattleMonMenu:
 	db 1 ; default option
 
 .MenuText:
-	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING
 	db 3
 	db "とりかえる@"   ; Switch
 	db "つよさをみる@" ; Stats

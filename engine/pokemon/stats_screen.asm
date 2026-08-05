@@ -47,7 +47,7 @@ StatsScreenMain::
 .joypad_loop
 	call GetJoypadDebounced
 	ldh a, [hJoySum]
-	and (PAD_LEFT | PAD_RIGHT | PAD_B | PAD_A)
+	and PAD_LEFT | PAD_RIGHT | PAD_B | PAD_A
 	jr z, .joypad_loop
 	bit B_PAD_B, a
 	jr nz, .b_button

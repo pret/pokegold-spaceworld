@@ -5,7 +5,7 @@ Unused_FieldMoveMenuData:
 	db 1
 
 .MenuText:
-	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING
 	db 3 ; amount of options
 	db "うる@"      ; Switch
 	db "かう@"      ; Buy

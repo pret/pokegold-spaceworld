@@ -23,7 +23,7 @@ Joypad::
 	ld a, [wJoypadFlags]
 	and $d0
 	ret nz
-	ld a, 1 << 5 ; select direction keys
+	ld a, JOYP_GET_CTRL_PAD
 	ldh [rJOYP], a
 	ldh a, [rJOYP]
 	ldh a, [rJOYP]
@@ -31,7 +31,7 @@ Joypad::
 	and $0f
 	swap a
 	ld b, a
-	ld a, 1 << 4 ; select button keys
+	ld a, JOYP_GET_BUTTONS
 	ldh [rJOYP], a
 	ldh a, [rJOYP]
 	ldh a, [rJOYP]
@@ -43,7 +43,7 @@ Joypad::
 	and $0f
 	or b
 	ld b, a
-	ld a, (1 << 5 | 1 << 4) ; port reset
+	ld a, JOYP_GET_NONE
 	ldh [rJOYP], a
 	ldh a, [hJoypadState]
 	ld e, a
@@ -236,7 +236,7 @@ BlinkCursor:
 .cursor_off
 	ld a, '　'
 .save_cursor_state
-	ldcoord_a (SCREEN_WIDTH - 2), (SCREEN_HEIGHT - 1)
+	ldcoord_a SCREEN_WIDTH - 2, SCREEN_HEIGHT - 1
 	ret
 
 TextboxBlinkCursor::

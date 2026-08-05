@@ -255,7 +255,7 @@ MonsterTest_SelectedMenu:
 
 	ld hl, hJoySum
 	ld a, [hl]
-	and (PAD_A | PAD_B)
+	and PAD_A | PAD_B
 	ret nz
 
 .Input_Loop:
@@ -267,7 +267,7 @@ MonsterTest_SelectedMenu:
 	ld c, a
 
 	ld a, [hl]
-	and (PAD_DOWN | PAD_RIGHT)
+	and PAD_DOWN | PAD_RIGHT
 	jr nz, .next_entry
 
 	dec c

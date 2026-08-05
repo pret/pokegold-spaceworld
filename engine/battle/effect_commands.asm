@@ -335,7 +335,7 @@ BattleCommand_CheckTurn:
 .cant_move
 	ld hl, wPlayerSubStatus3
 	ld a, [hl]
-	and ((1 << SUBSTATUS_CONFUSED) | (1 << SUBSTATUS_INVULNERABLE) | (1 << SUBSTATUS_FLINCHED) | (1 << SUBSTATUS_IN_LOOP))
+	and (1 << SUBSTATUS_CONFUSED) | (1 << SUBSTATUS_INVULNERABLE) | (1 << SUBSTATUS_FLINCHED) | (1 << SUBSTATUS_IN_LOOP)
 	ld [hl], a
 
 	ld hl, wPlayerSubStatus1
@@ -564,7 +564,7 @@ CheckEnemyTurn:
 .cant_move
 	ld hl, wEnemySubStatus3
 	ld a, [hl]
-	and ((1 << SUBSTATUS_CONFUSED) | (1 << SUBSTATUS_INVULNERABLE) | (1 << SUBSTATUS_FLINCHED) | (1 << SUBSTATUS_IN_LOOP))
+	and (1 << SUBSTATUS_CONFUSED) | (1 << SUBSTATUS_INVULNERABLE) | (1 << SUBSTATUS_FLINCHED) | (1 << SUBSTATUS_IN_LOOP)
 	ld [hl], a
 
 	ld hl, wEnemySubStatus1
@@ -1022,7 +1022,7 @@ BattleCommand_DoTurn:
 
 ; If forced to use the same move repeatedly, return
 	ld a, [de]
-	and ((1 << SUBSTATUS_BIDE) | (1 << SUBSTATUS_RAMPAGE) | (1 << SUBSTATUS_IN_LOOP))
+	and (1 << SUBSTATUS_BIDE) | (1 << SUBSTATUS_RAMPAGE) | (1 << SUBSTATUS_IN_LOOP)
 	ret nz
 
 	inc de
@@ -4071,7 +4071,7 @@ BattleCommand_StatUp:
 	jr c, .increment_stat_level
 
 	; Map +2 effects to corresponding +1 effects
-	sub (EFFECT_ATTACK_UP_2 - EFFECT_ATTACK_UP)
+	sub EFFECT_ATTACK_UP_2 - EFFECT_ATTACK_UP
 
 .increment_stat_level
 ; Try to increase stat, and fail if already at maximum stat level
@@ -4315,7 +4315,7 @@ BattleCommand_StatDown:
 	sub EFFECT_ATTACK_DOWN
 	cp NUM_LEVEL_STATS
 	jr c, .decrease_stat_level
-	sub (EFFECT_ATTACK_DOWN_2 - EFFECT_ATTACK_DOWN)
+	sub EFFECT_ATTACK_DOWN_2 - EFFECT_ATTACK_DOWN
 
 .decrease_stat_level
 	ld c, a

@@ -231,7 +231,7 @@ BattleTurn:
 	xor a
 	ld [wBattleHasJustStarted], a
 	ld a, [wPlayerSubStatus4]
-	and ((1 << SUBSTATUS_RECHARGE) | (1 << SUBSTATUS_RAGE))
+	and (1 << SUBSTATUS_RECHARGE) | (1 << SUBSTATUS_RAGE)
 	jp nz, .locked_in
 
 	ld hl, wEnemySubStatus3
@@ -240,7 +240,7 @@ BattleTurn:
 	res SUBSTATUS_FLINCHED, [hl]
 
 	ld a, [hl]
-	and ((1 << SUBSTATUS_RAMPAGE) | (1 << SUBSTATUS_CHARGED))
+	and (1 << SUBSTATUS_RAMPAGE) | (1 << SUBSTATUS_CHARGED)
 	jp nz, .locked_in
 
 	ld hl, wPlayerSubStatus1
@@ -289,7 +289,7 @@ BattleTurn:
 
 .not_encored
 	ld a, [wPlayerSubStatus3]
-	and ((1 << SUBSTATUS_BIDE) | (1 << SUBSTATUS_USING_TRAPPING_MOVE))
+	and (1 << SUBSTATUS_BIDE) | (1 << SUBSTATUS_USING_TRAPPING_MOVE)
 	jr nz, .locked_in
 	ld a, [wBattlePlayerAction]
 	and a ; BATTLEPLAYERACTION_USEMOVE
@@ -2479,21 +2479,21 @@ LoadBattleMonFromParty:
 	call AddNTimes
 	; Copy species, held item, and move
 	ld de, wBattleMon
-	ld bc, (wPartyMon1ID - wPartyMon1Species) ; 6
+	ld bc, wPartyMon1ID - wPartyMon1Species ; 6
 	call CopyBytes
 	; Skip ID, experience, and stat experience
-	ld bc, (wPartyMon1DVs - wPartyMon1ID) ; 15
+	ld bc, wPartyMon1DVs - wPartyMon1ID ; 15
 	add hl, bc
 	; Copy DVs, PP, and happiness
 	ld de, wBattleMonDVs
-	ld bc, (wPartyMon1PokerusStatus - wPartyMon1DVs) ; 7
+	ld bc, wPartyMon1PokerusStatus - wPartyMon1DVs ; 7
 	call CopyBytes
 	; Copy level, status, current and max HP, and stats
 	inc hl
 	inc hl
 	inc hl
 	ld de, wBattleMonLevel
-	ld bc, (wPartyMon1StatsEnd - wPartyMon1Level) ; 17
+	ld bc, wPartyMon1StatsEnd - wPartyMon1Level ; 17
 	call CopyBytes
 	; Copy both types
 	ld a, [wTempBattleMonSpecies]
@@ -2542,21 +2542,21 @@ LoadEnemyMonFromParty:
 	call AddNTimes
 	; Copy species, held item, and move
 	ld de, wEnemyMon
-	ld bc, (wPartyMon1ID - wPartyMon1Species) ; 6
+	ld bc, wPartyMon1ID - wPartyMon1Species ; 6
 	call CopyBytes
 	; Skip ID, experience, and stat experience
-	ld bc, (wPartyMon1DVs - wPartyMon1ID) ; 15
+	ld bc, wPartyMon1DVs - wPartyMon1ID ; 15
 	add hl, bc
 	; Copy DVs, PP, and happiness
 	ld de, wEnemyMonDVs
-	ld bc, (wPartyMon1PokerusStatus - wPartyMon1DVs) ; 7
+	ld bc, wPartyMon1PokerusStatus - wPartyMon1DVs ; 7
 	call CopyBytes
 	; Copy level, status, current and max HP, and stats
 	inc hl
 	inc hl
 	inc hl
 	ld de, wEnemyMonLevel
-	ld bc, (wPartyMon1StatsEnd - wPartyMon1Level) ; 17
+	ld bc, wPartyMon1StatsEnd - wPartyMon1Level ; 17
 	call CopyBytes
 
 	ld a, [wEnemyMonSpecies]
@@ -4186,12 +4186,12 @@ ParseEnemyAction:
 
 .not_encored
 	ld a, [wEnemySubStatus4]
-	and ((1 << SUBSTATUS_RECHARGE) | (1 << SUBSTATUS_RAGE))
+	and (1 << SUBSTATUS_RECHARGE) | (1 << SUBSTATUS_RAGE)
 	jp nz, .locked_in
 
 	ld hl, wEnemySubStatus3
 	ld a, [hl]
-	and ((1 << SUBSTATUS_RAMPAGE) | (1 << SUBSTATUS_CHARGED))
+	and (1 << SUBSTATUS_RAMPAGE) | (1 << SUBSTATUS_CHARGED)
 	jp nz, .locked_in
 
 	ld hl, wEnemySubStatus1
@@ -4199,7 +4199,7 @@ ParseEnemyAction:
 	jp nz, .locked_in
 
 	ld a, [wEnemySubStatus3]
-	and ((1 << SUBSTATUS_USING_TRAPPING_MOVE) | (1 << SUBSTATUS_BIDE))
+	and (1 << SUBSTATUS_USING_TRAPPING_MOVE) | (1 << SUBSTATUS_BIDE)
 	jp nz, .locked_in
 
 	ld a, [wPlayerSubStatus3]

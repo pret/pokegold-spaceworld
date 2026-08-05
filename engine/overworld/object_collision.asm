@@ -64,7 +64,7 @@ CheckFacingObject::
 	call GetFacingTileCoord
 	cp COLL_COUNTER
 	jr z, .counter
-	cp (COLL_COUNTER | COLLFLAG_ENCOUNTER)
+	cp COLL_COUNTER | COLLFLAG_ENCOUNTER
 	jr nz, .not_counter
 .counter
 	ld a, [wPlayerMapX]

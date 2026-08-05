@@ -573,7 +573,7 @@ DebugSelectedItemMenu:
 	db 1 ; default option
 
 .DebugSelectedItemMenuText
-	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING
 	db 3
 	db "つかう@" ; use
 	db "すてる@" ; toss
@@ -586,7 +586,7 @@ SelectedItemMenu:
 	db 1 ; default option
 
 .SelectedItemMenuText
-	db (STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING)
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING
 	db 2
 	db "つかう@" ; use
 	db "すてる@" ; toss
