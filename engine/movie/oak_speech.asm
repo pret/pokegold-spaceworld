@@ -157,12 +157,11 @@ GameStartPlacement::
 
 DebugSetUpPlayer::
 	call SetPlayerNamesDebug
-; Set money to 999999
-	ld a, $0F
+	ld a, HIGH(DEBUG_MONEY >> 8)
 	ld [wMoney], a
-	ld a, $42
+	ld a, HIGH(DEBUG_MONEY)
 	ld [wMoney + 1], a
-	ld a, $3F
+	ld a, LOW(DEBUG_MONEY)
 	ld [wMoney + 2], a
 	ld a, $FF ; give all badges
 	ld [wJohtoBadges], a

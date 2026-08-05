@@ -28,7 +28,8 @@ DEF REDRAW_COL EQU 1
 DEF REDRAW_ROW EQU 2
 
 ; significant money values
-DEF MAX_COINS EQU 9999
+DEF DEBUG_MONEY EQU 999999
+DEF MAX_COINS   EQU 9999
 
 ; LoadMenuMonIcon.Jumptable indexes (see engine/gfx/mon_icons.asm)
 const_def
