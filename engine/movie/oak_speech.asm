@@ -16,7 +16,7 @@ DemoStart::
 	call DemoSetUpPlayer
 	jp IntroCleanup
 
-GameStart::
+GameStart:: ; unreferenced
 	ld de, OakPic
 	lb bc, BANK(OakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -260,8 +260,7 @@ GiveRandomJohto::
 	ld [wPartyMon1 + 1], a
 	ret
 
-; Unreferenced
-GiveKantoStarters::
+GiveKantoStarters:: ; unreferenced
 	ld a, DEX_VENUSAUR
 	ld b, 32
 	call GivePokemon
@@ -319,16 +318,16 @@ FillTMs::
 	jr nz, .loop
 	ret
 
-DebugGiveKeyItems::
+DebugGiveKeyItems:: ; unreferenced
 	ld hl, DebugKeyItemsList
 	ld de, wKeyItems
-	ld c, $FF
+	ld c, -1
 .loop
 	inc c
 	ld a, [hli]
 	ld [de], a
 	inc de
-	cp $FF
+	cp -1
 	jr nz, .loop
 	ld a, c
 	ld [wNumKeyItems], a
@@ -339,7 +338,7 @@ DebugKeyItemsList::
 	db ITEM_BALL_HOLDER
 	db ITEM_BAG
 	db ITEM_BICYCLE
-	db $FF
+	db -1
 
 DemoSetUpPlayer::
 	ld hl, wPlayerName

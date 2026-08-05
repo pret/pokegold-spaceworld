@@ -900,7 +900,7 @@ SilentHillLabFrontTextString11B:
 	line "きに　なるからな"
 	done
 
-SilentHillLabFrontText8:
+SilentHillLabFrontText8: ; unreferenced
 	ld hl, SilentHillLabFrontTextString12
 	call OpenTextbox
 	ret
@@ -914,7 +914,7 @@ SilentHillLabFrontTextString12:
 	cont "みて　あげようか！"
 	done
 
-SilentHillLabFrontText9:
+SilentHillLabFrontText9: ; unreferenced
 	ld hl, SilentHillLabFrontTextString13
 	call OpenTextbox
 	ret
@@ -938,7 +938,7 @@ SilentHillLabFrontTextString13:
 	cont "<RIVAL>『ギクッ！"
 	done
 
-SilentHillLabFrontText10:
+SilentHillLabFrontText10: ; unreferenced
 	ld hl, SilentHillLabFrontTextString14
 	call OpenTextbox
 	ret

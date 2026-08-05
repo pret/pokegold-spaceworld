@@ -211,7 +211,7 @@ _TossItem::
 .remove_item
 	jp RemoveItemFromPocket
 
-_CheckItem:
+_CheckItem: ; unreferenced
 	call DoesHLEqualwNumBagItems
 	jr nz, .not_bag
 	push hl
@@ -676,7 +676,7 @@ GetTMHMNumber:
 	and a
 	ret
 
-GetNumberedTMHM:
+GetNumberedTMHM: ; unreferenced
 ; Return the item id of a TM/HM by number c.
 	ld a, c
 	ld c, 0

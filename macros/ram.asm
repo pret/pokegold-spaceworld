@@ -178,13 +178,11 @@ MACRO channel_struct
 ENDM
 
 MACRO mailmsg
-\1Message:: ds MAIL_MSG_LENGTH
-\1MessageEnd:: ds 1
-\1Author:: ds PLAYER_NAME_LENGTH
-\1AuthorNationality:: ds 2
-\1AuthorID:: ds 2
-\1Species:: ds 1
-\1Type:: ds 1
+\1Line1::      ds MAIL_LINE_LENGTH
+\1LineBreak::  db ; '<NEXT>'
+\1Line2::      ds MAIL_LINE_LENGTH
+\1MessageEnd:: db ; '@'
+\1Author::     ds PLAYER_NAME_LENGTH ; never gets written to and stays blank
 \1End::
 ENDM
 

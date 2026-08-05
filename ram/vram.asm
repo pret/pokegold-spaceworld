@@ -23,7 +23,7 @@ vFont::
 vFrontPic::
 	ds 7 * 7 tiles
 vBackPic::
-	ds 7 * 7 tiles
+	ds 6 * 6 tiles
 
 NEXTU
 
@@ -38,19 +38,6 @@ vTileset::
 vExteriorTileset::
 	ds $40 tiles
 vTilesetEnd::
-
-NEXTU
-
-	ds $80 tiles
-
-vTitleLogo::
-	ds $80 tiles
-
-;vFrontPic::
-	ds 7 * 7 tiles
-
-vTitleLogo2::
-	; TODO: what size?
 
 NEXTU
 

@@ -103,16 +103,16 @@ CopyWord::
 	ld [de], a
 	ret
 
-SetMapScriptNumber::
+SetMapScriptNumber:: ; unreferenced
 	ld [wMapScriptNumber], a
 	ret
 
-IncMapScriptNumber::
+IncMapScriptNumber:: ; unreferenced
 	ld hl, wMapScriptNumber
 	inc [hl]
 	ret
 
-DecMapScriptNumber::
+DecMapScriptNumber:: ; unreferenced
 	ld hl, wMapScriptNumber
 	dec [hl]
 	ret
