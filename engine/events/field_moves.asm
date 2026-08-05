@@ -1,5 +1,3 @@
-; TODO - need to constantize tile ids, movements
-
 MACRO def_field_scripts
 	DEF field_script_id = 0
 ENDM
@@ -93,6 +91,8 @@ GetCutReplacementBlock:
 	jr nz, .loop
 	scf
 	ret
+
+; TODO - constantize Cut block IDs
 
 CutReplacementBlocks:
 ; replacement block, facing block
@@ -289,7 +289,7 @@ MovePlayerIntoWater:
 	call InitMovementBuffer
 	call .get_movement_direction
 	call AppendToMovementBuffer
-	ld a, $32
+	ld a, movement_step_end
 	call AppendToMovementBuffer
 	ld a, 0
 	ld hl, wMovementBuffer
@@ -299,15 +299,17 @@ MovePlayerIntoWater:
 	srl a
 	srl a
 	ld e, a
-	ld d, $00
-	ld hl, SurfMovementDirections
+	ld d, 0
+	ld hl, SurfMovementSteps
 	add hl, de
 	ld a, [hl]
 	ret
 
-; Direction to move player, mapped to facing direction
-SurfMovementDirections:
-	db 4, 5, 6, 7
+SurfMovementSteps:
+	db movement_slow_step | DOWN
+	db movement_slow_step | UP
+	db movement_slow_step | LEFT
+	db movement_slow_step | RIGHT
 
 FlyFunction:
 	call .ResetScriptID

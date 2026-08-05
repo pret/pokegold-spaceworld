@@ -34,12 +34,13 @@ RunBattleAnimScript_User:
 	ld a, [wFXAnimID + 1]
 	and a
 	ret z
+
 .enabled
 	xor a
 	ldh [hBGMapMode], a
 	call BattleAnimAssignPals
 	xor a
-	ld [wBattleAnimOAMPointerLo + 1], a ; TODO
+	ld [wUnusedBattleAnimScriptByte], a
 
 .playframe
 	call RunBattleAnimCommand
@@ -73,7 +74,7 @@ RunBattleAnimScript_Target:
 	ldh [hBGMapMode], a
 	call ClearBattleAnims
 	xor a
-	ld [wBattleAnimOAMPointerLo + 1], a ; todo
+	ld [wUnusedBattleAnimScriptByte], a
 
 .playframe
 	call RunBattleAnimCommand

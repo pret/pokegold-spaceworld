@@ -1,5 +1,3 @@
-; TODO: These aren't bespoke morning/day/night chunks. Find a way to indicate this.
-
 GrassWildMons::
 INCLUDE "data/wild/maps/Route1.asm"
 INCLUDE "data/wild/maps/Route2.asm"

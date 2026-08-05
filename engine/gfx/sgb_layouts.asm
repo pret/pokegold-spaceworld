@@ -58,7 +58,7 @@ SGB_BattleColors:
 	call DeterminePaletteID_0
 	jr c, .pass1
 
-	ld e, $00
+	ld e, FALSE
 	call CheckShininessBattle
 .pass1
 	ld b, a
@@ -66,7 +66,7 @@ SGB_BattleColors:
 	ld hl, wTempEnemyMonSpecies
 	call DeterminePaletteID_0
 	jr c, .pass2
-	ld e, $01
+	ld e, TRUE
 	call CheckShininessBattle
 .pass2
 	ld c, a
@@ -466,16 +466,17 @@ CheckShininessBattle:
 	push bc
 	push af
 
+	; shift specified shiny flag into carry flag (player's if e is FALSE, enemy's if e is TRUE)
 	ld a, e
 	and a
-	ld a, [wMonSGBPaletteFlagsBuffer]
-	jr z, .player_mon_is_shiny
-
+	ld a, [wBattleShinyPaletteFlags]
+	jr z, .player_mon
 	srl a
-.player_mon_is_shiny
+.player_mon
 	srl a
 
-	ld b, $00
+	; offset mon palette range to shiny palette range is carry flag is set
+	ld b, 0
 	jr nc, .pass
 	ld b, PAL_SHINY_MEWMON - PAL_MEWMON
 .pass
@@ -514,8 +515,7 @@ CheckShininess:
 	and a
 	ret
 
-; TODO: Come up with a better name for this.
-GetMonSGBPaletteFlags:
+UpdateBattleShinyPaletteFlags:
 	ld hl, wEnemyMonDVs
 	ldh a, [hBattleTurn]
 	and a
@@ -523,7 +523,7 @@ GetMonSGBPaletteFlags:
 	ld hl, wBattleMonDVs
 .enemy_turn
 	call CheckShininess
-	ld hl, wMonSGBPaletteFlagsBuffer
+	ld hl, wBattleShinyPaletteFlags
 	jr nc, .not_shiny
 
 	ldh a, [hBattleTurn]
@@ -531,10 +531,11 @@ GetMonSGBPaletteFlags:
 	jr nz, .enemy_shiny
 
 	set 0, [hl]
-	jr .return
+	jr .done
+
 .enemy_shiny
 	set 1, [hl]
-	jr .return
+	jr .done
 
 .not_shiny
 	ldh a, [hBattleTurn]
@@ -542,11 +543,11 @@ GetMonSGBPaletteFlags:
 	jr nz, .enemy_not_shiny
 
 	res 0, [hl]
-	jr .return
+	jr .done
 
 .enemy_not_shiny
 	res 1, [hl]
-.return
+.done
 	ret
 
 InitPartyMenuPalettes:

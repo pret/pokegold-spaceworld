@@ -598,7 +598,6 @@ SendGetMonIntoFromBox::
 	and a
 	ret
 
-; TODO: Might not be for breedmon?
 RetrieveBreedmonOrBuffermon:
 	ld hl, wPartyCount
 	ld a, [hl]
@@ -619,16 +618,16 @@ RetrieveBreedmonOrBuffermon:
 	ld c, a
 	ld b, 0
 	add hl, bc
+
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	ld a, [wBufferMonSpecies]
 	ld de, wBufferMonNickname
-	jr z, .okay ; unused in practice
-
+	jr z, .okay
 	ld a, [wBreedMon1Species]
 	ld de, wBreedMon1Nickname
-
 .okay
+
 	ld [hli], a
 	ld [wCurSpecies], a
 	ld a, -1

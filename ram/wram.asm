@@ -500,7 +500,7 @@ wBattleAnimLoops:: db
 wBattleAnimVar:: db
 wBattleAnimByte:: db
 wBattleAnimOAMPointerLo:: db
-	db
+wUnusedBattleAnimScriptByte:: db
 
 UNION
 wBattleObjectTempID:: db
@@ -752,8 +752,9 @@ wEnemyScreens:: db
 wPlayerSafeguardCount:: db
 wEnemySafeguardCount:: db
 
-; There's got to be a better name for this...
-wMonSGBPaletteFlagsBuffer:: db
+; bit 0: player is shiny
+; bit 1: enemy is shiny
+wBattleShinyPaletteFlags:: db
 
 wBattleWeather:: db
 wWeatherCount:: db

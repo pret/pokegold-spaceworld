@@ -1338,10 +1338,9 @@ EnemyMonFainted:
 	text "は　たおれた！"
 	prompt
 
-; TODO: Does it really stop the Danger Sound? wBattleLowHealthAlarm doesn't appear to be read anywhere else...
 StopDangerSound:
 	inc a
-	ld [wBattleLowHealthAlarm], a
+	ld [wBattleLowHealthAlarm], a ; TODO: should this be wLowHealthAlarm?
 	ret
 
 CheckEnemyTrainerDefeated:
@@ -2522,7 +2521,7 @@ LoadBattleMonFromParty:
 
 	xor a
 	ldh [hBattleTurn], a
-	callfar GetMonSGBPaletteFlags
+	callfar UpdateBattleShinyPaletteFlags
 	ret
 
 ApplyStatMods:
@@ -4619,7 +4618,7 @@ LoadEnemyMon:
 
 	ld a, 1
 	ldh [hBattleTurn], a
-	callfar GetMonSGBPaletteFlags
+	callfar UpdateBattleShinyPaletteFlags
 	ret
 
 ; Leftover from Generation I.

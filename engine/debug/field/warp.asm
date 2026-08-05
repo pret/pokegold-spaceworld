@@ -8,7 +8,7 @@ FieldDebug_Warp:
 	ld a, [wMenuSelection]
 	ld [wDefaultSpawnPoint], a
 	ld hl, wStateFlags
-	set 6, [hl] ; TODO: ???
+	set UNUSED_STATE_FLAG_6_F, [hl]
 	ldh a, [hROMBank]
 	ld hl, FieldDebug_ShowWarpToText
 	call QueueScript
