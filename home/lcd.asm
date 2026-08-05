@@ -40,8 +40,11 @@ LCD::
 	pop af
 	reti
 
-; TODO: can this be done using `sine_table`?
-	db 0, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 3, 3, 2, 2, 1, 0, -1, -2, -2, -3, -3, -4, -4, -4, -4, -4, -3, -3, -2, -2, -1
+UnusedSineTable: ; unreferenced
+; 32 samples of sin(x) from x=0 to x<1.0 turns (tau = 2*pi radians), scaled to amplitude ±4
+for x, 32
+	db div(sin(div(x * 1.0, 32.0)), 64.0)
+endr
 
 DisableLCD::
 	ldh a, [rLCDC]
