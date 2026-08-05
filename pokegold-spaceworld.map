@@ -84,6 +84,7 @@ ROM0 bank #0:
 	         $03c8 = LCD.try_hide_sprites
 	         $03d3 = LCD.dont_hide
 	         $03df = LCD.done
+	         $03e1 = UnusedSineTable
 	         $0401 = DisableLCD
 	         $0410 = DisableLCD.wait
 	         $0423 = EnableLCD
