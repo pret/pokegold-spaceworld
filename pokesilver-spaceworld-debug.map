@@ -1502,7 +1502,7 @@ ROMX bank #1:
 	         $568e = IntroCleanup
 	         $56d5 = OverworldStart
 	         $56e8 = SetUpGameEntry
-	         $570d = GameStartPlacement
+	         $570d = GameStartMapLocation
 	         $5715 = DebugSetUpPlayer
 	         $5755 = DebugFillPokedex
 	         $5759 = DebugFillPokedex.loop
@@ -1512,8 +1512,8 @@ ROMX bank #1:
 	         $5777 = DebugBagItems
 	         $57a0 = GiveRandomPokemon
 	         $57a2 = GiveRandomPokemon.loop
-	         $57b0 = GiveRandomJohto
-	         $57b0 = GiveRandomJohto.loop
+	         $57b0 = GiveRandomJohtoStarter
+	         $57b0 = GiveRandomJohtoStarter.loop
 	         $57c8 = GiveKantoStarters
 	         $57de = GivePokemon
 	         $57eb = AddRandomPokemonToBox
@@ -25369,6 +25369,7 @@ WRAM0 bank #0:
 	         $d647 = wUsedNPCSprites
 	         $d64f = wUsedStaticSprites
 	         $d651 = wUsedSpritesEnd
+	         $d656 = wMapLocation
 	         $d656 = wMapGroup
 	         $d657 = wMapId
 	         $d658 = wOverworldMapAnchor
@@ -25376,7 +25377,8 @@ WRAM0 bank #0:
 	         $d65b = wXCoord
 	         $d65c = wMetatileNextY
 	         $d65d = wMetatileNextX
-	         $d65e = wMapIdStack
+	         $d65e = wMapLocationEnd
+	         $d65e = wUnusedGameEntryByte
 	         $d65f = wMapPartial
 	         $d65f = wMapAttributesBank
 	         $d660 = wMapTileset
