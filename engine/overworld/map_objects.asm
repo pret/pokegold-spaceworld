@@ -1089,7 +1089,7 @@ SpawnShadow:
 .ShadowObject:
 	db MINOR_OBJECT_TYPE_SHADOW, MINOR_OBJECT_ANIM_SHADOW, $fc, 2, 0, 8
 
-SpawnStrengthBoulderDust: ; Unreferenced in this build
+SpawnStrengthBoulderDust: ; unreferenced
 	ld e, a
 	add a
 	add e

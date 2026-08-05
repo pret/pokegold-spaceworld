@@ -10,8 +10,7 @@ GetMapObject::
 	ld c, l
 	ret
 
-; unreferenced
-GetMapObjectAttrPtr::
+GetMapObjectAttrPtr:: ; unreferenced
 	call GetMapObject
 	ld d, $0
 	add hl, de

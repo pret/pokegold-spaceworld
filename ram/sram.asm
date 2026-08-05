@@ -49,15 +49,15 @@ SECTION "Boxes 1-5", SRAM
 	boxes 5
 
 
-SECTION "Mail", SRAM
+SECTION "Save Mail", SRAM
 
-; sPartyMail, was originally in Bank 2
 sPartyMail::
 ; sPartyMon1Mail - sPartyMon6Mail
 for n, 1, PARTY_LENGTH + 1
 sPartyMon{d:n}Mail:: mailmsg sPartyMon{d:n}Mail
 endr
 sPartyMailEnd::
+
 
 SECTION "Boxes 6-10", SRAM
 
