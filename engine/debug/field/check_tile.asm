@@ -21,7 +21,7 @@ FieldDebug_CheckTile:
 	call .ShowTileNumber
 	ld a, 10
 	call DelayFrames
-	ld a, BUTTONS
+	ld a, PAD_BUTTONS
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
 	ret

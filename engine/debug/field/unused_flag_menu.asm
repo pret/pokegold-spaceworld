@@ -23,7 +23,7 @@ FieldDebug_UnusedFlagMenu: ; unused?
 	bccoord 0, 14
 	call .DoCheckFlags
 	call WaitBGMap
-	ld a, A_BUTTON | B_BUTTON
+	ld a, PAD_A | PAD_B
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
 	ld a, FIELDDEBUG_RETURN_REOPEN

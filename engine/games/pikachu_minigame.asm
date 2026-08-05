@@ -138,7 +138,7 @@ PikachuMiniGame::
 
 PikachuMiniGame_ClearBothTilemaps:
 	ld hl, vBGMap1
-	ld bc, SCREEN_WIDTH * BG_MAP_HEIGHT
+	ld bc, SCREEN_WIDTH * TILEMAP_HEIGHT
 .clear_bgmap
 	ld [hl], 0
 	inc hl
@@ -164,13 +164,13 @@ PikachuMiniGame_ClearBothTilemaps:
 PikachuMiniGame_LoadFont:
 	ld hl, FontGFX
 	ld de, vFont tile $10
-	ld bc, 112 * LEN_1BPP_TILE
+	ld bc, 112 * TILE_1BPP_SIZE
 	ld a, BANK(FontGFX)
 	call FarCopyDataDouble
 
 	ld hl, FontGFX tile $39
 	ld de, vChars2 tile $32
-	ld bc, 16 * LEN_1BPP_TILE
+	ld bc, 16 * TILE_1BPP_SIZE
 	ld a, BANK(FontGFX)
 	call FarCopyDataDouble
 	ret
@@ -247,11 +247,11 @@ PikachuMiniGame_Copy128Tiles: ; unreferenced?
 	ret
 
 PikachuMiniGame_DrawBackground:
-	ld b, BG_MAP_HEIGHT / 2
+	ld b, TILEMAP_HEIGHT / 2
 
 .outer_loop
 	push hl
-	ld c, BG_MAP_WIDTH / 2
+	ld c, TILEMAP_WIDTH / 2
 
 .inner_loop
 	call PikachuMiniGame_Draw2x2Tile
@@ -259,7 +259,7 @@ PikachuMiniGame_DrawBackground:
 	jr nz, .inner_loop
 	pop hl
 	push bc
-	ld bc, BG_MAP_HEIGHT * 2
+	ld bc, TILEMAP_HEIGHT * 2
 	add hl, bc
 	pop bc
 	dec b
@@ -296,7 +296,7 @@ PikachuMiniGame_Draw2x2Tile:
 	ld [hli], a
 	pop hl
 
-	ld bc, BG_MAP_WIDTH
+	ld bc, TILEMAP_WIDTH
 	add hl, bc
 	ld a, [de]
 	inc de
@@ -323,7 +323,7 @@ PikachuMiniGame_RunFrame:
 	ld a, [hl]
 
 ; Skip minigame on pressing Start
-	and START
+	and PAD_START
 	jr nz, .Done
 
 	ld a, [wPikachuMinigameJumptableIndex]
@@ -364,7 +364,7 @@ PikachuMiniGame_RunFrame:
 	callfar ClearSpriteAnims
 
 	ld hl, wShadowOAM
-	ld c, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
+	ld c, OBJ_SIZE * OAM_COUNT
 	xor a
 .clear_oam
 	ld [hli], a
@@ -533,7 +533,7 @@ PikachuMiniGame_SetupScene:
 	ld a, 4
 	ld [wPikachuMinigameScrollSpeed], a
 
-	ld a, D_LEFT | D_RIGHT | A_BUTTON
+	ld a, PAD_LEFT | PAD_RIGHT | PAD_A
 	ld [wPikachuMinigameControlEnable], a
 
 	ld hl, wPikachuMinigameJumptableIndex
@@ -801,7 +801,7 @@ MinigamePikachuDoMovement::
 	and [hl]
 	ld d, a
 
-	and A_BUTTON
+	and PAD_A
 	jr nz, .do_jump
 
 ; Don't animate Pikachu when the screen is still

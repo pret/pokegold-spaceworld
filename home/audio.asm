@@ -6,11 +6,11 @@ DisableAudio::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_DisableAudio)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	call _DisableAudio
 	pop af
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	pop bc
@@ -26,11 +26,11 @@ UpdateSound::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_UpdateSound)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	call _UpdateSound
 	pop af
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	pop bc
@@ -39,12 +39,12 @@ UpdateSound::
 	ret
 
 _LoadMusicByte::
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	ld a, [de]
 	push af
 	ld a, BANK(_UpdateSound)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	ret
@@ -57,11 +57,11 @@ PlayMusic::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_PlayMusic)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	call _PlayMusic
 	pop af
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	pop bc
@@ -78,7 +78,7 @@ PlayCryHeader::
 	push af
 
 	ld a, BANK(PokemonCries)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	ld hl, PokemonCries
 rept 6
@@ -98,12 +98,12 @@ endr
 	ld [wCryLength + 1], a
 
 	ld a, BANK(_PlayCryHeader)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	call _PlayCryHeader
 
 	pop af
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	pop bc
@@ -119,11 +119,11 @@ PlaySFX::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_PlaySFX)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	call _PlaySFX
 	pop af
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	pop bc

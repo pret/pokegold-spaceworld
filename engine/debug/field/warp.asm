@@ -32,7 +32,7 @@ DebugMenu_DisplayWarpSubmenu:
 	call ScrollingMenu
 	call CloseWindow
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .cancel
 	and a
 	ret

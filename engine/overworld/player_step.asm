@@ -223,7 +223,7 @@ UpdateOverworldMap:
 
 ScrollOverworldMapDown:
 	ld a, [wBGMapAnchor]
-	add BG_MAP_WIDTH * 2
+	add TILEMAP_WIDTH * 2
 	ld [wBGMapAnchor], a
 	jr nc, .no_overflow
 	ld a, [wBGMapAnchor + 1]
@@ -254,7 +254,7 @@ ScrollOverworldMapDown:
 
 ScrollOverworldMapUp:
 	ld a, [wBGMapAnchor]
-	sub BG_MAP_WIDTH * 2
+	sub TILEMAP_WIDTH * 2
 	ld [wBGMapAnchor], a
 	jr nc, .not_underflowed
 	ld a, [wBGMapAnchor+1]
@@ -288,11 +288,11 @@ ScrollOverworldMapUp:
 ScrollOverworldMapLeft:
 	ld a, [wBGMapAnchor]
 	ld e, a
-	and ~(BG_MAP_WIDTH - 1)
+	and ~(TILEMAP_WIDTH - 1)
 	ld d, a
 	ld a, e
 	sub 2
-	maskbits BG_MAP_WIDTH - 1
+	maskbits TILEMAP_WIDTH - 1
 	or d
 	ld [wBGMapAnchor], a
 	ld hl, wMetatileNextX
@@ -317,11 +317,11 @@ ScrollOverworldMapLeft:
 ScrollOverworldMapRight:
 	ld a, [wBGMapAnchor]
 	ld e, a
-	and ~(BG_MAP_WIDTH - 1)
+	and ~(TILEMAP_WIDTH - 1)
 	ld d, a
 	ld a, e
 	add 2
-	maskbits BG_MAP_WIDTH - 1
+	maskbits TILEMAP_WIDTH - 1
 	or d
 	ld [wBGMapAnchor], a
 	ld hl, wMetatileNextX
@@ -500,7 +500,7 @@ ScrollOverworldFlashlight::
 	ld a, [wBGMapAnchor + 1]
 	ld d, a
 .row_loop
-	ld a, BG_MAP_WIDTH
+	ld a, TILEMAP_WIDTH
 	add e
 	ld e, a
 	jr nc, .no_overflow
@@ -515,10 +515,10 @@ ScrollOverworldFlashlight::
 .tile_loop
 	ld a, e
 	inc a
-	maskbits BG_MAP_WIDTH - 1 ; only works if BG_MAP_WIDTH is 2^n
+	maskbits TILEMAP_WIDTH - 1 ; only works if TILEMAP_WIDTH is 2^n
 	ld b, a
 	ld a, e
-	and ~(BG_MAP_WIDTH - 1)
+	and ~(TILEMAP_WIDTH - 1)
 	or b
 	ld e, a
 	dec c

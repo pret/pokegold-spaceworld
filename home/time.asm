@@ -1,8 +1,8 @@
 LatchClock:
 	ld a, 0
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ld a, 1
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ret
 
 UpdateTime::
@@ -11,26 +11,26 @@ UpdateTime::
 	ret nz
 
 ; enable clock r/w
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
 
 ; clock data is 'backwards' in hram
 	call LatchClock
-	ld a, RTC_S
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
+	ld a, RAMB_RTC_S
+	ld [rRAMB], a
+	ld a, [rRTCREG]
 	and $7f
 	ldh [hRTCSeconds], a
 
-	ld a, RTC_M
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
+	ld a, RAMB_RTC_M
+	ld [rRAMB], a
+	ld a, [rRTCREG]
 	and $7f
 	ldh [hRTCMinutes], a
 
-	ld a, RTC_H
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
+	ld a, RAMB_RTC_H
+	ld [rRAMB], a
+	ld a, [rRTCREG]
 	and $1f
 	ldh [hRTCHours], a
 	call CloseSRAM
@@ -94,29 +94,29 @@ SetClock::
 	set 0, [hl]
 	call StopRTC
 ; enable clock r/w
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
 ; set clock data
 ; stored 'backwards' in hram
 	call LatchClock
 
 ; seconds
-	ld a, RTC_S
-	ld [MBC3SRamBank], a
+	ld a, RAMB_RTC_S
+	ld [rRAMB], a
 	ld a, 0
-	ld [MBC3RTC], a
+	ld [rRTCREG], a
 
 ; minutes
-	ld a, RTC_M
-	ld [MBC3SRamBank], a
+	ld a, RAMB_RTC_M
+	ld [rRAMB], a
 	ld a, [wStartMinute]
-	ld [MBC3RTC], a
+	ld [rRTCREG], a
 
 ; hours
-	ld a, RTC_H
-	ld [MBC3SRamBank], a
+	ld a, RAMB_RTC_H
+	ld [rRAMB], a
 	ld a, [wStartHour]
-	ld [MBC3RTC], a
+	ld [rRTCREG], a
 
 ; days
 	ld a, [wStartDay]
@@ -129,25 +129,25 @@ SetClock::
 	ret
 
 StopRTC:: ; unreferenced
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
 	call LatchClock
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
+	ld a, RAMB_RTC_DH
+	ld [rRAMB], a
+	ld a, [rRTCREG]
 	set 6, a
-	ld [MBC3RTC], a
+	ld [rRTCREG], a
 	call CloseSRAM
 	ret
 
 StartRTC::
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
 	call LatchClock
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
+	ld a, RAMB_RTC_DH
+	ld [rRAMB], a
+	ld a, [rRTCREG]
 	res 6, a
-	ld [MBC3RTC], a
+	ld [rRTCREG], a
 	call CloseSRAM
 	ret

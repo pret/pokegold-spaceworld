@@ -33,10 +33,10 @@ SpriteViewerSpriteTilemap::
 	db 8, 8, $0f, RELATIVE_ATTRIBUTES | FACING_DONE
 
 .FacingStepDown3: ; walking down 2
-	db 0, 8, $0c, X_FLIP
-	db 0, 0, $0d, X_FLIP
-	db 8, 8, $0e, RELATIVE_ATTRIBUTES | X_FLIP
-	db 8, 0, $0f, RELATIVE_ATTRIBUTES | X_FLIP | FACING_DONE
+	db 0, 8, $0c, OAM_XFLIP
+	db 0, 0, $0d, OAM_XFLIP
+	db 8, 8, $0e, RELATIVE_ATTRIBUTES | OAM_XFLIP
+	db 8, 0, $0f, RELATIVE_ATTRIBUTES | OAM_XFLIP | FACING_DONE
 
 .FacingStepUp0:
 .FacingStepUp2: ; standing up
@@ -52,10 +52,10 @@ SpriteViewerSpriteTilemap::
 	db 8, 8, $13, RELATIVE_ATTRIBUTES | FACING_DONE
 
 .FacingStepUp3: ; walking up 2
-	db 0, 8, $10, X_FLIP
-	db 0, 0, $11, X_FLIP
-	db 8, 8, $12, RELATIVE_ATTRIBUTES | X_FLIP
-	db 8, 0, $13, RELATIVE_ATTRIBUTES | X_FLIP | FACING_DONE
+	db 0, 8, $10, OAM_XFLIP
+	db 0, 0, $11, OAM_XFLIP
+	db 8, 8, $12, RELATIVE_ATTRIBUTES | OAM_XFLIP
+	db 8, 0, $13, RELATIVE_ATTRIBUTES | OAM_XFLIP | FACING_DONE
 
 .FacingStepLeft0:
 .FacingStepLeft2: ; standing left
@@ -66,10 +66,10 @@ SpriteViewerSpriteTilemap::
 
 .FacingStepRight0:
 .FacingStepRight2: ; standing right
-	db 0, 8, $08, X_FLIP
-	db 0, 0, $09, X_FLIP
-	db 8, 8, $0a, RELATIVE_ATTRIBUTES | X_FLIP
-	db 8, 0, $0b, RELATIVE_ATTRIBUTES | X_FLIP | FACING_DONE
+	db 0, 8, $08, OAM_XFLIP
+	db 0, 0, $09, OAM_XFLIP
+	db 8, 8, $0a, RELATIVE_ATTRIBUTES | OAM_XFLIP
+	db 8, 0, $0b, RELATIVE_ATTRIBUTES | OAM_XFLIP | FACING_DONE
 
 .FacingStepLeft1:
 .FacingStepLeft3: ; walking left
@@ -80,7 +80,7 @@ SpriteViewerSpriteTilemap::
 
 .FacingStepRight1:
 .FacingStepRight3: ; walking right
-	db 0, 8, $14, X_FLIP
-	db 0, 0, $15, X_FLIP
-	db 8, 8, $16, RELATIVE_ATTRIBUTES | X_FLIP
-	db 8, 0, $17, RELATIVE_ATTRIBUTES | X_FLIP | FACING_DONE
+	db 0, 8, $14, OAM_XFLIP
+	db 0, 0, $15, OAM_XFLIP
+	db 8, 8, $16, RELATIVE_ATTRIBUTES | OAM_XFLIP
+	db 8, 0, $17, RELATIVE_ATTRIBUTES | OAM_XFLIP | FACING_DONE

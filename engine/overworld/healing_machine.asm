@@ -42,15 +42,15 @@ PokeCenterFlashingMonitorAndHealBall:
 
 PokeCenterOAMData:
 	; heal machine monitor
-	dbsprite  4,  4,  2,  0, $7c, OBP_NUM
-	dbsprite  4,  4,  6,  0, $7c, OBP_NUM
+	dbsprite  4,  4,  2,  0, $7c, OAM_PAL1
+	dbsprite  4,  4,  6,  0, $7c, OAM_PAL1
 	; poke balls 1-6
-	dbsprite  4,  4,  0,  6, $7d, OBP_NUM
-	dbsprite  5,  4,  0,  6, $7d, OBP_NUM | X_FLIP
-	dbsprite  4,  5,  0,  3, $7d, OBP_NUM
-	dbsprite  5,  5,  0,  3, $7d, OBP_NUM | X_FLIP
-	dbsprite  4,  6,  0,  0, $7d, OBP_NUM
-	dbsprite  5,  6,  0,  0, $7d, OBP_NUM | X_FLIP
+	dbsprite  4,  4,  0,  6, $7d, OAM_PAL1
+	dbsprite  5,  4,  0,  6, $7d, OAM_PAL1 | OAM_XFLIP
+	dbsprite  4,  5,  0,  3, $7d, OAM_PAL1
+	dbsprite  5,  5,  0,  3, $7d, OAM_PAL1 | OAM_XFLIP
+	dbsprite  4,  6,  0,  0, $7d, OAM_PAL1
+	dbsprite  5,  6,  0,  0, $7d, OAM_PAL1 | OAM_XFLIP
 
 LoadHealingMachineSprites:
 	ld a, 2

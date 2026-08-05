@@ -17,19 +17,19 @@ _DebugMenuSoundTest::
 	and a
 	jr z, .Loop
 
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .a_pressed
 
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .b_pressed
 
-	bit START_F, a
+	bit B_PAD_START, a
 	jr nz, .start_pressed
 
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .up_pressed
 
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .down_pressed
 
 	ret

@@ -21,7 +21,7 @@ MenuTextBox::
 .Data:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw VRAM_Begin
+	dw vChars0
 	db 0 ; default option
 
 MenuTextBoxBackup::
@@ -57,7 +57,7 @@ VerticalMenu::
 	jr z, .cancel
 	call InitVerticalMenuCursor
 	call StaticMenuJoypad
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .okay
 .cancel
 	scf
@@ -327,42 +327,42 @@ GetStaticMenuJoypad::
 	ld a, [wMenuDataFlags]
 	bit STATICMENU_ENABLE_START_F, a
 	jr z, .disallow_start
-	set START_F, [hl]
+	set B_PAD_START, [hl]
 
 .disallow_start
 	bit STATICMENU_ENABLE_LEFT_RIGHT_F, a
 	jr z, .disallow_left_right
 	ld a, [hl]
-	or D_LEFT | D_RIGHT
+	or PAD_LEFT | PAD_RIGHT
 	ld [hl], a
 
 .disallow_left_right:
 	call StaticMenuJoypad
 	pop de
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .a_pressed
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .b_start_pressed
-	bit START_F, a
+	bit B_PAD_START, a
 	jr nz, .b_start_pressed
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .right_pressed
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .left_pressed
 	ret
 
 .right_pressed
-	ld a, D_RIGHT
+	ld a, PAD_RIGHT
 	ld [wMenuJoypad], a
 	jr .move_cursor
 
 .left_pressed
-	ld a, D_LEFT
+	ld a, PAD_LEFT
 	ld [wMenuJoypad], a
 	jr .move_cursor
 
 .a_pressed
-	ld a, A_BUTTON
+	ld a, PAD_A
 	ld [wMenuJoypad], a
 .move_cursor
 	ld a, [wMenuCursorY]
@@ -377,7 +377,7 @@ GetStaticMenuJoypad::
 	ret
 
 .b_start_pressed
-	ld a, B_BUTTON
+	ld a, PAD_B
 	ld [wMenuJoypad], a
 	ld a, -1
 	ld [wMenuSelection], a

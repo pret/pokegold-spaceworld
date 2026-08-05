@@ -63,7 +63,7 @@ Unreferenced_OldSpriteFacingAndAnimationTable:
 
 .FlippedOAM:
 	; y, x, attributes
-	db 0, 8, X_FLIP ; top left
-	db 0, 0, X_FLIP ; top right
-	db 8, 8, X_FLIP | UNDER_GRASS ; bottom left
-	db 8, 0, X_FLIP | UNDER_GRASS | FACING_END ; bottom right
+	db 0, 8, OAM_XFLIP ; top left
+	db 0, 0, OAM_XFLIP ; top right
+	db 8, 8, OAM_XFLIP | UNDER_GRASS ; bottom left
+	db 8, 0, OAM_XFLIP | UNDER_GRASS | FACING_END ; bottom right

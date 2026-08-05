@@ -124,7 +124,7 @@ Unreferenced_MuteAudio:
 
 	; Clear the registers of the channel
 	call GetChannelRegisters
-	ld e, rNR20 - rNR10
+	ld e, AUDRAM_SIZE
 	xor a
 
 .clear_loop
@@ -139,15 +139,18 @@ Unreferenced_MuteAudio:
 GetChannelRegisters:
 	ld a, [wCurChannel]
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, .registers
 	add hl, de
 	ld l, [hl]
-	ld h, $ff ; HIGH(rNR10, rNR20, rNR30, rNR40)
+	ld h, HIGH(AUD1RAM) ; aka HIGH(AUD2RAM), HIGH(AUD3RAM), HIGH(AUD4RAM)
 	ret
 
 .registers
-	db LOW(rNR10), LOW(rNR20), LOW(rNR30), LOW(rNR40)
+	db LOW(AUD1RAM)
+	db LOW(AUD2RAM)
+	db LOW(AUD3RAM)
+	db LOW(AUD4RAM)
 
 ContinueSoundUpdate:
 	ld hl, CHANNEL_DUTY_CYCLE
@@ -414,7 +417,7 @@ rept 4
 endr
 	ld de, WaveSamples
 	add hl, de
-	ld de, rWave_0
+	ld de, _AUD3WAVERAM
 	push bc
 	ld b, $10
 .load_pattern
@@ -722,7 +725,7 @@ FadeMusic:
 
 	; Get SO1 volume
 	ld a, [wVolume]
-	and VOLUME_SO1_LEVEL
+	and AUDVOL_RIGHT
 
 	; Which way are we fading?
 	bit MUSIC_FADE_IN_F, d

@@ -21,15 +21,15 @@ AdjustTimeText:
 	ldh a, [hJoyState]
 	and a
 	jr z, .loop
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jp nz, .set_time
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .inc_hour
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .dec_hour
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .inc_minute
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .dec_minute
 	jr .loop
 .inc_hour

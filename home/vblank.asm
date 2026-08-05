@@ -96,9 +96,9 @@ VBlank0::
 	call Joypad
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL | 1 << LCD_STAT)
+	ld a, IE_SERIAL | IE_STAT
 	ldh [rIE], a
-	ld a, (1 << LCD_STAT)
+	ld a, IF_STAT
 	ldh [rIF], a
 	ei
 	call UpdateSound
@@ -107,7 +107,7 @@ VBlank0::
 	di
 	xor a
 	ldh [rIF], a
-	ld a, (1 << JOYPAD | 1 << SERIAL | 1 << TIMER | 1 << LCD_STAT | 1 << VBLANK)
+	ld a, IE_JOYPAD | IE_SERIAL | IE_TIMER | IE_STAT | IE_VBLANK
 	ldh [rIE], a
 	ret
 
@@ -144,7 +144,7 @@ VBlank1::
 	ld [wVBlankOccurred], a
 	xor a
 	ldh [rIF], a
-	ld a, (1 << LCD_STAT)
+	ld a, IE_STAT
 	ldh [rIE], a
 	ldh [rIF], a
 	ei
@@ -154,7 +154,7 @@ VBlank1::
 	di
 	xor a
 	ldh [rIF], a
-	ld a, (1 << JOYPAD | 1 << SERIAL | 1 << TIMER | 1 << LCD_STAT | 1 << VBLANK)
+	ld a, IE_DEFAULT
 	ldh [rIE], a
 	ret
 
@@ -280,7 +280,7 @@ VBlank3::
 .skipDec
 	xor a
 	ldh [rIF], a
-	ld a, (1 << LCD_STAT)
+	ld a, IE_STAT
 	ldh [rIE], a
 	ldh [rIF], a
 	ei
@@ -290,6 +290,6 @@ VBlank3::
 	di
 	xor a
 	ldh [rIF], a
-	ld a, (1 << JOYPAD | 1 << SERIAL | 1 << TIMER | 1 << LCD_STAT | 1 << VBLANK)
+	ld a, IE_DEFAULT
 	ldh [rIE], a
 	ret

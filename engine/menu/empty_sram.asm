@@ -30,8 +30,8 @@ EmptyAllSRAMBanks::
 
 .EmptyBank:
 	call OpenSRAM
-	ld hl, SRAM_Begin
-	ld bc, SRAM_End - SRAM_Begin
+	ld hl, STARTOF(SRAM)
+	ld bc, SIZEOF(SRAM)
 	ld a, $ff
 	call ByteFill
 	ret

@@ -35,10 +35,10 @@ FacingStepDown1: ; walking down 1
 	db 8, 8, $83, RELATIVE_ATTRIBUTES | FACING_DONE
 
 FacingStepDown3: ; walking down 2
-	db 0, 8, $80, X_FLIP
-	db 0, 0, $81, X_FLIP
-	db 8, 8, $82, RELATIVE_ATTRIBUTES | X_FLIP
-	db 8, 0, $83, RELATIVE_ATTRIBUTES | X_FLIP | FACING_DONE
+	db 0, 8, $80, OAM_XFLIP
+	db 0, 0, $81, OAM_XFLIP
+	db 8, 8, $82, RELATIVE_ATTRIBUTES | OAM_XFLIP
+	db 8, 0, $83, RELATIVE_ATTRIBUTES | OAM_XFLIP | FACING_DONE
 
 FacingStepUp0:
 FacingStepUp2: ; standing up
@@ -54,10 +54,10 @@ FacingStepUp1: ; walking up 1
 	db 8, 8, $87, RELATIVE_ATTRIBUTES | FACING_DONE
 
 FacingStepUp3: ; walking up 2
-	db 0, 8, $84, X_FLIP
-	db 0, 0, $85, X_FLIP
-	db 8, 8, $86, RELATIVE_ATTRIBUTES | X_FLIP
-	db 8, 0, $87, RELATIVE_ATTRIBUTES | X_FLIP | FACING_DONE
+	db 0, 8, $84, OAM_XFLIP
+	db 0, 0, $85, OAM_XFLIP
+	db 8, 8, $86, RELATIVE_ATTRIBUTES | OAM_XFLIP
+	db 8, 0, $87, RELATIVE_ATTRIBUTES | OAM_XFLIP | FACING_DONE
 
 FacingStepLeft0:
 FacingStepLeft2: ; standing left
@@ -68,10 +68,10 @@ FacingStepLeft2: ; standing left
 
 FacingStepRight0:
 FacingStepRight2: ; standing right
-	db 0, 8, $08, X_FLIP
-	db 0, 0, $09, X_FLIP
-	db 8, 8, $0a, RELATIVE_ATTRIBUTES | X_FLIP
-	db 8, 0, $0b, RELATIVE_ATTRIBUTES | X_FLIP | FACING_DONE
+	db 0, 8, $08, OAM_XFLIP
+	db 0, 0, $09, OAM_XFLIP
+	db 8, 8, $0a, RELATIVE_ATTRIBUTES | OAM_XFLIP
+	db 8, 0, $0b, RELATIVE_ATTRIBUTES | OAM_XFLIP | FACING_DONE
 
 FacingStepLeft1:
 FacingStepLeft3: ; walking left
@@ -82,7 +82,7 @@ FacingStepLeft3: ; walking left
 
 FacingStepRight1:
 FacingStepRight3: ; walking right
-	db 0, 8, $88, X_FLIP
-	db 0, 0, $89, X_FLIP
-	db 8, 8, $8a, RELATIVE_ATTRIBUTES | X_FLIP
-	db 8, 0, $8b, RELATIVE_ATTRIBUTES | X_FLIP | FACING_DONE
+	db 0, 8, $88, OAM_XFLIP
+	db 0, 0, $89, OAM_XFLIP
+	db 8, 8, $8a, RELATIVE_ATTRIBUTES | OAM_XFLIP
+	db 8, 0, $8b, RELATIVE_ATTRIBUTES | OAM_XFLIP | FACING_DONE

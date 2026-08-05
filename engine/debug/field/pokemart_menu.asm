@@ -113,9 +113,9 @@ DebugMart_Buy:
 	call CopyMenuHeader
 	call ScrollingMenu
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .cancel_buy
-	cp A_BUTTON
+	cp PAD_A
 	jr z, .buy_item
 .buy_item
 	ld a, MAX_ITEM_STACK

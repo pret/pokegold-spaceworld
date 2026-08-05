@@ -42,7 +42,7 @@ InitTrainerBattle::
 
 TestWildBattleStart::
 	ldh a, [hJoyState]
-	and D_PAD
+	and PAD_CTRL_PAD
 	ret z ; if no directions are down, don't try and trigger a wild encounter
 	call CheckBPressedDebug
 	jp nz, xor_a ; if b button is down, clear acc

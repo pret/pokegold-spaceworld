@@ -350,10 +350,10 @@ _InitVerticalMenuCursor::
 	ln a, 2, 0
 	ld [hli], a
 ; wMenuJoypadFilter
-	ld a, A_BUTTON
+	ld a, PAD_A
 	bit STATICMENU_DISABLE_B_F, b
 	jr nz, .skip_bit_1
-	add B_BUTTON
+	add PAD_B
 .skip_bit_1
 	ld [hli], a
 ; wMenuCursorY

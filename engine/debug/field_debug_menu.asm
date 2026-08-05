@@ -44,7 +44,7 @@ FieldDebugMenu::
 	call PlaceHollowCursor
 
 	ld a, [wMenuJoypad]
-	cp A_BUTTON
+	cp PAD_A
 	jr z, .DoJumptable
 
 	call FieldDebug_ChangePage
@@ -69,7 +69,7 @@ FieldDebugMenu::
 .WaitInput:
 	call GetJoypad
 	ldh a, [hJoyDown]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .WaitInput
 	call LoadFontExtra
 
@@ -94,7 +94,7 @@ FieldDebug_CloseMenu:
 
 FieldDebug_ChangePage:
 	ld a, [wMenuJoypad]
-	cp D_LEFT
+	cp PAD_LEFT
 	jr z, .previous
 	ld a, [wFieldDebugPage]
 	inc a
@@ -135,7 +135,7 @@ FieldDebug_PlayMenuSound:
 .loop
 	call GetJoypad
 	ldh a, [hJoyDown]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .loop
 	ld a, FIELDDEBUG_RETURN_REOPEN
 	ret
@@ -153,7 +153,7 @@ FieldDebug_WaitJoypadInput:
 
 FieldDebug_ShowTextboxAndExit:
 	call MenuTextBox
-	ld a, A_BUTTON | B_BUTTON
+	ld a, PAD_A | PAD_B
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
 	ret

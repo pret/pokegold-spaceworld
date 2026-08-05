@@ -262,7 +262,7 @@ AddOrSubtractY:
 	push hl
 	ld a, [hl]
 	ld hl, wCurSpriteOAMFlags
-	bit OAM_Y_FLIP, [hl]
+	bit B_OAM_YFLIP, [hl]
 	jr z, .ok
 	; -8 - a
 	add 8
@@ -276,7 +276,7 @@ AddOrSubtractX:
 	push hl
 	ld a, [hl]
 	ld hl, wCurSpriteOAMFlags
-	bit OAM_X_FLIP, [hl]
+	bit B_OAM_XFLIP, [hl]
 	jr z, .ok
 	; -8 - a
 	add 8
@@ -291,10 +291,10 @@ GetSpriteOAMAttr:
 	ld b, a
 	ld a, [hl]
 	xor b
-	and PRIORITY | Y_FLIP | X_FLIP
+	and OAM_PRIO | OAM_YFLIP | OAM_XFLIP
 	ld b, a
 	ld a, [hl]
-	and OBP_NUM
+	and OAM_PAL1
 	or b
 	ret
 
@@ -382,7 +382,7 @@ GetSpriteAnimFrame::
 	push af
 	ld a, [hl]
 	push hl
-	and ~(Y_FLIP << 1 | X_FLIP << 1)
+	and ~(OAM_YFLIP << 1 | OAM_XFLIP << 1)
 	ld hl, SPRITEANIMSTRUCT_DURATIONOFFSET
 	add hl, bc
 	add [hl]
@@ -393,7 +393,7 @@ GetSpriteAnimFrame::
 .okay
 ; The << 1 is compensated in the "oamframe" macro
 	ld a, [hl]
-	and Y_FLIP << 1 | X_FLIP << 1
+	and OAM_YFLIP << 1 | OAM_XFLIP << 1
 	srl a
 	ld [wCurSpriteOAMFlags], a
 	pop af

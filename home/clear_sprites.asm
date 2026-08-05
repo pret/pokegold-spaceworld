@@ -10,9 +10,9 @@ ClearSprites::
 
 HideSprites::
 	ld hl, wShadowOAM
-	ld de, SPRITEOAMSTRUCT_LENGTH
-	ld b, NUM_SPRITE_OAM_STRUCTS
-	ld a, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
+	ld de, OBJ_SIZE
+	ld b, OAM_COUNT
+	ld a, OBJ_SIZE * OAM_COUNT
 .loop
 	ld [hl], a
 	add hl, de

@@ -68,10 +68,10 @@ FifteenPuzzleMinigame:
 	ret
 
 .InputTable:
-	db D_UP
-	db D_DOWN
-	db D_LEFT
-	db D_RIGHT
+	db PAD_UP
+	db PAD_DOWN
+	db PAD_LEFT
+	db PAD_RIGHT
 
 .JumptableLoop:
 	ld a, [wJumptableIndex]
@@ -128,7 +128,7 @@ FifteenPuzzleMinigame:
 
 	ldh a, [hJoypadDown]
 	ld [wFifteenPuzzleJoyStateBuffer], a ; The code to exit the minigame was blatantly stubbed out.
-;	and B_BUTTON
+;	and PAD_B
 ;	jr nz, .ExitPuzzle
 	call .ExecutePanelJumptable
 	ret
@@ -308,7 +308,7 @@ FifteenPuzzleMinigame:
 
 .PanelMoveDownCheck:
 	ld a, [wFifteenPuzzleJoyStateBuffer]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .PanelMoveDown
 	scf
 	ret
@@ -330,7 +330,7 @@ FifteenPuzzleMinigame:
 
 .PanelMoveUpCheck:
 	ld a, [wFifteenPuzzleJoyStateBuffer]
-	and D_UP
+	and PAD_UP
 	jr nz, .PanelMoveUp
 	scf
 	ret
@@ -352,7 +352,7 @@ FifteenPuzzleMinigame:
 
 .PanelMoveRightCheck:
 	ld a, [wFifteenPuzzleJoyStateBuffer]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .PanelMoveRight
 	scf
 	ret
@@ -374,7 +374,7 @@ FifteenPuzzleMinigame:
 
 .PanelMoveLeftCheck:
 	ld a, [wFifteenPuzzleJoyStateBuffer]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .PanelMoveLeft
 	scf
 	ret

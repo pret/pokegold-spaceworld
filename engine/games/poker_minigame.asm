@@ -178,7 +178,7 @@ PokerMinigame:
 .ChangeInit:
 	call PokerMinigame_HudTextbox_DrawCursor
 	ldh a, [hJoypadDown]
-	and A_BUTTON
+	and PAD_A
 	ret z
 
 	ld hl, PokerMinigame_BlankText
@@ -1124,7 +1124,7 @@ PokerMinigame_HudTextbox:
 
 PokerMinigame_HudTextbox_DrawCursor:
 	ldh a, [hJoypadDown]
-	and D_UP | D_DOWN
+	and PAD_UP | PAD_DOWN
 	ret z
 
 	xor a
@@ -1193,7 +1193,7 @@ PokerMinigame_ChangeCursor:
 PokerMinigame_ChangeCursor_Change:
 	ld hl, hJoypadDown
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .Next
 	and a
 	ret
@@ -1354,10 +1354,10 @@ PokerMinigame_CursorAction:
 	ret
 .cursor:
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ret
 .left:

@@ -35,7 +35,7 @@ ShowOTTrainerMonsRemaining:
 	ld [hl], 4 * TILE_WIDTH
 	ld a, -TILE_WIDTH
 	ld [wPlaceBallsDirection], a
-	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
+	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * OBJ_SIZE
 	jp LoadTrainerHudOAM
 
 StageBallTilesData:
@@ -180,7 +180,7 @@ LinkBattle_TrainerHuds::
 	ld a, 10 * TILE_WIDTH
 	ld [hli], a
 	ld [hl], 12 * TILE_WIDTH
-	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
+	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * OBJ_SIZE
 	jp LoadTrainerHudOAM
 
 LoadTrainerHudOAM:

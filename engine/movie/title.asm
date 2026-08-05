@@ -399,14 +399,14 @@ TitleSeq_TitleScreenInputAndTimeout::
 	ld [hl], e
 	call GetJoypad
 	ld hl, hJoyState
-; UP + B + SELECT opens the SRAM clear screen
+; Up + B + Select opens the SRAM clear screen
 	ld a, [hl]
-	and D_UP | B_BUTTON | SELECT
-	cp D_UP | B_BUTTON | SELECT
+	and PAD_UP | PAD_B | PAD_SELECT
+	cp PAD_UP | PAD_B | PAD_SELECT
 	jr z, .psbtn_sramclear
-; SELECT opens the debug menu
+; Select opens the debug menu
 	ld a, [hl]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .psbtn_gotodebug
 	ld a, [hl]
 	and $09

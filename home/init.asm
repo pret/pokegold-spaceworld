@@ -28,17 +28,17 @@ Init::
 	ldh [rTMA], a
 	ldh [rTAC], a
 	ld [wTitleSequenceOpeningType], a ; Useless, since WRAM gets cleared right after
-	ld a, 1 << rTAC_ON | rTAC_4096_HZ
+	ld a, 1 << B_TAC_START | TAC_4KHZ
 	ldh [rTAC], a
-	ld a, 1 << rLCDC_ENABLE
+	ld a, 1 << B_LCDC_ENABLE
 	ldh [rLCDC], a
 	call DisableLCD
 
 	ld sp, wStackBottom
 	call ClearVRAM
 
-	ld hl, WRAM0_Begin
-	ld bc, WRAM1_End - WRAM0_Begin
+	ld hl, STARTOF(WRAM0)
+	ld bc, SIZEOF(WRAM0)
 .clear_loop
 	ld [hl], 0
 	inc hl
@@ -47,8 +47,8 @@ Init::
 	or c
 	jr nz, .clear_loop
 
-	ld hl, HRAM_Begin
-	ld bc, HRAM_End - HRAM_Begin
+	ld hl, STARTOF(HRAM)
+	ld bc, SIZEOF(HRAM)
 	call ByteFill
 	call ClearSprites
 
@@ -61,7 +61,7 @@ Init::
 	ldh [hSCX], a
 	ldh [hSCY], a
 	ldh [rJOYP], a
-	ld a, 1 << rSTAT_HBLANK
+	ld a, 1 << B_STAT_MODE_0
 	ldh [rSTAT], a
 	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
@@ -95,20 +95,20 @@ Init::
 	ldh [rLCDC], a
 	ei
 
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
+	ld a, RAMB_RTC_DH
+	ld [rRAMB], a
 	xor a
-	ld [SRAM_Begin], a
-	ld a, 0 ; Useless
-	ld [MBC3LatchClock], a
-	ld [MBC3SRamEnable], a
+	ld [rRTCREG], a
+	ld a, RTCLATCH_START ; unnecessary
+	ld [rRTCLATCH], a
+	ld [rRAMG], a
 	jp GameInit
 
 ClearVRAM::
-	ld hl, VRAM_Begin
-	ld bc, VRAM_End - VRAM_Begin
+	ld hl, STARTOF(VRAM)
+	ld bc, SIZEOF(VRAM)
 	xor a
 	call ByteFill
 	ret
@@ -120,7 +120,7 @@ BlankBGMap:
 FillBGMap:
 	ld a, l
 _FillBGMap:
-	ld de, BG_MAP_WIDTH * BG_MAP_HEIGHT
+	ld de, TILEMAP_WIDTH * TILEMAP_HEIGHT
 	ld l, e
 .loop
 	ld [hli], a

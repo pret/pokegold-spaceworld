@@ -1,10 +1,10 @@
 OverworldStartButtonCheck::
 	ldh a, [hJoyState]
-	bit START_F, a
+	bit B_PAD_START, a
 	ret z
 if DEF(_DEBUG)
-	and START | B_BUTTON
-	cp START | B_BUTTON
+	and PAD_START | PAD_B
+	cp PAD_START | PAD_B
 	jr nz, .regularMenu
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
@@ -16,7 +16,7 @@ endc
 	farcall DisplayStartMenu
 	jr CheckStartmenuSelectHook
 
-; OverworldStartButtonCheck did not check SELECT_F to call SelectButtonFunction
+; OverworldStartButtonCheck did not check B_PAD_SELECT to call SelectButtonFunction
 ; for the Space World 1997 demo experience, as no key items were available during it.
 SelectButtonFunction::
 	callfar CheckRegisteredItem
@@ -99,7 +99,7 @@ ScheduleSouthRowRedraw::
 	ld l, a
 	ld a, [wBGMapAnchor + 1]
 	ld h, a
-	ld bc, BG_MAP_WIDTH * (SCREEN_HEIGHT - 2)
+	ld bc, TILEMAP_WIDTH * (SCREEN_HEIGHT - 2)
 	add hl, bc
 	; the following 4 lines wrap us from bottom to top if necessary
 	ld a, h
@@ -117,11 +117,11 @@ ScheduleEastColumnRedraw::
 	call ScheduleColumnRedrawHelper
 	ld a, [wBGMapAnchor]
 	ld c, a
-	and ($FF ^ (BG_MAP_WIDTH - 1))  ; mask upper address bits
+	and ($FF ^ (TILEMAP_WIDTH - 1))  ; mask upper address bits
 	ld b, a
 	ld a, c
 	add SCREEN_WIDTH - 2
-	and BG_MAP_WIDTH - 1            ; mask lower address bits
+	and TILEMAP_WIDTH - 1            ; mask lower address bits
 	or b
 	ldh [hRedrawRowOrColumnDest], a
 	ld a, [wBGMapAnchor + 1]

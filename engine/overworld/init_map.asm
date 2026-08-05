@@ -43,7 +43,7 @@ ReanchorBGMap_NoOAMUpdate::
 	lb bc, BANK(wTileMapBackup), 8
 	call Request2bpp
 	pop hl
-	ld bc, BG_MAP_WIDTH * 4
+	ld bc, TILEMAP_WIDTH * 4
 	add hl, bc
 	pop bc
 	dec c

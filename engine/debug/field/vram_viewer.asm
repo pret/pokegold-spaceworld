@@ -35,22 +35,22 @@ FieldDebug_DoVRAMViewer:
 .wait_input
 	call GetJoypad
 	ldh a, [hJoyDown]
-	and A_BUTTON | B_BUTTON | START | D_RIGHT | D_LEFT
+	and PAD_A | PAD_B | PAD_START | PAD_RIGHT | PAD_LEFT
 	jr z, .wait_input
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .next_page
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .previous_page
-	bit START_F, a
+	bit B_PAD_START, a
 	jr nz, .switch_tileset
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	ret nz
 	scf
 	ret
 
 .switch_tileset
 	ldh a, [rLCDC]
-	xor (1 << rLCDC_TILE_DATA)
+	xor (1 << B_LCDC_BLOCKS)
 	ldh [rLCDC], a
 	and a
 	ret

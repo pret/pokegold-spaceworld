@@ -89,7 +89,7 @@ PartyMenu_WaitForAorB::
 	pop bc
 	call GetJoypad
 	ldh a, [hJoyDown]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr nz, .done
 	ld a, c
 	and a

@@ -90,11 +90,11 @@ Pokedex_UpdateFirstTypeSelectedMenu:
 	call GetJoypadDebounced
 	ld hl, hJoyDown
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_pressed
 
 	call Pokedex_MoveTypeSelectedMenuCursor
@@ -156,11 +156,11 @@ Pokedex_UpdateSecondTypeSelectedMenu:
 	call GetJoypadDebounced
 	ld hl, hJoyDown
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_pressed
 	call Pokedex_MoveTypeSelectedMenuCursor
 	ret
@@ -214,11 +214,11 @@ Pokedex_ExitSearch_PlaySlowpokeAnimation:
 Pokedex_GetSearchMenuJoyDown:
 	ld hl, hJoyDown
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_pressed
 
 	call Pokedex_MoveSearchMenuCursor
@@ -395,11 +395,11 @@ INCLUDE "data/types/search_strings.asm"
 Pokedex_MoveSearchMenuCursor:
 	ld hl, hJoySum
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ret
 
@@ -498,11 +498,11 @@ Pokedex_GetSearchScreenCursorPos:
 Pokedex_MoveTypeSelectedMenuCursor:
 	ld hl, hJoyDown
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ret
 
@@ -708,10 +708,10 @@ dw .Init, .Update, .ShowUnownLetter
 	call GetJoypadDebounced
 	ld hl, hJoyDown
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .selected_unown
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .exit
 	call Pokedex_UnownModeHandleDPadInput
 	ret
@@ -852,11 +852,11 @@ PrintUnownListEntry:
 Pokedex_UnownModeHandleDPadInput:
 	ld hl, hJoySum
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ret
 

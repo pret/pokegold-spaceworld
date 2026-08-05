@@ -55,7 +55,7 @@ ScrollingMenuJoypad::
 
 .done
 	ldh a, [hJoyDown]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .a_b_not_pressed
 	push de
 	ld de, SE_SELECT
@@ -81,21 +81,21 @@ Menu_WasButtonPressed::
 
 _2DMenuInterpretJoypad::
 	ldh a, [hJoySum]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jp nz, .a_b_start_select
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jp nz, .a_b_start_select
-	bit SELECT_F, a
+	bit B_PAD_SELECT, a
 	jp nz, .a_b_start_select
-	bit START_F, a
+	bit B_PAD_START, a
 	jp nz, .a_b_start_select
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .d_right
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .d_left
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .d_up
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .d_down
 	and a
 	ret

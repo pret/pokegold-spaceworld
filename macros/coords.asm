@@ -18,9 +18,9 @@ DEF debgcoord EQUS "bgcoord de,"
 MACRO? bgcoord
 ; register, x, y[, origin]
 	if _NARG < 4
-	ld \1, (\3) * BG_MAP_WIDTH + (\2) + vBGMap0
+	ld \1, (\3) * TILEMAP_WIDTH + (\2) + vBGMap0
 	else
-	ld \1, (\3) * BG_MAP_WIDTH + (\2) + \4
+	ld \1, (\3) * TILEMAP_WIDTH + (\2) + \4
 	endc
 ENDM
 
@@ -45,9 +45,9 @@ ENDM
 MACRO? ldbgcoord_a
 ; x, y[, origin]
 	if _NARG < 3
-	ld [(\2) * BG_MAP_WIDTH + (\1) + vBGMap0], a
+	ld [(\2) * TILEMAP_WIDTH + (\1) + vBGMap0], a
 	else
-	ld [(\2) * BG_MAP_WIDTH + (\1) + \3], a
+	ld [(\2) * TILEMAP_WIDTH + (\1) + \3], a
 	endc
 ENDM
 
@@ -63,8 +63,8 @@ ENDM
 MACRO? lda_bgcoord
 ; x, y[, origin]
 	if _NARG < 3
-	ld a, [(\2) * BG_MAP_WIDTH + (\1) + vBGMap0]
+	ld a, [(\2) * TILEMAP_WIDTH + (\1) + vBGMap0]
 	else
-	ld a, [(\2) * BG_MAP_WIDTH + (\1) + \3]
+	ld a, [(\2) * TILEMAP_WIDTH + (\1) + \3]
 	endc
 ENDM

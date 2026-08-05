@@ -100,7 +100,7 @@ PrintTextboxDebugNumbers::
 
 QueueMapTextSubroutine::
 	ldh a, [hJoyState]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jp z, xor_a ; if we didn't press a
 	call GetFacingPersonText
 	jp nc, .CheckBGEvent ; if not talking to a person
@@ -176,7 +176,7 @@ TextboxIdle::
 	jr nz, .next
 	call GetJoypad
 	ldh a, [hJoyDown]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr nz, .next
 	call UpdateTime
 	call UpdateTimeOfDayPalettes

@@ -1,6 +1,6 @@
 ClearGraphicsForPartyMenu::
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit B_LCDC_ENABLE, a
 	jr z, .InitPartyMenuGFX
 	call ClearBGPalettes
 
@@ -110,7 +110,7 @@ PartyMenuSelect::
 	scf
 	ret
 .swap_mons
-	bit B_BUTTON_F, b
+	bit B_PAD_B, b
 	jr nz, .done
 	call _SwitchPartyMons
 .done

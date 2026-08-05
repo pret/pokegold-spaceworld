@@ -311,13 +311,13 @@ NamingScreenJoypadLoop:
 ; if A or B were pressed, clear hJoypadSum after calling functions; if start, set 7 in the jumptable??
 	ld hl, hJoypadSum
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .jumpa
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .jumpb
 	ld a, [hl]
-	and START
+	and PAD_START
 	jr nz, .jumpstart
 	ret
 
@@ -345,16 +345,16 @@ NamingScreenJoypadLoop:
 NamingScreen_AnimateCursor:
 	ld hl, hJoySum
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .upjump
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .downjump
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .leftjump
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .rightjump
 	ret
 
@@ -870,16 +870,16 @@ DoMailEntry:
 .processjoypad
 	ld hl, hJoypadSum
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .ajump
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .bjump
 	ld a, [hl]
-	and START
+	and PAD_START
 	jr nz, .startjump
 	ld a, [hl]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .selectjump
 	ret
 
@@ -1056,16 +1056,16 @@ MailTextExtra:
 ComposeMail_AnimateCursor:
 	ld hl, hJoySum
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .upJump
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .downJump
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .leftJump
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .rightJump
 	ret
 

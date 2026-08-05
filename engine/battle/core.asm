@@ -3667,11 +3667,11 @@ MoveSelectionScreen::
 	ld c, STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP
 	ld a, [wMoveSelectionMenuType]
 	dec a
-	ld b, D_DOWN | D_UP | A_BUTTON
+	ld b, PAD_DOWN | PAD_UP | PAD_A
 	jr z, .okay
 
 	dec a
-	ld b,  D_DOWN | D_UP | A_BUTTON | B_BUTTON
+	ld b,  PAD_DOWN | PAD_UP | PAD_A | PAD_B
 	jr z, .okay
 
 	ld a, [wLinkMode]
@@ -3680,10 +3680,10 @@ MoveSelectionScreen::
 
 	ld a, [wDebugFlags]
 	bit DEBUG_BATTLE_F, a
-	ld b, D_DOWN | D_UP | A_BUTTON | B_BUTTON | SELECT
+	ld b, PAD_DOWN | PAD_UP | PAD_A | PAD_B | PAD_SELECT
 	jr z, .okay
 
-	ld b, D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON | START | SELECT
+	ld b, PAD_DOWN | PAD_UP | PAD_LEFT | PAD_RIGHT | PAD_A | PAD_B | PAD_START | PAD_SELECT
 	ld c, STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_SELECT | STATICMENU_DISABLE_B | STATICMENU_ENABLE_START | STATICMENU_WRAP
 
 .okay
@@ -3728,19 +3728,19 @@ MoveSelectionScreen::
 	ld a, 1
 	ldh [hBGMapMode], a
 	call ScrollingMenuJoypad
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jp nz, .pressed_up
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jp nz, .pressed_down
-	bit SELECT_F, a
+	bit B_PAD_SELECT, a
 	jp nz, .pressed_select
-	bit START_F, a
+	bit B_PAD_START, a
 	jp nz, .pressed_start
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jp nz, .pressed_right
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jp nz, .pressed_left
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	; A button
 	push af
 
@@ -3847,7 +3847,7 @@ MoveSelectionScreen::
 
 .DebugMovePreview:
 .pressed_start
-	bit START_F, a
+	bit B_PAD_START, a
 	ld a, 0
 	jr nz, .player_side
 	ld a, 1

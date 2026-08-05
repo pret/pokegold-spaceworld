@@ -61,9 +61,9 @@ Joypad::
 	ld a, b
 	ldh [hJoypadState], a
 	ldh [hJoypadState2], a
-	; Soft-Reset by holding A+B+SELECT+START
-	and (A_BUTTON | B_BUTTON | SELECT | START)
-	cp (A_BUTTON | B_BUTTON | SELECT | START)
+	; Soft-reset by holding A+B+Select+Start
+	and PAD_A | PAD_B | PAD_SELECT | PAD_START
+	cp PAD_A | PAD_B | PAD_SELECT | PAD_START
 	jp z, Reset
 	ret
 
@@ -75,12 +75,12 @@ GetJoypad::
 
 ; bit 0 A
 ;     1 B
-;     2 SELECT
-;     3 START
-;     4 RIGHT
-;     5 LEFT
-;     6 UP
-;     7 DOWN
+;     2 Select
+;     3 Start
+;     4 Right
+;     5 Left
+;     6 Up
+;     7 Down
 	push af
 	push hl
 	push de
@@ -108,7 +108,7 @@ JoyTitleScreenInput::
 ; is met for c frames
 ; - B, Select and Up keys are pressed in same frame
 ; - A is pressed
-; - START is pressed
+; - Start is pressed
 ;
 ; Inputs: c - number of frames to check for
 ; Return: carry set if condition met, else reset
@@ -118,10 +118,10 @@ JoyTitleScreenInput::
 	call GetJoypadDebounced
 	pop bc
 	ldh a, [hJoyState]
-	cp (D_UP | SELECT | B_BUTTON)
+	cp PAD_UP | PAD_SELECT | PAD_B
 	jr z, .done
 	ldh a, [hJoySum]
-	and (START | A_BUTTON)
+	and PAD_START | PAD_A
 	jr nz, .done
 	dec c
 	jr nz, .loop
@@ -187,7 +187,7 @@ TextboxWaitPressAorB_BlinkCursor::
 	pop hl
 	call GetJoypadDebounced
 	ldh a, [hJoySum]
-	and (A_BUTTON | B_BUTTON)
+	and PAD_A | PAD_B
 	jr z, .loop
 	pop af
 	ldh [hSpriteHeight], a
@@ -214,7 +214,7 @@ WaitAorB_BlinkCursor::
 	call BlinkCursor
 	call GetJoypadDebounced
 	ldh a, [hJoySum]
-	and (A_BUTTON | B_BUTTON)
+	and PAD_A | PAD_B
 	ret nz
 	call UpdateTime
 	call UpdateTimeOfDayPalettes

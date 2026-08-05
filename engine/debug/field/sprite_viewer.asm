@@ -91,7 +91,7 @@ FieldDebug_SpriteViewer:
 	db _2DMENU_EXIT_RIGHT | _2DMENU_EXIT_LEFT | _2DMENU_EXIT_UP | _2DMENU_EXIT_DOWN ; flags 1
 	db 0 ; flags 2
 	dn 3, 0 ; cursor offset
-	db A_BUTTON | B_BUTTON ; accepted buttons
+	db PAD_A | PAD_B ; accepted buttons
 
 .DoSpriteViewer:
 	ld a, 0
@@ -191,17 +191,17 @@ FieldDebug_SpriteViewer:
 	ld [wSpriteViewerSavedMenuPointerY], a
 
 	ldh a, [hJoySum]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jp nz, .a_button
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jp nz, .b_button
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .down
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .up
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .left
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .right
 	jr .loop2
 
@@ -310,7 +310,7 @@ FieldDebug_SpriteViewer:
 	ld de, wShadowOAM
 	call SetupSpriteViewerSpriteTilemap
 
-	ld a, A_BUTTON | B_BUTTON
+	ld a, PAD_A | PAD_B
 	call FieldDebug_WaitJoypadInput
 
 	ld a, SPRITEVIEWER_INIT_MENU
@@ -330,9 +330,9 @@ FieldDebug_SpriteViewer:
 	call SetupSpriteViewerSpriteWalkingTilemap
 
 	call .animate_walking
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .return_to_menu
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .show_follow_prompt
 
 	ld a, [wMovementSpriteViewerDirection]
@@ -341,7 +341,7 @@ FieldDebug_SpriteViewer:
 	ld [wMovementSpriteViewerDirection], a
 
 	ldh a, [hJoyState]
-	and D_UP | D_DOWN | D_LEFT | D_RIGHT
+	and PAD_UP | PAD_DOWN | PAD_LEFT | PAD_RIGHT
 	jr nz, .SpriteLoop
 	xor a
 	ld [wMovementSpriteViewerDirection], a
@@ -365,7 +365,7 @@ FieldDebug_SpriteViewer:
 	call DelayFrame
 	call GetJoypad
 	ldh a, [hJoyDown]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	ret nz
 	dec c
 	jr nz, .animate_loop

@@ -75,11 +75,11 @@ FieldDebug_ItemTest:
 	ld hl, ItemTest_BagMenu
 	call ScrollingMenu_FromTable
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .exit_menu
-	cp D_LEFT
+	cp PAD_LEFT
 	jr z, .key_item_menu
-	cp D_RIGHT
+	cp PAD_RIGHT
 	jr z, .key_item_menu
 	jr .DecideAction
 
@@ -87,11 +87,11 @@ FieldDebug_ItemTest:
 	ld hl, ItemTest_KeyItemMenu
 	call ScrollingMenu_FromTable
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .exit_menu
-	cp D_LEFT
+	cp PAD_LEFT
 	jr z, .bag_menu
-	cp D_RIGHT
+	cp PAD_RIGHT
 	jr z, .bag_menu
 	ld hl, .CannotUsePCToolsText
 	call MenuTextBox

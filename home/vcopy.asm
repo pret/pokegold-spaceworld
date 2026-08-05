@@ -30,7 +30,7 @@ RedrawRowOrColumn::
 	inc de
 	ld a, [hli]
 	ld [de], a
-	ld a, BG_MAP_WIDTH - 1
+	ld a, TILEMAP_WIDTH - 1
 	add e
 	ld e, a
 	jr nc, .noCarry
@@ -55,7 +55,7 @@ RedrawRowOrColumn::
 	push de
 	call .DrawHalf
 	pop de
-	ld a, BG_MAP_WIDTH ; width of VRAM background map
+	ld a, TILEMAP_WIDTH ; width of VRAM background map
 	add e
 	ld e, a
 	; fallthrough (draw lower half)
@@ -71,10 +71,10 @@ RedrawRowOrColumn::
 	ld a, e
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and BG_MAP_WIDTH - 1 ; mask lower address bits
+	and TILEMAP_WIDTH - 1 ; mask lower address bits
 	ld b, a
 	ld a, e
-	and ($FF ^ (BG_MAP_WIDTH - 1)) ; mask upper address bits
+	and ($FF ^ (TILEMAP_WIDTH - 1)) ; mask upper address bits
 	or b
 	ld e, a
 	dec c
@@ -221,7 +221,7 @@ _RedrawFlashlightColumn::
 	jr nc, .noCarryScreen
 	inc h
 .noCarryScreen
-	ld a, BG_MAP_WIDTH
+	ld a, TILEMAP_WIDTH
 	add e
 	ld e, a
 	jr nc, .noCarryBG
@@ -251,10 +251,10 @@ _RedrawFlashlightRow::
 	ld a, e
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and BG_MAP_WIDTH - 1 ; mask lower address bits
+	and TILEMAP_WIDTH - 1 ; mask lower address bits
 	ld b, a
 	ld a, e
-	and ($FF ^ (BG_MAP_WIDTH - 1)) ; mask upper address bits
+	and ($FF ^ (TILEMAP_WIDTH - 1)) ; mask upper address bits
 	or b
 	ld e, a
 	dec c
@@ -268,7 +268,7 @@ _RedrawFlashlightColumnBlack::
 	ld l, e
 	ld h, d
 	ld b, '■'
-	ld de, BG_MAP_WIDTH
+	ld de, TILEMAP_WIDTH
 	ld a, [wRedrawFlashlightWidthHeight]
 	add a
 	ld c, a
@@ -300,10 +300,10 @@ _RedrawFlashlightRowBlack::
 	ld a, l
 	inc a
 ; the following 6 lines wrap us from the right edge to the left edge if necessary
-	and BG_MAP_WIDTH - 1 ; mask lower address bits
+	and TILEMAP_WIDTH - 1 ; mask lower address bits
 	ld d, a
 	ld a, l
-	and ($FF ^ (BG_MAP_WIDTH - 1)) ; mask upper address bits
+	and ($FF ^ (TILEMAP_WIDTH - 1)) ; mask upper address bits
 	or d
 	ld l, a
 	dec c
@@ -352,7 +352,7 @@ AutoBgMapTransfer::
 	ld h, a
 	ldh a, [hBGMapAddress]
 	ld l, a
-	ld de, 12 * BG_MAP_WIDTH
+	ld de, 12 * TILEMAP_WIDTH
 	add hl, de
 	xor a
 	jr .doTransfer
@@ -372,7 +372,7 @@ AutoBgMapTransfer::
 	ld h, a
 	ldh a, [hBGMapAddress]
 	ld l, a
-	ld de, 6 * BG_MAP_WIDTH
+	ld de, 6 * TILEMAP_WIDTH
 	add hl, de
 	ld a, $02
 .doTransfer
@@ -381,7 +381,7 @@ AutoBgMapTransfer::
 	; fallthrough
 
 TransferBgRows::
-	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH + 1
+	ld bc, TILEMAP_WIDTH - SCREEN_WIDTH + 1
 .loop
 
 rept SCREEN_WIDTH / 2 - 1 ; two bytes per pop minus last block
@@ -533,7 +533,7 @@ AnimateTileset::
 EnableSprites::
 	nop
 	ld hl, rLCDC
-	set rLCDC_SPRITES_ENABLE, [hl]
+	set B_LCDC_OBJS, [hl]
 	ret
 
 TransferToolgearRow::

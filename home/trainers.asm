@@ -96,7 +96,7 @@ CheckBPressedDebug:
 	bit DEBUG_FIELD_F, a
 	ret z
 	ldh a, [hJoyState]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	ret
 
 xor_a::

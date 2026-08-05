@@ -110,7 +110,7 @@ PicrossMinigame:
 .row3
 	push bc
 	ld hl, PicrossGridHighlightsGFX tile 5
-	ld bc, LEN_2BPP_TILE
+	ld bc, TILE_SIZE
 	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
@@ -120,7 +120,7 @@ PicrossMinigame:
 .row4
 	push bc
 	ld hl, PicrossGridHighlightsGFX tile 3
-	ld bc, LEN_2BPP_TILE
+	ld bc, TILE_SIZE
 	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
@@ -130,7 +130,7 @@ PicrossMinigame:
 .row5
 	push bc
 	ld hl, PicrossGridHighlightsGFX tile 4
-	ld bc, LEN_2BPP_TILE
+	ld bc, TILE_SIZE
 	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
@@ -140,7 +140,7 @@ PicrossMinigame:
 .row6
 	push bc
 	ld hl, PicrossGridHighlightsGFX tile 5
-	ld bc, LEN_2BPP_TILE
+	ld bc, TILE_SIZE
 	ld a, BANK(PicrossGridHighlightsGFX)
 	call FarCopyData
 	pop bc
@@ -172,13 +172,13 @@ PicrossMinigame:
 
 ; load Gold sprites
 	ld de, vSprites + $100
-	ld hl, GoldSpriteGFX + LEN_2BPP_TILE * 4 ; Gold's back-facing standing sprite
+	ld hl, GoldSpriteGFX + TILE_SIZE * 4 ; Gold's back-facing standing sprite
 	ld bc, 4 tiles
 	ld a, BANK(GoldSpriteGFX)
 	call FarCopyData
 
 	ld de, vSprites + $140
-	ld hl, GoldSpriteGFX + LEN_2BPP_TILE * 16 ; Gold's back-facing walking sprite
+	ld hl, GoldSpriteGFX + TILE_SIZE * 16 ; Gold's back-facing walking sprite
 	ld bc, 4 tiles
 	ld a, BANK(GoldSpriteGFX)
 	call FarCopyData
@@ -292,7 +292,7 @@ PicrossMinigame:
 
 .ExitMode:
 	ldh a, [hJoyDown]
-	and START
+	and PAD_START
 	ret z
 
 ; Game will truly exit once the Start button is pressed
@@ -506,11 +506,11 @@ Picross_CheckPuzzleSolved:
 Picross_ProcessJoypad:
 	ld hl, hJoySum
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_pressed
 	ret
 
@@ -779,7 +779,7 @@ Picross_SetTargetCellType:
 	and a
 	jr z, .check_a_pressed
 	ld a, [hl]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .done
 
 	ld a, PICROSS_MARKED_CELL
@@ -789,7 +789,7 @@ Picross_SetTargetCellType:
 
 .check_a_pressed
 	ld a, [hl]
-	cp A_BUTTON
+	cp PAD_A
 	jr z, .done
 
 	ld a, PICROSS_COLORED_CELL
@@ -862,7 +862,7 @@ Picross_PopulateRAMBitmap:
 	push bc
 	push hl
 	call .PopulateOneRow
-	ld bc, LEN_2BPP_TILE
+	ld bc, TILE_SIZE
 	add hl, bc
 	call .PopulateOneRow
 	pop hl
@@ -879,7 +879,7 @@ Picross_PopulateRAMBitmap:
 	push bc
 	push hl
 	call .PopulateOneRow
-	ld bc, LEN_2BPP_TILE
+	ld bc, TILE_SIZE
 	add hl, bc
 	call .PopulateOneRow
 	pop hl

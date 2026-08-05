@@ -895,7 +895,7 @@ ClearBytes:
 
 DrawDefaultTiles:
 	hlbgcoord 0, 0
-	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
+	ld de, TILEMAP_WIDTH - SCREEN_WIDTH
 	ld a, $80
 	ld c, 12 + 1
 .line

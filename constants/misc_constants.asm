@@ -2,6 +2,9 @@
 DEF FALSE EQU 0
 DEF TRUE EQU 1
 
+; input
+DEF NO_INPUT EQU %00000000
+
 ; time of day boundaries
 DEF MORN_HOUR EQU 6  ; 6 AM
 DEF DAY_HOUR  EQU 9  ; 9 AM
