@@ -13,7 +13,7 @@ if DEF(_DEBUG)
 	ld hl, wDebugFlags
 	bit DEBUG_FIELD_F, [hl]
 	jr z, .skip_debug_move
-	bit B_BUTTON_F, d
+	bit B_PAD_B, d
 	jp nz, CheckMovementDebug
 .skip_debug_move
 endc
@@ -42,16 +42,16 @@ CheckMovementWalkOrBike:
 
 _CheckMovementWalkOrBike:
 	ld a, d
-	and D_PAD
+	and PAD_CTRL_PAD
 	jp z, .idle
 	ld a, d
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jp nz, .check_down
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jp nz, .check_up
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jp nz, .check_left
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .check_right
 .idle
 	ld a, movement_step_sleep
@@ -146,13 +146,13 @@ CheckMovementDebug::
 	jp SetPlayerMovement
 
 _CheckMovementDebug:
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .move_down
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .move_up
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .move_left
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .move_right
 	ld a, movement_step_sleep
 	ret
@@ -219,15 +219,15 @@ _CheckMovementSkateboard:
 
 .not_moving
 	ld a, d
-	and D_PAD
+	and PAD_CTRL_PAD
 	jp z, .idle
-	bit D_DOWN_F, d
+	bit B_PAD_DOWN, d
 	jp nz, CheckSkateDown
-	bit D_UP_F, d
+	bit B_PAD_UP, d
 	jp nz, CheckSkateUp
-	bit D_LEFT_F, d
+	bit B_PAD_LEFT, d
 	jp nz, CheckSkateLeft
-	bit D_RIGHT_F, d
+	bit B_PAD_RIGHT, d
 	jp nz, CheckSkateRight
 
 .idle
@@ -385,14 +385,14 @@ OldCheckMovementSurf::
 
 _OldCheckMovementSurf:
 	ld a, d
-	and D_PAD
-	bit D_DOWN_F, a
+	and PAD_CTRL_PAD
+	bit B_PAD_DOWN, a
 	jp nz, .check_down
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jp nz, .check_up
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jp nz, .check_left
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .check_right
 	ld a, movement_step_sleep
 	ret
@@ -574,7 +574,7 @@ if DEF(_DEBUG)
 	ld hl, wDebugFlags
 	bit DEBUG_FIELD_F, [hl]
 	jr z, .skip_debug_move
-	bit B_BUTTON_F, d
+	bit B_PAD_B, d
 	jp nz, CheckMovementDebug
 .skip_debug_move
 endc
@@ -704,13 +704,13 @@ CheckMovementWalkWarp::
 
 .check_dpad
 	ldh a, [hJoyState]
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .down
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .up
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .left
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .right
 	jp NoWalkMovement
 
@@ -754,25 +754,25 @@ CheckMovementWalkSpecial::
 
 CheckMovementWalkRegular::
 	ldh a, [hJoyState]
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jp nz, CheckWalkDown
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jp nz, CheckWalkUp
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jp nz, CheckWalkLeft
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jp nz, CheckWalkRight
 	jp NoWalkMovement
 
 CheckMovementWalkJump:
 	ldh a, [hJoyState]
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .down
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .up
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .left
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .right
 	jp NoWalkMovement
 
@@ -915,13 +915,13 @@ CheckMovementSurf::
 
 CheckMovementSurfRegular::
 	ldh a, [hJoyState]
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jp nz, CheckSurfDown
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jp nz, CheckSurfUp
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jp nz, CheckSurfLeft
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jp nz, CheckSurfRight
 	jp NoWalkMovement
 

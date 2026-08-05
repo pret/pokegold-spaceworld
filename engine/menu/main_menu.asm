@@ -152,8 +152,8 @@ MainMenu::
 	ld a, M_CONTINUE
 .skip
 	ldh a, [hJoyState]
-	and D_DOWN | B_BUTTON | A_BUTTON
-	cp D_DOWN | B_BUTTON | A_BUTTON
+	and PAD_DOWN | PAD_B | PAD_A
+	cp PAD_DOWN | PAD_B | PAD_A
 	jr nz, .setMenuPlay
 	ld a, M_SET_TIME
 	jr .triggerMenu
@@ -236,9 +236,9 @@ Continue::
 	call ClearJoypad
 	call GetJoypad
 	ldh a, [hJoyState]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .escape
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jp nz, MainMenu
 	jr .loop
 .escape
@@ -249,7 +249,7 @@ Continue::
 	set CONTINUED_F, [hl]
 	set SAVE_FILE_EXISTS_F, [hl]
 	ldh a, [hJoyState]
-	bit SELECT_F, a
+	bit B_PAD_SELECT, a
 	jr z, .skip
 	set 1, [hl]
 .skip

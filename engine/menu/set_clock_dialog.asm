@@ -118,13 +118,13 @@ SetClockDialog_ChooseDayOfWeek:
 	call GetJoypadDebounced
 	ld hl, hJoySum
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up_pressed
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down_pressed
 	ret
 
@@ -180,16 +180,16 @@ SetClockDialog_ChooseHour:
 	call GetJoypadDebounced
 	ld hl, hJoySum
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_pressed
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up_pressed
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down_pressed
 	ret
 
@@ -249,16 +249,16 @@ SetClockDialog_ChooseMinutes:
 	call GetJoypadDebounced
 	ld hl, hJoySum
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_pressed
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up_pressed
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down_pressed
 	ret
 

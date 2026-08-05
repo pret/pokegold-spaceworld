@@ -154,7 +154,7 @@ TM_HolderLoop:
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
-	ld a, D_UP | D_DOWN | A_BUTTON | B_BUTTON
+	ld a, PAD_UP | PAD_DOWN | PAD_A | PAD_B
 	ld [wMenuJoypadFilter], a
 	ld a, [wTMHolderCursor]
 	inc a
@@ -181,9 +181,9 @@ TMHolder_JoypadLoop_SkipDisplay:
 	bit _2DMENU_EXITING_F, a
 	jp nz, TMHM_ScrollHolder
 	ld a, b
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jp nz, TMHM_CheckHoveringOverCancel
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jp nz, ExitTMHolder
 
 TMHolder_ShowTMMoveDescription:
@@ -267,7 +267,7 @@ ExitTMHolder:
 
 TMHM_ScrollHolder:
 	ld a, b
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .down
 	ld hl, wTMHolderScrollPosition
 	ld a, [hl]

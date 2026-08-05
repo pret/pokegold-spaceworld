@@ -58,7 +58,7 @@ GameFreakIntro::
 	call DisableLCD
 
 	ld hl, vBGMap0
-	ld bc, BG_MAP_WIDTH * SCREEN_HEIGHT
+	ld bc, TILEMAP_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
 

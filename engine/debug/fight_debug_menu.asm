@@ -85,19 +85,19 @@ FightDebugMenu:
 	pop de ; wPokemonData
 	pop bc ; b = monster number c = level
 	ldh a, [hJoySum]
-	bit A_BUTTON_F, a ; "a" button
+	bit B_PAD_A, a ; "a" button
 	jp nz, .CountUp
-	bit B_BUTTON_F, a ; "b" button
+	bit B_PAD_B, a ; "b" button
 	jp nz, .CountDown
-	bit START_F, a ; start button
+	bit B_PAD_START, a ; start button
 	jp nz, .EnemySet
-	bit D_RIGHT_F, a ; right button
+	bit B_PAD_RIGHT, a ; right button
 	jp nz, .MonsLevel
-	bit D_UP_F, a ; up button
+	bit B_PAD_UP, a ; up button
 	jp nz, .BeforeMons
-	bit D_DOWN_F, a ; down button
+	bit B_PAD_DOWN, a ; down button
 	jp nz, .NextMons
-	bit SELECT_F, a ; select button
+	bit B_PAD_SELECT, a ; select button
 	predef_id DebugMenu
 	jp nz, Predef
 	jr .MonsNumberLoop
@@ -236,17 +236,17 @@ endr
 	pop de ; wPokemonData
 	pop bc ; b = monster number c = level
 	ldh a, [hJoySum]
-	bit A_BUTTON_F, a ; "a" button
+	bit B_PAD_A, a ; "a" button
 	jp nz, .LevelCountUp
-	bit B_BUTTON_F, a ; "b" button
+	bit B_PAD_B, a ; "b" button
 	jp nz, .LevelCountDown
-	bit START_F, a ; start button
+	bit B_PAD_START, a ; start button
 	jp nz, .EnemySet
-	bit D_LEFT_F, a ; left button
+	bit B_PAD_LEFT, a ; left button
 	jp nz, .MonsNumber
-	bit D_UP_F, a ; up button
+	bit B_PAD_UP, a ; up button
 	jp nz, .LevelBeforeMons
-	bit D_DOWN_F, a ; down button
+	bit B_PAD_DOWN, a ; down button
 	jp nz, .LevelNextMons
 	jr .MonsLevelLoop
 
@@ -522,11 +522,11 @@ endr
 	call GetJoypadDebounced
 	pop bc ; b = monster number c = level
 	ldh a, [hJoySum]
-	bit A_BUTTON_F, a ; "a" button
+	bit B_PAD_A, a ; "a" button
 	jp nz, .TypeChange
-	bit START_F, a ; start button
+	bit B_PAD_START, a ; start button
 	jp nz, .GoFight
-	bit D_DOWN_F, a ; down button
+	bit B_PAD_DOWN, a ; down button
 	jp nz, .EnemyMons
 	jr .EnemyTypeLoop
 
@@ -579,15 +579,15 @@ endr
 	call GetJoypadDebounced
 	pop bc ; b = monster number c = level
 	ldh a, [hJoySum]
-	bit A_BUTTON_F, a ; "a" button
+	bit B_PAD_A, a ; "a" button
 	jp nz, .EnemyMonsCountUp
-	bit B_BUTTON_F , a ; "b" button
+	bit B_PAD_B , a ; "b" button
 	jp nz, .EnemyMonsCountDown
-	bit START_F, a ; start button
+	bit B_PAD_START, a ; start button
 	jp nz, .GoFight
-	bit D_RIGHT_F, a ; right button
+	bit B_PAD_RIGHT, a ; right button
 	jp nz, .EnemyLevel
-	bit D_UP_F, a ; up button
+	bit B_PAD_UP, a ; up button
 	jp nz, .EnemyType
 	jr .EnemyMonsLoop
 
@@ -702,15 +702,15 @@ endr
 	call GetJoypadDebounced
 	pop bc ; b = monster number c = level
 	ldh a, [hJoySum]
-	bit A_BUTTON_F, a ; "a" button
+	bit B_PAD_A, a ; "a" button
 	jp nz, .EnemyLevelCountUp
-	bit B_BUTTON_F, a ; "b" button
+	bit B_PAD_B, a ; "b" button
 	jp nz, .EnemyLevelCountDown
-	bit START_F, a ; start button
+	bit B_PAD_START, a ; start button
 	jp nz, .GoFight
-	bit D_LEFT_F, a ; left button
+	bit B_PAD_LEFT, a ; left button
 	jp nz, .EnemyMons
-	bit D_UP_F, a ; up button
+	bit B_PAD_UP, a ; up button
 	jp nz, .EnemyType
 	jr .EnemyLevelLoop
 

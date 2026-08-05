@@ -22,7 +22,7 @@ Toss_Sell_Loop:
 ; It won't progress if you're holding the A Button...
 	call GetJoypad
 	ldh a, [hJoyState]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .preloop
 
 .loop
@@ -50,19 +50,19 @@ BuySellToss_InterpretJoypad:
 	ldh [hInMenu], a
 
 	ldh a, [hJoyDown]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .b
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .a
 
 	ldh a, [hJoySum]
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .down
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .up
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .left
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .right
 	jr .loop
 .b

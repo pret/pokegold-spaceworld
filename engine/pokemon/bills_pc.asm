@@ -243,7 +243,7 @@ _ChangeBox:
 	call CopyMenuHeader
 	call ScrollingMenu
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .exit
 	call BillsPC_ChangeBoxSubmenu
 	jr .loop
@@ -475,7 +475,7 @@ _ViewPKMN:
 	ld [wBillsPCCursor], a
 	call ClearPalettes
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .exit
 	call .ViewStats
 	jr .loop
@@ -566,7 +566,7 @@ BillsPC_Menu::
 	ld l, a
 	call ScrollingMenu_FromTable
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .exit
 	ld hl, .PokemonSelected
 	call MenuTextBoxBackup

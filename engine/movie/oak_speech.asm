@@ -682,7 +682,7 @@ IntroDisplayPicCenteredOrUpperRight::
 LoadStartingSprites:
 	ld de, GoldSpriteGFX
 	lb bc, BANK(GoldSpriteGFX), 12
-	ld hl, VRAM_Begin
+	ld hl, vSprites
 	call Request2bpp
 	ld hl, wShadowOAM
 	ld de, GameStartSprites

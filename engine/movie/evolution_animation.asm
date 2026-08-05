@@ -158,7 +158,7 @@ EvolutionAnimation::
 	call GetJoypadDebounced
 	ldh a, [hJoySum]
 	pop bc
-	and B_BUTTON
+	and PAD_B
 	jr nz, .pressed_b
 .loop3
 	dec c

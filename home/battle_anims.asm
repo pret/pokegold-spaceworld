@@ -1,6 +1,6 @@
 GetBattleAnimPointer::
 	ld a, BANK(BattleAnimations)
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ldh [hROMBank], a
 
 	ld a, [hli]
@@ -9,7 +9,7 @@ GetBattleAnimPointer::
 	ld [wBattleAnimAddress + 1], a
 
 	ld a, BANK(PlayBattleAnim)
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ldh [hROMBank], a
 
 	ret
@@ -24,7 +24,7 @@ GetBattleAnimByte::
 	ld d, [hl]
 
 	ld a, BANK(BattleAnimations)
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ldh [hROMBank], a
 
 	ld a, [de]
@@ -32,7 +32,7 @@ GetBattleAnimByte::
 	inc de
 
 	ld a, BANK(PlayBattleAnim)
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ldh [hROMBank], a
 
 	ld [hl], d

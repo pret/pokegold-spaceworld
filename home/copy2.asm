@@ -144,7 +144,7 @@ Get2bpp::
 ; Copy c 2bpp tiles from b:de to hl in VRAM using
 ; VBlank service or direct copy in case LCD is off.
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit B_LCDC_ENABLE, a
 	jp nz, Request2bpp ; copy video data during vblank while screen is on
 	; fallthrough
 
@@ -169,7 +169,7 @@ Get1bpp::
 ; Copy c 1bpp tiles from b:de to hl in VRAM using
 ; VBlank service or direct copy in case LCD is off.
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit B_LCDC_ENABLE, a
 	jp nz, Request1bpp
 	; fallthrough
 

@@ -24,13 +24,13 @@ OptionsMenu::
 	and a
 	jr z, .wait_joy_loop
 	ld a, b
-	and START | B_BUTTON
+	and PAD_START | PAD_B
 	jr nz, .ExitOptions
 	ld a, b
-	and SELECT
+	and PAD_SELECT
 	jr nz, .SwitchSGBBorder
 	ld a, b
-	and A_BUTTON
+	and PAD_A
 	jr z, .CheckDPad
 
 	ld a, [wOptionsMenuCursorY]
@@ -85,9 +85,9 @@ OptionsMenu::
 
 .CheckDPad:
 	ld a, [wOptionsMenuCursorY]
-	bit D_DOWN_F, b
+	bit B_PAD_DOWN, b
 	jr nz, .down_pressed
-	bit D_UP_F, b
+	bit B_PAD_UP, b
 	jr nz, .up_pressed
 
 	cp OPT_BATTLE_ANIM_ROW
@@ -100,7 +100,7 @@ OptionsMenu::
 	jp z, .Cursor_BottomRow
 
 .Cursor_TextSpeed:
-	bit D_LEFT_F, b
+	bit B_PAD_LEFT, b
 	jp nz, .text_speed_left
 	jp .text_speed_right
 

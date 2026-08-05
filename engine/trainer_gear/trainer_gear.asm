@@ -238,10 +238,10 @@ TrainerGear_InitPointerSprite:
 TrainerGear_Joypad:
 	ld hl, hJoySum
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .exit
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	ret z
 	call TrainerGear_DetermineView
 	ret
@@ -282,7 +282,7 @@ TrainerGear_Map:
 	call GetSGBLayout
 	ld de, TownMapGFX
 	ld hl, vTilesetEnd
-	lb bc, BANK(TownMapGFX), ((TownMapGFX.End - TownMapGFX) / LEN_2BPP_TILE - 1)
+	lb bc, BANK(TownMapGFX), ((TownMapGFX.End - TownMapGFX) / TILE_SIZE - 1)
 	call Request2bpp
 	coord hl, 0, 3
 	call DecompTownMapTilemap
@@ -298,7 +298,7 @@ TrainerGear_Map:
 TrainerGear_MapJoypad:
 	ld hl, hJoyDown
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	ret z
 	xor a
 	ld [wJumptableIndex], a
@@ -390,7 +390,7 @@ TrainerGear_Radio:
 TrainerGear_RadioJoypad:
 	ld hl, hJoyDown
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	ret z
 	xor a
 	ld [wJumptableIndex], a
@@ -417,7 +417,7 @@ TrainerGear_RadioJumptable:
 .WaitInput:
 	ld hl, hJoyDown
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	ret z
 	ld hl, wTrainerGearRadioIndex
 	inc [hl]
@@ -612,7 +612,7 @@ TrainerGear_Phone:
 TrainerGear_PhoneJoypad:
 	ld hl, hJoyDown
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	ret z
 	xor a
 	ld [wJumptableIndex], a
@@ -636,10 +636,10 @@ AnimateTrainerGearModeIndicatorPointer::
 	ld hl, wTrainerGearPointerPosition
 	ld de, hJoySum
 	ld a, [de]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .move_left
 	ld a, [de]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .move_right
 	jr .update_position
 .move_left

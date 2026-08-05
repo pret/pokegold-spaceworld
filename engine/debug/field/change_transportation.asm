@@ -38,7 +38,7 @@ FieldDebug_ChangeTransportation:
 
 .update_sprite
 	callfar GetPlayerSprite
-	ld a, BUTTONS
+	ld a, PAD_BUTTONS
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
 	ld a, FIELDDEBUG_RETURN_CLEANUP
@@ -61,7 +61,7 @@ FieldDebug_ChangeTransportation:
 .cannot_surf
 	ld hl, .CannotSurfString
 	call MenuTextBox
-	ld a, BUTTONS
+	ld a, PAD_BUTTONS
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
 

@@ -846,22 +846,22 @@ UpdateJumpPosition:
 	cp PLAYER_OBJECT_INDEX
 	ret nz
 	ldh a, [hJoypadState]
-	and D_PAD
+	and PAD_CTRL_PAD
 	ret z
 
 	ld d, OW_DOWN
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .got_direction
 
 	ld d, OW_UP
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .got_direction
 
 	ld d, OW_LEFT
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .got_direction
 
-	; D_RIGHT_F
+	; B_PAD_RIGHT
 	ld d, OW_RIGHT
 .got_direction
 	ld hl, OBJECT_DIRECTION
@@ -2192,17 +2192,17 @@ InitObjectSprites:
 	xor a
 	bit OBJ_FLAGS2_7_F, [hl]
 	jr z, .not_priority
-	add PRIORITY
+	add OAM_PRIO
 .not_priority
 	bit USE_OBP1_F, [hl]
 	jr z, .not_obp_num
-	add OBP_NUM
+	add OAM_PAL1
 .not_obp_num
 	ld d, a
 	xor a
 	bit OVERHEAD_F, [hl]
 	jr z, .not_overhead
-	or PRIORITY
+	or OAM_PRIO
 .not_overhead
 	ldh [hCurSpriteOAMFlags], a
 	ld hl, OBJECT_SPRITE_TILE
@@ -2294,7 +2294,7 @@ MoveUnusedObjectSpritesOffscreen:
 	ret nc
 	ld l, a
 	ld h, HIGH(wShadowOAM)
-	ld de, SPRITEOAMSTRUCT_LENGTH
+	ld de, OBJ_SIZE
 	ld a, b
 	ld c, 160
 .loop

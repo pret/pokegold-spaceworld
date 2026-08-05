@@ -2,5 +2,5 @@
 ; All rst vectors are unused at this point in development.
 Bankswitch::
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ret

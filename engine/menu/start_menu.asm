@@ -48,7 +48,7 @@ DisplayStartMenu::
 .WaitForARelease
 	call GetJoypad
 	ldh a, [hJoyDown]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .WaitForARelease
 	ret
 
@@ -453,15 +453,15 @@ BackpackHeaderText:
 
 HandleBackpackInput:
 	ld a, [wMenuJoypad]
-	cp A_BUTTON
+	cp PAD_A
 	jp z, .BackpackA
-	cp B_BUTTON
+	cp PAD_B
 	jp z, .BackpackBack
-	cp D_LEFT
+	cp PAD_LEFT
 	jp z, .BackpackSwapPocket
-	cp D_RIGHT
+	cp PAD_RIGHT
 	jp z, .BackpackSwapPocket
-	cp SELECT
+	cp PAD_SELECT
 	jp z, .BackpackSelect
 	jp .exit
 
@@ -1528,13 +1528,13 @@ SummaryDrawPoke:
 	jr PartySelectionInputs.PartySelectSkipInputs
 PartySelectionInputs:
 	call StaticMenuJoypad + 3
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jp nz, PartySelectionBackOut
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jp nz, .PartyPokeSelect
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jp nz, .PartyPokeDetailsAdvancePage
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jp nz, .PartyPokeDetailsBackPage
 .PartySelectSkipInputs
 	ld hl, wPartyMon1 + MON_MOVES
@@ -1935,16 +1935,16 @@ TrainerCardMainInputs:
 	call GetJoypad
 	ld hl, hJoyDown
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .exit
 	and a
 	ret

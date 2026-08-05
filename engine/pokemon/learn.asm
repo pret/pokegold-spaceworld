@@ -135,7 +135,7 @@ ForgetMove::
 	ld [w2DMenuNumCols], a
 	ld [w2DMenuDataEnd], a
 	ld [wMenuCursorX], a
-	ld a, A_BUTTON | B_BUTTON
+	ld a, PAD_A | PAD_B
 	ld [wMenuJoypadFilter], a
 	ld a, $20 ; enable sprite animations
 	ld [w2DMenuFlags1], a
@@ -148,7 +148,7 @@ ForgetMove::
 	call SafeLoadTempTilemapToTilemap
 	pop af
 	pop hl
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .cancel
 	push hl
 	ld a, [w2DMenuDataEnd]

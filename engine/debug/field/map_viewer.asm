@@ -115,10 +115,10 @@ DebugMapViewer::
 	xor a
 	ldh [hJoypadSum], a
 	ld a, b
-	and START
+	and PAD_START
 	jr nz, .start_pressed
 	ldh a, [hJoyState]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 	call DebugMapViewer_DoMovement
 	jr .apply_movement
@@ -233,7 +233,7 @@ DebugMapViewer_ShowSelectedDetails:
 	call PlaceString
 
 .wait
-	ld a, BUTTONS
+	ld a, PAD_BUTTONS
 	call FieldDebug_WaitJoypadInput
 	call CloseWindow
 	ret
@@ -250,13 +250,13 @@ DebugMapViewer_DoMovement:
 	ld bc, wObjectStructs
 	ldh a, [hJoyState]
 	ld d, a
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .down
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .up
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .left
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .right
 .done
 	ld a, movement_step_sleep
@@ -427,6 +427,6 @@ DisplayBGEventDetails:
 .WaitInput:
 	call GetJoypad
 	ldh a, [hJoyDown]
-	and A_BUTTON | B_BUTTON | SELECT
+	and PAD_A | PAD_B | PAD_SELECT
 	jr z, .WaitInput
 	ret

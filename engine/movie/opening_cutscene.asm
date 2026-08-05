@@ -446,7 +446,7 @@ Intro_UpdateTilemapAndBGMap:
 	ld e, a
 	ld a, [wIntroTilemapPointer + 1]
 	ld d, a
-	ld hl, -BG_MAP_WIDTH / 2
+	ld hl, -TILEMAP_WIDTH / 2
 	add hl, de
 	ld a, l
 	ld e, l
@@ -456,7 +456,7 @@ Intro_UpdateTilemapAndBGMap:
 	ld [wIntroTilemapPointer + 1], a
 
 	hlcoord 0, 0
-	ld c, BG_MAP_WIDTH / 2
+	ld c, TILEMAP_WIDTH / 2
 .loop
 	call Intro_Draw2x2Tiles
 	dec c
@@ -466,7 +466,7 @@ Intro_UpdateTilemapAndBGMap:
 	ld e, a
 	ld a, [wIntroBGMapPointer + 1]
 	ld d, a
-	ld hl, -2 * BG_MAP_WIDTH
+	ld hl, -2 * TILEMAP_WIDTH
 	add hl, de
 	ld a, l
 	ld [wIntroBGMapPointer + 0], a
@@ -510,9 +510,9 @@ endr
 	ld [wVBCopySrc], a
 	ld a, h
 	ld [wVBCopySrc + 1], a
-	ld a, LOW(vBGMap0 + 15 * BG_MAP_WIDTH)
+	ld a, LOW(vBGMap0 + 15 * TILEMAP_WIDTH)
 	ld [wVBCopyDst], a
-	ld a, HIGH(vBGMap0 + 15 * BG_MAP_WIDTH)
+	ld a, HIGH(vBGMap0 + 15 * TILEMAP_WIDTH)
 	ld [wVBCopyDst + 1], a
 	ld a, 2
 	ld [wVBCopySize], a
@@ -539,7 +539,7 @@ endr
 Intro_InitSineLYOverrides:
 	ld bc, wLYOverrides2
 	ld a, SCREEN_HEIGHT_PX
-	ld de, BG_MAP_WIDTH * BG_MAP_HEIGHT
+	ld de, TILEMAP_WIDTH * TILEMAP_HEIGHT
 .loop
 	push af
 	push de
@@ -982,7 +982,7 @@ Intro_BlankTilemapAndBGMap:
 	jr nz, .blank_tilemap
 
 	ld hl, wOverworldMapBlocks
-	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
+	ld bc, TILEMAP_WIDTH * TILEMAP_HEIGHT
 
 .blank_bgmap
 	ld [hl], 0
@@ -1163,17 +1163,17 @@ Intro_Copy128Tiles:
 	ret
 
 Intro_DrawBackground:
-	ld b, BG_MAP_WIDTH / 2
+	ld b, TILEMAP_WIDTH / 2
 .outer_loop
 	push hl
-	ld c, BG_MAP_HEIGHT / 2
+	ld c, TILEMAP_HEIGHT / 2
 .inner_loop
 	call Intro_Draw2x2Tiles
 	dec c
 	jr nz, .inner_loop
 	pop hl
 	push bc
-	ld bc, 2 * BG_MAP_WIDTH
+	ld bc, 2 * TILEMAP_WIDTH
 	add hl, bc
 	pop bc
 	dec b
@@ -1206,7 +1206,7 @@ Intro_Draw2x2Tiles:
 	inc de
 	ld [hli], a
 	pop hl
-	ld bc, BG_MAP_WIDTH
+	ld bc, TILEMAP_WIDTH
 	add hl, bc
 	ld a, [de]
 	inc de

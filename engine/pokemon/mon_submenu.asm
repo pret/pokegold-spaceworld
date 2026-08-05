@@ -57,9 +57,9 @@ MonMenuLoop:
 
 	call StaticMenuJoypad
 	ldh a, [hJoyDown]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .select
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .cancel
 	jr .loop
 
@@ -264,7 +264,7 @@ BattleMonMenu:
 	ld hl, w2DMenuFlags1
 	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call StaticMenuJoypad
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .clear_carry
 	ret z
 

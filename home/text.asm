@@ -602,7 +602,7 @@ Text_TX_EXIT:
 	push bc
 	call GetJoypad
 	ldh a, [hJoyState]
-	and (A_BUTTON | B_BUTTON)
+	and (PAD_A | PAD_B)
 	jr nz, .done
 	ld c, 30
 	call DelayFrames
@@ -683,7 +683,7 @@ Text_TX_DOTS:
 	call GetJoypad
 	pop de
 	ldh a, [hJoyState]
-	and (A_BUTTON | B_BUTTON)
+	and (PAD_A | PAD_B)
 	jr nz, .next
 	ld c, 10
 	call DelayFrames

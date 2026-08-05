@@ -406,7 +406,7 @@ LoadMapTimeOfDay::
 	ld [hli], a
 	dec c
 	jr nz, .column
-	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH
+	ld bc, TILEMAP_WIDTH - SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
@@ -1147,7 +1147,7 @@ LoadMetatiles::
 	dec c
 	jr nz, .tile
 	pop hl
-	ld de, BG_MAP_WIDTH * 3
+	ld de, TILEMAP_WIDTH * 3
 	add hl, de
 	pop de
 	ld a, [wMapWidth]

@@ -126,10 +126,10 @@ MonsterTest_List:
 
 	call MonsterTest_Cursor
 
-	bit B_BUTTON_F, a ; cancel by "B" button
+	bit B_PAD_B, a ; cancel by "B" button
 	jp nz, .close_menu
 
-	bit SELECT_F, a ; trainer or monster change
+	bit B_PAD_SELECT, a ; trainer or monster change
 	jr z, .move_up
 	ld hl, wWhichPicTest
 	ld a, [hl]
@@ -139,7 +139,7 @@ MonsterTest_List:
 	ld [wOptionsMenuCursorY], a
 	jr MonsterTest_List
 .move_up:
-	bit D_UP_F, a ; up key
+	bit B_PAD_UP, a ; up key
 	jr z, .move_down
 
 	ld a, [wOptionsMenuCursorY]
@@ -150,7 +150,7 @@ MonsterTest_List:
 	ld [wOptionsMenuCursorY], a
 	jp .Loop
 .move_down:
-	bit D_DOWN_F, a ; down key
+	bit B_PAD_DOWN, a ; down key
 	jr z, .next_page
 
 	ld a, [wOptionsTextSpeedCursorX] ; page size
@@ -167,7 +167,7 @@ MonsterTest_List:
 	ld [wOptionsMenuCursorY], a
 	jp .Loop
 .next_page:
-	bit D_RIGHT_F, a ; right key
+	bit B_PAD_RIGHT, a ; right key
 	jr z, .previous_page
 
 	ld a, [wOptionsTextSpeedCursorX] ; page size
@@ -187,7 +187,7 @@ MonsterTest_List:
 	ld [wOptionsMenuCursorY], a
 	jp .Loop
 .previous_page:
-	bit D_LEFT_F, a ; left key
+	bit B_PAD_LEFT, a ; left key
 	jr z, .no_input
 
 	ld a, [wOptionsMenuCursorY]
@@ -255,19 +255,19 @@ MonsterTest_SelectedMenu:
 
 	ld hl, hJoySum
 	ld a, [hl]
-	and (A_BUTTON | B_BUTTON)
+	and (PAD_A | PAD_B)
 	ret nz
 
 .Input_Loop:
 	ld a, [hl]
-	and D_PAD
+	and PAD_CTRL_PAD
 	jr z, .wait_for_input
 
 	ld a, [wTempSpecies]
 	ld c, a
 
 	ld a, [hl]
-	and (D_DOWN | D_RIGHT)
+	and (PAD_DOWN | PAD_RIGHT)
 	jr nz, .next_entry
 
 	dec c
@@ -394,10 +394,10 @@ MonsterTest_Cursor:
 	and a
 	jr z, .Loop
 
-	and D_UP
+	and PAD_UP
 	jr nz, .move_up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .move_down
 .return:
 	ldh a, [hJoySum]

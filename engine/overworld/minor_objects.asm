@@ -125,7 +125,7 @@ MinorObject_GetParentObjectStruct:
 	ret
 
 ; Unused, purpose unknown.
-; VAR2 => TIMER, VAR3 => X_OFFSET
+; VAR2 => TIMER, 0 => X_OFFSET, VAR3 => Y_OFFSET
 MinorObject_03:
 MinorObject_04:
 	ld de, .anon_dw

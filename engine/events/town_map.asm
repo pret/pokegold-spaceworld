@@ -10,7 +10,7 @@ TownMap::
 	callfar PlaySpriteAnimations
 	ld hl, hJoyDown
 	ld a, [hl]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .loop
 	ret
 
@@ -40,10 +40,10 @@ FlyMap::
 	callfar PlaySpriteAnimations
 	ld hl, hJoyDown
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .cancel
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .fly
 	call .HandleDPad
 	callfar GetFlyPointMapLocation
@@ -84,19 +84,19 @@ FlyMap::
 	add hl, de
 	ld de, hJoySum
 	ld a, [de]
-	and D_UP
+	and PAD_UP
 	jr nz, .get_point
 	inc hl
 	ld a, [de]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .get_point
 	inc hl
 	ld a, [de]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .get_point
 	inc hl
 	ld a, [de]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .get_point
 	ret
 .get_point
@@ -142,7 +142,7 @@ Pokedex_GetArea:
 	call .PlaceNest
 	call GetJoypadDebounced
 	ldh a, [hJoyDown]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr nz, .done
 
 	ld hl, wNestIconBlinkCounter

@@ -20,7 +20,7 @@ MinorObjectSpriteTiles:
 .Shadow:
 	db 2 ; tiles
 	db 0, 0, $00, 0
-	db 0, 8, $00, X_FLIP
+	db 0, 8, $00, OAM_XFLIP
 
 .BoulderDust1:
 	db 4 ; tiles
@@ -31,7 +31,7 @@ MinorObjectSpriteTiles:
 
 .BoulderDust2:
 	db 4 ; tiles
-	db 0, 0, $00, Y_FLIP
-	db 0, 8, $00, Y_FLIP
-	db 8, 0, $00, Y_FLIP
-	db 8, 8, $00, Y_FLIP
+	db 0, 0, $00, OAM_YFLIP
+	db 0, 8, $00, OAM_YFLIP
+	db 8, 0, $00, OAM_YFLIP
+	db 8, 8, $00, OAM_YFLIP

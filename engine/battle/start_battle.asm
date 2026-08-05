@@ -311,7 +311,7 @@ ClearBattleRAM:
 	xor a
 	ld [hli], a
 	ld [hl], HIGH(vBGMap0)
-	ld a, (LCDC_DEFAULT & ~(1 << rLCDC_WINDOW_TILEMAP))
+	ld a, (LCDC_DEFAULT & ~(1 << B_LCDC_WIN_MAP))
 	ldh [rLCDC], a
 	ld a, [wMapId]
 	cp $d9 ; SAFARI_ZONE_EAST
@@ -559,7 +559,7 @@ BattleIntroSlidingPics:
 	push bc
 	ld hl, wShadowOAMSprite00XCoord
 	ld c, $12
-	ld de, SPRITEOAMSTRUCT_LENGTH
+	ld de, OBJ_SIZE
 .loop2
 	dec [hl]
 	dec [hl]

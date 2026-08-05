@@ -820,19 +820,19 @@ AnimSeq_MinigameJigglypuff:
 AnimSeq_MinigamePicrossCursor:
 	ld hl, wPicrossJoyStateBuffer
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .Up
 
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .Down
 
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .Left
 
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .Right
 	ret
 
@@ -879,7 +879,7 @@ AnimSeq_MinigamePicrossCursor:
 
 	ld hl, hJoypadState
 	ld a, [hl]
-	and ~(A_BUTTON | B_BUTTON)
+	and ~(PAD_A | PAD_B)
 	ld [hl], a
 	ret
 

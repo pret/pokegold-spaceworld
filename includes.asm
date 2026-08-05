@@ -18,11 +18,10 @@ INCLUDE "macros/scripts/battle_commands.asm"
 INCLUDE "macros/scripts/battle_anims.asm"
 INCLUDE "macros/scripts/oam_anims.asm"
 
+INCLUDE "constants/hardware.inc"
 INCLUDE "constants/audio_constants.asm"
 INCLUDE "constants/gfx_constants.asm"
-INCLUDE "constants/hardware_constants.asm"
 INCLUDE "constants/text_constants.asm"
-
 INCLUDE "constants/type_constants.asm"
 INCLUDE "constants/pokedex_constants.asm"
 INCLUDE "constants/pokemon_constants.asm"
@@ -49,12 +48,8 @@ INCLUDE "constants/collision_constants.asm"
 INCLUDE "constants/metatile_constants.asm"
 INCLUDE "constants/map_data_constants.asm"
 INCLUDE "constants/script_constants.asm"
-
 INCLUDE "constants/serial_constants.asm"
-INCLUDE "constants/input_constants.asm"
-
 INCLUDE "constants/misc_constants.asm"
-
 INCLUDE "constants/battle_anim_constants.asm"
 INCLUDE "constants/menu_constants.asm"
 INCLUDE "constants/ram_constants.asm"

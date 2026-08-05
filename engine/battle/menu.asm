@@ -63,7 +63,7 @@ Battle_2DMenu:
 	call .InitAndHandleCursor
 	call StaticMenuJoypad
 	ldh a, [hJoySum]
-	bit SELECT_F, a
+	bit B_PAD_SELECT, a
 	jr nz, .quit
 
 	ld a, [w2DMenuNumRows]
@@ -167,7 +167,7 @@ Battle_2DMenu:
 	ld a, [wMenuData_2DMenuSpacing]
 	or $20
 	ld [w2DMenuCursorOffsets], a
-	ld a, A_BUTTON | SELECT
+	ld a, PAD_A | PAD_SELECT
 	ld [wMenuJoypadFilter], a
 	ld a, [w2DMenuNumCols]
 	ld e, a

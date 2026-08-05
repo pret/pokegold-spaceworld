@@ -64,7 +64,7 @@ Unreferenced_Corrupt_CheckTossableItem_Old:
 
 Unreferenced_Corrupt_GetBattleAnimPointer_Old:
 	ld a, BANK(BattleAnimations)
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ldh [hROMBank], a
 
 	ld a, [hli]
@@ -73,7 +73,7 @@ Unreferenced_Corrupt_GetBattleAnimPointer_Old:
 	ld [wBattleAnimAddress + 1], a
 
 	ld a, BANK(PlayBattleAnim)
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ldh [hROMBank], a
 	ret
 
@@ -87,7 +87,7 @@ Unreferenced_Corrupt_GetBattleAnimByte_Old:
 	ld d, [hl]
 
 	ld a, BANK(BattleAnimations)
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ldh [hROMBank], a
 
 	ld a, [de]
@@ -95,7 +95,7 @@ Unreferenced_Corrupt_GetBattleAnimByte_Old:
 	inc de
 
 	ld a, BANK(PlayBattleAnim)
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ldh [hROMBank], a
 
 	ld [hl], d
@@ -131,11 +131,11 @@ Unreferenced_Corrupt_DisableAudio_Old:
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_DisableAudio)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	call _DisableAudio
 	pop af
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	pop bc
@@ -151,11 +151,11 @@ Unused_UpdateSound_Old:
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_UpdateSound)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	call _UpdateSound
 	pop af
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	pop bc
@@ -164,12 +164,12 @@ Unused_UpdateSound_Old:
 	ret
 
 Unreferenced_Corrupt_LoadMusicByte_Old:
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	ld a, [de]
 	push af
 	ld a, BANK(_UpdateSound)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	ret
@@ -182,11 +182,11 @@ Unreferenced_Corrupt_PlayMusic_Old:
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_PlayMusic)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	call _PlayMusic
 	pop af
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	pop bc
@@ -203,7 +203,7 @@ Unreferenced_Corrupt_PlayCryHeader_Old:
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(PokemonCries)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	ld hl, PokemonCries
 rept 6
@@ -223,12 +223,12 @@ endr
 	ld [wCryLength + 1], a
 
 	ld a, BANK(_PlayCryHeader)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	call _PlayCryHeader
 
 	pop af
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	pop bc
@@ -244,11 +244,11 @@ Unused_PlaySFX_Old:
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_PlaySFX)
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	call _PlaySFX
 	pop af
-	ld [MBC3RomBank], a ; Unsafe
+	ld [rROMB], a ; Unsafe
 	ldh [hROMBank], a
 	pop af
 	pop bc

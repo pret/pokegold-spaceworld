@@ -89,7 +89,7 @@ RunBattleAnimScript_Target:
 
 BattleAnim_ClearOAM:
 	ld hl, wShadowOAM
-	ld c, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
+	ld c, OBJ_SIZE * OAM_COUNT
 	xor a
 .loop
 	ld [hli], a
@@ -490,7 +490,7 @@ BattleAnimCmd_5GFX:
 	ld [wBattleAnimGFXTempTileID], a
 .loop
 	ld a, [wBattleAnimGFXTempTileID]
-	cp (vChars1 - vChars0) / LEN_2BPP_TILE - BATTLEANIM_BASE_TILE
+	cp (vChars1 - vChars0) / TILE_SIZE - BATTLEANIM_BASE_TILE
 	ret nc
 	call GetBattleAnimByte
 	ld [hli], a

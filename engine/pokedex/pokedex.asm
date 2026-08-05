@@ -107,7 +107,7 @@ InitPokedex:
 
 	xor a
 	call ShowPokedexMenu
-	ld a, (1 << rLCDC_ENABLE) | (1 << rLCDC_WINDOW_TILEMAP) | (1 << rLCDC_WINDOW_ENABLE) | (1 << rLCDC_SPRITE_SIZE)
+	ld a, (1 << B_LCDC_ENABLE) | (1 << B_LCDC_WIN_MAP) | (1 << B_LCDC_WINDOW) | (1 << B_LCDC_OBJ_SIZE)
 	ldh [rBGP], a
 	ld a, %11010000
 	ldh [rOBP0], a
@@ -562,7 +562,7 @@ Pokedex_AButtonMenu:
 	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	call .ReturnButtons
-	ld a, (1 << rLCDC_ENABLE) | (1 << rLCDC_WINDOW_TILEMAP) | (1 << rLCDC_WINDOW_ENABLE) | (1 << rLCDC_SPRITE_SIZE)
+	ld a, (1 << B_LCDC_ENABLE) | (1 << B_LCDC_WIN_MAP) | (1 << B_LCDC_WINDOW) | (1 << B_LCDC_OBJ_SIZE)
 	ldh [rBGP], a
 	ld a, %11010000
 	ldh [rOBP0], a
@@ -996,35 +996,35 @@ Pokedex_HandCursorControls:
 	ld hl, wPokedexInputFlags
 	ld de, hJoyDown
 	ld a, [de]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 
 	ld a, [de]
-	and B_BUTTON
+	and PAD_B
 	jp nz, .b_pressed
 
 	ld a, [de]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 
 	ld a, [de]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 
 	ld a, [de]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 
 	ld a, [de]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 
 	ld a, [de]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select
 
 	ld a, [de]
-	and START
+	and PAD_START
 	jr nz, .start
 	ret
 
@@ -1198,48 +1198,48 @@ Pokedex_CursorControls:
 .CheckInput:
 	ld hl, hJoyDown
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 
 	ld a, [hl]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select_pressed
 
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_pressed
 
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 
 	ld hl, hJoySum
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ret
 
@@ -1405,7 +1405,7 @@ Pokedex_DexEntryInput:
 	call Pokedex_CopyJoypadSum
 	ld hl, hJoyDown
 	ld a, [hl]
-	and B_BUTTON | A_BUTTON
+	and PAD_B | PAD_A
 	jr z, .GotInput
 	and a
 	ret
@@ -1413,11 +1413,11 @@ Pokedex_DexEntryInput:
 .GotInput:
 	ld hl, hJoySum
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	jp .no_more_entries
 
@@ -1765,6 +1765,6 @@ _NewPokedexEntry:
 .wait_for_input
 	call GetJoypadDebounced
 	ldh a, [hJoySum]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .wait_for_input
 	ret

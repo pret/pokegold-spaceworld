@@ -87,31 +87,31 @@ SpriteAnimOAMData:
 .OAMData_GSGameFreakLogoStar:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, 0
-	dbsprite  0, -1,  0,  0, $00, 0 | X_FLIP
+	dbsprite  0, -1,  0,  0, $00, 0 | OAM_XFLIP
 	dbsprite -1,  0,  0,  0, $01, 0
-	dbsprite  0,  0,  0,  0, $01, 0 | X_FLIP
+	dbsprite  0,  0,  0,  0, $01, 0 | OAM_XFLIP
 
 .OAMData_TradePokeBall1:
 	db 4
-	dbsprite -1, -1,  0,  0, $00, 0 | PRIORITY
-	dbsprite  0, -1,  0,  0, $00, 0 | X_FLIP | PRIORITY
-	dbsprite -1,  0,  0,  0, $01, 0 | PRIORITY
-	dbsprite  0,  0,  0,  0, $01, 0 | X_FLIP | PRIORITY
+	dbsprite -1, -1,  0,  0, $00, 0 | OAM_PRIO
+	dbsprite  0, -1,  0,  0, $00, 0 | OAM_XFLIP | OAM_PRIO
+	dbsprite -1,  0,  0,  0, $01, 0 | OAM_PRIO
+	dbsprite  0,  0,  0,  0, $01, 0 | OAM_XFLIP | OAM_PRIO
 
 .OAMData_GSIntroSmallFireball:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, 0
-	dbsprite  0, -1,  0,  0, $00, 0 | X_FLIP
-	dbsprite -1,  0,  0,  0, $00, 0 | Y_FLIP
-	dbsprite  0,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP
+	dbsprite  0, -1,  0,  0, $00, 0 | OAM_XFLIP
+	dbsprite -1,  0,  0,  0, $00, 0 | OAM_YFLIP
+	dbsprite  0,  0,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
 ; Unreferenced in pokegold
 .OAMData_Unknown1:
 	db 4
-	dbsprite -1, -1,  0,  0, $00, 0 | PRIORITY
-	dbsprite  0, -1,  0,  0, $00, 0 | X_FLIP | PRIORITY
-	dbsprite -1,  0,  0,  0, $00, 0 | Y_FLIP | PRIORITY
-	dbsprite  0,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP | PRIORITY
+	dbsprite -1, -1,  0,  0, $00, 0 | OAM_PRIO
+	dbsprite  0, -1,  0,  0, $00, 0 | OAM_XFLIP | OAM_PRIO
+	dbsprite -1,  0,  0,  0, $00, 0 | OAM_YFLIP | OAM_PRIO
+	dbsprite  0,  0,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP | OAM_PRIO
 
 .OAMData_TradePoofBubble:
 	db 16
@@ -119,18 +119,18 @@ SpriteAnimOAMData:
 	dbsprite -1, -2,  0,  0, $01, 0
 	dbsprite -2, -1,  0,  0, $02, 0
 	dbsprite -1, -1,  0,  0, $03, 0
-	dbsprite  0, -2,  0,  0, $01, 0 | X_FLIP
-	dbsprite  1, -2,  0,  0, $00, 0 | X_FLIP
-	dbsprite  0, -1,  0,  0, $03, 0 | X_FLIP
-	dbsprite  1, -1,  0,  0, $02, 0 | X_FLIP
-	dbsprite -2,  0,  0,  0, $02, 0 | Y_FLIP
-	dbsprite -1,  0,  0,  0, $03, 0 | Y_FLIP
-	dbsprite -2,  1,  0,  0, $00, 0 | Y_FLIP
-	dbsprite -1,  1,  0,  0, $01, 0 | Y_FLIP
-	dbsprite  0,  0,  0,  0, $03, 0 | X_FLIP | Y_FLIP
-	dbsprite  1,  0,  0,  0, $02, 0 | X_FLIP | Y_FLIP
-	dbsprite  0,  1,  0,  0, $01, 0 | X_FLIP | Y_FLIP
-	dbsprite  1,  1,  0,  0, $00, 0 | X_FLIP | Y_FLIP
+	dbsprite  0, -2,  0,  0, $01, 0 | OAM_XFLIP
+	dbsprite  1, -2,  0,  0, $00, 0 | OAM_XFLIP
+	dbsprite  0, -1,  0,  0, $03, 0 | OAM_XFLIP
+	dbsprite  1, -1,  0,  0, $02, 0 | OAM_XFLIP
+	dbsprite -2,  0,  0,  0, $02, 0 | OAM_YFLIP
+	dbsprite -1,  0,  0,  0, $03, 0 | OAM_YFLIP
+	dbsprite -2,  1,  0,  0, $00, 0 | OAM_YFLIP
+	dbsprite -1,  1,  0,  0, $01, 0 | OAM_YFLIP
+	dbsprite  0,  0,  0,  0, $03, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  1,  0,  0,  0, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  0,  1,  0,  0, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  1,  1,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
 .OAMData_GSIntroBigFireball:
 	db 36
@@ -143,33 +143,33 @@ SpriteAnimOAMData:
 	dbsprite -3, -1,  0,  0, $06, 0
 	dbsprite -2, -1,  0,  0, $05, 0
 	dbsprite -1, -1,  0,  0, $05, 0
-	dbsprite  0, -3,  0,  0, $02, 0 | X_FLIP
-	dbsprite  1, -3,  0,  0, $01, 0 | X_FLIP
-	dbsprite  2, -3,  0,  0, $00, 0 | X_FLIP
-	dbsprite  0, -2,  0,  0, $05, 0 | X_FLIP
-	dbsprite  1, -2,  0,  0, $04, 0 | X_FLIP
-	dbsprite  2, -2,  0,  0, $03, 0 | X_FLIP
-	dbsprite  0, -1,  0,  0, $05, 0 | X_FLIP
-	dbsprite  1, -1,  0,  0, $05, 0 | X_FLIP
-	dbsprite  2, -1,  0,  0, $06, 0 | X_FLIP
-	dbsprite -3,  0,  0,  0, $06, 0 | Y_FLIP
-	dbsprite -2,  0,  0,  0, $05, 0 | Y_FLIP
-	dbsprite -1,  0,  0,  0, $05, 0 | Y_FLIP
-	dbsprite -3,  1,  0,  0, $03, 0 | Y_FLIP
-	dbsprite -2,  1,  0,  0, $04, 0 | Y_FLIP
-	dbsprite -1,  1,  0,  0, $05, 0 | Y_FLIP
-	dbsprite -3,  2,  0,  0, $00, 0 | Y_FLIP
-	dbsprite -2,  2,  0,  0, $01, 0 | Y_FLIP
-	dbsprite -1,  2,  0,  0, $02, 0 | Y_FLIP
-	dbsprite  0,  0,  0,  0, $05, 0 | X_FLIP | Y_FLIP
-	dbsprite  1,  0,  0,  0, $05, 0 | X_FLIP | Y_FLIP
-	dbsprite  2,  0,  0,  0, $06, 0 | X_FLIP | Y_FLIP
-	dbsprite  0,  1,  0,  0, $05, 0 | X_FLIP | Y_FLIP
-	dbsprite  1,  1,  0,  0, $04, 0 | X_FLIP | Y_FLIP
-	dbsprite  2,  1,  0,  0, $03, 0 | X_FLIP | Y_FLIP
-	dbsprite  0,  2,  0,  0, $02, 0 | X_FLIP | Y_FLIP
-	dbsprite  1,  2,  0,  0, $01, 0 | X_FLIP | Y_FLIP
-	dbsprite  2,  2,  0,  0, $00, 0 | X_FLIP | Y_FLIP
+	dbsprite  0, -3,  0,  0, $02, 0 | OAM_XFLIP
+	dbsprite  1, -3,  0,  0, $01, 0 | OAM_XFLIP
+	dbsprite  2, -3,  0,  0, $00, 0 | OAM_XFLIP
+	dbsprite  0, -2,  0,  0, $05, 0 | OAM_XFLIP
+	dbsprite  1, -2,  0,  0, $04, 0 | OAM_XFLIP
+	dbsprite  2, -2,  0,  0, $03, 0 | OAM_XFLIP
+	dbsprite  0, -1,  0,  0, $05, 0 | OAM_XFLIP
+	dbsprite  1, -1,  0,  0, $05, 0 | OAM_XFLIP
+	dbsprite  2, -1,  0,  0, $06, 0 | OAM_XFLIP
+	dbsprite -3,  0,  0,  0, $06, 0 | OAM_YFLIP
+	dbsprite -2,  0,  0,  0, $05, 0 | OAM_YFLIP
+	dbsprite -1,  0,  0,  0, $05, 0 | OAM_YFLIP
+	dbsprite -3,  1,  0,  0, $03, 0 | OAM_YFLIP
+	dbsprite -2,  1,  0,  0, $04, 0 | OAM_YFLIP
+	dbsprite -1,  1,  0,  0, $05, 0 | OAM_YFLIP
+	dbsprite -3,  2,  0,  0, $00, 0 | OAM_YFLIP
+	dbsprite -2,  2,  0,  0, $01, 0 | OAM_YFLIP
+	dbsprite -1,  2,  0,  0, $02, 0 | OAM_YFLIP
+	dbsprite  0,  0,  0,  0, $05, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  1,  0,  0,  0, $05, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  2,  0,  0,  0, $06, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  0,  1,  0,  0, $05, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  1,  1,  0,  0, $04, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  2,  1,  0,  0, $03, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  0,  2,  0,  0, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  1,  2,  0,  0, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  2,  2,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
 .OAMData_GSIntroJigglypuffPikachu:
 	db 16
@@ -239,10 +239,10 @@ SpriteAnimOAMData:
 
 .OAMData_WalkPriority:
 	db 4
-	dbsprite -1, -1,  0,  0, $00, 0 | PRIORITY
-	dbsprite  0, -1,  0,  0, $01, 0 | PRIORITY
-	dbsprite -1,  0,  0,  0, $02, 0 | PRIORITY
-	dbsprite  0,  0,  0,  0, $03, 0 | PRIORITY
+	dbsprite -1, -1,  0,  0, $00, 0 | OAM_PRIO
+	dbsprite  0, -1,  0,  0, $01, 0 | OAM_PRIO
+	dbsprite -1,  0,  0,  0, $02, 0 | OAM_PRIO
+	dbsprite  0,  0,  0,  0, $03, 0 | OAM_PRIO
 
 .OAMData_GSIntroMagikarp:
 	db 6
@@ -268,95 +268,95 @@ SpriteAnimOAMData:
 
 .OAMData_GSIntroLapras1:
 db 27
-	dbsprite -3, -3,  0,  0, $00, 0 | PRIORITY
-	dbsprite -2, -3,  0,  0, $01, 0 | PRIORITY
-	dbsprite -1, -3,  0,  0, $02, 0 | PRIORITY
-	dbsprite -3, -2,  0,  0, $10, 0 | PRIORITY
-	dbsprite -2, -2,  0,  0, $11, 0 | PRIORITY
-	dbsprite -1, -2,  0,  0, $12, 0 | PRIORITY
-	dbsprite -3, -1,  0,  0, $20, 0 | PRIORITY
-	dbsprite -2, -1,  0,  0, $21, 0 | PRIORITY
-	dbsprite -1, -1,  0,  0, $22, 0 | PRIORITY
-	dbsprite  0, -1,  0,  0, $23, 0 | PRIORITY
-	dbsprite -3,  0,  0,  0, $30, 0 | PRIORITY
-	dbsprite -2,  0,  0,  0, $31, 0 | PRIORITY
-	dbsprite -1,  0,  0,  0, $32, 0 | PRIORITY
-	dbsprite  0,  0,  0,  0, $33, 0 | PRIORITY
-	dbsprite  1,  0,  0,  0, $34, 0 | PRIORITY
-	dbsprite -3,  1,  0,  0, $40, 0 | PRIORITY
-	dbsprite -2,  1,  0,  0, $41, 0 | PRIORITY
-	dbsprite -1,  1,  0,  0, $42, 0 | PRIORITY
-	dbsprite  0,  1,  0,  0, $43, 0 | PRIORITY
-	dbsprite  1,  1,  0,  0, $44, 0 | PRIORITY
-	dbsprite  2,  1,  0,  0, $45, 0 | PRIORITY
-	dbsprite -3,  2,  0,  0, $50, 0 | PRIORITY
-	dbsprite -2,  2,  0,  0, $51, 0 | PRIORITY
-	dbsprite -1,  2,  0,  0, $52, 0 | PRIORITY
-	dbsprite  0,  2,  0,  0, $53, 0 | PRIORITY
-	dbsprite  1,  2,  0,  0, $54, 0 | PRIORITY
-	dbsprite  2,  2,  0,  0, $55, 0 | PRIORITY
+	dbsprite -3, -3,  0,  0, $00, 0 | OAM_PRIO
+	dbsprite -2, -3,  0,  0, $01, 0 | OAM_PRIO
+	dbsprite -1, -3,  0,  0, $02, 0 | OAM_PRIO
+	dbsprite -3, -2,  0,  0, $10, 0 | OAM_PRIO
+	dbsprite -2, -2,  0,  0, $11, 0 | OAM_PRIO
+	dbsprite -1, -2,  0,  0, $12, 0 | OAM_PRIO
+	dbsprite -3, -1,  0,  0, $20, 0 | OAM_PRIO
+	dbsprite -2, -1,  0,  0, $21, 0 | OAM_PRIO
+	dbsprite -1, -1,  0,  0, $22, 0 | OAM_PRIO
+	dbsprite  0, -1,  0,  0, $23, 0 | OAM_PRIO
+	dbsprite -3,  0,  0,  0, $30, 0 | OAM_PRIO
+	dbsprite -2,  0,  0,  0, $31, 0 | OAM_PRIO
+	dbsprite -1,  0,  0,  0, $32, 0 | OAM_PRIO
+	dbsprite  0,  0,  0,  0, $33, 0 | OAM_PRIO
+	dbsprite  1,  0,  0,  0, $34, 0 | OAM_PRIO
+	dbsprite -3,  1,  0,  0, $40, 0 | OAM_PRIO
+	dbsprite -2,  1,  0,  0, $41, 0 | OAM_PRIO
+	dbsprite -1,  1,  0,  0, $42, 0 | OAM_PRIO
+	dbsprite  0,  1,  0,  0, $43, 0 | OAM_PRIO
+	dbsprite  1,  1,  0,  0, $44, 0 | OAM_PRIO
+	dbsprite  2,  1,  0,  0, $45, 0 | OAM_PRIO
+	dbsprite -3,  2,  0,  0, $50, 0 | OAM_PRIO
+	dbsprite -2,  2,  0,  0, $51, 0 | OAM_PRIO
+	dbsprite -1,  2,  0,  0, $52, 0 | OAM_PRIO
+	dbsprite  0,  2,  0,  0, $53, 0 | OAM_PRIO
+	dbsprite  1,  2,  0,  0, $54, 0 | OAM_PRIO
+	dbsprite  2,  2,  0,  0, $55, 0 | OAM_PRIO
 
 .OAMData_GSIntroLapras2:
 	db 27
-	dbsprite -3, -3,  0,  0, $0d, 0 | PRIORITY
-	dbsprite -2, -3,  0,  0, $0e, 0 | PRIORITY
-	dbsprite -1, -3,  0,  0, $0f, 0 | PRIORITY
-	dbsprite -3, -2,  0,  0, $1d, 0 | PRIORITY
-	dbsprite -2, -2,  0,  0, $1e, 0 | PRIORITY
-	dbsprite -1, -2,  0,  0, $1f, 0 | PRIORITY
-	dbsprite -3, -1,  0,  0, $20, 0 | PRIORITY
-	dbsprite -2, -1,  0,  0, $21, 0 | PRIORITY
-	dbsprite -1, -1,  0,  0, $22, 0 | PRIORITY
-	dbsprite  0, -1,  0,  0, $23, 0 | PRIORITY
-	dbsprite -3,  0,  0,  0, $30, 0 | PRIORITY
-	dbsprite -2,  0,  0,  0, $31, 0 | PRIORITY
-	dbsprite -1,  0,  0,  0, $32, 0 | PRIORITY
-	dbsprite  0,  0,  0,  0, $33, 0 | PRIORITY
-	dbsprite  1,  0,  0,  0, $34, 0 | PRIORITY
-	dbsprite -3,  1,  0,  0, $40, 0 | PRIORITY
-	dbsprite -2,  1,  0,  0, $41, 0 | PRIORITY
-	dbsprite -1,  1,  0,  0, $42, 0 | PRIORITY
-	dbsprite  0,  1,  0,  0, $43, 0 | PRIORITY
-	dbsprite  1,  1,  0,  0, $44, 0 | PRIORITY
-	dbsprite  2,  1,  0,  0, $45, 0 | PRIORITY
-	dbsprite -3,  2,  0,  0, $50, 0 | PRIORITY
-	dbsprite -2,  2,  0,  0, $51, 0 | PRIORITY
-	dbsprite -1,  2,  0,  0, $52, 0 | PRIORITY
-	dbsprite  0,  2,  0,  0, $53, 0 | PRIORITY
-	dbsprite  1,  2,  0,  0, $54, 0 | PRIORITY
-	dbsprite  2,  2,  0,  0, $55, 0 | PRIORITY
+	dbsprite -3, -3,  0,  0, $0d, 0 | OAM_PRIO
+	dbsprite -2, -3,  0,  0, $0e, 0 | OAM_PRIO
+	dbsprite -1, -3,  0,  0, $0f, 0 | OAM_PRIO
+	dbsprite -3, -2,  0,  0, $1d, 0 | OAM_PRIO
+	dbsprite -2, -2,  0,  0, $1e, 0 | OAM_PRIO
+	dbsprite -1, -2,  0,  0, $1f, 0 | OAM_PRIO
+	dbsprite -3, -1,  0,  0, $20, 0 | OAM_PRIO
+	dbsprite -2, -1,  0,  0, $21, 0 | OAM_PRIO
+	dbsprite -1, -1,  0,  0, $22, 0 | OAM_PRIO
+	dbsprite  0, -1,  0,  0, $23, 0 | OAM_PRIO
+	dbsprite -3,  0,  0,  0, $30, 0 | OAM_PRIO
+	dbsprite -2,  0,  0,  0, $31, 0 | OAM_PRIO
+	dbsprite -1,  0,  0,  0, $32, 0 | OAM_PRIO
+	dbsprite  0,  0,  0,  0, $33, 0 | OAM_PRIO
+	dbsprite  1,  0,  0,  0, $34, 0 | OAM_PRIO
+	dbsprite -3,  1,  0,  0, $40, 0 | OAM_PRIO
+	dbsprite -2,  1,  0,  0, $41, 0 | OAM_PRIO
+	dbsprite -1,  1,  0,  0, $42, 0 | OAM_PRIO
+	dbsprite  0,  1,  0,  0, $43, 0 | OAM_PRIO
+	dbsprite  1,  1,  0,  0, $44, 0 | OAM_PRIO
+	dbsprite  2,  1,  0,  0, $45, 0 | OAM_PRIO
+	dbsprite -3,  2,  0,  0, $50, 0 | OAM_PRIO
+	dbsprite -2,  2,  0,  0, $51, 0 | OAM_PRIO
+	dbsprite -1,  2,  0,  0, $52, 0 | OAM_PRIO
+	dbsprite  0,  2,  0,  0, $53, 0 | OAM_PRIO
+	dbsprite  1,  2,  0,  0, $54, 0 | OAM_PRIO
+	dbsprite  2,  2,  0,  0, $55, 0 | OAM_PRIO
 
 .OAMData_GSIntroLapras3:
 	db 29
-	dbsprite -3, -3,  0,  0, $00, 0 | PRIORITY
-	dbsprite -2, -3,  0,  0, $01, 0 | PRIORITY
-	dbsprite -1, -3,  0,  0, $02, 0 | PRIORITY
-	dbsprite  0, -3,  0,  0, $03, 0 | PRIORITY
-	dbsprite -3, -2,  0,  0, $10, 0 | PRIORITY
-	dbsprite -2, -2,  0,  0, $11, 0 | PRIORITY
-	dbsprite -1, -2,  0,  0, $12, 0 | PRIORITY
-	dbsprite  0, -2,  0,  0, $13, 0 | PRIORITY
-	dbsprite -3, -1,  0,  0, $20, 0 | PRIORITY
-	dbsprite -2, -1,  0,  0, $21, 0 | PRIORITY
-	dbsprite -1, -1,  0,  0, $22, 0 | PRIORITY
-	dbsprite  0, -1,  0,  0, $23, 0 | PRIORITY
-	dbsprite  1, -1,  0,  0, $24, 0 | PRIORITY
-	dbsprite -3,  0,  0,  0, $30, 0 | PRIORITY
-	dbsprite -2,  0,  0,  0, $31, 0 | PRIORITY
-	dbsprite -1,  0,  0,  0, $32, 0 | PRIORITY
-	dbsprite  0,  0,  0,  0, $33, 0 | PRIORITY
-	dbsprite  1,  0,  0,  0, $34, 0 | PRIORITY
-	dbsprite -3,  1,  0,  0, $40, 0 | PRIORITY
-	dbsprite -2,  1,  0,  0, $41, 0 | PRIORITY
-	dbsprite -1,  1,  0,  0, $42, 0 | PRIORITY
-	dbsprite  0,  1,  0,  0, $43, 0 | PRIORITY
-	dbsprite  1,  1,  0,  0, $44, 0 | PRIORITY
-	dbsprite  2,  1,  0,  0, $45, 0 | PRIORITY
-	dbsprite -2,  2,  0,  0, $51, 0 | PRIORITY
-	dbsprite -1,  2,  0,  0, $52, 0 | PRIORITY
-	dbsprite  0,  2,  0,  0, $53, 0 | PRIORITY
-	dbsprite  1,  2,  0,  0, $54, 0 | PRIORITY
-	dbsprite  2,  2,  0,  0, $55, 0 | PRIORITY
+	dbsprite -3, -3,  0,  0, $00, 0 | OAM_PRIO
+	dbsprite -2, -3,  0,  0, $01, 0 | OAM_PRIO
+	dbsprite -1, -3,  0,  0, $02, 0 | OAM_PRIO
+	dbsprite  0, -3,  0,  0, $03, 0 | OAM_PRIO
+	dbsprite -3, -2,  0,  0, $10, 0 | OAM_PRIO
+	dbsprite -2, -2,  0,  0, $11, 0 | OAM_PRIO
+	dbsprite -1, -2,  0,  0, $12, 0 | OAM_PRIO
+	dbsprite  0, -2,  0,  0, $13, 0 | OAM_PRIO
+	dbsprite -3, -1,  0,  0, $20, 0 | OAM_PRIO
+	dbsprite -2, -1,  0,  0, $21, 0 | OAM_PRIO
+	dbsprite -1, -1,  0,  0, $22, 0 | OAM_PRIO
+	dbsprite  0, -1,  0,  0, $23, 0 | OAM_PRIO
+	dbsprite  1, -1,  0,  0, $24, 0 | OAM_PRIO
+	dbsprite -3,  0,  0,  0, $30, 0 | OAM_PRIO
+	dbsprite -2,  0,  0,  0, $31, 0 | OAM_PRIO
+	dbsprite -1,  0,  0,  0, $32, 0 | OAM_PRIO
+	dbsprite  0,  0,  0,  0, $33, 0 | OAM_PRIO
+	dbsprite  1,  0,  0,  0, $34, 0 | OAM_PRIO
+	dbsprite -3,  1,  0,  0, $40, 0 | OAM_PRIO
+	dbsprite -2,  1,  0,  0, $41, 0 | OAM_PRIO
+	dbsprite -1,  1,  0,  0, $42, 0 | OAM_PRIO
+	dbsprite  0,  1,  0,  0, $43, 0 | OAM_PRIO
+	dbsprite  1,  1,  0,  0, $44, 0 | OAM_PRIO
+	dbsprite  2,  1,  0,  0, $45, 0 | OAM_PRIO
+	dbsprite -2,  2,  0,  0, $51, 0 | OAM_PRIO
+	dbsprite -1,  2,  0,  0, $52, 0 | OAM_PRIO
+	dbsprite  0,  2,  0,  0, $53, 0 | OAM_PRIO
+	dbsprite  1,  2,  0,  0, $54, 0 | OAM_PRIO
+	dbsprite  2,  2,  0,  0, $55, 0 | OAM_PRIO
 
 .OAMData_GSIntroNote:
 	db 2
@@ -381,12 +381,12 @@ db 27
 	dbsprite  1, -1,  0,  0, $01, 0
 	dbsprite  2, -1,  0,  0, $01, 0
 	dbsprite  3, -1,  0,  0, $01, 0
-	dbsprite  4, -1,  0,  0, $00, 0 | X_FLIP
-	dbsprite  0,  0,  0,  0, $00, 0 | Y_FLIP
-	dbsprite  1,  0,  0,  0, $01, 0 | Y_FLIP
-	dbsprite  2,  0,  0,  0, $01, 0 | Y_FLIP
-	dbsprite  3,  0,  0,  0, $01, 0 | Y_FLIP
-	dbsprite  4,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP
+	dbsprite  4, -1,  0,  0, $00, 0 | OAM_XFLIP
+	dbsprite  0,  0,  0,  0, $00, 0 | OAM_YFLIP
+	dbsprite  1,  0,  0,  0, $01, 0 | OAM_YFLIP
+	dbsprite  2,  0,  0,  0, $01, 0 | OAM_YFLIP
+	dbsprite  3,  0,  0,  0, $01, 0 | OAM_YFLIP
+	dbsprite  4,  0,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
 .OAMData_PokedexSlowpoke1:
 	db 15
@@ -426,9 +426,9 @@ db 27
 
 .OAMData_PokedexSlowpoke3:
 	db 15
-	dbsprite -2, -2,  4,  0, $08, 0 | X_FLIP
-	dbsprite -1, -2,  4,  0, $07, 0 | X_FLIP
-	dbsprite  0, -2,  4,  0, $06, 0 | X_FLIP
+	dbsprite -2, -2,  4,  0, $08, 0 | OAM_XFLIP
+	dbsprite -1, -2,  4,  0, $07, 0 | OAM_XFLIP
+	dbsprite  0, -2,  4,  0, $06, 0 | OAM_XFLIP
 	dbsprite -2, -1,  4,  0, $09, 0
 	dbsprite -1, -1,  4,  0, $0a, 0
 	dbsprite  0, -1,  4,  0, $0b, 0
@@ -444,9 +444,9 @@ db 27
 
 .OAMData_PokedexSlowpoke4:
 	db 15
-	dbsprite -2, -2,  4,  0, $08, 0 | X_FLIP
-	dbsprite -1, -2,  4,  0, $07, 0 | X_FLIP
-	dbsprite  0, -2,  4,  0, $06, 0 | X_FLIP
+	dbsprite -2, -2,  4,  0, $08, 0 | OAM_XFLIP
+	dbsprite -1, -2,  4,  0, $07, 0 | OAM_XFLIP
+	dbsprite  0, -2,  4,  0, $06, 0 | OAM_XFLIP
 	dbsprite -2, -1,  4,  0, $09, 0
 	dbsprite -1, -1,  4,  0, $0a, 0
 	dbsprite  0, -1,  4,  0, $0b, 0
@@ -462,9 +462,9 @@ db 27
 
 .OAMData_PokedexSlowpoke5:
 	db 17
-	dbsprite -2, -2,  4,  0, $08, 0 | X_FLIP
-	dbsprite -1, -2,  4,  0, $07, 0 | X_FLIP
-	dbsprite  0, -2,  4,  0, $06, 0 | X_FLIP
+	dbsprite -2, -2,  4,  0, $08, 0 | OAM_XFLIP
+	dbsprite -1, -2,  4,  0, $07, 0 | OAM_XFLIP
+	dbsprite  0, -2,  4,  0, $06, 0 | OAM_XFLIP
 	dbsprite -2, -1,  4,  0, $09, 0
 	dbsprite -1, -1,  4,  0, $0f, 0
 	dbsprite  0, -1,  4,  0, $0b, 0
@@ -484,85 +484,85 @@ db 27
 .OAMData_TextEntryCursor:
 	db 4
 	dbsprite -1, -1,  7,  7, $00, 0
-	dbsprite  0, -1,  1,  7, $00, 0 | X_FLIP
-	dbsprite -1,  0,  7,  1, $00, 0 | Y_FLIP
-	dbsprite  0,  0,  1,  1, $00, 0 | X_FLIP | Y_FLIP
+	dbsprite  0, -1,  1,  7, $00, 0 | OAM_XFLIP
+	dbsprite -1,  0,  7,  1, $00, 0 | OAM_YFLIP
+	dbsprite  0,  0,  1,  1, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
 .OAMData_GSGameFreakLogo:
 	db 15
-	dbsprite -2, -3,  4,  4, $00, 0 | OBP_NUM
-	dbsprite -1, -3,  4,  4, $01, 0 | OBP_NUM
-	dbsprite  0, -3,  4,  4, $02, 0 | OBP_NUM
-	dbsprite -2, -2,  4,  4, $03, 0 | OBP_NUM
-	dbsprite -1, -2,  4,  4, $04, 0 | OBP_NUM
-	dbsprite  0, -2,  4,  4, $05, 0 | OBP_NUM
-	dbsprite -2, -1,  4,  4, $06, 0 | OBP_NUM
-	dbsprite -1, -1,  4,  4, $07, 0 | OBP_NUM
-	dbsprite  0, -1,  4,  4, $08, 0 | OBP_NUM
-	dbsprite -2,  0,  4,  4, $09, 0 | OBP_NUM
-	dbsprite -1,  0,  4,  4, $0a, 0 | OBP_NUM
-	dbsprite  0,  0,  4,  4, $0b, 0 | OBP_NUM
-	dbsprite -2,  1,  4,  4, $0c, 0 | OBP_NUM
-	dbsprite -1,  1,  4,  4, $0d, 0 | OBP_NUM
-	dbsprite  0,  1,  4,  4, $0e, 0 | OBP_NUM
+	dbsprite -2, -3,  4,  4, $00, 0 | OAM_PAL1
+	dbsprite -1, -3,  4,  4, $01, 0 | OAM_PAL1
+	dbsprite  0, -3,  4,  4, $02, 0 | OAM_PAL1
+	dbsprite -2, -2,  4,  4, $03, 0 | OAM_PAL1
+	dbsprite -1, -2,  4,  4, $04, 0 | OAM_PAL1
+	dbsprite  0, -2,  4,  4, $05, 0 | OAM_PAL1
+	dbsprite -2, -1,  4,  4, $06, 0 | OAM_PAL1
+	dbsprite -1, -1,  4,  4, $07, 0 | OAM_PAL1
+	dbsprite  0, -1,  4,  4, $08, 0 | OAM_PAL1
+	dbsprite -2,  0,  4,  4, $09, 0 | OAM_PAL1
+	dbsprite -1,  0,  4,  4, $0a, 0 | OAM_PAL1
+	dbsprite  0,  0,  4,  4, $0b, 0 | OAM_PAL1
+	dbsprite -2,  1,  4,  4, $0c, 0 | OAM_PAL1
+	dbsprite -1,  1,  4,  4, $0d, 0 | OAM_PAL1
+	dbsprite  0,  1,  4,  4, $0e, 0 | OAM_PAL1
 
 .OAMData_SlotsGolem:
 	db 6
-	dbsprite -2, -2,  4,  4, $00, 0 | OBP_NUM
-	dbsprite -1, -2,  4,  4, $02, 0 | OBP_NUM
-	dbsprite  0, -2,  4,  4, $00, 0 | OBP_NUM | X_FLIP
-	dbsprite -2,  0,  4,  4, $04, 0 | OBP_NUM
-	dbsprite -1,  0,  4,  4, $06, 0 | OBP_NUM
-	dbsprite  0,  0,  4,  4, $04, 0 | OBP_NUM | X_FLIP
+	dbsprite -2, -2,  4,  4, $00, 0 | OAM_PAL1
+	dbsprite -1, -2,  4,  4, $02, 0 | OAM_PAL1
+	dbsprite  0, -2,  4,  4, $00, 0 | OAM_PAL1 | OAM_XFLIP
+	dbsprite -2,  0,  4,  4, $04, 0 | OAM_PAL1
+	dbsprite -1,  0,  4,  4, $06, 0 | OAM_PAL1
+	dbsprite  0,  0,  4,  4, $04, 0 | OAM_PAL1 | OAM_XFLIP
 
 .OAMData_SlotsChansey1:
 	db 6
-	dbsprite -2, -2,  4,  4, $00, 0 | OBP_NUM
-	dbsprite -1, -2,  4,  4, $02, 0 | OBP_NUM
-	dbsprite  0, -2,  4,  4, $04, 0 | OBP_NUM
-	dbsprite -2,  0,  4,  4, $06, 0 | OBP_NUM
-	dbsprite -1,  0,  4,  4, $08, 0 | OBP_NUM
-	dbsprite  0,  0,  4,  4, $0a, 0 | OBP_NUM
+	dbsprite -2, -2,  4,  4, $00, 0 | OAM_PAL1
+	dbsprite -1, -2,  4,  4, $02, 0 | OAM_PAL1
+	dbsprite  0, -2,  4,  4, $04, 0 | OAM_PAL1
+	dbsprite -2,  0,  4,  4, $06, 0 | OAM_PAL1
+	dbsprite -1,  0,  4,  4, $08, 0 | OAM_PAL1
+	dbsprite  0,  0,  4,  4, $0a, 0 | OAM_PAL1
 
 .OAMData_SlotsChansey2:
 	db 6
-	dbsprite -2, -2,  4,  4, $00, 0 | OBP_NUM
-	dbsprite -1, -2,  4,  4, $02, 0 | OBP_NUM
-	dbsprite  0, -2,  4,  4, $04, 0 | OBP_NUM
-	dbsprite -2,  0,  4,  4, $0c, 0 | OBP_NUM
-	dbsprite -1,  0,  4,  4, $0e, 0 | OBP_NUM
-	dbsprite  0,  0,  4,  4, $10, 0 | OBP_NUM
+	dbsprite -2, -2,  4,  4, $00, 0 | OAM_PAL1
+	dbsprite -1, -2,  4,  4, $02, 0 | OAM_PAL1
+	dbsprite  0, -2,  4,  4, $04, 0 | OAM_PAL1
+	dbsprite -2,  0,  4,  4, $0c, 0 | OAM_PAL1
+	dbsprite -1,  0,  4,  4, $0e, 0 | OAM_PAL1
+	dbsprite  0,  0,  4,  4, $10, 0 | OAM_PAL1
 
 .OAMData_SlotsChansey3:
 	db 6
-	dbsprite -2, -2,  4,  4, $00, 0 | OBP_NUM
-	dbsprite -1, -2,  4,  4, $02, 0 | OBP_NUM
-	dbsprite  0, -2,  4,  4, $04, 0 | OBP_NUM
-	dbsprite -2,  0,  4,  4, $12, 0 | OBP_NUM
-	dbsprite -1,  0,  4,  4, $14, 0 | OBP_NUM
-	dbsprite  0,  0,  4,  4, $16, 0 | OBP_NUM
+	dbsprite -2, -2,  4,  4, $00, 0 | OAM_PAL1
+	dbsprite -1, -2,  4,  4, $02, 0 | OAM_PAL1
+	dbsprite  0, -2,  4,  4, $04, 0 | OAM_PAL1
+	dbsprite -2,  0,  4,  4, $12, 0 | OAM_PAL1
+	dbsprite -1,  0,  4,  4, $14, 0 | OAM_PAL1
+	dbsprite  0,  0,  4,  4, $16, 0 | OAM_PAL1
 
 .OAMData_SlotsChansey4:
 	db 6
-	dbsprite -2, -2,  4,  4, $00, 0 | OBP_NUM
-	dbsprite -1, -2,  4,  4, $02, 0 | OBP_NUM
-	dbsprite  0, -2,  4,  4, $04, 0 | OBP_NUM
-	dbsprite -2,  0,  4,  4, $18, 0 | OBP_NUM
-	dbsprite -1,  0,  4,  4, $1a, 0 | OBP_NUM
-	dbsprite  0,  0,  4,  4, $1c, 0 | OBP_NUM
+	dbsprite -2, -2,  4,  4, $00, 0 | OAM_PAL1
+	dbsprite -1, -2,  4,  4, $02, 0 | OAM_PAL1
+	dbsprite  0, -2,  4,  4, $04, 0 | OAM_PAL1
+	dbsprite -2,  0,  4,  4, $18, 0 | OAM_PAL1
+	dbsprite -1,  0,  4,  4, $1a, 0 | OAM_PAL1
+	dbsprite  0,  0,  4,  4, $1c, 0 | OAM_PAL1
 
 .OAMData_SlotsChansey5:
 	db 6
-	dbsprite -2, -2,  4,  4, $1e, 0 | OBP_NUM
-	dbsprite -1, -2,  4,  4, $20, 0 | OBP_NUM
-	dbsprite  0, -2,  4,  4, $22, 0 | OBP_NUM
-	dbsprite -2,  0,  4,  4, $24, 0 | OBP_NUM
-	dbsprite -1,  0,  4,  4, $26, 0 | OBP_NUM
-	dbsprite  0,  0,  4,  4, $28, 0 | OBP_NUM
+	dbsprite -2, -2,  4,  4, $1e, 0 | OAM_PAL1
+	dbsprite -1, -2,  4,  4, $20, 0 | OAM_PAL1
+	dbsprite  0, -2,  4,  4, $22, 0 | OAM_PAL1
+	dbsprite -2,  0,  4,  4, $24, 0 | OAM_PAL1
+	dbsprite -1,  0,  4,  4, $26, 0 | OAM_PAL1
+	dbsprite  0,  0,  4,  4, $28, 0 | OAM_PAL1
 
 .OAMData_RadioFrequencyMeter:
 	db 4
-	dbsprite -1, -2,  4,  0, $00, 0 | OBP_NUM
-	dbsprite -1, -1,  4,  0, $00, 0 | OBP_NUM
-	dbsprite -1,  0,  4,  0, $00, 0 | OBP_NUM
-	dbsprite -1,  1,  4,  0, $00, 0 | OBP_NUM
+	dbsprite -1, -2,  4,  0, $00, 0 | OAM_PAL1
+	dbsprite -1, -1,  4,  0, $00, 0 | OAM_PAL1
+	dbsprite -1,  0,  4,  0, $00, 0 | OAM_PAL1
+	dbsprite -1,  1,  4,  0, $00, 0 | OAM_PAL1

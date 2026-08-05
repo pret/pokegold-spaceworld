@@ -16,7 +16,7 @@ SlotMachineGame:
 	ld hl, wOptions
 	res NO_TEXT_SCROLL_F, [hl]
 	ld hl, rLCDC
-	res rLCDC_SPRITE_SIZE, [hl]
+	res B_LCDC_OBJ_SIZE, [hl]
 	ret
 
 SlotMachineGame_Init:
@@ -293,7 +293,7 @@ SlotsAction_WaitStart:
 SlotsAction_WaitReel1:
 	ld hl, hJoypadSum
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	ret z
 	call SlotsAction_Next
 	call Slots_StopReel1
@@ -313,7 +313,7 @@ SlotsAction_WaitStopReel1:
 SlotsAction_WaitReel2:
 	ld hl, hJoypadSum
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	ret z
 	call SlotsAction_Next
 	call Slots_StopReel2
@@ -333,7 +333,7 @@ SlotsAction_WaitStopReel2:
 SlotsAction_WaitReel3:
 	ld hl, hJoypadSum
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	ret z
 	call SlotsAction_Next
 	call Slots_StopReel3
@@ -756,7 +756,7 @@ Slots_LoadOAM:
 	ld a, [de]
 	ld [hli], a
 ; set priority behind BG, no attributes beyond it
-	ld a, (1 << OAM_PRIORITY)
+	ld a, OAM_PRIO
 	ld [hli], a
 ; next OAM
 	ld a, [wCurReelYCoord]
@@ -768,7 +768,7 @@ Slots_LoadOAM:
 	inc a
 	inc a
 	ld [hli], a
-	ld a, (1 << OAM_PRIORITY)
+	ld a, OAM_PRIO
 	ld [hli], a
 	inc de
 	ld a, [wCurReelYCoord]

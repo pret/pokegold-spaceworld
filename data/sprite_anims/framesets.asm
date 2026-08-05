@@ -60,7 +60,7 @@ SpriteAnimFrameData:
 	oamframe SPRITE_ANIM_OAMSET_WALK_1,  8
 	oamframe SPRITE_ANIM_OAMSET_WALK_2,  8
 	oamframe SPRITE_ANIM_OAMSET_WALK_1,  8
-	oamframe SPRITE_ANIM_OAMSET_WALK_2,  8, OAM_X_FLIP
+	oamframe SPRITE_ANIM_OAMSET_WALK_2,  8, B_OAM_XFLIP
 	oamrestart
 
 .Frameset_GSIntroBubble:
@@ -74,12 +74,12 @@ SpriteAnimFrameData:
 	oamrestart
 
 .Frameset_GSIntroMagikarp:
-	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_1,  1, OAM_X_FLIP
-	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_2,  1, OAM_X_FLIP
+	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_1,  1, B_OAM_XFLIP
+	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_2,  1, B_OAM_XFLIP
 	oamrestart
 
 .Frameset_UnusedIntroAerodactyl:
-	oamframe SPRITE_ANIM_OAMSET_UNUSED_INTRO_AERODACTYL,  7, OAM_X_FLIP
+	oamframe SPRITE_ANIM_OAMSET_UNUSED_INTRO_AERODACTYL,  7, B_OAM_XFLIP
 	oamend
 
 .Frameset_GSIntroLapras:
@@ -97,14 +97,14 @@ SpriteAnimFrameData:
 	oamend
 
 .Frameset_GSIntroJigglypuff:
-	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_1, 23, OAM_X_FLIP
-	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2,  3, OAM_X_FLIP
+	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_1, 23, B_OAM_XFLIP
+	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2,  3, B_OAM_XFLIP
 	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_3,  7
 	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2,  3
 	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_1, 23
 	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2,  3
 	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_3,  7
-	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2,  3, OAM_X_FLIP
+	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2,  3, B_OAM_XFLIP
 	oamrestart
 
 .Frameset_GSIntroPikachu:
@@ -140,7 +140,7 @@ SpriteAnimFrameData:
 	oamdelete
 
 .Frameset_GSIntroVenusaur:
-	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_VENUSAUR, 24, OAM_X_FLIP
+	oamframe SPRITE_ANIM_OAMSET_GS_INTRO_VENUSAUR, 24, B_OAM_XFLIP
 	oamdelete
 
 .Frameset_GSTitleFlameNote:
@@ -165,9 +165,9 @@ SpriteAnimFrameData:
 	oamdelete
 
 .Frameset_MinigamePicrossGold2:
-	oamframe SPRITE_ANIM_OAMSET_WALK_2, 3, OAM_X_FLIP
+	oamframe SPRITE_ANIM_OAMSET_WALK_2, 3, B_OAM_XFLIP
 	oamframe SPRITE_ANIM_OAMSET_WALK_1, 3
-	oamframe SPRITE_ANIM_OAMSET_WALK_2, 3, OAM_X_FLIP
+	oamframe SPRITE_ANIM_OAMSET_WALK_2, 3, B_OAM_XFLIP
 	; fallthrough
 .Frameset_MinigamePicrossGold1:
 	oamframe SPRITE_ANIM_OAMSET_WALK_1, 8
@@ -204,7 +204,7 @@ SpriteAnimFrameData:
 
 .Frameset_GSGameFreakLogoStar:
 	oamframe SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO_STAR,  3
-	oamframe SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO_STAR,  3, OAM_Y_FLIP
+	oamframe SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO_STAR,  3, B_OAM_YFLIP
 	oamrestart
 
 .Frameset_GSGameFreakLogoSparkle:
@@ -217,8 +217,8 @@ SpriteAnimFrameData:
 .Frameset_SlotsGolem:
 	oamframe SPRITE_ANIM_OAMSET_SLOTS_GOLEM_1,  7
 	oamframe SPRITE_ANIM_OAMSET_SLOTS_GOLEM_2,  7
-	oamframe SPRITE_ANIM_OAMSET_SLOTS_GOLEM_1,  7, OAM_Y_FLIP
-	oamframe SPRITE_ANIM_OAMSET_SLOTS_GOLEM_2,  7, OAM_X_FLIP
+	oamframe SPRITE_ANIM_OAMSET_SLOTS_GOLEM_1,  7, B_OAM_YFLIP
+	oamframe SPRITE_ANIM_OAMSET_SLOTS_GOLEM_2,  7, B_OAM_XFLIP
 	oamrestart
 
 .Frameset_SlotsChansey:
@@ -252,7 +252,7 @@ SpriteAnimFrameData:
 	oamframe SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_1,  3
 	oamframe SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_2,  3
 	oamframe SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_1,  3
-	oamframe SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_2,  3, OAM_X_FLIP
+	oamframe SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_2,  3, B_OAM_XFLIP
 	oamrestart
 
 .Frameset_TradePoof
