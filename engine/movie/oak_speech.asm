@@ -174,7 +174,7 @@ DebugSetUpPlayer::
 	ld hl, wPokedexSeen
 	call DebugFillPokedex
 	ld hl, wUnownDex
-	ld [hl], TRUE
+	ld [hl], UNOWN_A
 	call SetDemoEventFlags
 	ret
 
