@@ -1,7 +1,7 @@
 SUMMARY:
 	ROM0: 16231 bytes used / 153 free
 	ROMX: 1032192 bytes used / 0 free in 63 banks
-	SRAM: 20395 bytes used / 12373 free in 4 banks
+	SRAM: 20095 bytes used / 12673 free in 4 banks
 	WRAM0: 8139 bytes used / 53 free
 	HRAM: 117 bytes used / 10 free
 
@@ -1256,7 +1256,7 @@ ROMX bank #1:
 	         $4708 = StepVectors
 	         $4748 = GetStepVectorSign
 	         $4750 = UpdatePlayerStep
-	         $476b = Unreferenced_GetObjectSpritePos
+	         $476b = GetObjectSpritePos
 	         $4792 = ClearObjectJumptableIndex
 	         $4799 = Object_IncAnonJumptableIndex
 	         $479f = GetObjectJumptableIndex
@@ -1289,7 +1289,7 @@ ROMX bank #1:
 	         $4868 = Stub_MovementFunction_1a
 	         $4869 = Stub_StepFunction_13
 	         $486a = StepFunction_Reset
-	         $488c = Unreferenced_RandomWalkContinue_Duplicate
+	         $488c = RandomWalkContinue_Duplicate
 	         $48a9 = _RandomWalkContinue
 	         $48c6 = RandomWalk_Centered
 	         $48d4 = RandomWalk_NewDuration
@@ -1326,7 +1326,7 @@ ROMX bank #1:
 	         $4af6 = StepFunction_TeleportTo.InitFinalSpin
 	         $4b00 = StepFunction_TeleportTo.DoFinalSpin
 	         $4b0c = StepFunction_TeleportTo.FinishStep
-	         $4b22 = Unreferenced_StrengthBoulderDust_Old
+	         $4b22 = StrengthBoulderDust_Old
 	         $4b25 = Stub_SpawnStrengthBoulderDust_Old
 	         $4b26 = SpawnShadow
 	         $4b42 = SpawnShadow.ShadowObject
@@ -15003,7 +15003,6 @@ VRAM bank #0:
 	         $8800 = vChars1
 	         $8800 = vFont
 	         $8800 = vNPCSprites2
-	         $8800 = vTitleLogo
 	         $8800 = vPicrossBackground
 	         $8f00 = vPicrossPlayArea
 	         $9000 = vChars2
@@ -15011,7 +15010,6 @@ VRAM bank #0:
 	         $9000 = vTileset
 	         $9200 = vExteriorTileset
 	         $9310 = vBackPic
-	         $9310 = vTitleLogo2
 	         $9600 = vTilesetEnd
 	         $9800 = vBGMap0
 	         $9c00 = vBGMap1
@@ -15043,7 +15041,7 @@ SRAM bank #1:
 	TOTAL EMPTY: $1c27 bytes
 
 SRAM bank #2:
-	SECTION: $a000-$bb75 ($1b76 bytes) ["Boxes 1-5"]
+	SECTION: $a000-$ba67 ($1a68 bytes) ["Boxes 1-5"]
 	         $a000 = sBox1Count
 	         $a000 = sBox1
 	         $a001 = sBox1Species
@@ -18832,68 +18830,58 @@ SRAM bank #2:
 	         $ba56 = sBox5Mon28Nickname
 	         $ba5c = sBox5Mon29Nickname
 	         $ba62 = sBox5Mon30Nickname
-	         $ba68 = sPartyMon1MailBackupMessage
-	         $ba68 = sPartyMon1MailBackup
-	         $ba68 = sPartyMailBackup
 	         $ba68 = sBox5End
 	         $ba68 = sBox5MonNicknamesEnd
-	         $ba88 = sPartyMon1MailBackupMessageEnd
-	         $ba89 = sPartyMon1MailBackupAuthor
-	         $ba8f = sPartyMon1MailBackupAuthorNationality
-	         $ba91 = sPartyMon1MailBackupAuthorID
-	         $ba93 = sPartyMon1MailBackupSpecies
-	         $ba94 = sPartyMon1MailBackupType
-	         $ba95 = sPartyMon2MailBackupMessage
-	         $ba95 = sPartyMon2MailBackup
-	         $ba95 = sPartyMon1MailBackupEnd
-	         $bab5 = sPartyMon2MailBackupMessageEnd
-	         $bab6 = sPartyMon2MailBackupAuthor
-	         $babc = sPartyMon2MailBackupAuthorNationality
-	         $babe = sPartyMon2MailBackupAuthorID
-	         $bac0 = sPartyMon2MailBackupSpecies
-	         $bac1 = sPartyMon2MailBackupType
-	         $bac2 = sPartyMon3MailBackupMessage
-	         $bac2 = sPartyMon3MailBackup
-	         $bac2 = sPartyMon2MailBackupEnd
-	         $bae2 = sPartyMon3MailBackupMessageEnd
-	         $bae3 = sPartyMon3MailBackupAuthor
-	         $bae9 = sPartyMon3MailBackupAuthorNationality
-	         $baeb = sPartyMon3MailBackupAuthorID
-	         $baed = sPartyMon3MailBackupSpecies
-	         $baee = sPartyMon3MailBackupType
-	         $baef = sPartyMon4MailBackupMessage
-	         $baef = sPartyMon4MailBackup
-	         $baef = sPartyMon3MailBackupEnd
-	         $bb0f = sPartyMon4MailBackupMessageEnd
-	         $bb10 = sPartyMon4MailBackupAuthor
-	         $bb16 = sPartyMon4MailBackupAuthorNationality
-	         $bb18 = sPartyMon4MailBackupAuthorID
-	         $bb1a = sPartyMon4MailBackupSpecies
-	         $bb1b = sPartyMon4MailBackupType
-	         $bb1c = sPartyMon5MailBackupMessage
-	         $bb1c = sPartyMon5MailBackup
-	         $bb1c = sPartyMon4MailBackupEnd
-	         $bb3c = sPartyMon5MailBackupMessageEnd
-	         $bb3d = sPartyMon5MailBackupAuthor
-	         $bb43 = sPartyMon5MailBackupAuthorNationality
-	         $bb45 = sPartyMon5MailBackupAuthorID
-	         $bb47 = sPartyMon5MailBackupSpecies
-	         $bb48 = sPartyMon5MailBackupType
-	         $bb49 = sPartyMon6MailBackupMessage
-	         $bb49 = sPartyMon6MailBackup
-	         $bb49 = sPartyMon5MailBackupEnd
-	         $bb69 = sPartyMon6MailBackupMessageEnd
-	         $bb6a = sPartyMon6MailBackupAuthor
-	         $bb70 = sPartyMon6MailBackupAuthorNationality
-	         $bb72 = sPartyMon6MailBackupAuthorID
-	         $bb74 = sPartyMon6MailBackupSpecies
-	         $bb75 = sPartyMon6MailBackupType
-	         $bb76 = sPartyMon6MailBackupEnd
-	EMPTY: $bb76-$bfff ($048a bytes)
-	TOTAL EMPTY: $048a bytes
+	SECTION: $ba68-$bb57 ($00f0 bytes) ["Save Mail"]
+	         $ba68 = sPartyMon1MailLine1
+	         $ba68 = sPartyMon1Mail
+	         $ba68 = sPartyMail
+	         $ba78 = sPartyMon1MailLineBreak
+	         $ba79 = sPartyMon1MailLine2
+	         $ba89 = sPartyMon1MailMessageEnd
+	         $ba8a = sPartyMon1MailAuthor
+	         $ba90 = sPartyMon2MailLine1
+	         $ba90 = sPartyMon2Mail
+	         $ba90 = sPartyMon1MailEnd
+	         $baa0 = sPartyMon2MailLineBreak
+	         $baa1 = sPartyMon2MailLine2
+	         $bab1 = sPartyMon2MailMessageEnd
+	         $bab2 = sPartyMon2MailAuthor
+	         $bab8 = sPartyMon3MailLine1
+	         $bab8 = sPartyMon3Mail
+	         $bab8 = sPartyMon2MailEnd
+	         $bac8 = sPartyMon3MailLineBreak
+	         $bac9 = sPartyMon3MailLine2
+	         $bad9 = sPartyMon3MailMessageEnd
+	         $bada = sPartyMon3MailAuthor
+	         $bae0 = sPartyMon4MailLine1
+	         $bae0 = sPartyMon4Mail
+	         $bae0 = sPartyMon3MailEnd
+	         $baf0 = sPartyMon4MailLineBreak
+	         $baf1 = sPartyMon4MailLine2
+	         $bb01 = sPartyMon4MailMessageEnd
+	         $bb02 = sPartyMon4MailAuthor
+	         $bb08 = sPartyMon5MailLine1
+	         $bb08 = sPartyMon5Mail
+	         $bb08 = sPartyMon4MailEnd
+	         $bb18 = sPartyMon5MailLineBreak
+	         $bb19 = sPartyMon5MailLine2
+	         $bb29 = sPartyMon5MailMessageEnd
+	         $bb2a = sPartyMon5MailAuthor
+	         $bb30 = sPartyMon6MailLine1
+	         $bb30 = sPartyMon6Mail
+	         $bb30 = sPartyMon5MailEnd
+	         $bb40 = sPartyMon6MailLineBreak
+	         $bb41 = sPartyMon6MailLine2
+	         $bb51 = sPartyMon6MailMessageEnd
+	         $bb52 = sPartyMon6MailAuthor
+	         $bb58 = sPartyMailEnd
+	         $bb58 = sPartyMon6MailEnd
+	EMPTY: $bb58-$bfff ($04a8 bytes)
+	TOTAL EMPTY: $04a8 bytes
 
 SRAM bank #3:
-	SECTION: $a000-$bb75 ($1b76 bytes) ["Boxes 6-10"]
+	SECTION: $a000-$ba67 ($1a68 bytes) ["Boxes 6-10"]
 	         $a000 = sBox6Count
 	         $a000 = sBox6
 	         $a001 = sBox6Species
@@ -22682,67 +22670,12 @@ SRAM bank #3:
 	         $ba56 = sBox10Mon28Nickname
 	         $ba5c = sBox10Mon29Nickname
 	         $ba62 = sBox10Mon30Nickname
-	         $ba68 = sPartyMon1MailMessage
-	         $ba68 = sPartyMon1Mail
-	         $ba68 = sPartyMail
 	         $ba68 = sBox10End
 	         $ba68 = sBox10MonNicknamesEnd
-	         $ba88 = sPartyMon1MailMessageEnd
-	         $ba89 = sPartyMon1MailAuthor
-	         $ba8f = sPartyMon1MailAuthorNationality
-	         $ba91 = sPartyMon1MailAuthorID
-	         $ba93 = sPartyMon1MailSpecies
-	         $ba94 = sPartyMon1MailType
-	         $ba95 = sPartyMon2MailMessage
-	         $ba95 = sPartyMon2Mail
-	         $ba95 = sPartyMon1MailEnd
-	         $bab5 = sPartyMon2MailMessageEnd
-	         $bab6 = sPartyMon2MailAuthor
-	         $babc = sPartyMon2MailAuthorNationality
-	         $babe = sPartyMon2MailAuthorID
-	         $bac0 = sPartyMon2MailSpecies
-	         $bac1 = sPartyMon2MailType
-	         $bac2 = sPartyMon3MailMessage
-	         $bac2 = sPartyMon3Mail
-	         $bac2 = sPartyMon2MailEnd
-	         $bae2 = sPartyMon3MailMessageEnd
-	         $bae3 = sPartyMon3MailAuthor
-	         $bae9 = sPartyMon3MailAuthorNationality
-	         $baeb = sPartyMon3MailAuthorID
-	         $baed = sPartyMon3MailSpecies
-	         $baee = sPartyMon3MailType
-	         $baef = sPartyMon4MailMessage
-	         $baef = sPartyMon4Mail
-	         $baef = sPartyMon3MailEnd
-	         $bb0f = sPartyMon4MailMessageEnd
-	         $bb10 = sPartyMon4MailAuthor
-	         $bb16 = sPartyMon4MailAuthorNationality
-	         $bb18 = sPartyMon4MailAuthorID
-	         $bb1a = sPartyMon4MailSpecies
-	         $bb1b = sPartyMon4MailType
-	         $bb1c = sPartyMon5MailMessage
-	         $bb1c = sPartyMon5Mail
-	         $bb1c = sPartyMon4MailEnd
-	         $bb3c = sPartyMon5MailMessageEnd
-	         $bb3d = sPartyMon5MailAuthor
-	         $bb43 = sPartyMon5MailAuthorNationality
-	         $bb45 = sPartyMon5MailAuthorID
-	         $bb47 = sPartyMon5MailSpecies
-	         $bb48 = sPartyMon5MailType
-	         $bb49 = sPartyMon6MailMessage
-	         $bb49 = sPartyMon6Mail
-	         $bb49 = sPartyMon5MailEnd
-	         $bb69 = sPartyMon6MailMessageEnd
-	         $bb6a = sPartyMon6MailAuthor
-	         $bb70 = sPartyMon6MailAuthorNationality
-	         $bb72 = sPartyMon6MailAuthorID
-	         $bb74 = sPartyMon6MailSpecies
-	         $bb75 = sPartyMon6MailType
-	         $bb76 = sPartyMon6MailEnd
-	EMPTY: $bb76-$bffc ($0487 bytes)
+	EMPTY: $ba68-$bffc ($0595 bytes)
 	SECTION: $bffd-$bfff ($0003 bytes) ["Checksum"]
 	         $bffd = sChecksum
-	TOTAL EMPTY: $0487 bytes
+	TOTAL EMPTY: $0595 bytes
 
 WRAM0 bank #0:
 	SECTION: $c000-$c1ff ($0200 bytes) ["Music engine RAM"]
@@ -24764,6 +24697,7 @@ WRAM0 bank #0:
 	         $ce64 = wDebugFlags2
 	         $ce65 = wDebugFlags3
 	         $ce66 = wDebugFlags4
+	         $ce67 = wOptionsEnd
 	SECTION: $ce67-$d6a9 ($0843 bytes) ["Game Data"]
 	         $ce67 = wGameData
 	         $ce67 = wPlayerName
