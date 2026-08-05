@@ -3,13 +3,13 @@ _DisableAudio::
 	push de
 	push bc
 	push af
-	ld hl, rNR50
+	ld hl, rAUDVOL
 	xor a
 	ld [hli], a
 	ld [hli], a
 	ld a, $80
 	ld [hli], a
-	ld hl, rNR10
+	ld hl, rAUD1SWEEP
 	ld e, 4
 .init_channel
 	xor a
@@ -228,7 +228,7 @@ UpdateChannels:
 	jr z, .ch1_no_sweep
 
 	ld a, [wPitchSweep]
-	ldh [rNR10], a
+	ldh [rAUD1SWEEP], a
 
 .ch1_no_sweep
 	bit NOTE_REST, [hl]
@@ -244,48 +244,48 @@ UpdateChannels:
 	ret
 
 .ch1_rest
-	ld a, %1000 ; stop envelope
-	ldh [rNR12], a
+	ld a, AUD1ENV_UP
+	ldh [rAUD1ENV], a
 	ld a, [wCurTrackFrequency + 1]
-	or $80      ; restart ch1
-	ldh [rNR14], a
+	or AUD1HIGH_RESTART
+	ldh [rAUD1HIGH], a
 	ret
 
 .ch1_noise_sampling
 	ld hl, wCurTrackDuty
 	ld a, [wSoundLength]
 	or [hl]
-	ldh [rNR11], a
+	ldh [rAUD1LEN], a
 	ld a, [wCurTrackIntensity]
-	ldh [rNR12], a
+	ldh [rAUD1ENV], a
 	ld a, [wCurTrackFrequency]
-	ldh [rNR13], a
+	ldh [rAUD1LOW], a
 	ld a, [wCurTrackFrequency + 1]
-	or $80
-	ldh [rNR14], a
+	or AUD1HIGH_RESTART
+	ldh [rAUD1HIGH], a
 	ret
 
 .ch1_duty_override
 	ld a, [wCurTrackDuty]
-	ldh a, [rNR11]
-	and $3f
+	ldh a, [rAUD1LEN]
+	and AUD1LEN_TIMER
 	or d
-	ldh [rNR11], a
+	ldh [rAUD1LEN], a
 	ret
 
 .ch1_intensity_override
 	ld a, [wCurTrackIntensity]
-	ldh [rNR12], a
+	ldh [rAUD1ENV], a
 	ld a, [wCurTrackFrequency + 1]
-	or $80
-	ldh [rNR14], a
+	or AUD1HIGH_RESTART
+	ldh [rAUD1HIGH], a
 	ret
 
 .ch1_freq_override
 	ld a, [wCurTrackFrequency]
-	ldh [rNR13], a
+	ldh [rAUD1LOW], a
 	ld a, [wCurTrackFrequency + 1]
-	ldh [rNR14], a
+	ldh [rAUD1HIGH], a
 	ret
 
 .Channel2:
@@ -305,49 +305,49 @@ UpdateChannels:
 	ret
 
 .ch2_rest
-	ld a, $08
-	ldh [rNR22], a
+	ld a, AUD2ENV_UP
+	ldh [rAUD2ENV], a
 	ld a, [wCurTrackFrequency + 1]
-	or $80
-	ldh [rNR24], a
+	or AUD2HIGH_RESTART
+	ldh [rAUD2HIGH], a
 	ret
 
 .ch2_noise_sampling
 	ld hl, wCurTrackDuty
 	ld a, [wSoundLength]
 	or [hl]
-	ldh [rNR21], a
+	ldh [rAUD2LEN], a
 	ld a, [wCurTrackIntensity]
-	ldh [rNR22], a
+	ldh [rAUD2ENV], a
 	ld a, [wCurTrackFrequency]
-	ldh [rNR23], a
+	ldh [rAUD2LOW], a
 	ld a, [wCurTrackFrequency + 1]
-	or $80
-	ldh [rNR24], a
+	or AUD2HIGH_RESTART
+	ldh [rAUD2HIGH], a
 	ret
 
 .ch2_duty_override
 	ld a, [wCurTrackDuty]
 	ld d, a
-	ldh a, [rNR21]
-	and $3f
+	ldh a, [rAUD2LEN]
+	and AUD2LEN_TIMER
 	or d
-	ldh [rNR21], a
+	ldh [rAUD2LEN], a
 	ret
 
 .ch2_intensity_override
 	ld a, [wCurTrackIntensity]
-	ldh [rNR22], a
+	ldh [rAUD2ENV], a
 	ld a, [wCurTrackFrequency + 1]
-	or $80
-	ldh [rNR24], a
+	or AUD2HIGH_RESTART
+	ldh [rAUD2HIGH], a
 	ret
 
 .ch2_freq_override
 	ld a, [wCurTrackFrequency]
-	ldh [rNR23], a
+	ldh [rAUD2LOW], a
 	ld a, [wCurTrackFrequency + 1]
-	ldh [rNR24], a
+	ldh [rAUD2HIGH], a
 	ret
 
 .Channel3:
@@ -366,42 +366,42 @@ UpdateChannels:
 
 .ch3_rest
 	xor a
-	ldh [rNR30], a
+	ldh [rAUD3ENA], a
 	ret
 
 .ch3_noise_sampling
 	ld a, [wSoundLength]
-	ldh [rNR31], a
+	ldh [rAUD3LEN], a
 	xor a
-	ldh [rNR30], a
+	ldh [rAUD3ENA], a
 	call .load_wave_pattern
-	ld a, $80
-	ldh [rNR30], a
+	ld a, AUD3ENA_ON
+	ldh [rAUD3ENA], a
 	ld a, [wCurTrackFrequency]
-	ldh [rNR33], a
+	ldh [rAUD3LOW], a
 	ld a, [wCurTrackFrequency + 1]
-	or $80
-	ldh [rNR34], a
+	or AUD3HIGH_RESTART
+	ldh [rAUD3HIGH], a
 	ret
 
 .ch3_freq_override
 	ld a, [wCurTrackFrequency]
-	ldh [rNR33], a
+	ldh [rAUD3LOW], a
 	ld a, [wCurTrackFrequency + 1]
-	ldh [rNR34], a
+	ldh [rAUD3HIGH], a
 	ret
 
 .ch3_intensity_override
 	xor a
-	ldh [rNR30], a
+	ldh [rAUD3ENA], a
 	call .load_wave_pattern
-	ld a, $80
-	ldh [rNR30], a
+	ld a, AUD3ENA_ON
+	ldh [rAUD3ENA], a
 	ld a, [wCurTrackFrequency]
-	ldh [rNR33], a
+	ldh [rAUD3LOW], a
 	ld a, [wCurTrackFrequency + 1]
-	or $80
-	ldh [rNR34], a
+	or AUD3HIGH_RESTART
+	ldh [rAUD3HIGH], a
 	ret
 
 .load_wave_pattern
@@ -432,7 +432,7 @@ endr
 	ld a, [wCurTrackIntensity]
 	and $f0
 	sla a
-	ldh [rNR32], a
+	ldh [rAUD3LEVEL], a
 	ret
 
 .Channel4:
@@ -450,33 +450,33 @@ endr
 	ret
 
 .ch4_rest
-	ld a, $08
-	ldh [rNR42], a
-	ld a, $80
-	ldh [rNR44], a
+	ld a, AUD4ENV_UP
+	ldh [rAUD4ENV], a
+	ld a, AUD4GO_RESTART
+	ldh [rAUD4GO], a
 	ret
 
 .ch4_noise_sampling
 	ld a, [wSoundLength]
-	ldh [rNR41], a
+	ldh [rAUD4LEN], a
 	ld a, [wCurTrackIntensity]
-	ldh [rNR42], a
+	ldh [rAUD4ENV], a
 	ld a, [wCurTrackFrequency]
-	ldh [rNR43], a
-	ld a, $80
-	ldh [rNR44], a
+	ldh [rAUD4POLY], a
+	ld a, AUD4GO_RESTART
+	ldh [rAUD4GO], a
 	ret
 
 .ch4_freq_override
 	ld a, [wCurTrackFrequency]
-	ldh [rNR43], a
+	ldh [rAUD4POLY], a
 	ret
 
 .ch4_intensity_override
 	ld a, [wCurTrackIntensity]
-	ldh [rNR42], a
-	ld a, $80
-	ldh [rNR44], a
+	ldh [rAUD4ENV], a
+	ld a, AUD4GO_RESTART
+	ldh [rAUD4GO], a
 	ret
 
 IsChannelSFXOn:
@@ -525,9 +525,9 @@ SetupPlayDanger:
 	call FadeMusic
 	call DoSweepingFade
 	ld a, [wVolume]
-	ldh [rNR50], a
+	ldh [rAUDVOL], a
 	ld a, [wSoundOutput]
-	ldh [rNR51], a
+	ldh [rAUDTERM], a
 	ret
 
 PlayDanger:
@@ -560,15 +560,15 @@ PlayDanger:
 
 .applychannel
 	xor a
-	ldh [rNR10], a
+	ldh [rAUD1SWEEP], a
 	ld a, [hli]
-	ldh [rNR11], a
+	ldh [rAUD1LEN], a
 	ld a, [hli]
-	ldh [rNR12], a
+	ldh [rAUD1ENV], a
 	ld a, [hli]
-	ldh [rNR13], a
+	ldh [rAUD1LOW], a
 	ld a, [hli]
-	ldh [rNR14], a
+	ldh [rAUD1HIGH], a
 
 .increment
 	ld a, d
@@ -752,7 +752,7 @@ FadeMusic:
 
 .fadein
 	; Increment volume
-	cp MAX_VOLUME & $f
+	cp AUDVOL_RIGHT
 	jr nc, .maxvolume
 	inc a
 	jr .updatevolume
@@ -1608,7 +1608,7 @@ ParseMusic::
 	jr nz, .ok
 
 	xor a
-	ldh [rNR10], a
+	ldh [rAUD1SWEEP], a
 
 .ok
 	call StopChannel
@@ -2152,7 +2152,7 @@ Music_PitchSweep:
 	ld [wPitchSweep], a
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	set 3, [hl]
+	set NOTE_PITCH_SWEEP, [hl]
 	ret
 
 Music_DutyCycle:
@@ -2364,7 +2364,7 @@ GetFrequency:
 
 .ok
 	ld a, d
-	and $07
+	and 7
 	ld d, a
 	ret
 
