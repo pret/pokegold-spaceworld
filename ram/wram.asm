@@ -1655,6 +1655,7 @@ wEventFlags:: flag_array NUM_EVENTS
 wPokedexMenuFlags:: db
 
 wUnusedLinkCommunicationByte:: db
+
 wGameModeFlags:: db
 
 	ds 1
@@ -1732,19 +1733,17 @@ wUsedSpritesEnd::
 
 	ds 5
 
-; map header
+wMapLocation::
 wMapGroup:: db
 wMapId:: db
-
 wOverworldMapAnchor:: dw
-
 wYCoord:: db
 wXCoord:: db
-
 wMetatileNextY:: db
 wMetatileNextX:: db
+wMapLocationEnd::
 
-wMapIdStack:: db
+wUnusedGameEntryByte:: db
 
 wMapPartial::
 wMapAttributesBank:: db

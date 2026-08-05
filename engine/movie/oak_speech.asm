@@ -130,30 +130,27 @@ OverworldStart::
 
 SetUpGameEntry::
 	ld a, $04
-	ld [wMapIdStack], a
-	ld a, $F2
+	ld [wUnusedGameEntryByte], a
+	ld a, MAPSETUP_CONTINUE
 	ldh [hMapEntryMethod], a
 	ld hl, wDebugFlags
 	bit CONTINUED_F, [hl] ; if we loaded a game
 	ret nz
-	ld a, $F1
+	ld a, MAPSETUP_NEW_GAME
 	ldh [hMapEntryMethod], a
-	ld a, $00
+	ld a, SPAWN_POINT_NONE
 	ld [wDefaultSpawnPoint], a
-	ld hl, GameStartPlacement
+	ld hl, GameStartMapLocation
 	ld de, wMapGroup
-	ld bc, wMapIdStack - wMapGroup
+	ld bc, wMapLocationEnd - wMapLocation
 	call CopyBytes
 	ret
 
-GameStartPlacement::
-	db $01 ; map group
-	db MAP_PLAYER_HOUSE_2F ; map
-	dwcoord 15, 45 ; screen anchor
-	db $04 ; metatile x
-	db $04 ; metatile y
-	db $00 ; in-metatile x
-	db $01 ; in-metatile y
+GameStartMapLocation::
+	map_id PLAYER_HOUSE_2F ; map
+	dw wOverworldMapBlocks + (3 + PLAYER_HOUSE_2F_WIDTH + 3) * (3 + 1) + 3 + 4 ; wOverworldMapAnchor
+	db 4, 4 ; player object x, y
+	db 0, 1 ; next metatile x, y
 
 DebugSetUpPlayer::
 	call SetPlayerNamesDebug
@@ -163,11 +160,11 @@ DebugSetUpPlayer::
 	ld [wMoney + 1], a
 	ld a, LOW(DEBUG_MONEY)
 	ld [wMoney + 2], a
-	ld a, $FF ; give all badges
+	ld a, %11111111 ; give all badges
 	ld [wJohtoBadges], a
 	ld [wKantoBadges], a
-	call GiveRandomJohto
-	ld a, $03
+	call GiveRandomJohtoStarter
+	ld a, 3 ; count
 	call AddRandomPokemonToBox
 	call FillTMs
 	ld de, DebugBagItems
@@ -177,7 +174,7 @@ DebugSetUpPlayer::
 	ld hl, wPokedexSeen
 	call DebugFillPokedex
 	ld hl, wUnownDex
-	ld [hl], $01
+	ld [hl], TRUE
 	call SetDemoEventFlags
 	ret
 
@@ -207,28 +204,7 @@ FillBagWithList::
 .yump
 	ret
 
-DebugBagItems::
-	db ITEM_IMPORTANT_BAG, 1
-	db ITEM_BAG,           1
-	db ITEM_TM_HOLDER,     1
-	db ITEM_BALL_HOLDER,   1
-	db ITEM_BICYCLE,       1
-	db ITEM_MAIL,          6
-	db ITEM_ULTRA_BALL,   30
-	db ITEM_POKE_BALL,    99
-	db ITEM_POTION,       30
-	db ITEM_RARE_CANDY,   20
-	db ITEM_MOON_STONE,   99
-	db ITEM_FULL_HEAL,    99
-	db ITEM_PROTEIN,      99
-	db ITEM_QUICK_NEEDLE, 99
-	db ITEM_SNAKESKIN,    99
-	db ITEM_KINGS_ROCK,   99
-	db ITEM_FLEE_FEATHER, 99
-	db ITEM_FOCUS_ORB,    99
-	db ITEM_SHARP_SCYTHE, 99
-	db ITEM_DETECT_ORB,   99
-	db -1
+INCLUDE "data/debug/debug_items.asm"
 
 GiveRandomPokemon::
 	and a
@@ -243,17 +219,19 @@ GiveRandomPokemon::
 	jr nz, .loop
 	ret
 
-GiveRandomJohto::
+GiveRandomJohtoStarter::
+	; Pick a random number from 1 to 3
 .loop
 	call Random
-	and $03
+	and %11
 	jr z, .loop
+	; Convert that into an index for a Johto starter
 	dec a
 	ld b, a
 	add a, a
 	add a, b
 	add a, NUM_KANTO_POKEMON + 1
-	ld b, 8
+	ld b, 8 ; level
 	call GivePokemon
 	ld a, ITEM_BERRY
 	ld [wPartyMon1 + 1], a
@@ -332,12 +310,7 @@ DebugGiveKeyItems:: ; unreferenced
 	ld [wNumKeyItems], a
 	ret
 
-DebugKeyItemsList::
-	db ITEM_TM_HOLDER
-	db ITEM_BALL_HOLDER
-	db ITEM_BAG
-	db ITEM_BICYCLE
-	db -1
+INCLUDE "data/debug/debug_key_items.asm"
 
 DemoSetUpPlayer::
 	ld hl, wPlayerName
@@ -349,32 +322,12 @@ DemoSetUpPlayer::
 	call SetDemoEventFlags
 	ld de, DemoItemList
 	call FillBagWithList
-	call GiveRandomJohto
+	call GiveRandomJohtoStarter
 	ret
 
-DemoItemList::
-	db ITEM_POKE_BALL,     5
-	db ITEM_POTION,       10
-	db ITEM_FULL_HEAL,    10
-	db ITEM_STIMULUS_ORB,  1
-	db ITEM_FOCUS_ORB,     1
-	db -1
+INCLUDE "data/demo/demo_items.asm"
 
-DemoPlayerName::
-if DEF(_GOLD)
-	db "サトシ@"
-endc
-if DEF(_SILVER)
-	db "シゲル@"
-endc
-
-DemoRivalName::
-if DEF(_GOLD)
-	db "シゲル@"
-endc
-if DEF(_SILVER)
-	db "サトシ@"
-endc
+INCLUDE "data/demo/demo_names.asm"
 
 OakSpeechDemo::
 	text "ようこそ"
@@ -479,11 +432,7 @@ CopyNameDebug:
 	call CopyBytes
 	ret
 
-DebugPlayerName:
-	db "コージ@"
-
-DebugRivalName:
-	db "レッド@"
+INCLUDE "data/debug/debug_names.asm"
 
 ChoosePlayerName::
 	call PanPortraitRight
@@ -732,29 +681,30 @@ IntroDisplayPicCenteredOrUpperRight::
 
 LoadStartingSprites:
 	ld de, GoldSpriteGFX
-	lb bc, BANK(GoldSpriteGFX), $0C
+	lb bc, BANK(GoldSpriteGFX), 12
 	ld hl, VRAM_Begin
 	call Request2bpp
 	ld hl, wShadowOAM
 	ld de, GameStartSprites
-	ld c, $04
+	ld c, 4
 .loop
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ; x
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ; tile id
 	xor a
-	ld [hli], a
+	ld [hli], a ; attribute
 	dec c
 	jr nz, .loop
 	ret
 
 GameStartSprites:
+	;  y    x    tile id
 	db $50, $48, $00
 	db $50, $50, $01
 	db $58, $48, $02

@@ -1,0 +1,6 @@
+DebugKeyItemsList::
+	db ITEM_TM_HOLDER
+	db ITEM_BALL_HOLDER
+	db ITEM_BAG
+	db ITEM_BICYCLE
+	db -1

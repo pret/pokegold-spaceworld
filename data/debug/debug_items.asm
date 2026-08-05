@@ -1,0 +1,22 @@
+DebugBagItems::
+	db ITEM_IMPORTANT_BAG, 1
+	db ITEM_BAG,           1
+	db ITEM_TM_HOLDER,     1
+	db ITEM_BALL_HOLDER,   1
+	db ITEM_BICYCLE,       1
+	db ITEM_MAIL,          6
+	db ITEM_ULTRA_BALL,   30
+	db ITEM_POKE_BALL,    99
+	db ITEM_POTION,       30
+	db ITEM_RARE_CANDY,   20
+	db ITEM_MOON_STONE,   99
+	db ITEM_FULL_HEAL,    99
+	db ITEM_PROTEIN,      99
+	db ITEM_QUICK_NEEDLE, 99
+	db ITEM_SNAKESKIN,    99
+	db ITEM_KINGS_ROCK,   99
+	db ITEM_FLEE_FEATHER, 99
+	db ITEM_FOCUS_ORB,    99
+	db ITEM_SHARP_SCYTHE, 99
+	db ITEM_DETECT_ORB,   99
+	db -1

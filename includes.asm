@@ -57,7 +57,7 @@ INCLUDE "constants/misc_constants.asm"
 
 INCLUDE "constants/battle_anim_constants.asm"
 INCLUDE "constants/menu_constants.asm"
-INCLUDE "constants/wram_constants.asm"
+INCLUDE "constants/ram_constants.asm"
 INCLUDE "constants/sgb_constants.asm"
 INCLUDE "constants/map_object_constants.asm"
 INCLUDE "constants/start_menu_constants.asm"
