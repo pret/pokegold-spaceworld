@@ -241,7 +241,7 @@
 	const MON_BERURUN       ; ed
 	const MON_NYOROTONO     ; ee POLITOED
 	const MON_YADOKING      ; ef SLOWKING
-	const MON_ANNON         ; f0 UNOWN
+	const MON_UNOWN         ; f0 UNOWN
 	const MON_REDIBA        ; f1 LEDYBA
 	const MON_MITSUBOSHI    ; f2 LEDIAN
 	const MON_PUCHICORN     ; f3 (baby PONYTA)
@@ -253,32 +253,3 @@
 	const MON_OKUTANK       ; f9 OCTILLERY
 	const MON_GONGU         ; fa TYROGUE
 
-; Unown forms
-	const_def 1
-	const UNOWN_A ;  1
-	const UNOWN_B ;  2
-	const UNOWN_C ;  3
-	const UNOWN_D ;  4
-	const UNOWN_E ;  5
-	const UNOWN_F ;  6
-	const UNOWN_G ;  7
-	const UNOWN_H ;  8
-	const UNOWN_I ;  9
-	const UNOWN_J ; 10
-	const UNOWN_K ; 11
-	const UNOWN_L ; 12
-	const UNOWN_M ; 13
-	const UNOWN_N ; 14
-	const UNOWN_O ; 15
-	const UNOWN_P ; 16
-	const UNOWN_Q ; 17
-	const UNOWN_R ; 18
-	const UNOWN_S ; 19
-	const UNOWN_T ; 20
-	const UNOWN_U ; 21
-	const UNOWN_V ; 22
-	const UNOWN_W ; 23
-	const UNOWN_X ; 24
-	const UNOWN_Y ; 25
-	const UNOWN_Z ; 26
-DEF NUM_UNOWN EQU const_value - 1 ; 26

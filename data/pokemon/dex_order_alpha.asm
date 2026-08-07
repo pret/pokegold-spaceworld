@@ -7,7 +7,7 @@ AlphabeticalPokedexOrder:
 	db DEX_AQUARIA
 	db DEX_SEAKING
 	db DEX_ANIMON
-	db DEX_ANNON
+	db DEX_UNOWN
 	db DEX_EEVEE
 	db DEX_IKARI
 	db DEX_GEODUDE

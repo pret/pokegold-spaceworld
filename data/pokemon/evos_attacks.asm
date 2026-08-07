@@ -2643,7 +2643,7 @@ YadokingEvosAttacks:
 	db 64, MOVE_PSYCHIC
 	db 0 ; no more level-up moves
 
-AnnonEvosAttacks:
+UnownEvosAttacks:
 	db 0 ; no more evolutions
 	db  1, MOVE_PSYWAVE
 	db 0 ; no more level-up moves

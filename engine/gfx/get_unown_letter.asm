@@ -45,5 +45,5 @@ GetUnownLetter::
 ; Increment to get 1-26
 	ldh a, [hQuotient + 3]
 	inc a
-	ld [wAnnonID], a
+	ld [wUnownID], a
 	ret

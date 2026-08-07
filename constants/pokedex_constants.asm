@@ -202,7 +202,7 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_BERURUN       ; c6
 	const DEX_NYOROTONO     ; c7 POLITOED
 	const DEX_YADOKING      ; c8 SLOWKING
-	const DEX_ANNON         ; c9 UNOWN
+	const DEX_UNOWN         ; c9 UNOWN
 	const DEX_REDIBA        ; ca LEDYBA
 	const DEX_MITSUBOSHI    ; cb LEDIAN
 	const DEX_PUCHICORN     ; cc (baby PONYTA)
@@ -259,32 +259,32 @@ DEF NUM_POKEMON EQU const_value - 1
 DEF NUM_POKEMON_OLD EQU const_value - 1 ; Original count according to FightDebugMenu, perhaps DEX_EGG was originally in $fe?
 	const DEX_FE            ; fe
 
-  ;  Annon forms
+; Unown forms
 	const_def 1
-	const     ANNON_A         ; 1
-	const     ANNON_B         ; 2
-	const     ANNON_C         ; 3
-	const     ANNON_D         ; 4
-	const     ANNON_E         ; 5
-	const     ANNON_F         ; 6
-	const     ANNON_G         ; 7
-	const     ANNON_H         ; 8
-	const     ANNON_I         ; 9
-	const     ANNON_J         ; 10
-	const     ANNON_K         ; 11
-	const     ANNON_L         ; 12
-	const     ANNON_M         ; 13
-	const     ANNON_N         ; 14
-	const     ANNON_O         ; 15
-	const     ANNON_P         ; 16
-	const     ANNON_Q         ; 17
-	const     ANNON_R         ; 18
-	const     ANNON_S         ; 19
-	const     ANNON_T         ; 20
-	const     ANNON_U         ; 21
-	const     ANNON_V         ; 22
-	const     ANNON_W         ; 23
-	const     ANNON_X         ; 24
-	const     ANNON_Y         ; 25
-	const     ANNON_Z         ; 26
-DEF NUM_ANNON EQU const_value - 1 ; 26
+	const UNOWN_A ;  1
+	const UNOWN_B ;  2
+	const UNOWN_C ;  3
+	const UNOWN_D ;  4
+	const UNOWN_E ;  5
+	const UNOWN_F ;  6
+	const UNOWN_G ;  7
+	const UNOWN_H ;  8
+	const UNOWN_I ;  9
+	const UNOWN_J ; 10
+	const UNOWN_K ; 11
+	const UNOWN_L ; 12
+	const UNOWN_M ; 13
+	const UNOWN_N ; 14
+	const UNOWN_O ; 15
+	const UNOWN_P ; 16
+	const UNOWN_Q ; 17
+	const UNOWN_R ; 18
+	const UNOWN_S ; 19
+	const UNOWN_T ; 20
+	const UNOWN_U ; 21
+	const UNOWN_V ; 22
+	const UNOWN_W ; 23
+	const UNOWN_X ; 24
+	const UNOWN_Y ; 25
+	const UNOWN_Z ; 26
+DEF NUM_UNOWN EQU const_value - 1 ; 26

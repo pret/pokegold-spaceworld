@@ -87,8 +87,8 @@ INCBIN "gfx/hud/hud.2bpp"
 BoldAlphabetGFX:
 INCBIN "gfx/font/alphabet.1bpp"
 
-AnnonAlphabetGFX:
-INCBIN "gfx/font/annon_alphabet.1bpp"
+UnownAlphabetGFX:
+INCBIN "gfx/font/unown_alphabet.1bpp"
 
 EmptyTile1bppGFX:
 INCBIN "gfx/font/empty_tile.1bpp"

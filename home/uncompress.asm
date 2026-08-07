@@ -7,8 +7,8 @@ UncompressMonSprite::
 	ret z
 	ld bc, wMonHeader
 	add hl, bc
-	cp DEX_ANNON
-	jr z, .uncompress_annon
+	cp DEX_UNOWN
+	jr z, .uncompress_unown
 	ld a, [hli]
 	ld [wSpriteInputPtr], a
 	ld a, [hl]
@@ -28,25 +28,25 @@ UncompressMonSprite::
 	ld a, BANK(MonSpriteBankList)
 	call GetFarByte
 	jp UncompressSpriteData
-.uncompress_annon
+.uncompress_unown
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wAnnonID]
+	ld a, [wUnownID]
 	dec a
 	add a
 	add a
 	ld c, a
 	ld b, $00
 	add hl, bc
-	ld a, BANK(AnnonPicPtrs)
+	ld a, BANK(UnownPicPtrs)
 	call GetFarByte
 	ld [wSpriteInputPtr], a
 	inc hl
-	ld a, BANK(AnnonPicPtrs)
+	ld a, BANK(UnownPicPtrs)
 	call GetFarByte
 	ld [wSpriteInputPtr + 1], a
-	ld a, BANK(AnnonPics)
+	ld a, BANK(UnownPics)
 	jp UncompressSpriteData
 
 LoadMonFrontSprite::

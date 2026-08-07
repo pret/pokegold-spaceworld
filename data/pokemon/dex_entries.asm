@@ -999,7 +999,7 @@ PokedexEntryPointers2::
 	dw BerurunDexEntry
 	dw NyorotonoDexEntry
 	dw YadokingDexEntry
-	dw AnnonDexEntry
+	dw UnownDexEntry
 	dw RedibaDexEntry
 	dw MitsuboshiDexEntry
 	dw PuchicornDexEntry
@@ -1810,7 +1810,7 @@ YadokingDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-AnnonDexEntry:
+UnownDexEntry:
 	db "？？？@"
 	db 0
 	dw 0

@@ -244,7 +244,7 @@ Pokered_MonIndices::
 	db DEX_BERURUN     ; ed
 	db DEX_NYOROTONO   ; ee
 	db DEX_YADOKING    ; ef
-	db DEX_ANNON       ; f0
+	db DEX_UNOWN       ; f0
 	db DEX_REDIBA      ; f1
 	db DEX_MITSUBOSHI  ; f2
 	db DEX_PUCHICORN   ; f3

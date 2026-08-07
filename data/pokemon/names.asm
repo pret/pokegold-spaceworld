@@ -199,7 +199,7 @@ PokemonNames::
 	db "ベルルン@" ; BERURUN
 	db "ニョロトノ" ; NYOROTONO
 	db "ヤドキング" ; YADOKING
-	db "アンノーン" ; ANNON
+	db "アンノーン" ; UNOWN
 	db "レディバ@" ; REDIBA
 	db "ミツボシ@" ; MITSUBOSHI
 	db "プチコーン" ; PUCHICORN

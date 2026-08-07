@@ -243,7 +243,7 @@ PokemonCries::
 	mon_cry CRY_00,    0,  256 ; MON_BERURUN
 	mon_cry CRY_00,    0,  256 ; MON_NYOROTONO
 	mon_cry CRY_00,    0,  256 ; MON_YADOKING
-	mon_cry CRY_00,    0,  256 ; MON_ANNON
+	mon_cry CRY_00,    0,  256 ; MON_UNOWN
 	mon_cry CRY_00,    0,  256 ; MON_REDIBA
 	mon_cry CRY_00,    0,  256 ; MON_MITSUBOSHI
 	mon_cry CRY_00,    0,  256 ; MON_PUCHICORN

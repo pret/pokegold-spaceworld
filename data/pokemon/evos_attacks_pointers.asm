@@ -201,7 +201,7 @@ EvosAttacksPointers::
 	dw BerurunEvosAttacks
 	dw NyorotonoEvosAttacks
 	dw YadokingEvosAttacks
-	dw AnnonEvosAttacks
+	dw UnownEvosAttacks
 	dw RedibaEvosAttacks
 	dw MitsuboshiEvosAttacks
 	dw PuchicornEvosAttacks

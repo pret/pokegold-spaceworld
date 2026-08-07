@@ -201,7 +201,7 @@ MonMenuIcons::
 	db ICON_LOKON      ; c6 BERURUN
 	db ICON_POLIWAG    ; c7 NYOROTONO
 	db ICON_RHYDON     ; c8 YADOKING
-	db ICON_ANNON      ; c9 ANNON
+	db ICON_UNOWN      ; c9 UNOWN
 	db ICON_MUSHI      ; ca REDIBA
 	db ICON_MUSHI      ; cb MITSUBOSHI
 	db ICON_TAUROS     ; cc PUCHICORN
