@@ -1,16 +1,16 @@
-	db DEX_NATY ; 176
+	db DEX_CLEFFA ; 173
 
-	db  45,  50,  50,  60,  50,  50
+	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_FLYING, TYPE_PSYCHIC ; type
+	db TYPE_NORMAL, TYPE_NORMAL ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_BLACK_FEATHER ; items
+	db ITEM_BERRY, ITEM_STRANGE_POWER ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw NatyPicFront, NatyPicBack ; sprites
+	dw CleffaPicFront, CleffaPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

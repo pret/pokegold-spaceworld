@@ -1,16 +1,16 @@
-	db DEX_PUPURIN ; 174
+	db DEX_UMBREON ; 206
 
 	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_NORMAL, TYPE_NORMAL ; type
+	db TYPE_POISON, TYPE_POISON ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_STRANGE_POWER ; items
+	db ITEM_APPLE, ITEM_PRETTY_TAIL ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 5, 5 ; sprite dimensions
-	dw PupurinPicFront, PupurinPicBack ; sprites
+	dn 6, 6 ; sprite dimensions
+	dw UmbreonPicFront, UmbreonPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

@@ -1,16 +1,16 @@
-	db DEX_KIREIHANA ; 221
+	db DEX_LEDYBA ; 202
 
 	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_GRASS, TYPE_POISON ; type
+	db TYPE_BUG, TYPE_FLYING ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_APPLE, ITEM_MYSTIC_PETAL ; items
+	db ITEM_BERRY, ITEM_SILVERPOWDER ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 7, 7 ; sprite dimensions
-	dw KireihanaPicFront, KireihanaPicBack ; sprites
+	dn 6, 6 ; sprite dimensions
+	dw LedybaPicFront, LedybaPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

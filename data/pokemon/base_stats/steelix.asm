@@ -1,16 +1,16 @@
-	db DEX_DENRYU ; 165
+	db DEX_STEELIX ; 241
 
-	db  55,  45,  45,  50,  70,  50
+	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_ELECTRIC, TYPE_ELECTRIC ; type
+	db TYPE_METAL, TYPE_GROUND ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_APPLE, ITEM_THUNDER_TAIL ; items
+	db ITEM_APPLE, ITEM_METAL_COAT ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw DenryuPicFront, DenryuPicBack ; sprites
+	dw SteelixPicFront, SteelixPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

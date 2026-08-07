@@ -1,16 +1,16 @@
-	db DEX_BLACKY ; 206
+	db DEX_SNUBBULL ; 249
 
-	db  50,  50,  50,  50,  50,  50
+	db  65,  70,  60,  50,  70,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_POISON, TYPE_POISON ; type
+	db TYPE_PSYCHIC, TYPE_PSYCHIC ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_APPLE, ITEM_PRETTY_TAIL ; items
-	db GENDER_50_50 ; gender ratio
+	db ITEM_BERRY, ITEM_STRANGE_POWER ; items
+	db GENDER_FEMALE ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw BlackyPicFront, BlackyPicBack ; sprites
+	dw SnubbullPicFront, SnubbullPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

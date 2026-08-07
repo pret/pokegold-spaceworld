@@ -1,16 +1,16 @@
-	db DEX_PY ; 173
+	db DEX_BELLOSSOM ; 221
 
 	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_NORMAL, TYPE_NORMAL ; type
+	db TYPE_GRASS, TYPE_POISON ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_STRANGE_POWER ; items
+	db ITEM_APPLE, ITEM_MYSTIC_PETAL ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 5, 5 ; sprite dimensions
-	dw PyPicFront, PyPicBack ; sprites
+	dn 7, 7 ; sprite dimensions
+	dw BellossomPicFront, BellossomPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

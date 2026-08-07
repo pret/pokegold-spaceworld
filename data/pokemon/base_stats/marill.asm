@@ -1,16 +1,16 @@
-	db DEX_NATIO ; 177
+	db DEX_MARILL ; 179
 
-	db  55,  50,  50,  80,  70,  50
+	db  45,  50,  55,  40,  55,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_FLYING, TYPE_PSYCHIC ; type
+	db TYPE_WATER, TYPE_WATER ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_APPLE, ITEM_BLACK_FEATHER ; items
+	db ITEM_BERRY, ITEM_STRANGE_WATER ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 6, 6 ; sprite dimensions
-	dw NatioPicFront, NatioPicBack ; sprites
+	dn 5, 5 ; sprite dimensions
+	dw MarillPicFront, MarillPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

@@ -1,16 +1,16 @@
-	db DEX_YAMIKARASU ; 231
+	db DEX_HOOTHOOT ; 161
 
-	db  50,  50,  50,  50,  50,  50
+	db  65,  55,  40,  65,  55,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_DARK, TYPE_FLYING ; type
+	db TYPE_FLYING, TYPE_FLYING ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_BLACK_FEATHER ; items
+	db ITEM_BERRY, ITEM_WHITE_FEATHER ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 6, 6 ; sprite dimensions
-	dw YamikarasuPicFront, YamikarasuPicBack ; sprites
+	dn 5, 5 ; sprite dimensions
+	dw HoothootPicFront, HoothootPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

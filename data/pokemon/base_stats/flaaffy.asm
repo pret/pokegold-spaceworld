@@ -1,16 +1,16 @@
-	db DEX_HAGANEIL ; 241
+	db DEX_FLAAFFY ; 164
 
 	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_METAL, TYPE_GROUND ; type
+	db TYPE_ELECTRIC, TYPE_ELECTRIC ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_APPLE, ITEM_METAL_COAT ; items
+	db ITEM_BERRY, ITEM_THUNDER_TAIL ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 7, 7 ; sprite dimensions
-	dw HaganeilPicFront, HaganeilPicBack ; sprites
+	dn 6, 6 ; sprite dimensions
+	dw FlaaffyPicFront, FlaaffyPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

@@ -1,16 +1,16 @@
-	db DEX_TEPPOUO ; 209
+	db DEX_SNEASEL ; 246
 
-	db  50,  50,  50,  50,  50,  50
+	db  45,  65,  50,  85,  40,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_WATER, TYPE_WATER ; type
+	db TYPE_DARK, TYPE_DARK ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_SMOKESCREEN ; items
+	db ITEM_BERRY, ITEM_CONFUSE_CLAW ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 5, 5 ; sprite dimensions
-	dw TeppouoPicFront, TeppouoPicBack ; sprites
+	dw SneaselPicFront, SneaselPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

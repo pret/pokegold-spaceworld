@@ -1,16 +1,16 @@
-	db DEX_MOKOKO ; 164
+	db DEX_HO_OH ; 247
 
-	db  50,  50,  50,  50,  50,  50
+	db 100, 100, 100, 100, 100,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_ELECTRIC, TYPE_ELECTRIC ; type
+	db TYPE_FLYING, TYPE_FLYING ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_THUNDER_TAIL ; items
+	db ITEM_BERRY, ITEM_SACRED_ASH ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 6, 6 ; sprite dimensions
-	dw MokokoPicFront, MokokoPicBack ; sprites
+	dn 7, 7 ; sprite dimensions
+	dw HoOhPicFront, HoOhPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

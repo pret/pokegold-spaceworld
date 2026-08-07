@@ -1,16 +1,16 @@
-	db DEX_BOOBY ; 220
+	db DEX_OCTILLERY ; 210
 
 	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_FIRE, TYPE_FIRE ; type
+	db TYPE_WATER, TYPE_WATER ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_FIRE_CLAW ; items
+	db ITEM_APPLE, ITEM_SMOKESCREEN ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw BoobyPicFront, BoobyPicBack ; sprites
+	dw OctilleryPicFront, OctilleryPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

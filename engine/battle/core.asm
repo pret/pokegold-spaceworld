@@ -2198,7 +2198,7 @@ EnemySendOutFirstMon:
 
 ; Play scanline fade animation for Hoothoot
 	ld b, 2
-	cp DEX_HOHO
+	cp DEX_HOOTHOOT
 	jr z, .apply_animation
 
 ; Play normal send out animation for everyone else
@@ -2634,7 +2634,7 @@ SendOutPlayerMon:
 
 ; Play scanline fade animation for Hoothoot
 	ld b, 2
-	cp DEX_HOHO
+	cp DEX_HOOTHOOT
 	jr z, .apply_animation
 
 ; Play send out animation for everyone else

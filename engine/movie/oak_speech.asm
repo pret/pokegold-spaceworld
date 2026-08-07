@@ -25,7 +25,7 @@ GameStart:: ; unreferenced
 	call PrintText
 	call GBFadeOutToWhite
 	call ClearTileMap
-	ld a, DEX_YADOKING
+	ld a, DEX_SLOWKING
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 	call GetBaseData
@@ -35,7 +35,7 @@ GameStart:: ; unreferenced
 	call MovePicLeft
 	ld hl, OakSpeech2
 	call PrintText
-	ld a, DEX_YADOKING
+	ld a, DEX_SLOWKING
 	call PlayCry
 	ld hl, OakSpeech3
 	call PrintText

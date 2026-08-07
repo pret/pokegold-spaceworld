@@ -1,16 +1,16 @@
-	db DEX_HOUOU ; 247
+	db DEX_MURKROW ; 231
 
-	db 100, 100, 100, 100, 100,  50
+	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_FLYING, TYPE_FLYING ; type
+	db TYPE_DARK, TYPE_FLYING ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_SACRED_ASH ; items
+	db ITEM_BERRY, ITEM_BLACK_FEATHER ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 7, 7 ; sprite dimensions
-	dw HououPicFront, HououPicBack ; sprites
+	dn 6, 6 ; sprite dimensions
+	dw MurkrowPicFront, MurkrowPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

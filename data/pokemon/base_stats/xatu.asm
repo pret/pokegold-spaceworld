@@ -1,16 +1,16 @@
-	db DEX_BULU ; 249
+	db DEX_XATU ; 177
 
-	db  65,  70,  60,  50,  70,  50
+	db  55,  50,  50,  80,  70,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_PSYCHIC, TYPE_PSYCHIC ; type
+	db TYPE_FLYING, TYPE_PSYCHIC ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_STRANGE_POWER ; items
-	db GENDER_FEMALE ; gender ratio
+	db ITEM_APPLE, ITEM_BLACK_FEATHER ; items
+	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 6, 6 ; sprite dimensions
-	dw BuluPicFront, BuluPicBack ; sprites
+	dw XatuPicFront, XatuPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

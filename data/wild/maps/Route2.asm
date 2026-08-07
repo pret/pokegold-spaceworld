@@ -23,7 +23,7 @@ if DEF(_GOLD)
 	db 8, DEX_HANEKO
 endc
 if DEF(_SILVER)
-	db 8, DEX_MARIL
+	db 8, DEX_MARILL
 endc
 	db 4, DEX_PIDGEY
 	; day/nite
@@ -35,7 +35,7 @@ if DEF(_GOLD)
 	db 6, DEX_RATTATA
 endc
 if DEF(_SILVER)
-	db 6, DEX_HOHO
+	db 6, DEX_HOOTHOOT
 endc
 	db 7, DEX_EKANS
 	db 8, DEX_RATTATA

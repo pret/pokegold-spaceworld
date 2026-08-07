@@ -1,16 +1,16 @@
-	db DEX_NYOROTONO ; 199
+	db DEX_TOGEPI ; 248
 
-	db  90,  85,  95,  70,  70,  50
+	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_WATER, TYPE_WATER ; type
+	db TYPE_NORMAL, TYPE_NORMAL ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_APPLE, ITEM_STRANGE_WATER ; items
+	db ITEM_BERRY, ITEM_QUICK_NEEDLE ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 7, 7 ; sprite dimensions
-	dw NyorotonoPicFront, NyorotonoPicBack ; sprites
+	dn 5, 5 ; sprite dimensions
+	dw TogepiPicFront, TogepiPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

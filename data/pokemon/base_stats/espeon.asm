@@ -1,16 +1,16 @@
-	db DEX_HOHO ; 161
+	db DEX_ESPEON ; 205
 
-	db  65,  55,  40,  65,  55,  50
+	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_FLYING, TYPE_FLYING ; type
+	db TYPE_PSYCHIC, TYPE_PSYCHIC ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_WHITE_FEATHER ; items
+	db ITEM_APPLE, ITEM_PRETTY_TAIL ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 5, 5 ; sprite dimensions
-	dw HohoPicFront, HohoPicBack ; sprites
+	dn 6, 6 ; sprite dimensions
+	dw EspeonPicFront, EspeonPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

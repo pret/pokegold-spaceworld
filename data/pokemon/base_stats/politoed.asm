@@ -1,16 +1,16 @@
-	db DEX_TOGEPY ; 248
+	db DEX_POLITOED ; 199
 
-	db  50,  50,  50,  50,  50,  50
+	db  90,  85,  95,  70,  70,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_NORMAL, TYPE_NORMAL ; type
+	db TYPE_WATER, TYPE_WATER ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_BERRY, ITEM_QUICK_NEEDLE ; items
+	db ITEM_APPLE, ITEM_STRANGE_WATER ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 5, 5 ; sprite dimensions
-	dw TogepyPicFront, TogepyPicBack ; sprites
+	dn 7, 7 ; sprite dimensions
+	dw PolitoedPicFront, PolitoedPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

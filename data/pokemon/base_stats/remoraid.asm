@@ -1,16 +1,16 @@
-	db DEX_EIFIE ; 205
+	db DEX_REMORAID ; 209
 
 	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_PSYCHIC, TYPE_PSYCHIC ; type
+	db TYPE_WATER, TYPE_WATER ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_APPLE, ITEM_PRETTY_TAIL ; items
+	db ITEM_BERRY, ITEM_SMOKESCREEN ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 6, 6 ; sprite dimensions
-	dw EifiePicFront, EifiePicBack ; sprites
+	dn 5, 5 ; sprite dimensions
+	dw RemoraidPicFront, RemoraidPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
