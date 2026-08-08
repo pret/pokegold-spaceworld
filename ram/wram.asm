@@ -1475,6 +1475,7 @@ wActiveFrame:: db
 ; bit 0: 1-frame text delay
 ; bit 1: when unset, no text delay
 wTextboxFlags::  db
+wOptionsEnd::
 
 wDebugFlags:: db
 ; Bit 0: Debug battle indicator
@@ -1483,7 +1484,7 @@ wDebugFlags:: db
 wDebugFlags2:: db
 wDebugFlags3:: db
 wDebugFlags4:: db
-wOptionsEnd::
+wDebugFlagsEnd::
 
 
 SECTION "Game Data", WRAM0

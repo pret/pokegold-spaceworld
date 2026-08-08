@@ -95,7 +95,7 @@ PikachuMiniGame::
 	ld a, $7c
 	ldh [hWY], a
 
-	ld a, $e3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 
 	ld a, [wSGB]

@@ -13,7 +13,7 @@ FieldDebug_DoVRAMViewer:
 	call .DoViewer
 	pop af
 	ldh [hMapAnims], a
-	ld a, $e3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	call .ReloadDefaultGFX
 	call CloseWindow
