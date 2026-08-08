@@ -6,6 +6,7 @@
 	const SILENT_HILL_POKECENTER_COOLTRAINER_M
 	const SILENT_HILL_POKECENTER_YOUNGSTER
 	const SILENT_HILL_POKECENTER_HOUNDOOM
+	export SILENT_HILL_POKECENTER_NURSE ; used for SetPokecenterNurseFacing
 
 SilentHillPokecenter_MapEvents::
 	dw $4000 ; unknown
