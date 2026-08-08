@@ -158,7 +158,7 @@ EvosAttacksPointers::
 	dw HonogumaEvosAttacks
 	dw VolbearEvosAttacks
 	dw DynabearEvosAttacks
-	dw KurusuEvosAttacks
+	dw CruiseEvosAttacks
 	dw AquaEvosAttacks
 	dw AquariaEvosAttacks
 	dw HoothootEvosAttacks
@@ -182,8 +182,8 @@ EvosAttacksPointers::
 	dw MarillEvosAttacks
 	dw Manbo1EvosAttacks
 	dw IkariEvosAttacks
-	dw GrotessEvosAttacks
-	dw EksingEvosAttacks
+	dw GrotesqueEvosAttacks
+	dw XIngEvosAttacks
 	dw ParaEvosAttacks
 	dw KokumoEvosAttacks
 	dw TwoheadEvosAttacks
@@ -194,7 +194,7 @@ EvosAttacksPointers::
 	dw PaonEvosAttacks
 	dw DonphanEvosAttacks
 	dw TwinzEvosAttacks
-	dw KirinrikiEvosAttacks
+	dw GirafarigEvosAttacks
 	dw PainterEvosAttacks
 	dw KounyaEvosAttacks
 	dw RinrinEvosAttacks
@@ -211,7 +211,7 @@ EvosAttacksPointers::
 	dw BetbabyEvosAttacks
 	dw RemoraidEvosAttacks
 	dw OctilleryEvosAttacks
-	dw GonguEvosAttacks
+	dw GongEvosAttacks
 	dw HitmontopEvosAttacks
 	dw PudieEvosAttacks
 	dw HanekoEvosAttacks
@@ -232,11 +232,11 @@ EvosAttacksPointers::
 	dw NorowaraEvosAttacks
 	dw KyonpanEvosAttacks
 	dw MurkrowEvosAttacks
-	dw HappiEvosAttacks
+	dw HappyEvosAttacks
 	dw ScissorsEvosAttacks
-	dw PurakkusuEvosAttacks
+	dw PlucksEvosAttacks
 	dw DevilEvosAttacks
-	dw HelgaaEvosAttacks
+	dw HoundoomEvosAttacks
 	dw WolfmanEvosAttacks
 	dw WarwolfEvosAttacks
 	dw Porygon2EvosAttacks

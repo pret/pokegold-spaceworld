@@ -1,16 +1,16 @@
-	db DEX_HELGAA ; 236
+	db DEX_HAPPY ; 232
 
 	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_FIRE, TYPE_FIRE ; type
+	db TYPE_NORMAL, TYPE_NORMAL ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_APPLE, ITEM_THICK_CLUB ; items
+	db ITEM_APPLE, ITEM_LUCKY_EGG ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw HelgaaPicFront, HelgaaPicBack ; sprites
+	dw HappyPicFront, HappyPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

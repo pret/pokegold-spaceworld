@@ -956,7 +956,7 @@ PokedexEntryPointers2::
 	dw HonogumaDexEntry
 	dw VolbearDexEntry
 	dw DynabearDexEntry
-	dw KurusuDexEntry
+	dw CruiseDexEntry
 	dw AquaDexEntry
 	dw AquariaDexEntry
 	dw HoothootDexEntry
@@ -980,8 +980,8 @@ PokedexEntryPointers2::
 	dw MarillDexEntry
 	dw Manbo1DexEntry
 	dw IkariDexEntry
-	dw GrotessDexEntry
-	dw EksingDexEntry
+	dw GrotesqueDexEntry
+	dw XIngDexEntry
 	dw ParaDexEntry
 	dw KokumoDexEntry
 	dw TwoheadDexEntry
@@ -992,7 +992,7 @@ PokedexEntryPointers2::
 	dw PaonDexEntry
 	dw DonphanDexEntry
 	dw TwinzDexEntry
-	dw KirinrikiDexEntry
+	dw GirafarigDexEntry
 	dw PainterDexEntry
 	dw KounyaDexEntry
 	dw RinrinDexEntry
@@ -1009,7 +1009,7 @@ PokedexEntryPointers2::
 	dw BetbabyDexEntry
 	dw RemoraidDexEntry
 	dw OctilleryDexEntry
-	dw GonguDexEntry
+	dw GongDexEntry
 	dw HitmontopDexEntry
 	dw PudieDexEntry
 	dw HanekoDexEntry
@@ -1030,11 +1030,11 @@ PokedexEntryPointers2::
 	dw NorowaraDexEntry
 	dw KyonpanDexEntry
 	dw MurkrowDexEntry
-	dw HappiDexEntry
+	dw HappyDexEntry
 	dw ScissorsDexEntry
-	dw PurakkusuDexEntry
+	dw PlucksDexEntry
 	dw DevilDexEntry
-	dw HelgaaDexEntry
+	dw HoundoomDexEntry
 	dw WolfmanDexEntry
 	dw WarwolfDexEntry
 	dw Porygon2DexEntry
@@ -1509,7 +1509,7 @@ DynabearDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-KurusuDexEntry:
+CruiseDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1677,14 +1677,14 @@ IkariDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-GrotessDexEntry:
+GrotesqueDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-EksingDexEntry:
+XIngDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1761,7 +1761,7 @@ TwinzDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-KirinrikiDexEntry:
+GirafarigDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1880,7 +1880,7 @@ OctilleryDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-GonguDexEntry:
+GongDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -2027,7 +2027,7 @@ MurkrowDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-HappiDexEntry:
+HappyDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -2041,7 +2041,7 @@ ScissorsDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-PurakkusuDexEntry:
+PlucksDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -2055,7 +2055,7 @@ DevilDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-HelgaaDexEntry:
+HoundoomDexEntry:
 	db "？？？@"
 	db 0
 	dw 0

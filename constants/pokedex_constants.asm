@@ -159,7 +159,7 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_HONOGUMA      ; 9b
 	const DEX_VOLBEAR       ; 9c
 	const DEX_DYNABEAR      ; 9d
-	const DEX_KURUSU        ; 9e
+	const DEX_CRUISE        ; 9e
 	const DEX_AQUA          ; 9f
 	const DEX_AQUARIA       ; a0
 	const DEX_HOOTHOOT      ; a1
@@ -183,8 +183,8 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_MARILL        ; b3
 	const DEX_MANBO1        ; b4
 	const DEX_IKARI         ; b5
-	const DEX_GROTESS       ; b6
-	const DEX_EKSING        ; b7 CROBAT
+	const DEX_GROTESQUE     ; b6
+	const DEX_X_ING         ; b7 CROBAT
 	const DEX_PARA          ; b8 (baby PARAS)
 	const DEX_KOKUMO        ; b9 SPINARAK
 	const DEX_TWOHEAD       ; ba ARIADOS
@@ -195,7 +195,7 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_PAON          ; bf PHANPY
 	const DEX_DONPHAN       ; c0 DONPHAN
 	const DEX_TWINZ         ; c1 (baby GIRAFARIG)
-	const DEX_KIRINRIKI     ; c2 GIRAFARIG
+	const DEX_GIRAFARIG     ; c2
 	const DEX_PAINTER       ; c3 SMEARGLE
 	const DEX_KOUNYA        ; c4 (baby MEOWTH)
 	const DEX_RINRIN        ; c5
@@ -212,7 +212,7 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_BETBABY       ; d0 (baby GRIMER)
 	const DEX_REMORAID      ; d1
 	const DEX_OCTILLERY     ; d2
-	const DEX_GONGU         ; d3 TYROGUE
+	const DEX_GONG          ; d3 TYROGUE
 	const DEX_HITMONTOP     ; d4
 	const DEX_PUDIE         ; d5 (baby GROWLITHE)
 	const DEX_HANEKO        ; d6 HOPPIP
@@ -233,11 +233,11 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_NOROWARA      ; e5
 	const DEX_KYONPAN       ; e6
 	const DEX_MURKROW       ; e7
-	const DEX_HAPPI         ; e8 BLISSEY
+	const DEX_HAPPY         ; e8 BLISSEY
 	const DEX_SCISSORS      ; e9 SCIZOR
-	const DEX_PURAKKUSU     ; ea (evolved PINSIR)
+	const DEX_PLUCKS        ; ea (evolved PINSIR)
 	const DEX_DEVIL         ; eb HOUNDOUR
-	const DEX_HELGAA        ; ec HOUNDOOM
+	const DEX_HOUNDOOM      ; ec
 	const DEX_WOLFMAN       ; ed
 	const DEX_WARWOLF       ; ee
 	const DEX_PORYGON2      ; ef PORYGON2

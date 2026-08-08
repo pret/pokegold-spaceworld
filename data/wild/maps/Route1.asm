@@ -17,8 +17,8 @@ endc
 	db 5, DEX_PIDGEY
 	db 4, DEX_RATTATA
 	; morn/day/nite
-	db 6, DEX_KIRINRIKI
-	db 4, DEX_KIRINRIKI
+	db 6, DEX_GIRAFARIG
+	db 4, DEX_GIRAFARIG
 if DEF(_GOLD)
 	db 4, DEX_HANEKO
 endc

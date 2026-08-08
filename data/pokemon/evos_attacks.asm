@@ -535,7 +535,7 @@ ZubatEvosAttacks:
 	db 0 ; no more level-up moves
 
 GolbatEvosAttacks:
-	db EVOLVE_LEVEL, 44, DEX_EKSING
+	db EVOLVE_LEVEL, 44, DEX_X_ING
 	db 0 ; no more evolutions
 	db  1, MOVE_LEECH_LIFE
 	db  8, MOVE_SUPERSONIC
@@ -1485,7 +1485,7 @@ RhydonEvosAttacks:
 	db 0 ; no more level-up moves
 
 ChanseyEvosAttacks:
-	db EVOLVE_LEVEL, 45, DEX_HAPPI
+	db EVOLVE_LEVEL, 45, DEX_HAPPY
 	db 0 ; no more evolutions
 	db  1, MOVE_POUND
 	db  5, MOVE_TAIL_WHIP
@@ -1678,7 +1678,7 @@ MagmarEvosAttacks:
 	db 0 ; no more level-up moves
 
 PinsirEvosAttacks:
-	db EVOLVE_LEVEL, 42, DEX_PURAKKUSU
+	db EVOLVE_LEVEL, 42, DEX_PLUCKS
 	db 0 ; no more evolutions
 	db  1, MOVE_VICEGRIP
 	db  6, MOVE_FOCUS_ENERGY
@@ -2089,7 +2089,7 @@ DynabearEvosAttacks:
 	db 71, MOVE_FLAMETHROWER
 	db 0 ; no more level-up moves
 
-KurusuEvosAttacks:
+CruiseEvosAttacks:
 	; db EVOLVE_LEVEL, 16, DEX_AQUA
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
@@ -2396,7 +2396,7 @@ Manbo1EvosAttacks:
 	db 0 ; no more level-up moves
 
 IkariEvosAttacks:
-	db EVOLVE_LEVEL, 38, DEX_GROTESS
+	db EVOLVE_LEVEL, 38, DEX_GROTESQUE
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
 	db  6, MOVE_LEER
@@ -2410,7 +2410,7 @@ IkariEvosAttacks:
 	db 54, MOVE_HYDRO_PUMP
 	db 0 ; no more level-up moves
 
-GrotessEvosAttacks:
+GrotesqueEvosAttacks:
 	db 0 ; no more evolutions
 	db  1, MOVE_TACKLE
 	db  7, MOVE_LEER
@@ -2424,7 +2424,7 @@ GrotessEvosAttacks:
 	db 63, MOVE_HYDRO_PUMP
 	db 0 ; no more level-up moves
 
-EksingEvosAttacks:
+XIngEvosAttacks:
 	db 0 ; no more evolutions
 	db  1, MOVE_LEECH_LIFE
 	db  9, MOVE_SUPERSONIC
@@ -2549,14 +2549,14 @@ DonphanEvosAttacks:
 	db 0 ; no more level-up moves
 
 TwinzEvosAttacks:
-	db EVOLVE_LEVEL, 29, DEX_KIRINRIKI
+	db EVOLVE_LEVEL, 29, DEX_GIRAFARIG
 	db 0 ; no more evolutions
 	db  1, MOVE_DOUBLE_KICK
 	db  6, MOVE_GROWL
 	db 11, MOVE_SAND_ATTACK
 	db 0 ; no more level-up moves
 
-KirinrikiEvosAttacks:
+GirafarigEvosAttacks:
 	db 0 ; no more evolutions
 	db  1, MOVE_DOUBLE_KICK
 	db  6, MOVE_GROWL
@@ -2756,7 +2756,7 @@ OctilleryEvosAttacks:
 	db 70, MOVE_ZAP_CANNON
 	db 0 ; no more level-up moves
 
-GonguEvosAttacks:
+GongEvosAttacks:
 	db EVOLVE_LEVEL, 15, DEX_HITMONLEE
 	db EVOLVE_LEVEL, 15, DEX_HITMONCHAN
 	db EVOLVE_LEVEL, 15, DEX_HITMONTOP
@@ -3026,7 +3026,7 @@ MurkrowEvosAttacks:
 	db 69, MOVE_PERISH_SONG
 	db 0 ; no more level-up moves
 
-HappiEvosAttacks:
+HappyEvosAttacks:
 	db 0 ; no more evolutions
 	db  1, MOVE_POUND
 	db  6, MOVE_TAIL_WHIP
@@ -3054,7 +3054,7 @@ ScissorsEvosAttacks:
 	db 73, MOVE_AGILITY
 	db 0 ; no more level-up moves
 
-PurakkusuEvosAttacks:
+PlucksEvosAttacks:
 	db 0 ; no more evolutions
 	db  1, MOVE_VICEGRIP
 	db  7, MOVE_FOCUS_ENERGY
@@ -3068,7 +3068,7 @@ PurakkusuEvosAttacks:
 	db 0 ; no more level-up moves
 
 DevilEvosAttacks:
-	db EVOLVE_LEVEL, 35, DEX_HELGAA
+	db EVOLVE_LEVEL, 35, DEX_HOUNDOOM
 	db 0 ; no more evolutions
 	db  1, MOVE_EMBER
 	db  7, MOVE_LEER
@@ -3081,7 +3081,7 @@ DevilEvosAttacks:
 	db 56, MOVE_FLAMETHROWER
 	db 0 ; no more level-up moves
 
-HelgaaEvosAttacks:
+HoundoomEvosAttacks:
 	db 0 ; no more evolutions
 	db  1, MOVE_EMBER
 	db  8, MOVE_LEER

@@ -176,7 +176,7 @@ GamaGroup::
 	db 37, MON_GROWLITHE, MON_VULPIX, 0
 
 RivalGroup::
-	db  5, DEX_KURUSU, 0
+	db  5, DEX_CRUISE, 0
 	db  5, DEX_HAPPA, 0
 	db  5, DEX_HONOGUMA, 0
 ; Leftover Hiker data from Red/Blue
@@ -471,7 +471,7 @@ PokeManiacGroup::
 
 RocketMGroup::
 ; Unused
-	db 13, DEX_KOTORA, DEX_GONGU, DEX_BELLOSSOM, 0
+	db 13, DEX_KOTORA, DEX_GONG, DEX_BELLOSSOM, 0
 ; Leftover Cooltrainer♂ data from Red/Blue
 	db 39, MON_NIDORINO, MON_NIDOKING, 0
 	db 43, MON_EXEGGUTOR, MON_CLOYSTER, MON_ARCANINE, 0
@@ -518,7 +518,7 @@ SwimmerFGroup::
 	db -1, 37, MON_KOFFING, 39, MON_MUK, 37, MON_KOFFING, 43, MON_WEEZING, 0
 
 SwimmerMGroup::
-	db 10, DEX_BARIRINA, DEX_KIRINRIKI, DEX_PUCHICORN, 0
+	db 10, DEX_BARIRINA, DEX_GIRAFARIG, DEX_PUCHICORN, 0
 
 SailorGroup::
 ; Leftover Sabrina data from Red/Blue

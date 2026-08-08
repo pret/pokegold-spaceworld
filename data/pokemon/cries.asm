@@ -130,7 +130,7 @@ PokemonCries::
 	mon_cry CRY_1C,  204,  129 ; MON_METAPOD
 	mon_cry CRY_16,  119,  192 ; MON_BUTTERFREE
 	mon_cry CRY_1F,    8,  320 ; MON_MACHAMP
-	mon_cry CRY_11,   32,   16 ; MON_HAPPI
+	mon_cry CRY_11,   32,   16 ; MON_HAPPY
 	mon_cry CRY_21,  255,  192 ; MON_GOLDUCK
 	mon_cry CRY_0D,  238,  192 ; MON_HYPNO
 	mon_cry CRY_1D,  250,  256 ; MON_GOLBAT
@@ -138,12 +138,12 @@ PokemonCries::
 	mon_cry CRY_05,   85,  129 ; MON_SNORLAX
 	mon_cry CRY_17,  128,  128 ; MON_MAGIKARP
 	mon_cry CRY_00,    0,    0 ; MON_SCISSORS
-	mon_cry CRY_00,    0,    0 ; MON_PURAKKUSU
+	mon_cry CRY_00,    0,    0 ; MON_PLUCKS
 	mon_cry CRY_07,  239,  383 ; MON_MUK
 	mon_cry CRY_0F,   64,    0 ; MON_DEVIL
 	mon_cry CRY_20,  238,  352 ; MON_KINGLER
 	mon_cry CRY_18,  111,  352 ; MON_CLOYSTER
-	mon_cry CRY_00,    0,    0 ; MON_HELGAA
+	mon_cry CRY_00,    0,    0 ; MON_HOUNDOOM
 	mon_cry CRY_06,  168,  272 ; MON_ELECTRODE
 	mon_cry CRY_19,  170,  160 ; MON_CLEFABLE
 	mon_cry CRY_12,  255,  383 ; MON_WEEZING
@@ -200,7 +200,7 @@ PokemonCries::
 	mon_cry CRY_00,    0,  256 ; MON_HONOGUMA
 	mon_cry CRY_00,    0,  256 ; MON_VOLBEAR
 	mon_cry CRY_00,    0,  256 ; MON_DYNABEAR
-	mon_cry CRY_00,    0,  256 ; MON_KURUSU
+	mon_cry CRY_00,    0,  256 ; MON_CRUISE
 	mon_cry CRY_00,    0,  256 ; MON_AQUA
 	mon_cry CRY_00,    0,  256 ; MON_AQUARIA
 	mon_cry CRY_00,    0,  256 ; MON_HOOTHOOT
@@ -224,8 +224,8 @@ PokemonCries::
 	mon_cry CRY_00,    0,  256 ; MON_MARILL
 	mon_cry CRY_00,    0,  256 ; MON_MANBO1
 	mon_cry CRY_00,    0,  256 ; MON_IKARI
-	mon_cry CRY_00,    0,  256 ; MON_GROTESS
-	mon_cry CRY_00,    0,  256 ; MON_EKSING
+	mon_cry CRY_00,    0,  256 ; MON_GROTESQUE
+	mon_cry CRY_00,    0,  256 ; MON_X_ING
 	mon_cry CRY_00,    0,  256 ; MON_PARA
 	mon_cry CRY_00,    0,  256 ; MON_KOKUMO
 	mon_cry CRY_00,    0,  256 ; MON_TWOHEAD
@@ -236,7 +236,7 @@ PokemonCries::
 	mon_cry CRY_00,    0,  256 ; MON_PAON
 	mon_cry CRY_00,    0,  256 ; MON_DONPHAN
 	mon_cry CRY_00,    0,  256 ; MON_TWINZ
-	mon_cry CRY_00,    0,  256 ; MON_KIRINRIKI
+	mon_cry CRY_00,    0,  256 ; MON_GIRAFARIG
 	mon_cry CRY_00,    0,  256 ; MON_PAINTER
 	mon_cry CRY_00,    0,  256 ; MON_KOUNYA
 	mon_cry CRY_00,    0,  256 ; MON_RINRIN
@@ -253,7 +253,7 @@ PokemonCries::
 	mon_cry CRY_00,    0,  256 ; MON_BETBABY
 	mon_cry CRY_00,    0,  256 ; MON_REMORAID
 	mon_cry CRY_00,    0,  256 ; MON_OCTILLERY
-	mon_cry CRY_00,    0,  256 ; MON_GONGU
+	mon_cry CRY_00,    0,  256 ; MON_GONG
 	mon_cry CRY_00,    0,  256 ; fb
 	mon_cry CRY_00,    0,  256 ; fc
 	mon_cry CRY_00,    0,  256 ; fd

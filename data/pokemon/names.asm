@@ -156,7 +156,7 @@ PokemonNames::
 	db "ホノオグマ" ; HONOGUMA
 	db "ボルベアー" ; VOLBEAR
 	db "ダイナベア" ; DYNABEAR
-	db "クルス@@" ; KURUSU
+	db "クルス@@" ; CRUISE
 	db "アクア@@" ; AQUA
 	db "アクエリア" ; AQUARIA
 	db "ホーホー@" ; HOOTHOOT
@@ -180,8 +180,8 @@ PokemonNames::
 	db "マリル@@" ; MARILL
 	db "マンボー１" ; MANBO1
 	db "イカリ@@" ; IKARI
-	db "グロテス@" ; GROTESS
-	db "エクシング" ; EKSING
+	db "グロテス@" ; GROTESQUE
+	db "エクシング" ; X_ING
 	db "パラ@@@" ; PARA
 	db "コクモ@@" ; KOKUMO
 	db "ツーヘッド" ; TWOHEAD
@@ -192,7 +192,7 @@ PokemonNames::
 	db "パオン@@" ; PAON
 	db "ドンファン" ; DONPHAN
 	db "ツインズ@" ; TWINZ
-	db "キリンリキ" ; KIRINRIKI
+	db "キリンリキ" ; GIRAFARIG
 	db "ペインター" ; PAINTER
 	db "コーニャ@" ; KOUNYA
 	db "リンリン@" ; RINRIN
@@ -209,7 +209,7 @@ PokemonNames::
 	db "ベトベビー" ; BETBABY
 	db "テッポウオ" ; REMORAID
 	db "オクタン@" ; OCTILLERY
-	db "ゴング@@" ; GONGU
+	db "ゴング@@" ; GONG
 	db "カポエラー" ; HITMONTOP
 	db "プディ@@" ; PUDIE
 	db "ハネコ@@" ; HANEKO
@@ -230,11 +230,11 @@ PokemonNames::
 	db "ノロワラ@" ; NOROWARA
 	db "キョンパン" ; KYONPAN
 	db "ヤミカラス" ; MURKROW
-	db "ハッピー@" ; HAPPI
+	db "ハッピー@" ; HAPPY
 	db "シザース@" ; SCISSORS
-	db "プラックス" ; PURAKKUSU
+	db "プラックス" ; PLUCKS
 	db "デビル@@" ; DEVIL
-	db "ヘルガー@" ; HELGAA
+	db "ヘルガー@" ; HOUNDOOM
 	db "ウルフマン" ; WOLFMAN
 	db "ワーウルフ" ; WARWOLF
 	db "ポリゴン２" ; PORYGON2

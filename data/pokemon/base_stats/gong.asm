@@ -1,16 +1,16 @@
-	db DEX_PURAKKUSU ; 234
+	db DEX_GONG ; 211
 
 	db  50,  50,  50,  50,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_BUG, TYPE_BUG ; type
+	db TYPE_FIGHTING, TYPE_FIGHTING ; type
 	db 255 ; catch rate
 	db 100 ; base exp
-	db ITEM_APPLE, ITEM_TWIN_HORNS ; items
+	db ITEM_BERRY, ITEM_POWER_BRACER ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 7, 7 ; sprite dimensions
-	dw PurakkusuPicFront, PurakkusuPicBack ; sprites
+	dn 5, 5 ; sprite dimensions
+	dw GongPicFront, GongPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

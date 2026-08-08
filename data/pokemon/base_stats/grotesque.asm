@@ -1,16 +1,16 @@
-	db DEX_KURUSU ; 158
+	db DEX_GROTESQUE ; 182
 
-	db  45,  50,  50,  45,  50,  50
+	db  60,  65,  60,  30,  80,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_WATER, TYPE_WATER ; type
+	db TYPE_WATER, TYPE_METAL ; type
 	db 255 ; catch rate
-	db 64 ; base exp
-	db ITEM_BERRY, ITEM_STRANGE_WATER ; items
+	db 100 ; base exp
+	db ITEM_APPLE, ITEM_WATER_TAIL ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 5, 5 ; sprite dimensions
-	dw KurusuPicFront, KurusuPicBack ; sprites
+	dn 6, 6 ; sprite dimensions
+	dw GrotesquePicFront, GrotesquePicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

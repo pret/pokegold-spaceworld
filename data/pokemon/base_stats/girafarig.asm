@@ -1,4 +1,4 @@
-	db DEX_KIRINRIKI ; 194
+	db DEX_GIRAFARIG ; 194
 
 	db  70,  50,  50,  45,  45,  50
 	;   hp  atk  def  spd  sat  sdf
@@ -14,7 +14,7 @@ endc
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
 	dn 7, 7 ; sprite dimensions
-	dw KirinrikiPicFront, KirinrikiPicBack ; sprites
+	dw GirafarigPicFront, GirafarigPicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

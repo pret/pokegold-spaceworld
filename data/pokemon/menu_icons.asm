@@ -158,7 +158,7 @@ MonMenuIcons::
 	db ICON_RHYDON     ; 9b HONOGUMA
 	db ICON_RHYDON     ; 9c VOLBEAR
 	db ICON_RHYDON     ; 9d DYNABEAR
-	db ICON_LAPRAS     ; 9e KURUSU
+	db ICON_LAPRAS     ; 9e CRUISE
 	db ICON_LAPRAS     ; 9f AQUA
 	db ICON_LAPRAS     ; a0 AQUARIA
 	db ICON_PIDGEY     ; a1 HOOTHOOT
@@ -182,8 +182,8 @@ MonMenuIcons::
 	db ICON_JIGGLYPUFF ; b3 MARILL
 	db ICON_MAGIKARP   ; b4 MANBO1
 	db ICON_MAGIKARP   ; b5 IKARI
-	db ICON_MAGIKARP   ; b6 GROTESS
-	db ICON_ZUBAT      ; b7 EKSING
+	db ICON_MAGIKARP   ; b6 GROTESQUE
+	db ICON_ZUBAT      ; b7 X_ING
 	db ICON_MUSHI      ; b8 PARA
 	db ICON_MUSHI      ; b9 KOKUMO
 	db ICON_MUSHI      ; ba TWOHEAD
@@ -194,7 +194,7 @@ MonMenuIcons::
 	db ICON_TAUROS     ; bf PAON
 	db ICON_TAUROS     ; c0 DONPHAN
 	db ICON_GENGAR     ; c1 TWINZ
-	db ICON_LOKON      ; c2 KIRINRIKI
+	db ICON_LOKON      ; c2 GIRAFARIG
 	db ICON_MRMIME     ; c3 PAINTER
 	db ICON_LOKON      ; c4 KOUNYA
 	db ICON_LOKON      ; c5 RINRIN
@@ -211,7 +211,7 @@ MonMenuIcons::
 	db ICON_DITTO      ; d0 BETBABY
 	db ICON_MAGIKARP   ; d1 REMORAID
 	db ICON_MAGIKARP   ; d2 OCTILLERY
-	db ICON_MACHOP     ; d3 GONGU
+	db ICON_MACHOP     ; d3 GONG
 	db ICON_MACHOP     ; d4 HITMONTOP
 	db ICON_LOKON      ; d5 PUDIE
 	db ICON_ODDISH     ; d6 HANEKO
@@ -232,11 +232,11 @@ MonMenuIcons::
 	db ICON_GENGAR     ; e5 NOROWARA
 	db ICON_GENGAR     ; e6 KYONPAN
 	db ICON_PIDGEY     ; e7 MURKROW
-	db ICON_RHYDON     ; e8 HAPPI
+	db ICON_RHYDON     ; e8 HAPPY
 	db ICON_MUSHI      ; e9 SCISSORS
-	db ICON_MUSHI      ; ea PURAKKUSU
+	db ICON_MUSHI      ; ea PLUCKS
 	db ICON_LOKON      ; eb DEVIL
-	db ICON_LOKON      ; ec HELGAA
+	db ICON_LOKON      ; ec HOUNDOOM
 	db ICON_RHYDON     ; ed WOLFMAN
 	db ICON_RHYDON     ; ee WARWOLF
 	db ICON_VOLTORB    ; ef PORYGON2

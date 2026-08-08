@@ -131,7 +131,7 @@ Pokered_MonIndices::
 	db DEX_METAPOD     ; 7c
 	db DEX_BUTTERFREE  ; 7d
 	db DEX_MACHAMP     ; 7e
-	db DEX_HAPPI       ; 7f
+	db DEX_HAPPY       ; 7f
 	db DEX_GOLDUCK     ; 80
 	db DEX_HYPNO       ; 81
 	db DEX_GOLBAT      ; 82
@@ -139,12 +139,12 @@ Pokered_MonIndices::
 	db DEX_SNORLAX     ; 84
 	db DEX_MAGIKARP    ; 85
 	db DEX_SCISSORS    ; 86
-	db DEX_PURAKKUSU   ; 87
+	db DEX_PLUCKS      ; 87
 	db DEX_MUK         ; 88
 	db DEX_DEVIL       ; 89
 	db DEX_KINGLER     ; 8a
 	db DEX_CLOYSTER    ; 8b
-	db DEX_HELGAA      ; 8c
+	db DEX_HOUNDOOM    ; 8c
 	db DEX_ELECTRODE   ; 8d
 	db DEX_CLEFABLE    ; 8e
 	db DEX_WEEZING     ; 8f
@@ -201,7 +201,7 @@ Pokered_MonIndices::
 	db DEX_HONOGUMA    ; c2
 	db DEX_VOLBEAR     ; c3
 	db DEX_DYNABEAR    ; c4
-	db DEX_KURUSU      ; c5
+	db DEX_CRUISE      ; c5
 	db DEX_AQUA        ; c6
 	db DEX_AQUARIA     ; c7
 	db DEX_HOOTHOOT    ; c8
@@ -225,8 +225,8 @@ Pokered_MonIndices::
 	db DEX_MARILL      ; da
 	db DEX_MANBO1      ; db
 	db DEX_IKARI       ; dc
-	db DEX_GROTESS     ; dd
-	db DEX_EKSING      ; de
+	db DEX_GROTESQUE   ; dd
+	db DEX_X_ING       ; de
 	db DEX_PARA        ; df
 	db DEX_KOKUMO      ; e0
 	db DEX_TWOHEAD     ; e1
@@ -237,7 +237,7 @@ Pokered_MonIndices::
 	db DEX_PAON        ; e6
 	db DEX_DONPHAN     ; e7
 	db DEX_TWINZ       ; e8
-	db DEX_KIRINRIKI   ; e9
+	db DEX_GIRAFARIG   ; e9
 	db DEX_PAINTER     ; ea
 	db DEX_KOUNYA      ; eb
 	db DEX_RINRIN      ; ec
@@ -254,6 +254,6 @@ Pokered_MonIndices::
 	db DEX_BETBABY     ; f7
 	db DEX_REMORAID    ; f8
 	db DEX_OCTILLERY   ; f9
-	db DEX_GONGU       ; fa
+	db DEX_GONG        ; fa
 	db DEX_LEDYBA      ; fb
 	db DEX_LEDYBA      ; fc

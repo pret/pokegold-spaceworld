@@ -1,16 +1,16 @@
-	db DEX_HAPPI ; 232
+	db DEX_CRUISE ; 158
 
-	db  50,  50,  50,  50,  50,  50
+	db  45,  50,  50,  45,  50,  50
 	;   hp  atk  def  spd  sat  sdf
 
-	db TYPE_NORMAL, TYPE_NORMAL ; type
+	db TYPE_WATER, TYPE_WATER ; type
 	db 255 ; catch rate
-	db 100 ; base exp
-	db ITEM_APPLE, ITEM_LUCKY_EGG ; items
+	db 64 ; base exp
+	db ITEM_BERRY, ITEM_STRANGE_WATER ; items
 	db GENDER_50_50 ; gender ratio
 	db 100, 4, 70 ; unknown
-	dn 7, 7 ; sprite dimensions
-	dw HappiPicFront, HappiPicBack ; sprites
+	dn 5, 5 ; sprite dimensions
+	dw CruisePicFront, CruisePicBack ; sprites
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
