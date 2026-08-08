@@ -808,7 +808,7 @@ SGBBorder_PushBGPals:
 	ld bc, $100 tiles
 	call CopyData
 	call DrawDefaultTiles
-	ld a, $e3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	ld hl, PalTrnPacket
 	call _PushSGBPals
@@ -842,7 +842,7 @@ SGBBorder_MorePalPushing:
 	ld bc, $80
 	call CopyData
 	call DrawDefaultTiles
-	ld a, $e3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	ld hl, PctTrnPacket
 	call _PushSGBPals
@@ -852,7 +852,7 @@ SGBBorder_MorePalPushing:
 
 SGBBorder_YetMorePalPushing:
 	call DisableLCD
-	ld a, $e4
+	ld a, %11100100
 	ldh [rBGP], a
 	ld de, vChars1
 	ld b, $80
@@ -866,7 +866,7 @@ SGBBorder_YetMorePalPushing:
 	dec b
 	jr nz, .loop
 	call DrawDefaultTiles
-	ld a, $e3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	ld hl, ChrTrnPacket
 	call _PushSGBPals

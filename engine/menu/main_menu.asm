@@ -117,12 +117,12 @@ LoadOptions:
 	ret
 
 ; Copies the contents of wDebugFlags - wDebugFlags4 to... themselves.
-; Presumably, the debug flags were originally read from the save file (evidenced by SRAM being opened and closed),
-; but the source address was dummied out.
-Dummy_LoadDebugFlags:
-	ld a, BANK(sOptions)
+; Presumably, sDebugFlags was meant to be read instead of wDebugFlags.
+; This likely went unnoticed since DEBUG_FIELD_F is reset on file load.
+LoadDebugFlags:
+	ld a, BANK(wDebugFlags) ; BUG: This should be sDebugFlags
 	call OpenSRAM
-	ld hl, wDebugFlags
+	ld hl, wDebugFlags ; BUG: This should be sDebugFlags
 	ld a, [hli]
 	ld [wDebugFlags], a
 	ld a, [hli]
@@ -243,7 +243,7 @@ Continue::
 	jr .loop
 .escape
 	call LoadOptions
-	call Dummy_LoadDebugFlags
+	call LoadDebugFlags
 	ld hl, wDebugFlags
 	res DEBUG_FIELD_F, [hl]
 	set CONTINUED_F, [hl]
