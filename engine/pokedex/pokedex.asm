@@ -430,13 +430,13 @@ Pokedex_List:
 
 Pokedex_InitAButtonMenu:
 	ld a, [wTempSpecies]
-	cp DEX_ANNON
-	jr nz, .not_annon
+	cp DEX_UNOWN
+	jr nz, .not_unown
 
 	ld a, A_BUTTON_MENU_UNOWN
 	jr .DisplayButtons
 
-.not_annon
+.not_unown
 	ld a, A_BUTTON_MENU_NO_UNOWN
 .DisplayButtons
 	call ShowPokedexMenu
@@ -497,7 +497,7 @@ Pokedex_AButtonMenu:
 .UnownMode:
 	call Pokedex_GetSelectedMon
 	ld a, [wTempSpecies]
-	cp DEX_ANNON
+	cp DEX_UNOWN
 	ret nz
 
 	call Pokedex_UnownMode
@@ -573,7 +573,7 @@ Pokedex_AButtonMenu:
 
 .ReturnButtons:
 	ld a, [wTempSpecies]
-	cp DEX_ANNON
+	cp DEX_UNOWN
 	jr nz, .unown
 	ld a, A_BUTTON_MENU_UNOWN
 	jr .show_pokedex_menu
@@ -1362,7 +1362,7 @@ Pokedex_DexEntryScreen:
 .loop
 	call WaitForAutoBgMapTransfer
 	ld a, [wUnownDex]
-	ld [wAnnonID], a
+	ld [wUnownID], a
 	ld hl, wTileMap
 	lb bc, SCREEN_HEIGHT, SCREEN_WIDTH
 	call Pokedex_PlaceBorder

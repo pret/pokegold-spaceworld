@@ -34,7 +34,7 @@ PokemonCries::
 	mon_cry CRY_13,    0,  256 ; MON_BLASTOISE
 	mon_cry CRY_14,    0,  256 ; MON_PINSIR
 	mon_cry CRY_12,    0,  256 ; MON_TANGELA
-	mon_cry CRY_00,    0,    0 ; MON_KAPOERER
+	mon_cry CRY_00,    0,    0 ; MON_HITMONTOP
 	mon_cry CRY_00,    0,    0 ; MON_PUDIE
 	mon_cry CRY_1F,   32,  192 ; MON_GROWLITHE
 	mon_cry CRY_17,  255,  320 ; MON_ONIX
@@ -71,8 +71,8 @@ PokemonCries::
 	mon_cry CRY_1A,   68,  192 ; MON_VENONAT
 	mon_cry CRY_0F,   60,  320 ; MON_DRAGONITE
 	mon_cry CRY_00,  128,   16 ; MON_ELEBABY
-	mon_cry CRY_00,    0,    0 ; MON_BOOBY
-	mon_cry CRY_1D,  224,    0 ; MON_KIREIHANA
+	mon_cry CRY_00,    0,    0 ; MON_MAGBY
+	mon_cry CRY_1D,  224,    0 ; MON_BELLOSSOM
 	mon_cry CRY_0B,  187,  129 ; MON_DODUO
 	mon_cry CRY_0E,  255,  383 ; MON_POLIWAG
 	mon_cry CRY_0D,  255,  383 ; MON_JYNX
@@ -125,12 +125,12 @@ PokemonCries::
 	mon_cry CRY_1A,   41,  256 ; MON_VENOMOTH
 	mon_cry CRY_0C,   35,  383 ; MON_DEWGONG
 	mon_cry CRY_00,    0,    0 ; MON_KYONPAN
-	mon_cry CRY_00,    0,    0 ; MON_YAMIKARASU
+	mon_cry CRY_00,    0,    0 ; MON_MURKROW
 	mon_cry CRY_16,  128,  160 ; MON_CATERPIE
 	mon_cry CRY_1C,  204,  129 ; MON_METAPOD
 	mon_cry CRY_16,  119,  192 ; MON_BUTTERFREE
 	mon_cry CRY_1F,    8,  320 ; MON_MACHAMP
-	mon_cry CRY_11,   32,   16 ; MON_HAPPI
+	mon_cry CRY_11,   32,   16 ; MON_HAPPY
 	mon_cry CRY_21,  255,  192 ; MON_GOLDUCK
 	mon_cry CRY_0D,  238,  192 ; MON_HYPNO
 	mon_cry CRY_1D,  250,  256 ; MON_GOLBAT
@@ -138,12 +138,12 @@ PokemonCries::
 	mon_cry CRY_05,   85,  129 ; MON_SNORLAX
 	mon_cry CRY_17,  128,  128 ; MON_MAGIKARP
 	mon_cry CRY_00,    0,    0 ; MON_SCISSORS
-	mon_cry CRY_00,    0,    0 ; MON_PURAKKUSU
+	mon_cry CRY_00,    0,    0 ; MON_PLUCKS
 	mon_cry CRY_07,  239,  383 ; MON_MUK
 	mon_cry CRY_0F,   64,    0 ; MON_DEVIL
 	mon_cry CRY_20,  238,  352 ; MON_KINGLER
 	mon_cry CRY_18,  111,  352 ; MON_CLOYSTER
-	mon_cry CRY_00,    0,    0 ; MON_HELGAA
+	mon_cry CRY_00,    0,    0 ; MON_HOUNDOOM
 	mon_cry CRY_06,  168,  272 ; MON_ELECTRODE
 	mon_cry CRY_19,  170,  160 ; MON_CLEFABLE
 	mon_cry CRY_12,  255,  383 ; MON_WEEZING
@@ -164,7 +164,7 @@ PokemonCries::
 	mon_cry CRY_16,   16,  383 ; MON_SEAKING
 	mon_cry CRY_00,    0,    0 ; MON_PORYGON2
 	mon_cry CRY_00,    0,    0 ; MON_NAMEIL
-	mon_cry CRY_00,    0,    0 ; MON_HAGANEIL
+	mon_cry CRY_00,    0,    0 ; MON_STEELIX
 	mon_cry CRY_00,    0,    0 ; MON_KINGDRA
 	mon_cry CRY_25,    0,  256 ; MON_PONYTA
 	mon_cry CRY_25,   32,  320 ; MON_RAPIDASH
@@ -184,10 +184,10 @@ PokemonCries::
 	mon_cry CRY_04,   32,  192 ; MON_CHARMELEON
 	mon_cry CRY_1D,   32,  192 ; MON_WARTORTLE
 	mon_cry CRY_04,    0,  256 ; MON_CHARIZARD
-	mon_cry CRY_1D,    0,    0 ; MON_NYULA
-	mon_cry CRY_00,    0,    0 ; MON_HOUOU
-	mon_cry CRY_00,    0,    0 ; MON_TOGEPY
-	mon_cry CRY_00,    0,    0 ; MON_BULU
+	mon_cry CRY_1D,    0,    0 ; MON_SNEASEL
+	mon_cry CRY_00,    0,    0 ; MON_HO_OH
+	mon_cry CRY_00,    0,    0 ; MON_TOGEPI
+	mon_cry CRY_00,    0,    0 ; MON_SNUBBULL
 	mon_cry CRY_08,  221,  129 ; MON_ODDISH
 	mon_cry CRY_08,  170,  192 ; MON_GLOOM
 	mon_cry CRY_23,   34,  383 ; MON_VILEPLUME
@@ -200,14 +200,14 @@ PokemonCries::
 	mon_cry CRY_00,    0,  256 ; MON_HONOGUMA
 	mon_cry CRY_00,    0,  256 ; MON_VOLBEAR
 	mon_cry CRY_00,    0,  256 ; MON_DYNABEAR
-	mon_cry CRY_00,    0,  256 ; MON_KURUSU
+	mon_cry CRY_00,    0,  256 ; MON_CRUISE
 	mon_cry CRY_00,    0,  256 ; MON_AQUA
 	mon_cry CRY_00,    0,  256 ; MON_AQUARIA
-	mon_cry CRY_00,    0,  256 ; MON_HOHO
+	mon_cry CRY_00,    0,  256 ; MON_HOOTHOOT
 	mon_cry CRY_00,    0,  256 ; MON_BOBO
 	mon_cry CRY_00,    0,  256 ; MON_PACHIMEE
-	mon_cry CRY_00,    0,  256 ; MON_MOKOKO
-	mon_cry CRY_00,    0,  256 ; MON_DENRYU
+	mon_cry CRY_00,    0,  256 ; MON_FLAAFFY
+	mon_cry CRY_00,    0,  256 ; MON_AMPHAROS
 	mon_cry CRY_00,    0,  256 ; MON_MIKON
 	mon_cry CRY_00,    0,  256 ; MON_MONJA
 	mon_cry CRY_00,    0,  256 ; MON_JARANJA
@@ -215,17 +215,17 @@ PokemonCries::
 	mon_cry CRY_00,    0,  256 ; MON_PUKU
 	mon_cry CRY_00,    0,  256 ; MON_SHIBIREFUGU
 	mon_cry CRY_00,    0,  256 ; MON_PICHU
-	mon_cry CRY_00,    0,  256 ; MON_PY
-	mon_cry CRY_00,    0,  256 ; MON_PUPURIN
+	mon_cry CRY_00,    0,  256 ; MON_CLEFFA
+	mon_cry CRY_00,    0,  256 ; MON_IGGLYBUFF
 	mon_cry CRY_00,    0,  256 ; MON_MIZUUO
-	mon_cry CRY_00,    0,  256 ; MON_NATY
-	mon_cry CRY_00,    0,  256 ; MON_NATIO
+	mon_cry CRY_00,    0,  256 ; MON_NATU
+	mon_cry CRY_00,    0,  256 ; MON_XATU
 	mon_cry CRY_00,    0,  256 ; MON_GYOPIN
-	mon_cry CRY_00,    0,  256 ; MON_MARIL
+	mon_cry CRY_00,    0,  256 ; MON_MARILL
 	mon_cry CRY_00,    0,  256 ; MON_MANBO1
 	mon_cry CRY_00,    0,  256 ; MON_IKARI
-	mon_cry CRY_00,    0,  256 ; MON_GROTESS
-	mon_cry CRY_00,    0,  256 ; MON_EKSING
+	mon_cry CRY_00,    0,  256 ; MON_GROTESQUE
+	mon_cry CRY_00,    0,  256 ; MON_X_ING
 	mon_cry CRY_00,    0,  256 ; MON_PARA
 	mon_cry CRY_00,    0,  256 ; MON_KOKUMO
 	mon_cry CRY_00,    0,  256 ; MON_TWOHEAD
@@ -236,24 +236,24 @@ PokemonCries::
 	mon_cry CRY_00,    0,  256 ; MON_PAON
 	mon_cry CRY_00,    0,  256 ; MON_DONPHAN
 	mon_cry CRY_00,    0,  256 ; MON_TWINZ
-	mon_cry CRY_00,    0,  256 ; MON_KIRINRIKI
+	mon_cry CRY_00,    0,  256 ; MON_GIRAFARIG
 	mon_cry CRY_00,    0,  256 ; MON_PAINTER
 	mon_cry CRY_00,    0,  256 ; MON_KOUNYA
 	mon_cry CRY_00,    0,  256 ; MON_RINRIN
 	mon_cry CRY_00,    0,  256 ; MON_BERURUN
-	mon_cry CRY_00,    0,  256 ; MON_NYOROTONO
-	mon_cry CRY_00,    0,  256 ; MON_YADOKING
-	mon_cry CRY_00,    0,  256 ; MON_ANNON
-	mon_cry CRY_00,    0,  256 ; MON_REDIBA
+	mon_cry CRY_00,    0,  256 ; MON_POLITOED
+	mon_cry CRY_00,    0,  256 ; MON_SLOWKING
+	mon_cry CRY_00,    0,  256 ; MON_UNOWN
+	mon_cry CRY_00,    0,  256 ; MON_LEDYBA
 	mon_cry CRY_00,    0,  256 ; MON_MITSUBOSHI
 	mon_cry CRY_00,    0,  256 ; MON_PUCHICORN
-	mon_cry CRY_00,    0,  256 ; MON_EIFIE
-	mon_cry CRY_00,    0,  256 ; MON_BLACKY
+	mon_cry CRY_00,    0,  256 ; MON_ESPEON
+	mon_cry CRY_00,    0,  256 ; MON_UMBREON
 	mon_cry CRY_00,    0,  256 ; MON_TURBAN
 	mon_cry CRY_00,    0,  256 ; MON_BETBABY
-	mon_cry CRY_00,    0,  256 ; MON_TEPPOUO
-	mon_cry CRY_00,    0,  256 ; MON_OKUTANK
-	mon_cry CRY_00,    0,  256 ; MON_GONGU
+	mon_cry CRY_00,    0,  256 ; MON_REMORAID
+	mon_cry CRY_00,    0,  256 ; MON_OCTILLERY
+	mon_cry CRY_00,    0,  256 ; MON_GONG
 	mon_cry CRY_00,    0,  256 ; fb
 	mon_cry CRY_00,    0,  256 ; fc
 	mon_cry CRY_00,    0,  256 ; fd

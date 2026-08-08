@@ -349,7 +349,7 @@ MonsterTest_GetPic:
 	ret
 .is_a_pokemon
 	ld a, [wUnownDex] ; BUG: wUnownDex isn't set beforehand so an invalid Unown ($00) is displayed instead.
-	ld [wAnnonID], a
+	ld [wUnownID], a
 
 	ld a, [wTempSpecies]
 	ld [wCurPartySpecies], a

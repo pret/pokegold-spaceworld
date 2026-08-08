@@ -534,7 +534,7 @@ GetLabPokemon:
 	jr .loop
 
 LabPokemon:
-	db DEX_KURUSU
+	db DEX_CRUISE
 	db 1
 	db DEX_HAPPA
 	db 2

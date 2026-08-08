@@ -956,14 +956,14 @@ PokedexEntryPointers2::
 	dw HonogumaDexEntry
 	dw VolbearDexEntry
 	dw DynabearDexEntry
-	dw KurusuDexEntry
+	dw CruiseDexEntry
 	dw AquaDexEntry
 	dw AquariaDexEntry
-	dw HohoDexEntry
+	dw HoothootDexEntry
 	dw BoboDexEntry
 	dw PachimeeDexEntry
-	dw MokokoDexEntry
-	dw DenryuDexEntry
+	dw FlaaffyDexEntry
+	dw AmpharosDexEntry
 	dw MikonDexEntry
 	dw MonjaDexEntry
 	dw JaranraDexEntry
@@ -971,17 +971,17 @@ PokedexEntryPointers2::
 	dw PukuDexEntry
 	dw ShibirefuguDexEntry
 	dw PichuDexEntry
-	dw PyDexEntry
-	dw PupurinDexEntry
+	dw CleffaDexEntry
+	dw IgglybuffDexEntry
 	dw MizuuoDexEntry
-	dw NatyDexEntry
-	dw NatioDexEntry
+	dw NatuDexEntry
+	dw XatuDexEntry
 	dw GyopinDexEntry
-	dw MarilDexEntry
+	dw MarillDexEntry
 	dw Manbo1DexEntry
 	dw IkariDexEntry
-	dw GrotessDexEntry
-	dw EksingDexEntry
+	dw GrotesqueDexEntry
+	dw XIngDexEntry
 	dw ParaDexEntry
 	dw KokumoDexEntry
 	dw TwoheadDexEntry
@@ -992,25 +992,25 @@ PokedexEntryPointers2::
 	dw PaonDexEntry
 	dw DonphanDexEntry
 	dw TwinzDexEntry
-	dw KirinrikiDexEntry
+	dw GirafarigDexEntry
 	dw PainterDexEntry
 	dw KounyaDexEntry
 	dw RinrinDexEntry
 	dw BerurunDexEntry
-	dw NyorotonoDexEntry
-	dw YadokingDexEntry
-	dw AnnonDexEntry
-	dw RedibaDexEntry
+	dw PolitoedDexEntry
+	dw SlowkingDexEntry
+	dw UnownDexEntry
+	dw LedybaDexEntry
 	dw MitsuboshiDexEntry
 	dw PuchicornDexEntry
-	dw EifieDexEntry
-	dw BlackyDexEntry
+	dw EspeonDexEntry
+	dw UmbreonDexEntry
 	dw TurbanDexEntry
 	dw BetbabyDexEntry
-	dw TeppouoDexEntry
-	dw OkutankDexEntry
-	dw GonguDexEntry
-	dw KapoererDexEntry
+	dw RemoraidDexEntry
+	dw OctilleryDexEntry
+	dw GongDexEntry
+	dw HitmontopDexEntry
 	dw PudieDexEntry
 	dw HanekoDexEntry
 	dw PoponekoDexEntry
@@ -1018,8 +1018,8 @@ PokedexEntryPointers2::
 	dw BaririnaDexEntry
 	dw LipDexEntry
 	dw NorowaraDexEntry ; should be ElebabyDexEntry
-	dw BoobyDexEntry
-	dw KireihanaDexEntry
+	dw MagbyDexEntry
+	dw BellossomDexEntry
 	dw TsubomittoDexEntry
 	dw MiltankDexEntry
 	dw BombseekerDexEntry
@@ -1029,25 +1029,25 @@ PokedexEntryPointers2::
 	dw MadameDexEntry
 	dw NorowaraDexEntry
 	dw KyonpanDexEntry
-	dw YamikarasuDexEntry
-	dw HappiDexEntry
+	dw MurkrowDexEntry
+	dw HappyDexEntry
 	dw ScissorsDexEntry
-	dw PurakkusuDexEntry
+	dw PlucksDexEntry
 	dw DevilDexEntry
-	dw HelgaaDexEntry
+	dw HoundoomDexEntry
 	dw WolfmanDexEntry
 	dw WarwolfDexEntry
 	dw Porygon2DexEntry
 	dw NameilDexEntry
-	dw HaganeilDexEntry
+	dw SteelixDexEntry
 	dw KingdraDexEntry
 	dw RaiDexEntry
 	dw EnDexEntry
 	dw SuiDexEntry
-	dw NyulaDexEntry
-	dw HououDexEntry
-	dw TogepyDexEntry
-	dw BuluDexEntry
+	dw SneaselDexEntry
+	dw HoOhDexEntry
+	dw TogepiDexEntry
+	dw SnubbullDexEntry
 	dw TailDexEntry
 	dw LeafyDexEntry
 
@@ -1509,7 +1509,7 @@ DynabearDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-KurusuDexEntry:
+CruiseDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1530,7 +1530,7 @@ AquariaDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-HohoDexEntry:
+HoothootDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1551,14 +1551,14 @@ PachimeeDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-MokokoDexEntry:
+FlaaffyDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-DenryuDexEntry:
+AmpharosDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1614,14 +1614,14 @@ PichuDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-PyDexEntry:
+CleffaDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-PupurinDexEntry:
+IgglybuffDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1635,14 +1635,14 @@ MizuuoDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-NatyDexEntry:
+NatuDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-NatioDexEntry:
+XatuDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1656,7 +1656,7 @@ GyopinDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-MarilDexEntry:
+MarillDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1677,14 +1677,14 @@ IkariDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-GrotessDexEntry:
+GrotesqueDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-EksingDexEntry:
+XIngDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1761,7 +1761,7 @@ TwinzDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-KirinrikiDexEntry:
+GirafarigDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1796,28 +1796,28 @@ BerurunDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-NyorotonoDexEntry:
+PolitoedDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-YadokingDexEntry:
+SlowkingDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-AnnonDexEntry:
+UnownDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-RedibaDexEntry:
+LedybaDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1838,14 +1838,14 @@ PuchicornDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-EifieDexEntry:
+EspeonDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-BlackyDexEntry:
+UmbreonDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1866,28 +1866,28 @@ BetbabyDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-TeppouoDexEntry:
+RemoraidDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-OkutankDexEntry:
+OctilleryDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-GonguDexEntry:
+GongDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-KapoererDexEntry:
+HitmontopDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -1943,14 +1943,14 @@ ElebabyDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-BoobyDexEntry:
+MagbyDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-KireihanaDexEntry:
+BellossomDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -2020,14 +2020,14 @@ KyonpanDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-YamikarasuDexEntry:
+MurkrowDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-HappiDexEntry:
+HappyDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -2041,7 +2041,7 @@ ScissorsDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-PurakkusuDexEntry:
+PlucksDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -2055,7 +2055,7 @@ DevilDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-HelgaaDexEntry:
+HoundoomDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -2090,7 +2090,7 @@ NameilDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-HaganeilDexEntry:
+SteelixDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
@@ -2125,28 +2125,28 @@ SuiDexEntry:
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-NyulaDexEntry:
+SneaselDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-HououDexEntry:
+HoOhDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-TogepyDexEntry:
+TogepiDexEntry:
 	db "？？？@"
 	db 0
 	dw 0
 	db   "はっけんされた　ばかりの　ポケモン"
 	next "げんざい　ちょうさちゅう。@"
 
-BuluDexEntry:
+SnubbullDexEntry:
 	db "？？？@"
 	db 0
 	dw 0

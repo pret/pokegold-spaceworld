@@ -17,13 +17,13 @@ endc
 	db 5, DEX_PIDGEY
 	db 4, DEX_RATTATA
 	; morn/day/nite
-	db 6, DEX_KIRINRIKI
-	db 4, DEX_KIRINRIKI
+	db 6, DEX_GIRAFARIG
+	db 4, DEX_GIRAFARIG
 if DEF(_GOLD)
 	db 4, DEX_HANEKO
 endc
 if DEF(_SILVER)
-	db 4, DEX_MARIL
+	db 4, DEX_MARILL
 endc
 	db 4, DEX_PIDGEY
 	; day/nite
@@ -37,7 +37,7 @@ if DEF(_GOLD)
 	db 8, DEX_RATTATA
 endc
 if DEF(_SILVER)
-	db 5, DEX_HOHO
-	db 3, DEX_HOHO
+	db 5, DEX_HOOTHOOT
+	db 3, DEX_HOOTHOOT
 endc
 	db 5, DEX_PIKACHU

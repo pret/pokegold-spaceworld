@@ -25,7 +25,7 @@
 	const ICON_BULBASAUR
 	const ICON_CHARMANDER
 	const ICON_WEEDLE
-	const ICON_ANNON
+	const ICON_UNOWN
 	const ICON_GEODUDE
 	const ICON_MACHOP
 	const ICON_EGG

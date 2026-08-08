@@ -158,14 +158,14 @@ EvosAttacksPointers::
 	dw HonogumaEvosAttacks
 	dw VolbearEvosAttacks
 	dw DynabearEvosAttacks
-	dw KurusuEvosAttacks
+	dw CruiseEvosAttacks
 	dw AquaEvosAttacks
 	dw AquariaEvosAttacks
-	dw HohoEvosAttacks
+	dw HoothootEvosAttacks
 	dw BoboEvosAttacks
 	dw PachimeeEvosAttacks
-	dw MokokoEvosAttacks
-	dw DenryuEvosAttacks
+	dw FlaaffyEvosAttacks
+	dw AmpharosEvosAttacks
 	dw MikonEvosAttacks
 	dw MonjaEvosAttacks
 	dw JaranraEvosAttacks
@@ -173,17 +173,17 @@ EvosAttacksPointers::
 	dw PukuEvosAttacks
 	dw ShibirefuguEvosAttacks
 	dw PichuEvosAttacks
-	dw PyEvosAttacks
-	dw PupurinEvosAttacks
+	dw CleffaEvosAttacks
+	dw IgglybuffEvosAttacks
 	dw MizuuoEvosAttacks
-	dw NatyEvosAttacks
-	dw NatioEvosAttacks
+	dw NatuEvosAttacks
+	dw XatuEvosAttacks
 	dw GyopinEvosAttacks
-	dw MarilEvosAttacks
+	dw MarillEvosAttacks
 	dw Manbo1EvosAttacks
 	dw IkariEvosAttacks
-	dw GrotessEvosAttacks
-	dw EksingEvosAttacks
+	dw GrotesqueEvosAttacks
+	dw XIngEvosAttacks
 	dw ParaEvosAttacks
 	dw KokumoEvosAttacks
 	dw TwoheadEvosAttacks
@@ -194,25 +194,25 @@ EvosAttacksPointers::
 	dw PaonEvosAttacks
 	dw DonphanEvosAttacks
 	dw TwinzEvosAttacks
-	dw KirinrikiEvosAttacks
+	dw GirafarigEvosAttacks
 	dw PainterEvosAttacks
 	dw KounyaEvosAttacks
 	dw RinrinEvosAttacks
 	dw BerurunEvosAttacks
-	dw NyorotonoEvosAttacks
-	dw YadokingEvosAttacks
-	dw AnnonEvosAttacks
-	dw RedibaEvosAttacks
+	dw PolitoedEvosAttacks
+	dw SlowkingEvosAttacks
+	dw UnownEvosAttacks
+	dw LedybaEvosAttacks
 	dw MitsuboshiEvosAttacks
 	dw PuchicornEvosAttacks
-	dw EifieEvosAttacks
-	dw BlackyEvosAttacks
+	dw EspeonEvosAttacks
+	dw UmbreonEvosAttacks
 	dw TurbanEvosAttacks
 	dw BetbabyEvosAttacks
-	dw TeppouoEvosAttacks
-	dw OkutankEvosAttacks
-	dw GonguEvosAttacks
-	dw KapoererEvosAttacks
+	dw RemoraidEvosAttacks
+	dw OctilleryEvosAttacks
+	dw GongEvosAttacks
+	dw HitmontopEvosAttacks
 	dw PudieEvosAttacks
 	dw HanekoEvosAttacks
 	dw PoponekoEvosAttacks
@@ -220,8 +220,8 @@ EvosAttacksPointers::
 	dw BaririnaEvosAttacks
 	dw LipEvosAttacks
 	dw ElebabyEvosAttacks
-	dw BoobyEvosAttacks
-	dw KireihanaEvosAttacks
+	dw MagbyEvosAttacks
+	dw BellossomEvosAttacks
 	dw TsubomittoEvosAttacks
 	dw MiltankEvosAttacks
 	dw BombseekerEvosAttacks
@@ -231,24 +231,24 @@ EvosAttacksPointers::
 	dw MadameEvosAttacks
 	dw NorowaraEvosAttacks
 	dw KyonpanEvosAttacks
-	dw YamikarasuEvosAttacks
-	dw HappiEvosAttacks
+	dw MurkrowEvosAttacks
+	dw HappyEvosAttacks
 	dw ScissorsEvosAttacks
-	dw PurakkusuEvosAttacks
+	dw PlucksEvosAttacks
 	dw DevilEvosAttacks
-	dw HelgaaEvosAttacks
+	dw HoundoomEvosAttacks
 	dw WolfmanEvosAttacks
 	dw WarwolfEvosAttacks
 	dw Porygon2EvosAttacks
 	dw NameilEvosAttacks
-	dw HaganeilEvosAttacks
+	dw SteelixEvosAttacks
 	dw KingdraEvosAttacks
 	dw RaiEvosAttacks
 	dw EnEvosAttacks
 	dw SuiEvosAttacks
-	dw NyulaEvosAttacks
-	dw HououEvosAttacks
-	dw TogepyEvosAttacks
-	dw BuluEvosAttacks
+	dw SneaselEvosAttacks
+	dw HoOhEvosAttacks
+	dw TogepiEvosAttacks
+	dw SnubbullEvosAttacks
 	dw TailEvosAttacks
 	dw LeafyEvosAttacks

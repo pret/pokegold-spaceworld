@@ -1,9 +1,9 @@
 	map_id ROUTE_18
 	db 6 percent, 10 percent, 14 percent ; encounter rates: morn/day/nite
 	; morn only
-	db 28, DEX_REDIBA
+	db 28, DEX_LEDYBA
 	db 28, DEX_MANKEY
-	db 27, DEX_REDIBA
+	db 27, DEX_LEDYBA
 	; morn/day
 	db 28, DEX_MANKEY
 	db 31, DEX_MANKEY
@@ -15,7 +15,7 @@
 	db 30, DEX_WOLFMAN
 	db 31, DEX_WOLFMAN
 	; day/nite
-	db 29, DEX_REDIBA
+	db 29, DEX_LEDYBA
 	db 30, DEX_WOLFMAN
 	; nite only
 	db 33, DEX_WOLFMAN

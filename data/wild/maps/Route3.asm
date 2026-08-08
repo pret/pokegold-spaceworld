@@ -18,8 +18,8 @@
 	db 8, DEX_CATERPIE
 	db 9, DEX_RATTATA
 	; nite only
-	db 10, DEX_HOHO
+	db 10, DEX_HOOTHOOT
 	db 11, DEX_ODDISH
-	db 12, DEX_HOHO
+	db 12, DEX_HOOTHOOT
 	db 11, DEX_ODDISH
 	db 13, DEX_ODDISH

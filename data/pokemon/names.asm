@@ -156,14 +156,14 @@ PokemonNames::
 	db "ホノオグマ" ; HONOGUMA
 	db "ボルベアー" ; VOLBEAR
 	db "ダイナベア" ; DYNABEAR
-	db "クルス@@" ; KURUSU
+	db "クルス@@" ; CRUISE
 	db "アクア@@" ; AQUA
 	db "アクエリア" ; AQUARIA
-	db "ホーホー@" ; HOHO
+	db "ホーホー@" ; HOOTHOOT
 	db "ボーボー@" ; BOBO
 	db "パチメエ@" ; PACHIMEE
-	db "モココ@@" ; MOKOKO
-	db "デンリュウ" ; DENRYU
+	db "モココ@@" ; FLAAFFY
+	db "デンリュウ" ; AMPHAROS
 	db "ミコン@@" ; MIKON
 	db "モンジャ@" ; MONJA
 	db "ジャランラ" ; JARANRA
@@ -172,16 +172,16 @@ PokemonNames::
 	db "シビレフグ" ; SHIBIREFUGU
 	db "ピチュー@" ; PICHU
 	db "ピィ@@@" ; PY
-	db "ププリン@" ; PUPURIN
+	db "ププリン@" ; IGGLYBUFF
 	db "ミズウオ@" ; MIZUUO
-	db "ネイティ@" ; NATY
-	db "ネイティオ" ; NATIO
+	db "ネイティ@" ; NATU
+	db "ネイティオ" ; XATU
 	db "ギョピン@" ; GYOPIN
-	db "マリル@@" ; MARIL
+	db "マリル@@" ; MARILL
 	db "マンボー１" ; MANBO1
 	db "イカリ@@" ; IKARI
-	db "グロテス@" ; GROTESS
-	db "エクシング" ; EKSING
+	db "グロテス@" ; GROTESQUE
+	db "エクシング" ; X_ING
 	db "パラ@@@" ; PARA
 	db "コクモ@@" ; KOKUMO
 	db "ツーヘッド" ; TWOHEAD
@@ -192,25 +192,25 @@ PokemonNames::
 	db "パオン@@" ; PAON
 	db "ドンファン" ; DONPHAN
 	db "ツインズ@" ; TWINZ
-	db "キリンリキ" ; KIRINRIKI
+	db "キリンリキ" ; GIRAFARIG
 	db "ペインター" ; PAINTER
 	db "コーニャ@" ; KOUNYA
 	db "リンリン@" ; RINRIN
 	db "ベルルン@" ; BERURUN
-	db "ニョロトノ" ; NYOROTONO
-	db "ヤドキング" ; YADOKING
-	db "アンノーン" ; ANNON
-	db "レディバ@" ; REDIBA
+	db "ニョロトノ" ; POLITOED
+	db "ヤドキング" ; SLOWKING
+	db "アンノーン" ; UNOWN
+	db "レディバ@" ; LEDYBA
 	db "ミツボシ@" ; MITSUBOSHI
 	db "プチコーン" ; PUCHICORN
-	db "エーフィ@" ; EIFIE
-	db "ブラッキー" ; BLACKY
+	db "エーフィ@" ; ESPEON
+	db "ブラッキー" ; UMBREON
 	db "ターバン@" ; TURBAN
 	db "ベトベビー" ; BETBABY
-	db "テッポウオ" ; TEPPOUO
-	db "オクタン@" ; OKUTANK
-	db "ゴング@@" ; GONGU
-	db "カポエラー" ; KAPOERER
+	db "テッポウオ" ; REMORAID
+	db "オクタン@" ; OCTILLERY
+	db "ゴング@@" ; GONG
+	db "カポエラー" ; HITMONTOP
 	db "プディ@@" ; PUDIE
 	db "ハネコ@@" ; HANEKO
 	db "ポポネコ@" ; POPONEKO
@@ -218,8 +218,8 @@ PokemonNames::
 	db "バリリーナ" ; BARIRINA
 	db "リップ@@" ; LIP
 	db "エレベビー" ; ELEBABY
-	db "ブビィ@@" ; BOOBY
-	db "キレイハナ" ; KIREIHANA
+	db "ブビィ@@" ; MAGBY
+	db "キレイハナ" ; BELLOSSOM
 	db "ツボミット" ; TSUBOMITTO
 	db "ミルタンク" ; MILTANK
 	db "ボムシカー" ; BOMBSEEKER
@@ -229,24 +229,24 @@ PokemonNames::
 	db "マダーム@" ; MADAME
 	db "ノロワラ@" ; NOROWARA
 	db "キョンパン" ; KYONPAN
-	db "ヤミカラス" ; YAMIKARASU
-	db "ハッピー@" ; HAPPI
+	db "ヤミカラス" ; MURKROW
+	db "ハッピー@" ; HAPPY
 	db "シザース@" ; SCISSORS
-	db "プラックス" ; PURAKKUSU
+	db "プラックス" ; PLUCKS
 	db "デビル@@" ; DEVIL
-	db "ヘルガー@" ; HELGAA
+	db "ヘルガー@" ; HOUNDOOM
 	db "ウルフマン" ; WOLFMAN
 	db "ワーウルフ" ; WARWOLF
 	db "ポリゴン２" ; PORYGON2
 	db "ナメール@" ; NAMEIL
-	db "ハガネール" ; HAGANEIL
+	db "ハガネール" ; STEELIX
 	db "キングドラ" ; KINGDRA
 	db "ライ@@@" ; RAI
 	db "エン@@@" ; EN
 	db "スイ@@@" ; SUI
-	db "ニューラ@" ; NYULA
-	db "ホウオウ@" ; HOUOU
-	db "トゲピー@" ; TOGEPY
-	db "ブルー@@" ; BULU
+	db "ニューラ@" ; SNEASEL
+	db "ホウオウ@" ; HO_OH
+	db "トゲピー@" ; TOGEPI
+	db "ブルー@@" ; SNUBBULL
 	db "テイル@@" ; TAIL
 	db "リーフィ@" ; LEAFY

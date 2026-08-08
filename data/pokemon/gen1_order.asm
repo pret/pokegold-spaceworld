@@ -35,7 +35,7 @@ Pokered_MonIndices::
 	db DEX_BLASTOISE   ; 1c
 	db DEX_PINSIR      ; 1d
 	db DEX_TANGELA     ; 1e
-	db DEX_KAPOERER    ; 1f
+	db DEX_HITMONTOP   ; 1f
 	db DEX_PUDIE       ; 20
 	db DEX_GROWLITHE   ; 21
 	db DEX_ONIX        ; 22
@@ -72,8 +72,8 @@ Pokered_MonIndices::
 	db DEX_VENONAT     ; 41
 	db DEX_DRAGONITE   ; 42
 	db DEX_ELEBABY     ; 43
-	db DEX_BOOBY       ; 44
-	db DEX_KIREIHANA   ; 45
+	db DEX_MAGBY       ; 44
+	db DEX_BELLOSSOM   ; 45
 	db DEX_DODUO       ; 46
 	db DEX_POLIWAG     ; 47
 	db DEX_JYNX        ; 48
@@ -126,12 +126,12 @@ Pokered_MonIndices::
 	db DEX_VENOMOTH    ; 77
 	db DEX_DEWGONG     ; 78
 	db DEX_KYONPAN     ; 79
-	db DEX_YAMIKARASU  ; 7a
+	db DEX_MURKROW     ; 7a
 	db DEX_CATERPIE    ; 7b
 	db DEX_METAPOD     ; 7c
 	db DEX_BUTTERFREE  ; 7d
 	db DEX_MACHAMP     ; 7e
-	db DEX_HAPPI       ; 7f
+	db DEX_HAPPY       ; 7f
 	db DEX_GOLDUCK     ; 80
 	db DEX_HYPNO       ; 81
 	db DEX_GOLBAT      ; 82
@@ -139,12 +139,12 @@ Pokered_MonIndices::
 	db DEX_SNORLAX     ; 84
 	db DEX_MAGIKARP    ; 85
 	db DEX_SCISSORS    ; 86
-	db DEX_PURAKKUSU   ; 87
+	db DEX_PLUCKS      ; 87
 	db DEX_MUK         ; 88
 	db DEX_DEVIL       ; 89
 	db DEX_KINGLER     ; 8a
 	db DEX_CLOYSTER    ; 8b
-	db DEX_HELGAA      ; 8c
+	db DEX_HOUNDOOM    ; 8c
 	db DEX_ELECTRODE   ; 8d
 	db DEX_CLEFABLE    ; 8e
 	db DEX_WEEZING     ; 8f
@@ -165,7 +165,7 @@ Pokered_MonIndices::
 	db DEX_SEAKING     ; 9e
 	db DEX_PORYGON2    ; 9f
 	db DEX_NAMEIL      ; a0
-	db DEX_HAGANEIL    ; a1
+	db DEX_STEELIX     ; a1
 	db DEX_KINGDRA     ; a2
 	db DEX_PONYTA      ; a3
 	db DEX_RAPIDASH    ; a4
@@ -185,10 +185,10 @@ Pokered_MonIndices::
 	db DEX_CHARMELEON  ; b2
 	db DEX_WARTORTLE   ; b3
 	db DEX_CHARIZARD   ; b4
-	db DEX_NYULA       ; b5
-	db DEX_HOUOU       ; b6
-	db DEX_TOGEPY      ; b7
-	db DEX_BULU        ; b8
+	db DEX_SNEASEL     ; b5
+	db DEX_HO_OH       ; b6
+	db DEX_TOGEPI      ; b7
+	db DEX_SNUBBULL    ; b8
 	db DEX_ODDISH      ; b9
 	db DEX_GLOOM       ; ba
 	db DEX_VILEPLUME   ; bb
@@ -201,14 +201,14 @@ Pokered_MonIndices::
 	db DEX_HONOGUMA    ; c2
 	db DEX_VOLBEAR     ; c3
 	db DEX_DYNABEAR    ; c4
-	db DEX_KURUSU      ; c5
+	db DEX_CRUISE      ; c5
 	db DEX_AQUA        ; c6
 	db DEX_AQUARIA     ; c7
-	db DEX_HOHO        ; c8
+	db DEX_HOOTHOOT    ; c8
 	db DEX_BOBO        ; c9
 	db DEX_PACHIMEE    ; ca
-	db DEX_MOKOKO      ; cb
-	db DEX_DENRYU      ; cc
+	db DEX_FLAAFFY     ; cb
+	db DEX_AMPHAROS    ; cc
 	db DEX_MIKON       ; cd
 	db DEX_MONJA       ; ce
 	db DEX_JARANRA     ; cf
@@ -216,17 +216,17 @@ Pokered_MonIndices::
 	db DEX_PUKU        ; d1
 	db DEX_SHIBIREFUGU ; d2
 	db DEX_PICHU       ; d3
-	db DEX_PY          ; d4
-	db DEX_PUPURIN     ; d5
+	db DEX_CLEFFA      ; d4
+	db DEX_IGGLYBUFF   ; d5
 	db DEX_MIZUUO      ; d6
-	db DEX_NATY        ; d7
-	db DEX_NATIO       ; d8
+	db DEX_NATU        ; d7
+	db DEX_XATU        ; d8
 	db DEX_GYOPIN      ; d9
-	db DEX_MARIL       ; da
+	db DEX_MARILL      ; da
 	db DEX_MANBO1      ; db
 	db DEX_IKARI       ; dc
-	db DEX_GROTESS     ; dd
-	db DEX_EKSING      ; de
+	db DEX_GROTESQUE   ; dd
+	db DEX_X_ING       ; de
 	db DEX_PARA        ; df
 	db DEX_KOKUMO      ; e0
 	db DEX_TWOHEAD     ; e1
@@ -237,23 +237,23 @@ Pokered_MonIndices::
 	db DEX_PAON        ; e6
 	db DEX_DONPHAN     ; e7
 	db DEX_TWINZ       ; e8
-	db DEX_KIRINRIKI   ; e9
+	db DEX_GIRAFARIG   ; e9
 	db DEX_PAINTER     ; ea
 	db DEX_KOUNYA      ; eb
 	db DEX_RINRIN      ; ec
 	db DEX_BERURUN     ; ed
-	db DEX_NYOROTONO   ; ee
-	db DEX_YADOKING    ; ef
-	db DEX_ANNON       ; f0
-	db DEX_REDIBA      ; f1
+	db DEX_POLITOED    ; ee
+	db DEX_SLOWKING    ; ef
+	db DEX_UNOWN       ; f0
+	db DEX_LEDYBA      ; f1
 	db DEX_MITSUBOSHI  ; f2
 	db DEX_PUCHICORN   ; f3
-	db DEX_EIFIE       ; f4
-	db DEX_BLACKY      ; f5
+	db DEX_ESPEON      ; f4
+	db DEX_UMBREON     ; f5
 	db DEX_TURBAN      ; f6
 	db DEX_BETBABY     ; f7
-	db DEX_TEPPOUO     ; f8
-	db DEX_OKUTANK     ; f9
-	db DEX_GONGU       ; fa
-	db DEX_REDIBA      ; fb
-	db DEX_REDIBA      ; fc
+	db DEX_REMORAID    ; f8
+	db DEX_OCTILLERY   ; f9
+	db DEX_GONG        ; fa
+	db DEX_LEDYBA      ; fb
+	db DEX_LEDYBA      ; fc
