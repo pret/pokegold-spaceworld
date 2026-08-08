@@ -1,0 +1,55 @@
+UnownPicPtrs::
+UnownPicPtrsFront::
+	dw UnownAPicFront
+UnownPicPtrsBack::
+	dw UnownAPicBack
+	dw UnownBPicFront
+	dw UnownBPicBack
+	dw UnownCPicFront
+	dw UnownCPicBack
+	dw UnownDPicFront
+	dw UnownDPicBack
+	dw UnownEPicFront
+	dw UnownEPicBack
+	dw UnownFPicFront
+	dw UnownFPicBack
+	dw UnownGPicFront
+	dw UnownGPicBack
+	dw UnownHPicFront
+	dw UnownHPicBack
+	dw UnownIPicFront
+	dw UnownIPicBack
+	dw UnownJPicFront
+	dw UnownJPicBack
+	dw UnownKPicFront
+	dw UnownKPicBack
+	dw UnownLPicFront
+	dw UnownLPicBack
+	dw UnownMPicFront
+	dw UnownMPicBack
+	dw UnownNPicFront
+	dw UnownNPicBack
+	dw UnownOPicFront
+	dw UnownOPicBack
+	dw UnownPPicFront
+	dw UnownPPicBack
+	dw UnownQPicFront
+	dw UnownQPicBack
+	dw UnownRPicFront
+	dw UnownRPicBack
+	dw UnownSPicFront
+	dw UnownSPicBack
+	dw UnownTPicFront
+	dw UnownTPicBack
+	dw UnownUPicFront
+	dw UnownUPicBack
+	dw UnownVPicFront
+	dw UnownVPicBack
+	dw UnownWPicFront
+	dw UnownWPicBack
+	dw UnownXPicFront
+	dw UnownXPicBack
+	dw UnownYPicFront
+	dw UnownYPicBack
+	dw UnownZPicFront
+	dw UnownYPicBack ; typo in original list, should be UnownZPicBack

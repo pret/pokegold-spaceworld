@@ -9,6 +9,6 @@ MonSpriteBankList::
 	db DEX_JARANRA,    BANK("Pics 1") + 6
 	db DEX_KOUNYA,     BANK("Pics 1") + 7
 	db DEX_BOMBSEEKER, BANK("Pics 1") + 8
-	db DEX_NYULA,      BANK("Pics 1") + 9
+	db DEX_SNEASEL,    BANK("Pics 1") + 9
 	db $ff,            BANK("Pics 1") + 10
 	db $ff,            BANK("Pics 1") + 11

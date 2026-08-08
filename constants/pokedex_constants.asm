@@ -159,32 +159,32 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_HONOGUMA      ; 9b
 	const DEX_VOLBEAR       ; 9c
 	const DEX_DYNABEAR      ; 9d
-	const DEX_KURUSU        ; 9e
+	const DEX_CRUISE        ; 9e
 	const DEX_AQUA          ; 9f
 	const DEX_AQUARIA       ; a0
-	const DEX_HOHO          ; a1 HOOTHOOT
+	const DEX_HOOTHOOT      ; a1
 	const DEX_BOBO          ; a2 NOCTOWL
 	const DEX_PACHIMEE      ; a3 MAREEP
-	const DEX_MOKOKO        ; a4 FLAAFFY
-	const DEX_DENRYU        ; a5 AMPHAROS
+	const DEX_FLAAFFY       ; a4
+	const DEX_AMPHAROS      ; a5
 	const DEX_MIKON         ; a6 (baby VULPIX)
 	const DEX_MONJA         ; a7 (baby TANGELA)
 	const DEX_JARANRA       ; a8 TANGROWTH (evolved TANGELA)
 	const DEX_HANEEI        ; a9 MANTINE
 	const DEX_PUKU          ; aa QWILFISH
 	const DEX_SHIBIREFUGU   ; ab (evolved QWILFISH)
-	const DEX_PICHU         ; ac PICHU
-	const DEX_PY            ; ad CLEFFA
-	const DEX_PUPURIN       ; ae IGGLYPUFF
+	const DEX_PICHU         ; ac
+	const DEX_CLEFFA        ; ad
+	const DEX_IGGLYBUFF     ; ae
 	const DEX_MIZUUO        ; af QUAGSIRE
-	const DEX_NATY          ; b0 NATU
-	const DEX_NATIO         ; b1 XATU
+	const DEX_NATU          ; b0
+	const DEX_XATU          ; b1
 	const DEX_GYOPIN        ; b2 (baby GOLDEEN)
-	const DEX_MARIL         ; b3 MARILL
+	const DEX_MARILL        ; b3
 	const DEX_MANBO1        ; b4
 	const DEX_IKARI         ; b5
-	const DEX_GROTESS       ; b6
-	const DEX_EKSING        ; b7 CROBAT
+	const DEX_GROTESQUE     ; b6
+	const DEX_X_ING         ; b7 CROBAT
 	const DEX_PARA          ; b8 (baby PARAS)
 	const DEX_KOKUMO        ; b9 SPINARAK
 	const DEX_TWOHEAD       ; ba ARIADOS
@@ -195,25 +195,25 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_PAON          ; bf PHANPY
 	const DEX_DONPHAN       ; c0 DONPHAN
 	const DEX_TWINZ         ; c1 (baby GIRAFARIG)
-	const DEX_KIRINRIKI     ; c2 GIRAFARIG
+	const DEX_GIRAFARIG     ; c2
 	const DEX_PAINTER       ; c3 SMEARGLE
 	const DEX_KOUNYA        ; c4 (baby MEOWTH)
 	const DEX_RINRIN        ; c5
 	const DEX_BERURUN       ; c6
-	const DEX_NYOROTONO     ; c7 POLITOED
-	const DEX_YADOKING      ; c8 SLOWKING
-	const DEX_ANNON         ; c9 UNOWN
-	const DEX_REDIBA        ; ca LEDYBA
+	const DEX_POLITOED      ; c7
+	const DEX_SLOWKING      ; c8
+	const DEX_UNOWN         ; c9
+	const DEX_LEDYBA        ; ca
 	const DEX_MITSUBOSHI    ; cb LEDIAN
 	const DEX_PUCHICORN     ; cc (baby PONYTA)
-	const DEX_EIFIE         ; cd ESPEON
-	const DEX_BLACKY        ; ce UMBREON
+	const DEX_ESPEON        ; cd
+	const DEX_UMBREON       ; ce
 	const DEX_TURBAN        ; cf
 	const DEX_BETBABY       ; d0 (baby GRIMER)
-	const DEX_TEPPOUO       ; d1 REMORAID
-	const DEX_OKUTANK       ; d2 OCTILLERY
-	const DEX_GONGU         ; d3 TYROGUE
-	const DEX_KAPOERER      ; d4 HITMONTOP
+	const DEX_REMORAID      ; d1
+	const DEX_OCTILLERY     ; d2
+	const DEX_GONG          ; d3 TYROGUE
+	const DEX_HITMONTOP     ; d4
 	const DEX_PUDIE         ; d5 (baby GROWLITHE)
 	const DEX_HANEKO        ; d6 HOPPIP
 	const DEX_POPONEKO      ; d7 SKIPLOOM
@@ -221,10 +221,10 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_BARIRINA      ; d9 MIME_JR (baby MR__MIME)
 	const DEX_LIP           ; da SMOOCHUM
 	const DEX_ELEBABY       ; db ELEKID
-	const DEX_BOOBY         ; dc MAGBY
-	const DEX_KIREIHANA     ; dd BELLOSSOM
+	const DEX_MAGBY         ; dc
+	const DEX_BELLOSSOM     ; dd
 	const DEX_TSUBOMITTO    ; de (evolved WEEPINBELL)
-	const DEX_MILTANK       ; df MILTANK
+	const DEX_MILTANK       ; df
 	const DEX_BOMBSEEKER    ; e0
 	const DEX_GIFT          ; e1 DELIBIRD
 	const DEX_KOTORA        ; e2
@@ -232,25 +232,25 @@ DEF NUM_KANTO_POKEMON EQU const_value - 1
 	const DEX_MADAME        ; e4 (evolved FARFETCH_D)
 	const DEX_NOROWARA      ; e5
 	const DEX_KYONPAN       ; e6
-	const DEX_YAMIKARASU    ; e7 MURKROW
-	const DEX_HAPPI         ; e8 BLISSEY
+	const DEX_MURKROW       ; e7
+	const DEX_HAPPY         ; e8 BLISSEY
 	const DEX_SCISSORS      ; e9 SCIZOR
-	const DEX_PURAKKUSU     ; ea (evolved PINSIR)
+	const DEX_PLUCKS        ; ea (evolved PINSIR)
 	const DEX_DEVIL         ; eb HOUNDOUR
-	const DEX_HELGAA        ; ec HOUNDOOM
+	const DEX_HOUNDOOM      ; ec
 	const DEX_WOLFMAN       ; ed
 	const DEX_WARWOLF       ; ee
 	const DEX_PORYGON2      ; ef PORYGON2
 	const DEX_NAMEIL        ; f0 LICKILICKY (evolved LICKITUNG)
-	const DEX_HAGANEIL      ; f1 STEELIX
-	const DEX_KINGDRA       ; f2 KINGDRA
+	const DEX_STEELIX       ; f1
+	const DEX_KINGDRA       ; f2
 	const DEX_RAI           ; f3 RAIKOU
 	const DEX_EN            ; f4 ENTEI
 	const DEX_SUI           ; f5 SUICUNE
-	const DEX_NYULA         ; f6 SNEASEL
-	const DEX_HOUOU         ; f7 HO_OH
-	const DEX_TOGEPY        ; f8 TOGEPI
-	const DEX_BULU          ; f9 SNUBBULL
+	const DEX_SNEASEL       ; f6
+	const DEX_HO_OH         ; f7
+	const DEX_TOGEPI        ; f8
+	const DEX_SNUBBULL      ; f9
 	const DEX_TAIL          ; fa AIPOM
 	const DEX_LEAFY         ; fb LEAFEON (evolved EEVEE)
 DEF NUM_POKEMON EQU const_value - 1
@@ -259,32 +259,32 @@ DEF NUM_POKEMON EQU const_value - 1
 DEF NUM_POKEMON_OLD EQU const_value - 1 ; Original count according to FightDebugMenu, perhaps DEX_EGG was originally in $fe?
 	const DEX_FE            ; fe
 
-  ;  Annon forms
+; Unown forms
 	const_def 1
-	const     ANNON_A         ; 1
-	const     ANNON_B         ; 2
-	const     ANNON_C         ; 3
-	const     ANNON_D         ; 4
-	const     ANNON_E         ; 5
-	const     ANNON_F         ; 6
-	const     ANNON_G         ; 7
-	const     ANNON_H         ; 8
-	const     ANNON_I         ; 9
-	const     ANNON_J         ; 10
-	const     ANNON_K         ; 11
-	const     ANNON_L         ; 12
-	const     ANNON_M         ; 13
-	const     ANNON_N         ; 14
-	const     ANNON_O         ; 15
-	const     ANNON_P         ; 16
-	const     ANNON_Q         ; 17
-	const     ANNON_R         ; 18
-	const     ANNON_S         ; 19
-	const     ANNON_T         ; 20
-	const     ANNON_U         ; 21
-	const     ANNON_V         ; 22
-	const     ANNON_W         ; 23
-	const     ANNON_X         ; 24
-	const     ANNON_Y         ; 25
-	const     ANNON_Z         ; 26
-DEF NUM_ANNON EQU const_value - 1 ; 26
+	const UNOWN_A ;  1
+	const UNOWN_B ;  2
+	const UNOWN_C ;  3
+	const UNOWN_D ;  4
+	const UNOWN_E ;  5
+	const UNOWN_F ;  6
+	const UNOWN_G ;  7
+	const UNOWN_H ;  8
+	const UNOWN_I ;  9
+	const UNOWN_J ; 10
+	const UNOWN_K ; 11
+	const UNOWN_L ; 12
+	const UNOWN_M ; 13
+	const UNOWN_N ; 14
+	const UNOWN_O ; 15
+	const UNOWN_P ; 16
+	const UNOWN_Q ; 17
+	const UNOWN_R ; 18
+	const UNOWN_S ; 19
+	const UNOWN_T ; 20
+	const UNOWN_U ; 21
+	const UNOWN_V ; 22
+	const UNOWN_W ; 23
+	const UNOWN_X ; 24
+	const UNOWN_Y ; 25
+	const UNOWN_Z ; 26
+DEF NUM_UNOWN EQU const_value - 1 ; 26

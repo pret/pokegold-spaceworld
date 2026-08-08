@@ -679,14 +679,14 @@ GetDexUnownCount:
 	call ByteFill
 	ld hl, wUnownDex
 	ld bc, NUM_UNOWN
-.annon_loop:
+.unown_loop:
 	ld a, [hli]
 	and a
-	jr z, .no_annon
+	jr z, .no_unown
 	inc b
-.no_annon
+.no_unown
 	dec c
-	jr nz, .annon_loop
+	jr nz, .unown_loop
 
 	ld a, b
 	ld [wDexUnownCount], a
@@ -737,8 +737,8 @@ dw .Init, .Update, .ShowUnownLetter
 	ld hl, wUnownDex
 	add hl, de
 	ld a, [hl]
-	ld [wAnnonID], a
-	ld a, DEX_ANNON
+	ld [wUnownID], a
+	ld a, DEX_UNOWN
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
 	call GetBaseData

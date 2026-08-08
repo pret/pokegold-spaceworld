@@ -33,7 +33,7 @@ SpriteAnimGFX:
 	sprite_anim_obj_gfx   8, BANK(BulbasaurIcon),  BulbasaurIcon  ; SPRITE_ANIM_DICT_BULBASAUR_ICON
 	sprite_anim_obj_gfx   8, BANK(CharmanderIcon), CharmanderIcon ; SPRITE_ANIM_DICT_CHARMANDER_ICON
 	sprite_anim_obj_gfx   8, BANK(WeedleIcon),     WeedleIcon     ; SPRITE_ANIM_DICT_WEEDLE_ICON
-	sprite_anim_obj_gfx   8, BANK(AnnonIcon),      AnnonIcon      ; SPRITE_ANIM_DICT_ANNON_ICON
+	sprite_anim_obj_gfx   8, BANK(UnownIcon),      UnownIcon      ; SPRITE_ANIM_DICT_UNOWN_ICON
 	sprite_anim_obj_gfx   8, BANK(GeodudeIcon),    GeodudeIcon    ; SPRITE_ANIM_DICT_GEODUDE_ICON
 	sprite_anim_obj_gfx   8, BANK(MachopIcon),     MachopIcon     ; SPRITE_ANIM_DICT_MACHOP_ICON
 	sprite_anim_obj_gfx   8, BANK(EggIcon),        EggIcon        ; SPRITE_ANIM_DICT_EGG_ICON

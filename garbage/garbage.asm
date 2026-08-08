@@ -1624,9 +1624,9 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
 	Unreferenced_Corrupt_Gold_SilentHillLabBackStarterData:
 		db DEX_HONOGUMA
 		dw @ - $229
-		db DEX_KURUSU
+		db DEX_CRUISE
 
-		db DEX_KURUSU
+		db DEX_CRUISE
 		dw @ - $203
 		db DEX_HAPPA
 
@@ -1827,9 +1827,9 @@ Unreferenced_Corrupt_SilentHillLabBackFunc4:
 Unreferenced_Corrupt_SilentHillLabBackStarterData:
 	db DEX_HONOGUMA
 	dw @ - $229
-	db DEX_KURUSU
+	db DEX_CRUISE
 
-	db DEX_KURUSU
+	db DEX_CRUISE
 	dw @ - $203
 	db DEX_HAPPA
 
@@ -1910,9 +1910,9 @@ Unreferenced_Corrupt2_SilentHillLabBackFunc4:
 Unreferenced_Corrupt2_SilentHillLabBackStarterData:
 	db DEX_HONOGUMA
 	dw @ - $229
-	db DEX_KURUSU
+	db DEX_CRUISE
 
-	db DEX_KURUSU
+	db DEX_CRUISE
 	dw @ - $203
 	db DEX_HAPPA
 

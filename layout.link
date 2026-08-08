@@ -130,7 +130,7 @@ ROMX $1e
 	"Bank 1e Garbage"
 ROMX $1f
 	"Pics 11"
-	"Annon Pic Ptrs and Pics"
+	"Unown Pic Ptrs and Pics"
 	"Egg Pic"
 	"Bank 1f Garbage"
 ROMX $20

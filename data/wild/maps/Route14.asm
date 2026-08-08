@@ -16,10 +16,10 @@
 	db 21, DEX_MIKON
 	; day/nite
 	db 22, DEX_HANEKO
-	db 23, DEX_HOHO
+	db 23, DEX_HOOTHOOT
 	; nite only
-	db 24, DEX_HOHO
-	db 25, DEX_HOHO
-	db 26, DEX_HOHO
-	db 27, DEX_BULU
-	db 27, DEX_BULU
+	db 24, DEX_HOOTHOOT
+	db 25, DEX_HOOTHOOT
+	db 26, DEX_HOOTHOOT
+	db 27, DEX_SNUBBULL
+	db 27, DEX_SNUBBULL

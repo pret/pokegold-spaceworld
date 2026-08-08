@@ -18,8 +18,8 @@
 	db 28, DEX_ODDISH
 	db 30, DEX_RATICATE
 	; nite only
-	db 32, DEX_HOHO
+	db 32, DEX_HOOTHOOT
 	db 33, DEX_EKANS
-	db 34, DEX_HOHO
+	db 34, DEX_HOOTHOOT
 	db 35, DEX_ARBOK
-	db 35, DEX_HOHO
+	db 35, DEX_HOOTHOOT

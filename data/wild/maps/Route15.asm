@@ -16,9 +16,9 @@
 	db 25, DEX_VULPIX
 	; day/nite
 	db 23, DEX_HANEKO
-	db 24, DEX_HOHO
+	db 24, DEX_HOOTHOOT
 	; nite only
-	db 25, DEX_HOHO
+	db 25, DEX_HOOTHOOT
 	db 26, DEX_DROWZEE
 	db 27, DEX_DROWZEE
 	db 28, DEX_HYPNO

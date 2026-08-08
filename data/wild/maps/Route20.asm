@@ -7,7 +7,7 @@
 	; morn/day
 	db 32, DEX_MILTANK
 	db 35, DEX_PRIMEAPE
-	db 32, DEX_REDIBA
+	db 32, DEX_LEDYBA
 	db 33, DEX_MANKEY
 	; morn/day/nite
 	db 34, DEX_PRIMEAPE
@@ -15,7 +15,7 @@
 	db 34, DEX_POLIWHIRL
 	db 35, DEX_POLIWHIRL
 	; day/nite
-	db 33, DEX_REDIBA
+	db 33, DEX_LEDYBA
 	db 34, DEX_WOLFMAN
 	; nite only
 	db 37, DEX_WOLFMAN

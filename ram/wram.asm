@@ -1814,7 +1814,7 @@ wEndPokedexSeen::
 
 wUnownDex:: ds NUM_UNOWN
 
-wAnnonID:: db
+wUnownID:: db
 
 	ds 1
 

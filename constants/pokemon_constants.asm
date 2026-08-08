@@ -32,7 +32,7 @@
 	const MON_BLASTOISE     ; 1c
 	const MON_PINSIR        ; 1d
 	const MON_TANGELA       ; 1e
-	const MON_KAPOERER      ; 1f HITMONTOP
+	const MON_HITMONTOP     ; 1f
 	const MON_PUDIE         ; 20 (baby GROWLITHE)
 	const MON_GROWLITHE     ; 21
 	const MON_ONIX          ; 22
@@ -69,8 +69,8 @@
 	const MON_VENONAT       ; 41
 	const MON_DRAGONITE     ; 42
 	const MON_ELEBABY       ; 43 ELEKID
-	const MON_BOOBY         ; 44 MAGBY
-	const MON_KIREIHANA     ; 45 BELLOSSOM
+	const MON_MAGBY         ; 44
+	const MON_BELLOSSOM     ; 45
 	const MON_DODUO         ; 46
 	const MON_POLIWAG       ; 47
 	const MON_JYNX          ; 48
@@ -123,12 +123,12 @@
 	const MON_VENOMOTH      ; 77
 	const MON_DEWGONG       ; 78
 	const MON_KYONPAN       ; 79 (MISSINGNO)
-	const MON_YAMIKARASU    ; 7a MURKROW
+	const MON_MURKROW       ; 7a
 	const MON_CATERPIE      ; 7b
 	const MON_METAPOD       ; 7c
 	const MON_BUTTERFREE    ; 7d
 	const MON_MACHAMP       ; 7e
-	const MON_HAPPI         ; 7f BLISSEY
+	const MON_HAPPY         ; 7f BLISSEY
 	const MON_GOLDUCK       ; 80
 	const MON_HYPNO         ; 81
 	const MON_GOLBAT        ; 82
@@ -136,12 +136,12 @@
 	const MON_SNORLAX       ; 84
 	const MON_MAGIKARP      ; 85
 	const MON_SCISSORS      ; 86 SCIZOR
-	const MON_PURAKKUSU     ; 87 (evolved PINSIR)
+	const MON_PLUCKS        ; 87 (evolved PINSIR)
 	const MON_MUK           ; 88
 	const MON_DEVIL         ; 89 HOUNDOUR
 	const MON_KINGLER       ; 8a
 	const MON_CLOYSTER      ; 8b
-	const MON_HELGAA        ; 8c HOUNDOOM
+	const MON_HOUNDOOM      ; 8c
 	const MON_ELECTRODE     ; 8d
 	const MON_CLEFABLE      ; 8e
 	const MON_WEEZING       ; 8f
@@ -162,7 +162,7 @@
 	const MON_SEAKING       ; 9e
 	const MON_PORYGON2      ; 9f
 	const MON_NAMEIL        ; a0 LICKILICKY (evolved LICKITUNG)
-	const MON_HAGANEIL      ; a1
+	const MON_STEELIX       ; a1
 	const MON_KINGDRA       ; a2
 	const MON_PONYTA        ; a3
 	const MON_RAPIDASH      ; a4
@@ -182,10 +182,10 @@
 	const MON_CHARMELEON    ; b2
 	const MON_WARTORTLE     ; b3
 	const MON_CHARIZARD     ; b4
-	const MON_NYULA         ; b5 SNEASEL
-	const MON_HOUOU         ; b6 HO_OH
-	const MON_TOGEPY        ; b7 TOGEPI
-	const MON_BULU          ; b8 SNUBBULL
+	const MON_SNEASEL       ; b5
+	const MON_HO_OH         ; b6
+	const MON_TOGEPI        ; b7
+	const MON_SNUBBULL      ; b8
 	const MON_ODDISH        ; b9
 	const MON_GLOOM         ; ba
 	const MON_VILEPLUME     ; bb
@@ -198,14 +198,14 @@
 	const MON_HONOGUMA      ; c2
 	const MON_VOLBEAR       ; c3
 	const MON_DYNABEAR      ; c4
-	const MON_KURUSU        ; c5
+	const MON_CRUISE        ; c5
 	const MON_AQUA          ; c6
 	const MON_AQUARIA       ; c7
-	const MON_HOHO          ; c8 HOOTHOOT
+	const MON_HOOTHOOT      ; c8
 	const MON_BOBO          ; c9 NOCTOWL
 	const MON_PACHIMEE      ; ca MAREEP
-	const MON_MOKOKO        ; cb FLAAFY
-	const MON_DENRYU        ; cc AMPHAROS
+	const MON_FLAAFFY       ; cb
+	const MON_AMPHAROS      ; cc
 	const MON_MIKON         ; cd (baby VULPIX)
 	const MON_MONJA         ; ce (baby TANGELA)
 	const MON_JARANJA       ; cf TANGROWTH (evolved TANGELA)
@@ -213,17 +213,17 @@
 	const MON_PUKU          ; d1 QWILFISH
 	const MON_SHIBIREFUGU   ; d2 (evolved QWILFISH)
 	const MON_PICHU         ; d3
-	const MON_PY            ; d4 CLEFFA
-	const MON_PUPURIN       ; d5 IGGLYBUFF
+	const MON_CLEFFA        ; d4
+	const MON_IGGLYBUFF     ; d5
 	const MON_MIZUUO        ; d6 QUAGSIRE
-	const MON_NATY          ; d7 NATU
-	const MON_NATIO         ; d8 XATU
+	const MON_NATU          ; d7
+	const MON_XATU          ; d8
 	const MON_GYOPIN        ; d9 (baby GOLDEEN)
-	const MON_MARIL         ; da MARILL
+	const MON_MARILL        ; da
 	const MON_MANBO1        ; db
 	const MON_IKARI         ; dc
-	const MON_GROTESS       ; dd
-	const MON_EKSING        ; de CROBAT
+	const MON_GROTESQUE       ; dd
+	const MON_X_ING         ; de CROBAT
 	const MON_PARA          ; df (baby PARAS)
 	const MON_KOKUMO        ; e0 SPINARAK
 	const MON_TWOHEAD       ; e1 ARIADOS
@@ -234,51 +234,22 @@
 	const MON_PAON          ; e6 PHANPHY
 	const MON_DONPHAN       ; e7
 	const MON_TWINZ         ; e8 (baby GIRAFARIG)
-	const MON_KIRINRIKI     ; e9 GIRAFARIG
+	const MON_GIRAFARIG     ; e9
 	const MON_PAINTER       ; ea SMEARGLE
 	const MON_KOUNYA        ; eb (baby MEOWTH)
 	const MON_RINRIN        ; ec
 	const MON_BERURUN       ; ed
-	const MON_NYOROTONO     ; ee POLITOED
-	const MON_YADOKING      ; ef SLOWKING
-	const MON_ANNON         ; f0 UNOWN
-	const MON_REDIBA        ; f1 LEDYBA
+	const MON_POLITOED      ; ee
+	const MON_SLOWKING      ; ef
+	const MON_UNOWN         ; f0
+	const MON_LEDYBA        ; f1
 	const MON_MITSUBOSHI    ; f2 LEDIAN
 	const MON_PUCHICORN     ; f3 (baby PONYTA)
-	const MON_EIFIE         ; f4 ESPEON
-	const MON_BLACKY        ; f5 UMBREON
+	const MON_ESPEON        ; f4
+	const MON_UMBREON       ; f5
 	const MON_TURBAN        ; f6
 	const MON_BETBABY       ; f7 (baby GRIMER)
-	const MON_TEPPOUO       ; f8 REMORAID
-	const MON_OKUTANK       ; f9 OCTILLERY
-	const MON_GONGU         ; fa TYROGUE
+	const MON_REMORAID      ; f8
+	const MON_OCTILLERY     ; f9
+	const MON_GONG          ; fa TYROGUE
 
-; Unown forms
-	const_def 1
-	const UNOWN_A ;  1
-	const UNOWN_B ;  2
-	const UNOWN_C ;  3
-	const UNOWN_D ;  4
-	const UNOWN_E ;  5
-	const UNOWN_F ;  6
-	const UNOWN_G ;  7
-	const UNOWN_H ;  8
-	const UNOWN_I ;  9
-	const UNOWN_J ; 10
-	const UNOWN_K ; 11
-	const UNOWN_L ; 12
-	const UNOWN_M ; 13
-	const UNOWN_N ; 14
-	const UNOWN_O ; 15
-	const UNOWN_P ; 16
-	const UNOWN_Q ; 17
-	const UNOWN_R ; 18
-	const UNOWN_S ; 19
-	const UNOWN_T ; 20
-	const UNOWN_U ; 21
-	const UNOWN_V ; 22
-	const UNOWN_W ; 23
-	const UNOWN_X ; 24
-	const UNOWN_Y ; 25
-	const UNOWN_Z ; 26
-DEF NUM_UNOWN EQU const_value - 1 ; 26
