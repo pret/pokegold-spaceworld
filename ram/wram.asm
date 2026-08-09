@@ -743,7 +743,7 @@ wEnemyMinimized:: db
 wAlreadyFailed:: db
 
 wBattleParticipantsIncludingFainted:: db
-wBattleLowHealthAlarm:: db
+wLowHealthAlarmStopUpdates:: db
 wPlayerMinimized:: db
 
 wPlayerScreens:: db
@@ -1071,9 +1071,7 @@ wFXAnimID:: dw
 wPlaceBallsX:: db
 wPlaceBallsY:: db
 
-; Both RBY and final GSC write directly to wLowHealth, this prototype writes it here.
-; TODO: Investigate how it actually functions.
-wLowHealthAlarmBuffer:: db
+wLowHealthAlarm_Old:: db
 
 wTileAnimationTimer:: db
 

@@ -1677,7 +1677,8 @@ endc
 	ret
 
 ; A pared-down version of the standard overworld loop.
-; TODO: Figure out how this actually works.
+; Wild Battles, Warps, Connections, and Scenes won't update.
+; Rendering only works correctly if the Flashlight Effect is on.
 OverworldLoop_Unused::
 .loop
 	call UpdateTime

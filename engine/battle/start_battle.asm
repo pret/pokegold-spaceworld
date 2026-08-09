@@ -343,7 +343,7 @@ ExitBattle:
 
 .CleanUpBattleRAM:
 	xor a
-	ld [wLowHealthAlarmBuffer], a
+	ld [wLowHealthAlarm_Old], a ; BUG: This should be wLowHealthAlarm.
 	ld [wBattleMode], a
 	ld [wBattleType], a
 	ld [wAttackMissed], a

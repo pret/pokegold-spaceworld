@@ -1339,8 +1339,10 @@ EnemyMonFainted:
 	prompt
 
 StopDangerSound:
-	inc a
-	ld [wBattleLowHealthAlarm], a ; TODO: should this be wLowHealthAlarm?
+;	xor a
+;	ld [wLowHealthAlarm], a
+	inc a                               ; BUG: wLowHealthAlarm needs to be xor a'd for this to work.
+	ld [wLowHealthAlarmStopUpdates], a  ; This is supposed to stop the alarm from resuming during fadeout.
 	ret
 
 CheckEnemyTrainerDefeated:
@@ -1546,12 +1548,12 @@ UpdateFaintedPlayerMon:
 	predef SmallFarFlagAction
 	ld hl, wEnemySubStatus3
 	res SUBSTATUS_IN_LOOP, [hl]
-	ld a, [wLowHealthAlarmBuffer]
+	ld a, [wLowHealthAlarm_Old] ; BUG: This should be wLowHealthAlarm.
 	bit DANGER_ON_F, a
 	jr z, .no_low_health_alarm
 
 	ld a, $ff
-	ld [wLowHealthAlarmBuffer], a
+	ld [wLowHealthAlarm_Old], a ; BUG: This should be wLowHealthAlarm.
 	call WaitSFX
 
 .no_low_health_alarm
@@ -1635,8 +1637,7 @@ ForcePlayerMonChoice:
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
 	jr nz, .skip_link
-; BUG TODO: Doesn't this result in invalid wBattlePlayerAction arguments?
-	inc a ; BATTLEPLAYERACTION_USEITEM
+	inc a ; BUG: This should be "dec a", "inc a" sets wBattlePlayerAction to $04, which is invalid.
 	ld [wBattlePlayerAction], a
 	call LinkBattleSendRecieveAction
 
@@ -3044,7 +3045,7 @@ UpdatePlayerHUD:
 	ld a, [hli]
 	or [hl]
 	jr z, .no_danger
-	ld a, [wBattleLowHealthAlarm]
+	ld a, [wLowHealthAlarmStopUpdates]
 	and a
 	ret nz
 	ld a, [wPlayerHPPal]
@@ -3052,14 +3053,14 @@ UpdatePlayerHUD:
 	jr z, .danger
 
 .no_danger
-	ld hl, wLowHealthAlarmBuffer
+	ld hl, wLowHealthAlarm_Old ; BUG: This should be wLowHealthAlarm.
 	bit DANGER_ON_F, [hl]
 	ld [hl], 0
 	ret z
 	ret
 
 .danger
-	ld hl, wLowHealthAlarmBuffer
+	ld hl, wLowHealthAlarm_Old ; BUG: This should be wLowHealthAlarm.
 	set DANGER_ON_F, [hl]
 	ret
 

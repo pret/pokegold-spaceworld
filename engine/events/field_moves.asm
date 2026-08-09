@@ -92,14 +92,12 @@ GetCutReplacementBlock:
 	scf
 	ret
 
-; TODO - constantize Cut block IDs
-
 CutReplacementBlocks:
 ; replacement block, facing block
-	db $30, $25
-	db $31, $2A
-	db $32, $34
-	db $33, $35
+	db BLOCK_TREES_TOP_CENTER_CUT_TREE,    BLOCK_TREES_TOP_CENTER
+	db BLOCK_TREES_MIDDLE_RIGHT_CUT_TREE,  BLOCK_TREES_MIDDLE_RIGHT
+	db BLOCK_1_TREE_TOP_LEFT_CUT_TREE,     BLOCK_1_TREE_TOP_LEFT
+	db BLOCK_1_TREE_BOTTOM_RIGHT_CUT_TREE, BLOCK_1_TREE_BOTTOM_RIGHT
 	db -1
 
 CheckCuttableTile:
@@ -108,13 +106,13 @@ CheckCuttableTile:
 	jr nc, .fail
 	call GetBlockLocation
 	ld a, [hl]
-	cp $3b
+	cp BLOCK_TALL_GRASS
 	jr nz, .fail
 	ld a, l
 	ld [wMapBlocksAddress], a
 	ld a, h
 	ld [wMapBlocksAddress + 1], a
-	ld a, $04
+	ld a, BLOCK_GRASS
 	ld [wReplacementBlock], a
 	set_field_script DoCut
 	xor a
