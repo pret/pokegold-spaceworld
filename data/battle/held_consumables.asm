@@ -20,7 +20,7 @@ ConsumableEffects:
 	db HELD_EVASION_UP
 	db HELD_38
 
-	db HELD_71
+	db HELD_FLEE_FEATHER
 	db HELD_ESCAPE
 	db HELD_CRITICAL_UP
 	db -1
