@@ -395,7 +395,7 @@ PlayerDepositItemMenu:
 .SwapPockets:
 	callfar FlipPocket2Status
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ret
 
 .Depositable:

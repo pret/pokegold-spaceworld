@@ -40,8 +40,8 @@ SilentHillScript1:
 	ld a, [wXCoord]
 	cp 5
 	ret nz
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_RIVAL
 	call FreezeAllOtherObjects
 	ld a, SILENT_HILL_RIVAL
@@ -72,8 +72,8 @@ SilentHillScript2:
 	call OpenTextbox
 	ld hl, SilentHillTextRival2
 	call OpenTextbox
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_RIVAL
 	ld hl, SilentHillMovement2
 	call LoadMovementDataPointer
@@ -114,8 +114,8 @@ SilentHillScript4:
 	call .TalkedToBlue
 	ld hl, SilentHillTextNorthExit
 	call OpenTextbox
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_BLUE
 	call CopyMapObjectToReservedObjectStruct
 	ld a, SILENT_HILL_BLUE
@@ -176,8 +176,8 @@ SilentHillScript5:
 	call SetObjectFacing
 	ld hl, SilentHillTextPokemonInGrassString
 	call OpenTextbox
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_BLUE
 	call FreezeAllOtherObjects
 	ld a, 0
@@ -283,7 +283,7 @@ CheckLabDoor:
 	ld a, 0
 	ld d, UP
 	call SetObjectFacing
-	ld hl, wJoypadFlags
+	ld hl, wJoypadDisable
 	set 6, [hl]
 	ld hl, SilentHillTextString1
 	call OpenTextbox

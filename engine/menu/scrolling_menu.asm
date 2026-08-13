@@ -380,7 +380,7 @@ ScrollingMenu_CallFunctions1and2::
 	ret
 
 ScrollingMenu_PlaceCursor:
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	and a
 	jr z, .done
 	ld b, a

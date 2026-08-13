@@ -315,7 +315,7 @@ SECTION "Map Buffer", WRAM0
 wMapBuffer::
 wMapScriptNumber:: db
 wMapScriptNumberLocation:: dw
-wMapScriptPointerLocation:: dw ; TODO
+wMapScriptPointerLocation:: dw
 ; setting bit 7 seems to disable overworld updates and player control?
 ; setting bit 6 disables map connections
 wOverworldFlags:: db
@@ -1151,8 +1151,10 @@ wBackpackAndKeyItemsScrollPosition:: db
 wBillsPCScrollPosition:: db
 wTMHolderScrollPosition:: db
 
-; TODO: change to wSwitchItem, wSwitchMon, wSwappingMove
-wSelectedSwapPosition:: db
+wSwitchItem::
+wSwitchMon::
+wSwappingMove::
+	db
 wMenuScrollPosition:: db
 
 wTextDest:: dw
@@ -1660,15 +1662,14 @@ wGameModeFlags:: db
 
 	ds 1
 
-; TODO: change to wJoypadDisable, constantify flags
-wJoypadFlags:: db
+wJoypadDisable:: db
 ; 76543210
 ; ||||\__/
-; ||||  \-- unkn
-; |||\----- set for rival intro textbox
-; ||\------ don't wait for keypress to close text box
+; ||||  \-- unused
+; |||\----- in cutscene/battle
+; ||\------ autoclose text box
 ; |\------- joypad sync mtx
-; \-------- joypad disabled
+; \-------- joypad sgb transfer
 	ds 1
 wMovementFlags_Old:: db
 
@@ -1691,14 +1692,14 @@ wWarpNumber:: db
 wCurrMapWarpCount:: db
 
 wCurrMapWarps::
-REPT 32 ; TODO: add a MAX_NUM_WARP_EVENTS constant
+REPT MAX_NUM_WARP_EVENTS
 	ds WARP_EVENT_SIZE - 2
 ENDR
 
-wCurMapBGEventCount:: db
+wCurrMapBGEventCount:: db
 
 wCurrMapBGEvents::
-REPT 16 ; TODO: add a MAX_NUM_BG_EVENTS constant
+REPT MAX_NUM_BG_EVENTS
 	ds BG_EVENT_SIZE
 ENDR
 

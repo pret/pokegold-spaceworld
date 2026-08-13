@@ -354,7 +354,7 @@ StartMenu_Backpack:
 	res SPRITE_UPDATES_DISABLED_F, [hl]
 	call DrawBackpack
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	call GetPocket2Status
 .loop
 	call DebugBackpackLoop
@@ -369,7 +369,7 @@ StartMenu_Backpack:
 	ld hl, wStateFlags
 	set SPRITE_UPDATES_DISABLED_F, [hl]
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	call ClearPalettes
 	call CloseWindow
 	call LoadFontExtra
@@ -468,7 +468,7 @@ HandleBackpackInput:
 .BackpackSwapPocket
 	call FlipPocket2Status
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	jp .exit
 
 .BackpackSelect
@@ -512,7 +512,7 @@ BackpackSelected:
 .SwapPocket
 	call FlipPocket2Status
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	and a
 	ret
 
@@ -893,14 +893,14 @@ StartMenu_Party:
 HandleSelectedPokemon:
 	xor a
 	ld [wPartyMenuActionText], a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchMon], a
 	predef OpenPartyMenu
 	jr PartyPrompt.partypromptreturn
 
 PartyPrompt:
 	ld a, [wCurPartyMon]
 	inc a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchMon], a
 	callfar UnfreezeMonIcons
 	ld a, PARTYMENUACTION_MOVE
 	ld [wPartyMenuActionText], a
@@ -1199,7 +1199,7 @@ PartyGiveItem:
 ChangeBackpackPocket:
 	call FlipPocket2Status
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ret
 
 PartyBallPocket:
@@ -1501,7 +1501,7 @@ PokeSummary:
 SummaryDrawPoke:
 	xor a
 	ldh [hBGMapMode], a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchMon], a
 	ld [wMonType], a
 	predef CopyMonToTempMon
 	ld hl, wTempMonMoves
@@ -1552,7 +1552,7 @@ PartySelectionInputs:
 	lb bc, $06, $12
 	call ClearBox
 	hlcoord 1, 12
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchMon]
 	and a
 	jr nz, .DrawMovePokeText
 	ld de, PartyTypeText
@@ -1611,11 +1611,11 @@ PartySelectionInputs:
 	jp PokeSummary
 
 .PartyPokeSelect
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchMon]
 	and a
 	jr nz, .swap
 	ld a, [wMenuCursorY]
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchMon], a
 	call PlaceHollowCursor
 	jr .DrawMovePokeText
 .swap
@@ -1649,7 +1649,7 @@ PartySelectionInputs:
 
 SwapEntries:
 ; values at (hl + [cursor place]-1)
-; and (hl + [wSelectedSwapPosition] -1) get swapped
+; and (hl + [wSwitchMon] -1) get swapped
 	push hl ; saves hl
 	ld a, [wMenuCursorY]
 	dec a
@@ -1659,7 +1659,7 @@ SwapEntries:
 	ld d, h
 	ld e, l
 	pop hl ; hl is same as start
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchMon]
 	dec a
 	ld c, a
 	ld b, 0
@@ -1673,7 +1673,7 @@ SwapEntries:
 
 PartySelectionBackOut:
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchMon], a
 	ld hl, w2DMenuFlags1
 	res 6, [hl]
 	call ClearSprites

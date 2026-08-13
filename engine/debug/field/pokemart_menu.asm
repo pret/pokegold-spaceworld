@@ -209,7 +209,7 @@ DebugMart_Sell:
 .FlipPocket:
 	callfar FlipPocket2Status
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ret
 
 .CannotSellItem:

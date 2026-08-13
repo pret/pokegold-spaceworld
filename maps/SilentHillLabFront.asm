@@ -182,8 +182,8 @@ SilentHillLabFrontMoveDown:
 	bit 6, a
 	jp z, xor_a_dec_a
 	call SilentHillLabFrontText3
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, PLAYER_OBJECT
 	call FreezeAllOtherObjects
 	ld a, PLAYER_OBJECT
@@ -271,8 +271,8 @@ SilentHillLabFrontConversation1:
 	ret
 
 SilentHillLabFrontScript5:
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_OAK1
 	call FreezeAllOtherObjects
 	ld a, SILENT_HILL_LAB_FRONT_OAK1
@@ -292,8 +292,8 @@ SilentHillLabFrontMovement3:
 	remove_object
 
 SilentHillLabFrontScript6:
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
 	call FreezeAllOtherObjects
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
@@ -316,8 +316,8 @@ SilentHillLabFrontMovement4:
 	remove_object
 
 SilentHillLabFrontScript7:
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, PLAYER_OBJECT
 	call FreezeAllOtherObjects
 	ld a, PLAYER_OBJECT
@@ -343,8 +343,8 @@ SilentHillLabFrontScript8:
 	call SetObjectLowPriority
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call SetObjectLowPriority
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, PLAYER_OBJECT
 	call FreezeAllOtherObjects
 	ld a, PLAYER_OBJECT
@@ -367,7 +367,7 @@ SilentHillLabFrontMovement6:
 	step_end
 
 SilentHillLabFrontScript9:
-	ld hl, wJoypadFlags
+	ld hl, wJoypadDisable
 	set 4, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call FreezeAllOtherObjects
@@ -399,8 +399,8 @@ SilentHillLabFrontScript10:
 	call SetObjectFacing
 	ld hl, SilentHillLabFrontTextString21
 	call OpenTextbox
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, PLAYER_OBJECT
 	ld d, RIGHT
 	call SetObjectFacing
@@ -470,8 +470,8 @@ SilentHillLabFrontRivalMovePokemon:
 	ld hl, SilentHillLabFrontMovement10
 .jump
 	push hl
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call FreezeAllOtherObjects
 	pop hl
@@ -549,8 +549,8 @@ SilentHillLabFrontScript14:
 	ld hl, SilentHillLabFrontTextString18
 .skip
 	call OpenTextbox
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call FreezeAllOtherObjects
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
@@ -601,8 +601,8 @@ SilentHillLabFrontMoveRivalLeave:
 	ld hl, Movememt12
 .jump
 	push hl
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_NANAMI
 	call FreezeAllOtherObjects
 	pop hl

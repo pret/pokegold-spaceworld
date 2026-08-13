@@ -30,12 +30,12 @@ OldCityPokecenterTrade_TextPointers:
 	dw OldCityPokecenterTradeText1
 
 OldCityPokecenterTradeText1:
-	ld hl, wJoypadFlags
-	set 5, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CLOSE_TEXTBOX_F, [hl]
 	ld hl, OldCityPokecenterTradeTextString1
 	call OpenTextbox
-	ld hl, wJoypadFlags
-	res 5, [hl]
+	ld hl, wJoypadDisable
+	res JOYPAD_DISABLE_CLOSE_TEXTBOX_F, [hl]
 	callfar StartLinkCommunications
 	ret
 

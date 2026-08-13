@@ -385,7 +385,7 @@ DisplayBGEventDetails:
 	ld [wHPBarOldHP], a
 	ld a, b
 	ld [wReplacementBlock], a
-	ld a, [wCurMapBGEventCount]
+	ld a, [wCurrMapBGEventCount]
 	sub c
 	inc a
 	ld [wHPBarNewHP], a

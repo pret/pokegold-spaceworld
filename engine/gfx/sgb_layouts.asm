@@ -603,18 +603,18 @@ LoadPokerCardPalettes:
 	jp PushSGBPals
 
 PushSGBPals:
-	ld a, [wJoypadFlags]
+	ld a, [wJoypadDisable]
 	push af
-	set 7, a
-	ld [wJoypadFlags], a
+	set JOYPAD_DISABLE_SGB_TRANSFER_F, a
+	ld [wJoypadDisable], a
 	call _PushSGBPals
 	pop af
-	ld [wJoypadFlags], a
+	ld [wJoypadDisable], a
 	ret
 
 _PushSGBPals:
 	ld a, [hl]
-	and $7
+	and JOYPAD_DISABLE_SGB_TRANSFER_F
 	ret z
 	ld b, a
 .loop
@@ -653,10 +653,10 @@ _PushSGBPals:
 	ret
 
 CheckSGB:
-	ld a, [wJoypadFlags]
+	ld a, [wJoypadDisable]
 	push af
-	set 7, a
-	ld [wJoypadFlags], a
+	set JOYPAD_DISABLE_SGB_TRANSFER_F, a
+	ld [wJoypadDisable], a
 
 	xor a
 	ldh [rJOYP], a
@@ -673,7 +673,7 @@ CheckSGB:
 	call _PushSGBPals
 .skip
 	pop af
-	ld [wJoypadFlags], a
+	ld [wJoypadDisable], a
 	ret
 
 _InitSGBBorderPals:

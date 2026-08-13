@@ -1703,8 +1703,8 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
 		ld [wRivalHouseSceneID], a
 		ld hl, Unreferenced_Corrupt_Silver_SilentHillLabBackTextString8
 		call PrintText
-		ld hl, wJoypadFlags
-		set 5, [hl]
+		ld hl, wJoypadDisable
+		set JOYPAD_DISABLE_CLOSE_TEXTBOX_F, [hl]
 		ld a, [wPlayerStarter]
 		ld [wCurPartySpecies], a
 		ld a, 5

@@ -289,7 +289,7 @@ MapSetup_Fight::
 	call LoadMapTimeOfDay
 	call EnableLCD
 	call PlayMapMusic
-	ld a, $88 ; TODO: constantify this
+	ld a, 8 | (1 << MUSIC_FADE_IN_F)
 	ld [wMusicFade], a
 	ld b, SGB_MAP_PALS
 	call GetSGBLayout
@@ -309,7 +309,7 @@ MapSetup_Continue::
 	call LoadMapTimeOfDay
 	call EnableLCD
 	call PlayMapMusic
-	ld a, $88 ; TODO: constantify this
+	ld a, 8 | (1 << MUSIC_FADE_IN_F)
 	ld [wMusicFade], a
 	ld b, SGB_MAP_PALS
 	call GetSGBLayout
@@ -335,7 +335,7 @@ MapSetup_NewGame::
 	call InitializeVisibleSprites
 	call EnableLCD
 	call PlayMapMusic
-	ld a, $88
+	ld a, 8 | (1 << MUSIC_FADE_IN_F)
 	ld [wMusicFade], a
 	ld b, SGB_MAP_PALS
 	call GetSGBLayout
@@ -832,13 +832,13 @@ ReadWarps::
 
 ReadBGEvents::
 	ld a, [hli]
-	ld [wCurMapBGEventCount], a
+	ld [wCurrMapBGEventCount], a
 	and a
 	ret z
 	ld c, a
 	ld de, wCurrMapBGEvents
 .next
-	ld b, 4
+	ld b, BG_EVENT_SIZE
 .copy
 	ld a, [hli]
 	ld [de], a
@@ -937,8 +937,8 @@ InitObjectMasks::
 	ld hl, wObjectMasks
 	ld [hli], a
 	ld [hli], a
-	ld hl, wObjectMasks + 2
-	ld bc, NUM_OBJECTS - 2
+	ld hl, wObjectMasks + NUM_RESERVED_OBJECTS
+	ld bc, NUM_OBJECTS - NUM_RESERVED_OBJECTS
 	ld a, $ff
 	call ByteFill
 
@@ -977,8 +977,8 @@ InitObjectMasks::
 	jr .next
 
 .null
-	ld hl, wObjectMasks + 2
-	ld bc, NUM_OBJECTS - 2
+	ld hl, wObjectMasks + NUM_RESERVED_OBJECTS
+	ld bc, NUM_OBJECTS - NUM_RESERVED_OBJECTS
 	xor a
 	call ByteFill
 .done
@@ -1166,7 +1166,7 @@ ApplyFlashlight::
 	ld a, [wMetatileNextY]
 	and a
 	jr z, .top_row
-	ld bc, $30 ; TODO: constantify this
+	ld bc, SURROUNDING_WIDTH * 2
 	add hl, bc
 .top_row
 	ld a, [wMetatileNextX]
@@ -1214,7 +1214,7 @@ ApplyFlashlight::
 ; 0 and 4 have special handling, see above and below
 MACRO redraw_with_flashlight
 	decoord \1 * 2, \1 * 2
-	ld bc, \1 * $32 ; TODO: constantify the $32
+	ld bc, SURROUNDING_WIDTH * (\1 * 2) + (\1 * 2)
 	add hl, bc
 	ld c, SCREEN_HEIGHT - \1 * 4
 .row\1
@@ -1256,7 +1256,7 @@ ENDM
 .force_4
 	; This also applies to larger values than 4
 	decoord 4 * 2, 4 * 2
-	ld bc, 4 * $32 ; TODO: constantify the $32
+	ld bc, SURROUNDING_WIDTH * (4 * 2) + (4 * 2)
 	add hl, bc
 	ld a, [hli]
 	ld [de], a
@@ -1293,7 +1293,7 @@ DrawMetatile::
 	ld c, a
 	add hl, bc
 	pop de
-	lb bc, $14, 4 ; TODO: constantify $14
+	lb bc, SCREEN_WIDTH, 4
 .row
 REPT 4
 	ld a, [hli]
@@ -1563,38 +1563,45 @@ _OverworldLoop::
 	pop hl
 	ret
 
-; TODO: Maybe make these a macro?
 ; Byte 1: Bank
 ; Byte 2: Unused?
 ; Bytes 3-4: Pointer to function
 
 ; Battle-related functions are run in bank $0e, even though they're in bank $f now.
 ; This doesn't change anything in practice because we still call a predef to go to that bank.
+MACRO owloop
+	IF _NARG == 2
+	dbbw BANK(OverworldLoop_\1), \2, OverworldLoop_\1
+	ELSE
+	dbbw \3, \2, OverworldLoop_\1
+	ENDC
+ENDM
+
 .Pointers:
-	dbbw $00, $55, OverworldLoop_Main
-	dbbw $00, $55, OverworldLoop_EventRunning
-	dbbw $00, $55, OverworldLoop_02
-	dbbw $0e, $33, OverworldLoop_StartBattle
-	dbbw $00, $55, OverworldLoop_ReturnToMain
-	dbbw $0e, $33, OverworldLoop_05
-	dbbw $00, $33, OverworldLoop_06
-	dbbw $00, $33, OverworldLoop_07
-	dbbw $0e, $33, OverworldLoop_StartBattle
-	dbbw $00, $55, OverworldLoop_DebugMapViewer
-	dbbw $00, $55, OverworldLoop_Unused
-	dbbw $0e, $33, OverworldLoop_ExitBattle
-	dbbw BANK(OverworldLoop_ReturnFromBattle), $33, OverworldLoop_ReturnFromBattle
+	owloop Main, %01010101
+	owloop EventRunning, %01010101
+	owloop Unused_02, %01010101
+	owloop StartBattle, %00110011, $0e
+	owloop ReturnToMain, %01010101
+	owloop UnusedBattle, %00110011, $0e
+	owloop Unused_06, %00110011
+	owloop Unused_07, %00110011
+	owloop StartBattle, %00110011, $0e
+	owloop DebugMapViewer, %01010101
+	owloop UnusedDarkness, %01010101
+	owloop ExitBattle, %00110011, $0e
+	owloop ReturnFromBattle, %00110011
 
 OverworldLoop_Main::
 .loop:
-	ld hl, wJoypadFlags
-	set 4, [hl]
-	set 6, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
+	set JOYPAD_DISABLE_SYNC_MTX_F, [hl]
 	call UpdateTime
 	call TimeOfDayPals
-	ld hl, wJoypadFlags
-	res 4, [hl]
-	res 6, [hl]
+	ld hl, wJoypadDisable
+	res JOYPAD_DISABLE_CUTSCENE_F, [hl]
+	res JOYPAD_DISABLE_SYNC_MTX_F, [hl]
 	call GetJoypad
 
 	call RunMapTextSubroutine
@@ -1628,9 +1635,9 @@ OverworldLoop_Main::
 	jr .loop
 
 OverworldLoop_ReturnToMain::
-	ld hl, wJoypadFlags
-	res 4, [hl]
-	res 6, [hl]
+	ld hl, wJoypadDisable
+	res JOYPAD_DISABLE_CUTSCENE_F, [hl]
+	res JOYPAD_DISABLE_SYNC_MTX_F, [hl]
 
 	ld hl, wDebugFlags
 	res UNK_DEBUG_FLAG_6_F, [hl]
@@ -1661,11 +1668,11 @@ OverworldLoop_EventRunning::
 	ret c
 	jr .loop
 
-OverworldLoop_02::
+OverworldLoop_Unused_02::
 	ret
 
-OverworldLoop_06::
-OverworldLoop_07::
+OverworldLoop_Unused_06::
+OverworldLoop_Unused_07::
 	ret
 
 OverworldLoop_DebugMapViewer::
@@ -1679,7 +1686,7 @@ endc
 ; A pared-down version of the standard overworld loop.
 ; Wild Battles, Warps, Connections, and Scenes won't update.
 ; Rendering only works correctly if the Flashlight Effect is on.
-OverworldLoop_Unused::
+OverworldLoop_UnusedDarkness::
 .loop
 	call UpdateTime
 	call GetJoypad

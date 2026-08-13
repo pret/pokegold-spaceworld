@@ -20,8 +20,8 @@ Joypad::
 ; hJoypadDown: pressed this frame (delta)
 ; hJoypadState: currently pressed
 ; hJoypadSum: pressed so far
-	ld a, [wJoypadFlags]
-	and $d0
+	ld a, [wJoypadDisable]
+	and (1 << JOYPAD_DISABLE_CUTSCENE_F) | (1 << JOYPAD_DISABLE_SYNC_MTX_F) | (1 << JOYPAD_DISABLE_SGB_TRANSFER_F)
 	ret nz
 	ld a, JOYP_GET_CTRL_PAD
 	ldh [rJOYP], a
@@ -84,8 +84,8 @@ GetJoypad::
 	push af
 	push hl
 	push de
-	ld hl, wJoypadFlags
-	set 6, [hl]           ; mutex
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_SYNC_MTX_F, [hl] ; mutex
 	ld hl, hJoypadDown
 	ld de, hJoyDown
 	ld a, [hli]
@@ -96,8 +96,8 @@ GetJoypad::
 	inc de
 	ld a, [hl]
 	ld [de], a
-	ld hl, wJoypadFlags
-	res 6, [hl]
+	ld hl, wJoypadDisable
+	res JOYPAD_DISABLE_SYNC_MTX_F, [hl]
 	pop de
 	pop hl
 	pop af

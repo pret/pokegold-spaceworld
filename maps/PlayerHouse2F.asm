@@ -69,8 +69,8 @@ PlayerHouse2PositionCheck:
 	ld a, [wXCoord]
 	cp 9
 	ret nz
-	ld hl, wJoypadFlags
-	set 6, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_SYNC_MTX_F, [hl]
 	ld a, LEFT
 	ld d, 0
 	call SetObjectFacing

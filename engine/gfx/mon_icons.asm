@@ -221,7 +221,7 @@ FreezeMonIcons::
 UnfreezeMonIcons:
 	ld hl, wSpriteAnimationStructs
 	ld e, PARTY_LENGTH
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchMon]
 	ld d, a
 .loop
 	ld a, [hl]

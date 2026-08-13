@@ -1738,10 +1738,10 @@ LostAgainstText:
 	prompt
 
 MonFaintedAnimation:
-	ld a, [wJoypadFlags]
+	ld a, [wJoypadDisable]
 	push af
-	set 6, a ; JOYPAD_DISABLE_MON_FAINT_F
-	ld [wJoypadFlags], a
+	set JOYPAD_DISABLE_SYNC_MTX_F, a
+	ld [wJoypadDisable], a
 
 	ld b, 7
 
@@ -1784,7 +1784,7 @@ MonFaintedAnimation:
 	dec b
 	jr nz, .OuterLoop
 	pop af
-	ld [wJoypadFlags], a
+	ld [wJoypadDisable], a
 	ret
 
 .Spaces:
@@ -3237,7 +3237,7 @@ BattleMenu_Pack:
 
 	callfar GetPocket2Status
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	call ClearPalettes
 	callfar DrawBackpack
 
@@ -3352,7 +3352,7 @@ BattleMenuPack_SelectItem:
 .other_bags:
 	callfar FlipPocket2Status
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ld [wItemEffectSucceeded], a
 	ret
 
@@ -3714,7 +3714,7 @@ MoveSelectionScreen::
 	jr nz, .interpret_joypad
 
 	call MoveInfoBox
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwappingMove]
 	and a
 	jr z, .interpret_joypad
 	hlcoord 1, 18 - (NUM_MOVES * 2)
@@ -3745,7 +3745,7 @@ MoveSelectionScreen::
 	push af
 
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwappingMove], a
 	ld a, [wMenuCursorY]
 	dec a
 	ld [wMenuCursorY], a
@@ -3959,7 +3959,7 @@ MoveSelectionScreen::
 	bit DEBUG_BATTLE_F, a
 	jp nz, .DebugMovePreview
 
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwappingMove]
 	and a
 	jr z, .start_swap
 	ld hl, wBattleMonMoves
@@ -3977,14 +3977,14 @@ MoveSelectionScreen::
 	ld a, [hl]
 	and $f
 	ld b, a
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwappingMove]
 	swap a
 	add b
 	ld [hl], a
 	jr .swap_moves_in_party_struct
 
 .not_swapping_disabled_move
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwappingMove]
 	cp b
 	jr nz, .swap_moves_in_party_struct
 	ld a, [hl]
@@ -4008,12 +4008,12 @@ MoveSelectionScreen::
 	add hl, bc
 	call .swap_bytes
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwappingMove], a
 	jp MoveSelectionScreen
 
 .swap_bytes
 	push hl
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwappingMove]
 	dec a
 	ld c, a
 	ld b, 0
@@ -4035,7 +4035,7 @@ MoveSelectionScreen::
 
 .start_swap
 	ld a, [wMenuCursorY]
-	ld [wSelectedSwapPosition], a
+	ld [wSwappingMove], a
 	jp MoveSelectionScreen
 
 MoveInfoBox:

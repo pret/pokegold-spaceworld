@@ -169,10 +169,10 @@ TextboxIdle::
 	; Prints text, then waits for A or B to be pressed, unless bit 5 of JoypadFlags is set.
 	call PrintTextBoxText
 .Loop
-	ld a, [wJoypadFlags]
-	bit 5, a
-	res 5, a
-	ld [wJoypadFlags], a
+	ld a, [wJoypadDisable]
+	bit JOYPAD_DISABLE_CLOSE_TEXTBOX_F, a
+	res JOYPAD_DISABLE_CLOSE_TEXTBOX_F, a
+	ld [wJoypadDisable], a
 	jr nz, .next
 	call GetJoypad
 	ldh a, [hJoyDown]

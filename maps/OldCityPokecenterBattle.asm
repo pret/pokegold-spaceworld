@@ -27,12 +27,12 @@ OldCityPokecenterBattle_TextPointers:
 	dw OldCityPokecenterBattleText1
 
 OldCityPokecenterBattleText1:
-	ld hl, wJoypadFlags
-	set 5, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CLOSE_TEXTBOX_F, [hl]
 	ld hl, OldCityPokecenterBattleTextString1
 	call OpenTextbox
-	ld hl, wJoypadFlags
-	res 5, [hl]
+	ld hl, wJoypadDisable
+	res JOYPAD_DISABLE_CLOSE_TEXTBOX_F, [hl]
 	callfar StartLinkCommunications
 	ret
 

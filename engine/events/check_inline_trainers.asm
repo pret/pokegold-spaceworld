@@ -34,8 +34,8 @@ Unreferenced_CheckInlineTrainers:
 	ret
 
 Unreferenced_TestTrainerWalkToPlayer:
-	ld hl, wJoypadFlags
-	set 6, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_SYNC_MTX_F, [hl]
 	ldh a, [hSeenTrainerObject]
 	call FreezeAllOtherObjects
 	ldh a, [hSeenTrainerObject]

@@ -66,6 +66,10 @@ DEF NUM_SPAWNS EQU 18
 ; size of each spawn point data
 DEF SPAWN_POINT_SIZE EQU 4
 
+DEF MAX_NUM_WARP_EVENTS EQU 32
+
+DEF MAX_NUM_BG_EVENTS EQU 16
+
 ; size of sprite sets (see data/maps/sprite_sets.asm)
 DEF SPRITE_SET_LENGTH EQU 10
 
