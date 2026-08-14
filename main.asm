@@ -22,15 +22,23 @@ INCLUDE "engine/overworld/object_collision.asm"
 INCLUDE "engine/menu/options_menu.asm"
 
 
-SECTION "bank2", ROMX
+SECTION "Reserved Objects", ROMX
 
 INCLUDE "engine/overworld/player_object.asm"
 INCLUDE "engine/gfx/load_minor_object_gfx.asm"
 INCLUDE "engine/overworld/queue_follower.asm"
+
+
+SECTION "Trainer Gear", ROMX
+
 INCLUDE "engine/events/town_map.asm"
 INCLUDE "data/maps/flypoints.asm"
 INCLUDE "data/maps/landmarks.asm"
 INCLUDE "engine/trainer_gear/trainer_gear.asm"
+
+
+SECTION "SGB Layouts", ROMX
+
 INCLUDE "engine/gfx/set_title_decoration.asm"
 INCLUDE "engine/gfx/sgb_layouts.asm"
 
@@ -65,16 +73,24 @@ SECTION "Maps", ROMX
 INCLUDE "data/maps/maps.asm"
 
 
-SECTION "bank4", ROMX
+SECTION "TMs & HMs", ROMX
 
 INCLUDE "engine/items/tmhm.asm"
 INCLUDE "data/moves/tmhm_moves.asm"
+
+
+SECTION "Add Mon", ROMX
+
 INCLUDE "engine/pokemon/add_mon.asm"
 INCLUDE "engine/menu/text_entry.asm"
+
+
+SECTION "Start Menu", ROMX
+
 INCLUDE "engine/menu/start_menu.asm"
 
 
-SECTION "bank5", ROMX
+SECTION "Overworld Scenes", ROMX
 
 INCLUDE "engine/overworld/redraw_player_sprite.asm"
 INCLUDE "engine/sprites/sprites.asm"
@@ -142,13 +158,20 @@ INCLUDE "engine/overworld/wildmons.asm"
 INCLUDE "engine/battle/start_battle.asm"
 
 
-SECTION "bank10", ROMX
+SECTION "Pokedex", ROMX
 
 INCLUDE "engine/pokedex/pokedex.asm"
 INCLUDE "engine/link/time_capsule_2.asm"
 INCLUDE "engine/pokedex/pokedex_2.asm"
+
+
+SECTION "Move Data", ROMX
+
 INCLUDE "data/moves/names.asm"
 INCLUDE "data/moves/moves.asm"
+
+
+SECTION "Evolutions and Attacks", ROMX
 INCLUDE "engine/pokemon/evolve.asm"
 INCLUDE "data/pokemon/evos_attacks.asm"
 
@@ -159,7 +182,7 @@ INCLUDE "engine/pokedex/display_dex_entry.asm"
 INCLUDE "data/pokemon/dex_entries.asm"
 
 
-SECTION "bank14", ROMX
+SECTION "Pokemon Data", ROMX
 
 INCLUDE "engine/pokemon/tempmon.asm"
 INCLUDE "engine/pokemon/types.asm"
@@ -198,7 +221,7 @@ INCLUDE "engine/menu/set_clock_dialog.asm"
 INCLUDE "engine/games/slot_machine_game.asm"
 
 
-SECTION "bank32", ROMX
+SECTION "Screen Effects", ROMX
 
 INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/animations.asm"
@@ -233,7 +256,7 @@ INCLUDE "engine/movie/game_freak_intro.asm"
 INCLUDE "engine/movie/opening_cutscene.asm"
 
 
-SECTION "bank3E", ROMX
+SECTION "Load GFX", ROMX
 
 INCLUDE "engine/gfx/load_gfx.asm"
 

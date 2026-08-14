@@ -38,7 +38,9 @@ ROMX $01
 	"bank1"
 	"Bank 01 Garbage"
 ROMX $02
-	"bank2"
+	"Reserved Objects"
+	"Trainer Gear"
+	"SGB Layouts"
 	"Bank 02 Garbage"
 ROMX $03
 	"bank3"
@@ -47,10 +49,12 @@ ROMX $04
 	"Maps"
 	"Shrink GFX"
 	"Title Screen GFX"
-	"bank4"
+	"TMs & HMs"
+	"Add Mon"
+	"Start Menu"
 	"Bank 04 Garbage"
 ROMX $05
-	"bank5"
+	"Overworld Scenes"
 	"Bank 05 Garbage"
 ROMX $06
 	"Tilesets 1"
@@ -83,7 +87,9 @@ ROMX $0f
 	"Battle Core"
 	"Bank 0f Garbage"
 ROMX $10
-	"bank10"
+	"Pokedex"
+	"Move Data"
+	"Evolutions and Attacks"
 	"Bank 10 Garbage"
 ROMX $11
 	"Dex Entries"
@@ -95,7 +101,7 @@ ROMX $13
 	"Tilesets 5"
 	"Bank 13 Garbage"
 ROMX $14
-	"bank14"
+	"Pokemon Data"
 	"Pic Banks"
 	"Bank 14 Garbage"
 ROMX $15
@@ -191,7 +197,7 @@ ROMX $31
 	"Sprites 2"
 	"Bank 31 Garbage"
 ROMX $32
-	"bank32"
+	"Screen Effects"
 	"Bank 32 Garbage"
 ROMX $33
 	"Move Animations"
@@ -231,7 +237,7 @@ ROMX $3c
 ROMX $3d
 	"Bank 3d Garbage"
 ROMX $3e
-	"bank3E"
+	"Load GFX"
 	"Bank 3e Garbage"
 ROMX $3f
 	"Debug"
