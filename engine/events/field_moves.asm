@@ -92,13 +92,7 @@ GetCutReplacementBlock:
 	scf
 	ret
 
-CutReplacementBlocks:
-; replacement block, facing block
-	db BLOCK_TREES_TOP_CENTER_CUT_TREE,    BLOCK_TREES_TOP_CENTER
-	db BLOCK_TREES_MIDDLE_RIGHT_CUT_TREE,  BLOCK_TREES_MIDDLE_RIGHT
-	db BLOCK_1_TREE_TOP_LEFT_CUT_TREE,     BLOCK_1_TREE_TOP_LEFT
-	db BLOCK_1_TREE_BOTTOM_RIGHT_CUT_TREE, BLOCK_1_TREE_BOTTOM_RIGHT
-	db -1
+INCLUDE "data/collision/cut_blocks.asm"
 
 CheckCuttableTile:
 	call GetFacingTileCoord

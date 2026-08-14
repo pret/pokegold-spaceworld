@@ -4,8 +4,8 @@ InitOptions::
 	ld a, BANK(sOptions)
 	call OpenSRAM
 	ld hl, sOptions
-	ld bc, wDebugFlags4 - wOptions ; BUG: This only clears 7 bytes instead of the needed 8.
-	xor a                          ; wDebugFlags4 isn't cleared as a result.
+	ld bc, wDebugFlags4 - wOptions ; BUG: This doesn't clear wDebugFlags4.
+	xor a                          ; Should be wDebugFlagsEnd - wOptions.
 	call ByteFill
 	call CloseSRAM
 	ret

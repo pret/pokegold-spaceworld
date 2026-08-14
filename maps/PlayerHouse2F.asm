@@ -70,7 +70,7 @@ PlayerHouse2PositionCheck:
 	cp 9
 	ret nz
 	ld hl, wJoypadDisable
-	set JOYPAD_DISABLE_SYNC_MTX_F, [hl]
+	set JOYPAD_DISABLE_SYNC_MUTEX_F, [hl]
 	ld a, LEFT
 	ld d, 0
 	call SetObjectFacing

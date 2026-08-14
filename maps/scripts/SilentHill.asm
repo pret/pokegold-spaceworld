@@ -284,7 +284,7 @@ CheckLabDoor:
 	ld d, UP
 	call SetObjectFacing
 	ld hl, wJoypadDisable
-	set 6, [hl]
+	set JOYPAD_DISABLE_SYNC_MUTEX_F, [hl]
 	ld hl, SilentHillTextString1
 	call OpenTextbox
 	call LabClosed

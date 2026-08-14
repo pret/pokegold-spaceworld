@@ -7,11 +7,7 @@ FightDebugMenu:
 	ld [wBadges], a
 
 	ld hl, wNumBagItems ; BUG: wNumBagItems is expected to be $FF when its $00.
-;	xor a               ; No items are added as the bag has no terminator.
-;	ld [hli], a
-;	dec a
-;	ld [hl], a
-	ld de, .ItemTable
+	ld de, .ItemTable   ; No items are added as the bag has no terminator.
 .AddItemLoop:
 	ld a, [de]
 	cp -1

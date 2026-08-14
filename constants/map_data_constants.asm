@@ -73,7 +73,7 @@ DEF MAX_NUM_BG_EVENTS EQU 16
 ; size of sprite sets (see data/maps/sprite_sets.asm)
 DEF SPRITE_SET_LENGTH EQU 10
 
-; CutReplacementBlocks indexes
+; CutReplacementBlocks indexes (see data/collision/cut_blocks.asm)
 	const_def 4
 	const BLOCK_GRASS                        ; $04
 	const_skip 31

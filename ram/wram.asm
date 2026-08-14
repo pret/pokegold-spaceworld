@@ -1071,7 +1071,7 @@ wFXAnimID:: dw
 wPlaceBallsX:: db
 wPlaceBallsY:: db
 
-wLowHealthAlarm_Old:: db
+wLowHealthAlarm_Old:: db ; BUG: wLowHealthAlarm should be used instead
 
 wTileAnimationTimer:: db
 
@@ -1689,23 +1689,23 @@ wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES
 ; warp data
 wWarpNumber:: db
 
-wCurrMapWarpCount:: db
+wCurMapWarpCount:: db
 
-wCurrMapWarps::
+wCurMapWarps::
 REPT MAX_NUM_WARP_EVENTS
 	ds WARP_EVENT_SIZE - 2
 ENDR
 
-wCurrMapBGEventCount:: db
+wCurMapBGEventCount:: db
 
-wCurrMapBGEvents::
+wCurMapBGEvents::
 REPT MAX_NUM_BG_EVENTS
 	ds BG_EVENT_SIZE
 ENDR
 
-wCurrMapObjectCount:: db
+wCurMapObjectCount:: db
 
-wCurrMapInlineTrainers::
+wCurMapInlineTrainers::
 REPT NUM_OBJECTS
 	ds 2 ; inline trainers. each pair of bytes is direction, distance
 ENDR

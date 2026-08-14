@@ -359,13 +359,13 @@ GetBGEvent::
 	sub BG_EVENT_SIZE
 	ld e, a
 ; If there are no BG events, we don't need to be here.
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	and a
 	ret z
 
 ; Checks to see if you are facing a BG event.  If so, sets carry.
 	ld c, a
-	ld hl, wCurrMapBGEvents
+	ld hl, wCurMapBGEvents
 .loop
 	ld a, [hli]
 	cp e

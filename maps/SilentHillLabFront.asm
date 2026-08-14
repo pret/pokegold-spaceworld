@@ -206,7 +206,7 @@ SilentHillLabFrontScript2:
 	ret
 
 SilentHillLabFrontScript3:
-	ld a, 6
+	ld a, SILENT_HILL_LAB_FRONT_BLUE1
 	call FreezeAllOtherObjects
 	ld a, PLAYER_OBJECT
 	call UnfreezeObject
@@ -368,7 +368,7 @@ SilentHillLabFrontMovement6:
 
 SilentHillLabFrontScript9:
 	ld hl, wJoypadDisable
-	set 4, [hl]
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call FreezeAllOtherObjects
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2

@@ -1339,8 +1339,6 @@ EnemyMonFainted:
 	prompt
 
 StopDangerSound:
-;	xor a
-;	ld [wLowHealthAlarm], a
 	inc a                               ; BUG: wLowHealthAlarm needs to be xor a'd for this to work.
 	ld [wLowHealthAlarmStopUpdates], a  ; This is supposed to stop the alarm from resuming during fadeout.
 	ret
@@ -1548,12 +1546,12 @@ UpdateFaintedPlayerMon:
 	predef SmallFarFlagAction
 	ld hl, wEnemySubStatus3
 	res SUBSTATUS_IN_LOOP, [hl]
-	ld a, [wLowHealthAlarm_Old] ; BUG: This should be wLowHealthAlarm.
+	ld a, [wLowHealthAlarm_Old]
 	bit DANGER_ON_F, a
 	jr z, .no_low_health_alarm
 
 	ld a, $ff
-	ld [wLowHealthAlarm_Old], a ; BUG: This should be wLowHealthAlarm.
+	ld [wLowHealthAlarm_Old], a
 	call WaitSFX
 
 .no_low_health_alarm
@@ -1637,6 +1635,7 @@ ForcePlayerMonChoice:
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
 	jr nz, .skip_link
+	assert LINK_COLOSSEUM - 1 == LINK_TRADECENTER
 	inc a ; BUG: This should be "dec a", "inc a" sets wBattlePlayerAction to $04, which is invalid.
 	ld [wBattlePlayerAction], a
 	call LinkBattleSendRecieveAction
@@ -1740,7 +1739,7 @@ LostAgainstText:
 MonFaintedAnimation:
 	ld a, [wJoypadDisable]
 	push af
-	set JOYPAD_DISABLE_SYNC_MTX_F, a
+	set JOYPAD_DISABLE_SYNC_MUTEX_F, a
 	ld [wJoypadDisable], a
 
 	ld b, 7
@@ -3053,14 +3052,14 @@ UpdatePlayerHUD:
 	jr z, .danger
 
 .no_danger
-	ld hl, wLowHealthAlarm_Old ; BUG: This should be wLowHealthAlarm.
+	ld hl, wLowHealthAlarm_Old
 	bit DANGER_ON_F, [hl]
 	ld [hl], 0
 	ret z
 	ret
 
 .danger
-	ld hl, wLowHealthAlarm_Old ; BUG: This should be wLowHealthAlarm.
+	ld hl, wLowHealthAlarm_Old
 	set DANGER_ON_F, [hl]
 	ret
 

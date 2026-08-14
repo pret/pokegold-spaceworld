@@ -10,12 +10,12 @@ TestWildBattleStart::
 	and PAD_CTRL_PAD
 	ret z ; if no directions are down, don't try and trigger a wild encounter
 	call CheckBPressedDebug
-	jp nz, xor_a ; if b button is down, clear acc
+	jp nz, xor_a ; if b button is down in debug mode, don't try and trigger a wild encounter
 	callfar TryWildBattle
 	ld a, [wBattleMode]
 	and a
 	ret z ; if no battle, return
 	ld a, MAPSTATUS_START_WILD_BATTLE
 	call SetMapStatus
-	call xor_a_dec_a
+	call xor_a_dec_a ; set the carry flag to start a wild battle
 	ret

@@ -1104,7 +1104,7 @@ ReviveEffect:
 
 .skip_to_revive
 	xor a
-	ld [wLowHealthAlarm_Old], a ; BUG: This should be wLowHealthAlarm.
+	ld [wLowHealthAlarm_Old], a
 	ld a, [wCurItem]
 	cp ITEM_REVIVE
 	jr z, .revive_half_hp
@@ -1150,7 +1150,7 @@ FullRestoreEffect:
 
 .NotAtFullHealth
 	xor a
-	ld [wLowHealthAlarm_Old], a ; BUG: This should be wLowHealthAlarm.
+	ld [wLowHealthAlarm_Old], a
 	call ReviveFullHP
 	ld a, MON_STATUS
 	call GetPartyParamLocation
@@ -1199,7 +1199,7 @@ RestoreHPEffect:
 	jp nc, StatusHealer_NoEffect
 
 	xor a
-	ld [wLowHealthAlarm_Old], a ; BUG: This should be wLowHealthAlarm.
+	ld [wLowHealthAlarm_Old], a
 	ld a, [wCurItem]
 	cp ITEM_MAX_POTION
 	jr nz, .get_heal_amount
@@ -1687,7 +1687,7 @@ PokeFluteEffect:
 	ld hl, .PlayedTheFlute
 	call PrintText
 
-	ld a, [wLowHealthAlarm_Old] ; BUG: This should be wLowHealthAlarm.
+	ld a, [wLowHealthAlarm_Old]
 	and 1 << DANGER_ON_F
 	jr nz, .dummy
 	; more code was dummied out here

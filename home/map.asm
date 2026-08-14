@@ -289,7 +289,7 @@ MapSetup_Fight::
 	call LoadMapTimeOfDay
 	call EnableLCD
 	call PlayMapMusic
-	ld a, 8 | (1 << MUSIC_FADE_IN_F)
+	ld a, (1 << MUSIC_FADE_IN_F) | 8
 	ld [wMusicFade], a
 	ld b, SGB_MAP_PALS
 	call GetSGBLayout
@@ -309,7 +309,7 @@ MapSetup_Continue::
 	call LoadMapTimeOfDay
 	call EnableLCD
 	call PlayMapMusic
-	ld a, 8 | (1 << MUSIC_FADE_IN_F)
+	ld a, (1 << MUSIC_FADE_IN_F) | 8
 	ld [wMusicFade], a
 	ld b, SGB_MAP_PALS
 	call GetSGBLayout
@@ -335,7 +335,7 @@ MapSetup_NewGame::
 	call InitializeVisibleSprites
 	call EnableLCD
 	call PlayMapMusic
-	ld a, 8 | (1 << MUSIC_FADE_IN_F)
+	ld a, (1 << MUSIC_FADE_IN_F) | 8
 	ld [wMusicFade], a
 	ld b, SGB_MAP_PALS
 	call GetSGBLayout
@@ -700,12 +700,12 @@ GetDestinationWarpPointer:
 	ld a, [wPlayerMapX]
 	sub 4
 	ld e, a
-	ld a, [wCurrMapWarpCount]
+	ld a, [wCurMapWarpCount]
 	ld c, a
 	and a
 	ret z
 
-	ld hl, wCurrMapWarps
+	ld hl, wCurMapWarps
 .next
 	ld a, [hli]
 	cp d
@@ -724,7 +724,7 @@ GetDestinationWarpPointer:
 	ret
 
 .found_warp
-	ld a, [wCurrMapWarpCount]
+	ld a, [wCurMapWarpCount]
 	inc a
 	sub c
 	ld c, a
@@ -811,11 +811,11 @@ GetMapConnection::
 
 ReadWarps::
 	ld a, [hli]
-	ld [wCurrMapWarpCount], a
+	ld [wCurMapWarpCount], a
 	and a
 	ret z
 	ld c, a
-	ld de, wCurrMapWarps
+	ld de, wCurMapWarps
 .next
 	ld b, MAP_LOCATION
 .copy
@@ -832,11 +832,11 @@ ReadWarps::
 
 ReadBGEvents::
 	ld a, [hli]
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	and a
 	ret z
 	ld c, a
-	ld de, wCurrMapBGEvents
+	ld de, wCurMapBGEvents
 .next
 	ld b, BG_EVENT_SIZE
 .copy
@@ -856,7 +856,7 @@ ReadObjectEvents::
 	ld hl, wMap2Object
 	ld a, [de]
 	inc de
-	ld [wCurrMapObjectCount], a
+	ld [wCurMapObjectCount], a
 	and a
 	jr z, .skip
 
@@ -881,7 +881,7 @@ ReadObjectEvents::
 	jr nz, .next
 
 .skip
-	ld a, [wCurrMapObjectCount]
+	ld a, [wCurMapObjectCount]
 	ld c, a
 	ld a, NUM_OBJECTS
 	sub c
@@ -1563,45 +1563,43 @@ _OverworldLoop::
 	pop hl
 	ret
 
-; Byte 1: Bank
-; Byte 2: Unused?
-; Bytes 3-4: Pointer to function
-
 ; Battle-related functions are run in bank $0e, even though they're in bank $f now.
 ; This doesn't change anything in practice because we still call a predef to go to that bank.
 MACRO owloop
 	IF _NARG == 2
-	dbbw BANK(OverworldLoop_\1), \2, OverworldLoop_\1
+		db BANK(OverworldLoop_\1) ; bank
 	ELSE
-	dbbw \3, \2, OverworldLoop_\1
+		db \3 ; incorrect bank
 	ENDC
+	db \2 ; unused?
+	dw OverworldLoop_\1 ; pointer to function
 ENDM
 
 .Pointers:
-	owloop Main, %01010101
-	owloop EventRunning, %01010101
-	owloop Unused_02, %01010101
-	owloop StartBattle, %00110011, $0e
-	owloop ReturnToMain, %01010101
-	owloop UnusedBattle, %00110011, $0e
-	owloop Unused_06, %00110011
-	owloop Unused_07, %00110011
-	owloop StartBattle, %00110011, $0e
-	owloop DebugMapViewer, %01010101
-	owloop UnusedDarkness, %01010101
-	owloop ExitBattle, %00110011, $0e
-	owloop ReturnFromBattle, %00110011
+	owloop Main,             $55
+	owloop EventRunning,     $55
+	owloop Unused_02,        $55
+	owloop StartBattle,      $33, $0e
+	owloop ReturnToMain,     $55
+	owloop UnusedBattle,     $33, $0e
+	owloop Unused_06,        $33
+	owloop Unused_07,        $33
+	owloop StartBattle,      $33, $0e
+	owloop DebugMapViewer,   $55
+	owloop UnusedDarkness,   $55
+	owloop ExitBattle,       $33, $0e
+	owloop ReturnFromBattle, $33
 
 OverworldLoop_Main::
 .loop:
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
-	set JOYPAD_DISABLE_SYNC_MTX_F, [hl]
+	set JOYPAD_DISABLE_SYNC_MUTEX_F, [hl]
 	call UpdateTime
 	call TimeOfDayPals
 	ld hl, wJoypadDisable
 	res JOYPAD_DISABLE_CUTSCENE_F, [hl]
-	res JOYPAD_DISABLE_SYNC_MTX_F, [hl]
+	res JOYPAD_DISABLE_SYNC_MUTEX_F, [hl]
 	call GetJoypad
 
 	call RunMapTextSubroutine
@@ -1637,7 +1635,7 @@ OverworldLoop_Main::
 OverworldLoop_ReturnToMain::
 	ld hl, wJoypadDisable
 	res JOYPAD_DISABLE_CUTSCENE_F, [hl]
-	res JOYPAD_DISABLE_SYNC_MTX_F, [hl]
+	res JOYPAD_DISABLE_SYNC_MUTEX_F, [hl]
 
 	ld hl, wDebugFlags
 	res UNK_DEBUG_FLAG_6_F, [hl]
@@ -1684,8 +1682,8 @@ endc
 	ret
 
 ; A pared-down version of the standard overworld loop.
-; Wild Battles, Warps, Connections, and Scenes won't update.
-; Rendering only works correctly if the Flashlight Effect is on.
+; Wild battles, warps, connections, and scenes won't update.
+; Rendering only works correctly if the flashlight effect is on.
 OverworldLoop_UnusedDarkness::
 .loop
 	call UpdateTime

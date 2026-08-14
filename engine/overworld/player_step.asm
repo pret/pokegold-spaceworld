@@ -465,25 +465,46 @@ ScrollOverworldFlashlight::
 	ld [wRedrawFlashlightBlackDst1 + 1], a
 	ret
 
-MACRO flcolumn
-	db (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2)+1-(\1*2), (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2-1)+(\1*2) ; up
-	db (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2-2)+(\1*2) 
-
-	db (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2-4)+(\1*2), (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2-2)-(\1*2) ; down
-	db (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2-3)+(\1*2), (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2-1)-(\1*2) 
-
-	db (SCREEN_WIDTH/2)+1-(\1*2), (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2-1)+(\1*2), (SCREEN_WIDTH/2)-(\1*2) ; left 
-	db (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2-2)+(\1*2), (SCREEN_WIDTH/2)-(\1*2)
-
-	db (SCREEN_WIDTH/2-4)+(\1*2), (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2-2)-(\1*2), (SCREEN_WIDTH/2)-(\1*2) ; right
-	db (SCREEN_WIDTH/2-3)+(\1*2), (SCREEN_WIDTH/2)-(\1*2), (SCREEN_WIDTH/2-1)-(\1*2), (SCREEN_WIDTH/2)-(\1*2)
-ENDM
 ; The positions of the columns drawn.
 .FlashlightColumns:
-	flcolumn 4
-	flcolumn 3
-	flcolumn 2
-	flcolumn 1
+FOR x, 8, 0, -2 ; 4, 3, 2, 1
+	; up
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x + 1
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 1
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 2
+	; down
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 4
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x - 2
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 3
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x - 1
+	; left
+	db SCREEN_WIDTH / 2 - x + 1
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 1
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 2
+	db SCREEN_WIDTH / 2 - x
+	; right
+	db SCREEN_WIDTH / 2 + x - 4
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x - 2
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 3
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x - 1
+	db SCREEN_WIDTH / 2 - x
+ENDR
 
 .ReadFlashlightDst:
 	ld c, [hl]
