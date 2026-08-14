@@ -93,15 +93,16 @@ DEF MAIL_STRUCT_LENGTH EQU MAIL_LINE_LENGTH + 1 + MAIL_LINE_LENGTH + 1 + PLAYER_
 	const HELD_EVASION_UP
 	const HELD_38
 
+; unimplemented; named after item descriptions
 	const_next 40
 	const_skip
-	const HELD_RAISE_ATTACK     ; unimplemented; named after item descriptions
-	const HELD_RAISE_DEFENSE    ; unimplemented; named after item descriptions
-	const HELD_RAISE_SPEED      ; unimplemented; named after item descriptions
-	const_skip
-	const HELD_RAISE_SP_DEFENSE ; unimplemented; named after item descriptions
+	const HELD_RAISE_ATTACK
+	const HELD_RAISE_DEFENSE
+	const HELD_RAISE_SPEED
+	const_skip ; should be used by ITEM_FIRE_WING
+	const HELD_RAISE_SP_DEFENSE
 	const_skip 2
-	const HELD_RAISE_STATS      ; unimplemented; named after item descriptions
+	const HELD_RAISE_ALL_STATS
 
 	const_next 50
 	const HELD_NORMAL_BOOST
