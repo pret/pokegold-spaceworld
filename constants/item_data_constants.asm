@@ -59,7 +59,7 @@ DEF MAIL_STRUCT_LENGTH EQU MAIL_LINE_LENGTH + 1 + MAIL_LINE_LENGTH + 1 + PLAYER_
 	const HELD_BERRY
 	const HELD_FULL_RESTORE
 	const HELD_LEFTOVERS
-	const HELD_4
+	const HELD_LIFE_TAG
 	const HELD_REVIVE
 	const HELD_RESTORE_PP
 	const HELD_RESTORE_ALL_PP
@@ -93,16 +93,16 @@ DEF MAIL_STRUCT_LENGTH EQU MAIL_LINE_LENGTH + 1 + MAIL_LINE_LENGTH + 1 + PLAYER_
 	const HELD_EVASION_UP
 	const HELD_38
 
+; unimplemented; named after item descriptions
 	const_next 40
-	const HELD_40
-	const HELD_41
-	const HELD_METAL_POWDER
-	const HELD_43
-	const HELD_44
-	const HELD_45
-	const HELD_46
-	const HELD_47
-	const HELD_48
+	const_skip
+	const HELD_RAISE_ATTACK
+	const HELD_RAISE_DEFENSE
+	const HELD_RAISE_SPEED
+	const_skip
+	const HELD_RAISE_SP_DEFENSE
+	const_skip 2
+	const HELD_RAISE_ALL_STATS
 
 	const_next 50
 	const HELD_NORMAL_BOOST
@@ -125,12 +125,12 @@ DEF MAIL_STRUCT_LENGTH EQU MAIL_LINE_LENGTH + 1 + MAIL_LINE_LENGTH + 1 + PLAYER_
 
 	const_next 70
 	const HELD_CATCH_CHANCE
-	const HELD_71
+	const HELD_FLEE_FEATHER
 	const HELD_ESCAPE
 	const HELD_CRITICAL_UP
 	const HELD_QUICK_CLAW
 	const HELD_FLINCH
 	const HELD_AMULET_COIN
 	const HELD_STRANGE_THREAD
-	const HELD_78
+	const HELD_CONFUSE_CLAW
 	const HELD_FOCUS_ORB
