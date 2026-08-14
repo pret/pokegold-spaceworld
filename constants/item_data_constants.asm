@@ -94,15 +94,14 @@ DEF MAIL_STRUCT_LENGTH EQU MAIL_LINE_LENGTH + 1 + MAIL_LINE_LENGTH + 1 + PLAYER_
 	const HELD_38
 
 	const_next 40
-	const HELD_40               ; unimplemented and unreferenced, corresponds to max hp
-	const HELD_RAISE_ATTACK     ; unimplemented, should raise attack by 10
-	const HELD_RAISE_DEFENSE    ; unimplemented, should raise defense by 10
-	const HELD_RAISE_SPEED      ; unimplemented, should raise speed by 10
-	const HELD_RAISE_SP_ATTACK  ; unimplemented and unreferenced, should raise special attack by 10
-	const HELD_RAISE_SP_DEFENSE ; unimplemented, should raise special defense by 10
-	const HELD_46               ; unimplemented and unreferenced, corresponds to accuracy
-	const HELD_47               ; unimplemented and unreferenced, corresponds to evasion
-	const HELD_RAISE_STATS      ; unimplemented, should raise all stats by 5-10
+	const_skip
+	const HELD_RAISE_ATTACK     ; unimplemented; named after item descriptions
+	const HELD_RAISE_DEFENSE    ; unimplemented; named after item descriptions
+	const HELD_RAISE_SPEED      ; unimplemented; named after item descriptions
+	const_skip
+	const HELD_RAISE_SP_DEFENSE ; unimplemented; named after item descriptions
+	const_skip 2
+	const HELD_RAISE_STATS      ; unimplemented; named after item descriptions
 
 	const_next 50
 	const HELD_NORMAL_BOOST
