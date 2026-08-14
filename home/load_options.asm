@@ -4,8 +4,8 @@ InitOptions::
 	ld a, BANK(sOptions)
 	call OpenSRAM
 	ld hl, sOptions
-	ld bc, 7
-	xor a
+	ld bc, wDebugFlags4 - wOptions ; BUG: This doesn't clear wDebugFlags4.
+	xor a                          ; Should be wDebugFlagsEnd - wOptions.
 	call ByteFill
 	call CloseSRAM
 	ret

@@ -1,7 +1,7 @@
 _CheckTrainerBattle:
 	xor a
 	ld bc, NUM_OBJECTS * 2
-	ld hl, wCurrMapInlineTrainers
+	ld hl, wCurMapInlineTrainers
 	call ByteFill
 	ld de, wMap2Object
 	ld a, 2 ; next the player

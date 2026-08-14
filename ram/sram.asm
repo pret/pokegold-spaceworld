@@ -12,6 +12,7 @@ ENDU
 SECTION "Save Game Data", SRAM
 
 sOptions:: ds wOptionsEnd - wOptions
+sDebugFlags:: ds wDebugFlagsEnd - wDebugFlags
 
 sGameData:: ds wGameDataEnd - wGameData
 sGameDataEnd::

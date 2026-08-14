@@ -48,23 +48,23 @@ OldCityPokecenter2F_TextPointers:
 	dw OldCityPokecenter2FText4
 
 OldCityPokecenter2FText1:
-	ld a, $01
+	ld a, LINK_TIMECAPSULE
 	ld [wTempByteValue], a
-	ld hl, wJoypadFlags
-	set 5, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CLOSE_TEXTBOX_F, [hl]
 	callfar Link_Receptionist_Intro
-	ld hl, wJoypadFlags
-	res 5, [hl]
+	ld hl, wJoypadDisable
+	res JOYPAD_DISABLE_CLOSE_TEXTBOX_F, [hl]
 	ret
 
 OldCityPokecenter2FText2:
-	ld a, $02
+	ld a, LINK_TRADECENTER
 	ld [wTempByteValue], a
-	ld hl, wJoypadFlags
-	set 5, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CLOSE_TEXTBOX_F, [hl]
 	callfar Link_Receptionist_Intro
-	ld hl, wJoypadFlags
-	res 5, [hl]
+	ld hl, wJoypadDisable
+	res JOYPAD_DISABLE_CLOSE_TEXTBOX_F, [hl]
 	ret
 
 OldCityPokecenter2FText3:
@@ -99,7 +99,7 @@ OldCityPokecenter2FTextString4:
 	done
 
 ; Supposed to be wMovementObject, wMovementDataBank, wMovementDataAddr in order.
-OldCityPokecenter2FMovementDataPointer_Old:
+OldCityPokecenter2FMovementDataPointer_Old: ; unreferenced
 	db OLD_CITY_POKECENTER_2F_TIME_CAPSULE_RECEPTIONIST
 	db BANK(OldCityPokecenter2FMovement1)
 	dw OldCityPokecenter2FMovement1

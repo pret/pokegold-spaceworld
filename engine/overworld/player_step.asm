@@ -466,27 +466,45 @@ ScrollOverworldFlashlight::
 	ret
 
 ; The positions of the columns drawn.
-; TODO: Wrap these in neat macros.
 .FlashlightColumns:
-	db $02, $03, $02, $11, $02, $02, $02, $10 ; up
-	db $02, $0e, $02, $00, $02, $0f, $02, $01 ; down
-	db $03, $02, $11, $02, $02, $02, $10, $02 ; left
-	db $0e, $02, $00, $02, $0f, $02, $01, $02 ; right
-
-	db $04, $05, $04, $0f, $04, $04, $04, $0e
-	db $04, $0c, $04, $02, $04, $0d, $04, $03
-	db $05, $04, $0f, $04, $04, $04, $0e, $04
-	db $0c, $04, $02, $04, $0d, $04, $03, $04
-
-	db $06, $07, $06, $0d, $06, $06, $06, $0c
-	db $06, $0a, $06, $04, $06, $0b, $06, $05
-	db $07, $06, $0d, $06, $06, $06, $0c, $06
-	db $0a, $06, $04, $06, $0b, $06, $05, $06
-
-	db $08, $09, $08, $0b, $08, $08, $08, $0a
-	db $08, $08, $08, $06, $08, $09, $08, $07
-	db $09, $08, $0b, $08, $08, $08, $0a, $08
-	db $08, $08, $06, $08, $09, $08, $07, $08
+FOR x, 8, 0, -2 ; 4, 3, 2, 1
+	; up
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x + 1
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 1
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 2
+	; down
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 4
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x - 2
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 3
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x - 1
+	; left
+	db SCREEN_WIDTH / 2 - x + 1
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 1
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 2
+	db SCREEN_WIDTH / 2 - x
+	; right
+	db SCREEN_WIDTH / 2 + x - 4
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x - 2
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 + x - 3
+	db SCREEN_WIDTH / 2 - x
+	db SCREEN_WIDTH / 2 - x - 1
+	db SCREEN_WIDTH / 2 - x
+ENDR
 
 .ReadFlashlightDst:
 	ld c, [hl]

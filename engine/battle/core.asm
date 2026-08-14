@@ -1339,8 +1339,8 @@ EnemyMonFainted:
 	prompt
 
 StopDangerSound:
-	inc a
-	ld [wBattleLowHealthAlarm], a ; TODO: should this be wLowHealthAlarm?
+	inc a                               ; BUG: wLowHealthAlarm needs to be xor a'd for this to work.
+	ld [wLowHealthAlarmStopUpdates], a  ; This is supposed to stop the alarm from resuming during fadeout.
 	ret
 
 CheckEnemyTrainerDefeated:
@@ -1546,12 +1546,12 @@ UpdateFaintedPlayerMon:
 	predef SmallFarFlagAction
 	ld hl, wEnemySubStatus3
 	res SUBSTATUS_IN_LOOP, [hl]
-	ld a, [wLowHealthAlarmBuffer]
+	ld a, [wLowHealthAlarm_Old]
 	bit DANGER_ON_F, a
 	jr z, .no_low_health_alarm
 
 	ld a, $ff
-	ld [wLowHealthAlarmBuffer], a
+	ld [wLowHealthAlarm_Old], a
 	call WaitSFX
 
 .no_low_health_alarm
@@ -1635,8 +1635,8 @@ ForcePlayerMonChoice:
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
 	jr nz, .skip_link
-; BUG TODO: Doesn't this result in invalid wBattlePlayerAction arguments?
-	inc a ; BATTLEPLAYERACTION_USEITEM
+	assert LINK_COLOSSEUM - 1 == LINK_TRADECENTER
+	inc a ; BUG: This should be "dec a", "inc a" sets wBattlePlayerAction to $04, which is invalid.
 	ld [wBattlePlayerAction], a
 	call LinkBattleSendRecieveAction
 
@@ -1737,10 +1737,10 @@ LostAgainstText:
 	prompt
 
 MonFaintedAnimation:
-	ld a, [wJoypadFlags]
+	ld a, [wJoypadDisable]
 	push af
-	set 6, a ; JOYPAD_DISABLE_MON_FAINT_F
-	ld [wJoypadFlags], a
+	set JOYPAD_DISABLE_SYNC_MUTEX_F, a
+	ld [wJoypadDisable], a
 
 	ld b, 7
 
@@ -1783,7 +1783,7 @@ MonFaintedAnimation:
 	dec b
 	jr nz, .OuterLoop
 	pop af
-	ld [wJoypadFlags], a
+	ld [wJoypadDisable], a
 	ret
 
 .Spaces:
@@ -3044,7 +3044,7 @@ UpdatePlayerHUD:
 	ld a, [hli]
 	or [hl]
 	jr z, .no_danger
-	ld a, [wBattleLowHealthAlarm]
+	ld a, [wLowHealthAlarmStopUpdates]
 	and a
 	ret nz
 	ld a, [wPlayerHPPal]
@@ -3052,14 +3052,14 @@ UpdatePlayerHUD:
 	jr z, .danger
 
 .no_danger
-	ld hl, wLowHealthAlarmBuffer
+	ld hl, wLowHealthAlarm_Old
 	bit DANGER_ON_F, [hl]
 	ld [hl], 0
 	ret z
 	ret
 
 .danger
-	ld hl, wLowHealthAlarmBuffer
+	ld hl, wLowHealthAlarm_Old
 	set DANGER_ON_F, [hl]
 	ret
 
@@ -3236,7 +3236,7 @@ BattleMenu_Pack:
 
 	callfar GetPocket2Status
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	call ClearPalettes
 	callfar DrawBackpack
 
@@ -3351,7 +3351,7 @@ BattleMenuPack_SelectItem:
 .other_bags:
 	callfar FlipPocket2Status
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ld [wItemEffectSucceeded], a
 	ret
 
@@ -3713,7 +3713,7 @@ MoveSelectionScreen::
 	jr nz, .interpret_joypad
 
 	call MoveInfoBox
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwappingMove]
 	and a
 	jr z, .interpret_joypad
 	hlcoord 1, 18 - (NUM_MOVES * 2)
@@ -3744,7 +3744,7 @@ MoveSelectionScreen::
 	push af
 
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwappingMove], a
 	ld a, [wMenuCursorY]
 	dec a
 	ld [wMenuCursorY], a
@@ -3958,7 +3958,7 @@ MoveSelectionScreen::
 	bit DEBUG_BATTLE_F, a
 	jp nz, .DebugMovePreview
 
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwappingMove]
 	and a
 	jr z, .start_swap
 	ld hl, wBattleMonMoves
@@ -3976,14 +3976,14 @@ MoveSelectionScreen::
 	ld a, [hl]
 	and $f
 	ld b, a
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwappingMove]
 	swap a
 	add b
 	ld [hl], a
 	jr .swap_moves_in_party_struct
 
 .not_swapping_disabled_move
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwappingMove]
 	cp b
 	jr nz, .swap_moves_in_party_struct
 	ld a, [hl]
@@ -4007,12 +4007,12 @@ MoveSelectionScreen::
 	add hl, bc
 	call .swap_bytes
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwappingMove], a
 	jp MoveSelectionScreen
 
 .swap_bytes
 	push hl
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwappingMove]
 	dec a
 	ld c, a
 	ld b, 0
@@ -4034,7 +4034,7 @@ MoveSelectionScreen::
 
 .start_swap
 	ld a, [wMenuCursorY]
-	ld [wSelectedSwapPosition], a
+	ld [wSwappingMove], a
 	jp MoveSelectionScreen
 
 MoveInfoBox:

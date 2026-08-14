@@ -6,11 +6,11 @@ FightDebugMenu:
 	ld a, (1 << EARTHBADGE)
 	ld [wBadges], a
 
-	ld hl, wItems
-	ld de, .ItemTable
+	ld hl, wNumBagItems ; BUG: wNumBagItems is expected to be $FF when its $00.
+	ld de, .ItemTable   ; No items are added as the bag has no terminator.
 .AddItemLoop:
 	ld a, [de]
-	cp a, -1
+	cp -1
 	jr z, .AddItemEnd
 	inc de
 	ld [wCurItem], a
@@ -117,7 +117,7 @@ endr
 	db ITEM_POKE_BALL,    99
 	db ITEM_FULL_RESTORE, 99
 	db ITEM_MAX_REVIVE,   99
-	db $FF
+	db -1
 
 .CountUp:
 	inc b ; monster number
@@ -938,4 +938,4 @@ endr
 	db ITEM_POTION,       99
 	db ITEM_ESCAPE_ROPE,  99
 	db ITEM_REPEL,        99
-	db $FF
+	db -1

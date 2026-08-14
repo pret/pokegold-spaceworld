@@ -315,7 +315,7 @@ SECTION "Map Buffer", WRAM0
 wMapBuffer::
 wMapScriptNumber:: db
 wMapScriptNumberLocation:: dw
-wMapScriptPointerLocation:: dw ; TODO
+wMapScriptPointerLocation:: dw
 ; setting bit 7 seems to disable overworld updates and player control?
 ; setting bit 6 disables map connections
 wOverworldFlags:: db
@@ -743,7 +743,7 @@ wEnemyMinimized:: db
 wAlreadyFailed:: db
 
 wBattleParticipantsIncludingFainted:: db
-wBattleLowHealthAlarm:: db
+wLowHealthAlarmStopUpdates:: db
 wPlayerMinimized:: db
 
 wPlayerScreens:: db
@@ -1071,9 +1071,7 @@ wFXAnimID:: dw
 wPlaceBallsX:: db
 wPlaceBallsY:: db
 
-; Both RBY and final GSC write directly to wLowHealth, this prototype writes it here.
-; TODO: Investigate how it actually functions.
-wLowHealthAlarmBuffer:: db
+wLowHealthAlarm_Old:: db ; BUG: wLowHealthAlarm should be used instead
 
 wTileAnimationTimer:: db
 
@@ -1153,8 +1151,10 @@ wBackpackAndKeyItemsScrollPosition:: db
 wBillsPCScrollPosition:: db
 wTMHolderScrollPosition:: db
 
-; TODO: change to wSwitchItem, wSwitchMon, wSwappingMove
-wSelectedSwapPosition:: db
+wSwitchItem::
+wSwitchMon::
+wSwappingMove::
+	db
 wMenuScrollPosition:: db
 
 wTextDest:: dw
@@ -1475,6 +1475,7 @@ wActiveFrame:: db
 ; bit 0: 1-frame text delay
 ; bit 1: when unset, no text delay
 wTextboxFlags::  db
+wOptionsEnd::
 
 wDebugFlags:: db
 ; Bit 0: Debug battle indicator
@@ -1483,7 +1484,7 @@ wDebugFlags:: db
 wDebugFlags2:: db
 wDebugFlags3:: db
 wDebugFlags4:: db
-wOptionsEnd::
+wDebugFlagsEnd::
 
 
 SECTION "Game Data", WRAM0
@@ -1661,15 +1662,14 @@ wGameModeFlags:: db
 
 	ds 1
 
-; TODO: change to wJoypadDisable, constantify flags
-wJoypadFlags:: db
+wJoypadDisable:: db
 ; 76543210
 ; ||||\__/
-; ||||  \-- unkn
-; |||\----- set for rival intro textbox
-; ||\------ don't wait for keypress to close text box
+; ||||  \-- unused
+; |||\----- in cutscene/battle
+; ||\------ autoclose text box
 ; |\------- joypad sync mtx
-; \-------- joypad disabled
+; \-------- joypad sgb transfer
 	ds 1
 wMovementFlags_Old:: db
 
@@ -1689,23 +1689,23 @@ wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES
 ; warp data
 wWarpNumber:: db
 
-wCurrMapWarpCount:: db
+wCurMapWarpCount:: db
 
-wCurrMapWarps::
-REPT 32 ; TODO: add a MAX_NUM_WARP_EVENTS constant
+wCurMapWarps::
+REPT MAX_NUM_WARP_EVENTS
 	ds WARP_EVENT_SIZE - 2
 ENDR
 
 wCurMapBGEventCount:: db
 
-wCurrMapBGEvents::
-REPT 16 ; TODO: add a MAX_NUM_BG_EVENTS constant
+wCurMapBGEvents::
+REPT MAX_NUM_BG_EVENTS
 	ds BG_EVENT_SIZE
 ENDR
 
-wCurrMapObjectCount:: db
+wCurMapObjectCount:: db
 
-wCurrMapInlineTrainers::
+wCurMapInlineTrainers::
 REPT NUM_OBJECTS
 	ds 2 ; inline trainers. each pair of bytes is direction, distance
 ENDR

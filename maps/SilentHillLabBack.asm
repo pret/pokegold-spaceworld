@@ -78,8 +78,8 @@ SilentHillLabBack_TextPointers::
 	dw SilentHillLabBackFunc4
 
 SilentHillLabBackScript1:
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, 0
 	call FreezeAllOtherObjects
 	ld a, 0
@@ -124,8 +124,8 @@ SilentHillLabBackScript3:
 	ret
 
 SilentHillLabBackRivalChoosePokemon:
-	ld hl, wJoypadFlags
-	set 4, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_LAB_BACK_RIVAL
 	call FreezeAllOtherObjects
 	ld hl, SilentHillLabBackMovementPointers
@@ -261,8 +261,8 @@ ConfirmPokemonSelection:
 	ld [wRivalHouseSceneID], a
 	ld hl, SilentHillLabBackTextString8
 	call PrintText
-	ld hl, wJoypadFlags
-	set 5, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CLOSE_TEXTBOX_F, [hl]
 	ld a, [wPlayerStarter]
 	ld [wCurPartySpecies], a
 	ld a, 5

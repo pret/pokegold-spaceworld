@@ -343,7 +343,7 @@ ExitBattle:
 
 .CleanUpBattleRAM:
 	xor a
-	ld [wLowHealthAlarmBuffer], a
+	ld [wLowHealthAlarm_Old], a
 	ld [wBattleMode], a
 	ld [wBattleType], a
 	ld [wAttackMissed], a
@@ -368,7 +368,7 @@ ExitBattle:
 	set 0, [hl]
 	call WaitSFX
 
-	ld a, $e3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	ld hl, wToolgearFlags
 	res HIDE_TOOLGEAR_F, [hl]

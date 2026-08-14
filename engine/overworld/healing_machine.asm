@@ -7,11 +7,11 @@ AnimateHealingMachine::
 	ld hl, vChars0 tile $7c
 	lb bc, BANK(PokeCenterFlashingMonitorAndHealBall), 2
 	call Request2bpp
-	ld d, 2
-	call LoadHealingMachineSprites
+	ld d, LEFT ; make the nurse turn to face the machine
+	call SetPokecenterNurseFacing
 	ldh a, [rOBP1]
 	push af
-	ld a, $e0
+	ld a, %11100000
 	ldh [rOBP1], a
 	ld hl, wShadowOAMSprite32
 	ld de, PokeCenterOAMData
@@ -29,8 +29,8 @@ AnimateHealingMachine::
 	call FlashSprite8Times
 	ld c, 32
 	call DelayFrames
-	ld d, 0
-	call LoadHealingMachineSprites
+	ld d, DOWN ; make the nurse turn to face the player
+	call SetPokecenterNurseFacing
 	pop af
 	ldh [rOBP1], a
 	call UngroupHealingMachineSprites
@@ -52,8 +52,8 @@ PokeCenterOAMData:
 	dbsprite  4,  6,  0,  0, $7d, OAM_PAL1
 	dbsprite  5,  6,  0,  0, $7d, OAM_PAL1 | OAM_XFLIP
 
-LoadHealingMachineSprites:
-	ld a, 2
+SetPokecenterNurseFacing:
+	ld a, SILENT_HILL_POKECENTER_NURSE
 	call SetObjectFacing
 	call UpdateSprites
 	ret

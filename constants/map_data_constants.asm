@@ -66,5 +66,34 @@ DEF NUM_SPAWNS EQU 18
 ; size of each spawn point data
 DEF SPAWN_POINT_SIZE EQU 4
 
+DEF MAX_NUM_WARP_EVENTS EQU 32
+
+DEF MAX_NUM_BG_EVENTS EQU 16
+
 ; size of sprite sets (see data/maps/sprite_sets.asm)
 DEF SPRITE_SET_LENGTH EQU 10
+
+; CutReplacementBlocks indexes (see data/collision/cut_blocks.asm)
+	const_def 4
+	const BLOCK_GRASS                        ; $04
+	const_skip 31
+	const BLOCK_TREES_TOP_LEFT_CORNER        ; $24
+	const BLOCK_TREES_TOP_CENTER             ; $25
+	const BLOCK_TREES_TOP_RIGHT_CORNER       ; $26
+	const_skip
+	const BLOCK_TREES_MIDDLE_LEFT            ; $28
+	const_skip
+	const BLOCK_TREES_MIDDLE_RIGHT           ; $2a
+	const_skip
+	const BLOCK_TREES_BOTTOM_LEFT_CORNER     ; $2c
+	const BLOCK_TREES_BOTTOM_CENTER          ; $2d
+	const BLOCK_TREES_BOTTOM_RIGHT_CORNER    ; $2e
+	const_skip
+	const BLOCK_TREES_TOP_CENTER_CUT_TREE    ; $30 (variant of $25)
+	const BLOCK_TREES_MIDDLE_RIGHT_CUT_TREE  ; $31 (variant of $2A)
+	const BLOCK_1_TREE_TOP_LEFT_CUT_TREE     ; $32 (variant of $34)
+	const BLOCK_1_TREE_BOTTOM_RIGHT_CUT_TREE ; $33 (variant of $35)
+	const BLOCK_1_TREE_TOP_LEFT              ; $34
+	const BLOCK_1_TREE_BOTTOM_RIGHT          ; $35
+	const_skip 5
+	const BLOCK_TALL_GRASS                   ; $3b (variant of $04)

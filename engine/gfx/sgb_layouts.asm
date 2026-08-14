@@ -603,18 +603,18 @@ LoadPokerCardPalettes:
 	jp PushSGBPals
 
 PushSGBPals:
-	ld a, [wJoypadFlags]
+	ld a, [wJoypadDisable]
 	push af
-	set 7, a
-	ld [wJoypadFlags], a
+	set JOYPAD_DISABLE_SGB_TRANSFER_F, a
+	ld [wJoypadDisable], a
 	call _PushSGBPals
 	pop af
-	ld [wJoypadFlags], a
+	ld [wJoypadDisable], a
 	ret
 
 _PushSGBPals:
 	ld a, [hl]
-	and $7
+	and JOYPAD_DISABLE_SGB_TRANSFER_F
 	ret z
 	ld b, a
 .loop
@@ -653,10 +653,10 @@ _PushSGBPals:
 	ret
 
 CheckSGB:
-	ld a, [wJoypadFlags]
+	ld a, [wJoypadDisable]
 	push af
-	set 7, a
-	ld [wJoypadFlags], a
+	set JOYPAD_DISABLE_SGB_TRANSFER_F, a
+	ld [wJoypadDisable], a
 
 	xor a
 	ldh [rJOYP], a
@@ -673,7 +673,7 @@ CheckSGB:
 	call _PushSGBPals
 .skip
 	pop af
-	ld [wJoypadFlags], a
+	ld [wJoypadDisable], a
 	ret
 
 _InitSGBBorderPals:
@@ -808,7 +808,7 @@ SGBBorder_PushBGPals:
 	ld bc, $100 tiles
 	call CopyData
 	call DrawDefaultTiles
-	ld a, $e3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	ld hl, PalTrnPacket
 	call _PushSGBPals
@@ -842,7 +842,7 @@ SGBBorder_MorePalPushing:
 	ld bc, $80
 	call CopyData
 	call DrawDefaultTiles
-	ld a, $e3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	ld hl, PctTrnPacket
 	call _PushSGBPals
@@ -852,7 +852,7 @@ SGBBorder_MorePalPushing:
 
 SGBBorder_YetMorePalPushing:
 	call DisableLCD
-	ld a, $e4
+	ld a, %11100100
 	ldh [rBGP], a
 	ld de, vChars1
 	ld b, $80
@@ -866,7 +866,7 @@ SGBBorder_YetMorePalPushing:
 	dec b
 	jr nz, .loop
 	call DrawDefaultTiles
-	ld a, $e3
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	ld hl, ChrTrnPacket
 	call _PushSGBPals

@@ -33,7 +33,8 @@ CheckStartmenuSelectHook:
 	call FarCall_hl
 	ld hl, hStartmenuCloseAndSelectHookEnable
 	xor a
-	ld [hli], a ; clear hook enable and ???
+	ld [hli], a
+	assert hStartmenuCloseAndSelectHookEnable + 1 == hStartmenuCloseAndSelectHookTemp
 	ld [hl], a
 	dec a
 	ret

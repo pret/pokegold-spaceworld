@@ -9,8 +9,8 @@ Unreferenced_CheckInlineTrainers:
 	ldh [hSeenTrainerDirection], a
 	ld a, FOLLOWER + 1
 	ldh [hSeenTrainerObject], a
-	ld hl, wCurrMapInlineTrainers + (2 * FOLLOWER_OBJECT_INDEX) ; Skip wReservedObjectStruct and the player's struct
-	ld de, 2 ; Length of wCurrMapInlineTrainers entries
+	ld hl, wCurMapInlineTrainers + (2 * FOLLOWER_OBJECT_INDEX) ; Skip wReservedObjectStruct and the player's struct
+	ld de, 2 ; Length of wCurMapInlineTrainers entries
 	ld b, NUM_OBJECTS - FOLLOWER_OBJECT_INDEX
 .loop
 	ld a, [hl]
@@ -34,8 +34,8 @@ Unreferenced_CheckInlineTrainers:
 	ret
 
 Unreferenced_TestTrainerWalkToPlayer:
-	ld hl, wJoypadFlags
-	set 6, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_SYNC_MUTEX_F, [hl]
 	ldh a, [hSeenTrainerObject]
 	call FreezeAllOtherObjects
 	ldh a, [hSeenTrainerObject]

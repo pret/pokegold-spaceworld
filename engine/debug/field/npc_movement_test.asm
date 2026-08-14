@@ -14,7 +14,7 @@ FieldDebug_NPCMovementTest:
 	ld a, [wMapId]
 	cp MAP_RIVAL_HOUSE
 	jr nz, .not_here
-	ld a, 2
+	ld a, RIVAL_HOUSE_RIVALS_SISTER
 	ld hl, .MovementData
 	call LoadMovementDataPointer
 	ld de, SFX_SAFARI_ZONE_PA

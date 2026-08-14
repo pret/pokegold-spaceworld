@@ -65,7 +65,7 @@ RefreshPlayerCoords::
 	ld e, a
 
 	ld a, [wObjectFollow_Leader]
-	cp 1
+	cp FOLLOWER_OBJECT
 	ret nz
 	ld a, [wObjectFollow_Follower]
 	and a
@@ -353,10 +353,10 @@ CheckFacingBGEvent::
 ; Convert the coordinates at de to within-boundaries coordinates.
 GetBGEvent::
 	ld a, d
-	sub 4
+	sub BG_EVENT_SIZE
 	ld d, a
 	ld a, e
-	sub 4
+	sub BG_EVENT_SIZE
 	ld e, a
 ; If there are no BG events, we don't need to be here.
 	ld a, [wCurMapBGEventCount]
@@ -365,7 +365,7 @@ GetBGEvent::
 
 ; Checks to see if you are facing a BG event.  If so, sets carry.
 	ld c, a
-	ld hl, wCurrMapBGEvents
+	ld hl, wCurMapBGEvents
 .loop
 	ld a, [hli]
 	cp e

@@ -3,6 +3,7 @@
 	object_const_def
 	const RIVAL_HOUSE_RIVALS_SISTER
 	const RIVAL_HOUSE_KEN
+	EXPORT RIVAL_HOUSE_RIVALS_SISTER ; used in FieldDebug_NPCMovementTest
 
 RivalHouse_MapEvents::
 	dw $4000 ; unknown

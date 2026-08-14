@@ -23,7 +23,7 @@ CheckInlineTrainer::
 	add hl, de
 	ld a, [hl]
 	add a, a
-	ld hl, wCurrMapInlineTrainers
+	ld hl, wCurMapInlineTrainers
 	add a, l
 	ld l, a
 	jr nc, .startbattle

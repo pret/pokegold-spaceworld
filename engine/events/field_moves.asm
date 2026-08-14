@@ -92,15 +92,7 @@ GetCutReplacementBlock:
 	scf
 	ret
 
-; TODO - constantize Cut block IDs
-
-CutReplacementBlocks:
-; replacement block, facing block
-	db $30, $25
-	db $31, $2A
-	db $32, $34
-	db $33, $35
-	db -1
+INCLUDE "data/collision/cut_blocks.asm"
 
 CheckCuttableTile:
 	call GetFacingTileCoord
@@ -108,13 +100,13 @@ CheckCuttableTile:
 	jr nc, .fail
 	call GetBlockLocation
 	ld a, [hl]
-	cp $3b
+	cp BLOCK_TALL_GRASS
 	jr nz, .fail
 	ld a, l
 	ld [wMapBlocksAddress], a
 	ld a, h
 	ld [wMapBlocksAddress + 1], a
-	ld a, $04
+	ld a, BLOCK_GRASS
 	ld [wReplacementBlock], a
 	set_field_script DoCut
 	xor a

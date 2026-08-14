@@ -83,7 +83,7 @@ PartyMenuSelect::
 	ld [wPartyMenuCursor], a
 	ldh a, [hJoySum]
 	ld b, a
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchMon]
 	and a
 	jp nz, .swap_mons
 	ld a, [wPartyCount]
@@ -116,7 +116,7 @@ PartyMenuSelect::
 .done
 	call PartyMenu_ClearCursor
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchMon], a
 	ld [wPartyMenuActionText], a
 	call InitPartyMenuLayout
 	jp PartyMenuSelect
@@ -217,7 +217,7 @@ PlacePartyMember::
 	pop hl
 
 	push hl
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchMon]
 	and a
 	jr z, .not_switching
 

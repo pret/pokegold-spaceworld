@@ -218,7 +218,7 @@ UpdateChannels:
 
 .Channel1:
 	ld a, [wLowHealthAlarm]
-	bit 7, a
+	bit DANGER_ON_F, a
 	ret nz
 
 .Channel5:

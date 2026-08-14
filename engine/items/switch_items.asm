@@ -1,5 +1,5 @@
 SwitchItemsInBag::
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	and a
 	jr z, .init
 	ld b, a
@@ -12,10 +12,10 @@ SwitchItemsInBag::
 	ld a, [hl]
 	cp -1
 	ret z
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	dec a
-	ld [wSelectedSwapPosition], a
-	ld a, [wSelectedSwapPosition]
+	ld [wSwitchItem], a
+	ld a, [wSwitchItem]
 	call ItemSwitch_GetNthItem
 	push hl
 	ld a, [wScrollingMenuCursorPosition]
@@ -26,7 +26,7 @@ SwitchItemsInBag::
 	jr z, .combine_stacks
 	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	cp c
 	jr c, .above
 	jr .below
@@ -34,24 +34,24 @@ SwitchItemsInBag::
 .init:
 	ld a, [wScrollingMenuCursorPosition]
 	inc a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ret
 
 .trivial:
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ret
 
 .below:
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	call ItemSwitch_CopyItemToBuffer
 	ld a, [wScrollingMenuCursorPosition]
 	ld d, a
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	ld e, a
 	call ItemSwitch_GetItemOffset
 	push bc
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	call ItemSwitch_GetNthItem
 	dec hl
 	push hl
@@ -65,19 +65,19 @@ SwitchItemsInBag::
 	ld a, [wScrollingMenuCursorPosition]
 	call ItemSwitch_CopyBufferToItem
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ret
 
 .above:
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	call ItemSwitch_CopyItemToBuffer
 	ld a, [wScrollingMenuCursorPosition]
 	ld d, a
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	ld e, a
 	call ItemSwitch_GetItemOffset
 	push bc
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	call ItemSwitch_GetNthItem
 	ld d, h
 	ld e, l
@@ -88,11 +88,11 @@ SwitchItemsInBag::
 	ld a, [wScrollingMenuCursorPosition]
 	call ItemSwitch_CopyBufferToItem
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ret
 
 .combine_stacks:
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	call ItemSwitch_GetNthItem
 	inc hl
 	push hl
@@ -110,13 +110,13 @@ SwitchItemsInBag::
 	call ItemSwitch_GetNthItem
 	inc hl
 	ld [hl], MAX_ITEM_STACK
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	call ItemSwitch_GetNthItem
 	inc hl
 	pop af
 	ld [hl], a
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ret
 
 .merge_stacks:
@@ -130,22 +130,22 @@ SwitchItemsInBag::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	cp [hl]
 	jr nz, .not_combining_last_item
 	dec [hl]
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	call ItemSwitch_GetNthItem
 	ld [hl], -1 ; end
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ret
 
 .not_combining_last_item:
 	dec [hl]
 	call ItemSwitch_GetItemFormatSize
 	push bc
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchItem]
 	call ItemSwitch_GetNthItem
 	pop bc
 	push hl
@@ -158,7 +158,7 @@ SwitchItemsInBag::
 	cp -1 ; end?
 	jr nz, .copy_loop
 	xor a
-	ld [wSelectedSwapPosition], a
+	ld [wSwitchItem], a
 	ret
 
 ItemSwitch_CopyItemToBuffer:

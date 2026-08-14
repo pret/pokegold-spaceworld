@@ -1,5 +1,5 @@
 _SwitchPartyMons::
-	ld a, [wSelectedSwapPosition]
+	ld a, [wSwitchMon]
 	dec a
 	ld [wSwitchMonFrom], a
 	ld b, a

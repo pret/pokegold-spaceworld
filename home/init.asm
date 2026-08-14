@@ -3,8 +3,8 @@ Reset::
 	call ClearPalettes
 	ei
 
-	ld hl, wJoypadFlags
-	set 7, [hl]
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_SGB_TRANSFER_F, [hl]
 
 	ld c, 32
 	call DelayFrames
