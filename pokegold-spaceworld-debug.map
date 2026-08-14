@@ -34,7 +34,7 @@ ROM0 bank #0:
 	EMPTY: $005b-$005f ($0005 bytes)
 	SECTION: $0060-$0062 ($0003 bytes) ["Joypad interrupt vector"]
 	EMPTY: $0063-$0067 ($0005 bytes)
-	SECTION: $0068-$00ff ($0098 bytes) ["High Home Garbage"]
+	SECTION: $0068-$00ff ($0098 bytes) ["High Home Overdump"]
 	SECTION: $0100-$0103 ($0004 bytes) ["Entry point"]
 	EMPTY: $0104-$014d ($004a bytes)
 	SECTION: $014e-$014f ($0002 bytes) ["Global check value"]
@@ -1098,7 +1098,7 @@ ROM0 bank #0:
 	         $3e19 = SpecialMapMusic.normal
 	         $3e1b = GetMapMusic
 	         $3e2e = GetMapMusic.not_route
-	SECTION: $3e32-$3fff ($01ce bytes) ["Home Garbage"]
+	SECTION: $3e32-$3fff ($01ce bytes) ["Home Overdump"]
 	         $3e32 = Unreferenced_Corrupt__InterlaceMergeSpriteBuffers.interlaceLoopFlipped
 	         $3e39 = Unreferenced_Corrupt_GetPartyParamLocation_Old
 	         $3e4c = Unreferenced_Corrupt_DoItemEffect_Old
@@ -1867,7 +1867,7 @@ ROMX bank #1:
 	         $7c12 = DisplayOptionsMenu.OptionsText_Cancel
 	         $7c17 = DisplayOptionsMenu.OptionsText_FrameType
 	         $7c22 = TextSpeedOptionData
-	SECTION: $7c2a-$7fff ($03d6 bytes) ["Bank 01 Garbage"]
+	SECTION: $7c2a-$7fff ($03d6 bytes) ["Bank 01 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #2:
@@ -2216,7 +2216,7 @@ ROMX bank #2:
 	         $666c = SGBBorderTilemap
 	         $6a9c = SGBBorderPalettes
 	         $6b1c = SGBBorderGFX
-	SECTION: $6ebc-$7fff ($1144 bytes) ["Bank 02 Garbage"]
+	SECTION: $6ebc-$7fff ($1144 bytes) ["Bank 02 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #3:
@@ -3114,7 +3114,7 @@ ROMX bank #3:
 	         $7db6 = KnowsMove.loop
 	         $7dbf = KnowsMove.knows_move
 	         $7dc7 = AlreadyKnowsMoveText
-	SECTION: $7de0-$7fff ($0220 bytes) ["Bank 03 Garbage"]
+	SECTION: $7de0-$7fff ($0220 bytes) ["Bank 03 Overdump"]
 	         $7de0 = Unreferenced_Corrupt_AlreadyKnowsMoveText1
 	         $7de4 = Unreferenced_Corrupt_AlreadyKnowsMoveText2
 	         $7df3 = Unreferenced_Corrupt_KnowsMove
@@ -3539,7 +3539,7 @@ ROMX bank #4:
 	         $73b1 = AllTrainerCardGFXEnd
 	         $73b1 = TrainerCardLeadersGFX
 	         $7ba1 = TrainerCardLeadersGFXEnd
-	SECTION: $7ba1-$7fff ($045f bytes) ["Bank 04 Garbage"]
+	SECTION: $7ba1-$7fff ($045f bytes) ["Bank 04 Overdump"]
 	         $7ba3 = Unreferenced_UnusedLeaderNameGFX
 	TOTAL EMPTY: $0000 bytes
 
@@ -3718,7 +3718,7 @@ ROMX bank #5:
 	         $4f16 = Unreferenced_CheckInlineTrainers.found
 	         $4f22 = Unreferenced_TestTrainerWalkToPlayer
 	         $4f46 = Unreferenced_TestTrainerWalkToPlayer.MovementData
-	SECTION: $4f4a-$7fff ($30b6 bytes) ["Bank 05 Garbage"]
+	SECTION: $4f4a-$7fff ($30b6 bytes) ["Bank 05 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #6:
@@ -3738,7 +3738,7 @@ ROMX bank #6:
 	         $7400 = House_GFX
 	         $7a00 = House_Meta
 	         $7e00 = House_Coll
-	SECTION: $7f00-$7fff ($0100 bytes) ["Bank 06 Garbage"]
+	SECTION: $7f00-$7fff ($0100 bytes) ["Bank 06 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #7:
@@ -3986,7 +3986,7 @@ ROMX bank #9:
 	         $4d15 = BuySellToss_UpdateQuantityDisplayAndPrice
 	         $4d64 = TossItem_MenuHeader
 	         $4d6c = BuyItem_MenuHeader
-	SECTION: $4d74-$7fff ($328c bytes) ["Bank 09 Garbage"]
+	SECTION: $4d74-$7fff ($328c bytes) ["Bank 09 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #10:
@@ -4346,7 +4346,7 @@ ROMX bank #10:
 	         $5f1a = Link_Receptionist_Old.next
 	         $5f30 = Link_Receptionist_Old.end
 	         $5f33 = Text_Receptionist_Old_Wait
-	SECTION: $5f3e-$7fff ($20c2 bytes) ["Bank 0a Garbage"]
+	SECTION: $5f3e-$7fff ($20c2 bytes) ["Bank 0a Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #11:
@@ -4902,7 +4902,7 @@ ROMX bank #11:
 	         $7821 = BrightMossDescription
 	         $783e = WhirlpoolDescription
 	         $785e = BounceDescription
-	SECTION: $786f-$7fff ($0791 bytes) ["Bank 0b Garbage"]
+	SECTION: $786f-$7fff ($0791 bytes) ["Bank 0b Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #12:
@@ -4923,7 +4923,7 @@ ROMX bank #12:
 	         $7700 = Pokecenter_Meta
 	         $7b00 = Pokecenter_Coll
 	         $7c00 = CommonExteriorTilesGFX
-	SECTION: $7e00-$7fff ($0200 bytes) ["Bank 0c Garbage"]
+	SECTION: $7e00-$7fff ($0200 bytes) ["Bank 0c Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #13:
@@ -5838,7 +5838,7 @@ ROMX bank #13:
 	         $7f6a = BattleCommand_ClearText.text
 	         $7f6b = SkipToBattleCommand
 	         $7f73 = SkipToBattleCommand.loop
-	SECTION: $7f80-$7fff ($0080 bytes) ["Bank 0d Garbage"]
+	SECTION: $7f80-$7fff ($0080 bytes) ["Bank 0d Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #14:
@@ -6130,7 +6130,7 @@ ROMX bank #14:
 	         $598c = FirebreatherGroup
 	         $5999 = SportsmanGroup
 	         $59a2 = KimonoGirlGroup
-	SECTION: $59bc-$7fff ($2644 bytes) ["Bank 0e Garbage"]
+	SECTION: $59bc-$7fff ($2644 bytes) ["Bank 0e Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #15:
@@ -6719,7 +6719,7 @@ ROMX bank #15:
 	         $75ed = ShowLinkBattleParticipants.ok
 	         $760c = _ShowLinkBattleParticipants
 	         $7640 = IsLinkBattle
-	SECTION: $764b-$7fff ($09b5 bytes) ["Bank 0f Garbage"]
+	SECTION: $764b-$7fff ($09b5 bytes) ["Bank 0f Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #16:
@@ -7305,9 +7305,9 @@ ROMX bank #16:
 	         $7a7c = SnubbullEvosAttacks
 	         $7a90 = TailEvosAttacks
 	         $7aa4 = LeafyEvosAttacks
-	SECTION: $7aba-$7fff ($0546 bytes) ["Bank 10 Garbage"]
-	         $7aba = Unreferenced_Corrupt_LeafyEvosAttacks1
-	         $7ad0 = Unreferenced_Corrupt_LeafyEvosAttacks2
+	SECTION: $7aba-$7fff ($0546 bytes) ["Bank 10 Overdump"]
+	         $7aba = Unreferenced_Corrupt_LeafyEvosAttacks1_Gold
+	         $7ad0 = Unreferenced_Corrupt_LeafyEvosAttacks1
 	         $7ae1 = Unreferenced_Corrupt_LeafyEvosAttacks3
 	         $7af7 = Unreferenced_Corrupt_LeafyEvosAttacks4
 	TOTAL EMPTY: $0000 bytes
@@ -7580,7 +7580,7 @@ ROMX bank #17:
 	         $7bbc = SnubbullDexEntry
 	         $7be3 = TailDexEntry
 	         $7c0a = LeafyDexEntry
-	SECTION: $7c31-$7fff ($03cf bytes) ["Bank 11 Garbage"]
+	SECTION: $7c31-$7fff ($03cf bytes) ["Bank 11 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #18:
@@ -7625,7 +7625,7 @@ ROMX bank #18:
 	         $74a8 = SoldierPic
 	         $7669 = KimonoGirlPic
 	         $77e2 = TwinsPic
-	SECTION: $7992-$7fff ($066e bytes) ["Bank 12 Garbage"]
+	SECTION: $7992-$7fff ($066e bytes) ["Bank 12 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #19:
@@ -7642,7 +7642,7 @@ ROMX bank #19:
 	         $6900 = ShipPort_GFX
 	         $6d00 = ShipPort_Meta
 	         $7500 = ShipPort_Coll
-	SECTION: $7700-$7fff ($0900 bytes) ["Bank 13 Garbage"]
+	SECTION: $7700-$7fff ($0900 bytes) ["Bank 13 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #20:
@@ -7862,7 +7862,7 @@ ROMX bank #20:
 	         $6d75 = PokemonNames
 	SECTION: $725c-$7273 ($0018 bytes) ["Pic Banks"]
 	         $725c = MonSpriteBankList
-	SECTION: $7274-$7fff ($0d8c bytes) ["Bank 14 Garbage"]
+	SECTION: $7274-$7fff ($0d8c bytes) ["Bank 14 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #21:
@@ -7919,7 +7919,7 @@ ROMX bank #21:
 	         $7b9d = PikachuPicBack
 	         $7cc3 = RaichuPicFront
 	         $7e7e = RaichuPicBack
-	SECTION: $7f9f-$7fff ($0061 bytes) ["Bank 15 Garbage"]
+	SECTION: $7f9f-$7fff ($0061 bytes) ["Bank 15 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #22:
@@ -7974,7 +7974,7 @@ ROMX bank #22:
 	         $78e1 = DiglettPicBack
 	         $79fc = DugtrioPicFront
 	         $7c2d = DugtrioPicBack
-	SECTION: $7da8-$7fff ($0258 bytes) ["Bank 16 Garbage"]
+	SECTION: $7da8-$7fff ($0258 bytes) ["Bank 16 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #23:
@@ -8027,7 +8027,7 @@ ROMX bank #23:
 	         $7821 = GeodudePicBack
 	         $7919 = GravelerPicFront
 	         $7a9c = GravelerPicBack
-	SECTION: $7bee-$7fff ($0412 bytes) ["Bank 17 Garbage"]
+	SECTION: $7bee-$7fff ($0412 bytes) ["Bank 17 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #24:
@@ -8078,7 +8078,7 @@ ROMX bank #24:
 	         $7798 = HypnoPicBack
 	         $78ae = KrabbyPicFront
 	         $79e7 = KrabbyPicBack
-	SECTION: $7b57-$7fff ($04a9 bytes) ["Bank 18 Garbage"]
+	SECTION: $7b57-$7fff ($04a9 bytes) ["Bank 18 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #25:
@@ -8129,7 +8129,7 @@ ROMX bank #25:
 	         $7939 = StaryuPicBack
 	         $7a28 = StarmiePicFront
 	         $7bb8 = StarmiePicBack
-	SECTION: $7ca1-$7fff ($035f bytes) ["Bank 19 Garbage"]
+	SECTION: $7ca1-$7fff ($035f bytes) ["Bank 19 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #26:
@@ -8180,7 +8180,7 @@ ROMX bank #26:
 	         $7917 = SnorlaxPicBack
 	         $7992 = ArticunoPicFront
 	         $7bca = ArticunoPicBack
-	SECTION: $7ce6-$7fff ($031a bytes) ["Bank 1a Garbage"]
+	SECTION: $7ce6-$7fff ($031a bytes) ["Bank 1a Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #27:
@@ -8233,7 +8233,7 @@ ROMX bank #27:
 	         $78b7 = MonjaPicBack
 	         $7a05 = JaranraPicFront
 	         $7c03 = JaranraPicBack
-	SECTION: $7d27-$7fff ($02d9 bytes) ["Bank 1b Garbage"]
+	SECTION: $7d27-$7fff ($02d9 bytes) ["Bank 1b Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #28:
@@ -8294,7 +8294,7 @@ ROMX bank #28:
 	         $7aaa = PainterPicBack
 	         $7bdb = KounyaPicFront
 	         $7ca8 = KounyaPicBack
-	SECTION: $7d7f-$7fff ($0281 bytes) ["Bank 1c Garbage"]
+	SECTION: $7d7f-$7fff ($0281 bytes) ["Bank 1c Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #29:
@@ -8353,7 +8353,7 @@ ROMX bank #29:
 	         $7b5a = MiltankPicBack
 	         $7c81 = BombseekerPicFront
 	         $7dac = BombseekerPicBack
-	SECTION: $7ecf-$7fff ($0131 bytes) ["Bank 1d Garbage"]
+	SECTION: $7ecf-$7fff ($0131 bytes) ["Bank 1d Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #30:
@@ -8402,7 +8402,7 @@ ROMX bank #30:
 	         $7a63 = SuiPicBack
 	         $7bb4 = SneaselPicFront
 	         $7ccb = SneaselPicBack
-	SECTION: $7e22-$7fff ($01de bytes) ["Bank 1e Garbage"]
+	SECTION: $7e22-$7fff ($01de bytes) ["Bank 1e Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #31:
@@ -8476,11 +8476,11 @@ ROMX bank #31:
 	         $68fa = UnownZPicBack
 	SECTION: $696a-$69c8 ($005f bytes) ["Egg Pic"]
 	         $696a = EggPicFront
-	SECTION: $69c9-$7fff ($1637 bytes) ["Bank 1f Garbage"]
+	SECTION: $69c9-$7fff ($1637 bytes) ["Bank 1f Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #32:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 20 Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 20 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #33:
@@ -8524,11 +8524,11 @@ ROMX bank #33:
 	         $6120 = AnimObjObjectsGFX
 	         $6240 = AnimObjShineGFX
 	         $64a0 = AnimObjAngelsGFX
-	SECTION: $66d0-$7fff ($1930 bytes) ["Bank 21 Garbage"]
+	SECTION: $66d0-$7fff ($1930 bytes) ["Bank 21 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #34:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 22 Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 22 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #35:
@@ -9044,7 +9044,7 @@ ROMX bank #35:
 	         $7219 = ReadMonMenuIcon
 	         $7227 = ReadMonMenuIcon.egg
 	         $722a = MonMenuIcons
-	SECTION: $7325-$7fff ($0cdb bytes) ["Bank 23 Garbage"]
+	SECTION: $7325-$7fff ($0cdb bytes) ["Bank 23 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #36:
@@ -9304,7 +9304,7 @@ ROMX bank #36:
 	         $4fdb = SlotMachineGFX
 	         $522b = SlotMachine2GFX
 	         $582b = SlotMachine3GFX
-	SECTION: $5a2b-$7fff ($25d5 bytes) ["Bank 24 Garbage"]
+	SECTION: $5a2b-$7fff ($25d5 bytes) ["Bank 24 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #37:
@@ -9439,7 +9439,7 @@ ROMX bank #37:
 	         $4aa2 = OldCitySchool_Blocks
 	         $4ac2 = OldCitySchool_ScriptLoader
 	         $4ac3 = OldCitySchool_TextPointers
-	SECTION: $4add-$7fff ($3523 bytes) ["Bank 25 Garbage"]
+	SECTION: $4add-$7fff ($3523 bytes) ["Bank 25 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #38:
@@ -9564,7 +9564,7 @@ ROMX bank #38:
 	         $4cf3 = WestHouse2_Blocks
 	         $4d07 = WestHouse2_ScriptLoader
 	         $4d08 = WestHouse2_TextPointers
-	SECTION: $4d22-$7fff ($32de bytes) ["Bank 26 Garbage"]
+	SECTION: $4d22-$7fff ($32de bytes) ["Bank 26 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #39:
@@ -10179,35 +10179,35 @@ ROMX bank #39:
 	         $771d = NorthPokecenter2F_Blocks
 	         $773d = NorthPokecenter2F_ScriptLoader
 	         $773e = NorthPokecenter2F_TextPointers
-	SECTION: $7758-$7fff ($08a8 bytes) ["Bank 27 Garbage"]
+	SECTION: $7758-$7fff ($08a8 bytes) ["Bank 27 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #40:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 28 Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 28 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #41:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 29 Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 29 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #42:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 2a Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 2a Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #43:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 2b Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 2b Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #44:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 2c Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 2c Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #45:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 2d Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 2d Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #46:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 2e Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 2e Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #47:
@@ -10337,7 +10337,7 @@ ROMX bank #47:
 	         $591a = QuietHillsText1String
 	         $5968 = QuietHillsSignpost2String
 	         $597f = QuietHillsSignpost1String
-	SECTION: $5996-$7fff ($266a bytes) ["Bank 2f Garbage"]
+	SECTION: $5996-$7fff ($266a bytes) ["Bank 2f Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #48:
@@ -10387,7 +10387,7 @@ ROMX bank #48:
 	         $79c0 = ClerkSpriteGFX
 	         $7b40 = FisherSpriteGFX
 	         $7cc0 = FishingGuruSpriteGFX
-	SECTION: $7e40-$7fff ($01c0 bytes) ["Bank 30 Garbage"]
+	SECTION: $7e40-$7fff ($01c0 bytes) ["Bank 30 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #49:
@@ -10421,7 +10421,7 @@ ROMX bank #49:
 	         $6580 = OldLinkReceptionistSpriteGFX
 	         $65c0 = EggSpriteGFX
 	         $6600 = BoulderSpriteGFX
-	SECTION: $6640-$7fff ($19c0 bytes) ["Bank 31 Garbage"]
+	SECTION: $6640-$7fff ($19c0 bytes) ["Bank 31 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #50:
@@ -11182,7 +11182,7 @@ ROMX bank #50:
 	         $7739 = PredefShakeScreenHorizontally.loop
 	         $774f = PredefShakeScreenHorizontally.MutateWX
 	         $7759 = PredefShakeScreenHorizontally.skipZeroing
-	SECTION: $7762-$7fff ($089e bytes) ["Bank 32 Garbage"]
+	SECTION: $7762-$7fff ($089e bytes) ["Bank 32 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #51:
@@ -12050,7 +12050,7 @@ ROMX bank #51:
 	         $773c = BattleAnimOAMData.OAMData_ca
 	         $774c = BattleAnimOAMData.OAMData_cc
 	         $7780 = AnimObjGFX
-	SECTION: $7820-$7fff ($07e0 bytes) ["Bank 33 Garbage"]
+	SECTION: $7820-$7fff ($07e0 bytes) ["Bank 33 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #52:
@@ -12320,7 +12320,7 @@ ROMX bank #52:
 	         $6087 = SilentHillLabBackUnusedSignPointers
 	         $6089 = SilentHillLabBackUnused_TextPointers
 	         $608b = SilentHillLabBackUnusedScript
-	SECTION: $6095-$7fff ($1f6b bytes) ["Bank 34 Garbage"]
+	SECTION: $6095-$7fff ($1f6b bytes) ["Bank 34 Overdump"]
 	         $6096 = Unreferenced_Corrupt_SilentHillLabBackUnused_ScriptLoader
 	         $609b = Unreferenced_Corrupt_SilentHillLabBackUnusedScriptPointers
 	         $609f = Unreferenced_Corrupt_SilentHillLabBackUnusedNPCIDs
@@ -12381,7 +12381,7 @@ ROMX bank #52:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #53:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 35 Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 35 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #54:
@@ -12685,7 +12685,7 @@ ROMX bank #54:
 	         $7d19 = Route2TextString3
 	         $7d3b = Route2TextString4
 	         $7dbd = Route2TextString5
-	SECTION: $7ddd-$7fff ($0223 bytes) ["Bank 36 Garbage"]
+	SECTION: $7ddd-$7fff ($0223 bytes) ["Bank 36 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #55:
@@ -12702,7 +12702,7 @@ ROMX bank #55:
 	         $6b00 = PowerPlant_GFX
 	         $7100 = PowerPlant_Meta
 	         $7900 = PowerPlant_Coll
-	SECTION: $7b00-$7fff ($0500 bytes) ["Bank 37 Garbage"]
+	SECTION: $7b00-$7fff ($0500 bytes) ["Bank 37 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #56:
@@ -13298,7 +13298,7 @@ ROMX bank #56:
 	         $7707 = PicrossGridHighlightsGFX
 	         $7767 = PicrossGridGFX
 	         $77f7 = PicrossCursorGFX
-	SECTION: $7857-$7fff ($07a9 bytes) ["Bank 38 Garbage"]
+	SECTION: $7857-$7fff ($07a9 bytes) ["Bank 38 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #57:
@@ -13455,7 +13455,7 @@ ROMX bank #57:
 	         $785f = IntroCharizardFlamesGFX
 	         $795f = IntroBlastoiseGFX
 	         $7bff = IntroVenusaurGFX
-	SECTION: $7e9f-$7fff ($0161 bytes) ["Bank 39 Garbage"]
+	SECTION: $7e9f-$7fff ($0161 bytes) ["Bank 39 Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #58:
@@ -13746,7 +13746,7 @@ ROMX bank #58:
 	         $52fa = Music_None_Ch4
 	         $52fb = Cries
 	         $536d = SFX
-	SECTION: $54b1-$7fff ($2b4f bytes) ["Bank 3a Garbage"]
+	SECTION: $54b1-$7fff ($2b4f bytes) ["Bank 3a Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #59:
@@ -13853,7 +13853,7 @@ ROMX bank #59:
 	         $5b95 = Music_Evolution_Ch3
 	         $5b99 = Music_Evolution_Ch3.mainloop
 	         $5ba7 = Music_Evolution_Ch3.sub
-	SECTION: $5bbd-$7fff ($2443 bytes) ["Bank 3b Garbage"]
+	SECTION: $5bbd-$7fff ($2443 bytes) ["Bank 3b Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #60:
@@ -14348,11 +14348,11 @@ ROMX bank #60:
 	         $657c = Music_Title_Ch4.mainloop
 	         $663c = Music_Title_Ch4.sub1
 	         $6645 = Music_Title_Ch4.sub2
-	SECTION: $664e-$7fff ($19b2 bytes) ["Bank 3c Garbage"]
+	SECTION: $664e-$7fff ($19b2 bytes) ["Bank 3c Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #61:
-	SECTION: $4000-$7fff ($4000 bytes) ["Bank 3d Garbage"]
+	SECTION: $4000-$7fff ($4000 bytes) ["Bank 3d Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #62:
@@ -14414,7 +14414,7 @@ ROMX bank #62:
 	         $533a = BlackTileAndCursor1bppGFX.End
 	         $533a = PackIconGFX
 	         $542a = PackIconGFX.End
-	SECTION: $542a-$7fff ($2bd6 bytes) ["Bank 3e Garbage"]
+	SECTION: $542a-$7fff ($2bd6 bytes) ["Bank 3e Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #63:
@@ -14999,7 +14999,7 @@ ROMX bank #63:
 	         $6810 = SubGameMenu_CardFlipGame
 	         $6819 = SubGameMenu_PicrossGame
 	         $6822 = SubGameMenu_SlotMachineGame
-	SECTION: $682b-$7fff ($17d5 bytes) ["Bank 3f Garbage"]
+	SECTION: $682b-$7fff ($17d5 bytes) ["Bank 3f Overdump"]
 	TOTAL EMPTY: $0000 bytes
 
 VRAM bank #0:
