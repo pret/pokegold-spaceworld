@@ -26310,9 +26310,9 @@ WRAM0 bank #0:
 	         $dc5a = wBoxMon14PP
 	         $dc5e = wBoxMon14Happiness
 	         $dc5f = wBoxMon14PokerusStatus
-	         $dc60 = wBoxMon14CaughtLevel
-	         $dc60 = wBoxMon14CaughtTime
 	         $dc60 = wBoxMon14CaughtData
+	         $dc60 = wBoxMon14CaughtTime
+	         $dc60 = wBoxMon14CaughtLevel
 	         $dc61 = wBoxMon14CaughtLocation
 	         $dc61 = wBoxMon14CaughtGender
 	         $dc62 = wBoxMon14Level
