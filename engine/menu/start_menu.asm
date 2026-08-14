@@ -1521,10 +1521,10 @@ SummaryDrawPoke:
 	ld [w2DMenuNumRows], a
 	hlcoord 0, 10
 	ld b, 6
-	ld c, $12
+	ld c, 18
 	call DrawTextBox
 	ld hl, w2DMenuFlags1
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	jr PartySelectionInputs.PartySelectSkipInputs
 PartySelectionInputs:
 	call StaticMenuJoypad + 3
@@ -1675,25 +1675,18 @@ PartySelectionBackOut:
 	xor a
 	ld [wSwitchMon], a
 	ld hl, w2DMenuFlags1
-	res 6, [hl]
+	res _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call ClearSprites
 	call ClearTileMap
 	ret
 
 PartyMenuAttributes:
-; cursor y
-; cursor y
-; num rows
-; num cols
-; bit 6: animate sprites  bit 5: wrap around
-; ?
-; distance between items (hi: y, lo: x)
-; allowed buttons (mask)
-	db 3, 1
-	db 3, 1
-	db $40, $00
-	dn 2, 0
-	db $F3
+	db 3, 1 ; cursor y, x
+	db 3, 1 ; rows, cols
+	db _2DMENU_ENABLE_SPRITE_ANIMS ; flags 1
+	db 0 ; flags 2
+	dn 2, 0 ; cursor offset y, x
+	db PAD_CTRL_PAD | PAD_B | PAD_A ; joypad filter
 
 PartyTypeText:
 	db "タイプ／　　　　　いりょく／@"
