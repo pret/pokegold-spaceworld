@@ -1871,7 +1871,7 @@ ROMX bank #1:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #2:
-	SECTION: $4000-$6ebb ($2ebc bytes) ["bank2"]
+	SECTION: $4000-$469f ($06a0 bytes) ["Reserved Objects"]
 	         $4000 = _SpawnPlayer
 	         $4022 = PlayerObjectTemplate
 	         $4031 = SpawnFollower
@@ -1974,6 +1974,7 @@ ROMX bank #2:
 	         $4653 = _Sine.multiply_u5
 	         $4658 = _Sine.even_u5
 	         $4660 = _Sine.sinetable_u5
+	SECTION: $46a0-$51d1 ($0b32 bytes) ["Trainer Gear"]
 	         $46a0 = TownMap
 	         $46b4 = TownMap.loop
 	         $46cb = FlyMap
@@ -2062,6 +2063,7 @@ ROMX bank #2:
 	         $5132 = RadioGFX
 	         $51b2 = VerticalPipeGFX
 	         $51c2 = TrainerGear_RadioText
+	SECTION: $51d2-$6ebb ($1cea bytes) ["SGB Layouts"]
 	         $51d2 = SetTitleBGDecorationBorder
 	         $51ef = SetTitleBGDecorationBorder.PlaceRow
 	         $51f2 = SetTitleBGDecorationBorder.loop
@@ -3150,12 +3152,13 @@ ROMX bank #4:
 	         $4adf = TitleScreenHoOhGFX
 	         $4def = TitleScreenLogoGFX
 	         $518f = TitleScreenGoldLogoGFX
-	SECTION: $528f-$7ba0 ($2912 bytes) ["bank4"]
+	SECTION: $528f-$5309 ($007b bytes) ["TMs & HMs"]
 	         $528f = CanLearnTMHMMove
 	         $52ad = CanLearnTMHMMove.loop
 	         $52b4 = CanLearnTMHMMove.jump
 	         $52c1 = GetTMHMMove
 	         $52d1 = TMHMMoves
+	SECTION: $530a-$5dbd ($0ab4 bytes) ["Add Mon"]
 	         $530a = _AddEnemyMonToPlayerParty
 	         $5345 = _AddEnemyMonToPlayerParty.fullbox
 	         $534d = _AddEnemyMonToPlayerParty.bigjump
@@ -3274,6 +3277,7 @@ ROMX bank #4:
 	         $5d88 = ComposeMail_AnimateCursor.UpdatePositionOffset
 	         $5dab = ComposeMail_AnimateCursor.XOffsets
 	         $5db9 = ComposeMail_AnimateCursor.YOffsets
+	SECTION: $5dbe-$7ba0 ($1de3 bytes) ["Start Menu"]
 	         $5dbe = DisplayStartMenu
 	         $5dcd = DisplayStartMenu.RefreshStartDisplay
 	         $5dfc = DisplayStartMenu.StartMenuEntriesReturnTable
@@ -3540,7 +3544,7 @@ ROMX bank #4:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #5:
-	SECTION: $4000-$4f49 ($0f4a bytes) ["bank5"]
+	SECTION: $4000-$4f49 ($0f4a bytes) ["Overworld Scenes"]
 	         $4000 = _RedrawPlayerSprite
 	         $400a = GetPlayerSprite
 	         $4011 = GetPlayerSprite.loop
@@ -6719,7 +6723,7 @@ ROMX bank #15:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #16:
-	SECTION: $4000-$7ab9 ($3aba bytes) ["bank10"]
+	SECTION: $4000-$52a0 ($12a1 bytes) ["Pokedex"]
 	         $4000 = Pokedex
 	         $401e = Pokedex.loop
 	         $4035 = InitPokedex
@@ -6983,8 +6987,10 @@ ROMX bank #16:
 	         $527c = Pokedex_UnownModeHandleDPadInput.PlaceArrow
 	         $5287 = Pokedex_UnownModeHandleDPadInput.GetCursorPos
 	         $5293 = Pokedex_UnownModeHandleDPadInput.CursorPosTable
+	SECTION: $52a1-$5f92 ($0cf2 bytes) ["Move Data"]
 	         $52a1 = MoveNames
 	         $58b6 = Moves
+	SECTION: $5f93-$7ab9 ($1b27 bytes) ["Evolutions and Attacks"]
 	         $5f93 = EvolvePokemon
 	         $5fa1 = EvolveAfterBattle
 	         $5fb3 = EvolveAfterBattle_MasterLoop
@@ -7641,7 +7647,7 @@ ROMX bank #19:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #20:
-	SECTION: $4000-$725b ($325c bytes) ["bank14"]
+	SECTION: $4000-$725b ($325c bytes) ["Pokemon Data"]
 	         $4000 = CopyMonToTempMon
 	         $4035 = CopyMonToTempMon.getmonaddress
 	         $403b = CopyMonToTempMon.copywholestruct
@@ -10420,7 +10426,7 @@ ROMX bank #49:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #50:
-	SECTION: $4000-$7761 ($3762 bytes) ["bank32"]
+	SECTION: $4000-$7761 ($3762 bytes) ["Screen Effects"]
 	         $4000 = ExecuteBGEffects
 	         $4005 = ExecuteBGEffects.loop
 	         $4012 = ExecuteBGEffects.next
@@ -14342,7 +14348,7 @@ ROMX bank #61:
 	TOTAL EMPTY: $0000 bytes
 
 ROMX bank #62:
-	SECTION: $4000-$5429 ($142a bytes) ["bank3E"]
+	SECTION: $4000-$5429 ($142a bytes) ["Load GFX"]
 	         $4000 = LoadFontGraphics
 	         $400c = LoadFontExtraGraphicsWithCursor
 	         $4026 = LoadPokemonMenuGraphics
