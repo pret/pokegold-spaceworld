@@ -324,29 +324,95 @@ wMapBufferEnd::
 
 UNION
 
-wLinkData::
 wOverworldMapBlocks:: ds 1300
-wLinkDataEnd::
 wOverworldMapBlocksEnd::
 
 NEXTU
-	ds 700
-wLinkPlayerMail::
-wLinkPlayerMailPreamble:: ds SERIAL_MAIL_PREAMBLE_LENGTH
-wLinkPlayerMailMessages:: ds MAIL_STRUCT_LENGTH * PARTY_LENGTH
-wLinkPlayerMailPatchSet:: ds 35
-wLinkPlayerMailEnd::
-	ds 10
+
+; This section union is 1300 bytes, the largest of all link data unions inside "Overworld Map"
+wLinkData::
+
+; player's party data, formatted for link transfer (Gen 2 link session)
+wLinkSendParty::
+wLinkSendPartyPreamble:: ds SERIAL_PREAMBLE_LENGTH
+wLinkSendPartyPlayerName:: ds PLAYER_NAME_LENGTH
+wLinkSendPartyPartyCount::   db
+wLinkSendPartyPartySpecies:: ds PARTY_LENGTH
+wLinkSendPartyPartyEnd::     db ; older code doesn't check PartyCount
+wLinkSendPartyPlayerID:: dw
+; wLinkSendPartyPlayerPartyMon1 - wLinkSendPartyPlayerPartyMon6
+for n, 1, PARTY_LENGTH + 1
+wLinkSendPartyPlayerPartyMon{d:n}:: party_struct wLinkSendPartyPlayerPartyMon{d:n}
+endr
+; wLinkSendPartyPlayerPartyMon1OT - wLinkSendPartyPlayerPartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wLinkSendPartyPlayerPartyMon{d:n}OT:: ds PLAYER_NAME_LENGTH
+endr
+; wLinkSendPartyPlayerPartyMon1Nickname - wLinkSendPartyPlayerPartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wLinkSendPartyPlayerPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
+wLinkSendPartyPadding:: ds 5
+wLinkSendPartyEnd::
+
+	ds 313
+
+; player's party mail, formatted for link transfer, during a link session
+wLinkSendMail::
+wLinkSendMailPreamble:: ds SERIAL_MAIL_PREAMBLE_LENGTH
+wLinkSendMailMessages:: ds (MAIL_MSG_LENGTH + 2) * PARTY_LENGTH
+wLinkSendMailMetadata:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH
+wLinkSendMailPatchSet:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH - 1
+wLinkSendMailEnd::
+	ds 20
+UNION
+wLinkReceivedMail::
+; during a link session, the other player's raw mail data is initially stored here
+	ds SERIAL_MAIL_PREAMBLE_LENGTH
+	ds MAIL_STRUCT_LENGTH * PARTY_LENGTH
+	ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH -1
+wLinkReceivedMailEnd::
+
+NEXTU
+; it's then processed on location to align data start with wLinkReceivedMailMessages,
+; before applying the mail patch
+wLinkReceivedMailMessages:: ds (MAIL_MSG_LENGTH + 2) * PARTY_LENGTH
+wLinkReceivedMailMetadata:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH
+wLinkReceivedMailPatchSet:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH -1
+ENDU
+	ds 20
+wLinkDataEnd::
 
 NEXTU
 
-wLYOverrides:: ds SCREEN_HEIGHT_PX
-wLYOverridesEnd:: db
-	ds 15
-wLYOverrides2:: ds SCREEN_HEIGHT_PX
-wLYOverrides2End::
+; player's party data, formatted for link transfer (Time Capsule link session)
+wLinkSendTimeCapsuleParty::
+wLinkSendTimeCapsulePartyPlayerName:: ds PLAYER_NAME_LENGTH
+wLinkSendTimeCapsulePartyPartyCount::   db
+wLinkSendTimeCapsulePartyPartySpecies:: ds PARTY_LENGTH
+wLinkSendTimeCapsulePartyPartyEnd::     db ; older code doesn't check PartyCount
+; wLinkSendTimeCapsulePartyMon1 - wLinkSendTimeCapsulePartyMon6
+for n, 1, PARTY_LENGTH + 1
+wLinkSendTimeCapsulePartyMon{d:n}:: red_party_struct wLinkSendTimeCapsulePartyMon{d:n}
+endr
+wLinkSendTimeCapsulePartyMonOTs::
+; wLinkSendTimeCapsulePartyMon1OT - wLinkSendTimeCapsulePartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wLinkSendTimeCapsulePartyMon{d:n}OT:: ds PLAYER_NAME_LENGTH
+endr
+wLinkSendTimeCapsulePartyMonNicknames::
+; wLinkSendTimeCapsulePartyMon1Nickname - wLinkSendTimeCapsulePartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wLinkSendTimeCapsulePartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
+wLinkSendTimeCapsulePartyPadding:: ds SERIAL_PADDING_LENGTH
+wLinkSendTimeCapsulePartyEnd::
 
 NEXTU
+
+; after the initial link session (Gen 2), the other player's party data
+; is temporarily stored here before applying patch data
+wLinkPlayerPartyData::
 
 ; link data members
 wLinkPlayerName:: ds PLAYER_NAME_LENGTH
@@ -364,17 +430,65 @@ endr
 wLinkPlayerPartyMonOTs::
 ; wLinkPlayerPartyMon1OT - wLinkPlayerPartyMon6OT
 for n, 1, PARTY_LENGTH + 1
-wLinkPlayerPartyMon{d:n}OT:: ds NAME_LENGTH
+wLinkPlayerPartyMon{d:n}OT:: ds PLAYER_NAME_LENGTH
 endr
 
 wLinkPlayerPartyMonNicknames::
 ; wLinkPlayerPartyMon1Nickname - wLinkPlayerPartyMon6Nickname
 for n, 1, PARTY_LENGTH + 1
-wLinkPlayerPartyMon{d:n}Nickname:: ds NAME_LENGTH
+wLinkPlayerPartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
 endr
+
+wLinkPlayerPartyDataEnd::
 
 NEXTU
 
+UNION
+; after the initial link session (Gen 1), the other player's party data
+; is temporarily stored here before applying patch data
+wLinkTimeCapsulePartyData::
+
+; link player's name and party species are not patched,
+; as they normally don't contain SERIAL_NO_DATA_BYTE
+wLinkTimeCapsulePlayerName:: ds PLAYER_NAME_LENGTH
+wLinkTimeCapsulePartyCount::   db
+wLinkTimeCapsulePartySpecies:: ds PARTY_LENGTH
+wLinkTimeCapsulePartyEnd::     db ; older code doesn't check PartyCount
+
+wTimeCapsulePatchedData::
+; wTimeCapsulePartyMon1 - wTimeCapsulePartyMon6
+for n, 1, PARTY_LENGTH + 1
+wTimeCapsulePartyMon{d:n}:: red_party_struct wTimeCapsulePartyMon{d:n}
+endr
+
+wTimeCapsulePartyMonOTs::
+; wTimeCapsulePartyMon1OT - wTimeCapsulePartyMon6OT
+for n, 1, PARTY_LENGTH + 1
+wTimeCapsulePartyMon{d:n}OT:: ds PLAYER_NAME_LENGTH
+endr
+
+wTimeCapsulePartyMonNicknames::
+; wTimeCapsulePartyMon1Nickname - wTimeCapsulePartyMon6Nickname
+for n, 1, PARTY_LENGTH + 1
+wTimeCapsulePartyMon{d:n}Nickname:: ds MON_NAME_LENGTH
+endr
+
+ENDU
+wLinkTimeCapsulePartyPadding:: ds SERIAL_PADDING_LENGTH
+
+wLinkTimeCapsulePartyDataEnd::
+; link player's name and party species are not patched,
+; as they normally don't contain SERIAL_NO_DATA_BYTE
+
+NEXTU
+
+wLYOverrides:: ds SCREEN_HEIGHT_PX
+wLYOverridesEnd:: db
+	ds 15
+wLYOverrides2:: ds SCREEN_HEIGHT_PX
+wLYOverrides2End::
+
+NEXTU
 ; Pikachu minigame
 
 wPikachuMinigamePikachuObjectPointer:: dw
@@ -1336,11 +1450,15 @@ wLinkBattleRNs:: ds 10
 wTempEnemyMonSpecies:: db
 wTempBattleMonSpecies:: db
 
+UNION
+wOTLinkBattleRNData:: ds SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
+NEXTU
 wEnemyMon:: battle_struct wEnemyMon
 wEnemyMonBaseStats:: ds NUM_EXP_STATS
 wEnemyMonCatchRate:: db
 wEnemyMonBaseExp:: db
 wEnemyMonEnd::
+ENDU
 
 wBattleMode:: db
 wTempWildMonSpecies:: db
@@ -1843,8 +1961,29 @@ wBreedMon2:: box_struct wBreedMon2
 ; Uses the last two bits to keep track of your breeder mons' genders.
 ; Bit clear = male, bit set = female
 wBreedMonGenders:: db
-wOTPlayerName:: ds PLAYER_NAME_LENGTH
 
+; This union spans 353 bytes.
+UNION
+; during a link session, other player's raw party data is initially stored here
+; the actual data is contained between SERIAL_PREAMBLE_LENGTH and SERIAL_PADDING_LENGTH,
+; allowing possible data shift due to hardware behavior
+wLinkReceivedPartyData::
+	; Gen 2 link format
+	ds PLAYER_NAME_LENGTH
+	ds 1 + PARTY_LENGTH + 1
+	ds (PARTYMON_STRUCT_LENGTH + PLAYER_NAME_LENGTH * 2) * PARTY_LENGTH
+	ds SERIAL_PADDING_LENGTH
+NEXTU
+	; Gen 1 link format
+	ds PLAYER_NAME_LENGTH
+	ds 1 + PARTY_LENGTH + 1
+	ds (REDMON_STRUCT_LENGTH + PLAYER_NAME_LENGTH * 2) * PARTY_LENGTH
+	ds SERIAL_PADDING_LENGTH
+wLinkReceivedPartyEnd:: db
+
+NEXTU
+
+wOTPlayerName:: ds PLAYER_NAME_LENGTH
 	ds 15
 
 wOTPartyData::
@@ -1889,7 +2028,7 @@ wPokemonDataEnd::
 
 wBox:: box wBox
 
-
+ENDU
 SECTION "Stack Bottom", WRAM0
 
 ; Where SP is set at game init
