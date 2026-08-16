@@ -1,7 +1,7 @@
-ROMS := pokegold-spaceworld.gb \
-        pokesilver-spaceworld.gb \
-        pokegold-spaceworld-debug.gb \
-        pokesilver-spaceworld-debug.gb
+ROMS := pokegold-sw97.gb \
+        pokesilver-sw97.gb \
+        pokegold-sw97-debug.gb \
+        pokesilver-sw97-debug.gb
 CORRECTEDROMS := $(ROMS:%.gb=%-correctheader.gb)
 
 ROM_OBJ := \
@@ -16,10 +16,10 @@ ROM_OBJ := \
 	gfx/sprites.o \
 	gfx/tilesets.o
 
-pokegold-spaceworld_obj         := $(ROM_OBJ:.o=_gold.o)
-pokegold-spaceworld-debug_obj   := $(ROM_OBJ:.o=_gold_debug.o)
-pokesilver-spaceworld_obj       := $(ROM_OBJ:.o=_silver.o)
-pokesilver-spaceworld-debug_obj := $(ROM_OBJ:.o=_silver_debug.o)
+pokegold-sw97_obj         := $(ROM_OBJ:.o=_gold.o)
+pokegold-sw97-debug_obj   := $(ROM_OBJ:.o=_gold_debug.o)
+pokesilver-sw97_obj       := $(ROM_OBJ:.o=_silver.o)
+pokesilver-sw97-debug_obj := $(ROM_OBJ:.o=_silver_debug.o)
 
 
 ### Build tools
@@ -62,10 +62,10 @@ tools/gfx :=
 	compare
 
 all: $(ROMS) $(CORRECTEDROMS) compare
-gold:         pokegold-spaceworld.gb pokegold-spaceworld-correctheader.gb
-silver:       pokesilver-spaceworld.gb pokesilver-spaceworld-correctheader.gb
-gold_debug:   pokegold-spaceworld-debug.gb pokegold-spaceworld-debug-correctheader.gb
-silver_debug: pokesilver-spaceworld-debug.gb pokesilver-spaceworld-debug-correctheader.gb
+gold:         pokegold-sw97.gb pokegold-sw97-correctheader.gb
+silver:       pokesilver-sw97.gb pokesilver-sw97-correctheader.gb
+gold_debug:   pokegold-sw97-debug.gb pokegold-sw97-debug-correctheader.gb
+silver_debug: pokesilver-sw97-debug.gb pokesilver-sw97-debug-correctheader.gb
 
 compare: $(ROMS) $(CORRECTEDROMS)
 	@$(SHA1) -c roms.sha1
@@ -86,10 +86,10 @@ tidy:
 	$(RM) $(ROMS) $(CORRECTEDROMS) \
 	      $(ROMS:.gb=.sym) $(CORRECTEDROMS:.gb=.sym) \
 	      $(ROMS:.gb=.map) $(CORRECTEDROMS:.gb=.map) \
-	      $(pokegold-spaceworld_obj) \
-	      $(pokesilver-spaceworld_obj) \
-	      $(pokegold-spaceworld-debug_obj) \
-	      $(pokesilver-spaceworld-debug_obj) \
+	      $(pokegold-sw97_obj) \
+	      $(pokesilver-sw97_obj) \
+	      $(pokegold-sw97-debug_obj) \
+	      $(pokesilver-sw97-debug_obj) \
 	      rgbdscheck.o
 	$(MAKE) clean -C tools/
 
@@ -100,10 +100,10 @@ ifeq ($(DEBUG),1)
 RGBASMFLAGS += -E
 endif
 
-$(pokegold-spaceworld_obj):         RGBASMFLAGS += -D _GOLD
-$(pokesilver-spaceworld_obj):       RGBASMFLAGS += -D _SILVER
-$(pokegold-spaceworld-debug_obj):   RGBASMFLAGS += -D _GOLD -D _DEBUG
-$(pokesilver-spaceworld-debug_obj): RGBASMFLAGS += -D _SILVER -D _DEBUG
+$(pokegold-sw97_obj):         RGBASMFLAGS += -D _GOLD
+$(pokesilver-sw97_obj):       RGBASMFLAGS += -D _SILVER
+$(pokegold-sw97-debug_obj):   RGBASMFLAGS += -D _GOLD -D _DEBUG
+$(pokesilver-sw97-debug_obj): RGBASMFLAGS += -D _SILVER -D _DEBUG
 
 rgbdscheck.o: rgbdscheck.asm
 	$(RGBASM) -o $@ $<
@@ -124,10 +124,10 @@ $1: $2 $$(shell tools/scan_includes $2) $(preinclude_deps) | rgbdscheck.o
 endef
 
 # Dependencies for objects (drop _gold and _silver from asm file basenames)
-$(foreach obj, $(pokegold-spaceworld_obj), $(eval $(call DEP,$(obj),$(obj:_gold.o=.asm))))
-$(foreach obj, $(pokesilver-spaceworld_obj), $(eval $(call DEP,$(obj),$(obj:_silver.o=.asm))))
-$(foreach obj, $(pokegold-spaceworld-debug_obj), $(eval $(call DEP,$(obj),$(obj:_gold_debug.o=.asm))))
-$(foreach obj, $(pokesilver-spaceworld-debug_obj), $(eval $(call DEP,$(obj),$(obj:_silver_debug.o=.asm))))
+$(foreach obj, $(pokegold-sw97_obj), $(eval $(call DEP,$(obj),$(obj:_gold.o=.asm))))
+$(foreach obj, $(pokesilver-sw97_obj), $(eval $(call DEP,$(obj),$(obj:_silver.o=.asm))))
+$(foreach obj, $(pokegold-sw97-debug_obj), $(eval $(call DEP,$(obj),$(obj:_gold_debug.o=.asm))))
+$(foreach obj, $(pokesilver-sw97-debug_obj), $(eval $(call DEP,$(obj),$(obj:_silver_debug.o=.asm))))
 
 endif
 
