@@ -138,6 +138,7 @@ endif
 %-correctheader.gb: %.gb
 	cp $< $@
 	cp $(<:.gb=.sym) $(@:.gb=.sym)
+	cp $(<:.gb=.map) $(@:.gb=.map)
 	$(RGBFIX) $(RGBFIXFLAGS) $(RGBFIXCFLAGS) $@
 
 RGBLINKFLAGS += -d
