@@ -145,25 +145,25 @@ git clone https://github.com/pret/pokegold-spaceworld
 cd pokegold-spaceworld
 ```
 
-To build **pokegold-spaceworld.gb** and **pokegold-spaceworld-correctheader.gb**:
+To build **pokegold-sw97.gb** and **pokegold-sw97-correctheader.gb**:
 
 ```bash
 make gold
 ```
 
-To build **pokesilver-spaceworld.gb** and **pokesilver-spaceworld-correctheader.gb**:
+To build **pokesilver-sw97.gb** and **pokesilver-sw97-correctheader.gb**:
 
 ```bash
 make silver
 ```
 
-To build **pokegold-spaceworld-debug.gb** and **pokegold-spaceworld-debug-correctheader.gb**:
+To build **pokegold-sw97-debug.gb** and **pokegold-sw97-debug-correctheader.gb**:
 
 ```bash
 make gold_debug
 ```
 
-To build **pokesilver-spaceworld-debug.gb** and **pokesilver-spaceworld-debug-correctheader.gb**:
+To build **pokesilver-sw97-debug.gb** and **pokesilver-sw97-debug-correctheader.gb**:
 
 ```bash
 make silver_debug
