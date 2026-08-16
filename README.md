@@ -13,6 +13,8 @@ It builds the following ROMs:
 - Silver_debug.sgb (aka MONS2SD.COM) `sha1: 4c576dd4671bb1fe36c5e6d76c8909f98d739667`
 - Silver_debug.sgb, with correct header `sha1: 51b78133bdb7b80e595014941bda5c20dac05967`
 
+To set up the repository, see [**INSTALL.md**](INSTALL.md).
+
 
 ## See also
 
