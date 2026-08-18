@@ -1964,9 +1964,10 @@ wBreedMonGenders:: db
 
 ; This union spans 353 bytes.
 UNION
-; during a link session, other player's raw party data is initially stored here
-; the actual data is contained between SERIAL_PREAMBLE_LENGTH and SERIAL_PADDING_LENGTH,
-; allowing possible data shift due to hardware behavior
+
+; During a link session, other player's raw party data is initially stored here.
+; The actual data is contained between SERIAL_PREAMBLE_LENGTH and SERIAL_PADDING_LENGTH,
+; allowing possible data shift due to hardware behavior.
 wLinkReceivedPartyData::
 	; Gen 2 link format
 	ds PLAYER_NAME_LENGTH
@@ -2029,6 +2030,8 @@ wPokemonDataEnd::
 wBox:: box wBox
 
 ENDU
+
+
 SECTION "Stack Bottom", WRAM0
 
 ; Where SP is set at game init
