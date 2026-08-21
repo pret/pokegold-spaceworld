@@ -23,7 +23,7 @@ WarpMenuOptions::
 	db SPAWN_POINT_NORTH
 	db SPAWN_POINT_ROUTE_15
 	db SPAWN_POINT_ROUTE_18
-	db SPAWN_POINT_SILENT_HILL
+	db SPAWN_POINT_QUIET_HILLS
 	db $ff
 
 	; The demo's options stop here, but the spawn points included actually extend far beyond what is available

@@ -293,7 +293,7 @@ Gen2ToGen2LinkComms:
 	cp LINK_TRADECENTER
 	jr nz, .skip_mail
 
-	ld hl, wBattle
+	ld hl, wLinkReceivedMail
 .find_mail_preamble
 	ld a, [hli]
 	cp SERIAL_MAIL_PREAMBLE_BYTE
