@@ -67,7 +67,7 @@ OptionsMenu::
 .SwitchTextboxFrame
 	ld a, [wTextboxFrame]
 	inc a
-	and %111 ; BUG: This fails to account for Border 9, leaving it unused.
+	maskbits NUM_FRAMES
 	ld [wTextboxFrame], a
 	hlcoord 17, 16
 	add '１'

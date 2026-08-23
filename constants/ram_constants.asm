@@ -62,7 +62,7 @@ DEF INIT_MON_LIST        EQU 5
 	const FRAME_6 ; 5
 	const FRAME_7 ; 6
 	const FRAME_8 ; 7
-DEF NUM_FRAMES EQU const_value
+DEF NUM_FRAMES EQU const_value ; BUG: FRAME_9 is missing from this list.
 
 ; wTextboxFlags::
 	const_def
