@@ -662,8 +662,8 @@ wBattle::
 wEnemyMoveStruct:: move_struct wEnemyMoveStruct
 wPlayerMoveStruct:: move_struct wPlayerMoveStruct
 
-wEnemyMonNickname:: ds 6
-wBattleMonNickname:: ds 6
+wEnemyMonNickname:: ds MON_NAME_LENGTH
+wBattleMonNickname:: ds MON_NAME_LENGTH
 
 UNION
 ; battle mon
@@ -1219,7 +1219,7 @@ wMonOrItemNameBuffer:: ds MON_NAME_LENGTH
 
 	ds MON_NAME_LENGTH
 
-wTMHMMoveNameBackup:: ds 8
+wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH
 
 	ds 1
 
@@ -1608,9 +1608,9 @@ wDebugFlagsEnd::
 SECTION "Game Data", WRAM0
 
 wGameData::
-wPlayerName:: ds 6
+wPlayerName:: ds PLAYER_NAME_LENGTH
 
-wMomsName:: ds 6
+wMomsName:: ds PLAYER_NAME_LENGTH
 
 wPlayerID:: dw
 
@@ -1718,8 +1718,10 @@ wPCItems:: ds MAX_PC_ITEMS * 2 + 1
 
 wRegisteredItem:: db
 wRegisteredItemQuantity:: db
-wRivalName:: ds 6
-	ds 6
+
+wRivalName:: ds PLAYER_NAME_LENGTH
+ ; Rival's Sister?
+	ds PLAYER_NAME_LENGTH
 
 wPlayerState:: db
 ; 00 - walking
