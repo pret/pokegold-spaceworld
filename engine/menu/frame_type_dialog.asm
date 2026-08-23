@@ -1,14 +1,14 @@
 FrameTypeDialog:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
-	ld a, [wActiveFrame]
+	ld a, [wTextboxFrame]
 	inc a
 	ld [wMenuCursorPosition], a
 	call VerticalMenu
 	jr c, .close
 	ld a, [wMenuCursorY]
 	dec a
-	ld [wActiveFrame], a
+	ld [wTextboxFrame], a
 	push de
 	ld de, SFX_MENU
 	call PlaySFX

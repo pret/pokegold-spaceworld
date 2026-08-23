@@ -39,7 +39,7 @@ OptionsMenu::
 
 	ld a, [wOptionsMenuCursorX]
 	cp 7
-	jr z, .SwitchActiveFrame
+	jr z, .SwitchTextboxFrame
 .ExitOptions:
 	push de
 	ld de, SFX_READ_TEXT_2
@@ -64,11 +64,11 @@ OptionsMenu::
 	call DelayFrames
 	jp .ReinitDisplay
 
-.SwitchActiveFrame
-	ld a, [wActiveFrame]
+.SwitchTextboxFrame
+	ld a, [wTextboxFrame]
 	inc a
 	and %111 ; BUG: This fails to account for Border 9, leaving it unused.
-	ld [wActiveFrame], a
+	ld [wTextboxFrame], a
 	hlcoord 17, 16
 	add '１'
 	ld [hl], a
@@ -398,7 +398,7 @@ DisplayOptionsMenu:
 	ld de, .OptionsText_FrameType
 	call PlaceString
 ; Place # of active frame
-	ld a, [wActiveFrame]
+	ld a, [wTextboxFrame]
 	hlcoord 17, 16
 	add '１'
 	ld [hl], a

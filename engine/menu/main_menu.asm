@@ -110,7 +110,7 @@ LoadOptions:
 	ld [wOptions], a
 	inc hl
 	ld a, [hli]
-	ld [wActiveFrame], a
+	ld [wTextboxFrame], a
 	ld a, [hl]
 	ld [wTextboxFlags], a
 	call CloseSRAM
