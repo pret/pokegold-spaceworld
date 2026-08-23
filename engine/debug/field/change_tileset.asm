@@ -30,7 +30,7 @@ FieldDebug_ChangeTileset:
 
 .MenuData:
 	db STATICMENU_CURSOR
-	db 3
-	db "セル１@"
-	db "セル２@"
-	db "セル３@"
+	db NUM_TILESETS_OLD
+for x, 1, NUM_TILESETS_OLD + 1
+	db "セル{d:x}@"
+endr
