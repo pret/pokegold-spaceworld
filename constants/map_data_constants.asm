@@ -58,10 +58,85 @@ DEF NUM_MAP_PALETTES EQU const_value
 	shift_const SOUTH
 	shift_const NORTH
 
-; SpawnPoints indexes (see data/maps/spawn_points.asm)
-DEF const_value = -1
-	const SPAWN_N_A
-DEF NUM_SPAWNS EQU 18
+; SpawnPoints indexes (see data/maps/spawn_points.asm and data/maps/debug_warps.asm) 
+	const_def
+	const SPAWN_NONE
+	const SPAWN_SILENT_HILL
+	const SPAWN_OLD_CITY
+	const SPAWN_WEST
+	const SPAWN_HIGHTECH
+	const SPAWN_FONT
+	const SPAWN_BIRDON
+	const SPAWN_NEWTYPE
+	const SPAWN_SUGAR
+	const SPAWN_BLUE_FOREST
+	const SPAWN_STAND
+	const SPAWN_KANTO
+	const SPAWN_PRINCE
+	const SPAWN_MT_FUJI
+	const SPAWN_SOUTH
+	const SPAWN_NORTH
+	const SPAWN_ROUTE_15
+	const SPAWN_ROUTE_18
+	const SPAWN_POWER_PLANT_1
+	const SPAWN_POWER_PLANT_2
+	const SPAWN_POWER_PLANT_3
+	const SPAWN_POWER_PLANT_4
+	const SPAWN_RUINS_OF_ALPH_ENTRANCE
+	const SPAWN_RUINS_OF_ALPH_MAIN
+	const SPAWN_CAVE_MINECARTS_1
+	const SPAWN_CAVE_MINECARTS_2
+	const SPAWN_CAVE_MINECARTS_3
+	const SPAWN_CAVE_MINECARTS_4
+	const SPAWN_CAVE_MINECARTS_5
+	const SPAWN_CAVE_MINECARTS_6
+	const SPAWN_CAVE_MINECARTS_7
+	const SPAWN_OFFICE_1
+	const SPAWN_OFFICE_2
+	const SPAWN_OFFICE_3
+	const SPAWN_SLOWPOKE_WELL_ENTRANCE
+	const SPAWN_SLOWPOKE_WELL_MAIN
+	const SPAWN_OLD_CITY_GYM
+	const SPAWN_WEST_GYM
+	const SPAWN_HIGHTECH_LEAGUE_2F
+	const SPAWN_BIRDON_LEAGUE_2F
+	const SPAWN_NEWTYPE_LEAGUE_2F
+	const SPAWN_BLUE_LEAGUE_2F
+	const SPAWN_STAND_LEAGUE_2F
+	const SPAWN_KANTO_LEAGUE_2F
+	const SPAWN_KANTO_LEAGUE_2_2F
+	const SPAWN_QUIET_HILLS
+DEF NUM_SPAWNS EQU const_value
+
+DEF SPAWN_N_A EQU -1
+
+; Flypoints indexes (see data/maps/flypoints.asm)
+	const_def
+
+	const FLY_POINT_SILENT_HILL ; 0
+	const FLY_POINT_OLD         ; 1
+	const FLY_POINT_WEST        ; 2
+	const FLY_POINT_HIGH_TECH   ; 3
+	const FLY_POINT_FONT        ; 4
+	const FLY_POINT_BIRDON      ; 5
+	const FLY_POINT_NEWTYPE     ; 6
+	const FLY_POINT_SUGAR       ; 7
+	const FLY_POINT_BLUE_FOREST ; 8
+	const FLY_POINT_STAND       ; 9
+	const FLY_POINT_KANTO       ; 10
+	const FLY_POINT_PRINCE      ; 11
+	const FLY_POINT_MT_FUJI     ; 12
+	const FLY_POINT_SOUTH       ; 13
+	const FLY_POINT_NORTH       ; 14
+
+; Unused?
+
+	const FLY_POINT_ROUTE_15    ; 15
+	const FLY_POINT_ROUTE_18    ; 16
+	const FLY_POINT_17			; 17; Deleted Map? Sends to Power Plant 1, which is an interior map.
+DEF NUM_FLYPOINTS EQU const_value
+
+DEF FLY_POINT_N_A EQU $FF
 
 ; size of each spawn point data
 DEF SPAWN_POINT_SIZE EQU 4

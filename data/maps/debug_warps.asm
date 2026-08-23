@@ -1,58 +1,65 @@
+MACRO warp_const
+	db SPAWN_\1
+	const WARP_\1
+ENDM
+
 WarpMenuOptions::
 
-	db 16 ; Number of options in the menu - 43 total stored in data, but most are unused
+	db NUM_WARPS ; Number of options in the menu - 43 total stored in data, but most are unused
 
-	db SPAWN_POINT_SILENT
-	db SPAWN_POINT_OLD
-	db SPAWN_POINT_WEST
-	db SPAWN_POINT_HIGH_TECH
-	db SPAWN_POINT_FOUNT
-	db SPAWN_POINT_BIRDON
-	db SPAWN_POINT_NEW_TYPE
-	db SPAWN_POINT_SUGAR
-	db SPAWN_POINT_BLUE_FOREST
-	db SPAWN_POINT_STAND
-	db SPAWN_POINT_KANTO
+	const_def
+	warp_const SILENT_HILL
+	warp_const OLD_CITY
+	warp_const WEST
+	warp_const HIGHTECH
+	warp_const FONT
+	warp_const BIRDON
+	warp_const NEWTYPE
+	warp_const SUGAR
+	warp_const BLUE_FOREST
+	warp_const STAND
+	warp_const KANTO
 
-	; PRINCE and MT_FUJI are skipped in the menu
+; PRINCE and MT_FUJI are skipped in the menu
+;	warp_const PRINCE
+;	warp_const MT_FUJI
 
-;	db SPAWN_POINT_PRINCE
-;	db SPAWN_POINT_MT_FUJI
+	warp_const SOUTH
+	warp_const NORTH
+	warp_const ROUTE_15
+	warp_const ROUTE_18
+	warp_const QUIET_HILLS
+	db SPAWN_N_A
 
-	db SPAWN_POINT_SOUTH
-	db SPAWN_POINT_NORTH
-	db SPAWN_POINT_ROUTE_15
-	db SPAWN_POINT_ROUTE_18
-	db SPAWN_POINT_QUIET_HILLS
-	db $ff
+	DEF NUM_WARPS EQU const_value
 
 	; The demo's options stop here, but the spawn points included actually extend far beyond what is available
 
-	db SPAWN_POINT_POWER_PLANT_1
-	db SPAWN_POINT_POWER_PLANT_2
-	db SPAWN_POINT_POWER_PLANT_3
-	db SPAWN_POINT_POWER_PLANT_4
-	db SPAWN_POINT_RUINS_1
-	db SPAWN_POINT_RUINS_2
-	db SPAWN_POINT_MINES_1
-	db SPAWN_POINT_MINES_2
-	db SPAWN_POINT_MINES_3
-	db SPAWN_POINT_MINES_4
-	db SPAWN_POINT_MINES_5
-	db SPAWN_POINT_MINES_6
-	db SPAWN_POINT_MINES_7
-	db SPAWN_POINT_HIDEOUT_1
-	db SPAWN_POINT_HIDEOUT_2
-	db SPAWN_POINT_HIDEOUT_3
-	db SPAWN_POINT_SLOWPOKE_WELL_1
-	db SPAWN_POINT_SLOWPOKE_WELL_2
-	db SPAWN_POINT_POKEMON_LEAGUE_1
-	db SPAWN_POINT_POKEMON_LEAGUE_1_2
-	db SPAWN_POINT_POKEMON_LEAGUE_2
-	db SPAWN_POINT_POKEMON_LEAGUE_3
-	db SPAWN_POINT_POKEMON_LEAGUE_4
-	db SPAWN_POINT_POKEMON_LEAGUE_5
-	db SPAWN_POINT_POKEMON_LEAGUE_6
-	db SPAWN_POINT_POKEMON_LEAGUE_7
-	db SPAWN_POINT_POKEMON_LEAGUE_7_2
-	db $ff
+	warp_const POWER_PLANT_1
+	warp_const POWER_PLANT_2
+	warp_const POWER_PLANT_3
+	warp_const POWER_PLANT_4
+	warp_const RUINS_OF_ALPH_ENTRANCE
+	warp_const RUINS_OF_ALPH_MAIN
+	warp_const CAVE_MINECARTS_1
+	warp_const CAVE_MINECARTS_2
+	warp_const CAVE_MINECARTS_3
+	warp_const CAVE_MINECARTS_4
+	warp_const CAVE_MINECARTS_5
+	warp_const CAVE_MINECARTS_6
+	warp_const CAVE_MINECARTS_7
+	warp_const OFFICE_1
+	warp_const OFFICE_2
+	warp_const OFFICE_3
+	warp_const SLOWPOKE_WELL_ENTRANCE
+	warp_const SLOWPOKE_WELL_MAIN
+	warp_const OLD_CITY_GYM
+	warp_const WEST_GYM
+	warp_const HIGHTECH_LEAGUE_2F
+	warp_const BIRDON_LEAGUE_2F
+	warp_const NEWTYPE_LEAGUE_2F
+	warp_const BLUE_LEAGUE_2F
+	warp_const STAND_LEAGUE_2F
+	warp_const KANTO_LEAGUE_2F
+	warp_const KANTO_LEAGUE_2_2F
+	db SPAWN_N_A
