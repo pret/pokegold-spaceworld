@@ -906,11 +906,10 @@ endr
 	db   "・．　　なまえ　　　　レべル@" ; "No.　　　　NAME　　　　LEVEL@"
 .LayoutText:
 	db   "１．▶０００　ーーーーー　　０００"
-	next "２．　０００　ーーーーー　　０００"
-	next "３．　０００　ーーーーー　　０００"
-	next "４．　０００　ーーーーー　　０００"
-	next "５．　０００　ーーーーー　　０００"
-	next "６．　０００　ーーーーー　　０００@"
+for x, 2, PARTY_LENGTH + 1
+	next "{d:x}．　０００　ーーーーー　　０００"
+endr
+	db	"@"
 .5SpacesText:
 	db   "　　　　　@"
 .5DashesText:
