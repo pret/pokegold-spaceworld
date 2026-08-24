@@ -99,7 +99,7 @@ SlotMachineGame_Init:
 
 SlotsLoop:
 	ld a, [wJumptableIndex]
-	bit MINIGAME_END_LOOP_F, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .done
 	call SlotsJumptable
 	call Slots_SpinReels
@@ -471,7 +471,7 @@ SlotsAction_RestartOrQuit:
 
 SlotsAction_Quit:
 	ld hl, wJumptableIndex
-	set MINIGAME_END_LOOP_F, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 Slots_LoadReelState:

@@ -75,7 +75,7 @@ FifteenPuzzleMinigame:
 
 .JumptableLoop:
 	ld a, [wJumptableIndex]
-	bit MINIGAME_END_LOOP_F, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 
 	call .ExecuteJumptable
@@ -134,7 +134,7 @@ FifteenPuzzleMinigame:
 	ret
 .ExitPuzzle:
 ;	ld hl, wJumptableIndex
-;	set MINIGAME_END_LOOP_F, [hl]
+;	set JUMPTABLE_EXIT_F, [hl]
 ;	ret
 .InitPuzzle:
 	ld hl, wJumptableIndex
@@ -212,7 +212,7 @@ FifteenPuzzleMinigame:
 
 .PuzzleEndScreen_End:
 	ld hl, wJumptableIndex
-	set MINIGAME_END_LOOP_F, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	xor a
 	ldh [hSCY], a
 	ret
