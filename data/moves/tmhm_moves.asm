@@ -4,6 +4,7 @@
 
 TMHMMoves:
 ; TMs
+	table_width 1
 	db MOVE_SKETCH ; TM01
 	db MOVE_HIDDEN_POWER ; TM02
 	db MOVE_SNORE ; TM03
@@ -54,7 +55,7 @@ TMHMMoves:
 	db MOVE_PERISH_SONG ; TM48
 	db MOVE_ENDURE ; TM49
 	db MOVE_MAGNITUDE ; TM50
-; HMs
+	assert_table_length NUM_TMS
 	db MOVE_UPROOT ; HM01
 	db MOVE_WIND_RIDE ; HM02
 	db MOVE_WATER_SPORT ; HM03
@@ -62,3 +63,4 @@ TMHMMoves:
 	db MOVE_BRIGHT_MOSS ; HM05
 	db MOVE_WHIRLPOOL ; HM06
 	db MOVE_BOUNCE ; HM07
+	assert_table_length NUM_TM_HM

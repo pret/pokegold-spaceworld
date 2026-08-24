@@ -930,12 +930,12 @@ endr
 	db   "ゴールド@@" ; "GOLD@@"
 
 .ItemTable_Old: ; unreferenced, used in pokeyellow but hasn't been updated to fit the new item constants
-	db ITEM_03,           99
-	db ITEM_GREAT_BALL,   99
-	db ITEM_ICE_HEAL,     99
-	db ITEM_HYPER_POTION, 99
-	db ITEM_SUPER_POTION, 99
-	db ITEM_POTION,       99
-	db ITEM_ESCAPE_ROPE,  99
-	db ITEM_REPEL,        99
+	db ITEM_GREAT_BALL_RED,   99
+	db ITEM_POKE_BALL_RED,    99
+	db ITEM_ANTIDOTE_RED,     99
+	db ITEM_FULL_RESTORE_RED, 99
+	db ITEM_MAX_POTION_RED,   99
+	db ITEM_HYPER_POTION_RED, 99
+	db ITEM_SUPER_POTION_RED, 99
+	db ITEM_POTION_RED,       99
 	db -1

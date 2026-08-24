@@ -1,5 +1,6 @@
 Gen1TrainerClassNames:
 ; Untranslated trainer class names from Red.
+	table_width 2
 	dw .Youngster
 	dw .BugCatcher
 	dw .Lass
@@ -47,25 +48,28 @@ Gen1TrainerClassNames:
 	dw wOTClassName ; channeler
 	dw wOTClassName ; agatha
 	dw wOTClassName ; lance
+	assert_table_length 47
 
-.Youngster:    db "たんパン@"
-.BugCatcher:   db "むしとり@"
-.Lass:         db "ミニスカ@"
-.JrTrainerM:   db "ボーイ@"
-.JrTrainerF:   db "ガール@"
-.Pokemaniac:   db "マニア@"
-.SuperNerd:    db "りかけい@"
-.Burglar:      db "どろぼう@"
-.Engineer:     db "オヤジ@"
-.Jack:         db "ジャック@"
-.Swimmer:      db "かいパン@"
-.Beauty:       db "おねえさん@"
-.Rocker:       db "グループ@"
-.Juggler:      db "ジャグラー@"
-.Blackbelt:    db "からて@"
-.ProfOak:      db "オーキド@"
-.Chief:        db "チーフ@"
-.Scientist:    db "けんきゅういん@"
-.Rocket:       db "だんいん@"
-.CooltrainerM: db "エりート♂@"
-.CooltrainerF: db "エりート♀@"
+list_start TRAINER_CLASS_NAME_LENGTH - 1
+.Youngster:    li "たんパン"
+.BugCatcher:   li "むしとり"
+.Lass:         li "ミニスカ"
+.JrTrainerM:   li "ボーイ"
+.JrTrainerF:   li "ガール"
+.Pokemaniac:   li "マニア"
+.SuperNerd:    li "りかけい"
+.Burglar:      li "どろぼう"
+.Engineer:     li "オヤジ"
+.Jack:         li "ジャック"
+.Swimmer:      li "かいパン"
+.Beauty:       li "おねえさん"
+.Rocker:       li "グループ"
+.Juggler:      li "ジャグラー"
+.Blackbelt:    li "からて"
+.ProfOak:      li "オーキド"
+.Chief:        li "チーフ"
+.Scientist:    li "けんきゅういん"
+.Rocket:       li "だんいん"
+.CooltrainerM: li "エりート♂"
+.CooltrainerF: li "エりート♀"
+assert_list_length 21
