@@ -1,9 +1,9 @@
 DEF NUM_DEBUG_TILESETS EQU 3
+ASSERT NUM_DEBUG_TILESETS <= NUM_TILESETS
 
 FieldDebug_ChangeTileset:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
-ASSERT NUM_DEBUG_TILESETS <= NUM_TILESETS
 	ld a, [wMapTileset]
 	inc a
 	ld [wMenuCursorPosition], a
