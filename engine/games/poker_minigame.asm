@@ -65,7 +65,7 @@ PokerMinigame:
 
 .JumptableLoop:
 	ld a, [wJumptableIndex]
-	bit MINIGAME_END_LOOP_F, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 
 	call .ExecuteJumptable
@@ -325,7 +325,7 @@ PokerMinigame:
 
 .Exit:
 	ld hl, wJumptableIndex
-	set MINIGAME_END_LOOP_F, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 PokerMinigame_CheckCoinCase:

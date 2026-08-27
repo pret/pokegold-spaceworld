@@ -57,7 +57,7 @@ MemoryMinigame:
 
 .JumptableLoop:
 	ld a, [wJumptableIndex]
-	bit MINIGAME_END_LOOP_F, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 	call .ExecuteJumptable
 	callfar PlaySpriteAnimations
@@ -93,7 +93,7 @@ MemoryMinigame:
 	call PokerMinigame_BetAmount ; Leftover from Poker Minigame
 	jr nc, .proceed
 	ld hl, wJumptableIndex
-	set MINIGAME_END_LOOP_F, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .proceed
@@ -253,7 +253,7 @@ endr
 	call PokerMinigame_YesOrNo
 	jr nc, .restart
 	ld hl, wJumptableIndex
-	set MINIGAME_END_LOOP_F, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .restart
