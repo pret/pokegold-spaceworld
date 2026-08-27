@@ -24748,11 +24748,13 @@ WRAM0 bank #0:
 	         $ca3d = wPlayerSubStatus3
 	         $ca3e = wPlayerSubStatus4
 	         $ca3f = wPlayerSubStatus5
+	         $ca40 = wPlayerSubStatusEnd
 	         $ca40 = wEnemySubStatus1
 	         $ca41 = wEnemySubStatus2
 	         $ca42 = wEnemySubStatus3
 	         $ca43 = wEnemySubStatus4
 	         $ca44 = wEnemySubStatus5
+	         $ca45 = wEnemySubStatusEnd
 	         $ca45 = wPlayerRolloutCount
 	         $ca46 = wPlayerConfuseCount
 	         $ca47 = wPlayerToxicCount

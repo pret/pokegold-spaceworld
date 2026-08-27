@@ -24248,10 +24248,12 @@
 00:ca3e wPlayerSubStatus4
 00:ca3f wPlayerSubStatus5
 00:ca40 wEnemySubStatus1
+00:ca40 wPlayerSubStatusEnd
 00:ca41 wEnemySubStatus2
 00:ca42 wEnemySubStatus3
 00:ca43 wEnemySubStatus4
 00:ca44 wEnemySubStatus5
+00:ca45 wEnemySubStatusEnd
 00:ca45 wPlayerRolloutCount
 00:ca46 wPlayerConfuseCount
 00:ca47 wPlayerToxicCount
