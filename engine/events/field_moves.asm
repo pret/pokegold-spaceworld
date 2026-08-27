@@ -351,9 +351,9 @@ ShowFlyMap:
 	call GetMemSGBLayout
 	call ExitMenu
 	ld a, [wFlyDestination]
-	cp -1
+	cp FLY_POINT_N_A
 	jr z, .dont_fly
-	cp NUM_SPAWNS
+	cp NUM_FLYPOINTS
 	jr nc, .dont_fly
 	set_field_script DoFly
 	xor a

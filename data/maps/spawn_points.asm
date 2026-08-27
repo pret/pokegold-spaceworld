@@ -1,68 +1,72 @@
 ; Spawn points used by Fly, Debug Warp, etc.
 
-; Group, Map, X Position, Y Position
-
+MACRO spawn
+; map, x, y
+	map_id \1
+	db \2, \3
+ENDM
 SpawnPoints:
 
 ; Fly destinations
-
-	db GROUP_SILENT_HILL, MAP_SILENT_HILL, $05, $05
-	db GROUP_OLD_CITY, MAP_OLD_CITY, $1b, $1d
-	db GROUP_WEST, MAP_WEST, $19, $0f
-	db GROUP_HIGHTECH, MAP_HIGHTECH, $1f, $0b
-	db GROUP_FONT, MAP_FONT, $03, $0d
-	db GROUP_BIRDON, MAP_BIRDON, $0f, $05
-	db GROUP_NEWTYPE, MAP_NEWTYPE, $07, $09
-	db GROUP_SUGAR, MAP_SUGAR, $09, $0b
-	db GROUP_BLUE_FOREST, MAP_BLUE_FOREST, $0d, $13
-	db GROUP_STAND, MAP_STAND, $21, $15
-	db GROUP_KANTO, MAP_KANTO, $31, $1f
-	db GROUP_PRINCE, MAP_PRINCE, $05, $05
-	db GROUP_MT_FUJI, MAP_MT_FUJI, $05, $05
-	db GROUP_SOUTH, MAP_SOUTH, $21, $0f
-	db GROUP_NORTH, MAP_NORTH, $0d, $0b
+	table_width 4
+	spawn SILENT_HILL,             5,   5
+	spawn OLD_CITY,               27,  29
+	spawn WEST,                   25,  15
+	spawn HIGHTECH,               31,  11
+	spawn FONT,                    3,  13
+	spawn BIRDON,                 15,   5
+	spawn NEWTYPE,                 7,   9
+	spawn SUGAR,                   9,  11
+	spawn BLUE_FOREST,            13,  19
+	spawn STAND,                  33,  21
+	spawn KANTO,                  49,  31
+	spawn PRINCE,                  5,   5 ; this should be 5, 15, to line up with the Pokémon Center entrance
+	spawn MT_FUJI,                 5,   5
+	spawn SOUTH,                  33,  15
+	spawn NORTH,                  13,  11
 
 ; Seemingly recognized as valid warps by hacking wFlyDestination, but inaccessible other than through debug Warp
 
-	db GROUP_NEWTYPE, MAP_ROUTE_15, $09, $0b
-	db GROUP_NEWTYPE, MAP_ROUTE_18, $0d, $1d
+	spawn ROUTE_15,                9,  11
+	spawn ROUTE_18,               13,  29
 
 ; Hidden warps (do not appear in debug menu normally)
 
-	db GROUP_POWER_PLANT_1, MAP_POWER_PLANT_1, $06, $06
-	db GROUP_POWER_PLANT_2, MAP_POWER_PLANT_2, $06, $06
-	db GROUP_POWER_PLANT_3, MAP_POWER_PLANT_3, $04, $10
-	db GROUP_POWER_PLANT_4, MAP_POWER_PLANT_4, $06, $06
+	spawn POWER_PLANT_1,           6,   6
+	spawn POWER_PLANT_2,           6,   6
+	spawn POWER_PLANT_3,           4,  16
+	spawn POWER_PLANT_4,           6,   6
 
-	db GROUP_RUINS_OF_ALPH_ENTRANCE, MAP_RUINS_OF_ALPH_ENTRANCE, $09, $0d
-	db GROUP_RUINS_OF_ALPH_MAIN, MAP_RUINS_OF_ALPH_MAIN, $17, $2f
+	spawn RUINS_OF_ALPH_ENTRANCE,  9,  13
+	spawn RUINS_OF_ALPH_MAIN,     23,  47
 
-	db GROUP_CAVE_MINECARTS_1, MAP_CAVE_MINECARTS_1, $06, $0a
-	db GROUP_CAVE_MINECARTS_2, MAP_CAVE_MINECARTS_2, $06, $06
-	db GROUP_CAVE_MINECARTS_3, MAP_CAVE_MINECARTS_3, $06, $06
-	db GROUP_CAVE_MINECARTS_4, MAP_CAVE_MINECARTS_4, $06, $06
-	db GROUP_CAVE_MINECARTS_5, MAP_CAVE_MINECARTS_5, $06, $06
-	db GROUP_CAVE_MINECARTS_6, MAP_CAVE_MINECARTS_6, $06, $06
-	db GROUP_CAVE_MINECARTS_7, MAP_CAVE_MINECARTS_7, $06, $06
+	spawn CAVE_MINECARTS_1,        6,  10
+	spawn CAVE_MINECARTS_2,        6,   6
+	spawn CAVE_MINECARTS_3,        6,   6
+	spawn CAVE_MINECARTS_4,        6,   6
+	spawn CAVE_MINECARTS_5,        6,   6
+	spawn CAVE_MINECARTS_6,        6,   6
+	spawn CAVE_MINECARTS_7,        6,   6
 
-	db GROUP_OFFICE_1, MAP_OFFICE_1, $10, $0d
-	db GROUP_OFFICE_2, MAP_OFFICE_2, $08, $08
-	db GROUP_OFFICE_3, MAP_OFFICE_3, $08, $08
+	spawn OFFICE_1,               16,  13
+	spawn OFFICE_2,                8,   8
+	spawn OFFICE_3,                8,   8
 
-	db GROUP_SLOWPOKE_WELL_ENTRANCE, MAP_SLOWPOKE_WELL_ENTRANCE, $09, $0b
-	db GROUP_SLOWPOKE_WELL_MAIN, MAP_SLOWPOKE_WELL_MAIN, $09, $23
+	spawn SLOWPOKE_WELL_ENTRANCE,  9,  11
+	spawn SLOWPOKE_WELL_MAIN,      9,  35
 
-	db GROUP_OLD_CITY_GYM, MAP_OLD_CITY_GYM, $06, $06
-	db GROUP_WEST_GYM, MAP_WEST_GYM, $06, $06
-	db GROUP_HIGHTECH_LEAGUE_2F, MAP_HIGHTECH_LEAGUE_2F, $06, $06
-	db GROUP_BIRDON_LEAGUE_2F, MAP_BIRDON_LEAGUE_2F, $06, $06
-	db GROUP_NEWTYPE_LEAGUE_2F, MAP_NEWTYPE_LEAGUE_2F, $06, $06
-	db GROUP_BLUE_LEAGUE_2F, MAP_BLUE_LEAGUE_2F, $06, $06
-	db GROUP_STAND_LEAGUE_2F, MAP_STAND_LEAGUE_2F, $06, $06
-	db GROUP_KANTO_LEAGUE_2F, MAP_KANTO_LEAGUE_2F, $06, $06
-	db GROUP_KANTO_LEAGUE_2_2F, MAP_KANTO_LEAGUE_2_2F, $06, $06
+	spawn OLD_CITY_GYM,            6,   6
+	spawn WEST_GYM,                6,   6
+	spawn HIGHTECH_LEAGUE_2F,      6,   6
+	spawn BIRDON_LEAGUE_2F,        6,   6
+	spawn NEWTYPE_LEAGUE_2F,       6,   6
+	spawn BLUE_LEAGUE_2F,          6,   6
+	spawn STAND_LEAGUE_2F,         6,   6
+	spawn KANTO_LEAGUE_2F,         6,   6
+	spawn KANTO_LEAGUE_2_2F,       6,   6
 
 ; Only appears in debug menu, likely for the purposes of testing the demo
 
-	db GROUP_QUIET_HILLS, MAP_QUIET_HILLS, $10, $10
-	db $ff, $ff, $ff, $ff
+	spawn QUIET_HILLS,            16,  16
+	spawn N_A,                   $ff, $ff
+	assert_table_length NUM_SPAWNS

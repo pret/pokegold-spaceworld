@@ -138,7 +138,7 @@ SetUpGameEntry::
 	ret nz
 	ld a, MAPSETUP_NEW_GAME
 	ldh [hMapEntryMethod], a
-	ld a, SPAWN_POINT_NONE
+	ld a, SPAWN_NONE
 	ld [wDefaultSpawnPoint], a
 	ld hl, GameStartMapLocation
 	ld de, wMapGroup
