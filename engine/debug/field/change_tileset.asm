@@ -1,3 +1,6 @@
+DEF NUM_DEBUG_TILESETS EQU 3
+ASSERT NUM_DEBUG_TILESETS <= NUM_TILESETS
+
 FieldDebug_ChangeTileset:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
@@ -30,7 +33,7 @@ FieldDebug_ChangeTileset:
 
 .MenuData:
 	db STATICMENU_CURSOR
-	db 3
-	db "セル１@"
-	db "セル２@"
-	db "セル３@"
+	db NUM_DEBUG_TILESETS
+for x, 1, NUM_DEBUG_TILESETS + 1
+	db "セル{d:x}@"
+endr
