@@ -20,8 +20,7 @@ SpawnPoints:
 	spawn BLUE_FOREST,            13,  19
 	spawn STAND,                  33,  21
 	spawn KANTO,                  49,  31
-; This should be 5, 15, to line up with the Pokecenter Entrance.
-	spawn PRINCE,                  5,   5
+	spawn PRINCE,                  5,   5 ; this should be 5, 15, to line up with the Pokémon Center entrance
 	spawn MT_FUJI,                 5,   5
 	spawn SOUTH,                  33,  15
 	spawn NORTH,                  13,  11

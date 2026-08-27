@@ -5,7 +5,7 @@ ENDM
 
 WarpMenuOptions::
 
-	db NUM_DEBUG_WARPS ; Number of options in the menu - 43 total stored in data, but most are unused
+	db NUM_DEBUG_WARPS
 
 	const_def
 	warp_const SILENT_HILL

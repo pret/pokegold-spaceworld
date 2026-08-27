@@ -112,7 +112,6 @@ DEF SPAWN_N_A EQU -1
 
 ; Flypoints indexes (see data/maps/flypoints.asm)
 	const_def
-
 	const FLY_POINT_SILENT_HILL ; 0
 	const FLY_POINT_OLD         ; 1
 	const FLY_POINT_WEST        ; 2
@@ -128,12 +127,10 @@ DEF SPAWN_N_A EQU -1
 	const FLY_POINT_MT_FUJI     ; 12
 	const FLY_POINT_SOUTH       ; 13
 	const FLY_POINT_NORTH       ; 14
-
 ; Unused?
-
 	const FLY_POINT_ROUTE_15    ; 15
 	const FLY_POINT_ROUTE_18    ; 16
-	const FLY_POINT_17			; 17; Deleted Map? Sends to Power Plant 1, which is an interior map.
+	const FLY_POINT_17			; 17 ; Deleted map? Sends to Power Plant 1, which is an interior map.
 DEF NUM_FLYPOINTS EQU const_value
 
 DEF FLY_POINT_N_A EQU $FF
