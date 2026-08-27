@@ -9,64 +9,65 @@ SpawnPoints:
 
 ; Fly destinations
 	table_width 4
-	spawn SILENT_HILL, $05, $05
-	spawn OLD_CITY, $1b, $1d
-	spawn WEST, $19, $0f
-	spawn HIGHTECH, $1f, $0b
-	spawn FONT, $03, $0d
-	spawn BIRDON, $0f, $05
-	spawn NEWTYPE, $07, $09
-	spawn SUGAR, $09, $0b
-	spawn BLUE_FOREST, $0d, $13
-	spawn STAND, $21, $15
-	spawn KANTO, $31, $1f
-	spawn PRINCE, $05, $05 ; This should be $05, $0f, to line up with the Pokecenter Entrance.
-	spawn MT_FUJI, $05, $05
-	spawn SOUTH, $21, $0f
-	spawn NORTH, $0d, $0b
+	spawn SILENT_HILL,             5,   5
+	spawn OLD_CITY,               27,  29
+	spawn WEST,                   25,  15
+	spawn HIGHTECH,               31,  11
+	spawn FONT,                    3,  13
+	spawn BIRDON,                 15,   5
+	spawn NEWTYPE,                 7,   9
+	spawn SUGAR,                   9,  11
+	spawn BLUE_FOREST,            13,  19
+	spawn STAND,                  33,  21
+	spawn KANTO,                  49,  31
+; This should be 5, 15, to line up with the Pokecenter Entrance.
+	spawn PRINCE,                  5,   5
+	spawn MT_FUJI,                 5,   5
+	spawn SOUTH,                  33,  15
+	spawn NORTH,                  13,  11
 
 ; Seemingly recognized as valid warps by hacking wFlyDestination, but inaccessible other than through debug Warp
 
-	spawn ROUTE_15, $09, $0b
-	spawn ROUTE_18, $0d, $1d
+	spawn ROUTE_15,                9,  11
+	spawn ROUTE_18,               13,  29
 
 ; Hidden warps (do not appear in debug menu normally)
 
-	spawn POWER_PLANT_1, $06, $06
-	spawn POWER_PLANT_2, $06, $06
-	spawn POWER_PLANT_3, $04, $10
-	spawn POWER_PLANT_4, $06, $06
+	spawn POWER_PLANT_1,           6,   6
+	spawn POWER_PLANT_2,           6,   6
+	spawn POWER_PLANT_3,           4,  16
+	spawn POWER_PLANT_4,           6,   6
 
-	spawn RUINS_OF_ALPH_ENTRANCE, $09, $0d
-	spawn RUINS_OF_ALPH_MAIN, $17, $2f
+	spawn RUINS_OF_ALPH_ENTRANCE,  9,  13
+	spawn RUINS_OF_ALPH_MAIN,     23,  47
 
-	spawn CAVE_MINECARTS_1, $06, $0a
-	spawn CAVE_MINECARTS_2, $06, $06
-	spawn CAVE_MINECARTS_3, $06, $06
-	spawn CAVE_MINECARTS_4, $06, $06
-	spawn CAVE_MINECARTS_5, $06, $06
-	spawn CAVE_MINECARTS_6, $06, $06
-	spawn CAVE_MINECARTS_7, $06, $06
+	spawn CAVE_MINECARTS_1,        6,  10
+	spawn CAVE_MINECARTS_2,        6,   6
+	spawn CAVE_MINECARTS_3,        6,   6
+	spawn CAVE_MINECARTS_4,        6,   6
+	spawn CAVE_MINECARTS_5,        6,   6
+	spawn CAVE_MINECARTS_6,        6,   6
+	spawn CAVE_MINECARTS_7,        6,   6
 
-	spawn OFFICE_1, $10, $0d
-	spawn OFFICE_2, $08, $08
-	spawn OFFICE_3, $08, $08
+	spawn OFFICE_1,               16,  13
+	spawn OFFICE_2,                8,   8
+	spawn OFFICE_3,                8,   8
 
-	spawn SLOWPOKE_WELL_ENTRANCE, $09, $0b
-	spawn SLOWPOKE_WELL_MAIN, $09, $23
+	spawn SLOWPOKE_WELL_ENTRANCE,  9,  11
+	spawn SLOWPOKE_WELL_MAIN,      9,  35
 
-	spawn OLD_CITY_GYM, $06, $06
-	spawn WEST_GYM, $06, $06
-	spawn HIGHTECH_LEAGUE_2F, $06, $06
-	spawn BIRDON_LEAGUE_2F, $06, $06
-	spawn NEWTYPE_LEAGUE_2F, $06, $06
-	spawn BLUE_LEAGUE_2F, $06, $06
-	spawn STAND_LEAGUE_2F, $06, $06
-	spawn KANTO_LEAGUE_2F, $06, $06
-	spawn KANTO_LEAGUE_2_2F, $06, $06
+	spawn OLD_CITY_GYM,            6,   6
+	spawn WEST_GYM,                6,   6
+	spawn HIGHTECH_LEAGUE_2F,      6,   6
+	spawn BIRDON_LEAGUE_2F,        6,   6
+	spawn NEWTYPE_LEAGUE_2F,       6,   6
+	spawn BLUE_LEAGUE_2F,          6,   6
+	spawn STAND_LEAGUE_2F,         6,   6
+	spawn KANTO_LEAGUE_2F,         6,   6
+	spawn KANTO_LEAGUE_2_2F,       6,   6
 
 ; Only appears in debug menu, likely for the purposes of testing the demo
 
-	spawn QUIET_HILLS, $10, $10
-	spawn N_A, $ff, $ff
+	spawn QUIET_HILLS,            16,  16
+	spawn N_A,                   $ff, $ff
 	assert_table_length NUM_SPAWNS

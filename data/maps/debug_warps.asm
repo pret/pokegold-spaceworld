@@ -5,7 +5,7 @@ ENDM
 
 WarpMenuOptions::
 
-	db NUM_WARPS ; Number of options in the menu - 43 total stored in data, but most are unused
+	db NUM_DEBUG_WARPS ; Number of options in the menu - 43 total stored in data, but most are unused
 
 	const_def
 	warp_const SILENT_HILL
@@ -19,19 +19,15 @@ WarpMenuOptions::
 	warp_const BLUE_FOREST
 	warp_const STAND
 	warp_const KANTO
-
 ; PRINCE and MT_FUJI are skipped in the menu
-;	warp_const PRINCE
-;	warp_const MT_FUJI
-
 	warp_const SOUTH
 	warp_const NORTH
 	warp_const ROUTE_15
 	warp_const ROUTE_18
 	warp_const QUIET_HILLS
-	db SPAWN_N_A
+	db -1 ; end
 
-	DEF NUM_WARPS EQU const_value
+	DEF NUM_DEBUG_WARPS EQU const_value
 
 	; The demo's options stop here, but the spawn points included actually extend far beyond what is available
 
@@ -62,4 +58,4 @@ WarpMenuOptions::
 	warp_const STAND_LEAGUE_2F
 	warp_const KANTO_LEAGUE_2F
 	warp_const KANTO_LEAGUE_2_2F
-	db SPAWN_N_A
+	db -1 ; end
