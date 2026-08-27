@@ -104,7 +104,7 @@ FightDebugMenu:
 
 .ClearMonsData:
 	xor	a
-rept 6
+rept PARTY_LENGTH
 	ld [hli], a
 endr
 	ld [hl], a
@@ -184,7 +184,7 @@ endr
 	ld a, '　'
 	ld [hl], a
 	push bc
-	ld bc, hSerialReceive
+	ld bc, -SCREEN_WIDTH * 2
 	add hl, bc
 	pop bc
 	ld a, '▶'
@@ -305,7 +305,7 @@ endr
 	ld a, '　'
 	ld [hl], a
 	pop hl
-	ld bc, hSerialReceive
+	ld bc, -SCREEN_WIDTH * 2
 	add hl, bc
 	push hl
 	ld bc, NAME_LENGTH -1
@@ -438,7 +438,7 @@ endr
 	ld a, WILD_BATTLE
 	ld [wBattleMode], a
 	ld de, .WildPokemonText ; "WILD #MON@"
-	ld a, [wOTPlayerName + 2] ; differs from pokeyellow
+	ld a, [wOTPlayerName + 2]
 	cp MAX_LEVEL + 1
 	jr c, .EnemySet_2_1
 	ld a, TRAINER_BATTLE
@@ -788,11 +788,11 @@ endr
 	ld [wNumFleeAttempts], a
 
 	ld hl, wPlayerSubStatus1
-	ld bc, 5 ; wPlayerSubStatus1 - wPlayerSubStatus5
+	ld bc, wPlayerSubStatusEnd - wPlayerSubStatus1
 	call ByteFill
 
 	ld hl, wEnemySubStatus1
-	ld bc, 5 ; wEnemySubStatus1 - wEnemySubStatus5
+	ld bc, wEnemySubStatusEnd - wEnemySubStatus1
 	call ByteFill
 
 	call LoadFont
