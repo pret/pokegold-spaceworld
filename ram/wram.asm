@@ -1720,8 +1720,8 @@ wRegisteredItem:: db
 wRegisteredItemQuantity:: db
 
 wRivalName:: ds PLAYER_NAME_LENGTH
- ; Rival's Sister?
-	ds PLAYER_NAME_LENGTH
+
+	ds PLAYER_NAME_LENGTH ; unused
 
 wPlayerState:: db
 ; 00 - walking
