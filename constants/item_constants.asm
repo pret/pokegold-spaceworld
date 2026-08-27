@@ -198,7 +198,7 @@
 	const ITEM_C1               ; c1 *TM03
 	const ITEM_C2               ; c2 *TM04
 	const ITEM_C3               ; c3
-DEF NUM_ITEMS = const_value - 1
+DEF NUM_ITEMS EQU const_value - 1
 
 DEF __tmhm_value__ = 1
 
@@ -206,6 +206,7 @@ MACRO add_tmnum
 	DEF \1_TMNUM EQU __tmhm_value__
 	DEF __tmhm_value__ += 1
 ENDM
+
 MACRO add_tm
 ; Defines three constants:
 ; - TM_\1: the item id, starting at $bf

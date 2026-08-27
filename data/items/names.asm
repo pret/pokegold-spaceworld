@@ -199,25 +199,23 @@ ItemNames::
 	li "みしよう" ; C3
 	assert_list_length NUM_ITEMS
 
-for x, 1, NUM_TMS - 45
-	li "わざマシン{02d:x}" ; TM01 - TM04
+for x, 1, 5
+	li "わざマシン{02d:x}" ; TM01-TM04
 endr
-
 	li "しようきんし" ; C8
-
-for x, 5, NUM_TMS - 21
-	li "わざマシン{02d:x}" ; TM05 - TM28
+for x, 5, 29
+	li "わざマシン{02d:x}" ; TM05-TM28
 endr
-
 	li "しようきんし" ; E1
-
 for x, 29, NUM_TMS + 1
-	li "わざマシン{02d:x}" ; TM29 - TM50
+	li "わざマシン{02d:x}" ; TM29-TM50
 endr
 	assert_list_length NUM_ITEMS + NUM_TMS + 2 ; count ITEM_C8 and ITEM_E1
+
 for x, 1, NUM_HMS + 1
 	li "ひでんマシン{02d:x}" ; HM01-HM07
 endr
 	assert_list_length NUM_ITEMS + NUM_TMS + 2 + NUM_HMS ; count ITEM_C8 and ITEM_E1
+
 	li "しようきんし" ; FF
 	assert_list_length ITEM_FF
