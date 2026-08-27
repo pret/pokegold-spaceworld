@@ -1830,7 +1830,7 @@ ROMX bank #1:
 	         $78fb = OptionsMenu.wait_joy_loop
 	         $7924 = OptionsMenu.ExitOptions
 	         $7939 = OptionsMenu.SwitchSGBBorder
-	         $7956 = OptionsMenu.SwitchActiveFrame
+	         $7956 = OptionsMenu.SwitchTextboxFrame
 	         $796a = OptionsMenu.ClearOldMenuCursor
 	         $7977 = OptionsMenu.CheckDPad
 	         $7996 = OptionsMenu.Cursor_TextSpeed
@@ -14354,7 +14354,7 @@ ROMX bank #62:
 	         $4026 = LoadPokemonMenuGraphics
 	         $4034 = LoadToolgearGraphicsDebug
 	         $4057 = LoadToolgearGraphicsDebug.loadToolgearGraphics
-	         $407c = LoadActiveFrameGraphics
+	         $407c = LoadTextboxFrameGraphics
 	         $40a0 = LoadPokeDexGraphics
 	         $40bb = LoadBattleFontsHPBar
 	         $40d6 = LoadHPBar
@@ -25283,7 +25283,7 @@ WRAM0 bank #0:
 	         $ce5f = wOptions
 	         $ce60 = wSaveFileExists
 	         $ce60 = wSaveFileFlags
-	         $ce61 = wActiveFrame
+	         $ce61 = wTextboxFrame
 	         $ce62 = wTextboxFlags
 	         $ce63 = wOptionsEnd
 	         $ce63 = wDebugFlags

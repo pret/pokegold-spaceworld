@@ -1786,7 +1786,7 @@
 01:78fb OptionsMenu.wait_joy_loop
 01:7924 OptionsMenu.ExitOptions
 01:7939 OptionsMenu.SwitchSGBBorder
-01:7956 OptionsMenu.SwitchActiveFrame
+01:7956 OptionsMenu.SwitchTextboxFrame
 01:796a OptionsMenu.ClearOldMenuCursor
 01:7977 OptionsMenu.CheckDPad
 01:7996 OptionsMenu.Cursor_TextSpeed
@@ -13986,7 +13986,7 @@
 3e:4026 LoadPokemonMenuGraphics
 3e:4034 LoadToolgearGraphicsDebug
 3e:4057 LoadToolgearGraphicsDebug.loadToolgearGraphics
-3e:407c LoadActiveFrameGraphics
+3e:407c LoadTextboxFrameGraphics
 3e:40a0 LoadPokeDexGraphics
 3e:40bb LoadBattleFontsHPBar
 3e:40d6 LoadHPBar
@@ -24872,7 +24872,7 @@
 00:ce5f wOptions
 00:ce60 wSaveFileExists
 00:ce60 wSaveFileFlags
-00:ce61 wActiveFrame
+00:ce61 wTextboxFrame
 00:ce62 wTextboxFlags
 00:ce63 wDebugFlags
 00:ce63 wOptionsEnd
