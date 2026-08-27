@@ -198,75 +198,110 @@
 	const ITEM_C1               ; c1 *TM03
 	const ITEM_C2               ; c2 *TM04
 	const ITEM_C3               ; c3
+DEF NUM_ITEMS EQU const_value - 1
 
-	const ITEM_TM01             ; c4 *TM05
-	const ITEM_TM02             ; c5 *TM06
-	const ITEM_TM03             ; c6 *TM07
-	const ITEM_TM04             ; c7 *TM08
-	const ITEM_C8               ; c8 *TM09
-	const ITEM_TM05             ; c9 *TM10
-	const ITEM_TM06             ; ca *TM11
-	const ITEM_TM07             ; cb *TM12
-	const ITEM_TM08             ; cc *TM13
-	const ITEM_TM09             ; cd *TM14
-	const ITEM_TM10             ; ce *TM15
-	const ITEM_TM11             ; cf *TM16
-	const ITEM_TM12             ; d0 *TM17
-	const ITEM_TM13             ; d1 *TM18
-	const ITEM_TM14             ; d2 *TM19
-	const ITEM_TM15             ; d3 *TM20
-	const ITEM_TM16             ; d4 *TM21
-	const ITEM_TM17             ; d5 *TM22
-	const ITEM_TM18             ; d6 *TM23
-	const ITEM_TM19             ; d7 *TM24
-	const ITEM_TM20             ; d8 *TM25
-	const ITEM_TM21             ; d9 *TM26
-	const ITEM_TM22             ; da *TM27
-	const ITEM_TM23             ; db *TM28
-	const ITEM_TM24             ; dc *
-	const ITEM_TM25             ; dd *TM29
-	const ITEM_TM26             ; de *TM30
-	const ITEM_TM27             ; df *TM31
-	const ITEM_TM28             ; e0 *TM32
-	const ITEM_E1               ; e1 *TM33
-	const ITEM_TM29             ; e2 *TM34
-	const ITEM_TM30             ; e3 *TM35
-	const ITEM_TM31             ; e4 *TM36
-	const ITEM_TM32             ; e5 *TM37
-	const ITEM_TM33             ; e6 *TM38
-	const ITEM_TM34             ; e7 *TM39
-	const ITEM_TM35             ; e8 *TM40
-	const ITEM_TM36             ; e9 *TM41
-	const ITEM_TM37             ; ea *TM42
-	const ITEM_TM38             ; eb *TM43
-	const ITEM_TM39             ; ec *TM44
-	const ITEM_TM40             ; ed *TM45
-	const ITEM_TM41             ; ee *TM46
-	const ITEM_TM42             ; ef *TM47
-	const ITEM_TM43             ; f0 *TM48
-	const ITEM_TM44             ; f1 *TM49
-	const ITEM_TM45             ; f2 *TM50
-	const ITEM_TM46             ; f3 *HM01
-	const ITEM_TM47             ; f4 *HM02
-	const ITEM_TM48             ; f5 *HM03
-	const ITEM_TM49             ; f6 *HM04
-	const ITEM_TM50             ; f7 *HM05
-DEF NUM_TMS = const_value - ITEM_TM01 - 2 ; discount ITEM_C8 and ITEM_E1
+DEF __tmhm_value__ = 1
 
-	const ITEM_HM01             ; f8 *HM06
-	const ITEM_HM02             ; f9 *HM07
-	const ITEM_HM03             ; fa *
-	const ITEM_HM04             ; fb *
-	const ITEM_HM05             ; fc *
-	const ITEM_HM06             ; fd *
-	const ITEM_HM07             ; fe *
-DEF NUM_HMS = const_value - ITEM_HM01
+MACRO add_tmnum
+	DEF \1_TMNUM EQU __tmhm_value__
+	DEF __tmhm_value__ += 1
+ENDM
+
+MACRO add_tm
+; Defines three constants:
+; - TM_\1: the item id, starting at $bf
+; - \1_TMNUM: the learnable TM/HM flag, starting at 1
+; - TM##_MOVE: alias for the move id, equal to the value of \1
+	const ITEM_TM_\1
+	DEF TM{02d:__tmhm_value__}_MOVE = MOVE_\1
+	add_tmnum MOVE_\1
+ENDM
+
+; see data/moves/tmhm_moves.asm for moves
+DEF ITEM_TM01 EQU const_value
+	add_tm SKETCH               ; c4 TM01
+	add_tm HIDDEN_POWER         ; c5 TM02
+	add_tm SNORE                ; c6 TM03
+	add_tm FLAIL                ; c7 TM04
+	const ITEM_C8               ; c8
+	add_tm CONVERSION2          ; c9 TM05
+	add_tm COTTON_SPORE         ; ca TM06
+	add_tm REVERSAL             ; cb TM07
+	add_tm SPITE                ; cc TM08
+	add_tm POWDER_SNOW          ; cd TM09
+	add_tm MACH_PUNCH           ; ce TM10
+	add_tm SCARY_FACE           ; cf TM11
+	add_tm SWEET_KISS           ; d0 TM12
+	add_tm BELLY_DRUM           ; d1 TM13
+	add_tm SLUDGE_BOMB          ; d2 TM14
+	add_tm MUD_SLAP             ; d3 TM15
+	add_tm OCTAZOOKA            ; d4 TM16
+	add_tm ZAP_CANNON           ; d5 TM17
+	add_tm DESTINY_BOND         ; d6 TM18
+	add_tm BONE_LOCK            ; d7 TM19
+	add_tm LOCK_ON              ; d8 TM20
+	add_tm OUTRAGE              ; d9 TM21
+	add_tm GIGA_DRAIN           ; da TM22
+	add_tm CHARM                ; db TM23
+	add_tm FALSE_SWIPE          ; dc TM24
+	add_tm MILK_DRINK           ; dd TM25
+	add_tm SPARK                ; de TM26
+	add_tm STEEL_WING           ; df TM27
+	add_tm SLEEP_TALK           ; e0 TM28
+	const ITEM_E1               ; e1
+	add_tm BELL_CHIME           ; e2 TM29
+	add_tm PRESENT              ; e3 TM30
+	add_tm PAIN_SPLIT           ; e4 TM31
+	add_tm SACRED_FIRE          ; e5 TM32
+	add_tm DYNAMICPUNCH         ; e6 TM33
+	add_tm MEGAPHONE            ; e7 TM34
+	add_tm DRAGONBREATH         ; e8 TM35
+	add_tm ENCORE               ; e9 TM36
+	add_tm ROCK_HEAD            ; ea TM37
+	add_tm CROSS_CUTTER         ; eb TM38
+	add_tm TWISTER              ; ec TM39
+	add_tm TRIPLE_KICK          ; ed TM40
+	add_tm THIEF                ; ee TM41
+	add_tm SPIDER_WEB           ; ef TM42
+	add_tm NIGHTMARE            ; f0 TM43
+	add_tm FLAME_WHEEL          ; f1 TM44
+	add_tm NAIL_DOWN            ; f2 TM45
+	add_tm PROTECT              ; f3 TM46
+	add_tm SPIKES               ; f4 TM47
+	add_tm PERISH_SONG          ; f5 TM48
+	add_tm ENDURE               ; f6 TM49
+	add_tm MAGNITUDE            ; f7 TM50
+DEF NUM_TMS EQU __tmhm_value__ - 1
+
+MACRO add_hm
+; Defines three constants:
+; - HM_\1: the item id, starting at $f3
+; - \1_TMNUM: the learnable TM/HM flag, starting at 51
+; - HM##_MOVE: alias for the move id, equal to the value of \1
+	const ITEM_HM_\1
+	DEF HM_VALUE = __tmhm_value__ - NUM_TMS
+	DEF HM{02d:HM_VALUE}_MOVE = MOVE_\1
+	add_tmnum MOVE_\1
+ENDM
+
+DEF ITEM_HM01 EQU const_value
+	add_hm UPROOT               ; f8 HM01
+	add_hm WIND_RIDE            ; f9 HM02
+	add_hm WATER_SPORT          ; fa HM03
+	add_hm STRONG_ARM           ; fb HM04
+	add_hm BRIGHT_MOSS          ; fc HM05
+	add_hm WHIRLPOOL            ; fd HM06
+	add_hm BOUNCE               ; fe HM07
+DEF NUM_HMS EQU __tmhm_value__ - NUM_TMS - 1
 
 	const ITEM_FF
 
 DEF NUM_TM_HM = NUM_TMS + NUM_HMS
 
 ; leftovers from pokered
+DEF ITEM_GREAT_BALL_RED   EQU $03
+DEF ITEM_POKE_BALL_RED    EQU $04
+DEF ITEM_ANTIDOTE_RED     EQU $0b
 DEF ITEM_FULL_RESTORE_RED EQU $10
 DEF ITEM_MAX_POTION_RED   EQU $11
 DEF ITEM_HYPER_POTION_RED EQU $12
