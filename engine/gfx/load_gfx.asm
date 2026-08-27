@@ -54,7 +54,7 @@ LoadToolgearGraphicsDebug::
 
 LoadTextboxFrameGraphics::
 	ld a, [wTextboxFrame]
-	ld bc, FrameGFX.FirstEntryEnd - FrameGFX
+	ld bc, FrameGFX.FirstEntryEnd - FrameGFX ; NOTE: Frame 9 is loaded unlike the final.
 	ld hl, FrameGFX
 	call AddNTimes
 	ld d, h
