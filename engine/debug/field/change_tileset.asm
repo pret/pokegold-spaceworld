@@ -1,6 +1,9 @@
+DEF NUM_DEBUG_TILESETS EQU 3
+
 FieldDebug_ChangeTileset:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
+ASSERT NUM_DEBUG_TILESETS <= NUM_TILESETS
 	ld a, [wMapTileset]
 	inc a
 	ld [wMenuCursorPosition], a
@@ -30,7 +33,7 @@ FieldDebug_ChangeTileset:
 
 .MenuData:
 	db STATICMENU_CURSOR
-	db NUM_TILESETS_OLD
-for x, 1, NUM_TILESETS_OLD + 1
+	db NUM_DEBUG_TILESETS
+for x, 1, NUM_DEBUG_TILESETS + 1
 	db "セル{d:x}@"
 endr
