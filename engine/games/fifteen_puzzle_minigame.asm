@@ -128,14 +128,9 @@ FifteenPuzzleMinigame:
 
 	ldh a, [hJoypadDown]
 	ld [wFifteenPuzzleJoyStateBuffer], a ; The code to exit the minigame was blatantly stubbed out.
-;	and PAD_B
-;	jr nz, .ExitPuzzle
 	call .ExecutePanelJumptable
 	ret
-.ExitPuzzle:
-;	ld hl, wJumptableIndex
-;	set JUMPTABLE_EXIT_F, [hl]
-;	ret
+.ExitPuzzle: ; not implemented
 .InitPuzzle:
 	ld hl, wJumptableIndex
 	inc [hl]
