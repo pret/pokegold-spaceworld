@@ -19,7 +19,7 @@ WarpMenuOptions::
 	warp_const BLUE_FOREST
 	warp_const STAND
 	warp_const KANTO
-; PRINCE and MT_FUJI are skipped in the menu
+	; PRINCE and MT_FUJI are skipped in the menu
 	warp_const SOUTH
 	warp_const NORTH
 	warp_const ROUTE_15
