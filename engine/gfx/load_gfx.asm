@@ -13,17 +13,17 @@ LoadFontExtraGraphicsWithCursor::
 	ld hl, vChars2 tile '■' ; $60
 	lb bc, BANK(BlackTileAndCursor1bppGFX), (BlackTileAndCursor1bppGFX.End - BlackTileAndCursor1bppGFX) / TILE_1BPP_SIZE
 	call Get1bpp
-	jr LoadActiveFrameGraphics
+	jr LoadTextboxFrameGraphics
 
 LoadPokemonMenuGraphics::
 	ld de, BattleHPBarGFX
 	ld hl, vChars2 tile $60
 	lb bc, BANK(BattleHPBarGFX), (LevelUpGFX.End - BattleHPBarGFX) / TILE_SIZE
 	call Get2bpp
-	jr LoadActiveFrameGraphics
+	jr LoadTextboxFrameGraphics
 
 LoadToolgearGraphicsDebug::
-	call LoadActiveFrameGraphics
+	call LoadTextboxFrameGraphics
 	ld hl, wTimeOfDayDebugFlags
 	bit TOOLGEAR_COORDS_F, [hl]
 	jr z, .loadToolgearGraphics
@@ -52,8 +52,8 @@ LoadToolgearGraphicsDebug::
 	call Get2bpp
 	ret
 
-LoadActiveFrameGraphics::
-	ld a, [wActiveFrame]
+LoadTextboxFrameGraphics::
+	ld a, [wTextboxFrame]
 	ld bc, FrameGFX.FirstEntryEnd - FrameGFX
 	ld hl, FrameGFX
 	call AddNTimes
@@ -88,7 +88,7 @@ LoadBattleFontsHPBar::
 	ld de, BattleMarkersGFX
 	lb bc, BANK(BattleMarkersGFX), ((BattleMarkersGFX.End - BattleMarkersGFX) / TILE_SIZE)
 	call Get2bpp
-	call LoadActiveFrameGraphics
+	call LoadTextboxFrameGraphics
 	; fallthrough
 
 LoadHPBar::
@@ -146,6 +146,6 @@ LoadBackpackGraphics::
 	ld hl, vChars2 tile $6e
 	lb bc, BANK(FontSmallKanaPunctuationGFX), (FontSmallKanaPunctuationGFX.End - FontSmallKanaPunctuationGFX) / TILE_SIZE
 	call Get2bpp
-	jp LoadActiveFrameGraphics
+	jp LoadTextboxFrameGraphics
 
 INCLUDE "gfx/font.asm"

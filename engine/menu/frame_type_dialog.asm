@@ -1,14 +1,14 @@
 FrameTypeDialog:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
-	ld a, [wActiveFrame]
+	ld a, [wTextboxFrame]
 	inc a
 	ld [wMenuCursorPosition], a
 	call VerticalMenu
 	jr c, .close
 	ld a, [wMenuCursorY]
 	dec a
-	ld [wActiveFrame], a
+	ld [wTextboxFrame], a
 	push de
 	ld de, SFX_MENU
 	call PlaySFX
@@ -28,12 +28,7 @@ FrameTypeDialog:
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
-	db 8 ; items
-	db "１ばんめ@"
-	db "２ばんめ@"
-	db "３ばんめ@"
-	db "４ばんめ@"
-	db "５ばんめ@"
-	db "６ばんめ@"
-	db "７ばんめ@"
-	db "８ばんめ@"
+	db NUM_FRAMES ; items
+for x, 1, NUM_FRAMES + 1
+	db "{d:x}ばんめ@"
+endr

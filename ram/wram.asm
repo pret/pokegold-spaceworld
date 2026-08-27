@@ -1588,7 +1588,7 @@ wOptions::
 wSaveFileExists::
 wSaveFileFlags:: db
 
-wActiveFrame:: db
+wTextboxFrame:: db
 
 ; bit 0: 1-frame text delay
 ; bit 1: when unset, no text delay
