@@ -58,33 +58,37 @@ INCBIN "maps/SilentHillLabFront.blk"
 
 SilentHillLabFrontScriptPointers::
 	def_script_pointers
-	script_pointer SilentHillLabFrontScript1, SilentHillLabFrontNPCIDs1, SCENE_SILENT_HILL_LAB_FRONT_DEFAULT
-	script_pointer SilentHillLabFrontScript2, SilentHillLabFrontNPCIDs2, SCENE_SILENT_HILL_LAB_FRONT_START_BLUE_CUTSCENE
-	script_pointer SilentHillLabFrontScript3, SilentHillLabFrontNPCIDs2, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE
-	script_pointer SilentHillLabFrontScript4, SilentHillLabFrontNPCIDs2, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_2
-	script_pointer SilentHillLabFrontConversation1, SilentHillLabFrontNPCIDs2, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_CONVERSATION
-	script_pointer SilentHillLabFrontScript6, SilentHillLabFrontNPCIDs3, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_END
-	script_pointer SilentHillLabFrontScript7, SilentHillLabFrontNPCIDs4, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_ENTER_BACK
-	script_pointer SilentHillLabFrontScript8, SilentHillLabFrontNPCIDs5, SCENE_SILENT_HILL_LAB_FRONT_ENTER_BACK
-	script_pointer SilentHillLabFrontScript9, SilentHillLabFrontNPCIDs5, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE
-	script_pointer SilentHillLabFrontScript10, SilentHillLabFrontNPCIDs5, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE_2
-	script_pointer SilentHillLabFrontScript11, SilentHillLabFrontNPCIDs5, SCENE_SILENT_HILL_LAB_FRONT_GET_POKEDEX
-	script_pointer SilentHillLabFrontScript12, SilentHillLabFrontNPCIDs6, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_WAIT_FOR_BATTLE
-	script_pointer SilentHillLabFrontScript13, SilentHillLabFrontNPCIDs6, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_START_BATTLE
-	script_pointer SilentHillLabFrontScript14, SilentHillLabFrontNPCIDs6, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_BATTLE_END
-	script_pointer SilentHillLabFrontScript15, SilentHillLabFrontNPCIDs7, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_LEFT
-	script_pointer SilentHillLabFrontScript16, SilentHillLabFrontNPCIDs7, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_LEFT_END
-	script_pointer SilentHillLabFrontScript17, SilentHillLabFrontNPCIDs7, SCENE_SILENT_HILL_LAB_FRONT_GET_POKEBALLS
-	script_pointer SilentHillLabFrontScript18, SilentHillLabFrontNPCIDs7, SCENE_SILENT_HILL_LAB_FRONT_GOT_POKEBALLS
-	script_pointer SilentHillLabFrontScript19, SilentHillLabFrontNPCIDs9, SCENE_SILENT_HILL_LAB_FRONT_FINISHED
+	script_pointer Default,                  SCENE_SILENT_HILL_LAB_FRONT_DEFAULT
+	script_pointer StartBlueCutscene,        SCENE_SILENT_HILL_LAB_FRONT_START_BLUE_CUTSCENE
+	script_pointer BlueCutscene,             SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE
+	script_pointer BlueCutscene2,            SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_2
+	script_pointer BlueCutsceneConversation, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_CONVERSATION
+	script_pointer RivalEnterBack,           SCENE_SILENT_HILL_LAB_FRONT_RIVAL_ENTER_BACK
+	script_pointer PlayerEnterBack,          SCENE_SILENT_HILL_LAB_FRONT_PLAYER_ENTER_BACK
+	script_pointer ReturnFromBack,           SCENE_SILENT_HILL_LAB_FRONT_RETURN_FROM_BACK
+	script_pointer RivalCutscene,            SCENE_SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE
+	script_pointer RivalCutscene2,           SCENE_SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE_2
+	script_pointer GetPokedex,               SCENE_SILENT_HILL_LAB_FRONT_GET_POKEDEX
+	script_pointer GotPokedex,               SCENE_SILENT_HILL_LAB_FRONT_RIVAL_GOT_POKEDEX
+	script_pointer RivalStartBattle,         SCENE_SILENT_HILL_LAB_FRONT_RIVAL_START_BATTLE
+	script_pointer RivalBattleEnd,           SCENE_SILENT_HILL_LAB_FRONT_RIVAL_BATTLE_END
+	script_pointer StartRivalLeave,          SCENE_SILENT_HILL_LAB_FRONT_START_RIVAL_LEAVE
+	script_pointer RivalLeave,               SCENE_SILENT_HILL_LAB_FRONT_RIVAL_LEAVE
+	script_pointer GetPokeballs,             SCENE_SILENT_HILL_LAB_FRONT_GET_POKEBALLS
+	script_pointer ExitLab,                  SCENE_SILENT_HILL_LAB_FRONT_EXIT_LAB
+	script_pointer Finished,                 SCENE_SILENT_HILL_LAB_FRONT_FINISHED
 
-SilentHillLabFrontNPCIDs1:
+SilentHillLabFrontDefaultNPCIDs:
 	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
 	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
 	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
 	db -1
 
-SilentHillLabFrontNPCIDs2:
+SilentHillLabFrontStartBlueCutsceneNPCIDs:
+SilentHillLabFrontBlueCutsceneNPCIDs:
+SilentHillLabFrontBlueCutscene2NPCIDs:
+SilentHillLabFrontBlueCutsceneConversationNPCIDs:
+
 	npc_id SILENT_HILL_LAB_FRONT_OAK1
 	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
 	npc_id SILENT_HILL_LAB_FRONT_BLUE1
@@ -92,20 +96,23 @@ SilentHillLabFrontNPCIDs2:
 	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
 	db -1
 
-SilentHillLabFrontNPCIDs3:
+SilentHillLabFrontRivalEnterBackNPCIDs:
 	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
 	npc_id SILENT_HILL_LAB_FRONT_BLUE1
 	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
 	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
 	db -1
 
-SilentHillLabFrontNPCIDs4:
+SilentHillLabFrontPlayerEnterBackNPCIDs:
 	npc_id SILENT_HILL_LAB_FRONT_BLUE1
 	npc_id SILENT_HILL_LAB_FRONT_POKEDEX1
 	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
 	db -1
 
-SilentHillLabFrontNPCIDs5:
+SilentHillLabFrontReturnFromBackNPCIDs:
+SilentHillLabFrontRivalCutsceneNPCIDs:
+SilentHillLabFrontRivalCutscene2NPCIDs:
+SilentHillLabFrontGetPokedexNPCIDs:
 	npc_id SILENT_HILL_LAB_FRONT_OAK2
 	npc_id SILENT_HILL_LAB_FRONT_RIVAL2
 	npc_id SILENT_HILL_LAB_FRONT_BLUE2
@@ -116,7 +123,9 @@ SilentHillLabFrontNPCIDs5:
 	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
 	db -1
 
-SilentHillLabFrontNPCIDs6:
+SilentHillLabFrontGotPokedexNPCIDs:
+SilentHillLabFrontRivalStartBattleNPCIDs:
+SilentHillLabFrontRivalBattleEndNPCIDs:
 	npc_id SILENT_HILL_LAB_FRONT_OAK2
 	npc_id SILENT_HILL_LAB_FRONT_RIVAL2
 	npc_id SILENT_HILL_LAB_FRONT_BLUE2
@@ -125,7 +134,10 @@ SilentHillLabFrontNPCIDs6:
 	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
 	db -1
 
-SilentHillLabFrontNPCIDs7:
+SilentHillLabFrontStartRivalLeaveNPCIDs:
+SilentHillLabFrontRivalLeaveNPCIDs:
+SilentHillLabFrontGetPokeballsNPCIDs:
+SilentHillLabFrontExitLabNPCIDs:
 	npc_id SILENT_HILL_LAB_FRONT_OAK1
 	npc_id SILENT_HILL_LAB_FRONT_BLUE2
 	npc_id SILENT_HILL_LAB_FRONT_NANAMI
@@ -133,7 +145,7 @@ SilentHillLabFrontNPCIDs7:
 	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
 	db -1
 	
-SilentHillLabFrontNPCIDs8: ; (unused?)
+SilentHillLabFrontLabReturnNPCIDs: ; unreferenced
 	npc_id SILENT_HILL_LAB_FRONT_OAK1
 	npc_id SILENT_HILL_LAB_FRONT_RIVAL2
 	npc_id SILENT_HILL_LAB_FRONT_BLUE2
@@ -144,15 +156,15 @@ SilentHillLabFrontNPCIDs8: ; (unused?)
 	npc_id SILENT_HILL_LAB_FRONT_POKEDEX2
 	db -1
 
-SilentHillLabFrontNPCIDs9:
+SilentHillLabFrontFinishedNPCIDs:
 	npc_id SILENT_HILL_LAB_FRONT_OAK1
 	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE1
 	npc_id SILENT_HILL_LAB_FRONT_OAKS_AIDE2
 	db -1
 
 SilentHillLabFront_TextPointers::
-	dw SilentHillLabFrontText4
-	dw SilentHillLabFrontText7
+	dw SilentHillLabFrontOak1Script
+	dw SilentHillLabFrontOak2Script
 	dw SilentHillLabFrontText10
 	dw SilentHillLabFrontText11
 	dw SilentHillLabFrontTextString20
@@ -163,10 +175,10 @@ SilentHillLabFront_TextPointers::
 	dw SilentHillLabFrontText16
 	dw SilentHillLabFrontText16
 
-SilentHillLabFrontScript1:
+SilentHillLabFrontDefaultScript:
 	call SilentHillLabFrontMoveDown
 	ret z
-	ld hl, SilentHillLabFrontNPCIDs1
+	ld hl, SilentHillLabFrontDefaultNPCIDs
 	ld de, SilentHillLabFrontTextPointers2
 	call CallMapTextSubroutine
 	ret
@@ -179,15 +191,15 @@ SilentHillLabFrontMoveDown:
 	cp 1
 	ret nz
 	ldh a, [hJoyState]
-	bit 6, a
+	bit B_PAD_UP, a
 	jp z, xor_a_dec_a
-	call SilentHillLabFrontText3
+	call SilentHillLabFrontBackLockedScript
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, PLAYER_OBJECT
 	call FreezeAllOtherObjects
 	ld a, PLAYER_OBJECT
-	ld hl, SilentHillLabFrontMovement1
+	ld hl, .movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
@@ -196,16 +208,16 @@ SilentHillLabFrontMoveDown:
 	call xor_a
 	ret
 
-SilentHillLabFrontMovement1:
+.movement
 	slow_step LEFT
 	step_end
 
-SilentHillLabFrontScript2:
+SilentHillLabFrontStartBlueCutsceneScript:
 	ld a, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabFrontScript3:
+SilentHillLabFrontBlueCutsceneScript:
 	ld a, SILENT_HILL_LAB_FRONT_BLUE1
 	call FreezeAllOtherObjects
 	ld a, PLAYER_OBJECT
@@ -213,7 +225,7 @@ SilentHillLabFrontScript3:
 	ld b, SILENT_HILL_LAB_FRONT_BLUE1
 	ld c, PLAYER_OBJECT
 	call StartFollow
-	ld hl, SilentHillLabFrontMovement2
+	ld hl, .movement
 	ld a, SILENT_HILL_LAB_FRONT_BLUE1
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -224,7 +236,7 @@ SilentHillLabFrontScript3:
 	call SetMapStatus
 	ret
 
-SilentHillLabFrontMovement2:
+.movement
 	step UP
 	step UP
 	step UP
@@ -239,13 +251,13 @@ SilentHillLabFrontMovement2:
 	turn_head UP
 	step_end
 
-SilentHillLabFrontScript4:
+SilentHillLabFrontBlueCutscene2Script:
 	call FreezeAllObjects
 	ld a, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_CONVERSATION
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabFrontConversation1:
+SilentHillLabFrontBlueCutsceneConversationScript:
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
 	ld d, RIGHT
 	call SetObjectFacing
@@ -267,37 +279,16 @@ SilentHillLabFrontConversation1:
 	call OpenTextbox
 	ld hl, SilentHillLabFrontTextString7
 	call OpenTextbox
-	call SilentHillLabFrontScript5
+	call SilentHillLabFrontOakEnterBack
 	ret
 
-SilentHillLabFrontScript5:
+SilentHillLabFrontOakEnterBack:
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_OAK1
 	call FreezeAllOtherObjects
 	ld a, SILENT_HILL_LAB_FRONT_OAK1
-	ld hl, SilentHillLabFrontMovement3
-	call LoadMovementDataPointer
-	ld hl, wOverworldFlags
-	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
-	ld a, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_END
-	ld [wMapScriptNumber], a
-	ld a, MAPSTATUS_EVENT_RUNNING
-	call SetMapStatus
-	ret
-
-SilentHillLabFrontMovement3:
-	step UP
-	slow_step UP
-	remove_object
-
-SilentHillLabFrontScript6:
-	ld hl, wJoypadDisable
-	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
-	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
-	call FreezeAllOtherObjects
-	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
-	ld hl, SilentHillLabFrontMovement4
+	ld hl, .movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
@@ -307,7 +298,28 @@ SilentHillLabFrontScript6:
 	call SetMapStatus
 	ret
 
-SilentHillLabFrontMovement4:
+.movement
+	step UP
+	slow_step UP
+	remove_object
+
+SilentHillLabFrontRivalEnterBackScript:
+	ld hl, wJoypadDisable
+	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
+	call FreezeAllOtherObjects
+	ld a, SILENT_HILL_LAB_FRONT_RIVAL1
+	ld hl, .movement
+	call LoadMovementDataPointer
+	ld hl, wOverworldFlags
+	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
+	ld a, SCENE_SILENT_HILL_LAB_FRONT_PLAYER_ENTER_BACK
+	ld [wMapScriptNumber], a
+	ld a, MAPSTATUS_EVENT_RUNNING
+	call SetMapStatus
+	ret
+
+.movement
 	big_step UP
 	big_step UP
 	big_step RIGHT
@@ -315,30 +327,30 @@ SilentHillLabFrontMovement4:
 	big_step UP
 	remove_object
 
-SilentHillLabFrontScript7:
+SilentHillLabFrontPlayerEnterBackScript:
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, PLAYER_OBJECT
 	call FreezeAllOtherObjects
 	ld a, PLAYER_OBJECT
-	ld hl, SilentHillLabFrontMovement5
+	ld hl, .movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
-	ld a, SCENE_SILENT_HILL_LAB_FRONT_ENTER_BACK
+	ld a, SCENE_SILENT_HILL_LAB_FRONT_RETURN_FROM_BACK
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
 	ret
 
-SilentHillLabFrontMovement5:
+.movement
 	step UP
 	step UP
 	step UP
 	slow_step UP
 	step_end
 
-SilentHillLabFrontScript8:
+SilentHillLabFrontReturnFromBackScript:
 	ld a, SILENT_HILL_LAB_FRONT_OAK2
 	call SetObjectLowPriority
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
@@ -348,7 +360,7 @@ SilentHillLabFrontScript8:
 	ld a, PLAYER_OBJECT
 	call FreezeAllOtherObjects
 	ld a, PLAYER_OBJECT
-	ld hl, SilentHillLabFrontMovement6
+	ld hl, .movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
@@ -358,7 +370,7 @@ SilentHillLabFrontScript8:
 	call SetMapStatus
 	ret
 
-SilentHillLabFrontMovement6:
+.movement
 	step DOWN
 	step DOWN
 	step DOWN
@@ -366,7 +378,7 @@ SilentHillLabFrontMovement6:
 	slow_step LEFT
 	step_end
 
-SilentHillLabFrontScript9:
+SilentHillLabFrontRivalCutsceneScript:
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
@@ -374,7 +386,7 @@ SilentHillLabFrontScript9:
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call ResetObjectLowPriority
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
-	ld hl, SilentHillLabFrontMovement7
+	ld hl, .movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
@@ -384,7 +396,7 @@ SilentHillLabFrontScript9:
 	call SetMapStatus
 	ret
 
-SilentHillLabFrontMovement7:
+.movement
 	step DOWN
 	step DOWN
 	step DOWN
@@ -393,7 +405,7 @@ SilentHillLabFrontMovement7:
 	slow_step LEFT
 	step_end
 
-SilentHillLabFrontScript10:
+SilentHillLabFrontRivalCutscene2Script:
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	ld d, RIGHT
 	call SetObjectFacing
@@ -412,7 +424,7 @@ SilentHillLabFrontScript10:
 	ld a, SILENT_HILL_LAB_FRONT_OAK2
 	call ResetObjectLowPriority
 	ld a, SILENT_HILL_LAB_FRONT_OAK2
-	ld hl, SilentHillLabFrontMovement8
+	ld hl, .movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
@@ -422,12 +434,12 @@ SilentHillLabFrontScript10:
 	call SetMapStatus
 	ret
 
-SilentHillLabFrontMovement8:
+.movement
 	step DOWN
 	slow_step DOWN
 	step_end
 
-SilentHillLabFrontScript11:
+SilentHillLabFrontGetPokedexScript:
 	ld hl, SilentHillLabFrontTextString8
 	call OpenTextbox
 	ld hl, SilentHillLabFrontTextString9
@@ -442,32 +454,32 @@ SilentHillLabFrontScript11:
 	call OpenTextbox
 	SetEvent SILENT_HILL_LAB_FRONT_GOT_POKEDEX
 	call UnfreezeEverything
-	ld a, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_WAIT_FOR_BATTLE
+	ld a, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_GOT_POKEDEX
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
 	ret
 
-SilentHillLabFrontScript12:
+SilentHillLabFrontGotPokedexScript:
 	call SilentHillLabFrontMoveDown
 	ret z
-	call SilentHillLabFrontRivalMovePokemon
+	call SilentHillLabFrontRivalMoveForBattle
 	ret z
-	ld hl, SilentHillLabFrontNPCIDs6
+	ld hl, SilentHillLabFrontGotPokedexNPCIDs
 	ld de, SilentHillLabFrontTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-SilentHillLabFrontRivalMovePokemon:
+SilentHillLabFrontRivalMoveForBattle:
 	ld a, [wYCoord]
 	cp 8
 	ret nz
-	ld hl, SilentHillLabFrontMovement9
+	ld hl, .movement
 	ld a, [wXCoord]
 	cp 3
 	jr z, .jump
 	cp 4
 	ret nz
-	ld hl, SilentHillLabFrontMovement10
+	ld hl, .movement2
 .jump
 	push hl
 	ld hl, wJoypadDisable
@@ -486,7 +498,7 @@ SilentHillLabFrontRivalMovePokemon:
 	call xor_a
 	ret
 
-SilentHillLabFrontMovement9:
+.movement
 	step DOWN
 	step RIGHT
 	step RIGHT
@@ -495,7 +507,7 @@ SilentHillLabFrontMovement9:
 	slow_step DOWN
 	step_end
 
-SilentHillLabFrontMovement10:
+.movement2
 	step DOWN
 	step RIGHT
 	step DOWN
@@ -503,7 +515,7 @@ SilentHillLabFrontMovement10:
 	slow_step DOWN
 	step_end
 
-SilentHillLabFrontScript13:
+SilentHillLabFrontRivalStartBattleScript:
 	ld hl, SilentHillLabFrontTextString17
 	call OpenTextbox
 	call GetLabPokemon
@@ -526,7 +538,7 @@ GetLabPokemon:
 	jr nz, .jump
 	ld a, [hl]
 	ld [wOtherTrainerID], a
-	ld a, 9
+	ld a, TRAINER_RIVAL
 	ld [wOtherTrainerClass], a
 	ret
 .jump
@@ -541,7 +553,7 @@ LabPokemon:
 	db DEX_HONOGUMA
 	db 3
 
-SilentHillLabFrontScript14:
+SilentHillLabFrontRivalBattleEndScript:
 	ld hl, SilentHillLabFrontTextString19
 	ld a, [wBattleResult]
 	and a
@@ -554,51 +566,51 @@ SilentHillLabFrontScript14:
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
 	call FreezeAllOtherObjects
 	ld a, SILENT_HILL_LAB_FRONT_RIVAL2
-	ld hl, SilentHillLabFrontMovement11
+	ld hl, .movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
-	ld a, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_LEFT
+	ld a, SCENE_SILENT_HILL_LAB_FRONT_START_RIVAL_LEAVE
 	ld [wMapScriptNumber], a
 	ld a, MAPSTATUS_EVENT_RUNNING
 	call SetMapStatus
 	ret
 
-SilentHillLabFrontMovement11:
+.movement
 	slow_step DOWN
 	step DOWN
 	step DOWN
 	step DOWN
 	remove_object
 
-SilentHillLabFrontScript15:
+SilentHillLabFrontStartRivalLeaveScript:
 	call UnfreezeEverything
-	ld a, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_LEFT_END
+	ld a, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_LEAVE
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
 	ret
 
-SilentHillLabFrontScript16:
+SilentHillLabFrontRivalLeaveScript:
 	call SilentHillLabFrontMoveDown
 	ret z
 	call SilentHillLabFrontMoveRivalLeave
 	ret z
-	ld hl, SilentHillLabFrontNPCIDs7
+	ld hl, SilentHillLabFrontRivalLeaveNPCIDs
 	ld de, SilentHillLabFrontTextPointers2
 	call CallMapTextSubroutine
 	ret
 
 SilentHillLabFrontMoveRivalLeave:
 	ld a, [wYCoord]
-	cp $0B
+	cp 11
 	ret nz
-	ld hl, Movememt12+1
+	ld hl, .movement+1
 	ld a, [wXCoord]
 	cp 3
 	jr z, .jump
 	cp 4
 	ret nz
-	ld hl, Movememt12
+	ld hl, .movement
 .jump
 	push hl
 	ld hl, wJoypadDisable
@@ -617,14 +629,14 @@ SilentHillLabFrontMoveRivalLeave:
 	call xor_a
 	ret
 
-Movememt12:
+.movement
 	slow_step RIGHT
 	slow_step RIGHT
 	slow_step RIGHT
 	slow_step UP
 	step_end
 
-SilentHillLabFrontScript17:
+SilentHillLabFrontGetPokeballsScript:
 	ld hl, SilentHillLabFrontTextString23
 	call OpenTextbox
 	SetEvent SILENT_HILL_LAB_FRONT_RIVAL_BATTLED
@@ -635,29 +647,29 @@ SilentHillLabFrontScript17:
 	ld [wItemQuantity], a
 	call ReceiveItem
 	call UnfreezeEverything
-	ld a, SCENE_SILENT_HILL_LAB_FRONT_GOT_POKEBALLS
+	ld a, SCENE_SILENT_HILL_LAB_FRONT_EXIT_LAB
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabFrontScript18:
+SilentHillLabFrontExitLabScript:
 	call SilentHillLabFrontMoveDown
 	ret z
-	ld hl, SilentHillLabFrontNPCIDs7
+	ld hl, SilentHillLabFrontExitLabNPCIDs
 	ld de, SilentHillLabFrontTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-SilentHillLabFrontScript19:
+SilentHillLabFrontFinishedScript:
 	call SilentHillLabFrontMoveDown
 	ret z
-	ld hl, SilentHillLabFrontNPCIDs9
+	ld hl, SilentHillLabFrontFinishedNPCIDs
 	ld de, SilentHillLabFrontTextPointers2
 	call CallMapTextSubroutine
 	ret
 
 SilentHillLabFrontTextPointers2:
-	dw SilentHillLabFrontText1
-	dw SilentHillLabFrontText2
+	dw SilentHillLabFrontPCScript
+	dw SilentHillLabFrontWallScrollScript
 	dw PokemonBooksScript
 	dw PokemonBooksScript
 	dw PokemonBooksScript
@@ -670,14 +682,14 @@ SilentHillLabFrontTextPointers2:
 	dw PokemonBooksScript
 	dw PokemonBooksScript
 	dw PokemonBooksScript
-	dw SilentHillLabFrontText3
+	dw SilentHillLabFrontBackLockedScript
 
-SilentHillLabFrontText1:
-	ld hl, SilentHillLabFrontTextString1
+SilentHillLabFrontPCScript:
+	ld hl, SilentHillLabFrontPCString
 	call OpenTextbox
 	ret
 
-SilentHillLabFrontTextString1:
+SilentHillLabFrontPCString:
 	text "パソコンを　みると"
 	line "なんと　メールが　きていた！"
 
@@ -700,7 +712,7 @@ SilentHillLabFrontTextString1:
 	cont "<⋯⋯>　<⋯⋯>　<⋯⋯>じょしゅより"
 	done
 
-SilentHillLabFrontText2:
+SilentHillLabFrontWallScrollScript:
 	ld hl, wSilentHillLabFrontFlags
 	bit 0, [hl]
 	set 0, [hl]
@@ -724,7 +736,7 @@ SilentHillLabFrontTextString2B:
 	line "こまめに　かくと　いいなり"
 	done
 
-SilentHillLabFrontText3:
+SilentHillLabFrontBackLockedScript:
 	ld hl, SilentHillLabFrontTextString3
 	call OpenTextbox
 	ret
@@ -733,10 +745,10 @@ SilentHillLabFrontTextString3:
 	text "カギが　かかっている"
 	done
 
-SilentHillLabFrontText4:
+SilentHillLabFrontOak1Script:
 	ld a, [wMapScriptNumber]
-	cp SCENE_SILENT_HILL_LAB_FRONT_RIVAL_LEFT
-	jp nc, SilentHillLabFrontText7
+	cp SCENE_SILENT_HILL_LAB_FRONT_START_RIVAL_LEAVE
+	jp nc, SilentHillLabFrontOak2Script
 	ld hl, SilentHillLabFrontTextString4
 	call OpenTextbox
 	ret
@@ -831,7 +843,7 @@ SilentHillLabFrontTextString7:
 	line "ちょっと　わしに　ついてこい！"
 	done
 
-SilentHillLabFrontText7:
+SilentHillLabFrontOak2Script:
 	ld a, [wMapScriptNumber]
 	cp SCENE_SILENT_HILL_LAB_FRONT_FINISHED
 	jr z, .jump
@@ -900,7 +912,7 @@ SilentHillLabFrontTextString11B:
 	line "きに　なるからな"
 	done
 
-SilentHillLabFrontText8: ; unreferenced
+SilentHillLabFrontTextLabReturn: ; unreferenced
 	ld hl, SilentHillLabFrontTextString12
 	call OpenTextbox
 	ret
@@ -914,7 +926,7 @@ SilentHillLabFrontTextString12:
 	cont "みて　あげようか！"
 	done
 
-SilentHillLabFrontText9: ; unreferenced
+SilentHillLabFrontTextLabReturn2: ; unreferenced
 	ld hl, SilentHillLabFrontTextString13
 	call OpenTextbox
 	ret

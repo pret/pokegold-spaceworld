@@ -28,19 +28,19 @@ INCBIN "maps/PlayerHouse2F.blk"
 
 PlayerHouse2FScriptPointers::
 	def_script_pointers
-	script_pointer PlayerHouse2FScript1, PlayerHouse2FNPCIDs1, SCENE_PLAYER_HOUSE_2F_DEFAULT
-	script_pointer PlayerHouse2FScript2, PlayerHouse2FNPCIDs2, SCENE_PLAYER_HOUSE_2F_KEN_LEFT
+	script_pointer Default, SCENE_PLAYER_HOUSE_2F_DEFAULT
+	script_pointer KenLeft, SCENE_PLAYER_HOUSE_2F_KEN_LEFT
 
 PlayerHouse2F_TextPointers::
 	dw PlayerHouse2FText1
 	dw PlayerHouse2FDollText
 
-PlayerHouse2FNPCIDs1:
+PlayerHouse2FDefaultNPCIDs:
 	npc_id PLAYER_HOUSE_2F_KEN
 	npc_id PLAYER_HOUSE_2F_POKEDOLL
 	db -1
 
-PlayerHouse2FNPCIDs2:
+PlayerHouse2FKenLeftNPCIDs:
 	npc_id PLAYER_HOUSE_2F_POKEDOLL
 	db -1
 
@@ -51,10 +51,10 @@ PlayerHouse2FSignPointers:
 	dw PokemonBooksScript
 	dw PlayerHouse2FN64Text
 
-PlayerHouse2FScript1:
+PlayerHouse2FDefaultScript:
 	call PlayerHouse2PositionCheck
 	ret z
-	ld hl, PlayerHouse2FNPCIDs1
+	ld hl, PlayerHouse2FDefaultNPCIDs
 	ld de, PlayerHouse2FSignPointers
 	call CallMapTextSubroutine
 	ret nz
@@ -72,7 +72,7 @@ PlayerHouse2PositionCheck:
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_SYNC_MUTEX_F, [hl]
 	ld a, LEFT
-	ld d, 0
+	ld d, PLAYER_OBJECT
 	call SetObjectFacing
 	ld hl, PlayerHouse2FTextString2
 	call OpenTextbox
@@ -81,7 +81,7 @@ PlayerHouse2PositionCheck:
 	ret
 
 PlayerHouse2FMovePlayer:
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	ld hl, .Movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
@@ -95,8 +95,8 @@ PlayerHouse2FMovePlayer:
 	slow_step DOWN
 	step_end
 
-PlayerHouse2FScript2:
-	ld hl, PlayerHouse2FNPCIDs2
+PlayerHouse2FKenLeftScript:
+	ld hl, PlayerHouse2FKenLeftNPCIDs
 	ld de, PlayerHouse2FSignPointers
 	call CallMapTextSubroutine
 	ret

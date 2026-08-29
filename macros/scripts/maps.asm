@@ -206,12 +206,25 @@ ENDM
 
 MACRO def_script_pointers
 	const_def
+	IF _NARG > 0
+		REDEF CURRENT_MAP_NAME EQUS "\1"
+		IF _NARG > 1
+			REDEF CURRENT_MAP_ID EQUS "\2"
+		ENDC
+	ENDC
 ENDM
 
 MACRO script_pointer
-	dw \1, \2
-	const \3
-	EXPORT \3
+; Assume the script pointer is default if no args are present.
+	IF _NARG == 0
+		dw {CURRENT_MAP_NAME}Script, {CURRENT_MAP_NAME}NPCIDs
+		const SCENE_{CURRENT_MAP_ID}_DEFAULT
+		EXPORT SCENE_{CURRENT_MAP_ID}_DEFAULT
+	else
+		dw {CURRENT_MAP_NAME}\1Script, {CURRENT_MAP_NAME}\1NPCIDs
+		const \2
+		EXPORT \2
+	endc
 ENDM
 
 MACRO map_generic_scriptloader
@@ -226,7 +239,7 @@ ENDM
 MACRO map_generic_script_pointers
 {CURRENT_MAP_NAME}ScriptPointers::
 	def_script_pointers
-	script_pointer {CURRENT_MAP_NAME}Script, {CURRENT_MAP_NAME}NPCIDs, SCENE_{CURRENT_MAP_ID}_DEFAULT
+	script_pointer
 ENDM
 
 MACRO map_generic_script
