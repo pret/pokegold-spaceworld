@@ -31,9 +31,9 @@ INCBIN "maps/RivalHouse.blk"
 
 RivalHouseScriptPointers::
 	def_script_pointers
-	script_pointer Default,    SCENE_RIVAL_HOUSE_DEFAULT
-	script_pointer KenHere,    SCENE_RIVAL_HOUSE_KEN_HERE
-	script_pointer GotMapCard, SCENE_RIVAL_HOUSE_GOT_MAP_CARD
+	script_pointer RivalHouseDefaultScript, RivalHouseDefaultNPCIDs, SCENE_RIVAL_HOUSE_DEFAULT
+	script_pointer RivalHouseKenHereScript, RivalHouseKenHereNPCIDs, SCENE_RIVAL_HOUSE_KEN_HERE
+	script_pointer RivalHouseGotMapCardScript, RivalHouseGotMapCardNPCIDs, SCENE_RIVAL_HOUSE_GOT_MAP_CARD
 
 RivalHouseDefaultScript:
 	ld hl, RivalHouseDefaultNPCIDs

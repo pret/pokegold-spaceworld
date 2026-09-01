@@ -58,25 +58,25 @@ INCBIN "maps/SilentHillLabFront.blk"
 
 SilentHillLabFrontScriptPointers::
 	def_script_pointers
-	script_pointer Default,                  SCENE_SILENT_HILL_LAB_FRONT_DEFAULT
-	script_pointer StartBlueCutscene,        SCENE_SILENT_HILL_LAB_FRONT_START_BLUE_CUTSCENE
-	script_pointer BlueCutscene,             SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE
-	script_pointer BlueCutscene2,            SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_2
-	script_pointer BlueCutsceneConversation, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_CONVERSATION
-	script_pointer RivalEnterBack,           SCENE_SILENT_HILL_LAB_FRONT_RIVAL_ENTER_BACK
-	script_pointer PlayerEnterBack,          SCENE_SILENT_HILL_LAB_FRONT_PLAYER_ENTER_BACK
-	script_pointer ReturnFromBack,           SCENE_SILENT_HILL_LAB_FRONT_RETURN_FROM_BACK
-	script_pointer RivalCutscene,            SCENE_SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE
-	script_pointer RivalCutscene2,           SCENE_SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE_2
-	script_pointer GetPokedex,               SCENE_SILENT_HILL_LAB_FRONT_GET_POKEDEX
-	script_pointer GotPokedex,               SCENE_SILENT_HILL_LAB_FRONT_RIVAL_GOT_POKEDEX
-	script_pointer RivalStartBattle,         SCENE_SILENT_HILL_LAB_FRONT_RIVAL_START_BATTLE
-	script_pointer RivalBattleEnd,           SCENE_SILENT_HILL_LAB_FRONT_RIVAL_BATTLE_END
-	script_pointer StartRivalLeave,          SCENE_SILENT_HILL_LAB_FRONT_START_RIVAL_LEAVE
-	script_pointer RivalLeave,               SCENE_SILENT_HILL_LAB_FRONT_RIVAL_LEAVE
-	script_pointer GetPokeballs,             SCENE_SILENT_HILL_LAB_FRONT_GET_POKEBALLS
-	script_pointer ExitLab,                  SCENE_SILENT_HILL_LAB_FRONT_EXIT_LAB
-	script_pointer Finished,                 SCENE_SILENT_HILL_LAB_FRONT_FINISHED
+	script_pointer SilentHillLabFrontDefaultScript, SilentHillLabFrontDefaultNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_DEFAULT
+	script_pointer SilentHillLabFrontStartBlueCutsceneScript, SilentHillLabFrontStartBlueCutsceneNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_START_BLUE_CUTSCENE
+	script_pointer SilentHillLabFrontBlueCutsceneScript, SilentHillLabFrontBlueCutsceneNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE
+	script_pointer SilentHillLabFrontBlueCutscene2Script, SilentHillLabFrontBlueCutscene2NPCIDs, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_2
+	script_pointer SilentHillLabFrontBlueCutsceneConversationScript, SilentHillLabFrontBlueCutsceneConversationNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_BLUE_CUTSCENE_CONVERSATION
+	script_pointer SilentHillLabFrontRivalEnterBackScript, SilentHillLabFrontRivalEnterBackNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_ENTER_BACK
+	script_pointer SilentHillLabFrontPlayerEnterBackScript, SilentHillLabFrontPlayerEnterBackNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_PLAYER_ENTER_BACK
+	script_pointer SilentHillLabFrontReturnFromBackScript, SilentHillLabFrontReturnFromBackNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_RETURN_FROM_BACK
+	script_pointer SilentHillLabFrontRivalCutsceneScript, SilentHillLabFrontRivalCutsceneNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE
+	script_pointer SilentHillLabFrontRivalCutscene2Script, SilentHillLabFrontRivalCutscene2NPCIDs, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_CUTSCENE_2
+	script_pointer SilentHillLabFrontGetPokedexScript, SilentHillLabFrontGetPokedexNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_GET_POKEDEX
+	script_pointer SilentHillLabFrontGotPokedexScript, SilentHillLabFrontGotPokedexNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_GOT_POKEDEX
+	script_pointer SilentHillLabFrontRivalStartBattleScript, SilentHillLabFrontRivalStartBattleNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_START_BATTLE
+	script_pointer SilentHillLabFrontRivalBattleEndScript, SilentHillLabFrontRivalBattleEndNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_BATTLE_END
+	script_pointer SilentHillLabFrontStartRivalLeaveScript, SilentHillLabFrontStartRivalLeaveNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_START_RIVAL_LEAVE
+	script_pointer SilentHillLabFrontRivalLeaveScript, SilentHillLabFrontRivalLeaveNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_RIVAL_LEAVE
+	script_pointer SilentHillLabFrontGetPokeballsScript, SilentHillLabFrontGetPokeballsNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_GET_POKEBALLS
+	script_pointer SilentHillLabFrontExitLabScript, SilentHillLabFrontExitLabNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_EXIT_LAB
+	script_pointer SilentHillLabFrontFinishedScript, SilentHillLabFrontFinishedNPCIDs, SCENE_SILENT_HILL_LAB_FRONT_FINISHED
 
 SilentHillLabFrontDefaultNPCIDs:
 	npc_id SILENT_HILL_LAB_FRONT_RIVAL1

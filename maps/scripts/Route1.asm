@@ -5,8 +5,8 @@ Route1_ScriptLoader::
 	ret
 
 Route1ScriptPointers::
-	def_script_pointers Route1, ROUTE_1
-	script_pointer
+	def_script_pointers
+	script_pointer Route1Script, Route1NPCIDs, SCENE_ROUTE_1_DEFAULT
 
 Route1NPCIDs:
 	npc_id ROUTE_1_SUPER_NERD

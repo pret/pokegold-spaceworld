@@ -28,14 +28,14 @@ SilentHillBlueCutsceneNPCIDs:
 	db -1
 
 SilentHillScriptPointers::
-	def_script_pointers SilentHill
-	script_pointer Default,          SCENE_SILENT_HILL_DEFAULT
-	script_pointer RivalCutscene,    SCENE_SILENT_HILL_RIVAL_CUTSCENE
-	script_pointer RivalCutscene2,   SCENE_SILENT_HILL_RIVAL_CUTSCENE_2
-	script_pointer RivalCutsceneEnd, SCENE_SILENT_HILL_RIVAL_CUTSCENE_END
-	script_pointer BlueCutscene,     SCENE_SILENT_HILL_BLUE_CUTSCENE
-	script_pointer FollowBlue,       SCENE_SILENT_HILL_FOLLOW_BLUE
-	script_pointer GotStarter,       SCENE_SILENT_HILL_GOT_STARTER
+	def_script_pointers
+	script_pointer SilentHillDefaultScript, SilentHillDefaultNPCIDs, SCENE_SILENT_HILL_DEFAULT
+	script_pointer SilentHillRivalCutsceneScript, SilentHillRivalCutsceneNPCIDs, SCENE_SILENT_HILL_RIVAL_CUTSCENE
+	script_pointer SilentHillRivalCutscene2Script, SilentHillRivalCutscene2NPCIDs, SCENE_SILENT_HILL_RIVAL_CUTSCENE_2
+	script_pointer SilentHillRivalCutsceneEndScript, SilentHillRivalCutsceneEndNPCIDs, SCENE_SILENT_HILL_RIVAL_CUTSCENE_END
+	script_pointer SilentHillBlueCutsceneScript, SilentHillBlueCutsceneNPCIDs, SCENE_SILENT_HILL_BLUE_CUTSCENE
+	script_pointer SilentHillFollowBlueScript, SilentHillFollowBlueNPCIDs, SCENE_SILENT_HILL_FOLLOW_BLUE
+	script_pointer SilentHillGotStarterScript, SilentHillGotStarterNPCIDs, SCENE_SILENT_HILL_GOT_STARTER
 
 SilentHillDefaultScript:
 	ld a, [wYCoord]

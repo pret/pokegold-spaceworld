@@ -5,8 +5,8 @@ Route2_ScriptLoader::
 	ret
 
 Route2ScriptPointers::
-	def_script_pointers Route2, ROUTE_2
-	script_pointer
+	def_script_pointers
+	script_pointer Route2Script, Route2NPCIDs, SCENE_ROUTE_2_DEFAULT
 
 Route2NPCIDs:
 	npc_id ROUTE_2_RIVAL

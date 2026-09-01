@@ -28,8 +28,8 @@ INCBIN "maps/PlayerHouse1F.blk"
 
 PlayerHouse1FScriptPointers::
 	def_script_pointers
-	script_pointer Default, SCENE_PLAYER_HOUSE_1F_DEFAULT
-	script_pointer MomBack, SCENE_PLAYER_HOUSE_1F_MOM_BACK
+	script_pointer PlayerHouse1FDefaultScript, PlayerHouse1FDefaultNPCIDs, SCENE_PLAYER_HOUSE_1F_DEFAULT
+	script_pointer PlayerHouse1FMomBackScript, PlayerHouse1FMomBackNPCIDs, SCENE_PLAYER_HOUSE_1F_MOM_BACK
 
 PlayerHouse1FDefaultNPCIDs:
 	db -1
