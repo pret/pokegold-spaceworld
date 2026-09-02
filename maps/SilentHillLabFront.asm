@@ -88,7 +88,6 @@ SilentHillLabFrontStartBlueCutsceneNPCIDs:
 SilentHillLabFrontBlueCutsceneNPCIDs:
 SilentHillLabFrontBlueCutscene2NPCIDs:
 SilentHillLabFrontBlueCutsceneConversationNPCIDs:
-
 	npc_id SILENT_HILL_LAB_FRONT_OAK1
 	npc_id SILENT_HILL_LAB_FRONT_RIVAL1
 	npc_id SILENT_HILL_LAB_FRONT_BLUE1
@@ -604,13 +603,13 @@ SilentHillLabFrontMoveRivalLeave:
 	ld a, [wYCoord]
 	cp 11
 	ret nz
-	ld hl, .movement+1
+	ld hl, .movement_blocking_right
 	ld a, [wXCoord]
 	cp 3
 	jr z, .jump
 	cp 4
 	ret nz
-	ld hl, .movement
+	ld hl, .movement_blocking_left
 .jump
 	push hl
 	ld hl, wJoypadDisable
@@ -629,8 +628,9 @@ SilentHillLabFrontMoveRivalLeave:
 	call xor_a
 	ret
 
-.movement
+.movement_blocking_left
 	slow_step RIGHT
+.movement_blocking_right
 	slow_step RIGHT
 	slow_step RIGHT
 	slow_step UP

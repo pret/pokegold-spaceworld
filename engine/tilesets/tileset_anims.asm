@@ -48,7 +48,7 @@ ScrollTileRightLeft:
 ScrollTileLeft:
 	ld h, d
 	ld l, e
-	ld c, 16 / 4
+	ld c, TILE_SIZE / 4
 .loop
 rept 4
 	ld a, [hl]
@@ -62,7 +62,7 @@ endr
 ScrollTileRight:
 	ld h, d
 	ld l, e
-	ld c, 16 / 4
+	ld c, TILE_SIZE / 4
 .loop
 rept 4
 	ld a, [hl]
@@ -79,9 +79,9 @@ ScrollTileUp:
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	ld bc, 16 - 2
+	ld bc, TILE_SIZE - 2
 	add hl, bc
-	ld a, 16 / 4
+	ld a, TILE_SIZE / 4
 .loop
 	ld c, [hl]
 	ld [hl], e
@@ -102,14 +102,14 @@ ScrollTileUp:
 ScrollTileDown:
 	ld h, d
 	ld l, e
-	ld de, 16 - 2
+	ld de, TILE_SIZE - 2
 	push hl
 	add hl, de
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
 	pop hl
-	ld a, 16 / 4
+	ld a, TILE_SIZE / 4
 .loop
 	ld b, [hl]
 	ld [hl], d
@@ -189,7 +189,7 @@ WriteTile:
 	ld [hl], e
 	inc hl
 	ld [hl], d
-rept (16 - 2) / 2
+rept (TILE_SIZE - 2) / 2
 	pop de
 	inc hl
 	ld [hl], e

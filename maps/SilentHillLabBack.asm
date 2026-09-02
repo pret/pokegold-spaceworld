@@ -154,13 +154,15 @@ SilentHillLabBackRivalChoosingStarterScript:
 	ret
 
 .MovementPointers:
-	dw .movement+1
-	dw .movement
-	dw .movement+2
+	dw .movement_grab_cruise
+	dw .movement_grab_happa
+	dw .movement_grab_honoguma
 
-.movement
+.movement_grab_happa
 	step RIGHT
+.movement_grab_cruise
 	step RIGHT
+.movement_grab_honoguma
 	step RIGHT
 	step RIGHT
 	slow_step UP
