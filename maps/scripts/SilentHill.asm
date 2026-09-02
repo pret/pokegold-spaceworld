@@ -6,18 +6,22 @@ SilentHill_ScriptLoader::
 	call WriteBackMapScriptNumber
 	ret
 
-SilentHillNPCIDs1:
+SilentHillDefaultNPCIDs:
+SilentHillRivalCutsceneNPCIDs:
+SilentHillRivalCutscene2NPCIDs:
 	npc_id SILENT_HILL_RIVAL
 	npc_id SILENT_HILL_TEACHER
 	npc_id SILENT_HILL_SUPER_NERD
 	db -1
 
-SilentHillNPCIDs2:
+SilentHillRivalCutsceneEndNPCIDs:
+SilentHillFollowBlueNPCIDs:
+SilentHillGotStarterNPCIDs:
 	npc_id SILENT_HILL_TEACHER
 	npc_id SILENT_HILL_SUPER_NERD
 	db -1
 
-SilentHillNPCIDs3:
+SilentHillBlueCutsceneNPCIDs:
 	npc_id SILENT_HILL_BLUE
 	npc_id SILENT_HILL_TEACHER
 	npc_id SILENT_HILL_SUPER_NERD
@@ -25,15 +29,15 @@ SilentHillNPCIDs3:
 
 SilentHillScriptPointers::
 	def_script_pointers
-	script_pointer SilentHillScript1, SilentHillNPCIDs1, SCENE_SILENT_HILL_DEFAULT
-	script_pointer SilentHillScript2, SilentHillNPCIDs1, SCENE_SILENT_HILL_RIVAL_CUTSCENE
-	script_pointer SilentHillScript3, SilentHillNPCIDs1, SCENE_SILENT_HILL_RIVAL_CUTSCENE_2
-	script_pointer SilentHillScript4, SilentHillNPCIDs2, SCENE_SILENT_HILL_RIVAL_CUTSCENE_END
-	script_pointer SilentHillScript5, SilentHillNPCIDs3, SCENE_SILENT_HILL_BLUE_CUTSCENE
-	script_pointer SilentHillScript6, SilentHillNPCIDs2, SCENE_SILENT_HILL_FOLLOW_BLUE
-	script_pointer SilentHillScript7, SilentHillNPCIDs2, SCENE_SILENT_HILL_GOT_STARTER
+	script_pointer SilentHillDefaultScript, SilentHillDefaultNPCIDs, SCENE_SILENT_HILL_DEFAULT
+	script_pointer SilentHillRivalCutsceneScript, SilentHillRivalCutsceneNPCIDs, SCENE_SILENT_HILL_RIVAL_CUTSCENE
+	script_pointer SilentHillRivalCutscene2Script, SilentHillRivalCutscene2NPCIDs, SCENE_SILENT_HILL_RIVAL_CUTSCENE_2
+	script_pointer SilentHillRivalCutsceneEndScript, SilentHillRivalCutsceneEndNPCIDs, SCENE_SILENT_HILL_RIVAL_CUTSCENE_END
+	script_pointer SilentHillBlueCutsceneScript, SilentHillBlueCutsceneNPCIDs, SCENE_SILENT_HILL_BLUE_CUTSCENE
+	script_pointer SilentHillFollowBlueScript, SilentHillFollowBlueNPCIDs, SCENE_SILENT_HILL_FOLLOW_BLUE
+	script_pointer SilentHillGotStarterScript, SilentHillGotStarterNPCIDs, SCENE_SILENT_HILL_GOT_STARTER
 
-SilentHillScript1:
+SilentHillDefaultScript:
 	ld a, [wYCoord]
 	cp 5
 	ret nz
@@ -64,8 +68,8 @@ SilentHillMovement1:
 	turn_head LEFT
 	step_end
 
-SilentHillScript2:
-	ld a, 0
+SilentHillRivalCutsceneScript:
+	ld a, PLAYER_OBJECT
 	ld d, RIGHT
 	call SetObjectFacing
 	ld hl, SilentHillTextRival1
@@ -75,7 +79,7 @@ SilentHillScript2:
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_RIVAL
-	ld hl, SilentHillMovement2
+	ld hl, .movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
@@ -85,7 +89,7 @@ SilentHillScript2:
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillMovement2:
+.movement
 	turn_head DOWN
 	slow_step DOWN
 	step DOWN
@@ -94,14 +98,14 @@ SilentHillMovement2:
 	big_step DOWN
 	remove_object
 
-SilentHillScript3:
+SilentHillRivalCutscene2Script:
 	call UnfreezeAllObjects
 	ld a, SCENE_SILENT_HILL_RIVAL_CUTSCENE_END
 	ld [wMapScriptNumber], a
 	call InitObjectMasks
 	ret
 
-SilentHillScript4:
+SilentHillRivalCutsceneEndScript:
 	ld a, [wXCoord]
 	cp 0
 	jr nz, .bigjump
@@ -139,7 +143,7 @@ SilentHillScript4:
 	ret
 
 .bigjump
-	ld hl, SilentHillNPCIDs2
+	ld hl, SilentHillRivalCutsceneEndNPCIDs
 	ld de, SilentHillSignPointers
 	call CallMapTextSubroutine
 	ret
@@ -170,8 +174,8 @@ SilentHillMovement4:
 	turn_head LEFT
 	step_end
 
-SilentHillScript5:
-	ld a, 0
+SilentHillBlueCutsceneScript:
+	ld a, PLAYER_OBJECT
 	ld d, RIGHT
 	call SetObjectFacing
 	ld hl, SilentHillTextPokemonInGrassString
@@ -180,18 +184,18 @@ SilentHillScript5:
 	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_BLUE
 	call FreezeAllOtherObjects
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	call UnfreezeObject
 	ld b, SILENT_HILL_BLUE
-	ld c, 0
+	ld c, PLAYER_OBJECT
 	call StartFollow
 	ld a, [wYCoord]
 	cp 9
 	jr z, .jump
-	ld hl, SilentHillMovement5
+	ld hl, .movement
 	jr .skip
 .jump
-	ld hl, SilentHillMovement6
+	ld hl, .movement2
 .skip
 	ld a, SILENT_HILL_BLUE
 	call LoadMovementDataPointer
@@ -203,7 +207,7 @@ SilentHillScript5:
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillMovement5:
+.movement
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -225,7 +229,7 @@ SilentHillMovement5:
 	slow_step UP
 	remove_object
 
-SilentHillMovement6:
+.movement2
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -246,8 +250,8 @@ SilentHillMovement6:
 	slow_step UP
 	remove_object
 
-SilentHillScript6:
-	ld hl, SilentHillNPCIDs2
+SilentHillFollowBlueScript:
+	ld hl, SilentHillFollowBlueNPCIDs
 	ld de, SilentHillSignPointers
 	call CallMapTextSubroutine
 	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
@@ -258,42 +262,42 @@ SilentHillScript6:
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillScript7:
+SilentHillGotStarterScript:
 	call CheckLabDoor
 	ret z
-	ld hl, SilentHillNPCIDs2
+	ld hl, SilentHillGotStarterNPCIDs
 	ld de, SilentHillSignPointers
 	call CallMapTextSubroutine
 	ret
 
 CheckLabDoor:
 	ld a, [wYCoord]
-	cp $C
+	cp 12
 	ret nz
 	ld a, [wXCoord]
-	cp $E
+	cp 14
 	jr z, .jump
 	ld a, [wXCoord]
-	cp $F
+	cp 15
 	ret nz
 .jump
 	ldh a, [hJoyState]
-	bit 6, a
+	bit B_PAD_UP, a
 	ret z
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	ld d, UP
 	call SetObjectFacing
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_SYNC_MUTEX_F, [hl]
-	ld hl, SilentHillTextString1
+	ld hl, .TextString
 	call OpenTextbox
-	call LabClosed
+	call .LabClosed
 	call xor_a
 	ret
 
-LabClosed:
-	ld a, 0
-	ld hl, SilentHillMovement7
+.LabClosed:
+	ld a, PLAYER_OBJECT
+	ld hl, .movement
 	call LoadMovementDataPointer
 	ld hl, wOverworldFlags
 	set OVERWORLD_PAUSE_MAP_PROCESSES_F, [hl]
@@ -301,11 +305,11 @@ LabClosed:
 	call SetMapStatus
 	ret
 
-SilentHillTextString1:
+.TextString:
 	text "あれ？　カギが　かかっている"
 	done
 
-SilentHillMovement7:
+.movement
 	slow_step DOWN
 	step_end
 

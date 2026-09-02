@@ -28,24 +28,24 @@ INCBIN "maps/PlayerHouse1F.blk"
 
 PlayerHouse1FScriptPointers::
 	def_script_pointers
-	script_pointer PlayerHouse1FScript1, PlayerHouse1FNPCIDs1, SCENE_PLAYER_HOUSE_1F_DEFAULT
-	script_pointer PlayerHouse1FScript2, PlayerHouse1FNPCIDs2, SCENE_PLAYER_HOUSE_1F_MOM_BACK
+	script_pointer PlayerHouse1FDefaultScript, PlayerHouse1FDefaultNPCIDs, SCENE_PLAYER_HOUSE_1F_DEFAULT
+	script_pointer PlayerHouse1FMomBackScript, PlayerHouse1FMomBackNPCIDs, SCENE_PLAYER_HOUSE_1F_MOM_BACK
 
-PlayerHouse1FNPCIDs1:
+PlayerHouse1FDefaultNPCIDs:
 	db -1
 
-PlayerHouse1FNPCIDs2:
+PlayerHouse1FMomBackNPCIDs:
 	npc_id PLAYER_HOUSE_1F_MOM
 	db -1
 
-PlayerHouse1FScript1:
-	ld hl, PlayerHouse1FNPCIDs1
+PlayerHouse1FDefaultScript:
+	ld hl, PlayerHouse1FDefaultNPCIDs
 	ld de, PlayerHouse1FSignPointers
 	call CallMapTextSubroutine
 	ret
 
-PlayerHouse1FScript2:
-	ld hl, PlayerHouse1FNPCIDs2
+PlayerHouse1FMomBackScript:
+	ld hl, PlayerHouse1FMomBackNPCIDs
 	ld de, PlayerHouse1FSignPointers
 	call CallMapTextSubroutine
 	ret

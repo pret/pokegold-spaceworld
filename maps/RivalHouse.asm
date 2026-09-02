@@ -31,36 +31,37 @@ INCBIN "maps/RivalHouse.blk"
 
 RivalHouseScriptPointers::
 	def_script_pointers
-	script_pointer RivalHouseScript1, RivalHouseNPCIDs1, SCENE_RIVAL_HOUSE_DEFAULT
-	script_pointer RivalHouseScript2, RivalHouseNPCIDs2, SCENE_RIVAL_HOUSE_KEN_HERE
-	script_pointer RivalHouseScript3, RivalHouseNPCIDs1, SCENE_RIVAL_HOUSE_GOT_MAP_CARD
+	script_pointer RivalHouseDefaultScript, RivalHouseDefaultNPCIDs, SCENE_RIVAL_HOUSE_DEFAULT
+	script_pointer RivalHouseKenHereScript, RivalHouseKenHereNPCIDs, SCENE_RIVAL_HOUSE_KEN_HERE
+	script_pointer RivalHouseGotMapCardScript, RivalHouseGotMapCardNPCIDs, SCENE_RIVAL_HOUSE_GOT_MAP_CARD
 
-RivalHouseScript1:
-	ld hl, RivalHouseNPCIDs1
+RivalHouseDefaultScript:
+	ld hl, RivalHouseDefaultNPCIDs
 	ld de, RivalHouseTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-RivalHouseScript2:
-	ld hl, RivalHouseNPCIDs2
+RivalHouseKenHereScript:
+	ld hl, RivalHouseKenHereNPCIDs
 	ld de, RivalHouseTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-RivalHouseScript3: ; This could have just been a multidefinition
-	ld hl, RivalHouseNPCIDs1
+RivalHouseGotMapCardScript: ; This could have just been a multidefinition
+	ld hl, RivalHouseGotMapCardNPCIDs
 	ld de, RivalHouseTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-RivalHouseNPCIDs1:
-	db 0
-	db $FF
+RivalHouseDefaultNPCIDs:
+RivalHouseGotMapCardNPCIDs:
+	npc_id RIVAL_HOUSE_RIVALS_SISTER
+	db -1
 
-RivalHouseNPCIDs2:
-	db 0
-	db 1
-	db $FF
+RivalHouseKenHereNPCIDs:
+	npc_id RIVAL_HOUSE_RIVALS_SISTER
+	npc_id RIVAL_HOUSE_KEN
+	db -1
 
 RivalHouseTextPointers2::
 	dw RivalHouseNPCText1

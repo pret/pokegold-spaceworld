@@ -22,15 +22,15 @@ Route2_TextPointers::
 
 Route2Script::
 	ld a, [wYCoord]
-	cp $06
+	cp 6
 	jr nz, .skipCheck
 	ld a, [wXCoord]
-	cp $09
+	cp 9
 	jr nz, .skipCheck
-	ld a, 0 ; player
+	ld a, PLAYER_OBJECT
 	ld d, LEFT
 	call SetObjectFacing
-	ld a, 2
+	ld a, ROUTE_2_RIVAL
 	ld d, RIGHT
 	call SetObjectFacing
 	jr .endDemo

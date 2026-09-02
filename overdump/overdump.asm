@@ -1575,7 +1575,7 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
 		cont "ちょっと　いいだろ？"
 		done
 
-	Unreferenced_Corrupt_Gold_SilentHillLabBackFunc4:
+	Unreferenced_Corrupt_Gold_SilentHillLabBackChoseStarter:
 		CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 		jr nz, .bigjump
 		ldh a, [hLastTalked]
@@ -1592,7 +1592,7 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
 		ld [wPlayerStarter], a
 		push hl
 		ld [wNamedObjectIndexBuffer], a
-		ld a, $03
+		ld a, BANK(StarterDex)
 		ld hl, StarterDex + Bank34StarterDexOffset
 		call FarCall_hl + Bank34NonDebugOffset - Bank34CorruptOffset
 		ld a, [wPlayerStarter]
@@ -1703,7 +1703,7 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
 		ld a, 5
 		ld [wCurPartyLevel], a
 		ld hl, GivePoke + Bank34StarterDexOffset
-		ld a, $03
+		ld a, BANK(GivePoke)
 		call FarCall_hl + Bank34NonDebugOffset - Bank34CorruptOffset
 		xor a
 		ld [wPartyMon1Item], a
@@ -1778,7 +1778,7 @@ Unreferenced_Corrupt_SilentHillLabBackTextString14:
 	cont "ちょっと　いいだろ？"
 	done
 
-Unreferenced_Corrupt_SilentHillLabBackFunc4:
+Unreferenced_Corrupt_SilentHillLabBackChoseStarter:
 	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 	jr nz, .bigjump
 	ldh a, [hLastTalked]
@@ -1795,7 +1795,7 @@ Unreferenced_Corrupt_SilentHillLabBackFunc4:
 	ld [wPlayerStarter], a
 	push hl
 	ld [wNamedObjectIndexBuffer], a
-	ld a, $03
+	ld a, BANK(StarterDex)
 	ld hl, StarterDex + Bank34StarterDexOffset
 	call FarCall_hl + Bank34NonDebugOffset - Bank34CorruptOffset
 	ld a, [wPlayerStarter]
@@ -1874,7 +1874,7 @@ Unreferenced_Corrupt2_SilentHillLabBackUnusedScript:
 	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
 	ret
 
-Unreferenced_Corrupt2_SilentHillLabBackFunc4:
+Unreferenced_Corrupt2_SilentHillLabBackChoseStarter:
 	dw wPlayerStarter
 	push hl
 	ld [wNamedObjectIndexBuffer], a

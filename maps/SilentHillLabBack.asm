@@ -35,15 +35,21 @@ INCBIN "maps/SilentHillLabBack.blk"
 
 SilentHillLabBackScriptPointers::
 	def_script_pointers
-	script_pointer SilentHillLabBackScript1, SilentHillLabBackNPCIDs1, SCENE_SILENT_HILL_LAB_BACK_DEFAULT
-	script_pointer SilentHillLabBackScript2, SilentHillLabBackNPCIDs1, SCENE_SILENT_HILL_LAB_BACK_OAK_INSTRUCTION
-	script_pointer SilentHillLabBackScript3, SilentHillLabBackNPCIDs1, SCENE_SILENT_HILL_LAB_BACK_CHOOSE_STARTER
-	script_pointer SilentHillLabBackRivalChoosePokemon, SilentHillLabBackNPCIDs1,  SCENE_SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER
-	script_pointer SilentHillLabBackScript5, SilentHillLabBackNPCIDs1, SCENE_SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER2
-	script_pointer SilentHillLabBackScript6, SilentHillLabBackNPCIDs1, SCENE_SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER3
-	script_pointer SilentHillLabBackScript7, SilentHillLabBackNPCIDs1, SCENE_SILENT_HILL_LAB_BACK_CUTSCENE_OVER
+	script_pointer SilentHillLabBackDefaultScript, SilentHillLabBackDefaultNPCIDs, SCENE_SILENT_HILL_LAB_BACK_DEFAULT
+	script_pointer SilentHillLabBackOakInstructionScript, SilentHillLabBackOakInstructionNPCIDs, SCENE_SILENT_HILL_LAB_BACK_OAK_INSTRUCTION
+	script_pointer SilentHillLabBackChooseStarterScript, SilentHillLabBackChooseStarterNPCIDs, SCENE_SILENT_HILL_LAB_BACK_CHOOSE_STARTER
+	script_pointer SilentHillLabBackRivalChoosingStarterScript, SilentHillLabBackRivalChoosingStarterNPCIDs, SCENE_SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER
+	script_pointer SilentHillLabBackRivalChoosingStarter2Script, SilentHillLabBackRivalChoosingStarter2NPCIDs, SCENE_SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER2
+	script_pointer SilentHillLabBackRivalChoosingStarter3Script, SilentHillLabBackRivalChoosingStarter3NPCIDs, SCENE_SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER3
+	script_pointer SilentHillLabBackCutsceneOverScript, SilentHillLabBackCutsceneOverNPCIDs, SCENE_SILENT_HILL_LAB_BACK_CUTSCENE_OVER
 
-SilentHillLabBackNPCIDs1:
+SilentHillLabBackDefaultNPCIDs:
+SilentHillLabBackOakInstructionNPCIDs:
+SilentHillLabBackChooseStarterNPCIDs:
+SilentHillLabBackRivalChoosingStarterNPCIDs:
+SilentHillLabBackRivalChoosingStarter2NPCIDs:
+SilentHillLabBackRivalChoosingStarter3NPCIDs:
+SilentHillLabBackCutsceneOverNPCIDs:
 	npc_id SILENT_HILL_LAB_BACK_OAK
 	npc_id SILENT_HILL_LAB_BACK_RIVAL
 	npc_id SILENT_HILL_LAB_BACK_STARTER_HONOGUMA
@@ -51,19 +57,19 @@ SilentHillLabBackNPCIDs1:
 	npc_id SILENT_HILL_LAB_BACK_STARTER_HAPPA
 	db -1
 
-SilentHillLabBackNPCIDs2:
+SilentHillLabBackChoseHonogumaNPCIDs:
 	npc_id SILENT_HILL_LAB_BACK_OAK
 	npc_id SILENT_HILL_LAB_BACK_RIVAL
 	npc_id SILENT_HILL_LAB_BACK_STARTER_HAPPA
 	db -1
 
-SilentHillLabBackNPCIDs3:
+SilentHillLabBackChoseCruiseNPCIDs:
 	npc_id SILENT_HILL_LAB_BACK_OAK
 	npc_id SILENT_HILL_LAB_BACK_RIVAL
 	npc_id SILENT_HILL_LAB_BACK_STARTER_HONOGUMA
 	db -1
 
-SilentHillLabBackNPCIDs4:
+SilentHillLabBackChoseHappaNPCIDs:
 	npc_id SILENT_HILL_LAB_BACK_OAK
 	npc_id SILENT_HILL_LAB_BACK_RIVAL
 	npc_id SILENT_HILL_LAB_BACK_STARTER_CRUISE
@@ -73,17 +79,17 @@ SilentHillLabBackNPCIDs4:
 SilentHillLabBack_TextPointers::
 	dw SilentHillLabBackText1
 	dw SilentHillLabBackFunc3
-	dw SilentHillLabBackFunc4
-	dw SilentHillLabBackFunc4
-	dw SilentHillLabBackFunc4
+	dw SilentHillLabBackChoseStarter
+	dw SilentHillLabBackChoseStarter
+	dw SilentHillLabBackChoseStarter
 
-SilentHillLabBackScript1:
+SilentHillLabBackDefaultScript:
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
-	ld a, 0
+	ld a, PLAYER_OBJECT
 	call FreezeAllOtherObjects
-	ld a, 0
-	ld hl, SilentHillLabBackMovement1
+	ld a, PLAYER_OBJECT
+	ld hl, .movement
 	call LoadMovementDataPointer
 	SetEvent SILENT_HILL_LAB_BACK_FOLLOWED_OAK
 	ld hl, wOverworldFlags
@@ -94,13 +100,13 @@ SilentHillLabBackScript1:
 	call SetMapStatus
 	ret
 
-SilentHillLabBackMovement1:
+.movement
 	step UP
 	step UP
 	slow_step UP
 	step_end
 
-SilentHillLabBackScript2:
+SilentHillLabBackOakInstructionScript:
 	ld hl, wOverworldFlags
 	set OVERWORLD_DISABLE_MAP_CONNECTIONS_F, [hl]
 	call UnfreezeEverything
@@ -117,18 +123,18 @@ SilentHillLabBackScript2:
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabBackScript3:
-	ld hl, SilentHillLabBackNPCIDs1
+SilentHillLabBackChooseStarterScript:
+	ld hl, SilentHillLabBackChooseStarterNPCIDs
 	ld de, SilentHillLabBackTextPointers2
 	call CallMapTextSubroutine
 	ret
 
-SilentHillLabBackRivalChoosePokemon:
+SilentHillLabBackRivalChoosingStarterScript:
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_CUTSCENE_F, [hl]
 	ld a, SILENT_HILL_LAB_BACK_RIVAL
 	call FreezeAllOtherObjects
-	ld hl, SilentHillLabBackMovementPointers
+	ld hl, .MovementPointers
 	ld a, [wChosenStarter]
 	ld d, 0
 	ld e, a
@@ -147,20 +153,22 @@ SilentHillLabBackRivalChoosePokemon:
 	call SetMapStatus
 	ret
 
-SilentHillLabBackMovementPointers:
-	dw SilentHillLabBackMovement2+1
-	dw SilentHillLabBackMovement2
-	dw SilentHillLabBackMovement2+2
+.MovementPointers:
+	dw .movement_grab_cruise
+	dw .movement_grab_happa
+	dw .movement_grab_honoguma
 
-SilentHillLabBackMovement2:
+.movement_grab_happa
 	step RIGHT
+.movement_grab_cruise
 	step RIGHT
+.movement_grab_honoguma
 	step RIGHT
 	step RIGHT
 	slow_step UP
 	step_end
 
-SilentHillLabBackScript5:
+SilentHillLabBackRivalChoosingStarter2Script:
 	ld hl, SilentHillLabBackTextString12
 	call OpenTextbox
 	ld a, [wRivalStarter]
@@ -172,16 +180,16 @@ SilentHillLabBackScript5:
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabBackScript6:
+SilentHillLabBackRivalChoosingStarter3Script:
 	call UnfreezeEverything
 	ld hl, wOverworldFlags
-	res 6, [hl]
+	res OVERWORLD_DISABLE_MAP_CONNECTIONS_F, [hl]
 	ld a, SCENE_SILENT_HILL_LAB_BACK_CUTSCENE_OVER
 	ld [wMapScriptNumber], a
 	ret
 
-SilentHillLabBackScript7:
-	ld hl, SilentHillLabBackNPCIDs1
+SilentHillLabBackCutsceneOverScript:
+	ld hl, SilentHillLabBackCutsceneOverNPCIDs
 	ld de, SilentHillLabBackTextPointers2
 	call CallMapTextSubroutine
 	ret
@@ -269,7 +277,7 @@ ConfirmPokemonSelection:
 	ld [wCurPartyLevel], a
 	callfar GivePoke
 	xor a
-	ld [wPartyMon1 + 1], a
+	ld [wPartyMon1Item], a ; clear starter item
 	ld a, SCENE_SILENT_HILL_LAB_BACK_RIVAL_CHOOSING_STARTER
 	ld [wMapScriptNumber], a
 	ret
@@ -338,7 +346,7 @@ SilentHillLabBackTextString14:
 	cont "ちょっと　いいだろ？"
 	done
 
-SilentHillLabBackFunc4:
+SilentHillLabBackChoseStarter:
 	CheckEvent SILENT_HILL_LAB_BACK_CHOSE_STARTER
 	jr nz, .bigjump
 	ldh a, [hLastTalked]
