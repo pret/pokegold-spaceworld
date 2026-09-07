@@ -6617,7 +6617,7 @@ ROMX bank #15:
 	         $6ebd = TryWildBattle.no_battle
 	         $6ec1 = TryWildBattle.ok
 	         $6ec8 = TryWildBattle.CheckGrassCollision
-	         $6ed5 = TryWildBattle.blocks
+	         $6ed5 = TryWildBattle_CheckGrassCollision_Blocks
 	         $6edf = GrassMonProbTable
 	         $6f03 = ValidateTempWildMonSpecies
 	         $6f0c = ValidateTempWildMonSpecies.nowildmon

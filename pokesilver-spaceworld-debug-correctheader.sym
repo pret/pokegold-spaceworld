@@ -6528,7 +6528,7 @@
 0f:6ebd TryWildBattle.no_battle
 0f:6ec1 TryWildBattle.ok
 0f:6ec8 TryWildBattle.CheckGrassCollision
-0f:6ed5 TryWildBattle.blocks
+0f:6ed5 TryWildBattle_CheckGrassCollision_Blocks
 0f:6edf GrassMonProbTable
 0f:6f03 ValidateTempWildMonSpecies
 0f:6f0c ValidateTempWildMonSpecies.nowildmon
