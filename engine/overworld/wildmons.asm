@@ -216,22 +216,12 @@ TryWildBattle::
 
 .CheckGrassCollision:
 	ld a, [wPlayerTile]
-	ld hl, .blocks
+	ld hl, TryWildBattle_CheckGrassCollision_Blocks
 	ld de, 1
 	call IsInArray
 	ret
 
-.blocks
-	db COLL_FLOOR         | COLLFLAG_ENCOUNTER
-	db COLL_GRASS         | COLLFLAG_ENCOUNTER
-	db COLL_WATER_20      | COLLFLAG_ENCOUNTER
-	db COLL_WATER         | COLLFLAG_ENCOUNTER
-	db COLL_OLD_WATERFALL | COLLFLAG_ENCOUNTER
-	db COLL_OLD_MUDPIT    | COLLFLAG_ENCOUNTER
-	db COLL_OLD_42        | COLLFLAG_ENCOUNTER
-	db COLL_OLD_43        | COLLFLAG_ENCOUNTER
-	db COLL_OLD_WHIRLPOOL | COLLFLAG_ENCOUNTER
-	db -1
+INCLUDE "data/collision/encounter_blocks.asm"
 
 INCLUDE "data/wild/probabilities.asm"
 
