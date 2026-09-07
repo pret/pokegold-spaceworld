@@ -950,10 +950,10 @@ ROM0 bank #0:
 	         $35d8 = CallPointerAt
 	         $35eb = CallPointerAt._hl_
 	         $35ec = QueueScript
-	         $35f8 = FindItemInTable
-	         $35fb = FindItemInTable.loop
-	         $3607 = FindItemInTable.fail
-	         $3609 = FindItemInTable.success
+	         $35f8 = IsInArray
+	         $35fb = IsInArray.loop
+	         $3607 = IsInArray.NotInArray
+	         $3609 = IsInArray.InArray
 	         $360b = RestoreScreenAndReloadTiles
 	         $361e = ClearBGPalettes
 	         $3621 = WaitBGMap

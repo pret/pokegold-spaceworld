@@ -910,10 +910,10 @@
 00:359c CallPointerAt
 00:35af CallPointerAt._hl_
 00:35b0 QueueScript
-00:35bc FindItemInTable
-00:35bf FindItemInTable.loop
-00:35cb FindItemInTable.fail
-00:35cd FindItemInTable.success
+00:35bc IsInArray
+00:35bf IsInArray.loop
+00:35cb IsInArray.NotInArray
+00:35cd IsInArray.InArray
 00:35cf RestoreScreenAndReloadTiles
 00:35e2 ClearBGPalettes
 00:35e5 WaitBGMap
