@@ -933,7 +933,7 @@ SelectedPokemonSubmenu:
 	ld a, [wMenuSelection]
 	ld hl, PartyJumpTable
 	ld de, $3
-	call FindItemInTable
+	call IsInArray
 	jp nc, HandleSelectedPokemon
 	inc hl
 	ld a, [hli]

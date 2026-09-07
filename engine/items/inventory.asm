@@ -493,7 +493,7 @@ GetBallIndex:
 	push bc
 	ld hl, BallItems
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 	ld a, b
 	pop bc
 	pop de

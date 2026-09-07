@@ -218,7 +218,7 @@ TryWildBattle::
 	ld a, [wPlayerTile]
 	ld hl, .blocks
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 	ret
 
 .blocks
