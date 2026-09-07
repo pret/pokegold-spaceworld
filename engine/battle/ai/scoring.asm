@@ -27,7 +27,7 @@ AI_Basic:
 ; Dismiss status-only moves if the player can't be statused.
 	ld hl, StatusOnlyEffects
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 	pop bc
 	pop de
 	pop hl
@@ -204,7 +204,7 @@ AI_Smart:
 	ld a, [wEnemyMoveStructEffect]
 	ld hl, AI_Smart_EffectHandlers
 	ld de, 3
-	call FindItemInTable
+	call IsInArray
 
 	inc hl
 	jr nc, .nextmove
@@ -368,7 +368,7 @@ AI_Smart_MirrorMove:
 	push hl
 	ld hl, UsefulMoves
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 	pop hl
 
 ; ...do nothing if they didn't use a useful move.
@@ -563,7 +563,7 @@ AI_Smart_Mimic:
 	push hl
 	ld hl, UsefulMoves
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 	pop hl
 	ret nc
 
@@ -658,7 +658,7 @@ AI_Smart_Encore:
 	ld a, [wLastPlayerCounterMove]
 	ld hl, EncoreMoves
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 	pop hl
 	ret nc
 
@@ -975,7 +975,7 @@ AI_Opportunist:
 	push bc
 	ld hl, StallMoves
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 
 	pop bc
 	pop de
@@ -1091,7 +1091,7 @@ AI_Aggressive:
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	ld hl, RecklessMoves
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 	pop bc
 	pop de
 	pop hl
@@ -1132,7 +1132,7 @@ AI_Cautious:
 	push bc
 	ld hl, ResidualMoves
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 
 	pop bc
 	pop de

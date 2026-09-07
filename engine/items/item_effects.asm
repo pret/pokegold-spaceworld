@@ -2514,7 +2514,7 @@ ReadSuperRodData_Old:
 	ld a, [wMapId]
 	ld de, 3
 	ld hl, SuperRodData
-	call FindItemInTable
+	call IsInArray
 	jr c, .ReadFishingGroup
 	ld e, 2
 	ret

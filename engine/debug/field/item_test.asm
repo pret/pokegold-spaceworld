@@ -263,7 +263,7 @@ FieldDebug_ItemTest:
 ItemTest_FindUsableItem:
 	ld hl, ItemTest_UsableItems
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 	ret
 
 INCLUDE "data/debug/field_debug_usable_items_1.asm"
@@ -271,7 +271,7 @@ INCLUDE "data/debug/field_debug_usable_items_1.asm"
 ItemTest_FindUsableItem2:
 	ld hl, ItemTest_UsableItems2
 	ld de, 1
-	call FindItemInTable
+	call IsInArray
 	ret
 
 INCLUDE "data/debug/field_debug_usable_items_2.asm"

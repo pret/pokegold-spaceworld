@@ -287,7 +287,7 @@ DisplayOptionsMenu:
 	and TEXT_DELAY_MASK
 	push bc
 	ld de, 2
-	call FindItemInTable
+	call IsInArray
 	pop bc
 	dec hl
 	ld a, [hl]
