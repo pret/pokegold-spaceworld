@@ -3269,10 +3269,10 @@ ROMX bank #4:
 	         $5edd = StartMenu_Reset
 	         $5ee8 = StartMenu_Save
 	         $5ef3 = StartMenu_Settings
-	         $5f1f = StartMenu_TrainerCard
+	         $5f1f = StartMenu_Status
 	         $5f25 = _TrainerCard
 	         $5f4f = StartMenu_Pokedex
-	         $5f6f = UnusedToolPocketData
+	         $5f6f = UnreferencedToolPocketData
 	         $5f75 = ToolsPocketHeader
 	         $5f7d = ToolsPocketHeader.ToolsPocketData
 	         $5f93 = KeyItemsPocketHeader
@@ -3451,7 +3451,7 @@ ROMX bank #4:
 	         $6cd9 = UseRegisteredItem
 	         $6cea = UseRegisteredItem.RegisteredItemJumptable
 	         $6cf6 = UseRegisteredItem.CantUse
-	         $6d01 = UseRegisteredItem.UnusedUseRegularItem
+	         $6d01 = UseRegisteredItem.RegularItem
 	         $6d0c = UseRegisteredItem.KeyItem
 	         $6d25 = UseRegisteredItem.FieldMove
 	         $6d36 = UseRegisteredItem.CantUse2

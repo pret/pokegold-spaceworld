@@ -3233,10 +3233,10 @@
 04:5edd StartMenu_Reset
 04:5ee8 StartMenu_Save
 04:5ef3 StartMenu_Settings
-04:5f1f StartMenu_TrainerCard
+04:5f1f StartMenu_Status
 04:5f25 _TrainerCard
 04:5f4f StartMenu_Pokedex
-04:5f6f UnusedToolPocketData
+04:5f6f UnreferencedToolPocketData
 04:5f75 ToolsPocketHeader
 04:5f7d ToolsPocketHeader.ToolsPocketData
 04:5f93 KeyItemsPocketHeader
@@ -3415,7 +3415,7 @@
 04:6cd9 UseRegisteredItem
 04:6cea UseRegisteredItem.RegisteredItemJumptable
 04:6cf6 UseRegisteredItem.CantUse
-04:6d01 UseRegisteredItem.UnusedUseRegularItem
+04:6d01 UseRegisteredItem.RegularItem
 04:6d0c UseRegisteredItem.KeyItem
 04:6d25 UseRegisteredItem.FieldMove
 04:6d36 UseRegisteredItem.CantUse2
