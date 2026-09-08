@@ -719,7 +719,7 @@ ComposeMailMessage:
 
 .InitBlankMail:
 	call ClearBGPalettes
-	ld b, 8 ;diploma?
+	ld b, SGB_DIPLOMA
 	call GetSGBLayout
 	call DisableLCD
 	call LoadNamingScreenGFX
@@ -932,7 +932,7 @@ INCBIN "gfx/icons/mail.2bpp"
 
 SetupMail:
 	call ClearBGPalettes
-	ld b, 8
+	ld b, SGB_DIPLOMA
 	call GetSGBLayout
 	call DisableLCD
 	call LoadNamingScreenGFX

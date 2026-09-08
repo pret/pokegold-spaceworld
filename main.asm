@@ -88,6 +88,9 @@ INCLUDE "engine/menu/text_entry.asm"
 SECTION "Start Menu", ROMX
 
 INCLUDE "engine/menu/start_menu.asm"
+INCLUDE "engine/items/pack.asm"
+INCLUDE "engine/pokemon/mon_menu.asm"
+INCLUDE "engine/menu/trainer_card.asm"
 
 
 SECTION "Overworld Scenes", ROMX

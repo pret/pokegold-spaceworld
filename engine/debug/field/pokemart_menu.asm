@@ -51,7 +51,7 @@ FieldDebug_PokemartMenu:
 
 DebugMart_BuyMenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 1, 3, 19, 11
+	menu_coords 1, 3, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 7
 	dw .BuyMenuParams
 	db 1 ; default
 
