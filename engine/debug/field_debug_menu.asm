@@ -8,7 +8,7 @@
 
 FieldDebugMenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 0, 0, 7, 17
+	menu_coords 0, 0, SCREEN_WIDTH - 13, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1
 

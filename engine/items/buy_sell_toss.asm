@@ -170,12 +170,12 @@ BuySellToss_UpdateQuantityDisplayAndPrice:
 
 TossItem_MenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 15, 9, $13, 11
+	menu_coords 15, 9, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 7
 	dw NULL
 	db 0
 
 BuyItem_MenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 7, 15, $13, $11
+	menu_coords 7, 15, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw $ff
 	db $ff

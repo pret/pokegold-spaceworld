@@ -32,7 +32,7 @@ StartBattle::
 	call InitEnemyTrainer
 
 .back_up_bgmap2
-	ld b, 0
+	ld b, SGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
 	ld hl, wStateFlags
 	res SPRITE_UPDATES_DISABLED_F, [hl]

@@ -588,7 +588,7 @@ BillsPC_DepositMenu:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 5, 3, 18, 11
+	menu_coords 5, 3, SCREEN_WIDTH - 2, 11
 	dw .MenuData
 	db 1
 
@@ -608,7 +608,7 @@ BillsPC_WithdrawReleaseMenu:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 5, 3, 18, 11
+	menu_coords 5, 3, SCREEN_WIDTH - 2, 11
 	dw .MenuData
 	db 1
 

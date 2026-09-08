@@ -180,7 +180,7 @@ _Breeder::
 
 .MenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 13, 4, 19, 11
+	menu_coords 13, 4, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 7
 	dw .MenuData
 	db 1
 

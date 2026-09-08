@@ -5,7 +5,7 @@ ItemTest_BagMenu:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 4, 1, 19, 10
+	menu_coords 4, 1, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 8
 	dw .MenuData
 	db 1
 
@@ -29,7 +29,7 @@ ItemTest_KeyItemMenu:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 4, 1, 19, 10
+	menu_coords 4, 1, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 8
 	dw .MenuData
 	db 1
 
@@ -149,7 +149,7 @@ FieldDebug_ItemTest:
 
 .UseOrTossMenuHeader:
 	db MENU_BACKUP_TILES
-	menu_coords 14, 10, 19, 14
+	menu_coords 14, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 4
 	dw .UseOrTossMenuData
 	db 1
 

@@ -353,10 +353,8 @@ MonsterTest_GetPic:
 
 	ld a, [wTempSpecies]
 	ld [wCurPartySpecies], a
-; No code is present to load the palettes yet, but SGB_POKEDEX works on the front sprites.
-;	ld b, SGB_POKEDEX
-;	call GetSGBLayout
-;	call SetDefaultBGPAndOBP
+
+; No code is present to load the palettes yet.
 
 	call GetPokemonName
 	hlcoord 9, 2
