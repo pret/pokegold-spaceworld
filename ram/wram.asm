@@ -362,7 +362,7 @@ wLinkSendMail::
 wLinkSendMailPreamble:: ds SERIAL_MAIL_PREAMBLE_LENGTH
 wLinkSendMailMessages:: ds (MAIL_MSG_LENGTH + 2) * PARTY_LENGTH
 wLinkSendMailMetadata:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH
-wLinkSendMailPatchSet:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH - 1
+wLinkSendMailPatchSet:: ds (MAIL_STRUCT_LENGTH - 1 - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH + 1 + 4
 wLinkSendMailEnd::
 	ds 20
 UNION
@@ -370,7 +370,7 @@ wLinkReceivedMail::
 ; during a link session, the other player's raw mail data is initially stored here
 	ds SERIAL_MAIL_PREAMBLE_LENGTH
 	ds MAIL_STRUCT_LENGTH * PARTY_LENGTH
-	ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH -1
+	ds (MAIL_STRUCT_LENGTH - 1 - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH + 1 + 4
 wLinkReceivedMailEnd::
 
 NEXTU
@@ -378,7 +378,7 @@ NEXTU
 ; before applying the mail patch
 wLinkReceivedMailMessages:: ds (MAIL_MSG_LENGTH + 2) * PARTY_LENGTH
 wLinkReceivedMailMetadata:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH
-wLinkReceivedMailPatchSet:: ds (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH -1
+wLinkReceivedMailPatchSet:: ds (MAIL_STRUCT_LENGTH - 1 - (MAIL_MSG_LENGTH + 2)) * PARTY_LENGTH + 1 + 4
 ENDU
 	ds 20
 wLinkDataEnd::
