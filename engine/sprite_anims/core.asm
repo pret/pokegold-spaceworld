@@ -23,7 +23,7 @@ PlaySpriteAnimations::
 
 	ld a, LOW(wShadowOAM)
 	ld [wCurSpriteOAMAddr], a
-	call DoNextFrameForFirst16Sprites
+	call DoNextFrameForAllSprites
 
 	pop af
 	pop bc
@@ -31,14 +31,14 @@ PlaySpriteAnimations::
 	pop hl
 	ret
 
-DoNextFrameForFirst16Sprites::
+DoNextFrameForAllSprites::
 	ld hl, wSpriteAnimationStructs
 	ld e, NUM_SPRITE_ANIM_STRUCTS
 
 .loop
 	ld a, [hl]
 	and a
-	jr z, .next
+	jr z, .next ; This struct is deinitialized.
 	ld c, l
 	ld b, h
 	push hl
@@ -54,12 +54,12 @@ DoNextFrameForFirst16Sprites::
 	add hl, bc
 	dec e
 	jr nz, .loop
+
 	ld a, [wCurSpriteOAMAddr]
 	ld l, a
 	ld h, HIGH(wShadowOAM)
 
-; Clear (wShadowOAM + [wCurSpriteOAMAddr] --> Sprites + $40)
-.loop2
+.loop2 ; Clear (wShadowOAM + [wCurSpriteOAMAddr] --> wShadowOAMEnd)
 	ld a, l
 	cp LOW(wShadowOAMEnd)
 	jr nc, .done
@@ -77,7 +77,6 @@ _InitSpriteAnimStruct::
 	push af
 	ld hl, wSpriteAnimationStructs
 	ld e, NUM_SPRITE_ANIM_STRUCTS
-
 .loop
 	ld a, [hl]
 	and a
@@ -86,10 +85,10 @@ _InitSpriteAnimStruct::
 	add hl, bc
 	dec e
 	jr nz, .loop
-	pop af
-	pop de
 ; We've reached the end.  There is no more room here.
 ; Return carry.
+	pop af
+	pop de
 	scf
 	ret
 
@@ -103,14 +102,13 @@ _InitSpriteAnimStruct::
 	ld hl, wSpriteAnimCount
 	inc [hl]
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, SpriteAnimObjects
 	add hl, de
 	add hl, de
 	add hl, de
 	ld e, l
 	ld d, h
-
 ; Set hl to the first field (field 0) in the current structure.
 	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
@@ -166,24 +164,23 @@ _InitSpriteAnimStruct::
 DeinitializeSprite::
 	ld hl, SPRITEANIMSTRUCT_INDEX
 	add hl, bc
-	ld [hl], $00
+	ld [hl], 0
 	ret
 
 UpdateAnimFrame::
-; Init RAM and read from memory array
-	call InitSpriteAnimBuffer
-	call GetSpriteAnimFrame
+	call InitSpriteAnimBuffer ; init WRAM
+	call GetSpriteAnimFrame ; read from a memory array
 	cp oamwait_command
 	jr z, .done
 	cp oamdelete_command
 	jr z, .delete
 	call GetFrameOAMPointer
-; Add byte to [wCurAnimVTile]
+	; add byte to [wCurAnimVTile]
 	ld a, [wCurAnimVTile]
 	add [hl]
 	ld [wCurAnimVTile], a
 	inc hl
-; Load pointer into hl
+	; load pointer into hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -315,11 +312,11 @@ InitSpriteAnimBuffer::
 	ld [wCurAnimYOffset], a
 	ret
 
+GetSpriteAnimVTile:
 ; a = wSpriteAnimDict[a] if a in wSpriteAnimDict else vtile offset $00
-GetSpriteAnimVTile::
 	push hl
 	push bc
-	ld hl, wTileMapBackup
+	ld hl, wSpriteAnimDict
 	ld b, a
 	ld c, NUM_SPRITEANIMDICT_ENTRIES
 .loop
@@ -427,7 +424,7 @@ GetSpriteAnimFrame::
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld e, [hl]
-	ld d, $00
+	ld d, 0
 	ld hl, SpriteAnimFrameData
 	add hl, de
 	add hl, de
@@ -437,14 +434,14 @@ GetSpriteAnimFrame::
 	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
 	ld l, [hl]
-	ld h, $00
+	ld h, 0
 	add hl, hl
 	add hl, de
 	ret
 
 GetFrameOAMPointer:
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, SpriteAnimOAMData
 	add hl, de
 	add hl, de
@@ -455,7 +452,7 @@ GetFrameOAMPointer:
 LoadSpriteAnimGFX::
 	push hl
 	ld l, a
-	ld h, $00
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	ld de, SpriteAnimGFX
@@ -474,9 +471,13 @@ LoadSpriteAnimGFX::
 	ret
 
 INCLUDE "data/sprite_anims/objects.asm"
+
 INCLUDE "engine/sprite_anims/functions.asm"
+
 INCLUDE "data/sprite_anims/framesets.asm"
+
 INCLUDE "data/sprite_anims/oam.asm"
+
 INCLUDE "data/sprite_anims/gfx.asm"
 
 Sprites_Cosine:

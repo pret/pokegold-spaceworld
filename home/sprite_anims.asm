@@ -1,10 +1,10 @@
 InitSpriteAnimStruct::
-	ld [wSpriteAnimAddrBackup], a
+	ld [wSpriteAnimID], a
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_InitSpriteAnimStruct)
 	call Bankswitch
-	ld a, [wSpriteAnimAddrBackup]
+	ld a, [wSpriteAnimID]
 	call _InitSpriteAnimStruct
 	pop af
 	call Bankswitch

@@ -105,7 +105,7 @@ SlotsLoop:
 	call Slots_SpinReels
 	ld a, $60
 	ld [wCurSpriteOAMAddr], a
-	callfar DoNextFrameForFirst16Sprites
+	callfar DoNextFrameForAllSprites
 	call Slots_PrintCoinsAndPayout
 	call Slots_FlashPaletteOnMatchingSevens
 	call Slots_AnimateReelSpritesAfterSpin

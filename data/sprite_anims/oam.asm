@@ -5,6 +5,7 @@ MACRO spriteanimoam
 ENDM
 
 SpriteAnimOAMData:
+	table_width 3
 	spriteanimoam $00, .OAMData_Walk                     ; SPRITE_ANIM_OAMSET_WALK_1
 	spriteanimoam $04, .OAMData_Walk                     ; SPRITE_ANIM_OAMSET_WALK_2
 	spriteanimoam $4c, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_BUBBLE_1
@@ -72,6 +73,7 @@ SpriteAnimOAMData:
 	spriteanimoam $10, .OAMData_TradePoofBubble          ; SPRITE_ANIM_OAMSET_TRADEMON_BUBBLE
 	spriteanimoam $00, .OAMData_Unknown1                 ; SPRITE_ANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT
 	spriteanimoam $00, .OAMData_RadioFrequencyMeter      ; SPRITE_ANIM_OAMSET_RADIO_FREQUENCY_METER
+	assert_table_length NUM_SPRITE_ANIM_OAMSETS
 
 .OAMData_1x1_Palette0:
 	db 1

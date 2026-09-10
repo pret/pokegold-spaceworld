@@ -170,6 +170,7 @@ ENDU
 wCurIconTile:: db
 
 UNION
+wSpriteAnimID::
 wCurSpriteOAMFlags:: db
 NEXTU
 wSpriteAnimAddrBackup:: dw
