@@ -8680,11 +8680,11 @@ ROMX bank #35:
 	         $4d03 = ClearSpriteAnims.loop
 	         $4d0c = PlaySpriteAnimationsAndDelayFrame
 	         $4d13 = PlaySpriteAnimations
-	         $4d24 = DoNextFrameForFirst16Sprites
-	         $4d29 = DoNextFrameForFirst16Sprites.loop
-	         $4d3b = DoNextFrameForFirst16Sprites.next
-	         $4d48 = DoNextFrameForFirst16Sprites.loop2
-	         $4d51 = DoNextFrameForFirst16Sprites.done
+	         $4d24 = DoNextFrameForAllSprites
+	         $4d29 = DoNextFrameForAllSprites.loop
+	         $4d3b = DoNextFrameForAllSprites.next
+	         $4d48 = DoNextFrameForAllSprites.loop2
+	         $4d51 = DoNextFrameForAllSprites.done
 	         $4d52 = _InitSpriteAnimStruct
 	         $4d59 = _InitSpriteAnimStruct.loop
 	         $4d68 = _InitSpriteAnimStruct.found
@@ -8933,11 +8933,11 @@ ROMX bank #35:
 	         $6059 = Sprites_Cosine
 	         $6059 = SpriteAnimGFX.DeletedGFX
 	         $605b = Sprites_Sine
-	         $6066 = Sprites_Sine.negative_u20
-	         $6070 = Sprites_Sine.apply_u20
-	         $607f = Sprites_Sine.multiply_u20
-	         $6084 = Sprites_Sine.even_u20
-	         $608c = Sprites_Sine.sinetable_u20
+	         $6066 = Sprites_Sine.negative_u22
+	         $6070 = Sprites_Sine.apply_u22
+	         $607f = Sprites_Sine.multiply_u22
+	         $6084 = Sprites_Sine.even_u22
+	         $608c = Sprites_Sine.sinetable_u22
 	SECTION: $60cc-$70cb ($1000 bytes) ["Pokemon Party Sprites"]
 	         $60cc = PoliwagIcon
 	         $60cc = MenuMonIconGFX
@@ -11721,10 +11721,10 @@ ROMX bank #51:
 	         $6224 = BattleAnim_IncAnonJumptableIndex
 	         $622a = BattleAnim_Cosine
 	         $622c = BattleAnim_Sine
-	         $6237 = BattleAnim_Sine.negative_u24
-	         $6241 = BattleAnim_Sine.apply_u24
-	         $6250 = BattleAnim_Sine.multiply_u24
-	         $6255 = BattleAnim_Sine.even_u24
+	         $6237 = BattleAnim_Sine.negative_u26
+	         $6241 = BattleAnim_Sine.apply_u26
+	         $6250 = BattleAnim_Sine.multiply_u26
+	         $6255 = BattleAnim_Sine.even_u26
 	         $625d = BattleAnim_Sine_e
 	         $6263 = BattleAnim_Cosine_e
 	         $6269 = BattleAnimSineWave
@@ -23351,6 +23351,7 @@ WRAM0 bank #0:
 	         $c4bd = wCurSpriteOAMAddr
 	         $c4be = wCurIcon
 	         $c4bf = wCurIconTile
+	         $c4c0 = wSpriteAnimID
 	         $c4c0 = wCurSpriteOAMFlags
 	         $c4c0 = wSpriteAnimAddrBackup
 	         $c4c2 = wCurAnimVTile
