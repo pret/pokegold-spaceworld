@@ -13004,10 +13004,10 @@ ROMX bank #56:
 	         $5331 = PokerMinigame_FourOfAKindText
 	         $5336 = PokerMinigame_FiveOfAKindText
 	         $533b = PokerMinigame_HighLowWindow
-	         $5343 = PokerMinigame_HighLowWindow.text
+	         $5343 = PokerMinigame_HighLowWindow.highorlow
 	         $534b = PokerMinigame_BetWindow
-	         $5353 = PokerMinigame_BetWindow.text
-	         $5364 = PokerMinigame_ReverseData
+	         $5353 = PokerMinigame_BetWindow.amount
+	         $5364 = PokerMinigame_ReverseTilemap
 	         $537c = PokerMinigame_ConvTable
 	         $53b3 = PokerMinigame_ShufflingTable
 	         $5403 = PokerGFX
@@ -23569,7 +23569,9 @@ WRAM0 bank #0:
 	         $c517 = wPokerDoubleUp
 	         $c518 = wSlotsDataEnd
 	         $c519 = wPokerColWork
-	         $c51a = wPokerWorkEnd
+	         $c51a = wPokerSGBPals
+	         $c51d = wPokerSGBAttr
+	         $c51e = wPokerSGBCol
 	         $c534 = wSlotsEnd
 	         $c5d0 = wPokedexOrderEnd
 	         $c5d0 = wDexListingScrollOffset

@@ -12643,10 +12643,10 @@
 38:5331 PokerMinigame_FourOfAKindText
 38:5336 PokerMinigame_FiveOfAKindText
 38:533b PokerMinigame_HighLowWindow
-38:5343 PokerMinigame_HighLowWindow.text
+38:5343 PokerMinigame_HighLowWindow.highorlow
 38:534b PokerMinigame_BetWindow
-38:5353 PokerMinigame_BetWindow.text
-38:5364 PokerMinigame_ReverseData
+38:5353 PokerMinigame_BetWindow.amount
+38:5364 PokerMinigame_ReverseTilemap
 38:537c PokerMinigame_ConvTable
 38:53b3 PokerMinigame_ShufflingTable
 38:5403 PokerGFX
@@ -23137,7 +23137,9 @@
 00:c517 wSlotBuildingMatch
 00:c518 wSlotsDataEnd
 00:c519 wPokerColWork
-00:c51a wPokerWorkEnd
+00:c51a wPokerSGBPals
+00:c51d wPokerSGBAttr
+00:c51e wPokerSGBCol
 00:c534 wSlotsEnd
 00:c5d0 wDexListingScrollOffset
 00:c5d0 wPokedexOrderEnd
