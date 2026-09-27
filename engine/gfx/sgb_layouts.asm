@@ -203,7 +203,7 @@ SGB_PikachuMinigame:
 
 SGB_Poker:
 	ld hl, BlkPacket_Default
-	ld de, wPokerWorkEnd
+	ld de, wPokerSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld hl, PalPacket_Poker
@@ -599,7 +599,7 @@ LoadCharizardPalettes_Intro:
 	jp PushSGBPals
 
 LoadPokerCardPalettes:
-	ld hl, wPokerWorkEnd
+	ld hl, wPokerSGBPals
 	jp PushSGBPals
 
 PushSGBPals:

@@ -13,7 +13,7 @@ PokerMinigame:
 	call .JumptableLoop
 	jr nc, .Loop
 	ld hl, wOptions
-	res 4, [hl]
+	res NO_TEXT_SCROLL_F, [hl]
 	ret
 
 .Init:
@@ -163,7 +163,7 @@ PokerMinigame:
 	ld hl, wPokerPreviousCard
 	inc [hl]
 
-	ld c, $05
+	ld c, 5
 	call DelayFrames
 	ret
 .Start_Next:
@@ -210,7 +210,7 @@ PokerMinigame:
 	call .Next
 .ChangeCard:
 	ld a, [wPokerPreviousCard]
-	cp 5
+	cp POKER_NUM_CARDS
 	jr nc, .ChangeCard_Next
 
 	ld e, a
@@ -497,7 +497,7 @@ PokerMinigame_PlaceCards:
 	call PokerMinigame_DataConvert
 	and %11110000
 	swap a
-	add $1B
+	add $1b
 	ld [hl], a
 	inc hl
 	ld [hl], $05
@@ -533,7 +533,7 @@ PokerMinigame_PlaceCards:
 	ret
 .Flipped:
 	pop hl
-	ld de, PokerMinigame_ReverseData
+	ld de, PokerMinigame_ReverseTilemap
 	lb bc, $06, $04
 .Flipped_Loop:
 	push bc
@@ -1115,7 +1115,7 @@ PokerMinigame_HudTextbox:
 	xor a
 	ld [wPokerPayout], a
 	hlcoord 12, 14
-	ld [hl], $ED
+	ld [hl], '▶'
 	ret
 .ExchangeText:
 	db "とりかえ@"
@@ -1504,7 +1504,7 @@ PokerMinigame_SetCardColor:
 	ld hl, .ColTable
 	add hl, de
 	ld a, [hl]
-	ld [wPokerWorkEnd + 3], a
+	ld [wPokerSGBAttr], a
 
 	ld a, [wPokerPreviousCard]
 	ld e, a
@@ -1513,22 +1513,24 @@ PokerMinigame_SetCardColor:
 	add hl, de
 	ld a, [hl]
 
-	ld hl, wPokerWorkEnd + 4
+	ld hl, wPokerSGBCol
 	ld [hli], a
 	ld [hl], POKERCARD_TYPES
 	inc hl
 	add $03
 	ld [hli], a
-	ld [hl], $0A
+	ld [hl], POKERCARD_MAX_VALUE
 	callfar LoadPokerCardPalettes
 	ret
 
 .ColTable:
+	table_width 1
 	db %00001111
 	db %00001010
 	db %00000000
 	db %00000101
 	db %00000000
+	assert_table_length POKERCARD_TYPES
 
 .PosTable:
 	db 2, 5, 8, 11, 14
@@ -1540,7 +1542,7 @@ PokerMinigame_ClearColor:
 
 PokerMinigame_CardData:
 	db $05, POKERCARD_PORYGON * $10 ; Reverse Card
-for x, 10
+for x, POKERCARD_MAX_VALUE
 	db x + $11, POKERCARD_PIKACHU    * $10
 	db x + $11, POKERCARD_ODDISH     * $10
 	db x + $11, POKERCARD_JIGGLYPUFF * $10
@@ -1639,49 +1641,39 @@ PokerMinigame_FiveOfAKindText:
 	db "５カード@"
 
 PokerMinigame_HighLowWindow:
-	db	%01000000
-	db	12, 14, 17, 19
-	dw	.text
-	db	1
-.text:
-	db	%10000000
-	db	2
+	db MENU_BACKUP_TILES
+	menu_coords 14, 12, 19, 17
+	dw .highorlow
+	db 1
+.highorlow
+	db STATICMENU_CURSOR
+	db 2
 	db "うえ@"
 	db "した@"
 
 PokerMinigame_BetWindow:
-	db	%01000000
-	db	10, 13, 17, 19
-	dw	.text
-	db	1
-.text:
-	db	%10000000
-	db	3
-	db	"１０まい@"
-	db	"　５まい@"
-	db	"　１まい@"
+	db MENU_BACKUP_TILES
+	menu_coords 13, 10, 19, 17
+	dw .amount
+	db 1
+.amount:
+	db STATICMENU_CURSOR
+	db 3
+	db "１０まい@"
+	db "　５まい@"
+	db "　１まい@"
 
-PokerMinigame_ReverseData:
-	db	$04, $05, $05, $06
-	db	$02, $2c, $2d, $03
-	db	$0a, $2e, $2f, $0b
-	db	$0a, $5c, $5d, $0b
-	db	$02, $5e, $5f, $03
-	db	$07, $08, $08, $09
-
+PokerMinigame_ReverseTilemap:
+INCBIN "gfx/minigames/poker_reverse_tilemap.bin"
 
 PokerMinigame_ConvTable:
-	db	$00, $10, $20, $30, $40
-	db	$01, $11, $21, $31, $41
-	db	$02, $12, $22, $32, $42
-	db	$03, $13, $23, $33, $43
-	db	$04, $14, $24, $34, $44
-	db	$05, $15, $25, $35, $45
-	db	$06, $16, $26, $36, $46
-	db	$07, $17, $27, $37, $47
-	db	$08, $18, $28, $38, $48
-	db	$09, $19, $29, $39, $49
-	db	$0a, $1a, $2a, $3a, $4a
+for x, POKERCARD_MAX_VALUE + 1
+	db x
+	db x + $10
+	db x + $20
+	db x + $30
+	db x + $40
+endr
 
 PokerMinigame_ShufflingTable:
 	dwcoord 0, 10
@@ -1724,7 +1716,6 @@ PokerMinigame_ShufflingTable:
 	dwcoord 19, 8
 	dwcoord 19, 9
 	dwcoord 19, 10
-
 
 PokerGFX:
 INCBIN "gfx/minigames/poker.2bpp"

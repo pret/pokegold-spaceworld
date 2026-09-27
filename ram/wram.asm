@@ -269,7 +269,10 @@ wPokerCurrentBet:: dw
 wPokerWork:: db
 wPokerDoubleUp:: dw
 wPokerColWork:: db
-wPokerWorkEnd:: ds 32
+wPokerSGBPals:: db
+	ds 2
+wPokerSGBAttr:: db
+wPokerSGBCol:: db
 
 NEXTU
 
