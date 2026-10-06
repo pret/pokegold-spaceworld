@@ -417,7 +417,7 @@ rept 4
 endr
 	ld de, WaveSamples
 	add hl, de
-	ld de, _AUD3WAVERAM
+	ld de, AUD3WAVERAM
 	push bc
 	ld b, AUD3WAVE_SIZE
 .load_pattern

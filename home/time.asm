@@ -135,7 +135,7 @@ StopRTC:: ; unreferenced
 	ld a, RAMB_RTC_DH
 	ld [rRAMB], a
 	ld a, [rRTCREG]
-	set B_RAMB_RTC_DH_HALT, a
+	set B_RTCREG_DH_HALT, a
 	ld [rRTCREG], a
 	call CloseSRAM
 	ret
@@ -147,7 +147,7 @@ StartRTC::
 	ld a, RAMB_RTC_DH
 	ld [rRAMB], a
 	ld a, [rRTCREG]
-	res B_RAMB_RTC_DH_HALT, a
+	res B_RTCREG_DH_HALT, a
 	ld [rRTCREG], a
 	call CloseSRAM
 	ret
