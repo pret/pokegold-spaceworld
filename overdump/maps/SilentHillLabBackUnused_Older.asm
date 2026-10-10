@@ -1,0 +1,32 @@
+	map_attributes Unreferenced_Corrupt_SilentHillLabBackUnused_Older, SILENT_HILL_LAB_BACK_UNUSED
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_Older_MapEvents::
+; BUG: MapEvent data is missing for this map, causing a crash upon load.
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_Older_Blocks::
+INCBIN "maps/SilentHillLabBackUnused.blk"
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_Older_ScriptLoader::
+	ld hl, Unreferenced_Corrupt_SilentHillLabBackUnused_OlderScriptPointers
+	call RunMapScript + Bank34NonDebugOffset
+	call WriteBackMapScriptNumber + Bank34NonDebugOffset
+	ret
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_OlderScriptPointers:
+	dw Unreferenced_Corrupt_SilentHillLabBackUnused_OlderScript
+	dw Unreferenced_Corrupt_SilentHillLabBackUnused_OlderNPCIDs
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_OlderNPCIDs:
+	db -1
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_OlderSignPointers:
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_Older_TextPointers::
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_OlderScript:
+	ld hl, Unreferenced_Corrupt_SilentHillLabBackUnused_OlderNPCIDs
+	ld de, Unreferenced_Corrupt_SilentHillLabBackUnused_OlderSignPointers
+	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
+	ret
