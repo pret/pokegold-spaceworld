@@ -1,6 +1,7 @@
 	map_attributes SilentHillLabBackUnused, SILENT_HILL_LAB_BACK_UNUSED
 
 SilentHillLabBackUnused_MapEvents::
+; BUG: MapEvent data is missing for this map, causing a crash upon load.
 
 SilentHillLabBackUnused_Blocks::
 INCBIN "maps/SilentHillLabBackUnused.blk"
@@ -9,7 +10,7 @@ INCBIN "maps/SilentHillLabBackUnused.blk"
 	map_generic_script_pointers
 
 SilentHillLabBackUnusedNPCIDs:
-	db $FF
+	db -1
 
 SilentHillLabBackUnusedSignPointers:
 	dw MapDefaultText

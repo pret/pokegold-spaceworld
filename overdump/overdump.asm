@@ -1537,7 +1537,7 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScriptPointers:
 	dw Unreferenced_Corrupt_SilentHillLabBackUnusedNPCIDs
 
 Unreferenced_Corrupt_SilentHillLabBackUnusedNPCIDs:
-	db $FF
+	db -1
 
 Unreferenced_Corrupt_SilentHillLabBackUnusedSignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
@@ -1642,6 +1642,7 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
 		map_attributes Unreferenced_Corrupt_Gold_SilentHillLabBackUnused, SILENT_HILL_LAB_BACK_UNUSED
 
 	Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_MapEvents::
+	; BUG: MapEvent data is missing for this map, causing a crash upon load.
 
 	Unreferenced_Corrupt_Gold_SilentHillLabBackUnused_Blocks::
 	INCBIN "maps/SilentHillLabBackUnused.blk"
@@ -1657,7 +1658,7 @@ Unreferenced_Corrupt_SilentHillLabBackUnusedScript:
 		dw Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedNPCIDs
 
 	Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedNPCIDs:
-		db $FF
+		db -1
 
 	Unreferenced_Corrupt_Gold_SilentHillLabBackUnusedSignPointers:
 		dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
@@ -1845,6 +1846,7 @@ Unreferenced_Corrupt_SilentHillLabBackTextPointers2:
 	map_attributes Unreferenced_Corrupt2_SilentHillLabBackUnused, SILENT_HILL_LAB_BACK_UNUSED
 
 Unreferenced_Corrupt2_SilentHillLabBackUnused_MapEvents::
+; BUG: MapEvent data is missing for this map, causing a crash upon load.
 
 Unreferenced_Corrupt2_SilentHillLabBackUnused_Blocks::
 INCBIN "maps/SilentHillLabBackUnused.blk"
@@ -1860,7 +1862,7 @@ Unreferenced_Corrupt2_SilentHillLabBackUnusedScriptPointers:
 	dw Unreferenced_Corrupt2_SilentHillLabBackUnusedNPCIDs
 
 Unreferenced_Corrupt2_SilentHillLabBackUnusedNPCIDs:
-	db $FF
+	db -1
 
 Unreferenced_Corrupt2_SilentHillLabBackUnusedSignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
@@ -1928,6 +1930,7 @@ Unreferenced_Corrupt2_SilentHillLabBackTextPointers2:
 	map_attributes Unreferenced_Corrupt3_SilentHillLabBackUnused, SILENT_HILL_LAB_BACK_UNUSED
 
 Unreferenced_Corrupt3_SilentHillLabBackUnused_MapEvents::
+; BUG: MapEvent data is missing for this map, causing a crash upon load.
 
 Unreferenced_Corrupt3_SilentHillLabBackUnused_Blocks::
 INCBIN "maps/SilentHillLabBackUnused.blk"
@@ -1943,7 +1946,7 @@ Unreferenced_Corrupt3_SilentHillLabBackUnusedScriptPointers:
 	dw Unreferenced_Corrupt3_SilentHillLabBackUnusedNPCIDs
 
 Unreferenced_Corrupt3_SilentHillLabBackUnusedNPCIDs:
-	db $FF
+	db -1
 
 Unreferenced_Corrupt3_SilentHillLabBackUnusedSignPointers:
 	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
