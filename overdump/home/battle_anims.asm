@@ -1,0 +1,45 @@
+Unreferenced_Corrupt_GetBattleAnimPointer_Old:
+	ld a, BANK(BattleAnimations)
+	ld [rROMB], a
+	ldh [hROMBank], a
+
+	ld a, [hli]
+	ld [wBattleAnimAddress], a
+	ld a, [hl]
+	ld [wBattleAnimAddress + 1], a
+
+	ld a, BANK(PlayBattleAnim)
+	ld [rROMB], a
+	ldh [hROMBank], a
+	ret
+
+Unreferenced_Corrupt_GetBattleAnimByte_Old:
+	push hl
+	push de
+
+	ld hl, wBattleAnimAddress
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+
+	ld a, BANK(BattleAnimations)
+	ld [rROMB], a
+	ldh [hROMBank], a
+
+	ld a, [de]
+	ld [wBattleAnimByte], a
+	inc de
+
+	ld a, BANK(PlayBattleAnim)
+	ld [rROMB], a
+	ldh [hROMBank], a
+
+	ld [hl], d
+	dec hl
+	ld [hl], e
+
+	pop de
+	pop hl
+
+	ld a, [wBattleAnimByte]
+	ret

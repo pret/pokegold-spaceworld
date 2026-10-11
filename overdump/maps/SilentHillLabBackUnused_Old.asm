@@ -1,0 +1,33 @@
+if DEF(_GOLD)
+	map_attributes Unreferenced_Corrupt_SilentHillLabBackUnused_Old, SILENT_HILL_LAB_BACK_UNUSED
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_Old_MapEvents::
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_Old_Blocks::
+INCBIN "maps/SilentHillLabBackUnused.blk"
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_Old_ScriptLoader::
+	ld hl, Unreferenced_Corrupt_SilentHillLabBackUnused_OldScriptPointers
+	call RunMapScript + Bank34NonDebugOffset
+	call WriteBackMapScriptNumber + Bank34NonDebugOffset
+	ret
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_OldScriptPointers:
+	dw Unreferenced_Corrupt_SilentHillLabBackUnused_OldScript
+	dw Unreferenced_Corrupt_SilentHillLabBackUnused_OldNPCIDs
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_OldNPCIDs:
+	db -1
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_OldSignPointers:
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_Old_TextPointers::
+	dw MapDefaultText + Bank34NonDebugOffset - Bank34CorruptOffset
+
+Unreferenced_Corrupt_SilentHillLabBackUnused_OldScript:
+	ld hl, Unreferenced_Corrupt_SilentHillLabBackUnused_OldNPCIDs
+	ld de, Unreferenced_Corrupt_SilentHillLabBackUnused_OldSignPointers
+endc
+	call CallMapTextSubroutine + Bank34NonDebugOffset - Bank34CorruptOffset
+	ret
