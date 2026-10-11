@@ -1,7 +1,6 @@
 	map_attributes Unreferenced_Corrupt_SilentHillLabBackUnused_Older, SILENT_HILL_LAB_BACK_UNUSED
 
 Unreferenced_Corrupt_SilentHillLabBackUnused_Older_MapEvents::
-; BUG: MapEvent data is missing for this map, causing a crash upon load.
 
 Unreferenced_Corrupt_SilentHillLabBackUnused_Older_Blocks::
 INCBIN "maps/SilentHillLabBackUnused.blk"
