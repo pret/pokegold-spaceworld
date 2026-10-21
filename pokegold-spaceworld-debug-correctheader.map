@@ -8737,10 +8737,10 @@ ROMX bank #35:
 	         $4e1e = UpdateAnimFrame.delete
 	         $4e21 = UpdateAnimFrame.done
 	         $4e23 = UpdateAnimFrame.reached_the_end
-	         $4e26 = AddOrSubtractY
-	         $4e34 = AddOrSubtractY.ok
-	         $4e36 = AddOrSubtractX
-	         $4e44 = AddOrSubtractX.ok
+	         $4e26 = ApplyFlipToCoordY
+	         $4e34 = ApplyFlipToCoordY.ok
+	         $4e36 = ApplyFlipToCoordX
+	         $4e44 = ApplyFlipToCoordX.ok
 	         $4e46 = GetSpriteOAMAttr
 	         $4e54 = InitSpriteAnimBuffer
 	         $4e71 = GetSpriteAnimVTile
@@ -15042,8 +15042,8 @@ VRAM bank #0:
 	         $9200 = vExteriorTileset
 	         $9310 = vBackPic
 	         $9600 = vTilesetEnd
-	         $9800 = vBGMap0
-	         $9c00 = vBGMap1
+	         $9800 = vTilemap0
+	         $9c00 = vTilemap1
 	TOTAL EMPTY: $0000 bytes
 
 SRAM bank #0:

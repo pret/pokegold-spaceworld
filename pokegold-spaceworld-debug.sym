@@ -8513,10 +8513,10 @@
 23:4e1e UpdateAnimFrame.delete
 23:4e21 UpdateAnimFrame.done
 23:4e23 UpdateAnimFrame.reached_the_end
-23:4e26 AddOrSubtractY
-23:4e34 AddOrSubtractY.ok
-23:4e36 AddOrSubtractX
-23:4e44 AddOrSubtractX.ok
+23:4e26 ApplyFlipToCoordY
+23:4e34 ApplyFlipToCoordY.ok
+23:4e36 ApplyFlipToCoordX
+23:4e44 ApplyFlipToCoordX.ok
 23:4e46 GetSpriteOAMAttr
 23:4e54 InitSpriteAnimBuffer
 23:4e71 GetSpriteAnimVTile
@@ -14664,8 +14664,8 @@
 00:9200 vExteriorTileset
 00:9310 vBackPic
 00:9600 vTilesetEnd
-00:9800 vBGMap0
-00:9c00 vBGMap1
+00:9800 vTilemap0
+00:9c00 vTilemap1
 00:a000 sScratch
 00:a000 sSpriteBuffer0
 00:a188 sSpriteBuffer1
